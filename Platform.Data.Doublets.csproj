@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>LinksPlatform's Platform.Data.Doublets Class Library</Description>
+    <Copyright>Konstantin Diachenko</Copyright>
+    <AssemblyTitle>Platform.Data.Doublets</AssemblyTitle>
+    <VersionPrefix>0.0.1</VersionPrefix>
+    <Authors>Konstantin Diachenko</Authors>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AssemblyName>Platform.Data.Doublets</AssemblyName>
+    <PackageId>Platform.Data.Doublets</PackageId>
+    <PackageTags>LinksPlatform;Data.Doublets;ILinks;UInt64Links;ResizableDirectMemoryLinks;UInt64ResizableDirectMemoryLinks</PackageTags>
+    <PackageIconUrl>https://raw.githubusercontent.com/linksplatform/Documentation/18469f4d033ee9a5b7b84caab9c585acab2ac519/doc/Avatar-rainbow-icon-64x64.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/linksplatform/Data.Doublets</PackageProjectUrl>
+    <PackageLicenseExpression>LGPL-3.0-only</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>git://github.com/linksplatform/Data.Doublets</RepositoryUrl>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Platform.Collections.Methods" Version="0.0.3" />
+    <PackageReference Include="Platform.Helpers" Version="0.1.1" />
+    <PackageReference Include="Platform.Memory" Version="0.1.1" />
+    <PackageReference Include="Platform.Random" Version="0.0.2" />
+    <PackageReference Include="Platform.Timestamps" Version="0.0.2" />
+    <PackageReference Include="Platform.Data" Version="0.0.1" />
+  </ItemGroup>
+
+</Project>
