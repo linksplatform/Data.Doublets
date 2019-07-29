@@ -46,7 +46,7 @@ namespace Platform.Data.Doublets.Sequences
                     _links.Update(createdLink, firstLink, createdLink);
                     if (createdLink != i)
                     {
-                        throw new Exception("Unable to initialize UTF 16 table.");
+                        throw new InvalidOperationException("Unable to initialize UTF 16 table.");
                     }
                 }
             }

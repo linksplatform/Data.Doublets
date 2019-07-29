@@ -11,7 +11,7 @@ namespace Platform.Data.Doublets
     /// <summary>
     /// Структура описывающая уникальную связь.
     /// </summary>
-    public struct UInt64Link : IEquatable<UInt64Link>, IList<ulong>
+    public struct UInt64Link : IEquatable<UInt64Link>, IReadOnlyList<ulong>, IList<ulong>
     {
         private static readonly LinksCombinedConstants<bool, ulong, int> _constants = Default<LinksCombinedConstants<bool, ulong, int>>.Instance;
 
@@ -123,7 +123,7 @@ namespace Platform.Data.Doublets
 
         public void Clear() => throw new NotSupportedException();
 
-        public bool Contains(ulong item) => IndexOf(item) > 0;
+        public bool Contains(ulong item) => IndexOf(item) >= 0;
 
         public void CopyTo(ulong[] array, int arrayIndex)
         {

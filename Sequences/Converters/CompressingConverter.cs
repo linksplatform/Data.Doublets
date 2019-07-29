@@ -88,7 +88,7 @@ namespace Platform.Data.Doublets.Sequences.Converters
             }
             // TODO: arraypool with min size (to improve cache locality) or stackallow with Sigil
             var copy = new HalfDoublet[sequence.Count];
-            Doublet<TLink> doublet;
+            Doublet<TLink> doublet = default;
             for (var i = 1; i < sequence.Count; i++)
             {
                 doublet.Source = sequence[i - 1];
@@ -190,7 +190,7 @@ namespace Platform.Data.Doublets.Sequences.Converters
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void UpdateMaxDoublet(HalfDoublet[] copy, int length)
         {
-            Doublet<TLink> doublet;
+            Doublet<TLink> doublet = default;
             for (var i = 1; i < length; i++)
             {
                 doublet.Source = copy[i - 1].Element;

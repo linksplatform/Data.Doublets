@@ -83,12 +83,12 @@ namespace Platform.Data.Doublets
         {
             public static readonly long Size = StructureHelpers.SizeOf<Transition>();
 
-            public ulong TransactionId;
-            public UInt64Link Before;
-            public UInt64Link After;
-            public Timestamp Timestamp;
+            public readonly ulong TransactionId;
+            public readonly UInt64Link Before;
+            public readonly UInt64Link After;
+            public readonly Timestamp Timestamp;
 
-            public Transition(UniqueTimestampFactory uniqueTimestampFactory, ulong transactionId, UInt64Link before = default, UInt64Link after = default)
+            public Transition(UniqueTimestampFactory uniqueTimestampFactory, ulong transactionId, UInt64Link before, UInt64Link after)
             {
                 TransactionId = transactionId;
                 Before = before;
@@ -96,10 +96,17 @@ namespace Platform.Data.Doublets
                 Timestamp = uniqueTimestampFactory.Create();
             }
 
-            public override string ToString()
+            public Transition(UniqueTimestampFactory uniqueTimestampFactory, ulong transactionId, UInt64Link before)
+                : this(uniqueTimestampFactory, transactionId, before, default)
             {
-                return $"{Timestamp} {TransactionId}: {Before} => {After}";
             }
+
+            public Transition(UniqueTimestampFactory uniqueTimestampFactory, ulong transactionId)
+                : this(uniqueTimestampFactory, transactionId, default, default)
+            {
+            }
+
+            public override string ToString() => $"{Timestamp} {TransactionId}: {Before} => {After}";
         }
 
         /// <remarks>
@@ -263,7 +270,7 @@ namespace Platform.Data.Doublets
         {
             var createdLinkIndex = Links.Create();
             var createdLink = new UInt64Link(Links.GetLink(createdLinkIndex));
-            CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, after: createdLink));
+            CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, default, createdLink));
             return createdLinkIndex;
         }
 
@@ -272,7 +279,7 @@ namespace Platform.Data.Doublets
             var beforeLink = new UInt64Link(Links.GetLink(parts[Constants.IndexPart]));
             parts[Constants.IndexPart] = Links.Update(parts);
             var afterLink = new UInt64Link(Links.GetLink(parts[Constants.IndexPart]));
-            CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, before: beforeLink, after: afterLink));
+            CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, beforeLink, afterLink));
             return parts[Constants.IndexPart];
         }
 
@@ -280,7 +287,7 @@ namespace Platform.Data.Doublets
         {
             var deletedLink = new UInt64Link(Links.GetLink(link));
             Links.Delete(link);
-            CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, before: deletedLink));
+            CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, deletedLink, default));
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

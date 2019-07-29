@@ -90,15 +90,15 @@ namespace Platform.Data.Doublets.Sequences.Converters
             return links.GetOrCreate(sequence[0], sequence[1]);
         }
 
-        private TLink GetGreatestNeigbourLowerThanCurrentOrCurrent(TLink previous, TLink current, TLink next)
+        private static TLink GetGreatestNeigbourLowerThanCurrentOrCurrent(TLink previous, TLink current, TLink next)
         {
             return _comparer.Compare(previous, next) > 0
                 ? _comparer.Compare(previous, current) < 0 ? previous : current
                 : _comparer.Compare(next, current) < 0 ? next : current;
         }
 
-        private TLink GetNextLowerThanCurrentOrCurrent(TLink current, TLink next) => _comparer.Compare(next, current) < 0 ? next : current;
+        private static TLink GetNextLowerThanCurrentOrCurrent(TLink current, TLink next) => _comparer.Compare(next, current) < 0 ? next : current;
 
-        private TLink GetPreviousLowerThanCurrentOrCurrent(TLink previous, TLink current) => _comparer.Compare(previous, current) < 0 ? previous : current;
+        private static TLink GetPreviousLowerThanCurrentOrCurrent(TLink previous, TLink current) => _comparer.Compare(previous, current) < 0 ? previous : current;
     }
 }

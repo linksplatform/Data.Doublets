@@ -36,7 +36,7 @@ namespace Platform.Data.Doublets.Converters
                     powerOf2Index = _unaryNumberPowerOf2Indicies[Links.GetSource(source)];
                     source = Links.GetTarget(source);
                 }
-                target = (Integer<TLink>)((ulong)(Integer<TLink>)target | 1UL << powerOf2Index); // MathHelpers.Or(target, MathHelpers.ShiftLeft(One, powerOf2Index))
+                target = (Integer<TLink>)((Integer<TLink>)target | 1UL << powerOf2Index); // MathHelpers.Or(target, MathHelpers.ShiftLeft(One, powerOf2Index))
             }
             return target;
         }

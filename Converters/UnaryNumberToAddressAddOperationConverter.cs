@@ -28,7 +28,7 @@ namespace Platform.Data.Doublets.Converters
             var number = Integer<TLink>.One;
             for (var i = 1; i < 64; i++)
             {
-                _unaryToUInt64.Add(unary = Links.GetOrCreate(unary, unary), number = (Integer<TLink>)((ulong)(Integer<TLink>)number * 2UL));
+                _unaryToUInt64.Add(unary = Links.GetOrCreate(unary, unary), number = (Integer<TLink>)((Integer<TLink>)number * 2UL));
             }
         }
 

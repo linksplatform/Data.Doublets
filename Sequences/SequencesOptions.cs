@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Platform.Interfaces;
-using Platform.Data.Sequences;
 using Platform.Data.Doublets.Sequences.Frequencies.Cache;
 using Platform.Data.Doublets.Sequences.Frequencies.Counters;
 using Platform.Data.Doublets.Sequences.Converters;
@@ -9,28 +8,28 @@ using Platform.Data.Doublets.Sequences.CreteriaMatchers;
 
 namespace Platform.Data.Doublets.Sequences
 {
-    public struct SequencesOptions<TLink> // TODO: To use type parameter <TLink> the ILinks<TLink> must contain GetConstants function.
+    public class SequencesOptions<TLink> // TODO: To use type parameter <TLink> the ILinks<TLink> must contain GetConstants function.
     {
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
 
-        public TLink SequenceMarkerLink;
-        public bool UseCascadeUpdate;
-        public bool UseCascadeDelete;
-        public bool UseIndex; // TODO: Update Index on sequence update/delete.
-        public bool UseSequenceMarker;
-        public bool UseCompression;
-        public bool UseGarbageCollection;
-        public bool EnforceSingleSequenceVersionOnWriteBasedOnExisting;
-        public bool EnforceSingleSequenceVersionOnWriteBasedOnNew;
+        public TLink SequenceMarkerLink { get; set; }
+        public bool UseCascadeUpdate { get; set; }
+        public bool UseCascadeDelete { get; set; }
+        public bool UseIndex { get; set; } // TODO: Update Index on sequence update/delete.
+        public bool UseSequenceMarker { get; set; }
+        public bool UseCompression { get; set; }
+        public bool UseGarbageCollection { get; set; }
+        public bool EnforceSingleSequenceVersionOnWriteBasedOnExisting { get; set; }
+        public bool EnforceSingleSequenceVersionOnWriteBasedOnNew { get; set; }
 
-        public MarkedSequenceCreteriaMatcher<TLink> MarkedSequenceMatcher;
-        public IConverter<IList<TLink>, TLink> LinksToSequenceConverter;
-        public SequencesIndexer<TLink> Indexer;
+        public MarkedSequenceCreteriaMatcher<TLink> MarkedSequenceMatcher { get; set; }
+        public IConverter<IList<TLink>, TLink> LinksToSequenceConverter { get; set; }
+        public SequencesIndexer<TLink> Indexer { get; set; }
 
         // TODO: Реализовать компактификацию при чтении
-        //public bool EnforceSingleSequenceVersionOnRead; 
-        //public bool UseRequestMarker;
-        //public bool StoreRequestResults;
+        //public bool EnforceSingleSequenceVersionOnRead { get; set; }
+        //public bool UseRequestMarker { get; set; }
+        //public bool StoreRequestResults { get; set; }
 
         public void InitOptions(ISynchronizedLinks<TLink> links)
         {
@@ -47,19 +46,16 @@ namespace Platform.Data.Doublets.Sequences
                         var link = links.CreatePoint();
                         if (!_equalityComparer.Equals(link, SequenceMarkerLink))
                         {
-                            throw new Exception("Cannot recreate sequence marker link.");
+                            throw new InvalidOperationException("Cannot recreate sequence marker link.");
                         }
                     }
                 }
-
                 if (MarkedSequenceMatcher == null)
                 {
                     MarkedSequenceMatcher = new MarkedSequenceCreteriaMatcher<TLink>(links, SequenceMarkerLink);
                 }
             }
-
             var balancedVariantConverter = new BalancedVariantConverter<TLink>(links);
-
             if (UseCompression)
             {
                 if (LinksToSequenceConverter == null)
@@ -73,9 +69,7 @@ namespace Platform.Data.Doublets.Sequences
                     {
                         totalSequenceSymbolFrequencyCounter = new TotalSequenceSymbolFrequencyCounter<TLink>(links);
                     }
-
                     var doubletFrequenciesCache = new LinkFrequenciesCache<TLink>(links, totalSequenceSymbolFrequencyCounter);
-
                     var compressingConverter = new CompressingConverter<TLink>(links, balancedVariantConverter, doubletFrequenciesCache);
                     LinksToSequenceConverter = compressingConverter;
                 }
@@ -87,7 +81,6 @@ namespace Platform.Data.Doublets.Sequences
                     LinksToSequenceConverter = balancedVariantConverter;
                 }
             }
-
             if (UseIndex && Indexer == null)
             {
                 Indexer = new SequencesIndexer<TLink>(links);

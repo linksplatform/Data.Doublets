@@ -6,11 +6,11 @@ using Platform.Disposables;
 using Platform.Helpers.Singletons;
 using Platform.Collections.Arrays;
 using Platform.Numbers;
-using static Platform.Numbers.ArithmeticHelpers;
 using Platform.Unsafe;
 using Platform.Memory;
 using Platform.Data.Exceptions;
 using Platform.Data.Constants;
+using static Platform.Numbers.ArithmeticHelpers;
 
 #pragma warning disable 0649
 #pragma warning disable 169
@@ -195,7 +195,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             }
             SetPointers(_memory);
             // Гарантия корректности _memory.UsedCapacity относительно _header->AllocatedLinks
-            _memory.UsedCapacity = (long)(Integer<TLink>)LinksHeader.GetAllocatedLinks(_header) * LinkSizeInBytes + LinkHeaderSizeInBytes;
+            _memory.UsedCapacity = ((long)(Integer<TLink>)LinksHeader.GetAllocatedLinks(_header) * LinkSizeInBytes) + LinkHeaderSizeInBytes;
             // Гарантия корректности _header->ReservedLinks относительно _memory.ReservedCapacity
             LinksHeader.SetReservedLinks(_header, (Integer<TLink>)((_memory.ReservedCapacity - LinkHeaderSizeInBytes) / LinkSizeInBytes));
         }
@@ -320,7 +320,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         {
             if (restrictions.Count == 0)
             {
-                for (TLink link = Integer<TLink>.One; _comparer.Compare(link, (TLink)(Integer<TLink>)LinksHeader.GetAllocatedLinks(_header)) <= 0; link = Increment(link))
+                for (TLink link = Integer<TLink>.One; _comparer.Compare(link, (Integer<TLink>)LinksHeader.GetAllocatedLinks(_header)) <= 0; link = Increment(link))
                 {
                     if (Exists(link) && _equalityComparer.Equals(handler(GetLinkStruct(link)), Constants.Break))
                     {
@@ -544,14 +544,16 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         {
             if (memory == null)
             {
-                _header = _links = IntPtr.Zero;
+                _links = IntPtr.Zero;
+                _header = _links;
                 _unusedLinksListMethods = null;
                 _targetsTreeMethods = null;
                 _unusedLinksListMethods = null;
             }
             else
             {
-                _header = _links = memory.Pointer;
+                _links = memory.Pointer;
+                _header = _links;
                 _sourcesTreeMethods = new LinksSourcesTreeMethods(this);
                 _targetsTreeMethods = new LinksTargetsTreeMethods(this);
                 _unusedLinksListMethods = new UnusedLinksListMethods(_links, _header);

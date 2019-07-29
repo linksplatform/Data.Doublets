@@ -105,7 +105,7 @@ namespace Platform.Data.Doublets.Sequences
                 readAsElement.Add(sequence);
                 return true; // Continue
             }, segment);
-            if (duplicates.Any(x => _visited.Get((long)(Integer<TLink>)x)))
+            if (duplicates.Any(x => _visited.Get((Integer<TLink>)x)))
             {
                 return new List<TLink>();
             }
@@ -139,7 +139,7 @@ namespace Platform.Data.Doublets.Sequences
             var duplicatesList = duplicatesItem.Value;
             for (int i = 0; i < duplicatesList.Count; i++)
             {
-                ulong sequenceIndex = (ulong)(Integer<TLink>)duplicatesList[i];
+                ulong sequenceIndex = (Integer<TLink>)duplicatesList[i];
                 var formatedSequenceStructure = ulongLinks.FormatStructure(sequenceIndex, x => Point<ulong>.IsPartialPoint(x), (sb, link) => _ = UnicodeMap.IsCharLink(link.Index) ? sb.Append(UnicodeMap.FromLinkToChar(link.Index)) : sb.Append(link.Index));
                 Console.WriteLine(formatedSequenceStructure);
                 var sequenceString = UnicodeMap.FromSequenceLinkToString(sequenceIndex, ulongLinks);

@@ -24,10 +24,11 @@ namespace Platform.Data.Doublets.Sequences
             bool hasElements;
             do
             {
+                length *= 2;
 #if USEARRAYPOOL
-                var nextArray = ArrayPool.Allocate<ulong>(length *= 2);
+                var nextArray = ArrayPool.Allocate<ulong>(length);
 #else
-                var nextArray = new ulong[length *= 2];
+                var nextArray = new ulong[length];
 #endif
                 hasElements = false;
                 for (var i = 0; i < array.Length; i++)
@@ -57,7 +58,9 @@ namespace Platform.Data.Doublets.Sequences
                 }
 #if USEARRAYPOOL
                 if (array.Length > 1)
+                {
                     ArrayPool.Free(array);
+                }
 #endif
                 array = nextArray;
             }
@@ -81,7 +84,8 @@ namespace Platform.Data.Doublets.Sequences
             {
                 if (array[i] > 0)
                 {
-                    finalArray[j++] = array[i];
+                    finalArray[j] = array[i];
+                    j++;
                 }
             }
 #if USEARRAYPOOL

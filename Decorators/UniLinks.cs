@@ -7,6 +7,7 @@ using Platform.Collections.Lists;
 using Platform.Helpers.Scopes;
 using Platform.Data.Constants;
 using Platform.Data.Universal;
+using System.Collections.ObjectModel;
 
 namespace Platform.Data.Doublets.Decorators
 {
@@ -20,10 +21,7 @@ namespace Platform.Data.Doublets.Decorators
     {
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
 
-        public UniLinks(ILinks<TLink> links)
-            : base(links)
-        {
-        }
+        public UniLinks(ILinks<TLink> links) : base(links) { }
 
         private struct Transition
         {
@@ -38,18 +36,15 @@ namespace Platform.Data.Doublets.Decorators
         }
 
         public static readonly TLink NullConstant = Use<LinksCombinedConstants<TLink, TLink, int>>.Single.Null;
-        public static readonly IList<TLink> NullLink = new List<TLink> { NullConstant, NullConstant, NullConstant };
+        public static readonly IReadOnlyList<TLink> NullLink = new ReadOnlyCollection<TLink>(new List<TLink> { NullConstant, NullConstant, NullConstant });
 
         // TODO: Подумать о том, как реализовать древовидный Restriction и Substitution (Links-Expression)
-
         public TLink Trigger(IList<TLink> restriction, Func<IList<TLink>, IList<TLink>, TLink> matchedHandler, IList<TLink> substitution, Func<IList<TLink>, IList<TLink>, TLink> substitutedHandler)
         {
             ////List<Transition> transitions = null;
-
             ////if (!restriction.IsNullOrEmpty())
             ////{
             ////    // Есть причина делать проход (чтение)
-
             ////    if (matchedHandler != null)
             ////    {
             ////        if (!substitution.IsNullOrEmpty())
@@ -57,26 +52,19 @@ namespace Platform.Data.Doublets.Decorators
             ////            // restriction => { 0, 0, 0 } | { 0 } // Create
             ////            // substitution => { itself, 0, 0 } | { itself, itself, itself } // Create / Update
             ////            // substitution => { 0, 0, 0 } | { 0 } // Delete
-
             ////            transitions = new List<Transition>();
-
             ////            if (Equals(substitution[Constants.IndexPart], Constants.Null))
             ////            {
             ////                // If index is Null, that means we always ignore every other value (they are also Null by definition)
-
-
             ////                var matchDecision = matchedHandler(, NullLink);
-
             ////                if (Equals(matchDecision, Constants.Break))
             ////                    return false;
-
             ////                if (!Equals(matchDecision, Constants.Skip))
             ////                    transitions.Add(new Transition(matchedLink, newValue));
             ////            }
             ////            else
             ////            {
             ////                Func<T, bool> handler;
-
             ////                handler = link =>
             ////                {
             ////                    var matchedLink = Memory.GetLinkValue(link);
@@ -84,18 +72,13 @@ namespace Platform.Data.Doublets.Decorators
             ////                    newValue[Constants.IndexPart] = Constants.Itself;
             ////                    newValue[Constants.SourcePart] = Equals(substitution[Constants.SourcePart], Constants.Itself) ? matchedLink[Constants.IndexPart] : substitution[Constants.SourcePart];
             ////                    newValue[Constants.TargetPart] = Equals(substitution[Constants.TargetPart], Constants.Itself) ? matchedLink[Constants.IndexPart] : substitution[Constants.TargetPart];
-
             ////                    var matchDecision = matchedHandler(matchedLink, newValue);
-
             ////                    if (Equals(matchDecision, Constants.Break))
             ////                        return false;
-
             ////                    if (!Equals(matchDecision, Constants.Skip))
             ////                        transitions.Add(new Transition(matchedLink, newValue));
-
             ////                    return true;
             ////                };
-
             ////                if (!Memory.Each(handler, restriction))
             ////                    return Constants.Break;
             ////            }
@@ -105,12 +88,9 @@ namespace Platform.Data.Doublets.Decorators
             ////            Func<T, bool> handler = link =>
             ////            {
             ////                var matchedLink = Memory.GetLinkValue(link);
-
             ////                var matchDecision = matchedHandler(matchedLink, matchedLink);
-
             ////                return !Equals(matchDecision, Constants.Break);
             ////            };
-
             ////            if (!Memory.Each(handler, restriction))
             ////                return Constants.Break;
             ////        }
@@ -120,14 +100,12 @@ namespace Platform.Data.Doublets.Decorators
             ////        if (substitution != null)
             ////        {
             ////            transitions = new List<IList<T>>();
-
             ////            Func<T, bool> handler = link =>
             ////            {
             ////                var matchedLink = Memory.GetLinkValue(link);
             ////                transitions.Add(matchedLink);
             ////                return true;
             ////            };
-
             ////            if (!Memory.Each(handler, restriction))
             ////                return Constants.Break;
             ////        }
@@ -137,18 +115,14 @@ namespace Platform.Data.Doublets.Decorators
             ////        }
             ////    }
             ////}
-
             ////if (substitution != null)
             ////{
             ////    // Есть причина делать замену (запись)
-
             ////    if (substitutedHandler != null)
             ////    {
-
             ////    }
             ////    else
             ////    {
-
             ////    }
             ////}
             ////return Constants.Continue;
@@ -166,71 +140,52 @@ namespace Platform.Data.Doublets.Decorators
             //{
             //    // No need to collect links to list
             //    // Skip == Continue
-
             //    // No need to check substituedHandler
-
             //    if (!Memory.Each(link => !Equals(matchedHandler(Memory.GetLinkValue(link)), Constants.Break), restriction))
             //        return Constants.Break;
             //}
             //else // Update
             //{
             //    //List<IList<T>> matchedLinks = null;
-
             //    if (matchedHandler != null)
             //    {
             //        matchedLinks = new List<IList<T>>();
-
             //        Func<T, bool> handler = link =>
             //        {
             //            var matchedLink = Memory.GetLinkValue(link);
-
             //            var matchDecision = matchedHandler(matchedLink);
-
             //            if (Equals(matchDecision, Constants.Break))
             //                return false;
-
             //            if (!Equals(matchDecision, Constants.Skip))
             //                matchedLinks.Add(matchedLink);
-
             //            return true;
             //        };
-
             //        if (!Memory.Each(handler, restriction))
             //            return Constants.Break;
             //    }
-
             //    if (!matchedLinks.IsNullOrEmpty())
             //    {
             //        var totalMatchedLinks = matchedLinks.Count;
             //        for (var i = 0; i < totalMatchedLinks; i++)
             //        {
             //            var matchedLink = matchedLinks[i];
-
             //            if (substitutedHandler != null)
             //            {
             //                var newValue = new List<T>(); // TODO: Prepare value to update here
-
             //                // TODO: Decide is it actually needed to use Before and After substitution handling.
-
             //                var substitutedDecision = substitutedHandler(matchedLink, newValue);
-
             //                if (Equals(substitutedDecision, Constants.Break))
             //                    return Constants.Break;
-
             //                if (Equals(substitutedDecision, Constants.Continue))
             //                {
             //                    // Actual update here
-
             //                    Memory.SetLinkValue(newValue);
             //                }
-
             //                if (Equals(substitutedDecision, Constants.Skip))
             //                {
             //                    // Cancel the update. TODO: decide use separate Cancel constant or Skip is enough?
             //                }
-
             //            }
-
             //        }
             //    }
             //}

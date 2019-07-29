@@ -99,10 +99,10 @@ namespace Platform.Data.Doublets.Sequences.Frequencies.Cache
                     var frequency = value.Frequency;
                     var count = _frequencyCounter.Count(linkIndex);
                     // TODO: Why `frequency` always greater than `count` by 1?
-                    if (_comparer.Compare(frequency, count) > 0 && _comparer.Compare(ArithmeticHelpers.Subtract(frequency, count), Integer<TLink>.One) > 0
-                     || _comparer.Compare(count, frequency) > 0 && _comparer.Compare(ArithmeticHelpers.Subtract(count, frequency), Integer<TLink>.One) > 0)
+                    if (((_comparer.Compare(frequency, count) > 0) && (_comparer.Compare(ArithmeticHelpers.Subtract(frequency, count), Integer<TLink>.One) > 0))
+                     || ((_comparer.Compare(count, frequency) > 0) && (_comparer.Compare(ArithmeticHelpers.Subtract(count, frequency), Integer<TLink>.One) > 0)))
                     {
-                        throw new Exception("Frequencies validation failed.");
+                        throw new InvalidOperationException("Frequencies validation failed.");
                     }
                 }
                 //else

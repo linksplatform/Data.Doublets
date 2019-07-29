@@ -96,7 +96,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             }
             SetPointers(_memory);
             // Гарантия корректности _memory.UsedCapacity относительно _header->AllocatedLinks
-            _memory.UsedCapacity = (long)_header->AllocatedLinks * sizeof(Link) + sizeof(LinksHeader);
+            _memory.UsedCapacity = ((long)_header->AllocatedLinks * sizeof(Link)) + sizeof(LinksHeader);
             // Гарантия корректности _header->ReservedLinks относительно _memory.ReservedCapacity
             _header->ReservedLinks = (id)((_memory.ReservedCapacity - sizeof(LinksHeader)) / sizeof(Link));
         }

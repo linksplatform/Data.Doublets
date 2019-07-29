@@ -928,7 +928,6 @@ namespace Platform.Data.Doublets.Sequences
             }
         }
 
-
         public ulong CalculateTotalSymbolFrequencyCore(ulong symbol)
         {
             if (Options.UseSequenceMarker)

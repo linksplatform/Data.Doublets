@@ -371,8 +371,8 @@ namespace Platform.Data.Doublets
                 max = Math.Min(max, (Integer<TLink>)constants.MaxPossibleIndex);
                 var createdLinks = new List<TLink>();
                 var equalityComparer = EqualityComparer<TLink>.Default;
-                TLink createdLink;
-                while (!equalityComparer.Equals(createdLink = creator(), (TLink)(Integer<TLink>)max))
+                TLink createdLink = creator();
+                while (!equalityComparer.Equals(createdLink, (Integer<TLink>)max))
                 {
                     createdLinks.Add(createdLink);
                 }

@@ -5,8 +5,8 @@ namespace Platform.Data.Doublets.Sequences.Frequencies.Cache
 {
     public class LinkFrequency<TLink>
     {
-        public TLink Frequency;
-        public TLink Link;
+        public TLink Frequency { get; set; }
+        public TLink Link { get; set; }
 
         public LinkFrequency(TLink frequency, TLink link)
         {

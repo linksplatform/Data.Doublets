@@ -28,10 +28,7 @@ namespace Platform.Data.Doublets.Decorators
     /// </remarks>
     public class UInt64Links : LinksDisposableDecoratorBase<ulong>
     {
-        public UInt64Links(ILinks<ulong> links)
-            : base(links)
-        {
-        }
+        public UInt64Links(ILinks<ulong> links) : base(links) { }
 
         public override ulong Each(Func<IList<ulong>, ulong> handler, IList<ulong> restrictions)
         {

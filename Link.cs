@@ -11,7 +11,7 @@ namespace Platform.Data.Doublets
     /// <summary>
     /// Структура описывающая уникальную связь.
     /// </summary>
-    public struct Link<TLink> : IEquatable<Link<TLink>>, IList<TLink>
+    public struct Link<TLink> : IEquatable<Link<TLink>>, IReadOnlyList<TLink>, IList<TLink>
     {
         public static readonly Link<TLink> Null = new Link<TLink>();
 
@@ -124,7 +124,7 @@ namespace Platform.Data.Doublets
 
         public void Clear() => throw new NotSupportedException();
 
-        public bool Contains(TLink item) => IndexOf(item) > 0;
+        public bool Contains(TLink item) => IndexOf(item) >= 0;
 
         public void CopyTo(TLink[] array, int arrayIndex)
         {
