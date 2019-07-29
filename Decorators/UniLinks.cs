@@ -329,4 +329,3 @@ namespace Platform.Data.Doublets.Decorators
         private TLink AlwaysContinue(IList<TLink> linkToMatch) => Constants.Continue;
     }
 }
-
