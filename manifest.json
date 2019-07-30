@@ -1,0 +1,1208 @@
+{
+  "homepages": [],
+  "source_base_path": "/home/travis/build/linksplatform/Data.Doublets",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      },
+      "is_incremental": false
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html",
+          "hash": "rh6hiBXINhW4YUYCYDFUCQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.ru.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.ru.html",
+          "hash": "oiXkxiaO5t/8nWrktx5rCA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "BnPm/OtoxtShlbfg7JfLrw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Converters.AddressToUnaryNumberConverter-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Converters.AddressToUnaryNumberConverter-1.html",
+          "hash": "0fI/gjcuBkdcech+vs0FYg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter-1.html",
+          "hash": "maEjLK76WQSFMkL1SOAAmQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Converters.PowerOf2ToUnaryNumberConverter-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Converters.PowerOf2ToUnaryNumberConverter-1.html",
+          "hash": "P/m+yVM+9TiOnRPW2gpJhw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Converters.UnaryNumberToAddressAddOperationConverter-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Converters.UnaryNumberToAddressAddOperationConverter-1.html",
+          "hash": "WsdolXUqn0EkVgNM2Dd8gA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Converters.UnaryNumberToAddressOrOperationConverter-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Converters.UnaryNumberToAddressOrOperationConverter-1.html",
+          "hash": "6Jlz2l1mn+258wT7fbpDUQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Converters.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Converters.html",
+          "hash": "iFnuyiJ155B7+cKAFlBEUA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Decorators.LinksCascadeDependenciesResolver-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Decorators.LinksCascadeDependenciesResolver-1.html",
+          "hash": "ruEJ/eupw1/uszcHGnL3gw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Decorators.LinksCascadeUniquenessAndDependenciesResolver-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Decorators.LinksCascadeUniquenessAndDependenciesResolver-1.html",
+          "hash": "xVPUwmbuvWRgzKKXe29kvQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html",
+          "hash": "Gt4wVRB1ZfT6C3EuwhTvxQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Decorators.LinksDependenciesValidator-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Decorators.LinksDependenciesValidator-1.html",
+          "hash": "yyNVwv8Qx8ux48bW9X58gA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html",
+          "hash": "VJMM+zVT8/rwtBDSoeJAWg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator-1.html",
+          "hash": "LDbwgs3kwh/6XG2ritsEtQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Decorators.LinksNonExistentReferencesCreator-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Decorators.LinksNonExistentReferencesCreator-1.html",
+          "hash": "P3Z3g1mvlhyVi8bwTQKRBw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver-1.html",
+          "hash": "qBtCI1m3A9q30gZXa5ep7g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver-1.html",
+          "hash": "YJAEmpO4O/YOPh4RCSzaHA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Decorators.LinksUniquenessResolver-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Decorators.LinksUniquenessResolver-1.html",
+          "hash": "rnjp3qNlFiCH2uWoVPu6UQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Decorators.LinksUniquenessValidator-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Decorators.LinksUniquenessValidator-1.html",
+          "hash": "VVphlwd1D7undvkNmSCSsA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Decorators.NonNullContentsLinkDeletionResolver-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Decorators.NonNullContentsLinkDeletionResolver-1.html",
+          "hash": "V8+AsbHSB3JYZOL5RjRkXw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Decorators.UInt64Links.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Decorators.UInt64Links.html",
+          "hash": "oxlqXm0C68/YHMGNhinFEA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Decorators.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Decorators.html",
+          "hash": "z52Uaj5V0HxG7m0hYMOOOg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Doublet-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Doublet-1.html",
+          "hash": "IG5EE+E0RY6z7OyQEfjnpg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.DoubletComparer-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.DoubletComparer-1.html",
+          "hash": "i7jhgDiuWyKyCwSSdOAYEA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Hybrid-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Hybrid-1.html",
+          "hash": "S0WlthMadGViom8gd9zAIg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.ILinks-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.ILinks-1.html",
+          "hash": "MEKkKHIpvvoukCVc7SxqGw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.ILinksExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.ILinksExtensions.html",
+          "hash": "Dzfa2YmZ1xcDhJuPRKF/HA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.ISynchronizedLinks-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.ISynchronizedLinks-1.html",
+          "hash": "30trKF1zBB2OfaSMfIkEaA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Incrementers.FrequencyIncrementer-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Incrementers.FrequencyIncrementer-1.html",
+          "hash": "2KAbL2Up80xt758EG2dUow=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Incrementers.LinkFrequencyIncrementer-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Incrementers.LinkFrequencyIncrementer-1.html",
+          "hash": "VR2L8EcRcQocoHO91R+fKA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Incrementers.UnaryNumberIncrementer-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Incrementers.UnaryNumberIncrementer-1.html",
+          "hash": "T6Hm4dFkHhFSL7JZMsRF8g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Incrementers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Incrementers.html",
+          "hash": "tofikzQfXnvAja+SwRcyew=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Link-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Link-1.html",
+          "hash": "sGePlgA2h+SbvKV2jHsE9g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.LinkExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.LinkExtensions.html",
+          "hash": "q1VbLlOR4P7St6ml8RVvXw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.LinksOperatorBase-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.LinksOperatorBase-1.html",
+          "hash": "OL/2sAbOC+XMy/jl1aYtMA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator-1.html",
+          "hash": "NySXEy8EtVAEqIfSEg14sg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator-1.html",
+          "hash": "1aDclmXwDgK3v+35Ji8JZw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.PropertyOperators.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.PropertyOperators.html",
+          "hash": "ETqALbpTEDREbzE3IJqAFw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html",
+          "hash": "MYMmOt/+ZFdbmJxzEAt7RA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.html",
+          "hash": "rWBod6NdJ5qbHMf+BoAqzw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.ResizableDirectMemory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.ResizableDirectMemory.html",
+          "hash": "NoNTc3/W3C//z0OIRuW4xA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.Converters.BalancedVariantConverter-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.Converters.BalancedVariantConverter-1.html",
+          "hash": "HUNXbGHy90oMafhuZ/KwDA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.Converters.CompressingConverter-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.Converters.CompressingConverter-1.html",
+          "hash": "nP6exHeA4sesN6xHpQNAXA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.Converters.LinksListToSequenceConverterBase-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.Converters.LinksListToSequenceConverterBase-1.html",
+          "hash": "oHOYTdlLOPfh1gQm+A6FXA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.Converters.OptimalVariantConverter-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.Converters.OptimalVariantConverter-1.html",
+          "hash": "AbTXAclQyzArZ1l9qjbpWA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.Converters.SequenceToItsLocalElementLevelsConverter-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.Converters.SequenceToItsLocalElementLevelsConverter-1.html",
+          "hash": "QT2DXTdJiw9QOAElU8i0BA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.Converters.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.Converters.html",
+          "hash": "088W62dfM6SEYhIqvnwNSA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCreteriaMatcher-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCreteriaMatcher-1.html",
+          "hash": "ezrO92EI+auk/rjs4dkkww=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCreteriaMatcher-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCreteriaMatcher-1.html",
+          "hash": "S3kjfGsHoKY/glj+As7y4Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.CreteriaMatchers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.CreteriaMatchers.html",
+          "hash": "hjauf1qxJBwcNZj/JCYeLg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.DefaultSequenceAppender-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.DefaultSequenceAppender-1.html",
+          "hash": "/0OmivSmW3MUq33op+Z5nw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.DuplicateSegmentsCounter-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.DuplicateSegmentsCounter-1.html",
+          "hash": "iIka8dY3RR8/B2F7FjcTPQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.DuplicateSegmentsProvider-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.DuplicateSegmentsProvider-1.html",
+          "hash": "5yRaUbm7ranf0J34uihc+Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.Frequencies.Cache.FrequenciesCacheBasedLinkFrequencyIncrementer-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.Frequencies.Cache.FrequenciesCacheBasedLinkFrequencyIncrementer-1.html",
+          "hash": "finlQVOZOXCdf32kCV/XCw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.Frequencies.Cache.FrequenciesCacheBasedLinkToItsFrequencyNumberConverter-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.Frequencies.Cache.FrequenciesCacheBasedLinkToItsFrequencyNumberConverter-1.html",
+          "hash": "LcDnvDYRncQaNRj8y0Npag=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.Frequencies.Cache.LinkFrequenciesCache-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.Frequencies.Cache.LinkFrequenciesCache-1.html",
+          "hash": "SKio4Z2RWGaGXI1imYu/yQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.Frequencies.Cache.LinkFrequency-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.Frequencies.Cache.LinkFrequency-1.html",
+          "hash": "yXoRcDIvq9NDj59EwCRxBQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.Frequencies.Cache.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.Frequencies.Cache.html",
+          "hash": "K/MEcb9kWs27AyVyfvNphw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.Frequencies.Counters.MarkedSequenceSymbolFrequencyOneOffCounter-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.Frequencies.Counters.MarkedSequenceSymbolFrequencyOneOffCounter-1.html",
+          "hash": "dhv9aFKxAA+LbZK0u02M/w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.Frequencies.Counters.SequenceSymbolFrequencyOneOffCounter-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.Frequencies.Counters.SequenceSymbolFrequencyOneOffCounter-1.html",
+          "hash": "97GBgvMlgXqKGahsUuNnHA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.Frequencies.Counters.TotalMarkedSequenceSymbolFrequencyCounter-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.Frequencies.Counters.TotalMarkedSequenceSymbolFrequencyCounter-1.html",
+          "hash": "N0ls5+vgY22ttPimqknECA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.Frequencies.Counters.TotalMarkedSequenceSymbolFrequencyOneOffCounter-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.Frequencies.Counters.TotalMarkedSequenceSymbolFrequencyOneOffCounter-1.html",
+          "hash": "R6urM/UrGE7sbzIByqjvHg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.Frequencies.Counters.TotalSequenceSymbolFrequencyCounter-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.Frequencies.Counters.TotalSequenceSymbolFrequencyCounter-1.html",
+          "hash": "tmBpeh3k0+xUziqlkJnS2Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.Frequencies.Counters.TotalSequenceSymbolFrequencyOneOffCounter-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.Frequencies.Counters.TotalSequenceSymbolFrequencyOneOffCounter-1.html",
+          "hash": "JmNgfTOyyBfRJcXQPbkAdQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.Frequencies.Counters.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.Frequencies.Counters.html",
+          "hash": "LrJgyPH1v1hSzJZdc84hmA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.HeightProviders.CachedSequenceHeightProvider-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.HeightProviders.CachedSequenceHeightProvider-1.html",
+          "hash": "58ZyqmQB2VelGYi/Tk2Z/g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.HeightProviders.DefaultSequenceRightHeightProvider-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.HeightProviders.DefaultSequenceRightHeightProvider-1.html",
+          "hash": "AFtnUc6O6dpiiyCbYNY5mw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.HeightProviders.ISequenceHeightProvider-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.HeightProviders.ISequenceHeightProvider-1.html",
+          "hash": "YX9hqKc6Xj1FC9wb+b1cGQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.HeightProviders.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.HeightProviders.html",
+          "hash": "zpmritIfrT83cvvWGJq4aQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.Sequences.Matcher.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.Sequences.Matcher.html",
+          "hash": "8ztm0UK9JDrw5sV+6pWNxw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.Sequences.PatternMatcher.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.Sequences.PatternMatcher.html",
+          "hash": "P93ImJHHJkXJp214vAldag=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.Sequences.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.Sequences.html",
+          "hash": "K9eRYgiKyfe966kvldsoFg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.SequencesExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.SequencesExtensions.html",
+          "hash": "6RzBkNvM6ukL5q3GyIgdCQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.SequencesIndexer-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.SequencesIndexer-1.html",
+          "hash": "m2bl10+gTTkZYVbv05m9ew=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.SequencesOptions-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.SequencesOptions-1.html",
+          "hash": "0m1ecOHn+DvuuN1mhJfN7g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.UnicodeMap.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.UnicodeMap.html",
+          "hash": "KNeNRhkwACuu5yscVLE5qA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker-1.html",
+          "hash": "/mlt/16w6mVXILSagaaVNQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker-1.html",
+          "hash": "b26ph13syEDi6BeNSw46RQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase-1.html",
+          "hash": "aFbo4kQMAlNaNXKeopR2Bg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.Walkers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.Walkers.html",
+          "hash": "RY2cpfPufTJcLmgm6/gwlQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Sequences.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Sequences.html",
+          "hash": "u5sFNIF2x+U02LPjItc2wA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Stacks.Stack-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Stacks.Stack-1.html",
+          "hash": "SrPJvyX0K7MCQr3gPNI3WQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Stacks.StackExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Stacks.StackExtensions.html",
+          "hash": "tCyQuzW/qwl89aa0P+/NaA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.Stacks.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.Stacks.html",
+          "hash": "68C+Ep31epz80wnrgX/Kag=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.SynchronizedLinks-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.SynchronizedLinks-1.html",
+          "hash": "PvTejrYgGlC1ESKDxs3tDQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.UInt64Link.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.UInt64Link.html",
+          "hash": "V4T6nKAz2clxtDLZ30aNnQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.UInt64LinkExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.UInt64LinkExtensions.html",
+          "hash": "rAJUqDFa5Vop9Q8GKsNdzQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.UInt64LinksExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.UInt64LinksExtensions.html",
+          "hash": "PjFJcCpUf+QpRe7ioHiNbA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transaction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transaction.html",
+          "hash": "vL/KCa/InG+dU+Q3cCbjEg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.html",
+          "hash": "yk9PnLXGsPqVSRt7jzR3Tw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.html",
+          "hash": "nFRmUAJY/GHh1z8DwOIFGQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Platform.Data.Doublets.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Platform.Data.Doublets.html",
+          "hash": "zxnWAPnqg6mNq81Xrd0kqw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "obj/api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "CgOf0PRA4u6ih8TFhCI2hg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "kYHTvYTrxeBisEAk3n0zNg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "NoAvailableBuildCache"
+      },
+      "processors": {
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        },
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 3,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 90,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: should not trace intermediate info.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
