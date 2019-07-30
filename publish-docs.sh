@@ -31,7 +31,7 @@ cd ..
 rm -rf out/**/* || exit 0
 
 # Copy genereted docs site
-cp -r doc/generated/site/* out
+cp -r _site/* out
 
 # Now let's go have some fun with the cloned repo
 cd out
