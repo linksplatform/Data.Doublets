@@ -6,7 +6,7 @@
 
 LinksPlatform's Platform.Data.Doublets Class Library.
 
-Namespace: Platform.Data.Doublets
+Namespace: [Platform.Data.Doublets](https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.html)
 
 Forked from: [Konard/LinksPlatform/Platform/Platform.Data.Doublets](https://github.com/Konard/LinksPlatform/tree/b0844d778ced60b22435e57342393031b26a2822/Platform/Platform.Data.Doublets)
 
@@ -36,3 +36,9 @@ namespace HelloWorld.Doublets.DotNet
   }
 }
 ```
+
+## [Documentation](https://linksplatform.github.io/Data.Doublets/)
+
+Interface [ILinks<TLink, TConstants>](https://linksplatform.github.io/Data/api/Platform.Data.ILinks-2.html).
+Interface [ILinks<TLink>](https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.ILinks-1.html).
+Класс [ResizableDirectMemoryLinks<TLink>](https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html).
