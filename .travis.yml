@@ -1,4 +1,0 @@
-language: csharp
-dotnet: 2.2
-script:
-  - dotnet build
