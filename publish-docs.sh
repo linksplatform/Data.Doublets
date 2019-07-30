@@ -33,8 +33,12 @@ rm -rf out/**/* || exit 0
 # Copy genereted docs site
 cp -r _site/* out
 
-# Now let's go have some fun with the cloned repo
 cd out
+
+# Do not use index.md
+cp README.html index.html
+
+# Now let's go have some fun with the cloned repo
 git config user.name "Travis CI"
 git config user.email "$COMMIT_AUTHOR_EMAIL"
 git remote rm origin
