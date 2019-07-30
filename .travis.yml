@@ -1,4 +1,7 @@
 language: csharp
+sudo: required
 dotnet: 2.2
 script:
   - dotnet build
+after_success:
+  - bash ./publish-docs.sh
