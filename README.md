@@ -2,7 +2,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/83c66adb68f44a018c795bc7dc7d6f49)](https://app.codacy.com/app/drakonard/Data.Doublets?utm_source=github.com&utm_medium=referral&utm_content=linksplatform/Data.Doublets&utm_campaign=Badge_Grade_Dashboard)
 [![CodeFactor](https://www.codefactor.io/repository/github/linksplatform/data.doublets/badge/master)](https://www.codefactor.io/repository/github/linksplatform/data.doublets/overview/master)
 
-# Data.Doublets ([русская версия](README.ru.md))
+# [Data.Doublets](https://github.com/linksplatform/Data.Doublets) ([русская версия](README.ru.md))
 
 LinksPlatform's Platform.Data.Doublets Class Library.
 
@@ -39,6 +39,6 @@ namespace HelloWorld.Doublets.DotNet
 
 ## [Documentation](https://linksplatform.github.io/Data.Doublets/)
 
-Interface [ILinks<TLink, TConstants>](https://linksplatform.github.io/Data/api/Platform.Data.ILinks-2.html).
-Interface [ILinks<TLink>](https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.ILinks-1.html).
-Класс [ResizableDirectMemoryLinks<TLink>](https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html).
+* Interface [ILinks\<TLink, TConstants\>](https://linksplatform.github.io/Data/api/Platform.Data.ILinks-2.html).
+* Interface [ILinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.ILinks-1.html).
+* Класс [ResizableDirectMemoryLinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html).
