@@ -1,7 +1,4 @@
-language: csharp  
-sudo: required  
-dist: xenial
-mono: latest
+language: csharp
 dotnet: 2.2
 script:
   - dotnet build
