@@ -37,6 +37,8 @@ namespace HelloWorld.Doublets.DotNet
 }
 ```
 
+## [SQLite против Дуплетов](https://github.com/linksplatform/Comparisons.SQLiteVSDoublets)
+
 ## [Документация](https://linksplatform.github.io/Data.Doublets/)
 
 * Интерфейс [ILinks\<TLink, TConstants\>](https://linksplatform.github.io/Data/api/Platform.Data.ILinks-2.html).
