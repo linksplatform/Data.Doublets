@@ -54,3 +54,14 @@ namespace HelloWorld.Doublets.DotNet
 * [Platform.Helpers](https://github.com/linksplatform/Helpers)
 * [Platform.Memory](https://github.com/linksplatform/Memory)
 * [Platform.Data](https://github.com/linksplatform/Data)
+
+# Загадочные файлы
+
+`.travis.yml` - конфигурация сборки Travis CI.
+`docfx.json` and `toc.yml` - конфигурация сборки DocFX.
+`fmt.sh` - скрипт для форматирования `tex` файла для генерации PDF из него.
+`fmt.py` - скрипт для форматирования одного файла `.cs` как части файла `tex`.
+`Makefile` - конфигурация сборки PDF.
+`generate-pdf.sh` - скрипт, который генерирует PDF с кодом для электронных книг.
+`publish-docs.sh` - скрипт, который публикует сгенерированную документацию и PDF с кодом для электронных книг в ветку `gh-pages`.
+`push-nuget.bat` - Windows-скрипт для публикации текущей версии пакета NuGet.

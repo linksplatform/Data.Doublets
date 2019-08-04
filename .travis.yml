@@ -2,9 +2,9 @@ language: csharp
 sudo: required
 dotnet: 2.2
 before_install:
-  - sudo apt-get install -y texlive
+  - sudo apt-get install -y texlive texlive-lang-cyrillic
 script:
   - dotnet build
 after_success:
-  - bash ./publish-pdf.sh
+  - bash ./generate-pdf.sh
   - bash ./publish-docs.sh
