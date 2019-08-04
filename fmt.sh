@@ -45,7 +45,7 @@ echo """
 \\renewcommand{\\baselinestretch}{0.7}
 \\begin{document}
 
-\\newminted{cpp}{
+\\newminted{csharp}{
     breaklines,
     breakanywhere
 }
