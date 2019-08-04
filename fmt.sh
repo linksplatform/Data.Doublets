@@ -57,19 +57,10 @@ echo """
 
 # CSharp
 #find * -type f -iname '*.cs' -exec sh -c 'enconv "{}"' \;
-find . -type f -iname '*.cs' | sort -b
 find . -type f -iname '*.cs' | sort -b | python fmt.py
 
 echo """
 \\end{multicols}
-\\begin{section}{fmt.sh}
-\\vspace{2mm}
-\\inputminted[tabsize=2,breaklines,linenos=true]{bash}{fmt.sh}
-\\end{section}
-\\begin{section}{fmt.py}
-\\vspace{2mm}
-\\inputminted[tabsize=2,breaklines,linenos=true]{python}{fmt.py}
-\\end{section}
 \\printindex
 \\end{document}
 """
