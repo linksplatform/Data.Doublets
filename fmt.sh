@@ -13,11 +13,11 @@ echo """
 \\usepackage{minted}
 
 \\makeatletter
-\\let\xUTFviii@two@octets\UTFviii@two@octets
+\\let\\xUTFviii@two@octets\\UTFviii@two@octets
 
-\\def\UTFviii@two@octets#1#2{%
-\\ifx\FancyVerbBreakAnywhereBreak#2%
-\\expandafter\xUTFviii@two@octets\expandafter#1%
+\\def\\UTFviii@two@octets#1#2{%
+\\ifx\\FancyVerbBreakAnywhereBreak#2%
+\\expandafter\\xUTFviii@two@octets\\expandafter#1%
 \\else
 \\xUTFviii@two@octets#1#2%
 \\fi
