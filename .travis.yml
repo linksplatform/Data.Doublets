@@ -2,7 +2,7 @@ language: csharp
 sudo: required
 dotnet: 2.2
 before_install:
-  - sudo apt-get install -y texlive
+  - sudo apt-get install -y texlive python3.6
 script:
   - dotnet build
 after_success:
