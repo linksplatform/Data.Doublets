@@ -3,6 +3,7 @@ sudo: required
 dotnet: 2.2
 before_install:
   - sudo apt-get install -y texlive texlive-lang-cyrillic texlive-latex-extra
+  - sudo pip install Pygments
 script:
   - dotnet build
 after_success:
