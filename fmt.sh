@@ -57,6 +57,7 @@ echo """
 
 # CSharp
 #find * -type f -iname '*.cs' -exec sh -c 'enconv "{}"' \;
+find . -type f -iname '*.cs' | sort -b
 find . -type f -iname '*.cs' | sort -b | python fmt.py
 
 echo """
