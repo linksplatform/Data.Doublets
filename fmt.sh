@@ -36,7 +36,9 @@ echo """
 \\titlespacing\\section{0mm}{0mm}{0mm}
 \\DeclareUnicodeCharacter{221E}{\\ensuremath{\\infty}}
 \\DeclareUnicodeCharacter{FFFD}{\\ensuremath{ }}
-\\DeclareUnicodeCharacter{2BAC8}{\\ensuremath{ }}
+\\DeclareUnicodeCharacter{D86E}{ }
+\\DeclareUnicodeCharacter{DEC8}{ }
+\\DeclareUnicodeCharacter{2BAC8}{ }
 \\usepackage{fancyhdr}
 \\pagestyle{fancy}
 \\fancyhf{}
