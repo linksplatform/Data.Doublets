@@ -60,6 +60,7 @@ namespace HelloWorld.Doublets.DotNet
 
 * `.travis.yml` - конфигурация сборки Travis CI.
 * `docfx.json` and `toc.yml` - конфигурация сборки DocFX.
+* `fvextra.sty` - пакет, необходимый для генерации документов LaTeX.
 * `fmt.sh` - скрипт для форматирования `tex` файла для генерации PDF из него.
 * `fmt.py` - скрипт для форматирования одного файла `.cs` как части файла `tex`.
 * `Makefile` - конфигурация сборки PDF.
