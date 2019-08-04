@@ -11,6 +11,19 @@ echo """
 \\usepackage[T2A]{fontenc}
 \\usepackage[gray]{xcolor}
 \\usepackage{minted}
+
+\\makeatletter
+\\let\xUTFviii@two@octets\UTFviii@two@octets
+
+\\def\UTFviii@two@octets#1#2{%
+\\ifx\FancyVerbBreakAnywhereBreak#2%
+\\expandafter\xUTFviii@two@octets\expandafter#1%
+\\else
+\\xUTFviii@two@octets#1#2%
+\\fi
+}
+\\makeatother
+
 \\usepackage{multicol}
 \\usepackage{makeidx}
 \\usepackage[columns=2]{idxlayout}
@@ -31,6 +44,12 @@ echo """
 \\renewcommand{\\footrulewidth}{0mm}
 \\renewcommand{\\baselinestretch}{0.7}
 \\begin{document}
+
+\\newminted{cpp}{
+    breaklines,
+    breakanywhere
+}
+
 \\sf
 \\noindent{\\Large LinksPlatform's Platform.Data.Doublets Class Library}
 \\begin{multicols}{2}
