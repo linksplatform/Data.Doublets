@@ -5,14 +5,12 @@ echo """
 \\documentclass[7pt,a4paper,fleqn]{report}
 \\usepackage[left=6mm,top=5mm,right=5mm,bottom=7mm,landscape]{geometry}
 \\textwidth=283mm
-\\pagestyle{plain}
 \\usepackage[utf8]{inputenc}
 \\usepackage[T1]{fontenc}
 \\usepackage[T2A]{fontenc}
-\\usepackage[gray]{xcolor}
 \\usepackage{fvextra}
 \\usepackage{minted}
-\\usepackage[nott]{inconsolata}
+\\usemintedstyle{vs}
 \\usepackage{multicol}
 \\usepackage{makeidx}
 \\usepackage[columns=2]{idxlayout}
