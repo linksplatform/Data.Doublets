@@ -12,6 +12,7 @@ echo """
 \\usepackage[gray]{xcolor}
 \\usepackage{fvextra}
 \\usepackage{minted}
+\\usepackage[nott]{inconsolata}
 \\usepackage{multicol}
 \\usepackage{makeidx}
 \\usepackage[columns=2]{idxlayout}
