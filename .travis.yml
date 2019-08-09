@@ -2,7 +2,7 @@ language: csharp
 sudo: required
 dotnet: 2.2
 before_install:
-  - sudo apt-get install -y texlive texlive-lang-cyrillic texlive-latex-extra python-pygments ghostscript
+  - sudo apt-get install -y texlive texlive-lang-cyrillic texlive-latex-extra texlive-fonts-extra python-pygments ghostscript
 script:
   - dotnet build
 after_success:
