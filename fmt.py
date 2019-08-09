@@ -8,12 +8,14 @@ for line in sys.stdin.readlines():
     print "\\index{%s}" % (line.replace('_','\\_'))
     print "\\begin{section}{%s}" % (line.replace('_','\\_'))
     #print "\\inputminted[tabsize=2,breaklines,linenos=true]{csharp}{%s}" % (line)
-    print "\\begin{minted}[tabsize=2,breaklines,breakanywhere,linenos=true,xleftmargin=7mm,framesep=4mm,fontsize=\\small,fontfamily=Inconsolata]{csharp}"
+    print "\\begin{minted}[tabsize=2,breaklines,breakanywhere,linenos=true,xleftmargin=7mm,framesep=4mm,fontsize=\\small,fontfamily=Nimbus]{csharp}"
+    print "\\texttt{"
     f = open(line,"rt")
     c = "\n".join([x.strip("\n") for x in f.readlines()])
     f.close()
     c = c.replace(u'\ufeff','')
     print c
+    print "}"
     print "\\end{minted}"
     print "\\end{section}"
     print
