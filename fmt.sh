@@ -2,7 +2,7 @@
 set -e # Exit with nonzero exit code if anything fails
 
 echo """
-\\documentclass[9pt,a4paper,fleqn]{report}
+\\documentclass[11pt,a4paper,fleqn]{report}
 \\usepackage[left=5mm,top=5mm,right=5mm,bottom=5mm]{geometry}
 \\textwidth=200mm
 \\usepackage[utf8]{inputenc}
