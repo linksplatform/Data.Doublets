@@ -2,8 +2,8 @@
 set -e # Exit with nonzero exit code if anything fails
 
 echo """
-\\documentclass[7pt,a4paper,fleqn]{report}
-\\usepackage[left=6mm,top=5mm,right=5mm,bottom=7mm,landscape]{geometry}
+\\documentclass[9pt,a4paper,fleqn]{report}
+\\usepackage[left=5mm,top=5mm,right=5mm,bottom=5mm]{geometry}
 \\textwidth=283mm
 \\usepackage[utf8]{inputenc}
 \\usepackage[T1]{fontenc}
@@ -11,9 +11,8 @@ echo """
 \\usepackage{fvextra}
 \\usepackage{minted}
 \\usemintedstyle{vs}
-\\usepackage{multicol}
 \\usepackage{makeidx}
-\\usepackage[columns=2]{idxlayout}
+\\usepackage[columns=1]{idxlayout}
 \\makeindex
 \\renewcommand{\\thesection}{\\arabic{chapter}.\\arabic{section}}
 \\setcounter{chapter}{1}
