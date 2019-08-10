@@ -32,7 +32,6 @@ echo """
 \\begin{document}
 \\sf
 \\noindent{\\Large LinksPlatform's Platform.Data.Doublets Class Library}
-\\begin{multicols}{2}
 """
 
 # CSharp
@@ -40,7 +39,6 @@ echo """
 find . -type f -iname '*.cs' | sort -b | python fmt.py
 
 echo """
-\\end{multicols}
 \\printindex
 \\end{document}
 """
