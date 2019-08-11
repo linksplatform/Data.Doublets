@@ -43,6 +43,7 @@ namespace HelloWorld.Doublets.DotNet
 *  Интерфейс [ILinks\<TLink, TConstants\>](https://linksplatform.github.io/Data/api/Platform.Data.ILinks-2.html).
 *  Интерфейс [ILinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.ILinks-1.html).
 *  Класс [ResizableDirectMemoryLinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html).
+
 [PDF файл](https://linksplatform.github.io/Data.Doublets/Platform.Data.Doublets.pdf) с кодом для электронных книг.
 
 ## Зависит от
