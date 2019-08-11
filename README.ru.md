@@ -40,26 +40,26 @@ namespace HelloWorld.Doublets.DotNet
 ## [SQLite против Дуплетов](https://github.com/linksplatform/Comparisons.SQLiteVSDoublets)
 
 ## [Документация](https://linksplatform.github.io/Data.Doublets/)
-*  Интерфейс [ILinks\<TLink, TConstants\>](https://linksplatform.github.io/Data/api/Platform.Data.ILinks-2.html).
-*  Интерфейс [ILinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.ILinks-1.html).
-*  Класс [ResizableDirectMemoryLinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html).
+* Интерфейс [ILinks\<TLink, TConstants\>](https://linksplatform.github.io/Data/api/Platform.Data.ILinks-2.html).
+* Интерфейс [ILinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.ILinks-1.html).
+* Класс [ResizableDirectMemoryLinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html).
 
 [PDF файл](https://linksplatform.github.io/Data.Doublets/Platform.Data.Doublets.pdf) с кодом для электронных книг.
 
 ## Зависит от
-*  [Platform.Random](https://github.com/linksplatform/Random)
-*  [Platform.Timestamps](https://github.com/linksplatform/Timestamps)
-*  [Platform.Collections.Methods](https://github.com/linksplatform/Collections.Methods)
-*  [Platform.Helpers](https://github.com/linksplatform/Helpers)
-*  [Platform.Memory](https://github.com/linksplatform/Memory)
-*  [Platform.Data](https://github.com/linksplatform/Data)
+* [Platform.Random](https://github.com/linksplatform/Random)
+* [Platform.Timestamps](https://github.com/linksplatform/Timestamps)
+* [Platform.Collections.Methods](https://github.com/linksplatform/Collections.Methods)
+* [Platform.Helpers](https://github.com/linksplatform/Helpers)
+* [Platform.Memory](https://github.com/linksplatform/Memory)
+* [Platform.Data](https://github.com/linksplatform/Data)
 
 # Загадочные файлы
-*  `.travis.yml` - конфигурация сборки Travis CI.
-*  `docfx.json` and `toc.yml` - конфигурация сборки DocFX.
-*  `fmt.sh` - скрипт для форматирования `tex` файла для генерации PDF из него.
-*  `fmt.py` - скрипт для форматирования одного файла `.cs` как части файла `tex`.
-*  `Makefile` - конфигурация сборки PDF.
-*  `generate-pdf.sh` - скрипт, который генерирует PDF с кодом для электронных книг.
-*  `publish-docs.sh` - скрипт, который публикует сгенерированную документацию и PDF с кодом для электронных книг в ветку `gh-pages`.
-*  `push-nuget.bat` - Windows-скрипт для публикации текущей версии пакета NuGet.
+* `.travis.yml` - конфигурация сборки Travis CI.
+* `docfx.json` and `toc.yml` - конфигурация сборки DocFX.
+* `fmt.sh` - скрипт для форматирования `tex` файла для генерации PDF из него.
+* `fmt.py` - скрипт для форматирования одного файла `.cs` как части файла `tex`.
+* `Makefile` - конфигурация сборки PDF.
+* `generate-pdf.sh` - скрипт, который генерирует PDF с кодом для электронных книг.
+* `publish-docs.sh` - скрипт, который публикует сгенерированную документацию и PDF с кодом для электронных книг в ветку `gh-pages`.
+* `push-nuget.bat` - Windows-скрипт для публикации текущей версии пакета NuGet.
