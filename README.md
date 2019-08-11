@@ -40,30 +40,25 @@ namespace HelloWorld.Doublets.DotNet
 ## [SQLite vs Doublets](https://github.com/linksplatform/Comparisons.SQLiteVSDoublets)
 
 ## [Documentation](https://linksplatform.github.io/Data.Doublets/)
-
-* Interface [ILinks\<TLink, TConstants\>](https://linksplatform.github.io/Data/api/Platform.Data.ILinks-2.html).
-* Interface [ILinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.ILinks-1.html).
-* Class [ResizableDirectMemoryLinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html).
-
+  * Interface [ILinks\<TLink, TConstants\>](https://linksplatform.github.io/Data/api/Platform.Data.ILinks-2.html).
+  * Interface [ILinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.ILinks-1.html).
+  * Class [ResizableDirectMemoryLinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html).
 [PDF file](https://linksplatform.github.io/Data.Doublets/Platform.Data.Doublets.pdf) with code for e-readers.
 
 ## Depend on
-
-* [Platform.Random](https://github.com/linksplatform/Random)
-* [Platform.Timestamps](https://github.com/linksplatform/Timestamps)
-* [Platform.Collections.Methods](https://github.com/linksplatform/Collections.Methods)
-* [Platform.Helpers](https://github.com/linksplatform/Helpers)
-* [Platform.Memory](https://github.com/linksplatform/Memory)
-* [Platform.Data](https://github.com/linksplatform/Data)
+  * [Platform.Random](https://github.com/linksplatform/Random)
+  * [Platform.Timestamps](https://github.com/linksplatform/Timestamps)
+  * [Platform.Collections.Methods](https://github.com/linksplatform/Collections.Methods)
+  * [Platform.Helpers](https://github.com/linksplatform/Helpers)
+  * [Platform.Memory](https://github.com/linksplatform/Memory)
+  * [Platform.Data](https://github.com/linksplatform/Data)
 
 # Mystery files
-
-* `.travis.yml` - Travis CI build configuration.
-* `docfx.json` and `toc.yml` - DocFX build configuration.
-* `fvextra.sty` - package required for LaTeX document generation.
-* `fmt.sh` - script for formating `tex` file for generating PDF from it.
-* `fmt.py` - script for formating single `.cs` file as a part of `tex` file.
-* `Makefile` - PDF build configuration.
-* `generate-pdf.sh` - script that generates PDF with code for e-readers.
-* `publish-docs.sh` - script that publishes generated documentation and PDF with code for e-readers to `gh-pages` branch.
-* `push-nuget.bat` - Windows script for publishing current version of NuGet package.
+  * `.travis.yml` - Travis CI build configuration.
+  * `docfx.json` and `toc.yml` - DocFX build configuration.
+  * `fmt.sh` - script for formating `tex` file for generating PDF from it.
+  * `fmt.py` - script for formating single `.cs` file as a part of `tex` file.
+  * `Makefile` - PDF build configuration.
+  * `generate-pdf.sh` - script that generates PDF with code for e-readers.
+  * `publish-docs.sh` - script that publishes generated documentation and PDF with code for e-readers to `gh-pages` branch.
+  * `push-nuget.bat` - Windows script for publishing current version of NuGet package.
