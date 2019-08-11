@@ -1,5 +1,6 @@
 language: csharp
 sudo: required
+dist: xenial
 dotnet: 2.2
 before_install:
   - sudo apt-get install -y texlive texlive-lang-cyrillic texlive-latex-extra texlive-fonts-extra python-pygments ghostscript
