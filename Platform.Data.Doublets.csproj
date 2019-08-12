@@ -24,7 +24,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Platform.Random" Version="0.0.2" />
+    <PackageReference Include="Platform.Random" Version="0.0.3" />
     <PackageReference Include="Platform.Timestamps" Version="0.0.2" />
     <PackageReference Include="Platform.Collections.Methods" Version="0.0.3" />
     <PackageReference Include="Platform.Helpers" Version="0.1.1" />
