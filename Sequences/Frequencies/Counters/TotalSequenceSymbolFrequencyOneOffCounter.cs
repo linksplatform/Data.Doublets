@@ -48,7 +48,7 @@ namespace Platform.Data.Doublets.Sequences.Frequencies.Counters
         protected virtual void CountSequenceSymbolFrequency(TLink link)
         {
             var symbolFrequencyCounter = new SequenceSymbolFrequencyOneOffCounter<TLink>(_links, link, _symbol);
-            _total = ArithmeticHelpers.Add(_total, symbolFrequencyCounter.Count());
+            _total = Arithmetic.Add(_total, symbolFrequencyCounter.Count());
         }
 
         private TLink EachElementHandler(IList<TLink> doublet)

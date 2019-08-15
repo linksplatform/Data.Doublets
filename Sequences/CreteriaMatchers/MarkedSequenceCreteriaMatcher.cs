@@ -3,7 +3,7 @@ using Platform.Interfaces;
 
 namespace Platform.Data.Doublets.Sequences.CreteriaMatchers
 {
-    public class MarkedSequenceCreteriaMatcher<TLink> : ICreteriaMatcher<TLink>
+    public class MarkedSequenceCreteriaMatcher<TLink> : ICriterionMatcher<TLink>
     {
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
 

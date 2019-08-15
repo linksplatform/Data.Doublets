@@ -5,10 +5,10 @@ namespace Platform.Data.Doublets.Incrementers
 {
     public class LinkFrequencyIncrementer<TLink> : LinksOperatorBase<TLink>, IIncrementer<IList<TLink>>
     {
-        private readonly ISpecificPropertyOperator<TLink, TLink> _frequencyPropertyOperator;
+        private readonly IPropertyOperator<TLink, TLink> _frequencyPropertyOperator;
         private readonly IIncrementer<TLink> _frequencyIncrementer;
 
-        public LinkFrequencyIncrementer(ILinks<TLink> links, ISpecificPropertyOperator<TLink, TLink> frequencyPropertyOperator, IIncrementer<TLink> frequencyIncrementer)
+        public LinkFrequencyIncrementer(ILinks<TLink> links, IPropertyOperator<TLink, TLink> frequencyPropertyOperator, IIncrementer<TLink> frequencyIncrementer)
             : base(links)
         {
             _frequencyPropertyOperator = frequencyPropertyOperator;

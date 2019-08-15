@@ -167,7 +167,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             protected override ulong GetSize(ulong node)
             {
                 var previousValue = Links[node].SizeAsSource;
-                //return MathHelpers.PartialRead(previousValue, 5, -5);
+                //return Math.PartialRead(previousValue, 5, -5);
                 return (previousValue & 4294967264) >> 5;
             }
 
@@ -178,7 +178,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             protected override void SetSize(ulong node, ulong size)
             {
                 var previousValue = Links[node].SizeAsSource;
-                //var modified = MathHelpers.PartialWrite(previousValue, size, 5, -5);
+                //var modified = Math.PartialWrite(previousValue, size, 5, -5);
                 var modified = (previousValue & 31) | ((size & 134217727) << 5);
                 Links[node].SizeAsSource = modified;
             }
@@ -186,14 +186,14 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             protected override bool GetLeftIsChild(ulong node)
             {
                 var previousValue = Links[node].SizeAsSource;
-                //return (Integer)MathHelpers.PartialRead(previousValue, 4, 1);
+                //return (Integer)Math.PartialRead(previousValue, 4, 1);
                 return (previousValue & 16) >> 4 == 1UL;
             }
 
             protected override void SetLeftIsChild(ulong node, bool value)
             {
                 var previousValue = Links[node].SizeAsSource;
-                //var modified = MathHelpers.PartialWrite(previousValue, (ulong)(Integer)value, 4, 1);
+                //var modified = Math.PartialWrite(previousValue, (ulong)(Integer)value, 4, 1);
                 var modified = (previousValue & 4294967279) | ((value ? 1UL : 0UL) << 4);
                 Links[node].SizeAsSource = modified;
             }
@@ -201,14 +201,14 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             protected override bool GetRightIsChild(ulong node)
             {
                 var previousValue = Links[node].SizeAsSource;
-                //return (Integer)MathHelpers.PartialRead(previousValue, 3, 1);
+                //return (Integer)Math.PartialRead(previousValue, 3, 1);
                 return (previousValue & 8) >> 3 == 1UL;
             }
 
             protected override void SetRightIsChild(ulong node, bool value)
             {
                 var previousValue = Links[node].SizeAsSource;
-                //var modified = MathHelpers.PartialWrite(previousValue, (ulong)(Integer)value, 3, 1);
+                //var modified = Math.PartialWrite(previousValue, (ulong)(Integer)value, 3, 1);
                 var modified = (previousValue & 4294967287) | ((value ? 1UL : 0UL) << 3);
                 Links[node].SizeAsSource = modified;
             }
@@ -216,7 +216,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             protected override sbyte GetBalance(ulong node)
             {
                 var previousValue = Links[node].SizeAsSource;
-                //var value = MathHelpers.PartialRead(previousValue, 0, 3);
+                //var value = Math.PartialRead(previousValue, 0, 3);
                 var value = previousValue & 7;
                 var unpackedValue = (sbyte)((value & 4) > 0 ? ((value & 4) << 5) | value & 3 | 124 : value & 3);
                 return unpackedValue;
@@ -226,7 +226,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             {
                 var previousValue = Links[node].SizeAsSource;
                 var packagedValue = (ulong)((((byte)value >> 5) & 4) | value & 3);
-                //var modified = MathHelpers.PartialWrite(previousValue, packagedValue, 0, 3);
+                //var modified = Math.PartialWrite(previousValue, packagedValue, 0, 3);
                 var modified = (previousValue & 4294967288) | (packagedValue & 7);
                 Links[node].SizeAsSource = modified;
             }
@@ -374,7 +374,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             protected override ulong GetSize(ulong node)
             {
                 var previousValue = Links[node].SizeAsTarget;
-                //return MathHelpers.PartialRead(previousValue, 5, -5);
+                //return Math.PartialRead(previousValue, 5, -5);
                 return (previousValue & 4294967264) >> 5;
             }
 
@@ -385,7 +385,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             protected override void SetSize(ulong node, ulong size)
             {
                 var previousValue = Links[node].SizeAsTarget;
-                //var modified = MathHelpers.PartialWrite(previousValue, size, 5, -5);
+                //var modified = Math.PartialWrite(previousValue, size, 5, -5);
                 var modified = (previousValue & 31) | ((size & 134217727) << 5);
                 Links[node].SizeAsTarget = modified;
             }
@@ -393,7 +393,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             protected override bool GetLeftIsChild(ulong node)
             {
                 var previousValue = Links[node].SizeAsTarget;
-                //return (Integer)MathHelpers.PartialRead(previousValue, 4, 1);
+                //return (Integer)Math.PartialRead(previousValue, 4, 1);
                 return (previousValue & 16) >> 4 == 1UL;
                 // TODO: Check if this is possible to use
                 //var nodeSize = GetSize(node);
@@ -405,7 +405,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             protected override void SetLeftIsChild(ulong node, bool value)
             {
                 var previousValue = Links[node].SizeAsTarget;
-                //var modified = MathHelpers.PartialWrite(previousValue, (ulong)(Integer)value, 4, 1);
+                //var modified = Math.PartialWrite(previousValue, (ulong)(Integer)value, 4, 1);
                 var modified = (previousValue & 4294967279) | ((value ? 1UL : 0UL) << 4);
                 Links[node].SizeAsTarget = modified;
             }
@@ -413,7 +413,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             protected override bool GetRightIsChild(ulong node)
             {
                 var previousValue = Links[node].SizeAsTarget;
-                //return (Integer)MathHelpers.PartialRead(previousValue, 3, 1);
+                //return (Integer)Math.PartialRead(previousValue, 3, 1);
                 return (previousValue & 8) >> 3 == 1UL;
                 // TODO: Check if this is possible to use
                 //var nodeSize = GetSize(node);
@@ -425,7 +425,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             protected override void SetRightIsChild(ulong node, bool value)
             {
                 var previousValue = Links[node].SizeAsTarget;
-                //var modified = MathHelpers.PartialWrite(previousValue, (ulong)(Integer)value, 3, 1);
+                //var modified = Math.PartialWrite(previousValue, (ulong)(Integer)value, 3, 1);
                 var modified = (previousValue & 4294967287) | ((value ? 1UL : 0UL) << 3);
                 Links[node].SizeAsTarget = modified;
             }
@@ -433,7 +433,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             protected override sbyte GetBalance(ulong node)
             {
                 var previousValue = Links[node].SizeAsTarget;
-                //var value = MathHelpers.PartialRead(previousValue, 0, 3);
+                //var value = Math.PartialRead(previousValue, 0, 3);
                 var value = previousValue & 7;
                 var unpackedValue = (sbyte)((value & 4) > 0 ? ((value & 4) << 5) | value & 3 | 124 : value & 3);
                 return unpackedValue;
@@ -443,7 +443,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             {
                 var previousValue = Links[node].SizeAsTarget;
                 var packagedValue = (ulong)((((byte)value >> 5) & 4) | value & 3);
-                //var modified = MathHelpers.PartialWrite(previousValue, packagedValue, 0, 3);
+                //var modified = Math.PartialWrite(previousValue, packagedValue, 0, 3);
                 var modified = (previousValue & 4294967288) | (packagedValue & 7);
                 Links[node].SizeAsTarget = modified;
             }

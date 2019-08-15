@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Platform.Disposables;
 using Platform.Collections.Arrays;
-using Platform.Helpers.Singletons;
+using Platform.Singletons;
 using Platform.Memory;
 using Platform.Data.Exceptions;
 using Platform.Data.Constants;
@@ -490,13 +490,13 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
 
         protected override bool AllowMultipleDisposeCalls => true;
 
-        protected override void DisposeCore(bool manual, bool wasDisposed)
+        protected override void Dispose(bool manual, bool wasDisposed)
         {
             if (!wasDisposed)
             {
                 SetPointers(null);
+                _memory.DisposeIfPossible();
             }
-            Disposable.TryDispose(_memory);
         }
 
         #endregion

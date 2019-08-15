@@ -3,7 +3,7 @@ using Platform.Interfaces;
 
 namespace Platform.Data.Doublets.PropertyOperators
 {
-    public class FrequencyPropertyOperator<TLink> : LinksOperatorBase<TLink>, ISpecificPropertyOperator<TLink, TLink>
+    public class FrequencyPropertyOperator<TLink> : LinksOperatorBase<TLink>, IPropertyOperator<TLink, TLink>
     {
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
 

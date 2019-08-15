@@ -4,9 +4,9 @@ namespace Platform.Data.Doublets.Sequences.Frequencies.Counters
 {
     public class MarkedSequenceSymbolFrequencyOneOffCounter<TLink> : SequenceSymbolFrequencyOneOffCounter<TLink>
     {
-        private readonly ICreteriaMatcher<TLink> _markedSequenceMatcher;
+        private readonly ICriterionMatcher<TLink> _markedSequenceMatcher;
 
-        public MarkedSequenceSymbolFrequencyOneOffCounter(ILinks<TLink> links, ICreteriaMatcher<TLink> markedSequenceMatcher, TLink sequenceLink, TLink symbol)
+        public MarkedSequenceSymbolFrequencyOneOffCounter(ILinks<TLink> links, ICriterionMatcher<TLink> markedSequenceMatcher, TLink sequenceLink, TLink symbol)
             : base(links, sequenceLink, symbol)
             => _markedSequenceMatcher = markedSequenceMatcher;
 

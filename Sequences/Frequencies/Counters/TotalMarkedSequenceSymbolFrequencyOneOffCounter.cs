@@ -5,15 +5,15 @@ namespace Platform.Data.Doublets.Sequences.Frequencies.Counters
 {
     public class TotalMarkedSequenceSymbolFrequencyOneOffCounter<TLink> : TotalSequenceSymbolFrequencyOneOffCounter<TLink>
     {
-        private readonly ICreteriaMatcher<TLink> _markedSequenceMatcher;
+        private readonly ICriterionMatcher<TLink> _markedSequenceMatcher;
 
-        public TotalMarkedSequenceSymbolFrequencyOneOffCounter(ILinks<TLink> links, ICreteriaMatcher<TLink> markedSequenceMatcher, TLink symbol) : base(links, symbol)
+        public TotalMarkedSequenceSymbolFrequencyOneOffCounter(ILinks<TLink> links, ICriterionMatcher<TLink> markedSequenceMatcher, TLink symbol) : base(links, symbol)
             => _markedSequenceMatcher = markedSequenceMatcher;
 
         protected override void CountSequenceSymbolFrequency(TLink link)
         {
             var symbolFrequencyCounter = new MarkedSequenceSymbolFrequencyOneOffCounter<TLink>(_links, _markedSequenceMatcher, link, _symbol);
-            _total = ArithmeticHelpers.Add(_total, symbolFrequencyCounter.Count());
+            _total = Arithmetic.Add(_total, symbolFrequencyCounter.Count());
         }
     }
 }

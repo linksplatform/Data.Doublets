@@ -170,7 +170,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             protected override TLink GetSize(TLink node)
             {
                 var previousValue = (Links.GetElement(LinkSizeInBytes, node) + Link.SizeAsSourceOffset).GetValue<TLink>();
-                return BitwiseHelpers.PartialRead(previousValue, 5, -5);
+                return Bit.PartialRead(previousValue, 5, -5);
             }
 
             protected override void SetLeft(TLink node, TLink left) => (Links.GetElement(LinkSizeInBytes, node) + Link.LeftAsSourceOffset).SetValue(left);
@@ -180,39 +180,39 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             protected override void SetSize(TLink node, TLink size)
             {
                 var previousValue = (Links.GetElement(LinkSizeInBytes, node) + Link.SizeAsSourceOffset).GetValue<TLink>();
-                (Links.GetElement(LinkSizeInBytes, node) + Link.SizeAsSourceOffset).SetValue(BitwiseHelpers.PartialWrite(previousValue, size, 5, -5));
+                (Links.GetElement(LinkSizeInBytes, node) + Link.SizeAsSourceOffset).SetValue(Bit.PartialWrite(previousValue, size, 5, -5));
             }
 
             protected override bool GetLeftIsChild(TLink node)
             {
                 var previousValue = (Links.GetElement(LinkSizeInBytes, node) + Link.SizeAsSourceOffset).GetValue<TLink>();
-                return (Integer<TLink>)BitwiseHelpers.PartialRead(previousValue, 4, 1);
+                return (Integer<TLink>)Bit.PartialRead(previousValue, 4, 1);
             }
 
             protected override void SetLeftIsChild(TLink node, bool value)
             {
                 var previousValue = (Links.GetElement(LinkSizeInBytes, node) + Link.SizeAsSourceOffset).GetValue<TLink>();
-                var modified = BitwiseHelpers.PartialWrite(previousValue, (TLink)(Integer<TLink>)value, 4, 1);
+                var modified = Bit.PartialWrite(previousValue, (TLink)(Integer<TLink>)value, 4, 1);
                 (Links.GetElement(LinkSizeInBytes, node) + Link.SizeAsSourceOffset).SetValue(modified);
             }
 
             protected override bool GetRightIsChild(TLink node)
             {
                 var previousValue = (Links.GetElement(LinkSizeInBytes, node) + Link.SizeAsSourceOffset).GetValue<TLink>();
-                return (Integer<TLink>)BitwiseHelpers.PartialRead(previousValue, 3, 1);
+                return (Integer<TLink>)Bit.PartialRead(previousValue, 3, 1);
             }
 
             protected override void SetRightIsChild(TLink node, bool value)
             {
                 var previousValue = (Links.GetElement(LinkSizeInBytes, node) + Link.SizeAsSourceOffset).GetValue<TLink>();
-                var modified = BitwiseHelpers.PartialWrite(previousValue, (TLink)(Integer<TLink>)value, 3, 1);
+                var modified = Bit.PartialWrite(previousValue, (TLink)(Integer<TLink>)value, 3, 1);
                 (Links.GetElement(LinkSizeInBytes, node) + Link.SizeAsSourceOffset).SetValue(modified);
             }
 
             protected override sbyte GetBalance(TLink node)
             {
                 var previousValue = (Links.GetElement(LinkSizeInBytes, node) + Link.SizeAsSourceOffset).GetValue<TLink>();
-                var value = (ulong)(Integer<TLink>)BitwiseHelpers.PartialRead(previousValue, 0, 3);
+                var value = (ulong)(Integer<TLink>)Bit.PartialRead(previousValue, 0, 3);
                 var unpackedValue = (sbyte)((value & 4) > 0 ? ((value & 4) << 5) | value & 3 | 124 : value & 3);
                 return unpackedValue;
             }
@@ -221,7 +221,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             {
                 var previousValue = (Links.GetElement(LinkSizeInBytes, node) + Link.SizeAsSourceOffset).GetValue<TLink>();
                 var packagedValue = (TLink)(Integer<TLink>)((((byte)value >> 5) & 4) | value & 3);
-                var modified = BitwiseHelpers.PartialWrite(previousValue, packagedValue, 0, 3);
+                var modified = Bit.PartialWrite(previousValue, packagedValue, 0, 3);
                 (Links.GetElement(LinkSizeInBytes, node) + Link.SizeAsSourceOffset).SetValue(modified);
             }
 
@@ -300,7 +300,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             protected override TLink GetSize(TLink node)
             {
                 var previousValue = (Links.GetElement(LinkSizeInBytes, node) + Link.SizeAsTargetOffset).GetValue<TLink>();
-                return BitwiseHelpers.PartialRead(previousValue, 5, -5);
+                return Bit.PartialRead(previousValue, 5, -5);
             }
 
             protected override void SetLeft(TLink node, TLink left) => (Links.GetElement(LinkSizeInBytes, node) + Link.LeftAsTargetOffset).SetValue(left);
@@ -310,39 +310,39 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             protected override void SetSize(TLink node, TLink size)
             {
                 var previousValue = (Links.GetElement(LinkSizeInBytes, node) + Link.SizeAsTargetOffset).GetValue<TLink>();
-                (Links.GetElement(LinkSizeInBytes, node) + Link.SizeAsTargetOffset).SetValue(BitwiseHelpers.PartialWrite(previousValue, size, 5, -5));
+                (Links.GetElement(LinkSizeInBytes, node) + Link.SizeAsTargetOffset).SetValue(Bit.PartialWrite(previousValue, size, 5, -5));
             }
 
             protected override bool GetLeftIsChild(TLink node)
             {
                 var previousValue = (Links.GetElement(LinkSizeInBytes, node) + Link.SizeAsTargetOffset).GetValue<TLink>();
-                return (Integer<TLink>)BitwiseHelpers.PartialRead(previousValue, 4, 1);
+                return (Integer<TLink>)Bit.PartialRead(previousValue, 4, 1);
             }
 
             protected override void SetLeftIsChild(TLink node, bool value)
             {
                 var previousValue = (Links.GetElement(LinkSizeInBytes, node) + Link.SizeAsTargetOffset).GetValue<TLink>();
-                var modified = BitwiseHelpers.PartialWrite(previousValue, (TLink)(Integer<TLink>)value, 4, 1);
+                var modified = Bit.PartialWrite(previousValue, (TLink)(Integer<TLink>)value, 4, 1);
                 (Links.GetElement(LinkSizeInBytes, node) + Link.SizeAsTargetOffset).SetValue(modified);
             }
 
             protected override bool GetRightIsChild(TLink node)
             {
                 var previousValue = (Links.GetElement(LinkSizeInBytes, node) + Link.SizeAsTargetOffset).GetValue<TLink>();
-                return (Integer<TLink>)BitwiseHelpers.PartialRead(previousValue, 3, 1);
+                return (Integer<TLink>)Bit.PartialRead(previousValue, 3, 1);
             }
 
             protected override void SetRightIsChild(TLink node, bool value)
             {
                 var previousValue = (Links.GetElement(LinkSizeInBytes, node) + Link.SizeAsTargetOffset).GetValue<TLink>();
-                var modified = BitwiseHelpers.PartialWrite(previousValue, (TLink)(Integer<TLink>)value, 3, 1);
+                var modified = Bit.PartialWrite(previousValue, (TLink)(Integer<TLink>)value, 3, 1);
                 (Links.GetElement(LinkSizeInBytes, node) + Link.SizeAsTargetOffset).SetValue(modified);
             }
 
             protected override sbyte GetBalance(TLink node)
             {
                 var previousValue = (Links.GetElement(LinkSizeInBytes, node) + Link.SizeAsTargetOffset).GetValue<TLink>();
-                var value = (ulong)(Integer<TLink>)BitwiseHelpers.PartialRead(previousValue, 0, 3);
+                var value = (ulong)(Integer<TLink>)Bit.PartialRead(previousValue, 0, 3);
                 var unpackedValue = (sbyte)((value & 4) > 0 ? ((value & 4) << 5) | value & 3 | 124 : value & 3);
                 return unpackedValue;
             }
@@ -351,7 +351,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             {
                 var previousValue = (Links.GetElement(LinkSizeInBytes, node) + Link.SizeAsTargetOffset).GetValue<TLink>();
                 var packagedValue = (TLink)(Integer<TLink>)((((byte)value >> 5) & 4) | value & 3);
-                var modified = BitwiseHelpers.PartialWrite(previousValue, packagedValue, 0, 3);
+                var modified = Bit.PartialWrite(previousValue, packagedValue, 0, 3);
                 (Links.GetElement(LinkSizeInBytes, node) + Link.SizeAsTargetOffset).SetValue(modified);
             }
 

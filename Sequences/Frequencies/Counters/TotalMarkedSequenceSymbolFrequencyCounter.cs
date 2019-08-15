@@ -5,9 +5,9 @@ namespace Platform.Data.Doublets.Sequences.Frequencies.Counters
     public class TotalMarkedSequenceSymbolFrequencyCounter<TLink> : ICounter<TLink, TLink>
     {
         private readonly ILinks<TLink> _links;
-        private readonly ICreteriaMatcher<TLink> _markedSequenceMatcher;
+        private readonly ICriterionMatcher<TLink> _markedSequenceMatcher;
 
-        public TotalMarkedSequenceSymbolFrequencyCounter(ILinks<TLink> links, ICreteriaMatcher<TLink> markedSequenceMatcher)
+        public TotalMarkedSequenceSymbolFrequencyCounter(ILinks<TLink> links, ICriterionMatcher<TLink> markedSequenceMatcher)
         {
             _links = links;
             _markedSequenceMatcher = markedSequenceMatcher;

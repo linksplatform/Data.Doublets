@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Collections.Generic;
-using Platform.Helpers.Singletons;
+using Platform.Singletons;
 using Platform.Data.Constants;
 using Platform.Data.Exceptions;
 using Platform.Data.Doublets.Sequences;

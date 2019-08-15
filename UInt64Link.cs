@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Platform.Exceptions;
 using Platform.Ranges;
-using Platform.Helpers.Singletons;
+using Platform.Singletons;
 using Platform.Data.Constants;
 
 namespace Platform.Data.Doublets

@@ -4,7 +4,7 @@ using Platform.Interfaces;
 
 namespace Platform.Data.Doublets.PropertyOperators
 {
-    public class DefaultLinkPropertyOperator<TLink> : LinksOperatorBase<TLink>, IPropertyOperator<TLink, TLink, TLink>
+    public class DefaultLinkPropertyOperator<TLink> : LinksOperatorBase<TLink>, IPropertiesOperator<TLink, TLink, TLink>
     {
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
 

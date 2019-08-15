@@ -17,10 +17,10 @@ namespace Platform.Data.Doublets.Sequences.Frequencies.Cache
         public LinkFrequency() { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void IncrementFrequency() => Frequency = ArithmeticHelpers<TLink>.Increment(Frequency);
+        public void IncrementFrequency() => Frequency = Arithmetic<TLink>.Increment(Frequency);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DecrementFrequency() => Frequency = ArithmeticHelpers<TLink>.Decrement(Frequency);
+        public void DecrementFrequency() => Frequency = Arithmetic<TLink>.Decrement(Frequency);
 
         public override string ToString() => $"F: {Frequency}, L: {Link}";
     }

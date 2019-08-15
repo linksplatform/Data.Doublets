@@ -81,7 +81,7 @@ namespace Platform.Data.Doublets
         /// </remarks>
         public struct Transition
         {
-            public static readonly long Size = StructureHelpers.SizeOf<Transition>();
+            public static readonly long Size = Structure<Transition>.Size;
 
             public readonly ulong TransactionId;
             public readonly UInt64Link Before;
@@ -201,7 +201,7 @@ namespace Platform.Data.Doublets
                 }
             }
 
-            protected override void DisposeCore(bool manual, bool wasDisposed)
+            protected override void Dispose(bool manual, bool wasDisposed)
             {
                 if (!wasDisposed && _layer != null && !_layer.IsDisposed)
                 {
@@ -366,7 +366,7 @@ namespace Platform.Data.Doublets
                 {
                     PushTransitions();
                 }
-                Disposable.TryDispose(_log);
+                _log.DisposeIfPossible();
                 FileHelpers.WriteFirst(_logAddress, _lastCommitedTransition);
             }
             catch
@@ -376,13 +376,13 @@ namespace Platform.Data.Doublets
 
         #region DisposalBase
 
-        protected override void DisposeCore(bool manual, bool wasDisposed)
+        protected override void Dispose(bool manual, bool wasDisposed)
         {
             if (!wasDisposed)
             {
                 DisposeTransitions();
             }
-            base.DisposeCore(manual, wasDisposed);
+            base.Dispose(manual, wasDisposed);
         }
 
         #endregion

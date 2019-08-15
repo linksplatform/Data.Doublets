@@ -2,7 +2,6 @@
 using System.Reflection;
 using Platform.Reflection;
 using Platform.Converters;
-using Platform.Numbers;
 
 namespace Platform.Data.Doublets
 {
@@ -12,7 +11,7 @@ namespace Platform.Data.Doublets
         public bool IsNothing => Convert.ToInt64(To.Signed(Value)) == 0;
         public bool IsInternal => Convert.ToInt64(To.Signed(Value)) > 0;
         public bool IsExternal => Convert.ToInt64(To.Signed(Value)) < 0;
-        public long AbsoluteValue => Math.Abs(Convert.ToInt64(To.Signed(Value)));
+        public long AbsoluteValue => Numbers.Math.Abs(Convert.ToInt64(To.Signed(Value)));
 
         public Hybrid(T value)
         {
@@ -29,8 +28,8 @@ namespace Platform.Data.Doublets
         {
             var signedType = CachedTypeInfo<T>.SignedVersion;
             var signedValue = Convert.ChangeType(value, signedType);
-            var abs = typeof(MathHelpers).GetTypeInfo().GetMethod("Abs").MakeGenericMethod(signedType);
-            var negate = typeof(MathHelpers).GetTypeInfo().GetMethod("Negate").MakeGenericMethod(signedType);
+            var abs = typeof(Numbers.Math).GetTypeInfo().GetMethod("Abs").MakeGenericMethod(signedType);
+            var negate = typeof(Numbers.Math).GetTypeInfo().GetMethod("Negate").MakeGenericMethod(signedType);
             var absoluteValue = abs.Invoke(null, new[] { signedValue });
             var resultValue = isExternal ? negate.Invoke(null, new[] { absoluteValue }) : absoluteValue;
             Value = To.UnsignedAs<T>(resultValue);

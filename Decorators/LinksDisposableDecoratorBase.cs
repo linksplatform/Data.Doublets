@@ -29,6 +29,12 @@ namespace Platform.Data.Doublets.Decorators
 
         protected override bool AllowMultipleDisposeCalls => true;
 
-        protected override void DisposeCore(bool manual, bool wasDisposed) => Disposable.TryDispose(Links);
+        protected override void Dispose(bool manual, bool wasDisposed)
+        {
+            if (!wasDisposed)
+            {
+                Links.DisposeIfPossible();
+            }
+        }
     }
 }

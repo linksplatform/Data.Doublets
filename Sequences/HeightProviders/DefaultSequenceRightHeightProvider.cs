@@ -5,9 +5,9 @@ namespace Platform.Data.Doublets.Sequences.HeightProviders
 {
     public class DefaultSequenceRightHeightProvider<TLink> : LinksOperatorBase<TLink>, ISequenceHeightProvider<TLink>
     {
-        private readonly ICreteriaMatcher<TLink> _elementMatcher;
+        private readonly ICriterionMatcher<TLink> _elementMatcher;
 
-        public DefaultSequenceRightHeightProvider(ILinks<TLink> links, ICreteriaMatcher<TLink> elementMatcher) : base(links) => _elementMatcher = elementMatcher;
+        public DefaultSequenceRightHeightProvider(ILinks<TLink> links, ICriterionMatcher<TLink> elementMatcher) : base(links) => _elementMatcher = elementMatcher;
 
         public TLink Get(TLink sequence)
         {
@@ -16,7 +16,7 @@ namespace Platform.Data.Doublets.Sequences.HeightProviders
             while (!_elementMatcher.IsMatched(pairOrElement))
             {
                 pairOrElement = Links.GetTarget(pairOrElement);
-                height = ArithmeticHelpers.Increment(height);
+                height = Arithmetic.Increment(height);
             }
             return height;
         }

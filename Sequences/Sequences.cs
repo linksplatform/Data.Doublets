@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using Platform.Collections;
 using Platform.Collections.Lists;
 using Platform.Threading.Synchronization;
-using Platform.Helpers.Singletons;
+using Platform.Singletons;
 using LinkIndex = System.UInt64;
 using Platform.Data.Constants;
 using Platform.Data.Sequences;

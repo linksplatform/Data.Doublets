@@ -39,7 +39,7 @@ namespace Platform.Data.Doublets.Sequences.Frequencies.Counters
         {
             if (_equalityComparer.Equals(element, _symbol))
             {
-                _total = ArithmeticHelpers.Increment(_total);
+                _total = Arithmetic.Increment(_total);
             }
             return true;
         }

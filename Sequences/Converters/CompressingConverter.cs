@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Platform.Interfaces;
 using Platform.Collections;
-using Platform.Helpers.Singletons;
+using Platform.Singletons;
 using Platform.Numbers;
 using Platform.Data.Constants;
 using Platform.Data.Doublets.Sequences.Frequencies.Cache;
@@ -206,7 +206,7 @@ namespace Platform.Data.Doublets.Sequences.Converters
             var maxFrequency = _maxDoubletData.Frequency;
             //if (frequency > _minFrequencyToCompress && (maxFrequency < frequency || (maxFrequency == frequency && doublet.Source + doublet.Target < /* gives better compression string data (and gives collisions quickly) */ _maxDoublet.Source + _maxDoublet.Target))) 
             if (_comparer.Compare(frequency, _minFrequencyToCompress) > 0 &&
-               (_comparer.Compare(maxFrequency, frequency) < 0 || (_equalityComparer.Equals(maxFrequency, frequency) && _comparer.Compare(ArithmeticHelpers.Add(doublet.Source, doublet.Target), ArithmeticHelpers.Add(_maxDoublet.Source, _maxDoublet.Target)) > 0))) /* gives better stability and better compression on sequent data and even on rundom numbers data (but gives collisions anyway) */
+               (_comparer.Compare(maxFrequency, frequency) < 0 || (_equalityComparer.Equals(maxFrequency, frequency) && _comparer.Compare(Arithmetic.Add(doublet.Source, doublet.Target), Arithmetic.Add(_maxDoublet.Source, _maxDoublet.Target)) > 0))) /* gives better stability and better compression on sequent data and even on rundom numbers data (but gives collisions anyway) */
             {
                 _maxDoublet = doublet;
                 _maxDoubletData = data;

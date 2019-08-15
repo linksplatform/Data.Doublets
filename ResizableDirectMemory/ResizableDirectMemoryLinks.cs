@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Platform.Disposables;
-using Platform.Helpers.Singletons;
+using Platform.Singletons;
 using Platform.Collections.Arrays;
 using Platform.Numbers;
 using Platform.Unsafe;
 using Platform.Memory;
 using Platform.Data.Exceptions;
 using Platform.Data.Constants;
-using static Platform.Numbers.ArithmeticHelpers;
+using static Platform.Numbers.Arithmetic;
 
 #pragma warning disable 0649
 #pragma warning disable 169
@@ -29,9 +29,9 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         private static readonly Comparer<TLink> _comparer = Comparer<TLink>.Default;
 
         /// <summary>Возвращает размер одной связи в байтах.</summary>
-        public static readonly int LinkSizeInBytes = StructureHelpers.SizeOf<Link>();
+        public static readonly int LinkSizeInBytes = Structure<Link>.Size;
 
-        public static readonly int LinkHeaderSizeInBytes = StructureHelpers.SizeOf<LinksHeader>();
+        public static readonly int LinkHeaderSizeInBytes = Structure<LinksHeader>.Size;
 
         public static readonly long DefaultLinksSizeStep = LinkSizeInBytes * 1024 * 1024;
 
@@ -576,13 +576,13 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
 
         protected override bool AllowMultipleDisposeCalls => true;
 
-        protected override void DisposeCore(bool manual, bool wasDisposed)
+        protected override void Dispose(bool manual, bool wasDisposed)
         {
             if (!wasDisposed)
             {
                 SetPointers(null);
+                _memory.DisposeIfPossible();
             }
-            Disposable.TryDispose(_memory);
         }
 
         #endregion

@@ -11,7 +11,7 @@ namespace Platform.Data.Doublets.Sequences.HeightProviders
         private readonly ISequenceHeightProvider<TLink> _baseHeightProvider;
         private readonly IConverter<TLink> _addressToUnaryNumberConverter;
         private readonly IConverter<TLink> _unaryNumberToAddressConverter;
-        private readonly IPropertyOperator<TLink, TLink, TLink> _propertyOperator;
+        private readonly IPropertiesOperator<TLink, TLink, TLink> _propertyOperator;
 
         public CachedSequenceHeightProvider(
             ILinks<TLink> links,
@@ -19,7 +19,7 @@ namespace Platform.Data.Doublets.Sequences.HeightProviders
             IConverter<TLink> addressToUnaryNumberConverter,
             IConverter<TLink> unaryNumberToAddressConverter,
             TLink heightPropertyMarker,
-            IPropertyOperator<TLink, TLink, TLink> propertyOperator)
+            IPropertiesOperator<TLink, TLink, TLink> propertyOperator)
             : base(links)
         {
             _heightPropertyMarker = heightPropertyMarker;

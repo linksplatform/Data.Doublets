@@ -6,8 +6,7 @@ using Platform.Collections;
 using Platform.Collections.Lists;
 using Platform.Collections.Segments;
 using Platform.Collections.Segments.Walkers;
-using Platform.Helpers;
-using Platform.Helpers.Singletons;
+using Platform.Singletons;
 using Platform.Numbers;
 using Platform.Data.Sequences;
 
@@ -25,7 +24,7 @@ namespace Platform.Data.Doublets.Sequences
             private readonly IListEqualityComparer<TLink> _listComparer;
             public ItemEquilityComparer() => _listComparer = Default<IListEqualityComparer<TLink>>.Instance;
             public bool Equals(KeyValuePair<IList<TLink>, IList<TLink>> left, KeyValuePair<IList<TLink>, IList<TLink>> right) => _listComparer.Equals(left.Key, right.Key) && _listComparer.Equals(left.Value, right.Value);
-            public int GetHashCode(KeyValuePair<IList<TLink>, IList<TLink>> pair) => HashHelpers.Generate(_listComparer.GetHashCode(pair.Key), _listComparer.GetHashCode(pair.Value));
+            public int GetHashCode(KeyValuePair<IList<TLink>, IList<TLink>> pair) => (_listComparer.GetHashCode(pair.Key), _listComparer.GetHashCode(pair.Value)).GetHashCode();
         }
 
         private class ItemComparer : IComparer<KeyValuePair<IList<TLink>, IList<TLink>>>

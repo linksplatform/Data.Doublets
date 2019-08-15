@@ -7,7 +7,7 @@ using Platform.Ranges;
 using Platform.Collections.Arrays;
 using Platform.Numbers;
 using Platform.Random;
-using Platform.Helpers.Setters;
+using Platform.Setters;
 using Platform.Data.Exceptions;
 
 namespace Platform.Data.Doublets
@@ -61,10 +61,10 @@ namespace Platform.Data.Doublets
         {
             var equalityComparer = EqualityComparer<TLink>.Default;
             var comparer = Comparer<TLink>.Default;
-            for (var i = links.Count(); comparer.Compare(i, default) > 0; i = ArithmeticHelpers.Decrement(i))
+            for (var i = links.Count(); comparer.Compare(i, default) > 0; i = Arithmetic.Decrement(i))
             {
                 links.Delete(i);
-                if (!equalityComparer.Equals(links.Count(), ArithmeticHelpers.Decrement(i)))
+                if (!equalityComparer.Equals(links.Count(), Arithmetic.Decrement(i)))
                 {
                     i = links.Count();
                 }
@@ -157,12 +157,12 @@ namespace Platform.Data.Doublets
             var constants = links.Constants;
             var source = constants.SourcePart;
             var target = constants.TargetPart;
-            if (!MathHelpers.IsPowerOfTwo(size))
+            if (!Numbers.Math.IsPowerOfTwo(size))
             {
                 throw new ArgumentOutOfRangeException(nameof(size), "Sequences with sizes other than powers of two are not supported.");
             }
             var path = new BitArray(BitConverter.GetBytes(index));
-            var length = BitwiseHelpers.GetLowestBitPosition(size);
+            var length = Bit.GetLowestPosition(size);
             links.EnsureLinkExists(root, "root");
             var currentLink = root;
             for (var i = length - 1; i >= 0; i--)
@@ -368,7 +368,7 @@ namespace Platform.Data.Doublets
             {
                 var max = nonExistentAddresses.Max();
                 // TODO: Эту верхнюю границу нужно разрешить переопределять (проверить применяется ли эта логика)
-                max = Math.Min(max, (Integer<TLink>)constants.MaxPossibleIndex);
+                max = System.Math.Min(max, (Integer<TLink>)constants.MaxPossibleIndex);
                 var createdLinks = new List<TLink>();
                 var equalityComparer = EqualityComparer<TLink>.Default;
                 TLink createdLink = creator();

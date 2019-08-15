@@ -4,7 +4,6 @@ using System.Linq;
 using Platform.Collections;
 using Platform.Collections.Arrays;
 using Platform.Collections.Lists;
-using Platform.Helpers.Scopes;
 using Platform.Data.Constants;
 using Platform.Data.Universal;
 using System.Collections.ObjectModel;
@@ -35,8 +34,8 @@ namespace Platform.Data.Doublets.Decorators
             }
         }
 
-        public static readonly TLink NullConstant = Use<LinksCombinedConstants<TLink, TLink, int>>.Single.Null;
-        public static readonly IReadOnlyList<TLink> NullLink = new ReadOnlyCollection<TLink>(new List<TLink> { NullConstant, NullConstant, NullConstant });
+        //public static readonly TLink NullConstant = Use<LinksCombinedConstants<TLink, TLink, int>>.Single.Null;
+        //public static readonly IReadOnlyList<TLink> NullLink = new ReadOnlyCollection<TLink>(new List<TLink> { NullConstant, NullConstant, NullConstant });
 
         // TODO: Подумать о том, как реализовать древовидный Restriction и Substitution (Links-Expression)
         public TLink Trigger(IList<TLink> restriction, Func<IList<TLink>, IList<TLink>, TLink> matchedHandler, IList<TLink> substitution, Func<IList<TLink>, IList<TLink>, TLink> substitutedHandler)

@@ -10,6 +10,8 @@ namespace Platform.Data.Doublets.Stacks
         private readonly ILinks<TLink> _links;
         private readonly TLink _stack;
 
+        public bool IsEmpty => _equalityComparer.Equals(Peek(), _stack);
+
         public Stack(ILinks<TLink> links, TLink stack)
         {
             _links = links;

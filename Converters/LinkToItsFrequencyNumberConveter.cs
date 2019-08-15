@@ -8,12 +8,12 @@ namespace Platform.Data.Doublets.Converters
     {
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
 
-        private readonly ISpecificPropertyOperator<TLink, TLink> _frequencyPropertyOperator;
+        private readonly IPropertyOperator<TLink, TLink> _frequencyPropertyOperator;
         private readonly IConverter<TLink> _unaryNumberToAddressConverter;
 
         public LinkToItsFrequencyNumberConveter(
             ILinks<TLink> links,
-            ISpecificPropertyOperator<TLink, TLink> frequencyPropertyOperator,
+            IPropertyOperator<TLink, TLink> frequencyPropertyOperator,
             IConverter<TLink> unaryNumberToAddressConverter)
             : base(links)
         {

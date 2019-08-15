@@ -55,10 +55,10 @@ namespace Platform.Data.Doublets.Converters
                 while (!_unaryToUInt64.TryGetValue(target, out lastValue))
                 {
                     source = Links.GetSource(target);
-                    result = ArithmeticHelpers.Add(result, _unaryToUInt64[source]);
+                    result = Arithmetic.Add(result, _unaryToUInt64[source]);
                     target = Links.GetTarget(target);
                 }
-                result = ArithmeticHelpers.Add(result, lastValue);
+                result = Arithmetic.Add(result, lastValue);
                 return result;
             }
         }

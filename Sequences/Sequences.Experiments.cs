@@ -54,7 +54,7 @@ namespace Platform.Data.Doublets.Sequences
             {
                 return new[] { Links.Unsync.CreateAndUpdate(sequence[startAt], sequence[stopAt]) };
             }
-            var variants = new ulong[(ulong)MathHelpers.Catalan(stopAt - startAt)];
+            var variants = new ulong[(ulong)Numbers.Math.Catalan(stopAt - startAt)];
             var last = 0;
             for (var splitter = startAt; splitter < stopAt; splitter++)
             {
@@ -89,7 +89,7 @@ namespace Platform.Data.Doublets.Sequences
                 {
                     return new List<ulong> { sequence[0] };
                 }
-                var results = new List<ulong>((int)MathHelpers.Catalan(sequence.Length));
+                var results = new List<ulong>((int)Numbers.Math.Catalan(sequence.Length));
                 return CreateAllVariants1Core(sequence, results);
             });
         }
