@@ -66,15 +66,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter(Of TLink)
   nameWithType: LinkToItsFrequencyNumberConveter<TLink>
   nameWithType.vb: LinkToItsFrequencyNumberConveter(Of TLink)
-- uid: Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.ISpecificPropertyOperator{`0,`0},Platform.Interfaces.IConverter{`0})
-  name: LinkToItsFrequencyNumberConveter(ILinks<TLink>, ISpecificPropertyOperator<TLink, TLink>, IConverter<TLink>)
-  href: api/Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter-1.html#Platform_Data_Doublets_Converters_LinkToItsFrequencyNumberConveter_1__ctor_Platform_Data_Doublets_ILinks__0__Platform_Interfaces_ISpecificPropertyOperator__0__0__Platform_Interfaces_IConverter__0__
-  commentId: M:Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.ISpecificPropertyOperator{`0,`0},Platform.Interfaces.IConverter{`0})
-  name.vb: LinkToItsFrequencyNumberConveter(ILinks(Of TLink), ISpecificPropertyOperator(Of TLink, TLink), IConverter(Of TLink))
-  fullName: Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter<TLink>.LinkToItsFrequencyNumberConveter(Platform.Data.Doublets.ILinks<TLink>, Platform.Interfaces.ISpecificPropertyOperator<TLink, TLink>, Platform.Interfaces.IConverter<TLink>)
-  fullName.vb: Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter(Of TLink).LinkToItsFrequencyNumberConveter(Platform.Data.Doublets.ILinks(Of TLink), Platform.Interfaces.ISpecificPropertyOperator(Of TLink, TLink), Platform.Interfaces.IConverter(Of TLink))
-  nameWithType: LinkToItsFrequencyNumberConveter<TLink>.LinkToItsFrequencyNumberConveter(ILinks<TLink>, ISpecificPropertyOperator<TLink, TLink>, IConverter<TLink>)
-  nameWithType.vb: LinkToItsFrequencyNumberConveter(Of TLink).LinkToItsFrequencyNumberConveter(ILinks(Of TLink), ISpecificPropertyOperator(Of TLink, TLink), IConverter(Of TLink))
+- uid: Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.IPropertyOperator{`0,`0},Platform.Interfaces.IConverter{`0})
+  name: LinkToItsFrequencyNumberConveter(ILinks<TLink>, IPropertyOperator<TLink, TLink>, IConverter<TLink>)
+  href: api/Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter-1.html#Platform_Data_Doublets_Converters_LinkToItsFrequencyNumberConveter_1__ctor_Platform_Data_Doublets_ILinks__0__Platform_Interfaces_IPropertyOperator__0__0__Platform_Interfaces_IConverter__0__
+  commentId: M:Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.IPropertyOperator{`0,`0},Platform.Interfaces.IConverter{`0})
+  name.vb: LinkToItsFrequencyNumberConveter(ILinks(Of TLink), IPropertyOperator(Of TLink, TLink), IConverter(Of TLink))
+  fullName: Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter<TLink>.LinkToItsFrequencyNumberConveter(Platform.Data.Doublets.ILinks<TLink>, Platform.Interfaces.IPropertyOperator<TLink, TLink>, Platform.Interfaces.IConverter<TLink>)
+  fullName.vb: Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter(Of TLink).LinkToItsFrequencyNumberConveter(Platform.Data.Doublets.ILinks(Of TLink), Platform.Interfaces.IPropertyOperator(Of TLink, TLink), Platform.Interfaces.IConverter(Of TLink))
+  nameWithType: LinkToItsFrequencyNumberConveter<TLink>.LinkToItsFrequencyNumberConveter(ILinks<TLink>, IPropertyOperator<TLink, TLink>, IConverter<TLink>)
+  nameWithType.vb: LinkToItsFrequencyNumberConveter(Of TLink).LinkToItsFrequencyNumberConveter(ILinks(Of TLink), IPropertyOperator(Of TLink, TLink), IConverter(Of TLink))
 - uid: Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter`1.#ctor*
   name: LinkToItsFrequencyNumberConveter
   href: api/Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter-1.html#Platform_Data_Doublets_Converters_LinkToItsFrequencyNumberConveter_1__ctor_
@@ -660,23 +660,23 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of T).Delete
   nameWithType: LinksDisposableDecoratorBase<T>.Delete
   nameWithType.vb: LinksDisposableDecoratorBase(Of T).Delete
-- uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.DisposeCore(System.Boolean,System.Boolean)
-  name: DisposeCore(Boolean, Boolean)
-  href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1_DisposeCore_System_Boolean_System_Boolean_
-  commentId: M:Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.DisposeCore(System.Boolean,System.Boolean)
-  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<T>.DisposeCore(System.Boolean, System.Boolean)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of T).DisposeCore(System.Boolean, System.Boolean)
-  nameWithType: LinksDisposableDecoratorBase<T>.DisposeCore(Boolean, Boolean)
-  nameWithType.vb: LinksDisposableDecoratorBase(Of T).DisposeCore(Boolean, Boolean)
-- uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.DisposeCore*
-  name: DisposeCore
-  href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1_DisposeCore_
-  commentId: Overload:Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.DisposeCore
+- uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Dispose(System.Boolean,System.Boolean)
+  name: Dispose(Boolean, Boolean)
+  href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1_Dispose_System_Boolean_System_Boolean_
+  commentId: M:Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Dispose(System.Boolean,System.Boolean)
+  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<T>.Dispose(System.Boolean, System.Boolean)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of T).Dispose(System.Boolean, System.Boolean)
+  nameWithType: LinksDisposableDecoratorBase<T>.Dispose(Boolean, Boolean)
+  nameWithType.vb: LinksDisposableDecoratorBase(Of T).Dispose(Boolean, Boolean)
+- uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Dispose*
+  name: Dispose
+  href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1_Dispose_
+  commentId: Overload:Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Dispose
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<T>.DisposeCore
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of T).DisposeCore
-  nameWithType: LinksDisposableDecoratorBase<T>.DisposeCore
-  nameWithType.vb: LinksDisposableDecoratorBase(Of T).DisposeCore
+  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<T>.Dispose
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of T).Dispose
+  nameWithType: LinksDisposableDecoratorBase<T>.Dispose
+  nameWithType.vb: LinksDisposableDecoratorBase(Of T).Dispose
 - uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Each(System.Func{System.Collections.Generic.IList{`0},`0},System.Collections.Generic.IList{`0})
   name: Each(Func<IList<T>, T>, IList<T>)
   href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1_Each_System_Func_System_Collections_Generic_IList__0___0__System_Collections_Generic_IList__0__
@@ -2375,15 +2375,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Incrementers.LinkFrequencyIncrementer(Of TLink)
   nameWithType: LinkFrequencyIncrementer<TLink>
   nameWithType.vb: LinkFrequencyIncrementer(Of TLink)
-- uid: Platform.Data.Doublets.Incrementers.LinkFrequencyIncrementer`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.ISpecificPropertyOperator{`0,`0},Platform.Interfaces.IIncrementer{`0})
-  name: LinkFrequencyIncrementer(ILinks<TLink>, ISpecificPropertyOperator<TLink, TLink>, IIncrementer<TLink>)
-  href: api/Platform.Data.Doublets.Incrementers.LinkFrequencyIncrementer-1.html#Platform_Data_Doublets_Incrementers_LinkFrequencyIncrementer_1__ctor_Platform_Data_Doublets_ILinks__0__Platform_Interfaces_ISpecificPropertyOperator__0__0__Platform_Interfaces_IIncrementer__0__
-  commentId: M:Platform.Data.Doublets.Incrementers.LinkFrequencyIncrementer`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.ISpecificPropertyOperator{`0,`0},Platform.Interfaces.IIncrementer{`0})
-  name.vb: LinkFrequencyIncrementer(ILinks(Of TLink), ISpecificPropertyOperator(Of TLink, TLink), IIncrementer(Of TLink))
-  fullName: Platform.Data.Doublets.Incrementers.LinkFrequencyIncrementer<TLink>.LinkFrequencyIncrementer(Platform.Data.Doublets.ILinks<TLink>, Platform.Interfaces.ISpecificPropertyOperator<TLink, TLink>, Platform.Interfaces.IIncrementer<TLink>)
-  fullName.vb: Platform.Data.Doublets.Incrementers.LinkFrequencyIncrementer(Of TLink).LinkFrequencyIncrementer(Platform.Data.Doublets.ILinks(Of TLink), Platform.Interfaces.ISpecificPropertyOperator(Of TLink, TLink), Platform.Interfaces.IIncrementer(Of TLink))
-  nameWithType: LinkFrequencyIncrementer<TLink>.LinkFrequencyIncrementer(ILinks<TLink>, ISpecificPropertyOperator<TLink, TLink>, IIncrementer<TLink>)
-  nameWithType.vb: LinkFrequencyIncrementer(Of TLink).LinkFrequencyIncrementer(ILinks(Of TLink), ISpecificPropertyOperator(Of TLink, TLink), IIncrementer(Of TLink))
+- uid: Platform.Data.Doublets.Incrementers.LinkFrequencyIncrementer`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.IPropertyOperator{`0,`0},Platform.Interfaces.IIncrementer{`0})
+  name: LinkFrequencyIncrementer(ILinks<TLink>, IPropertyOperator<TLink, TLink>, IIncrementer<TLink>)
+  href: api/Platform.Data.Doublets.Incrementers.LinkFrequencyIncrementer-1.html#Platform_Data_Doublets_Incrementers_LinkFrequencyIncrementer_1__ctor_Platform_Data_Doublets_ILinks__0__Platform_Interfaces_IPropertyOperator__0__0__Platform_Interfaces_IIncrementer__0__
+  commentId: M:Platform.Data.Doublets.Incrementers.LinkFrequencyIncrementer`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.IPropertyOperator{`0,`0},Platform.Interfaces.IIncrementer{`0})
+  name.vb: LinkFrequencyIncrementer(ILinks(Of TLink), IPropertyOperator(Of TLink, TLink), IIncrementer(Of TLink))
+  fullName: Platform.Data.Doublets.Incrementers.LinkFrequencyIncrementer<TLink>.LinkFrequencyIncrementer(Platform.Data.Doublets.ILinks<TLink>, Platform.Interfaces.IPropertyOperator<TLink, TLink>, Platform.Interfaces.IIncrementer<TLink>)
+  fullName.vb: Platform.Data.Doublets.Incrementers.LinkFrequencyIncrementer(Of TLink).LinkFrequencyIncrementer(Platform.Data.Doublets.ILinks(Of TLink), Platform.Interfaces.IPropertyOperator(Of TLink, TLink), Platform.Interfaces.IIncrementer(Of TLink))
+  nameWithType: LinkFrequencyIncrementer<TLink>.LinkFrequencyIncrementer(ILinks<TLink>, IPropertyOperator<TLink, TLink>, IIncrementer<TLink>)
+  nameWithType.vb: LinkFrequencyIncrementer(Of TLink).LinkFrequencyIncrementer(ILinks(Of TLink), IPropertyOperator(Of TLink, TLink), IIncrementer(Of TLink))
 - uid: Platform.Data.Doublets.Incrementers.LinkFrequencyIncrementer`1.#ctor*
   name: LinkFrequencyIncrementer
   href: api/Platform.Data.Doublets.Incrementers.LinkFrequencyIncrementer-1.html#Platform_Data_Doublets_Incrementers_LinkFrequencyIncrementer_1__ctor_
@@ -3287,23 +3287,23 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks(Of TLink).Delete
   nameWithType: ResizableDirectMemoryLinks<TLink>.Delete
   nameWithType.vb: ResizableDirectMemoryLinks(Of TLink).Delete
-- uid: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.DisposeCore(System.Boolean,System.Boolean)
-  name: DisposeCore(Boolean, Boolean)
-  href: api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html#Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinks_1_DisposeCore_System_Boolean_System_Boolean_
-  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.DisposeCore(System.Boolean,System.Boolean)
-  fullName: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks<TLink>.DisposeCore(System.Boolean, System.Boolean)
-  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks(Of TLink).DisposeCore(System.Boolean, System.Boolean)
-  nameWithType: ResizableDirectMemoryLinks<TLink>.DisposeCore(Boolean, Boolean)
-  nameWithType.vb: ResizableDirectMemoryLinks(Of TLink).DisposeCore(Boolean, Boolean)
-- uid: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.DisposeCore*
-  name: DisposeCore
-  href: api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html#Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinks_1_DisposeCore_
-  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.DisposeCore
+- uid: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.Dispose(System.Boolean,System.Boolean)
+  name: Dispose(Boolean, Boolean)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html#Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinks_1_Dispose_System_Boolean_System_Boolean_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.Dispose(System.Boolean,System.Boolean)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks<TLink>.Dispose(System.Boolean, System.Boolean)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks(Of TLink).Dispose(System.Boolean, System.Boolean)
+  nameWithType: ResizableDirectMemoryLinks<TLink>.Dispose(Boolean, Boolean)
+  nameWithType.vb: ResizableDirectMemoryLinks(Of TLink).Dispose(Boolean, Boolean)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.Dispose*
+  name: Dispose
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html#Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinks_1_Dispose_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.Dispose
   isSpec: "True"
-  fullName: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks<TLink>.DisposeCore
-  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks(Of TLink).DisposeCore
-  nameWithType: ResizableDirectMemoryLinks<TLink>.DisposeCore
-  nameWithType.vb: ResizableDirectMemoryLinks(Of TLink).DisposeCore
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks<TLink>.Dispose
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks(Of TLink).Dispose
+  nameWithType: ResizableDirectMemoryLinks<TLink>.Dispose
+  nameWithType.vb: ResizableDirectMemoryLinks(Of TLink).Dispose
 - uid: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.Each(System.Func{System.Collections.Generic.IList{`0},`0},System.Collections.Generic.IList{`0})
   name: Each(Func<IList<TLink>, TLink>, IList<TLink>)
   href: api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html#Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinks_1_Each_System_Func_System_Collections_Generic_IList__0___0__System_Collections_Generic_IList__0__
@@ -3484,19 +3484,19 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Delete
   nameWithType: UInt64ResizableDirectMemoryLinks.Delete
-- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.DisposeCore(System.Boolean,System.Boolean)
-  name: DisposeCore(Boolean, Boolean)
-  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64ResizableDirectMemoryLinks_DisposeCore_System_Boolean_System_Boolean_
-  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.DisposeCore(System.Boolean,System.Boolean)
-  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.DisposeCore(System.Boolean, System.Boolean)
-  nameWithType: UInt64ResizableDirectMemoryLinks.DisposeCore(Boolean, Boolean)
-- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.DisposeCore*
-  name: DisposeCore
-  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64ResizableDirectMemoryLinks_DisposeCore_
-  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.DisposeCore
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Dispose(System.Boolean,System.Boolean)
+  name: Dispose(Boolean, Boolean)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64ResizableDirectMemoryLinks_Dispose_System_Boolean_System_Boolean_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Dispose(System.Boolean,System.Boolean)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Dispose(System.Boolean, System.Boolean)
+  nameWithType: UInt64ResizableDirectMemoryLinks.Dispose(Boolean, Boolean)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Dispose*
+  name: Dispose
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64ResizableDirectMemoryLinks_Dispose_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Dispose
   isSpec: "True"
-  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.DisposeCore
-  nameWithType: UInt64ResizableDirectMemoryLinks.DisposeCore
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Dispose
+  nameWithType: UInt64ResizableDirectMemoryLinks.Dispose
 - uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Each(System.Func{System.Collections.Generic.IList{System.UInt64},System.UInt64},System.Collections.Generic.IList{System.UInt64})
   name: Each(Func<IList<UInt64>, UInt64>, IList<UInt64>)
   href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64ResizableDirectMemoryLinks_Each_System_Func_System_Collections_Generic_IList_System_UInt64__System_UInt64__System_Collections_Generic_IList_System_UInt64__
@@ -4456,15 +4456,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.Frequencies.Counters.MarkedSequenceSymbolFrequencyOneOffCounter(Of TLink)
   nameWithType: MarkedSequenceSymbolFrequencyOneOffCounter<TLink>
   nameWithType.vb: MarkedSequenceSymbolFrequencyOneOffCounter(Of TLink)
-- uid: Platform.Data.Doublets.Sequences.Frequencies.Counters.MarkedSequenceSymbolFrequencyOneOffCounter`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.ICreteriaMatcher{`0},`0,`0)
-  name: MarkedSequenceSymbolFrequencyOneOffCounter(ILinks<TLink>, ICreteriaMatcher<TLink>, TLink, TLink)
-  href: api/Platform.Data.Doublets.Sequences.Frequencies.Counters.MarkedSequenceSymbolFrequencyOneOffCounter-1.html#Platform_Data_Doublets_Sequences_Frequencies_Counters_MarkedSequenceSymbolFrequencyOneOffCounter_1__ctor_Platform_Data_Doublets_ILinks__0__Platform_Interfaces_ICreteriaMatcher__0___0__0_
-  commentId: M:Platform.Data.Doublets.Sequences.Frequencies.Counters.MarkedSequenceSymbolFrequencyOneOffCounter`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.ICreteriaMatcher{`0},`0,`0)
-  name.vb: MarkedSequenceSymbolFrequencyOneOffCounter(ILinks(Of TLink), ICreteriaMatcher(Of TLink), TLink, TLink)
-  fullName: Platform.Data.Doublets.Sequences.Frequencies.Counters.MarkedSequenceSymbolFrequencyOneOffCounter<TLink>.MarkedSequenceSymbolFrequencyOneOffCounter(Platform.Data.Doublets.ILinks<TLink>, Platform.Interfaces.ICreteriaMatcher<TLink>, TLink, TLink)
-  fullName.vb: Platform.Data.Doublets.Sequences.Frequencies.Counters.MarkedSequenceSymbolFrequencyOneOffCounter(Of TLink).MarkedSequenceSymbolFrequencyOneOffCounter(Platform.Data.Doublets.ILinks(Of TLink), Platform.Interfaces.ICreteriaMatcher(Of TLink), TLink, TLink)
-  nameWithType: MarkedSequenceSymbolFrequencyOneOffCounter<TLink>.MarkedSequenceSymbolFrequencyOneOffCounter(ILinks<TLink>, ICreteriaMatcher<TLink>, TLink, TLink)
-  nameWithType.vb: MarkedSequenceSymbolFrequencyOneOffCounter(Of TLink).MarkedSequenceSymbolFrequencyOneOffCounter(ILinks(Of TLink), ICreteriaMatcher(Of TLink), TLink, TLink)
+- uid: Platform.Data.Doublets.Sequences.Frequencies.Counters.MarkedSequenceSymbolFrequencyOneOffCounter`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.ICriterionMatcher{`0},`0,`0)
+  name: MarkedSequenceSymbolFrequencyOneOffCounter(ILinks<TLink>, ICriterionMatcher<TLink>, TLink, TLink)
+  href: api/Platform.Data.Doublets.Sequences.Frequencies.Counters.MarkedSequenceSymbolFrequencyOneOffCounter-1.html#Platform_Data_Doublets_Sequences_Frequencies_Counters_MarkedSequenceSymbolFrequencyOneOffCounter_1__ctor_Platform_Data_Doublets_ILinks__0__Platform_Interfaces_ICriterionMatcher__0___0__0_
+  commentId: M:Platform.Data.Doublets.Sequences.Frequencies.Counters.MarkedSequenceSymbolFrequencyOneOffCounter`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.ICriterionMatcher{`0},`0,`0)
+  name.vb: MarkedSequenceSymbolFrequencyOneOffCounter(ILinks(Of TLink), ICriterionMatcher(Of TLink), TLink, TLink)
+  fullName: Platform.Data.Doublets.Sequences.Frequencies.Counters.MarkedSequenceSymbolFrequencyOneOffCounter<TLink>.MarkedSequenceSymbolFrequencyOneOffCounter(Platform.Data.Doublets.ILinks<TLink>, Platform.Interfaces.ICriterionMatcher<TLink>, TLink, TLink)
+  fullName.vb: Platform.Data.Doublets.Sequences.Frequencies.Counters.MarkedSequenceSymbolFrequencyOneOffCounter(Of TLink).MarkedSequenceSymbolFrequencyOneOffCounter(Platform.Data.Doublets.ILinks(Of TLink), Platform.Interfaces.ICriterionMatcher(Of TLink), TLink, TLink)
+  nameWithType: MarkedSequenceSymbolFrequencyOneOffCounter<TLink>.MarkedSequenceSymbolFrequencyOneOffCounter(ILinks<TLink>, ICriterionMatcher<TLink>, TLink, TLink)
+  nameWithType.vb: MarkedSequenceSymbolFrequencyOneOffCounter(Of TLink).MarkedSequenceSymbolFrequencyOneOffCounter(ILinks(Of TLink), ICriterionMatcher(Of TLink), TLink, TLink)
 - uid: Platform.Data.Doublets.Sequences.Frequencies.Counters.MarkedSequenceSymbolFrequencyOneOffCounter`1.#ctor*
   name: MarkedSequenceSymbolFrequencyOneOffCounter
   href: api/Platform.Data.Doublets.Sequences.Frequencies.Counters.MarkedSequenceSymbolFrequencyOneOffCounter-1.html#Platform_Data_Doublets_Sequences_Frequencies_Counters_MarkedSequenceSymbolFrequencyOneOffCounter_1__ctor_
@@ -4576,15 +4576,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.Frequencies.Counters.TotalMarkedSequenceSymbolFrequencyCounter(Of TLink)
   nameWithType: TotalMarkedSequenceSymbolFrequencyCounter<TLink>
   nameWithType.vb: TotalMarkedSequenceSymbolFrequencyCounter(Of TLink)
-- uid: Platform.Data.Doublets.Sequences.Frequencies.Counters.TotalMarkedSequenceSymbolFrequencyCounter`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.ICreteriaMatcher{`0})
-  name: TotalMarkedSequenceSymbolFrequencyCounter(ILinks<TLink>, ICreteriaMatcher<TLink>)
-  href: api/Platform.Data.Doublets.Sequences.Frequencies.Counters.TotalMarkedSequenceSymbolFrequencyCounter-1.html#Platform_Data_Doublets_Sequences_Frequencies_Counters_TotalMarkedSequenceSymbolFrequencyCounter_1__ctor_Platform_Data_Doublets_ILinks__0__Platform_Interfaces_ICreteriaMatcher__0__
-  commentId: M:Platform.Data.Doublets.Sequences.Frequencies.Counters.TotalMarkedSequenceSymbolFrequencyCounter`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.ICreteriaMatcher{`0})
-  name.vb: TotalMarkedSequenceSymbolFrequencyCounter(ILinks(Of TLink), ICreteriaMatcher(Of TLink))
-  fullName: Platform.Data.Doublets.Sequences.Frequencies.Counters.TotalMarkedSequenceSymbolFrequencyCounter<TLink>.TotalMarkedSequenceSymbolFrequencyCounter(Platform.Data.Doublets.ILinks<TLink>, Platform.Interfaces.ICreteriaMatcher<TLink>)
-  fullName.vb: Platform.Data.Doublets.Sequences.Frequencies.Counters.TotalMarkedSequenceSymbolFrequencyCounter(Of TLink).TotalMarkedSequenceSymbolFrequencyCounter(Platform.Data.Doublets.ILinks(Of TLink), Platform.Interfaces.ICreteriaMatcher(Of TLink))
-  nameWithType: TotalMarkedSequenceSymbolFrequencyCounter<TLink>.TotalMarkedSequenceSymbolFrequencyCounter(ILinks<TLink>, ICreteriaMatcher<TLink>)
-  nameWithType.vb: TotalMarkedSequenceSymbolFrequencyCounter(Of TLink).TotalMarkedSequenceSymbolFrequencyCounter(ILinks(Of TLink), ICreteriaMatcher(Of TLink))
+- uid: Platform.Data.Doublets.Sequences.Frequencies.Counters.TotalMarkedSequenceSymbolFrequencyCounter`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.ICriterionMatcher{`0})
+  name: TotalMarkedSequenceSymbolFrequencyCounter(ILinks<TLink>, ICriterionMatcher<TLink>)
+  href: api/Platform.Data.Doublets.Sequences.Frequencies.Counters.TotalMarkedSequenceSymbolFrequencyCounter-1.html#Platform_Data_Doublets_Sequences_Frequencies_Counters_TotalMarkedSequenceSymbolFrequencyCounter_1__ctor_Platform_Data_Doublets_ILinks__0__Platform_Interfaces_ICriterionMatcher__0__
+  commentId: M:Platform.Data.Doublets.Sequences.Frequencies.Counters.TotalMarkedSequenceSymbolFrequencyCounter`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.ICriterionMatcher{`0})
+  name.vb: TotalMarkedSequenceSymbolFrequencyCounter(ILinks(Of TLink), ICriterionMatcher(Of TLink))
+  fullName: Platform.Data.Doublets.Sequences.Frequencies.Counters.TotalMarkedSequenceSymbolFrequencyCounter<TLink>.TotalMarkedSequenceSymbolFrequencyCounter(Platform.Data.Doublets.ILinks<TLink>, Platform.Interfaces.ICriterionMatcher<TLink>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Frequencies.Counters.TotalMarkedSequenceSymbolFrequencyCounter(Of TLink).TotalMarkedSequenceSymbolFrequencyCounter(Platform.Data.Doublets.ILinks(Of TLink), Platform.Interfaces.ICriterionMatcher(Of TLink))
+  nameWithType: TotalMarkedSequenceSymbolFrequencyCounter<TLink>.TotalMarkedSequenceSymbolFrequencyCounter(ILinks<TLink>, ICriterionMatcher<TLink>)
+  nameWithType.vb: TotalMarkedSequenceSymbolFrequencyCounter(Of TLink).TotalMarkedSequenceSymbolFrequencyCounter(ILinks(Of TLink), ICriterionMatcher(Of TLink))
 - uid: Platform.Data.Doublets.Sequences.Frequencies.Counters.TotalMarkedSequenceSymbolFrequencyCounter`1.#ctor*
   name: TotalMarkedSequenceSymbolFrequencyCounter
   href: api/Platform.Data.Doublets.Sequences.Frequencies.Counters.TotalMarkedSequenceSymbolFrequencyCounter-1.html#Platform_Data_Doublets_Sequences_Frequencies_Counters_TotalMarkedSequenceSymbolFrequencyCounter_1__ctor_
@@ -4620,15 +4620,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.Frequencies.Counters.TotalMarkedSequenceSymbolFrequencyOneOffCounter(Of TLink)
   nameWithType: TotalMarkedSequenceSymbolFrequencyOneOffCounter<TLink>
   nameWithType.vb: TotalMarkedSequenceSymbolFrequencyOneOffCounter(Of TLink)
-- uid: Platform.Data.Doublets.Sequences.Frequencies.Counters.TotalMarkedSequenceSymbolFrequencyOneOffCounter`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.ICreteriaMatcher{`0},`0)
-  name: TotalMarkedSequenceSymbolFrequencyOneOffCounter(ILinks<TLink>, ICreteriaMatcher<TLink>, TLink)
-  href: api/Platform.Data.Doublets.Sequences.Frequencies.Counters.TotalMarkedSequenceSymbolFrequencyOneOffCounter-1.html#Platform_Data_Doublets_Sequences_Frequencies_Counters_TotalMarkedSequenceSymbolFrequencyOneOffCounter_1__ctor_Platform_Data_Doublets_ILinks__0__Platform_Interfaces_ICreteriaMatcher__0___0_
-  commentId: M:Platform.Data.Doublets.Sequences.Frequencies.Counters.TotalMarkedSequenceSymbolFrequencyOneOffCounter`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.ICreteriaMatcher{`0},`0)
-  name.vb: TotalMarkedSequenceSymbolFrequencyOneOffCounter(ILinks(Of TLink), ICreteriaMatcher(Of TLink), TLink)
-  fullName: Platform.Data.Doublets.Sequences.Frequencies.Counters.TotalMarkedSequenceSymbolFrequencyOneOffCounter<TLink>.TotalMarkedSequenceSymbolFrequencyOneOffCounter(Platform.Data.Doublets.ILinks<TLink>, Platform.Interfaces.ICreteriaMatcher<TLink>, TLink)
-  fullName.vb: Platform.Data.Doublets.Sequences.Frequencies.Counters.TotalMarkedSequenceSymbolFrequencyOneOffCounter(Of TLink).TotalMarkedSequenceSymbolFrequencyOneOffCounter(Platform.Data.Doublets.ILinks(Of TLink), Platform.Interfaces.ICreteriaMatcher(Of TLink), TLink)
-  nameWithType: TotalMarkedSequenceSymbolFrequencyOneOffCounter<TLink>.TotalMarkedSequenceSymbolFrequencyOneOffCounter(ILinks<TLink>, ICreteriaMatcher<TLink>, TLink)
-  nameWithType.vb: TotalMarkedSequenceSymbolFrequencyOneOffCounter(Of TLink).TotalMarkedSequenceSymbolFrequencyOneOffCounter(ILinks(Of TLink), ICreteriaMatcher(Of TLink), TLink)
+- uid: Platform.Data.Doublets.Sequences.Frequencies.Counters.TotalMarkedSequenceSymbolFrequencyOneOffCounter`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.ICriterionMatcher{`0},`0)
+  name: TotalMarkedSequenceSymbolFrequencyOneOffCounter(ILinks<TLink>, ICriterionMatcher<TLink>, TLink)
+  href: api/Platform.Data.Doublets.Sequences.Frequencies.Counters.TotalMarkedSequenceSymbolFrequencyOneOffCounter-1.html#Platform_Data_Doublets_Sequences_Frequencies_Counters_TotalMarkedSequenceSymbolFrequencyOneOffCounter_1__ctor_Platform_Data_Doublets_ILinks__0__Platform_Interfaces_ICriterionMatcher__0___0_
+  commentId: M:Platform.Data.Doublets.Sequences.Frequencies.Counters.TotalMarkedSequenceSymbolFrequencyOneOffCounter`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.ICriterionMatcher{`0},`0)
+  name.vb: TotalMarkedSequenceSymbolFrequencyOneOffCounter(ILinks(Of TLink), ICriterionMatcher(Of TLink), TLink)
+  fullName: Platform.Data.Doublets.Sequences.Frequencies.Counters.TotalMarkedSequenceSymbolFrequencyOneOffCounter<TLink>.TotalMarkedSequenceSymbolFrequencyOneOffCounter(Platform.Data.Doublets.ILinks<TLink>, Platform.Interfaces.ICriterionMatcher<TLink>, TLink)
+  fullName.vb: Platform.Data.Doublets.Sequences.Frequencies.Counters.TotalMarkedSequenceSymbolFrequencyOneOffCounter(Of TLink).TotalMarkedSequenceSymbolFrequencyOneOffCounter(Platform.Data.Doublets.ILinks(Of TLink), Platform.Interfaces.ICriterionMatcher(Of TLink), TLink)
+  nameWithType: TotalMarkedSequenceSymbolFrequencyOneOffCounter<TLink>.TotalMarkedSequenceSymbolFrequencyOneOffCounter(ILinks<TLink>, ICriterionMatcher<TLink>, TLink)
+  nameWithType.vb: TotalMarkedSequenceSymbolFrequencyOneOffCounter(Of TLink).TotalMarkedSequenceSymbolFrequencyOneOffCounter(ILinks(Of TLink), ICriterionMatcher(Of TLink), TLink)
 - uid: Platform.Data.Doublets.Sequences.Frequencies.Counters.TotalMarkedSequenceSymbolFrequencyOneOffCounter`1.#ctor*
   name: TotalMarkedSequenceSymbolFrequencyOneOffCounter
   href: api/Platform.Data.Doublets.Sequences.Frequencies.Counters.TotalMarkedSequenceSymbolFrequencyOneOffCounter-1.html#Platform_Data_Doublets_Sequences_Frequencies_Counters_TotalMarkedSequenceSymbolFrequencyOneOffCounter_1__ctor_
@@ -4807,15 +4807,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.HeightProviders.CachedSequenceHeightProvider(Of TLink)
   nameWithType: CachedSequenceHeightProvider<TLink>
   nameWithType.vb: CachedSequenceHeightProvider(Of TLink)
-- uid: Platform.Data.Doublets.Sequences.HeightProviders.CachedSequenceHeightProvider`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Data.Doublets.Sequences.HeightProviders.ISequenceHeightProvider{`0},Platform.Interfaces.IConverter{`0},Platform.Interfaces.IConverter{`0},`0,Platform.Interfaces.IPropertyOperator{`0,`0,`0})
-  name: CachedSequenceHeightProvider(ILinks<TLink>, ISequenceHeightProvider<TLink>, IConverter<TLink>, IConverter<TLink>, TLink, IPropertyOperator<TLink, TLink, TLink>)
-  href: api/Platform.Data.Doublets.Sequences.HeightProviders.CachedSequenceHeightProvider-1.html#Platform_Data_Doublets_Sequences_HeightProviders_CachedSequenceHeightProvider_1__ctor_Platform_Data_Doublets_ILinks__0__Platform_Data_Doublets_Sequences_HeightProviders_ISequenceHeightProvider__0__Platform_Interfaces_IConverter__0__Platform_Interfaces_IConverter__0___0_Platform_Interfaces_IPropertyOperator__0__0__0__
-  commentId: M:Platform.Data.Doublets.Sequences.HeightProviders.CachedSequenceHeightProvider`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Data.Doublets.Sequences.HeightProviders.ISequenceHeightProvider{`0},Platform.Interfaces.IConverter{`0},Platform.Interfaces.IConverter{`0},`0,Platform.Interfaces.IPropertyOperator{`0,`0,`0})
-  name.vb: CachedSequenceHeightProvider(ILinks(Of TLink), ISequenceHeightProvider(Of TLink), IConverter(Of TLink), IConverter(Of TLink), TLink, IPropertyOperator(Of TLink, TLink, TLink))
-  fullName: Platform.Data.Doublets.Sequences.HeightProviders.CachedSequenceHeightProvider<TLink>.CachedSequenceHeightProvider(Platform.Data.Doublets.ILinks<TLink>, Platform.Data.Doublets.Sequences.HeightProviders.ISequenceHeightProvider<TLink>, Platform.Interfaces.IConverter<TLink>, Platform.Interfaces.IConverter<TLink>, TLink, Platform.Interfaces.IPropertyOperator<TLink, TLink, TLink>)
-  fullName.vb: Platform.Data.Doublets.Sequences.HeightProviders.CachedSequenceHeightProvider(Of TLink).CachedSequenceHeightProvider(Platform.Data.Doublets.ILinks(Of TLink), Platform.Data.Doublets.Sequences.HeightProviders.ISequenceHeightProvider(Of TLink), Platform.Interfaces.IConverter(Of TLink), Platform.Interfaces.IConverter(Of TLink), TLink, Platform.Interfaces.IPropertyOperator(Of TLink, TLink, TLink))
-  nameWithType: CachedSequenceHeightProvider<TLink>.CachedSequenceHeightProvider(ILinks<TLink>, ISequenceHeightProvider<TLink>, IConverter<TLink>, IConverter<TLink>, TLink, IPropertyOperator<TLink, TLink, TLink>)
-  nameWithType.vb: CachedSequenceHeightProvider(Of TLink).CachedSequenceHeightProvider(ILinks(Of TLink), ISequenceHeightProvider(Of TLink), IConverter(Of TLink), IConverter(Of TLink), TLink, IPropertyOperator(Of TLink, TLink, TLink))
+- uid: Platform.Data.Doublets.Sequences.HeightProviders.CachedSequenceHeightProvider`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Data.Doublets.Sequences.HeightProviders.ISequenceHeightProvider{`0},Platform.Interfaces.IConverter{`0},Platform.Interfaces.IConverter{`0},`0,Platform.Interfaces.IPropertiesOperator{`0,`0,`0})
+  name: CachedSequenceHeightProvider(ILinks<TLink>, ISequenceHeightProvider<TLink>, IConverter<TLink>, IConverter<TLink>, TLink, IPropertiesOperator<TLink, TLink, TLink>)
+  href: api/Platform.Data.Doublets.Sequences.HeightProviders.CachedSequenceHeightProvider-1.html#Platform_Data_Doublets_Sequences_HeightProviders_CachedSequenceHeightProvider_1__ctor_Platform_Data_Doublets_ILinks__0__Platform_Data_Doublets_Sequences_HeightProviders_ISequenceHeightProvider__0__Platform_Interfaces_IConverter__0__Platform_Interfaces_IConverter__0___0_Platform_Interfaces_IPropertiesOperator__0__0__0__
+  commentId: M:Platform.Data.Doublets.Sequences.HeightProviders.CachedSequenceHeightProvider`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Data.Doublets.Sequences.HeightProviders.ISequenceHeightProvider{`0},Platform.Interfaces.IConverter{`0},Platform.Interfaces.IConverter{`0},`0,Platform.Interfaces.IPropertiesOperator{`0,`0,`0})
+  name.vb: CachedSequenceHeightProvider(ILinks(Of TLink), ISequenceHeightProvider(Of TLink), IConverter(Of TLink), IConverter(Of TLink), TLink, IPropertiesOperator(Of TLink, TLink, TLink))
+  fullName: Platform.Data.Doublets.Sequences.HeightProviders.CachedSequenceHeightProvider<TLink>.CachedSequenceHeightProvider(Platform.Data.Doublets.ILinks<TLink>, Platform.Data.Doublets.Sequences.HeightProviders.ISequenceHeightProvider<TLink>, Platform.Interfaces.IConverter<TLink>, Platform.Interfaces.IConverter<TLink>, TLink, Platform.Interfaces.IPropertiesOperator<TLink, TLink, TLink>)
+  fullName.vb: Platform.Data.Doublets.Sequences.HeightProviders.CachedSequenceHeightProvider(Of TLink).CachedSequenceHeightProvider(Platform.Data.Doublets.ILinks(Of TLink), Platform.Data.Doublets.Sequences.HeightProviders.ISequenceHeightProvider(Of TLink), Platform.Interfaces.IConverter(Of TLink), Platform.Interfaces.IConverter(Of TLink), TLink, Platform.Interfaces.IPropertiesOperator(Of TLink, TLink, TLink))
+  nameWithType: CachedSequenceHeightProvider<TLink>.CachedSequenceHeightProvider(ILinks<TLink>, ISequenceHeightProvider<TLink>, IConverter<TLink>, IConverter<TLink>, TLink, IPropertiesOperator<TLink, TLink, TLink>)
+  nameWithType.vb: CachedSequenceHeightProvider(Of TLink).CachedSequenceHeightProvider(ILinks(Of TLink), ISequenceHeightProvider(Of TLink), IConverter(Of TLink), IConverter(Of TLink), TLink, IPropertiesOperator(Of TLink, TLink, TLink))
 - uid: Platform.Data.Doublets.Sequences.HeightProviders.CachedSequenceHeightProvider`1.#ctor*
   name: CachedSequenceHeightProvider
   href: api/Platform.Data.Doublets.Sequences.HeightProviders.CachedSequenceHeightProvider-1.html#Platform_Data_Doublets_Sequences_HeightProviders_CachedSequenceHeightProvider_1__ctor_
@@ -4851,15 +4851,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.HeightProviders.DefaultSequenceRightHeightProvider(Of TLink)
   nameWithType: DefaultSequenceRightHeightProvider<TLink>
   nameWithType.vb: DefaultSequenceRightHeightProvider(Of TLink)
-- uid: Platform.Data.Doublets.Sequences.HeightProviders.DefaultSequenceRightHeightProvider`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.ICreteriaMatcher{`0})
-  name: DefaultSequenceRightHeightProvider(ILinks<TLink>, ICreteriaMatcher<TLink>)
-  href: api/Platform.Data.Doublets.Sequences.HeightProviders.DefaultSequenceRightHeightProvider-1.html#Platform_Data_Doublets_Sequences_HeightProviders_DefaultSequenceRightHeightProvider_1__ctor_Platform_Data_Doublets_ILinks__0__Platform_Interfaces_ICreteriaMatcher__0__
-  commentId: M:Platform.Data.Doublets.Sequences.HeightProviders.DefaultSequenceRightHeightProvider`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.ICreteriaMatcher{`0})
-  name.vb: DefaultSequenceRightHeightProvider(ILinks(Of TLink), ICreteriaMatcher(Of TLink))
-  fullName: Platform.Data.Doublets.Sequences.HeightProviders.DefaultSequenceRightHeightProvider<TLink>.DefaultSequenceRightHeightProvider(Platform.Data.Doublets.ILinks<TLink>, Platform.Interfaces.ICreteriaMatcher<TLink>)
-  fullName.vb: Platform.Data.Doublets.Sequences.HeightProviders.DefaultSequenceRightHeightProvider(Of TLink).DefaultSequenceRightHeightProvider(Platform.Data.Doublets.ILinks(Of TLink), Platform.Interfaces.ICreteriaMatcher(Of TLink))
-  nameWithType: DefaultSequenceRightHeightProvider<TLink>.DefaultSequenceRightHeightProvider(ILinks<TLink>, ICreteriaMatcher<TLink>)
-  nameWithType.vb: DefaultSequenceRightHeightProvider(Of TLink).DefaultSequenceRightHeightProvider(ILinks(Of TLink), ICreteriaMatcher(Of TLink))
+- uid: Platform.Data.Doublets.Sequences.HeightProviders.DefaultSequenceRightHeightProvider`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.ICriterionMatcher{`0})
+  name: DefaultSequenceRightHeightProvider(ILinks<TLink>, ICriterionMatcher<TLink>)
+  href: api/Platform.Data.Doublets.Sequences.HeightProviders.DefaultSequenceRightHeightProvider-1.html#Platform_Data_Doublets_Sequences_HeightProviders_DefaultSequenceRightHeightProvider_1__ctor_Platform_Data_Doublets_ILinks__0__Platform_Interfaces_ICriterionMatcher__0__
+  commentId: M:Platform.Data.Doublets.Sequences.HeightProviders.DefaultSequenceRightHeightProvider`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.ICriterionMatcher{`0})
+  name.vb: DefaultSequenceRightHeightProvider(ILinks(Of TLink), ICriterionMatcher(Of TLink))
+  fullName: Platform.Data.Doublets.Sequences.HeightProviders.DefaultSequenceRightHeightProvider<TLink>.DefaultSequenceRightHeightProvider(Platform.Data.Doublets.ILinks<TLink>, Platform.Interfaces.ICriterionMatcher<TLink>)
+  fullName.vb: Platform.Data.Doublets.Sequences.HeightProviders.DefaultSequenceRightHeightProvider(Of TLink).DefaultSequenceRightHeightProvider(Platform.Data.Doublets.ILinks(Of TLink), Platform.Interfaces.ICriterionMatcher(Of TLink))
+  nameWithType: DefaultSequenceRightHeightProvider<TLink>.DefaultSequenceRightHeightProvider(ILinks<TLink>, ICriterionMatcher<TLink>)
+  nameWithType.vb: DefaultSequenceRightHeightProvider(Of TLink).DefaultSequenceRightHeightProvider(ILinks(Of TLink), ICriterionMatcher(Of TLink))
 - uid: Platform.Data.Doublets.Sequences.HeightProviders.DefaultSequenceRightHeightProvider`1.#ctor*
   name: DefaultSequenceRightHeightProvider
   href: api/Platform.Data.Doublets.Sequences.HeightProviders.DefaultSequenceRightHeightProvider-1.html#Platform_Data_Doublets_Sequences_HeightProviders_DefaultSequenceRightHeightProvider_1__ctor_
@@ -6751,6 +6751,23 @@ references:
   fullName.vb: Platform.Data.Doublets.Stacks.Stack(Of TLink).Stack
   nameWithType: Stack<TLink>.Stack
   nameWithType.vb: Stack(Of TLink).Stack
+- uid: Platform.Data.Doublets.Stacks.Stack`1.IsEmpty
+  name: IsEmpty
+  href: api/Platform.Data.Doublets.Stacks.Stack-1.html#Platform_Data_Doublets_Stacks_Stack_1_IsEmpty
+  commentId: P:Platform.Data.Doublets.Stacks.Stack`1.IsEmpty
+  fullName: Platform.Data.Doublets.Stacks.Stack<TLink>.IsEmpty
+  fullName.vb: Platform.Data.Doublets.Stacks.Stack(Of TLink).IsEmpty
+  nameWithType: Stack<TLink>.IsEmpty
+  nameWithType.vb: Stack(Of TLink).IsEmpty
+- uid: Platform.Data.Doublets.Stacks.Stack`1.IsEmpty*
+  name: IsEmpty
+  href: api/Platform.Data.Doublets.Stacks.Stack-1.html#Platform_Data_Doublets_Stacks_Stack_1_IsEmpty_
+  commentId: Overload:Platform.Data.Doublets.Stacks.Stack`1.IsEmpty
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Stacks.Stack<TLink>.IsEmpty
+  fullName.vb: Platform.Data.Doublets.Stacks.Stack(Of TLink).IsEmpty
+  nameWithType: Stack<TLink>.IsEmpty
+  nameWithType.vb: Stack(Of TLink).IsEmpty
 - uid: Platform.Data.Doublets.Stacks.Stack`1.Peek
   name: Peek()
   href: api/Platform.Data.Doublets.Stacks.Stack-1.html#Platform_Data_Doublets_Stacks_Stack_1_Peek
@@ -7618,19 +7635,19 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Delete
   nameWithType: UInt64LinksTransactionsLayer.Delete
-- uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.DisposeCore(System.Boolean,System.Boolean)
-  name: DisposeCore(Boolean, Boolean)
-  href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_DisposeCore_System_Boolean_System_Boolean_
-  commentId: M:Platform.Data.Doublets.UInt64LinksTransactionsLayer.DisposeCore(System.Boolean,System.Boolean)
-  fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.DisposeCore(System.Boolean, System.Boolean)
-  nameWithType: UInt64LinksTransactionsLayer.DisposeCore(Boolean, Boolean)
-- uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.DisposeCore*
-  name: DisposeCore
-  href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_DisposeCore_
-  commentId: Overload:Platform.Data.Doublets.UInt64LinksTransactionsLayer.DisposeCore
+- uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Dispose(System.Boolean,System.Boolean)
+  name: Dispose(Boolean, Boolean)
+  href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_Dispose_System_Boolean_System_Boolean_
+  commentId: M:Platform.Data.Doublets.UInt64LinksTransactionsLayer.Dispose(System.Boolean,System.Boolean)
+  fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Dispose(System.Boolean, System.Boolean)
+  nameWithType: UInt64LinksTransactionsLayer.Dispose(Boolean, Boolean)
+- uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Dispose*
+  name: Dispose
+  href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_Dispose_
+  commentId: Overload:Platform.Data.Doublets.UInt64LinksTransactionsLayer.Dispose
   isSpec: "True"
-  fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.DisposeCore
-  nameWithType: UInt64LinksTransactionsLayer.DisposeCore
+  fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Dispose
+  nameWithType: UInt64LinksTransactionsLayer.Dispose
 - uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.GetLinkValue(System.UInt64)
   name: GetLinkValue(UInt64)
   href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_GetLinkValue_System_UInt64_
@@ -7689,19 +7706,19 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transaction.Commit
   nameWithType: UInt64LinksTransactionsLayer.Transaction.Commit
-- uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transaction.DisposeCore(System.Boolean,System.Boolean)
-  name: DisposeCore(Boolean, Boolean)
-  href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transaction.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_Transaction_DisposeCore_System_Boolean_System_Boolean_
-  commentId: M:Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transaction.DisposeCore(System.Boolean,System.Boolean)
-  fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transaction.DisposeCore(System.Boolean, System.Boolean)
-  nameWithType: UInt64LinksTransactionsLayer.Transaction.DisposeCore(Boolean, Boolean)
-- uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transaction.DisposeCore*
-  name: DisposeCore
-  href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transaction.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_Transaction_DisposeCore_
-  commentId: Overload:Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transaction.DisposeCore
+- uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transaction.Dispose(System.Boolean,System.Boolean)
+  name: Dispose(Boolean, Boolean)
+  href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transaction.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_Transaction_Dispose_System_Boolean_System_Boolean_
+  commentId: M:Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transaction.Dispose(System.Boolean,System.Boolean)
+  fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transaction.Dispose(System.Boolean, System.Boolean)
+  nameWithType: UInt64LinksTransactionsLayer.Transaction.Dispose(Boolean, Boolean)
+- uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transaction.Dispose*
+  name: Dispose
+  href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transaction.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_Transaction_Dispose_
+  commentId: Overload:Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transaction.Dispose
   isSpec: "True"
-  fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transaction.DisposeCore
-  nameWithType: UInt64LinksTransactionsLayer.Transaction.DisposeCore
+  fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transaction.Dispose
+  nameWithType: UInt64LinksTransactionsLayer.Transaction.Dispose
 - uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transaction.EnsureTransactionAllowsWriteOperations(Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transaction)
   name: EnsureTransactionAllowsWriteOperations(UInt64LinksTransactionsLayer.Transaction)
   href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transaction.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_Transaction_EnsureTransactionAllowsWriteOperations_Platform_Data_Doublets_UInt64LinksTransactionsLayer_Transaction_
