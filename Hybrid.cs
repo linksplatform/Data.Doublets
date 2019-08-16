@@ -2,6 +2,7 @@
 using System.Reflection;
 using Platform.Reflection;
 using Platform.Converters;
+using Platform.Exceptions;
 
 namespace Platform.Data.Doublets
 {
@@ -15,18 +16,18 @@ namespace Platform.Data.Doublets
 
         public Hybrid(T value)
         {
-            if (CachedTypeInfo<T>.IsSigned)
+            if (Type<T>.IsSigned)
             {
                 throw new NotSupportedException();
             }
             Value = value;
         }
 
-        public Hybrid(object value) => Value = To.UnsignedAs<T>(Convert.ChangeType(value, CachedTypeInfo<T>.SignedVersion));
+        public Hybrid(object value) => Value = To.UnsignedAs<T>(Convert.ChangeType(value, Type<T>.SignedVersion));
 
         public Hybrid(object value, bool isExternal)
         {
-            var signedType = CachedTypeInfo<T>.SignedVersion;
+            var signedType = Type<T>.SignedVersion;
             var signedValue = Convert.ChangeType(value, signedType);
             var abs = typeof(Numbers.Math).GetTypeInfo().GetMethod("Abs").MakeGenericMethod(signedType);
             var negate = typeof(Numbers.Math).GetTypeInfo().GetMethod("Negate").MakeGenericMethod(signedType);

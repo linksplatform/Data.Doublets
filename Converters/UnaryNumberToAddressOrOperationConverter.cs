@@ -15,7 +15,7 @@ namespace Platform.Data.Doublets.Converters
             : base(links)
         {
             _unaryNumberPowerOf2Indicies = new Dictionary<TLink, int>();
-            for (int i = 0; i < CachedTypeInfo<TLink>.BitsLength; i++)
+            for (int i = 0; i < Type<TLink>.BitsLength; i++)
             {
                 _unaryNumberPowerOf2Indicies.Add(powerOf2ToUnaryNumberConverter.Convert(i), i);
             }

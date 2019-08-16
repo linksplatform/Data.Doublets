@@ -17,7 +17,7 @@ namespace Platform.Data.Doublets.Converters
         {
             var number = sourceAddress;
             var target = Links.Constants.Null;
-            for (int i = 0; i < CachedTypeInfo<TLink>.BitsLength; i++)
+            for (int i = 0; i < Type<TLink>.BitsLength; i++)
             {
                 if (_equalityComparer.Equals(Arithmetic.And(number, Integer<TLink>.One), Integer<TLink>.One))
                 {
