@@ -1255,6 +1255,14 @@ references:
   fullName.vb: Platform.Data.Doublets.Doublet(Of T).Equals(Platform.Data.Doublets.Doublet(Of T))
   nameWithType: Doublet<T>.Equals(Doublet<T>)
   nameWithType.vb: Doublet(Of T).Equals(Doublet(Of T))
+- uid: Platform.Data.Doublets.Doublet`1.Equals(System.Object)
+  name: Equals(Object)
+  href: api/Platform.Data.Doublets.Doublet-1.html#Platform_Data_Doublets_Doublet_1_Equals_System_Object_
+  commentId: M:Platform.Data.Doublets.Doublet`1.Equals(System.Object)
+  fullName: Platform.Data.Doublets.Doublet<T>.Equals(System.Object)
+  fullName.vb: Platform.Data.Doublets.Doublet(Of T).Equals(System.Object)
+  nameWithType: Doublet<T>.Equals(Object)
+  nameWithType.vb: Doublet(Of T).Equals(Object)
 - uid: Platform.Data.Doublets.Doublet`1.Equals*
   name: Equals
   href: api/Platform.Data.Doublets.Doublet-1.html#Platform_Data_Doublets_Doublet_1_Equals_
@@ -1264,6 +1272,23 @@ references:
   fullName.vb: Platform.Data.Doublets.Doublet(Of T).Equals
   nameWithType: Doublet<T>.Equals
   nameWithType.vb: Doublet(Of T).Equals
+- uid: Platform.Data.Doublets.Doublet`1.GetHashCode
+  name: GetHashCode()
+  href: api/Platform.Data.Doublets.Doublet-1.html#Platform_Data_Doublets_Doublet_1_GetHashCode
+  commentId: M:Platform.Data.Doublets.Doublet`1.GetHashCode
+  fullName: Platform.Data.Doublets.Doublet<T>.GetHashCode()
+  fullName.vb: Platform.Data.Doublets.Doublet(Of T).GetHashCode()
+  nameWithType: Doublet<T>.GetHashCode()
+  nameWithType.vb: Doublet(Of T).GetHashCode()
+- uid: Platform.Data.Doublets.Doublet`1.GetHashCode*
+  name: GetHashCode
+  href: api/Platform.Data.Doublets.Doublet-1.html#Platform_Data_Doublets_Doublet_1_GetHashCode_
+  commentId: Overload:Platform.Data.Doublets.Doublet`1.GetHashCode
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Doublet<T>.GetHashCode
+  fullName.vb: Platform.Data.Doublets.Doublet(Of T).GetHashCode
+  nameWithType: Doublet<T>.GetHashCode
+  nameWithType.vb: Doublet(Of T).GetHashCode
 - uid: Platform.Data.Doublets.Doublet`1.Source
   name: Source
   href: api/Platform.Data.Doublets.Doublet-1.html#Platform_Data_Doublets_Doublet_1_Source
