@@ -19,5 +19,9 @@ namespace Platform.Data.Doublets
         public override string ToString() => $"{Source}->{Target}";
 
         public bool Equals(Doublet<T> other) => _equalityComparer.Equals(Source, other.Source) && _equalityComparer.Equals(Target, other.Target);
+
+        public override bool Equals(object obj) => obj is Doublet<T> doublet ? base.Equals(doublet) : false;
+
+        public override int GetHashCode() => (Source, Target).GetHashCode();
     }
 }

@@ -17,6 +17,6 @@ namespace Platform.Data.Doublets
         public bool Equals(Doublet<T> x, Doublet<T> y) => _equalityComparer.Equals(x.Source, y.Source) && _equalityComparer.Equals(x.Target, y.Target);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public int GetHashCode(Doublet<T> obj) => unchecked(obj.Source.GetHashCode() << 15 ^ obj.Target.GetHashCode());
+        public int GetHashCode(Doublet<T> obj) => (obj.Source, obj.Target).GetHashCode();
     }
 }
