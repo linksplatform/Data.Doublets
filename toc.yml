@@ -2,4 +2,4 @@
   href: README.md
 - name: API Documentation
   href: obj/api/
-  homepage: api/Platform.Data.Doublets.ILinks-1.html
+  homepage: api/Platform.$TRAVIS_REPO_NAME.html
