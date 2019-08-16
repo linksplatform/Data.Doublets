@@ -52,7 +52,7 @@ namespace HelloWorld.Doublets.DotNet
 * [Platform.Random](https://github.com/linksplatform/Random)
 * [Platform.Timestamps](https://github.com/linksplatform/Timestamps)
 * [Platform.Collections.Methods](https://github.com/linksplatform/Collections.Methods)
-* [Platform.Helpers](https://github.com/linksplatform/Helpers)
+* [Platform.Singletons](https://github.com/linksplatform/Singletons)
 * [Platform.Memory](https://github.com/linksplatform/Memory)
 * [Platform.Data](https://github.com/linksplatform/Data)
 
