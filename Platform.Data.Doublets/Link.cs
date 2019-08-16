@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Platform.Exceptions;
 using Platform.Ranges;
 using Platform.Singletons;
+using Platform.Collections.Lists;
 using Platform.Data.Constants;
 
 namespace Platform.Data.Doublets
@@ -73,13 +74,6 @@ namespace Platform.Data.Doublets
         public static implicit operator TLink[](Link<TLink> link) => link.ToArray();
 
         public static implicit operator Link<TLink>(TLink[] linkArray) => new Link<TLink>(linkArray);
-
-        public TLink[] ToArray()
-        {
-            var array = new TLink[Length];
-            CopyTo(array, 0);
-            return array;
-        }
 
         public override string ToString() => _equalityComparer.Equals(Index, _constants.Null) ? ToString(Source, Target) : ToString(Index, Source, Target);
 

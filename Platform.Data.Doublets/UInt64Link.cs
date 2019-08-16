@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Platform.Exceptions;
 using Platform.Ranges;
 using Platform.Singletons;
+using Platform.Collections.Lists;
 using Platform.Data.Constants;
 
 namespace Platform.Data.Doublets
@@ -72,13 +73,6 @@ namespace Platform.Data.Doublets
         public static implicit operator ulong[](UInt64Link link) => link.ToArray();
 
         public static implicit operator UInt64Link(ulong[] linkArray) => new UInt64Link(linkArray);
-
-        public ulong[] ToArray()
-        {
-            var array = new ulong[Length];
-            CopyTo(array, 0);
-            return array;
-        }
 
         public override string ToString() => Index == _constants.Null ? ToString(Source, Target) : ToString(Index, Source, Target);
 
