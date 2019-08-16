@@ -16,10 +16,7 @@ namespace Platform.Data.Doublets
 
         public Hybrid(T value)
         {
-            if (Type<T>.IsSigned)
-            {
-                throw new NotSupportedException();
-            }
+            Ensure.Always.IsUnsignedInteger<T>();
             Value = value;
         }
 
