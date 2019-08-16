@@ -9,14 +9,12 @@ namespace Platform.Data.Doublets
     /// </remarks>
     public class DoubletComparer<T> : IEqualityComparer<Doublet<T>>
     {
-        private static readonly EqualityComparer<T> _equalityComparer = EqualityComparer<T>.Default;
-
         public static readonly DoubletComparer<T> Default = new DoubletComparer<T>();
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool Equals(Doublet<T> x, Doublet<T> y) => _equalityComparer.Equals(x.Source, y.Source) && _equalityComparer.Equals(x.Target, y.Target);
+        public bool Equals(Doublet<T> x, Doublet<T> y) => x.Equals(y);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public int GetHashCode(Doublet<T> obj) => (obj.Source, obj.Target).GetHashCode();
+        public int GetHashCode(Doublet<T> obj) => obj.GetHashCode();
     }
 }
