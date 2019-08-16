@@ -2886,23 +2886,6 @@ references:
   fullName.vb: Platform.Data.Doublets.Link(Of TLink).Target
   nameWithType: Link<TLink>.Target
   nameWithType.vb: Link(Of TLink).Target
-- uid: Platform.Data.Doublets.Link`1.ToArray
-  name: ToArray()
-  href: api/Platform.Data.Doublets.Link-1.html#Platform_Data_Doublets_Link_1_ToArray
-  commentId: M:Platform.Data.Doublets.Link`1.ToArray
-  fullName: Platform.Data.Doublets.Link<TLink>.ToArray()
-  fullName.vb: Platform.Data.Doublets.Link(Of TLink).ToArray()
-  nameWithType: Link<TLink>.ToArray()
-  nameWithType.vb: Link(Of TLink).ToArray()
-- uid: Platform.Data.Doublets.Link`1.ToArray*
-  name: ToArray
-  href: api/Platform.Data.Doublets.Link-1.html#Platform_Data_Doublets_Link_1_ToArray_
-  commentId: Overload:Platform.Data.Doublets.Link`1.ToArray
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Link<TLink>.ToArray
-  fullName.vb: Platform.Data.Doublets.Link(Of TLink).ToArray
-  nameWithType: Link<TLink>.ToArray
-  nameWithType.vb: Link(Of TLink).ToArray
 - uid: Platform.Data.Doublets.Link`1.ToString
   name: ToString()
   href: api/Platform.Data.Doublets.Link-1.html#Platform_Data_Doublets_Link_1_ToString
@@ -8176,19 +8159,6 @@ references:
   commentId: F:Platform.Data.Doublets.UInt64Link.Target
   fullName: Platform.Data.Doublets.UInt64Link.Target
   nameWithType: UInt64Link.Target
-- uid: Platform.Data.Doublets.UInt64Link.ToArray
-  name: ToArray()
-  href: api/Platform.Data.Doublets.UInt64Link.html#Platform_Data_Doublets_UInt64Link_ToArray
-  commentId: M:Platform.Data.Doublets.UInt64Link.ToArray
-  fullName: Platform.Data.Doublets.UInt64Link.ToArray()
-  nameWithType: UInt64Link.ToArray()
-- uid: Platform.Data.Doublets.UInt64Link.ToArray*
-  name: ToArray
-  href: api/Platform.Data.Doublets.UInt64Link.html#Platform_Data_Doublets_UInt64Link_ToArray_
-  commentId: Overload:Platform.Data.Doublets.UInt64Link.ToArray
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.UInt64Link.ToArray
-  nameWithType: UInt64Link.ToArray
 - uid: Platform.Data.Doublets.UInt64Link.ToString
   name: ToString()
   href: api/Platform.Data.Doublets.UInt64Link.html#Platform_Data_Doublets_UInt64Link_ToString
