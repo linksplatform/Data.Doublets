@@ -212,9 +212,6 @@ namespace Platform.Data.Doublets
                     _layer.ResetCurrentTransation();
                 }
             }
-
-            // TODO: THIS IS EXCEPTION WORKAROUND, REMOVE IT THEN https://github.com/linksplatform/Disposables/issues/13 FIXED
-            protected override bool AllowMultipleDisposeCalls => true;
         }
 
         public static readonly TimeSpan DefaultPushDelay = TimeSpan.FromSeconds(0.1);
