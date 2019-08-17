@@ -60,7 +60,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             }
 
             // TODO: Return indices range instead of references count
-            public ulong CalculateReferences(ulong link)
+            public ulong CountUsages(ulong link)
             {
                 var root = GetTreeRoot();
                 var total = GetSize(root);

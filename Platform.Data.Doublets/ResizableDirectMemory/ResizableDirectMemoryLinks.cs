@@ -227,7 +227,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
                     {
                         return Total; // Any - как отсутствие ограничения
                     }
-                    return Add(_sourcesTreeMethods.CalculateReferences(value), _targetsTreeMethods.CalculateReferences(value));
+                    return Add(_sourcesTreeMethods.CountUsages(value), _targetsTreeMethods.CountUsages(value));
                 }
                 else
                 {
@@ -262,11 +262,11 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
                     }
                     else if (_equalityComparer.Equals(source, Constants.Any))
                     {
-                        return _targetsTreeMethods.CalculateReferences(target);
+                        return _targetsTreeMethods.CountUsages(target);
                     }
                     else if (_equalityComparer.Equals(target, Constants.Any))
                     {
-                        return _sourcesTreeMethods.CalculateReferences(source);
+                        return _sourcesTreeMethods.CountUsages(source);
                     }
                     else //if(source != Any && target != Any)
                     {
@@ -391,11 +391,11 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
                     }
                     else if (_equalityComparer.Equals(source, Constants.Any))
                     {
-                        return _targetsTreeMethods.EachReference(target, handler);
+                        return _targetsTreeMethods.EachUsage(target, handler);
                     }
                     else if (_equalityComparer.Equals(target, Constants.Any))
                     {
-                        return _sourcesTreeMethods.EachReference(source, handler);
+                        return _sourcesTreeMethods.EachUsage(source, handler);
                     }
                     else //if(source != Any && target != Any)
                     {

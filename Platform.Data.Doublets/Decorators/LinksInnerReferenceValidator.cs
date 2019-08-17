@@ -4,34 +4,34 @@ using System.Collections.Generic;
 namespace Platform.Data.Doublets.Decorators
 {
     // TODO: Make LinksExternalReferenceValidator. A layer that checks each link to exist or to be external (hybrid link's raw number).
-    public class LinksInnerReferenceValidator<T> : LinksDecoratorBase<T>
+    public class LinksInnerReferenceValidator<TLink> : LinksDecoratorBase<TLink>
     {
-        public LinksInnerReferenceValidator(ILinks<T> links) : base(links) { }
+        public LinksInnerReferenceValidator(ILinks<TLink> links) : base(links) { }
 
-        public override T Each(Func<IList<T>, T> handler, IList<T> restrictions)
+        public override TLink Each(Func<IList<TLink>, TLink> handler, IList<TLink> restrictions)
         {
             Links.EnsureInnerReferenceExists(restrictions, nameof(restrictions));
-            return base.Each(handler, restrictions);
+            return Links.Each(handler, restrictions);
         }
 
-        public override T Count(IList<T> restriction)
+        public override TLink Count(IList<TLink> restriction)
         {
             Links.EnsureInnerReferenceExists(restriction, nameof(restriction));
-            return base.Count(restriction);
+            return Links.Count(restriction);
         }
 
-        public override T Update(IList<T> restrictions)
+        public override TLink Update(IList<TLink> restrictions)
         {
             // TODO: Possible values: null, ExistentLink or NonExistentHybrid(ExternalReference)
             Links.EnsureInnerReferenceExists(restrictions, nameof(restrictions));
-            return base.Update(restrictions);
+            return Links.Update(restrictions);
         }
 
-        public override void Delete(T link)
+        public override void Delete(TLink link)
         {
             // TODO: Решить считать ли такое исключением, или лишь более конкретным требованием?
             Links.EnsureLinkExists(link, nameof(link));
-            base.Delete(link);
+            Links.Delete(link);
         }
     }
 }

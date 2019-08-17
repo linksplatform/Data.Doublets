@@ -273,11 +273,12 @@ namespace Platform.Data.Doublets
 
         public override ulong Update(IList<ulong> parts)
         {
-            var beforeLink = new UInt64Link(Links.GetLink(parts[Constants.IndexPart]));
-            parts[Constants.IndexPart] = Links.Update(parts);
-            var afterLink = new UInt64Link(Links.GetLink(parts[Constants.IndexPart]));
+            var linkIndex = parts[Constants.IndexPart];
+            var beforeLink = new UInt64Link(Links.GetLink(linkIndex));
+            linkIndex = Links.Update(parts);
+            var afterLink = new UInt64Link(Links.GetLink(linkIndex));
             CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, beforeLink, afterLink));
-            return parts[Constants.IndexPart];
+            return linkIndex;
         }
 
         public override void Delete(ulong link)

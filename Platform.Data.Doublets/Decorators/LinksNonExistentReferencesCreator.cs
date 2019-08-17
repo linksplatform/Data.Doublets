@@ -7,14 +7,14 @@ namespace Platform.Data.Doublets.Decorators
     /// To be able to use practical version we should allow to create link at any specific location inside ResizableDirectMemoryLinks.
     /// This in turn will require to implement not a list of empty links, but a list of ranges to store it more efficiently.
     /// </remarks>
-    public class LinksNonExistentReferencesCreator<T> : LinksDecoratorBase<T>
+    public class LinksNonExistentDependenciesCreator<TLink> : LinksDecoratorBase<TLink>
     {
-        public LinksNonExistentReferencesCreator(ILinks<T> links) : base(links) { }
+        public LinksNonExistentDependenciesCreator(ILinks<TLink> links) : base(links) { }
 
-        public override T Update(IList<T> restrictions)
+        public override TLink Update(IList<TLink> restrictions)
         {
             Links.EnsureCreated(restrictions[Constants.SourcePart], restrictions[Constants.TargetPart]);
-            return base.Update(restrictions);
+            return Links.Update(restrictions);
         }
     }
 }

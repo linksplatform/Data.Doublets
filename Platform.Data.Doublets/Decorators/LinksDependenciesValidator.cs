@@ -2,20 +2,20 @@
 
 namespace Platform.Data.Doublets.Decorators
 {
-    public class LinksDependenciesValidator<T> : LinksDecoratorBase<T>
+    public class LinksUsagesValidator<TLink> : LinksDecoratorBase<TLink>
     {
-        public LinksDependenciesValidator(ILinks<T> links) : base(links) { }
+        public LinksUsagesValidator(ILinks<TLink> links) : base(links) { }
 
-        public override T Update(IList<T> restrictions)
+        public override TLink Update(IList<TLink> restrictions)
         {
-            Links.EnsureNoDependencies(restrictions[Constants.IndexPart]);
-            return base.Update(restrictions);
+            Links.EnsureNoUsages(restrictions[Constants.IndexPart]);
+            return Links.Update(restrictions);
         }
 
-        public override void Delete(T link)
+        public override void Delete(TLink link)
         {
-            Links.EnsureNoDependencies(link);
-            base.Delete(link);
+            Links.EnsureNoUsages(link);
+            Links.Delete(link);
         }
     }
 }

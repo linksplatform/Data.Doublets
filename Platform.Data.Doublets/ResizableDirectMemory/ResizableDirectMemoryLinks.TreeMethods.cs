@@ -62,7 +62,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             }
 
             // TODO: Return indices range instead of references count
-            public TLink CalculateReferences(TLink link)
+            public TLink CountUsages(TLink link)
             {
                 var root = GetTreeRoot();
                 var total = GetSize(root);
@@ -99,7 +99,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
                 return Subtract(Subtract(total, totalRightIgnore), totalLeftIgnore);
             }
 
-            public TLink EachReference(TLink link, Func<IList<TLink>, TLink> handler)
+            public TLink EachUsage(TLink link, Func<IList<TLink>, TLink> handler)
             {
                 var root = GetTreeRoot();
                 if (EqualToZero(root))

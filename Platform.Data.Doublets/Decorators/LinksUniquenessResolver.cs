@@ -13,14 +13,14 @@ namespace Platform.Data.Doublets.Decorators
             var newLinkAddress = Links.SearchOrDefault(restrictions[Constants.SourcePart], restrictions[Constants.TargetPart]);
             if (_equalityComparer.Equals(newLinkAddress, default))
             {
-                return base.Update(restrictions);
+                return Links.Update(restrictions);
             }
             return ResolveAddressChangeConflict(restrictions[Constants.IndexPart], newLinkAddress);
         }
 
         protected virtual TLink ResolveAddressChangeConflict(TLink oldLinkAddress, TLink newLinkAddress)
         {
-            if (Links.Exists(oldLinkAddress))
+            if (!_equalityComparer.Equals(oldLinkAddress, newLinkAddress) && Links.Exists(oldLinkAddress))
             {
                 Delete(oldLinkAddress);
             }

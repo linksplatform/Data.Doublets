@@ -18,7 +18,7 @@ namespace Platform.Data.Doublets.Decorators
         {
             restrictions[Constants.SourcePart] = _equalityComparer.Equals(restrictions[Constants.SourcePart], Constants.Null) ? restrictions[Constants.IndexPart] : restrictions[Constants.SourcePart];
             restrictions[Constants.TargetPart] = _equalityComparer.Equals(restrictions[Constants.TargetPart], Constants.Null) ? restrictions[Constants.IndexPart] : restrictions[Constants.TargetPart];
-            return base.Update(restrictions);
+            return Links.Update(restrictions);
         }
     }
 }

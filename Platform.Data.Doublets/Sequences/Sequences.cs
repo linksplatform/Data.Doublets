@@ -139,7 +139,7 @@ namespace Platform.Data.Doublets.Sequences
             throw new NotImplementedException();
         }
 
-        private ulong CountReferences(params ulong[] restrictions)
+        private ulong CountUsages(params ulong[] restrictions)
         {
             if (restrictions.Length == 0)
             {
@@ -394,7 +394,7 @@ namespace Platform.Data.Doublets.Sequences
                 var sequenceLink = GetSequenceByElements(sequenceElements);
                 var newSequenceElements = GetSequenceElements(newSequence);
                 var newSequenceLink = GetSequenceByElements(newSequenceElements);
-                if (Options.UseCascadeUpdate || CountReferences(sequence) == 0)
+                if (Options.UseCascadeUpdate || CountUsages(sequence) == 0)
                 {
                     if (sequenceLink != _constants.Null)
                     {
@@ -413,7 +413,7 @@ namespace Platform.Data.Doublets.Sequences
                     var sequenceLink = GetSequenceByElements(sequenceElements);
                     var newSequenceElements = GetSequenceElements(newSequence);
                     var newSequenceLink = GetSequenceByElements(newSequenceElements);
-                    if (Options.UseCascadeUpdate || CountReferences(sequence) == 0)
+                    if (Options.UseCascadeUpdate || CountUsages(sequence) == 0)
                     {
                         if (sequenceLink != _constants.Null)
                         {
@@ -424,7 +424,7 @@ namespace Platform.Data.Doublets.Sequences
                 }
                 else
                 {
-                    if (Options.UseCascadeUpdate || CountReferences(sequence) == 0)
+                    if (Options.UseCascadeUpdate || CountUsages(sequence) == 0)
                     {
                         Links.Unsync.Merge(sequence, newSequence);
                     }
@@ -455,7 +455,7 @@ namespace Platform.Data.Doublets.Sequences
                 var sequenceElements = GetSequenceElements(link);
                 var sequenceElementsContents = new UInt64Link(Links.GetLink(sequenceElements));
                 var sequenceLink = GetSequenceByElements(sequenceElements);
-                if (Options.UseCascadeDelete || CountReferences(link) == 0)
+                if (Options.UseCascadeDelete || CountUsages(link) == 0)
                 {
                     if (sequenceLink != _constants.Null)
                     {
@@ -472,7 +472,7 @@ namespace Platform.Data.Doublets.Sequences
                 {
                     var sequenceElements = GetSequenceElements(link);
                     var sequenceLink = GetSequenceByElements(sequenceElements);
-                    if (Options.UseCascadeDelete || CountReferences(link) == 0)
+                    if (Options.UseCascadeDelete || CountUsages(link) == 0)
                     {
                         if (sequenceLink != _constants.Null)
                         {
@@ -483,7 +483,7 @@ namespace Platform.Data.Doublets.Sequences
                 }
                 else
                 {
-                    if (Options.UseCascadeDelete || CountReferences(link) == 0)
+                    if (Options.UseCascadeDelete || CountUsages(link) == 0)
                     {
                         Links.Unsync.Delete(link);
                     }

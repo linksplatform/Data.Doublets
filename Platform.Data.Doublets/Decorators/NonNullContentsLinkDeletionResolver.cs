@@ -1,13 +1,13 @@
 ﻿namespace Platform.Data.Doublets.Decorators
 {
-    public class NonNullContentsLinkDeletionResolver<T> : LinksDecoratorBase<T>
+    public class NonNullContentsLinkDeletionResolver<TLink> : LinksDecoratorBase<TLink>
     {
-        public NonNullContentsLinkDeletionResolver(ILinks<T> links) : base(links) { }
+        public NonNullContentsLinkDeletionResolver(ILinks<TLink> links) : base(links) { }
 
-        public override void Delete(T link)
+        public override void Delete(TLink linkIndex)
         {
-            Links.Update(link, Constants.Null, Constants.Null);
-            base.Delete(link);
+            Links.EnforceResetValues(linkIndex);
+            Links.Delete(linkIndex);
         }
     }
 }

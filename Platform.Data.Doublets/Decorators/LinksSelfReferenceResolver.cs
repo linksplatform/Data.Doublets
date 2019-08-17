@@ -18,14 +18,14 @@ namespace Platform.Data.Doublets.Decorators
             {
                 return Constants.Continue;
             }
-            return base.Each(handler, restrictions);
+            return Links.Each(handler, restrictions);
         }
 
         public override TLink Update(IList<TLink> restrictions)
         {
             restrictions[Constants.SourcePart] = _equalityComparer.Equals(restrictions[Constants.SourcePart], Constants.Itself) ? restrictions[Constants.IndexPart] : restrictions[Constants.SourcePart];
             restrictions[Constants.TargetPart] = _equalityComparer.Equals(restrictions[Constants.TargetPart], Constants.Itself) ? restrictions[Constants.IndexPart] : restrictions[Constants.TargetPart];
-            return base.Update(restrictions);
+            return Links.Update(restrictions);
         }
     }
 }

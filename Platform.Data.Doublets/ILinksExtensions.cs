@@ -345,9 +345,9 @@ namespace Platform.Data.Doublets
         }
 
         /// <param name="links">Хранилище связей.</param>
-        public static void EnsureNoDependencies<TLink>(this ILinks<TLink> links, TLink link)
+        public static void EnsureNoUsages<TLink>(this ILinks<TLink> links, TLink link)
         {
-            if (links.DependenciesExist(link))
+            if (links.HasUsages(link))
             {
                 throw new ArgumentLinkHasDependenciesException<TLink>(link);
             }
@@ -389,27 +389,27 @@ namespace Platform.Data.Doublets
         #endregion
 
         /// <param name="links">Хранилище связей.</param>
-        public static ulong DependenciesCount<TLink>(this ILinks<TLink> links, TLink link)
+        public static ulong CountUsages<TLink>(this ILinks<TLink> links, TLink link)
         {
             var constants = links.Constants;
             var values = links.GetLink(link);
-            ulong referencesAsSource = (Integer<TLink>)links.Count(constants.Any, link, constants.Any);
+            ulong usagesAsSource = (Integer<TLink>)links.Count(new Link<TLink>(constants.Any, link, constants.Any));
             var equalityComparer = EqualityComparer<TLink>.Default;
             if (equalityComparer.Equals(values[constants.SourcePart], link))
             {
-                referencesAsSource--;
+                usagesAsSource--;
             }
-            ulong referencesAsTarget = (Integer<TLink>)links.Count(constants.Any, constants.Any, link);
+            ulong usagesAsTarget = (Integer<TLink>)links.Count(new Link<TLink>(constants.Any, constants.Any, link));
             if (equalityComparer.Equals(values[constants.TargetPart], link))
             {
-                referencesAsTarget--;
+                usagesAsTarget--;
             }
-            return referencesAsSource + referencesAsTarget;
+            return usagesAsSource + usagesAsTarget;
         }
 
         /// <param name="links">Хранилище связей.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool DependenciesExist<TLink>(this ILinks<TLink> links, TLink link) => links.DependenciesCount(link) > 0;
+        public static bool HasUsages<TLink>(this ILinks<TLink> links, TLink link) => links.CountUsages(link) > 0;
 
         /// <param name="links">Хранилище связей.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -459,7 +459,7 @@ namespace Platform.Data.Doublets
         /// <param name="newTarget">Индекс связи, которая является концом связи, на которую выполняется обновление.</param>
         /// <returns>Индекс обновлённой связи.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TLink Update<TLink>(this ILinks<TLink> links, TLink link, TLink newSource, TLink newTarget) => links.Update(new[] { link, newSource, newTarget });
+        public static TLink Update<TLink>(this ILinks<TLink> links, TLink link, TLink newSource, TLink newTarget) => links.Update(new Link<TLink>(link, newSource, newTarget));
 
         /// <summary>
         /// Обновляет связь с указанными началом (Source) и концом (Target)
@@ -473,7 +473,7 @@ namespace Platform.Data.Doublets
         {
             if (restrictions.Length == 2)
             {
-                return links.Merge(restrictions[0], restrictions[1]);
+                return links.MergeAndDelete(restrictions[0], restrictions[1]);
             }
             if (restrictions.Length == 4)
             {
@@ -557,52 +557,125 @@ namespace Platform.Data.Doublets
             }
         }
 
-        // Replace one link with another (replaced link is deleted, children are updated or deleted)
-        public static TLink Merge<TLink>(this ILinks<TLink> links, TLink linkIndex, TLink newLink)
+        /// <remarks>Before execution of this method ensure that deleted link is detached (all values - source and target are reset to null) or it might enter into infinite recursion.</remarks>
+        public static void DeleteAllUsages<TLink>(this ILinks<TLink> links, TLink linkIndex)
         {
-            var equalityComparer = EqualityComparer<TLink>.Default;
-            if (equalityComparer.Equals(linkIndex, newLink))
+            var anyConstant = links.Constants.Any;
+            var usagesAsSourceQuery = new Link<TLink>(anyConstant, linkIndex, anyConstant);
+            links.DeleteByQuery(usagesAsSourceQuery);
+            var usagesAsTargetQuery = new Link<TLink>(anyConstant, linkIndex, anyConstant);
+            links.DeleteByQuery(usagesAsTargetQuery);
+        }
+
+        public static void DeleteByQuery<TLink>(this ILinks<TLink> links, Link<TLink> query)
+        {
+            var count = (Integer<TLink>)links.Count(query);
+            if (count > 0)
             {
-                return newLink;
-            }
-            var constants = links.Constants;
-            ulong referencesAsSourceCount = (Integer<TLink>)links.Count(constants.Any, linkIndex, constants.Any);
-            ulong referencesAsTargetCount = (Integer<TLink>)links.Count(constants.Any, constants.Any, linkIndex);
-            var isStandalonePoint = Point<TLink>.IsFullPoint(links.GetLink(linkIndex)) && referencesAsSourceCount == 1 && referencesAsTargetCount == 1;
-            if (!isStandalonePoint)
-            {
-                var totalReferences = referencesAsSourceCount + referencesAsTargetCount;
-                if (totalReferences > 0)
+                var queryResult = new TLink[count];
+                var queryResultFiller = new ArrayFiller<TLink, TLink>(queryResult, links.Constants.Continue);
+                links.Each(queryResultFiller.AddFirstAndReturnConstant, query);
+                for (var i = (long)count - 1; i >= 0; i--)
                 {
-                    var references = ArrayPool.Allocate<TLink>((long)totalReferences);
-                    var referencesFiller = new ArrayFiller<TLink, TLink>(references, links.Constants.Continue);
-                    links.Each(referencesFiller.AddFirstAndReturnConstant, constants.Any, linkIndex, constants.Any);
-                    links.Each(referencesFiller.AddFirstAndReturnConstant, constants.Any, constants.Any, linkIndex);
-                    for (ulong i = 0; i < referencesAsSourceCount; i++)
-                    {
-                        var reference = references[i];
-                        if (equalityComparer.Equals(reference, linkIndex))
-                        {
-                            continue;
-                        }
-
-                        links.Update(reference, newLink, links.GetTarget(reference));
-                    }
-                    for (var i = (long)referencesAsSourceCount; i < references.Length; i++)
-                    {
-                        var reference = references[i];
-                        if (equalityComparer.Equals(reference, linkIndex))
-                        {
-                            continue;
-                        }
-
-                        links.Update(reference, links.GetSource(reference), newLink);
-                    }
-                    ArrayPool.Free(references);
+                    links.Delete(queryResult[i]);
                 }
             }
-            links.Delete(linkIndex);
-            return newLink;
+        }
+
+        // TODO: Move to Platform.Data
+        public static bool AreValuesReset<TLink>(this ILinks<TLink> links, TLink linkIndex)
+        {
+            var nullConstant = links.Constants.Null;
+            var equalityComparer = EqualityComparer<TLink>.Default;
+            var link = links.GetLink(linkIndex);
+            for (int i = 1; i < link.Count; i++)
+            {
+                if (!equalityComparer.Equals(link[i], nullConstant))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        // TODO: Create a universal version of this method in Platform.Data (with using of for loop)
+        public static void ResetValues<TLink>(this ILinks<TLink> links, TLink linkIndex)
+        {
+            var nullConstant = links.Constants.Null;
+            var updateRequest = new Link<TLink>(linkIndex, nullConstant, nullConstant);
+            links.Update(updateRequest);
+        }
+
+        // TODO: Create a universal version of this method in Platform.Data (with using of for loop)
+        public static void EnforceResetValues<TLink>(this ILinks<TLink> links, TLink linkIndex)
+        {
+            if (!links.AreValuesReset(linkIndex))
+            {
+                links.ResetValues(linkIndex);
+            }
+        }
+
+        // Replace one link with another (replaced link is deleted, children are updated or deleted)
+        public static TLink Merge<TLink>(this ILinks<TLink> links, TLink oldLinkIndex, TLink newLinkIndex)
+        {
+            var equalityComparer = EqualityComparer<TLink>.Default;
+            if (!equalityComparer.Equals(oldLinkIndex, newLinkIndex))
+            {
+                var constants = links.Constants;
+                var usagesAsSourceQuery = new Link<TLink>(constants.Any, oldLinkIndex, constants.Any);
+                long usagesAsSourceCount = (Integer<TLink>)links.Count(usagesAsSourceQuery);
+                var usagesAsTargetQuery = new Link<TLink>(constants.Any, constants.Any, oldLinkIndex);
+                long usagesAsTargetCount = (Integer<TLink>)links.Count(usagesAsTargetQuery);
+                var isStandalonePoint = Point<TLink>.IsFullPoint(links.GetLink(oldLinkIndex)) && usagesAsSourceCount == 1 && usagesAsTargetCount == 1;
+                if (!isStandalonePoint)
+                {
+                    var totalUsages = usagesAsSourceCount + usagesAsTargetCount;
+                    if (totalUsages > 0)
+                    {
+                        var usages = ArrayPool.Allocate<TLink>(totalUsages);
+                        var usagesFiller = new ArrayFiller<TLink, TLink>(usages, links.Constants.Continue);
+                        var i = 0L;
+                        if (usagesAsSourceCount > 0)
+                        {
+                            links.Each(usagesFiller.AddFirstAndReturnConstant, usagesAsSourceQuery);
+                            for (; i < usagesAsSourceCount; i++)
+                            {
+                                var usage = usages[i];
+                                if (!equalityComparer.Equals(usage, oldLinkIndex))
+                                {
+                                    links.Update(usage, newLinkIndex, links.GetTarget(usage));
+                                }
+                            }
+                        }
+                        if (usagesAsTargetCount > 0)
+                        {
+                            links.Each(usagesFiller.AddFirstAndReturnConstant, usagesAsTargetQuery);
+                            for (; i < usages.Length; i++)
+                            {
+                                var usage = usages[i];
+                                if (!equalityComparer.Equals(usage, oldLinkIndex))
+                                {
+                                    links.Update(usage, links.GetSource(usage), newLinkIndex);
+                                }
+                            }
+                        }
+                        ArrayPool.Free(usages);
+                    }
+                }
+            }
+            return newLinkIndex;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static TLink MergeAndDelete<TLink>(this ILinks<TLink> links, TLink oldLinkIndex, TLink newLinkIndex)
+        {
+            var equalityComparer = EqualityComparer<TLink>.Default;
+            if (!equalityComparer.Equals(oldLinkIndex, newLinkIndex))
+            {
+                links.Merge(oldLinkIndex, newLinkIndex);
+                links.Delete(oldLinkIndex);
+            }
+            return newLinkIndex;
         }
     }
 }

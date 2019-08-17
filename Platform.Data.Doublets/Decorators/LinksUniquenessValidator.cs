@@ -2,14 +2,14 @@
 
 namespace Platform.Data.Doublets.Decorators
 {
-    public class LinksUniquenessValidator<T> : LinksDecoratorBase<T>
+    public class LinksUniquenessValidator<TLink> : LinksDecoratorBase<TLink>
     {
-        public LinksUniquenessValidator(ILinks<T> links) : base(links) { }
+        public LinksUniquenessValidator(ILinks<TLink> links) : base(links) { }
 
-        public override T Update(IList<T> restrictions)
+        public override TLink Update(IList<TLink> restrictions)
         {
             Links.EnsureDoesNotExists(restrictions[Constants.SourcePart], restrictions[Constants.TargetPart]);
-            return base.Update(restrictions);
+            return Links.Update(restrictions);
         }
     }
 }

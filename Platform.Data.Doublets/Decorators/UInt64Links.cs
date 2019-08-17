@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Platform.Collections;
-using Platform.Collections.Arrays;
 
 namespace Platform.Data.Doublets.Decorators
 {
@@ -47,7 +46,7 @@ namespace Platform.Data.Doublets.Decorators
             // TODO: Remove usages of these hacks (these should not be backwards compatible)
             if (restrictions.Count == 2)
             {
-                return this.Merge(restrictions[0], restrictions[1]);
+                return this.MergeAndDelete(restrictions[0], restrictions[1]);
             }
             if (restrictions.Count == 4)
             {
@@ -82,34 +81,18 @@ namespace Platform.Data.Doublets.Decorators
             else
             {
                 // Replace one link with another (replaced link is deleted, children are updated or deleted), it is actually merge operation
-                return this.Merge(updatedLink, existedLink);
+                return this.MergeAndDelete(updatedLink, existedLink);
             }
         }
 
         /// <summary>Удаляет связь с указанным индексом.</summary>
-        /// <param name="link">Индекс удаляемой связи.</param>
-        public override void Delete(ulong link)
+        /// <param name="linkIndex">Индекс удаляемой связи.</param>
+        public override void Delete(ulong linkIndex)
         {
-            this.EnsureLinkExists(link);
-            Links.Update(link, Constants.Null, Constants.Null);
-            var referencesCount = Links.Count(Constants.Any, link);
-            if (referencesCount > 0)
-            {
-                var references = new ulong[referencesCount];
-                var referencesFiller = new ArrayFiller<ulong, ulong>(references, Constants.Continue);
-                Links.Each(referencesFiller.AddFirstAndReturnConstant, Constants.Any, link);
-                //references.Sort(); // TODO: Решить необходимо ли для корректного порядка отмены операций в транзакциях
-                for (var i = (long)referencesCount - 1; i >= 0; i--)
-                {
-                    if (this.Exists(references[i]))
-                    {
-                        Delete(references[i]);
-                    }
-                }
-                //else
-                // TODO: Определить почему здесь есть связи, которых не существует  
-            }
-            Links.Delete(link);
+            this.EnsureLinkExists(linkIndex);
+            Links.EnforceResetValues(linkIndex);
+            this.DeleteAllUsages(linkIndex);
+            Links.Delete(linkIndex);
         }
     }
 }
