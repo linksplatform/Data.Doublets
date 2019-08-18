@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Platform.Interfaces;
 
-namespace Platform.Data.Doublets.Converters
+namespace Platform.Data.Doublets.UnaryNumbers
 {
     public class LinkToItsFrequencyNumberConveter<TLink> : LinksOperatorBase<TLink>, IConverter<Doublet<TLink>, TLink>
     {

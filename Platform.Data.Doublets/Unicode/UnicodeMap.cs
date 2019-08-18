@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using Platform.Data.Sequences;
 
-namespace Platform.Data.Doublets.Sequences
+namespace Platform.Data.Doublets.Unicode
 {
     public class UnicodeMap
     {

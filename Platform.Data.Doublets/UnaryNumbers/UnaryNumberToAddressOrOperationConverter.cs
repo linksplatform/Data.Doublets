@@ -4,7 +4,7 @@ using Platform.Reflection;
 using Platform.Numbers;
 using System.Runtime.CompilerServices;
 
-namespace Platform.Data.Doublets.Converters
+namespace Platform.Data.Doublets.UnaryNumbers
 {
     public class UnaryNumberToAddressOrOperationConverter<TLink> : LinksOperatorBase<TLink>, IConverter<TLink>
     {

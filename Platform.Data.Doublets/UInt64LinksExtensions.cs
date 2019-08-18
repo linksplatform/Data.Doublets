@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Platform.Singletons;
 using Platform.Data.Constants;
 using Platform.Data.Exceptions;
-using Platform.Data.Doublets.Sequences;
+using Platform.Data.Doublets.Unicode;
 
 namespace Platform.Data.Doublets
 {

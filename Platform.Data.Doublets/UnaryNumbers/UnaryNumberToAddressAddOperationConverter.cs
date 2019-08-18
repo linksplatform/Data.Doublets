@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using Platform.Interfaces;
 using Platform.Numbers;
 
-namespace Platform.Data.Doublets.Converters
+namespace Platform.Data.Doublets.UnaryNumbers
 {
     public class UnaryNumberToAddressAddOperationConverter<TLink> : LinksOperatorBase<TLink>, IConverter<TLink>
     {

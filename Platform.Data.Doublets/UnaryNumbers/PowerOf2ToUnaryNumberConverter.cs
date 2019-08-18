@@ -3,7 +3,7 @@ using Platform.Exceptions;
 using Platform.Interfaces;
 using Platform.Ranges;
 
-namespace Platform.Data.Doublets.Converters
+namespace Platform.Data.Doublets.UnaryNumbers
 {
     public class PowerOf2ToUnaryNumberConverter<TLink> : LinksOperatorBase<TLink>, IConverter<int, TLink>
     {

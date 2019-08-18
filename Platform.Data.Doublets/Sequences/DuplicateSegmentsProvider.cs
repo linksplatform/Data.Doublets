@@ -9,6 +9,7 @@ using Platform.Collections.Segments.Walkers;
 using Platform.Singletons;
 using Platform.Numbers;
 using Platform.Data.Sequences;
+using Platform.Data.Doublets.Unicode;
 
 namespace Platform.Data.Doublets.Sequences
 {

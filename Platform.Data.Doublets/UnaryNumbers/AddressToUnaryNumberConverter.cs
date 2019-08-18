@@ -3,7 +3,7 @@ using Platform.Interfaces;
 using Platform.Reflection;
 using Platform.Numbers;
 
-namespace Platform.Data.Doublets.Converters
+namespace Platform.Data.Doublets.UnaryNumbers
 {
     public class AddressToUnaryNumberConverter<TLink> : LinksOperatorBase<TLink>, IConverter<TLink>
     {
