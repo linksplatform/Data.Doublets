@@ -6,8 +6,11 @@ namespace Platform.Data.Doublets.Sequences.Converters
     public class SequenceToItsLocalElementLevelsConverter<TLink> : LinksOperatorBase<TLink>, IConverter<IList<TLink>>
     {
         private static readonly Comparer<TLink> _comparer = Comparer<TLink>.Default;
+
         private readonly IConverter<Doublet<TLink>, TLink> _linkToItsFrequencyToNumberConveter;
+
         public SequenceToItsLocalElementLevelsConverter(ILinks<TLink> links, IConverter<Doublet<TLink>, TLink> linkToItsFrequencyToNumberConveter) : base(links) => _linkToItsFrequencyToNumberConveter = linkToItsFrequencyToNumberConveter;
+
         public IList<TLink> Convert(IList<TLink> sequence)
         {
             var levels = new TLink[sequence.Count];

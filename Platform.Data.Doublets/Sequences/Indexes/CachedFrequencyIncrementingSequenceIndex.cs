@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Platform.Data.Doublets.Sequences.Frequencies.Cache;
 
-namespace Platform.Data.Doublets.Sequences.Indexers
+namespace Platform.Data.Doublets.Sequences.Indexes
 {
     public class CachedFrequencyIncrementingSequenceIndex<TLink> : ISequenceIndex<TLink>
     {

@@ -9,8 +9,8 @@ using Platform.Data.Doublets.Sequences.Converters;
 using Platform.Data.Doublets.PropertyOperators;
 using Platform.Data.Doublets.Incrementers;
 using Platform.Data.Doublets.Converters;
-using Platform.Data.Doublets.Sequences.Indexers;
 using Platform.Data.Doublets.Sequences.Walkers;
+using Platform.Data.Doublets.Sequences.Indexes;
 
 namespace Platform.Data.Doublets.Tests
 {

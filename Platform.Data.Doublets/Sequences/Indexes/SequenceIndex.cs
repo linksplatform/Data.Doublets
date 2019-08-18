@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Platform.Data.Doublets.Sequences.Indexers
+namespace Platform.Data.Doublets.Sequences.Indexes
 {
     public class SequenceIndex<TLink> : LinksOperatorBase<TLink>, ISequenceIndex<TLink>
     {
