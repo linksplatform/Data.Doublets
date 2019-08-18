@@ -81,6 +81,9 @@ Added unicode criterion matchers:
 
 LinksDecoratorBase is now inherited from LinksOperatorBase.
 
+Added Index and Walker properties into SequencesOptions.
+Indexer property removed from SequencesOptions.
+
 Namespaces rearranged.
 XML documentation file generation turned on.
 PDF code book generation turned on.
