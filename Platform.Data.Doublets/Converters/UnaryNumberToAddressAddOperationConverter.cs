@@ -21,16 +21,18 @@ namespace Platform.Data.Doublets.Converters
 
         private void InitUnaryToUInt64()
         {
+            var one = Integer<TLink>.One;
             _unaryToUInt64 = new Dictionary<TLink, TLink>
             {
-                { _unaryOne, Integer<TLink>.One }
+                { _unaryOne, one }
             };
             var unary = _unaryOne;
-            var number = Integer<TLink>.One;
+            var number = one;
             for (var i = 1; i < 64; i++)
             {
+                unary = Links.GetOrCreate(unary, unary);
                 number = Double(number);
-                _unaryToUInt64.Add(unary = Links.GetOrCreate(unary, unary), number);
+                _unaryToUInt64.Add(unary, number);
             }
         }
 
@@ -57,10 +59,10 @@ namespace Platform.Data.Doublets.Converters
                 while (!_unaryToUInt64.TryGetValue(target, out lastValue))
                 {
                     source = Links.GetSource(target);
-                    result = Arithmetic.Add(result, _unaryToUInt64[source]);
+                    result = Arithmetic<TLink>.Add(result, _unaryToUInt64[source]);
                     target = Links.GetTarget(target);
                 }
-                result = Arithmetic.Add(result, lastValue);
+                result = Arithmetic<TLink>.Add(result, lastValue);
                 return result;
             }
         }

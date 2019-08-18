@@ -2,7 +2,7 @@
 {
     public abstract class LinksOperatorBase<TLink>
     {
-        protected readonly ILinks<TLink> Links;
+        public ILinks<TLink> Links { get; }
         protected LinksOperatorBase(ILinks<TLink> links) => Links = links;
     }
 }

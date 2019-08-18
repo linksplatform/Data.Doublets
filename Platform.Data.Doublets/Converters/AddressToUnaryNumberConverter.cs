@@ -16,20 +16,18 @@ namespace Platform.Data.Doublets.Converters
         public TLink Convert(TLink sourceAddress)
         {
             var number = sourceAddress;
-            var target = Links.Constants.Null;
-            for (int i = 0; i < Type<TLink>.BitsLength; i++)
+            var nullConstant = Links.Constants.Null;
+            var one = Integer<TLink>.One;
+            var target = nullConstant;
+            for (int i = 0; !_equalityComparer.Equals(number, default) && i < Type<TLink>.BitsLength; i++)
             {
-                if (_equalityComparer.Equals(Arithmetic.And(number, Integer<TLink>.One), Integer<TLink>.One))
+                if (_equalityComparer.Equals(Arithmetic.And(number, one), one))
                 {
-                    target = _equalityComparer.Equals(target, Links.Constants.Null)
+                    target = _equalityComparer.Equals(target, nullConstant)
                         ? _powerOf2ToUnaryNumberConverter.Convert(i)
                         : Links.GetOrCreate(_powerOf2ToUnaryNumberConverter.Convert(i), target);
                 }
                 number = (Integer<TLink>)((ulong)(Integer<TLink>)number >> 1); // Should be Bit.ShiftRight(number, 1)
-                if (_equalityComparer.Equals(number, default))
-                {
-                    break;
-                }
             }
             return target;
         }

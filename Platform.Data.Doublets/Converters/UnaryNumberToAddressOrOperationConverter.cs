@@ -24,9 +24,10 @@ namespace Platform.Data.Doublets.Converters
 
         public TLink Convert(TLink sourceNumber)
         {
+            var nullConstant = Links.Constants.Null;
             var source = sourceNumber;
-            var target = Links.Constants.Null;
-            if (!_equalityComparer.Equals(source, Links.Constants.Null))
+            var target = nullConstant;
+            if (!_equalityComparer.Equals(source, nullConstant))
             {
                 while (true)
                 {
