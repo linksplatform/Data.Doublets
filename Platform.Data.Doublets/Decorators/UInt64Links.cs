@@ -36,33 +36,39 @@ namespace Platform.Data.Doublets.Decorators
 
         public override ulong Update(IList<ulong> restrictions)
         {
+            var constants = Constants;
+            var nullConstant = constants.Null;
             if (restrictions.IsNullOrEmpty())
             {
-                return Constants.Null;
+                return nullConstant;
             }
             // TODO: Looks like this is a common type of exceptions linked with restrictions support
             if (restrictions.Count != 3)
             {
                 throw new NotSupportedException();
             }
-            var updatedLink = restrictions[Constants.IndexPart];
-            this.EnsureLinkExists(updatedLink, nameof(Constants.IndexPart));
-            var newSource = restrictions[Constants.SourcePart];
-            this.EnsureLinkIsItselfOrExists(newSource, nameof(Constants.SourcePart));
-            var newTarget = restrictions[Constants.TargetPart];
-            this.EnsureLinkIsItselfOrExists(newTarget, nameof(Constants.TargetPart));
-            var existedLink = Constants.Null;
-            if (newSource != Constants.Itself && newTarget != Constants.Itself)
+            var indexPartConstant = constants.IndexPart;
+            var updatedLink = restrictions[indexPartConstant];
+            this.EnsureLinkExists(updatedLink, $"{nameof(restrictions)}[{nameof(indexPartConstant)}]");
+            var sourcePartConstant = constants.SourcePart;
+            var newSource = restrictions[sourcePartConstant];
+            this.EnsureLinkIsItselfOrExists(newSource, $"{nameof(restrictions)}[{nameof(sourcePartConstant)}]");
+            var targetPartConstant = constants.TargetPart;
+            var newTarget = restrictions[targetPartConstant];
+            this.EnsureLinkIsItselfOrExists(newTarget, $"{nameof(restrictions)}[{nameof(targetPartConstant)}]");
+            var existedLink = nullConstant;
+            var itselfConstant = constants.Itself;
+            if (newSource != itselfConstant && newTarget != itselfConstant)
             {
                 existedLink = this.SearchOrDefault(newSource, newTarget);
             }
-            if (existedLink == Constants.Null)
+            if (existedLink == nullConstant)
             {
                 var before = Links.GetLink(updatedLink);
-                if (before[Constants.SourcePart] != newSource || before[Constants.TargetPart] != newTarget)
+                if (before[sourcePartConstant] != newSource || before[targetPartConstant] != newTarget)
                 {
-                    Links.Update(updatedLink, newSource == Constants.Itself ? updatedLink : newSource,
-                                              newTarget == Constants.Itself ? updatedLink : newTarget);
+                    Links.Update(updatedLink, newSource == itselfConstant ? updatedLink : newSource,
+                                              newTarget == itselfConstant ? updatedLink : newTarget);
                 }
                 return updatedLink;
             }
