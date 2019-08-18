@@ -3967,94 +3967,94 @@ references:
   commentId: N:Platform.Data.Doublets.Sequences.CreteriaMatchers
   fullName: Platform.Data.Doublets.Sequences.CreteriaMatchers
   nameWithType: Platform.Data.Doublets.Sequences.CreteriaMatchers
-- uid: Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCreteriaMatcher`1
-  name: DefaultSequenceElementCreteriaMatcher<TLink>
-  href: api/Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCreteriaMatcher-1.html
-  commentId: T:Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCreteriaMatcher`1
-  name.vb: DefaultSequenceElementCreteriaMatcher(Of TLink)
-  fullName: Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCreteriaMatcher<TLink>
-  fullName.vb: Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCreteriaMatcher(Of TLink)
-  nameWithType: DefaultSequenceElementCreteriaMatcher<TLink>
-  nameWithType.vb: DefaultSequenceElementCreteriaMatcher(Of TLink)
-- uid: Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCreteriaMatcher`1.#ctor(Platform.Data.Doublets.ILinks{`0})
-  name: DefaultSequenceElementCreteriaMatcher(ILinks<TLink>)
-  href: api/Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCreteriaMatcher-1.html#Platform_Data_Doublets_Sequences_CreteriaMatchers_DefaultSequenceElementCreteriaMatcher_1__ctor_Platform_Data_Doublets_ILinks__0__
-  commentId: M:Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCreteriaMatcher`1.#ctor(Platform.Data.Doublets.ILinks{`0})
-  name.vb: DefaultSequenceElementCreteriaMatcher(ILinks(Of TLink))
-  fullName: Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCreteriaMatcher<TLink>.DefaultSequenceElementCreteriaMatcher(Platform.Data.Doublets.ILinks<TLink>)
-  fullName.vb: Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCreteriaMatcher(Of TLink).DefaultSequenceElementCreteriaMatcher(Platform.Data.Doublets.ILinks(Of TLink))
-  nameWithType: DefaultSequenceElementCreteriaMatcher<TLink>.DefaultSequenceElementCreteriaMatcher(ILinks<TLink>)
-  nameWithType.vb: DefaultSequenceElementCreteriaMatcher(Of TLink).DefaultSequenceElementCreteriaMatcher(ILinks(Of TLink))
-- uid: Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCreteriaMatcher`1.#ctor*
-  name: DefaultSequenceElementCreteriaMatcher
-  href: api/Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCreteriaMatcher-1.html#Platform_Data_Doublets_Sequences_CreteriaMatchers_DefaultSequenceElementCreteriaMatcher_1__ctor_
-  commentId: Overload:Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCreteriaMatcher`1.#ctor
+- uid: Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCriterionMatcher`1
+  name: DefaultSequenceElementCriterionMatcher<TLink>
+  href: api/Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCriterionMatcher-1.html
+  commentId: T:Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCriterionMatcher`1
+  name.vb: DefaultSequenceElementCriterionMatcher(Of TLink)
+  fullName: Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCriterionMatcher<TLink>
+  fullName.vb: Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCriterionMatcher(Of TLink)
+  nameWithType: DefaultSequenceElementCriterionMatcher<TLink>
+  nameWithType.vb: DefaultSequenceElementCriterionMatcher(Of TLink)
+- uid: Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCriterionMatcher`1.#ctor(Platform.Data.Doublets.ILinks{`0})
+  name: DefaultSequenceElementCriterionMatcher(ILinks<TLink>)
+  href: api/Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCriterionMatcher-1.html#Platform_Data_Doublets_Sequences_CreteriaMatchers_DefaultSequenceElementCriterionMatcher_1__ctor_Platform_Data_Doublets_ILinks__0__
+  commentId: M:Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCriterionMatcher`1.#ctor(Platform.Data.Doublets.ILinks{`0})
+  name.vb: DefaultSequenceElementCriterionMatcher(ILinks(Of TLink))
+  fullName: Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCriterionMatcher<TLink>.DefaultSequenceElementCriterionMatcher(Platform.Data.Doublets.ILinks<TLink>)
+  fullName.vb: Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCriterionMatcher(Of TLink).DefaultSequenceElementCriterionMatcher(Platform.Data.Doublets.ILinks(Of TLink))
+  nameWithType: DefaultSequenceElementCriterionMatcher<TLink>.DefaultSequenceElementCriterionMatcher(ILinks<TLink>)
+  nameWithType.vb: DefaultSequenceElementCriterionMatcher(Of TLink).DefaultSequenceElementCriterionMatcher(ILinks(Of TLink))
+- uid: Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCriterionMatcher`1.#ctor*
+  name: DefaultSequenceElementCriterionMatcher
+  href: api/Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCriterionMatcher-1.html#Platform_Data_Doublets_Sequences_CreteriaMatchers_DefaultSequenceElementCriterionMatcher_1__ctor_
+  commentId: Overload:Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCriterionMatcher`1.#ctor
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCreteriaMatcher<TLink>.DefaultSequenceElementCreteriaMatcher
-  fullName.vb: Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCreteriaMatcher(Of TLink).DefaultSequenceElementCreteriaMatcher
-  nameWithType: DefaultSequenceElementCreteriaMatcher<TLink>.DefaultSequenceElementCreteriaMatcher
-  nameWithType.vb: DefaultSequenceElementCreteriaMatcher(Of TLink).DefaultSequenceElementCreteriaMatcher
-- uid: Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCreteriaMatcher`1.IsMatched(`0)
+  fullName: Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCriterionMatcher<TLink>.DefaultSequenceElementCriterionMatcher
+  fullName.vb: Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCriterionMatcher(Of TLink).DefaultSequenceElementCriterionMatcher
+  nameWithType: DefaultSequenceElementCriterionMatcher<TLink>.DefaultSequenceElementCriterionMatcher
+  nameWithType.vb: DefaultSequenceElementCriterionMatcher(Of TLink).DefaultSequenceElementCriterionMatcher
+- uid: Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCriterionMatcher`1.IsMatched(`0)
   name: IsMatched(TLink)
-  href: api/Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCreteriaMatcher-1.html#Platform_Data_Doublets_Sequences_CreteriaMatchers_DefaultSequenceElementCreteriaMatcher_1_IsMatched__0_
-  commentId: M:Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCreteriaMatcher`1.IsMatched(`0)
-  fullName: Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCreteriaMatcher<TLink>.IsMatched(TLink)
-  fullName.vb: Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCreteriaMatcher(Of TLink).IsMatched(TLink)
-  nameWithType: DefaultSequenceElementCreteriaMatcher<TLink>.IsMatched(TLink)
-  nameWithType.vb: DefaultSequenceElementCreteriaMatcher(Of TLink).IsMatched(TLink)
-- uid: Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCreteriaMatcher`1.IsMatched*
+  href: api/Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCriterionMatcher-1.html#Platform_Data_Doublets_Sequences_CreteriaMatchers_DefaultSequenceElementCriterionMatcher_1_IsMatched__0_
+  commentId: M:Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCriterionMatcher`1.IsMatched(`0)
+  fullName: Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCriterionMatcher<TLink>.IsMatched(TLink)
+  fullName.vb: Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCriterionMatcher(Of TLink).IsMatched(TLink)
+  nameWithType: DefaultSequenceElementCriterionMatcher<TLink>.IsMatched(TLink)
+  nameWithType.vb: DefaultSequenceElementCriterionMatcher(Of TLink).IsMatched(TLink)
+- uid: Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCriterionMatcher`1.IsMatched*
   name: IsMatched
-  href: api/Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCreteriaMatcher-1.html#Platform_Data_Doublets_Sequences_CreteriaMatchers_DefaultSequenceElementCreteriaMatcher_1_IsMatched_
-  commentId: Overload:Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCreteriaMatcher`1.IsMatched
+  href: api/Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCriterionMatcher-1.html#Platform_Data_Doublets_Sequences_CreteriaMatchers_DefaultSequenceElementCriterionMatcher_1_IsMatched_
+  commentId: Overload:Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCriterionMatcher`1.IsMatched
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCreteriaMatcher<TLink>.IsMatched
-  fullName.vb: Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCreteriaMatcher(Of TLink).IsMatched
-  nameWithType: DefaultSequenceElementCreteriaMatcher<TLink>.IsMatched
-  nameWithType.vb: DefaultSequenceElementCreteriaMatcher(Of TLink).IsMatched
-- uid: Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCreteriaMatcher`1
-  name: MarkedSequenceCreteriaMatcher<TLink>
-  href: api/Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCreteriaMatcher-1.html
-  commentId: T:Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCreteriaMatcher`1
-  name.vb: MarkedSequenceCreteriaMatcher(Of TLink)
-  fullName: Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCreteriaMatcher<TLink>
-  fullName.vb: Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCreteriaMatcher(Of TLink)
-  nameWithType: MarkedSequenceCreteriaMatcher<TLink>
-  nameWithType.vb: MarkedSequenceCreteriaMatcher(Of TLink)
-- uid: Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCreteriaMatcher`1.#ctor(Platform.Data.Doublets.ILinks{`0},`0)
-  name: MarkedSequenceCreteriaMatcher(ILinks<TLink>, TLink)
-  href: api/Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCreteriaMatcher-1.html#Platform_Data_Doublets_Sequences_CreteriaMatchers_MarkedSequenceCreteriaMatcher_1__ctor_Platform_Data_Doublets_ILinks__0___0_
-  commentId: M:Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCreteriaMatcher`1.#ctor(Platform.Data.Doublets.ILinks{`0},`0)
-  name.vb: MarkedSequenceCreteriaMatcher(ILinks(Of TLink), TLink)
-  fullName: Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCreteriaMatcher<TLink>.MarkedSequenceCreteriaMatcher(Platform.Data.Doublets.ILinks<TLink>, TLink)
-  fullName.vb: Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCreteriaMatcher(Of TLink).MarkedSequenceCreteriaMatcher(Platform.Data.Doublets.ILinks(Of TLink), TLink)
-  nameWithType: MarkedSequenceCreteriaMatcher<TLink>.MarkedSequenceCreteriaMatcher(ILinks<TLink>, TLink)
-  nameWithType.vb: MarkedSequenceCreteriaMatcher(Of TLink).MarkedSequenceCreteriaMatcher(ILinks(Of TLink), TLink)
-- uid: Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCreteriaMatcher`1.#ctor*
-  name: MarkedSequenceCreteriaMatcher
-  href: api/Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCreteriaMatcher-1.html#Platform_Data_Doublets_Sequences_CreteriaMatchers_MarkedSequenceCreteriaMatcher_1__ctor_
-  commentId: Overload:Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCreteriaMatcher`1.#ctor
+  fullName: Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCriterionMatcher<TLink>.IsMatched
+  fullName.vb: Platform.Data.Doublets.Sequences.CreteriaMatchers.DefaultSequenceElementCriterionMatcher(Of TLink).IsMatched
+  nameWithType: DefaultSequenceElementCriterionMatcher<TLink>.IsMatched
+  nameWithType.vb: DefaultSequenceElementCriterionMatcher(Of TLink).IsMatched
+- uid: Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCriterionMatcher`1
+  name: MarkedSequenceCriterionMatcher<TLink>
+  href: api/Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCriterionMatcher-1.html
+  commentId: T:Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCriterionMatcher`1
+  name.vb: MarkedSequenceCriterionMatcher(Of TLink)
+  fullName: Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCriterionMatcher<TLink>
+  fullName.vb: Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCriterionMatcher(Of TLink)
+  nameWithType: MarkedSequenceCriterionMatcher<TLink>
+  nameWithType.vb: MarkedSequenceCriterionMatcher(Of TLink)
+- uid: Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCriterionMatcher`1.#ctor(Platform.Data.Doublets.ILinks{`0},`0)
+  name: MarkedSequenceCriterionMatcher(ILinks<TLink>, TLink)
+  href: api/Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCriterionMatcher-1.html#Platform_Data_Doublets_Sequences_CreteriaMatchers_MarkedSequenceCriterionMatcher_1__ctor_Platform_Data_Doublets_ILinks__0___0_
+  commentId: M:Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCriterionMatcher`1.#ctor(Platform.Data.Doublets.ILinks{`0},`0)
+  name.vb: MarkedSequenceCriterionMatcher(ILinks(Of TLink), TLink)
+  fullName: Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCriterionMatcher<TLink>.MarkedSequenceCriterionMatcher(Platform.Data.Doublets.ILinks<TLink>, TLink)
+  fullName.vb: Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCriterionMatcher(Of TLink).MarkedSequenceCriterionMatcher(Platform.Data.Doublets.ILinks(Of TLink), TLink)
+  nameWithType: MarkedSequenceCriterionMatcher<TLink>.MarkedSequenceCriterionMatcher(ILinks<TLink>, TLink)
+  nameWithType.vb: MarkedSequenceCriterionMatcher(Of TLink).MarkedSequenceCriterionMatcher(ILinks(Of TLink), TLink)
+- uid: Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCriterionMatcher`1.#ctor*
+  name: MarkedSequenceCriterionMatcher
+  href: api/Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCriterionMatcher-1.html#Platform_Data_Doublets_Sequences_CreteriaMatchers_MarkedSequenceCriterionMatcher_1__ctor_
+  commentId: Overload:Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCriterionMatcher`1.#ctor
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCreteriaMatcher<TLink>.MarkedSequenceCreteriaMatcher
-  fullName.vb: Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCreteriaMatcher(Of TLink).MarkedSequenceCreteriaMatcher
-  nameWithType: MarkedSequenceCreteriaMatcher<TLink>.MarkedSequenceCreteriaMatcher
-  nameWithType.vb: MarkedSequenceCreteriaMatcher(Of TLink).MarkedSequenceCreteriaMatcher
-- uid: Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCreteriaMatcher`1.IsMatched(`0)
+  fullName: Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCriterionMatcher<TLink>.MarkedSequenceCriterionMatcher
+  fullName.vb: Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCriterionMatcher(Of TLink).MarkedSequenceCriterionMatcher
+  nameWithType: MarkedSequenceCriterionMatcher<TLink>.MarkedSequenceCriterionMatcher
+  nameWithType.vb: MarkedSequenceCriterionMatcher(Of TLink).MarkedSequenceCriterionMatcher
+- uid: Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCriterionMatcher`1.IsMatched(`0)
   name: IsMatched(TLink)
-  href: api/Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCreteriaMatcher-1.html#Platform_Data_Doublets_Sequences_CreteriaMatchers_MarkedSequenceCreteriaMatcher_1_IsMatched__0_
-  commentId: M:Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCreteriaMatcher`1.IsMatched(`0)
-  fullName: Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCreteriaMatcher<TLink>.IsMatched(TLink)
-  fullName.vb: Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCreteriaMatcher(Of TLink).IsMatched(TLink)
-  nameWithType: MarkedSequenceCreteriaMatcher<TLink>.IsMatched(TLink)
-  nameWithType.vb: MarkedSequenceCreteriaMatcher(Of TLink).IsMatched(TLink)
-- uid: Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCreteriaMatcher`1.IsMatched*
+  href: api/Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCriterionMatcher-1.html#Platform_Data_Doublets_Sequences_CreteriaMatchers_MarkedSequenceCriterionMatcher_1_IsMatched__0_
+  commentId: M:Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCriterionMatcher`1.IsMatched(`0)
+  fullName: Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCriterionMatcher<TLink>.IsMatched(TLink)
+  fullName.vb: Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCriterionMatcher(Of TLink).IsMatched(TLink)
+  nameWithType: MarkedSequenceCriterionMatcher<TLink>.IsMatched(TLink)
+  nameWithType.vb: MarkedSequenceCriterionMatcher(Of TLink).IsMatched(TLink)
+- uid: Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCriterionMatcher`1.IsMatched*
   name: IsMatched
-  href: api/Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCreteriaMatcher-1.html#Platform_Data_Doublets_Sequences_CreteriaMatchers_MarkedSequenceCreteriaMatcher_1_IsMatched_
-  commentId: Overload:Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCreteriaMatcher`1.IsMatched
+  href: api/Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCriterionMatcher-1.html#Platform_Data_Doublets_Sequences_CreteriaMatchers_MarkedSequenceCriterionMatcher_1_IsMatched_
+  commentId: Overload:Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCriterionMatcher`1.IsMatched
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCreteriaMatcher<TLink>.IsMatched
-  fullName.vb: Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCreteriaMatcher(Of TLink).IsMatched
-  nameWithType: MarkedSequenceCreteriaMatcher<TLink>.IsMatched
-  nameWithType.vb: MarkedSequenceCreteriaMatcher(Of TLink).IsMatched
+  fullName: Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCriterionMatcher<TLink>.IsMatched
+  fullName.vb: Platform.Data.Doublets.Sequences.CreteriaMatchers.MarkedSequenceCriterionMatcher(Of TLink).IsMatched
+  nameWithType: MarkedSequenceCriterionMatcher<TLink>.IsMatched
+  nameWithType.vb: MarkedSequenceCriterionMatcher(Of TLink).IsMatched
 - uid: Platform.Data.Doublets.Sequences.DefaultSequenceAppender`1
   name: DefaultSequenceAppender<TLink>
   href: api/Platform.Data.Doublets.Sequences.DefaultSequenceAppender-1.html
