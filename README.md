@@ -41,7 +41,7 @@ namespace HelloWorld.Doublets.DotNet
 
 ## [SQLite vs Doublets](https://github.com/linksplatform/Comparisons.SQLiteVSDoublets)
 
-## [Documentation](https://linksplatform.github.io/Data.Doublets/)
+## [Documentation](https://linksplatform.github.io/Data.Doublets)
 * Interface [ILinks\<TLink, TConstants\>](https://linksplatform.github.io/Data/api/Platform.Data.ILinks-2.html).
 * Interface [ILinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.ILinks-1.html).
 * Class [ResizableDirectMemoryLinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html).
@@ -56,12 +56,11 @@ namespace HelloWorld.Doublets.DotNet
 * [Platform.Memory](https://github.com/linksplatform/Memory)
 * [Platform.Data](https://github.com/linksplatform/Data)
 
-# Mystery files
-* `.travis.yml` - Travis CI build configuration.
-* `docfx.json` and `toc.yml` - DocFX build configuration.
-* `fmt.sh` - script for formating `tex` file for generating PDF from it.
-* `fmt.py` - script for formating single `.cs` file as a part of `tex` file.
-* `Makefile` - PDF build configuration.
-* `generate-pdf.sh` - script that generates PDF with code for e-readers.
-* `publish-docs.sh` - script that publishes generated documentation and PDF with code for e-readers to `gh-pages` branch.
-* `push-nuget.bat` - Windows script for publishing current version of NuGet package.
+## Mystery files
+* [.travis.yml](https://github.com/linksplatform/Data.Doublets/blob/master/.travis.yml) - Travis CI build configuration.
+* [docfx.json](https://github.com/linksplatform/Data.Doublets/blob/master/docfx.json) and [toc.yml](https://github.com/linksplatform/Data.Doublets/blob/master/toc.yml) - DocFX build configuration.
+* [format-document.sh](https://github.com/linksplatform/Data.Doublets/blob/master/format-document.sh) - script for formating `tex` file for generating PDF from it.
+* [format-csharp-files.py](https://github.com/linksplatform/Data.Doublets/blob/master/format-csharp-files.py) - script for formating single `.cs` file as a part of `tex` file.
+* [generate-pdf.sh](https://github.com/linksplatform/Data.Doublets/blob/master/generate-pdf.sh) - script that generates PDF with code for e-readers.
+* [publish-docs.sh](https://github.com/linksplatform/Data.Doublets/blob/master/publish-docs.sh) - script that publishes generated documentation and PDF with code for e-readers to `gh-pages` branch.
+* [push-nuget.bat](https://github.com/linksplatform/Data.Doublets/blob/master/push-nuget.bat) - Windows script for publishing current version of NuGet package.
