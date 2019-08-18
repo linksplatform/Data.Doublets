@@ -549,10 +549,9 @@ namespace Platform.Data.Doublets.Sequences
             return Sync.ExecuteReadOperation(() =>
             {
                 var links = Links.Unsync;
-                var walker = new RightSequenceWalker<ulong>(links, new DefaultStack<ulong>());
-                foreach (var part in walker.Walk(sequence))
+                foreach (var part in Options.Walker.Walk(sequence))
                 {
-                    if (!handler(links.GetIndex(part)))
+                    if (!handler(part))
                     {
                         return false;
                     }
@@ -582,14 +581,14 @@ namespace Platform.Data.Doublets.Sequences
                 _readAsElements = readAsElements;
             }
 
-            protected override bool IsElement(IList<ulong> link) => base.IsElement(link) || (_readAsElements != null && _readAsElements.Contains(Links.GetIndex(link))) || _linksInSequence.Contains(Links.GetIndex(link));
+            protected override bool IsElement(ulong link) => base.IsElement(link) || (_readAsElements != null && _readAsElements.Contains(link)) || _linksInSequence.Contains(link);
 
             public bool FullMatch(LinkIndex sequenceToMatch)
             {
                 _filterPosition = 0;
                 foreach (var part in Walk(sequenceToMatch))
                 {
-                    if (!FullMatchCore(Links.GetIndex(part)))
+                    if (!FullMatchCore(part))
                     {
                         break;
                     }
@@ -649,7 +648,7 @@ namespace Platform.Data.Doublets.Sequences
                 _filterPosition = -1;
                 foreach (var part in Walk(sequenceToMatch))
                 {
-                    if (!PartialMatchCore(Links.GetIndex(part)))
+                    if (!PartialMatchCore(part))
                     {
                         break;
                     }

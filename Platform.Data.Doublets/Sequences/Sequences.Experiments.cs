@@ -1683,7 +1683,7 @@ namespace Platform.Data.Doublets.Sequences
                 _pattern = CreateDetailedPattern();
             }
 
-            protected override bool IsElement(IList<ulong> link) => _linksInSequence.Contains(Links.GetIndex(link)) || base.IsElement(link);
+            protected override bool IsElement(ulong link) => _linksInSequence.Contains(link) || base.IsElement(link);
 
             public bool PatternMatch(LinkIndex sequenceToMatch)
             {
@@ -1691,7 +1691,7 @@ namespace Platform.Data.Doublets.Sequences
                 _sequencePosition = 0;
                 foreach (var part in Walk(sequenceToMatch))
                 {
-                    if (!PatternMatchCore(Links.GetIndex(part)))
+                    if (!PatternMatchCore(part))
                     {
                         break;
                     }

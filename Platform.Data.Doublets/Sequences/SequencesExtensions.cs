@@ -1,4 +1,5 @@
-﻿using Platform.Data.Sequences;
+﻿using Platform.Collections.Lists;
+using Platform.Data.Sequences;
 using System.Collections.Generic;
 
 namespace Platform.Data.Doublets.Sequences
@@ -14,6 +15,13 @@ namespace Platform.Data.Doublets.Sequences
                 finalSequence[i] = part.Length == 1 ? part[0] : sequences.Create(part);
             }
             return sequences.Create(finalSequence);
+        }
+
+        public static IList<TLink> ToList<TLink>(this ISequences<TLink> sequences, TLink sequence)
+        {
+            var list = new List<TLink>();
+            sequences.EachPart(list.AddAndReturnTrue, sequence);
+            return list;
         }
     }
 }

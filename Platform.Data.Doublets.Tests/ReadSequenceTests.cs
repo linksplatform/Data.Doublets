@@ -5,6 +5,8 @@ using System.Linq;
 using Xunit;
 using Platform.Data.Sequences;
 using Platform.Data.Doublets.Sequences.Converters;
+using Platform.Data.Doublets.Sequences.Walkers;
+using Platform.Data.Doublets.Sequences;
 
 namespace Platform.Data.Doublets.Tests
 {
@@ -15,10 +17,10 @@ namespace Platform.Data.Doublets.Tests
         {
             const long sequenceLength = 2000;
 
-            using (var scope = new TempLinksTestScope(useSequences: true))
+            using (var scope = new TempLinksTestScope(useSequences: false))
             {
                 var links = scope.Links;
-                var sequences = scope.Sequences;
+                var sequences = new Sequences.Sequences(links, new SequencesOptions<ulong>() { Walker = new LeveledSequenceWalker<ulong>(links) });;;
 
                 var sequence = new ulong[sequenceLength];
                 for (var i = 0; i < sequenceLength; i++)
@@ -32,7 +34,7 @@ namespace Platform.Data.Doublets.Tests
                 var balancedVariant = balancedVariantConverter.Convert(sequence); sw1.Stop();
 
                 var sw2 = Stopwatch.StartNew();
-                var readSequence1 = sequences.ReadSequenceCore(balancedVariant, links.IsPartialPoint); sw2.Stop();
+                var readSequence1 = sequences.ToList(balancedVariant); sw2.Stop();
 
                 var sw3 = Stopwatch.StartNew();
                 var readSequence2 = new List<ulong>();

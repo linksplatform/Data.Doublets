@@ -10,6 +10,7 @@ using Platform.Data.Doublets.PropertyOperators;
 using Platform.Data.Doublets.Incrementers;
 using Platform.Data.Doublets.Converters;
 using Platform.Data.Doublets.Sequences.Indexers;
+using Platform.Data.Doublets.Sequences.Walkers;
 
 namespace Platform.Data.Doublets.Tests
 {
@@ -20,10 +21,9 @@ namespace Platform.Data.Doublets.Tests
         [Fact]
         public static void LinksBasedFrequencyStoredOptimalVariantSequenceTest()
         {
-            using (var scope = new TempLinksTestScope(useSequences: true))
+            using (var scope = new TempLinksTestScope(useSequences: false))
             {
                 var links = scope.Links;
-                var sequences = scope.Sequences;
                 var constants = links.Constants;
 
                 links.UseUnicode();
@@ -44,6 +44,8 @@ namespace Platform.Data.Doublets.Tests
                 var sequenceToItsLocalElementLevelsConverter = new SequenceToItsLocalElementLevelsConverter<ulong>(links, linkToItsFrequencyNumberConverter);
                 var optimalVariantConverter = new OptimalVariantConverter<ulong>(links, sequenceToItsLocalElementLevelsConverter);
 
+                var sequences = new Sequences.Sequences(links, new SequencesOptions<ulong>() { Walker = new LeveledSequenceWalker<ulong>(links) });
+
                 ExecuteTest(links, sequences, sequence, sequenceToItsLocalElementLevelsConverter, index, optimalVariantConverter);
             }
         }
@@ -51,10 +53,9 @@ namespace Platform.Data.Doublets.Tests
         [Fact]
         public static void DictionaryBasedFrequencyStoredOptimalVariantSequenceTest()
         {
-            using (var scope = new TempLinksTestScope(useSequences: true))
+            using (var scope = new TempLinksTestScope(useSequences: false))
             {
                 var links = scope.Links;
-                var sequences = scope.Sequences;
 
                 links.UseUnicode();
 
@@ -72,6 +73,8 @@ namespace Platform.Data.Doublets.Tests
                 var sequenceToItsLocalElementLevelsConverter = new SequenceToItsLocalElementLevelsConverter<ulong>(links, linkToItsFrequencyNumberConverter);
                 var optimalVariantConverter = new OptimalVariantConverter<ulong>(links, sequenceToItsLocalElementLevelsConverter);
 
+                var sequences = new Sequences.Sequences(links, new SequencesOptions<ulong>() { Walker = new LeveledSequenceWalker<ulong>(links) });
+
                 ExecuteTest(links, sequences, sequence, sequenceToItsLocalElementLevelsConverter, index, optimalVariantConverter);
             }
         }
@@ -80,11 +83,9 @@ namespace Platform.Data.Doublets.Tests
         {
             index.Add(sequence);
 
-            var levels = sequenceToItsLocalElementLevelsConverter.Convert(sequence);
-
             var optimalVariant = optimalVariantConverter.Convert(sequence);
 
-            var readSequence1 = sequences.ReadSequenceCore(optimalVariant, links.IsPartialPoint);
+            var readSequence1 = sequences.ToList(optimalVariant);
 
             Assert.True(sequence.SequenceEqual(readSequence1));
         }

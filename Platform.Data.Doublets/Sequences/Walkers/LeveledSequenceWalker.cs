@@ -1,26 +1,33 @@
-//#define USEARRAYPOOL
-using System;
+﻿using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+
+//#define USEARRAYPOOL
 #if USEARRAYPOOL
 using Platform.Collections;
 #endif
 
-namespace Platform.Data.Doublets.Sequences
+namespace Platform.Data.Doublets.Sequences.Walkers
 {
-    partial class Sequences
+    public class LeveledSequenceWalker<TLink> : LinksOperatorBase<TLink>, ISequenceWalker<TLink>
     {
-        public ulong[] ReadSequenceCore(ulong sequence, Func<ulong, bool> isElement)
-        {
-            var links = Links.Unsync;
-            var length = 1;
-            var array = new ulong[length];
-            array[0] = sequence;
+        private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
 
-            if (isElement(sequence))
+        public LeveledSequenceWalker(ILinks<TLink> links) : base(links) { }
+
+        public IEnumerable<TLink> Walk(TLink sequence) => ToArray(sequence);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected virtual bool IsElement(TLink elementLink) => Links.IsPartialPoint(elementLink);
+
+        public TLink[] ToArray(TLink sequence)
+        {
+            var length = 1;
+            var array = new TLink[length];
+            array[0] = sequence;
+            if (IsElement(sequence))
             {
                 return array;
             }
-
             bool hasElements;
             do
             {
@@ -28,31 +35,31 @@ namespace Platform.Data.Doublets.Sequences
 #if USEARRAYPOOL
                 var nextArray = ArrayPool.Allocate<ulong>(length);
 #else
-                var nextArray = new ulong[length];
+                var nextArray = new TLink[length];
 #endif
                 hasElements = false;
                 for (var i = 0; i < array.Length; i++)
                 {
                     var candidate = array[i];
-                    if (candidate == 0)
+                    if (_equalityComparer.Equals(array[i], default))
                     {
                         continue;
                     }
                     var doubletOffset = i * 2;
-                    if (isElement(candidate))
+                    if (IsElement(candidate))
                     {
                         nextArray[doubletOffset] = candidate;
                     }
                     else
                     {
-                        var link = links.GetLink(candidate);
-                        var linkSource = links.GetSource(link);
-                        var linkTarget = links.GetTarget(link);
+                        var link = Links.GetLink(candidate);
+                        var linkSource = Links.GetSource(link);
+                        var linkTarget = Links.GetTarget(link);
                         nextArray[doubletOffset] = linkSource;
                         nextArray[doubletOffset + 1] = linkTarget;
                         if (!hasElements)
                         {
-                            hasElements = !(isElement(linkSource) && isElement(linkTarget));
+                            hasElements = !(IsElement(linkSource) && IsElement(linkTarget));
                         }
                     }
                 }
@@ -77,12 +84,12 @@ namespace Platform.Data.Doublets.Sequences
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static ulong[] CopyFilledElements(ulong[] array, int filledElementsCount)
+        private static TLink[] CopyFilledElements(TLink[] array, int filledElementsCount)
         {
-            var finalArray = new ulong[filledElementsCount];
+            var finalArray = new TLink[filledElementsCount];
             for (int i = 0, j = 0; i < array.Length; i++)
             {
-                if (array[i] > 0)
+                if (!_equalityComparer.Equals(array[i], default))
                 {
                     finalArray[j] = array[i];
                     j++;
@@ -95,12 +102,12 @@ namespace Platform.Data.Doublets.Sequences
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static int CountFilledElements(ulong[] array)
+        private static int CountFilledElements(TLink[] array)
         {
             var count = 0;
             for (var i = 0; i < array.Length; i++)
             {
-                if (array[i] > 0)
+                if (!_equalityComparer.Equals(array[i], default))
                 {
                     count++;
                 }

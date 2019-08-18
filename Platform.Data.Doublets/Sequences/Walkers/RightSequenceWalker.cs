@@ -15,14 +15,15 @@ namespace Platform.Data.Doublets.Sequences.Walkers
         protected override TLink GetNextElementAfterPush(TLink element) => Links.GetSource(element);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override IEnumerable<IList<TLink>> WalkContents(IList<TLink> element)
+        protected override IEnumerable<TLink> WalkContents(TLink element)
         {
-            for (var i = Links.Constants.IndexPart + 1; i < element.Count; i++)
+            var parts = Links.GetLink(element);
+            for (var i = Links.Constants.IndexPart + 1; i < parts.Count; i++)
             {
-                var partLink = Links.GetLink(element[i]);
-                if (IsElement(partLink))
+                var part = parts[i];
+                if (IsElement(part))
                 {
-                    yield return partLink;
+                    yield return part;
                 }
             }
         }
