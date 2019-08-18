@@ -26,7 +26,7 @@ namespace Platform.Data.Doublets.Converters
             var link = Links.SearchOrDefault(doublet.Source, doublet.Target);
             if (_equalityComparer.Equals(link, Links.Constants.Null))
             {
-                throw new ArgumentException($"Link with {doublet.Source} source and {doublet.Target} target not found.", nameof(doublet));
+                throw new ArgumentException($"Link ({doublet}) not found.", nameof(doublet));
             }
             var frequency = _frequencyPropertyOperator.Get(link);
             if (_equalityComparer.Equals(frequency, default))
