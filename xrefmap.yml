@@ -1742,6 +1742,22 @@ references:
   fullName.vb: Platform.Data.Doublets.ILinksExtensions.All(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink())
   nameWithType: ILinksExtensions.All<TLink>(ILinks<TLink>, TLink[])
   nameWithType.vb: ILinksExtensions.All(Of TLink)(ILinks(Of TLink), TLink())
+- uid: Platform.Data.Doublets.ILinksExtensions.AllIndices*
+  name: AllIndices
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_AllIndices_
+  commentId: Overload:Platform.Data.Doublets.ILinksExtensions.AllIndices
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ILinksExtensions.AllIndices
+  nameWithType: ILinksExtensions.AllIndices
+- uid: Platform.Data.Doublets.ILinksExtensions.AllIndices``1(Platform.Data.Doublets.ILinks{``0},``0[])
+  name: AllIndices<TLink>(ILinks<TLink>, TLink[])
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_AllIndices__1_Platform_Data_Doublets_ILinks___0____0___
+  commentId: M:Platform.Data.Doublets.ILinksExtensions.AllIndices``1(Platform.Data.Doublets.ILinks{``0},``0[])
+  name.vb: AllIndices(Of TLink)(ILinks(Of TLink), TLink())
+  fullName: Platform.Data.Doublets.ILinksExtensions.AllIndices<TLink>(Platform.Data.Doublets.ILinks<TLink>, TLink[])
+  fullName.vb: Platform.Data.Doublets.ILinksExtensions.AllIndices(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink())
+  nameWithType: ILinksExtensions.AllIndices<TLink>(ILinks<TLink>, TLink[])
+  nameWithType.vb: ILinksExtensions.AllIndices(Of TLink)(ILinks(Of TLink), TLink())
 - uid: Platform.Data.Doublets.ILinksExtensions.AreValuesReset*
   name: AreValuesReset
   href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_AreValuesReset_
@@ -3145,128 +3161,128 @@ references:
   commentId: N:Platform.Data.Doublets.PropertyOperators
   fullName: Platform.Data.Doublets.PropertyOperators
   nameWithType: Platform.Data.Doublets.PropertyOperators
-- uid: Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator`1
-  name: DefaultLinkPropertyOperator<TLink>
-  href: api/Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator-1.html
-  commentId: T:Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator`1
-  name.vb: DefaultLinkPropertyOperator(Of TLink)
-  fullName: Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator<TLink>
-  fullName.vb: Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator(Of TLink)
-  nameWithType: DefaultLinkPropertyOperator<TLink>
-  nameWithType.vb: DefaultLinkPropertyOperator(Of TLink)
-- uid: Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator`1.#ctor(Platform.Data.Doublets.ILinks{`0})
-  name: DefaultLinkPropertyOperator(ILinks<TLink>)
-  href: api/Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator-1.html#Platform_Data_Doublets_PropertyOperators_DefaultLinkPropertyOperator_1__ctor_Platform_Data_Doublets_ILinks__0__
-  commentId: M:Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator`1.#ctor(Platform.Data.Doublets.ILinks{`0})
-  name.vb: DefaultLinkPropertyOperator(ILinks(Of TLink))
-  fullName: Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator<TLink>.DefaultLinkPropertyOperator(Platform.Data.Doublets.ILinks<TLink>)
-  fullName.vb: Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator(Of TLink).DefaultLinkPropertyOperator(Platform.Data.Doublets.ILinks(Of TLink))
-  nameWithType: DefaultLinkPropertyOperator<TLink>.DefaultLinkPropertyOperator(ILinks<TLink>)
-  nameWithType.vb: DefaultLinkPropertyOperator(Of TLink).DefaultLinkPropertyOperator(ILinks(Of TLink))
-- uid: Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator`1.#ctor*
-  name: DefaultLinkPropertyOperator
-  href: api/Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator-1.html#Platform_Data_Doublets_PropertyOperators_DefaultLinkPropertyOperator_1__ctor_
-  commentId: Overload:Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator`1.#ctor
+- uid: Platform.Data.Doublets.PropertyOperators.PropertiesOperator`1
+  name: PropertiesOperator<TLink>
+  href: api/Platform.Data.Doublets.PropertyOperators.PropertiesOperator-1.html
+  commentId: T:Platform.Data.Doublets.PropertyOperators.PropertiesOperator`1
+  name.vb: PropertiesOperator(Of TLink)
+  fullName: Platform.Data.Doublets.PropertyOperators.PropertiesOperator<TLink>
+  fullName.vb: Platform.Data.Doublets.PropertyOperators.PropertiesOperator(Of TLink)
+  nameWithType: PropertiesOperator<TLink>
+  nameWithType.vb: PropertiesOperator(Of TLink)
+- uid: Platform.Data.Doublets.PropertyOperators.PropertiesOperator`1.#ctor(Platform.Data.Doublets.ILinks{`0})
+  name: PropertiesOperator(ILinks<TLink>)
+  href: api/Platform.Data.Doublets.PropertyOperators.PropertiesOperator-1.html#Platform_Data_Doublets_PropertyOperators_PropertiesOperator_1__ctor_Platform_Data_Doublets_ILinks__0__
+  commentId: M:Platform.Data.Doublets.PropertyOperators.PropertiesOperator`1.#ctor(Platform.Data.Doublets.ILinks{`0})
+  name.vb: PropertiesOperator(ILinks(Of TLink))
+  fullName: Platform.Data.Doublets.PropertyOperators.PropertiesOperator<TLink>.PropertiesOperator(Platform.Data.Doublets.ILinks<TLink>)
+  fullName.vb: Platform.Data.Doublets.PropertyOperators.PropertiesOperator(Of TLink).PropertiesOperator(Platform.Data.Doublets.ILinks(Of TLink))
+  nameWithType: PropertiesOperator<TLink>.PropertiesOperator(ILinks<TLink>)
+  nameWithType.vb: PropertiesOperator(Of TLink).PropertiesOperator(ILinks(Of TLink))
+- uid: Platform.Data.Doublets.PropertyOperators.PropertiesOperator`1.#ctor*
+  name: PropertiesOperator
+  href: api/Platform.Data.Doublets.PropertyOperators.PropertiesOperator-1.html#Platform_Data_Doublets_PropertyOperators_PropertiesOperator_1__ctor_
+  commentId: Overload:Platform.Data.Doublets.PropertyOperators.PropertiesOperator`1.#ctor
   isSpec: "True"
-  fullName: Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator<TLink>.DefaultLinkPropertyOperator
-  fullName.vb: Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator(Of TLink).DefaultLinkPropertyOperator
-  nameWithType: DefaultLinkPropertyOperator<TLink>.DefaultLinkPropertyOperator
-  nameWithType.vb: DefaultLinkPropertyOperator(Of TLink).DefaultLinkPropertyOperator
-- uid: Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator`1.GetValue(`0,`0)
+  fullName: Platform.Data.Doublets.PropertyOperators.PropertiesOperator<TLink>.PropertiesOperator
+  fullName.vb: Platform.Data.Doublets.PropertyOperators.PropertiesOperator(Of TLink).PropertiesOperator
+  nameWithType: PropertiesOperator<TLink>.PropertiesOperator
+  nameWithType.vb: PropertiesOperator(Of TLink).PropertiesOperator
+- uid: Platform.Data.Doublets.PropertyOperators.PropertiesOperator`1.GetValue(`0,`0)
   name: GetValue(TLink, TLink)
-  href: api/Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator-1.html#Platform_Data_Doublets_PropertyOperators_DefaultLinkPropertyOperator_1_GetValue__0__0_
-  commentId: M:Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator`1.GetValue(`0,`0)
-  fullName: Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator<TLink>.GetValue(TLink, TLink)
-  fullName.vb: Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator(Of TLink).GetValue(TLink, TLink)
-  nameWithType: DefaultLinkPropertyOperator<TLink>.GetValue(TLink, TLink)
-  nameWithType.vb: DefaultLinkPropertyOperator(Of TLink).GetValue(TLink, TLink)
-- uid: Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator`1.GetValue*
+  href: api/Platform.Data.Doublets.PropertyOperators.PropertiesOperator-1.html#Platform_Data_Doublets_PropertyOperators_PropertiesOperator_1_GetValue__0__0_
+  commentId: M:Platform.Data.Doublets.PropertyOperators.PropertiesOperator`1.GetValue(`0,`0)
+  fullName: Platform.Data.Doublets.PropertyOperators.PropertiesOperator<TLink>.GetValue(TLink, TLink)
+  fullName.vb: Platform.Data.Doublets.PropertyOperators.PropertiesOperator(Of TLink).GetValue(TLink, TLink)
+  nameWithType: PropertiesOperator<TLink>.GetValue(TLink, TLink)
+  nameWithType.vb: PropertiesOperator(Of TLink).GetValue(TLink, TLink)
+- uid: Platform.Data.Doublets.PropertyOperators.PropertiesOperator`1.GetValue*
   name: GetValue
-  href: api/Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator-1.html#Platform_Data_Doublets_PropertyOperators_DefaultLinkPropertyOperator_1_GetValue_
-  commentId: Overload:Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator`1.GetValue
+  href: api/Platform.Data.Doublets.PropertyOperators.PropertiesOperator-1.html#Platform_Data_Doublets_PropertyOperators_PropertiesOperator_1_GetValue_
+  commentId: Overload:Platform.Data.Doublets.PropertyOperators.PropertiesOperator`1.GetValue
   isSpec: "True"
-  fullName: Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator<TLink>.GetValue
-  fullName.vb: Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator(Of TLink).GetValue
-  nameWithType: DefaultLinkPropertyOperator<TLink>.GetValue
-  nameWithType.vb: DefaultLinkPropertyOperator(Of TLink).GetValue
-- uid: Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator`1.SetValue(`0,`0,`0)
+  fullName: Platform.Data.Doublets.PropertyOperators.PropertiesOperator<TLink>.GetValue
+  fullName.vb: Platform.Data.Doublets.PropertyOperators.PropertiesOperator(Of TLink).GetValue
+  nameWithType: PropertiesOperator<TLink>.GetValue
+  nameWithType.vb: PropertiesOperator(Of TLink).GetValue
+- uid: Platform.Data.Doublets.PropertyOperators.PropertiesOperator`1.SetValue(`0,`0,`0)
   name: SetValue(TLink, TLink, TLink)
-  href: api/Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator-1.html#Platform_Data_Doublets_PropertyOperators_DefaultLinkPropertyOperator_1_SetValue__0__0__0_
-  commentId: M:Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator`1.SetValue(`0,`0,`0)
-  fullName: Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator<TLink>.SetValue(TLink, TLink, TLink)
-  fullName.vb: Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator(Of TLink).SetValue(TLink, TLink, TLink)
-  nameWithType: DefaultLinkPropertyOperator<TLink>.SetValue(TLink, TLink, TLink)
-  nameWithType.vb: DefaultLinkPropertyOperator(Of TLink).SetValue(TLink, TLink, TLink)
-- uid: Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator`1.SetValue*
+  href: api/Platform.Data.Doublets.PropertyOperators.PropertiesOperator-1.html#Platform_Data_Doublets_PropertyOperators_PropertiesOperator_1_SetValue__0__0__0_
+  commentId: M:Platform.Data.Doublets.PropertyOperators.PropertiesOperator`1.SetValue(`0,`0,`0)
+  fullName: Platform.Data.Doublets.PropertyOperators.PropertiesOperator<TLink>.SetValue(TLink, TLink, TLink)
+  fullName.vb: Platform.Data.Doublets.PropertyOperators.PropertiesOperator(Of TLink).SetValue(TLink, TLink, TLink)
+  nameWithType: PropertiesOperator<TLink>.SetValue(TLink, TLink, TLink)
+  nameWithType.vb: PropertiesOperator(Of TLink).SetValue(TLink, TLink, TLink)
+- uid: Platform.Data.Doublets.PropertyOperators.PropertiesOperator`1.SetValue*
   name: SetValue
-  href: api/Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator-1.html#Platform_Data_Doublets_PropertyOperators_DefaultLinkPropertyOperator_1_SetValue_
-  commentId: Overload:Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator`1.SetValue
+  href: api/Platform.Data.Doublets.PropertyOperators.PropertiesOperator-1.html#Platform_Data_Doublets_PropertyOperators_PropertiesOperator_1_SetValue_
+  commentId: Overload:Platform.Data.Doublets.PropertyOperators.PropertiesOperator`1.SetValue
   isSpec: "True"
-  fullName: Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator<TLink>.SetValue
-  fullName.vb: Platform.Data.Doublets.PropertyOperators.DefaultLinkPropertyOperator(Of TLink).SetValue
-  nameWithType: DefaultLinkPropertyOperator<TLink>.SetValue
-  nameWithType.vb: DefaultLinkPropertyOperator(Of TLink).SetValue
-- uid: Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator`1
-  name: FrequencyPropertyOperator<TLink>
-  href: api/Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator-1.html
-  commentId: T:Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator`1
-  name.vb: FrequencyPropertyOperator(Of TLink)
-  fullName: Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator<TLink>
-  fullName.vb: Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator(Of TLink)
-  nameWithType: FrequencyPropertyOperator<TLink>
-  nameWithType.vb: FrequencyPropertyOperator(Of TLink)
-- uid: Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator`1.#ctor(Platform.Data.Doublets.ILinks{`0},`0,`0)
-  name: FrequencyPropertyOperator(ILinks<TLink>, TLink, TLink)
-  href: api/Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator-1.html#Platform_Data_Doublets_PropertyOperators_FrequencyPropertyOperator_1__ctor_Platform_Data_Doublets_ILinks__0___0__0_
-  commentId: M:Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator`1.#ctor(Platform.Data.Doublets.ILinks{`0},`0,`0)
-  name.vb: FrequencyPropertyOperator(ILinks(Of TLink), TLink, TLink)
-  fullName: Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator<TLink>.FrequencyPropertyOperator(Platform.Data.Doublets.ILinks<TLink>, TLink, TLink)
-  fullName.vb: Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator(Of TLink).FrequencyPropertyOperator(Platform.Data.Doublets.ILinks(Of TLink), TLink, TLink)
-  nameWithType: FrequencyPropertyOperator<TLink>.FrequencyPropertyOperator(ILinks<TLink>, TLink, TLink)
-  nameWithType.vb: FrequencyPropertyOperator(Of TLink).FrequencyPropertyOperator(ILinks(Of TLink), TLink, TLink)
-- uid: Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator`1.#ctor*
-  name: FrequencyPropertyOperator
-  href: api/Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator-1.html#Platform_Data_Doublets_PropertyOperators_FrequencyPropertyOperator_1__ctor_
-  commentId: Overload:Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator`1.#ctor
+  fullName: Platform.Data.Doublets.PropertyOperators.PropertiesOperator<TLink>.SetValue
+  fullName.vb: Platform.Data.Doublets.PropertyOperators.PropertiesOperator(Of TLink).SetValue
+  nameWithType: PropertiesOperator<TLink>.SetValue
+  nameWithType.vb: PropertiesOperator(Of TLink).SetValue
+- uid: Platform.Data.Doublets.PropertyOperators.PropertyOperator`1
+  name: PropertyOperator<TLink>
+  href: api/Platform.Data.Doublets.PropertyOperators.PropertyOperator-1.html
+  commentId: T:Platform.Data.Doublets.PropertyOperators.PropertyOperator`1
+  name.vb: PropertyOperator(Of TLink)
+  fullName: Platform.Data.Doublets.PropertyOperators.PropertyOperator<TLink>
+  fullName.vb: Platform.Data.Doublets.PropertyOperators.PropertyOperator(Of TLink)
+  nameWithType: PropertyOperator<TLink>
+  nameWithType.vb: PropertyOperator(Of TLink)
+- uid: Platform.Data.Doublets.PropertyOperators.PropertyOperator`1.#ctor(Platform.Data.Doublets.ILinks{`0},`0,`0)
+  name: PropertyOperator(ILinks<TLink>, TLink, TLink)
+  href: api/Platform.Data.Doublets.PropertyOperators.PropertyOperator-1.html#Platform_Data_Doublets_PropertyOperators_PropertyOperator_1__ctor_Platform_Data_Doublets_ILinks__0___0__0_
+  commentId: M:Platform.Data.Doublets.PropertyOperators.PropertyOperator`1.#ctor(Platform.Data.Doublets.ILinks{`0},`0,`0)
+  name.vb: PropertyOperator(ILinks(Of TLink), TLink, TLink)
+  fullName: Platform.Data.Doublets.PropertyOperators.PropertyOperator<TLink>.PropertyOperator(Platform.Data.Doublets.ILinks<TLink>, TLink, TLink)
+  fullName.vb: Platform.Data.Doublets.PropertyOperators.PropertyOperator(Of TLink).PropertyOperator(Platform.Data.Doublets.ILinks(Of TLink), TLink, TLink)
+  nameWithType: PropertyOperator<TLink>.PropertyOperator(ILinks<TLink>, TLink, TLink)
+  nameWithType.vb: PropertyOperator(Of TLink).PropertyOperator(ILinks(Of TLink), TLink, TLink)
+- uid: Platform.Data.Doublets.PropertyOperators.PropertyOperator`1.#ctor*
+  name: PropertyOperator
+  href: api/Platform.Data.Doublets.PropertyOperators.PropertyOperator-1.html#Platform_Data_Doublets_PropertyOperators_PropertyOperator_1__ctor_
+  commentId: Overload:Platform.Data.Doublets.PropertyOperators.PropertyOperator`1.#ctor
   isSpec: "True"
-  fullName: Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator<TLink>.FrequencyPropertyOperator
-  fullName.vb: Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator(Of TLink).FrequencyPropertyOperator
-  nameWithType: FrequencyPropertyOperator<TLink>.FrequencyPropertyOperator
-  nameWithType.vb: FrequencyPropertyOperator(Of TLink).FrequencyPropertyOperator
-- uid: Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator`1.Get(`0)
+  fullName: Platform.Data.Doublets.PropertyOperators.PropertyOperator<TLink>.PropertyOperator
+  fullName.vb: Platform.Data.Doublets.PropertyOperators.PropertyOperator(Of TLink).PropertyOperator
+  nameWithType: PropertyOperator<TLink>.PropertyOperator
+  nameWithType.vb: PropertyOperator(Of TLink).PropertyOperator
+- uid: Platform.Data.Doublets.PropertyOperators.PropertyOperator`1.Get(`0)
   name: Get(TLink)
-  href: api/Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator-1.html#Platform_Data_Doublets_PropertyOperators_FrequencyPropertyOperator_1_Get__0_
-  commentId: M:Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator`1.Get(`0)
-  fullName: Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator<TLink>.Get(TLink)
-  fullName.vb: Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator(Of TLink).Get(TLink)
-  nameWithType: FrequencyPropertyOperator<TLink>.Get(TLink)
-  nameWithType.vb: FrequencyPropertyOperator(Of TLink).Get(TLink)
-- uid: Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator`1.Get*
+  href: api/Platform.Data.Doublets.PropertyOperators.PropertyOperator-1.html#Platform_Data_Doublets_PropertyOperators_PropertyOperator_1_Get__0_
+  commentId: M:Platform.Data.Doublets.PropertyOperators.PropertyOperator`1.Get(`0)
+  fullName: Platform.Data.Doublets.PropertyOperators.PropertyOperator<TLink>.Get(TLink)
+  fullName.vb: Platform.Data.Doublets.PropertyOperators.PropertyOperator(Of TLink).Get(TLink)
+  nameWithType: PropertyOperator<TLink>.Get(TLink)
+  nameWithType.vb: PropertyOperator(Of TLink).Get(TLink)
+- uid: Platform.Data.Doublets.PropertyOperators.PropertyOperator`1.Get*
   name: Get
-  href: api/Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator-1.html#Platform_Data_Doublets_PropertyOperators_FrequencyPropertyOperator_1_Get_
-  commentId: Overload:Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator`1.Get
+  href: api/Platform.Data.Doublets.PropertyOperators.PropertyOperator-1.html#Platform_Data_Doublets_PropertyOperators_PropertyOperator_1_Get_
+  commentId: Overload:Platform.Data.Doublets.PropertyOperators.PropertyOperator`1.Get
   isSpec: "True"
-  fullName: Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator<TLink>.Get
-  fullName.vb: Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator(Of TLink).Get
-  nameWithType: FrequencyPropertyOperator<TLink>.Get
-  nameWithType.vb: FrequencyPropertyOperator(Of TLink).Get
-- uid: Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator`1.Set(`0,`0)
+  fullName: Platform.Data.Doublets.PropertyOperators.PropertyOperator<TLink>.Get
+  fullName.vb: Platform.Data.Doublets.PropertyOperators.PropertyOperator(Of TLink).Get
+  nameWithType: PropertyOperator<TLink>.Get
+  nameWithType.vb: PropertyOperator(Of TLink).Get
+- uid: Platform.Data.Doublets.PropertyOperators.PropertyOperator`1.Set(`0,`0)
   name: Set(TLink, TLink)
-  href: api/Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator-1.html#Platform_Data_Doublets_PropertyOperators_FrequencyPropertyOperator_1_Set__0__0_
-  commentId: M:Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator`1.Set(`0,`0)
-  fullName: Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator<TLink>.Set(TLink, TLink)
-  fullName.vb: Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator(Of TLink).Set(TLink, TLink)
-  nameWithType: FrequencyPropertyOperator<TLink>.Set(TLink, TLink)
-  nameWithType.vb: FrequencyPropertyOperator(Of TLink).Set(TLink, TLink)
-- uid: Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator`1.Set*
+  href: api/Platform.Data.Doublets.PropertyOperators.PropertyOperator-1.html#Platform_Data_Doublets_PropertyOperators_PropertyOperator_1_Set__0__0_
+  commentId: M:Platform.Data.Doublets.PropertyOperators.PropertyOperator`1.Set(`0,`0)
+  fullName: Platform.Data.Doublets.PropertyOperators.PropertyOperator<TLink>.Set(TLink, TLink)
+  fullName.vb: Platform.Data.Doublets.PropertyOperators.PropertyOperator(Of TLink).Set(TLink, TLink)
+  nameWithType: PropertyOperator<TLink>.Set(TLink, TLink)
+  nameWithType.vb: PropertyOperator(Of TLink).Set(TLink, TLink)
+- uid: Platform.Data.Doublets.PropertyOperators.PropertyOperator`1.Set*
   name: Set
-  href: api/Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator-1.html#Platform_Data_Doublets_PropertyOperators_FrequencyPropertyOperator_1_Set_
-  commentId: Overload:Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator`1.Set
+  href: api/Platform.Data.Doublets.PropertyOperators.PropertyOperator-1.html#Platform_Data_Doublets_PropertyOperators_PropertyOperator_1_Set_
+  commentId: Overload:Platform.Data.Doublets.PropertyOperators.PropertyOperator`1.Set
   isSpec: "True"
-  fullName: Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator<TLink>.Set
-  fullName.vb: Platform.Data.Doublets.PropertyOperators.FrequencyPropertyOperator(Of TLink).Set
-  nameWithType: FrequencyPropertyOperator<TLink>.Set
-  nameWithType.vb: FrequencyPropertyOperator(Of TLink).Set
+  fullName: Platform.Data.Doublets.PropertyOperators.PropertyOperator<TLink>.Set
+  fullName.vb: Platform.Data.Doublets.PropertyOperators.PropertyOperator(Of TLink).Set
+  nameWithType: PropertyOperator<TLink>.Set
+  nameWithType.vb: PropertyOperator(Of TLink).Set
 - uid: Platform.Data.Doublets.ResizableDirectMemory
   name: Platform.Data.Doublets.ResizableDirectMemory
   href: api/Platform.Data.Doublets.ResizableDirectMemory.html
