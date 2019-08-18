@@ -6595,15 +6595,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker(Of TLink)
   nameWithType: LeftSequenceWalker<TLink>
   nameWithType.vb: LeftSequenceWalker(Of TLink)
-- uid: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker`1.#ctor(Platform.Data.Doublets.ILinks{`0})
-  name: LeftSequenceWalker(ILinks<TLink>)
-  href: api/Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_LeftSequenceWalker_1__ctor_Platform_Data_Doublets_ILinks__0__
-  commentId: M:Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker`1.#ctor(Platform.Data.Doublets.ILinks{`0})
-  name.vb: LeftSequenceWalker(ILinks(Of TLink))
-  fullName: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker<TLink>.LeftSequenceWalker(Platform.Data.Doublets.ILinks<TLink>)
-  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker(Of TLink).LeftSequenceWalker(Platform.Data.Doublets.ILinks(Of TLink))
-  nameWithType: LeftSequenceWalker<TLink>.LeftSequenceWalker(ILinks<TLink>)
-  nameWithType.vb: LeftSequenceWalker(Of TLink).LeftSequenceWalker(ILinks(Of TLink))
+- uid: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Collections.Stacks.IStack{`0})
+  name: LeftSequenceWalker(ILinks<TLink>, IStack<TLink>)
+  href: api/Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_LeftSequenceWalker_1__ctor_Platform_Data_Doublets_ILinks__0__Platform_Collections_Stacks_IStack__0__
+  commentId: M:Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Collections.Stacks.IStack{`0})
+  name.vb: LeftSequenceWalker(ILinks(Of TLink), IStack(Of TLink))
+  fullName: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker<TLink>.LeftSequenceWalker(Platform.Data.Doublets.ILinks<TLink>, Platform.Collections.Stacks.IStack<TLink>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker(Of TLink).LeftSequenceWalker(Platform.Data.Doublets.ILinks(Of TLink), Platform.Collections.Stacks.IStack(Of TLink))
+  nameWithType: LeftSequenceWalker<TLink>.LeftSequenceWalker(ILinks<TLink>, IStack<TLink>)
+  nameWithType.vb: LeftSequenceWalker(Of TLink).LeftSequenceWalker(ILinks(Of TLink), IStack(Of TLink))
 - uid: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker`1.#ctor*
   name: LeftSequenceWalker
   href: api/Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_LeftSequenceWalker_1__ctor_
@@ -6613,15 +6613,14 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker(Of TLink).LeftSequenceWalker
   nameWithType: LeftSequenceWalker<TLink>.LeftSequenceWalker
   nameWithType.vb: LeftSequenceWalker(Of TLink).LeftSequenceWalker
-- uid: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker`1.GetNextElementAfterPop(System.Collections.Generic.IList{`0})
-  name: GetNextElementAfterPop(IList<TLink>)
-  href: api/Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_LeftSequenceWalker_1_GetNextElementAfterPop_System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker`1.GetNextElementAfterPop(System.Collections.Generic.IList{`0})
-  name.vb: GetNextElementAfterPop(IList(Of TLink))
-  fullName: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker<TLink>.GetNextElementAfterPop(System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker(Of TLink).GetNextElementAfterPop(System.Collections.Generic.IList(Of TLink))
-  nameWithType: LeftSequenceWalker<TLink>.GetNextElementAfterPop(IList<TLink>)
-  nameWithType.vb: LeftSequenceWalker(Of TLink).GetNextElementAfterPop(IList(Of TLink))
+- uid: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker`1.GetNextElementAfterPop(`0)
+  name: GetNextElementAfterPop(TLink)
+  href: api/Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_LeftSequenceWalker_1_GetNextElementAfterPop__0_
+  commentId: M:Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker`1.GetNextElementAfterPop(`0)
+  fullName: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker<TLink>.GetNextElementAfterPop(TLink)
+  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker(Of TLink).GetNextElementAfterPop(TLink)
+  nameWithType: LeftSequenceWalker<TLink>.GetNextElementAfterPop(TLink)
+  nameWithType.vb: LeftSequenceWalker(Of TLink).GetNextElementAfterPop(TLink)
 - uid: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker`1.GetNextElementAfterPop*
   name: GetNextElementAfterPop
   href: api/Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_LeftSequenceWalker_1_GetNextElementAfterPop_
@@ -6631,15 +6630,14 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker(Of TLink).GetNextElementAfterPop
   nameWithType: LeftSequenceWalker<TLink>.GetNextElementAfterPop
   nameWithType.vb: LeftSequenceWalker(Of TLink).GetNextElementAfterPop
-- uid: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker`1.GetNextElementAfterPush(System.Collections.Generic.IList{`0})
-  name: GetNextElementAfterPush(IList<TLink>)
-  href: api/Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_LeftSequenceWalker_1_GetNextElementAfterPush_System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker`1.GetNextElementAfterPush(System.Collections.Generic.IList{`0})
-  name.vb: GetNextElementAfterPush(IList(Of TLink))
-  fullName: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker<TLink>.GetNextElementAfterPush(System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker(Of TLink).GetNextElementAfterPush(System.Collections.Generic.IList(Of TLink))
-  nameWithType: LeftSequenceWalker<TLink>.GetNextElementAfterPush(IList<TLink>)
-  nameWithType.vb: LeftSequenceWalker(Of TLink).GetNextElementAfterPush(IList(Of TLink))
+- uid: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker`1.GetNextElementAfterPush(`0)
+  name: GetNextElementAfterPush(TLink)
+  href: api/Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_LeftSequenceWalker_1_GetNextElementAfterPush__0_
+  commentId: M:Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker`1.GetNextElementAfterPush(`0)
+  fullName: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker<TLink>.GetNextElementAfterPush(TLink)
+  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker(Of TLink).GetNextElementAfterPush(TLink)
+  nameWithType: LeftSequenceWalker<TLink>.GetNextElementAfterPush(TLink)
+  nameWithType.vb: LeftSequenceWalker(Of TLink).GetNextElementAfterPush(TLink)
 - uid: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker`1.GetNextElementAfterPush*
   name: GetNextElementAfterPush
   href: api/Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_LeftSequenceWalker_1_GetNextElementAfterPush_
@@ -6676,15 +6674,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker(Of TLink)
   nameWithType: RightSequenceWalker<TLink>
   nameWithType.vb: RightSequenceWalker(Of TLink)
-- uid: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker`1.#ctor(Platform.Data.Doublets.ILinks{`0})
-  name: RightSequenceWalker(ILinks<TLink>)
-  href: api/Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_RightSequenceWalker_1__ctor_Platform_Data_Doublets_ILinks__0__
-  commentId: M:Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker`1.#ctor(Platform.Data.Doublets.ILinks{`0})
-  name.vb: RightSequenceWalker(ILinks(Of TLink))
-  fullName: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker<TLink>.RightSequenceWalker(Platform.Data.Doublets.ILinks<TLink>)
-  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker(Of TLink).RightSequenceWalker(Platform.Data.Doublets.ILinks(Of TLink))
-  nameWithType: RightSequenceWalker<TLink>.RightSequenceWalker(ILinks<TLink>)
-  nameWithType.vb: RightSequenceWalker(Of TLink).RightSequenceWalker(ILinks(Of TLink))
+- uid: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Collections.Stacks.IStack{`0})
+  name: RightSequenceWalker(ILinks<TLink>, IStack<TLink>)
+  href: api/Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_RightSequenceWalker_1__ctor_Platform_Data_Doublets_ILinks__0__Platform_Collections_Stacks_IStack__0__
+  commentId: M:Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Collections.Stacks.IStack{`0})
+  name.vb: RightSequenceWalker(ILinks(Of TLink), IStack(Of TLink))
+  fullName: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker<TLink>.RightSequenceWalker(Platform.Data.Doublets.ILinks<TLink>, Platform.Collections.Stacks.IStack<TLink>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker(Of TLink).RightSequenceWalker(Platform.Data.Doublets.ILinks(Of TLink), Platform.Collections.Stacks.IStack(Of TLink))
+  nameWithType: RightSequenceWalker<TLink>.RightSequenceWalker(ILinks<TLink>, IStack<TLink>)
+  nameWithType.vb: RightSequenceWalker(Of TLink).RightSequenceWalker(ILinks(Of TLink), IStack(Of TLink))
 - uid: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker`1.#ctor*
   name: RightSequenceWalker
   href: api/Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_RightSequenceWalker_1__ctor_
@@ -6694,15 +6692,14 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker(Of TLink).RightSequenceWalker
   nameWithType: RightSequenceWalker<TLink>.RightSequenceWalker
   nameWithType.vb: RightSequenceWalker(Of TLink).RightSequenceWalker
-- uid: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker`1.GetNextElementAfterPop(System.Collections.Generic.IList{`0})
-  name: GetNextElementAfterPop(IList<TLink>)
-  href: api/Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_RightSequenceWalker_1_GetNextElementAfterPop_System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker`1.GetNextElementAfterPop(System.Collections.Generic.IList{`0})
-  name.vb: GetNextElementAfterPop(IList(Of TLink))
-  fullName: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker<TLink>.GetNextElementAfterPop(System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker(Of TLink).GetNextElementAfterPop(System.Collections.Generic.IList(Of TLink))
-  nameWithType: RightSequenceWalker<TLink>.GetNextElementAfterPop(IList<TLink>)
-  nameWithType.vb: RightSequenceWalker(Of TLink).GetNextElementAfterPop(IList(Of TLink))
+- uid: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker`1.GetNextElementAfterPop(`0)
+  name: GetNextElementAfterPop(TLink)
+  href: api/Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_RightSequenceWalker_1_GetNextElementAfterPop__0_
+  commentId: M:Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker`1.GetNextElementAfterPop(`0)
+  fullName: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker<TLink>.GetNextElementAfterPop(TLink)
+  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker(Of TLink).GetNextElementAfterPop(TLink)
+  nameWithType: RightSequenceWalker<TLink>.GetNextElementAfterPop(TLink)
+  nameWithType.vb: RightSequenceWalker(Of TLink).GetNextElementAfterPop(TLink)
 - uid: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker`1.GetNextElementAfterPop*
   name: GetNextElementAfterPop
   href: api/Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_RightSequenceWalker_1_GetNextElementAfterPop_
@@ -6712,15 +6709,14 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker(Of TLink).GetNextElementAfterPop
   nameWithType: RightSequenceWalker<TLink>.GetNextElementAfterPop
   nameWithType.vb: RightSequenceWalker(Of TLink).GetNextElementAfterPop
-- uid: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker`1.GetNextElementAfterPush(System.Collections.Generic.IList{`0})
-  name: GetNextElementAfterPush(IList<TLink>)
-  href: api/Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_RightSequenceWalker_1_GetNextElementAfterPush_System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker`1.GetNextElementAfterPush(System.Collections.Generic.IList{`0})
-  name.vb: GetNextElementAfterPush(IList(Of TLink))
-  fullName: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker<TLink>.GetNextElementAfterPush(System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker(Of TLink).GetNextElementAfterPush(System.Collections.Generic.IList(Of TLink))
-  nameWithType: RightSequenceWalker<TLink>.GetNextElementAfterPush(IList<TLink>)
-  nameWithType.vb: RightSequenceWalker(Of TLink).GetNextElementAfterPush(IList(Of TLink))
+- uid: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker`1.GetNextElementAfterPush(`0)
+  name: GetNextElementAfterPush(TLink)
+  href: api/Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_RightSequenceWalker_1_GetNextElementAfterPush__0_
+  commentId: M:Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker`1.GetNextElementAfterPush(`0)
+  fullName: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker<TLink>.GetNextElementAfterPush(TLink)
+  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker(Of TLink).GetNextElementAfterPush(TLink)
+  nameWithType: RightSequenceWalker<TLink>.GetNextElementAfterPush(TLink)
+  nameWithType.vb: RightSequenceWalker(Of TLink).GetNextElementAfterPush(TLink)
 - uid: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker`1.GetNextElementAfterPush*
   name: GetNextElementAfterPush
   href: api/Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_RightSequenceWalker_1_GetNextElementAfterPush_
@@ -6757,15 +6753,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase(Of TLink)
   nameWithType: SequenceWalkerBase<TLink>
   nameWithType.vb: SequenceWalkerBase(Of TLink)
-- uid: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase`1.#ctor(Platform.Data.Doublets.ILinks{`0})
-  name: SequenceWalkerBase(ILinks<TLink>)
-  href: api/Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase-1.html#Platform_Data_Doublets_Sequences_Walkers_SequenceWalkerBase_1__ctor_Platform_Data_Doublets_ILinks__0__
-  commentId: M:Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase`1.#ctor(Platform.Data.Doublets.ILinks{`0})
-  name.vb: SequenceWalkerBase(ILinks(Of TLink))
-  fullName: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase<TLink>.SequenceWalkerBase(Platform.Data.Doublets.ILinks<TLink>)
-  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase(Of TLink).SequenceWalkerBase(Platform.Data.Doublets.ILinks(Of TLink))
-  nameWithType: SequenceWalkerBase<TLink>.SequenceWalkerBase(ILinks<TLink>)
-  nameWithType.vb: SequenceWalkerBase(Of TLink).SequenceWalkerBase(ILinks(Of TLink))
+- uid: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Collections.Stacks.IStack{`0})
+  name: SequenceWalkerBase(ILinks<TLink>, IStack<TLink>)
+  href: api/Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase-1.html#Platform_Data_Doublets_Sequences_Walkers_SequenceWalkerBase_1__ctor_Platform_Data_Doublets_ILinks__0__Platform_Collections_Stacks_IStack__0__
+  commentId: M:Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Collections.Stacks.IStack{`0})
+  name.vb: SequenceWalkerBase(ILinks(Of TLink), IStack(Of TLink))
+  fullName: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase<TLink>.SequenceWalkerBase(Platform.Data.Doublets.ILinks<TLink>, Platform.Collections.Stacks.IStack<TLink>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase(Of TLink).SequenceWalkerBase(Platform.Data.Doublets.ILinks(Of TLink), Platform.Collections.Stacks.IStack(Of TLink))
+  nameWithType: SequenceWalkerBase<TLink>.SequenceWalkerBase(ILinks<TLink>, IStack<TLink>)
+  nameWithType.vb: SequenceWalkerBase(Of TLink).SequenceWalkerBase(ILinks(Of TLink), IStack(Of TLink))
 - uid: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase`1.#ctor*
   name: SequenceWalkerBase
   href: api/Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase-1.html#Platform_Data_Doublets_Sequences_Walkers_SequenceWalkerBase_1__ctor_
@@ -6775,15 +6771,14 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase(Of TLink).SequenceWalkerBase
   nameWithType: SequenceWalkerBase<TLink>.SequenceWalkerBase
   nameWithType.vb: SequenceWalkerBase(Of TLink).SequenceWalkerBase
-- uid: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase`1.GetNextElementAfterPop(System.Collections.Generic.IList{`0})
-  name: GetNextElementAfterPop(IList<TLink>)
-  href: api/Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase-1.html#Platform_Data_Doublets_Sequences_Walkers_SequenceWalkerBase_1_GetNextElementAfterPop_System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase`1.GetNextElementAfterPop(System.Collections.Generic.IList{`0})
-  name.vb: GetNextElementAfterPop(IList(Of TLink))
-  fullName: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase<TLink>.GetNextElementAfterPop(System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase(Of TLink).GetNextElementAfterPop(System.Collections.Generic.IList(Of TLink))
-  nameWithType: SequenceWalkerBase<TLink>.GetNextElementAfterPop(IList<TLink>)
-  nameWithType.vb: SequenceWalkerBase(Of TLink).GetNextElementAfterPop(IList(Of TLink))
+- uid: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase`1.GetNextElementAfterPop(`0)
+  name: GetNextElementAfterPop(TLink)
+  href: api/Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase-1.html#Platform_Data_Doublets_Sequences_Walkers_SequenceWalkerBase_1_GetNextElementAfterPop__0_
+  commentId: M:Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase`1.GetNextElementAfterPop(`0)
+  fullName: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase<TLink>.GetNextElementAfterPop(TLink)
+  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase(Of TLink).GetNextElementAfterPop(TLink)
+  nameWithType: SequenceWalkerBase<TLink>.GetNextElementAfterPop(TLink)
+  nameWithType.vb: SequenceWalkerBase(Of TLink).GetNextElementAfterPop(TLink)
 - uid: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase`1.GetNextElementAfterPop*
   name: GetNextElementAfterPop
   href: api/Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase-1.html#Platform_Data_Doublets_Sequences_Walkers_SequenceWalkerBase_1_GetNextElementAfterPop_
@@ -6793,15 +6788,14 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase(Of TLink).GetNextElementAfterPop
   nameWithType: SequenceWalkerBase<TLink>.GetNextElementAfterPop
   nameWithType.vb: SequenceWalkerBase(Of TLink).GetNextElementAfterPop
-- uid: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase`1.GetNextElementAfterPush(System.Collections.Generic.IList{`0})
-  name: GetNextElementAfterPush(IList<TLink>)
-  href: api/Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase-1.html#Platform_Data_Doublets_Sequences_Walkers_SequenceWalkerBase_1_GetNextElementAfterPush_System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase`1.GetNextElementAfterPush(System.Collections.Generic.IList{`0})
-  name.vb: GetNextElementAfterPush(IList(Of TLink))
-  fullName: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase<TLink>.GetNextElementAfterPush(System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase(Of TLink).GetNextElementAfterPush(System.Collections.Generic.IList(Of TLink))
-  nameWithType: SequenceWalkerBase<TLink>.GetNextElementAfterPush(IList<TLink>)
-  nameWithType.vb: SequenceWalkerBase(Of TLink).GetNextElementAfterPush(IList(Of TLink))
+- uid: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase`1.GetNextElementAfterPush(`0)
+  name: GetNextElementAfterPush(TLink)
+  href: api/Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase-1.html#Platform_Data_Doublets_Sequences_Walkers_SequenceWalkerBase_1_GetNextElementAfterPush__0_
+  commentId: M:Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase`1.GetNextElementAfterPush(`0)
+  fullName: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase<TLink>.GetNextElementAfterPush(TLink)
+  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase(Of TLink).GetNextElementAfterPush(TLink)
+  nameWithType: SequenceWalkerBase<TLink>.GetNextElementAfterPush(TLink)
+  nameWithType.vb: SequenceWalkerBase(Of TLink).GetNextElementAfterPush(TLink)
 - uid: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase`1.GetNextElementAfterPush*
   name: GetNextElementAfterPush
   href: api/Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase-1.html#Platform_Data_Doublets_Sequences_Walkers_SequenceWalkerBase_1_GetNextElementAfterPush_
