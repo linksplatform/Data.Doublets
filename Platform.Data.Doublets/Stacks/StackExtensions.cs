@@ -8,7 +8,5 @@
             var stack = links.Update(stackPoint, stackMarker, stackPoint);
             return stack;
         }
-
-        public static void DeleteStack<TLink>(this ILinks<TLink> links, TLink stack) => links.Delete(stack);
     }
 }

@@ -8,9 +8,7 @@ namespace Platform.Data.Doublets.PropertyOperators
     {
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
 
-        public DefaultLinkPropertyOperator(ILinks<TLink> links) : base(links)
-        {
-        }
+        public DefaultLinkPropertyOperator(ILinks<TLink> links) : base(links) { }
 
         public TLink GetValue(TLink @object, TLink property)
         {
@@ -24,8 +22,7 @@ namespace Platform.Data.Doublets.PropertyOperators
             {
                 return default;
             }
-            var value = Links.GetTarget(valueLink[Links.Constants.IndexPart]);
-            return value;
+            return Links.GetTarget(valueLink[Links.Constants.IndexPart]);
         }
 
         public void SetValue(TLink @object, TLink property, TLink value)
