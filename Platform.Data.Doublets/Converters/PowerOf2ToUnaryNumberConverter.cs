@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Platform.Exceptions;
 using Platform.Interfaces;
+using Platform.Ranges;
 
 namespace Platform.Data.Doublets.Converters
 {
@@ -18,10 +20,7 @@ namespace Platform.Data.Doublets.Converters
 
         public TLink Convert(int power)
         {
-            if (power < 0 || power >= _unaryNumberPowersOf2.Length)
-            {
-                throw new ArgumentOutOfRangeException(nameof(power));
-            }
+            Ensure.Always.ArgumentInRange(power, new Range<int>(0, _unaryNumberPowersOf2.Length - 1), nameof(power));
             if (!_equalityComparer.Equals(_unaryNumberPowersOf2[power], default))
             {
                 return _unaryNumberPowersOf2[power];
