@@ -1,48 +1,49 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Platform.Collections.Stacks;
 using Platform.Data.Sequences;
 
 namespace Platform.Data.Doublets.Sequences.Walkers
 {
     public abstract class SequenceWalkerBase<TLink> : LinksOperatorBase<TLink>, ISequenceWalker<TLink>
     {
-        // TODO: Use IStack indead of System.Collections.Generic.Stack, but IStack should contain IsEmpty property
-        private readonly Stack<IList<TLink>> _stack;
+        private readonly IStack<TLink> _stack;
 
-        protected SequenceWalkerBase(ILinks<TLink> links) : base(links) => _stack = new Stack<IList<TLink>>();
+        protected SequenceWalkerBase(ILinks<TLink> links, IStack<TLink> stack) : base(links) => _stack = stack;
 
         public IEnumerable<IList<TLink>> Walk(TLink sequence)
         {
-            if (_stack.Count > 0)
+            _stack.Clear();
+            var element = sequence;
+            var elementValues = Links.GetLink(element);
+            if (IsElement(elementValues))
             {
-                _stack.Clear(); // This can be replaced with while(!_stack.IsEmpty) _stack.Pop()
-            }
-            var element = Links.GetLink(sequence);
-            if (IsElement(element))
-            {
-                yield return element;
+                yield return elementValues;
             }
             else
             {
                 while (true)
                 {
-                    if (IsElement(element))
+                    if (IsElement(elementValues))
                     {
-                        if (_stack.Count == 0)
+                        if (_stack.IsEmpty)
                         {
                             break;
                         }
                         element = _stack.Pop();
-                        foreach (var output in WalkContents(element))
+                        elementValues = Links.GetLink(element);
+                        foreach (var output in WalkContents(elementValues))
                         {
                             yield return output;
                         }
                         element = GetNextElementAfterPop(element);
+                        elementValues = Links.GetLink(element);
                     }
                     else
                     {
                         _stack.Push(element);
                         element = GetNextElementAfterPush(element);
+                        elementValues = Links.GetLink(element);
                     }
                 }
             }
@@ -52,10 +53,10 @@ namespace Platform.Data.Doublets.Sequences.Walkers
         protected virtual bool IsElement(IList<TLink> elementLink) => Point<TLink>.IsPartialPointUnchecked(elementLink);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected abstract IList<TLink> GetNextElementAfterPop(IList<TLink> element);
+        protected abstract TLink GetNextElementAfterPop(TLink element);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected abstract IList<TLink> GetNextElementAfterPush(IList<TLink> element);
+        protected abstract TLink GetNextElementAfterPush(TLink element);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected abstract IEnumerable<IList<TLink>> WalkContents(IList<TLink> element);

@@ -1,17 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Platform.Collections.Stacks;
 
 namespace Platform.Data.Doublets.Sequences.Walkers
 {
     public class LeftSequenceWalker<TLink> : SequenceWalkerBase<TLink>
     {
-        public LeftSequenceWalker(ILinks<TLink> links) : base(links) { }
+        public LeftSequenceWalker(ILinks<TLink> links, IStack<TLink> stack) : base(links, stack) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override IList<TLink> GetNextElementAfterPop(IList<TLink> element) => Links.GetLink(Links.GetSource(element));
+        protected override TLink GetNextElementAfterPop(TLink element) => Links.GetSource(element);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override IList<TLink> GetNextElementAfterPush(IList<TLink> element) => Links.GetLink(Links.GetTarget(element));
+        protected override TLink GetNextElementAfterPush(TLink element) => Links.GetTarget(element);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override IEnumerable<IList<TLink>> WalkContents(IList<TLink> element)

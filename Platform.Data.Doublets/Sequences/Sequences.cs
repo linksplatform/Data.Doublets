@@ -10,6 +10,7 @@ using LinkIndex = System.UInt64;
 using Platform.Data.Constants;
 using Platform.Data.Sequences;
 using Platform.Data.Doublets.Sequences.Walkers;
+using Platform.Collections.Stacks;
 
 namespace Platform.Data.Doublets.Sequences
 {
@@ -548,7 +549,7 @@ namespace Platform.Data.Doublets.Sequences
             return Sync.ExecuteReadOperation(() =>
             {
                 var links = Links.Unsync;
-                var walker = new RightSequenceWalker<ulong>(links);
+                var walker = new RightSequenceWalker<ulong>(links, new DefaultStack<ulong>());
                 foreach (var part in walker.Walk(sequence))
                 {
                     if (!handler(links.GetIndex(part)))
@@ -571,7 +572,7 @@ namespace Platform.Data.Doublets.Sequences
             private int _filterPosition;
 
             public Matcher(Sequences sequences, IList<LinkIndex> patternSequence, HashSet<LinkIndex> results, Func<LinkIndex, bool> stopableHandler, HashSet<LinkIndex> readAsElements = null)
-                : base(sequences.Links.Unsync)
+                : base(sequences.Links.Unsync, new DefaultStack<ulong>())
             {
                 _sequences = sequences;
                 _patternSequence = patternSequence;

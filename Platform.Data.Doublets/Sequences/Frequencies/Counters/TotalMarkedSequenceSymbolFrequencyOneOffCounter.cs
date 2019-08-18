@@ -7,7 +7,8 @@ namespace Platform.Data.Doublets.Sequences.Frequencies.Counters
     {
         private readonly ICriterionMatcher<TLink> _markedSequenceMatcher;
 
-        public TotalMarkedSequenceSymbolFrequencyOneOffCounter(ILinks<TLink> links, ICriterionMatcher<TLink> markedSequenceMatcher, TLink symbol) : base(links, symbol)
+        public TotalMarkedSequenceSymbolFrequencyOneOffCounter(ILinks<TLink> links, ICriterionMatcher<TLink> markedSequenceMatcher, TLink symbol) 
+            : base(links, symbol)
             => _markedSequenceMatcher = markedSequenceMatcher;
 
         protected override void CountSequenceSymbolFrequency(TLink link)

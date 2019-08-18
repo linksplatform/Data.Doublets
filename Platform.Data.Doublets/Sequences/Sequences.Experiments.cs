@@ -5,11 +5,11 @@ using Stack = System.Collections.Generic.Stack<ulong>;
 using System.Linq;
 using System.Text;
 using Platform.Collections;
-using Platform.Numbers;
 using Platform.Data.Exceptions;
 using Platform.Data.Sequences;
 using Platform.Data.Doublets.Sequences.Frequencies.Counters;
 using Platform.Data.Doublets.Sequences.Walkers;
+using Platform.Collections.Stacks;
 
 namespace Platform.Data.Doublets.Sequences
 {
@@ -1674,7 +1674,7 @@ namespace Platform.Data.Doublets.Sequences
             #endregion
 
             public PatternMatcher(Sequences sequences, LinkIndex[] patternSequence, HashSet<LinkIndex> results)
-                : base(sequences.Links.Unsync)
+                : base(sequences.Links.Unsync, new DefaultStack<ulong>())
             {
                 _sequences = sequences;
                 _patternSequence = patternSequence;

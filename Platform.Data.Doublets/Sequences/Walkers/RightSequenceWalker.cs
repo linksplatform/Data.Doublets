@@ -1,17 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Platform.Collections.Stacks;
 
 namespace Platform.Data.Doublets.Sequences.Walkers
 {
     public class RightSequenceWalker<TLink> : SequenceWalkerBase<TLink>
     {
-        public RightSequenceWalker(ILinks<TLink> links) : base(links) { }
+        public RightSequenceWalker(ILinks<TLink> links, IStack<TLink> stack) : base(links, stack) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override IList<TLink> GetNextElementAfterPop(IList<TLink> element) => Links.GetLink(Links.GetTarget(element));
+        protected override TLink GetNextElementAfterPop(TLink element) => Links.GetTarget(element);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override IList<TLink> GetNextElementAfterPush(IList<TLink> element) => Links.GetLink(Links.GetSource(element));
+        protected override TLink GetNextElementAfterPush(TLink element) => Links.GetSource(element);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override IEnumerable<IList<TLink>> WalkContents(IList<TLink> element)
