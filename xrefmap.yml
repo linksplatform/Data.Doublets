@@ -660,104 +660,104 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of T).Update
   nameWithType: LinksDisposableDecoratorBase<T>.Update
   nameWithType.vb: LinksDisposableDecoratorBase(Of T).Update
-- uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator`1
-  name: LinksInnerReferenceValidator<TLink>
-  href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator-1.html
-  commentId: T:Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator`1
-  name.vb: LinksInnerReferenceValidator(Of TLink)
-  fullName: Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator<TLink>
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator(Of TLink)
-  nameWithType: LinksInnerReferenceValidator<TLink>
-  nameWithType.vb: LinksInnerReferenceValidator(Of TLink)
-- uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator`1.#ctor(Platform.Data.Doublets.ILinks{`0})
-  name: LinksInnerReferenceValidator(ILinks<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceValidator_1__ctor_Platform_Data_Doublets_ILinks__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator`1.#ctor(Platform.Data.Doublets.ILinks{`0})
-  name.vb: LinksInnerReferenceValidator(ILinks(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator<TLink>.LinksInnerReferenceValidator(Platform.Data.Doublets.ILinks<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator(Of TLink).LinksInnerReferenceValidator(Platform.Data.Doublets.ILinks(Of TLink))
-  nameWithType: LinksInnerReferenceValidator<TLink>.LinksInnerReferenceValidator(ILinks<TLink>)
-  nameWithType.vb: LinksInnerReferenceValidator(Of TLink).LinksInnerReferenceValidator(ILinks(Of TLink))
-- uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator`1.#ctor*
-  name: LinksInnerReferenceValidator
-  href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceValidator_1__ctor_
-  commentId: Overload:Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator`1.#ctor
+- uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1
+  name: LinksInnerReferenceExistenceValidator<TLink>
+  href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator-1.html
+  commentId: T:Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1
+  name.vb: LinksInnerReferenceExistenceValidator(Of TLink)
+  fullName: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator<TLink>
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator(Of TLink)
+  nameWithType: LinksInnerReferenceExistenceValidator<TLink>
+  nameWithType.vb: LinksInnerReferenceExistenceValidator(Of TLink)
+- uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.#ctor(Platform.Data.Doublets.ILinks{`0})
+  name: LinksInnerReferenceExistenceValidator(ILinks<TLink>)
+  href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceExistenceValidator_1__ctor_Platform_Data_Doublets_ILinks__0__
+  commentId: M:Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.#ctor(Platform.Data.Doublets.ILinks{`0})
+  name.vb: LinksInnerReferenceExistenceValidator(ILinks(Of TLink))
+  fullName: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator<TLink>.LinksInnerReferenceExistenceValidator(Platform.Data.Doublets.ILinks<TLink>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator(Of TLink).LinksInnerReferenceExistenceValidator(Platform.Data.Doublets.ILinks(Of TLink))
+  nameWithType: LinksInnerReferenceExistenceValidator<TLink>.LinksInnerReferenceExistenceValidator(ILinks<TLink>)
+  nameWithType.vb: LinksInnerReferenceExistenceValidator(Of TLink).LinksInnerReferenceExistenceValidator(ILinks(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.#ctor*
+  name: LinksInnerReferenceExistenceValidator
+  href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceExistenceValidator_1__ctor_
+  commentId: Overload:Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.#ctor
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator<TLink>.LinksInnerReferenceValidator
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator(Of TLink).LinksInnerReferenceValidator
-  nameWithType: LinksInnerReferenceValidator<TLink>.LinksInnerReferenceValidator
-  nameWithType.vb: LinksInnerReferenceValidator(Of TLink).LinksInnerReferenceValidator
-- uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator`1.Count(System.Collections.Generic.IList{`0})
+  fullName: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator<TLink>.LinksInnerReferenceExistenceValidator
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator(Of TLink).LinksInnerReferenceExistenceValidator
+  nameWithType: LinksInnerReferenceExistenceValidator<TLink>.LinksInnerReferenceExistenceValidator
+  nameWithType.vb: LinksInnerReferenceExistenceValidator(Of TLink).LinksInnerReferenceExistenceValidator
+- uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Count(System.Collections.Generic.IList{`0})
   name: Count(IList<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceValidator_1_Count_System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator`1.Count(System.Collections.Generic.IList{`0})
+  href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceExistenceValidator_1_Count_System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Count(System.Collections.Generic.IList{`0})
   name.vb: Count(IList(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator<TLink>.Count(System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator(Of TLink).Count(System.Collections.Generic.IList(Of TLink))
-  nameWithType: LinksInnerReferenceValidator<TLink>.Count(IList<TLink>)
-  nameWithType.vb: LinksInnerReferenceValidator(Of TLink).Count(IList(Of TLink))
-- uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator`1.Count*
+  fullName: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator<TLink>.Count(System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator(Of TLink).Count(System.Collections.Generic.IList(Of TLink))
+  nameWithType: LinksInnerReferenceExistenceValidator<TLink>.Count(IList<TLink>)
+  nameWithType.vb: LinksInnerReferenceExistenceValidator(Of TLink).Count(IList(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Count*
   name: Count
-  href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceValidator_1_Count_
-  commentId: Overload:Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator`1.Count
+  href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceExistenceValidator_1_Count_
+  commentId: Overload:Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Count
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator<TLink>.Count
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator(Of TLink).Count
-  nameWithType: LinksInnerReferenceValidator<TLink>.Count
-  nameWithType.vb: LinksInnerReferenceValidator(Of TLink).Count
-- uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator`1.Delete(`0)
+  fullName: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator<TLink>.Count
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator(Of TLink).Count
+  nameWithType: LinksInnerReferenceExistenceValidator<TLink>.Count
+  nameWithType.vb: LinksInnerReferenceExistenceValidator(Of TLink).Count
+- uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Delete(`0)
   name: Delete(TLink)
-  href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceValidator_1_Delete__0_
-  commentId: M:Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator`1.Delete(`0)
-  fullName: Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator<TLink>.Delete(TLink)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator(Of TLink).Delete(TLink)
-  nameWithType: LinksInnerReferenceValidator<TLink>.Delete(TLink)
-  nameWithType.vb: LinksInnerReferenceValidator(Of TLink).Delete(TLink)
-- uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator`1.Delete*
+  href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceExistenceValidator_1_Delete__0_
+  commentId: M:Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Delete(`0)
+  fullName: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator<TLink>.Delete(TLink)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator(Of TLink).Delete(TLink)
+  nameWithType: LinksInnerReferenceExistenceValidator<TLink>.Delete(TLink)
+  nameWithType.vb: LinksInnerReferenceExistenceValidator(Of TLink).Delete(TLink)
+- uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Delete*
   name: Delete
-  href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceValidator_1_Delete_
-  commentId: Overload:Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator`1.Delete
+  href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceExistenceValidator_1_Delete_
+  commentId: Overload:Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Delete
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator<TLink>.Delete
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator(Of TLink).Delete
-  nameWithType: LinksInnerReferenceValidator<TLink>.Delete
-  nameWithType.vb: LinksInnerReferenceValidator(Of TLink).Delete
-- uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator`1.Each(System.Func{System.Collections.Generic.IList{`0},`0},System.Collections.Generic.IList{`0})
+  fullName: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator<TLink>.Delete
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator(Of TLink).Delete
+  nameWithType: LinksInnerReferenceExistenceValidator<TLink>.Delete
+  nameWithType.vb: LinksInnerReferenceExistenceValidator(Of TLink).Delete
+- uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Each(System.Func{System.Collections.Generic.IList{`0},`0},System.Collections.Generic.IList{`0})
   name: Each(Func<IList<TLink>, TLink>, IList<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceValidator_1_Each_System_Func_System_Collections_Generic_IList__0___0__System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator`1.Each(System.Func{System.Collections.Generic.IList{`0},`0},System.Collections.Generic.IList{`0})
+  href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceExistenceValidator_1_Each_System_Func_System_Collections_Generic_IList__0___0__System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Each(System.Func{System.Collections.Generic.IList{`0},`0},System.Collections.Generic.IList{`0})
   name.vb: Each(Func(Of IList(Of TLink), TLink), IList(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator<TLink>.Each(System.Func<System.Collections.Generic.IList<TLink>, TLink>, System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator(Of TLink).Each(System.Func(Of System.Collections.Generic.IList(Of TLink), TLink), System.Collections.Generic.IList(Of TLink))
-  nameWithType: LinksInnerReferenceValidator<TLink>.Each(Func<IList<TLink>, TLink>, IList<TLink>)
-  nameWithType.vb: LinksInnerReferenceValidator(Of TLink).Each(Func(Of IList(Of TLink), TLink), IList(Of TLink))
-- uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator`1.Each*
+  fullName: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator<TLink>.Each(System.Func<System.Collections.Generic.IList<TLink>, TLink>, System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator(Of TLink).Each(System.Func(Of System.Collections.Generic.IList(Of TLink), TLink), System.Collections.Generic.IList(Of TLink))
+  nameWithType: LinksInnerReferenceExistenceValidator<TLink>.Each(Func<IList<TLink>, TLink>, IList<TLink>)
+  nameWithType.vb: LinksInnerReferenceExistenceValidator(Of TLink).Each(Func(Of IList(Of TLink), TLink), IList(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Each*
   name: Each
-  href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceValidator_1_Each_
-  commentId: Overload:Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator`1.Each
+  href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceExistenceValidator_1_Each_
+  commentId: Overload:Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Each
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator<TLink>.Each
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator(Of TLink).Each
-  nameWithType: LinksInnerReferenceValidator<TLink>.Each
-  nameWithType.vb: LinksInnerReferenceValidator(Of TLink).Each
-- uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator`1.Update(System.Collections.Generic.IList{`0})
+  fullName: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator<TLink>.Each
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator(Of TLink).Each
+  nameWithType: LinksInnerReferenceExistenceValidator<TLink>.Each
+  nameWithType.vb: LinksInnerReferenceExistenceValidator(Of TLink).Each
+- uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Update(System.Collections.Generic.IList{`0})
   name: Update(IList<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceValidator_1_Update_System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator`1.Update(System.Collections.Generic.IList{`0})
+  href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceExistenceValidator_1_Update_System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Update(System.Collections.Generic.IList{`0})
   name.vb: Update(IList(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator<TLink>.Update(System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator(Of TLink).Update(System.Collections.Generic.IList(Of TLink))
-  nameWithType: LinksInnerReferenceValidator<TLink>.Update(IList<TLink>)
-  nameWithType.vb: LinksInnerReferenceValidator(Of TLink).Update(IList(Of TLink))
-- uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator`1.Update*
+  fullName: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator<TLink>.Update(System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator(Of TLink).Update(System.Collections.Generic.IList(Of TLink))
+  nameWithType: LinksInnerReferenceExistenceValidator<TLink>.Update(IList<TLink>)
+  nameWithType.vb: LinksInnerReferenceExistenceValidator(Of TLink).Update(IList(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Update*
   name: Update
-  href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceValidator_1_Update_
-  commentId: Overload:Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator`1.Update
+  href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceExistenceValidator_1_Update_
+  commentId: Overload:Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Update
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator<TLink>.Update
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator(Of TLink).Update
-  nameWithType: LinksInnerReferenceValidator<TLink>.Update
-  nameWithType.vb: LinksInnerReferenceValidator(Of TLink).Update
+  fullName: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator<TLink>.Update
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator(Of TLink).Update
+  nameWithType: LinksInnerReferenceExistenceValidator<TLink>.Update
+  nameWithType.vb: LinksInnerReferenceExistenceValidator(Of TLink).Update
 - uid: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver`1
   name: LinksItselfConstantToSelfReferenceResolver<TLink>
   href: api/Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver-1.html
