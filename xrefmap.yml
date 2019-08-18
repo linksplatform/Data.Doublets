@@ -3125,7 +3125,16 @@ references:
 - uid: Platform.Data.Doublets.LinksOperatorBase`1.Links
   name: Links
   href: api/Platform.Data.Doublets.LinksOperatorBase-1.html#Platform_Data_Doublets_LinksOperatorBase_1_Links
-  commentId: F:Platform.Data.Doublets.LinksOperatorBase`1.Links
+  commentId: P:Platform.Data.Doublets.LinksOperatorBase`1.Links
+  fullName: Platform.Data.Doublets.LinksOperatorBase<TLink>.Links
+  fullName.vb: Platform.Data.Doublets.LinksOperatorBase(Of TLink).Links
+  nameWithType: LinksOperatorBase<TLink>.Links
+  nameWithType.vb: LinksOperatorBase(Of TLink).Links
+- uid: Platform.Data.Doublets.LinksOperatorBase`1.Links*
+  name: Links
+  href: api/Platform.Data.Doublets.LinksOperatorBase-1.html#Platform_Data_Doublets_LinksOperatorBase_1_Links_
+  commentId: Overload:Platform.Data.Doublets.LinksOperatorBase`1.Links
+  isSpec: "True"
   fullName: Platform.Data.Doublets.LinksOperatorBase<TLink>.Links
   fullName.vb: Platform.Data.Doublets.LinksOperatorBase(Of TLink).Links
   nameWithType: LinksOperatorBase<TLink>.Links
