@@ -758,6 +758,69 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceValidator(Of TLink).Update
   nameWithType: LinksInnerReferenceValidator<TLink>.Update
   nameWithType.vb: LinksInnerReferenceValidator(Of TLink).Update
+- uid: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver`1
+  name: LinksItselfConstantToSelfReferenceResolver<TLink>
+  href: api/Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver-1.html
+  commentId: T:Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver`1
+  name.vb: LinksItselfConstantToSelfReferenceResolver(Of TLink)
+  fullName: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver<TLink>
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver(Of TLink)
+  nameWithType: LinksItselfConstantToSelfReferenceResolver<TLink>
+  nameWithType.vb: LinksItselfConstantToSelfReferenceResolver(Of TLink)
+- uid: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver`1.#ctor(Platform.Data.Doublets.ILinks{`0})
+  name: LinksItselfConstantToSelfReferenceResolver(ILinks<TLink>)
+  href: api/Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksItselfConstantToSelfReferenceResolver_1__ctor_Platform_Data_Doublets_ILinks__0__
+  commentId: M:Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver`1.#ctor(Platform.Data.Doublets.ILinks{`0})
+  name.vb: LinksItselfConstantToSelfReferenceResolver(ILinks(Of TLink))
+  fullName: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver<TLink>.LinksItselfConstantToSelfReferenceResolver(Platform.Data.Doublets.ILinks<TLink>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver(Of TLink).LinksItselfConstantToSelfReferenceResolver(Platform.Data.Doublets.ILinks(Of TLink))
+  nameWithType: LinksItselfConstantToSelfReferenceResolver<TLink>.LinksItselfConstantToSelfReferenceResolver(ILinks<TLink>)
+  nameWithType.vb: LinksItselfConstantToSelfReferenceResolver(Of TLink).LinksItselfConstantToSelfReferenceResolver(ILinks(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver`1.#ctor*
+  name: LinksItselfConstantToSelfReferenceResolver
+  href: api/Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksItselfConstantToSelfReferenceResolver_1__ctor_
+  commentId: Overload:Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver`1.#ctor
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver<TLink>.LinksItselfConstantToSelfReferenceResolver
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver(Of TLink).LinksItselfConstantToSelfReferenceResolver
+  nameWithType: LinksItselfConstantToSelfReferenceResolver<TLink>.LinksItselfConstantToSelfReferenceResolver
+  nameWithType.vb: LinksItselfConstantToSelfReferenceResolver(Of TLink).LinksItselfConstantToSelfReferenceResolver
+- uid: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver`1.Each(System.Func{System.Collections.Generic.IList{`0},`0},System.Collections.Generic.IList{`0})
+  name: Each(Func<IList<TLink>, TLink>, IList<TLink>)
+  href: api/Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksItselfConstantToSelfReferenceResolver_1_Each_System_Func_System_Collections_Generic_IList__0___0__System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver`1.Each(System.Func{System.Collections.Generic.IList{`0},`0},System.Collections.Generic.IList{`0})
+  name.vb: Each(Func(Of IList(Of TLink), TLink), IList(Of TLink))
+  fullName: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver<TLink>.Each(System.Func<System.Collections.Generic.IList<TLink>, TLink>, System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver(Of TLink).Each(System.Func(Of System.Collections.Generic.IList(Of TLink), TLink), System.Collections.Generic.IList(Of TLink))
+  nameWithType: LinksItselfConstantToSelfReferenceResolver<TLink>.Each(Func<IList<TLink>, TLink>, IList<TLink>)
+  nameWithType.vb: LinksItselfConstantToSelfReferenceResolver(Of TLink).Each(Func(Of IList(Of TLink), TLink), IList(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver`1.Each*
+  name: Each
+  href: api/Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksItselfConstantToSelfReferenceResolver_1_Each_
+  commentId: Overload:Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver`1.Each
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver<TLink>.Each
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver(Of TLink).Each
+  nameWithType: LinksItselfConstantToSelfReferenceResolver<TLink>.Each
+  nameWithType.vb: LinksItselfConstantToSelfReferenceResolver(Of TLink).Each
+- uid: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver`1.Update(System.Collections.Generic.IList{`0})
+  name: Update(IList<TLink>)
+  href: api/Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksItselfConstantToSelfReferenceResolver_1_Update_System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver`1.Update(System.Collections.Generic.IList{`0})
+  name.vb: Update(IList(Of TLink))
+  fullName: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver<TLink>.Update(System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver(Of TLink).Update(System.Collections.Generic.IList(Of TLink))
+  nameWithType: LinksItselfConstantToSelfReferenceResolver<TLink>.Update(IList<TLink>)
+  nameWithType.vb: LinksItselfConstantToSelfReferenceResolver(Of TLink).Update(IList(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver`1.Update*
+  name: Update
+  href: api/Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksItselfConstantToSelfReferenceResolver_1_Update_
+  commentId: Overload:Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver`1.Update
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver<TLink>.Update
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver(Of TLink).Update
+  nameWithType: LinksItselfConstantToSelfReferenceResolver<TLink>.Update
+  nameWithType.vb: LinksItselfConstantToSelfReferenceResolver(Of TLink).Update
 - uid: Platform.Data.Doublets.Decorators.LinksNonExistentDependenciesCreator`1
   name: LinksNonExistentDependenciesCreator<TLink>
   href: api/Platform.Data.Doublets.Decorators.LinksNonExistentDependenciesCreator-1.html
@@ -803,131 +866,68 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksNonExistentDependenciesCreator(Of TLink).Update
   nameWithType: LinksNonExistentDependenciesCreator<TLink>.Update
   nameWithType.vb: LinksNonExistentDependenciesCreator(Of TLink).Update
-- uid: Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver`1
-  name: LinksNullToSelfReferenceResolver<TLink>
-  href: api/Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver-1.html
-  commentId: T:Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver`1
-  name.vb: LinksNullToSelfReferenceResolver(Of TLink)
-  fullName: Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver<TLink>
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver(Of TLink)
-  nameWithType: LinksNullToSelfReferenceResolver<TLink>
-  nameWithType.vb: LinksNullToSelfReferenceResolver(Of TLink)
-- uid: Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver`1.#ctor(Platform.Data.Doublets.ILinks{`0})
-  name: LinksNullToSelfReferenceResolver(ILinks<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksNullToSelfReferenceResolver_1__ctor_Platform_Data_Doublets_ILinks__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver`1.#ctor(Platform.Data.Doublets.ILinks{`0})
-  name.vb: LinksNullToSelfReferenceResolver(ILinks(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver<TLink>.LinksNullToSelfReferenceResolver(Platform.Data.Doublets.ILinks<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver(Of TLink).LinksNullToSelfReferenceResolver(Platform.Data.Doublets.ILinks(Of TLink))
-  nameWithType: LinksNullToSelfReferenceResolver<TLink>.LinksNullToSelfReferenceResolver(ILinks<TLink>)
-  nameWithType.vb: LinksNullToSelfReferenceResolver(Of TLink).LinksNullToSelfReferenceResolver(ILinks(Of TLink))
-- uid: Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver`1.#ctor*
-  name: LinksNullToSelfReferenceResolver
-  href: api/Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksNullToSelfReferenceResolver_1__ctor_
-  commentId: Overload:Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver`1.#ctor
+- uid: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver`1
+  name: LinksNullConstantToSelfReferenceResolver<TLink>
+  href: api/Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver-1.html
+  commentId: T:Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver`1
+  name.vb: LinksNullConstantToSelfReferenceResolver(Of TLink)
+  fullName: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver<TLink>
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver(Of TLink)
+  nameWithType: LinksNullConstantToSelfReferenceResolver<TLink>
+  nameWithType.vb: LinksNullConstantToSelfReferenceResolver(Of TLink)
+- uid: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver`1.#ctor(Platform.Data.Doublets.ILinks{`0})
+  name: LinksNullConstantToSelfReferenceResolver(ILinks<TLink>)
+  href: api/Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksNullConstantToSelfReferenceResolver_1__ctor_Platform_Data_Doublets_ILinks__0__
+  commentId: M:Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver`1.#ctor(Platform.Data.Doublets.ILinks{`0})
+  name.vb: LinksNullConstantToSelfReferenceResolver(ILinks(Of TLink))
+  fullName: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver<TLink>.LinksNullConstantToSelfReferenceResolver(Platform.Data.Doublets.ILinks<TLink>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver(Of TLink).LinksNullConstantToSelfReferenceResolver(Platform.Data.Doublets.ILinks(Of TLink))
+  nameWithType: LinksNullConstantToSelfReferenceResolver<TLink>.LinksNullConstantToSelfReferenceResolver(ILinks<TLink>)
+  nameWithType.vb: LinksNullConstantToSelfReferenceResolver(Of TLink).LinksNullConstantToSelfReferenceResolver(ILinks(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver`1.#ctor*
+  name: LinksNullConstantToSelfReferenceResolver
+  href: api/Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksNullConstantToSelfReferenceResolver_1__ctor_
+  commentId: Overload:Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver`1.#ctor
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver<TLink>.LinksNullToSelfReferenceResolver
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver(Of TLink).LinksNullToSelfReferenceResolver
-  nameWithType: LinksNullToSelfReferenceResolver<TLink>.LinksNullToSelfReferenceResolver
-  nameWithType.vb: LinksNullToSelfReferenceResolver(Of TLink).LinksNullToSelfReferenceResolver
-- uid: Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver`1.Create
+  fullName: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver<TLink>.LinksNullConstantToSelfReferenceResolver
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver(Of TLink).LinksNullConstantToSelfReferenceResolver
+  nameWithType: LinksNullConstantToSelfReferenceResolver<TLink>.LinksNullConstantToSelfReferenceResolver
+  nameWithType.vb: LinksNullConstantToSelfReferenceResolver(Of TLink).LinksNullConstantToSelfReferenceResolver
+- uid: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver`1.Create
   name: Create()
-  href: api/Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksNullToSelfReferenceResolver_1_Create
-  commentId: M:Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver`1.Create
-  fullName: Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver<TLink>.Create()
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver(Of TLink).Create()
-  nameWithType: LinksNullToSelfReferenceResolver<TLink>.Create()
-  nameWithType.vb: LinksNullToSelfReferenceResolver(Of TLink).Create()
-- uid: Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver`1.Create*
+  href: api/Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksNullConstantToSelfReferenceResolver_1_Create
+  commentId: M:Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver`1.Create
+  fullName: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver<TLink>.Create()
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver(Of TLink).Create()
+  nameWithType: LinksNullConstantToSelfReferenceResolver<TLink>.Create()
+  nameWithType.vb: LinksNullConstantToSelfReferenceResolver(Of TLink).Create()
+- uid: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver`1.Create*
   name: Create
-  href: api/Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksNullToSelfReferenceResolver_1_Create_
-  commentId: Overload:Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver`1.Create
+  href: api/Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksNullConstantToSelfReferenceResolver_1_Create_
+  commentId: Overload:Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver`1.Create
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver<TLink>.Create
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver(Of TLink).Create
-  nameWithType: LinksNullToSelfReferenceResolver<TLink>.Create
-  nameWithType.vb: LinksNullToSelfReferenceResolver(Of TLink).Create
-- uid: Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver`1.Update(System.Collections.Generic.IList{`0})
+  fullName: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver<TLink>.Create
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver(Of TLink).Create
+  nameWithType: LinksNullConstantToSelfReferenceResolver<TLink>.Create
+  nameWithType.vb: LinksNullConstantToSelfReferenceResolver(Of TLink).Create
+- uid: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver`1.Update(System.Collections.Generic.IList{`0})
   name: Update(IList<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksNullToSelfReferenceResolver_1_Update_System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver`1.Update(System.Collections.Generic.IList{`0})
+  href: api/Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksNullConstantToSelfReferenceResolver_1_Update_System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver`1.Update(System.Collections.Generic.IList{`0})
   name.vb: Update(IList(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver<TLink>.Update(System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver(Of TLink).Update(System.Collections.Generic.IList(Of TLink))
-  nameWithType: LinksNullToSelfReferenceResolver<TLink>.Update(IList<TLink>)
-  nameWithType.vb: LinksNullToSelfReferenceResolver(Of TLink).Update(IList(Of TLink))
-- uid: Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver`1.Update*
+  fullName: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver<TLink>.Update(System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver(Of TLink).Update(System.Collections.Generic.IList(Of TLink))
+  nameWithType: LinksNullConstantToSelfReferenceResolver<TLink>.Update(IList<TLink>)
+  nameWithType.vb: LinksNullConstantToSelfReferenceResolver(Of TLink).Update(IList(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver`1.Update*
   name: Update
-  href: api/Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksNullToSelfReferenceResolver_1_Update_
-  commentId: Overload:Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver`1.Update
+  href: api/Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksNullConstantToSelfReferenceResolver_1_Update_
+  commentId: Overload:Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver`1.Update
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver<TLink>.Update
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksNullToSelfReferenceResolver(Of TLink).Update
-  nameWithType: LinksNullToSelfReferenceResolver<TLink>.Update
-  nameWithType.vb: LinksNullToSelfReferenceResolver(Of TLink).Update
-- uid: Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver`1
-  name: LinksSelfReferenceResolver<TLink>
-  href: api/Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver-1.html
-  commentId: T:Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver`1
-  name.vb: LinksSelfReferenceResolver(Of TLink)
-  fullName: Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver<TLink>
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver(Of TLink)
-  nameWithType: LinksSelfReferenceResolver<TLink>
-  nameWithType.vb: LinksSelfReferenceResolver(Of TLink)
-- uid: Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver`1.#ctor(Platform.Data.Doublets.ILinks{`0})
-  name: LinksSelfReferenceResolver(ILinks<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksSelfReferenceResolver_1__ctor_Platform_Data_Doublets_ILinks__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver`1.#ctor(Platform.Data.Doublets.ILinks{`0})
-  name.vb: LinksSelfReferenceResolver(ILinks(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver<TLink>.LinksSelfReferenceResolver(Platform.Data.Doublets.ILinks<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver(Of TLink).LinksSelfReferenceResolver(Platform.Data.Doublets.ILinks(Of TLink))
-  nameWithType: LinksSelfReferenceResolver<TLink>.LinksSelfReferenceResolver(ILinks<TLink>)
-  nameWithType.vb: LinksSelfReferenceResolver(Of TLink).LinksSelfReferenceResolver(ILinks(Of TLink))
-- uid: Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver`1.#ctor*
-  name: LinksSelfReferenceResolver
-  href: api/Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksSelfReferenceResolver_1__ctor_
-  commentId: Overload:Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver`1.#ctor
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver<TLink>.LinksSelfReferenceResolver
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver(Of TLink).LinksSelfReferenceResolver
-  nameWithType: LinksSelfReferenceResolver<TLink>.LinksSelfReferenceResolver
-  nameWithType.vb: LinksSelfReferenceResolver(Of TLink).LinksSelfReferenceResolver
-- uid: Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver`1.Each(System.Func{System.Collections.Generic.IList{`0},`0},System.Collections.Generic.IList{`0})
-  name: Each(Func<IList<TLink>, TLink>, IList<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksSelfReferenceResolver_1_Each_System_Func_System_Collections_Generic_IList__0___0__System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver`1.Each(System.Func{System.Collections.Generic.IList{`0},`0},System.Collections.Generic.IList{`0})
-  name.vb: Each(Func(Of IList(Of TLink), TLink), IList(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver<TLink>.Each(System.Func<System.Collections.Generic.IList<TLink>, TLink>, System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver(Of TLink).Each(System.Func(Of System.Collections.Generic.IList(Of TLink), TLink), System.Collections.Generic.IList(Of TLink))
-  nameWithType: LinksSelfReferenceResolver<TLink>.Each(Func<IList<TLink>, TLink>, IList<TLink>)
-  nameWithType.vb: LinksSelfReferenceResolver(Of TLink).Each(Func(Of IList(Of TLink), TLink), IList(Of TLink))
-- uid: Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver`1.Each*
-  name: Each
-  href: api/Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksSelfReferenceResolver_1_Each_
-  commentId: Overload:Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver`1.Each
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver<TLink>.Each
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver(Of TLink).Each
-  nameWithType: LinksSelfReferenceResolver<TLink>.Each
-  nameWithType.vb: LinksSelfReferenceResolver(Of TLink).Each
-- uid: Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver`1.Update(System.Collections.Generic.IList{`0})
-  name: Update(IList<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksSelfReferenceResolver_1_Update_System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver`1.Update(System.Collections.Generic.IList{`0})
-  name.vb: Update(IList(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver<TLink>.Update(System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver(Of TLink).Update(System.Collections.Generic.IList(Of TLink))
-  nameWithType: LinksSelfReferenceResolver<TLink>.Update(IList<TLink>)
-  nameWithType.vb: LinksSelfReferenceResolver(Of TLink).Update(IList(Of TLink))
-- uid: Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver`1.Update*
-  name: Update
-  href: api/Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksSelfReferenceResolver_1_Update_
-  commentId: Overload:Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver`1.Update
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver<TLink>.Update
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksSelfReferenceResolver(Of TLink).Update
-  nameWithType: LinksSelfReferenceResolver<TLink>.Update
-  nameWithType.vb: LinksSelfReferenceResolver(Of TLink).Update
+  fullName: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver<TLink>.Update
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver(Of TLink).Update
+  nameWithType: LinksNullConstantToSelfReferenceResolver<TLink>.Update
+  nameWithType.vb: LinksNullConstantToSelfReferenceResolver(Of TLink).Update
 - uid: Platform.Data.Doublets.Decorators.LinksUniquenessResolver`1
   name: LinksUniquenessResolver<TLink>
   href: api/Platform.Data.Doublets.Decorators.LinksUniquenessResolver-1.html
@@ -2333,6 +2333,22 @@ references:
   fullName.vb: Platform.Data.Doublets.ILinksExtensions.ResetValues(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink)
   nameWithType: ILinksExtensions.ResetValues<TLink>(ILinks<TLink>, TLink)
   nameWithType.vb: ILinksExtensions.ResetValues(Of TLink)(ILinks(Of TLink), TLink)
+- uid: Platform.Data.Doublets.ILinksExtensions.ResolveConstantAsSelfReference*
+  name: ResolveConstantAsSelfReference
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_ResolveConstantAsSelfReference_
+  commentId: Overload:Platform.Data.Doublets.ILinksExtensions.ResolveConstantAsSelfReference
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ILinksExtensions.ResolveConstantAsSelfReference
+  nameWithType: ILinksExtensions.ResolveConstantAsSelfReference
+- uid: Platform.Data.Doublets.ILinksExtensions.ResolveConstantAsSelfReference``1(Platform.Data.Doublets.ILinks{``0},``0,System.Collections.Generic.IList{``0})
+  name: ResolveConstantAsSelfReference<TLink>(ILinks<TLink>, TLink, IList<TLink>)
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_ResolveConstantAsSelfReference__1_Platform_Data_Doublets_ILinks___0____0_System_Collections_Generic_IList___0__
+  commentId: M:Platform.Data.Doublets.ILinksExtensions.ResolveConstantAsSelfReference``1(Platform.Data.Doublets.ILinks{``0},``0,System.Collections.Generic.IList{``0})
+  name.vb: ResolveConstantAsSelfReference(Of TLink)(ILinks(Of TLink), TLink, IList(Of TLink))
+  fullName: Platform.Data.Doublets.ILinksExtensions.ResolveConstantAsSelfReference<TLink>(Platform.Data.Doublets.ILinks<TLink>, TLink, System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.ILinksExtensions.ResolveConstantAsSelfReference(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink, System.Collections.Generic.IList(Of TLink))
+  nameWithType: ILinksExtensions.ResolveConstantAsSelfReference<TLink>(ILinks<TLink>, TLink, IList<TLink>)
+  nameWithType.vb: ILinksExtensions.ResolveConstantAsSelfReference(Of TLink)(ILinks(Of TLink), TLink, IList(Of TLink))
 - uid: Platform.Data.Doublets.ILinksExtensions.RunRandomCreations*
   name: RunRandomCreations
   href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_RunRandomCreations_
