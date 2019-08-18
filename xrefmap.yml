@@ -461,188 +461,188 @@ references:
   nameWithType: LinksDecoratorBase<TLink>.Update
   nameWithType.vb: LinksDecoratorBase(Of TLink).Update
 - uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1
-  name: LinksDisposableDecoratorBase<T>
+  name: LinksDisposableDecoratorBase<TLink>
   href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html
   commentId: T:Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1
-  name.vb: LinksDisposableDecoratorBase(Of T)
-  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<T>
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of T)
-  nameWithType: LinksDisposableDecoratorBase<T>
-  nameWithType.vb: LinksDisposableDecoratorBase(Of T)
+  name.vb: LinksDisposableDecoratorBase(Of TLink)
+  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<TLink>
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of TLink)
+  nameWithType: LinksDisposableDecoratorBase<TLink>
+  nameWithType.vb: LinksDisposableDecoratorBase(Of TLink)
 - uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.#ctor(Platform.Data.Doublets.ILinks{`0})
-  name: LinksDisposableDecoratorBase(ILinks<T>)
+  name: LinksDisposableDecoratorBase(ILinks<TLink>)
   href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1__ctor_Platform_Data_Doublets_ILinks__0__
   commentId: M:Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.#ctor(Platform.Data.Doublets.ILinks{`0})
-  name.vb: LinksDisposableDecoratorBase(ILinks(Of T))
-  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<T>.LinksDisposableDecoratorBase(Platform.Data.Doublets.ILinks<T>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of T).LinksDisposableDecoratorBase(Platform.Data.Doublets.ILinks(Of T))
-  nameWithType: LinksDisposableDecoratorBase<T>.LinksDisposableDecoratorBase(ILinks<T>)
-  nameWithType.vb: LinksDisposableDecoratorBase(Of T).LinksDisposableDecoratorBase(ILinks(Of T))
+  name.vb: LinksDisposableDecoratorBase(ILinks(Of TLink))
+  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<TLink>.LinksDisposableDecoratorBase(Platform.Data.Doublets.ILinks<TLink>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of TLink).LinksDisposableDecoratorBase(Platform.Data.Doublets.ILinks(Of TLink))
+  nameWithType: LinksDisposableDecoratorBase<TLink>.LinksDisposableDecoratorBase(ILinks<TLink>)
+  nameWithType.vb: LinksDisposableDecoratorBase(Of TLink).LinksDisposableDecoratorBase(ILinks(Of TLink))
 - uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.#ctor*
   name: LinksDisposableDecoratorBase
   href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1__ctor_
   commentId: Overload:Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.#ctor
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<T>.LinksDisposableDecoratorBase
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of T).LinksDisposableDecoratorBase
-  nameWithType: LinksDisposableDecoratorBase<T>.LinksDisposableDecoratorBase
-  nameWithType.vb: LinksDisposableDecoratorBase(Of T).LinksDisposableDecoratorBase
+  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<TLink>.LinksDisposableDecoratorBase
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of TLink).LinksDisposableDecoratorBase
+  nameWithType: LinksDisposableDecoratorBase<TLink>.LinksDisposableDecoratorBase
+  nameWithType.vb: LinksDisposableDecoratorBase(Of TLink).LinksDisposableDecoratorBase
 - uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.AllowMultipleDisposeCalls
   name: AllowMultipleDisposeCalls
   href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1_AllowMultipleDisposeCalls
   commentId: P:Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.AllowMultipleDisposeCalls
-  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<T>.AllowMultipleDisposeCalls
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of T).AllowMultipleDisposeCalls
-  nameWithType: LinksDisposableDecoratorBase<T>.AllowMultipleDisposeCalls
-  nameWithType.vb: LinksDisposableDecoratorBase(Of T).AllowMultipleDisposeCalls
+  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<TLink>.AllowMultipleDisposeCalls
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of TLink).AllowMultipleDisposeCalls
+  nameWithType: LinksDisposableDecoratorBase<TLink>.AllowMultipleDisposeCalls
+  nameWithType.vb: LinksDisposableDecoratorBase(Of TLink).AllowMultipleDisposeCalls
 - uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.AllowMultipleDisposeCalls*
   name: AllowMultipleDisposeCalls
   href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1_AllowMultipleDisposeCalls_
   commentId: Overload:Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.AllowMultipleDisposeCalls
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<T>.AllowMultipleDisposeCalls
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of T).AllowMultipleDisposeCalls
-  nameWithType: LinksDisposableDecoratorBase<T>.AllowMultipleDisposeCalls
-  nameWithType.vb: LinksDisposableDecoratorBase(Of T).AllowMultipleDisposeCalls
+  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<TLink>.AllowMultipleDisposeCalls
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of TLink).AllowMultipleDisposeCalls
+  nameWithType: LinksDisposableDecoratorBase<TLink>.AllowMultipleDisposeCalls
+  nameWithType.vb: LinksDisposableDecoratorBase(Of TLink).AllowMultipleDisposeCalls
 - uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Constants
   name: Constants
   href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1_Constants
   commentId: P:Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Constants
-  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<T>.Constants
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of T).Constants
-  nameWithType: LinksDisposableDecoratorBase<T>.Constants
-  nameWithType.vb: LinksDisposableDecoratorBase(Of T).Constants
+  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<TLink>.Constants
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of TLink).Constants
+  nameWithType: LinksDisposableDecoratorBase<TLink>.Constants
+  nameWithType.vb: LinksDisposableDecoratorBase(Of TLink).Constants
 - uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Constants*
   name: Constants
   href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1_Constants_
   commentId: Overload:Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Constants
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<T>.Constants
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of T).Constants
-  nameWithType: LinksDisposableDecoratorBase<T>.Constants
-  nameWithType.vb: LinksDisposableDecoratorBase(Of T).Constants
+  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<TLink>.Constants
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of TLink).Constants
+  nameWithType: LinksDisposableDecoratorBase<TLink>.Constants
+  nameWithType.vb: LinksDisposableDecoratorBase(Of TLink).Constants
 - uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Count(System.Collections.Generic.IList{`0})
-  name: Count(IList<T>)
+  name: Count(IList<TLink>)
   href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1_Count_System_Collections_Generic_IList__0__
   commentId: M:Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Count(System.Collections.Generic.IList{`0})
-  name.vb: Count(IList(Of T))
-  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<T>.Count(System.Collections.Generic.IList<T>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of T).Count(System.Collections.Generic.IList(Of T))
-  nameWithType: LinksDisposableDecoratorBase<T>.Count(IList<T>)
-  nameWithType.vb: LinksDisposableDecoratorBase(Of T).Count(IList(Of T))
+  name.vb: Count(IList(Of TLink))
+  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<TLink>.Count(System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of TLink).Count(System.Collections.Generic.IList(Of TLink))
+  nameWithType: LinksDisposableDecoratorBase<TLink>.Count(IList<TLink>)
+  nameWithType.vb: LinksDisposableDecoratorBase(Of TLink).Count(IList(Of TLink))
 - uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Count*
   name: Count
   href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1_Count_
   commentId: Overload:Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Count
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<T>.Count
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of T).Count
-  nameWithType: LinksDisposableDecoratorBase<T>.Count
-  nameWithType.vb: LinksDisposableDecoratorBase(Of T).Count
+  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<TLink>.Count
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of TLink).Count
+  nameWithType: LinksDisposableDecoratorBase<TLink>.Count
+  nameWithType.vb: LinksDisposableDecoratorBase(Of TLink).Count
 - uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Create
   name: Create()
   href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1_Create
   commentId: M:Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Create
-  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<T>.Create()
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of T).Create()
-  nameWithType: LinksDisposableDecoratorBase<T>.Create()
-  nameWithType.vb: LinksDisposableDecoratorBase(Of T).Create()
+  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<TLink>.Create()
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of TLink).Create()
+  nameWithType: LinksDisposableDecoratorBase<TLink>.Create()
+  nameWithType.vb: LinksDisposableDecoratorBase(Of TLink).Create()
 - uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Create*
   name: Create
   href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1_Create_
   commentId: Overload:Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Create
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<T>.Create
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of T).Create
-  nameWithType: LinksDisposableDecoratorBase<T>.Create
-  nameWithType.vb: LinksDisposableDecoratorBase(Of T).Create
+  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<TLink>.Create
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of TLink).Create
+  nameWithType: LinksDisposableDecoratorBase<TLink>.Create
+  nameWithType.vb: LinksDisposableDecoratorBase(Of TLink).Create
 - uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Delete(`0)
-  name: Delete(T)
+  name: Delete(TLink)
   href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1_Delete__0_
   commentId: M:Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Delete(`0)
-  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<T>.Delete(T)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of T).Delete(T)
-  nameWithType: LinksDisposableDecoratorBase<T>.Delete(T)
-  nameWithType.vb: LinksDisposableDecoratorBase(Of T).Delete(T)
+  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<TLink>.Delete(TLink)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of TLink).Delete(TLink)
+  nameWithType: LinksDisposableDecoratorBase<TLink>.Delete(TLink)
+  nameWithType.vb: LinksDisposableDecoratorBase(Of TLink).Delete(TLink)
 - uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Delete*
   name: Delete
   href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1_Delete_
   commentId: Overload:Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Delete
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<T>.Delete
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of T).Delete
-  nameWithType: LinksDisposableDecoratorBase<T>.Delete
-  nameWithType.vb: LinksDisposableDecoratorBase(Of T).Delete
+  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<TLink>.Delete
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of TLink).Delete
+  nameWithType: LinksDisposableDecoratorBase<TLink>.Delete
+  nameWithType.vb: LinksDisposableDecoratorBase(Of TLink).Delete
 - uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Dispose(System.Boolean,System.Boolean)
   name: Dispose(Boolean, Boolean)
   href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1_Dispose_System_Boolean_System_Boolean_
   commentId: M:Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Dispose(System.Boolean,System.Boolean)
-  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<T>.Dispose(System.Boolean, System.Boolean)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of T).Dispose(System.Boolean, System.Boolean)
-  nameWithType: LinksDisposableDecoratorBase<T>.Dispose(Boolean, Boolean)
-  nameWithType.vb: LinksDisposableDecoratorBase(Of T).Dispose(Boolean, Boolean)
+  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<TLink>.Dispose(System.Boolean, System.Boolean)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of TLink).Dispose(System.Boolean, System.Boolean)
+  nameWithType: LinksDisposableDecoratorBase<TLink>.Dispose(Boolean, Boolean)
+  nameWithType.vb: LinksDisposableDecoratorBase(Of TLink).Dispose(Boolean, Boolean)
 - uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Dispose*
   name: Dispose
   href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1_Dispose_
   commentId: Overload:Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Dispose
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<T>.Dispose
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of T).Dispose
-  nameWithType: LinksDisposableDecoratorBase<T>.Dispose
-  nameWithType.vb: LinksDisposableDecoratorBase(Of T).Dispose
+  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<TLink>.Dispose
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of TLink).Dispose
+  nameWithType: LinksDisposableDecoratorBase<TLink>.Dispose
+  nameWithType.vb: LinksDisposableDecoratorBase(Of TLink).Dispose
 - uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Each(System.Func{System.Collections.Generic.IList{`0},`0},System.Collections.Generic.IList{`0})
-  name: Each(Func<IList<T>, T>, IList<T>)
+  name: Each(Func<IList<TLink>, TLink>, IList<TLink>)
   href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1_Each_System_Func_System_Collections_Generic_IList__0___0__System_Collections_Generic_IList__0__
   commentId: M:Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Each(System.Func{System.Collections.Generic.IList{`0},`0},System.Collections.Generic.IList{`0})
-  name.vb: Each(Func(Of IList(Of T), T), IList(Of T))
-  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<T>.Each(System.Func<System.Collections.Generic.IList<T>, T>, System.Collections.Generic.IList<T>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of T).Each(System.Func(Of System.Collections.Generic.IList(Of T), T), System.Collections.Generic.IList(Of T))
-  nameWithType: LinksDisposableDecoratorBase<T>.Each(Func<IList<T>, T>, IList<T>)
-  nameWithType.vb: LinksDisposableDecoratorBase(Of T).Each(Func(Of IList(Of T), T), IList(Of T))
+  name.vb: Each(Func(Of IList(Of TLink), TLink), IList(Of TLink))
+  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<TLink>.Each(System.Func<System.Collections.Generic.IList<TLink>, TLink>, System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of TLink).Each(System.Func(Of System.Collections.Generic.IList(Of TLink), TLink), System.Collections.Generic.IList(Of TLink))
+  nameWithType: LinksDisposableDecoratorBase<TLink>.Each(Func<IList<TLink>, TLink>, IList<TLink>)
+  nameWithType.vb: LinksDisposableDecoratorBase(Of TLink).Each(Func(Of IList(Of TLink), TLink), IList(Of TLink))
 - uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Each*
   name: Each
   href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1_Each_
   commentId: Overload:Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Each
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<T>.Each
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of T).Each
-  nameWithType: LinksDisposableDecoratorBase<T>.Each
-  nameWithType.vb: LinksDisposableDecoratorBase(Of T).Each
+  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<TLink>.Each
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of TLink).Each
+  nameWithType: LinksDisposableDecoratorBase<TLink>.Each
+  nameWithType.vb: LinksDisposableDecoratorBase(Of TLink).Each
 - uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Links
   name: Links
   href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1_Links
   commentId: P:Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Links
-  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<T>.Links
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of T).Links
-  nameWithType: LinksDisposableDecoratorBase<T>.Links
-  nameWithType.vb: LinksDisposableDecoratorBase(Of T).Links
+  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<TLink>.Links
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of TLink).Links
+  nameWithType: LinksDisposableDecoratorBase<TLink>.Links
+  nameWithType.vb: LinksDisposableDecoratorBase(Of TLink).Links
 - uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Links*
   name: Links
   href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1_Links_
   commentId: Overload:Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Links
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<T>.Links
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of T).Links
-  nameWithType: LinksDisposableDecoratorBase<T>.Links
-  nameWithType.vb: LinksDisposableDecoratorBase(Of T).Links
+  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<TLink>.Links
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of TLink).Links
+  nameWithType: LinksDisposableDecoratorBase<TLink>.Links
+  nameWithType.vb: LinksDisposableDecoratorBase(Of TLink).Links
 - uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Update(System.Collections.Generic.IList{`0})
-  name: Update(IList<T>)
+  name: Update(IList<TLink>)
   href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1_Update_System_Collections_Generic_IList__0__
   commentId: M:Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Update(System.Collections.Generic.IList{`0})
-  name.vb: Update(IList(Of T))
-  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<T>.Update(System.Collections.Generic.IList<T>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of T).Update(System.Collections.Generic.IList(Of T))
-  nameWithType: LinksDisposableDecoratorBase<T>.Update(IList<T>)
-  nameWithType.vb: LinksDisposableDecoratorBase(Of T).Update(IList(Of T))
+  name.vb: Update(IList(Of TLink))
+  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<TLink>.Update(System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of TLink).Update(System.Collections.Generic.IList(Of TLink))
+  nameWithType: LinksDisposableDecoratorBase<TLink>.Update(IList<TLink>)
+  nameWithType.vb: LinksDisposableDecoratorBase(Of TLink).Update(IList(Of TLink))
 - uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Update*
   name: Update
   href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1_Update_
   commentId: Overload:Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Update
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<T>.Update
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of T).Update
-  nameWithType: LinksDisposableDecoratorBase<T>.Update
-  nameWithType.vb: LinksDisposableDecoratorBase(Of T).Update
+  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<TLink>.Update
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of TLink).Update
+  nameWithType: LinksDisposableDecoratorBase<TLink>.Update
+  nameWithType.vb: LinksDisposableDecoratorBase(Of TLink).Update
 - uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1
   name: LinksInnerReferenceExistenceValidator<TLink>
   href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator-1.html
