@@ -263,15 +263,27 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IList<IList<TLink>> All<TLink>(this ILinks<TLink> links, params TLink[] restrictions)
         {
-            var constants = links.Constants;
-            int listSize = (Integer<TLink>)links.Count(restrictions);
-            var list = new IList<TLink>[listSize];
-            if (listSize > 0)
+            long arraySize = (Integer<TLink>)links.Count(restrictions);
+            var array = new IList<TLink>[arraySize];
+            if (arraySize > 0)
             {
-                var filler = new ArrayFiller<IList<TLink>, TLink>(list, links.Constants.Continue);
+                var filler = new ArrayFiller<IList<TLink>, TLink>(array, links.Constants.Continue);
                 links.Each(filler.AddAndReturnConstant, restrictions);
             }
-            return list;
+            return array;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static IList<TLink> AllIndices<TLink>(this ILinks<TLink> links, params TLink[] restrictions)
+        {
+            long arraySize = (Integer<TLink>)links.Count(restrictions);
+            var array = new TLink[arraySize];
+            if (arraySize > 0)
+            {
+                var filler = new ArrayFiller<TLink, TLink>(array, links.Constants.Continue);
+                links.Each(filler.AddFirstAndReturnConstant, restrictions);
+            }
+            return array;
         }
 
         /// <summary>

@@ -3,61 +3,66 @@ using Platform.Interfaces;
 
 namespace Platform.Data.Doublets.PropertyOperators
 {
-    public class FrequencyPropertyOperator<TLink> : LinksOperatorBase<TLink>, IPropertyOperator<TLink, TLink>
+    public class PropertyOperator<TLink> : LinksOperatorBase<TLink>, IPropertyOperator<TLink, TLink>
     {
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
 
-        private readonly TLink _frequencyPropertyMarker;
-        private readonly TLink _frequencyMarker;
+        private readonly TLink _propertyMarker;
+        private readonly TLink _propertyValueMarker;
 
-        public FrequencyPropertyOperator(ILinks<TLink> links, TLink frequencyPropertyMarker, TLink frequencyMarker) : base(links)
+        public PropertyOperator(ILinks<TLink> links, TLink propertyMarker, TLink propertyValueMarker) : base(links)
         {
-            _frequencyPropertyMarker = frequencyPropertyMarker;
-            _frequencyMarker = frequencyMarker;
+            _propertyMarker = propertyMarker;
+            _propertyValueMarker = propertyValueMarker;
         }
 
         public TLink Get(TLink link)
         {
-            var property = Links.SearchOrDefault(link, _frequencyPropertyMarker);
+            var property = Links.SearchOrDefault(link, _propertyMarker);
             var container = GetContainer(property);
-            var frequency = GetFrequency(container);
-            return frequency;
+            var value = GetValue(container);
+            return value;
         }
 
         private TLink GetContainer(TLink property)
         {
-            var frequencyContainer = default(TLink);
+            var valueContainer = default(TLink);
             if (_equalityComparer.Equals(property, default))
             {
-                return frequencyContainer;
+                return valueContainer;
             }
+            var constants = Links.Constants;
+            var countinueConstant = constants.Continue;
+            var breakConstant = constants.Break;
+            var anyConstant = constants.Any;
+            var query = new Link<TLink>(anyConstant, property, anyConstant);
             Links.Each(candidate =>
             {
                 var candidateTarget = Links.GetTarget(candidate);
-                var frequencyTarget = Links.GetTarget(candidateTarget);
-                if (_equalityComparer.Equals(frequencyTarget, _frequencyMarker))
+                var valueTarget = Links.GetTarget(candidateTarget);
+                if (_equalityComparer.Equals(valueTarget, _propertyValueMarker))
                 {
-                    frequencyContainer = Links.GetIndex(candidate);
-                    return Links.Constants.Break;
+                    valueContainer = Links.GetIndex(candidate);
+                    return breakConstant;
                 }
-                return Links.Constants.Continue;
-            }, Links.Constants.Any, property, Links.Constants.Any);
-            return frequencyContainer;
+                return countinueConstant;
+            }, query);
+            return valueContainer;
         }
 
-        private TLink GetFrequency(TLink container) => _equalityComparer.Equals(container, default) ? default : Links.GetTarget(container);
+        private TLink GetValue(TLink container) => _equalityComparer.Equals(container, default) ? default : Links.GetTarget(container);
 
-        public void Set(TLink link, TLink frequency)
+        public void Set(TLink link, TLink value)
         {
-            var property = Links.GetOrCreate(link, _frequencyPropertyMarker);
+            var property = Links.GetOrCreate(link, _propertyMarker);
             var container = GetContainer(property);
             if (_equalityComparer.Equals(container, default))
             {
-                Links.GetOrCreate(property, frequency);
+                Links.GetOrCreate(property, value);
             }
             else
             {
-                Links.Update(container, property, frequency);
+                Links.Update(container, property, value);
             }
         }
     }

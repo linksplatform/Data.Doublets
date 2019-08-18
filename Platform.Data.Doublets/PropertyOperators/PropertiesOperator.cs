@@ -4,11 +4,11 @@ using Platform.Interfaces;
 
 namespace Platform.Data.Doublets.PropertyOperators
 {
-    public class DefaultLinkPropertyOperator<TLink> : LinksOperatorBase<TLink>, IPropertiesOperator<TLink, TLink, TLink>
+    public class PropertiesOperator<TLink> : LinksOperatorBase<TLink>, IPropertiesOperator<TLink, TLink, TLink>
     {
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
 
-        public DefaultLinkPropertyOperator(ILinks<TLink> links) : base(links) { }
+        public PropertiesOperator(ILinks<TLink> links) : base(links) { }
 
         public TLink GetValue(TLink @object, TLink property)
         {
@@ -28,7 +28,7 @@ namespace Platform.Data.Doublets.PropertyOperators
         public void SetValue(TLink @object, TLink property, TLink value)
         {
             var objectProperty = Links.GetOrCreate(@object, property);
-            Links.DeleteMany(Links.All(Links.Constants.Any, objectProperty).Select(link => link[Links.Constants.IndexPart]).ToList());
+            Links.DeleteMany(Links.AllIndices(Links.Constants.Any, objectProperty));
             Links.GetOrCreate(objectProperty, value);
         }
     }
