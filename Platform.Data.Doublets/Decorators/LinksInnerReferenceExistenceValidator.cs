@@ -14,12 +14,6 @@ namespace Platform.Data.Doublets.Decorators
             return Links.Each(handler, restrictions);
         }
 
-        public override TLink Count(IList<TLink> restriction)
-        {
-            Links.EnsureInnerReferenceExists(restriction, nameof(restriction));
-            return Links.Count(restriction);
-        }
-
         public override TLink Update(IList<TLink> restrictions)
         {
             // TODO: Possible values: null, ExistentLink or NonExistentHybrid(ExternalReference)
