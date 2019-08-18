@@ -74,7 +74,7 @@ namespace Platform.Data.Doublets.Decorators
 
         public override void Delete(ulong linkIndex)
         {
-            this.EnsureLinkExists(linkIndex);
+            Links.EnsureLinkExists(linkIndex);
             Links.EnforceResetValues(linkIndex);
             this.DeleteAllUsages(linkIndex);
             Links.Delete(linkIndex);

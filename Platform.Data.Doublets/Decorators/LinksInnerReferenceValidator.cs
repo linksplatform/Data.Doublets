@@ -29,7 +29,6 @@ namespace Platform.Data.Doublets.Decorators
 
         public override void Delete(TLink link)
         {
-            // TODO: Решить считать ли такое исключением, или лишь более конкретным требованием?
             Links.EnsureLinkExists(link, nameof(link));
             Links.Delete(link);
         }
