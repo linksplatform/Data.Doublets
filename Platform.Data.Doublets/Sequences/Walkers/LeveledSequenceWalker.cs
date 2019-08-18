@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 //#define USEARRAYPOOL
@@ -12,19 +13,20 @@ namespace Platform.Data.Doublets.Sequences.Walkers
     {
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
 
-        public LeveledSequenceWalker(ILinks<TLink> links) : base(links) { }
+        private readonly Func<TLink, bool> _isElement;
+
+        public LeveledSequenceWalker(ILinks<TLink> links, Func<TLink, bool> isElement) : base(links) => _isElement = isElement;
+
+        public LeveledSequenceWalker(ILinks<TLink> links) : base(links) => _isElement = Links.IsPartialPoint;
 
         public IEnumerable<TLink> Walk(TLink sequence) => ToArray(sequence);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual bool IsElement(TLink elementLink) => Links.IsPartialPoint(elementLink);
 
         public TLink[] ToArray(TLink sequence)
         {
             var length = 1;
             var array = new TLink[length];
             array[0] = sequence;
-            if (IsElement(sequence))
+            if (_isElement(sequence))
             {
                 return array;
             }
@@ -46,7 +48,7 @@ namespace Platform.Data.Doublets.Sequences.Walkers
                         continue;
                     }
                     var doubletOffset = i * 2;
-                    if (IsElement(candidate))
+                    if (_isElement(candidate))
                     {
                         nextArray[doubletOffset] = candidate;
                     }
@@ -59,7 +61,7 @@ namespace Platform.Data.Doublets.Sequences.Walkers
                         nextArray[doubletOffset + 1] = linkTarget;
                         if (!hasElements)
                         {
-                            hasElements = !(IsElement(linkSource) && IsElement(linkTarget));
+                            hasElements = !(_isElement(linkSource) && _isElement(linkTarget));
                         }
                     }
                 }

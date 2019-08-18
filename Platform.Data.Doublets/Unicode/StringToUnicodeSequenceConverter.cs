@@ -1,0 +1,34 @@
+﻿using Platform.Data.Doublets.Sequences.Indexes;
+using Platform.Interfaces;
+using System.Collections.Generic;
+
+namespace Platform.Data.Doublets.Unicode
+{
+    public class StringToUnicodeSequenceConverter<TLink> : LinksOperatorBase<TLink>, IConverter<string, TLink>
+    {
+        private readonly IConverter<char, TLink> _charToUnicodeSymbolConverter;
+        private readonly ISequenceIndex<TLink> _index;
+        private readonly IConverter<IList<TLink>, TLink> _listToSequenceLinkConverter;
+        private readonly TLink _unicodeSequenceMarker;
+
+        public StringToUnicodeSequenceConverter(ILinks<TLink> links, IConverter<char, TLink> charToUnicodeSymbolConverter, ISequenceIndex<TLink> index, IConverter<IList<TLink>, TLink> listToSequenceLinkConverter, TLink unicodeSequenceMarker) : base(links)
+        {
+            _charToUnicodeSymbolConverter = charToUnicodeSymbolConverter;
+            _index = index;
+            _listToSequenceLinkConverter = listToSequenceLinkConverter;
+            _unicodeSequenceMarker = unicodeSequenceMarker;
+        }
+
+        public TLink Convert(string source)
+        {
+            var elements = new List<TLink>();
+            for (int i = 0; i < source.Length; i++)
+            {
+                elements.Add(_charToUnicodeSymbolConverter.Convert(source[i]));
+            }
+            _index.Add(elements);
+            var sequence = _listToSequenceLinkConverter.Convert(elements);
+            return Links.GetOrCreate(sequence, _unicodeSequenceMarker);
+        }
+    }
+}

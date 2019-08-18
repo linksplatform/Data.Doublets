@@ -24,7 +24,7 @@ namespace Platform.Data.Doublets.UnaryNumbers
         public TLink Convert(Doublet<TLink> doublet)
         {
             var link = Links.SearchOrDefault(doublet.Source, doublet.Target);
-            if (_equalityComparer.Equals(link, Links.Constants.Null))
+            if (_equalityComparer.Equals(link, default))
             {
                 throw new ArgumentException($"Link ({doublet}) not found.", nameof(doublet));
             }
