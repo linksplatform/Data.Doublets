@@ -6971,22 +6971,6 @@ references:
   fullName.vb: Platform.Data.Doublets.Stacks.StackExtensions.CreateStack(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink)
   nameWithType: StackExtensions.CreateStack<TLink>(ILinks<TLink>, TLink)
   nameWithType.vb: StackExtensions.CreateStack(Of TLink)(ILinks(Of TLink), TLink)
-- uid: Platform.Data.Doublets.Stacks.StackExtensions.DeleteStack*
-  name: DeleteStack
-  href: api/Platform.Data.Doublets.Stacks.StackExtensions.html#Platform_Data_Doublets_Stacks_StackExtensions_DeleteStack_
-  commentId: Overload:Platform.Data.Doublets.Stacks.StackExtensions.DeleteStack
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Stacks.StackExtensions.DeleteStack
-  nameWithType: StackExtensions.DeleteStack
-- uid: Platform.Data.Doublets.Stacks.StackExtensions.DeleteStack``1(Platform.Data.Doublets.ILinks{``0},``0)
-  name: DeleteStack<TLink>(ILinks<TLink>, TLink)
-  href: api/Platform.Data.Doublets.Stacks.StackExtensions.html#Platform_Data_Doublets_Stacks_StackExtensions_DeleteStack__1_Platform_Data_Doublets_ILinks___0____0_
-  commentId: M:Platform.Data.Doublets.Stacks.StackExtensions.DeleteStack``1(Platform.Data.Doublets.ILinks{``0},``0)
-  name.vb: DeleteStack(Of TLink)(ILinks(Of TLink), TLink)
-  fullName: Platform.Data.Doublets.Stacks.StackExtensions.DeleteStack<TLink>(Platform.Data.Doublets.ILinks<TLink>, TLink)
-  fullName.vb: Platform.Data.Doublets.Stacks.StackExtensions.DeleteStack(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink)
-  nameWithType: StackExtensions.DeleteStack<TLink>(ILinks<TLink>, TLink)
-  nameWithType.vb: StackExtensions.DeleteStack(Of TLink)(ILinks(Of TLink), TLink)
 - uid: Platform.Data.Doublets.SynchronizedLinks`1
   name: SynchronizedLinks<T>
   href: api/Platform.Data.Doublets.SynchronizedLinks-1.html
