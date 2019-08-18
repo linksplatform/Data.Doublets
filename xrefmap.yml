@@ -7,233 +7,6 @@ references:
   commentId: N:Platform.Data.Doublets
   fullName: Platform.Data.Doublets
   nameWithType: Platform.Data.Doublets
-- uid: Platform.Data.Doublets.Converters
-  name: Platform.Data.Doublets.Converters
-  href: api/Platform.Data.Doublets.Converters.html
-  commentId: N:Platform.Data.Doublets.Converters
-  fullName: Platform.Data.Doublets.Converters
-  nameWithType: Platform.Data.Doublets.Converters
-- uid: Platform.Data.Doublets.Converters.AddressToUnaryNumberConverter`1
-  name: AddressToUnaryNumberConverter<TLink>
-  href: api/Platform.Data.Doublets.Converters.AddressToUnaryNumberConverter-1.html
-  commentId: T:Platform.Data.Doublets.Converters.AddressToUnaryNumberConverter`1
-  name.vb: AddressToUnaryNumberConverter(Of TLink)
-  fullName: Platform.Data.Doublets.Converters.AddressToUnaryNumberConverter<TLink>
-  fullName.vb: Platform.Data.Doublets.Converters.AddressToUnaryNumberConverter(Of TLink)
-  nameWithType: AddressToUnaryNumberConverter<TLink>
-  nameWithType.vb: AddressToUnaryNumberConverter(Of TLink)
-- uid: Platform.Data.Doublets.Converters.AddressToUnaryNumberConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.IConverter{System.Int32,`0})
-  name: AddressToUnaryNumberConverter(ILinks<TLink>, IConverter<Int32, TLink>)
-  href: api/Platform.Data.Doublets.Converters.AddressToUnaryNumberConverter-1.html#Platform_Data_Doublets_Converters_AddressToUnaryNumberConverter_1__ctor_Platform_Data_Doublets_ILinks__0__Platform_Interfaces_IConverter_System_Int32__0__
-  commentId: M:Platform.Data.Doublets.Converters.AddressToUnaryNumberConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.IConverter{System.Int32,`0})
-  name.vb: AddressToUnaryNumberConverter(ILinks(Of TLink), IConverter(Of Int32, TLink))
-  fullName: Platform.Data.Doublets.Converters.AddressToUnaryNumberConverter<TLink>.AddressToUnaryNumberConverter(Platform.Data.Doublets.ILinks<TLink>, Platform.Interfaces.IConverter<System.Int32, TLink>)
-  fullName.vb: Platform.Data.Doublets.Converters.AddressToUnaryNumberConverter(Of TLink).AddressToUnaryNumberConverter(Platform.Data.Doublets.ILinks(Of TLink), Platform.Interfaces.IConverter(Of System.Int32, TLink))
-  nameWithType: AddressToUnaryNumberConverter<TLink>.AddressToUnaryNumberConverter(ILinks<TLink>, IConverter<Int32, TLink>)
-  nameWithType.vb: AddressToUnaryNumberConverter(Of TLink).AddressToUnaryNumberConverter(ILinks(Of TLink), IConverter(Of Int32, TLink))
-- uid: Platform.Data.Doublets.Converters.AddressToUnaryNumberConverter`1.#ctor*
-  name: AddressToUnaryNumberConverter
-  href: api/Platform.Data.Doublets.Converters.AddressToUnaryNumberConverter-1.html#Platform_Data_Doublets_Converters_AddressToUnaryNumberConverter_1__ctor_
-  commentId: Overload:Platform.Data.Doublets.Converters.AddressToUnaryNumberConverter`1.#ctor
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Converters.AddressToUnaryNumberConverter<TLink>.AddressToUnaryNumberConverter
-  fullName.vb: Platform.Data.Doublets.Converters.AddressToUnaryNumberConverter(Of TLink).AddressToUnaryNumberConverter
-  nameWithType: AddressToUnaryNumberConverter<TLink>.AddressToUnaryNumberConverter
-  nameWithType.vb: AddressToUnaryNumberConverter(Of TLink).AddressToUnaryNumberConverter
-- uid: Platform.Data.Doublets.Converters.AddressToUnaryNumberConverter`1.Convert(`0)
-  name: Convert(TLink)
-  href: api/Platform.Data.Doublets.Converters.AddressToUnaryNumberConverter-1.html#Platform_Data_Doublets_Converters_AddressToUnaryNumberConverter_1_Convert__0_
-  commentId: M:Platform.Data.Doublets.Converters.AddressToUnaryNumberConverter`1.Convert(`0)
-  fullName: Platform.Data.Doublets.Converters.AddressToUnaryNumberConverter<TLink>.Convert(TLink)
-  fullName.vb: Platform.Data.Doublets.Converters.AddressToUnaryNumberConverter(Of TLink).Convert(TLink)
-  nameWithType: AddressToUnaryNumberConverter<TLink>.Convert(TLink)
-  nameWithType.vb: AddressToUnaryNumberConverter(Of TLink).Convert(TLink)
-- uid: Platform.Data.Doublets.Converters.AddressToUnaryNumberConverter`1.Convert*
-  name: Convert
-  href: api/Platform.Data.Doublets.Converters.AddressToUnaryNumberConverter-1.html#Platform_Data_Doublets_Converters_AddressToUnaryNumberConverter_1_Convert_
-  commentId: Overload:Platform.Data.Doublets.Converters.AddressToUnaryNumberConverter`1.Convert
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Converters.AddressToUnaryNumberConverter<TLink>.Convert
-  fullName.vb: Platform.Data.Doublets.Converters.AddressToUnaryNumberConverter(Of TLink).Convert
-  nameWithType: AddressToUnaryNumberConverter<TLink>.Convert
-  nameWithType.vb: AddressToUnaryNumberConverter(Of TLink).Convert
-- uid: Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter`1
-  name: LinkToItsFrequencyNumberConveter<TLink>
-  href: api/Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter-1.html
-  commentId: T:Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter`1
-  name.vb: LinkToItsFrequencyNumberConveter(Of TLink)
-  fullName: Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter<TLink>
-  fullName.vb: Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter(Of TLink)
-  nameWithType: LinkToItsFrequencyNumberConveter<TLink>
-  nameWithType.vb: LinkToItsFrequencyNumberConveter(Of TLink)
-- uid: Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.IPropertyOperator{`0,`0},Platform.Interfaces.IConverter{`0})
-  name: LinkToItsFrequencyNumberConveter(ILinks<TLink>, IPropertyOperator<TLink, TLink>, IConverter<TLink>)
-  href: api/Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter-1.html#Platform_Data_Doublets_Converters_LinkToItsFrequencyNumberConveter_1__ctor_Platform_Data_Doublets_ILinks__0__Platform_Interfaces_IPropertyOperator__0__0__Platform_Interfaces_IConverter__0__
-  commentId: M:Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.IPropertyOperator{`0,`0},Platform.Interfaces.IConverter{`0})
-  name.vb: LinkToItsFrequencyNumberConveter(ILinks(Of TLink), IPropertyOperator(Of TLink, TLink), IConverter(Of TLink))
-  fullName: Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter<TLink>.LinkToItsFrequencyNumberConveter(Platform.Data.Doublets.ILinks<TLink>, Platform.Interfaces.IPropertyOperator<TLink, TLink>, Platform.Interfaces.IConverter<TLink>)
-  fullName.vb: Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter(Of TLink).LinkToItsFrequencyNumberConveter(Platform.Data.Doublets.ILinks(Of TLink), Platform.Interfaces.IPropertyOperator(Of TLink, TLink), Platform.Interfaces.IConverter(Of TLink))
-  nameWithType: LinkToItsFrequencyNumberConveter<TLink>.LinkToItsFrequencyNumberConveter(ILinks<TLink>, IPropertyOperator<TLink, TLink>, IConverter<TLink>)
-  nameWithType.vb: LinkToItsFrequencyNumberConveter(Of TLink).LinkToItsFrequencyNumberConveter(ILinks(Of TLink), IPropertyOperator(Of TLink, TLink), IConverter(Of TLink))
-- uid: Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter`1.#ctor*
-  name: LinkToItsFrequencyNumberConveter
-  href: api/Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter-1.html#Platform_Data_Doublets_Converters_LinkToItsFrequencyNumberConveter_1__ctor_
-  commentId: Overload:Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter`1.#ctor
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter<TLink>.LinkToItsFrequencyNumberConveter
-  fullName.vb: Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter(Of TLink).LinkToItsFrequencyNumberConveter
-  nameWithType: LinkToItsFrequencyNumberConveter<TLink>.LinkToItsFrequencyNumberConveter
-  nameWithType.vb: LinkToItsFrequencyNumberConveter(Of TLink).LinkToItsFrequencyNumberConveter
-- uid: Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter`1.Convert(Platform.Data.Doublets.Doublet{`0})
-  name: Convert(Doublet<TLink>)
-  href: api/Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter-1.html#Platform_Data_Doublets_Converters_LinkToItsFrequencyNumberConveter_1_Convert_Platform_Data_Doublets_Doublet__0__
-  commentId: M:Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter`1.Convert(Platform.Data.Doublets.Doublet{`0})
-  name.vb: Convert(Doublet(Of TLink))
-  fullName: Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter<TLink>.Convert(Platform.Data.Doublets.Doublet<TLink>)
-  fullName.vb: Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter(Of TLink).Convert(Platform.Data.Doublets.Doublet(Of TLink))
-  nameWithType: LinkToItsFrequencyNumberConveter<TLink>.Convert(Doublet<TLink>)
-  nameWithType.vb: LinkToItsFrequencyNumberConveter(Of TLink).Convert(Doublet(Of TLink))
-- uid: Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter`1.Convert*
-  name: Convert
-  href: api/Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter-1.html#Platform_Data_Doublets_Converters_LinkToItsFrequencyNumberConveter_1_Convert_
-  commentId: Overload:Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter`1.Convert
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter<TLink>.Convert
-  fullName.vb: Platform.Data.Doublets.Converters.LinkToItsFrequencyNumberConveter(Of TLink).Convert
-  nameWithType: LinkToItsFrequencyNumberConveter<TLink>.Convert
-  nameWithType.vb: LinkToItsFrequencyNumberConveter(Of TLink).Convert
-- uid: Platform.Data.Doublets.Converters.PowerOf2ToUnaryNumberConverter`1
-  name: PowerOf2ToUnaryNumberConverter<TLink>
-  href: api/Platform.Data.Doublets.Converters.PowerOf2ToUnaryNumberConverter-1.html
-  commentId: T:Platform.Data.Doublets.Converters.PowerOf2ToUnaryNumberConverter`1
-  name.vb: PowerOf2ToUnaryNumberConverter(Of TLink)
-  fullName: Platform.Data.Doublets.Converters.PowerOf2ToUnaryNumberConverter<TLink>
-  fullName.vb: Platform.Data.Doublets.Converters.PowerOf2ToUnaryNumberConverter(Of TLink)
-  nameWithType: PowerOf2ToUnaryNumberConverter<TLink>
-  nameWithType.vb: PowerOf2ToUnaryNumberConverter(Of TLink)
-- uid: Platform.Data.Doublets.Converters.PowerOf2ToUnaryNumberConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},`0)
-  name: PowerOf2ToUnaryNumberConverter(ILinks<TLink>, TLink)
-  href: api/Platform.Data.Doublets.Converters.PowerOf2ToUnaryNumberConverter-1.html#Platform_Data_Doublets_Converters_PowerOf2ToUnaryNumberConverter_1__ctor_Platform_Data_Doublets_ILinks__0___0_
-  commentId: M:Platform.Data.Doublets.Converters.PowerOf2ToUnaryNumberConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},`0)
-  name.vb: PowerOf2ToUnaryNumberConverter(ILinks(Of TLink), TLink)
-  fullName: Platform.Data.Doublets.Converters.PowerOf2ToUnaryNumberConverter<TLink>.PowerOf2ToUnaryNumberConverter(Platform.Data.Doublets.ILinks<TLink>, TLink)
-  fullName.vb: Platform.Data.Doublets.Converters.PowerOf2ToUnaryNumberConverter(Of TLink).PowerOf2ToUnaryNumberConverter(Platform.Data.Doublets.ILinks(Of TLink), TLink)
-  nameWithType: PowerOf2ToUnaryNumberConverter<TLink>.PowerOf2ToUnaryNumberConverter(ILinks<TLink>, TLink)
-  nameWithType.vb: PowerOf2ToUnaryNumberConverter(Of TLink).PowerOf2ToUnaryNumberConverter(ILinks(Of TLink), TLink)
-- uid: Platform.Data.Doublets.Converters.PowerOf2ToUnaryNumberConverter`1.#ctor*
-  name: PowerOf2ToUnaryNumberConverter
-  href: api/Platform.Data.Doublets.Converters.PowerOf2ToUnaryNumberConverter-1.html#Platform_Data_Doublets_Converters_PowerOf2ToUnaryNumberConverter_1__ctor_
-  commentId: Overload:Platform.Data.Doublets.Converters.PowerOf2ToUnaryNumberConverter`1.#ctor
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Converters.PowerOf2ToUnaryNumberConverter<TLink>.PowerOf2ToUnaryNumberConverter
-  fullName.vb: Platform.Data.Doublets.Converters.PowerOf2ToUnaryNumberConverter(Of TLink).PowerOf2ToUnaryNumberConverter
-  nameWithType: PowerOf2ToUnaryNumberConverter<TLink>.PowerOf2ToUnaryNumberConverter
-  nameWithType.vb: PowerOf2ToUnaryNumberConverter(Of TLink).PowerOf2ToUnaryNumberConverter
-- uid: Platform.Data.Doublets.Converters.PowerOf2ToUnaryNumberConverter`1.Convert(System.Int32)
-  name: Convert(Int32)
-  href: api/Platform.Data.Doublets.Converters.PowerOf2ToUnaryNumberConverter-1.html#Platform_Data_Doublets_Converters_PowerOf2ToUnaryNumberConverter_1_Convert_System_Int32_
-  commentId: M:Platform.Data.Doublets.Converters.PowerOf2ToUnaryNumberConverter`1.Convert(System.Int32)
-  fullName: Platform.Data.Doublets.Converters.PowerOf2ToUnaryNumberConverter<TLink>.Convert(System.Int32)
-  fullName.vb: Platform.Data.Doublets.Converters.PowerOf2ToUnaryNumberConverter(Of TLink).Convert(System.Int32)
-  nameWithType: PowerOf2ToUnaryNumberConverter<TLink>.Convert(Int32)
-  nameWithType.vb: PowerOf2ToUnaryNumberConverter(Of TLink).Convert(Int32)
-- uid: Platform.Data.Doublets.Converters.PowerOf2ToUnaryNumberConverter`1.Convert*
-  name: Convert
-  href: api/Platform.Data.Doublets.Converters.PowerOf2ToUnaryNumberConverter-1.html#Platform_Data_Doublets_Converters_PowerOf2ToUnaryNumberConverter_1_Convert_
-  commentId: Overload:Platform.Data.Doublets.Converters.PowerOf2ToUnaryNumberConverter`1.Convert
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Converters.PowerOf2ToUnaryNumberConverter<TLink>.Convert
-  fullName.vb: Platform.Data.Doublets.Converters.PowerOf2ToUnaryNumberConverter(Of TLink).Convert
-  nameWithType: PowerOf2ToUnaryNumberConverter<TLink>.Convert
-  nameWithType.vb: PowerOf2ToUnaryNumberConverter(Of TLink).Convert
-- uid: Platform.Data.Doublets.Converters.UnaryNumberToAddressAddOperationConverter`1
-  name: UnaryNumberToAddressAddOperationConverter<TLink>
-  href: api/Platform.Data.Doublets.Converters.UnaryNumberToAddressAddOperationConverter-1.html
-  commentId: T:Platform.Data.Doublets.Converters.UnaryNumberToAddressAddOperationConverter`1
-  name.vb: UnaryNumberToAddressAddOperationConverter(Of TLink)
-  fullName: Platform.Data.Doublets.Converters.UnaryNumberToAddressAddOperationConverter<TLink>
-  fullName.vb: Platform.Data.Doublets.Converters.UnaryNumberToAddressAddOperationConverter(Of TLink)
-  nameWithType: UnaryNumberToAddressAddOperationConverter<TLink>
-  nameWithType.vb: UnaryNumberToAddressAddOperationConverter(Of TLink)
-- uid: Platform.Data.Doublets.Converters.UnaryNumberToAddressAddOperationConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},`0)
-  name: UnaryNumberToAddressAddOperationConverter(ILinks<TLink>, TLink)
-  href: api/Platform.Data.Doublets.Converters.UnaryNumberToAddressAddOperationConverter-1.html#Platform_Data_Doublets_Converters_UnaryNumberToAddressAddOperationConverter_1__ctor_Platform_Data_Doublets_ILinks__0___0_
-  commentId: M:Platform.Data.Doublets.Converters.UnaryNumberToAddressAddOperationConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},`0)
-  name.vb: UnaryNumberToAddressAddOperationConverter(ILinks(Of TLink), TLink)
-  fullName: Platform.Data.Doublets.Converters.UnaryNumberToAddressAddOperationConverter<TLink>.UnaryNumberToAddressAddOperationConverter(Platform.Data.Doublets.ILinks<TLink>, TLink)
-  fullName.vb: Platform.Data.Doublets.Converters.UnaryNumberToAddressAddOperationConverter(Of TLink).UnaryNumberToAddressAddOperationConverter(Platform.Data.Doublets.ILinks(Of TLink), TLink)
-  nameWithType: UnaryNumberToAddressAddOperationConverter<TLink>.UnaryNumberToAddressAddOperationConverter(ILinks<TLink>, TLink)
-  nameWithType.vb: UnaryNumberToAddressAddOperationConverter(Of TLink).UnaryNumberToAddressAddOperationConverter(ILinks(Of TLink), TLink)
-- uid: Platform.Data.Doublets.Converters.UnaryNumberToAddressAddOperationConverter`1.#ctor*
-  name: UnaryNumberToAddressAddOperationConverter
-  href: api/Platform.Data.Doublets.Converters.UnaryNumberToAddressAddOperationConverter-1.html#Platform_Data_Doublets_Converters_UnaryNumberToAddressAddOperationConverter_1__ctor_
-  commentId: Overload:Platform.Data.Doublets.Converters.UnaryNumberToAddressAddOperationConverter`1.#ctor
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Converters.UnaryNumberToAddressAddOperationConverter<TLink>.UnaryNumberToAddressAddOperationConverter
-  fullName.vb: Platform.Data.Doublets.Converters.UnaryNumberToAddressAddOperationConverter(Of TLink).UnaryNumberToAddressAddOperationConverter
-  nameWithType: UnaryNumberToAddressAddOperationConverter<TLink>.UnaryNumberToAddressAddOperationConverter
-  nameWithType.vb: UnaryNumberToAddressAddOperationConverter(Of TLink).UnaryNumberToAddressAddOperationConverter
-- uid: Platform.Data.Doublets.Converters.UnaryNumberToAddressAddOperationConverter`1.Convert(`0)
-  name: Convert(TLink)
-  href: api/Platform.Data.Doublets.Converters.UnaryNumberToAddressAddOperationConverter-1.html#Platform_Data_Doublets_Converters_UnaryNumberToAddressAddOperationConverter_1_Convert__0_
-  commentId: M:Platform.Data.Doublets.Converters.UnaryNumberToAddressAddOperationConverter`1.Convert(`0)
-  fullName: Platform.Data.Doublets.Converters.UnaryNumberToAddressAddOperationConverter<TLink>.Convert(TLink)
-  fullName.vb: Platform.Data.Doublets.Converters.UnaryNumberToAddressAddOperationConverter(Of TLink).Convert(TLink)
-  nameWithType: UnaryNumberToAddressAddOperationConverter<TLink>.Convert(TLink)
-  nameWithType.vb: UnaryNumberToAddressAddOperationConverter(Of TLink).Convert(TLink)
-- uid: Platform.Data.Doublets.Converters.UnaryNumberToAddressAddOperationConverter`1.Convert*
-  name: Convert
-  href: api/Platform.Data.Doublets.Converters.UnaryNumberToAddressAddOperationConverter-1.html#Platform_Data_Doublets_Converters_UnaryNumberToAddressAddOperationConverter_1_Convert_
-  commentId: Overload:Platform.Data.Doublets.Converters.UnaryNumberToAddressAddOperationConverter`1.Convert
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Converters.UnaryNumberToAddressAddOperationConverter<TLink>.Convert
-  fullName.vb: Platform.Data.Doublets.Converters.UnaryNumberToAddressAddOperationConverter(Of TLink).Convert
-  nameWithType: UnaryNumberToAddressAddOperationConverter<TLink>.Convert
-  nameWithType.vb: UnaryNumberToAddressAddOperationConverter(Of TLink).Convert
-- uid: Platform.Data.Doublets.Converters.UnaryNumberToAddressOrOperationConverter`1
-  name: UnaryNumberToAddressOrOperationConverter<TLink>
-  href: api/Platform.Data.Doublets.Converters.UnaryNumberToAddressOrOperationConverter-1.html
-  commentId: T:Platform.Data.Doublets.Converters.UnaryNumberToAddressOrOperationConverter`1
-  name.vb: UnaryNumberToAddressOrOperationConverter(Of TLink)
-  fullName: Platform.Data.Doublets.Converters.UnaryNumberToAddressOrOperationConverter<TLink>
-  fullName.vb: Platform.Data.Doublets.Converters.UnaryNumberToAddressOrOperationConverter(Of TLink)
-  nameWithType: UnaryNumberToAddressOrOperationConverter<TLink>
-  nameWithType.vb: UnaryNumberToAddressOrOperationConverter(Of TLink)
-- uid: Platform.Data.Doublets.Converters.UnaryNumberToAddressOrOperationConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.IConverter{System.Int32,`0})
-  name: UnaryNumberToAddressOrOperationConverter(ILinks<TLink>, IConverter<Int32, TLink>)
-  href: api/Platform.Data.Doublets.Converters.UnaryNumberToAddressOrOperationConverter-1.html#Platform_Data_Doublets_Converters_UnaryNumberToAddressOrOperationConverter_1__ctor_Platform_Data_Doublets_ILinks__0__Platform_Interfaces_IConverter_System_Int32__0__
-  commentId: M:Platform.Data.Doublets.Converters.UnaryNumberToAddressOrOperationConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.IConverter{System.Int32,`0})
-  name.vb: UnaryNumberToAddressOrOperationConverter(ILinks(Of TLink), IConverter(Of Int32, TLink))
-  fullName: Platform.Data.Doublets.Converters.UnaryNumberToAddressOrOperationConverter<TLink>.UnaryNumberToAddressOrOperationConverter(Platform.Data.Doublets.ILinks<TLink>, Platform.Interfaces.IConverter<System.Int32, TLink>)
-  fullName.vb: Platform.Data.Doublets.Converters.UnaryNumberToAddressOrOperationConverter(Of TLink).UnaryNumberToAddressOrOperationConverter(Platform.Data.Doublets.ILinks(Of TLink), Platform.Interfaces.IConverter(Of System.Int32, TLink))
-  nameWithType: UnaryNumberToAddressOrOperationConverter<TLink>.UnaryNumberToAddressOrOperationConverter(ILinks<TLink>, IConverter<Int32, TLink>)
-  nameWithType.vb: UnaryNumberToAddressOrOperationConverter(Of TLink).UnaryNumberToAddressOrOperationConverter(ILinks(Of TLink), IConverter(Of Int32, TLink))
-- uid: Platform.Data.Doublets.Converters.UnaryNumberToAddressOrOperationConverter`1.#ctor*
-  name: UnaryNumberToAddressOrOperationConverter
-  href: api/Platform.Data.Doublets.Converters.UnaryNumberToAddressOrOperationConverter-1.html#Platform_Data_Doublets_Converters_UnaryNumberToAddressOrOperationConverter_1__ctor_
-  commentId: Overload:Platform.Data.Doublets.Converters.UnaryNumberToAddressOrOperationConverter`1.#ctor
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Converters.UnaryNumberToAddressOrOperationConverter<TLink>.UnaryNumberToAddressOrOperationConverter
-  fullName.vb: Platform.Data.Doublets.Converters.UnaryNumberToAddressOrOperationConverter(Of TLink).UnaryNumberToAddressOrOperationConverter
-  nameWithType: UnaryNumberToAddressOrOperationConverter<TLink>.UnaryNumberToAddressOrOperationConverter
-  nameWithType.vb: UnaryNumberToAddressOrOperationConverter(Of TLink).UnaryNumberToAddressOrOperationConverter
-- uid: Platform.Data.Doublets.Converters.UnaryNumberToAddressOrOperationConverter`1.Convert(`0)
-  name: Convert(TLink)
-  href: api/Platform.Data.Doublets.Converters.UnaryNumberToAddressOrOperationConverter-1.html#Platform_Data_Doublets_Converters_UnaryNumberToAddressOrOperationConverter_1_Convert__0_
-  commentId: M:Platform.Data.Doublets.Converters.UnaryNumberToAddressOrOperationConverter`1.Convert(`0)
-  fullName: Platform.Data.Doublets.Converters.UnaryNumberToAddressOrOperationConverter<TLink>.Convert(TLink)
-  fullName.vb: Platform.Data.Doublets.Converters.UnaryNumberToAddressOrOperationConverter(Of TLink).Convert(TLink)
-  nameWithType: UnaryNumberToAddressOrOperationConverter<TLink>.Convert(TLink)
-  nameWithType.vb: UnaryNumberToAddressOrOperationConverter(Of TLink).Convert(TLink)
-- uid: Platform.Data.Doublets.Converters.UnaryNumberToAddressOrOperationConverter`1.Convert*
-  name: Convert
-  href: api/Platform.Data.Doublets.Converters.UnaryNumberToAddressOrOperationConverter-1.html#Platform_Data_Doublets_Converters_UnaryNumberToAddressOrOperationConverter_1_Convert_
-  commentId: Overload:Platform.Data.Doublets.Converters.UnaryNumberToAddressOrOperationConverter`1.Convert
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Converters.UnaryNumberToAddressOrOperationConverter<TLink>.Convert
-  fullName.vb: Platform.Data.Doublets.Converters.UnaryNumberToAddressOrOperationConverter(Of TLink).Convert
-  nameWithType: UnaryNumberToAddressOrOperationConverter<TLink>.Convert
-  nameWithType.vb: UnaryNumberToAddressOrOperationConverter(Of TLink).Convert
 - uid: Platform.Data.Doublets.Decorators
   name: Platform.Data.Doublets.Decorators
   href: api/Platform.Data.Doublets.Decorators.html
@@ -6455,213 +6228,6 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.SequencesOptions(Of TLink).Walker
   nameWithType: SequencesOptions<TLink>.Walker
   nameWithType.vb: SequencesOptions(Of TLink).Walker
-- uid: Platform.Data.Doublets.Sequences.UnicodeMap
-  name: UnicodeMap
-  href: api/Platform.Data.Doublets.Sequences.UnicodeMap.html
-  commentId: T:Platform.Data.Doublets.Sequences.UnicodeMap
-  fullName: Platform.Data.Doublets.Sequences.UnicodeMap
-  nameWithType: UnicodeMap
-- uid: Platform.Data.Doublets.Sequences.UnicodeMap.#ctor(Platform.Data.Doublets.ILinks{System.UInt64})
-  name: UnicodeMap(ILinks<UInt64>)
-  href: api/Platform.Data.Doublets.Sequences.UnicodeMap.html#Platform_Data_Doublets_Sequences_UnicodeMap__ctor_Platform_Data_Doublets_ILinks_System_UInt64__
-  commentId: M:Platform.Data.Doublets.Sequences.UnicodeMap.#ctor(Platform.Data.Doublets.ILinks{System.UInt64})
-  name.vb: UnicodeMap(ILinks(Of UInt64))
-  fullName: Platform.Data.Doublets.Sequences.UnicodeMap.UnicodeMap(Platform.Data.Doublets.ILinks<System.UInt64>)
-  fullName.vb: Platform.Data.Doublets.Sequences.UnicodeMap.UnicodeMap(Platform.Data.Doublets.ILinks(Of System.UInt64))
-  nameWithType: UnicodeMap.UnicodeMap(ILinks<UInt64>)
-  nameWithType.vb: UnicodeMap.UnicodeMap(ILinks(Of UInt64))
-- uid: Platform.Data.Doublets.Sequences.UnicodeMap.#ctor*
-  name: UnicodeMap
-  href: api/Platform.Data.Doublets.Sequences.UnicodeMap.html#Platform_Data_Doublets_Sequences_UnicodeMap__ctor_
-  commentId: Overload:Platform.Data.Doublets.Sequences.UnicodeMap.#ctor
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Sequences.UnicodeMap.UnicodeMap
-  nameWithType: UnicodeMap.UnicodeMap
-- uid: Platform.Data.Doublets.Sequences.UnicodeMap.FirstCharLink
-  name: FirstCharLink
-  href: api/Platform.Data.Doublets.Sequences.UnicodeMap.html#Platform_Data_Doublets_Sequences_UnicodeMap_FirstCharLink
-  commentId: F:Platform.Data.Doublets.Sequences.UnicodeMap.FirstCharLink
-  fullName: Platform.Data.Doublets.Sequences.UnicodeMap.FirstCharLink
-  nameWithType: UnicodeMap.FirstCharLink
-- uid: Platform.Data.Doublets.Sequences.UnicodeMap.FromCharsToLinkArray(System.Char[])
-  name: FromCharsToLinkArray(Char[])
-  href: api/Platform.Data.Doublets.Sequences.UnicodeMap.html#Platform_Data_Doublets_Sequences_UnicodeMap_FromCharsToLinkArray_System_Char___
-  commentId: M:Platform.Data.Doublets.Sequences.UnicodeMap.FromCharsToLinkArray(System.Char[])
-  name.vb: FromCharsToLinkArray(Char())
-  fullName: Platform.Data.Doublets.Sequences.UnicodeMap.FromCharsToLinkArray(System.Char[])
-  fullName.vb: Platform.Data.Doublets.Sequences.UnicodeMap.FromCharsToLinkArray(System.Char())
-  nameWithType: UnicodeMap.FromCharsToLinkArray(Char[])
-  nameWithType.vb: UnicodeMap.FromCharsToLinkArray(Char())
-- uid: Platform.Data.Doublets.Sequences.UnicodeMap.FromCharsToLinkArray(System.Char[],System.Int32)
-  name: FromCharsToLinkArray(Char[], Int32)
-  href: api/Platform.Data.Doublets.Sequences.UnicodeMap.html#Platform_Data_Doublets_Sequences_UnicodeMap_FromCharsToLinkArray_System_Char___System_Int32_
-  commentId: M:Platform.Data.Doublets.Sequences.UnicodeMap.FromCharsToLinkArray(System.Char[],System.Int32)
-  name.vb: FromCharsToLinkArray(Char(), Int32)
-  fullName: Platform.Data.Doublets.Sequences.UnicodeMap.FromCharsToLinkArray(System.Char[], System.Int32)
-  fullName.vb: Platform.Data.Doublets.Sequences.UnicodeMap.FromCharsToLinkArray(System.Char(), System.Int32)
-  nameWithType: UnicodeMap.FromCharsToLinkArray(Char[], Int32)
-  nameWithType.vb: UnicodeMap.FromCharsToLinkArray(Char(), Int32)
-- uid: Platform.Data.Doublets.Sequences.UnicodeMap.FromCharsToLinkArray*
-  name: FromCharsToLinkArray
-  href: api/Platform.Data.Doublets.Sequences.UnicodeMap.html#Platform_Data_Doublets_Sequences_UnicodeMap_FromCharsToLinkArray_
-  commentId: Overload:Platform.Data.Doublets.Sequences.UnicodeMap.FromCharsToLinkArray
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Sequences.UnicodeMap.FromCharsToLinkArray
-  nameWithType: UnicodeMap.FromCharsToLinkArray
-- uid: Platform.Data.Doublets.Sequences.UnicodeMap.FromCharToLink(System.Char)
-  name: FromCharToLink(Char)
-  href: api/Platform.Data.Doublets.Sequences.UnicodeMap.html#Platform_Data_Doublets_Sequences_UnicodeMap_FromCharToLink_System_Char_
-  commentId: M:Platform.Data.Doublets.Sequences.UnicodeMap.FromCharToLink(System.Char)
-  fullName: Platform.Data.Doublets.Sequences.UnicodeMap.FromCharToLink(System.Char)
-  nameWithType: UnicodeMap.FromCharToLink(Char)
-- uid: Platform.Data.Doublets.Sequences.UnicodeMap.FromCharToLink*
-  name: FromCharToLink
-  href: api/Platform.Data.Doublets.Sequences.UnicodeMap.html#Platform_Data_Doublets_Sequences_UnicodeMap_FromCharToLink_
-  commentId: Overload:Platform.Data.Doublets.Sequences.UnicodeMap.FromCharToLink
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Sequences.UnicodeMap.FromCharToLink
-  nameWithType: UnicodeMap.FromCharToLink
-- uid: Platform.Data.Doublets.Sequences.UnicodeMap.FromLinkArrayToLinkArrayGroups(System.UInt64[])
-  name: FromLinkArrayToLinkArrayGroups(UInt64[])
-  href: api/Platform.Data.Doublets.Sequences.UnicodeMap.html#Platform_Data_Doublets_Sequences_UnicodeMap_FromLinkArrayToLinkArrayGroups_System_UInt64___
-  commentId: M:Platform.Data.Doublets.Sequences.UnicodeMap.FromLinkArrayToLinkArrayGroups(System.UInt64[])
-  name.vb: FromLinkArrayToLinkArrayGroups(UInt64())
-  fullName: Platform.Data.Doublets.Sequences.UnicodeMap.FromLinkArrayToLinkArrayGroups(System.UInt64[])
-  fullName.vb: Platform.Data.Doublets.Sequences.UnicodeMap.FromLinkArrayToLinkArrayGroups(System.UInt64())
-  nameWithType: UnicodeMap.FromLinkArrayToLinkArrayGroups(UInt64[])
-  nameWithType.vb: UnicodeMap.FromLinkArrayToLinkArrayGroups(UInt64())
-- uid: Platform.Data.Doublets.Sequences.UnicodeMap.FromLinkArrayToLinkArrayGroups*
-  name: FromLinkArrayToLinkArrayGroups
-  href: api/Platform.Data.Doublets.Sequences.UnicodeMap.html#Platform_Data_Doublets_Sequences_UnicodeMap_FromLinkArrayToLinkArrayGroups_
-  commentId: Overload:Platform.Data.Doublets.Sequences.UnicodeMap.FromLinkArrayToLinkArrayGroups
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Sequences.UnicodeMap.FromLinkArrayToLinkArrayGroups
-  nameWithType: UnicodeMap.FromLinkArrayToLinkArrayGroups
-- uid: Platform.Data.Doublets.Sequences.UnicodeMap.FromLinksToString(System.Collections.Generic.IList{System.UInt64})
-  name: FromLinksToString(IList<UInt64>)
-  href: api/Platform.Data.Doublets.Sequences.UnicodeMap.html#Platform_Data_Doublets_Sequences_UnicodeMap_FromLinksToString_System_Collections_Generic_IList_System_UInt64__
-  commentId: M:Platform.Data.Doublets.Sequences.UnicodeMap.FromLinksToString(System.Collections.Generic.IList{System.UInt64})
-  name.vb: FromLinksToString(IList(Of UInt64))
-  fullName: Platform.Data.Doublets.Sequences.UnicodeMap.FromLinksToString(System.Collections.Generic.IList<System.UInt64>)
-  fullName.vb: Platform.Data.Doublets.Sequences.UnicodeMap.FromLinksToString(System.Collections.Generic.IList(Of System.UInt64))
-  nameWithType: UnicodeMap.FromLinksToString(IList<UInt64>)
-  nameWithType.vb: UnicodeMap.FromLinksToString(IList(Of UInt64))
-- uid: Platform.Data.Doublets.Sequences.UnicodeMap.FromLinksToString*
-  name: FromLinksToString
-  href: api/Platform.Data.Doublets.Sequences.UnicodeMap.html#Platform_Data_Doublets_Sequences_UnicodeMap_FromLinksToString_
-  commentId: Overload:Platform.Data.Doublets.Sequences.UnicodeMap.FromLinksToString
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Sequences.UnicodeMap.FromLinksToString
-  nameWithType: UnicodeMap.FromLinksToString
-- uid: Platform.Data.Doublets.Sequences.UnicodeMap.FromLinkToChar(System.UInt64)
-  name: FromLinkToChar(UInt64)
-  href: api/Platform.Data.Doublets.Sequences.UnicodeMap.html#Platform_Data_Doublets_Sequences_UnicodeMap_FromLinkToChar_System_UInt64_
-  commentId: M:Platform.Data.Doublets.Sequences.UnicodeMap.FromLinkToChar(System.UInt64)
-  fullName: Platform.Data.Doublets.Sequences.UnicodeMap.FromLinkToChar(System.UInt64)
-  nameWithType: UnicodeMap.FromLinkToChar(UInt64)
-- uid: Platform.Data.Doublets.Sequences.UnicodeMap.FromLinkToChar*
-  name: FromLinkToChar
-  href: api/Platform.Data.Doublets.Sequences.UnicodeMap.html#Platform_Data_Doublets_Sequences_UnicodeMap_FromLinkToChar_
-  commentId: Overload:Platform.Data.Doublets.Sequences.UnicodeMap.FromLinkToChar
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Sequences.UnicodeMap.FromLinkToChar
-  nameWithType: UnicodeMap.FromLinkToChar
-- uid: Platform.Data.Doublets.Sequences.UnicodeMap.FromSequenceLinkToString(System.UInt64,Platform.Data.Doublets.ILinks{System.UInt64})
-  name: FromSequenceLinkToString(UInt64, ILinks<UInt64>)
-  href: api/Platform.Data.Doublets.Sequences.UnicodeMap.html#Platform_Data_Doublets_Sequences_UnicodeMap_FromSequenceLinkToString_System_UInt64_Platform_Data_Doublets_ILinks_System_UInt64__
-  commentId: M:Platform.Data.Doublets.Sequences.UnicodeMap.FromSequenceLinkToString(System.UInt64,Platform.Data.Doublets.ILinks{System.UInt64})
-  name.vb: FromSequenceLinkToString(UInt64, ILinks(Of UInt64))
-  fullName: Platform.Data.Doublets.Sequences.UnicodeMap.FromSequenceLinkToString(System.UInt64, Platform.Data.Doublets.ILinks<System.UInt64>)
-  fullName.vb: Platform.Data.Doublets.Sequences.UnicodeMap.FromSequenceLinkToString(System.UInt64, Platform.Data.Doublets.ILinks(Of System.UInt64))
-  nameWithType: UnicodeMap.FromSequenceLinkToString(UInt64, ILinks<UInt64>)
-  nameWithType.vb: UnicodeMap.FromSequenceLinkToString(UInt64, ILinks(Of UInt64))
-- uid: Platform.Data.Doublets.Sequences.UnicodeMap.FromSequenceLinkToString*
-  name: FromSequenceLinkToString
-  href: api/Platform.Data.Doublets.Sequences.UnicodeMap.html#Platform_Data_Doublets_Sequences_UnicodeMap_FromSequenceLinkToString_
-  commentId: Overload:Platform.Data.Doublets.Sequences.UnicodeMap.FromSequenceLinkToString
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Sequences.UnicodeMap.FromSequenceLinkToString
-  nameWithType: UnicodeMap.FromSequenceLinkToString
-- uid: Platform.Data.Doublets.Sequences.UnicodeMap.FromStringToLinkArray(System.String)
-  name: FromStringToLinkArray(String)
-  href: api/Platform.Data.Doublets.Sequences.UnicodeMap.html#Platform_Data_Doublets_Sequences_UnicodeMap_FromStringToLinkArray_System_String_
-  commentId: M:Platform.Data.Doublets.Sequences.UnicodeMap.FromStringToLinkArray(System.String)
-  fullName: Platform.Data.Doublets.Sequences.UnicodeMap.FromStringToLinkArray(System.String)
-  nameWithType: UnicodeMap.FromStringToLinkArray(String)
-- uid: Platform.Data.Doublets.Sequences.UnicodeMap.FromStringToLinkArray*
-  name: FromStringToLinkArray
-  href: api/Platform.Data.Doublets.Sequences.UnicodeMap.html#Platform_Data_Doublets_Sequences_UnicodeMap_FromStringToLinkArray_
-  commentId: Overload:Platform.Data.Doublets.Sequences.UnicodeMap.FromStringToLinkArray
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Sequences.UnicodeMap.FromStringToLinkArray
-  nameWithType: UnicodeMap.FromStringToLinkArray
-- uid: Platform.Data.Doublets.Sequences.UnicodeMap.FromStringToLinkArrayGroups(System.String)
-  name: FromStringToLinkArrayGroups(String)
-  href: api/Platform.Data.Doublets.Sequences.UnicodeMap.html#Platform_Data_Doublets_Sequences_UnicodeMap_FromStringToLinkArrayGroups_System_String_
-  commentId: M:Platform.Data.Doublets.Sequences.UnicodeMap.FromStringToLinkArrayGroups(System.String)
-  fullName: Platform.Data.Doublets.Sequences.UnicodeMap.FromStringToLinkArrayGroups(System.String)
-  nameWithType: UnicodeMap.FromStringToLinkArrayGroups(String)
-- uid: Platform.Data.Doublets.Sequences.UnicodeMap.FromStringToLinkArrayGroups*
-  name: FromStringToLinkArrayGroups
-  href: api/Platform.Data.Doublets.Sequences.UnicodeMap.html#Platform_Data_Doublets_Sequences_UnicodeMap_FromStringToLinkArrayGroups_
-  commentId: Overload:Platform.Data.Doublets.Sequences.UnicodeMap.FromStringToLinkArrayGroups
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Sequences.UnicodeMap.FromStringToLinkArrayGroups
-  nameWithType: UnicodeMap.FromStringToLinkArrayGroups
-- uid: Platform.Data.Doublets.Sequences.UnicodeMap.Init
-  name: Init()
-  href: api/Platform.Data.Doublets.Sequences.UnicodeMap.html#Platform_Data_Doublets_Sequences_UnicodeMap_Init
-  commentId: M:Platform.Data.Doublets.Sequences.UnicodeMap.Init
-  fullName: Platform.Data.Doublets.Sequences.UnicodeMap.Init()
-  nameWithType: UnicodeMap.Init()
-- uid: Platform.Data.Doublets.Sequences.UnicodeMap.Init*
-  name: Init
-  href: api/Platform.Data.Doublets.Sequences.UnicodeMap.html#Platform_Data_Doublets_Sequences_UnicodeMap_Init_
-  commentId: Overload:Platform.Data.Doublets.Sequences.UnicodeMap.Init
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Sequences.UnicodeMap.Init
-  nameWithType: UnicodeMap.Init
-- uid: Platform.Data.Doublets.Sequences.UnicodeMap.InitNew(Platform.Data.Doublets.ILinks{System.UInt64})
-  name: InitNew(ILinks<UInt64>)
-  href: api/Platform.Data.Doublets.Sequences.UnicodeMap.html#Platform_Data_Doublets_Sequences_UnicodeMap_InitNew_Platform_Data_Doublets_ILinks_System_UInt64__
-  commentId: M:Platform.Data.Doublets.Sequences.UnicodeMap.InitNew(Platform.Data.Doublets.ILinks{System.UInt64})
-  name.vb: InitNew(ILinks(Of UInt64))
-  fullName: Platform.Data.Doublets.Sequences.UnicodeMap.InitNew(Platform.Data.Doublets.ILinks<System.UInt64>)
-  fullName.vb: Platform.Data.Doublets.Sequences.UnicodeMap.InitNew(Platform.Data.Doublets.ILinks(Of System.UInt64))
-  nameWithType: UnicodeMap.InitNew(ILinks<UInt64>)
-  nameWithType.vb: UnicodeMap.InitNew(ILinks(Of UInt64))
-- uid: Platform.Data.Doublets.Sequences.UnicodeMap.InitNew*
-  name: InitNew
-  href: api/Platform.Data.Doublets.Sequences.UnicodeMap.html#Platform_Data_Doublets_Sequences_UnicodeMap_InitNew_
-  commentId: Overload:Platform.Data.Doublets.Sequences.UnicodeMap.InitNew
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Sequences.UnicodeMap.InitNew
-  nameWithType: UnicodeMap.InitNew
-- uid: Platform.Data.Doublets.Sequences.UnicodeMap.IsCharLink(System.UInt64)
-  name: IsCharLink(UInt64)
-  href: api/Platform.Data.Doublets.Sequences.UnicodeMap.html#Platform_Data_Doublets_Sequences_UnicodeMap_IsCharLink_System_UInt64_
-  commentId: M:Platform.Data.Doublets.Sequences.UnicodeMap.IsCharLink(System.UInt64)
-  fullName: Platform.Data.Doublets.Sequences.UnicodeMap.IsCharLink(System.UInt64)
-  nameWithType: UnicodeMap.IsCharLink(UInt64)
-- uid: Platform.Data.Doublets.Sequences.UnicodeMap.IsCharLink*
-  name: IsCharLink
-  href: api/Platform.Data.Doublets.Sequences.UnicodeMap.html#Platform_Data_Doublets_Sequences_UnicodeMap_IsCharLink_
-  commentId: Overload:Platform.Data.Doublets.Sequences.UnicodeMap.IsCharLink
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Sequences.UnicodeMap.IsCharLink
-  nameWithType: UnicodeMap.IsCharLink
-- uid: Platform.Data.Doublets.Sequences.UnicodeMap.LastCharLink
-  name: LastCharLink
-  href: api/Platform.Data.Doublets.Sequences.UnicodeMap.html#Platform_Data_Doublets_Sequences_UnicodeMap_LastCharLink
-  commentId: F:Platform.Data.Doublets.Sequences.UnicodeMap.LastCharLink
-  fullName: Platform.Data.Doublets.Sequences.UnicodeMap.LastCharLink
-  nameWithType: UnicodeMap.LastCharLink
-- uid: Platform.Data.Doublets.Sequences.UnicodeMap.MapSize
-  name: MapSize
-  href: api/Platform.Data.Doublets.Sequences.UnicodeMap.html#Platform_Data_Doublets_Sequences_UnicodeMap_MapSize
-  commentId: F:Platform.Data.Doublets.Sequences.UnicodeMap.MapSize
-  fullName: Platform.Data.Doublets.Sequences.UnicodeMap.MapSize
-  nameWithType: UnicodeMap.MapSize
 - uid: Platform.Data.Doublets.Sequences.Walkers
   name: Platform.Data.Doublets.Sequences.Walkers
   href: api/Platform.Data.Doublets.Sequences.Walkers.html
@@ -9044,3 +8610,443 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Update
   nameWithType: UInt64LinksTransactionsLayer.Update
+- uid: Platform.Data.Doublets.UnaryNumbers
+  name: Platform.Data.Doublets.UnaryNumbers
+  href: api/Platform.Data.Doublets.UnaryNumbers.html
+  commentId: N:Platform.Data.Doublets.UnaryNumbers
+  fullName: Platform.Data.Doublets.UnaryNumbers
+  nameWithType: Platform.Data.Doublets.UnaryNumbers
+- uid: Platform.Data.Doublets.UnaryNumbers.AddressToUnaryNumberConverter`1
+  name: AddressToUnaryNumberConverter<TLink>
+  href: api/Platform.Data.Doublets.UnaryNumbers.AddressToUnaryNumberConverter-1.html
+  commentId: T:Platform.Data.Doublets.UnaryNumbers.AddressToUnaryNumberConverter`1
+  name.vb: AddressToUnaryNumberConverter(Of TLink)
+  fullName: Platform.Data.Doublets.UnaryNumbers.AddressToUnaryNumberConverter<TLink>
+  fullName.vb: Platform.Data.Doublets.UnaryNumbers.AddressToUnaryNumberConverter(Of TLink)
+  nameWithType: AddressToUnaryNumberConverter<TLink>
+  nameWithType.vb: AddressToUnaryNumberConverter(Of TLink)
+- uid: Platform.Data.Doublets.UnaryNumbers.AddressToUnaryNumberConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.IConverter{System.Int32,`0})
+  name: AddressToUnaryNumberConverter(ILinks<TLink>, IConverter<Int32, TLink>)
+  href: api/Platform.Data.Doublets.UnaryNumbers.AddressToUnaryNumberConverter-1.html#Platform_Data_Doublets_UnaryNumbers_AddressToUnaryNumberConverter_1__ctor_Platform_Data_Doublets_ILinks__0__Platform_Interfaces_IConverter_System_Int32__0__
+  commentId: M:Platform.Data.Doublets.UnaryNumbers.AddressToUnaryNumberConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.IConverter{System.Int32,`0})
+  name.vb: AddressToUnaryNumberConverter(ILinks(Of TLink), IConverter(Of Int32, TLink))
+  fullName: Platform.Data.Doublets.UnaryNumbers.AddressToUnaryNumberConverter<TLink>.AddressToUnaryNumberConverter(Platform.Data.Doublets.ILinks<TLink>, Platform.Interfaces.IConverter<System.Int32, TLink>)
+  fullName.vb: Platform.Data.Doublets.UnaryNumbers.AddressToUnaryNumberConverter(Of TLink).AddressToUnaryNumberConverter(Platform.Data.Doublets.ILinks(Of TLink), Platform.Interfaces.IConverter(Of System.Int32, TLink))
+  nameWithType: AddressToUnaryNumberConverter<TLink>.AddressToUnaryNumberConverter(ILinks<TLink>, IConverter<Int32, TLink>)
+  nameWithType.vb: AddressToUnaryNumberConverter(Of TLink).AddressToUnaryNumberConverter(ILinks(Of TLink), IConverter(Of Int32, TLink))
+- uid: Platform.Data.Doublets.UnaryNumbers.AddressToUnaryNumberConverter`1.#ctor*
+  name: AddressToUnaryNumberConverter
+  href: api/Platform.Data.Doublets.UnaryNumbers.AddressToUnaryNumberConverter-1.html#Platform_Data_Doublets_UnaryNumbers_AddressToUnaryNumberConverter_1__ctor_
+  commentId: Overload:Platform.Data.Doublets.UnaryNumbers.AddressToUnaryNumberConverter`1.#ctor
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.UnaryNumbers.AddressToUnaryNumberConverter<TLink>.AddressToUnaryNumberConverter
+  fullName.vb: Platform.Data.Doublets.UnaryNumbers.AddressToUnaryNumberConverter(Of TLink).AddressToUnaryNumberConverter
+  nameWithType: AddressToUnaryNumberConverter<TLink>.AddressToUnaryNumberConverter
+  nameWithType.vb: AddressToUnaryNumberConverter(Of TLink).AddressToUnaryNumberConverter
+- uid: Platform.Data.Doublets.UnaryNumbers.AddressToUnaryNumberConverter`1.Convert(`0)
+  name: Convert(TLink)
+  href: api/Platform.Data.Doublets.UnaryNumbers.AddressToUnaryNumberConverter-1.html#Platform_Data_Doublets_UnaryNumbers_AddressToUnaryNumberConverter_1_Convert__0_
+  commentId: M:Platform.Data.Doublets.UnaryNumbers.AddressToUnaryNumberConverter`1.Convert(`0)
+  fullName: Platform.Data.Doublets.UnaryNumbers.AddressToUnaryNumberConverter<TLink>.Convert(TLink)
+  fullName.vb: Platform.Data.Doublets.UnaryNumbers.AddressToUnaryNumberConverter(Of TLink).Convert(TLink)
+  nameWithType: AddressToUnaryNumberConverter<TLink>.Convert(TLink)
+  nameWithType.vb: AddressToUnaryNumberConverter(Of TLink).Convert(TLink)
+- uid: Platform.Data.Doublets.UnaryNumbers.AddressToUnaryNumberConverter`1.Convert*
+  name: Convert
+  href: api/Platform.Data.Doublets.UnaryNumbers.AddressToUnaryNumberConverter-1.html#Platform_Data_Doublets_UnaryNumbers_AddressToUnaryNumberConverter_1_Convert_
+  commentId: Overload:Platform.Data.Doublets.UnaryNumbers.AddressToUnaryNumberConverter`1.Convert
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.UnaryNumbers.AddressToUnaryNumberConverter<TLink>.Convert
+  fullName.vb: Platform.Data.Doublets.UnaryNumbers.AddressToUnaryNumberConverter(Of TLink).Convert
+  nameWithType: AddressToUnaryNumberConverter<TLink>.Convert
+  nameWithType.vb: AddressToUnaryNumberConverter(Of TLink).Convert
+- uid: Platform.Data.Doublets.UnaryNumbers.LinkToItsFrequencyNumberConveter`1
+  name: LinkToItsFrequencyNumberConveter<TLink>
+  href: api/Platform.Data.Doublets.UnaryNumbers.LinkToItsFrequencyNumberConveter-1.html
+  commentId: T:Platform.Data.Doublets.UnaryNumbers.LinkToItsFrequencyNumberConveter`1
+  name.vb: LinkToItsFrequencyNumberConveter(Of TLink)
+  fullName: Platform.Data.Doublets.UnaryNumbers.LinkToItsFrequencyNumberConveter<TLink>
+  fullName.vb: Platform.Data.Doublets.UnaryNumbers.LinkToItsFrequencyNumberConveter(Of TLink)
+  nameWithType: LinkToItsFrequencyNumberConveter<TLink>
+  nameWithType.vb: LinkToItsFrequencyNumberConveter(Of TLink)
+- uid: Platform.Data.Doublets.UnaryNumbers.LinkToItsFrequencyNumberConveter`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.IPropertyOperator{`0,`0},Platform.Interfaces.IConverter{`0})
+  name: LinkToItsFrequencyNumberConveter(ILinks<TLink>, IPropertyOperator<TLink, TLink>, IConverter<TLink>)
+  href: api/Platform.Data.Doublets.UnaryNumbers.LinkToItsFrequencyNumberConveter-1.html#Platform_Data_Doublets_UnaryNumbers_LinkToItsFrequencyNumberConveter_1__ctor_Platform_Data_Doublets_ILinks__0__Platform_Interfaces_IPropertyOperator__0__0__Platform_Interfaces_IConverter__0__
+  commentId: M:Platform.Data.Doublets.UnaryNumbers.LinkToItsFrequencyNumberConveter`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.IPropertyOperator{`0,`0},Platform.Interfaces.IConverter{`0})
+  name.vb: LinkToItsFrequencyNumberConveter(ILinks(Of TLink), IPropertyOperator(Of TLink, TLink), IConverter(Of TLink))
+  fullName: Platform.Data.Doublets.UnaryNumbers.LinkToItsFrequencyNumberConveter<TLink>.LinkToItsFrequencyNumberConveter(Platform.Data.Doublets.ILinks<TLink>, Platform.Interfaces.IPropertyOperator<TLink, TLink>, Platform.Interfaces.IConverter<TLink>)
+  fullName.vb: Platform.Data.Doublets.UnaryNumbers.LinkToItsFrequencyNumberConveter(Of TLink).LinkToItsFrequencyNumberConveter(Platform.Data.Doublets.ILinks(Of TLink), Platform.Interfaces.IPropertyOperator(Of TLink, TLink), Platform.Interfaces.IConverter(Of TLink))
+  nameWithType: LinkToItsFrequencyNumberConveter<TLink>.LinkToItsFrequencyNumberConveter(ILinks<TLink>, IPropertyOperator<TLink, TLink>, IConverter<TLink>)
+  nameWithType.vb: LinkToItsFrequencyNumberConveter(Of TLink).LinkToItsFrequencyNumberConveter(ILinks(Of TLink), IPropertyOperator(Of TLink, TLink), IConverter(Of TLink))
+- uid: Platform.Data.Doublets.UnaryNumbers.LinkToItsFrequencyNumberConveter`1.#ctor*
+  name: LinkToItsFrequencyNumberConveter
+  href: api/Platform.Data.Doublets.UnaryNumbers.LinkToItsFrequencyNumberConveter-1.html#Platform_Data_Doublets_UnaryNumbers_LinkToItsFrequencyNumberConveter_1__ctor_
+  commentId: Overload:Platform.Data.Doublets.UnaryNumbers.LinkToItsFrequencyNumberConveter`1.#ctor
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.UnaryNumbers.LinkToItsFrequencyNumberConveter<TLink>.LinkToItsFrequencyNumberConveter
+  fullName.vb: Platform.Data.Doublets.UnaryNumbers.LinkToItsFrequencyNumberConveter(Of TLink).LinkToItsFrequencyNumberConveter
+  nameWithType: LinkToItsFrequencyNumberConveter<TLink>.LinkToItsFrequencyNumberConveter
+  nameWithType.vb: LinkToItsFrequencyNumberConveter(Of TLink).LinkToItsFrequencyNumberConveter
+- uid: Platform.Data.Doublets.UnaryNumbers.LinkToItsFrequencyNumberConveter`1.Convert(Platform.Data.Doublets.Doublet{`0})
+  name: Convert(Doublet<TLink>)
+  href: api/Platform.Data.Doublets.UnaryNumbers.LinkToItsFrequencyNumberConveter-1.html#Platform_Data_Doublets_UnaryNumbers_LinkToItsFrequencyNumberConveter_1_Convert_Platform_Data_Doublets_Doublet__0__
+  commentId: M:Platform.Data.Doublets.UnaryNumbers.LinkToItsFrequencyNumberConveter`1.Convert(Platform.Data.Doublets.Doublet{`0})
+  name.vb: Convert(Doublet(Of TLink))
+  fullName: Platform.Data.Doublets.UnaryNumbers.LinkToItsFrequencyNumberConveter<TLink>.Convert(Platform.Data.Doublets.Doublet<TLink>)
+  fullName.vb: Platform.Data.Doublets.UnaryNumbers.LinkToItsFrequencyNumberConveter(Of TLink).Convert(Platform.Data.Doublets.Doublet(Of TLink))
+  nameWithType: LinkToItsFrequencyNumberConveter<TLink>.Convert(Doublet<TLink>)
+  nameWithType.vb: LinkToItsFrequencyNumberConveter(Of TLink).Convert(Doublet(Of TLink))
+- uid: Platform.Data.Doublets.UnaryNumbers.LinkToItsFrequencyNumberConveter`1.Convert*
+  name: Convert
+  href: api/Platform.Data.Doublets.UnaryNumbers.LinkToItsFrequencyNumberConveter-1.html#Platform_Data_Doublets_UnaryNumbers_LinkToItsFrequencyNumberConveter_1_Convert_
+  commentId: Overload:Platform.Data.Doublets.UnaryNumbers.LinkToItsFrequencyNumberConveter`1.Convert
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.UnaryNumbers.LinkToItsFrequencyNumberConveter<TLink>.Convert
+  fullName.vb: Platform.Data.Doublets.UnaryNumbers.LinkToItsFrequencyNumberConveter(Of TLink).Convert
+  nameWithType: LinkToItsFrequencyNumberConveter<TLink>.Convert
+  nameWithType.vb: LinkToItsFrequencyNumberConveter(Of TLink).Convert
+- uid: Platform.Data.Doublets.UnaryNumbers.PowerOf2ToUnaryNumberConverter`1
+  name: PowerOf2ToUnaryNumberConverter<TLink>
+  href: api/Platform.Data.Doublets.UnaryNumbers.PowerOf2ToUnaryNumberConverter-1.html
+  commentId: T:Platform.Data.Doublets.UnaryNumbers.PowerOf2ToUnaryNumberConverter`1
+  name.vb: PowerOf2ToUnaryNumberConverter(Of TLink)
+  fullName: Platform.Data.Doublets.UnaryNumbers.PowerOf2ToUnaryNumberConverter<TLink>
+  fullName.vb: Platform.Data.Doublets.UnaryNumbers.PowerOf2ToUnaryNumberConverter(Of TLink)
+  nameWithType: PowerOf2ToUnaryNumberConverter<TLink>
+  nameWithType.vb: PowerOf2ToUnaryNumberConverter(Of TLink)
+- uid: Platform.Data.Doublets.UnaryNumbers.PowerOf2ToUnaryNumberConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},`0)
+  name: PowerOf2ToUnaryNumberConverter(ILinks<TLink>, TLink)
+  href: api/Platform.Data.Doublets.UnaryNumbers.PowerOf2ToUnaryNumberConverter-1.html#Platform_Data_Doublets_UnaryNumbers_PowerOf2ToUnaryNumberConverter_1__ctor_Platform_Data_Doublets_ILinks__0___0_
+  commentId: M:Platform.Data.Doublets.UnaryNumbers.PowerOf2ToUnaryNumberConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},`0)
+  name.vb: PowerOf2ToUnaryNumberConverter(ILinks(Of TLink), TLink)
+  fullName: Platform.Data.Doublets.UnaryNumbers.PowerOf2ToUnaryNumberConverter<TLink>.PowerOf2ToUnaryNumberConverter(Platform.Data.Doublets.ILinks<TLink>, TLink)
+  fullName.vb: Platform.Data.Doublets.UnaryNumbers.PowerOf2ToUnaryNumberConverter(Of TLink).PowerOf2ToUnaryNumberConverter(Platform.Data.Doublets.ILinks(Of TLink), TLink)
+  nameWithType: PowerOf2ToUnaryNumberConverter<TLink>.PowerOf2ToUnaryNumberConverter(ILinks<TLink>, TLink)
+  nameWithType.vb: PowerOf2ToUnaryNumberConverter(Of TLink).PowerOf2ToUnaryNumberConverter(ILinks(Of TLink), TLink)
+- uid: Platform.Data.Doublets.UnaryNumbers.PowerOf2ToUnaryNumberConverter`1.#ctor*
+  name: PowerOf2ToUnaryNumberConverter
+  href: api/Platform.Data.Doublets.UnaryNumbers.PowerOf2ToUnaryNumberConverter-1.html#Platform_Data_Doublets_UnaryNumbers_PowerOf2ToUnaryNumberConverter_1__ctor_
+  commentId: Overload:Platform.Data.Doublets.UnaryNumbers.PowerOf2ToUnaryNumberConverter`1.#ctor
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.UnaryNumbers.PowerOf2ToUnaryNumberConverter<TLink>.PowerOf2ToUnaryNumberConverter
+  fullName.vb: Platform.Data.Doublets.UnaryNumbers.PowerOf2ToUnaryNumberConverter(Of TLink).PowerOf2ToUnaryNumberConverter
+  nameWithType: PowerOf2ToUnaryNumberConverter<TLink>.PowerOf2ToUnaryNumberConverter
+  nameWithType.vb: PowerOf2ToUnaryNumberConverter(Of TLink).PowerOf2ToUnaryNumberConverter
+- uid: Platform.Data.Doublets.UnaryNumbers.PowerOf2ToUnaryNumberConverter`1.Convert(System.Int32)
+  name: Convert(Int32)
+  href: api/Platform.Data.Doublets.UnaryNumbers.PowerOf2ToUnaryNumberConverter-1.html#Platform_Data_Doublets_UnaryNumbers_PowerOf2ToUnaryNumberConverter_1_Convert_System_Int32_
+  commentId: M:Platform.Data.Doublets.UnaryNumbers.PowerOf2ToUnaryNumberConverter`1.Convert(System.Int32)
+  fullName: Platform.Data.Doublets.UnaryNumbers.PowerOf2ToUnaryNumberConverter<TLink>.Convert(System.Int32)
+  fullName.vb: Platform.Data.Doublets.UnaryNumbers.PowerOf2ToUnaryNumberConverter(Of TLink).Convert(System.Int32)
+  nameWithType: PowerOf2ToUnaryNumberConverter<TLink>.Convert(Int32)
+  nameWithType.vb: PowerOf2ToUnaryNumberConverter(Of TLink).Convert(Int32)
+- uid: Platform.Data.Doublets.UnaryNumbers.PowerOf2ToUnaryNumberConverter`1.Convert*
+  name: Convert
+  href: api/Platform.Data.Doublets.UnaryNumbers.PowerOf2ToUnaryNumberConverter-1.html#Platform_Data_Doublets_UnaryNumbers_PowerOf2ToUnaryNumberConverter_1_Convert_
+  commentId: Overload:Platform.Data.Doublets.UnaryNumbers.PowerOf2ToUnaryNumberConverter`1.Convert
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.UnaryNumbers.PowerOf2ToUnaryNumberConverter<TLink>.Convert
+  fullName.vb: Platform.Data.Doublets.UnaryNumbers.PowerOf2ToUnaryNumberConverter(Of TLink).Convert
+  nameWithType: PowerOf2ToUnaryNumberConverter<TLink>.Convert
+  nameWithType.vb: PowerOf2ToUnaryNumberConverter(Of TLink).Convert
+- uid: Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressAddOperationConverter`1
+  name: UnaryNumberToAddressAddOperationConverter<TLink>
+  href: api/Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressAddOperationConverter-1.html
+  commentId: T:Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressAddOperationConverter`1
+  name.vb: UnaryNumberToAddressAddOperationConverter(Of TLink)
+  fullName: Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressAddOperationConverter<TLink>
+  fullName.vb: Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressAddOperationConverter(Of TLink)
+  nameWithType: UnaryNumberToAddressAddOperationConverter<TLink>
+  nameWithType.vb: UnaryNumberToAddressAddOperationConverter(Of TLink)
+- uid: Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressAddOperationConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},`0)
+  name: UnaryNumberToAddressAddOperationConverter(ILinks<TLink>, TLink)
+  href: api/Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressAddOperationConverter-1.html#Platform_Data_Doublets_UnaryNumbers_UnaryNumberToAddressAddOperationConverter_1__ctor_Platform_Data_Doublets_ILinks__0___0_
+  commentId: M:Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressAddOperationConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},`0)
+  name.vb: UnaryNumberToAddressAddOperationConverter(ILinks(Of TLink), TLink)
+  fullName: Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressAddOperationConverter<TLink>.UnaryNumberToAddressAddOperationConverter(Platform.Data.Doublets.ILinks<TLink>, TLink)
+  fullName.vb: Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressAddOperationConverter(Of TLink).UnaryNumberToAddressAddOperationConverter(Platform.Data.Doublets.ILinks(Of TLink), TLink)
+  nameWithType: UnaryNumberToAddressAddOperationConverter<TLink>.UnaryNumberToAddressAddOperationConverter(ILinks<TLink>, TLink)
+  nameWithType.vb: UnaryNumberToAddressAddOperationConverter(Of TLink).UnaryNumberToAddressAddOperationConverter(ILinks(Of TLink), TLink)
+- uid: Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressAddOperationConverter`1.#ctor*
+  name: UnaryNumberToAddressAddOperationConverter
+  href: api/Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressAddOperationConverter-1.html#Platform_Data_Doublets_UnaryNumbers_UnaryNumberToAddressAddOperationConverter_1__ctor_
+  commentId: Overload:Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressAddOperationConverter`1.#ctor
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressAddOperationConverter<TLink>.UnaryNumberToAddressAddOperationConverter
+  fullName.vb: Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressAddOperationConverter(Of TLink).UnaryNumberToAddressAddOperationConverter
+  nameWithType: UnaryNumberToAddressAddOperationConverter<TLink>.UnaryNumberToAddressAddOperationConverter
+  nameWithType.vb: UnaryNumberToAddressAddOperationConverter(Of TLink).UnaryNumberToAddressAddOperationConverter
+- uid: Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressAddOperationConverter`1.Convert(`0)
+  name: Convert(TLink)
+  href: api/Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressAddOperationConverter-1.html#Platform_Data_Doublets_UnaryNumbers_UnaryNumberToAddressAddOperationConverter_1_Convert__0_
+  commentId: M:Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressAddOperationConverter`1.Convert(`0)
+  fullName: Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressAddOperationConverter<TLink>.Convert(TLink)
+  fullName.vb: Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressAddOperationConverter(Of TLink).Convert(TLink)
+  nameWithType: UnaryNumberToAddressAddOperationConverter<TLink>.Convert(TLink)
+  nameWithType.vb: UnaryNumberToAddressAddOperationConverter(Of TLink).Convert(TLink)
+- uid: Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressAddOperationConverter`1.Convert*
+  name: Convert
+  href: api/Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressAddOperationConverter-1.html#Platform_Data_Doublets_UnaryNumbers_UnaryNumberToAddressAddOperationConverter_1_Convert_
+  commentId: Overload:Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressAddOperationConverter`1.Convert
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressAddOperationConverter<TLink>.Convert
+  fullName.vb: Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressAddOperationConverter(Of TLink).Convert
+  nameWithType: UnaryNumberToAddressAddOperationConverter<TLink>.Convert
+  nameWithType.vb: UnaryNumberToAddressAddOperationConverter(Of TLink).Convert
+- uid: Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressOrOperationConverter`1
+  name: UnaryNumberToAddressOrOperationConverter<TLink>
+  href: api/Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressOrOperationConverter-1.html
+  commentId: T:Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressOrOperationConverter`1
+  name.vb: UnaryNumberToAddressOrOperationConverter(Of TLink)
+  fullName: Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressOrOperationConverter<TLink>
+  fullName.vb: Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressOrOperationConverter(Of TLink)
+  nameWithType: UnaryNumberToAddressOrOperationConverter<TLink>
+  nameWithType.vb: UnaryNumberToAddressOrOperationConverter(Of TLink)
+- uid: Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressOrOperationConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.IConverter{System.Int32,`0})
+  name: UnaryNumberToAddressOrOperationConverter(ILinks<TLink>, IConverter<Int32, TLink>)
+  href: api/Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressOrOperationConverter-1.html#Platform_Data_Doublets_UnaryNumbers_UnaryNumberToAddressOrOperationConverter_1__ctor_Platform_Data_Doublets_ILinks__0__Platform_Interfaces_IConverter_System_Int32__0__
+  commentId: M:Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressOrOperationConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.IConverter{System.Int32,`0})
+  name.vb: UnaryNumberToAddressOrOperationConverter(ILinks(Of TLink), IConverter(Of Int32, TLink))
+  fullName: Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressOrOperationConverter<TLink>.UnaryNumberToAddressOrOperationConverter(Platform.Data.Doublets.ILinks<TLink>, Platform.Interfaces.IConverter<System.Int32, TLink>)
+  fullName.vb: Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressOrOperationConverter(Of TLink).UnaryNumberToAddressOrOperationConverter(Platform.Data.Doublets.ILinks(Of TLink), Platform.Interfaces.IConverter(Of System.Int32, TLink))
+  nameWithType: UnaryNumberToAddressOrOperationConverter<TLink>.UnaryNumberToAddressOrOperationConverter(ILinks<TLink>, IConverter<Int32, TLink>)
+  nameWithType.vb: UnaryNumberToAddressOrOperationConverter(Of TLink).UnaryNumberToAddressOrOperationConverter(ILinks(Of TLink), IConverter(Of Int32, TLink))
+- uid: Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressOrOperationConverter`1.#ctor*
+  name: UnaryNumberToAddressOrOperationConverter
+  href: api/Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressOrOperationConverter-1.html#Platform_Data_Doublets_UnaryNumbers_UnaryNumberToAddressOrOperationConverter_1__ctor_
+  commentId: Overload:Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressOrOperationConverter`1.#ctor
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressOrOperationConverter<TLink>.UnaryNumberToAddressOrOperationConverter
+  fullName.vb: Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressOrOperationConverter(Of TLink).UnaryNumberToAddressOrOperationConverter
+  nameWithType: UnaryNumberToAddressOrOperationConverter<TLink>.UnaryNumberToAddressOrOperationConverter
+  nameWithType.vb: UnaryNumberToAddressOrOperationConverter(Of TLink).UnaryNumberToAddressOrOperationConverter
+- uid: Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressOrOperationConverter`1.Convert(`0)
+  name: Convert(TLink)
+  href: api/Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressOrOperationConverter-1.html#Platform_Data_Doublets_UnaryNumbers_UnaryNumberToAddressOrOperationConverter_1_Convert__0_
+  commentId: M:Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressOrOperationConverter`1.Convert(`0)
+  fullName: Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressOrOperationConverter<TLink>.Convert(TLink)
+  fullName.vb: Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressOrOperationConverter(Of TLink).Convert(TLink)
+  nameWithType: UnaryNumberToAddressOrOperationConverter<TLink>.Convert(TLink)
+  nameWithType.vb: UnaryNumberToAddressOrOperationConverter(Of TLink).Convert(TLink)
+- uid: Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressOrOperationConverter`1.Convert*
+  name: Convert
+  href: api/Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressOrOperationConverter-1.html#Platform_Data_Doublets_UnaryNumbers_UnaryNumberToAddressOrOperationConverter_1_Convert_
+  commentId: Overload:Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressOrOperationConverter`1.Convert
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressOrOperationConverter<TLink>.Convert
+  fullName.vb: Platform.Data.Doublets.UnaryNumbers.UnaryNumberToAddressOrOperationConverter(Of TLink).Convert
+  nameWithType: UnaryNumberToAddressOrOperationConverter<TLink>.Convert
+  nameWithType.vb: UnaryNumberToAddressOrOperationConverter(Of TLink).Convert
+- uid: Platform.Data.Doublets.Unicode
+  name: Platform.Data.Doublets.Unicode
+  href: api/Platform.Data.Doublets.Unicode.html
+  commentId: N:Platform.Data.Doublets.Unicode
+  fullName: Platform.Data.Doublets.Unicode
+  nameWithType: Platform.Data.Doublets.Unicode
+- uid: Platform.Data.Doublets.Unicode.UnicodeMap
+  name: UnicodeMap
+  href: api/Platform.Data.Doublets.Unicode.UnicodeMap.html
+  commentId: T:Platform.Data.Doublets.Unicode.UnicodeMap
+  fullName: Platform.Data.Doublets.Unicode.UnicodeMap
+  nameWithType: UnicodeMap
+- uid: Platform.Data.Doublets.Unicode.UnicodeMap.#ctor(Platform.Data.Doublets.ILinks{System.UInt64})
+  name: UnicodeMap(ILinks<UInt64>)
+  href: api/Platform.Data.Doublets.Unicode.UnicodeMap.html#Platform_Data_Doublets_Unicode_UnicodeMap__ctor_Platform_Data_Doublets_ILinks_System_UInt64__
+  commentId: M:Platform.Data.Doublets.Unicode.UnicodeMap.#ctor(Platform.Data.Doublets.ILinks{System.UInt64})
+  name.vb: UnicodeMap(ILinks(Of UInt64))
+  fullName: Platform.Data.Doublets.Unicode.UnicodeMap.UnicodeMap(Platform.Data.Doublets.ILinks<System.UInt64>)
+  fullName.vb: Platform.Data.Doublets.Unicode.UnicodeMap.UnicodeMap(Platform.Data.Doublets.ILinks(Of System.UInt64))
+  nameWithType: UnicodeMap.UnicodeMap(ILinks<UInt64>)
+  nameWithType.vb: UnicodeMap.UnicodeMap(ILinks(Of UInt64))
+- uid: Platform.Data.Doublets.Unicode.UnicodeMap.#ctor*
+  name: UnicodeMap
+  href: api/Platform.Data.Doublets.Unicode.UnicodeMap.html#Platform_Data_Doublets_Unicode_UnicodeMap__ctor_
+  commentId: Overload:Platform.Data.Doublets.Unicode.UnicodeMap.#ctor
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Unicode.UnicodeMap.UnicodeMap
+  nameWithType: UnicodeMap.UnicodeMap
+- uid: Platform.Data.Doublets.Unicode.UnicodeMap.FirstCharLink
+  name: FirstCharLink
+  href: api/Platform.Data.Doublets.Unicode.UnicodeMap.html#Platform_Data_Doublets_Unicode_UnicodeMap_FirstCharLink
+  commentId: F:Platform.Data.Doublets.Unicode.UnicodeMap.FirstCharLink
+  fullName: Platform.Data.Doublets.Unicode.UnicodeMap.FirstCharLink
+  nameWithType: UnicodeMap.FirstCharLink
+- uid: Platform.Data.Doublets.Unicode.UnicodeMap.FromCharsToLinkArray(System.Char[])
+  name: FromCharsToLinkArray(Char[])
+  href: api/Platform.Data.Doublets.Unicode.UnicodeMap.html#Platform_Data_Doublets_Unicode_UnicodeMap_FromCharsToLinkArray_System_Char___
+  commentId: M:Platform.Data.Doublets.Unicode.UnicodeMap.FromCharsToLinkArray(System.Char[])
+  name.vb: FromCharsToLinkArray(Char())
+  fullName: Platform.Data.Doublets.Unicode.UnicodeMap.FromCharsToLinkArray(System.Char[])
+  fullName.vb: Platform.Data.Doublets.Unicode.UnicodeMap.FromCharsToLinkArray(System.Char())
+  nameWithType: UnicodeMap.FromCharsToLinkArray(Char[])
+  nameWithType.vb: UnicodeMap.FromCharsToLinkArray(Char())
+- uid: Platform.Data.Doublets.Unicode.UnicodeMap.FromCharsToLinkArray(System.Char[],System.Int32)
+  name: FromCharsToLinkArray(Char[], Int32)
+  href: api/Platform.Data.Doublets.Unicode.UnicodeMap.html#Platform_Data_Doublets_Unicode_UnicodeMap_FromCharsToLinkArray_System_Char___System_Int32_
+  commentId: M:Platform.Data.Doublets.Unicode.UnicodeMap.FromCharsToLinkArray(System.Char[],System.Int32)
+  name.vb: FromCharsToLinkArray(Char(), Int32)
+  fullName: Platform.Data.Doublets.Unicode.UnicodeMap.FromCharsToLinkArray(System.Char[], System.Int32)
+  fullName.vb: Platform.Data.Doublets.Unicode.UnicodeMap.FromCharsToLinkArray(System.Char(), System.Int32)
+  nameWithType: UnicodeMap.FromCharsToLinkArray(Char[], Int32)
+  nameWithType.vb: UnicodeMap.FromCharsToLinkArray(Char(), Int32)
+- uid: Platform.Data.Doublets.Unicode.UnicodeMap.FromCharsToLinkArray*
+  name: FromCharsToLinkArray
+  href: api/Platform.Data.Doublets.Unicode.UnicodeMap.html#Platform_Data_Doublets_Unicode_UnicodeMap_FromCharsToLinkArray_
+  commentId: Overload:Platform.Data.Doublets.Unicode.UnicodeMap.FromCharsToLinkArray
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Unicode.UnicodeMap.FromCharsToLinkArray
+  nameWithType: UnicodeMap.FromCharsToLinkArray
+- uid: Platform.Data.Doublets.Unicode.UnicodeMap.FromCharToLink(System.Char)
+  name: FromCharToLink(Char)
+  href: api/Platform.Data.Doublets.Unicode.UnicodeMap.html#Platform_Data_Doublets_Unicode_UnicodeMap_FromCharToLink_System_Char_
+  commentId: M:Platform.Data.Doublets.Unicode.UnicodeMap.FromCharToLink(System.Char)
+  fullName: Platform.Data.Doublets.Unicode.UnicodeMap.FromCharToLink(System.Char)
+  nameWithType: UnicodeMap.FromCharToLink(Char)
+- uid: Platform.Data.Doublets.Unicode.UnicodeMap.FromCharToLink*
+  name: FromCharToLink
+  href: api/Platform.Data.Doublets.Unicode.UnicodeMap.html#Platform_Data_Doublets_Unicode_UnicodeMap_FromCharToLink_
+  commentId: Overload:Platform.Data.Doublets.Unicode.UnicodeMap.FromCharToLink
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Unicode.UnicodeMap.FromCharToLink
+  nameWithType: UnicodeMap.FromCharToLink
+- uid: Platform.Data.Doublets.Unicode.UnicodeMap.FromLinkArrayToLinkArrayGroups(System.UInt64[])
+  name: FromLinkArrayToLinkArrayGroups(UInt64[])
+  href: api/Platform.Data.Doublets.Unicode.UnicodeMap.html#Platform_Data_Doublets_Unicode_UnicodeMap_FromLinkArrayToLinkArrayGroups_System_UInt64___
+  commentId: M:Platform.Data.Doublets.Unicode.UnicodeMap.FromLinkArrayToLinkArrayGroups(System.UInt64[])
+  name.vb: FromLinkArrayToLinkArrayGroups(UInt64())
+  fullName: Platform.Data.Doublets.Unicode.UnicodeMap.FromLinkArrayToLinkArrayGroups(System.UInt64[])
+  fullName.vb: Platform.Data.Doublets.Unicode.UnicodeMap.FromLinkArrayToLinkArrayGroups(System.UInt64())
+  nameWithType: UnicodeMap.FromLinkArrayToLinkArrayGroups(UInt64[])
+  nameWithType.vb: UnicodeMap.FromLinkArrayToLinkArrayGroups(UInt64())
+- uid: Platform.Data.Doublets.Unicode.UnicodeMap.FromLinkArrayToLinkArrayGroups*
+  name: FromLinkArrayToLinkArrayGroups
+  href: api/Platform.Data.Doublets.Unicode.UnicodeMap.html#Platform_Data_Doublets_Unicode_UnicodeMap_FromLinkArrayToLinkArrayGroups_
+  commentId: Overload:Platform.Data.Doublets.Unicode.UnicodeMap.FromLinkArrayToLinkArrayGroups
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Unicode.UnicodeMap.FromLinkArrayToLinkArrayGroups
+  nameWithType: UnicodeMap.FromLinkArrayToLinkArrayGroups
+- uid: Platform.Data.Doublets.Unicode.UnicodeMap.FromLinksToString(System.Collections.Generic.IList{System.UInt64})
+  name: FromLinksToString(IList<UInt64>)
+  href: api/Platform.Data.Doublets.Unicode.UnicodeMap.html#Platform_Data_Doublets_Unicode_UnicodeMap_FromLinksToString_System_Collections_Generic_IList_System_UInt64__
+  commentId: M:Platform.Data.Doublets.Unicode.UnicodeMap.FromLinksToString(System.Collections.Generic.IList{System.UInt64})
+  name.vb: FromLinksToString(IList(Of UInt64))
+  fullName: Platform.Data.Doublets.Unicode.UnicodeMap.FromLinksToString(System.Collections.Generic.IList<System.UInt64>)
+  fullName.vb: Platform.Data.Doublets.Unicode.UnicodeMap.FromLinksToString(System.Collections.Generic.IList(Of System.UInt64))
+  nameWithType: UnicodeMap.FromLinksToString(IList<UInt64>)
+  nameWithType.vb: UnicodeMap.FromLinksToString(IList(Of UInt64))
+- uid: Platform.Data.Doublets.Unicode.UnicodeMap.FromLinksToString*
+  name: FromLinksToString
+  href: api/Platform.Data.Doublets.Unicode.UnicodeMap.html#Platform_Data_Doublets_Unicode_UnicodeMap_FromLinksToString_
+  commentId: Overload:Platform.Data.Doublets.Unicode.UnicodeMap.FromLinksToString
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Unicode.UnicodeMap.FromLinksToString
+  nameWithType: UnicodeMap.FromLinksToString
+- uid: Platform.Data.Doublets.Unicode.UnicodeMap.FromLinkToChar(System.UInt64)
+  name: FromLinkToChar(UInt64)
+  href: api/Platform.Data.Doublets.Unicode.UnicodeMap.html#Platform_Data_Doublets_Unicode_UnicodeMap_FromLinkToChar_System_UInt64_
+  commentId: M:Platform.Data.Doublets.Unicode.UnicodeMap.FromLinkToChar(System.UInt64)
+  fullName: Platform.Data.Doublets.Unicode.UnicodeMap.FromLinkToChar(System.UInt64)
+  nameWithType: UnicodeMap.FromLinkToChar(UInt64)
+- uid: Platform.Data.Doublets.Unicode.UnicodeMap.FromLinkToChar*
+  name: FromLinkToChar
+  href: api/Platform.Data.Doublets.Unicode.UnicodeMap.html#Platform_Data_Doublets_Unicode_UnicodeMap_FromLinkToChar_
+  commentId: Overload:Platform.Data.Doublets.Unicode.UnicodeMap.FromLinkToChar
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Unicode.UnicodeMap.FromLinkToChar
+  nameWithType: UnicodeMap.FromLinkToChar
+- uid: Platform.Data.Doublets.Unicode.UnicodeMap.FromSequenceLinkToString(System.UInt64,Platform.Data.Doublets.ILinks{System.UInt64})
+  name: FromSequenceLinkToString(UInt64, ILinks<UInt64>)
+  href: api/Platform.Data.Doublets.Unicode.UnicodeMap.html#Platform_Data_Doublets_Unicode_UnicodeMap_FromSequenceLinkToString_System_UInt64_Platform_Data_Doublets_ILinks_System_UInt64__
+  commentId: M:Platform.Data.Doublets.Unicode.UnicodeMap.FromSequenceLinkToString(System.UInt64,Platform.Data.Doublets.ILinks{System.UInt64})
+  name.vb: FromSequenceLinkToString(UInt64, ILinks(Of UInt64))
+  fullName: Platform.Data.Doublets.Unicode.UnicodeMap.FromSequenceLinkToString(System.UInt64, Platform.Data.Doublets.ILinks<System.UInt64>)
+  fullName.vb: Platform.Data.Doublets.Unicode.UnicodeMap.FromSequenceLinkToString(System.UInt64, Platform.Data.Doublets.ILinks(Of System.UInt64))
+  nameWithType: UnicodeMap.FromSequenceLinkToString(UInt64, ILinks<UInt64>)
+  nameWithType.vb: UnicodeMap.FromSequenceLinkToString(UInt64, ILinks(Of UInt64))
+- uid: Platform.Data.Doublets.Unicode.UnicodeMap.FromSequenceLinkToString*
+  name: FromSequenceLinkToString
+  href: api/Platform.Data.Doublets.Unicode.UnicodeMap.html#Platform_Data_Doublets_Unicode_UnicodeMap_FromSequenceLinkToString_
+  commentId: Overload:Platform.Data.Doublets.Unicode.UnicodeMap.FromSequenceLinkToString
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Unicode.UnicodeMap.FromSequenceLinkToString
+  nameWithType: UnicodeMap.FromSequenceLinkToString
+- uid: Platform.Data.Doublets.Unicode.UnicodeMap.FromStringToLinkArray(System.String)
+  name: FromStringToLinkArray(String)
+  href: api/Platform.Data.Doublets.Unicode.UnicodeMap.html#Platform_Data_Doublets_Unicode_UnicodeMap_FromStringToLinkArray_System_String_
+  commentId: M:Platform.Data.Doublets.Unicode.UnicodeMap.FromStringToLinkArray(System.String)
+  fullName: Platform.Data.Doublets.Unicode.UnicodeMap.FromStringToLinkArray(System.String)
+  nameWithType: UnicodeMap.FromStringToLinkArray(String)
+- uid: Platform.Data.Doublets.Unicode.UnicodeMap.FromStringToLinkArray*
+  name: FromStringToLinkArray
+  href: api/Platform.Data.Doublets.Unicode.UnicodeMap.html#Platform_Data_Doublets_Unicode_UnicodeMap_FromStringToLinkArray_
+  commentId: Overload:Platform.Data.Doublets.Unicode.UnicodeMap.FromStringToLinkArray
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Unicode.UnicodeMap.FromStringToLinkArray
+  nameWithType: UnicodeMap.FromStringToLinkArray
+- uid: Platform.Data.Doublets.Unicode.UnicodeMap.FromStringToLinkArrayGroups(System.String)
+  name: FromStringToLinkArrayGroups(String)
+  href: api/Platform.Data.Doublets.Unicode.UnicodeMap.html#Platform_Data_Doublets_Unicode_UnicodeMap_FromStringToLinkArrayGroups_System_String_
+  commentId: M:Platform.Data.Doublets.Unicode.UnicodeMap.FromStringToLinkArrayGroups(System.String)
+  fullName: Platform.Data.Doublets.Unicode.UnicodeMap.FromStringToLinkArrayGroups(System.String)
+  nameWithType: UnicodeMap.FromStringToLinkArrayGroups(String)
+- uid: Platform.Data.Doublets.Unicode.UnicodeMap.FromStringToLinkArrayGroups*
+  name: FromStringToLinkArrayGroups
+  href: api/Platform.Data.Doublets.Unicode.UnicodeMap.html#Platform_Data_Doublets_Unicode_UnicodeMap_FromStringToLinkArrayGroups_
+  commentId: Overload:Platform.Data.Doublets.Unicode.UnicodeMap.FromStringToLinkArrayGroups
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Unicode.UnicodeMap.FromStringToLinkArrayGroups
+  nameWithType: UnicodeMap.FromStringToLinkArrayGroups
+- uid: Platform.Data.Doublets.Unicode.UnicodeMap.Init
+  name: Init()
+  href: api/Platform.Data.Doublets.Unicode.UnicodeMap.html#Platform_Data_Doublets_Unicode_UnicodeMap_Init
+  commentId: M:Platform.Data.Doublets.Unicode.UnicodeMap.Init
+  fullName: Platform.Data.Doublets.Unicode.UnicodeMap.Init()
+  nameWithType: UnicodeMap.Init()
+- uid: Platform.Data.Doublets.Unicode.UnicodeMap.Init*
+  name: Init
+  href: api/Platform.Data.Doublets.Unicode.UnicodeMap.html#Platform_Data_Doublets_Unicode_UnicodeMap_Init_
+  commentId: Overload:Platform.Data.Doublets.Unicode.UnicodeMap.Init
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Unicode.UnicodeMap.Init
+  nameWithType: UnicodeMap.Init
+- uid: Platform.Data.Doublets.Unicode.UnicodeMap.InitNew(Platform.Data.Doublets.ILinks{System.UInt64})
+  name: InitNew(ILinks<UInt64>)
+  href: api/Platform.Data.Doublets.Unicode.UnicodeMap.html#Platform_Data_Doublets_Unicode_UnicodeMap_InitNew_Platform_Data_Doublets_ILinks_System_UInt64__
+  commentId: M:Platform.Data.Doublets.Unicode.UnicodeMap.InitNew(Platform.Data.Doublets.ILinks{System.UInt64})
+  name.vb: InitNew(ILinks(Of UInt64))
+  fullName: Platform.Data.Doublets.Unicode.UnicodeMap.InitNew(Platform.Data.Doublets.ILinks<System.UInt64>)
+  fullName.vb: Platform.Data.Doublets.Unicode.UnicodeMap.InitNew(Platform.Data.Doublets.ILinks(Of System.UInt64))
+  nameWithType: UnicodeMap.InitNew(ILinks<UInt64>)
+  nameWithType.vb: UnicodeMap.InitNew(ILinks(Of UInt64))
+- uid: Platform.Data.Doublets.Unicode.UnicodeMap.InitNew*
+  name: InitNew
+  href: api/Platform.Data.Doublets.Unicode.UnicodeMap.html#Platform_Data_Doublets_Unicode_UnicodeMap_InitNew_
+  commentId: Overload:Platform.Data.Doublets.Unicode.UnicodeMap.InitNew
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Unicode.UnicodeMap.InitNew
+  nameWithType: UnicodeMap.InitNew
+- uid: Platform.Data.Doublets.Unicode.UnicodeMap.IsCharLink(System.UInt64)
+  name: IsCharLink(UInt64)
+  href: api/Platform.Data.Doublets.Unicode.UnicodeMap.html#Platform_Data_Doublets_Unicode_UnicodeMap_IsCharLink_System_UInt64_
+  commentId: M:Platform.Data.Doublets.Unicode.UnicodeMap.IsCharLink(System.UInt64)
+  fullName: Platform.Data.Doublets.Unicode.UnicodeMap.IsCharLink(System.UInt64)
+  nameWithType: UnicodeMap.IsCharLink(UInt64)
+- uid: Platform.Data.Doublets.Unicode.UnicodeMap.IsCharLink*
+  name: IsCharLink
+  href: api/Platform.Data.Doublets.Unicode.UnicodeMap.html#Platform_Data_Doublets_Unicode_UnicodeMap_IsCharLink_
+  commentId: Overload:Platform.Data.Doublets.Unicode.UnicodeMap.IsCharLink
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Unicode.UnicodeMap.IsCharLink
+  nameWithType: UnicodeMap.IsCharLink
+- uid: Platform.Data.Doublets.Unicode.UnicodeMap.LastCharLink
+  name: LastCharLink
+  href: api/Platform.Data.Doublets.Unicode.UnicodeMap.html#Platform_Data_Doublets_Unicode_UnicodeMap_LastCharLink
+  commentId: F:Platform.Data.Doublets.Unicode.UnicodeMap.LastCharLink
+  fullName: Platform.Data.Doublets.Unicode.UnicodeMap.LastCharLink
+  nameWithType: UnicodeMap.LastCharLink
+- uid: Platform.Data.Doublets.Unicode.UnicodeMap.MapSize
+  name: MapSize
+  href: api/Platform.Data.Doublets.Unicode.UnicodeMap.html#Platform_Data_Doublets_Unicode_UnicodeMap_MapSize
+  commentId: F:Platform.Data.Doublets.Unicode.UnicodeMap.MapSize
+  fullName: Platform.Data.Doublets.Unicode.UnicodeMap.MapSize
+  nameWithType: UnicodeMap.MapSize
