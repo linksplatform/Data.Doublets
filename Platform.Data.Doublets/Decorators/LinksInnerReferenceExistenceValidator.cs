@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace Platform.Data.Doublets.Decorators
 {
-    // TODO: Make LinksExternalReferenceValidator. A layer that checks each link to exist or to be external (hybrid link's raw number).
-    public class LinksInnerReferenceValidator<TLink> : LinksDecoratorBase<TLink>
+    // TODO: Make LinksExternalReferenceExistenceValidator. A layer that checks each link to exist or to be external (hybrid link's raw number).
+    public class LinksInnerReferenceExistenceValidator<TLink> : LinksDecoratorBase<TLink>
     {
-        public LinksInnerReferenceValidator(ILinks<TLink> links) : base(links) { }
+        public LinksInnerReferenceExistenceValidator(ILinks<TLink> links) : base(links) { }
 
         public override TLink Each(Func<IList<TLink>, TLink> handler, IList<TLink> restrictions)
         {
