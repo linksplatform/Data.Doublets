@@ -4,7 +4,7 @@
     <Description>LinksPlatform's Platform.Data.Doublets Class Library</Description>
     <Copyright>Konstantin Diachenko</Copyright>
     <AssemblyTitle>Platform.Data.Doublets</AssemblyTitle>
-    <VersionPrefix>0.0.1</VersionPrefix>
+    <VersionPrefix>0.1.0</VersionPrefix>
     <Authors>Konstantin Diachenko</Authors>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -22,6 +22,72 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageReleaseNotes>Platform.Random dependency updated from 0.0.2 to 0.0.3.
+Platform.Timestamps dependency updated from 0.0.2 to 0.0.3.
+Platform.Collections.Methods dependency updated from 0.0.3 to 0.0.5.
+Platform.Singletons dependency updated from 0.0.1 to 0.0.2.
+Platform.Memory dependency updated from 0.1.1 to 0.1.3.
+Platform.Data dependency updated from 0.0.1 to 0.0.3.
+
+Deleted classes:
+* LinkFrequencyIncrementer,
+* FrequenciesCacheBasedLinkFrequencyIncrementer,
+* SequencesIndexer.
+
+Renamed classes:
+* LinksDependenciesValidator to LinksUsagesValidator.
+* LinksCascadeDependenciesResolver to LinksCascadeUsagesResolver. 
+* LinksCascadeUniquenessAndDependenciesResolver to LinksCascadeUniquenessAndUsagesResolver.
+* LinksNonExistentReferencesCreator to LinksNonExistentDependenciesCreator.
+* LinksNullToSelfReferenceResolver to LinksNullConstantToSelfReferenceResolver.
+* LinksSelfReferenceResolver to LinksItselfConstantToSelfReferenceResolver.
+* LinksInnerReferenceValidator to LinksInnerReferenceExistenceValidator.
+* DefaultSequenceElementCreteriaMatcher to DefaultSequenceElementCriterionMatcher.
+* MarkedSequenceCreteriaMatcher to MarkedSequenceCreteriaMatcher.
+* DefaultLinkPropertyOperator to PropertiesOperator.
+* FrequencyPropertyOperator to PropertyOperator.
+
+Methods:
+* DeleteAllUsages, DeleteByQuery, AreValuesReset, ResetValues, EnforceResetValues, AllIndices, ResolveConstantAsSelfReference methods added to ILinksExtensions.
+* ILinksExtensions.EnsureNoDependencies method renamed to EnsureNoUsages.
+* ILinksExtensions.DependenciesCount method renamed to CountUsages.
+* ILinksExtensions.DependenciesExist method renamed to HasUsages.
+* ILinksExtensions.Merge method splited into two methods MergeUsages and MergeAndDelete.
+* ToList method added to SequencesExtensions.
+* ToArray method removed from UInt64Link and Link.
+
+Properties:
+* Added IsEmpty property implementation for Stack class.
+* LinksOperatorBase.Links is now readonly property.
+
+Added new ISequenceIndex interface and its classes:
+* SequenceIndex,
+* SynchronizedSequenceIndex,
+* CachedFrequencyIncrementingSequenceIndex,
+* FrequencyIncrementingSequenceIndex.
+
+Added new ISequenceWalker interface and LeveledSequenceWalker class, other sequence walkers are now implementing this interface.
+
+Added unicode converters:
+* UnaryNumberToAddressOrOperationConverter,
+* CharToUnicodeSymbolConverter,
+* StringToUnicodeSequenceConverter,
+* UnicodeSequenceToStringConverter,
+* UnicodeSymbolToCharConverter.
+
+Added unicode criterion matchers:
+* UnicodeSequenceCriterionMatcher,
+* UnicodeSymbolCriterionMatcher.
+
+LinksDecoratorBase is now inherited from LinksOperatorBase.
+
+Namespaces rearranged.
+XML documentation file generation turned on.
+PDF code book generation turned on.
+Tests added.
+Refactoring, bugs and issues fix.
+
+This is release is not backward compatible with previous 0.0.1 release.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
