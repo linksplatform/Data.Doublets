@@ -13,7 +13,8 @@ namespace Platform.Data.Doublets.Decorators
 
         public override TLink Update(IList<TLink> restrictions)
         {
-            Links.EnsureCreated(restrictions[Constants.SourcePart], restrictions[Constants.TargetPart]);
+            var constants = Constants;
+            Links.EnsureCreated(restrictions[constants.SourcePart], restrictions[constants.TargetPart]);
             return Links.Update(restrictions);
         }
     }

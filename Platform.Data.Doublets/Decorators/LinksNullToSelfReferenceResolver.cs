@@ -10,15 +10,20 @@ namespace Platform.Data.Doublets.Decorators
 
         public override TLink Create()
         {
-            var link = base.Create();
+            var link = Links.Create();
             return Links.Update(link, link, link);
         }
 
         public override TLink Update(IList<TLink> restrictions)
         {
-            restrictions[Constants.SourcePart] = _equalityComparer.Equals(restrictions[Constants.SourcePart], Constants.Null) ? restrictions[Constants.IndexPart] : restrictions[Constants.SourcePart];
-            restrictions[Constants.TargetPart] = _equalityComparer.Equals(restrictions[Constants.TargetPart], Constants.Null) ? restrictions[Constants.IndexPart] : restrictions[Constants.TargetPart];
-            return Links.Update(restrictions);
+            var constants = Constants;
+            var nullConstant = constants.Null;
+            var index = restrictions[constants.IndexPart];
+            var source = restrictions[constants.SourcePart];
+            var target = restrictions[constants.TargetPart];
+            source = _equalityComparer.Equals(source, nullConstant) ? index : source;
+            target = _equalityComparer.Equals(target, nullConstant) ? index : target;
+            return Links.Update(new Link<TLink>(index, source, target));
         }
     }
 }
