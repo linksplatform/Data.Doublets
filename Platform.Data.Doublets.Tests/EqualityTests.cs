@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Xunit;
 using Platform.Diagnostics;
 
-namespace Platform.Tests
+namespace Platform.Data.Doublets.Tests
 {
     public static class EqualityTests
     {
