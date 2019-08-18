@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using Xunit;
-using Platform.Interfaces;
 using Platform.Data.Doublets.Sequences;
 using Platform.Data.Doublets.Sequences.Frequencies.Cache;
 using Platform.Data.Doublets.Sequences.Frequencies.Counters;
@@ -10,6 +9,7 @@ using Platform.Data.Doublets.Sequences.Converters;
 using Platform.Data.Doublets.PropertyOperators;
 using Platform.Data.Doublets.Incrementers;
 using Platform.Data.Doublets.Converters;
+using Platform.Data.Doublets.Sequences.Indexers;
 
 namespace Platform.Data.Doublets.Tests
 {
@@ -39,12 +39,12 @@ namespace Platform.Data.Doublets.Tests
                 var unaryNumberIncrementer = new UnaryNumberIncrementer<ulong>(links, unaryOne);
                 var frequencyIncrementer = new FrequencyIncrementer<ulong>(links, frequencyMarker, unaryOne, unaryNumberIncrementer);
                 var frequencyPropertyOperator = new PropertyOperator<ulong>(links, frequencyPropertyMarker, frequencyMarker);
-                var linkFrequencyIncrementer = new LinkFrequencyIncrementer<ulong>(links, frequencyPropertyOperator, frequencyIncrementer);
+                var index = new FrequencyIncrementingSequenceIndex<ulong>(links, frequencyPropertyOperator, frequencyIncrementer);
                 var linkToItsFrequencyNumberConverter = new LinkToItsFrequencyNumberConveter<ulong>(links, frequencyPropertyOperator, unaryNumberToAddressConveter);
                 var sequenceToItsLocalElementLevelsConverter = new SequenceToItsLocalElementLevelsConverter<ulong>(links, linkToItsFrequencyNumberConverter);
                 var optimalVariantConverter = new OptimalVariantConverter<ulong>(links, sequenceToItsLocalElementLevelsConverter);
 
-                ExecuteTest(links, sequences, sequence, sequenceToItsLocalElementLevelsConverter, linkFrequencyIncrementer, optimalVariantConverter);
+                ExecuteTest(links, sequences, sequence, sequenceToItsLocalElementLevelsConverter, index, optimalVariantConverter);
             }
         }
 
@@ -66,19 +66,19 @@ namespace Platform.Data.Doublets.Tests
 
                 var linkFrequenciesCache = new LinkFrequenciesCache<ulong>(links, totalSequenceSymbolFrequencyCounter);
 
-                var linkFrequencyIncrementer = new FrequenciesCacheBasedLinkFrequencyIncrementer<ulong>(linkFrequenciesCache);
+                var index = new CachedFrequencyIncrementingSequenceIndex<ulong>(linkFrequenciesCache);
                 var linkToItsFrequencyNumberConverter = new FrequenciesCacheBasedLinkToItsFrequencyNumberConverter<ulong>(linkFrequenciesCache);
 
                 var sequenceToItsLocalElementLevelsConverter = new SequenceToItsLocalElementLevelsConverter<ulong>(links, linkToItsFrequencyNumberConverter);
                 var optimalVariantConverter = new OptimalVariantConverter<ulong>(links, sequenceToItsLocalElementLevelsConverter);
 
-                ExecuteTest(links, sequences, sequence, sequenceToItsLocalElementLevelsConverter, linkFrequencyIncrementer, optimalVariantConverter);
+                ExecuteTest(links, sequences, sequence, sequenceToItsLocalElementLevelsConverter, index, optimalVariantConverter);
             }
         }
 
-        private static void ExecuteTest(SynchronizedLinks<ulong> links, Sequences.Sequences sequences, ulong[] sequence, SequenceToItsLocalElementLevelsConverter<ulong> sequenceToItsLocalElementLevelsConverter, IIncrementer<IList<ulong>> linkFrequencyIncrementer, OptimalVariantConverter<ulong> optimalVariantConverter)
+        private static void ExecuteTest(SynchronizedLinks<ulong> links, Sequences.Sequences sequences, ulong[] sequence, SequenceToItsLocalElementLevelsConverter<ulong> sequenceToItsLocalElementLevelsConverter, ISequenceIndex<ulong> index, OptimalVariantConverter<ulong> optimalVariantConverter)
         {
-            linkFrequencyIncrementer.Increment(sequence);
+            index.Add(sequence);
 
             var levels = sequenceToItsLocalElementLevelsConverter.Convert(sequence);
 

@@ -188,7 +188,7 @@ namespace Platform.Data.Doublets.Sequences
         {
             if (Options.UseIndex)
             {
-                Options.Indexer.Index(sequence);
+                Options.Index.Add(sequence);
             }
             var sequenceRoot = default(ulong);
             if (Options.EnforceSingleSequenceVersionOnWriteBasedOnExisting)
@@ -247,7 +247,7 @@ namespace Platform.Data.Doublets.Sequences
                 {
                     return Links.Unsync.Each(sequence[0], sequence[1], handler);
                 }
-                if (Options.UseIndex && !Options.Indexer.CheckIndex(sequence))
+                if (Options.UseIndex && !Options.Index.MightContain(sequence))
                 {
                     return false;
                 }

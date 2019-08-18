@@ -359,7 +359,7 @@ namespace Platform.Data.Doublets.Tests
             {
                 var links = scope.Links;
                 var sequences = scope.Sequences;
-                var indexer = sequences.Options.Indexer;
+                var index = sequences.Options.Index;
 
                 var e1 = links.Create();
                 var e2 = links.Create();
@@ -369,9 +369,11 @@ namespace Platform.Data.Doublets.Tests
                     e1, e2, e1, e2 // mama / papa
                 };
 
-                Assert.False(indexer.Index(sequence));
+                Assert.False(index.MightContain(sequence));
 
-                Assert.True(indexer.Index(sequence));
+                index.Add(sequence);
+
+                Assert.True(index.MightContain(sequence));
             }
         }
 
