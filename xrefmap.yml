@@ -4926,289 +4926,289 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.HeightProviders.ISequenceHeightProvider(Of TLink)
   nameWithType: ISequenceHeightProvider<TLink>
   nameWithType.vb: ISequenceHeightProvider(Of TLink)
-- uid: Platform.Data.Doublets.Sequences.Indexers
-  name: Platform.Data.Doublets.Sequences.Indexers
-  href: api/Platform.Data.Doublets.Sequences.Indexers.html
-  commentId: N:Platform.Data.Doublets.Sequences.Indexers
-  fullName: Platform.Data.Doublets.Sequences.Indexers
-  nameWithType: Platform.Data.Doublets.Sequences.Indexers
-- uid: Platform.Data.Doublets.Sequences.Indexers.CachedFrequencyIncrementingSequenceIndex`1
+- uid: Platform.Data.Doublets.Sequences.Indexes
+  name: Platform.Data.Doublets.Sequences.Indexes
+  href: api/Platform.Data.Doublets.Sequences.Indexes.html
+  commentId: N:Platform.Data.Doublets.Sequences.Indexes
+  fullName: Platform.Data.Doublets.Sequences.Indexes
+  nameWithType: Platform.Data.Doublets.Sequences.Indexes
+- uid: Platform.Data.Doublets.Sequences.Indexes.CachedFrequencyIncrementingSequenceIndex`1
   name: CachedFrequencyIncrementingSequenceIndex<TLink>
-  href: api/Platform.Data.Doublets.Sequences.Indexers.CachedFrequencyIncrementingSequenceIndex-1.html
-  commentId: T:Platform.Data.Doublets.Sequences.Indexers.CachedFrequencyIncrementingSequenceIndex`1
+  href: api/Platform.Data.Doublets.Sequences.Indexes.CachedFrequencyIncrementingSequenceIndex-1.html
+  commentId: T:Platform.Data.Doublets.Sequences.Indexes.CachedFrequencyIncrementingSequenceIndex`1
   name.vb: CachedFrequencyIncrementingSequenceIndex(Of TLink)
-  fullName: Platform.Data.Doublets.Sequences.Indexers.CachedFrequencyIncrementingSequenceIndex<TLink>
-  fullName.vb: Platform.Data.Doublets.Sequences.Indexers.CachedFrequencyIncrementingSequenceIndex(Of TLink)
+  fullName: Platform.Data.Doublets.Sequences.Indexes.CachedFrequencyIncrementingSequenceIndex<TLink>
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.CachedFrequencyIncrementingSequenceIndex(Of TLink)
   nameWithType: CachedFrequencyIncrementingSequenceIndex<TLink>
   nameWithType.vb: CachedFrequencyIncrementingSequenceIndex(Of TLink)
-- uid: Platform.Data.Doublets.Sequences.Indexers.CachedFrequencyIncrementingSequenceIndex`1.#ctor(Platform.Data.Doublets.Sequences.Frequencies.Cache.LinkFrequenciesCache{`0})
+- uid: Platform.Data.Doublets.Sequences.Indexes.CachedFrequencyIncrementingSequenceIndex`1.#ctor(Platform.Data.Doublets.Sequences.Frequencies.Cache.LinkFrequenciesCache{`0})
   name: CachedFrequencyIncrementingSequenceIndex(LinkFrequenciesCache<TLink>)
-  href: api/Platform.Data.Doublets.Sequences.Indexers.CachedFrequencyIncrementingSequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexers_CachedFrequencyIncrementingSequenceIndex_1__ctor_Platform_Data_Doublets_Sequences_Frequencies_Cache_LinkFrequenciesCache__0__
-  commentId: M:Platform.Data.Doublets.Sequences.Indexers.CachedFrequencyIncrementingSequenceIndex`1.#ctor(Platform.Data.Doublets.Sequences.Frequencies.Cache.LinkFrequenciesCache{`0})
+  href: api/Platform.Data.Doublets.Sequences.Indexes.CachedFrequencyIncrementingSequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexes_CachedFrequencyIncrementingSequenceIndex_1__ctor_Platform_Data_Doublets_Sequences_Frequencies_Cache_LinkFrequenciesCache__0__
+  commentId: M:Platform.Data.Doublets.Sequences.Indexes.CachedFrequencyIncrementingSequenceIndex`1.#ctor(Platform.Data.Doublets.Sequences.Frequencies.Cache.LinkFrequenciesCache{`0})
   name.vb: CachedFrequencyIncrementingSequenceIndex(LinkFrequenciesCache(Of TLink))
-  fullName: Platform.Data.Doublets.Sequences.Indexers.CachedFrequencyIncrementingSequenceIndex<TLink>.CachedFrequencyIncrementingSequenceIndex(Platform.Data.Doublets.Sequences.Frequencies.Cache.LinkFrequenciesCache<TLink>)
-  fullName.vb: Platform.Data.Doublets.Sequences.Indexers.CachedFrequencyIncrementingSequenceIndex(Of TLink).CachedFrequencyIncrementingSequenceIndex(Platform.Data.Doublets.Sequences.Frequencies.Cache.LinkFrequenciesCache(Of TLink))
+  fullName: Platform.Data.Doublets.Sequences.Indexes.CachedFrequencyIncrementingSequenceIndex<TLink>.CachedFrequencyIncrementingSequenceIndex(Platform.Data.Doublets.Sequences.Frequencies.Cache.LinkFrequenciesCache<TLink>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.CachedFrequencyIncrementingSequenceIndex(Of TLink).CachedFrequencyIncrementingSequenceIndex(Platform.Data.Doublets.Sequences.Frequencies.Cache.LinkFrequenciesCache(Of TLink))
   nameWithType: CachedFrequencyIncrementingSequenceIndex<TLink>.CachedFrequencyIncrementingSequenceIndex(LinkFrequenciesCache<TLink>)
   nameWithType.vb: CachedFrequencyIncrementingSequenceIndex(Of TLink).CachedFrequencyIncrementingSequenceIndex(LinkFrequenciesCache(Of TLink))
-- uid: Platform.Data.Doublets.Sequences.Indexers.CachedFrequencyIncrementingSequenceIndex`1.#ctor*
+- uid: Platform.Data.Doublets.Sequences.Indexes.CachedFrequencyIncrementingSequenceIndex`1.#ctor*
   name: CachedFrequencyIncrementingSequenceIndex
-  href: api/Platform.Data.Doublets.Sequences.Indexers.CachedFrequencyIncrementingSequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexers_CachedFrequencyIncrementingSequenceIndex_1__ctor_
-  commentId: Overload:Platform.Data.Doublets.Sequences.Indexers.CachedFrequencyIncrementingSequenceIndex`1.#ctor
+  href: api/Platform.Data.Doublets.Sequences.Indexes.CachedFrequencyIncrementingSequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexes_CachedFrequencyIncrementingSequenceIndex_1__ctor_
+  commentId: Overload:Platform.Data.Doublets.Sequences.Indexes.CachedFrequencyIncrementingSequenceIndex`1.#ctor
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Sequences.Indexers.CachedFrequencyIncrementingSequenceIndex<TLink>.CachedFrequencyIncrementingSequenceIndex
-  fullName.vb: Platform.Data.Doublets.Sequences.Indexers.CachedFrequencyIncrementingSequenceIndex(Of TLink).CachedFrequencyIncrementingSequenceIndex
+  fullName: Platform.Data.Doublets.Sequences.Indexes.CachedFrequencyIncrementingSequenceIndex<TLink>.CachedFrequencyIncrementingSequenceIndex
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.CachedFrequencyIncrementingSequenceIndex(Of TLink).CachedFrequencyIncrementingSequenceIndex
   nameWithType: CachedFrequencyIncrementingSequenceIndex<TLink>.CachedFrequencyIncrementingSequenceIndex
   nameWithType.vb: CachedFrequencyIncrementingSequenceIndex(Of TLink).CachedFrequencyIncrementingSequenceIndex
-- uid: Platform.Data.Doublets.Sequences.Indexers.CachedFrequencyIncrementingSequenceIndex`1.Add(System.Collections.Generic.IList{`0})
+- uid: Platform.Data.Doublets.Sequences.Indexes.CachedFrequencyIncrementingSequenceIndex`1.Add(System.Collections.Generic.IList{`0})
   name: Add(IList<TLink>)
-  href: api/Platform.Data.Doublets.Sequences.Indexers.CachedFrequencyIncrementingSequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexers_CachedFrequencyIncrementingSequenceIndex_1_Add_System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.Sequences.Indexers.CachedFrequencyIncrementingSequenceIndex`1.Add(System.Collections.Generic.IList{`0})
+  href: api/Platform.Data.Doublets.Sequences.Indexes.CachedFrequencyIncrementingSequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexes_CachedFrequencyIncrementingSequenceIndex_1_Add_System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Sequences.Indexes.CachedFrequencyIncrementingSequenceIndex`1.Add(System.Collections.Generic.IList{`0})
   name.vb: Add(IList(Of TLink))
-  fullName: Platform.Data.Doublets.Sequences.Indexers.CachedFrequencyIncrementingSequenceIndex<TLink>.Add(System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.Sequences.Indexers.CachedFrequencyIncrementingSequenceIndex(Of TLink).Add(System.Collections.Generic.IList(Of TLink))
+  fullName: Platform.Data.Doublets.Sequences.Indexes.CachedFrequencyIncrementingSequenceIndex<TLink>.Add(System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.CachedFrequencyIncrementingSequenceIndex(Of TLink).Add(System.Collections.Generic.IList(Of TLink))
   nameWithType: CachedFrequencyIncrementingSequenceIndex<TLink>.Add(IList<TLink>)
   nameWithType.vb: CachedFrequencyIncrementingSequenceIndex(Of TLink).Add(IList(Of TLink))
-- uid: Platform.Data.Doublets.Sequences.Indexers.CachedFrequencyIncrementingSequenceIndex`1.Add*
+- uid: Platform.Data.Doublets.Sequences.Indexes.CachedFrequencyIncrementingSequenceIndex`1.Add*
   name: Add
-  href: api/Platform.Data.Doublets.Sequences.Indexers.CachedFrequencyIncrementingSequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexers_CachedFrequencyIncrementingSequenceIndex_1_Add_
-  commentId: Overload:Platform.Data.Doublets.Sequences.Indexers.CachedFrequencyIncrementingSequenceIndex`1.Add
+  href: api/Platform.Data.Doublets.Sequences.Indexes.CachedFrequencyIncrementingSequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexes_CachedFrequencyIncrementingSequenceIndex_1_Add_
+  commentId: Overload:Platform.Data.Doublets.Sequences.Indexes.CachedFrequencyIncrementingSequenceIndex`1.Add
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Sequences.Indexers.CachedFrequencyIncrementingSequenceIndex<TLink>.Add
-  fullName.vb: Platform.Data.Doublets.Sequences.Indexers.CachedFrequencyIncrementingSequenceIndex(Of TLink).Add
+  fullName: Platform.Data.Doublets.Sequences.Indexes.CachedFrequencyIncrementingSequenceIndex<TLink>.Add
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.CachedFrequencyIncrementingSequenceIndex(Of TLink).Add
   nameWithType: CachedFrequencyIncrementingSequenceIndex<TLink>.Add
   nameWithType.vb: CachedFrequencyIncrementingSequenceIndex(Of TLink).Add
-- uid: Platform.Data.Doublets.Sequences.Indexers.CachedFrequencyIncrementingSequenceIndex`1.MightContain(System.Collections.Generic.IList{`0})
+- uid: Platform.Data.Doublets.Sequences.Indexes.CachedFrequencyIncrementingSequenceIndex`1.MightContain(System.Collections.Generic.IList{`0})
   name: MightContain(IList<TLink>)
-  href: api/Platform.Data.Doublets.Sequences.Indexers.CachedFrequencyIncrementingSequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexers_CachedFrequencyIncrementingSequenceIndex_1_MightContain_System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.Sequences.Indexers.CachedFrequencyIncrementingSequenceIndex`1.MightContain(System.Collections.Generic.IList{`0})
+  href: api/Platform.Data.Doublets.Sequences.Indexes.CachedFrequencyIncrementingSequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexes_CachedFrequencyIncrementingSequenceIndex_1_MightContain_System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Sequences.Indexes.CachedFrequencyIncrementingSequenceIndex`1.MightContain(System.Collections.Generic.IList{`0})
   name.vb: MightContain(IList(Of TLink))
-  fullName: Platform.Data.Doublets.Sequences.Indexers.CachedFrequencyIncrementingSequenceIndex<TLink>.MightContain(System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.Sequences.Indexers.CachedFrequencyIncrementingSequenceIndex(Of TLink).MightContain(System.Collections.Generic.IList(Of TLink))
+  fullName: Platform.Data.Doublets.Sequences.Indexes.CachedFrequencyIncrementingSequenceIndex<TLink>.MightContain(System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.CachedFrequencyIncrementingSequenceIndex(Of TLink).MightContain(System.Collections.Generic.IList(Of TLink))
   nameWithType: CachedFrequencyIncrementingSequenceIndex<TLink>.MightContain(IList<TLink>)
   nameWithType.vb: CachedFrequencyIncrementingSequenceIndex(Of TLink).MightContain(IList(Of TLink))
-- uid: Platform.Data.Doublets.Sequences.Indexers.CachedFrequencyIncrementingSequenceIndex`1.MightContain*
+- uid: Platform.Data.Doublets.Sequences.Indexes.CachedFrequencyIncrementingSequenceIndex`1.MightContain*
   name: MightContain
-  href: api/Platform.Data.Doublets.Sequences.Indexers.CachedFrequencyIncrementingSequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexers_CachedFrequencyIncrementingSequenceIndex_1_MightContain_
-  commentId: Overload:Platform.Data.Doublets.Sequences.Indexers.CachedFrequencyIncrementingSequenceIndex`1.MightContain
+  href: api/Platform.Data.Doublets.Sequences.Indexes.CachedFrequencyIncrementingSequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexes_CachedFrequencyIncrementingSequenceIndex_1_MightContain_
+  commentId: Overload:Platform.Data.Doublets.Sequences.Indexes.CachedFrequencyIncrementingSequenceIndex`1.MightContain
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Sequences.Indexers.CachedFrequencyIncrementingSequenceIndex<TLink>.MightContain
-  fullName.vb: Platform.Data.Doublets.Sequences.Indexers.CachedFrequencyIncrementingSequenceIndex(Of TLink).MightContain
+  fullName: Platform.Data.Doublets.Sequences.Indexes.CachedFrequencyIncrementingSequenceIndex<TLink>.MightContain
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.CachedFrequencyIncrementingSequenceIndex(Of TLink).MightContain
   nameWithType: CachedFrequencyIncrementingSequenceIndex<TLink>.MightContain
   nameWithType.vb: CachedFrequencyIncrementingSequenceIndex(Of TLink).MightContain
-- uid: Platform.Data.Doublets.Sequences.Indexers.FrequencyIncrementingSequenceIndex`1
+- uid: Platform.Data.Doublets.Sequences.Indexes.FrequencyIncrementingSequenceIndex`1
   name: FrequencyIncrementingSequenceIndex<TLink>
-  href: api/Platform.Data.Doublets.Sequences.Indexers.FrequencyIncrementingSequenceIndex-1.html
-  commentId: T:Platform.Data.Doublets.Sequences.Indexers.FrequencyIncrementingSequenceIndex`1
+  href: api/Platform.Data.Doublets.Sequences.Indexes.FrequencyIncrementingSequenceIndex-1.html
+  commentId: T:Platform.Data.Doublets.Sequences.Indexes.FrequencyIncrementingSequenceIndex`1
   name.vb: FrequencyIncrementingSequenceIndex(Of TLink)
-  fullName: Platform.Data.Doublets.Sequences.Indexers.FrequencyIncrementingSequenceIndex<TLink>
-  fullName.vb: Platform.Data.Doublets.Sequences.Indexers.FrequencyIncrementingSequenceIndex(Of TLink)
+  fullName: Platform.Data.Doublets.Sequences.Indexes.FrequencyIncrementingSequenceIndex<TLink>
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.FrequencyIncrementingSequenceIndex(Of TLink)
   nameWithType: FrequencyIncrementingSequenceIndex<TLink>
   nameWithType.vb: FrequencyIncrementingSequenceIndex(Of TLink)
-- uid: Platform.Data.Doublets.Sequences.Indexers.FrequencyIncrementingSequenceIndex`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.IPropertyOperator{`0,`0},Platform.Interfaces.IIncrementer{`0})
+- uid: Platform.Data.Doublets.Sequences.Indexes.FrequencyIncrementingSequenceIndex`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.IPropertyOperator{`0,`0},Platform.Interfaces.IIncrementer{`0})
   name: FrequencyIncrementingSequenceIndex(ILinks<TLink>, IPropertyOperator<TLink, TLink>, IIncrementer<TLink>)
-  href: api/Platform.Data.Doublets.Sequences.Indexers.FrequencyIncrementingSequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexers_FrequencyIncrementingSequenceIndex_1__ctor_Platform_Data_Doublets_ILinks__0__Platform_Interfaces_IPropertyOperator__0__0__Platform_Interfaces_IIncrementer__0__
-  commentId: M:Platform.Data.Doublets.Sequences.Indexers.FrequencyIncrementingSequenceIndex`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.IPropertyOperator{`0,`0},Platform.Interfaces.IIncrementer{`0})
+  href: api/Platform.Data.Doublets.Sequences.Indexes.FrequencyIncrementingSequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexes_FrequencyIncrementingSequenceIndex_1__ctor_Platform_Data_Doublets_ILinks__0__Platform_Interfaces_IPropertyOperator__0__0__Platform_Interfaces_IIncrementer__0__
+  commentId: M:Platform.Data.Doublets.Sequences.Indexes.FrequencyIncrementingSequenceIndex`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Interfaces.IPropertyOperator{`0,`0},Platform.Interfaces.IIncrementer{`0})
   name.vb: FrequencyIncrementingSequenceIndex(ILinks(Of TLink), IPropertyOperator(Of TLink, TLink), IIncrementer(Of TLink))
-  fullName: Platform.Data.Doublets.Sequences.Indexers.FrequencyIncrementingSequenceIndex<TLink>.FrequencyIncrementingSequenceIndex(Platform.Data.Doublets.ILinks<TLink>, Platform.Interfaces.IPropertyOperator<TLink, TLink>, Platform.Interfaces.IIncrementer<TLink>)
-  fullName.vb: Platform.Data.Doublets.Sequences.Indexers.FrequencyIncrementingSequenceIndex(Of TLink).FrequencyIncrementingSequenceIndex(Platform.Data.Doublets.ILinks(Of TLink), Platform.Interfaces.IPropertyOperator(Of TLink, TLink), Platform.Interfaces.IIncrementer(Of TLink))
+  fullName: Platform.Data.Doublets.Sequences.Indexes.FrequencyIncrementingSequenceIndex<TLink>.FrequencyIncrementingSequenceIndex(Platform.Data.Doublets.ILinks<TLink>, Platform.Interfaces.IPropertyOperator<TLink, TLink>, Platform.Interfaces.IIncrementer<TLink>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.FrequencyIncrementingSequenceIndex(Of TLink).FrequencyIncrementingSequenceIndex(Platform.Data.Doublets.ILinks(Of TLink), Platform.Interfaces.IPropertyOperator(Of TLink, TLink), Platform.Interfaces.IIncrementer(Of TLink))
   nameWithType: FrequencyIncrementingSequenceIndex<TLink>.FrequencyIncrementingSequenceIndex(ILinks<TLink>, IPropertyOperator<TLink, TLink>, IIncrementer<TLink>)
   nameWithType.vb: FrequencyIncrementingSequenceIndex(Of TLink).FrequencyIncrementingSequenceIndex(ILinks(Of TLink), IPropertyOperator(Of TLink, TLink), IIncrementer(Of TLink))
-- uid: Platform.Data.Doublets.Sequences.Indexers.FrequencyIncrementingSequenceIndex`1.#ctor*
+- uid: Platform.Data.Doublets.Sequences.Indexes.FrequencyIncrementingSequenceIndex`1.#ctor*
   name: FrequencyIncrementingSequenceIndex
-  href: api/Platform.Data.Doublets.Sequences.Indexers.FrequencyIncrementingSequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexers_FrequencyIncrementingSequenceIndex_1__ctor_
-  commentId: Overload:Platform.Data.Doublets.Sequences.Indexers.FrequencyIncrementingSequenceIndex`1.#ctor
+  href: api/Platform.Data.Doublets.Sequences.Indexes.FrequencyIncrementingSequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexes_FrequencyIncrementingSequenceIndex_1__ctor_
+  commentId: Overload:Platform.Data.Doublets.Sequences.Indexes.FrequencyIncrementingSequenceIndex`1.#ctor
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Sequences.Indexers.FrequencyIncrementingSequenceIndex<TLink>.FrequencyIncrementingSequenceIndex
-  fullName.vb: Platform.Data.Doublets.Sequences.Indexers.FrequencyIncrementingSequenceIndex(Of TLink).FrequencyIncrementingSequenceIndex
+  fullName: Platform.Data.Doublets.Sequences.Indexes.FrequencyIncrementingSequenceIndex<TLink>.FrequencyIncrementingSequenceIndex
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.FrequencyIncrementingSequenceIndex(Of TLink).FrequencyIncrementingSequenceIndex
   nameWithType: FrequencyIncrementingSequenceIndex<TLink>.FrequencyIncrementingSequenceIndex
   nameWithType.vb: FrequencyIncrementingSequenceIndex(Of TLink).FrequencyIncrementingSequenceIndex
-- uid: Platform.Data.Doublets.Sequences.Indexers.FrequencyIncrementingSequenceIndex`1.Add(System.Collections.Generic.IList{`0})
+- uid: Platform.Data.Doublets.Sequences.Indexes.FrequencyIncrementingSequenceIndex`1.Add(System.Collections.Generic.IList{`0})
   name: Add(IList<TLink>)
-  href: api/Platform.Data.Doublets.Sequences.Indexers.FrequencyIncrementingSequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexers_FrequencyIncrementingSequenceIndex_1_Add_System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.Sequences.Indexers.FrequencyIncrementingSequenceIndex`1.Add(System.Collections.Generic.IList{`0})
+  href: api/Platform.Data.Doublets.Sequences.Indexes.FrequencyIncrementingSequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexes_FrequencyIncrementingSequenceIndex_1_Add_System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Sequences.Indexes.FrequencyIncrementingSequenceIndex`1.Add(System.Collections.Generic.IList{`0})
   name.vb: Add(IList(Of TLink))
-  fullName: Platform.Data.Doublets.Sequences.Indexers.FrequencyIncrementingSequenceIndex<TLink>.Add(System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.Sequences.Indexers.FrequencyIncrementingSequenceIndex(Of TLink).Add(System.Collections.Generic.IList(Of TLink))
+  fullName: Platform.Data.Doublets.Sequences.Indexes.FrequencyIncrementingSequenceIndex<TLink>.Add(System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.FrequencyIncrementingSequenceIndex(Of TLink).Add(System.Collections.Generic.IList(Of TLink))
   nameWithType: FrequencyIncrementingSequenceIndex<TLink>.Add(IList<TLink>)
   nameWithType.vb: FrequencyIncrementingSequenceIndex(Of TLink).Add(IList(Of TLink))
-- uid: Platform.Data.Doublets.Sequences.Indexers.FrequencyIncrementingSequenceIndex`1.Add*
+- uid: Platform.Data.Doublets.Sequences.Indexes.FrequencyIncrementingSequenceIndex`1.Add*
   name: Add
-  href: api/Platform.Data.Doublets.Sequences.Indexers.FrequencyIncrementingSequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexers_FrequencyIncrementingSequenceIndex_1_Add_
-  commentId: Overload:Platform.Data.Doublets.Sequences.Indexers.FrequencyIncrementingSequenceIndex`1.Add
+  href: api/Platform.Data.Doublets.Sequences.Indexes.FrequencyIncrementingSequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexes_FrequencyIncrementingSequenceIndex_1_Add_
+  commentId: Overload:Platform.Data.Doublets.Sequences.Indexes.FrequencyIncrementingSequenceIndex`1.Add
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Sequences.Indexers.FrequencyIncrementingSequenceIndex<TLink>.Add
-  fullName.vb: Platform.Data.Doublets.Sequences.Indexers.FrequencyIncrementingSequenceIndex(Of TLink).Add
+  fullName: Platform.Data.Doublets.Sequences.Indexes.FrequencyIncrementingSequenceIndex<TLink>.Add
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.FrequencyIncrementingSequenceIndex(Of TLink).Add
   nameWithType: FrequencyIncrementingSequenceIndex<TLink>.Add
   nameWithType.vb: FrequencyIncrementingSequenceIndex(Of TLink).Add
-- uid: Platform.Data.Doublets.Sequences.Indexers.ISequenceIndex`1
+- uid: Platform.Data.Doublets.Sequences.Indexes.ISequenceIndex`1
   name: ISequenceIndex<TLink>
-  href: api/Platform.Data.Doublets.Sequences.Indexers.ISequenceIndex-1.html
-  commentId: T:Platform.Data.Doublets.Sequences.Indexers.ISequenceIndex`1
+  href: api/Platform.Data.Doublets.Sequences.Indexes.ISequenceIndex-1.html
+  commentId: T:Platform.Data.Doublets.Sequences.Indexes.ISequenceIndex`1
   name.vb: ISequenceIndex(Of TLink)
-  fullName: Platform.Data.Doublets.Sequences.Indexers.ISequenceIndex<TLink>
-  fullName.vb: Platform.Data.Doublets.Sequences.Indexers.ISequenceIndex(Of TLink)
+  fullName: Platform.Data.Doublets.Sequences.Indexes.ISequenceIndex<TLink>
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.ISequenceIndex(Of TLink)
   nameWithType: ISequenceIndex<TLink>
   nameWithType.vb: ISequenceIndex(Of TLink)
-- uid: Platform.Data.Doublets.Sequences.Indexers.ISequenceIndex`1.Add(System.Collections.Generic.IList{`0})
+- uid: Platform.Data.Doublets.Sequences.Indexes.ISequenceIndex`1.Add(System.Collections.Generic.IList{`0})
   name: Add(IList<TLink>)
-  href: api/Platform.Data.Doublets.Sequences.Indexers.ISequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexers_ISequenceIndex_1_Add_System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.Sequences.Indexers.ISequenceIndex`1.Add(System.Collections.Generic.IList{`0})
+  href: api/Platform.Data.Doublets.Sequences.Indexes.ISequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexes_ISequenceIndex_1_Add_System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Sequences.Indexes.ISequenceIndex`1.Add(System.Collections.Generic.IList{`0})
   name.vb: Add(IList(Of TLink))
-  fullName: Platform.Data.Doublets.Sequences.Indexers.ISequenceIndex<TLink>.Add(System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.Sequences.Indexers.ISequenceIndex(Of TLink).Add(System.Collections.Generic.IList(Of TLink))
+  fullName: Platform.Data.Doublets.Sequences.Indexes.ISequenceIndex<TLink>.Add(System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.ISequenceIndex(Of TLink).Add(System.Collections.Generic.IList(Of TLink))
   nameWithType: ISequenceIndex<TLink>.Add(IList<TLink>)
   nameWithType.vb: ISequenceIndex(Of TLink).Add(IList(Of TLink))
-- uid: Platform.Data.Doublets.Sequences.Indexers.ISequenceIndex`1.Add*
+- uid: Platform.Data.Doublets.Sequences.Indexes.ISequenceIndex`1.Add*
   name: Add
-  href: api/Platform.Data.Doublets.Sequences.Indexers.ISequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexers_ISequenceIndex_1_Add_
-  commentId: Overload:Platform.Data.Doublets.Sequences.Indexers.ISequenceIndex`1.Add
+  href: api/Platform.Data.Doublets.Sequences.Indexes.ISequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexes_ISequenceIndex_1_Add_
+  commentId: Overload:Platform.Data.Doublets.Sequences.Indexes.ISequenceIndex`1.Add
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Sequences.Indexers.ISequenceIndex<TLink>.Add
-  fullName.vb: Platform.Data.Doublets.Sequences.Indexers.ISequenceIndex(Of TLink).Add
+  fullName: Platform.Data.Doublets.Sequences.Indexes.ISequenceIndex<TLink>.Add
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.ISequenceIndex(Of TLink).Add
   nameWithType: ISequenceIndex<TLink>.Add
   nameWithType.vb: ISequenceIndex(Of TLink).Add
-- uid: Platform.Data.Doublets.Sequences.Indexers.ISequenceIndex`1.MightContain(System.Collections.Generic.IList{`0})
+- uid: Platform.Data.Doublets.Sequences.Indexes.ISequenceIndex`1.MightContain(System.Collections.Generic.IList{`0})
   name: MightContain(IList<TLink>)
-  href: api/Platform.Data.Doublets.Sequences.Indexers.ISequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexers_ISequenceIndex_1_MightContain_System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.Sequences.Indexers.ISequenceIndex`1.MightContain(System.Collections.Generic.IList{`0})
+  href: api/Platform.Data.Doublets.Sequences.Indexes.ISequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexes_ISequenceIndex_1_MightContain_System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Sequences.Indexes.ISequenceIndex`1.MightContain(System.Collections.Generic.IList{`0})
   name.vb: MightContain(IList(Of TLink))
-  fullName: Platform.Data.Doublets.Sequences.Indexers.ISequenceIndex<TLink>.MightContain(System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.Sequences.Indexers.ISequenceIndex(Of TLink).MightContain(System.Collections.Generic.IList(Of TLink))
+  fullName: Platform.Data.Doublets.Sequences.Indexes.ISequenceIndex<TLink>.MightContain(System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.ISequenceIndex(Of TLink).MightContain(System.Collections.Generic.IList(Of TLink))
   nameWithType: ISequenceIndex<TLink>.MightContain(IList<TLink>)
   nameWithType.vb: ISequenceIndex(Of TLink).MightContain(IList(Of TLink))
-- uid: Platform.Data.Doublets.Sequences.Indexers.ISequenceIndex`1.MightContain*
+- uid: Platform.Data.Doublets.Sequences.Indexes.ISequenceIndex`1.MightContain*
   name: MightContain
-  href: api/Platform.Data.Doublets.Sequences.Indexers.ISequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexers_ISequenceIndex_1_MightContain_
-  commentId: Overload:Platform.Data.Doublets.Sequences.Indexers.ISequenceIndex`1.MightContain
+  href: api/Platform.Data.Doublets.Sequences.Indexes.ISequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexes_ISequenceIndex_1_MightContain_
+  commentId: Overload:Platform.Data.Doublets.Sequences.Indexes.ISequenceIndex`1.MightContain
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Sequences.Indexers.ISequenceIndex<TLink>.MightContain
-  fullName.vb: Platform.Data.Doublets.Sequences.Indexers.ISequenceIndex(Of TLink).MightContain
+  fullName: Platform.Data.Doublets.Sequences.Indexes.ISequenceIndex<TLink>.MightContain
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.ISequenceIndex(Of TLink).MightContain
   nameWithType: ISequenceIndex<TLink>.MightContain
   nameWithType.vb: ISequenceIndex(Of TLink).MightContain
-- uid: Platform.Data.Doublets.Sequences.Indexers.SequenceIndex`1
+- uid: Platform.Data.Doublets.Sequences.Indexes.SequenceIndex`1
   name: SequenceIndex<TLink>
-  href: api/Platform.Data.Doublets.Sequences.Indexers.SequenceIndex-1.html
-  commentId: T:Platform.Data.Doublets.Sequences.Indexers.SequenceIndex`1
+  href: api/Platform.Data.Doublets.Sequences.Indexes.SequenceIndex-1.html
+  commentId: T:Platform.Data.Doublets.Sequences.Indexes.SequenceIndex`1
   name.vb: SequenceIndex(Of TLink)
-  fullName: Platform.Data.Doublets.Sequences.Indexers.SequenceIndex<TLink>
-  fullName.vb: Platform.Data.Doublets.Sequences.Indexers.SequenceIndex(Of TLink)
+  fullName: Platform.Data.Doublets.Sequences.Indexes.SequenceIndex<TLink>
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.SequenceIndex(Of TLink)
   nameWithType: SequenceIndex<TLink>
   nameWithType.vb: SequenceIndex(Of TLink)
-- uid: Platform.Data.Doublets.Sequences.Indexers.SequenceIndex`1.#ctor(Platform.Data.Doublets.ILinks{`0})
+- uid: Platform.Data.Doublets.Sequences.Indexes.SequenceIndex`1.#ctor(Platform.Data.Doublets.ILinks{`0})
   name: SequenceIndex(ILinks<TLink>)
-  href: api/Platform.Data.Doublets.Sequences.Indexers.SequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexers_SequenceIndex_1__ctor_Platform_Data_Doublets_ILinks__0__
-  commentId: M:Platform.Data.Doublets.Sequences.Indexers.SequenceIndex`1.#ctor(Platform.Data.Doublets.ILinks{`0})
+  href: api/Platform.Data.Doublets.Sequences.Indexes.SequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexes_SequenceIndex_1__ctor_Platform_Data_Doublets_ILinks__0__
+  commentId: M:Platform.Data.Doublets.Sequences.Indexes.SequenceIndex`1.#ctor(Platform.Data.Doublets.ILinks{`0})
   name.vb: SequenceIndex(ILinks(Of TLink))
-  fullName: Platform.Data.Doublets.Sequences.Indexers.SequenceIndex<TLink>.SequenceIndex(Platform.Data.Doublets.ILinks<TLink>)
-  fullName.vb: Platform.Data.Doublets.Sequences.Indexers.SequenceIndex(Of TLink).SequenceIndex(Platform.Data.Doublets.ILinks(Of TLink))
+  fullName: Platform.Data.Doublets.Sequences.Indexes.SequenceIndex<TLink>.SequenceIndex(Platform.Data.Doublets.ILinks<TLink>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.SequenceIndex(Of TLink).SequenceIndex(Platform.Data.Doublets.ILinks(Of TLink))
   nameWithType: SequenceIndex<TLink>.SequenceIndex(ILinks<TLink>)
   nameWithType.vb: SequenceIndex(Of TLink).SequenceIndex(ILinks(Of TLink))
-- uid: Platform.Data.Doublets.Sequences.Indexers.SequenceIndex`1.#ctor*
+- uid: Platform.Data.Doublets.Sequences.Indexes.SequenceIndex`1.#ctor*
   name: SequenceIndex
-  href: api/Platform.Data.Doublets.Sequences.Indexers.SequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexers_SequenceIndex_1__ctor_
-  commentId: Overload:Platform.Data.Doublets.Sequences.Indexers.SequenceIndex`1.#ctor
+  href: api/Platform.Data.Doublets.Sequences.Indexes.SequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexes_SequenceIndex_1__ctor_
+  commentId: Overload:Platform.Data.Doublets.Sequences.Indexes.SequenceIndex`1.#ctor
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Sequences.Indexers.SequenceIndex<TLink>.SequenceIndex
-  fullName.vb: Platform.Data.Doublets.Sequences.Indexers.SequenceIndex(Of TLink).SequenceIndex
+  fullName: Platform.Data.Doublets.Sequences.Indexes.SequenceIndex<TLink>.SequenceIndex
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.SequenceIndex(Of TLink).SequenceIndex
   nameWithType: SequenceIndex<TLink>.SequenceIndex
   nameWithType.vb: SequenceIndex(Of TLink).SequenceIndex
-- uid: Platform.Data.Doublets.Sequences.Indexers.SequenceIndex`1.Add(System.Collections.Generic.IList{`0})
+- uid: Platform.Data.Doublets.Sequences.Indexes.SequenceIndex`1.Add(System.Collections.Generic.IList{`0})
   name: Add(IList<TLink>)
-  href: api/Platform.Data.Doublets.Sequences.Indexers.SequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexers_SequenceIndex_1_Add_System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.Sequences.Indexers.SequenceIndex`1.Add(System.Collections.Generic.IList{`0})
+  href: api/Platform.Data.Doublets.Sequences.Indexes.SequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexes_SequenceIndex_1_Add_System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Sequences.Indexes.SequenceIndex`1.Add(System.Collections.Generic.IList{`0})
   name.vb: Add(IList(Of TLink))
-  fullName: Platform.Data.Doublets.Sequences.Indexers.SequenceIndex<TLink>.Add(System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.Sequences.Indexers.SequenceIndex(Of TLink).Add(System.Collections.Generic.IList(Of TLink))
+  fullName: Platform.Data.Doublets.Sequences.Indexes.SequenceIndex<TLink>.Add(System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.SequenceIndex(Of TLink).Add(System.Collections.Generic.IList(Of TLink))
   nameWithType: SequenceIndex<TLink>.Add(IList<TLink>)
   nameWithType.vb: SequenceIndex(Of TLink).Add(IList(Of TLink))
-- uid: Platform.Data.Doublets.Sequences.Indexers.SequenceIndex`1.Add*
+- uid: Platform.Data.Doublets.Sequences.Indexes.SequenceIndex`1.Add*
   name: Add
-  href: api/Platform.Data.Doublets.Sequences.Indexers.SequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexers_SequenceIndex_1_Add_
-  commentId: Overload:Platform.Data.Doublets.Sequences.Indexers.SequenceIndex`1.Add
+  href: api/Platform.Data.Doublets.Sequences.Indexes.SequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexes_SequenceIndex_1_Add_
+  commentId: Overload:Platform.Data.Doublets.Sequences.Indexes.SequenceIndex`1.Add
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Sequences.Indexers.SequenceIndex<TLink>.Add
-  fullName.vb: Platform.Data.Doublets.Sequences.Indexers.SequenceIndex(Of TLink).Add
+  fullName: Platform.Data.Doublets.Sequences.Indexes.SequenceIndex<TLink>.Add
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.SequenceIndex(Of TLink).Add
   nameWithType: SequenceIndex<TLink>.Add
   nameWithType.vb: SequenceIndex(Of TLink).Add
-- uid: Platform.Data.Doublets.Sequences.Indexers.SequenceIndex`1.MightContain(System.Collections.Generic.IList{`0})
+- uid: Platform.Data.Doublets.Sequences.Indexes.SequenceIndex`1.MightContain(System.Collections.Generic.IList{`0})
   name: MightContain(IList<TLink>)
-  href: api/Platform.Data.Doublets.Sequences.Indexers.SequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexers_SequenceIndex_1_MightContain_System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.Sequences.Indexers.SequenceIndex`1.MightContain(System.Collections.Generic.IList{`0})
+  href: api/Platform.Data.Doublets.Sequences.Indexes.SequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexes_SequenceIndex_1_MightContain_System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Sequences.Indexes.SequenceIndex`1.MightContain(System.Collections.Generic.IList{`0})
   name.vb: MightContain(IList(Of TLink))
-  fullName: Platform.Data.Doublets.Sequences.Indexers.SequenceIndex<TLink>.MightContain(System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.Sequences.Indexers.SequenceIndex(Of TLink).MightContain(System.Collections.Generic.IList(Of TLink))
+  fullName: Platform.Data.Doublets.Sequences.Indexes.SequenceIndex<TLink>.MightContain(System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.SequenceIndex(Of TLink).MightContain(System.Collections.Generic.IList(Of TLink))
   nameWithType: SequenceIndex<TLink>.MightContain(IList<TLink>)
   nameWithType.vb: SequenceIndex(Of TLink).MightContain(IList(Of TLink))
-- uid: Platform.Data.Doublets.Sequences.Indexers.SequenceIndex`1.MightContain*
+- uid: Platform.Data.Doublets.Sequences.Indexes.SequenceIndex`1.MightContain*
   name: MightContain
-  href: api/Platform.Data.Doublets.Sequences.Indexers.SequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexers_SequenceIndex_1_MightContain_
-  commentId: Overload:Platform.Data.Doublets.Sequences.Indexers.SequenceIndex`1.MightContain
+  href: api/Platform.Data.Doublets.Sequences.Indexes.SequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexes_SequenceIndex_1_MightContain_
+  commentId: Overload:Platform.Data.Doublets.Sequences.Indexes.SequenceIndex`1.MightContain
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Sequences.Indexers.SequenceIndex<TLink>.MightContain
-  fullName.vb: Platform.Data.Doublets.Sequences.Indexers.SequenceIndex(Of TLink).MightContain
+  fullName: Platform.Data.Doublets.Sequences.Indexes.SequenceIndex<TLink>.MightContain
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.SequenceIndex(Of TLink).MightContain
   nameWithType: SequenceIndex<TLink>.MightContain
   nameWithType.vb: SequenceIndex(Of TLink).MightContain
-- uid: Platform.Data.Doublets.Sequences.Indexers.SynchronizedSequenceIndex`1
+- uid: Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex`1
   name: SynchronizedSequenceIndex<TLink>
-  href: api/Platform.Data.Doublets.Sequences.Indexers.SynchronizedSequenceIndex-1.html
-  commentId: T:Platform.Data.Doublets.Sequences.Indexers.SynchronizedSequenceIndex`1
+  href: api/Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex-1.html
+  commentId: T:Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex`1
   name.vb: SynchronizedSequenceIndex(Of TLink)
-  fullName: Platform.Data.Doublets.Sequences.Indexers.SynchronizedSequenceIndex<TLink>
-  fullName.vb: Platform.Data.Doublets.Sequences.Indexers.SynchronizedSequenceIndex(Of TLink)
+  fullName: Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex<TLink>
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex(Of TLink)
   nameWithType: SynchronizedSequenceIndex<TLink>
   nameWithType.vb: SynchronizedSequenceIndex(Of TLink)
-- uid: Platform.Data.Doublets.Sequences.Indexers.SynchronizedSequenceIndex`1.#ctor(Platform.Data.Doublets.ISynchronizedLinks{`0})
+- uid: Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex`1.#ctor(Platform.Data.Doublets.ISynchronizedLinks{`0})
   name: SynchronizedSequenceIndex(ISynchronizedLinks<TLink>)
-  href: api/Platform.Data.Doublets.Sequences.Indexers.SynchronizedSequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexers_SynchronizedSequenceIndex_1__ctor_Platform_Data_Doublets_ISynchronizedLinks__0__
-  commentId: M:Platform.Data.Doublets.Sequences.Indexers.SynchronizedSequenceIndex`1.#ctor(Platform.Data.Doublets.ISynchronizedLinks{`0})
+  href: api/Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexes_SynchronizedSequenceIndex_1__ctor_Platform_Data_Doublets_ISynchronizedLinks__0__
+  commentId: M:Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex`1.#ctor(Platform.Data.Doublets.ISynchronizedLinks{`0})
   name.vb: SynchronizedSequenceIndex(ISynchronizedLinks(Of TLink))
-  fullName: Platform.Data.Doublets.Sequences.Indexers.SynchronizedSequenceIndex<TLink>.SynchronizedSequenceIndex(Platform.Data.Doublets.ISynchronizedLinks<TLink>)
-  fullName.vb: Platform.Data.Doublets.Sequences.Indexers.SynchronizedSequenceIndex(Of TLink).SynchronizedSequenceIndex(Platform.Data.Doublets.ISynchronizedLinks(Of TLink))
+  fullName: Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex<TLink>.SynchronizedSequenceIndex(Platform.Data.Doublets.ISynchronizedLinks<TLink>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex(Of TLink).SynchronizedSequenceIndex(Platform.Data.Doublets.ISynchronizedLinks(Of TLink))
   nameWithType: SynchronizedSequenceIndex<TLink>.SynchronizedSequenceIndex(ISynchronizedLinks<TLink>)
   nameWithType.vb: SynchronizedSequenceIndex(Of TLink).SynchronizedSequenceIndex(ISynchronizedLinks(Of TLink))
-- uid: Platform.Data.Doublets.Sequences.Indexers.SynchronizedSequenceIndex`1.#ctor*
+- uid: Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex`1.#ctor*
   name: SynchronizedSequenceIndex
-  href: api/Platform.Data.Doublets.Sequences.Indexers.SynchronizedSequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexers_SynchronizedSequenceIndex_1__ctor_
-  commentId: Overload:Platform.Data.Doublets.Sequences.Indexers.SynchronizedSequenceIndex`1.#ctor
+  href: api/Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexes_SynchronizedSequenceIndex_1__ctor_
+  commentId: Overload:Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex`1.#ctor
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Sequences.Indexers.SynchronizedSequenceIndex<TLink>.SynchronizedSequenceIndex
-  fullName.vb: Platform.Data.Doublets.Sequences.Indexers.SynchronizedSequenceIndex(Of TLink).SynchronizedSequenceIndex
+  fullName: Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex<TLink>.SynchronizedSequenceIndex
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex(Of TLink).SynchronizedSequenceIndex
   nameWithType: SynchronizedSequenceIndex<TLink>.SynchronizedSequenceIndex
   nameWithType.vb: SynchronizedSequenceIndex(Of TLink).SynchronizedSequenceIndex
-- uid: Platform.Data.Doublets.Sequences.Indexers.SynchronizedSequenceIndex`1.Add(System.Collections.Generic.IList{`0})
+- uid: Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex`1.Add(System.Collections.Generic.IList{`0})
   name: Add(IList<TLink>)
-  href: api/Platform.Data.Doublets.Sequences.Indexers.SynchronizedSequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexers_SynchronizedSequenceIndex_1_Add_System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.Sequences.Indexers.SynchronizedSequenceIndex`1.Add(System.Collections.Generic.IList{`0})
+  href: api/Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexes_SynchronizedSequenceIndex_1_Add_System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex`1.Add(System.Collections.Generic.IList{`0})
   name.vb: Add(IList(Of TLink))
-  fullName: Platform.Data.Doublets.Sequences.Indexers.SynchronizedSequenceIndex<TLink>.Add(System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.Sequences.Indexers.SynchronizedSequenceIndex(Of TLink).Add(System.Collections.Generic.IList(Of TLink))
+  fullName: Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex<TLink>.Add(System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex(Of TLink).Add(System.Collections.Generic.IList(Of TLink))
   nameWithType: SynchronizedSequenceIndex<TLink>.Add(IList<TLink>)
   nameWithType.vb: SynchronizedSequenceIndex(Of TLink).Add(IList(Of TLink))
-- uid: Platform.Data.Doublets.Sequences.Indexers.SynchronizedSequenceIndex`1.Add*
+- uid: Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex`1.Add*
   name: Add
-  href: api/Platform.Data.Doublets.Sequences.Indexers.SynchronizedSequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexers_SynchronizedSequenceIndex_1_Add_
-  commentId: Overload:Platform.Data.Doublets.Sequences.Indexers.SynchronizedSequenceIndex`1.Add
+  href: api/Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexes_SynchronizedSequenceIndex_1_Add_
+  commentId: Overload:Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex`1.Add
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Sequences.Indexers.SynchronizedSequenceIndex<TLink>.Add
-  fullName.vb: Platform.Data.Doublets.Sequences.Indexers.SynchronizedSequenceIndex(Of TLink).Add
+  fullName: Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex<TLink>.Add
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex(Of TLink).Add
   nameWithType: SynchronizedSequenceIndex<TLink>.Add
   nameWithType.vb: SynchronizedSequenceIndex(Of TLink).Add
-- uid: Platform.Data.Doublets.Sequences.Indexers.SynchronizedSequenceIndex`1.MightContain(System.Collections.Generic.IList{`0})
+- uid: Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex`1.MightContain(System.Collections.Generic.IList{`0})
   name: MightContain(IList<TLink>)
-  href: api/Platform.Data.Doublets.Sequences.Indexers.SynchronizedSequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexers_SynchronizedSequenceIndex_1_MightContain_System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.Sequences.Indexers.SynchronizedSequenceIndex`1.MightContain(System.Collections.Generic.IList{`0})
+  href: api/Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexes_SynchronizedSequenceIndex_1_MightContain_System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex`1.MightContain(System.Collections.Generic.IList{`0})
   name.vb: MightContain(IList(Of TLink))
-  fullName: Platform.Data.Doublets.Sequences.Indexers.SynchronizedSequenceIndex<TLink>.MightContain(System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.Sequences.Indexers.SynchronizedSequenceIndex(Of TLink).MightContain(System.Collections.Generic.IList(Of TLink))
+  fullName: Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex<TLink>.MightContain(System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex(Of TLink).MightContain(System.Collections.Generic.IList(Of TLink))
   nameWithType: SynchronizedSequenceIndex<TLink>.MightContain(IList<TLink>)
   nameWithType.vb: SynchronizedSequenceIndex(Of TLink).MightContain(IList(Of TLink))
-- uid: Platform.Data.Doublets.Sequences.Indexers.SynchronizedSequenceIndex`1.MightContain*
+- uid: Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex`1.MightContain*
   name: MightContain
-  href: api/Platform.Data.Doublets.Sequences.Indexers.SynchronizedSequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexers_SynchronizedSequenceIndex_1_MightContain_
-  commentId: Overload:Platform.Data.Doublets.Sequences.Indexers.SynchronizedSequenceIndex`1.MightContain
+  href: api/Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex-1.html#Platform_Data_Doublets_Sequences_Indexes_SynchronizedSequenceIndex_1_MightContain_
+  commentId: Overload:Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex`1.MightContain
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Sequences.Indexers.SynchronizedSequenceIndex<TLink>.MightContain
-  fullName.vb: Platform.Data.Doublets.Sequences.Indexers.SynchronizedSequenceIndex(Of TLink).MightContain
+  fullName: Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex<TLink>.MightContain
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex(Of TLink).MightContain
   nameWithType: SynchronizedSequenceIndex<TLink>.MightContain
   nameWithType.vb: SynchronizedSequenceIndex(Of TLink).MightContain
 - uid: Platform.Data.Doublets.Sequences.Sequences
