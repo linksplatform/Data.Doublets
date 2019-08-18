@@ -34,8 +34,7 @@ namespace Platform.Data.Doublets.Converters
                 return default;
             }
             var frequencyNumber = Links.GetSource(frequency);
-            var number = _unaryNumberToAddressConverter.Convert(frequencyNumber);
-            return number;
+            return _unaryNumberToAddressConverter.Convert(frequencyNumber);
         }
     }
 }
