@@ -3,14 +3,14 @@ using Platform.Interfaces;
 
 namespace Platform.Data.Doublets.Sequences.CreteriaMatchers
 {
-    public class MarkedSequenceCreteriaMatcher<TLink> : ICriterionMatcher<TLink>
+    public class MarkedSequenceCriterionMatcher<TLink> : ICriterionMatcher<TLink>
     {
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
 
         private readonly ILinks<TLink> _links;
         private readonly TLink _sequenceMarkerLink;
 
-        public MarkedSequenceCreteriaMatcher(ILinks<TLink> links, TLink sequenceMarkerLink)
+        public MarkedSequenceCriterionMatcher(ILinks<TLink> links, TLink sequenceMarkerLink)
         {
             _links = links;
             _sequenceMarkerLink = sequenceMarkerLink;

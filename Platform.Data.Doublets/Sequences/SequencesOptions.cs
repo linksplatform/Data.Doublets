@@ -22,7 +22,7 @@ namespace Platform.Data.Doublets.Sequences
         public bool EnforceSingleSequenceVersionOnWriteBasedOnExisting { get; set; }
         public bool EnforceSingleSequenceVersionOnWriteBasedOnNew { get; set; }
 
-        public MarkedSequenceCreteriaMatcher<TLink> MarkedSequenceMatcher { get; set; }
+        public MarkedSequenceCriterionMatcher<TLink> MarkedSequenceMatcher { get; set; }
         public IConverter<IList<TLink>, TLink> LinksToSequenceConverter { get; set; }
         public SequencesIndexer<TLink> Indexer { get; set; }
 
@@ -52,7 +52,7 @@ namespace Platform.Data.Doublets.Sequences
                 }
                 if (MarkedSequenceMatcher == null)
                 {
-                    MarkedSequenceMatcher = new MarkedSequenceCreteriaMatcher<TLink>(links, SequenceMarkerLink);
+                    MarkedSequenceMatcher = new MarkedSequenceCriterionMatcher<TLink>(links, SequenceMarkerLink);
                 }
             }
             var balancedVariantConverter = new BalancedVariantConverter<TLink>(links);
