@@ -5923,15 +5923,12 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Sequences.Sequences.Matcher.HandlePartialMatched
   nameWithType: Sequences.Matcher.HandlePartialMatched
-- uid: Platform.Data.Doublets.Sequences.Sequences.Matcher.IsElement(System.Collections.Generic.IList{System.UInt64})
-  name: IsElement(IList<UInt64>)
-  href: api/Platform.Data.Doublets.Sequences.Sequences.Matcher.html#Platform_Data_Doublets_Sequences_Sequences_Matcher_IsElement_System_Collections_Generic_IList_System_UInt64__
-  commentId: M:Platform.Data.Doublets.Sequences.Sequences.Matcher.IsElement(System.Collections.Generic.IList{System.UInt64})
-  name.vb: IsElement(IList(Of UInt64))
-  fullName: Platform.Data.Doublets.Sequences.Sequences.Matcher.IsElement(System.Collections.Generic.IList<System.UInt64>)
-  fullName.vb: Platform.Data.Doublets.Sequences.Sequences.Matcher.IsElement(System.Collections.Generic.IList(Of System.UInt64))
-  nameWithType: Sequences.Matcher.IsElement(IList<UInt64>)
-  nameWithType.vb: Sequences.Matcher.IsElement(IList(Of UInt64))
+- uid: Platform.Data.Doublets.Sequences.Sequences.Matcher.IsElement(System.UInt64)
+  name: IsElement(UInt64)
+  href: api/Platform.Data.Doublets.Sequences.Sequences.Matcher.html#Platform_Data_Doublets_Sequences_Sequences_Matcher_IsElement_System_UInt64_
+  commentId: M:Platform.Data.Doublets.Sequences.Sequences.Matcher.IsElement(System.UInt64)
+  fullName: Platform.Data.Doublets.Sequences.Sequences.Matcher.IsElement(System.UInt64)
+  nameWithType: Sequences.Matcher.IsElement(UInt64)
 - uid: Platform.Data.Doublets.Sequences.Sequences.Matcher.IsElement*
   name: IsElement
   href: api/Platform.Data.Doublets.Sequences.Sequences.Matcher.html#Platform_Data_Doublets_Sequences_Sequences_Matcher_IsElement_
@@ -6018,15 +6015,12 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Sequences.Sequences.PatternMatcher.AddAllPatternMatchedToResults
   nameWithType: Sequences.PatternMatcher.AddAllPatternMatchedToResults
-- uid: Platform.Data.Doublets.Sequences.Sequences.PatternMatcher.IsElement(System.Collections.Generic.IList{System.UInt64})
-  name: IsElement(IList<UInt64>)
-  href: api/Platform.Data.Doublets.Sequences.Sequences.PatternMatcher.html#Platform_Data_Doublets_Sequences_Sequences_PatternMatcher_IsElement_System_Collections_Generic_IList_System_UInt64__
-  commentId: M:Platform.Data.Doublets.Sequences.Sequences.PatternMatcher.IsElement(System.Collections.Generic.IList{System.UInt64})
-  name.vb: IsElement(IList(Of UInt64))
-  fullName: Platform.Data.Doublets.Sequences.Sequences.PatternMatcher.IsElement(System.Collections.Generic.IList<System.UInt64>)
-  fullName.vb: Platform.Data.Doublets.Sequences.Sequences.PatternMatcher.IsElement(System.Collections.Generic.IList(Of System.UInt64))
-  nameWithType: Sequences.PatternMatcher.IsElement(IList<UInt64>)
-  nameWithType.vb: Sequences.PatternMatcher.IsElement(IList(Of UInt64))
+- uid: Platform.Data.Doublets.Sequences.Sequences.PatternMatcher.IsElement(System.UInt64)
+  name: IsElement(UInt64)
+  href: api/Platform.Data.Doublets.Sequences.Sequences.PatternMatcher.html#Platform_Data_Doublets_Sequences_Sequences_PatternMatcher_IsElement_System_UInt64_
+  commentId: M:Platform.Data.Doublets.Sequences.Sequences.PatternMatcher.IsElement(System.UInt64)
+  fullName: Platform.Data.Doublets.Sequences.Sequences.PatternMatcher.IsElement(System.UInt64)
+  nameWithType: Sequences.PatternMatcher.IsElement(UInt64)
 - uid: Platform.Data.Doublets.Sequences.Sequences.PatternMatcher.IsElement*
   name: IsElement
   href: api/Platform.Data.Doublets.Sequences.Sequences.PatternMatcher.html#Platform_Data_Doublets_Sequences_Sequences_PatternMatcher_IsElement_
@@ -6060,22 +6054,6 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Sequences.Sequences.Prediction
   nameWithType: Sequences.Prediction
-- uid: Platform.Data.Doublets.Sequences.Sequences.ReadSequenceCore(System.UInt64,System.Func{System.UInt64,System.Boolean})
-  name: ReadSequenceCore(UInt64, Func<UInt64, Boolean>)
-  href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_ReadSequenceCore_System_UInt64_System_Func_System_UInt64_System_Boolean__
-  commentId: M:Platform.Data.Doublets.Sequences.Sequences.ReadSequenceCore(System.UInt64,System.Func{System.UInt64,System.Boolean})
-  name.vb: ReadSequenceCore(UInt64, Func(Of UInt64, Boolean))
-  fullName: Platform.Data.Doublets.Sequences.Sequences.ReadSequenceCore(System.UInt64, System.Func<System.UInt64, System.Boolean>)
-  fullName.vb: Platform.Data.Doublets.Sequences.Sequences.ReadSequenceCore(System.UInt64, System.Func(Of System.UInt64, System.Boolean))
-  nameWithType: Sequences.ReadSequenceCore(UInt64, Func<UInt64, Boolean>)
-  nameWithType.vb: Sequences.ReadSequenceCore(UInt64, Func(Of UInt64, Boolean))
-- uid: Platform.Data.Doublets.Sequences.Sequences.ReadSequenceCore*
-  name: ReadSequenceCore
-  href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_ReadSequenceCore_
-  commentId: Overload:Platform.Data.Doublets.Sequences.Sequences.ReadSequenceCore
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Sequences.Sequences.ReadSequenceCore
-  nameWithType: Sequences.ReadSequenceCore
 - uid: Platform.Data.Doublets.Sequences.Sequences.SafeFormatSequence(System.UInt64,System.Action{System.Text.StringBuilder,System.UInt64},System.Boolean,System.UInt64[])
   name: SafeFormatSequence(UInt64, Action<StringBuilder, UInt64>, Boolean, UInt64[])
   href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_SafeFormatSequence_System_UInt64_System_Action_System_Text_StringBuilder_System_UInt64__System_Boolean_System_UInt64___
@@ -6196,6 +6174,22 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.SequencesExtensions.Create(Of TLink)(Platform.Data.Sequences.ISequences(Of TLink), System.Collections.Generic.IList(Of TLink()))
   nameWithType: SequencesExtensions.Create<TLink>(ISequences<TLink>, IList<TLink[]>)
   nameWithType.vb: SequencesExtensions.Create(Of TLink)(ISequences(Of TLink), IList(Of TLink()))
+- uid: Platform.Data.Doublets.Sequences.SequencesExtensions.ToList*
+  name: ToList
+  href: api/Platform.Data.Doublets.Sequences.SequencesExtensions.html#Platform_Data_Doublets_Sequences_SequencesExtensions_ToList_
+  commentId: Overload:Platform.Data.Doublets.Sequences.SequencesExtensions.ToList
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Sequences.SequencesExtensions.ToList
+  nameWithType: SequencesExtensions.ToList
+- uid: Platform.Data.Doublets.Sequences.SequencesExtensions.ToList``1(Platform.Data.Sequences.ISequences{``0},``0)
+  name: ToList<TLink>(ISequences<TLink>, TLink)
+  href: api/Platform.Data.Doublets.Sequences.SequencesExtensions.html#Platform_Data_Doublets_Sequences_SequencesExtensions_ToList__1_Platform_Data_Sequences_ISequences___0____0_
+  commentId: M:Platform.Data.Doublets.Sequences.SequencesExtensions.ToList``1(Platform.Data.Sequences.ISequences{``0},``0)
+  name.vb: ToList(Of TLink)(ISequences(Of TLink), TLink)
+  fullName: Platform.Data.Doublets.Sequences.SequencesExtensions.ToList<TLink>(Platform.Data.Sequences.ISequences<TLink>, TLink)
+  fullName.vb: Platform.Data.Doublets.Sequences.SequencesExtensions.ToList(Of TLink)(Platform.Data.Sequences.ISequences(Of TLink), TLink)
+  nameWithType: SequencesExtensions.ToList<TLink>(ISequences<TLink>, TLink)
+  nameWithType.vb: SequencesExtensions.ToList(Of TLink)(ISequences(Of TLink), TLink)
 - uid: Platform.Data.Doublets.Sequences.SequencesOptions`1
   name: SequencesOptions<TLink>
   href: api/Platform.Data.Doublets.Sequences.SequencesOptions-1.html
@@ -6444,6 +6438,23 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.SequencesOptions(Of TLink).ValidateOptions
   nameWithType: SequencesOptions<TLink>.ValidateOptions
   nameWithType.vb: SequencesOptions(Of TLink).ValidateOptions
+- uid: Platform.Data.Doublets.Sequences.SequencesOptions`1.Walker
+  name: Walker
+  href: api/Platform.Data.Doublets.Sequences.SequencesOptions-1.html#Platform_Data_Doublets_Sequences_SequencesOptions_1_Walker
+  commentId: P:Platform.Data.Doublets.Sequences.SequencesOptions`1.Walker
+  fullName: Platform.Data.Doublets.Sequences.SequencesOptions<TLink>.Walker
+  fullName.vb: Platform.Data.Doublets.Sequences.SequencesOptions(Of TLink).Walker
+  nameWithType: SequencesOptions<TLink>.Walker
+  nameWithType.vb: SequencesOptions(Of TLink).Walker
+- uid: Platform.Data.Doublets.Sequences.SequencesOptions`1.Walker*
+  name: Walker
+  href: api/Platform.Data.Doublets.Sequences.SequencesOptions-1.html#Platform_Data_Doublets_Sequences_SequencesOptions_1_Walker_
+  commentId: Overload:Platform.Data.Doublets.Sequences.SequencesOptions`1.Walker
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Sequences.SequencesOptions<TLink>.Walker
+  fullName.vb: Platform.Data.Doublets.Sequences.SequencesOptions(Of TLink).Walker
+  nameWithType: SequencesOptions<TLink>.Walker
+  nameWithType.vb: SequencesOptions(Of TLink).Walker
 - uid: Platform.Data.Doublets.Sequences.UnicodeMap
   name: UnicodeMap
   href: api/Platform.Data.Doublets.Sequences.UnicodeMap.html
@@ -6657,6 +6668,32 @@ references:
   commentId: N:Platform.Data.Doublets.Sequences.Walkers
   fullName: Platform.Data.Doublets.Sequences.Walkers
   nameWithType: Platform.Data.Doublets.Sequences.Walkers
+- uid: Platform.Data.Doublets.Sequences.Walkers.ISequenceWalker`1
+  name: ISequenceWalker<TLink>
+  href: api/Platform.Data.Doublets.Sequences.Walkers.ISequenceWalker-1.html
+  commentId: T:Platform.Data.Doublets.Sequences.Walkers.ISequenceWalker`1
+  name.vb: ISequenceWalker(Of TLink)
+  fullName: Platform.Data.Doublets.Sequences.Walkers.ISequenceWalker<TLink>
+  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.ISequenceWalker(Of TLink)
+  nameWithType: ISequenceWalker<TLink>
+  nameWithType.vb: ISequenceWalker(Of TLink)
+- uid: Platform.Data.Doublets.Sequences.Walkers.ISequenceWalker`1.Walk(`0)
+  name: Walk(TLink)
+  href: api/Platform.Data.Doublets.Sequences.Walkers.ISequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_ISequenceWalker_1_Walk__0_
+  commentId: M:Platform.Data.Doublets.Sequences.Walkers.ISequenceWalker`1.Walk(`0)
+  fullName: Platform.Data.Doublets.Sequences.Walkers.ISequenceWalker<TLink>.Walk(TLink)
+  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.ISequenceWalker(Of TLink).Walk(TLink)
+  nameWithType: ISequenceWalker<TLink>.Walk(TLink)
+  nameWithType.vb: ISequenceWalker(Of TLink).Walk(TLink)
+- uid: Platform.Data.Doublets.Sequences.Walkers.ISequenceWalker`1.Walk*
+  name: Walk
+  href: api/Platform.Data.Doublets.Sequences.Walkers.ISequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_ISequenceWalker_1_Walk_
+  commentId: Overload:Platform.Data.Doublets.Sequences.Walkers.ISequenceWalker`1.Walk
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Sequences.Walkers.ISequenceWalker<TLink>.Walk
+  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.ISequenceWalker(Of TLink).Walk
+  nameWithType: ISequenceWalker<TLink>.Walk
+  nameWithType.vb: ISequenceWalker(Of TLink).Walk
 - uid: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker`1
   name: LeftSequenceWalker<TLink>
   href: api/Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker-1.html
@@ -6718,15 +6755,14 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker(Of TLink).GetNextElementAfterPush
   nameWithType: LeftSequenceWalker<TLink>.GetNextElementAfterPush
   nameWithType.vb: LeftSequenceWalker(Of TLink).GetNextElementAfterPush
-- uid: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker`1.WalkContents(System.Collections.Generic.IList{`0})
-  name: WalkContents(IList<TLink>)
-  href: api/Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_LeftSequenceWalker_1_WalkContents_System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker`1.WalkContents(System.Collections.Generic.IList{`0})
-  name.vb: WalkContents(IList(Of TLink))
-  fullName: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker<TLink>.WalkContents(System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker(Of TLink).WalkContents(System.Collections.Generic.IList(Of TLink))
-  nameWithType: LeftSequenceWalker<TLink>.WalkContents(IList<TLink>)
-  nameWithType.vb: LeftSequenceWalker(Of TLink).WalkContents(IList(Of TLink))
+- uid: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker`1.WalkContents(`0)
+  name: WalkContents(TLink)
+  href: api/Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_LeftSequenceWalker_1_WalkContents__0_
+  commentId: M:Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker`1.WalkContents(`0)
+  fullName: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker<TLink>.WalkContents(TLink)
+  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker(Of TLink).WalkContents(TLink)
+  nameWithType: LeftSequenceWalker<TLink>.WalkContents(TLink)
+  nameWithType.vb: LeftSequenceWalker(Of TLink).WalkContents(TLink)
 - uid: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker`1.WalkContents*
   name: WalkContents
   href: api/Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_LeftSequenceWalker_1_WalkContents_
@@ -6736,6 +6772,84 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker(Of TLink).WalkContents
   nameWithType: LeftSequenceWalker<TLink>.WalkContents
   nameWithType.vb: LeftSequenceWalker(Of TLink).WalkContents
+- uid: Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker`1
+  name: LeveledSequenceWalker<TLink>
+  href: api/Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker-1.html
+  commentId: T:Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker`1
+  name.vb: LeveledSequenceWalker(Of TLink)
+  fullName: Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker<TLink>
+  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker(Of TLink)
+  nameWithType: LeveledSequenceWalker<TLink>
+  nameWithType.vb: LeveledSequenceWalker(Of TLink)
+- uid: Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker`1.#ctor(Platform.Data.Doublets.ILinks{`0})
+  name: LeveledSequenceWalker(ILinks<TLink>)
+  href: api/Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_LeveledSequenceWalker_1__ctor_Platform_Data_Doublets_ILinks__0__
+  commentId: M:Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker`1.#ctor(Platform.Data.Doublets.ILinks{`0})
+  name.vb: LeveledSequenceWalker(ILinks(Of TLink))
+  fullName: Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker<TLink>.LeveledSequenceWalker(Platform.Data.Doublets.ILinks<TLink>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker(Of TLink).LeveledSequenceWalker(Platform.Data.Doublets.ILinks(Of TLink))
+  nameWithType: LeveledSequenceWalker<TLink>.LeveledSequenceWalker(ILinks<TLink>)
+  nameWithType.vb: LeveledSequenceWalker(Of TLink).LeveledSequenceWalker(ILinks(Of TLink))
+- uid: Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker`1.#ctor*
+  name: LeveledSequenceWalker
+  href: api/Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_LeveledSequenceWalker_1__ctor_
+  commentId: Overload:Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker`1.#ctor
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker<TLink>.LeveledSequenceWalker
+  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker(Of TLink).LeveledSequenceWalker
+  nameWithType: LeveledSequenceWalker<TLink>.LeveledSequenceWalker
+  nameWithType.vb: LeveledSequenceWalker(Of TLink).LeveledSequenceWalker
+- uid: Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker`1.IsElement(`0)
+  name: IsElement(TLink)
+  href: api/Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_LeveledSequenceWalker_1_IsElement__0_
+  commentId: M:Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker`1.IsElement(`0)
+  fullName: Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker<TLink>.IsElement(TLink)
+  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker(Of TLink).IsElement(TLink)
+  nameWithType: LeveledSequenceWalker<TLink>.IsElement(TLink)
+  nameWithType.vb: LeveledSequenceWalker(Of TLink).IsElement(TLink)
+- uid: Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker`1.IsElement*
+  name: IsElement
+  href: api/Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_LeveledSequenceWalker_1_IsElement_
+  commentId: Overload:Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker`1.IsElement
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker<TLink>.IsElement
+  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker(Of TLink).IsElement
+  nameWithType: LeveledSequenceWalker<TLink>.IsElement
+  nameWithType.vb: LeveledSequenceWalker(Of TLink).IsElement
+- uid: Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker`1.ToArray(`0)
+  name: ToArray(TLink)
+  href: api/Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_LeveledSequenceWalker_1_ToArray__0_
+  commentId: M:Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker`1.ToArray(`0)
+  fullName: Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker<TLink>.ToArray(TLink)
+  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker(Of TLink).ToArray(TLink)
+  nameWithType: LeveledSequenceWalker<TLink>.ToArray(TLink)
+  nameWithType.vb: LeveledSequenceWalker(Of TLink).ToArray(TLink)
+- uid: Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker`1.ToArray*
+  name: ToArray
+  href: api/Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_LeveledSequenceWalker_1_ToArray_
+  commentId: Overload:Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker`1.ToArray
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker<TLink>.ToArray
+  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker(Of TLink).ToArray
+  nameWithType: LeveledSequenceWalker<TLink>.ToArray
+  nameWithType.vb: LeveledSequenceWalker(Of TLink).ToArray
+- uid: Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker`1.Walk(`0)
+  name: Walk(TLink)
+  href: api/Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_LeveledSequenceWalker_1_Walk__0_
+  commentId: M:Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker`1.Walk(`0)
+  fullName: Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker<TLink>.Walk(TLink)
+  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker(Of TLink).Walk(TLink)
+  nameWithType: LeveledSequenceWalker<TLink>.Walk(TLink)
+  nameWithType.vb: LeveledSequenceWalker(Of TLink).Walk(TLink)
+- uid: Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker`1.Walk*
+  name: Walk
+  href: api/Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_LeveledSequenceWalker_1_Walk_
+  commentId: Overload:Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker`1.Walk
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker<TLink>.Walk
+  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.LeveledSequenceWalker(Of TLink).Walk
+  nameWithType: LeveledSequenceWalker<TLink>.Walk
+  nameWithType.vb: LeveledSequenceWalker(Of TLink).Walk
 - uid: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker`1
   name: RightSequenceWalker<TLink>
   href: api/Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker-1.html
@@ -6797,15 +6911,14 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker(Of TLink).GetNextElementAfterPush
   nameWithType: RightSequenceWalker<TLink>.GetNextElementAfterPush
   nameWithType.vb: RightSequenceWalker(Of TLink).GetNextElementAfterPush
-- uid: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker`1.WalkContents(System.Collections.Generic.IList{`0})
-  name: WalkContents(IList<TLink>)
-  href: api/Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_RightSequenceWalker_1_WalkContents_System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker`1.WalkContents(System.Collections.Generic.IList{`0})
-  name.vb: WalkContents(IList(Of TLink))
-  fullName: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker<TLink>.WalkContents(System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker(Of TLink).WalkContents(System.Collections.Generic.IList(Of TLink))
-  nameWithType: RightSequenceWalker<TLink>.WalkContents(IList<TLink>)
-  nameWithType.vb: RightSequenceWalker(Of TLink).WalkContents(IList(Of TLink))
+- uid: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker`1.WalkContents(`0)
+  name: WalkContents(TLink)
+  href: api/Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_RightSequenceWalker_1_WalkContents__0_
+  commentId: M:Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker`1.WalkContents(`0)
+  fullName: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker<TLink>.WalkContents(TLink)
+  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker(Of TLink).WalkContents(TLink)
+  nameWithType: RightSequenceWalker<TLink>.WalkContents(TLink)
+  nameWithType.vb: RightSequenceWalker(Of TLink).WalkContents(TLink)
 - uid: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker`1.WalkContents*
   name: WalkContents
   href: api/Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_RightSequenceWalker_1_WalkContents_
@@ -6876,15 +6989,14 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase(Of TLink).GetNextElementAfterPush
   nameWithType: SequenceWalkerBase<TLink>.GetNextElementAfterPush
   nameWithType.vb: SequenceWalkerBase(Of TLink).GetNextElementAfterPush
-- uid: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase`1.IsElement(System.Collections.Generic.IList{`0})
-  name: IsElement(IList<TLink>)
-  href: api/Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase-1.html#Platform_Data_Doublets_Sequences_Walkers_SequenceWalkerBase_1_IsElement_System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase`1.IsElement(System.Collections.Generic.IList{`0})
-  name.vb: IsElement(IList(Of TLink))
-  fullName: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase<TLink>.IsElement(System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase(Of TLink).IsElement(System.Collections.Generic.IList(Of TLink))
-  nameWithType: SequenceWalkerBase<TLink>.IsElement(IList<TLink>)
-  nameWithType.vb: SequenceWalkerBase(Of TLink).IsElement(IList(Of TLink))
+- uid: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase`1.IsElement(`0)
+  name: IsElement(TLink)
+  href: api/Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase-1.html#Platform_Data_Doublets_Sequences_Walkers_SequenceWalkerBase_1_IsElement__0_
+  commentId: M:Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase`1.IsElement(`0)
+  fullName: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase<TLink>.IsElement(TLink)
+  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase(Of TLink).IsElement(TLink)
+  nameWithType: SequenceWalkerBase<TLink>.IsElement(TLink)
+  nameWithType.vb: SequenceWalkerBase(Of TLink).IsElement(TLink)
 - uid: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase`1.IsElement*
   name: IsElement
   href: api/Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase-1.html#Platform_Data_Doublets_Sequences_Walkers_SequenceWalkerBase_1_IsElement_
@@ -6911,15 +7023,14 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase(Of TLink).Walk
   nameWithType: SequenceWalkerBase<TLink>.Walk
   nameWithType.vb: SequenceWalkerBase(Of TLink).Walk
-- uid: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase`1.WalkContents(System.Collections.Generic.IList{`0})
-  name: WalkContents(IList<TLink>)
-  href: api/Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase-1.html#Platform_Data_Doublets_Sequences_Walkers_SequenceWalkerBase_1_WalkContents_System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase`1.WalkContents(System.Collections.Generic.IList{`0})
-  name.vb: WalkContents(IList(Of TLink))
-  fullName: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase<TLink>.WalkContents(System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase(Of TLink).WalkContents(System.Collections.Generic.IList(Of TLink))
-  nameWithType: SequenceWalkerBase<TLink>.WalkContents(IList<TLink>)
-  nameWithType.vb: SequenceWalkerBase(Of TLink).WalkContents(IList(Of TLink))
+- uid: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase`1.WalkContents(`0)
+  name: WalkContents(TLink)
+  href: api/Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase-1.html#Platform_Data_Doublets_Sequences_Walkers_SequenceWalkerBase_1_WalkContents__0_
+  commentId: M:Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase`1.WalkContents(`0)
+  fullName: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase<TLink>.WalkContents(TLink)
+  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase(Of TLink).WalkContents(TLink)
+  nameWithType: SequenceWalkerBase<TLink>.WalkContents(TLink)
+  nameWithType.vb: SequenceWalkerBase(Of TLink).WalkContents(TLink)
 - uid: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase`1.WalkContents*
   name: WalkContents
   href: api/Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase-1.html#Platform_Data_Doublets_Sequences_Walkers_SequenceWalkerBase_1_WalkContents_
