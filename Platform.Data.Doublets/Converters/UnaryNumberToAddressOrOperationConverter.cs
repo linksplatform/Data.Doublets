@@ -2,6 +2,7 @@
 using Platform.Interfaces;
 using Platform.Reflection;
 using Platform.Numbers;
+using System.Runtime.CompilerServices;
 
 namespace Platform.Data.Doublets.Converters
 {
@@ -25,20 +26,27 @@ namespace Platform.Data.Doublets.Converters
         {
             var source = sourceNumber;
             var target = Links.Constants.Null;
-            while (!_equalityComparer.Equals(source, Links.Constants.Null))
+            if (!_equalityComparer.Equals(source, Links.Constants.Null))
             {
-                if (_unaryNumberPowerOf2Indicies.TryGetValue(source, out int powerOf2Index))
+                while (true)
                 {
-                    source = Links.Constants.Null;
+                    if (_unaryNumberPowerOf2Indicies.TryGetValue(source, out int powerOf2Index))
+                    {
+                        SetBit(ref target, powerOf2Index);
+                        break;
+                    }
+                    else
+                    {
+                        powerOf2Index = _unaryNumberPowerOf2Indicies[Links.GetSource(source)];
+                        SetBit(ref target, powerOf2Index);
+                        source = Links.GetTarget(source);
+                    }
                 }
-                else
-                {
-                    powerOf2Index = _unaryNumberPowerOf2Indicies[Links.GetSource(source)];
-                    source = Links.GetTarget(source);
-                }
-                target = (Integer<TLink>)((Integer<TLink>)target | 1UL << powerOf2Index); // Math.Or(target, Math.ShiftLeft(One, powerOf2Index))
             }
             return target;
         }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static void SetBit(ref TLink target, int powerOf2Index) => target = (Integer<TLink>)((Integer<TLink>)target | 1UL << powerOf2Index); // Should be Math.Or(target, Math.ShiftLeft(One, powerOf2Index))
     }
 }

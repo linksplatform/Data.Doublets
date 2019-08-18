@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Platform.Interfaces;
 using Platform.Numbers;
 
@@ -28,7 +29,8 @@ namespace Platform.Data.Doublets.Converters
             var number = Integer<TLink>.One;
             for (var i = 1; i < 64; i++)
             {
-                _unaryToUInt64.Add(unary = Links.GetOrCreate(unary, unary), number = (Integer<TLink>)((Integer<TLink>)number * 2UL));
+                number = Double(number);
+                _unaryToUInt64.Add(unary = Links.GetOrCreate(unary, unary), number);
             }
         }
 
@@ -62,5 +64,8 @@ namespace Platform.Data.Doublets.Converters
                 return result;
             }
         }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static TLink Double(TLink number) => (Integer<TLink>)((Integer<TLink>)number * 2UL);
     }
 }
