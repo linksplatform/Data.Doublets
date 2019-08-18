@@ -9,7 +9,7 @@ namespace Platform.Data.Doublets.Decorators
     {
         public LinksCombinedConstants<T, T, int> Constants { get; }
 
-        public readonly ILinks<T> Links;
+        public ILinks<T> Links { get; }
 
         protected LinksDisposableDecoratorBase(ILinks<T> links)
         {
