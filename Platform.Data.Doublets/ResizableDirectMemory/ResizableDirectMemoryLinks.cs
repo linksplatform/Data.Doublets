@@ -15,6 +15,7 @@ using static Platform.Numbers.Arithmetic;
 #pragma warning disable 0649
 #pragma warning disable 169
 #pragma warning disable 618
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
 // ReSharper disable StaticMemberInGenericType
 // ReSharper disable BuiltInTypeReferenceStyle

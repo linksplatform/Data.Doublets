@@ -9,6 +9,8 @@ using Platform.Data.Doublets.Sequences.CreteriaMatchers;
 using Platform.Data.Doublets.Sequences.Walkers;
 using Platform.Data.Doublets.Sequences.Indexes;
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
 namespace Platform.Data.Doublets.Sequences
 {
     public class SequencesOptions<TLink> // TODO: To use type parameter <TLink> the ILinks<TLink> must contain GetConstants function.

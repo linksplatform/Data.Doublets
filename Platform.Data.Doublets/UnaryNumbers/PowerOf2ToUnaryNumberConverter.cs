@@ -3,6 +3,8 @@ using Platform.Exceptions;
 using Platform.Interfaces;
 using Platform.Ranges;
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
 namespace Platform.Data.Doublets.UnaryNumbers
 {
     public class PowerOf2ToUnaryNumberConverter<TLink> : LinksOperatorBase<TLink>, IConverter<int, TLink>

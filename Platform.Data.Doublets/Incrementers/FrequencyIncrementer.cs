@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using Platform.Interfaces;
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
 namespace Platform.Data.Doublets.Incrementers
 {
     public class FrequencyIncrementer<TLink> : LinksOperatorBase<TLink>, IIncrementer<TLink>

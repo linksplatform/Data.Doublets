@@ -11,6 +11,8 @@ using Platform.Numbers;
 using Platform.Data.Sequences;
 using Platform.Data.Doublets.Unicode;
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
 namespace Platform.Data.Doublets.Sequences
 {
     public class DuplicateSegmentsProvider<TLink> : DictionaryBasedDuplicateSegmentsWalkerBase<TLink>, IProvider<IList<KeyValuePair<IList<TLink>, IList<TLink>>>>

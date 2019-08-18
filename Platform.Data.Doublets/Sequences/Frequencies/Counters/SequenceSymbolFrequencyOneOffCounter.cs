@@ -3,6 +3,8 @@ using Platform.Interfaces;
 using Platform.Numbers;
 using Platform.Data.Sequences;
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
 namespace Platform.Data.Doublets.Sequences.Frequencies.Counters
 {
     public class SequenceSymbolFrequencyOneOffCounter<TLink> : ICounter<TLink>

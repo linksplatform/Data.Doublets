@@ -8,6 +8,8 @@ using Platform.Numbers;
 using Platform.Data.Constants;
 using Platform.Data.Doublets.Sequences.Frequencies.Cache;
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
 namespace Platform.Data.Doublets.Sequences.Converters
 {
     /// <remarks>

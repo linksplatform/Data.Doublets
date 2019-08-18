@@ -3,6 +3,8 @@ using Platform.Collections.Stacks;
 using Platform.Data.Doublets.Sequences.HeightProviders;
 using Platform.Data.Sequences;
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
 namespace Platform.Data.Doublets.Sequences
 {
     public class DefaultSequenceAppender<TLink> : LinksOperatorBase<TLink>, ISequenceAppender<TLink>

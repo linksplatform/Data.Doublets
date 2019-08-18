@@ -1,6 +1,8 @@
 ﻿using Platform.Interfaces;
 using Platform.Numbers;
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
 namespace Platform.Data.Doublets.Unicode
 {
     public class CharToUnicodeSymbolConverter<TLink> : LinksOperatorBase<TLink>, IConverter<char, TLink>

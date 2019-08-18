@@ -2,6 +2,8 @@
 using System.Runtime.CompilerServices;
 using Platform.Collections.Stacks;
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
 namespace Platform.Data.Doublets.Sequences.Walkers
 {
     public abstract class SequenceWalkerBase<TLink> : LinksOperatorBase<TLink>, ISequenceWalker<TLink>

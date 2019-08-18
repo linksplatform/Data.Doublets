@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using Platform.Data.Doublets.Sequences.Frequencies.Cache;
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
 namespace Platform.Data.Doublets.Sequences.Indexes
 {
     public class CachedFrequencyIncrementingSequenceIndex<TLink> : ISequenceIndex<TLink>

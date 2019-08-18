@@ -6,6 +6,8 @@ using Platform.Data.Constants;
 using Platform.Data.Exceptions;
 using Platform.Data.Doublets.Unicode;
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
 namespace Platform.Data.Doublets
 {
     public static class UInt64LinksExtensions

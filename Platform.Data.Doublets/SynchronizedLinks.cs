@@ -4,6 +4,8 @@ using Platform.Data.Constants;
 using Platform.Data.Doublets;
 using Platform.Threading.Synchronization;
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
 namespace Platform.Data.Doublets
 {
     /// <remarks>

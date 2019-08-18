@@ -11,6 +11,8 @@ using Platform.Unsafe;
 using Platform.IO;
 using Platform.Data.Doublets.Decorators;
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
 namespace Platform.Data.Doublets
 {
     public class UInt64LinksTransactionsLayer : LinksDisposableDecoratorBase<ulong> //-V3073
@@ -47,7 +49,7 @@ namespace Platform.Data.Doublets
         ///     {
         ///         get
         ///         {
-        ///             return (ulong) mask & TransactionIdCombined;
+        ///             return (ulong) mask &amp; TransactionIdCombined;
         ///         }
         ///     }
         /// 
@@ -55,7 +57,7 @@ namespace Platform.Data.Doublets
         ///     {
         ///         get
         ///         {
-        ///             return (UniqueTimestamp)mask & TransactionIdCombined;
+        ///             return (UniqueTimestamp)mask &amp; TransactionIdCombined;
         ///         }
         ///     }
         /// 

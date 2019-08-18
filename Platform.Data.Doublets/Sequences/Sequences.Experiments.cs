@@ -11,6 +11,8 @@ using Platform.Data.Doublets.Sequences.Frequencies.Counters;
 using Platform.Data.Doublets.Sequences.Walkers;
 using Platform.Collections.Stacks;
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
 namespace Platform.Data.Doublets.Sequences
 {
     partial class Sequences
@@ -1786,7 +1788,7 @@ namespace Platform.Data.Doublets.Sequences
                 return pattern;
             }
 
-            ///* match: search for regexp anywhere in text */
+            // match: search for regexp anywhere in text 
             //int match(char* regexp, char* text)
             //{
             //    do
@@ -1795,7 +1797,7 @@ namespace Platform.Data.Doublets.Sequences
             //    return 0;
             //}
 
-            ///* matchhere: search for regexp at beginning of text */
+            // matchhere: search for regexp at beginning of text
             //int matchhere(char* regexp, char* text)
             //{
             //    if (regexp[0] == '\0')
@@ -1809,7 +1811,7 @@ namespace Platform.Data.Doublets.Sequences
             //    return 0;
             //}
 
-            ///* matchstar: search for c*regexp at beginning of text */
+            // matchstar: search for c*regexp at beginning of text
             //int matchstar(int c, char* regexp, char* text)
             //{
             //    do

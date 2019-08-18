@@ -1,5 +1,7 @@
 ﻿using Platform.Collections.Methods.Lists;
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
 namespace Platform.Data.Doublets.ResizableDirectMemory
 {
     unsafe partial class UInt64ResizableDirectMemoryLinks

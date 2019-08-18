@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using Platform.Collections.Stacks;
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
 namespace Platform.Data.Doublets.Stacks
 {
     public class Stack<TLink> : IStack<TLink>

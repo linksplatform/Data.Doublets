@@ -8,12 +8,13 @@ using Platform.Memory;
 using Platform.Data.Exceptions;
 using Platform.Data.Constants;
 
-//#define ENABLE_TREE_AUTO_DEBUG_AND_VALIDATION
-
 #pragma warning disable 0649
 #pragma warning disable 169
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
 // ReSharper disable BuiltInTypeReferenceStyle
+
+//#define ENABLE_TREE_AUTO_DEBUG_AND_VALIDATION
 
 namespace Platform.Data.Doublets.ResizableDirectMemory
 {

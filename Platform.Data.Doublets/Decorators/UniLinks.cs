@@ -6,6 +6,8 @@ using Platform.Collections.Arrays;
 using Platform.Collections.Lists;
 using Platform.Data.Universal;
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
 namespace Platform.Data.Doublets.Decorators
 {
     /// <remarks>

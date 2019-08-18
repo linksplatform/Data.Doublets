@@ -3,6 +3,8 @@ using System.Linq;
 using Platform.Data.Doublets.Sequences.Walkers;
 using Platform.Interfaces;
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
 namespace Platform.Data.Doublets.Unicode
 {
     public class UnicodeSequenceToStringConverter<TLink> : LinksOperatorBase<TLink>, IConverter<TLink, string>

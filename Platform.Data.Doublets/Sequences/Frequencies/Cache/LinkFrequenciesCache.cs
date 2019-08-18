@@ -4,6 +4,8 @@ using System.Runtime.CompilerServices;
 using Platform.Interfaces;
 using Platform.Numbers;
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
 namespace Platform.Data.Doublets.Sequences.Frequencies.Cache
 {
     /// <remarks>

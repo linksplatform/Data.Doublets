@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using Platform.Interfaces;
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
 namespace Platform.Data.Doublets.PropertyOperators
 {
     public class PropertiesOperator<TLink> : LinksOperatorBase<TLink>, IPropertiesOperator<TLink, TLink, TLink>
