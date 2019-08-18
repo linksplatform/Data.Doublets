@@ -485,6 +485,19 @@ namespace Platform.Data.Doublets
             }
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static IList<TLink> ResolveConstantAsSelfReference<TLink>(this ILinks<TLink> links, TLink constant, IList<TLink> restrictions)
+        {
+            var equalityComparer = EqualityComparer<TLink>.Default;
+            var constants = links.Constants;
+            var index = restrictions[constants.IndexPart];
+            var source = restrictions[constants.SourcePart];
+            var target = restrictions[constants.TargetPart];
+            source = equalityComparer.Equals(source, constant) ? index : source;
+            target = equalityComparer.Equals(target, constant) ? index : target;
+            return new Link<TLink>(index, source, target);
+        }
+
         /// <summary>
         /// Создаёт связь (если она не существовала), либо возвращает индекс существующей связи с указанными Source (началом) и Target (концом).
         /// </summary>

@@ -3,29 +3,31 @@ using System.Collections.Generic;
 
 namespace Platform.Data.Doublets.Decorators
 {
-    public class LinksSelfReferenceResolver<TLink> : LinksDecoratorBase<TLink>
+    public class LinksItselfConstantToSelfReferenceResolver<TLink> : LinksDecoratorBase<TLink>
     {
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
 
-        public LinksSelfReferenceResolver(ILinks<TLink> links) : base(links) { }
+        public LinksItselfConstantToSelfReferenceResolver(ILinks<TLink> links) : base(links) { }
 
         public override TLink Each(Func<IList<TLink>, TLink> handler, IList<TLink> restrictions)
         {
-            if (!_equalityComparer.Equals(Constants.Any, Constants.Itself)
-             && (((restrictions.Count > Constants.IndexPart) && _equalityComparer.Equals(restrictions[Constants.IndexPart], Constants.Itself))
-             || ((restrictions.Count > Constants.SourcePart) && _equalityComparer.Equals(restrictions[Constants.SourcePart], Constants.Itself))
-             || ((restrictions.Count > Constants.TargetPart) && _equalityComparer.Equals(restrictions[Constants.TargetPart], Constants.Itself))))
+            var constants = Constants;
+            var itselfConstant = constants.Itself;
+            var indexPartConstant = constants.IndexPart;
+            var sourcePartConstant = constants.SourcePart;
+            var targetPartConstant = constants.TargetPart;
+            var restrictionsCount = restrictions.Count;
+            if (!_equalityComparer.Equals(constants.Any, itselfConstant)
+             && (((restrictionsCount > indexPartConstant) && _equalityComparer.Equals(restrictions[indexPartConstant], itselfConstant))
+             || ((restrictionsCount > sourcePartConstant) && _equalityComparer.Equals(restrictions[sourcePartConstant], itselfConstant))
+             || ((restrictionsCount > targetPartConstant) && _equalityComparer.Equals(restrictions[targetPartConstant], itselfConstant))))
             {
-                return Constants.Continue;
+                // Itself constant is not supported for Each method right now, skipping execution
+                return constants.Continue;
             }
             return Links.Each(handler, restrictions);
         }
 
-        public override TLink Update(IList<TLink> restrictions)
-        {
-            restrictions[Constants.SourcePart] = _equalityComparer.Equals(restrictions[Constants.SourcePart], Constants.Itself) ? restrictions[Constants.IndexPart] : restrictions[Constants.SourcePart];
-            restrictions[Constants.TargetPart] = _equalityComparer.Equals(restrictions[Constants.TargetPart], Constants.Itself) ? restrictions[Constants.IndexPart] : restrictions[Constants.TargetPart];
-            return Links.Update(restrictions);
-        }
+        public override TLink Update(IList<TLink> restrictions) => Links.Update(Links.ResolveConstantAsSelfReference(Constants.Itself, restrictions));
     }
 }
