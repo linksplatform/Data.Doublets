@@ -443,24 +443,6 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator(Of TLink).LinksInnerReferenceExistenceValidator
   nameWithType: LinksInnerReferenceExistenceValidator<TLink>.LinksInnerReferenceExistenceValidator
   nameWithType.vb: LinksInnerReferenceExistenceValidator(Of TLink).LinksInnerReferenceExistenceValidator
-- uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Count(System.Collections.Generic.IList{`0})
-  name: Count(IList<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceExistenceValidator_1_Count_System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Count(System.Collections.Generic.IList{`0})
-  name.vb: Count(IList(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator<TLink>.Count(System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator(Of TLink).Count(System.Collections.Generic.IList(Of TLink))
-  nameWithType: LinksInnerReferenceExistenceValidator<TLink>.Count(IList<TLink>)
-  nameWithType.vb: LinksInnerReferenceExistenceValidator(Of TLink).Count(IList(Of TLink))
-- uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Count*
-  name: Count
-  href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceExistenceValidator_1_Count_
-  commentId: Overload:Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Count
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator<TLink>.Count
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator(Of TLink).Count
-  nameWithType: LinksInnerReferenceExistenceValidator<TLink>.Count
-  nameWithType.vb: LinksInnerReferenceExistenceValidator(Of TLink).Count
 - uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Delete(`0)
   name: Delete(TLink)
   href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceExistenceValidator_1_Delete__0_
