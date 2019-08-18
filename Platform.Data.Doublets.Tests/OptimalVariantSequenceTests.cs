@@ -47,7 +47,7 @@ namespace Platform.Data.Doublets.Tests
 
                 var sequences = new Sequences.Sequences(links, new SequencesOptions<ulong>() { Walker = new LeveledSequenceWalker<ulong>(links) });
 
-                ExecuteTest(links, sequences, sequence, sequenceToItsLocalElementLevelsConverter, index, optimalVariantConverter);
+                ExecuteTest(sequences, sequence, sequenceToItsLocalElementLevelsConverter, index, optimalVariantConverter);
             }
         }
 
@@ -76,11 +76,11 @@ namespace Platform.Data.Doublets.Tests
 
                 var sequences = new Sequences.Sequences(links, new SequencesOptions<ulong>() { Walker = new LeveledSequenceWalker<ulong>(links) });
 
-                ExecuteTest(links, sequences, sequence, sequenceToItsLocalElementLevelsConverter, index, optimalVariantConverter);
+                ExecuteTest(sequences, sequence, sequenceToItsLocalElementLevelsConverter, index, optimalVariantConverter);
             }
         }
 
-        private static void ExecuteTest(SynchronizedLinks<ulong> links, Sequences.Sequences sequences, ulong[] sequence, SequenceToItsLocalElementLevelsConverter<ulong> sequenceToItsLocalElementLevelsConverter, ISequenceIndex<ulong> index, OptimalVariantConverter<ulong> optimalVariantConverter)
+        private static void ExecuteTest(Sequences.Sequences sequences, ulong[] sequence, SequenceToItsLocalElementLevelsConverter<ulong> sequenceToItsLocalElementLevelsConverter, ISequenceIndex<ulong> index, OptimalVariantConverter<ulong> optimalVariantConverter)
         {
             index.Add(sequence);
 
