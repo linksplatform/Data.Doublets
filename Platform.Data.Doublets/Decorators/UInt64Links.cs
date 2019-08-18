@@ -5,7 +5,7 @@ using Platform.Collections;
 namespace Platform.Data.Doublets.Decorators
 {
     /// <summary>
-    /// Представляет объект для работы с базой данных (файлом) в формате Links (массива взаимосвязей).
+    /// Представляет объект для работы с базой данных (файлом) в формате Links (массива связей).
     /// </summary>
     /// <remarks>
     /// Возможные оптимизации:
@@ -17,10 +17,7 @@ namespace Platform.Data.Doublets.Decorators
     ///     + меньше объём БД
     ///     - больше сложность
     /// 
-    ///     AVL - высота дерева может позволить точно расчитать размер дерева, нет необходимости в SBT.
-    ///     AVL дерево можно прошить.
-    /// 
-    /// Текущее теоретическое ограничение на размер связей - long.MaxValue
+    /// Текущее теоретическое ограничение на индекс связи, из-за использования 5 бит в размере поддеревьев для AVL баланса и флагов нитей: 2 в степени (64 - 5 = 59) = ‭576 460 752 303 423 488‬.
     /// Желательно реализовать поддержку переключения между деревьями и битовыми индексами (битовыми строками) - вариант матрицы (выстраеваемой лениво).
     /// 
     /// Решить отключать ли проверки при компиляции под Release. Т.е. исключения будут выбрасываться только при #if DEBUG
@@ -42,15 +39,6 @@ namespace Platform.Data.Doublets.Decorators
             if (restrictions.IsNullOrEmpty())
             {
                 return Constants.Null;
-            }
-            // TODO: Remove usages of these hacks (these should not be backwards compatible)
-            if (restrictions.Count == 2)
-            {
-                return this.MergeAndDelete(restrictions[0], restrictions[1]);
-            }
-            if (restrictions.Count == 4)
-            {
-                return this.UpdateOrCreateOrGet(restrictions[0], restrictions[1], restrictions[2], restrictions[3]);
             }
             // TODO: Looks like this is a common type of exceptions linked with restrictions support
             if (restrictions.Count != 3)
@@ -80,13 +68,10 @@ namespace Platform.Data.Doublets.Decorators
             }
             else
             {
-                // Replace one link with another (replaced link is deleted, children are updated or deleted), it is actually merge operation
                 return this.MergeAndDelete(updatedLink, existedLink);
             }
         }
 
-        /// <summary>Удаляет связь с указанным индексом.</summary>
-        /// <param name="linkIndex">Индекс удаляемой связи.</param>
         public override void Delete(ulong linkIndex)
         {
             this.EnsureLinkExists(linkIndex);

@@ -398,9 +398,9 @@ namespace Platform.Data.Doublets.Sequences
                 {
                     if (sequenceLink != _constants.Null)
                     {
-                        Links.Unsync.Merge(sequenceLink, newSequenceLink);
+                        Links.Unsync.MergeUsages(sequenceLink, newSequenceLink);
                     }
-                    Links.Unsync.Merge(sequenceElements, newSequenceElements);
+                    Links.Unsync.MergeUsages(sequenceElements, newSequenceElements);
                 }
                 ClearGarbage(sequenceElementsContents.Source);
                 ClearGarbage(sequenceElementsContents.Target);
@@ -417,16 +417,16 @@ namespace Platform.Data.Doublets.Sequences
                     {
                         if (sequenceLink != _constants.Null)
                         {
-                            Links.Unsync.Merge(sequenceLink, newSequenceLink);
+                            Links.Unsync.MergeUsages(sequenceLink, newSequenceLink);
                         }
-                        Links.Unsync.Merge(sequenceElements, newSequenceElements);
+                        Links.Unsync.MergeUsages(sequenceElements, newSequenceElements);
                     }
                 }
                 else
                 {
                     if (Options.UseCascadeUpdate || CountUsages(sequence) == 0)
                     {
-                        Links.Unsync.Merge(sequence, newSequence);
+                        Links.Unsync.MergeUsages(sequence, newSequence);
                     }
                 }
             }

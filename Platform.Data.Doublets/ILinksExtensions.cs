@@ -615,8 +615,10 @@ namespace Platform.Data.Doublets
             }
         }
 
-        // Replace one link with another (replaced link is deleted, children are updated or deleted)
-        public static TLink Merge<TLink>(this ILinks<TLink> links, TLink oldLinkIndex, TLink newLinkIndex)
+        /// <summary>
+        /// Merging two usages graphs, all children of old link moved to be children of new link or deleted.
+        /// </summary>
+        public static TLink MergeUsages<TLink>(this ILinks<TLink> links, TLink oldLinkIndex, TLink newLinkIndex)
         {
             var equalityComparer = EqualityComparer<TLink>.Default;
             if (!equalityComparer.Equals(oldLinkIndex, newLinkIndex))
@@ -666,13 +668,16 @@ namespace Platform.Data.Doublets
             return newLinkIndex;
         }
 
+        /// <summary>
+        /// Replace one link with another (replaced link is deleted, children are updated or deleted).
+        /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLink MergeAndDelete<TLink>(this ILinks<TLink> links, TLink oldLinkIndex, TLink newLinkIndex)
         {
             var equalityComparer = EqualityComparer<TLink>.Default;
             if (!equalityComparer.Equals(oldLinkIndex, newLinkIndex))
             {
-                links.Merge(oldLinkIndex, newLinkIndex);
+                links.MergeUsages(oldLinkIndex, newLinkIndex);
                 links.Delete(oldLinkIndex);
             }
             return newLinkIndex;

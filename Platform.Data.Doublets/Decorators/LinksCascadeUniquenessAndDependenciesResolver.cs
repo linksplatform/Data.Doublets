@@ -6,7 +6,7 @@
 
         protected override TLink ResolveAddressChangeConflict(TLink oldLinkAddress, TLink newLinkAddress)
         {
-            Links.Merge(oldLinkAddress, newLinkAddress);
+            Links.MergeUsages(oldLinkAddress, newLinkAddress);
             return base.ResolveAddressChangeConflict(oldLinkAddress, newLinkAddress);
         }
     }
