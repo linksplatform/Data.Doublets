@@ -20,7 +20,7 @@ sed -i "s/\$TRAVIS_REPO_NAME/${TRAVIS_REPO_NAME}/g" docfx.json
 
 # DocFX installation
 nuget install docfx.console
-mono $(ls | grep "docfx.console.")/tools/docfx.exe docfx.json
+mono $(echo ./*docfx.console.*)/tools/docfx.exe docfx.json
 
 # Clone the existing gh-pages for this repo into out/
 # Create a new empty branch if gh-pages doesn't exist yet (should only happen on first deply)
