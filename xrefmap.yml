@@ -445,7 +445,16 @@ references:
 - uid: Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Links
   name: Links
   href: api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1_Links
-  commentId: F:Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Links
+  commentId: P:Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Links
+  fullName: Platform.Data.Doublets.Decorators.LinksDecoratorBase<T>.Links
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDecoratorBase(Of T).Links
+  nameWithType: LinksDecoratorBase<T>.Links
+  nameWithType.vb: LinksDecoratorBase(Of T).Links
+- uid: Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Links*
+  name: Links
+  href: api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1_Links_
+  commentId: Overload:Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Links
+  isSpec: "True"
   fullName: Platform.Data.Doublets.Decorators.LinksDecoratorBase<T>.Links
   fullName.vb: Platform.Data.Doublets.Decorators.LinksDecoratorBase(Of T).Links
   nameWithType: LinksDecoratorBase<T>.Links
@@ -619,7 +628,16 @@ references:
 - uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Links
   name: Links
   href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1_Links
-  commentId: F:Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Links
+  commentId: P:Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Links
+  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<T>.Links
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of T).Links
+  nameWithType: LinksDisposableDecoratorBase<T>.Links
+  nameWithType.vb: LinksDisposableDecoratorBase(Of T).Links
+- uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Links*
+  name: Links
+  href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1_Links_
+  commentId: Overload:Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Links
+  isSpec: "True"
   fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<T>.Links
   fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of T).Links
   nameWithType: LinksDisposableDecoratorBase<T>.Links
@@ -2267,22 +2285,6 @@ references:
   fullName.vb: Platform.Data.Doublets.ILinksExtensions.IsInnerReference(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink)
   nameWithType: ILinksExtensions.IsInnerReference<TLink>(ILinks<TLink>, TLink)
   nameWithType.vb: ILinksExtensions.IsInnerReference(Of TLink)(ILinks(Of TLink), TLink)
-- uid: Platform.Data.Doublets.ILinksExtensions.Merge*
-  name: Merge
-  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Merge_
-  commentId: Overload:Platform.Data.Doublets.ILinksExtensions.Merge
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.ILinksExtensions.Merge
-  nameWithType: ILinksExtensions.Merge
-- uid: Platform.Data.Doublets.ILinksExtensions.Merge``1(Platform.Data.Doublets.ILinks{``0},``0,``0)
-  name: Merge<TLink>(ILinks<TLink>, TLink, TLink)
-  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Merge__1_Platform_Data_Doublets_ILinks___0____0___0_
-  commentId: M:Platform.Data.Doublets.ILinksExtensions.Merge``1(Platform.Data.Doublets.ILinks{``0},``0,``0)
-  name.vb: Merge(Of TLink)(ILinks(Of TLink), TLink, TLink)
-  fullName: Platform.Data.Doublets.ILinksExtensions.Merge<TLink>(Platform.Data.Doublets.ILinks<TLink>, TLink, TLink)
-  fullName.vb: Platform.Data.Doublets.ILinksExtensions.Merge(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink, TLink)
-  nameWithType: ILinksExtensions.Merge<TLink>(ILinks<TLink>, TLink, TLink)
-  nameWithType.vb: ILinksExtensions.Merge(Of TLink)(ILinks(Of TLink), TLink, TLink)
 - uid: Platform.Data.Doublets.ILinksExtensions.MergeAndDelete*
   name: MergeAndDelete
   href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_MergeAndDelete_
@@ -2299,6 +2301,22 @@ references:
   fullName.vb: Platform.Data.Doublets.ILinksExtensions.MergeAndDelete(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink, TLink)
   nameWithType: ILinksExtensions.MergeAndDelete<TLink>(ILinks<TLink>, TLink, TLink)
   nameWithType.vb: ILinksExtensions.MergeAndDelete(Of TLink)(ILinks(Of TLink), TLink, TLink)
+- uid: Platform.Data.Doublets.ILinksExtensions.MergeUsages*
+  name: MergeUsages
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_MergeUsages_
+  commentId: Overload:Platform.Data.Doublets.ILinksExtensions.MergeUsages
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ILinksExtensions.MergeUsages
+  nameWithType: ILinksExtensions.MergeUsages
+- uid: Platform.Data.Doublets.ILinksExtensions.MergeUsages``1(Platform.Data.Doublets.ILinks{``0},``0,``0)
+  name: MergeUsages<TLink>(ILinks<TLink>, TLink, TLink)
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_MergeUsages__1_Platform_Data_Doublets_ILinks___0____0___0_
+  commentId: M:Platform.Data.Doublets.ILinksExtensions.MergeUsages``1(Platform.Data.Doublets.ILinks{``0},``0,``0)
+  name.vb: MergeUsages(Of TLink)(ILinks(Of TLink), TLink, TLink)
+  fullName: Platform.Data.Doublets.ILinksExtensions.MergeUsages<TLink>(Platform.Data.Doublets.ILinks<TLink>, TLink, TLink)
+  fullName.vb: Platform.Data.Doublets.ILinksExtensions.MergeUsages(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink, TLink)
+  nameWithType: ILinksExtensions.MergeUsages<TLink>(ILinks<TLink>, TLink, TLink)
+  nameWithType.vb: ILinksExtensions.MergeUsages(Of TLink)(ILinks(Of TLink), TLink, TLink)
 - uid: Platform.Data.Doublets.ILinksExtensions.ResetValues*
   name: ResetValues
   href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_ResetValues_
@@ -7142,6 +7160,44 @@ references:
   commentId: N:Platform.Data.Doublets.Tests
   fullName: Platform.Data.Doublets.Tests
   nameWithType: Platform.Data.Doublets.Tests
+- uid: Platform.Data.Doublets.Tests.ComparisonTests
+  name: ComparisonTests
+  href: api/Platform.Data.Doublets.Tests.ComparisonTests.html
+  commentId: T:Platform.Data.Doublets.Tests.ComparisonTests
+  fullName: Platform.Data.Doublets.Tests.ComparisonTests
+  nameWithType: ComparisonTests
+- uid: Platform.Data.Doublets.Tests.ComparisonTests.GreaterOrEqualPerfomanceTest
+  name: GreaterOrEqualPerfomanceTest()
+  href: api/Platform.Data.Doublets.Tests.ComparisonTests.html#Platform_Data_Doublets_Tests_ComparisonTests_GreaterOrEqualPerfomanceTest
+  commentId: M:Platform.Data.Doublets.Tests.ComparisonTests.GreaterOrEqualPerfomanceTest
+  fullName: Platform.Data.Doublets.Tests.ComparisonTests.GreaterOrEqualPerfomanceTest()
+  nameWithType: ComparisonTests.GreaterOrEqualPerfomanceTest()
+- uid: Platform.Data.Doublets.Tests.ComparisonTests.GreaterOrEqualPerfomanceTest*
+  name: GreaterOrEqualPerfomanceTest
+  href: api/Platform.Data.Doublets.Tests.ComparisonTests.html#Platform_Data_Doublets_Tests_ComparisonTests_GreaterOrEqualPerfomanceTest_
+  commentId: Overload:Platform.Data.Doublets.Tests.ComparisonTests.GreaterOrEqualPerfomanceTest
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Tests.ComparisonTests.GreaterOrEqualPerfomanceTest
+  nameWithType: ComparisonTests.GreaterOrEqualPerfomanceTest
+- uid: Platform.Data.Doublets.Tests.ComparisonTests.UInt64Comparer
+  name: ComparisonTests.UInt64Comparer
+  href: api/Platform.Data.Doublets.Tests.ComparisonTests.UInt64Comparer.html
+  commentId: T:Platform.Data.Doublets.Tests.ComparisonTests.UInt64Comparer
+  fullName: Platform.Data.Doublets.Tests.ComparisonTests.UInt64Comparer
+  nameWithType: ComparisonTests.UInt64Comparer
+- uid: Platform.Data.Doublets.Tests.ComparisonTests.UInt64Comparer.Compare(System.UInt64,System.UInt64)
+  name: Compare(UInt64, UInt64)
+  href: api/Platform.Data.Doublets.Tests.ComparisonTests.UInt64Comparer.html#Platform_Data_Doublets_Tests_ComparisonTests_UInt64Comparer_Compare_System_UInt64_System_UInt64_
+  commentId: M:Platform.Data.Doublets.Tests.ComparisonTests.UInt64Comparer.Compare(System.UInt64,System.UInt64)
+  fullName: Platform.Data.Doublets.Tests.ComparisonTests.UInt64Comparer.Compare(System.UInt64, System.UInt64)
+  nameWithType: ComparisonTests.UInt64Comparer.Compare(UInt64, UInt64)
+- uid: Platform.Data.Doublets.Tests.ComparisonTests.UInt64Comparer.Compare*
+  name: Compare
+  href: api/Platform.Data.Doublets.Tests.ComparisonTests.UInt64Comparer.html#Platform_Data_Doublets_Tests_ComparisonTests_UInt64Comparer_Compare_
+  commentId: Overload:Platform.Data.Doublets.Tests.ComparisonTests.UInt64Comparer.Compare
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Tests.ComparisonTests.UInt64Comparer.Compare
+  nameWithType: ComparisonTests.UInt64Comparer.Compare
 - uid: Platform.Data.Doublets.Tests.DoubletLinksTests
   name: DoubletLinksTests
   href: api/Platform.Data.Doublets.Tests.DoubletLinksTests.html
@@ -7252,6 +7308,57 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Tests.DoubletLinksTests.UInt8RawNumbersCRUDTest
   nameWithType: DoubletLinksTests.UInt8RawNumbersCRUDTest
+- uid: Platform.Data.Doublets.Tests.EqualityTests
+  name: EqualityTests
+  href: api/Platform.Data.Doublets.Tests.EqualityTests.html
+  commentId: T:Platform.Data.Doublets.Tests.EqualityTests
+  fullName: Platform.Data.Doublets.Tests.EqualityTests
+  nameWithType: EqualityTests
+- uid: Platform.Data.Doublets.Tests.EqualityTests.EqualsPerfomanceTest
+  name: EqualsPerfomanceTest()
+  href: api/Platform.Data.Doublets.Tests.EqualityTests.html#Platform_Data_Doublets_Tests_EqualityTests_EqualsPerfomanceTest
+  commentId: M:Platform.Data.Doublets.Tests.EqualityTests.EqualsPerfomanceTest
+  fullName: Platform.Data.Doublets.Tests.EqualityTests.EqualsPerfomanceTest()
+  nameWithType: EqualityTests.EqualsPerfomanceTest()
+- uid: Platform.Data.Doublets.Tests.EqualityTests.EqualsPerfomanceTest*
+  name: EqualsPerfomanceTest
+  href: api/Platform.Data.Doublets.Tests.EqualityTests.html#Platform_Data_Doublets_Tests_EqualityTests_EqualsPerfomanceTest_
+  commentId: Overload:Platform.Data.Doublets.Tests.EqualityTests.EqualsPerfomanceTest
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Tests.EqualityTests.EqualsPerfomanceTest
+  nameWithType: EqualityTests.EqualsPerfomanceTest
+- uid: Platform.Data.Doublets.Tests.EqualityTests.UInt64EqualityComparer
+  name: EqualityTests.UInt64EqualityComparer
+  href: api/Platform.Data.Doublets.Tests.EqualityTests.UInt64EqualityComparer.html
+  commentId: T:Platform.Data.Doublets.Tests.EqualityTests.UInt64EqualityComparer
+  fullName: Platform.Data.Doublets.Tests.EqualityTests.UInt64EqualityComparer
+  nameWithType: EqualityTests.UInt64EqualityComparer
+- uid: Platform.Data.Doublets.Tests.EqualityTests.UInt64EqualityComparer.Equals(System.UInt64,System.UInt64)
+  name: Equals(UInt64, UInt64)
+  href: api/Platform.Data.Doublets.Tests.EqualityTests.UInt64EqualityComparer.html#Platform_Data_Doublets_Tests_EqualityTests_UInt64EqualityComparer_Equals_System_UInt64_System_UInt64_
+  commentId: M:Platform.Data.Doublets.Tests.EqualityTests.UInt64EqualityComparer.Equals(System.UInt64,System.UInt64)
+  fullName: Platform.Data.Doublets.Tests.EqualityTests.UInt64EqualityComparer.Equals(System.UInt64, System.UInt64)
+  nameWithType: EqualityTests.UInt64EqualityComparer.Equals(UInt64, UInt64)
+- uid: Platform.Data.Doublets.Tests.EqualityTests.UInt64EqualityComparer.Equals*
+  name: Equals
+  href: api/Platform.Data.Doublets.Tests.EqualityTests.UInt64EqualityComparer.html#Platform_Data_Doublets_Tests_EqualityTests_UInt64EqualityComparer_Equals_
+  commentId: Overload:Platform.Data.Doublets.Tests.EqualityTests.UInt64EqualityComparer.Equals
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Tests.EqualityTests.UInt64EqualityComparer.Equals
+  nameWithType: EqualityTests.UInt64EqualityComparer.Equals
+- uid: Platform.Data.Doublets.Tests.EqualityTests.UInt64EqualityComparer.GetHashCode(System.UInt64)
+  name: GetHashCode(UInt64)
+  href: api/Platform.Data.Doublets.Tests.EqualityTests.UInt64EqualityComparer.html#Platform_Data_Doublets_Tests_EqualityTests_UInt64EqualityComparer_GetHashCode_System_UInt64_
+  commentId: M:Platform.Data.Doublets.Tests.EqualityTests.UInt64EqualityComparer.GetHashCode(System.UInt64)
+  fullName: Platform.Data.Doublets.Tests.EqualityTests.UInt64EqualityComparer.GetHashCode(System.UInt64)
+  nameWithType: EqualityTests.UInt64EqualityComparer.GetHashCode(UInt64)
+- uid: Platform.Data.Doublets.Tests.EqualityTests.UInt64EqualityComparer.GetHashCode*
+  name: GetHashCode
+  href: api/Platform.Data.Doublets.Tests.EqualityTests.UInt64EqualityComparer.html#Platform_Data_Doublets_Tests_EqualityTests_UInt64EqualityComparer_GetHashCode_
+  commentId: Overload:Platform.Data.Doublets.Tests.EqualityTests.UInt64EqualityComparer.GetHashCode
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Tests.EqualityTests.UInt64EqualityComparer.GetHashCode
+  nameWithType: EqualityTests.UInt64EqualityComparer.GetHashCode
 - uid: Platform.Data.Doublets.Tests.LinksTests
   name: LinksTests
   href: api/Platform.Data.Doublets.Tests.LinksTests.html
@@ -7931,6 +8038,25 @@ references:
   commentId: F:Platform.Data.Doublets.Tests.TempLinksTestScope.TempTransactionLogFilename
   fullName: Platform.Data.Doublets.Tests.TempLinksTestScope.TempTransactionLogFilename
   nameWithType: TempLinksTestScope.TempTransactionLogFilename
+- uid: Platform.Data.Doublets.Tests.UnaryNumberConvertersTests
+  name: UnaryNumberConvertersTests
+  href: api/Platform.Data.Doublets.Tests.UnaryNumberConvertersTests.html
+  commentId: T:Platform.Data.Doublets.Tests.UnaryNumberConvertersTests
+  fullName: Platform.Data.Doublets.Tests.UnaryNumberConvertersTests
+  nameWithType: UnaryNumberConvertersTests
+- uid: Platform.Data.Doublets.Tests.UnaryNumberConvertersTests.ConvertersTest
+  name: ConvertersTest()
+  href: api/Platform.Data.Doublets.Tests.UnaryNumberConvertersTests.html#Platform_Data_Doublets_Tests_UnaryNumberConvertersTests_ConvertersTest
+  commentId: M:Platform.Data.Doublets.Tests.UnaryNumberConvertersTests.ConvertersTest
+  fullName: Platform.Data.Doublets.Tests.UnaryNumberConvertersTests.ConvertersTest()
+  nameWithType: UnaryNumberConvertersTests.ConvertersTest()
+- uid: Platform.Data.Doublets.Tests.UnaryNumberConvertersTests.ConvertersTest*
+  name: ConvertersTest
+  href: api/Platform.Data.Doublets.Tests.UnaryNumberConvertersTests.html#Platform_Data_Doublets_Tests_UnaryNumberConvertersTests_ConvertersTest_
+  commentId: Overload:Platform.Data.Doublets.Tests.UnaryNumberConvertersTests.ConvertersTest
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Tests.UnaryNumberConvertersTests.ConvertersTest
+  nameWithType: UnaryNumberConvertersTests.ConvertersTest
 - uid: Platform.Data.Doublets.UInt64Link
   name: UInt64Link
   href: api/Platform.Data.Doublets.UInt64Link.html
@@ -8717,98 +8843,3 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Update
   nameWithType: UInt64LinksTransactionsLayer.Update
-- uid: Platform.Tests
-  name: Platform.Tests
-  href: api/Platform.Tests.html
-  commentId: N:Platform.Tests
-  fullName: Platform.Tests
-  nameWithType: Platform.Tests
-- uid: Platform.Tests.ComparisonTests
-  name: ComparisonTests
-  href: api/Platform.Tests.ComparisonTests.html
-  commentId: T:Platform.Tests.ComparisonTests
-  fullName: Platform.Tests.ComparisonTests
-  nameWithType: ComparisonTests
-- uid: Platform.Tests.ComparisonTests.GreaterOrEqualPerfomanceTest
-  name: GreaterOrEqualPerfomanceTest()
-  href: api/Platform.Tests.ComparisonTests.html#Platform_Tests_ComparisonTests_GreaterOrEqualPerfomanceTest
-  commentId: M:Platform.Tests.ComparisonTests.GreaterOrEqualPerfomanceTest
-  fullName: Platform.Tests.ComparisonTests.GreaterOrEqualPerfomanceTest()
-  nameWithType: ComparisonTests.GreaterOrEqualPerfomanceTest()
-- uid: Platform.Tests.ComparisonTests.GreaterOrEqualPerfomanceTest*
-  name: GreaterOrEqualPerfomanceTest
-  href: api/Platform.Tests.ComparisonTests.html#Platform_Tests_ComparisonTests_GreaterOrEqualPerfomanceTest_
-  commentId: Overload:Platform.Tests.ComparisonTests.GreaterOrEqualPerfomanceTest
-  isSpec: "True"
-  fullName: Platform.Tests.ComparisonTests.GreaterOrEqualPerfomanceTest
-  nameWithType: ComparisonTests.GreaterOrEqualPerfomanceTest
-- uid: Platform.Tests.ComparisonTests.UInt64Comparer
-  name: ComparisonTests.UInt64Comparer
-  href: api/Platform.Tests.ComparisonTests.UInt64Comparer.html
-  commentId: T:Platform.Tests.ComparisonTests.UInt64Comparer
-  fullName: Platform.Tests.ComparisonTests.UInt64Comparer
-  nameWithType: ComparisonTests.UInt64Comparer
-- uid: Platform.Tests.ComparisonTests.UInt64Comparer.Compare(System.UInt64,System.UInt64)
-  name: Compare(UInt64, UInt64)
-  href: api/Platform.Tests.ComparisonTests.UInt64Comparer.html#Platform_Tests_ComparisonTests_UInt64Comparer_Compare_System_UInt64_System_UInt64_
-  commentId: M:Platform.Tests.ComparisonTests.UInt64Comparer.Compare(System.UInt64,System.UInt64)
-  fullName: Platform.Tests.ComparisonTests.UInt64Comparer.Compare(System.UInt64, System.UInt64)
-  nameWithType: ComparisonTests.UInt64Comparer.Compare(UInt64, UInt64)
-- uid: Platform.Tests.ComparisonTests.UInt64Comparer.Compare*
-  name: Compare
-  href: api/Platform.Tests.ComparisonTests.UInt64Comparer.html#Platform_Tests_ComparisonTests_UInt64Comparer_Compare_
-  commentId: Overload:Platform.Tests.ComparisonTests.UInt64Comparer.Compare
-  isSpec: "True"
-  fullName: Platform.Tests.ComparisonTests.UInt64Comparer.Compare
-  nameWithType: ComparisonTests.UInt64Comparer.Compare
-- uid: Platform.Tests.EqualityTests
-  name: EqualityTests
-  href: api/Platform.Tests.EqualityTests.html
-  commentId: T:Platform.Tests.EqualityTests
-  fullName: Platform.Tests.EqualityTests
-  nameWithType: EqualityTests
-- uid: Platform.Tests.EqualityTests.EqualsPerfomanceTest
-  name: EqualsPerfomanceTest()
-  href: api/Platform.Tests.EqualityTests.html#Platform_Tests_EqualityTests_EqualsPerfomanceTest
-  commentId: M:Platform.Tests.EqualityTests.EqualsPerfomanceTest
-  fullName: Platform.Tests.EqualityTests.EqualsPerfomanceTest()
-  nameWithType: EqualityTests.EqualsPerfomanceTest()
-- uid: Platform.Tests.EqualityTests.EqualsPerfomanceTest*
-  name: EqualsPerfomanceTest
-  href: api/Platform.Tests.EqualityTests.html#Platform_Tests_EqualityTests_EqualsPerfomanceTest_
-  commentId: Overload:Platform.Tests.EqualityTests.EqualsPerfomanceTest
-  isSpec: "True"
-  fullName: Platform.Tests.EqualityTests.EqualsPerfomanceTest
-  nameWithType: EqualityTests.EqualsPerfomanceTest
-- uid: Platform.Tests.EqualityTests.UInt64EqualityComparer
-  name: EqualityTests.UInt64EqualityComparer
-  href: api/Platform.Tests.EqualityTests.UInt64EqualityComparer.html
-  commentId: T:Platform.Tests.EqualityTests.UInt64EqualityComparer
-  fullName: Platform.Tests.EqualityTests.UInt64EqualityComparer
-  nameWithType: EqualityTests.UInt64EqualityComparer
-- uid: Platform.Tests.EqualityTests.UInt64EqualityComparer.Equals(System.UInt64,System.UInt64)
-  name: Equals(UInt64, UInt64)
-  href: api/Platform.Tests.EqualityTests.UInt64EqualityComparer.html#Platform_Tests_EqualityTests_UInt64EqualityComparer_Equals_System_UInt64_System_UInt64_
-  commentId: M:Platform.Tests.EqualityTests.UInt64EqualityComparer.Equals(System.UInt64,System.UInt64)
-  fullName: Platform.Tests.EqualityTests.UInt64EqualityComparer.Equals(System.UInt64, System.UInt64)
-  nameWithType: EqualityTests.UInt64EqualityComparer.Equals(UInt64, UInt64)
-- uid: Platform.Tests.EqualityTests.UInt64EqualityComparer.Equals*
-  name: Equals
-  href: api/Platform.Tests.EqualityTests.UInt64EqualityComparer.html#Platform_Tests_EqualityTests_UInt64EqualityComparer_Equals_
-  commentId: Overload:Platform.Tests.EqualityTests.UInt64EqualityComparer.Equals
-  isSpec: "True"
-  fullName: Platform.Tests.EqualityTests.UInt64EqualityComparer.Equals
-  nameWithType: EqualityTests.UInt64EqualityComparer.Equals
-- uid: Platform.Tests.EqualityTests.UInt64EqualityComparer.GetHashCode(System.UInt64)
-  name: GetHashCode(UInt64)
-  href: api/Platform.Tests.EqualityTests.UInt64EqualityComparer.html#Platform_Tests_EqualityTests_UInt64EqualityComparer_GetHashCode_System_UInt64_
-  commentId: M:Platform.Tests.EqualityTests.UInt64EqualityComparer.GetHashCode(System.UInt64)
-  fullName: Platform.Tests.EqualityTests.UInt64EqualityComparer.GetHashCode(System.UInt64)
-  nameWithType: EqualityTests.UInt64EqualityComparer.GetHashCode(UInt64)
-- uid: Platform.Tests.EqualityTests.UInt64EqualityComparer.GetHashCode*
-  name: GetHashCode
-  href: api/Platform.Tests.EqualityTests.UInt64EqualityComparer.html#Platform_Tests_EqualityTests_UInt64EqualityComparer_GetHashCode_
-  commentId: Overload:Platform.Tests.EqualityTests.UInt64EqualityComparer.GetHashCode
-  isSpec: "True"
-  fullName: Platform.Tests.EqualityTests.UInt64EqualityComparer.GetHashCode
-  nameWithType: EqualityTests.UInt64EqualityComparer.GetHashCode

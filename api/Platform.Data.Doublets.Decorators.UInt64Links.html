@@ -83,7 +83,7 @@
   
   <h1 id="Platform_Data_Doublets_Decorators_UInt64Links" data-uid="Platform.Data.Doublets.Decorators.UInt64Links" class="text-break">Class UInt64Links
   </h1>
-  <div class="markdown level0 summary"><p>Представляет объект для работы с базой данных (файлом) в формате Links (массива взаимосвязей).</p>
+  <div class="markdown level0 summary"><p>Представляет объект для работы с базой данных (файлом) в формате Links (массива связей).</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -177,9 +177,7 @@
 <ul>
 <li>больше сложность</li>
 </ul>
-<p>AVL - высота дерева может позволить точно расчитать размер дерева, нет необходимости в SBT.
-AVL дерево можно прошить.</p>
-<p>Текущее теоретическое ограничение на размер связей - long.MaxValue
+<p>Текущее теоретическое ограничение на индекс связи, из-за использования 5 бит в размере поддеревьев для AVL баланса и флагов нитей: 2 в степени(64 минус 5 равно 59 ) равно 576 460 752 303 423 488
 Желательно реализовать поддержку переключения между деревьями и битовыми индексами (битовыми строками) - вариант матрицы (выстраеваемой лениво).</p>
 <p>Решить отключать ли проверки при компиляции под Release. Т.е. исключения будут выбрасываться только при #if DEBUG</p>
 </div>
@@ -190,7 +188,7 @@ AVL дерево можно прошить.</p>
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Decorators_UInt64Links__ctor_Platform_Data_Doublets_ILinks_System_UInt64__.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Decorators.UInt64Links.%23ctor(Platform.Data.Doublets.ILinks%7BSystem.UInt64%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/0a7f21a41388d29d6b53b14242870659d0c17b7b/Platform.Data.Doublets/Decorators/UInt64Links.cs/#L30">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/fac96a4faa5a0c2ba878bfc281ddd3ecabdbbbf7/Platform.Data.Doublets/Decorators/UInt64Links.cs/#L27">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Decorators_UInt64Links__ctor_" data-uid="Platform.Data.Doublets.Decorators.UInt64Links.#ctor*"></a>
   <h4 id="Platform_Data_Doublets_Decorators_UInt64Links__ctor_Platform_Data_Doublets_ILinks_System_UInt64__" data-uid="Platform.Data.Doublets.Decorators.UInt64Links.#ctor(Platform.Data.Doublets.ILinks{System.UInt64})">UInt64Links(ILinks&lt;UInt64&gt;)</h4>
@@ -224,7 +222,7 @@ AVL дерево можно прошить.</p>
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Decorators_UInt64Links_Create.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Decorators.UInt64Links.Create%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/0a7f21a41388d29d6b53b14242870659d0c17b7b/Platform.Data.Doublets/Decorators/UInt64Links.cs/#L38">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/fac96a4faa5a0c2ba878bfc281ddd3ecabdbbbf7/Platform.Data.Doublets/Decorators/UInt64Links.cs/#L35">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Decorators_UInt64Links_Create_" data-uid="Platform.Data.Doublets.Decorators.UInt64Links.Create*"></a>
   <h4 id="Platform_Data_Doublets_Decorators_UInt64Links_Create" data-uid="Platform.Data.Doublets.Decorators.UInt64Links.Create">Create()</h4>
@@ -256,12 +254,11 @@ AVL дерево можно прошить.</p>
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Decorators_UInt64Links_Delete_System_UInt64_.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Decorators.UInt64Links.Delete(System.UInt64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/0a7f21a41388d29d6b53b14242870659d0c17b7b/Platform.Data.Doublets/Decorators/UInt64Links.cs/#L90">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/fac96a4faa5a0c2ba878bfc281ddd3ecabdbbbf7/Platform.Data.Doublets/Decorators/UInt64Links.cs/#L75">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Decorators_UInt64Links_Delete_" data-uid="Platform.Data.Doublets.Decorators.UInt64Links.Delete*"></a>
   <h4 id="Platform_Data_Doublets_Decorators_UInt64Links_Delete_System_UInt64_" data-uid="Platform.Data.Doublets.Decorators.UInt64Links.Delete(System.UInt64)">Delete(UInt64)</h4>
-  <div class="markdown level1 summary"><p>Удаляет связь с указанным индексом.</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -280,8 +277,7 @@ AVL дерево можно прошить.</p>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a></td>
         <td><span class="parametername">linkIndex</span></td>
-        <td><p>Индекс удаляемой связи.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -292,7 +288,7 @@ AVL дерево можно прошить.</p>
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Decorators_UInt64Links_Each_System_Func_System_Collections_Generic_IList_System_UInt64__System_UInt64__System_Collections_Generic_IList_System_UInt64__.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Decorators.UInt64Links.Each(System.Func%7BSystem.Collections.Generic.IList%7BSystem.UInt64%7D%2CSystem.UInt64%7D%2CSystem.Collections.Generic.IList%7BSystem.UInt64%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/0a7f21a41388d29d6b53b14242870659d0c17b7b/Platform.Data.Doublets/Decorators/UInt64Links.cs/#L32">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/fac96a4faa5a0c2ba878bfc281ddd3ecabdbbbf7/Platform.Data.Doublets/Decorators/UInt64Links.cs/#L29">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Decorators_UInt64Links_Each_" data-uid="Platform.Data.Doublets.Decorators.UInt64Links.Each*"></a>
   <h4 id="Platform_Data_Doublets_Decorators_UInt64Links_Each_System_Func_System_Collections_Generic_IList_System_UInt64__System_UInt64__System_Collections_Generic_IList_System_UInt64__" data-uid="Platform.Data.Doublets.Decorators.UInt64Links.Each(System.Func{System.Collections.Generic.IList{System.UInt64},System.UInt64},System.Collections.Generic.IList{System.UInt64})">Each(Func&lt;IList&lt;UInt64&gt;, UInt64&gt;, IList&lt;UInt64&gt;)</h4>
@@ -346,7 +342,7 @@ AVL дерево можно прошить.</p>
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Decorators_UInt64Links_Update_System_Collections_Generic_IList_System_UInt64__.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Decorators.UInt64Links.Update(System.Collections.Generic.IList%7BSystem.UInt64%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/0a7f21a41388d29d6b53b14242870659d0c17b7b/Platform.Data.Doublets/Decorators/UInt64Links.cs/#L40">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/fac96a4faa5a0c2ba878bfc281ddd3ecabdbbbf7/Platform.Data.Doublets/Decorators/UInt64Links.cs/#L37">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Decorators_UInt64Links_Update_" data-uid="Platform.Data.Doublets.Decorators.UInt64Links.Update*"></a>
   <h4 id="Platform_Data_Doublets_Decorators_UInt64Links_Update_System_Collections_Generic_IList_System_UInt64__" data-uid="Platform.Data.Doublets.Decorators.UInt64Links.Update(System.Collections.Generic.IList{System.UInt64})">Update(IList&lt;UInt64&gt;)</h4>
@@ -543,7 +539,7 @@ AVL дерево можно прошить.</p>
       <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_EnforceResetValues__1_Platform_Data_Doublets_ILinks___0____0_">ILinksExtensions.EnforceResetValues&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink)</a>
   </div>
   <div>
-      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Merge__1_Platform_Data_Doublets_ILinks___0____0___0_">ILinksExtensions.Merge&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink, TLink)</a>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_MergeUsages__1_Platform_Data_Doublets_ILinks___0____0___0_">ILinksExtensions.MergeUsages&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink, TLink)</a>
   </div>
   <div>
       <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_MergeAndDelete__1_Platform_Data_Doublets_ILinks___0____0___0_">ILinksExtensions.MergeAndDelete&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink, TLink)</a>
@@ -586,7 +582,7 @@ AVL дерево можно прошить.</p>
                     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Decorators_UInt64Links.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Decorators.UInt64Links%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/linksplatform/Data.Doublets/blob/0a7f21a41388d29d6b53b14242870659d0c17b7b/Platform.Data.Doublets/Decorators/UInt64Links.cs/#L28" class="contribution-link">View Source</a>
+                    <a href="https://github.com/linksplatform/Data.Doublets/blob/fac96a4faa5a0c2ba878bfc281ddd3ecabdbbbf7/Platform.Data.Doublets/Decorators/UInt64Links.cs/#L25" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
