@@ -4,26 +4,14 @@ using Platform.Data.Constants;
 
 namespace Platform.Data.Doublets.Decorators
 {
-    public abstract class LinksDecoratorBase<T> : ILinks<T>
+    public abstract class LinksDecoratorBase<TLink> : LinksOperatorBase<TLink>, ILinks<TLink>
     {
-        public LinksCombinedConstants<T, T, int> Constants { get; }
-
-        public ILinks<T> Links { get; }
-
-        protected LinksDecoratorBase(ILinks<T> links)
-        {
-            Links = links;
-            Constants = links.Constants;
-        }
-
-        public virtual T Count(IList<T> restriction) => Links.Count(restriction);
-
-        public virtual T Each(Func<IList<T>, T> handler, IList<T> restrictions) => Links.Each(handler, restrictions);
-
-        public virtual T Create() => Links.Create();
-
-        public virtual T Update(IList<T> restrictions) => Links.Update(restrictions);
-
-        public virtual void Delete(T link) => Links.Delete(link);
+        public LinksCombinedConstants<TLink, TLink, int> Constants { get; }
+        protected LinksDecoratorBase(ILinks<TLink> links) : base(links) => Constants = links.Constants;
+        public virtual TLink Count(IList<TLink> restriction) => Links.Count(restriction);
+        public virtual TLink Each(Func<IList<TLink>, TLink> handler, IList<TLink> restrictions) => Links.Each(handler, restrictions);
+        public virtual TLink Create() => Links.Create();
+        public virtual TLink Update(IList<TLink> restrictions) => Links.Update(restrictions);
+        public virtual void Delete(TLink link) => Links.Delete(link);
     }
 }
