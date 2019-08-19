@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Platform.Collections.Stacks;
 
@@ -8,7 +9,9 @@ namespace Platform.Data.Doublets.Sequences.Walkers
 {
     public class LeftSequenceWalker<TLink> : SequenceWalkerBase<TLink>
     {
-        public LeftSequenceWalker(ILinks<TLink> links, IStack<TLink> stack) : base(links, stack) { }
+        public LeftSequenceWalker(ILinks<TLink> links, IStack<TLink> stack, Func<TLink, bool> isElement) : base(links, stack, isElement) { }
+
+        public LeftSequenceWalker(ILinks<TLink> links, IStack<TLink> stack) : base(links, stack, links.IsPartialPoint) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override TLink GetNextElementAfterPop(TLink element) => Links.GetSource(element);

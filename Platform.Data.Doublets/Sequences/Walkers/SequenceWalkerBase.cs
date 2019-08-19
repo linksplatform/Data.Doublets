@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Platform.Collections.Stacks;
 
@@ -9,8 +10,17 @@ namespace Platform.Data.Doublets.Sequences.Walkers
     public abstract class SequenceWalkerBase<TLink> : LinksOperatorBase<TLink>, ISequenceWalker<TLink>
     {
         private readonly IStack<TLink> _stack;
+        private readonly Func<TLink, bool> _isElement;
 
-        protected SequenceWalkerBase(ILinks<TLink> links, IStack<TLink> stack) : base(links) => _stack = stack;
+        protected SequenceWalkerBase(ILinks<TLink> links, IStack<TLink> stack, Func<TLink, bool> isElement) : base(links)
+        {
+            _stack = stack;
+            _isElement = isElement;
+        }
+
+        protected SequenceWalkerBase(ILinks<TLink> links, IStack<TLink> stack) : this(links, stack, links.IsPartialPoint)
+        {
+        }
 
         public IEnumerable<TLink> Walk(TLink sequence)
         {
@@ -47,7 +57,7 @@ namespace Platform.Data.Doublets.Sequences.Walkers
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual bool IsElement(TLink elementLink) => Links.IsPartialPoint(elementLink);
+        protected virtual bool IsElement(TLink elementLink) => _isElement(elementLink);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected abstract TLink GetNextElementAfterPop(TLink element);
