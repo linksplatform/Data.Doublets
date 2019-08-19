@@ -9,6 +9,7 @@ using Platform.Numbers;
 using Platform.Random;
 using Platform.Setters;
 using Platform.Data.Exceptions;
+using Platform.Data.Doublets.Decorators;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -708,6 +709,14 @@ namespace Platform.Data.Doublets
                 links.Delete(oldLinkIndex);
             }
             return newLinkIndex;
+        }
+
+        public static ILinks<TLink> DecorateWithAutomaticUniquenessAndUsagesResolution<TLink>(this ILinks<TLink> links)
+        {
+            links = new LinksCascadeUsagesResolver<TLink>(links);
+            links = new NonNullContentsLinkDeletionResolver<TLink>(links);
+            links = new LinksCascadeUniquenessAndUsagesResolver<TLink>(links);
+            return links;
         }
     }
 }

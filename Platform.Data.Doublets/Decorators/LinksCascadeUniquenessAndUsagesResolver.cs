@@ -8,7 +8,8 @@ namespace Platform.Data.Doublets.Decorators
 
         protected override TLink ResolveAddressChangeConflict(TLink oldLinkAddress, TLink newLinkAddress)
         {
-            Links.MergeUsages(oldLinkAddress, newLinkAddress);
+            // Use Facade (the last decorator) to ensure recursion working correctly
+            Facade.MergeUsages(oldLinkAddress, newLinkAddress);
             return base.ResolveAddressChangeConflict(oldLinkAddress, newLinkAddress);
         }
     }

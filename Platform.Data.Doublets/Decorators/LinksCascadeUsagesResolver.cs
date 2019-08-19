@@ -12,7 +12,8 @@ namespace Platform.Data.Doublets.Decorators
 
         public override void Delete(TLink linkIndex)
         {
-            this.DeleteAllUsages(linkIndex);
+            // Use Facade (the last decorator) to ensure recursion working correctly
+            Facade.DeleteAllUsages(linkIndex);
             Links.Delete(linkIndex);
         }
     }
