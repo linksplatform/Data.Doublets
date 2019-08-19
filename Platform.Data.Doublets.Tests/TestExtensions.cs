@@ -146,10 +146,10 @@ namespace Platform.Data.Doublets.Tests
             Assert.True(equalityComparer.Equals(setter3.Result, linkAddress2));
         }
 
-        public static void TestMultipleCreateAndDelete<TLink>(this ILinks<TLink> links, int maximumOperations)
+        public static void TestMultipleRandomCreationsAndDeletions<TLink>(this ILinks<TLink> links, int maximumOperationsPerCycle)
         {
             var comparer = Comparer<TLink>.Default;
-            for (var N = 1; N < maximumOperations; N++)
+            for (var N = 1; N < maximumOperationsPerCycle; N++)
             {
                 var random = new System.Random(N);
                 var created = 0;
@@ -161,9 +161,9 @@ namespace Platform.Data.Doublets.Tests
                     if (linksCount > 2 && createPoint)
                     {
                         var linksAddressRange = new Range<ulong>(1, (ulong)linksCount);
-                        var source = random.NextUInt64(linksAddressRange);
-                        var target = random.NextUInt64(linksAddressRange); //-V3086
-                        var resultLink = links.CreateAndUpdate((Integer<TLink>)source, (Integer<TLink>)target);
+                        TLink source = (Integer<TLink>)random.NextUInt64(linksAddressRange);
+                        TLink target = (Integer<TLink>)random.NextUInt64(linksAddressRange); //-V3086
+                        var resultLink = links.CreateAndUpdate(source, target);
                         if (comparer.Compare(resultLink, (Integer<TLink>)linksCount) > 0)
                         {
                             created++;
@@ -178,10 +178,10 @@ namespace Platform.Data.Doublets.Tests
                 Assert.True(created == (Integer<TLink>)links.Count());
                 for (var i = 0; i < N; i++)
                 {
-                    var link = (ulong)i + 1;
-                    if (links.Exists((Integer<TLink>)link))
+                    TLink link = (Integer<TLink>)(i + 1);
+                    if (links.Exists(link))
                     {
-                        links.Delete((Integer<TLink>)link);
+                        links.Delete(link);
                         deleted++;
                     }
                 }

@@ -20,7 +20,7 @@ using Platform.Data.Doublets.Decorators;
 
 namespace Platform.Data.Doublets.Tests
 {
-    public static class LinksTests
+    public static class UInt64LinksTests
     {
         private static readonly LinksCombinedConstants<bool, ulong, int> _constants = Default<LinksCombinedConstants<bool, ulong, int>>.Instance;
 
@@ -33,7 +33,7 @@ namespace Platform.Data.Doublets.Tests
         {
             using (var scope = new TempLinksTestScope())
             {
-                scope.Links.TestMultipleCreateAndDelete(100);
+                scope.Links.TestMultipleRandomCreationsAndDeletions(100);
             }
         }
 

@@ -7,63 +7,33 @@ using System;
 
 namespace Platform.Data.Doublets.Tests
 {
-    public static class DoubletLinksTests
+    public static class GenericLinksTests
     {
         [Fact]
-        public static void UInt64CRUDTest()
+        public static void CRUDTest()
         {
+            Using<byte>(links => links.TestCRUDOperations());
+            Using<ushort>(links => links.TestCRUDOperations());
+            Using<uint>(links => links.TestCRUDOperations());
             Using<ulong>(links => links.TestCRUDOperations());
         }
 
         [Fact]
-        public static void UInt32CRUDTest()
+        public static void RawNumbersCRUDTest()
         {
-            Using<uint>(links => links.TestCRUDOperations());
-        }
-
-        [Fact]
-        public static void UInt16CRUDTest()
-        {
-            Using<ushort>(links => links.TestCRUDOperations());
-        }
-
-        [Fact]
-        public static void UInt8CRUDTest()
-        {
-            Using<byte>(links => links.TestCRUDOperations());
-        }
-
-        [Fact]
-        public static void UInt64RawNumbersCRUDTest()
-        {
+            Using<byte>(links => links.TestRawNumbersCRUDOperations());
+            Using<ushort>(links => links.TestRawNumbersCRUDOperations());
+            Using<uint>(links => links.TestRawNumbersCRUDOperations());
             Using<ulong>(links => links.TestRawNumbersCRUDOperations());
         }
 
         [Fact]
-        public static void UInt32RawNumbersCRUDTest()
-        {
-            Using<uint>(links => links.TestRawNumbersCRUDOperations());
-        }
-
-        [Fact]
-        public static void UInt16RawNumbersCRUDTest()
-        {
-            Using<ushort>(links => links.TestRawNumbersCRUDOperations());
-        }
-
-        [Fact]
-        public static void UInt8RawNumbersCRUDTest()
-        {
-            Using<byte>(links => links.TestRawNumbersCRUDOperations());
-        }
-
-        [Fact]
-        public static void MultipleCreateAndDeleteTest()
+        public static void MultipleRandomCreationsAndDeletionsTest()
         { 
-            Using<byte>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleCreateAndDelete(16)); // Cannot use more because current implementation of tree cuts out 5 bits from the address space.
-            Using<ushort>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleCreateAndDelete(100));
-            Using<uint>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleCreateAndDelete(100));
-            Using<ulong>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleCreateAndDelete(100));
+            Using<byte>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(16)); // Cannot use more because current implementation of tree cuts out 5 bits from the address space.
+            Using<ushort>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
+            Using<uint>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
+            Using<ulong>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
         }
 
         private static void Using<TLink>(Action<ILinks<TLink>> action)
