@@ -8089,19 +8089,32 @@ references:
   commentId: T:Platform.Data.Doublets.Tests.UnicodeConvertersTests
   fullName: Platform.Data.Doublets.Tests.UnicodeConvertersTests
   nameWithType: UnicodeConvertersTests
-- uid: Platform.Data.Doublets.Tests.UnicodeConvertersTests.CharAndUnicodeSymbolConvertersTest
-  name: CharAndUnicodeSymbolConvertersTest()
-  href: api/Platform.Data.Doublets.Tests.UnicodeConvertersTests.html#Platform_Data_Doublets_Tests_UnicodeConvertersTests_CharAndUnicodeSymbolConvertersTest
-  commentId: M:Platform.Data.Doublets.Tests.UnicodeConvertersTests.CharAndUnicodeSymbolConvertersTest
-  fullName: Platform.Data.Doublets.Tests.UnicodeConvertersTests.CharAndUnicodeSymbolConvertersTest()
-  nameWithType: UnicodeConvertersTests.CharAndUnicodeSymbolConvertersTest()
-- uid: Platform.Data.Doublets.Tests.UnicodeConvertersTests.CharAndUnicodeSymbolConvertersTest*
-  name: CharAndUnicodeSymbolConvertersTest
-  href: api/Platform.Data.Doublets.Tests.UnicodeConvertersTests.html#Platform_Data_Doublets_Tests_UnicodeConvertersTests_CharAndUnicodeSymbolConvertersTest_
-  commentId: Overload:Platform.Data.Doublets.Tests.UnicodeConvertersTests.CharAndUnicodeSymbolConvertersTest
+- uid: Platform.Data.Doublets.Tests.UnicodeConvertersTests.CharAndRawNumberUnicodeSymbolConvertersTest
+  name: CharAndRawNumberUnicodeSymbolConvertersTest()
+  href: api/Platform.Data.Doublets.Tests.UnicodeConvertersTests.html#Platform_Data_Doublets_Tests_UnicodeConvertersTests_CharAndRawNumberUnicodeSymbolConvertersTest
+  commentId: M:Platform.Data.Doublets.Tests.UnicodeConvertersTests.CharAndRawNumberUnicodeSymbolConvertersTest
+  fullName: Platform.Data.Doublets.Tests.UnicodeConvertersTests.CharAndRawNumberUnicodeSymbolConvertersTest()
+  nameWithType: UnicodeConvertersTests.CharAndRawNumberUnicodeSymbolConvertersTest()
+- uid: Platform.Data.Doublets.Tests.UnicodeConvertersTests.CharAndRawNumberUnicodeSymbolConvertersTest*
+  name: CharAndRawNumberUnicodeSymbolConvertersTest
+  href: api/Platform.Data.Doublets.Tests.UnicodeConvertersTests.html#Platform_Data_Doublets_Tests_UnicodeConvertersTests_CharAndRawNumberUnicodeSymbolConvertersTest_
+  commentId: Overload:Platform.Data.Doublets.Tests.UnicodeConvertersTests.CharAndRawNumberUnicodeSymbolConvertersTest
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Tests.UnicodeConvertersTests.CharAndUnicodeSymbolConvertersTest
-  nameWithType: UnicodeConvertersTests.CharAndUnicodeSymbolConvertersTest
+  fullName: Platform.Data.Doublets.Tests.UnicodeConvertersTests.CharAndRawNumberUnicodeSymbolConvertersTest
+  nameWithType: UnicodeConvertersTests.CharAndRawNumberUnicodeSymbolConvertersTest
+- uid: Platform.Data.Doublets.Tests.UnicodeConvertersTests.CharAndUnaryNumberUnicodeSymbolConvertersTest
+  name: CharAndUnaryNumberUnicodeSymbolConvertersTest()
+  href: api/Platform.Data.Doublets.Tests.UnicodeConvertersTests.html#Platform_Data_Doublets_Tests_UnicodeConvertersTests_CharAndUnaryNumberUnicodeSymbolConvertersTest
+  commentId: M:Platform.Data.Doublets.Tests.UnicodeConvertersTests.CharAndUnaryNumberUnicodeSymbolConvertersTest
+  fullName: Platform.Data.Doublets.Tests.UnicodeConvertersTests.CharAndUnaryNumberUnicodeSymbolConvertersTest()
+  nameWithType: UnicodeConvertersTests.CharAndUnaryNumberUnicodeSymbolConvertersTest()
+- uid: Platform.Data.Doublets.Tests.UnicodeConvertersTests.CharAndUnaryNumberUnicodeSymbolConvertersTest*
+  name: CharAndUnaryNumberUnicodeSymbolConvertersTest
+  href: api/Platform.Data.Doublets.Tests.UnicodeConvertersTests.html#Platform_Data_Doublets_Tests_UnicodeConvertersTests_CharAndUnaryNumberUnicodeSymbolConvertersTest_
+  commentId: Overload:Platform.Data.Doublets.Tests.UnicodeConvertersTests.CharAndUnaryNumberUnicodeSymbolConvertersTest
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Tests.UnicodeConvertersTests.CharAndUnaryNumberUnicodeSymbolConvertersTest
+  nameWithType: UnicodeConvertersTests.CharAndUnaryNumberUnicodeSymbolConvertersTest
 - uid: Platform.Data.Doublets.Tests.UnicodeConvertersTests.StringAndUnicodeSequenceConvertersTest
   name: StringAndUnicodeSequenceConvertersTest()
   href: api/Platform.Data.Doublets.Tests.UnicodeConvertersTests.html#Platform_Data_Doublets_Tests_UnicodeConvertersTests_StringAndUnicodeSequenceConvertersTest
