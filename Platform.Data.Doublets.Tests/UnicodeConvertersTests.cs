@@ -1,45 +1,60 @@
-﻿using Platform.Data.Doublets.Incrementers;
+﻿using Xunit;
+using Platform.Interfaces;
+using Platform.Memory;
+using Platform.Reflection;
+using Platform.Scopes;
+using Platform.Data.Doublets.Incrementers;
+using Platform.Data.Doublets.Numbers.Raw;
 using Platform.Data.Doublets.Numbers.Unary;
 using Platform.Data.Doublets.PropertyOperators;
+using Platform.Data.Doublets.ResizableDirectMemory;
 using Platform.Data.Doublets.Sequences.Converters;
 using Platform.Data.Doublets.Sequences.Indexes;
 using Platform.Data.Doublets.Sequences.Walkers;
 using Platform.Data.Doublets.Unicode;
-using Xunit;
 
 namespace Platform.Data.Doublets.Tests
 {
     public static class UnicodeConvertersTests
     {
         [Fact]
-        public static void CharAndUnicodeSymbolConvertersTest()
+        public static void CharAndUnaryNumberUnicodeSymbolConvertersTest()
         {
             using (var scope = new TempLinksTestScope())
             {
                 var links = scope.Links;
-
-                var itself = links.Constants.Itself;
-
                 var meaningRoot = links.CreatePoint();
-                var one = links.CreateAndUpdate(meaningRoot, itself);
-                var unicodeSymbolMarker = links.CreateAndUpdate(meaningRoot, itself);
-
+                var one = links.CreateAndUpdate(meaningRoot, links.Constants.Itself);
                 var powerOf2ToUnaryNumberConverter = new PowerOf2ToUnaryNumberConverter<ulong>(links, one);
                 var addressToUnaryNumberConverter = new AddressToUnaryNumberConverter<ulong>(links, powerOf2ToUnaryNumberConverter);
-                var charToUnicodeSymbolConverter = new CharToUnicodeSymbolConverter<ulong>(links, addressToUnaryNumberConverter, unicodeSymbolMarker);
-
-                var originalCharacter = 'H';
-
-                var characterLink = charToUnicodeSymbolConverter.Convert(originalCharacter);
-
                 var unaryNumberToAddressConverter = new UnaryNumberToAddressOrOperationConverter<ulong>(links, powerOf2ToUnaryNumberConverter);
-                var unicodeSymbolCriterionMatcher = new UnicodeSymbolCriterionMatcher<ulong>(links, unicodeSymbolMarker);
-                var unicodeSymbolToCharConverter = new UnicodeSymbolToCharConverter<ulong>(links, unaryNumberToAddressConverter, unicodeSymbolCriterionMatcher);
-
-                var resultingCharacter = unicodeSymbolToCharConverter.Convert(characterLink);
-
-                Assert.Equal(originalCharacter, resultingCharacter);
+                TestCharAndUnicodeSymbolConverters(links, meaningRoot, addressToUnaryNumberConverter, unaryNumberToAddressConverter);
             }
+        }
+
+        [Fact]
+        public static void CharAndRawNumberUnicodeSymbolConvertersTest()
+        {
+            using (var scope = new Scope<Types<HeapResizableDirectMemory, ResizableDirectMemoryLinks<ulong>>>())
+            {
+                var links = scope.Use<ILinks<ulong>>();
+                var meaningRoot = links.CreatePoint();
+                var addressToRawNumberConverter = new AddressToRawNumberConverter<ulong>();
+                var rawNumberToAddressConverter = new RawNumberToAddressConverter<ulong>();
+                TestCharAndUnicodeSymbolConverters(links, meaningRoot, addressToRawNumberConverter, rawNumberToAddressConverter);
+            }
+        }
+
+        private static void TestCharAndUnicodeSymbolConverters(ILinks<ulong> links, ulong meaningRoot, IConverter<ulong> addressToNumberConverter, IConverter<ulong> numberToAddressConverter)
+        {
+            var unicodeSymbolMarker = links.CreateAndUpdate(meaningRoot, links.Constants.Itself);
+            var charToUnicodeSymbolConverter = new CharToUnicodeSymbolConverter<ulong>(links, addressToNumberConverter, unicodeSymbolMarker);
+            var originalCharacter = 'H';
+            var characterLink = charToUnicodeSymbolConverter.Convert(originalCharacter);
+            var unicodeSymbolCriterionMatcher = new UnicodeSymbolCriterionMatcher<ulong>(links, unicodeSymbolMarker);
+            var unicodeSymbolToCharConverter = new UnicodeSymbolToCharConverter<ulong>(links, numberToAddressConverter, unicodeSymbolCriterionMatcher);
+            var resultingCharacter = unicodeSymbolToCharConverter.Convert(characterLink);
+            Assert.Equal(originalCharacter, resultingCharacter);
         }
 
         [Fact]
