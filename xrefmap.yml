@@ -2840,6 +2840,64 @@ references:
   fullName.vb: Platform.Data.Doublets.LinksOperatorBase(Of TLink).Links
   nameWithType: LinksOperatorBase<TLink>.Links
   nameWithType.vb: LinksOperatorBase(Of TLink).Links
+- uid: Platform.Data.Doublets.Numbers.Raw
+  name: Platform.Data.Doublets.Numbers.Raw
+  href: api/Platform.Data.Doublets.Numbers.Raw.html
+  commentId: N:Platform.Data.Doublets.Numbers.Raw
+  fullName: Platform.Data.Doublets.Numbers.Raw
+  nameWithType: Platform.Data.Doublets.Numbers.Raw
+- uid: Platform.Data.Doublets.Numbers.Raw.AddressToRawNumberConverter`1
+  name: AddressToRawNumberConverter<TLink>
+  href: api/Platform.Data.Doublets.Numbers.Raw.AddressToRawNumberConverter-1.html
+  commentId: T:Platform.Data.Doublets.Numbers.Raw.AddressToRawNumberConverter`1
+  name.vb: AddressToRawNumberConverter(Of TLink)
+  fullName: Platform.Data.Doublets.Numbers.Raw.AddressToRawNumberConverter<TLink>
+  fullName.vb: Platform.Data.Doublets.Numbers.Raw.AddressToRawNumberConverter(Of TLink)
+  nameWithType: AddressToRawNumberConverter<TLink>
+  nameWithType.vb: AddressToRawNumberConverter(Of TLink)
+- uid: Platform.Data.Doublets.Numbers.Raw.AddressToRawNumberConverter`1.Convert(`0)
+  name: Convert(TLink)
+  href: api/Platform.Data.Doublets.Numbers.Raw.AddressToRawNumberConverter-1.html#Platform_Data_Doublets_Numbers_Raw_AddressToRawNumberConverter_1_Convert__0_
+  commentId: M:Platform.Data.Doublets.Numbers.Raw.AddressToRawNumberConverter`1.Convert(`0)
+  fullName: Platform.Data.Doublets.Numbers.Raw.AddressToRawNumberConverter<TLink>.Convert(TLink)
+  fullName.vb: Platform.Data.Doublets.Numbers.Raw.AddressToRawNumberConverter(Of TLink).Convert(TLink)
+  nameWithType: AddressToRawNumberConverter<TLink>.Convert(TLink)
+  nameWithType.vb: AddressToRawNumberConverter(Of TLink).Convert(TLink)
+- uid: Platform.Data.Doublets.Numbers.Raw.AddressToRawNumberConverter`1.Convert*
+  name: Convert
+  href: api/Platform.Data.Doublets.Numbers.Raw.AddressToRawNumberConverter-1.html#Platform_Data_Doublets_Numbers_Raw_AddressToRawNumberConverter_1_Convert_
+  commentId: Overload:Platform.Data.Doublets.Numbers.Raw.AddressToRawNumberConverter`1.Convert
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Numbers.Raw.AddressToRawNumberConverter<TLink>.Convert
+  fullName.vb: Platform.Data.Doublets.Numbers.Raw.AddressToRawNumberConverter(Of TLink).Convert
+  nameWithType: AddressToRawNumberConverter<TLink>.Convert
+  nameWithType.vb: AddressToRawNumberConverter(Of TLink).Convert
+- uid: Platform.Data.Doublets.Numbers.Raw.RawNumberToAddressConverter`1
+  name: RawNumberToAddressConverter<TLink>
+  href: api/Platform.Data.Doublets.Numbers.Raw.RawNumberToAddressConverter-1.html
+  commentId: T:Platform.Data.Doublets.Numbers.Raw.RawNumberToAddressConverter`1
+  name.vb: RawNumberToAddressConverter(Of TLink)
+  fullName: Platform.Data.Doublets.Numbers.Raw.RawNumberToAddressConverter<TLink>
+  fullName.vb: Platform.Data.Doublets.Numbers.Raw.RawNumberToAddressConverter(Of TLink)
+  nameWithType: RawNumberToAddressConverter<TLink>
+  nameWithType.vb: RawNumberToAddressConverter(Of TLink)
+- uid: Platform.Data.Doublets.Numbers.Raw.RawNumberToAddressConverter`1.Convert(`0)
+  name: Convert(TLink)
+  href: api/Platform.Data.Doublets.Numbers.Raw.RawNumberToAddressConverter-1.html#Platform_Data_Doublets_Numbers_Raw_RawNumberToAddressConverter_1_Convert__0_
+  commentId: M:Platform.Data.Doublets.Numbers.Raw.RawNumberToAddressConverter`1.Convert(`0)
+  fullName: Platform.Data.Doublets.Numbers.Raw.RawNumberToAddressConverter<TLink>.Convert(TLink)
+  fullName.vb: Platform.Data.Doublets.Numbers.Raw.RawNumberToAddressConverter(Of TLink).Convert(TLink)
+  nameWithType: RawNumberToAddressConverter<TLink>.Convert(TLink)
+  nameWithType.vb: RawNumberToAddressConverter(Of TLink).Convert(TLink)
+- uid: Platform.Data.Doublets.Numbers.Raw.RawNumberToAddressConverter`1.Convert*
+  name: Convert
+  href: api/Platform.Data.Doublets.Numbers.Raw.RawNumberToAddressConverter-1.html#Platform_Data_Doublets_Numbers_Raw_RawNumberToAddressConverter_1_Convert_
+  commentId: Overload:Platform.Data.Doublets.Numbers.Raw.RawNumberToAddressConverter`1.Convert
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Numbers.Raw.RawNumberToAddressConverter<TLink>.Convert
+  fullName.vb: Platform.Data.Doublets.Numbers.Raw.RawNumberToAddressConverter(Of TLink).Convert
+  nameWithType: RawNumberToAddressConverter<TLink>.Convert
+  nameWithType.vb: RawNumberToAddressConverter(Of TLink).Convert
 - uid: Platform.Data.Doublets.Numbers.Unary
   name: Platform.Data.Doublets.Numbers.Unary
   href: api/Platform.Data.Doublets.Numbers.Unary.html
