@@ -7,18 +7,18 @@ namespace Platform.Data.Doublets.Unicode
 {
     public class CharToUnicodeSymbolConverter<TLink> : LinksOperatorBase<TLink>, IConverter<char, TLink>
     {
-        private readonly IConverter<TLink> _addressToUnaryNumberConverter;
+        private readonly IConverter<TLink> _addressToNumberConverter;
         private readonly TLink _unicodeSymbolMarker;
 
-        public CharToUnicodeSymbolConverter(ILinks<TLink> links, IConverter<TLink> addressToUnaryNumberConverter, TLink unicodeSymbolMarker) : base(links)
+        public CharToUnicodeSymbolConverter(ILinks<TLink> links, IConverter<TLink> addressToNumberConverter, TLink unicodeSymbolMarker) : base(links)
         {
-            _addressToUnaryNumberConverter = addressToUnaryNumberConverter;
+            _addressToNumberConverter = addressToNumberConverter;
             _unicodeSymbolMarker = unicodeSymbolMarker;
         }
 
         public TLink Convert(char source)
         {
-            var unaryNumber = _addressToUnaryNumberConverter.Convert((Integer<TLink>)source);
+            var unaryNumber = _addressToNumberConverter.Convert((Integer<TLink>)source);
             return Links.GetOrCreate(unaryNumber, _unicodeSymbolMarker);
         }
     }
