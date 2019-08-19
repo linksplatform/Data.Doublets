@@ -1,6 +1,6 @@
 ﻿using Xunit;
 using Platform.Random;
-using Platform.Data.Doublets.UnaryNumbers;
+using Platform.Data.Doublets.Numbers.Unary;
 
 namespace Platform.Data.Doublets.Tests
 {

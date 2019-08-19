@@ -11,7 +11,7 @@ using Platform.Data.Doublets.Incrementers;
 using Platform.Data.Doublets.Sequences.Walkers;
 using Platform.Data.Doublets.Sequences.Indexes;
 using Platform.Data.Doublets.Unicode;
-using Platform.Data.Doublets.UnaryNumbers;
+using Platform.Data.Doublets.Numbers.Unary;
 
 namespace Platform.Data.Doublets.Tests
 {

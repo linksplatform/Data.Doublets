@@ -5,7 +5,7 @@ using Platform.Numbers;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-namespace Platform.Data.Doublets.UnaryNumbers
+namespace Platform.Data.Doublets.Numbers.Unary
 {
     public class UnaryNumberToAddressAddOperationConverter<TLink> : LinksOperatorBase<TLink>, IConverter<TLink>
     {

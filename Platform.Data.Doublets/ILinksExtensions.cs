@@ -159,7 +159,7 @@ namespace Platform.Data.Doublets
             var constants = links.Constants;
             var source = constants.SourcePart;
             var target = constants.TargetPart;
-            if (!Numbers.Math.IsPowerOfTwo(size))
+            if (!Platform.Numbers.Math.IsPowerOfTwo(size))
             {
                 throw new ArgumentOutOfRangeException(nameof(size), "Sequences with sizes other than powers of two are not supported.");
             }
