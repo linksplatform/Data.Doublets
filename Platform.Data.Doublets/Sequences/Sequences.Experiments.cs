@@ -25,7 +25,7 @@ namespace Platform.Data.Doublets.Sequences
         /// </remarks>
         public ulong[] CreateAllVariants2(ulong[] sequence)
         {
-            return Sync.ExecuteWriteOperation(() =>
+            return _sync.ExecuteWriteOperation(() =>
             {
                 if (sequence.IsNullOrEmpty())
                 {
@@ -80,7 +80,7 @@ namespace Platform.Data.Doublets.Sequences
 
         public List<ulong> CreateAllVariants1(params ulong[] sequence)
         {
-            return Sync.ExecuteWriteOperation(() =>
+            return _sync.ExecuteWriteOperation(() =>
             {
                 if (sequence.IsNullOrEmpty())
                 {
@@ -372,7 +372,7 @@ namespace Platform.Data.Doublets.Sequences
 
         public List<ulong> GetAllMatchingSequences0(params ulong[] sequence)
         {
-            return Sync.ExecuteReadOperation(() =>
+            return _sync.ExecuteReadOperation(() =>
             {
                 var results = new List<ulong>();
                 if (sequence.Length > 0)
@@ -439,7 +439,7 @@ namespace Platform.Data.Doublets.Sequences
 
         public HashSet<ulong> GetAllMatchingSequences1(params ulong[] sequence)
         {
-            return Sync.ExecuteReadOperation(() =>
+            return _sync.ExecuteReadOperation(() =>
             {
                 var results = new HashSet<ulong>();
                 if (sequence.Length > 0)
@@ -563,7 +563,7 @@ namespace Platform.Data.Doublets.Sequences
 
         public List<ulong> GetAllPartiallyMatchingSequences0(params ulong[] sequence)
         {
-            return Sync.ExecuteReadOperation(() =>
+            return _sync.ExecuteReadOperation(() =>
             {
                 if (sequence.Length > 0)
                 {
@@ -618,7 +618,7 @@ namespace Platform.Data.Doublets.Sequences
 
         public HashSet<ulong> GetAllPartiallyMatchingSequences1(params ulong[] sequence)
         {
-            return Sync.ExecuteReadOperation(() =>
+            return _sync.ExecuteReadOperation(() =>
             {
                 if (sequence.Length > 0)
                 {
@@ -639,7 +639,7 @@ namespace Platform.Data.Doublets.Sequences
 
         public bool GetAllPartiallyMatchingSequences2(Func<ulong, bool> handler, params ulong[] sequence)
         {
-            return Sync.ExecuteReadOperation(() =>
+            return _sync.ExecuteReadOperation(() =>
             {
                 if (sequence.Length > 0)
                 {
@@ -695,7 +695,7 @@ namespace Platform.Data.Doublets.Sequences
 
         public HashSet<ulong> GetAllPartiallyMatchingSequences3(params ulong[] sequence)
         {
-            return Sync.ExecuteReadOperation(() =>
+            return _sync.ExecuteReadOperation(() =>
             {
                 if (sequence.Length > 0)
                 {
@@ -720,7 +720,7 @@ namespace Platform.Data.Doublets.Sequences
 
         public HashSet<ulong> GetAllPartiallyMatchingSequences4(HashSet<ulong> readAsElements, IList<ulong> sequence)
         {
-            return Sync.ExecuteReadOperation(() =>
+            return _sync.ExecuteReadOperation(() =>
             {
                 if (sequence.Count > 0)
                 {
@@ -777,7 +777,7 @@ namespace Platform.Data.Doublets.Sequences
 
         public List<ulong> GetAllPartiallyMatchingSequences(params ulong[] sequence)
         {
-            return Sync.ExecuteReadOperation(() =>
+            return _sync.ExecuteReadOperation(() =>
             {
                 if (sequence.Length > 0)
                 {
@@ -874,7 +874,7 @@ namespace Platform.Data.Doublets.Sequences
         /// </remarks>
         public HashSet<ulong> AllUsages(ulong link)
         {
-            return Sync.ExecuteReadOperation(() =>
+            return _sync.ExecuteReadOperation(() =>
             {
                 var usages = new HashSet<ulong>();
                 AllUsagesCore(link, usages);
@@ -900,7 +900,7 @@ namespace Platform.Data.Doublets.Sequences
 
         public HashSet<ulong> AllBottomUsages(ulong link)
         {
-            return Sync.ExecuteReadOperation(() =>
+            return _sync.ExecuteReadOperation(() =>
             {
                 var visits = new HashSet<ulong>();
                 var usages = new HashSet<ulong>();
@@ -1268,7 +1268,7 @@ namespace Platform.Data.Doublets.Sequences
         // Pattern Matching -> Key To Triggers
         public HashSet<ulong> MatchPattern(params ulong[] patternSequence)
         {
-            return Sync.ExecuteReadOperation(() =>
+            return _sync.ExecuteReadOperation(() =>
             {
                 patternSequence = Simplify(patternSequence);
                 if (patternSequence.Length > 0)
@@ -1301,7 +1301,7 @@ namespace Platform.Data.Doublets.Sequences
         // TODO: решить что делать с повторами (когда одни и те же элементы встречаются несколько раз в последовательности)
         public HashSet<ulong> GetAllConnections(params ulong[] linksToConnect)
         {
-            return Sync.ExecuteReadOperation(() =>
+            return _sync.ExecuteReadOperation(() =>
             {
                 var results = new HashSet<ulong>();
                 if (linksToConnect.Length > 0)
@@ -1321,7 +1321,7 @@ namespace Platform.Data.Doublets.Sequences
 
         public HashSet<ulong> GetAllConnections1(params ulong[] linksToConnect)
         {
-            return Sync.ExecuteReadOperation(() =>
+            return _sync.ExecuteReadOperation(() =>
             {
                 var results = new HashSet<ulong>();
                 if (linksToConnect.Length > 0)
@@ -1344,7 +1344,7 @@ namespace Platform.Data.Doublets.Sequences
 
         public HashSet<ulong> GetAllConnections2(params ulong[] linksToConnect)
         {
-            return Sync.ExecuteReadOperation(() =>
+            return _sync.ExecuteReadOperation(() =>
             {
                 var results = new HashSet<ulong>();
                 if (linksToConnect.Length > 0)
@@ -1369,7 +1369,7 @@ namespace Platform.Data.Doublets.Sequences
 
         public List<ulong> GetAllConnections3(params ulong[] linksToConnect)
         {
-            return Sync.ExecuteReadOperation(() =>
+            return _sync.ExecuteReadOperation(() =>
             {
                 var results = new BitString((long)Links.Unsync.Count() + 1); // new BitArray((int)_links.Total + 1);
                 if (linksToConnect.Length > 0)

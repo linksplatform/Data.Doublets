@@ -80,7 +80,7 @@ namespace Platform.Data.Doublets
             var equalityComparer = EqualityComparer<TLink>.Default;
             if (equalityComparer.Equals(links.Count(), default))
             {
-                throw new Exception("В хранилище нет связей.");
+                throw new InvalidOperationException("В хранилище нет связей.");
             }
             links.Each(links.Constants.Any, links.Constants.Any, link =>
             {
@@ -89,7 +89,7 @@ namespace Platform.Data.Doublets
             });
             if (equalityComparer.Equals(firstLink, default))
             {
-                throw new Exception("В процессе поиска по хранилищу не было найдено связей.");
+                throw new InvalidOperationException("В процессе поиска по хранилищу не было найдено связей.");
             }
             return firstLink;
         }
@@ -128,12 +128,12 @@ namespace Platform.Data.Doublets
                 var target = values[constants.TargetPart];
                 if (equalityComparer.Equals(source, target) && equalityComparer.Equals(source, next))
                 {
-                    //throw new Exception(string.Format("Невозможно выбрать путь, так как и Source и Target совпадают с элементом пути {0}.", next));
+                    //throw new InvalidOperationException(string.Format("Невозможно выбрать путь, так как и Source и Target совпадают с элементом пути {0}.", next));
                     return false;
                 }
                 if (!equalityComparer.Equals(next, source) && !equalityComparer.Equals(next, target))
                 {
-                    //throw new Exception(string.Format("Невозможно продолжить путь через элемент пути {0}", next));
+                    //throw new InvalidOperationException(string.Format("Невозможно продолжить путь через элемент пути {0}", next));
                     return false;
                 }
                 current = next;

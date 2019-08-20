@@ -20,7 +20,7 @@ namespace Platform.Data.Doublets.Tests
             using (var scope = new TempLinksTestScope(useSequences: false))
             {
                 var links = scope.Links;
-                var sequences = new Sequences.Sequences(links, new SequencesOptions<ulong>() { Walker = new LeveledSequenceWalker<ulong>(links) });;;
+                var sequences = new Sequences.Sequences(links, new SequencesOptions<ulong>() { Walker = new LeveledSequenceWalker<ulong>(links) });
 
                 var sequence = new ulong[sequenceLength];
                 for (var i = 0; i < sequenceLength; i++)

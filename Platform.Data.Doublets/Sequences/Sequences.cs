@@ -57,9 +57,9 @@ namespace Platform.Data.Doublets.Sequences
         /// <summary>Возвращает значение ulong, обозначающее любое количество связей.</summary>
         public const ulong ZeroOrMany = ulong.MaxValue;
 
-        public SequencesOptions<ulong> Options;
-        public readonly SynchronizedLinks<ulong> Links;
-        public readonly ISynchronization Sync;
+        public SequencesOptions<ulong> Options { get; }
+        public SynchronizedLinks<ulong> Links { get; }
+        private readonly ISynchronization _sync;
 
         public Sequences(SynchronizedLinks<ulong> links)
             : this(links, new SequencesOptions<ulong>())
@@ -69,7 +69,7 @@ namespace Platform.Data.Doublets.Sequences
         public Sequences(SynchronizedLinks<ulong> links, SequencesOptions<ulong> options)
         {
             Links = links;
-            Sync = links.SyncRoot;
+            _sync = links.SyncRoot;
             Options = options;
 
             Options.ValidateOptions();
@@ -78,7 +78,7 @@ namespace Platform.Data.Doublets.Sequences
 
         public bool IsSequence(ulong sequence)
         {
-            return Sync.ExecuteReadOperation(() =>
+            return _sync.ExecuteReadOperation(() =>
             {
                 if (Options.UseSequenceMarker)
                 {
@@ -175,7 +175,7 @@ namespace Platform.Data.Doublets.Sequences
 
         public ulong Create(params ulong[] sequence)
         {
-            return Sync.ExecuteWriteOperation(() =>
+            return _sync.ExecuteWriteOperation(() =>
             {
                 if (sequence.IsNullOrEmpty())
                 {
@@ -229,7 +229,7 @@ namespace Platform.Data.Doublets.Sequences
 
         public bool Each(Func<ulong, bool> handler, IList<ulong> sequence)
         {
-            return Sync.ExecuteReadOperation(() =>
+            return _sync.ExecuteReadOperation(() =>
             {
                 if (sequence.IsNullOrEmpty())
                 {
@@ -356,7 +356,7 @@ namespace Platform.Data.Doublets.Sequences
                 Delete(sequence);
                 return _constants.Null;
             }
-            return Sync.ExecuteWriteOperation(() =>
+            return _sync.ExecuteWriteOperation(() =>
             {
                 Links.EnsureEachLinkIsAnyOrExists(sequence);
                 Links.EnsureEachLinkExists(newSequence);
@@ -441,7 +441,7 @@ namespace Platform.Data.Doublets.Sequences
 
         public void Delete(params ulong[] sequence)
         {
-            Sync.ExecuteWriteOperation(() =>
+            _sync.ExecuteWriteOperation(() =>
             {
                 // TODO: Check all options only ones before loop execution
                 foreach (var linkToDelete in Each(sequence))
@@ -507,7 +507,7 @@ namespace Platform.Data.Doublets.Sequences
         /// </remarks>
         public ulong Compact(params ulong[] sequence)
         {
-            return Sync.ExecuteWriteOperation(() =>
+            return _sync.ExecuteWriteOperation(() =>
             {
                 if (sequence.IsNullOrEmpty())
                 {
@@ -548,7 +548,7 @@ namespace Platform.Data.Doublets.Sequences
 
         public bool EachPart(Func<ulong, bool> handler, ulong sequence)
         {
-            return Sync.ExecuteReadOperation(() =>
+            return _sync.ExecuteReadOperation(() =>
             {
                 var links = Links.Unsync;
                 foreach (var part in Options.Walker.Walk(sequence))
