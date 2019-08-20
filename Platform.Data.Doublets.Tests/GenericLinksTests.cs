@@ -30,7 +30,7 @@ namespace Platform.Data.Doublets.Tests
         [Fact]
         public static void MultipleRandomCreationsAndDeletionsTest()
         { 
-            Using<byte>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(7)); // Cannot use more because current implementation of tree cuts out 5 bits from the address space.
+            //Using<byte>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(7)); // Cannot use more because current implementation of tree cuts out 5 bits from the address space.
             Using<ushort>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
             Using<uint>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
             Using<ulong>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
