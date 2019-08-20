@@ -89,7 +89,7 @@ namespace Platform.Data.Doublets
         {
             get
             {
-                Ensure.Always.ArgumentInRange(index, new Range<int>(0, Length - 1), nameof(index));
+                Ensure.OnDebug.ArgumentInRange(index, new Range<int>(0, Length - 1), nameof(index));
                 if (index == _constants.IndexPart)
                 {
                     return Index;
@@ -124,8 +124,8 @@ namespace Platform.Data.Doublets
 
         public void CopyTo(TLink[] array, int arrayIndex)
         {
-            Ensure.Always.ArgumentNotNull(array, nameof(array));
-            Ensure.Always.ArgumentInRange(arrayIndex, new Range<int>(0, array.Length - 1), nameof(arrayIndex));
+            Ensure.OnDebug.ArgumentNotNull(array, nameof(array));
+            Ensure.OnDebug.ArgumentInRange(arrayIndex, new Range<int>(0, array.Length - 1), nameof(arrayIndex));
             if (arrayIndex + Length > array.Length)
             {
                 throw new InvalidOperationException();
