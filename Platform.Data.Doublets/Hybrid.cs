@@ -3,6 +3,7 @@ using System.Reflection;
 using Platform.Reflection;
 using Platform.Converters;
 using Platform.Exceptions;
+using Platform.Reflection.Sigil;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -10,6 +11,47 @@ namespace Platform.Data.Doublets
 {
     public class Hybrid<T>
     {
+        private static readonly Func<object, T> _absAndConvert;
+        private static readonly Func<object, T> _absAndNegateAndConvert;
+
+        static Hybrid()
+        {
+            _absAndConvert = DelegateHelpers.Compile<Func<object, T>>(emiter =>
+            {
+                Ensure.Always.IsUnsignedInteger<T>();
+                emiter.LoadArgument(0);
+                var signedVersion = Type<T>.SignedVersion;
+                var signedVersionField = typeof(Type<T>).GetTypeInfo().GetField("SignedVersion", BindingFlags.Static | BindingFlags.Public);
+                emiter.LoadField(signedVersionField);
+                var changeTypeMethod = typeof(Convert).GetTypeInfo().GetMethod("ChangeType", Types<object, Type>.Array);
+                emiter.Call(changeTypeMethod);
+                emiter.UnboxAny(signedVersion);
+                var absMethod = typeof(Math).GetTypeInfo().GetMethod("Abs", new[] { signedVersion });
+                emiter.Call(absMethod);
+                var unsignedMethod = typeof(To).GetTypeInfo().GetMethod("Unsigned", new[] { signedVersion });
+                emiter.Call(unsignedMethod);
+                emiter.Return();
+            });
+            _absAndNegateAndConvert = DelegateHelpers.Compile<Func<object, T>>(emiter =>
+            {
+                Ensure.Always.IsUnsignedInteger<T>();
+                emiter.LoadArgument(0);
+                var signedVersion = Type<T>.SignedVersion;
+                var signedVersionField = typeof(Type<T>).GetTypeInfo().GetField("SignedVersion", BindingFlags.Static | BindingFlags.Public);
+                emiter.LoadField(signedVersionField);
+                var changeTypeMethod = typeof(Convert).GetTypeInfo().GetMethod("ChangeType", Types<object, Type>.Array);
+                emiter.Call(changeTypeMethod);
+                emiter.UnboxAny(signedVersion);
+                var absMethod = typeof(Math).GetTypeInfo().GetMethod("Abs", new[] { signedVersion });
+                emiter.Call(absMethod);
+                var negateMethod = typeof(Platform.Numbers.Math).GetTypeInfo().GetMethod("Negate").MakeGenericMethod(signedVersion);
+                emiter.Call(negateMethod);
+                var unsignedMethod = typeof(To).GetTypeInfo().GetMethod("Unsigned", new[] { signedVersion });
+                emiter.Call(unsignedMethod);
+                emiter.Return();
+            });
+        }
+
         public readonly T Value;
         public bool IsNothing => Convert.ToInt64(To.Signed(Value)) == 0;
         public bool IsInternal => Convert.ToInt64(To.Signed(Value)) > 0;
@@ -18,7 +60,7 @@ namespace Platform.Data.Doublets
 
         public Hybrid(T value)
         {
-            Ensure.Always.IsUnsignedInteger<T>();
+            Ensure.OnDebug.IsUnsignedInteger<T>();
             Value = value;
         }
 
@@ -26,13 +68,21 @@ namespace Platform.Data.Doublets
 
         public Hybrid(object value, bool isExternal)
         {
-            var signedType = Type<T>.SignedVersion;
-            var signedValue = Convert.ChangeType(value, signedType);
-            var abs = typeof(Platform.Numbers.Math).GetTypeInfo().GetMethod("Abs").MakeGenericMethod(signedType);
-            var negate = typeof(Platform.Numbers.Math).GetTypeInfo().GetMethod("Negate").MakeGenericMethod(signedType);
-            var absoluteValue = abs.Invoke(null, new[] { signedValue });
-            var resultValue = isExternal ? negate.Invoke(null, new[] { absoluteValue }) : absoluteValue;
-            Value = To.UnsignedAs<T>(resultValue);
+            //var signedType = Type<T>.SignedVersion;
+            //var signedValue = Convert.ChangeType(value, signedType);
+            //var abs = typeof(Platform.Numbers.Math).GetTypeInfo().GetMethod("Abs").MakeGenericMethod(signedType);
+            //var negate = typeof(Platform.Numbers.Math).GetTypeInfo().GetMethod("Negate").MakeGenericMethod(signedType);
+            //var absoluteValue = abs.Invoke(null, new[] { signedValue });
+            //var resultValue = isExternal ? negate.Invoke(null, new[] { absoluteValue }) : absoluteValue;
+            //Value = To.UnsignedAs<T>(resultValue);
+            if (isExternal)
+            {
+                Value = _absAndNegateAndConvert(value);
+            }
+            else
+            {
+                Value = _absAndConvert(value);
+            }
         }
 
         public static implicit operator Hybrid<T>(T integer) => new Hybrid<T>(integer);
