@@ -128,6 +128,14 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksDecoratorBase(Of TLink).LinksDecoratorBase
   nameWithType: LinksDecoratorBase<TLink>.LinksDecoratorBase
   nameWithType.vb: LinksDecoratorBase(Of TLink).LinksDecoratorBase
+- uid: Platform.Data.Doublets.Decorators.LinksDecoratorBase`1._facade
+  name: _facade
+  href: api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1__facade
+  commentId: F:Platform.Data.Doublets.Decorators.LinksDecoratorBase`1._facade
+  fullName: Platform.Data.Doublets.Decorators.LinksDecoratorBase<TLink>._facade
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDecoratorBase(Of TLink)._facade
+  nameWithType: LinksDecoratorBase<TLink>._facade
+  nameWithType.vb: LinksDecoratorBase(Of TLink)._facade
 - uid: Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Constants
   name: Constants
   href: api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1_Constants
@@ -215,6 +223,23 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksDecoratorBase(Of TLink).Each
   nameWithType: LinksDecoratorBase<TLink>.Each
   nameWithType.vb: LinksDecoratorBase(Of TLink).Each
+- uid: Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Facade
+  name: Facade
+  href: api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1_Facade
+  commentId: P:Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Facade
+  fullName: Platform.Data.Doublets.Decorators.LinksDecoratorBase<TLink>.Facade
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDecoratorBase(Of TLink).Facade
+  nameWithType: LinksDecoratorBase<TLink>.Facade
+  nameWithType.vb: LinksDecoratorBase(Of TLink).Facade
+- uid: Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Facade*
+  name: Facade
+  href: api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1_Facade_
+  commentId: Overload:Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Facade
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Decorators.LinksDecoratorBase<TLink>.Facade
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDecoratorBase(Of TLink).Facade
+  nameWithType: LinksDecoratorBase<TLink>.Facade
+  nameWithType.vb: LinksDecoratorBase(Of TLink).Facade
 - uid: Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Update(System.Collections.Generic.IList{`0})
   name: Update(IList<TLink>)
   href: api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1_Update_System_Collections_Generic_IList__0__
@@ -1576,6 +1601,22 @@ references:
   fullName.vb: Platform.Data.Doublets.ILinksExtensions.CreatePoint(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink))
   nameWithType: ILinksExtensions.CreatePoint<TLink>(ILinks<TLink>)
   nameWithType.vb: ILinksExtensions.CreatePoint(Of TLink)(ILinks(Of TLink))
+- uid: Platform.Data.Doublets.ILinksExtensions.DecorateWithAutomaticUniquenessAndUsagesResolution*
+  name: DecorateWithAutomaticUniquenessAndUsagesResolution
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_DecorateWithAutomaticUniquenessAndUsagesResolution_
+  commentId: Overload:Platform.Data.Doublets.ILinksExtensions.DecorateWithAutomaticUniquenessAndUsagesResolution
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ILinksExtensions.DecorateWithAutomaticUniquenessAndUsagesResolution
+  nameWithType: ILinksExtensions.DecorateWithAutomaticUniquenessAndUsagesResolution
+- uid: Platform.Data.Doublets.ILinksExtensions.DecorateWithAutomaticUniquenessAndUsagesResolution``1(Platform.Data.Doublets.ILinks{``0})
+  name: DecorateWithAutomaticUniquenessAndUsagesResolution<TLink>(ILinks<TLink>)
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_DecorateWithAutomaticUniquenessAndUsagesResolution__1_Platform_Data_Doublets_ILinks___0__
+  commentId: M:Platform.Data.Doublets.ILinksExtensions.DecorateWithAutomaticUniquenessAndUsagesResolution``1(Platform.Data.Doublets.ILinks{``0})
+  name.vb: DecorateWithAutomaticUniquenessAndUsagesResolution(Of TLink)(ILinks(Of TLink))
+  fullName: Platform.Data.Doublets.ILinksExtensions.DecorateWithAutomaticUniquenessAndUsagesResolution<TLink>(Platform.Data.Doublets.ILinks<TLink>)
+  fullName.vb: Platform.Data.Doublets.ILinksExtensions.DecorateWithAutomaticUniquenessAndUsagesResolution(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink))
+  nameWithType: ILinksExtensions.DecorateWithAutomaticUniquenessAndUsagesResolution<TLink>(ILinks<TLink>)
+  nameWithType.vb: ILinksExtensions.DecorateWithAutomaticUniquenessAndUsagesResolution(Of TLink)(ILinks(Of TLink))
 - uid: Platform.Data.Doublets.ILinksExtensions.DeleteAll*
   name: DeleteAll
   href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_DeleteAll_
@@ -6545,6 +6586,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker(Of TLink).LeftSequenceWalker(Platform.Data.Doublets.ILinks(Of TLink), Platform.Collections.Stacks.IStack(Of TLink))
   nameWithType: LeftSequenceWalker<TLink>.LeftSequenceWalker(ILinks<TLink>, IStack<TLink>)
   nameWithType.vb: LeftSequenceWalker(Of TLink).LeftSequenceWalker(ILinks(Of TLink), IStack(Of TLink))
+- uid: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Collections.Stacks.IStack{`0},System.Func{`0,System.Boolean})
+  name: LeftSequenceWalker(ILinks<TLink>, IStack<TLink>, Func<TLink, Boolean>)
+  href: api/Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_LeftSequenceWalker_1__ctor_Platform_Data_Doublets_ILinks__0__Platform_Collections_Stacks_IStack__0__System_Func__0_System_Boolean__
+  commentId: M:Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Collections.Stacks.IStack{`0},System.Func{`0,System.Boolean})
+  name.vb: LeftSequenceWalker(ILinks(Of TLink), IStack(Of TLink), Func(Of TLink, Boolean))
+  fullName: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker<TLink>.LeftSequenceWalker(Platform.Data.Doublets.ILinks<TLink>, Platform.Collections.Stacks.IStack<TLink>, System.Func<TLink, System.Boolean>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker(Of TLink).LeftSequenceWalker(Platform.Data.Doublets.ILinks(Of TLink), Platform.Collections.Stacks.IStack(Of TLink), System.Func(Of TLink, System.Boolean))
+  nameWithType: LeftSequenceWalker<TLink>.LeftSequenceWalker(ILinks<TLink>, IStack<TLink>, Func<TLink, Boolean>)
+  nameWithType.vb: LeftSequenceWalker(Of TLink).LeftSequenceWalker(ILinks(Of TLink), IStack(Of TLink), Func(Of TLink, Boolean))
 - uid: Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker`1.#ctor*
   name: LeftSequenceWalker
   href: api/Platform.Data.Doublets.Sequences.Walkers.LeftSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_LeftSequenceWalker_1__ctor_
@@ -6693,6 +6743,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker(Of TLink).RightSequenceWalker(Platform.Data.Doublets.ILinks(Of TLink), Platform.Collections.Stacks.IStack(Of TLink))
   nameWithType: RightSequenceWalker<TLink>.RightSequenceWalker(ILinks<TLink>, IStack<TLink>)
   nameWithType.vb: RightSequenceWalker(Of TLink).RightSequenceWalker(ILinks(Of TLink), IStack(Of TLink))
+- uid: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Collections.Stacks.IStack{`0},System.Func{`0,System.Boolean})
+  name: RightSequenceWalker(ILinks<TLink>, IStack<TLink>, Func<TLink, Boolean>)
+  href: api/Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_RightSequenceWalker_1__ctor_Platform_Data_Doublets_ILinks__0__Platform_Collections_Stacks_IStack__0__System_Func__0_System_Boolean__
+  commentId: M:Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Collections.Stacks.IStack{`0},System.Func{`0,System.Boolean})
+  name.vb: RightSequenceWalker(ILinks(Of TLink), IStack(Of TLink), Func(Of TLink, Boolean))
+  fullName: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker<TLink>.RightSequenceWalker(Platform.Data.Doublets.ILinks<TLink>, Platform.Collections.Stacks.IStack<TLink>, System.Func<TLink, System.Boolean>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker(Of TLink).RightSequenceWalker(Platform.Data.Doublets.ILinks(Of TLink), Platform.Collections.Stacks.IStack(Of TLink), System.Func(Of TLink, System.Boolean))
+  nameWithType: RightSequenceWalker<TLink>.RightSequenceWalker(ILinks<TLink>, IStack<TLink>, Func<TLink, Boolean>)
+  nameWithType.vb: RightSequenceWalker(Of TLink).RightSequenceWalker(ILinks(Of TLink), IStack(Of TLink), Func(Of TLink, Boolean))
 - uid: Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker`1.#ctor*
   name: RightSequenceWalker
   href: api/Platform.Data.Doublets.Sequences.Walkers.RightSequenceWalker-1.html#Platform_Data_Doublets_Sequences_Walkers_RightSequenceWalker_1__ctor_
@@ -6771,6 +6830,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase(Of TLink).SequenceWalkerBase(Platform.Data.Doublets.ILinks(Of TLink), Platform.Collections.Stacks.IStack(Of TLink))
   nameWithType: SequenceWalkerBase<TLink>.SequenceWalkerBase(ILinks<TLink>, IStack<TLink>)
   nameWithType.vb: SequenceWalkerBase(Of TLink).SequenceWalkerBase(ILinks(Of TLink), IStack(Of TLink))
+- uid: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Collections.Stacks.IStack{`0},System.Func{`0,System.Boolean})
+  name: SequenceWalkerBase(ILinks<TLink>, IStack<TLink>, Func<TLink, Boolean>)
+  href: api/Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase-1.html#Platform_Data_Doublets_Sequences_Walkers_SequenceWalkerBase_1__ctor_Platform_Data_Doublets_ILinks__0__Platform_Collections_Stacks_IStack__0__System_Func__0_System_Boolean__
+  commentId: M:Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Collections.Stacks.IStack{`0},System.Func{`0,System.Boolean})
+  name.vb: SequenceWalkerBase(ILinks(Of TLink), IStack(Of TLink), Func(Of TLink, Boolean))
+  fullName: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase<TLink>.SequenceWalkerBase(Platform.Data.Doublets.ILinks<TLink>, Platform.Collections.Stacks.IStack<TLink>, System.Func<TLink, System.Boolean>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase(Of TLink).SequenceWalkerBase(Platform.Data.Doublets.ILinks(Of TLink), Platform.Collections.Stacks.IStack(Of TLink), System.Func(Of TLink, System.Boolean))
+  nameWithType: SequenceWalkerBase<TLink>.SequenceWalkerBase(ILinks<TLink>, IStack<TLink>, Func<TLink, Boolean>)
+  nameWithType.vb: SequenceWalkerBase(Of TLink).SequenceWalkerBase(ILinks(Of TLink), IStack(Of TLink), Func(Of TLink, Boolean))
 - uid: Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase`1.#ctor*
   name: SequenceWalkerBase
   href: api/Platform.Data.Doublets.Sequences.Walkers.SequenceWalkerBase-1.html#Platform_Data_Doublets_Sequences_Walkers_SequenceWalkerBase_1__ctor_
@@ -7224,116 +7292,6 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Tests.ComparisonTests.UInt64Comparer.Compare
   nameWithType: ComparisonTests.UInt64Comparer.Compare
-- uid: Platform.Data.Doublets.Tests.DoubletLinksTests
-  name: DoubletLinksTests
-  href: api/Platform.Data.Doublets.Tests.DoubletLinksTests.html
-  commentId: T:Platform.Data.Doublets.Tests.DoubletLinksTests
-  fullName: Platform.Data.Doublets.Tests.DoubletLinksTests
-  nameWithType: DoubletLinksTests
-- uid: Platform.Data.Doublets.Tests.DoubletLinksTests.UInt16CRUDTest
-  name: UInt16CRUDTest()
-  href: api/Platform.Data.Doublets.Tests.DoubletLinksTests.html#Platform_Data_Doublets_Tests_DoubletLinksTests_UInt16CRUDTest
-  commentId: M:Platform.Data.Doublets.Tests.DoubletLinksTests.UInt16CRUDTest
-  fullName: Platform.Data.Doublets.Tests.DoubletLinksTests.UInt16CRUDTest()
-  nameWithType: DoubletLinksTests.UInt16CRUDTest()
-- uid: Platform.Data.Doublets.Tests.DoubletLinksTests.UInt16CRUDTest*
-  name: UInt16CRUDTest
-  href: api/Platform.Data.Doublets.Tests.DoubletLinksTests.html#Platform_Data_Doublets_Tests_DoubletLinksTests_UInt16CRUDTest_
-  commentId: Overload:Platform.Data.Doublets.Tests.DoubletLinksTests.UInt16CRUDTest
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Tests.DoubletLinksTests.UInt16CRUDTest
-  nameWithType: DoubletLinksTests.UInt16CRUDTest
-- uid: Platform.Data.Doublets.Tests.DoubletLinksTests.UInt16RawNumbersCRUDTest
-  name: UInt16RawNumbersCRUDTest()
-  href: api/Platform.Data.Doublets.Tests.DoubletLinksTests.html#Platform_Data_Doublets_Tests_DoubletLinksTests_UInt16RawNumbersCRUDTest
-  commentId: M:Platform.Data.Doublets.Tests.DoubletLinksTests.UInt16RawNumbersCRUDTest
-  fullName: Platform.Data.Doublets.Tests.DoubletLinksTests.UInt16RawNumbersCRUDTest()
-  nameWithType: DoubletLinksTests.UInt16RawNumbersCRUDTest()
-- uid: Platform.Data.Doublets.Tests.DoubletLinksTests.UInt16RawNumbersCRUDTest*
-  name: UInt16RawNumbersCRUDTest
-  href: api/Platform.Data.Doublets.Tests.DoubletLinksTests.html#Platform_Data_Doublets_Tests_DoubletLinksTests_UInt16RawNumbersCRUDTest_
-  commentId: Overload:Platform.Data.Doublets.Tests.DoubletLinksTests.UInt16RawNumbersCRUDTest
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Tests.DoubletLinksTests.UInt16RawNumbersCRUDTest
-  nameWithType: DoubletLinksTests.UInt16RawNumbersCRUDTest
-- uid: Platform.Data.Doublets.Tests.DoubletLinksTests.UInt32CRUDTest
-  name: UInt32CRUDTest()
-  href: api/Platform.Data.Doublets.Tests.DoubletLinksTests.html#Platform_Data_Doublets_Tests_DoubletLinksTests_UInt32CRUDTest
-  commentId: M:Platform.Data.Doublets.Tests.DoubletLinksTests.UInt32CRUDTest
-  fullName: Platform.Data.Doublets.Tests.DoubletLinksTests.UInt32CRUDTest()
-  nameWithType: DoubletLinksTests.UInt32CRUDTest()
-- uid: Platform.Data.Doublets.Tests.DoubletLinksTests.UInt32CRUDTest*
-  name: UInt32CRUDTest
-  href: api/Platform.Data.Doublets.Tests.DoubletLinksTests.html#Platform_Data_Doublets_Tests_DoubletLinksTests_UInt32CRUDTest_
-  commentId: Overload:Platform.Data.Doublets.Tests.DoubletLinksTests.UInt32CRUDTest
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Tests.DoubletLinksTests.UInt32CRUDTest
-  nameWithType: DoubletLinksTests.UInt32CRUDTest
-- uid: Platform.Data.Doublets.Tests.DoubletLinksTests.UInt32RawNumbersCRUDTest
-  name: UInt32RawNumbersCRUDTest()
-  href: api/Platform.Data.Doublets.Tests.DoubletLinksTests.html#Platform_Data_Doublets_Tests_DoubletLinksTests_UInt32RawNumbersCRUDTest
-  commentId: M:Platform.Data.Doublets.Tests.DoubletLinksTests.UInt32RawNumbersCRUDTest
-  fullName: Platform.Data.Doublets.Tests.DoubletLinksTests.UInt32RawNumbersCRUDTest()
-  nameWithType: DoubletLinksTests.UInt32RawNumbersCRUDTest()
-- uid: Platform.Data.Doublets.Tests.DoubletLinksTests.UInt32RawNumbersCRUDTest*
-  name: UInt32RawNumbersCRUDTest
-  href: api/Platform.Data.Doublets.Tests.DoubletLinksTests.html#Platform_Data_Doublets_Tests_DoubletLinksTests_UInt32RawNumbersCRUDTest_
-  commentId: Overload:Platform.Data.Doublets.Tests.DoubletLinksTests.UInt32RawNumbersCRUDTest
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Tests.DoubletLinksTests.UInt32RawNumbersCRUDTest
-  nameWithType: DoubletLinksTests.UInt32RawNumbersCRUDTest
-- uid: Platform.Data.Doublets.Tests.DoubletLinksTests.UInt64CRUDTest
-  name: UInt64CRUDTest()
-  href: api/Platform.Data.Doublets.Tests.DoubletLinksTests.html#Platform_Data_Doublets_Tests_DoubletLinksTests_UInt64CRUDTest
-  commentId: M:Platform.Data.Doublets.Tests.DoubletLinksTests.UInt64CRUDTest
-  fullName: Platform.Data.Doublets.Tests.DoubletLinksTests.UInt64CRUDTest()
-  nameWithType: DoubletLinksTests.UInt64CRUDTest()
-- uid: Platform.Data.Doublets.Tests.DoubletLinksTests.UInt64CRUDTest*
-  name: UInt64CRUDTest
-  href: api/Platform.Data.Doublets.Tests.DoubletLinksTests.html#Platform_Data_Doublets_Tests_DoubletLinksTests_UInt64CRUDTest_
-  commentId: Overload:Platform.Data.Doublets.Tests.DoubletLinksTests.UInt64CRUDTest
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Tests.DoubletLinksTests.UInt64CRUDTest
-  nameWithType: DoubletLinksTests.UInt64CRUDTest
-- uid: Platform.Data.Doublets.Tests.DoubletLinksTests.UInt64RawNumbersCRUDTest
-  name: UInt64RawNumbersCRUDTest()
-  href: api/Platform.Data.Doublets.Tests.DoubletLinksTests.html#Platform_Data_Doublets_Tests_DoubletLinksTests_UInt64RawNumbersCRUDTest
-  commentId: M:Platform.Data.Doublets.Tests.DoubletLinksTests.UInt64RawNumbersCRUDTest
-  fullName: Platform.Data.Doublets.Tests.DoubletLinksTests.UInt64RawNumbersCRUDTest()
-  nameWithType: DoubletLinksTests.UInt64RawNumbersCRUDTest()
-- uid: Platform.Data.Doublets.Tests.DoubletLinksTests.UInt64RawNumbersCRUDTest*
-  name: UInt64RawNumbersCRUDTest
-  href: api/Platform.Data.Doublets.Tests.DoubletLinksTests.html#Platform_Data_Doublets_Tests_DoubletLinksTests_UInt64RawNumbersCRUDTest_
-  commentId: Overload:Platform.Data.Doublets.Tests.DoubletLinksTests.UInt64RawNumbersCRUDTest
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Tests.DoubletLinksTests.UInt64RawNumbersCRUDTest
-  nameWithType: DoubletLinksTests.UInt64RawNumbersCRUDTest
-- uid: Platform.Data.Doublets.Tests.DoubletLinksTests.UInt8CRUDTest
-  name: UInt8CRUDTest()
-  href: api/Platform.Data.Doublets.Tests.DoubletLinksTests.html#Platform_Data_Doublets_Tests_DoubletLinksTests_UInt8CRUDTest
-  commentId: M:Platform.Data.Doublets.Tests.DoubletLinksTests.UInt8CRUDTest
-  fullName: Platform.Data.Doublets.Tests.DoubletLinksTests.UInt8CRUDTest()
-  nameWithType: DoubletLinksTests.UInt8CRUDTest()
-- uid: Platform.Data.Doublets.Tests.DoubletLinksTests.UInt8CRUDTest*
-  name: UInt8CRUDTest
-  href: api/Platform.Data.Doublets.Tests.DoubletLinksTests.html#Platform_Data_Doublets_Tests_DoubletLinksTests_UInt8CRUDTest_
-  commentId: Overload:Platform.Data.Doublets.Tests.DoubletLinksTests.UInt8CRUDTest
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Tests.DoubletLinksTests.UInt8CRUDTest
-  nameWithType: DoubletLinksTests.UInt8CRUDTest
-- uid: Platform.Data.Doublets.Tests.DoubletLinksTests.UInt8RawNumbersCRUDTest
-  name: UInt8RawNumbersCRUDTest()
-  href: api/Platform.Data.Doublets.Tests.DoubletLinksTests.html#Platform_Data_Doublets_Tests_DoubletLinksTests_UInt8RawNumbersCRUDTest
-  commentId: M:Platform.Data.Doublets.Tests.DoubletLinksTests.UInt8RawNumbersCRUDTest
-  fullName: Platform.Data.Doublets.Tests.DoubletLinksTests.UInt8RawNumbersCRUDTest()
-  nameWithType: DoubletLinksTests.UInt8RawNumbersCRUDTest()
-- uid: Platform.Data.Doublets.Tests.DoubletLinksTests.UInt8RawNumbersCRUDTest*
-  name: UInt8RawNumbersCRUDTest
-  href: api/Platform.Data.Doublets.Tests.DoubletLinksTests.html#Platform_Data_Doublets_Tests_DoubletLinksTests_UInt8RawNumbersCRUDTest_
-  commentId: Overload:Platform.Data.Doublets.Tests.DoubletLinksTests.UInt8RawNumbersCRUDTest
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Tests.DoubletLinksTests.UInt8RawNumbersCRUDTest
-  nameWithType: DoubletLinksTests.UInt8RawNumbersCRUDTest
 - uid: Platform.Data.Doublets.Tests.EqualityTests
   name: EqualityTests
   href: api/Platform.Data.Doublets.Tests.EqualityTests.html
@@ -7385,272 +7343,51 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Tests.EqualityTests.UInt64EqualityComparer.GetHashCode
   nameWithType: EqualityTests.UInt64EqualityComparer.GetHashCode
-- uid: Platform.Data.Doublets.Tests.LinksTests
-  name: LinksTests
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html
-  commentId: T:Platform.Data.Doublets.Tests.LinksTests
-  fullName: Platform.Data.Doublets.Tests.LinksTests
-  nameWithType: LinksTests
-- uid: Platform.Data.Doublets.Tests.LinksTests.BasicTransactionLogTest
-  name: BasicTransactionLogTest()
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_BasicTransactionLogTest
-  commentId: M:Platform.Data.Doublets.Tests.LinksTests.BasicTransactionLogTest
-  fullName: Platform.Data.Doublets.Tests.LinksTests.BasicTransactionLogTest()
-  nameWithType: LinksTests.BasicTransactionLogTest()
-- uid: Platform.Data.Doublets.Tests.LinksTests.BasicTransactionLogTest*
-  name: BasicTransactionLogTest
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_BasicTransactionLogTest_
-  commentId: Overload:Platform.Data.Doublets.Tests.LinksTests.BasicTransactionLogTest
+- uid: Platform.Data.Doublets.Tests.GenericLinksTests
+  name: GenericLinksTests
+  href: api/Platform.Data.Doublets.Tests.GenericLinksTests.html
+  commentId: T:Platform.Data.Doublets.Tests.GenericLinksTests
+  fullName: Platform.Data.Doublets.Tests.GenericLinksTests
+  nameWithType: GenericLinksTests
+- uid: Platform.Data.Doublets.Tests.GenericLinksTests.CRUDTest
+  name: CRUDTest()
+  href: api/Platform.Data.Doublets.Tests.GenericLinksTests.html#Platform_Data_Doublets_Tests_GenericLinksTests_CRUDTest
+  commentId: M:Platform.Data.Doublets.Tests.GenericLinksTests.CRUDTest
+  fullName: Platform.Data.Doublets.Tests.GenericLinksTests.CRUDTest()
+  nameWithType: GenericLinksTests.CRUDTest()
+- uid: Platform.Data.Doublets.Tests.GenericLinksTests.CRUDTest*
+  name: CRUDTest
+  href: api/Platform.Data.Doublets.Tests.GenericLinksTests.html#Platform_Data_Doublets_Tests_GenericLinksTests_CRUDTest_
+  commentId: Overload:Platform.Data.Doublets.Tests.GenericLinksTests.CRUDTest
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Tests.LinksTests.BasicTransactionLogTest
-  nameWithType: LinksTests.BasicTransactionLogTest
-- uid: Platform.Data.Doublets.Tests.LinksTests.Bug1Test
-  name: Bug1Test()
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_Bug1Test
-  commentId: M:Platform.Data.Doublets.Tests.LinksTests.Bug1Test
-  fullName: Platform.Data.Doublets.Tests.LinksTests.Bug1Test()
-  nameWithType: LinksTests.Bug1Test()
-- uid: Platform.Data.Doublets.Tests.LinksTests.Bug1Test*
-  name: Bug1Test
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_Bug1Test_
-  commentId: Overload:Platform.Data.Doublets.Tests.LinksTests.Bug1Test
+  fullName: Platform.Data.Doublets.Tests.GenericLinksTests.CRUDTest
+  nameWithType: GenericLinksTests.CRUDTest
+- uid: Platform.Data.Doublets.Tests.GenericLinksTests.MultipleRandomCreationsAndDeletionsTest
+  name: MultipleRandomCreationsAndDeletionsTest()
+  href: api/Platform.Data.Doublets.Tests.GenericLinksTests.html#Platform_Data_Doublets_Tests_GenericLinksTests_MultipleRandomCreationsAndDeletionsTest
+  commentId: M:Platform.Data.Doublets.Tests.GenericLinksTests.MultipleRandomCreationsAndDeletionsTest
+  fullName: Platform.Data.Doublets.Tests.GenericLinksTests.MultipleRandomCreationsAndDeletionsTest()
+  nameWithType: GenericLinksTests.MultipleRandomCreationsAndDeletionsTest()
+- uid: Platform.Data.Doublets.Tests.GenericLinksTests.MultipleRandomCreationsAndDeletionsTest*
+  name: MultipleRandomCreationsAndDeletionsTest
+  href: api/Platform.Data.Doublets.Tests.GenericLinksTests.html#Platform_Data_Doublets_Tests_GenericLinksTests_MultipleRandomCreationsAndDeletionsTest_
+  commentId: Overload:Platform.Data.Doublets.Tests.GenericLinksTests.MultipleRandomCreationsAndDeletionsTest
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Tests.LinksTests.Bug1Test
-  nameWithType: LinksTests.Bug1Test
-- uid: Platform.Data.Doublets.Tests.LinksTests.CascadeUpdateTest
-  name: CascadeUpdateTest()
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_CascadeUpdateTest
-  commentId: M:Platform.Data.Doublets.Tests.LinksTests.CascadeUpdateTest
-  fullName: Platform.Data.Doublets.Tests.LinksTests.CascadeUpdateTest()
-  nameWithType: LinksTests.CascadeUpdateTest()
-- uid: Platform.Data.Doublets.Tests.LinksTests.CascadeUpdateTest*
-  name: CascadeUpdateTest
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_CascadeUpdateTest_
-  commentId: Overload:Platform.Data.Doublets.Tests.LinksTests.CascadeUpdateTest
+  fullName: Platform.Data.Doublets.Tests.GenericLinksTests.MultipleRandomCreationsAndDeletionsTest
+  nameWithType: GenericLinksTests.MultipleRandomCreationsAndDeletionsTest
+- uid: Platform.Data.Doublets.Tests.GenericLinksTests.RawNumbersCRUDTest
+  name: RawNumbersCRUDTest()
+  href: api/Platform.Data.Doublets.Tests.GenericLinksTests.html#Platform_Data_Doublets_Tests_GenericLinksTests_RawNumbersCRUDTest
+  commentId: M:Platform.Data.Doublets.Tests.GenericLinksTests.RawNumbersCRUDTest
+  fullName: Platform.Data.Doublets.Tests.GenericLinksTests.RawNumbersCRUDTest()
+  nameWithType: GenericLinksTests.RawNumbersCRUDTest()
+- uid: Platform.Data.Doublets.Tests.GenericLinksTests.RawNumbersCRUDTest*
+  name: RawNumbersCRUDTest
+  href: api/Platform.Data.Doublets.Tests.GenericLinksTests.html#Platform_Data_Doublets_Tests_GenericLinksTests_RawNumbersCRUDTest_
+  commentId: Overload:Platform.Data.Doublets.Tests.GenericLinksTests.RawNumbersCRUDTest
   isSpec: "True"
-  fullName: Platform.Data.Doublets.Tests.LinksTests.CascadeUpdateTest
-  nameWithType: LinksTests.CascadeUpdateTest
-- uid: Platform.Data.Doublets.Tests.LinksTests.Create64BillionLinks
-  name: Create64BillionLinks()
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_Create64BillionLinks
-  commentId: M:Platform.Data.Doublets.Tests.LinksTests.Create64BillionLinks
-  fullName: Platform.Data.Doublets.Tests.LinksTests.Create64BillionLinks()
-  nameWithType: LinksTests.Create64BillionLinks()
-- uid: Platform.Data.Doublets.Tests.LinksTests.Create64BillionLinks*
-  name: Create64BillionLinks
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_Create64BillionLinks_
-  commentId: Overload:Platform.Data.Doublets.Tests.LinksTests.Create64BillionLinks
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Tests.LinksTests.Create64BillionLinks
-  nameWithType: LinksTests.Create64BillionLinks
-- uid: Platform.Data.Doublets.Tests.LinksTests.Create64BillionLinksInParallel
-  name: Create64BillionLinksInParallel()
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_Create64BillionLinksInParallel
-  commentId: M:Platform.Data.Doublets.Tests.LinksTests.Create64BillionLinksInParallel
-  fullName: Platform.Data.Doublets.Tests.LinksTests.Create64BillionLinksInParallel()
-  nameWithType: LinksTests.Create64BillionLinksInParallel()
-- uid: Platform.Data.Doublets.Tests.LinksTests.Create64BillionLinksInParallel*
-  name: Create64BillionLinksInParallel
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_Create64BillionLinksInParallel_
-  commentId: Overload:Platform.Data.Doublets.Tests.LinksTests.Create64BillionLinksInParallel
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Tests.LinksTests.Create64BillionLinksInParallel
-  nameWithType: LinksTests.Create64BillionLinksInParallel
-- uid: Platform.Data.Doublets.Tests.LinksTests.GetSourceInParallel
-  name: GetSourceInParallel()
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_GetSourceInParallel
-  commentId: M:Platform.Data.Doublets.Tests.LinksTests.GetSourceInParallel
-  fullName: Platform.Data.Doublets.Tests.LinksTests.GetSourceInParallel()
-  nameWithType: LinksTests.GetSourceInParallel()
-- uid: Platform.Data.Doublets.Tests.LinksTests.GetSourceInParallel*
-  name: GetSourceInParallel
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_GetSourceInParallel_
-  commentId: Overload:Platform.Data.Doublets.Tests.LinksTests.GetSourceInParallel
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Tests.LinksTests.GetSourceInParallel
-  nameWithType: LinksTests.GetSourceInParallel
-- uid: Platform.Data.Doublets.Tests.LinksTests.GetSourceTest
-  name: GetSourceTest()
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_GetSourceTest
-  commentId: M:Platform.Data.Doublets.Tests.LinksTests.GetSourceTest
-  fullName: Platform.Data.Doublets.Tests.LinksTests.GetSourceTest()
-  nameWithType: LinksTests.GetSourceTest()
-- uid: Platform.Data.Doublets.Tests.LinksTests.GetSourceTest*
-  name: GetSourceTest
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_GetSourceTest_
-  commentId: Overload:Platform.Data.Doublets.Tests.LinksTests.GetSourceTest
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Tests.LinksTests.GetSourceTest
-  nameWithType: LinksTests.GetSourceTest
-- uid: Platform.Data.Doublets.Tests.LinksTests.MultipleCreateAndDeleteTest
-  name: MultipleCreateAndDeleteTest()
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_MultipleCreateAndDeleteTest
-  commentId: M:Platform.Data.Doublets.Tests.LinksTests.MultipleCreateAndDeleteTest
-  fullName: Platform.Data.Doublets.Tests.LinksTests.MultipleCreateAndDeleteTest()
-  nameWithType: LinksTests.MultipleCreateAndDeleteTest()
-- uid: Platform.Data.Doublets.Tests.LinksTests.MultipleCreateAndDeleteTest*
-  name: MultipleCreateAndDeleteTest
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_MultipleCreateAndDeleteTest_
-  commentId: Overload:Platform.Data.Doublets.Tests.LinksTests.MultipleCreateAndDeleteTest
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Tests.LinksTests.MultipleCreateAndDeleteTest
-  nameWithType: LinksTests.MultipleCreateAndDeleteTest
-- uid: Platform.Data.Doublets.Tests.LinksTests.PathsTest
-  name: PathsTest()
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_PathsTest
-  commentId: M:Platform.Data.Doublets.Tests.LinksTests.PathsTest
-  fullName: Platform.Data.Doublets.Tests.LinksTests.PathsTest()
-  nameWithType: LinksTests.PathsTest()
-- uid: Platform.Data.Doublets.Tests.LinksTests.PathsTest*
-  name: PathsTest
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_PathsTest_
-  commentId: Overload:Platform.Data.Doublets.Tests.LinksTests.PathsTest
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Tests.LinksTests.PathsTest
-  nameWithType: LinksTests.PathsTest
-- uid: Platform.Data.Doublets.Tests.LinksTests.RecursiveStringFormattingTest
-  name: RecursiveStringFormattingTest()
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_RecursiveStringFormattingTest
-  commentId: M:Platform.Data.Doublets.Tests.LinksTests.RecursiveStringFormattingTest
-  fullName: Platform.Data.Doublets.Tests.LinksTests.RecursiveStringFormattingTest()
-  nameWithType: LinksTests.RecursiveStringFormattingTest()
-- uid: Platform.Data.Doublets.Tests.LinksTests.RecursiveStringFormattingTest*
-  name: RecursiveStringFormattingTest
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_RecursiveStringFormattingTest_
-  commentId: Overload:Platform.Data.Doublets.Tests.LinksTests.RecursiveStringFormattingTest
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Tests.LinksTests.RecursiveStringFormattingTest
-  nameWithType: LinksTests.RecursiveStringFormattingTest
-- uid: Platform.Data.Doublets.Tests.LinksTests.TestDeletionOfAllLinks
-  name: TestDeletionOfAllLinks()
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_TestDeletionOfAllLinks
-  commentId: M:Platform.Data.Doublets.Tests.LinksTests.TestDeletionOfAllLinks
-  fullName: Platform.Data.Doublets.Tests.LinksTests.TestDeletionOfAllLinks()
-  nameWithType: LinksTests.TestDeletionOfAllLinks()
-- uid: Platform.Data.Doublets.Tests.LinksTests.TestDeletionOfAllLinks*
-  name: TestDeletionOfAllLinks
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_TestDeletionOfAllLinks_
-  commentId: Overload:Platform.Data.Doublets.Tests.LinksTests.TestDeletionOfAllLinks
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Tests.LinksTests.TestDeletionOfAllLinks
-  nameWithType: LinksTests.TestDeletionOfAllLinks
-- uid: Platform.Data.Doublets.Tests.LinksTests.TestEach
-  name: TestEach()
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_TestEach
-  commentId: M:Platform.Data.Doublets.Tests.LinksTests.TestEach
-  fullName: Platform.Data.Doublets.Tests.LinksTests.TestEach()
-  nameWithType: LinksTests.TestEach()
-- uid: Platform.Data.Doublets.Tests.LinksTests.TestEach*
-  name: TestEach
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_TestEach_
-  commentId: Overload:Platform.Data.Doublets.Tests.LinksTests.TestEach
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Tests.LinksTests.TestEach
-  nameWithType: LinksTests.TestEach
-- uid: Platform.Data.Doublets.Tests.LinksTests.TestGetTarget
-  name: TestGetTarget()
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_TestGetTarget
-  commentId: M:Platform.Data.Doublets.Tests.LinksTests.TestGetTarget
-  fullName: Platform.Data.Doublets.Tests.LinksTests.TestGetTarget()
-  nameWithType: LinksTests.TestGetTarget()
-- uid: Platform.Data.Doublets.Tests.LinksTests.TestGetTarget*
-  name: TestGetTarget
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_TestGetTarget_
-  commentId: Overload:Platform.Data.Doublets.Tests.LinksTests.TestGetTarget
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Tests.LinksTests.TestGetTarget
-  nameWithType: LinksTests.TestGetTarget
-- uid: Platform.Data.Doublets.Tests.LinksTests.TestGetTargetInParallel
-  name: TestGetTargetInParallel()
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_TestGetTargetInParallel
-  commentId: M:Platform.Data.Doublets.Tests.LinksTests.TestGetTargetInParallel
-  fullName: Platform.Data.Doublets.Tests.LinksTests.TestGetTargetInParallel()
-  nameWithType: LinksTests.TestGetTargetInParallel()
-- uid: Platform.Data.Doublets.Tests.LinksTests.TestGetTargetInParallel*
-  name: TestGetTargetInParallel
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_TestGetTargetInParallel_
-  commentId: Overload:Platform.Data.Doublets.Tests.LinksTests.TestGetTargetInParallel
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Tests.LinksTests.TestGetTargetInParallel
-  nameWithType: LinksTests.TestGetTargetInParallel
-- uid: Platform.Data.Doublets.Tests.LinksTests.TestRandomSearchAll
-  name: TestRandomSearchAll()
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_TestRandomSearchAll
-  commentId: M:Platform.Data.Doublets.Tests.LinksTests.TestRandomSearchAll
-  fullName: Platform.Data.Doublets.Tests.LinksTests.TestRandomSearchAll()
-  nameWithType: LinksTests.TestRandomSearchAll()
-- uid: Platform.Data.Doublets.Tests.LinksTests.TestRandomSearchAll*
-  name: TestRandomSearchAll
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_TestRandomSearchAll_
-  commentId: Overload:Platform.Data.Doublets.Tests.LinksTests.TestRandomSearchAll
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Tests.LinksTests.TestRandomSearchAll
-  nameWithType: LinksTests.TestRandomSearchAll
-- uid: Platform.Data.Doublets.Tests.LinksTests.TransactionAutoRevertedTest
-  name: TransactionAutoRevertedTest()
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_TransactionAutoRevertedTest
-  commentId: M:Platform.Data.Doublets.Tests.LinksTests.TransactionAutoRevertedTest
-  fullName: Platform.Data.Doublets.Tests.LinksTests.TransactionAutoRevertedTest()
-  nameWithType: LinksTests.TransactionAutoRevertedTest()
-- uid: Platform.Data.Doublets.Tests.LinksTests.TransactionAutoRevertedTest*
-  name: TransactionAutoRevertedTest
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_TransactionAutoRevertedTest_
-  commentId: Overload:Platform.Data.Doublets.Tests.LinksTests.TransactionAutoRevertedTest
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Tests.LinksTests.TransactionAutoRevertedTest
-  nameWithType: LinksTests.TransactionAutoRevertedTest
-- uid: Platform.Data.Doublets.Tests.LinksTests.TransactionCommit
-  name: TransactionCommit()
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_TransactionCommit
-  commentId: M:Platform.Data.Doublets.Tests.LinksTests.TransactionCommit
-  fullName: Platform.Data.Doublets.Tests.LinksTests.TransactionCommit()
-  nameWithType: LinksTests.TransactionCommit()
-- uid: Platform.Data.Doublets.Tests.LinksTests.TransactionCommit*
-  name: TransactionCommit
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_TransactionCommit_
-  commentId: Overload:Platform.Data.Doublets.Tests.LinksTests.TransactionCommit
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Tests.LinksTests.TransactionCommit
-  nameWithType: LinksTests.TransactionCommit
-- uid: Platform.Data.Doublets.Tests.LinksTests.TransactionDamage
-  name: TransactionDamage()
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_TransactionDamage
-  commentId: M:Platform.Data.Doublets.Tests.LinksTests.TransactionDamage
-  fullName: Platform.Data.Doublets.Tests.LinksTests.TransactionDamage()
-  nameWithType: LinksTests.TransactionDamage()
-- uid: Platform.Data.Doublets.Tests.LinksTests.TransactionDamage*
-  name: TransactionDamage
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_TransactionDamage_
-  commentId: Overload:Platform.Data.Doublets.Tests.LinksTests.TransactionDamage
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Tests.LinksTests.TransactionDamage
-  nameWithType: LinksTests.TransactionDamage
-- uid: Platform.Data.Doublets.Tests.LinksTests.TransactionUserCodeErrorNoDataSavedTest
-  name: TransactionUserCodeErrorNoDataSavedTest()
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_TransactionUserCodeErrorNoDataSavedTest
-  commentId: M:Platform.Data.Doublets.Tests.LinksTests.TransactionUserCodeErrorNoDataSavedTest
-  fullName: Platform.Data.Doublets.Tests.LinksTests.TransactionUserCodeErrorNoDataSavedTest()
-  nameWithType: LinksTests.TransactionUserCodeErrorNoDataSavedTest()
-- uid: Platform.Data.Doublets.Tests.LinksTests.TransactionUserCodeErrorNoDataSavedTest*
-  name: TransactionUserCodeErrorNoDataSavedTest
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_TransactionUserCodeErrorNoDataSavedTest_
-  commentId: Overload:Platform.Data.Doublets.Tests.LinksTests.TransactionUserCodeErrorNoDataSavedTest
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Tests.LinksTests.TransactionUserCodeErrorNoDataSavedTest
-  nameWithType: LinksTests.TransactionUserCodeErrorNoDataSavedTest
-- uid: Platform.Data.Doublets.Tests.LinksTests.TransactionUserCodeErrorSomeDataSavedTest
-  name: TransactionUserCodeErrorSomeDataSavedTest()
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_TransactionUserCodeErrorSomeDataSavedTest
-  commentId: M:Platform.Data.Doublets.Tests.LinksTests.TransactionUserCodeErrorSomeDataSavedTest
-  fullName: Platform.Data.Doublets.Tests.LinksTests.TransactionUserCodeErrorSomeDataSavedTest()
-  nameWithType: LinksTests.TransactionUserCodeErrorSomeDataSavedTest()
-- uid: Platform.Data.Doublets.Tests.LinksTests.TransactionUserCodeErrorSomeDataSavedTest*
-  name: TransactionUserCodeErrorSomeDataSavedTest
-  href: api/Platform.Data.Doublets.Tests.LinksTests.html#Platform_Data_Doublets_Tests_LinksTests_TransactionUserCodeErrorSomeDataSavedTest_
-  commentId: Overload:Platform.Data.Doublets.Tests.LinksTests.TransactionUserCodeErrorSomeDataSavedTest
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Tests.LinksTests.TransactionUserCodeErrorSomeDataSavedTest
-  nameWithType: LinksTests.TransactionUserCodeErrorSomeDataSavedTest
+  fullName: Platform.Data.Doublets.Tests.GenericLinksTests.RawNumbersCRUDTest
+  nameWithType: GenericLinksTests.RawNumbersCRUDTest
 - uid: Platform.Data.Doublets.Tests.OptimalVariantSequenceTests
   name: OptimalVariantSequenceTests
   href: api/Platform.Data.Doublets.Tests.OptimalVariantSequenceTests.html
@@ -8064,6 +7801,326 @@ references:
   commentId: F:Platform.Data.Doublets.Tests.TempLinksTestScope.TempTransactionLogFilename
   fullName: Platform.Data.Doublets.Tests.TempLinksTestScope.TempTransactionLogFilename
   nameWithType: TempLinksTestScope.TempTransactionLogFilename
+- uid: Platform.Data.Doublets.Tests.TestExtensions
+  name: TestExtensions
+  href: api/Platform.Data.Doublets.Tests.TestExtensions.html
+  commentId: T:Platform.Data.Doublets.Tests.TestExtensions
+  fullName: Platform.Data.Doublets.Tests.TestExtensions
+  nameWithType: TestExtensions
+- uid: Platform.Data.Doublets.Tests.TestExtensions.TestCRUDOperations*
+  name: TestCRUDOperations
+  href: api/Platform.Data.Doublets.Tests.TestExtensions.html#Platform_Data_Doublets_Tests_TestExtensions_TestCRUDOperations_
+  commentId: Overload:Platform.Data.Doublets.Tests.TestExtensions.TestCRUDOperations
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Tests.TestExtensions.TestCRUDOperations
+  nameWithType: TestExtensions.TestCRUDOperations
+- uid: Platform.Data.Doublets.Tests.TestExtensions.TestCRUDOperations``1(Platform.Data.Doublets.ILinks{``0})
+  name: TestCRUDOperations<T>(ILinks<T>)
+  href: api/Platform.Data.Doublets.Tests.TestExtensions.html#Platform_Data_Doublets_Tests_TestExtensions_TestCRUDOperations__1_Platform_Data_Doublets_ILinks___0__
+  commentId: M:Platform.Data.Doublets.Tests.TestExtensions.TestCRUDOperations``1(Platform.Data.Doublets.ILinks{``0})
+  name.vb: TestCRUDOperations(Of T)(ILinks(Of T))
+  fullName: Platform.Data.Doublets.Tests.TestExtensions.TestCRUDOperations<T>(Platform.Data.Doublets.ILinks<T>)
+  fullName.vb: Platform.Data.Doublets.Tests.TestExtensions.TestCRUDOperations(Of T)(Platform.Data.Doublets.ILinks(Of T))
+  nameWithType: TestExtensions.TestCRUDOperations<T>(ILinks<T>)
+  nameWithType.vb: TestExtensions.TestCRUDOperations(Of T)(ILinks(Of T))
+- uid: Platform.Data.Doublets.Tests.TestExtensions.TestMultipleRandomCreationsAndDeletions*
+  name: TestMultipleRandomCreationsAndDeletions
+  href: api/Platform.Data.Doublets.Tests.TestExtensions.html#Platform_Data_Doublets_Tests_TestExtensions_TestMultipleRandomCreationsAndDeletions_
+  commentId: Overload:Platform.Data.Doublets.Tests.TestExtensions.TestMultipleRandomCreationsAndDeletions
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Tests.TestExtensions.TestMultipleRandomCreationsAndDeletions
+  nameWithType: TestExtensions.TestMultipleRandomCreationsAndDeletions
+- uid: Platform.Data.Doublets.Tests.TestExtensions.TestMultipleRandomCreationsAndDeletions``1(Platform.Data.Doublets.ILinks{``0},System.Int32)
+  name: TestMultipleRandomCreationsAndDeletions<TLink>(ILinks<TLink>, Int32)
+  href: api/Platform.Data.Doublets.Tests.TestExtensions.html#Platform_Data_Doublets_Tests_TestExtensions_TestMultipleRandomCreationsAndDeletions__1_Platform_Data_Doublets_ILinks___0__System_Int32_
+  commentId: M:Platform.Data.Doublets.Tests.TestExtensions.TestMultipleRandomCreationsAndDeletions``1(Platform.Data.Doublets.ILinks{``0},System.Int32)
+  name.vb: TestMultipleRandomCreationsAndDeletions(Of TLink)(ILinks(Of TLink), Int32)
+  fullName: Platform.Data.Doublets.Tests.TestExtensions.TestMultipleRandomCreationsAndDeletions<TLink>(Platform.Data.Doublets.ILinks<TLink>, System.Int32)
+  fullName.vb: Platform.Data.Doublets.Tests.TestExtensions.TestMultipleRandomCreationsAndDeletions(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), System.Int32)
+  nameWithType: TestExtensions.TestMultipleRandomCreationsAndDeletions<TLink>(ILinks<TLink>, Int32)
+  nameWithType.vb: TestExtensions.TestMultipleRandomCreationsAndDeletions(Of TLink)(ILinks(Of TLink), Int32)
+- uid: Platform.Data.Doublets.Tests.TestExtensions.TestRawNumbersCRUDOperations*
+  name: TestRawNumbersCRUDOperations
+  href: api/Platform.Data.Doublets.Tests.TestExtensions.html#Platform_Data_Doublets_Tests_TestExtensions_TestRawNumbersCRUDOperations_
+  commentId: Overload:Platform.Data.Doublets.Tests.TestExtensions.TestRawNumbersCRUDOperations
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Tests.TestExtensions.TestRawNumbersCRUDOperations
+  nameWithType: TestExtensions.TestRawNumbersCRUDOperations
+- uid: Platform.Data.Doublets.Tests.TestExtensions.TestRawNumbersCRUDOperations``1(Platform.Data.Doublets.ILinks{``0})
+  name: TestRawNumbersCRUDOperations<T>(ILinks<T>)
+  href: api/Platform.Data.Doublets.Tests.TestExtensions.html#Platform_Data_Doublets_Tests_TestExtensions_TestRawNumbersCRUDOperations__1_Platform_Data_Doublets_ILinks___0__
+  commentId: M:Platform.Data.Doublets.Tests.TestExtensions.TestRawNumbersCRUDOperations``1(Platform.Data.Doublets.ILinks{``0})
+  name.vb: TestRawNumbersCRUDOperations(Of T)(ILinks(Of T))
+  fullName: Platform.Data.Doublets.Tests.TestExtensions.TestRawNumbersCRUDOperations<T>(Platform.Data.Doublets.ILinks<T>)
+  fullName.vb: Platform.Data.Doublets.Tests.TestExtensions.TestRawNumbersCRUDOperations(Of T)(Platform.Data.Doublets.ILinks(Of T))
+  nameWithType: TestExtensions.TestRawNumbersCRUDOperations<T>(ILinks<T>)
+  nameWithType.vb: TestExtensions.TestRawNumbersCRUDOperations(Of T)(ILinks(Of T))
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests
+  name: UInt64LinksTests
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html
+  commentId: T:Platform.Data.Doublets.Tests.UInt64LinksTests
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests
+  nameWithType: UInt64LinksTests
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.BasicTransactionLogTest
+  name: BasicTransactionLogTest()
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_BasicTransactionLogTest
+  commentId: M:Platform.Data.Doublets.Tests.UInt64LinksTests.BasicTransactionLogTest
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.BasicTransactionLogTest()
+  nameWithType: UInt64LinksTests.BasicTransactionLogTest()
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.BasicTransactionLogTest*
+  name: BasicTransactionLogTest
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_BasicTransactionLogTest_
+  commentId: Overload:Platform.Data.Doublets.Tests.UInt64LinksTests.BasicTransactionLogTest
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.BasicTransactionLogTest
+  nameWithType: UInt64LinksTests.BasicTransactionLogTest
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.Bug1Test
+  name: Bug1Test()
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_Bug1Test
+  commentId: M:Platform.Data.Doublets.Tests.UInt64LinksTests.Bug1Test
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.Bug1Test()
+  nameWithType: UInt64LinksTests.Bug1Test()
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.Bug1Test*
+  name: Bug1Test
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_Bug1Test_
+  commentId: Overload:Platform.Data.Doublets.Tests.UInt64LinksTests.Bug1Test
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.Bug1Test
+  nameWithType: UInt64LinksTests.Bug1Test
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.CascadeUpdateTest
+  name: CascadeUpdateTest()
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_CascadeUpdateTest
+  commentId: M:Platform.Data.Doublets.Tests.UInt64LinksTests.CascadeUpdateTest
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.CascadeUpdateTest()
+  nameWithType: UInt64LinksTests.CascadeUpdateTest()
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.CascadeUpdateTest*
+  name: CascadeUpdateTest
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_CascadeUpdateTest_
+  commentId: Overload:Platform.Data.Doublets.Tests.UInt64LinksTests.CascadeUpdateTest
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.CascadeUpdateTest
+  nameWithType: UInt64LinksTests.CascadeUpdateTest
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.Create64BillionLinks
+  name: Create64BillionLinks()
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_Create64BillionLinks
+  commentId: M:Platform.Data.Doublets.Tests.UInt64LinksTests.Create64BillionLinks
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.Create64BillionLinks()
+  nameWithType: UInt64LinksTests.Create64BillionLinks()
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.Create64BillionLinks*
+  name: Create64BillionLinks
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_Create64BillionLinks_
+  commentId: Overload:Platform.Data.Doublets.Tests.UInt64LinksTests.Create64BillionLinks
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.Create64BillionLinks
+  nameWithType: UInt64LinksTests.Create64BillionLinks
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.Create64BillionLinksInParallel
+  name: Create64BillionLinksInParallel()
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_Create64BillionLinksInParallel
+  commentId: M:Platform.Data.Doublets.Tests.UInt64LinksTests.Create64BillionLinksInParallel
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.Create64BillionLinksInParallel()
+  nameWithType: UInt64LinksTests.Create64BillionLinksInParallel()
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.Create64BillionLinksInParallel*
+  name: Create64BillionLinksInParallel
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_Create64BillionLinksInParallel_
+  commentId: Overload:Platform.Data.Doublets.Tests.UInt64LinksTests.Create64BillionLinksInParallel
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.Create64BillionLinksInParallel
+  nameWithType: UInt64LinksTests.Create64BillionLinksInParallel
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.GetSourceInParallel
+  name: GetSourceInParallel()
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_GetSourceInParallel
+  commentId: M:Platform.Data.Doublets.Tests.UInt64LinksTests.GetSourceInParallel
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.GetSourceInParallel()
+  nameWithType: UInt64LinksTests.GetSourceInParallel()
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.GetSourceInParallel*
+  name: GetSourceInParallel
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_GetSourceInParallel_
+  commentId: Overload:Platform.Data.Doublets.Tests.UInt64LinksTests.GetSourceInParallel
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.GetSourceInParallel
+  nameWithType: UInt64LinksTests.GetSourceInParallel
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.GetSourceTest
+  name: GetSourceTest()
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_GetSourceTest
+  commentId: M:Platform.Data.Doublets.Tests.UInt64LinksTests.GetSourceTest
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.GetSourceTest()
+  nameWithType: UInt64LinksTests.GetSourceTest()
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.GetSourceTest*
+  name: GetSourceTest
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_GetSourceTest_
+  commentId: Overload:Platform.Data.Doublets.Tests.UInt64LinksTests.GetSourceTest
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.GetSourceTest
+  nameWithType: UInt64LinksTests.GetSourceTest
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.MultipleCreateAndDeleteTest
+  name: MultipleCreateAndDeleteTest()
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_MultipleCreateAndDeleteTest
+  commentId: M:Platform.Data.Doublets.Tests.UInt64LinksTests.MultipleCreateAndDeleteTest
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.MultipleCreateAndDeleteTest()
+  nameWithType: UInt64LinksTests.MultipleCreateAndDeleteTest()
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.MultipleCreateAndDeleteTest*
+  name: MultipleCreateAndDeleteTest
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_MultipleCreateAndDeleteTest_
+  commentId: Overload:Platform.Data.Doublets.Tests.UInt64LinksTests.MultipleCreateAndDeleteTest
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.MultipleCreateAndDeleteTest
+  nameWithType: UInt64LinksTests.MultipleCreateAndDeleteTest
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.PathsTest
+  name: PathsTest()
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_PathsTest
+  commentId: M:Platform.Data.Doublets.Tests.UInt64LinksTests.PathsTest
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.PathsTest()
+  nameWithType: UInt64LinksTests.PathsTest()
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.PathsTest*
+  name: PathsTest
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_PathsTest_
+  commentId: Overload:Platform.Data.Doublets.Tests.UInt64LinksTests.PathsTest
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.PathsTest
+  nameWithType: UInt64LinksTests.PathsTest
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.RecursiveStringFormattingTest
+  name: RecursiveStringFormattingTest()
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_RecursiveStringFormattingTest
+  commentId: M:Platform.Data.Doublets.Tests.UInt64LinksTests.RecursiveStringFormattingTest
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.RecursiveStringFormattingTest()
+  nameWithType: UInt64LinksTests.RecursiveStringFormattingTest()
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.RecursiveStringFormattingTest*
+  name: RecursiveStringFormattingTest
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_RecursiveStringFormattingTest_
+  commentId: Overload:Platform.Data.Doublets.Tests.UInt64LinksTests.RecursiveStringFormattingTest
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.RecursiveStringFormattingTest
+  nameWithType: UInt64LinksTests.RecursiveStringFormattingTest
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.TestDeletionOfAllLinks
+  name: TestDeletionOfAllLinks()
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_TestDeletionOfAllLinks
+  commentId: M:Platform.Data.Doublets.Tests.UInt64LinksTests.TestDeletionOfAllLinks
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.TestDeletionOfAllLinks()
+  nameWithType: UInt64LinksTests.TestDeletionOfAllLinks()
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.TestDeletionOfAllLinks*
+  name: TestDeletionOfAllLinks
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_TestDeletionOfAllLinks_
+  commentId: Overload:Platform.Data.Doublets.Tests.UInt64LinksTests.TestDeletionOfAllLinks
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.TestDeletionOfAllLinks
+  nameWithType: UInt64LinksTests.TestDeletionOfAllLinks
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.TestEach
+  name: TestEach()
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_TestEach
+  commentId: M:Platform.Data.Doublets.Tests.UInt64LinksTests.TestEach
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.TestEach()
+  nameWithType: UInt64LinksTests.TestEach()
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.TestEach*
+  name: TestEach
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_TestEach_
+  commentId: Overload:Platform.Data.Doublets.Tests.UInt64LinksTests.TestEach
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.TestEach
+  nameWithType: UInt64LinksTests.TestEach
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.TestGetTarget
+  name: TestGetTarget()
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_TestGetTarget
+  commentId: M:Platform.Data.Doublets.Tests.UInt64LinksTests.TestGetTarget
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.TestGetTarget()
+  nameWithType: UInt64LinksTests.TestGetTarget()
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.TestGetTarget*
+  name: TestGetTarget
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_TestGetTarget_
+  commentId: Overload:Platform.Data.Doublets.Tests.UInt64LinksTests.TestGetTarget
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.TestGetTarget
+  nameWithType: UInt64LinksTests.TestGetTarget
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.TestGetTargetInParallel
+  name: TestGetTargetInParallel()
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_TestGetTargetInParallel
+  commentId: M:Platform.Data.Doublets.Tests.UInt64LinksTests.TestGetTargetInParallel
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.TestGetTargetInParallel()
+  nameWithType: UInt64LinksTests.TestGetTargetInParallel()
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.TestGetTargetInParallel*
+  name: TestGetTargetInParallel
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_TestGetTargetInParallel_
+  commentId: Overload:Platform.Data.Doublets.Tests.UInt64LinksTests.TestGetTargetInParallel
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.TestGetTargetInParallel
+  nameWithType: UInt64LinksTests.TestGetTargetInParallel
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.TestRandomSearchAll
+  name: TestRandomSearchAll()
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_TestRandomSearchAll
+  commentId: M:Platform.Data.Doublets.Tests.UInt64LinksTests.TestRandomSearchAll
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.TestRandomSearchAll()
+  nameWithType: UInt64LinksTests.TestRandomSearchAll()
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.TestRandomSearchAll*
+  name: TestRandomSearchAll
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_TestRandomSearchAll_
+  commentId: Overload:Platform.Data.Doublets.Tests.UInt64LinksTests.TestRandomSearchAll
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.TestRandomSearchAll
+  nameWithType: UInt64LinksTests.TestRandomSearchAll
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.TransactionAutoRevertedTest
+  name: TransactionAutoRevertedTest()
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_TransactionAutoRevertedTest
+  commentId: M:Platform.Data.Doublets.Tests.UInt64LinksTests.TransactionAutoRevertedTest
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.TransactionAutoRevertedTest()
+  nameWithType: UInt64LinksTests.TransactionAutoRevertedTest()
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.TransactionAutoRevertedTest*
+  name: TransactionAutoRevertedTest
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_TransactionAutoRevertedTest_
+  commentId: Overload:Platform.Data.Doublets.Tests.UInt64LinksTests.TransactionAutoRevertedTest
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.TransactionAutoRevertedTest
+  nameWithType: UInt64LinksTests.TransactionAutoRevertedTest
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.TransactionCommit
+  name: TransactionCommit()
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_TransactionCommit
+  commentId: M:Platform.Data.Doublets.Tests.UInt64LinksTests.TransactionCommit
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.TransactionCommit()
+  nameWithType: UInt64LinksTests.TransactionCommit()
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.TransactionCommit*
+  name: TransactionCommit
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_TransactionCommit_
+  commentId: Overload:Platform.Data.Doublets.Tests.UInt64LinksTests.TransactionCommit
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.TransactionCommit
+  nameWithType: UInt64LinksTests.TransactionCommit
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.TransactionDamage
+  name: TransactionDamage()
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_TransactionDamage
+  commentId: M:Platform.Data.Doublets.Tests.UInt64LinksTests.TransactionDamage
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.TransactionDamage()
+  nameWithType: UInt64LinksTests.TransactionDamage()
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.TransactionDamage*
+  name: TransactionDamage
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_TransactionDamage_
+  commentId: Overload:Platform.Data.Doublets.Tests.UInt64LinksTests.TransactionDamage
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.TransactionDamage
+  nameWithType: UInt64LinksTests.TransactionDamage
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.TransactionUserCodeErrorNoDataSavedTest
+  name: TransactionUserCodeErrorNoDataSavedTest()
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_TransactionUserCodeErrorNoDataSavedTest
+  commentId: M:Platform.Data.Doublets.Tests.UInt64LinksTests.TransactionUserCodeErrorNoDataSavedTest
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.TransactionUserCodeErrorNoDataSavedTest()
+  nameWithType: UInt64LinksTests.TransactionUserCodeErrorNoDataSavedTest()
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.TransactionUserCodeErrorNoDataSavedTest*
+  name: TransactionUserCodeErrorNoDataSavedTest
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_TransactionUserCodeErrorNoDataSavedTest_
+  commentId: Overload:Platform.Data.Doublets.Tests.UInt64LinksTests.TransactionUserCodeErrorNoDataSavedTest
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.TransactionUserCodeErrorNoDataSavedTest
+  nameWithType: UInt64LinksTests.TransactionUserCodeErrorNoDataSavedTest
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.TransactionUserCodeErrorSomeDataSavedTest
+  name: TransactionUserCodeErrorSomeDataSavedTest()
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_TransactionUserCodeErrorSomeDataSavedTest
+  commentId: M:Platform.Data.Doublets.Tests.UInt64LinksTests.TransactionUserCodeErrorSomeDataSavedTest
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.TransactionUserCodeErrorSomeDataSavedTest()
+  nameWithType: UInt64LinksTests.TransactionUserCodeErrorSomeDataSavedTest()
+- uid: Platform.Data.Doublets.Tests.UInt64LinksTests.TransactionUserCodeErrorSomeDataSavedTest*
+  name: TransactionUserCodeErrorSomeDataSavedTest
+  href: api/Platform.Data.Doublets.Tests.UInt64LinksTests.html#Platform_Data_Doublets_Tests_UInt64LinksTests_TransactionUserCodeErrorSomeDataSavedTest_
+  commentId: Overload:Platform.Data.Doublets.Tests.UInt64LinksTests.TransactionUserCodeErrorSomeDataSavedTest
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Tests.UInt64LinksTests.TransactionUserCodeErrorSomeDataSavedTest
+  nameWithType: UInt64LinksTests.TransactionUserCodeErrorSomeDataSavedTest
 - uid: Platform.Data.Doublets.Tests.UnaryNumberConvertersTests
   name: UnaryNumberConvertersTests
   href: api/Platform.Data.Doublets.Tests.UnaryNumberConvertersTests.html
