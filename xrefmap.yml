@@ -5869,7 +5869,14 @@ references:
 - uid: Platform.Data.Doublets.Sequences.Sequences.Links
   name: Links
   href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_Links
-  commentId: F:Platform.Data.Doublets.Sequences.Sequences.Links
+  commentId: P:Platform.Data.Doublets.Sequences.Sequences.Links
+  fullName: Platform.Data.Doublets.Sequences.Sequences.Links
+  nameWithType: Sequences.Links
+- uid: Platform.Data.Doublets.Sequences.Sequences.Links*
+  name: Links
+  href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_Links_
+  commentId: Overload:Platform.Data.Doublets.Sequences.Sequences.Links
+  isSpec: "True"
   fullName: Platform.Data.Doublets.Sequences.Sequences.Links
   nameWithType: Sequences.Links
 - uid: Platform.Data.Doublets.Sequences.Sequences.Matcher
@@ -6055,7 +6062,14 @@ references:
 - uid: Platform.Data.Doublets.Sequences.Sequences.Options
   name: Options
   href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_Options
-  commentId: F:Platform.Data.Doublets.Sequences.Sequences.Options
+  commentId: P:Platform.Data.Doublets.Sequences.Sequences.Options
+  fullName: Platform.Data.Doublets.Sequences.Sequences.Options
+  nameWithType: Sequences.Options
+- uid: Platform.Data.Doublets.Sequences.Sequences.Options*
+  name: Options
+  href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_Options_
+  commentId: Overload:Platform.Data.Doublets.Sequences.Sequences.Options
+  isSpec: "True"
   fullName: Platform.Data.Doublets.Sequences.Sequences.Options
   nameWithType: Sequences.Options
 - uid: Platform.Data.Doublets.Sequences.Sequences.PatternMatcher
@@ -6160,12 +6174,6 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Sequences.Sequences.SafeFormatSequence
   nameWithType: Sequences.SafeFormatSequence
-- uid: Platform.Data.Doublets.Sequences.Sequences.Sync
-  name: Sync
-  href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_Sync
-  commentId: F:Platform.Data.Doublets.Sequences.Sequences.Sync
-  fullName: Platform.Data.Doublets.Sequences.Sequences.Sync
-  nameWithType: Sequences.Sync
 - uid: Platform.Data.Doublets.Sequences.Sequences.TestSimplify
   name: TestSimplify()
   href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_TestSimplify
