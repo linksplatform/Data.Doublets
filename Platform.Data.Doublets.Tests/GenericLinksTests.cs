@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.InteropServices;
 using Xunit;
 using Platform.Reflection;
 using Platform.Memory;
