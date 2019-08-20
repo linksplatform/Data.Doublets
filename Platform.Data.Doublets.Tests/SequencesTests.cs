@@ -76,12 +76,10 @@ namespace Platform.Data.Doublets.Tests
         //        for (var i = 0; i < sequenceLength; i++)
         //            sequence[i] = links.Create(itself, itself);
 
-
         //        SequencesOptions o = new SequencesOptions();
 
         // TODO: Из числа в bool значения o.UseSequenceMarker = ((value & 1) != 0)
         //        o.
-
 
         //        var sequences = new Sequences(links);
 
@@ -433,7 +431,6 @@ namespace Platform.Data.Doublets.Tests
 ...
 
 [![анимация](https://raw.githubusercontent.com/Konard/LinksPlatform/master/doc/Intro/intro-animation-500.gif ""анимация"")](https://raw.githubusercontent.com/Konard/LinksPlatform/master/doc/Intro/intro-animation-500.gif)";
-
 
         private static readonly string _exampleLoremIpsumText =
             @"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
