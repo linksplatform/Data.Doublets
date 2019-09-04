@@ -3,6 +3,7 @@ using Platform.Scopes;
 using Platform.Memory;
 using Platform.Data.Doublets.ResizableDirectMemory;
 using Platform.Data.Doublets.Decorators;
+using Platform.Reflection;
 
 namespace Platform.Data.Doublets.Tests
 {
@@ -38,6 +39,16 @@ namespace Platform.Data.Doublets.Tests
             {
                 var instance = scope.Use<UInt64Links>();
                 Assert.IsType<UInt64Links>(instance);
+            }
+        }
+
+        [Fact]
+        public static void TypeParametersTest()
+        {
+            using (var scope = new Scope<Types<HeapResizableDirectMemory, ResizableDirectMemoryLinks<ulong>>>())
+            {
+                var links = scope.Use<ILinks<ulong>>();
+                Assert.IsType<ResizableDirectMemoryLinks<ulong>>(links);
             }
         }
     }

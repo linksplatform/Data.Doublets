@@ -45,7 +45,7 @@ namespace Platform.Data.Doublets.Decorators
                 return nullConstant;
             }
             // TODO: Looks like this is a common type of exceptions linked with restrictions support
-            if (restrictions.Count != 3)
+            if (substitution.Count != 3)
             {
                 throw new NotSupportedException();
             }
@@ -53,11 +53,11 @@ namespace Platform.Data.Doublets.Decorators
             var updatedLink = restrictions[indexPartConstant];
             this.EnsureLinkExists(updatedLink, $"{nameof(restrictions)}[{nameof(indexPartConstant)}]");
             var sourcePartConstant = constants.SourcePart;
-            var newSource = restrictions[sourcePartConstant];
-            this.EnsureLinkIsItselfOrExists(newSource, $"{nameof(restrictions)}[{nameof(sourcePartConstant)}]");
+            var newSource = substitution[sourcePartConstant];
+            this.EnsureLinkIsItselfOrExists(newSource, $"{nameof(substitution)}[{nameof(sourcePartConstant)}]");
             var targetPartConstant = constants.TargetPart;
-            var newTarget = restrictions[targetPartConstant];
-            this.EnsureLinkIsItselfOrExists(newTarget, $"{nameof(restrictions)}[{nameof(targetPartConstant)}]");
+            var newTarget = substitution[targetPartConstant];
+            this.EnsureLinkIsItselfOrExists(newTarget, $"{nameof(substitution)}[{nameof(targetPartConstant)}]");
             var existedLink = nullConstant;
             var itselfConstant = constants.Itself;
             if (newSource != itselfConstant && newTarget != itselfConstant)

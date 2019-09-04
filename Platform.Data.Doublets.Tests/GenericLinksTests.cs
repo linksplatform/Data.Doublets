@@ -7,7 +7,7 @@ using Platform.Data.Doublets.ResizableDirectMemory;
 
 namespace Platform.Data.Doublets.Tests
 {
-    public static class GenericLinksTests
+    public unsafe static class GenericLinksTests
     {
         [Fact]
         public static void CRUDTest()
@@ -45,10 +45,13 @@ namespace Platform.Data.Doublets.Tests
             //{
             //    action(scope.Use<ILinks<TLink>>());
             //}
-            using(var memory = new HeapResizableDirectMemory())
-            using(var links = new ResizableDirectMemoryLinks<TLink>(memory))
+            using (var memory = new HeapResizableDirectMemory())
             {
-                action(links);
+                Unsafe.MemoryBlock.Zero((void*)memory.Pointer, memory.ReservedCapacity); // Bug workaround
+                using (var links = new ResizableDirectMemoryLinks<TLink>(memory))
+                {
+                    action(links);
+                }
             }
         }
     }
