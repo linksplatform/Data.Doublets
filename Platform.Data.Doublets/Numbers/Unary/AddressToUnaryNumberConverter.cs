@@ -21,9 +21,9 @@ namespace Platform.Data.Doublets.Numbers.Unary
             var nullConstant = Links.Constants.Null;
             var one = Integer<TLink>.One;
             var target = nullConstant;
-            for (int i = 0; !_equalityComparer.Equals(number, default) && i < Type<TLink>.BitsLength; i++)
+            for (int i = 0; !_equalityComparer.Equals(number, default) && i < NumericType<TLink>.BitsLength; i++)
             {
-                if (_equalityComparer.Equals(Arithmetic.And(number, one), one))
+                if (_equalityComparer.Equals(Bit.And(number, one), one))
                 {
                     target = _equalityComparer.Equals(target, nullConstant)
                         ? _powerOf2ToUnaryNumberConverter.Convert(i)

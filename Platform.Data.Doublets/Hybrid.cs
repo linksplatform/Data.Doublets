@@ -3,7 +3,7 @@ using System.Reflection;
 using Platform.Reflection;
 using Platform.Converters;
 using Platform.Exceptions;
-using Platform.Reflection.Sigil;
+using System.Reflection.Emit;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -20,12 +20,13 @@ namespace Platform.Data.Doublets
             {
                 Ensure.Always.IsUnsignedInteger<T>();
                 emiter.LoadArgument(0);
-                var signedVersion = Type<T>.SignedVersion;
-                var signedVersionField = typeof(Type<T>).GetTypeInfo().GetField("SignedVersion", BindingFlags.Static | BindingFlags.Public);
-                emiter.LoadField(signedVersionField);
+                var signedVersion = NumericType<T>.SignedVersion;
+                var signedVersionField = typeof(NumericType<T>).GetTypeInfo().GetField("SignedVersion", BindingFlags.Static | BindingFlags.Public);
+                //emiter.LoadField(signedVersionField);
+                emiter.Emit(OpCodes.Ldsfld, signedVersionField);
                 var changeTypeMethod = typeof(Convert).GetTypeInfo().GetMethod("ChangeType", Types<object, Type>.Array);
                 emiter.Call(changeTypeMethod);
-                emiter.UnboxAny(signedVersion);
+                emiter.UnboxValue(signedVersion);
                 var absMethod = typeof(Math).GetTypeInfo().GetMethod("Abs", new[] { signedVersion });
                 emiter.Call(absMethod);
                 var unsignedMethod = typeof(To).GetTypeInfo().GetMethod("Unsigned", new[] { signedVersion });
@@ -36,12 +37,13 @@ namespace Platform.Data.Doublets
             {
                 Ensure.Always.IsUnsignedInteger<T>();
                 emiter.LoadArgument(0);
-                var signedVersion = Type<T>.SignedVersion;
-                var signedVersionField = typeof(Type<T>).GetTypeInfo().GetField("SignedVersion", BindingFlags.Static | BindingFlags.Public);
-                emiter.LoadField(signedVersionField);
+                var signedVersion = NumericType<T>.SignedVersion;
+                var signedVersionField = typeof(NumericType<T>).GetTypeInfo().GetField("SignedVersion", BindingFlags.Static | BindingFlags.Public);
+                //emiter.LoadField(signedVersionField);
+                emiter.Emit(OpCodes.Ldsfld, signedVersionField);
                 var changeTypeMethod = typeof(Convert).GetTypeInfo().GetMethod("ChangeType", Types<object, Type>.Array);
                 emiter.Call(changeTypeMethod);
-                emiter.UnboxAny(signedVersion);
+                emiter.UnboxValue(signedVersion);
                 var absMethod = typeof(Math).GetTypeInfo().GetMethod("Abs", new[] { signedVersion });
                 emiter.Call(absMethod);
                 var negateMethod = typeof(Platform.Numbers.Math).GetTypeInfo().GetMethod("Negate").MakeGenericMethod(signedVersion);
@@ -64,7 +66,7 @@ namespace Platform.Data.Doublets
             Value = value;
         }
 
-        public Hybrid(object value) => Value = To.UnsignedAs<T>(Convert.ChangeType(value, Type<T>.SignedVersion));
+        public Hybrid(object value) => Value = To.UnsignedAs<T>(Convert.ChangeType(value, NumericType<T>.SignedVersion));
 
         public Hybrid(object value, bool isExternal)
         {
