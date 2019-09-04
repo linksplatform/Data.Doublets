@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Platform.Interfaces;
 using Platform.Reflection;
 using Platform.Numbers;
-using System.Runtime.CompilerServices;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
