@@ -31,6 +31,7 @@ namespace Platform.Data.Doublets.Sequences
         public IConverter<IList<TLink>, TLink> LinksToSequenceConverter { get; set; }
         public ISequenceIndex<TLink> Index { get; set; }
         public ISequenceWalker<TLink> Walker { get; set; }
+        public bool ReadFullSequence { get; set; }
 
         // TODO: Реализовать компактификацию при чтении
         //public bool EnforceSingleSequenceVersionOnRead { get; set; }

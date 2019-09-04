@@ -5,7 +5,6 @@ using Platform.Exceptions;
 using Platform.Ranges;
 using Platform.Singletons;
 using Platform.Collections.Lists;
-using Platform.Data.Constants;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -18,7 +17,7 @@ namespace Platform.Data.Doublets
     {
         public static readonly Link<TLink> Null = new Link<TLink>();
 
-        private static readonly LinksCombinedConstants<bool, TLink, int> _constants = Default<LinksCombinedConstants<bool, TLink, int>>.Instance;
+        private static readonly LinksConstants<TLink> _constants = Default<LinksConstants<TLink>>.Instance;
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
 
         private const int Length = 3;

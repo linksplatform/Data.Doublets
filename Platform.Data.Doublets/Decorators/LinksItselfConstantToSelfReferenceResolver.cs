@@ -30,6 +30,6 @@ namespace Platform.Data.Doublets.Decorators
             return Links.Each(handler, restrictions);
         }
 
-        public override TLink Update(IList<TLink> restrictions) => Links.Update(Links.ResolveConstantAsSelfReference(Constants.Itself, restrictions));
+        public override TLink Update(IList<TLink> restrictions, IList<TLink> substitution) => Links.Update(restrictions, Links.ResolveConstantAsSelfReference(Constants.Itself, restrictions, substitution));
     }
 }

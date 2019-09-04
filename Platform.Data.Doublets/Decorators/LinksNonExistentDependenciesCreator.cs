@@ -13,11 +13,11 @@ namespace Platform.Data.Doublets.Decorators
     {
         public LinksNonExistentDependenciesCreator(ILinks<TLink> links) : base(links) { }
 
-        public override TLink Update(IList<TLink> restrictions)
+        public override TLink Update(IList<TLink> restrictions, IList<TLink> substitution)
         {
             var constants = Constants;
-            Links.EnsureCreated(restrictions[constants.SourcePart], restrictions[constants.TargetPart]);
-            return Links.Update(restrictions);
+            Links.EnsureCreated(substitution[constants.SourcePart], substitution[constants.TargetPart]);
+            return Links.Update(restrictions, substitution);
         }
     }
 }

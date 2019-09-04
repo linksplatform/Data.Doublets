@@ -7,7 +7,6 @@ using Platform.Collections;
 using Platform.Random;
 using Platform.IO;
 using Platform.Singletons;
-using Platform.Data.Constants;
 using Platform.Data.Doublets.Sequences;
 using Platform.Data.Doublets.Sequences.Frequencies.Cache;
 using Platform.Data.Doublets.Sequences.Frequencies.Counters;
@@ -18,7 +17,7 @@ namespace Platform.Data.Doublets.Tests
 {
     public static class SequencesTests
     {
-        private static readonly LinksCombinedConstants<bool, ulong, int> _constants = Default<LinksCombinedConstants<bool, ulong, int>>.Instance;
+        private static readonly LinksConstants<ulong> _constants = Default<LinksConstants<ulong>>.Instance;
 
         static SequencesTests()
         {
@@ -508,7 +507,7 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
                 var compressor2 = scope2.Sequences;
                 var compressor3 = scope3.Sequences;
 
-                var constants = Default<LinksCombinedConstants<bool, ulong, int>>.Instance;
+                var constants = Default<LinksConstants<ulong>>.Instance;
 
                 var sequences = compressor3;
                 //var meaningRoot = links.CreatePoint();
@@ -701,8 +700,8 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
 
                 for (int i = START; i < END; i++)
                 {
-                    var first = compressor1.Create(arrays[i]);
-                    var second = compressor1.Create(arrays[i]);
+                    var first = compressor1.Create(arrays[i].ConvertToRestrictionsValues());
+                    var second = compressor1.Create(arrays[i].ConvertToRestrictionsValues());
 
                     if (first == second)
                     {
@@ -814,7 +813,7 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
 
                 for (int i = START; i < END; i++)
                 {
-                    compressed1[i] = compressor1.Create(arrays[i]);
+                    compressed1[i] = compressor1.Create(arrays[i].ConvertToRestrictionsValues());
                 }
 
                 var elapsed1 = sw1.Elapsed;

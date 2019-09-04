@@ -14,7 +14,6 @@ using Platform.Timestamps;
 using Platform.Singletons;
 using Platform.Counters;
 using Platform.Diagnostics;
-using Platform.Data.Constants;
 using Platform.Data.Doublets.ResizableDirectMemory;
 using Platform.Data.Doublets.Decorators;
 
@@ -22,7 +21,7 @@ namespace Platform.Data.Doublets.Tests
 {
     public static class UInt64LinksTests
     {
-        private static readonly LinksCombinedConstants<bool, ulong, int> _constants = Default<LinksCombinedConstants<bool, ulong, int>>.Instance;
+        private static readonly LinksConstants<ulong> _constants = Default<LinksConstants<ulong>>.Instance;
 
         private const long Iterations = 10 * 1024;
 
@@ -738,7 +737,7 @@ namespace Platform.Data.Doublets.Tests
 
                 for (var i = iterations; i > 0; i--)
                 {
-                    var linksAddressRange = new Range<ulong>(_constants.MinPossibleIndex, maxLink);
+                    var linksAddressRange = new Range<ulong>(_constants.PossibleInnerReferencesRange.Minimum, maxLink);
 
                     var source = RandomHelpers.Default.NextUInt64(linksAddressRange);
                     var target = RandomHelpers.Default.NextUInt64(linksAddressRange);

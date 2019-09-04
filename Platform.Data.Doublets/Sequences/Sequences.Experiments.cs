@@ -67,7 +67,7 @@ namespace Platform.Data.Doublets.Sequences
                     for (var j = 0; j < right.Length; j++)
                     {
                         var variant = Links.Unsync.CreateAndUpdate(left[i], right[j]);
-                        if (variant == _constants.Null)
+                        if (variant == Constants.Null)
                         {
                             throw new NotImplementedException("Creation cancellation is not implemented.");
                         }
@@ -101,7 +101,7 @@ namespace Platform.Data.Doublets.Sequences
             if (sequence.Length == 2)
             {
                 var link = Links.Unsync.CreateAndUpdate(sequence[0], sequence[1]);
-                if (link == _constants.Null)
+                if (link == Constants.Null)
                 {
                     throw new NotImplementedException("Creation cancellation is not implemented.");
                 }
@@ -113,7 +113,7 @@ namespace Platform.Data.Doublets.Sequences
             for (var li = 0; li < innerSequenceLength; li++)
             {
                 var link = Links.Unsync.CreateAndUpdate(sequence[li], sequence[li + 1]);
-                if (link == _constants.Null)
+                if (link == Constants.Null)
                 {
                     throw new NotImplementedException("Creation cancellation is not implemented.");
                 }
@@ -166,7 +166,7 @@ namespace Platform.Data.Doublets.Sequences
                     }
                     var linkIndex = li;
                     ulong[] innerSequence = null;
-                    Links.Unsync.Each(left, right, doublet =>
+                    Links.Unsync.Each(doublet =>
                     {
                         if (innerSequence == null)
                         {
@@ -180,10 +180,10 @@ namespace Platform.Data.Doublets.Sequences
                                 innerSequence[isi] = sequence[isi + 1];
                             }
                         }
-                        innerSequence[linkIndex] = doublet;
+                        innerSequence[linkIndex] = doublet[Constants.IndexPart];
                         Each1(handler, innerSequence);
-                        return _constants.Continue;
-                    });
+                        return Constants.Continue;
+                    }, left, right);
                 }
             }
         }
@@ -193,30 +193,32 @@ namespace Platform.Data.Doublets.Sequences
             var visitedLinks = new HashSet<ulong>(); // Заменить на bitstring
             EachPartCore(link =>
             {
-                if (!visitedLinks.Contains(link))
+                var linkIndex = link[Constants.IndexPart];
+                if (!visitedLinks.Contains(linkIndex))
                 {
-                    visitedLinks.Add(link); // изучить почему случаются повторы
+                    visitedLinks.Add(linkIndex); // изучить почему случаются повторы
                 }
-                return true;
+                return Constants.Continue;
             }, sequence);
             return visitedLinks;
         }
 
-        public void EachPart(Func<ulong, bool> handler, params ulong[] sequence)
+        public void EachPart(Func<IList<LinkIndex>, LinkIndex> handler, params ulong[] sequence)
         {
             var visitedLinks = new HashSet<ulong>(); // Заменить на bitstring
             EachPartCore(link =>
             {
-                if (!visitedLinks.Contains(link))
+                var linkIndex = link[Constants.IndexPart];
+                if (!visitedLinks.Contains(linkIndex))
                 {
-                    visitedLinks.Add(link); // изучить почему случаются повторы
-                    return handler(link);
+                    visitedLinks.Add(linkIndex); // изучить почему случаются повторы
+                    return handler(new LinkAddress<LinkIndex>(linkIndex));
                 }
-                return true;
+                return Constants.Continue;
             }, sequence);
         }
 
-        private void EachPartCore(Func<ulong, bool> handler, params ulong[] sequence)
+        private void EachPartCore(Func<IList<LinkIndex>, LinkIndex> handler, params ulong[] sequence)
         {
             if (sequence.IsNullOrEmpty())
             {
@@ -228,11 +230,11 @@ namespace Platform.Data.Doublets.Sequences
                 var link = sequence[0];
                 if (link > 0)
                 {
-                    handler(link);
+                    handler(new LinkAddress<LinkIndex>(link));
                 }
                 else
                 {
-                    Links.Each(_constants.Any, _constants.Any, handler);
+                    Links.Each(Constants.Any, Constants.Any, handler);
                 }
             }
             else if (sequence.Length == 2)
@@ -240,23 +242,23 @@ namespace Platform.Data.Doublets.Sequences
                 //_links.Each(sequence[0], sequence[1], handler);
                 //  o_|      x_o ... 
                 // x_|        |___|
-                Links.Each(sequence[1], _constants.Any, doublet =>
+                Links.Each(sequence[1], Constants.Any, doublet =>
                 {
                     var match = Links.SearchOrDefault(sequence[0], doublet);
-                    if (match != _constants.Null)
+                    if (match != Constants.Null)
                     {
-                        handler(match);
+                        handler(new LinkAddress<LinkIndex>(match));
                     }
                     return true;
                 });
                 // |_x      ... x_o
                 //  |_o      |___|
-                Links.Each(_constants.Any, sequence[0], doublet =>
+                Links.Each(Constants.Any, sequence[0], doublet =>
                 {
                     var match = Links.SearchOrDefault(doublet, sequence[1]);
                     if (match != 0)
                     {
-                        handler(match);
+                        handler(new LinkAddress<LinkIndex>(match));
                     }
                     return true;
                 });
@@ -266,14 +268,13 @@ namespace Platform.Data.Doublets.Sequences
             }
             else
             {
-                // TODO: Implement other variants
-                return;
+                throw new NotImplementedException();
             }
         }
 
-        private void PartialStepRight(Action<ulong> handler, ulong left, ulong right)
+        private void PartialStepRight(Action<IList<LinkIndex>> handler, ulong left, ulong right)
         {
-            Links.Unsync.Each(_constants.Any, left, doublet =>
+            Links.Unsync.Each(Constants.Any, left, doublet =>
             {
                 StepRight(handler, doublet, right);
                 if (left != doublet)
@@ -284,16 +285,16 @@ namespace Platform.Data.Doublets.Sequences
             });
         }
 
-        private void StepRight(Action<ulong> handler, ulong left, ulong right)
+        private void StepRight(Action<IList<LinkIndex>> handler, ulong left, ulong right)
         {
-            Links.Unsync.Each(left, _constants.Any, rightStep =>
+            Links.Unsync.Each(left, Constants.Any, rightStep =>
             {
                 TryStepRightUp(handler, right, rightStep);
                 return true;
             });
         }
 
-        private void TryStepRightUp(Action<ulong> handler, ulong right, ulong stepFrom)
+        private void TryStepRightUp(Action<IList<LinkIndex>> handler, ulong right, ulong stepFrom)
         {
             var upStep = stepFrom;
             var firstSource = Links.Unsync.GetTarget(upStep);
@@ -304,14 +305,14 @@ namespace Platform.Data.Doublets.Sequences
             }
             if (firstSource == right)
             {
-                handler(stepFrom);
+                handler(new LinkAddress<LinkIndex>(stepFrom));
             }
         }
 
         // TODO: Test
-        private void PartialStepLeft(Action<ulong> handler, ulong left, ulong right)
+        private void PartialStepLeft(Action<IList<LinkIndex>> handler, ulong left, ulong right)
         {
-            Links.Unsync.Each(right, _constants.Any, doublet =>
+            Links.Unsync.Each(right, Constants.Any, doublet =>
             {
                 StepLeft(handler, left, doublet);
                 if (right != doublet)
@@ -322,16 +323,16 @@ namespace Platform.Data.Doublets.Sequences
             });
         }
 
-        private void StepLeft(Action<ulong> handler, ulong left, ulong right)
+        private void StepLeft(Action<IList<LinkIndex>> handler, ulong left, ulong right)
         {
-            Links.Unsync.Each(_constants.Any, right, leftStep =>
+            Links.Unsync.Each(Constants.Any, right, leftStep =>
             {
                 TryStepLeftUp(handler, left, leftStep);
                 return true;
             });
         }
 
-        private void TryStepLeftUp(Action<ulong> handler, ulong left, ulong stepFrom)
+        private void TryStepLeftUp(Action<IList<LinkIndex>> handler, ulong left, ulong stepFrom)
         {
             var upStep = stepFrom;
             var firstTarget = Links.Unsync.GetSource(upStep);
@@ -342,7 +343,7 @@ namespace Platform.Data.Doublets.Sequences
             }
             if (firstTarget == left)
             {
-                handler(stepFrom);
+                handler(new LinkAddress<LinkIndex>(stepFrom));
             }
         }
 
@@ -387,17 +388,18 @@ namespace Platform.Data.Doublets.Sequences
                     if (sequence.Length == 2)
                     {
                         var doublet = Links.SearchOrDefault(firstElement, sequence[1]);
-                        if (doublet != _constants.Null)
+                        if (doublet != Constants.Null)
                         {
                             results.Add(doublet);
                         }
                         return results;
                     }
                     var linksInSequence = new HashSet<ulong>(sequence);
-                    void handler(ulong result)
+                    void handler(IList<LinkIndex> result)
                     {
+                        var resultIndex = result[Links.Constants.IndexPart];
                         var filterPosition = 0;
-                        StopableSequenceWalker.WalkRight(result, Links.Unsync.GetSource, Links.Unsync.GetTarget,
+                        StopableSequenceWalker.WalkRight(resultIndex, Links.Unsync.GetSource, Links.Unsync.GetTarget,
                             x => linksInSequence.Contains(x) || Links.Unsync.GetTarget(x) == x, x =>
                             {
                                 if (filterPosition == sequence.Length)
@@ -416,7 +418,7 @@ namespace Platform.Data.Doublets.Sequences
                             });
                         if (filterPosition == sequence.Length)
                         {
-                            results.Add(result);
+                            results.Add(resultIndex);
                         }
                     }
                     if (sequence.Length >= 2)
@@ -454,7 +456,7 @@ namespace Platform.Data.Doublets.Sequences
                     if (sequence.Length == 2)
                     {
                         var doublet = Links.SearchOrDefault(firstElement, sequence[1]);
-                        if (doublet != _constants.Null)
+                        if (doublet != Constants.Null)
                         {
                             results.Add(doublet);
                         }
@@ -637,7 +639,7 @@ namespace Platform.Data.Doublets.Sequences
             });
         }
 
-        public bool GetAllPartiallyMatchingSequences2(Func<ulong, bool> handler, params ulong[] sequence)
+        public bool GetAllPartiallyMatchingSequences2(Func<IList<LinkIndex>, LinkIndex> handler, params ulong[] sequence)
         {
             return _sync.ExecuteReadOperation(() =>
             {
@@ -702,8 +704,8 @@ namespace Platform.Data.Doublets.Sequences
                     Links.EnsureEachLinkIsAnyOrExists(sequence);
                     var firstResults = new HashSet<ulong>();
                     var lastResults = new HashSet<ulong>();
-                    var first = sequence.First(x => x != _constants.Any);
-                    var last = sequence.Last(x => x != _constants.Any);
+                    var first = sequence.First(x => x != Constants.Any);
+                    var last = sequence.Last(x => x != Constants.Any);
                     AllUsagesCore(first, firstResults);
                     AllUsagesCore(last, lastResults);
                     firstResults.IntersectWith(lastResults);
@@ -762,18 +764,18 @@ namespace Platform.Data.Doublets.Sequences
         }
 
         // Does not work
-        public HashSet<ulong> GetAllPartiallyMatchingSequences5(HashSet<ulong> readAsElements, params ulong[] sequence)
-        {
-            var visited = new HashSet<ulong>();
-            var results = new HashSet<ulong>();
-            var matcher = new Matcher(this, sequence, visited, x => { results.Add(x); return true; }, readAsElements);
-            var last = sequence.Length - 1;
-            for (var i = 0; i < last; i++)
-            {
-                PartialStepRight(matcher.PartialMatch, sequence[i], sequence[i + 1]);
-            }
-            return results;
-        }
+        //public HashSet<ulong> GetAllPartiallyMatchingSequences5(HashSet<ulong> readAsElements, params ulong[] sequence)
+        //{
+        //    var visited = new HashSet<ulong>();
+        //    var results = new HashSet<ulong>();
+        //    var matcher = new Matcher(this, sequence, visited, x => { results.Add(x); return true; }, readAsElements);
+        //    var last = sequence.Length - 1;
+        //    for (var i = 0; i < last; i++)
+        //    {
+        //        PartialStepRight(matcher.PartialMatch, sequence[i], sequence[i + 1]);
+        //    }
+        //    return results;
+        //}
 
         public List<ulong> GetAllPartiallyMatchingSequences(params ulong[] sequence)
         {
@@ -894,8 +896,8 @@ namespace Platform.Data.Doublets.Sequences
                 }
                 return true;
             }
-            Links.Unsync.Each(link, _constants.Any, handler);
-            Links.Unsync.Each(_constants.Any, link, handler);
+            Links.Unsync.Each(link, Constants.Any, handler);
+            Links.Unsync.Each(Constants.Any, link, handler);
         }
 
         public HashSet<ulong> AllBottomUsages(ulong link)
@@ -919,14 +921,14 @@ namespace Platform.Data.Doublets.Sequences
                 }
                 return true;
             }
-            if (Links.Unsync.Count(_constants.Any, link) == 0)
+            if (Links.Unsync.Count(Constants.Any, link) == 0)
             {
                 usages.Add(link);
             }
             else
             {
-                Links.Unsync.Each(link, _constants.Any, handler);
-                Links.Unsync.Each(_constants.Any, link, handler);
+                Links.Unsync.Each(link, Constants.Any, handler);
+                Links.Unsync.Each(Constants.Any, link, handler);
             }
         }
 
@@ -944,13 +946,13 @@ namespace Platform.Data.Doublets.Sequences
             }
         }
 
-        private bool AllUsagesCore1(ulong link, HashSet<ulong> usages, Func<ulong, bool> outerHandler)
+        private bool AllUsagesCore1(ulong link, HashSet<ulong> usages, Func<IList<LinkIndex>, LinkIndex> outerHandler)
         {
             bool handler(ulong doublet)
             {
                 if (usages.Add(doublet))
                 {
-                    if (!outerHandler(doublet))
+                    if (outerHandler(new LinkAddress<LinkIndex>(doublet)) != Constants.Continue)
                     {
                         return false;
                     }
@@ -961,8 +963,8 @@ namespace Platform.Data.Doublets.Sequences
                 }
                 return true;
             }
-            return Links.Unsync.Each(link, _constants.Any, handler)
-                && Links.Unsync.Each(_constants.Any, link, handler);
+            return Links.Unsync.Each(link, Constants.Any, handler)
+                && Links.Unsync.Each(Constants.Any, link, handler);
         }
 
         public void CalculateAllUsages(ulong[] totals)
@@ -988,7 +990,7 @@ namespace Platform.Data.Doublets.Sequences
                 _totals = totals;
             }
 
-            public void Calculate() => _links.Each(_constants.Any, _constants.Any, CalculateCore);
+            public void Calculate() => _links.Each(_links.Constants.Any, _links.Constants.Any, CalculateCore);
 
             private bool CalculateCore(ulong link)
             {
@@ -1005,8 +1007,8 @@ namespace Platform.Data.Doublets.Sequences
                         }
                         return true;
                     }
-                    _links.Unsync.Each(link, _constants.Any, linkCalculator);
-                    _links.Unsync.Each(_constants.Any, link, linkCalculator);
+                    _links.Unsync.Each(link, _links.Constants.Any, linkCalculator);
+                    _links.Unsync.Each(_links.Constants.Any, link, linkCalculator);
                     _totals[link] = total;
                 }
                 return true;
@@ -1024,7 +1026,7 @@ namespace Platform.Data.Doublets.Sequences
                 _totals = totals;
             }
 
-            public void Calculate() => _links.Each(_constants.Any, _constants.Any, CalculateCore);
+            public void Calculate() => _links.Each(_links.Constants.Any, _links.Constants.Any, CalculateCore);
 
             private bool IsElement(ulong link)
             {
@@ -1111,8 +1113,8 @@ namespace Platform.Data.Doublets.Sequences
             {
                 if (_usages.Add(link))
                 {
-                    _links.Each(link, _constants.Any, Collect);
-                    _links.Each(_constants.Any, link, Collect);
+                    _links.Each(link, _links.Constants.Any, Collect);
+                    _links.Each(_links.Constants.Any, link, Collect);
                 }
                 return true;
             }
@@ -1136,7 +1138,7 @@ namespace Platform.Data.Doublets.Sequences
                 var linkIndex = _links.GetIndex(link);
                 if (_usages.Add(linkIndex))
                 {
-                    _links.Each(Collect, _constants.Any, linkIndex);
+                    _links.Each(Collect, _links.Constants.Any, linkIndex);
                 }
                 return _continue;
             }
@@ -1157,8 +1159,8 @@ namespace Platform.Data.Doublets.Sequences
             {
                 if (_usages.Add((long)link))
                 {
-                    _links.Each(link, _constants.Any, Collect);
-                    _links.Each(_constants.Any, link, Collect);
+                    _links.Each(link, _links.Constants.Any, Collect);
+                    _links.Each(_links.Constants.Any, link, Collect);
                 }
                 return true;
             }
@@ -1187,30 +1189,30 @@ namespace Platform.Data.Doublets.Sequences
                     {
                         _usages.Add(link);
                     }
-                    _links.Unsync.Each(link, _constants.Any, Collect);
-                    _links.Unsync.Each(_constants.Any, link, Collect);
+                    _links.Unsync.Each(link, _links.Constants.Any, Collect);
+                    _links.Unsync.Each(_links.Constants.Any, link, Collect);
                 }
                 return true;
             }
         }
 
-        private void CloseInnerConnections(Action<ulong> handler, ulong left, ulong right)
+        private void CloseInnerConnections(Action<IList<LinkIndex>> handler, ulong left, ulong right)
         {
             TryStepLeftUp(handler, left, right);
             TryStepRightUp(handler, right, left);
         }
 
-        private void AllCloseConnections(Action<ulong> handler, ulong left, ulong right)
+        private void AllCloseConnections(Action<IList<LinkIndex>> handler, ulong left, ulong right)
         {
             // Direct
             if (left == right)
             {
-                handler(left);
+                handler(new LinkAddress<LinkIndex>(left));
             }
             var doublet = Links.Unsync.SearchOrDefault(left, right);
-            if (doublet != _constants.Null)
+            if (doublet != Constants.Null)
             {
-                handler(doublet);
+                handler(new LinkAddress<LinkIndex>(doublet));
             }
             // Inner
             CloseInnerConnections(handler, left, right);
@@ -1231,16 +1233,17 @@ namespace Platform.Data.Doublets.Sequences
             AllUsagesCore(sequence[startAt], secondLinkUsages);
             secondLinkUsages.Add(sequence[startAt]);
             var matchings = new HashSet<ulong>();
+            var filler = new SetFiller<LinkIndex, LinkIndex>(matchings, Constants.Continue);
             //for (var i = 0; i < previousMatchings.Count; i++)
             foreach (var secondLinkUsage in secondLinkUsages)
             {
                 foreach (var previousMatching in previousMatchings)
                 {
                     //AllCloseConnections(matchings.AddAndReturnVoid, previousMatching, secondLinkUsage);
-                    StepRight(matchings.AddAndReturnVoid, previousMatching, secondLinkUsage);
-                    TryStepRightUp(matchings.AddAndReturnVoid, secondLinkUsage, previousMatching);
+                    StepRight(filler.AddFirstAndReturnConstant, previousMatching, secondLinkUsage);
+                    TryStepRightUp(filler.AddFirstAndReturnConstant, secondLinkUsage, previousMatching);
                     //PartialStepRight(matchings.AddAndReturnVoid, secondLinkUsage, sequence[startAt]); // почему-то эта ошибочная запись приводит к желаемым результам.
-                    PartialStepRight(matchings.AddAndReturnVoid, previousMatching, secondLinkUsage);
+                    PartialStepRight(filler.AddFirstAndReturnConstant, previousMatching, secondLinkUsage);
                 }
             }
             if (matchings.Count == 0)
@@ -1258,7 +1261,7 @@ namespace Platform.Data.Doublets.Sequences
             }
             for (var i = 0; i < sequence.Length; i++)
             {
-                if (sequence[i] != _constants.Any && sequence[i] != ZeroOrMany && !links.Exists(sequence[i]))
+                if (sequence[i] != links.Constants.Any && sequence[i] != ZeroOrMany && !links.Exists(sequence[i]))
                 {
                     throw new ArgumentLinkDoesNotExistsException<ulong>(sequence[i], $"patternSequence[{i}]");
                 }
@@ -1277,7 +1280,7 @@ namespace Platform.Data.Doublets.Sequences
                     var uniqueSequenceElements = new HashSet<ulong>();
                     for (var i = 0; i < patternSequence.Length; i++)
                     {
-                        if (patternSequence[i] != _constants.Any && patternSequence[i] != ZeroOrMany)
+                        if (patternSequence[i] != Constants.Any && patternSequence[i] != ZeroOrMany)
                         {
                             uniqueSequenceElements.Add(patternSequence[i]);
                         }
@@ -1542,7 +1545,7 @@ namespace Platform.Data.Doublets.Sequences
         {
             var result = new ulong[5];
             TryStepRight(startLink, rightLink, result, 0);
-            Links.Each(_constants.Any, startLink, couple =>
+            Links.Each(Constants.Any, startLink, couple =>
             {
                 if (couple != startLink)
                 {
@@ -1563,7 +1566,7 @@ namespace Platform.Data.Doublets.Sequences
         public bool TryStepRight(ulong startLink, ulong rightLink, ulong[] result, int offset)
         {
             var added = 0;
-            Links.Each(startLink, _constants.Any, couple =>
+            Links.Each(startLink, Constants.Any, couple =>
             {
                 if (couple != startLink)
                 {
@@ -1594,7 +1597,7 @@ namespace Platform.Data.Doublets.Sequences
         {
             var result = new ulong[5];
             TryStepLeft(startLink, leftLink, result, 0);
-            Links.Each(startLink, _constants.Any, couple =>
+            Links.Each(startLink, Constants.Any, couple =>
             {
                 if (couple != startLink)
                 {
@@ -1615,7 +1618,7 @@ namespace Platform.Data.Doublets.Sequences
         public bool TryStepLeft(ulong startLink, ulong leftLink, ulong[] result, int offset)
         {
             var added = 0;
-            Links.Each(_constants.Any, startLink, couple =>
+            Links.Each(Constants.Any, startLink, couple =>
             {
                 if (couple != startLink)
                 {
@@ -1680,7 +1683,7 @@ namespace Platform.Data.Doublets.Sequences
             {
                 _sequences = sequences;
                 _patternSequence = patternSequence;
-                _linksInSequence = new HashSet<LinkIndex>(patternSequence.Where(x => x != _constants.Any && x != ZeroOrMany));
+                _linksInSequence = new HashSet<LinkIndex>(patternSequence.Where(x => x != _sequences.Constants.Any && x != ZeroOrMany));
                 _results = results;
                 _pattern = CreateDetailedPattern();
             }
@@ -1709,7 +1712,7 @@ namespace Platform.Data.Doublets.Sequences
                 {
                     if (patternBlock.Type == PatternBlockType.Undefined)
                     {
-                        if (_patternSequence[i] == _constants.Any)
+                        if (_patternSequence[i] == _sequences.Constants.Any)
                         {
                             patternBlock.Type = PatternBlockType.Gap;
                             patternBlock.Start = 1;
@@ -1730,7 +1733,7 @@ namespace Platform.Data.Doublets.Sequences
                     }
                     else if (patternBlock.Type == PatternBlockType.Elements)
                     {
-                        if (_patternSequence[i] == _constants.Any)
+                        if (_patternSequence[i] == _sequences.Constants.Any)
                         {
                             pattern.Add(patternBlock);
                             patternBlock = new PatternBlock
@@ -1757,7 +1760,7 @@ namespace Platform.Data.Doublets.Sequences
                     }
                     else // patternBlock.Type == PatternBlockType.Gap
                     {
-                        if (_patternSequence[i] == _constants.Any)
+                        if (_patternSequence[i] == _sequences.Constants.Any)
                         {
                             patternBlock.Start++;
                             if (patternBlock.Stop < patternBlock.Start)

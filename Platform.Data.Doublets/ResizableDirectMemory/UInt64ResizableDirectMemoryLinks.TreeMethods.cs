@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Platform.Collections.Methods.Trees;
-using Platform.Data.Constants;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -14,7 +13,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         private abstract class LinksTreeMethodsBase : SizedAndThreadedAVLBalancedTreeMethods<ulong>
         {
             private readonly UInt64ResizableDirectMemoryLinks _memory;
-            private readonly LinksCombinedConstants<ulong, ulong, int> _constants;
+            private readonly LinksConstants<ulong> _constants;
             protected readonly Link* Links;
             protected readonly LinksHeader* Header;
 

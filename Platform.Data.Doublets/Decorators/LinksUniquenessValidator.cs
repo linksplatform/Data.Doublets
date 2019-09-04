@@ -8,10 +8,10 @@ namespace Platform.Data.Doublets.Decorators
     {
         public LinksUniquenessValidator(ILinks<TLink> links) : base(links) { }
 
-        public override TLink Update(IList<TLink> restrictions)
+        public override TLink Update(IList<TLink> restrictions, IList<TLink> substitution)
         {
-            Links.EnsureDoesNotExists(restrictions[Constants.SourcePart], restrictions[Constants.TargetPart]);
-            return Links.Update(restrictions);
+            Links.EnsureDoesNotExists(substitution[Constants.SourcePart], substitution[Constants.TargetPart]);
+            return Links.Update(restrictions, substitution);
         }
     }
 }

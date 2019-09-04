@@ -34,7 +34,7 @@ namespace Platform.Data.Doublets.Decorators
             }
         }
 
-        //public static readonly TLink NullConstant = Use<LinksCombinedConstants<TLink, TLink, int>>.Single.Null;
+        //public static readonly TLink NullConstant = Use<LinksConstants<TLink>>.Single.Null;
         //public static readonly IReadOnlyList<TLink> NullLink = new ReadOnlyCollection<TLink>(new List<TLink> { NullConstant, NullConstant, NullConstant });
 
         // TODO: Подумать о том, как реализовать древовидный Restriction и Substitution (Links-Expression)
@@ -222,7 +222,7 @@ namespace Platform.Data.Doublets.Decorators
                 }
                 else if (substitution.Count == 3)
                 {
-                    Links.Update(after);
+                    //Links.Create(after);
                 }
                 else
                 {
@@ -284,7 +284,7 @@ namespace Platform.Data.Doublets.Decorators
                     }
                     else if (substitution.Count == 3)
                     {
-                        Links.Update(after);
+                        //Links.Update(after);
                     }
                     else
                     {

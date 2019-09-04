@@ -2,14 +2,13 @@
 using Xunit;
 using Platform.Singletons;
 using Platform.Memory;
-using Platform.Data.Constants;
 using Platform.Data.Doublets.ResizableDirectMemory;
 
 namespace Platform.Data.Doublets.Tests
 {
     public static class ResizableDirectMemoryLinksTests
     {
-        private static readonly LinksCombinedConstants<ulong, ulong, int> _constants = Default<LinksCombinedConstants<ulong, ulong, int>>.Instance;
+        private static readonly LinksConstants<ulong> _constants = Default<LinksConstants<ulong>>.Instance;
 
         [Fact]
         public static void BasicFileMappedMemoryTest()

@@ -6,7 +6,6 @@ using Platform.Collections.Arrays;
 using Platform.Singletons;
 using Platform.Memory;
 using Platform.Data.Exceptions;
-using Platform.Data.Constants;
 
 #pragma warning disable 0649
 #pragma warning disable 169
@@ -73,7 +72,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         private id Total => _header->AllocatedLinks - _header->FreeLinks;
 
         // TODO: Дать возможность переопределять в конструкторе
-        public LinksCombinedConstants<id, id, int> Constants { get; }
+        public LinksConstants<id> Constants { get; }
 
         public UInt64ResizableDirectMemoryLinks(string address) : this(address, DefaultLinksSizeStep) { }
 
@@ -88,7 +87,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
 
         public UInt64ResizableDirectMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep)
         {
-            Constants = Default<LinksCombinedConstants<id, id, int>>.Instance;
+            Constants = Default<LinksConstants<id>>.Instance;
             _memory = memory;
             _memoryReservationStep = memoryReservationStep;
             if (memory.ReservedCapacity < memoryReservationStep)
@@ -351,9 +350,9 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         /// TODO: Возможно можно перемещать значения, если указан индекс, но значение существует в другом месте (но не в менеджере памяти, а в логике Links)
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public id Update(IList<id> values)
+        public id Update(IList<id> restrictions, IList<id> substitution)
         {
-            var linkIndex = values[Constants.IndexPart];
+            var linkIndex = restrictions[Constants.IndexPart];
             var link = GetLinkUnsafe(linkIndex);
             // Будет корректно работать только в том случае, если пространство выделенной связи предварительно заполнено нулями
             if (link->Source != Constants.Null)
@@ -372,8 +371,8 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
                 throw new Exception("One of the trees is broken.");
             }
 #endif
-            link->Source = values[Constants.SourcePart];
-            link->Target = values[Constants.TargetPart];
+            link->Source = substitution[Constants.SourcePart];
+            link->Target = substitution[Constants.TargetPart];
             if (link->Source != Constants.Null)
             {
                 _sourcesTreeMethods.Attach(new IntPtr(&_header->FirstAsSource), linkIndex);
@@ -406,7 +405,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         /// <remarks>
         /// TODO: Возможно нужно будет заполнение нулями, если внешнее API ими не заполняет пространство
         /// </remarks>
-        public id Create()
+        public id Create(IList<id> restritions)
         {
             var freeLink = _header->FirstFreeLink;
             if (freeLink != Constants.Null)
@@ -415,9 +414,10 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             }
             else
             {
-                if (_header->AllocatedLinks > Constants.MaxPossibleIndex)
+                var maximumPossibleInnerReference = Constants.PossibleInnerReferencesRange.Maximum;
+                if (_header->AllocatedLinks > maximumPossibleInnerReference)
                 {
-                    throw new LinksLimitReachedException(Constants.MaxPossibleIndex);
+                    throw new LinksLimitReachedException<id>(maximumPossibleInnerReference);
                 }
                 if (_header->AllocatedLinks >= _header->ReservedLinks - 1)
                 {
@@ -432,8 +432,9 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             return freeLink;
         }
 
-        public void Delete(id link)
+        public void Delete(IList<id> restrictions)
         {
+            var link = restrictions[Constants.IndexPart];
             if (link < _header->AllocatedLinks)
             {
                 _unusedLinksListMethods.AttachAsFirst(link);
@@ -481,7 +482,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private bool Exists(id link) => link >= Constants.MinPossibleIndex && link <= _header->AllocatedLinks && !IsUnusedLink(link);
+        private bool Exists(id link) => link >= Constants.PossibleInnerReferencesRange.Minimum && link <= _header->AllocatedLinks && !IsUnusedLink(link);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private bool IsUnusedLink(id link) => _header->FirstFreeLink == link

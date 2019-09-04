@@ -8,14 +8,15 @@ namespace Platform.Data.Doublets.Decorators
     {
         public LinksUsagesValidator(ILinks<TLink> links) : base(links) { }
 
-        public override TLink Update(IList<TLink> restrictions)
+        public override TLink Update(IList<TLink> restrictions, IList<TLink> substitution)
         {
             Links.EnsureNoUsages(restrictions[Constants.IndexPart]);
-            return Links.Update(restrictions);
+            return Links.Update(restrictions, substitution);
         }
 
-        public override void Delete(TLink link)
+        public override void Delete(IList<TLink> restrictions)
         {
+            var link = restrictions[Constants.IndexPart];
             Links.EnsureNoUsages(link);
             Links.Delete(link);
         }

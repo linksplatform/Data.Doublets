@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Platform.Data.Constants;
 using Platform.Data.Doublets;
 using Platform.Threading.Synchronization;
 
@@ -13,16 +12,16 @@ namespace Platform.Data.Doublets
     /// TODO: Try to unfold code of each method using IL generation for performance improvements.
     /// TODO: Or even to unfold multiple layers of implementations.
     /// </remarks>
-    public class SynchronizedLinks<T> : ISynchronizedLinks<T>
+    public class SynchronizedLinks<TLinkAddress> : ISynchronizedLinks<TLinkAddress>
     {
-        public LinksCombinedConstants<T, T, int> Constants { get; }
+        public LinksConstants<TLinkAddress> Constants { get; }
         public ISynchronization SyncRoot { get; }
-        public ILinks<T> Sync { get; }
-        public ILinks<T> Unsync { get; }
+        public ILinks<TLinkAddress> Sync { get; }
+        public ILinks<TLinkAddress> Unsync { get; }
 
-        public SynchronizedLinks(ILinks<T> links) : this(new ReaderWriterLockSynchronization(), links) { }
+        public SynchronizedLinks(ILinks<TLinkAddress> links) : this(new ReaderWriterLockSynchronization(), links) { }
 
-        public SynchronizedLinks(ISynchronization synchronization, ILinks<T> links)
+        public SynchronizedLinks(ISynchronization synchronization, ILinks<TLinkAddress> links)
         {
             SyncRoot = synchronization;
             Sync = this;
@@ -30,11 +29,11 @@ namespace Platform.Data.Doublets
             Constants = links.Constants;
         }
 
-        public T Count(IList<T> restriction) => SyncRoot.ExecuteReadOperation(restriction, Unsync.Count);
-        public T Each(Func<IList<T>, T> handler, IList<T> restrictions) => SyncRoot.ExecuteReadOperation(handler, restrictions, (handler1, restrictions1) => Unsync.Each(handler1, restrictions1));
-        public T Create() => SyncRoot.ExecuteWriteOperation(Unsync.Create);
-        public T Update(IList<T> restrictions) => SyncRoot.ExecuteWriteOperation(restrictions, Unsync.Update);
-        public void Delete(T link) => SyncRoot.ExecuteWriteOperation(link, Unsync.Delete);
+        public TLinkAddress Count(IList<TLinkAddress> restriction) => SyncRoot.ExecuteReadOperation(restriction, Unsync.Count);
+        public TLinkAddress Each(Func<IList<TLinkAddress>, TLinkAddress> handler, IList<TLinkAddress> restrictions) => SyncRoot.ExecuteReadOperation(handler, restrictions, (handler1, restrictions1) => Unsync.Each(handler1, restrictions1));
+        public TLinkAddress Create(IList<TLinkAddress> restrictions) => SyncRoot.ExecuteWriteOperation(restrictions, Unsync.Create);
+        public TLinkAddress Update(IList<TLinkAddress> restrictions, IList<TLinkAddress> substitution) => SyncRoot.ExecuteWriteOperation(restrictions, substitution, Unsync.Update);
+        public void Delete(IList<TLinkAddress> restrictions) => SyncRoot.ExecuteWriteOperation(restrictions, Unsync.Delete);
 
         //public T Trigger(IList<T> restriction, Func<IList<T>, IList<T>, T> matchedHandler, IList<T> substitution, Func<IList<T>, IList<T>, T> substitutedHandler)
         //{

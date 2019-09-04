@@ -8,7 +8,6 @@ using Platform.Collections.Segments;
 using Platform.Collections.Segments.Walkers;
 using Platform.Singletons;
 using Platform.Numbers;
-using Platform.Data.Sequences;
 using Platform.Data.Doublets.Unicode;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -18,7 +17,7 @@ namespace Platform.Data.Doublets.Sequences
     public class DuplicateSegmentsProvider<TLink> : DictionaryBasedDuplicateSegmentsWalkerBase<TLink>, IProvider<IList<KeyValuePair<IList<TLink>, IList<TLink>>>>
     {
         private readonly ILinks<TLink> _links;
-        private readonly ISequences<TLink> _sequences;
+        private readonly ILinks<TLink> _sequences;
         private HashSet<KeyValuePair<IList<TLink>, IList<TLink>>> _groups;
         private BitString _visited;
 
@@ -47,7 +46,7 @@ namespace Platform.Data.Doublets.Sequences
             }
         }
 
-        public DuplicateSegmentsProvider(ILinks<TLink> links, ISequences<TLink> sequences)
+        public DuplicateSegmentsProvider(ILinks<TLink> links, ILinks<TLink> sequences)
             : base(minimumStringSegmentLength: 2)
         {
             _links = links;
@@ -66,7 +65,8 @@ namespace Platform.Data.Doublets.Sequences
                 if (!_visited.Get(linkBitIndex))
                 {
                     var sequenceElements = new List<TLink>();
-                    _sequences.EachPart(sequenceElements.AddAndReturnTrue, linkIndex);
+                    var filler = new ListFiller<TLink, TLink>(sequenceElements, _sequences.Constants.Break);
+                    _sequences.Each(filler.AddAllValuesAndReturnConstant, new LinkAddress<TLink>(linkIndex));
                     if (sequenceElements.Count > 2)
                     {
                         WalkAll(sequenceElements);
@@ -103,10 +103,11 @@ namespace Platform.Data.Doublets.Sequences
             var readAsElement = new HashSet<TLink>();
             _sequences.Each(sequence =>
             {
-                duplicates.Add(sequence);
-                readAsElement.Add(sequence);
-                return true; // Continue
-            }, segment);
+                var sequenceIndex = sequence[_sequences.Constants.IndexPart];
+                duplicates.Add(sequenceIndex);
+                readAsElement.Add(sequenceIndex);
+                return _sequences.Constants.Continue;
+            }, segment.ConvertToRestrictionsValues());
             if (duplicates.Any(x => _visited.Get((Integer<TLink>)x)))
             {
                 return new List<TLink>();

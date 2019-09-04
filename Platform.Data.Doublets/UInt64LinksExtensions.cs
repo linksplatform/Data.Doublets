@@ -2,7 +2,6 @@
 using System.Text;
 using System.Collections.Generic;
 using Platform.Singletons;
-using Platform.Data.Constants;
 using Platform.Data.Exceptions;
 using Platform.Data.Doublets.Unicode;
 
@@ -12,7 +11,7 @@ namespace Platform.Data.Doublets
 {
     public static class UInt64LinksExtensions
     {
-        public static readonly LinksCombinedConstants<bool, ulong, int> Constants = Default<LinksCombinedConstants<bool, ulong, int>>.Instance;
+        public static readonly LinksConstants<ulong> Constants = Default<LinksConstants<ulong>>.Instance;
 
         public static void UseUnicode(this ILinks<ulong> links) => UnicodeMap.InitNew(links);
 

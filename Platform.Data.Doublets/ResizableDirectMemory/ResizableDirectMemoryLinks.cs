@@ -9,7 +9,6 @@ using Platform.Numbers;
 using Platform.Unsafe;
 using Platform.Memory;
 using Platform.Data.Exceptions;
-using Platform.Data.Constants;
 using static Platform.Numbers.Arithmetic;
 
 #pragma warning disable 0649
@@ -163,7 +162,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         /// </summary>
         private TLink Total => Subtract(LinksHeader.GetAllocatedLinks(_header), LinksHeader.GetFreeLinks(_header));
 
-        public LinksCombinedConstants<TLink, TLink, int> Constants { get; }
+        public LinksConstants<TLink> Constants { get; }
 
         public ResizableDirectMemoryLinks(string address)
             : this(address, DefaultLinksSizeStep)
@@ -187,7 +186,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
 
         public ResizableDirectMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep)
         {
-            Constants = Default<LinksCombinedConstants<TLink, TLink, int>>.Instance;
+            Constants = Default<LinksConstants<TLink>>.Instance;
             _memory = memory;
             _memoryReservationStep = memoryReservationStep;
             if (memory.ReservedCapacity < memoryReservationStep)
@@ -448,9 +447,9 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         /// TODO: Возможно можно перемещать значения, если указан индекс, но значение существует в другом месте (но не в менеджере памяти, а в логике Links)
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLink Update(IList<TLink> values)
+        public TLink Update(IList<TLink> restrictions, IList<TLink> substitution)
         {
-            var linkIndex = values[Constants.IndexPart];
+            var linkIndex = restrictions[Constants.IndexPart];
             var link = GetLinkUnsafe(linkIndex);
             // Будет корректно работать только в том случае, если пространство выделенной связи предварительно заполнено нулями
             if (!_equalityComparer.Equals(Link.GetSource(link), Constants.Null))
@@ -461,8 +460,8 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             {
                 _targetsTreeMethods.Detach(LinksHeader.GetFirstAsTargetPointer(_header), linkIndex);
             }
-            Link.SetSource(link, values[Constants.SourcePart]);
-            Link.SetTarget(link, values[Constants.TargetPart]);
+            Link.SetSource(link, substitution[Constants.SourcePart]);
+            Link.SetTarget(link, substitution[Constants.TargetPart]);
             if (!_equalityComparer.Equals(Link.GetSource(link), Constants.Null))
             {
                 _sourcesTreeMethods.Attach(LinksHeader.GetFirstAsSourcePointer(_header), linkIndex);
@@ -487,7 +486,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         /// <remarks>
         /// TODO: Возможно нужно будет заполнение нулями, если внешнее API ими не заполняет пространство
         /// </remarks>
-        public TLink Create()
+        public TLink Create(IList<TLink> restrictions)
         {
             var freeLink = LinksHeader.GetFirstFreeLink(_header);
             if (!_equalityComparer.Equals(freeLink, Constants.Null))
@@ -496,9 +495,10 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             }
             else
             {
-                if (_comparer.Compare(LinksHeader.GetAllocatedLinks(_header), Constants.MaxPossibleIndex) > 0)
+                var maximumPossibleInnerReference = Constants.PossibleInnerReferencesRange.Maximum;
+                if (_comparer.Compare(LinksHeader.GetAllocatedLinks(_header), maximumPossibleInnerReference) > 0)
                 {
-                    throw new LinksLimitReachedException((Integer<TLink>)Constants.MaxPossibleIndex);
+                    throw new LinksLimitReachedException<TLink>(maximumPossibleInnerReference);
                 }
                 if (_comparer.Compare(LinksHeader.GetAllocatedLinks(_header), Decrement(LinksHeader.GetReservedLinks(_header))) >= 0)
                 {
@@ -513,8 +513,9 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             return freeLink;
         }
 
-        public void Delete(TLink link)
+        public void Delete(IList<TLink> restrictions)
         {
+            var link = restrictions[Constants.IndexPart];
             if (_comparer.Compare(link, LinksHeader.GetAllocatedLinks(_header)) < 0)
             {
                 _unusedLinksListMethods.AttachAsFirst(link);
@@ -562,15 +563,15 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private bool Exists(TLink link) 
-            => (_comparer.Compare(link, Constants.MinPossibleIndex) >= 0)
+        private bool Exists(TLink link)
+            => (_comparer.Compare(link, Constants.PossibleInnerReferencesRange.Minimum) >= 0)
             && (_comparer.Compare(link, LinksHeader.GetAllocatedLinks(_header)) <= 0)
             && !IsUnusedLink(link);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private bool IsUnusedLink(TLink link) 
+        private bool IsUnusedLink(TLink link)
             => _equalityComparer.Equals(LinksHeader.GetFirstFreeLink(_header), link)
-            || (_equalityComparer.Equals(Link.GetSizeAsSource(GetLinkUnsafe(link)), Constants.Null) 
+            || (_equalityComparer.Equals(Link.GetSizeAsSource(GetLinkUnsafe(link)), Constants.Null)
             && !_equalityComparer.Equals(Link.GetSource(GetLinkUnsafe(link)), Constants.Null));
 
         #region DisposableBase

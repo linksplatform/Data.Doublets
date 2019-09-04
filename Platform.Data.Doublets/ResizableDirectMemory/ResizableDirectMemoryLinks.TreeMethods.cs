@@ -5,7 +5,6 @@ using System.Runtime.CompilerServices;
 using Platform.Numbers;
 using Platform.Unsafe;
 using Platform.Collections.Methods.Trees;
-using Platform.Data.Constants;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -18,7 +17,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
 
             private readonly ResizableDirectMemoryLinks<TLink> _memory;
-            private readonly LinksCombinedConstants<TLink, TLink, int> _constants;
+            private readonly LinksConstants<TLink> _constants;
             protected readonly IntPtr Links;
             protected readonly IntPtr Header;
 

@@ -34,9 +34,9 @@ namespace Platform.Data.Doublets.Decorators
             return Links.Each(handler, restrictions);
         }
 
-        public override ulong Create() => Links.CreatePoint();
+        public override ulong Create(IList<ulong> restrictions) => Links.CreatePoint();
 
-        public override ulong Update(IList<ulong> restrictions)
+        public override ulong Update(IList<ulong> restrictions, IList<ulong> substitution)
         {
             var constants = Constants;
             var nullConstant = constants.Null;
@@ -80,8 +80,9 @@ namespace Platform.Data.Doublets.Decorators
             }
         }
 
-        public override void Delete(ulong linkIndex)
+        public override void Delete(IList<ulong> restrictions)
         {
+            var linkIndex = restrictions[Constants.IndexPart];
             Links.EnsureLinkExists(linkIndex);
             Links.EnforceResetValues(linkIndex);
             this.DeleteAllUsages(linkIndex);

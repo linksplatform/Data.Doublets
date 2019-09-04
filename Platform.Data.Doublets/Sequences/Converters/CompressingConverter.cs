@@ -5,7 +5,6 @@ using Platform.Interfaces;
 using Platform.Collections;
 using Platform.Singletons;
 using Platform.Numbers;
-using Platform.Data.Constants;
 using Platform.Data.Doublets.Sequences.Frequencies.Cache;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -19,7 +18,7 @@ namespace Platform.Data.Doublets.Sequences.Converters
     /// </remarks>
     public class CompressingConverter<TLink> : LinksListToSequenceConverterBase<TLink>
     {
-        private static readonly LinksCombinedConstants<bool, TLink, long> _constants = Default<LinksCombinedConstants<bool, TLink, long>>.Instance;
+        private static readonly LinksConstants<TLink> _constants = Default<LinksConstants<TLink>>.Instance;
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
         private static readonly Comparer<TLink> _comparer = Comparer<TLink>.Default;
 

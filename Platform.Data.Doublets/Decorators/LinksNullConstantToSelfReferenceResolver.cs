@@ -8,12 +8,12 @@ namespace Platform.Data.Doublets.Decorators
     {
         public LinksNullConstantToSelfReferenceResolver(ILinks<TLink> links) : base(links) { }
 
-        public override TLink Create()
+        public override TLink Create(IList<TLink> restrictions)
         {
             var link = Links.Create();
             return Links.Update(link, link, link);
         }
 
-        public override TLink Update(IList<TLink> restrictions) => Links.Update(Links.ResolveConstantAsSelfReference(Constants.Null, restrictions));
+        public override TLink Update(IList<TLink> restrictions, IList<TLink> substitution) => Links.Update(restrictions, Links.ResolveConstantAsSelfReference(Constants.Null, restrictions, substitution));
     }
 }

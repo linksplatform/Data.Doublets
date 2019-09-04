@@ -265,7 +265,7 @@ namespace Platform.Data.Doublets
 
         public IList<ulong> GetLinkValue(ulong link) => Links.GetLink(link);
 
-        public override ulong Create()
+        public override ulong Create(IList<ulong> restrictions)
         {
             var createdLinkIndex = Links.Create();
             var createdLink = new UInt64Link(Links.GetLink(createdLinkIndex));
@@ -273,18 +273,19 @@ namespace Platform.Data.Doublets
             return createdLinkIndex;
         }
 
-        public override ulong Update(IList<ulong> parts)
+        public override ulong Update(IList<ulong> restrictions, IList<ulong> substitution)
         {
-            var linkIndex = parts[Constants.IndexPart];
+            var linkIndex = restrictions[Constants.IndexPart];
             var beforeLink = new UInt64Link(Links.GetLink(linkIndex));
-            linkIndex = Links.Update(parts);
+            linkIndex = Links.Update(restrictions, substitution);
             var afterLink = new UInt64Link(Links.GetLink(linkIndex));
             CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, beforeLink, afterLink));
             return linkIndex;
         }
 
-        public override void Delete(ulong link)
+        public override void Delete(IList<ulong> restrictions)
         {
+            var link = restrictions[Constants.IndexPart];
             var deletedLink = new UInt64Link(Links.GetLink(link));
             Links.Delete(link);
             CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, deletedLink, default));

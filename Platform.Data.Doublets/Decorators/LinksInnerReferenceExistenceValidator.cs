@@ -16,15 +16,17 @@ namespace Platform.Data.Doublets.Decorators
             return Links.Each(handler, restrictions);
         }
 
-        public override TLink Update(IList<TLink> restrictions)
+        public override TLink Update(IList<TLink> restrictions, IList<TLink> substitution)
         {
             // TODO: Possible values: null, ExistentLink or NonExistentHybrid(ExternalReference)
             Links.EnsureInnerReferenceExists(restrictions, nameof(restrictions));
-            return Links.Update(restrictions);
+            Links.EnsureInnerReferenceExists(substitution, nameof(substitution));
+            return Links.Update(restrictions, substitution);
         }
 
-        public override void Delete(TLink link)
+        public override void Delete(IList<TLink> restrictions)
         {
+            var link = restrictions[Constants.IndexPart];
             Links.EnsureLinkExists(link, nameof(link));
             Links.Delete(link);
         }

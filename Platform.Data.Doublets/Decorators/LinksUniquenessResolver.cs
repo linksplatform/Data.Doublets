@@ -10,12 +10,12 @@ namespace Platform.Data.Doublets.Decorators
 
         public LinksUniquenessResolver(ILinks<TLink> links) : base(links) { }
 
-        public override TLink Update(IList<TLink> restrictions)
+        public override TLink Update(IList<TLink> restrictions, IList<TLink> substitution)
         {
-            var newLinkAddress = Links.SearchOrDefault(restrictions[Constants.SourcePart], restrictions[Constants.TargetPart]);
+            var newLinkAddress = Links.SearchOrDefault(substitution[Constants.SourcePart], substitution[Constants.TargetPart]);
             if (_equalityComparer.Equals(newLinkAddress, default))
             {
-                return Links.Update(restrictions);
+                return Links.Update(restrictions, substitution);
             }
             return ResolveAddressChangeConflict(restrictions[Constants.IndexPart], newLinkAddress);
         }
