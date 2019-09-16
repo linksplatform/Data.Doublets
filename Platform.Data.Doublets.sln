@@ -7,21 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Platform.Data.Doublets", "P
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Platform.Data.Doublets.Tests", "Platform.Data.Doublets.Tests\Platform.Data.Doublets.Tests.csproj", "{BC6BB484-C879-4E01-BF5F-8B33C37C9227}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C4674476-8D18-46A6-B26F-6167D4B560B4}"
-	ProjectSection(SolutionItems) = preProject
-		.gitignore = .gitignore
-		.travis.yml = .travis.yml
-		docfx.json = docfx.json
-		format-csharp-files.py = format-csharp-files.py
-		format-document.sh = format-document.sh
-		generate-pdf.sh = generate-pdf.sh
-		publish-docs.sh = publish-docs.sh
-		push-nuget.bat = push-nuget.bat
-		README.md = README.md
-		README.ru.md = README.ru.md
-		toc.yml = toc.yml
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
