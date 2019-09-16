@@ -1,3 +1,4 @@
+[![NuGet Version and Downloads count](https://buildstats.info/nuget/Platform.Data.Doublets)](https://www.nuget.org/packages/Platform.Data.Doublets)
 [![Build Status](https://travis-ci.com/linksplatform/Data.Doublets.svg?branch=master)](https://travis-ci.com/linksplatform/Data.Doublets)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/83c66adb68f44a018c795bc7dc7d6f49)](https://app.codacy.com/app/drakonard/Data.Doublets?utm_source=github.com&utm_medium=referral&utm_content=linksplatform/Data.Doublets&utm_campaign=Badge_Grade_Dashboard)
 [![CodeFactor](https://www.codefactor.io/repository/github/linksplatform/data.doublets/badge/master)](https://www.codefactor.io/repository/github/linksplatform/data.doublets/overview/master)
@@ -5,7 +6,6 @@
 [![Support development](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.herokuapp.com%2Fkonard%2Fpledgesssss&style=for-the-badge "Support development")](https://patreon.com/konard)
 
 # [Data.Doublets](https://github.com/linksplatform/Data.Doublets) ([русская версия](README.ru.md))
-
 LinksPlatform's Platform.Data.Doublets Class Library.
 
 Namespace: [Platform.Data.Doublets](https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.html)
@@ -15,7 +15,6 @@ Forked from: [Konard/LinksPlatform/Platform/Platform.Data.Doublets](https://gith
 NuGet package: [Platform.Data.Doublets](https://www.nuget.org/packages/Platform.Data.Doublets)
 
 ## [Example](https://github.com/linksplatform/HelloWorld.Doublets.DotNet)
-
 ```C#
 using System;
 using Platform.Data.Doublets;
@@ -42,25 +41,25 @@ namespace HelloWorld.Doublets.DotNet
 ## [SQLite vs Doublets](https://github.com/linksplatform/Comparisons.SQLiteVSDoublets)
 
 ## [Documentation](https://linksplatform.github.io/Data.Doublets)
-* Interface [ILinks\<TLink, TConstants\>](https://linksplatform.github.io/Data/api/Platform.Data.ILinks-2.html).
-* Interface [ILinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.ILinks-1.html).
-* Class [ResizableDirectMemoryLinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html).
+*   Interface [ILinks\<TLink, TConstants\>](https://linksplatform.github.io/Data/api/Platform.Data.ILinks-2.html).
+*   Interface [ILinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.ILinks-1.html).
+*   Class [ResizableDirectMemoryLinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html).
 
 [PDF file](https://linksplatform.github.io/Data.Doublets/Platform.Data.Doublets.pdf) with code for e-readers.
 
 ## Depend on
-* [Platform.Random](https://github.com/linksplatform/Random)
-* [Platform.Timestamps](https://github.com/linksplatform/Timestamps)
-* [Platform.Collections.Methods](https://github.com/linksplatform/Collections.Methods)
-* [Platform.Singletons](https://github.com/linksplatform/Singletons)
-* [Platform.Memory](https://github.com/linksplatform/Memory)
-* [Platform.Data](https://github.com/linksplatform/Data)
+*   [Platform.Random](https://github.com/linksplatform/Random)
+*   [Platform.Timestamps](https://github.com/linksplatform/Timestamps)
+*   [Platform.Collections.Methods](https://github.com/linksplatform/Collections.Methods)
+*   [Platform.Singletons](https://github.com/linksplatform/Singletons)
+*   [Platform.Memory](https://github.com/linksplatform/Memory)
+*   [Platform.Data](https://github.com/linksplatform/Data)
 
 ## Mystery files
-* [.travis.yml](https://github.com/linksplatform/Data.Doublets/blob/master/.travis.yml) - Travis CI build configuration.
-* [docfx.json](https://github.com/linksplatform/Data.Doublets/blob/master/docfx.json) and [toc.yml](https://github.com/linksplatform/Data.Doublets/blob/master/toc.yml) - DocFX build configuration.
-* [format-document.sh](https://github.com/linksplatform/Data.Doublets/blob/master/format-document.sh) - script for formating `tex` file for generating PDF from it.
-* [format-csharp-files.py](https://github.com/linksplatform/Data.Doublets/blob/master/format-csharp-files.py) - script for formating single `.cs` file as a part of `tex` file.
-* [generate-pdf.sh](https://github.com/linksplatform/Data.Doublets/blob/master/generate-pdf.sh) - script that generates PDF with code for e-readers.
-* [publish-docs.sh](https://github.com/linksplatform/Data.Doublets/blob/master/publish-docs.sh) - script that publishes generated documentation and PDF with code for e-readers to `gh-pages` branch.
-* [push-nuget.bat](https://github.com/linksplatform/Data.Doublets/blob/master/push-nuget.bat) - Windows script for publishing current version of NuGet package.
+*   [.travis.yml](https://github.com/linksplatform/Data.Doublets/blob/master/.travis.yml) - [Travis CI](https://travis-ci.com) build configuration.
+*   [docfx.json](https://github.com/linksplatform/Data.Doublets/blob/master/docfx.json) and [toc.yml](https://github.com/linksplatform/Data.Doublets/blob/master/toc.yml) - [DocFX](https://dotnet.github.io/docfx) build configuration.
+*   [format-document.sh](https://github.com/linksplatform/Data.Doublets/blob/master/format-document.sh) - script for formatting `tex` file for generating PDF from it.
+*   [format-csharp-files.py](https://github.com/linksplatform/Data.Doublets/blob/master/format-csharp-files.py) - script for formatting `.cs` files as a part of `tex` file.
+*   [generate-pdf.sh](https://github.com/linksplatform/Data.Doublets/blob/master/generate-pdf.sh) - script that generates PDF with code for e-readers.
+*   [publish-docs.sh](https://github.com/linksplatform/Data.Doublets/blob/master/publish-docs.sh) - script that publishes generated documentation and PDF with code for e-readers to [gh-pages](https://github.com/linksplatform/Data.Doublets/tree/gh-pages) branch.
+*   [push-nuget.sh](https://github.com/linksplatform/Data.Doublets/blob/master/push-nuget.sh) - script for publishing current version of [NuGet](https://www.nuget.org) package.

@@ -1,11 +1,11 @@
-[![Build Status](https://travis-ci.com/linksplatform/Data.Doublets.svg?branch=master)](https://travis-ci.com/linksplatform/Data.Doublets)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/83c66adb68f44a018c795bc7dc7d6f49)](https://app.codacy.com/app/drakonard/Data.Doublets?utm_source=github.com&utm_medium=referral&utm_content=linksplatform/Data.Doublets&utm_campaign=Badge_Grade_Dashboard)
+[![Версия NuGet пакета и количество загрузок](https://buildstats.info/nuget/Platform.Data.Doublets)](https://www.nuget.org/packages/Platform.Data.Doublets)
+[![Состояние сборки](https://travis-ci.com/linksplatform/Data.Doublets.svg?branch=master)](https://travis-ci.com/linksplatform/Data.Doublets)
+[![Codacy](https://api.codacy.com/project/badge/Grade/83c66adb68f44a018c795bc7dc7d6f49)](https://app.codacy.com/app/drakonard/Data.Doublets?utm_source=github.com&utm_medium=referral&utm_content=linksplatform/Data.Doublets&utm_campaign=Badge_Grade_Dashboard)
 [![CodeFactor](https://www.codefactor.io/repository/github/linksplatform/data.doublets/badge/master)](https://www.codefactor.io/repository/github/linksplatform/data.doublets/overview/master)
 
 [![Поддержать разработку](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.herokuapp.com%2Fkonard%2Fpledgesssss&style=for-the-badge "Поддержать разработку")](https://patreon.com/konard)
 
 # [Data.Doublets](https://github.com/linksplatform/Data.Doublets) ([english version](README.md))
-
 Библиотека классов ПлатформыСвязей Platform.Data.Doublets.
 
 Пространство имён: [Platform.Data.Doublets](https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.html)
@@ -15,7 +15,6 @@
 NuGet пакет: [Platform.Data.Doublets](https://www.nuget.org/packages/Platform.Data.Doublets)
 
 ## [Пример](https://github.com/linksplatform/HelloWorld.Doublets.DotNet)
-
 ```C#
 using System;
 using Platform.Data.Doublets;
@@ -42,25 +41,25 @@ namespace HelloWorld.Doublets.DotNet
 ## [SQLite против Дуплетов](https://github.com/linksplatform/Comparisons.SQLiteVSDoublets)
 
 ## [Документация](https://linksplatform.github.io/Data.Doublets)
-* Интерфейс [ILinks\<TLink, TConstants\>](https://linksplatform.github.io/Data/api/Platform.Data.ILinks-2.html).
-* Интерфейс [ILinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.ILinks-1.html).
-* Класс [ResizableDirectMemoryLinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html).
+*   Интерфейс [ILinks\<TLink, TConstants\>](https://linksplatform.github.io/Data/api/Platform.Data.ILinks-2.html).
+*   Интерфейс [ILinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.ILinks-1.html).
+*   Класс [ResizableDirectMemoryLinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html).
 
 [PDF файл](https://linksplatform.github.io/Data.Doublets/Platform.Data.Doublets.pdf) с кодом для электронных книг.
 
 ## Зависит от
-* [Platform.Random](https://github.com/linksplatform/Random)
-* [Platform.Timestamps](https://github.com/linksplatform/Timestamps)
-* [Platform.Collections.Methods](https://github.com/linksplatform/Collections.Methods)
-* [Platform.Singletons](https://github.com/linksplatform/Singletons)
-* [Platform.Memory](https://github.com/linksplatform/Memory)
-* [Platform.Data](https://github.com/linksplatform/Data)
+*   [Platform.Random](https://github.com/linksplatform/Random)
+*   [Platform.Timestamps](https://github.com/linksplatform/Timestamps)
+*   [Platform.Collections.Methods](https://github.com/linksplatform/Collections.Methods)
+*   [Platform.Singletons](https://github.com/linksplatform/Singletons)
+*   [Platform.Memory](https://github.com/linksplatform/Memory)
+*   [Platform.Data](https://github.com/linksplatform/Data)
 
 ## Загадочные файлы
-* [.travis.yml](https://github.com/linksplatform/Data.Doublets/blob/master/.travis.yml) - конфигурация сборки Travis CI.
-* [docfx.json](https://github.com/linksplatform/Data.Doublets/blob/master/docfx.json) и [toc.yml](https://github.com/linksplatform/Data.Doublets/blob/master/toc.yml) - конфигурация сборки DocFX.
-* [format-document.sh](https://github.com/linksplatform/Data.Doublets/blob/master/format-document.sh) - скрипт для форматирования `tex` файла для генерации PDF из него.
-* [format-csharp-files.py](https://github.com/linksplatform/Data.Doublets/blob/master/format-csharp-files.py) - скрипт для форматирования одного файла `.cs` как части файла `tex`.
-* [generate-pdf.sh](https://github.com/linksplatform/Data.Doublets/blob/master/generate-pdf.sh) - скрипт, который генерирует PDF с кодом для электронных книг.
-* [publish-docs.sh](https://github.com/linksplatform/Data.Doublets/blob/master/publish-docs.sh) - скрипт, который публикует сгенерированную документацию и PDF с кодом для электронных книг в ветку `gh-pages`.
-* [push-nuget.bat](https://github.com/linksplatform/Data.Doublets/blob/master/push-nuget.bat) - Windows-скрипт для публикации текущей версии пакета NuGet.
+*   [.travis.yml](https://github.com/linksplatform/Data.Doublets/blob/master/.travis.yml) - конфигурация сборки [Travis CI](https://travis-ci.com).
+*   [docfx.json](https://github.com/linksplatform/Data.Doublets/blob/master/docfx.json) и [toc.yml](https://github.com/linksplatform/Data.Doublets/blob/master/toc.yml) - конфигурация сборки [DocFX](https://dotnet.github.io/docfx).
+*   [format-document.sh](https://github.com/linksplatform/Data.Doublets/blob/master/format-document.sh) - скрипт для форматирования `tex` файла для генерации PDF из него.
+*   [format-csharp-files.py](https://github.com/linksplatform/Data.Doublets/blob/master/format-csharp-files.py) - скрипт для форматирования одного файла `.cs` как части файла `tex`.
+*   [generate-pdf.sh](https://github.com/linksplatform/Data.Doublets/blob/master/generate-pdf.sh) - скрипт, который генерирует PDF с кодом для электронных книг.
+*   [publish-docs.sh](https://github.com/linksplatform/Data.Doublets/blob/master/publish-docs.sh) - скрипт, который публикует сгенерированную документацию и PDF с кодом для электронных книг в ветку [gh-pages](https://github.com/linksplatform/Data.Doublets/tree/gh-pages).
+*   [push-nuget.sh](https://github.com/linksplatform/Data.Doublets/blob/master/push-nuget.sh) - скрипт для публикации текущей версии [NuGet](https://www.nuget.org) пакета.
