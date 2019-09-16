@@ -86,11 +86,11 @@ namespace Platform.Data.Doublets.Tests
                 var sequenceToItsLocalElementLevelsConverter = new SequenceToItsLocalElementLevelsConverter<ulong>(links, linkToItsFrequencyNumberConverter);
                 var optimalVariantConverter = new OptimalVariantConverter<ulong>(links, sequenceToItsLocalElementLevelsConverter);
 
-                var stringToUnicodeSymbolConverter = new StringToUnicodeSequenceConverter<ulong>(links, charToUnicodeSymbolConverter, index, optimalVariantConverter, unicodeSequenceMarker);
+                var stringToUnicodeSequenceConverter = new StringToUnicodeSequenceConverter<ulong>(links, charToUnicodeSymbolConverter, index, optimalVariantConverter, unicodeSequenceMarker);
 
                 var originalString = "Hello";
 
-                var unicodeSequenceLink = stringToUnicodeSymbolConverter.Convert(originalString);
+                var unicodeSequenceLink = stringToUnicodeSequenceConverter.Convert(originalString);
                 
                 var unicodeSymbolCriterionMatcher = new UnicodeSymbolCriterionMatcher<ulong>(links, unicodeSymbolMarker);
                 var unicodeSymbolToCharConverter = new UnicodeSymbolToCharConverter<ulong>(links, unaryNumberToAddressConverter, unicodeSymbolCriterionMatcher);
