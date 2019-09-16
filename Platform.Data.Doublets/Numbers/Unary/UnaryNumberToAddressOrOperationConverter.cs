@@ -50,6 +50,6 @@ namespace Platform.Data.Doublets.Numbers.Unary
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static void SetBit(ref TLink target, int powerOf2Index) => target = (Integer<TLink>)((Integer<TLink>)target | 1UL << powerOf2Index); // Should be Math.Or(target, Math.ShiftLeft(One, powerOf2Index))
+        private static void SetBit(ref TLink target, int powerOf2Index) => target = Bit.Or(target, Bit.ShiftLeft(Integer<TLink>.One, powerOf2Index));
     }
 }
