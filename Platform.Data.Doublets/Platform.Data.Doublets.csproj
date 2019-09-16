@@ -6,7 +6,7 @@
     <AssemblyTitle>Platform.Data.Doublets</AssemblyTitle>
     <VersionPrefix>0.1.1</VersionPrefix>
     <Authors>Konstantin Diachenko</Authors>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>net471;netstandard2.0</TargetFrameworks>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <AssemblyName>Platform.Data.Doublets</AssemblyName>
     <PackageId>Platform.Data.Doublets</PackageId>
@@ -22,6 +22,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <LangVersion>Latest</LangVersion>
     <PackageReleaseNotes>Added Facade (pointer to last decorator) property for decorators. This property should be used to ensure correct recursion execution.
 Added AddressToRawNumberConverter and RawNumberToAddressConverter.
 Platform.Data.Doublets.UnaryNumbers namespace renamed to Platform.Data.Doublets.Numbers.Unary.
@@ -32,6 +33,10 @@ Tests updated.
 Perfomance optimizations.
 Refactoring, issues fix.</PackageReleaseNotes>
   </PropertyGroup>
+
+  <ItemGroup Condition="$(TargetFramework.StartsWith('net4')) AND '$(MSBuildRuntimeType)' == 'Core' AND '$(OS)' != 'Windows_NT'">
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.0-preview.2" PrivateAssets="All" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Platform.Random" Version="0.0.4" />
