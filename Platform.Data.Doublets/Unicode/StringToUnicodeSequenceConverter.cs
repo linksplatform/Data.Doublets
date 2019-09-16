@@ -23,10 +23,10 @@ namespace Platform.Data.Doublets.Unicode
 
         public TLink Convert(string source)
         {
-            var elements = new List<TLink>();
+            var elements = new TLink[source.Length];
             for (int i = 0; i < source.Length; i++)
             {
-                elements.Add(_charToUnicodeSymbolConverter.Convert(source[i]));
+                elements[i] = _charToUnicodeSymbolConverter.Convert(source[i]);
             }
             _index.Add(elements);
             var sequence = _listToSequenceLinkConverter.Convert(elements);
