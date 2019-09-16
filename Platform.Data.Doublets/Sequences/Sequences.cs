@@ -274,7 +274,6 @@ namespace Platform.Data.Doublets.Sequences
                     }
                     return EachCore(handler, sequence);
                 }
-
             });
         }
 
