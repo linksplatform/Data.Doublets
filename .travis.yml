@@ -9,7 +9,8 @@ before_install:
   - export SOURCE_BRANCH="master"
 script:
   - dotnet build -c Release
-  - dotnet test -c Release
+  - dotnet test -c Release -f netcoreapp2.1
 after_success:
   - bash ./generate-pdf.sh
   - bash ./publish-docs.sh
+  - bash ./push-nuget.sh

@@ -25,7 +25,7 @@ mono $(echo ./*docfx.console.*)/tools/docfx.exe docfx.json
 # Clone the existing gh-pages for this repo into out/
 # Create a new empty branch if gh-pages doesn't exist yet (should only happen on first deply)
 git clone https://$REPOSITORY out
-cd out
+cd out || exit
 git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
 cd ..
 
@@ -35,7 +35,7 @@ rm -rf out/**/* || exit 0
 # Copy genereted docs site
 cp -r _site/* out
 
-cd out
+cd out || exit
 
 # Do not use index.md
 cp README.html index.html
@@ -53,3 +53,9 @@ git commit -m "Deploy to GitHub Pages: ${SHA}"
 
 # Now that we're all set up, we can push.
 git push https://$COMMIT_USER_NAME:$TOKEN@$REPOSITORY.git $TARGET_BRANCH
+cd ..
+
+# Clean up
+rm -rf out
+rm -rf _site
+rm -rf docfx.console*
