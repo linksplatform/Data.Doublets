@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Interface ISynchronizedLinks&lt;TLink&gt;
    | LinksPlatform's Platform.Data.Doublets Library ">
-    <meta name="generator" content="docfx 2.45.0.0">
+    <meta name="generator" content="docfx 2.45.1.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -97,29 +97,29 @@
       <span class="xref">Platform.Threading.Synchronization.ISynchronized&lt;Platform.Data.Doublets.ILinks&lt;TLink&gt;&gt;.Sync</span>
     </div>
     <div>
-      <span class="xref">Platform.Data.ILinks&lt;TLink, Platform.Data.Constants.LinksCombinedConstants&lt;TLink, TLink, System.Int32&gt;&gt;.Count(System.Collections.Generic.IList&lt;TLink&gt;)</span>
+      <span class="xref">Platform.Data.ILinks&lt;TLink, Platform.Data.LinksConstants&lt;TLink&gt;&gt;.Count(System.Collections.Generic.IList&lt;TLink&gt;)</span>
     </div>
     <div>
-      <span class="xref">Platform.Data.ILinks&lt;TLink, Platform.Data.Constants.LinksCombinedConstants&lt;TLink, TLink, System.Int32&gt;&gt;.Each(System.Func&lt;System.Collections.Generic.IList&lt;TLink&gt;, TLink&gt;, System.Collections.Generic.IList&lt;TLink&gt;)</span>
+      <span class="xref">Platform.Data.ILinks&lt;TLink, Platform.Data.LinksConstants&lt;TLink&gt;&gt;.Each(System.Func&lt;System.Collections.Generic.IList&lt;TLink&gt;, TLink&gt;, System.Collections.Generic.IList&lt;TLink&gt;)</span>
     </div>
     <div>
-      <span class="xref">Platform.Data.ILinks&lt;TLink, Platform.Data.Constants.LinksCombinedConstants&lt;TLink, TLink, System.Int32&gt;&gt;.Create()</span>
+      <span class="xref">Platform.Data.ILinks&lt;TLink, Platform.Data.LinksConstants&lt;TLink&gt;&gt;.Create(System.Collections.Generic.IList&lt;TLink&gt;)</span>
     </div>
     <div>
-      <span class="xref">Platform.Data.ILinks&lt;TLink, Platform.Data.Constants.LinksCombinedConstants&lt;TLink, TLink, System.Int32&gt;&gt;.Update(System.Collections.Generic.IList&lt;TLink&gt;)</span>
+      <span class="xref">Platform.Data.ILinks&lt;TLink, Platform.Data.LinksConstants&lt;TLink&gt;&gt;.Update(System.Collections.Generic.IList&lt;TLink&gt;, System.Collections.Generic.IList&lt;TLink&gt;)</span>
     </div>
     <div>
-      <span class="xref">Platform.Data.ILinks&lt;TLink, Platform.Data.Constants.LinksCombinedConstants&lt;TLink, TLink, System.Int32&gt;&gt;.Delete(TLink)</span>
+      <span class="xref">Platform.Data.ILinks&lt;TLink, Platform.Data.LinksConstants&lt;TLink&gt;&gt;.Delete(System.Collections.Generic.IList&lt;TLink&gt;)</span>
     </div>
     <div>
-      <span class="xref">Platform.Data.ILinks&lt;TLink, Platform.Data.Constants.LinksCombinedConstants&lt;TLink, TLink, System.Int32&gt;&gt;.Constants</span>
+      <span class="xref">Platform.Data.ILinks&lt;TLink, Platform.Data.LinksConstants&lt;TLink&gt;&gt;.Constants</span>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Platform.Data.Doublets.html">Platform.Data.Doublets</a></h6>
   <h6><strong>Assembly</strong>: Platform.Data.Doublets.dll</h6>
   <h5 id="Platform_Data_Doublets_ISynchronizedLinks_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface ISynchronizedLinks&lt;TLink&gt; : ISynchronizedLinks&lt;TLink, ILinks&lt;TLink&gt;, LinksCombinedConstants&lt;TLink, TLink, int&gt;&gt;, ISynchronized&lt;ILinks&lt;TLink&gt;&gt;, ILinks&lt;TLink&gt;, ILinks&lt;TLink, LinksCombinedConstants&lt;TLink, TLink, int&gt;&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public interface ISynchronizedLinks&lt;TLink&gt; : ISynchronizedLinks&lt;TLink, ILinks&lt;TLink&gt;, LinksConstants&lt;TLink&gt;&gt;, ISynchronized&lt;ILinks&lt;TLink&gt;&gt;, ILinks&lt;TLink&gt;, ILinks&lt;TLink, LinksConstants&lt;TLink&gt;&gt;</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -156,13 +156,13 @@
       <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_RunRandomDeletions__1_Platform_Data_Doublets_ILinks___0__System_Int64_">ILinksExtensions.RunRandomDeletions&lt;TLink&gt;(ILinks&lt;TLink&gt;, Int64)</a>
   </div>
   <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Delete__1_Platform_Data_Doublets_ILinks___0____0_">ILinksExtensions.Delete&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink)</a>
+  </div>
+  <div>
       <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_DeleteAll__1_Platform_Data_Doublets_ILinks___0__">ILinksExtensions.DeleteAll&lt;TLink&gt;(ILinks&lt;TLink&gt;)</a>
   </div>
   <div>
       <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_First__1_Platform_Data_Doublets_ILinks___0__">ILinksExtensions.First&lt;TLink&gt;(ILinks&lt;TLink&gt;)</a>
-  </div>
-  <div>
-      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_IsInnerReference__1_Platform_Data_Doublets_ILinks___0____0_">ILinksExtensions.IsInnerReference&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink)</a>
   </div>
   <div>
       <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_CheckPathExistance__1_Platform_Data_Doublets_ILinks___0____0___">ILinksExtensions.CheckPathExistance&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink[])</a>
@@ -249,6 +249,9 @@
       <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_SearchOrDefault__1_Platform_Data_Doublets_ILinks___0____0___0_">ILinksExtensions.SearchOrDefault&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink, TLink)</a>
   </div>
   <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Create__1_Platform_Data_Doublets_ILinks___0__">ILinksExtensions.Create&lt;TLink&gt;(ILinks&lt;TLink&gt;)</a>
+  </div>
+  <div>
       <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_CreatePoint__1_Platform_Data_Doublets_ILinks___0__">ILinksExtensions.CreatePoint&lt;TLink&gt;(ILinks&lt;TLink&gt;)</a>
   </div>
   <div>
@@ -261,7 +264,7 @@
       <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Update__1_Platform_Data_Doublets_ILinks___0____0___">ILinksExtensions.Update&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink[])</a>
   </div>
   <div>
-      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_ResolveConstantAsSelfReference__1_Platform_Data_Doublets_ILinks___0____0_System_Collections_Generic_IList___0__">ILinksExtensions.ResolveConstantAsSelfReference&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink, IList&lt;TLink&gt;)</a>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_ResolveConstantAsSelfReference__1_Platform_Data_Doublets_ILinks___0____0_System_Collections_Generic_IList___0__System_Collections_Generic_IList___0__">ILinksExtensions.ResolveConstantAsSelfReference&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink, IList&lt;TLink&gt;, IList&lt;TLink&gt;)</a>
   </div>
   <div>
       <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_GetOrCreate__1_Platform_Data_Doublets_ILinks___0____0___0_">ILinksExtensions.GetOrCreate&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink, TLink)</a>
@@ -300,6 +303,12 @@
       <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_DecorateWithAutomaticUniquenessAndUsagesResolution__1_Platform_Data_Doublets_ILinks___0__">ILinksExtensions.DecorateWithAutomaticUniquenessAndUsagesResolution&lt;TLink&gt;(ILinks&lt;TLink&gt;)</a>
   </div>
   <div>
+      <a class="xref" href="Platform.Data.Doublets.Sequences.SequencesExtensions.html#Platform_Data_Doublets_Sequences_SequencesExtensions_Create__1_Platform_Data_Doublets_ILinks___0__System_Collections_Generic_IList___0____">SequencesExtensions.Create&lt;TLink&gt;(ILinks&lt;TLink&gt;, IList&lt;TLink[]&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.Sequences.SequencesExtensions.html#Platform_Data_Doublets_Sequences_SequencesExtensions_ToList__1_Platform_Data_Doublets_ILinks___0____0_">SequencesExtensions.ToList&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink)</a>
+  </div>
+  <div>
       <a class="xref" href="Platform.Data.Doublets.Stacks.StackExtensions.html#Platform_Data_Doublets_Stacks_StackExtensions_CreateStack__1_Platform_Data_Doublets_ILinks___0____0_">StackExtensions.CreateStack&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink)</a>
   </div>
 </article>
@@ -313,7 +322,7 @@
                     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_ISynchronizedLinks_1.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.ISynchronizedLinks%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/ISynchronizedLinks.cs/#L7" class="contribution-link">View Source</a>
+                    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/ISynchronizedLinks.cs/#L5" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

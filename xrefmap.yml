@@ -84,14 +84,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksCascadeUsagesResolver(Of TLink).LinksCascadeUsagesResolver
   nameWithType: LinksCascadeUsagesResolver<TLink>.LinksCascadeUsagesResolver
   nameWithType.vb: LinksCascadeUsagesResolver(Of TLink).LinksCascadeUsagesResolver
-- uid: Platform.Data.Doublets.Decorators.LinksCascadeUsagesResolver`1.Delete(`0)
-  name: Delete(TLink)
-  href: api/Platform.Data.Doublets.Decorators.LinksCascadeUsagesResolver-1.html#Platform_Data_Doublets_Decorators_LinksCascadeUsagesResolver_1_Delete__0_
-  commentId: M:Platform.Data.Doublets.Decorators.LinksCascadeUsagesResolver`1.Delete(`0)
-  fullName: Platform.Data.Doublets.Decorators.LinksCascadeUsagesResolver<TLink>.Delete(TLink)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksCascadeUsagesResolver(Of TLink).Delete(TLink)
-  nameWithType: LinksCascadeUsagesResolver<TLink>.Delete(TLink)
-  nameWithType.vb: LinksCascadeUsagesResolver(Of TLink).Delete(TLink)
+- uid: Platform.Data.Doublets.Decorators.LinksCascadeUsagesResolver`1.Delete(System.Collections.Generic.IList{`0})
+  name: Delete(IList<TLink>)
+  href: api/Platform.Data.Doublets.Decorators.LinksCascadeUsagesResolver-1.html#Platform_Data_Doublets_Decorators_LinksCascadeUsagesResolver_1_Delete_System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Decorators.LinksCascadeUsagesResolver`1.Delete(System.Collections.Generic.IList{`0})
+  name.vb: Delete(IList(Of TLink))
+  fullName: Platform.Data.Doublets.Decorators.LinksCascadeUsagesResolver<TLink>.Delete(System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksCascadeUsagesResolver(Of TLink).Delete(System.Collections.Generic.IList(Of TLink))
+  nameWithType: LinksCascadeUsagesResolver<TLink>.Delete(IList<TLink>)
+  nameWithType.vb: LinksCascadeUsagesResolver(Of TLink).Delete(IList(Of TLink))
 - uid: Platform.Data.Doublets.Decorators.LinksCascadeUsagesResolver`1.Delete*
   name: Delete
   href: api/Platform.Data.Doublets.Decorators.LinksCascadeUsagesResolver-1.html#Platform_Data_Doublets_Decorators_LinksCascadeUsagesResolver_1_Delete_
@@ -171,14 +172,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksDecoratorBase(Of TLink).Count
   nameWithType: LinksDecoratorBase<TLink>.Count
   nameWithType.vb: LinksDecoratorBase(Of TLink).Count
-- uid: Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Create
-  name: Create()
-  href: api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1_Create
-  commentId: M:Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Create
-  fullName: Platform.Data.Doublets.Decorators.LinksDecoratorBase<TLink>.Create()
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksDecoratorBase(Of TLink).Create()
-  nameWithType: LinksDecoratorBase<TLink>.Create()
-  nameWithType.vb: LinksDecoratorBase(Of TLink).Create()
+- uid: Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Create(System.Collections.Generic.IList{`0})
+  name: Create(IList<TLink>)
+  href: api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1_Create_System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Create(System.Collections.Generic.IList{`0})
+  name.vb: Create(IList(Of TLink))
+  fullName: Platform.Data.Doublets.Decorators.LinksDecoratorBase<TLink>.Create(System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDecoratorBase(Of TLink).Create(System.Collections.Generic.IList(Of TLink))
+  nameWithType: LinksDecoratorBase<TLink>.Create(IList<TLink>)
+  nameWithType.vb: LinksDecoratorBase(Of TLink).Create(IList(Of TLink))
 - uid: Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Create*
   name: Create
   href: api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1_Create_
@@ -188,14 +190,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksDecoratorBase(Of TLink).Create
   nameWithType: LinksDecoratorBase<TLink>.Create
   nameWithType.vb: LinksDecoratorBase(Of TLink).Create
-- uid: Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Delete(`0)
-  name: Delete(TLink)
-  href: api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1_Delete__0_
-  commentId: M:Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Delete(`0)
-  fullName: Platform.Data.Doublets.Decorators.LinksDecoratorBase<TLink>.Delete(TLink)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksDecoratorBase(Of TLink).Delete(TLink)
-  nameWithType: LinksDecoratorBase<TLink>.Delete(TLink)
-  nameWithType.vb: LinksDecoratorBase(Of TLink).Delete(TLink)
+- uid: Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Delete(System.Collections.Generic.IList{`0})
+  name: Delete(IList<TLink>)
+  href: api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1_Delete_System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Delete(System.Collections.Generic.IList{`0})
+  name.vb: Delete(IList(Of TLink))
+  fullName: Platform.Data.Doublets.Decorators.LinksDecoratorBase<TLink>.Delete(System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDecoratorBase(Of TLink).Delete(System.Collections.Generic.IList(Of TLink))
+  nameWithType: LinksDecoratorBase<TLink>.Delete(IList<TLink>)
+  nameWithType.vb: LinksDecoratorBase(Of TLink).Delete(IList(Of TLink))
 - uid: Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Delete*
   name: Delete
   href: api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1_Delete_
@@ -240,15 +243,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksDecoratorBase(Of TLink).Facade
   nameWithType: LinksDecoratorBase<TLink>.Facade
   nameWithType.vb: LinksDecoratorBase(Of TLink).Facade
-- uid: Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Update(System.Collections.Generic.IList{`0})
-  name: Update(IList<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1_Update_System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Update(System.Collections.Generic.IList{`0})
-  name.vb: Update(IList(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksDecoratorBase<TLink>.Update(System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksDecoratorBase(Of TLink).Update(System.Collections.Generic.IList(Of TLink))
-  nameWithType: LinksDecoratorBase<TLink>.Update(IList<TLink>)
-  nameWithType.vb: LinksDecoratorBase(Of TLink).Update(IList(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0})
+  name: Update(IList<TLink>, IList<TLink>)
+  href: api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0})
+  name.vb: Update(IList(Of TLink), IList(Of TLink))
+  fullName: Platform.Data.Doublets.Decorators.LinksDecoratorBase<TLink>.Update(System.Collections.Generic.IList<TLink>, System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDecoratorBase(Of TLink).Update(System.Collections.Generic.IList(Of TLink), System.Collections.Generic.IList(Of TLink))
+  nameWithType: LinksDecoratorBase<TLink>.Update(IList<TLink>, IList<TLink>)
+  nameWithType.vb: LinksDecoratorBase(Of TLink).Update(IList(Of TLink), IList(Of TLink))
 - uid: Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Update*
   name: Update
   href: api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1_Update_
@@ -337,14 +340,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of TLink).Count
   nameWithType: LinksDisposableDecoratorBase<TLink>.Count
   nameWithType.vb: LinksDisposableDecoratorBase(Of TLink).Count
-- uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Create
-  name: Create()
-  href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1_Create
-  commentId: M:Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Create
-  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<TLink>.Create()
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of TLink).Create()
-  nameWithType: LinksDisposableDecoratorBase<TLink>.Create()
-  nameWithType.vb: LinksDisposableDecoratorBase(Of TLink).Create()
+- uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Create(System.Collections.Generic.IList{`0})
+  name: Create(IList<TLink>)
+  href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1_Create_System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Create(System.Collections.Generic.IList{`0})
+  name.vb: Create(IList(Of TLink))
+  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<TLink>.Create(System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of TLink).Create(System.Collections.Generic.IList(Of TLink))
+  nameWithType: LinksDisposableDecoratorBase<TLink>.Create(IList<TLink>)
+  nameWithType.vb: LinksDisposableDecoratorBase(Of TLink).Create(IList(Of TLink))
 - uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Create*
   name: Create
   href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1_Create_
@@ -354,14 +358,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of TLink).Create
   nameWithType: LinksDisposableDecoratorBase<TLink>.Create
   nameWithType.vb: LinksDisposableDecoratorBase(Of TLink).Create
-- uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Delete(`0)
-  name: Delete(TLink)
-  href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1_Delete__0_
-  commentId: M:Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Delete(`0)
-  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<TLink>.Delete(TLink)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of TLink).Delete(TLink)
-  nameWithType: LinksDisposableDecoratorBase<TLink>.Delete(TLink)
-  nameWithType.vb: LinksDisposableDecoratorBase(Of TLink).Delete(TLink)
+- uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Delete(System.Collections.Generic.IList{`0})
+  name: Delete(IList<TLink>)
+  href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1_Delete_System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Delete(System.Collections.Generic.IList{`0})
+  name.vb: Delete(IList(Of TLink))
+  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<TLink>.Delete(System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of TLink).Delete(System.Collections.Generic.IList(Of TLink))
+  nameWithType: LinksDisposableDecoratorBase<TLink>.Delete(IList<TLink>)
+  nameWithType.vb: LinksDisposableDecoratorBase(Of TLink).Delete(IList(Of TLink))
 - uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Delete*
   name: Delete
   href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1_Delete_
@@ -423,15 +428,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of TLink).Links
   nameWithType: LinksDisposableDecoratorBase<TLink>.Links
   nameWithType.vb: LinksDisposableDecoratorBase(Of TLink).Links
-- uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Update(System.Collections.Generic.IList{`0})
-  name: Update(IList<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1_Update_System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Update(System.Collections.Generic.IList{`0})
-  name.vb: Update(IList(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<TLink>.Update(System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of TLink).Update(System.Collections.Generic.IList(Of TLink))
-  nameWithType: LinksDisposableDecoratorBase<TLink>.Update(IList<TLink>)
-  nameWithType.vb: LinksDisposableDecoratorBase(Of TLink).Update(IList(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0})
+  name: Update(IList<TLink>, IList<TLink>)
+  href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0})
+  name.vb: Update(IList(Of TLink), IList(Of TLink))
+  fullName: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase<TLink>.Update(System.Collections.Generic.IList<TLink>, System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase(Of TLink).Update(System.Collections.Generic.IList(Of TLink), System.Collections.Generic.IList(Of TLink))
+  nameWithType: LinksDisposableDecoratorBase<TLink>.Update(IList<TLink>, IList<TLink>)
+  nameWithType.vb: LinksDisposableDecoratorBase(Of TLink).Update(IList(Of TLink), IList(Of TLink))
 - uid: Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase`1.Update*
   name: Update
   href: api/Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1_Update_
@@ -468,14 +473,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator(Of TLink).LinksInnerReferenceExistenceValidator
   nameWithType: LinksInnerReferenceExistenceValidator<TLink>.LinksInnerReferenceExistenceValidator
   nameWithType.vb: LinksInnerReferenceExistenceValidator(Of TLink).LinksInnerReferenceExistenceValidator
-- uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Delete(`0)
-  name: Delete(TLink)
-  href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceExistenceValidator_1_Delete__0_
-  commentId: M:Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Delete(`0)
-  fullName: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator<TLink>.Delete(TLink)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator(Of TLink).Delete(TLink)
-  nameWithType: LinksInnerReferenceExistenceValidator<TLink>.Delete(TLink)
-  nameWithType.vb: LinksInnerReferenceExistenceValidator(Of TLink).Delete(TLink)
+- uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Delete(System.Collections.Generic.IList{`0})
+  name: Delete(IList<TLink>)
+  href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceExistenceValidator_1_Delete_System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Delete(System.Collections.Generic.IList{`0})
+  name.vb: Delete(IList(Of TLink))
+  fullName: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator<TLink>.Delete(System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator(Of TLink).Delete(System.Collections.Generic.IList(Of TLink))
+  nameWithType: LinksInnerReferenceExistenceValidator<TLink>.Delete(IList<TLink>)
+  nameWithType.vb: LinksInnerReferenceExistenceValidator(Of TLink).Delete(IList(Of TLink))
 - uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Delete*
   name: Delete
   href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceExistenceValidator_1_Delete_
@@ -503,15 +509,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator(Of TLink).Each
   nameWithType: LinksInnerReferenceExistenceValidator<TLink>.Each
   nameWithType.vb: LinksInnerReferenceExistenceValidator(Of TLink).Each
-- uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Update(System.Collections.Generic.IList{`0})
-  name: Update(IList<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceExistenceValidator_1_Update_System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Update(System.Collections.Generic.IList{`0})
-  name.vb: Update(IList(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator<TLink>.Update(System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator(Of TLink).Update(System.Collections.Generic.IList(Of TLink))
-  nameWithType: LinksInnerReferenceExistenceValidator<TLink>.Update(IList<TLink>)
-  nameWithType.vb: LinksInnerReferenceExistenceValidator(Of TLink).Update(IList(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0})
+  name: Update(IList<TLink>, IList<TLink>)
+  href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceExistenceValidator_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0})
+  name.vb: Update(IList(Of TLink), IList(Of TLink))
+  fullName: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator<TLink>.Update(System.Collections.Generic.IList<TLink>, System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator(Of TLink).Update(System.Collections.Generic.IList(Of TLink), System.Collections.Generic.IList(Of TLink))
+  nameWithType: LinksInnerReferenceExistenceValidator<TLink>.Update(IList<TLink>, IList<TLink>)
+  nameWithType.vb: LinksInnerReferenceExistenceValidator(Of TLink).Update(IList(Of TLink), IList(Of TLink))
 - uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Update*
   name: Update
   href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceExistenceValidator_1_Update_
@@ -566,15 +572,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver(Of TLink).Each
   nameWithType: LinksItselfConstantToSelfReferenceResolver<TLink>.Each
   nameWithType.vb: LinksItselfConstantToSelfReferenceResolver(Of TLink).Each
-- uid: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver`1.Update(System.Collections.Generic.IList{`0})
-  name: Update(IList<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksItselfConstantToSelfReferenceResolver_1_Update_System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver`1.Update(System.Collections.Generic.IList{`0})
-  name.vb: Update(IList(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver<TLink>.Update(System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver(Of TLink).Update(System.Collections.Generic.IList(Of TLink))
-  nameWithType: LinksItselfConstantToSelfReferenceResolver<TLink>.Update(IList<TLink>)
-  nameWithType.vb: LinksItselfConstantToSelfReferenceResolver(Of TLink).Update(IList(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0})
+  name: Update(IList<TLink>, IList<TLink>)
+  href: api/Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksItselfConstantToSelfReferenceResolver_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0})
+  name.vb: Update(IList(Of TLink), IList(Of TLink))
+  fullName: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver<TLink>.Update(System.Collections.Generic.IList<TLink>, System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver(Of TLink).Update(System.Collections.Generic.IList(Of TLink), System.Collections.Generic.IList(Of TLink))
+  nameWithType: LinksItselfConstantToSelfReferenceResolver<TLink>.Update(IList<TLink>, IList<TLink>)
+  nameWithType.vb: LinksItselfConstantToSelfReferenceResolver(Of TLink).Update(IList(Of TLink), IList(Of TLink))
 - uid: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver`1.Update*
   name: Update
   href: api/Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksItselfConstantToSelfReferenceResolver_1_Update_
@@ -611,15 +617,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksNonExistentDependenciesCreator(Of TLink).LinksNonExistentDependenciesCreator
   nameWithType: LinksNonExistentDependenciesCreator<TLink>.LinksNonExistentDependenciesCreator
   nameWithType.vb: LinksNonExistentDependenciesCreator(Of TLink).LinksNonExistentDependenciesCreator
-- uid: Platform.Data.Doublets.Decorators.LinksNonExistentDependenciesCreator`1.Update(System.Collections.Generic.IList{`0})
-  name: Update(IList<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksNonExistentDependenciesCreator-1.html#Platform_Data_Doublets_Decorators_LinksNonExistentDependenciesCreator_1_Update_System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksNonExistentDependenciesCreator`1.Update(System.Collections.Generic.IList{`0})
-  name.vb: Update(IList(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksNonExistentDependenciesCreator<TLink>.Update(System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksNonExistentDependenciesCreator(Of TLink).Update(System.Collections.Generic.IList(Of TLink))
-  nameWithType: LinksNonExistentDependenciesCreator<TLink>.Update(IList<TLink>)
-  nameWithType.vb: LinksNonExistentDependenciesCreator(Of TLink).Update(IList(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksNonExistentDependenciesCreator`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0})
+  name: Update(IList<TLink>, IList<TLink>)
+  href: api/Platform.Data.Doublets.Decorators.LinksNonExistentDependenciesCreator-1.html#Platform_Data_Doublets_Decorators_LinksNonExistentDependenciesCreator_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Decorators.LinksNonExistentDependenciesCreator`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0})
+  name.vb: Update(IList(Of TLink), IList(Of TLink))
+  fullName: Platform.Data.Doublets.Decorators.LinksNonExistentDependenciesCreator<TLink>.Update(System.Collections.Generic.IList<TLink>, System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksNonExistentDependenciesCreator(Of TLink).Update(System.Collections.Generic.IList(Of TLink), System.Collections.Generic.IList(Of TLink))
+  nameWithType: LinksNonExistentDependenciesCreator<TLink>.Update(IList<TLink>, IList<TLink>)
+  nameWithType.vb: LinksNonExistentDependenciesCreator(Of TLink).Update(IList(Of TLink), IList(Of TLink))
 - uid: Platform.Data.Doublets.Decorators.LinksNonExistentDependenciesCreator`1.Update*
   name: Update
   href: api/Platform.Data.Doublets.Decorators.LinksNonExistentDependenciesCreator-1.html#Platform_Data_Doublets_Decorators_LinksNonExistentDependenciesCreator_1_Update_
@@ -656,14 +662,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver(Of TLink).LinksNullConstantToSelfReferenceResolver
   nameWithType: LinksNullConstantToSelfReferenceResolver<TLink>.LinksNullConstantToSelfReferenceResolver
   nameWithType.vb: LinksNullConstantToSelfReferenceResolver(Of TLink).LinksNullConstantToSelfReferenceResolver
-- uid: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver`1.Create
-  name: Create()
-  href: api/Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksNullConstantToSelfReferenceResolver_1_Create
-  commentId: M:Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver`1.Create
-  fullName: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver<TLink>.Create()
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver(Of TLink).Create()
-  nameWithType: LinksNullConstantToSelfReferenceResolver<TLink>.Create()
-  nameWithType.vb: LinksNullConstantToSelfReferenceResolver(Of TLink).Create()
+- uid: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver`1.Create(System.Collections.Generic.IList{`0})
+  name: Create(IList<TLink>)
+  href: api/Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksNullConstantToSelfReferenceResolver_1_Create_System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver`1.Create(System.Collections.Generic.IList{`0})
+  name.vb: Create(IList(Of TLink))
+  fullName: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver<TLink>.Create(System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver(Of TLink).Create(System.Collections.Generic.IList(Of TLink))
+  nameWithType: LinksNullConstantToSelfReferenceResolver<TLink>.Create(IList<TLink>)
+  nameWithType.vb: LinksNullConstantToSelfReferenceResolver(Of TLink).Create(IList(Of TLink))
 - uid: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver`1.Create*
   name: Create
   href: api/Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksNullConstantToSelfReferenceResolver_1_Create_
@@ -673,15 +680,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver(Of TLink).Create
   nameWithType: LinksNullConstantToSelfReferenceResolver<TLink>.Create
   nameWithType.vb: LinksNullConstantToSelfReferenceResolver(Of TLink).Create
-- uid: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver`1.Update(System.Collections.Generic.IList{`0})
-  name: Update(IList<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksNullConstantToSelfReferenceResolver_1_Update_System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver`1.Update(System.Collections.Generic.IList{`0})
-  name.vb: Update(IList(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver<TLink>.Update(System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver(Of TLink).Update(System.Collections.Generic.IList(Of TLink))
-  nameWithType: LinksNullConstantToSelfReferenceResolver<TLink>.Update(IList<TLink>)
-  nameWithType.vb: LinksNullConstantToSelfReferenceResolver(Of TLink).Update(IList(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0})
+  name: Update(IList<TLink>, IList<TLink>)
+  href: api/Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksNullConstantToSelfReferenceResolver_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0})
+  name.vb: Update(IList(Of TLink), IList(Of TLink))
+  fullName: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver<TLink>.Update(System.Collections.Generic.IList<TLink>, System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver(Of TLink).Update(System.Collections.Generic.IList(Of TLink), System.Collections.Generic.IList(Of TLink))
+  nameWithType: LinksNullConstantToSelfReferenceResolver<TLink>.Update(IList<TLink>, IList<TLink>)
+  nameWithType.vb: LinksNullConstantToSelfReferenceResolver(Of TLink).Update(IList(Of TLink), IList(Of TLink))
 - uid: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver`1.Update*
   name: Update
   href: api/Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksNullConstantToSelfReferenceResolver_1_Update_
@@ -735,15 +742,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksUniquenessResolver(Of TLink).ResolveAddressChangeConflict
   nameWithType: LinksUniquenessResolver<TLink>.ResolveAddressChangeConflict
   nameWithType.vb: LinksUniquenessResolver(Of TLink).ResolveAddressChangeConflict
-- uid: Platform.Data.Doublets.Decorators.LinksUniquenessResolver`1.Update(System.Collections.Generic.IList{`0})
-  name: Update(IList<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksUniquenessResolver-1.html#Platform_Data_Doublets_Decorators_LinksUniquenessResolver_1_Update_System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksUniquenessResolver`1.Update(System.Collections.Generic.IList{`0})
-  name.vb: Update(IList(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksUniquenessResolver<TLink>.Update(System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksUniquenessResolver(Of TLink).Update(System.Collections.Generic.IList(Of TLink))
-  nameWithType: LinksUniquenessResolver<TLink>.Update(IList<TLink>)
-  nameWithType.vb: LinksUniquenessResolver(Of TLink).Update(IList(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksUniquenessResolver`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0})
+  name: Update(IList<TLink>, IList<TLink>)
+  href: api/Platform.Data.Doublets.Decorators.LinksUniquenessResolver-1.html#Platform_Data_Doublets_Decorators_LinksUniquenessResolver_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Decorators.LinksUniquenessResolver`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0})
+  name.vb: Update(IList(Of TLink), IList(Of TLink))
+  fullName: Platform.Data.Doublets.Decorators.LinksUniquenessResolver<TLink>.Update(System.Collections.Generic.IList<TLink>, System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksUniquenessResolver(Of TLink).Update(System.Collections.Generic.IList(Of TLink), System.Collections.Generic.IList(Of TLink))
+  nameWithType: LinksUniquenessResolver<TLink>.Update(IList<TLink>, IList<TLink>)
+  nameWithType.vb: LinksUniquenessResolver(Of TLink).Update(IList(Of TLink), IList(Of TLink))
 - uid: Platform.Data.Doublets.Decorators.LinksUniquenessResolver`1.Update*
   name: Update
   href: api/Platform.Data.Doublets.Decorators.LinksUniquenessResolver-1.html#Platform_Data_Doublets_Decorators_LinksUniquenessResolver_1_Update_
@@ -780,15 +787,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksUniquenessValidator(Of TLink).LinksUniquenessValidator
   nameWithType: LinksUniquenessValidator<TLink>.LinksUniquenessValidator
   nameWithType.vb: LinksUniquenessValidator(Of TLink).LinksUniquenessValidator
-- uid: Platform.Data.Doublets.Decorators.LinksUniquenessValidator`1.Update(System.Collections.Generic.IList{`0})
-  name: Update(IList<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksUniquenessValidator-1.html#Platform_Data_Doublets_Decorators_LinksUniquenessValidator_1_Update_System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksUniquenessValidator`1.Update(System.Collections.Generic.IList{`0})
-  name.vb: Update(IList(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksUniquenessValidator<TLink>.Update(System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksUniquenessValidator(Of TLink).Update(System.Collections.Generic.IList(Of TLink))
-  nameWithType: LinksUniquenessValidator<TLink>.Update(IList<TLink>)
-  nameWithType.vb: LinksUniquenessValidator(Of TLink).Update(IList(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksUniquenessValidator`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0})
+  name: Update(IList<TLink>, IList<TLink>)
+  href: api/Platform.Data.Doublets.Decorators.LinksUniquenessValidator-1.html#Platform_Data_Doublets_Decorators_LinksUniquenessValidator_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Decorators.LinksUniquenessValidator`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0})
+  name.vb: Update(IList(Of TLink), IList(Of TLink))
+  fullName: Platform.Data.Doublets.Decorators.LinksUniquenessValidator<TLink>.Update(System.Collections.Generic.IList<TLink>, System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksUniquenessValidator(Of TLink).Update(System.Collections.Generic.IList(Of TLink), System.Collections.Generic.IList(Of TLink))
+  nameWithType: LinksUniquenessValidator<TLink>.Update(IList<TLink>, IList<TLink>)
+  nameWithType.vb: LinksUniquenessValidator(Of TLink).Update(IList(Of TLink), IList(Of TLink))
 - uid: Platform.Data.Doublets.Decorators.LinksUniquenessValidator`1.Update*
   name: Update
   href: api/Platform.Data.Doublets.Decorators.LinksUniquenessValidator-1.html#Platform_Data_Doublets_Decorators_LinksUniquenessValidator_1_Update_
@@ -825,14 +832,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksUsagesValidator(Of TLink).LinksUsagesValidator
   nameWithType: LinksUsagesValidator<TLink>.LinksUsagesValidator
   nameWithType.vb: LinksUsagesValidator(Of TLink).LinksUsagesValidator
-- uid: Platform.Data.Doublets.Decorators.LinksUsagesValidator`1.Delete(`0)
-  name: Delete(TLink)
-  href: api/Platform.Data.Doublets.Decorators.LinksUsagesValidator-1.html#Platform_Data_Doublets_Decorators_LinksUsagesValidator_1_Delete__0_
-  commentId: M:Platform.Data.Doublets.Decorators.LinksUsagesValidator`1.Delete(`0)
-  fullName: Platform.Data.Doublets.Decorators.LinksUsagesValidator<TLink>.Delete(TLink)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksUsagesValidator(Of TLink).Delete(TLink)
-  nameWithType: LinksUsagesValidator<TLink>.Delete(TLink)
-  nameWithType.vb: LinksUsagesValidator(Of TLink).Delete(TLink)
+- uid: Platform.Data.Doublets.Decorators.LinksUsagesValidator`1.Delete(System.Collections.Generic.IList{`0})
+  name: Delete(IList<TLink>)
+  href: api/Platform.Data.Doublets.Decorators.LinksUsagesValidator-1.html#Platform_Data_Doublets_Decorators_LinksUsagesValidator_1_Delete_System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Decorators.LinksUsagesValidator`1.Delete(System.Collections.Generic.IList{`0})
+  name.vb: Delete(IList(Of TLink))
+  fullName: Platform.Data.Doublets.Decorators.LinksUsagesValidator<TLink>.Delete(System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksUsagesValidator(Of TLink).Delete(System.Collections.Generic.IList(Of TLink))
+  nameWithType: LinksUsagesValidator<TLink>.Delete(IList<TLink>)
+  nameWithType.vb: LinksUsagesValidator(Of TLink).Delete(IList(Of TLink))
 - uid: Platform.Data.Doublets.Decorators.LinksUsagesValidator`1.Delete*
   name: Delete
   href: api/Platform.Data.Doublets.Decorators.LinksUsagesValidator-1.html#Platform_Data_Doublets_Decorators_LinksUsagesValidator_1_Delete_
@@ -842,15 +850,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksUsagesValidator(Of TLink).Delete
   nameWithType: LinksUsagesValidator<TLink>.Delete
   nameWithType.vb: LinksUsagesValidator(Of TLink).Delete
-- uid: Platform.Data.Doublets.Decorators.LinksUsagesValidator`1.Update(System.Collections.Generic.IList{`0})
-  name: Update(IList<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksUsagesValidator-1.html#Platform_Data_Doublets_Decorators_LinksUsagesValidator_1_Update_System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksUsagesValidator`1.Update(System.Collections.Generic.IList{`0})
-  name.vb: Update(IList(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksUsagesValidator<TLink>.Update(System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksUsagesValidator(Of TLink).Update(System.Collections.Generic.IList(Of TLink))
-  nameWithType: LinksUsagesValidator<TLink>.Update(IList<TLink>)
-  nameWithType.vb: LinksUsagesValidator(Of TLink).Update(IList(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksUsagesValidator`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0})
+  name: Update(IList<TLink>, IList<TLink>)
+  href: api/Platform.Data.Doublets.Decorators.LinksUsagesValidator-1.html#Platform_Data_Doublets_Decorators_LinksUsagesValidator_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Decorators.LinksUsagesValidator`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0})
+  name.vb: Update(IList(Of TLink), IList(Of TLink))
+  fullName: Platform.Data.Doublets.Decorators.LinksUsagesValidator<TLink>.Update(System.Collections.Generic.IList<TLink>, System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksUsagesValidator(Of TLink).Update(System.Collections.Generic.IList(Of TLink), System.Collections.Generic.IList(Of TLink))
+  nameWithType: LinksUsagesValidator<TLink>.Update(IList<TLink>, IList<TLink>)
+  nameWithType.vb: LinksUsagesValidator(Of TLink).Update(IList(Of TLink), IList(Of TLink))
 - uid: Platform.Data.Doublets.Decorators.LinksUsagesValidator`1.Update*
   name: Update
   href: api/Platform.Data.Doublets.Decorators.LinksUsagesValidator-1.html#Platform_Data_Doublets_Decorators_LinksUsagesValidator_1_Update_
@@ -887,14 +895,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.NonNullContentsLinkDeletionResolver(Of TLink).NonNullContentsLinkDeletionResolver
   nameWithType: NonNullContentsLinkDeletionResolver<TLink>.NonNullContentsLinkDeletionResolver
   nameWithType.vb: NonNullContentsLinkDeletionResolver(Of TLink).NonNullContentsLinkDeletionResolver
-- uid: Platform.Data.Doublets.Decorators.NonNullContentsLinkDeletionResolver`1.Delete(`0)
-  name: Delete(TLink)
-  href: api/Platform.Data.Doublets.Decorators.NonNullContentsLinkDeletionResolver-1.html#Platform_Data_Doublets_Decorators_NonNullContentsLinkDeletionResolver_1_Delete__0_
-  commentId: M:Platform.Data.Doublets.Decorators.NonNullContentsLinkDeletionResolver`1.Delete(`0)
-  fullName: Platform.Data.Doublets.Decorators.NonNullContentsLinkDeletionResolver<TLink>.Delete(TLink)
-  fullName.vb: Platform.Data.Doublets.Decorators.NonNullContentsLinkDeletionResolver(Of TLink).Delete(TLink)
-  nameWithType: NonNullContentsLinkDeletionResolver<TLink>.Delete(TLink)
-  nameWithType.vb: NonNullContentsLinkDeletionResolver(Of TLink).Delete(TLink)
+- uid: Platform.Data.Doublets.Decorators.NonNullContentsLinkDeletionResolver`1.Delete(System.Collections.Generic.IList{`0})
+  name: Delete(IList<TLink>)
+  href: api/Platform.Data.Doublets.Decorators.NonNullContentsLinkDeletionResolver-1.html#Platform_Data_Doublets_Decorators_NonNullContentsLinkDeletionResolver_1_Delete_System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Decorators.NonNullContentsLinkDeletionResolver`1.Delete(System.Collections.Generic.IList{`0})
+  name.vb: Delete(IList(Of TLink))
+  fullName: Platform.Data.Doublets.Decorators.NonNullContentsLinkDeletionResolver<TLink>.Delete(System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Decorators.NonNullContentsLinkDeletionResolver(Of TLink).Delete(System.Collections.Generic.IList(Of TLink))
+  nameWithType: NonNullContentsLinkDeletionResolver<TLink>.Delete(IList<TLink>)
+  nameWithType.vb: NonNullContentsLinkDeletionResolver(Of TLink).Delete(IList(Of TLink))
 - uid: Platform.Data.Doublets.Decorators.NonNullContentsLinkDeletionResolver`1.Delete*
   name: Delete
   href: api/Platform.Data.Doublets.Decorators.NonNullContentsLinkDeletionResolver-1.html#Platform_Data_Doublets_Decorators_NonNullContentsLinkDeletionResolver_1_Delete_
@@ -926,12 +935,15 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Decorators.UInt64Links.UInt64Links
   nameWithType: UInt64Links.UInt64Links
-- uid: Platform.Data.Doublets.Decorators.UInt64Links.Create
-  name: Create()
-  href: api/Platform.Data.Doublets.Decorators.UInt64Links.html#Platform_Data_Doublets_Decorators_UInt64Links_Create
-  commentId: M:Platform.Data.Doublets.Decorators.UInt64Links.Create
-  fullName: Platform.Data.Doublets.Decorators.UInt64Links.Create()
-  nameWithType: UInt64Links.Create()
+- uid: Platform.Data.Doublets.Decorators.UInt64Links.Create(System.Collections.Generic.IList{System.UInt64})
+  name: Create(IList<UInt64>)
+  href: api/Platform.Data.Doublets.Decorators.UInt64Links.html#Platform_Data_Doublets_Decorators_UInt64Links_Create_System_Collections_Generic_IList_System_UInt64__
+  commentId: M:Platform.Data.Doublets.Decorators.UInt64Links.Create(System.Collections.Generic.IList{System.UInt64})
+  name.vb: Create(IList(Of UInt64))
+  fullName: Platform.Data.Doublets.Decorators.UInt64Links.Create(System.Collections.Generic.IList<System.UInt64>)
+  fullName.vb: Platform.Data.Doublets.Decorators.UInt64Links.Create(System.Collections.Generic.IList(Of System.UInt64))
+  nameWithType: UInt64Links.Create(IList<UInt64>)
+  nameWithType.vb: UInt64Links.Create(IList(Of UInt64))
 - uid: Platform.Data.Doublets.Decorators.UInt64Links.Create*
   name: Create
   href: api/Platform.Data.Doublets.Decorators.UInt64Links.html#Platform_Data_Doublets_Decorators_UInt64Links_Create_
@@ -939,12 +951,15 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Decorators.UInt64Links.Create
   nameWithType: UInt64Links.Create
-- uid: Platform.Data.Doublets.Decorators.UInt64Links.Delete(System.UInt64)
-  name: Delete(UInt64)
-  href: api/Platform.Data.Doublets.Decorators.UInt64Links.html#Platform_Data_Doublets_Decorators_UInt64Links_Delete_System_UInt64_
-  commentId: M:Platform.Data.Doublets.Decorators.UInt64Links.Delete(System.UInt64)
-  fullName: Platform.Data.Doublets.Decorators.UInt64Links.Delete(System.UInt64)
-  nameWithType: UInt64Links.Delete(UInt64)
+- uid: Platform.Data.Doublets.Decorators.UInt64Links.Delete(System.Collections.Generic.IList{System.UInt64})
+  name: Delete(IList<UInt64>)
+  href: api/Platform.Data.Doublets.Decorators.UInt64Links.html#Platform_Data_Doublets_Decorators_UInt64Links_Delete_System_Collections_Generic_IList_System_UInt64__
+  commentId: M:Platform.Data.Doublets.Decorators.UInt64Links.Delete(System.Collections.Generic.IList{System.UInt64})
+  name.vb: Delete(IList(Of UInt64))
+  fullName: Platform.Data.Doublets.Decorators.UInt64Links.Delete(System.Collections.Generic.IList<System.UInt64>)
+  fullName.vb: Platform.Data.Doublets.Decorators.UInt64Links.Delete(System.Collections.Generic.IList(Of System.UInt64))
+  nameWithType: UInt64Links.Delete(IList<UInt64>)
+  nameWithType.vb: UInt64Links.Delete(IList(Of UInt64))
 - uid: Platform.Data.Doublets.Decorators.UInt64Links.Delete*
   name: Delete
   href: api/Platform.Data.Doublets.Decorators.UInt64Links.html#Platform_Data_Doublets_Decorators_UInt64Links_Delete_
@@ -968,15 +983,15 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Decorators.UInt64Links.Each
   nameWithType: UInt64Links.Each
-- uid: Platform.Data.Doublets.Decorators.UInt64Links.Update(System.Collections.Generic.IList{System.UInt64})
-  name: Update(IList<UInt64>)
-  href: api/Platform.Data.Doublets.Decorators.UInt64Links.html#Platform_Data_Doublets_Decorators_UInt64Links_Update_System_Collections_Generic_IList_System_UInt64__
-  commentId: M:Platform.Data.Doublets.Decorators.UInt64Links.Update(System.Collections.Generic.IList{System.UInt64})
-  name.vb: Update(IList(Of UInt64))
-  fullName: Platform.Data.Doublets.Decorators.UInt64Links.Update(System.Collections.Generic.IList<System.UInt64>)
-  fullName.vb: Platform.Data.Doublets.Decorators.UInt64Links.Update(System.Collections.Generic.IList(Of System.UInt64))
-  nameWithType: UInt64Links.Update(IList<UInt64>)
-  nameWithType.vb: UInt64Links.Update(IList(Of UInt64))
+- uid: Platform.Data.Doublets.Decorators.UInt64Links.Update(System.Collections.Generic.IList{System.UInt64},System.Collections.Generic.IList{System.UInt64})
+  name: Update(IList<UInt64>, IList<UInt64>)
+  href: api/Platform.Data.Doublets.Decorators.UInt64Links.html#Platform_Data_Doublets_Decorators_UInt64Links_Update_System_Collections_Generic_IList_System_UInt64__System_Collections_Generic_IList_System_UInt64__
+  commentId: M:Platform.Data.Doublets.Decorators.UInt64Links.Update(System.Collections.Generic.IList{System.UInt64},System.Collections.Generic.IList{System.UInt64})
+  name.vb: Update(IList(Of UInt64), IList(Of UInt64))
+  fullName: Platform.Data.Doublets.Decorators.UInt64Links.Update(System.Collections.Generic.IList<System.UInt64>, System.Collections.Generic.IList<System.UInt64>)
+  fullName.vb: Platform.Data.Doublets.Decorators.UInt64Links.Update(System.Collections.Generic.IList(Of System.UInt64), System.Collections.Generic.IList(Of System.UInt64))
+  nameWithType: UInt64Links.Update(IList<UInt64>, IList<UInt64>)
+  nameWithType.vb: UInt64Links.Update(IList(Of UInt64), IList(Of UInt64))
 - uid: Platform.Data.Doublets.Decorators.UInt64Links.Update*
   name: Update
   href: api/Platform.Data.Doublets.Decorators.UInt64Links.html#Platform_Data_Doublets_Decorators_UInt64Links_Update_
@@ -1569,6 +1584,22 @@ references:
   fullName.vb: Platform.Data.Doublets.ILinksExtensions.CountUsages(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink)
   nameWithType: ILinksExtensions.CountUsages<TLink>(ILinks<TLink>, TLink)
   nameWithType.vb: ILinksExtensions.CountUsages(Of TLink)(ILinks(Of TLink), TLink)
+- uid: Platform.Data.Doublets.ILinksExtensions.Create*
+  name: Create
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Create_
+  commentId: Overload:Platform.Data.Doublets.ILinksExtensions.Create
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ILinksExtensions.Create
+  nameWithType: ILinksExtensions.Create
+- uid: Platform.Data.Doublets.ILinksExtensions.Create``1(Platform.Data.Doublets.ILinks{``0})
+  name: Create<TLink>(ILinks<TLink>)
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Create__1_Platform_Data_Doublets_ILinks___0__
+  commentId: M:Platform.Data.Doublets.ILinksExtensions.Create``1(Platform.Data.Doublets.ILinks{``0})
+  name.vb: Create(Of TLink)(ILinks(Of TLink))
+  fullName: Platform.Data.Doublets.ILinksExtensions.Create<TLink>(Platform.Data.Doublets.ILinks<TLink>)
+  fullName.vb: Platform.Data.Doublets.ILinksExtensions.Create(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink))
+  nameWithType: ILinksExtensions.Create<TLink>(ILinks<TLink>)
+  nameWithType.vb: ILinksExtensions.Create(Of TLink)(ILinks(Of TLink))
 - uid: Platform.Data.Doublets.ILinksExtensions.CreateAndUpdate*
   name: CreateAndUpdate
   href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_CreateAndUpdate_
@@ -1617,6 +1648,22 @@ references:
   fullName.vb: Platform.Data.Doublets.ILinksExtensions.DecorateWithAutomaticUniquenessAndUsagesResolution(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink))
   nameWithType: ILinksExtensions.DecorateWithAutomaticUniquenessAndUsagesResolution<TLink>(ILinks<TLink>)
   nameWithType.vb: ILinksExtensions.DecorateWithAutomaticUniquenessAndUsagesResolution(Of TLink)(ILinks(Of TLink))
+- uid: Platform.Data.Doublets.ILinksExtensions.Delete*
+  name: Delete
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Delete_
+  commentId: Overload:Platform.Data.Doublets.ILinksExtensions.Delete
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ILinksExtensions.Delete
+  nameWithType: ILinksExtensions.Delete
+- uid: Platform.Data.Doublets.ILinksExtensions.Delete``1(Platform.Data.Doublets.ILinks{``0},``0)
+  name: Delete<TLink>(ILinks<TLink>, TLink)
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Delete__1_Platform_Data_Doublets_ILinks___0____0_
+  commentId: M:Platform.Data.Doublets.ILinksExtensions.Delete``1(Platform.Data.Doublets.ILinks{``0},``0)
+  name.vb: Delete(Of TLink)(ILinks(Of TLink), TLink)
+  fullName: Platform.Data.Doublets.ILinksExtensions.Delete<TLink>(Platform.Data.Doublets.ILinks<TLink>, TLink)
+  fullName.vb: Platform.Data.Doublets.ILinksExtensions.Delete(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink)
+  nameWithType: ILinksExtensions.Delete<TLink>(ILinks<TLink>, TLink)
+  nameWithType.vb: ILinksExtensions.Delete(Of TLink)(ILinks(Of TLink), TLink)
 - uid: Platform.Data.Doublets.ILinksExtensions.DeleteAll*
   name: DeleteAll
   href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_DeleteAll_
@@ -2064,22 +2111,6 @@ references:
   fullName.vb: Platform.Data.Doublets.ILinksExtensions.HasUsages(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink)
   nameWithType: ILinksExtensions.HasUsages<TLink>(ILinks<TLink>, TLink)
   nameWithType.vb: ILinksExtensions.HasUsages(Of TLink)(ILinks(Of TLink), TLink)
-- uid: Platform.Data.Doublets.ILinksExtensions.IsInnerReference*
-  name: IsInnerReference
-  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_IsInnerReference_
-  commentId: Overload:Platform.Data.Doublets.ILinksExtensions.IsInnerReference
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.ILinksExtensions.IsInnerReference
-  nameWithType: ILinksExtensions.IsInnerReference
-- uid: Platform.Data.Doublets.ILinksExtensions.IsInnerReference``1(Platform.Data.Doublets.ILinks{``0},``0)
-  name: IsInnerReference<TLink>(ILinks<TLink>, TLink)
-  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_IsInnerReference__1_Platform_Data_Doublets_ILinks___0____0_
-  commentId: M:Platform.Data.Doublets.ILinksExtensions.IsInnerReference``1(Platform.Data.Doublets.ILinks{``0},``0)
-  name.vb: IsInnerReference(Of TLink)(ILinks(Of TLink), TLink)
-  fullName: Platform.Data.Doublets.ILinksExtensions.IsInnerReference<TLink>(Platform.Data.Doublets.ILinks<TLink>, TLink)
-  fullName.vb: Platform.Data.Doublets.ILinksExtensions.IsInnerReference(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink)
-  nameWithType: ILinksExtensions.IsInnerReference<TLink>(ILinks<TLink>, TLink)
-  nameWithType.vb: ILinksExtensions.IsInnerReference(Of TLink)(ILinks(Of TLink), TLink)
 - uid: Platform.Data.Doublets.ILinksExtensions.MergeAndDelete*
   name: MergeAndDelete
   href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_MergeAndDelete_
@@ -2135,15 +2166,15 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.ILinksExtensions.ResolveConstantAsSelfReference
   nameWithType: ILinksExtensions.ResolveConstantAsSelfReference
-- uid: Platform.Data.Doublets.ILinksExtensions.ResolveConstantAsSelfReference``1(Platform.Data.Doublets.ILinks{``0},``0,System.Collections.Generic.IList{``0})
-  name: ResolveConstantAsSelfReference<TLink>(ILinks<TLink>, TLink, IList<TLink>)
-  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_ResolveConstantAsSelfReference__1_Platform_Data_Doublets_ILinks___0____0_System_Collections_Generic_IList___0__
-  commentId: M:Platform.Data.Doublets.ILinksExtensions.ResolveConstantAsSelfReference``1(Platform.Data.Doublets.ILinks{``0},``0,System.Collections.Generic.IList{``0})
-  name.vb: ResolveConstantAsSelfReference(Of TLink)(ILinks(Of TLink), TLink, IList(Of TLink))
-  fullName: Platform.Data.Doublets.ILinksExtensions.ResolveConstantAsSelfReference<TLink>(Platform.Data.Doublets.ILinks<TLink>, TLink, System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.ILinksExtensions.ResolveConstantAsSelfReference(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink, System.Collections.Generic.IList(Of TLink))
-  nameWithType: ILinksExtensions.ResolveConstantAsSelfReference<TLink>(ILinks<TLink>, TLink, IList<TLink>)
-  nameWithType.vb: ILinksExtensions.ResolveConstantAsSelfReference(Of TLink)(ILinks(Of TLink), TLink, IList(Of TLink))
+- uid: Platform.Data.Doublets.ILinksExtensions.ResolveConstantAsSelfReference``1(Platform.Data.Doublets.ILinks{``0},``0,System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``0})
+  name: ResolveConstantAsSelfReference<TLink>(ILinks<TLink>, TLink, IList<TLink>, IList<TLink>)
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_ResolveConstantAsSelfReference__1_Platform_Data_Doublets_ILinks___0____0_System_Collections_Generic_IList___0__System_Collections_Generic_IList___0__
+  commentId: M:Platform.Data.Doublets.ILinksExtensions.ResolveConstantAsSelfReference``1(Platform.Data.Doublets.ILinks{``0},``0,System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``0})
+  name.vb: ResolveConstantAsSelfReference(Of TLink)(ILinks(Of TLink), TLink, IList(Of TLink), IList(Of TLink))
+  fullName: Platform.Data.Doublets.ILinksExtensions.ResolveConstantAsSelfReference<TLink>(Platform.Data.Doublets.ILinks<TLink>, TLink, System.Collections.Generic.IList<TLink>, System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.ILinksExtensions.ResolveConstantAsSelfReference(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink, System.Collections.Generic.IList(Of TLink), System.Collections.Generic.IList(Of TLink))
+  nameWithType: ILinksExtensions.ResolveConstantAsSelfReference<TLink>(ILinks<TLink>, TLink, IList<TLink>, IList<TLink>)
+  nameWithType.vb: ILinksExtensions.ResolveConstantAsSelfReference(Of TLink)(ILinks(Of TLink), TLink, IList(Of TLink), IList(Of TLink))
 - uid: Platform.Data.Doublets.ILinksExtensions.RunRandomCreations*
   name: RunRandomCreations
   href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_RunRandomCreations_
@@ -3402,14 +3433,15 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks(Of TLink).Count
   nameWithType: ResizableDirectMemoryLinks<TLink>.Count
   nameWithType.vb: ResizableDirectMemoryLinks(Of TLink).Count
-- uid: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.Create
-  name: Create()
-  href: api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html#Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinks_1_Create
-  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.Create
-  fullName: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks<TLink>.Create()
-  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks(Of TLink).Create()
-  nameWithType: ResizableDirectMemoryLinks<TLink>.Create()
-  nameWithType.vb: ResizableDirectMemoryLinks(Of TLink).Create()
+- uid: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.Create(System.Collections.Generic.IList{`0})
+  name: Create(IList<TLink>)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html#Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinks_1_Create_System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.Create(System.Collections.Generic.IList{`0})
+  name.vb: Create(IList(Of TLink))
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks<TLink>.Create(System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks(Of TLink).Create(System.Collections.Generic.IList(Of TLink))
+  nameWithType: ResizableDirectMemoryLinks<TLink>.Create(IList<TLink>)
+  nameWithType.vb: ResizableDirectMemoryLinks(Of TLink).Create(IList(Of TLink))
 - uid: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.Create*
   name: Create
   href: api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html#Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinks_1_Create_
@@ -3427,14 +3459,15 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks(Of TLink).DefaultLinksSizeStep
   nameWithType: ResizableDirectMemoryLinks<TLink>.DefaultLinksSizeStep
   nameWithType.vb: ResizableDirectMemoryLinks(Of TLink).DefaultLinksSizeStep
-- uid: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.Delete(`0)
-  name: Delete(TLink)
-  href: api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html#Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinks_1_Delete__0_
-  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.Delete(`0)
-  fullName: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks<TLink>.Delete(TLink)
-  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks(Of TLink).Delete(TLink)
-  nameWithType: ResizableDirectMemoryLinks<TLink>.Delete(TLink)
-  nameWithType.vb: ResizableDirectMemoryLinks(Of TLink).Delete(TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.Delete(System.Collections.Generic.IList{`0})
+  name: Delete(IList<TLink>)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html#Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinks_1_Delete_System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.Delete(System.Collections.Generic.IList{`0})
+  name.vb: Delete(IList(Of TLink))
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks<TLink>.Delete(System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks(Of TLink).Delete(System.Collections.Generic.IList(Of TLink))
+  nameWithType: ResizableDirectMemoryLinks<TLink>.Delete(IList<TLink>)
+  nameWithType.vb: ResizableDirectMemoryLinks(Of TLink).Delete(IList(Of TLink))
 - uid: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.Delete*
   name: Delete
   href: api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html#Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinks_1_Delete_
@@ -3512,15 +3545,15 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks(Of TLink).LinkSizeInBytes
   nameWithType: ResizableDirectMemoryLinks<TLink>.LinkSizeInBytes
   nameWithType.vb: ResizableDirectMemoryLinks(Of TLink).LinkSizeInBytes
-- uid: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.Update(System.Collections.Generic.IList{`0})
-  name: Update(IList<TLink>)
-  href: api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html#Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinks_1_Update_System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.Update(System.Collections.Generic.IList{`0})
-  name.vb: Update(IList(Of TLink))
-  fullName: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks<TLink>.Update(System.Collections.Generic.IList<TLink>)
-  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks(Of TLink).Update(System.Collections.Generic.IList(Of TLink))
-  nameWithType: ResizableDirectMemoryLinks<TLink>.Update(IList<TLink>)
-  nameWithType.vb: ResizableDirectMemoryLinks(Of TLink).Update(IList(Of TLink))
+- uid: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0})
+  name: Update(IList<TLink>, IList<TLink>)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html#Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinks_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0})
+  name.vb: Update(IList(Of TLink), IList(Of TLink))
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks<TLink>.Update(System.Collections.Generic.IList<TLink>, System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks(Of TLink).Update(System.Collections.Generic.IList(Of TLink), System.Collections.Generic.IList(Of TLink))
+  nameWithType: ResizableDirectMemoryLinks<TLink>.Update(IList<TLink>, IList<TLink>)
+  nameWithType.vb: ResizableDirectMemoryLinks(Of TLink).Update(IList(Of TLink), IList(Of TLink))
 - uid: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.Update*
   name: Update
   href: api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html#Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinks_1_Update_
@@ -3609,12 +3642,15 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Count
   nameWithType: UInt64ResizableDirectMemoryLinks.Count
-- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Create
-  name: Create()
-  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64ResizableDirectMemoryLinks_Create
-  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Create
-  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Create()
-  nameWithType: UInt64ResizableDirectMemoryLinks.Create()
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Create(System.Collections.Generic.IList{System.UInt64})
+  name: Create(IList<UInt64>)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64ResizableDirectMemoryLinks_Create_System_Collections_Generic_IList_System_UInt64__
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Create(System.Collections.Generic.IList{System.UInt64})
+  name.vb: Create(IList(Of UInt64))
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Create(System.Collections.Generic.IList<System.UInt64>)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Create(System.Collections.Generic.IList(Of System.UInt64))
+  nameWithType: UInt64ResizableDirectMemoryLinks.Create(IList<UInt64>)
+  nameWithType.vb: UInt64ResizableDirectMemoryLinks.Create(IList(Of UInt64))
 - uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Create*
   name: Create
   href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64ResizableDirectMemoryLinks_Create_
@@ -3628,12 +3664,15 @@ references:
   commentId: F:Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.DefaultLinksSizeStep
   fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.DefaultLinksSizeStep
   nameWithType: UInt64ResizableDirectMemoryLinks.DefaultLinksSizeStep
-- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Delete(System.UInt64)
-  name: Delete(UInt64)
-  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64ResizableDirectMemoryLinks_Delete_System_UInt64_
-  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Delete(System.UInt64)
-  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Delete(System.UInt64)
-  nameWithType: UInt64ResizableDirectMemoryLinks.Delete(UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Delete(System.Collections.Generic.IList{System.UInt64})
+  name: Delete(IList<UInt64>)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64ResizableDirectMemoryLinks_Delete_System_Collections_Generic_IList_System_UInt64__
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Delete(System.Collections.Generic.IList{System.UInt64})
+  name.vb: Delete(IList(Of UInt64))
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Delete(System.Collections.Generic.IList<System.UInt64>)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Delete(System.Collections.Generic.IList(Of System.UInt64))
+  nameWithType: UInt64ResizableDirectMemoryLinks.Delete(IList<UInt64>)
+  nameWithType.vb: UInt64ResizableDirectMemoryLinks.Delete(IList(Of UInt64))
 - uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Delete*
   name: Delete
   href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64ResizableDirectMemoryLinks_Delete_
@@ -3676,15 +3715,15 @@ references:
   commentId: F:Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.LinkSizeInBytes
   fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.LinkSizeInBytes
   nameWithType: UInt64ResizableDirectMemoryLinks.LinkSizeInBytes
-- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Update(System.Collections.Generic.IList{System.UInt64})
-  name: Update(IList<UInt64>)
-  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64ResizableDirectMemoryLinks_Update_System_Collections_Generic_IList_System_UInt64__
-  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Update(System.Collections.Generic.IList{System.UInt64})
-  name.vb: Update(IList(Of UInt64))
-  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Update(System.Collections.Generic.IList<System.UInt64>)
-  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Update(System.Collections.Generic.IList(Of System.UInt64))
-  nameWithType: UInt64ResizableDirectMemoryLinks.Update(IList<UInt64>)
-  nameWithType.vb: UInt64ResizableDirectMemoryLinks.Update(IList(Of UInt64))
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Update(System.Collections.Generic.IList{System.UInt64},System.Collections.Generic.IList{System.UInt64})
+  name: Update(IList<UInt64>, IList<UInt64>)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64ResizableDirectMemoryLinks_Update_System_Collections_Generic_IList_System_UInt64__System_Collections_Generic_IList_System_UInt64__
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Update(System.Collections.Generic.IList{System.UInt64},System.Collections.Generic.IList{System.UInt64})
+  name.vb: Update(IList(Of UInt64), IList(Of UInt64))
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Update(System.Collections.Generic.IList<System.UInt64>, System.Collections.Generic.IList<System.UInt64>)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Update(System.Collections.Generic.IList(Of System.UInt64), System.Collections.Generic.IList(Of System.UInt64))
+  nameWithType: UInt64ResizableDirectMemoryLinks.Update(IList<UInt64>, IList<UInt64>)
+  nameWithType.vb: UInt64ResizableDirectMemoryLinks.Update(IList(Of UInt64), IList(Of UInt64))
 - uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Update*
   name: Update
   href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64ResizableDirectMemoryLinks_Update_
@@ -3698,6 +3737,28 @@ references:
   commentId: N:Platform.Data.Doublets.Sequences
   fullName: Platform.Data.Doublets.Sequences
   nameWithType: Platform.Data.Doublets.Sequences
+- uid: Platform.Data.Doublets.Sequences.ArrayExtensions
+  name: ArrayExtensions
+  href: api/Platform.Data.Doublets.Sequences.ArrayExtensions.html
+  commentId: T:Platform.Data.Doublets.Sequences.ArrayExtensions
+  fullName: Platform.Data.Doublets.Sequences.ArrayExtensions
+  nameWithType: ArrayExtensions
+- uid: Platform.Data.Doublets.Sequences.ArrayExtensions.ConvertToRestrictionsValues*
+  name: ConvertToRestrictionsValues
+  href: api/Platform.Data.Doublets.Sequences.ArrayExtensions.html#Platform_Data_Doublets_Sequences_ArrayExtensions_ConvertToRestrictionsValues_
+  commentId: Overload:Platform.Data.Doublets.Sequences.ArrayExtensions.ConvertToRestrictionsValues
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Sequences.ArrayExtensions.ConvertToRestrictionsValues
+  nameWithType: ArrayExtensions.ConvertToRestrictionsValues
+- uid: Platform.Data.Doublets.Sequences.ArrayExtensions.ConvertToRestrictionsValues``1(``0[])
+  name: ConvertToRestrictionsValues<TLink>(TLink[])
+  href: api/Platform.Data.Doublets.Sequences.ArrayExtensions.html#Platform_Data_Doublets_Sequences_ArrayExtensions_ConvertToRestrictionsValues__1___0___
+  commentId: M:Platform.Data.Doublets.Sequences.ArrayExtensions.ConvertToRestrictionsValues``1(``0[])
+  name.vb: ConvertToRestrictionsValues(Of TLink)(TLink())
+  fullName: Platform.Data.Doublets.Sequences.ArrayExtensions.ConvertToRestrictionsValues<TLink>(TLink[])
+  fullName.vb: Platform.Data.Doublets.Sequences.ArrayExtensions.ConvertToRestrictionsValues(Of TLink)(TLink())
+  nameWithType: ArrayExtensions.ConvertToRestrictionsValues<TLink>(TLink[])
+  nameWithType.vb: ArrayExtensions.ConvertToRestrictionsValues(Of TLink)(TLink())
 - uid: Platform.Data.Doublets.Sequences.Converters
   name: Platform.Data.Doublets.Sequences.Converters
   href: api/Platform.Data.Doublets.Sequences.Converters.html
@@ -4163,15 +4224,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.DuplicateSegmentsProvider(Of TLink)
   nameWithType: DuplicateSegmentsProvider<TLink>
   nameWithType.vb: DuplicateSegmentsProvider(Of TLink)
-- uid: Platform.Data.Doublets.Sequences.DuplicateSegmentsProvider`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Data.Sequences.ISequences{`0})
-  name: DuplicateSegmentsProvider(ILinks<TLink>, ISequences<TLink>)
-  href: api/Platform.Data.Doublets.Sequences.DuplicateSegmentsProvider-1.html#Platform_Data_Doublets_Sequences_DuplicateSegmentsProvider_1__ctor_Platform_Data_Doublets_ILinks__0__Platform_Data_Sequences_ISequences__0__
-  commentId: M:Platform.Data.Doublets.Sequences.DuplicateSegmentsProvider`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Data.Sequences.ISequences{`0})
-  name.vb: DuplicateSegmentsProvider(ILinks(Of TLink), ISequences(Of TLink))
-  fullName: Platform.Data.Doublets.Sequences.DuplicateSegmentsProvider<TLink>.DuplicateSegmentsProvider(Platform.Data.Doublets.ILinks<TLink>, Platform.Data.Sequences.ISequences<TLink>)
-  fullName.vb: Platform.Data.Doublets.Sequences.DuplicateSegmentsProvider(Of TLink).DuplicateSegmentsProvider(Platform.Data.Doublets.ILinks(Of TLink), Platform.Data.Sequences.ISequences(Of TLink))
-  nameWithType: DuplicateSegmentsProvider<TLink>.DuplicateSegmentsProvider(ILinks<TLink>, ISequences<TLink>)
-  nameWithType.vb: DuplicateSegmentsProvider(Of TLink).DuplicateSegmentsProvider(ILinks(Of TLink), ISequences(Of TLink))
+- uid: Platform.Data.Doublets.Sequences.DuplicateSegmentsProvider`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Data.Doublets.ILinks{`0})
+  name: DuplicateSegmentsProvider(ILinks<TLink>, ILinks<TLink>)
+  href: api/Platform.Data.Doublets.Sequences.DuplicateSegmentsProvider-1.html#Platform_Data_Doublets_Sequences_DuplicateSegmentsProvider_1__ctor_Platform_Data_Doublets_ILinks__0__Platform_Data_Doublets_ILinks__0__
+  commentId: M:Platform.Data.Doublets.Sequences.DuplicateSegmentsProvider`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Data.Doublets.ILinks{`0})
+  name.vb: DuplicateSegmentsProvider(ILinks(Of TLink), ILinks(Of TLink))
+  fullName: Platform.Data.Doublets.Sequences.DuplicateSegmentsProvider<TLink>.DuplicateSegmentsProvider(Platform.Data.Doublets.ILinks<TLink>, Platform.Data.Doublets.ILinks<TLink>)
+  fullName.vb: Platform.Data.Doublets.Sequences.DuplicateSegmentsProvider(Of TLink).DuplicateSegmentsProvider(Platform.Data.Doublets.ILinks(Of TLink), Platform.Data.Doublets.ILinks(Of TLink))
+  nameWithType: DuplicateSegmentsProvider<TLink>.DuplicateSegmentsProvider(ILinks<TLink>, ILinks<TLink>)
+  nameWithType.vb: DuplicateSegmentsProvider(Of TLink).DuplicateSegmentsProvider(ILinks(Of TLink), ILinks(Of TLink))
 - uid: Platform.Data.Doublets.Sequences.DuplicateSegmentsProvider`1.#ctor*
   name: DuplicateSegmentsProvider
   href: api/Platform.Data.Doublets.Sequences.DuplicateSegmentsProvider-1.html#Platform_Data_Doublets_Sequences_DuplicateSegmentsProvider_1__ctor_
@@ -5007,6 +5068,44 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.HeightProviders.ISequenceHeightProvider(Of TLink)
   nameWithType: ISequenceHeightProvider<TLink>
   nameWithType.vb: ISequenceHeightProvider(Of TLink)
+- uid: Platform.Data.Doublets.Sequences.IListExtensions
+  name: IListExtensions
+  href: api/Platform.Data.Doublets.Sequences.IListExtensions.html
+  commentId: T:Platform.Data.Doublets.Sequences.IListExtensions
+  fullName: Platform.Data.Doublets.Sequences.IListExtensions
+  nameWithType: IListExtensions
+- uid: Platform.Data.Doublets.Sequences.IListExtensions.ConvertToRestrictionsValues*
+  name: ConvertToRestrictionsValues
+  href: api/Platform.Data.Doublets.Sequences.IListExtensions.html#Platform_Data_Doublets_Sequences_IListExtensions_ConvertToRestrictionsValues_
+  commentId: Overload:Platform.Data.Doublets.Sequences.IListExtensions.ConvertToRestrictionsValues
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Sequences.IListExtensions.ConvertToRestrictionsValues
+  nameWithType: IListExtensions.ConvertToRestrictionsValues
+- uid: Platform.Data.Doublets.Sequences.IListExtensions.ConvertToRestrictionsValues``1(System.Collections.Generic.IList{``0})
+  name: ConvertToRestrictionsValues<TLink>(IList<TLink>)
+  href: api/Platform.Data.Doublets.Sequences.IListExtensions.html#Platform_Data_Doublets_Sequences_IListExtensions_ConvertToRestrictionsValues__1_System_Collections_Generic_IList___0__
+  commentId: M:Platform.Data.Doublets.Sequences.IListExtensions.ConvertToRestrictionsValues``1(System.Collections.Generic.IList{``0})
+  name.vb: ConvertToRestrictionsValues(Of TLink)(IList(Of TLink))
+  fullName: Platform.Data.Doublets.Sequences.IListExtensions.ConvertToRestrictionsValues<TLink>(System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Sequences.IListExtensions.ConvertToRestrictionsValues(Of TLink)(System.Collections.Generic.IList(Of TLink))
+  nameWithType: IListExtensions.ConvertToRestrictionsValues<TLink>(IList<TLink>)
+  nameWithType.vb: IListExtensions.ConvertToRestrictionsValues(Of TLink)(IList(Of TLink))
+- uid: Platform.Data.Doublets.Sequences.IListExtensions.ExtractValues*
+  name: ExtractValues
+  href: api/Platform.Data.Doublets.Sequences.IListExtensions.html#Platform_Data_Doublets_Sequences_IListExtensions_ExtractValues_
+  commentId: Overload:Platform.Data.Doublets.Sequences.IListExtensions.ExtractValues
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Sequences.IListExtensions.ExtractValues
+  nameWithType: IListExtensions.ExtractValues
+- uid: Platform.Data.Doublets.Sequences.IListExtensions.ExtractValues``1(System.Collections.Generic.IList{``0})
+  name: ExtractValues<TLink>(IList<TLink>)
+  href: api/Platform.Data.Doublets.Sequences.IListExtensions.html#Platform_Data_Doublets_Sequences_IListExtensions_ExtractValues__1_System_Collections_Generic_IList___0__
+  commentId: M:Platform.Data.Doublets.Sequences.IListExtensions.ExtractValues``1(System.Collections.Generic.IList{``0})
+  name.vb: ExtractValues(Of TLink)(IList(Of TLink))
+  fullName: Platform.Data.Doublets.Sequences.IListExtensions.ExtractValues<TLink>(System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Sequences.IListExtensions.ExtractValues(Of TLink)(System.Collections.Generic.IList(Of TLink))
+  nameWithType: IListExtensions.ExtractValues<TLink>(IList<TLink>)
+  nameWithType.vb: IListExtensions.ExtractValues(Of TLink)(IList(Of TLink))
 - uid: Platform.Data.Doublets.Sequences.Indexes
   name: Platform.Data.Doublets.Sequences.Indexes
   href: api/Platform.Data.Doublets.Sequences.Indexes.html
@@ -5292,6 +5391,163 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex(Of TLink).MightContain
   nameWithType: SynchronizedSequenceIndex<TLink>.MightContain
   nameWithType.vb: SynchronizedSequenceIndex(Of TLink).MightContain
+- uid: Platform.Data.Doublets.Sequences.ListFiller`2
+  name: ListFiller<TElement, TReturnConstant>
+  href: api/Platform.Data.Doublets.Sequences.ListFiller-2.html
+  commentId: T:Platform.Data.Doublets.Sequences.ListFiller`2
+  name.vb: ListFiller(Of TElement, TReturnConstant)
+  fullName: Platform.Data.Doublets.Sequences.ListFiller<TElement, TReturnConstant>
+  fullName.vb: Platform.Data.Doublets.Sequences.ListFiller(Of TElement, TReturnConstant)
+  nameWithType: ListFiller<TElement, TReturnConstant>
+  nameWithType.vb: ListFiller(Of TElement, TReturnConstant)
+- uid: Platform.Data.Doublets.Sequences.ListFiller`2.#ctor(System.Collections.Generic.List{`0})
+  name: ListFiller(List<TElement>)
+  href: api/Platform.Data.Doublets.Sequences.ListFiller-2.html#Platform_Data_Doublets_Sequences_ListFiller_2__ctor_System_Collections_Generic_List__0__
+  commentId: M:Platform.Data.Doublets.Sequences.ListFiller`2.#ctor(System.Collections.Generic.List{`0})
+  name.vb: ListFiller(List(Of TElement))
+  fullName: Platform.Data.Doublets.Sequences.ListFiller<TElement, TReturnConstant>.ListFiller(System.Collections.Generic.List<TElement>)
+  fullName.vb: Platform.Data.Doublets.Sequences.ListFiller(Of TElement, TReturnConstant).ListFiller(System.Collections.Generic.List(Of TElement))
+  nameWithType: ListFiller<TElement, TReturnConstant>.ListFiller(List<TElement>)
+  nameWithType.vb: ListFiller(Of TElement, TReturnConstant).ListFiller(List(Of TElement))
+- uid: Platform.Data.Doublets.Sequences.ListFiller`2.#ctor(System.Collections.Generic.List{`0},`1)
+  name: ListFiller(List<TElement>, TReturnConstant)
+  href: api/Platform.Data.Doublets.Sequences.ListFiller-2.html#Platform_Data_Doublets_Sequences_ListFiller_2__ctor_System_Collections_Generic_List__0___1_
+  commentId: M:Platform.Data.Doublets.Sequences.ListFiller`2.#ctor(System.Collections.Generic.List{`0},`1)
+  name.vb: ListFiller(List(Of TElement), TReturnConstant)
+  fullName: Platform.Data.Doublets.Sequences.ListFiller<TElement, TReturnConstant>.ListFiller(System.Collections.Generic.List<TElement>, TReturnConstant)
+  fullName.vb: Platform.Data.Doublets.Sequences.ListFiller(Of TElement, TReturnConstant).ListFiller(System.Collections.Generic.List(Of TElement), TReturnConstant)
+  nameWithType: ListFiller<TElement, TReturnConstant>.ListFiller(List<TElement>, TReturnConstant)
+  nameWithType.vb: ListFiller(Of TElement, TReturnConstant).ListFiller(List(Of TElement), TReturnConstant)
+- uid: Platform.Data.Doublets.Sequences.ListFiller`2.#ctor*
+  name: ListFiller
+  href: api/Platform.Data.Doublets.Sequences.ListFiller-2.html#Platform_Data_Doublets_Sequences_ListFiller_2__ctor_
+  commentId: Overload:Platform.Data.Doublets.Sequences.ListFiller`2.#ctor
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Sequences.ListFiller<TElement, TReturnConstant>.ListFiller
+  fullName.vb: Platform.Data.Doublets.Sequences.ListFiller(Of TElement, TReturnConstant).ListFiller
+  nameWithType: ListFiller<TElement, TReturnConstant>.ListFiller
+  nameWithType.vb: ListFiller(Of TElement, TReturnConstant).ListFiller
+- uid: Platform.Data.Doublets.Sequences.ListFiller`2._list
+  name: _list
+  href: api/Platform.Data.Doublets.Sequences.ListFiller-2.html#Platform_Data_Doublets_Sequences_ListFiller_2__list
+  commentId: F:Platform.Data.Doublets.Sequences.ListFiller`2._list
+  fullName: Platform.Data.Doublets.Sequences.ListFiller<TElement, TReturnConstant>._list
+  fullName.vb: Platform.Data.Doublets.Sequences.ListFiller(Of TElement, TReturnConstant)._list
+  nameWithType: ListFiller<TElement, TReturnConstant>._list
+  nameWithType.vb: ListFiller(Of TElement, TReturnConstant)._list
+- uid: Platform.Data.Doublets.Sequences.ListFiller`2._returnConstant
+  name: _returnConstant
+  href: api/Platform.Data.Doublets.Sequences.ListFiller-2.html#Platform_Data_Doublets_Sequences_ListFiller_2__returnConstant
+  commentId: F:Platform.Data.Doublets.Sequences.ListFiller`2._returnConstant
+  fullName: Platform.Data.Doublets.Sequences.ListFiller<TElement, TReturnConstant>._returnConstant
+  fullName.vb: Platform.Data.Doublets.Sequences.ListFiller(Of TElement, TReturnConstant)._returnConstant
+  nameWithType: ListFiller<TElement, TReturnConstant>._returnConstant
+  nameWithType.vb: ListFiller(Of TElement, TReturnConstant)._returnConstant
+- uid: Platform.Data.Doublets.Sequences.ListFiller`2.Add(`0)
+  name: Add(TElement)
+  href: api/Platform.Data.Doublets.Sequences.ListFiller-2.html#Platform_Data_Doublets_Sequences_ListFiller_2_Add__0_
+  commentId: M:Platform.Data.Doublets.Sequences.ListFiller`2.Add(`0)
+  fullName: Platform.Data.Doublets.Sequences.ListFiller<TElement, TReturnConstant>.Add(TElement)
+  fullName.vb: Platform.Data.Doublets.Sequences.ListFiller(Of TElement, TReturnConstant).Add(TElement)
+  nameWithType: ListFiller<TElement, TReturnConstant>.Add(TElement)
+  nameWithType.vb: ListFiller(Of TElement, TReturnConstant).Add(TElement)
+- uid: Platform.Data.Doublets.Sequences.ListFiller`2.Add*
+  name: Add
+  href: api/Platform.Data.Doublets.Sequences.ListFiller-2.html#Platform_Data_Doublets_Sequences_ListFiller_2_Add_
+  commentId: Overload:Platform.Data.Doublets.Sequences.ListFiller`2.Add
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Sequences.ListFiller<TElement, TReturnConstant>.Add
+  fullName.vb: Platform.Data.Doublets.Sequences.ListFiller(Of TElement, TReturnConstant).Add
+  nameWithType: ListFiller<TElement, TReturnConstant>.Add
+  nameWithType.vb: ListFiller(Of TElement, TReturnConstant).Add
+- uid: Platform.Data.Doublets.Sequences.ListFiller`2.AddAllValuesAndReturnConstant(System.Collections.Generic.IList{`0})
+  name: AddAllValuesAndReturnConstant(IList<TElement>)
+  href: api/Platform.Data.Doublets.Sequences.ListFiller-2.html#Platform_Data_Doublets_Sequences_ListFiller_2_AddAllValuesAndReturnConstant_System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Sequences.ListFiller`2.AddAllValuesAndReturnConstant(System.Collections.Generic.IList{`0})
+  name.vb: AddAllValuesAndReturnConstant(IList(Of TElement))
+  fullName: Platform.Data.Doublets.Sequences.ListFiller<TElement, TReturnConstant>.AddAllValuesAndReturnConstant(System.Collections.Generic.IList<TElement>)
+  fullName.vb: Platform.Data.Doublets.Sequences.ListFiller(Of TElement, TReturnConstant).AddAllValuesAndReturnConstant(System.Collections.Generic.IList(Of TElement))
+  nameWithType: ListFiller<TElement, TReturnConstant>.AddAllValuesAndReturnConstant(IList<TElement>)
+  nameWithType.vb: ListFiller(Of TElement, TReturnConstant).AddAllValuesAndReturnConstant(IList(Of TElement))
+- uid: Platform.Data.Doublets.Sequences.ListFiller`2.AddAllValuesAndReturnConstant*
+  name: AddAllValuesAndReturnConstant
+  href: api/Platform.Data.Doublets.Sequences.ListFiller-2.html#Platform_Data_Doublets_Sequences_ListFiller_2_AddAllValuesAndReturnConstant_
+  commentId: Overload:Platform.Data.Doublets.Sequences.ListFiller`2.AddAllValuesAndReturnConstant
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Sequences.ListFiller<TElement, TReturnConstant>.AddAllValuesAndReturnConstant
+  fullName.vb: Platform.Data.Doublets.Sequences.ListFiller(Of TElement, TReturnConstant).AddAllValuesAndReturnConstant
+  nameWithType: ListFiller<TElement, TReturnConstant>.AddAllValuesAndReturnConstant
+  nameWithType.vb: ListFiller(Of TElement, TReturnConstant).AddAllValuesAndReturnConstant
+- uid: Platform.Data.Doublets.Sequences.ListFiller`2.AddAndReturnConstant(`0)
+  name: AddAndReturnConstant(TElement)
+  href: api/Platform.Data.Doublets.Sequences.ListFiller-2.html#Platform_Data_Doublets_Sequences_ListFiller_2_AddAndReturnConstant__0_
+  commentId: M:Platform.Data.Doublets.Sequences.ListFiller`2.AddAndReturnConstant(`0)
+  fullName: Platform.Data.Doublets.Sequences.ListFiller<TElement, TReturnConstant>.AddAndReturnConstant(TElement)
+  fullName.vb: Platform.Data.Doublets.Sequences.ListFiller(Of TElement, TReturnConstant).AddAndReturnConstant(TElement)
+  nameWithType: ListFiller<TElement, TReturnConstant>.AddAndReturnConstant(TElement)
+  nameWithType.vb: ListFiller(Of TElement, TReturnConstant).AddAndReturnConstant(TElement)
+- uid: Platform.Data.Doublets.Sequences.ListFiller`2.AddAndReturnConstant*
+  name: AddAndReturnConstant
+  href: api/Platform.Data.Doublets.Sequences.ListFiller-2.html#Platform_Data_Doublets_Sequences_ListFiller_2_AddAndReturnConstant_
+  commentId: Overload:Platform.Data.Doublets.Sequences.ListFiller`2.AddAndReturnConstant
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Sequences.ListFiller<TElement, TReturnConstant>.AddAndReturnConstant
+  fullName.vb: Platform.Data.Doublets.Sequences.ListFiller(Of TElement, TReturnConstant).AddAndReturnConstant
+  nameWithType: ListFiller<TElement, TReturnConstant>.AddAndReturnConstant
+  nameWithType.vb: ListFiller(Of TElement, TReturnConstant).AddAndReturnConstant
+- uid: Platform.Data.Doublets.Sequences.ListFiller`2.AddAndReturnTrue(`0)
+  name: AddAndReturnTrue(TElement)
+  href: api/Platform.Data.Doublets.Sequences.ListFiller-2.html#Platform_Data_Doublets_Sequences_ListFiller_2_AddAndReturnTrue__0_
+  commentId: M:Platform.Data.Doublets.Sequences.ListFiller`2.AddAndReturnTrue(`0)
+  fullName: Platform.Data.Doublets.Sequences.ListFiller<TElement, TReturnConstant>.AddAndReturnTrue(TElement)
+  fullName.vb: Platform.Data.Doublets.Sequences.ListFiller(Of TElement, TReturnConstant).AddAndReturnTrue(TElement)
+  nameWithType: ListFiller<TElement, TReturnConstant>.AddAndReturnTrue(TElement)
+  nameWithType.vb: ListFiller(Of TElement, TReturnConstant).AddAndReturnTrue(TElement)
+- uid: Platform.Data.Doublets.Sequences.ListFiller`2.AddAndReturnTrue*
+  name: AddAndReturnTrue
+  href: api/Platform.Data.Doublets.Sequences.ListFiller-2.html#Platform_Data_Doublets_Sequences_ListFiller_2_AddAndReturnTrue_
+  commentId: Overload:Platform.Data.Doublets.Sequences.ListFiller`2.AddAndReturnTrue
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Sequences.ListFiller<TElement, TReturnConstant>.AddAndReturnTrue
+  fullName.vb: Platform.Data.Doublets.Sequences.ListFiller(Of TElement, TReturnConstant).AddAndReturnTrue
+  nameWithType: ListFiller<TElement, TReturnConstant>.AddAndReturnTrue
+  nameWithType.vb: ListFiller(Of TElement, TReturnConstant).AddAndReturnTrue
+- uid: Platform.Data.Doublets.Sequences.ListFiller`2.AddFirstAndReturnConstant(System.Collections.Generic.IList{`0})
+  name: AddFirstAndReturnConstant(IList<TElement>)
+  href: api/Platform.Data.Doublets.Sequences.ListFiller-2.html#Platform_Data_Doublets_Sequences_ListFiller_2_AddFirstAndReturnConstant_System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Sequences.ListFiller`2.AddFirstAndReturnConstant(System.Collections.Generic.IList{`0})
+  name.vb: AddFirstAndReturnConstant(IList(Of TElement))
+  fullName: Platform.Data.Doublets.Sequences.ListFiller<TElement, TReturnConstant>.AddFirstAndReturnConstant(System.Collections.Generic.IList<TElement>)
+  fullName.vb: Platform.Data.Doublets.Sequences.ListFiller(Of TElement, TReturnConstant).AddFirstAndReturnConstant(System.Collections.Generic.IList(Of TElement))
+  nameWithType: ListFiller<TElement, TReturnConstant>.AddFirstAndReturnConstant(IList<TElement>)
+  nameWithType.vb: ListFiller(Of TElement, TReturnConstant).AddFirstAndReturnConstant(IList(Of TElement))
+- uid: Platform.Data.Doublets.Sequences.ListFiller`2.AddFirstAndReturnConstant*
+  name: AddFirstAndReturnConstant
+  href: api/Platform.Data.Doublets.Sequences.ListFiller-2.html#Platform_Data_Doublets_Sequences_ListFiller_2_AddFirstAndReturnConstant_
+  commentId: Overload:Platform.Data.Doublets.Sequences.ListFiller`2.AddFirstAndReturnConstant
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Sequences.ListFiller<TElement, TReturnConstant>.AddFirstAndReturnConstant
+  fullName.vb: Platform.Data.Doublets.Sequences.ListFiller(Of TElement, TReturnConstant).AddFirstAndReturnConstant
+  nameWithType: ListFiller<TElement, TReturnConstant>.AddFirstAndReturnConstant
+  nameWithType.vb: ListFiller(Of TElement, TReturnConstant).AddFirstAndReturnConstant
+- uid: Platform.Data.Doublets.Sequences.ListFiller`2.AddFirstAndReturnTrue(System.Collections.Generic.IList{`0})
+  name: AddFirstAndReturnTrue(IList<TElement>)
+  href: api/Platform.Data.Doublets.Sequences.ListFiller-2.html#Platform_Data_Doublets_Sequences_ListFiller_2_AddFirstAndReturnTrue_System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Sequences.ListFiller`2.AddFirstAndReturnTrue(System.Collections.Generic.IList{`0})
+  name.vb: AddFirstAndReturnTrue(IList(Of TElement))
+  fullName: Platform.Data.Doublets.Sequences.ListFiller<TElement, TReturnConstant>.AddFirstAndReturnTrue(System.Collections.Generic.IList<TElement>)
+  fullName.vb: Platform.Data.Doublets.Sequences.ListFiller(Of TElement, TReturnConstant).AddFirstAndReturnTrue(System.Collections.Generic.IList(Of TElement))
+  nameWithType: ListFiller<TElement, TReturnConstant>.AddFirstAndReturnTrue(IList<TElement>)
+  nameWithType.vb: ListFiller(Of TElement, TReturnConstant).AddFirstAndReturnTrue(IList(Of TElement))
+- uid: Platform.Data.Doublets.Sequences.ListFiller`2.AddFirstAndReturnTrue*
+  name: AddFirstAndReturnTrue
+  href: api/Platform.Data.Doublets.Sequences.ListFiller-2.html#Platform_Data_Doublets_Sequences_ListFiller_2_AddFirstAndReturnTrue_
+  commentId: Overload:Platform.Data.Doublets.Sequences.ListFiller`2.AddFirstAndReturnTrue
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Sequences.ListFiller<TElement, TReturnConstant>.AddFirstAndReturnTrue
+  fullName.vb: Platform.Data.Doublets.Sequences.ListFiller(Of TElement, TReturnConstant).AddFirstAndReturnTrue
+  nameWithType: ListFiller<TElement, TReturnConstant>.AddFirstAndReturnTrue
+  nameWithType.vb: ListFiller(Of TElement, TReturnConstant).AddFirstAndReturnTrue
 - uid: Platform.Data.Doublets.Sequences.Sequences
   name: Sequences
   href: api/Platform.Data.Doublets.Sequences.Sequences.html
@@ -5426,15 +5682,28 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Sequences.Sequences.Compact
   nameWithType: Sequences.Compact
-- uid: Platform.Data.Doublets.Sequences.Sequences.Count(System.UInt64[])
-  name: Count(UInt64[])
-  href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_Count_System_UInt64___
-  commentId: M:Platform.Data.Doublets.Sequences.Sequences.Count(System.UInt64[])
-  name.vb: Count(UInt64())
-  fullName: Platform.Data.Doublets.Sequences.Sequences.Count(System.UInt64[])
-  fullName.vb: Platform.Data.Doublets.Sequences.Sequences.Count(System.UInt64())
-  nameWithType: Sequences.Count(UInt64[])
-  nameWithType.vb: Sequences.Count(UInt64())
+- uid: Platform.Data.Doublets.Sequences.Sequences.Constants
+  name: Constants
+  href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_Constants
+  commentId: P:Platform.Data.Doublets.Sequences.Sequences.Constants
+  fullName: Platform.Data.Doublets.Sequences.Sequences.Constants
+  nameWithType: Sequences.Constants
+- uid: Platform.Data.Doublets.Sequences.Sequences.Constants*
+  name: Constants
+  href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_Constants_
+  commentId: Overload:Platform.Data.Doublets.Sequences.Sequences.Constants
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Sequences.Sequences.Constants
+  nameWithType: Sequences.Constants
+- uid: Platform.Data.Doublets.Sequences.Sequences.Count(System.Collections.Generic.IList{System.UInt64})
+  name: Count(IList<UInt64>)
+  href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_Count_System_Collections_Generic_IList_System_UInt64__
+  commentId: M:Platform.Data.Doublets.Sequences.Sequences.Count(System.Collections.Generic.IList{System.UInt64})
+  name.vb: Count(IList(Of UInt64))
+  fullName: Platform.Data.Doublets.Sequences.Sequences.Count(System.Collections.Generic.IList<System.UInt64>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Sequences.Count(System.Collections.Generic.IList(Of System.UInt64))
+  nameWithType: Sequences.Count(IList<UInt64>)
+  nameWithType.vb: Sequences.Count(IList(Of UInt64))
 - uid: Platform.Data.Doublets.Sequences.Sequences.Count*
   name: Count
   href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_Count_
@@ -5442,15 +5711,15 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Sequences.Sequences.Count
   nameWithType: Sequences.Count
-- uid: Platform.Data.Doublets.Sequences.Sequences.Create(System.UInt64[])
-  name: Create(UInt64[])
-  href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_Create_System_UInt64___
-  commentId: M:Platform.Data.Doublets.Sequences.Sequences.Create(System.UInt64[])
-  name.vb: Create(UInt64())
-  fullName: Platform.Data.Doublets.Sequences.Sequences.Create(System.UInt64[])
-  fullName.vb: Platform.Data.Doublets.Sequences.Sequences.Create(System.UInt64())
-  nameWithType: Sequences.Create(UInt64[])
-  nameWithType.vb: Sequences.Create(UInt64())
+- uid: Platform.Data.Doublets.Sequences.Sequences.Create(System.Collections.Generic.IList{System.UInt64})
+  name: Create(IList<UInt64>)
+  href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_Create_System_Collections_Generic_IList_System_UInt64__
+  commentId: M:Platform.Data.Doublets.Sequences.Sequences.Create(System.Collections.Generic.IList{System.UInt64})
+  name.vb: Create(IList(Of UInt64))
+  fullName: Platform.Data.Doublets.Sequences.Sequences.Create(System.Collections.Generic.IList<System.UInt64>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Sequences.Create(System.Collections.Generic.IList(Of System.UInt64))
+  nameWithType: Sequences.Create(IList<UInt64>)
+  nameWithType.vb: Sequences.Create(IList(Of UInt64))
 - uid: Platform.Data.Doublets.Sequences.Sequences.Create*
   name: Create
   href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_Create_
@@ -5490,15 +5759,15 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Sequences.Sequences.CreateAllVariants2
   nameWithType: Sequences.CreateAllVariants2
-- uid: Platform.Data.Doublets.Sequences.Sequences.Delete(System.UInt64[])
-  name: Delete(UInt64[])
-  href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_Delete_System_UInt64___
-  commentId: M:Platform.Data.Doublets.Sequences.Sequences.Delete(System.UInt64[])
-  name.vb: Delete(UInt64())
-  fullName: Platform.Data.Doublets.Sequences.Sequences.Delete(System.UInt64[])
-  fullName.vb: Platform.Data.Doublets.Sequences.Sequences.Delete(System.UInt64())
-  nameWithType: Sequences.Delete(UInt64[])
-  nameWithType.vb: Sequences.Delete(UInt64())
+- uid: Platform.Data.Doublets.Sequences.Sequences.Delete(System.Collections.Generic.IList{System.UInt64})
+  name: Delete(IList<UInt64>)
+  href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_Delete_System_Collections_Generic_IList_System_UInt64__
+  commentId: M:Platform.Data.Doublets.Sequences.Sequences.Delete(System.Collections.Generic.IList{System.UInt64})
+  name.vb: Delete(IList(Of UInt64))
+  fullName: Platform.Data.Doublets.Sequences.Sequences.Delete(System.Collections.Generic.IList<System.UInt64>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Sequences.Delete(System.Collections.Generic.IList(Of System.UInt64))
+  nameWithType: Sequences.Delete(IList<UInt64>)
+  nameWithType.vb: Sequences.Delete(IList(Of UInt64))
 - uid: Platform.Data.Doublets.Sequences.Sequences.Delete*
   name: Delete
   href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_Delete_
@@ -5506,24 +5775,24 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Sequences.Sequences.Delete
   nameWithType: Sequences.Delete
-- uid: Platform.Data.Doublets.Sequences.Sequences.Each(System.Func{System.UInt64,System.Boolean},System.Collections.Generic.IList{System.UInt64})
-  name: Each(Func<UInt64, Boolean>, IList<UInt64>)
-  href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_Each_System_Func_System_UInt64_System_Boolean__System_Collections_Generic_IList_System_UInt64__
-  commentId: M:Platform.Data.Doublets.Sequences.Sequences.Each(System.Func{System.UInt64,System.Boolean},System.Collections.Generic.IList{System.UInt64})
-  name.vb: Each(Func(Of UInt64, Boolean), IList(Of UInt64))
-  fullName: Platform.Data.Doublets.Sequences.Sequences.Each(System.Func<System.UInt64, System.Boolean>, System.Collections.Generic.IList<System.UInt64>)
-  fullName.vb: Platform.Data.Doublets.Sequences.Sequences.Each(System.Func(Of System.UInt64, System.Boolean), System.Collections.Generic.IList(Of System.UInt64))
-  nameWithType: Sequences.Each(Func<UInt64, Boolean>, IList<UInt64>)
-  nameWithType.vb: Sequences.Each(Func(Of UInt64, Boolean), IList(Of UInt64))
-- uid: Platform.Data.Doublets.Sequences.Sequences.Each(System.UInt64[])
-  name: Each(UInt64[])
-  href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_Each_System_UInt64___
-  commentId: M:Platform.Data.Doublets.Sequences.Sequences.Each(System.UInt64[])
-  name.vb: Each(UInt64())
-  fullName: Platform.Data.Doublets.Sequences.Sequences.Each(System.UInt64[])
-  fullName.vb: Platform.Data.Doublets.Sequences.Sequences.Each(System.UInt64())
-  nameWithType: Sequences.Each(UInt64[])
-  nameWithType.vb: Sequences.Each(UInt64())
+- uid: Platform.Data.Doublets.Sequences.Sequences.Each(System.Collections.Generic.IList{System.UInt64})
+  name: Each(IList<UInt64>)
+  href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_Each_System_Collections_Generic_IList_System_UInt64__
+  commentId: M:Platform.Data.Doublets.Sequences.Sequences.Each(System.Collections.Generic.IList{System.UInt64})
+  name.vb: Each(IList(Of UInt64))
+  fullName: Platform.Data.Doublets.Sequences.Sequences.Each(System.Collections.Generic.IList<System.UInt64>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Sequences.Each(System.Collections.Generic.IList(Of System.UInt64))
+  nameWithType: Sequences.Each(IList<UInt64>)
+  nameWithType.vb: Sequences.Each(IList(Of UInt64))
+- uid: Platform.Data.Doublets.Sequences.Sequences.Each(System.Func{System.Collections.Generic.IList{System.UInt64},System.UInt64},System.Collections.Generic.IList{System.UInt64})
+  name: Each(Func<IList<UInt64>, UInt64>, IList<UInt64>)
+  href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_Each_System_Func_System_Collections_Generic_IList_System_UInt64__System_UInt64__System_Collections_Generic_IList_System_UInt64__
+  commentId: M:Platform.Data.Doublets.Sequences.Sequences.Each(System.Func{System.Collections.Generic.IList{System.UInt64},System.UInt64},System.Collections.Generic.IList{System.UInt64})
+  name.vb: Each(Func(Of IList(Of UInt64), UInt64), IList(Of UInt64))
+  fullName: Platform.Data.Doublets.Sequences.Sequences.Each(System.Func<System.Collections.Generic.IList<System.UInt64>, System.UInt64>, System.Collections.Generic.IList<System.UInt64>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Sequences.Each(System.Func(Of System.Collections.Generic.IList(Of System.UInt64), System.UInt64), System.Collections.Generic.IList(Of System.UInt64))
+  nameWithType: Sequences.Each(Func<IList<UInt64>, UInt64>, IList<UInt64>)
+  nameWithType.vb: Sequences.Each(Func(Of IList(Of UInt64), UInt64), IList(Of UInt64))
 - uid: Platform.Data.Doublets.Sequences.Sequences.Each*
   name: Each
   href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_Each_
@@ -5547,6 +5816,15 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Sequences.Sequences.Each1
   nameWithType: Sequences.Each1
+- uid: Platform.Data.Doublets.Sequences.Sequences.EachPart(System.Func{System.Collections.Generic.IList{System.UInt64},System.UInt64},System.UInt64[])
+  name: EachPart(Func<IList<UInt64>, UInt64>, UInt64[])
+  href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_EachPart_System_Func_System_Collections_Generic_IList_System_UInt64__System_UInt64__System_UInt64___
+  commentId: M:Platform.Data.Doublets.Sequences.Sequences.EachPart(System.Func{System.Collections.Generic.IList{System.UInt64},System.UInt64},System.UInt64[])
+  name.vb: EachPart(Func(Of IList(Of UInt64), UInt64), UInt64())
+  fullName: Platform.Data.Doublets.Sequences.Sequences.EachPart(System.Func<System.Collections.Generic.IList<System.UInt64>, System.UInt64>, System.UInt64[])
+  fullName.vb: Platform.Data.Doublets.Sequences.Sequences.EachPart(System.Func(Of System.Collections.Generic.IList(Of System.UInt64), System.UInt64), System.UInt64())
+  nameWithType: Sequences.EachPart(Func<IList<UInt64>, UInt64>, UInt64[])
+  nameWithType.vb: Sequences.EachPart(Func(Of IList(Of UInt64), UInt64), UInt64())
 - uid: Platform.Data.Doublets.Sequences.Sequences.EachPart(System.Func{System.UInt64,System.Boolean},System.UInt64)
   name: EachPart(Func<UInt64, Boolean>, UInt64)
   href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_EachPart_System_Func_System_UInt64_System_Boolean__System_UInt64_
@@ -5556,15 +5834,6 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.Sequences.EachPart(System.Func(Of System.UInt64, System.Boolean), System.UInt64)
   nameWithType: Sequences.EachPart(Func<UInt64, Boolean>, UInt64)
   nameWithType.vb: Sequences.EachPart(Func(Of UInt64, Boolean), UInt64)
-- uid: Platform.Data.Doublets.Sequences.Sequences.EachPart(System.Func{System.UInt64,System.Boolean},System.UInt64[])
-  name: EachPart(Func<UInt64, Boolean>, UInt64[])
-  href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_EachPart_System_Func_System_UInt64_System_Boolean__System_UInt64___
-  commentId: M:Platform.Data.Doublets.Sequences.Sequences.EachPart(System.Func{System.UInt64,System.Boolean},System.UInt64[])
-  name.vb: EachPart(Func(Of UInt64, Boolean), UInt64())
-  fullName: Platform.Data.Doublets.Sequences.Sequences.EachPart(System.Func<System.UInt64, System.Boolean>, System.UInt64[])
-  fullName.vb: Platform.Data.Doublets.Sequences.Sequences.EachPart(System.Func(Of System.UInt64, System.Boolean), System.UInt64())
-  nameWithType: Sequences.EachPart(Func<UInt64, Boolean>, UInt64[])
-  nameWithType.vb: Sequences.EachPart(Func(Of UInt64, Boolean), UInt64())
 - uid: Platform.Data.Doublets.Sequences.Sequences.EachPart(System.UInt64[])
   name: EachPart(UInt64[])
   href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_EachPart_System_UInt64___
@@ -5750,15 +6019,15 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences1
   nameWithType: Sequences.GetAllPartiallyMatchingSequences1
-- uid: Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences2(System.Func{System.UInt64,System.Boolean},System.UInt64[])
-  name: GetAllPartiallyMatchingSequences2(Func<UInt64, Boolean>, UInt64[])
-  href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_GetAllPartiallyMatchingSequences2_System_Func_System_UInt64_System_Boolean__System_UInt64___
-  commentId: M:Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences2(System.Func{System.UInt64,System.Boolean},System.UInt64[])
-  name.vb: GetAllPartiallyMatchingSequences2(Func(Of UInt64, Boolean), UInt64())
-  fullName: Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences2(System.Func<System.UInt64, System.Boolean>, System.UInt64[])
-  fullName.vb: Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences2(System.Func(Of System.UInt64, System.Boolean), System.UInt64())
-  nameWithType: Sequences.GetAllPartiallyMatchingSequences2(Func<UInt64, Boolean>, UInt64[])
-  nameWithType.vb: Sequences.GetAllPartiallyMatchingSequences2(Func(Of UInt64, Boolean), UInt64())
+- uid: Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences2(System.Func{System.Collections.Generic.IList{System.UInt64},System.UInt64},System.UInt64[])
+  name: GetAllPartiallyMatchingSequences2(Func<IList<UInt64>, UInt64>, UInt64[])
+  href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_GetAllPartiallyMatchingSequences2_System_Func_System_Collections_Generic_IList_System_UInt64__System_UInt64__System_UInt64___
+  commentId: M:Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences2(System.Func{System.Collections.Generic.IList{System.UInt64},System.UInt64},System.UInt64[])
+  name.vb: GetAllPartiallyMatchingSequences2(Func(Of IList(Of UInt64), UInt64), UInt64())
+  fullName: Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences2(System.Func<System.Collections.Generic.IList<System.UInt64>, System.UInt64>, System.UInt64[])
+  fullName.vb: Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences2(System.Func(Of System.Collections.Generic.IList(Of System.UInt64), System.UInt64), System.UInt64())
+  nameWithType: Sequences.GetAllPartiallyMatchingSequences2(Func<IList<UInt64>, UInt64>, UInt64[])
+  nameWithType.vb: Sequences.GetAllPartiallyMatchingSequences2(Func(Of IList(Of UInt64), UInt64), UInt64())
 - uid: Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences2*
   name: GetAllPartiallyMatchingSequences2
   href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_GetAllPartiallyMatchingSequences2_
@@ -5798,22 +6067,6 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences4
   nameWithType: Sequences.GetAllPartiallyMatchingSequences4
-- uid: Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences5(System.Collections.Generic.HashSet{System.UInt64},System.UInt64[])
-  name: GetAllPartiallyMatchingSequences5(HashSet<UInt64>, UInt64[])
-  href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_GetAllPartiallyMatchingSequences5_System_Collections_Generic_HashSet_System_UInt64__System_UInt64___
-  commentId: M:Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences5(System.Collections.Generic.HashSet{System.UInt64},System.UInt64[])
-  name.vb: GetAllPartiallyMatchingSequences5(HashSet(Of UInt64), UInt64())
-  fullName: Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences5(System.Collections.Generic.HashSet<System.UInt64>, System.UInt64[])
-  fullName.vb: Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences5(System.Collections.Generic.HashSet(Of System.UInt64), System.UInt64())
-  nameWithType: Sequences.GetAllPartiallyMatchingSequences5(HashSet<UInt64>, UInt64[])
-  nameWithType.vb: Sequences.GetAllPartiallyMatchingSequences5(HashSet(Of UInt64), UInt64())
-- uid: Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences5*
-  name: GetAllPartiallyMatchingSequences5
-  href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_GetAllPartiallyMatchingSequences5_
-  commentId: Overload:Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences5
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences5
-  nameWithType: Sequences.GetAllPartiallyMatchingSequences5
 - uid: Platform.Data.Doublets.Sequences.Sequences.GetLeftElements(System.UInt64,System.UInt64)
   name: GetLeftElements(UInt64, UInt64)
   href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_GetLeftElements_System_UInt64_System_UInt64_
@@ -5885,15 +6138,15 @@ references:
   commentId: T:Platform.Data.Doublets.Sequences.Sequences.Matcher
   fullName: Platform.Data.Doublets.Sequences.Sequences.Matcher
   nameWithType: Sequences.Matcher
-- uid: Platform.Data.Doublets.Sequences.Sequences.Matcher.#ctor(Platform.Data.Doublets.Sequences.Sequences,System.Collections.Generic.IList{System.UInt64},System.Collections.Generic.HashSet{System.UInt64},System.Func{System.UInt64,System.Boolean},System.Collections.Generic.HashSet{System.UInt64})
-  name: Matcher(Sequences, IList<UInt64>, HashSet<UInt64>, Func<UInt64, Boolean>, HashSet<UInt64>)
-  href: api/Platform.Data.Doublets.Sequences.Sequences.Matcher.html#Platform_Data_Doublets_Sequences_Sequences_Matcher__ctor_Platform_Data_Doublets_Sequences_Sequences_System_Collections_Generic_IList_System_UInt64__System_Collections_Generic_HashSet_System_UInt64__System_Func_System_UInt64_System_Boolean__System_Collections_Generic_HashSet_System_UInt64__
-  commentId: M:Platform.Data.Doublets.Sequences.Sequences.Matcher.#ctor(Platform.Data.Doublets.Sequences.Sequences,System.Collections.Generic.IList{System.UInt64},System.Collections.Generic.HashSet{System.UInt64},System.Func{System.UInt64,System.Boolean},System.Collections.Generic.HashSet{System.UInt64})
-  name.vb: Matcher(Sequences, IList(Of UInt64), HashSet(Of UInt64), Func(Of UInt64, Boolean), HashSet(Of UInt64))
-  fullName: Platform.Data.Doublets.Sequences.Sequences.Matcher.Matcher(Platform.Data.Doublets.Sequences.Sequences, System.Collections.Generic.IList<System.UInt64>, System.Collections.Generic.HashSet<System.UInt64>, System.Func<System.UInt64, System.Boolean>, System.Collections.Generic.HashSet<System.UInt64>)
-  fullName.vb: Platform.Data.Doublets.Sequences.Sequences.Matcher.Matcher(Platform.Data.Doublets.Sequences.Sequences, System.Collections.Generic.IList(Of System.UInt64), System.Collections.Generic.HashSet(Of System.UInt64), System.Func(Of System.UInt64, System.Boolean), System.Collections.Generic.HashSet(Of System.UInt64))
-  nameWithType: Sequences.Matcher.Matcher(Sequences, IList<UInt64>, HashSet<UInt64>, Func<UInt64, Boolean>, HashSet<UInt64>)
-  nameWithType.vb: Sequences.Matcher.Matcher(Sequences, IList(Of UInt64), HashSet(Of UInt64), Func(Of UInt64, Boolean), HashSet(Of UInt64))
+- uid: Platform.Data.Doublets.Sequences.Sequences.Matcher.#ctor(Platform.Data.Doublets.Sequences.Sequences,System.Collections.Generic.IList{System.UInt64},System.Collections.Generic.HashSet{System.UInt64},System.Func{System.Collections.Generic.IList{System.UInt64},System.UInt64},System.Collections.Generic.HashSet{System.UInt64})
+  name: Matcher(Sequences, IList<UInt64>, HashSet<UInt64>, Func<IList<UInt64>, UInt64>, HashSet<UInt64>)
+  href: api/Platform.Data.Doublets.Sequences.Sequences.Matcher.html#Platform_Data_Doublets_Sequences_Sequences_Matcher__ctor_Platform_Data_Doublets_Sequences_Sequences_System_Collections_Generic_IList_System_UInt64__System_Collections_Generic_HashSet_System_UInt64__System_Func_System_Collections_Generic_IList_System_UInt64__System_UInt64__System_Collections_Generic_HashSet_System_UInt64__
+  commentId: M:Platform.Data.Doublets.Sequences.Sequences.Matcher.#ctor(Platform.Data.Doublets.Sequences.Sequences,System.Collections.Generic.IList{System.UInt64},System.Collections.Generic.HashSet{System.UInt64},System.Func{System.Collections.Generic.IList{System.UInt64},System.UInt64},System.Collections.Generic.HashSet{System.UInt64})
+  name.vb: Matcher(Sequences, IList(Of UInt64), HashSet(Of UInt64), Func(Of IList(Of UInt64), UInt64), HashSet(Of UInt64))
+  fullName: Platform.Data.Doublets.Sequences.Sequences.Matcher.Matcher(Platform.Data.Doublets.Sequences.Sequences, System.Collections.Generic.IList<System.UInt64>, System.Collections.Generic.HashSet<System.UInt64>, System.Func<System.Collections.Generic.IList<System.UInt64>, System.UInt64>, System.Collections.Generic.HashSet<System.UInt64>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Sequences.Matcher.Matcher(Platform.Data.Doublets.Sequences.Sequences, System.Collections.Generic.IList(Of System.UInt64), System.Collections.Generic.HashSet(Of System.UInt64), System.Func(Of System.Collections.Generic.IList(Of System.UInt64), System.UInt64), System.Collections.Generic.HashSet(Of System.UInt64))
+  nameWithType: Sequences.Matcher.Matcher(Sequences, IList<UInt64>, HashSet<UInt64>, Func<IList<UInt64>, UInt64>, HashSet<UInt64>)
+  nameWithType.vb: Sequences.Matcher.Matcher(Sequences, IList(Of UInt64), HashSet(Of UInt64), Func(Of IList(Of UInt64), UInt64), HashSet(Of UInt64))
 - uid: Platform.Data.Doublets.Sequences.Sequences.Matcher.#ctor*
   name: Matcher
   href: api/Platform.Data.Doublets.Sequences.Sequences.Matcher.html#Platform_Data_Doublets_Sequences_Sequences_Matcher__ctor_
@@ -5933,12 +6186,15 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Sequences.Sequences.Matcher.AddAllPartialMatchedToResultsAndReadAsElements
   nameWithType: Sequences.Matcher.AddAllPartialMatchedToResultsAndReadAsElements
-- uid: Platform.Data.Doublets.Sequences.Sequences.Matcher.AddFullMatchedToResults(System.UInt64)
-  name: AddFullMatchedToResults(UInt64)
-  href: api/Platform.Data.Doublets.Sequences.Sequences.Matcher.html#Platform_Data_Doublets_Sequences_Sequences_Matcher_AddFullMatchedToResults_System_UInt64_
-  commentId: M:Platform.Data.Doublets.Sequences.Sequences.Matcher.AddFullMatchedToResults(System.UInt64)
-  fullName: Platform.Data.Doublets.Sequences.Sequences.Matcher.AddFullMatchedToResults(System.UInt64)
-  nameWithType: Sequences.Matcher.AddFullMatchedToResults(UInt64)
+- uid: Platform.Data.Doublets.Sequences.Sequences.Matcher.AddFullMatchedToResults(System.Collections.Generic.IList{System.UInt64})
+  name: AddFullMatchedToResults(IList<UInt64>)
+  href: api/Platform.Data.Doublets.Sequences.Sequences.Matcher.html#Platform_Data_Doublets_Sequences_Sequences_Matcher_AddFullMatchedToResults_System_Collections_Generic_IList_System_UInt64__
+  commentId: M:Platform.Data.Doublets.Sequences.Sequences.Matcher.AddFullMatchedToResults(System.Collections.Generic.IList{System.UInt64})
+  name.vb: AddFullMatchedToResults(IList(Of UInt64))
+  fullName: Platform.Data.Doublets.Sequences.Sequences.Matcher.AddFullMatchedToResults(System.Collections.Generic.IList<System.UInt64>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Sequences.Matcher.AddFullMatchedToResults(System.Collections.Generic.IList(Of System.UInt64))
+  nameWithType: Sequences.Matcher.AddFullMatchedToResults(IList<UInt64>)
+  nameWithType.vb: Sequences.Matcher.AddFullMatchedToResults(IList(Of UInt64))
 - uid: Platform.Data.Doublets.Sequences.Sequences.Matcher.AddFullMatchedToResults*
   name: AddFullMatchedToResults
   href: api/Platform.Data.Doublets.Sequences.Sequences.Matcher.html#Platform_Data_Doublets_Sequences_Sequences_Matcher_AddFullMatchedToResults_
@@ -5972,12 +6228,15 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Sequences.Sequences.Matcher.FullMatch
   nameWithType: Sequences.Matcher.FullMatch
-- uid: Platform.Data.Doublets.Sequences.Sequences.Matcher.HandleFullMatched(System.UInt64)
-  name: HandleFullMatched(UInt64)
-  href: api/Platform.Data.Doublets.Sequences.Sequences.Matcher.html#Platform_Data_Doublets_Sequences_Sequences_Matcher_HandleFullMatched_System_UInt64_
-  commentId: M:Platform.Data.Doublets.Sequences.Sequences.Matcher.HandleFullMatched(System.UInt64)
-  fullName: Platform.Data.Doublets.Sequences.Sequences.Matcher.HandleFullMatched(System.UInt64)
-  nameWithType: Sequences.Matcher.HandleFullMatched(UInt64)
+- uid: Platform.Data.Doublets.Sequences.Sequences.Matcher.HandleFullMatched(System.Collections.Generic.IList{System.UInt64})
+  name: HandleFullMatched(IList<UInt64>)
+  href: api/Platform.Data.Doublets.Sequences.Sequences.Matcher.html#Platform_Data_Doublets_Sequences_Sequences_Matcher_HandleFullMatched_System_Collections_Generic_IList_System_UInt64__
+  commentId: M:Platform.Data.Doublets.Sequences.Sequences.Matcher.HandleFullMatched(System.Collections.Generic.IList{System.UInt64})
+  name.vb: HandleFullMatched(IList(Of UInt64))
+  fullName: Platform.Data.Doublets.Sequences.Sequences.Matcher.HandleFullMatched(System.Collections.Generic.IList<System.UInt64>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Sequences.Matcher.HandleFullMatched(System.Collections.Generic.IList(Of System.UInt64))
+  nameWithType: Sequences.Matcher.HandleFullMatched(IList<UInt64>)
+  nameWithType.vb: Sequences.Matcher.HandleFullMatched(IList(Of UInt64))
 - uid: Platform.Data.Doublets.Sequences.Sequences.Matcher.HandleFullMatched*
   name: HandleFullMatched
   href: api/Platform.Data.Doublets.Sequences.Sequences.Matcher.html#Platform_Data_Doublets_Sequences_Sequences_Matcher_HandleFullMatched_
@@ -5985,12 +6244,15 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Sequences.Sequences.Matcher.HandleFullMatched
   nameWithType: Sequences.Matcher.HandleFullMatched
-- uid: Platform.Data.Doublets.Sequences.Sequences.Matcher.HandleFullMatchedSequence(System.UInt64)
-  name: HandleFullMatchedSequence(UInt64)
-  href: api/Platform.Data.Doublets.Sequences.Sequences.Matcher.html#Platform_Data_Doublets_Sequences_Sequences_Matcher_HandleFullMatchedSequence_System_UInt64_
-  commentId: M:Platform.Data.Doublets.Sequences.Sequences.Matcher.HandleFullMatchedSequence(System.UInt64)
-  fullName: Platform.Data.Doublets.Sequences.Sequences.Matcher.HandleFullMatchedSequence(System.UInt64)
-  nameWithType: Sequences.Matcher.HandleFullMatchedSequence(UInt64)
+- uid: Platform.Data.Doublets.Sequences.Sequences.Matcher.HandleFullMatchedSequence(System.Collections.Generic.IList{System.UInt64})
+  name: HandleFullMatchedSequence(IList<UInt64>)
+  href: api/Platform.Data.Doublets.Sequences.Sequences.Matcher.html#Platform_Data_Doublets_Sequences_Sequences_Matcher_HandleFullMatchedSequence_System_Collections_Generic_IList_System_UInt64__
+  commentId: M:Platform.Data.Doublets.Sequences.Sequences.Matcher.HandleFullMatchedSequence(System.Collections.Generic.IList{System.UInt64})
+  name.vb: HandleFullMatchedSequence(IList(Of UInt64))
+  fullName: Platform.Data.Doublets.Sequences.Sequences.Matcher.HandleFullMatchedSequence(System.Collections.Generic.IList<System.UInt64>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Sequences.Matcher.HandleFullMatchedSequence(System.Collections.Generic.IList(Of System.UInt64))
+  nameWithType: Sequences.Matcher.HandleFullMatchedSequence(IList<UInt64>)
+  nameWithType.vb: Sequences.Matcher.HandleFullMatchedSequence(IList(Of UInt64))
 - uid: Platform.Data.Doublets.Sequences.Sequences.Matcher.HandleFullMatchedSequence*
   name: HandleFullMatchedSequence
   href: api/Platform.Data.Doublets.Sequences.Sequences.Matcher.html#Platform_Data_Doublets_Sequences_Sequences_Matcher_HandleFullMatchedSequence_
@@ -5998,12 +6260,15 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Sequences.Sequences.Matcher.HandleFullMatchedSequence
   nameWithType: Sequences.Matcher.HandleFullMatchedSequence
-- uid: Platform.Data.Doublets.Sequences.Sequences.Matcher.HandlePartialMatched(System.UInt64)
-  name: HandlePartialMatched(UInt64)
-  href: api/Platform.Data.Doublets.Sequences.Sequences.Matcher.html#Platform_Data_Doublets_Sequences_Sequences_Matcher_HandlePartialMatched_System_UInt64_
-  commentId: M:Platform.Data.Doublets.Sequences.Sequences.Matcher.HandlePartialMatched(System.UInt64)
-  fullName: Platform.Data.Doublets.Sequences.Sequences.Matcher.HandlePartialMatched(System.UInt64)
-  nameWithType: Sequences.Matcher.HandlePartialMatched(UInt64)
+- uid: Platform.Data.Doublets.Sequences.Sequences.Matcher.HandlePartialMatched(System.Collections.Generic.IList{System.UInt64})
+  name: HandlePartialMatched(IList<UInt64>)
+  href: api/Platform.Data.Doublets.Sequences.Sequences.Matcher.html#Platform_Data_Doublets_Sequences_Sequences_Matcher_HandlePartialMatched_System_Collections_Generic_IList_System_UInt64__
+  commentId: M:Platform.Data.Doublets.Sequences.Sequences.Matcher.HandlePartialMatched(System.Collections.Generic.IList{System.UInt64})
+  name.vb: HandlePartialMatched(IList(Of UInt64))
+  fullName: Platform.Data.Doublets.Sequences.Sequences.Matcher.HandlePartialMatched(System.Collections.Generic.IList<System.UInt64>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Sequences.Matcher.HandlePartialMatched(System.Collections.Generic.IList(Of System.UInt64))
+  nameWithType: Sequences.Matcher.HandlePartialMatched(IList<UInt64>)
+  nameWithType.vb: Sequences.Matcher.HandlePartialMatched(IList(Of UInt64))
 - uid: Platform.Data.Doublets.Sequences.Sequences.Matcher.HandlePartialMatched*
   name: HandlePartialMatched
   href: api/Platform.Data.Doublets.Sequences.Sequences.Matcher.html#Platform_Data_Doublets_Sequences_Sequences_Matcher_HandlePartialMatched_
@@ -6219,15 +6484,15 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Sequences.Sequences.TryStepRight
   nameWithType: Sequences.TryStepRight
-- uid: Platform.Data.Doublets.Sequences.Sequences.Update(System.UInt64[],System.UInt64[])
-  name: Update(UInt64[], UInt64[])
-  href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_Update_System_UInt64___System_UInt64___
-  commentId: M:Platform.Data.Doublets.Sequences.Sequences.Update(System.UInt64[],System.UInt64[])
-  name.vb: Update(UInt64(), UInt64())
-  fullName: Platform.Data.Doublets.Sequences.Sequences.Update(System.UInt64[], System.UInt64[])
-  fullName.vb: Platform.Data.Doublets.Sequences.Sequences.Update(System.UInt64(), System.UInt64())
-  nameWithType: Sequences.Update(UInt64[], UInt64[])
-  nameWithType.vb: Sequences.Update(UInt64(), UInt64())
+- uid: Platform.Data.Doublets.Sequences.Sequences.Update(System.Collections.Generic.IList{System.UInt64},System.Collections.Generic.IList{System.UInt64})
+  name: Update(IList<UInt64>, IList<UInt64>)
+  href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_Update_System_Collections_Generic_IList_System_UInt64__System_Collections_Generic_IList_System_UInt64__
+  commentId: M:Platform.Data.Doublets.Sequences.Sequences.Update(System.Collections.Generic.IList{System.UInt64},System.Collections.Generic.IList{System.UInt64})
+  name.vb: Update(IList(Of UInt64), IList(Of UInt64))
+  fullName: Platform.Data.Doublets.Sequences.Sequences.Update(System.Collections.Generic.IList<System.UInt64>, System.Collections.Generic.IList<System.UInt64>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Sequences.Update(System.Collections.Generic.IList(Of System.UInt64), System.Collections.Generic.IList(Of System.UInt64))
+  nameWithType: Sequences.Update(IList<UInt64>, IList<UInt64>)
+  nameWithType.vb: Sequences.Update(IList(Of UInt64), IList(Of UInt64))
 - uid: Platform.Data.Doublets.Sequences.Sequences.Update*
   name: Update
   href: api/Platform.Data.Doublets.Sequences.Sequences.html#Platform_Data_Doublets_Sequences_Sequences_Update_
@@ -6254,15 +6519,15 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Sequences.SequencesExtensions.Create
   nameWithType: SequencesExtensions.Create
-- uid: Platform.Data.Doublets.Sequences.SequencesExtensions.Create``1(Platform.Data.Sequences.ISequences{``0},System.Collections.Generic.IList{``0[]})
-  name: Create<TLink>(ISequences<TLink>, IList<TLink[]>)
-  href: api/Platform.Data.Doublets.Sequences.SequencesExtensions.html#Platform_Data_Doublets_Sequences_SequencesExtensions_Create__1_Platform_Data_Sequences_ISequences___0__System_Collections_Generic_IList___0____
-  commentId: M:Platform.Data.Doublets.Sequences.SequencesExtensions.Create``1(Platform.Data.Sequences.ISequences{``0},System.Collections.Generic.IList{``0[]})
-  name.vb: Create(Of TLink)(ISequences(Of TLink), IList(Of TLink()))
-  fullName: Platform.Data.Doublets.Sequences.SequencesExtensions.Create<TLink>(Platform.Data.Sequences.ISequences<TLink>, System.Collections.Generic.IList<TLink[]>)
-  fullName.vb: Platform.Data.Doublets.Sequences.SequencesExtensions.Create(Of TLink)(Platform.Data.Sequences.ISequences(Of TLink), System.Collections.Generic.IList(Of TLink()))
-  nameWithType: SequencesExtensions.Create<TLink>(ISequences<TLink>, IList<TLink[]>)
-  nameWithType.vb: SequencesExtensions.Create(Of TLink)(ISequences(Of TLink), IList(Of TLink()))
+- uid: Platform.Data.Doublets.Sequences.SequencesExtensions.Create``1(Platform.Data.Doublets.ILinks{``0},System.Collections.Generic.IList{``0[]})
+  name: Create<TLink>(ILinks<TLink>, IList<TLink[]>)
+  href: api/Platform.Data.Doublets.Sequences.SequencesExtensions.html#Platform_Data_Doublets_Sequences_SequencesExtensions_Create__1_Platform_Data_Doublets_ILinks___0__System_Collections_Generic_IList___0____
+  commentId: M:Platform.Data.Doublets.Sequences.SequencesExtensions.Create``1(Platform.Data.Doublets.ILinks{``0},System.Collections.Generic.IList{``0[]})
+  name.vb: Create(Of TLink)(ILinks(Of TLink), IList(Of TLink()))
+  fullName: Platform.Data.Doublets.Sequences.SequencesExtensions.Create<TLink>(Platform.Data.Doublets.ILinks<TLink>, System.Collections.Generic.IList<TLink[]>)
+  fullName.vb: Platform.Data.Doublets.Sequences.SequencesExtensions.Create(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), System.Collections.Generic.IList(Of TLink()))
+  nameWithType: SequencesExtensions.Create<TLink>(ILinks<TLink>, IList<TLink[]>)
+  nameWithType.vb: SequencesExtensions.Create(Of TLink)(ILinks(Of TLink), IList(Of TLink()))
 - uid: Platform.Data.Doublets.Sequences.SequencesExtensions.ToList*
   name: ToList
   href: api/Platform.Data.Doublets.Sequences.SequencesExtensions.html#Platform_Data_Doublets_Sequences_SequencesExtensions_ToList_
@@ -6270,15 +6535,15 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Sequences.SequencesExtensions.ToList
   nameWithType: SequencesExtensions.ToList
-- uid: Platform.Data.Doublets.Sequences.SequencesExtensions.ToList``1(Platform.Data.Sequences.ISequences{``0},``0)
-  name: ToList<TLink>(ISequences<TLink>, TLink)
-  href: api/Platform.Data.Doublets.Sequences.SequencesExtensions.html#Platform_Data_Doublets_Sequences_SequencesExtensions_ToList__1_Platform_Data_Sequences_ISequences___0____0_
-  commentId: M:Platform.Data.Doublets.Sequences.SequencesExtensions.ToList``1(Platform.Data.Sequences.ISequences{``0},``0)
-  name.vb: ToList(Of TLink)(ISequences(Of TLink), TLink)
-  fullName: Platform.Data.Doublets.Sequences.SequencesExtensions.ToList<TLink>(Platform.Data.Sequences.ISequences<TLink>, TLink)
-  fullName.vb: Platform.Data.Doublets.Sequences.SequencesExtensions.ToList(Of TLink)(Platform.Data.Sequences.ISequences(Of TLink), TLink)
-  nameWithType: SequencesExtensions.ToList<TLink>(ISequences<TLink>, TLink)
-  nameWithType.vb: SequencesExtensions.ToList(Of TLink)(ISequences(Of TLink), TLink)
+- uid: Platform.Data.Doublets.Sequences.SequencesExtensions.ToList``1(Platform.Data.Doublets.ILinks{``0},``0)
+  name: ToList<TLink>(ILinks<TLink>, TLink)
+  href: api/Platform.Data.Doublets.Sequences.SequencesExtensions.html#Platform_Data_Doublets_Sequences_SequencesExtensions_ToList__1_Platform_Data_Doublets_ILinks___0____0_
+  commentId: M:Platform.Data.Doublets.Sequences.SequencesExtensions.ToList``1(Platform.Data.Doublets.ILinks{``0},``0)
+  name.vb: ToList(Of TLink)(ILinks(Of TLink), TLink)
+  fullName: Platform.Data.Doublets.Sequences.SequencesExtensions.ToList<TLink>(Platform.Data.Doublets.ILinks<TLink>, TLink)
+  fullName.vb: Platform.Data.Doublets.Sequences.SequencesExtensions.ToList(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink)
+  nameWithType: SequencesExtensions.ToList<TLink>(ILinks<TLink>, TLink)
+  nameWithType.vb: SequencesExtensions.ToList(Of TLink)(ILinks(Of TLink), TLink)
 - uid: Platform.Data.Doublets.Sequences.SequencesOptions`1
   name: SequencesOptions<TLink>
   href: api/Platform.Data.Doublets.Sequences.SequencesOptions-1.html
@@ -6391,6 +6656,23 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.SequencesOptions(Of TLink).MarkedSequenceMatcher
   nameWithType: SequencesOptions<TLink>.MarkedSequenceMatcher
   nameWithType.vb: SequencesOptions(Of TLink).MarkedSequenceMatcher
+- uid: Platform.Data.Doublets.Sequences.SequencesOptions`1.ReadFullSequence
+  name: ReadFullSequence
+  href: api/Platform.Data.Doublets.Sequences.SequencesOptions-1.html#Platform_Data_Doublets_Sequences_SequencesOptions_1_ReadFullSequence
+  commentId: P:Platform.Data.Doublets.Sequences.SequencesOptions`1.ReadFullSequence
+  fullName: Platform.Data.Doublets.Sequences.SequencesOptions<TLink>.ReadFullSequence
+  fullName.vb: Platform.Data.Doublets.Sequences.SequencesOptions(Of TLink).ReadFullSequence
+  nameWithType: SequencesOptions<TLink>.ReadFullSequence
+  nameWithType.vb: SequencesOptions(Of TLink).ReadFullSequence
+- uid: Platform.Data.Doublets.Sequences.SequencesOptions`1.ReadFullSequence*
+  name: ReadFullSequence
+  href: api/Platform.Data.Doublets.Sequences.SequencesOptions-1.html#Platform_Data_Doublets_Sequences_SequencesOptions_1_ReadFullSequence_
+  commentId: Overload:Platform.Data.Doublets.Sequences.SequencesOptions`1.ReadFullSequence
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Sequences.SequencesOptions<TLink>.ReadFullSequence
+  fullName.vb: Platform.Data.Doublets.Sequences.SequencesOptions(Of TLink).ReadFullSequence
+  nameWithType: SequencesOptions<TLink>.ReadFullSequence
+  nameWithType.vb: SequencesOptions(Of TLink).ReadFullSequence
 - uid: Platform.Data.Doublets.Sequences.SequencesOptions`1.SequenceMarkerLink
   name: SequenceMarkerLink
   href: api/Platform.Data.Doublets.Sequences.SequencesOptions-1.html#Platform_Data_Doublets_Sequences_SequencesOptions_1_SequenceMarkerLink
@@ -6544,6 +6826,145 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.SequencesOptions(Of TLink).Walker
   nameWithType: SequencesOptions<TLink>.Walker
   nameWithType.vb: SequencesOptions(Of TLink).Walker
+- uid: Platform.Data.Doublets.Sequences.SetFiller`2
+  name: SetFiller<TElement, TReturnConstant>
+  href: api/Platform.Data.Doublets.Sequences.SetFiller-2.html
+  commentId: T:Platform.Data.Doublets.Sequences.SetFiller`2
+  name.vb: SetFiller(Of TElement, TReturnConstant)
+  fullName: Platform.Data.Doublets.Sequences.SetFiller<TElement, TReturnConstant>
+  fullName.vb: Platform.Data.Doublets.Sequences.SetFiller(Of TElement, TReturnConstant)
+  nameWithType: SetFiller<TElement, TReturnConstant>
+  nameWithType.vb: SetFiller(Of TElement, TReturnConstant)
+- uid: Platform.Data.Doublets.Sequences.SetFiller`2.#ctor(System.Collections.Generic.ISet{`0})
+  name: SetFiller(ISet<TElement>)
+  href: api/Platform.Data.Doublets.Sequences.SetFiller-2.html#Platform_Data_Doublets_Sequences_SetFiller_2__ctor_System_Collections_Generic_ISet__0__
+  commentId: M:Platform.Data.Doublets.Sequences.SetFiller`2.#ctor(System.Collections.Generic.ISet{`0})
+  name.vb: SetFiller(ISet(Of TElement))
+  fullName: Platform.Data.Doublets.Sequences.SetFiller<TElement, TReturnConstant>.SetFiller(System.Collections.Generic.ISet<TElement>)
+  fullName.vb: Platform.Data.Doublets.Sequences.SetFiller(Of TElement, TReturnConstant).SetFiller(System.Collections.Generic.ISet(Of TElement))
+  nameWithType: SetFiller<TElement, TReturnConstant>.SetFiller(ISet<TElement>)
+  nameWithType.vb: SetFiller(Of TElement, TReturnConstant).SetFiller(ISet(Of TElement))
+- uid: Platform.Data.Doublets.Sequences.SetFiller`2.#ctor(System.Collections.Generic.ISet{`0},`1)
+  name: SetFiller(ISet<TElement>, TReturnConstant)
+  href: api/Platform.Data.Doublets.Sequences.SetFiller-2.html#Platform_Data_Doublets_Sequences_SetFiller_2__ctor_System_Collections_Generic_ISet__0___1_
+  commentId: M:Platform.Data.Doublets.Sequences.SetFiller`2.#ctor(System.Collections.Generic.ISet{`0},`1)
+  name.vb: SetFiller(ISet(Of TElement), TReturnConstant)
+  fullName: Platform.Data.Doublets.Sequences.SetFiller<TElement, TReturnConstant>.SetFiller(System.Collections.Generic.ISet<TElement>, TReturnConstant)
+  fullName.vb: Platform.Data.Doublets.Sequences.SetFiller(Of TElement, TReturnConstant).SetFiller(System.Collections.Generic.ISet(Of TElement), TReturnConstant)
+  nameWithType: SetFiller<TElement, TReturnConstant>.SetFiller(ISet<TElement>, TReturnConstant)
+  nameWithType.vb: SetFiller(Of TElement, TReturnConstant).SetFiller(ISet(Of TElement), TReturnConstant)
+- uid: Platform.Data.Doublets.Sequences.SetFiller`2.#ctor*
+  name: SetFiller
+  href: api/Platform.Data.Doublets.Sequences.SetFiller-2.html#Platform_Data_Doublets_Sequences_SetFiller_2__ctor_
+  commentId: Overload:Platform.Data.Doublets.Sequences.SetFiller`2.#ctor
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Sequences.SetFiller<TElement, TReturnConstant>.SetFiller
+  fullName.vb: Platform.Data.Doublets.Sequences.SetFiller(Of TElement, TReturnConstant).SetFiller
+  nameWithType: SetFiller<TElement, TReturnConstant>.SetFiller
+  nameWithType.vb: SetFiller(Of TElement, TReturnConstant).SetFiller
+- uid: Platform.Data.Doublets.Sequences.SetFiller`2._returnConstant
+  name: _returnConstant
+  href: api/Platform.Data.Doublets.Sequences.SetFiller-2.html#Platform_Data_Doublets_Sequences_SetFiller_2__returnConstant
+  commentId: F:Platform.Data.Doublets.Sequences.SetFiller`2._returnConstant
+  fullName: Platform.Data.Doublets.Sequences.SetFiller<TElement, TReturnConstant>._returnConstant
+  fullName.vb: Platform.Data.Doublets.Sequences.SetFiller(Of TElement, TReturnConstant)._returnConstant
+  nameWithType: SetFiller<TElement, TReturnConstant>._returnConstant
+  nameWithType.vb: SetFiller(Of TElement, TReturnConstant)._returnConstant
+- uid: Platform.Data.Doublets.Sequences.SetFiller`2._set
+  name: _set
+  href: api/Platform.Data.Doublets.Sequences.SetFiller-2.html#Platform_Data_Doublets_Sequences_SetFiller_2__set
+  commentId: F:Platform.Data.Doublets.Sequences.SetFiller`2._set
+  fullName: Platform.Data.Doublets.Sequences.SetFiller<TElement, TReturnConstant>._set
+  fullName.vb: Platform.Data.Doublets.Sequences.SetFiller(Of TElement, TReturnConstant)._set
+  nameWithType: SetFiller<TElement, TReturnConstant>._set
+  nameWithType.vb: SetFiller(Of TElement, TReturnConstant)._set
+- uid: Platform.Data.Doublets.Sequences.SetFiller`2.Add(`0)
+  name: Add(TElement)
+  href: api/Platform.Data.Doublets.Sequences.SetFiller-2.html#Platform_Data_Doublets_Sequences_SetFiller_2_Add__0_
+  commentId: M:Platform.Data.Doublets.Sequences.SetFiller`2.Add(`0)
+  fullName: Platform.Data.Doublets.Sequences.SetFiller<TElement, TReturnConstant>.Add(TElement)
+  fullName.vb: Platform.Data.Doublets.Sequences.SetFiller(Of TElement, TReturnConstant).Add(TElement)
+  nameWithType: SetFiller<TElement, TReturnConstant>.Add(TElement)
+  nameWithType.vb: SetFiller(Of TElement, TReturnConstant).Add(TElement)
+- uid: Platform.Data.Doublets.Sequences.SetFiller`2.Add*
+  name: Add
+  href: api/Platform.Data.Doublets.Sequences.SetFiller-2.html#Platform_Data_Doublets_Sequences_SetFiller_2_Add_
+  commentId: Overload:Platform.Data.Doublets.Sequences.SetFiller`2.Add
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Sequences.SetFiller<TElement, TReturnConstant>.Add
+  fullName.vb: Platform.Data.Doublets.Sequences.SetFiller(Of TElement, TReturnConstant).Add
+  nameWithType: SetFiller<TElement, TReturnConstant>.Add
+  nameWithType.vb: SetFiller(Of TElement, TReturnConstant).Add
+- uid: Platform.Data.Doublets.Sequences.SetFiller`2.AddAndReturnConstant(`0)
+  name: AddAndReturnConstant(TElement)
+  href: api/Platform.Data.Doublets.Sequences.SetFiller-2.html#Platform_Data_Doublets_Sequences_SetFiller_2_AddAndReturnConstant__0_
+  commentId: M:Platform.Data.Doublets.Sequences.SetFiller`2.AddAndReturnConstant(`0)
+  fullName: Platform.Data.Doublets.Sequences.SetFiller<TElement, TReturnConstant>.AddAndReturnConstant(TElement)
+  fullName.vb: Platform.Data.Doublets.Sequences.SetFiller(Of TElement, TReturnConstant).AddAndReturnConstant(TElement)
+  nameWithType: SetFiller<TElement, TReturnConstant>.AddAndReturnConstant(TElement)
+  nameWithType.vb: SetFiller(Of TElement, TReturnConstant).AddAndReturnConstant(TElement)
+- uid: Platform.Data.Doublets.Sequences.SetFiller`2.AddAndReturnConstant*
+  name: AddAndReturnConstant
+  href: api/Platform.Data.Doublets.Sequences.SetFiller-2.html#Platform_Data_Doublets_Sequences_SetFiller_2_AddAndReturnConstant_
+  commentId: Overload:Platform.Data.Doublets.Sequences.SetFiller`2.AddAndReturnConstant
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Sequences.SetFiller<TElement, TReturnConstant>.AddAndReturnConstant
+  fullName.vb: Platform.Data.Doublets.Sequences.SetFiller(Of TElement, TReturnConstant).AddAndReturnConstant
+  nameWithType: SetFiller<TElement, TReturnConstant>.AddAndReturnConstant
+  nameWithType.vb: SetFiller(Of TElement, TReturnConstant).AddAndReturnConstant
+- uid: Platform.Data.Doublets.Sequences.SetFiller`2.AddAndReturnTrue(`0)
+  name: AddAndReturnTrue(TElement)
+  href: api/Platform.Data.Doublets.Sequences.SetFiller-2.html#Platform_Data_Doublets_Sequences_SetFiller_2_AddAndReturnTrue__0_
+  commentId: M:Platform.Data.Doublets.Sequences.SetFiller`2.AddAndReturnTrue(`0)
+  fullName: Platform.Data.Doublets.Sequences.SetFiller<TElement, TReturnConstant>.AddAndReturnTrue(TElement)
+  fullName.vb: Platform.Data.Doublets.Sequences.SetFiller(Of TElement, TReturnConstant).AddAndReturnTrue(TElement)
+  nameWithType: SetFiller<TElement, TReturnConstant>.AddAndReturnTrue(TElement)
+  nameWithType.vb: SetFiller(Of TElement, TReturnConstant).AddAndReturnTrue(TElement)
+- uid: Platform.Data.Doublets.Sequences.SetFiller`2.AddAndReturnTrue*
+  name: AddAndReturnTrue
+  href: api/Platform.Data.Doublets.Sequences.SetFiller-2.html#Platform_Data_Doublets_Sequences_SetFiller_2_AddAndReturnTrue_
+  commentId: Overload:Platform.Data.Doublets.Sequences.SetFiller`2.AddAndReturnTrue
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Sequences.SetFiller<TElement, TReturnConstant>.AddAndReturnTrue
+  fullName.vb: Platform.Data.Doublets.Sequences.SetFiller(Of TElement, TReturnConstant).AddAndReturnTrue
+  nameWithType: SetFiller<TElement, TReturnConstant>.AddAndReturnTrue
+  nameWithType.vb: SetFiller(Of TElement, TReturnConstant).AddAndReturnTrue
+- uid: Platform.Data.Doublets.Sequences.SetFiller`2.AddFirstAndReturnConstant(System.Collections.Generic.IList{`0})
+  name: AddFirstAndReturnConstant(IList<TElement>)
+  href: api/Platform.Data.Doublets.Sequences.SetFiller-2.html#Platform_Data_Doublets_Sequences_SetFiller_2_AddFirstAndReturnConstant_System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Sequences.SetFiller`2.AddFirstAndReturnConstant(System.Collections.Generic.IList{`0})
+  name.vb: AddFirstAndReturnConstant(IList(Of TElement))
+  fullName: Platform.Data.Doublets.Sequences.SetFiller<TElement, TReturnConstant>.AddFirstAndReturnConstant(System.Collections.Generic.IList<TElement>)
+  fullName.vb: Platform.Data.Doublets.Sequences.SetFiller(Of TElement, TReturnConstant).AddFirstAndReturnConstant(System.Collections.Generic.IList(Of TElement))
+  nameWithType: SetFiller<TElement, TReturnConstant>.AddFirstAndReturnConstant(IList<TElement>)
+  nameWithType.vb: SetFiller(Of TElement, TReturnConstant).AddFirstAndReturnConstant(IList(Of TElement))
+- uid: Platform.Data.Doublets.Sequences.SetFiller`2.AddFirstAndReturnConstant*
+  name: AddFirstAndReturnConstant
+  href: api/Platform.Data.Doublets.Sequences.SetFiller-2.html#Platform_Data_Doublets_Sequences_SetFiller_2_AddFirstAndReturnConstant_
+  commentId: Overload:Platform.Data.Doublets.Sequences.SetFiller`2.AddFirstAndReturnConstant
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Sequences.SetFiller<TElement, TReturnConstant>.AddFirstAndReturnConstant
+  fullName.vb: Platform.Data.Doublets.Sequences.SetFiller(Of TElement, TReturnConstant).AddFirstAndReturnConstant
+  nameWithType: SetFiller<TElement, TReturnConstant>.AddFirstAndReturnConstant
+  nameWithType.vb: SetFiller(Of TElement, TReturnConstant).AddFirstAndReturnConstant
+- uid: Platform.Data.Doublets.Sequences.SetFiller`2.AddFirstAndReturnTrue(System.Collections.Generic.IList{`0})
+  name: AddFirstAndReturnTrue(IList<TElement>)
+  href: api/Platform.Data.Doublets.Sequences.SetFiller-2.html#Platform_Data_Doublets_Sequences_SetFiller_2_AddFirstAndReturnTrue_System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Sequences.SetFiller`2.AddFirstAndReturnTrue(System.Collections.Generic.IList{`0})
+  name.vb: AddFirstAndReturnTrue(IList(Of TElement))
+  fullName: Platform.Data.Doublets.Sequences.SetFiller<TElement, TReturnConstant>.AddFirstAndReturnTrue(System.Collections.Generic.IList<TElement>)
+  fullName.vb: Platform.Data.Doublets.Sequences.SetFiller(Of TElement, TReturnConstant).AddFirstAndReturnTrue(System.Collections.Generic.IList(Of TElement))
+  nameWithType: SetFiller<TElement, TReturnConstant>.AddFirstAndReturnTrue(IList<TElement>)
+  nameWithType.vb: SetFiller(Of TElement, TReturnConstant).AddFirstAndReturnTrue(IList(Of TElement))
+- uid: Platform.Data.Doublets.Sequences.SetFiller`2.AddFirstAndReturnTrue*
+  name: AddFirstAndReturnTrue
+  href: api/Platform.Data.Doublets.Sequences.SetFiller-2.html#Platform_Data_Doublets_Sequences_SetFiller_2_AddFirstAndReturnTrue_
+  commentId: Overload:Platform.Data.Doublets.Sequences.SetFiller`2.AddFirstAndReturnTrue
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Sequences.SetFiller<TElement, TReturnConstant>.AddFirstAndReturnTrue
+  fullName.vb: Platform.Data.Doublets.Sequences.SetFiller(Of TElement, TReturnConstant).AddFirstAndReturnTrue
+  nameWithType: SetFiller<TElement, TReturnConstant>.AddFirstAndReturnTrue
+  nameWithType.vb: SetFiller(Of TElement, TReturnConstant).AddFirstAndReturnTrue
 - uid: Platform.Data.Doublets.Sequences.Walkers
   name: Platform.Data.Doublets.Sequences.Walkers
   href: api/Platform.Data.Doublets.Sequences.Walkers.html
@@ -7065,197 +7486,199 @@ references:
   nameWithType: StackExtensions.CreateStack<TLink>(ILinks<TLink>, TLink)
   nameWithType.vb: StackExtensions.CreateStack(Of TLink)(ILinks(Of TLink), TLink)
 - uid: Platform.Data.Doublets.SynchronizedLinks`1
-  name: SynchronizedLinks<T>
+  name: SynchronizedLinks<TLinkAddress>
   href: api/Platform.Data.Doublets.SynchronizedLinks-1.html
   commentId: T:Platform.Data.Doublets.SynchronizedLinks`1
-  name.vb: SynchronizedLinks(Of T)
-  fullName: Platform.Data.Doublets.SynchronizedLinks<T>
-  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of T)
-  nameWithType: SynchronizedLinks<T>
-  nameWithType.vb: SynchronizedLinks(Of T)
+  name.vb: SynchronizedLinks(Of TLinkAddress)
+  fullName: Platform.Data.Doublets.SynchronizedLinks<TLinkAddress>
+  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of TLinkAddress)
+  nameWithType: SynchronizedLinks<TLinkAddress>
+  nameWithType.vb: SynchronizedLinks(Of TLinkAddress)
 - uid: Platform.Data.Doublets.SynchronizedLinks`1.#ctor(Platform.Data.Doublets.ILinks{`0})
-  name: SynchronizedLinks(ILinks<T>)
+  name: SynchronizedLinks(ILinks<TLinkAddress>)
   href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1__ctor_Platform_Data_Doublets_ILinks__0__
   commentId: M:Platform.Data.Doublets.SynchronizedLinks`1.#ctor(Platform.Data.Doublets.ILinks{`0})
-  name.vb: SynchronizedLinks(ILinks(Of T))
-  fullName: Platform.Data.Doublets.SynchronizedLinks<T>.SynchronizedLinks(Platform.Data.Doublets.ILinks<T>)
-  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of T).SynchronizedLinks(Platform.Data.Doublets.ILinks(Of T))
-  nameWithType: SynchronizedLinks<T>.SynchronizedLinks(ILinks<T>)
-  nameWithType.vb: SynchronizedLinks(Of T).SynchronizedLinks(ILinks(Of T))
+  name.vb: SynchronizedLinks(ILinks(Of TLinkAddress))
+  fullName: Platform.Data.Doublets.SynchronizedLinks<TLinkAddress>.SynchronizedLinks(Platform.Data.Doublets.ILinks<TLinkAddress>)
+  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of TLinkAddress).SynchronizedLinks(Platform.Data.Doublets.ILinks(Of TLinkAddress))
+  nameWithType: SynchronizedLinks<TLinkAddress>.SynchronizedLinks(ILinks<TLinkAddress>)
+  nameWithType.vb: SynchronizedLinks(Of TLinkAddress).SynchronizedLinks(ILinks(Of TLinkAddress))
 - uid: Platform.Data.Doublets.SynchronizedLinks`1.#ctor(Platform.Threading.Synchronization.ISynchronization,Platform.Data.Doublets.ILinks{`0})
-  name: SynchronizedLinks(ISynchronization, ILinks<T>)
+  name: SynchronizedLinks(ISynchronization, ILinks<TLinkAddress>)
   href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1__ctor_Platform_Threading_Synchronization_ISynchronization_Platform_Data_Doublets_ILinks__0__
   commentId: M:Platform.Data.Doublets.SynchronizedLinks`1.#ctor(Platform.Threading.Synchronization.ISynchronization,Platform.Data.Doublets.ILinks{`0})
-  name.vb: SynchronizedLinks(ISynchronization, ILinks(Of T))
-  fullName: Platform.Data.Doublets.SynchronizedLinks<T>.SynchronizedLinks(Platform.Threading.Synchronization.ISynchronization, Platform.Data.Doublets.ILinks<T>)
-  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of T).SynchronizedLinks(Platform.Threading.Synchronization.ISynchronization, Platform.Data.Doublets.ILinks(Of T))
-  nameWithType: SynchronizedLinks<T>.SynchronizedLinks(ISynchronization, ILinks<T>)
-  nameWithType.vb: SynchronizedLinks(Of T).SynchronizedLinks(ISynchronization, ILinks(Of T))
+  name.vb: SynchronizedLinks(ISynchronization, ILinks(Of TLinkAddress))
+  fullName: Platform.Data.Doublets.SynchronizedLinks<TLinkAddress>.SynchronizedLinks(Platform.Threading.Synchronization.ISynchronization, Platform.Data.Doublets.ILinks<TLinkAddress>)
+  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of TLinkAddress).SynchronizedLinks(Platform.Threading.Synchronization.ISynchronization, Platform.Data.Doublets.ILinks(Of TLinkAddress))
+  nameWithType: SynchronizedLinks<TLinkAddress>.SynchronizedLinks(ISynchronization, ILinks<TLinkAddress>)
+  nameWithType.vb: SynchronizedLinks(Of TLinkAddress).SynchronizedLinks(ISynchronization, ILinks(Of TLinkAddress))
 - uid: Platform.Data.Doublets.SynchronizedLinks`1.#ctor*
   name: SynchronizedLinks
   href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1__ctor_
   commentId: Overload:Platform.Data.Doublets.SynchronizedLinks`1.#ctor
   isSpec: "True"
-  fullName: Platform.Data.Doublets.SynchronizedLinks<T>.SynchronizedLinks
-  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of T).SynchronizedLinks
-  nameWithType: SynchronizedLinks<T>.SynchronizedLinks
-  nameWithType.vb: SynchronizedLinks(Of T).SynchronizedLinks
+  fullName: Platform.Data.Doublets.SynchronizedLinks<TLinkAddress>.SynchronizedLinks
+  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of TLinkAddress).SynchronizedLinks
+  nameWithType: SynchronizedLinks<TLinkAddress>.SynchronizedLinks
+  nameWithType.vb: SynchronizedLinks(Of TLinkAddress).SynchronizedLinks
 - uid: Platform.Data.Doublets.SynchronizedLinks`1.Constants
   name: Constants
   href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1_Constants
   commentId: P:Platform.Data.Doublets.SynchronizedLinks`1.Constants
-  fullName: Platform.Data.Doublets.SynchronizedLinks<T>.Constants
-  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of T).Constants
-  nameWithType: SynchronizedLinks<T>.Constants
-  nameWithType.vb: SynchronizedLinks(Of T).Constants
+  fullName: Platform.Data.Doublets.SynchronizedLinks<TLinkAddress>.Constants
+  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of TLinkAddress).Constants
+  nameWithType: SynchronizedLinks<TLinkAddress>.Constants
+  nameWithType.vb: SynchronizedLinks(Of TLinkAddress).Constants
 - uid: Platform.Data.Doublets.SynchronizedLinks`1.Constants*
   name: Constants
   href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1_Constants_
   commentId: Overload:Platform.Data.Doublets.SynchronizedLinks`1.Constants
   isSpec: "True"
-  fullName: Platform.Data.Doublets.SynchronizedLinks<T>.Constants
-  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of T).Constants
-  nameWithType: SynchronizedLinks<T>.Constants
-  nameWithType.vb: SynchronizedLinks(Of T).Constants
+  fullName: Platform.Data.Doublets.SynchronizedLinks<TLinkAddress>.Constants
+  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of TLinkAddress).Constants
+  nameWithType: SynchronizedLinks<TLinkAddress>.Constants
+  nameWithType.vb: SynchronizedLinks(Of TLinkAddress).Constants
 - uid: Platform.Data.Doublets.SynchronizedLinks`1.Count(System.Collections.Generic.IList{`0})
-  name: Count(IList<T>)
+  name: Count(IList<TLinkAddress>)
   href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1_Count_System_Collections_Generic_IList__0__
   commentId: M:Platform.Data.Doublets.SynchronizedLinks`1.Count(System.Collections.Generic.IList{`0})
-  name.vb: Count(IList(Of T))
-  fullName: Platform.Data.Doublets.SynchronizedLinks<T>.Count(System.Collections.Generic.IList<T>)
-  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of T).Count(System.Collections.Generic.IList(Of T))
-  nameWithType: SynchronizedLinks<T>.Count(IList<T>)
-  nameWithType.vb: SynchronizedLinks(Of T).Count(IList(Of T))
+  name.vb: Count(IList(Of TLinkAddress))
+  fullName: Platform.Data.Doublets.SynchronizedLinks<TLinkAddress>.Count(System.Collections.Generic.IList<TLinkAddress>)
+  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of TLinkAddress).Count(System.Collections.Generic.IList(Of TLinkAddress))
+  nameWithType: SynchronizedLinks<TLinkAddress>.Count(IList<TLinkAddress>)
+  nameWithType.vb: SynchronizedLinks(Of TLinkAddress).Count(IList(Of TLinkAddress))
 - uid: Platform.Data.Doublets.SynchronizedLinks`1.Count*
   name: Count
   href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1_Count_
   commentId: Overload:Platform.Data.Doublets.SynchronizedLinks`1.Count
   isSpec: "True"
-  fullName: Platform.Data.Doublets.SynchronizedLinks<T>.Count
-  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of T).Count
-  nameWithType: SynchronizedLinks<T>.Count
-  nameWithType.vb: SynchronizedLinks(Of T).Count
-- uid: Platform.Data.Doublets.SynchronizedLinks`1.Create
-  name: Create()
-  href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1_Create
-  commentId: M:Platform.Data.Doublets.SynchronizedLinks`1.Create
-  fullName: Platform.Data.Doublets.SynchronizedLinks<T>.Create()
-  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of T).Create()
-  nameWithType: SynchronizedLinks<T>.Create()
-  nameWithType.vb: SynchronizedLinks(Of T).Create()
+  fullName: Platform.Data.Doublets.SynchronizedLinks<TLinkAddress>.Count
+  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of TLinkAddress).Count
+  nameWithType: SynchronizedLinks<TLinkAddress>.Count
+  nameWithType.vb: SynchronizedLinks(Of TLinkAddress).Count
+- uid: Platform.Data.Doublets.SynchronizedLinks`1.Create(System.Collections.Generic.IList{`0})
+  name: Create(IList<TLinkAddress>)
+  href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1_Create_System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.SynchronizedLinks`1.Create(System.Collections.Generic.IList{`0})
+  name.vb: Create(IList(Of TLinkAddress))
+  fullName: Platform.Data.Doublets.SynchronizedLinks<TLinkAddress>.Create(System.Collections.Generic.IList<TLinkAddress>)
+  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of TLinkAddress).Create(System.Collections.Generic.IList(Of TLinkAddress))
+  nameWithType: SynchronizedLinks<TLinkAddress>.Create(IList<TLinkAddress>)
+  nameWithType.vb: SynchronizedLinks(Of TLinkAddress).Create(IList(Of TLinkAddress))
 - uid: Platform.Data.Doublets.SynchronizedLinks`1.Create*
   name: Create
   href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1_Create_
   commentId: Overload:Platform.Data.Doublets.SynchronizedLinks`1.Create
   isSpec: "True"
-  fullName: Platform.Data.Doublets.SynchronizedLinks<T>.Create
-  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of T).Create
-  nameWithType: SynchronizedLinks<T>.Create
-  nameWithType.vb: SynchronizedLinks(Of T).Create
-- uid: Platform.Data.Doublets.SynchronizedLinks`1.Delete(`0)
-  name: Delete(T)
-  href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1_Delete__0_
-  commentId: M:Platform.Data.Doublets.SynchronizedLinks`1.Delete(`0)
-  fullName: Platform.Data.Doublets.SynchronizedLinks<T>.Delete(T)
-  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of T).Delete(T)
-  nameWithType: SynchronizedLinks<T>.Delete(T)
-  nameWithType.vb: SynchronizedLinks(Of T).Delete(T)
+  fullName: Platform.Data.Doublets.SynchronizedLinks<TLinkAddress>.Create
+  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of TLinkAddress).Create
+  nameWithType: SynchronizedLinks<TLinkAddress>.Create
+  nameWithType.vb: SynchronizedLinks(Of TLinkAddress).Create
+- uid: Platform.Data.Doublets.SynchronizedLinks`1.Delete(System.Collections.Generic.IList{`0})
+  name: Delete(IList<TLinkAddress>)
+  href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1_Delete_System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.SynchronizedLinks`1.Delete(System.Collections.Generic.IList{`0})
+  name.vb: Delete(IList(Of TLinkAddress))
+  fullName: Platform.Data.Doublets.SynchronizedLinks<TLinkAddress>.Delete(System.Collections.Generic.IList<TLinkAddress>)
+  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of TLinkAddress).Delete(System.Collections.Generic.IList(Of TLinkAddress))
+  nameWithType: SynchronizedLinks<TLinkAddress>.Delete(IList<TLinkAddress>)
+  nameWithType.vb: SynchronizedLinks(Of TLinkAddress).Delete(IList(Of TLinkAddress))
 - uid: Platform.Data.Doublets.SynchronizedLinks`1.Delete*
   name: Delete
   href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1_Delete_
   commentId: Overload:Platform.Data.Doublets.SynchronizedLinks`1.Delete
   isSpec: "True"
-  fullName: Platform.Data.Doublets.SynchronizedLinks<T>.Delete
-  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of T).Delete
-  nameWithType: SynchronizedLinks<T>.Delete
-  nameWithType.vb: SynchronizedLinks(Of T).Delete
+  fullName: Platform.Data.Doublets.SynchronizedLinks<TLinkAddress>.Delete
+  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of TLinkAddress).Delete
+  nameWithType: SynchronizedLinks<TLinkAddress>.Delete
+  nameWithType.vb: SynchronizedLinks(Of TLinkAddress).Delete
 - uid: Platform.Data.Doublets.SynchronizedLinks`1.Each(System.Func{System.Collections.Generic.IList{`0},`0},System.Collections.Generic.IList{`0})
-  name: Each(Func<IList<T>, T>, IList<T>)
+  name: Each(Func<IList<TLinkAddress>, TLinkAddress>, IList<TLinkAddress>)
   href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1_Each_System_Func_System_Collections_Generic_IList__0___0__System_Collections_Generic_IList__0__
   commentId: M:Platform.Data.Doublets.SynchronizedLinks`1.Each(System.Func{System.Collections.Generic.IList{`0},`0},System.Collections.Generic.IList{`0})
-  name.vb: Each(Func(Of IList(Of T), T), IList(Of T))
-  fullName: Platform.Data.Doublets.SynchronizedLinks<T>.Each(System.Func<System.Collections.Generic.IList<T>, T>, System.Collections.Generic.IList<T>)
-  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of T).Each(System.Func(Of System.Collections.Generic.IList(Of T), T), System.Collections.Generic.IList(Of T))
-  nameWithType: SynchronizedLinks<T>.Each(Func<IList<T>, T>, IList<T>)
-  nameWithType.vb: SynchronizedLinks(Of T).Each(Func(Of IList(Of T), T), IList(Of T))
+  name.vb: Each(Func(Of IList(Of TLinkAddress), TLinkAddress), IList(Of TLinkAddress))
+  fullName: Platform.Data.Doublets.SynchronizedLinks<TLinkAddress>.Each(System.Func<System.Collections.Generic.IList<TLinkAddress>, TLinkAddress>, System.Collections.Generic.IList<TLinkAddress>)
+  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of TLinkAddress).Each(System.Func(Of System.Collections.Generic.IList(Of TLinkAddress), TLinkAddress), System.Collections.Generic.IList(Of TLinkAddress))
+  nameWithType: SynchronizedLinks<TLinkAddress>.Each(Func<IList<TLinkAddress>, TLinkAddress>, IList<TLinkAddress>)
+  nameWithType.vb: SynchronizedLinks(Of TLinkAddress).Each(Func(Of IList(Of TLinkAddress), TLinkAddress), IList(Of TLinkAddress))
 - uid: Platform.Data.Doublets.SynchronizedLinks`1.Each*
   name: Each
   href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1_Each_
   commentId: Overload:Platform.Data.Doublets.SynchronizedLinks`1.Each
   isSpec: "True"
-  fullName: Platform.Data.Doublets.SynchronizedLinks<T>.Each
-  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of T).Each
-  nameWithType: SynchronizedLinks<T>.Each
-  nameWithType.vb: SynchronizedLinks(Of T).Each
+  fullName: Platform.Data.Doublets.SynchronizedLinks<TLinkAddress>.Each
+  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of TLinkAddress).Each
+  nameWithType: SynchronizedLinks<TLinkAddress>.Each
+  nameWithType.vb: SynchronizedLinks(Of TLinkAddress).Each
 - uid: Platform.Data.Doublets.SynchronizedLinks`1.Sync
   name: Sync
   href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1_Sync
   commentId: P:Platform.Data.Doublets.SynchronizedLinks`1.Sync
-  fullName: Platform.Data.Doublets.SynchronizedLinks<T>.Sync
-  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of T).Sync
-  nameWithType: SynchronizedLinks<T>.Sync
-  nameWithType.vb: SynchronizedLinks(Of T).Sync
+  fullName: Platform.Data.Doublets.SynchronizedLinks<TLinkAddress>.Sync
+  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of TLinkAddress).Sync
+  nameWithType: SynchronizedLinks<TLinkAddress>.Sync
+  nameWithType.vb: SynchronizedLinks(Of TLinkAddress).Sync
 - uid: Platform.Data.Doublets.SynchronizedLinks`1.Sync*
   name: Sync
   href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1_Sync_
   commentId: Overload:Platform.Data.Doublets.SynchronizedLinks`1.Sync
   isSpec: "True"
-  fullName: Platform.Data.Doublets.SynchronizedLinks<T>.Sync
-  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of T).Sync
-  nameWithType: SynchronizedLinks<T>.Sync
-  nameWithType.vb: SynchronizedLinks(Of T).Sync
+  fullName: Platform.Data.Doublets.SynchronizedLinks<TLinkAddress>.Sync
+  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of TLinkAddress).Sync
+  nameWithType: SynchronizedLinks<TLinkAddress>.Sync
+  nameWithType.vb: SynchronizedLinks(Of TLinkAddress).Sync
 - uid: Platform.Data.Doublets.SynchronizedLinks`1.SyncRoot
   name: SyncRoot
   href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1_SyncRoot
   commentId: P:Platform.Data.Doublets.SynchronizedLinks`1.SyncRoot
-  fullName: Platform.Data.Doublets.SynchronizedLinks<T>.SyncRoot
-  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of T).SyncRoot
-  nameWithType: SynchronizedLinks<T>.SyncRoot
-  nameWithType.vb: SynchronizedLinks(Of T).SyncRoot
+  fullName: Platform.Data.Doublets.SynchronizedLinks<TLinkAddress>.SyncRoot
+  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of TLinkAddress).SyncRoot
+  nameWithType: SynchronizedLinks<TLinkAddress>.SyncRoot
+  nameWithType.vb: SynchronizedLinks(Of TLinkAddress).SyncRoot
 - uid: Platform.Data.Doublets.SynchronizedLinks`1.SyncRoot*
   name: SyncRoot
   href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1_SyncRoot_
   commentId: Overload:Platform.Data.Doublets.SynchronizedLinks`1.SyncRoot
   isSpec: "True"
-  fullName: Platform.Data.Doublets.SynchronizedLinks<T>.SyncRoot
-  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of T).SyncRoot
-  nameWithType: SynchronizedLinks<T>.SyncRoot
-  nameWithType.vb: SynchronizedLinks(Of T).SyncRoot
+  fullName: Platform.Data.Doublets.SynchronizedLinks<TLinkAddress>.SyncRoot
+  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of TLinkAddress).SyncRoot
+  nameWithType: SynchronizedLinks<TLinkAddress>.SyncRoot
+  nameWithType.vb: SynchronizedLinks(Of TLinkAddress).SyncRoot
 - uid: Platform.Data.Doublets.SynchronizedLinks`1.Unsync
   name: Unsync
   href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1_Unsync
   commentId: P:Platform.Data.Doublets.SynchronizedLinks`1.Unsync
-  fullName: Platform.Data.Doublets.SynchronizedLinks<T>.Unsync
-  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of T).Unsync
-  nameWithType: SynchronizedLinks<T>.Unsync
-  nameWithType.vb: SynchronizedLinks(Of T).Unsync
+  fullName: Platform.Data.Doublets.SynchronizedLinks<TLinkAddress>.Unsync
+  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of TLinkAddress).Unsync
+  nameWithType: SynchronizedLinks<TLinkAddress>.Unsync
+  nameWithType.vb: SynchronizedLinks(Of TLinkAddress).Unsync
 - uid: Platform.Data.Doublets.SynchronizedLinks`1.Unsync*
   name: Unsync
   href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1_Unsync_
   commentId: Overload:Platform.Data.Doublets.SynchronizedLinks`1.Unsync
   isSpec: "True"
-  fullName: Platform.Data.Doublets.SynchronizedLinks<T>.Unsync
-  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of T).Unsync
-  nameWithType: SynchronizedLinks<T>.Unsync
-  nameWithType.vb: SynchronizedLinks(Of T).Unsync
-- uid: Platform.Data.Doublets.SynchronizedLinks`1.Update(System.Collections.Generic.IList{`0})
-  name: Update(IList<T>)
-  href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1_Update_System_Collections_Generic_IList__0__
-  commentId: M:Platform.Data.Doublets.SynchronizedLinks`1.Update(System.Collections.Generic.IList{`0})
-  name.vb: Update(IList(Of T))
-  fullName: Platform.Data.Doublets.SynchronizedLinks<T>.Update(System.Collections.Generic.IList<T>)
-  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of T).Update(System.Collections.Generic.IList(Of T))
-  nameWithType: SynchronizedLinks<T>.Update(IList<T>)
-  nameWithType.vb: SynchronizedLinks(Of T).Update(IList(Of T))
+  fullName: Platform.Data.Doublets.SynchronizedLinks<TLinkAddress>.Unsync
+  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of TLinkAddress).Unsync
+  nameWithType: SynchronizedLinks<TLinkAddress>.Unsync
+  nameWithType.vb: SynchronizedLinks(Of TLinkAddress).Unsync
+- uid: Platform.Data.Doublets.SynchronizedLinks`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0})
+  name: Update(IList<TLinkAddress>, IList<TLinkAddress>)
+  href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.SynchronizedLinks`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0})
+  name.vb: Update(IList(Of TLinkAddress), IList(Of TLinkAddress))
+  fullName: Platform.Data.Doublets.SynchronizedLinks<TLinkAddress>.Update(System.Collections.Generic.IList<TLinkAddress>, System.Collections.Generic.IList<TLinkAddress>)
+  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of TLinkAddress).Update(System.Collections.Generic.IList(Of TLinkAddress), System.Collections.Generic.IList(Of TLinkAddress))
+  nameWithType: SynchronizedLinks<TLinkAddress>.Update(IList<TLinkAddress>, IList<TLinkAddress>)
+  nameWithType.vb: SynchronizedLinks(Of TLinkAddress).Update(IList(Of TLinkAddress), IList(Of TLinkAddress))
 - uid: Platform.Data.Doublets.SynchronizedLinks`1.Update*
   name: Update
   href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1_Update_
   commentId: Overload:Platform.Data.Doublets.SynchronizedLinks`1.Update
   isSpec: "True"
-  fullName: Platform.Data.Doublets.SynchronizedLinks<T>.Update
-  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of T).Update
-  nameWithType: SynchronizedLinks<T>.Update
-  nameWithType.vb: SynchronizedLinks(Of T).Update
+  fullName: Platform.Data.Doublets.SynchronizedLinks<TLinkAddress>.Update
+  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of TLinkAddress).Update
+  nameWithType: SynchronizedLinks<TLinkAddress>.Update
+  nameWithType.vb: SynchronizedLinks(Of TLinkAddress).Update
 - uid: Platform.Data.Doublets.Tests
   name: Platform.Data.Doublets.Tests
   href: api/Platform.Data.Doublets.Tests.html
@@ -7537,6 +7960,19 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Tests.ScopeTests.SingleDependencyTest
   nameWithType: ScopeTests.SingleDependencyTest
+- uid: Platform.Data.Doublets.Tests.ScopeTests.TypeParametersTest
+  name: TypeParametersTest()
+  href: api/Platform.Data.Doublets.Tests.ScopeTests.html#Platform_Data_Doublets_Tests_ScopeTests_TypeParametersTest
+  commentId: M:Platform.Data.Doublets.Tests.ScopeTests.TypeParametersTest
+  fullName: Platform.Data.Doublets.Tests.ScopeTests.TypeParametersTest()
+  nameWithType: ScopeTests.TypeParametersTest()
+- uid: Platform.Data.Doublets.Tests.ScopeTests.TypeParametersTest*
+  name: TypeParametersTest
+  href: api/Platform.Data.Doublets.Tests.ScopeTests.html#Platform_Data_Doublets_Tests_ScopeTests_TypeParametersTest_
+  commentId: Overload:Platform.Data.Doublets.Tests.ScopeTests.TypeParametersTest
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Tests.ScopeTests.TypeParametersTest
+  nameWithType: ScopeTests.TypeParametersTest
 - uid: Platform.Data.Doublets.Tests.SequencesTests
   name: SequencesTests
   href: api/Platform.Data.Doublets.Tests.SequencesTests.html
@@ -8734,12 +9170,15 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.BeginTransaction
   nameWithType: UInt64LinksTransactionsLayer.BeginTransaction
-- uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Create
-  name: Create()
-  href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_Create
-  commentId: M:Platform.Data.Doublets.UInt64LinksTransactionsLayer.Create
-  fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Create()
-  nameWithType: UInt64LinksTransactionsLayer.Create()
+- uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Create(System.Collections.Generic.IList{System.UInt64})
+  name: Create(IList<UInt64>)
+  href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_Create_System_Collections_Generic_IList_System_UInt64__
+  commentId: M:Platform.Data.Doublets.UInt64LinksTransactionsLayer.Create(System.Collections.Generic.IList{System.UInt64})
+  name.vb: Create(IList(Of UInt64))
+  fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Create(System.Collections.Generic.IList<System.UInt64>)
+  fullName.vb: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Create(System.Collections.Generic.IList(Of System.UInt64))
+  nameWithType: UInt64LinksTransactionsLayer.Create(IList<UInt64>)
+  nameWithType.vb: UInt64LinksTransactionsLayer.Create(IList(Of UInt64))
 - uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Create*
   name: Create
   href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_Create_
@@ -8753,12 +9192,15 @@ references:
   commentId: F:Platform.Data.Doublets.UInt64LinksTransactionsLayer.DefaultPushDelay
   fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.DefaultPushDelay
   nameWithType: UInt64LinksTransactionsLayer.DefaultPushDelay
-- uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Delete(System.UInt64)
-  name: Delete(UInt64)
-  href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_Delete_System_UInt64_
-  commentId: M:Platform.Data.Doublets.UInt64LinksTransactionsLayer.Delete(System.UInt64)
-  fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Delete(System.UInt64)
-  nameWithType: UInt64LinksTransactionsLayer.Delete(UInt64)
+- uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Delete(System.Collections.Generic.IList{System.UInt64})
+  name: Delete(IList<UInt64>)
+  href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_Delete_System_Collections_Generic_IList_System_UInt64__
+  commentId: M:Platform.Data.Doublets.UInt64LinksTransactionsLayer.Delete(System.Collections.Generic.IList{System.UInt64})
+  name.vb: Delete(IList(Of UInt64))
+  fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Delete(System.Collections.Generic.IList<System.UInt64>)
+  fullName.vb: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Delete(System.Collections.Generic.IList(Of System.UInt64))
+  nameWithType: UInt64LinksTransactionsLayer.Delete(IList<UInt64>)
+  nameWithType.vb: UInt64LinksTransactionsLayer.Delete(IList(Of UInt64))
 - uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Delete*
   name: Delete
   href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_Delete_
@@ -8963,15 +9405,15 @@ references:
   commentId: F:Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.TransactionId
   fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.TransactionId
   nameWithType: UInt64LinksTransactionsLayer.Transition.TransactionId
-- uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Update(System.Collections.Generic.IList{System.UInt64})
-  name: Update(IList<UInt64>)
-  href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_Update_System_Collections_Generic_IList_System_UInt64__
-  commentId: M:Platform.Data.Doublets.UInt64LinksTransactionsLayer.Update(System.Collections.Generic.IList{System.UInt64})
-  name.vb: Update(IList(Of UInt64))
-  fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Update(System.Collections.Generic.IList<System.UInt64>)
-  fullName.vb: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Update(System.Collections.Generic.IList(Of System.UInt64))
-  nameWithType: UInt64LinksTransactionsLayer.Update(IList<UInt64>)
-  nameWithType.vb: UInt64LinksTransactionsLayer.Update(IList(Of UInt64))
+- uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Update(System.Collections.Generic.IList{System.UInt64},System.Collections.Generic.IList{System.UInt64})
+  name: Update(IList<UInt64>, IList<UInt64>)
+  href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_Update_System_Collections_Generic_IList_System_UInt64__System_Collections_Generic_IList_System_UInt64__
+  commentId: M:Platform.Data.Doublets.UInt64LinksTransactionsLayer.Update(System.Collections.Generic.IList{System.UInt64},System.Collections.Generic.IList{System.UInt64})
+  name.vb: Update(IList(Of UInt64), IList(Of UInt64))
+  fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Update(System.Collections.Generic.IList<System.UInt64>, System.Collections.Generic.IList<System.UInt64>)
+  fullName.vb: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Update(System.Collections.Generic.IList(Of System.UInt64), System.Collections.Generic.IList(Of System.UInt64))
+  nameWithType: UInt64LinksTransactionsLayer.Update(IList<UInt64>, IList<UInt64>)
+  nameWithType.vb: UInt64LinksTransactionsLayer.Update(IList(Of UInt64), IList(Of UInt64))
 - uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Update*
   name: Update
   href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_Update_

@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Sequences
    | LinksPlatform's Platform.Data.Doublets Library ">
-    <meta name="generator" content="docfx 2.45.0.0">
+    <meta name="generator" content="docfx 2.45.1.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -93,7 +93,8 @@
   </div>
   <div classs="implements">
     <h5>Implements</h5>
-    <div><span class="xref">Platform.Data.Sequences.ISequences</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>&gt;</div>
+    <div><a class="xref" href="Platform.Data.Doublets.ILinks-1.html">ILinks</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>&gt;</div>
+    <div><span class="xref">Platform.Data.ILinks</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>, <span class="xref">Platform.Data.LinksConstants</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>&gt;&gt;</div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -123,7 +124,7 @@
   <h6><strong>Assembly</strong>: Platform.Data.Doublets.dll</h6>
   <h5 id="Platform_Data_Doublets_Sequences_Sequences_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Sequences : ISequences&lt;ulong&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public class Sequences : ILinks&lt;ulong&gt;, ILinks&lt;ulong, LinksConstants&lt;ulong&gt;&gt;</code></pre>
   </div>
   <h5 id="Platform_Data_Doublets_Sequences_Sequences_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks"><p>Обязательно реализовать атомарность каждого публичного метода.</p>
@@ -154,7 +155,7 @@ URL, PURL - реестр используемых во вне ссылок на 
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences__ctor_Platform_Data_Doublets_SynchronizedLinks_System_UInt64__.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.%23ctor(Platform.Data.Doublets.SynchronizedLinks%7BSystem.UInt64%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.cs/#L64">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.cs/#L73">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences__ctor_" data-uid="Platform.Data.Doublets.Sequences.Sequences.#ctor*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences__ctor_Platform_Data_Doublets_SynchronizedLinks_System_UInt64__" data-uid="Platform.Data.Doublets.Sequences.Sequences.#ctor(Platform.Data.Doublets.SynchronizedLinks{System.UInt64})">Sequences(SynchronizedLinks&lt;UInt64&gt;)</h4>
@@ -186,7 +187,7 @@ URL, PURL - реестр используемых во вне ссылок на 
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences__ctor_Platform_Data_Doublets_SynchronizedLinks_System_UInt64__Platform_Data_Doublets_Sequences_SequencesOptions_System_UInt64__.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.%23ctor(Platform.Data.Doublets.SynchronizedLinks%7BSystem.UInt64%7D%2CPlatform.Data.Doublets.Sequences.SequencesOptions%7BSystem.UInt64%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.cs/#L69">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.cs/#L63">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences__ctor_" data-uid="Platform.Data.Doublets.Sequences.Sequences.#ctor*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences__ctor_Platform_Data_Doublets_SynchronizedLinks_System_UInt64__Platform_Data_Doublets_Sequences_SequencesOptions_System_UInt64__" data-uid="Platform.Data.Doublets.Sequences.Sequences.#ctor(Platform.Data.Doublets.SynchronizedLinks{System.UInt64},Platform.Data.Doublets.Sequences.SequencesOptions{System.UInt64})">Sequences(SynchronizedLinks&lt;UInt64&gt;, SequencesOptions&lt;UInt64&gt;)</h4>
@@ -225,7 +226,7 @@ URL, PURL - реестр используемых во вне ссылок на 
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_MaxSequenceFormatSize.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.MaxSequenceFormatSize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L482">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L484">View Source</a>
   </span>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_MaxSequenceFormatSize" data-uid="Platform.Data.Doublets.Sequences.Sequences.MaxSequenceFormatSize">MaxSequenceFormatSize</h4>
   <div class="markdown level1 summary"></div>
@@ -254,10 +255,10 @@ URL, PURL - реестр используемых во вне ссылок на 
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_ZeroOrMany.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.ZeroOrMany%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.cs/#L58">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.cs/#L55">View Source</a>
   </span>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_ZeroOrMany" data-uid="Platform.Data.Doublets.Sequences.Sequences.ZeroOrMany">ZeroOrMany</h4>
-  <div class="markdown level1 summary"><p>Возвращает значение ulong, обозначающее любое количество связей.</p>
+  <div class="markdown level1 summary"><p>Возвращает значение LinkIndex, обозначающее любое количество связей.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -283,10 +284,40 @@ URL, PURL - реестр используемых во вне ссылок на 
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_Constants.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.Constants%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.cs/#L61">View Source</a>
+  </span>
+  <a id="Platform_Data_Doublets_Sequences_Sequences_Constants_" data-uid="Platform.Data.Doublets.Sequences.Sequences.Constants*"></a>
+  <h4 id="Platform_Data_Doublets_Sequences_Sequences_Constants" data-uid="Platform.Data.Doublets.Sequences.Sequences.Constants">Constants</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LinksConstants&lt;ulong&gt; Constants { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Platform.Data.LinksConstants</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_Links.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.Links%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.cs/#L61">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.cs/#L58">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_Links_" data-uid="Platform.Data.Doublets.Sequences.Sequences.Links*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_Links" data-uid="Platform.Data.Doublets.Sequences.Sequences.Links">Links</h4>
@@ -316,7 +347,7 @@ URL, PURL - реестр используемых во вне ссылок на 
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_Options.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.Options%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.cs/#L60">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.cs/#L57">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_Options_" data-uid="Platform.Data.Doublets.Sequences.Sequences.Options*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_Options" data-uid="Platform.Data.Doublets.Sequences.Sequences.Options">Options</h4>
@@ -348,7 +379,7 @@ URL, PURL - реестр используемых во вне ссылок на 
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_AllBottomUsages_System_UInt64_.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.AllBottomUsages(System.UInt64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L901">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L903">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_AllBottomUsages_" data-uid="Platform.Data.Doublets.Sequences.Sequences.AllBottomUsages*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_AllBottomUsages_System_UInt64_" data-uid="Platform.Data.Doublets.Sequences.Sequences.AllBottomUsages(System.UInt64)">AllBottomUsages(UInt64)</h4>
@@ -395,7 +426,7 @@ URL, PURL - реестр используемых во вне ссылок на 
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_AllUsages_System_UInt64_.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.AllUsages(System.UInt64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L875">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L877">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_AllUsages_" data-uid="Platform.Data.Doublets.Sequences.Sequences.AllUsages*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_AllUsages_System_UInt64_" data-uid="Platform.Data.Doublets.Sequences.Sequences.AllUsages(System.UInt64)">AllUsages(UInt64)</h4>
@@ -445,7 +476,7 @@ URL, PURL - реестр используемых во вне ссылок на 
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_CalculateAllUsages_System_UInt64___.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.CalculateAllUsages(System.UInt64%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L968">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L970">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_CalculateAllUsages_" data-uid="Platform.Data.Doublets.Sequences.Sequences.CalculateAllUsages*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_CalculateAllUsages_System_UInt64___" data-uid="Platform.Data.Doublets.Sequences.Sequences.CalculateAllUsages(System.UInt64[])">CalculateAllUsages(UInt64[])</h4>
@@ -477,7 +508,7 @@ URL, PURL - реестр используемых во вне ссылок на 
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_CalculateAllUsages2_System_UInt64___.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.CalculateAllUsages2(System.UInt64%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L974">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L976">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_CalculateAllUsages2_" data-uid="Platform.Data.Doublets.Sequences.Sequences.CalculateAllUsages2*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_CalculateAllUsages2_System_UInt64___" data-uid="Platform.Data.Doublets.Sequences.Sequences.CalculateAllUsages2(System.UInt64[])">CalculateAllUsages2(UInt64[])</h4>
@@ -509,7 +540,7 @@ URL, PURL - реестр используемых во вне ссылок на 
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_CalculateTotalSymbolFrequencyCore_System_UInt64_.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.CalculateTotalSymbolFrequencyCore(System.UInt64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L933">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L935">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_CalculateTotalSymbolFrequencyCore_" data-uid="Platform.Data.Doublets.Sequences.Sequences.CalculateTotalSymbolFrequencyCore*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_CalculateTotalSymbolFrequencyCore_System_UInt64_" data-uid="Platform.Data.Doublets.Sequences.Sequences.CalculateTotalSymbolFrequencyCore(System.UInt64)">CalculateTotalSymbolFrequencyCore(UInt64)</h4>
@@ -556,7 +587,7 @@ URL, PURL - реестр используемых во вне ссылок на 
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_CollectMatchingSequences_System_UInt64___.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.CollectMatchingSequences(System.UInt64%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L1466">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L1469">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_CollectMatchingSequences_" data-uid="Platform.Data.Doublets.Sequences.Sequences.CollectMatchingSequences*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_CollectMatchingSequences_System_UInt64___" data-uid="Platform.Data.Doublets.Sequences.Sequences.CollectMatchingSequences(System.UInt64[])">CollectMatchingSequences(UInt64[])</h4>
@@ -603,7 +634,7 @@ URL, PURL - реестр используемых во вне ссылок на 
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_Compact_System_UInt64___.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.Compact(System.UInt64%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.cs/#L508">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.cs/#L534">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_Compact_" data-uid="Platform.Data.Doublets.Sequences.Sequences.Compact*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_Compact_System_UInt64___" data-uid="Platform.Data.Doublets.Sequences.Sequences.Compact(System.UInt64[])">Compact(UInt64[])</h4>
@@ -653,18 +684,18 @@ URL, PURL - реестр используемых во вне ссылок на 
 </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_Count_System_UInt64___.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.Count(System.UInt64%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_Count_System_Collections_Generic_IList_System_UInt64__.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.Count(System.Collections.Generic.IList%7BSystem.UInt64%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.cs/#L120">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.cs/#L119">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_Count_" data-uid="Platform.Data.Doublets.Sequences.Sequences.Count*"></a>
-  <h4 id="Platform_Data_Doublets_Sequences_Sequences_Count_System_UInt64___" data-uid="Platform.Data.Doublets.Sequences.Sequences.Count(System.UInt64[])">Count(UInt64[])</h4>
+  <h4 id="Platform_Data_Doublets_Sequences_Sequences_Count_System_Collections_Generic_IList_System_UInt64__" data-uid="Platform.Data.Doublets.Sequences.Sequences.Count(System.Collections.Generic.IList{System.UInt64})">Count(IList&lt;UInt64&gt;)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ulong Count(params ulong[] sequence)</code></pre>
+    <pre><code class="lang-csharp hljs">public ulong Count(IList&lt;ulong&gt; restrictions)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -677,8 +708,8 @@ URL, PURL - реестр используемых во вне ссылок на 
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>[]</td>
-        <td><span class="parametername">sequence</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>&gt;</td>
+        <td><span class="parametername">restrictions</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -700,18 +731,18 @@ URL, PURL - реестр используемых во вне ссылок на 
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_Create_System_UInt64___.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.Create(System.UInt64%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_Create_System_Collections_Generic_IList_System_UInt64__.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.Create(System.Collections.Generic.IList%7BSystem.UInt64%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.cs/#L176">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.cs/#L176">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_Create_" data-uid="Platform.Data.Doublets.Sequences.Sequences.Create*"></a>
-  <h4 id="Platform_Data_Doublets_Sequences_Sequences_Create_System_UInt64___" data-uid="Platform.Data.Doublets.Sequences.Sequences.Create(System.UInt64[])">Create(UInt64[])</h4>
+  <h4 id="Platform_Data_Doublets_Sequences_Sequences_Create_System_Collections_Generic_IList_System_UInt64__" data-uid="Platform.Data.Doublets.Sequences.Sequences.Create(System.Collections.Generic.IList{System.UInt64})">Create(IList&lt;UInt64&gt;)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ulong Create(params ulong[] sequence)</code></pre>
+    <pre><code class="lang-csharp hljs">public ulong Create(IList&lt;ulong&gt; restrictions)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -724,8 +755,8 @@ URL, PURL - реестр используемых во вне ссылок на 
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>[]</td>
-        <td><span class="parametername">sequence</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>&gt;</td>
+        <td><span class="parametername">restrictions</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -750,7 +781,7 @@ URL, PURL - реестр используемых во вне ссылок на 
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_CreateAllVariants1_System_UInt64___.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.CreateAllVariants1(System.UInt64%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L81">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L81">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_CreateAllVariants1_" data-uid="Platform.Data.Doublets.Sequences.Sequences.CreateAllVariants1*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_CreateAllVariants1_System_UInt64___" data-uid="Platform.Data.Doublets.Sequences.Sequences.CreateAllVariants1(System.UInt64[])">CreateAllVariants1(UInt64[])</h4>
@@ -797,7 +828,7 @@ URL, PURL - реестр используемых во вне ссылок на 
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_CreateAllVariants2_System_UInt64___.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.CreateAllVariants2(System.UInt64%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L26">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L26">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_CreateAllVariants2_" data-uid="Platform.Data.Doublets.Sequences.Sequences.CreateAllVariants2*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_CreateAllVariants2_System_UInt64___" data-uid="Platform.Data.Doublets.Sequences.Sequences.CreateAllVariants2(System.UInt64[])">CreateAllVariants2(UInt64[])</h4>
@@ -845,18 +876,18 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
 </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_Delete_System_UInt64___.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.Delete(System.UInt64%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_Delete_System_Collections_Generic_IList_System_UInt64__.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.Delete(System.Collections.Generic.IList%7BSystem.UInt64%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.cs/#L442">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.cs/#L467">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_Delete_" data-uid="Platform.Data.Doublets.Sequences.Sequences.Delete*"></a>
-  <h4 id="Platform_Data_Doublets_Sequences_Sequences_Delete_System_UInt64___" data-uid="Platform.Data.Doublets.Sequences.Sequences.Delete(System.UInt64[])">Delete(UInt64[])</h4>
+  <h4 id="Platform_Data_Doublets_Sequences_Sequences_Delete_System_Collections_Generic_IList_System_UInt64__" data-uid="Platform.Data.Doublets.Sequences.Sequences.Delete(System.Collections.Generic.IList{System.UInt64})">Delete(IList&lt;UInt64&gt;)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Delete(params ulong[] sequence)</code></pre>
+    <pre><code class="lang-csharp hljs">public void Delete(IList&lt;ulong&gt; restrictions)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -868,79 +899,27 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>[]</td>
-        <td><span class="parametername">sequence</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_Each_System_Func_System_UInt64_System_Boolean__System_Collections_Generic_IList_System_UInt64__.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.Each(System.Func%7BSystem.UInt64%2CSystem.Boolean%7D%2CSystem.Collections.Generic.IList%7BSystem.UInt64%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.cs/#L230">View Source</a>
-  </span>
-  <a id="Platform_Data_Doublets_Sequences_Sequences_Each_" data-uid="Platform.Data.Doublets.Sequences.Sequences.Each*"></a>
-  <h4 id="Platform_Data_Doublets_Sequences_Sequences_Each_System_Func_System_UInt64_System_Boolean__System_Collections_Generic_IList_System_UInt64__" data-uid="Platform.Data.Doublets.Sequences.Sequences.Each(System.Func{System.UInt64,System.Boolean},System.Collections.Generic.IList{System.UInt64})">Each(Func&lt;UInt64, Boolean&gt;, IList&lt;UInt64&gt;)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Each(Func&lt;ulong, bool&gt; handler, IList&lt;ulong&gt; sequence)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
-        <td><span class="parametername">handler</span></td>
-        <td></td>
-      </tr>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>&gt;</td>
-        <td><span class="parametername">sequence</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">restrictions</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_Each_System_UInt64___.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.Each(System.UInt64%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_Each_System_Collections_Generic_IList_System_UInt64__.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.Each(System.Collections.Generic.IList%7BSystem.UInt64%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.cs/#L223">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.cs/#L224">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_Each_" data-uid="Platform.Data.Doublets.Sequences.Sequences.Each*"></a>
-  <h4 id="Platform_Data_Doublets_Sequences_Sequences_Each_System_UInt64___" data-uid="Platform.Data.Doublets.Sequences.Sequences.Each(System.UInt64[])">Each(UInt64[])</h4>
+  <h4 id="Platform_Data_Doublets_Sequences_Sequences_Each_System_Collections_Generic_IList_System_UInt64__" data-uid="Platform.Data.Doublets.Sequences.Sequences.Each(System.Collections.Generic.IList{System.UInt64})">Each(IList&lt;UInt64&gt;)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;ulong&gt; Each(params ulong[] sequence)</code></pre>
+    <pre><code class="lang-csharp hljs">public List&lt;ulong&gt; Each(IList&lt;ulong&gt; sequence)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -953,7 +932,7 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>[]</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>&gt;</td>
         <td><span class="parametername">sequence</span></td>
         <td></td>
       </tr>
@@ -976,10 +955,62 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_Each_System_Func_System_Collections_Generic_IList_System_UInt64__System_UInt64__System_Collections_Generic_IList_System_UInt64__.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.Each(System.Func%7BSystem.Collections.Generic.IList%7BSystem.UInt64%7D%2CSystem.UInt64%7D%2CSystem.Collections.Generic.IList%7BSystem.UInt64%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.cs/#L232">View Source</a>
+  </span>
+  <a id="Platform_Data_Doublets_Sequences_Sequences_Each_" data-uid="Platform.Data.Doublets.Sequences.Sequences.Each*"></a>
+  <h4 id="Platform_Data_Doublets_Sequences_Sequences_Each_System_Func_System_Collections_Generic_IList_System_UInt64__System_UInt64__System_Collections_Generic_IList_System_UInt64__" data-uid="Platform.Data.Doublets.Sequences.Sequences.Each(System.Func{System.Collections.Generic.IList{System.UInt64},System.UInt64},System.Collections.Generic.IList{System.UInt64})">Each(Func&lt;IList&lt;UInt64&gt;, UInt64&gt;, IList&lt;UInt64&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ulong Each(Func&lt;IList&lt;ulong&gt;, ulong&gt; handler, IList&lt;ulong&gt; restrictions)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>&gt;, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>&gt;</td>
+        <td><span class="parametername">handler</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>&gt;</td>
+        <td><span class="parametername">restrictions</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_Each1_System_UInt64___.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.Each1(System.UInt64%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L136">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L136">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_Each1_" data-uid="Platform.Data.Doublets.Sequences.Sequences.Each1*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_Each1_System_UInt64___" data-uid="Platform.Data.Doublets.Sequences.Sequences.Each1(System.UInt64[])">Each1(UInt64[])</h4>
@@ -1023,10 +1054,47 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_EachPart_System_Func_System_Collections_Generic_IList_System_UInt64__System_UInt64__System_UInt64___.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.EachPart(System.Func%7BSystem.Collections.Generic.IList%7BSystem.UInt64%7D%2CSystem.UInt64%7D%2CSystem.UInt64%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L206">View Source</a>
+  </span>
+  <a id="Platform_Data_Doublets_Sequences_Sequences_EachPart_" data-uid="Platform.Data.Doublets.Sequences.Sequences.EachPart*"></a>
+  <h4 id="Platform_Data_Doublets_Sequences_Sequences_EachPart_System_Func_System_Collections_Generic_IList_System_UInt64__System_UInt64__System_UInt64___" data-uid="Platform.Data.Doublets.Sequences.Sequences.EachPart(System.Func{System.Collections.Generic.IList{System.UInt64},System.UInt64},System.UInt64[])">EachPart(Func&lt;IList&lt;UInt64&gt;, UInt64&gt;, UInt64[])</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EachPart(Func&lt;IList&lt;ulong&gt;, ulong&gt; handler, params ulong[] sequence)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>&gt;, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>&gt;</td>
+        <td><span class="parametername">handler</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>[]</td>
+        <td><span class="parametername">sequence</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_EachPart_System_Func_System_UInt64_System_Boolean__System_UInt64_.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.EachPart(System.Func%7BSystem.UInt64%2CSystem.Boolean%7D%2CSystem.UInt64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.cs/#L549">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.cs/#L575">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_EachPart_" data-uid="Platform.Data.Doublets.Sequences.Sequences.EachPart*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_EachPart_System_Func_System_UInt64_System_Boolean__System_UInt64_" data-uid="Platform.Data.Doublets.Sequences.Sequences.EachPart(System.Func{System.UInt64,System.Boolean},System.UInt64)">EachPart(Func&lt;UInt64, Boolean&gt;, UInt64)</h4>
@@ -1075,47 +1143,10 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_EachPart_System_Func_System_UInt64_System_Boolean__System_UInt64___.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.EachPart(System.Func%7BSystem.UInt64%2CSystem.Boolean%7D%2CSystem.UInt64%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L205">View Source</a>
-  </span>
-  <a id="Platform_Data_Doublets_Sequences_Sequences_EachPart_" data-uid="Platform.Data.Doublets.Sequences.Sequences.EachPart*"></a>
-  <h4 id="Platform_Data_Doublets_Sequences_Sequences_EachPart_System_Func_System_UInt64_System_Boolean__System_UInt64___" data-uid="Platform.Data.Doublets.Sequences.Sequences.EachPart(System.Func{System.UInt64,System.Boolean},System.UInt64[])">EachPart(Func&lt;UInt64, Boolean&gt;, UInt64[])</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void EachPart(Func&lt;ulong, bool&gt; handler, params ulong[] sequence)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
-        <td><span class="parametername">handler</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>[]</td>
-        <td><span class="parametername">sequence</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_EachPart_System_UInt64___.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.EachPart(System.UInt64%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L191">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L191">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_EachPart_" data-uid="Platform.Data.Doublets.Sequences.Sequences.EachPart*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_EachPart_System_UInt64___" data-uid="Platform.Data.Doublets.Sequences.Sequences.EachPart(System.UInt64[])">EachPart(UInt64[])</h4>
@@ -1162,7 +1193,7 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_FormatSequence_System_UInt64_System_Action_System_Text_StringBuilder_System_UInt64__System_Boolean_System_UInt64___.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.FormatSequence(System.UInt64%2CSystem.Action%7BSystem.Text.StringBuilder%2CSystem.UInt64%7D%2CSystem.Boolean%2CSystem.UInt64%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L486">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L488">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_FormatSequence_" data-uid="Platform.Data.Doublets.Sequences.Sequences.FormatSequence*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_FormatSequence_System_UInt64_System_Action_System_Text_StringBuilder_System_UInt64__System_Boolean_System_UInt64___" data-uid="Platform.Data.Doublets.Sequences.Sequences.FormatSequence(System.UInt64,System.Action{System.Text.StringBuilder,System.UInt64},System.Boolean,System.UInt64[])">FormatSequence(UInt64, Action&lt;StringBuilder, UInt64&gt;, Boolean, UInt64[])</h4>
@@ -1224,7 +1255,7 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_FormatSequence_System_UInt64_System_UInt64___.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.FormatSequence(System.UInt64%2CSystem.UInt64%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L484">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L486">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_FormatSequence_" data-uid="Platform.Data.Doublets.Sequences.Sequences.FormatSequence*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_FormatSequence_System_UInt64_System_UInt64___" data-uid="Platform.Data.Doublets.Sequences.Sequences.FormatSequence(System.UInt64,System.UInt64[])">FormatSequence(UInt64, UInt64[])</h4>
@@ -1276,7 +1307,7 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_GetAllConnections_System_UInt64___.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.GetAllConnections(System.UInt64%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L1302">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L1305">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_GetAllConnections_" data-uid="Platform.Data.Doublets.Sequences.Sequences.GetAllConnections*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_GetAllConnections_System_UInt64___" data-uid="Platform.Data.Doublets.Sequences.Sequences.GetAllConnections(System.UInt64[])">GetAllConnections(UInt64[])</h4>
@@ -1323,7 +1354,7 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_GetAllConnections1_System_UInt64___.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.GetAllConnections1(System.UInt64%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L1322">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L1325">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_GetAllConnections1_" data-uid="Platform.Data.Doublets.Sequences.Sequences.GetAllConnections1*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_GetAllConnections1_System_UInt64___" data-uid="Platform.Data.Doublets.Sequences.Sequences.GetAllConnections1(System.UInt64[])">GetAllConnections1(UInt64[])</h4>
@@ -1370,7 +1401,7 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_GetAllConnections2_System_UInt64___.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.GetAllConnections2(System.UInt64%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L1345">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L1348">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_GetAllConnections2_" data-uid="Platform.Data.Doublets.Sequences.Sequences.GetAllConnections2*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_GetAllConnections2_System_UInt64___" data-uid="Platform.Data.Doublets.Sequences.Sequences.GetAllConnections2(System.UInt64[])">GetAllConnections2(UInt64[])</h4>
@@ -1417,7 +1448,7 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_GetAllConnections3_System_UInt64___.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.GetAllConnections3(System.UInt64%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L1370">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L1373">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_GetAllConnections3_" data-uid="Platform.Data.Doublets.Sequences.Sequences.GetAllConnections3*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_GetAllConnections3_System_UInt64___" data-uid="Platform.Data.Doublets.Sequences.Sequences.GetAllConnections3(System.UInt64[])">GetAllConnections3(UInt64[])</h4>
@@ -1464,7 +1495,7 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_GetAllMatchingSequences0_System_UInt64___.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.GetAllMatchingSequences0(System.UInt64%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L373">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L374">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_GetAllMatchingSequences0_" data-uid="Platform.Data.Doublets.Sequences.Sequences.GetAllMatchingSequences0*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_GetAllMatchingSequences0_System_UInt64___" data-uid="Platform.Data.Doublets.Sequences.Sequences.GetAllMatchingSequences0(System.UInt64[])">GetAllMatchingSequences0(UInt64[])</h4>
@@ -1511,7 +1542,7 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_GetAllMatchingSequences1_System_UInt64___.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.GetAllMatchingSequences1(System.UInt64%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L440">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L442">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_GetAllMatchingSequences1_" data-uid="Platform.Data.Doublets.Sequences.Sequences.GetAllMatchingSequences1*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_GetAllMatchingSequences1_System_UInt64___" data-uid="Platform.Data.Doublets.Sequences.Sequences.GetAllMatchingSequences1(System.UInt64[])">GetAllMatchingSequences1(UInt64[])</h4>
@@ -1558,7 +1589,7 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_GetAllPartiallyMatchingSequences_System_UInt64___.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences(System.UInt64%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L778">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L780">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_GetAllPartiallyMatchingSequences_" data-uid="Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_GetAllPartiallyMatchingSequences_System_UInt64___" data-uid="Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences(System.UInt64[])">GetAllPartiallyMatchingSequences(UInt64[])</h4>
@@ -1605,7 +1636,7 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_GetAllPartiallyMatchingSequences0_System_UInt64___.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences0(System.UInt64%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L564">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L566">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_GetAllPartiallyMatchingSequences0_" data-uid="Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences0*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_GetAllPartiallyMatchingSequences0_System_UInt64___" data-uid="Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences0(System.UInt64[])">GetAllPartiallyMatchingSequences0(UInt64[])</h4>
@@ -1652,7 +1683,7 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_GetAllPartiallyMatchingSequences1_System_UInt64___.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences1(System.UInt64%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L619">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L621">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_GetAllPartiallyMatchingSequences1_" data-uid="Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences1*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_GetAllPartiallyMatchingSequences1_System_UInt64___" data-uid="Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences1(System.UInt64[])">GetAllPartiallyMatchingSequences1(UInt64[])</h4>
@@ -1696,18 +1727,18 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_GetAllPartiallyMatchingSequences2_System_Func_System_UInt64_System_Boolean__System_UInt64___.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences2(System.Func%7BSystem.UInt64%2CSystem.Boolean%7D%2CSystem.UInt64%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_GetAllPartiallyMatchingSequences2_System_Func_System_Collections_Generic_IList_System_UInt64__System_UInt64__System_UInt64___.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences2(System.Func%7BSystem.Collections.Generic.IList%7BSystem.UInt64%7D%2CSystem.UInt64%7D%2CSystem.UInt64%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L640">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L642">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_GetAllPartiallyMatchingSequences2_" data-uid="Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences2*"></a>
-  <h4 id="Platform_Data_Doublets_Sequences_Sequences_GetAllPartiallyMatchingSequences2_System_Func_System_UInt64_System_Boolean__System_UInt64___" data-uid="Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences2(System.Func{System.UInt64,System.Boolean},System.UInt64[])">GetAllPartiallyMatchingSequences2(Func&lt;UInt64, Boolean&gt;, UInt64[])</h4>
+  <h4 id="Platform_Data_Doublets_Sequences_Sequences_GetAllPartiallyMatchingSequences2_System_Func_System_Collections_Generic_IList_System_UInt64__System_UInt64__System_UInt64___" data-uid="Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences2(System.Func{System.Collections.Generic.IList{System.UInt64},System.UInt64},System.UInt64[])">GetAllPartiallyMatchingSequences2(Func&lt;IList&lt;UInt64&gt;, UInt64&gt;, UInt64[])</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool GetAllPartiallyMatchingSequences2(Func&lt;ulong, bool&gt; handler, params ulong[] sequence)</code></pre>
+    <pre><code class="lang-csharp hljs">public bool GetAllPartiallyMatchingSequences2(Func&lt;IList&lt;ulong&gt;, ulong&gt; handler, params ulong[] sequence)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1720,7 +1751,7 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>&gt;, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>&gt;</td>
         <td><span class="parametername">handler</span></td>
         <td></td>
       </tr>
@@ -1751,7 +1782,7 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_GetAllPartiallyMatchingSequences3_System_UInt64___.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences3(System.UInt64%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L696">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L698">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_GetAllPartiallyMatchingSequences3_" data-uid="Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences3*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_GetAllPartiallyMatchingSequences3_System_UInt64___" data-uid="Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences3(System.UInt64[])">GetAllPartiallyMatchingSequences3(UInt64[])</h4>
@@ -1798,7 +1829,7 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_GetAllPartiallyMatchingSequences4_System_Collections_Generic_HashSet_System_UInt64__System_Collections_Generic_IList_System_UInt64__.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences4(System.Collections.Generic.HashSet%7BSystem.UInt64%7D%2CSystem.Collections.Generic.IList%7BSystem.UInt64%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L721">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L723">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_GetAllPartiallyMatchingSequences4_" data-uid="Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences4*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_GetAllPartiallyMatchingSequences4_System_Collections_Generic_HashSet_System_UInt64__System_Collections_Generic_IList_System_UInt64__" data-uid="Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences4(System.Collections.Generic.HashSet{System.UInt64},System.Collections.Generic.IList{System.UInt64})">GetAllPartiallyMatchingSequences4(HashSet&lt;UInt64&gt;, IList&lt;UInt64&gt;)</h4>
@@ -1847,62 +1878,10 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_GetAllPartiallyMatchingSequences5_System_Collections_Generic_HashSet_System_UInt64__System_UInt64___.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences5(System.Collections.Generic.HashSet%7BSystem.UInt64%7D%2CSystem.UInt64%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L765">View Source</a>
-  </span>
-  <a id="Platform_Data_Doublets_Sequences_Sequences_GetAllPartiallyMatchingSequences5_" data-uid="Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences5*"></a>
-  <h4 id="Platform_Data_Doublets_Sequences_Sequences_GetAllPartiallyMatchingSequences5_System_Collections_Generic_HashSet_System_UInt64__System_UInt64___" data-uid="Platform.Data.Doublets.Sequences.Sequences.GetAllPartiallyMatchingSequences5(System.Collections.Generic.HashSet{System.UInt64},System.UInt64[])">GetAllPartiallyMatchingSequences5(HashSet&lt;UInt64&gt;, UInt64[])</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public HashSet&lt;ulong&gt; GetAllPartiallyMatchingSequences5(HashSet&lt;ulong&gt; readAsElements, params ulong[] sequence)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.hashset-1">HashSet</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>&gt;</td>
-        <td><span class="parametername">readAsElements</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>[]</td>
-        <td><span class="parametername">sequence</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.hashset-1">HashSet</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_GetLeftElements_System_UInt64_System_UInt64_.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.GetLeftElements(System.UInt64%2CSystem.UInt64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L1593">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L1596">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_GetLeftElements_" data-uid="Platform.Data.Doublets.Sequences.Sequences.GetLeftElements*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_GetLeftElements_System_UInt64_System_UInt64_" data-uid="Platform.Data.Doublets.Sequences.Sequences.GetLeftElements(System.UInt64,System.UInt64)">GetLeftElements(UInt64, UInt64)</h4>
@@ -1954,7 +1933,7 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_GetRightElements_System_UInt64_System_UInt64_.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.GetRightElements(System.UInt64%2CSystem.UInt64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L1541">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L1544">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_GetRightElements_" data-uid="Platform.Data.Doublets.Sequences.Sequences.GetRightElements*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_GetRightElements_System_UInt64_System_UInt64_" data-uid="Platform.Data.Doublets.Sequences.Sequences.GetRightElements(System.UInt64,System.UInt64)">GetRightElements(UInt64, UInt64)</h4>
@@ -2006,7 +1985,7 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_GetSimilarSequences.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.GetSimilarSequences%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L1452">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L1455">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_GetSimilarSequences_" data-uid="Platform.Data.Doublets.Sequences.Sequences.GetSimilarSequences*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_GetSimilarSequences" data-uid="Platform.Data.Doublets.Sequences.Sequences.GetSimilarSequences">GetSimilarSequences()</h4>
@@ -2036,7 +2015,7 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_IsSequence_System_UInt64_.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.IsSequence(System.UInt64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.cs/#L79">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.cs/#L78">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_IsSequence_" data-uid="Platform.Data.Doublets.Sequences.Sequences.IsSequence*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_IsSequence_System_UInt64_" data-uid="Platform.Data.Doublets.Sequences.Sequences.IsSequence(System.UInt64)">IsSequence(UInt64)</h4>
@@ -2083,7 +2062,7 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_MatchPattern_System_UInt64___.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.MatchPattern(System.UInt64%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L1269">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L1272">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_MatchPattern_" data-uid="Platform.Data.Doublets.Sequences.Sequences.MatchPattern*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_MatchPattern_System_UInt64___" data-uid="Platform.Data.Doublets.Sequences.Sequences.MatchPattern(System.UInt64[])">MatchPattern(UInt64[])</h4>
@@ -2130,7 +2109,7 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_Prediction.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.Prediction%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L1454">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L1457">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_Prediction_" data-uid="Platform.Data.Doublets.Sequences.Sequences.Prediction*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_Prediction" data-uid="Platform.Data.Doublets.Sequences.Sequences.Prediction">Prediction()</h4>
@@ -2145,7 +2124,7 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_SafeFormatSequence_System_UInt64_System_Action_System_Text_StringBuilder_System_UInt64__System_Boolean_System_UInt64___.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.SafeFormatSequence(System.UInt64%2CSystem.Action%7BSystem.Text.StringBuilder%2CSystem.UInt64%7D%2CSystem.Boolean%2CSystem.UInt64%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L525">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L527">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_SafeFormatSequence_" data-uid="Platform.Data.Doublets.Sequences.Sequences.SafeFormatSequence*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_SafeFormatSequence_System_UInt64_System_Action_System_Text_StringBuilder_System_UInt64__System_Boolean_System_UInt64___" data-uid="Platform.Data.Doublets.Sequences.Sequences.SafeFormatSequence(System.UInt64,System.Action{System.Text.StringBuilder,System.UInt64},System.Boolean,System.UInt64[])">SafeFormatSequence(UInt64, Action&lt;StringBuilder, UInt64&gt;, Boolean, UInt64[])</h4>
@@ -2207,7 +2186,7 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_SafeFormatSequence_System_UInt64_System_UInt64___.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.SafeFormatSequence(System.UInt64%2CSystem.UInt64%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L523">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L525">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_SafeFormatSequence_" data-uid="Platform.Data.Doublets.Sequences.Sequences.SafeFormatSequence*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_SafeFormatSequence_System_UInt64_System_UInt64___" data-uid="Platform.Data.Doublets.Sequences.Sequences.SafeFormatSequence(System.UInt64,System.UInt64[])">SafeFormatSequence(UInt64, UInt64[])</h4>
@@ -2259,7 +2238,7 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_TestSimplify.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.TestSimplify%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L1446">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L1449">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_TestSimplify_" data-uid="Platform.Data.Doublets.Sequences.Sequences.TestSimplify*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_TestSimplify" data-uid="Platform.Data.Doublets.Sequences.Sequences.TestSimplify">TestSimplify()</h4>
@@ -2274,7 +2253,7 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_TryStepLeft_System_UInt64_System_UInt64_System_UInt64___System_Int32_.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.TryStepLeft(System.UInt64%2CSystem.UInt64%2CSystem.UInt64%5B%5D%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L1615">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L1618">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_TryStepLeft_" data-uid="Platform.Data.Doublets.Sequences.Sequences.TryStepLeft*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_TryStepLeft_System_UInt64_System_UInt64_System_UInt64___System_Int32_" data-uid="Platform.Data.Doublets.Sequences.Sequences.TryStepLeft(System.UInt64,System.UInt64,System.UInt64[],System.Int32)">TryStepLeft(UInt64, UInt64, UInt64[], Int32)</h4>
@@ -2336,7 +2315,7 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_TryStepRight_System_UInt64_System_UInt64_System_UInt64___System_Int32_.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.TryStepRight(System.UInt64%2CSystem.UInt64%2CSystem.UInt64%5B%5D%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L1563">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L1566">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_TryStepRight_" data-uid="Platform.Data.Doublets.Sequences.Sequences.TryStepRight*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Sequences_TryStepRight_System_UInt64_System_UInt64_System_UInt64___System_Int32_" data-uid="Platform.Data.Doublets.Sequences.Sequences.TryStepRight(System.UInt64,System.UInt64,System.UInt64[],System.Int32)">TryStepRight(UInt64, UInt64, UInt64[], Int32)</h4>
@@ -2395,18 +2374,18 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_Update_System_UInt64___System_UInt64___.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.Update(System.UInt64%5B%5D%2CSystem.UInt64%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences_Update_System_Collections_Generic_IList_System_UInt64__System_Collections_Generic_IList_System_UInt64__.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences.Update(System.Collections.Generic.IList%7BSystem.UInt64%7D%2CSystem.Collections.Generic.IList%7BSystem.UInt64%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.cs/#L344">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.cs/#L366">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Sequences_Update_" data-uid="Platform.Data.Doublets.Sequences.Sequences.Update*"></a>
-  <h4 id="Platform_Data_Doublets_Sequences_Sequences_Update_System_UInt64___System_UInt64___" data-uid="Platform.Data.Doublets.Sequences.Sequences.Update(System.UInt64[],System.UInt64[])">Update(UInt64[], UInt64[])</h4>
+  <h4 id="Platform_Data_Doublets_Sequences_Sequences_Update_System_Collections_Generic_IList_System_UInt64__System_Collections_Generic_IList_System_UInt64__" data-uid="Platform.Data.Doublets.Sequences.Sequences.Update(System.Collections.Generic.IList{System.UInt64},System.Collections.Generic.IList{System.UInt64})">Update(IList&lt;UInt64&gt;, IList&lt;UInt64&gt;)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ulong Update(ulong[] sequence, ulong[] newSequence)</code></pre>
+    <pre><code class="lang-csharp hljs">public ulong Update(IList&lt;ulong&gt; restrictions, IList&lt;ulong&gt; substitution)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2419,13 +2398,13 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>[]</td>
-        <td><span class="parametername">sequence</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>&gt;</td>
+        <td><span class="parametername">restrictions</span></td>
         <td></td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>[]</td>
-        <td><span class="parametername">newSequence</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>&gt;</td>
+        <td><span class="parametername">substitution</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -2447,14 +2426,206 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
   </table>
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">Platform.Data.Sequences.ISequences&lt;TLink&gt;</span>
+      <a class="xref" href="Platform.Data.Doublets.ILinks-1.html">ILinks&lt;TLink&gt;</a>
+  </div>
+  <div>
+      <span class="xref">Platform.Data.ILinks&lt;TLinkAddress, TConstants&gt;</span>
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <a class="xref" href="Platform.Data.Doublets.Sequences.SequencesExtensions.html#Platform_Data_Doublets_Sequences_SequencesExtensions_Create__1_Platform_Data_Sequences_ISequences___0__System_Collections_Generic_IList___0____">SequencesExtensions.Create&lt;TLink&gt;(ISequences&lt;TLink&gt;, IList&lt;TLink[]&gt;)</a>
+      <a class="xref" href="Platform.Data.Doublets.Tests.TestExtensions.html#Platform_Data_Doublets_Tests_TestExtensions_TestCRUDOperations__1_Platform_Data_Doublets_ILinks___0__">TestExtensions.TestCRUDOperations&lt;T&gt;(ILinks&lt;T&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="Platform.Data.Doublets.Sequences.SequencesExtensions.html#Platform_Data_Doublets_Sequences_SequencesExtensions_ToList__1_Platform_Data_Sequences_ISequences___0____0_">SequencesExtensions.ToList&lt;TLink&gt;(ISequences&lt;TLink&gt;, TLink)</a>
+      <a class="xref" href="Platform.Data.Doublets.Tests.TestExtensions.html#Platform_Data_Doublets_Tests_TestExtensions_TestRawNumbersCRUDOperations__1_Platform_Data_Doublets_ILinks___0__">TestExtensions.TestRawNumbersCRUDOperations&lt;T&gt;(ILinks&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.Tests.TestExtensions.html#Platform_Data_Doublets_Tests_TestExtensions_TestMultipleRandomCreationsAndDeletions__1_Platform_Data_Doublets_ILinks___0__System_Int32_">TestExtensions.TestMultipleRandomCreationsAndDeletions&lt;TLink&gt;(ILinks&lt;TLink&gt;, Int32)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_RunRandomCreations__1_Platform_Data_Doublets_ILinks___0__System_Int64_">ILinksExtensions.RunRandomCreations&lt;TLink&gt;(ILinks&lt;TLink&gt;, Int64)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_RunRandomSearches__1_Platform_Data_Doublets_ILinks___0__System_Int64_">ILinksExtensions.RunRandomSearches&lt;TLink&gt;(ILinks&lt;TLink&gt;, Int64)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_RunRandomDeletions__1_Platform_Data_Doublets_ILinks___0__System_Int64_">ILinksExtensions.RunRandomDeletions&lt;TLink&gt;(ILinks&lt;TLink&gt;, Int64)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Delete__1_Platform_Data_Doublets_ILinks___0____0_">ILinksExtensions.Delete&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_DeleteAll__1_Platform_Data_Doublets_ILinks___0__">ILinksExtensions.DeleteAll&lt;TLink&gt;(ILinks&lt;TLink&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_First__1_Platform_Data_Doublets_ILinks___0__">ILinksExtensions.First&lt;TLink&gt;(ILinks&lt;TLink&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_CheckPathExistance__1_Platform_Data_Doublets_ILinks___0____0___">ILinksExtensions.CheckPathExistance&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink[])</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_GetByKeys__1_Platform_Data_Doublets_ILinks___0____0_System_Int32___">ILinksExtensions.GetByKeys&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink, Int32[])</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_GetSquareMatrixSequenceElementByIndex__1_Platform_Data_Doublets_ILinks___0____0_System_UInt64_System_UInt64_">ILinksExtensions.GetSquareMatrixSequenceElementByIndex&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink, UInt64, UInt64)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_GetIndex__1_Platform_Data_Doublets_ILinks___0__System_Collections_Generic_IList___0__">ILinksExtensions.GetIndex&lt;TLink&gt;(ILinks&lt;TLink&gt;, IList&lt;TLink&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_GetSource__1_Platform_Data_Doublets_ILinks___0____0_">ILinksExtensions.GetSource&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_GetSource__1_Platform_Data_Doublets_ILinks___0__System_Collections_Generic_IList___0__">ILinksExtensions.GetSource&lt;TLink&gt;(ILinks&lt;TLink&gt;, IList&lt;TLink&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_GetTarget__1_Platform_Data_Doublets_ILinks___0____0_">ILinksExtensions.GetTarget&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_GetTarget__1_Platform_Data_Doublets_ILinks___0__System_Collections_Generic_IList___0__">ILinksExtensions.GetTarget&lt;TLink&gt;(ILinks&lt;TLink&gt;, IList&lt;TLink&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Each__1_Platform_Data_Doublets_ILinks___0__System_Func_System_Collections_Generic_IList___0____0____0___">ILinksExtensions.Each&lt;TLink&gt;(ILinks&lt;TLink&gt;, Func&lt;IList&lt;TLink&gt;, TLink&gt;, TLink[])</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Each__1_Platform_Data_Doublets_ILinks___0____0___0_System_Func___0_System_Boolean__">ILinksExtensions.Each&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink, TLink, Func&lt;TLink, Boolean&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Each__1_Platform_Data_Doublets_ILinks___0____0___0_System_Func_System_Collections_Generic_IList___0____0__">ILinksExtensions.Each&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink, TLink, Func&lt;IList&lt;TLink&gt;, TLink&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_All__1_Platform_Data_Doublets_ILinks___0____0___">ILinksExtensions.All&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink[])</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_AllIndices__1_Platform_Data_Doublets_ILinks___0____0___">ILinksExtensions.AllIndices&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink[])</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Exists__1_Platform_Data_Doublets_ILinks___0____0___0_">ILinksExtensions.Exists&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink, TLink)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_EnsureInnerReferenceExists__1_Platform_Data_Doublets_ILinks___0____0_System_String_">ILinksExtensions.EnsureInnerReferenceExists&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_EnsureInnerReferenceExists__1_Platform_Data_Doublets_ILinks___0__System_Collections_Generic_IList___0__System_String_">ILinksExtensions.EnsureInnerReferenceExists&lt;TLink&gt;(ILinks&lt;TLink&gt;, IList&lt;TLink&gt;, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_EnsureLinkIsAnyOrExists__1_Platform_Data_Doublets_ILinks___0__System_Collections_Generic_IList___0__">ILinksExtensions.EnsureLinkIsAnyOrExists&lt;TLink&gt;(ILinks&lt;TLink&gt;, IList&lt;TLink&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_EnsureLinkIsAnyOrExists__1_Platform_Data_Doublets_ILinks___0____0_System_String_">ILinksExtensions.EnsureLinkIsAnyOrExists&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_EnsureLinkIsItselfOrExists__1_Platform_Data_Doublets_ILinks___0____0_System_String_">ILinksExtensions.EnsureLinkIsItselfOrExists&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_EnsureDoesNotExists__1_Platform_Data_Doublets_ILinks___0____0___0_">ILinksExtensions.EnsureDoesNotExists&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink, TLink)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_EnsureNoUsages__1_Platform_Data_Doublets_ILinks___0____0_">ILinksExtensions.EnsureNoUsages&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_EnsureCreated__1_Platform_Data_Doublets_ILinks___0____0___">ILinksExtensions.EnsureCreated&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink[])</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_EnsurePointsCreated__1_Platform_Data_Doublets_ILinks___0____0___">ILinksExtensions.EnsurePointsCreated&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink[])</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_EnsureCreated__1_Platform_Data_Doublets_ILinks___0__System_Func___0____0___">ILinksExtensions.EnsureCreated&lt;TLink&gt;(ILinks&lt;TLink&gt;, Func&lt;TLink&gt;, TLink[])</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_CountUsages__1_Platform_Data_Doublets_ILinks___0____0_">ILinksExtensions.CountUsages&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_HasUsages__1_Platform_Data_Doublets_ILinks___0____0_">ILinksExtensions.HasUsages&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Equals__1_Platform_Data_Doublets_ILinks___0____0___0___0_">ILinksExtensions.Equals&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink, TLink, TLink)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_SearchOrDefault__1_Platform_Data_Doublets_ILinks___0____0___0_">ILinksExtensions.SearchOrDefault&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink, TLink)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Create__1_Platform_Data_Doublets_ILinks___0__">ILinksExtensions.Create&lt;TLink&gt;(ILinks&lt;TLink&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_CreatePoint__1_Platform_Data_Doublets_ILinks___0__">ILinksExtensions.CreatePoint&lt;TLink&gt;(ILinks&lt;TLink&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_CreateAndUpdate__1_Platform_Data_Doublets_ILinks___0____0___0_">ILinksExtensions.CreateAndUpdate&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink, TLink)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Update__1_Platform_Data_Doublets_ILinks___0____0___0___0_">ILinksExtensions.Update&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink, TLink, TLink)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Update__1_Platform_Data_Doublets_ILinks___0____0___">ILinksExtensions.Update&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink[])</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_ResolveConstantAsSelfReference__1_Platform_Data_Doublets_ILinks___0____0_System_Collections_Generic_IList___0__System_Collections_Generic_IList___0__">ILinksExtensions.ResolveConstantAsSelfReference&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink, IList&lt;TLink&gt;, IList&lt;TLink&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_GetOrCreate__1_Platform_Data_Doublets_ILinks___0____0___0_">ILinksExtensions.GetOrCreate&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink, TLink)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_UpdateOrCreateOrGet__1_Platform_Data_Doublets_ILinks___0____0___0___0___0_">ILinksExtensions.UpdateOrCreateOrGet&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink, TLink, TLink, TLink)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_DeleteIfExists__1_Platform_Data_Doublets_ILinks___0____0___0_">ILinksExtensions.DeleteIfExists&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink, TLink)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_DeleteMany__1_Platform_Data_Doublets_ILinks___0__System_Collections_Generic_IList___0__">ILinksExtensions.DeleteMany&lt;TLink&gt;(ILinks&lt;TLink&gt;, IList&lt;TLink&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_DeleteAllUsages__1_Platform_Data_Doublets_ILinks___0____0_">ILinksExtensions.DeleteAllUsages&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_DeleteByQuery__1_Platform_Data_Doublets_ILinks___0__Platform_Data_Doublets_Link___0__">ILinksExtensions.DeleteByQuery&lt;TLink&gt;(ILinks&lt;TLink&gt;, Link&lt;TLink&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_AreValuesReset__1_Platform_Data_Doublets_ILinks___0____0_">ILinksExtensions.AreValuesReset&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_ResetValues__1_Platform_Data_Doublets_ILinks___0____0_">ILinksExtensions.ResetValues&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_EnforceResetValues__1_Platform_Data_Doublets_ILinks___0____0_">ILinksExtensions.EnforceResetValues&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_MergeUsages__1_Platform_Data_Doublets_ILinks___0____0___0_">ILinksExtensions.MergeUsages&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink, TLink)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_MergeAndDelete__1_Platform_Data_Doublets_ILinks___0____0___0_">ILinksExtensions.MergeAndDelete&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink, TLink)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_DecorateWithAutomaticUniquenessAndUsagesResolution__1_Platform_Data_Doublets_ILinks___0__">ILinksExtensions.DecorateWithAutomaticUniquenessAndUsagesResolution&lt;TLink&gt;(ILinks&lt;TLink&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.UInt64LinksExtensions.html#Platform_Data_Doublets_UInt64LinksExtensions_UseUnicode_Platform_Data_Doublets_ILinks_System_UInt64__">UInt64LinksExtensions.UseUnicode(ILinks&lt;UInt64&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.UInt64LinksExtensions.html#Platform_Data_Doublets_UInt64LinksExtensions_EnsureEachLinkExists_Platform_Data_Doublets_ILinks_System_UInt64__System_Collections_Generic_IList_System_UInt64__">UInt64LinksExtensions.EnsureEachLinkExists(ILinks&lt;UInt64&gt;, IList&lt;UInt64&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.UInt64LinksExtensions.html#Platform_Data_Doublets_UInt64LinksExtensions_EnsureEachLinkIsAnyOrExists_Platform_Data_Doublets_ILinks_System_UInt64__System_Collections_Generic_IList_System_UInt64__">UInt64LinksExtensions.EnsureEachLinkIsAnyOrExists(ILinks&lt;UInt64&gt;, IList&lt;UInt64&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.UInt64LinksExtensions.html#Platform_Data_Doublets_UInt64LinksExtensions_AnyLinkIsAny_Platform_Data_Doublets_ILinks_System_UInt64__System_UInt64___">UInt64LinksExtensions.AnyLinkIsAny(ILinks&lt;UInt64&gt;, UInt64[])</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.UInt64LinksExtensions.html#Platform_Data_Doublets_UInt64LinksExtensions_FormatStructure_Platform_Data_Doublets_ILinks_System_UInt64__System_UInt64_System_Func_Platform_Data_Doublets_UInt64Link_System_Boolean__System_Boolean_System_Boolean_">UInt64LinksExtensions.FormatStructure(ILinks&lt;UInt64&gt;, UInt64, Func&lt;UInt64Link, Boolean&gt;, Boolean, Boolean)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.UInt64LinksExtensions.html#Platform_Data_Doublets_UInt64LinksExtensions_FormatStructure_Platform_Data_Doublets_ILinks_System_UInt64__System_UInt64_System_Func_Platform_Data_Doublets_UInt64Link_System_Boolean__System_Action_System_Text_StringBuilder_Platform_Data_Doublets_UInt64Link__System_Boolean_System_Boolean_">UInt64LinksExtensions.FormatStructure(ILinks&lt;UInt64&gt;, UInt64, Func&lt;UInt64Link, Boolean&gt;, Action&lt;StringBuilder, UInt64Link&gt;, Boolean, Boolean)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.UInt64LinksExtensions.html#Platform_Data_Doublets_UInt64LinksExtensions_AppendStructure_Platform_Data_Doublets_ILinks_System_UInt64__System_Text_StringBuilder_System_Collections_Generic_HashSet_System_UInt64__System_UInt64_System_Func_Platform_Data_Doublets_UInt64Link_System_Boolean__System_Action_System_Text_StringBuilder_Platform_Data_Doublets_UInt64Link__System_Boolean_System_Boolean_">UInt64LinksExtensions.AppendStructure(ILinks&lt;UInt64&gt;, StringBuilder, HashSet&lt;UInt64&gt;, UInt64, Func&lt;UInt64Link, Boolean&gt;, Action&lt;StringBuilder, UInt64Link&gt;, Boolean, Boolean)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.Sequences.SequencesExtensions.html#Platform_Data_Doublets_Sequences_SequencesExtensions_Create__1_Platform_Data_Doublets_ILinks___0__System_Collections_Generic_IList___0____">SequencesExtensions.Create&lt;TLink&gt;(ILinks&lt;TLink&gt;, IList&lt;TLink[]&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.Sequences.SequencesExtensions.html#Platform_Data_Doublets_Sequences_SequencesExtensions_ToList__1_Platform_Data_Doublets_ILinks___0____0_">SequencesExtensions.ToList&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink)</a>
+  </div>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.Stacks.StackExtensions.html#Platform_Data_Doublets_Stacks_StackExtensions_CreateStack__1_Platform_Data_Doublets_ILinks___0____0_">StackExtensions.CreateStack&lt;TLink&gt;(ILinks&lt;TLink&gt;, TLink)</a>
   </div>
 </article>
           </div>
@@ -2467,7 +2638,7 @@ sequence of length N corresponds to <a href="https://oeis.org/A014143/list">http
                     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Sequences.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Sequences%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/linksplatform/Data.Doublets/blob/6c0787b5a4864678a58392c10120b9e54b5b1b66/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L18" class="contribution-link">View Source</a>
+                    <a href="https://github.com/linksplatform/Data.Doublets/blob/c597081ab148d42423fc9cf645cae8ba34227ded/Platform.Data.Doublets/Sequences/Sequences.Experiments.cs/#L18" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
