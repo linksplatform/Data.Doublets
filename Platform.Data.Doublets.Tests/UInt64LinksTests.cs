@@ -352,10 +352,7 @@ namespace Platform.Data.Doublets.Tests
             File.Delete(tempTransactionLogFilename);
         }
 
-        private static void ExceptionThrower()
-        {
-            throw new Exception();
-        }
+        private static void ExceptionThrower() => throw new InvalidOperationException();
 
         [Fact]
         public static void PathsTest()

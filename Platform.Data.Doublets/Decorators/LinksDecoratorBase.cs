@@ -9,7 +9,7 @@ namespace Platform.Data.Doublets.Decorators
     {
         public LinksConstants<TLink> Constants { get; }
 
-        public ILinks<TLink> _facade;
+        private ILinks<TLink> _facade;
 
         public ILinks<TLink> Facade
         {

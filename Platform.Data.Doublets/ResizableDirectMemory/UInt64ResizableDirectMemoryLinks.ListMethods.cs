@@ -4,7 +4,7 @@
 
 namespace Platform.Data.Doublets.ResizableDirectMemory
 {
-    unsafe partial class UInt64ResizableDirectMemoryLinks
+    public unsafe partial class UInt64ResizableDirectMemoryLinks
     {
         private class UnusedLinksListMethods : CircularDoublyLinkedListMethods<ulong>
         {

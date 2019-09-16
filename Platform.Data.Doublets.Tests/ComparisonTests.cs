@@ -7,7 +7,7 @@ namespace Platform.Data.Doublets.Tests
 {
     public static class ComparisonTests
     {
-        protected class UInt64Comparer : IComparer<ulong>
+        private class UInt64Comparer : IComparer<ulong>
         {
             public int Compare(ulong x, ulong y) => x.CompareTo(y);
         }

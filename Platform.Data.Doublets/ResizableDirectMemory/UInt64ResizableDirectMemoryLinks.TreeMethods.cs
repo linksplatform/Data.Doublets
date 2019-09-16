@@ -8,7 +8,7 @@ using Platform.Collections.Methods.Trees;
 
 namespace Platform.Data.Doublets.ResizableDirectMemory
 {
-    unsafe partial class UInt64ResizableDirectMemoryLinks
+    public unsafe partial class UInt64ResizableDirectMemoryLinks
     {
         private abstract class LinksTreeMethodsBase : SizedAndThreadedAVLBalancedTreeMethods<ulong>
         {

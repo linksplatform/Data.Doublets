@@ -10,6 +10,7 @@ using Platform.Timestamps;
 using Platform.Unsafe;
 using Platform.IO;
 using Platform.Data.Doublets.Decorators;
+using Platform.Exceptions;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -370,8 +371,9 @@ namespace Platform.Data.Doublets
                 _log.DisposeIfPossible();
                 FileHelpers.WriteFirst(_logAddress, _lastCommitedTransition);
             }
-            catch
+            catch (Exception ex)
             {
+                ex.Ignore();
             }
         }
 

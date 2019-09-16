@@ -504,7 +504,7 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
                 var linkFrequenciesCache1 = new LinkFrequenciesCache<ulong>(scope1.Links.Unsync, totalSequenceSymbolFrequencyCounter);
                 var compressor1 = new CompressingConverter<ulong>(scope1.Links.Unsync, balancedVariantConverter1, linkFrequenciesCache1, doInitialFrequenciesIncrement: false);
 
-                var compressor2 = scope2.Sequences;
+                //var compressor2 = scope2.Sequences;
                 var compressor3 = scope3.Sequences;
 
                 var constants = Default<LinksConstants<ulong>>.Instance;
