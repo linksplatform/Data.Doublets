@@ -4,7 +4,7 @@
     <Description>LinksPlatform's Platform.Data.Doublets Class Library</Description>
     <Copyright>Konstantin Diachenko</Copyright>
     <AssemblyTitle>Platform.Data.Doublets</AssemblyTitle>
-    <VersionPrefix>0.1.1</VersionPrefix>
+    <VersionPrefix>0.2.0</VersionPrefix>
     <Authors>Konstantin Diachenko</Authors>
     <TargetFrameworks>net471;netstandard2.0</TargetFrameworks>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -23,15 +23,20 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <LangVersion>latest</LangVersion>
-    <PackageReleaseNotes>Added Facade (pointer to last decorator) property for decorators. This property should be used to ensure correct recursion execution.
-Added AddressToRawNumberConverter and RawNumberToAddressConverter.
-Platform.Data.Doublets.UnaryNumbers namespace renamed to Platform.Data.Doublets.Numbers.Unary.
-Sequences.Options and Sequences.Links are now read-only properties.
-Sequences.Sync field is no longer public.
-Added constructor overloads to override IsElement logic to sequence walkers.
-Tests updated.
-Perfomance optimizations.
-Refactoring, issues fix.</PackageReleaseNotes>
+    <PackageReleaseNotes>Added support for .NET Framework 4.7.1.
+Platform.Random dependency updated from 0.0.3 to 0.0.4.
+Platform.Timestamps dependency updated from 0.0.3 to 0.0.4.
+Platform.Collections.Methods dependency updated from 0.0.5 to 0.0.7.
+Platform.Singletons dependency updated from 0.0.2 to 0.0.4.
+Platform.Memory dependency updated from 0.1.3 to 0.1.5.
+Platform.Data dependency updated from 0.0.3 to 0.1.1.
+Code updated to support new ILinks interface and LinksConstants class.
+Project files updated to support multiple build environments: dotnet, Travis CI, MonoDevelop, and Visual Studio.
+Travis CI configuration updated to support automatic NuGet package publishing.
+License updated to support usage as an unmodified dynamic library in larger projects of any kind.
+Refactoring, issues, and bugs fix.
+
+This release is not backward compatible with the previous 0.1.1 release.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup Condition="$(TargetFramework.StartsWith('net4')) AND '$(MSBuildRuntimeType)' == 'Core' AND '$(OS)' != 'Windows_NT'">
