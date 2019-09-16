@@ -129,14 +129,6 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksDecoratorBase(Of TLink).LinksDecoratorBase
   nameWithType: LinksDecoratorBase<TLink>.LinksDecoratorBase
   nameWithType.vb: LinksDecoratorBase(Of TLink).LinksDecoratorBase
-- uid: Platform.Data.Doublets.Decorators.LinksDecoratorBase`1._facade
-  name: _facade
-  href: api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1__facade
-  commentId: F:Platform.Data.Doublets.Decorators.LinksDecoratorBase`1._facade
-  fullName: Platform.Data.Doublets.Decorators.LinksDecoratorBase<TLink>._facade
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksDecoratorBase(Of TLink)._facade
-  nameWithType: LinksDecoratorBase<TLink>._facade
-  nameWithType.vb: LinksDecoratorBase(Of TLink)._facade
 - uid: Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Constants
   name: Constants
   href: api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1_Constants
@@ -7704,25 +7696,6 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Tests.ComparisonTests.GreaterOrEqualPerfomanceTest
   nameWithType: ComparisonTests.GreaterOrEqualPerfomanceTest
-- uid: Platform.Data.Doublets.Tests.ComparisonTests.UInt64Comparer
-  name: ComparisonTests.UInt64Comparer
-  href: api/Platform.Data.Doublets.Tests.ComparisonTests.UInt64Comparer.html
-  commentId: T:Platform.Data.Doublets.Tests.ComparisonTests.UInt64Comparer
-  fullName: Platform.Data.Doublets.Tests.ComparisonTests.UInt64Comparer
-  nameWithType: ComparisonTests.UInt64Comparer
-- uid: Platform.Data.Doublets.Tests.ComparisonTests.UInt64Comparer.Compare(System.UInt64,System.UInt64)
-  name: Compare(UInt64, UInt64)
-  href: api/Platform.Data.Doublets.Tests.ComparisonTests.UInt64Comparer.html#Platform_Data_Doublets_Tests_ComparisonTests_UInt64Comparer_Compare_System_UInt64_System_UInt64_
-  commentId: M:Platform.Data.Doublets.Tests.ComparisonTests.UInt64Comparer.Compare(System.UInt64,System.UInt64)
-  fullName: Platform.Data.Doublets.Tests.ComparisonTests.UInt64Comparer.Compare(System.UInt64, System.UInt64)
-  nameWithType: ComparisonTests.UInt64Comparer.Compare(UInt64, UInt64)
-- uid: Platform.Data.Doublets.Tests.ComparisonTests.UInt64Comparer.Compare*
-  name: Compare
-  href: api/Platform.Data.Doublets.Tests.ComparisonTests.UInt64Comparer.html#Platform_Data_Doublets_Tests_ComparisonTests_UInt64Comparer_Compare_
-  commentId: Overload:Platform.Data.Doublets.Tests.ComparisonTests.UInt64Comparer.Compare
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Tests.ComparisonTests.UInt64Comparer.Compare
-  nameWithType: ComparisonTests.UInt64Comparer.Compare
 - uid: Platform.Data.Doublets.Tests.EqualityTests
   name: EqualityTests
   href: api/Platform.Data.Doublets.Tests.EqualityTests.html
@@ -8218,31 +8191,66 @@ references:
 - uid: Platform.Data.Doublets.Tests.TempLinksTestScope.Links
   name: Links
   href: api/Platform.Data.Doublets.Tests.TempLinksTestScope.html#Platform_Data_Doublets_Tests_TempLinksTestScope_Links
-  commentId: F:Platform.Data.Doublets.Tests.TempLinksTestScope.Links
+  commentId: P:Platform.Data.Doublets.Tests.TempLinksTestScope.Links
+  fullName: Platform.Data.Doublets.Tests.TempLinksTestScope.Links
+  nameWithType: TempLinksTestScope.Links
+- uid: Platform.Data.Doublets.Tests.TempLinksTestScope.Links*
+  name: Links
+  href: api/Platform.Data.Doublets.Tests.TempLinksTestScope.html#Platform_Data_Doublets_Tests_TempLinksTestScope_Links_
+  commentId: Overload:Platform.Data.Doublets.Tests.TempLinksTestScope.Links
+  isSpec: "True"
   fullName: Platform.Data.Doublets.Tests.TempLinksTestScope.Links
   nameWithType: TempLinksTestScope.Links
 - uid: Platform.Data.Doublets.Tests.TempLinksTestScope.MemoryAdapter
   name: MemoryAdapter
   href: api/Platform.Data.Doublets.Tests.TempLinksTestScope.html#Platform_Data_Doublets_Tests_TempLinksTestScope_MemoryAdapter
-  commentId: F:Platform.Data.Doublets.Tests.TempLinksTestScope.MemoryAdapter
+  commentId: P:Platform.Data.Doublets.Tests.TempLinksTestScope.MemoryAdapter
+  fullName: Platform.Data.Doublets.Tests.TempLinksTestScope.MemoryAdapter
+  nameWithType: TempLinksTestScope.MemoryAdapter
+- uid: Platform.Data.Doublets.Tests.TempLinksTestScope.MemoryAdapter*
+  name: MemoryAdapter
+  href: api/Platform.Data.Doublets.Tests.TempLinksTestScope.html#Platform_Data_Doublets_Tests_TempLinksTestScope_MemoryAdapter_
+  commentId: Overload:Platform.Data.Doublets.Tests.TempLinksTestScope.MemoryAdapter
+  isSpec: "True"
   fullName: Platform.Data.Doublets.Tests.TempLinksTestScope.MemoryAdapter
   nameWithType: TempLinksTestScope.MemoryAdapter
 - uid: Platform.Data.Doublets.Tests.TempLinksTestScope.Sequences
   name: Sequences
   href: api/Platform.Data.Doublets.Tests.TempLinksTestScope.html#Platform_Data_Doublets_Tests_TempLinksTestScope_Sequences
-  commentId: F:Platform.Data.Doublets.Tests.TempLinksTestScope.Sequences
+  commentId: P:Platform.Data.Doublets.Tests.TempLinksTestScope.Sequences
+  fullName: Platform.Data.Doublets.Tests.TempLinksTestScope.Sequences
+  nameWithType: TempLinksTestScope.Sequences
+- uid: Platform.Data.Doublets.Tests.TempLinksTestScope.Sequences*
+  name: Sequences
+  href: api/Platform.Data.Doublets.Tests.TempLinksTestScope.html#Platform_Data_Doublets_Tests_TempLinksTestScope_Sequences_
+  commentId: Overload:Platform.Data.Doublets.Tests.TempLinksTestScope.Sequences
+  isSpec: "True"
   fullName: Platform.Data.Doublets.Tests.TempLinksTestScope.Sequences
   nameWithType: TempLinksTestScope.Sequences
 - uid: Platform.Data.Doublets.Tests.TempLinksTestScope.TempFilename
   name: TempFilename
   href: api/Platform.Data.Doublets.Tests.TempLinksTestScope.html#Platform_Data_Doublets_Tests_TempLinksTestScope_TempFilename
-  commentId: F:Platform.Data.Doublets.Tests.TempLinksTestScope.TempFilename
+  commentId: P:Platform.Data.Doublets.Tests.TempLinksTestScope.TempFilename
+  fullName: Platform.Data.Doublets.Tests.TempLinksTestScope.TempFilename
+  nameWithType: TempLinksTestScope.TempFilename
+- uid: Platform.Data.Doublets.Tests.TempLinksTestScope.TempFilename*
+  name: TempFilename
+  href: api/Platform.Data.Doublets.Tests.TempLinksTestScope.html#Platform_Data_Doublets_Tests_TempLinksTestScope_TempFilename_
+  commentId: Overload:Platform.Data.Doublets.Tests.TempLinksTestScope.TempFilename
+  isSpec: "True"
   fullName: Platform.Data.Doublets.Tests.TempLinksTestScope.TempFilename
   nameWithType: TempLinksTestScope.TempFilename
 - uid: Platform.Data.Doublets.Tests.TempLinksTestScope.TempTransactionLogFilename
   name: TempTransactionLogFilename
   href: api/Platform.Data.Doublets.Tests.TempLinksTestScope.html#Platform_Data_Doublets_Tests_TempLinksTestScope_TempTransactionLogFilename
-  commentId: F:Platform.Data.Doublets.Tests.TempLinksTestScope.TempTransactionLogFilename
+  commentId: P:Platform.Data.Doublets.Tests.TempLinksTestScope.TempTransactionLogFilename
+  fullName: Platform.Data.Doublets.Tests.TempLinksTestScope.TempTransactionLogFilename
+  nameWithType: TempLinksTestScope.TempTransactionLogFilename
+- uid: Platform.Data.Doublets.Tests.TempLinksTestScope.TempTransactionLogFilename*
+  name: TempTransactionLogFilename
+  href: api/Platform.Data.Doublets.Tests.TempLinksTestScope.html#Platform_Data_Doublets_Tests_TempLinksTestScope_TempTransactionLogFilename_
+  commentId: Overload:Platform.Data.Doublets.Tests.TempLinksTestScope.TempTransactionLogFilename
+  isSpec: "True"
   fullName: Platform.Data.Doublets.Tests.TempLinksTestScope.TempTransactionLogFilename
   nameWithType: TempLinksTestScope.TempTransactionLogFilename
 - uid: Platform.Data.Doublets.Tests.TestExtensions
