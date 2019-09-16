@@ -15,9 +15,8 @@ namespace Platform.Data.Doublets.Numbers.Unary
 
         public AddressToUnaryNumberConverter(ILinks<TLink> links, IConverter<int, TLink> powerOf2ToUnaryNumberConverter) : base(links) => _powerOf2ToUnaryNumberConverter = powerOf2ToUnaryNumberConverter;
 
-        public TLink Convert(TLink sourceAddress)
+        public TLink Convert(TLink number)
         {
-            var number = sourceAddress;
             var nullConstant = Links.Constants.Null;
             var one = Integer<TLink>.One;
             var target = nullConstant;
