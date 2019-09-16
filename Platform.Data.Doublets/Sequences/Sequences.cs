@@ -196,7 +196,7 @@ namespace Platform.Data.Doublets.Sequences
             var sequenceRoot = default(LinkIndex);
             if (Options.EnforceSingleSequenceVersionOnWriteBasedOnExisting)
             {
-                var matches = Each(sequence);
+                var matches = Each(restrictions);
                 if (matches.Count > 0)
                 {
                     sequenceRoot = matches[0];
@@ -221,7 +221,7 @@ namespace Platform.Data.Doublets.Sequences
 
         #region Each
 
-        public List<LinkIndex> Each(params LinkIndex[] sequence)
+        public List<LinkIndex> Each(IList<LinkIndex> sequence)
         {
             var results = new List<LinkIndex>();
             var filler = new ListFiller<LinkIndex, LinkIndex>(results, Constants.Continue);
@@ -237,7 +237,7 @@ namespace Platform.Data.Doublets.Sequences
                 {
                     return Constants.Continue;
                 }
-                Links.EnsureEachLinkIsAnyOrExists(restrictions);
+                Links.EnsureInnerReferenceExists(restrictions, nameof(restrictions));
                 if (restrictions.Count == 1)
                 {
                     var link = restrictions[0];

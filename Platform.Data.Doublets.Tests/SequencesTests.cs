@@ -129,7 +129,7 @@ namespace Platform.Data.Doublets.Tests
                 var searchResults2 = sequences.Each1(sequence); sw2.Stop();
 
                 var sw3 = Stopwatch.StartNew();
-                var searchResults3 = sequences.Each(sequence); sw3.Stop();
+                var searchResults3 = sequences.Each(sequence.ConvertToRestrictionsValues()); sw3.Stop();
 
                 var intersection0 = createResults.Intersect(searchResults0).ToList();
                 Assert.True(intersection0.Count == searchResults0.Count);

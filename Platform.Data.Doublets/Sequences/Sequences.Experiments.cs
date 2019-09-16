@@ -183,7 +183,7 @@ namespace Platform.Data.Doublets.Sequences
                         innerSequence[linkIndex] = doublet[Constants.IndexPart];
                         Each1(handler, innerSequence);
                         return Constants.Continue;
-                    }, left, right);
+                    }, Constants.Any, left, right);
                 }
             }
         }

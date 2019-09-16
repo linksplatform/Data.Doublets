@@ -101,13 +101,15 @@ namespace Platform.Data.Doublets.Sequences
         {
             var duplicates = new List<TLink>();
             var readAsElement = new HashSet<TLink>();
+            var restrictions = segment.ConvertToRestrictionsValues();
+            restrictions[0] = _sequences.Constants.Any;
             _sequences.Each(sequence =>
             {
                 var sequenceIndex = sequence[_sequences.Constants.IndexPart];
                 duplicates.Add(sequenceIndex);
                 readAsElement.Add(sequenceIndex);
                 return _sequences.Constants.Continue;
-            }, segment.ConvertToRestrictionsValues());
+            }, restrictions);
             if (duplicates.Any(x => _visited.Get((Integer<TLink>)x)))
             {
                 return new List<TLink>();
