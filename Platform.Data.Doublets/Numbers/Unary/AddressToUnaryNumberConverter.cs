@@ -28,7 +28,7 @@ namespace Platform.Data.Doublets.Numbers.Unary
                         ? _powerOf2ToUnaryNumberConverter.Convert(i)
                         : Links.GetOrCreate(_powerOf2ToUnaryNumberConverter.Convert(i), target);
                 }
-                number = (Integer<TLink>)((ulong)(Integer<TLink>)number >> 1); // Should be Bit.ShiftRight(number, 1)
+                number = Bit.ShiftRight(number, 1);
             }
             return target;
         }
