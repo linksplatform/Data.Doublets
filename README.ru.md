@@ -17,6 +17,7 @@ NuGet пакет: [Platform.Data.Doublets](https://www.nuget.org/packages/Platfo
 ## [Пример](https://github.com/linksplatform/HelloWorld.Doublets.DotNet)
 ```C#
 using System;
+using Platform.Data;
 using Platform.Data.Doublets;
 using Platform.Data.Doublets.ResizableDirectMemory;
 
@@ -32,6 +33,9 @@ namespace HelloWorld.Doublets.DotNet
         link = links.Update(link, link, link);
         Console.WriteLine("Привет Мир!");
         Console.WriteLine($"Это моя первая связь: ({link}:{links.GetSource(link)}->{links.GetTarget(link)}).");
+        Console.WriteLine($"Всего связей в хранилище: {links.Count()}.");
+        link = links.Update(link, default, default);
+        links.Delete(link);
       }
     }
   }
