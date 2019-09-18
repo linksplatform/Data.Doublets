@@ -46,7 +46,7 @@ This release is not backward compatible with the previous 0.1.1 release.</Packag
   <ItemGroup>
     <PackageReference Include="Platform.Random" Version="0.0.4" />
     <PackageReference Include="Platform.Timestamps" Version="0.0.4" />
-    <PackageReference Include="Platform.Collections.Methods" Version="0.0.7" />
+    <PackageReference Include="Platform.Collections.Methods" Version="0.1.0" />
     <PackageReference Include="Platform.Singletons" Version="0.0.4" />
     <PackageReference Include="Platform.Memory" Version="0.1.5" />
     <PackageReference Include="Platform.Data" Version="0.1.1" />
