@@ -19,52 +19,28 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
 {
     using id = UInt64;
 
-    public unsafe partial class UInt64ResizableDirectMemoryLinks : DisposableBase, ILinks<id>
+    public unsafe class UInt64ResizableDirectMemoryLinks : DisposableBase, ILinks<id>
     {
         /// <summary>Возвращает размер одной связи в байтах.</summary>
         /// <remarks>
         /// Используется только во вне класса, не рекомедуется использовать внутри.
         /// Так как во вне не обязательно будет доступен unsafe С#.
         /// </remarks>
-        public static readonly int LinkSizeInBytes = sizeof(Link);
+        public static readonly int LinkSizeInBytes = sizeof(UInt64RawLink);
 
         public static readonly long DefaultLinksSizeStep = LinkSizeInBytes * 1024 * 1024;
-
-        private struct Link
-        {
-            public id Source;
-            public id Target;
-            public id LeftAsSource;
-            public id RightAsSource;
-            public id SizeAsSource;
-            public id LeftAsTarget;
-            public id RightAsTarget;
-            public id SizeAsTarget;
-        }
-
-        private struct LinksHeader
-        {
-            public id AllocatedLinks;
-            public id ReservedLinks;
-            public id FreeLinks;
-            public id FirstFreeLink;
-            public id FirstAsSource;
-            public id FirstAsTarget;
-            public id LastFreeLink;
-            public id Reserved8;
-        }
 
         private readonly long _memoryReservationStep;
 
         private readonly IResizableDirectMemory _memory;
-        private LinksHeader* _header;
-        private Link* _links;
+        private UInt64LinksHeader* _header;
+        private UInt64RawLink* _links;
 
-        private LinksTargetsTreeMethods _targetsTreeMethods;
-        private LinksSourcesTreeMethods _sourcesTreeMethods;
+        private ILinksTreeMethods<id> _targetsTreeMethods;
+        private ILinksTreeMethods<id> _sourcesTreeMethods;
 
         // TODO: Возможно чтобы гарантированно проверять на то, является ли связь удалённой, нужно использовать не список а дерево, так как так можно быстрее проверить на наличие связи внутри
-        private UnusedLinksListMethods _unusedLinksListMethods;
+        private ILinksListMethods<id> _unusedLinksListMethods;
 
         /// <summary>
         /// Возвращает общее число связей находящихся в хранилище.
@@ -96,9 +72,9 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             }
             SetPointers(_memory);
             // Гарантия корректности _memory.UsedCapacity относительно _header->AllocatedLinks
-            _memory.UsedCapacity = ((long)_header->AllocatedLinks * sizeof(Link)) + sizeof(LinksHeader);
+            _memory.UsedCapacity = ((long)_header->AllocatedLinks * sizeof(UInt64RawLink)) + sizeof(UInt64LinksHeader);
             // Гарантия корректности _header->ReservedLinks относительно _memory.ReservedCapacity
-            _header->ReservedLinks = (id)((_memory.ReservedCapacity - sizeof(LinksHeader)) / sizeof(Link));
+            _header->ReservedLinks = (id)((_memory.ReservedCapacity - sizeof(UInt64LinksHeader)) / sizeof(UInt64RawLink));
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -294,11 +270,11 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
                     }
                     else if (source == Constants.Any)
                     {
-                        return _targetsTreeMethods.EachReference(target, handler);
+                        return _targetsTreeMethods.EachUsage(target, handler);
                     }
                     else if (target == Constants.Any)
                     {
-                        return _sourcesTreeMethods.EachReference(source, handler);
+                        return _sourcesTreeMethods.EachUsage(source, handler);
                     }
                     else //if(source != Any && target != Any)
                     {
@@ -393,14 +369,14 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private IList<id> GetLinkStruct(id linkIndex)
+        internal IList<id> GetLinkStruct(id linkIndex)
         {
             var link = GetLinkUnsafe(linkIndex);
             return new UInt64Link(linkIndex, link->Source, link->Target);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private Link* GetLinkUnsafe(id linkIndex) => &_links[linkIndex];
+        private UInt64RawLink* GetLinkUnsafe(id linkIndex) => &_links[linkIndex];
 
         /// <remarks>
         /// TODO: Возможно нужно будет заполнение нулями, если внешнее API ими не заполняет пространство
@@ -423,10 +399,10 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
                 {
                     _memory.ReservedCapacity += _memoryReservationStep;
                     SetPointers(_memory);
-                    _header->ReservedLinks = (id)(_memory.ReservedCapacity / sizeof(Link));
+                    _header->ReservedLinks = (id)(_memory.ReservedCapacity / sizeof(UInt64RawLink));
                 }
                 _header->AllocatedLinks++;
-                _memory.UsedCapacity += sizeof(Link);
+                _memory.UsedCapacity += sizeof(UInt64RawLink);
                 freeLink = _header->AllocatedLinks;
             }
             return freeLink;
@@ -442,14 +418,14 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             else if (link == _header->AllocatedLinks)
             {
                 _header->AllocatedLinks--;
-                _memory.UsedCapacity -= sizeof(Link);
+                _memory.UsedCapacity -= sizeof(UInt64RawLink);
                 // Убираем все связи, находящиеся в списке свободных в конце файла, до тех пор, пока не дойдём до первой существующей связи
                 // Позволяет оптимизировать количество выделенных связей (AllocatedLinks)
                 while (_header->AllocatedLinks > 0 && IsUnusedLink(_header->AllocatedLinks))
                 {
                     _unusedLinksListMethods.Detach(_header->AllocatedLinks);
                     _header->AllocatedLinks--;
-                    _memory.UsedCapacity -= sizeof(Link);
+                    _memory.UsedCapacity -= sizeof(UInt64RawLink);
                 }
             }
         }
@@ -473,11 +449,11 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             }
             else
             {
-                _header = (LinksHeader*)(void*)memory.Pointer;
-                _links = (Link*)(void*)memory.Pointer;
-                _sourcesTreeMethods = new LinksSourcesTreeMethods(this);
-                _targetsTreeMethods = new LinksTargetsTreeMethods(this);
-                _unusedLinksListMethods = new UnusedLinksListMethods(_links, _header);
+                _header = (UInt64LinksHeader*)(void*)memory.Pointer;
+                _links = (UInt64RawLink*)(void*)memory.Pointer;
+                _sourcesTreeMethods = new UInt64LinksSourcesAVLBalancedTreeMethods(this, _links, _header);
+                _targetsTreeMethods = new UInt64LinksTargetsAVLBalancedTreeMethods(this, _links, _header);
+                _unusedLinksListMethods = new UInt64UnusedLinksListMethods(_links, _header);
             }
         }
 
