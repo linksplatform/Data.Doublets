@@ -10,6 +10,7 @@ using Platform.Unsafe;
 using Platform.Memory;
 using Platform.Data.Exceptions;
 using static Platform.Numbers.Arithmetic;
+using static System.Runtime.CompilerServices.Unsafe;
 
 #pragma warning disable 0649
 #pragma warning disable 169
@@ -23,28 +24,28 @@ using static Platform.Numbers.Arithmetic;
 
 namespace Platform.Data.Doublets.ResizableDirectMemory
 {
-    public partial class ResizableDirectMemoryLinks<TLink> : DisposableBase, ILinks<TLink>
+    public unsafe partial class ResizableDirectMemoryLinks<TLink> : DisposableBase, ILinks<TLink>
     {
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
         private static readonly Comparer<TLink> _comparer = Comparer<TLink>.Default;
 
         /// <summary>Возвращает размер одной связи в байтах.</summary>
-        public static readonly int LinkSizeInBytes = Structure<Link>.Size;
+        public static readonly long LinkSizeInBytes = Structure<Link>.Size;
 
-        public static readonly int LinkHeaderSizeInBytes = Structure<LinksHeader>.Size;
+        public static readonly long LinkHeaderSizeInBytes = Structure<LinksHeader>.Size;
 
         public static readonly long DefaultLinksSizeStep = LinkSizeInBytes * 1024 * 1024;
 
         private struct Link
         {
-            public static readonly int SourceOffset = Marshal.OffsetOf(typeof(Link), nameof(Source)).ToInt32();
-            public static readonly int TargetOffset = Marshal.OffsetOf(typeof(Link), nameof(Target)).ToInt32();
-            public static readonly int LeftAsSourceOffset = Marshal.OffsetOf(typeof(Link), nameof(LeftAsSource)).ToInt32();
-            public static readonly int RightAsSourceOffset = Marshal.OffsetOf(typeof(Link), nameof(RightAsSource)).ToInt32();
-            public static readonly int SizeAsSourceOffset = Marshal.OffsetOf(typeof(Link), nameof(SizeAsSource)).ToInt32();
-            public static readonly int LeftAsTargetOffset = Marshal.OffsetOf(typeof(Link), nameof(LeftAsTarget)).ToInt32();
-            public static readonly int RightAsTargetOffset = Marshal.OffsetOf(typeof(Link), nameof(RightAsTarget)).ToInt32();
-            public static readonly int SizeAsTargetOffset = Marshal.OffsetOf(typeof(Link), nameof(SizeAsTarget)).ToInt32();
+            public static readonly long SourceOffset = Marshal.OffsetOf(typeof(Link), nameof(Source)).ToInt32();
+            public static readonly long TargetOffset = Marshal.OffsetOf(typeof(Link), nameof(Target)).ToInt32();
+            public static readonly long LeftAsSourceOffset = Marshal.OffsetOf(typeof(Link), nameof(LeftAsSource)).ToInt32();
+            public static readonly long RightAsSourceOffset = Marshal.OffsetOf(typeof(Link), nameof(RightAsSource)).ToInt32();
+            public static readonly long SizeAsSourceOffset = Marshal.OffsetOf(typeof(Link), nameof(SizeAsSource)).ToInt32();
+            public static readonly long LeftAsTargetOffset = Marshal.OffsetOf(typeof(Link), nameof(LeftAsTarget)).ToInt32();
+            public static readonly long RightAsTargetOffset = Marshal.OffsetOf(typeof(Link), nameof(RightAsTarget)).ToInt32();
+            public static readonly long SizeAsTargetOffset = Marshal.OffsetOf(typeof(Link), nameof(SizeAsTarget)).ToInt32();
 
             public TLink Source;
             public TLink Target;
@@ -54,40 +55,6 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             public TLink LeftAsTarget;
             public TLink RightAsTarget;
             public TLink SizeAsTarget;
-
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static TLink GetSource(IntPtr pointer) => (pointer + SourceOffset).GetValue<TLink>();
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static TLink GetTarget(IntPtr pointer) => (pointer + TargetOffset).GetValue<TLink>();
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static TLink GetLeftAsSource(IntPtr pointer) => (pointer + LeftAsSourceOffset).GetValue<TLink>();
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static TLink GetRightAsSource(IntPtr pointer) => (pointer + RightAsSourceOffset).GetValue<TLink>();
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static TLink GetSizeAsSource(IntPtr pointer) => (pointer + SizeAsSourceOffset).GetValue<TLink>();
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static TLink GetLeftAsTarget(IntPtr pointer) => (pointer + LeftAsTargetOffset).GetValue<TLink>();
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static TLink GetRightAsTarget(IntPtr pointer) => (pointer + RightAsTargetOffset).GetValue<TLink>();
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static TLink GetSizeAsTarget(IntPtr pointer) => (pointer + SizeAsTargetOffset).GetValue<TLink>();
-
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static void SetSource(IntPtr pointer, TLink value) => (pointer + SourceOffset).SetValue(value);
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static void SetTarget(IntPtr pointer, TLink value) => (pointer + TargetOffset).SetValue(value);
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static void SetLeftAsSource(IntPtr pointer, TLink value) => (pointer + LeftAsSourceOffset).SetValue(value);
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static void SetRightAsSource(IntPtr pointer, TLink value) => (pointer + RightAsSourceOffset).SetValue(value);
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static void SetSizeAsSource(IntPtr pointer, TLink value) => (pointer + SizeAsSourceOffset).SetValue(value);
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static void SetLeftAsTarget(IntPtr pointer, TLink value) => (pointer + LeftAsTargetOffset).SetValue(value);
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static void SetRightAsTarget(IntPtr pointer, TLink value) => (pointer + RightAsTargetOffset).SetValue(value);
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static void SetSizeAsTarget(IntPtr pointer, TLink value) => (pointer + SizeAsTargetOffset).SetValue(value);
         }
 
         private struct LinksHeader
@@ -108,48 +75,13 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             public TLink FirstAsTarget;
             public TLink LastFreeLink;
             public TLink Reserved8;
-
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static TLink GetAllocatedLinks(IntPtr pointer) => (pointer + AllocatedLinksOffset).GetValue<TLink>();
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static TLink GetReservedLinks(IntPtr pointer) => (pointer + ReservedLinksOffset).GetValue<TLink>();
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static TLink GetFreeLinks(IntPtr pointer) => (pointer + FreeLinksOffset).GetValue<TLink>();
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static TLink GetFirstFreeLink(IntPtr pointer) => (pointer + FirstFreeLinkOffset).GetValue<TLink>();
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static TLink GetFirstAsSource(IntPtr pointer) => (pointer + FirstAsSourceOffset).GetValue<TLink>();
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static TLink GetFirstAsTarget(IntPtr pointer) => (pointer + FirstAsTargetOffset).GetValue<TLink>();
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static TLink GetLastFreeLink(IntPtr pointer) => (pointer + LastFreeLinkOffset).GetValue<TLink>();
-
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public unsafe static ref TLink GetFirstAsSourcePointer(IntPtr pointer) => ref System.Runtime.CompilerServices.Unsafe.AsRef<TLink>((void*)(pointer + FirstAsSourceOffset));
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public unsafe static ref TLink GetFirstAsTargetPointer(IntPtr pointer) => ref System.Runtime.CompilerServices.Unsafe.AsRef<TLink>((void*)(pointer + FirstAsTargetOffset));
-
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static void SetAllocatedLinks(IntPtr pointer, TLink value) => (pointer + AllocatedLinksOffset).SetValue(value);
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static void SetReservedLinks(IntPtr pointer, TLink value) => (pointer + ReservedLinksOffset).SetValue(value);
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static void SetFreeLinks(IntPtr pointer, TLink value) => (pointer + FreeLinksOffset).SetValue(value);
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static void SetFirstFreeLink(IntPtr pointer, TLink value) => (pointer + FirstFreeLinkOffset).SetValue(value);
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static void SetFirstAsSource(IntPtr pointer, TLink value) => (pointer + FirstAsSourceOffset).SetValue(value);
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static void SetFirstAsTarget(IntPtr pointer, TLink value) => (pointer + FirstAsTargetOffset).SetValue(value);
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static void SetLastFreeLink(IntPtr pointer, TLink value) => (pointer + LastFreeLinkOffset).SetValue(value);
         }
 
         private readonly long _memoryReservationStep;
 
         private readonly IResizableDirectMemory _memory;
-        private IntPtr _header;
-        private IntPtr _links;
+        private byte* _header;
+        private byte* _links;
 
         private LinksTargetsTreeMethods _targetsTreeMethods;
         private LinksSourcesTreeMethods _sourcesTreeMethods;
@@ -160,7 +92,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         /// <summary>
         /// Возвращает общее число связей находящихся в хранилище.
         /// </summary>
-        private TLink Total => Subtract(LinksHeader.GetAllocatedLinks(_header), LinksHeader.GetFreeLinks(_header));
+        private TLink Total => Subtract(AsRef<LinksHeader>(_header).AllocatedLinks, AsRef<LinksHeader>(_header).FreeLinks);
 
         public LinksConstants<TLink> Constants { get; }
 
@@ -194,10 +126,11 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
                 memory.ReservedCapacity = memoryReservationStep;
             }
             SetPointers(_memory);
+            ref var header = ref AsRef<LinksHeader>(_header);
             // Гарантия корректности _memory.UsedCapacity относительно _header->AllocatedLinks
-            _memory.UsedCapacity = ((long)(Integer<TLink>)LinksHeader.GetAllocatedLinks(_header) * LinkSizeInBytes) + LinkHeaderSizeInBytes;
+            _memory.UsedCapacity = ((Integer<TLink>)header.AllocatedLinks * LinkSizeInBytes) + LinkHeaderSizeInBytes;
             // Гарантия корректности _header->ReservedLinks относительно _memory.ReservedCapacity
-            LinksHeader.SetReservedLinks(_header, (Integer<TLink>)((_memory.ReservedCapacity - LinkHeaderSizeInBytes) / LinkSizeInBytes));
+            header.ReservedLinks = (Integer<TLink>)((_memory.ReservedCapacity - LinkHeaderSizeInBytes) / LinkSizeInBytes);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -239,9 +172,9 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
                     {
                         return Integer<TLink>.One;
                     }
-                    var storedLinkValue = GetLinkUnsafe(index);
-                    if (_equalityComparer.Equals(Link.GetSource(storedLinkValue), value) ||
-                        _equalityComparer.Equals(Link.GetTarget(storedLinkValue), value))
+                    ref var storedLinkValue = ref GetLinkUnsafe(index);
+                    if (_equalityComparer.Equals(storedLinkValue.Source, value) ||
+                        _equalityComparer.Equals(storedLinkValue.Target, value))
                     {
                         return Integer<TLink>.One;
                     }
@@ -285,11 +218,11 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
                     {
                         return Integer<TLink>.One;
                     }
-                    var storedLinkValue = GetLinkUnsafe(index);
+                    ref var storedLinkValue = ref GetLinkUnsafe(index);
                     if (!_equalityComparer.Equals(source, Constants.Any) && !_equalityComparer.Equals(target, Constants.Any))
                     {
-                        if (_equalityComparer.Equals(Link.GetSource(storedLinkValue), source) &&
-                            _equalityComparer.Equals(Link.GetTarget(storedLinkValue), target))
+                        if (_equalityComparer.Equals(storedLinkValue.Source, source) &&
+                            _equalityComparer.Equals(storedLinkValue.Target, target))
                         {
                             return Integer<TLink>.One;
                         }
@@ -304,8 +237,8 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
                     {
                         value = source;
                     }
-                    if (_equalityComparer.Equals(Link.GetSource(storedLinkValue), value) ||
-                        _equalityComparer.Equals(Link.GetTarget(storedLinkValue), value))
+                    if (_equalityComparer.Equals(storedLinkValue.Source, value) ||
+                        _equalityComparer.Equals(storedLinkValue.Target, value))
                     {
                         return Integer<TLink>.One;
                     }
@@ -320,14 +253,13 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         {
             if (restrictions.Count == 0)
             {
-                for (TLink link = Integer<TLink>.One; _comparer.Compare(link, (Integer<TLink>)LinksHeader.GetAllocatedLinks(_header)) <= 0; link = Increment(link))
+                for (TLink link = Integer<TLink>.One; _comparer.Compare(link, (Integer<TLink>)AsRef<LinksHeader>(_header).AllocatedLinks) <= 0; link = Increment(link))
                 {
                     if (Exists(link) && _equalityComparer.Equals(handler(GetLinkStruct(link)), Constants.Break))
                     {
                         return Constants.Break;
                     }
                 }
-
                 return Constants.Continue;
             }
             if (restrictions.Count == 1)
@@ -369,9 +301,9 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
                     {
                         return handler(GetLinkStruct(index));
                     }
-                    var storedLinkValue = GetLinkUnsafe(index);
-                    if (_equalityComparer.Equals(Link.GetSource(storedLinkValue), value) ||
-                        _equalityComparer.Equals(Link.GetTarget(storedLinkValue), value))
+                    ref var storedLinkValue = ref GetLinkUnsafe(index);
+                    if (_equalityComparer.Equals(storedLinkValue.Source, value) ||
+                        _equalityComparer.Equals(storedLinkValue.Target, value))
                     {
                         return handler(GetLinkStruct(index));
                     }
@@ -413,11 +345,11 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
                     {
                         return handler(GetLinkStruct(index));
                     }
-                    var storedLinkValue = GetLinkUnsafe(index);
+                    ref var storedLinkValue = ref GetLinkUnsafe(index);
                     if (!_equalityComparer.Equals(source, Constants.Any) && !_equalityComparer.Equals(target, Constants.Any))
                     {
-                        if (_equalityComparer.Equals(Link.GetSource(storedLinkValue), source) &&
-                            _equalityComparer.Equals(Link.GetTarget(storedLinkValue), target))
+                        if (_equalityComparer.Equals(storedLinkValue.Source, source) &&
+                            _equalityComparer.Equals(storedLinkValue.Target, target))
                         {
                             return handler(GetLinkStruct(index));
                         }
@@ -432,8 +364,8 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
                     {
                         value = source;
                     }
-                    if (_equalityComparer.Equals(Link.GetSource(storedLinkValue), value) ||
-                        _equalityComparer.Equals(Link.GetTarget(storedLinkValue), value))
+                    if (_equalityComparer.Equals(storedLinkValue.Source, value) ||
+                        _equalityComparer.Equals(storedLinkValue.Target, value))
                     {
                         return handler(GetLinkStruct(index));
                     }
@@ -450,25 +382,27 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         public TLink Update(IList<TLink> restrictions, IList<TLink> substitution)
         {
             var linkIndex = restrictions[Constants.IndexPart];
-            var link = GetLinkUnsafe(linkIndex);
+            ref var link = ref GetLinkUnsafe(linkIndex);
+            ref var firstAsSource = ref AsRef<LinksHeader>(_header).FirstAsSource;
+            ref var firstAsTarget = ref AsRef<LinksHeader>(_header).FirstAsTarget;
             // Будет корректно работать только в том случае, если пространство выделенной связи предварительно заполнено нулями
-            if (!_equalityComparer.Equals(Link.GetSource(link), Constants.Null))
+            if (!_equalityComparer.Equals(link.Source, Constants.Null))
             {
-                _sourcesTreeMethods.Detach(ref LinksHeader.GetFirstAsSourcePointer(_header), linkIndex);
+                _sourcesTreeMethods.Detach(ref firstAsSource, linkIndex);
             }
-            if (!_equalityComparer.Equals(Link.GetTarget(link), Constants.Null))
+            if (!_equalityComparer.Equals(link.Target, Constants.Null))
             {
-                _targetsTreeMethods.Detach(ref LinksHeader.GetFirstAsTargetPointer(_header), linkIndex);
+                _targetsTreeMethods.Detach(ref firstAsTarget, linkIndex);
             }
-            Link.SetSource(link, substitution[Constants.SourcePart]);
-            Link.SetTarget(link, substitution[Constants.TargetPart]);
-            if (!_equalityComparer.Equals(Link.GetSource(link), Constants.Null))
+            link.Source = substitution[Constants.SourcePart];
+            link.Target = substitution[Constants.TargetPart];
+            if (!_equalityComparer.Equals(link.Source, Constants.Null))
             {
-                _sourcesTreeMethods.Attach(ref LinksHeader.GetFirstAsSourcePointer(_header), linkIndex);
+                _sourcesTreeMethods.Attach(ref firstAsSource, linkIndex);
             }
-            if (!_equalityComparer.Equals(Link.GetTarget(link), Constants.Null))
+            if (!_equalityComparer.Equals(link.Target, Constants.Null))
             {
-                _targetsTreeMethods.Attach(ref LinksHeader.GetFirstAsTargetPointer(_header), linkIndex);
+                _targetsTreeMethods.Attach(ref firstAsTarget, linkIndex);
             }
             return linkIndex;
         }
@@ -476,19 +410,20 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Link<TLink> GetLinkStruct(TLink linkIndex)
         {
-            var link = GetLinkUnsafe(linkIndex);
-            return new Link<TLink>(linkIndex, Link.GetSource(link), Link.GetTarget(link));
+            ref var link = ref GetLinkUnsafe(linkIndex);
+            return new Link<TLink>(linkIndex, link.Source, link.Target);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private IntPtr GetLinkUnsafe(TLink linkIndex) => _links.GetElement(LinkSizeInBytes, linkIndex);
+        private ref Link GetLinkUnsafe(TLink linkIndex) => ref AsRef<Link>(_links + LinkSizeInBytes * (Integer<TLink>)linkIndex);
 
         /// <remarks>
         /// TODO: Возможно нужно будет заполнение нулями, если внешнее API ими не заполняет пространство
         /// </remarks>
         public TLink Create(IList<TLink> restrictions)
         {
-            var freeLink = LinksHeader.GetFirstFreeLink(_header);
+            ref var header = ref AsRef<LinksHeader>(_header);
+            var freeLink = header.FirstFreeLink;
             if (!_equalityComparer.Equals(freeLink, Constants.Null))
             {
                 _unusedLinksListMethods.Detach(freeLink);
@@ -496,40 +431,41 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             else
             {
                 var maximumPossibleInnerReference = Constants.PossibleInnerReferencesRange.Maximum;
-                if (_comparer.Compare(LinksHeader.GetAllocatedLinks(_header), maximumPossibleInnerReference) > 0)
+                if (_comparer.Compare(header.AllocatedLinks, maximumPossibleInnerReference) > 0)
                 {
                     throw new LinksLimitReachedException<TLink>(maximumPossibleInnerReference);
                 }
-                if (_comparer.Compare(LinksHeader.GetAllocatedLinks(_header), Decrement(LinksHeader.GetReservedLinks(_header))) >= 0)
+                if (_comparer.Compare(header.AllocatedLinks, Decrement(header.ReservedLinks)) >= 0)
                 {
                     _memory.ReservedCapacity += _memoryReservationStep;
                     SetPointers(_memory);
-                    LinksHeader.SetReservedLinks(_header, (Integer<TLink>)(_memory.ReservedCapacity / LinkSizeInBytes));
+                    header.ReservedLinks = (Integer<TLink>)(_memory.ReservedCapacity / LinkSizeInBytes);
                 }
-                LinksHeader.SetAllocatedLinks(_header, Increment(LinksHeader.GetAllocatedLinks(_header)));
+                header.AllocatedLinks = Increment(header.AllocatedLinks);
                 _memory.UsedCapacity += LinkSizeInBytes;
-                freeLink = LinksHeader.GetAllocatedLinks(_header);
+                freeLink = header.AllocatedLinks;
             }
             return freeLink;
         }
 
         public void Delete(IList<TLink> restrictions)
         {
+            ref var header = ref AsRef<LinksHeader>(_header);
             var link = restrictions[Constants.IndexPart];
-            if (_comparer.Compare(link, LinksHeader.GetAllocatedLinks(_header)) < 0)
+            if (_comparer.Compare(link, header.AllocatedLinks) < 0)
             {
                 _unusedLinksListMethods.AttachAsFirst(link);
             }
-            else if (_equalityComparer.Equals(link, LinksHeader.GetAllocatedLinks(_header)))
+            else if (_equalityComparer.Equals(link, header.AllocatedLinks))
             {
-                LinksHeader.SetAllocatedLinks(_header, Decrement(LinksHeader.GetAllocatedLinks(_header)));
+                header.AllocatedLinks = Decrement(header.AllocatedLinks);
                 _memory.UsedCapacity -= LinkSizeInBytes;
                 // Убираем все связи, находящиеся в списке свободных в конце файла, до тех пор, пока не дойдём до первой существующей связи
                 // Позволяет оптимизировать количество выделенных связей (AllocatedLinks)
-                while ((_comparer.Compare(LinksHeader.GetAllocatedLinks(_header), Integer<TLink>.Zero) > 0) && IsUnusedLink(LinksHeader.GetAllocatedLinks(_header)))
+                while ((_comparer.Compare(header.AllocatedLinks, Integer<TLink>.Zero) > 0) && IsUnusedLink(header.AllocatedLinks))
                 {
-                    _unusedLinksListMethods.Detach(LinksHeader.GetAllocatedLinks(_header));
-                    LinksHeader.SetAllocatedLinks(_header, Decrement(LinksHeader.GetAllocatedLinks(_header)));
+                    _unusedLinksListMethods.Detach(header.AllocatedLinks);
+                    header.AllocatedLinks = Decrement(header.AllocatedLinks);
                     _memory.UsedCapacity -= LinkSizeInBytes;
                 }
             }
@@ -546,7 +482,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         {
             if (memory == null)
             {
-                _links = IntPtr.Zero;
+                _links = null;
                 _header = _links;
                 _unusedLinksListMethods = null;
                 _targetsTreeMethods = null;
@@ -554,7 +490,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             }
             else
             {
-                _links = memory.Pointer;
+                _links = (byte*)(void*)memory.Pointer;
                 _header = _links;
                 _sourcesTreeMethods = new LinksSourcesTreeMethods(this);
                 _targetsTreeMethods = new LinksTargetsTreeMethods(this);
@@ -565,14 +501,14 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private bool Exists(TLink link)
             => (_comparer.Compare(link, Constants.PossibleInnerReferencesRange.Minimum) >= 0)
-            && (_comparer.Compare(link, LinksHeader.GetAllocatedLinks(_header)) <= 0)
+            && (_comparer.Compare(link, AsRef<LinksHeader>(_header).AllocatedLinks) <= 0)
             && !IsUnusedLink(link);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private bool IsUnusedLink(TLink link)
-            => _equalityComparer.Equals(LinksHeader.GetFirstFreeLink(_header), link)
-            || (_equalityComparer.Equals(Link.GetSizeAsSource(GetLinkUnsafe(link)), Constants.Null)
-            && !_equalityComparer.Equals(Link.GetSource(GetLinkUnsafe(link)), Constants.Null));
+            => _equalityComparer.Equals(AsRef<LinksHeader>(_header).FirstFreeLink, link)
+            || (_equalityComparer.Equals(GetLinkUnsafe(link).SizeAsSource, Constants.Null)
+            && !_equalityComparer.Equals(GetLinkUnsafe(link).Source, Constants.Null));
 
         #region DisposableBase
 

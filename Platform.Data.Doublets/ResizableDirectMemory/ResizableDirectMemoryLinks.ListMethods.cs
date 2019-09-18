@@ -1,6 +1,7 @@
-﻿using System;
-using Platform.Unsafe;
-using Platform.Collections.Methods.Lists;
+﻿using Platform.Collections.Methods.Lists;
+using Platform.Numbers;
+using System.Runtime.CompilerServices;
+using static System.Runtime.CompilerServices.Unsafe;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -8,36 +9,46 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
 {
     partial class ResizableDirectMemoryLinks<TLink>
     {
-        private class UnusedLinksListMethods : CircularDoublyLinkedListMethods<TLink>
+        private unsafe class UnusedLinksListMethods : CircularDoublyLinkedListMethods<TLink>
         {
-            private readonly IntPtr _links;
-            private readonly IntPtr _header;
+            private readonly byte* _links;
+            private readonly byte* _header;
 
-            public UnusedLinksListMethods(IntPtr links, IntPtr header)
+            public UnusedLinksListMethods(byte* links, byte* header)
             {
                 _links = links;
                 _header = header;
             }
 
-            protected override TLink GetFirst() => (_header + LinksHeader.FirstFreeLinkOffset).GetValue<TLink>();
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            protected override TLink GetFirst() => Read<TLink>(_header + LinksHeader.FirstFreeLinkOffset);
 
-            protected override TLink GetLast() => (_header + LinksHeader.LastFreeLinkOffset).GetValue<TLink>();
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            protected override TLink GetLast() => Read<TLink>(_header + LinksHeader.LastFreeLinkOffset);
 
-            protected override TLink GetPrevious(TLink element) => (_links.GetElement(LinkSizeInBytes, element) + Link.SourceOffset).GetValue<TLink>();
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            protected override TLink GetPrevious(TLink element) => Read<TLink>(_links + LinkSizeInBytes * (Integer<TLink>)element + Link.SourceOffset);
 
-            protected override TLink GetNext(TLink element) => (_links.GetElement(LinkSizeInBytes, element) + Link.TargetOffset).GetValue<TLink>();
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            protected override TLink GetNext(TLink element) => Read<TLink>(_links + LinkSizeInBytes * (Integer<TLink>)element + Link.TargetOffset);
 
-            protected override TLink GetSize() => (_header + LinksHeader.FreeLinksOffset).GetValue<TLink>();
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            protected override TLink GetSize() => Read<TLink>(_header + LinksHeader.FreeLinksOffset);
 
-            protected override void SetFirst(TLink element) => (_header + LinksHeader.FirstFreeLinkOffset).SetValue(element);
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            protected override void SetFirst(TLink element) => Write(_header + LinksHeader.FirstFreeLinkOffset, element);
 
-            protected override void SetLast(TLink element) => (_header + LinksHeader.LastFreeLinkOffset).SetValue(element);
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            protected override void SetLast(TLink element) => Write(_header + LinksHeader.LastFreeLinkOffset, element);
 
-            protected override void SetPrevious(TLink element, TLink previous) => (_links.GetElement(LinkSizeInBytes, element) + Link.SourceOffset).SetValue(previous);
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            protected override void SetPrevious(TLink element, TLink previous) => Write(_links + LinkSizeInBytes * (Integer<TLink>)element + Link.SourceOffset, previous);
 
-            protected override void SetNext(TLink element, TLink next) => (_links.GetElement(LinkSizeInBytes, element) + Link.TargetOffset).SetValue(next);
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            protected override void SetNext(TLink element, TLink next) => Write(_links + LinkSizeInBytes * (Integer<TLink>)element + Link.TargetOffset, next);
 
-            protected override void SetSize(TLink size) => (_header + LinksHeader.FreeLinksOffset).SetValue(size);
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            protected override void SetSize(TLink size) => Write(_header + LinksHeader.FreeLinksOffset, size);
         }
     }
 }
