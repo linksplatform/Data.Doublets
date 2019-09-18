@@ -157,13 +157,13 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             {
             }
 
-            protected override IntPtr GetLeftPointer(ulong node) => new IntPtr(&Links[node].LeftAsSource);
+            protected override ref ulong GetLeftReference(ulong node) => ref Links[node].LeftAsSource;
 
-            protected override IntPtr GetRightPointer(ulong node) => new IntPtr(&Links[node].RightAsSource);
+            protected override ref ulong GetRightReference(ulong node) => ref Links[node].RightAsSource;
 
-            protected override ulong GetLeftValue(ulong node) => Links[node].LeftAsSource;
+            protected override ulong GetLeft(ulong node) => Links[node].LeftAsSource;
 
-            protected override ulong GetRightValue(ulong node) => Links[node].RightAsSource;
+            protected override ulong GetRight(ulong node) => Links[node].RightAsSource;
 
             protected override ulong GetSize(ulong node)
             {
@@ -294,15 +294,6 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             protected override ulong GetZero() => 0UL;
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            protected override ulong GetOne() => 1UL;
-
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            protected override ulong GetTwo() => 2UL;
-
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            protected override bool ValueEqualToZero(IntPtr pointer) => *(ulong*)pointer.ToPointer() == 0UL;
-
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             protected override bool EqualToZero(ulong value) => value == 0UL;
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -364,13 +355,13 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
 
             //protected override void SetSize(ulong node, ulong size) => Links[node].SizeAsTarget = size;
 
-            protected override IntPtr GetLeftPointer(ulong node) => new IntPtr(&Links[node].LeftAsTarget);
+            protected override ref ulong GetLeftReference(ulong node) => ref Links[node].LeftAsTarget;
 
-            protected override IntPtr GetRightPointer(ulong node) => new IntPtr(&Links[node].RightAsTarget);
+            protected override ref ulong GetRightReference(ulong node) => ref Links[node].RightAsTarget;
 
-            protected override ulong GetLeftValue(ulong node) => Links[node].LeftAsTarget;
+            protected override ulong GetLeft(ulong node) => Links[node].LeftAsTarget;
 
-            protected override ulong GetRightValue(ulong node) => Links[node].RightAsTarget;
+            protected override ulong GetRight(ulong node) => Links[node].RightAsTarget;
 
             protected override ulong GetSize(ulong node)
             {
@@ -398,7 +389,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
                 return (previousValue & 16) >> 4 == 1UL;
                 // TODO: Check if this is possible to use
                 //var nodeSize = GetSize(node);
-                //var left = GetLeftValue(node);
+                //var left = GetLeft(node);
                 //var leftSize = GetSizeOrZero(left);
                 //return leftSize > 0 && nodeSize > leftSize;
             }
@@ -418,7 +409,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
                 return (previousValue & 8) >> 3 == 1UL;
                 // TODO: Check if this is possible to use
                 //var nodeSize = GetSize(node);
-                //var right = GetRightValue(node);
+                //var right = GetRight(node);
                 //var rightSize = GetSizeOrZero(right);
                 //return rightSize > 0 && nodeSize > rightSize;
             }

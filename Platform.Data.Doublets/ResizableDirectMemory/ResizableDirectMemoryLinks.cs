@@ -125,9 +125,9 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             public static TLink GetLastFreeLink(IntPtr pointer) => (pointer + LastFreeLinkOffset).GetValue<TLink>();
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static IntPtr GetFirstAsSourcePointer(IntPtr pointer) => pointer + FirstAsSourceOffset;
+            public unsafe static ref TLink GetFirstAsSourcePointer(IntPtr pointer) => ref System.Runtime.CompilerServices.Unsafe.AsRef<TLink>((void*)(pointer + FirstAsSourceOffset));
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static IntPtr GetFirstAsTargetPointer(IntPtr pointer) => pointer + FirstAsTargetOffset;
+            public unsafe static ref TLink GetFirstAsTargetPointer(IntPtr pointer) => ref System.Runtime.CompilerServices.Unsafe.AsRef<TLink>((void*)(pointer + FirstAsTargetOffset));
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static void SetAllocatedLinks(IntPtr pointer, TLink value) => (pointer + AllocatedLinksOffset).SetValue(value);
@@ -454,21 +454,21 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             // Будет корректно работать только в том случае, если пространство выделенной связи предварительно заполнено нулями
             if (!_equalityComparer.Equals(Link.GetSource(link), Constants.Null))
             {
-                _sourcesTreeMethods.Detach(LinksHeader.GetFirstAsSourcePointer(_header), linkIndex);
+                _sourcesTreeMethods.Detach(ref LinksHeader.GetFirstAsSourcePointer(_header), linkIndex);
             }
             if (!_equalityComparer.Equals(Link.GetTarget(link), Constants.Null))
             {
-                _targetsTreeMethods.Detach(LinksHeader.GetFirstAsTargetPointer(_header), linkIndex);
+                _targetsTreeMethods.Detach(ref LinksHeader.GetFirstAsTargetPointer(_header), linkIndex);
             }
             Link.SetSource(link, substitution[Constants.SourcePart]);
             Link.SetTarget(link, substitution[Constants.TargetPart]);
             if (!_equalityComparer.Equals(Link.GetSource(link), Constants.Null))
             {
-                _sourcesTreeMethods.Attach(LinksHeader.GetFirstAsSourcePointer(_header), linkIndex);
+                _sourcesTreeMethods.Attach(ref LinksHeader.GetFirstAsSourcePointer(_header), linkIndex);
             }
             if (!_equalityComparer.Equals(Link.GetTarget(link), Constants.Null))
             {
-                _targetsTreeMethods.Attach(LinksHeader.GetFirstAsTargetPointer(_header), linkIndex);
+                _targetsTreeMethods.Attach(ref LinksHeader.GetFirstAsTargetPointer(_header), linkIndex);
             }
             return linkIndex;
         }

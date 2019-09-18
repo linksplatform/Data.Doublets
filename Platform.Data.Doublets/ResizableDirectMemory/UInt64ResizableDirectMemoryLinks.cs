@@ -357,11 +357,11 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             // Будет корректно работать только в том случае, если пространство выделенной связи предварительно заполнено нулями
             if (link->Source != Constants.Null)
             {
-                _sourcesTreeMethods.Detach(new IntPtr(&_header->FirstAsSource), linkIndex);
+                _sourcesTreeMethods.Detach(ref _header->FirstAsSource, linkIndex);
             }
             if (link->Target != Constants.Null)
             {
-                _targetsTreeMethods.Detach(new IntPtr(&_header->FirstAsTarget), linkIndex);
+                _targetsTreeMethods.Detach(ref _header->FirstAsTarget, linkIndex);
             }
 #if ENABLE_TREE_AUTO_DEBUG_AND_VALIDATION
             var leftTreeSize = _sourcesTreeMethods.GetSize(new IntPtr(&_header->FirstAsSource));
@@ -375,11 +375,11 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             link->Target = substitution[Constants.TargetPart];
             if (link->Source != Constants.Null)
             {
-                _sourcesTreeMethods.Attach(new IntPtr(&_header->FirstAsSource), linkIndex);
+                _sourcesTreeMethods.Attach(ref _header->FirstAsSource, linkIndex);
             }
             if (link->Target != Constants.Null)
             {
-                _targetsTreeMethods.Attach(new IntPtr(&_header->FirstAsTarget), linkIndex);
+                _targetsTreeMethods.Attach(ref _header->FirstAsTarget, linkIndex);
             }
 #if ENABLE_TREE_AUTO_DEBUG_AND_VALIDATION
             leftTreeSize = _sourcesTreeMethods.GetSize(new IntPtr(&_header->FirstAsSource));

@@ -162,13 +162,13 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             {
             }
 
-            protected override IntPtr GetLeftPointer(TLink node) => Links.GetElement(LinkSizeInBytes, node) + Link.LeftAsSourceOffset;
+            protected unsafe override ref TLink GetLeftReference(TLink node) => ref System.Runtime.CompilerServices.Unsafe.AsRef<TLink>((void*)(Links.GetElement(LinkSizeInBytes, node) + Link.LeftAsSourceOffset));
 
-            protected override IntPtr GetRightPointer(TLink node) => Links.GetElement(LinkSizeInBytes, node) + Link.RightAsSourceOffset;
+            protected unsafe override ref TLink GetRightReference(TLink node) => ref System.Runtime.CompilerServices.Unsafe.AsRef<TLink>((void*)(Links.GetElement(LinkSizeInBytes, node) + Link.RightAsSourceOffset));
 
-            protected override TLink GetLeftValue(TLink node) => (Links.GetElement(LinkSizeInBytes, node) + Link.LeftAsSourceOffset).GetValue<TLink>();
+            protected override TLink GetLeft(TLink node) => (Links.GetElement(LinkSizeInBytes, node) + Link.LeftAsSourceOffset).GetValue<TLink>();
 
-            protected override TLink GetRightValue(TLink node) => (Links.GetElement(LinkSizeInBytes, node) + Link.RightAsSourceOffset).GetValue<TLink>();
+            protected override TLink GetRight(TLink node) => (Links.GetElement(LinkSizeInBytes, node) + Link.RightAsSourceOffset).GetValue<TLink>();
 
             protected override TLink GetSize(TLink node)
             {
@@ -294,13 +294,13 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             {
             }
 
-            protected override IntPtr GetLeftPointer(TLink node) => Links.GetElement(LinkSizeInBytes, node) + Link.LeftAsTargetOffset;
+            protected unsafe override ref TLink GetLeftReference(TLink node) => ref System.Runtime.CompilerServices.Unsafe.AsRef<TLink>((void*)(Links.GetElement(LinkSizeInBytes, node) + Link.LeftAsTargetOffset));
 
-            protected override IntPtr GetRightPointer(TLink node) => Links.GetElement(LinkSizeInBytes, node) + Link.RightAsTargetOffset;
+            protected unsafe override ref TLink GetRightReference(TLink node) => ref System.Runtime.CompilerServices.Unsafe.AsRef<TLink>((void*)(Links.GetElement(LinkSizeInBytes, node) + Link.RightAsTargetOffset));
 
-            protected override TLink GetLeftValue(TLink node) => (Links.GetElement(LinkSizeInBytes, node) + Link.LeftAsTargetOffset).GetValue<TLink>();
+            protected override TLink GetLeft(TLink node) => (Links.GetElement(LinkSizeInBytes, node) + Link.LeftAsTargetOffset).GetValue<TLink>();
 
-            protected override TLink GetRightValue(TLink node) => (Links.GetElement(LinkSizeInBytes, node) + Link.RightAsTargetOffset).GetValue<TLink>();
+            protected override TLink GetRight(TLink node) => (Links.GetElement(LinkSizeInBytes, node) + Link.RightAsTargetOffset).GetValue<TLink>();
 
             protected override TLink GetSize(TLink node)
             {
