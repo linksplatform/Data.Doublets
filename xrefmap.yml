@@ -3525,6 +3525,14 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase(Of TLink).EachUsage
   nameWithType: LinksAVLBalancedTreeMethodsBase<TLink>.EachUsage
   nameWithType.vb: LinksAVLBalancedTreeMethodsBase(Of TLink).EachUsage
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.FirstIsToTheLeftOfSecond(`0,`0)
+  name: FirstIsToTheLeftOfSecond(TLink, TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_FirstIsToTheLeftOfSecond__0__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.FirstIsToTheLeftOfSecond(`0,`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase<TLink>.FirstIsToTheLeftOfSecond(TLink, TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase(Of TLink).FirstIsToTheLeftOfSecond(TLink, TLink)
+  nameWithType: LinksAVLBalancedTreeMethodsBase<TLink>.FirstIsToTheLeftOfSecond(TLink, TLink)
+  nameWithType.vb: LinksAVLBalancedTreeMethodsBase(Of TLink).FirstIsToTheLeftOfSecond(TLink, TLink)
 - uid: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.FirstIsToTheLeftOfSecond(`0,`0,`0,`0)
   name: FirstIsToTheLeftOfSecond(TLink, TLink, TLink, TLink)
   href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_FirstIsToTheLeftOfSecond__0__0__0__0_
@@ -3542,6 +3550,14 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase(Of TLink).FirstIsToTheLeftOfSecond
   nameWithType: LinksAVLBalancedTreeMethodsBase<TLink>.FirstIsToTheLeftOfSecond
   nameWithType.vb: LinksAVLBalancedTreeMethodsBase(Of TLink).FirstIsToTheLeftOfSecond
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.FirstIsToTheRightOfSecond(`0,`0)
+  name: FirstIsToTheRightOfSecond(TLink, TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_FirstIsToTheRightOfSecond__0__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.FirstIsToTheRightOfSecond(`0,`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase<TLink>.FirstIsToTheRightOfSecond(TLink, TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase(Of TLink).FirstIsToTheRightOfSecond(TLink, TLink)
+  nameWithType: LinksAVLBalancedTreeMethodsBase<TLink>.FirstIsToTheRightOfSecond(TLink, TLink)
+  nameWithType.vb: LinksAVLBalancedTreeMethodsBase(Of TLink).FirstIsToTheRightOfSecond(TLink, TLink)
 - uid: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.FirstIsToTheRightOfSecond(`0,`0,`0,`0)
   name: FirstIsToTheRightOfSecond(TLink, TLink, TLink, TLink)
   href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_FirstIsToTheRightOfSecond__0__0__0__0_
@@ -3559,6 +3575,23 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase(Of TLink).FirstIsToTheRightOfSecond
   nameWithType: LinksAVLBalancedTreeMethodsBase<TLink>.FirstIsToTheRightOfSecond
   nameWithType.vb: LinksAVLBalancedTreeMethodsBase(Of TLink).FirstIsToTheRightOfSecond
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetBalanceValue(`0)
+  name: GetBalanceValue(TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetBalanceValue__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetBalanceValue(`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase<TLink>.GetBalanceValue(TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase(Of TLink).GetBalanceValue(TLink)
+  nameWithType: LinksAVLBalancedTreeMethodsBase<TLink>.GetBalanceValue(TLink)
+  nameWithType.vb: LinksAVLBalancedTreeMethodsBase(Of TLink).GetBalanceValue(TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetBalanceValue*
+  name: GetBalanceValue
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetBalanceValue_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetBalanceValue
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase<TLink>.GetBalanceValue
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase(Of TLink).GetBalanceValue
+  nameWithType: LinksAVLBalancedTreeMethodsBase<TLink>.GetBalanceValue
+  nameWithType.vb: LinksAVLBalancedTreeMethodsBase(Of TLink).GetBalanceValue
 - uid: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetBasePartValue(`0)
   name: GetBasePartValue(TLink)
   href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetBasePartValue__0_
@@ -3576,6 +3609,57 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase(Of TLink).GetBasePartValue
   nameWithType: LinksAVLBalancedTreeMethodsBase<TLink>.GetBasePartValue
   nameWithType.vb: LinksAVLBalancedTreeMethodsBase(Of TLink).GetBasePartValue
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetLeftIsChildValue(`0)
+  name: GetLeftIsChildValue(TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetLeftIsChildValue__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetLeftIsChildValue(`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase<TLink>.GetLeftIsChildValue(TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase(Of TLink).GetLeftIsChildValue(TLink)
+  nameWithType: LinksAVLBalancedTreeMethodsBase<TLink>.GetLeftIsChildValue(TLink)
+  nameWithType.vb: LinksAVLBalancedTreeMethodsBase(Of TLink).GetLeftIsChildValue(TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetLeftIsChildValue*
+  name: GetLeftIsChildValue
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetLeftIsChildValue_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetLeftIsChildValue
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase<TLink>.GetLeftIsChildValue
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase(Of TLink).GetLeftIsChildValue
+  nameWithType: LinksAVLBalancedTreeMethodsBase<TLink>.GetLeftIsChildValue
+  nameWithType.vb: LinksAVLBalancedTreeMethodsBase(Of TLink).GetLeftIsChildValue
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetRightIsChildValue(`0)
+  name: GetRightIsChildValue(TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetRightIsChildValue__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetRightIsChildValue(`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase<TLink>.GetRightIsChildValue(TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase(Of TLink).GetRightIsChildValue(TLink)
+  nameWithType: LinksAVLBalancedTreeMethodsBase<TLink>.GetRightIsChildValue(TLink)
+  nameWithType.vb: LinksAVLBalancedTreeMethodsBase(Of TLink).GetRightIsChildValue(TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetRightIsChildValue*
+  name: GetRightIsChildValue
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetRightIsChildValue_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetRightIsChildValue
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase<TLink>.GetRightIsChildValue
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase(Of TLink).GetRightIsChildValue
+  nameWithType: LinksAVLBalancedTreeMethodsBase<TLink>.GetRightIsChildValue
+  nameWithType.vb: LinksAVLBalancedTreeMethodsBase(Of TLink).GetRightIsChildValue
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetSizeValue(`0)
+  name: GetSizeValue(TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetSizeValue__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetSizeValue(`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase<TLink>.GetSizeValue(TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase(Of TLink).GetSizeValue(TLink)
+  nameWithType: LinksAVLBalancedTreeMethodsBase<TLink>.GetSizeValue(TLink)
+  nameWithType.vb: LinksAVLBalancedTreeMethodsBase(Of TLink).GetSizeValue(TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetSizeValue*
+  name: GetSizeValue
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetSizeValue_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetSizeValue
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase<TLink>.GetSizeValue
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase(Of TLink).GetSizeValue
+  nameWithType: LinksAVLBalancedTreeMethodsBase<TLink>.GetSizeValue
+  nameWithType.vb: LinksAVLBalancedTreeMethodsBase(Of TLink).GetSizeValue
 - uid: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetTreeRoot
   name: GetTreeRoot()
   href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetTreeRoot
@@ -3661,6 +3745,78 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase(Of TLink).Search
   nameWithType: LinksAVLBalancedTreeMethodsBase<TLink>.Search
   nameWithType.vb: LinksAVLBalancedTreeMethodsBase(Of TLink).Search
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.SetBalanceValue(`0@,System.SByte)
+  name: SetBalanceValue(ref TLink, SByte)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_SetBalanceValue__0__System_SByte_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.SetBalanceValue(`0@,System.SByte)
+  name.vb: SetBalanceValue(ByRef TLink, SByte)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase<TLink>.SetBalanceValue(ref TLink, System.SByte)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase(Of TLink).SetBalanceValue(ByRef TLink, System.SByte)
+  nameWithType: LinksAVLBalancedTreeMethodsBase<TLink>.SetBalanceValue(ref TLink, SByte)
+  nameWithType.vb: LinksAVLBalancedTreeMethodsBase(Of TLink).SetBalanceValue(ByRef TLink, SByte)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.SetBalanceValue*
+  name: SetBalanceValue
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_SetBalanceValue_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.SetBalanceValue
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase<TLink>.SetBalanceValue
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase(Of TLink).SetBalanceValue
+  nameWithType: LinksAVLBalancedTreeMethodsBase<TLink>.SetBalanceValue
+  nameWithType.vb: LinksAVLBalancedTreeMethodsBase(Of TLink).SetBalanceValue
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.SetLeftIsChildValue(`0@,System.Boolean)
+  name: SetLeftIsChildValue(ref TLink, Boolean)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_SetLeftIsChildValue__0__System_Boolean_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.SetLeftIsChildValue(`0@,System.Boolean)
+  name.vb: SetLeftIsChildValue(ByRef TLink, Boolean)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase<TLink>.SetLeftIsChildValue(ref TLink, System.Boolean)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase(Of TLink).SetLeftIsChildValue(ByRef TLink, System.Boolean)
+  nameWithType: LinksAVLBalancedTreeMethodsBase<TLink>.SetLeftIsChildValue(ref TLink, Boolean)
+  nameWithType.vb: LinksAVLBalancedTreeMethodsBase(Of TLink).SetLeftIsChildValue(ByRef TLink, Boolean)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.SetLeftIsChildValue*
+  name: SetLeftIsChildValue
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_SetLeftIsChildValue_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.SetLeftIsChildValue
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase<TLink>.SetLeftIsChildValue
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase(Of TLink).SetLeftIsChildValue
+  nameWithType: LinksAVLBalancedTreeMethodsBase<TLink>.SetLeftIsChildValue
+  nameWithType.vb: LinksAVLBalancedTreeMethodsBase(Of TLink).SetLeftIsChildValue
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.SetRightIsChildValue(`0@,System.Boolean)
+  name: SetRightIsChildValue(ref TLink, Boolean)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_SetRightIsChildValue__0__System_Boolean_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.SetRightIsChildValue(`0@,System.Boolean)
+  name.vb: SetRightIsChildValue(ByRef TLink, Boolean)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase<TLink>.SetRightIsChildValue(ref TLink, System.Boolean)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase(Of TLink).SetRightIsChildValue(ByRef TLink, System.Boolean)
+  nameWithType: LinksAVLBalancedTreeMethodsBase<TLink>.SetRightIsChildValue(ref TLink, Boolean)
+  nameWithType.vb: LinksAVLBalancedTreeMethodsBase(Of TLink).SetRightIsChildValue(ByRef TLink, Boolean)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.SetRightIsChildValue*
+  name: SetRightIsChildValue
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_SetRightIsChildValue_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.SetRightIsChildValue
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase<TLink>.SetRightIsChildValue
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase(Of TLink).SetRightIsChildValue
+  nameWithType: LinksAVLBalancedTreeMethodsBase<TLink>.SetRightIsChildValue
+  nameWithType.vb: LinksAVLBalancedTreeMethodsBase(Of TLink).SetRightIsChildValue
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.SetSizeValue(`0@,`0)
+  name: SetSizeValue(ref TLink, TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_SetSizeValue__0___0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.SetSizeValue(`0@,`0)
+  name.vb: SetSizeValue(ByRef TLink, TLink)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase<TLink>.SetSizeValue(ref TLink, TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase(Of TLink).SetSizeValue(ByRef TLink, TLink)
+  nameWithType: LinksAVLBalancedTreeMethodsBase<TLink>.SetSizeValue(ref TLink, TLink)
+  nameWithType.vb: LinksAVLBalancedTreeMethodsBase(Of TLink).SetSizeValue(ByRef TLink, TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.SetSizeValue*
+  name: SetSizeValue
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_SetSizeValue_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.SetSizeValue
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase<TLink>.SetSizeValue
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase(Of TLink).SetSizeValue
+  nameWithType: LinksAVLBalancedTreeMethodsBase<TLink>.SetSizeValue
+  nameWithType.vb: LinksAVLBalancedTreeMethodsBase(Of TLink).SetSizeValue
 - uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesAVLBalancedTreeMethods`1
   name: LinksSourcesAVLBalancedTreeMethods<TLink>
   href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesAVLBalancedTreeMethods-1.html
@@ -3705,14 +3861,6 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesAVLBalancedTreeMethods(Of TLink).ClearNode
   nameWithType: LinksSourcesAVLBalancedTreeMethods<TLink>.ClearNode
   nameWithType.vb: LinksSourcesAVLBalancedTreeMethods(Of TLink).ClearNode
-- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesAVLBalancedTreeMethods`1.FirstIsToTheLeftOfSecond(`0,`0)
-  name: FirstIsToTheLeftOfSecond(TLink, TLink)
-  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesAVLBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSourcesAVLBalancedTreeMethods_1_FirstIsToTheLeftOfSecond__0__0_
-  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesAVLBalancedTreeMethods`1.FirstIsToTheLeftOfSecond(`0,`0)
-  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesAVLBalancedTreeMethods<TLink>.FirstIsToTheLeftOfSecond(TLink, TLink)
-  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesAVLBalancedTreeMethods(Of TLink).FirstIsToTheLeftOfSecond(TLink, TLink)
-  nameWithType: LinksSourcesAVLBalancedTreeMethods<TLink>.FirstIsToTheLeftOfSecond(TLink, TLink)
-  nameWithType.vb: LinksSourcesAVLBalancedTreeMethods(Of TLink).FirstIsToTheLeftOfSecond(TLink, TLink)
 - uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesAVLBalancedTreeMethods`1.FirstIsToTheLeftOfSecond(`0,`0,`0,`0)
   name: FirstIsToTheLeftOfSecond(TLink, TLink, TLink, TLink)
   href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesAVLBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSourcesAVLBalancedTreeMethods_1_FirstIsToTheLeftOfSecond__0__0__0__0_
@@ -3730,14 +3878,6 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesAVLBalancedTreeMethods(Of TLink).FirstIsToTheLeftOfSecond
   nameWithType: LinksSourcesAVLBalancedTreeMethods<TLink>.FirstIsToTheLeftOfSecond
   nameWithType.vb: LinksSourcesAVLBalancedTreeMethods(Of TLink).FirstIsToTheLeftOfSecond
-- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesAVLBalancedTreeMethods`1.FirstIsToTheRightOfSecond(`0,`0)
-  name: FirstIsToTheRightOfSecond(TLink, TLink)
-  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesAVLBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSourcesAVLBalancedTreeMethods_1_FirstIsToTheRightOfSecond__0__0_
-  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesAVLBalancedTreeMethods`1.FirstIsToTheRightOfSecond(`0,`0)
-  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesAVLBalancedTreeMethods<TLink>.FirstIsToTheRightOfSecond(TLink, TLink)
-  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesAVLBalancedTreeMethods(Of TLink).FirstIsToTheRightOfSecond(TLink, TLink)
-  nameWithType: LinksSourcesAVLBalancedTreeMethods<TLink>.FirstIsToTheRightOfSecond(TLink, TLink)
-  nameWithType.vb: LinksSourcesAVLBalancedTreeMethods(Of TLink).FirstIsToTheRightOfSecond(TLink, TLink)
 - uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesAVLBalancedTreeMethods`1.FirstIsToTheRightOfSecond(`0,`0,`0,`0)
   name: FirstIsToTheRightOfSecond(TLink, TLink, TLink, TLink)
   href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesAVLBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSourcesAVLBalancedTreeMethods_1_FirstIsToTheRightOfSecond__0__0__0__0_
@@ -4071,14 +4211,6 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsAVLBalancedTreeMethods(Of TLink).ClearNode
   nameWithType: LinksTargetsAVLBalancedTreeMethods<TLink>.ClearNode
   nameWithType.vb: LinksTargetsAVLBalancedTreeMethods(Of TLink).ClearNode
-- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsAVLBalancedTreeMethods`1.FirstIsToTheLeftOfSecond(`0,`0)
-  name: FirstIsToTheLeftOfSecond(TLink, TLink)
-  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsAVLBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksTargetsAVLBalancedTreeMethods_1_FirstIsToTheLeftOfSecond__0__0_
-  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsAVLBalancedTreeMethods`1.FirstIsToTheLeftOfSecond(`0,`0)
-  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsAVLBalancedTreeMethods<TLink>.FirstIsToTheLeftOfSecond(TLink, TLink)
-  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsAVLBalancedTreeMethods(Of TLink).FirstIsToTheLeftOfSecond(TLink, TLink)
-  nameWithType: LinksTargetsAVLBalancedTreeMethods<TLink>.FirstIsToTheLeftOfSecond(TLink, TLink)
-  nameWithType.vb: LinksTargetsAVLBalancedTreeMethods(Of TLink).FirstIsToTheLeftOfSecond(TLink, TLink)
 - uid: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsAVLBalancedTreeMethods`1.FirstIsToTheLeftOfSecond(`0,`0,`0,`0)
   name: FirstIsToTheLeftOfSecond(TLink, TLink, TLink, TLink)
   href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsAVLBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksTargetsAVLBalancedTreeMethods_1_FirstIsToTheLeftOfSecond__0__0__0__0_
@@ -4096,14 +4228,6 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsAVLBalancedTreeMethods(Of TLink).FirstIsToTheLeftOfSecond
   nameWithType: LinksTargetsAVLBalancedTreeMethods<TLink>.FirstIsToTheLeftOfSecond
   nameWithType.vb: LinksTargetsAVLBalancedTreeMethods(Of TLink).FirstIsToTheLeftOfSecond
-- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsAVLBalancedTreeMethods`1.FirstIsToTheRightOfSecond(`0,`0)
-  name: FirstIsToTheRightOfSecond(TLink, TLink)
-  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsAVLBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksTargetsAVLBalancedTreeMethods_1_FirstIsToTheRightOfSecond__0__0_
-  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsAVLBalancedTreeMethods`1.FirstIsToTheRightOfSecond(`0,`0)
-  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsAVLBalancedTreeMethods<TLink>.FirstIsToTheRightOfSecond(TLink, TLink)
-  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsAVLBalancedTreeMethods(Of TLink).FirstIsToTheRightOfSecond(TLink, TLink)
-  nameWithType: LinksTargetsAVLBalancedTreeMethods<TLink>.FirstIsToTheRightOfSecond(TLink, TLink)
-  nameWithType.vb: LinksTargetsAVLBalancedTreeMethods(Of TLink).FirstIsToTheRightOfSecond(TLink, TLink)
 - uid: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsAVLBalancedTreeMethods`1.FirstIsToTheRightOfSecond(`0,`0,`0,`0)
   name: FirstIsToTheRightOfSecond(TLink, TLink, TLink, TLink)
   href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsAVLBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksTargetsAVLBalancedTreeMethods_1_FirstIsToTheRightOfSecond__0__0__0__0_
@@ -4699,6 +4823,12 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.EqualToZero
   nameWithType: UInt64LinksAVLBalancedTreeMethodsBase.EqualToZero
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.FirstIsToTheLeftOfSecond(System.UInt64,System.UInt64)
+  name: FirstIsToTheLeftOfSecond(UInt64, UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksAVLBalancedTreeMethodsBase_FirstIsToTheLeftOfSecond_System_UInt64_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.FirstIsToTheLeftOfSecond(System.UInt64,System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.FirstIsToTheLeftOfSecond(System.UInt64, System.UInt64)
+  nameWithType: UInt64LinksAVLBalancedTreeMethodsBase.FirstIsToTheLeftOfSecond(UInt64, UInt64)
 - uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.FirstIsToTheLeftOfSecond(System.UInt64,System.UInt64,System.UInt64,System.UInt64)
   name: FirstIsToTheLeftOfSecond(UInt64, UInt64, UInt64, UInt64)
   href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksAVLBalancedTreeMethodsBase_FirstIsToTheLeftOfSecond_System_UInt64_System_UInt64_System_UInt64_System_UInt64_
@@ -4712,6 +4842,12 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.FirstIsToTheLeftOfSecond
   nameWithType: UInt64LinksAVLBalancedTreeMethodsBase.FirstIsToTheLeftOfSecond
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.FirstIsToTheRightOfSecond(System.UInt64,System.UInt64)
+  name: FirstIsToTheRightOfSecond(UInt64, UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksAVLBalancedTreeMethodsBase_FirstIsToTheRightOfSecond_System_UInt64_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.FirstIsToTheRightOfSecond(System.UInt64,System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.FirstIsToTheRightOfSecond(System.UInt64, System.UInt64)
+  nameWithType: UInt64LinksAVLBalancedTreeMethodsBase.FirstIsToTheRightOfSecond(UInt64, UInt64)
 - uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.FirstIsToTheRightOfSecond(System.UInt64,System.UInt64,System.UInt64,System.UInt64)
   name: FirstIsToTheRightOfSecond(UInt64, UInt64, UInt64, UInt64)
   href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksAVLBalancedTreeMethodsBase_FirstIsToTheRightOfSecond_System_UInt64_System_UInt64_System_UInt64_System_UInt64_
@@ -4725,6 +4861,19 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.FirstIsToTheRightOfSecond
   nameWithType: UInt64LinksAVLBalancedTreeMethodsBase.FirstIsToTheRightOfSecond
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.GetBalanceValue(System.UInt64)
+  name: GetBalanceValue(UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksAVLBalancedTreeMethodsBase_GetBalanceValue_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.GetBalanceValue(System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.GetBalanceValue(System.UInt64)
+  nameWithType: UInt64LinksAVLBalancedTreeMethodsBase.GetBalanceValue(UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.GetBalanceValue*
+  name: GetBalanceValue
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksAVLBalancedTreeMethodsBase_GetBalanceValue_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.GetBalanceValue
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.GetBalanceValue
+  nameWithType: UInt64LinksAVLBalancedTreeMethodsBase.GetBalanceValue
 - uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.GetBasePartValue(System.UInt64)
   name: GetBasePartValue(UInt64)
   href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksAVLBalancedTreeMethodsBase_GetBasePartValue_System_UInt64_
@@ -4738,6 +4887,45 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.GetBasePartValue
   nameWithType: UInt64LinksAVLBalancedTreeMethodsBase.GetBasePartValue
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.GetLeftIsChildValue(System.UInt64)
+  name: GetLeftIsChildValue(UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksAVLBalancedTreeMethodsBase_GetLeftIsChildValue_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.GetLeftIsChildValue(System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.GetLeftIsChildValue(System.UInt64)
+  nameWithType: UInt64LinksAVLBalancedTreeMethodsBase.GetLeftIsChildValue(UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.GetLeftIsChildValue*
+  name: GetLeftIsChildValue
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksAVLBalancedTreeMethodsBase_GetLeftIsChildValue_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.GetLeftIsChildValue
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.GetLeftIsChildValue
+  nameWithType: UInt64LinksAVLBalancedTreeMethodsBase.GetLeftIsChildValue
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.GetRightIsChildValue(System.UInt64)
+  name: GetRightIsChildValue(UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksAVLBalancedTreeMethodsBase_GetRightIsChildValue_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.GetRightIsChildValue(System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.GetRightIsChildValue(System.UInt64)
+  nameWithType: UInt64LinksAVLBalancedTreeMethodsBase.GetRightIsChildValue(UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.GetRightIsChildValue*
+  name: GetRightIsChildValue
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksAVLBalancedTreeMethodsBase_GetRightIsChildValue_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.GetRightIsChildValue
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.GetRightIsChildValue
+  nameWithType: UInt64LinksAVLBalancedTreeMethodsBase.GetRightIsChildValue
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.GetSizeValue(System.UInt64)
+  name: GetSizeValue(UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksAVLBalancedTreeMethodsBase_GetSizeValue_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.GetSizeValue(System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.GetSizeValue(System.UInt64)
+  nameWithType: UInt64LinksAVLBalancedTreeMethodsBase.GetSizeValue(UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.GetSizeValue*
+  name: GetSizeValue
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksAVLBalancedTreeMethodsBase_GetSizeValue_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.GetSizeValue
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.GetSizeValue
+  nameWithType: UInt64LinksAVLBalancedTreeMethodsBase.GetSizeValue
 - uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.GetTreeRoot
   name: GetTreeRoot()
   href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksAVLBalancedTreeMethodsBase_GetTreeRoot
@@ -4936,6 +5124,70 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.Search
   nameWithType: UInt64LinksAVLBalancedTreeMethodsBase.Search
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.SetBalanceValue(System.UInt64@,System.SByte)
+  name: SetBalanceValue(ref UInt64, SByte)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksAVLBalancedTreeMethodsBase_SetBalanceValue_System_UInt64__System_SByte_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.SetBalanceValue(System.UInt64@,System.SByte)
+  name.vb: SetBalanceValue(ByRef UInt64, SByte)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.SetBalanceValue(ref System.UInt64, System.SByte)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.SetBalanceValue(ByRef System.UInt64, System.SByte)
+  nameWithType: UInt64LinksAVLBalancedTreeMethodsBase.SetBalanceValue(ref UInt64, SByte)
+  nameWithType.vb: UInt64LinksAVLBalancedTreeMethodsBase.SetBalanceValue(ByRef UInt64, SByte)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.SetBalanceValue*
+  name: SetBalanceValue
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksAVLBalancedTreeMethodsBase_SetBalanceValue_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.SetBalanceValue
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.SetBalanceValue
+  nameWithType: UInt64LinksAVLBalancedTreeMethodsBase.SetBalanceValue
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.SetLeftIsChildValue(System.UInt64@,System.Boolean)
+  name: SetLeftIsChildValue(ref UInt64, Boolean)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksAVLBalancedTreeMethodsBase_SetLeftIsChildValue_System_UInt64__System_Boolean_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.SetLeftIsChildValue(System.UInt64@,System.Boolean)
+  name.vb: SetLeftIsChildValue(ByRef UInt64, Boolean)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.SetLeftIsChildValue(ref System.UInt64, System.Boolean)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.SetLeftIsChildValue(ByRef System.UInt64, System.Boolean)
+  nameWithType: UInt64LinksAVLBalancedTreeMethodsBase.SetLeftIsChildValue(ref UInt64, Boolean)
+  nameWithType.vb: UInt64LinksAVLBalancedTreeMethodsBase.SetLeftIsChildValue(ByRef UInt64, Boolean)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.SetLeftIsChildValue*
+  name: SetLeftIsChildValue
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksAVLBalancedTreeMethodsBase_SetLeftIsChildValue_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.SetLeftIsChildValue
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.SetLeftIsChildValue
+  nameWithType: UInt64LinksAVLBalancedTreeMethodsBase.SetLeftIsChildValue
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.SetRightIsChildValue(System.UInt64@,System.Boolean)
+  name: SetRightIsChildValue(ref UInt64, Boolean)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksAVLBalancedTreeMethodsBase_SetRightIsChildValue_System_UInt64__System_Boolean_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.SetRightIsChildValue(System.UInt64@,System.Boolean)
+  name.vb: SetRightIsChildValue(ByRef UInt64, Boolean)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.SetRightIsChildValue(ref System.UInt64, System.Boolean)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.SetRightIsChildValue(ByRef System.UInt64, System.Boolean)
+  nameWithType: UInt64LinksAVLBalancedTreeMethodsBase.SetRightIsChildValue(ref UInt64, Boolean)
+  nameWithType.vb: UInt64LinksAVLBalancedTreeMethodsBase.SetRightIsChildValue(ByRef UInt64, Boolean)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.SetRightIsChildValue*
+  name: SetRightIsChildValue
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksAVLBalancedTreeMethodsBase_SetRightIsChildValue_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.SetRightIsChildValue
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.SetRightIsChildValue
+  nameWithType: UInt64LinksAVLBalancedTreeMethodsBase.SetRightIsChildValue
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.SetSizeValue(System.UInt64@,System.UInt64)
+  name: SetSizeValue(ref UInt64, UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksAVLBalancedTreeMethodsBase_SetSizeValue_System_UInt64__System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.SetSizeValue(System.UInt64@,System.UInt64)
+  name.vb: SetSizeValue(ByRef UInt64, UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.SetSizeValue(ref System.UInt64, System.UInt64)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.SetSizeValue(ByRef System.UInt64, System.UInt64)
+  nameWithType: UInt64LinksAVLBalancedTreeMethodsBase.SetSizeValue(ref UInt64, UInt64)
+  nameWithType.vb: UInt64LinksAVLBalancedTreeMethodsBase.SetSizeValue(ByRef UInt64, UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.SetSizeValue*
+  name: SetSizeValue
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksAVLBalancedTreeMethodsBase_SetSizeValue_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.SetSizeValue
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.SetSizeValue
+  nameWithType: UInt64LinksAVLBalancedTreeMethodsBase.SetSizeValue
 - uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.Subtract(System.UInt64,System.UInt64)
   name: Subtract(UInt64, UInt64)
   href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksAVLBalancedTreeMethodsBase_Subtract_System_UInt64_System_UInt64_
@@ -4968,12 +5220,6 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesAVLBalancedTreeMethods.ClearNode
   nameWithType: UInt64LinksSourcesAVLBalancedTreeMethods.ClearNode
-- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesAVLBalancedTreeMethods.FirstIsToTheLeftOfSecond(System.UInt64,System.UInt64)
-  name: FirstIsToTheLeftOfSecond(UInt64, UInt64)
-  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesAVLBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSourcesAVLBalancedTreeMethods_FirstIsToTheLeftOfSecond_System_UInt64_System_UInt64_
-  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesAVLBalancedTreeMethods.FirstIsToTheLeftOfSecond(System.UInt64,System.UInt64)
-  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesAVLBalancedTreeMethods.FirstIsToTheLeftOfSecond(System.UInt64, System.UInt64)
-  nameWithType: UInt64LinksSourcesAVLBalancedTreeMethods.FirstIsToTheLeftOfSecond(UInt64, UInt64)
 - uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesAVLBalancedTreeMethods.FirstIsToTheLeftOfSecond(System.UInt64,System.UInt64,System.UInt64,System.UInt64)
   name: FirstIsToTheLeftOfSecond(UInt64, UInt64, UInt64, UInt64)
   href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesAVLBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSourcesAVLBalancedTreeMethods_FirstIsToTheLeftOfSecond_System_UInt64_System_UInt64_System_UInt64_System_UInt64_
@@ -4987,12 +5233,6 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesAVLBalancedTreeMethods.FirstIsToTheLeftOfSecond
   nameWithType: UInt64LinksSourcesAVLBalancedTreeMethods.FirstIsToTheLeftOfSecond
-- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesAVLBalancedTreeMethods.FirstIsToTheRightOfSecond(System.UInt64,System.UInt64)
-  name: FirstIsToTheRightOfSecond(UInt64, UInt64)
-  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesAVLBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSourcesAVLBalancedTreeMethods_FirstIsToTheRightOfSecond_System_UInt64_System_UInt64_
-  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesAVLBalancedTreeMethods.FirstIsToTheRightOfSecond(System.UInt64,System.UInt64)
-  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesAVLBalancedTreeMethods.FirstIsToTheRightOfSecond(System.UInt64, System.UInt64)
-  nameWithType: UInt64LinksSourcesAVLBalancedTreeMethods.FirstIsToTheRightOfSecond(UInt64, UInt64)
 - uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesAVLBalancedTreeMethods.FirstIsToTheRightOfSecond(System.UInt64,System.UInt64,System.UInt64,System.UInt64)
   name: FirstIsToTheRightOfSecond(UInt64, UInt64, UInt64, UInt64)
   href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesAVLBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSourcesAVLBalancedTreeMethods_FirstIsToTheRightOfSecond_System_UInt64_System_UInt64_System_UInt64_System_UInt64_
@@ -5233,12 +5473,6 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsAVLBalancedTreeMethods.ClearNode
   nameWithType: UInt64LinksTargetsAVLBalancedTreeMethods.ClearNode
-- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsAVLBalancedTreeMethods.FirstIsToTheLeftOfSecond(System.UInt64,System.UInt64)
-  name: FirstIsToTheLeftOfSecond(UInt64, UInt64)
-  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsAVLBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksTargetsAVLBalancedTreeMethods_FirstIsToTheLeftOfSecond_System_UInt64_System_UInt64_
-  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsAVLBalancedTreeMethods.FirstIsToTheLeftOfSecond(System.UInt64,System.UInt64)
-  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsAVLBalancedTreeMethods.FirstIsToTheLeftOfSecond(System.UInt64, System.UInt64)
-  nameWithType: UInt64LinksTargetsAVLBalancedTreeMethods.FirstIsToTheLeftOfSecond(UInt64, UInt64)
 - uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsAVLBalancedTreeMethods.FirstIsToTheLeftOfSecond(System.UInt64,System.UInt64,System.UInt64,System.UInt64)
   name: FirstIsToTheLeftOfSecond(UInt64, UInt64, UInt64, UInt64)
   href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsAVLBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksTargetsAVLBalancedTreeMethods_FirstIsToTheLeftOfSecond_System_UInt64_System_UInt64_System_UInt64_System_UInt64_
@@ -5252,12 +5486,6 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsAVLBalancedTreeMethods.FirstIsToTheLeftOfSecond
   nameWithType: UInt64LinksTargetsAVLBalancedTreeMethods.FirstIsToTheLeftOfSecond
-- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsAVLBalancedTreeMethods.FirstIsToTheRightOfSecond(System.UInt64,System.UInt64)
-  name: FirstIsToTheRightOfSecond(UInt64, UInt64)
-  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsAVLBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksTargetsAVLBalancedTreeMethods_FirstIsToTheRightOfSecond_System_UInt64_System_UInt64_
-  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsAVLBalancedTreeMethods.FirstIsToTheRightOfSecond(System.UInt64,System.UInt64)
-  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsAVLBalancedTreeMethods.FirstIsToTheRightOfSecond(System.UInt64, System.UInt64)
-  nameWithType: UInt64LinksTargetsAVLBalancedTreeMethods.FirstIsToTheRightOfSecond(UInt64, UInt64)
 - uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsAVLBalancedTreeMethods.FirstIsToTheRightOfSecond(System.UInt64,System.UInt64,System.UInt64,System.UInt64)
   name: FirstIsToTheRightOfSecond(UInt64, UInt64, UInt64, UInt64)
   href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsAVLBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksTargetsAVLBalancedTreeMethods_FirstIsToTheRightOfSecond_System_UInt64_System_UInt64_System_UInt64_System_UInt64_
@@ -5625,6 +5853,19 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Each
   nameWithType: UInt64ResizableDirectMemoryLinks.Each
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.GetLinkStruct(System.UInt64)
+  name: GetLinkStruct(UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64ResizableDirectMemoryLinks_GetLinkStruct_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.GetLinkStruct(System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.GetLinkStruct(System.UInt64)
+  nameWithType: UInt64ResizableDirectMemoryLinks.GetLinkStruct(UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.GetLinkStruct*
+  name: GetLinkStruct
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64ResizableDirectMemoryLinks_GetLinkStruct_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.GetLinkStruct
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.GetLinkStruct
+  nameWithType: UInt64ResizableDirectMemoryLinks.GetLinkStruct
 - uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.LinkSizeInBytes
   name: LinkSizeInBytes
   href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64ResizableDirectMemoryLinks_LinkSizeInBytes
