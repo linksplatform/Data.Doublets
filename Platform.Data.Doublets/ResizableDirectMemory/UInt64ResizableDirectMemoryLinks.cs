@@ -369,14 +369,14 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        internal IList<id> GetLinkStruct(id linkIndex)
+        public IList<id> GetLinkStruct(id linkIndex)
         {
             var link = GetLinkUnsafe(linkIndex);
             return new UInt64Link(linkIndex, link->Source, link->Target);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private UInt64RawLink* GetLinkUnsafe(id linkIndex) => &_links[linkIndex];
+        internal UInt64RawLink* GetLinkUnsafe(id linkIndex) => &_links[linkIndex];
 
         /// <remarks>
         /// TODO: Возможно нужно будет заполнение нулями, если внешнее API ими не заполняет пространство

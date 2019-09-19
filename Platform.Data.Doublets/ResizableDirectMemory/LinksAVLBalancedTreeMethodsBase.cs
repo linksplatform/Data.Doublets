@@ -37,6 +37,98 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected abstract bool FirstIsToTheLeftOfSecond(TLink source, TLink target, TLink rootSource, TLink rootTarget);
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected override bool FirstIsToTheLeftOfSecond(TLink first, TLink second)
+        {
+            var firstLink = Links + RawLink<TLink>.SizeInBytes * (Integer<TLink>)first;
+            var secondLink = Links + RawLink<TLink>.SizeInBytes * (Integer<TLink>)second;
+            return FirstIsToTheLeftOfSecond(Read<TLink>(firstLink + RawLink<TLink>.SourceOffset),
+                                            Read<TLink>(firstLink + RawLink<TLink>.TargetOffset),
+                                            Read<TLink>(secondLink + RawLink<TLink>.SourceOffset),
+                                            Read<TLink>(secondLink + RawLink<TLink>.TargetOffset));
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected override bool FirstIsToTheRightOfSecond(TLink first, TLink second)
+        {
+            var firstLink = Links + RawLink<TLink>.SizeInBytes * (Integer<TLink>)first;
+            var secondLink = Links + RawLink<TLink>.SizeInBytes * (Integer<TLink>)second;
+            return FirstIsToTheRightOfSecond(Read<TLink>(firstLink + RawLink<TLink>.SourceOffset),
+                                             Read<TLink>(firstLink + RawLink<TLink>.TargetOffset),
+                                             Read<TLink>(secondLink + RawLink<TLink>.SourceOffset),
+                                             Read<TLink>(secondLink + RawLink<TLink>.TargetOffset));
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected TLink GetSizeValue(TLink value) => Bit<TLink>.PartialRead(value, 5, -5);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected void SetSizeValue(ref TLink storedValue, TLink size) => storedValue = Bit<TLink>.PartialWrite(storedValue, size, 5, -5);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected bool GetLeftIsChildValue(TLink value)
+        {
+            unchecked
+            {
+                //return (Integer<TLink>)Bit<TLink>.PartialRead(previousValue, 4, 1);
+                return !EqualityComparer.Equals(Bit<TLink>.PartialRead(value, 4, 1), default);
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected void SetLeftIsChildValue(ref TLink storedValue, bool value)
+        {
+            unchecked
+            {
+                var previousValue = storedValue;
+                var modified = Bit<TLink>.PartialWrite(previousValue, (Integer<TLink>)value, 4, 1);
+                storedValue = modified;
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected bool GetRightIsChildValue(TLink value)
+        {
+            unchecked
+            {
+                //return (Integer<TLink>)Bit<TLink>.PartialRead(previousValue, 3, 1);
+                return !EqualityComparer.Equals(Bit<TLink>.PartialRead(value, 3, 1), default);
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected void SetRightIsChildValue(ref TLink storedValue, bool value)
+        {
+            unchecked
+            {
+                var previousValue = storedValue;
+                var modified = Bit<TLink>.PartialWrite(previousValue, (Integer<TLink>)value, 3, 1);
+                storedValue = modified;
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected sbyte GetBalanceValue(TLink storedValue)
+        {
+            unchecked
+            {
+                var value = (int)(Integer<TLink>)Bit<TLink>.PartialRead(storedValue, 0, 3);
+                value |= 0xF8 * ((value & 4) >> 2); // if negative, then continue ones to the end of sbyte
+                return (sbyte)value;
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected void SetBalanceValue(ref TLink storedValue, sbyte value)
+        {
+            unchecked
+            {
+                var packagedValue = (TLink)(Integer<TLink>)((((byte)value >> 5) & 4) | value & 3);
+                var modified = Bit<TLink>.PartialWrite(storedValue, packagedValue, 0, 3);
+                storedValue = modified;
+            }
+        }
+
         public TLink this[TLink index]
         {
             get
@@ -67,8 +159,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         }
 
         /// <summary>
-        /// Выполняет поиск и возвращает индекс связи с указанными Source (началом) и Target (концом)
-        /// по дереву (индексу) связей, отсортированному по Source, а затем по Target.
+        /// Выполняет поиск и возвращает индекс связи с указанными Source (началом) и Target (концом).
         /// </summary>
         /// <param name="source">Индекс связи, которая является началом на искомой связи.</param>
         /// <param name="target">Индекс связи, которая является концом на искомой связи.</param>

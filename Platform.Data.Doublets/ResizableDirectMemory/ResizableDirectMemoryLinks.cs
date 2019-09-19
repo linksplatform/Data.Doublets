@@ -370,7 +370,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private ref RawLink<TLink> GetLinkUnsafe(TLink linkIndex) => ref AsRef<RawLink<TLink>>(_links + LinkSizeInBytes * (Integer<TLink>)linkIndex);
+        internal ref RawLink<TLink> GetLinkUnsafe(TLink linkIndex) => ref AsRef<RawLink<TLink>>(_links + LinkSizeInBytes * (Integer<TLink>)linkIndex);
 
         /// <remarks>
         /// TODO: Возможно нужно будет заполнение нулями, если внешнее API ими не заполняет пространство

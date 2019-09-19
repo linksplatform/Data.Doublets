@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Platform.Collections.Methods.Trees;
+using static System.Runtime.CompilerServices.Unsafe;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -79,6 +80,46 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected abstract bool FirstIsToTheRightOfSecond(ulong firstSource, ulong firstTarget, ulong secondSource, ulong secondTarget);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected override bool FirstIsToTheLeftOfSecond(ulong first, ulong second)
+        {
+            ref var firstLink = ref _links[first];
+            ref var secondLink = ref _links[second];
+            return FirstIsToTheLeftOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected override bool FirstIsToTheRightOfSecond(ulong first, ulong second)
+        {
+            ref var firstLink = ref _links[first];
+            ref var secondLink = ref _links[second];
+            return FirstIsToTheRightOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected ulong GetSizeValue(ulong value) => unchecked((value & 4294967264UL) >> 5);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected void SetSizeValue(ref ulong storedValue, ulong size) => storedValue = unchecked((storedValue & 31UL) | ((size & 134217727UL) << 5));
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected bool GetLeftIsChildValue(ulong value) => unchecked((value & 16UL) >> 4 == 1UL);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected void SetLeftIsChildValue(ref ulong storedValue, bool value) => storedValue = unchecked((storedValue & 4294967279UL) | ((As<bool, byte>(ref value) & 1UL) << 4));
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected bool GetRightIsChildValue(ulong value) => unchecked((value & 8UL) >> 3 == 1UL);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected void SetRightIsChildValue(ref ulong storedValue, bool value) => storedValue = unchecked((storedValue & 4294967287UL) | ((As<bool, byte>(ref value) & 1UL) << 3));
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected sbyte GetBalanceValue(ulong value) => unchecked((sbyte)((value & 7UL) | 0xF8UL * ((value & 4UL) >> 2))); // if negative, then continue ones to the end of sbyte
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected void SetBalanceValue(ref ulong storedValue, sbyte value) => storedValue = unchecked((storedValue & 4294967288UL) | ((ulong)((((byte)value >> 5) & 4) | value & 3) & 7UL));
 
         public ulong this[ulong index]
         {
