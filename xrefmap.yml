@@ -3626,6 +3626,23 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase(Of TLink).GetLeftIsChildValue
   nameWithType: LinksAVLBalancedTreeMethodsBase<TLink>.GetLeftIsChildValue
   nameWithType.vb: LinksAVLBalancedTreeMethodsBase(Of TLink).GetLeftIsChildValue
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetLinkValues(`0)
+  name: GetLinkValues(TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetLinkValues__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetLinkValues(`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase<TLink>.GetLinkValues(TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase(Of TLink).GetLinkValues(TLink)
+  nameWithType: LinksAVLBalancedTreeMethodsBase<TLink>.GetLinkValues(TLink)
+  nameWithType.vb: LinksAVLBalancedTreeMethodsBase(Of TLink).GetLinkValues(TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetLinkValues*
+  name: GetLinkValues
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetLinkValues_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetLinkValues
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase<TLink>.GetLinkValues
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase(Of TLink).GetLinkValues
+  nameWithType: LinksAVLBalancedTreeMethodsBase<TLink>.GetLinkValues
+  nameWithType.vb: LinksAVLBalancedTreeMethodsBase(Of TLink).GetLinkValues
 - uid: Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetRightIsChildValue(`0)
   name: GetRightIsChildValue(TLink)
   href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetRightIsChildValue__0_
