@@ -63,13 +63,13 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual TLink GetSizeValue(TLink value) => Bit<TLink>.PartialRead(value, 5, -5);
+        protected static TLink GetSizeValue(TLink value) => Bit<TLink>.PartialRead(value, 5, -5);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual void SetSizeValue(ref TLink storedValue, TLink size) => storedValue = Bit<TLink>.PartialWrite(storedValue, size, 5, -5);
+        protected static void SetSizeValue(ref TLink storedValue, TLink size) => storedValue = Bit<TLink>.PartialWrite(storedValue, size, 5, -5);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual bool GetLeftIsChildValue(TLink value)
+        protected bool GetLeftIsChildValue(TLink value)
         {
             unchecked
             {
@@ -79,7 +79,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual void SetLeftIsChildValue(ref TLink storedValue, bool value)
+        protected static void SetLeftIsChildValue(ref TLink storedValue, bool value)
         {
             unchecked
             {
@@ -90,7 +90,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual bool GetRightIsChildValue(TLink value)
+        protected bool GetRightIsChildValue(TLink value)
         {
             unchecked
             {
@@ -100,7 +100,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual void SetRightIsChildValue(ref TLink storedValue, bool value)
+        protected static void SetRightIsChildValue(ref TLink storedValue, bool value)
         {
             unchecked
             {
@@ -111,7 +111,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual sbyte GetBalanceValue(TLink storedValue)
+        protected static sbyte GetBalanceValue(TLink storedValue)
         {
             unchecked
             {
@@ -122,7 +122,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual void SetBalanceValue(ref TLink storedValue, sbyte value)
+        protected static void SetBalanceValue(ref TLink storedValue, sbyte value)
         {
             unchecked
             {

@@ -98,28 +98,28 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected ulong GetSizeValue(ulong value) => unchecked((value & 4294967264UL) >> 5);
+        protected static ulong GetSizeValue(ulong value) => unchecked((value & 4294967264UL) >> 5);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected void SetSizeValue(ref ulong storedValue, ulong size) => storedValue = unchecked((storedValue & 31UL) | ((size & 134217727UL) << 5));
+        protected static void SetSizeValue(ref ulong storedValue, ulong size) => storedValue = unchecked((storedValue & 31UL) | ((size & 134217727UL) << 5));
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected bool GetLeftIsChildValue(ulong value) => unchecked((value & 16UL) >> 4 == 1UL);
+        protected static bool GetLeftIsChildValue(ulong value) => unchecked((value & 16UL) >> 4 == 1UL);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected void SetLeftIsChildValue(ref ulong storedValue, bool value) => storedValue = unchecked((storedValue & 4294967279UL) | ((As<bool, byte>(ref value) & 1UL) << 4));
+        protected static void SetLeftIsChildValue(ref ulong storedValue, bool value) => storedValue = unchecked((storedValue & 4294967279UL) | ((As<bool, byte>(ref value) & 1UL) << 4));
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected bool GetRightIsChildValue(ulong value) => unchecked((value & 8UL) >> 3 == 1UL);
+        protected static bool GetRightIsChildValue(ulong value) => unchecked((value & 8UL) >> 3 == 1UL);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected void SetRightIsChildValue(ref ulong storedValue, bool value) => storedValue = unchecked((storedValue & 4294967287UL) | ((As<bool, byte>(ref value) & 1UL) << 3));
+        protected static void SetRightIsChildValue(ref ulong storedValue, bool value) => storedValue = unchecked((storedValue & 4294967287UL) | ((As<bool, byte>(ref value) & 1UL) << 3));
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected sbyte GetBalanceValue(ulong value) => unchecked((sbyte)((value & 7UL) | 0xF8UL * ((value & 4UL) >> 2))); // if negative, then continue ones to the end of sbyte
+        protected static sbyte GetBalanceValue(ulong value) => unchecked((sbyte)((value & 7UL) | 0xF8UL * ((value & 4UL) >> 2))); // if negative, then continue ones to the end of sbyte
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected void SetBalanceValue(ref ulong storedValue, sbyte value) => storedValue = unchecked((storedValue & 4294967288UL) | ((ulong)((((byte)value >> 5) & 4) | value & 3) & 7UL));
+        protected static void SetBalanceValue(ref ulong storedValue, sbyte value) => storedValue = unchecked((storedValue & 4294967288UL) | ((ulong)((((byte)value >> 5) & 4) | value & 3) & 7UL));
 
         public ulong this[ulong index]
         {
@@ -161,8 +161,9 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             var root = GetTreeRoot();
             while (root != 0)
             {
-                var rootSource = _links[root].Source;
-                var rootTarget = _links[root].Target;
+                var rootLink = _links[root];
+                var rootSource = rootLink.Source;
+                var rootTarget = rootLink.Target;
                 if (FirstIsToTheLeftOfSecond(source, target, rootSource, rootTarget)) // node.Key < root.Key
                 {
                     root = GetLeftOrDefault(root);
@@ -261,11 +262,12 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
 
         protected override void PrintNodeValue(ulong node, StringBuilder sb)
         {
+            ref var link = ref _links[node];
             sb.Append(' ');
-            sb.Append(_links[node].Source);
+            sb.Append(link.Source);
             sb.Append('-');
             sb.Append('>');
-            sb.Append(_links[node].Target);
+            sb.Append(link.Target);
         }
     }
 }
