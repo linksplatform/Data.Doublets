@@ -46,7 +46,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         protected override bool GreaterOrEqualThanZero(ulong value) => true; // value >= 0 is always true for ulong
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override bool LessOrEqualThanZero(ulong value) => value == 0; // value is always >= 0 for ulong
+        protected override bool LessOrEqualThanZero(ulong value) => value == 0UL; // value is always >= 0 for ulong
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override bool LessOrEqualThan(ulong first, ulong second) => first <= second;
@@ -128,9 +128,9 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
                 var root = GetTreeRoot();
                 if (index >= GetSize(root))
                 {
-                    return 0;
+                    return 0UL;
                 }
-                while (root != 0)
+                while (root != 0UL)
                 {
                     var left = GetLeftOrDefault(root);
                     var leftSize = GetSizeOrZero(left);
@@ -144,9 +144,9 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
                         return root;
                     }
                     root = GetRightOrDefault(root);
-                    index -= leftSize + 1;
+                    index -= leftSize + 1UL;
                 }
-                return 0; // TODO: Impossible situation exception (only if tree structure broken)
+                return 0UL; // TODO: Impossible situation exception (only if tree structure broken)
             }
         }
 
@@ -159,7 +159,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         public ulong Search(ulong source, ulong target)
         {
             var root = GetTreeRoot();
-            while (root != 0)
+            while (root != 0UL)
             {
                 var rootLink = _links[root];
                 var rootSource = rootLink.Source;
@@ -177,7 +177,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
                     return root;
                 }
             }
-            return 0;
+            return 0UL;
         }
 
         // TODO: Return indices range instead of references count
@@ -186,7 +186,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             var root = GetTreeRoot();
             var total = GetSize(root);
             var totalRightIgnore = 0UL;
-            while (root != 0)
+            while (root != 0UL)
             {
                 var @base = GetBasePartValue(root);
                 if (@base <= link)
@@ -195,13 +195,13 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
                 }
                 else
                 {
-                    totalRightIgnore += GetRightSize(root) + 1;
+                    totalRightIgnore += GetRightSize(root) + 1UL;
                     root = GetLeftOrDefault(root);
                 }
             }
             root = GetTreeRoot();
             var totalLeftIgnore = 0UL;
-            while (root != 0)
+            while (root != 0UL)
             {
                 var @base = GetBasePartValue(root);
                 if (@base >= link)
@@ -210,7 +210,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
                 }
                 else
                 {
-                    totalLeftIgnore += GetLeftSize(root) + 1;
+                    totalLeftIgnore += GetLeftSize(root) + 1UL;
                     root = GetRightOrDefault(root);
                 }
             }
@@ -220,12 +220,12 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         public ulong EachUsage(ulong link, Func<IList<ulong>, ulong> handler)
         {
             var root = GetTreeRoot();
-            if (root == 0)
+            if (root == 0UL)
             {
                 return _constants.Continue;
             }
-            ulong first = 0, current = root;
-            while (current != 0)
+            ulong first = 0UL, current = root;
+            while (current != 0UL)
             {
                 var @base = GetBasePartValue(current);
                 if (@base >= link)
@@ -241,7 +241,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
                     current = GetRightOrDefault(current);
                 }
             }
-            if (first != 0)
+            if (first != 0UL)
             {
                 current = first;
                 while (true)
@@ -251,7 +251,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
                         return _constants.Break;
                     }
                     current = GetNext(current);
-                    if (current == 0 || GetBasePartValue(current) != link)
+                    if (current == 0UL || GetBasePartValue(current) != link)
                     {
                         break;
                     }
