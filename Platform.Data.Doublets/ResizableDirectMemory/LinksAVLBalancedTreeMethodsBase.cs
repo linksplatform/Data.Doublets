@@ -38,35 +38,38 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         protected abstract bool FirstIsToTheLeftOfSecond(TLink source, TLink target, TLink rootSource, TLink rootTarget);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        internal virtual ref LinksHeader<TLink> GetHeaderReference() => ref AsRef<LinksHeader<TLink>>(Header);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        internal virtual ref RawLink<TLink> GetLinkReference(TLink link) => ref AsRef<RawLink<TLink>>((void*)(Links + RawLink<TLink>.SizeInBytes * (Integer<TLink>)link));
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected virtual Link<TLink> GetLinkValues(TLink current) => _memory.GetLinkStruct(current);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override bool FirstIsToTheLeftOfSecond(TLink first, TLink second)
         {
-            var firstLink = Links + RawLink<TLink>.SizeInBytes * (Integer<TLink>)first;
-            var secondLink = Links + RawLink<TLink>.SizeInBytes * (Integer<TLink>)second;
-            return FirstIsToTheLeftOfSecond(Read<TLink>(firstLink + RawLink<TLink>.SourceOffset),
-                                            Read<TLink>(firstLink + RawLink<TLink>.TargetOffset),
-                                            Read<TLink>(secondLink + RawLink<TLink>.SourceOffset),
-                                            Read<TLink>(secondLink + RawLink<TLink>.TargetOffset));
+            ref var firstLink = ref GetLinkReference(first);
+            ref var secondLink = ref GetLinkReference(second);
+            return FirstIsToTheLeftOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override bool FirstIsToTheRightOfSecond(TLink first, TLink second)
         {
-            var firstLink = Links + RawLink<TLink>.SizeInBytes * (Integer<TLink>)first;
-            var secondLink = Links + RawLink<TLink>.SizeInBytes * (Integer<TLink>)second;
-            return FirstIsToTheRightOfSecond(Read<TLink>(firstLink + RawLink<TLink>.SourceOffset),
-                                             Read<TLink>(firstLink + RawLink<TLink>.TargetOffset),
-                                             Read<TLink>(secondLink + RawLink<TLink>.SourceOffset),
-                                             Read<TLink>(secondLink + RawLink<TLink>.TargetOffset));
+            ref var firstLink = ref GetLinkReference(first);
+            ref var secondLink = ref GetLinkReference(second);
+            return FirstIsToTheRightOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected TLink GetSizeValue(TLink value) => Bit<TLink>.PartialRead(value, 5, -5);
+        protected virtual TLink GetSizeValue(TLink value) => Bit<TLink>.PartialRead(value, 5, -5);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected void SetSizeValue(ref TLink storedValue, TLink size) => storedValue = Bit<TLink>.PartialWrite(storedValue, size, 5, -5);
+        protected virtual void SetSizeValue(ref TLink storedValue, TLink size) => storedValue = Bit<TLink>.PartialWrite(storedValue, size, 5, -5);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected bool GetLeftIsChildValue(TLink value)
+        protected virtual bool GetLeftIsChildValue(TLink value)
         {
             unchecked
             {
@@ -76,7 +79,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected void SetLeftIsChildValue(ref TLink storedValue, bool value)
+        protected virtual void SetLeftIsChildValue(ref TLink storedValue, bool value)
         {
             unchecked
             {
@@ -87,7 +90,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected bool GetRightIsChildValue(TLink value)
+        protected virtual bool GetRightIsChildValue(TLink value)
         {
             unchecked
             {
@@ -97,7 +100,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected void SetRightIsChildValue(ref TLink storedValue, bool value)
+        protected virtual void SetRightIsChildValue(ref TLink storedValue, bool value)
         {
             unchecked
             {
@@ -108,7 +111,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected sbyte GetBalanceValue(TLink storedValue)
+        protected virtual sbyte GetBalanceValue(TLink storedValue)
         {
             unchecked
             {
@@ -119,7 +122,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected void SetBalanceValue(ref TLink storedValue, sbyte value)
+        protected virtual void SetBalanceValue(ref TLink storedValue, sbyte value)
         {
             unchecked
             {
@@ -136,7 +139,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
                 var root = GetTreeRoot();
                 if (GreaterOrEqualThan(index, GetSize(root)))
                 {
-                    return GetZero();
+                    return Zero;
                 }
                 while (!EqualToZero(root))
                 {
@@ -154,7 +157,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
                     root = GetRightOrDefault(root);
                     index = Subtract(index, Increment(leftSize));
                 }
-                return GetZero(); // TODO: Impossible situation exception (only if tree structure broken)
+                return Zero; // TODO: Impossible situation exception (only if tree structure broken)
             }
         }
 
@@ -169,8 +172,9 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             var root = GetTreeRoot();
             while (!EqualToZero(root))
             {
-                var rootSource = Read<TLink>(Links + RawLink<TLink>.SizeInBytes * (Integer<TLink>)root + RawLink<TLink>.SourceOffset);
-                var rootTarget = Read<TLink>(Links + RawLink<TLink>.SizeInBytes * (Integer<TLink>)root + RawLink<TLink>.TargetOffset);
+                ref var rootLink = ref GetLinkReference(root);
+                var rootSource = rootLink.Source;
+                var rootTarget = rootLink.Target;
                 if (FirstIsToTheLeftOfSecond(source, target, rootSource, rootTarget)) // node.Key < root.Key
                 {
                     root = GetLeftOrDefault(root);
@@ -184,7 +188,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
                     return root;
                 }
             }
-            return GetZero();
+            return Zero;
         }
 
         // TODO: Return indices range instead of references count
@@ -192,7 +196,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         {
             var root = GetTreeRoot();
             var total = GetSize(root);
-            var totalRightIgnore = GetZero();
+            var totalRightIgnore = Zero;
             while (!EqualToZero(root))
             {
                 var @base = GetBasePartValue(root);
@@ -207,7 +211,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
                 }
             }
             root = GetTreeRoot();
-            var totalLeftIgnore = GetZero();
+            var totalLeftIgnore = Zero;
             while (!EqualToZero(root))
             {
                 var @base = GetBasePartValue(root);
@@ -232,7 +236,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             {
                 return _constants.Continue;
             }
-            TLink first = GetZero(), current = root;
+            TLink first = Zero, current = root;
             while (!EqualToZero(current))
             {
                 var @base = GetBasePartValue(current);
@@ -254,7 +258,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
                 current = first;
                 while (true)
                 {
-                    if (IsEquals(handler(_memory.GetLinkStruct(current)), _constants.Break))
+                    if (IsEquals(handler(GetLinkValues(current)), _constants.Break))
                     {
                         return _constants.Break;
                     }
@@ -270,11 +274,12 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
 
         protected override void PrintNodeValue(TLink node, StringBuilder sb)
         {
+            ref var link = ref GetLinkReference(node);
             sb.Append(' ');
-            sb.Append(Read<TLink>(Links + RawLink<TLink>.SizeInBytes * (Integer<TLink>)node + RawLink<TLink>.SourceOffset));
+            sb.Append(link.Source);
             sb.Append('-');
             sb.Append('>');
-            sb.Append(Read<TLink>(Links + RawLink<TLink>.SizeInBytes * (Integer<TLink>)node + RawLink<TLink>.TargetOffset));
+            sb.Append(link.Target);
         }
     }
 }

@@ -11,52 +11,52 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         public LinksSourcesAVLBalancedTreeMethods(ResizableDirectMemoryLinks<TLink> memory, byte* links, byte* header) : base(memory, links, header) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected unsafe override ref TLink GetLeftReference(TLink node) => ref AsRef<TLink>((void*)(Links + RawLink<TLink>.SizeInBytes * (Integer<TLink>)node + RawLink<TLink>.LeftAsSourceOffset));
+        protected unsafe override ref TLink GetLeftReference(TLink node) => ref GetLinkReference(node).LeftAsSource;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected unsafe override ref TLink GetRightReference(TLink node) => ref AsRef<TLink>((void*)(Links + RawLink<TLink>.SizeInBytes * (Integer<TLink>)node + RawLink<TLink>.RightAsSourceOffset));
+        protected unsafe override ref TLink GetRightReference(TLink node) => ref GetLinkReference(node).RightAsSource;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink GetLeft(TLink node) => Read<TLink>(Links + RawLink<TLink>.SizeInBytes * (Integer<TLink>)node + RawLink<TLink>.LeftAsSourceOffset);
+        protected override TLink GetLeft(TLink node) => GetLinkReference(node).LeftAsSource;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink GetRight(TLink node) => Read<TLink>(Links + RawLink<TLink>.SizeInBytes * (Integer<TLink>)node + RawLink<TLink>.RightAsSourceOffset);
+        protected override TLink GetRight(TLink node) => GetLinkReference(node).RightAsSource;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetLeft(TLink node, TLink left) => Write(Links + RawLink<TLink>.SizeInBytes * (Integer<TLink>)node + RawLink<TLink>.LeftAsSourceOffset, left);
+        protected override void SetLeft(TLink node, TLink left) => GetLinkReference(node).LeftAsSource = left;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetRight(TLink node, TLink right) => Write(Links + RawLink<TLink>.SizeInBytes * (Integer<TLink>)node + RawLink<TLink>.RightAsSourceOffset, right);
+        protected override void SetRight(TLink node, TLink right) => GetLinkReference(node).RightAsSource = right;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink GetSize(TLink node) => GetSizeValue(Read<TLink>(Links + RawLink<TLink>.SizeInBytes * (Integer<TLink>)node + RawLink<TLink>.SizeAsSourceOffset));
+        protected override TLink GetSize(TLink node) => GetSizeValue(GetLinkReference(node).SizeAsSource);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetSize(TLink node, TLink size) => SetSizeValue(ref AsRef<TLink>(Links + RawLink<TLink>.SizeInBytes * (Integer<TLink>)node + RawLink<TLink>.SizeAsSourceOffset), size);
+        protected override void SetSize(TLink node, TLink size) => SetSizeValue(ref GetLinkReference(node).SizeAsSource, size);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override bool GetLeftIsChild(TLink node) => GetLeftIsChildValue(Read<TLink>(Links + RawLink<TLink>.SizeInBytes * (Integer<TLink>)node + RawLink<TLink>.SizeAsSourceOffset));
+        protected override bool GetLeftIsChild(TLink node) => GetLeftIsChildValue(GetLinkReference(node).SizeAsSource);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetLeftIsChild(TLink node, bool value) => SetLeftIsChildValue(ref AsRef<TLink>(Links + RawLink<TLink>.SizeInBytes * (Integer<TLink>)node + RawLink<TLink>.SizeAsSourceOffset), value);
+        protected override void SetLeftIsChild(TLink node, bool value) => SetLeftIsChildValue(ref GetLinkReference(node).SizeAsSource, value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override bool GetRightIsChild(TLink node) => GetRightIsChildValue(Read<TLink>(Links + RawLink<TLink>.SizeInBytes * (Integer<TLink>)node + RawLink<TLink>.SizeAsSourceOffset));
+        protected override bool GetRightIsChild(TLink node) => GetRightIsChildValue(GetLinkReference(node).SizeAsSource);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetRightIsChild(TLink node, bool value) => SetRightIsChildValue(ref AsRef<TLink>(Links + RawLink<TLink>.SizeInBytes * (Integer<TLink>)node + RawLink<TLink>.SizeAsSourceOffset), value);
+        protected override void SetRightIsChild(TLink node, bool value) => SetRightIsChildValue(ref GetLinkReference(node).SizeAsSource, value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override sbyte GetBalance(TLink node) => GetBalanceValue(Read<TLink>(Links + RawLink<TLink>.SizeInBytes * (Integer<TLink>)node + RawLink<TLink>.SizeAsSourceOffset));
+        protected override sbyte GetBalance(TLink node) => GetBalanceValue(GetLinkReference(node).SizeAsSource);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetBalance(TLink node, sbyte value) => SetBalanceValue(ref AsRef<TLink>(Links + RawLink<TLink>.SizeInBytes * (Integer<TLink>)node + RawLink<TLink>.SizeAsSourceOffset), value);
+        protected override void SetBalance(TLink node, sbyte value) => SetBalanceValue(ref GetLinkReference(node).SizeAsSource, value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink GetTreeRoot() => Read<TLink>(Header + LinksHeader<TLink>.FirstAsSourceOffset);
+        protected override TLink GetTreeRoot() => GetHeaderReference().FirstAsSource;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink GetBasePartValue(TLink link) => Read<TLink>(Links + RawLink<TLink>.SizeInBytes * (Integer<TLink>)link + RawLink<TLink>.SourceOffset);
+        protected override TLink GetBasePartValue(TLink link) => GetLinkReference(link).Source;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override bool FirstIsToTheLeftOfSecond(TLink firstSource, TLink firstTarget, TLink secondSource, TLink secondTarget) => LessThan(firstSource, secondSource) || (IsEquals(firstSource, secondSource) && LessThan(firstTarget, secondTarget));
@@ -67,10 +67,10 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override void ClearNode(TLink node)
         {
-            byte* link = Links + RawLink<TLink>.SizeInBytes * (Integer<TLink>)node;
-            Write(link + RawLink<TLink>.LeftAsSourceOffset, Zero);
-            Write(link + RawLink<TLink>.RightAsSourceOffset, Zero);
-            Write(link + RawLink<TLink>.SizeAsSourceOffset, Zero);
+            ref var link = ref GetLinkReference(node);
+            link.LeftAsSource = Zero;
+            link.RightAsSource = Zero;
+            link.SizeAsSource = Zero;
         }
     }
 }
