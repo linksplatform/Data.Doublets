@@ -11,9 +11,12 @@ using Platform.IO;
 using Platform.Ranges;
 using Platform.Random;
 using Platform.Timestamps;
+using Platform.Reflection;
 using Platform.Singletons;
+using Platform.Scopes;
 using Platform.Counters;
 using Platform.Diagnostics;
+using Platform.Memory;
 using Platform.Data.Doublets.ResizableDirectMemory;
 using Platform.Data.Doublets.Decorators;
 
@@ -30,9 +33,9 @@ namespace Platform.Data.Doublets.Tests
         [Fact]
         public static void MultipleCreateAndDeleteTest()
         {
-            using (var scope = new TempLinksTestScope())
+            using (var scope = new Scope<Types<HeapResizableDirectMemory, UInt64ResizableDirectMemoryLinks>>())
             {
-                scope.Links.TestMultipleRandomCreationsAndDeletions(100);
+                new UInt64Links(scope.Use<ILinks<ulong>>()).TestMultipleRandomCreationsAndDeletions(100);
             }
         }
 
