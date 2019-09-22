@@ -1,6 +1,5 @@
-using System;
 using System.Collections.Generic;
-using Platform.Collections;
+using System.Runtime.CompilerServices;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -26,43 +25,27 @@ namespace Platform.Data.Doublets.Decorators
     /// </remarks>
     public class UInt64Links : LinksDisposableDecoratorBase<ulong>
     {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public UInt64Links(ILinks<ulong> links) : base(links) { }
 
-        public override ulong Each(Func<IList<ulong>, ulong> handler, IList<ulong> restrictions)
-        {
-            this.EnsureLinkIsAnyOrExists(restrictions);
-            return Links.Each(handler, restrictions);
-        }
-
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override ulong Create(IList<ulong> restrictions) => Links.CreatePoint();
 
         public override ulong Update(IList<ulong> restrictions, IList<ulong> substitution)
         {
             var constants = Constants;
-            var nullConstant = constants.Null;
-            if (restrictions.IsNullOrEmpty())
-            {
-                return nullConstant;
-            }
-            // TODO: Looks like this is a common type of exceptions linked with restrictions support
-            if (substitution.Count != 3)
-            {
-                throw new NotSupportedException();
-            }
             var indexPartConstant = constants.IndexPart;
             var updatedLink = restrictions[indexPartConstant];
-            this.EnsureLinkExists(updatedLink, $"{nameof(restrictions)}[{nameof(indexPartConstant)}]");
             var sourcePartConstant = constants.SourcePart;
             var newSource = substitution[sourcePartConstant];
-            this.EnsureLinkIsItselfOrExists(newSource, $"{nameof(substitution)}[{nameof(sourcePartConstant)}]");
             var targetPartConstant = constants.TargetPart;
             var newTarget = substitution[targetPartConstant];
-            this.EnsureLinkIsItselfOrExists(newTarget, $"{nameof(substitution)}[{nameof(targetPartConstant)}]");
+            var nullConstant = constants.Null;
             var existedLink = nullConstant;
             var itselfConstant = constants.Itself;
             if (newSource != itselfConstant && newTarget != itselfConstant)
             {
-                existedLink = this.SearchOrDefault(newSource, newTarget);
+                existedLink = Links.SearchOrDefault(newSource, newTarget);
             }
             if (existedLink == nullConstant)
             {
@@ -76,16 +59,16 @@ namespace Platform.Data.Doublets.Decorators
             }
             else
             {
-                return this.MergeAndDelete(updatedLink, existedLink);
+                return Facade.MergeAndDelete(updatedLink, existedLink);
             }
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override void Delete(IList<ulong> restrictions)
         {
             var linkIndex = restrictions[Constants.IndexPart];
-            Links.EnsureLinkExists(linkIndex);
             Links.EnforceResetValues(linkIndex);
-            this.DeleteAllUsages(linkIndex);
+            Facade.DeleteAllUsages(linkIndex);
             Links.Delete(linkIndex);
         }
     }

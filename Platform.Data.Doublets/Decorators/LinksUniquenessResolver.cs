@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -8,8 +9,10 @@ namespace Platform.Data.Doublets.Decorators
     {
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public LinksUniquenessResolver(ILinks<TLink> links) : base(links) { }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override TLink Update(IList<TLink> restrictions, IList<TLink> substitution)
         {
             var newLinkAddress = Links.SearchOrDefault(substitution[Constants.SourcePart], substitution[Constants.TargetPart]);
@@ -20,6 +23,7 @@ namespace Platform.Data.Doublets.Decorators
             return ResolveAddressChangeConflict(restrictions[Constants.IndexPart], newLinkAddress);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual TLink ResolveAddressChangeConflict(TLink oldLinkAddress, TLink newLinkAddress)
         {
             if (!_equalityComparer.Equals(oldLinkAddress, newLinkAddress) && Links.Exists(oldLinkAddress))

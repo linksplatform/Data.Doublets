@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -9,8 +10,10 @@ namespace Platform.Data.Doublets.Decorators
     {
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public LinksItselfConstantToSelfReferenceResolver(ILinks<TLink> links) : base(links) { }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override TLink Each(Func<IList<TLink>, TLink> handler, IList<TLink> restrictions)
         {
             var constants = Constants;
@@ -30,6 +33,7 @@ namespace Platform.Data.Doublets.Decorators
             return Links.Each(handler, restrictions);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override TLink Update(IList<TLink> restrictions, IList<TLink> substitution) => Links.Update(restrictions, Links.ResolveConstantAsSelfReference(Constants.Itself, restrictions, substitution));
     }
 }
