@@ -4,7 +4,7 @@
     <Description>LinksPlatform's Platform.Data.Doublets Class Library</Description>
     <Copyright>Konstantin Diachenko</Copyright>
     <AssemblyTitle>Platform.Data.Doublets</AssemblyTitle>
-    <VersionPrefix>0.2.0</VersionPrefix>
+    <VersionPrefix>0.2.1</VersionPrefix>
     <Authors>Konstantin Diachenko</Authors>
     <TargetFrameworks>net471;netstandard2.0</TargetFrameworks>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -23,20 +23,15 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <LangVersion>latest</LangVersion>
-    <PackageReleaseNotes>Added support for .NET Framework 4.7.1.
-Platform.Random dependency updated from 0.0.3 to 0.0.4.
-Platform.Timestamps dependency updated from 0.0.3 to 0.0.4.
-Platform.Collections.Methods dependency updated from 0.0.5 to 0.0.7.
-Platform.Singletons dependency updated from 0.0.2 to 0.0.4.
-Platform.Memory dependency updated from 0.1.3 to 0.1.5.
-Platform.Data dependency updated from 0.0.3 to 0.1.1.
-Code updated to support new ILinks interface and LinksConstants class.
-Project files updated to support multiple build environments: dotnet, Travis CI, MonoDevelop, and Visual Studio.
-Travis CI configuration updated to support automatic NuGet package publishing.
-License updated to support usage as an unmodified dynamic library in larger projects of any kind.
-Refactoring, issues, and bugs fix.
-
-This release is not backward compatible with the previous 0.1.1 release.</PackageReleaseNotes>
+    <PackageReleaseNotes>Platform.Collections.Methods dependency updated from 0.0.7 to 0.1.0.
+Microsoft.NET.Test.Sdk dependency updated from 16.2.0 to 16.3.0.
+No more usages of obsolete methods.
+Tests for .NET Framework 4.7.1 all are passing now.
+Unindex class added, to allow disabling of SequenceIndex mechanism.
+TreeMethods and ListMethods of ResizableDirectMemoryLinks are now separate classes.
+Facade mechanism added to LinksDisposableDecoratorBase.
+UInt64Links decorator contains fewer checks now, so it can be decorated with additional checks if required.
+Performance optimizations, refactoring, issues, and build fix.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup Condition="$(TargetFramework.StartsWith('net4')) AND '$(MSBuildRuntimeType)' == 'Core' AND '$(OS)' != 'Windows_NT'">
