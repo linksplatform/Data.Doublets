@@ -41,17 +41,9 @@ namespace Platform.Data.Doublets.Tests
 
         private static void Using<TLink>(Action<ILinks<TLink>> action)
         {
-            //using (var scope = new Scope<Types<HeapResizableDirectMemory, ResizableDirectMemoryLinks<TLink>>>())
-            //{
-            //    action(scope.Use<ILinks<TLink>>());
-            //}
-            using (var memory = new HeapResizableDirectMemory())
+            using (var scope = new Scope<Types<HeapResizableDirectMemory, ResizableDirectMemoryLinks<TLink>>>())
             {
-                Unsafe.MemoryBlock.Zero((void*)memory.Pointer, memory.ReservedCapacity); // Bug workaround
-                using (var links = new ResizableDirectMemoryLinks<TLink>(memory))
-                {
-                    action(links);
-                }
+                action(scope.Use<ILinks<TLink>>());
             }
         }
     }
