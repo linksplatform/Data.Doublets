@@ -7897,6 +7897,51 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.Indexes.SynchronizedSequenceIndex(Of TLink).MightContain
   nameWithType: SynchronizedSequenceIndex<TLink>.MightContain
   nameWithType.vb: SynchronizedSequenceIndex(Of TLink).MightContain
+- uid: Platform.Data.Doublets.Sequences.Indexes.Unindex`1
+  name: Unindex<TLink>
+  href: api/Platform.Data.Doublets.Sequences.Indexes.Unindex-1.html
+  commentId: T:Platform.Data.Doublets.Sequences.Indexes.Unindex`1
+  name.vb: Unindex(Of TLink)
+  fullName: Platform.Data.Doublets.Sequences.Indexes.Unindex<TLink>
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.Unindex(Of TLink)
+  nameWithType: Unindex<TLink>
+  nameWithType.vb: Unindex(Of TLink)
+- uid: Platform.Data.Doublets.Sequences.Indexes.Unindex`1.Add(System.Collections.Generic.IList{`0})
+  name: Add(IList<TLink>)
+  href: api/Platform.Data.Doublets.Sequences.Indexes.Unindex-1.html#Platform_Data_Doublets_Sequences_Indexes_Unindex_1_Add_System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Sequences.Indexes.Unindex`1.Add(System.Collections.Generic.IList{`0})
+  name.vb: Add(IList(Of TLink))
+  fullName: Platform.Data.Doublets.Sequences.Indexes.Unindex<TLink>.Add(System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.Unindex(Of TLink).Add(System.Collections.Generic.IList(Of TLink))
+  nameWithType: Unindex<TLink>.Add(IList<TLink>)
+  nameWithType.vb: Unindex(Of TLink).Add(IList(Of TLink))
+- uid: Platform.Data.Doublets.Sequences.Indexes.Unindex`1.Add*
+  name: Add
+  href: api/Platform.Data.Doublets.Sequences.Indexes.Unindex-1.html#Platform_Data_Doublets_Sequences_Indexes_Unindex_1_Add_
+  commentId: Overload:Platform.Data.Doublets.Sequences.Indexes.Unindex`1.Add
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Sequences.Indexes.Unindex<TLink>.Add
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.Unindex(Of TLink).Add
+  nameWithType: Unindex<TLink>.Add
+  nameWithType.vb: Unindex(Of TLink).Add
+- uid: Platform.Data.Doublets.Sequences.Indexes.Unindex`1.MightContain(System.Collections.Generic.IList{`0})
+  name: MightContain(IList<TLink>)
+  href: api/Platform.Data.Doublets.Sequences.Indexes.Unindex-1.html#Platform_Data_Doublets_Sequences_Indexes_Unindex_1_MightContain_System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Sequences.Indexes.Unindex`1.MightContain(System.Collections.Generic.IList{`0})
+  name.vb: MightContain(IList(Of TLink))
+  fullName: Platform.Data.Doublets.Sequences.Indexes.Unindex<TLink>.MightContain(System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.Unindex(Of TLink).MightContain(System.Collections.Generic.IList(Of TLink))
+  nameWithType: Unindex<TLink>.MightContain(IList<TLink>)
+  nameWithType.vb: Unindex(Of TLink).MightContain(IList(Of TLink))
+- uid: Platform.Data.Doublets.Sequences.Indexes.Unindex`1.MightContain*
+  name: MightContain
+  href: api/Platform.Data.Doublets.Sequences.Indexes.Unindex-1.html#Platform_Data_Doublets_Sequences_Indexes_Unindex_1_MightContain_
+  commentId: Overload:Platform.Data.Doublets.Sequences.Indexes.Unindex`1.MightContain
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Sequences.Indexes.Unindex<TLink>.MightContain
+  fullName.vb: Platform.Data.Doublets.Sequences.Indexes.Unindex(Of TLink).MightContain
+  nameWithType: Unindex<TLink>.MightContain
+  nameWithType.vb: Unindex(Of TLink).MightContain
 - uid: Platform.Data.Doublets.Sequences.ListFiller`2
   name: ListFiller<TElement, TReturnConstant>
   href: api/Platform.Data.Doublets.Sequences.ListFiller-2.html
