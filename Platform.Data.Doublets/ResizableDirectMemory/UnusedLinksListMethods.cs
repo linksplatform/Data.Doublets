@@ -1,6 +1,6 @@
-﻿using Platform.Collections.Methods.Lists;
+﻿using System.Runtime.CompilerServices;
+using Platform.Collections.Methods.Lists;
 using Platform.Numbers;
-using System.Runtime.CompilerServices;
 using static System.Runtime.CompilerServices.Unsafe;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -12,6 +12,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         private readonly byte* _links;
         private readonly byte* _header;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public UnusedLinksListMethods(byte* links, byte* header)
         {
             _links = links;
@@ -19,39 +20,39 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        internal virtual ref LinksHeader<TLink> GetHeader() => ref AsRef<LinksHeader<TLink>>(_header);
+        protected virtual ref LinksHeader<TLink> GetHeaderReference() => ref AsRef<LinksHeader<TLink>>(_header);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        internal virtual ref RawLink<TLink> GetLink(TLink link) => ref AsRef<RawLink<TLink>>((void*)(_links + RawLink<TLink>.SizeInBytes * (Integer<TLink>)link));
+        protected virtual ref RawLink<TLink> GetLinkReference(TLink link) => ref AsRef<RawLink<TLink>>((void*)(_links + RawLink<TLink>.SizeInBytes * (Integer<TLink>)link));
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink GetFirst() => GetHeader().FirstFreeLink;
+        protected override TLink GetFirst() => GetHeaderReference().FirstFreeLink;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink GetLast() => GetHeader().LastFreeLink;
+        protected override TLink GetLast() => GetHeaderReference().LastFreeLink;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink GetPrevious(TLink element) => GetLink(element).Source;
+        protected override TLink GetPrevious(TLink element) => GetLinkReference(element).Source;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink GetNext(TLink element) => GetLink(element).Target;
+        protected override TLink GetNext(TLink element) => GetLinkReference(element).Target;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink GetSize() => GetHeader().FreeLinks;
+        protected override TLink GetSize() => GetHeaderReference().FreeLinks;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetFirst(TLink element) => GetHeader().FirstFreeLink = element;
+        protected override void SetFirst(TLink element) => GetHeaderReference().FirstFreeLink = element;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetLast(TLink element) => GetHeader().LastFreeLink = element;
+        protected override void SetLast(TLink element) => GetHeaderReference().LastFreeLink = element;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetPrevious(TLink element, TLink previous) => GetLink(element).Source = previous;
+        protected override void SetPrevious(TLink element, TLink previous) => GetLinkReference(element).Source = previous;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetNext(TLink element, TLink next) => GetLink(element).Target = next;
+        protected override void SetNext(TLink element, TLink next) => GetLinkReference(element).Target = next;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetSize(TLink size) => GetHeader().FreeLinks = size;
+        protected override void SetSize(TLink size) => GetHeaderReference().FreeLinks = size;
     }
 }

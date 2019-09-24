@@ -1,14 +1,12 @@
 ﻿using System.Runtime.CompilerServices;
-using Platform.Numbers;
-using static System.Runtime.CompilerServices.Unsafe;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
 namespace Platform.Data.Doublets.ResizableDirectMemory
 {
-    public unsafe class LinksTargetsAVLBalancedTreeMethods<TLink> : LinksAVLBalancedTreeMethodsBase<TLink>, ILinksTreeMethods<TLink>
+    public unsafe class LinksTargetsAVLBalancedTreeMethods<TLink> : LinksAVLBalancedTreeMethodsBase<TLink>
     {
-        public LinksTargetsAVLBalancedTreeMethods(ResizableDirectMemoryLinks<TLink> memory, byte* links, byte* header) : base(memory, links, header) { }
+        public LinksTargetsAVLBalancedTreeMethods(LinksConstants<TLink> constants, byte* links, byte* header) : base(constants, links, header) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected unsafe override ref TLink GetLeftReference(TLink node) => ref GetLinkReference(node).LeftAsTarget;

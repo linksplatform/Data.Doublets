@@ -87,11 +87,11 @@ namespace Platform.Data.Doublets
             public static readonly long Size = Structure<Transition>.Size;
 
             public readonly ulong TransactionId;
-            public readonly UInt64Link Before;
-            public readonly UInt64Link After;
+            public readonly Link<ulong> Before;
+            public readonly Link<ulong> After;
             public readonly Timestamp Timestamp;
 
-            public Transition(UniqueTimestampFactory uniqueTimestampFactory, ulong transactionId, UInt64Link before, UInt64Link after)
+            public Transition(UniqueTimestampFactory uniqueTimestampFactory, ulong transactionId, Link<ulong> before, Link<ulong> after)
             {
                 TransactionId = transactionId;
                 Before = before;
@@ -99,7 +99,7 @@ namespace Platform.Data.Doublets
                 Timestamp = uniqueTimestampFactory.Create();
             }
 
-            public Transition(UniqueTimestampFactory uniqueTimestampFactory, ulong transactionId, UInt64Link before)
+            public Transition(UniqueTimestampFactory uniqueTimestampFactory, ulong transactionId, Link<ulong> before)
                 : this(uniqueTimestampFactory, transactionId, before, default)
             {
             }
@@ -269,7 +269,7 @@ namespace Platform.Data.Doublets
         public override ulong Create(IList<ulong> restrictions)
         {
             var createdLinkIndex = Links.Create();
-            var createdLink = new UInt64Link(Links.GetLink(createdLinkIndex));
+            var createdLink = new Link<ulong>(Links.GetLink(createdLinkIndex));
             CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, default, createdLink));
             return createdLinkIndex;
         }
@@ -277,9 +277,9 @@ namespace Platform.Data.Doublets
         public override ulong Update(IList<ulong> restrictions, IList<ulong> substitution)
         {
             var linkIndex = restrictions[Constants.IndexPart];
-            var beforeLink = new UInt64Link(Links.GetLink(linkIndex));
+            var beforeLink = new Link<ulong>(Links.GetLink(linkIndex));
             linkIndex = Links.Update(restrictions, substitution);
-            var afterLink = new UInt64Link(Links.GetLink(linkIndex));
+            var afterLink = new Link<ulong>(Links.GetLink(linkIndex));
             CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, beforeLink, afterLink));
             return linkIndex;
         }
@@ -287,7 +287,7 @@ namespace Platform.Data.Doublets
         public override void Delete(IList<ulong> restrictions)
         {
             var link = restrictions[Constants.IndexPart];
-            var deletedLink = new UInt64Link(Links.GetLink(link));
+            var deletedLink = new Link<ulong>(Links.GetLink(link));
             Links.Delete(link);
             CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, deletedLink, default));
         }

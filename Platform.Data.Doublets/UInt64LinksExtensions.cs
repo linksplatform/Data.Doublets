@@ -62,7 +62,7 @@ namespace Platform.Data.Doublets
             return false;
         }
 
-        public static string FormatStructure(this ILinks<ulong> links, ulong linkIndex, Func<UInt64Link, bool> isElement, bool renderIndex = false, bool renderDebug = false)
+        public static string FormatStructure(this ILinks<ulong> links, ulong linkIndex, Func<Link<ulong>, bool> isElement, bool renderIndex = false, bool renderDebug = false)
         {
             var sb = new StringBuilder();
             var visited = new HashSet<ulong>();
@@ -70,7 +70,7 @@ namespace Platform.Data.Doublets
             return sb.ToString();
         }
 
-        public static string FormatStructure(this ILinks<ulong> links, ulong linkIndex, Func<UInt64Link, bool> isElement, Action<StringBuilder, UInt64Link> appendElement, bool renderIndex = false, bool renderDebug = false)
+        public static string FormatStructure(this ILinks<ulong> links, ulong linkIndex, Func<Link<ulong>, bool> isElement, Action<StringBuilder, Link<ulong>> appendElement, bool renderIndex = false, bool renderDebug = false)
         {
             var sb = new StringBuilder();
             var visited = new HashSet<ulong>();
@@ -78,7 +78,7 @@ namespace Platform.Data.Doublets
             return sb.ToString();
         }
 
-        public static void AppendStructure(this ILinks<ulong> links, StringBuilder sb, HashSet<ulong> visited, ulong linkIndex, Func<UInt64Link, bool> isElement, Action<StringBuilder, UInt64Link> appendElement, bool renderIndex = false, bool renderDebug = false)
+        public static void AppendStructure(this ILinks<ulong> links, StringBuilder sb, HashSet<ulong> visited, ulong linkIndex, Func<Link<ulong>, bool> isElement, Action<StringBuilder, Link<ulong>> appendElement, bool renderIndex = false, bool renderDebug = false)
         {
             if (sb == null)
             {
@@ -93,7 +93,7 @@ namespace Platform.Data.Doublets
                 if (visited.Add(linkIndex))
                 {
                     sb.Append('(');
-                    var link = new UInt64Link(links.GetLink(linkIndex));
+                    var link = new Link<ulong>(links.GetLink(linkIndex));
                     if (renderIndex)
                     {
                         sb.Append(link.Index);
@@ -105,7 +105,7 @@ namespace Platform.Data.Doublets
                     }
                     else
                     {
-                        var source = new UInt64Link(links.GetLink(link.Source));
+                        var source = new Link<ulong>(links.GetLink(link.Source));
                         if (isElement(source))
                         {
                             appendElement(sb, source);
@@ -122,7 +122,7 @@ namespace Platform.Data.Doublets
                     }
                     else
                     {
-                        var target = new UInt64Link(links.GetLink(link.Target));
+                        var target = new Link<ulong>(links.GetLink(link.Target));
                         if (isElement(target))
                         {
                             appendElement(sb, target);

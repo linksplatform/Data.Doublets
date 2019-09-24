@@ -1,8 +1,10 @@
 ﻿using Platform.Unsafe;
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
 namespace Platform.Data.Doublets.ResizableDirectMemory
 {
-    internal struct LinksHeader<TLink>
+    public struct LinksHeader<TLink>
     {
         public static readonly long SizeInBytes = Structure<LinksHeader<TLink>>.Size;
 

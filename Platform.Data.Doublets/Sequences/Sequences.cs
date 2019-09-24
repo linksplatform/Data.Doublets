@@ -101,7 +101,7 @@ namespace Platform.Data.Doublets.Sequences
         {
             if (Options.UseSequenceMarker)
             {
-                var linkContents = new UInt64Link(Links.GetLink(sequence));
+                var linkContents = new Link<ulong>(Links.GetLink(sequence));
                 if (linkContents.Source == Options.SequenceMarkerLink)
                 {
                     return linkContents.Target;
@@ -417,7 +417,7 @@ namespace Platform.Data.Doublets.Sequences
             if (Options.UseGarbageCollection)
             {
                 var sequenceElements = GetSequenceElements(sequence);
-                var sequenceElementsContents = new UInt64Link(Links.GetLink(sequenceElements));
+                var sequenceElementsContents = new Link<ulong>(Links.GetLink(sequenceElements));
                 var sequenceLink = GetSequenceByElements(sequenceElements);
                 var newSequenceElements = GetSequenceElements(newSequence);
                 var newSequenceLink = GetSequenceByElements(newSequenceElements);
@@ -481,7 +481,7 @@ namespace Platform.Data.Doublets.Sequences
             if (Options.UseGarbageCollection)
             {
                 var sequenceElements = GetSequenceElements(link);
-                var sequenceElementsContents = new UInt64Link(Links.GetLink(sequenceElements));
+                var sequenceElementsContents = new Link<ulong>(Links.GetLink(sequenceElements));
                 var sequenceLink = GetSequenceByElements(sequenceElements);
                 if (Options.UseCascadeDelete || CountUsages(link) == 0)
                 {
@@ -560,7 +560,7 @@ namespace Platform.Data.Doublets.Sequences
         {
             if (IsGarbage(link))
             {
-                var contents = new UInt64Link(Links.GetLink(link));
+                var contents = new Link<ulong>(Links.GetLink(link));
                 Links.Unsync.Delete(link);
                 ClearGarbage(contents.Source);
                 ClearGarbage(contents.Target);
