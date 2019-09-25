@@ -61,7 +61,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             }
             else
             {
-                _links = (byte*)(void*)memory.Pointer;
+                _links = (byte*)memory.Pointer;
                 _header = _links;
                 SourcesTreeMethods = new LinksSourcesAVLBalancedTreeMethods<TLink>(Constants, _links, _header);
                 TargetsTreeMethods = new LinksTargetsAVLBalancedTreeMethods<TLink>(Constants, _links, _header);

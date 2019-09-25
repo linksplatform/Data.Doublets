@@ -58,8 +58,8 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             }
             else
             {
-                _header = (LinksHeader<ulong>*)(void*)memory.Pointer;
-                _links = (RawLink<ulong>*)(void*)memory.Pointer;
+                _header = (LinksHeader<ulong>*)memory.Pointer;
+                _links = (RawLink<ulong>*)memory.Pointer;
                 SourcesTreeMethods = new UInt64LinksSourcesAVLBalancedTreeMethods(Constants, _links, _header);
                 TargetsTreeMethods = new UInt64LinksTargetsAVLBalancedTreeMethods(Constants, _links, _header);
                 UnusedLinksListMethods = new UInt64UnusedLinksListMethods(_links, _header);
