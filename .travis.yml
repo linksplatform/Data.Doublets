@@ -2,7 +2,7 @@ language: csharp
 sudo: required
 dist: xenial
 mono: latest
-dotnet: 2.2
+dotnet: 3.0
 before_install:
   - sudo apt-get install -y texlive texlive-lang-cyrillic texlive-latex-extra python-pygments ghostscript
   - export TRAVIS_REPO_NAME=$(echo "${TRAVIS_REPO_SLUG#*/}" | sed 's/.*/\u&/')
