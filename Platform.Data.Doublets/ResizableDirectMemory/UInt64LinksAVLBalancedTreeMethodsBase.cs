@@ -5,12 +5,12 @@ using static System.Runtime.CompilerServices.Unsafe;
 
 namespace Platform.Data.Doublets.ResizableDirectMemory
 {
-    public unsafe abstract class UInt64LinksAVLBalancedTreeMethodsBase : LinksAVLBalancedTreeMethodsBase<ulong>
+    public unsafe abstract class UInt64LinksAvlBalancedTreeMethodsBase : LinksAvlBalancedTreeMethodsBase<ulong>
     {
         protected new readonly RawLink<ulong>* Links;
         protected new readonly LinksHeader<ulong>* Header;
 
-        public UInt64LinksAVLBalancedTreeMethodsBase(LinksConstants<ulong> constants, RawLink<ulong>* links, LinksHeader<ulong>* header)
+        public UInt64LinksAvlBalancedTreeMethodsBase(LinksConstants<ulong> constants, RawLink<ulong>* links, LinksHeader<ulong>* header)
             : base(constants, (byte*)links, (byte*)header)
         {
             Links = links;

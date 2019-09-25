@@ -4,9 +4,9 @@
 
 namespace Platform.Data.Doublets.ResizableDirectMemory
 {
-    public unsafe class LinksSourcesAVLBalancedTreeMethods<TLink> : LinksAVLBalancedTreeMethodsBase<TLink>
+    public unsafe class LinksSourcesAvlBalancedTreeMethods<TLink> : LinksAvlBalancedTreeMethodsBase<TLink>
     {
-        public LinksSourcesAVLBalancedTreeMethods(LinksConstants<TLink> constants, byte* links, byte* header) : base(constants, links, header) { }
+        public LinksSourcesAvlBalancedTreeMethods(LinksConstants<TLink> constants, byte* links, byte* header) : base(constants, links, header) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected unsafe override ref TLink GetLeftReference(TLink node) => ref GetLinkReference(node).LeftAsSource;

@@ -10,14 +10,14 @@ using static System.Runtime.CompilerServices.Unsafe;
 
 namespace Platform.Data.Doublets.ResizableDirectMemory
 {
-    public unsafe abstract class LinksAVLBalancedTreeMethodsBase<TLink> : SizedAndThreadedAVLBalancedTreeMethods<TLink>, ILinksTreeMethods<TLink>
+    public unsafe abstract class LinksAvlBalancedTreeMethodsBase<TLink> : SizedAndThreadedAVLBalancedTreeMethods<TLink>, ILinksTreeMethods<TLink>
     {
         protected readonly TLink Break;
         protected readonly TLink Continue;
         protected readonly byte* Links;
         protected readonly byte* Header;
 
-        public LinksAVLBalancedTreeMethodsBase(LinksConstants<TLink> constants, byte* links, byte* header)
+        public LinksAvlBalancedTreeMethodsBase(LinksConstants<TLink> constants, byte* links, byte* header)
         {
             Links = links;
             Header = header;

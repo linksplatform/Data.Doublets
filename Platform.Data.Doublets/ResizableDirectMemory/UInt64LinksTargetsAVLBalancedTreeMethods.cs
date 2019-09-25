@@ -4,9 +4,9 @@
 
 namespace Platform.Data.Doublets.ResizableDirectMemory
 {
-    public unsafe class UInt64LinksTargetsAVLBalancedTreeMethods : UInt64LinksAVLBalancedTreeMethodsBase
+    public unsafe class UInt64LinksTargetsAvlBalancedTreeMethods : UInt64LinksAvlBalancedTreeMethodsBase
     {
-        public UInt64LinksTargetsAVLBalancedTreeMethods(LinksConstants<ulong> constants, RawLink<ulong>* links, LinksHeader<ulong>* header) : base(constants, links, header) { }
+        public UInt64LinksTargetsAvlBalancedTreeMethods(LinksConstants<ulong> constants, RawLink<ulong>* links, LinksHeader<ulong>* header) : base(constants, links, header) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override ref ulong GetLeftReference(ulong node) => ref Links[node].LeftAsTarget;

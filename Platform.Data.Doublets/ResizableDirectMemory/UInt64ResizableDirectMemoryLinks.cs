@@ -36,8 +36,8 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         {
             if (useAvlBasedIndex)
             {
-                _createSourceTreeMethods = () => new UInt64LinksSourcesAVLBalancedTreeMethods(Constants, _links, _header);
-                _createTargetTreeMethods = () => new UInt64LinksTargetsAVLBalancedTreeMethods(Constants, _links, _header);
+                _createSourceTreeMethods = () => new UInt64LinksSourcesAvlBalancedTreeMethods(Constants, _links, _header);
+                _createTargetTreeMethods = () => new UInt64LinksTargetsAvlBalancedTreeMethods(Constants, _links, _header);
             }
             else
             {
