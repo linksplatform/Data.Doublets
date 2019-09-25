@@ -35,7 +35,7 @@ namespace Platform.Data.Doublets.Tests
         {
             using (var scope = new Scope<Types<HeapResizableDirectMemory, UInt64ResizableDirectMemoryLinks>>())
             {
-                new UInt64Links(scope.Use<ILinks<ulong>>()).TestMultipleRandomCreationsAndDeletions(1500);
+                new UInt64Links(scope.Use<ILinks<ulong>>()).TestMultipleRandomCreationsAndDeletions(100);
             }
         }
 
