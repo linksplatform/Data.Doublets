@@ -17,8 +17,8 @@ using Platform.Scopes;
 using Platform.Counters;
 using Platform.Diagnostics;
 using Platform.Memory;
-using Platform.Data.Doublets.ResizableDirectMemory;
 using Platform.Data.Doublets.Decorators;
+using Platform.Data.Doublets.ResizableDirectMemory.Specific;
 
 namespace Platform.Data.Doublets.Tests
 {
@@ -35,7 +35,7 @@ namespace Platform.Data.Doublets.Tests
         {
             using (var scope = new Scope<Types<HeapResizableDirectMemory, UInt64ResizableDirectMemoryLinks>>())
             {
-                new UInt64Links(scope.Use<ILinks<ulong>>()).TestMultipleRandomCreationsAndDeletions(100);
+                new UInt64Links(scope.Use<ILinks<ulong>>()).TestMultipleRandomCreationsAndDeletions(1500);
             }
         }
 

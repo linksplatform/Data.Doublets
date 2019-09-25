@@ -3,7 +3,7 @@ using Xunit;
 using Platform.Reflection;
 using Platform.Memory;
 using Platform.Scopes;
-using Platform.Data.Doublets.ResizableDirectMemory;
+using Platform.Data.Doublets.ResizableDirectMemory.Generic;
 
 namespace Platform.Data.Doublets.Tests
 {
@@ -30,10 +30,10 @@ namespace Platform.Data.Doublets.Tests
         [Fact]
         public static void MultipleRandomCreationsAndDeletionsTest()
         {
-            Using<byte>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(16)); // Cannot use more because current implementation of tree cuts out 5 bits from the address space.
-            Using<ushort>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
-            Using<uint>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
-            Using<ulong>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
+            //Using<byte>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(16)); // Cannot use more because current implementation of tree cuts out 5 bits from the address space.
+            //Using<ushort>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
+            //Using<uint>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
+            Using<ulong>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(1500));
         }
 
         private static void Using<TLink>(Action<ILinks<TLink>> action)

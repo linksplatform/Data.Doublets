@@ -10,7 +10,7 @@ using Platform.Singletons;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-namespace Platform.Data.Doublets.ResizableDirectMemory
+namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
 {
     public abstract class ResizableDirectMemoryLinksBase<TLink> : DisposableBase, ILinks<TLink>
     {
@@ -67,7 +67,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             SetPointers(_memory);
             ref var header = ref GetHeaderReference();
             // Гарантия корректности _memory.UsedCapacity относительно _header->AllocatedLinks
-            _memory.UsedCapacity = (ConvertToUInt64(header.AllocatedLinks) * LinkSizeInBytes) + LinkHeaderSizeInBytes;
+            _memory.UsedCapacity = ConvertToUInt64(header.AllocatedLinks) * LinkSizeInBytes + LinkHeaderSizeInBytes;
             // Гарантия корректности _header->ReservedLinks относительно _memory.ReservedCapacity
             header.ReservedLinks = ConvertToAddress((_memory.ReservedCapacity - LinkHeaderSizeInBytes) / LinkSizeInBytes);
         }

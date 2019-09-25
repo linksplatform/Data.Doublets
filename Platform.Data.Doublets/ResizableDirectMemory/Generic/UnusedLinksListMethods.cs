@@ -5,7 +5,7 @@ using static System.Runtime.CompilerServices.Unsafe;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-namespace Platform.Data.Doublets.ResizableDirectMemory
+namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
 {
     public unsafe class UnusedLinksListMethods<TLink> : CircularDoublyLinkedListMethods<TLink>, ILinksListMethods<TLink>
     {

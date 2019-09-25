@@ -2,7 +2,7 @@
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-namespace Platform.Data.Doublets.ResizableDirectMemory
+namespace Platform.Data.Doublets.ResizableDirectMemory.Specific
 {
     public unsafe class UInt64LinksTargetsSizeBalancedTreeMethods : UInt64LinksSizeBalancedTreeMethodsBase
     {
@@ -40,11 +40,11 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override bool FirstIsToTheLeftOfSecond(ulong firstSource, ulong firstTarget, ulong secondSource, ulong secondTarget)
-            => firstTarget < secondTarget || (firstTarget == secondTarget && firstSource < secondSource);
+            => firstTarget < secondTarget || firstTarget == secondTarget && firstSource < secondSource;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override bool FirstIsToTheRightOfSecond(ulong firstSource, ulong firstTarget, ulong secondSource, ulong secondTarget)
-            => firstTarget > secondTarget || (firstTarget == secondTarget && firstSource > secondSource);
+            => firstTarget > secondTarget || firstTarget == secondTarget && firstSource > secondSource;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override void ClearNode(ulong node)

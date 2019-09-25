@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Platform.Memory;
+using Platform.Data.Doublets.ResizableDirectMemory.Generic;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-namespace Platform.Data.Doublets.ResizableDirectMemory
+namespace Platform.Data.Doublets.ResizableDirectMemory.Specific
 {
     public unsafe class UInt64ResizableDirectMemoryLinks : ResizableDirectMemoryLinksBase<ulong>
     {

@@ -8,7 +8,7 @@ using static System.Runtime.CompilerServices.Unsafe;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-namespace Platform.Data.Doublets.ResizableDirectMemory
+namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
 {
     public unsafe abstract class LinksAvlBalancedTreeMethodsBase<TLink> : SizedAndThreadedAVLBalancedTreeMethods<TLink>, ILinksTreeMethods<TLink>
     {
@@ -130,7 +130,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         {
             unchecked
             {
-                var packagedValue = (TLink)(Integer<TLink>)((((byte)value >> 5) & 4) | value & 3);
+                var packagedValue = (TLink)(Integer<TLink>)((byte)value >> 5 & 4 | value & 3);
                 var modified = Bit<TLink>.PartialWrite(storedValue, packagedValue, 0, 3);
                 storedValue = modified;
             }

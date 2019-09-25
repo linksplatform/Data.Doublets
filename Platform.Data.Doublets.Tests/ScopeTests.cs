@@ -1,9 +1,10 @@
 ﻿using Xunit;
 using Platform.Scopes;
 using Platform.Memory;
-using Platform.Data.Doublets.ResizableDirectMemory;
 using Platform.Data.Doublets.Decorators;
 using Platform.Reflection;
+using Platform.Data.Doublets.ResizableDirectMemory.Generic;
+using Platform.Data.Doublets.ResizableDirectMemory.Specific;
 
 namespace Platform.Data.Doublets.Tests
 {
