@@ -4,9 +4,9 @@
 
 namespace Platform.Data.Doublets.ResizableDirectMemory
 {
-    public unsafe class UInt64LinksSourcesAVLBalancedTreeMethods : UInt64LinksAVLBalancedTreeMethodsBase
+    public unsafe class UInt64LinksSourcesSizeBalancedTreeMethods : UInt64LinksSizeBalancedTreeMethodsBase
     {
-        public UInt64LinksSourcesAVLBalancedTreeMethods(LinksConstants<ulong> constants, RawLink<ulong>* links, LinksHeader<ulong>* header) : base(constants, links, header) { }
+        public UInt64LinksSourcesSizeBalancedTreeMethods(LinksConstants<ulong> constants, RawLink<ulong>* links, LinksHeader<ulong>* header) : base(constants, links, header) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override ref ulong GetLeftReference(ulong node) => ref Links[node].LeftAsSource;
@@ -27,28 +27,10 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         protected override void SetRight(ulong node, ulong right) => Links[node].RightAsSource = right;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override ulong GetSize(ulong node) => GetSizeValue(Links[node].SizeAsSource);
+        protected override ulong GetSize(ulong node) => Links[node].SizeAsSource;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetSize(ulong node, ulong size) => SetSizeValue(ref Links[node].SizeAsSource, size);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override bool GetLeftIsChild(ulong node) => GetLeftIsChildValue(Links[node].SizeAsSource);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetLeftIsChild(ulong node, bool value) => SetLeftIsChildValue(ref Links[node].SizeAsSource, value);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override bool GetRightIsChild(ulong node) => GetRightIsChildValue(Links[node].SizeAsSource);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetRightIsChild(ulong node, bool value) => SetRightIsChildValue(ref Links[node].SizeAsSource, value);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override sbyte GetBalance(ulong node) => GetBalanceValue(Links[node].SizeAsSource);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetBalance(ulong node, sbyte value) => SetBalanceValue(ref Links[node].SizeAsSource, value);
+        protected override void SetSize(ulong node, ulong size) => Links[node].SizeAsSource = size;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override ulong GetTreeRoot() => Header->FirstAsSource;

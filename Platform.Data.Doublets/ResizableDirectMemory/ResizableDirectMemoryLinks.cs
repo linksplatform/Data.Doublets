@@ -2,6 +2,7 @@
 using Platform.Numbers;
 using Platform.Memory;
 using static System.Runtime.CompilerServices.Unsafe;
+using System;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -9,12 +10,12 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
 {
     public unsafe partial class ResizableDirectMemoryLinks<TLink> : ResizableDirectMemoryLinksBase<TLink>
     {
-        public static readonly long LinkHeaderSizeInBytes = LinksHeader<TLink>.SizeInBytes;
-        public static readonly long DefaultLinksSizeStep = LinkSizeInBytes * 1024 * 1024;
-
+        private readonly Func<ILinksTreeMethods<TLink>> _createSourceTreeMethods;
+        private readonly Func<ILinksTreeMethods<TLink>> _createTargetTreeMethods;
         private byte* _header;
         private byte* _links;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ResizableDirectMemoryLinks(string address) : this(address, DefaultLinksSizeStep) { }
 
         /// <summary>
@@ -22,51 +23,47 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         /// </summary>
         /// <param name="address">Полный пусть к файлу базы данных.</param>
         /// <param name="memoryReservationStep">Минимальный шаг расширения базы данных в байтах.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ResizableDirectMemoryLinks(string address, long memoryReservationStep) : this(new FileMappedResizableDirectMemory(address, memoryReservationStep), memoryReservationStep) { }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ResizableDirectMemoryLinks(IResizableDirectMemory memory) : this(memory, DefaultLinksSizeStep) { }
 
-        public ResizableDirectMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep)
-            : base(memory, memoryReservationStep)
-        {
-            if (memory.ReservedCapacity < memoryReservationStep)
-            {
-                memory.ReservedCapacity = memoryReservationStep;
-            }
-            SetPointers(_memory);
-            ref var header = ref GetHeaderReference();
-            // Гарантия корректности _memory.UsedCapacity относительно _header->AllocatedLinks
-            _memory.UsedCapacity = ((Integer<TLink>)header.AllocatedLinks * LinkSizeInBytes) + LinkHeaderSizeInBytes;
-            // Гарантия корректности _header->ReservedLinks относительно _memory.ReservedCapacity
-            header.ReservedLinks = (Integer<TLink>)((_memory.ReservedCapacity - LinkHeaderSizeInBytes) / LinkSizeInBytes);
-        }
-
-        /// <remarks>
-        /// TODO: Возможно это должно быть событием, вызываемым из IMemory, в том случае, если адрес реально поменялся
-        /// 
-        /// Указатель this.links может быть в том же месте, 
-        /// так как 0-я связь не используется и имеет такой же размер как Header,
-        /// поэтому header размещается в том же месте, что и 0-я связь
-        /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetPointers(IResizableDirectMemory memory)
+        public ResizableDirectMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep) : this(memory, memoryReservationStep, true) { }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public ResizableDirectMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep, bool useAvlBasedIndex) : base(memory, memoryReservationStep)
         {
-            if (memory == null)
+            if (useAvlBasedIndex)
             {
-                _links = null;
-                _header = _links;
-                SourcesTreeMethods = null;
-                TargetsTreeMethods = null;
-                UnusedLinksListMethods = null;
+                _createSourceTreeMethods = () => new LinksSourcesAVLBalancedTreeMethods<TLink>(Constants, _links, _header);
+                _createTargetTreeMethods = () => new LinksTargetsAVLBalancedTreeMethods<TLink>(Constants, _links, _header);
             }
             else
             {
-                _links = (byte*)memory.Pointer;
-                _header = _links;
-                SourcesTreeMethods = new LinksSourcesAVLBalancedTreeMethods<TLink>(Constants, _links, _header);
-                TargetsTreeMethods = new LinksTargetsAVLBalancedTreeMethods<TLink>(Constants, _links, _header);
-                UnusedLinksListMethods = new UnusedLinksListMethods<TLink>(_links, _header);
+                _createSourceTreeMethods = () => new LinksSourcesSizeBalancedTreeMethods<TLink>(Constants, _links, _header);
+                _createTargetTreeMethods = () => new LinksTargetsSizeBalancedTreeMethods<TLink>(Constants, _links, _header);
             }
+            Init(memory, memoryReservationStep);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected override void SetPointers(IResizableDirectMemory memory)
+        {
+            _links = (byte*)memory.Pointer;
+            _header = _links;
+            SourcesTreeMethods = _createSourceTreeMethods();
+            TargetsTreeMethods = _createTargetTreeMethods();
+            UnusedLinksListMethods = new UnusedLinksListMethods<TLink>(_links, _header);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected override void ResetPointers()
+        {
+            base.ResetPointers();
+            _links = null;
+            _header = null;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

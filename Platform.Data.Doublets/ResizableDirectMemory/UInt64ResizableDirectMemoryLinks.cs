@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Platform.Memory;
 
@@ -8,11 +9,12 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
 {
     public unsafe class UInt64ResizableDirectMemoryLinks : ResizableDirectMemoryLinksBase<ulong>
     {
-        public static readonly long DefaultLinksSizeStep = LinkSizeInBytes * 1024 * 1024;
-
+        private readonly Func<ILinksTreeMethods<ulong>> _createSourceTreeMethods;
+        private readonly Func<ILinksTreeMethods<ulong>> _createTargetTreeMethods;
         private LinksHeader<ulong>* _header;
         private RawLink<ulong>* _links;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public UInt64ResizableDirectMemoryLinks(string address) : this(address, DefaultLinksSizeStep) { }
 
         /// <summary>
@@ -20,50 +22,47 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         /// </summary>
         /// <param name="address">Полный пусть к файлу базы данных.</param>
         /// <param name="memoryReservationStep">Минимальный шаг расширения базы данных в байтах.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public UInt64ResizableDirectMemoryLinks(string address, long memoryReservationStep) : this(new FileMappedResizableDirectMemory(address, memoryReservationStep), memoryReservationStep) { }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public UInt64ResizableDirectMemoryLinks(IResizableDirectMemory memory) : this(memory, DefaultLinksSizeStep) { }
 
-        public UInt64ResizableDirectMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep)
-            : base(memory, memoryReservationStep)
-        {
-            if (memory.ReservedCapacity < memoryReservationStep)
-            {
-                memory.ReservedCapacity = memoryReservationStep;
-            }
-            SetPointers(_memory);
-            // Гарантия корректности _memory.UsedCapacity относительно _header->AllocatedLinks
-            _memory.UsedCapacity = ((long)_header->AllocatedLinks * sizeof(RawLink<ulong>)) + sizeof(LinksHeader<ulong>);
-            // Гарантия корректности _header->ReservedLinks относительно _memory.ReservedCapacity
-            _header->ReservedLinks = (ulong)((_memory.ReservedCapacity - sizeof(LinksHeader<ulong>)) / sizeof(RawLink<ulong>));
-        }
-
-        /// <remarks>
-        /// TODO: Возможно это должно быть событием, вызываемым из IMemory, в том случае, если адрес реально поменялся
-        ///
-        /// Указатель this.links может быть в том же месте, 
-        /// так как 0-я связь не используется и имеет такой же размер как Header,
-        /// поэтому header размещается в том же месте, что и 0-я связь
-        /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetPointers(IResizableDirectMemory memory)
+        public UInt64ResizableDirectMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep) : this(memory, memoryReservationStep, true) { }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public UInt64ResizableDirectMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep, bool useAvlBasedIndex) : base(memory, memoryReservationStep)
         {
-            if (memory == null)
+            if (useAvlBasedIndex)
             {
-                _header = null;
-                _links = null;
-                SourcesTreeMethods = null;
-                TargetsTreeMethods = null;
-                UnusedLinksListMethods = null;
+                _createSourceTreeMethods = () => new UInt64LinksSourcesAVLBalancedTreeMethods(Constants, _links, _header);
+                _createTargetTreeMethods = () => new UInt64LinksTargetsAVLBalancedTreeMethods(Constants, _links, _header);
             }
             else
             {
-                _header = (LinksHeader<ulong>*)memory.Pointer;
-                _links = (RawLink<ulong>*)memory.Pointer;
-                SourcesTreeMethods = new UInt64LinksSourcesAVLBalancedTreeMethods(Constants, _links, _header);
-                TargetsTreeMethods = new UInt64LinksTargetsAVLBalancedTreeMethods(Constants, _links, _header);
-                UnusedLinksListMethods = new UInt64UnusedLinksListMethods(_links, _header);
+                _createSourceTreeMethods = () => new UInt64LinksSourcesSizeBalancedTreeMethods(Constants, _links, _header);
+                _createTargetTreeMethods = () => new UInt64LinksTargetsSizeBalancedTreeMethods(Constants, _links, _header);
             }
+            Init(memory, memoryReservationStep);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected override void SetPointers(IResizableDirectMemory memory)
+        {
+            _header = (LinksHeader<ulong>*)memory.Pointer;
+            _links = (RawLink<ulong>*)memory.Pointer;
+            SourcesTreeMethods = _createSourceTreeMethods();
+            TargetsTreeMethods = _createTargetTreeMethods();
+            UnusedLinksListMethods = new UInt64UnusedLinksListMethods(_links, _header);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected override void ResetPointers()
+        {
+            base.ResetPointers();
+            _links = null;
+            _header = null;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -92,6 +91,9 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override ulong GetOne() => 1UL;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected override long ConvertToUInt64(ulong value) => (long)value;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override ulong ConvertToAddress(long value) => (ulong)value;

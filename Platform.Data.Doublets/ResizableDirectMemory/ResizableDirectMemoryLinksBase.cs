@@ -24,6 +24,10 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         /// </remarks>
         public static readonly long LinkSizeInBytes = RawLink<TLink>.SizeInBytes;
 
+        public static readonly long LinkHeaderSizeInBytes = LinksHeader<TLink>.SizeInBytes;
+
+        public static readonly long DefaultLinksSizeStep = LinkSizeInBytes * 1024 * 1024;
+
         protected readonly IResizableDirectMemory _memory;
         protected readonly long _memoryReservationStep;
 
@@ -52,6 +56,20 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             _memory = memory;
             _memoryReservationStep = memoryReservationStep;
             Constants = Default<LinksConstants<TLink>>.Instance;
+        }
+
+        protected virtual void Init(IResizableDirectMemory memory, long memoryReservationStep)
+        {
+            if (memory.ReservedCapacity < memoryReservationStep)
+            {
+                memory.ReservedCapacity = memoryReservationStep;
+            }
+            SetPointers(_memory);
+            ref var header = ref GetHeaderReference();
+            // Гарантия корректности _memory.UsedCapacity относительно _header->AllocatedLinks
+            _memory.UsedCapacity = (ConvertToUInt64(header.AllocatedLinks) * LinkSizeInBytes) + LinkHeaderSizeInBytes;
+            // Гарантия корректности _header->ReservedLinks относительно _memory.ReservedCapacity
+            header.ReservedLinks = ConvertToAddress((_memory.ReservedCapacity - LinkHeaderSizeInBytes) / LinkSizeInBytes);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -360,8 +378,6 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             return freeLink;
         }
 
-        
-
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public virtual void Delete(IList<TLink> restrictions)
         {
@@ -393,8 +409,23 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             return new Link<TLink>(linkIndex, link.Source, link.Target);
         }
 
+        /// <remarks>
+        /// TODO: Возможно это должно быть событием, вызываемым из IMemory, в том случае, если адрес реально поменялся
+        ///
+        /// Указатель this.links может быть в том же месте, 
+        /// так как 0-я связь не используется и имеет такой же размер как Header,
+        /// поэтому header размещается в том же месте, что и 0-я связь
+        /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected abstract void SetPointers(IResizableDirectMemory memory);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected virtual void ResetPointers()
+        {
+            SourcesTreeMethods = null;
+            TargetsTreeMethods = null;
+            UnusedLinksListMethods = null;
+        }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected abstract ref LinksHeader<TLink> GetHeaderReference();
@@ -444,6 +475,9 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         protected virtual bool GreaterOrEqualThan(TLink first, TLink second) => Comparer.Compare(first, second) >= 0;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected virtual long ConvertToUInt64(TLink value) => (Integer<TLink>)value;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual TLink ConvertToAddress(long value) => (Integer<TLink>)value;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -469,7 +503,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         {
             if (!wasDisposed)
             {
-                SetPointers(null);
+                ResetPointers();
                 _memory.DisposeIfPossible();
             }
         }
