@@ -3958,6 +3958,287 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksHeader(Of TLink).SizeInBytes
   nameWithType: LinksHeader<TLink>.SizeInBytes
   nameWithType.vb: LinksHeader(Of TLink).SizeInBytes
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1
+  name: LinksSizeBalancedTreeMethodsBase<TLink>
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase-1.html
+  commentId: T:Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1
+  name.vb: LinksSizeBalancedTreeMethodsBase(Of TLink)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase<TLink>
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase(Of TLink)
+  nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>
+  nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.#ctor(Platform.Data.LinksConstants{`0},System.Byte*,System.Byte*)
+  name: LinksSizeBalancedTreeMethodsBase(LinksConstants<TLink>, Byte*, Byte*)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSizeBalancedTreeMethodsBase_1__ctor_Platform_Data_LinksConstants__0__System_Byte__System_Byte__
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.#ctor(Platform.Data.LinksConstants{`0},System.Byte*,System.Byte*)
+  name.vb: LinksSizeBalancedTreeMethodsBase(LinksConstants(Of TLink), Byte*, Byte*)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase<TLink>.LinksSizeBalancedTreeMethodsBase(Platform.Data.LinksConstants<TLink>, System.Byte*, System.Byte*)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase(Of TLink).LinksSizeBalancedTreeMethodsBase(Platform.Data.LinksConstants(Of TLink), System.Byte*, System.Byte*)
+  nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>.LinksSizeBalancedTreeMethodsBase(LinksConstants<TLink>, Byte*, Byte*)
+  nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink).LinksSizeBalancedTreeMethodsBase(LinksConstants(Of TLink), Byte*, Byte*)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.#ctor*
+  name: LinksSizeBalancedTreeMethodsBase
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSizeBalancedTreeMethodsBase_1__ctor_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.#ctor
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase<TLink>.LinksSizeBalancedTreeMethodsBase
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase(Of TLink).LinksSizeBalancedTreeMethodsBase
+  nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>.LinksSizeBalancedTreeMethodsBase
+  nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink).LinksSizeBalancedTreeMethodsBase
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.Break
+  name: Break
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSizeBalancedTreeMethodsBase_1_Break
+  commentId: F:Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.Break
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase<TLink>.Break
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase(Of TLink).Break
+  nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>.Break
+  nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink).Break
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.Continue
+  name: Continue
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSizeBalancedTreeMethodsBase_1_Continue
+  commentId: F:Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.Continue
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase<TLink>.Continue
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase(Of TLink).Continue
+  nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>.Continue
+  nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink).Continue
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.CountUsages(`0)
+  name: CountUsages(TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSizeBalancedTreeMethodsBase_1_CountUsages__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.CountUsages(`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase<TLink>.CountUsages(TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase(Of TLink).CountUsages(TLink)
+  nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>.CountUsages(TLink)
+  nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink).CountUsages(TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.CountUsages*
+  name: CountUsages
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSizeBalancedTreeMethodsBase_1_CountUsages_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.CountUsages
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase<TLink>.CountUsages
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase(Of TLink).CountUsages
+  nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>.CountUsages
+  nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink).CountUsages
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.EachUsage(`0,System.Func{System.Collections.Generic.IList{`0},`0})
+  name: EachUsage(TLink, Func<IList<TLink>, TLink>)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSizeBalancedTreeMethodsBase_1_EachUsage__0_System_Func_System_Collections_Generic_IList__0___0__
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.EachUsage(`0,System.Func{System.Collections.Generic.IList{`0},`0})
+  name.vb: EachUsage(TLink, Func(Of IList(Of TLink), TLink))
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase<TLink>.EachUsage(TLink, System.Func<System.Collections.Generic.IList<TLink>, TLink>)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase(Of TLink).EachUsage(TLink, System.Func(Of System.Collections.Generic.IList(Of TLink), TLink))
+  nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>.EachUsage(TLink, Func<IList<TLink>, TLink>)
+  nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink).EachUsage(TLink, Func(Of IList(Of TLink), TLink))
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.EachUsage*
+  name: EachUsage
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSizeBalancedTreeMethodsBase_1_EachUsage_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.EachUsage
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase<TLink>.EachUsage
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase(Of TLink).EachUsage
+  nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>.EachUsage
+  nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink).EachUsage
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.FirstIsToTheLeftOfSecond(`0,`0)
+  name: FirstIsToTheLeftOfSecond(TLink, TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSizeBalancedTreeMethodsBase_1_FirstIsToTheLeftOfSecond__0__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.FirstIsToTheLeftOfSecond(`0,`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase<TLink>.FirstIsToTheLeftOfSecond(TLink, TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase(Of TLink).FirstIsToTheLeftOfSecond(TLink, TLink)
+  nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>.FirstIsToTheLeftOfSecond(TLink, TLink)
+  nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink).FirstIsToTheLeftOfSecond(TLink, TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.FirstIsToTheLeftOfSecond(`0,`0,`0,`0)
+  name: FirstIsToTheLeftOfSecond(TLink, TLink, TLink, TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSizeBalancedTreeMethodsBase_1_FirstIsToTheLeftOfSecond__0__0__0__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.FirstIsToTheLeftOfSecond(`0,`0,`0,`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase<TLink>.FirstIsToTheLeftOfSecond(TLink, TLink, TLink, TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase(Of TLink).FirstIsToTheLeftOfSecond(TLink, TLink, TLink, TLink)
+  nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>.FirstIsToTheLeftOfSecond(TLink, TLink, TLink, TLink)
+  nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink).FirstIsToTheLeftOfSecond(TLink, TLink, TLink, TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.FirstIsToTheLeftOfSecond*
+  name: FirstIsToTheLeftOfSecond
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSizeBalancedTreeMethodsBase_1_FirstIsToTheLeftOfSecond_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.FirstIsToTheLeftOfSecond
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase<TLink>.FirstIsToTheLeftOfSecond
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase(Of TLink).FirstIsToTheLeftOfSecond
+  nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>.FirstIsToTheLeftOfSecond
+  nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink).FirstIsToTheLeftOfSecond
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.FirstIsToTheRightOfSecond(`0,`0)
+  name: FirstIsToTheRightOfSecond(TLink, TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSizeBalancedTreeMethodsBase_1_FirstIsToTheRightOfSecond__0__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.FirstIsToTheRightOfSecond(`0,`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase<TLink>.FirstIsToTheRightOfSecond(TLink, TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase(Of TLink).FirstIsToTheRightOfSecond(TLink, TLink)
+  nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>.FirstIsToTheRightOfSecond(TLink, TLink)
+  nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink).FirstIsToTheRightOfSecond(TLink, TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.FirstIsToTheRightOfSecond(`0,`0,`0,`0)
+  name: FirstIsToTheRightOfSecond(TLink, TLink, TLink, TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSizeBalancedTreeMethodsBase_1_FirstIsToTheRightOfSecond__0__0__0__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.FirstIsToTheRightOfSecond(`0,`0,`0,`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase<TLink>.FirstIsToTheRightOfSecond(TLink, TLink, TLink, TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase(Of TLink).FirstIsToTheRightOfSecond(TLink, TLink, TLink, TLink)
+  nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>.FirstIsToTheRightOfSecond(TLink, TLink, TLink, TLink)
+  nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink).FirstIsToTheRightOfSecond(TLink, TLink, TLink, TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.FirstIsToTheRightOfSecond*
+  name: FirstIsToTheRightOfSecond
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSizeBalancedTreeMethodsBase_1_FirstIsToTheRightOfSecond_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.FirstIsToTheRightOfSecond
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase<TLink>.FirstIsToTheRightOfSecond
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase(Of TLink).FirstIsToTheRightOfSecond
+  nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>.FirstIsToTheRightOfSecond
+  nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink).FirstIsToTheRightOfSecond
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.GetBasePartValue(`0)
+  name: GetBasePartValue(TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSizeBalancedTreeMethodsBase_1_GetBasePartValue__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.GetBasePartValue(`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase<TLink>.GetBasePartValue(TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase(Of TLink).GetBasePartValue(TLink)
+  nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>.GetBasePartValue(TLink)
+  nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink).GetBasePartValue(TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.GetBasePartValue*
+  name: GetBasePartValue
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSizeBalancedTreeMethodsBase_1_GetBasePartValue_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.GetBasePartValue
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase<TLink>.GetBasePartValue
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase(Of TLink).GetBasePartValue
+  nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>.GetBasePartValue
+  nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink).GetBasePartValue
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.GetHeaderReference
+  name: GetHeaderReference()
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSizeBalancedTreeMethodsBase_1_GetHeaderReference
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.GetHeaderReference
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase<TLink>.GetHeaderReference()
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase(Of TLink).GetHeaderReference()
+  nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>.GetHeaderReference()
+  nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink).GetHeaderReference()
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.GetHeaderReference*
+  name: GetHeaderReference
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSizeBalancedTreeMethodsBase_1_GetHeaderReference_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.GetHeaderReference
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase<TLink>.GetHeaderReference
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase(Of TLink).GetHeaderReference
+  nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>.GetHeaderReference
+  nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink).GetHeaderReference
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.GetLinkReference(`0)
+  name: GetLinkReference(TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSizeBalancedTreeMethodsBase_1_GetLinkReference__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.GetLinkReference(`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase<TLink>.GetLinkReference(TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase(Of TLink).GetLinkReference(TLink)
+  nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>.GetLinkReference(TLink)
+  nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink).GetLinkReference(TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.GetLinkReference*
+  name: GetLinkReference
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSizeBalancedTreeMethodsBase_1_GetLinkReference_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.GetLinkReference
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase<TLink>.GetLinkReference
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase(Of TLink).GetLinkReference
+  nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>.GetLinkReference
+  nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink).GetLinkReference
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.GetLinkValues(`0)
+  name: GetLinkValues(TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSizeBalancedTreeMethodsBase_1_GetLinkValues__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.GetLinkValues(`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase<TLink>.GetLinkValues(TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase(Of TLink).GetLinkValues(TLink)
+  nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>.GetLinkValues(TLink)
+  nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink).GetLinkValues(TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.GetLinkValues*
+  name: GetLinkValues
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSizeBalancedTreeMethodsBase_1_GetLinkValues_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.GetLinkValues
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase<TLink>.GetLinkValues
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase(Of TLink).GetLinkValues
+  nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>.GetLinkValues
+  nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink).GetLinkValues
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.GetTreeRoot
+  name: GetTreeRoot()
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSizeBalancedTreeMethodsBase_1_GetTreeRoot
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.GetTreeRoot
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase<TLink>.GetTreeRoot()
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase(Of TLink).GetTreeRoot()
+  nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>.GetTreeRoot()
+  nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink).GetTreeRoot()
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.GetTreeRoot*
+  name: GetTreeRoot
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSizeBalancedTreeMethodsBase_1_GetTreeRoot_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.GetTreeRoot
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase<TLink>.GetTreeRoot
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase(Of TLink).GetTreeRoot
+  nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>.GetTreeRoot
+  nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink).GetTreeRoot
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.Header
+  name: Header
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSizeBalancedTreeMethodsBase_1_Header
+  commentId: F:Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.Header
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase<TLink>.Header
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase(Of TLink).Header
+  nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>.Header
+  nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink).Header
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.Item(`0)
+  name: Item[TLink]
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSizeBalancedTreeMethodsBase_1_Item__0_
+  commentId: P:Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.Item(`0)
+  name.vb: Item(TLink)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase<TLink>.Item[TLink]
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase(Of TLink).Item(TLink)
+  nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>.Item[TLink]
+  nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink).Item(TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.Item*
+  name: Item
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSizeBalancedTreeMethodsBase_1_Item_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.Item
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase<TLink>.Item
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase(Of TLink).Item
+  nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>.Item
+  nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink).Item
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.Links
+  name: Links
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSizeBalancedTreeMethodsBase_1_Links
+  commentId: F:Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.Links
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase<TLink>.Links
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase(Of TLink).Links
+  nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>.Links
+  nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink).Links
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.PrintNodeValue(`0,System.Text.StringBuilder)
+  name: PrintNodeValue(TLink, StringBuilder)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSizeBalancedTreeMethodsBase_1_PrintNodeValue__0_System_Text_StringBuilder_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.PrintNodeValue(`0,System.Text.StringBuilder)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase<TLink>.PrintNodeValue(TLink, System.Text.StringBuilder)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase(Of TLink).PrintNodeValue(TLink, System.Text.StringBuilder)
+  nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>.PrintNodeValue(TLink, StringBuilder)
+  nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink).PrintNodeValue(TLink, StringBuilder)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.PrintNodeValue*
+  name: PrintNodeValue
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSizeBalancedTreeMethodsBase_1_PrintNodeValue_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.PrintNodeValue
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase<TLink>.PrintNodeValue
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase(Of TLink).PrintNodeValue
+  nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>.PrintNodeValue
+  nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink).PrintNodeValue
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.Search(`0,`0)
+  name: Search(TLink, TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSizeBalancedTreeMethodsBase_1_Search__0__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.Search(`0,`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase<TLink>.Search(TLink, TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase(Of TLink).Search(TLink, TLink)
+  nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>.Search(TLink, TLink)
+  nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink).Search(TLink, TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.Search*
+  name: Search
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSizeBalancedTreeMethodsBase_1_Search_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase`1.Search
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase<TLink>.Search
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSizeBalancedTreeMethodsBase(Of TLink).Search
+  nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>.Search
+  nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink).Search
 - uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesAVLBalancedTreeMethods`1
   name: LinksSourcesAVLBalancedTreeMethods<TLink>
   href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesAVLBalancedTreeMethods-1.html
@@ -4308,6 +4589,254 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesAVLBalancedTreeMethods(Of TLink).SetSize
   nameWithType: LinksSourcesAVLBalancedTreeMethods<TLink>.SetSize
   nameWithType.vb: LinksSourcesAVLBalancedTreeMethods(Of TLink).SetSize
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1
+  name: LinksSourcesSizeBalancedTreeMethods<TLink>
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods-1.html
+  commentId: T:Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1
+  name.vb: LinksSourcesSizeBalancedTreeMethods(Of TLink)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods<TLink>
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods(Of TLink)
+  nameWithType: LinksSourcesSizeBalancedTreeMethods<TLink>
+  nameWithType.vb: LinksSourcesSizeBalancedTreeMethods(Of TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.#ctor(Platform.Data.LinksConstants{`0},System.Byte*,System.Byte*)
+  name: LinksSourcesSizeBalancedTreeMethods(LinksConstants<TLink>, Byte*, Byte*)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSourcesSizeBalancedTreeMethods_1__ctor_Platform_Data_LinksConstants__0__System_Byte__System_Byte__
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.#ctor(Platform.Data.LinksConstants{`0},System.Byte*,System.Byte*)
+  name.vb: LinksSourcesSizeBalancedTreeMethods(LinksConstants(Of TLink), Byte*, Byte*)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods<TLink>.LinksSourcesSizeBalancedTreeMethods(Platform.Data.LinksConstants<TLink>, System.Byte*, System.Byte*)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods(Of TLink).LinksSourcesSizeBalancedTreeMethods(Platform.Data.LinksConstants(Of TLink), System.Byte*, System.Byte*)
+  nameWithType: LinksSourcesSizeBalancedTreeMethods<TLink>.LinksSourcesSizeBalancedTreeMethods(LinksConstants<TLink>, Byte*, Byte*)
+  nameWithType.vb: LinksSourcesSizeBalancedTreeMethods(Of TLink).LinksSourcesSizeBalancedTreeMethods(LinksConstants(Of TLink), Byte*, Byte*)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.#ctor*
+  name: LinksSourcesSizeBalancedTreeMethods
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSourcesSizeBalancedTreeMethods_1__ctor_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.#ctor
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods<TLink>.LinksSourcesSizeBalancedTreeMethods
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods(Of TLink).LinksSourcesSizeBalancedTreeMethods
+  nameWithType: LinksSourcesSizeBalancedTreeMethods<TLink>.LinksSourcesSizeBalancedTreeMethods
+  nameWithType.vb: LinksSourcesSizeBalancedTreeMethods(Of TLink).LinksSourcesSizeBalancedTreeMethods
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.ClearNode(`0)
+  name: ClearNode(TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSourcesSizeBalancedTreeMethods_1_ClearNode__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.ClearNode(`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods<TLink>.ClearNode(TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods(Of TLink).ClearNode(TLink)
+  nameWithType: LinksSourcesSizeBalancedTreeMethods<TLink>.ClearNode(TLink)
+  nameWithType.vb: LinksSourcesSizeBalancedTreeMethods(Of TLink).ClearNode(TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.ClearNode*
+  name: ClearNode
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSourcesSizeBalancedTreeMethods_1_ClearNode_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.ClearNode
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods<TLink>.ClearNode
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods(Of TLink).ClearNode
+  nameWithType: LinksSourcesSizeBalancedTreeMethods<TLink>.ClearNode
+  nameWithType.vb: LinksSourcesSizeBalancedTreeMethods(Of TLink).ClearNode
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.FirstIsToTheLeftOfSecond(`0,`0,`0,`0)
+  name: FirstIsToTheLeftOfSecond(TLink, TLink, TLink, TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSourcesSizeBalancedTreeMethods_1_FirstIsToTheLeftOfSecond__0__0__0__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.FirstIsToTheLeftOfSecond(`0,`0,`0,`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods<TLink>.FirstIsToTheLeftOfSecond(TLink, TLink, TLink, TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods(Of TLink).FirstIsToTheLeftOfSecond(TLink, TLink, TLink, TLink)
+  nameWithType: LinksSourcesSizeBalancedTreeMethods<TLink>.FirstIsToTheLeftOfSecond(TLink, TLink, TLink, TLink)
+  nameWithType.vb: LinksSourcesSizeBalancedTreeMethods(Of TLink).FirstIsToTheLeftOfSecond(TLink, TLink, TLink, TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.FirstIsToTheLeftOfSecond*
+  name: FirstIsToTheLeftOfSecond
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSourcesSizeBalancedTreeMethods_1_FirstIsToTheLeftOfSecond_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.FirstIsToTheLeftOfSecond
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods<TLink>.FirstIsToTheLeftOfSecond
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods(Of TLink).FirstIsToTheLeftOfSecond
+  nameWithType: LinksSourcesSizeBalancedTreeMethods<TLink>.FirstIsToTheLeftOfSecond
+  nameWithType.vb: LinksSourcesSizeBalancedTreeMethods(Of TLink).FirstIsToTheLeftOfSecond
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.FirstIsToTheRightOfSecond(`0,`0,`0,`0)
+  name: FirstIsToTheRightOfSecond(TLink, TLink, TLink, TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSourcesSizeBalancedTreeMethods_1_FirstIsToTheRightOfSecond__0__0__0__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.FirstIsToTheRightOfSecond(`0,`0,`0,`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods<TLink>.FirstIsToTheRightOfSecond(TLink, TLink, TLink, TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods(Of TLink).FirstIsToTheRightOfSecond(TLink, TLink, TLink, TLink)
+  nameWithType: LinksSourcesSizeBalancedTreeMethods<TLink>.FirstIsToTheRightOfSecond(TLink, TLink, TLink, TLink)
+  nameWithType.vb: LinksSourcesSizeBalancedTreeMethods(Of TLink).FirstIsToTheRightOfSecond(TLink, TLink, TLink, TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.FirstIsToTheRightOfSecond*
+  name: FirstIsToTheRightOfSecond
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSourcesSizeBalancedTreeMethods_1_FirstIsToTheRightOfSecond_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.FirstIsToTheRightOfSecond
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods<TLink>.FirstIsToTheRightOfSecond
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods(Of TLink).FirstIsToTheRightOfSecond
+  nameWithType: LinksSourcesSizeBalancedTreeMethods<TLink>.FirstIsToTheRightOfSecond
+  nameWithType.vb: LinksSourcesSizeBalancedTreeMethods(Of TLink).FirstIsToTheRightOfSecond
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.GetBasePartValue(`0)
+  name: GetBasePartValue(TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSourcesSizeBalancedTreeMethods_1_GetBasePartValue__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.GetBasePartValue(`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods<TLink>.GetBasePartValue(TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods(Of TLink).GetBasePartValue(TLink)
+  nameWithType: LinksSourcesSizeBalancedTreeMethods<TLink>.GetBasePartValue(TLink)
+  nameWithType.vb: LinksSourcesSizeBalancedTreeMethods(Of TLink).GetBasePartValue(TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.GetBasePartValue*
+  name: GetBasePartValue
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSourcesSizeBalancedTreeMethods_1_GetBasePartValue_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.GetBasePartValue
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods<TLink>.GetBasePartValue
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods(Of TLink).GetBasePartValue
+  nameWithType: LinksSourcesSizeBalancedTreeMethods<TLink>.GetBasePartValue
+  nameWithType.vb: LinksSourcesSizeBalancedTreeMethods(Of TLink).GetBasePartValue
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.GetLeft(`0)
+  name: GetLeft(TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSourcesSizeBalancedTreeMethods_1_GetLeft__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.GetLeft(`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods<TLink>.GetLeft(TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods(Of TLink).GetLeft(TLink)
+  nameWithType: LinksSourcesSizeBalancedTreeMethods<TLink>.GetLeft(TLink)
+  nameWithType.vb: LinksSourcesSizeBalancedTreeMethods(Of TLink).GetLeft(TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.GetLeft*
+  name: GetLeft
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSourcesSizeBalancedTreeMethods_1_GetLeft_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.GetLeft
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods<TLink>.GetLeft
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods(Of TLink).GetLeft
+  nameWithType: LinksSourcesSizeBalancedTreeMethods<TLink>.GetLeft
+  nameWithType.vb: LinksSourcesSizeBalancedTreeMethods(Of TLink).GetLeft
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.GetLeftReference(`0)
+  name: GetLeftReference(TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSourcesSizeBalancedTreeMethods_1_GetLeftReference__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.GetLeftReference(`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods<TLink>.GetLeftReference(TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods(Of TLink).GetLeftReference(TLink)
+  nameWithType: LinksSourcesSizeBalancedTreeMethods<TLink>.GetLeftReference(TLink)
+  nameWithType.vb: LinksSourcesSizeBalancedTreeMethods(Of TLink).GetLeftReference(TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.GetLeftReference*
+  name: GetLeftReference
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSourcesSizeBalancedTreeMethods_1_GetLeftReference_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.GetLeftReference
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods<TLink>.GetLeftReference
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods(Of TLink).GetLeftReference
+  nameWithType: LinksSourcesSizeBalancedTreeMethods<TLink>.GetLeftReference
+  nameWithType.vb: LinksSourcesSizeBalancedTreeMethods(Of TLink).GetLeftReference
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.GetRight(`0)
+  name: GetRight(TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSourcesSizeBalancedTreeMethods_1_GetRight__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.GetRight(`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods<TLink>.GetRight(TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods(Of TLink).GetRight(TLink)
+  nameWithType: LinksSourcesSizeBalancedTreeMethods<TLink>.GetRight(TLink)
+  nameWithType.vb: LinksSourcesSizeBalancedTreeMethods(Of TLink).GetRight(TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.GetRight*
+  name: GetRight
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSourcesSizeBalancedTreeMethods_1_GetRight_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.GetRight
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods<TLink>.GetRight
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods(Of TLink).GetRight
+  nameWithType: LinksSourcesSizeBalancedTreeMethods<TLink>.GetRight
+  nameWithType.vb: LinksSourcesSizeBalancedTreeMethods(Of TLink).GetRight
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.GetRightReference(`0)
+  name: GetRightReference(TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSourcesSizeBalancedTreeMethods_1_GetRightReference__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.GetRightReference(`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods<TLink>.GetRightReference(TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods(Of TLink).GetRightReference(TLink)
+  nameWithType: LinksSourcesSizeBalancedTreeMethods<TLink>.GetRightReference(TLink)
+  nameWithType.vb: LinksSourcesSizeBalancedTreeMethods(Of TLink).GetRightReference(TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.GetRightReference*
+  name: GetRightReference
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSourcesSizeBalancedTreeMethods_1_GetRightReference_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.GetRightReference
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods<TLink>.GetRightReference
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods(Of TLink).GetRightReference
+  nameWithType: LinksSourcesSizeBalancedTreeMethods<TLink>.GetRightReference
+  nameWithType.vb: LinksSourcesSizeBalancedTreeMethods(Of TLink).GetRightReference
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.GetSize(`0)
+  name: GetSize(TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSourcesSizeBalancedTreeMethods_1_GetSize__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.GetSize(`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods<TLink>.GetSize(TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods(Of TLink).GetSize(TLink)
+  nameWithType: LinksSourcesSizeBalancedTreeMethods<TLink>.GetSize(TLink)
+  nameWithType.vb: LinksSourcesSizeBalancedTreeMethods(Of TLink).GetSize(TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.GetSize*
+  name: GetSize
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSourcesSizeBalancedTreeMethods_1_GetSize_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.GetSize
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods<TLink>.GetSize
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods(Of TLink).GetSize
+  nameWithType: LinksSourcesSizeBalancedTreeMethods<TLink>.GetSize
+  nameWithType.vb: LinksSourcesSizeBalancedTreeMethods(Of TLink).GetSize
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.GetTreeRoot
+  name: GetTreeRoot()
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSourcesSizeBalancedTreeMethods_1_GetTreeRoot
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.GetTreeRoot
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods<TLink>.GetTreeRoot()
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods(Of TLink).GetTreeRoot()
+  nameWithType: LinksSourcesSizeBalancedTreeMethods<TLink>.GetTreeRoot()
+  nameWithType.vb: LinksSourcesSizeBalancedTreeMethods(Of TLink).GetTreeRoot()
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.GetTreeRoot*
+  name: GetTreeRoot
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSourcesSizeBalancedTreeMethods_1_GetTreeRoot_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.GetTreeRoot
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods<TLink>.GetTreeRoot
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods(Of TLink).GetTreeRoot
+  nameWithType: LinksSourcesSizeBalancedTreeMethods<TLink>.GetTreeRoot
+  nameWithType.vb: LinksSourcesSizeBalancedTreeMethods(Of TLink).GetTreeRoot
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.SetLeft(`0,`0)
+  name: SetLeft(TLink, TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSourcesSizeBalancedTreeMethods_1_SetLeft__0__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.SetLeft(`0,`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods<TLink>.SetLeft(TLink, TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods(Of TLink).SetLeft(TLink, TLink)
+  nameWithType: LinksSourcesSizeBalancedTreeMethods<TLink>.SetLeft(TLink, TLink)
+  nameWithType.vb: LinksSourcesSizeBalancedTreeMethods(Of TLink).SetLeft(TLink, TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.SetLeft*
+  name: SetLeft
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSourcesSizeBalancedTreeMethods_1_SetLeft_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.SetLeft
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods<TLink>.SetLeft
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods(Of TLink).SetLeft
+  nameWithType: LinksSourcesSizeBalancedTreeMethods<TLink>.SetLeft
+  nameWithType.vb: LinksSourcesSizeBalancedTreeMethods(Of TLink).SetLeft
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.SetRight(`0,`0)
+  name: SetRight(TLink, TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSourcesSizeBalancedTreeMethods_1_SetRight__0__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.SetRight(`0,`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods<TLink>.SetRight(TLink, TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods(Of TLink).SetRight(TLink, TLink)
+  nameWithType: LinksSourcesSizeBalancedTreeMethods<TLink>.SetRight(TLink, TLink)
+  nameWithType.vb: LinksSourcesSizeBalancedTreeMethods(Of TLink).SetRight(TLink, TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.SetRight*
+  name: SetRight
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSourcesSizeBalancedTreeMethods_1_SetRight_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.SetRight
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods<TLink>.SetRight
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods(Of TLink).SetRight
+  nameWithType: LinksSourcesSizeBalancedTreeMethods<TLink>.SetRight
+  nameWithType.vb: LinksSourcesSizeBalancedTreeMethods(Of TLink).SetRight
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.SetSize(`0,`0)
+  name: SetSize(TLink, TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSourcesSizeBalancedTreeMethods_1_SetSize__0__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.SetSize(`0,`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods<TLink>.SetSize(TLink, TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods(Of TLink).SetSize(TLink, TLink)
+  nameWithType: LinksSourcesSizeBalancedTreeMethods<TLink>.SetSize(TLink, TLink)
+  nameWithType.vb: LinksSourcesSizeBalancedTreeMethods(Of TLink).SetSize(TLink, TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.SetSize*
+  name: SetSize
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksSourcesSizeBalancedTreeMethods_1_SetSize_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods`1.SetSize
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods<TLink>.SetSize
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesSizeBalancedTreeMethods(Of TLink).SetSize
+  nameWithType: LinksSourcesSizeBalancedTreeMethods<TLink>.SetSize
+  nameWithType.vb: LinksSourcesSizeBalancedTreeMethods(Of TLink).SetSize
 - uid: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsAVLBalancedTreeMethods`1
   name: LinksTargetsAVLBalancedTreeMethods<TLink>
   href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsAVLBalancedTreeMethods-1.html
@@ -4658,6 +5187,254 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsAVLBalancedTreeMethods(Of TLink).SetSize
   nameWithType: LinksTargetsAVLBalancedTreeMethods<TLink>.SetSize
   nameWithType.vb: LinksTargetsAVLBalancedTreeMethods(Of TLink).SetSize
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1
+  name: LinksTargetsSizeBalancedTreeMethods<TLink>
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods-1.html
+  commentId: T:Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1
+  name.vb: LinksTargetsSizeBalancedTreeMethods(Of TLink)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods<TLink>
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods(Of TLink)
+  nameWithType: LinksTargetsSizeBalancedTreeMethods<TLink>
+  nameWithType.vb: LinksTargetsSizeBalancedTreeMethods(Of TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.#ctor(Platform.Data.LinksConstants{`0},System.Byte*,System.Byte*)
+  name: LinksTargetsSizeBalancedTreeMethods(LinksConstants<TLink>, Byte*, Byte*)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksTargetsSizeBalancedTreeMethods_1__ctor_Platform_Data_LinksConstants__0__System_Byte__System_Byte__
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.#ctor(Platform.Data.LinksConstants{`0},System.Byte*,System.Byte*)
+  name.vb: LinksTargetsSizeBalancedTreeMethods(LinksConstants(Of TLink), Byte*, Byte*)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods<TLink>.LinksTargetsSizeBalancedTreeMethods(Platform.Data.LinksConstants<TLink>, System.Byte*, System.Byte*)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods(Of TLink).LinksTargetsSizeBalancedTreeMethods(Platform.Data.LinksConstants(Of TLink), System.Byte*, System.Byte*)
+  nameWithType: LinksTargetsSizeBalancedTreeMethods<TLink>.LinksTargetsSizeBalancedTreeMethods(LinksConstants<TLink>, Byte*, Byte*)
+  nameWithType.vb: LinksTargetsSizeBalancedTreeMethods(Of TLink).LinksTargetsSizeBalancedTreeMethods(LinksConstants(Of TLink), Byte*, Byte*)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.#ctor*
+  name: LinksTargetsSizeBalancedTreeMethods
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksTargetsSizeBalancedTreeMethods_1__ctor_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.#ctor
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods<TLink>.LinksTargetsSizeBalancedTreeMethods
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods(Of TLink).LinksTargetsSizeBalancedTreeMethods
+  nameWithType: LinksTargetsSizeBalancedTreeMethods<TLink>.LinksTargetsSizeBalancedTreeMethods
+  nameWithType.vb: LinksTargetsSizeBalancedTreeMethods(Of TLink).LinksTargetsSizeBalancedTreeMethods
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.ClearNode(`0)
+  name: ClearNode(TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksTargetsSizeBalancedTreeMethods_1_ClearNode__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.ClearNode(`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods<TLink>.ClearNode(TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods(Of TLink).ClearNode(TLink)
+  nameWithType: LinksTargetsSizeBalancedTreeMethods<TLink>.ClearNode(TLink)
+  nameWithType.vb: LinksTargetsSizeBalancedTreeMethods(Of TLink).ClearNode(TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.ClearNode*
+  name: ClearNode
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksTargetsSizeBalancedTreeMethods_1_ClearNode_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.ClearNode
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods<TLink>.ClearNode
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods(Of TLink).ClearNode
+  nameWithType: LinksTargetsSizeBalancedTreeMethods<TLink>.ClearNode
+  nameWithType.vb: LinksTargetsSizeBalancedTreeMethods(Of TLink).ClearNode
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.FirstIsToTheLeftOfSecond(`0,`0,`0,`0)
+  name: FirstIsToTheLeftOfSecond(TLink, TLink, TLink, TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksTargetsSizeBalancedTreeMethods_1_FirstIsToTheLeftOfSecond__0__0__0__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.FirstIsToTheLeftOfSecond(`0,`0,`0,`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods<TLink>.FirstIsToTheLeftOfSecond(TLink, TLink, TLink, TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods(Of TLink).FirstIsToTheLeftOfSecond(TLink, TLink, TLink, TLink)
+  nameWithType: LinksTargetsSizeBalancedTreeMethods<TLink>.FirstIsToTheLeftOfSecond(TLink, TLink, TLink, TLink)
+  nameWithType.vb: LinksTargetsSizeBalancedTreeMethods(Of TLink).FirstIsToTheLeftOfSecond(TLink, TLink, TLink, TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.FirstIsToTheLeftOfSecond*
+  name: FirstIsToTheLeftOfSecond
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksTargetsSizeBalancedTreeMethods_1_FirstIsToTheLeftOfSecond_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.FirstIsToTheLeftOfSecond
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods<TLink>.FirstIsToTheLeftOfSecond
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods(Of TLink).FirstIsToTheLeftOfSecond
+  nameWithType: LinksTargetsSizeBalancedTreeMethods<TLink>.FirstIsToTheLeftOfSecond
+  nameWithType.vb: LinksTargetsSizeBalancedTreeMethods(Of TLink).FirstIsToTheLeftOfSecond
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.FirstIsToTheRightOfSecond(`0,`0,`0,`0)
+  name: FirstIsToTheRightOfSecond(TLink, TLink, TLink, TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksTargetsSizeBalancedTreeMethods_1_FirstIsToTheRightOfSecond__0__0__0__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.FirstIsToTheRightOfSecond(`0,`0,`0,`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods<TLink>.FirstIsToTheRightOfSecond(TLink, TLink, TLink, TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods(Of TLink).FirstIsToTheRightOfSecond(TLink, TLink, TLink, TLink)
+  nameWithType: LinksTargetsSizeBalancedTreeMethods<TLink>.FirstIsToTheRightOfSecond(TLink, TLink, TLink, TLink)
+  nameWithType.vb: LinksTargetsSizeBalancedTreeMethods(Of TLink).FirstIsToTheRightOfSecond(TLink, TLink, TLink, TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.FirstIsToTheRightOfSecond*
+  name: FirstIsToTheRightOfSecond
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksTargetsSizeBalancedTreeMethods_1_FirstIsToTheRightOfSecond_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.FirstIsToTheRightOfSecond
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods<TLink>.FirstIsToTheRightOfSecond
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods(Of TLink).FirstIsToTheRightOfSecond
+  nameWithType: LinksTargetsSizeBalancedTreeMethods<TLink>.FirstIsToTheRightOfSecond
+  nameWithType.vb: LinksTargetsSizeBalancedTreeMethods(Of TLink).FirstIsToTheRightOfSecond
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.GetBasePartValue(`0)
+  name: GetBasePartValue(TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksTargetsSizeBalancedTreeMethods_1_GetBasePartValue__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.GetBasePartValue(`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods<TLink>.GetBasePartValue(TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods(Of TLink).GetBasePartValue(TLink)
+  nameWithType: LinksTargetsSizeBalancedTreeMethods<TLink>.GetBasePartValue(TLink)
+  nameWithType.vb: LinksTargetsSizeBalancedTreeMethods(Of TLink).GetBasePartValue(TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.GetBasePartValue*
+  name: GetBasePartValue
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksTargetsSizeBalancedTreeMethods_1_GetBasePartValue_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.GetBasePartValue
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods<TLink>.GetBasePartValue
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods(Of TLink).GetBasePartValue
+  nameWithType: LinksTargetsSizeBalancedTreeMethods<TLink>.GetBasePartValue
+  nameWithType.vb: LinksTargetsSizeBalancedTreeMethods(Of TLink).GetBasePartValue
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.GetLeft(`0)
+  name: GetLeft(TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksTargetsSizeBalancedTreeMethods_1_GetLeft__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.GetLeft(`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods<TLink>.GetLeft(TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods(Of TLink).GetLeft(TLink)
+  nameWithType: LinksTargetsSizeBalancedTreeMethods<TLink>.GetLeft(TLink)
+  nameWithType.vb: LinksTargetsSizeBalancedTreeMethods(Of TLink).GetLeft(TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.GetLeft*
+  name: GetLeft
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksTargetsSizeBalancedTreeMethods_1_GetLeft_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.GetLeft
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods<TLink>.GetLeft
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods(Of TLink).GetLeft
+  nameWithType: LinksTargetsSizeBalancedTreeMethods<TLink>.GetLeft
+  nameWithType.vb: LinksTargetsSizeBalancedTreeMethods(Of TLink).GetLeft
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.GetLeftReference(`0)
+  name: GetLeftReference(TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksTargetsSizeBalancedTreeMethods_1_GetLeftReference__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.GetLeftReference(`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods<TLink>.GetLeftReference(TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods(Of TLink).GetLeftReference(TLink)
+  nameWithType: LinksTargetsSizeBalancedTreeMethods<TLink>.GetLeftReference(TLink)
+  nameWithType.vb: LinksTargetsSizeBalancedTreeMethods(Of TLink).GetLeftReference(TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.GetLeftReference*
+  name: GetLeftReference
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksTargetsSizeBalancedTreeMethods_1_GetLeftReference_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.GetLeftReference
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods<TLink>.GetLeftReference
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods(Of TLink).GetLeftReference
+  nameWithType: LinksTargetsSizeBalancedTreeMethods<TLink>.GetLeftReference
+  nameWithType.vb: LinksTargetsSizeBalancedTreeMethods(Of TLink).GetLeftReference
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.GetRight(`0)
+  name: GetRight(TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksTargetsSizeBalancedTreeMethods_1_GetRight__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.GetRight(`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods<TLink>.GetRight(TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods(Of TLink).GetRight(TLink)
+  nameWithType: LinksTargetsSizeBalancedTreeMethods<TLink>.GetRight(TLink)
+  nameWithType.vb: LinksTargetsSizeBalancedTreeMethods(Of TLink).GetRight(TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.GetRight*
+  name: GetRight
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksTargetsSizeBalancedTreeMethods_1_GetRight_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.GetRight
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods<TLink>.GetRight
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods(Of TLink).GetRight
+  nameWithType: LinksTargetsSizeBalancedTreeMethods<TLink>.GetRight
+  nameWithType.vb: LinksTargetsSizeBalancedTreeMethods(Of TLink).GetRight
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.GetRightReference(`0)
+  name: GetRightReference(TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksTargetsSizeBalancedTreeMethods_1_GetRightReference__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.GetRightReference(`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods<TLink>.GetRightReference(TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods(Of TLink).GetRightReference(TLink)
+  nameWithType: LinksTargetsSizeBalancedTreeMethods<TLink>.GetRightReference(TLink)
+  nameWithType.vb: LinksTargetsSizeBalancedTreeMethods(Of TLink).GetRightReference(TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.GetRightReference*
+  name: GetRightReference
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksTargetsSizeBalancedTreeMethods_1_GetRightReference_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.GetRightReference
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods<TLink>.GetRightReference
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods(Of TLink).GetRightReference
+  nameWithType: LinksTargetsSizeBalancedTreeMethods<TLink>.GetRightReference
+  nameWithType.vb: LinksTargetsSizeBalancedTreeMethods(Of TLink).GetRightReference
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.GetSize(`0)
+  name: GetSize(TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksTargetsSizeBalancedTreeMethods_1_GetSize__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.GetSize(`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods<TLink>.GetSize(TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods(Of TLink).GetSize(TLink)
+  nameWithType: LinksTargetsSizeBalancedTreeMethods<TLink>.GetSize(TLink)
+  nameWithType.vb: LinksTargetsSizeBalancedTreeMethods(Of TLink).GetSize(TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.GetSize*
+  name: GetSize
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksTargetsSizeBalancedTreeMethods_1_GetSize_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.GetSize
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods<TLink>.GetSize
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods(Of TLink).GetSize
+  nameWithType: LinksTargetsSizeBalancedTreeMethods<TLink>.GetSize
+  nameWithType.vb: LinksTargetsSizeBalancedTreeMethods(Of TLink).GetSize
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.GetTreeRoot
+  name: GetTreeRoot()
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksTargetsSizeBalancedTreeMethods_1_GetTreeRoot
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.GetTreeRoot
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods<TLink>.GetTreeRoot()
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods(Of TLink).GetTreeRoot()
+  nameWithType: LinksTargetsSizeBalancedTreeMethods<TLink>.GetTreeRoot()
+  nameWithType.vb: LinksTargetsSizeBalancedTreeMethods(Of TLink).GetTreeRoot()
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.GetTreeRoot*
+  name: GetTreeRoot
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksTargetsSizeBalancedTreeMethods_1_GetTreeRoot_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.GetTreeRoot
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods<TLink>.GetTreeRoot
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods(Of TLink).GetTreeRoot
+  nameWithType: LinksTargetsSizeBalancedTreeMethods<TLink>.GetTreeRoot
+  nameWithType.vb: LinksTargetsSizeBalancedTreeMethods(Of TLink).GetTreeRoot
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.SetLeft(`0,`0)
+  name: SetLeft(TLink, TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksTargetsSizeBalancedTreeMethods_1_SetLeft__0__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.SetLeft(`0,`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods<TLink>.SetLeft(TLink, TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods(Of TLink).SetLeft(TLink, TLink)
+  nameWithType: LinksTargetsSizeBalancedTreeMethods<TLink>.SetLeft(TLink, TLink)
+  nameWithType.vb: LinksTargetsSizeBalancedTreeMethods(Of TLink).SetLeft(TLink, TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.SetLeft*
+  name: SetLeft
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksTargetsSizeBalancedTreeMethods_1_SetLeft_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.SetLeft
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods<TLink>.SetLeft
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods(Of TLink).SetLeft
+  nameWithType: LinksTargetsSizeBalancedTreeMethods<TLink>.SetLeft
+  nameWithType.vb: LinksTargetsSizeBalancedTreeMethods(Of TLink).SetLeft
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.SetRight(`0,`0)
+  name: SetRight(TLink, TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksTargetsSizeBalancedTreeMethods_1_SetRight__0__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.SetRight(`0,`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods<TLink>.SetRight(TLink, TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods(Of TLink).SetRight(TLink, TLink)
+  nameWithType: LinksTargetsSizeBalancedTreeMethods<TLink>.SetRight(TLink, TLink)
+  nameWithType.vb: LinksTargetsSizeBalancedTreeMethods(Of TLink).SetRight(TLink, TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.SetRight*
+  name: SetRight
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksTargetsSizeBalancedTreeMethods_1_SetRight_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.SetRight
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods<TLink>.SetRight
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods(Of TLink).SetRight
+  nameWithType: LinksTargetsSizeBalancedTreeMethods<TLink>.SetRight
+  nameWithType.vb: LinksTargetsSizeBalancedTreeMethods(Of TLink).SetRight
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.SetSize(`0,`0)
+  name: SetSize(TLink, TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksTargetsSizeBalancedTreeMethods_1_SetSize__0__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.SetSize(`0,`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods<TLink>.SetSize(TLink, TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods(Of TLink).SetSize(TLink, TLink)
+  nameWithType: LinksTargetsSizeBalancedTreeMethods<TLink>.SetSize(TLink, TLink)
+  nameWithType.vb: LinksTargetsSizeBalancedTreeMethods(Of TLink).SetSize(TLink, TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.SetSize*
+  name: SetSize
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksTargetsSizeBalancedTreeMethods_1_SetSize_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods`1.SetSize
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods<TLink>.SetSize
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsSizeBalancedTreeMethods(Of TLink).SetSize
+  nameWithType: LinksTargetsSizeBalancedTreeMethods<TLink>.SetSize
+  nameWithType.vb: LinksTargetsSizeBalancedTreeMethods(Of TLink).SetSize
 - uid: Platform.Data.Doublets.ResizableDirectMemory.RawLink`1
   name: RawLink<TLink>
   href: api/Platform.Data.Doublets.ResizableDirectMemory.RawLink-1.html
@@ -4764,6 +5541,14 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks(Of TLink).ResizableDirectMemoryLinks(Platform.Memory.IResizableDirectMemory, System.Int64)
   nameWithType: ResizableDirectMemoryLinks<TLink>.ResizableDirectMemoryLinks(IResizableDirectMemory, Int64)
   nameWithType.vb: ResizableDirectMemoryLinks(Of TLink).ResizableDirectMemoryLinks(IResizableDirectMemory, Int64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.#ctor(Platform.Memory.IResizableDirectMemory,System.Int64,System.Boolean)
+  name: ResizableDirectMemoryLinks(IResizableDirectMemory, Int64, Boolean)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html#Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinks_1__ctor_Platform_Memory_IResizableDirectMemory_System_Int64_System_Boolean_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.#ctor(Platform.Memory.IResizableDirectMemory,System.Int64,System.Boolean)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks<TLink>.ResizableDirectMemoryLinks(Platform.Memory.IResizableDirectMemory, System.Int64, System.Boolean)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks(Of TLink).ResizableDirectMemoryLinks(Platform.Memory.IResizableDirectMemory, System.Int64, System.Boolean)
+  nameWithType: ResizableDirectMemoryLinks<TLink>.ResizableDirectMemoryLinks(IResizableDirectMemory, Int64, Boolean)
+  nameWithType.vb: ResizableDirectMemoryLinks(Of TLink).ResizableDirectMemoryLinks(IResizableDirectMemory, Int64, Boolean)
 - uid: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.#ctor(System.String)
   name: ResizableDirectMemoryLinks(String)
   href: api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html#Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinks_1__ctor_System_String_
@@ -4789,14 +5574,6 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks(Of TLink).ResizableDirectMemoryLinks
   nameWithType: ResizableDirectMemoryLinks<TLink>.ResizableDirectMemoryLinks
   nameWithType.vb: ResizableDirectMemoryLinks(Of TLink).ResizableDirectMemoryLinks
-- uid: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.DefaultLinksSizeStep
-  name: DefaultLinksSizeStep
-  href: api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html#Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinks_1_DefaultLinksSizeStep
-  commentId: F:Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.DefaultLinksSizeStep
-  fullName: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks<TLink>.DefaultLinksSizeStep
-  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks(Of TLink).DefaultLinksSizeStep
-  nameWithType: ResizableDirectMemoryLinks<TLink>.DefaultLinksSizeStep
-  nameWithType.vb: ResizableDirectMemoryLinks(Of TLink).DefaultLinksSizeStep
 - uid: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.GetHeaderReference
   name: GetHeaderReference()
   href: api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html#Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinks_1_GetHeaderReference
@@ -4831,14 +5608,23 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks(Of TLink).GetLinkReference
   nameWithType: ResizableDirectMemoryLinks<TLink>.GetLinkReference
   nameWithType.vb: ResizableDirectMemoryLinks(Of TLink).GetLinkReference
-- uid: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.LinkHeaderSizeInBytes
-  name: LinkHeaderSizeInBytes
-  href: api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html#Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinks_1_LinkHeaderSizeInBytes
-  commentId: F:Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.LinkHeaderSizeInBytes
-  fullName: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks<TLink>.LinkHeaderSizeInBytes
-  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks(Of TLink).LinkHeaderSizeInBytes
-  nameWithType: ResizableDirectMemoryLinks<TLink>.LinkHeaderSizeInBytes
-  nameWithType.vb: ResizableDirectMemoryLinks(Of TLink).LinkHeaderSizeInBytes
+- uid: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.ResetPointers
+  name: ResetPointers()
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html#Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinks_1_ResetPointers
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.ResetPointers
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks<TLink>.ResetPointers()
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks(Of TLink).ResetPointers()
+  nameWithType: ResizableDirectMemoryLinks<TLink>.ResetPointers()
+  nameWithType.vb: ResizableDirectMemoryLinks(Of TLink).ResetPointers()
+- uid: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.ResetPointers*
+  name: ResetPointers
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html#Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinks_1_ResetPointers_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.ResetPointers
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks<TLink>.ResetPointers
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks(Of TLink).ResetPointers
+  nameWithType: ResizableDirectMemoryLinks<TLink>.ResetPointers
+  nameWithType.vb: ResizableDirectMemoryLinks(Of TLink).ResetPointers
 - uid: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks`1.SetPointers(Platform.Memory.IResizableDirectMemory)
   name: SetPointers(IResizableDirectMemory)
   href: api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html#Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinks_1_SetPointers_Platform_Memory_IResizableDirectMemory_
@@ -4991,6 +5777,23 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase(Of TLink).ConvertToAddress
   nameWithType: ResizableDirectMemoryLinksBase<TLink>.ConvertToAddress
   nameWithType.vb: ResizableDirectMemoryLinksBase(Of TLink).ConvertToAddress
+- uid: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase`1.ConvertToUInt64(`0)
+  name: ConvertToUInt64(TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinksBase_1_ConvertToUInt64__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase`1.ConvertToUInt64(`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase<TLink>.ConvertToUInt64(TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase(Of TLink).ConvertToUInt64(TLink)
+  nameWithType: ResizableDirectMemoryLinksBase<TLink>.ConvertToUInt64(TLink)
+  nameWithType.vb: ResizableDirectMemoryLinksBase(Of TLink).ConvertToUInt64(TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase`1.ConvertToUInt64*
+  name: ConvertToUInt64
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinksBase_1_ConvertToUInt64_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase`1.ConvertToUInt64
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase<TLink>.ConvertToUInt64
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase(Of TLink).ConvertToUInt64
+  nameWithType: ResizableDirectMemoryLinksBase<TLink>.ConvertToUInt64
+  nameWithType.vb: ResizableDirectMemoryLinksBase(Of TLink).ConvertToUInt64
 - uid: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase`1.Count(System.Collections.Generic.IList{`0})
   name: Count(IList<TLink>)
   href: api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinksBase_1_Count_System_Collections_Generic_IList__0__
@@ -5044,6 +5847,14 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase(Of TLink).Decrement
   nameWithType: ResizableDirectMemoryLinksBase<TLink>.Decrement
   nameWithType.vb: ResizableDirectMemoryLinksBase(Of TLink).Decrement
+- uid: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase`1.DefaultLinksSizeStep
+  name: DefaultLinksSizeStep
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinksBase_1_DefaultLinksSizeStep
+  commentId: F:Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase`1.DefaultLinksSizeStep
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase<TLink>.DefaultLinksSizeStep
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase(Of TLink).DefaultLinksSizeStep
+  nameWithType: ResizableDirectMemoryLinksBase<TLink>.DefaultLinksSizeStep
+  nameWithType.vb: ResizableDirectMemoryLinksBase(Of TLink).DefaultLinksSizeStep
 - uid: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase`1.Delete(System.Collections.Generic.IList{`0})
   name: Delete(IList<TLink>)
   href: api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinksBase_1_Delete_System_Collections_Generic_IList__0__
@@ -5275,6 +6086,23 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase(Of TLink).Increment
   nameWithType: ResizableDirectMemoryLinksBase<TLink>.Increment
   nameWithType.vb: ResizableDirectMemoryLinksBase(Of TLink).Increment
+- uid: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase`1.Init(Platform.Memory.IResizableDirectMemory,System.Int64)
+  name: Init(IResizableDirectMemory, Int64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinksBase_1_Init_Platform_Memory_IResizableDirectMemory_System_Int64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase`1.Init(Platform.Memory.IResizableDirectMemory,System.Int64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase<TLink>.Init(Platform.Memory.IResizableDirectMemory, System.Int64)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase(Of TLink).Init(Platform.Memory.IResizableDirectMemory, System.Int64)
+  nameWithType: ResizableDirectMemoryLinksBase<TLink>.Init(IResizableDirectMemory, Int64)
+  nameWithType.vb: ResizableDirectMemoryLinksBase(Of TLink).Init(IResizableDirectMemory, Int64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase`1.Init*
+  name: Init
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinksBase_1_Init_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase`1.Init
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase<TLink>.Init
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase(Of TLink).Init
+  nameWithType: ResizableDirectMemoryLinksBase<TLink>.Init
+  nameWithType.vb: ResizableDirectMemoryLinksBase(Of TLink).Init
 - uid: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase`1.IsUnusedLink(`0)
   name: IsUnusedLink(TLink)
   href: api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinksBase_1_IsUnusedLink__0_
@@ -5326,6 +6154,14 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase(Of TLink).LessThan
   nameWithType: ResizableDirectMemoryLinksBase<TLink>.LessThan
   nameWithType.vb: ResizableDirectMemoryLinksBase(Of TLink).LessThan
+- uid: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase`1.LinkHeaderSizeInBytes
+  name: LinkHeaderSizeInBytes
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinksBase_1_LinkHeaderSizeInBytes
+  commentId: F:Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase`1.LinkHeaderSizeInBytes
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase<TLink>.LinkHeaderSizeInBytes
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase(Of TLink).LinkHeaderSizeInBytes
+  nameWithType: ResizableDirectMemoryLinksBase<TLink>.LinkHeaderSizeInBytes
+  nameWithType.vb: ResizableDirectMemoryLinksBase(Of TLink).LinkHeaderSizeInBytes
 - uid: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase`1.LinkSizeInBytes
   name: LinkSizeInBytes
   href: api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinksBase_1_LinkSizeInBytes
@@ -5334,6 +6170,23 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase(Of TLink).LinkSizeInBytes
   nameWithType: ResizableDirectMemoryLinksBase<TLink>.LinkSizeInBytes
   nameWithType.vb: ResizableDirectMemoryLinksBase(Of TLink).LinkSizeInBytes
+- uid: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase`1.ResetPointers
+  name: ResetPointers()
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinksBase_1_ResetPointers
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase`1.ResetPointers
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase<TLink>.ResetPointers()
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase(Of TLink).ResetPointers()
+  nameWithType: ResizableDirectMemoryLinksBase<TLink>.ResetPointers()
+  nameWithType.vb: ResizableDirectMemoryLinksBase(Of TLink).ResetPointers()
+- uid: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase`1.ResetPointers*
+  name: ResetPointers
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinksBase_1_ResetPointers_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase`1.ResetPointers
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase<TLink>.ResetPointers
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase(Of TLink).ResetPointers
+  nameWithType: ResizableDirectMemoryLinksBase<TLink>.ResetPointers
+  nameWithType.vb: ResizableDirectMemoryLinksBase(Of TLink).ResetPointers
 - uid: Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase`1.SetPointers(Platform.Memory.IResizableDirectMemory)
   name: SetPointers(IResizableDirectMemory)
   href: api/Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinksBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinksBase_1_SetPointers_Platform_Memory_IResizableDirectMemory_
@@ -5824,6 +6677,287 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.Subtract
   nameWithType: UInt64LinksAVLBalancedTreeMethodsBase.Subtract
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase
+  name: UInt64LinksSizeBalancedTreeMethodsBase
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html
+  commentId: T:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.#ctor(Platform.Data.LinksConstants{System.UInt64},Platform.Data.Doublets.ResizableDirectMemory.RawLink{System.UInt64}*,Platform.Data.Doublets.ResizableDirectMemory.LinksHeader{System.UInt64}*)
+  name: UInt64LinksSizeBalancedTreeMethodsBase(LinksConstants<UInt64>, RawLink<UInt64>*, LinksHeader<UInt64>*)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase__ctor_Platform_Data_LinksConstants_System_UInt64__Platform_Data_Doublets_ResizableDirectMemory_RawLink_System_UInt64___Platform_Data_Doublets_ResizableDirectMemory_LinksHeader_System_UInt64___
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.#ctor(Platform.Data.LinksConstants{System.UInt64},Platform.Data.Doublets.ResizableDirectMemory.RawLink{System.UInt64}*,Platform.Data.Doublets.ResizableDirectMemory.LinksHeader{System.UInt64}*)
+  name.vb: UInt64LinksSizeBalancedTreeMethodsBase(LinksConstants(Of UInt64), RawLink(Of UInt64)*, LinksHeader(Of UInt64)*)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.UInt64LinksSizeBalancedTreeMethodsBase(Platform.Data.LinksConstants<System.UInt64>, Platform.Data.Doublets.ResizableDirectMemory.RawLink<System.UInt64>*, Platform.Data.Doublets.ResizableDirectMemory.LinksHeader<System.UInt64>*)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.UInt64LinksSizeBalancedTreeMethodsBase(Platform.Data.LinksConstants(Of System.UInt64), Platform.Data.Doublets.ResizableDirectMemory.RawLink(Of System.UInt64)*, Platform.Data.Doublets.ResizableDirectMemory.LinksHeader(Of System.UInt64)*)
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.UInt64LinksSizeBalancedTreeMethodsBase(LinksConstants<UInt64>, RawLink<UInt64>*, LinksHeader<UInt64>*)
+  nameWithType.vb: UInt64LinksSizeBalancedTreeMethodsBase.UInt64LinksSizeBalancedTreeMethodsBase(LinksConstants(Of UInt64), RawLink(Of UInt64)*, LinksHeader(Of UInt64)*)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.#ctor*
+  name: UInt64LinksSizeBalancedTreeMethodsBase
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase__ctor_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.#ctor
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.UInt64LinksSizeBalancedTreeMethodsBase
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.UInt64LinksSizeBalancedTreeMethodsBase
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.Add(System.UInt64,System.UInt64)
+  name: Add(UInt64, UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_Add_System_UInt64_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.Add(System.UInt64,System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.Add(System.UInt64, System.UInt64)
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.Add(UInt64, UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.Add*
+  name: Add
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_Add_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.Add
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.Add
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.Add
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.Decrement(System.UInt64)
+  name: Decrement(UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_Decrement_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.Decrement(System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.Decrement(System.UInt64)
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.Decrement(UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.Decrement*
+  name: Decrement
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_Decrement_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.Decrement
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.Decrement
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.Decrement
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.EqualToZero(System.UInt64)
+  name: EqualToZero(UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_EqualToZero_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.EqualToZero(System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.EqualToZero(System.UInt64)
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.EqualToZero(UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.EqualToZero*
+  name: EqualToZero
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_EqualToZero_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.EqualToZero
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.EqualToZero
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.EqualToZero
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.FirstIsToTheLeftOfSecond(System.UInt64,System.UInt64)
+  name: FirstIsToTheLeftOfSecond(UInt64, UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_FirstIsToTheLeftOfSecond_System_UInt64_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.FirstIsToTheLeftOfSecond(System.UInt64,System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.FirstIsToTheLeftOfSecond(System.UInt64, System.UInt64)
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.FirstIsToTheLeftOfSecond(UInt64, UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.FirstIsToTheLeftOfSecond*
+  name: FirstIsToTheLeftOfSecond
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_FirstIsToTheLeftOfSecond_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.FirstIsToTheLeftOfSecond
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.FirstIsToTheLeftOfSecond
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.FirstIsToTheLeftOfSecond
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.FirstIsToTheRightOfSecond(System.UInt64,System.UInt64)
+  name: FirstIsToTheRightOfSecond(UInt64, UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_FirstIsToTheRightOfSecond_System_UInt64_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.FirstIsToTheRightOfSecond(System.UInt64,System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.FirstIsToTheRightOfSecond(System.UInt64, System.UInt64)
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.FirstIsToTheRightOfSecond(UInt64, UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.FirstIsToTheRightOfSecond*
+  name: FirstIsToTheRightOfSecond
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_FirstIsToTheRightOfSecond_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.FirstIsToTheRightOfSecond
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.FirstIsToTheRightOfSecond
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.FirstIsToTheRightOfSecond
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GetHeaderReference
+  name: GetHeaderReference()
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_GetHeaderReference
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GetHeaderReference
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GetHeaderReference()
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.GetHeaderReference()
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GetHeaderReference*
+  name: GetHeaderReference
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_GetHeaderReference_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GetHeaderReference
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GetHeaderReference
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.GetHeaderReference
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GetLinkReference(System.UInt64)
+  name: GetLinkReference(UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_GetLinkReference_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GetLinkReference(System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GetLinkReference(System.UInt64)
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.GetLinkReference(UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GetLinkReference*
+  name: GetLinkReference
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_GetLinkReference_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GetLinkReference
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GetLinkReference
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.GetLinkReference
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GetZero
+  name: GetZero()
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_GetZero
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GetZero
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GetZero()
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.GetZero()
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GetZero*
+  name: GetZero
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_GetZero_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GetZero
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GetZero
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.GetZero
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GreaterOrEqualThan(System.UInt64,System.UInt64)
+  name: GreaterOrEqualThan(UInt64, UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_GreaterOrEqualThan_System_UInt64_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GreaterOrEqualThan(System.UInt64,System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GreaterOrEqualThan(System.UInt64, System.UInt64)
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.GreaterOrEqualThan(UInt64, UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GreaterOrEqualThan*
+  name: GreaterOrEqualThan
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_GreaterOrEqualThan_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GreaterOrEqualThan
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GreaterOrEqualThan
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.GreaterOrEqualThan
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GreaterOrEqualThanZero(System.UInt64)
+  name: GreaterOrEqualThanZero(UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_GreaterOrEqualThanZero_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GreaterOrEqualThanZero(System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GreaterOrEqualThanZero(System.UInt64)
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.GreaterOrEqualThanZero(UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GreaterOrEqualThanZero*
+  name: GreaterOrEqualThanZero
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_GreaterOrEqualThanZero_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GreaterOrEqualThanZero
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GreaterOrEqualThanZero
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.GreaterOrEqualThanZero
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GreaterThan(System.UInt64,System.UInt64)
+  name: GreaterThan(UInt64, UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_GreaterThan_System_UInt64_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GreaterThan(System.UInt64,System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GreaterThan(System.UInt64, System.UInt64)
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.GreaterThan(UInt64, UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GreaterThan*
+  name: GreaterThan
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_GreaterThan_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GreaterThan
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GreaterThan
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.GreaterThan
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GreaterThanZero(System.UInt64)
+  name: GreaterThanZero(UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_GreaterThanZero_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GreaterThanZero(System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GreaterThanZero(System.UInt64)
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.GreaterThanZero(UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GreaterThanZero*
+  name: GreaterThanZero
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_GreaterThanZero_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GreaterThanZero
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.GreaterThanZero
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.GreaterThanZero
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.Header
+  name: Header
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_Header
+  commentId: F:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.Header
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.Header
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.Header
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.Increment(System.UInt64)
+  name: Increment(UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_Increment_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.Increment(System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.Increment(System.UInt64)
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.Increment(UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.Increment*
+  name: Increment
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_Increment_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.Increment
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.Increment
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.Increment
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.IsEquals(System.UInt64,System.UInt64)
+  name: IsEquals(UInt64, UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_IsEquals_System_UInt64_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.IsEquals(System.UInt64,System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.IsEquals(System.UInt64, System.UInt64)
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.IsEquals(UInt64, UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.IsEquals*
+  name: IsEquals
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_IsEquals_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.IsEquals
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.IsEquals
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.IsEquals
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.LessOrEqualThan(System.UInt64,System.UInt64)
+  name: LessOrEqualThan(UInt64, UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_LessOrEqualThan_System_UInt64_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.LessOrEqualThan(System.UInt64,System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.LessOrEqualThan(System.UInt64, System.UInt64)
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.LessOrEqualThan(UInt64, UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.LessOrEqualThan*
+  name: LessOrEqualThan
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_LessOrEqualThan_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.LessOrEqualThan
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.LessOrEqualThan
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.LessOrEqualThan
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.LessOrEqualThanZero(System.UInt64)
+  name: LessOrEqualThanZero(UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_LessOrEqualThanZero_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.LessOrEqualThanZero(System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.LessOrEqualThanZero(System.UInt64)
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.LessOrEqualThanZero(UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.LessOrEqualThanZero*
+  name: LessOrEqualThanZero
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_LessOrEqualThanZero_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.LessOrEqualThanZero
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.LessOrEqualThanZero
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.LessOrEqualThanZero
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.LessThan(System.UInt64,System.UInt64)
+  name: LessThan(UInt64, UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_LessThan_System_UInt64_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.LessThan(System.UInt64,System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.LessThan(System.UInt64, System.UInt64)
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.LessThan(UInt64, UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.LessThan*
+  name: LessThan
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_LessThan_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.LessThan
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.LessThan
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.LessThan
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.LessThanZero(System.UInt64)
+  name: LessThanZero(UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_LessThanZero_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.LessThanZero(System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.LessThanZero(System.UInt64)
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.LessThanZero(UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.LessThanZero*
+  name: LessThanZero
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_LessThanZero_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.LessThanZero
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.LessThanZero
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.LessThanZero
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.Links
+  name: Links
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_Links
+  commentId: F:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.Links
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.Links
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.Links
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.Subtract(System.UInt64,System.UInt64)
+  name: Subtract(UInt64, UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_Subtract_System_UInt64_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.Subtract(System.UInt64,System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.Subtract(System.UInt64, System.UInt64)
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.Subtract(UInt64, UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.Subtract*
+  name: Subtract
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSizeBalancedTreeMethodsBase_Subtract_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.Subtract
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSizeBalancedTreeMethodsBase.Subtract
+  nameWithType: UInt64LinksSizeBalancedTreeMethodsBase.Subtract
 - uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesAVLBalancedTreeMethods
   name: UInt64LinksSourcesAVLBalancedTreeMethods
   href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesAVLBalancedTreeMethods.html
@@ -6093,6 +7227,197 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesAVLBalancedTreeMethods.SetSize
   nameWithType: UInt64LinksSourcesAVLBalancedTreeMethods.SetSize
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods
+  name: UInt64LinksSourcesSizeBalancedTreeMethods
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.html
+  commentId: T:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods
+  nameWithType: UInt64LinksSourcesSizeBalancedTreeMethods
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.#ctor(Platform.Data.LinksConstants{System.UInt64},Platform.Data.Doublets.ResizableDirectMemory.RawLink{System.UInt64}*,Platform.Data.Doublets.ResizableDirectMemory.LinksHeader{System.UInt64}*)
+  name: UInt64LinksSourcesSizeBalancedTreeMethods(LinksConstants<UInt64>, RawLink<UInt64>*, LinksHeader<UInt64>*)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSourcesSizeBalancedTreeMethods__ctor_Platform_Data_LinksConstants_System_UInt64__Platform_Data_Doublets_ResizableDirectMemory_RawLink_System_UInt64___Platform_Data_Doublets_ResizableDirectMemory_LinksHeader_System_UInt64___
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.#ctor(Platform.Data.LinksConstants{System.UInt64},Platform.Data.Doublets.ResizableDirectMemory.RawLink{System.UInt64}*,Platform.Data.Doublets.ResizableDirectMemory.LinksHeader{System.UInt64}*)
+  name.vb: UInt64LinksSourcesSizeBalancedTreeMethods(LinksConstants(Of UInt64), RawLink(Of UInt64)*, LinksHeader(Of UInt64)*)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.UInt64LinksSourcesSizeBalancedTreeMethods(Platform.Data.LinksConstants<System.UInt64>, Platform.Data.Doublets.ResizableDirectMemory.RawLink<System.UInt64>*, Platform.Data.Doublets.ResizableDirectMemory.LinksHeader<System.UInt64>*)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.UInt64LinksSourcesSizeBalancedTreeMethods(Platform.Data.LinksConstants(Of System.UInt64), Platform.Data.Doublets.ResizableDirectMemory.RawLink(Of System.UInt64)*, Platform.Data.Doublets.ResizableDirectMemory.LinksHeader(Of System.UInt64)*)
+  nameWithType: UInt64LinksSourcesSizeBalancedTreeMethods.UInt64LinksSourcesSizeBalancedTreeMethods(LinksConstants<UInt64>, RawLink<UInt64>*, LinksHeader<UInt64>*)
+  nameWithType.vb: UInt64LinksSourcesSizeBalancedTreeMethods.UInt64LinksSourcesSizeBalancedTreeMethods(LinksConstants(Of UInt64), RawLink(Of UInt64)*, LinksHeader(Of UInt64)*)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.#ctor*
+  name: UInt64LinksSourcesSizeBalancedTreeMethods
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSourcesSizeBalancedTreeMethods__ctor_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.#ctor
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.UInt64LinksSourcesSizeBalancedTreeMethods
+  nameWithType: UInt64LinksSourcesSizeBalancedTreeMethods.UInt64LinksSourcesSizeBalancedTreeMethods
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.ClearNode(System.UInt64)
+  name: ClearNode(UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSourcesSizeBalancedTreeMethods_ClearNode_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.ClearNode(System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.ClearNode(System.UInt64)
+  nameWithType: UInt64LinksSourcesSizeBalancedTreeMethods.ClearNode(UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.ClearNode*
+  name: ClearNode
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSourcesSizeBalancedTreeMethods_ClearNode_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.ClearNode
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.ClearNode
+  nameWithType: UInt64LinksSourcesSizeBalancedTreeMethods.ClearNode
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.FirstIsToTheLeftOfSecond(System.UInt64,System.UInt64,System.UInt64,System.UInt64)
+  name: FirstIsToTheLeftOfSecond(UInt64, UInt64, UInt64, UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSourcesSizeBalancedTreeMethods_FirstIsToTheLeftOfSecond_System_UInt64_System_UInt64_System_UInt64_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.FirstIsToTheLeftOfSecond(System.UInt64,System.UInt64,System.UInt64,System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.FirstIsToTheLeftOfSecond(System.UInt64, System.UInt64, System.UInt64, System.UInt64)
+  nameWithType: UInt64LinksSourcesSizeBalancedTreeMethods.FirstIsToTheLeftOfSecond(UInt64, UInt64, UInt64, UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.FirstIsToTheLeftOfSecond*
+  name: FirstIsToTheLeftOfSecond
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSourcesSizeBalancedTreeMethods_FirstIsToTheLeftOfSecond_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.FirstIsToTheLeftOfSecond
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.FirstIsToTheLeftOfSecond
+  nameWithType: UInt64LinksSourcesSizeBalancedTreeMethods.FirstIsToTheLeftOfSecond
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.FirstIsToTheRightOfSecond(System.UInt64,System.UInt64,System.UInt64,System.UInt64)
+  name: FirstIsToTheRightOfSecond(UInt64, UInt64, UInt64, UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSourcesSizeBalancedTreeMethods_FirstIsToTheRightOfSecond_System_UInt64_System_UInt64_System_UInt64_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.FirstIsToTheRightOfSecond(System.UInt64,System.UInt64,System.UInt64,System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.FirstIsToTheRightOfSecond(System.UInt64, System.UInt64, System.UInt64, System.UInt64)
+  nameWithType: UInt64LinksSourcesSizeBalancedTreeMethods.FirstIsToTheRightOfSecond(UInt64, UInt64, UInt64, UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.FirstIsToTheRightOfSecond*
+  name: FirstIsToTheRightOfSecond
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSourcesSizeBalancedTreeMethods_FirstIsToTheRightOfSecond_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.FirstIsToTheRightOfSecond
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.FirstIsToTheRightOfSecond
+  nameWithType: UInt64LinksSourcesSizeBalancedTreeMethods.FirstIsToTheRightOfSecond
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetBasePartValue(System.UInt64)
+  name: GetBasePartValue(UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSourcesSizeBalancedTreeMethods_GetBasePartValue_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetBasePartValue(System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetBasePartValue(System.UInt64)
+  nameWithType: UInt64LinksSourcesSizeBalancedTreeMethods.GetBasePartValue(UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetBasePartValue*
+  name: GetBasePartValue
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSourcesSizeBalancedTreeMethods_GetBasePartValue_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetBasePartValue
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetBasePartValue
+  nameWithType: UInt64LinksSourcesSizeBalancedTreeMethods.GetBasePartValue
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetLeft(System.UInt64)
+  name: GetLeft(UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSourcesSizeBalancedTreeMethods_GetLeft_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetLeft(System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetLeft(System.UInt64)
+  nameWithType: UInt64LinksSourcesSizeBalancedTreeMethods.GetLeft(UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetLeft*
+  name: GetLeft
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSourcesSizeBalancedTreeMethods_GetLeft_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetLeft
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetLeft
+  nameWithType: UInt64LinksSourcesSizeBalancedTreeMethods.GetLeft
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetLeftReference(System.UInt64)
+  name: GetLeftReference(UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSourcesSizeBalancedTreeMethods_GetLeftReference_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetLeftReference(System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetLeftReference(System.UInt64)
+  nameWithType: UInt64LinksSourcesSizeBalancedTreeMethods.GetLeftReference(UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetLeftReference*
+  name: GetLeftReference
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSourcesSizeBalancedTreeMethods_GetLeftReference_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetLeftReference
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetLeftReference
+  nameWithType: UInt64LinksSourcesSizeBalancedTreeMethods.GetLeftReference
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetRight(System.UInt64)
+  name: GetRight(UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSourcesSizeBalancedTreeMethods_GetRight_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetRight(System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetRight(System.UInt64)
+  nameWithType: UInt64LinksSourcesSizeBalancedTreeMethods.GetRight(UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetRight*
+  name: GetRight
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSourcesSizeBalancedTreeMethods_GetRight_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetRight
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetRight
+  nameWithType: UInt64LinksSourcesSizeBalancedTreeMethods.GetRight
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetRightReference(System.UInt64)
+  name: GetRightReference(UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSourcesSizeBalancedTreeMethods_GetRightReference_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetRightReference(System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetRightReference(System.UInt64)
+  nameWithType: UInt64LinksSourcesSizeBalancedTreeMethods.GetRightReference(UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetRightReference*
+  name: GetRightReference
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSourcesSizeBalancedTreeMethods_GetRightReference_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetRightReference
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetRightReference
+  nameWithType: UInt64LinksSourcesSizeBalancedTreeMethods.GetRightReference
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetSize(System.UInt64)
+  name: GetSize(UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSourcesSizeBalancedTreeMethods_GetSize_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetSize(System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetSize(System.UInt64)
+  nameWithType: UInt64LinksSourcesSizeBalancedTreeMethods.GetSize(UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetSize*
+  name: GetSize
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSourcesSizeBalancedTreeMethods_GetSize_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetSize
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetSize
+  nameWithType: UInt64LinksSourcesSizeBalancedTreeMethods.GetSize
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetTreeRoot
+  name: GetTreeRoot()
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSourcesSizeBalancedTreeMethods_GetTreeRoot
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetTreeRoot
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetTreeRoot()
+  nameWithType: UInt64LinksSourcesSizeBalancedTreeMethods.GetTreeRoot()
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetTreeRoot*
+  name: GetTreeRoot
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSourcesSizeBalancedTreeMethods_GetTreeRoot_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetTreeRoot
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.GetTreeRoot
+  nameWithType: UInt64LinksSourcesSizeBalancedTreeMethods.GetTreeRoot
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.SetLeft(System.UInt64,System.UInt64)
+  name: SetLeft(UInt64, UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSourcesSizeBalancedTreeMethods_SetLeft_System_UInt64_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.SetLeft(System.UInt64,System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.SetLeft(System.UInt64, System.UInt64)
+  nameWithType: UInt64LinksSourcesSizeBalancedTreeMethods.SetLeft(UInt64, UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.SetLeft*
+  name: SetLeft
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSourcesSizeBalancedTreeMethods_SetLeft_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.SetLeft
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.SetLeft
+  nameWithType: UInt64LinksSourcesSizeBalancedTreeMethods.SetLeft
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.SetRight(System.UInt64,System.UInt64)
+  name: SetRight(UInt64, UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSourcesSizeBalancedTreeMethods_SetRight_System_UInt64_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.SetRight(System.UInt64,System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.SetRight(System.UInt64, System.UInt64)
+  nameWithType: UInt64LinksSourcesSizeBalancedTreeMethods.SetRight(UInt64, UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.SetRight*
+  name: SetRight
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSourcesSizeBalancedTreeMethods_SetRight_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.SetRight
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.SetRight
+  nameWithType: UInt64LinksSourcesSizeBalancedTreeMethods.SetRight
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.SetSize(System.UInt64,System.UInt64)
+  name: SetSize(UInt64, UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSourcesSizeBalancedTreeMethods_SetSize_System_UInt64_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.SetSize(System.UInt64,System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.SetSize(System.UInt64, System.UInt64)
+  nameWithType: UInt64LinksSourcesSizeBalancedTreeMethods.SetSize(UInt64, UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.SetSize*
+  name: SetSize
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksSourcesSizeBalancedTreeMethods_SetSize_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.SetSize
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksSourcesSizeBalancedTreeMethods.SetSize
+  nameWithType: UInt64LinksSourcesSizeBalancedTreeMethods.SetSize
 - uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsAVLBalancedTreeMethods
   name: UInt64LinksTargetsAVLBalancedTreeMethods
   href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsAVLBalancedTreeMethods.html
@@ -6362,6 +7687,197 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsAVLBalancedTreeMethods.SetSize
   nameWithType: UInt64LinksTargetsAVLBalancedTreeMethods.SetSize
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods
+  name: UInt64LinksTargetsSizeBalancedTreeMethods
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.html
+  commentId: T:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods
+  nameWithType: UInt64LinksTargetsSizeBalancedTreeMethods
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.#ctor(Platform.Data.LinksConstants{System.UInt64},Platform.Data.Doublets.ResizableDirectMemory.RawLink{System.UInt64}*,Platform.Data.Doublets.ResizableDirectMemory.LinksHeader{System.UInt64}*)
+  name: UInt64LinksTargetsSizeBalancedTreeMethods(LinksConstants<UInt64>, RawLink<UInt64>*, LinksHeader<UInt64>*)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksTargetsSizeBalancedTreeMethods__ctor_Platform_Data_LinksConstants_System_UInt64__Platform_Data_Doublets_ResizableDirectMemory_RawLink_System_UInt64___Platform_Data_Doublets_ResizableDirectMemory_LinksHeader_System_UInt64___
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.#ctor(Platform.Data.LinksConstants{System.UInt64},Platform.Data.Doublets.ResizableDirectMemory.RawLink{System.UInt64}*,Platform.Data.Doublets.ResizableDirectMemory.LinksHeader{System.UInt64}*)
+  name.vb: UInt64LinksTargetsSizeBalancedTreeMethods(LinksConstants(Of UInt64), RawLink(Of UInt64)*, LinksHeader(Of UInt64)*)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.UInt64LinksTargetsSizeBalancedTreeMethods(Platform.Data.LinksConstants<System.UInt64>, Platform.Data.Doublets.ResizableDirectMemory.RawLink<System.UInt64>*, Platform.Data.Doublets.ResizableDirectMemory.LinksHeader<System.UInt64>*)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.UInt64LinksTargetsSizeBalancedTreeMethods(Platform.Data.LinksConstants(Of System.UInt64), Platform.Data.Doublets.ResizableDirectMemory.RawLink(Of System.UInt64)*, Platform.Data.Doublets.ResizableDirectMemory.LinksHeader(Of System.UInt64)*)
+  nameWithType: UInt64LinksTargetsSizeBalancedTreeMethods.UInt64LinksTargetsSizeBalancedTreeMethods(LinksConstants<UInt64>, RawLink<UInt64>*, LinksHeader<UInt64>*)
+  nameWithType.vb: UInt64LinksTargetsSizeBalancedTreeMethods.UInt64LinksTargetsSizeBalancedTreeMethods(LinksConstants(Of UInt64), RawLink(Of UInt64)*, LinksHeader(Of UInt64)*)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.#ctor*
+  name: UInt64LinksTargetsSizeBalancedTreeMethods
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksTargetsSizeBalancedTreeMethods__ctor_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.#ctor
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.UInt64LinksTargetsSizeBalancedTreeMethods
+  nameWithType: UInt64LinksTargetsSizeBalancedTreeMethods.UInt64LinksTargetsSizeBalancedTreeMethods
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.ClearNode(System.UInt64)
+  name: ClearNode(UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksTargetsSizeBalancedTreeMethods_ClearNode_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.ClearNode(System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.ClearNode(System.UInt64)
+  nameWithType: UInt64LinksTargetsSizeBalancedTreeMethods.ClearNode(UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.ClearNode*
+  name: ClearNode
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksTargetsSizeBalancedTreeMethods_ClearNode_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.ClearNode
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.ClearNode
+  nameWithType: UInt64LinksTargetsSizeBalancedTreeMethods.ClearNode
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.FirstIsToTheLeftOfSecond(System.UInt64,System.UInt64,System.UInt64,System.UInt64)
+  name: FirstIsToTheLeftOfSecond(UInt64, UInt64, UInt64, UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksTargetsSizeBalancedTreeMethods_FirstIsToTheLeftOfSecond_System_UInt64_System_UInt64_System_UInt64_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.FirstIsToTheLeftOfSecond(System.UInt64,System.UInt64,System.UInt64,System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.FirstIsToTheLeftOfSecond(System.UInt64, System.UInt64, System.UInt64, System.UInt64)
+  nameWithType: UInt64LinksTargetsSizeBalancedTreeMethods.FirstIsToTheLeftOfSecond(UInt64, UInt64, UInt64, UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.FirstIsToTheLeftOfSecond*
+  name: FirstIsToTheLeftOfSecond
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksTargetsSizeBalancedTreeMethods_FirstIsToTheLeftOfSecond_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.FirstIsToTheLeftOfSecond
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.FirstIsToTheLeftOfSecond
+  nameWithType: UInt64LinksTargetsSizeBalancedTreeMethods.FirstIsToTheLeftOfSecond
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.FirstIsToTheRightOfSecond(System.UInt64,System.UInt64,System.UInt64,System.UInt64)
+  name: FirstIsToTheRightOfSecond(UInt64, UInt64, UInt64, UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksTargetsSizeBalancedTreeMethods_FirstIsToTheRightOfSecond_System_UInt64_System_UInt64_System_UInt64_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.FirstIsToTheRightOfSecond(System.UInt64,System.UInt64,System.UInt64,System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.FirstIsToTheRightOfSecond(System.UInt64, System.UInt64, System.UInt64, System.UInt64)
+  nameWithType: UInt64LinksTargetsSizeBalancedTreeMethods.FirstIsToTheRightOfSecond(UInt64, UInt64, UInt64, UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.FirstIsToTheRightOfSecond*
+  name: FirstIsToTheRightOfSecond
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksTargetsSizeBalancedTreeMethods_FirstIsToTheRightOfSecond_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.FirstIsToTheRightOfSecond
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.FirstIsToTheRightOfSecond
+  nameWithType: UInt64LinksTargetsSizeBalancedTreeMethods.FirstIsToTheRightOfSecond
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetBasePartValue(System.UInt64)
+  name: GetBasePartValue(UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksTargetsSizeBalancedTreeMethods_GetBasePartValue_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetBasePartValue(System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetBasePartValue(System.UInt64)
+  nameWithType: UInt64LinksTargetsSizeBalancedTreeMethods.GetBasePartValue(UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetBasePartValue*
+  name: GetBasePartValue
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksTargetsSizeBalancedTreeMethods_GetBasePartValue_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetBasePartValue
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetBasePartValue
+  nameWithType: UInt64LinksTargetsSizeBalancedTreeMethods.GetBasePartValue
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetLeft(System.UInt64)
+  name: GetLeft(UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksTargetsSizeBalancedTreeMethods_GetLeft_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetLeft(System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetLeft(System.UInt64)
+  nameWithType: UInt64LinksTargetsSizeBalancedTreeMethods.GetLeft(UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetLeft*
+  name: GetLeft
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksTargetsSizeBalancedTreeMethods_GetLeft_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetLeft
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetLeft
+  nameWithType: UInt64LinksTargetsSizeBalancedTreeMethods.GetLeft
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetLeftReference(System.UInt64)
+  name: GetLeftReference(UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksTargetsSizeBalancedTreeMethods_GetLeftReference_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetLeftReference(System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetLeftReference(System.UInt64)
+  nameWithType: UInt64LinksTargetsSizeBalancedTreeMethods.GetLeftReference(UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetLeftReference*
+  name: GetLeftReference
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksTargetsSizeBalancedTreeMethods_GetLeftReference_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetLeftReference
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetLeftReference
+  nameWithType: UInt64LinksTargetsSizeBalancedTreeMethods.GetLeftReference
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetRight(System.UInt64)
+  name: GetRight(UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksTargetsSizeBalancedTreeMethods_GetRight_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetRight(System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetRight(System.UInt64)
+  nameWithType: UInt64LinksTargetsSizeBalancedTreeMethods.GetRight(UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetRight*
+  name: GetRight
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksTargetsSizeBalancedTreeMethods_GetRight_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetRight
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetRight
+  nameWithType: UInt64LinksTargetsSizeBalancedTreeMethods.GetRight
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetRightReference(System.UInt64)
+  name: GetRightReference(UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksTargetsSizeBalancedTreeMethods_GetRightReference_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetRightReference(System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetRightReference(System.UInt64)
+  nameWithType: UInt64LinksTargetsSizeBalancedTreeMethods.GetRightReference(UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetRightReference*
+  name: GetRightReference
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksTargetsSizeBalancedTreeMethods_GetRightReference_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetRightReference
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetRightReference
+  nameWithType: UInt64LinksTargetsSizeBalancedTreeMethods.GetRightReference
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetSize(System.UInt64)
+  name: GetSize(UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksTargetsSizeBalancedTreeMethods_GetSize_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetSize(System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetSize(System.UInt64)
+  nameWithType: UInt64LinksTargetsSizeBalancedTreeMethods.GetSize(UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetSize*
+  name: GetSize
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksTargetsSizeBalancedTreeMethods_GetSize_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetSize
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetSize
+  nameWithType: UInt64LinksTargetsSizeBalancedTreeMethods.GetSize
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetTreeRoot
+  name: GetTreeRoot()
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksTargetsSizeBalancedTreeMethods_GetTreeRoot
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetTreeRoot
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetTreeRoot()
+  nameWithType: UInt64LinksTargetsSizeBalancedTreeMethods.GetTreeRoot()
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetTreeRoot*
+  name: GetTreeRoot
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksTargetsSizeBalancedTreeMethods_GetTreeRoot_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetTreeRoot
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.GetTreeRoot
+  nameWithType: UInt64LinksTargetsSizeBalancedTreeMethods.GetTreeRoot
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.SetLeft(System.UInt64,System.UInt64)
+  name: SetLeft(UInt64, UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksTargetsSizeBalancedTreeMethods_SetLeft_System_UInt64_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.SetLeft(System.UInt64,System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.SetLeft(System.UInt64, System.UInt64)
+  nameWithType: UInt64LinksTargetsSizeBalancedTreeMethods.SetLeft(UInt64, UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.SetLeft*
+  name: SetLeft
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksTargetsSizeBalancedTreeMethods_SetLeft_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.SetLeft
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.SetLeft
+  nameWithType: UInt64LinksTargetsSizeBalancedTreeMethods.SetLeft
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.SetRight(System.UInt64,System.UInt64)
+  name: SetRight(UInt64, UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksTargetsSizeBalancedTreeMethods_SetRight_System_UInt64_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.SetRight(System.UInt64,System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.SetRight(System.UInt64, System.UInt64)
+  nameWithType: UInt64LinksTargetsSizeBalancedTreeMethods.SetRight(UInt64, UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.SetRight*
+  name: SetRight
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksTargetsSizeBalancedTreeMethods_SetRight_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.SetRight
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.SetRight
+  nameWithType: UInt64LinksTargetsSizeBalancedTreeMethods.SetRight
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.SetSize(System.UInt64,System.UInt64)
+  name: SetSize(UInt64, UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksTargetsSizeBalancedTreeMethods_SetSize_System_UInt64_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.SetSize(System.UInt64,System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.SetSize(System.UInt64, System.UInt64)
+  nameWithType: UInt64LinksTargetsSizeBalancedTreeMethods.SetSize(UInt64, UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.SetSize*
+  name: SetSize
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64LinksTargetsSizeBalancedTreeMethods_SetSize_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.SetSize
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksTargetsSizeBalancedTreeMethods.SetSize
+  nameWithType: UInt64LinksTargetsSizeBalancedTreeMethods.SetSize
 - uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks
   name: UInt64ResizableDirectMemoryLinks
   href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.html
@@ -6380,6 +7896,12 @@ references:
   commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.#ctor(Platform.Memory.IResizableDirectMemory,System.Int64)
   fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.UInt64ResizableDirectMemoryLinks(Platform.Memory.IResizableDirectMemory, System.Int64)
   nameWithType: UInt64ResizableDirectMemoryLinks.UInt64ResizableDirectMemoryLinks(IResizableDirectMemory, Int64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.#ctor(Platform.Memory.IResizableDirectMemory,System.Int64,System.Boolean)
+  name: UInt64ResizableDirectMemoryLinks(IResizableDirectMemory, Int64, Boolean)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64ResizableDirectMemoryLinks__ctor_Platform_Memory_IResizableDirectMemory_System_Int64_System_Boolean_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.#ctor(Platform.Memory.IResizableDirectMemory,System.Int64,System.Boolean)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.UInt64ResizableDirectMemoryLinks(Platform.Memory.IResizableDirectMemory, System.Int64, System.Boolean)
+  nameWithType: UInt64ResizableDirectMemoryLinks.UInt64ResizableDirectMemoryLinks(IResizableDirectMemory, Int64, Boolean)
 - uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.#ctor(System.String)
   name: UInt64ResizableDirectMemoryLinks(String)
   href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64ResizableDirectMemoryLinks__ctor_System_String_
@@ -6438,6 +7960,19 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.ConvertToAddress
   nameWithType: UInt64ResizableDirectMemoryLinks.ConvertToAddress
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.ConvertToUInt64(System.UInt64)
+  name: ConvertToUInt64(UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64ResizableDirectMemoryLinks_ConvertToUInt64_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.ConvertToUInt64(System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.ConvertToUInt64(System.UInt64)
+  nameWithType: UInt64ResizableDirectMemoryLinks.ConvertToUInt64(UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.ConvertToUInt64*
+  name: ConvertToUInt64
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64ResizableDirectMemoryLinks_ConvertToUInt64_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.ConvertToUInt64
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.ConvertToUInt64
+  nameWithType: UInt64ResizableDirectMemoryLinks.ConvertToUInt64
 - uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Decrement(System.UInt64)
   name: Decrement(UInt64)
   href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64ResizableDirectMemoryLinks_Decrement_System_UInt64_
@@ -6451,12 +7986,6 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.Decrement
   nameWithType: UInt64ResizableDirectMemoryLinks.Decrement
-- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.DefaultLinksSizeStep
-  name: DefaultLinksSizeStep
-  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64ResizableDirectMemoryLinks_DefaultLinksSizeStep
-  commentId: F:Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.DefaultLinksSizeStep
-  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.DefaultLinksSizeStep
-  nameWithType: UInt64ResizableDirectMemoryLinks.DefaultLinksSizeStep
 - uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.GetEmptyList
   name: GetEmptyList()
   href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64ResizableDirectMemoryLinks_GetEmptyList
@@ -6587,6 +8116,19 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.LessThan
   nameWithType: UInt64ResizableDirectMemoryLinks.LessThan
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.ResetPointers
+  name: ResetPointers()
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64ResizableDirectMemoryLinks_ResetPointers
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.ResetPointers
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.ResetPointers()
+  nameWithType: UInt64ResizableDirectMemoryLinks.ResetPointers()
+- uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.ResetPointers*
+  name: ResetPointers
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64ResizableDirectMemoryLinks_ResetPointers_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.ResetPointers
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.ResetPointers
+  nameWithType: UInt64ResizableDirectMemoryLinks.ResetPointers
 - uid: Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.SetPointers(Platform.Memory.IResizableDirectMemory)
   name: SetPointers(IResizableDirectMemory)
   href: api/Platform.Data.Doublets.ResizableDirectMemory.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_UInt64ResizableDirectMemoryLinks_SetPointers_Platform_Memory_IResizableDirectMemory_
