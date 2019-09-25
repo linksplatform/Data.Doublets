@@ -94,6 +94,11 @@
     <div class="level4"><span class="xref">LinksAVLBalancedTreeMethodsBase&lt;TLink&gt;</span></div>
       <div class="level5"><a class="xref" href="Platform.Data.Doublets.ResizableDirectMemory.LinksSourcesAVLBalancedTreeMethods-1.html">LinksSourcesAVLBalancedTreeMethods&lt;TLink&gt;</a></div>
       <div class="level5"><a class="xref" href="Platform.Data.Doublets.ResizableDirectMemory.LinksTargetsAVLBalancedTreeMethods-1.html">LinksTargetsAVLBalancedTreeMethods&lt;TLink&gt;</a></div>
+      <div class="level5"><a class="xref" href="Platform.Data.Doublets.ResizableDirectMemory.UInt64LinksAVLBalancedTreeMethodsBase.html">UInt64LinksAVLBalancedTreeMethodsBase</a></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="Platform.Data.Doublets.ResizableDirectMemory.ILinksTreeMethods-1.html">ILinksTreeMethods</a>&lt;TLink&gt;</div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -324,7 +329,7 @@
   <h6><strong>Assembly</strong>: Platform.Data.Doublets.dll</h6>
   <h5 id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class LinksAVLBalancedTreeMethodsBase&lt;TLink&gt; : SizedAndThreadedAVLBalancedTreeMethods&lt;TLink&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class LinksAVLBalancedTreeMethodsBase&lt;TLink&gt; : SizedAndThreadedAVLBalancedTreeMethods&lt;TLink&gt;, ILinksTreeMethods&lt;TLink&gt;</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -345,18 +350,18 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1__ctor_Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinks__0__System_Byte__System_Byte__.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase%601.%23ctor(Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks%7B%600%7D%2CSystem.Byte*%2CSystem.Byte*)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1__ctor_Platform_Data_LinksConstants__0__System_Byte__System_Byte__.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase%601.%23ctor(Platform.Data.LinksConstants%7B%600%7D%2CSystem.Byte*%2CSystem.Byte*)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/ebd0afb8bd508e5d59af3c0cc30ce91cfd9fa8a8/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L20">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/a285258c7142f7c3f14eac71eba5b459ad8118b0/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L20">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1__ctor_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.#ctor*"></a>
-  <h4 id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1__ctor_Platform_Data_Doublets_ResizableDirectMemory_ResizableDirectMemoryLinks__0__System_Byte__System_Byte__" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.#ctor(Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks{`0},System.Byte*,System.Byte*)">LinksAVLBalancedTreeMethodsBase(ResizableDirectMemoryLinks&lt;TLink&gt;, Byte*, Byte*)</h4>
+  <h4 id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1__ctor_Platform_Data_LinksConstants__0__System_Byte__System_Byte__" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.#ctor(Platform.Data.LinksConstants{`0},System.Byte*,System.Byte*)">LinksAVLBalancedTreeMethodsBase(LinksConstants&lt;TLink&gt;, Byte*, Byte*)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public LinksAVLBalancedTreeMethodsBase(ResizableDirectMemoryLinks&lt;TLink&gt; memory, byte *links, byte *header)</code></pre>
+    <pre><code class="lang-csharp hljs">public LinksAVLBalancedTreeMethodsBase(LinksConstants&lt;TLink&gt; constants, byte *links, byte *header)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -369,8 +374,8 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Platform.Data.Doublets.ResizableDirectMemory.ResizableDirectMemoryLinks-1.html">ResizableDirectMemoryLinks</a>&lt;TLink&gt;</td>
-        <td><span class="parametername">memory</span></td>
+        <td><span class="xref">Platform.Data.LinksConstants</span>&lt;TLink&gt;</td>
+        <td><span class="parametername">constants</span></td>
         <td></td>
       </tr>
       <tr>
@@ -389,10 +394,68 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_Break.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase%601.Break%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/a285258c7142f7c3f14eac71eba5b459ad8118b0/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L15">View Source</a>
+  </span>
+  <h4 id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_Break" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.Break">Break</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly TLink Break</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TLink</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_Continue.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase%601.Continue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/a285258c7142f7c3f14eac71eba5b459ad8118b0/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L16">View Source</a>
+  </span>
+  <h4 id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_Continue" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.Continue">Continue</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly TLink Continue</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TLink</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_Header.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase%601.Header%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/ebd0afb8bd508e5d59af3c0cc30ce91cfd9fa8a8/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L18">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/a285258c7142f7c3f14eac71eba5b459ad8118b0/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L18">View Source</a>
   </span>
   <h4 id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_Header" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.Header">Header</h4>
   <div class="markdown level1 summary"></div>
@@ -421,7 +484,7 @@
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_Links.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase%601.Links%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/ebd0afb8bd508e5d59af3c0cc30ce91cfd9fa8a8/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L17">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/a285258c7142f7c3f14eac71eba5b459ad8118b0/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L17">View Source</a>
   </span>
   <h4 id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_Links" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.Links">Links</h4>
   <div class="markdown level1 summary"></div>
@@ -452,7 +515,7 @@
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_Item__0_.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase%601.Item(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/ebd0afb8bd508e5d59af3c0cc30ce91cfd9fa8a8/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L135">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/a285258c7142f7c3f14eac71eba5b459ad8118b0/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L139">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_Item_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.Item*"></a>
   <h4 id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_Item__0_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.Item(`0)">Item[TLink]</h4>
@@ -501,7 +564,7 @@
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_CountUsages__0_.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase%601.CountUsages(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/ebd0afb8bd508e5d59af3c0cc30ce91cfd9fa8a8/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L195">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/a285258c7142f7c3f14eac71eba5b459ad8118b0/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L199">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_CountUsages_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.CountUsages*"></a>
   <h4 id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_CountUsages__0_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.CountUsages(`0)">CountUsages(TLink)</h4>
@@ -548,7 +611,7 @@
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_EachUsage__0_System_Func_System_Collections_Generic_IList__0___0__.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase%601.EachUsage(%600%2CSystem.Func%7BSystem.Collections.Generic.IList%7B%600%7D%2C%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/ebd0afb8bd508e5d59af3c0cc30ce91cfd9fa8a8/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L232">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/a285258c7142f7c3f14eac71eba5b459ad8118b0/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L236">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_EachUsage_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.EachUsage*"></a>
   <h4 id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_EachUsage__0_System_Func_System_Collections_Generic_IList__0___0__" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.EachUsage(`0,System.Func{System.Collections.Generic.IList{`0},`0})">EachUsage(TLink, Func&lt;IList&lt;TLink&gt;, TLink&gt;)</h4>
@@ -600,7 +663,7 @@
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_FirstIsToTheLeftOfSecond__0__0_.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase%601.FirstIsToTheLeftOfSecond(%600%2C%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/ebd0afb8bd508e5d59af3c0cc30ce91cfd9fa8a8/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L49">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/a285258c7142f7c3f14eac71eba5b459ad8118b0/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L53">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_FirstIsToTheLeftOfSecond_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.FirstIsToTheLeftOfSecond*"></a>
   <h4 id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_FirstIsToTheLeftOfSecond__0__0_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.FirstIsToTheLeftOfSecond(`0,`0)">FirstIsToTheLeftOfSecond(TLink, TLink)</h4>
@@ -654,7 +717,7 @@
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_FirstIsToTheLeftOfSecond__0__0__0__0_.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase%601.FirstIsToTheLeftOfSecond(%600%2C%600%2C%600%2C%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/ebd0afb8bd508e5d59af3c0cc30ce91cfd9fa8a8/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L37">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/a285258c7142f7c3f14eac71eba5b459ad8118b0/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L37">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_FirstIsToTheLeftOfSecond_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.FirstIsToTheLeftOfSecond*"></a>
   <h4 id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_FirstIsToTheLeftOfSecond__0__0__0__0_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.FirstIsToTheLeftOfSecond(`0,`0,`0,`0)">FirstIsToTheLeftOfSecond(TLink, TLink, TLink, TLink)</h4>
@@ -716,7 +779,7 @@
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_FirstIsToTheRightOfSecond__0__0_.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase%601.FirstIsToTheRightOfSecond(%600%2C%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/ebd0afb8bd508e5d59af3c0cc30ce91cfd9fa8a8/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L57">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/a285258c7142f7c3f14eac71eba5b459ad8118b0/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L61">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_FirstIsToTheRightOfSecond_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.FirstIsToTheRightOfSecond*"></a>
   <h4 id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_FirstIsToTheRightOfSecond__0__0_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.FirstIsToTheRightOfSecond(`0,`0)">FirstIsToTheRightOfSecond(TLink, TLink)</h4>
@@ -770,7 +833,7 @@
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_FirstIsToTheRightOfSecond__0__0__0__0_.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase%601.FirstIsToTheRightOfSecond(%600%2C%600%2C%600%2C%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/ebd0afb8bd508e5d59af3c0cc30ce91cfd9fa8a8/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L34">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/a285258c7142f7c3f14eac71eba5b459ad8118b0/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L34">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_FirstIsToTheRightOfSecond_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.FirstIsToTheRightOfSecond*"></a>
   <h4 id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_FirstIsToTheRightOfSecond__0__0__0__0_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.FirstIsToTheRightOfSecond(`0,`0,`0,`0)">FirstIsToTheRightOfSecond(TLink, TLink, TLink, TLink)</h4>
@@ -832,7 +895,7 @@
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetBalanceValue__0_.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase%601.GetBalanceValue(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/ebd0afb8bd508e5d59af3c0cc30ce91cfd9fa8a8/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L113">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/a285258c7142f7c3f14eac71eba5b459ad8118b0/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L117">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetBalanceValue_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetBalanceValue*"></a>
   <h4 id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetBalanceValue__0_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetBalanceValue(`0)">GetBalanceValue(TLink)</h4>
@@ -840,7 +903,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected static sbyte GetBalanceValue(TLink storedValue)</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual sbyte GetBalanceValue(TLink storedValue)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -879,7 +942,7 @@
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetBasePartValue__0_.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase%601.GetBasePartValue(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/ebd0afb8bd508e5d59af3c0cc30ce91cfd9fa8a8/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L31">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/a285258c7142f7c3f14eac71eba5b459ad8118b0/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L31">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetBasePartValue_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetBasePartValue*"></a>
   <h4 id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetBasePartValue__0_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetBasePartValue(`0)">GetBasePartValue(TLink)</h4>
@@ -923,10 +986,40 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetHeaderReference.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase%601.GetHeaderReference%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/a285258c7142f7c3f14eac71eba5b459ad8118b0/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L40">View Source</a>
+  </span>
+  <a id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetHeaderReference_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetHeaderReference*"></a>
+  <h4 id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetHeaderReference" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetHeaderReference">GetHeaderReference()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual LinksHeader&lt;TLink&gt; GetHeaderReference()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Platform.Data.Doublets.ResizableDirectMemory.LinksHeader-1.html">LinksHeader</a>&lt;TLink&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetLeftIsChildValue__0_.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase%601.GetLeftIsChildValue(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/ebd0afb8bd508e5d59af3c0cc30ce91cfd9fa8a8/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L71">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/a285258c7142f7c3f14eac71eba5b459ad8118b0/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L75">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetLeftIsChildValue_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetLeftIsChildValue*"></a>
   <h4 id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetLeftIsChildValue__0_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetLeftIsChildValue(`0)">GetLeftIsChildValue(TLink)</h4>
@@ -934,7 +1027,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected bool GetLeftIsChildValue(TLink value)</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual bool GetLeftIsChildValue(TLink value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -970,18 +1063,18 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetLinkValues__0_.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase%601.GetLinkValues(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetLinkReference__0_.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase%601.GetLinkReference(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/ebd0afb8bd508e5d59af3c0cc30ce91cfd9fa8a8/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L46">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/a285258c7142f7c3f14eac71eba5b459ad8118b0/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L43">View Source</a>
   </span>
-  <a id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetLinkValues_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetLinkValues*"></a>
-  <h4 id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetLinkValues__0_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetLinkValues(`0)">GetLinkValues(TLink)</h4>
+  <a id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetLinkReference_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetLinkReference*"></a>
+  <h4 id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetLinkReference__0_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetLinkReference(`0)">GetLinkReference(TLink)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual Link&lt;TLink&gt; GetLinkValues(TLink current)</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual RawLink&lt;TLink&gt; GetLinkReference(TLink link)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -995,7 +1088,7 @@
     <tbody>
       <tr>
         <td><span class="xref">TLink</span></td>
-        <td><span class="parametername">current</span></td>
+        <td><span class="parametername">link</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -1010,7 +1103,54 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Platform.Data.Doublets.Link-1.html">Link</a>&lt;TLink&gt;</td>
+        <td><a class="xref" href="Platform.Data.Doublets.ResizableDirectMemory.RawLink-1.html">RawLink</a>&lt;TLink&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetLinkValues__0_.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase%601.GetLinkValues(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/a285258c7142f7c3f14eac71eba5b459ad8118b0/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L46">View Source</a>
+  </span>
+  <a id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetLinkValues_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetLinkValues*"></a>
+  <h4 id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetLinkValues__0_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetLinkValues(`0)">GetLinkValues(TLink)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual IList&lt;TLink&gt; GetLinkValues(TLink linkIndex)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TLink</span></td>
+        <td><span class="parametername">linkIndex</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;TLink&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1020,7 +1160,7 @@
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetRightIsChildValue__0_.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase%601.GetRightIsChildValue(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/ebd0afb8bd508e5d59af3c0cc30ce91cfd9fa8a8/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L92">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/a285258c7142f7c3f14eac71eba5b459ad8118b0/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L96">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetRightIsChildValue_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetRightIsChildValue*"></a>
   <h4 id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetRightIsChildValue__0_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetRightIsChildValue(`0)">GetRightIsChildValue(TLink)</h4>
@@ -1028,7 +1168,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected bool GetRightIsChildValue(TLink value)</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual bool GetRightIsChildValue(TLink value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1067,7 +1207,7 @@
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetSizeValue__0_.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase%601.GetSizeValue(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/ebd0afb8bd508e5d59af3c0cc30ce91cfd9fa8a8/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L65">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/a285258c7142f7c3f14eac71eba5b459ad8118b0/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L69">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetSizeValue_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetSizeValue*"></a>
   <h4 id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetSizeValue__0_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetSizeValue(`0)">GetSizeValue(TLink)</h4>
@@ -1075,7 +1215,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected static TLink GetSizeValue(TLink value)</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual TLink GetSizeValue(TLink value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1114,7 +1254,7 @@
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetTreeRoot.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase%601.GetTreeRoot%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/ebd0afb8bd508e5d59af3c0cc30ce91cfd9fa8a8/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L28">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/a285258c7142f7c3f14eac71eba5b459ad8118b0/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L28">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetTreeRoot_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetTreeRoot*"></a>
   <h4 id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_GetTreeRoot" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.GetTreeRoot">GetTreeRoot()</h4>
@@ -1144,7 +1284,7 @@
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_PrintNodeValue__0_System_Text_StringBuilder_.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase%601.PrintNodeValue(%600%2CSystem.Text.StringBuilder)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/ebd0afb8bd508e5d59af3c0cc30ce91cfd9fa8a8/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L275">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/a285258c7142f7c3f14eac71eba5b459ad8118b0/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L279">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_PrintNodeValue_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.PrintNodeValue*"></a>
   <h4 id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_PrintNodeValue__0_System_Text_StringBuilder_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.PrintNodeValue(`0,System.Text.StringBuilder)">PrintNodeValue(TLink, StringBuilder)</h4>
@@ -1183,7 +1323,7 @@
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_Search__0__0_.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase%601.Search(%600%2C%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/ebd0afb8bd508e5d59af3c0cc30ce91cfd9fa8a8/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L170">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/a285258c7142f7c3f14eac71eba5b459ad8118b0/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L174">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_Search_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.Search*"></a>
   <h4 id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_Search__0__0_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.Search(`0,`0)">Search(TLink, TLink)</h4>
@@ -1239,7 +1379,7 @@
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_SetBalanceValue__0__System_SByte_.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase%601.SetBalanceValue(%600%40%2CSystem.SByte)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/ebd0afb8bd508e5d59af3c0cc30ce91cfd9fa8a8/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L124">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/a285258c7142f7c3f14eac71eba5b459ad8118b0/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L128">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_SetBalanceValue_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.SetBalanceValue*"></a>
   <h4 id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_SetBalanceValue__0__System_SByte_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.SetBalanceValue(`0@,System.SByte)">SetBalanceValue(ref TLink, SByte)</h4>
@@ -1247,7 +1387,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected static void SetBalanceValue(ref TLink storedValue, sbyte value)</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual void SetBalanceValue(ref TLink storedValue, sbyte value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1276,7 +1416,7 @@
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_SetLeftIsChildValue__0__System_Boolean_.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase%601.SetLeftIsChildValue(%600%40%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/ebd0afb8bd508e5d59af3c0cc30ce91cfd9fa8a8/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L81">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/a285258c7142f7c3f14eac71eba5b459ad8118b0/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L85">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_SetLeftIsChildValue_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.SetLeftIsChildValue*"></a>
   <h4 id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_SetLeftIsChildValue__0__System_Boolean_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.SetLeftIsChildValue(`0@,System.Boolean)">SetLeftIsChildValue(ref TLink, Boolean)</h4>
@@ -1284,7 +1424,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected static void SetLeftIsChildValue(ref TLink storedValue, bool value)</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual void SetLeftIsChildValue(ref TLink storedValue, bool value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1313,7 +1453,7 @@
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_SetRightIsChildValue__0__System_Boolean_.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase%601.SetRightIsChildValue(%600%40%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/ebd0afb8bd508e5d59af3c0cc30ce91cfd9fa8a8/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L102">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/a285258c7142f7c3f14eac71eba5b459ad8118b0/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L106">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_SetRightIsChildValue_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.SetRightIsChildValue*"></a>
   <h4 id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_SetRightIsChildValue__0__System_Boolean_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.SetRightIsChildValue(`0@,System.Boolean)">SetRightIsChildValue(ref TLink, Boolean)</h4>
@@ -1321,7 +1461,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected static void SetRightIsChildValue(ref TLink storedValue, bool value)</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual void SetRightIsChildValue(ref TLink storedValue, bool value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1350,7 +1490,7 @@
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_SetSizeValue__0___0_.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase%601.SetSizeValue(%600%40%2C%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/ebd0afb8bd508e5d59af3c0cc30ce91cfd9fa8a8/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L68">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/a285258c7142f7c3f14eac71eba5b459ad8118b0/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L72">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_SetSizeValue_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.SetSizeValue*"></a>
   <h4 id="Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1_SetSizeValue__0___0_" data-uid="Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase`1.SetSizeValue(`0@,`0)">SetSizeValue(ref TLink, TLink)</h4>
@@ -1358,7 +1498,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected static void SetSizeValue(ref TLink storedValue, TLink size)</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual void SetSizeValue(ref TLink storedValue, TLink size)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1382,6 +1522,10 @@
       </tr>
     </tbody>
   </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="Platform.Data.Doublets.ResizableDirectMemory.ILinksTreeMethods-1.html">ILinksTreeMethods&lt;TLink&gt;</a>
+  </div>
 </article>
           </div>
           
@@ -1393,7 +1537,7 @@
                     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_ResizableDirectMemory_LinksAVLBalancedTreeMethodsBase_1.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.ResizableDirectMemory.LinksAVLBalancedTreeMethodsBase%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/linksplatform/Data.Doublets/blob/ebd0afb8bd508e5d59af3c0cc30ce91cfd9fa8a8/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L13" class="contribution-link">View Source</a>
+                    <a href="https://github.com/linksplatform/Data.Doublets/blob/a285258c7142f7c3f14eac71eba5b459ad8118b0/Platform.Data.Doublets/ResizableDirectMemory/LinksAVLBalancedTreeMethodsBase.cs/#L13" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
