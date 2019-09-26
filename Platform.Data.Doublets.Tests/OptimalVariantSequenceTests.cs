@@ -12,6 +12,9 @@ using Platform.Data.Doublets.Sequences.Walkers;
 using Platform.Data.Doublets.Sequences.Indexes;
 using Platform.Data.Doublets.Unicode;
 using Platform.Data.Doublets.Numbers.Unary;
+using Platform.Memory;
+using Platform.Data.Doublets.ResizableDirectMemory;
+using Platform.Data.Doublets.Decorators;
 
 namespace Platform.Data.Doublets.Tests
 {
@@ -89,6 +92,43 @@ namespace Platform.Data.Doublets.Tests
             var readSequence1 = sequences.ToList(optimalVariant);
 
             Assert.True(sequence.SequenceEqual(readSequence1));
+        }
+
+        [Fact]
+        public static void SavedSequencesOptimizationTest()
+        {
+            using (var memory = new HeapResizableDirectMemory())
+            using (var disposableLinks = new UInt64ResizableDirectMemoryLinks(memory))
+            {
+                var links = new UInt64Links(disposableLinks);
+
+                var meaningRoot = links.CreatePoint();
+                var unaryOne = links.CreateAndUpdate(meaningRoot, links.Constants.Itself);
+
+                var linksToFrequencies = new Dictionary<ulong, ulong>();
+                var totalSequenceSymbolFrequencyCounter = new TotalSequenceSymbolFrequencyCounter<ulong>(links);
+                var linkFrequenciesCache = new LinkFrequenciesCache<ulong>(links, totalSequenceSymbolFrequencyCounter);
+                var index = new CachedFrequencyIncrementingSequenceIndex<ulong>(linkFrequenciesCache);
+                var linkToItsFrequencyNumberConverter = new FrequenciesCacheBasedLinkToItsFrequencyNumberConverter<ulong>(linkFrequenciesCache);
+                var sequenceToItsLocalElementLevelsConverter = new SequenceToItsLocalElementLevelsConverter<ulong>(links, linkToItsFrequencyNumberConverter);
+                var optimalVariantConverter = new OptimalVariantConverter<ulong>(links, sequenceToItsLocalElementLevelsConverter);
+
+                var sequencesOptions = new SequencesOptions<ulong>()
+                {
+
+                };
+
+                var sequences = new Sequences.Sequences(new SynchronizedLinks<ulong>(links));
+
+
+            }
+            // create some sequences
+            // get list of sequences links
+            // for each sequence link
+            //   create new sequence version
+            //   if new sequence is not the same as sequence link
+            //     delete sequence link
+            //     collect garbadge
         }
     }
 }
