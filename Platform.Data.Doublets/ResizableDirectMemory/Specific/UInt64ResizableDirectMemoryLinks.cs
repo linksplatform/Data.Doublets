@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Platform.Memory;
 using Platform.Data.Doublets.ResizableDirectMemory.Generic;
+using Platform.Singletons;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -30,10 +31,10 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Specific
         public UInt64ResizableDirectMemoryLinks(IResizableDirectMemory memory) : this(memory, DefaultLinksSizeStep) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public UInt64ResizableDirectMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep) : this(memory, memoryReservationStep, true) { }
+        public UInt64ResizableDirectMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep) : this(memory, memoryReservationStep, Default<LinksConstants<ulong>>.Instance, true) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public UInt64ResizableDirectMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep, bool useAvlBasedIndex) : base(memory, memoryReservationStep)
+        public UInt64ResizableDirectMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep, LinksConstants<ulong> constants, bool useAvlBasedIndex) : base(memory, memoryReservationStep, constants)
         {
             if (useAvlBasedIndex)
             {

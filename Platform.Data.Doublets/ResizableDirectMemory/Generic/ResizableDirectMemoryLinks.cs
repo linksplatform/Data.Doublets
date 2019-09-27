@@ -3,6 +3,7 @@ using Platform.Numbers;
 using Platform.Memory;
 using static System.Runtime.CompilerServices.Unsafe;
 using System;
+using Platform.Singletons;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -30,10 +31,10 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
         public ResizableDirectMemoryLinks(IResizableDirectMemory memory) : this(memory, DefaultLinksSizeStep) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public ResizableDirectMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep) : this(memory, memoryReservationStep, true) { }
+        public ResizableDirectMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep) : this(memory, memoryReservationStep, Default<LinksConstants<TLink>>.Instance, true) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public ResizableDirectMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep, bool useAvlBasedIndex) : base(memory, memoryReservationStep)
+        public ResizableDirectMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep, LinksConstants<TLink> constants, bool useAvlBasedIndex) : base(memory, memoryReservationStep, constants)
         {
             if (useAvlBasedIndex)
             {

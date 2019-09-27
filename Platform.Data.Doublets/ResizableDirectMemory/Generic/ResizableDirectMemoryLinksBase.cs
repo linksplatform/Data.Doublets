@@ -51,12 +51,15 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
         public virtual LinksConstants<TLink> Constants { get; }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public ResizableDirectMemoryLinksBase(IResizableDirectMemory memory, long memoryReservationStep)
+        public ResizableDirectMemoryLinksBase(IResizableDirectMemory memory, long memoryReservationStep, LinksConstants<TLink> constants)
         {
             _memory = memory;
             _memoryReservationStep = memoryReservationStep;
-            Constants = Default<LinksConstants<TLink>>.Instance;
+            Constants = constants;
         }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public ResizableDirectMemoryLinksBase(IResizableDirectMemory memory, long memoryReservationStep) : this(memory, memoryReservationStep, Default<LinksConstants<TLink>>.Instance) { }
 
         protected virtual void Init(IResizableDirectMemory memory, long memoryReservationStep)
         {
