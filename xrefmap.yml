@@ -5245,14 +5245,15 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinks(Of TLink).ResizableDirectMemoryLinks(Platform.Memory.IResizableDirectMemory, System.Int64)
   nameWithType: ResizableDirectMemoryLinks<TLink>.ResizableDirectMemoryLinks(IResizableDirectMemory, Int64)
   nameWithType.vb: ResizableDirectMemoryLinks(Of TLink).ResizableDirectMemoryLinks(IResizableDirectMemory, Int64)
-- uid: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinks`1.#ctor(Platform.Memory.IResizableDirectMemory,System.Int64,System.Boolean)
-  name: ResizableDirectMemoryLinks(IResizableDirectMemory, Int64, Boolean)
-  href: api/Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinks-1.html#Platform_Data_Doublets_ResizableDirectMemory_Generic_ResizableDirectMemoryLinks_1__ctor_Platform_Memory_IResizableDirectMemory_System_Int64_System_Boolean_
-  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinks`1.#ctor(Platform.Memory.IResizableDirectMemory,System.Int64,System.Boolean)
-  fullName: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinks<TLink>.ResizableDirectMemoryLinks(Platform.Memory.IResizableDirectMemory, System.Int64, System.Boolean)
-  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinks(Of TLink).ResizableDirectMemoryLinks(Platform.Memory.IResizableDirectMemory, System.Int64, System.Boolean)
-  nameWithType: ResizableDirectMemoryLinks<TLink>.ResizableDirectMemoryLinks(IResizableDirectMemory, Int64, Boolean)
-  nameWithType.vb: ResizableDirectMemoryLinks(Of TLink).ResizableDirectMemoryLinks(IResizableDirectMemory, Int64, Boolean)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinks`1.#ctor(Platform.Memory.IResizableDirectMemory,System.Int64,Platform.Data.LinksConstants{`0},System.Boolean)
+  name: ResizableDirectMemoryLinks(IResizableDirectMemory, Int64, LinksConstants<TLink>, Boolean)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinks-1.html#Platform_Data_Doublets_ResizableDirectMemory_Generic_ResizableDirectMemoryLinks_1__ctor_Platform_Memory_IResizableDirectMemory_System_Int64_Platform_Data_LinksConstants__0__System_Boolean_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinks`1.#ctor(Platform.Memory.IResizableDirectMemory,System.Int64,Platform.Data.LinksConstants{`0},System.Boolean)
+  name.vb: ResizableDirectMemoryLinks(IResizableDirectMemory, Int64, LinksConstants(Of TLink), Boolean)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinks<TLink>.ResizableDirectMemoryLinks(Platform.Memory.IResizableDirectMemory, System.Int64, Platform.Data.LinksConstants<TLink>, System.Boolean)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinks(Of TLink).ResizableDirectMemoryLinks(Platform.Memory.IResizableDirectMemory, System.Int64, Platform.Data.LinksConstants(Of TLink), System.Boolean)
+  nameWithType: ResizableDirectMemoryLinks<TLink>.ResizableDirectMemoryLinks(IResizableDirectMemory, Int64, LinksConstants<TLink>, Boolean)
+  nameWithType.vb: ResizableDirectMemoryLinks(Of TLink).ResizableDirectMemoryLinks(IResizableDirectMemory, Int64, LinksConstants(Of TLink), Boolean)
 - uid: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinks`1.#ctor(System.String)
   name: ResizableDirectMemoryLinks(String)
   href: api/Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinks-1.html#Platform_Data_Doublets_ResizableDirectMemory_Generic_ResizableDirectMemoryLinks_1__ctor_System_String_
@@ -5363,6 +5364,15 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase(Of TLink).ResizableDirectMemoryLinksBase(Platform.Memory.IResizableDirectMemory, System.Int64)
   nameWithType: ResizableDirectMemoryLinksBase<TLink>.ResizableDirectMemoryLinksBase(IResizableDirectMemory, Int64)
   nameWithType.vb: ResizableDirectMemoryLinksBase(Of TLink).ResizableDirectMemoryLinksBase(IResizableDirectMemory, Int64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase`1.#ctor(Platform.Memory.IResizableDirectMemory,System.Int64,Platform.Data.LinksConstants{`0})
+  name: ResizableDirectMemoryLinksBase(IResizableDirectMemory, Int64, LinksConstants<TLink>)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_Generic_ResizableDirectMemoryLinksBase_1__ctor_Platform_Memory_IResizableDirectMemory_System_Int64_Platform_Data_LinksConstants__0__
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase`1.#ctor(Platform.Memory.IResizableDirectMemory,System.Int64,Platform.Data.LinksConstants{`0})
+  name.vb: ResizableDirectMemoryLinksBase(IResizableDirectMemory, Int64, LinksConstants(Of TLink))
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase<TLink>.ResizableDirectMemoryLinksBase(Platform.Memory.IResizableDirectMemory, System.Int64, Platform.Data.LinksConstants<TLink>)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase(Of TLink).ResizableDirectMemoryLinksBase(Platform.Memory.IResizableDirectMemory, System.Int64, Platform.Data.LinksConstants(Of TLink))
+  nameWithType: ResizableDirectMemoryLinksBase<TLink>.ResizableDirectMemoryLinksBase(IResizableDirectMemory, Int64, LinksConstants<TLink>)
+  nameWithType.vb: ResizableDirectMemoryLinksBase(Of TLink).ResizableDirectMemoryLinksBase(IResizableDirectMemory, Int64, LinksConstants(Of TLink))
 - uid: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase`1.#ctor*
   name: ResizableDirectMemoryLinksBase
   href: api/Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_Generic_ResizableDirectMemoryLinksBase_1__ctor_
@@ -8138,12 +8148,15 @@ references:
   commentId: M:Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.#ctor(Platform.Memory.IResizableDirectMemory,System.Int64)
   fullName: Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.UInt64ResizableDirectMemoryLinks(Platform.Memory.IResizableDirectMemory, System.Int64)
   nameWithType: UInt64ResizableDirectMemoryLinks.UInt64ResizableDirectMemoryLinks(IResizableDirectMemory, Int64)
-- uid: Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.#ctor(Platform.Memory.IResizableDirectMemory,System.Int64,System.Boolean)
-  name: UInt64ResizableDirectMemoryLinks(IResizableDirectMemory, Int64, Boolean)
-  href: api/Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_Specific_UInt64ResizableDirectMemoryLinks__ctor_Platform_Memory_IResizableDirectMemory_System_Int64_System_Boolean_
-  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.#ctor(Platform.Memory.IResizableDirectMemory,System.Int64,System.Boolean)
-  fullName: Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.UInt64ResizableDirectMemoryLinks(Platform.Memory.IResizableDirectMemory, System.Int64, System.Boolean)
-  nameWithType: UInt64ResizableDirectMemoryLinks.UInt64ResizableDirectMemoryLinks(IResizableDirectMemory, Int64, Boolean)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.#ctor(Platform.Memory.IResizableDirectMemory,System.Int64,Platform.Data.LinksConstants{System.UInt64},System.Boolean)
+  name: UInt64ResizableDirectMemoryLinks(IResizableDirectMemory, Int64, LinksConstants<UInt64>, Boolean)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_Specific_UInt64ResizableDirectMemoryLinks__ctor_Platform_Memory_IResizableDirectMemory_System_Int64_Platform_Data_LinksConstants_System_UInt64__System_Boolean_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.#ctor(Platform.Memory.IResizableDirectMemory,System.Int64,Platform.Data.LinksConstants{System.UInt64},System.Boolean)
+  name.vb: UInt64ResizableDirectMemoryLinks(IResizableDirectMemory, Int64, LinksConstants(Of UInt64), Boolean)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.UInt64ResizableDirectMemoryLinks(Platform.Memory.IResizableDirectMemory, System.Int64, Platform.Data.LinksConstants<System.UInt64>, System.Boolean)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.UInt64ResizableDirectMemoryLinks(Platform.Memory.IResizableDirectMemory, System.Int64, Platform.Data.LinksConstants(Of System.UInt64), System.Boolean)
+  nameWithType: UInt64ResizableDirectMemoryLinks.UInt64ResizableDirectMemoryLinks(IResizableDirectMemory, Int64, LinksConstants<UInt64>, Boolean)
+  nameWithType.vb: UInt64ResizableDirectMemoryLinks.UInt64ResizableDirectMemoryLinks(IResizableDirectMemory, Int64, LinksConstants(Of UInt64), Boolean)
 - uid: Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.#ctor(System.String)
   name: UInt64ResizableDirectMemoryLinks(String)
   href: api/Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_Specific_UInt64ResizableDirectMemoryLinks__ctor_System_String_
