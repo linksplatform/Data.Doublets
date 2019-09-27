@@ -9,7 +9,7 @@ using Platform.Exceptions;
 
 namespace Platform.Data.Doublets
 {
-    public class Hybrid<T>
+    public struct Hybrid<T>
     {
         private static readonly Func<object, T> _absAndConvert;
         private static readonly Func<object, T> _absAndNegateAndConvert;
