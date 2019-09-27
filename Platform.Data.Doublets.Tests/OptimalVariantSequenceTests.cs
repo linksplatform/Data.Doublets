@@ -15,6 +15,7 @@ using Platform.Data.Doublets.Numbers.Unary;
 using Platform.Memory;
 using Platform.Data.Doublets.ResizableDirectMemory;
 using Platform.Data.Doublets.Decorators;
+using Platform.Data.Doublets.ResizableDirectMemory.Specific;
 
 namespace Platform.Data.Doublets.Tests
 {
