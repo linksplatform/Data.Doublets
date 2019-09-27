@@ -12591,6 +12591,19 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Tests.OptimalVariantSequenceTests.LinksBasedFrequencyStoredOptimalVariantSequenceTest
   nameWithType: OptimalVariantSequenceTests.LinksBasedFrequencyStoredOptimalVariantSequenceTest
+- uid: Platform.Data.Doublets.Tests.OptimalVariantSequenceTests.SavedSequencesOptimizationTest
+  name: SavedSequencesOptimizationTest()
+  href: api/Platform.Data.Doublets.Tests.OptimalVariantSequenceTests.html#Platform_Data_Doublets_Tests_OptimalVariantSequenceTests_SavedSequencesOptimizationTest
+  commentId: M:Platform.Data.Doublets.Tests.OptimalVariantSequenceTests.SavedSequencesOptimizationTest
+  fullName: Platform.Data.Doublets.Tests.OptimalVariantSequenceTests.SavedSequencesOptimizationTest()
+  nameWithType: OptimalVariantSequenceTests.SavedSequencesOptimizationTest()
+- uid: Platform.Data.Doublets.Tests.OptimalVariantSequenceTests.SavedSequencesOptimizationTest*
+  name: SavedSequencesOptimizationTest
+  href: api/Platform.Data.Doublets.Tests.OptimalVariantSequenceTests.html#Platform_Data_Doublets_Tests_OptimalVariantSequenceTests_SavedSequencesOptimizationTest_
+  commentId: Overload:Platform.Data.Doublets.Tests.OptimalVariantSequenceTests.SavedSequencesOptimizationTest
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Tests.OptimalVariantSequenceTests.SavedSequencesOptimizationTest
+  nameWithType: OptimalVariantSequenceTests.SavedSequencesOptimizationTest
 - uid: Platform.Data.Doublets.Tests.ReadSequenceTests
   name: ReadSequenceTests
   href: api/Platform.Data.Doublets.Tests.ReadSequenceTests.html
