@@ -12559,6 +12559,25 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Tests.GenericLinksTests.RawNumbersCRUDTest
   nameWithType: GenericLinksTests.RawNumbersCRUDTest
+- uid: Platform.Data.Doublets.Tests.LinksConstantsTests
+  name: LinksConstantsTests
+  href: api/Platform.Data.Doublets.Tests.LinksConstantsTests.html
+  commentId: T:Platform.Data.Doublets.Tests.LinksConstantsTests
+  fullName: Platform.Data.Doublets.Tests.LinksConstantsTests
+  nameWithType: LinksConstantsTests
+- uid: Platform.Data.Doublets.Tests.LinksConstantsTests.ExternalReferencesTest
+  name: ExternalReferencesTest()
+  href: api/Platform.Data.Doublets.Tests.LinksConstantsTests.html#Platform_Data_Doublets_Tests_LinksConstantsTests_ExternalReferencesTest
+  commentId: M:Platform.Data.Doublets.Tests.LinksConstantsTests.ExternalReferencesTest
+  fullName: Platform.Data.Doublets.Tests.LinksConstantsTests.ExternalReferencesTest()
+  nameWithType: LinksConstantsTests.ExternalReferencesTest()
+- uid: Platform.Data.Doublets.Tests.LinksConstantsTests.ExternalReferencesTest*
+  name: ExternalReferencesTest
+  href: api/Platform.Data.Doublets.Tests.LinksConstantsTests.html#Platform_Data_Doublets_Tests_LinksConstantsTests_ExternalReferencesTest_
+  commentId: Overload:Platform.Data.Doublets.Tests.LinksConstantsTests.ExternalReferencesTest
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Tests.LinksConstantsTests.ExternalReferencesTest
+  nameWithType: LinksConstantsTests.ExternalReferencesTest
 - uid: Platform.Data.Doublets.Tests.OptimalVariantSequenceTests
   name: OptimalVariantSequenceTests
   href: api/Platform.Data.Doublets.Tests.OptimalVariantSequenceTests.html
