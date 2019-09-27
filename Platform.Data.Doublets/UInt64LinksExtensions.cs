@@ -15,35 +15,7 @@ namespace Platform.Data.Doublets
 
         public static void UseUnicode(this ILinks<ulong> links) => UnicodeMap.InitNew(links);
 
-        public static void EnsureEachLinkExists(this ILinks<ulong> links, IList<ulong> sequence)
-        {
-            if (sequence == null)
-            {
-                return;
-            }
-            for (var i = 0; i < sequence.Count; i++)
-            {
-                if (!links.Exists(sequence[i]))
-                {
-                    throw new ArgumentLinkDoesNotExistsException<ulong>(sequence[i], $"sequence[{i}]");
-                }
-            }
-        }
-
-        public static void EnsureEachLinkIsAnyOrExists(this ILinks<ulong> links, IList<ulong> sequence)
-        {
-            if (sequence == null)
-            {
-                return;
-            }
-            for (var i = 0; i < sequence.Count; i++)
-            {
-                if (sequence[i] != Constants.Any && !links.Exists(sequence[i]))
-                {
-                    throw new ArgumentLinkDoesNotExistsException<ulong>(sequence[i], $"sequence[{i}]");
-                }
-            }
-        }
+        
 
         public static bool AnyLinkIsAny(this ILinks<ulong> links, params ulong[] sequence)
         {

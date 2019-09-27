@@ -31,7 +31,7 @@ namespace Platform.Data.Doublets.Sequences
                 {
                     return new ulong[0];
                 }
-                Links.EnsureEachLinkExists(sequence);
+                Links.EnsureLinkExists(sequence);
                 if (sequence.Length == 1)
                 {
                     return sequence;
@@ -86,7 +86,7 @@ namespace Platform.Data.Doublets.Sequences
                 {
                     return new List<ulong>();
                 }
-                Links.Unsync.EnsureEachLinkExists(sequence);
+                Links.Unsync.EnsureLinkExists(sequence);
                 if (sequence.Length == 1)
                 {
                     return new List<ulong> { sequence[0] };
@@ -224,7 +224,7 @@ namespace Platform.Data.Doublets.Sequences
             {
                 return;
             }
-            Links.EnsureEachLinkIsAnyOrExists(sequence);
+            Links.EnsureLinkIsAnyOrExists(sequence);
             if (sequence.Length == 1)
             {
                 var link = sequence[0];
@@ -378,7 +378,7 @@ namespace Platform.Data.Doublets.Sequences
                 var results = new List<ulong>();
                 if (sequence.Length > 0)
                 {
-                    Links.EnsureEachLinkExists(sequence);
+                    Links.EnsureLinkExists(sequence);
                     var firstElement = sequence[0];
                     if (sequence.Length == 1)
                     {
@@ -446,7 +446,7 @@ namespace Platform.Data.Doublets.Sequences
                 var results = new HashSet<ulong>();
                 if (sequence.Length > 0)
                 {
-                    Links.EnsureEachLinkExists(sequence);
+                    Links.EnsureLinkExists(sequence);
                     var firstElement = sequence[0];
                     if (sequence.Length == 1)
                     {
@@ -569,7 +569,7 @@ namespace Platform.Data.Doublets.Sequences
             {
                 if (sequence.Length > 0)
                 {
-                    Links.EnsureEachLinkExists(sequence);
+                    Links.EnsureLinkExists(sequence);
                     var results = new HashSet<ulong>();
                     for (var i = 0; i < sequence.Length; i++)
                     {
@@ -624,7 +624,7 @@ namespace Platform.Data.Doublets.Sequences
             {
                 if (sequence.Length > 0)
                 {
-                    Links.EnsureEachLinkExists(sequence);
+                    Links.EnsureLinkExists(sequence);
                     var results = new HashSet<ulong>();
                     for (var i = 0; i < sequence.Length; i++)
                     {
@@ -645,7 +645,7 @@ namespace Platform.Data.Doublets.Sequences
             {
                 if (sequence.Length > 0)
                 {
-                    Links.EnsureEachLinkExists(sequence);
+                    Links.EnsureLinkExists(sequence);
 
                     var results = new HashSet<ulong>();
                     var filteredResults = new HashSet<ulong>();
@@ -697,11 +697,11 @@ namespace Platform.Data.Doublets.Sequences
 
         public HashSet<ulong> GetAllPartiallyMatchingSequences3(params ulong[] sequence)
         {
-            return _sync.ExecuteReadOperation(() =>
+            return _sync.ExecuteReadOperation((Func<HashSet<ulong>>)(() =>
             {
                 if (sequence.Length > 0)
                 {
-                    Links.EnsureEachLinkIsAnyOrExists(sequence);
+                    ILinksExtensions.EnsureLinkIsAnyOrExists<ulong>(Links, (IList<ulong>)sequence);
                     var firstResults = new HashSet<ulong>();
                     var lastResults = new HashSet<ulong>();
                     var first = sequence.First(x => x != Constants.Any);
@@ -717,7 +717,7 @@ namespace Platform.Data.Doublets.Sequences
                     return filteredResults;
                 }
                 return new HashSet<ulong>();
-            });
+            }));
         }
 
         public HashSet<ulong> GetAllPartiallyMatchingSequences4(HashSet<ulong> readAsElements, IList<ulong> sequence)
@@ -726,7 +726,7 @@ namespace Platform.Data.Doublets.Sequences
             {
                 if (sequence.Count > 0)
                 {
-                    Links.EnsureEachLinkExists(sequence);
+                    Links.EnsureLinkExists(sequence);
                     var results = new HashSet<LinkIndex>();
                     //var nextResults = new HashSet<ulong>();
                     //for (var i = 0; i < sequence.Length; i++)
@@ -783,7 +783,7 @@ namespace Platform.Data.Doublets.Sequences
             {
                 if (sequence.Length > 0)
                 {
-                    Links.EnsureEachLinkExists(sequence);
+                    Links.EnsureLinkExists(sequence);
                     //var firstElement = sequence[0];
                     //if (sequence.Length == 1)
                     //{
@@ -1309,7 +1309,7 @@ namespace Platform.Data.Doublets.Sequences
                 var results = new HashSet<ulong>();
                 if (linksToConnect.Length > 0)
                 {
-                    Links.EnsureEachLinkExists(linksToConnect);
+                    Links.EnsureLinkExists(linksToConnect);
                     AllUsagesCore(linksToConnect[0], results);
                     for (var i = 1; i < linksToConnect.Length; i++)
                     {
@@ -1329,7 +1329,7 @@ namespace Platform.Data.Doublets.Sequences
                 var results = new HashSet<ulong>();
                 if (linksToConnect.Length > 0)
                 {
-                    Links.EnsureEachLinkExists(linksToConnect);
+                    Links.EnsureLinkExists(linksToConnect);
                     var collector1 = new AllUsagesCollector(Links.Unsync, results);
                     collector1.Collect(linksToConnect[0]);
                     var next = new HashSet<ulong>();
@@ -1352,7 +1352,7 @@ namespace Platform.Data.Doublets.Sequences
                 var results = new HashSet<ulong>();
                 if (linksToConnect.Length > 0)
                 {
-                    Links.EnsureEachLinkExists(linksToConnect);
+                    Links.EnsureLinkExists(linksToConnect);
                     var collector1 = new AllUsagesCollector(Links, results);
                     collector1.Collect(linksToConnect[0]);
                     //AllUsagesCore(linksToConnect[0], results);
@@ -1377,7 +1377,7 @@ namespace Platform.Data.Doublets.Sequences
                 var results = new BitString((long)Links.Unsync.Count() + 1); // new BitArray((int)_links.Total + 1);
                 if (linksToConnect.Length > 0)
                 {
-                    Links.EnsureEachLinkExists(linksToConnect);
+                    Links.EnsureLinkExists(linksToConnect);
                     var collector1 = new AllUsagesCollector2(Links.Unsync, results);
                     collector1.Collect(linksToConnect[0]);
                     for (var i = 1; i < linksToConnect.Length; i++)

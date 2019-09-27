@@ -298,6 +298,18 @@ namespace Platform.Data.Doublets
         // TODO: May be move to EnsureExtensions or make it both there and here
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void EnsureLinkExists<TLink>(this ILinks<TLink> links, IList<TLink> restrictions)
+        {
+            for (var i = 0; i < restrictions.Count; i++)
+            {
+                if (!links.Exists(restrictions[i]))
+                {
+                    throw new ArgumentLinkDoesNotExistsException<TLink>(restrictions[i], $"sequence[{i}]");
+                }
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureInnerReferenceExists<TLink>(this ILinks<TLink> links, TLink reference, string argumentName)
         {
             if (links.Constants.IsInnerReference(reference) && !links.Exists(reference))
@@ -318,9 +330,14 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureLinkIsAnyOrExists<TLink>(this ILinks<TLink> links, IList<TLink> restrictions)
         {
-            for (int i = 0; i < restrictions.Count; i++)
+            var equalityComparer = EqualityComparer<TLink>.Default;
+            var any = links.Constants.Any;
+            for (var i = 0; i < restrictions.Count; i++)
             {
-                links.EnsureLinkIsAnyOrExists(restrictions[i], nameof(restrictions));
+                if (!equalityComparer.Equals(restrictions[i], any) && !links.Exists(restrictions[i]))
+                {
+                    throw new ArgumentLinkDoesNotExistsException<TLink>(restrictions[i], $"sequence[{i}]");
+                }
             }
         }
 

@@ -1,15 +1,14 @@
-﻿using System;
+﻿using Platform.Collections;
+using Platform.Collections.Lists;
+using Platform.Collections.Stacks;
+using Platform.Data.Doublets.Sequences.Walkers;
+using Platform.Singletons;
+using Platform.Threading.Synchronization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using Platform.Collections;
-using Platform.Collections.Lists;
-using Platform.Threading.Synchronization;
-using Platform.Singletons;
 using LinkIndex = System.UInt64;
-using Platform.Data.Doublets.Sequences.Walkers;
-using Platform.Collections.Stacks;
-using Platform.Collections.Arrays;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -67,7 +66,7 @@ namespace Platform.Data.Doublets.Sequences
             Options = options;
             Options.ValidateOptions();
             Options.InitOptions(Links);
-            Constants = Default<LinksConstants<LinkIndex>>.Instance;
+            Constants = links.Constants;
         }
 
         public Sequences(SynchronizedLinks<LinkIndex> links)
@@ -253,6 +252,14 @@ namespace Platform.Data.Doublets.Sequences
                             return Links.Unsync.Each(handler, new Link<LinkIndex>(any, any, any));
                         }
                     }
+                    if (Options.UseSequenceMarker)
+                    {
+                        var sequenceLinkValues = Links.Unsync.GetLink(link);
+                        if (sequenceLinkValues[Constants.SourcePart] == Options.SequenceMarkerLink)
+                        {
+                            link = sequenceLinkValues[Constants.TargetPart];
+                        }
+                    }
                     var sequence = Options.Walker.Walk(link).ToArray().ConvertToRestrictionsValues();
                     sequence[0] = link;
                     return handler(sequence);
@@ -380,15 +387,15 @@ namespace Platform.Data.Doublets.Sequences
                 Delete(restrictions);
                 return Constants.Null;
             }
-            return _sync.ExecuteWriteOperation(() =>
+            return _sync.ExecuteWriteOperation((Func<ulong>)(() =>
             {
-                Links.EnsureEachLinkIsAnyOrExists(sequence);
-                Links.EnsureEachLinkExists(newSequence);
+                ILinksExtensions.EnsureLinkIsAnyOrExists<ulong>(Links, (IList<ulong>)sequence);
+                Links.EnsureLinkExists(newSequence);
                 return UpdateCore(sequence, newSequence);
-            });
+            }));
         }
 
-        private LinkIndex UpdateCore(LinkIndex[] sequence, LinkIndex[] newSequence)
+        private LinkIndex UpdateCore(IList<LinkIndex> sequence, IList<LinkIndex> newSequence)
         {
             LinkIndex bestVariant;
             if (Options.EnforceSingleSequenceVersionOnWriteBasedOnNew && !sequence.EqualTo(newSequence))
@@ -523,6 +530,19 @@ namespace Platform.Data.Doublets.Sequences
 
         #region Compactification
 
+        public void CompactAll()
+        {
+            _sync.ExecuteWriteOperation(() =>
+            {
+                var sequences = Each((LinkAddress<LinkIndex>)Constants.Any);
+                for (int i = 0; i < sequences.Count; i++)
+                {
+                    var sequence = this.ToList(sequences[i]);
+                    Compact(sequence.ConvertToRestrictionsValues());
+                }
+            });
+        }
+
         /// <remarks>
         /// bestVariant можно выбирать по максимальному числу использований,
         /// но балансированный позволяет гарантировать уникальность (если есть возможность,
@@ -530,7 +550,7 @@ namespace Platform.Data.Doublets.Sequences
         /// 
         /// Получается этот метод должен игнорировать Options.EnforceSingleSequenceVersionOnWrite
         /// </remarks>
-        public LinkIndex Compact(params LinkIndex[] sequence)
+        public LinkIndex Compact(IList<LinkIndex> sequence)
         {
             return _sync.ExecuteWriteOperation(() =>
             {
@@ -538,13 +558,13 @@ namespace Platform.Data.Doublets.Sequences
                 {
                     return Constants.Null;
                 }
-                Links.EnsureEachLinkExists(sequence);
+                Links.EnsureInnerReferenceExists(sequence, nameof(sequence));
                 return CompactCore(sequence);
             });
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private LinkIndex CompactCore(params LinkIndex[] sequence) => UpdateCore(sequence, sequence);
+        private LinkIndex CompactCore(IList<LinkIndex> sequence) => UpdateCore(sequence, sequence);
 
         #endregion
 
