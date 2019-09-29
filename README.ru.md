@@ -51,7 +51,10 @@ namespace HelloWorld.Doublets.DotNet
 
 [PDF файл](https://linksplatform.github.io/Data.Doublets/Platform.Data.Doublets.pdf) с кодом для электронных книг.
 
-## Зависит от
+## Граф зависимостей
+![SVG изображение графа зависимостей](https://raw.github.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.svg?sanitize=true)
+
+## Зависит напрямую от
 *   [Platform.Random](https://github.com/linksplatform/Random)
 *   [Platform.Timestamps](https://github.com/linksplatform/Timestamps)
 *   [Platform.Collections.Methods](https://github.com/linksplatform/Collections.Methods)
