@@ -52,7 +52,7 @@ namespace HelloWorld.Doublets.DotNet
 [PDF файл](https://linksplatform.github.io/Data.Doublets/Platform.Data.Doublets.pdf) с кодом для электронных книг.
 
 ## Граф зависимостей
-![SVG изображение графа зависимостей](https://raw.github.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.svg?sanitize=true)
+[![SVG изображение графа зависимостей](https://raw.github.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.svg?sanitize=true)](https://raw.githubusercontent.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.svg?sanitize=true)
 
 ## Зависит напрямую от
 *   [Platform.Random](https://github.com/linksplatform/Random)
