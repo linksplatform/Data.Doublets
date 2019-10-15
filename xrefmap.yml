@@ -3627,6 +3627,23 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.Generic.LinksAvlBalancedTreeMethodsBase(Of TLink).Header
   nameWithType: LinksAvlBalancedTreeMethodsBase<TLink>.Header
   nameWithType.vb: LinksAvlBalancedTreeMethodsBase(Of TLink).Header
+- uid: Platform.Data.Doublets.ResizableDirectMemory.Generic.LinksAvlBalancedTreeMethodsBase`1.IsChild(`0,`0)
+  name: IsChild(TLink, TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.Generic.LinksAvlBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_Generic_LinksAvlBalancedTreeMethodsBase_1_IsChild__0__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.Generic.LinksAvlBalancedTreeMethodsBase`1.IsChild(`0,`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.Generic.LinksAvlBalancedTreeMethodsBase<TLink>.IsChild(TLink, TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.Generic.LinksAvlBalancedTreeMethodsBase(Of TLink).IsChild(TLink, TLink)
+  nameWithType: LinksAvlBalancedTreeMethodsBase<TLink>.IsChild(TLink, TLink)
+  nameWithType.vb: LinksAvlBalancedTreeMethodsBase(Of TLink).IsChild(TLink, TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.Generic.LinksAvlBalancedTreeMethodsBase`1.IsChild*
+  name: IsChild
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.Generic.LinksAvlBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_Generic_LinksAvlBalancedTreeMethodsBase_1_IsChild_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.Generic.LinksAvlBalancedTreeMethodsBase`1.IsChild
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.Generic.LinksAvlBalancedTreeMethodsBase<TLink>.IsChild
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.Generic.LinksAvlBalancedTreeMethodsBase(Of TLink).IsChild
+  nameWithType: LinksAvlBalancedTreeMethodsBase<TLink>.IsChild
+  nameWithType.vb: LinksAvlBalancedTreeMethodsBase(Of TLink).IsChild
 - uid: Platform.Data.Doublets.ResizableDirectMemory.Generic.LinksAvlBalancedTreeMethodsBase`1.Item(`0)
   name: Item[TLink]
   href: api/Platform.Data.Doublets.ResizableDirectMemory.Generic.LinksAvlBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_Generic_LinksAvlBalancedTreeMethodsBase_1_Item__0_
