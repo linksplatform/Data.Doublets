@@ -35,11 +35,17 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Specific
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override bool GetLeftIsChild(ulong node) => GetLeftIsChildValue(Links[node].SizeAsSource);
 
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //protected override bool GetLeftIsChild(ulong node) => IsChild(node, GetLeft(node));
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override void SetLeftIsChild(ulong node, bool value) => SetLeftIsChildValue(ref Links[node].SizeAsSource, value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override bool GetRightIsChild(ulong node) => GetRightIsChildValue(Links[node].SizeAsSource);
+
+        //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //protected override bool GetRightIsChild(ulong node) => IsChild(node, GetRight(node));
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override void SetRightIsChild(ulong node, bool value) => SetRightIsChildValue(ref Links[node].SizeAsSource, value);

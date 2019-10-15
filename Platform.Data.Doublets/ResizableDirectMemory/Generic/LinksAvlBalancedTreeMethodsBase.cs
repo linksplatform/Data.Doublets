@@ -115,6 +115,14 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected bool IsChild(TLink parent, TLink possibleChild)
+        {
+            var parentSize = GetSize(parent);
+            var childSize = GetSizeOrZero(possibleChild);
+            return GreaterThanZero(childSize) && LessOrEqualThan(childSize, parentSize);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual sbyte GetBalanceValue(TLink storedValue)
         {
             unchecked
