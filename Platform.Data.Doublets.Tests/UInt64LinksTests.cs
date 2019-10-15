@@ -43,7 +43,6 @@ namespace Platform.Data.Doublets.Tests
         public static void CascadeUpdateTest()
         {
             var itself = _constants.Itself;
-
             using (var scope = new TempLinksTestScope(useLog: true))
             {
                 var links = scope.Links;

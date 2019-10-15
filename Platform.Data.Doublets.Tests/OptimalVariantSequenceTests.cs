@@ -179,7 +179,8 @@ Interdum consectetur libero id faucibus nisl tincidunt eget nullam non.";
                     UseIndex = true,
                     Index = index,
                     LinksToSequenceConverter = optimalVariantConverter,
-                    Walker = walker
+                    Walker = walker,
+                    UseGarbageCollection = true
                 };
 
                 var unicodeSequences = new Sequences.Sequences(new SynchronizedLinks<ulong>(links), unicodeSequencesOptions);

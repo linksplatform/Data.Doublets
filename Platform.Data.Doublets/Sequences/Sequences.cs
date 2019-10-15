@@ -153,17 +153,18 @@ namespace Platform.Data.Doublets.Sequences
                 {
                     return 0;
                 }
+                var any = Constants.Any;
                 if (Options.UseSequenceMarker)
                 {
                     var elementsLink = GetSequenceElements(restrictions[0]);
                     var sequenceLink = GetSequenceByElements(elementsLink);
                     if (sequenceLink != Constants.Null)
                     {
-                        return Links.Count(sequenceLink) + Links.Count(elementsLink) - 1;
+                        return Links.Count(any, sequenceLink) + Links.Count(any, elementsLink) - 1;
                     }
-                    return Links.Count(elementsLink);
+                    return Links.Count(any, elementsLink);
                 }
-                return Links.Count(restrictions[0]);
+                return Links.Count(any, restrictions[0]);
             }
             throw new NotImplementedException();
         }
@@ -211,7 +212,7 @@ namespace Platform.Data.Doublets.Sequences
             }
             if (Options.UseSequenceMarker)
             {
-                Links.Unsync.CreateAndUpdate(Options.SequenceMarkerLink, sequenceRoot);
+                return Links.Unsync.CreateAndUpdate(Options.SequenceMarkerLink, sequenceRoot);
             }
             return sequenceRoot; // Возвращаем корень последовательности (т.е. сами элементы)
         }
@@ -432,9 +433,9 @@ namespace Platform.Data.Doublets.Sequences
                 {
                     if (sequenceLink != Constants.Null)
                     {
-                        Links.Unsync.MergeUsages(sequenceLink, newSequenceLink);
+                        Links.Unsync.MergeAndDelete(sequenceLink, newSequenceLink);
                     }
-                    Links.Unsync.MergeUsages(sequenceElements, newSequenceElements);
+                    Links.Unsync.MergeAndDelete(sequenceElements, newSequenceElements);
                 }
                 ClearGarbage(sequenceElementsContents.Source);
                 ClearGarbage(sequenceElementsContents.Target);
@@ -451,16 +452,16 @@ namespace Platform.Data.Doublets.Sequences
                     {
                         if (sequenceLink != Constants.Null)
                         {
-                            Links.Unsync.MergeUsages(sequenceLink, newSequenceLink);
+                            Links.Unsync.MergeAndDelete(sequenceLink, newSequenceLink);
                         }
-                        Links.Unsync.MergeUsages(sequenceElements, newSequenceElements);
+                        Links.Unsync.MergeAndDelete(sequenceElements, newSequenceElements);
                     }
                 }
                 else
                 {
                     if (Options.UseCascadeUpdate || CountUsages(sequence) == 0)
                     {
-                        Links.Unsync.MergeUsages(sequence, newSequence);
+                        Links.Unsync.MergeAndDelete(sequence, newSequence);
                     }
                 }
             }
@@ -574,7 +575,7 @@ namespace Platform.Data.Doublets.Sequences
         /// TODO: Добавить дополнительный обработчик / событие CanBeDeleted которое можно определить извне или в унаследованном классе
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private bool IsGarbage(LinkIndex link) => link != Options.SequenceMarkerLink && !Links.Unsync.IsPartialPoint(link) && Links.Count(link) == 0;
+        private bool IsGarbage(LinkIndex link) => link != Options.SequenceMarkerLink && !Links.Unsync.IsPartialPoint(link) && Links.Count(Constants.Any, link) == 0;
 
         private void ClearGarbage(LinkIndex link)
         {
