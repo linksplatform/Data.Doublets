@@ -3,8 +3,6 @@
 [![Codacy](https://api.codacy.com/project/badge/Grade/83c66adb68f44a018c795bc7dc7d6f49)](https://app.codacy.com/app/drakonard/Data.Doublets?utm_source=github.com&utm_medium=referral&utm_content=linksplatform/Data.Doublets&utm_campaign=Badge_Grade_Dashboard)
 [![CodeFactor](https://www.codefactor.io/repository/github/linksplatform/data.doublets/badge/master)](https://www.codefactor.io/repository/github/linksplatform/data.doublets/overview/master)
 
-[![Поддержать разработку](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.herokuapp.com%2Fkonard%2Fpledgesssss&style=for-the-badge "Поддержать разработку")](https://patreon.com/konard)
-
 # [Data.Doublets](https://github.com/linksplatform/Data.Doublets) ([english version](README.md))
 Библиотека классов ПлатформыСвязей Platform.Data.Doublets.
 
