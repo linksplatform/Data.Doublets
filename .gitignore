@@ -345,3 +345,6 @@ org.kde.konsole.desktop
 *-swp
 *.kate-swp
 .swp.*
+
+# GitHub refuses chages to .github folder at the moment
+.github/
