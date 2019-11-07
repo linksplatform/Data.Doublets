@@ -1,7 +1,8 @@
 using System;
 using System.Linq;
-using System.Collections.Generic;
 using Xunit;
+using Platform.Memory;
+using Platform.Data.Numbers.Raw;
 using Platform.Data.Doublets.Sequences;
 using Platform.Data.Doublets.Sequences.Frequencies.Cache;
 using Platform.Data.Doublets.Sequences.Frequencies.Counters;
@@ -12,11 +13,8 @@ using Platform.Data.Doublets.Sequences.Walkers;
 using Platform.Data.Doublets.Sequences.Indexes;
 using Platform.Data.Doublets.Unicode;
 using Platform.Data.Doublets.Numbers.Unary;
-using Platform.Memory;
-using Platform.Data.Doublets.ResizableDirectMemory;
 using Platform.Data.Doublets.Decorators;
 using Platform.Data.Doublets.ResizableDirectMemory.Specific;
-using Platform.Data.Doublets.Numbers.Raw;
 using Platform.Collections.Stacks;
 
 namespace Platform.Data.Doublets.Tests

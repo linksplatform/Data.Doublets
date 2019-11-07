@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Platform.Interfaces;
+using Platform.Converters;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -13,7 +14,7 @@ namespace Platform.Data.Doublets.Sequences.HeightProviders
         private readonly ISequenceHeightProvider<TLink> _baseHeightProvider;
         private readonly IConverter<TLink> _addressToUnaryNumberConverter;
         private readonly IConverter<TLink> _unaryNumberToAddressConverter;
-        private readonly IPropertiesOperator<TLink, TLink, TLink> _propertyOperator;
+        private readonly IProperties<TLink, TLink, TLink> _propertyOperator;
 
         public CachedSequenceHeightProvider(
             ILinks<TLink> links,
@@ -21,7 +22,7 @@ namespace Platform.Data.Doublets.Sequences.HeightProviders
             IConverter<TLink> addressToUnaryNumberConverter,
             IConverter<TLink> unaryNumberToAddressConverter,
             TLink heightPropertyMarker,
-            IPropertiesOperator<TLink, TLink, TLink> propertyOperator)
+            IProperties<TLink, TLink, TLink> propertyOperator)
             : base(links)
         {
             _heightPropertyMarker = heightPropertyMarker;

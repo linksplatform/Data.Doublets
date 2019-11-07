@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using Platform.Collections.Arrays;
-using Platform.Data.Exceptions;
 using Platform.Disposables;
-using Platform.Memory;
-using Platform.Numbers;
 using Platform.Singletons;
+using Platform.Numbers;
+using Platform.Memory;
+using Platform.Data.Exceptions;
+
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -363,7 +363,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
             }
             else
             {
-                var maximumPossibleInnerReference = Constants.PossibleInnerReferencesRange.Maximum;
+                var maximumPossibleInnerReference = Constants.InternalReferencesRange.Maximum;
                 if (GreaterThan(header.AllocatedLinks, maximumPossibleInnerReference))
                 {
                     throw new LinksLimitReachedException<TLink>(maximumPossibleInnerReference);
@@ -438,7 +438,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual bool Exists(TLink link)
-            => GreaterOrEqualThan(link, Constants.PossibleInnerReferencesRange.Minimum)
+            => GreaterOrEqualThan(link, Constants.InternalReferencesRange.Minimum)
             && LessOrEqualThan(link, GetHeaderReference().AllocatedLinks)
             && !IsUnusedLink(link);
 
@@ -496,7 +496,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
         protected virtual TLink Decrement(TLink link) => Arithmetic<TLink>.Decrement(link);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual IList<TLink> GetEmptyList() => ArrayPool<TLink>.Empty;
+        protected virtual IList<TLink> GetEmptyList() => Array.Empty<TLink>();
 
         #region Disposable
 

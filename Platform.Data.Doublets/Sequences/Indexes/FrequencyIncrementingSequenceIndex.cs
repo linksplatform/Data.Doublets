@@ -1,5 +1,6 @@
-﻿using Platform.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Platform.Interfaces;
+using Platform.Incrementers;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -9,10 +10,10 @@ namespace Platform.Data.Doublets.Sequences.Indexes
     {
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
 
-        private readonly IPropertyOperator<TLink, TLink> _frequencyPropertyOperator;
+        private readonly IProperty<TLink, TLink> _frequencyPropertyOperator;
         private readonly IIncrementer<TLink> _frequencyIncrementer;
 
-        public FrequencyIncrementingSequenceIndex(ILinks<TLink> links, IPropertyOperator<TLink, TLink> frequencyPropertyOperator, IIncrementer<TLink> frequencyIncrementer)
+        public FrequencyIncrementingSequenceIndex(ILinks<TLink> links, IProperty<TLink, TLink> frequencyPropertyOperator, IIncrementer<TLink> frequencyIncrementer)
             : base(links)
         {
             _frequencyPropertyOperator = frequencyPropertyOperator;

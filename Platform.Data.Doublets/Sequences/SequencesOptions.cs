@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Platform.Interfaces;
 using Platform.Collections.Stacks;
+using Platform.Converters;
 using Platform.Data.Doublets.Sequences.Frequencies.Cache;
 using Platform.Data.Doublets.Sequences.Frequencies.Counters;
 using Platform.Data.Doublets.Sequences.Converters;

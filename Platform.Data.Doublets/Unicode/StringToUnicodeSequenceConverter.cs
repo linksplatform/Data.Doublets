@@ -1,6 +1,6 @@
-﻿using Platform.Data.Doublets.Sequences.Indexes;
-using Platform.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Platform.Converters;
+using Platform.Data.Doublets.Sequences.Indexes;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 

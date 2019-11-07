@@ -312,7 +312,7 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureInnerReferenceExists<TLink>(this ILinks<TLink> links, TLink reference, string argumentName)
         {
-            if (links.Constants.IsInnerReference(reference) && !links.Exists(reference))
+            if (links.Constants.IsInternalReference(reference) && !links.Exists(reference))
             {
                 throw new ArgumentLinkDoesNotExistsException<TLink>(reference, argumentName);
             }
@@ -390,12 +390,11 @@ namespace Platform.Data.Doublets
         public static void EnsureCreated<TLink>(this ILinks<TLink> links, Func<TLink> creator, params TLink[] addresses)
         {
             var constants = links.Constants;
-
             var nonExistentAddresses = new HashSet<TLink>(addresses.Where(x => !links.Exists(x)));
             if (nonExistentAddresses.Count > 0)
             {
                 var max = nonExistentAddresses.Max();
-                max = (Integer<TLink>)System.Math.Min((ulong)(Integer<TLink>)max, (ulong)(Integer<TLink>)constants.PossibleInnerReferencesRange.Maximum);
+                max = (Integer<TLink>)System.Math.Min((ulong)(Integer<TLink>)max, (ulong)(Integer<TLink>)constants.InternalReferencesRange.Maximum);
                 var createdLinks = new List<TLink>();
                 var equalityComparer = EqualityComparer<TLink>.Default;
                 TLink createdLink = creator();

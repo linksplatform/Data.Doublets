@@ -7,7 +7,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 using Platform.Disposables;
-using Platform.IO;
 using Platform.Ranges;
 using Platform.Random;
 using Platform.Timestamps;
@@ -16,6 +15,7 @@ using Platform.Singletons;
 using Platform.Scopes;
 using Platform.Counters;
 using Platform.Diagnostics;
+using Platform.IO;
 using Platform.Memory;
 using Platform.Data.Doublets.Decorators;
 using Platform.Data.Doublets.ResizableDirectMemory.Specific;
@@ -736,7 +736,7 @@ namespace Platform.Data.Doublets.Tests
 
                 for (var i = iterations; i > 0; i--)
                 {
-                    var linksAddressRange = new Range<ulong>(_constants.PossibleInnerReferencesRange.Minimum, maxLink);
+                    var linksAddressRange = new Range<ulong>(_constants.InternalReferencesRange.Minimum, maxLink);
 
                     var source = RandomHelpers.Default.NextUInt64(linksAddressRange);
                     var target = RandomHelpers.Default.NextUInt64(linksAddressRange);

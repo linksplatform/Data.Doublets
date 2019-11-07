@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using Platform.Interfaces;
 using Platform.Reflection;
+using Platform.Converters;
 using Platform.Numbers;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -18,7 +18,7 @@ namespace Platform.Data.Doublets.Numbers.Unary
             : base(links)
         {
             _unaryNumberPowerOf2Indicies = new Dictionary<TLink, int>();
-            for (int i = 0; i < NumericType<TLink>.BitsLength; i++)
+            for (int i = 0; i < NumericType<TLink>.BitsSize; i++)
             {
                 _unaryNumberPowerOf2Indicies.Add(powerOf2ToUnaryNumberConverter.Convert(i), i);
             }

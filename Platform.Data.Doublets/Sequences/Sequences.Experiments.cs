@@ -5,11 +5,12 @@ using Stack = System.Collections.Generic.Stack<ulong>;
 using System.Linq;
 using System.Text;
 using Platform.Collections;
+using Platform.Collections.Sets;
+using Platform.Collections.Stacks;
 using Platform.Data.Exceptions;
 using Platform.Data.Sequences;
 using Platform.Data.Doublets.Sequences.Frequencies.Counters;
 using Platform.Data.Doublets.Sequences.Walkers;
-using Platform.Collections.Stacks;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 

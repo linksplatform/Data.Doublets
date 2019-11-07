@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using Platform.Interfaces;
 using Platform.Reflection;
+using Platform.Converters;
 using Platform.Numbers;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -20,7 +20,7 @@ namespace Platform.Data.Doublets.Numbers.Unary
             var nullConstant = Links.Constants.Null;
             var one = Integer<TLink>.One;
             var target = nullConstant;
-            for (int i = 0; !_equalityComparer.Equals(number, default) && i < NumericType<TLink>.BitsLength; i++)
+            for (int i = 0; !_equalityComparer.Equals(number, default) && i < NumericType<TLink>.BitsSize; i++)
             {
                 if (_equalityComparer.Equals(Bit.And(number, one), one))
                 {

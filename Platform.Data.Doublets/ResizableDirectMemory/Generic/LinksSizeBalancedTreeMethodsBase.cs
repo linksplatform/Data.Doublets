@@ -2,15 +2,15 @@
 using System.Text;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using Platform.Numbers;
 using Platform.Collections.Methods.Trees;
+using Platform.Numbers;
 using static System.Runtime.CompilerServices.Unsafe;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
 namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
 {
-    public unsafe abstract class LinksSizeBalancedTreeMethodsBase<TLink> : SizeBalancedTreeMethods2<TLink>, ILinksTreeMethods<TLink>
+    public unsafe abstract class LinksSizeBalancedTreeMethodsBase<TLink> : SizeBalancedTreeMethods<TLink>, ILinksTreeMethods<TLink>
     {
         protected readonly TLink Break;
         protected readonly TLink Continue;
@@ -84,7 +84,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
                         root = left;
                         continue;
                     }
-                    if (IsEquals(index, leftSize))
+                    if (AreEqual(index, leftSize))
                     {
                         return root;
                     }
@@ -178,29 +178,29 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
             var @break = Break;
             if (GreaterThan(linkBasePart, @base))
             {
-                if (IsEquals(EachUsageCore(@base, GetLeftOrDefault(link), handler), @break))
+                if (AreEqual(EachUsageCore(@base, GetLeftOrDefault(link), handler), @break))
                 {
                     return @break;
                 }
             }
             else if (LessThan(linkBasePart, @base))
             {
-                if (IsEquals(EachUsageCore(@base, GetRightOrDefault(link), handler), @break))
+                if (AreEqual(EachUsageCore(@base, GetRightOrDefault(link), handler), @break))
                 {
                     return @break;
                 }
             }
             else //if (linkBasePart == @base)
             {
-                if (IsEquals(handler(GetLinkValues(link)), @break))
+                if (AreEqual(handler(GetLinkValues(link)), @break))
                 {
                     return @break;
                 }
-                if (IsEquals(EachUsageCore(@base, GetLeftOrDefault(link), handler), @break))
+                if (AreEqual(EachUsageCore(@base, GetLeftOrDefault(link), handler), @break))
                 {
                     return @break;
                 }
-                if (IsEquals(EachUsageCore(@base, GetRightOrDefault(link), handler), @break))
+                if (AreEqual(EachUsageCore(@base, GetRightOrDefault(link), handler), @break))
                 {
                     return @break;
                 }

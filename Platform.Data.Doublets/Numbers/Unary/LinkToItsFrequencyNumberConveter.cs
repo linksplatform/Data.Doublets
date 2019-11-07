@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Platform.Interfaces;
+using Platform.Converters;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -10,12 +11,12 @@ namespace Platform.Data.Doublets.Numbers.Unary
     {
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
 
-        private readonly IPropertyOperator<TLink, TLink> _frequencyPropertyOperator;
+        private readonly IProperty<TLink, TLink> _frequencyPropertyOperator;
         private readonly IConverter<TLink> _unaryNumberToAddressConverter;
 
         public LinkToItsFrequencyNumberConveter(
             ILinks<TLink> links,
-            IPropertyOperator<TLink, TLink> frequencyPropertyOperator,
+            IProperty<TLink, TLink> frequencyPropertyOperator,
             IConverter<TLink> unaryNumberToAddressConverter)
             : base(links)
         {

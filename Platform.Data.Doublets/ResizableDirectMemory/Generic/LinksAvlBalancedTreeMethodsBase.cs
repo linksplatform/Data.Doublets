@@ -2,8 +2,8 @@
 using System.Text;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using Platform.Numbers;
 using Platform.Collections.Methods.Trees;
+using Platform.Numbers;
 using static System.Runtime.CompilerServices.Unsafe;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -162,7 +162,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
                         root = left;
                         continue;
                     }
-                    if (IsEquals(index, leftSize))
+                    if (AreEqual(index, leftSize))
                     {
                         return root;
                     }
@@ -254,7 +254,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
                 var @base = GetBasePartValue(current);
                 if (GreaterOrEqualThan(@base, link))
                 {
-                    if (IsEquals(@base, link))
+                    if (AreEqual(@base, link))
                     {
                         first = current;
                     }
@@ -270,12 +270,12 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
                 current = first;
                 while (true)
                 {
-                    if (IsEquals(handler(GetLinkValues(current)), Break))
+                    if (AreEqual(handler(GetLinkValues(current)), Break))
                     {
                         return Break;
                     }
                     current = GetNext(current);
-                    if (EqualToZero(current) || !IsEquals(GetBasePartValue(current), link))
+                    if (EqualToZero(current) || !AreEqual(GetBasePartValue(current), link))
                     {
                         break;
                     }

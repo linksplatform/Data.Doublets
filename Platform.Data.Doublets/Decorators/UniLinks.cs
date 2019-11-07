@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Platform.Collections;
-using Platform.Collections.Arrays;
 using Platform.Collections.Lists;
 using Platform.Data.Universal;
 
@@ -204,7 +203,7 @@ namespace Platform.Data.Doublets.Decorators
             }
             else if (!substitution.IsNullOrEmpty()) // Creation
             {
-                var before = ArrayPool<TLink>.Empty;
+                var before = Array.Empty<TLink>();
                 // Что должно означать False здесь? Остановиться (перестать идти) или пропустить (пройти мимо) или пустить (взять)?
                 if (matchHandler != null && _equalityComparer.Equals(matchHandler(before), Constants.Break))
                 {
@@ -244,7 +243,7 @@ namespace Platform.Data.Doublets.Decorators
                     {
                         return Constants.Break;
                     }
-                    var after = ArrayPool<TLink>.Empty;
+                    var after = Array.Empty<TLink>();
                     Links.Update(linkToDelete, Constants.Null, Constants.Null);
                     Links.Delete(linkToDelete);
                     if (matchHandler != null)
