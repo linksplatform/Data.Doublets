@@ -1,0 +1,50 @@
+name: CD
+
+on:
+  push:
+    branches: master
+  pull_request:
+    branches: master
+
+env:
+  TOKEN: ${{ secrets.TOKEN }}
+  NUGETTOKEN: ${{ secrets.NUGETTOKEN }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  SCRIPTS_BASE_URL: https://raw.githubusercontent.com/linksplatform/Scripts/master/MultiProjectRepository
+
+jobs:
+  testAndDeploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Test
+      run: dotnet test -c Release -f netcoreapp3.0
+    - name: Generate PDF with code
+      if: github.event_name == 'push'
+      run: |
+        export REPOSITORY_NAME=$(basename ${{ github.repository }})
+        wget "$SCRIPTS_BASE_URL/format-csharp-files.py"
+        wget "$SCRIPTS_BASE_URL/format-document.sh"
+        wget "$SCRIPTS_BASE_URL/generate-pdf.sh"
+        bash ./generate-pdf.sh
+    - name: Publish documentation to gh-pages branch
+      if: github.event_name == 'push'
+      run: |
+        export REPOSITORY_NAME=$(basename ${{ github.repository }})
+        wget "$SCRIPTS_BASE_URL/docfx.json"
+        wget "$SCRIPTS_BASE_URL/filter.yml"
+        wget "$SCRIPTS_BASE_URL/toc.yml"
+        wget "$SCRIPTS_BASE_URL/publish-docs.sh"
+        bash ./publish-docs.sh
+    - name: Publish NuGet package
+      if: github.event_name == 'push'
+      run: |
+        export REPOSITORY_NAME=$(basename ${{ github.repository }})
+        wget "$SCRIPTS_BASE_URL/push-nuget.sh"
+        bash ./push-nuget.sh
+    - name: Publish release
+      if: github.event_name == 'push'
+      run: |
+        export REPOSITORY_NAME=$(basename ${{ github.repository }})
+        wget "$SCRIPTS_BASE_URL/publish-release.sh"
+        bash ./publish-release.sh
