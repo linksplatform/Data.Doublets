@@ -255,7 +255,7 @@ namespace Platform.Data.Doublets
             _lastCommitedTransition = lastCommitedTransition;
             // TODO: Think about a better way to calculate or store this value
             var allTransitions = FileHelpers.ReadAll<Transition>(logAddress);
-            _lastCommitedTransactionId = allTransitions.Max(x => x.TransactionId);
+            _lastCommitedTransactionId = allTransitions.Length > 0 ? allTransitions.Max(x => x.TransactionId) : 0;
             _uniqueTimestampFactory = new UniqueTimestampFactory();
             _logAddress = logAddress;
             _log = FileHelpers.Append(logAddress);
