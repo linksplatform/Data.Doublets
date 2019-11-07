@@ -59,12 +59,3 @@ namespace HelloWorld.Doublets.DotNet
 *   [Platform.Singletons](https://github.com/linksplatform/Singletons)
 *   [Platform.Memory](https://github.com/linksplatform/Memory)
 *   [Platform.Data](https://github.com/linksplatform/Data)
-
-## Загадочные файлы
-*   [.travis.yml](https://github.com/linksplatform/Data.Doublets/blob/master/.travis.yml) - конфигурация сборки [Travis CI](https://travis-ci.com).
-*   [docfx.json](https://github.com/linksplatform/Data.Doublets/blob/master/docfx.json) и [toc.yml](https://github.com/linksplatform/Data.Doublets/blob/master/toc.yml) - конфигурация сборки [DocFX](https://dotnet.github.io/docfx).
-*   [format-document.sh](https://github.com/linksplatform/Data.Doublets/blob/master/format-document.sh) - скрипт для форматирования `tex` файла для генерации PDF из него.
-*   [format-csharp-files.py](https://github.com/linksplatform/Data.Doublets/blob/master/format-csharp-files.py) - скрипт для форматирования одного файла `.cs` как части файла `tex`.
-*   [generate-pdf.sh](https://github.com/linksplatform/Data.Doublets/blob/master/generate-pdf.sh) - скрипт, который генерирует PDF с кодом для электронных книг.
-*   [publish-docs.sh](https://github.com/linksplatform/Data.Doublets/blob/master/publish-docs.sh) - скрипт, который публикует сгенерированную документацию и PDF с кодом для электронных книг в ветку [gh-pages](https://github.com/linksplatform/Data.Doublets/tree/gh-pages).
-*   [push-nuget.sh](https://github.com/linksplatform/Data.Doublets/blob/master/push-nuget.sh) - скрипт для публикации текущей версии [NuGet](https://www.nuget.org) пакета.
