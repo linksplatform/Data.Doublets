@@ -314,7 +314,8 @@ namespace Platform.Data.Doublets.Tests
                 ulong l1;
                 ulong l2;
 
-                using (var memoryAdapter = new UInt64LinksTransactionsLayer(new UInt64ResizableDirectMemoryLinks(tempDatabaseFilename), tempTransactionLogFilename))
+                using (var memory = new UInt64ResizableDirectMemoryLinks(tempDatabaseFilename))
+                using (var memoryAdapter = new UInt64LinksTransactionsLayer(memory, tempTransactionLogFilename))
                 using (var links = new UInt64Links(memoryAdapter))
                 {
                     l1 = links.CreateAndUpdate(itself, itself);
@@ -328,7 +329,8 @@ namespace Platform.Data.Doublets.Tests
 
                 Global.Trash = FileHelpers.ReadAll<UInt64LinksTransactionsLayer.Transition>(tempTransactionLogFilename);
 
-                using (var memoryAdapter = new UInt64LinksTransactionsLayer(new UInt64ResizableDirectMemoryLinks(tempDatabaseFilename), tempTransactionLogFilename))
+                using (var memory = new UInt64ResizableDirectMemoryLinks(tempDatabaseFilename))
+                using (var memoryAdapter = new UInt64LinksTransactionsLayer(memory, tempTransactionLogFilename))
                 using (var links = new UInt64Links(memoryAdapter))
                 {
                     using (var transaction = memoryAdapter.BeginTransaction())
