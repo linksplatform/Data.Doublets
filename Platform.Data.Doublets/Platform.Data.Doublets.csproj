@@ -4,7 +4,7 @@
     <Description>LinksPlatform's Platform.Data.Doublets Class Library</Description>
     <Copyright>Konstantin Diachenko</Copyright>
     <AssemblyTitle>Platform.Data.Doublets</AssemblyTitle>
-    <VersionPrefix>0.2.1</VersionPrefix>
+    <VersionPrefix>0.3.0</VersionPrefix>
     <Authors>Konstantin Diachenko</Authors>
     <TargetFrameworks>net471;netstandard2.0;netstandard2.1</TargetFrameworks>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -25,15 +25,22 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <LangVersion>latest</LangVersion>
-    <PackageReleaseNotes>Platform.Collections.Methods dependency updated from 0.0.7 to 0.1.0.
-Microsoft.NET.Test.Sdk dependency updated from 16.2.0 to 16.3.0.
-No more usages of obsolete methods.
-Tests for .NET Framework 4.7.1 all are passing now.
-Unindex class added, to allow disabling of SequenceIndex mechanism.
-TreeMethods and ListMethods of ResizableDirectMemoryLinks are now separate classes.
-Facade mechanism added to LinksDisposableDecoratorBase.
-UInt64Links decorator contains fewer checks now, so it can be decorated with additional checks if required.
-Performance optimizations, refactoring, issues, and build fix.</PackageReleaseNotes>
+    <PackageReleaseNotes>Added support for .NET Standard 2.1 (.NET Core 3.0).
+Platform.Random dependency updated from 0.0.4 to 0.0.5.
+Platform.Timestamps dependency updated from 0.0.4 to 0.0.5.
+Platform.Collections.Methods dependency updated from 0.1.0 to 0.2.1.
+Platform.Singletons dependency updated from 0.0.4 to 0.0.6.
+Platform.Memory dependency updated from 0.1.5 to 0.1.8.
+Platform.Data dependency updated from 0.1.1 to 0.2.0.
+Platform.Incrementers dependency added.
+Compactification mechanism of Sequences fixed and tested. It is now possible to add a large number of sequences and then compact them all.
+Added support for switching between Size and AVL balanced trees for the index.
+Source link enabled.
+Travis CI disabled.
+GitHub Actions enabled.
+Refactoring.
+
+This release is not backward compatible with the previous 0.2.1 release.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup Condition="$(TargetFramework.StartsWith('net4')) AND '$(MSBuildRuntimeType)' == 'Core' AND '$(OS)' != 'Windows_NT'">
