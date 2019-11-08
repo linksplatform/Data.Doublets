@@ -2,7 +2,6 @@
 using System.Text;
 using System.Collections.Generic;
 using Platform.Singletons;
-using Platform.Data.Exceptions;
 using Platform.Data.Doublets.Unicode;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -14,8 +13,6 @@ namespace Platform.Data.Doublets
         public static readonly LinksConstants<ulong> Constants = Default<LinksConstants<ulong>>.Instance;
 
         public static void UseUnicode(this ILinks<ulong> links) => UnicodeMap.InitNew(links);
-
-        
 
         public static bool AnyLinkIsAny(this ILinks<ulong> links, params ulong[] sequence)
         {

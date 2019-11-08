@@ -23,7 +23,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
         protected virtual ref LinksHeader<TLink> GetHeaderReference() => ref AsRef<LinksHeader<TLink>>(_header);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual ref RawLink<TLink> GetLinkReference(TLink link) => ref AsRef<RawLink<TLink>>(_links + RawLink<TLink>.SizeInBytes * (Integer<TLink>)link);
+        protected virtual ref RawLink<TLink> GetLinkReference(TLink link) => ref AsRef<RawLink<TLink>>(_links + (RawLink<TLink>.SizeInBytes * (Integer<TLink>)link));
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override TLink GetFirst() => GetHeaderReference().FirstFreeLink;

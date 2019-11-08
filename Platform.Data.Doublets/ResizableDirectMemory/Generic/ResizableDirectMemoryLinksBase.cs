@@ -7,7 +7,6 @@ using Platform.Numbers;
 using Platform.Memory;
 using Platform.Data.Exceptions;
 
-
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
 namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
@@ -70,7 +69,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
             SetPointers(_memory);
             ref var header = ref GetHeaderReference();
             // Гарантия корректности _memory.UsedCapacity относительно _header->AllocatedLinks
-            _memory.UsedCapacity = ConvertToUInt64(header.AllocatedLinks) * LinkSizeInBytes + LinkHeaderSizeInBytes;
+            _memory.UsedCapacity = (ConvertToUInt64(header.AllocatedLinks) * LinkSizeInBytes) + LinkHeaderSizeInBytes;
             // Гарантия корректности _header->ReservedLinks относительно _memory.ReservedCapacity
             header.ReservedLinks = ConvertToAddress((_memory.ReservedCapacity - LinkHeaderSizeInBytes) / LinkSizeInBytes);
         }

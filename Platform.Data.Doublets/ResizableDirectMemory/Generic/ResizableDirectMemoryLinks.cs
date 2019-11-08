@@ -1,9 +1,9 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Runtime.CompilerServices;
+using Platform.Singletons;
 using Platform.Numbers;
 using Platform.Memory;
 using static System.Runtime.CompilerServices.Unsafe;
-using System;
-using Platform.Singletons;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -71,6 +71,6 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
         protected override ref LinksHeader<TLink> GetHeaderReference() => ref AsRef<LinksHeader<TLink>>(_header);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override ref RawLink<TLink> GetLinkReference(TLink linkIndex) => ref AsRef<RawLink<TLink>>(_links + LinkSizeInBytes * (Integer<TLink>)linkIndex);
+        protected override ref RawLink<TLink> GetLinkReference(TLink linkIndex) => ref AsRef<RawLink<TLink>>(_links + (LinkSizeInBytes * (Integer<TLink>)linkIndex));
     }
 }
