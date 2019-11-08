@@ -50,7 +50,7 @@ Performance optimizations, refactoring, issues, and build fix.</PackageReleaseNo
     <PackageReference Include="Platform.Incrementers" Version="0.0.3" />
     <PackageReference Include="Platform.Collections.Methods" Version="0.2.1" />
     <PackageReference Include="Platform.Singletons" Version="0.0.6" />
-    <PackageReference Include="Platform.Memory" Version="0.1.7" />
+    <PackageReference Include="Platform.Memory" Version="0.1.8" />
     <PackageReference Include="Platform.Data" Version="0.2.0" />
   </ItemGroup>
 
