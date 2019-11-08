@@ -66,7 +66,7 @@ namespace Platform.Data.Doublets.Sequences
                 {
                     var sequenceElements = new List<TLink>();
                     var filler = new ListFiller<TLink, TLink>(sequenceElements, _sequences.Constants.Break);
-                    _sequences.Each(filler.AddAllValuesAndReturnConstant, new LinkAddress<TLink>(linkIndex));
+                    _sequences.Each(filler.AddSkipFirstAndReturnConstant, new LinkAddress<TLink>(linkIndex));
                     if (sequenceElements.Count > 2)
                     {
                         WalkAll(sequenceElements);
@@ -101,7 +101,7 @@ namespace Platform.Data.Doublets.Sequences
         {
             var duplicates = new List<TLink>();
             var readAsElement = new HashSet<TLink>();
-            var restrictions = segment.ConvertToRestrictionsValues();
+            var restrictions = segment.ShiftRight();
             restrictions[0] = _sequences.Constants.Any;
             _sequences.Each(sequence =>
             {

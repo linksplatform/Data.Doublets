@@ -1,13 +1,12 @@
-﻿using Platform.Collections;
-using Platform.Collections.Lists;
-using Platform.Collections.Stacks;
-using Platform.Data.Doublets.Sequences.Walkers;
-using Platform.Singletons;
-using Platform.Threading.Synchronization;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using Platform.Collections;
+using Platform.Collections.Lists;
+using Platform.Collections.Stacks;
+using Platform.Threading.Synchronization;
+using Platform.Data.Doublets.Sequences.Walkers;
 using LinkIndex = System.UInt64;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -188,7 +187,7 @@ namespace Platform.Data.Doublets.Sequences
 
         private LinkIndex CreateCore(IList<LinkIndex> restrictions)
         {
-            LinkIndex[] sequence = restrictions.ExtractValues();
+            LinkIndex[] sequence = restrictions.SkipFirst();
             if (Options.UseIndex)
             {
                 Options.Index.Add(sequence);
@@ -261,7 +260,7 @@ namespace Platform.Data.Doublets.Sequences
                             link = sequenceLinkValues[Constants.TargetPart];
                         }
                     }
-                    var sequence = Options.Walker.Walk(link).ToArray().ConvertToRestrictionsValues();
+                    var sequence = Options.Walker.Walk(link).ToArray().ShiftRight();
                     sequence[0] = link;
                     return handler(sequence);
                 }
@@ -275,7 +274,7 @@ namespace Platform.Data.Doublets.Sequences
                 }
                 else
                 {
-                    var sequence = restrictions.ExtractValues();
+                    var sequence = restrictions.SkipFirst();
                     if (Options.UseIndex && !Options.Index.MightContain(sequence))
                     {
                         return Constants.Break;
@@ -372,8 +371,8 @@ namespace Platform.Data.Doublets.Sequences
 
         public LinkIndex Update(IList<LinkIndex> restrictions, IList<LinkIndex> substitution)
         {
-            var sequence = restrictions.ExtractValues();
-            var newSequence = substitution.ExtractValues();
+            var sequence = restrictions.SkipFirst();
+            var newSequence = substitution.SkipFirst();
 
             if (sequence.IsNullOrEmpty() && newSequence.IsNullOrEmpty())
             {
@@ -475,7 +474,7 @@ namespace Platform.Data.Doublets.Sequences
         {
             _sync.ExecuteWriteOperation(() =>
             {
-                var sequence = restrictions.ExtractValues();
+                var sequence = restrictions.SkipFirst();
                 // TODO: Check all options only ones before loop execution
                 foreach (var linkToDelete in Each(sequence))
                 {
@@ -539,7 +538,7 @@ namespace Platform.Data.Doublets.Sequences
                 for (int i = 0; i < sequences.Count; i++)
                 {
                     var sequence = this.ToList(sequences[i]);
-                    Compact(sequence.ConvertToRestrictionsValues());
+                    Compact(sequence.ShiftRight());
                 }
             });
         }

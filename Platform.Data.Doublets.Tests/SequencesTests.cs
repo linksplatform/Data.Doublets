@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using Xunit;
 using Platform.Collections;
+using Platform.Collections.Arrays;
 using Platform.Random;
 using Platform.IO;
 using Platform.Singletons;
@@ -129,7 +130,7 @@ namespace Platform.Data.Doublets.Tests
                 var searchResults2 = sequences.Each1(sequence); sw2.Stop();
 
                 var sw3 = Stopwatch.StartNew();
-                var searchResults3 = sequences.Each(sequence.ConvertToRestrictionsValues()); sw3.Stop();
+                var searchResults3 = sequences.Each(sequence.ShiftRight()); sw3.Stop();
 
                 var intersection0 = createResults.Intersect(searchResults0).ToList();
                 Assert.True(intersection0.Count == searchResults0.Count);
@@ -700,8 +701,8 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
 
                 for (int i = START; i < END; i++)
                 {
-                    var first = compressor1.Create(arrays[i].ConvertToRestrictionsValues());
-                    var second = compressor1.Create(arrays[i].ConvertToRestrictionsValues());
+                    var first = compressor1.Create(arrays[i].ShiftRight());
+                    var second = compressor1.Create(arrays[i].ShiftRight());
 
                     if (first == second)
                     {
@@ -813,7 +814,7 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
 
                 for (int i = START; i < END; i++)
                 {
-                    compressed1[i] = compressor1.Create(arrays[i].ConvertToRestrictionsValues());
+                    compressed1[i] = compressor1.Create(arrays[i].ShiftRight());
                 }
 
                 var elapsed1 = sw1.Elapsed;

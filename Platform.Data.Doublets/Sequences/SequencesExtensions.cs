@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Platform.Collections.Lists;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -13,16 +14,16 @@ namespace Platform.Data.Doublets.Sequences
             for (var i = 0; i < finalSequence.Length; i++)
             {
                 var part = groupedSequence[i];
-                finalSequence[i] = part.Length == 1 ? part[0] : sequences.Create(part.ConvertToRestrictionsValues());
+                finalSequence[i] = part.Length == 1 ? part[0] : sequences.Create(part.ShiftRight());
             }
-            return sequences.Create(finalSequence.ConvertToRestrictionsValues());
+            return sequences.Create(finalSequence.ShiftRight());
         }
 
         public static IList<TLink> ToList<TLink>(this ILinks<TLink> sequences, TLink sequence)
         {
             var list = new List<TLink>();
             var filler = new ListFiller<TLink, TLink>(list, sequences.Constants.Break);
-            sequences.Each(filler.AddAllValuesAndReturnConstant, new LinkAddress<TLink>(sequence));
+            sequences.Each(filler.AddSkipFirstAndReturnConstant, new LinkAddress<TLink>(sequence));
             return list;
         }
     }

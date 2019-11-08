@@ -1,6 +1,8 @@
 using System;
 using System.Linq;
 using Xunit;
+using Platform.Collections.Stacks;
+using Platform.Collections.Arrays;
 using Platform.Memory;
 using Platform.Data.Numbers.Raw;
 using Platform.Data.Doublets.Sequences;
@@ -15,7 +17,6 @@ using Platform.Data.Doublets.Unicode;
 using Platform.Data.Doublets.Numbers.Unary;
 using Platform.Data.Doublets.Decorators;
 using Platform.Data.Doublets.ResizableDirectMemory.Specific;
-using Platform.Collections.Stacks;
 
 namespace Platform.Data.Doublets.Tests
 {
@@ -188,7 +189,7 @@ Interdum consectetur libero id faucibus nisl tincidunt eget nullam non.";
                 var arrays = strings.Select(x => x.Select(y => addressToNumberConverter.Convert(y)).ToArray()).ToArray();
                 for (int i = 0; i < arrays.Length; i++)
                 {
-                    unicodeSequences.Create(arrays[i].ConvertToRestrictionsValues());
+                    unicodeSequences.Create(arrays[i].ShiftRight());
                 }
 
                 var linksCountAfterCreation = links.Count();
