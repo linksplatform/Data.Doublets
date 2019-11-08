@@ -84,7 +84,7 @@
 <pre><code class="lang-C#">using System;
 using Platform.Data;
 using Platform.Data.Doublets;
-using Platform.Data.Doublets.ResizableDirectMemory;
+using Platform.Data.Doublets.ResizableDirectMemory.Generic;
 
 namespace HelloWorld.Doublets.DotNet
 {
@@ -97,7 +97,7 @@ namespace HelloWorld.Doublets.DotNet
         var link = links.Create();
         link = links.Update(link, link, link);
         Console.WriteLine(&quot;Привет Мир!&quot;);
-        Console.WriteLine($&quot;Это моя первая связь: ({link}:{links.GetSource(link)}-&gt;{links.GetTarget(link)}).&quot;);
+        Console.WriteLine($&quot;Это моя первая связь: ({link}: {links.GetSource(link)}-&gt;{links.GetTarget(link)}).&quot;);
         Console.WriteLine($&quot;Всего связей в хранилище: {links.Count()}.&quot;);
         link = links.Update(link, default, default);
         links.Delete(link);
