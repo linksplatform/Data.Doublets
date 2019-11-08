@@ -199,11 +199,11 @@ Interdum consectetur libero id faucibus nisl tincidunt eget nullam non.";
                 //   if new sequence is not the same as sequence link
                 //     delete sequence link
                 //     collect garbadge
-                //unicodeSequences.CompactAll();
+                unicodeSequences.CompactAll();
 
-                //var linksCountAfterCompactification = links.Count();
+                var linksCountAfterCompactification = links.Count();
 
-                //Assert.True(linksCountAfterCompactification < linksCountAfterCreation);
+                Assert.True(linksCountAfterCompactification < linksCountAfterCreation);
             }
         }
     }
