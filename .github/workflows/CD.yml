@@ -48,3 +48,16 @@ jobs:
         export REPOSITORY_NAME=$(basename ${{ github.repository }})
         wget "$SCRIPTS_BASE_URL/publish-release.sh"
         bash ./publish-release.sh
+
+  pushNuGetToGitHubPackageRegistry:
+    needs: testAndDeploy
+    if: github.event_name == 'push'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: warrenbuckley/Setup-Nuget@v1
+      - name: Publish to GitHub Package Registry
+        run: |
+          dotnet pack -c Release
+          nuget source Add -Name "GitHub" -Source "https://nuget.pkg.github.com/linksplatform/index.json" -UserName linksplatform -Password ${{ secrets.GITHUB_TOKEN }}
+          nuget push **/*.nupkg -Source "GitHub" -SkipDuplicate
