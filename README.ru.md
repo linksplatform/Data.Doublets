@@ -55,6 +55,7 @@ namespace HelloWorld.Doublets.DotNet
 ## Зависит напрямую от
 *   [Platform.Random](https://github.com/linksplatform/Random)
 *   [Platform.Timestamps](https://github.com/linksplatform/Timestamps)
+*   [Platform.Incrementers](https://github.com/linksplatform/Incrementers)
 *   [Platform.Collections.Methods](https://github.com/linksplatform/Collections.Methods)
 *   [Platform.Singletons](https://github.com/linksplatform/Singletons)
 *   [Platform.Memory](https://github.com/linksplatform/Memory)
