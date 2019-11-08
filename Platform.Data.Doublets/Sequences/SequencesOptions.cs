@@ -6,9 +6,9 @@ using Platform.Converters;
 using Platform.Data.Doublets.Sequences.Frequencies.Cache;
 using Platform.Data.Doublets.Sequences.Frequencies.Counters;
 using Platform.Data.Doublets.Sequences.Converters;
-using Platform.Data.Doublets.Sequences.CreteriaMatchers;
 using Platform.Data.Doublets.Sequences.Walkers;
 using Platform.Data.Doublets.Sequences.Indexes;
+using Platform.Data.Doublets.Sequences.CriterionMatchers;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 

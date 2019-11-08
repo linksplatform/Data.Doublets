@@ -2,7 +2,7 @@
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-namespace Platform.Data.Doublets.Sequences.CreteriaMatchers
+namespace Platform.Data.Doublets.Sequences.CriterionMatchers
 {
     public class DefaultSequenceElementCriterionMatcher<TLink> : LinksOperatorBase<TLink>, ICriterionMatcher<TLink>
     {
