@@ -163,7 +163,7 @@ namespace Platform.Data.Doublets.Tests
                         var linksAddressRange = new Range<ulong>(1, (ulong)linksCount);
                         TLink source = (Integer<TLink>)random.NextUInt64(linksAddressRange);
                         TLink target = (Integer<TLink>)random.NextUInt64(linksAddressRange); //-V3086
-                        var resultLink = links.CreateAndUpdate(source, target);
+                        var resultLink = links.GetOrCreate(source, target);
                         if (comparer.Compare(resultLink, (Integer<TLink>)linksCount) > 0)
                         {
                             created++;

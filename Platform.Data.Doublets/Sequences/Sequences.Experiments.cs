@@ -55,7 +55,7 @@ namespace Platform.Data.Doublets.Sequences
             }
             if ((stopAt - startAt) == 1)
             {
-                return new[] { Links.Unsync.CreateAndUpdate(sequence[startAt], sequence[stopAt]) };
+                return new[] { Links.Unsync.GetOrCreate(sequence[startAt], sequence[stopAt]) };
             }
             var variants = new ulong[(ulong)Platform.Numbers.Math.Catalan(stopAt - startAt)];
             var last = 0;
@@ -67,7 +67,7 @@ namespace Platform.Data.Doublets.Sequences
                 {
                     for (var j = 0; j < right.Length; j++)
                     {
-                        var variant = Links.Unsync.CreateAndUpdate(left[i], right[j]);
+                        var variant = Links.Unsync.GetOrCreate(left[i], right[j]);
                         if (variant == Constants.Null)
                         {
                             throw new NotImplementedException("Creation cancellation is not implemented.");
@@ -101,7 +101,7 @@ namespace Platform.Data.Doublets.Sequences
         {
             if (sequence.Length == 2)
             {
-                var link = Links.Unsync.CreateAndUpdate(sequence[0], sequence[1]);
+                var link = Links.Unsync.GetOrCreate(sequence[0], sequence[1]);
                 if (link == Constants.Null)
                 {
                     throw new NotImplementedException("Creation cancellation is not implemented.");
@@ -113,7 +113,7 @@ namespace Platform.Data.Doublets.Sequences
             var innerSequence = new ulong[innerSequenceLength];
             for (var li = 0; li < innerSequenceLength; li++)
             {
-                var link = Links.Unsync.CreateAndUpdate(sequence[li], sequence[li + 1]);
+                var link = Links.Unsync.GetOrCreate(sequence[li], sequence[li + 1]);
                 if (link == Constants.Null)
                 {
                     throw new NotImplementedException("Creation cancellation is not implemented.");

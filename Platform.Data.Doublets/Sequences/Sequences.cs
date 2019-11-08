@@ -211,7 +211,7 @@ namespace Platform.Data.Doublets.Sequences
             }
             if (Options.UseSequenceMarker)
             {
-                return Links.Unsync.CreateAndUpdate(Options.SequenceMarkerLink, sequenceRoot);
+                return Links.Unsync.GetOrCreate(Options.SequenceMarkerLink, sequenceRoot);
             }
             return sequenceRoot; // Возвращаем корень последовательности (т.е. сами элементы)
         }

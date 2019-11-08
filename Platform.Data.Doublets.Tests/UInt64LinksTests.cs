@@ -387,9 +387,9 @@ namespace Platform.Data.Doublets.Tests
                 var b = links.CreatePoint();
                 var c = links.CreatePoint();
 
-                var ab = links.CreateAndUpdate(a, b);
-                var cb = links.CreateAndUpdate(c, b);
-                var ac = links.CreateAndUpdate(a, c);
+                var ab = links.GetOrCreate(a, b);
+                var cb = links.GetOrCreate(c, b);
+                var ac = links.GetOrCreate(a, c);
 
                 a = links.Update(a, c, b);
                 b = links.Update(b, a, c);

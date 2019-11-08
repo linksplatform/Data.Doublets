@@ -24,7 +24,7 @@ namespace Platform.Data.Doublets
                 var linksAddressRange = new Range<ulong>(0, (Integer<TLink>)links.Count());
                 Integer<TLink> source = RandomHelpers.Default.NextUInt64(linksAddressRange);
                 Integer<TLink> target = RandomHelpers.Default.NextUInt64(linksAddressRange);
-                links.CreateAndUpdate(source, target);
+                links.GetOrCreate(source, target);
             }
         }
 
