@@ -89,16 +89,13 @@
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
-    <div class="level1"><span class="xref">Platform.Disposables.DisposableBase</span></div>
-    <div class="level2"><a class="xref" href="Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html">LinksDisposableDecoratorBase</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>&gt;</div>
-    <div class="level3"><span class="xref">UInt64Links</span></div>
+    <div class="level1"><a class="xref" href="Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html">LinksDisposableDecoratorBase</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>&gt;</div>
+    <div class="level2"><span class="xref">UInt64Links</span></div>
   </div>
   <div classs="implements">
     <h5>Implements</h5>
-    <div><span class="xref">Platform.Disposables.IDisposable</span></div>
-    <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     <div><a class="xref" href="Platform.Data.Doublets.ILinks-1.html">ILinks</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>&gt;</div>
-    <div><span class="xref">Platform.Data.ILinks</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>, <span class="xref">Platform.Data.LinksConstants</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>&gt;&gt;</div>
+    <div><span class="xref">Platform.Data.Doublets.ILinks</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>, <span class="xref">LinksConstants</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a>&gt;&gt;</div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -123,48 +120,12 @@
     <div>
       <a class="xref" href="Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDisposableDecoratorBase_1_Dispose_System_Boolean_System_Boolean_">LinksDisposableDecoratorBase&lt;UInt64&gt;.Dispose(Boolean, Boolean)</a>
     </div>
-    <div>
-      <span class="xref">Platform.Disposables.DisposableBase.Dispose()</span>
-    </div>
-    <div>
-      <span class="xref">Platform.Disposables.DisposableBase.Destruct()</span>
-    </div>
-    <div>
-      <span class="xref">Platform.Disposables.DisposableBase.IsDisposed</span>
-    </div>
-    <div>
-      <span class="xref">Platform.Disposables.DisposableBase.ObjectName</span>
-    </div>
-    <div>
-      <span class="xref">Platform.Disposables.DisposableBase.AllowMultipleDisposeAttempts</span>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_">Object.Equals(Object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_System_Object_">Object.Equals(Object, Object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gethashcode#System_Object_GetHashCode">Object.GetHashCode()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gettype#System_Object_GetType">Object.GetType()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.memberwiseclone#System_Object_MemberwiseClone">Object.MemberwiseClone()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.referenceequals#System_Object_ReferenceEquals_System_Object_System_Object_">Object.ReferenceEquals(Object, Object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.tostring#System_Object_ToString">Object.ToString()</a>
-    </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Platform.Data.Doublets.Decorators.html">Platform.Data.Doublets.Decorators</a></h6>
   <h6><strong>Assembly</strong>: Platform.Data.Doublets.dll</h6>
   <h5 id="Platform_Data_Doublets_Decorators_UInt64Links_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class UInt64Links : LinksDisposableDecoratorBase&lt;ulong&gt;, IDisposable, IDisposable, ILinks&lt;ulong&gt;, ILinks&lt;ulong, LinksConstants&lt;ulong&gt;&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public class UInt64Links : LinksDisposableDecoratorBase&lt;ulong&gt;, ILinks&lt;ulong&gt;, ILinks&lt;ulong, LinksConstants&lt;ulong&gt;&gt;</code></pre>
   </div>
   <h5 id="Platform_Data_Doublets_Decorators_UInt64Links_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks"><p>Возможные оптимизации:
@@ -194,7 +155,7 @@
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Decorators_UInt64Links__ctor_Platform_Data_Doublets_ILinks_System_UInt64__.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Decorators.UInt64Links.%23ctor(Platform.Data.Doublets.ILinks%7BSystem.UInt64%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/1736f63bd8a9ef46de5c7da827acfe5f25baf424/Platform.Data.Doublets/Decorators/UInt64Links.cs/#L28">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/be8f5be189991f5e0040cd45f18a75f8a31c8151/Platform.Data.Doublets/Decorators/UInt64Links.cs/#L28">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Decorators_UInt64Links__ctor_" data-uid="Platform.Data.Doublets.Decorators.UInt64Links.#ctor*"></a>
   <h4 id="Platform_Data_Doublets_Decorators_UInt64Links__ctor_Platform_Data_Doublets_ILinks_System_UInt64__" data-uid="Platform.Data.Doublets.Decorators.UInt64Links.#ctor(Platform.Data.Doublets.ILinks{System.UInt64})">UInt64Links(ILinks&lt;UInt64&gt;)</h4>
@@ -228,7 +189,7 @@
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Decorators_UInt64Links_Create_System_Collections_Generic_IList_System_UInt64__.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Decorators.UInt64Links.Create(System.Collections.Generic.IList%7BSystem.UInt64%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/1736f63bd8a9ef46de5c7da827acfe5f25baf424/Platform.Data.Doublets/Decorators/UInt64Links.cs/#L31">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/be8f5be189991f5e0040cd45f18a75f8a31c8151/Platform.Data.Doublets/Decorators/UInt64Links.cs/#L31">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Decorators_UInt64Links_Create_" data-uid="Platform.Data.Doublets.Decorators.UInt64Links.Create*"></a>
   <h4 id="Platform_Data_Doublets_Decorators_UInt64Links_Create_System_Collections_Generic_IList_System_UInt64__" data-uid="Platform.Data.Doublets.Decorators.UInt64Links.Create(System.Collections.Generic.IList{System.UInt64})">Create(IList&lt;UInt64&gt;)</h4>
@@ -277,7 +238,7 @@
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Decorators_UInt64Links_Delete_System_Collections_Generic_IList_System_UInt64__.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Decorators.UInt64Links.Delete(System.Collections.Generic.IList%7BSystem.UInt64%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/1736f63bd8a9ef46de5c7da827acfe5f25baf424/Platform.Data.Doublets/Decorators/UInt64Links.cs/#L66">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/be8f5be189991f5e0040cd45f18a75f8a31c8151/Platform.Data.Doublets/Decorators/UInt64Links.cs/#L66">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Decorators_UInt64Links_Delete_" data-uid="Platform.Data.Doublets.Decorators.UInt64Links.Delete*"></a>
   <h4 id="Platform_Data_Doublets_Decorators_UInt64Links_Delete_System_Collections_Generic_IList_System_UInt64__" data-uid="Platform.Data.Doublets.Decorators.UInt64Links.Delete(System.Collections.Generic.IList{System.UInt64})">Delete(IList&lt;UInt64&gt;)</h4>
@@ -311,7 +272,7 @@
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Decorators_UInt64Links_Update_System_Collections_Generic_IList_System_UInt64__System_Collections_Generic_IList_System_UInt64__.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Decorators.UInt64Links.Update(System.Collections.Generic.IList%7BSystem.UInt64%7D%2CSystem.Collections.Generic.IList%7BSystem.UInt64%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/1736f63bd8a9ef46de5c7da827acfe5f25baf424/Platform.Data.Doublets/Decorators/UInt64Links.cs/#L34">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/be8f5be189991f5e0040cd45f18a75f8a31c8151/Platform.Data.Doublets/Decorators/UInt64Links.cs/#L34">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Decorators_UInt64Links_Update_" data-uid="Platform.Data.Doublets.Decorators.UInt64Links.Update*"></a>
   <h4 id="Platform_Data_Doublets_Decorators_UInt64Links_Update_System_Collections_Generic_IList_System_UInt64__System_Collections_Generic_IList_System_UInt64__" data-uid="Platform.Data.Doublets.Decorators.UInt64Links.Update(System.Collections.Generic.IList{System.UInt64},System.Collections.Generic.IList{System.UInt64})">Update(IList&lt;UInt64&gt;, IList&lt;UInt64&gt;)</h4>
@@ -362,16 +323,10 @@
   <div><span class="xref">Platform.Data.Doublets.Decorators.LinksDisposableDecoratorBase&lt;System.UInt64&gt;.Update(System.Collections.Generic.IList&lt;System.UInt64&gt;, System.Collections.Generic.IList&lt;System.UInt64&gt;)</span></div>
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">Platform.Disposables.IDisposable</span>
-  </div>
-  <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
-  </div>
-  <div>
       <a class="xref" href="Platform.Data.Doublets.ILinks-1.html">ILinks&lt;TLink&gt;</a>
   </div>
   <div>
-      <span class="xref">Platform.Data.ILinks&lt;TLinkAddress, TConstants&gt;</span>
+      <span class="xref">Platform.Data.Doublets.ILinks&lt;, &gt;</span>
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
@@ -568,7 +523,7 @@
                     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Decorators_UInt64Links.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Decorators.UInt64Links%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/linksplatform/Data.Doublets/blob/1736f63bd8a9ef46de5c7da827acfe5f25baf424/Platform.Data.Doublets/Decorators/UInt64Links.cs/#L26" class="contribution-link">View Source</a>
+                    <a href="https://github.com/linksplatform/Data.Doublets/blob/be8f5be189991f5e0040cd45f18a75f8a31c8151/Platform.Data.Doublets/Decorators/UInt64Links.cs/#L26" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
