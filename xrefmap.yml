@@ -1061,6 +1061,42 @@ references:
   fullName.vb: Platform.Data.Doublets.Doublet(Of T).GetHashCode
   nameWithType: Doublet<T>.GetHashCode
   nameWithType.vb: Doublet(Of T).GetHashCode
+- uid: Platform.Data.Doublets.Doublet`1.op_Equality(Platform.Data.Doublets.Doublet{`0},Platform.Data.Doublets.Doublet{`0})
+  name: Equality(Doublet<T>, Doublet<T>)
+  href: api/Platform.Data.Doublets.Doublet-1.html#Platform_Data_Doublets_Doublet_1_op_Equality_Platform_Data_Doublets_Doublet__0__Platform_Data_Doublets_Doublet__0__
+  commentId: M:Platform.Data.Doublets.Doublet`1.op_Equality(Platform.Data.Doublets.Doublet{`0},Platform.Data.Doublets.Doublet{`0})
+  name.vb: Equality(Doublet(Of T), Doublet(Of T))
+  fullName: Platform.Data.Doublets.Doublet<T>.Equality(Platform.Data.Doublets.Doublet<T>, Platform.Data.Doublets.Doublet<T>)
+  fullName.vb: Platform.Data.Doublets.Doublet(Of T).Equality(Platform.Data.Doublets.Doublet(Of T), Platform.Data.Doublets.Doublet(Of T))
+  nameWithType: Doublet<T>.Equality(Doublet<T>, Doublet<T>)
+  nameWithType.vb: Doublet(Of T).Equality(Doublet(Of T), Doublet(Of T))
+- uid: Platform.Data.Doublets.Doublet`1.op_Equality*
+  name: Equality
+  href: api/Platform.Data.Doublets.Doublet-1.html#Platform_Data_Doublets_Doublet_1_op_Equality_
+  commentId: Overload:Platform.Data.Doublets.Doublet`1.op_Equality
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Doublet<T>.Equality
+  fullName.vb: Platform.Data.Doublets.Doublet(Of T).Equality
+  nameWithType: Doublet<T>.Equality
+  nameWithType.vb: Doublet(Of T).Equality
+- uid: Platform.Data.Doublets.Doublet`1.op_Inequality(Platform.Data.Doublets.Doublet{`0},Platform.Data.Doublets.Doublet{`0})
+  name: Inequality(Doublet<T>, Doublet<T>)
+  href: api/Platform.Data.Doublets.Doublet-1.html#Platform_Data_Doublets_Doublet_1_op_Inequality_Platform_Data_Doublets_Doublet__0__Platform_Data_Doublets_Doublet__0__
+  commentId: M:Platform.Data.Doublets.Doublet`1.op_Inequality(Platform.Data.Doublets.Doublet{`0},Platform.Data.Doublets.Doublet{`0})
+  name.vb: Inequality(Doublet(Of T), Doublet(Of T))
+  fullName: Platform.Data.Doublets.Doublet<T>.Inequality(Platform.Data.Doublets.Doublet<T>, Platform.Data.Doublets.Doublet<T>)
+  fullName.vb: Platform.Data.Doublets.Doublet(Of T).Inequality(Platform.Data.Doublets.Doublet(Of T), Platform.Data.Doublets.Doublet(Of T))
+  nameWithType: Doublet<T>.Inequality(Doublet<T>, Doublet<T>)
+  nameWithType.vb: Doublet(Of T).Inequality(Doublet(Of T), Doublet(Of T))
+- uid: Platform.Data.Doublets.Doublet`1.op_Inequality*
+  name: Inequality
+  href: api/Platform.Data.Doublets.Doublet-1.html#Platform_Data_Doublets_Doublet_1_op_Inequality_
+  commentId: Overload:Platform.Data.Doublets.Doublet`1.op_Inequality
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Doublet<T>.Inequality
+  fullName.vb: Platform.Data.Doublets.Doublet(Of T).Inequality
+  nameWithType: Doublet<T>.Inequality
+  nameWithType.vb: Doublet(Of T).Inequality
 - uid: Platform.Data.Doublets.Doublet`1.Source
   name: Source
   href: api/Platform.Data.Doublets.Doublet-1.html#Platform_Data_Doublets_Doublet_1_Source
@@ -2384,6 +2420,24 @@ references:
   fullName.vb: Platform.Data.Doublets.Link(Of TLink).Null
   nameWithType: Link<TLink>.Null
   nameWithType.vb: Link(Of TLink).Null
+- uid: Platform.Data.Doublets.Link`1.op_Equality(Platform.Data.Doublets.Link{`0},Platform.Data.Doublets.Link{`0})
+  name: Equality(Link<TLink>, Link<TLink>)
+  href: api/Platform.Data.Doublets.Link-1.html#Platform_Data_Doublets_Link_1_op_Equality_Platform_Data_Doublets_Link__0__Platform_Data_Doublets_Link__0__
+  commentId: M:Platform.Data.Doublets.Link`1.op_Equality(Platform.Data.Doublets.Link{`0},Platform.Data.Doublets.Link{`0})
+  name.vb: Equality(Link(Of TLink), Link(Of TLink))
+  fullName: Platform.Data.Doublets.Link<TLink>.Equality(Platform.Data.Doublets.Link<TLink>, Platform.Data.Doublets.Link<TLink>)
+  fullName.vb: Platform.Data.Doublets.Link(Of TLink).Equality(Platform.Data.Doublets.Link(Of TLink), Platform.Data.Doublets.Link(Of TLink))
+  nameWithType: Link<TLink>.Equality(Link<TLink>, Link<TLink>)
+  nameWithType.vb: Link(Of TLink).Equality(Link(Of TLink), Link(Of TLink))
+- uid: Platform.Data.Doublets.Link`1.op_Equality*
+  name: Equality
+  href: api/Platform.Data.Doublets.Link-1.html#Platform_Data_Doublets_Link_1_op_Equality_
+  commentId: Overload:Platform.Data.Doublets.Link`1.op_Equality
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Link<TLink>.Equality
+  fullName.vb: Platform.Data.Doublets.Link(Of TLink).Equality
+  nameWithType: Link<TLink>.Equality
+  nameWithType.vb: Link(Of TLink).Equality
 - uid: Platform.Data.Doublets.Link`1.op_Implicit(`0[])~Platform.Data.Doublets.Link{`0}
   name: Implicit(TLink[] to Link<TLink>)
   href: api/Platform.Data.Doublets.Link-1.html#Platform_Data_Doublets_Link_1_op_Implicit__0____Platform_Data_Doublets_Link__0_
@@ -2412,6 +2466,24 @@ references:
   fullName.vb: Platform.Data.Doublets.Link(Of TLink).Widening
   nameWithType: Link<TLink>.Implicit
   nameWithType.vb: Link(Of TLink).Widening
+- uid: Platform.Data.Doublets.Link`1.op_Inequality(Platform.Data.Doublets.Link{`0},Platform.Data.Doublets.Link{`0})
+  name: Inequality(Link<TLink>, Link<TLink>)
+  href: api/Platform.Data.Doublets.Link-1.html#Platform_Data_Doublets_Link_1_op_Inequality_Platform_Data_Doublets_Link__0__Platform_Data_Doublets_Link__0__
+  commentId: M:Platform.Data.Doublets.Link`1.op_Inequality(Platform.Data.Doublets.Link{`0},Platform.Data.Doublets.Link{`0})
+  name.vb: Inequality(Link(Of TLink), Link(Of TLink))
+  fullName: Platform.Data.Doublets.Link<TLink>.Inequality(Platform.Data.Doublets.Link<TLink>, Platform.Data.Doublets.Link<TLink>)
+  fullName.vb: Platform.Data.Doublets.Link(Of TLink).Inequality(Platform.Data.Doublets.Link(Of TLink), Platform.Data.Doublets.Link(Of TLink))
+  nameWithType: Link<TLink>.Inequality(Link<TLink>, Link<TLink>)
+  nameWithType.vb: Link(Of TLink).Inequality(Link(Of TLink), Link(Of TLink))
+- uid: Platform.Data.Doublets.Link`1.op_Inequality*
+  name: Inequality
+  href: api/Platform.Data.Doublets.Link-1.html#Platform_Data_Doublets_Link_1_op_Inequality_
+  commentId: Overload:Platform.Data.Doublets.Link`1.op_Inequality
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Link<TLink>.Inequality
+  fullName.vb: Platform.Data.Doublets.Link(Of TLink).Inequality
+  nameWithType: Link<TLink>.Inequality
+  nameWithType.vb: Link(Of TLink).Inequality
 - uid: Platform.Data.Doublets.Link`1.Remove(`0)
   name: Remove(TLink)
   href: api/Platform.Data.Doublets.Link-1.html#Platform_Data_Doublets_Link_1_Remove__0_
@@ -6039,6 +6111,32 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksHeader(Of TLink).AllocatedLinks
   nameWithType: LinksHeader<TLink>.AllocatedLinks
   nameWithType.vb: LinksHeader(Of TLink).AllocatedLinks
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksHeader`1.Equals(Platform.Data.Doublets.ResizableDirectMemory.LinksHeader{`0})
+  name: Equals(LinksHeader<TLink>)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksHeader-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksHeader_1_Equals_Platform_Data_Doublets_ResizableDirectMemory_LinksHeader__0__
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksHeader`1.Equals(Platform.Data.Doublets.ResizableDirectMemory.LinksHeader{`0})
+  name.vb: Equals(LinksHeader(Of TLink))
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksHeader<TLink>.Equals(Platform.Data.Doublets.ResizableDirectMemory.LinksHeader<TLink>)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksHeader(Of TLink).Equals(Platform.Data.Doublets.ResizableDirectMemory.LinksHeader(Of TLink))
+  nameWithType: LinksHeader<TLink>.Equals(LinksHeader<TLink>)
+  nameWithType.vb: LinksHeader(Of TLink).Equals(LinksHeader(Of TLink))
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksHeader`1.Equals(System.Object)
+  name: Equals(Object)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksHeader-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksHeader_1_Equals_System_Object_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksHeader`1.Equals(System.Object)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksHeader<TLink>.Equals(System.Object)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksHeader(Of TLink).Equals(System.Object)
+  nameWithType: LinksHeader<TLink>.Equals(Object)
+  nameWithType.vb: LinksHeader(Of TLink).Equals(Object)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksHeader`1.Equals*
+  name: Equals
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksHeader-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksHeader_1_Equals_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksHeader`1.Equals
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksHeader<TLink>.Equals
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksHeader(Of TLink).Equals
+  nameWithType: LinksHeader<TLink>.Equals
+  nameWithType.vb: LinksHeader(Of TLink).Equals
 - uid: Platform.Data.Doublets.ResizableDirectMemory.LinksHeader`1.FirstAsSource
   name: FirstAsSource
   href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksHeader-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksHeader_1_FirstAsSource
@@ -6071,6 +6169,23 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksHeader(Of TLink).FreeLinks
   nameWithType: LinksHeader<TLink>.FreeLinks
   nameWithType.vb: LinksHeader(Of TLink).FreeLinks
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksHeader`1.GetHashCode
+  name: GetHashCode()
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksHeader-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksHeader_1_GetHashCode
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksHeader`1.GetHashCode
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksHeader<TLink>.GetHashCode()
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksHeader(Of TLink).GetHashCode()
+  nameWithType: LinksHeader<TLink>.GetHashCode()
+  nameWithType.vb: LinksHeader(Of TLink).GetHashCode()
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksHeader`1.GetHashCode*
+  name: GetHashCode
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksHeader-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksHeader_1_GetHashCode_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksHeader`1.GetHashCode
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksHeader<TLink>.GetHashCode
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksHeader(Of TLink).GetHashCode
+  nameWithType: LinksHeader<TLink>.GetHashCode
+  nameWithType.vb: LinksHeader(Of TLink).GetHashCode
 - uid: Platform.Data.Doublets.ResizableDirectMemory.LinksHeader`1.LastFreeLink
   name: LastFreeLink
   href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksHeader-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksHeader_1_LastFreeLink
@@ -6079,6 +6194,42 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksHeader(Of TLink).LastFreeLink
   nameWithType: LinksHeader<TLink>.LastFreeLink
   nameWithType.vb: LinksHeader(Of TLink).LastFreeLink
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksHeader`1.op_Equality(Platform.Data.Doublets.ResizableDirectMemory.LinksHeader{`0},Platform.Data.Doublets.ResizableDirectMemory.LinksHeader{`0})
+  name: Equality(LinksHeader<TLink>, LinksHeader<TLink>)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksHeader-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksHeader_1_op_Equality_Platform_Data_Doublets_ResizableDirectMemory_LinksHeader__0__Platform_Data_Doublets_ResizableDirectMemory_LinksHeader__0__
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksHeader`1.op_Equality(Platform.Data.Doublets.ResizableDirectMemory.LinksHeader{`0},Platform.Data.Doublets.ResizableDirectMemory.LinksHeader{`0})
+  name.vb: Equality(LinksHeader(Of TLink), LinksHeader(Of TLink))
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksHeader<TLink>.Equality(Platform.Data.Doublets.ResizableDirectMemory.LinksHeader<TLink>, Platform.Data.Doublets.ResizableDirectMemory.LinksHeader<TLink>)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksHeader(Of TLink).Equality(Platform.Data.Doublets.ResizableDirectMemory.LinksHeader(Of TLink), Platform.Data.Doublets.ResizableDirectMemory.LinksHeader(Of TLink))
+  nameWithType: LinksHeader<TLink>.Equality(LinksHeader<TLink>, LinksHeader<TLink>)
+  nameWithType.vb: LinksHeader(Of TLink).Equality(LinksHeader(Of TLink), LinksHeader(Of TLink))
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksHeader`1.op_Equality*
+  name: Equality
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksHeader-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksHeader_1_op_Equality_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksHeader`1.op_Equality
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksHeader<TLink>.Equality
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksHeader(Of TLink).Equality
+  nameWithType: LinksHeader<TLink>.Equality
+  nameWithType.vb: LinksHeader(Of TLink).Equality
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksHeader`1.op_Inequality(Platform.Data.Doublets.ResizableDirectMemory.LinksHeader{`0},Platform.Data.Doublets.ResizableDirectMemory.LinksHeader{`0})
+  name: Inequality(LinksHeader<TLink>, LinksHeader<TLink>)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksHeader-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksHeader_1_op_Inequality_Platform_Data_Doublets_ResizableDirectMemory_LinksHeader__0__Platform_Data_Doublets_ResizableDirectMemory_LinksHeader__0__
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.LinksHeader`1.op_Inequality(Platform.Data.Doublets.ResizableDirectMemory.LinksHeader{`0},Platform.Data.Doublets.ResizableDirectMemory.LinksHeader{`0})
+  name.vb: Inequality(LinksHeader(Of TLink), LinksHeader(Of TLink))
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksHeader<TLink>.Inequality(Platform.Data.Doublets.ResizableDirectMemory.LinksHeader<TLink>, Platform.Data.Doublets.ResizableDirectMemory.LinksHeader<TLink>)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksHeader(Of TLink).Inequality(Platform.Data.Doublets.ResizableDirectMemory.LinksHeader(Of TLink), Platform.Data.Doublets.ResizableDirectMemory.LinksHeader(Of TLink))
+  nameWithType: LinksHeader<TLink>.Inequality(LinksHeader<TLink>, LinksHeader<TLink>)
+  nameWithType.vb: LinksHeader(Of TLink).Inequality(LinksHeader(Of TLink), LinksHeader(Of TLink))
+- uid: Platform.Data.Doublets.ResizableDirectMemory.LinksHeader`1.op_Inequality*
+  name: Inequality
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksHeader-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksHeader_1_op_Inequality_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.LinksHeader`1.op_Inequality
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.LinksHeader<TLink>.Inequality
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.LinksHeader(Of TLink).Inequality
+  nameWithType: LinksHeader<TLink>.Inequality
+  nameWithType.vb: LinksHeader(Of TLink).Inequality
 - uid: Platform.Data.Doublets.ResizableDirectMemory.LinksHeader`1.Reserved8
   name: Reserved8
   href: api/Platform.Data.Doublets.ResizableDirectMemory.LinksHeader-1.html#Platform_Data_Doublets_ResizableDirectMemory_LinksHeader_1_Reserved8
@@ -6112,6 +6263,49 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.RawLink(Of TLink)
   nameWithType: RawLink<TLink>
   nameWithType.vb: RawLink(Of TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.RawLink`1.Equals(Platform.Data.Doublets.ResizableDirectMemory.RawLink{`0})
+  name: Equals(RawLink<TLink>)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.RawLink-1.html#Platform_Data_Doublets_ResizableDirectMemory_RawLink_1_Equals_Platform_Data_Doublets_ResizableDirectMemory_RawLink__0__
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.RawLink`1.Equals(Platform.Data.Doublets.ResizableDirectMemory.RawLink{`0})
+  name.vb: Equals(RawLink(Of TLink))
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.RawLink<TLink>.Equals(Platform.Data.Doublets.ResizableDirectMemory.RawLink<TLink>)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.RawLink(Of TLink).Equals(Platform.Data.Doublets.ResizableDirectMemory.RawLink(Of TLink))
+  nameWithType: RawLink<TLink>.Equals(RawLink<TLink>)
+  nameWithType.vb: RawLink(Of TLink).Equals(RawLink(Of TLink))
+- uid: Platform.Data.Doublets.ResizableDirectMemory.RawLink`1.Equals(System.Object)
+  name: Equals(Object)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.RawLink-1.html#Platform_Data_Doublets_ResizableDirectMemory_RawLink_1_Equals_System_Object_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.RawLink`1.Equals(System.Object)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.RawLink<TLink>.Equals(System.Object)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.RawLink(Of TLink).Equals(System.Object)
+  nameWithType: RawLink<TLink>.Equals(Object)
+  nameWithType.vb: RawLink(Of TLink).Equals(Object)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.RawLink`1.Equals*
+  name: Equals
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.RawLink-1.html#Platform_Data_Doublets_ResizableDirectMemory_RawLink_1_Equals_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.RawLink`1.Equals
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.RawLink<TLink>.Equals
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.RawLink(Of TLink).Equals
+  nameWithType: RawLink<TLink>.Equals
+  nameWithType.vb: RawLink(Of TLink).Equals
+- uid: Platform.Data.Doublets.ResizableDirectMemory.RawLink`1.GetHashCode
+  name: GetHashCode()
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.RawLink-1.html#Platform_Data_Doublets_ResizableDirectMemory_RawLink_1_GetHashCode
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.RawLink`1.GetHashCode
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.RawLink<TLink>.GetHashCode()
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.RawLink(Of TLink).GetHashCode()
+  nameWithType: RawLink<TLink>.GetHashCode()
+  nameWithType.vb: RawLink(Of TLink).GetHashCode()
+- uid: Platform.Data.Doublets.ResizableDirectMemory.RawLink`1.GetHashCode*
+  name: GetHashCode
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.RawLink-1.html#Platform_Data_Doublets_ResizableDirectMemory_RawLink_1_GetHashCode_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.RawLink`1.GetHashCode
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.RawLink<TLink>.GetHashCode
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.RawLink(Of TLink).GetHashCode
+  nameWithType: RawLink<TLink>.GetHashCode
+  nameWithType.vb: RawLink(Of TLink).GetHashCode
 - uid: Platform.Data.Doublets.ResizableDirectMemory.RawLink`1.LeftAsSource
   name: LeftAsSource
   href: api/Platform.Data.Doublets.ResizableDirectMemory.RawLink-1.html#Platform_Data_Doublets_ResizableDirectMemory_RawLink_1_LeftAsSource
@@ -6128,6 +6322,42 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.RawLink(Of TLink).LeftAsTarget
   nameWithType: RawLink<TLink>.LeftAsTarget
   nameWithType.vb: RawLink(Of TLink).LeftAsTarget
+- uid: Platform.Data.Doublets.ResizableDirectMemory.RawLink`1.op_Equality(Platform.Data.Doublets.ResizableDirectMemory.RawLink{`0},Platform.Data.Doublets.ResizableDirectMemory.RawLink{`0})
+  name: Equality(RawLink<TLink>, RawLink<TLink>)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.RawLink-1.html#Platform_Data_Doublets_ResizableDirectMemory_RawLink_1_op_Equality_Platform_Data_Doublets_ResizableDirectMemory_RawLink__0__Platform_Data_Doublets_ResizableDirectMemory_RawLink__0__
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.RawLink`1.op_Equality(Platform.Data.Doublets.ResizableDirectMemory.RawLink{`0},Platform.Data.Doublets.ResizableDirectMemory.RawLink{`0})
+  name.vb: Equality(RawLink(Of TLink), RawLink(Of TLink))
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.RawLink<TLink>.Equality(Platform.Data.Doublets.ResizableDirectMemory.RawLink<TLink>, Platform.Data.Doublets.ResizableDirectMemory.RawLink<TLink>)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.RawLink(Of TLink).Equality(Platform.Data.Doublets.ResizableDirectMemory.RawLink(Of TLink), Platform.Data.Doublets.ResizableDirectMemory.RawLink(Of TLink))
+  nameWithType: RawLink<TLink>.Equality(RawLink<TLink>, RawLink<TLink>)
+  nameWithType.vb: RawLink(Of TLink).Equality(RawLink(Of TLink), RawLink(Of TLink))
+- uid: Platform.Data.Doublets.ResizableDirectMemory.RawLink`1.op_Equality*
+  name: Equality
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.RawLink-1.html#Platform_Data_Doublets_ResizableDirectMemory_RawLink_1_op_Equality_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.RawLink`1.op_Equality
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.RawLink<TLink>.Equality
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.RawLink(Of TLink).Equality
+  nameWithType: RawLink<TLink>.Equality
+  nameWithType.vb: RawLink(Of TLink).Equality
+- uid: Platform.Data.Doublets.ResizableDirectMemory.RawLink`1.op_Inequality(Platform.Data.Doublets.ResizableDirectMemory.RawLink{`0},Platform.Data.Doublets.ResizableDirectMemory.RawLink{`0})
+  name: Inequality(RawLink<TLink>, RawLink<TLink>)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.RawLink-1.html#Platform_Data_Doublets_ResizableDirectMemory_RawLink_1_op_Inequality_Platform_Data_Doublets_ResizableDirectMemory_RawLink__0__Platform_Data_Doublets_ResizableDirectMemory_RawLink__0__
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.RawLink`1.op_Inequality(Platform.Data.Doublets.ResizableDirectMemory.RawLink{`0},Platform.Data.Doublets.ResizableDirectMemory.RawLink{`0})
+  name.vb: Inequality(RawLink(Of TLink), RawLink(Of TLink))
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.RawLink<TLink>.Inequality(Platform.Data.Doublets.ResizableDirectMemory.RawLink<TLink>, Platform.Data.Doublets.ResizableDirectMemory.RawLink<TLink>)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.RawLink(Of TLink).Inequality(Platform.Data.Doublets.ResizableDirectMemory.RawLink(Of TLink), Platform.Data.Doublets.ResizableDirectMemory.RawLink(Of TLink))
+  nameWithType: RawLink<TLink>.Inequality(RawLink<TLink>, RawLink<TLink>)
+  nameWithType.vb: RawLink(Of TLink).Inequality(RawLink(Of TLink), RawLink(Of TLink))
+- uid: Platform.Data.Doublets.ResizableDirectMemory.RawLink`1.op_Inequality*
+  name: Inequality
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.RawLink-1.html#Platform_Data_Doublets_ResizableDirectMemory_RawLink_1_op_Inequality_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.RawLink`1.op_Inequality
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.RawLink<TLink>.Inequality
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.RawLink(Of TLink).Inequality
+  nameWithType: RawLink<TLink>.Inequality
+  nameWithType.vb: RawLink(Of TLink).Inequality
 - uid: Platform.Data.Doublets.ResizableDirectMemory.RawLink`1.RightAsSource
   name: RightAsSource
   href: api/Platform.Data.Doublets.ResizableDirectMemory.RawLink-1.html#Platform_Data_Doublets_ResizableDirectMemory_RawLink_1_RightAsSource
@@ -12096,6 +12326,64 @@ references:
   commentId: F:Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.Before
   fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.Before
   nameWithType: UInt64LinksTransactionsLayer.Transition.Before
+- uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.Equals(Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition)
+  name: Equals(UInt64LinksTransactionsLayer.Transition)
+  href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_Transition_Equals_Platform_Data_Doublets_UInt64LinksTransactionsLayer_Transition_
+  commentId: M:Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.Equals(Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition)
+  fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.Equals(Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition)
+  nameWithType: UInt64LinksTransactionsLayer.Transition.Equals(UInt64LinksTransactionsLayer.Transition)
+- uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.Equals(System.Object)
+  name: Equals(Object)
+  href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_Transition_Equals_System_Object_
+  commentId: M:Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.Equals(System.Object)
+  fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.Equals(System.Object)
+  nameWithType: UInt64LinksTransactionsLayer.Transition.Equals(Object)
+- uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.Equals*
+  name: Equals
+  href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_Transition_Equals_
+  commentId: Overload:Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.Equals
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.Equals
+  nameWithType: UInt64LinksTransactionsLayer.Transition.Equals
+- uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.GetHashCode
+  name: GetHashCode()
+  href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_Transition_GetHashCode
+  commentId: M:Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.GetHashCode
+  fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.GetHashCode()
+  nameWithType: UInt64LinksTransactionsLayer.Transition.GetHashCode()
+- uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.GetHashCode*
+  name: GetHashCode
+  href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_Transition_GetHashCode_
+  commentId: Overload:Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.GetHashCode
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.GetHashCode
+  nameWithType: UInt64LinksTransactionsLayer.Transition.GetHashCode
+- uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.op_Equality(Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition,Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition)
+  name: Equality(UInt64LinksTransactionsLayer.Transition, UInt64LinksTransactionsLayer.Transition)
+  href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_Transition_op_Equality_Platform_Data_Doublets_UInt64LinksTransactionsLayer_Transition_Platform_Data_Doublets_UInt64LinksTransactionsLayer_Transition_
+  commentId: M:Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.op_Equality(Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition,Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition)
+  fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.Equality(Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition, Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition)
+  nameWithType: UInt64LinksTransactionsLayer.Transition.Equality(UInt64LinksTransactionsLayer.Transition, UInt64LinksTransactionsLayer.Transition)
+- uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.op_Equality*
+  name: Equality
+  href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_Transition_op_Equality_
+  commentId: Overload:Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.op_Equality
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.Equality
+  nameWithType: UInt64LinksTransactionsLayer.Transition.Equality
+- uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.op_Inequality(Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition,Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition)
+  name: Inequality(UInt64LinksTransactionsLayer.Transition, UInt64LinksTransactionsLayer.Transition)
+  href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_Transition_op_Inequality_Platform_Data_Doublets_UInt64LinksTransactionsLayer_Transition_Platform_Data_Doublets_UInt64LinksTransactionsLayer_Transition_
+  commentId: M:Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.op_Inequality(Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition,Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition)
+  fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.Inequality(Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition, Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition)
+  nameWithType: UInt64LinksTransactionsLayer.Transition.Inequality(UInt64LinksTransactionsLayer.Transition, UInt64LinksTransactionsLayer.Transition)
+- uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.op_Inequality*
+  name: Inequality
+  href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_Transition_op_Inequality_
+  commentId: Overload:Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.op_Inequality
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.Inequality
+  nameWithType: UInt64LinksTransactionsLayer.Transition.Inequality
 - uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.Size
   name: Size
   href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_Transition_Size
