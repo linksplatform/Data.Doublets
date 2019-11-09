@@ -10,12 +10,14 @@ namespace Platform.Data.Doublets.Sequences.Frequencies.Cache
         public TLink Frequency { get; set; }
         public TLink Link { get; set; }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public LinkFrequency(TLink frequency, TLink link)
         {
             Frequency = frequency;
             Link = link;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public LinkFrequency() { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -24,6 +26,7 @@ namespace Platform.Data.Doublets.Sequences.Frequencies.Cache
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void DecrementFrequency() => Frequency = Arithmetic<TLink>.Decrement(Frequency);
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override string ToString() => $"F: {Frequency}, L: {Link}";
     }
 }

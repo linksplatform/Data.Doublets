@@ -11,13 +11,23 @@ namespace Platform.Data.Doublets.Decorators
     {
         private ILinks<TLink> _facade;
 
-        public LinksConstants<TLink> Constants { get; }
+        public LinksConstants<TLink> Constants
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get;
+        }
 
-        public ILinks<TLink> Links { get; }
+        public ILinks<TLink> Links
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get;
+        }
 
         public ILinks<TLink> Facade
         {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get => _facade;
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             set
             {
                 _facade = value;
@@ -55,8 +65,13 @@ namespace Platform.Data.Doublets.Decorators
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public virtual void Delete(IList<TLink> restrictions) => Links.Delete(restrictions);
 
-        protected override bool AllowMultipleDisposeCalls => true;
+        protected override bool AllowMultipleDisposeCalls
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get => true;
+        }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override void Dispose(bool manual, bool wasDisposed)
         {
             if (!wasDisposed)

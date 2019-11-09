@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Platform.Singletons;
 using Platform.Data.Doublets.Unicode;
 
@@ -12,8 +13,10 @@ namespace Platform.Data.Doublets
     {
         public static readonly LinksConstants<ulong> Constants = Default<LinksConstants<ulong>>.Instance;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void UseUnicode(this ILinks<ulong> links) => UnicodeMap.InitNew(links);
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool AnyLinkIsAny(this ILinks<ulong> links, params ulong[] sequence)
         {
             if (sequence == null)
@@ -31,6 +34,7 @@ namespace Platform.Data.Doublets
             return false;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string FormatStructure(this ILinks<ulong> links, ulong linkIndex, Func<Link<ulong>, bool> isElement, bool renderIndex = false, bool renderDebug = false)
         {
             var sb = new StringBuilder();
@@ -39,6 +43,7 @@ namespace Platform.Data.Doublets
             return sb.ToString();
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string FormatStructure(this ILinks<ulong> links, ulong linkIndex, Func<Link<ulong>, bool> isElement, Action<StringBuilder, Link<ulong>> appendElement, bool renderIndex = false, bool renderDebug = false)
         {
             var sb = new StringBuilder();
@@ -47,6 +52,7 @@ namespace Platform.Data.Doublets
             return sb.ToString();
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void AppendStructure(this ILinks<ulong> links, StringBuilder sb, HashSet<ulong> visited, ulong linkIndex, Func<Link<ulong>, bool> isElement, Action<StringBuilder, Link<ulong>> appendElement, bool renderIndex = false, bool renderDebug = false)
         {
             if (sb == null)

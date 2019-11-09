@@ -18,6 +18,7 @@ namespace Platform.Data.Doublets
 {
     public static class ILinksExtensions
     {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void RunRandomCreations<TLink>(this ILinks<TLink> links, ulong amountOfCreations)
         {
             var random = RandomHelpers.Default;
@@ -32,6 +33,7 @@ namespace Platform.Data.Doublets
             }
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void RunRandomSearches<TLink>(this ILinks<TLink> links, ulong amountOfSearches)
         {
             var random = RandomHelpers.Default;
@@ -46,6 +48,7 @@ namespace Platform.Data.Doublets
             }
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void RunRandomDeletions<TLink>(this ILinks<TLink> links, ulong amountOfDeletions)
         {
             var random = RandomHelpers.Default;
@@ -66,6 +69,7 @@ namespace Platform.Data.Doublets
             }
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Delete<TLink>(this ILinks<TLink> links, TLink linkToDelete) => links.Delete(new LinkAddress<TLink>(linkToDelete));
 
         /// <remarks>
@@ -74,6 +78,7 @@ namespace Platform.Data.Doublets
         /// чтобы удалился весь контент)
         /// Например через _header->AllocatedLinks в ResizableDirectMemoryLinks
         /// </remarks>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void DeleteAll<TLink>(this ILinks<TLink> links)
         {
             var equalityComparer = EqualityComparer<TLink>.Default;
@@ -88,6 +93,7 @@ namespace Platform.Data.Doublets
             }
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLink First<TLink>(this ILinks<TLink> links)
         {
             TLink firstLink = default;
@@ -117,6 +123,7 @@ namespace Platform.Data.Doublets
         /// Stack в конкретный путь из Source, Target до связи, но это не всегда так.
         /// TODO: Возможно нужен метод, который именно выбрасывает исключения (EnsurePathExists)
         /// </remarks>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool CheckPathExistance<TLink>(this ILinks<TLink> links, params TLink[] path)
         {
             var current = path[0];
@@ -151,6 +158,7 @@ namespace Platform.Data.Doublets
         /// <remarks>
         /// Может потребовать дополнительного стека для PathElement's при использовании SequenceWalker.
         /// </remarks>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLink GetByKeys<TLink>(this ILinks<TLink> links, TLink root, params int[] path)
         {
             links.EnsureLinkExists(root, "root");
@@ -162,6 +170,7 @@ namespace Platform.Data.Doublets
             return currentLink;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLink GetSquareMatrixSequenceElementByIndex<TLink>(this ILinks<TLink> links, TLink root, ulong size, ulong index)
         {
             var constants = links.Constants;
@@ -388,6 +397,7 @@ namespace Platform.Data.Doublets
         }
 
         /// <param name="links">Хранилище связей.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureNoUsages<TLink>(this ILinks<TLink> links, TLink link)
         {
             if (links.HasUsages(link))
@@ -397,12 +407,15 @@ namespace Platform.Data.Doublets
         }
 
         /// <param name="links">Хранилище связей.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureCreated<TLink>(this ILinks<TLink> links, params TLink[] addresses) => links.EnsureCreated(links.Create, addresses);
 
         /// <param name="links">Хранилище связей.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsurePointsCreated<TLink>(this ILinks<TLink> links, params TLink[] addresses) => links.EnsureCreated(links.CreatePoint, addresses);
 
         /// <param name="links">Хранилище связей.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureCreated<TLink>(this ILinks<TLink> links, Func<TLink> creator, params TLink[] addresses)
         {
             var addressToUInt64Converter = CheckedConverter<TLink, ulong>.Default;
@@ -432,6 +445,7 @@ namespace Platform.Data.Doublets
         #endregion
 
         /// <param name="links">Хранилище связей.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLink CountUsages<TLink>(this ILinks<TLink> links, TLink link)
         {
             var constants = links.Constants;
@@ -623,6 +637,7 @@ namespace Platform.Data.Doublets
         }
 
         /// <remarks>Before execution of this method ensure that deleted link is detached (all values - source and target are reset to null) or it might enter into infinite recursion.</remarks>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void DeleteAllUsages<TLink>(this ILinks<TLink> links, TLink linkIndex)
         {
             var anyConstant = links.Constants.Any;
@@ -632,6 +647,7 @@ namespace Platform.Data.Doublets
             links.DeleteByQuery(usagesAsTargetQuery);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void DeleteByQuery<TLink>(this ILinks<TLink> links, Link<TLink> query)
         {
             var count = CheckedConverter<TLink, long>.Default.Convert(links.Count(query));
@@ -648,6 +664,7 @@ namespace Platform.Data.Doublets
         }
 
         // TODO: Move to Platform.Data
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool AreValuesReset<TLink>(this ILinks<TLink> links, TLink linkIndex)
         {
             var nullConstant = links.Constants.Null;
@@ -664,6 +681,7 @@ namespace Platform.Data.Doublets
         }
 
         // TODO: Create a universal version of this method in Platform.Data (with using of for loop)
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void ResetValues<TLink>(this ILinks<TLink> links, TLink linkIndex)
         {
             var nullConstant = links.Constants.Null;
@@ -672,6 +690,7 @@ namespace Platform.Data.Doublets
         }
 
         // TODO: Create a universal version of this method in Platform.Data (with using of for loop)
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnforceResetValues<TLink>(this ILinks<TLink> links, TLink linkIndex)
         {
             if (!links.AreValuesReset(linkIndex))
@@ -683,6 +702,7 @@ namespace Platform.Data.Doublets
         /// <summary>
         /// Merging two usages graphs, all children of old link moved to be children of new link or deleted.
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLink MergeUsages<TLink>(this ILinks<TLink> links, TLink oldLinkIndex, TLink newLinkIndex)
         {
             var addressToInt64Converter = CheckedConverter<TLink, long>.Default;
@@ -749,6 +769,7 @@ namespace Platform.Data.Doublets
             return newLinkIndex;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ILinks<TLink> DecorateWithAutomaticUniquenessAndUsagesResolution<TLink>(this ILinks<TLink> links)
         {
             links = new LinksCascadeUsagesResolver<TLink>(links);

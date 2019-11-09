@@ -9,6 +9,7 @@ using Platform.Data.Doublets.Sequences.Converters;
 using Platform.Data.Doublets.Sequences.Walkers;
 using Platform.Data.Doublets.Sequences.Indexes;
 using Platform.Data.Doublets.Sequences.CriterionMatchers;
+using System.Runtime.CompilerServices;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -18,27 +19,124 @@ namespace Platform.Data.Doublets.Sequences
     {
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
 
-        public TLink SequenceMarkerLink { get; set; }
-        public bool UseCascadeUpdate { get; set; }
-        public bool UseCascadeDelete { get; set; }
-        public bool UseIndex { get; set; } // TODO: Update Index on sequence update/delete.
-        public bool UseSequenceMarker { get; set; }
-        public bool UseCompression { get; set; }
-        public bool UseGarbageCollection { get; set; }
-        public bool EnforceSingleSequenceVersionOnWriteBasedOnExisting { get; set; }
-        public bool EnforceSingleSequenceVersionOnWriteBasedOnNew { get; set; }
+        public TLink SequenceMarkerLink
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get;
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            set;
+        }
+        
+        public bool UseCascadeUpdate
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get;
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            set;
+        }
+        
+        public bool UseCascadeDelete
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get;
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            set;
+        }
+        
+        public bool UseIndex
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get;
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            set;
+        } // TODO: Update Index on sequence update/delete.
+        
+        public bool UseSequenceMarker
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get;
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            set;
+        }
 
-        public MarkedSequenceCriterionMatcher<TLink> MarkedSequenceMatcher { get; set; }
-        public IConverter<IList<TLink>, TLink> LinksToSequenceConverter { get; set; }
-        public ISequenceIndex<TLink> Index { get; set; }
-        public ISequenceWalker<TLink> Walker { get; set; }
-        public bool ReadFullSequence { get; set; }
+        public bool UseCompression
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get;
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            set;
+        }
+
+        public bool UseGarbageCollection
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get;
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            set;
+        }
+
+        public bool EnforceSingleSequenceVersionOnWriteBasedOnExisting
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get;
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            set;
+        }
+
+        public bool EnforceSingleSequenceVersionOnWriteBasedOnNew
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get;
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            set;
+        }
+
+        public MarkedSequenceCriterionMatcher<TLink> MarkedSequenceMatcher
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get;
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            set;
+        }
+
+        public IConverter<IList<TLink>, TLink> LinksToSequenceConverter
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get;
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            set;
+        }
+
+        public ISequenceIndex<TLink> Index
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get;
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            set;
+        }
+
+        public ISequenceWalker<TLink> Walker
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get;
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            set;
+        }
+
+        public bool ReadFullSequence
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get;
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            set;
+        }
 
         // TODO: Реализовать компактификацию при чтении
         //public bool EnforceSingleSequenceVersionOnRead { get; set; }
         //public bool UseRequestMarker { get; set; }
         //public bool StoreRequestResults { get; set; }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void InitOptions(ISynchronizedLinks<TLink> links)
         {
             if (UseSequenceMarker)
@@ -99,6 +197,7 @@ namespace Platform.Data.Doublets.Sequences
             }
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void ValidateOptions()
         {
             if (UseGarbageCollection && !UseSequenceMarker)

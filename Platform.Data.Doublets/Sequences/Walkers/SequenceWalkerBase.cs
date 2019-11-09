@@ -12,16 +12,17 @@ namespace Platform.Data.Doublets.Sequences.Walkers
         private readonly IStack<TLink> _stack;
         private readonly Func<TLink, bool> _isElement;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected SequenceWalkerBase(ILinks<TLink> links, IStack<TLink> stack, Func<TLink, bool> isElement) : base(links)
         {
             _stack = stack;
             _isElement = isElement;
         }
 
-        protected SequenceWalkerBase(ILinks<TLink> links, IStack<TLink> stack) : this(links, stack, links.IsPartialPoint)
-        {
-        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected SequenceWalkerBase(ILinks<TLink> links, IStack<TLink> stack) : this(links, stack, links.IsPartialPoint) { }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IEnumerable<TLink> Walk(TLink sequence)
         {
             _stack.Clear();

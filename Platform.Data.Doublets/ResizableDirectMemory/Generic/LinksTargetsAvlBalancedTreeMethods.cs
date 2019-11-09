@@ -6,6 +6,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
 {
     public unsafe class LinksTargetsAvlBalancedTreeMethods<TLink> : LinksAvlBalancedTreeMethodsBase<TLink>
     {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public LinksTargetsAvlBalancedTreeMethods(LinksConstants<TLink> constants, byte* links, byte* header) : base(constants, links, header) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

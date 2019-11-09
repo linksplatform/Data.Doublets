@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Platform.Interfaces;
 using Platform.Converters;
 
@@ -16,6 +17,7 @@ namespace Platform.Data.Doublets.Sequences.HeightProviders
         private readonly IConverter<TLink> _unaryNumberToAddressConverter;
         private readonly IProperties<TLink, TLink, TLink> _propertyOperator;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public CachedSequenceHeightProvider(
             ILinks<TLink> links,
             ISequenceHeightProvider<TLink> baseHeightProvider,
@@ -32,6 +34,7 @@ namespace Platform.Data.Doublets.Sequences.HeightProviders
             _propertyOperator = propertyOperator;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public TLink Get(TLink sequence)
         {
             TLink height;

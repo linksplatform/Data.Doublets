@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Platform.Data.Doublets.Sequences.Frequencies.Cache;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -11,8 +12,10 @@ namespace Platform.Data.Doublets.Sequences.Indexes
 
         private readonly LinkFrequenciesCache<TLink> _cache;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public CachedFrequencyIncrementingSequenceIndex(LinkFrequenciesCache<TLink> cache) => _cache = cache;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Add(IList<TLink> sequence)
         {
             var indexed = true;
@@ -25,6 +28,7 @@ namespace Platform.Data.Doublets.Sequences.Indexes
             return indexed;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private bool IsIndexedWithIncrement(TLink source, TLink target)
         {
             var frequency = _cache.GetFrequency(source, target);
@@ -40,6 +44,7 @@ namespace Platform.Data.Doublets.Sequences.Indexes
             return indexed;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool MightContain(IList<TLink> sequence)
         {
             var indexed = true;
@@ -48,6 +53,7 @@ namespace Platform.Data.Doublets.Sequences.Indexes
             return indexed;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private bool IsIndexed(TLink source, TLink target)
         {
             var frequency = _cache.GetFrequency(source, target);

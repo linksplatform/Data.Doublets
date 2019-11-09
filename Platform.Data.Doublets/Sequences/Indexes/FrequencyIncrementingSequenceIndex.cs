@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Platform.Interfaces;
 using Platform.Incrementers;
 
@@ -13,6 +14,7 @@ namespace Platform.Data.Doublets.Sequences.Indexes
         private readonly IProperty<TLink, TLink> _frequencyPropertyOperator;
         private readonly IIncrementer<TLink> _frequencyIncrementer;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public FrequencyIncrementingSequenceIndex(ILinks<TLink> links, IProperty<TLink, TLink> frequencyPropertyOperator, IIncrementer<TLink> frequencyIncrementer)
             : base(links)
         {
@@ -20,6 +22,7 @@ namespace Platform.Data.Doublets.Sequences.Indexes
             _frequencyIncrementer = frequencyIncrementer;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Add(IList<TLink> sequence)
         {
             var indexed = true;
@@ -32,6 +35,7 @@ namespace Platform.Data.Doublets.Sequences.Indexes
             return indexed;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private bool IsIndexedWithIncrement(TLink source, TLink target)
         {
             var link = Links.SearchOrDefault(source, target);
@@ -43,6 +47,7 @@ namespace Platform.Data.Doublets.Sequences.Indexes
             return indexed;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void Increment(TLink link)
         {
             var previousFrequency = _frequencyPropertyOperator.Get(link);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Platform.Interfaces;
 using Platform.Converters;
 using Platform.Data.Doublets.Sequences.Walkers;
@@ -14,6 +15,7 @@ namespace Platform.Data.Doublets.Unicode
         private readonly ISequenceWalker<TLink> _sequenceWalker;
         private readonly IConverter<TLink, char> _unicodeSymbolToCharConverter;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public UnicodeSequenceToStringConverter(ILinks<TLink> links, ICriterionMatcher<TLink> unicodeSequenceCriterionMatcher, ISequenceWalker<TLink> sequenceWalker, IConverter<TLink, char> unicodeSymbolToCharConverter) : base(links)
         {
             _unicodeSequenceCriterionMatcher = unicodeSequenceCriterionMatcher;
@@ -21,6 +23,7 @@ namespace Platform.Data.Doublets.Unicode
             _unicodeSymbolToCharConverter = unicodeSymbolToCharConverter;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public string Convert(TLink source)
         {
             if(!_unicodeSequenceCriterionMatcher.IsMatched(source))

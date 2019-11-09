@@ -46,6 +46,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
         /// </summary>
         protected virtual TLink Total
         {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get
             {
                 ref var header = ref GetHeaderReference();
@@ -53,7 +54,11 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
             }
         }
 
-        public virtual LinksConstants<TLink> Constants { get; }
+        public virtual LinksConstants<TLink> Constants
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get;
+        }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected ResizableDirectMemoryLinksBase(IResizableDirectMemory memory, long memoryReservationStep, LinksConstants<TLink> constants)
@@ -66,6 +71,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected ResizableDirectMemoryLinksBase(IResizableDirectMemory memory, long memoryReservationStep) : this(memory, memoryReservationStep, Default<LinksConstants<TLink>>.Instance) { }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual void Init(IResizableDirectMemory memory, long memoryReservationStep)
         {
             if (memory.ReservedCapacity < memoryReservationStep)
@@ -358,6 +364,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
         /// <remarks>
         /// TODO: Возможно нужно будет заполнение нулями, если внешнее API ими не заполняет пространство
         /// </remarks>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public virtual TLink Create(IList<TLink> restrictions)
         {
             ref var header = ref GetHeaderReference();
@@ -505,8 +512,13 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
 
         #region Disposable
 
-        protected override bool AllowMultipleDisposeCalls => true;
+        protected override bool AllowMultipleDisposeCalls
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get => true;
+        }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override void Dispose(bool manual, bool wasDisposed)
         {
             if (!wasDisposed)

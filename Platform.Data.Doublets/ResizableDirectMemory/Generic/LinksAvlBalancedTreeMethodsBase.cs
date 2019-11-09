@@ -23,6 +23,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
         protected readonly byte* Links;
         protected readonly byte* Header;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected LinksAvlBalancedTreeMethodsBase(LinksConstants<TLink> constants, byte* links, byte* header)
         {
             Links = links;
@@ -152,6 +153,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
 
         public TLink this[TLink index]
         {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get
             {
                 var root = GetTreeRoot();
@@ -185,6 +187,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
         /// <param name="source">Индекс связи, которая является началом на искомой связи.</param>
         /// <param name="target">Индекс связи, которая является концом на искомой связи.</param>
         /// <returns>Индекс искомой связи.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public TLink Search(TLink source, TLink target)
         {
             var root = GetTreeRoot();
@@ -210,6 +213,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
         }
 
         // TODO: Return indices range instead of references count
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public TLink CountUsages(TLink link)
         {
             var root = GetTreeRoot();
@@ -247,6 +251,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
             return Subtract(Subtract(total, totalRightIgnore), totalLeftIgnore);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public TLink EachUsage(TLink link, Func<IList<TLink>, TLink> handler)
         {
             var root = GetTreeRoot();
@@ -290,6 +295,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
             return Continue;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override void PrintNodeValue(TLink node, StringBuilder sb)
         {
             ref var link = ref GetLinkReference(node);

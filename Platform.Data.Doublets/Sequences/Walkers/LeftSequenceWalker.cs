@@ -9,8 +9,10 @@ namespace Platform.Data.Doublets.Sequences.Walkers
 {
     public class LeftSequenceWalker<TLink> : SequenceWalkerBase<TLink>
     {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public LeftSequenceWalker(ILinks<TLink> links, IStack<TLink> stack, Func<TLink, bool> isElement) : base(links, stack, isElement) { }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public LeftSequenceWalker(ILinks<TLink> links, IStack<TLink> stack) : base(links, stack, links.IsPartialPoint) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

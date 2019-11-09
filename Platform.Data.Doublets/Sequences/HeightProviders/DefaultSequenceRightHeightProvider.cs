@@ -1,4 +1,5 @@
-﻿using Platform.Interfaces;
+﻿using System.Runtime.CompilerServices;
+using Platform.Interfaces;
 using Platform.Numbers;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -9,8 +10,10 @@ namespace Platform.Data.Doublets.Sequences.HeightProviders
     {
         private readonly ICriterionMatcher<TLink> _elementMatcher;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public DefaultSequenceRightHeightProvider(ILinks<TLink> links, ICriterionMatcher<TLink> elementMatcher) : base(links) => _elementMatcher = elementMatcher;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public TLink Get(TLink sequence)
         {
             var height = default(TLink);

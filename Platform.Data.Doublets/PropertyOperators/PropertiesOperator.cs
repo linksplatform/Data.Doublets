@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Platform.Interfaces;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -10,8 +11,10 @@ namespace Platform.Data.Doublets.PropertyOperators
     {
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public PropertiesOperator(ILinks<TLink> links) : base(links) { }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public TLink GetValue(TLink @object, TLink property)
         {
             var objectProperty = Links.SearchOrDefault(@object, property);
@@ -27,6 +30,7 @@ namespace Platform.Data.Doublets.PropertyOperators
             return Links.GetTarget(valueLink[Links.Constants.IndexPart]);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void SetValue(TLink @object, TLink property, TLink value)
         {
             var objectProperty = Links.GetOrCreate(@object, property);

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Platform.Interfaces;
 using Platform.Numbers;
 
@@ -16,6 +17,7 @@ namespace Platform.Data.Doublets.Sequences.Frequencies.Counters
         protected readonly HashSet<TLink> _visits;
         protected TLink _total;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public TotalSequenceSymbolFrequencyOneOffCounter(ILinks<TLink> links, TLink symbol)
         {
             _links = links;
@@ -24,6 +26,7 @@ namespace Platform.Data.Doublets.Sequences.Frequencies.Counters
             _total = default;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public TLink Count()
         {
             if (_comparer.Compare(_total, default) > 0 || _visits.Count > 0)
@@ -34,6 +37,7 @@ namespace Platform.Data.Doublets.Sequences.Frequencies.Counters
             return _total;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void CountCore(TLink link)
         {
             var any = _links.Constants.Any;
@@ -47,12 +51,14 @@ namespace Platform.Data.Doublets.Sequences.Frequencies.Counters
             }
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual void CountSequenceSymbolFrequency(TLink link)
         {
             var symbolFrequencyCounter = new SequenceSymbolFrequencyOneOffCounter<TLink>(_links, link, _symbol);
             _total = Arithmetic.Add(_total, symbolFrequencyCounter.Count());
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private TLink EachElementHandler(IList<TLink> doublet)
         {
             var constants = _links.Constants;

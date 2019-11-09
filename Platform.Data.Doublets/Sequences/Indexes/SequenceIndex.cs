@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -8,8 +9,10 @@ namespace Platform.Data.Doublets.Sequences.Indexes
     {
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public SequenceIndex(ILinks<TLink> links) : base(links) { }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public virtual bool Add(IList<TLink> sequence)
         {
             var indexed = true;
@@ -22,6 +25,7 @@ namespace Platform.Data.Doublets.Sequences.Indexes
             return indexed;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public virtual bool MightContain(IList<TLink> sequence)
         {
             var indexed = true;

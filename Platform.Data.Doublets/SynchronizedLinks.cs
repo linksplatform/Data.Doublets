@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Platform.Data.Doublets;
 using Platform.Threading.Synchronization;
 
@@ -14,13 +15,34 @@ namespace Platform.Data.Doublets
     /// </remarks>
     public class SynchronizedLinks<TLinkAddress> : ISynchronizedLinks<TLinkAddress>
     {
-        public LinksConstants<TLinkAddress> Constants { get; }
-        public ISynchronization SyncRoot { get; }
-        public ILinks<TLinkAddress> Sync { get; }
-        public ILinks<TLinkAddress> Unsync { get; }
+        public LinksConstants<TLinkAddress> Constants
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get;
+        }
 
+        public ISynchronization SyncRoot
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get;
+        }
+
+        public ILinks<TLinkAddress> Sync
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get;
+        }
+
+        public ILinks<TLinkAddress> Unsync
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public SynchronizedLinks(ILinks<TLinkAddress> links) : this(new ReaderWriterLockSynchronization(), links) { }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public SynchronizedLinks(ISynchronization synchronization, ILinks<TLinkAddress> links)
         {
             SyncRoot = synchronization;
@@ -29,10 +51,19 @@ namespace Platform.Data.Doublets
             Constants = links.Constants;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public TLinkAddress Count(IList<TLinkAddress> restriction) => SyncRoot.ExecuteReadOperation(restriction, Unsync.Count);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public TLinkAddress Each(Func<IList<TLinkAddress>, TLinkAddress> handler, IList<TLinkAddress> restrictions) => SyncRoot.ExecuteReadOperation(handler, restrictions, (handler1, restrictions1) => Unsync.Each(handler1, restrictions1));
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public TLinkAddress Create(IList<TLinkAddress> restrictions) => SyncRoot.ExecuteWriteOperation(restrictions, Unsync.Create);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public TLinkAddress Update(IList<TLinkAddress> restrictions, IList<TLinkAddress> substitution) => SyncRoot.ExecuteWriteOperation(restrictions, substitution, Unsync.Update);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Delete(IList<TLinkAddress> restrictions) => SyncRoot.ExecuteWriteOperation(restrictions, Unsync.Delete);
 
         //public T Trigger(IList<T> restriction, Func<IList<T>, IList<T>, T> matchedHandler, IList<T> substitution, Func<IList<T>, IList<T>, T> substitutedHandler)

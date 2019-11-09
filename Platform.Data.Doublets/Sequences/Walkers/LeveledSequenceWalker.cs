@@ -17,12 +17,16 @@ namespace Platform.Data.Doublets.Sequences.Walkers
 
         private readonly Func<TLink, bool> _isElement;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public LeveledSequenceWalker(ILinks<TLink> links, Func<TLink, bool> isElement) : base(links) => _isElement = isElement;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public LeveledSequenceWalker(ILinks<TLink> links) : base(links) => _isElement = Links.IsPartialPoint;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IEnumerable<TLink> Walk(TLink sequence) => ToArray(sequence);
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public TLink[] ToArray(TLink sequence)
         {
             var length = 1;

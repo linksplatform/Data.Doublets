@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Platform.Collections.Stacks;
 using Platform.Data.Doublets.Sequences.HeightProviders;
 using Platform.Data.Sequences;
@@ -14,6 +15,7 @@ namespace Platform.Data.Doublets.Sequences
         private readonly IStack<TLink> _stack;
         private readonly ISequenceHeightProvider<TLink> _heightProvider;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public DefaultSequenceAppender(ILinks<TLink> links, IStack<TLink> stack, ISequenceHeightProvider<TLink> heightProvider)
             : base(links)
         {
@@ -21,6 +23,7 @@ namespace Platform.Data.Doublets.Sequences
             _heightProvider = heightProvider;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public TLink Append(TLink sequence, TLink appendant)
         {
             var cursor = sequence;

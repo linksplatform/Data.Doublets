@@ -15,12 +15,13 @@ namespace Platform.Data.Doublets.Decorators
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override TLink Update(IList<TLink> restrictions, IList<TLink> substitution)
         {
-            var newLinkAddress = Links.SearchOrDefault(substitution[Constants.SourcePart], substitution[Constants.TargetPart]);
+            var constants = Constants;
+            var newLinkAddress = Links.SearchOrDefault(substitution[constants.SourcePart], substitution[constants.TargetPart]);
             if (_equalityComparer.Equals(newLinkAddress, default))
             {
                 return Links.Update(restrictions, substitution);
             }
-            return ResolveAddressChangeConflict(restrictions[Constants.IndexPart], newLinkAddress);
+            return ResolveAddressChangeConflict(restrictions[constants.IndexPart], newLinkAddress);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

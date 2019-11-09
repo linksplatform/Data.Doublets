@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Platform.Converters;
 using Platform.Data.Doublets.Sequences.Indexes;
 
@@ -13,6 +14,7 @@ namespace Platform.Data.Doublets.Unicode
         private readonly IConverter<IList<TLink>, TLink> _listToSequenceLinkConverter;
         private readonly TLink _unicodeSequenceMarker;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public StringToUnicodeSequenceConverter(ILinks<TLink> links, IConverter<char, TLink> charToUnicodeSymbolConverter, ISequenceIndex<TLink> index, IConverter<IList<TLink>, TLink> listToSequenceLinkConverter, TLink unicodeSequenceMarker) : base(links)
         {
             _charToUnicodeSymbolConverter = charToUnicodeSymbolConverter;
@@ -21,6 +23,7 @@ namespace Platform.Data.Doublets.Unicode
             _unicodeSequenceMarker = unicodeSequenceMarker;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public TLink Convert(string source)
         {
             var elements = new TLink[source.Length];

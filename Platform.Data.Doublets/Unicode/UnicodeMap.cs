@@ -18,8 +18,10 @@ namespace Platform.Data.Doublets.Unicode
         private readonly ILinks<ulong> _links;
         private bool _initialized;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public UnicodeMap(ILinks<ulong> links) => _links = links;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static UnicodeMap InitNew(ILinks<ulong> links)
         {
             var map = new UnicodeMap(links);
@@ -27,6 +29,7 @@ namespace Platform.Data.Doublets.Unicode
             return map;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Init()
         {
             if (_initialized)
@@ -68,6 +71,7 @@ namespace Platform.Data.Doublets.Unicode
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsCharLink(ulong link) => link <= MapSize;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string FromLinksToString(IList<ulong> linksList)
         {
             var sb = new StringBuilder();
@@ -78,6 +82,7 @@ namespace Platform.Data.Doublets.Unicode
             return sb.ToString();
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string FromSequenceLinkToString(ulong link, ILinks<ulong> links)
         {
             var sb = new StringBuilder();
@@ -93,8 +98,10 @@ namespace Platform.Data.Doublets.Unicode
             return sb.ToString();
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ulong[] FromCharsToLinkArray(char[] chars) => FromCharsToLinkArray(chars, chars.Length);
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ulong[] FromCharsToLinkArray(char[] chars, int count)
         {
             // char array to ulong array
@@ -106,6 +113,7 @@ namespace Platform.Data.Doublets.Unicode
             return linksSequence;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ulong[] FromStringToLinkArray(string sequence)
         {
             // char array to ulong array
@@ -117,6 +125,7 @@ namespace Platform.Data.Doublets.Unicode
             return linksSequence;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static List<ulong[]> FromStringToLinkArrayGroups(string sequence)
         {
             var result = new List<ulong[]>();
@@ -145,6 +154,7 @@ namespace Platform.Data.Doublets.Unicode
             return result;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static List<ulong[]> FromLinkArrayToLinkArrayGroups(ulong[] array)
         {
             var result = new List<ulong[]>();

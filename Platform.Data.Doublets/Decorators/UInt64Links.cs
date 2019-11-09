@@ -31,18 +31,19 @@ namespace Platform.Data.Doublets.Decorators
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override ulong Create(IList<ulong> restrictions) => Links.CreatePoint();
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override ulong Update(IList<ulong> restrictions, IList<ulong> substitution)
         {
             var constants = Constants;
             var indexPartConstant = constants.IndexPart;
-            var updatedLink = restrictions[indexPartConstant];
             var sourcePartConstant = constants.SourcePart;
-            var newSource = substitution[sourcePartConstant];
             var targetPartConstant = constants.TargetPart;
-            var newTarget = substitution[targetPartConstant];
             var nullConstant = constants.Null;
-            var existedLink = nullConstant;
             var itselfConstant = constants.Itself;
+            var existedLink = nullConstant;
+            var updatedLink = restrictions[indexPartConstant];
+            var newSource = substitution[sourcePartConstant];
+            var newTarget = substitution[targetPartConstant];
             if (newSource != itselfConstant && newTarget != itselfConstant)
             {
                 existedLink = Links.SearchOrDefault(newSource, newTarget);

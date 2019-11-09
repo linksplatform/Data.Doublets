@@ -19,6 +19,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
         protected readonly byte* Links;
         protected readonly byte* Header;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected LinksSizeBalancedTreeMethodsBase(LinksConstants<TLink> constants, byte* links, byte* header)
         {
             Links = links;
@@ -70,6 +71,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
 
         public TLink this[TLink index]
         {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get
             {
                 var root = GetTreeRoot();
@@ -103,6 +105,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
         /// <param name="source">Индекс связи, которая является началом на искомой связи.</param>
         /// <param name="target">Индекс связи, которая является концом на искомой связи.</param>
         /// <returns>Индекс искомой связи.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public TLink Search(TLink source, TLink target)
         {
             var root = GetTreeRoot();
@@ -128,6 +131,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
         }
 
         // TODO: Return indices range instead of references count
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public TLink CountUsages(TLink link)
         {
             var root = GetTreeRoot();
@@ -169,6 +173,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
         public TLink EachUsage(TLink @base, Func<IList<TLink>, TLink> handler) => EachUsageCore(@base, GetTreeRoot(), handler);
 
         // TODO: 1. Move target, handler to separate object. 2. Use stack or walker 3. Use low-level MSIL stack.
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private TLink EachUsageCore(TLink @base, TLink link, Func<IList<TLink>, TLink> handler)
         {
             var @continue = Continue;
@@ -210,6 +215,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
             return @continue;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override void PrintNodeValue(TLink node, StringBuilder sb)
         {
             ref var link = ref GetLinkReference(node);

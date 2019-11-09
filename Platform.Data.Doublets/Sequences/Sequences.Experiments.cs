@@ -1,7 +1,6 @@
 ﻿using System;
-using LinkIndex = System.UInt64;
 using System.Collections.Generic;
-using Stack = System.Collections.Generic.Stack<ulong>;
+using System.Runtime.CompilerServices;
 using System.Linq;
 using System.Text;
 using Platform.Collections;
@@ -11,6 +10,8 @@ using Platform.Data.Exceptions;
 using Platform.Data.Sequences;
 using Platform.Data.Doublets.Sequences.Frequencies.Counters;
 using Platform.Data.Doublets.Sequences.Walkers;
+using LinkIndex = System.UInt64;
+using Stack = System.Collections.Generic.Stack<ulong>;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -24,6 +25,7 @@ namespace Platform.Data.Doublets.Sequences
         /// Number of links that is needed to generate all variants for
         /// sequence of length N corresponds to https://oeis.org/A014143/list sequence.
         /// </remarks>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ulong[] CreateAllVariants2(ulong[] sequence)
         {
             return _sync.ExecuteWriteOperation(() =>
@@ -41,6 +43,7 @@ namespace Platform.Data.Doublets.Sequences
             });
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private ulong[] CreateAllVariants2Core(ulong[] sequence, long startAt, long stopAt)
         {
 #if DEBUG
@@ -79,6 +82,7 @@ namespace Platform.Data.Doublets.Sequences
             return variants;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public List<ulong> CreateAllVariants1(params ulong[] sequence)
         {
             return _sync.ExecuteWriteOperation(() =>
@@ -97,6 +101,7 @@ namespace Platform.Data.Doublets.Sequences
             });
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private List<ulong> CreateAllVariants1Core(ulong[] sequence, List<ulong> results)
         {
             if (sequence.Length == 2)
@@ -134,6 +139,7 @@ namespace Platform.Data.Doublets.Sequences
 
         #endregion
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public HashSet<ulong> Each1(params ulong[] sequence)
         {
             var visitedLinks = new HashSet<ulong>(); // Заменить на bitstring
@@ -148,6 +154,7 @@ namespace Platform.Data.Doublets.Sequences
             return visitedLinks;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void Each1(Func<ulong, bool> handler, params ulong[] sequence)
         {
             if (sequence.Length == 2)
@@ -189,6 +196,7 @@ namespace Platform.Data.Doublets.Sequences
             }
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public HashSet<ulong> EachPart(params ulong[] sequence)
         {
             var visitedLinks = new HashSet<ulong>(); // Заменить на bitstring
@@ -204,6 +212,7 @@ namespace Platform.Data.Doublets.Sequences
             return visitedLinks;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void EachPart(Func<IList<LinkIndex>, LinkIndex> handler, params ulong[] sequence)
         {
             var visitedLinks = new HashSet<ulong>(); // Заменить на bitstring
@@ -219,6 +228,7 @@ namespace Platform.Data.Doublets.Sequences
             }, sequence);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void EachPartCore(Func<IList<LinkIndex>, LinkIndex> handler, params ulong[] sequence)
         {
             if (sequence.IsNullOrEmpty())
@@ -273,6 +283,7 @@ namespace Platform.Data.Doublets.Sequences
             }
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void PartialStepRight(Action<IList<LinkIndex>> handler, ulong left, ulong right)
         {
             Links.Unsync.Each(Constants.Any, left, doublet =>
@@ -286,6 +297,7 @@ namespace Platform.Data.Doublets.Sequences
             });
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void StepRight(Action<IList<LinkIndex>> handler, ulong left, ulong right)
         {
             Links.Unsync.Each(left, Constants.Any, rightStep =>
@@ -295,6 +307,7 @@ namespace Platform.Data.Doublets.Sequences
             });
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void TryStepRightUp(Action<IList<LinkIndex>> handler, ulong right, ulong stepFrom)
         {
             var upStep = stepFrom;
@@ -311,6 +324,7 @@ namespace Platform.Data.Doublets.Sequences
         }
 
         // TODO: Test
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void PartialStepLeft(Action<IList<LinkIndex>> handler, ulong left, ulong right)
         {
             Links.Unsync.Each(right, Constants.Any, doublet =>
@@ -324,6 +338,7 @@ namespace Platform.Data.Doublets.Sequences
             });
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void StepLeft(Action<IList<LinkIndex>> handler, ulong left, ulong right)
         {
             Links.Unsync.Each(Constants.Any, right, leftStep =>
@@ -333,6 +348,7 @@ namespace Platform.Data.Doublets.Sequences
             });
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void TryStepLeftUp(Action<IList<LinkIndex>> handler, ulong left, ulong stepFrom)
         {
             var upStep = stepFrom;
@@ -348,6 +364,7 @@ namespace Platform.Data.Doublets.Sequences
             }
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private bool StartsWith(ulong sequence, ulong link)
         {
             var upStep = sequence;
@@ -360,6 +377,7 @@ namespace Platform.Data.Doublets.Sequences
             return firstSource == link;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private bool EndsWith(ulong sequence, ulong link)
         {
             var upStep = sequence;
@@ -372,6 +390,7 @@ namespace Platform.Data.Doublets.Sequences
             return lastTarget == link;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public List<ulong> GetAllMatchingSequences0(params ulong[] sequence)
         {
             return _sync.ExecuteReadOperation(() =>
@@ -440,6 +459,7 @@ namespace Platform.Data.Doublets.Sequences
             });
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public HashSet<ulong> GetAllMatchingSequences1(params ulong[] sequence)
         {
             return _sync.ExecuteReadOperation(() =>
@@ -484,10 +504,13 @@ namespace Platform.Data.Doublets.Sequences
 
         public const int MaxSequenceFormatSize = 200;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public string FormatSequence(LinkIndex sequenceLink, params LinkIndex[] knownElements) => FormatSequence(sequenceLink, (sb, x) => sb.Append(x), true, knownElements);
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public string FormatSequence(LinkIndex sequenceLink, Action<StringBuilder, LinkIndex> elementToString, bool insertComma, params LinkIndex[] knownElements) => Links.SyncRoot.ExecuteReadOperation(() => FormatSequence(Links.Unsync, sequenceLink, elementToString, insertComma, knownElements));
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private string FormatSequence(ILinks<LinkIndex> links, LinkIndex sequenceLink, Action<StringBuilder, LinkIndex> elementToString, bool insertComma, params LinkIndex[] knownElements)
         {
             var linksInSequence = new HashSet<ulong>(knownElements);
@@ -523,10 +546,13 @@ namespace Platform.Data.Doublets.Sequences
             return sb.ToString();
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public string SafeFormatSequence(LinkIndex sequenceLink, params LinkIndex[] knownElements) => SafeFormatSequence(sequenceLink, (sb, x) => sb.Append(x), true, knownElements);
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public string SafeFormatSequence(LinkIndex sequenceLink, Action<StringBuilder, LinkIndex> elementToString, bool insertComma, params LinkIndex[] knownElements) => Links.SyncRoot.ExecuteReadOperation(() => SafeFormatSequence(Links.Unsync, sequenceLink, elementToString, insertComma, knownElements));
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private string SafeFormatSequence(ILinks<LinkIndex> links, LinkIndex sequenceLink, Action<StringBuilder, LinkIndex> elementToString, bool insertComma, params LinkIndex[] knownElements)
         {
             var linksInSequence = new HashSet<ulong>(knownElements);
@@ -564,6 +590,7 @@ namespace Platform.Data.Doublets.Sequences
             return sb.ToString();
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public List<ulong> GetAllPartiallyMatchingSequences0(params ulong[] sequence)
         {
             return _sync.ExecuteReadOperation(() =>
@@ -619,6 +646,7 @@ namespace Platform.Data.Doublets.Sequences
             });
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public HashSet<ulong> GetAllPartiallyMatchingSequences1(params ulong[] sequence)
         {
             return _sync.ExecuteReadOperation(() =>
@@ -640,6 +668,7 @@ namespace Platform.Data.Doublets.Sequences
             });
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool GetAllPartiallyMatchingSequences2(Func<IList<LinkIndex>, LinkIndex> handler, params ulong[] sequence)
         {
             return _sync.ExecuteReadOperation(() =>
@@ -696,6 +725,7 @@ namespace Platform.Data.Doublets.Sequences
         //    });
         //}
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public HashSet<ulong> GetAllPartiallyMatchingSequences3(params ulong[] sequence)
         {
             return _sync.ExecuteReadOperation((Func<HashSet<ulong>>)(() =>
@@ -721,6 +751,7 @@ namespace Platform.Data.Doublets.Sequences
             }));
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public HashSet<ulong> GetAllPartiallyMatchingSequences4(HashSet<ulong> readAsElements, IList<ulong> sequence)
         {
             return _sync.ExecuteReadOperation(() =>
@@ -778,6 +809,7 @@ namespace Platform.Data.Doublets.Sequences
         //    return results;
         //}
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public List<ulong> GetAllPartiallyMatchingSequences(params ulong[] sequence)
         {
             return _sync.ExecuteReadOperation(() =>
@@ -875,6 +907,7 @@ namespace Platform.Data.Doublets.Sequences
         /// <remarks>
         /// TODO: Может потробоваться ограничение на уровень глубины рекурсии
         /// </remarks>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public HashSet<ulong> AllUsages(ulong link)
         {
             return _sync.ExecuteReadOperation(() =>
@@ -887,6 +920,7 @@ namespace Platform.Data.Doublets.Sequences
 
         // При сборе всех использований (последовательностей) можно сохранять обратный путь к той связи с которой начинался поиск (STTTSSSTT),
         // причём достаточно одного бита для хранения перехода влево или вправо
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void AllUsagesCore(ulong link, HashSet<ulong> usages)
         {
             bool handler(ulong doublet)
@@ -901,6 +935,7 @@ namespace Platform.Data.Doublets.Sequences
             Links.Unsync.Each(Constants.Any, link, handler);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public HashSet<ulong> AllBottomUsages(ulong link)
         {
             return _sync.ExecuteReadOperation(() =>
@@ -912,6 +947,7 @@ namespace Platform.Data.Doublets.Sequences
             });
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void AllBottomUsagesCore(ulong link, HashSet<ulong> visits, HashSet<ulong> usages)
         {
             bool handler(ulong doublet)
@@ -933,6 +969,7 @@ namespace Platform.Data.Doublets.Sequences
             }
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ulong CalculateTotalSymbolFrequencyCore(ulong symbol)
         {
             if (Options.UseSequenceMarker)
@@ -947,6 +984,7 @@ namespace Platform.Data.Doublets.Sequences
             }
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private bool AllUsagesCore1(ulong link, HashSet<ulong> usages, Func<IList<LinkIndex>, LinkIndex> outerHandler)
         {
             bool handler(ulong doublet)
@@ -968,12 +1006,14 @@ namespace Platform.Data.Doublets.Sequences
                 && Links.Unsync.Each(Constants.Any, link, handler);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CalculateAllUsages(ulong[] totals)
         {
             var calculator = new AllUsagesCalculator(Links, totals);
             calculator.Calculate();
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CalculateAllUsages2(ulong[] totals)
         {
             var calculator = new AllUsagesCalculator2(Links, totals);
@@ -985,14 +1025,17 @@ namespace Platform.Data.Doublets.Sequences
             private readonly SynchronizedLinks<ulong> _links;
             private readonly ulong[] _totals;
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public AllUsagesCalculator(SynchronizedLinks<ulong> links, ulong[] totals)
             {
                 _links = links;
                 _totals = totals;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public void Calculate() => _links.Each(_links.Constants.Any, _links.Constants.Any, CalculateCore);
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             private bool CalculateCore(ulong link)
             {
                 if (_totals[link] == 0)
@@ -1021,20 +1064,24 @@ namespace Platform.Data.Doublets.Sequences
             private readonly SynchronizedLinks<ulong> _links;
             private readonly ulong[] _totals;
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public AllUsagesCalculator2(SynchronizedLinks<ulong> links, ulong[] totals)
             {
                 _links = links;
                 _totals = totals;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public void Calculate() => _links.Each(_links.Constants.Any, _links.Constants.Any, CalculateCore);
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             private bool IsElement(ulong link)
             {
                 //_linksInSequence.Contains(link) || 
                 return _links.Unsync.GetTarget(link) == link || _links.Unsync.GetSource(link) == link;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             private bool CalculateCore(ulong link)
             {
                 // TODO: Проработать защиту от зацикливания
@@ -1104,12 +1151,14 @@ namespace Platform.Data.Doublets.Sequences
             private readonly ILinks<ulong> _links;
             private readonly HashSet<ulong> _usages;
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public AllUsagesCollector(ILinks<ulong> links, HashSet<ulong> usages)
             {
                 _links = links;
                 _usages = usages;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public bool Collect(ulong link)
             {
                 if (_usages.Add(link))
@@ -1127,6 +1176,7 @@ namespace Platform.Data.Doublets.Sequences
             private readonly HashSet<ulong> _usages;
             private readonly ulong _continue;
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public AllUsagesCollector1(ILinks<ulong> links, HashSet<ulong> usages)
             {
                 _links = links;
@@ -1134,6 +1184,7 @@ namespace Platform.Data.Doublets.Sequences
                 _continue = _links.Constants.Continue;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public ulong Collect(IList<ulong> link)
             {
                 var linkIndex = _links.GetIndex(link);
@@ -1150,12 +1201,14 @@ namespace Platform.Data.Doublets.Sequences
             private readonly ILinks<ulong> _links;
             private readonly BitString _usages;
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public AllUsagesCollector2(ILinks<ulong> links, BitString usages)
             {
                 _links = links;
                 _usages = usages;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public bool Collect(ulong link)
             {
                 if (_usages.Add((long)link))
@@ -1174,6 +1227,7 @@ namespace Platform.Data.Doublets.Sequences
             private readonly HashSet<ulong> _usages;
             private readonly HashSet<ulong> _enter;
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public AllUsagesIntersectingCollector(SynchronizedLinks<ulong> links, HashSet<ulong> intersectWith, HashSet<ulong> usages)
             {
                 _links = links;
@@ -1182,6 +1236,7 @@ namespace Platform.Data.Doublets.Sequences
                 _enter = new HashSet<ulong>(); // защита от зацикливания
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public bool Collect(ulong link)
             {
                 if (_enter.Add(link))
@@ -1197,12 +1252,14 @@ namespace Platform.Data.Doublets.Sequences
             }
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void CloseInnerConnections(Action<IList<LinkIndex>> handler, ulong left, ulong right)
         {
             TryStepLeftUp(handler, left, right);
             TryStepRightUp(handler, right, left);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void AllCloseConnections(Action<IList<LinkIndex>> handler, ulong left, ulong right)
         {
             // Direct
@@ -1224,6 +1281,7 @@ namespace Platform.Data.Doublets.Sequences
             PartialStepLeft(handler, left, right);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private HashSet<ulong> GetAllPartiallyMatchingSequencesCore(ulong[] sequence, HashSet<ulong> previousMatchings, long startAt)
         {
             if (startAt >= sequence.Length) // ?
@@ -1254,6 +1312,7 @@ namespace Platform.Data.Doublets.Sequences
             return GetAllPartiallyMatchingSequencesCore(sequence, matchings, startAt + 1); // ??
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static void EnsureEachLinkIsAnyOrZeroOrManyOrExists(SynchronizedLinks<ulong> links, params ulong[] sequence)
         {
             if (sequence == null)
@@ -1270,6 +1329,7 @@ namespace Platform.Data.Doublets.Sequences
         }
 
         // Pattern Matching -> Key To Triggers
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public HashSet<ulong> MatchPattern(params ulong[] patternSequence)
         {
             return _sync.ExecuteReadOperation(() =>
@@ -1303,6 +1363,7 @@ namespace Platform.Data.Doublets.Sequences
         // Найти все возможные связи между указанным списком связей.
         // Находит связи между всеми указанными связями в любом порядке.
         // TODO: решить что делать с повторами (когда одни и те же элементы встречаются несколько раз в последовательности)
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public HashSet<ulong> GetAllConnections(params ulong[] linksToConnect)
         {
             return _sync.ExecuteReadOperation(() =>
@@ -1323,6 +1384,7 @@ namespace Platform.Data.Doublets.Sequences
             });
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public HashSet<ulong> GetAllConnections1(params ulong[] linksToConnect)
         {
             return _sync.ExecuteReadOperation(() =>
@@ -1346,6 +1408,7 @@ namespace Platform.Data.Doublets.Sequences
             });
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public HashSet<ulong> GetAllConnections2(params ulong[] linksToConnect)
         {
             return _sync.ExecuteReadOperation(() =>
@@ -1371,6 +1434,7 @@ namespace Platform.Data.Doublets.Sequences
             });
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public List<ulong> GetAllConnections3(params ulong[] linksToConnect)
         {
             return _sync.ExecuteReadOperation(() =>
@@ -1393,6 +1457,7 @@ namespace Platform.Data.Doublets.Sequences
             });
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static ulong[] Simplify(ulong[] sequence)
         {
             // Считаем новый размер последовательности
@@ -1447,14 +1512,17 @@ namespace Platform.Data.Doublets.Sequences
             return newSequence;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void TestSimplify()
         {
             var sequence = new ulong[] { ZeroOrMany, ZeroOrMany, 2, 3, 4, ZeroOrMany, ZeroOrMany, ZeroOrMany, 4, ZeroOrMany, ZeroOrMany, ZeroOrMany };
             var simplifiedSequence = Simplify(sequence);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public List<ulong> GetSimilarSequences() => new List<ulong>();
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Prediction()
         {
             //_links
@@ -1467,6 +1535,7 @@ namespace Platform.Data.Doublets.Sequences
         //{
         //}
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public List<ulong> CollectMatchingSequences(ulong[] links)
         {
             if (links.Length == 1)
@@ -1482,6 +1551,7 @@ namespace Platform.Data.Doublets.Sequences
             return results;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void CollectMatchingSequences(ulong leftLink, int leftBound, ulong[] middleLinks, ulong rightLink, int rightBound, ref List<ulong> results)
         {
             var leftLinkTotalReferers = Links.Unsync.Count(leftLink);
@@ -1542,6 +1612,7 @@ namespace Platform.Data.Doublets.Sequences
             }
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ulong[] GetRightElements(ulong startLink, ulong rightLink)
         {
             var result = new ulong[5];
@@ -1564,6 +1635,7 @@ namespace Platform.Data.Doublets.Sequences
             return result;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool TryStepRight(ulong startLink, ulong rightLink, ulong[] result, int offset)
         {
             var added = 0;
@@ -1594,6 +1666,7 @@ namespace Platform.Data.Doublets.Sequences
             return added > 0;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ulong[] GetLeftElements(ulong startLink, ulong leftLink)
         {
             var result = new ulong[5];
@@ -1616,6 +1689,7 @@ namespace Platform.Data.Doublets.Sequences
             return result;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool TryStepLeft(ulong startLink, ulong leftLink, ulong[] result, int offset)
         {
             var added = 0;
@@ -1679,6 +1753,7 @@ namespace Platform.Data.Doublets.Sequences
 
             #endregion
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public PatternMatcher(Sequences sequences, LinkIndex[] patternSequence, HashSet<LinkIndex> results)
                 : base(sequences.Links.Unsync, new DefaultStack<ulong>())
             {
@@ -1689,8 +1764,10 @@ namespace Platform.Data.Doublets.Sequences
                 _pattern = CreateDetailedPattern();
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             protected override bool IsElement(ulong link) => _linksInSequence.Contains(link) || base.IsElement(link);
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public bool PatternMatch(LinkIndex sequenceToMatch)
             {
                 _patternPosition = 0;
@@ -1705,6 +1782,7 @@ namespace Platform.Data.Doublets.Sequences
                 return _patternPosition == _pattern.Count || (_patternPosition == _pattern.Count - 1 && _pattern[_patternPosition].Start == 0);
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             private List<PatternBlock> CreateDetailedPattern()
             {
                 var pattern = new List<PatternBlock>();
@@ -1845,6 +1923,7 @@ namespace Platform.Data.Doublets.Sequences
             //        maximumGap = mininumGap;
             //}
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             private bool PatternMatchCore(LinkIndex element)
             {
                 if (_patternPosition >= _pattern.Count)
@@ -1944,6 +2023,7 @@ namespace Platform.Data.Doublets.Sequences
                 //}
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public void AddAllPatternMatchedToResults(IEnumerable<ulong> sequencesToMatch)
             {
                 foreach (var sequenceToMatch in sequencesToMatch)

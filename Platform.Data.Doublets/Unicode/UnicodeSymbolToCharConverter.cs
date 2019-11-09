@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using Platform.Interfaces;
 using Platform.Converters;
 
@@ -13,12 +14,14 @@ namespace Platform.Data.Doublets.Unicode
         private readonly IConverter<TLink> _numberToAddressConverter;
         private readonly ICriterionMatcher<TLink> _unicodeSymbolCriterionMatcher;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public UnicodeSymbolToCharConverter(ILinks<TLink> links, IConverter<TLink> numberToAddressConverter, ICriterionMatcher<TLink> unicodeSymbolCriterionMatcher) : base(links)
         {
             _numberToAddressConverter = numberToAddressConverter;
             _unicodeSymbolCriterionMatcher = unicodeSymbolCriterionMatcher;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public char Convert(TLink source)
         {
             if (!_unicodeSymbolCriterionMatcher.IsMatched(source))

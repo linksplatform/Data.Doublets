@@ -130,9 +130,17 @@ namespace Platform.Data.Doublets
 
         #region IList
 
-        public int Count => Length;
+        public int Count
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get => Length;
+        }
 
-        public bool IsReadOnly => true;
+        public bool IsReadOnly
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get => true;
+        }
 
         public TLink this[int index]
         {

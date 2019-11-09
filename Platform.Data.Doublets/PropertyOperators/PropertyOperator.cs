@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Platform.Interfaces;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -12,20 +13,21 @@ namespace Platform.Data.Doublets.PropertyOperators
         private readonly TLink _propertyMarker;
         private readonly TLink _propertyValueMarker;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public PropertyOperator(ILinks<TLink> links, TLink propertyMarker, TLink propertyValueMarker) : base(links)
         {
             _propertyMarker = propertyMarker;
             _propertyValueMarker = propertyValueMarker;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public TLink Get(TLink link)
         {
             var property = Links.SearchOrDefault(link, _propertyMarker);
-            var container = GetContainer(property);
-            var value = GetValue(container);
-            return value;
+            return GetValue(GetContainer(property));
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private TLink GetContainer(TLink property)
         {
             var valueContainer = default(TLink);
@@ -33,18 +35,19 @@ namespace Platform.Data.Doublets.PropertyOperators
             {
                 return valueContainer;
             }
-            var constants = Links.Constants;
+            var links = Links;
+            var constants = links.Constants;
             var countinueConstant = constants.Continue;
             var breakConstant = constants.Break;
             var anyConstant = constants.Any;
             var query = new Link<TLink>(anyConstant, property, anyConstant);
-            Links.Each(candidate =>
+            links.Each(candidate =>
             {
-                var candidateTarget = Links.GetTarget(candidate);
-                var valueTarget = Links.GetTarget(candidateTarget);
+                var candidateTarget = links.GetTarget(candidate);
+                var valueTarget = links.GetTarget(candidateTarget);
                 if (_equalityComparer.Equals(valueTarget, _propertyValueMarker))
                 {
-                    valueContainer = Links.GetIndex(candidate);
+                    valueContainer = links.GetIndex(candidate);
                     return breakConstant;
                 }
                 return countinueConstant;
@@ -52,19 +55,22 @@ namespace Platform.Data.Doublets.PropertyOperators
             return valueContainer;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private TLink GetValue(TLink container) => _equalityComparer.Equals(container, default) ? default : Links.GetTarget(container);
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Set(TLink link, TLink value)
         {
-            var property = Links.GetOrCreate(link, _propertyMarker);
+            var links = Links;
+            var property = links.GetOrCreate(link, _propertyMarker);
             var container = GetContainer(property);
             if (_equalityComparer.Equals(container, default))
             {
-                Links.GetOrCreate(property, value);
+                links.GetOrCreate(property, value);
             }
             else
             {
-                Links.Update(container, property, value);
+                links.Update(container, property, value);
             }
         }
     }

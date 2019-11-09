@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Platform.Converters;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -13,9 +14,11 @@ namespace Platform.Data.Doublets.Sequences.Converters
 
         private readonly IConverter<IList<TLink>> _sequenceToItsLocalElementLevelsConverter;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public OptimalVariantConverter(ILinks<TLink> links, IConverter<IList<TLink>> sequenceToItsLocalElementLevelsConverter) : base(links)
             => _sequenceToItsLocalElementLevelsConverter = sequenceToItsLocalElementLevelsConverter;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override TLink Convert(IList<TLink> sequence)
         {
             var length = sequence.Count;
@@ -92,6 +95,7 @@ namespace Platform.Data.Doublets.Sequences.Converters
             return links.GetOrCreate(sequence[0], sequence[1]);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static TLink GetGreatestNeigbourLowerThanCurrentOrCurrent(TLink previous, TLink current, TLink next)
         {
             return _comparer.Compare(previous, next) > 0
@@ -99,8 +103,10 @@ namespace Platform.Data.Doublets.Sequences.Converters
                 : _comparer.Compare(next, current) < 0 ? next : current;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static TLink GetNextLowerThanCurrentOrCurrent(TLink current, TLink next) => _comparer.Compare(next, current) < 0 ? next : current;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static TLink GetPreviousLowerThanCurrentOrCurrent(TLink previous, TLink current) => _comparer.Compare(previous, current) < 0 ? previous : current;
     }
 }

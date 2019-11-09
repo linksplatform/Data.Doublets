@@ -10,11 +10,17 @@ namespace Platform.Data.Doublets.Decorators
     {
         private ILinks<TLink> _facade;
 
-        public LinksConstants<TLink> Constants { get; }
+        public LinksConstants<TLink> Constants
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get;
+        }
 
         public ILinks<TLink> Facade
         {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get => _facade;
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             set
             {
                 _facade = value;

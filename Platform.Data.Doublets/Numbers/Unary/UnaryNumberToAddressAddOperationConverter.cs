@@ -15,32 +15,18 @@ namespace Platform.Data.Doublets.Numbers.Unary
         private static readonly TLink _zero = default;
         private static readonly TLink _one = Arithmetic.Increment(_zero);
 
-        private Dictionary<TLink, TLink> _unaryToUInt64;
+        private readonly Dictionary<TLink, TLink> _unaryToUInt64;
         private readonly TLink _unaryOne;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public UnaryNumberToAddressAddOperationConverter(ILinks<TLink> links, TLink unaryOne)
             : base(links)
         {
             _unaryOne = unaryOne;
-            InitUnaryToUInt64();
+            _unaryToUInt64 = CreateUnaryToUInt64Dictionary(links, unaryOne);
         }
 
-        private void InitUnaryToUInt64()
-        {
-            _unaryToUInt64 = new Dictionary<TLink, TLink>
-            {
-                { _unaryOne, _one }
-            };
-            var unary = _unaryOne;
-            var number = _one;
-            for (var i = 1; i < 64; i++)
-            {
-                unary = Links.GetOrCreate(unary, unary);
-                number = Double(number);
-                _unaryToUInt64.Add(unary, number);
-            }
-        }
-
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public TLink Convert(TLink unaryNumber)
         {
             if (_equalityComparer.Equals(unaryNumber, default))
@@ -70,6 +56,24 @@ namespace Platform.Data.Doublets.Numbers.Unary
                 result = Arithmetic<TLink>.Add(result, lastValue);
                 return result;
             }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static Dictionary<TLink, TLink> CreateUnaryToUInt64Dictionary(ILinks<TLink> links, TLink unaryOne)
+        {
+            var unaryToUInt64 = new Dictionary<TLink, TLink>
+            {
+                { unaryOne, _one }
+            };
+            var unary = unaryOne;
+            var number = _one;
+            for (var i = 1; i < 64; i++)
+            {
+                unary = links.GetOrCreate(unary, unary);
+                number = Double(number);
+                unaryToUInt64.Add(unary, number);
+            }
+            return unaryToUInt64;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Platform.Converters;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -11,8 +12,10 @@ namespace Platform.Data.Doublets.Sequences.Converters
 
         private readonly IConverter<Doublet<TLink>, TLink> _linkToItsFrequencyToNumberConveter;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public SequenceToItsLocalElementLevelsConverter(ILinks<TLink> links, IConverter<Doublet<TLink>, TLink> linkToItsFrequencyToNumberConveter) : base(links) => _linkToItsFrequencyToNumberConveter = linkToItsFrequencyToNumberConveter;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IList<TLink> Convert(IList<TLink> sequence)
         {
             var levels = new TLink[sequence.Count];
@@ -27,6 +30,7 @@ namespace Platform.Data.Doublets.Sequences.Converters
             return levels;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public TLink GetFrequencyNumber(TLink source, TLink target) => _linkToItsFrequencyToNumberConveter.Convert(new Doublet<TLink>(source, target));
     }
 }

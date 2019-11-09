@@ -16,19 +16,14 @@ namespace Platform.Data.Doublets.Numbers.Unary
 
         private readonly IDictionary<TLink, int> _unaryNumberPowerOf2Indicies;
 
-        public UnaryNumberToAddressOrOperationConverter(ILinks<TLink> links, IConverter<int, TLink> powerOf2ToUnaryNumberConverter)
-            : base(links)
-        {
-            _unaryNumberPowerOf2Indicies = new Dictionary<TLink, int>();
-            for (int i = 0; i < NumericType<TLink>.BitsSize; i++)
-            {
-                _unaryNumberPowerOf2Indicies.Add(powerOf2ToUnaryNumberConverter.Convert(i), i);
-            }
-        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public UnaryNumberToAddressOrOperationConverter(ILinks<TLink> links, IConverter<int, TLink> powerOf2ToUnaryNumberConverter) : base(links) => _unaryNumberPowerOf2Indicies = CreateUnaryNumberPowerOf2IndiciesDictionary(powerOf2ToUnaryNumberConverter);
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public TLink Convert(TLink sourceNumber)
         {
-            var nullConstant = Links.Constants.Null;
+            var links = Links;
+            var nullConstant = links.Constants.Null;
             var source = sourceNumber;
             var target = nullConstant;
             if (!_equalityComparer.Equals(source, nullConstant))
@@ -42,13 +37,24 @@ namespace Platform.Data.Doublets.Numbers.Unary
                     }
                     else
                     {
-                        powerOf2Index = _unaryNumberPowerOf2Indicies[Links.GetSource(source)];
+                        powerOf2Index = _unaryNumberPowerOf2Indicies[links.GetSource(source)];
                         SetBit(ref target, powerOf2Index);
-                        source = Links.GetTarget(source);
+                        source = links.GetTarget(source);
                     }
                 }
             }
             return target;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static Dictionary<TLink, int> CreateUnaryNumberPowerOf2IndiciesDictionary(IConverter<int, TLink> powerOf2ToUnaryNumberConverter)
+        {
+            var unaryNumberPowerOf2Indicies = new Dictionary<TLink, int>();
+            for (int i = 0; i < NumericType<TLink>.BitsSize; i++)
+            {
+                unaryNumberPowerOf2Indicies.Add(powerOf2ToUnaryNumberConverter.Convert(i), i);
+            }
+            return unaryNumberPowerOf2Indicies;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -2,6 +2,7 @@
 using Platform.Reflection;
 using Platform.Converters;
 using Platform.Numbers;
+using System.Runtime.CompilerServices;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -15,8 +16,10 @@ namespace Platform.Data.Doublets.Numbers.Unary
 
         private readonly IConverter<int, TLink> _powerOf2ToUnaryNumberConverter;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public AddressToUnaryNumberConverter(ILinks<TLink> links, IConverter<int, TLink> powerOf2ToUnaryNumberConverter) : base(links) => _powerOf2ToUnaryNumberConverter = powerOf2ToUnaryNumberConverter;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public TLink Convert(TLink number)
         {
             var nullConstant = Links.Constants.Null;

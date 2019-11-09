@@ -23,6 +23,7 @@ namespace Platform.Data.Doublets.Sequences.Frequencies.Cache
         private readonly Dictionary<Doublet<TLink>, LinkFrequency<TLink>> _doubletsCache;
         private readonly ICounter<TLink, TLink> _frequencyCounter;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public LinkFrequenciesCache(ILinks<TLink> links, ICounter<TLink, TLink> frequencyCounter)
             : base(links)
         {
@@ -44,6 +45,7 @@ namespace Platform.Data.Doublets.Sequences.Frequencies.Cache
             return data;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void IncrementFrequencies(IList<TLink> sequence)
         {
             for (var i = 1; i < sequence.Count; i++)
@@ -59,6 +61,7 @@ namespace Platform.Data.Doublets.Sequences.Frequencies.Cache
             return IncrementFrequency(ref doublet);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void PrintFrequencies(IList<TLink> sequence)
         {
             for (var i = 1; i < sequence.Count; i++)
@@ -67,6 +70,7 @@ namespace Platform.Data.Doublets.Sequences.Frequencies.Cache
             }
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void PrintFrequency(TLink source, TLink target)
         {
             var number = GetFrequency(source, target).Frequency;
@@ -93,6 +97,7 @@ namespace Platform.Data.Doublets.Sequences.Frequencies.Cache
             return data;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void ValidateFrequencies()
         {
             foreach (var entry in _doubletsCache)

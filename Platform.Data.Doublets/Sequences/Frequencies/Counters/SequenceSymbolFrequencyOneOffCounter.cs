@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Platform.Interfaces;
 using Platform.Numbers;
 using Platform.Data.Sequences;
@@ -17,6 +18,7 @@ namespace Platform.Data.Doublets.Sequences.Frequencies.Counters
         protected readonly TLink _symbol;
         protected TLink _total;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public SequenceSymbolFrequencyOneOffCounter(ILinks<TLink> links, TLink sequenceLink, TLink symbol)
         {
             _links = links;
@@ -25,6 +27,7 @@ namespace Platform.Data.Doublets.Sequences.Frequencies.Counters
             _total = default;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public virtual TLink Count()
         {
             if (_comparer.Compare(_total, default) > 0)
@@ -35,8 +38,10 @@ namespace Platform.Data.Doublets.Sequences.Frequencies.Counters
             return _total;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private bool IsElement(TLink x) => _equalityComparer.Equals(x, _symbol) || _links.IsPartialPoint(x); // TODO: Use SequenceElementCreteriaMatcher instead of IsPartialPoint
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private bool VisitElement(TLink element)
         {
             if (_equalityComparer.Equals(element, _symbol))

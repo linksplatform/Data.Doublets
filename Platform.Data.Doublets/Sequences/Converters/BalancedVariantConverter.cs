@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -6,8 +7,10 @@ namespace Platform.Data.Doublets.Sequences.Converters
 {
     public class BalancedVariantConverter<TLink> : LinksListToSequenceConverterBase<TLink>
     {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public BalancedVariantConverter(ILinks<TLink> links) : base(links) { }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override TLink Convert(IList<TLink> sequence)
         {
             var length = sequence.Count;
@@ -37,6 +40,7 @@ namespace Platform.Data.Doublets.Sequences.Converters
             return Links.GetOrCreate(sequence[0], sequence[1]);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void HalveSequence(IList<TLink> destination, IList<TLink> source, int length)
         {
             var loopedLength = length - (length % 2);

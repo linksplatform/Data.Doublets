@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Platform.Interfaces;
 using Platform.Converters;
+using System.Runtime.CompilerServices;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -14,6 +15,7 @@ namespace Platform.Data.Doublets.Numbers.Unary
         private readonly IProperty<TLink, TLink> _frequencyPropertyOperator;
         private readonly IConverter<TLink> _unaryNumberToAddressConverter;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public LinkToItsFrequencyNumberConveter(
             ILinks<TLink> links,
             IProperty<TLink, TLink> frequencyPropertyOperator,
@@ -24,6 +26,7 @@ namespace Platform.Data.Doublets.Numbers.Unary
             _unaryNumberToAddressConverter = unaryNumberToAddressConverter;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public TLink Convert(Doublet<TLink> doublet)
         {
             var link = Links.SearchOrDefault(doublet.Source, doublet.Target);

@@ -1,6 +1,7 @@
 ﻿using Platform.Unsafe;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -21,8 +22,10 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         public TLink RightAsTarget;
         public TLink SizeAsTarget;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object obj) => obj is RawLink<TLink> link ? Equals(link) : false;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Equals(RawLink<TLink> other)
             => _equalityComparer.Equals(Source, other.Source)
             && _equalityComparer.Equals(Target, other.Target)
@@ -33,10 +36,13 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
             && _equalityComparer.Equals(RightAsTarget, other.RightAsTarget)
             && _equalityComparer.Equals(SizeAsTarget, other.SizeAsTarget);
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override int GetHashCode() => (Source, Target, LeftAsSource, RightAsSource, SizeAsSource, LeftAsTarget, RightAsTarget, SizeAsTarget).GetHashCode();
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(RawLink<TLink> left, RawLink<TLink> right) => left.Equals(right);
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(RawLink<TLink> left, RawLink<TLink> right) => !(left == right);
     }
 }

@@ -91,6 +91,7 @@ namespace Platform.Data.Doublets
             public readonly Link<ulong> After;
             public readonly Timestamp Timestamp;
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public Transition(UniqueTimestampFactory uniqueTimestampFactory, ulong transactionId, Link<ulong> before, Link<ulong> after)
             {
                 TransactionId = transactionId;
@@ -99,26 +100,28 @@ namespace Platform.Data.Doublets
                 Timestamp = uniqueTimestampFactory.Create();
             }
 
-            public Transition(UniqueTimestampFactory uniqueTimestampFactory, ulong transactionId, Link<ulong> before)
-                : this(uniqueTimestampFactory, transactionId, before, default)
-            {
-            }
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public Transition(UniqueTimestampFactory uniqueTimestampFactory, ulong transactionId, Link<ulong> before) : this(uniqueTimestampFactory, transactionId, before, default) { }
 
-            public Transition(UniqueTimestampFactory uniqueTimestampFactory, ulong transactionId)
-                : this(uniqueTimestampFactory, transactionId, default, default)
-            {
-            }
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public Transition(UniqueTimestampFactory uniqueTimestampFactory, ulong transactionId) : this(uniqueTimestampFactory, transactionId, default, default) { }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public override string ToString() => $"{Timestamp} {TransactionId}: {Before} => {After}";
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public override bool Equals(object obj) => obj is Transition transition ? Equals(transition) : false;
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public override int GetHashCode() => (TransactionId, Before, After, Timestamp).GetHashCode();
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public bool Equals(Transition other) => TransactionId == other.TransactionId && Before == other.Before && After == other.After && Timestamp == other.Timestamp;
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static bool operator ==(Transition left, Transition right) => left.Equals(right);
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static bool operator !=(Transition left, Transition right) => !(left == right);
         }
 
@@ -158,6 +161,7 @@ namespace Platform.Data.Doublets
             public bool IsCommitted { get; private set; }
             public bool IsReverted { get; private set; }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public Transaction(UInt64LinksTransactionsLayer layer)
             {
                 _layer = layer;
@@ -171,6 +175,7 @@ namespace Platform.Data.Doublets
                 SetCurrentTransaction(layer, this);
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public void Commit()
             {
                 EnsureTransactionAllowsWriteOperations(this);
@@ -183,6 +188,7 @@ namespace Platform.Data.Doublets
                 IsCommitted = true;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             private void Revert()
             {
                 EnsureTransactionAllowsWriteOperations(this);
@@ -195,6 +201,7 @@ namespace Platform.Data.Doublets
                 IsReverted = true;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static void SetCurrentTransaction(UInt64LinksTransactionsLayer layer, Transaction transaction)
             {
                 layer._currentTransactionId = layer._lastCommitedTransactionId + 1;
@@ -202,6 +209,7 @@ namespace Platform.Data.Doublets
                 layer._currentTransaction = transaction;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static void EnsureTransactionAllowsWriteOperations(Transaction transaction)
             {
                 if (transaction.IsReverted)
@@ -214,6 +222,7 @@ namespace Platform.Data.Doublets
                 }
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             protected override void Dispose(bool manual, bool wasDisposed)
             {
                 if (!wasDisposed && _layer != null && !_layer.IsDisposed)
@@ -240,6 +249,7 @@ namespace Platform.Data.Doublets
         private Transaction _currentTransaction;
         private ulong _lastCommitedTransactionId;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public UInt64LinksTransactionsLayer(ILinks<ulong> links, string logAddress)
             : base(links)
         {
@@ -274,8 +284,10 @@ namespace Platform.Data.Doublets
             _transitionsPusher.Start();
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IList<ulong> GetLinkValue(ulong link) => Links.GetLink(link);
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override ulong Create(IList<ulong> restrictions)
         {
             var createdLinkIndex = Links.Create();
@@ -284,6 +296,7 @@ namespace Platform.Data.Doublets
             return createdLinkIndex;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override ulong Update(IList<ulong> restrictions, IList<ulong> substitution)
         {
             var linkIndex = restrictions[Constants.IndexPart];
@@ -294,6 +307,7 @@ namespace Platform.Data.Doublets
             return linkIndex;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override void Delete(IList<ulong> restrictions)
         {
             var link = restrictions[Constants.IndexPart];
@@ -305,6 +319,7 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private Queue<Transition> GetCurrentTransitions() => _currentTransactionTransitions ?? _transitions;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void CommitTransition(Transition transition)
         {
             if (_currentTransaction != null)
@@ -315,6 +330,7 @@ namespace Platform.Data.Doublets
             transitions.Enqueue(transition);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void RevertTransition(Transition transition)
         {
             if (transition.After.IsNull()) // Revert Deletion with Creation
@@ -331,6 +347,7 @@ namespace Platform.Data.Doublets
             }
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void ResetCurrentTransation()
         {
             _currentTransactionId = 0;
@@ -338,6 +355,7 @@ namespace Platform.Data.Doublets
             _currentTransaction = null;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void PushTransitions()
         {
             if (_log == null || _transitions == null)
@@ -353,6 +371,7 @@ namespace Platform.Data.Doublets
             }
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void TransitionsPusher()
         {
             while (!IsDisposed && _transitionsPusher != null)
@@ -362,8 +381,10 @@ namespace Platform.Data.Doublets
             }
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Transaction BeginTransaction() => new Transaction(this);
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void DisposeTransitions()
         {
             try
@@ -389,6 +410,7 @@ namespace Platform.Data.Doublets
 
         #region DisposalBase
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override void Dispose(bool manual, bool wasDisposed)
         {
             if (!wasDisposed)

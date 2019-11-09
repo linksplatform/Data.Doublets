@@ -37,6 +37,7 @@ namespace Platform.Data.Doublets.Sequences.Converters
             public TLink Element;
             public LinkFrequency<TLink> DoubletData;
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public HalfDoublet(TLink element, LinkFrequency<TLink> doubletData)
             {
                 Element = element;
@@ -46,16 +47,19 @@ namespace Platform.Data.Doublets.Sequences.Converters
             public override string ToString() => $"{Element}: ({DoubletData})";
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public CompressingConverter(ILinks<TLink> links, IConverter<IList<TLink>, TLink> baseConverter, LinkFrequenciesCache<TLink> doubletFrequenciesCache)
             : this(links, baseConverter, doubletFrequenciesCache, _one, true)
         {
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public CompressingConverter(ILinks<TLink> links, IConverter<IList<TLink>, TLink> baseConverter, LinkFrequenciesCache<TLink> doubletFrequenciesCache, bool doInitialFrequenciesIncrement)
             : this(links, baseConverter, doubletFrequenciesCache, _one, doInitialFrequenciesIncrement)
         {
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public CompressingConverter(ILinks<TLink> links, IConverter<IList<TLink>, TLink> baseConverter, LinkFrequenciesCache<TLink> doubletFrequenciesCache, TLink minFrequencyToCompress, bool doInitialFrequenciesIncrement)
             : base(links)
         {
@@ -70,12 +74,14 @@ namespace Platform.Data.Doublets.Sequences.Converters
             ResetMaxDoublet();
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override TLink Convert(IList<TLink> source) => _baseConverter.Convert(Compress(source));
 
         /// <remarks>
         /// Original algorithm idea: https://en.wikipedia.org/wiki/Byte_pair_encoding .
         /// Faster version (doublets' frequencies dictionary is not recreated).
         /// </remarks>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private IList<TLink> Compress(IList<TLink> sequence)
         {
             if (sequence.IsNullOrEmpty())
@@ -131,6 +137,7 @@ namespace Platform.Data.Doublets.Sequences.Converters
         /// <remarks>
         /// Original algorithm idea: https://en.wikipedia.org/wiki/Byte_pair_encoding
         /// </remarks>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private int ReplaceDoublets(HalfDoublet[] copy)
         {
             var oldLength = copy.Length;
