@@ -8129,19 +8129,6 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.Decrement
   nameWithType: UInt64ResizableDirectMemoryLinks.Decrement
-- uid: Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.GetEmptyList
-  name: GetEmptyList()
-  href: api/Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_Specific_UInt64ResizableDirectMemoryLinks_GetEmptyList
-  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.GetEmptyList
-  fullName: Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.GetEmptyList()
-  nameWithType: UInt64ResizableDirectMemoryLinks.GetEmptyList()
-- uid: Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.GetEmptyList*
-  name: GetEmptyList
-  href: api/Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_Specific_UInt64ResizableDirectMemoryLinks_GetEmptyList_
-  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.GetEmptyList
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.GetEmptyList
-  nameWithType: UInt64ResizableDirectMemoryLinks.GetEmptyList
 - uid: Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.GetHeaderReference
   name: GetHeaderReference()
   href: api/Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_Specific_UInt64ResizableDirectMemoryLinks_GetHeaderReference
