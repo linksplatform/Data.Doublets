@@ -1910,15 +1910,15 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.ILinksExtensions.RunRandomCreations
   nameWithType: ILinksExtensions.RunRandomCreations
-- uid: Platform.Data.Doublets.ILinksExtensions.RunRandomCreations``1(Platform.Data.Doublets.ILinks{``0},System.Int64)
-  name: RunRandomCreations<TLink>(ILinks<TLink>, Int64)
-  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_RunRandomCreations__1_Platform_Data_Doublets_ILinks___0__System_Int64_
-  commentId: M:Platform.Data.Doublets.ILinksExtensions.RunRandomCreations``1(Platform.Data.Doublets.ILinks{``0},System.Int64)
-  name.vb: RunRandomCreations(Of TLink)(ILinks(Of TLink), Int64)
-  fullName: Platform.Data.Doublets.ILinksExtensions.RunRandomCreations<TLink>(Platform.Data.Doublets.ILinks<TLink>, System.Int64)
-  fullName.vb: Platform.Data.Doublets.ILinksExtensions.RunRandomCreations(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), System.Int64)
-  nameWithType: ILinksExtensions.RunRandomCreations<TLink>(ILinks<TLink>, Int64)
-  nameWithType.vb: ILinksExtensions.RunRandomCreations(Of TLink)(ILinks(Of TLink), Int64)
+- uid: Platform.Data.Doublets.ILinksExtensions.RunRandomCreations``1(Platform.Data.Doublets.ILinks{``0},System.UInt64)
+  name: RunRandomCreations<TLink>(ILinks<TLink>, UInt64)
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_RunRandomCreations__1_Platform_Data_Doublets_ILinks___0__System_UInt64_
+  commentId: M:Platform.Data.Doublets.ILinksExtensions.RunRandomCreations``1(Platform.Data.Doublets.ILinks{``0},System.UInt64)
+  name.vb: RunRandomCreations(Of TLink)(ILinks(Of TLink), UInt64)
+  fullName: Platform.Data.Doublets.ILinksExtensions.RunRandomCreations<TLink>(Platform.Data.Doublets.ILinks<TLink>, System.UInt64)
+  fullName.vb: Platform.Data.Doublets.ILinksExtensions.RunRandomCreations(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), System.UInt64)
+  nameWithType: ILinksExtensions.RunRandomCreations<TLink>(ILinks<TLink>, UInt64)
+  nameWithType.vb: ILinksExtensions.RunRandomCreations(Of TLink)(ILinks(Of TLink), UInt64)
 - uid: Platform.Data.Doublets.ILinksExtensions.RunRandomDeletions*
   name: RunRandomDeletions
   href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_RunRandomDeletions_
@@ -1926,15 +1926,15 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.ILinksExtensions.RunRandomDeletions
   nameWithType: ILinksExtensions.RunRandomDeletions
-- uid: Platform.Data.Doublets.ILinksExtensions.RunRandomDeletions``1(Platform.Data.Doublets.ILinks{``0},System.Int64)
-  name: RunRandomDeletions<TLink>(ILinks<TLink>, Int64)
-  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_RunRandomDeletions__1_Platform_Data_Doublets_ILinks___0__System_Int64_
-  commentId: M:Platform.Data.Doublets.ILinksExtensions.RunRandomDeletions``1(Platform.Data.Doublets.ILinks{``0},System.Int64)
-  name.vb: RunRandomDeletions(Of TLink)(ILinks(Of TLink), Int64)
-  fullName: Platform.Data.Doublets.ILinksExtensions.RunRandomDeletions<TLink>(Platform.Data.Doublets.ILinks<TLink>, System.Int64)
-  fullName.vb: Platform.Data.Doublets.ILinksExtensions.RunRandomDeletions(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), System.Int64)
-  nameWithType: ILinksExtensions.RunRandomDeletions<TLink>(ILinks<TLink>, Int64)
-  nameWithType.vb: ILinksExtensions.RunRandomDeletions(Of TLink)(ILinks(Of TLink), Int64)
+- uid: Platform.Data.Doublets.ILinksExtensions.RunRandomDeletions``1(Platform.Data.Doublets.ILinks{``0},System.UInt64)
+  name: RunRandomDeletions<TLink>(ILinks<TLink>, UInt64)
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_RunRandomDeletions__1_Platform_Data_Doublets_ILinks___0__System_UInt64_
+  commentId: M:Platform.Data.Doublets.ILinksExtensions.RunRandomDeletions``1(Platform.Data.Doublets.ILinks{``0},System.UInt64)
+  name.vb: RunRandomDeletions(Of TLink)(ILinks(Of TLink), UInt64)
+  fullName: Platform.Data.Doublets.ILinksExtensions.RunRandomDeletions<TLink>(Platform.Data.Doublets.ILinks<TLink>, System.UInt64)
+  fullName.vb: Platform.Data.Doublets.ILinksExtensions.RunRandomDeletions(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), System.UInt64)
+  nameWithType: ILinksExtensions.RunRandomDeletions<TLink>(ILinks<TLink>, UInt64)
+  nameWithType.vb: ILinksExtensions.RunRandomDeletions(Of TLink)(ILinks(Of TLink), UInt64)
 - uid: Platform.Data.Doublets.ILinksExtensions.RunRandomSearches*
   name: RunRandomSearches
   href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_RunRandomSearches_
@@ -1942,15 +1942,15 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.ILinksExtensions.RunRandomSearches
   nameWithType: ILinksExtensions.RunRandomSearches
-- uid: Platform.Data.Doublets.ILinksExtensions.RunRandomSearches``1(Platform.Data.Doublets.ILinks{``0},System.Int64)
-  name: RunRandomSearches<TLink>(ILinks<TLink>, Int64)
-  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_RunRandomSearches__1_Platform_Data_Doublets_ILinks___0__System_Int64_
-  commentId: M:Platform.Data.Doublets.ILinksExtensions.RunRandomSearches``1(Platform.Data.Doublets.ILinks{``0},System.Int64)
-  name.vb: RunRandomSearches(Of TLink)(ILinks(Of TLink), Int64)
-  fullName: Platform.Data.Doublets.ILinksExtensions.RunRandomSearches<TLink>(Platform.Data.Doublets.ILinks<TLink>, System.Int64)
-  fullName.vb: Platform.Data.Doublets.ILinksExtensions.RunRandomSearches(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), System.Int64)
-  nameWithType: ILinksExtensions.RunRandomSearches<TLink>(ILinks<TLink>, Int64)
-  nameWithType.vb: ILinksExtensions.RunRandomSearches(Of TLink)(ILinks(Of TLink), Int64)
+- uid: Platform.Data.Doublets.ILinksExtensions.RunRandomSearches``1(Platform.Data.Doublets.ILinks{``0},System.UInt64)
+  name: RunRandomSearches<TLink>(ILinks<TLink>, UInt64)
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_RunRandomSearches__1_Platform_Data_Doublets_ILinks___0__System_UInt64_
+  commentId: M:Platform.Data.Doublets.ILinksExtensions.RunRandomSearches``1(Platform.Data.Doublets.ILinks{``0},System.UInt64)
+  name.vb: RunRandomSearches(Of TLink)(ILinks(Of TLink), UInt64)
+  fullName: Platform.Data.Doublets.ILinksExtensions.RunRandomSearches<TLink>(Platform.Data.Doublets.ILinks<TLink>, System.UInt64)
+  fullName.vb: Platform.Data.Doublets.ILinksExtensions.RunRandomSearches(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), System.UInt64)
+  nameWithType: ILinksExtensions.RunRandomSearches<TLink>(ILinks<TLink>, UInt64)
+  nameWithType.vb: ILinksExtensions.RunRandomSearches(Of TLink)(ILinks(Of TLink), UInt64)
 - uid: Platform.Data.Doublets.ILinksExtensions.SearchOrDefault*
   name: SearchOrDefault
   href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_SearchOrDefault_
@@ -5179,14 +5179,6 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase(Of TLink).AreEqual
   nameWithType: ResizableDirectMemoryLinksBase<TLink>.AreEqual
   nameWithType.vb: ResizableDirectMemoryLinksBase(Of TLink).AreEqual
-- uid: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase`1.Comparer
-  name: Comparer
-  href: api/Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_Generic_ResizableDirectMemoryLinksBase_1_Comparer
-  commentId: F:Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase`1.Comparer
-  fullName: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase<TLink>.Comparer
-  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase(Of TLink).Comparer
-  nameWithType: ResizableDirectMemoryLinksBase<TLink>.Comparer
-  nameWithType.vb: ResizableDirectMemoryLinksBase(Of TLink).Comparer
 - uid: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase`1.Constants
   name: Constants
   href: api/Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_Generic_ResizableDirectMemoryLinksBase_1_Constants
@@ -5221,23 +5213,23 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase(Of TLink).ConvertToAddress
   nameWithType: ResizableDirectMemoryLinksBase<TLink>.ConvertToAddress
   nameWithType.vb: ResizableDirectMemoryLinksBase(Of TLink).ConvertToAddress
-- uid: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase`1.ConvertToUInt64(`0)
-  name: ConvertToUInt64(TLink)
-  href: api/Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_Generic_ResizableDirectMemoryLinksBase_1_ConvertToUInt64__0_
-  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase`1.ConvertToUInt64(`0)
-  fullName: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase<TLink>.ConvertToUInt64(TLink)
-  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase(Of TLink).ConvertToUInt64(TLink)
-  nameWithType: ResizableDirectMemoryLinksBase<TLink>.ConvertToUInt64(TLink)
-  nameWithType.vb: ResizableDirectMemoryLinksBase(Of TLink).ConvertToUInt64(TLink)
-- uid: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase`1.ConvertToUInt64*
-  name: ConvertToUInt64
-  href: api/Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_Generic_ResizableDirectMemoryLinksBase_1_ConvertToUInt64_
-  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase`1.ConvertToUInt64
+- uid: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase`1.ConvertToInt64(`0)
+  name: ConvertToInt64(TLink)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_Generic_ResizableDirectMemoryLinksBase_1_ConvertToInt64__0_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase`1.ConvertToInt64(`0)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase<TLink>.ConvertToInt64(TLink)
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase(Of TLink).ConvertToInt64(TLink)
+  nameWithType: ResizableDirectMemoryLinksBase<TLink>.ConvertToInt64(TLink)
+  nameWithType.vb: ResizableDirectMemoryLinksBase(Of TLink).ConvertToInt64(TLink)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase`1.ConvertToInt64*
+  name: ConvertToInt64
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_Generic_ResizableDirectMemoryLinksBase_1_ConvertToInt64_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase`1.ConvertToInt64
   isSpec: "True"
-  fullName: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase<TLink>.ConvertToUInt64
-  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase(Of TLink).ConvertToUInt64
-  nameWithType: ResizableDirectMemoryLinksBase<TLink>.ConvertToUInt64
-  nameWithType.vb: ResizableDirectMemoryLinksBase(Of TLink).ConvertToUInt64
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase<TLink>.ConvertToInt64
+  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase(Of TLink).ConvertToInt64
+  nameWithType: ResizableDirectMemoryLinksBase<TLink>.ConvertToInt64
+  nameWithType.vb: ResizableDirectMemoryLinksBase(Of TLink).ConvertToInt64
 - uid: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase`1.Count(System.Collections.Generic.IList{`0})
   name: Count(IList<TLink>)
   href: api/Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_Generic_ResizableDirectMemoryLinksBase_1_Count_System_Collections_Generic_IList__0__
@@ -5352,14 +5344,6 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase(Of TLink).Each
   nameWithType: ResizableDirectMemoryLinksBase<TLink>.Each
   nameWithType.vb: ResizableDirectMemoryLinksBase(Of TLink).Each
-- uid: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase`1.EqualityComparer
-  name: EqualityComparer
-  href: api/Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_Generic_ResizableDirectMemoryLinksBase_1_EqualityComparer
-  commentId: F:Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase`1.EqualityComparer
-  fullName: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase<TLink>.EqualityComparer
-  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase(Of TLink).EqualityComparer
-  nameWithType: ResizableDirectMemoryLinksBase<TLink>.EqualityComparer
-  nameWithType.vb: ResizableDirectMemoryLinksBase(Of TLink).EqualityComparer
 - uid: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase`1.Exists(`0)
   name: Exists(TLink)
   href: api/Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_Generic_ResizableDirectMemoryLinksBase_1_Exists__0_
@@ -8103,19 +8087,19 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.ConvertToAddress
   nameWithType: UInt64ResizableDirectMemoryLinks.ConvertToAddress
-- uid: Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.ConvertToUInt64(System.UInt64)
-  name: ConvertToUInt64(UInt64)
-  href: api/Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_Specific_UInt64ResizableDirectMemoryLinks_ConvertToUInt64_System_UInt64_
-  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.ConvertToUInt64(System.UInt64)
-  fullName: Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.ConvertToUInt64(System.UInt64)
-  nameWithType: UInt64ResizableDirectMemoryLinks.ConvertToUInt64(UInt64)
-- uid: Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.ConvertToUInt64*
-  name: ConvertToUInt64
-  href: api/Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_Specific_UInt64ResizableDirectMemoryLinks_ConvertToUInt64_
-  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.ConvertToUInt64
+- uid: Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.ConvertToInt64(System.UInt64)
+  name: ConvertToInt64(UInt64)
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_Specific_UInt64ResizableDirectMemoryLinks_ConvertToInt64_System_UInt64_
+  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.ConvertToInt64(System.UInt64)
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.ConvertToInt64(System.UInt64)
+  nameWithType: UInt64ResizableDirectMemoryLinks.ConvertToInt64(UInt64)
+- uid: Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.ConvertToInt64*
+  name: ConvertToInt64
+  href: api/Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_Specific_UInt64ResizableDirectMemoryLinks_ConvertToInt64_
+  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.ConvertToInt64
   isSpec: "True"
-  fullName: Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.ConvertToUInt64
-  nameWithType: UInt64ResizableDirectMemoryLinks.ConvertToUInt64
+  fullName: Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.ConvertToInt64
+  nameWithType: UInt64ResizableDirectMemoryLinks.ConvertToInt64
 - uid: Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.Decrement(System.UInt64)
   name: Decrement(UInt64)
   href: api/Platform.Data.Doublets.ResizableDirectMemory.Specific.UInt64ResizableDirectMemoryLinks.html#Platform_Data_Doublets_ResizableDirectMemory_Specific_UInt64ResizableDirectMemoryLinks_Decrement_System_UInt64_
