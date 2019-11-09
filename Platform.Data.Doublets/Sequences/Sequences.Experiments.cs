@@ -30,7 +30,7 @@ namespace Platform.Data.Doublets.Sequences
             {
                 if (sequence.IsNullOrEmpty())
                 {
-                    return new ulong[0];
+                    return Array.Empty<ulong>();
                 }
                 Links.EnsureLinkExists(sequence);
                 if (sequence.Length == 1)

@@ -111,8 +111,5 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Specific
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override ulong Decrement(ulong link) => --link;
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override IList<ulong> GetEmptyList() => new ulong[0];
     }
 }
