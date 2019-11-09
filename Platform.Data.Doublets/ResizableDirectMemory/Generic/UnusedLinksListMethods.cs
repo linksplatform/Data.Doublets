@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using Platform.Collections.Methods.Lists;
-using Platform.Numbers;
+using Platform.Converters;
 using static System.Runtime.CompilerServices.Unsafe;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -9,6 +9,8 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
 {
     public unsafe class UnusedLinksListMethods<TLink> : CircularDoublyLinkedListMethods<TLink>, ILinksListMethods<TLink>
     {
+        private static readonly UncheckedConverter<TLink, long> _addressToInt64Converter = UncheckedConverter<TLink, long>.Default;
+
         private readonly byte* _links;
         private readonly byte* _header;
 
@@ -23,7 +25,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
         protected virtual ref LinksHeader<TLink> GetHeaderReference() => ref AsRef<LinksHeader<TLink>>(_header);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual ref RawLink<TLink> GetLinkReference(TLink link) => ref AsRef<RawLink<TLink>>(_links + (RawLink<TLink>.SizeInBytes * (Integer<TLink>)link));
+        protected virtual ref RawLink<TLink> GetLinkReference(TLink link) => ref AsRef<RawLink<TLink>>(_links + (RawLink<TLink>.SizeInBytes * _addressToInt64Converter.Convert(link)));
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override TLink GetFirst() => GetHeaderReference().FirstFreeLink;

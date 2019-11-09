@@ -5,9 +5,10 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using Platform.Ranges;
 using Platform.Collections.Arrays;
-using Platform.Numbers;
 using Platform.Random;
 using Platform.Setters;
+using Platform.Converters;
+using Platform.Numbers;
 using Platform.Data.Exceptions;
 using Platform.Data.Doublets.Decorators;
 
@@ -17,40 +18,51 @@ namespace Platform.Data.Doublets
 {
     public static class ILinksExtensions
     {
-        public static void RunRandomCreations<TLink>(this ILinks<TLink> links, long amountOfCreations)
+        public static void RunRandomCreations<TLink>(this ILinks<TLink> links, ulong amountOfCreations)
         {
-            for (long i = 0; i < amountOfCreations; i++)
+            var random = RandomHelpers.Default;
+            var addressToUInt64Converter = UncheckedConverter<TLink, ulong>.Default;
+            var uInt64ToAddressConverter = UncheckedConverter<ulong, TLink>.Default;
+            for (var i = 0UL; i < amountOfCreations; i++)
             {
-                var linksAddressRange = new Range<ulong>(0, (Integer<TLink>)links.Count());
-                Integer<TLink> source = RandomHelpers.Default.NextUInt64(linksAddressRange);
-                Integer<TLink> target = RandomHelpers.Default.NextUInt64(linksAddressRange);
+                var linksAddressRange = new Range<ulong>(0, addressToUInt64Converter.Convert(links.Count()));
+                var source = uInt64ToAddressConverter.Convert(random.NextUInt64(linksAddressRange));
+                var target = uInt64ToAddressConverter.Convert(random.NextUInt64(linksAddressRange));
                 links.GetOrCreate(source, target);
             }
         }
 
-        public static void RunRandomSearches<TLink>(this ILinks<TLink> links, long amountOfSearches)
+        public static void RunRandomSearches<TLink>(this ILinks<TLink> links, ulong amountOfSearches)
         {
-            for (long i = 0; i < amountOfSearches; i++)
+            var random = RandomHelpers.Default;
+            var addressToUInt64Converter = UncheckedConverter<TLink, ulong>.Default;
+            var uInt64ToAddressConverter = UncheckedConverter<ulong, TLink>.Default;
+            for (var i = 0UL; i < amountOfSearches; i++)
             {
-                var linkAddressRange = new Range<ulong>(1, (Integer<TLink>)links.Count());
-                Integer<TLink> source = RandomHelpers.Default.NextUInt64(linkAddressRange);
-                Integer<TLink> target = RandomHelpers.Default.NextUInt64(linkAddressRange);
+                var linksAddressRange = new Range<ulong>(0, addressToUInt64Converter.Convert(links.Count()));
+                var source = uInt64ToAddressConverter.Convert(random.NextUInt64(linksAddressRange));
+                var target = uInt64ToAddressConverter.Convert(random.NextUInt64(linksAddressRange));
                 links.SearchOrDefault(source, target);
             }
         }
 
-        public static void RunRandomDeletions<TLink>(this ILinks<TLink> links, long amountOfDeletions)
+        public static void RunRandomDeletions<TLink>(this ILinks<TLink> links, ulong amountOfDeletions)
         {
-            var min = (ulong)amountOfDeletions > (Integer<TLink>)links.Count() ? 1 : (Integer<TLink>)links.Count() - (ulong)amountOfDeletions;
-            for (long i = 0; i < amountOfDeletions; i++)
+            var random = RandomHelpers.Default;
+            var addressToUInt64Converter = UncheckedConverter<TLink, ulong>.Default;
+            var uInt64ToAddressConverter = UncheckedConverter<ulong, TLink>.Default;
+            var linksCount = addressToUInt64Converter.Convert(links.Count());
+            var min = amountOfDeletions > linksCount ? 0UL : linksCount - amountOfDeletions;
+            for (var i = 0UL; i < amountOfDeletions; i++)
             {
-                var linksAddressRange = new Range<ulong>(min, (Integer<TLink>)links.Count());
-                Integer<TLink> link = RandomHelpers.Default.NextUInt64(linksAddressRange);
-                links.Delete(link);
-                if ((Integer<TLink>)links.Count() < min)
+                linksCount = addressToUInt64Converter.Convert(links.Count());
+                if (linksCount <= min)
                 {
                     break;
                 }
+                var linksAddressRange = new Range<ulong>(min, linksCount);
+                var link = uInt64ToAddressConverter.Convert(random.NextUInt64(linksAddressRange));
+                links.Delete(link);
             }
         }
 
@@ -252,36 +264,40 @@ namespace Platform.Data.Doublets
         /// <param name="handler">Обработчик каждой подходящей связи.</param>
         /// <returns>True, в случае если проход по связям не был прерван и False в обратном случае.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool Each<TLink>(this ILinks<TLink> links, TLink source, TLink target, Func<IList<TLink>, TLink> handler)
-        {
-            var constants = links.Constants;
-            return links.Each(handler, constants.Any, source, target);
-        }
+        public static bool Each<TLink>(this ILinks<TLink> links, TLink source, TLink target, Func<IList<TLink>, TLink> handler) => links.Each(handler, links.Constants.Any, source, target);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IList<IList<TLink>> All<TLink>(this ILinks<TLink> links, params TLink[] restrictions)
         {
-            long arraySize = (Integer<TLink>)links.Count(restrictions);
-            var array = new IList<TLink>[arraySize];
+            var arraySize = CheckedConverter<TLink, long>.Default.Convert(links.Count(restrictions));
             if (arraySize > 0)
-            {
+            { 
+                var array = new IList<TLink>[arraySize];
                 var filler = new ArrayFiller<IList<TLink>, TLink>(array, links.Constants.Continue);
                 links.Each(filler.AddAndReturnConstant, restrictions);
+                return array;
             }
-            return array;
+            else
+            {
+                return Array.Empty<IList<TLink>>();
+            }
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IList<TLink> AllIndices<TLink>(this ILinks<TLink> links, params TLink[] restrictions)
         {
-            long arraySize = (Integer<TLink>)links.Count(restrictions);
-            var array = new TLink[arraySize];
+            var arraySize = CheckedConverter<TLink, long>.Default.Convert(links.Count(restrictions));
             if (arraySize > 0)
             {
+                var array = new TLink[arraySize];
                 var filler = new ArrayFiller<TLink, TLink>(array, links.Constants.Continue);
                 links.Each(filler.AddFirstAndReturnConstant, restrictions);
+                return array;
             }
-            return array;
+            else
+            {
+                return Array.Empty<TLink>();
+            }
         }
 
         /// <summary>
@@ -389,12 +405,13 @@ namespace Platform.Data.Doublets
         /// <param name="links">Хранилище связей.</param>
         public static void EnsureCreated<TLink>(this ILinks<TLink> links, Func<TLink> creator, params TLink[] addresses)
         {
-            var constants = links.Constants;
+            var addressToUInt64Converter = CheckedConverter<TLink, ulong>.Default;
+            var uInt64ToAddressConverter = CheckedConverter<ulong, TLink>.Default;
             var nonExistentAddresses = new HashSet<TLink>(addresses.Where(x => !links.Exists(x)));
             if (nonExistentAddresses.Count > 0)
             {
                 var max = nonExistentAddresses.Max();
-                max = (Integer<TLink>)System.Math.Min((ulong)(Integer<TLink>)max, (ulong)(Integer<TLink>)constants.InternalReferencesRange.Maximum);
+                max = uInt64ToAddressConverter.Convert(System.Math.Min(addressToUInt64Converter.Convert(max), addressToUInt64Converter.Convert(links.Constants.InternalReferencesRange.Maximum)));
                 var createdLinks = new List<TLink>();
                 var equalityComparer = EqualityComparer<TLink>.Default;
                 TLink createdLink = creator();
@@ -435,7 +452,7 @@ namespace Platform.Data.Doublets
 
         /// <param name="links">Хранилище связей.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool HasUsages<TLink>(this ILinks<TLink> links, TLink link) => Comparer<TLink>.Default.Compare(links.CountUsages(link), Integer<TLink>.Zero) > 0;
+        public static bool HasUsages<TLink>(this ILinks<TLink> links, TLink link) => Comparer<TLink>.Default.Compare(links.CountUsages(link), default) > 0;
 
         /// <param name="links">Хранилище связей.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -617,13 +634,13 @@ namespace Platform.Data.Doublets
 
         public static void DeleteByQuery<TLink>(this ILinks<TLink> links, Link<TLink> query)
         {
-            var count = (Integer<TLink>)links.Count(query);
+            var count = CheckedConverter<TLink, long>.Default.Convert(links.Count(query));
             if (count > 0)
             {
                 var queryResult = new TLink[count];
                 var queryResultFiller = new ArrayFiller<TLink, TLink>(queryResult, links.Constants.Continue);
                 links.Each(queryResultFiller.AddFirstAndReturnConstant, query);
-                for (var i = (long)count - 1; i >= 0; i--)
+                for (var i = count - 1; i >= 0; i--)
                 {
                     links.Delete(queryResult[i]);
                 }
@@ -668,14 +685,15 @@ namespace Platform.Data.Doublets
         /// </summary>
         public static TLink MergeUsages<TLink>(this ILinks<TLink> links, TLink oldLinkIndex, TLink newLinkIndex)
         {
+            var addressToInt64Converter = CheckedConverter<TLink, long>.Default;
             var equalityComparer = EqualityComparer<TLink>.Default;
             if (!equalityComparer.Equals(oldLinkIndex, newLinkIndex))
             {
                 var constants = links.Constants;
                 var usagesAsSourceQuery = new Link<TLink>(constants.Any, oldLinkIndex, constants.Any);
-                long usagesAsSourceCount = (Integer<TLink>)links.Count(usagesAsSourceQuery);
+                var usagesAsSourceCount = addressToInt64Converter.Convert(links.Count(usagesAsSourceQuery));
                 var usagesAsTargetQuery = new Link<TLink>(constants.Any, constants.Any, oldLinkIndex);
-                long usagesAsTargetCount = (Integer<TLink>)links.Count(usagesAsTargetQuery);
+                var usagesAsTargetCount = addressToInt64Converter.Convert(links.Count(usagesAsTargetQuery));
                 var isStandalonePoint = Point<TLink>.IsFullPoint(links.GetLink(oldLinkIndex)) && usagesAsSourceCount == 1 && usagesAsTargetCount == 1;
                 if (!isStandalonePoint)
                 {

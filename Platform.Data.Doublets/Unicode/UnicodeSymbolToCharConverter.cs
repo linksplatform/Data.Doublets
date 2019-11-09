@@ -1,7 +1,6 @@
 ﻿using System;
 using Platform.Interfaces;
 using Platform.Converters;
-using Platform.Numbers;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -9,6 +8,8 @@ namespace Platform.Data.Doublets.Unicode
 {
     public class UnicodeSymbolToCharConverter<TLink> : LinksOperatorBase<TLink>, IConverter<TLink, char>
     {
+        private static readonly UncheckedConverter<TLink, ushort> _addressToUInt16Converter = UncheckedConverter<TLink, ushort>.Default;
+
         private readonly IConverter<TLink> _numberToAddressConverter;
         private readonly ICriterionMatcher<TLink> _unicodeSymbolCriterionMatcher;
 
@@ -24,7 +25,7 @@ namespace Platform.Data.Doublets.Unicode
             {
                 throw new ArgumentOutOfRangeException(nameof(source), source, "Specified link is not a unicode symbol.");
             }
-            return (char)(ushort)(Integer<TLink>)_numberToAddressConverter.Convert(Links.GetSource(source));
+            return (char)_addressToUInt16Converter.Convert(_numberToAddressConverter.Convert(Links.GetSource(source)));
         }
     }
 }

@@ -22,6 +22,9 @@ namespace Platform.Data.Doublets.Sequences.Converters
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
         private static readonly Comparer<TLink> _comparer = Comparer<TLink>.Default;
 
+        private static readonly TLink _zero = default;
+        private static readonly TLink _one = Arithmetic.Increment(_zero);
+
         private readonly IConverter<IList<TLink>, TLink> _baseConverter;
         private readonly LinkFrequenciesCache<TLink> _doubletFrequenciesCache;
         private readonly TLink _minFrequencyToCompress;
@@ -44,12 +47,12 @@ namespace Platform.Data.Doublets.Sequences.Converters
         }
 
         public CompressingConverter(ILinks<TLink> links, IConverter<IList<TLink>, TLink> baseConverter, LinkFrequenciesCache<TLink> doubletFrequenciesCache)
-            : this(links, baseConverter, doubletFrequenciesCache, Integer<TLink>.One, true)
+            : this(links, baseConverter, doubletFrequenciesCache, _one, true)
         {
         }
 
         public CompressingConverter(ILinks<TLink> links, IConverter<IList<TLink>, TLink> baseConverter, LinkFrequenciesCache<TLink> doubletFrequenciesCache, bool doInitialFrequenciesIncrement)
-            : this(links, baseConverter, doubletFrequenciesCache, Integer<TLink>.One, doInitialFrequenciesIncrement)
+            : this(links, baseConverter, doubletFrequenciesCache, _one, doInitialFrequenciesIncrement)
         {
         }
 
@@ -58,9 +61,9 @@ namespace Platform.Data.Doublets.Sequences.Converters
         {
             _baseConverter = baseConverter;
             _doubletFrequenciesCache = doubletFrequenciesCache;
-            if (_comparer.Compare(minFrequencyToCompress, Integer<TLink>.One) < 0)
+            if (_comparer.Compare(minFrequencyToCompress, _one) < 0)
             {
-                minFrequencyToCompress = Integer<TLink>.One;
+                minFrequencyToCompress = _one;
             }
             _minFrequencyToCompress = minFrequencyToCompress;
             _doInitialFrequenciesIncrement = doInitialFrequenciesIncrement;

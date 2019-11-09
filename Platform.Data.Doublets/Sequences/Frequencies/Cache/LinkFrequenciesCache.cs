@@ -17,6 +17,9 @@ namespace Platform.Data.Doublets.Sequences.Frequencies.Cache
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
         private static readonly Comparer<TLink> _comparer = Comparer<TLink>.Default;
 
+        private static readonly TLink _zero = default;
+        private static readonly TLink _one = Arithmetic.Increment(_zero);
+
         private readonly Dictionary<Doublet<TLink>, LinkFrequency<TLink>> _doubletsCache;
         private readonly ICounter<TLink, TLink> _frequencyCounter;
 
@@ -80,7 +83,7 @@ namespace Platform.Data.Doublets.Sequences.Frequencies.Cache
             else
             {
                 var link = Links.SearchOrDefault(doublet.Source, doublet.Target);
-                data = new LinkFrequency<TLink>(Integer<TLink>.One, link);
+                data = new LinkFrequency<TLink>(_one, link);
                 if (!_equalityComparer.Equals(link, default))
                 {
                     data.Frequency = Arithmetic.Add(data.Frequency, _frequencyCounter.Count(link));
@@ -101,8 +104,8 @@ namespace Platform.Data.Doublets.Sequences.Frequencies.Cache
                     var frequency = value.Frequency;
                     var count = _frequencyCounter.Count(linkIndex);
                     // TODO: Why `frequency` always greater than `count` by 1?
-                    if (((_comparer.Compare(frequency, count) > 0) && (_comparer.Compare(Arithmetic.Subtract(frequency, count), Integer<TLink>.One) > 0))
-                     || ((_comparer.Compare(count, frequency) > 0) && (_comparer.Compare(Arithmetic.Subtract(count, frequency), Integer<TLink>.One) > 0)))
+                    if (((_comparer.Compare(frequency, count) > 0) && (_comparer.Compare(Arithmetic.Subtract(frequency, count), _one) > 0))
+                     || ((_comparer.Compare(count, frequency) > 0) && (_comparer.Compare(Arithmetic.Subtract(count, frequency), _one) > 0)))
                     {
                         throw new InvalidOperationException("Frequencies validation failed.");
                     }

@@ -7,7 +7,7 @@ using Platform.Collections.Lists;
 using Platform.Collections.Segments;
 using Platform.Collections.Segments.Walkers;
 using Platform.Singletons;
-using Platform.Numbers;
+using Platform.Converters;
 using Platform.Data.Doublets.Unicode;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -16,6 +16,10 @@ namespace Platform.Data.Doublets.Sequences
 {
     public class DuplicateSegmentsProvider<TLink> : DictionaryBasedDuplicateSegmentsWalkerBase<TLink>, IProvider<IList<KeyValuePair<IList<TLink>, IList<TLink>>>>
     {
+        private static readonly UncheckedConverter<TLink, long> _addressToInt64Converter = UncheckedConverter<TLink, long>.Default;
+        private static readonly UncheckedConverter<TLink, ulong> _addressToUInt64Converter = UncheckedConverter<TLink, ulong>.Default;
+        private static readonly UncheckedConverter<ulong, TLink> _uInt64ToAddressConverter = UncheckedConverter<ulong, TLink>.Default;
+
         private readonly ILinks<TLink> _links;
         private readonly ILinks<TLink> _sequences;
         private HashSet<KeyValuePair<IList<TLink>, IList<TLink>>> _groups;
@@ -57,11 +61,11 @@ namespace Platform.Data.Doublets.Sequences
         {
             _groups = new HashSet<KeyValuePair<IList<TLink>, IList<TLink>>>(Default<ItemEquilityComparer>.Instance);
             var count = _links.Count();
-            _visited = new BitString((long)(Integer<TLink>)count + 1);
+            _visited = new BitString(_addressToInt64Converter.Convert(count) + 1L);
             _links.Each(link =>
             {
                 var linkIndex = _links.GetIndex(link);
-                var linkBitIndex = (long)(Integer<TLink>)linkIndex;
+                var linkBitIndex = _addressToInt64Converter.Convert(linkIndex);
                 if (!_visited.Get(linkBitIndex))
                 {
                     var sequenceElements = new List<TLink>();
@@ -110,13 +114,13 @@ namespace Platform.Data.Doublets.Sequences
                 readAsElement.Add(sequenceIndex);
                 return _sequences.Constants.Continue;
             }, restrictions);
-            if (duplicates.Any(x => _visited.Get((Integer<TLink>)x)))
+            if (duplicates.Any(x => _visited.Get(_addressToInt64Converter.Convert(x))))
             {
                 return new List<TLink>();
             }
             foreach (var duplicate in duplicates)
             {
-                var duplicateBitIndex = (long)(Integer<TLink>)duplicate;
+                var duplicateBitIndex = _addressToInt64Converter.Convert(duplicate);
                 _visited.Set(duplicateBitIndex);
             }
             if (_sequences is Sequences sequencesExperiments)
@@ -124,7 +128,7 @@ namespace Platform.Data.Doublets.Sequences
                 var partiallyMatched = sequencesExperiments.GetAllPartiallyMatchingSequences4((HashSet<ulong>)(object)readAsElement, (IList<ulong>)segment);
                 foreach (var partiallyMatchedSequence in partiallyMatched)
                 {
-                    TLink sequenceIndex = (Integer<TLink>)partiallyMatchedSequence;
+                    var sequenceIndex = _uInt64ToAddressConverter.Convert(partiallyMatchedSequence);
                     duplicates.Add(sequenceIndex);
                 }
             }
@@ -144,7 +148,7 @@ namespace Platform.Data.Doublets.Sequences
             var duplicatesList = duplicatesItem.Value;
             for (int i = 0; i < duplicatesList.Count; i++)
             {
-                ulong sequenceIndex = (Integer<TLink>)duplicatesList[i];
+                var sequenceIndex = _addressToUInt64Converter.Convert(duplicatesList[i]);
                 var formatedSequenceStructure = ulongLinks.FormatStructure(sequenceIndex, x => Point<ulong>.IsPartialPoint(x), (sb, link) => _ = UnicodeMap.IsCharLink(link.Index) ? sb.Append(UnicodeMap.FromLinkToChar(link.Index)) : sb.Append(link.Index));
                 Console.WriteLine(formatedSequenceStructure);
                 var sequenceString = UnicodeMap.FromSequenceLinkToString(sequenceIndex, ulongLinks);

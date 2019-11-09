@@ -11,6 +11,8 @@ namespace Platform.Data.Doublets.Numbers.Unary
     public class UnaryNumberToAddressOrOperationConverter<TLink> : LinksOperatorBase<TLink>, IConverter<TLink>
     {
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
+        private static readonly TLink _zero = default;
+        private static readonly TLink _one = Arithmetic.Increment(_zero);
 
         private readonly IDictionary<TLink, int> _unaryNumberPowerOf2Indicies;
 
@@ -50,6 +52,6 @@ namespace Platform.Data.Doublets.Numbers.Unary
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static void SetBit(ref TLink target, int powerOf2Index) => target = Bit.Or(target, Bit.ShiftLeft(Integer<TLink>.One, powerOf2Index));
+        private static void SetBit(ref TLink target, int powerOf2Index) => target = Bit.Or(target, Bit.ShiftLeft(_one, powerOf2Index));
     }
 }

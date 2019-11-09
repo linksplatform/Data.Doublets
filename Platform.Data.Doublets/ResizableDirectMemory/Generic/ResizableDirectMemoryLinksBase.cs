@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Platform.Disposables;
 using Platform.Singletons;
+using Platform.Converters;
 using Platform.Numbers;
 using Platform.Memory;
 using Platform.Data.Exceptions;
@@ -13,8 +14,13 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
 {
     public abstract class ResizableDirectMemoryLinksBase<TLink> : DisposableBase, ILinks<TLink>
     {
-        protected static readonly EqualityComparer<TLink> EqualityComparer = EqualityComparer<TLink>.Default;
-        protected static readonly Comparer<TLink> Comparer = Comparer<TLink>.Default;
+        private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
+        private static readonly Comparer<TLink> _comparer = Comparer<TLink>.Default;
+        private static readonly UncheckedConverter<TLink, long> _addressToInt64Converter = UncheckedConverter<TLink, long>.Default;
+        private static readonly UncheckedConverter<long, TLink> _int64ToAddressConverter = UncheckedConverter<long, TLink>.Default;
+
+        private static readonly TLink _zero = default;
+        private static readonly TLink _one = Arithmetic.Increment(_zero);
 
         /// <summary>Возвращает размер одной связи в байтах.</summary>
         /// <remarks>
@@ -69,7 +75,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
             SetPointers(_memory);
             ref var header = ref GetHeaderReference();
             // Гарантия корректности _memory.UsedCapacity относительно _header->AllocatedLinks
-            _memory.UsedCapacity = (ConvertToUInt64(header.AllocatedLinks) * LinkSizeInBytes) + LinkHeaderSizeInBytes;
+            _memory.UsedCapacity = (ConvertToInt64(header.AllocatedLinks) * LinkSizeInBytes) + LinkHeaderSizeInBytes;
             // Гарантия корректности _header->ReservedLinks относительно _memory.ReservedCapacity
             header.ReservedLinks = ConvertToAddress((_memory.ReservedCapacity - LinkHeaderSizeInBytes) / LinkSizeInBytes);
         }
@@ -456,31 +462,31 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual TLink GetOne() => Integer<TLink>.One;
+        protected virtual TLink GetOne() => _one;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual TLink GetZero() => Integer<TLink>.Zero;
+        protected virtual TLink GetZero() => default;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual bool AreEqual(TLink first, TLink second) => EqualityComparer.Equals(first, second);
+        protected virtual bool AreEqual(TLink first, TLink second) => _equalityComparer.Equals(first, second);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual bool LessThan(TLink first, TLink second) => Comparer.Compare(first, second) < 0;
+        protected virtual bool LessThan(TLink first, TLink second) => _comparer.Compare(first, second) < 0;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual bool LessOrEqualThan(TLink first, TLink second) => Comparer.Compare(first, second) <= 0;
+        protected virtual bool LessOrEqualThan(TLink first, TLink second) => _comparer.Compare(first, second) <= 0;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual bool GreaterThan(TLink first, TLink second) => Comparer.Compare(first, second) > 0;
+        protected virtual bool GreaterThan(TLink first, TLink second) => _comparer.Compare(first, second) > 0;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual bool GreaterOrEqualThan(TLink first, TLink second) => Comparer.Compare(first, second) >= 0;
+        protected virtual bool GreaterOrEqualThan(TLink first, TLink second) => _comparer.Compare(first, second) >= 0;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual long ConvertToUInt64(TLink value) => (Integer<TLink>)value;
+        protected virtual long ConvertToInt64(TLink value) => _addressToInt64Converter.Convert(value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual TLink ConvertToAddress(long value) => (Integer<TLink>)value;
+        protected virtual TLink ConvertToAddress(long value) => _int64ToAddressConverter.Convert(value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual TLink Add(TLink first, TLink second) => Arithmetic<TLink>.Add(first, second);

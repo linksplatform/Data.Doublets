@@ -3,6 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Platform.Collections.Methods.Trees;
+using Platform.Converters;
 using Platform.Numbers;
 using static System.Runtime.CompilerServices.Unsafe;
 
@@ -12,6 +13,11 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
 {
     public unsafe abstract class LinksAvlBalancedTreeMethodsBase<TLink> : SizedAndThreadedAVLBalancedTreeMethods<TLink>, ILinksTreeMethods<TLink>
     {
+        private static readonly UncheckedConverter<TLink, long> _addressToInt64Converter = UncheckedConverter<TLink, long>.Default;
+        private static readonly UncheckedConverter<TLink, int> _addressToInt32Converter = UncheckedConverter<TLink, int>.Default;
+        private static readonly UncheckedConverter<bool, TLink> _boolToAddressConverter = UncheckedConverter<bool, TLink>.Default;
+        private static readonly UncheckedConverter<int, TLink> _int32ToAddressConverter = UncheckedConverter<int, TLink>.Default;
+
         protected readonly TLink Break;
         protected readonly TLink Continue;
         protected readonly byte* Links;
@@ -41,7 +47,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
         protected virtual ref LinksHeader<TLink> GetHeaderReference() => ref AsRef<LinksHeader<TLink>>(Header);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual ref RawLink<TLink> GetLinkReference(TLink link) => ref AsRef<RawLink<TLink>>(Links + (RawLink<TLink>.SizeInBytes * (Integer<TLink>)link));
+        protected virtual ref RawLink<TLink> GetLinkReference(TLink link) => ref AsRef<RawLink<TLink>>(Links + (RawLink<TLink>.SizeInBytes * _addressToInt64Converter.Convert(link)));
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual IList<TLink> GetLinkValues(TLink linkIndex)
@@ -77,7 +83,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
         {
             unchecked
             {
-                //return (Integer<TLink>)Bit<TLink>.PartialRead(previousValue, 4, 1);
+                //return _addressToBoolConverter.Convert(Bit<TLink>.PartialRead(previousValue, 4, 1));
                 return !EqualityComparer.Equals(Bit<TLink>.PartialRead(value, 4, 1), default);
             }
         }
@@ -88,7 +94,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
             unchecked
             {
                 var previousValue = storedValue;
-                var modified = Bit<TLink>.PartialWrite(previousValue, (Integer<TLink>)value, 4, 1);
+                var modified = Bit<TLink>.PartialWrite(previousValue, _boolToAddressConverter.Convert(value), 4, 1);
                 storedValue = modified;
             }
         }
@@ -98,7 +104,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
         {
             unchecked
             {
-                //return (Integer<TLink>)Bit<TLink>.PartialRead(previousValue, 3, 1);
+                //return _addressToBoolConverter.Convert(Bit<TLink>.PartialRead(previousValue, 3, 1));
                 return !EqualityComparer.Equals(Bit<TLink>.PartialRead(value, 3, 1), default);
             }
         }
@@ -109,7 +115,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
             unchecked
             {
                 var previousValue = storedValue;
-                var modified = Bit<TLink>.PartialWrite(previousValue, (Integer<TLink>)value, 3, 1);
+                var modified = Bit<TLink>.PartialWrite(previousValue, _boolToAddressConverter.Convert(value), 3, 1);
                 storedValue = modified;
             }
         }
@@ -127,7 +133,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
         {
             unchecked
             {
-                var value = (int)(Integer<TLink>)Bit<TLink>.PartialRead(storedValue, 0, 3);
+                var value = _addressToInt32Converter.Convert(Bit<TLink>.PartialRead(storedValue, 0, 3));
                 value |= 0xF8 * ((value & 4) >> 2); // if negative, then continue ones to the end of sbyte
                 return (sbyte)value;
             }
@@ -138,7 +144,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
         {
             unchecked
             {
-                var packagedValue = (TLink)(Integer<TLink>)((byte)value >> 5 & 4 | value & 3);
+                var packagedValue = _int32ToAddressConverter.Convert((byte)value >> 5 & 4 | value & 3);
                 var modified = Bit<TLink>.PartialWrite(storedValue, packagedValue, 0, 3);
                 storedValue = modified;
             }

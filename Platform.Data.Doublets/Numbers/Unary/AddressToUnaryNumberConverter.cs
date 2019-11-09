@@ -10,6 +10,8 @@ namespace Platform.Data.Doublets.Numbers.Unary
     public class AddressToUnaryNumberConverter<TLink> : LinksOperatorBase<TLink>, IConverter<TLink>
     {
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
+        private static readonly TLink _zero = default;
+        private static readonly TLink _one = Arithmetic.Increment(_zero);
 
         private readonly IConverter<int, TLink> _powerOf2ToUnaryNumberConverter;
 
@@ -18,11 +20,10 @@ namespace Platform.Data.Doublets.Numbers.Unary
         public TLink Convert(TLink number)
         {
             var nullConstant = Links.Constants.Null;
-            var one = Integer<TLink>.One;
             var target = nullConstant;
-            for (int i = 0; !_equalityComparer.Equals(number, default) && i < NumericType<TLink>.BitsSize; i++)
+            for (var i = 0; !_equalityComparer.Equals(number, _zero) && i < NumericType<TLink>.BitsSize; i++)
             {
-                if (_equalityComparer.Equals(Bit.And(number, one), one))
+                if (_equalityComparer.Equals(Bit.And(number, _one), _one))
                 {
                     target = _equalityComparer.Equals(target, nullConstant)
                         ? _powerOf2ToUnaryNumberConverter.Convert(i)

@@ -10,6 +10,10 @@ namespace Platform.Data.Doublets.Numbers.Unary
     public class UnaryNumberToAddressAddOperationConverter<TLink> : LinksOperatorBase<TLink>, IConverter<TLink>
     {
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
+        private static readonly UncheckedConverter<TLink, ulong> _addressToUInt64Converter = UncheckedConverter<TLink, ulong>.Default;
+        private static readonly UncheckedConverter<ulong, TLink> _uInt64ToAddressConverter = UncheckedConverter<ulong, TLink>.Default;
+        private static readonly TLink _zero = default;
+        private static readonly TLink _one = Arithmetic.Increment(_zero);
 
         private Dictionary<TLink, TLink> _unaryToUInt64;
         private readonly TLink _unaryOne;
@@ -23,13 +27,12 @@ namespace Platform.Data.Doublets.Numbers.Unary
 
         private void InitUnaryToUInt64()
         {
-            var one = Integer<TLink>.One;
             _unaryToUInt64 = new Dictionary<TLink, TLink>
             {
-                { _unaryOne, one }
+                { _unaryOne, _one }
             };
             var unary = _unaryOne;
-            var number = one;
+            var number = _one;
             for (var i = 1; i < 64; i++)
             {
                 unary = Links.GetOrCreate(unary, unary);
@@ -46,7 +49,7 @@ namespace Platform.Data.Doublets.Numbers.Unary
             }
             if (_equalityComparer.Equals(unaryNumber, _unaryOne))
             {
-                return Integer<TLink>.One;
+                return _one;
             }
             var source = Links.GetSource(unaryNumber);
             var target = Links.GetTarget(unaryNumber);
@@ -70,6 +73,6 @@ namespace Platform.Data.Doublets.Numbers.Unary
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static TLink Double(TLink number) => (Integer<TLink>)((Integer<TLink>)number * 2UL);
+        private static TLink Double(TLink number) => _uInt64ToAddressConverter.Convert(_addressToUInt64Converter.Convert(number) * 2UL);
     }
 }

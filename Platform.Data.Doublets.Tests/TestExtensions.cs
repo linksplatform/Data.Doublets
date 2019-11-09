@@ -4,6 +4,7 @@ using Platform.Ranges;
 using Platform.Numbers;
 using Platform.Random;
 using Platform.Setters;
+using Platform.Converters;
 
 namespace Platform.Data.Doublets.Tests
 {
@@ -15,8 +16,11 @@ namespace Platform.Data.Doublets.Tests
 
             var equalityComparer = EqualityComparer<T>.Default;
 
+            var zero = default(T);
+            var one = Arithmetic.Increment(zero);
+
             // Create Link
-            Assert.True(equalityComparer.Equals(links.Count(), Integer<T>.Zero));
+            Assert.True(equalityComparer.Equals(links.Count(), zero));
 
             var setter = new Setter<T>(constants.Null);
             links.Each(constants.Any, constants.Any, setter.SetAndReturnTrue);
@@ -32,7 +36,7 @@ namespace Platform.Data.Doublets.Tests
             Assert.True(equalityComparer.Equals(link.Source, constants.Null));
             Assert.True(equalityComparer.Equals(link.Target, constants.Null));
 
-            Assert.True(equalityComparer.Equals(links.Count(), Integer<T>.One));
+            Assert.True(equalityComparer.Equals(links.Count(), one));
 
             // Get first link
             setter = new Setter<T>(constants.Null);
@@ -61,7 +65,7 @@ namespace Platform.Data.Doublets.Tests
             // Delete link
             links.Delete(linkAddress);
 
-            Assert.True(equalityComparer.Equals(links.Count(), Integer<T>.Zero));
+            Assert.True(equalityComparer.Equals(links.Count(), zero));
 
             setter = new Setter<T>(constants.Null);
             links.Each(constants.Any, constants.Any, setter.SetAndReturnTrue);
@@ -74,6 +78,10 @@ namespace Platform.Data.Doublets.Tests
             // Constants
             var constants = links.Constants;
             var equalityComparer = EqualityComparer<T>.Default;
+
+            var zero = default(T);
+            var one = Arithmetic.Increment(zero);
+            var two = Arithmetic.Increment(one);
 
             var h106E = new Hybrid<T>(106L, isExternal: true);
             var h107E = new Hybrid<T>(-char.ConvertFromUtf32(107)[0]);
@@ -138,7 +146,7 @@ namespace Platform.Data.Doublets.Tests
             // Delete link
             links.Delete(linkAddress3);
 
-            Assert.True(equalityComparer.Equals(links.Count(), Integer<T>.Two));
+            Assert.True(equalityComparer.Equals(links.Count(), two));
 
             var setter3 = new Setter<T>(constants.Null);
             links.Each(constants.Any, constants.Any, setter3.SetAndReturnTrue);
@@ -149,22 +157,24 @@ namespace Platform.Data.Doublets.Tests
         public static void TestMultipleRandomCreationsAndDeletions<TLink>(this ILinks<TLink> links, int maximumOperationsPerCycle)
         {
             var comparer = Comparer<TLink>.Default;
+            var addressToUInt64Converter = CheckedConverter<TLink, ulong>.Default;
+            var uInt64ToAddressConverter = CheckedConverter<ulong, TLink>.Default;
             for (var N = 1; N < maximumOperationsPerCycle; N++)
             {
                 var random = new System.Random(N);
-                var created = 0;
-                var deleted = 0;
+                var created = 0UL;
+                var deleted = 0UL;
                 for (var i = 0; i < N; i++)
                 {
-                    long linksCount = (Integer<TLink>)links.Count();
+                    var linksCount = addressToUInt64Converter.Convert(links.Count());
                     var createPoint = random.NextBoolean();
                     if (linksCount > 2 && createPoint)
                     {
-                        var linksAddressRange = new Range<ulong>(1, (ulong)linksCount);
-                        TLink source = (Integer<TLink>)random.NextUInt64(linksAddressRange);
-                        TLink target = (Integer<TLink>)random.NextUInt64(linksAddressRange); //-V3086
+                        var linksAddressRange = new Range<ulong>(1, linksCount);
+                        TLink source = uInt64ToAddressConverter.Convert(random.NextUInt64(linksAddressRange));
+                        TLink target = uInt64ToAddressConverter.Convert(random.NextUInt64(linksAddressRange)); //-V3086
                         var resultLink = links.GetOrCreate(source, target);
-                        if (comparer.Compare(resultLink, (Integer<TLink>)linksCount) > 0)
+                        if (comparer.Compare(resultLink, uInt64ToAddressConverter.Convert(linksCount)) > 0)
                         {
                             created++;
                         }
@@ -175,17 +185,17 @@ namespace Platform.Data.Doublets.Tests
                         created++;
                     }
                 }
-                Assert.True(created == (Integer<TLink>)links.Count());
+                Assert.True(created == addressToUInt64Converter.Convert(links.Count()));
                 for (var i = 0; i < N; i++)
                 {
-                    TLink link = (Integer<TLink>)(i + 1);
+                    TLink link = uInt64ToAddressConverter.Convert((ulong)i + 1UL);
                     if (links.Exists(link))
                     {
                         links.Delete(link);
                         deleted++;
                     }
                 }
-                Assert.True((Integer<TLink>)links.Count() == 0);
+                Assert.True(addressToUInt64Converter.Convert(links.Count()) == 0L);
             }
         }
     }

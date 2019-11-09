@@ -95,7 +95,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Specific
         protected override ulong GetOne() => 1UL;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override long ConvertToUInt64(ulong value) => (long)value;
+        protected override long ConvertToInt64(ulong value) => (long)value;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override ulong ConvertToAddress(long value) => (ulong)value;

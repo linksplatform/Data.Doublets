@@ -1,5 +1,4 @@
 ﻿using Platform.Converters;
-using Platform.Numbers;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -7,6 +6,8 @@ namespace Platform.Data.Doublets.Unicode
 {
     public class CharToUnicodeSymbolConverter<TLink> : LinksOperatorBase<TLink>, IConverter<char, TLink>
     {
+        private static readonly UncheckedConverter<char, TLink> _charToAddressConverter = UncheckedConverter<char, TLink>.Default;
+
         private readonly IConverter<TLink> _addressToNumberConverter;
         private readonly TLink _unicodeSymbolMarker;
 
@@ -18,7 +19,7 @@ namespace Platform.Data.Doublets.Unicode
 
         public TLink Convert(char source)
         {
-            var unaryNumber = _addressToNumberConverter.Convert((Integer<TLink>)source);
+            var unaryNumber = _addressToNumberConverter.Convert(_charToAddressConverter.Convert(source));
             return Links.GetOrCreate(unaryNumber, _unicodeSymbolMarker);
         }
     }
