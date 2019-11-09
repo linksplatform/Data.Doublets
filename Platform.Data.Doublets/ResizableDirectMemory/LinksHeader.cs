@@ -8,7 +8,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
 {
     public struct LinksHeader<TLink> : IEquatable<LinksHeader<TLink>>
     {
-        private static readonly EqualityComparer<TLink> _equalityComparer = _equalityComparer;
+        private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
 
         public static readonly long SizeInBytes = Structure<LinksHeader<TLink>>.Size;
 
