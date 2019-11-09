@@ -17,7 +17,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
         protected readonly byte* Links;
         protected readonly byte* Header;
 
-        public LinksAvlBalancedTreeMethodsBase(LinksConstants<TLink> constants, byte* links, byte* header)
+        protected LinksAvlBalancedTreeMethodsBase(LinksConstants<TLink> constants, byte* links, byte* header)
         {
             Links = links;
             Header = header;

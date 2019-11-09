@@ -11,7 +11,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Specific
         protected new readonly RawLink<ulong>* Links;
         protected new readonly LinksHeader<ulong>* Header;
 
-        public UInt64LinksAvlBalancedTreeMethodsBase(LinksConstants<ulong> constants, RawLink<ulong>* links, LinksHeader<ulong>* header)
+        protected UInt64LinksAvlBalancedTreeMethodsBase(LinksConstants<ulong> constants, RawLink<ulong>* links, LinksHeader<ulong>* header)
             : base(constants, (byte*)links, (byte*)header)
         {
             Links = links;
