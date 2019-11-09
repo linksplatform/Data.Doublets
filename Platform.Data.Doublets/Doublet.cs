@@ -25,5 +25,9 @@ namespace Platform.Data.Doublets
         public override bool Equals(object obj) => obj is Doublet<T> doublet ? base.Equals(doublet) : false;
 
         public override int GetHashCode() => (Source, Target).GetHashCode();
+
+        public static bool operator ==(Doublet<T> left, Doublet<T> right) => left.Equals(right);
+
+        public static bool operator !=(Doublet<T> left, Doublet<T> right) => !(left == right);
     }
 }

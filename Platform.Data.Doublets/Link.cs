@@ -219,6 +219,12 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void RemoveAt(int index) => throw new NotSupportedException();
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator ==(Link<TLink> left, Link<TLink> right) => left.Equals(right);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator !=(Link<TLink> left, Link<TLink> right) => !(left == right);
+
         #endregion
     }
 }

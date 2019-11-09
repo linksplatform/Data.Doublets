@@ -1,11 +1,15 @@
-﻿using Platform.Unsafe;
+﻿using System;
+using System.Collections.Generic;
+using Platform.Unsafe;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
 namespace Platform.Data.Doublets.ResizableDirectMemory
 {
-    public struct LinksHeader<TLink>
+    public struct LinksHeader<TLink> : IEquatable<LinksHeader<TLink>>
     {
+        private static readonly EqualityComparer<TLink> _equalityComparer = _equalityComparer;
+
         public static readonly long SizeInBytes = Structure<LinksHeader<TLink>>.Size;
 
         public TLink AllocatedLinks;
@@ -16,5 +20,23 @@ namespace Platform.Data.Doublets.ResizableDirectMemory
         public TLink FirstAsTarget;
         public TLink LastFreeLink;
         public TLink Reserved8;
+
+        public override bool Equals(object obj) => obj is LinksHeader<TLink> linksHeader ? Equals(linksHeader) : false;
+
+        public bool Equals(LinksHeader<TLink> other)
+            => _equalityComparer.Equals(AllocatedLinks, other.AllocatedLinks)
+            && _equalityComparer.Equals(ReservedLinks, other.ReservedLinks)
+            && _equalityComparer.Equals(FreeLinks, other.FreeLinks)
+            && _equalityComparer.Equals(FirstFreeLink, other.FirstFreeLink)
+            && _equalityComparer.Equals(FirstAsSource, other.FirstAsSource)
+            && _equalityComparer.Equals(FirstAsTarget, other.FirstAsTarget)
+            && _equalityComparer.Equals(LastFreeLink, other.LastFreeLink)
+            && _equalityComparer.Equals(Reserved8, other.Reserved8);
+
+        public override int GetHashCode() => (AllocatedLinks, ReservedLinks, FreeLinks, FirstFreeLink, FirstAsSource, FirstAsTarget, LastFreeLink, Reserved8).GetHashCode();
+
+        public static bool operator ==(LinksHeader<TLink> left, LinksHeader<TLink> right) => left.Equals(right);
+
+        public static bool operator !=(LinksHeader<TLink> left, LinksHeader<TLink> right) => !(left == right);
     }
 }

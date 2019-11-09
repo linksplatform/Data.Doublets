@@ -82,7 +82,7 @@ namespace Platform.Data.Doublets
         /// }
         /// 
         /// </remarks>
-        public struct Transition
+        public struct Transition : IEquatable<Transition>
         {
             public static readonly long Size = Structure<Transition>.Size;
 
@@ -110,6 +110,16 @@ namespace Platform.Data.Doublets
             }
 
             public override string ToString() => $"{Timestamp} {TransactionId}: {Before} => {After}";
+
+            public override bool Equals(object obj) => obj is Transition transition ? Equals(transition) : false;
+
+            public override int GetHashCode() => (TransactionId, Before, After, Timestamp).GetHashCode();
+
+            public bool Equals(Transition other) => TransactionId == other.TransactionId && Before == other.Before && After == other.After && Timestamp == other.Timestamp;
+
+            public static bool operator ==(Transition left, Transition right) => left.Equals(right);
+
+            public static bool operator !=(Transition left, Transition right) => !(left == right);
         }
 
         /// <remarks>
@@ -248,7 +258,7 @@ namespace Platform.Data.Doublets
                 Dispose();
                 throw new NotSupportedException("Database is damaged, autorecovery is not supported yet.");
             }
-            if (lastCommitedTransition.Equals(default(Transition)))
+            if (lastCommitedTransition == default)
             {
                 FileHelpers.WriteFirst(logAddress, lastCommitedTransition);
             }
