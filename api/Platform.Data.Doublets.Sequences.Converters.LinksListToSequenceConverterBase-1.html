@@ -88,16 +88,51 @@
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
-    <div class="level1"><span class="xref">LinksListToSequenceConverterBase&lt;TLink&gt;</span></div>
-      <div class="level2"><a class="xref" href="Platform.Data.Doublets.Sequences.Converters.BalancedVariantConverter-1.html">BalancedVariantConverter&lt;TLink&gt;</a></div>
-      <div class="level2"><a class="xref" href="Platform.Data.Doublets.Sequences.Converters.CompressingConverter-1.html">CompressingConverter&lt;TLink&gt;</a></div>
-      <div class="level2"><a class="xref" href="Platform.Data.Doublets.Sequences.Converters.OptimalVariantConverter-1.html">OptimalVariantConverter&lt;TLink&gt;</a></div>
+    <div class="level1"><a class="xref" href="Platform.Data.Doublets.LinksOperatorBase-1.html">LinksOperatorBase</a>&lt;TLink&gt;</div>
+    <div class="level2"><span class="xref">LinksListToSequenceConverterBase&lt;TLink&gt;</span></div>
+      <div class="level3"><a class="xref" href="Platform.Data.Doublets.Sequences.Converters.BalancedVariantConverter-1.html">BalancedVariantConverter&lt;TLink&gt;</a></div>
+      <div class="level3"><a class="xref" href="Platform.Data.Doublets.Sequences.Converters.CompressingConverter-1.html">CompressingConverter&lt;TLink&gt;</a></div>
+      <div class="level3"><a class="xref" href="Platform.Data.Doublets.Sequences.Converters.OptimalVariantConverter-1.html">OptimalVariantConverter&lt;TLink&gt;</a></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">IConverter</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;TLink&gt;, TLink&gt;</div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="Platform.Data.Doublets.LinksOperatorBase-1.html#Platform_Data_Doublets_LinksOperatorBase_1__links">LinksOperatorBase&lt;TLink&gt;._links</a>
+    </div>
+    <div>
+      <a class="xref" href="Platform.Data.Doublets.LinksOperatorBase-1.html#Platform_Data_Doublets_LinksOperatorBase_1_Links">LinksOperatorBase&lt;TLink&gt;.Links</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_">Object.Equals(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_System_Object_">Object.Equals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gethashcode#System_Object_GetHashCode">Object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gettype#System_Object_GetType">Object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.memberwiseclone#System_Object_MemberwiseClone">Object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.referenceequals#System_Object_ReferenceEquals_System_Object_System_Object_">Object.ReferenceEquals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.tostring#System_Object_ToString">Object.ToString()</a>
+    </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Platform.Data.Doublets.Sequences.Converters.html">Platform.Data.Doublets.Sequences.Converters</a></h6>
   <h6><strong>Assembly</strong>: Platform.Data.Doublets.dll</h6>
   <h5 id="Platform_Data_Doublets_Sequences_Converters_LinksListToSequenceConverterBase_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class LinksListToSequenceConverterBase&lt;TLink&gt; : IConverter&lt;IList&lt;TLink&gt;, TLink&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class LinksListToSequenceConverterBase&lt;TLink&gt; : LinksOperatorBase&lt;TLink&gt;, IConverter&lt;IList&lt;TLink&gt;, TLink&gt;</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -121,7 +156,7 @@
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Converters_LinksListToSequenceConverterBase_1__ctor_Platform_Data_Doublets_ILinks__0__.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Converters.LinksListToSequenceConverterBase%601.%23ctor(Platform.Data.Doublets.ILinks%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/7d618d4e12d0b2263f169f8fd18d0b8f186c2d00/Platform.Data.Doublets/Sequences/Converters/LinksListToSequenceConverterBase.cs/#L13">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/4cde2a6c983c9fa16b9ff5184592d47f4a87933f/Platform.Data.Doublets/Sequences/Converters/LinksListToSequenceConverterBase.cs/#L11">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Converters_LinksListToSequenceConverterBase_1__ctor_" data-uid="Platform.Data.Doublets.Sequences.Converters.LinksListToSequenceConverterBase`1.#ctor*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Converters_LinksListToSequenceConverterBase_1__ctor_Platform_Data_Doublets_ILinks__0__" data-uid="Platform.Data.Doublets.Sequences.Converters.LinksListToSequenceConverterBase`1.#ctor(Platform.Data.Doublets.ILinks{`0})">LinksListToSequenceConverterBase(ILinks&lt;TLink&gt;)</h4>
@@ -148,37 +183,6 @@
       </tr>
     </tbody>
   </table>
-  <h3 id="fields">Fields
-  </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Converters_LinksListToSequenceConverterBase_1_Links.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Converters.LinksListToSequenceConverterBase%601.Links%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/7d618d4e12d0b2263f169f8fd18d0b8f186c2d00/Platform.Data.Doublets/Sequences/Converters/LinksListToSequenceConverterBase.cs/#L11">View Source</a>
-  </span>
-  <h4 id="Platform_Data_Doublets_Sequences_Converters_LinksListToSequenceConverterBase_1_Links" data-uid="Platform.Data.Doublets.Sequences.Converters.LinksListToSequenceConverterBase`1.Links">Links</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly ILinks&lt;TLink&gt; Links</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Platform.Data.Doublets.ILinks-1.html">ILinks</a>&lt;TLink&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
@@ -186,7 +190,7 @@
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Converters_LinksListToSequenceConverterBase_1_Convert_System_Collections_Generic_IList__0__.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Converters.LinksListToSequenceConverterBase%601.Convert(System.Collections.Generic.IList%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/7d618d4e12d0b2263f169f8fd18d0b8f186c2d00/Platform.Data.Doublets/Sequences/Converters/LinksListToSequenceConverterBase.cs/#L16">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/4cde2a6c983c9fa16b9ff5184592d47f4a87933f/Platform.Data.Doublets/Sequences/Converters/LinksListToSequenceConverterBase.cs/#L14">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Sequences_Converters_LinksListToSequenceConverterBase_1_Convert_" data-uid="Platform.Data.Doublets.Sequences.Converters.LinksListToSequenceConverterBase`1.Convert*"></a>
   <h4 id="Platform_Data_Doublets_Sequences_Converters_LinksListToSequenceConverterBase_1_Convert_System_Collections_Generic_IList__0__" data-uid="Platform.Data.Doublets.Sequences.Converters.LinksListToSequenceConverterBase`1.Convert(System.Collections.Generic.IList{`0})">Convert(IList&lt;TLink&gt;)</h4>
@@ -228,6 +232,10 @@
       </tr>
     </tbody>
   </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">IConverter&lt;, &gt;</span>
+  </div>
 </article>
           </div>
           
@@ -239,7 +247,7 @@
                     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Sequences_Converters_LinksListToSequenceConverterBase_1.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Sequences.Converters.LinksListToSequenceConverterBase%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/linksplatform/Data.Doublets/blob/7d618d4e12d0b2263f169f8fd18d0b8f186c2d00/Platform.Data.Doublets/Sequences/Converters/LinksListToSequenceConverterBase.cs/#L9" class="contribution-link">View Source</a>
+                    <a href="https://github.com/linksplatform/Data.Doublets/blob/4cde2a6c983c9fa16b9ff5184592d47f4a87933f/Platform.Data.Doublets/Sequences/Converters/LinksListToSequenceConverterBase.cs/#L9" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

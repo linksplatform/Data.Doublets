@@ -129,6 +129,22 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksDecoratorBase(Of TLink).LinksDecoratorBase
   nameWithType: LinksDecoratorBase<TLink>.LinksDecoratorBase
   nameWithType.vb: LinksDecoratorBase(Of TLink).LinksDecoratorBase
+- uid: Platform.Data.Doublets.Decorators.LinksDecoratorBase`1._constants
+  name: _constants
+  href: api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1__constants
+  commentId: F:Platform.Data.Doublets.Decorators.LinksDecoratorBase`1._constants
+  fullName: Platform.Data.Doublets.Decorators.LinksDecoratorBase<TLink>._constants
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDecoratorBase(Of TLink)._constants
+  nameWithType: LinksDecoratorBase<TLink>._constants
+  nameWithType.vb: LinksDecoratorBase(Of TLink)._constants
+- uid: Platform.Data.Doublets.Decorators.LinksDecoratorBase`1._facade
+  name: _facade
+  href: api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1__facade
+  commentId: F:Platform.Data.Doublets.Decorators.LinksDecoratorBase`1._facade
+  fullName: Platform.Data.Doublets.Decorators.LinksDecoratorBase<TLink>._facade
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDecoratorBase(Of TLink)._facade
+  nameWithType: LinksDecoratorBase<TLink>._facade
+  nameWithType.vb: LinksDecoratorBase(Of TLink)._facade
 - uid: Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Constants
   name: Constants
   href: api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1_Constants
@@ -2569,6 +2585,14 @@ references:
   fullName.vb: Platform.Data.Doublets.LinksOperatorBase(Of TLink).LinksOperatorBase
   nameWithType: LinksOperatorBase<TLink>.LinksOperatorBase
   nameWithType.vb: LinksOperatorBase(Of TLink).LinksOperatorBase
+- uid: Platform.Data.Doublets.LinksOperatorBase`1._links
+  name: _links
+  href: api/Platform.Data.Doublets.LinksOperatorBase-1.html#Platform_Data_Doublets_LinksOperatorBase_1__links
+  commentId: F:Platform.Data.Doublets.LinksOperatorBase`1._links
+  fullName: Platform.Data.Doublets.LinksOperatorBase<TLink>._links
+  fullName.vb: Platform.Data.Doublets.LinksOperatorBase(Of TLink)._links
+  nameWithType: LinksOperatorBase<TLink>._links
+  nameWithType.vb: LinksOperatorBase(Of TLink)._links
 - uid: Platform.Data.Doublets.LinksOperatorBase`1.Links
   name: Links
   href: api/Platform.Data.Doublets.LinksOperatorBase-1.html#Platform_Data_Doublets_LinksOperatorBase_1_Links
@@ -8383,14 +8407,6 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.Converters.LinksListToSequenceConverterBase(Of TLink).Convert
   nameWithType: LinksListToSequenceConverterBase<TLink>.Convert
   nameWithType.vb: LinksListToSequenceConverterBase(Of TLink).Convert
-- uid: Platform.Data.Doublets.Sequences.Converters.LinksListToSequenceConverterBase`1.Links
-  name: Links
-  href: api/Platform.Data.Doublets.Sequences.Converters.LinksListToSequenceConverterBase-1.html#Platform_Data_Doublets_Sequences_Converters_LinksListToSequenceConverterBase_1_Links
-  commentId: F:Platform.Data.Doublets.Sequences.Converters.LinksListToSequenceConverterBase`1.Links
-  fullName: Platform.Data.Doublets.Sequences.Converters.LinksListToSequenceConverterBase<TLink>.Links
-  fullName.vb: Platform.Data.Doublets.Sequences.Converters.LinksListToSequenceConverterBase(Of TLink).Links
-  nameWithType: LinksListToSequenceConverterBase<TLink>.Links
-  nameWithType.vb: LinksListToSequenceConverterBase(Of TLink).Links
 - uid: Platform.Data.Doublets.Sequences.Converters.OptimalVariantConverter`1
   name: OptimalVariantConverter<TLink>
   href: api/Platform.Data.Doublets.Sequences.Converters.OptimalVariantConverter-1.html
@@ -9445,15 +9461,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.HeightProviders.CachedSequenceHeightProvider(Of TLink)
   nameWithType: CachedSequenceHeightProvider<TLink>
   nameWithType.vb: CachedSequenceHeightProvider(Of TLink)
-- uid: Platform.Data.Doublets.Sequences.HeightProviders.CachedSequenceHeightProvider`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Data.Doublets.Sequences.HeightProviders.ISequenceHeightProvider{`0},IConverter{`0},IConverter{`0},`0,IProperties{`0,`0,`0})
-  name: CachedSequenceHeightProvider(ILinks<TLink>, ISequenceHeightProvider<TLink>, IConverter<TLink>, IConverter<TLink>, TLink, IProperties<TLink, TLink, TLink>)
-  href: api/Platform.Data.Doublets.Sequences.HeightProviders.CachedSequenceHeightProvider-1.html#Platform_Data_Doublets_Sequences_HeightProviders_CachedSequenceHeightProvider_1__ctor_Platform_Data_Doublets_ILinks__0__Platform_Data_Doublets_Sequences_HeightProviders_ISequenceHeightProvider__0__IConverter__0__IConverter__0___0_IProperties__0__0__0__
-  commentId: M:Platform.Data.Doublets.Sequences.HeightProviders.CachedSequenceHeightProvider`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Data.Doublets.Sequences.HeightProviders.ISequenceHeightProvider{`0},IConverter{`0},IConverter{`0},`0,IProperties{`0,`0,`0})
-  name.vb: CachedSequenceHeightProvider(ILinks(Of TLink), ISequenceHeightProvider(Of TLink), IConverter(Of TLink), IConverter(Of TLink), TLink, IProperties(Of TLink, TLink, TLink))
-  fullName: Platform.Data.Doublets.Sequences.HeightProviders.CachedSequenceHeightProvider<TLink>.CachedSequenceHeightProvider(Platform.Data.Doublets.ILinks<TLink>, Platform.Data.Doublets.Sequences.HeightProviders.ISequenceHeightProvider<TLink>, IConverter<TLink>, IConverter<TLink>, TLink, IProperties<TLink, TLink, TLink>)
-  fullName.vb: Platform.Data.Doublets.Sequences.HeightProviders.CachedSequenceHeightProvider(Of TLink).CachedSequenceHeightProvider(Platform.Data.Doublets.ILinks(Of TLink), Platform.Data.Doublets.Sequences.HeightProviders.ISequenceHeightProvider(Of TLink), IConverter(Of TLink), IConverter(Of TLink), TLink, IProperties(Of TLink, TLink, TLink))
-  nameWithType: CachedSequenceHeightProvider<TLink>.CachedSequenceHeightProvider(ILinks<TLink>, ISequenceHeightProvider<TLink>, IConverter<TLink>, IConverter<TLink>, TLink, IProperties<TLink, TLink, TLink>)
-  nameWithType.vb: CachedSequenceHeightProvider(Of TLink).CachedSequenceHeightProvider(ILinks(Of TLink), ISequenceHeightProvider(Of TLink), IConverter(Of TLink), IConverter(Of TLink), TLink, IProperties(Of TLink, TLink, TLink))
+- uid: Platform.Data.Doublets.Sequences.HeightProviders.CachedSequenceHeightProvider`1.#ctor(Platform.Data.Doublets.Sequences.HeightProviders.ISequenceHeightProvider{`0},IConverter{`0},IConverter{`0},`0,IProperties{`0,`0,`0})
+  name: CachedSequenceHeightProvider(ISequenceHeightProvider<TLink>, IConverter<TLink>, IConverter<TLink>, TLink, IProperties<TLink, TLink, TLink>)
+  href: api/Platform.Data.Doublets.Sequences.HeightProviders.CachedSequenceHeightProvider-1.html#Platform_Data_Doublets_Sequences_HeightProviders_CachedSequenceHeightProvider_1__ctor_Platform_Data_Doublets_Sequences_HeightProviders_ISequenceHeightProvider__0__IConverter__0__IConverter__0___0_IProperties__0__0__0__
+  commentId: M:Platform.Data.Doublets.Sequences.HeightProviders.CachedSequenceHeightProvider`1.#ctor(Platform.Data.Doublets.Sequences.HeightProviders.ISequenceHeightProvider{`0},IConverter{`0},IConverter{`0},`0,IProperties{`0,`0,`0})
+  name.vb: CachedSequenceHeightProvider(ISequenceHeightProvider(Of TLink), IConverter(Of TLink), IConverter(Of TLink), TLink, IProperties(Of TLink, TLink, TLink))
+  fullName: Platform.Data.Doublets.Sequences.HeightProviders.CachedSequenceHeightProvider<TLink>.CachedSequenceHeightProvider(Platform.Data.Doublets.Sequences.HeightProviders.ISequenceHeightProvider<TLink>, IConverter<TLink>, IConverter<TLink>, TLink, IProperties<TLink, TLink, TLink>)
+  fullName.vb: Platform.Data.Doublets.Sequences.HeightProviders.CachedSequenceHeightProvider(Of TLink).CachedSequenceHeightProvider(Platform.Data.Doublets.Sequences.HeightProviders.ISequenceHeightProvider(Of TLink), IConverter(Of TLink), IConverter(Of TLink), TLink, IProperties(Of TLink, TLink, TLink))
+  nameWithType: CachedSequenceHeightProvider<TLink>.CachedSequenceHeightProvider(ISequenceHeightProvider<TLink>, IConverter<TLink>, IConverter<TLink>, TLink, IProperties<TLink, TLink, TLink>)
+  nameWithType.vb: CachedSequenceHeightProvider(Of TLink).CachedSequenceHeightProvider(ISequenceHeightProvider(Of TLink), IConverter(Of TLink), IConverter(Of TLink), TLink, IProperties(Of TLink, TLink, TLink))
 - uid: Platform.Data.Doublets.Sequences.HeightProviders.CachedSequenceHeightProvider`1.#ctor*
   name: CachedSequenceHeightProvider
   href: api/Platform.Data.Doublets.Sequences.HeightProviders.CachedSequenceHeightProvider-1.html#Platform_Data_Doublets_Sequences_HeightProviders_CachedSequenceHeightProvider_1__ctor_
