@@ -220,7 +220,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
             {
                 if (AreEqual(index, any))
                 {
-                    return Each(handler, GetEmptyList());
+                    return Each(handler, Array.Empty<TLink>());
                 }
                 if (!Exists(index))
                 {
@@ -235,7 +235,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
                 {
                     if (AreEqual(value, any))
                     {
-                        return Each(handler, GetEmptyList());
+                        return Each(handler, Array.Empty<TLink>());
                     }
                     if (AreEqual(Each(handler, new Link<TLink>(index, value, any)), @break))
                     {
@@ -270,7 +270,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
                 {
                     if (AreEqual(source, any) && AreEqual(target, any))
                     {
-                        return Each(handler, GetEmptyList());
+                        return Each(handler, Array.Empty<TLink>());
                     }
                     else if (AreEqual(source, any))
                     {
@@ -506,9 +506,6 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual TLink Decrement(TLink link) => Arithmetic<TLink>.Decrement(link);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual IList<TLink> GetEmptyList() => Array.Empty<TLink>();
 
         #region Disposable
 
