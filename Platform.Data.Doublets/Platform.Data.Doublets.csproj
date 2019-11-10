@@ -4,7 +4,7 @@
     <Description>LinksPlatform's Platform.Data.Doublets Class Library</Description>
     <Copyright>Konstantin Diachenko</Copyright>
     <AssemblyTitle>Platform.Data.Doublets</AssemblyTitle>
-    <VersionPrefix>0.3.0</VersionPrefix>
+    <VersionPrefix>0.4.0</VersionPrefix>
     <Authors>Konstantin Diachenko</Authors>
     <TargetFrameworks>net471;netstandard2.0;netstandard2.1</TargetFrameworks>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -25,22 +25,21 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <LangVersion>latest</LangVersion>
-    <PackageReleaseNotes>Added support for .NET Standard 2.1 (.NET Core 3.0).
-Platform.Random dependency updated from 0.0.4 to 0.0.5.
-Platform.Timestamps dependency updated from 0.0.4 to 0.0.5.
-Platform.Collections.Methods dependency updated from 0.1.0 to 0.2.1.
-Platform.Singletons dependency updated from 0.0.4 to 0.0.6.
-Platform.Memory dependency updated from 0.1.5 to 0.1.8.
-Platform.Data dependency updated from 0.1.1 to 0.2.0.
-Platform.Incrementers dependency added.
-Compactification mechanism of Sequences fixed and tested. It is now possible to add a large number of sequences and then compact them all.
-Added support for switching between Size and AVL balanced trees for the index.
-Source link enabled.
-Travis CI disabled.
-GitHub Actions enabled.
-Refactoring.
+    <PackageReleaseNotes>Platform.Collections.Methods dependency updated from 0.2.1 to 0.2.2.
+Platform.Singletons dependency updated from 0.0.6 to 0.0.7.
+Platform.Memory dependency updated from 0.1.8 to 0.1.9.
+Platform.Data dependency updated from 0.2.0 to 0.2.2.
+LinksOperatorBase now has a _links protected field.
+LinksDecoratorBase now has _constants and _facade protected fields.
+LinksListToSequenceConverterBase abstract class now inherited from LinksOperatorBase abstract class.
+Stack class now inherited from LinksOperatorBase abstract class.
+LinksDisposableDecoratorBase abstract class now inherited from LinksDecoratorBase abstract class.
+ResizableDirectMemoryLinksBase.GetEmptyList method removed.
+ResizableDirectMemoryLinksBase&lt;T&gt;.ConvertToUInt64 method renamed to ConvertToInt64.
+No more usages of obsolete methods and types.
+Refactoring, performance optimizations, issues fix.
 
-This release is not backward compatible with the previous 0.2.1 release.</PackageReleaseNotes>
+This release is not backward compatible with the previous 0.3.0 release.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup Condition="$(TargetFramework.StartsWith('net4')) AND '$(MSBuildRuntimeType)' == 'Core' AND '$(OS)' != 'Windows_NT'">
