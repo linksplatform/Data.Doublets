@@ -225,7 +225,7 @@ namespace Platform.Data.Doublets
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             protected override void Dispose(bool manual, bool wasDisposed)
             {
-                if (!wasDisposed && _layer != null && !_layer.IsDisposed)
+                if (!wasDisposed && _layer != null && !_layer.Disposable.IsDisposed)
                 {
                     if (!IsCommitted && !IsReverted)
                     {
@@ -374,7 +374,7 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void TransitionsPusher()
         {
-            while (!IsDisposed && _transitionsPusher != null)
+            while (!Disposable.IsDisposed && _transitionsPusher != null)
             {
                 Thread.Sleep(DefaultPushDelay);
                 PushTransitions();

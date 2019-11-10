@@ -28,10 +28,6 @@ namespace Platform.Data.Doublets.Decorators
                 {
                     decorator.Facade = value;
                 }
-                else if (Links is LinksDisposableDecoratorBase<TLink> disposableDecorator)
-                {
-                    disposableDecorator.Facade = value;
-                }
             }
         }
 

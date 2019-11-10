@@ -1,78 +1,38 @@
-using System;
-using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Platform.Disposables;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+#pragma warning disable CA1063 // Implement IDisposable Correctly
 
 namespace Platform.Data.Doublets.Decorators
 {
-    public abstract class LinksDisposableDecoratorBase<TLink> : DisposableBase, ILinks<TLink>
+    public abstract class LinksDisposableDecoratorBase<TLink> : LinksDecoratorBase<TLink>, ILinks<TLink>, System.IDisposable
     {
-        private ILinks<TLink> _facade;
-
-        public LinksConstants<TLink> Constants
+        protected class DisposableWithMultipleCallsAllowed : Disposable
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get;
-        }
+            public DisposableWithMultipleCallsAllowed(Disposal disposal) : base(disposal) { }
 
-        public ILinks<TLink> Links
-        {
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get;
-        }
-
-        public ILinks<TLink> Facade
-        {
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get => _facade;
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            set
+            protected override bool AllowMultipleDisposeCalls
             {
-                _facade = value;
-                if (Links is LinksDecoratorBase<TLink> decorator)
-                {
-                    decorator.Facade = value;
-                }
-                else if (Links is LinksDisposableDecoratorBase<TLink> disposableDecorator)
-                {
-                    disposableDecorator.Facade = value;
-                }
+                [MethodImpl(MethodImplOptions.AggressiveInlining)]
+                get => true;
             }
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected LinksDisposableDecoratorBase(ILinks<TLink> links)
-        {
-            Links = links;
-            Constants = links.Constants;
-            Facade = this;
-        }
+        protected readonly DisposableWithMultipleCallsAllowed Disposable;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Count(IList<TLink> restrictions) => Links.Count(restrictions);
+        protected LinksDisposableDecoratorBase(ILinks<TLink> links) : base(links) => Disposable = new DisposableWithMultipleCallsAllowed(Dispose);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Each(Func<IList<TLink>, TLink> handler, IList<TLink> restrictions) => Links.Each(handler, restrictions);
+        ~LinksDisposableDecoratorBase() => Disposable.Destruct();
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Create(IList<TLink> restrictions) => Links.Create(restrictions);
+        public void Dispose() => Disposable.Dispose();
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Update(IList<TLink> restrictions, IList<TLink> substitution) => Links.Update(restrictions, substitution);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual void Delete(IList<TLink> restrictions) => Links.Delete(restrictions);
-
-        protected override bool AllowMultipleDisposeCalls
-        {
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get => true;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void Dispose(bool manual, bool wasDisposed)
+        protected virtual void Dispose(bool manual, bool wasDisposed)
         {
             if (!wasDisposed)
             {
