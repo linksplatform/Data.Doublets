@@ -18,14 +18,7 @@ namespace Platform.Data.Doublets.Decorators
         {
             var constants = Constants;
             var itselfConstant = constants.Itself;
-            var indexPartConstant = constants.IndexPart;
-            var sourcePartConstant = constants.SourcePart;
-            var targetPartConstant = constants.TargetPart;
-            var restrictionsCount = restrictions.Count;
-            if (!_equalityComparer.Equals(constants.Any, itselfConstant)
-             && (((restrictionsCount > indexPartConstant) && _equalityComparer.Equals(restrictions[indexPartConstant], itselfConstant))
-             || ((restrictionsCount > sourcePartConstant) && _equalityComparer.Equals(restrictions[sourcePartConstant], itselfConstant))
-             || ((restrictionsCount > targetPartConstant) && _equalityComparer.Equals(restrictions[targetPartConstant], itselfConstant))))
+            if (!_equalityComparer.Equals(constants.Any, itselfConstant) && restrictions.Contains(itselfConstant))
             {
                 // Itself constant is not supported for Each method right now, skipping execution
                 return constants.Continue;
