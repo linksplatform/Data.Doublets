@@ -5279,23 +5279,6 @@ references:
   fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase(Of TLink).Exists
   nameWithType: ResizableDirectMemoryLinksBase<TLink>.Exists
   nameWithType.vb: ResizableDirectMemoryLinksBase(Of TLink).Exists
-- uid: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase`1.GetEmptyList
-  name: GetEmptyList()
-  href: api/Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_Generic_ResizableDirectMemoryLinksBase_1_GetEmptyList
-  commentId: M:Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase`1.GetEmptyList
-  fullName: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase<TLink>.GetEmptyList()
-  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase(Of TLink).GetEmptyList()
-  nameWithType: ResizableDirectMemoryLinksBase<TLink>.GetEmptyList()
-  nameWithType.vb: ResizableDirectMemoryLinksBase(Of TLink).GetEmptyList()
-- uid: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase`1.GetEmptyList*
-  name: GetEmptyList
-  href: api/Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_Generic_ResizableDirectMemoryLinksBase_1_GetEmptyList_
-  commentId: Overload:Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase`1.GetEmptyList
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase<TLink>.GetEmptyList
-  fullName.vb: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase(Of TLink).GetEmptyList
-  nameWithType: ResizableDirectMemoryLinksBase<TLink>.GetEmptyList
-  nameWithType.vb: ResizableDirectMemoryLinksBase(Of TLink).GetEmptyList
 - uid: Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase`1.GetHeaderReference
   name: GetHeaderReference()
   href: api/Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinksBase-1.html#Platform_Data_Doublets_ResizableDirectMemory_Generic_ResizableDirectMemoryLinksBase_1_GetHeaderReference
