@@ -30,7 +30,7 @@ namespace Platform.Data.Doublets.Sequences.Indexes
             while (--i >= 1 && (indexed = IsIndexedWithIncrement(sequence[i - 1], sequence[i]))) { }
             for (; i >= 1; i--)
             {
-                Increment(Links.GetOrCreate(sequence[i - 1], sequence[i]));
+                Increment(_links.GetOrCreate(sequence[i - 1], sequence[i]));
             }
             return indexed;
         }
@@ -38,7 +38,7 @@ namespace Platform.Data.Doublets.Sequences.Indexes
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private bool IsIndexedWithIncrement(TLink source, TLink target)
         {
-            var link = Links.SearchOrDefault(source, target);
+            var link = _links.SearchOrDefault(source, target);
             var indexed = !_equalityComparer.Equals(link, default);
             if (indexed)
             {

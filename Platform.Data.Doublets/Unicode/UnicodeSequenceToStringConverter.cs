@@ -26,11 +26,11 @@ namespace Platform.Data.Doublets.Unicode
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public string Convert(TLink source)
         {
-            if(!_unicodeSequenceCriterionMatcher.IsMatched(source))
+            if (!_unicodeSequenceCriterionMatcher.IsMatched(source))
             {
                 throw new ArgumentOutOfRangeException(nameof(source), source, "Specified link is not a unicode sequence.");
             }
-            var sequence = Links.GetSource(source);
+            var sequence = _links.GetSource(source);
             var charArray = _sequenceWalker.Walk(sequence).Select(_unicodeSymbolToCharConverter.Convert).ToArray();
             return new string(charArray);
         }

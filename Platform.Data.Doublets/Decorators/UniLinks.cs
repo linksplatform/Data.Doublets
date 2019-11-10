@@ -187,14 +187,15 @@ namespace Platform.Data.Doublets.Decorators
             //        }
             //    }
             //}
-            return Constants.Continue;
+            return _constants.Continue;
         }
 
         public TLink Trigger(IList<TLink> patternOrCondition, Func<IList<TLink>, TLink> matchHandler, IList<TLink> substitution, Func<IList<TLink>, IList<TLink>, TLink> substitutionHandler)
         {
+            var constants = _constants;
             if (patternOrCondition.IsNullOrEmpty() && substitution.IsNullOrEmpty())
             {
-                return Constants.Continue;
+                return constants.Continue;
             }
             else if (patternOrCondition.EqualTo(substitution)) // Should be Each here TODO: Check if it is a correct condition
             {
@@ -205,19 +206,19 @@ namespace Platform.Data.Doublets.Decorators
             {
                 var before = Array.Empty<TLink>();
                 // Что должно означать False здесь? Остановиться (перестать идти) или пропустить (пройти мимо) или пустить (взять)?
-                if (matchHandler != null && _equalityComparer.Equals(matchHandler(before), Constants.Break))
+                if (matchHandler != null && _equalityComparer.Equals(matchHandler(before), constants.Break))
                 {
-                    return Constants.Break;
+                    return constants.Break;
                 }
                 var after = (IList<TLink>)substitution.ToArray();
                 if (_equalityComparer.Equals(after[0], default))
                 {
-                    var newLink = Links.Create();
+                    var newLink = _links.Create();
                     after[0] = newLink;
                 }
                 if (substitution.Count == 1)
                 {
-                    after = Links.GetLink(substitution[0]);
+                    after = _links.GetLink(substitution[0]);
                 }
                 else if (substitution.Count == 3)
                 {
@@ -231,26 +232,26 @@ namespace Platform.Data.Doublets.Decorators
                 {
                     return substitutionHandler(before, after);
                 }
-                return Constants.Continue;
+                return constants.Continue;
             }
             else if (!patternOrCondition.IsNullOrEmpty()) // Deletion
             {
                 if (patternOrCondition.Count == 1)
                 {
                     var linkToDelete = patternOrCondition[0];
-                    var before = Links.GetLink(linkToDelete);
-                    if (matchHandler != null && _equalityComparer.Equals(matchHandler(before), Constants.Break))
+                    var before = _links.GetLink(linkToDelete);
+                    if (matchHandler != null && _equalityComparer.Equals(matchHandler(before), constants.Break))
                     {
-                        return Constants.Break;
+                        return constants.Break;
                     }
                     var after = Array.Empty<TLink>();
-                    Links.Update(linkToDelete, Constants.Null, Constants.Null);
-                    Links.Delete(linkToDelete);
+                    _links.Update(linkToDelete, constants.Null, constants.Null);
+                    _links.Delete(linkToDelete);
                     if (matchHandler != null)
                     {
                         return substitutionHandler(before, after);
                     }
-                    return Constants.Continue;
+                    return constants.Continue;
                 }
                 else
                 {
@@ -262,10 +263,10 @@ namespace Platform.Data.Doublets.Decorators
                 if (patternOrCondition.Count == 1) //-V3125
                 {
                     var linkToUpdate = patternOrCondition[0];
-                    var before = Links.GetLink(linkToUpdate);
-                    if (matchHandler != null && _equalityComparer.Equals(matchHandler(before), Constants.Break))
+                    var before = _links.GetLink(linkToUpdate);
+                    if (matchHandler != null && _equalityComparer.Equals(matchHandler(before), constants.Break))
                     {
-                        return Constants.Break;
+                        return constants.Break;
                     }
                     var after = (IList<TLink>)substitution.ToArray(); //-V3125
                     if (_equalityComparer.Equals(after[0], default))
@@ -276,9 +277,9 @@ namespace Platform.Data.Doublets.Decorators
                     {
                         if (!_equalityComparer.Equals(substitution[0], linkToUpdate))
                         {
-                            after = Links.GetLink(substitution[0]);
-                            Links.Update(linkToUpdate, Constants.Null, Constants.Null);
-                            Links.Delete(linkToUpdate);
+                            after = _links.GetLink(substitution[0]);
+                            _links.Update(linkToUpdate, constants.Null, constants.Null);
+                            _links.Delete(linkToUpdate);
                         }
                     }
                     else if (substitution.Count == 3)
@@ -293,7 +294,7 @@ namespace Platform.Data.Doublets.Decorators
                     {
                         return substitutionHandler(before, after);
                     }
-                    return Constants.Continue;
+                    return constants.Continue;
                 }
                 else
                 {
@@ -315,15 +316,16 @@ namespace Platform.Data.Doublets.Decorators
         public IList<IList<IList<TLink>>> Trigger(IList<TLink> condition, IList<TLink> substitution)
         {
             var changes = new List<IList<IList<TLink>>>();
+            var @continue = _constants.Continue;
             Trigger(condition, AlwaysContinue, substitution, (before, after) =>
             {
                 var change = new[] { before, after };
                 changes.Add(change);
-                return Constants.Continue;
+                return @continue;
             });
             return changes;
         }
 
-        private TLink AlwaysContinue(IList<TLink> linkToMatch) => Constants.Continue;
+        private TLink AlwaysContinue(IList<TLink> linkToMatch) => _constants.Continue;
     }
 }

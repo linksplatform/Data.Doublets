@@ -16,6 +16,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
         private static readonly UncheckedConverter<TLink, long> _addressToInt64Converter = UncheckedConverter<TLink, long>.Default;
         private static readonly UncheckedConverter<TLink, int> _addressToInt32Converter = UncheckedConverter<TLink, int>.Default;
         private static readonly UncheckedConverter<bool, TLink> _boolToAddressConverter = UncheckedConverter<bool, TLink>.Default;
+        private static readonly UncheckedConverter<TLink, bool> _addressToBoolConverter = UncheckedConverter<TLink, bool>.Default;
         private static readonly UncheckedConverter<int, TLink> _int32ToAddressConverter = UncheckedConverter<int, TLink>.Default;
 
         protected readonly TLink Break;
@@ -84,8 +85,8 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
         {
             unchecked
             {
-                //return _addressToBoolConverter.Convert(Bit<TLink>.PartialRead(previousValue, 4, 1));
-                return !EqualityComparer.Equals(Bit<TLink>.PartialRead(value, 4, 1), default);
+                return _addressToBoolConverter.Convert(Bit<TLink>.PartialRead(value, 4, 1));
+                //return !EqualityComparer.Equals(Bit<TLink>.PartialRead(value, 4, 1), default);
             }
         }
 
@@ -105,8 +106,8 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
         {
             unchecked
             {
-                //return _addressToBoolConverter.Convert(Bit<TLink>.PartialRead(previousValue, 3, 1));
-                return !EqualityComparer.Equals(Bit<TLink>.PartialRead(value, 3, 1), default);
+                return _addressToBoolConverter.Convert(Bit<TLink>.PartialRead(value, 3, 1));
+                //return !EqualityComparer.Equals(Bit<TLink>.PartialRead(value, 3, 1), default);
             }
         }
 

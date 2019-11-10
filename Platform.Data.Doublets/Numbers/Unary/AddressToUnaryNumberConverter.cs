@@ -22,7 +22,8 @@ namespace Platform.Data.Doublets.Numbers.Unary
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public TLink Convert(TLink number)
         {
-            var nullConstant = Links.Constants.Null;
+            var links = _links;
+            var nullConstant = links.Constants.Null;
             var target = nullConstant;
             for (var i = 0; !_equalityComparer.Equals(number, _zero) && i < NumericType<TLink>.BitsSize; i++)
             {
@@ -30,7 +31,7 @@ namespace Platform.Data.Doublets.Numbers.Unary
                 {
                     target = _equalityComparer.Equals(target, nullConstant)
                         ? _powerOf2ToUnaryNumberConverter.Convert(i)
-                        : Links.GetOrCreate(_powerOf2ToUnaryNumberConverter.Convert(i), target);
+                        : links.GetOrCreate(_powerOf2ToUnaryNumberConverter.Convert(i), target);
                 }
                 number = Bit.ShiftRight(number, 1);
             }

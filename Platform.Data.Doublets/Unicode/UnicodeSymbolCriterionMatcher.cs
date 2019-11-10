@@ -16,6 +16,6 @@ namespace Platform.Data.Doublets.Unicode
         public UnicodeSymbolCriterionMatcher(ILinks<TLink> links, TLink unicodeSymbolMarker) : base(links) => _unicodeSymbolMarker = unicodeSymbolMarker;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool IsMatched(TLink link) => _equalityComparer.Equals(Links.GetTarget(link), _unicodeSymbolMarker);
+        public bool IsMatched(TLink link) => _equalityComparer.Equals(_links.GetTarget(link), _unicodeSymbolMarker);
     }
 }

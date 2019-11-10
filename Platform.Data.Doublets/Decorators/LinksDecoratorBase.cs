@@ -8,13 +8,15 @@ namespace Platform.Data.Doublets.Decorators
 {
     public abstract class LinksDecoratorBase<TLink> : LinksOperatorBase<TLink>, ILinks<TLink>
     {
-        private ILinks<TLink> _facade;
+        protected readonly LinksConstants<TLink> _constants;
 
         public LinksConstants<TLink> Constants
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get;
+            get => _constants;
         }
+
+        protected ILinks<TLink> _facade;
 
         public ILinks<TLink> Facade
         {
@@ -24,7 +26,7 @@ namespace Platform.Data.Doublets.Decorators
             set
             {
                 _facade = value;
-                if (Links is LinksDecoratorBase<TLink> decorator)
+                if (_links is LinksDecoratorBase<TLink> decorator)
                 {
                     decorator.Facade = value;
                 }
@@ -34,23 +36,23 @@ namespace Platform.Data.Doublets.Decorators
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected LinksDecoratorBase(ILinks<TLink> links) : base(links)
         {
-            Constants = links.Constants;
+            _constants = links.Constants;
             Facade = this;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Count(IList<TLink> restrictions) => Links.Count(restrictions);
+        public virtual TLink Count(IList<TLink> restrictions) => _links.Count(restrictions);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Each(Func<IList<TLink>, TLink> handler, IList<TLink> restrictions) => Links.Each(handler, restrictions);
+        public virtual TLink Each(Func<IList<TLink>, TLink> handler, IList<TLink> restrictions) => _links.Each(handler, restrictions);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Create(IList<TLink> restrictions) => Links.Create(restrictions);
+        public virtual TLink Create(IList<TLink> restrictions) => _links.Create(restrictions);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Update(IList<TLink> restrictions, IList<TLink> substitution) => Links.Update(restrictions, substitution);
+        public virtual TLink Update(IList<TLink> restrictions, IList<TLink> substitution) => _links.Update(restrictions, substitution);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual void Delete(IList<TLink> restrictions) => Links.Delete(restrictions);
+        public virtual void Delete(IList<TLink> restrictions) => _links.Delete(restrictions);
     }
 }

@@ -22,7 +22,7 @@ namespace Platform.Data.Doublets.Numbers.Unary
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public TLink Convert(TLink sourceNumber)
         {
-            var links = Links;
+            var links = _links;
             var nullConstant = links.Constants.Null;
             var source = sourceNumber;
             var target = nullConstant;

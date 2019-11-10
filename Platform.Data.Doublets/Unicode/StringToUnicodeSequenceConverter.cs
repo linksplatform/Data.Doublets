@@ -27,13 +27,13 @@ namespace Platform.Data.Doublets.Unicode
         public TLink Convert(string source)
         {
             var elements = new TLink[source.Length];
-            for (int i = 0; i < source.Length; i++)
+            for (int i = 0; i < elements.Length; i++)
             {
                 elements[i] = _charToUnicodeSymbolConverter.Convert(source[i]);
             }
             _index.Add(elements);
             var sequence = _listToSequenceLinkConverter.Convert(elements);
-            return Links.GetOrCreate(sequence, _unicodeSequenceMarker);
+            return _links.GetOrCreate(sequence, _unicodeSequenceMarker);
         }
     }
 }

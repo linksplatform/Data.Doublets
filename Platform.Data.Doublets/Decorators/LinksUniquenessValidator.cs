@@ -13,8 +13,10 @@ namespace Platform.Data.Doublets.Decorators
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override TLink Update(IList<TLink> restrictions, IList<TLink> substitution)
         {
-            Links.EnsureDoesNotExists(substitution[Constants.SourcePart], substitution[Constants.TargetPart]);
-            return Links.Update(restrictions, substitution);
+            var links = _links;
+            var constants = _constants;
+            links.EnsureDoesNotExists(substitution[constants.SourcePart], substitution[constants.TargetPart]);
+            return links.Update(restrictions, substitution);
         }
     }
 }

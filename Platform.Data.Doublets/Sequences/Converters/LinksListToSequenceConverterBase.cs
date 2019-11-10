@@ -6,12 +6,10 @@ using Platform.Converters;
 
 namespace Platform.Data.Doublets.Sequences.Converters
 {
-    public abstract class LinksListToSequenceConverterBase<TLink> : IConverter<IList<TLink>, TLink>
+    public abstract class LinksListToSequenceConverterBase<TLink> : LinksOperatorBase<TLink>, IConverter<IList<TLink>, TLink>
     {
-        protected readonly ILinks<TLink> Links;
-
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected LinksListToSequenceConverterBase(ILinks<TLink> links) => Links = links;
+        protected LinksListToSequenceConverterBase(ILinks<TLink> links) : base(links) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public abstract TLink Convert(IList<TLink> source);

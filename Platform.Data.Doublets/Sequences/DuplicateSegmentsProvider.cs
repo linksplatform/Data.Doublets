@@ -70,23 +70,25 @@ namespace Platform.Data.Doublets.Sequences
         public IList<KeyValuePair<IList<TLink>, IList<TLink>>> Get()
         {
             _groups = new HashSet<KeyValuePair<IList<TLink>, IList<TLink>>>(Default<ItemEquilityComparer>.Instance);
-            var count = _links.Count();
+            var links = _links;
+            var count = links.Count();
             _visited = new BitString(_addressToInt64Converter.Convert(count) + 1L);
-            _links.Each(link =>
+            links.Each(link =>
             {
-                var linkIndex = _links.GetIndex(link);
+                var linkIndex = links.GetIndex(link);
                 var linkBitIndex = _addressToInt64Converter.Convert(linkIndex);
+                var constants = links.Constants;
                 if (!_visited.Get(linkBitIndex))
                 {
                     var sequenceElements = new List<TLink>();
-                    var filler = new ListFiller<TLink, TLink>(sequenceElements, _sequences.Constants.Break);
+                    var filler = new ListFiller<TLink, TLink>(sequenceElements, constants.Break);
                     _sequences.Each(filler.AddSkipFirstAndReturnConstant, new LinkAddress<TLink>(linkIndex));
                     if (sequenceElements.Count > 2)
                     {
                         WalkAll(sequenceElements);
                     }
                 }
-                return _links.Constants.Continue;
+                return constants.Continue;
             });
             var resultList = _groups.ToList();
             var comparer = Default<ItemComparer>.Instance;
@@ -119,13 +121,14 @@ namespace Platform.Data.Doublets.Sequences
             var duplicates = new List<TLink>();
             var readAsElement = new HashSet<TLink>();
             var restrictions = segment.ShiftRight();
-            restrictions[0] = _sequences.Constants.Any;
+            var constants = _links.Constants;
+            restrictions[0] = constants.Any;
             _sequences.Each(sequence =>
             {
-                var sequenceIndex = sequence[_sequences.Constants.IndexPart];
+                var sequenceIndex = sequence[constants.IndexPart];
                 duplicates.Add(sequenceIndex);
                 readAsElement.Add(sequenceIndex);
-                return _sequences.Constants.Continue;
+                return constants.Continue;
             }, restrictions);
             if (duplicates.Any(x => _visited.Get(_addressToInt64Converter.Convert(x))))
             {

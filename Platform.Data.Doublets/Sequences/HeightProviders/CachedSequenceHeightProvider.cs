@@ -7,7 +7,7 @@ using Platform.Converters;
 
 namespace Platform.Data.Doublets.Sequences.HeightProviders
 {
-    public class CachedSequenceHeightProvider<TLink> : LinksOperatorBase<TLink>, ISequenceHeightProvider<TLink>
+    public class CachedSequenceHeightProvider<TLink> : ISequenceHeightProvider<TLink>
     {
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
 
@@ -19,13 +19,11 @@ namespace Platform.Data.Doublets.Sequences.HeightProviders
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public CachedSequenceHeightProvider(
-            ILinks<TLink> links,
             ISequenceHeightProvider<TLink> baseHeightProvider,
             IConverter<TLink> addressToUnaryNumberConverter,
             IConverter<TLink> unaryNumberToAddressConverter,
             TLink heightPropertyMarker,
             IProperties<TLink, TLink, TLink> propertyOperator)
-            : base(links)
         {
             _heightPropertyMarker = heightPropertyMarker;
             _baseHeightProvider = baseHeightProvider;

@@ -36,7 +36,7 @@ namespace Platform.Data.Doublets.Decorators
         {
             if (!wasDisposed)
             {
-                Links.DisposeIfPossible();
+                _links.DisposeIfPossible();
             }
         }
     }

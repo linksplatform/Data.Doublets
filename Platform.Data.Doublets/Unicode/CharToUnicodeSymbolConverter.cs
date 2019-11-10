@@ -23,7 +23,7 @@ namespace Platform.Data.Doublets.Unicode
         public TLink Convert(char source)
         {
             var unaryNumber = _addressToNumberConverter.Convert(_charToAddressConverter.Convert(source));
-            return Links.GetOrCreate(unaryNumber, _unicodeSymbolMarker);
+            return _links.GetOrCreate(unaryNumber, _unicodeSymbolMarker);
         }
     }
 }

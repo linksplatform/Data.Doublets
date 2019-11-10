@@ -11,6 +11,6 @@ namespace Platform.Data.Doublets.Sequences.CriterionMatchers
         public DefaultSequenceElementCriterionMatcher(ILinks<TLink> links) : base(links) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool IsMatched(TLink argument) => Links.IsPartialPoint(argument);
+        public bool IsMatched(TLink argument) => _links.IsPartialPoint(argument);
     }
 }

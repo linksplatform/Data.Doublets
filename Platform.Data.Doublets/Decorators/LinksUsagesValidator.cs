@@ -13,16 +13,18 @@ namespace Platform.Data.Doublets.Decorators
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override TLink Update(IList<TLink> restrictions, IList<TLink> substitution)
         {
-            Links.EnsureNoUsages(restrictions[Constants.IndexPart]);
-            return Links.Update(restrictions, substitution);
+            var links = _links;
+            links.EnsureNoUsages(restrictions[_constants.IndexPart]);
+            return links.Update(restrictions, substitution);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override void Delete(IList<TLink> restrictions)
         {
-            var link = restrictions[Constants.IndexPart];
-            Links.EnsureNoUsages(link);
-            Links.Delete(link);
+            var link = restrictions[_constants.IndexPart];
+            var links = _links;
+            links.EnsureNoUsages(link);
+            links.Delete(link);
         }
     }
 }

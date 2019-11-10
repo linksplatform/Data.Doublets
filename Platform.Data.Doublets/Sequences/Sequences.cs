@@ -644,7 +644,7 @@ namespace Platform.Data.Doublets.Sequences
             {
                 _sequences = sequences;
                 _patternSequence = patternSequence;
-                _linksInSequence = new HashSet<LinkIndex>(patternSequence.Where(x => x != Links.Constants.Any && x != ZeroOrMany));
+                _linksInSequence = new HashSet<LinkIndex>(patternSequence.Where(x => x != _links.Constants.Any && x != ZeroOrMany));
                 _results = results;
                 _stopableHandler = stopableHandler;
                 _readAsElements = readAsElements;
@@ -675,7 +675,7 @@ namespace Platform.Data.Doublets.Sequences
                     _filterPosition = -2; // Длиннее чем нужно
                     return false;
                 }
-                if (_patternSequence[_filterPosition] != Links.Constants.Any
+                if (_patternSequence[_filterPosition] != _links.Constants.Any
                  && element != _patternSequence[_filterPosition])
                 {
                     _filterPosition = -1;
@@ -688,7 +688,7 @@ namespace Platform.Data.Doublets.Sequences
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public void AddFullMatchedToResults(IList<LinkIndex> restrictions)
             {
-                var sequenceToMatch = restrictions[Links.Constants.IndexPart];
+                var sequenceToMatch = restrictions[_links.Constants.IndexPart];
                 if (FullMatch(sequenceToMatch))
                 {
                     _results.Add(sequenceToMatch);
@@ -698,24 +698,24 @@ namespace Platform.Data.Doublets.Sequences
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public LinkIndex HandleFullMatched(IList<LinkIndex> restrictions)
             {
-                var sequenceToMatch = restrictions[Links.Constants.IndexPart];
+                var sequenceToMatch = restrictions[_links.Constants.IndexPart];
                 if (FullMatch(sequenceToMatch) && _results.Add(sequenceToMatch))
                 {
                     return _stopableHandler(new LinkAddress<LinkIndex>(sequenceToMatch));
                 }
-                return Links.Constants.Continue;
+                return _links.Constants.Continue;
             }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public LinkIndex HandleFullMatchedSequence(IList<LinkIndex> restrictions)
             {
-                var sequenceToMatch = restrictions[Links.Constants.IndexPart];
+                var sequenceToMatch = restrictions[_links.Constants.IndexPart];
                 var sequence = _sequences.GetSequenceByElements(sequenceToMatch);
-                if (sequence != Links.Constants.Null && FullMatch(sequenceToMatch) && _results.Add(sequenceToMatch))
+                if (sequence != _links.Constants.Null && FullMatch(sequenceToMatch) && _results.Add(sequenceToMatch))
                 {
                     return _stopableHandler(new LinkAddress<LinkIndex>(sequence));
                 }
-                return Links.Constants.Continue;
+                return _links.Constants.Continue;
             }
 
             /// <remarks>
@@ -775,12 +775,12 @@ namespace Platform.Data.Doublets.Sequences
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public LinkIndex HandlePartialMatched(IList<LinkIndex> restrictions)
             {
-                var sequenceToMatch = restrictions[Links.Constants.IndexPart];
+                var sequenceToMatch = restrictions[_links.Constants.IndexPart];
                 if (PartialMatch(sequenceToMatch))
                 {
                     return _stopableHandler(new LinkAddress<LinkIndex>(sequenceToMatch));
                 }
-                return Links.Constants.Continue;
+                return _links.Constants.Continue;
             }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]

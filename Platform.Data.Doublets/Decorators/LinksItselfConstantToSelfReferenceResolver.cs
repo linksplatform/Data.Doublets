@@ -16,17 +16,17 @@ namespace Platform.Data.Doublets.Decorators
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override TLink Each(Func<IList<TLink>, TLink> handler, IList<TLink> restrictions)
         {
-            var constants = Constants;
+            var constants = _constants;
             var itselfConstant = constants.Itself;
             if (!_equalityComparer.Equals(constants.Any, itselfConstant) && restrictions.Contains(itselfConstant))
             {
                 // Itself constant is not supported for Each method right now, skipping execution
                 return constants.Continue;
             }
-            return Links.Each(handler, restrictions);
+            return _links.Each(handler, restrictions);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Update(IList<TLink> restrictions, IList<TLink> substitution) => Links.Update(restrictions, Links.ResolveConstantAsSelfReference(Constants.Itself, restrictions, substitution));
+        public override TLink Update(IList<TLink> restrictions, IList<TLink> substitution) => _links.Update(restrictions, _links.ResolveConstantAsSelfReference(_constants.Itself, restrictions, substitution));
     }
 }

@@ -26,12 +26,13 @@ namespace Platform.Data.Doublets.Incrementers
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public TLink Increment(TLink frequency)
         {
+            var links = _links;
             if (_equalityComparer.Equals(frequency, default))
             {
-                return Links.GetOrCreate(_unaryOne, _frequencyMarker);
+                return links.GetOrCreate(_unaryOne, _frequencyMarker);
             }
-            var incrementedSource = _unaryNumberIncrementer.Increment(Links.GetSource(frequency));
-            return Links.GetOrCreate(incrementedSource, _frequencyMarker);
+            var incrementedSource = _unaryNumberIncrementer.Increment(links.GetSource(frequency));
+            return links.GetOrCreate(incrementedSource, _frequencyMarker);
         }
     }
 }

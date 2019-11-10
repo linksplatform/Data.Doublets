@@ -285,13 +285,13 @@ namespace Platform.Data.Doublets
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public IList<ulong> GetLinkValue(ulong link) => Links.GetLink(link);
+        public IList<ulong> GetLinkValue(ulong link) => _links.GetLink(link);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override ulong Create(IList<ulong> restrictions)
         {
-            var createdLinkIndex = Links.Create();
-            var createdLink = new Link<ulong>(Links.GetLink(createdLinkIndex));
+            var createdLinkIndex = _links.Create();
+            var createdLink = new Link<ulong>(_links.GetLink(createdLinkIndex));
             CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, default, createdLink));
             return createdLinkIndex;
         }
@@ -299,10 +299,10 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override ulong Update(IList<ulong> restrictions, IList<ulong> substitution)
         {
-            var linkIndex = restrictions[Constants.IndexPart];
-            var beforeLink = new Link<ulong>(Links.GetLink(linkIndex));
-            linkIndex = Links.Update(restrictions, substitution);
-            var afterLink = new Link<ulong>(Links.GetLink(linkIndex));
+            var linkIndex = restrictions[_constants.IndexPart];
+            var beforeLink = new Link<ulong>(_links.GetLink(linkIndex));
+            linkIndex = _links.Update(restrictions, substitution);
+            var afterLink = new Link<ulong>(_links.GetLink(linkIndex));
             CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, beforeLink, afterLink));
             return linkIndex;
         }
@@ -310,9 +310,9 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override void Delete(IList<ulong> restrictions)
         {
-            var link = restrictions[Constants.IndexPart];
-            var deletedLink = new Link<ulong>(Links.GetLink(link));
-            Links.Delete(link);
+            var link = restrictions[_constants.IndexPart];
+            var deletedLink = new Link<ulong>(_links.GetLink(link));
+            _links.Delete(link);
             CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, deletedLink, default));
         }
 
@@ -335,15 +335,15 @@ namespace Platform.Data.Doublets
         {
             if (transition.After.IsNull()) // Revert Deletion with Creation
             {
-                Links.Create();
+                _links.Create();
             }
             else if (transition.Before.IsNull()) // Revert Creation with Deletion
             {
-                Links.Delete(transition.After.Index);
+                _links.Delete(transition.After.Index);
             }
             else // Revert Update
             {
-                Links.Update(new[] { transition.After.Index, transition.Before.Source, transition.Before.Target });
+                _links.Update(new[] { transition.After.Index, transition.Before.Source, transition.Before.Target });
             }
         }
 

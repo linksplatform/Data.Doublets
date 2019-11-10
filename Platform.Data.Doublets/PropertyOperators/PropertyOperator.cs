@@ -23,7 +23,7 @@ namespace Platform.Data.Doublets.PropertyOperators
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public TLink Get(TLink link)
         {
-            var property = Links.SearchOrDefault(link, _propertyMarker);
+            var property = _links.SearchOrDefault(link, _propertyMarker);
             return GetValue(GetContainer(property));
         }
 
@@ -35,7 +35,7 @@ namespace Platform.Data.Doublets.PropertyOperators
             {
                 return valueContainer;
             }
-            var links = Links;
+            var links = _links;
             var constants = links.Constants;
             var countinueConstant = constants.Continue;
             var breakConstant = constants.Break;
@@ -56,12 +56,12 @@ namespace Platform.Data.Doublets.PropertyOperators
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private TLink GetValue(TLink container) => _equalityComparer.Equals(container, default) ? default : Links.GetTarget(container);
+        private TLink GetValue(TLink container) => _equalityComparer.Equals(container, default) ? default : _links.GetTarget(container);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Set(TLink link, TLink value)
         {
-            var links = Links;
+            var links = _links;
             var property = links.GetOrCreate(link, _propertyMarker);
             var container = GetContainer(property);
             if (_equalityComparer.Equals(container, default))

@@ -6,13 +6,15 @@ namespace Platform.Data.Doublets
 {
     public abstract class LinksOperatorBase<TLink>
     {
+        protected readonly ILinks<TLink> _links;
+
         public ILinks<TLink> Links
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get;
+            get => _links;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected LinksOperatorBase(ILinks<TLink> links) => Links = links;
+        protected LinksOperatorBase(ILinks<TLink> links) => _links = links;
     }
 }

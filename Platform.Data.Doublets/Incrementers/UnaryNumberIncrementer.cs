@@ -18,19 +18,20 @@ namespace Platform.Data.Doublets.Incrementers
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public TLink Increment(TLink unaryNumber)
         {
+            var links = _links;
             if (_equalityComparer.Equals(unaryNumber, _unaryOne))
             {
-                return Links.GetOrCreate(_unaryOne, _unaryOne);
+                return links.GetOrCreate(_unaryOne, _unaryOne);
             }
-            var source = Links.GetSource(unaryNumber);
-            var target = Links.GetTarget(unaryNumber);
+            var source = links.GetSource(unaryNumber);
+            var target = links.GetTarget(unaryNumber);
             if (_equalityComparer.Equals(source, target))
             {
-                return Links.GetOrCreate(unaryNumber, _unaryOne);
+                return links.GetOrCreate(unaryNumber, _unaryOne);
             }
             else
             {
-                return Links.GetOrCreate(source, Increment(target));
+                return links.GetOrCreate(source, Increment(target));
             }
         }
     }

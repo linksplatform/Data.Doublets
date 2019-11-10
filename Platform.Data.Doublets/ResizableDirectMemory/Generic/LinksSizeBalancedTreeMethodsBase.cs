@@ -162,7 +162,6 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
                 else
                 {
                     totalLeftIgnore = Add(totalLeftIgnore, Increment(GetLeftSize(root)));
-
                     root = GetRightOrDefault(root);
                 }
             }

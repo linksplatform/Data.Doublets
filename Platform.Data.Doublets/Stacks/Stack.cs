@@ -6,11 +6,10 @@ using Platform.Collections.Stacks;
 
 namespace Platform.Data.Doublets.Stacks
 {
-    public class Stack<TLink> : IStack<TLink>
+    public class Stack<TLink> : LinksOperatorBase<TLink>, IStack<TLink>
     {
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
 
-        private readonly ILinks<TLink> _links;
         private readonly TLink _stack;
 
         public bool IsEmpty
@@ -20,11 +19,7 @@ namespace Platform.Data.Doublets.Stacks
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public Stack(ILinks<TLink> links, TLink stack)
-        {
-            _links = links;
-            _stack = stack;
-        }
+        public Stack(ILinks<TLink> links, TLink stack) : base(links) => _stack = stack;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private TLink GetStackMarker() => _links.GetSource(_stack);

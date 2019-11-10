@@ -29,12 +29,12 @@ namespace Platform.Data.Doublets.Decorators
         public UInt64Links(ILinks<ulong> links) : base(links) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override ulong Create(IList<ulong> restrictions) => Links.CreatePoint();
+        public override ulong Create(IList<ulong> restrictions) => _links.CreatePoint();
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override ulong Update(IList<ulong> restrictions, IList<ulong> substitution)
         {
-            var constants = Constants;
+            var constants = _constants;
             var indexPartConstant = constants.IndexPart;
             var sourcePartConstant = constants.SourcePart;
             var targetPartConstant = constants.TargetPart;
@@ -44,33 +44,35 @@ namespace Platform.Data.Doublets.Decorators
             var updatedLink = restrictions[indexPartConstant];
             var newSource = substitution[sourcePartConstant];
             var newTarget = substitution[targetPartConstant];
+            var links = _links;
             if (newSource != itselfConstant && newTarget != itselfConstant)
             {
-                existedLink = Links.SearchOrDefault(newSource, newTarget);
+                existedLink = links.SearchOrDefault(newSource, newTarget);
             }
             if (existedLink == nullConstant)
             {
-                var before = Links.GetLink(updatedLink);
+                var before = links.GetLink(updatedLink);
                 if (before[sourcePartConstant] != newSource || before[targetPartConstant] != newTarget)
                 {
-                    Links.Update(updatedLink, newSource == itselfConstant ? updatedLink : newSource,
+                    links.Update(updatedLink, newSource == itselfConstant ? updatedLink : newSource,
                                               newTarget == itselfConstant ? updatedLink : newTarget);
                 }
                 return updatedLink;
             }
             else
             {
-                return Facade.MergeAndDelete(updatedLink, existedLink);
+                return _facade.MergeAndDelete(updatedLink, existedLink);
             }
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override void Delete(IList<ulong> restrictions)
         {
-            var linkIndex = restrictions[Constants.IndexPart];
-            Links.EnforceResetValues(linkIndex);
-            Facade.DeleteAllUsages(linkIndex);
-            Links.Delete(linkIndex);
+            var linkIndex = restrictions[_constants.IndexPart];
+            var links = _links;
+            links.EnforceResetValues(linkIndex);
+            _facade.DeleteAllUsages(linkIndex);
+            links.Delete(linkIndex);
         }
     }
 }

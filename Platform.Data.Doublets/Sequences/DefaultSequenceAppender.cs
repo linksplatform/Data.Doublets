@@ -27,10 +27,11 @@ namespace Platform.Data.Doublets.Sequences
         public TLink Append(TLink sequence, TLink appendant)
         {
             var cursor = sequence;
+            var links = _links;
             while (!_equalityComparer.Equals(_heightProvider.Get(cursor), default))
             {
-                var source = Links.GetSource(cursor);
-                var target = Links.GetTarget(cursor);
+                var source = links.GetSource(cursor);
+                var target = links.GetTarget(cursor);
                 if (_equalityComparer.Equals(_heightProvider.Get(source), _heightProvider.Get(target)))
                 {
                     break;
@@ -43,12 +44,12 @@ namespace Platform.Data.Doublets.Sequences
             }
             var left = cursor;
             var right = appendant;
-            while (!_equalityComparer.Equals(cursor = _stack.Pop(), Links.Constants.Null))
+            while (!_equalityComparer.Equals(cursor = _stack.Pop(), links.Constants.Null))
             {
-                right = Links.GetOrCreate(left, right);
+                right = links.GetOrCreate(left, right);
                 left = cursor;
             }
-            return Links.GetOrCreate(left, right);
+            return links.GetOrCreate(left, right);
         }
     }
 }

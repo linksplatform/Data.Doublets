@@ -30,7 +30,7 @@ namespace Platform.Data.Doublets.Numbers.Unary
                 return _unaryNumberPowersOf2[power];
             }
             var previousPowerOf2 = Convert(power - 1);
-            var powerOf2 = Links.GetOrCreate(previousPowerOf2, previousPowerOf2);
+            var powerOf2 = _links.GetOrCreate(previousPowerOf2, previousPowerOf2);
             _unaryNumberPowersOf2[power] = powerOf2;
             return powerOf2;
         }

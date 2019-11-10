@@ -29,7 +29,8 @@ namespace Platform.Data.Doublets.Numbers.Unary
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public TLink Convert(Doublet<TLink> doublet)
         {
-            var link = Links.SearchOrDefault(doublet.Source, doublet.Target);
+            var links = _links;
+            var link = links.SearchOrDefault(doublet.Source, doublet.Target);
             if (_equalityComparer.Equals(link, default))
             {
                 throw new ArgumentException($"Link ({doublet}) not found.", nameof(doublet));
@@ -39,7 +40,7 @@ namespace Platform.Data.Doublets.Numbers.Unary
             {
                 return default;
             }
-            var frequencyNumber = Links.GetSource(frequency);
+            var frequencyNumber = links.GetSource(frequency);
             return _unaryNumberToAddressConverter.Convert(frequencyNumber);
         }
     }

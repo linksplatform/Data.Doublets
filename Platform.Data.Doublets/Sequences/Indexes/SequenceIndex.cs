@@ -17,10 +17,10 @@ namespace Platform.Data.Doublets.Sequences.Indexes
         {
             var indexed = true;
             var i = sequence.Count;
-            while (--i >= 1 && (indexed = !_equalityComparer.Equals(Links.SearchOrDefault(sequence[i - 1], sequence[i]), default))) { }
+            while (--i >= 1 && (indexed = !_equalityComparer.Equals(_links.SearchOrDefault(sequence[i - 1], sequence[i]), default))) { }
             for (; i >= 1; i--)
             {
-                Links.GetOrCreate(sequence[i - 1], sequence[i]);
+                _links.GetOrCreate(sequence[i - 1], sequence[i]);
             }
             return indexed;
         }
@@ -30,7 +30,7 @@ namespace Platform.Data.Doublets.Sequences.Indexes
         {
             var indexed = true;
             var i = sequence.Count;
-            while (--i >= 1 && (indexed = !_equalityComparer.Equals(Links.SearchOrDefault(sequence[i - 1], sequence[i]), default))) { }
+            while (--i >= 1 && (indexed = !_equalityComparer.Equals(_links.SearchOrDefault(sequence[i - 1], sequence[i]), default))) { }
             return indexed;
         }
     }

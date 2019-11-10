@@ -15,25 +15,28 @@ namespace Platform.Data.Doublets.Decorators
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override TLink Each(Func<IList<TLink>, TLink> handler, IList<TLink> restrictions)
         {
-            Links.EnsureInnerReferenceExists(restrictions, nameof(restrictions));
-            return Links.Each(handler, restrictions);
+            var links = _links;
+            links.EnsureInnerReferenceExists(restrictions, nameof(restrictions));
+            return links.Each(handler, restrictions);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override TLink Update(IList<TLink> restrictions, IList<TLink> substitution)
         {
             // TODO: Possible values: null, ExistentLink or NonExistentHybrid(ExternalReference)
-            Links.EnsureInnerReferenceExists(restrictions, nameof(restrictions));
-            Links.EnsureInnerReferenceExists(substitution, nameof(substitution));
-            return Links.Update(restrictions, substitution);
+            var links = _links;
+            links.EnsureInnerReferenceExists(restrictions, nameof(restrictions));
+            links.EnsureInnerReferenceExists(substitution, nameof(substitution));
+            return links.Update(restrictions, substitution);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override void Delete(IList<TLink> restrictions)
         {
-            var link = restrictions[Constants.IndexPart];
-            Links.EnsureLinkExists(link, nameof(link));
-            Links.Delete(link);
+            var link = restrictions[_constants.IndexPart];
+            var links = _links;
+            links.EnsureLinkExists(link, nameof(link));
+            links.Delete(link);
         }
     }
 }

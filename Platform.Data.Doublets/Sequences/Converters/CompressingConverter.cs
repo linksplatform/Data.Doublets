@@ -49,15 +49,11 @@ namespace Platform.Data.Doublets.Sequences.Converters
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public CompressingConverter(ILinks<TLink> links, IConverter<IList<TLink>, TLink> baseConverter, LinkFrequenciesCache<TLink> doubletFrequenciesCache)
-            : this(links, baseConverter, doubletFrequenciesCache, _one, true)
-        {
-        }
+            : this(links, baseConverter, doubletFrequenciesCache, _one, true) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public CompressingConverter(ILinks<TLink> links, IConverter<IList<TLink>, TLink> baseConverter, LinkFrequenciesCache<TLink> doubletFrequenciesCache, bool doInitialFrequenciesIncrement)
-            : this(links, baseConverter, doubletFrequenciesCache, _one, doInitialFrequenciesIncrement)
-        {
-        }
+            : this(links, baseConverter, doubletFrequenciesCache, _one, doInitialFrequenciesIncrement) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public CompressingConverter(ILinks<TLink> links, IConverter<IList<TLink>, TLink> baseConverter, LinkFrequenciesCache<TLink> doubletFrequenciesCache, TLink minFrequencyToCompress, bool doInitialFrequenciesIncrement)
@@ -94,7 +90,7 @@ namespace Platform.Data.Doublets.Sequences.Converters
             }
             if (sequence.Count == 2)
             {
-                return new[] { Links.GetOrCreate(sequence[0], sequence[1]) };
+                return new[] { _links.GetOrCreate(sequence[0], sequence[1]) };
             }
             // TODO: arraypool with min size (to improve cache locality) or stackallow with Sigil
             var copy = new HalfDoublet[sequence.Count];
@@ -148,7 +144,7 @@ namespace Platform.Data.Doublets.Sequences.Converters
                 var maxDoubletTarget = _maxDoublet.Target;
                 if (_equalityComparer.Equals(_maxDoubletData.Link, _constants.Null))
                 {
-                    _maxDoubletData.Link = Links.GetOrCreate(maxDoubletSource, maxDoubletTarget);
+                    _maxDoubletData.Link = _links.GetOrCreate(maxDoubletSource, maxDoubletTarget);
                 }
                 var maxDoubletReplacementLink = _maxDoubletData.Link;
                 oldLength--;

@@ -37,8 +37,9 @@ namespace Platform.Data.Doublets.Numbers.Unary
             {
                 return _one;
             }
-            var source = Links.GetSource(unaryNumber);
-            var target = Links.GetTarget(unaryNumber);
+            var links = _links;
+            var source = links.GetSource(unaryNumber);
+            var target = links.GetTarget(unaryNumber);
             if (_equalityComparer.Equals(source, target))
             {
                 return _unaryToUInt64[unaryNumber];
@@ -49,9 +50,9 @@ namespace Platform.Data.Doublets.Numbers.Unary
                 TLink lastValue;
                 while (!_unaryToUInt64.TryGetValue(target, out lastValue))
                 {
-                    source = Links.GetSource(target);
+                    source = links.GetSource(target);
                     result = Arithmetic<TLink>.Add(result, _unaryToUInt64[source]);
-                    target = Links.GetTarget(target);
+                    target = links.GetTarget(target);
                 }
                 result = Arithmetic<TLink>.Add(result, lastValue);
                 return result;

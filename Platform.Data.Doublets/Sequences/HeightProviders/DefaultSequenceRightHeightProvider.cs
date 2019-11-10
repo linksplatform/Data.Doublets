@@ -20,7 +20,7 @@ namespace Platform.Data.Doublets.Sequences.HeightProviders
             var pairOrElement = sequence;
             while (!_elementMatcher.IsMatched(pairOrElement))
             {
-                pairOrElement = Links.GetTarget(pairOrElement);
+                pairOrElement = _links.GetTarget(pairOrElement);
                 height = Arithmetic.Increment(height);
             }
             return height;

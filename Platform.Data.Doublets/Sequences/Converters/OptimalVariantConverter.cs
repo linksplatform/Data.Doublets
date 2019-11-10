@@ -26,10 +26,9 @@ namespace Platform.Data.Doublets.Sequences.Converters
             {
                 return sequence[0];
             }
-            var links = Links;
             if (length == 2)
             {
-                return links.GetOrCreate(sequence[0], sequence[1]);
+                return _links.GetOrCreate(sequence[0], sequence[1]);
             }
             sequence = sequence.ToArray();
             var levels = _sequenceToItsLocalElementLevelsConverter.Convert(sequence);
@@ -48,7 +47,7 @@ namespace Platform.Data.Doublets.Sequences.Converters
                         skipOnce = false;
                         if (levelRepeat == 2)
                         {
-                            sequence[w] = links.GetOrCreate(sequence[i - 1], sequence[i]);
+                            sequence[w] = _links.GetOrCreate(sequence[i - 1], sequence[i]);
                             var newLevel = i >= length - 1 ?
                                 GetPreviousLowerThanCurrentOrCurrent(previousLevel, currentLevel) :
                                 i < 2 ?
@@ -92,7 +91,7 @@ namespace Platform.Data.Doublets.Sequences.Converters
                 }
                 length = w;
             }
-            return links.GetOrCreate(sequence[0], sequence[1]);
+            return _links.GetOrCreate(sequence[0], sequence[1]);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

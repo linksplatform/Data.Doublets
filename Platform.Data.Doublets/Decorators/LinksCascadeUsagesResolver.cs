@@ -17,10 +17,10 @@ namespace Platform.Data.Doublets.Decorators
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override void Delete(IList<TLink> restrictions)
         {
-            var linkIndex = restrictions[Constants.IndexPart];
+            var linkIndex = restrictions[_constants.IndexPart];
             // Use Facade (the last decorator) to ensure recursion working correctly
-            Facade.DeleteAllUsages(linkIndex);
-            Links.Delete(linkIndex);
+            _facade.DeleteAllUsages(linkIndex);
+            _links.Delete(linkIndex);
         }
     }
 }

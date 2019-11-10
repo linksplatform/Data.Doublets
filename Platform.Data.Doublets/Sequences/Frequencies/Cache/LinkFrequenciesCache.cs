@@ -86,7 +86,7 @@ namespace Platform.Data.Doublets.Sequences.Frequencies.Cache
             }
             else
             {
-                var link = Links.SearchOrDefault(doublet.Source, doublet.Target);
+                var link = _links.SearchOrDefault(doublet.Source, doublet.Target);
                 data = new LinkFrequency<TLink>(_one, link);
                 if (!_equalityComparer.Equals(link, default))
                 {

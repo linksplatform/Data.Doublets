@@ -11,9 +11,9 @@ namespace Platform.Data.Doublets.Decorators
         public LinksNullConstantToSelfReferenceResolver(ILinks<TLink> links) : base(links) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Create(IList<TLink> restrictions) => Links.CreatePoint();
+        public override TLink Create(IList<TLink> restrictions) => _links.CreatePoint();
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Update(IList<TLink> restrictions, IList<TLink> substitution) => Links.Update(restrictions, Links.ResolveConstantAsSelfReference(Constants.Null, restrictions, substitution));
+        public override TLink Update(IList<TLink> restrictions, IList<TLink> substitution) => _links.Update(restrictions, _links.ResolveConstantAsSelfReference(_constants.Null, restrictions, substitution));
     }
 }

@@ -17,25 +17,28 @@ namespace Platform.Data.Doublets.PropertyOperators
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public TLink GetValue(TLink @object, TLink property)
         {
-            var objectProperty = Links.SearchOrDefault(@object, property);
+            var links = _links;
+            var objectProperty = links.SearchOrDefault(@object, property);
             if (_equalityComparer.Equals(objectProperty, default))
             {
                 return default;
             }
-            var valueLink = Links.All(Links.Constants.Any, objectProperty).SingleOrDefault();
+            var constants = links.Constants;
+            var valueLink = links.All(constants.Any, objectProperty).SingleOrDefault();
             if (valueLink == null)
             {
                 return default;
             }
-            return Links.GetTarget(valueLink[Links.Constants.IndexPart]);
+            return links.GetTarget(valueLink[constants.IndexPart]);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void SetValue(TLink @object, TLink property, TLink value)
         {
-            var objectProperty = Links.GetOrCreate(@object, property);
-            Links.DeleteMany(Links.AllIndices(Links.Constants.Any, objectProperty));
-            Links.GetOrCreate(objectProperty, value);
+            var links = _links;
+            var objectProperty = links.GetOrCreate(@object, property);
+            links.DeleteMany(links.AllIndices(links.Constants.Any, objectProperty));
+            links.GetOrCreate(objectProperty, value);
         }
     }
 }

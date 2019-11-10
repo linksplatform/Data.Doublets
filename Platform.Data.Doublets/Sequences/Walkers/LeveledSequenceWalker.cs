@@ -21,7 +21,7 @@ namespace Platform.Data.Doublets.Sequences.Walkers
         public LeveledSequenceWalker(ILinks<TLink> links, Func<TLink, bool> isElement) : base(links) => _isElement = isElement;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public LeveledSequenceWalker(ILinks<TLink> links) : base(links) => _isElement = Links.IsPartialPoint;
+        public LeveledSequenceWalker(ILinks<TLink> links) : base(links) => _isElement = _links.IsPartialPoint;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IEnumerable<TLink> Walk(TLink sequence) => ToArray(sequence);
@@ -60,9 +60,10 @@ namespace Platform.Data.Doublets.Sequences.Walkers
                     }
                     else
                     {
-                        var link = Links.GetLink(candidate);
-                        var linkSource = Links.GetSource(link);
-                        var linkTarget = Links.GetTarget(link);
+                        var links = _links;
+                        var link = links.GetLink(candidate);
+                        var linkSource = links.GetSource(link);
+                        var linkTarget = links.GetTarget(link);
                         nextArray[doubletOffset] = linkSource;
                         nextArray[doubletOffset + 1] = linkTarget;
                         if (!hasElements)

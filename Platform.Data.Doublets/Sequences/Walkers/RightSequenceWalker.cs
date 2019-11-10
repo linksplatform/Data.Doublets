@@ -16,16 +16,16 @@ namespace Platform.Data.Doublets.Sequences.Walkers
         public RightSequenceWalker(ILinks<TLink> links, IStack<TLink> stack) : base(links, stack, links.IsPartialPoint) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink GetNextElementAfterPop(TLink element) => Links.GetTarget(element);
+        protected override TLink GetNextElementAfterPop(TLink element) => _links.GetTarget(element);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink GetNextElementAfterPush(TLink element) => Links.GetSource(element);
+        protected override TLink GetNextElementAfterPush(TLink element) => _links.GetSource(element);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override IEnumerable<TLink> WalkContents(TLink element)
         {
-            var parts = Links.GetLink(element);
-            for (var i = Links.Constants.IndexPart + 1; i < parts.Count; i++)
+            var parts = _links.GetLink(element);
+            for (var i = _links.Constants.SourcePart; i < parts.Count; i++)
             {
                 var part = parts[i];
                 if (IsElement(part))

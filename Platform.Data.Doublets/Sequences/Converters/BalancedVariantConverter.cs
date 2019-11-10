@@ -37,7 +37,7 @@ namespace Platform.Data.Doublets.Sequences.Converters
                 HalveSequence(sequence, sequence, length);
                 length = (length / 2) + (length % 2);
             }
-            return Links.GetOrCreate(sequence[0], sequence[1]);
+            return _links.GetOrCreate(sequence[0], sequence[1]);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -46,7 +46,7 @@ namespace Platform.Data.Doublets.Sequences.Converters
             var loopedLength = length - (length % 2);
             for (var i = 0; i < loopedLength; i += 2)
             {
-                destination[i / 2] = Links.GetOrCreate(source[i], source[i + 1]);
+                destination[i / 2] = _links.GetOrCreate(source[i], source[i + 1]);
             }
             if (length > loopedLength)
             {
