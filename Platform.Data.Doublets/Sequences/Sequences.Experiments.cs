@@ -1540,7 +1540,7 @@ namespace Platform.Data.Doublets.Sequences
         {
             if (links.Length == 1)
             {
-                throw new Exception("Подпоследовательности с одним элементом не поддерживаются.");
+                throw new InvalidOperationException("Подпоследовательности с одним элементом не поддерживаются.");
             }
             var leftBound = 0;
             var rightBound = links.Length - 1;

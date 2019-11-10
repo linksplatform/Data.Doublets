@@ -8,7 +8,7 @@ using static System.Runtime.CompilerServices.Unsafe;
 
 namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
 {
-    public unsafe partial class ResizableDirectMemoryLinks<TLink> : ResizableDirectMemoryLinksBase<TLink>
+    public unsafe class ResizableDirectMemoryLinks<TLink> : ResizableDirectMemoryLinksBase<TLink>
     {
         private readonly Func<ILinksTreeMethods<TLink>> _createSourceTreeMethods;
         private readonly Func<ILinksTreeMethods<TLink>> _createTargetTreeMethods;

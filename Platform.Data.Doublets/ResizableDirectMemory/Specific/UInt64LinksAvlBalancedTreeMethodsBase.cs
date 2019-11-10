@@ -80,22 +80,22 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Specific
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override ulong GetSizeValue(ulong value) => unchecked((value & 4294967264UL) >> 5);
+        protected override ulong GetSizeValue(ulong value) => (value & 4294967264UL) >> 5;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetSizeValue(ref ulong storedValue, ulong size) => storedValue = unchecked(storedValue & 31UL | (size & 134217727UL) << 5);
+        protected override void SetSizeValue(ref ulong storedValue, ulong size) => storedValue = storedValue & 31UL | (size & 134217727UL) << 5;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override bool GetLeftIsChildValue(ulong value) => unchecked((value & 16UL) >> 4 == 1UL);
+        protected override bool GetLeftIsChildValue(ulong value) => (value & 16UL) >> 4 == 1UL;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetLeftIsChildValue(ref ulong storedValue, bool value) => storedValue = unchecked(storedValue & 4294967279UL | (As<bool, byte>(ref value) & 1UL) << 4);
+        protected override void SetLeftIsChildValue(ref ulong storedValue, bool value) => storedValue = storedValue & 4294967279UL | (As<bool, byte>(ref value) & 1UL) << 4;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override bool GetRightIsChildValue(ulong value) => unchecked((value & 8UL) >> 3 == 1UL);
+        protected override bool GetRightIsChildValue(ulong value) => (value & 8UL) >> 3 == 1UL;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetRightIsChildValue(ref ulong storedValue, bool value) => storedValue = unchecked(storedValue & 4294967287UL | (As<bool, byte>(ref value) & 1UL) << 3);
+        protected override void SetRightIsChildValue(ref ulong storedValue, bool value) => storedValue = storedValue & 4294967287UL | (As<bool, byte>(ref value) & 1UL) << 3;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override sbyte GetBalanceValue(ulong value) => unchecked((sbyte)(value & 7UL | 0xF8UL * ((value & 4UL) >> 2))); // if negative, then continue ones to the end of sbyte

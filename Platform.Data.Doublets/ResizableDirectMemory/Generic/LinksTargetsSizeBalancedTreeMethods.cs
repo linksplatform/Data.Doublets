@@ -10,10 +10,10 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
         public LinksTargetsSizeBalancedTreeMethods(LinksConstants<TLink> constants, byte* links, byte* header) : base(constants, links, header) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected unsafe override ref TLink GetLeftReference(TLink node) => ref GetLinkReference(node).LeftAsTarget;
+        protected override ref TLink GetLeftReference(TLink node) => ref GetLinkReference(node).LeftAsTarget;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected unsafe override ref TLink GetRightReference(TLink node) => ref GetLinkReference(node).RightAsTarget;
+        protected override ref TLink GetRightReference(TLink node) => ref GetLinkReference(node).RightAsTarget;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override TLink GetLeft(TLink node) => GetLinkReference(node).LeftAsTarget;

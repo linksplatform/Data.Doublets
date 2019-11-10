@@ -124,7 +124,7 @@ namespace Platform.Data.Doublets.Sequences.Frequencies.Cache
                 //        var count = _countLinkFrequency(linkIndex);
 
                 //        if ((frequency > count && frequency - count > 1) || (count > frequency && count - frequency > 1))
-                //            throw new Exception("Frequencies validation failed.");
+                //            throw new InvalidOperationException("Frequencies validation failed.");
                 //    }
                 //}
             }
