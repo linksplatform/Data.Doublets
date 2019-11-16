@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Platform.Memory;
 using Platform.Data.Doublets.ResizableDirectMemory.Generic;
@@ -9,6 +8,10 @@ using Platform.Singletons;
 
 namespace Platform.Data.Doublets.ResizableDirectMemory.Specific
 {
+    /// <summary>
+    /// <para>Represents a low-level implementation of direct access to resizable memory, for organizing the storage of links with addresses represented as <see cref="System.UInt64" />.</para>
+    /// <para>Представляет низкоуровневую реализация прямого доступа к памяти с переменным размером, для организации хранения связей с адресами представленными в виде <see cref="System.UInt64"/>.</para>
+    /// </summary>
     public unsafe class UInt64ResizableDirectMemoryLinks : ResizableDirectMemoryLinksBase<ulong>
     {
         private readonly Func<ILinksTreeMethods<ulong>> _createSourceTreeMethods;
