@@ -6,7 +6,8 @@ using System.Runtime.CompilerServices;
 namespace Platform.Data.Doublets.Decorators
 {
     /// <summary>
-    /// Представляет объект для работы с базой данных (файлом) в формате Links (массива связей).
+    /// <para>Represents a combined decorator that implements the basic logic for interacting with the links storage for links with addresses represented as <see cref="System.UInt64" />.</para>
+    /// <para>Представляет комбинированный декоратор, реализующий основную логику по взаимодействии с хранилищем связей, для связей с адресами представленными в виде <see cref="System.UInt64"/>.</para>
     /// </summary>
     /// <remarks>
     /// Возможные оптимизации:
