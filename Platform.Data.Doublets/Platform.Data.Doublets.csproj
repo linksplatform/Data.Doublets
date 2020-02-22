@@ -51,7 +51,7 @@ This release is not backward compatible with the previous 0.3.0 release.</Packag
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="Platform.Random" Version="0.0.5" />
+    <PackageReference Include="Platform.Random" Version="0.1.0" />
     <PackageReference Include="Platform.Timestamps" Version="0.1.0" />
     <PackageReference Include="Platform.Incrementers" Version="0.1.0" />
     <PackageReference Include="Platform.Collections.Methods" Version="0.2.2" />
