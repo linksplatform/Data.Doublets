@@ -384,6 +384,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
                 {
                     _memory.ReservedCapacity += _memoryReservationStep;
                     SetPointers(_memory);
+                    header = ref GetHeaderReference();
                     header.ReservedLinks = ConvertToAddress(_memory.ReservedCapacity / LinkSizeInBytes);
                 }
                 header.AllocatedLinks = Increment(header.AllocatedLinks);
