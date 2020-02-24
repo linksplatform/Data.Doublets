@@ -57,7 +57,7 @@ This release is not backward compatible with the previous 0.3.0 release.</Packag
     <PackageReference Include="Platform.Collections.Methods" Version="0.3.0" />
     <PackageReference Include="Platform.Singletons" Version="0.1.0" />
     <PackageReference Include="Platform.Memory" Version="0.1.9" />
-    <PackageReference Include="Platform.Data" Version="0.2.2" />
+    <PackageReference Include="Platform.Data" Version="0.3.0" />
   </ItemGroup>
 
 </Project>
