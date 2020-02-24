@@ -6,7 +6,7 @@
     <AssemblyTitle>Platform.Data.Doublets</AssemblyTitle>
     <VersionPrefix>0.4.0</VersionPrefix>
     <Authors>Konstantin Diachenko</Authors>
-    <TargetFrameworks>net471;netstandard2.0;netstandard2.1</TargetFrameworks>
+    <TargetFrameworks>net472;netstandard2.0;netstandard2.1</TargetFrameworks>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <AssemblyName>Platform.Data.Doublets</AssemblyName>
     <PackageId>Platform.Data.Doublets</PackageId>
