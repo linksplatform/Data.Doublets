@@ -78,12 +78,12 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
             {
                 memory.ReservedCapacity = memoryReservationStep;
             }
-            SetPointers(_memory);
+            SetPointers(memory);
             ref var header = ref GetHeaderReference();
             // Гарантия корректности _memory.UsedCapacity относительно _header->AllocatedLinks
-            _memory.UsedCapacity = (ConvertToInt64(header.AllocatedLinks) * LinkSizeInBytes) + LinkHeaderSizeInBytes;
+            memory.UsedCapacity = (ConvertToInt64(header.AllocatedLinks) * LinkSizeInBytes) + LinkHeaderSizeInBytes;
             // Гарантия корректности _header->ReservedLinks относительно _memory.ReservedCapacity
-            header.ReservedLinks = ConvertToAddress((_memory.ReservedCapacity - LinkHeaderSizeInBytes) / LinkSizeInBytes);
+            header.ReservedLinks = ConvertToAddress((memory.ReservedCapacity - LinkHeaderSizeInBytes) / LinkSizeInBytes);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
