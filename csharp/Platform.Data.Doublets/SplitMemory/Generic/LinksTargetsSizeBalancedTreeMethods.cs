@@ -51,6 +51,6 @@ namespace Platform.Data.Doublets.SplitMemory.Generic
             link.SizeAsTarget = Zero;
         }
 
-        public override TLink Search(TLink source, TLink target) => SearchCore(target, source);
+        public override TLink Search(TLink source, TLink target) => SearchCore(GetTreeRoot(target), source);
     }
 }

@@ -18,7 +18,7 @@ namespace Platform.Data.Doublets.Tests
             Using<ulong>(links => links.TestCRUDOperations());
         }
 
-        [Fact]
+        [Fact(Skip = "Common trees index is required for linking non-existent references")]
         public static void RawNumbersCRUDTest()
         {
             Using<byte>(links => links.TestRawNumbersCRUDOperations());
