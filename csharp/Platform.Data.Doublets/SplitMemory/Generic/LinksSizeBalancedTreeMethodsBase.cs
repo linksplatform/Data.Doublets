@@ -121,7 +121,7 @@ namespace Platform.Data.Doublets.SplitMemory.Generic
 
         // TODO: Return indices range instead of references count
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLink CountUsages(TLink link) => GetSize(GetTreeRoot(link));
+        public TLink CountUsages(TLink link) => GetSizeOrZero(GetTreeRoot(link));
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public TLink EachUsage(TLink @base, Func<IList<TLink>, TLink> handler) => EachUsageCore(@base, GetTreeRoot(@base), handler);
