@@ -4,10 +4,10 @@
 
 namespace Platform.Data.Doublets.Memory.Split.Generic
 {
-    public unsafe class LinksSourcesSizeBalancedTreeMethods<TLink> : LinksSizeBalancedTreeMethodsBase<TLink>
+    public unsafe class ExternalLinksSourcesSizeBalancedTreeMethods<TLink> : ExternalLinksSizeBalancedTreeMethodsBase<TLink>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public LinksSourcesSizeBalancedTreeMethods(LinksConstants<TLink> constants, byte* linksDataParts, byte* linksIndexParts, byte* header) : base(constants, linksDataParts, linksIndexParts, header) { }
+        public ExternalLinksSourcesSizeBalancedTreeMethods(LinksConstants<TLink> constants, byte* linksDataParts, byte* linksIndexParts, byte* header) : base(constants, linksDataParts, linksIndexParts, header) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override ref TLink GetLeftReference(TLink node) => ref GetLinkIndexPartReference(node).LeftAsSource;
@@ -34,13 +34,16 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         protected override void SetSize(TLink node, TLink size) => GetLinkIndexPartReference(node).SizeAsSource = size;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink GetTreeRoot(TLink link) => GetLinkIndexPartReference(link).RootAsSource;
+        protected override TLink GetTreeRoot() => GetHeaderReference().RootAsSource;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override TLink GetBasePartValue(TLink link) => GetLinkDataPartReference(link).Source;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink GetKeyPartValue(TLink link) => GetLinkDataPartReference(link).Target;
+        protected override bool FirstIsToTheLeftOfSecond(TLink firstSource, TLink firstTarget, TLink secondSource, TLink secondTarget) => LessThan(firstSource, secondSource) || AreEqual(firstSource, secondSource) && LessThan(firstTarget, secondTarget);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected override bool FirstIsToTheRightOfSecond(TLink firstSource, TLink firstTarget, TLink secondSource, TLink secondTarget) => GreaterThan(firstSource, secondSource) || AreEqual(firstSource, secondSource) && GreaterThan(firstTarget, secondTarget);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override void ClearNode(TLink node)
@@ -50,7 +53,5 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
             link.RightAsSource = Zero;
             link.SizeAsSource = Zero;
         }
-
-        public override TLink Search(TLink source, TLink target) => SearchCore(GetTreeRoot(source), target);
     }
 }

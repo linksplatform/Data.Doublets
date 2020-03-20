@@ -10,7 +10,7 @@ using static System.Runtime.CompilerServices.Unsafe;
 
 namespace Platform.Data.Doublets.Memory.Split.Generic
 {
-    public unsafe abstract class LinksSizeBalancedTreeMethodsBase<TLink> : SizeBalancedTreeMethods<TLink>, ILinksTreeMethods<TLink>
+    public unsafe abstract class InternalLinksSizeBalancedTreeMethodsBase<TLink> : SizeBalancedTreeMethods<TLink>, ILinksTreeMethods<TLink>
     {
         private static readonly UncheckedConverter<TLink, long> _addressToInt64Converter = UncheckedConverter<TLink, long>.Default;
 
@@ -21,7 +21,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         protected readonly byte* Header;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected LinksSizeBalancedTreeMethodsBase(LinksConstants<TLink> constants, byte* linksDataParts, byte* linksIndexParts, byte* header)
+        protected InternalLinksSizeBalancedTreeMethodsBase(LinksConstants<TLink> constants, byte* linksDataParts, byte* linksIndexParts, byte* header)
         {
             LinksDataParts = linksDataParts;
             LinksIndexParts = linksIndexParts;

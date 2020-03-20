@@ -16,13 +16,13 @@ namespace Platform.Data.Doublets.Tests
             Using<ulong>(links => links.TestCRUDOperations());
         }
 
-        [Fact(Skip = "Common trees index is required for linking non-existent references")]
+        [Fact]
         public static void RawNumbersCRUDTest()
         {
-            Using<byte>(links => links.TestRawNumbersCRUDOperations());
-            Using<ushort>(links => links.TestRawNumbersCRUDOperations());
-            Using<uint>(links => links.TestRawNumbersCRUDOperations());
-            Using<ulong>(links => links.TestRawNumbersCRUDOperations());
+            UsingWithExternalReferences<byte>(links => links.TestRawNumbersCRUDOperations());
+            UsingWithExternalReferences<ushort>(links => links.TestRawNumbersCRUDOperations());
+            UsingWithExternalReferences<uint>(links => links.TestRawNumbersCRUDOperations());
+            UsingWithExternalReferences<ulong>(links => links.TestRawNumbersCRUDOperations());
         }
 
         [Fact]
@@ -39,6 +39,17 @@ namespace Platform.Data.Doublets.Tests
             using (var dataMemory = new HeapResizableDirectMemory())
             using (var indexMemory = new HeapResizableDirectMemory())
             using (var memory = new SplitMemoryLinks<TLink>(dataMemory, indexMemory))
+            {
+                action(memory);
+            }
+        }
+
+        private static void UsingWithExternalReferences<TLink>(Action<ILinks<TLink>> action)
+        {
+            var contants = new LinksConstants<TLink>(enableExternalReferencesSupport: true);
+            using (var dataMemory = new HeapResizableDirectMemory())
+            using (var indexMemory = new HeapResizableDirectMemory())
+            using (var memory = new SplitMemoryLinks<TLink>(dataMemory, indexMemory, SplitMemoryLinks<TLink>.DefaultLinksSizeStep, contants))
             {
                 action(memory);
             }

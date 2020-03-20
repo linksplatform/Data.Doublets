@@ -4,10 +4,10 @@
 
 namespace Platform.Data.Doublets.Memory.Split.Generic
 {
-    public unsafe class LinksTargetsSizeBalancedTreeMethods<TLink> : LinksSizeBalancedTreeMethodsBase<TLink>
+    public unsafe class InternalLinksTargetsSizeBalancedTreeMethods<TLink> : InternalLinksSizeBalancedTreeMethodsBase<TLink>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public LinksTargetsSizeBalancedTreeMethods(LinksConstants<TLink> constants, byte* linksDataParts, byte* linksIndexParts, byte* header) : base(constants, linksDataParts, linksIndexParts, header) { }
+        public InternalLinksTargetsSizeBalancedTreeMethods(LinksConstants<TLink> constants, byte* linksDataParts, byte* linksIndexParts, byte* header) : base(constants, linksDataParts, linksIndexParts, header) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override ref TLink GetLeftReference(TLink node) => ref GetLinkIndexPartReference(node).LeftAsTarget;

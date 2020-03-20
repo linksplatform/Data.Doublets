@@ -10,8 +10,10 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
 {
     public unsafe class SplitMemoryLinks<TLink> : SplitMemoryLinksBase<TLink>
     {
-        private readonly Func<ILinksTreeMethods<TLink>> _createSourceTreeMethods;
-        private readonly Func<ILinksTreeMethods<TLink>> _createTargetTreeMethods;
+        private readonly Func<ILinksTreeMethods<TLink>> _createInternalSourceTreeMethods;
+        private readonly Func<ILinksTreeMethods<TLink>> _createExternalSourceTreeMethods;
+        private readonly Func<ILinksTreeMethods<TLink>> _createInternalTargetTreeMethods;
+        private readonly Func<ILinksTreeMethods<TLink>> _createExternalTargetTreeMethods;
         private byte* _header;
         private byte* _linksDataParts;
         private byte* _linksIndexParts;
@@ -25,8 +27,10 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep, LinksConstants<TLink> constants) : base(dataMemory, indexMemory, memoryReservationStep, constants)
         {
-            _createSourceTreeMethods = () => new LinksSourcesSizeBalancedTreeMethods<TLink>(Constants, _linksDataParts, _linksIndexParts, _header);
-            _createTargetTreeMethods = () => new LinksTargetsSizeBalancedTreeMethods<TLink>(Constants, _linksDataParts, _linksIndexParts, _header);
+            _createInternalSourceTreeMethods = () => new InternalLinksSourcesSizeBalancedTreeMethods<TLink>(Constants, _linksDataParts, _linksIndexParts, _header);
+            _createExternalSourceTreeMethods = () => new ExternalLinksSourcesSizeBalancedTreeMethods<TLink>(Constants, _linksDataParts, _linksIndexParts, _header);
+            _createInternalTargetTreeMethods = () => new InternalLinksTargetsSizeBalancedTreeMethods<TLink>(Constants, _linksDataParts, _linksIndexParts, _header);
+            _createExternalTargetTreeMethods = () => new ExternalLinksTargetsSizeBalancedTreeMethods<TLink>(Constants, _linksDataParts, _linksIndexParts, _header);
             Init(dataMemory, indexMemory, memoryReservationStep);
         }
 
@@ -36,8 +40,10 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
             _linksDataParts = (byte*)dataMemory.Pointer;
             _linksIndexParts = (byte*)indexMemory.Pointer;
             _header = _linksIndexParts;
-            SourcesTreeMethods = _createSourceTreeMethods();
-            TargetsTreeMethods = _createTargetTreeMethods();
+            InternalSourcesTreeMethods = _createInternalSourceTreeMethods();
+            ExternalSourcesTreeMethods = _createExternalSourceTreeMethods();
+            InternalTargetsTreeMethods = _createInternalTargetTreeMethods();
+            ExternalTargetsTreeMethods = _createExternalTargetTreeMethods();
             UnusedLinksListMethods = new UnusedLinksListMethods<TLink>(_linksDataParts, _header);
         }
 
