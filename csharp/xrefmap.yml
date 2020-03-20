@@ -2831,6 +2831,36 @@ references:
   fullName.vb: Platform.Data.Doublets.Memory.ILinksTreeMethods(Of TLink).Search
   nameWithType: ILinksTreeMethods<TLink>.Search
   nameWithType.vb: ILinksTreeMethods(Of TLink).Search
+- uid: Platform.Data.Doublets.Memory.IndexTreeType
+  name: IndexTreeType
+  href: api/Platform.Data.Doublets.Memory.IndexTreeType.html
+  commentId: T:Platform.Data.Doublets.Memory.IndexTreeType
+  fullName: Platform.Data.Doublets.Memory.IndexTreeType
+  nameWithType: IndexTreeType
+- uid: Platform.Data.Doublets.Memory.IndexTreeType.Default
+  name: Default
+  href: api/Platform.Data.Doublets.Memory.IndexTreeType.html#Platform_Data_Doublets_Memory_IndexTreeType_Default
+  commentId: F:Platform.Data.Doublets.Memory.IndexTreeType.Default
+  fullName: Platform.Data.Doublets.Memory.IndexTreeType.Default
+  nameWithType: IndexTreeType.Default
+- uid: Platform.Data.Doublets.Memory.IndexTreeType.RecursionlessSizeBalancedTree
+  name: RecursionlessSizeBalancedTree
+  href: api/Platform.Data.Doublets.Memory.IndexTreeType.html#Platform_Data_Doublets_Memory_IndexTreeType_RecursionlessSizeBalancedTree
+  commentId: F:Platform.Data.Doublets.Memory.IndexTreeType.RecursionlessSizeBalancedTree
+  fullName: Platform.Data.Doublets.Memory.IndexTreeType.RecursionlessSizeBalancedTree
+  nameWithType: IndexTreeType.RecursionlessSizeBalancedTree
+- uid: Platform.Data.Doublets.Memory.IndexTreeType.SizeBalancedTree
+  name: SizeBalancedTree
+  href: api/Platform.Data.Doublets.Memory.IndexTreeType.html#Platform_Data_Doublets_Memory_IndexTreeType_SizeBalancedTree
+  commentId: F:Platform.Data.Doublets.Memory.IndexTreeType.SizeBalancedTree
+  fullName: Platform.Data.Doublets.Memory.IndexTreeType.SizeBalancedTree
+  nameWithType: IndexTreeType.SizeBalancedTree
+- uid: Platform.Data.Doublets.Memory.IndexTreeType.SizedAndThreadedAVLBalancedTree
+  name: SizedAndThreadedAVLBalancedTree
+  href: api/Platform.Data.Doublets.Memory.IndexTreeType.html#Platform_Data_Doublets_Memory_IndexTreeType_SizedAndThreadedAVLBalancedTree
+  commentId: F:Platform.Data.Doublets.Memory.IndexTreeType.SizedAndThreadedAVLBalancedTree
+  fullName: Platform.Data.Doublets.Memory.IndexTreeType.SizedAndThreadedAVLBalancedTree
+  nameWithType: IndexTreeType.SizedAndThreadedAVLBalancedTree
 - uid: Platform.Data.Doublets.Memory.LinksHeader`1
   name: LinksHeader<TLink>
   href: api/Platform.Data.Doublets.Memory.LinksHeader-1.html
@@ -7861,15 +7891,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinks(Of TLink).UnitedMemoryLinks(IResizableDirectMemory, System.Int64)
   nameWithType: UnitedMemoryLinks<TLink>.UnitedMemoryLinks(IResizableDirectMemory, Int64)
   nameWithType.vb: UnitedMemoryLinks(Of TLink).UnitedMemoryLinks(IResizableDirectMemory, Int64)
-- uid: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinks`1.#ctor(IResizableDirectMemory,System.Int64,LinksConstants{`0},System.Boolean)
-  name: UnitedMemoryLinks(IResizableDirectMemory, Int64, LinksConstants<TLink>, Boolean)
-  href: api/Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinks-1.html#Platform_Data_Doublets_Memory_United_Generic_UnitedMemoryLinks_1__ctor_IResizableDirectMemory_System_Int64_LinksConstants__0__System_Boolean_
-  commentId: M:Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinks`1.#ctor(IResizableDirectMemory,System.Int64,LinksConstants{`0},System.Boolean)
-  name.vb: UnitedMemoryLinks(IResizableDirectMemory, Int64, LinksConstants(Of TLink), Boolean)
-  fullName: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinks<TLink>.UnitedMemoryLinks(IResizableDirectMemory, System.Int64, LinksConstants<TLink>, System.Boolean)
-  fullName.vb: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinks(Of TLink).UnitedMemoryLinks(IResizableDirectMemory, System.Int64, LinksConstants(Of TLink), System.Boolean)
-  nameWithType: UnitedMemoryLinks<TLink>.UnitedMemoryLinks(IResizableDirectMemory, Int64, LinksConstants<TLink>, Boolean)
-  nameWithType.vb: UnitedMemoryLinks(Of TLink).UnitedMemoryLinks(IResizableDirectMemory, Int64, LinksConstants(Of TLink), Boolean)
+- uid: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinks`1.#ctor(IResizableDirectMemory,System.Int64,LinksConstants{`0},Platform.Data.Doublets.Memory.IndexTreeType)
+  name: UnitedMemoryLinks(IResizableDirectMemory, Int64, LinksConstants<TLink>, IndexTreeType)
+  href: api/Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinks-1.html#Platform_Data_Doublets_Memory_United_Generic_UnitedMemoryLinks_1__ctor_IResizableDirectMemory_System_Int64_LinksConstants__0__Platform_Data_Doublets_Memory_IndexTreeType_
+  commentId: M:Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinks`1.#ctor(IResizableDirectMemory,System.Int64,LinksConstants{`0},Platform.Data.Doublets.Memory.IndexTreeType)
+  name.vb: UnitedMemoryLinks(IResizableDirectMemory, Int64, LinksConstants(Of TLink), IndexTreeType)
+  fullName: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinks<TLink>.UnitedMemoryLinks(IResizableDirectMemory, System.Int64, LinksConstants<TLink>, Platform.Data.Doublets.Memory.IndexTreeType)
+  fullName.vb: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinks(Of TLink).UnitedMemoryLinks(IResizableDirectMemory, System.Int64, LinksConstants(Of TLink), Platform.Data.Doublets.Memory.IndexTreeType)
+  nameWithType: UnitedMemoryLinks<TLink>.UnitedMemoryLinks(IResizableDirectMemory, Int64, LinksConstants<TLink>, IndexTreeType)
+  nameWithType.vb: UnitedMemoryLinks(Of TLink).UnitedMemoryLinks(IResizableDirectMemory, Int64, LinksConstants(Of TLink), IndexTreeType)
 - uid: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinks`1.#ctor(System.String)
   name: UnitedMemoryLinks(String)
   href: api/Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinks-1.html#Platform_Data_Doublets_Memory_United_Generic_UnitedMemoryLinks_1__ctor_System_String_
@@ -10589,15 +10619,15 @@ references:
   commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt64UnitedMemoryLinks.#ctor(IResizableDirectMemory,System.Int64)
   fullName: Platform.Data.Doublets.Memory.United.Specific.UInt64UnitedMemoryLinks.UInt64UnitedMemoryLinks(IResizableDirectMemory, System.Int64)
   nameWithType: UInt64UnitedMemoryLinks.UInt64UnitedMemoryLinks(IResizableDirectMemory, Int64)
-- uid: Platform.Data.Doublets.Memory.United.Specific.UInt64UnitedMemoryLinks.#ctor(IResizableDirectMemory,System.Int64,LinksConstants{System.UInt64},System.Boolean)
-  name: UInt64UnitedMemoryLinks(IResizableDirectMemory, Int64, LinksConstants<UInt64>, Boolean)
-  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt64UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt64UnitedMemoryLinks__ctor_IResizableDirectMemory_System_Int64_LinksConstants_System_UInt64__System_Boolean_
-  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt64UnitedMemoryLinks.#ctor(IResizableDirectMemory,System.Int64,LinksConstants{System.UInt64},System.Boolean)
-  name.vb: UInt64UnitedMemoryLinks(IResizableDirectMemory, Int64, LinksConstants(Of UInt64), Boolean)
-  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt64UnitedMemoryLinks.UInt64UnitedMemoryLinks(IResizableDirectMemory, System.Int64, LinksConstants<System.UInt64>, System.Boolean)
-  fullName.vb: Platform.Data.Doublets.Memory.United.Specific.UInt64UnitedMemoryLinks.UInt64UnitedMemoryLinks(IResizableDirectMemory, System.Int64, LinksConstants(Of System.UInt64), System.Boolean)
-  nameWithType: UInt64UnitedMemoryLinks.UInt64UnitedMemoryLinks(IResizableDirectMemory, Int64, LinksConstants<UInt64>, Boolean)
-  nameWithType.vb: UInt64UnitedMemoryLinks.UInt64UnitedMemoryLinks(IResizableDirectMemory, Int64, LinksConstants(Of UInt64), Boolean)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt64UnitedMemoryLinks.#ctor(IResizableDirectMemory,System.Int64,LinksConstants{System.UInt64},Platform.Data.Doublets.Memory.IndexTreeType)
+  name: UInt64UnitedMemoryLinks(IResizableDirectMemory, Int64, LinksConstants<UInt64>, IndexTreeType)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt64UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt64UnitedMemoryLinks__ctor_IResizableDirectMemory_System_Int64_LinksConstants_System_UInt64__Platform_Data_Doublets_Memory_IndexTreeType_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt64UnitedMemoryLinks.#ctor(IResizableDirectMemory,System.Int64,LinksConstants{System.UInt64},Platform.Data.Doublets.Memory.IndexTreeType)
+  name.vb: UInt64UnitedMemoryLinks(IResizableDirectMemory, Int64, LinksConstants(Of UInt64), IndexTreeType)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt64UnitedMemoryLinks.UInt64UnitedMemoryLinks(IResizableDirectMemory, System.Int64, LinksConstants<System.UInt64>, Platform.Data.Doublets.Memory.IndexTreeType)
+  fullName.vb: Platform.Data.Doublets.Memory.United.Specific.UInt64UnitedMemoryLinks.UInt64UnitedMemoryLinks(IResizableDirectMemory, System.Int64, LinksConstants(Of System.UInt64), Platform.Data.Doublets.Memory.IndexTreeType)
+  nameWithType: UInt64UnitedMemoryLinks.UInt64UnitedMemoryLinks(IResizableDirectMemory, Int64, LinksConstants<UInt64>, IndexTreeType)
+  nameWithType.vb: UInt64UnitedMemoryLinks.UInt64UnitedMemoryLinks(IResizableDirectMemory, Int64, LinksConstants(Of UInt64), IndexTreeType)
 - uid: Platform.Data.Doublets.Memory.United.Specific.UInt64UnitedMemoryLinks.#ctor(System.String)
   name: UInt64UnitedMemoryLinks(String)
   href: api/Platform.Data.Doublets.Memory.United.Specific.UInt64UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt64UnitedMemoryLinks__ctor_System_String_
