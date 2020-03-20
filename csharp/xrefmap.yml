@@ -8985,6 +8985,984 @@ references:
   commentId: N:Platform.Data.Doublets.Memory.United.Specific
   fullName: Platform.Data.Doublets.Memory.United.Specific
   nameWithType: Platform.Data.Doublets.Memory.United.Specific
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase
+  name: UInt32LinksSizeBalancedTreeMethodsBase
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html
+  commentId: T:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.#ctor(LinksConstants{System.UInt32},Platform.Data.Doublets.Memory.United.RawLink{System.UInt32}*,Platform.Data.Doublets.Memory.LinksHeader{System.UInt32}*)
+  name: UInt32LinksSizeBalancedTreeMethodsBase(LinksConstants<UInt32>, RawLink<UInt32>*, LinksHeader<UInt32>*)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase__ctor_LinksConstants_System_UInt32__Platform_Data_Doublets_Memory_United_RawLink_System_UInt32___Platform_Data_Doublets_Memory_LinksHeader_System_UInt32___
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.#ctor(LinksConstants{System.UInt32},Platform.Data.Doublets.Memory.United.RawLink{System.UInt32}*,Platform.Data.Doublets.Memory.LinksHeader{System.UInt32}*)
+  name.vb: UInt32LinksSizeBalancedTreeMethodsBase(LinksConstants(Of UInt32), RawLink(Of UInt32)*, LinksHeader(Of UInt32)*)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.UInt32LinksSizeBalancedTreeMethodsBase(LinksConstants<System.UInt32>, Platform.Data.Doublets.Memory.United.RawLink<System.UInt32>*, Platform.Data.Doublets.Memory.LinksHeader<System.UInt32>*)
+  fullName.vb: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.UInt32LinksSizeBalancedTreeMethodsBase(LinksConstants(Of System.UInt32), Platform.Data.Doublets.Memory.United.RawLink(Of System.UInt32)*, Platform.Data.Doublets.Memory.LinksHeader(Of System.UInt32)*)
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.UInt32LinksSizeBalancedTreeMethodsBase(LinksConstants<UInt32>, RawLink<UInt32>*, LinksHeader<UInt32>*)
+  nameWithType.vb: UInt32LinksSizeBalancedTreeMethodsBase.UInt32LinksSizeBalancedTreeMethodsBase(LinksConstants(Of UInt32), RawLink(Of UInt32)*, LinksHeader(Of UInt32)*)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.#ctor*
+  name: UInt32LinksSizeBalancedTreeMethodsBase
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase__ctor_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.#ctor
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.UInt32LinksSizeBalancedTreeMethodsBase
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.UInt32LinksSizeBalancedTreeMethodsBase
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.Add(System.UInt32,System.UInt32)
+  name: Add(UInt32, UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_Add_System_UInt32_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.Add(System.UInt32,System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.Add(System.UInt32, System.UInt32)
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.Add(UInt32, UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.Add*
+  name: Add
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_Add_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.Add
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.Add
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.Add
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.AreEqual(System.UInt32,System.UInt32)
+  name: AreEqual(UInt32, UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_AreEqual_System_UInt32_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.AreEqual(System.UInt32,System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.AreEqual(System.UInt32, System.UInt32)
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.AreEqual(UInt32, UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.AreEqual*
+  name: AreEqual
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_AreEqual_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.AreEqual
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.AreEqual
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.AreEqual
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.Decrement(System.UInt32)
+  name: Decrement(UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_Decrement_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.Decrement(System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.Decrement(System.UInt32)
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.Decrement(UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.Decrement*
+  name: Decrement
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_Decrement_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.Decrement
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.Decrement
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.Decrement
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.EqualToZero(System.UInt32)
+  name: EqualToZero(UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_EqualToZero_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.EqualToZero(System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.EqualToZero(System.UInt32)
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.EqualToZero(UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.EqualToZero*
+  name: EqualToZero
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_EqualToZero_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.EqualToZero
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.EqualToZero
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.EqualToZero
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.FirstIsToTheLeftOfSecond(System.UInt32,System.UInt32)
+  name: FirstIsToTheLeftOfSecond(UInt32, UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_FirstIsToTheLeftOfSecond_System_UInt32_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.FirstIsToTheLeftOfSecond(System.UInt32,System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.FirstIsToTheLeftOfSecond(System.UInt32, System.UInt32)
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.FirstIsToTheLeftOfSecond(UInt32, UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.FirstIsToTheLeftOfSecond*
+  name: FirstIsToTheLeftOfSecond
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_FirstIsToTheLeftOfSecond_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.FirstIsToTheLeftOfSecond
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.FirstIsToTheLeftOfSecond
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.FirstIsToTheLeftOfSecond
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.FirstIsToTheRightOfSecond(System.UInt32,System.UInt32)
+  name: FirstIsToTheRightOfSecond(UInt32, UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_FirstIsToTheRightOfSecond_System_UInt32_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.FirstIsToTheRightOfSecond(System.UInt32,System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.FirstIsToTheRightOfSecond(System.UInt32, System.UInt32)
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.FirstIsToTheRightOfSecond(UInt32, UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.FirstIsToTheRightOfSecond*
+  name: FirstIsToTheRightOfSecond
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_FirstIsToTheRightOfSecond_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.FirstIsToTheRightOfSecond
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.FirstIsToTheRightOfSecond
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.FirstIsToTheRightOfSecond
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GetHeaderReference
+  name: GetHeaderReference()
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_GetHeaderReference
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GetHeaderReference
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GetHeaderReference()
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.GetHeaderReference()
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GetHeaderReference*
+  name: GetHeaderReference
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_GetHeaderReference_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GetHeaderReference
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GetHeaderReference
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.GetHeaderReference
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GetLinkReference(System.UInt32)
+  name: GetLinkReference(UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_GetLinkReference_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GetLinkReference(System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GetLinkReference(System.UInt32)
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.GetLinkReference(UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GetLinkReference*
+  name: GetLinkReference
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_GetLinkReference_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GetLinkReference
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GetLinkReference
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.GetLinkReference
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GetZero
+  name: GetZero()
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_GetZero
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GetZero
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GetZero()
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.GetZero()
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GetZero*
+  name: GetZero
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_GetZero_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GetZero
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GetZero
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.GetZero
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GreaterOrEqualThan(System.UInt32,System.UInt32)
+  name: GreaterOrEqualThan(UInt32, UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_GreaterOrEqualThan_System_UInt32_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GreaterOrEqualThan(System.UInt32,System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GreaterOrEqualThan(System.UInt32, System.UInt32)
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.GreaterOrEqualThan(UInt32, UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GreaterOrEqualThan*
+  name: GreaterOrEqualThan
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_GreaterOrEqualThan_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GreaterOrEqualThan
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GreaterOrEqualThan
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.GreaterOrEqualThan
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GreaterOrEqualThanZero(System.UInt32)
+  name: GreaterOrEqualThanZero(UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_GreaterOrEqualThanZero_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GreaterOrEqualThanZero(System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GreaterOrEqualThanZero(System.UInt32)
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.GreaterOrEqualThanZero(UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GreaterOrEqualThanZero*
+  name: GreaterOrEqualThanZero
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_GreaterOrEqualThanZero_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GreaterOrEqualThanZero
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GreaterOrEqualThanZero
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.GreaterOrEqualThanZero
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GreaterThan(System.UInt32,System.UInt32)
+  name: GreaterThan(UInt32, UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_GreaterThan_System_UInt32_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GreaterThan(System.UInt32,System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GreaterThan(System.UInt32, System.UInt32)
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.GreaterThan(UInt32, UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GreaterThan*
+  name: GreaterThan
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_GreaterThan_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GreaterThan
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GreaterThan
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.GreaterThan
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GreaterThanZero(System.UInt32)
+  name: GreaterThanZero(UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_GreaterThanZero_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GreaterThanZero(System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GreaterThanZero(System.UInt32)
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.GreaterThanZero(UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GreaterThanZero*
+  name: GreaterThanZero
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_GreaterThanZero_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GreaterThanZero
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.GreaterThanZero
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.GreaterThanZero
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.Header
+  name: Header
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_Header
+  commentId: F:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.Header
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.Header
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.Header
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.Increment(System.UInt32)
+  name: Increment(UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_Increment_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.Increment(System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.Increment(System.UInt32)
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.Increment(UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.Increment*
+  name: Increment
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_Increment_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.Increment
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.Increment
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.Increment
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.LessOrEqualThan(System.UInt32,System.UInt32)
+  name: LessOrEqualThan(UInt32, UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_LessOrEqualThan_System_UInt32_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.LessOrEqualThan(System.UInt32,System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.LessOrEqualThan(System.UInt32, System.UInt32)
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.LessOrEqualThan(UInt32, UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.LessOrEqualThan*
+  name: LessOrEqualThan
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_LessOrEqualThan_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.LessOrEqualThan
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.LessOrEqualThan
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.LessOrEqualThan
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.LessOrEqualThanZero(System.UInt32)
+  name: LessOrEqualThanZero(UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_LessOrEqualThanZero_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.LessOrEqualThanZero(System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.LessOrEqualThanZero(System.UInt32)
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.LessOrEqualThanZero(UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.LessOrEqualThanZero*
+  name: LessOrEqualThanZero
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_LessOrEqualThanZero_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.LessOrEqualThanZero
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.LessOrEqualThanZero
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.LessOrEqualThanZero
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.LessThan(System.UInt32,System.UInt32)
+  name: LessThan(UInt32, UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_LessThan_System_UInt32_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.LessThan(System.UInt32,System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.LessThan(System.UInt32, System.UInt32)
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.LessThan(UInt32, UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.LessThan*
+  name: LessThan
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_LessThan_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.LessThan
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.LessThan
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.LessThan
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.LessThanZero(System.UInt32)
+  name: LessThanZero(UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_LessThanZero_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.LessThanZero(System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.LessThanZero(System.UInt32)
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.LessThanZero(UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.LessThanZero*
+  name: LessThanZero
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_LessThanZero_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.LessThanZero
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.LessThanZero
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.LessThanZero
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.Links
+  name: Links
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_Links
+  commentId: F:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.Links
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.Links
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.Links
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.Subtract(System.UInt32,System.UInt32)
+  name: Subtract(UInt32, UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_Subtract_System_UInt32_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.Subtract(System.UInt32,System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.Subtract(System.UInt32, System.UInt32)
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.Subtract(UInt32, UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.Subtract*
+  name: Subtract
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSizeBalancedTreeMethodsBase_Subtract_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.Subtract
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSizeBalancedTreeMethodsBase.Subtract
+  nameWithType: UInt32LinksSizeBalancedTreeMethodsBase.Subtract
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods
+  name: UInt32LinksSourcesSizeBalancedTreeMethods
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.html
+  commentId: T:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods
+  nameWithType: UInt32LinksSourcesSizeBalancedTreeMethods
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.#ctor(LinksConstants{System.UInt32},Platform.Data.Doublets.Memory.United.RawLink{System.UInt32}*,Platform.Data.Doublets.Memory.LinksHeader{System.UInt32}*)
+  name: UInt32LinksSourcesSizeBalancedTreeMethods(LinksConstants<UInt32>, RawLink<UInt32>*, LinksHeader<UInt32>*)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSourcesSizeBalancedTreeMethods__ctor_LinksConstants_System_UInt32__Platform_Data_Doublets_Memory_United_RawLink_System_UInt32___Platform_Data_Doublets_Memory_LinksHeader_System_UInt32___
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.#ctor(LinksConstants{System.UInt32},Platform.Data.Doublets.Memory.United.RawLink{System.UInt32}*,Platform.Data.Doublets.Memory.LinksHeader{System.UInt32}*)
+  name.vb: UInt32LinksSourcesSizeBalancedTreeMethods(LinksConstants(Of UInt32), RawLink(Of UInt32)*, LinksHeader(Of UInt32)*)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.UInt32LinksSourcesSizeBalancedTreeMethods(LinksConstants<System.UInt32>, Platform.Data.Doublets.Memory.United.RawLink<System.UInt32>*, Platform.Data.Doublets.Memory.LinksHeader<System.UInt32>*)
+  fullName.vb: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.UInt32LinksSourcesSizeBalancedTreeMethods(LinksConstants(Of System.UInt32), Platform.Data.Doublets.Memory.United.RawLink(Of System.UInt32)*, Platform.Data.Doublets.Memory.LinksHeader(Of System.UInt32)*)
+  nameWithType: UInt32LinksSourcesSizeBalancedTreeMethods.UInt32LinksSourcesSizeBalancedTreeMethods(LinksConstants<UInt32>, RawLink<UInt32>*, LinksHeader<UInt32>*)
+  nameWithType.vb: UInt32LinksSourcesSizeBalancedTreeMethods.UInt32LinksSourcesSizeBalancedTreeMethods(LinksConstants(Of UInt32), RawLink(Of UInt32)*, LinksHeader(Of UInt32)*)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.#ctor*
+  name: UInt32LinksSourcesSizeBalancedTreeMethods
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSourcesSizeBalancedTreeMethods__ctor_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.#ctor
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.UInt32LinksSourcesSizeBalancedTreeMethods
+  nameWithType: UInt32LinksSourcesSizeBalancedTreeMethods.UInt32LinksSourcesSizeBalancedTreeMethods
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.ClearNode(System.UInt32)
+  name: ClearNode(UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSourcesSizeBalancedTreeMethods_ClearNode_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.ClearNode(System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.ClearNode(System.UInt32)
+  nameWithType: UInt32LinksSourcesSizeBalancedTreeMethods.ClearNode(UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.ClearNode*
+  name: ClearNode
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSourcesSizeBalancedTreeMethods_ClearNode_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.ClearNode
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.ClearNode
+  nameWithType: UInt32LinksSourcesSizeBalancedTreeMethods.ClearNode
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.FirstIsToTheLeftOfSecond(System.UInt32,System.UInt32,System.UInt32,System.UInt32)
+  name: FirstIsToTheLeftOfSecond(UInt32, UInt32, UInt32, UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSourcesSizeBalancedTreeMethods_FirstIsToTheLeftOfSecond_System_UInt32_System_UInt32_System_UInt32_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.FirstIsToTheLeftOfSecond(System.UInt32,System.UInt32,System.UInt32,System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.FirstIsToTheLeftOfSecond(System.UInt32, System.UInt32, System.UInt32, System.UInt32)
+  nameWithType: UInt32LinksSourcesSizeBalancedTreeMethods.FirstIsToTheLeftOfSecond(UInt32, UInt32, UInt32, UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.FirstIsToTheLeftOfSecond*
+  name: FirstIsToTheLeftOfSecond
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSourcesSizeBalancedTreeMethods_FirstIsToTheLeftOfSecond_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.FirstIsToTheLeftOfSecond
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.FirstIsToTheLeftOfSecond
+  nameWithType: UInt32LinksSourcesSizeBalancedTreeMethods.FirstIsToTheLeftOfSecond
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.FirstIsToTheRightOfSecond(System.UInt32,System.UInt32,System.UInt32,System.UInt32)
+  name: FirstIsToTheRightOfSecond(UInt32, UInt32, UInt32, UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSourcesSizeBalancedTreeMethods_FirstIsToTheRightOfSecond_System_UInt32_System_UInt32_System_UInt32_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.FirstIsToTheRightOfSecond(System.UInt32,System.UInt32,System.UInt32,System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.FirstIsToTheRightOfSecond(System.UInt32, System.UInt32, System.UInt32, System.UInt32)
+  nameWithType: UInt32LinksSourcesSizeBalancedTreeMethods.FirstIsToTheRightOfSecond(UInt32, UInt32, UInt32, UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.FirstIsToTheRightOfSecond*
+  name: FirstIsToTheRightOfSecond
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSourcesSizeBalancedTreeMethods_FirstIsToTheRightOfSecond_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.FirstIsToTheRightOfSecond
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.FirstIsToTheRightOfSecond
+  nameWithType: UInt32LinksSourcesSizeBalancedTreeMethods.FirstIsToTheRightOfSecond
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetBasePartValue(System.UInt32)
+  name: GetBasePartValue(UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSourcesSizeBalancedTreeMethods_GetBasePartValue_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetBasePartValue(System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetBasePartValue(System.UInt32)
+  nameWithType: UInt32LinksSourcesSizeBalancedTreeMethods.GetBasePartValue(UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetBasePartValue*
+  name: GetBasePartValue
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSourcesSizeBalancedTreeMethods_GetBasePartValue_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetBasePartValue
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetBasePartValue
+  nameWithType: UInt32LinksSourcesSizeBalancedTreeMethods.GetBasePartValue
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetLeft(System.UInt32)
+  name: GetLeft(UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSourcesSizeBalancedTreeMethods_GetLeft_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetLeft(System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetLeft(System.UInt32)
+  nameWithType: UInt32LinksSourcesSizeBalancedTreeMethods.GetLeft(UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetLeft*
+  name: GetLeft
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSourcesSizeBalancedTreeMethods_GetLeft_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetLeft
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetLeft
+  nameWithType: UInt32LinksSourcesSizeBalancedTreeMethods.GetLeft
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetLeftReference(System.UInt32)
+  name: GetLeftReference(UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSourcesSizeBalancedTreeMethods_GetLeftReference_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetLeftReference(System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetLeftReference(System.UInt32)
+  nameWithType: UInt32LinksSourcesSizeBalancedTreeMethods.GetLeftReference(UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetLeftReference*
+  name: GetLeftReference
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSourcesSizeBalancedTreeMethods_GetLeftReference_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetLeftReference
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetLeftReference
+  nameWithType: UInt32LinksSourcesSizeBalancedTreeMethods.GetLeftReference
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetRight(System.UInt32)
+  name: GetRight(UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSourcesSizeBalancedTreeMethods_GetRight_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetRight(System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetRight(System.UInt32)
+  nameWithType: UInt32LinksSourcesSizeBalancedTreeMethods.GetRight(UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetRight*
+  name: GetRight
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSourcesSizeBalancedTreeMethods_GetRight_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetRight
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetRight
+  nameWithType: UInt32LinksSourcesSizeBalancedTreeMethods.GetRight
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetRightReference(System.UInt32)
+  name: GetRightReference(UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSourcesSizeBalancedTreeMethods_GetRightReference_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetRightReference(System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetRightReference(System.UInt32)
+  nameWithType: UInt32LinksSourcesSizeBalancedTreeMethods.GetRightReference(UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetRightReference*
+  name: GetRightReference
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSourcesSizeBalancedTreeMethods_GetRightReference_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetRightReference
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetRightReference
+  nameWithType: UInt32LinksSourcesSizeBalancedTreeMethods.GetRightReference
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetSize(System.UInt32)
+  name: GetSize(UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSourcesSizeBalancedTreeMethods_GetSize_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetSize(System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetSize(System.UInt32)
+  nameWithType: UInt32LinksSourcesSizeBalancedTreeMethods.GetSize(UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetSize*
+  name: GetSize
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSourcesSizeBalancedTreeMethods_GetSize_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetSize
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetSize
+  nameWithType: UInt32LinksSourcesSizeBalancedTreeMethods.GetSize
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetTreeRoot
+  name: GetTreeRoot()
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSourcesSizeBalancedTreeMethods_GetTreeRoot
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetTreeRoot
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetTreeRoot()
+  nameWithType: UInt32LinksSourcesSizeBalancedTreeMethods.GetTreeRoot()
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetTreeRoot*
+  name: GetTreeRoot
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSourcesSizeBalancedTreeMethods_GetTreeRoot_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetTreeRoot
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.GetTreeRoot
+  nameWithType: UInt32LinksSourcesSizeBalancedTreeMethods.GetTreeRoot
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.SetLeft(System.UInt32,System.UInt32)
+  name: SetLeft(UInt32, UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSourcesSizeBalancedTreeMethods_SetLeft_System_UInt32_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.SetLeft(System.UInt32,System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.SetLeft(System.UInt32, System.UInt32)
+  nameWithType: UInt32LinksSourcesSizeBalancedTreeMethods.SetLeft(UInt32, UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.SetLeft*
+  name: SetLeft
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSourcesSizeBalancedTreeMethods_SetLeft_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.SetLeft
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.SetLeft
+  nameWithType: UInt32LinksSourcesSizeBalancedTreeMethods.SetLeft
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.SetRight(System.UInt32,System.UInt32)
+  name: SetRight(UInt32, UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSourcesSizeBalancedTreeMethods_SetRight_System_UInt32_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.SetRight(System.UInt32,System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.SetRight(System.UInt32, System.UInt32)
+  nameWithType: UInt32LinksSourcesSizeBalancedTreeMethods.SetRight(UInt32, UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.SetRight*
+  name: SetRight
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSourcesSizeBalancedTreeMethods_SetRight_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.SetRight
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.SetRight
+  nameWithType: UInt32LinksSourcesSizeBalancedTreeMethods.SetRight
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.SetSize(System.UInt32,System.UInt32)
+  name: SetSize(UInt32, UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSourcesSizeBalancedTreeMethods_SetSize_System_UInt32_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.SetSize(System.UInt32,System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.SetSize(System.UInt32, System.UInt32)
+  nameWithType: UInt32LinksSourcesSizeBalancedTreeMethods.SetSize(UInt32, UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.SetSize*
+  name: SetSize
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksSourcesSizeBalancedTreeMethods_SetSize_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.SetSize
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksSourcesSizeBalancedTreeMethods.SetSize
+  nameWithType: UInt32LinksSourcesSizeBalancedTreeMethods.SetSize
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods
+  name: UInt32LinksTargetsSizeBalancedTreeMethods
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.html
+  commentId: T:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods
+  nameWithType: UInt32LinksTargetsSizeBalancedTreeMethods
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.#ctor(LinksConstants{System.UInt32},Platform.Data.Doublets.Memory.United.RawLink{System.UInt32}*,Platform.Data.Doublets.Memory.LinksHeader{System.UInt32}*)
+  name: UInt32LinksTargetsSizeBalancedTreeMethods(LinksConstants<UInt32>, RawLink<UInt32>*, LinksHeader<UInt32>*)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksTargetsSizeBalancedTreeMethods__ctor_LinksConstants_System_UInt32__Platform_Data_Doublets_Memory_United_RawLink_System_UInt32___Platform_Data_Doublets_Memory_LinksHeader_System_UInt32___
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.#ctor(LinksConstants{System.UInt32},Platform.Data.Doublets.Memory.United.RawLink{System.UInt32}*,Platform.Data.Doublets.Memory.LinksHeader{System.UInt32}*)
+  name.vb: UInt32LinksTargetsSizeBalancedTreeMethods(LinksConstants(Of UInt32), RawLink(Of UInt32)*, LinksHeader(Of UInt32)*)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.UInt32LinksTargetsSizeBalancedTreeMethods(LinksConstants<System.UInt32>, Platform.Data.Doublets.Memory.United.RawLink<System.UInt32>*, Platform.Data.Doublets.Memory.LinksHeader<System.UInt32>*)
+  fullName.vb: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.UInt32LinksTargetsSizeBalancedTreeMethods(LinksConstants(Of System.UInt32), Platform.Data.Doublets.Memory.United.RawLink(Of System.UInt32)*, Platform.Data.Doublets.Memory.LinksHeader(Of System.UInt32)*)
+  nameWithType: UInt32LinksTargetsSizeBalancedTreeMethods.UInt32LinksTargetsSizeBalancedTreeMethods(LinksConstants<UInt32>, RawLink<UInt32>*, LinksHeader<UInt32>*)
+  nameWithType.vb: UInt32LinksTargetsSizeBalancedTreeMethods.UInt32LinksTargetsSizeBalancedTreeMethods(LinksConstants(Of UInt32), RawLink(Of UInt32)*, LinksHeader(Of UInt32)*)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.#ctor*
+  name: UInt32LinksTargetsSizeBalancedTreeMethods
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksTargetsSizeBalancedTreeMethods__ctor_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.#ctor
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.UInt32LinksTargetsSizeBalancedTreeMethods
+  nameWithType: UInt32LinksTargetsSizeBalancedTreeMethods.UInt32LinksTargetsSizeBalancedTreeMethods
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.ClearNode(System.UInt32)
+  name: ClearNode(UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksTargetsSizeBalancedTreeMethods_ClearNode_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.ClearNode(System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.ClearNode(System.UInt32)
+  nameWithType: UInt32LinksTargetsSizeBalancedTreeMethods.ClearNode(UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.ClearNode*
+  name: ClearNode
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksTargetsSizeBalancedTreeMethods_ClearNode_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.ClearNode
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.ClearNode
+  nameWithType: UInt32LinksTargetsSizeBalancedTreeMethods.ClearNode
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.FirstIsToTheLeftOfSecond(System.UInt32,System.UInt32,System.UInt32,System.UInt32)
+  name: FirstIsToTheLeftOfSecond(UInt32, UInt32, UInt32, UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksTargetsSizeBalancedTreeMethods_FirstIsToTheLeftOfSecond_System_UInt32_System_UInt32_System_UInt32_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.FirstIsToTheLeftOfSecond(System.UInt32,System.UInt32,System.UInt32,System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.FirstIsToTheLeftOfSecond(System.UInt32, System.UInt32, System.UInt32, System.UInt32)
+  nameWithType: UInt32LinksTargetsSizeBalancedTreeMethods.FirstIsToTheLeftOfSecond(UInt32, UInt32, UInt32, UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.FirstIsToTheLeftOfSecond*
+  name: FirstIsToTheLeftOfSecond
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksTargetsSizeBalancedTreeMethods_FirstIsToTheLeftOfSecond_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.FirstIsToTheLeftOfSecond
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.FirstIsToTheLeftOfSecond
+  nameWithType: UInt32LinksTargetsSizeBalancedTreeMethods.FirstIsToTheLeftOfSecond
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.FirstIsToTheRightOfSecond(System.UInt32,System.UInt32,System.UInt32,System.UInt32)
+  name: FirstIsToTheRightOfSecond(UInt32, UInt32, UInt32, UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksTargetsSizeBalancedTreeMethods_FirstIsToTheRightOfSecond_System_UInt32_System_UInt32_System_UInt32_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.FirstIsToTheRightOfSecond(System.UInt32,System.UInt32,System.UInt32,System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.FirstIsToTheRightOfSecond(System.UInt32, System.UInt32, System.UInt32, System.UInt32)
+  nameWithType: UInt32LinksTargetsSizeBalancedTreeMethods.FirstIsToTheRightOfSecond(UInt32, UInt32, UInt32, UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.FirstIsToTheRightOfSecond*
+  name: FirstIsToTheRightOfSecond
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksTargetsSizeBalancedTreeMethods_FirstIsToTheRightOfSecond_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.FirstIsToTheRightOfSecond
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.FirstIsToTheRightOfSecond
+  nameWithType: UInt32LinksTargetsSizeBalancedTreeMethods.FirstIsToTheRightOfSecond
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetBasePartValue(System.UInt32)
+  name: GetBasePartValue(UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksTargetsSizeBalancedTreeMethods_GetBasePartValue_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetBasePartValue(System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetBasePartValue(System.UInt32)
+  nameWithType: UInt32LinksTargetsSizeBalancedTreeMethods.GetBasePartValue(UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetBasePartValue*
+  name: GetBasePartValue
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksTargetsSizeBalancedTreeMethods_GetBasePartValue_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetBasePartValue
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetBasePartValue
+  nameWithType: UInt32LinksTargetsSizeBalancedTreeMethods.GetBasePartValue
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetLeft(System.UInt32)
+  name: GetLeft(UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksTargetsSizeBalancedTreeMethods_GetLeft_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetLeft(System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetLeft(System.UInt32)
+  nameWithType: UInt32LinksTargetsSizeBalancedTreeMethods.GetLeft(UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetLeft*
+  name: GetLeft
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksTargetsSizeBalancedTreeMethods_GetLeft_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetLeft
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetLeft
+  nameWithType: UInt32LinksTargetsSizeBalancedTreeMethods.GetLeft
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetLeftReference(System.UInt32)
+  name: GetLeftReference(UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksTargetsSizeBalancedTreeMethods_GetLeftReference_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetLeftReference(System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetLeftReference(System.UInt32)
+  nameWithType: UInt32LinksTargetsSizeBalancedTreeMethods.GetLeftReference(UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetLeftReference*
+  name: GetLeftReference
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksTargetsSizeBalancedTreeMethods_GetLeftReference_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetLeftReference
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetLeftReference
+  nameWithType: UInt32LinksTargetsSizeBalancedTreeMethods.GetLeftReference
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetRight(System.UInt32)
+  name: GetRight(UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksTargetsSizeBalancedTreeMethods_GetRight_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetRight(System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetRight(System.UInt32)
+  nameWithType: UInt32LinksTargetsSizeBalancedTreeMethods.GetRight(UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetRight*
+  name: GetRight
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksTargetsSizeBalancedTreeMethods_GetRight_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetRight
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetRight
+  nameWithType: UInt32LinksTargetsSizeBalancedTreeMethods.GetRight
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetRightReference(System.UInt32)
+  name: GetRightReference(UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksTargetsSizeBalancedTreeMethods_GetRightReference_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetRightReference(System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetRightReference(System.UInt32)
+  nameWithType: UInt32LinksTargetsSizeBalancedTreeMethods.GetRightReference(UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetRightReference*
+  name: GetRightReference
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksTargetsSizeBalancedTreeMethods_GetRightReference_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetRightReference
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetRightReference
+  nameWithType: UInt32LinksTargetsSizeBalancedTreeMethods.GetRightReference
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetSize(System.UInt32)
+  name: GetSize(UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksTargetsSizeBalancedTreeMethods_GetSize_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetSize(System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetSize(System.UInt32)
+  nameWithType: UInt32LinksTargetsSizeBalancedTreeMethods.GetSize(UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetSize*
+  name: GetSize
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksTargetsSizeBalancedTreeMethods_GetSize_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetSize
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetSize
+  nameWithType: UInt32LinksTargetsSizeBalancedTreeMethods.GetSize
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetTreeRoot
+  name: GetTreeRoot()
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksTargetsSizeBalancedTreeMethods_GetTreeRoot
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetTreeRoot
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetTreeRoot()
+  nameWithType: UInt32LinksTargetsSizeBalancedTreeMethods.GetTreeRoot()
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetTreeRoot*
+  name: GetTreeRoot
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksTargetsSizeBalancedTreeMethods_GetTreeRoot_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetTreeRoot
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.GetTreeRoot
+  nameWithType: UInt32LinksTargetsSizeBalancedTreeMethods.GetTreeRoot
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.SetLeft(System.UInt32,System.UInt32)
+  name: SetLeft(UInt32, UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksTargetsSizeBalancedTreeMethods_SetLeft_System_UInt32_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.SetLeft(System.UInt32,System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.SetLeft(System.UInt32, System.UInt32)
+  nameWithType: UInt32LinksTargetsSizeBalancedTreeMethods.SetLeft(UInt32, UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.SetLeft*
+  name: SetLeft
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksTargetsSizeBalancedTreeMethods_SetLeft_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.SetLeft
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.SetLeft
+  nameWithType: UInt32LinksTargetsSizeBalancedTreeMethods.SetLeft
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.SetRight(System.UInt32,System.UInt32)
+  name: SetRight(UInt32, UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksTargetsSizeBalancedTreeMethods_SetRight_System_UInt32_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.SetRight(System.UInt32,System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.SetRight(System.UInt32, System.UInt32)
+  nameWithType: UInt32LinksTargetsSizeBalancedTreeMethods.SetRight(UInt32, UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.SetRight*
+  name: SetRight
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksTargetsSizeBalancedTreeMethods_SetRight_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.SetRight
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.SetRight
+  nameWithType: UInt32LinksTargetsSizeBalancedTreeMethods.SetRight
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.SetSize(System.UInt32,System.UInt32)
+  name: SetSize(UInt32, UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksTargetsSizeBalancedTreeMethods_SetSize_System_UInt32_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.SetSize(System.UInt32,System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.SetSize(System.UInt32, System.UInt32)
+  nameWithType: UInt32LinksTargetsSizeBalancedTreeMethods.SetSize(UInt32, UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.SetSize*
+  name: SetSize
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32LinksTargetsSizeBalancedTreeMethods_SetSize_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.SetSize
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32LinksTargetsSizeBalancedTreeMethods.SetSize
+  nameWithType: UInt32LinksTargetsSizeBalancedTreeMethods.SetSize
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks
+  name: UInt32UnitedMemoryLinks
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html
+  commentId: T:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks
+  nameWithType: UInt32UnitedMemoryLinks
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.#ctor(IResizableDirectMemory)
+  name: UInt32UnitedMemoryLinks(IResizableDirectMemory)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks__ctor_IResizableDirectMemory_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.#ctor(IResizableDirectMemory)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.UInt32UnitedMemoryLinks(IResizableDirectMemory)
+  nameWithType: UInt32UnitedMemoryLinks.UInt32UnitedMemoryLinks(IResizableDirectMemory)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.#ctor(IResizableDirectMemory,System.Int64)
+  name: UInt32UnitedMemoryLinks(IResizableDirectMemory, Int64)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks__ctor_IResizableDirectMemory_System_Int64_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.#ctor(IResizableDirectMemory,System.Int64)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.UInt32UnitedMemoryLinks(IResizableDirectMemory, System.Int64)
+  nameWithType: UInt32UnitedMemoryLinks.UInt32UnitedMemoryLinks(IResizableDirectMemory, Int64)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.#ctor(IResizableDirectMemory,System.Int64,LinksConstants{System.UInt32},Platform.Data.Doublets.Memory.IndexTreeType)
+  name: UInt32UnitedMemoryLinks(IResizableDirectMemory, Int64, LinksConstants<UInt32>, IndexTreeType)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks__ctor_IResizableDirectMemory_System_Int64_LinksConstants_System_UInt32__Platform_Data_Doublets_Memory_IndexTreeType_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.#ctor(IResizableDirectMemory,System.Int64,LinksConstants{System.UInt32},Platform.Data.Doublets.Memory.IndexTreeType)
+  name.vb: UInt32UnitedMemoryLinks(IResizableDirectMemory, Int64, LinksConstants(Of UInt32), IndexTreeType)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.UInt32UnitedMemoryLinks(IResizableDirectMemory, System.Int64, LinksConstants<System.UInt32>, Platform.Data.Doublets.Memory.IndexTreeType)
+  fullName.vb: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.UInt32UnitedMemoryLinks(IResizableDirectMemory, System.Int64, LinksConstants(Of System.UInt32), Platform.Data.Doublets.Memory.IndexTreeType)
+  nameWithType: UInt32UnitedMemoryLinks.UInt32UnitedMemoryLinks(IResizableDirectMemory, Int64, LinksConstants<UInt32>, IndexTreeType)
+  nameWithType.vb: UInt32UnitedMemoryLinks.UInt32UnitedMemoryLinks(IResizableDirectMemory, Int64, LinksConstants(Of UInt32), IndexTreeType)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.#ctor(System.String)
+  name: UInt32UnitedMemoryLinks(String)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks__ctor_System_String_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.#ctor(System.String)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.UInt32UnitedMemoryLinks(System.String)
+  nameWithType: UInt32UnitedMemoryLinks.UInt32UnitedMemoryLinks(String)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.#ctor(System.String,System.Int64)
+  name: UInt32UnitedMemoryLinks(String, Int64)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks__ctor_System_String_System_Int64_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.#ctor(System.String,System.Int64)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.UInt32UnitedMemoryLinks(System.String, System.Int64)
+  nameWithType: UInt32UnitedMemoryLinks.UInt32UnitedMemoryLinks(String, Int64)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.#ctor*
+  name: UInt32UnitedMemoryLinks
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks__ctor_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.#ctor
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.UInt32UnitedMemoryLinks
+  nameWithType: UInt32UnitedMemoryLinks.UInt32UnitedMemoryLinks
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.Add(System.UInt32,System.UInt32)
+  name: Add(UInt32, UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks_Add_System_UInt32_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.Add(System.UInt32,System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.Add(System.UInt32, System.UInt32)
+  nameWithType: UInt32UnitedMemoryLinks.Add(UInt32, UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.Add*
+  name: Add
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks_Add_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.Add
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.Add
+  nameWithType: UInt32UnitedMemoryLinks.Add
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.AreEqual(System.UInt32,System.UInt32)
+  name: AreEqual(UInt32, UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks_AreEqual_System_UInt32_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.AreEqual(System.UInt32,System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.AreEqual(System.UInt32, System.UInt32)
+  nameWithType: UInt32UnitedMemoryLinks.AreEqual(UInt32, UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.AreEqual*
+  name: AreEqual
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks_AreEqual_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.AreEqual
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.AreEqual
+  nameWithType: UInt32UnitedMemoryLinks.AreEqual
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.ConvertToAddress(System.Int64)
+  name: ConvertToAddress(Int64)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks_ConvertToAddress_System_Int64_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.ConvertToAddress(System.Int64)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.ConvertToAddress(System.Int64)
+  nameWithType: UInt32UnitedMemoryLinks.ConvertToAddress(Int64)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.ConvertToAddress*
+  name: ConvertToAddress
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks_ConvertToAddress_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.ConvertToAddress
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.ConvertToAddress
+  nameWithType: UInt32UnitedMemoryLinks.ConvertToAddress
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.ConvertToInt64(System.UInt32)
+  name: ConvertToInt64(UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks_ConvertToInt64_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.ConvertToInt64(System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.ConvertToInt64(System.UInt32)
+  nameWithType: UInt32UnitedMemoryLinks.ConvertToInt64(UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.ConvertToInt64*
+  name: ConvertToInt64
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks_ConvertToInt64_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.ConvertToInt64
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.ConvertToInt64
+  nameWithType: UInt32UnitedMemoryLinks.ConvertToInt64
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.Decrement(System.UInt32)
+  name: Decrement(UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks_Decrement_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.Decrement(System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.Decrement(System.UInt32)
+  nameWithType: UInt32UnitedMemoryLinks.Decrement(UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.Decrement*
+  name: Decrement
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks_Decrement_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.Decrement
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.Decrement
+  nameWithType: UInt32UnitedMemoryLinks.Decrement
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GetHeaderReference
+  name: GetHeaderReference()
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks_GetHeaderReference
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GetHeaderReference
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GetHeaderReference()
+  nameWithType: UInt32UnitedMemoryLinks.GetHeaderReference()
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GetHeaderReference*
+  name: GetHeaderReference
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks_GetHeaderReference_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GetHeaderReference
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GetHeaderReference
+  nameWithType: UInt32UnitedMemoryLinks.GetHeaderReference
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GetLinkReference(System.UInt32)
+  name: GetLinkReference(UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks_GetLinkReference_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GetLinkReference(System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GetLinkReference(System.UInt32)
+  nameWithType: UInt32UnitedMemoryLinks.GetLinkReference(UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GetLinkReference*
+  name: GetLinkReference
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks_GetLinkReference_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GetLinkReference
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GetLinkReference
+  nameWithType: UInt32UnitedMemoryLinks.GetLinkReference
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GetOne
+  name: GetOne()
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks_GetOne
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GetOne
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GetOne()
+  nameWithType: UInt32UnitedMemoryLinks.GetOne()
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GetOne*
+  name: GetOne
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks_GetOne_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GetOne
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GetOne
+  nameWithType: UInt32UnitedMemoryLinks.GetOne
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GetZero
+  name: GetZero()
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks_GetZero
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GetZero
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GetZero()
+  nameWithType: UInt32UnitedMemoryLinks.GetZero()
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GetZero*
+  name: GetZero
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks_GetZero_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GetZero
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GetZero
+  nameWithType: UInt32UnitedMemoryLinks.GetZero
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GreaterOrEqualThan(System.UInt32,System.UInt32)
+  name: GreaterOrEqualThan(UInt32, UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks_GreaterOrEqualThan_System_UInt32_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GreaterOrEqualThan(System.UInt32,System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GreaterOrEqualThan(System.UInt32, System.UInt32)
+  nameWithType: UInt32UnitedMemoryLinks.GreaterOrEqualThan(UInt32, UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GreaterOrEqualThan*
+  name: GreaterOrEqualThan
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks_GreaterOrEqualThan_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GreaterOrEqualThan
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GreaterOrEqualThan
+  nameWithType: UInt32UnitedMemoryLinks.GreaterOrEqualThan
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GreaterThan(System.UInt32,System.UInt32)
+  name: GreaterThan(UInt32, UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks_GreaterThan_System_UInt32_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GreaterThan(System.UInt32,System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GreaterThan(System.UInt32, System.UInt32)
+  nameWithType: UInt32UnitedMemoryLinks.GreaterThan(UInt32, UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GreaterThan*
+  name: GreaterThan
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks_GreaterThan_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GreaterThan
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.GreaterThan
+  nameWithType: UInt32UnitedMemoryLinks.GreaterThan
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.Increment(System.UInt32)
+  name: Increment(UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks_Increment_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.Increment(System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.Increment(System.UInt32)
+  nameWithType: UInt32UnitedMemoryLinks.Increment(UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.Increment*
+  name: Increment
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks_Increment_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.Increment
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.Increment
+  nameWithType: UInt32UnitedMemoryLinks.Increment
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.LessOrEqualThan(System.UInt32,System.UInt32)
+  name: LessOrEqualThan(UInt32, UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks_LessOrEqualThan_System_UInt32_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.LessOrEqualThan(System.UInt32,System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.LessOrEqualThan(System.UInt32, System.UInt32)
+  nameWithType: UInt32UnitedMemoryLinks.LessOrEqualThan(UInt32, UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.LessOrEqualThan*
+  name: LessOrEqualThan
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks_LessOrEqualThan_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.LessOrEqualThan
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.LessOrEqualThan
+  nameWithType: UInt32UnitedMemoryLinks.LessOrEqualThan
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.LessThan(System.UInt32,System.UInt32)
+  name: LessThan(UInt32, UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks_LessThan_System_UInt32_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.LessThan(System.UInt32,System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.LessThan(System.UInt32, System.UInt32)
+  nameWithType: UInt32UnitedMemoryLinks.LessThan(UInt32, UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.LessThan*
+  name: LessThan
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks_LessThan_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.LessThan
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.LessThan
+  nameWithType: UInt32UnitedMemoryLinks.LessThan
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.ResetPointers
+  name: ResetPointers()
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks_ResetPointers
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.ResetPointers
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.ResetPointers()
+  nameWithType: UInt32UnitedMemoryLinks.ResetPointers()
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.ResetPointers*
+  name: ResetPointers
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks_ResetPointers_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.ResetPointers
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.ResetPointers
+  nameWithType: UInt32UnitedMemoryLinks.ResetPointers
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.SetPointers(IResizableDirectMemory)
+  name: SetPointers(IResizableDirectMemory)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks_SetPointers_IResizableDirectMemory_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.SetPointers(IResizableDirectMemory)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.SetPointers(IResizableDirectMemory)
+  nameWithType: UInt32UnitedMemoryLinks.SetPointers(IResizableDirectMemory)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.SetPointers*
+  name: SetPointers
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks_SetPointers_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.SetPointers
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.SetPointers
+  nameWithType: UInt32UnitedMemoryLinks.SetPointers
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.Subtract(System.UInt32,System.UInt32)
+  name: Subtract(UInt32, UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks_Subtract_System_UInt32_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.Subtract(System.UInt32,System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.Subtract(System.UInt32, System.UInt32)
+  nameWithType: UInt32UnitedMemoryLinks.Subtract(UInt32, UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.Subtract*
+  name: Subtract
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnitedMemoryLinks_Subtract_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.Subtract
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnitedMemoryLinks.Subtract
+  nameWithType: UInt32UnitedMemoryLinks.Subtract
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnusedLinksListMethods
+  name: UInt32UnusedLinksListMethods
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnusedLinksListMethods.html
+  commentId: T:Platform.Data.Doublets.Memory.United.Specific.UInt32UnusedLinksListMethods
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnusedLinksListMethods
+  nameWithType: UInt32UnusedLinksListMethods
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnusedLinksListMethods.#ctor(Platform.Data.Doublets.Memory.United.RawLink{System.UInt32}*,Platform.Data.Doublets.Memory.LinksHeader{System.UInt32}*)
+  name: UInt32UnusedLinksListMethods(RawLink<UInt32>*, LinksHeader<UInt32>*)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnusedLinksListMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnusedLinksListMethods__ctor_Platform_Data_Doublets_Memory_United_RawLink_System_UInt32___Platform_Data_Doublets_Memory_LinksHeader_System_UInt32___
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32UnusedLinksListMethods.#ctor(Platform.Data.Doublets.Memory.United.RawLink{System.UInt32}*,Platform.Data.Doublets.Memory.LinksHeader{System.UInt32}*)
+  name.vb: UInt32UnusedLinksListMethods(RawLink(Of UInt32)*, LinksHeader(Of UInt32)*)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnusedLinksListMethods.UInt32UnusedLinksListMethods(Platform.Data.Doublets.Memory.United.RawLink<System.UInt32>*, Platform.Data.Doublets.Memory.LinksHeader<System.UInt32>*)
+  fullName.vb: Platform.Data.Doublets.Memory.United.Specific.UInt32UnusedLinksListMethods.UInt32UnusedLinksListMethods(Platform.Data.Doublets.Memory.United.RawLink(Of System.UInt32)*, Platform.Data.Doublets.Memory.LinksHeader(Of System.UInt32)*)
+  nameWithType: UInt32UnusedLinksListMethods.UInt32UnusedLinksListMethods(RawLink<UInt32>*, LinksHeader<UInt32>*)
+  nameWithType.vb: UInt32UnusedLinksListMethods.UInt32UnusedLinksListMethods(RawLink(Of UInt32)*, LinksHeader(Of UInt32)*)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnusedLinksListMethods.#ctor*
+  name: UInt32UnusedLinksListMethods
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnusedLinksListMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnusedLinksListMethods__ctor_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32UnusedLinksListMethods.#ctor
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnusedLinksListMethods.UInt32UnusedLinksListMethods
+  nameWithType: UInt32UnusedLinksListMethods.UInt32UnusedLinksListMethods
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnusedLinksListMethods.GetHeaderReference
+  name: GetHeaderReference()
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnusedLinksListMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnusedLinksListMethods_GetHeaderReference
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32UnusedLinksListMethods.GetHeaderReference
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnusedLinksListMethods.GetHeaderReference()
+  nameWithType: UInt32UnusedLinksListMethods.GetHeaderReference()
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnusedLinksListMethods.GetHeaderReference*
+  name: GetHeaderReference
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnusedLinksListMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnusedLinksListMethods_GetHeaderReference_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32UnusedLinksListMethods.GetHeaderReference
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnusedLinksListMethods.GetHeaderReference
+  nameWithType: UInt32UnusedLinksListMethods.GetHeaderReference
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnusedLinksListMethods.GetLinkReference(System.UInt32)
+  name: GetLinkReference(UInt32)
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnusedLinksListMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnusedLinksListMethods_GetLinkReference_System_UInt32_
+  commentId: M:Platform.Data.Doublets.Memory.United.Specific.UInt32UnusedLinksListMethods.GetLinkReference(System.UInt32)
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnusedLinksListMethods.GetLinkReference(System.UInt32)
+  nameWithType: UInt32UnusedLinksListMethods.GetLinkReference(UInt32)
+- uid: Platform.Data.Doublets.Memory.United.Specific.UInt32UnusedLinksListMethods.GetLinkReference*
+  name: GetLinkReference
+  href: api/Platform.Data.Doublets.Memory.United.Specific.UInt32UnusedLinksListMethods.html#Platform_Data_Doublets_Memory_United_Specific_UInt32UnusedLinksListMethods_GetLinkReference_
+  commentId: Overload:Platform.Data.Doublets.Memory.United.Specific.UInt32UnusedLinksListMethods.GetLinkReference
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Memory.United.Specific.UInt32UnusedLinksListMethods.GetLinkReference
+  nameWithType: UInt32UnusedLinksListMethods.GetLinkReference
 - uid: Platform.Data.Doublets.Memory.United.Specific.UInt64LinksAvlBalancedTreeMethodsBase
   name: UInt64LinksAvlBalancedTreeMethodsBase
   href: api/Platform.Data.Doublets.Memory.United.Specific.UInt64LinksAvlBalancedTreeMethodsBase.html
