@@ -1084,16 +1084,7 @@ references:
 - uid: Platform.Data.Doublets.Doublet`1.Source
   name: Source
   href: api/Platform.Data.Doublets.Doublet-1.html#Platform_Data_Doublets_Doublet_1_Source
-  commentId: P:Platform.Data.Doublets.Doublet`1.Source
-  fullName: Platform.Data.Doublets.Doublet<T>.Source
-  fullName.vb: Platform.Data.Doublets.Doublet(Of T).Source
-  nameWithType: Doublet<T>.Source
-  nameWithType.vb: Doublet(Of T).Source
-- uid: Platform.Data.Doublets.Doublet`1.Source*
-  name: Source
-  href: api/Platform.Data.Doublets.Doublet-1.html#Platform_Data_Doublets_Doublet_1_Source_
-  commentId: Overload:Platform.Data.Doublets.Doublet`1.Source
-  isSpec: "True"
+  commentId: F:Platform.Data.Doublets.Doublet`1.Source
   fullName: Platform.Data.Doublets.Doublet<T>.Source
   fullName.vb: Platform.Data.Doublets.Doublet(Of T).Source
   nameWithType: Doublet<T>.Source
@@ -1101,16 +1092,7 @@ references:
 - uid: Platform.Data.Doublets.Doublet`1.Target
   name: Target
   href: api/Platform.Data.Doublets.Doublet-1.html#Platform_Data_Doublets_Doublet_1_Target
-  commentId: P:Platform.Data.Doublets.Doublet`1.Target
-  fullName: Platform.Data.Doublets.Doublet<T>.Target
-  fullName.vb: Platform.Data.Doublets.Doublet(Of T).Target
-  nameWithType: Doublet<T>.Target
-  nameWithType.vb: Doublet(Of T).Target
-- uid: Platform.Data.Doublets.Doublet`1.Target*
-  name: Target
-  href: api/Platform.Data.Doublets.Doublet-1.html#Platform_Data_Doublets_Doublet_1_Target_
-  commentId: Overload:Platform.Data.Doublets.Doublet`1.Target
-  isSpec: "True"
+  commentId: F:Platform.Data.Doublets.Doublet`1.Target
   fullName: Platform.Data.Doublets.Doublet<T>.Target
   fullName.vb: Platform.Data.Doublets.Doublet(Of T).Target
   nameWithType: Doublet<T>.Target
