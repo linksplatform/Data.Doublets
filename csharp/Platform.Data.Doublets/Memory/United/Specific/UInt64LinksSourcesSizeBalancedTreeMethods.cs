@@ -40,11 +40,11 @@ namespace Platform.Data.Doublets.Memory.United.Specific
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override bool FirstIsToTheLeftOfSecond(ulong firstSource, ulong firstTarget, ulong secondSource, ulong secondTarget)
-            => firstSource < secondSource || firstSource == secondSource && firstTarget < secondTarget;
+            => firstSource < secondSource || (firstSource == secondSource && firstTarget < secondTarget);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override bool FirstIsToTheRightOfSecond(ulong firstSource, ulong firstTarget, ulong secondSource, ulong secondTarget)
-            => firstSource > secondSource || firstSource == secondSource && firstTarget > secondTarget;
+            => firstSource > secondSource || (firstSource == secondSource && firstTarget > secondTarget);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override void ClearNode(ulong node)

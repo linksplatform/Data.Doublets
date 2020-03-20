@@ -40,10 +40,10 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         protected override TLink GetBasePartValue(TLink link) => GetLinkReference(link).Source;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override bool FirstIsToTheLeftOfSecond(TLink firstSource, TLink firstTarget, TLink secondSource, TLink secondTarget) => LessThan(firstSource, secondSource) || AreEqual(firstSource, secondSource) && LessThan(firstTarget, secondTarget);
+        protected override bool FirstIsToTheLeftOfSecond(TLink firstSource, TLink firstTarget, TLink secondSource, TLink secondTarget) => LessThan(firstSource, secondSource) || (AreEqual(firstSource, secondSource) && LessThan(firstTarget, secondTarget));
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override bool FirstIsToTheRightOfSecond(TLink firstSource, TLink firstTarget, TLink secondSource, TLink secondTarget) => GreaterThan(firstSource, secondSource) || AreEqual(firstSource, secondSource) && GreaterThan(firstTarget, secondTarget);
+        protected override bool FirstIsToTheRightOfSecond(TLink firstSource, TLink firstTarget, TLink secondSource, TLink secondTarget) => GreaterThan(firstSource, secondSource) || (AreEqual(firstSource, secondSource) && GreaterThan(firstTarget, secondTarget));
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override void ClearNode(TLink node)
