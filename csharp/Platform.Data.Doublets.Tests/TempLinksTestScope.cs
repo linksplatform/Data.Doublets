@@ -2,7 +2,7 @@
 using Platform.Disposables;
 using Platform.Data.Doublets.Sequences;
 using Platform.Data.Doublets.Decorators;
-using Platform.Data.Doublets.ResizableDirectMemory.Specific;
+using Platform.Data.Doublets.Memory.United.Specific;
 
 namespace Platform.Data.Doublets.Tests
 {
@@ -22,7 +22,7 @@ namespace Platform.Data.Doublets.Tests
             _deleteFiles = deleteFiles;
             TempFilename = Path.GetTempFileName();
             TempTransactionLogFilename = Path.GetTempFileName();
-            var coreMemoryAdapter = new UInt64ResizableDirectMemoryLinks(TempFilename);
+            var coreMemoryAdapter = new UInt64UnitedMemoryLinks(TempFilename);
             MemoryAdapter = useLog ? (ILinks<ulong>)new UInt64LinksTransactionsLayer(coreMemoryAdapter, TempTransactionLogFilename) : coreMemoryAdapter;
             Links = new SynchronizedLinks<ulong>(new UInt64Links(MemoryAdapter));
             if (useSequences)

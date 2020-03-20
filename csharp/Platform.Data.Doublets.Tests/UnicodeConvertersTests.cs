@@ -11,7 +11,7 @@ using Platform.Data.Doublets.Sequences.Converters;
 using Platform.Data.Doublets.Sequences.Indexes;
 using Platform.Data.Doublets.Sequences.Walkers;
 using Platform.Data.Doublets.Unicode;
-using Platform.Data.Doublets.ResizableDirectMemory.Generic;
+using Platform.Data.Doublets.Memory.United.Generic;
 
 namespace Platform.Data.Doublets.Tests
 {
@@ -35,7 +35,7 @@ namespace Platform.Data.Doublets.Tests
         [Fact]
         public static void CharAndRawNumberUnicodeSymbolConvertersTest()
         {
-            using (var scope = new Scope<Types<HeapResizableDirectMemory, ResizableDirectMemoryLinks<ulong>>>())
+            using (var scope = new Scope<Types<HeapResizableDirectMemory, UnitedMemoryLinks<ulong>>>())
             {
                 var links = scope.Use<ILinks<ulong>>();
                 var meaningRoot = links.CreatePoint();

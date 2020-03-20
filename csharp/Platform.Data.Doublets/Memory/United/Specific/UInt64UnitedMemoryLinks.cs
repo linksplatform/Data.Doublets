@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using Platform.Memory;
-using Platform.Data.Doublets.ResizableDirectMemory.Generic;
 using Platform.Singletons;
+using Platform.Data.Doublets.Memory.United.Generic;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-namespace Platform.Data.Doublets.ResizableDirectMemory.Specific
+namespace Platform.Data.Doublets.Memory.United.Specific
 {
     /// <summary>
-    /// <para>Represents a low-level implementation of direct access to resizable memory, for organizing the storage of links with addresses represented as <see cref="System.UInt64" />.</para>
-    /// <para>Представляет низкоуровневую реализация прямого доступа к памяти с переменным размером, для организации хранения связей с адресами представленными в виде <see cref="System.UInt64"/>.</para>
+    /// <para>Represents a low-level implementation of direct access to resizable memory, for organizing the storage of links with addresses represented as <see cref="ulong" />.</para>
+    /// <para>Представляет низкоуровневую реализация прямого доступа к памяти с переменным размером, для организации хранения связей с адресами представленными в виде <see cref="ulong"/>.</para>
     /// </summary>
-    public unsafe class UInt64ResizableDirectMemoryLinks : ResizableDirectMemoryLinksBase<ulong>
+    public unsafe class UInt64UnitedMemoryLinks : UnitedMemoryLinksBase<ulong>
     {
         private readonly Func<ILinksTreeMethods<ulong>> _createSourceTreeMethods;
         private readonly Func<ILinksTreeMethods<ulong>> _createTargetTreeMethods;
@@ -20,7 +20,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Specific
         private RawLink<ulong>* _links;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public UInt64ResizableDirectMemoryLinks(string address) : this(address, DefaultLinksSizeStep) { }
+        public UInt64UnitedMemoryLinks(string address) : this(address, DefaultLinksSizeStep) { }
 
         /// <summary>
         /// Создаёт экземпляр базы данных Links в файле по указанному адресу, с указанным минимальным шагом расширения базы данных.
@@ -28,16 +28,16 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Specific
         /// <param name="address">Полный пусть к файлу базы данных.</param>
         /// <param name="memoryReservationStep">Минимальный шаг расширения базы данных в байтах.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public UInt64ResizableDirectMemoryLinks(string address, long memoryReservationStep) : this(new FileMappedResizableDirectMemory(address, memoryReservationStep), memoryReservationStep) { }
+        public UInt64UnitedMemoryLinks(string address, long memoryReservationStep) : this(new FileMappedResizableDirectMemory(address, memoryReservationStep), memoryReservationStep) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public UInt64ResizableDirectMemoryLinks(IResizableDirectMemory memory) : this(memory, DefaultLinksSizeStep) { }
+        public UInt64UnitedMemoryLinks(IResizableDirectMemory memory) : this(memory, DefaultLinksSizeStep) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public UInt64ResizableDirectMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep) : this(memory, memoryReservationStep, Default<LinksConstants<ulong>>.Instance, true) { }
+        public UInt64UnitedMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep) : this(memory, memoryReservationStep, Default<LinksConstants<ulong>>.Instance, true) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public UInt64ResizableDirectMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep, LinksConstants<ulong> constants, bool useAvlBasedIndex) : base(memory, memoryReservationStep, constants)
+        public UInt64UnitedMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep, LinksConstants<ulong> constants, bool useAvlBasedIndex) : base(memory, memoryReservationStep, constants)
         {
             if (useAvlBasedIndex)
             {

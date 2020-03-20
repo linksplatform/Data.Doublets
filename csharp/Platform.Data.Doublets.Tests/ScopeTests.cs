@@ -3,8 +3,8 @@ using Platform.Scopes;
 using Platform.Memory;
 using Platform.Data.Doublets.Decorators;
 using Platform.Reflection;
-using Platform.Data.Doublets.ResizableDirectMemory.Generic;
-using Platform.Data.Doublets.ResizableDirectMemory.Specific;
+using Platform.Data.Doublets.Memory.United.Generic;
+using Platform.Data.Doublets.Memory.United.Specific;
 
 namespace Platform.Data.Doublets.Tests
 {
@@ -27,9 +27,9 @@ namespace Platform.Data.Doublets.Tests
             using (var scope = new Scope())
             {
                 scope.Include<TemporaryFileMappedResizableDirectMemory>();
-                scope.Include<UInt64ResizableDirectMemoryLinks>();
+                scope.Include<UInt64UnitedMemoryLinks>();
                 var instance = scope.Use<ILinks<ulong>>();
-                Assert.IsType<UInt64ResizableDirectMemoryLinks>(instance);
+                Assert.IsType<UInt64UnitedMemoryLinks>(instance);
             }
         }
 
@@ -46,10 +46,10 @@ namespace Platform.Data.Doublets.Tests
         [Fact]
         public static void TypeParametersTest()
         {
-            using (var scope = new Scope<Types<HeapResizableDirectMemory, ResizableDirectMemoryLinks<ulong>>>())
+            using (var scope = new Scope<Types<HeapResizableDirectMemory, UnitedMemoryLinks<ulong>>>())
             {
                 var links = scope.Use<ILinks<ulong>>();
-                Assert.IsType<ResizableDirectMemoryLinks<ulong>>(links);
+                Assert.IsType<UnitedMemoryLinks<ulong>>(links);
             }
         }
     }

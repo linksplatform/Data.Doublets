@@ -51,7 +51,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override ref LinksHeaderIndexPart<TLink> GetHeaderReference() => ref AsRef<LinksHeaderIndexPart<TLink>>(_header);
+        protected override ref LinksHeader<TLink> GetHeaderReference() => ref AsRef<LinksHeader<TLink>>(_header);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override ref RawLinkDataPart<TLink> GetLinkDataPartReference(TLink linkIndex) => ref AsRef<RawLinkDataPart<TLink>>(_linksDataParts + LinkDataPartSizeInBytes * ConvertToInt64(linkIndex));

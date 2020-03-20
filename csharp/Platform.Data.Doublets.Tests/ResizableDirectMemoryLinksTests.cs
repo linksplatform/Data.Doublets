@@ -2,7 +2,7 @@
 using Xunit;
 using Platform.Singletons;
 using Platform.Memory;
-using Platform.Data.Doublets.ResizableDirectMemory.Specific;
+using Platform.Data.Doublets.Memory.United.Specific;
 
 namespace Platform.Data.Doublets.Tests
 {
@@ -14,7 +14,7 @@ namespace Platform.Data.Doublets.Tests
         public static void BasicFileMappedMemoryTest()
         {
             var tempFilename = Path.GetTempFileName();
-            using (var memoryAdapter = new UInt64ResizableDirectMemoryLinks(tempFilename))
+            using (var memoryAdapter = new UInt64UnitedMemoryLinks(tempFilename))
             {
                 memoryAdapter.TestBasicMemoryOperations();
             }
@@ -24,8 +24,8 @@ namespace Platform.Data.Doublets.Tests
         [Fact]
         public static void BasicHeapMemoryTest()
         {
-            using (var memory = new HeapResizableDirectMemory(UInt64ResizableDirectMemoryLinks.DefaultLinksSizeStep))
-            using (var memoryAdapter = new UInt64ResizableDirectMemoryLinks(memory, UInt64ResizableDirectMemoryLinks.DefaultLinksSizeStep))
+            using (var memory = new HeapResizableDirectMemory(UInt64UnitedMemoryLinks.DefaultLinksSizeStep))
+            using (var memoryAdapter = new UInt64UnitedMemoryLinks(memory, UInt64UnitedMemoryLinks.DefaultLinksSizeStep))
             {
                 memoryAdapter.TestBasicMemoryOperations();
             }
@@ -40,8 +40,8 @@ namespace Platform.Data.Doublets.Tests
         [Fact]
         public static void NonexistentReferencesHeapMemoryTest()
         {
-            using (var memory = new HeapResizableDirectMemory(UInt64ResizableDirectMemoryLinks.DefaultLinksSizeStep))
-            using (var memoryAdapter = new UInt64ResizableDirectMemoryLinks(memory, UInt64ResizableDirectMemoryLinks.DefaultLinksSizeStep))
+            using (var memory = new HeapResizableDirectMemory(UInt64UnitedMemoryLinks.DefaultLinksSizeStep))
+            using (var memoryAdapter = new UInt64UnitedMemoryLinks(memory, UInt64UnitedMemoryLinks.DefaultLinksSizeStep))
             {
                 memoryAdapter.TestNonexistentReferences();
             }

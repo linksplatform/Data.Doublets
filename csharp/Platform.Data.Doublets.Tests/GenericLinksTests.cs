@@ -3,7 +3,7 @@ using Xunit;
 using Platform.Reflection;
 using Platform.Memory;
 using Platform.Scopes;
-using Platform.Data.Doublets.ResizableDirectMemory.Generic;
+using Platform.Data.Doublets.Memory.United.Generic;
 
 namespace Platform.Data.Doublets.Tests
 {
@@ -38,7 +38,7 @@ namespace Platform.Data.Doublets.Tests
 
         private static void Using<TLink>(Action<ILinks<TLink>> action)
         {
-            using (var scope = new Scope<Types<HeapResizableDirectMemory, ResizableDirectMemoryLinks<TLink>>>())
+            using (var scope = new Scope<Types<HeapResizableDirectMemory, UnitedMemoryLinks<TLink>>>())
             {
                 action(scope.Use<ILinks<TLink>>());
             }

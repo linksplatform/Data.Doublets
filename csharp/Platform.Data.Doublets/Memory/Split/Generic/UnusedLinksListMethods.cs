@@ -1,7 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using Platform.Collections.Methods.Lists;
 using Platform.Converters;
-using Platform.Data.Doublets.Memory;
 using static System.Runtime.CompilerServices.Unsafe;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -23,7 +22,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual ref LinksHeaderIndexPart<TLink> GetHeaderReference() => ref AsRef<LinksHeaderIndexPart<TLink>>(_header);
+        protected virtual ref LinksHeader<TLink> GetHeaderReference() => ref AsRef<LinksHeader<TLink>>(_header);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual ref RawLinkDataPart<TLink> GetLinkDataPartReference(TLink link) => ref AsRef<RawLinkDataPart<TLink>>(_links + RawLinkDataPart<TLink>.SizeInBytes * _addressToInt64Converter.Convert(link));

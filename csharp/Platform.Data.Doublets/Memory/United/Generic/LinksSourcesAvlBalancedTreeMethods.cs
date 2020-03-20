@@ -2,7 +2,7 @@
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
+namespace Platform.Data.Doublets.Memory.United.Generic
 {
     public unsafe class LinksSourcesAvlBalancedTreeMethods<TLink> : LinksAvlBalancedTreeMethodsBase<TLink>
     {
@@ -52,16 +52,16 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
         protected override void SetBalance(TLink node, sbyte value) => SetBalanceValue(ref GetLinkReference(node).SizeAsSource, value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink GetTreeRoot() => GetHeaderReference().FirstAsSource;
+        protected override TLink GetTreeRoot() => GetHeaderReference().RootAsSource;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override TLink GetBasePartValue(TLink link) => GetLinkReference(link).Source;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override bool FirstIsToTheLeftOfSecond(TLink firstSource, TLink firstTarget, TLink secondSource, TLink secondTarget) => LessThan(firstSource, secondSource) || (AreEqual(firstSource, secondSource) && LessThan(firstTarget, secondTarget));
+        protected override bool FirstIsToTheLeftOfSecond(TLink firstSource, TLink firstTarget, TLink secondSource, TLink secondTarget) => LessThan(firstSource, secondSource) || AreEqual(firstSource, secondSource) && LessThan(firstTarget, secondTarget);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override bool FirstIsToTheRightOfSecond(TLink firstSource, TLink firstTarget, TLink secondSource, TLink secondTarget) => GreaterThan(firstSource, secondSource) || (AreEqual(firstSource, secondSource) && GreaterThan(firstTarget, secondTarget));
+        protected override bool FirstIsToTheRightOfSecond(TLink firstSource, TLink firstTarget, TLink secondSource, TLink secondTarget) => GreaterThan(firstSource, secondSource) || AreEqual(firstSource, secondSource) && GreaterThan(firstTarget, secondTarget);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override void ClearNode(TLink node)

@@ -5,7 +5,7 @@ using static System.Runtime.CompilerServices.Unsafe;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
+namespace Platform.Data.Doublets.Memory.United.Generic
 {
     public unsafe class UnusedLinksListMethods<TLink> : CircularDoublyLinkedListMethods<TLink>, ILinksListMethods<TLink>
     {
@@ -25,7 +25,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
         protected virtual ref LinksHeader<TLink> GetHeaderReference() => ref AsRef<LinksHeader<TLink>>(_header);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual ref RawLink<TLink> GetLinkReference(TLink link) => ref AsRef<RawLink<TLink>>(_links + (RawLink<TLink>.SizeInBytes * _addressToInt64Converter.Convert(link)));
+        protected virtual ref RawLink<TLink> GetLinkReference(TLink link) => ref AsRef<RawLink<TLink>>(_links + RawLink<TLink>.SizeInBytes * _addressToInt64Converter.Convert(link));
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override TLink GetFirst() => GetHeaderReference().FirstFreeLink;

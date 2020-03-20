@@ -1,6 +1,6 @@
 ﻿using BenchmarkDotNet.Attributes;
 using Platform.Data.Doublets.Memory.Split.Generic;
-using Platform.Data.Doublets.ResizableDirectMemory.Generic;
+using Platform.Data.Doublets.Memory.United.Generic;
 using Platform.Data.Doublets.Tests;
 using Platform.Memory;
 
@@ -14,7 +14,7 @@ namespace Platform.Data.Doublets.Benchmarks
     {
         private static SplitMemoryLinks<uint> _splitMemory;
         private static ILinks<uint> _splitMemoryLinks;
-        private static ResizableDirectMemoryLinks<uint> _simpleMemory;
+        private static UnitedMemoryLinks<uint> _simpleMemory;
         private static ILinks<uint> _simpleMemoryLinks;
 
         [GlobalSetup]
@@ -26,7 +26,7 @@ namespace Platform.Data.Doublets.Benchmarks
             _splitMemoryLinks = _splitMemory.DecorateWithAutomaticUniquenessAndUsagesResolution();
 
             var memory = new HeapResizableDirectMemory();
-            _simpleMemory = new ResizableDirectMemoryLinks<uint>(memory);
+            _simpleMemory = new UnitedMemoryLinks<uint>(memory);
             _simpleMemoryLinks = _simpleMemory.DecorateWithAutomaticUniquenessAndUsagesResolution();
         }
 

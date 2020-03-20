@@ -1,9 +1,9 @@
 ﻿using System.Runtime.CompilerServices;
-using Platform.Data.Doublets.ResizableDirectMemory.Generic;
+using Platform.Data.Doublets.Memory.United.Generic;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-namespace Platform.Data.Doublets.ResizableDirectMemory.Specific
+namespace Platform.Data.Doublets.Memory.United.Specific
 {
     public unsafe class UInt64UnusedLinksListMethods : UnusedLinksListMethods<ulong>
     {

@@ -31,7 +31,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
 
         public static readonly long LinkIndexPartSizeInBytes = RawLinkIndexPart<TLink>.SizeInBytes;
 
-        public static readonly long LinkHeaderSizeInBytes = LinksHeaderIndexPart<TLink>.SizeInBytes;
+        public static readonly long LinkHeaderSizeInBytes = LinksHeader<TLink>.SizeInBytes;
 
         public static readonly long DefaultLinksSizeStep = 1 * 1024 * 1024;
 
@@ -459,7 +459,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected abstract ref LinksHeaderIndexPart<TLink> GetHeaderReference();
+        protected abstract ref LinksHeader<TLink> GetHeaderReference();
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected abstract ref RawLinkDataPart<TLink> GetLinkDataPartReference(TLink linkIndex);

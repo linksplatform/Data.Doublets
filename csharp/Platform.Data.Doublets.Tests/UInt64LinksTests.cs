@@ -18,7 +18,7 @@ using Platform.Diagnostics;
 using Platform.IO;
 using Platform.Memory;
 using Platform.Data.Doublets.Decorators;
-using Platform.Data.Doublets.ResizableDirectMemory.Specific;
+using Platform.Data.Doublets.Memory.United.Specific;
 
 namespace Platform.Data.Doublets.Tests
 {
@@ -33,7 +33,7 @@ namespace Platform.Data.Doublets.Tests
         [Fact]
         public static void MultipleCreateAndDeleteTest()
         {
-            using (var scope = new Scope<Types<HeapResizableDirectMemory, UInt64ResizableDirectMemoryLinks>>())
+            using (var scope = new Scope<Types<HeapResizableDirectMemory, UInt64UnitedMemoryLinks>>())
             {
                 new UInt64Links(scope.Use<ILinks<ulong>>()).TestMultipleRandomCreationsAndDeletions(100);
             }
@@ -225,7 +225,7 @@ namespace Platform.Data.Doublets.Tests
             var tempTransactionLogFilename = Path.GetTempFileName();
 
             // Commit
-            using (var memoryAdapter = new UInt64LinksTransactionsLayer(new UInt64ResizableDirectMemoryLinks(tempDatabaseFilename), tempTransactionLogFilename))
+            using (var memoryAdapter = new UInt64LinksTransactionsLayer(new UInt64UnitedMemoryLinks(tempDatabaseFilename), tempTransactionLogFilename))
             using (var links = new UInt64Links(memoryAdapter))
             {
                 using (var transaction = memoryAdapter.BeginTransaction())
@@ -255,7 +255,7 @@ namespace Platform.Data.Doublets.Tests
             var tempTransactionLogFilename = Path.GetTempFileName();
 
             // Commit
-            using (var memoryAdapter = new UInt64LinksTransactionsLayer(new UInt64ResizableDirectMemoryLinks(tempDatabaseFilename), tempTransactionLogFilename))
+            using (var memoryAdapter = new UInt64LinksTransactionsLayer(new UInt64UnitedMemoryLinks(tempDatabaseFilename), tempTransactionLogFilename))
             using (var links = new UInt64Links(memoryAdapter))
             {
                 using (var transaction = memoryAdapter.BeginTransaction())
@@ -283,7 +283,7 @@ namespace Platform.Data.Doublets.Tests
             try
             {
                 // TODO: Fix
-                using (var memoryAdapter = new UInt64LinksTransactionsLayer(new UInt64ResizableDirectMemoryLinks(tempDatabaseFilename), tempTransactionLogFilename))
+                using (var memoryAdapter = new UInt64LinksTransactionsLayer(new UInt64UnitedMemoryLinks(tempDatabaseFilename), tempTransactionLogFilename))
                 using (var links = new UInt64Links(memoryAdapter))
                 {
                     Global.Trash = links.Count();
@@ -314,7 +314,7 @@ namespace Platform.Data.Doublets.Tests
                 ulong l1;
                 ulong l2;
 
-                using (var memory = new UInt64ResizableDirectMemoryLinks(tempDatabaseFilename))
+                using (var memory = new UInt64UnitedMemoryLinks(tempDatabaseFilename))
                 using (var memoryAdapter = new UInt64LinksTransactionsLayer(memory, tempTransactionLogFilename))
                 using (var links = new UInt64Links(memoryAdapter))
                 {
@@ -329,7 +329,7 @@ namespace Platform.Data.Doublets.Tests
 
                 Global.Trash = FileHelpers.ReadAll<UInt64LinksTransactionsLayer.Transition>(tempTransactionLogFilename);
 
-                using (var memory = new UInt64ResizableDirectMemoryLinks(tempDatabaseFilename))
+                using (var memory = new UInt64UnitedMemoryLinks(tempDatabaseFilename))
                 using (var memoryAdapter = new UInt64LinksTransactionsLayer(memory, tempTransactionLogFilename))
                 using (var links = new UInt64Links(memoryAdapter))
                 {
@@ -848,7 +848,7 @@ namespace Platform.Data.Doublets.Tests
                 var links = scope.Links;
                 var linksBeforeTest = links.Count();
 
-                long linksToCreate = 64 * 1024 * 1024 / UInt64ResizableDirectMemoryLinks.LinkSizeInBytes;
+                long linksToCreate = 64 * 1024 * 1024 / UInt64UnitedMemoryLinks.LinkSizeInBytes;
 
                 ConsoleHelpers.Debug("Creating {0} links.", linksToCreate);
 
@@ -880,7 +880,7 @@ namespace Platform.Data.Doublets.Tests
 
                 var sw = Stopwatch.StartNew();
 
-                long linksToCreate = 64 * 1024 * 1024 / UInt64ResizableDirectMemoryLinks.LinkSizeInBytes;
+                long linksToCreate = 64 * 1024 * 1024 / UInt64UnitedMemoryLinks.LinkSizeInBytes;
 
                 ConsoleHelpers.Debug("Creating {0} links in parallel.", linksToCreate);
 

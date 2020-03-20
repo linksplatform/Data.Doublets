@@ -4,15 +4,20 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Platform.Collections.Methods.Trees;
 using Platform.Converters;
+using Platform.Numbers;
 using static System.Runtime.CompilerServices.Unsafe;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
+namespace Platform.Data.Doublets.Memory.United.Generic
 {
-    public unsafe abstract class LinksSizeBalancedTreeMethodsBase<TLink> : SizeBalancedTreeMethods<TLink>, ILinksTreeMethods<TLink>
+    public unsafe abstract class LinksAvlBalancedTreeMethodsBase<TLink> : SizedAndThreadedAVLBalancedTreeMethods<TLink>, ILinksTreeMethods<TLink>
     {
         private static readonly UncheckedConverter<TLink, long> _addressToInt64Converter = UncheckedConverter<TLink, long>.Default;
+        private static readonly UncheckedConverter<TLink, int> _addressToInt32Converter = UncheckedConverter<TLink, int>.Default;
+        private static readonly UncheckedConverter<bool, TLink> _boolToAddressConverter = UncheckedConverter<bool, TLink>.Default;
+        private static readonly UncheckedConverter<TLink, bool> _addressToBoolConverter = UncheckedConverter<TLink, bool>.Default;
+        private static readonly UncheckedConverter<int, TLink> _int32ToAddressConverter = UncheckedConverter<int, TLink>.Default;
 
         protected readonly TLink Break;
         protected readonly TLink Continue;
@@ -20,7 +25,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
         protected readonly byte* Header;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected LinksSizeBalancedTreeMethodsBase(LinksConstants<TLink> constants, byte* links, byte* header)
+        protected LinksAvlBalancedTreeMethodsBase(LinksConstants<TLink> constants, byte* links, byte* header)
         {
             Links = links;
             Header = header;
@@ -44,7 +49,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
         protected virtual ref LinksHeader<TLink> GetHeaderReference() => ref AsRef<LinksHeader<TLink>>(Header);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual ref RawLink<TLink> GetLinkReference(TLink link) => ref AsRef<RawLink<TLink>>(Links + (RawLink<TLink>.SizeInBytes * _addressToInt64Converter.Convert(link)));
+        protected virtual ref RawLink<TLink> GetLinkReference(TLink link) => ref AsRef<RawLink<TLink>>(Links + RawLink<TLink>.SizeInBytes * _addressToInt64Converter.Convert(link));
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual IList<TLink> GetLinkValues(TLink linkIndex)
@@ -67,6 +72,84 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
             ref var firstLink = ref GetLinkReference(first);
             ref var secondLink = ref GetLinkReference(second);
             return FirstIsToTheRightOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected virtual TLink GetSizeValue(TLink value) => Bit<TLink>.PartialRead(value, 5, -5);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected virtual void SetSizeValue(ref TLink storedValue, TLink size) => storedValue = Bit<TLink>.PartialWrite(storedValue, size, 5, -5);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected virtual bool GetLeftIsChildValue(TLink value)
+        {
+            unchecked
+            {
+                return _addressToBoolConverter.Convert(Bit<TLink>.PartialRead(value, 4, 1));
+                //return !EqualityComparer.Equals(Bit<TLink>.PartialRead(value, 4, 1), default);
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected virtual void SetLeftIsChildValue(ref TLink storedValue, bool value)
+        {
+            unchecked
+            {
+                var previousValue = storedValue;
+                var modified = Bit<TLink>.PartialWrite(previousValue, _boolToAddressConverter.Convert(value), 4, 1);
+                storedValue = modified;
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected virtual bool GetRightIsChildValue(TLink value)
+        {
+            unchecked
+            {
+                return _addressToBoolConverter.Convert(Bit<TLink>.PartialRead(value, 3, 1));
+                //return !EqualityComparer.Equals(Bit<TLink>.PartialRead(value, 3, 1), default);
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected virtual void SetRightIsChildValue(ref TLink storedValue, bool value)
+        {
+            unchecked
+            {
+                var previousValue = storedValue;
+                var modified = Bit<TLink>.PartialWrite(previousValue, _boolToAddressConverter.Convert(value), 3, 1);
+                storedValue = modified;
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected bool IsChild(TLink parent, TLink possibleChild)
+        {
+            var parentSize = GetSize(parent);
+            var childSize = GetSizeOrZero(possibleChild);
+            return GreaterThanZero(childSize) && LessOrEqualThan(childSize, parentSize);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected virtual sbyte GetBalanceValue(TLink storedValue)
+        {
+            unchecked
+            {
+                var value = _addressToInt32Converter.Convert(Bit<TLink>.PartialRead(storedValue, 0, 3));
+                value |= 0xF8 * ((value & 4) >> 2); // if negative, then continue ones to the end of sbyte
+                return (sbyte)value;
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected virtual void SetBalanceValue(ref TLink storedValue, sbyte value)
+        {
+            unchecked
+            {
+                var packagedValue = _int32ToAddressConverter.Convert((byte)value >> 5 & 4 | value & 3);
+                var modified = Bit<TLink>.PartialWrite(storedValue, packagedValue, 0, 3);
+                storedValue = modified;
+            }
         }
 
         public TLink this[TLink index]
@@ -162,6 +245,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
                 else
                 {
                     totalLeftIgnore = Add(totalLeftIgnore, Increment(GetLeftSize(root)));
+
                     root = GetRightOrDefault(root);
                 }
             }
@@ -169,49 +253,47 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLink EachUsage(TLink @base, Func<IList<TLink>, TLink> handler) => EachUsageCore(@base, GetTreeRoot(), handler);
-
-        // TODO: 1. Move target, handler to separate object. 2. Use stack or walker 3. Use low-level MSIL stack.
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private TLink EachUsageCore(TLink @base, TLink link, Func<IList<TLink>, TLink> handler)
+        public TLink EachUsage(TLink link, Func<IList<TLink>, TLink> handler)
         {
-            var @continue = Continue;
-            if (EqualToZero(link))
+            var root = GetTreeRoot();
+            if (EqualToZero(root))
             {
-                return @continue;
+                return Continue;
             }
-            var linkBasePart = GetBasePartValue(link);
-            var @break = Break;
-            if (GreaterThan(linkBasePart, @base))
+            TLink first = Zero, current = root;
+            while (!EqualToZero(current))
             {
-                if (AreEqual(EachUsageCore(@base, GetLeftOrDefault(link), handler), @break))
+                var @base = GetBasePartValue(current);
+                if (GreaterOrEqualThan(@base, link))
                 {
-                    return @break;
+                    if (AreEqual(@base, link))
+                    {
+                        first = current;
+                    }
+                    current = GetLeftOrDefault(current);
                 }
-            }
-            else if (LessThan(linkBasePart, @base))
-            {
-                if (AreEqual(EachUsageCore(@base, GetRightOrDefault(link), handler), @break))
+                else
                 {
-                    return @break;
-                }
-            }
-            else //if (linkBasePart == @base)
-            {
-                if (AreEqual(handler(GetLinkValues(link)), @break))
-                {
-                    return @break;
-                }
-                if (AreEqual(EachUsageCore(@base, GetLeftOrDefault(link), handler), @break))
-                {
-                    return @break;
-                }
-                if (AreEqual(EachUsageCore(@base, GetRightOrDefault(link), handler), @break))
-                {
-                    return @break;
+                    current = GetRightOrDefault(current);
                 }
             }
-            return @continue;
+            if (!EqualToZero(first))
+            {
+                current = first;
+                while (true)
+                {
+                    if (AreEqual(handler(GetLinkValues(current)), Break))
+                    {
+                        return Break;
+                    }
+                    current = GetNext(current);
+                    if (EqualToZero(current) || !AreEqual(GetBasePartValue(current), link))
+                    {
+                        break;
+                    }
+                }
+            }
+            return Continue;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -10,9 +10,9 @@ using Platform.Data.Exceptions;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
+namespace Platform.Data.Doublets.Memory.United.Generic
 {
-    public abstract class ResizableDirectMemoryLinksBase<TLink> : DisposableBase, ILinks<TLink>
+    public abstract class UnitedMemoryLinksBase<TLink> : DisposableBase, ILinks<TLink>
     {
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
         private static readonly Comparer<TLink> _comparer = Comparer<TLink>.Default;
@@ -61,7 +61,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected ResizableDirectMemoryLinksBase(IResizableDirectMemory memory, long memoryReservationStep, LinksConstants<TLink> constants)
+        protected UnitedMemoryLinksBase(IResizableDirectMemory memory, long memoryReservationStep, LinksConstants<TLink> constants)
         {
             _memory = memory;
             _memoryReservationStep = memoryReservationStep;
@@ -69,7 +69,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected ResizableDirectMemoryLinksBase(IResizableDirectMemory memory, long memoryReservationStep) : this(memory, memoryReservationStep, Default<LinksConstants<TLink>>.Instance) { }
+        protected UnitedMemoryLinksBase(IResizableDirectMemory memory, long memoryReservationStep) : this(memory, memoryReservationStep, Default<LinksConstants<TLink>>.Instance) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual void Init(IResizableDirectMemory memory, long memoryReservationStep)
@@ -81,7 +81,7 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
             SetPointers(memory);
             ref var header = ref GetHeaderReference();
             // Гарантия корректности _memory.UsedCapacity относительно _header->AllocatedLinks
-            memory.UsedCapacity = (ConvertToInt64(header.AllocatedLinks) * LinkSizeInBytes) + LinkHeaderSizeInBytes;
+            memory.UsedCapacity = ConvertToInt64(header.AllocatedLinks) * LinkSizeInBytes + LinkHeaderSizeInBytes;
             // Гарантия корректности _header->ReservedLinks относительно _memory.ReservedCapacity
             header.ReservedLinks = ConvertToAddress((memory.ReservedCapacity - LinkHeaderSizeInBytes) / LinkSizeInBytes);
         }
@@ -337,8 +337,8 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Generic
             var linkIndex = restrictions[constants.IndexPart];
             ref var link = ref GetLinkReference(linkIndex);
             ref var header = ref GetHeaderReference();
-            ref var firstAsSource = ref header.FirstAsSource;
-            ref var firstAsTarget = ref header.FirstAsTarget;
+            ref var firstAsSource = ref header.RootAsSource;
+            ref var firstAsTarget = ref header.RootAsTarget;
             // Будет корректно работать только в том случае, если пространство выделенной связи предварительно заполнено нулями
             if (!AreEqual(link.Source, @null))
             {

@@ -2,7 +2,7 @@
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-namespace Platform.Data.Doublets.ResizableDirectMemory.Specific
+namespace Platform.Data.Doublets.Memory.United.Specific
 {
     public unsafe class UInt64LinksSourcesAvlBalancedTreeMethods : UInt64LinksAvlBalancedTreeMethodsBase
     {
@@ -57,18 +57,18 @@ namespace Platform.Data.Doublets.ResizableDirectMemory.Specific
         protected override void SetBalance(ulong node, sbyte value) => SetBalanceValue(ref Links[node].SizeAsSource, value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override ulong GetTreeRoot() => Header->FirstAsSource;
+        protected override ulong GetTreeRoot() => Header->RootAsSource;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override ulong GetBasePartValue(ulong link) => Links[link].Source;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override bool FirstIsToTheLeftOfSecond(ulong firstSource, ulong firstTarget, ulong secondSource, ulong secondTarget)
-            => firstSource < secondSource || (firstSource == secondSource && firstTarget < secondTarget);
+            => firstSource < secondSource || firstSource == secondSource && firstTarget < secondTarget;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override bool FirstIsToTheRightOfSecond(ulong firstSource, ulong firstTarget, ulong secondSource, ulong secondTarget)
-            => firstSource > secondSource || (firstSource == secondSource && firstTarget > secondTarget);
+            => firstSource > secondSource || firstSource == secondSource && firstTarget > secondTarget;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override void ClearNode(ulong node)

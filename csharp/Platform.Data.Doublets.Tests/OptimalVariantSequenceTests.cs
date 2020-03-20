@@ -16,7 +16,7 @@ using Platform.Data.Doublets.Sequences.Indexes;
 using Platform.Data.Doublets.Unicode;
 using Platform.Data.Doublets.Numbers.Unary;
 using Platform.Data.Doublets.Decorators;
-using Platform.Data.Doublets.ResizableDirectMemory.Specific;
+using Platform.Data.Doublets.Memory.United.Specific;
 
 namespace Platform.Data.Doublets.Tests
 {
@@ -150,7 +150,7 @@ Interdum consectetur libero id faucibus nisl tincidunt eget nullam non.";
             LinksConstants<ulong> constants = new LinksConstants<ulong>((1, long.MaxValue), (long.MaxValue + 1UL, ulong.MaxValue));
 
             using (var memory = new HeapResizableDirectMemory())
-            using (var disposableLinks = new UInt64ResizableDirectMemoryLinks(memory, UInt64ResizableDirectMemoryLinks.DefaultLinksSizeStep, constants, useAvlBasedIndex: false))
+            using (var disposableLinks = new UInt64UnitedMemoryLinks(memory, UInt64UnitedMemoryLinks.DefaultLinksSizeStep, constants, useAvlBasedIndex: false))
             {
                 var links = new UInt64Links(disposableLinks);
 
