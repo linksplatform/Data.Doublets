@@ -11415,6 +11415,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.Converters.OptimalVariantConverter(Of TLink)
   nameWithType: OptimalVariantConverter<TLink>
   nameWithType.vb: OptimalVariantConverter(Of TLink)
+- uid: Platform.Data.Doublets.Sequences.Converters.OptimalVariantConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0})
+  name: OptimalVariantConverter(ILinks<TLink>)
+  href: api/Platform.Data.Doublets.Sequences.Converters.OptimalVariantConverter-1.html#Platform_Data_Doublets_Sequences_Converters_OptimalVariantConverter_1__ctor_Platform_Data_Doublets_ILinks__0__
+  commentId: M:Platform.Data.Doublets.Sequences.Converters.OptimalVariantConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0})
+  name.vb: OptimalVariantConverter(ILinks(Of TLink))
+  fullName: Platform.Data.Doublets.Sequences.Converters.OptimalVariantConverter<TLink>.OptimalVariantConverter(Platform.Data.Doublets.ILinks<TLink>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Converters.OptimalVariantConverter(Of TLink).OptimalVariantConverter(Platform.Data.Doublets.ILinks(Of TLink))
+  nameWithType: OptimalVariantConverter<TLink>.OptimalVariantConverter(ILinks<TLink>)
+  nameWithType.vb: OptimalVariantConverter(Of TLink).OptimalVariantConverter(ILinks(Of TLink))
 - uid: Platform.Data.Doublets.Sequences.Converters.OptimalVariantConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},IConverter{System.Collections.Generic.IList{`0}})
   name: OptimalVariantConverter(ILinks<TLink>, IConverter<IList<TLink>>)
   href: api/Platform.Data.Doublets.Sequences.Converters.OptimalVariantConverter-1.html#Platform_Data_Doublets_Sequences_Converters_OptimalVariantConverter_1__ctor_Platform_Data_Doublets_ILinks__0__IConverter_System_Collections_Generic_IList__0___
@@ -11424,6 +11433,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Sequences.Converters.OptimalVariantConverter(Of TLink).OptimalVariantConverter(Platform.Data.Doublets.ILinks(Of TLink), IConverter(Of System.Collections.Generic.IList(Of TLink)))
   nameWithType: OptimalVariantConverter<TLink>.OptimalVariantConverter(ILinks<TLink>, IConverter<IList<TLink>>)
   nameWithType.vb: OptimalVariantConverter(Of TLink).OptimalVariantConverter(ILinks(Of TLink), IConverter(Of IList(Of TLink)))
+- uid: Platform.Data.Doublets.Sequences.Converters.OptimalVariantConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Data.Doublets.Sequences.Frequencies.Cache.LinkFrequenciesCache{`0})
+  name: OptimalVariantConverter(ILinks<TLink>, LinkFrequenciesCache<TLink>)
+  href: api/Platform.Data.Doublets.Sequences.Converters.OptimalVariantConverter-1.html#Platform_Data_Doublets_Sequences_Converters_OptimalVariantConverter_1__ctor_Platform_Data_Doublets_ILinks__0__Platform_Data_Doublets_Sequences_Frequencies_Cache_LinkFrequenciesCache__0__
+  commentId: M:Platform.Data.Doublets.Sequences.Converters.OptimalVariantConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Data.Doublets.Sequences.Frequencies.Cache.LinkFrequenciesCache{`0})
+  name.vb: OptimalVariantConverter(ILinks(Of TLink), LinkFrequenciesCache(Of TLink))
+  fullName: Platform.Data.Doublets.Sequences.Converters.OptimalVariantConverter<TLink>.OptimalVariantConverter(Platform.Data.Doublets.ILinks<TLink>, Platform.Data.Doublets.Sequences.Frequencies.Cache.LinkFrequenciesCache<TLink>)
+  fullName.vb: Platform.Data.Doublets.Sequences.Converters.OptimalVariantConverter(Of TLink).OptimalVariantConverter(Platform.Data.Doublets.ILinks(Of TLink), Platform.Data.Doublets.Sequences.Frequencies.Cache.LinkFrequenciesCache(Of TLink))
+  nameWithType: OptimalVariantConverter<TLink>.OptimalVariantConverter(ILinks<TLink>, LinkFrequenciesCache<TLink>)
+  nameWithType.vb: OptimalVariantConverter(Of TLink).OptimalVariantConverter(ILinks(Of TLink), LinkFrequenciesCache(Of TLink))
 - uid: Platform.Data.Doublets.Sequences.Converters.OptimalVariantConverter`1.#ctor*
   name: OptimalVariantConverter
   href: api/Platform.Data.Doublets.Sequences.Converters.OptimalVariantConverter-1.html#Platform_Data_Doublets_Sequences_Converters_OptimalVariantConverter_1__ctor_
@@ -15377,6 +15395,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Unicode.StringToUnicodeSequenceConverter(Of TLink)
   nameWithType: StringToUnicodeSequenceConverter<TLink>
   nameWithType.vb: StringToUnicodeSequenceConverter(Of TLink)
+- uid: Platform.Data.Doublets.Unicode.StringToUnicodeSequenceConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},IConverter{System.Char,`0},IConverter{System.Collections.Generic.IList{`0},`0},`0)
+  name: StringToUnicodeSequenceConverter(ILinks<TLink>, IConverter<Char, TLink>, IConverter<IList<TLink>, TLink>, TLink)
+  href: api/Platform.Data.Doublets.Unicode.StringToUnicodeSequenceConverter-1.html#Platform_Data_Doublets_Unicode_StringToUnicodeSequenceConverter_1__ctor_Platform_Data_Doublets_ILinks__0__IConverter_System_Char__0__IConverter_System_Collections_Generic_IList__0___0___0_
+  commentId: M:Platform.Data.Doublets.Unicode.StringToUnicodeSequenceConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},IConverter{System.Char,`0},IConverter{System.Collections.Generic.IList{`0},`0},`0)
+  name.vb: StringToUnicodeSequenceConverter(ILinks(Of TLink), IConverter(Of Char, TLink), IConverter(Of IList(Of TLink), TLink), TLink)
+  fullName: Platform.Data.Doublets.Unicode.StringToUnicodeSequenceConverter<TLink>.StringToUnicodeSequenceConverter(Platform.Data.Doublets.ILinks<TLink>, IConverter<System.Char, TLink>, IConverter<System.Collections.Generic.IList<TLink>, TLink>, TLink)
+  fullName.vb: Platform.Data.Doublets.Unicode.StringToUnicodeSequenceConverter(Of TLink).StringToUnicodeSequenceConverter(Platform.Data.Doublets.ILinks(Of TLink), IConverter(Of System.Char, TLink), IConverter(Of System.Collections.Generic.IList(Of TLink), TLink), TLink)
+  nameWithType: StringToUnicodeSequenceConverter<TLink>.StringToUnicodeSequenceConverter(ILinks<TLink>, IConverter<Char, TLink>, IConverter<IList<TLink>, TLink>, TLink)
+  nameWithType.vb: StringToUnicodeSequenceConverter(Of TLink).StringToUnicodeSequenceConverter(ILinks(Of TLink), IConverter(Of Char, TLink), IConverter(Of IList(Of TLink), TLink), TLink)
 - uid: Platform.Data.Doublets.Unicode.StringToUnicodeSequenceConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},IConverter{System.Char,`0},Platform.Data.Doublets.Sequences.Indexes.ISequenceIndex{`0},IConverter{System.Collections.Generic.IList{`0},`0},`0)
   name: StringToUnicodeSequenceConverter(ILinks<TLink>, IConverter<Char, TLink>, ISequenceIndex<TLink>, IConverter<IList<TLink>, TLink>, TLink)
   href: api/Platform.Data.Doublets.Unicode.StringToUnicodeSequenceConverter-1.html#Platform_Data_Doublets_Unicode_StringToUnicodeSequenceConverter_1__ctor_Platform_Data_Doublets_ILinks__0__IConverter_System_Char__0__Platform_Data_Doublets_Sequences_Indexes_ISequenceIndex__0__IConverter_System_Collections_Generic_IList__0___0___0_
