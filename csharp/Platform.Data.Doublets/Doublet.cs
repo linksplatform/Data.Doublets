@@ -10,20 +10,9 @@ namespace Platform.Data.Doublets
     {
         private static readonly EqualityComparer<T> _equalityComparer = EqualityComparer<T>.Default;
 
-        public T Source
-        {
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get;
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            set;
-        }
-        public T Target
-        {
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get;
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            set;
-        }
+        public readonly T Source;
+
+        public readonly T Target;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Doublet(T source, T target)

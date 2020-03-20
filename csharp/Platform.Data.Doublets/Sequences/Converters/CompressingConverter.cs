@@ -97,8 +97,7 @@ namespace Platform.Data.Doublets.Sequences.Converters
             Doublet<TLink> doublet = default;
             for (var i = 1; i < sequence.Count; i++)
             {
-                doublet.Source = sequence[i - 1];
-                doublet.Target = sequence[i];
+                doublet = new Doublet<TLink>(sequence[i - 1], sequence[i]);
                 LinkFrequency<TLink> data;
                 if (_doInitialFrequenciesIncrement)
                 {
@@ -200,8 +199,7 @@ namespace Platform.Data.Doublets.Sequences.Converters
             Doublet<TLink> doublet = default;
             for (var i = 1; i < length; i++)
             {
-                doublet.Source = copy[i - 1].Element;
-                doublet.Target = copy[i].Element;
+                doublet = new Doublet<TLink>(copy[i - 1].Element, copy[i].Element);
                 UpdateMaxDoublet(ref doublet, copy[i - 1].DoubletData);
             }
         }
