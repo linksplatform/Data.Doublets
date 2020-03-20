@@ -1,11 +1,12 @@
 ﻿using System.Runtime.CompilerServices;
 using Platform.Collections.Methods.Lists;
 using Platform.Converters;
+using Platform.Data.Doublets.Memory;
 using static System.Runtime.CompilerServices.Unsafe;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-namespace Platform.Data.Doublets.SplitMemory.Generic
+namespace Platform.Data.Doublets.Memory.Split.Generic
 {
     public unsafe class UnusedLinksListMethods<TLink> : CircularDoublyLinkedListMethods<TLink>, ILinksListMethods<TLink>
     {
@@ -25,7 +26,7 @@ namespace Platform.Data.Doublets.SplitMemory.Generic
         protected virtual ref LinksHeaderIndexPart<TLink> GetHeaderReference() => ref AsRef<LinksHeaderIndexPart<TLink>>(_header);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual ref RawLinkDataPart<TLink> GetLinkDataPartReference(TLink link) => ref AsRef<RawLinkDataPart<TLink>>(_links + (RawLinkDataPart<TLink>.SizeInBytes * _addressToInt64Converter.Convert(link)));
+        protected virtual ref RawLinkDataPart<TLink> GetLinkDataPartReference(TLink link) => ref AsRef<RawLinkDataPart<TLink>>(_links + RawLinkDataPart<TLink>.SizeInBytes * _addressToInt64Converter.Convert(link));
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override TLink GetFirst() => GetHeaderReference().FirstFreeLink;

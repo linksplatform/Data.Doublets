@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-namespace Platform.Data.Doublets.SplitMemory
+namespace Platform.Data.Doublets.Memory.Split
 {
     public struct RawLinkIndexPart<TLink> : IEquatable<RawLinkIndexPart<TLink>>
     {

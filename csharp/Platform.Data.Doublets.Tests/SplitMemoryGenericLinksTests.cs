@@ -1,9 +1,7 @@
 ﻿using System;
 using Xunit;
-using Platform.Reflection;
 using Platform.Memory;
-using Platform.Scopes;
-using Platform.Data.Doublets.SplitMemory.Generic;
+using Platform.Data.Doublets.Memory.Split.Generic;
 
 namespace Platform.Data.Doublets.Tests
 {
@@ -38,7 +36,6 @@ namespace Platform.Data.Doublets.Tests
 
         private static void Using<TLink>(Action<ILinks<TLink>> action)
         {
-            //using (var scope = new Scope<Types<HeapResizableDirectMemory, SplitMemoryLinks<TLink>>>())
             using (var dataMemory = new HeapResizableDirectMemory())
             using (var indexMemory = new HeapResizableDirectMemory())
             using (var memory = new SplitMemoryLinks<TLink>(dataMemory, indexMemory))

@@ -2,7 +2,7 @@
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-namespace Platform.Data.Doublets.SplitMemory.Generic
+namespace Platform.Data.Doublets.Memory.Split.Generic
 {
     public unsafe class LinksTargetsSizeBalancedTreeMethods<TLink> : LinksSizeBalancedTreeMethodsBase<TLink>
     {

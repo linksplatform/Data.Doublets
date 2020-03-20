@@ -1,6 +1,6 @@
 ﻿using BenchmarkDotNet.Attributes;
+using Platform.Data.Doublets.Memory.Split.Generic;
 using Platform.Data.Doublets.ResizableDirectMemory.Generic;
-using Platform.Data.Doublets.SplitMemory.Generic;
 using Platform.Data.Doublets.Tests;
 using Platform.Memory;
 

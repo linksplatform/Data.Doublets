@@ -2,7 +2,7 @@
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-namespace Platform.Data.Doublets.SplitMemory
+namespace Platform.Data.Doublets.Memory
 {
     public interface ILinksListMethods<TLink>
     {

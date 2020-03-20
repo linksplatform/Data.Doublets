@@ -6,7 +6,7 @@ using static System.Runtime.CompilerServices.Unsafe;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-namespace Platform.Data.Doublets.SplitMemory.Generic
+namespace Platform.Data.Doublets.Memory.Split.Generic
 {
     public unsafe class SplitMemoryLinks<TLink> : SplitMemoryLinksBase<TLink>
     {
@@ -54,9 +54,9 @@ namespace Platform.Data.Doublets.SplitMemory.Generic
         protected override ref LinksHeaderIndexPart<TLink> GetHeaderReference() => ref AsRef<LinksHeaderIndexPart<TLink>>(_header);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override ref RawLinkDataPart<TLink> GetLinkDataPartReference(TLink linkIndex) => ref AsRef<RawLinkDataPart<TLink>>(_linksDataParts + (LinkDataPartSizeInBytes * ConvertToInt64(linkIndex)));
+        protected override ref RawLinkDataPart<TLink> GetLinkDataPartReference(TLink linkIndex) => ref AsRef<RawLinkDataPart<TLink>>(_linksDataParts + LinkDataPartSizeInBytes * ConvertToInt64(linkIndex));
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override ref RawLinkIndexPart<TLink> GetLinkIndexPartReference(TLink linkIndex) => ref AsRef<RawLinkIndexPart<TLink>>(_linksIndexParts + (LinkIndexPartSizeInBytes * ConvertToInt64(linkIndex)));
+        protected override ref RawLinkIndexPart<TLink> GetLinkIndexPartReference(TLink linkIndex) => ref AsRef<RawLinkIndexPart<TLink>>(_linksIndexParts + LinkIndexPartSizeInBytes * ConvertToInt64(linkIndex));
     }
 }
