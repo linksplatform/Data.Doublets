@@ -10,18 +10,18 @@ namespace Platform.Data.Doublets.Unicode
     public class StringToUnicodeSequenceConverter<TLink> : LinksOperatorBase<TLink>, IConverter<string, TLink>
     {
         private readonly IConverter<string, IList<TLink>> _stringToUnicodeSymbolListConverter;
-        private readonly ISequenceIndex<TLink> _index;
-        private readonly IConverter<IList<TLink>, TLink> _listToSequenceLinkConverter;
-        private readonly TLink _unicodeSequenceMarker;
+        private readonly IConverter<IList<TLink>, TLink> _unicodeSymbolListToSequenceConverter;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public StringToUnicodeSequenceConverter(ILinks<TLink> links, IConverter<string, IList<TLink>> stringToUnicodeSymbolListConverter, ISequenceIndex<TLink> index, IConverter<IList<TLink>, TLink> listToSequenceLinkConverter, TLink unicodeSequenceMarker) : base(links)
+        public StringToUnicodeSequenceConverter(ILinks<TLink> links, IConverter<string, IList<TLink>> stringToUnicodeSymbolListConverter, IConverter<IList<TLink>, TLink> unicodeSymbolListToSequenceConverter) : base(links)
         {
             _stringToUnicodeSymbolListConverter = stringToUnicodeSymbolListConverter;
-            _index = index;
-            _listToSequenceLinkConverter = listToSequenceLinkConverter;
-            _unicodeSequenceMarker = unicodeSequenceMarker;
+            _unicodeSymbolListToSequenceConverter = unicodeSymbolListToSequenceConverter;
         }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public StringToUnicodeSequenceConverter(ILinks<TLink> links, IConverter<string, IList<TLink>> stringToUnicodeSymbolListConverter, ISequenceIndex<TLink> index, IConverter<IList<TLink>, TLink> listToSequenceLinkConverter, TLink unicodeSequenceMarker)
+            : this(links, stringToUnicodeSymbolListConverter, new UnicodeSymbolsListToUnicodeSequenceConverter<TLink>(links, index, listToSequenceLinkConverter, unicodeSequenceMarker)) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public StringToUnicodeSequenceConverter(ILinks<TLink> links, IConverter<char, TLink> charToUnicodeSymbolConverter, ISequenceIndex<TLink> index, IConverter<IList<TLink>, TLink> listToSequenceLinkConverter, TLink unicodeSequenceMarker)
@@ -39,9 +39,7 @@ namespace Platform.Data.Doublets.Unicode
         public TLink Convert(string source)
         {
             var elements = _stringToUnicodeSymbolListConverter.Convert(source);
-            _index.Add(elements);
-            var sequence = _listToSequenceLinkConverter.Convert(elements);
-            return _links.GetOrCreate(sequence, _unicodeSequenceMarker);
+            return _unicodeSymbolListToSequenceConverter.Convert(elements);
         }
     }
 }
