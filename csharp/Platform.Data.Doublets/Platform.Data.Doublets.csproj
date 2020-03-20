@@ -4,7 +4,7 @@
     <Description>LinksPlatform's Platform.Data.Doublets Class Library</Description>
     <Copyright>Konstantin Diachenko</Copyright>
     <AssemblyTitle>Platform.Data.Doublets</AssemblyTitle>
-    <VersionPrefix>0.6.0</VersionPrefix>
+    <VersionPrefix>0.6.1</VersionPrefix>
     <Authors>Konstantin Diachenko</Authors>
     <TargetFrameworks>net472;netstandard2.0;netstandard2.1</TargetFrameworks>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -25,27 +25,7 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <LangVersion>latest</LangVersion>
-    <PackageReleaseNotes>ResizableDirectMemoryLinks renamed to UnitedMemoryLinks.
-Added SplitMemoryLinks implementation.
-Memory adapters implementations are now at Platform.Data.Doublets.Memory namespace.
-ILinksExtensions.Format methods added.
-IndexTreeType enum added.
-Using SizeBalancedTree for index by default.
-LinksHeader.FirstAsSource renamed to RootAsSource.
-LinksHeader.FirstAsTarget renamed to RootAsTarget.
-StringToUnicodeSymbolsListConverter added.
-UnicodeSymbolsListToUnicodeSequenceConverter added.
-UnicodeSequenceCriterionMatcher removed.
-UnicodeSymbolCriterionMatcher removed.
-TargetMatcher added.
-Added contructor overloads for StringToUnicodeSequenceConverter and OptimalVariantConverter.
-Doublet struct is now immutable.
-
-Benchmarks added.
-Refactoring.
-Issues fix.
-
-This release is not backward compatible with the previous 0.5.0 release.</PackageReleaseNotes>
+    <PackageReleaseNotes>Added UInt32 and UInt64 versions of memory adapters.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup Condition="$(TargetFramework.StartsWith('net4')) AND '$(MSBuildRuntimeType)' == 'Core' AND '$(OS)' != 'Windows_NT'">
