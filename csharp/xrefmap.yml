@@ -1643,6 +1643,31 @@ references:
   fullName.vb: Platform.Data.Doublets.ILinksExtensions.First(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink))
   nameWithType: ILinksExtensions.First<TLink>(ILinks<TLink>)
   nameWithType.vb: ILinksExtensions.First(Of TLink)(ILinks(Of TLink))
+- uid: Platform.Data.Doublets.ILinksExtensions.Format*
+  name: Format
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Format_
+  commentId: Overload:Platform.Data.Doublets.ILinksExtensions.Format
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ILinksExtensions.Format
+  nameWithType: ILinksExtensions.Format
+- uid: Platform.Data.Doublets.ILinksExtensions.Format``1(Platform.Data.Doublets.ILinks{``0},``0)
+  name: Format<TLink>(ILinks<TLink>, TLink)
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Format__1_Platform_Data_Doublets_ILinks___0____0_
+  commentId: M:Platform.Data.Doublets.ILinksExtensions.Format``1(Platform.Data.Doublets.ILinks{``0},``0)
+  name.vb: Format(Of TLink)(ILinks(Of TLink), TLink)
+  fullName: Platform.Data.Doublets.ILinksExtensions.Format<TLink>(Platform.Data.Doublets.ILinks<TLink>, TLink)
+  fullName.vb: Platform.Data.Doublets.ILinksExtensions.Format(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink)
+  nameWithType: ILinksExtensions.Format<TLink>(ILinks<TLink>, TLink)
+  nameWithType.vb: ILinksExtensions.Format(Of TLink)(ILinks(Of TLink), TLink)
+- uid: Platform.Data.Doublets.ILinksExtensions.Format``1(Platform.Data.Doublets.ILinks{``0},System.Collections.Generic.IList{``0})
+  name: Format<TLink>(ILinks<TLink>, IList<TLink>)
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Format__1_Platform_Data_Doublets_ILinks___0__System_Collections_Generic_IList___0__
+  commentId: M:Platform.Data.Doublets.ILinksExtensions.Format``1(Platform.Data.Doublets.ILinks{``0},System.Collections.Generic.IList{``0})
+  name.vb: Format(Of TLink)(ILinks(Of TLink), IList(Of TLink))
+  fullName: Platform.Data.Doublets.ILinksExtensions.Format<TLink>(Platform.Data.Doublets.ILinks<TLink>, System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.ILinksExtensions.Format(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), System.Collections.Generic.IList(Of TLink))
+  nameWithType: ILinksExtensions.Format<TLink>(ILinks<TLink>, IList<TLink>)
+  nameWithType.vb: ILinksExtensions.Format(Of TLink)(ILinks(Of TLink), IList(Of TLink))
 - uid: Platform.Data.Doublets.ILinksExtensions.GetByKeys*
   name: GetByKeys
   href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_GetByKeys_
