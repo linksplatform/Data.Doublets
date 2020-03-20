@@ -15413,6 +15413,24 @@ references:
   fullName.vb: Platform.Data.Doublets.Unicode.StringToUnicodeSequenceConverter(Of TLink).StringToUnicodeSequenceConverter(Platform.Data.Doublets.ILinks(Of TLink), IConverter(Of System.Char, TLink), Platform.Data.Doublets.Sequences.Indexes.ISequenceIndex(Of TLink), IConverter(Of System.Collections.Generic.IList(Of TLink), TLink), TLink)
   nameWithType: StringToUnicodeSequenceConverter<TLink>.StringToUnicodeSequenceConverter(ILinks<TLink>, IConverter<Char, TLink>, ISequenceIndex<TLink>, IConverter<IList<TLink>, TLink>, TLink)
   nameWithType.vb: StringToUnicodeSequenceConverter(Of TLink).StringToUnicodeSequenceConverter(ILinks(Of TLink), IConverter(Of Char, TLink), ISequenceIndex(Of TLink), IConverter(Of IList(Of TLink), TLink), TLink)
+- uid: Platform.Data.Doublets.Unicode.StringToUnicodeSequenceConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},IConverter{System.String,System.Collections.Generic.IList{`0}},IConverter{System.Collections.Generic.IList{`0},`0},`0)
+  name: StringToUnicodeSequenceConverter(ILinks<TLink>, IConverter<String, IList<TLink>>, IConverter<IList<TLink>, TLink>, TLink)
+  href: api/Platform.Data.Doublets.Unicode.StringToUnicodeSequenceConverter-1.html#Platform_Data_Doublets_Unicode_StringToUnicodeSequenceConverter_1__ctor_Platform_Data_Doublets_ILinks__0__IConverter_System_String_System_Collections_Generic_IList__0___IConverter_System_Collections_Generic_IList__0___0___0_
+  commentId: M:Platform.Data.Doublets.Unicode.StringToUnicodeSequenceConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},IConverter{System.String,System.Collections.Generic.IList{`0}},IConverter{System.Collections.Generic.IList{`0},`0},`0)
+  name.vb: StringToUnicodeSequenceConverter(ILinks(Of TLink), IConverter(Of String, IList(Of TLink)), IConverter(Of IList(Of TLink), TLink), TLink)
+  fullName: Platform.Data.Doublets.Unicode.StringToUnicodeSequenceConverter<TLink>.StringToUnicodeSequenceConverter(Platform.Data.Doublets.ILinks<TLink>, IConverter<System.String, System.Collections.Generic.IList<TLink>>, IConverter<System.Collections.Generic.IList<TLink>, TLink>, TLink)
+  fullName.vb: Platform.Data.Doublets.Unicode.StringToUnicodeSequenceConverter(Of TLink).StringToUnicodeSequenceConverter(Platform.Data.Doublets.ILinks(Of TLink), IConverter(Of System.String, System.Collections.Generic.IList(Of TLink)), IConverter(Of System.Collections.Generic.IList(Of TLink), TLink), TLink)
+  nameWithType: StringToUnicodeSequenceConverter<TLink>.StringToUnicodeSequenceConverter(ILinks<TLink>, IConverter<String, IList<TLink>>, IConverter<IList<TLink>, TLink>, TLink)
+  nameWithType.vb: StringToUnicodeSequenceConverter(Of TLink).StringToUnicodeSequenceConverter(ILinks(Of TLink), IConverter(Of String, IList(Of TLink)), IConverter(Of IList(Of TLink), TLink), TLink)
+- uid: Platform.Data.Doublets.Unicode.StringToUnicodeSequenceConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},IConverter{System.String,System.Collections.Generic.IList{`0}},Platform.Data.Doublets.Sequences.Indexes.ISequenceIndex{`0},IConverter{System.Collections.Generic.IList{`0},`0},`0)
+  name: StringToUnicodeSequenceConverter(ILinks<TLink>, IConverter<String, IList<TLink>>, ISequenceIndex<TLink>, IConverter<IList<TLink>, TLink>, TLink)
+  href: api/Platform.Data.Doublets.Unicode.StringToUnicodeSequenceConverter-1.html#Platform_Data_Doublets_Unicode_StringToUnicodeSequenceConverter_1__ctor_Platform_Data_Doublets_ILinks__0__IConverter_System_String_System_Collections_Generic_IList__0___Platform_Data_Doublets_Sequences_Indexes_ISequenceIndex__0__IConverter_System_Collections_Generic_IList__0___0___0_
+  commentId: M:Platform.Data.Doublets.Unicode.StringToUnicodeSequenceConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},IConverter{System.String,System.Collections.Generic.IList{`0}},Platform.Data.Doublets.Sequences.Indexes.ISequenceIndex{`0},IConverter{System.Collections.Generic.IList{`0},`0},`0)
+  name.vb: StringToUnicodeSequenceConverter(ILinks(Of TLink), IConverter(Of String, IList(Of TLink)), ISequenceIndex(Of TLink), IConverter(Of IList(Of TLink), TLink), TLink)
+  fullName: Platform.Data.Doublets.Unicode.StringToUnicodeSequenceConverter<TLink>.StringToUnicodeSequenceConverter(Platform.Data.Doublets.ILinks<TLink>, IConverter<System.String, System.Collections.Generic.IList<TLink>>, Platform.Data.Doublets.Sequences.Indexes.ISequenceIndex<TLink>, IConverter<System.Collections.Generic.IList<TLink>, TLink>, TLink)
+  fullName.vb: Platform.Data.Doublets.Unicode.StringToUnicodeSequenceConverter(Of TLink).StringToUnicodeSequenceConverter(Platform.Data.Doublets.ILinks(Of TLink), IConverter(Of System.String, System.Collections.Generic.IList(Of TLink)), Platform.Data.Doublets.Sequences.Indexes.ISequenceIndex(Of TLink), IConverter(Of System.Collections.Generic.IList(Of TLink), TLink), TLink)
+  nameWithType: StringToUnicodeSequenceConverter<TLink>.StringToUnicodeSequenceConverter(ILinks<TLink>, IConverter<String, IList<TLink>>, ISequenceIndex<TLink>, IConverter<IList<TLink>, TLink>, TLink)
+  nameWithType.vb: StringToUnicodeSequenceConverter(Of TLink).StringToUnicodeSequenceConverter(ILinks(Of TLink), IConverter(Of String, IList(Of TLink)), ISequenceIndex(Of TLink), IConverter(Of IList(Of TLink), TLink), TLink)
 - uid: Platform.Data.Doublets.Unicode.StringToUnicodeSequenceConverter`1.#ctor*
   name: StringToUnicodeSequenceConverter
   href: api/Platform.Data.Doublets.Unicode.StringToUnicodeSequenceConverter-1.html#Platform_Data_Doublets_Unicode_StringToUnicodeSequenceConverter_1__ctor_
@@ -15439,6 +15457,50 @@ references:
   fullName.vb: Platform.Data.Doublets.Unicode.StringToUnicodeSequenceConverter(Of TLink).Convert
   nameWithType: StringToUnicodeSequenceConverter<TLink>.Convert
   nameWithType.vb: StringToUnicodeSequenceConverter(Of TLink).Convert
+- uid: Platform.Data.Doublets.Unicode.StringToUnicodeSymbolsListConverter`1
+  name: StringToUnicodeSymbolsListConverter<TLink>
+  href: api/Platform.Data.Doublets.Unicode.StringToUnicodeSymbolsListConverter-1.html
+  commentId: T:Platform.Data.Doublets.Unicode.StringToUnicodeSymbolsListConverter`1
+  name.vb: StringToUnicodeSymbolsListConverter(Of TLink)
+  fullName: Platform.Data.Doublets.Unicode.StringToUnicodeSymbolsListConverter<TLink>
+  fullName.vb: Platform.Data.Doublets.Unicode.StringToUnicodeSymbolsListConverter(Of TLink)
+  nameWithType: StringToUnicodeSymbolsListConverter<TLink>
+  nameWithType.vb: StringToUnicodeSymbolsListConverter(Of TLink)
+- uid: Platform.Data.Doublets.Unicode.StringToUnicodeSymbolsListConverter`1.#ctor(IConverter{System.Char,`0})
+  name: StringToUnicodeSymbolsListConverter(IConverter<Char, TLink>)
+  href: api/Platform.Data.Doublets.Unicode.StringToUnicodeSymbolsListConverter-1.html#Platform_Data_Doublets_Unicode_StringToUnicodeSymbolsListConverter_1__ctor_IConverter_System_Char__0__
+  commentId: M:Platform.Data.Doublets.Unicode.StringToUnicodeSymbolsListConverter`1.#ctor(IConverter{System.Char,`0})
+  name.vb: StringToUnicodeSymbolsListConverter(IConverter(Of Char, TLink))
+  fullName: Platform.Data.Doublets.Unicode.StringToUnicodeSymbolsListConverter<TLink>.StringToUnicodeSymbolsListConverter(IConverter<System.Char, TLink>)
+  fullName.vb: Platform.Data.Doublets.Unicode.StringToUnicodeSymbolsListConverter(Of TLink).StringToUnicodeSymbolsListConverter(IConverter(Of System.Char, TLink))
+  nameWithType: StringToUnicodeSymbolsListConverter<TLink>.StringToUnicodeSymbolsListConverter(IConverter<Char, TLink>)
+  nameWithType.vb: StringToUnicodeSymbolsListConverter(Of TLink).StringToUnicodeSymbolsListConverter(IConverter(Of Char, TLink))
+- uid: Platform.Data.Doublets.Unicode.StringToUnicodeSymbolsListConverter`1.#ctor*
+  name: StringToUnicodeSymbolsListConverter
+  href: api/Platform.Data.Doublets.Unicode.StringToUnicodeSymbolsListConverter-1.html#Platform_Data_Doublets_Unicode_StringToUnicodeSymbolsListConverter_1__ctor_
+  commentId: Overload:Platform.Data.Doublets.Unicode.StringToUnicodeSymbolsListConverter`1.#ctor
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Unicode.StringToUnicodeSymbolsListConverter<TLink>.StringToUnicodeSymbolsListConverter
+  fullName.vb: Platform.Data.Doublets.Unicode.StringToUnicodeSymbolsListConverter(Of TLink).StringToUnicodeSymbolsListConverter
+  nameWithType: StringToUnicodeSymbolsListConverter<TLink>.StringToUnicodeSymbolsListConverter
+  nameWithType.vb: StringToUnicodeSymbolsListConverter(Of TLink).StringToUnicodeSymbolsListConverter
+- uid: Platform.Data.Doublets.Unicode.StringToUnicodeSymbolsListConverter`1.Convert(System.String)
+  name: Convert(String)
+  href: api/Platform.Data.Doublets.Unicode.StringToUnicodeSymbolsListConverter-1.html#Platform_Data_Doublets_Unicode_StringToUnicodeSymbolsListConverter_1_Convert_System_String_
+  commentId: M:Platform.Data.Doublets.Unicode.StringToUnicodeSymbolsListConverter`1.Convert(System.String)
+  fullName: Platform.Data.Doublets.Unicode.StringToUnicodeSymbolsListConverter<TLink>.Convert(System.String)
+  fullName.vb: Platform.Data.Doublets.Unicode.StringToUnicodeSymbolsListConverter(Of TLink).Convert(System.String)
+  nameWithType: StringToUnicodeSymbolsListConverter<TLink>.Convert(String)
+  nameWithType.vb: StringToUnicodeSymbolsListConverter(Of TLink).Convert(String)
+- uid: Platform.Data.Doublets.Unicode.StringToUnicodeSymbolsListConverter`1.Convert*
+  name: Convert
+  href: api/Platform.Data.Doublets.Unicode.StringToUnicodeSymbolsListConverter-1.html#Platform_Data_Doublets_Unicode_StringToUnicodeSymbolsListConverter_1_Convert_
+  commentId: Overload:Platform.Data.Doublets.Unicode.StringToUnicodeSymbolsListConverter`1.Convert
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Unicode.StringToUnicodeSymbolsListConverter<TLink>.Convert
+  fullName.vb: Platform.Data.Doublets.Unicode.StringToUnicodeSymbolsListConverter(Of TLink).Convert
+  nameWithType: StringToUnicodeSymbolsListConverter<TLink>.Convert
+  nameWithType.vb: StringToUnicodeSymbolsListConverter(Of TLink).Convert
 - uid: Platform.Data.Doublets.Unicode.UnicodeMap
   name: UnicodeMap
   href: api/Platform.Data.Doublets.Unicode.UnicodeMap.html
