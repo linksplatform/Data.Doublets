@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Platform.Converters;
+using Platform.Data.Doublets.Sequences.Frequencies.Cache;
+using Platform.Data.Doublets.Sequences.Frequencies.Counters;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -17,6 +19,14 @@ namespace Platform.Data.Doublets.Sequences.Converters
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public OptimalVariantConverter(ILinks<TLink> links, IConverter<IList<TLink>> sequenceToItsLocalElementLevelsConverter) : base(links)
             => _sequenceToItsLocalElementLevelsConverter = sequenceToItsLocalElementLevelsConverter;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public OptimalVariantConverter(ILinks<TLink> links, LinkFrequenciesCache<TLink> linkFrequenciesCache) 
+            : this(links, new SequenceToItsLocalElementLevelsConverter<TLink>(links, new FrequenciesCacheBasedLinkToItsFrequencyNumberConverter<TLink>(linkFrequenciesCache))) { }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public OptimalVariantConverter(ILinks<TLink> links)
+            : this(links, new LinkFrequenciesCache<TLink>(links, new TotalSequenceSymbolFrequencyCounter<TLink>(links))) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override TLink Convert(IList<TLink> sequence)

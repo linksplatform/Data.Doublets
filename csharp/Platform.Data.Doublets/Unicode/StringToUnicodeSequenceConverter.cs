@@ -24,6 +24,10 @@ namespace Platform.Data.Doublets.Unicode
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public StringToUnicodeSequenceConverter(ILinks<TLink> links, IConverter<char, TLink> charToUnicodeSymbolConverter, IConverter<IList<TLink>, TLink> listToSequenceLinkConverter, TLink unicodeSequenceMarker)
+            : this(links, charToUnicodeSymbolConverter, new Unindex<TLink>(), listToSequenceLinkConverter, unicodeSequenceMarker) { }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public TLink Convert(string source)
         {
             var elements = new TLink[source.Length];
