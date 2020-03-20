@@ -34,12 +34,12 @@ namespace Platform.Data.Doublets.Memory.United.Specific
         public UInt64UnitedMemoryLinks(IResizableDirectMemory memory) : this(memory, DefaultLinksSizeStep) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public UInt64UnitedMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep) : this(memory, memoryReservationStep, Default<LinksConstants<ulong>>.Instance, true) { }
+        public UInt64UnitedMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep) : this(memory, memoryReservationStep, Default<LinksConstants<ulong>>.Instance, IndexTreeType.Default) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public UInt64UnitedMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep, LinksConstants<ulong> constants, bool useAvlBasedIndex) : base(memory, memoryReservationStep, constants)
+        public UInt64UnitedMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep, LinksConstants<ulong> constants, IndexTreeType indexTreeType) : base(memory, memoryReservationStep, constants)
         {
-            if (useAvlBasedIndex)
+            if (indexTreeType == IndexTreeType.SizedAndThreadedAVLBalancedTree)
             {
                 _createSourceTreeMethods = () => new UInt64LinksSourcesAvlBalancedTreeMethods(Constants, _links, _header);
                 _createTargetTreeMethods = () => new UInt64LinksTargetsAvlBalancedTreeMethods(Constants, _links, _header);

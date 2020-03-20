@@ -30,12 +30,12 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         public UnitedMemoryLinks(IResizableDirectMemory memory) : this(memory, DefaultLinksSizeStep) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public UnitedMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep) : this(memory, memoryReservationStep, Default<LinksConstants<TLink>>.Instance, true) { }
+        public UnitedMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep) : this(memory, memoryReservationStep, Default<LinksConstants<TLink>>.Instance, IndexTreeType.Default) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public UnitedMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep, LinksConstants<TLink> constants, bool useAvlBasedIndex) : base(memory, memoryReservationStep, constants)
+        public UnitedMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep, LinksConstants<TLink> constants, IndexTreeType indexTreeType) : base(memory, memoryReservationStep, constants)
         {
-            if (useAvlBasedIndex)
+            if (indexTreeType == IndexTreeType.SizedAndThreadedAVLBalancedTree)
             {
                 _createSourceTreeMethods = () => new LinksSourcesAvlBalancedTreeMethods<TLink>(Constants, _links, _header);
                 _createTargetTreeMethods = () => new LinksTargetsAvlBalancedTreeMethods<TLink>(Constants, _links, _header);
