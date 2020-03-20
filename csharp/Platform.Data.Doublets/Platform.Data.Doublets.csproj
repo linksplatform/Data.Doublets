@@ -25,16 +25,27 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <LangVersion>latest</LangVersion>
-    <PackageReleaseNotes>Lowest supported version of .NET Framework is now 4.7.2.
-Platform.Random dependency updated from 0.0.5 to 0.1.0.
-Platform.Timestamps dependency updated from 0.0.5 to 0.1.0.
-Platform.Incrementers dependency updated from 0.0.3 to 0.1.0.
-Platform.Collections.Methods dependency updated from 0.2.2 to 0.3.0.
-Platform.Singletons dependency updated from 0.0.7 to 0.1.0.
-Platform.Memory dependency updated from 0.1.9 to 0.2.0.
-Platform.Data dependency updated from 0.2.2 to 0.3.0.
-Bug fix.
-Code comments updated.</PackageReleaseNotes>
+    <PackageReleaseNotes>ResizableDirectMemoryLinks renamed to UnitedMemoryLinks.
+Added SplitMemoryLinks implementation.
+Memory adapters implementations are now at Platform.Data.Doublets.Memory namespace.
+ILinksExtensions.Format methods added.
+IndexTreeType enum added.
+Using SizeBalancedTree for index by default.
+LinksHeader.FirstAsSource renamed to RootAsSource.
+LinksHeader.FirstAsTarget renamed to RootAsTarget.
+StringToUnicodeSymbolsListConverter added.
+UnicodeSymbolsListToUnicodeSequenceConverter added.
+UnicodeSequenceCriterionMatcher removed.
+UnicodeSymbolCriterionMatcher removed.
+TargetMatcher added.
+Added contructor overloads for StringToUnicodeSequenceConverter and OptimalVariantConverter.
+Doublet struct is now immutable.
+
+Benchmarks added.
+Refactoring.
+Issues fix.
+
+This release is not backward compatible with the previous 0.5.0 release.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup Condition="$(TargetFramework.StartsWith('net4')) AND '$(MSBuildRuntimeType)' == 'Core' AND '$(OS)' != 'Windows_NT'">
