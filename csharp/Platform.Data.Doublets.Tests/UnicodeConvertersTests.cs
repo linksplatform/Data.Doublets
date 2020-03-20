@@ -12,6 +12,7 @@ using Platform.Data.Doublets.Sequences.Indexes;
 using Platform.Data.Doublets.Sequences.Walkers;
 using Platform.Data.Doublets.Unicode;
 using Platform.Data.Doublets.Memory.United.Generic;
+using Platform.Data.Doublets.CriterionMatchers;
 
 namespace Platform.Data.Doublets.Tests
 {
@@ -51,7 +52,7 @@ namespace Platform.Data.Doublets.Tests
             var charToUnicodeSymbolConverter = new CharToUnicodeSymbolConverter<ulong>(links, addressToNumberConverter, unicodeSymbolMarker);
             var originalCharacter = 'H';
             var characterLink = charToUnicodeSymbolConverter.Convert(originalCharacter);
-            var unicodeSymbolCriterionMatcher = new UnicodeSymbolCriterionMatcher<ulong>(links, unicodeSymbolMarker);
+            var unicodeSymbolCriterionMatcher = new TargetMatcher<ulong>(links, unicodeSymbolMarker);
             var unicodeSymbolToCharConverter = new UnicodeSymbolToCharConverter<ulong>(links, numberToAddressConverter, unicodeSymbolCriterionMatcher);
             var resultingCharacter = unicodeSymbolToCharConverter.Convert(characterLink);
             Assert.Equal(originalCharacter, resultingCharacter);
@@ -92,10 +93,10 @@ namespace Platform.Data.Doublets.Tests
 
                 var unicodeSequenceLink = stringToUnicodeSequenceConverter.Convert(originalString);
                 
-                var unicodeSymbolCriterionMatcher = new UnicodeSymbolCriterionMatcher<ulong>(links, unicodeSymbolMarker);
+                var unicodeSymbolCriterionMatcher = new TargetMatcher<ulong>(links, unicodeSymbolMarker);
                 var unicodeSymbolToCharConverter = new UnicodeSymbolToCharConverter<ulong>(links, unaryNumberToAddressConverter, unicodeSymbolCriterionMatcher);
 
-                var unicodeSequenceCriterionMatcher = new UnicodeSequenceCriterionMatcher<ulong>(links, unicodeSequenceMarker);
+                var unicodeSequenceCriterionMatcher = new TargetMatcher<ulong>(links, unicodeSequenceMarker);
 
                 var sequenceWalker = new LeveledSequenceWalker<ulong>(links, unicodeSymbolCriterionMatcher.IsMatched);
 
