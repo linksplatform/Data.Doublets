@@ -14,8 +14,8 @@ namespace Platform.Data.Doublets.Benchmarks
     {
         private static SplitMemoryLinks<uint> _splitMemory;
         private static ILinks<uint> _splitMemoryLinks;
-        private static UnitedMemoryLinks<uint> _simpleMemory;
-        private static ILinks<uint> _simpleMemoryLinks;
+        private static UnitedMemoryLinks<uint> _unitedMemory;
+        private static ILinks<uint> _unitedMemoryLinks;
 
         [GlobalSetup]
         public static void Setup()
@@ -26,15 +26,15 @@ namespace Platform.Data.Doublets.Benchmarks
             _splitMemoryLinks = _splitMemory.DecorateWithAutomaticUniquenessAndUsagesResolution();
 
             var memory = new HeapResizableDirectMemory();
-            _simpleMemory = new UnitedMemoryLinks<uint>(memory);
-            _simpleMemoryLinks = _simpleMemory.DecorateWithAutomaticUniquenessAndUsagesResolution();
+            _unitedMemory = new UnitedMemoryLinks<uint>(memory);
+            _unitedMemoryLinks = _unitedMemory.DecorateWithAutomaticUniquenessAndUsagesResolution();
         }
 
         [GlobalCleanup]
         public static void Cleanup()
         {
             _splitMemory.Dispose();
-            _simpleMemory.Dispose();
+            _unitedMemory.Dispose();
         }
 
         [Benchmark]
@@ -44,9 +44,9 @@ namespace Platform.Data.Doublets.Benchmarks
         }
 
         [Benchmark]
-        public void Simple()
+        public void United()
         {
-            _simpleMemoryLinks.TestMultipleRandomCreationsAndDeletions(1000);
+            _unitedMemoryLinks.TestMultipleRandomCreationsAndDeletions(1000);
         }
     }
 }
