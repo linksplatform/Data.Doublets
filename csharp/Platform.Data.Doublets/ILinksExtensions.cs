@@ -777,5 +777,15 @@ namespace Platform.Data.Doublets
             links = new LinksCascadeUniquenessAndUsagesResolver<TLink>(links);
             return links;
         }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static string Format<TLink>(this ILinks<TLink> links, IList<TLink> link)
+        {
+            var constants = links.Constants;
+            return $"({link[constants.IndexPart]}: {link[constants.SourcePart]} {link[constants.TargetPart]})";
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static string Format<TLink>(this ILinks<TLink> links, TLink link) => links.Format(links.GetLink(link));
     }
 }
