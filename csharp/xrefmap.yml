@@ -7,6 +7,56 @@ references:
   commentId: N:Platform.Data.Doublets
   fullName: Platform.Data.Doublets
   nameWithType: Platform.Data.Doublets
+- uid: Platform.Data.Doublets.CriterionMatchers
+  name: Platform.Data.Doublets.CriterionMatchers
+  href: api/Platform.Data.Doublets.CriterionMatchers.html
+  commentId: N:Platform.Data.Doublets.CriterionMatchers
+  fullName: Platform.Data.Doublets.CriterionMatchers
+  nameWithType: Platform.Data.Doublets.CriterionMatchers
+- uid: Platform.Data.Doublets.CriterionMatchers.TargetMatcher`1
+  name: TargetMatcher<TLink>
+  href: api/Platform.Data.Doublets.CriterionMatchers.TargetMatcher-1.html
+  commentId: T:Platform.Data.Doublets.CriterionMatchers.TargetMatcher`1
+  name.vb: TargetMatcher(Of TLink)
+  fullName: Platform.Data.Doublets.CriterionMatchers.TargetMatcher<TLink>
+  fullName.vb: Platform.Data.Doublets.CriterionMatchers.TargetMatcher(Of TLink)
+  nameWithType: TargetMatcher<TLink>
+  nameWithType.vb: TargetMatcher(Of TLink)
+- uid: Platform.Data.Doublets.CriterionMatchers.TargetMatcher`1.#ctor(Platform.Data.Doublets.ILinks{`0},`0)
+  name: TargetMatcher(ILinks<TLink>, TLink)
+  href: api/Platform.Data.Doublets.CriterionMatchers.TargetMatcher-1.html#Platform_Data_Doublets_CriterionMatchers_TargetMatcher_1__ctor_Platform_Data_Doublets_ILinks__0___0_
+  commentId: M:Platform.Data.Doublets.CriterionMatchers.TargetMatcher`1.#ctor(Platform.Data.Doublets.ILinks{`0},`0)
+  name.vb: TargetMatcher(ILinks(Of TLink), TLink)
+  fullName: Platform.Data.Doublets.CriterionMatchers.TargetMatcher<TLink>.TargetMatcher(Platform.Data.Doublets.ILinks<TLink>, TLink)
+  fullName.vb: Platform.Data.Doublets.CriterionMatchers.TargetMatcher(Of TLink).TargetMatcher(Platform.Data.Doublets.ILinks(Of TLink), TLink)
+  nameWithType: TargetMatcher<TLink>.TargetMatcher(ILinks<TLink>, TLink)
+  nameWithType.vb: TargetMatcher(Of TLink).TargetMatcher(ILinks(Of TLink), TLink)
+- uid: Platform.Data.Doublets.CriterionMatchers.TargetMatcher`1.#ctor*
+  name: TargetMatcher
+  href: api/Platform.Data.Doublets.CriterionMatchers.TargetMatcher-1.html#Platform_Data_Doublets_CriterionMatchers_TargetMatcher_1__ctor_
+  commentId: Overload:Platform.Data.Doublets.CriterionMatchers.TargetMatcher`1.#ctor
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.CriterionMatchers.TargetMatcher<TLink>.TargetMatcher
+  fullName.vb: Platform.Data.Doublets.CriterionMatchers.TargetMatcher(Of TLink).TargetMatcher
+  nameWithType: TargetMatcher<TLink>.TargetMatcher
+  nameWithType.vb: TargetMatcher(Of TLink).TargetMatcher
+- uid: Platform.Data.Doublets.CriterionMatchers.TargetMatcher`1.IsMatched(`0)
+  name: IsMatched(TLink)
+  href: api/Platform.Data.Doublets.CriterionMatchers.TargetMatcher-1.html#Platform_Data_Doublets_CriterionMatchers_TargetMatcher_1_IsMatched__0_
+  commentId: M:Platform.Data.Doublets.CriterionMatchers.TargetMatcher`1.IsMatched(`0)
+  fullName: Platform.Data.Doublets.CriterionMatchers.TargetMatcher<TLink>.IsMatched(TLink)
+  fullName.vb: Platform.Data.Doublets.CriterionMatchers.TargetMatcher(Of TLink).IsMatched(TLink)
+  nameWithType: TargetMatcher<TLink>.IsMatched(TLink)
+  nameWithType.vb: TargetMatcher(Of TLink).IsMatched(TLink)
+- uid: Platform.Data.Doublets.CriterionMatchers.TargetMatcher`1.IsMatched*
+  name: IsMatched
+  href: api/Platform.Data.Doublets.CriterionMatchers.TargetMatcher-1.html#Platform_Data_Doublets_CriterionMatchers_TargetMatcher_1_IsMatched_
+  commentId: Overload:Platform.Data.Doublets.CriterionMatchers.TargetMatcher`1.IsMatched
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.CriterionMatchers.TargetMatcher<TLink>.IsMatched
+  fullName.vb: Platform.Data.Doublets.CriterionMatchers.TargetMatcher(Of TLink).IsMatched
+  nameWithType: TargetMatcher<TLink>.IsMatched
+  nameWithType.vb: TargetMatcher(Of TLink).IsMatched
 - uid: Platform.Data.Doublets.Decorators
   name: Platform.Data.Doublets.Decorators
   href: api/Platform.Data.Doublets.Decorators.html
@@ -15569,50 +15619,6 @@ references:
   commentId: F:Platform.Data.Doublets.Unicode.UnicodeMap.MapSize
   fullName: Platform.Data.Doublets.Unicode.UnicodeMap.MapSize
   nameWithType: UnicodeMap.MapSize
-- uid: Platform.Data.Doublets.Unicode.UnicodeSequenceCriterionMatcher`1
-  name: UnicodeSequenceCriterionMatcher<TLink>
-  href: api/Platform.Data.Doublets.Unicode.UnicodeSequenceCriterionMatcher-1.html
-  commentId: T:Platform.Data.Doublets.Unicode.UnicodeSequenceCriterionMatcher`1
-  name.vb: UnicodeSequenceCriterionMatcher(Of TLink)
-  fullName: Platform.Data.Doublets.Unicode.UnicodeSequenceCriterionMatcher<TLink>
-  fullName.vb: Platform.Data.Doublets.Unicode.UnicodeSequenceCriterionMatcher(Of TLink)
-  nameWithType: UnicodeSequenceCriterionMatcher<TLink>
-  nameWithType.vb: UnicodeSequenceCriterionMatcher(Of TLink)
-- uid: Platform.Data.Doublets.Unicode.UnicodeSequenceCriterionMatcher`1.#ctor(Platform.Data.Doublets.ILinks{`0},`0)
-  name: UnicodeSequenceCriterionMatcher(ILinks<TLink>, TLink)
-  href: api/Platform.Data.Doublets.Unicode.UnicodeSequenceCriterionMatcher-1.html#Platform_Data_Doublets_Unicode_UnicodeSequenceCriterionMatcher_1__ctor_Platform_Data_Doublets_ILinks__0___0_
-  commentId: M:Platform.Data.Doublets.Unicode.UnicodeSequenceCriterionMatcher`1.#ctor(Platform.Data.Doublets.ILinks{`0},`0)
-  name.vb: UnicodeSequenceCriterionMatcher(ILinks(Of TLink), TLink)
-  fullName: Platform.Data.Doublets.Unicode.UnicodeSequenceCriterionMatcher<TLink>.UnicodeSequenceCriterionMatcher(Platform.Data.Doublets.ILinks<TLink>, TLink)
-  fullName.vb: Platform.Data.Doublets.Unicode.UnicodeSequenceCriterionMatcher(Of TLink).UnicodeSequenceCriterionMatcher(Platform.Data.Doublets.ILinks(Of TLink), TLink)
-  nameWithType: UnicodeSequenceCriterionMatcher<TLink>.UnicodeSequenceCriterionMatcher(ILinks<TLink>, TLink)
-  nameWithType.vb: UnicodeSequenceCriterionMatcher(Of TLink).UnicodeSequenceCriterionMatcher(ILinks(Of TLink), TLink)
-- uid: Platform.Data.Doublets.Unicode.UnicodeSequenceCriterionMatcher`1.#ctor*
-  name: UnicodeSequenceCriterionMatcher
-  href: api/Platform.Data.Doublets.Unicode.UnicodeSequenceCriterionMatcher-1.html#Platform_Data_Doublets_Unicode_UnicodeSequenceCriterionMatcher_1__ctor_
-  commentId: Overload:Platform.Data.Doublets.Unicode.UnicodeSequenceCriterionMatcher`1.#ctor
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Unicode.UnicodeSequenceCriterionMatcher<TLink>.UnicodeSequenceCriterionMatcher
-  fullName.vb: Platform.Data.Doublets.Unicode.UnicodeSequenceCriterionMatcher(Of TLink).UnicodeSequenceCriterionMatcher
-  nameWithType: UnicodeSequenceCriterionMatcher<TLink>.UnicodeSequenceCriterionMatcher
-  nameWithType.vb: UnicodeSequenceCriterionMatcher(Of TLink).UnicodeSequenceCriterionMatcher
-- uid: Platform.Data.Doublets.Unicode.UnicodeSequenceCriterionMatcher`1.IsMatched(`0)
-  name: IsMatched(TLink)
-  href: api/Platform.Data.Doublets.Unicode.UnicodeSequenceCriterionMatcher-1.html#Platform_Data_Doublets_Unicode_UnicodeSequenceCriterionMatcher_1_IsMatched__0_
-  commentId: M:Platform.Data.Doublets.Unicode.UnicodeSequenceCriterionMatcher`1.IsMatched(`0)
-  fullName: Platform.Data.Doublets.Unicode.UnicodeSequenceCriterionMatcher<TLink>.IsMatched(TLink)
-  fullName.vb: Platform.Data.Doublets.Unicode.UnicodeSequenceCriterionMatcher(Of TLink).IsMatched(TLink)
-  nameWithType: UnicodeSequenceCriterionMatcher<TLink>.IsMatched(TLink)
-  nameWithType.vb: UnicodeSequenceCriterionMatcher(Of TLink).IsMatched(TLink)
-- uid: Platform.Data.Doublets.Unicode.UnicodeSequenceCriterionMatcher`1.IsMatched*
-  name: IsMatched
-  href: api/Platform.Data.Doublets.Unicode.UnicodeSequenceCriterionMatcher-1.html#Platform_Data_Doublets_Unicode_UnicodeSequenceCriterionMatcher_1_IsMatched_
-  commentId: Overload:Platform.Data.Doublets.Unicode.UnicodeSequenceCriterionMatcher`1.IsMatched
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Unicode.UnicodeSequenceCriterionMatcher<TLink>.IsMatched
-  fullName.vb: Platform.Data.Doublets.Unicode.UnicodeSequenceCriterionMatcher(Of TLink).IsMatched
-  nameWithType: UnicodeSequenceCriterionMatcher<TLink>.IsMatched
-  nameWithType.vb: UnicodeSequenceCriterionMatcher(Of TLink).IsMatched
 - uid: Platform.Data.Doublets.Unicode.UnicodeSequenceToStringConverter`1
   name: UnicodeSequenceToStringConverter<TLink>
   href: api/Platform.Data.Doublets.Unicode.UnicodeSequenceToStringConverter-1.html
@@ -15657,50 +15663,6 @@ references:
   fullName.vb: Platform.Data.Doublets.Unicode.UnicodeSequenceToStringConverter(Of TLink).Convert
   nameWithType: UnicodeSequenceToStringConverter<TLink>.Convert
   nameWithType.vb: UnicodeSequenceToStringConverter(Of TLink).Convert
-- uid: Platform.Data.Doublets.Unicode.UnicodeSymbolCriterionMatcher`1
-  name: UnicodeSymbolCriterionMatcher<TLink>
-  href: api/Platform.Data.Doublets.Unicode.UnicodeSymbolCriterionMatcher-1.html
-  commentId: T:Platform.Data.Doublets.Unicode.UnicodeSymbolCriterionMatcher`1
-  name.vb: UnicodeSymbolCriterionMatcher(Of TLink)
-  fullName: Platform.Data.Doublets.Unicode.UnicodeSymbolCriterionMatcher<TLink>
-  fullName.vb: Platform.Data.Doublets.Unicode.UnicodeSymbolCriterionMatcher(Of TLink)
-  nameWithType: UnicodeSymbolCriterionMatcher<TLink>
-  nameWithType.vb: UnicodeSymbolCriterionMatcher(Of TLink)
-- uid: Platform.Data.Doublets.Unicode.UnicodeSymbolCriterionMatcher`1.#ctor(Platform.Data.Doublets.ILinks{`0},`0)
-  name: UnicodeSymbolCriterionMatcher(ILinks<TLink>, TLink)
-  href: api/Platform.Data.Doublets.Unicode.UnicodeSymbolCriterionMatcher-1.html#Platform_Data_Doublets_Unicode_UnicodeSymbolCriterionMatcher_1__ctor_Platform_Data_Doublets_ILinks__0___0_
-  commentId: M:Platform.Data.Doublets.Unicode.UnicodeSymbolCriterionMatcher`1.#ctor(Platform.Data.Doublets.ILinks{`0},`0)
-  name.vb: UnicodeSymbolCriterionMatcher(ILinks(Of TLink), TLink)
-  fullName: Platform.Data.Doublets.Unicode.UnicodeSymbolCriterionMatcher<TLink>.UnicodeSymbolCriterionMatcher(Platform.Data.Doublets.ILinks<TLink>, TLink)
-  fullName.vb: Platform.Data.Doublets.Unicode.UnicodeSymbolCriterionMatcher(Of TLink).UnicodeSymbolCriterionMatcher(Platform.Data.Doublets.ILinks(Of TLink), TLink)
-  nameWithType: UnicodeSymbolCriterionMatcher<TLink>.UnicodeSymbolCriterionMatcher(ILinks<TLink>, TLink)
-  nameWithType.vb: UnicodeSymbolCriterionMatcher(Of TLink).UnicodeSymbolCriterionMatcher(ILinks(Of TLink), TLink)
-- uid: Platform.Data.Doublets.Unicode.UnicodeSymbolCriterionMatcher`1.#ctor*
-  name: UnicodeSymbolCriterionMatcher
-  href: api/Platform.Data.Doublets.Unicode.UnicodeSymbolCriterionMatcher-1.html#Platform_Data_Doublets_Unicode_UnicodeSymbolCriterionMatcher_1__ctor_
-  commentId: Overload:Platform.Data.Doublets.Unicode.UnicodeSymbolCriterionMatcher`1.#ctor
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Unicode.UnicodeSymbolCriterionMatcher<TLink>.UnicodeSymbolCriterionMatcher
-  fullName.vb: Platform.Data.Doublets.Unicode.UnicodeSymbolCriterionMatcher(Of TLink).UnicodeSymbolCriterionMatcher
-  nameWithType: UnicodeSymbolCriterionMatcher<TLink>.UnicodeSymbolCriterionMatcher
-  nameWithType.vb: UnicodeSymbolCriterionMatcher(Of TLink).UnicodeSymbolCriterionMatcher
-- uid: Platform.Data.Doublets.Unicode.UnicodeSymbolCriterionMatcher`1.IsMatched(`0)
-  name: IsMatched(TLink)
-  href: api/Platform.Data.Doublets.Unicode.UnicodeSymbolCriterionMatcher-1.html#Platform_Data_Doublets_Unicode_UnicodeSymbolCriterionMatcher_1_IsMatched__0_
-  commentId: M:Platform.Data.Doublets.Unicode.UnicodeSymbolCriterionMatcher`1.IsMatched(`0)
-  fullName: Platform.Data.Doublets.Unicode.UnicodeSymbolCriterionMatcher<TLink>.IsMatched(TLink)
-  fullName.vb: Platform.Data.Doublets.Unicode.UnicodeSymbolCriterionMatcher(Of TLink).IsMatched(TLink)
-  nameWithType: UnicodeSymbolCriterionMatcher<TLink>.IsMatched(TLink)
-  nameWithType.vb: UnicodeSymbolCriterionMatcher(Of TLink).IsMatched(TLink)
-- uid: Platform.Data.Doublets.Unicode.UnicodeSymbolCriterionMatcher`1.IsMatched*
-  name: IsMatched
-  href: api/Platform.Data.Doublets.Unicode.UnicodeSymbolCriterionMatcher-1.html#Platform_Data_Doublets_Unicode_UnicodeSymbolCriterionMatcher_1_IsMatched_
-  commentId: Overload:Platform.Data.Doublets.Unicode.UnicodeSymbolCriterionMatcher`1.IsMatched
-  isSpec: "True"
-  fullName: Platform.Data.Doublets.Unicode.UnicodeSymbolCriterionMatcher<TLink>.IsMatched
-  fullName.vb: Platform.Data.Doublets.Unicode.UnicodeSymbolCriterionMatcher(Of TLink).IsMatched
-  nameWithType: UnicodeSymbolCriterionMatcher<TLink>.IsMatched
-  nameWithType.vb: UnicodeSymbolCriterionMatcher(Of TLink).IsMatched
 - uid: Platform.Data.Doublets.Unicode.UnicodeSymbolToCharConverter`1
   name: UnicodeSymbolToCharConverter<TLink>
   href: api/Platform.Data.Doublets.Unicode.UnicodeSymbolToCharConverter-1.html
