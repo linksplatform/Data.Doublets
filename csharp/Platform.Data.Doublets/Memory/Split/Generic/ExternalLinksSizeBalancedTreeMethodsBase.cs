@@ -46,10 +46,10 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         protected virtual ref LinksHeader<TLink> GetHeaderReference() => ref AsRef<LinksHeader<TLink>>(Header);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual ref RawLinkDataPart<TLink> GetLinkDataPartReference(TLink link) => ref AsRef<RawLinkDataPart<TLink>>(LinksDataParts + RawLinkDataPart<TLink>.SizeInBytes * _addressToInt64Converter.Convert(link));
+        protected virtual ref RawLinkDataPart<TLink> GetLinkDataPartReference(TLink link) => ref AsRef<RawLinkDataPart<TLink>>(LinksDataParts + (RawLinkDataPart<TLink>.SizeInBytes * _addressToInt64Converter.Convert(link)));
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual ref RawLinkIndexPart<TLink> GetLinkIndexPartReference(TLink link) => ref AsRef<RawLinkIndexPart<TLink>>(LinksIndexParts + RawLinkIndexPart<TLink>.SizeInBytes * _addressToInt64Converter.Convert(link));
+        protected virtual ref RawLinkIndexPart<TLink> GetLinkIndexPartReference(TLink link) => ref AsRef<RawLinkIndexPart<TLink>>(LinksIndexParts + (RawLinkIndexPart<TLink>.SizeInBytes * _addressToInt64Converter.Convert(link)));
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual IList<TLink> GetLinkValues(TLink linkIndex)

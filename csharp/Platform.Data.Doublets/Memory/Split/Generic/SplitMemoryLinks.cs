@@ -60,9 +60,9 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         protected override ref LinksHeader<TLink> GetHeaderReference() => ref AsRef<LinksHeader<TLink>>(_header);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override ref RawLinkDataPart<TLink> GetLinkDataPartReference(TLink linkIndex) => ref AsRef<RawLinkDataPart<TLink>>(_linksDataParts + LinkDataPartSizeInBytes * ConvertToInt64(linkIndex));
+        protected override ref RawLinkDataPart<TLink> GetLinkDataPartReference(TLink linkIndex) => ref AsRef<RawLinkDataPart<TLink>>(_linksDataParts + (LinkDataPartSizeInBytes * ConvertToInt64(linkIndex)));
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override ref RawLinkIndexPart<TLink> GetLinkIndexPartReference(TLink linkIndex) => ref AsRef<RawLinkIndexPart<TLink>>(_linksIndexParts + LinkIndexPartSizeInBytes * ConvertToInt64(linkIndex));
+        protected override ref RawLinkIndexPart<TLink> GetLinkIndexPartReference(TLink linkIndex) => ref AsRef<RawLinkIndexPart<TLink>>(_linksIndexParts + (LinkIndexPartSizeInBytes * ConvertToInt64(linkIndex)));
     }
 }

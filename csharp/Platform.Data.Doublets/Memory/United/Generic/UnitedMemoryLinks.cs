@@ -70,6 +70,6 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         protected override ref LinksHeader<TLink> GetHeaderReference() => ref AsRef<LinksHeader<TLink>>(_header);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override ref RawLink<TLink> GetLinkReference(TLink linkIndex) => ref AsRef<RawLink<TLink>>(_links + LinkSizeInBytes * ConvertToInt64(linkIndex));
+        protected override ref RawLink<TLink> GetLinkReference(TLink linkIndex) => ref AsRef<RawLink<TLink>>(_links + (LinkSizeInBytes * ConvertToInt64(linkIndex)));
     }
 }

@@ -40,10 +40,10 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         protected abstract TLink GetKeyPartValue(TLink link);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual ref RawLinkDataPart<TLink> GetLinkDataPartReference(TLink link) => ref AsRef<RawLinkDataPart<TLink>>(LinksDataParts + RawLinkDataPart<TLink>.SizeInBytes * _addressToInt64Converter.Convert(link));
+        protected virtual ref RawLinkDataPart<TLink> GetLinkDataPartReference(TLink link) => ref AsRef<RawLinkDataPart<TLink>>(LinksDataParts + (RawLinkDataPart<TLink>.SizeInBytes * _addressToInt64Converter.Convert(link)));
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual ref RawLinkIndexPart<TLink> GetLinkIndexPartReference(TLink link) => ref AsRef<RawLinkIndexPart<TLink>>(LinksIndexParts + RawLinkIndexPart<TLink>.SizeInBytes * _addressToInt64Converter.Convert(link));
+        protected virtual ref RawLinkIndexPart<TLink> GetLinkIndexPartReference(TLink link) => ref AsRef<RawLinkIndexPart<TLink>>(LinksIndexParts + (RawLinkIndexPart<TLink>.SizeInBytes * _addressToInt64Converter.Convert(link)));
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override bool FirstIsToTheLeftOfSecond(TLink first, TLink second) => LessThan(GetKeyPartValue(first), GetKeyPartValue(second));

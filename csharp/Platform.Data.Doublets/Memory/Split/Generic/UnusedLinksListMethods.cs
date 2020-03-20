@@ -25,7 +25,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         protected virtual ref LinksHeader<TLink> GetHeaderReference() => ref AsRef<LinksHeader<TLink>>(_header);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual ref RawLinkDataPart<TLink> GetLinkDataPartReference(TLink link) => ref AsRef<RawLinkDataPart<TLink>>(_links + RawLinkDataPart<TLink>.SizeInBytes * _addressToInt64Converter.Convert(link));
+        protected virtual ref RawLinkDataPart<TLink> GetLinkDataPartReference(TLink link) => ref AsRef<RawLinkDataPart<TLink>>(_links + (RawLinkDataPart<TLink>.SizeInBytes * _addressToInt64Converter.Convert(link)));
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override TLink GetFirst() => GetHeaderReference().FirstFreeLink;

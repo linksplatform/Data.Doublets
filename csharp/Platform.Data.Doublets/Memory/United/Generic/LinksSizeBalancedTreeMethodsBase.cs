@@ -44,7 +44,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         protected virtual ref LinksHeader<TLink> GetHeaderReference() => ref AsRef<LinksHeader<TLink>>(Header);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual ref RawLink<TLink> GetLinkReference(TLink link) => ref AsRef<RawLink<TLink>>(Links + RawLink<TLink>.SizeInBytes * _addressToInt64Converter.Convert(link));
+        protected virtual ref RawLink<TLink> GetLinkReference(TLink link) => ref AsRef<RawLink<TLink>>(Links + (RawLink<TLink>.SizeInBytes * _addressToInt64Converter.Convert(link)));
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual IList<TLink> GetLinkValues(TLink linkIndex)

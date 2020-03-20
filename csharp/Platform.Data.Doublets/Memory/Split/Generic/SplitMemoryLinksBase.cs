@@ -94,8 +94,8 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
             ref var header = ref GetHeaderReference();
             // Ensure correctness _memory.UsedCapacity over _header->AllocatedLinks
             // Гарантия корректности _memory.UsedCapacity относительно _header->AllocatedLinks
-            dataMemory.UsedCapacity = ConvertToInt64(header.AllocatedLinks) * LinkDataPartSizeInBytes + LinkDataPartSizeInBytes; // First link is read only zero link.
-            indexMemory.UsedCapacity = ConvertToInt64(header.AllocatedLinks) * LinkIndexPartSizeInBytes + LinkHeaderSizeInBytes;
+            dataMemory.UsedCapacity = (ConvertToInt64(header.AllocatedLinks) * LinkDataPartSizeInBytes) + LinkDataPartSizeInBytes; // First link is read only zero link.
+            indexMemory.UsedCapacity = (ConvertToInt64(header.AllocatedLinks) * LinkIndexPartSizeInBytes) + LinkHeaderSizeInBytes;
             // Ensure correctness _memory.ReservedLinks over _header->ReservedCapacity
             // Гарантия корректности _header->ReservedLinks относительно _memory.ReservedCapacity
             header.ReservedLinks = ConvertToAddress((dataMemory.ReservedCapacity - LinkDataPartSizeInBytes) / LinkDataPartSizeInBytes);

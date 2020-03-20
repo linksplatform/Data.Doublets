@@ -81,7 +81,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             SetPointers(memory);
             ref var header = ref GetHeaderReference();
             // Гарантия корректности _memory.UsedCapacity относительно _header->AllocatedLinks
-            memory.UsedCapacity = ConvertToInt64(header.AllocatedLinks) * LinkSizeInBytes + LinkHeaderSizeInBytes;
+            memory.UsedCapacity = (ConvertToInt64(header.AllocatedLinks) * LinkSizeInBytes) + LinkHeaderSizeInBytes;
             // Гарантия корректности _header->ReservedLinks относительно _memory.ReservedCapacity
             header.ReservedLinks = ConvertToAddress((memory.ReservedCapacity - LinkHeaderSizeInBytes) / LinkSizeInBytes);
         }
