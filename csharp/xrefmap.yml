@@ -906,6 +906,76 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.NonNullContentsLinkDeletionResolver(Of TLink).Delete
   nameWithType: NonNullContentsLinkDeletionResolver<TLink>.Delete
   nameWithType.vb: NonNullContentsLinkDeletionResolver(Of TLink).Delete
+- uid: Platform.Data.Doublets.Decorators.UInt32Links
+  name: UInt32Links
+  href: api/Platform.Data.Doublets.Decorators.UInt32Links.html
+  commentId: T:Platform.Data.Doublets.Decorators.UInt32Links
+  fullName: Platform.Data.Doublets.Decorators.UInt32Links
+  nameWithType: UInt32Links
+- uid: Platform.Data.Doublets.Decorators.UInt32Links.#ctor(Platform.Data.Doublets.ILinks{System.UInt32})
+  name: UInt32Links(ILinks<UInt32>)
+  href: api/Platform.Data.Doublets.Decorators.UInt32Links.html#Platform_Data_Doublets_Decorators_UInt32Links__ctor_Platform_Data_Doublets_ILinks_System_UInt32__
+  commentId: M:Platform.Data.Doublets.Decorators.UInt32Links.#ctor(Platform.Data.Doublets.ILinks{System.UInt32})
+  name.vb: UInt32Links(ILinks(Of UInt32))
+  fullName: Platform.Data.Doublets.Decorators.UInt32Links.UInt32Links(Platform.Data.Doublets.ILinks<System.UInt32>)
+  fullName.vb: Platform.Data.Doublets.Decorators.UInt32Links.UInt32Links(Platform.Data.Doublets.ILinks(Of System.UInt32))
+  nameWithType: UInt32Links.UInt32Links(ILinks<UInt32>)
+  nameWithType.vb: UInt32Links.UInt32Links(ILinks(Of UInt32))
+- uid: Platform.Data.Doublets.Decorators.UInt32Links.#ctor*
+  name: UInt32Links
+  href: api/Platform.Data.Doublets.Decorators.UInt32Links.html#Platform_Data_Doublets_Decorators_UInt32Links__ctor_
+  commentId: Overload:Platform.Data.Doublets.Decorators.UInt32Links.#ctor
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Decorators.UInt32Links.UInt32Links
+  nameWithType: UInt32Links.UInt32Links
+- uid: Platform.Data.Doublets.Decorators.UInt32Links.Create(System.Collections.Generic.IList{System.UInt32})
+  name: Create(IList<UInt32>)
+  href: api/Platform.Data.Doublets.Decorators.UInt32Links.html#Platform_Data_Doublets_Decorators_UInt32Links_Create_System_Collections_Generic_IList_System_UInt32__
+  commentId: M:Platform.Data.Doublets.Decorators.UInt32Links.Create(System.Collections.Generic.IList{System.UInt32})
+  name.vb: Create(IList(Of UInt32))
+  fullName: Platform.Data.Doublets.Decorators.UInt32Links.Create(System.Collections.Generic.IList<System.UInt32>)
+  fullName.vb: Platform.Data.Doublets.Decorators.UInt32Links.Create(System.Collections.Generic.IList(Of System.UInt32))
+  nameWithType: UInt32Links.Create(IList<UInt32>)
+  nameWithType.vb: UInt32Links.Create(IList(Of UInt32))
+- uid: Platform.Data.Doublets.Decorators.UInt32Links.Create*
+  name: Create
+  href: api/Platform.Data.Doublets.Decorators.UInt32Links.html#Platform_Data_Doublets_Decorators_UInt32Links_Create_
+  commentId: Overload:Platform.Data.Doublets.Decorators.UInt32Links.Create
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Decorators.UInt32Links.Create
+  nameWithType: UInt32Links.Create
+- uid: Platform.Data.Doublets.Decorators.UInt32Links.Delete(System.Collections.Generic.IList{System.UInt32})
+  name: Delete(IList<UInt32>)
+  href: api/Platform.Data.Doublets.Decorators.UInt32Links.html#Platform_Data_Doublets_Decorators_UInt32Links_Delete_System_Collections_Generic_IList_System_UInt32__
+  commentId: M:Platform.Data.Doublets.Decorators.UInt32Links.Delete(System.Collections.Generic.IList{System.UInt32})
+  name.vb: Delete(IList(Of UInt32))
+  fullName: Platform.Data.Doublets.Decorators.UInt32Links.Delete(System.Collections.Generic.IList<System.UInt32>)
+  fullName.vb: Platform.Data.Doublets.Decorators.UInt32Links.Delete(System.Collections.Generic.IList(Of System.UInt32))
+  nameWithType: UInt32Links.Delete(IList<UInt32>)
+  nameWithType.vb: UInt32Links.Delete(IList(Of UInt32))
+- uid: Platform.Data.Doublets.Decorators.UInt32Links.Delete*
+  name: Delete
+  href: api/Platform.Data.Doublets.Decorators.UInt32Links.html#Platform_Data_Doublets_Decorators_UInt32Links_Delete_
+  commentId: Overload:Platform.Data.Doublets.Decorators.UInt32Links.Delete
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Decorators.UInt32Links.Delete
+  nameWithType: UInt32Links.Delete
+- uid: Platform.Data.Doublets.Decorators.UInt32Links.Update(System.Collections.Generic.IList{System.UInt32},System.Collections.Generic.IList{System.UInt32})
+  name: Update(IList<UInt32>, IList<UInt32>)
+  href: api/Platform.Data.Doublets.Decorators.UInt32Links.html#Platform_Data_Doublets_Decorators_UInt32Links_Update_System_Collections_Generic_IList_System_UInt32__System_Collections_Generic_IList_System_UInt32__
+  commentId: M:Platform.Data.Doublets.Decorators.UInt32Links.Update(System.Collections.Generic.IList{System.UInt32},System.Collections.Generic.IList{System.UInt32})
+  name.vb: Update(IList(Of UInt32), IList(Of UInt32))
+  fullName: Platform.Data.Doublets.Decorators.UInt32Links.Update(System.Collections.Generic.IList<System.UInt32>, System.Collections.Generic.IList<System.UInt32>)
+  fullName.vb: Platform.Data.Doublets.Decorators.UInt32Links.Update(System.Collections.Generic.IList(Of System.UInt32), System.Collections.Generic.IList(Of System.UInt32))
+  nameWithType: UInt32Links.Update(IList<UInt32>, IList<UInt32>)
+  nameWithType.vb: UInt32Links.Update(IList(Of UInt32), IList(Of UInt32))
+- uid: Platform.Data.Doublets.Decorators.UInt32Links.Update*
+  name: Update
+  href: api/Platform.Data.Doublets.Decorators.UInt32Links.html#Platform_Data_Doublets_Decorators_UInt32Links_Update_
+  commentId: Overload:Platform.Data.Doublets.Decorators.UInt32Links.Update
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Decorators.UInt32Links.Update
+  nameWithType: UInt32Links.Update
 - uid: Platform.Data.Doublets.Decorators.UInt64Links
   name: UInt64Links
   href: api/Platform.Data.Doublets.Decorators.UInt64Links.html
