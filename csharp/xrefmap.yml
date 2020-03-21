@@ -1958,6 +1958,22 @@ references:
   fullName.vb: Platform.Data.Doublets.ILinksExtensions.SearchOrDefault(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink, TLink)
   nameWithType: ILinksExtensions.SearchOrDefault<TLink>(ILinks<TLink>, TLink, TLink)
   nameWithType.vb: ILinksExtensions.SearchOrDefault(Of TLink)(ILinks(Of TLink), TLink, TLink)
+- uid: Platform.Data.Doublets.ILinksExtensions.SingleOrDefault*
+  name: SingleOrDefault
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_SingleOrDefault_
+  commentId: Overload:Platform.Data.Doublets.ILinksExtensions.SingleOrDefault
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.ILinksExtensions.SingleOrDefault
+  nameWithType: ILinksExtensions.SingleOrDefault
+- uid: Platform.Data.Doublets.ILinksExtensions.SingleOrDefault``1(Platform.Data.Doublets.ILinks{``0},System.Collections.Generic.IList{``0})
+  name: SingleOrDefault<TLink>(ILinks<TLink>, IList<TLink>)
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_SingleOrDefault__1_Platform_Data_Doublets_ILinks___0__System_Collections_Generic_IList___0__
+  commentId: M:Platform.Data.Doublets.ILinksExtensions.SingleOrDefault``1(Platform.Data.Doublets.ILinks{``0},System.Collections.Generic.IList{``0})
+  name.vb: SingleOrDefault(Of TLink)(ILinks(Of TLink), IList(Of TLink))
+  fullName: Platform.Data.Doublets.ILinksExtensions.SingleOrDefault<TLink>(Platform.Data.Doublets.ILinks<TLink>, System.Collections.Generic.IList<TLink>)
+  fullName.vb: Platform.Data.Doublets.ILinksExtensions.SingleOrDefault(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), System.Collections.Generic.IList(Of TLink))
+  nameWithType: ILinksExtensions.SingleOrDefault<TLink>(ILinks<TLink>, IList<TLink>)
+  nameWithType.vb: ILinksExtensions.SingleOrDefault(Of TLink)(ILinks(Of TLink), IList(Of TLink))
 - uid: Platform.Data.Doublets.ILinksExtensions.Update*
   name: Update
   href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Update_
