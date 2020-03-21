@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using Platform.Interfaces;
 using Platform.Converters;
 using Platform.Data.Doublets.Sequences.Walkers;
+using System.Text;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -31,8 +31,12 @@ namespace Platform.Data.Doublets.Unicode
                 throw new ArgumentOutOfRangeException(nameof(source), source, "Specified link is not a unicode sequence.");
             }
             var sequence = _links.GetSource(source);
-            var charArray = _sequenceWalker.Walk(sequence).Select(_unicodeSymbolToCharConverter.Convert).ToArray();
-            return new string(charArray);
+            var sb = new StringBuilder();
+            foreach(var character in _sequenceWalker.Walk(sequence))
+            {
+                sb.Append(_unicodeSymbolToCharConverter.Convert(character));
+            }
+            return sb.ToString();
         }
     }
 }

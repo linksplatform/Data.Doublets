@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.CompilerServices;
+using Platform.Collections.Lists;
 using Platform.Converters;
 using Platform.Data.Doublets.Sequences.Frequencies.Cache;
 using Platform.Data.Doublets.Sequences.Frequencies.Counters;

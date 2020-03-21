@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Platform.Interfaces;
 
@@ -24,7 +23,9 @@ namespace Platform.Data.Doublets.PropertyOperators
                 return default;
             }
             var constants = links.Constants;
-            var valueLink = links.All(constants.Any, objectProperty).SingleOrDefault();
+            var any = constants.Any;
+            var query = new Link<TLink>(any, any, objectProperty);
+            var valueLink = links.SingleOrDefault(query);
             if (valueLink == null)
             {
                 return default;
