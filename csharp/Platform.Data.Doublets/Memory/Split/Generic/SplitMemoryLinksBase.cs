@@ -92,11 +92,19 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
             var allocatedLinks = ConvertToInt64(header.AllocatedLinks);
             // Adjust reserved capacity
             var minimumDataReservedCapacity = allocatedLinks * LinkDataPartSizeInBytes;
+            if (minimumDataReservedCapacity < dataMemory.UsedCapacity)
+            {
+                minimumDataReservedCapacity = dataMemory.UsedCapacity;
+            }
             if (minimumDataReservedCapacity < _dataMemoryReservationStepInBytes)
             {
                 minimumDataReservedCapacity = _dataMemoryReservationStepInBytes;
             }
             var minimumIndexReservedCapacity = allocatedLinks * LinkDataPartSizeInBytes;
+            if (minimumIndexReservedCapacity < indexMemory.UsedCapacity)
+            {
+                minimumIndexReservedCapacity = indexMemory.UsedCapacity;
+            }
             if (minimumIndexReservedCapacity < _indexMemoryReservationStepInBytes)
             {
                 minimumIndexReservedCapacity = _indexMemoryReservationStepInBytes;
