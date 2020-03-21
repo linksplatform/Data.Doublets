@@ -24,7 +24,7 @@ namespace Platform.Data.Doublets.PropertyOperators
             }
             var constants = links.Constants;
             var any = constants.Any;
-            var query = new Link<TLink>(any, any, objectProperty);
+            var query = new Link<TLink>(any, objectProperty, any);
             var valueLink = links.SingleOrDefault(query);
             if (valueLink == null)
             {
