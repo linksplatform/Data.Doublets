@@ -82,16 +82,44 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual void Init(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory)
         {
-            if (dataMemory.ReservedCapacity < _dataMemoryReservationStepInBytes)
+            // Read allocated links from header
+            if (indexMemory.ReservedCapacity < LinkHeaderSizeInBytes)
             {
-                dataMemory.ReservedCapacity = _dataMemoryReservationStepInBytes;
-            }
-            if (indexMemory.ReservedCapacity < _indexMemoryReservationStepInBytes)
-            {
-                indexMemory.ReservedCapacity = _indexMemoryReservationStepInBytes;
+                indexMemory.ReservedCapacity = LinkHeaderSizeInBytes;
             }
             SetPointers(dataMemory, indexMemory);
             ref var header = ref GetHeaderReference();
+            var allocatedLinks = ConvertToInt64(header.AllocatedLinks);
+            // Adjust reserved capacity
+            var minimumDataReservedCapacity = allocatedLinks * LinkDataPartSizeInBytes;
+            if (minimumDataReservedCapacity < _dataMemoryReservationStepInBytes)
+            {
+                minimumDataReservedCapacity = _dataMemoryReservationStepInBytes;
+            }
+            var minimumIndexReservedCapacity = allocatedLinks * LinkDataPartSizeInBytes;
+            if (minimumIndexReservedCapacity < _indexMemoryReservationStepInBytes)
+            {
+                minimumIndexReservedCapacity = _indexMemoryReservationStepInBytes;
+            }
+            // Check for alignment
+            if (minimumDataReservedCapacity % _dataMemoryReservationStepInBytes > 0)
+            {
+                minimumDataReservedCapacity = ((minimumDataReservedCapacity / _dataMemoryReservationStepInBytes) * _dataMemoryReservationStepInBytes) + _dataMemoryReservationStepInBytes;
+            }
+            if (minimumIndexReservedCapacity % _indexMemoryReservationStepInBytes > 0)
+            {
+                minimumIndexReservedCapacity = ((minimumIndexReservedCapacity / _indexMemoryReservationStepInBytes) * _indexMemoryReservationStepInBytes) + _indexMemoryReservationStepInBytes;
+            }
+            if (dataMemory.ReservedCapacity != minimumDataReservedCapacity)
+            {
+                dataMemory.ReservedCapacity = minimumDataReservedCapacity;
+            }
+            if (indexMemory.ReservedCapacity != minimumIndexReservedCapacity)
+            {
+                indexMemory.ReservedCapacity = minimumIndexReservedCapacity;
+            }
+            SetPointers(dataMemory, indexMemory);
+            header = ref GetHeaderReference();
             // Ensure correctness _memory.UsedCapacity over _header->AllocatedLinks
             // Гарантия корректности _memory.UsedCapacity относительно _header->AllocatedLinks
             dataMemory.UsedCapacity = (ConvertToInt64(header.AllocatedLinks) * LinkDataPartSizeInBytes) + LinkDataPartSizeInBytes; // First link is read only zero link.
