@@ -5217,14 +5217,14 @@ references:
   fullName.vb: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase(Of TLink).Increment
   nameWithType: SplitMemoryLinksBase<TLink>.Increment
   nameWithType.vb: SplitMemoryLinksBase(Of TLink).Increment
-- uid: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase`1.Init(IResizableDirectMemory,IResizableDirectMemory,System.Int64)
-  name: Init(IResizableDirectMemory, IResizableDirectMemory, Int64)
-  href: api/Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase-1.html#Platform_Data_Doublets_Memory_Split_Generic_SplitMemoryLinksBase_1_Init_IResizableDirectMemory_IResizableDirectMemory_System_Int64_
-  commentId: M:Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase`1.Init(IResizableDirectMemory,IResizableDirectMemory,System.Int64)
-  fullName: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase<TLink>.Init(IResizableDirectMemory, IResizableDirectMemory, System.Int64)
-  fullName.vb: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase(Of TLink).Init(IResizableDirectMemory, IResizableDirectMemory, System.Int64)
-  nameWithType: SplitMemoryLinksBase<TLink>.Init(IResizableDirectMemory, IResizableDirectMemory, Int64)
-  nameWithType.vb: SplitMemoryLinksBase(Of TLink).Init(IResizableDirectMemory, IResizableDirectMemory, Int64)
+- uid: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase`1.Init(IResizableDirectMemory,IResizableDirectMemory)
+  name: Init(IResizableDirectMemory, IResizableDirectMemory)
+  href: api/Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase-1.html#Platform_Data_Doublets_Memory_Split_Generic_SplitMemoryLinksBase_1_Init_IResizableDirectMemory_IResizableDirectMemory_
+  commentId: M:Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase`1.Init(IResizableDirectMemory,IResizableDirectMemory)
+  fullName: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase<TLink>.Init(IResizableDirectMemory, IResizableDirectMemory)
+  fullName.vb: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase(Of TLink).Init(IResizableDirectMemory, IResizableDirectMemory)
+  nameWithType: SplitMemoryLinksBase<TLink>.Init(IResizableDirectMemory, IResizableDirectMemory)
+  nameWithType.vb: SplitMemoryLinksBase(Of TLink).Init(IResizableDirectMemory, IResizableDirectMemory)
 - uid: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase`1.Init*
   name: Init
   href: api/Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase-1.html#Platform_Data_Doublets_Memory_Split_Generic_SplitMemoryLinksBase_1_Init_
