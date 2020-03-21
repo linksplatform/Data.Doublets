@@ -114,6 +114,33 @@ namespace Platform.Data.Doublets
             return firstLink;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static IList<TLink> SingleOrDefault<TLink>(this ILinks<TLink> links, IList<TLink> query)
+        {
+            IList<TLink> result = null;
+            var count = 0;
+            var constants = links.Constants;
+            var @continue = constants.Continue;
+            var @break = constants.Break;
+            links.Each(linkHandler, query);
+            return result;
+            
+            TLink linkHandler(IList<TLink> link)
+            {
+                if (count == 0)
+                {
+                    result = link;
+                    count++;
+                    return @continue;
+                }
+                else
+                {
+                    result = null;
+                    return @break;
+                }
+            }
+        }
+
         #region Paths
 
         /// <remarks>
@@ -278,9 +305,9 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IList<IList<TLink>> All<TLink>(this ILinks<TLink> links, params TLink[] restrictions)
         {
-            var arraySize = CheckedConverter<TLink, long>.Default.Convert(links.Count(restrictions));
+            var arraySize = CheckedConverter<TLink, ulong>.Default.Convert(links.Count(restrictions));
             if (arraySize > 0)
-            { 
+            {
                 var array = new IList<TLink>[arraySize];
                 var filler = new ArrayFiller<IList<TLink>, TLink>(array, links.Constants.Continue);
                 links.Each(filler.AddAndReturnConstant, restrictions);
@@ -295,7 +322,7 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IList<TLink> AllIndices<TLink>(this ILinks<TLink> links, params TLink[] restrictions)
         {
-            var arraySize = CheckedConverter<TLink, long>.Default.Convert(links.Count(restrictions));
+            var arraySize = CheckedConverter<TLink, ulong>.Default.Convert(links.Count(restrictions));
             if (arraySize > 0)
             {
                 var array = new TLink[arraySize];
@@ -777,7 +804,7 @@ namespace Platform.Data.Doublets
             links = new LinksCascadeUniquenessAndUsagesResolver<TLink>(links);
             return links;
         }
-            
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string Format<TLink>(this ILinks<TLink> links, IList<TLink> link)
         {
