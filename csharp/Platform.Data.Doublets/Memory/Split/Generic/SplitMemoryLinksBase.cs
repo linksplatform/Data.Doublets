@@ -80,15 +80,15 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         protected SplitMemoryLinksBase(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep) : this(dataMemory, indexMemory, memoryReservationStep, Default<LinksConstants<TLink>>.Instance) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual void Init(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep)
+        protected virtual void Init(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory)
         {
-            if (dataMemory.ReservedCapacity < memoryReservationStep)
+            if (dataMemory.ReservedCapacity < _dataMemoryReservationStepInBytes)
             {
-                dataMemory.ReservedCapacity = memoryReservationStep;
+                dataMemory.ReservedCapacity = _dataMemoryReservationStepInBytes;
             }
-            if (indexMemory.ReservedCapacity < memoryReservationStep)
+            if (indexMemory.ReservedCapacity < _indexMemoryReservationStepInBytes)
             {
-                indexMemory.ReservedCapacity = memoryReservationStep;
+                indexMemory.ReservedCapacity = _indexMemoryReservationStepInBytes;
             }
             SetPointers(dataMemory, indexMemory);
             ref var header = ref GetHeaderReference();

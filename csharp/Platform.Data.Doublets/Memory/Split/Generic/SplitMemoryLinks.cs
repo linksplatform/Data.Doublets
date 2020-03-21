@@ -31,7 +31,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
             _createExternalSourceTreeMethods = () => new ExternalLinksSourcesSizeBalancedTreeMethods<TLink>(Constants, _linksDataParts, _linksIndexParts, _header);
             _createInternalTargetTreeMethods = () => new InternalLinksTargetsSizeBalancedTreeMethods<TLink>(Constants, _linksDataParts, _linksIndexParts, _header);
             _createExternalTargetTreeMethods = () => new ExternalLinksTargetsSizeBalancedTreeMethods<TLink>(Constants, _linksDataParts, _linksIndexParts, _header);
-            Init(dataMemory, indexMemory, memoryReservationStep);
+            Init(dataMemory, indexMemory);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

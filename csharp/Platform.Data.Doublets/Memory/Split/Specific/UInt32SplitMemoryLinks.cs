@@ -32,7 +32,7 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
             _createExternalSourceTreeMethods = () => new UInt32ExternalLinksSourcesSizeBalancedTreeMethods(Constants, _linksDataParts, _linksIndexParts, _header);
             _createInternalTargetTreeMethods = () => new UInt32InternalLinksTargetsSizeBalancedTreeMethods(Constants, _linksDataParts, _linksIndexParts, _header);
             _createExternalTargetTreeMethods = () => new UInt32ExternalLinksTargetsSizeBalancedTreeMethods(Constants, _linksDataParts, _linksIndexParts, _header);
-            Init(dataMemory, indexMemory, memoryReservationStep);
+            Init(dataMemory, indexMemory);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
