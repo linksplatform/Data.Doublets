@@ -4,7 +4,7 @@
     <Description>LinksPlatform's Platform.Data.Doublets Class Library</Description>
     <Copyright>Konstantin Diachenko</Copyright>
     <AssemblyTitle>Platform.Data.Doublets</AssemblyTitle>
-    <VersionPrefix>0.6.4</VersionPrefix>
+    <VersionPrefix>0.6.5</VersionPrefix>
     <Authors>Konstantin Diachenko</Authors>
     <TargetFrameworks>net472;netstandard2.0;netstandard2.1</TargetFrameworks>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -25,8 +25,7 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <LangVersion>latest</LangVersion>
-    <PackageReleaseNotes>Added UInt32Links combined decorator.
-Better handling of memory size adjustion at memory adapter initialization.</PackageReleaseNotes>
+    <PackageReleaseNotes>Bugs fix.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup Condition="$(TargetFramework.StartsWith('net4')) AND '$(MSBuildRuntimeType)' == 'Core' AND '$(OS)' != 'Windows_NT'">
