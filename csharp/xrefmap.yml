@@ -15302,6 +15302,100 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Memory.United.Specific.UInt64UnusedLinksListMethods.GetLinkReference
   nameWithType: UInt64UnusedLinksListMethods.GetLinkReference
+- uid: Platform.Data.Doublets.Numbers.Raw
+  name: Platform.Data.Doublets.Numbers.Raw
+  href: api/Platform.Data.Doublets.Numbers.Raw.html
+  commentId: N:Platform.Data.Doublets.Numbers.Raw
+  fullName: Platform.Data.Doublets.Numbers.Raw
+  nameWithType: Platform.Data.Doublets.Numbers.Raw
+- uid: Platform.Data.Doublets.Numbers.Raw.LongRawNumberSequenceToNumberConverter`2
+  name: LongRawNumberSequenceToNumberConverter<TSource, TTarget>
+  href: api/Platform.Data.Doublets.Numbers.Raw.LongRawNumberSequenceToNumberConverter-2.html
+  commentId: T:Platform.Data.Doublets.Numbers.Raw.LongRawNumberSequenceToNumberConverter`2
+  name.vb: LongRawNumberSequenceToNumberConverter(Of TSource, TTarget)
+  fullName: Platform.Data.Doublets.Numbers.Raw.LongRawNumberSequenceToNumberConverter<TSource, TTarget>
+  fullName.vb: Platform.Data.Doublets.Numbers.Raw.LongRawNumberSequenceToNumberConverter(Of TSource, TTarget)
+  nameWithType: LongRawNumberSequenceToNumberConverter<TSource, TTarget>
+  nameWithType.vb: LongRawNumberSequenceToNumberConverter(Of TSource, TTarget)
+- uid: Platform.Data.Doublets.Numbers.Raw.LongRawNumberSequenceToNumberConverter`2.#ctor(Platform.Data.Doublets.ILinks{`0},IConverter{`0})
+  name: LongRawNumberSequenceToNumberConverter(ILinks<TSource>, IConverter<TSource>)
+  href: api/Platform.Data.Doublets.Numbers.Raw.LongRawNumberSequenceToNumberConverter-2.html#Platform_Data_Doublets_Numbers_Raw_LongRawNumberSequenceToNumberConverter_2__ctor_Platform_Data_Doublets_ILinks__0__IConverter__0__
+  commentId: M:Platform.Data.Doublets.Numbers.Raw.LongRawNumberSequenceToNumberConverter`2.#ctor(Platform.Data.Doublets.ILinks{`0},IConverter{`0})
+  name.vb: LongRawNumberSequenceToNumberConverter(ILinks(Of TSource), IConverter(Of TSource))
+  fullName: Platform.Data.Doublets.Numbers.Raw.LongRawNumberSequenceToNumberConverter<TSource, TTarget>.LongRawNumberSequenceToNumberConverter(Platform.Data.Doublets.ILinks<TSource>, IConverter<TSource>)
+  fullName.vb: Platform.Data.Doublets.Numbers.Raw.LongRawNumberSequenceToNumberConverter(Of TSource, TTarget).LongRawNumberSequenceToNumberConverter(Platform.Data.Doublets.ILinks(Of TSource), IConverter(Of TSource))
+  nameWithType: LongRawNumberSequenceToNumberConverter<TSource, TTarget>.LongRawNumberSequenceToNumberConverter(ILinks<TSource>, IConverter<TSource>)
+  nameWithType.vb: LongRawNumberSequenceToNumberConverter(Of TSource, TTarget).LongRawNumberSequenceToNumberConverter(ILinks(Of TSource), IConverter(Of TSource))
+- uid: Platform.Data.Doublets.Numbers.Raw.LongRawNumberSequenceToNumberConverter`2.#ctor*
+  name: LongRawNumberSequenceToNumberConverter
+  href: api/Platform.Data.Doublets.Numbers.Raw.LongRawNumberSequenceToNumberConverter-2.html#Platform_Data_Doublets_Numbers_Raw_LongRawNumberSequenceToNumberConverter_2__ctor_
+  commentId: Overload:Platform.Data.Doublets.Numbers.Raw.LongRawNumberSequenceToNumberConverter`2.#ctor
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Numbers.Raw.LongRawNumberSequenceToNumberConverter<TSource, TTarget>.LongRawNumberSequenceToNumberConverter
+  fullName.vb: Platform.Data.Doublets.Numbers.Raw.LongRawNumberSequenceToNumberConverter(Of TSource, TTarget).LongRawNumberSequenceToNumberConverter
+  nameWithType: LongRawNumberSequenceToNumberConverter<TSource, TTarget>.LongRawNumberSequenceToNumberConverter
+  nameWithType.vb: LongRawNumberSequenceToNumberConverter(Of TSource, TTarget).LongRawNumberSequenceToNumberConverter
+- uid: Platform.Data.Doublets.Numbers.Raw.LongRawNumberSequenceToNumberConverter`2.Convert(`0)
+  name: Convert(TSource)
+  href: api/Platform.Data.Doublets.Numbers.Raw.LongRawNumberSequenceToNumberConverter-2.html#Platform_Data_Doublets_Numbers_Raw_LongRawNumberSequenceToNumberConverter_2_Convert__0_
+  commentId: M:Platform.Data.Doublets.Numbers.Raw.LongRawNumberSequenceToNumberConverter`2.Convert(`0)
+  fullName: Platform.Data.Doublets.Numbers.Raw.LongRawNumberSequenceToNumberConverter<TSource, TTarget>.Convert(TSource)
+  fullName.vb: Platform.Data.Doublets.Numbers.Raw.LongRawNumberSequenceToNumberConverter(Of TSource, TTarget).Convert(TSource)
+  nameWithType: LongRawNumberSequenceToNumberConverter<TSource, TTarget>.Convert(TSource)
+  nameWithType.vb: LongRawNumberSequenceToNumberConverter(Of TSource, TTarget).Convert(TSource)
+- uid: Platform.Data.Doublets.Numbers.Raw.LongRawNumberSequenceToNumberConverter`2.Convert*
+  name: Convert
+  href: api/Platform.Data.Doublets.Numbers.Raw.LongRawNumberSequenceToNumberConverter-2.html#Platform_Data_Doublets_Numbers_Raw_LongRawNumberSequenceToNumberConverter_2_Convert_
+  commentId: Overload:Platform.Data.Doublets.Numbers.Raw.LongRawNumberSequenceToNumberConverter`2.Convert
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Numbers.Raw.LongRawNumberSequenceToNumberConverter<TSource, TTarget>.Convert
+  fullName.vb: Platform.Data.Doublets.Numbers.Raw.LongRawNumberSequenceToNumberConverter(Of TSource, TTarget).Convert
+  nameWithType: LongRawNumberSequenceToNumberConverter<TSource, TTarget>.Convert
+  nameWithType.vb: LongRawNumberSequenceToNumberConverter(Of TSource, TTarget).Convert
+- uid: Platform.Data.Doublets.Numbers.Raw.NumberToLongRawNumberSequenceConverter`2
+  name: NumberToLongRawNumberSequenceConverter<TSource, TTarget>
+  href: api/Platform.Data.Doublets.Numbers.Raw.NumberToLongRawNumberSequenceConverter-2.html
+  commentId: T:Platform.Data.Doublets.Numbers.Raw.NumberToLongRawNumberSequenceConverter`2
+  name.vb: NumberToLongRawNumberSequenceConverter(Of TSource, TTarget)
+  fullName: Platform.Data.Doublets.Numbers.Raw.NumberToLongRawNumberSequenceConverter<TSource, TTarget>
+  fullName.vb: Platform.Data.Doublets.Numbers.Raw.NumberToLongRawNumberSequenceConverter(Of TSource, TTarget)
+  nameWithType: NumberToLongRawNumberSequenceConverter<TSource, TTarget>
+  nameWithType.vb: NumberToLongRawNumberSequenceConverter(Of TSource, TTarget)
+- uid: Platform.Data.Doublets.Numbers.Raw.NumberToLongRawNumberSequenceConverter`2.#ctor(Platform.Data.Doublets.ILinks{`1},IConverter{`1})
+  name: NumberToLongRawNumberSequenceConverter(ILinks<TTarget>, IConverter<TTarget>)
+  href: api/Platform.Data.Doublets.Numbers.Raw.NumberToLongRawNumberSequenceConverter-2.html#Platform_Data_Doublets_Numbers_Raw_NumberToLongRawNumberSequenceConverter_2__ctor_Platform_Data_Doublets_ILinks__1__IConverter__1__
+  commentId: M:Platform.Data.Doublets.Numbers.Raw.NumberToLongRawNumberSequenceConverter`2.#ctor(Platform.Data.Doublets.ILinks{`1},IConverter{`1})
+  name.vb: NumberToLongRawNumberSequenceConverter(ILinks(Of TTarget), IConverter(Of TTarget))
+  fullName: Platform.Data.Doublets.Numbers.Raw.NumberToLongRawNumberSequenceConverter<TSource, TTarget>.NumberToLongRawNumberSequenceConverter(Platform.Data.Doublets.ILinks<TTarget>, IConverter<TTarget>)
+  fullName.vb: Platform.Data.Doublets.Numbers.Raw.NumberToLongRawNumberSequenceConverter(Of TSource, TTarget).NumberToLongRawNumberSequenceConverter(Platform.Data.Doublets.ILinks(Of TTarget), IConverter(Of TTarget))
+  nameWithType: NumberToLongRawNumberSequenceConverter<TSource, TTarget>.NumberToLongRawNumberSequenceConverter(ILinks<TTarget>, IConverter<TTarget>)
+  nameWithType.vb: NumberToLongRawNumberSequenceConverter(Of TSource, TTarget).NumberToLongRawNumberSequenceConverter(ILinks(Of TTarget), IConverter(Of TTarget))
+- uid: Platform.Data.Doublets.Numbers.Raw.NumberToLongRawNumberSequenceConverter`2.#ctor*
+  name: NumberToLongRawNumberSequenceConverter
+  href: api/Platform.Data.Doublets.Numbers.Raw.NumberToLongRawNumberSequenceConverter-2.html#Platform_Data_Doublets_Numbers_Raw_NumberToLongRawNumberSequenceConverter_2__ctor_
+  commentId: Overload:Platform.Data.Doublets.Numbers.Raw.NumberToLongRawNumberSequenceConverter`2.#ctor
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Numbers.Raw.NumberToLongRawNumberSequenceConverter<TSource, TTarget>.NumberToLongRawNumberSequenceConverter
+  fullName.vb: Platform.Data.Doublets.Numbers.Raw.NumberToLongRawNumberSequenceConverter(Of TSource, TTarget).NumberToLongRawNumberSequenceConverter
+  nameWithType: NumberToLongRawNumberSequenceConverter<TSource, TTarget>.NumberToLongRawNumberSequenceConverter
+  nameWithType.vb: NumberToLongRawNumberSequenceConverter(Of TSource, TTarget).NumberToLongRawNumberSequenceConverter
+- uid: Platform.Data.Doublets.Numbers.Raw.NumberToLongRawNumberSequenceConverter`2.Convert(`0)
+  name: Convert(TSource)
+  href: api/Platform.Data.Doublets.Numbers.Raw.NumberToLongRawNumberSequenceConverter-2.html#Platform_Data_Doublets_Numbers_Raw_NumberToLongRawNumberSequenceConverter_2_Convert__0_
+  commentId: M:Platform.Data.Doublets.Numbers.Raw.NumberToLongRawNumberSequenceConverter`2.Convert(`0)
+  fullName: Platform.Data.Doublets.Numbers.Raw.NumberToLongRawNumberSequenceConverter<TSource, TTarget>.Convert(TSource)
+  fullName.vb: Platform.Data.Doublets.Numbers.Raw.NumberToLongRawNumberSequenceConverter(Of TSource, TTarget).Convert(TSource)
+  nameWithType: NumberToLongRawNumberSequenceConverter<TSource, TTarget>.Convert(TSource)
+  nameWithType.vb: NumberToLongRawNumberSequenceConverter(Of TSource, TTarget).Convert(TSource)
+- uid: Platform.Data.Doublets.Numbers.Raw.NumberToLongRawNumberSequenceConverter`2.Convert*
+  name: Convert
+  href: api/Platform.Data.Doublets.Numbers.Raw.NumberToLongRawNumberSequenceConverter-2.html#Platform_Data_Doublets_Numbers_Raw_NumberToLongRawNumberSequenceConverter_2_Convert_
+  commentId: Overload:Platform.Data.Doublets.Numbers.Raw.NumberToLongRawNumberSequenceConverter`2.Convert
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Numbers.Raw.NumberToLongRawNumberSequenceConverter<TSource, TTarget>.Convert
+  fullName.vb: Platform.Data.Doublets.Numbers.Raw.NumberToLongRawNumberSequenceConverter(Of TSource, TTarget).Convert
+  nameWithType: NumberToLongRawNumberSequenceConverter<TSource, TTarget>.Convert
+  nameWithType.vb: NumberToLongRawNumberSequenceConverter(Of TSource, TTarget).Convert
 - uid: Platform.Data.Doublets.Numbers.Unary
   name: Platform.Data.Doublets.Numbers.Unary
   href: api/Platform.Data.Doublets.Numbers.Unary.html
@@ -19317,6 +19411,100 @@ references:
   fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of TLinkAddress).Update
   nameWithType: SynchronizedLinks<TLinkAddress>.Update
   nameWithType.vb: SynchronizedLinks(Of TLinkAddress).Update
+- uid: Platform.Data.Doublets.Time
+  name: Platform.Data.Doublets.Time
+  href: api/Platform.Data.Doublets.Time.html
+  commentId: N:Platform.Data.Doublets.Time
+  fullName: Platform.Data.Doublets.Time
+  nameWithType: Platform.Data.Doublets.Time
+- uid: Platform.Data.Doublets.Time.DateTimeToLongRawNumberSequenceConverter`1
+  name: DateTimeToLongRawNumberSequenceConverter<TLink>
+  href: api/Platform.Data.Doublets.Time.DateTimeToLongRawNumberSequenceConverter-1.html
+  commentId: T:Platform.Data.Doublets.Time.DateTimeToLongRawNumberSequenceConverter`1
+  name.vb: DateTimeToLongRawNumberSequenceConverter(Of TLink)
+  fullName: Platform.Data.Doublets.Time.DateTimeToLongRawNumberSequenceConverter<TLink>
+  fullName.vb: Platform.Data.Doublets.Time.DateTimeToLongRawNumberSequenceConverter(Of TLink)
+  nameWithType: DateTimeToLongRawNumberSequenceConverter<TLink>
+  nameWithType.vb: DateTimeToLongRawNumberSequenceConverter(Of TLink)
+- uid: Platform.Data.Doublets.Time.DateTimeToLongRawNumberSequenceConverter`1.#ctor(IConverter{System.Int64,`0})
+  name: DateTimeToLongRawNumberSequenceConverter(IConverter<Int64, TLink>)
+  href: api/Platform.Data.Doublets.Time.DateTimeToLongRawNumberSequenceConverter-1.html#Platform_Data_Doublets_Time_DateTimeToLongRawNumberSequenceConverter_1__ctor_IConverter_System_Int64__0__
+  commentId: M:Platform.Data.Doublets.Time.DateTimeToLongRawNumberSequenceConverter`1.#ctor(IConverter{System.Int64,`0})
+  name.vb: DateTimeToLongRawNumberSequenceConverter(IConverter(Of Int64, TLink))
+  fullName: Platform.Data.Doublets.Time.DateTimeToLongRawNumberSequenceConverter<TLink>.DateTimeToLongRawNumberSequenceConverter(IConverter<System.Int64, TLink>)
+  fullName.vb: Platform.Data.Doublets.Time.DateTimeToLongRawNumberSequenceConverter(Of TLink).DateTimeToLongRawNumberSequenceConverter(IConverter(Of System.Int64, TLink))
+  nameWithType: DateTimeToLongRawNumberSequenceConverter<TLink>.DateTimeToLongRawNumberSequenceConverter(IConverter<Int64, TLink>)
+  nameWithType.vb: DateTimeToLongRawNumberSequenceConverter(Of TLink).DateTimeToLongRawNumberSequenceConverter(IConverter(Of Int64, TLink))
+- uid: Platform.Data.Doublets.Time.DateTimeToLongRawNumberSequenceConverter`1.#ctor*
+  name: DateTimeToLongRawNumberSequenceConverter
+  href: api/Platform.Data.Doublets.Time.DateTimeToLongRawNumberSequenceConverter-1.html#Platform_Data_Doublets_Time_DateTimeToLongRawNumberSequenceConverter_1__ctor_
+  commentId: Overload:Platform.Data.Doublets.Time.DateTimeToLongRawNumberSequenceConverter`1.#ctor
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Time.DateTimeToLongRawNumberSequenceConverter<TLink>.DateTimeToLongRawNumberSequenceConverter
+  fullName.vb: Platform.Data.Doublets.Time.DateTimeToLongRawNumberSequenceConverter(Of TLink).DateTimeToLongRawNumberSequenceConverter
+  nameWithType: DateTimeToLongRawNumberSequenceConverter<TLink>.DateTimeToLongRawNumberSequenceConverter
+  nameWithType.vb: DateTimeToLongRawNumberSequenceConverter(Of TLink).DateTimeToLongRawNumberSequenceConverter
+- uid: Platform.Data.Doublets.Time.DateTimeToLongRawNumberSequenceConverter`1.Convert(System.DateTime)
+  name: Convert(DateTime)
+  href: api/Platform.Data.Doublets.Time.DateTimeToLongRawNumberSequenceConverter-1.html#Platform_Data_Doublets_Time_DateTimeToLongRawNumberSequenceConverter_1_Convert_System_DateTime_
+  commentId: M:Platform.Data.Doublets.Time.DateTimeToLongRawNumberSequenceConverter`1.Convert(System.DateTime)
+  fullName: Platform.Data.Doublets.Time.DateTimeToLongRawNumberSequenceConverter<TLink>.Convert(System.DateTime)
+  fullName.vb: Platform.Data.Doublets.Time.DateTimeToLongRawNumberSequenceConverter(Of TLink).Convert(System.DateTime)
+  nameWithType: DateTimeToLongRawNumberSequenceConverter<TLink>.Convert(DateTime)
+  nameWithType.vb: DateTimeToLongRawNumberSequenceConverter(Of TLink).Convert(DateTime)
+- uid: Platform.Data.Doublets.Time.DateTimeToLongRawNumberSequenceConverter`1.Convert*
+  name: Convert
+  href: api/Platform.Data.Doublets.Time.DateTimeToLongRawNumberSequenceConverter-1.html#Platform_Data_Doublets_Time_DateTimeToLongRawNumberSequenceConverter_1_Convert_
+  commentId: Overload:Platform.Data.Doublets.Time.DateTimeToLongRawNumberSequenceConverter`1.Convert
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Time.DateTimeToLongRawNumberSequenceConverter<TLink>.Convert
+  fullName.vb: Platform.Data.Doublets.Time.DateTimeToLongRawNumberSequenceConverter(Of TLink).Convert
+  nameWithType: DateTimeToLongRawNumberSequenceConverter<TLink>.Convert
+  nameWithType.vb: DateTimeToLongRawNumberSequenceConverter(Of TLink).Convert
+- uid: Platform.Data.Doublets.Time.LongRawNumberSequenceToDateTimeConverter`1
+  name: LongRawNumberSequenceToDateTimeConverter<TLink>
+  href: api/Platform.Data.Doublets.Time.LongRawNumberSequenceToDateTimeConverter-1.html
+  commentId: T:Platform.Data.Doublets.Time.LongRawNumberSequenceToDateTimeConverter`1
+  name.vb: LongRawNumberSequenceToDateTimeConverter(Of TLink)
+  fullName: Platform.Data.Doublets.Time.LongRawNumberSequenceToDateTimeConverter<TLink>
+  fullName.vb: Platform.Data.Doublets.Time.LongRawNumberSequenceToDateTimeConverter(Of TLink)
+  nameWithType: LongRawNumberSequenceToDateTimeConverter<TLink>
+  nameWithType.vb: LongRawNumberSequenceToDateTimeConverter(Of TLink)
+- uid: Platform.Data.Doublets.Time.LongRawNumberSequenceToDateTimeConverter`1.#ctor(IConverter{`0,System.Int64})
+  name: LongRawNumberSequenceToDateTimeConverter(IConverter<TLink, Int64>)
+  href: api/Platform.Data.Doublets.Time.LongRawNumberSequenceToDateTimeConverter-1.html#Platform_Data_Doublets_Time_LongRawNumberSequenceToDateTimeConverter_1__ctor_IConverter__0_System_Int64__
+  commentId: M:Platform.Data.Doublets.Time.LongRawNumberSequenceToDateTimeConverter`1.#ctor(IConverter{`0,System.Int64})
+  name.vb: LongRawNumberSequenceToDateTimeConverter(IConverter(Of TLink, Int64))
+  fullName: Platform.Data.Doublets.Time.LongRawNumberSequenceToDateTimeConverter<TLink>.LongRawNumberSequenceToDateTimeConverter(IConverter<TLink, System.Int64>)
+  fullName.vb: Platform.Data.Doublets.Time.LongRawNumberSequenceToDateTimeConverter(Of TLink).LongRawNumberSequenceToDateTimeConverter(IConverter(Of TLink, System.Int64))
+  nameWithType: LongRawNumberSequenceToDateTimeConverter<TLink>.LongRawNumberSequenceToDateTimeConverter(IConverter<TLink, Int64>)
+  nameWithType.vb: LongRawNumberSequenceToDateTimeConverter(Of TLink).LongRawNumberSequenceToDateTimeConverter(IConverter(Of TLink, Int64))
+- uid: Platform.Data.Doublets.Time.LongRawNumberSequenceToDateTimeConverter`1.#ctor*
+  name: LongRawNumberSequenceToDateTimeConverter
+  href: api/Platform.Data.Doublets.Time.LongRawNumberSequenceToDateTimeConverter-1.html#Platform_Data_Doublets_Time_LongRawNumberSequenceToDateTimeConverter_1__ctor_
+  commentId: Overload:Platform.Data.Doublets.Time.LongRawNumberSequenceToDateTimeConverter`1.#ctor
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Time.LongRawNumberSequenceToDateTimeConverter<TLink>.LongRawNumberSequenceToDateTimeConverter
+  fullName.vb: Platform.Data.Doublets.Time.LongRawNumberSequenceToDateTimeConverter(Of TLink).LongRawNumberSequenceToDateTimeConverter
+  nameWithType: LongRawNumberSequenceToDateTimeConverter<TLink>.LongRawNumberSequenceToDateTimeConverter
+  nameWithType.vb: LongRawNumberSequenceToDateTimeConverter(Of TLink).LongRawNumberSequenceToDateTimeConverter
+- uid: Platform.Data.Doublets.Time.LongRawNumberSequenceToDateTimeConverter`1.Convert(`0)
+  name: Convert(TLink)
+  href: api/Platform.Data.Doublets.Time.LongRawNumberSequenceToDateTimeConverter-1.html#Platform_Data_Doublets_Time_LongRawNumberSequenceToDateTimeConverter_1_Convert__0_
+  commentId: M:Platform.Data.Doublets.Time.LongRawNumberSequenceToDateTimeConverter`1.Convert(`0)
+  fullName: Platform.Data.Doublets.Time.LongRawNumberSequenceToDateTimeConverter<TLink>.Convert(TLink)
+  fullName.vb: Platform.Data.Doublets.Time.LongRawNumberSequenceToDateTimeConverter(Of TLink).Convert(TLink)
+  nameWithType: LongRawNumberSequenceToDateTimeConverter<TLink>.Convert(TLink)
+  nameWithType.vb: LongRawNumberSequenceToDateTimeConverter(Of TLink).Convert(TLink)
+- uid: Platform.Data.Doublets.Time.LongRawNumberSequenceToDateTimeConverter`1.Convert*
+  name: Convert
+  href: api/Platform.Data.Doublets.Time.LongRawNumberSequenceToDateTimeConverter-1.html#Platform_Data_Doublets_Time_LongRawNumberSequenceToDateTimeConverter_1_Convert_
+  commentId: Overload:Platform.Data.Doublets.Time.LongRawNumberSequenceToDateTimeConverter`1.Convert
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Time.LongRawNumberSequenceToDateTimeConverter<TLink>.Convert
+  fullName.vb: Platform.Data.Doublets.Time.LongRawNumberSequenceToDateTimeConverter(Of TLink).Convert
+  nameWithType: LongRawNumberSequenceToDateTimeConverter<TLink>.Convert
+  nameWithType.vb: LongRawNumberSequenceToDateTimeConverter(Of TLink).Convert
 - uid: Platform.Data.Doublets.UInt64LinksExtensions
   name: UInt64LinksExtensions
   href: api/Platform.Data.Doublets.UInt64LinksExtensions.html
