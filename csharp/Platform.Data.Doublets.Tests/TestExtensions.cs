@@ -168,7 +168,7 @@ namespace Platform.Data.Doublets.Tests
                 {
                     var linksCount = addressToUInt64Converter.Convert(links.Count());
                     var createPoint = random.NextBoolean();
-                    if (linksCount > 2 && createPoint)
+                    if (linksCount >= 2 && createPoint)
                     {
                         var linksAddressRange = new Range<ulong>(1, linksCount);
                         TLink source = uInt64ToAddressConverter.Convert(random.NextUInt64(linksAddressRange));
