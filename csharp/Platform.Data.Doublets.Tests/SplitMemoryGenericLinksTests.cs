@@ -2,6 +2,7 @@
 using Xunit;
 using Platform.Memory;
 using Platform.Data.Doublets.Memory.Split.Generic;
+using Platform.Data.Doublets.Memory;
 
 namespace Platform.Data.Doublets.Tests
 {

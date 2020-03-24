@@ -39,8 +39,16 @@ namespace Platform.Data.Doublets.Memory.United.Specific
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public UInt32UnitedMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep, LinksConstants<uint> constants, IndexTreeType indexTreeType) : base(memory, memoryReservationStep, constants)
         {
-            _createSourceTreeMethods = () => new UInt32LinksSourcesSizeBalancedTreeMethods(Constants, _links, _header);
-            _createTargetTreeMethods = () => new UInt32LinksTargetsSizeBalancedTreeMethods(Constants, _links, _header);
+            if (indexTreeType == IndexTreeType.SizeBalancedTree)
+            {
+                _createSourceTreeMethods = () => new UInt32LinksSourcesSizeBalancedTreeMethods(Constants, _links, _header);
+                _createTargetTreeMethods = () => new UInt32LinksTargetsSizeBalancedTreeMethods(Constants, _links, _header);
+            }
+            else
+            {
+                _createSourceTreeMethods = () => new UInt32LinksSourcesRecursionlessSizeBalancedTreeMethods(Constants, _links, _header);
+                _createTargetTreeMethods = () => new UInt32LinksTargetsRecursionlessSizeBalancedTreeMethods(Constants, _links, _header);
+            }
             Init(memory, memoryReservationStep);
         }
 

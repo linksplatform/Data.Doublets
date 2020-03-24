@@ -23,15 +23,28 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         public UInt64SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory) : this(dataMemory, indexMemory, DefaultLinksSizeStep) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public UInt64SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep) : this(dataMemory, indexMemory, memoryReservationStep, Default<LinksConstants<TLink>>.Instance) { }
+        public UInt64SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep) : this(dataMemory, indexMemory, memoryReservationStep, Default<LinksConstants<TLink>>.Instance, IndexTreeType.Default) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public UInt64SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep, LinksConstants<TLink> constants) : base(dataMemory, indexMemory, memoryReservationStep, constants)
+        public UInt64SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep, LinksConstants<TLink> constants) : this(dataMemory, indexMemory, memoryReservationStep, constants, IndexTreeType.Default) { }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public UInt64SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep, LinksConstants<TLink> constants, IndexTreeType indexTreeType) : base(dataMemory, indexMemory, memoryReservationStep, constants)
         {
-            _createInternalSourceTreeMethods = () => new UInt64InternalLinksSourcesSizeBalancedTreeMethods(Constants, _linksDataParts, _linksIndexParts, _header);
-            _createExternalSourceTreeMethods = () => new UInt64ExternalLinksSourcesSizeBalancedTreeMethods(Constants, _linksDataParts, _linksIndexParts, _header);
-            _createInternalTargetTreeMethods = () => new UInt64InternalLinksTargetsSizeBalancedTreeMethods(Constants, _linksDataParts, _linksIndexParts, _header);
-            _createExternalTargetTreeMethods = () => new UInt64ExternalLinksTargetsSizeBalancedTreeMethods(Constants, _linksDataParts, _linksIndexParts, _header);
+            if (indexTreeType == IndexTreeType.SizeBalancedTree)
+            {
+                _createInternalSourceTreeMethods = () => new UInt64InternalLinksSourcesSizeBalancedTreeMethods(Constants, _linksDataParts, _linksIndexParts, _header);
+                _createExternalSourceTreeMethods = () => new UInt64ExternalLinksSourcesSizeBalancedTreeMethods(Constants, _linksDataParts, _linksIndexParts, _header);
+                _createInternalTargetTreeMethods = () => new UInt64InternalLinksTargetsSizeBalancedTreeMethods(Constants, _linksDataParts, _linksIndexParts, _header);
+                _createExternalTargetTreeMethods = () => new UInt64ExternalLinksTargetsSizeBalancedTreeMethods(Constants, _linksDataParts, _linksIndexParts, _header);
+            }
+            else
+            {
+                _createInternalSourceTreeMethods = () => new UInt64InternalLinksSourcesRecursionlessSizeBalancedTreeMethods(Constants, _linksDataParts, _linksIndexParts, _header);
+                _createExternalSourceTreeMethods = () => new UInt64ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods(Constants, _linksDataParts, _linksIndexParts, _header);
+                _createInternalTargetTreeMethods = () => new UInt64InternalLinksTargetsRecursionlessSizeBalancedTreeMethods(Constants, _linksDataParts, _linksIndexParts, _header);
+                _createExternalTargetTreeMethods = () => new UInt64ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods(Constants, _linksDataParts, _linksIndexParts, _header);
+            }
             Init(dataMemory, indexMemory);
         }
 

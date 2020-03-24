@@ -44,10 +44,15 @@ namespace Platform.Data.Doublets.Memory.United.Specific
                 _createSourceTreeMethods = () => new UInt64LinksSourcesAvlBalancedTreeMethods(Constants, _links, _header);
                 _createTargetTreeMethods = () => new UInt64LinksTargetsAvlBalancedTreeMethods(Constants, _links, _header);
             }
-            else
+            else if (indexTreeType == IndexTreeType.SizeBalancedTree)
             {
                 _createSourceTreeMethods = () => new UInt64LinksSourcesSizeBalancedTreeMethods(Constants, _links, _header);
                 _createTargetTreeMethods = () => new UInt64LinksTargetsSizeBalancedTreeMethods(Constants, _links, _header);
+            }
+            else
+            {
+                _createSourceTreeMethods = () => new UInt64LinksSourcesRecursionlessSizeBalancedTreeMethods(Constants, _links, _header);
+                _createTargetTreeMethods = () => new UInt64LinksTargetsRecursionlessSizeBalancedTreeMethods(Constants, _links, _header);
             }
             Init(memory, memoryReservationStep);
         }
