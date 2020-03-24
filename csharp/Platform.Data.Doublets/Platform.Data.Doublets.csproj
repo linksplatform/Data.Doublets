@@ -4,7 +4,7 @@
     <Description>LinksPlatform's Platform.Data.Doublets Class Library</Description>
     <Copyright>Konstantin Diachenko</Copyright>
     <AssemblyTitle>Platform.Data.Doublets</AssemblyTitle>
-    <VersionPrefix>0.6.5</VersionPrefix>
+    <VersionPrefix>0.6.6</VersionPrefix>
     <Authors>Konstantin Diachenko</Authors>
     <TargetFrameworks>net472;netstandard2.0;netstandard2.1</TargetFrameworks>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -25,7 +25,15 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <LangVersion>latest</LangVersion>
-    <PackageReleaseNotes>Bugs fix.</PackageReleaseNotes>
+    <PackageReleaseNotes>Platform.Collections.Methods dependency updated from 0.3.0 to 0.3.1.
+Recursion-less version of Size Balanced Tree is enabled by default.
+Added new converters:
+* NumberToLongRawNumberSequenceConverter
+* LongRawNumberSequenceToNumberConverter
+* DateTimeToLongRawNumberSequenceConverter
+* LongRawNumberSequenceToDateTimeConverter
+
+Refactoring, issues fix.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup Condition="$(TargetFramework.StartsWith('net4')) AND '$(MSBuildRuntimeType)' == 'Core' AND '$(OS)' != 'Windows_NT'">
