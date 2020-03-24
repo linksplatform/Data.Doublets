@@ -582,10 +582,9 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
                     header = ref GetHeaderReference();
                     header.ReservedLinks = ConvertToAddress(_dataMemory.ReservedCapacity / LinkDataPartSizeInBytes);
                 }
-                header.AllocatedLinks = Increment(header.AllocatedLinks);
+                freeLink = header.AllocatedLinks = Increment(header.AllocatedLinks);
                 _dataMemory.UsedCapacity += LinkDataPartSizeInBytes;
                 _indexMemory.UsedCapacity += LinkIndexPartSizeInBytes;
-                freeLink = header.AllocatedLinks;
             }
             return freeLink;
         }

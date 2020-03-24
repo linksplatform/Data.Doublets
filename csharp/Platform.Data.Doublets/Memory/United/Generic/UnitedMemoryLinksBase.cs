@@ -387,9 +387,8 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                     header = ref GetHeaderReference();
                     header.ReservedLinks = ConvertToAddress(_memory.ReservedCapacity / LinkSizeInBytes);
                 }
-                header.AllocatedLinks = Increment(header.AllocatedLinks);
+                freeLink = header.AllocatedLinks = Increment(header.AllocatedLinks);
                 _memory.UsedCapacity += LinkSizeInBytes;
-                freeLink = header.AllocatedLinks;
             }
             return freeLink;
         }
