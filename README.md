@@ -6,7 +6,7 @@
 # [Data.Doublets](https://github.com/linksplatform/Data.Doublets) ([русская версия](README.ru.md))
 LinksPlatform's Platform.Data.Doublets Class Library.
 
-Namespace: [Platform.Data.Doublets](https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.html)
+Namespace: [Platform.Data.Doublets](https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.html)
 
 Forked from: [Konard/LinksPlatform/Platform/Platform.Data.Doublets](https://github.com/Konard/LinksPlatform/tree/b0844d778ced60b22435e57342393031b26a2822/Platform/Platform.Data.Doublets)
 
@@ -45,11 +45,11 @@ namespace HelloWorld.Doublets.DotNet
 [![Image with result of performance comparison between SQLite and Doublets.](https://raw.githubusercontent.com/linksplatform/Documentation/master/doc/Examples/sqlite_vs_doublets_performance.png "Result of performance comparison between SQLite and Doublets")](https://github.com/linksplatform/Comparisons.SQLiteVSDoublets)
 
 ## [Documentation](https://linksplatform.github.io/Data.Doublets)
-*   Interface [ILinks\<TLink, TConstants\>](https://linksplatform.github.io/Data/api/Platform.Data.ILinks-2.html).
-*   Interface [ILinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.ILinks-1.html).
-*   Class [ResizableDirectMemoryLinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinks-1.html).
+*   Interface [ILinks\<TLink, TConstants\>](https://linksplatform.github.io/Data/csharp/api/Platform.Data.ILinks-2.html).
+*   Interface [ILinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.ILinks-1.html).
+*   Class [ResizableDirectMemoryLinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinks-1.html).
 
-[PDF file](https://linksplatform.github.io/Data.Doublets/Platform.Data.Doublets.pdf) with code for e-readers.
+[PDF file](https://linksplatform.github.io/Data.Doublets/csharp/Platform.Data.Doublets.pdf) with code for e-readers.
 
 ## Dependency graph
 [![Dependency graph SVG image](https://raw.github.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.svg?sanitize=true)](https://raw.githubusercontent.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.svg?sanitize=true)
