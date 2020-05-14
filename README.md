@@ -47,7 +47,7 @@ namespace HelloWorld.Doublets.DotNet
 ## [Documentation](https://linksplatform.github.io/Data.Doublets)
 *   Interface [ILinks\<TLink, TConstants\>](https://linksplatform.github.io/Data/csharp/api/Platform.Data.ILinks-2.html).
 *   Interface [ILinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.ILinks-1.html).
-*   Class [ResizableDirectMemoryLinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.ResizableDirectMemory.Generic.ResizableDirectMemoryLinks-1.html).
+*   Class [UnitedMemoryLinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinks-1.html).
 
 [PDF file](https://linksplatform.github.io/Data.Doublets/csharp/Platform.Data.Doublets.pdf) with code for e-readers.
 
