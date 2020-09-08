@@ -7,7 +7,7 @@ on:
     branches: master
 
 env:
-  NUGETTOKEN: ${{ secrets.NUGETTOKEN }}
+  NUGETTOKEN: ${{ secrets.NUGET_TOKEN }}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   SCRIPTS_BASE_URL: https://raw.githubusercontent.com/linksplatform/Scripts/master/MultiProjectRepository
 
