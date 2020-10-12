@@ -7,7 +7,7 @@ using static System.Runtime.CompilerServices.Unsafe;
 
 namespace Platform.Data.Doublets.Memory.United.Generic
 {
-    public unsafe class UnusedLinksListMethods<TLink> : CircularDoublyLinkedListMethods<TLink>, ILinksListMethods<TLink>
+    public unsafe class UnusedLinksListMethods<TLink> : AbsoluteCircularDoublyLinkedListMethods<TLink>, ILinksListMethods<TLink>
     {
         private static readonly UncheckedConverter<TLink, long> _addressToInt64Converter = UncheckedConverter<TLink, long>.Default;
 
