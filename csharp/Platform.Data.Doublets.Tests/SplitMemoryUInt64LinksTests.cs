@@ -23,7 +23,7 @@ namespace Platform.Data.Doublets.Tests
         [Fact]
         public static void MultipleRandomCreationsAndDeletionsTest()
         {
-            Using(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
+            Using(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(500));
         }
 
         private static void Using(Action<ILinks<TLink>> action)
