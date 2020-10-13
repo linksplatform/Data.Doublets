@@ -25,7 +25,7 @@ namespace Platform.Data.Doublets.Tests
             TempFilename = Path.GetTempFileName();
             TempTransactionLogFilename = Path.GetTempFileName();
             //var coreMemoryAdapter = new UInt64UnitedMemoryLinks(TempFilename);
-            var coreMemoryAdapter = new UInt64SplitMemoryLinks(new FileMappedResizableDirectMemory(TempFilename), new FileMappedResizableDirectMemory(Path.ChangeExtension(TempFilename, "indexes")));
+            var coreMemoryAdapter = new UInt64SplitMemoryLinks(new FileMappedResizableDirectMemory(TempFilename), new FileMappedResizableDirectMemory(Path.ChangeExtension(TempFilename, "indexes")), UInt64SplitMemoryLinks.DefaultLinksSizeStep, new LinksConstants<ulong>(), Memory.IndexTreeType.Default, useLinkedList: true);
             MemoryAdapter = useLog ? (ILinks<ulong>)new UInt64LinksTransactionsLayer(coreMemoryAdapter, TempTransactionLogFilename) : coreMemoryAdapter;
             Links = new SynchronizedLinks<ulong>(new UInt64Links(MemoryAdapter));
             if (useSequences)

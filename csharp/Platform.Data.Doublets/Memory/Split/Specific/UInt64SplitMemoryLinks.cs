@@ -23,13 +23,13 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         public UInt64SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory) : this(dataMemory, indexMemory, DefaultLinksSizeStep) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public UInt64SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep) : this(dataMemory, indexMemory, memoryReservationStep, Default<LinksConstants<TLink>>.Instance, IndexTreeType.Default) { }
+        public UInt64SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep) : this(dataMemory, indexMemory, memoryReservationStep, Default<LinksConstants<TLink>>.Instance, IndexTreeType.Default, useLinkedList: true) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public UInt64SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep, LinksConstants<TLink> constants) : this(dataMemory, indexMemory, memoryReservationStep, constants, IndexTreeType.Default) { }
+        public UInt64SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep, LinksConstants<TLink> constants) : this(dataMemory, indexMemory, memoryReservationStep, constants, IndexTreeType.Default, useLinkedList: true) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public UInt64SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep, LinksConstants<TLink> constants, IndexTreeType indexTreeType) : base(dataMemory, indexMemory, memoryReservationStep, constants)
+        public UInt64SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep, LinksConstants<TLink> constants, IndexTreeType indexTreeType, bool useLinkedList) : base(dataMemory, indexMemory, memoryReservationStep, constants, useLinkedList)
         {
             if (indexTreeType == IndexTreeType.SizeBalancedTree)
             {
@@ -54,7 +54,14 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
             _linksDataParts = (RawLinkDataPart<TLink>*)dataMemory.Pointer;
             _linksIndexParts = (RawLinkIndexPart<TLink>*)indexMemory.Pointer;
             _header = (LinksHeader<TLink>*)indexMemory.Pointer;
-            InternalSourcesTreeMethods = _createInternalSourceTreeMethods();
+            if (_useLinkedList)
+            {
+                InternalSourcesListMethods = new UInt64InternalLinksSourcesLinkedListMethods(Constants, _linksDataParts, _linksIndexParts);
+            }
+            else
+            {
+                InternalSourcesTreeMethods = _createInternalSourceTreeMethods();
+            }
             ExternalSourcesTreeMethods = _createExternalSourceTreeMethods();
             InternalTargetsTreeMethods = _createInternalTargetTreeMethods();
             ExternalTargetsTreeMethods = _createExternalTargetTreeMethods();

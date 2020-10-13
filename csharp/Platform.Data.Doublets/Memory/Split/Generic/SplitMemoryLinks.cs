@@ -22,13 +22,13 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         public SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory) : this(dataMemory, indexMemory, DefaultLinksSizeStep) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep) : this(dataMemory, indexMemory, memoryReservationStep, Default<LinksConstants<TLink>>.Instance, IndexTreeType.Default) { }
+        public SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep) : this(dataMemory, indexMemory, memoryReservationStep, Default<LinksConstants<TLink>>.Instance, IndexTreeType.Default, useLinkedList: true) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep, LinksConstants<TLink> constants) : this(dataMemory, indexMemory, memoryReservationStep, constants, IndexTreeType.Default) { }
+        public SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep, LinksConstants<TLink> constants) : this(dataMemory, indexMemory, memoryReservationStep, constants, IndexTreeType.Default, useLinkedList: true) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep, LinksConstants<TLink> constants, IndexTreeType indexTreeType) : base(dataMemory, indexMemory, memoryReservationStep, constants)
+        public SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep, LinksConstants<TLink> constants, IndexTreeType indexTreeType, bool useLinkedList) : base(dataMemory, indexMemory, memoryReservationStep, constants, useLinkedList)
         {
             if (indexTreeType == IndexTreeType.SizeBalancedTree)
             {
@@ -53,7 +53,14 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
             _linksDataParts = (byte*)dataMemory.Pointer;
             _linksIndexParts = (byte*)indexMemory.Pointer;
             _header = _linksIndexParts;
-            InternalSourcesTreeMethods = _createInternalSourceTreeMethods();
+            if (_useLinkedList)
+            {
+                InternalSourcesListMethods = new InternalLinksSourcesLinkedListMethods<TLink>(Constants, _linksDataParts, _linksIndexParts);
+            }
+            else
+            {
+                InternalSourcesTreeMethods = _createInternalSourceTreeMethods();
+            }
             ExternalSourcesTreeMethods = _createExternalSourceTreeMethods();
             InternalTargetsTreeMethods = _createInternalTargetTreeMethods();
             ExternalTargetsTreeMethods = _createExternalTargetTreeMethods();

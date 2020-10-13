@@ -37,9 +37,11 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
 
         protected readonly IResizableDirectMemory _dataMemory;
         protected readonly IResizableDirectMemory _indexMemory;
+        protected readonly bool _useLinkedList;
         protected readonly long _dataMemoryReservationStepInBytes;
         protected readonly long _indexMemoryReservationStepInBytes;
 
+        protected InternalLinksSourcesLinkedListMethods<TLink> InternalSourcesListMethods;
         protected ILinksTreeMethods<TLink> InternalSourcesTreeMethods;
         protected ILinksTreeMethods<TLink> ExternalSourcesTreeMethods;
         protected ILinksTreeMethods<TLink> InternalTargetsTreeMethods;
@@ -67,17 +69,18 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected SplitMemoryLinksBase(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep, LinksConstants<TLink> constants)
+        protected SplitMemoryLinksBase(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep, LinksConstants<TLink> constants, bool useLinkedList)
         {
             _dataMemory = dataMemory;
             _indexMemory = indexMemory;
             _dataMemoryReservationStepInBytes = memoryReservationStep * LinkDataPartSizeInBytes;
             _indexMemoryReservationStepInBytes = memoryReservationStep * LinkIndexPartSizeInBytes;
+            _useLinkedList = useLinkedList;
             Constants = constants;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected SplitMemoryLinksBase(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep) : this(dataMemory, indexMemory, memoryReservationStep, Default<LinksConstants<TLink>>.Instance) { }
+        protected SplitMemoryLinksBase(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep) : this(dataMemory, indexMemory, memoryReservationStep, Default<LinksConstants<TLink>>.Instance, useLinkedList: true) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual void Init(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory)
@@ -172,7 +175,14 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
                     }
                     else
                     {
-                        return Add(InternalSourcesTreeMethods.CountUsages(value), InternalTargetsTreeMethods.CountUsages(value));
+                        if (_useLinkedList)
+                        {
+                            return Add(InternalSourcesListMethods.CountUsages(value), InternalTargetsTreeMethods.CountUsages(value));
+                        }
+                        else
+                        {
+                            return Add(InternalSourcesTreeMethods.CountUsages(value), InternalTargetsTreeMethods.CountUsages(value));
+                        }
                     }
                 }
                 else
@@ -223,7 +233,14 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
                         }
                         else
                         {
-                            return InternalSourcesTreeMethods.CountUsages(source);
+                            if (_useLinkedList)
+                            {
+                                return InternalSourcesListMethods.CountUsages(source);
+                            }
+                            else
+                            {
+                                return InternalSourcesTreeMethods.CountUsages(source);
+                            }
                         }
                     }
                     else //if(source != Any && target != Any)
@@ -242,11 +259,18 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
                             }
                             else if (externalReferencesRange.Value.Contains(target))
                             {
-                                link = InternalSourcesTreeMethods.Search(source, target);
+                                if (_useLinkedList)
+                                {
+                                    link = ExternalSourcesTreeMethods.Search(source, target);
+                                }
+                                else
+                                {
+                                    link = InternalSourcesTreeMethods.Search(source, target);
+                                }
                             }
                             else
                             {
-                                if (GreaterThan(InternalSourcesTreeMethods.CountUsages(source), InternalTargetsTreeMethods.CountUsages(target)))
+                                if (_useLinkedList || GreaterThan(InternalSourcesTreeMethods.CountUsages(source), InternalTargetsTreeMethods.CountUsages(target)))
                                 {
                                     link = InternalTargetsTreeMethods.Search(source, target);
                                 }
@@ -258,7 +282,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
                         }
                         else
                         {
-                            if (GreaterThan(InternalSourcesTreeMethods.CountUsages(source), InternalTargetsTreeMethods.CountUsages(target)))
+                            if (_useLinkedList || GreaterThan(InternalSourcesTreeMethods.CountUsages(source), InternalTargetsTreeMethods.CountUsages(target)))
                             {
                                 link = InternalTargetsTreeMethods.Search(source, target);
                             }
@@ -403,7 +427,14 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
                         }
                         else
                         {
-                            return InternalSourcesTreeMethods.EachUsage(source, handler);
+                            if (_useLinkedList)
+                            {
+                                return InternalSourcesListMethods.EachUsage(source, handler);
+                            }
+                            else
+                            {
+                                return InternalSourcesTreeMethods.EachUsage(source, handler);
+                            }
                         }
                     }
                     else //if(source != Any && target != Any)
@@ -421,11 +452,18 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
                             }
                             else if (externalReferencesRange.Value.Contains(target))
                             {
-                                link = InternalSourcesTreeMethods.Search(source, target);
+                                if (_useLinkedList)
+                                {
+                                    link = ExternalSourcesTreeMethods.Search(source, target);
+                                }
+                                else
+                                {
+                                    link = InternalSourcesTreeMethods.Search(source, target);
+                                }
                             }
                             else
                             {
-                                if (GreaterThan(InternalSourcesTreeMethods.CountUsages(source), InternalTargetsTreeMethods.CountUsages(target)))
+                                if (_useLinkedList || GreaterThan(InternalSourcesTreeMethods.CountUsages(source), InternalTargetsTreeMethods.CountUsages(target)))
                                 {
                                     link = InternalTargetsTreeMethods.Search(source, target);
                                 }
@@ -437,7 +475,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
                         }
                         else
                         {
-                            if (GreaterThan(InternalSourcesTreeMethods.CountUsages(source), InternalTargetsTreeMethods.CountUsages(target)))
+                            if (_useLinkedList || GreaterThan(InternalSourcesTreeMethods.CountUsages(source), InternalTargetsTreeMethods.CountUsages(target)))
                             {
                                 link = InternalTargetsTreeMethods.Search(source, target);
                             }
@@ -514,7 +552,14 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
                 }
                 else
                 {
-                    InternalSourcesTreeMethods.Detach(ref GetLinkIndexPartReference(source).RootAsSource, linkIndex);
+                    if (_useLinkedList)
+                    {
+                        InternalSourcesListMethods.Detach(source, linkIndex);
+                    }
+                    else
+                    {
+                        InternalSourcesTreeMethods.Detach(ref GetLinkIndexPartReference(source).RootAsSource, linkIndex);
+                    }
                 }
             }
             if (!AreEqual(target, @null))
@@ -538,7 +583,14 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
                 }
                 else
                 {
-                    InternalSourcesTreeMethods.Attach(ref GetLinkIndexPartReference(source).RootAsSource, linkIndex);
+                    if (_useLinkedList)
+                    {
+                        InternalSourcesListMethods.AttachAsLast(source, linkIndex);
+                    }
+                    else
+                    {
+                        InternalSourcesTreeMethods.Attach(ref GetLinkIndexPartReference(source).RootAsSource, linkIndex);
+                    }
                 }
             }
             if (!AreEqual(target, @null))
@@ -635,6 +687,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual void ResetPointers()
         {
+            InternalSourcesListMethods = null;
             InternalSourcesTreeMethods = null;
             ExternalSourcesTreeMethods = null;
             InternalTargetsTreeMethods = null;
@@ -665,7 +718,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
                 // TODO: Reduce access to memory in different location (should be enough to use just linkIndexPart)
                 ref var linkDataPart = ref GetLinkDataPartReference(linkIndex);
                 ref var linkIndexPart = ref GetLinkIndexPartReference(linkIndex);
-                return AreEqual(linkIndexPart.SizeAsSource, default) && !AreEqual(linkDataPart.Source, default);
+                return AreEqual(linkIndexPart.SizeAsTarget, default) && !AreEqual(linkDataPart.Source, default);
             }
             else
             {
