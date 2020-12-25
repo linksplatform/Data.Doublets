@@ -17,7 +17,10 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         private byte* _header;
         private byte* _linksDataParts;
         private byte* _linksIndexParts;
-
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public SplitMemoryLinks(string dataMemory, string indexMemory) : this(new FileMappedResizableDirectMemory(dataMemory), new FileMappedResizableDirectMemory(indexMemory)) { }
+        
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory) : this(dataMemory, indexMemory, DefaultLinksSizeStep) { }
 
