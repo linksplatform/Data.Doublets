@@ -6653,6 +6653,14 @@ references:
   fullName.vb: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinks(Of TLink).SplitMemoryLinks(IResizableDirectMemory, IResizableDirectMemory, System.Int64, LinksConstants(Of TLink), Platform.Data.Doublets.Memory.IndexTreeType, System.Boolean)
   nameWithType: SplitMemoryLinks<TLink>.SplitMemoryLinks(IResizableDirectMemory, IResizableDirectMemory, Int64, LinksConstants<TLink>, IndexTreeType, Boolean)
   nameWithType.vb: SplitMemoryLinks(Of TLink).SplitMemoryLinks(IResizableDirectMemory, IResizableDirectMemory, Int64, LinksConstants(Of TLink), IndexTreeType, Boolean)
+- uid: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinks`1.#ctor(System.String,System.String)
+  name: SplitMemoryLinks(String, String)
+  href: api/Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinks-1.html#Platform_Data_Doublets_Memory_Split_Generic_SplitMemoryLinks_1__ctor_System_String_System_String_
+  commentId: M:Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinks`1.#ctor(System.String,System.String)
+  fullName: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinks<TLink>.SplitMemoryLinks(System.String, System.String)
+  fullName.vb: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinks(Of TLink).SplitMemoryLinks(System.String, System.String)
+  nameWithType: SplitMemoryLinks<TLink>.SplitMemoryLinks(String, String)
+  nameWithType.vb: SplitMemoryLinks(Of TLink).SplitMemoryLinks(String, String)
 - uid: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinks`1.#ctor*
   name: SplitMemoryLinks
   href: api/Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinks-1.html#Platform_Data_Doublets_Memory_Split_Generic_SplitMemoryLinks_1__ctor_
