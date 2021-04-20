@@ -62,3 +62,8 @@ namespace HelloWorld.Doublets.DotNet
 *   [Platform.Singletons](https://github.com/linksplatform/Singletons)
 *   [Platform.Memory](https://github.com/linksplatform/Memory)
 *   [Platform.Data](https://github.com/linksplatform/Data)
+
+## Support
+
+Ask questions at [stackoverflow.com/tags/links-platform](https://stackoverflow.com/tags/links-platform) (or with tag links-platform) to get our free support.
+You can also get real-time support on [our official discord server](https://discord.gg/rJrRwfJsYc).
