@@ -80,31 +80,37 @@
 <p>Пространство имён: <a href="https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.html">Platform.Data.Doublets</a></p>
 <p>Ответвление от: <a href="https://github.com/Konard/LinksPlatform/tree/b0844d778ced60b22435e57342393031b26a2822/Platform/Platform.Data.Doublets">Konard/LinksPlatform/Platform/Platform.Data.Doublets</a></p>
 <p>NuGet пакет: <a href="https://www.nuget.org/packages/Platform.Data.Doublets">Platform.Data.Doublets</a></p>
-<h2 id="пример"><a href="https://github.com/linksplatform/HelloWorld.Doublets.DotNet">Пример</a></h2>
+<h2 id="пример"><a href="https://github.com/linksplatform/Examples.Doublets.CRUD.DotNet">Пример</a></h2>
 <pre><code class="lang-C#">using System;
 using Platform.Data;
 using Platform.Data.Doublets;
 using Platform.Data.Doublets.Memory.United.Generic;
 
-namespace HelloWorld.Doublets.DotNet
-{
-    class Program
-    {
-        static void Main()
-        {
-            using (var links = new UnitedMemoryLinks&lt;uint&gt;(&quot;db.links&quot;))
-            {
-                var link = links.Create();
-                link = links.Update(link, link, link);
-                Console.WriteLine(&quot;Привет Мир!&quot;);
-                Console.WriteLine($&quot;Это моя первая связь: {links.Format(link)}&quot;);
-                Console.WriteLine($&quot;Всего связей в хранилище: {links.Count()}.&quot;);
-                link = links.Update(link, default, default);
-                links.Delete(link);
-            }
-        }
-    }
-}
+// Хранилище дуплетов привязывается к файлу &quot;db.links&quot;:
+using var links = new UnitedMemoryLinks&lt;uint&gt;(&quot;db.links&quot;);
+
+// Создание связи-дуплета: 
+var link = links.Create();
+
+// Связь обновляется чтобы ссылаться на себя дважды (в качестве начала и конца):
+link = links.Update(link, newSource: link, newTarget: link);
+
+// Операции чтения:
+Console.WriteLine($&quot;Количество связей в хранилище данных: {links.Count()}.&quot;);
+Console.WriteLine(&quot;Содержимое хранилища данных:&quot;);
+var any = links.Constants.Any; // Означает любой адрес связи или отсутствие ограничения на адрес связи
+// Аргументы запроса интерпретируются в качестве органичений
+var query = new Link&lt;uint&gt;(index: any, source: any, target: any);
+links.Each((link) =&gt; {
+    Console.WriteLine(links.Format(link));
+    return links.Constants.Continue;
+}, query);
+
+// Сброс содержимого связи:
+link = links.Update(link, newSource: default, newTarget: default);
+
+// Удаление связи:
+links.Delete(link);
 </code></pre>
 <h2 id="sqlite-против-дуплетов"><a href="https://github.com/linksplatform/Comparisons.SQLiteVSDoublets">SQLite против Дуплетов</a></h2>
 <p><a href="https://github.com/linksplatform/Comparisons.SQLiteVSDoublets"><img src="https://raw.githubusercontent.com/linksplatform/Documentation/master/doc/Examples/sqlite_vs_doublets_performance.png" alt="Изображение с результатом сравнения производительности SQLite и Дуплетов." title="Результат сравнения производительности SQLite и Дуплетов"></a></p>
