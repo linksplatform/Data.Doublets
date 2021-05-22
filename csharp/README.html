@@ -80,31 +80,37 @@
 <p>Namespace: <a href="https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.html">Platform.Data.Doublets</a></p>
 <p>Forked from: <a href="https://github.com/Konard/LinksPlatform/tree/b0844d778ced60b22435e57342393031b26a2822/Platform/Platform.Data.Doublets">Konard/LinksPlatform/Platform/Platform.Data.Doublets</a></p>
 <p>NuGet package: <a href="https://www.nuget.org/packages/Platform.Data.Doublets">Platform.Data.Doublets</a></p>
-<h2 id="example"><a href="https://github.com/linksplatform/HelloWorld.Doublets.DotNet">Example</a></h2>
+<h2 id="example"><a href="https://github.com/linksplatform/Examples.Doublets.CRUD.DotNet">Example</a></h2>
 <pre><code class="lang-C#">using System;
 using Platform.Data;
 using Platform.Data.Doublets;
 using Platform.Data.Doublets.Memory.United.Generic;
 
-namespace HelloWorld.Doublets.DotNet
-{
-    class Program
-    {
-        static void Main()
-        {
-            using (var links = new UnitedMemoryLinks&lt;uint&gt;(&quot;db.links&quot;))
-            {
-                var link = links.Create();
-                link = links.Update(link, link, link);
-                Console.WriteLine(&quot;Hello World!&quot;);
-                Console.WriteLine($&quot;This is my first link: {links.Format(link)}&quot;);
-                Console.WriteLine($&quot;Total links in the storage: {links.Count()}.&quot;);
-                link = links.Update(link, default, default);
-                links.Delete(link);
-            }
-        }
-    }
-}
+// A doublet links store is mapped to &quot;db.links&quot; file:
+using var links = new UnitedMemoryLinks&lt;uint&gt;(&quot;db.links&quot;);
+
+// A creation of the doublet link: 
+var link = links.Create();
+
+// The link is updated to reference itself twice (as a source and a target):
+link = links.Update(link, newSource: link, newTarget: link);
+
+// Read operations:
+Console.WriteLine($&quot;The number of links in the data store is {links.Count()}.&quot;);
+Console.WriteLine(&quot;Data store contents:&quot;);
+var any = links.Constants.Any; // Means any link address or no restriction on link address
+// Arguments of the query are interpreted as restrictions
+var query = new Link&lt;uint&gt;(index: any, source: any, target: any);
+links.Each((link) =&gt; {
+    Console.WriteLine(links.Format(link));
+    return links.Constants.Continue;
+}, query);
+
+// The link's content reset:
+link = links.Update(link, newSource: default, newTarget: default);
+
+// The link deletion:
+links.Delete(link);
 </code></pre>
 <h2 id="sqlite-vs-doublets"><a href="https://github.com/linksplatform/Comparisons.SQLiteVSDoublets">SQLite vs Doublets</a></h2>
 <p><a href="https://github.com/linksplatform/Comparisons.SQLiteVSDoublets"><img src="https://raw.githubusercontent.com/linksplatform/Documentation/master/doc/Examples/sqlite_vs_doublets_performance.png" alt="Image with result of performance comparison between SQLite and Doublets." title="Result of performance comparison between SQLite and Doublets"></a></p>
