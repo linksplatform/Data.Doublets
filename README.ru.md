@@ -12,32 +12,38 @@
 
 NuGet пакет: [Platform.Data.Doublets](https://www.nuget.org/packages/Platform.Data.Doublets)
 
-## [Пример](https://github.com/linksplatform/HelloWorld.Doublets.DotNet)
+## [Пример](https://github.com/linksplatform/Examples.Doublets.CRUD.DotNet)
 ```C#
 using System;
 using Platform.Data;
 using Platform.Data.Doublets;
 using Platform.Data.Doublets.Memory.United.Generic;
 
-namespace HelloWorld.Doublets.DotNet
-{
-    class Program
-    {
-        static void Main()
-        {
-            using (var links = new UnitedMemoryLinks<uint>("db.links"))
-            {
-                var link = links.Create();
-                link = links.Update(link, link, link);
-                Console.WriteLine("Привет Мир!");
-                Console.WriteLine($"Это моя первая связь: {links.Format(link)}");
-                Console.WriteLine($"Всего связей в хранилище: {links.Count()}.");
-                link = links.Update(link, default, default);
-                links.Delete(link);
-            }
-        }
-    }
-}
+// Хранилище дуплетов привязывается к файлу "db.links":
+using var links = new UnitedMemoryLinks<uint>("db.links");
+
+// Создание связи-дуплета: 
+var link = links.Create();
+
+// Связь обновляется чтобы ссылаться на себя дважды (в качестве начала и конца):
+link = links.Update(link, newSource: link, newTarget: link);
+
+// Операции чтения:
+Console.WriteLine($"Количество связей в хранилище данных: {links.Count()}.");
+Console.WriteLine("Содержимое хранилища данных:");
+var any = links.Constants.Any; // Означает любой адрес связи или отсутствие ограничения на адрес связи
+// Аргументы запроса интерпретируются в качестве органичений
+var query = new Link<uint>(index: any, source: any, target: any);
+links.Each((link) => {
+    Console.WriteLine(links.Format(link));
+    return links.Constants.Continue;
+}, query);
+
+// Сброс содержимого связи:
+link = links.Update(link, newSource: default, newTarget: default);
+
+// Удаление связи:
+links.Delete(link);
 ```
 
 ## [SQLite против Дуплетов](https://github.com/linksplatform/Comparisons.SQLiteVSDoublets)
