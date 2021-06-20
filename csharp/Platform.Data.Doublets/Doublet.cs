@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
@@ -6,14 +6,55 @@ using System.Runtime.CompilerServices;
 
 namespace Platform.Data.Doublets
 {
+
+    /// <summury>
+    /// <para>.</para>
+    /// <para>.</para>
+    /// </summury>
+    /// <typeparam>
+    /// <para>.</para>
+    /// <para>.</para>
+    /// </typeparam>
     public struct Doublet<T> : IEquatable<Doublet<T>>
     {
         private static readonly EqualityComparer<T> _equalityComparer = EqualityComparer<T>.Default;
 
+        /// <summury>
+        /// <para>.</para>
+        /// <para>.</para>
+        /// </summury>
+        /// <typeparam name="T">
+        /// <para>.</para>
+        /// <para>.</para>
+        /// </typeparam>
         public readonly T Source;
 
+        /// <summury>
+        /// <para>.</para>
+        /// <para>.</para>
+        /// </summury>
+        /// <typeparam name="T">
+        /// <para>.</para>
+        /// <para>.</para>
+        /// </typeparam>
         public readonly T Target;
 
+        /// <summury>
+        /// <para>.</para>
+        /// <para>.</para>
+        /// </summury>
+        /// <typeparam name="T">
+        /// <para>.</para>
+        /// <para>.</para>
+        /// </typeparam>
+        /// <param name="source">
+        /// <para>.</para>
+        /// <para>.</para>
+        /// </param>
+        /// <param name="target">
+        /// <para>.</para>
+        /// <para>.</para>
+        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Doublet(T source, T target)
         {
@@ -21,21 +62,101 @@ namespace Platform.Data.Doublets
             Target = target;
         }
 
+        /// <summury>
+        /// <para>.</para>
+        /// <para>.</para>
+        /// </summury>
+        /// <returns>
+        /// <para>.</para>
+        /// <para>.</para>
+        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override string ToString() => $"{Source}->{Target}";
 
+        /// <summury>
+        /// <para>.</para>
+        /// <para>.</para>
+        /// </summury>
+        /// <typeparam>
+        /// <para>.</para>
+        /// <para>.</para>
+        /// </typeparam>
+        /// <param name="other">
+        /// <para>.</para>
+        /// <para>.</para>
+        /// </param>
+        /// <returns>
+        /// <para>.</para>
+        /// <para>.</para>
+        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Equals(Doublet<T> other) => _equalityComparer.Equals(Source, other.Source) && _equalityComparer.Equals(Target, other.Target);
 
+        /// <summury>
+        /// <para>.</para>
+        /// <para>.</para>
+        /// </summury>
+        /// <typeparam>
+        /// <para>.</para>
+        /// <para>.</para>
+        /// </typeparam>
+        /// <param name="obj">
+        /// <para>.</para>
+        /// <para>.</para>
+        /// </param>
+        /// <returns>
+        /// <para>.</para>
+        /// <para>.</para>
+        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object obj) => obj is Doublet<T> doublet ? base.Equals(doublet) : false;
 
+        /// <summury>
+        /// <para>.</para>
+        /// <para>.</para>
+        /// </summury>
+        /// <returns>
+        /// <para>.</para>
+        /// <para>.</para>
+        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override int GetHashCode() => (Source, Target).GetHashCode();
 
+        /// <summury>
+        /// <para>.</para>
+        /// <para>.</para>
+        /// </summury>
+        /// <param name="left">
+        /// <para>.</para>
+        /// <para>.</para>
+        /// </param>
+        /// <param name="right">
+        /// <para>.</para>
+        /// <para>.</para>
+        /// </param>
+        /// <returns>
+        /// <para>.</para>
+        /// <para>.</para>
+        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(Doublet<T> left, Doublet<T> right) => left.Equals(right);
 
+        /// <summury>
+        /// <para>.</para>
+        /// <para>.</para>
+        /// </summury>
+        /// <param name="left"> 
+        /// <para>.</para>
+        /// <para>.</para>
+        /// </param>
+        /// <param name="right">
+        /// <para>.</para>
+        /// <para>.</para>
+        /// </param>
+        /// <returns>
+        /// <para>.</para>
+        /// <para>.</para>
+        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(Doublet<T> left, Doublet<T> right) => !(left == right);
     }
