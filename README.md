@@ -58,10 +58,10 @@ links.Delete(link);
 [PDF file](https://linksplatform.github.io/Data.Doublets/csharp/Platform.Data.Doublets.pdf) with code for e-readers.
 
 ## Dependency graph [C#]
-[![Dependency graph SVG image](https://raw.github.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.svg?sanitize=true)](https://raw.githubusercontent.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.svg?sanitize=true)
+[![C# dependency graph SVG image](https://raw.github.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.svg?sanitize=true)](https://raw.githubusercontent.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.svg?sanitize=true)
 
 ## Dependency graph [C++]
-[![Dependency graph SVG image](https://raw.github.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.cpp.svg?sanitize=true)](https://raw.githubusercontent.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.cpp.svg?sanitize=true)
+[![C++ dependency graph SVG image](https://raw.github.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.cpp.svg?sanitize=true)](https://raw.githubusercontent.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.cpp.svg?sanitize=true)
 
 ## Depend on
 *   [Platform.Random](https://github.com/linksplatform/Random)
