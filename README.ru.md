@@ -57,8 +57,11 @@ links.Delete(link);
 
 [PDF файл](https://linksplatform.github.io/Data.Doublets/Platform.Data.Doublets.pdf) с кодом для электронных книг.
 
-## Граф зависимостей
-[![SVG изображение графа зависимостей](https://raw.github.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.svg?sanitize=true)](https://raw.githubusercontent.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.svg?sanitize=true)
+## Граф зависимостей [C#]
+[![SVG изображение графа зависимостей C#](https://raw.github.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.svg?sanitize=true)](https://raw.githubusercontent.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.svg?sanitize=true)
+
+## Граф зависимостей [C++]
+[![SVG изображение графа зависимостей C++](https://raw.github.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.cpp.svg?sanitize=true)](https://raw.githubusercontent.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.cpp.svg?sanitize=true)
 
 ## Зависит напрямую от
 *   [Platform.Random](https://github.com/linksplatform/Random)
