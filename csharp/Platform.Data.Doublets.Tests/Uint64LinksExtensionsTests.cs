@@ -19,7 +19,7 @@ namespace Platform.Data.Doublets.Tests
             return new UnitedMemoryLinks<TLink>(new FileMappedResizableDirectMemory(dataDBFilename), UnitedMemoryLinks<TLink>.DefaultLinksSizeStep, linksConstants, IndexTreeType.Default);
         }
         [Fact]
-        public void FormatStructureBugTest()
+        public void ItIsPossibleToFormatStructureWithExternalReferenceTest()
         {
             ILinks<TLink> links = CreateLinks();
             TLink zero = default;
