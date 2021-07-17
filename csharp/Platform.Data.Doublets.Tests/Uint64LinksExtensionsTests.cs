@@ -33,17 +33,12 @@ namespace Platform.Data.Doublets.Tests
             var one = Arithmetic.Increment(zero);
             var markerIndex = one;
             var meaningRoot = links.GetOrCreate(markerIndex, markerIndex);
-            var valueMarker = links.GetOrCreate(meaningRoot, Arithmetic.Increment(ref markerIndex)); // 7
-            var arrayMarker = links.GetOrCreate(meaningRoot, Arithmetic.Increment(ref markerIndex)); // 10
             var numberMarker = links.GetOrCreate(meaningRoot, Arithmetic.Increment(ref markerIndex)); // 9
             AddressToRawNumberConverter<TLink> addressToNumberConverter = new();
             // RawNumberToAddressConverter<TLink> numberToAddressConverter = new();
             var numberAddress = addressToNumberConverter.Convert(1); // Address of 0
             var numberLink = links.GetOrCreate(numberMarker, numberAddress); // 40
-            var numberValue = links.GetOrCreate(valueMarker, numberLink); // 41
-            var array = links.GetOrCreate(arrayMarker, numberValue);
-            var arrayValue = links.GetOrCreate(valueMarker, array);
-            var output = ((ILinks<ulong>)(object)links).FormatStructure((ulong)(object)arrayValue, link => link.IsFullPoint(), true);
+            var output = ((ILinks<ulong>)(object)links).FormatStructure((ulong)(object)numberLink, link => link.IsFullPoint(), true);
             _output.WriteLine(output);
         }
     }
