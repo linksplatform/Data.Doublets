@@ -27,7 +27,7 @@ namespace Platform.Data.Doublets.Tests
         [Fact]
         public void BugTest()
         {
-            // Trying to create link "(43:(7:1 7) (42:(10:1 10) (41:7 (40:(9:1 9) 0))))"
+            // Trying to create link "(40:(9:1 9) 0)"
             ILinks<TLink> links = CreateLinks();
             TLink zero = default;
             var one = Arithmetic.Increment(zero);
