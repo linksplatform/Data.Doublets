@@ -27,19 +27,17 @@ namespace Platform.Data.Doublets.Tests
         [Fact]
         public void BugTest()
         {
-            // Trying to create link "(40:(9:1 9) 0)"
             ILinks<TLink> links = CreateLinks();
             TLink zero = default;
             var one = Arithmetic.Increment(zero);
             var markerIndex = one;
             var meaningRoot = links.GetOrCreate(markerIndex, markerIndex);
-            var numberMarker = links.GetOrCreate(meaningRoot, Arithmetic.Increment(ref markerIndex)); // 9
+            var numberMarker = links.GetOrCreate(meaningRoot, Arithmetic.Increment(ref markerIndex));
             AddressToRawNumberConverter<TLink> addressToNumberConverter = new();
-            // RawNumberToAddressConverter<TLink> numberToAddressConverter = new();
-            var numberAddress = addressToNumberConverter.Convert(1); // Address of 0
-            var numberLink = links.GetOrCreate(numberMarker, numberAddress); // 40
-            var output = ((ILinks<ulong>)(object)links).FormatStructure((ulong)(object)numberLink, link => link.IsFullPoint(), true);
-            _output.WriteLine(output);
+            var numberAddress = addressToNumberConverter.Convert(1);
+            var numberLink = links.GetOrCreate(numberMarker, numberAddress);
+            var linkNotation = links.FormatStructure(numberLink, link => link.IsFullPoint(), true);
+            Assert.Equal("(3: 2 18446744073709551615)", linkNotation);
         }
     }
 }
