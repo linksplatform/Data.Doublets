@@ -11,12 +11,6 @@ namespace Platform.Data.Doublets.Tests
 {
     public class Uint64LinksExtensionsTests
     {
-        private readonly ITestOutputHelper _output;
-
-        public Uint64LinksExtensionsTests(ITestOutputHelper output)
-        {
-            this._output = output;
-        }
         public static ILinks<TLink> CreateLinks() => CreateLinks<TLink>(new Platform.IO.TemporaryFile());
 
         public static ILinks<TLink> CreateLinks<TLink>(string dataDBFilename)
