@@ -19,7 +19,7 @@ namespace Platform.Data.Doublets.Tests
             return new UnitedMemoryLinks<TLink>(new FileMappedResizableDirectMemory(dataDBFilename), UnitedMemoryLinks<TLink>.DefaultLinksSizeStep, linksConstants, IndexTreeType.Default);
         }
         [Fact]
-        public void BugTest()
+        public void FormatStructureBugTest()
         {
             ILinks<TLink> links = CreateLinks();
             TLink zero = default;
@@ -31,7 +31,7 @@ namespace Platform.Data.Doublets.Tests
             var numberAddress = addressToNumberConverter.Convert(1);
             var numberLink = links.GetOrCreate(numberMarker, numberAddress);
             var linkNotation = links.FormatStructure(numberLink, link => link.IsFullPoint(), true);
-            Assert.Equal("(3: 2 18446744073709551615)", linkNotation);
+            Assert.Equal("(3:(2:1 2) 18446744073709551615)", linkNotation);
         }
     }
 }
