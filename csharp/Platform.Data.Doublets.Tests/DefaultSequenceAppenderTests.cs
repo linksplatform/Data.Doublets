@@ -68,7 +68,6 @@ namespace Platform.Data.Doublets.Tests
             DefaultSequenceAppender<TLink> defaultSequenceAppender = new(links, new DefaultStack<ulong>(), defaultSequenceRightHeightProvider);
             var newArray = defaultSequenceAppender.Append(arrayValue, appendant);
             var output = links.FormatStructure(newArray, link => link.IsFullPoint(), true);
-            _output.WriteLine(output);
         }
     }
 }
