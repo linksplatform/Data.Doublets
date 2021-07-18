@@ -44,7 +44,7 @@ namespace Platform.Data.Doublets.Sequences
             }
             var left = cursor;
             var right = appendant;
-            while (!_equalityComparer.Equals(cursor = _stack.Pop(), links.Constants.Null))
+            while (!_equalityComparer.Equals(cursor = _stack.PopOrDefault(), links.Constants.Null))
             {
                 right = links.GetOrCreate(left, right);
                 left = cursor;
