@@ -96,7 +96,7 @@
     <h5>Implements</h5>
     <div><a class="xref" href="Platform.Data.Doublets.ILinks-1.html">ILinks</a>&lt;TLink&gt;</div>
     <div><span class="xref">Platform.Data.Doublets.ILinks</span>&lt;TLink, <span class="xref">LinksConstants</span>&lt;TLink&gt;&gt;</div>
-    <div><span class="xref">IConverter</span>&lt;TLink&gt;</div>
+    <div><span class="xref">IConverter</span>&lt;TLink, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.numerics.biginteger">BigInteger</a>&gt;</div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -159,7 +159,7 @@
   <h6><strong>Assembly</strong>: Platform.Data.Doublets.dll</h6>
   <h5 id="Platform_Data_Doublets_Numbers_Raw_RawNumberSequenceToBigIntegerConverter_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class RawNumberSequenceToBigIntegerConverter&lt;TLink&gt; : LinksDecoratorBase&lt;TLink&gt;, ILinks&lt;TLink&gt;, ILinks&lt;TLink, LinksConstants&lt;TLink&gt;&gt;, IConverter&lt;TLink&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public class RawNumberSequenceToBigIntegerConverter&lt;TLink&gt; : LinksDecoratorBase&lt;TLink&gt;, ILinks&lt;TLink&gt;, ILinks&lt;TLink, LinksConstants&lt;TLink&gt;&gt;, IConverter&lt;TLink, BigInteger&gt; where TLink : struct</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -180,18 +180,18 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Numbers_Raw_RawNumberSequenceToBigIntegerConverter_1__ctor_Platform_Data_Doublets_ILinks__0__IConverter__0__.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter%601.%23ctor(Platform.Data.Doublets.ILinks%7B%600%7D%2CIConverter%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Numbers_Raw_RawNumberSequenceToBigIntegerConverter_1__ctor_Platform_Data_Doublets_ILinks__0__IConverter__0__0__.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter%601.%23ctor(Platform.Data.Doublets.ILinks%7B%600%7D%2CIConverter%7B%600%2C%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/d9b97a918c8e38a73e15f447ef7262c9f4b5833f/csharp/Platform.Data.Doublets/Numbers/Raw/RawNumberSequenceToBigIntergerConverter.cs/#L12">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/16cecf48658801946d534273c900cfc73401f378/csharp/Platform.Data.Doublets/Numbers/Raw/RawNumberSequenceToBigIntergerConverter.cs/#L14">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Numbers_Raw_RawNumberSequenceToBigIntegerConverter_1__ctor_" data-uid="Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter`1.#ctor*"></a>
-  <h4 id="Platform_Data_Doublets_Numbers_Raw_RawNumberSequenceToBigIntegerConverter_1__ctor_Platform_Data_Doublets_ILinks__0__IConverter__0__" data-uid="Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},IConverter{`0})">RawNumberSequenceToBigIntegerConverter(ILinks&lt;TLink&gt;, IConverter&lt;TLink&gt;)</h4>
+  <h4 id="Platform_Data_Doublets_Numbers_Raw_RawNumberSequenceToBigIntegerConverter_1__ctor_Platform_Data_Doublets_ILinks__0__IConverter__0__0__" data-uid="Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},IConverter{`0,`0})">RawNumberSequenceToBigIntegerConverter(ILinks&lt;TLink&gt;, IConverter&lt;TLink, TLink&gt;)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RawNumberSequenceToBigIntegerConverter(ILinks&lt;TLink&gt; links, IConverter&lt;TLink&gt; numberToAddressConverter)</code></pre>
+    <pre><code class="lang-csharp hljs">public RawNumberSequenceToBigIntegerConverter(ILinks&lt;TLink&gt; links, IConverter&lt;TLink, TLink&gt; numberToAddressConverter)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -209,7 +209,7 @@
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">IConverter</span>&lt;TLink&gt;</td>
+        <td><span class="xref">IConverter</span>&lt;TLink, TLink&gt;</td>
         <td><span class="parametername">numberToAddressConverter</span></td>
         <td></td>
       </tr>
@@ -222,7 +222,7 @@
     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Numbers_Raw_RawNumberSequenceToBigIntegerConverter_1_Convert__0_.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter%601.Convert(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/linksplatform/Data.Doublets/blob/d9b97a918c8e38a73e15f447ef7262c9f4b5833f/csharp/Platform.Data.Doublets/Numbers/Raw/RawNumberSequenceToBigIntergerConverter.cs/#L17">View Source</a>
+    <a href="https://github.com/linksplatform/Data.Doublets/blob/16cecf48658801946d534273c900cfc73401f378/csharp/Platform.Data.Doublets/Numbers/Raw/RawNumberSequenceToBigIntergerConverter.cs/#L19">View Source</a>
   </span>
   <a id="Platform_Data_Doublets_Numbers_Raw_RawNumberSequenceToBigIntegerConverter_1_Convert_" data-uid="Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter`1.Convert*"></a>
   <h4 id="Platform_Data_Doublets_Numbers_Raw_RawNumberSequenceToBigIntegerConverter_1_Convert__0_" data-uid="Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter`1.Convert(`0)">Convert(TLink)</h4>
@@ -230,7 +230,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public TLink Convert(TLink bigInt)</code></pre>
+    <pre><code class="lang-csharp hljs">public BigInteger Convert(TLink bigInt)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -259,7 +259,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">TLink</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.numerics.biginteger">BigInteger</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -272,7 +272,7 @@
       <span class="xref">Platform.Data.Doublets.ILinks&lt;, &gt;</span>
   </div>
   <div>
-      <span class="xref">IConverter&lt;&gt;</span>
+      <span class="xref">IConverter&lt;, &gt;</span>
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
@@ -463,7 +463,7 @@
                     <a href="https://github.com/linksplatform/Data.Doublets/new/master/apiSpec/new?filename=Platform_Data_Doublets_Numbers_Raw_RawNumberSequenceToBigIntegerConverter_1.md&amp;value=---%0Auid%3A%20Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/linksplatform/Data.Doublets/blob/d9b97a918c8e38a73e15f447ef7262c9f4b5833f/csharp/Platform.Data.Doublets/Numbers/Raw/RawNumberSequenceToBigIntergerConverter.cs/#L8" class="contribution-link">View Source</a>
+                    <a href="https://github.com/linksplatform/Data.Doublets/blob/16cecf48658801946d534273c900cfc73401f378/csharp/Platform.Data.Doublets/Numbers/Raw/RawNumberSequenceToBigIntergerConverter.cs/#L9" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
