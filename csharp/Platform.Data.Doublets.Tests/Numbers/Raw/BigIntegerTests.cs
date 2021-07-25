@@ -8,11 +8,11 @@ namespace Platform.Data.Doublets.Tests.Numbers.Raw
     {
         public void Test()
         {
-            BigInteger bigInt = new(123456789123456789);
+            BigInteger bigInt = new(1);
             BigIntegerToRawNumberSequenceConverter bigIntegerToRawNumberSequenceConverter = new();
-            RawSequenceToBigIntegerConverter rawSequenceToBigIntegerConverter = new();
+            RawNumberSequenceToBigIntegerConverter rawNumberSequenceToBigIntegerConverter = new();
             var bigIntSequence = bigIntegerToRawNumberSequenceConverter.Convert(bigInt);
-            var bigIntFromSequence = rawSequenceToBigIntegerConverter.Convert(bigIntSequence);
+            var bigIntFromSequence = rawNumberSequenceToBigIntegerConverter.Convert(bigIntSequence);
             Assert.Equal(bigInt, bigIntFromSequence);
         }
     }
