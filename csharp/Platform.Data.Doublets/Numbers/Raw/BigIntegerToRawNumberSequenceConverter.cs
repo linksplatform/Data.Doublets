@@ -6,6 +6,8 @@ namespace Platform.Data.Doublets.Numbers.Raw
 {
     public class BigIntegerToRawNumberSequenceConverter<TLink> : LinksDecoratorBase<TLink>, IConverter<BigInteger, TLink>
     {
+        public BigIntegerToRawNumberSequenceConverter(ILinks<TLink> links) : base(links) { }
+
         public TLink Convert(BigInteger bigInt)
         {
             
