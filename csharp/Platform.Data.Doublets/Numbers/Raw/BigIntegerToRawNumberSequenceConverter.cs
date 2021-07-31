@@ -22,8 +22,22 @@ namespace Platform.Data.Doublets.Numbers.Raw
 
         public TLink Convert(BigInteger bigInt)
         {
-            var bigIntBytes = bigInt.ToByteArray();
-            return _addressToNumberConverter.Convert(bigIntBytes.ToStructure<TLink>());
+            var currentBigInt = bigInt;
+            TLink bigIntLink;
+                var bigIntBytes = currentBigInt.ToByteArray();
+                var next63Bits = currentBigInt >> 63;
+                TLink next63BitsLink;
+                if (next63Bits != 0)
+                {
+                    next63BitsLink = Convert(next63Bits);
+                    var currentBigIntLink = _addressToNumberConverter.Convert(bigIntBytes.ToStructure<TLink>());
+                    bigIntLink = _links.GetOrCreate(currentBigIntLink, next63BitsLink);
+                }
+                else
+                {
+                    bigIntLink = _addressToNumberConverter.Convert(bigIntBytes.ToStructure<TLink>());
+                }
+                return bigIntLink;
         }
     }
 }
