@@ -17,8 +17,8 @@ namespace Platform.Data.Doublets.Numbers.Raw
         private readonly IConverter<TLink> _addressToNumberConverter;
         public static readonly int BitsStorableInRawNumber = Structure<TLink>.Size - 1;
         private static readonly int _bitsPerRawNumber = NumericType<TLink>.BitsSize - 1;
-        private static readonly BigInteger _maximumValue = NumericType<BigInteger>.MaxValue;
-        private static readonly BigInteger _bitMask = Bit.ShiftRight(_maximumValue, 1);
+        private static readonly TLink _maximumValue = NumericType<TLink>.MaxValue;
+        private static readonly TLink _bitMask = Bit.ShiftRight(_maximumValue, 1);
         
         public BigIntegerToRawNumberSequenceConverter(ILinks<TLink> links, IConverter<TLink> addressToNumberConverter) : base(links)
         {
