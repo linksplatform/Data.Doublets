@@ -31,5 +31,19 @@ namespace Platform.Data.Doublets.Tests.Numbers.Raw
             var bigIntFromSequence = rawNumberSequenceToBigIntegerConverter.Convert(bigIntSequence);
             Assert.Equal(bigInt, bigIntFromSequence);
         }
+
+        [Fact]
+        public void Test64BitNumber()
+        {
+            var links = CreateLinks();
+            BigInteger bigInt = new(ulong.MaxValue);
+            AddressToRawNumberConverter<TLink> addressToRawNumberConverter = new();
+            RawNumberToAddressConverter<TLink> numberToAddressConverter = new();
+            BigIntegerToRawNumberSequenceConverter<TLink> bigIntegerToRawNumberSequenceConverter = new(links, addressToRawNumberConverter);
+            RawNumberSequenceToBigIntegerConverter<TLink> rawNumberSequenceToBigIntegerConverter = new(links, numberToAddressConverter);
+            var bigIntSequence = bigIntegerToRawNumberSequenceConverter.Convert(bigInt);
+            var bigIntFromSequence = rawNumberSequenceToBigIntegerConverter.Convert(bigIntSequence);
+            Assert.Equal(bigInt, bigIntFromSequence);
+        }
     }
 }
