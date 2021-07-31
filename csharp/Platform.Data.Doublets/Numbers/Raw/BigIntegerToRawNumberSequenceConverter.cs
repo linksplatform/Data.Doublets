@@ -28,15 +28,15 @@ namespace Platform.Data.Doublets.Numbers.Raw
         public TLink Convert(BigInteger bigInt)
         {
             var currentBigInt = bigInt;
-            var bigIntPart = Bit.And(currentBigInt, _bitMask);
-            var bigIntBytes = bigIntPart.ToByteArray();
+            var bigIntBytes = currentBigInt.ToByteArray();
             var nextBigInt = currentBigInt >> 63;
             TLink bigIntLink;
             if (nextBigInt > 0)
             {
                 TLink nextBigIntLink = Convert(nextBigInt);
-                var currentBigIntLink = _addressToNumberConverter.Convert(bigIntBytes.ToStructure<TLink>());
-                bigIntLink = _links.GetOrCreate(currentBigIntLink, nextBigIntLink);
+                var bigIntWithBitMask = Bit.And(bigIntBytes.ToStructure<TLink>(), _bitMask);
+                var convertedBigInt = _addressToNumberConverter.Convert(bigIntWithBitMask);
+                bigIntLink = _links.GetOrCreate(convertedBigInt, nextBigIntLink);
             }
             else
             {
