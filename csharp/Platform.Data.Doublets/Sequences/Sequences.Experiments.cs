@@ -39,19 +39,13 @@ namespace Platform.Data.Doublets.Sequences
                 {
                     return sequence;
                 }
-                return CreateAllVariants2Core(sequence, 0, sequence.Length - 1);
+                return CreateAllVariants2Core(sequence, 0, (ulong)sequence.Length - 1);
             });
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private ulong[] CreateAllVariants2Core(ulong[] sequence, long startAt, long stopAt)
+        private ulong[] CreateAllVariants2Core(ulong[] sequence, ulong startAt, ulong stopAt)
         {
-#if DEBUG
-            if ((stopAt - startAt) < 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(startAt), "startAt должен быть меньше или равен stopAt");
-            }
-#endif
             if ((stopAt - startAt) == 0)
             {
                 return new[] { sequence[startAt] };
@@ -60,7 +54,7 @@ namespace Platform.Data.Doublets.Sequences
             {
                 return new[] { Links.Unsync.GetOrCreate(sequence[startAt], sequence[stopAt]) };
             }
-            var variants = new ulong[(ulong)Platform.Numbers.Math.Catalan(stopAt - startAt)];
+            var variants = new ulong[Platform.Numbers.Math.Catalan(stopAt - startAt)];
             var last = 0;
             for (var splitter = startAt; splitter < stopAt; splitter++)
             {
@@ -96,7 +90,7 @@ namespace Platform.Data.Doublets.Sequences
                 {
                     return new List<ulong> { sequence[0] };
                 }
-                var results = new List<ulong>((int)Platform.Numbers.Math.Catalan(sequence.Length));
+                var results = new List<ulong>((int)Platform.Numbers.Math.Catalan((ulong)sequence.Length));
                 return CreateAllVariants1Core(sequence, results);
             });
         }
@@ -728,11 +722,11 @@ namespace Platform.Data.Doublets.Sequences
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public HashSet<ulong> GetAllPartiallyMatchingSequences3(params ulong[] sequence)
         {
-            return _sync.ExecuteReadOperation((Func<HashSet<ulong>>)(() =>
+            return _sync.ExecuteReadOperation(() =>
             {
                 if (sequence.Length > 0)
                 {
-                    ILinksExtensions.EnsureLinkIsAnyOrExists<ulong>(Links, (IList<ulong>)sequence);
+                    ILinksExtensions.EnsureLinkIsAnyOrExists(Links, sequence);
                     var firstResults = new HashSet<ulong>();
                     var lastResults = new HashSet<ulong>();
                     var first = sequence.First(x => x != Constants.Any);
@@ -748,7 +742,7 @@ namespace Platform.Data.Doublets.Sequences
                     return filteredResults;
                 }
                 return new HashSet<ulong>();
-            }));
+            });
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
