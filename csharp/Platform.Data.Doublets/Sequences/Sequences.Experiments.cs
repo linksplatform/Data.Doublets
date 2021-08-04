@@ -46,12 +46,6 @@ namespace Platform.Data.Doublets.Sequences
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private ulong[] CreateAllVariants2Core(ulong[] sequence, ulong startAt, ulong stopAt)
         {
-#if DEBUG
-            if ((stopAt - startAt) < 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(startAt), "startAt должен быть меньше или равен stopAt");
-            }
-#endif
             if ((stopAt - startAt) == 0)
             {
                 return new[] { sequence[startAt] };
