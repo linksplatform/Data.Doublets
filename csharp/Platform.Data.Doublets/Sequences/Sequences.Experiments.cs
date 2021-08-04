@@ -54,7 +54,7 @@ namespace Platform.Data.Doublets.Sequences
             {
                 return new[] { Links.Unsync.GetOrCreate(sequence[startAt], sequence[stopAt]) };
             }
-            var variants = new ulong[(ulong)Platform.Numbers.Math.Catalan(stopAt - startAt)];
+            var variants = new ulong[Platform.Numbers.Math.Catalan(stopAt - startAt)];
             var last = 0;
             for (var splitter = startAt; splitter < stopAt; splitter++)
             {
@@ -722,11 +722,11 @@ namespace Platform.Data.Doublets.Sequences
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public HashSet<ulong> GetAllPartiallyMatchingSequences3(params ulong[] sequence)
         {
-            return _sync.ExecuteReadOperation((Func<HashSet<ulong>>)(() =>
+            return _sync.ExecuteReadOperation(() =>
             {
                 if (sequence.Length > 0)
                 {
-                    ILinksExtensions.EnsureLinkIsAnyOrExists<ulong>(Links, (IList<ulong>)sequence);
+                    ILinksExtensions.EnsureLinkIsAnyOrExists(Links, sequence);
                     var firstResults = new HashSet<ulong>();
                     var lastResults = new HashSet<ulong>();
                     var first = sequence.First(x => x != Constants.Any);
@@ -742,7 +742,7 @@ namespace Platform.Data.Doublets.Sequences
                     return filteredResults;
                 }
                 return new HashSet<ulong>();
-            }));
+            });
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
