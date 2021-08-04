@@ -39,12 +39,12 @@ namespace Platform.Data.Doublets.Sequences
                 {
                     return sequence;
                 }
-                return CreateAllVariants2Core(sequence, 0, sequence.Length - 1);
+                return CreateAllVariants2Core(sequence, 0, (ulong)sequence.Length - 1);
             });
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private ulong[] CreateAllVariants2Core(ulong[] sequence, long startAt, long stopAt)
+        private ulong[] CreateAllVariants2Core(ulong[] sequence, ulong startAt, ulong stopAt)
         {
 #if DEBUG
             if ((stopAt - startAt) < 0)
@@ -96,7 +96,7 @@ namespace Platform.Data.Doublets.Sequences
                 {
                     return new List<ulong> { sequence[0] };
                 }
-                var results = new List<ulong>((int)Platform.Numbers.Math.Catalan(sequence.Length));
+                var results = new List<ulong>((int)Platform.Numbers.Math.Catalan((ulong)sequence.Length));
                 return CreateAllVariants1Core(sequence, results);
             });
         }
