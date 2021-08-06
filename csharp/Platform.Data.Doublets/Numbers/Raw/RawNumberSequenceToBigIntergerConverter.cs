@@ -25,6 +25,7 @@ namespace Platform.Data.Doublets.Numbers.Raw
         {
             var parts = _leftSequenceWalker.Walk(bigInteger);
             var partsEnumerator = parts.GetEnumerator();
+            partsEnumerator.MoveNext();
             TLink nextPart = _numberToAddressConverter.Convert(partsEnumerator.Current);
             BigInteger currentBigInt = new(nextPart.ToBytes());
             while (partsEnumerator.MoveNext())
