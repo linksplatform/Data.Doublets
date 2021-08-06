@@ -13,7 +13,6 @@ namespace Platform.Data.Doublets.Numbers.Raw
     public class BigIntegerToRawNumberSequenceConverter<TLink> : LinksDecoratorBase<TLink>, IConverter<BigInteger, TLink>
     where TLink : struct
     {
-        public readonly EqualityComparer<TLink> EqualityComparer = EqualityComparer<TLink>.Default;
         private readonly IConverter<TLink> _addressToNumberConverter;
         private readonly IConverter<IList<TLink>, TLink> _listToSequenceConverter;
         private static readonly TLink _maximumValue = NumericType<TLink>.MaxValue;
