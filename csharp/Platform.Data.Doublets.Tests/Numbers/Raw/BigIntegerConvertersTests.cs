@@ -12,7 +12,7 @@ namespace Platform.Data.Doublets.Tests.Numbers.Raw
 {
     public class BigIntegerConvertersTests
     {
-        public ILinks<TLink> CreateLinks() => CreateLinks<TLink>(new Platform.IO.TemporaryFile());
+        public ILinks<TLink> CreateLinks() => CreateLinks<TLink>(new IO.TemporaryFile());
 
         public ILinks<TLink> CreateLinks<TLink>(string dataDbFilename)
         {
