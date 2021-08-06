@@ -29,7 +29,7 @@ namespace Platform.Data.Doublets.Numbers.Raw
             {
                 throw new Exception("Raw number sequence cannot be empty.");
             }
-            TLink nextPart = _numberToAddressConverter.Convert(partsEnumerator.Current);
+            var nextPart = _numberToAddressConverter.Convert(partsEnumerator.Current);
             BigInteger currentBigInt = new(nextPart.ToBytes());
             while (partsEnumerator.MoveNext())
             {
