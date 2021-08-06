@@ -22191,14 +22191,6 @@ references:
   fullName.vb: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter(Of TLink).BigIntegerToRawNumberSequenceConverter
   nameWithType: BigIntegerToRawNumberSequenceConverter<TLink>.BigIntegerToRawNumberSequenceConverter
   nameWithType.vb: BigIntegerToRawNumberSequenceConverter(Of TLink).BigIntegerToRawNumberSequenceConverter
-- uid: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter`1.BitsStorableInRawNumber
-  name: BitsStorableInRawNumber
-  href: api/Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter-1.html#Platform_Data_Doublets_Numbers_Raw_BigIntegerToRawNumberSequenceConverter_1_BitsStorableInRawNumber
-  commentId: F:Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter`1.BitsStorableInRawNumber
-  fullName: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter<TLink>.BitsStorableInRawNumber
-  fullName.vb: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter(Of TLink).BitsStorableInRawNumber
-  nameWithType: BigIntegerToRawNumberSequenceConverter<TLink>.BitsStorableInRawNumber
-  nameWithType.vb: BigIntegerToRawNumberSequenceConverter(Of TLink).BitsStorableInRawNumber
 - uid: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter`1.Convert(System.Numerics.BigInteger)
   name: Convert(BigInteger)
   href: api/Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter-1.html#Platform_Data_Doublets_Numbers_Raw_BigIntegerToRawNumberSequenceConverter_1_Convert_System_Numerics_BigInteger_
