@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using System.Numerics;
 using Platform.Collections.Stacks;
 using Platform.Converters;
