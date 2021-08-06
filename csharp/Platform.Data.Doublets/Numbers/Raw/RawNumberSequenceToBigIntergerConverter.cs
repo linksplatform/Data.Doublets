@@ -24,13 +24,14 @@ namespace Platform.Data.Doublets.Numbers.Raw
         public BigInteger Convert(TLink bigInteger)
         {
             var parts = _leftSequenceWalker.Walk(bigInteger);
-            BigInteger currentBigInt = new();
-            TLink nextPart = default;
-            foreach (var part in parts)
+            var partsEnumerator = parts.GetEnumerator();
+            TLink nextPart = _numberToAddressConverter.Convert(partsEnumerator.Current);
+            BigInteger currentBigInt = new(nextPart.ToBytes());
+            while (partsEnumerator.MoveNext())
             {
                 currentBigInt <<= 63;
-                nextPart = _numberToAddressConverter.Convert(part);
-                currentBigInt = currentBigInt | new BigInteger(nextPart.ToBytes());
+                nextPart = _numberToAddressConverter.Convert(partsEnumerator.Current);
+                currentBigInt |= new BigInteger(nextPart.ToBytes());
             }
             return currentBigInt;
         }      
