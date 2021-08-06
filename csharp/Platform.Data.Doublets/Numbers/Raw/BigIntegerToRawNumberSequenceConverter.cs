@@ -16,8 +16,6 @@ namespace Platform.Data.Doublets.Numbers.Raw
         public readonly EqualityComparer<TLink> EqualityComparer = EqualityComparer<TLink>.Default;
         private readonly IConverter<TLink> _addressToNumberConverter;
         private readonly IConverter<IList<TLink>, TLink> _listToSequenceConverter;
-        public static readonly int BitsStorableInRawNumber = Structure<TLink>.Size - 1;
-        private static readonly int _bitsPerRawNumber = NumericType<TLink>.BitsSize - 1;
         private static readonly TLink _maximumValue = NumericType<TLink>.MaxValue;
         private static readonly TLink _bitMask = Bit.ShiftRight(_maximumValue, 1);
         
