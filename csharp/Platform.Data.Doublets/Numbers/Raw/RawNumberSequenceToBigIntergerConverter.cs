@@ -24,11 +24,11 @@ namespace Platform.Data.Doublets.Numbers.Raw
         public BigInteger Convert(TLink bigInteger)
         {
             var parts = _leftSequenceWalker.Walk(bigInteger);
-            var partsEnumerator = parts.GetEnumerator();
+            using var partsEnumerator = parts.GetEnumerator();
             if (!partsEnumerator.MoveNext())
             {
                 throw new Exception("Raw number sequence cannot be empty.");
-            };
+            }
             TLink nextPart = _numberToAddressConverter.Convert(partsEnumerator.Current);
             BigInteger currentBigInt = new(nextPart.ToBytes());
             while (partsEnumerator.MoveNext())
