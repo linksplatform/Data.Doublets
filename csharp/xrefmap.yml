@@ -22208,14 +22208,6 @@ references:
   fullName.vb: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter(Of TLink).Convert
   nameWithType: BigIntegerToRawNumberSequenceConverter<TLink>.Convert
   nameWithType.vb: BigIntegerToRawNumberSequenceConverter(Of TLink).Convert
-- uid: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter`1.EqualityComparer
-  name: EqualityComparer
-  href: api/Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter-1.html#Platform_Data_Doublets_Numbers_Raw_BigIntegerToRawNumberSequenceConverter_1_EqualityComparer
-  commentId: F:Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter`1.EqualityComparer
-  fullName: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter<TLink>.EqualityComparer
-  fullName.vb: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter(Of TLink).EqualityComparer
-  nameWithType: BigIntegerToRawNumberSequenceConverter<TLink>.EqualityComparer
-  nameWithType.vb: BigIntegerToRawNumberSequenceConverter(Of TLink).EqualityComparer
 - uid: Platform.Data.Doublets.Numbers.Raw.LongRawNumberSequenceToNumberConverter`2
   name: LongRawNumberSequenceToNumberConverter<TSource, TTarget>
   href: api/Platform.Data.Doublets.Numbers.Raw.LongRawNumberSequenceToNumberConverter-2.html
