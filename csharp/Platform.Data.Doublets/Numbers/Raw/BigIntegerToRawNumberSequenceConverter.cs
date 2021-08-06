@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Numerics;
 using Platform.Converters;
 using Platform.Data.Doublets.Decorators;
@@ -14,6 +15,7 @@ namespace Platform.Data.Doublets.Numbers.Raw
     public class BigIntegerToRawNumberSequenceConverter<TLink> : LinksDecoratorBase<TLink>, IConverter<BigInteger, TLink>
     where TLink : struct
     {
+        public readonly EqualityComparer<TLink> EqualityComparer = EqualityComparer<TLink>.Default;
         private readonly IConverter<TLink> _addressToNumberConverter;
         public static readonly int BitsStorableInRawNumber = Structure<TLink>.Size - 1;
         private static readonly int _bitsPerRawNumber = NumericType<TLink>.BitsSize - 1;
@@ -25,24 +27,28 @@ namespace Platform.Data.Doublets.Numbers.Raw
             _addressToNumberConverter = addressToNumberConverter;   
         }
 
-        public TLink Convert(BigInteger bigInt)
+        private Stack<TLink> GetRawNumberParts(BigInteger bigInteger)
         {
-            var currentBigInt = bigInt;
-            var bigIntBytes = currentBigInt.ToByteArray();
-            var nextBigInt = currentBigInt >> 63;
-            TLink bigIntLink;
-            if (nextBigInt > 0)
+            Stack<TLink> rawNumbers = new();
+            for (BigInteger currentBigInt = bigInteger; currentBigInt > 0; currentBigInt >>= 63)
             {
-                TLink nextBigIntLink = Convert(nextBigInt);
+                var bigIntBytes = currentBigInt.ToByteArray();
                 var bigIntWithBitMask = Bit.And(bigIntBytes.ToStructure<TLink>(), _bitMask);
-                var convertedBigInt = _addressToNumberConverter.Convert(bigIntWithBitMask);
-                bigIntLink = _links.GetOrCreate(convertedBigInt, nextBigIntLink);
+                var rawNumber = _addressToNumberConverter.Convert(bigIntWithBitMask);
+                rawNumbers.Push(rawNumber);
             }
-            else
+            return rawNumbers;
+        }
+
+        public TLink Convert(BigInteger bigInteger)
+        {
+            var rawNumbers = GetRawNumberParts(bigInteger);
+            TLink part = rawNumbers.First();
+            foreach (var rawNumber in rawNumbers.Skip(1))
             {
-                bigIntLink = _addressToNumberConverter.Convert(bigIntBytes.ToStructure<TLink>());
+                part = _links.GetOrCreate(rawNumber, part);
             }
-            return bigIntLink;
+            return part;
         }
     }
 }
