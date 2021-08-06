@@ -14,10 +14,10 @@ namespace Platform.Data.Doublets.Tests.Numbers.Raw
     {
         public ILinks<TLink> CreateLinks() => CreateLinks<TLink>(new Platform.IO.TemporaryFile());
 
-        public ILinks<TLink> CreateLinks<TLink>(string dataDBFilename)
+        public ILinks<TLink> CreateLinks<TLink>(string dataDbFilename)
         {
             var linksConstants = new LinksConstants<TLink>(enableExternalReferencesSupport: true);
-            return new UnitedMemoryLinks<TLink>(new FileMappedResizableDirectMemory(dataDBFilename), UnitedMemoryLinks<TLink>.DefaultLinksSizeStep, linksConstants, IndexTreeType.Default);
+            return new UnitedMemoryLinks<TLink>(new FileMappedResizableDirectMemory(dataDbFilename), UnitedMemoryLinks<TLink>.DefaultLinksSizeStep, linksConstants, IndexTreeType.Default);
         }
         [Fact]
         public void Test()
