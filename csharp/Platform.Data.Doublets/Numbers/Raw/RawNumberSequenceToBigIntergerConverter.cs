@@ -25,17 +25,17 @@ namespace Platform.Data.Doublets.Numbers.Raw
         public BigInteger Convert(TLink bigInteger)
         {
             var parts = _leftSequenceWalker.Walk(bigInteger);
-            using var partsEnumerator = parts.GetEnumerator();
-            if (!partsEnumerator.MoveNext())
+            using var enumerator = parts.GetEnumerator();
+            if (!enumerator.MoveNext())
             {
                 throw new Exception("Raw number sequence cannot be empty.");
             }
-            var nextPart = _numberToAddressConverter.Convert(partsEnumerator.Current);
+            var nextPart = _numberToAddressConverter.Convert(enumerator.Current);
             BigInteger currentBigInt = new(nextPart.ToBytes());
-            while (partsEnumerator.MoveNext())
+            while (enumerator.MoveNext())
             {
                 currentBigInt <<= 63;
-                nextPart = _numberToAddressConverter.Convert(partsEnumerator.Current);
+                nextPart = _numberToAddressConverter.Convert(enumerator.Current);
                 currentBigInt |= new BigInteger(nextPart.ToBytes());
             }
             return currentBigInt;
