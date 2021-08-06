@@ -7,6 +7,8 @@ using Platform.Data.Doublets.Decorators;
 using Platform.Data.Doublets.Sequences.Walkers;
 using Platform.Unsafe;
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
 namespace Platform.Data.Doublets.Numbers.Raw
 {
     public class RawNumberSequenceToBigIntegerConverter<TLink> : LinksDecoratorBase<TLink>, IConverter<TLink, BigInteger>
