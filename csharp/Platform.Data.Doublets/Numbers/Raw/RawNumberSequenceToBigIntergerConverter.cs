@@ -25,7 +25,10 @@ namespace Platform.Data.Doublets.Numbers.Raw
         {
             var parts = _leftSequenceWalker.Walk(bigInteger);
             var partsEnumerator = parts.GetEnumerator();
-            partsEnumerator.MoveNext();
+            if (!partsEnumerator.MoveNext())
+            {
+                throw new Exception("Raw number sequence cannot be empty.");
+            };
             TLink nextPart = _numberToAddressConverter.Convert(partsEnumerator.Current);
             BigInteger currentBigInt = new(nextPart.ToBytes());
             while (partsEnumerator.MoveNext())
