@@ -17,25 +17,27 @@ namespace Platform.Data.Doublets.Numbers.Raw
     {
         public readonly EqualityComparer<TLink> EqualityComparer = EqualityComparer<TLink>.Default;
         private readonly IConverter<TLink> _addressToNumberConverter;
+        private readonly IConverter<IList<TLink>, TLink> _listToSequenceConverter;
         public static readonly int BitsStorableInRawNumber = Structure<TLink>.Size - 1;
         private static readonly int _bitsPerRawNumber = NumericType<TLink>.BitsSize - 1;
         private static readonly TLink _maximumValue = NumericType<TLink>.MaxValue;
         private static readonly TLink _bitMask = Bit.ShiftRight(_maximumValue, 1);
         
-        public BigIntegerToRawNumberSequenceConverter(ILinks<TLink> links, IConverter<TLink> addressToNumberConverter) : base(links)
+        public BigIntegerToRawNumberSequenceConverter(ILinks<TLink> links, IConverter<TLink> addressToNumberConverter, IConverter<IList<TLink>,TLink> listToSequenceConverter) : base(links)
         {
-            _addressToNumberConverter = addressToNumberConverter;   
+            _addressToNumberConverter = addressToNumberConverter;
+            _listToSequenceConverter = listToSequenceConverter;
         }
 
-        private Stack<TLink> GetRawNumberParts(BigInteger bigInteger)
+        private List<TLink> GetRawNumberParts(BigInteger bigInteger)
         {
-            Stack<TLink> rawNumbers = new();
+            List<TLink> rawNumbers = new();
             for (BigInteger currentBigInt = bigInteger; currentBigInt > 0; currentBigInt >>= 63)
             {
                 var bigIntBytes = currentBigInt.ToByteArray();
                 var bigIntWithBitMask = Bit.And(bigIntBytes.ToStructure<TLink>(), _bitMask);
                 var rawNumber = _addressToNumberConverter.Convert(bigIntWithBitMask);
-                rawNumbers.Push(rawNumber);
+                rawNumbers.Add(rawNumber);
             }
             return rawNumbers;
         }
@@ -43,12 +45,7 @@ namespace Platform.Data.Doublets.Numbers.Raw
         public TLink Convert(BigInteger bigInteger)
         {
             var rawNumbers = GetRawNumberParts(bigInteger);
-            TLink part = rawNumbers.First();
-            foreach (var rawNumber in rawNumbers.Skip(1))
-            {
-                part = _links.GetOrCreate(rawNumber, part);
-            }
-            return part;
+            return _listToSequenceConverter.Convert(rawNumbers);
         }
     }
 }
