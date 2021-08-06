@@ -24,9 +24,8 @@ namespace Platform.Data.Doublets.Numbers.Raw
         public BigInteger Convert(TLink bigInteger)
         {
             var parts = _leftSequenceWalker.Walk(bigInteger);
-            var firstPart = _numberToAddressConverter.Convert(parts.First());
-            BigInteger currentBigInt = new(firstPart.ToBytes());
-            foreach (var part in parts.Skip(1))
+            BigInteger currentBigInt = new();
+            foreach (var part in parts)
             {
                 currentBigInt <<= 63;
                 var nextPart = _numberToAddressConverter.Convert(part);
