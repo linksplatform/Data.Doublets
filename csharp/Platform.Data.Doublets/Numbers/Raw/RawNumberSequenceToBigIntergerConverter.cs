@@ -25,10 +25,11 @@ namespace Platform.Data.Doublets.Numbers.Raw
         {
             var parts = _leftSequenceWalker.Walk(bigInteger);
             BigInteger currentBigInt = new();
+            TLink nextPart = default;
             foreach (var part in parts)
             {
                 currentBigInt <<= 63;
-                var nextPart = _numberToAddressConverter.Convert(part);
+                nextPart = _numberToAddressConverter.Convert(part);
                 currentBigInt = currentBigInt | new BigInteger(nextPart.ToBytes());
             }
             return currentBigInt;
