@@ -2,6 +2,7 @@ using System.Numerics;
 using Platform.Data.Doublets.Memory;
 using Platform.Data.Doublets.Memory.United.Generic;
 using Platform.Data.Doublets.Numbers.Raw;
+using Platform.Data.Doublets.Sequences.Converters;
 using Platform.Data.Numbers.Raw;
 using Platform.Memory;
 using Xunit;
@@ -25,7 +26,8 @@ namespace Platform.Data.Doublets.Tests.Numbers.Raw
             BigInteger bigInt = new(1);
             AddressToRawNumberConverter<TLink> addressToRawNumberConverter = new();
             RawNumberToAddressConverter<TLink> numberToAddressConverter = new();
-            BigIntegerToRawNumberSequenceConverter<TLink> bigIntegerToRawNumberSequenceConverter = new(links, addressToRawNumberConverter);
+            BalancedVariantConverter<TLink> listToSequenceConverter = new(links);
+            BigIntegerToRawNumberSequenceConverter<TLink> bigIntegerToRawNumberSequenceConverter = new(links, addressToRawNumberConverter, listToSequenceConverter);
             RawNumberSequenceToBigIntegerConverter<TLink> rawNumberSequenceToBigIntegerConverter = new(links, numberToAddressConverter);
             var bigIntSequence = bigIntegerToRawNumberSequenceConverter.Convert(bigInt);
             var bigIntFromSequence = rawNumberSequenceToBigIntegerConverter.Convert(bigIntSequence);
@@ -39,7 +41,8 @@ namespace Platform.Data.Doublets.Tests.Numbers.Raw
             BigInteger bigInt = new(ulong.MaxValue);
             AddressToRawNumberConverter<TLink> addressToRawNumberConverter = new();
             RawNumberToAddressConverter<TLink> numberToAddressConverter = new();
-            BigIntegerToRawNumberSequenceConverter<TLink> bigIntegerToRawNumberSequenceConverter = new(links, addressToRawNumberConverter);
+            BalancedVariantConverter<TLink> listToSequenceConverter = new(links);
+            BigIntegerToRawNumberSequenceConverter<TLink> bigIntegerToRawNumberSequenceConverter = new(links, addressToRawNumberConverter, listToSequenceConverter);
             RawNumberSequenceToBigIntegerConverter<TLink> rawNumberSequenceToBigIntegerConverter = new(links, numberToAddressConverter);
             var bigIntSequence = bigIntegerToRawNumberSequenceConverter.Convert(bigInt);
             var bigIntFromSequence = rawNumberSequenceToBigIntegerConverter.Convert(bigIntSequence);
@@ -54,7 +57,8 @@ namespace Platform.Data.Doublets.Tests.Numbers.Raw
             bigInt *= 2;
             AddressToRawNumberConverter<TLink> addressToRawNumberConverter = new();
             RawNumberToAddressConverter<TLink> numberToAddressConverter = new();
-            BigIntegerToRawNumberSequenceConverter<TLink> bigIntegerToRawNumberSequenceConverter = new(links, addressToRawNumberConverter);
+            BalancedVariantConverter<TLink> listToSequenceConverter = new(links);
+            BigIntegerToRawNumberSequenceConverter<TLink> bigIntegerToRawNumberSequenceConverter = new(links, addressToRawNumberConverter, listToSequenceConverter);
             RawNumberSequenceToBigIntegerConverter<TLink> rawNumberSequenceToBigIntegerConverter = new(links, numberToAddressConverter);
             var bigIntSequence = bigIntegerToRawNumberSequenceConverter.Convert(bigInt);
             var bigIntFromSequence = rawNumberSequenceToBigIntegerConverter.Convert(bigIntSequence);
