@@ -45,9 +45,5 @@
     <PackageReference Include="Platform.Memory" Version="0.3.0" />
     <PackageReference Include="Platform.Data" Version="0.4.1" />
   </ItemGroup>
-  
-  <ItemGroup>
-    <Folder Include="Numbers\Rational" />
-  </ItemGroup>
 
 </Project>
