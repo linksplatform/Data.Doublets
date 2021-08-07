@@ -26,8 +26,8 @@ namespace Platform.Data.Doublets.Numbers.Rational
 
         public decimal Convert(TLink rationalNumber)
         {
-            var numerator = (decimal)RawNumberSequenceToBigIntegerConverter.Convert(_links.GetSource(rationalNumber));
-            var denominator = (decimal)RawNumberSequenceToBigIntegerConverter.Convert(_links.GetTarget(rationalNumber));
+            var numerator = RawNumberSequenceToBigIntegerConverter.Convert(_links.GetSource(rationalNumber));
+            var denominator = RawNumberSequenceToBigIntegerConverter.Convert(_links.GetTarget(rationalNumber));
             return (decimal)(numerator / denominator);
         }
     }
