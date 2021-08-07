@@ -8,7 +8,7 @@ using Platform.Memory;
 using Xunit;
 using TLink = System.UInt64;
 
-namespace Platform.Data.Doublets.Tests.Numbers.Raw
+namespace Platform.Data.Doublets.Tests
 {
     public class BigIntegerConvertersTests
     {
