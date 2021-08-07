@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Numerics;
 using Platform.Data.Doublets.Memory;
 using Platform.Data.Doublets.Memory.United.Generic;
@@ -19,42 +20,20 @@ namespace Platform.Data.Doublets.Tests
             var linksConstants = new LinksConstants<TLink>(enableExternalReferencesSupport: true);
             return new UnitedMemoryLinks<TLink>(new FileMappedResizableDirectMemory(dataDbFilename), UnitedMemoryLinks<TLink>.DefaultLinksSizeStep, linksConstants, IndexTreeType.Default);
         }
-        [Fact]
-        public void Test()
-        {
-            var links = CreateLinks();
-            BigInteger bigInt = new(1);
-            AddressToRawNumberConverter<TLink> addressToRawNumberConverter = new();
-            RawNumberToAddressConverter<TLink> numberToAddressConverter = new();
-            BalancedVariantConverter<TLink> listToSequenceConverter = new(links);
-            BigIntegerToRawNumberSequenceConverter<TLink> bigIntegerToRawNumberSequenceConverter = new(links, addressToRawNumberConverter, listToSequenceConverter);
-            RawNumberSequenceToBigIntegerConverter<TLink> rawNumberSequenceToBigIntegerConverter = new(links, numberToAddressConverter);
-            var bigIntSequence = bigIntegerToRawNumberSequenceConverter.Convert(bigInt);
-            var bigIntFromSequence = rawNumberSequenceToBigIntegerConverter.Convert(bigIntSequence);
-            Assert.Equal(bigInt, bigIntFromSequence);
-        }
-
-        [Fact]
-        public void Test64BitNumber()
-        {
-            var links = CreateLinks();
-            BigInteger bigInt = new(ulong.MaxValue);
-            AddressToRawNumberConverter<TLink> addressToRawNumberConverter = new();
-            RawNumberToAddressConverter<TLink> numberToAddressConverter = new();
-            BalancedVariantConverter<TLink> listToSequenceConverter = new(links);
-            BigIntegerToRawNumberSequenceConverter<TLink> bigIntegerToRawNumberSequenceConverter = new(links, addressToRawNumberConverter, listToSequenceConverter);
-            RawNumberSequenceToBigIntegerConverter<TLink> rawNumberSequenceToBigIntegerConverter = new(links, numberToAddressConverter);
-            var bigIntSequence = bigIntegerToRawNumberSequenceConverter.Convert(bigInt);
-            var bigIntFromSequence = rawNumberSequenceToBigIntegerConverter.Convert(bigIntSequence);
-            Assert.Equal(bigInt, bigIntFromSequence);
-        }
         
-        [Fact]
-        public void Test65BitNumber()
+        public static IEnumerable<object[]> Data =>
+            new List<object[]>
+            {
+                new object[]{ new BigInteger(decimal.MaxValue) },
+                new object[]{ new BigInteger(decimal.MinValue) },
+                new object[]{ new BigInteger(1234.56789M) }
+            };
+        
+        [Theory]
+        [MemberData(nameof(Data))]
+        public void Test(BigInteger bigInt)
         {
             var links = CreateLinks();
-            BigInteger bigInt = new(ulong.MaxValue);
-            bigInt *= 2;
             AddressToRawNumberConverter<TLink> addressToRawNumberConverter = new();
             RawNumberToAddressConverter<TLink> numberToAddressConverter = new();
             BalancedVariantConverter<TLink> listToSequenceConverter = new(links);
