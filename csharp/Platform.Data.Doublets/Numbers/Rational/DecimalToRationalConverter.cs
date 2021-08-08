@@ -31,13 +31,14 @@ namespace Platform.Data.Doublets.Numbers.Rational
             }
             BigInteger denominator = new(System.Math.Pow(10, digitsAfterDot));
             BigInteger numerator = BigInteger.Parse(decimalWithoutDots);
-            BigInteger greatestCommonDivisor = new(0);
-            while (greatestCommonDivisor > 1)
+            BigInteger greatestCommonDivisor;
+            do
             {
                 greatestCommonDivisor = BigInteger.GreatestCommonDivisor(numerator, denominator);
                 numerator /= greatestCommonDivisor;
                 denominator /= greatestCommonDivisor;
             }
+            while (greatestCommonDivisor > 1);
             var numeratorLink = BigIntegerToRawNumberSequenceConverter.Convert(numerator);
             var denominatorLink = BigIntegerToRawNumberSequenceConverter.Convert(denominator);
             return _links.GetOrCreate(numeratorLink, denominatorLink);
