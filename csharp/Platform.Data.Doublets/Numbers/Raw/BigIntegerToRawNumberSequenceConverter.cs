@@ -17,17 +17,19 @@ namespace Platform.Data.Doublets.Numbers.Raw
         private readonly IConverter<IList<TLink>, TLink> _listToSequenceConverter;
         private static readonly TLink _maximumValue = NumericType<TLink>.MaxValue;
         private static readonly TLink _bitMask = Bit.ShiftRight(_maximumValue, 1);
-        
-        public BigIntegerToRawNumberSequenceConverter(ILinks<TLink> links, IConverter<TLink> addressToNumberConverter, IConverter<IList<TLink>,TLink> listToSequenceConverter) : base(links)
+        public readonly TLink NegativeNumberMarker;
+
+        public BigIntegerToRawNumberSequenceConverter(ILinks<TLink> links, IConverter<TLink> addressToNumberConverter, IConverter<IList<TLink>,TLink> listToSequenceConverter, TLink negativeNumberMarker) : base(links)
         {
             _addressToNumberConverter = addressToNumberConverter;
             _listToSequenceConverter = listToSequenceConverter;
+            NegativeNumberMarker = negativeNumberMarker;
         }
 
         private List<TLink> GetRawNumberParts(BigInteger bigInteger)
         {
             List<TLink> rawNumbers = new();
-            for (BigInteger currentBigInt = bigInteger; currentBigInt > 0; currentBigInt >>= 63)
+            for(BigInteger currentBigInt = bigInteger; currentBigInt != 0; currentBigInt >>= 63)
             {
                 var bigIntBytes = currentBigInt.ToByteArray();
                 var bigIntWithBitMask = Bit.And(bigIntBytes.ToStructure<TLink>(), _bitMask);
@@ -39,8 +41,10 @@ namespace Platform.Data.Doublets.Numbers.Raw
 
         public TLink Convert(BigInteger bigInteger)
         {
-            var rawNumbers = GetRawNumberParts(bigInteger);
-            return _listToSequenceConverter.Convert(rawNumbers);
+            var sign = bigInteger.Sign;
+            var number = GetRawNumberParts(sign == 1 ? bigInteger : BigInteger.Negate(bigInteger));
+            var numberSequence = _listToSequenceConverter.Convert(number);
+            return sign == 1 ? numberSequence : _links.GetOrCreate(NegativeNumberMarker, numberSequence);
         }
     }
 }
