@@ -22,7 +22,7 @@ namespace Platform.Data.Doublets.Tests
         }
         
         [Fact]
-        public void TestPositiveValue()
+        public void DecimalMaxValueTest()
         {
             var links = CreateLinks();
             BigInteger bigInteger = new(decimal.MaxValue);
@@ -38,7 +38,7 @@ namespace Platform.Data.Doublets.Tests
         }
         
         [Fact]
-        public void TestNegativeValue()
+        public void DecimalMinValueTest()
         {
             var links = CreateLinks();
             BigInteger bigInteger = new(decimal.MinValue);
@@ -54,7 +54,7 @@ namespace Platform.Data.Doublets.Tests
         }
         
         [Fact]
-        public void TestZeroValue()
+        public void ZeroValueTest()
         {
             var links = CreateLinks();
             BigInteger bigInteger = new(0);
@@ -70,7 +70,7 @@ namespace Platform.Data.Doublets.Tests
         }
         
         [Fact]
-        public void TestOneValue()
+        public void OneValueTest()
         {
             var links = CreateLinks();
             BigInteger bigInteger = new(1);
