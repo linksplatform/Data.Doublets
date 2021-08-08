@@ -11,18 +11,18 @@ using Platform.Unsafe;
 namespace Platform.Data.Doublets.Numbers.Raw
 {
     public class BigIntegerToRawNumberSequenceConverter<TLink> : LinksDecoratorBase<TLink>, IConverter<BigInteger, TLink>
-    where TLink : struct
+        where TLink : struct
     {
+        public static readonly TLink MaximumValue = NumericType<TLink>.MaxValue;
+        public static readonly TLink BitMask = Bit.ShiftRight(MaximumValue, 1);
         public readonly IConverter<TLink> AddressToNumberConverter;
-        private readonly IConverter<IList<TLink>, TLink> _listToSequenceConverter;
-        private static readonly TLink _maximumValue = NumericType<TLink>.MaxValue;
-        private static readonly TLink _bitMask = Bit.ShiftRight(_maximumValue, 1);
+        public readonly IConverter<IList<TLink>, TLink> ListToSequenceConverter;
         public readonly TLink NegativeNumberMarker;
 
         public BigIntegerToRawNumberSequenceConverter(ILinks<TLink> links, IConverter<TLink> addressToNumberConverter, IConverter<IList<TLink>,TLink> listToSequenceConverter, TLink negativeNumberMarker) : base(links)
         {
             AddressToNumberConverter = addressToNumberConverter;
-            _listToSequenceConverter = listToSequenceConverter;
+            ListToSequenceConverter = listToSequenceConverter;
             NegativeNumberMarker = negativeNumberMarker;
         }
 
@@ -33,7 +33,7 @@ namespace Platform.Data.Doublets.Numbers.Raw
             do
             {
                 var bigIntBytes = currentBigInt.ToByteArray();
-                var bigIntWithBitMask = Bit.And(bigIntBytes.ToStructure<TLink>(), _bitMask);
+                var bigIntWithBitMask = Bit.And(bigIntBytes.ToStructure<TLink>(), BitMask);
                 var rawNumber = AddressToNumberConverter.Convert(bigIntWithBitMask);
                 rawNumbers.Add(rawNumber);
                 currentBigInt >>= 63;
@@ -46,7 +46,7 @@ namespace Platform.Data.Doublets.Numbers.Raw
         {
             var sign = bigInteger.Sign;
             var number = GetRawNumberParts(sign == -1 ? BigInteger.Negate(bigInteger) : bigInteger);
-            var numberSequence = _listToSequenceConverter.Convert(number);
+            var numberSequence = ListToSequenceConverter.Convert(number);
             return sign == -1 ? _links.GetOrCreate(NegativeNumberMarker, numberSequence) : numberSequence;
         }
     }

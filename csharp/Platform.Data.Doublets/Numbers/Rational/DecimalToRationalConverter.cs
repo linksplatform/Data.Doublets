@@ -9,7 +9,7 @@ using Platform.Data.Doublets.Numbers.Raw;
 namespace Platform.Data.Doublets.Numbers.Rational
 {
     public class DecimalToRationalConverter<TLink> : LinksDecoratorBase<TLink>, IConverter<decimal, TLink>
-    where TLink: struct
+        where TLink: struct
     {
         public readonly BigIntegerToRawNumberSequenceConverter<TLink> BigIntegerToRawNumberSequenceConverter;
 
