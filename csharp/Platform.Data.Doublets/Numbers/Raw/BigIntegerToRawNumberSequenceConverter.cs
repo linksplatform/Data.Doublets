@@ -13,7 +13,7 @@ namespace Platform.Data.Doublets.Numbers.Raw
     public class BigIntegerToRawNumberSequenceConverter<TLink> : LinksDecoratorBase<TLink>, IConverter<BigInteger, TLink>
     where TLink : struct
     {
-        private readonly IConverter<TLink> _addressToNumberConverter;
+        public readonly IConverter<TLink> AddressToNumberConverter;
         private readonly IConverter<IList<TLink>, TLink> _listToSequenceConverter;
         private static readonly TLink _maximumValue = NumericType<TLink>.MaxValue;
         private static readonly TLink _bitMask = Bit.ShiftRight(_maximumValue, 1);
@@ -21,7 +21,7 @@ namespace Platform.Data.Doublets.Numbers.Raw
 
         public BigIntegerToRawNumberSequenceConverter(ILinks<TLink> links, IConverter<TLink> addressToNumberConverter, IConverter<IList<TLink>,TLink> listToSequenceConverter, TLink negativeNumberMarker) : base(links)
         {
-            _addressToNumberConverter = addressToNumberConverter;
+            AddressToNumberConverter = addressToNumberConverter;
             _listToSequenceConverter = listToSequenceConverter;
             NegativeNumberMarker = negativeNumberMarker;
         }
@@ -34,7 +34,7 @@ namespace Platform.Data.Doublets.Numbers.Raw
             {
                 var bigIntBytes = currentBigInt.ToByteArray();
                 var bigIntWithBitMask = Bit.And(bigIntBytes.ToStructure<TLink>(), _bitMask);
-                var rawNumber = _addressToNumberConverter.Convert(bigIntWithBitMask);
+                var rawNumber = AddressToNumberConverter.Convert(bigIntWithBitMask);
                 rawNumbers.Add(rawNumber);
                 currentBigInt >>= 63;
             }

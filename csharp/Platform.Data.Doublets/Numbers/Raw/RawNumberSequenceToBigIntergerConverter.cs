@@ -15,13 +15,13 @@ namespace Platform.Data.Doublets.Numbers.Raw
     where TLink : struct
     {
         public readonly EqualityComparer<TLink> EqualityComparer = EqualityComparer<TLink>.Default;
-        private readonly IConverter<TLink, TLink> _numberToAddressConverter;
+        public readonly IConverter<TLink, TLink> NumberToAddressConverter;
         private readonly LeftSequenceWalker<TLink> _leftSequenceWalker;
         public readonly TLink NegativeNumberMarker;
 
         public RawNumberSequenceToBigIntegerConverter(ILinks<TLink> links, IConverter<TLink, TLink> numberToAddressConverter, TLink negativeNumberMarker) : base(links)
         {
-            _numberToAddressConverter = numberToAddressConverter;
+            NumberToAddressConverter = numberToAddressConverter;
             _leftSequenceWalker = new(links, new DefaultStack<TLink>());
             NegativeNumberMarker = negativeNumberMarker;
         }
@@ -40,12 +40,12 @@ namespace Platform.Data.Doublets.Numbers.Raw
             {
                 throw new Exception("Raw number sequence cannot be empty.");
             }
-            var nextPart = _numberToAddressConverter.Convert(enumerator.Current);
+            var nextPart = NumberToAddressConverter.Convert(enumerator.Current);
             BigInteger currentBigInt = new(nextPart.ToBytes());
             while (enumerator.MoveNext())
             {
                 currentBigInt <<= 63;
-                nextPart = _numberToAddressConverter.Convert(enumerator.Current);
+                nextPart = NumberToAddressConverter.Convert(enumerator.Current);
                 currentBigInt |= new BigInteger(nextPart.ToBytes());
             }
             return sign == 1 ? currentBigInt : BigInteger.Negate(currentBigInt);
