@@ -25,7 +25,14 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <LangVersion>latest</LangVersion>
-    <PackageReleaseNotes>coverlet.collector dependency is updated from 3.0.3 to 3.1.0. Platform.Singletons dependency is updated from 0.1.0 to 0.2.1. Platform.Incrementers dependency is updated from 0.1.0 to 0.2.0. Platform.Data dependency is updated from 0.3.1 to 0.4.1. Platform.Collections.Methods dependency is updated from 0.4.0 to 0.5.1. Platform.Memory dependency is updated from 0.2.1 to 0.3.0. BigInteger converter is added. RationalNumber converter is added.</PackageReleaseNotes>
+    <PackageReleaseNotes>coverlet.collector dependency is updated from 3.0.3 to 3.1.0.
+      Platform.Singletons dependency is updated from 0.1.0 to 0.2.1.
+      Platform.Incrementers dependency is updated from 0.1.0 to 0.2.0.
+      Platform.Data dependency is updated from 0.3.1 to 0.4.1.
+      Platform.Collections.Methods dependency is updated from 0.4.0 to 0.5.1.
+      Platform.Memory dependency is updated from 0.2.1 to 0.3.0.
+      BigInteger converter is added.
+      RationalNumber converter is added.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup Condition="$(TargetFramework.StartsWith('net4')) AND '$(MSBuildRuntimeType)' == 'Core' AND '$(OS)' != 'Windows_NT'">
