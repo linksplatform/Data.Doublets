@@ -58,9 +58,63 @@ namespace Platform.Data.Doublets.Tests
         }
         
         [Fact]
-        public void DecimalTest()
+        public void DecimalPositiveHalfTest()
         {
-            const decimal @decimal = 1234.56789M;
+            const decimal @decimal = 0.5M;
+            var links = CreateLinks();
+            TLink negativeNumberMarker = links.Create();
+            AddressToRawNumberConverter<TLink> addressToRawNumberConverter = new();
+            RawNumberToAddressConverter<TLink> numberToAddressConverter = new();
+            BalancedVariantConverter<TLink> balancedVariantConverter = new(links);
+            BigIntegerToRawNumberSequenceConverter<TLink> bigIntegerToRawNumberSequenceConverter = new(links, addressToRawNumberConverter, balancedVariantConverter, negativeNumberMarker);
+            RawNumberSequenceToBigIntegerConverter<TLink> rawNumberSequenceToBigIntegerConverter = new(links, numberToAddressConverter, negativeNumberMarker);
+            DecimalToRationalConverter<TLink> decimalToRationalConverter = new(links, bigIntegerToRawNumberSequenceConverter);
+            RationalToDecimalConverter<TLink> rationalToDecimalConverter = new(links, rawNumberSequenceToBigIntegerConverter);
+            var rationalNumber = decimalToRationalConverter.Convert(@decimal);
+            var decimalFromRational = rationalToDecimalConverter.Convert(rationalNumber);
+            Assert.Equal(@decimal, decimalFromRational);
+        }
+        
+        [Fact]
+        public void DecimalNegativeHalfTest()
+        {
+            const decimal @decimal = -0.5M;
+            var links = CreateLinks();
+            TLink negativeNumberMarker = links.Create();
+            AddressToRawNumberConverter<TLink> addressToRawNumberConverter = new();
+            RawNumberToAddressConverter<TLink> numberToAddressConverter = new();
+            BalancedVariantConverter<TLink> balancedVariantConverter = new(links);
+            BigIntegerToRawNumberSequenceConverter<TLink> bigIntegerToRawNumberSequenceConverter = new(links, addressToRawNumberConverter, balancedVariantConverter, negativeNumberMarker);
+            RawNumberSequenceToBigIntegerConverter<TLink> rawNumberSequenceToBigIntegerConverter = new(links, numberToAddressConverter, negativeNumberMarker);
+            DecimalToRationalConverter<TLink> decimalToRationalConverter = new(links, bigIntegerToRawNumberSequenceConverter);
+            RationalToDecimalConverter<TLink> rationalToDecimalConverter = new(links, rawNumberSequenceToBigIntegerConverter);
+            var rationalNumber = decimalToRationalConverter.Convert(@decimal);
+            var decimalFromRational = rationalToDecimalConverter.Convert(rationalNumber);
+            Assert.Equal(@decimal, decimalFromRational);
+        }
+        
+        [Fact]
+        public void DecimalOneTest()
+        {
+            const decimal @decimal = 1;
+            var links = CreateLinks();
+            TLink negativeNumberMarker = links.Create();
+            AddressToRawNumberConverter<TLink> addressToRawNumberConverter = new();
+            RawNumberToAddressConverter<TLink> numberToAddressConverter = new();
+            BalancedVariantConverter<TLink> balancedVariantConverter = new(links);
+            BigIntegerToRawNumberSequenceConverter<TLink> bigIntegerToRawNumberSequenceConverter = new(links, addressToRawNumberConverter, balancedVariantConverter, negativeNumberMarker);
+            RawNumberSequenceToBigIntegerConverter<TLink> rawNumberSequenceToBigIntegerConverter = new(links, numberToAddressConverter, negativeNumberMarker);
+            DecimalToRationalConverter<TLink> decimalToRationalConverter = new(links, bigIntegerToRawNumberSequenceConverter);
+            RationalToDecimalConverter<TLink> rationalToDecimalConverter = new(links, rawNumberSequenceToBigIntegerConverter);
+            var rationalNumber = decimalToRationalConverter.Convert(@decimal);
+            var decimalFromRational = rationalToDecimalConverter.Convert(rationalNumber);
+            Assert.Equal(@decimal, decimalFromRational);
+        }
+        
+        [Fact]
+        public void DecimalMinusOneTest()
+        {
+            const decimal @decimal = -1;
             var links = CreateLinks();
             TLink negativeNumberMarker = links.Create();
             AddressToRawNumberConverter<TLink> addressToRawNumberConverter = new();
