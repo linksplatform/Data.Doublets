@@ -29,13 +29,16 @@ namespace Platform.Data.Doublets.Numbers.Raw
         private List<TLink> GetRawNumberParts(BigInteger bigInteger)
         {
             List<TLink> rawNumbers = new();
-            for(BigInteger currentBigInt = bigInteger; currentBigInt != 0; currentBigInt >>= 63)
+            BigInteger currentBigInt = bigInteger;
+            do
             {
                 var bigIntBytes = currentBigInt.ToByteArray();
                 var bigIntWithBitMask = Bit.And(bigIntBytes.ToStructure<TLink>(), _bitMask);
                 var rawNumber = _addressToNumberConverter.Convert(bigIntWithBitMask);
                 rawNumbers.Add(rawNumber);
+                currentBigInt >>= 63;
             }
+            while (currentBigInt != 0);
             return rawNumbers;
         }
 
