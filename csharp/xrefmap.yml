@@ -22158,6 +22158,132 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Memory.United.Specific.UInt64UnusedLinksListMethods.GetLinkReference
   nameWithType: UInt64UnusedLinksListMethods.GetLinkReference
+- uid: Platform.Data.Doublets.Numbers.Rational
+  name: Platform.Data.Doublets.Numbers.Rational
+  href: api/Platform.Data.Doublets.Numbers.Rational.html
+  commentId: N:Platform.Data.Doublets.Numbers.Rational
+  fullName: Platform.Data.Doublets.Numbers.Rational
+  nameWithType: Platform.Data.Doublets.Numbers.Rational
+- uid: Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter`1
+  name: DecimalToRationalConverter<TLink>
+  href: api/Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter-1.html
+  commentId: T:Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter`1
+  name.vb: DecimalToRationalConverter(Of TLink)
+  fullName: Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter<TLink>
+  fullName.vb: Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter(Of TLink)
+  nameWithType: DecimalToRationalConverter<TLink>
+  nameWithType.vb: DecimalToRationalConverter(Of TLink)
+- uid: Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter{`0})
+  name: DecimalToRationalConverter(ILinks<TLink>, BigIntegerToRawNumberSequenceConverter<TLink>)
+  href: api/Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter-1.html#Platform_Data_Doublets_Numbers_Rational_DecimalToRationalConverter_1__ctor_Platform_Data_Doublets_ILinks__0__Platform_Data_Doublets_Numbers_Raw_BigIntegerToRawNumberSequenceConverter__0__
+  commentId: M:Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter{`0})
+  name.vb: DecimalToRationalConverter(ILinks(Of TLink), BigIntegerToRawNumberSequenceConverter(Of TLink))
+  fullName: Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter<TLink>.DecimalToRationalConverter(Platform.Data.Doublets.ILinks<TLink>, Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter<TLink>)
+  fullName.vb: Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter(Of TLink).DecimalToRationalConverter(Platform.Data.Doublets.ILinks(Of TLink), Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter(Of TLink))
+  nameWithType: DecimalToRationalConverter<TLink>.DecimalToRationalConverter(ILinks<TLink>, BigIntegerToRawNumberSequenceConverter<TLink>)
+  nameWithType.vb: DecimalToRationalConverter(Of TLink).DecimalToRationalConverter(ILinks(Of TLink), BigIntegerToRawNumberSequenceConverter(Of TLink))
+- uid: Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter`1.#ctor*
+  name: DecimalToRationalConverter
+  href: api/Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter-1.html#Platform_Data_Doublets_Numbers_Rational_DecimalToRationalConverter_1__ctor_
+  commentId: Overload:Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter`1.#ctor
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter<TLink>.DecimalToRationalConverter
+  fullName.vb: Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter(Of TLink).DecimalToRationalConverter
+  nameWithType: DecimalToRationalConverter<TLink>.DecimalToRationalConverter
+  nameWithType.vb: DecimalToRationalConverter(Of TLink).DecimalToRationalConverter
+- uid: Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter`1.BigIntegerToRawNumberSequenceConverter
+  name: BigIntegerToRawNumberSequenceConverter
+  href: api/Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter-1.html#Platform_Data_Doublets_Numbers_Rational_DecimalToRationalConverter_1_BigIntegerToRawNumberSequenceConverter
+  commentId: F:Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter`1.BigIntegerToRawNumberSequenceConverter
+  fullName: Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter<TLink>.BigIntegerToRawNumberSequenceConverter
+  fullName.vb: Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter(Of TLink).BigIntegerToRawNumberSequenceConverter
+  nameWithType: DecimalToRationalConverter<TLink>.BigIntegerToRawNumberSequenceConverter
+  nameWithType.vb: DecimalToRationalConverter(Of TLink).BigIntegerToRawNumberSequenceConverter
+- uid: Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter`1.Convert(System.Decimal)
+  name: Convert(Decimal)
+  href: api/Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter-1.html#Platform_Data_Doublets_Numbers_Rational_DecimalToRationalConverter_1_Convert_System_Decimal_
+  commentId: M:Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter`1.Convert(System.Decimal)
+  fullName: Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter<TLink>.Convert(System.Decimal)
+  fullName.vb: Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter(Of TLink).Convert(System.Decimal)
+  nameWithType: DecimalToRationalConverter<TLink>.Convert(Decimal)
+  nameWithType.vb: DecimalToRationalConverter(Of TLink).Convert(Decimal)
+- uid: Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter`1.Convert*
+  name: Convert
+  href: api/Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter-1.html#Platform_Data_Doublets_Numbers_Rational_DecimalToRationalConverter_1_Convert_
+  commentId: Overload:Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter`1.Convert
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter<TLink>.Convert
+  fullName.vb: Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter(Of TLink).Convert
+  nameWithType: DecimalToRationalConverter<TLink>.Convert
+  nameWithType.vb: DecimalToRationalConverter(Of TLink).Convert
+- uid: Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter`1.UncheckedConverter
+  name: UncheckedConverter
+  href: api/Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter-1.html#Platform_Data_Doublets_Numbers_Rational_DecimalToRationalConverter_1_UncheckedConverter
+  commentId: F:Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter`1.UncheckedConverter
+  fullName: Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter<TLink>.UncheckedConverter
+  fullName.vb: Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter(Of TLink).UncheckedConverter
+  nameWithType: DecimalToRationalConverter<TLink>.UncheckedConverter
+  nameWithType.vb: DecimalToRationalConverter(Of TLink).UncheckedConverter
+- uid: Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter`1
+  name: RationalToDecimalConverter<TLink>
+  href: api/Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter-1.html
+  commentId: T:Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter`1
+  name.vb: RationalToDecimalConverter(Of TLink)
+  fullName: Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter<TLink>
+  fullName.vb: Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter(Of TLink)
+  nameWithType: RationalToDecimalConverter<TLink>
+  nameWithType.vb: RationalToDecimalConverter(Of TLink)
+- uid: Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter{`0})
+  name: RationalToDecimalConverter(ILinks<TLink>, RawNumberSequenceToBigIntegerConverter<TLink>)
+  href: api/Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter-1.html#Platform_Data_Doublets_Numbers_Rational_RationalToDecimalConverter_1__ctor_Platform_Data_Doublets_ILinks__0__Platform_Data_Doublets_Numbers_Raw_RawNumberSequenceToBigIntegerConverter__0__
+  commentId: M:Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter{`0})
+  name.vb: RationalToDecimalConverter(ILinks(Of TLink), RawNumberSequenceToBigIntegerConverter(Of TLink))
+  fullName: Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter<TLink>.RationalToDecimalConverter(Platform.Data.Doublets.ILinks<TLink>, Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter<TLink>)
+  fullName.vb: Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter(Of TLink).RationalToDecimalConverter(Platform.Data.Doublets.ILinks(Of TLink), Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter(Of TLink))
+  nameWithType: RationalToDecimalConverter<TLink>.RationalToDecimalConverter(ILinks<TLink>, RawNumberSequenceToBigIntegerConverter<TLink>)
+  nameWithType.vb: RationalToDecimalConverter(Of TLink).RationalToDecimalConverter(ILinks(Of TLink), RawNumberSequenceToBigIntegerConverter(Of TLink))
+- uid: Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter`1.#ctor*
+  name: RationalToDecimalConverter
+  href: api/Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter-1.html#Platform_Data_Doublets_Numbers_Rational_RationalToDecimalConverter_1__ctor_
+  commentId: Overload:Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter`1.#ctor
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter<TLink>.RationalToDecimalConverter
+  fullName.vb: Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter(Of TLink).RationalToDecimalConverter
+  nameWithType: RationalToDecimalConverter<TLink>.RationalToDecimalConverter
+  nameWithType.vb: RationalToDecimalConverter(Of TLink).RationalToDecimalConverter
+- uid: Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter`1.Convert(`0)
+  name: Convert(TLink)
+  href: api/Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter-1.html#Platform_Data_Doublets_Numbers_Rational_RationalToDecimalConverter_1_Convert__0_
+  commentId: M:Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter`1.Convert(`0)
+  fullName: Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter<TLink>.Convert(TLink)
+  fullName.vb: Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter(Of TLink).Convert(TLink)
+  nameWithType: RationalToDecimalConverter<TLink>.Convert(TLink)
+  nameWithType.vb: RationalToDecimalConverter(Of TLink).Convert(TLink)
+- uid: Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter`1.Convert*
+  name: Convert
+  href: api/Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter-1.html#Platform_Data_Doublets_Numbers_Rational_RationalToDecimalConverter_1_Convert_
+  commentId: Overload:Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter`1.Convert
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter<TLink>.Convert
+  fullName.vb: Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter(Of TLink).Convert
+  nameWithType: RationalToDecimalConverter<TLink>.Convert
+  nameWithType.vb: RationalToDecimalConverter(Of TLink).Convert
+- uid: Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter`1.RawNumberSequenceToBigIntegerConverter
+  name: RawNumberSequenceToBigIntegerConverter
+  href: api/Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter-1.html#Platform_Data_Doublets_Numbers_Rational_RationalToDecimalConverter_1_RawNumberSequenceToBigIntegerConverter
+  commentId: F:Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter`1.RawNumberSequenceToBigIntegerConverter
+  fullName: Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter<TLink>.RawNumberSequenceToBigIntegerConverter
+  fullName.vb: Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter(Of TLink).RawNumberSequenceToBigIntegerConverter
+  nameWithType: RationalToDecimalConverter<TLink>.RawNumberSequenceToBigIntegerConverter
+  nameWithType.vb: RationalToDecimalConverter(Of TLink).RawNumberSequenceToBigIntegerConverter
+- uid: Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter`1.UncheckedConverter
+  name: UncheckedConverter
+  href: api/Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter-1.html#Platform_Data_Doublets_Numbers_Rational_RationalToDecimalConverter_1_UncheckedConverter
+  commentId: F:Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter`1.UncheckedConverter
+  fullName: Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter<TLink>.UncheckedConverter
+  fullName.vb: Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter(Of TLink).UncheckedConverter
+  nameWithType: RationalToDecimalConverter<TLink>.UncheckedConverter
+  nameWithType.vb: RationalToDecimalConverter(Of TLink).UncheckedConverter
 - uid: Platform.Data.Doublets.Numbers.Raw
   name: Platform.Data.Doublets.Numbers.Raw
   href: api/Platform.Data.Doublets.Numbers.Raw.html
@@ -22173,15 +22299,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter(Of TLink)
   nameWithType: BigIntegerToRawNumberSequenceConverter<TLink>
   nameWithType.vb: BigIntegerToRawNumberSequenceConverter(Of TLink)
-- uid: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},IConverter{`0},IConverter{System.Collections.Generic.IList{`0},`0})
-  name: BigIntegerToRawNumberSequenceConverter(ILinks<TLink>, IConverter<TLink>, IConverter<IList<TLink>, TLink>)
-  href: api/Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter-1.html#Platform_Data_Doublets_Numbers_Raw_BigIntegerToRawNumberSequenceConverter_1__ctor_Platform_Data_Doublets_ILinks__0__IConverter__0__IConverter_System_Collections_Generic_IList__0___0__
-  commentId: M:Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},IConverter{`0},IConverter{System.Collections.Generic.IList{`0},`0})
-  name.vb: BigIntegerToRawNumberSequenceConverter(ILinks(Of TLink), IConverter(Of TLink), IConverter(Of IList(Of TLink), TLink))
-  fullName: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter<TLink>.BigIntegerToRawNumberSequenceConverter(Platform.Data.Doublets.ILinks<TLink>, IConverter<TLink>, IConverter<System.Collections.Generic.IList<TLink>, TLink>)
-  fullName.vb: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter(Of TLink).BigIntegerToRawNumberSequenceConverter(Platform.Data.Doublets.ILinks(Of TLink), IConverter(Of TLink), IConverter(Of System.Collections.Generic.IList(Of TLink), TLink))
-  nameWithType: BigIntegerToRawNumberSequenceConverter<TLink>.BigIntegerToRawNumberSequenceConverter(ILinks<TLink>, IConverter<TLink>, IConverter<IList<TLink>, TLink>)
-  nameWithType.vb: BigIntegerToRawNumberSequenceConverter(Of TLink).BigIntegerToRawNumberSequenceConverter(ILinks(Of TLink), IConverter(Of TLink), IConverter(Of IList(Of TLink), TLink))
+- uid: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},IConverter{`0},IConverter{System.Collections.Generic.IList{`0},`0},`0)
+  name: BigIntegerToRawNumberSequenceConverter(ILinks<TLink>, IConverter<TLink>, IConverter<IList<TLink>, TLink>, TLink)
+  href: api/Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter-1.html#Platform_Data_Doublets_Numbers_Raw_BigIntegerToRawNumberSequenceConverter_1__ctor_Platform_Data_Doublets_ILinks__0__IConverter__0__IConverter_System_Collections_Generic_IList__0___0___0_
+  commentId: M:Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},IConverter{`0},IConverter{System.Collections.Generic.IList{`0},`0},`0)
+  name.vb: BigIntegerToRawNumberSequenceConverter(ILinks(Of TLink), IConverter(Of TLink), IConverter(Of IList(Of TLink), TLink), TLink)
+  fullName: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter<TLink>.BigIntegerToRawNumberSequenceConverter(Platform.Data.Doublets.ILinks<TLink>, IConverter<TLink>, IConverter<System.Collections.Generic.IList<TLink>, TLink>, TLink)
+  fullName.vb: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter(Of TLink).BigIntegerToRawNumberSequenceConverter(Platform.Data.Doublets.ILinks(Of TLink), IConverter(Of TLink), IConverter(Of System.Collections.Generic.IList(Of TLink), TLink), TLink)
+  nameWithType: BigIntegerToRawNumberSequenceConverter<TLink>.BigIntegerToRawNumberSequenceConverter(ILinks<TLink>, IConverter<TLink>, IConverter<IList<TLink>, TLink>, TLink)
+  nameWithType.vb: BigIntegerToRawNumberSequenceConverter(Of TLink).BigIntegerToRawNumberSequenceConverter(ILinks(Of TLink), IConverter(Of TLink), IConverter(Of IList(Of TLink), TLink), TLink)
 - uid: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter`1.#ctor*
   name: BigIntegerToRawNumberSequenceConverter
   href: api/Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter-1.html#Platform_Data_Doublets_Numbers_Raw_BigIntegerToRawNumberSequenceConverter_1__ctor_
@@ -22191,6 +22317,14 @@ references:
   fullName.vb: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter(Of TLink).BigIntegerToRawNumberSequenceConverter
   nameWithType: BigIntegerToRawNumberSequenceConverter<TLink>.BigIntegerToRawNumberSequenceConverter
   nameWithType.vb: BigIntegerToRawNumberSequenceConverter(Of TLink).BigIntegerToRawNumberSequenceConverter
+- uid: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter`1.AddressToNumberConverter
+  name: AddressToNumberConverter
+  href: api/Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter-1.html#Platform_Data_Doublets_Numbers_Raw_BigIntegerToRawNumberSequenceConverter_1_AddressToNumberConverter
+  commentId: F:Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter`1.AddressToNumberConverter
+  fullName: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter<TLink>.AddressToNumberConverter
+  fullName.vb: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter(Of TLink).AddressToNumberConverter
+  nameWithType: BigIntegerToRawNumberSequenceConverter<TLink>.AddressToNumberConverter
+  nameWithType.vb: BigIntegerToRawNumberSequenceConverter(Of TLink).AddressToNumberConverter
 - uid: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter`1.Convert(System.Numerics.BigInteger)
   name: Convert(BigInteger)
   href: api/Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter-1.html#Platform_Data_Doublets_Numbers_Raw_BigIntegerToRawNumberSequenceConverter_1_Convert_System_Numerics_BigInteger_
@@ -22208,6 +22342,14 @@ references:
   fullName.vb: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter(Of TLink).Convert
   nameWithType: BigIntegerToRawNumberSequenceConverter<TLink>.Convert
   nameWithType.vb: BigIntegerToRawNumberSequenceConverter(Of TLink).Convert
+- uid: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter`1.NegativeNumberMarker
+  name: NegativeNumberMarker
+  href: api/Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter-1.html#Platform_Data_Doublets_Numbers_Raw_BigIntegerToRawNumberSequenceConverter_1_NegativeNumberMarker
+  commentId: F:Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter`1.NegativeNumberMarker
+  fullName: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter<TLink>.NegativeNumberMarker
+  fullName.vb: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter(Of TLink).NegativeNumberMarker
+  nameWithType: BigIntegerToRawNumberSequenceConverter<TLink>.NegativeNumberMarker
+  nameWithType.vb: BigIntegerToRawNumberSequenceConverter(Of TLink).NegativeNumberMarker
 - uid: Platform.Data.Doublets.Numbers.Raw.LongRawNumberSequenceToNumberConverter`2
   name: LongRawNumberSequenceToNumberConverter<TSource, TTarget>
   href: api/Platform.Data.Doublets.Numbers.Raw.LongRawNumberSequenceToNumberConverter-2.html
@@ -22305,15 +22447,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter(Of TLink)
   nameWithType: RawNumberSequenceToBigIntegerConverter<TLink>
   nameWithType.vb: RawNumberSequenceToBigIntegerConverter(Of TLink)
-- uid: Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},IConverter{`0,`0})
-  name: RawNumberSequenceToBigIntegerConverter(ILinks<TLink>, IConverter<TLink, TLink>)
-  href: api/Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter-1.html#Platform_Data_Doublets_Numbers_Raw_RawNumberSequenceToBigIntegerConverter_1__ctor_Platform_Data_Doublets_ILinks__0__IConverter__0__0__
-  commentId: M:Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},IConverter{`0,`0})
-  name.vb: RawNumberSequenceToBigIntegerConverter(ILinks(Of TLink), IConverter(Of TLink, TLink))
-  fullName: Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter<TLink>.RawNumberSequenceToBigIntegerConverter(Platform.Data.Doublets.ILinks<TLink>, IConverter<TLink, TLink>)
-  fullName.vb: Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter(Of TLink).RawNumberSequenceToBigIntegerConverter(Platform.Data.Doublets.ILinks(Of TLink), IConverter(Of TLink, TLink))
-  nameWithType: RawNumberSequenceToBigIntegerConverter<TLink>.RawNumberSequenceToBigIntegerConverter(ILinks<TLink>, IConverter<TLink, TLink>)
-  nameWithType.vb: RawNumberSequenceToBigIntegerConverter(Of TLink).RawNumberSequenceToBigIntegerConverter(ILinks(Of TLink), IConverter(Of TLink, TLink))
+- uid: Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},IConverter{`0,`0},`0)
+  name: RawNumberSequenceToBigIntegerConverter(ILinks<TLink>, IConverter<TLink, TLink>, TLink)
+  href: api/Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter-1.html#Platform_Data_Doublets_Numbers_Raw_RawNumberSequenceToBigIntegerConverter_1__ctor_Platform_Data_Doublets_ILinks__0__IConverter__0__0___0_
+  commentId: M:Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter`1.#ctor(Platform.Data.Doublets.ILinks{`0},IConverter{`0,`0},`0)
+  name.vb: RawNumberSequenceToBigIntegerConverter(ILinks(Of TLink), IConverter(Of TLink, TLink), TLink)
+  fullName: Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter<TLink>.RawNumberSequenceToBigIntegerConverter(Platform.Data.Doublets.ILinks<TLink>, IConverter<TLink, TLink>, TLink)
+  fullName.vb: Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter(Of TLink).RawNumberSequenceToBigIntegerConverter(Platform.Data.Doublets.ILinks(Of TLink), IConverter(Of TLink, TLink), TLink)
+  nameWithType: RawNumberSequenceToBigIntegerConverter<TLink>.RawNumberSequenceToBigIntegerConverter(ILinks<TLink>, IConverter<TLink, TLink>, TLink)
+  nameWithType.vb: RawNumberSequenceToBigIntegerConverter(Of TLink).RawNumberSequenceToBigIntegerConverter(ILinks(Of TLink), IConverter(Of TLink, TLink), TLink)
 - uid: Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter`1.#ctor*
   name: RawNumberSequenceToBigIntegerConverter
   href: api/Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter-1.html#Platform_Data_Doublets_Numbers_Raw_RawNumberSequenceToBigIntegerConverter_1__ctor_
@@ -22340,6 +22482,30 @@ references:
   fullName.vb: Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter(Of TLink).Convert
   nameWithType: RawNumberSequenceToBigIntegerConverter<TLink>.Convert
   nameWithType.vb: RawNumberSequenceToBigIntegerConverter(Of TLink).Convert
+- uid: Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter`1.EqualityComparer
+  name: EqualityComparer
+  href: api/Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter-1.html#Platform_Data_Doublets_Numbers_Raw_RawNumberSequenceToBigIntegerConverter_1_EqualityComparer
+  commentId: F:Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter`1.EqualityComparer
+  fullName: Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter<TLink>.EqualityComparer
+  fullName.vb: Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter(Of TLink).EqualityComparer
+  nameWithType: RawNumberSequenceToBigIntegerConverter<TLink>.EqualityComparer
+  nameWithType.vb: RawNumberSequenceToBigIntegerConverter(Of TLink).EqualityComparer
+- uid: Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter`1.NegativeNumberMarker
+  name: NegativeNumberMarker
+  href: api/Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter-1.html#Platform_Data_Doublets_Numbers_Raw_RawNumberSequenceToBigIntegerConverter_1_NegativeNumberMarker
+  commentId: F:Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter`1.NegativeNumberMarker
+  fullName: Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter<TLink>.NegativeNumberMarker
+  fullName.vb: Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter(Of TLink).NegativeNumberMarker
+  nameWithType: RawNumberSequenceToBigIntegerConverter<TLink>.NegativeNumberMarker
+  nameWithType.vb: RawNumberSequenceToBigIntegerConverter(Of TLink).NegativeNumberMarker
+- uid: Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter`1.NumberToAddressConverter
+  name: NumberToAddressConverter
+  href: api/Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter-1.html#Platform_Data_Doublets_Numbers_Raw_RawNumberSequenceToBigIntegerConverter_1_NumberToAddressConverter
+  commentId: F:Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter`1.NumberToAddressConverter
+  fullName: Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter<TLink>.NumberToAddressConverter
+  fullName.vb: Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter(Of TLink).NumberToAddressConverter
+  nameWithType: RawNumberSequenceToBigIntegerConverter<TLink>.NumberToAddressConverter
+  nameWithType.vb: RawNumberSequenceToBigIntegerConverter(Of TLink).NumberToAddressConverter
 - uid: Platform.Data.Doublets.Numbers.Unary
   name: Platform.Data.Doublets.Numbers.Unary
   href: api/Platform.Data.Doublets.Numbers.Unary.html
