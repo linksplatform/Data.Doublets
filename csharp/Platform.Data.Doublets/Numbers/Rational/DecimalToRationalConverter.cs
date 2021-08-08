@@ -32,7 +32,7 @@ namespace Platform.Data.Doublets.Numbers.Rational
             BigInteger denominator = new(System.Math.Pow(10, digitsAfterDot));
             BigInteger numerator = BigInteger.Parse(decimalWithoutDots);
             BigInteger greatestCommonDivisor = new(0);
-            while (greatestCommonDivisor != 1)
+            while (greatestCommonDivisor > 1)
             {
                 greatestCommonDivisor = BigInteger.GreatestCommonDivisor(numerator, denominator);
                 numerator /= greatestCommonDivisor;

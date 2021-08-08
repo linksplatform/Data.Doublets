@@ -38,7 +38,7 @@ namespace Platform.Data.Doublets.Numbers.Raw
                 rawNumbers.Add(rawNumber);
                 currentBigInt >>= 63;
             }
-            while (currentBigInt != 0);
+            while (currentBigInt > 0);
             return rawNumbers;
         }
 
