@@ -17,18 +17,25 @@ namespace Platform.Data.Doublets.Numbers.Rational
     where TLink: struct
     {
         public readonly RawNumberSequenceToBigIntegerConverter<TLink> RawNumberSequenceToBigIntegerConverter;
+        public readonly UncheckedConverter<TLink, int> UncheckedConverter = UncheckedConverter<TLink, int>.Default;
 
         public RationalToDecimalConverter(ILinks<TLink> links, RawNumberSequenceToBigIntegerConverter<TLink> rawNumberSequenceToBigIntegerConverter) : base(links)
         {
             RawNumberSequenceToBigIntegerConverter = rawNumberSequenceToBigIntegerConverter;
         }
 
-
         public decimal Convert(TLink rationalNumber)
+        {
+            var numerator = RawNumberSequenceToBigIntegerConverter.Convert(_links.GetSource(rationalNumber));
+            var dotPositionLink = UncheckedConverter.Convert(RawNumberSequenceToBigIntegerConverter.NumberToAddressConverter.Convert(_links.GetTarget(rationalNumber)));
+            return dotPositionLink == 0 ? (decimal)numerator : decimal.Parse(numerator.ToString().Insert(dotPositionLink, "."));
+        }
+
+        /* public decimal Convert(TLink rationalNumber)
         {
             var numerator = RawNumberSequenceToBigIntegerConverter.Convert(_links.GetSource(rationalNumber));
             var denominator = RawNumberSequenceToBigIntegerConverter.Convert(_links.GetTarget(rationalNumber));
             return (decimal)(numerator / denominator);
-        }
+        } */
     }
 }

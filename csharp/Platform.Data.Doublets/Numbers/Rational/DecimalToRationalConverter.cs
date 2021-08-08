@@ -17,14 +17,33 @@ namespace Platform.Data.Doublets.Numbers.Rational
     where TLink: struct
     {
         public readonly BigIntegerToRawNumberSequenceConverter<TLink> BigIntegerToRawNumberSequenceConverter;
+        public readonly UncheckedConverter<int, TLink> UncheckedConverter = UncheckedConverter<int, TLink>.Default;
 
         public DecimalToRationalConverter(ILinks<TLink> links, BigIntegerToRawNumberSequenceConverter<TLink> bigIntegerToRawNumberSequenceConverter) : base(links)
         {
             BigIntegerToRawNumberSequenceConverter = bigIntegerToRawNumberSequenceConverter;
         }
 
-
         public TLink Convert(decimal @decimal)
+        {
+            var decimalAsString = @decimal.ToString();
+            int dotPosition = decimalAsString.IndexOf('.');
+            string decimalWithoutDots = decimalAsString;
+            if (dotPosition == -1)
+            {
+                dotPosition = 0;
+            }
+            else
+            {
+                decimalWithoutDots = decimalWithoutDots.Remove(dotPosition, 1);
+            }
+            BigInteger numerator = BigInteger.Parse(decimalWithoutDots);
+            var numeratorLink = BigIntegerToRawNumberSequenceConverter.Convert(numerator);
+            var dotPositionLink = BigIntegerToRawNumberSequenceConverter.AddressToNumberConverter.Convert(UncheckedConverter.Convert(dotPosition));
+            return _links.GetOrCreate(numeratorLink, dotPositionLink);
+        }
+
+        /* public TLink Convert(decimal @decimal)
         {
             var decimalAsString = @decimal.ToString();
             var isDigitAfterDot = false;
@@ -57,6 +76,6 @@ namespace Platform.Data.Doublets.Numbers.Rational
             var numeratorLink = BigIntegerToRawNumberSequenceConverter.Convert(numerator);
             var denominatorLink = BigIntegerToRawNumberSequenceConverter.Convert(denominator);
             return _links.GetOrCreate(numeratorLink, denominatorLink);
-        }
+        } */
     }
 }
