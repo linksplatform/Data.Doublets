@@ -68,5 +68,21 @@ namespace Platform.Data.Doublets.Tests
             var bigIntFromSequence = rawNumberSequenceToBigIntegerConverter.Convert(bigIntSequence);
             Assert.Equal(bigInteger, bigIntFromSequence);
         }
+        
+        [Fact]
+        public void TestOneValue()
+        {
+            var links = CreateLinks();
+            BigInteger bigInteger = new(1);
+            TLink negativeNumberMarker = links.Create();
+            AddressToRawNumberConverter<TLink> addressToRawNumberConverter = new();
+            RawNumberToAddressConverter<TLink> numberToAddressConverter = new();
+            BalancedVariantConverter<TLink> listToSequenceConverter = new(links);
+            BigIntegerToRawNumberSequenceConverter<TLink> bigIntegerToRawNumberSequenceConverter = new(links, addressToRawNumberConverter, listToSequenceConverter, negativeNumberMarker);
+            RawNumberSequenceToBigIntegerConverter<TLink> rawNumberSequenceToBigIntegerConverter = new(links, numberToAddressConverter, negativeNumberMarker);
+            var bigIntSequence = bigIntegerToRawNumberSequenceConverter.Convert(bigInteger);
+            var bigIntFromSequence = rawNumberSequenceToBigIntegerConverter.Convert(bigIntSequence);
+            Assert.Equal(bigInteger, bigIntFromSequence);
+        }
     }
 }
