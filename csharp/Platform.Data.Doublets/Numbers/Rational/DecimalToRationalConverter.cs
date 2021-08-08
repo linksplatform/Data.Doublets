@@ -1,12 +1,7 @@
-using System.Collections.Generic;
 using System.Numerics;
 using Platform.Converters;
 using Platform.Data.Doublets.Decorators;
-using Platform.Numbers;
-using Platform.Reflection;
-using Platform.Unsafe;
-using System;
-using System.Text;
+using System.Globalization;
 using Platform.Data.Doublets.Numbers.Raw;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -17,7 +12,6 @@ namespace Platform.Data.Doublets.Numbers.Rational
     where TLink: struct
     {
         public readonly BigIntegerToRawNumberSequenceConverter<TLink> BigIntegerToRawNumberSequenceConverter;
-        public readonly UncheckedConverter<int, TLink> UncheckedConverter = UncheckedConverter<int, TLink>.Default;
 
         public DecimalToRationalConverter(ILinks<TLink> links, BigIntegerToRawNumberSequenceConverter<TLink> bigIntegerToRawNumberSequenceConverter) : base(links)
         {
@@ -26,7 +20,7 @@ namespace Platform.Data.Doublets.Numbers.Rational
 
         public TLink Convert(decimal @decimal)
         {
-            var decimalAsString = @decimal.ToString();
+            var decimalAsString = @decimal.ToString(CultureInfo.InvariantCulture);
             var dotPosition = decimalAsString.IndexOf('.');
             var decimalWithoutDots = decimalAsString;
             int digitsAfterDot = 0;

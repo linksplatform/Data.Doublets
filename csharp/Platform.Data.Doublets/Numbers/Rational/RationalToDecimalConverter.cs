@@ -1,12 +1,5 @@
-using System.Collections.Generic;
-using System.Numerics;
 using Platform.Converters;
 using Platform.Data.Doublets.Decorators;
-using Platform.Numbers;
-using Platform.Reflection;
-using Platform.Unsafe;
-using System;
-using System.Text;
 using Platform.Data.Doublets.Numbers.Raw;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member

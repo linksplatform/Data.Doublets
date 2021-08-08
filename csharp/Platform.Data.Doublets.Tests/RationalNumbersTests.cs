@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Platform.Data.Doublets.Memory;
 using Platform.Data.Doublets.Memory.United.Generic;
 using Platform.Data.Doublets.Numbers.Rational;
