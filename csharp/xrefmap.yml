@@ -22216,14 +22216,6 @@ references:
   fullName.vb: Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter(Of TLink).Convert
   nameWithType: DecimalToRationalConverter<TLink>.Convert
   nameWithType.vb: DecimalToRationalConverter(Of TLink).Convert
-- uid: Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter`1.UncheckedConverter
-  name: UncheckedConverter
-  href: api/Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter-1.html#Platform_Data_Doublets_Numbers_Rational_DecimalToRationalConverter_1_UncheckedConverter
-  commentId: F:Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter`1.UncheckedConverter
-  fullName: Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter<TLink>.UncheckedConverter
-  fullName.vb: Platform.Data.Doublets.Numbers.Rational.DecimalToRationalConverter(Of TLink).UncheckedConverter
-  nameWithType: DecimalToRationalConverter<TLink>.UncheckedConverter
-  nameWithType.vb: DecimalToRationalConverter(Of TLink).UncheckedConverter
 - uid: Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter`1
   name: RationalToDecimalConverter<TLink>
   href: api/Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter-1.html
