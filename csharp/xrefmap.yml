@@ -22268,14 +22268,6 @@ references:
   fullName.vb: Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter(Of TLink).RawNumberSequenceToBigIntegerConverter
   nameWithType: RationalToDecimalConverter<TLink>.RawNumberSequenceToBigIntegerConverter
   nameWithType.vb: RationalToDecimalConverter(Of TLink).RawNumberSequenceToBigIntegerConverter
-- uid: Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter`1.UncheckedConverter
-  name: UncheckedConverter
-  href: api/Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter-1.html#Platform_Data_Doublets_Numbers_Rational_RationalToDecimalConverter_1_UncheckedConverter
-  commentId: F:Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter`1.UncheckedConverter
-  fullName: Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter<TLink>.UncheckedConverter
-  fullName.vb: Platform.Data.Doublets.Numbers.Rational.RationalToDecimalConverter(Of TLink).UncheckedConverter
-  nameWithType: RationalToDecimalConverter<TLink>.UncheckedConverter
-  nameWithType.vb: RationalToDecimalConverter(Of TLink).UncheckedConverter
 - uid: Platform.Data.Doublets.Numbers.Raw
   name: Platform.Data.Doublets.Numbers.Raw
   href: api/Platform.Data.Doublets.Numbers.Raw.html
@@ -22317,6 +22309,14 @@ references:
   fullName.vb: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter(Of TLink).AddressToNumberConverter
   nameWithType: BigIntegerToRawNumberSequenceConverter<TLink>.AddressToNumberConverter
   nameWithType.vb: BigIntegerToRawNumberSequenceConverter(Of TLink).AddressToNumberConverter
+- uid: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter`1.BitMask
+  name: BitMask
+  href: api/Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter-1.html#Platform_Data_Doublets_Numbers_Raw_BigIntegerToRawNumberSequenceConverter_1_BitMask
+  commentId: F:Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter`1.BitMask
+  fullName: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter<TLink>.BitMask
+  fullName.vb: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter(Of TLink).BitMask
+  nameWithType: BigIntegerToRawNumberSequenceConverter<TLink>.BitMask
+  nameWithType.vb: BigIntegerToRawNumberSequenceConverter(Of TLink).BitMask
 - uid: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter`1.Convert(System.Numerics.BigInteger)
   name: Convert(BigInteger)
   href: api/Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter-1.html#Platform_Data_Doublets_Numbers_Raw_BigIntegerToRawNumberSequenceConverter_1_Convert_System_Numerics_BigInteger_
@@ -22334,6 +22334,22 @@ references:
   fullName.vb: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter(Of TLink).Convert
   nameWithType: BigIntegerToRawNumberSequenceConverter<TLink>.Convert
   nameWithType.vb: BigIntegerToRawNumberSequenceConverter(Of TLink).Convert
+- uid: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter`1.ListToSequenceConverter
+  name: ListToSequenceConverter
+  href: api/Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter-1.html#Platform_Data_Doublets_Numbers_Raw_BigIntegerToRawNumberSequenceConverter_1_ListToSequenceConverter
+  commentId: F:Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter`1.ListToSequenceConverter
+  fullName: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter<TLink>.ListToSequenceConverter
+  fullName.vb: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter(Of TLink).ListToSequenceConverter
+  nameWithType: BigIntegerToRawNumberSequenceConverter<TLink>.ListToSequenceConverter
+  nameWithType.vb: BigIntegerToRawNumberSequenceConverter(Of TLink).ListToSequenceConverter
+- uid: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter`1.MaximumValue
+  name: MaximumValue
+  href: api/Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter-1.html#Platform_Data_Doublets_Numbers_Raw_BigIntegerToRawNumberSequenceConverter_1_MaximumValue
+  commentId: F:Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter`1.MaximumValue
+  fullName: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter<TLink>.MaximumValue
+  fullName.vb: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter(Of TLink).MaximumValue
+  nameWithType: BigIntegerToRawNumberSequenceConverter<TLink>.MaximumValue
+  nameWithType.vb: BigIntegerToRawNumberSequenceConverter(Of TLink).MaximumValue
 - uid: Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter`1.NegativeNumberMarker
   name: NegativeNumberMarker
   href: api/Platform.Data.Doublets.Numbers.Raw.BigIntegerToRawNumberSequenceConverter-1.html#Platform_Data_Doublets_Numbers_Raw_BigIntegerToRawNumberSequenceConverter_1_NegativeNumberMarker
@@ -22482,6 +22498,14 @@ references:
   fullName.vb: Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter(Of TLink).EqualityComparer
   nameWithType: RawNumberSequenceToBigIntegerConverter<TLink>.EqualityComparer
   nameWithType.vb: RawNumberSequenceToBigIntegerConverter(Of TLink).EqualityComparer
+- uid: Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter`1.LeftSequenceWalker
+  name: LeftSequenceWalker
+  href: api/Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter-1.html#Platform_Data_Doublets_Numbers_Raw_RawNumberSequenceToBigIntegerConverter_1_LeftSequenceWalker
+  commentId: F:Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter`1.LeftSequenceWalker
+  fullName: Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter<TLink>.LeftSequenceWalker
+  fullName.vb: Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter(Of TLink).LeftSequenceWalker
+  nameWithType: RawNumberSequenceToBigIntegerConverter<TLink>.LeftSequenceWalker
+  nameWithType.vb: RawNumberSequenceToBigIntegerConverter(Of TLink).LeftSequenceWalker
 - uid: Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter`1.NegativeNumberMarker
   name: NegativeNumberMarker
   href: api/Platform.Data.Doublets.Numbers.Raw.RawNumberSequenceToBigIntegerConverter-1.html#Platform_Data_Doublets_Numbers_Raw_RawNumberSequenceToBigIntegerConverter_1_NegativeNumberMarker
