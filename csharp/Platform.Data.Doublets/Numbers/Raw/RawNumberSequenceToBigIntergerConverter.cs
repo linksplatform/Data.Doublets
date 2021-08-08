@@ -12,17 +12,17 @@ using Platform.Unsafe;
 namespace Platform.Data.Doublets.Numbers.Raw
 {
     public class RawNumberSequenceToBigIntegerConverter<TLink> : LinksDecoratorBase<TLink>, IConverter<TLink, BigInteger>
-    where TLink : struct
+        where TLink : struct
     {
         public readonly EqualityComparer<TLink> EqualityComparer = EqualityComparer<TLink>.Default;
         public readonly IConverter<TLink, TLink> NumberToAddressConverter;
-        private readonly LeftSequenceWalker<TLink> _leftSequenceWalker;
+        public readonly LeftSequenceWalker<TLink> LeftSequenceWalker;
         public readonly TLink NegativeNumberMarker;
 
         public RawNumberSequenceToBigIntegerConverter(ILinks<TLink> links, IConverter<TLink, TLink> numberToAddressConverter, TLink negativeNumberMarker) : base(links)
         {
             NumberToAddressConverter = numberToAddressConverter;
-            _leftSequenceWalker = new(links, new DefaultStack<TLink>());
+            LeftSequenceWalker = new(links, new DefaultStack<TLink>());
             NegativeNumberMarker = negativeNumberMarker;
         }
 
@@ -35,7 +35,7 @@ namespace Platform.Data.Doublets.Numbers.Raw
                 sign = -1;
                 bigIntegerSequence = _links.GetTarget(bigInteger);
             }
-            using var enumerator = _leftSequenceWalker.Walk(bigIntegerSequence).GetEnumerator();
+            using var enumerator = LeftSequenceWalker.Walk(bigIntegerSequence).GetEnumerator();
             if (!enumerator.MoveNext())
             {
                 throw new Exception("Raw number sequence cannot be empty.");
@@ -48,7 +48,7 @@ namespace Platform.Data.Doublets.Numbers.Raw
                 nextPart = NumberToAddressConverter.Convert(enumerator.Current);
                 currentBigInt |= new BigInteger(nextPart.ToBytes());
             }
-            return sign == 1 ? currentBigInt : BigInteger.Negate(currentBigInt);
+            return sign == -1 ? BigInteger.Negate(currentBigInt) : currentBigInt;
         }      
     }
 }

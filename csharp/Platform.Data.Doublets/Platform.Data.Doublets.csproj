@@ -4,7 +4,7 @@
     <Description>LinksPlatform's Platform.Data.Doublets Class Library</Description>
     <Copyright>Konstantin Diachenko</Copyright>
     <AssemblyTitle>Platform.Data.Doublets</AssemblyTitle>
-    <VersionPrefix>0.6.10</VersionPrefix>
+    <VersionPrefix>0.6.11</VersionPrefix>
     <Authors>Konstantin Diachenko</Authors>
     <TargetFrameworks>net472;netstandard2.0;netstandard2.1;net5</TargetFrameworks>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -25,7 +25,13 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <LangVersion>latest</LangVersion>
-    <PackageReleaseNotes>Inability to create a sequence from two elements using DefaultSequenceAppender is fixed.</PackageReleaseNotes>
+    <PackageReleaseNotes>Platform.Singletons dependency is updated from 0.1.0 to 0.2.1.
+Platform.Incrementers dependency is updated from 0.1.0 to 0.2.0.
+Platform.Data dependency is updated from 0.3.1 to 0.4.1.
+Platform.Collections.Methods dependency is updated from 0.4.0 to 0.5.1.
+Platform.Memory dependency is updated from 0.2.1 to 0.3.1.
+Converters between BigInteger and raw number sequence are added.
+Converters between Decimal and rational number sequence are added.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup Condition="$(TargetFramework.StartsWith('net4')) AND '$(MSBuildRuntimeType)' == 'Core' AND '$(OS)' != 'Windows_NT'">

@@ -7,10 +7,9 @@ using Platform.Data.Doublets.Numbers.Raw;
 namespace Platform.Data.Doublets.Numbers.Rational
 {
     public class RationalToDecimalConverter<TLink> : LinksDecoratorBase<TLink>, IConverter<TLink, decimal>
-    where TLink: struct
+        where TLink: struct
     {
         public readonly RawNumberSequenceToBigIntegerConverter<TLink> RawNumberSequenceToBigIntegerConverter;
-        public readonly UncheckedConverter<TLink, int> UncheckedConverter = UncheckedConverter<TLink, int>.Default;
 
         public RationalToDecimalConverter(ILinks<TLink> links, RawNumberSequenceToBigIntegerConverter<TLink> rawNumberSequenceToBigIntegerConverter) : base(links)
         {
