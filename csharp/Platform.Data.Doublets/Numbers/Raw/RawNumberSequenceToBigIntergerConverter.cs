@@ -48,7 +48,7 @@ namespace Platform.Data.Doublets.Numbers.Raw
                 nextPart = NumberToAddressConverter.Convert(enumerator.Current);
                 currentBigInt |= new BigInteger(nextPart.ToBytes());
             }
-            return sign == 1 ? currentBigInt : BigInteger.Negate(currentBigInt);
+            return sign == -1 ? BigInteger.Negate(currentBigInt) : currentBigInt;
         }      
     }
 }
