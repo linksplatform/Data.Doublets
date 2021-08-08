@@ -42,9 +42,9 @@ namespace Platform.Data.Doublets.Numbers.Raw
         public TLink Convert(BigInteger bigInteger)
         {
             var sign = bigInteger.Sign;
-            var number = GetRawNumberParts(sign == 1 ? bigInteger : BigInteger.Negate(bigInteger));
+            var number = GetRawNumberParts(sign == -1 ? BigInteger.Negate(bigInteger) : bigInteger);
             var numberSequence = _listToSequenceConverter.Convert(number);
-            return sign == 1 ? numberSequence : _links.GetOrCreate(NegativeNumberMarker, numberSequence);
+            return sign == -1 ? _links.GetOrCreate(NegativeNumberMarker, numberSequence) : numberSequence;
         }
     }
 }
