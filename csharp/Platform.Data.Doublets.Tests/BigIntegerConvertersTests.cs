@@ -21,27 +21,52 @@ namespace Platform.Data.Doublets.Tests
             return new UnitedMemoryLinks<TLink>(new FileMappedResizableDirectMemory(dataDbFilename), UnitedMemoryLinks<TLink>.DefaultLinksSizeStep, linksConstants, IndexTreeType.Default);
         }
         
-        public static IEnumerable<object[]> Data =>
-            new List<object[]>
-            {
-                new object[]{ new BigInteger(decimal.MaxValue) },
-                new object[]{ new BigInteger(decimal.MinValue) },
-                new object[]{ new BigInteger(1234.56789M) }
-            };
-        
-        [Theory]
-        [MemberData(nameof(Data))]
-        public void Test(BigInteger bigInt)
+        [Fact]
+        public void TestPositiveValue()
         {
             var links = CreateLinks();
+            BigInteger bigInteger = new(decimal.MaxValue);
+            TLink negativeNumberMarker = links.Create();
             AddressToRawNumberConverter<TLink> addressToRawNumberConverter = new();
             RawNumberToAddressConverter<TLink> numberToAddressConverter = new();
             BalancedVariantConverter<TLink> listToSequenceConverter = new(links);
-            BigIntegerToRawNumberSequenceConverter<TLink> bigIntegerToRawNumberSequenceConverter = new(links, addressToRawNumberConverter, listToSequenceConverter);
-            RawNumberSequenceToBigIntegerConverter<TLink> rawNumberSequenceToBigIntegerConverter = new(links, numberToAddressConverter);
-            var bigIntSequence = bigIntegerToRawNumberSequenceConverter.Convert(bigInt);
+            BigIntegerToRawNumberSequenceConverter<TLink> bigIntegerToRawNumberSequenceConverter = new(links, addressToRawNumberConverter, listToSequenceConverter, negativeNumberMarker);
+            RawNumberSequenceToBigIntegerConverter<TLink> rawNumberSequenceToBigIntegerConverter = new(links, numberToAddressConverter, negativeNumberMarker);
+            var bigIntSequence = bigIntegerToRawNumberSequenceConverter.Convert(bigInteger);
             var bigIntFromSequence = rawNumberSequenceToBigIntegerConverter.Convert(bigIntSequence);
-            Assert.Equal(bigInt, bigIntFromSequence);
+            Assert.Equal(bigInteger, bigIntFromSequence);
+        }
+        
+        [Fact]
+        public void TestNegativeValue()
+        {
+            var links = CreateLinks();
+            BigInteger bigInteger = new(decimal.MinValue);
+            TLink negativeNumberMarker = links.Create();
+            AddressToRawNumberConverter<TLink> addressToRawNumberConverter = new();
+            RawNumberToAddressConverter<TLink> numberToAddressConverter = new();
+            BalancedVariantConverter<TLink> listToSequenceConverter = new(links);
+            BigIntegerToRawNumberSequenceConverter<TLink> bigIntegerToRawNumberSequenceConverter = new(links, addressToRawNumberConverter, listToSequenceConverter, negativeNumberMarker);
+            RawNumberSequenceToBigIntegerConverter<TLink> rawNumberSequenceToBigIntegerConverter = new(links, numberToAddressConverter, negativeNumberMarker);
+            var bigIntSequence = bigIntegerToRawNumberSequenceConverter.Convert(bigInteger);
+            var bigIntFromSequence = rawNumberSequenceToBigIntegerConverter.Convert(bigIntSequence);
+            Assert.Equal(bigInteger, bigIntFromSequence);
+        }
+        
+        [Fact]
+        public void TestZeroValue()
+        {
+            var links = CreateLinks();
+            BigInteger bigInteger = new(0);
+            TLink negativeNumberMarker = links.Create();
+            AddressToRawNumberConverter<TLink> addressToRawNumberConverter = new();
+            RawNumberToAddressConverter<TLink> numberToAddressConverter = new();
+            BalancedVariantConverter<TLink> listToSequenceConverter = new(links);
+            BigIntegerToRawNumberSequenceConverter<TLink> bigIntegerToRawNumberSequenceConverter = new(links, addressToRawNumberConverter, listToSequenceConverter, negativeNumberMarker);
+            RawNumberSequenceToBigIntegerConverter<TLink> rawNumberSequenceToBigIntegerConverter = new(links, numberToAddressConverter, negativeNumberMarker);
+            var bigIntSequence = bigIntegerToRawNumberSequenceConverter.Convert(bigInteger);
+            var bigIntFromSequence = rawNumberSequenceToBigIntegerConverter.Convert(bigIntSequence);
+            Assert.Equal(bigInteger, bigIntFromSequence);
         }
     }
 }
