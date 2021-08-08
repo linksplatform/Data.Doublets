@@ -31,7 +31,7 @@ Platform.Data dependency is updated from 0.3.1 to 0.4.1.
 Platform.Collections.Methods dependency is updated from 0.4.0 to 0.5.1.
 Platform.Memory dependency is updated from 0.2.1 to 0.3.1.
 Converters between BigInteger and raw number sequence are added.
-Converters between rational number and raw number sequence are added.</PackageReleaseNotes>
+Converters between Decimal and raw number sequence are added.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup Condition="$(TargetFramework.StartsWith('net4')) AND '$(MSBuildRuntimeType)' == 'Core' AND '$(OS)' != 'Windows_NT'">
