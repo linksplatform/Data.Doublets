@@ -25,7 +25,7 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <LangVersion>latest</LangVersion>
-    <PackageReleaseNotes>Sequences are moved to https://github.com/linksplatform/Data.Doublets.Sequences/tree/fb8a193b399e01b7b222fea5571b87a1dd061c23/csharp/Platform.Data.Doublets.Sequences</PackageReleaseNotes>
+    <PackageReleaseNotes>Sequences are moved to https://github.com/linksplatform/Data.Doublets.Sequences/tree/cf51a8574c66142ef3377e3fc1f8ea33136a7854/csharp/Platform.Data.Doublets.Sequences</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup Condition="$(TargetFramework.StartsWith('net4')) AND '$(MSBuildRuntimeType)' == 'Core' AND '$(OS)' != 'Windows_NT'">
