@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.IO;
@@ -16,6 +16,13 @@ using Platform.Exceptions;
 
 namespace Platform.Data.Doublets
 {
+    /// <summary>
+    /// <para>
+    /// Represents the int 64 links transactions layer.
+    /// </para>
+    /// <para></para>
+    /// </summary>
+    /// <seealso cref="LinksDisposableDecoratorBase{ulong}"/>
     public class UInt64LinksTransactionsLayer : LinksDisposableDecoratorBase<ulong> //-V3073
     {
         /// <remarks>
@@ -84,13 +91,65 @@ namespace Platform.Data.Doublets
         /// </remarks>
         public struct Transition : IEquatable<Transition>
         {
+            /// <summary>
+            /// <para>
+            /// The size.
+            /// </para>
+            /// <para></para>
+            /// </summary>
             public static readonly long Size = Structure<Transition>.Size;
 
+            /// <summary>
+            /// <para>
+            /// The transaction id.
+            /// </para>
+            /// <para></para>
+            /// </summary>
             public readonly ulong TransactionId;
+            /// <summary>
+            /// <para>
+            /// The before.
+            /// </para>
+            /// <para></para>
+            /// </summary>
             public readonly Link<ulong> Before;
+            /// <summary>
+            /// <para>
+            /// The after.
+            /// </para>
+            /// <para></para>
+            /// </summary>
             public readonly Link<ulong> After;
+            /// <summary>
+            /// <para>
+            /// The timestamp.
+            /// </para>
+            /// <para></para>
+            /// </summary>
             public readonly Timestamp Timestamp;
 
+            /// <summary>
+            /// <para>
+            /// Initializes a new <see cref="Transition"/> instance.
+            /// </para>
+            /// <para></para>
+            /// </summary>
+            /// <param name="uniqueTimestampFactory">
+            /// <para>A unique timestamp factory.</para>
+            /// <para></para>
+            /// </param>
+            /// <param name="transactionId">
+            /// <para>A transaction id.</para>
+            /// <para></para>
+            /// </param>
+            /// <param name="before">
+            /// <para>A before.</para>
+            /// <para></para>
+            /// </param>
+            /// <param name="after">
+            /// <para>A after.</para>
+            /// <para></para>
+            /// </param>
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public Transition(UniqueTimestampFactory uniqueTimestampFactory, ulong transactionId, Link<ulong> before, Link<ulong> after)
             {
@@ -100,21 +159,101 @@ namespace Platform.Data.Doublets
                 Timestamp = uniqueTimestampFactory.Create();
             }
 
+            /// <summary>
+            /// <para>
+            /// Initializes a new <see cref="Transition"/> instance.
+            /// </para>
+            /// <para></para>
+            /// </summary>
+            /// <param name="uniqueTimestampFactory">
+            /// <para>A unique timestamp factory.</para>
+            /// <para></para>
+            /// </param>
+            /// <param name="transactionId">
+            /// <para>A transaction id.</para>
+            /// <para></para>
+            /// </param>
+            /// <param name="before">
+            /// <para>A before.</para>
+            /// <para></para>
+            /// </param>
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public Transition(UniqueTimestampFactory uniqueTimestampFactory, ulong transactionId, Link<ulong> before) : this(uniqueTimestampFactory, transactionId, before, default) { }
 
+            /// <summary>
+            /// <para>
+            /// Initializes a new <see cref="Transition"/> instance.
+            /// </para>
+            /// <para></para>
+            /// </summary>
+            /// <param name="uniqueTimestampFactory">
+            /// <para>A unique timestamp factory.</para>
+            /// <para></para>
+            /// </param>
+            /// <param name="transactionId">
+            /// <para>A transaction id.</para>
+            /// <para></para>
+            /// </param>
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public Transition(UniqueTimestampFactory uniqueTimestampFactory, ulong transactionId) : this(uniqueTimestampFactory, transactionId, default, default) { }
 
+            /// <summary>
+            /// <para>
+            /// Returns the string.
+            /// </para>
+            /// <para></para>
+            /// </summary>
+            /// <returns>
+            /// <para>The string</para>
+            /// <para></para>
+            /// </returns>
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public override string ToString() => $"{Timestamp} {TransactionId}: {Before} => {After}";
 
+            /// <summary>
+            /// <para>
+            /// Determines whether this instance equals.
+            /// </para>
+            /// <para></para>
+            /// </summary>
+            /// <param name="obj">
+            /// <para>The obj.</para>
+            /// <para></para>
+            /// </param>
+            /// <returns>
+            /// <para>The bool</para>
+            /// <para></para>
+            /// </returns>
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public override bool Equals(object obj) => obj is Transition transition ? Equals(transition) : false;
 
+            /// <summary>
+            /// <para>
+            /// Gets the hash code.
+            /// </para>
+            /// <para></para>
+            /// </summary>
+            /// <returns>
+            /// <para>The int</para>
+            /// <para></para>
+            /// </returns>
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public override int GetHashCode() => (TransactionId, Before, After, Timestamp).GetHashCode();
 
+            /// <summary>
+            /// <para>
+            /// Determines whether this instance equals.
+            /// </para>
+            /// <para></para>
+            /// </summary>
+            /// <param name="other">
+            /// <para>The other.</para>
+            /// <para></para>
+            /// </param>
+            /// <returns>
+            /// <para>The bool</para>
+            /// <para></para>
+            /// </returns>
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public bool Equals(Transition other) => TransactionId == other.TransactionId && Before == other.Before && After == other.After && Timestamp == other.Timestamp;
 
@@ -156,11 +295,49 @@ namespace Platform.Data.Doublets
         /// </remarks>
         public class Transaction : DisposableBase
         {
+            /// <summary>
+            /// <para>
+            /// The transitions.
+            /// </para>
+            /// <para></para>
+            /// </summary>
             private readonly Queue<Transition> _transitions;
+            /// <summary>
+            /// <para>
+            /// The layer.
+            /// </para>
+            /// <para></para>
+            /// </summary>
             private readonly UInt64LinksTransactionsLayer _layer;
+            /// <summary>
+            /// <para>
+            /// Gets or sets the is committed value.
+            /// </para>
+            /// <para></para>
+            /// </summary>
             public bool IsCommitted { get; private set; }
+            /// <summary>
+            /// <para>
+            /// Gets or sets the is reverted value.
+            /// </para>
+            /// <para></para>
+            /// </summary>
             public bool IsReverted { get; private set; }
 
+            /// <summary>
+            /// <para>
+            /// Initializes a new <see cref="Transaction"/> instance.
+            /// </para>
+            /// <para></para>
+            /// </summary>
+            /// <param name="layer">
+            /// <para>A layer.</para>
+            /// <para></para>
+            /// </param>
+            /// <exception cref="NotSupportedException">
+            /// <para>Nested transactions not supported.</para>
+            /// <para></para>
+            /// </exception>
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public Transaction(UInt64LinksTransactionsLayer layer)
             {
@@ -175,6 +352,12 @@ namespace Platform.Data.Doublets
                 SetCurrentTransaction(layer, this);
             }
 
+            /// <summary>
+            /// <para>
+            /// Commits this instance.
+            /// </para>
+            /// <para></para>
+            /// </summary>
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public void Commit()
             {
@@ -188,6 +371,12 @@ namespace Platform.Data.Doublets
                 IsCommitted = true;
             }
 
+            /// <summary>
+            /// <para>
+            /// Reverts this instance.
+            /// </para>
+            /// <para></para>
+            /// </summary>
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             private void Revert()
             {
@@ -201,6 +390,20 @@ namespace Platform.Data.Doublets
                 IsReverted = true;
             }
 
+            /// <summary>
+            /// <para>
+            /// Sets the current transaction using the specified layer.
+            /// </para>
+            /// <para></para>
+            /// </summary>
+            /// <param name="layer">
+            /// <para>The layer.</para>
+            /// <para></para>
+            /// </param>
+            /// <param name="transaction">
+            /// <para>The transaction.</para>
+            /// <para></para>
+            /// </param>
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static void SetCurrentTransaction(UInt64LinksTransactionsLayer layer, Transaction transaction)
             {
@@ -209,6 +412,24 @@ namespace Platform.Data.Doublets
                 layer._currentTransaction = transaction;
             }
 
+            /// <summary>
+            /// <para>
+            /// Ensures the transaction allows write operations using the specified transaction.
+            /// </para>
+            /// <para></para>
+            /// </summary>
+            /// <param name="transaction">
+            /// <para>The transaction.</para>
+            /// <para></para>
+            /// </param>
+            /// <exception cref="InvalidOperationException">
+            /// <para>Transation is commited.</para>
+            /// <para></para>
+            /// </exception>
+            /// <exception cref="InvalidOperationException">
+            /// <para>Transation is reverted.</para>
+            /// <para></para>
+            /// </exception>
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static void EnsureTransactionAllowsWriteOperations(Transaction transaction)
             {
@@ -222,6 +443,20 @@ namespace Platform.Data.Doublets
                 }
             }
 
+            /// <summary>
+            /// <para>
+            /// Disposes the manual.
+            /// </para>
+            /// <para></para>
+            /// </summary>
+            /// <param name="manual">
+            /// <para>The manual.</para>
+            /// <para></para>
+            /// </param>
+            /// <param name="wasDisposed">
+            /// <para>The was disposed.</para>
+            /// <para></para>
+            /// </param>
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             protected override void Dispose(bool manual, bool wasDisposed)
             {
@@ -236,19 +471,107 @@ namespace Platform.Data.Doublets
             }
         }
 
+        /// <summary>
+        /// <para>
+        /// The from seconds.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         public static readonly TimeSpan DefaultPushDelay = TimeSpan.FromSeconds(0.1);
 
+        /// <summary>
+        /// <para>
+        /// The log address.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private readonly string _logAddress;
+        /// <summary>
+        /// <para>
+        /// The log.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private readonly FileStream _log;
+        /// <summary>
+        /// <para>
+        /// The transitions.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private readonly Queue<Transition> _transitions;
+        /// <summary>
+        /// <para>
+        /// The unique timestamp factory.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private readonly UniqueTimestampFactory _uniqueTimestampFactory;
+        /// <summary>
+        /// <para>
+        /// The transitions pusher.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private Task _transitionsPusher;
+        /// <summary>
+        /// <para>
+        /// The last commited transition.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private Transition _lastCommitedTransition;
+        /// <summary>
+        /// <para>
+        /// The current transaction id.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private ulong _currentTransactionId;
+        /// <summary>
+        /// <para>
+        /// The current transaction transitions.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private Queue<Transition> _currentTransactionTransitions;
+        /// <summary>
+        /// <para>
+        /// The current transaction.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private Transaction _currentTransaction;
+        /// <summary>
+        /// <para>
+        /// The last commited transaction id.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private ulong _lastCommitedTransactionId;
 
+        /// <summary>
+        /// <para>
+        /// Initializes a new <see cref="UInt64LinksTransactionsLayer"/> instance.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="links">
+        /// <para>A links.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="logAddress">
+        /// <para>A log address.</para>
+        /// <para></para>
+        /// </param>
+        /// <exception cref="ArgumentNullException">
+        /// <para></para>
+        /// <para></para>
+        /// </exception>
+        /// <exception cref="NotSupportedException">
+        /// <para>Database is damaged, autorecovery is not supported yet.</para>
+        /// <para></para>
+        /// </exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public UInt64LinksTransactionsLayer(ILinks<ulong> links, string logAddress)
             : base(links)
@@ -284,9 +607,37 @@ namespace Platform.Data.Doublets
             _transitionsPusher.Start();
         }
 
+        /// <summary>
+        /// <para>
+        /// Gets the link value using the specified link.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="link">
+        /// <para>The link.</para>
+        /// <para></para>
+        /// </param>
+        /// <returns>
+        /// <para>A list of ulong</para>
+        /// <para></para>
+        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IList<ulong> GetLinkValue(ulong link) => _links.GetLink(link);
 
+        /// <summary>
+        /// <para>
+        /// Creates the restrictions.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="restrictions">
+        /// <para>The restrictions.</para>
+        /// <para></para>
+        /// </param>
+        /// <returns>
+        /// <para>The created link index.</para>
+        /// <para></para>
+        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override ulong Create(IList<ulong> restrictions)
         {
@@ -296,6 +647,24 @@ namespace Platform.Data.Doublets
             return createdLinkIndex;
         }
 
+        /// <summary>
+        /// <para>
+        /// Updates the restrictions.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="restrictions">
+        /// <para>The restrictions.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="substitution">
+        /// <para>The substitution.</para>
+        /// <para></para>
+        /// </param>
+        /// <returns>
+        /// <para>The link index.</para>
+        /// <para></para>
+        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override ulong Update(IList<ulong> restrictions, IList<ulong> substitution)
         {
@@ -307,6 +676,16 @@ namespace Platform.Data.Doublets
             return linkIndex;
         }
 
+        /// <summary>
+        /// <para>
+        /// Deletes the restrictions.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="restrictions">
+        /// <para>The restrictions.</para>
+        /// <para></para>
+        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override void Delete(IList<ulong> restrictions)
         {
@@ -316,9 +695,29 @@ namespace Platform.Data.Doublets
             CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, deletedLink, default));
         }
 
+        /// <summary>
+        /// <para>
+        /// Gets the current transitions.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <returns>
+        /// <para>A queue of transition</para>
+        /// <para></para>
+        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private Queue<Transition> GetCurrentTransitions() => _currentTransactionTransitions ?? _transitions;
 
+        /// <summary>
+        /// <para>
+        /// Commits the transition using the specified transition.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="transition">
+        /// <para>The transition.</para>
+        /// <para></para>
+        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void CommitTransition(Transition transition)
         {
@@ -330,6 +729,16 @@ namespace Platform.Data.Doublets
             transitions.Enqueue(transition);
         }
 
+        /// <summary>
+        /// <para>
+        /// Reverts the transition using the specified transition.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="transition">
+        /// <para>The transition.</para>
+        /// <para></para>
+        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void RevertTransition(Transition transition)
         {
@@ -347,6 +756,12 @@ namespace Platform.Data.Doublets
             }
         }
 
+        /// <summary>
+        /// <para>
+        /// Resets the current transation.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void ResetCurrentTransation()
         {
@@ -355,6 +770,12 @@ namespace Platform.Data.Doublets
             _currentTransaction = null;
         }
 
+        /// <summary>
+        /// <para>
+        /// Pushes the transitions.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void PushTransitions()
         {
@@ -371,6 +792,12 @@ namespace Platform.Data.Doublets
             }
         }
 
+        /// <summary>
+        /// <para>
+        /// Transitionses the pusher.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void TransitionsPusher()
         {
@@ -381,9 +808,25 @@ namespace Platform.Data.Doublets
             }
         }
 
+        /// <summary>
+        /// <para>
+        /// Begins the transaction.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <returns>
+        /// <para>The transaction</para>
+        /// <para></para>
+        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Transaction BeginTransaction() => new Transaction(this);
 
+        /// <summary>
+        /// <para>
+        /// Disposes the transitions.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void DisposeTransitions()
         {
@@ -410,6 +853,20 @@ namespace Platform.Data.Doublets
 
         #region DisposalBase
 
+        /// <summary>
+        /// <para>
+        /// Disposes the manual.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="manual">
+        /// <para>The manual.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="wasDisposed">
+        /// <para>The was disposed.</para>
+        /// <para></para>
+        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override void Dispose(bool manual, bool wasDisposed)
         {

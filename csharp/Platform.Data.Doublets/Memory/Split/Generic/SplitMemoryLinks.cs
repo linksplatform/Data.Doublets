@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Runtime.CompilerServices;
 using Platform.Singletons;
 using Platform.Memory;
@@ -8,28 +8,175 @@ using static System.Runtime.CompilerServices.Unsafe;
 
 namespace Platform.Data.Doublets.Memory.Split.Generic
 {
+    /// <summary>
+    /// <para>
+    /// Represents the split memory links.
+    /// </para>
+    /// <para></para>
+    /// </summary>
+    /// <seealso cref="SplitMemoryLinksBase{TLink}"/>
     public unsafe class SplitMemoryLinks<TLink> : SplitMemoryLinksBase<TLink>
     {
+        /// <summary>
+        /// <para>
+        /// The create internal source tree methods.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private readonly Func<ILinksTreeMethods<TLink>> _createInternalSourceTreeMethods;
+        /// <summary>
+        /// <para>
+        /// The create external source tree methods.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private readonly Func<ILinksTreeMethods<TLink>> _createExternalSourceTreeMethods;
+        /// <summary>
+        /// <para>
+        /// The create internal target tree methods.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private readonly Func<ILinksTreeMethods<TLink>> _createInternalTargetTreeMethods;
+        /// <summary>
+        /// <para>
+        /// The create external target tree methods.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private readonly Func<ILinksTreeMethods<TLink>> _createExternalTargetTreeMethods;
+        /// <summary>
+        /// <para>
+        /// The header.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private byte* _header;
+        /// <summary>
+        /// <para>
+        /// The links data parts.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private byte* _linksDataParts;
+        /// <summary>
+        /// <para>
+        /// The links index parts.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private byte* _linksIndexParts;
         
+        /// <summary>
+        /// <para>
+        /// Initializes a new <see cref="SplitMemoryLinks"/> instance.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="dataMemory">
+        /// <para>A data memory.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="indexMemory">
+        /// <para>A index memory.</para>
+        /// <para></para>
+        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public SplitMemoryLinks(string dataMemory, string indexMemory) : this(new FileMappedResizableDirectMemory(dataMemory), new FileMappedResizableDirectMemory(indexMemory)) { }
         
+        /// <summary>
+        /// <para>
+        /// Initializes a new <see cref="SplitMemoryLinks"/> instance.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="dataMemory">
+        /// <para>A data memory.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="indexMemory">
+        /// <para>A index memory.</para>
+        /// <para></para>
+        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory) : this(dataMemory, indexMemory, DefaultLinksSizeStep) { }
 
+        /// <summary>
+        /// <para>
+        /// Initializes a new <see cref="SplitMemoryLinks"/> instance.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="dataMemory">
+        /// <para>A data memory.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="indexMemory">
+        /// <para>A index memory.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="memoryReservationStep">
+        /// <para>A memory reservation step.</para>
+        /// <para></para>
+        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep) : this(dataMemory, indexMemory, memoryReservationStep, Default<LinksConstants<TLink>>.Instance, IndexTreeType.Default, useLinkedList: true) { }
 
+        /// <summary>
+        /// <para>
+        /// Initializes a new <see cref="SplitMemoryLinks"/> instance.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="dataMemory">
+        /// <para>A data memory.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="indexMemory">
+        /// <para>A index memory.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="memoryReservationStep">
+        /// <para>A memory reservation step.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="constants">
+        /// <para>A constants.</para>
+        /// <para></para>
+        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep, LinksConstants<TLink> constants) : this(dataMemory, indexMemory, memoryReservationStep, constants, IndexTreeType.Default, useLinkedList: true) { }
 
+        /// <summary>
+        /// <para>
+        /// Initializes a new <see cref="SplitMemoryLinks"/> instance.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="dataMemory">
+        /// <para>A data memory.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="indexMemory">
+        /// <para>A index memory.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="memoryReservationStep">
+        /// <para>A memory reservation step.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="constants">
+        /// <para>A constants.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="indexTreeType">
+        /// <para>A index tree type.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="useLinkedList">
+        /// <para>A use linked list.</para>
+        /// <para></para>
+        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep, LinksConstants<TLink> constants, IndexTreeType indexTreeType, bool useLinkedList) : base(dataMemory, indexMemory, memoryReservationStep, constants, useLinkedList)
         {
@@ -50,6 +197,20 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
             Init(dataMemory, indexMemory);
         }
 
+        /// <summary>
+        /// <para>
+        /// Sets the pointers using the specified data memory.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="dataMemory">
+        /// <para>The data memory.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="indexMemory">
+        /// <para>The index memory.</para>
+        /// <para></para>
+        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override void SetPointers(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory)
         {
@@ -70,6 +231,12 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
             UnusedLinksListMethods = new UnusedLinksListMethods<TLink>(_linksDataParts, _header);
         }
 
+        /// <summary>
+        /// <para>
+        /// Resets the pointers.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override void ResetPointers()
         {
@@ -79,12 +246,50 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
             _header = null;
         }
 
+        /// <summary>
+        /// <para>
+        /// Gets the header reference.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <returns>
+        /// <para>A ref links header of t link</para>
+        /// <para></para>
+        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override ref LinksHeader<TLink> GetHeaderReference() => ref AsRef<LinksHeader<TLink>>(_header);
 
+        /// <summary>
+        /// <para>
+        /// Gets the link data part reference using the specified link index.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="linkIndex">
+        /// <para>The link index.</para>
+        /// <para></para>
+        /// </param>
+        /// <returns>
+        /// <para>A ref raw link data part of t link</para>
+        /// <para></para>
+        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override ref RawLinkDataPart<TLink> GetLinkDataPartReference(TLink linkIndex) => ref AsRef<RawLinkDataPart<TLink>>(_linksDataParts + (LinkDataPartSizeInBytes * ConvertToInt64(linkIndex)));
 
+        /// <summary>
+        /// <para>
+        /// Gets the link index part reference using the specified link index.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="linkIndex">
+        /// <para>The link index.</para>
+        /// <para></para>
+        /// </param>
+        /// <returns>
+        /// <para>A ref raw link index part of t link</para>
+        /// <para></para>
+        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override ref RawLinkIndexPart<TLink> GetLinkIndexPartReference(TLink linkIndex) => ref AsRef<RawLinkIndexPart<TLink>>(_linksIndexParts + (LinkIndexPartSizeInBytes * ConvertToInt64(linkIndex)));
     }

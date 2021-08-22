@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,8 +16,32 @@ using Platform.Data.Doublets.Decorators;
 
 namespace Platform.Data.Doublets
 {
+    /// <summary>
+    /// <para>
+    /// Represents the links extensions.
+    /// </para>
+    /// <para></para>
+    /// </summary>
     public static class ILinksExtensions
     {
+        /// <summary>
+        /// <para>
+        /// Runs the random creations using the specified links.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="TLink">
+        /// <para>The link.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="amountOfCreations">
+        /// <para>The amount of creations.</para>
+        /// <para></para>
+        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void RunRandomCreations<TLink>(this ILinks<TLink> links, ulong amountOfCreations)
         {
@@ -33,6 +57,24 @@ namespace Platform.Data.Doublets
             }
         }
 
+        /// <summary>
+        /// <para>
+        /// Runs the random searches using the specified links.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="TLink">
+        /// <para>The link.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="amountOfSearches">
+        /// <para>The amount of searches.</para>
+        /// <para></para>
+        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void RunRandomSearches<TLink>(this ILinks<TLink> links, ulong amountOfSearches)
         {
@@ -48,6 +90,24 @@ namespace Platform.Data.Doublets
             }
         }
 
+        /// <summary>
+        /// <para>
+        /// Runs the random deletions using the specified links.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="TLink">
+        /// <para>The link.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="amountOfDeletions">
+        /// <para>The amount of deletions.</para>
+        /// <para></para>
+        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void RunRandomDeletions<TLink>(this ILinks<TLink> links, ulong amountOfDeletions)
         {
@@ -69,6 +129,24 @@ namespace Platform.Data.Doublets
             }
         }
 
+        /// <summary>
+        /// <para>
+        /// Deletes the links.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="TLink">
+        /// <para>The link.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="linkToDelete">
+        /// <para>The link to delete.</para>
+        /// <para></para>
+        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Delete<TLink>(this ILinks<TLink> links, TLink linkToDelete) => links.Delete(new LinkAddress<TLink>(linkToDelete));
 
@@ -93,6 +171,32 @@ namespace Platform.Data.Doublets
             }
         }
 
+        /// <summary>
+        /// <para>
+        /// Firsts the links.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="TLink">
+        /// <para>The link.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links.</para>
+        /// <para></para>
+        /// </param>
+        /// <exception cref="InvalidOperationException">
+        /// <para>В процессе поиска по хранилищу не было найдено связей.</para>
+        /// <para></para>
+        /// </exception>
+        /// <exception cref="InvalidOperationException">
+        /// <para>В хранилище нет связей.</para>
+        /// <para></para>
+        /// </exception>
+        /// <returns>
+        /// <para>The first link.</para>
+        /// <para></para>
+        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLink First<TLink>(this ILinks<TLink> links)
         {
@@ -114,6 +218,28 @@ namespace Platform.Data.Doublets
             return firstLink;
         }
 
+        /// <summary>
+        /// <para>
+        /// Singles the or default using the specified links.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="TLink">
+        /// <para>The link.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="query">
+        /// <para>The query.</para>
+        /// <para></para>
+        /// </param>
+        /// <returns>
+        /// <para>The result.</para>
+        /// <para></para>
+        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IList<TLink> SingleOrDefault<TLink>(this ILinks<TLink> links, IList<TLink> query)
         {
@@ -197,6 +323,40 @@ namespace Platform.Data.Doublets
             return currentLink;
         }
 
+        /// <summary>
+        /// <para>
+        /// Gets the square matrix sequence element by index using the specified links.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="TLink">
+        /// <para>The link.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="root">
+        /// <para>The root.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="size">
+        /// <para>The size.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="index">
+        /// <para>The index.</para>
+        /// <para></para>
+        /// </param>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// <para>Sequences with sizes other than powers of two are not supported.</para>
+        /// <para></para>
+        /// </exception>
+        /// <returns>
+        /// <para>The current link.</para>
+        /// <para></para>
+        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLink GetSquareMatrixSequenceElementByIndex<TLink>(this ILinks<TLink> links, TLink root, ulong size, ulong index)
         {
@@ -302,6 +462,28 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool Each<TLink>(this ILinks<TLink> links, TLink source, TLink target, Func<IList<TLink>, TLink> handler) => links.Each(handler, links.Constants.Any, source, target);
 
+        /// <summary>
+        /// <para>
+        /// Alls the links.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="TLink">
+        /// <para>The link.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="restrictions">
+        /// <para>The restrictions.</para>
+        /// <para></para>
+        /// </param>
+        /// <returns>
+        /// <para>A list of i list t link</para>
+        /// <para></para>
+        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IList<IList<TLink>> All<TLink>(this ILinks<TLink> links, params TLink[] restrictions)
         {
@@ -319,6 +501,28 @@ namespace Platform.Data.Doublets
             }
         }
 
+        /// <summary>
+        /// <para>
+        /// Alls the indices using the specified links.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="TLink">
+        /// <para>The link.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="restrictions">
+        /// <para>The restrictions.</para>
+        /// <para></para>
+        /// </param>
+        /// <returns>
+        /// <para>A list of t link</para>
+        /// <para></para>
+        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IList<TLink> AllIndices<TLink>(this ILinks<TLink> links, params TLink[] restrictions)
         {
@@ -349,6 +553,28 @@ namespace Platform.Data.Doublets
         #region Ensure
         // TODO: May be move to EnsureExtensions or make it both there and here
 
+        /// <summary>
+        /// <para>
+        /// Ensures the link exists using the specified links.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="TLink">
+        /// <para>The link.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="restrictions">
+        /// <para>The restrictions.</para>
+        /// <para></para>
+        /// </param>
+        /// <exception cref="ArgumentLinkDoesNotExistsException{TLink}">
+        /// <para>sequence[{i}]</para>
+        /// <para></para>
+        /// </exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureLinkExists<TLink>(this ILinks<TLink> links, IList<TLink> restrictions)
         {
@@ -361,6 +587,32 @@ namespace Platform.Data.Doublets
             }
         }
 
+        /// <summary>
+        /// <para>
+        /// Ensures the inner reference exists using the specified links.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="TLink">
+        /// <para>The link.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="reference">
+        /// <para>The reference.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="argumentName">
+        /// <para>The argument name.</para>
+        /// <para></para>
+        /// </param>
+        /// <exception cref="ArgumentLinkDoesNotExistsException{TLink}">
+        /// <para></para>
+        /// <para></para>
+        /// </exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureInnerReferenceExists<TLink>(this ILinks<TLink> links, TLink reference, string argumentName)
         {
@@ -370,6 +622,28 @@ namespace Platform.Data.Doublets
             }
         }
 
+        /// <summary>
+        /// <para>
+        /// Ensures the inner reference exists using the specified links.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="TLink">
+        /// <para>The link.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="restrictions">
+        /// <para>The restrictions.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="argumentName">
+        /// <para>The argument name.</para>
+        /// <para></para>
+        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureInnerReferenceExists<TLink>(this ILinks<TLink> links, IList<TLink> restrictions, string argumentName)
         {
@@ -379,6 +653,28 @@ namespace Platform.Data.Doublets
             }
         }
 
+        /// <summary>
+        /// <para>
+        /// Ensures the link is any or exists using the specified links.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="TLink">
+        /// <para>The link.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="restrictions">
+        /// <para>The restrictions.</para>
+        /// <para></para>
+        /// </param>
+        /// <exception cref="ArgumentLinkDoesNotExistsException{TLink}">
+        /// <para>sequence[{i}]</para>
+        /// <para></para>
+        /// </exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureLinkIsAnyOrExists<TLink>(this ILinks<TLink> links, IList<TLink> restrictions)
         {
@@ -393,6 +689,32 @@ namespace Platform.Data.Doublets
             }
         }
 
+        /// <summary>
+        /// <para>
+        /// Ensures the link is any or exists using the specified links.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="TLink">
+        /// <para>The link.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="link">
+        /// <para>The link.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="argumentName">
+        /// <para>The argument name.</para>
+        /// <para></para>
+        /// </param>
+        /// <exception cref="ArgumentLinkDoesNotExistsException{TLink}">
+        /// <para></para>
+        /// <para></para>
+        /// </exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureLinkIsAnyOrExists<TLink>(this ILinks<TLink> links, TLink link, string argumentName)
         {
@@ -403,6 +725,32 @@ namespace Platform.Data.Doublets
             }
         }
 
+        /// <summary>
+        /// <para>
+        /// Ensures the link is itself or exists using the specified links.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="TLink">
+        /// <para>The link.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="link">
+        /// <para>The link.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="argumentName">
+        /// <para>The argument name.</para>
+        /// <para></para>
+        /// </param>
+        /// <exception cref="ArgumentLinkDoesNotExistsException{TLink}">
+        /// <para></para>
+        /// <para></para>
+        /// </exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureLinkIsItselfOrExists<TLink>(this ILinks<TLink> links, TLink link, string argumentName)
         {
@@ -573,6 +921,36 @@ namespace Platform.Data.Doublets
             }
         }
 
+        /// <summary>
+        /// <para>
+        /// Resolves the constant as self reference using the specified links.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="TLink">
+        /// <para>The link.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="constant">
+        /// <para>The constant.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="restrictions">
+        /// <para>The restrictions.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="substitution">
+        /// <para>The substitution.</para>
+        /// <para></para>
+        /// </param>
+        /// <returns>
+        /// <para>A list of t link</para>
+        /// <para></para>
+        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IList<TLink> ResolveConstantAsSelfReference<TLink>(this ILinks<TLink> links, TLink constant, IList<TLink> restrictions, IList<TLink> substitution)
         {
@@ -674,6 +1052,24 @@ namespace Platform.Data.Doublets
             links.DeleteByQuery(usagesAsTargetQuery);
         }
 
+        /// <summary>
+        /// <para>
+        /// Deletes the by query using the specified links.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="TLink">
+        /// <para>The link.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="query">
+        /// <para>The query.</para>
+        /// <para></para>
+        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void DeleteByQuery<TLink>(this ILinks<TLink> links, Link<TLink> query)
         {
@@ -691,6 +1087,28 @@ namespace Platform.Data.Doublets
         }
 
         // TODO: Move to Platform.Data
+        /// <summary>
+        /// <para>
+        /// Determines whether are values reset.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="TLink">
+        /// <para>The link.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="linkIndex">
+        /// <para>The link index.</para>
+        /// <para></para>
+        /// </param>
+        /// <returns>
+        /// <para>The bool</para>
+        /// <para></para>
+        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool AreValuesReset<TLink>(this ILinks<TLink> links, TLink linkIndex)
         {
@@ -708,6 +1126,24 @@ namespace Platform.Data.Doublets
         }
 
         // TODO: Create a universal version of this method in Platform.Data (with using of for loop)
+        /// <summary>
+        /// <para>
+        /// Resets the values using the specified links.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="TLink">
+        /// <para>The link.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="linkIndex">
+        /// <para>The link index.</para>
+        /// <para></para>
+        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void ResetValues<TLink>(this ILinks<TLink> links, TLink linkIndex)
         {
@@ -717,6 +1153,24 @@ namespace Platform.Data.Doublets
         }
 
         // TODO: Create a universal version of this method in Platform.Data (with using of for loop)
+        /// <summary>
+        /// <para>
+        /// Enforces the reset values using the specified links.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="TLink">
+        /// <para>The link.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="linkIndex">
+        /// <para>The link index.</para>
+        /// <para></para>
+        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnforceResetValues<TLink>(this ILinks<TLink> links, TLink linkIndex)
         {
@@ -796,6 +1250,24 @@ namespace Platform.Data.Doublets
             return newLinkIndex;
         }
 
+        /// <summary>
+        /// <para>
+        /// Decorates the with automatic uniqueness and usages resolution using the specified links.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="TLink">
+        /// <para>The link.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links.</para>
+        /// <para></para>
+        /// </param>
+        /// <returns>
+        /// <para>The links.</para>
+        /// <para></para>
+        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ILinks<TLink> DecorateWithAutomaticUniquenessAndUsagesResolution<TLink>(this ILinks<TLink> links)
         {
@@ -805,6 +1277,28 @@ namespace Platform.Data.Doublets
             return links;
         }
 
+        /// <summary>
+        /// <para>
+        /// Formats the links.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="TLink">
+        /// <para>The link.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="link">
+        /// <para>The link.</para>
+        /// <para></para>
+        /// </param>
+        /// <returns>
+        /// <para>The string</para>
+        /// <para></para>
+        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string Format<TLink>(this ILinks<TLink> links, IList<TLink> link)
         {
@@ -812,6 +1306,28 @@ namespace Platform.Data.Doublets
             return $"({link[constants.IndexPart]}: {link[constants.SourcePart]} {link[constants.TargetPart]})";
         }
 
+        /// <summary>
+        /// <para>
+        /// Formats the links.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="TLink">
+        /// <para>The link.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="link">
+        /// <para>The link.</para>
+        /// <para></para>
+        /// </param>
+        /// <returns>
+        /// <para>The string</para>
+        /// <para></para>
+        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string Format<TLink>(this ILinks<TLink> links, TLink link) => links.Format(links.GetLink(link));
     }

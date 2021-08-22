@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using Xunit;
 using Platform.Singletons;
 using Platform.Memory;
@@ -6,10 +6,28 @@ using Platform.Data.Doublets.Memory.United.Specific;
 
 namespace Platform.Data.Doublets.Tests
 {
+    /// <summary>
+    /// <para>
+    /// Represents the resizable direct memory links tests.
+    /// </para>
+    /// <para></para>
+    /// </summary>
     public static class ResizableDirectMemoryLinksTests
     {
+        /// <summary>
+        /// <para>
+        /// The instance.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private static readonly LinksConstants<ulong> _constants = Default<LinksConstants<ulong>>.Instance;
 
+        /// <summary>
+        /// <para>
+        /// Tests that basic file mapped memory test.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         [Fact]
         public static void BasicFileMappedMemoryTest()
         {
@@ -21,6 +39,12 @@ namespace Platform.Data.Doublets.Tests
             File.Delete(tempFilename);
         }
 
+        /// <summary>
+        /// <para>
+        /// Tests that basic heap memory test.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         [Fact]
         public static void BasicHeapMemoryTest()
         {
@@ -31,12 +55,28 @@ namespace Platform.Data.Doublets.Tests
             }
         }
 
+        /// <summary>
+        /// <para>
+        /// Tests the basic memory operations using the specified memory adapter.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="memoryAdapter">
+        /// <para>The memory adapter.</para>
+        /// <para></para>
+        /// </param>
         private static void TestBasicMemoryOperations(this ILinks<ulong> memoryAdapter)
         {
             var link = memoryAdapter.Create();
             memoryAdapter.Delete(link);
         }
 
+        /// <summary>
+        /// <para>
+        /// Tests that nonexistent references heap memory test.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         [Fact]
         public static void NonexistentReferencesHeapMemoryTest()
         {
@@ -47,6 +87,16 @@ namespace Platform.Data.Doublets.Tests
             }
         }
 
+        /// <summary>
+        /// <para>
+        /// Tests the nonexistent references using the specified memory adapter.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="memoryAdapter">
+        /// <para>The memory adapter.</para>
+        /// <para></para>
+        /// </param>
         private static void TestNonexistentReferences(this ILinks<ulong> memoryAdapter)
         {
             var link = memoryAdapter.Create();

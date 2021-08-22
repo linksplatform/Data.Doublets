@@ -1,4 +1,4 @@
-﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Attributes;
 using Platform.Data.Doublets.Memory.Split.Generic;
 using Platform.Data.Doublets.Memory.United.Generic;
 using Platform.Data.Doublets.Tests;
@@ -8,15 +8,51 @@ using Platform.Memory;
 
 namespace Platform.Data.Doublets.Benchmarks
 {
+    /// <summary>
+    /// <para>
+    /// Represents the memory benchmarks.
+    /// </para>
+    /// <para></para>
+    /// </summary>
     [SimpleJob]
     [MemoryDiagnoser]
     public class MemoryBenchmarks
     {
+        /// <summary>
+        /// <para>
+        /// The split memory.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private static SplitMemoryLinks<uint> _splitMemory;
+        /// <summary>
+        /// <para>
+        /// The split memory links.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private static ILinks<uint> _splitMemoryLinks;
+        /// <summary>
+        /// <para>
+        /// The united memory.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private static UnitedMemoryLinks<uint> _unitedMemory;
+        /// <summary>
+        /// <para>
+        /// The united memory links.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private static ILinks<uint> _unitedMemoryLinks;
 
+        /// <summary>
+        /// <para>
+        /// Setup.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         [GlobalSetup]
         public static void Setup()
         {
@@ -30,6 +66,12 @@ namespace Platform.Data.Doublets.Benchmarks
             _unitedMemoryLinks = _unitedMemory.DecorateWithAutomaticUniquenessAndUsagesResolution();
         }
 
+        /// <summary>
+        /// <para>
+        /// Cleanups.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         [GlobalCleanup]
         public static void Cleanup()
         {
@@ -37,12 +79,24 @@ namespace Platform.Data.Doublets.Benchmarks
             _unitedMemory.Dispose();
         }
 
+        /// <summary>
+        /// <para>
+        /// Splits this instance.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         [Benchmark]
         public void Split()
         {
             _splitMemoryLinks.TestMultipleRandomCreationsAndDeletions(1000);
         }
 
+        /// <summary>
+        /// <para>
+        /// Uniteds this instance.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         [Benchmark]
         public void United()
         {

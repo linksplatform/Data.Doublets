@@ -1,9 +1,21 @@
-﻿using Xunit;
+using Xunit;
 
 namespace Platform.Data.Doublets.Tests
 {
+    /// <summary>
+    /// <para>
+    /// Represents the links constants tests.
+    /// </para>
+    /// <para></para>
+    /// </summary>
     public static class LinksConstantsTests
     {
+        /// <summary>
+        /// <para>
+        /// Tests that external references test.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         [Fact]
         public static void ExternalReferencesTest()
         {
