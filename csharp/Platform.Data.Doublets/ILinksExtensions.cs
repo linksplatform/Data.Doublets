@@ -1632,24 +1632,24 @@ namespace Platform.Data.Doublets
 
         // TODO: Move to Platform.Data
         ///<summary>
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Checks if the link values ​​are cleared.</para>
+        ///<para>Проверяет сброшены ли значения связи.</para>
         ///</summary>
         ///<typeparam name="TLink">
         ///<para>.</para>
         ///<para>.</para>
         ///</typeparam>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links storage.</para>
+        ///<para>Хранилище связей.</para>
         ///</param>
         ///<param name="linkIndex">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Link Index.</para>
+        ///<para>Индекс связи.</para>
         ///</param>
         ///<returns>
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Returns <cref="true"/> if the link values ​​are cleared, and <cref="false"/> if they are not cleared.</para>
+        ///<para>Возвращает значение <cref="true"/> если сброшены значения связи, и <cref="false"/> если не сброшены.</para>
         ///</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool AreValuesReset<TLink>(this ILinks<TLink> links, TLink linkIndex)
@@ -1669,20 +1669,20 @@ namespace Platform.Data.Doublets
 
         // TODO: Create a universal version of this method in Platform.Data (with using of for loop)
         ///<summary>
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Resets communication values ​​without testing.</para>
+        ///<para>Сбрасывает значения связи без проведения проверок.</para>
         ///</summary>
         ///<typeparam name="TLink">
         ///<para>.</para>
         ///<para>.</para>
         ///</typeparam>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links Storage.</para>
+        ///<para>Хранилище связей.</para>
         ///</param>
         ///<param name="linkIndex">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Link Index.</para>
+        ///<para>Индекс связи.</para>
         ///</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void ResetValues<TLink>(this ILinks<TLink> links, TLink linkIndex)
@@ -1695,19 +1695,19 @@ namespace Platform.Data.Doublets
         // TODO: Create a universal version of this method in Platform.Data (with using of for loop)
         ///<summary>
         ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Сбрасывает значиения связи, если они не были сброшены ранее.</para>
         ///</summary>
         ///<typeparam name="TLink">
         ///<para>.</para>
         ///<para>.</para>
         ///</typeparam>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links Storage.</para>
+        ///<para>Хранилище связей.</para>
         ///</param>
         ///<param name="linkIndex">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Link Index.</para>
+        ///<para>Индекс связи.</para>
         ///</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnforceResetValues<TLink>(this ILinks<TLink> links, TLink linkIndex)
@@ -1865,24 +1865,24 @@ namespace Platform.Data.Doublets
 
         /// </summary>
         ///<summary>
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Gives the value of link in a specific format.</para>
+        ///<para>Выдает значение связи в определенном формате.</para>
         ///</summary>
         ///<typeparam name="TLink">
         ///<para>.</para>
         ///<para>.</para>
         ///</typeparam>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The Links Storage.</para>
+        ///<para>Хранилище связей.</para>
         ///</param>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The Link.</para>
+        ///<para>Связь.</para>
         ///</param>
         ///<returns>
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Formatted string with link values.</para>
+        ///<para>Форматированная строка со значениями связи.</para>
         ///</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string Format<TLink>(this ILinks<TLink> links, IList<TLink> link)
@@ -1893,24 +1893,24 @@ namespace Platform.Data.Doublets
 
         /// </summary>
         ///<summary>
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Gets a link by index and displays the resulting link in a specific format.</para>
+        ///<para>Получает связь по индексу и выводит полученную связь в определенном формате.</para>
         ///</summary>
         ///<typeparam name="TLink">
         ///<para>.</para>
         ///<para>.</para>
         ///</typeparam>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The Links storage.</para>
+        ///<para>Хранилище связей.</para>
         ///</param>
-        ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<param name="link">
+        ///<para>The Link.</para>
+        ///<para>Связь.</para>
         ///</param>
         ///<returns>
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Formatted string with link values.</para>
+        ///<para>Форматированная строка со значениями связи.</para>
         ///</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string Format<TLink>(this ILinks<TLink> links, TLink link) => links.Format(links.GetLink(link));
