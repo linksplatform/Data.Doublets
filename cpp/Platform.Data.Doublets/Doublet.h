@@ -11,7 +11,7 @@
         public: Doublet(T source = 0, T target = 0)
             : Source(source), Target(target) {}
 
-        public: explicit operator std::string() const { return std::string("").append(Platform::Converters::To<std::string>(Source)).append("->").append(Platform::Converters::To<std::string>(Target)).append(""); }
+        public: explicit operator std::string() const { return std::string("").append(Platform::Converters::To<std::string>(Source)).append("->").append(Platform::Converters::To<std::string>(Target)); }
 
         public: friend std::ostream& operator<<(std::ostream& stream, const Doublet<T>& self) { return stream << static_cast<std::string>(self); }
 
