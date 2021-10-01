@@ -9,9 +9,9 @@
 
         private: static constexpr std::size_t Length = 3;
 
-        public: TLink Index{};
-        public: TLink Source{};
-        public: TLink Target{};
+        public: TLink Index = _constants.Null;
+        public: TLink Source = _constants.Null;
+        public: TLink Target = _constants.Null;
 
         public: Link() noexcept = default;
         public: Link(const Link&) noexcept = default;
