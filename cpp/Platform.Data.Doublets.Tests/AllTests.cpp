@@ -27,9 +27,16 @@ auto main() -> int {
 
     std::cout << Link<int>::ToString(1, 2) << std::endl;
     std::cout << Link<int>::ToString(1, 2, 3) << std::endl;
+    std::cout << "(" << link[0] << ": " << link[1] << "->" << link[2] << ")" << std::endl;
     std::cout << link << std::endl;
     for (auto item : link) {
         std::cout << item << " ";
     }
     std::cout << std::endl;
+
+    try { link[1488]; }
+    catch (std::exception& e) {
+        std::cout << e.what() << std::endl;
+    }
+
 }
