@@ -1,5 +1,6 @@
 [requires]
 gtest/cci.20210126
+platform.collections.methods/0.1.0
 platform.collections/0.1.0
 platform.threading/0.1.0
 platform.memory/0.1.0
