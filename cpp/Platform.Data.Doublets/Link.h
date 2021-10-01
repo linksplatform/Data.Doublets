@@ -38,7 +38,6 @@
         public: auto&& operator[](std::size_t index) const
         {
             using namespace Platform::Ranges; // TODO: EnsureExtensions
-            Always::ArgumentInRange(index, Range{0, Length - 1}, "index");
             switch (index)
             {
                 case _constants.IndexPart:
@@ -48,7 +47,7 @@
                 case _constants.TargetPart:
                     return Target;
                 default:
-                    throw std::logic_error("Not supported exception.");
+                    Always::ArgumentInRange(index, Range{0, Length - 1}, "index");
             }
         }
 
