@@ -3,6 +3,9 @@ cmake_minimum_required(VERSION 3.13)
 set(LINKS_PLATFORM_TESTS OFF CACHE BOOL "Whether to compile tests")
 set(LINKS_PLATFORM_EXTRA_FLAGS "" CACHE STRING "Extra compiler flags")
 
+set(CONAN_DISABLE_CHECK_COMPILER TRUE)
+set(LINKS_PLATFORM_TESTS TRUE)
+
 project(Platform.Data.Doublets CXX)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS)
@@ -16,6 +19,7 @@ target_link_libraries(${PROJECT_NAME}.Library INTERFACE CONAN_PKG::platform.coll
 target_link_libraries(${PROJECT_NAME}.Library INTERFACE CONAN_PKG::platform.threading)
 target_link_libraries(${PROJECT_NAME}.Library INTERFACE CONAN_PKG::platform.memory)
 target_link_libraries(${PROJECT_NAME}.Library INTERFACE CONAN_PKG::platform.data)
+#target_link_libraries(${PROJECT_NAME}.Library INTERFACE ${CONAN_LIBS})
 target_compile_options(${PROJECT_NAME}.Library INTERFACE ${LINKS_PLATFORM_EXTRA_FLAGS})
 
 if(${LINKS_PLATFORM_TESTS})
