@@ -51,31 +51,48 @@ auto main() -> int {
     //auto mem = HeapResizableDirectMemory();
     auto links = UnitedMemoryLinks<int>(mem);
     auto constants = links.Constants;
+    auto _ = constants.Any;
 
-    auto root = links.Create(std::vector<int>{});
-    int n = 20;
-    while (n--)
+    auto root = links.Create();
+    // int n = 5;
+    // while (n--)
+    // {
+    //     int count = links.Count(std::vector<int>{});
+    //     links.Each([&](auto&& link)
+    //     {
+    //         if (count == 0) return constants.Break;
+    //         auto current = links.Create(std::vector<int>{});
+    //         links.CreateAndUpdate(current, link[0]);
+    //         //links.Update(std::vector{current}, std::vector{current, current, link[0]});
+    //         //links.Update(std::vector{current}, std::vector{current, current, link[0]});
+    //         //links.Update(std::vector{current}, std::vector{current, current, rand() % 100});
+    //         (void)links.Count(std::vector{_, current});
+//
+    //         count--;
+    //         return constants.Continue;
+    //     }, std::vector<int>{});
+    // }
+
+    for (int i = 0; i < 10; i++)
     {
-        int count = links.Count(std::vector<int>{});
-        links.Each([&](auto&& link)
-        {
-            if (count == 0) return constants.Break;
-            auto current = links.Create(std::vector<int>{});
-            links.Update(std::vector{current}, std::vector{current, current, link[0]});
-
-            count--;
-            return constants.Continue;
-        }, std::vector<int>{});
+        links.Create();
     }
+
+    links.RunRandomCreations(300);
 
     auto end = std::chrono::high_resolution_clock::now();
 
-    std::cout << "links count: " << links.Count(std::vector<int>{}) << std::endl;
-    std::cout << "links count: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << "ms" << std::endl;
+    auto fout = std::ofstream("out");
 
-    //inks.Each([&](auto&& link) {
-    //   if (link[1] == 0) std::cout << link[0]; else std::cout << link[1] << "->";
-    //   if (link[2] == 0) std::cout << link[0]; else std::cout << link[2] << "\n";
-    //   return constants.Continue;
-    //, std::vector<int>{});
+    links.Each([&](auto&& link) {
+       if (link[1] == 0) fout << link[0]; else fout << link[1]; fout << "->";
+       if (link[2] == 0) fout << link[0]; else fout << link[2]; fout << "\n";
+       return constants.Continue;
+    }, std::vector<int>{});
+
+    //std::cout << "links count: " << links.Count(std::vector<int>{}) << std::endl;
+    std::cout << "count: " << links.Count() << std::endl;
+    std::cout << "root count: " << links.Count(_, root) << std::endl;
+    std::cout << "elapsed: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << "ms" << std::endl;
+
 }
