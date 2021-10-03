@@ -14,19 +14,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
     /// <seealso cref="InternalLinksSourcesLinkedListMethods{TLink}"/>
     public unsafe class UInt32InternalLinksSourcesLinkedListMethods : InternalLinksSourcesLinkedListMethods<TLink>
     {
-        /// <summary>
-        /// <para>
-        /// The links data parts.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private readonly RawLinkDataPart<TLink>* _linksDataParts;
-        /// <summary>
-        /// <para>
-        /// The links index parts.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private readonly RawLinkIndexPart<TLink>* _linksIndexParts;
 
         /// <summary>

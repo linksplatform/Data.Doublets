@@ -295,19 +295,7 @@ namespace Platform.Data.Doublets
         /// </remarks>
         public class Transaction : DisposableBase
         {
-            /// <summary>
-            /// <para>
-            /// The transitions.
-            /// </para>
-            /// <para></para>
-            /// </summary>
             private readonly Queue<Transition> _transitions;
-            /// <summary>
-            /// <para>
-            /// The layer.
-            /// </para>
-            /// <para></para>
-            /// </summary>
             private readonly UInt64LinksTransactionsLayer _layer;
             /// <summary>
             /// <para>
@@ -479,75 +467,15 @@ namespace Platform.Data.Doublets
         /// </summary>
         public static readonly TimeSpan DefaultPushDelay = TimeSpan.FromSeconds(0.1);
 
-        /// <summary>
-        /// <para>
-        /// The log address.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private readonly string _logAddress;
-        /// <summary>
-        /// <para>
-        /// The log.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private readonly FileStream _log;
-        /// <summary>
-        /// <para>
-        /// The transitions.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private readonly Queue<Transition> _transitions;
-        /// <summary>
-        /// <para>
-        /// The unique timestamp factory.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private readonly UniqueTimestampFactory _uniqueTimestampFactory;
-        /// <summary>
-        /// <para>
-        /// The transitions pusher.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private Task _transitionsPusher;
-        /// <summary>
-        /// <para>
-        /// The last commited transition.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private Transition _lastCommitedTransition;
-        /// <summary>
-        /// <para>
-        /// The current transaction id.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private ulong _currentTransactionId;
-        /// <summary>
-        /// <para>
-        /// The current transaction transitions.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private Queue<Transition> _currentTransactionTransitions;
-        /// <summary>
-        /// <para>
-        /// The current transaction.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private Transaction _currentTransaction;
-        /// <summary>
-        /// <para>
-        /// The last commited transaction id.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private ulong _lastCommitedTransactionId;
 
         /// <summary>

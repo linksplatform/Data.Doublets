@@ -14,33 +14,9 @@ namespace Platform.Data.Doublets.Memory.United.Specific
     /// </summary>
     public unsafe class UInt32UnitedMemoryLinks : UnitedMemoryLinksBase<uint>
     {
-        /// <summary>
-        /// <para>
-        /// The create source tree methods.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private readonly Func<ILinksTreeMethods<uint>> _createSourceTreeMethods;
-        /// <summary>
-        /// <para>
-        /// The create target tree methods.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private readonly Func<ILinksTreeMethods<uint>> _createTargetTreeMethods;
-        /// <summary>
-        /// <para>
-        /// The header.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private LinksHeader<uint>* _header;
-        /// <summary>
-        /// <para>
-        /// The links.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private RawLink<uint>* _links;
 
         /// <summary>

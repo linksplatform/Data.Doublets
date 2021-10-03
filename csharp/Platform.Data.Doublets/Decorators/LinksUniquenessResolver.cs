@@ -14,12 +14,6 @@ namespace Platform.Data.Doublets.Decorators
     /// <seealso cref="LinksDecoratorBase{TLink}"/>
     public class LinksUniquenessResolver<TLink> : LinksDecoratorBase<TLink>
     {
-        /// <summary>
-        /// <para>
-        /// The default.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
 
         /// <summary>

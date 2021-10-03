@@ -20,12 +20,6 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
     /// <seealso cref="ILinksTreeMethods{TLink}"/>
     public unsafe abstract class InternalLinksSizeBalancedTreeMethodsBase<TLink> : SizeBalancedTreeMethods<TLink>, ILinksTreeMethods<TLink>
     {
-        /// <summary>
-        /// <para>
-        /// The default.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private static readonly UncheckedConverter<TLink, long> _addressToInt64Converter = UncheckedConverter<TLink, long>.Default;
 
         /// <summary>

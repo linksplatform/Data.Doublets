@@ -18,33 +18,9 @@ namespace Platform.Data.Doublets.Benchmarks
     [MemoryDiagnoser]
     public class MemoryBenchmarks
     {
-        /// <summary>
-        /// <para>
-        /// The split memory.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private static SplitMemoryLinks<uint> _splitMemory;
-        /// <summary>
-        /// <para>
-        /// The split memory links.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private static ILinks<uint> _splitMemoryLinks;
-        /// <summary>
-        /// <para>
-        /// The united memory.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private static UnitedMemoryLinks<uint> _unitedMemory;
-        /// <summary>
-        /// <para>
-        /// The united memory links.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private static ILinks<uint> _unitedMemoryLinks;
 
         /// <summary>

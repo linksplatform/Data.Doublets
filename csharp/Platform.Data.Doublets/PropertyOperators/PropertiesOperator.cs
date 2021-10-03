@@ -16,12 +16,6 @@ namespace Platform.Data.Doublets.PropertyOperators
     /// <seealso cref="IProperties{TLink, TLink, TLink}"/>
     public class PropertiesOperator<TLink> : LinksOperatorBase<TLink>, IProperties<TLink, TLink, TLink>
     {
-        /// <summary>
-        /// <para>
-        /// The default.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
 
         /// <summary>

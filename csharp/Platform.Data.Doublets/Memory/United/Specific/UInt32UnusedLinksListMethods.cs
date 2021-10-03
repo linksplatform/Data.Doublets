@@ -14,19 +14,7 @@ namespace Platform.Data.Doublets.Memory.United.Specific
     /// <seealso cref="UnusedLinksListMethods{uint}"/>
     public unsafe class UInt32UnusedLinksListMethods : UnusedLinksListMethods<uint>
     {
-        /// <summary>
-        /// <para>
-        /// The links.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private readonly RawLink<uint>* _links;
-        /// <summary>
-        /// <para>
-        /// The header.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private readonly LinksHeader<uint>* _header;
 
         /// <summary>
