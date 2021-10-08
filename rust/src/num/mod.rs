@@ -2,8 +2,8 @@ use num_traits::{AsPrimitive, PrimInt, Unsigned, FromPrimitive, Signed};
 use std::iter::Step;
 use std::fmt::Debug;
 
-pub trait Num: PrimInt + Default + AsPrimitive<usize> {}
-impl<All: PrimInt + Default + AsPrimitive<usize>> Num for All {}
+pub trait Num: PrimInt + Default + AsPrimitive<usize> + Debug {}
+impl<All: PrimInt + Default + AsPrimitive<usize> + Debug> Num for All {}
 
 pub trait ToSigned {
     type Type: Num + Signed;

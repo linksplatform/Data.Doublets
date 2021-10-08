@@ -426,9 +426,7 @@ impl<
         let null = constants.null;
         let index = restrictions[constants.index_part.as_()];
         let link = self.get_link(index).clone();
-        let header = self.get_header();
-        let first_as_source = header.root_as_source;
-        let first_as_target = header.root_as_target;
+
         // TODO: memory filled with zeros
         if link.source != null {
             let temp = &mut self.get_mut_header().root_as_source as *mut T;

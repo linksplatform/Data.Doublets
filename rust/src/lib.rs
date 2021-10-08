@@ -205,6 +205,26 @@ mod tests {
         links.delete_all();
         assert_eq!(links.count(), 0);
 
-        links.test_random_creations_and_deletions(100);
+        links.test_random_creations_and_deletions(10);
+    }
+
+    #[test]
+    fn links_bug() {
+        let mem = HeapMem::new();
+        let mut links = Links::<usize, _>::new(mem);
+
+        let new = links.create();
+
+        for i in 0..10 {
+            for i in 1..=10 {
+                println!("3: {:?}", links.get_link(3));
+                println!("2: {:?}", links.get_link(2));
+                links.create_and_update(i, new);;
+                links.get_or_create(i, new);
+            }
+            links.delete_all();
+        }
+
+        println!("{}", links.count());
     }
 }

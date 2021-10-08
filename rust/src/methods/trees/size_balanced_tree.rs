@@ -2,7 +2,7 @@ use std::borrow::{Borrow, BorrowMut};
 use std::mem::size_of;
 use std::slice::SliceIndex;
 
-use num_traits::{AsPrimitive, PrimInt, Unsigned};
+use num_traits::{AsPrimitive, PrimInt, Unsigned, zero};
 
 use crate::num::Num;
 
@@ -214,7 +214,11 @@ pub trait SizeBalancedTreeMethods<T: Num> {
                 parent = current;
                 current = self.get_mut_right_reference(*current);
             } else {
+                println!("{:?} -- {:?}", *current, detached);;
                 // TODO: return error
+                //self.clear_node(*root);
+                //*root = zero();
+                //return;
                 panic!("duplicate link found in the tree");
             }
         }
