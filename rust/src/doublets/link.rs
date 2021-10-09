@@ -1,9 +1,9 @@
-use crate::num::{LinkType};
+use crate::num::LinkType;
 use num_traits::zero;
-use std::ops::{Index, IndexMut};
-use std::iter::FromIterator;
 use std::fmt::Debug;
 use std::iter;
+use std::iter::FromIterator;
+use std::ops::{Index, IndexMut};
 use std::slice::from_raw_parts;
 
 #[derive(Default, Debug, Eq, PartialEq, Clone, Hash)]
@@ -20,7 +20,11 @@ impl<T: LinkType> Link<T> {
         // TODO: use new for default construct
         //    // TODO: use default_feature
         //    Default::default()
-        Self { index, source, target }
+        Self {
+            index,
+            source,
+            target,
+        }
     }
 
     pub fn from_once(val: T) -> Self {
@@ -63,10 +67,12 @@ impl<T: LinkType> Index<usize> for Link<T> {
 
     fn index(&self, index: usize) -> &Self::Output {
         match index {
-            0 => { &self.index },
-            1 => { &self.source },
-            2 => { &self.target },
-            _ => { panic!("TODO: LINK INDEX"); }
+            0 => &self.index,
+            1 => &self.source,
+            2 => &self.target,
+            _ => {
+                panic!("TODO: LINK INDEX");
+            }
         }
     }
 }
@@ -74,21 +80,22 @@ impl<T: LinkType> Index<usize> for Link<T> {
 impl<'a, T: LinkType> IndexMut<usize> for Link<T> {
     fn index_mut(&mut self, index: usize) -> &mut Self::Output {
         match index {
-            0 => { &mut self.index },
-            1 => { &mut self.source },
-            2 => { &mut self.target },
-            _ => { panic!("TODO: LINK INDEX"); }
+            0 => &mut self.index,
+            1 => &mut self.source,
+            2 => &mut self.target,
+            _ => {
+                panic!("TODO: LINK INDEX");
+            }
         }
     }
 }
 
 impl<T: LinkType> FromIterator<T> for Link<T> {
-    fn from_iter<I: IntoIterator<Item=T>>(iter: I) -> Self {
+    fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> Self {
         let mut new: Link<T> = Default::default(); // TODO: strange compiler type mismatching
-        for (i, item) in iter.into_iter()
-            .take(new.len())
-            .enumerate()
-        { new[i] = item }
+        for (i, item) in iter.into_iter().take(new.len()).enumerate() {
+            new[i] = item
+        }
         new
     }
 }

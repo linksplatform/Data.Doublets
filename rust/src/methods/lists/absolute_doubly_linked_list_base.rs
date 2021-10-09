@@ -11,6 +11,10 @@ pub trait AbsoluteDoublyLinkedListBase<T: Num>: DoublyLinkedListBase<T> {
     fn set_last(&mut self, element: T);
     fn set_size(&mut self, size: T);
 
-    fn inc_size(&mut self) { self.set_size(self.get_size() + one()) }
-    fn dec_size(&mut self) { self.set_size(self.get_size() - one()) }
+    fn inc_size(&mut self) {
+        self.set_size(self.get_size() + one())
+    }
+    fn dec_size(&mut self) {
+        self.set_size(self.get_size() - one())
+    }
 }

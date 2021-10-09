@@ -20,6 +20,7 @@ use crate::doublets::mem::united::raw_link::RawLink;
 use crate::mem::file_mapped_mem::FileMappedMem;
 use crate::mem::mem::{Mem, ResizeableMem};
 use crate::num::LinkType;
+use std::collections::HashSet;
 
 // TODO: use `_=_` instead of `_ = _`
 pub struct Links<
@@ -80,7 +81,9 @@ impl<
         self.update_pointers();
 
         let header = self.get_header();
-        self.mem.use_mem(Self::HEADER_SIZE + header.allocated.as_() * Self::LINK_SIZE).unwrap();
+        self.mem
+            .use_mem(Self::HEADER_SIZE + header.allocated.as_() * Self::LINK_SIZE)
+            .unwrap();
 
         let reserved = self.mem.reserved_mem();
         let header = self.get_mut_header();
@@ -147,9 +150,9 @@ impl<
     }
 
     fn each_core<F, L>(&self, handler: &mut F, restrictions: L) -> T
-        where
-            F: FnMut(&[T]) -> T,
-            L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>
+    where
+        F: FnMut(&[T]) -> T,
+        L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
     {
         let restrictions = restrictions.into_iter();
         let constants = self.constants();
@@ -178,7 +181,7 @@ impl<
             } else {
                 let link_struct = self.get_link_struct(index);
                 handler(link_struct.as_slice())
-            }
+            };
         }
 
         if restrictions.len() == 2 {
@@ -193,7 +196,7 @@ impl<
                 }
             } else {
                 if !self.exists(index) {
-                    return r#continue
+                    return r#continue;
                 }
                 if value == any {
                     let link = self.get_link_struct(index);
@@ -205,7 +208,7 @@ impl<
                     return handler(link.as_slice());
                 }
                 r#continue
-            }
+            };
         }
 
         if restrictions.len() == 3 {
@@ -227,7 +230,7 @@ impl<
                         let link = self.get_link_struct(index);
                         return handler(link.as_slice());
                     }
-                }
+                };
             } else {
                 if !self.exists(index) {
                     return zero();
@@ -242,7 +245,7 @@ impl<
                         handler(link.as_slice())
                     } else {
                         r#continue
-                    }
+                    };
                 }
 
                 let mut value = default();
@@ -254,10 +257,10 @@ impl<
                 }
                 return if (stored.source == value) || (stored.target == value) {
                     let link = self.get_link_struct(index);
-                     handler(link.as_slice())
+                    handler(link.as_slice())
                 } else {
                     r#continue
-                }
+                };
             }
         }
 
@@ -279,7 +282,8 @@ impl<
 
     // TODO: [may be] use unique function for every len
     fn count_generic<L>(&self, restrictions: L) -> T
-        where L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>
+    where
+        L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
     {
         let restrictions: Vec<T> = restrictions.into_iter().collect();
 
@@ -321,8 +325,8 @@ impl<
                     one()
                 } else {
                     zero()
-                }
-            }
+                };
+            };
         }
 
         if restrictions.len() == 3 {
@@ -354,7 +358,7 @@ impl<
                         one()
                     } else {
                         zero()
-                    }
+                    };
                 }
 
                 let mut value = default();
@@ -369,16 +373,16 @@ impl<
                 } else {
                     zero()
                 }
-            }
+            };
         }
 
         panic!("not implemented")
     }
 
     fn each_generic<F, L>(&self, mut handler: F, restrictions: L) -> T
-        where
-            F: FnMut(&[T]) -> T,
-            L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>
+    where
+        F: FnMut(&[T]) -> T,
+        L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
     {
         self.each_core(&mut handler, restrictions)
 
@@ -387,7 +391,8 @@ impl<
     }
 
     fn create_generic<L>(&mut self, restrictions: L) -> T
-        where L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>
+    where
+        L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
     {
         let constants = self.constants();
         let header = self.get_header();
@@ -399,7 +404,8 @@ impl<
             }
 
             if header.allocated >= header.reserved - one() {
-                self.mem.reserve_mem(self.mem.reserved_mem() + self.reserve_step);
+                self.mem
+                    .reserve_mem(self.mem.reserved_mem() + self.reserve_step);
                 self.update_pointers();
                 let reserved = self.mem.reserved_mem();
                 let header = self.get_mut_header();
@@ -416,9 +422,9 @@ impl<
     }
 
     fn update_generic<Lr, Ls>(&mut self, restrictions: Lr, substitution: Ls) -> T
-        where
-            Lr: IntoIterator<Item=T, IntoIter: ExactSizeIterator>,
-            Ls: IntoIterator<Item=T, IntoIter: ExactSizeIterator>
+    where
+        Lr: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
+        Ls: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
     {
         let restrictions: Vec<T> = restrictions.into_iter().collect();
         let substitution: Vec<T> = substitution.into_iter().collect();
@@ -454,19 +460,21 @@ impl<
     }
 
     fn delete_generic<L>(&mut self, restrictions: L)
-        where L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>
+    where
+        L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
     {
         let restrictions: Vec<T> = restrictions.into_iter().collect();
         let constants = self.constants();
         let header = self.get_header();
         let link = restrictions[constants.index_part.as_()];
-        if link < header.allocated {
+        if link < header.allocated || true {
             return self.unused.attach_as_first(link);
-        } else if link == header.allocated
-        {
+        } else if link == header.allocated {
             let mut header = self.get_header().clone();
 
-            self.mem.use_mem(self.mem.used_mem() - Self::LINK_SIZE).unwrap();
+            self.mem
+                .use_mem(self.mem.used_mem() - Self::LINK_SIZE)
+                .unwrap();
             header.allocated = header.allocated - one();
 
             while header.allocated > zero() && self.is_unused(header.allocated) {

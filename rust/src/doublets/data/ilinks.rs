@@ -1,8 +1,8 @@
 use crate::doublets::data::links_constants::LinksConstants;
-use crate::num::LinkType;
-use num_traits::zero;
-use libc::labs;
 use crate::doublets::data::point::Point;
+use crate::num::LinkType;
+use libc::labs;
+use num_traits::zero;
 
 pub trait IGenericLinks<T: LinkType> {
     fn constants(&self) -> LinksConstants<T> {
@@ -10,28 +10,30 @@ pub trait IGenericLinks<T: LinkType> {
     }
 
     fn count_generic<L>(&self, restrictions: L) -> T
-        where L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>;
+    where
+        L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>;
 
     fn each_generic<F, L>(&self, handler: F, restrictions: L) -> T
-        where
-            F: FnMut(&[T]) -> T,
-            L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>;
+    where
+        F: FnMut(&[T]) -> T,
+        L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>;
 
     fn create_generic<L>(&mut self, restrictions: L) -> T
-        where L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>;
+    where
+        L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>;
 
     fn update_generic<Lr, Ls>(&mut self, restrictions: Lr, substitution: Ls) -> T
-        where
-            Lr: IntoIterator<Item=T, IntoIter: ExactSizeIterator>,
-            Ls: IntoIterator<Item=T, IntoIter: ExactSizeIterator>;
+    where
+        Lr: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
+        Ls: IntoIterator<Item = T, IntoIter: ExactSizeIterator>;
 
     fn delete_generic<L>(&mut self, restrictions: L)
-        where L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>;
+    where
+        L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>;
 }
 
 pub trait IGenericLinksExtensions<T: LinkType>: IGenericLinks<T> {
-    fn exist(&self, link: T) -> bool
-    {
+    fn exist(&self, link: T) -> bool {
         let constants = self.constants();
 
         if constants.is_external_reference(link) {
@@ -41,7 +43,7 @@ pub trait IGenericLinksExtensions<T: LinkType>: IGenericLinks<T> {
         }
     }
 
-    fn get_link(&self, link: T) -> Box<dyn ExactSizeIterator<Item=T>> {
+    fn get_link(&self, link: T) -> Box<dyn ExactSizeIterator<Item = T>> {
         let constants = self.constants();
         if constants.is_external_reference(link) {
             box Point::new(link, constants.target_part.as_() + 1).into_iter()
@@ -51,7 +53,9 @@ pub trait IGenericLinksExtensions<T: LinkType>: IGenericLinks<T> {
                 |link| {
                     slice = link.to_vec();
                     return constants.r#break;
-                }, [link]);
+                },
+                [link],
+            );
             box slice.into_iter()
         }
     }

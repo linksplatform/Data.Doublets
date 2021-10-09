@@ -30,14 +30,14 @@ pub trait AbsoluteCircularDoublyLinkedList<T: Num>: AbsoluteDoublyLinkedListBase
 
     fn attach_as_first(&mut self, new: T) {
         let first = self.get_first();
-        if first != zero() {
-            self.attach_before(first, new);
-        } else {
+        if first == zero() {
             self.set_first(new);
-            self.set_size(new);
+            self.set_last(new);
             self.set_previous(new, new);
             self.set_next(new, new);
             self.inc_size();
+        } else {
+            self.attach_before(first, new);
         }
     }
 

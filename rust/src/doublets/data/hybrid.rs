@@ -1,23 +1,27 @@
 use crate::num::{LinkType, ToSigned};
-use num_traits::{AsPrimitive, one, abs, zero, ToPrimitive};
+use num_traits::{abs, one, zero, AsPrimitive, ToPrimitive};
 
 pub struct Hybrid<T: LinkType> {
-    value: T
+    value: T,
 }
 
 impl<T: LinkType> Hybrid<T> {
     pub fn new(value: T, external: bool) -> Self {
-        Self { value: Self::extend_value(value, external) }
+        Self {
+            value: Self::extend_value(value, external),
+        }
     }
 
     fn extend_value(value: T, external: bool) -> T {
         if value == zero() && external {
             Self::external_zero()
-        }
-        else
-        {
-            let absolute = value; 
-            if external { T::MAX - absolute } else { absolute }
+        } else {
+            let absolute = value;
+            if external {
+                T::MAX - absolute
+            } else {
+                absolute
+            }
         }
     }
 
@@ -50,7 +54,8 @@ impl<T: LinkType> Hybrid<T> {
             zero()
         } else {
             abs(self.signed())
-        }.as_();
+        }
+        .as_();
         T::from_usize(abs).unwrap()
     }
 

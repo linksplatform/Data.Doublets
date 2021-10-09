@@ -14,7 +14,7 @@ use crate::mem::resizeable_base::ResizeableBase;
 pub struct FileMappedMem {
     base: ResizeableBase,
     file: File,
-    mapping: memmap::MmapMut
+    mapping: memmap::MmapMut,
 }
 
 impl FileMappedMem {
@@ -29,14 +29,14 @@ impl FileMappedMem {
 
         let mapping = unsafe { MmapOptions::new().len(capacity).map_mut(&file) };
         if mapping.is_err() {
-            return Err(Error::new(ErrorKind::Other, "TODO: MAPPING ERROR"))
+            return Err(Error::new(ErrorKind::Other, "TODO: MAPPING ERROR"));
         }
 
         let mapping = mapping.unwrap();
         let mut new = Self {
             base: Default::default(),
             mapping,
-            file
+            file,
         };
 
         capacity = max(capacity, ResizeableBase::MINIMUM_CAPACITY);
@@ -52,9 +52,14 @@ impl FileMappedMem {
     }
 
     fn map(&mut self, capacity: usize) -> *mut u8 {
-        let mapping = unsafe { memmap::MmapOptions::new().len(capacity).map_mut(&self.file).unwrap() };
+        let mapping = unsafe {
+            memmap::MmapOptions::new()
+                .len(capacity)
+                .map_mut(&self.file)
+                .unwrap()
+        };
         self.mapping = mapping;
-        return self.mapping.as_mut_ptr()
+        return self.mapping.as_mut_ptr();
     }
 
     fn unmap(&mut self) {

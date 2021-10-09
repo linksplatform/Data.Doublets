@@ -1,18 +1,18 @@
+use crate::doublets::mem::ilinks_list_methods::ILinksListMethods;
+use crate::doublets::mem::links_header::LinksHeader;
+use crate::doublets::mem::united::generic::UpdatePointers;
+use crate::doublets::mem::united::raw_link::RawLink;
 use crate::methods::lists::absolute_circular_doubly_linked_list::AbsoluteCircularDoublyLinkedList;
 use crate::methods::lists::absolute_doubly_linked_list_base::AbsoluteDoublyLinkedListBase;
 use crate::methods::lists::doubly_linked_list_base::DoublyLinkedListBase;
-use crate::doublets::mem::links_header::LinksHeader;
-use crate::doublets::mem::united::raw_link::RawLink;
 use crate::num::LinkType;
 use std::marker::PhantomData;
-use crate::doublets::mem::ilinks_list_methods::ILinksListMethods;
-use crate::doublets::mem::united::generic::UpdatePointers;
 
 pub struct UnusedLinks<T: LinkType> {
     links: *mut u8,
     header: *mut u8,
 
-    _phantom: PhantomData<T>
+    _phantom: PhantomData<T>,
 }
 
 impl<T: LinkType> UnusedLinks<T> {
@@ -101,4 +101,3 @@ impl<T: LinkType> ILinksListMethods<T> for UnusedLinks<T> {
         AbsoluteCircularDoublyLinkedList::attach_as_first(self, link)
     }
 }
-

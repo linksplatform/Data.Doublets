@@ -2,14 +2,16 @@ use num_traits::{one, zero};
 
 use crate::doublets::data::links_constants::LinksConstants;
 use crate::doublets::link::Link;
+use crate::doublets::mem::ilinks_list_methods::ILinksListMethods;
 use crate::doublets::mem::ilinks_tree_methods::ILinksTreeMethods;
 use crate::doublets::mem::links_header::LinksHeader;
-use crate::doublets::mem::united::generic::links_size_balanced_tree_base::{LinksSizeBalancedTreeBase, LinksSizeBalancedTreeBaseAbstract};
+use crate::doublets::mem::united::generic::links_size_balanced_tree_base::{
+    LinksSizeBalancedTreeBase, LinksSizeBalancedTreeBaseAbstract,
+};
+use crate::doublets::mem::united::generic::UpdatePointers;
 use crate::doublets::mem::united::raw_link::RawLink;
 use crate::methods::trees::size_balanced_tree::SizeBalancedTreeMethods;
 use crate::num::LinkType;
-use crate::doublets::mem::ilinks_list_methods::ILinksListMethods;
-use crate::doublets::mem::united::generic::UpdatePointers;
 
 pub struct LinksTargetsSizeBalancedTree<T: LinkType> {
     base: LinksSizeBalancedTreeBase<T>,
@@ -17,7 +19,9 @@ pub struct LinksTargetsSizeBalancedTree<T: LinkType> {
 
 impl<T: LinkType> LinksTargetsSizeBalancedTree<T> {
     pub fn new(constants: LinksConstants<T>, links: *mut u8, header: *mut u8) -> Self {
-        Self { base: LinksSizeBalancedTreeBase::new(constants, links, header) }
+        Self {
+            base: LinksSizeBalancedTreeBase::new(constants, links, header),
+        }
     }
 }
 
@@ -65,7 +69,8 @@ impl<T: LinkType> SizeBalancedTreeMethods<T> for LinksTargetsSizeBalancedTree<T>
     fn first_is_to_the_left_of_second(&self, first: T, second: T) -> bool {
         let first = self.get_link(first);
         let second = self.get_link(second);
-        (first.target < second.target) || (first.target == second.target && first.source < second.source)
+        (first.target < second.target)
+            || (first.target == second.target && first.source < second.source)
     }
 
     fn first_is_to_the_right_of_second(&self, first: T, second: T) -> bool {
@@ -141,7 +146,7 @@ fn each_usages_core<T: LinkType, H: FnMut(&[T]) -> T>(_self: &LinksTargetsSizeBa
         } else {
             r#continue
         }
-    }
+    };
 }
 
 impl<T: LinkType> UpdatePointers for LinksTargetsSizeBalancedTree<T> {
@@ -162,7 +167,8 @@ impl<T: LinkType> ILinksTreeMethods<T> for LinksTargetsSizeBalancedTree<T> {
             if base <= link {
                 root = self.get_right(root);
             } else {
-                total_right_ignore = total_right_ignore + (self.get_size(self.get_right(root)) + one());
+                total_right_ignore =
+                    total_right_ignore + (self.get_size(self.get_right(root)) + one());
                 root = self.get_left(root);
             }
         }
@@ -174,7 +180,8 @@ impl<T: LinkType> ILinksTreeMethods<T> for LinksTargetsSizeBalancedTree<T> {
             if base >= link {
                 root = self.get_left(root);
             } else {
-                total_left_ignore = total_left_ignore + (self.get_size(self.get_left(root)) + one());
+                total_left_ignore =
+                    total_left_ignore + (self.get_size(self.get_left(root)) + one());
                 root = self.get_right(root);
             }
         }
@@ -191,7 +198,12 @@ impl<T: LinkType> ILinksTreeMethods<T> for LinksTargetsSizeBalancedTree<T> {
 
             if self.first_is_to_the_left_of_second_4(source, target, root_source, root_target) {
                 root = self.get_left(root);
-            } else if self.first_is_to_the_right_of_second_4(source, target, root_source, root_target) {
+            } else if self.first_is_to_the_right_of_second_4(
+                source,
+                target,
+                root_source,
+                root_target,
+            ) {
                 root = self.get_right(root);
             } else {
                 return root;

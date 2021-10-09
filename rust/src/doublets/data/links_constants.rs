@@ -3,9 +3,9 @@ use std::ops::RangeInclusive;
 use num_traits::{one, zero, One, Zero};
 
 use crate::doublets::data::hybrid::Hybrid;
+use crate::doublets::data::ilinks::IGenericLinks;
 use crate::num::LinkType;
 use std::default::default;
-use crate::doublets::data::ilinks::IGenericLinks;
 
 #[derive(Clone, Eq, PartialEq)]
 pub struct LinksConstants<T: LinkType> {
@@ -27,7 +27,11 @@ impl<T: LinkType> LinksConstants<T> {
         T::one() + one()
     }
 
-    pub fn full_new(target_part: T, internal: RangeInclusive<T>, external: Option<RangeInclusive<T>>) -> Self {
+    pub fn full_new(
+        target_part: T,
+        internal: RangeInclusive<T>,
+        external: Option<RangeInclusive<T>>,
+    ) -> Self {
         let one = one();
         let two = one + one;
         let three = two + one;
@@ -49,7 +53,11 @@ impl<T: LinkType> LinksConstants<T> {
 
     // TODO: enough for now
     pub fn via_external(target_part: T, external: bool) -> Self {
-        Self::full_new(target_part, Self::default_internal(external), Self::default_external(external))
+        Self::full_new(
+            target_part,
+            Self::default_internal(external),
+            Self::default_external(external),
+        )
     }
 
     pub fn via_ranges(internal: RangeInclusive<T>, external: Option<RangeInclusive<T>>) -> Self {
@@ -88,7 +96,7 @@ impl<T: LinkType> LinksConstants<T> {
     pub fn is_external_reference(&self, address: T) -> bool {
         self.external_range
             .clone()
-            .map_or(false, |range| { range.contains(&address) })
+            .map_or(false, |range| range.contains(&address))
     }
 
     fn is_reference(&self, address: T) -> bool {

@@ -1,6 +1,7 @@
-use num_traits::{AsPrimitive, PrimInt, Unsigned, FromPrimitive, Signed};
-use std::iter::Step;
+use num_traits::{AsPrimitive, FromPrimitive, PrimInt, Signed, Unsigned};
 use std::fmt::Debug;
+use std::hash::Hash;
+use std::iter::Step;
 
 pub trait Num: PrimInt + Default + AsPrimitive<usize> + Debug {}
 impl<All: PrimInt + Default + AsPrimitive<usize> + Debug> Num for All {}

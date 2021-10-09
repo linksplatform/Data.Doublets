@@ -1,13 +1,16 @@
-use crate::num::LinkType;
+use crate::doublets;
 use crate::doublets::data;
 use crate::doublets::link::Link;
-use crate::doublets;
+use crate::num::LinkType;
+use num_traits::{one, zero};
 use std::default::default;
-use num_traits::{zero, one};
 
-pub trait ILinks<T: LinkType>: data::ilinks::IGenericLinks<T> + data::ilinks::IGenericLinksExtensions<T> {
+pub trait ILinks<T: LinkType>:
+    data::ilinks::IGenericLinks<T> + data::ilinks::IGenericLinksExtensions<T>
+{
     fn count_by<L>(&self, restrictions: L) -> T
-        where L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>
+    where
+        L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
     {
         self.count_generic(restrictions)
     }
@@ -21,23 +24,24 @@ pub trait ILinks<T: LinkType>: data::ilinks::IGenericLinks<T> + data::ilinks::IG
     }
 
     fn each_by<H, L>(&self, mut handler: H, restrictions: L) -> T
-        where
-            H: FnMut(Link<T>) -> T,
-            L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>
+    where
+        H: FnMut(Link<T>) -> T,
+        L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
     {
         let constants = self.constants();
         let index = constants.index_part.as_();
         let source = constants.source_part.as_();
         let target = constants.target_part.as_();
 
-        self.each_generic(|slice| {
-            handler(Link::new(slice[index], slice[source], slice[target]))
-        }, restrictions)
+        self.each_generic(
+            |slice| handler(Link::new(slice[index], slice[source], slice[target])),
+            restrictions,
+        )
     }
 
     fn each<H>(&self, handler: H) -> T
-        where
-            H: FnMut(Link<T>) -> T,
+    where
+        H: FnMut(Link<T>) -> T,
     {
         self.each_by(handler, [])
     }
@@ -78,11 +82,14 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
     fn search_or(&self, source: T, target: T, or: T) -> T {
         let constants = self.constants();
         let mut index = or;
-        self.each_by(|link| {
-            index = link.index;
-            return constants.r#break;
-        }, [source, target]);
-        return index
+        self.each_by(
+            |link| {
+                index = link.index;
+                return constants.r#break;
+            },
+            [source, target],
+        );
+        return index;
     }
 
     fn get_or_create(&mut self, source: T, target: T) -> T {
@@ -90,8 +97,13 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         if link == zero() {
             link = self.create_and_update(source, target);
         }
-        return link
+        return link;
     }
+
+    //fn exists(&self, link: T) -> bool {
+    //    let any = self.constants().any;
+    //    self.count_by([any, source, target]) > zero()
+    //}
 }
 
 impl<T: LinkType, All: ILinks<T>> ILinksExtensions<T> for All {}

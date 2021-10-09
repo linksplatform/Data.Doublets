@@ -1,23 +1,26 @@
-use crate::num::LinkType;
-use crate::doublets::mem::united::generic::links_size_balanced_tree_base::{LinksSizeBalancedTreeBaseAbstract, LinksSizeBalancedTreeBase};
-use crate::doublets::mem::links_header::LinksHeader;
-use crate::doublets::mem::united::raw_link::RawLink;
-use crate::doublets::link::Link;
-use crate::methods::trees::size_balanced_tree::SizeBalancedTreeMethods;
 use crate::doublets::data::links_constants::LinksConstants;
-use num_traits::{zero, one};
+use crate::doublets::link::Link;
 use crate::doublets::mem::ilinks_tree_methods::ILinksTreeMethods;
-use std::borrow::BorrowMut;
+use crate::doublets::mem::links_header::LinksHeader;
+use crate::doublets::mem::united::generic::links_size_balanced_tree_base::{
+    LinksSizeBalancedTreeBase, LinksSizeBalancedTreeBaseAbstract,
+};
 use crate::doublets::mem::united::generic::UpdatePointers;
-
+use crate::doublets::mem::united::raw_link::RawLink;
+use crate::methods::trees::size_balanced_tree::SizeBalancedTreeMethods;
+use crate::num::LinkType;
+use num_traits::{one, zero};
+use std::borrow::BorrowMut;
 
 pub struct LinksSourcesSizeBalancedTree<T: LinkType> {
-    base: LinksSizeBalancedTreeBase<T>
+    base: LinksSizeBalancedTreeBase<T>,
 }
 
-impl<T: LinkType>  LinksSourcesSizeBalancedTree<T> {
+impl<T: LinkType> LinksSourcesSizeBalancedTree<T> {
     pub fn new(constants: LinksConstants<T>, links: *mut u8, header: *mut u8) -> Self {
-        Self { base: LinksSizeBalancedTreeBase::new(constants, links, header) }
+        Self {
+            base: LinksSizeBalancedTreeBase::new(constants, links, header),
+        }
     }
 }
 
@@ -78,7 +81,7 @@ impl<T: LinkType> SizeBalancedTreeMethods<T> for LinksSourcesSizeBalancedTree<T>
         let link = self.get_mut_link(node);
         link.left_as_source = zero();
         link.right_as_source = zero();
-        link.size_as_source= zero();
+        link.size_as_source = zero();
     }
 }
 
@@ -96,7 +99,7 @@ impl<T: LinkType> LinksSizeBalancedTreeBaseAbstract<T> for LinksSourcesSizeBalan
     }
 
     fn get_mut_link(&mut self, link: T) -> &mut RawLink<T> {
-        unsafe { (*(self.base.links as *mut RawLink<T>).offset(link.as_() as isize)).borrow_mut() }
+        unsafe { &mut *(self.base.links as *mut RawLink<T>).offset(link.as_() as isize) }
     }
 
     fn get_tree_root(&self) -> T {
@@ -141,7 +144,7 @@ fn each_usages_core<T: LinkType, H: FnMut(&[T]) -> T>(_self: &LinksSourcesSizeBa
         } else {
             r#continue
         }
-    }
+    };
 }
 
 impl<T: LinkType> UpdatePointers for LinksSourcesSizeBalancedTree<T> {
@@ -174,7 +177,8 @@ impl<T: LinkType> ILinksTreeMethods<T> for LinksSourcesSizeBalancedTree<T> {
             if base >= link {
                 root = self.get_left(root);
             } else {
-                total_left_ignore = total_left_ignore + (self.get_size(self.get_left(root)) + one());
+                total_left_ignore =
+                    total_left_ignore + (self.get_size(self.get_left(root)) + one());
                 root = self.get_right(root);
             }
         }

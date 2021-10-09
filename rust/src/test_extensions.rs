@@ -1,11 +1,11 @@
-use crate::num::LinkType;
-use crate::doublets::ilinks::{ILinks, ILinksExtensions};
-use num_traits::{zero, one};
-use crate::doublets::link::Link;
-use std::default::default;
 use crate::doublets::data::ilinks::IGenericLinks;
 use crate::doublets::data::ilinks::IGenericLinksExtensions;
+use crate::doublets::ilinks::{ILinks, ILinksExtensions};
+use crate::doublets::link::Link;
+use crate::num::LinkType;
+use num_traits::{one, zero};
 use rand::Rng;
+use std::default::default;
 
 pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
     fn test_crud(&mut self) {
@@ -39,11 +39,12 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
     }
 
     fn test_random_creations_and_deletions(&mut self, per_cycle: usize) {
-        for n in  1..per_cycle {
+        for n in 1..per_cycle {
+            let n = 100;
             let mut created = 0;
             let mut deleted = 0;
 
-            for i in 0..n {
+            for _ in 0..n {
                 let count = self.count().as_();
                 let create_point: bool = rand::random();
                 if count >= 2 && create_point {
@@ -62,13 +63,22 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
                 } else {
                     self.create();
                     created += 1;
+                    println!("created {} {:?}", created, self.count());
                 }
-                //assert_eq!(created, self.count().as_());
+                assert_eq!(created, self.count().as_());
             }
-            self.delete_all();
-            self.create();
-            self.create();
-            self.create();
+
+
+            for i in 0..n {
+                let link = T::from_usize(i + 1).unwrap();
+                if self.exist(link) {
+                    self.update(link, zero(), zero());
+                    self.delete(link);
+                    deleted += 1;
+                    self.count();
+                }
+            }
+            assert_eq!(self.count(), zero());
         }
     }
 }

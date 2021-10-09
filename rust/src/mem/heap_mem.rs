@@ -7,13 +7,13 @@ use crate::mem::mem::{Mem, ResizeableMem};
 use crate::mem::resizeable_base::ResizeableBase;
 
 pub struct HeapMem {
-    base: ResizeableBase
+    base: ResizeableBase,
 }
 
 impl HeapMem {
     pub fn reserve_new(mut capacity: usize) -> Self {
         let mut new = HeapMem {
-            base: Default::default()
+            base: Default::default(),
         };
         capacity = max(capacity, ResizeableBase::MINIMUM_CAPACITY);
 
@@ -32,8 +32,7 @@ impl HeapMem {
             }
         }
 
-        if self.get_ptr() == null_mut()
-        {
+        if self.get_ptr() == null_mut() {
             unsafe {
                 /// TODO: use `std::alloc`
                 self.set_ptr(libc::malloc(new_capacity as u64) as *mut u8);
