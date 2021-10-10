@@ -21,13 +21,15 @@ use crate::mem::file_mapped_mem::FileMappedMem;
 use crate::mem::mem::{Mem, ResizeableMem};
 use crate::num::LinkType;
 use std::collections::HashSet;
+use crate::doublets::mem::united::generic::sources_recursionless_size_balanced_tree::LinksSourcesRecursionlessSizeBalancedTree;
+use crate::doublets::mem::united::generic::targets_recursionless_size_balanced_tree::LinksTargetsRecursionlessSizeBalancedTree;
 
 // TODO: use `_=_` instead of `_ = _`
 pub struct Links<
     T: LinkType,
     M: ResizeableMem,
-    TS: ILinksTreeMethods<T> = LinksSourcesSizeBalancedTree<T>,
-    TT: ILinksTreeMethods<T> = LinksTargetsSizeBalancedTree<T>,
+    TS: ILinksTreeMethods<T> = LinksSourcesRecursionlessSizeBalancedTree<T>,
+    TT: ILinksTreeMethods<T> = LinksTargetsRecursionlessSizeBalancedTree<T>,
     TU: ILinksListMethods<T> = UnusedLinks<T>,
 > {
     pub mem: M,
@@ -53,15 +55,15 @@ impl<
 
 
     pub fn new(mem: M) -> Links<
-        T, M, LinksSourcesSizeBalancedTree<T>, LinksTargetsSizeBalancedTree<T>, UnusedLinks<T>
+        T, M, LinksSourcesRecursionlessSizeBalancedTree<T>, LinksTargetsRecursionlessSizeBalancedTree<T>, UnusedLinks<T>
     > {
         let links = mem.get_ptr();
         let header = links;
         let constants = LinksConstants::new();
-        let sources = LinksSourcesSizeBalancedTree::new(constants.clone(), links, header);
-        let targets = LinksTargetsSizeBalancedTree::new(constants.clone(), links, header);
+        let sources = LinksSourcesRecursionlessSizeBalancedTree::new(constants.clone(), links, header);
+        let targets = LinksTargetsRecursionlessSizeBalancedTree::new(constants.clone(), links, header);
         let unused = UnusedLinks::new(links, header);
-        let mut new = Links::<T, M, LinksSourcesSizeBalancedTree<T>, LinksTargetsSizeBalancedTree<T>, UnusedLinks<T>> {
+        let mut new = Links::<T, M, LinksSourcesRecursionlessSizeBalancedTree<T>, LinksTargetsRecursionlessSizeBalancedTree<T>, UnusedLinks<T>> {
             mem,
             reserve_step: Self::DEFAULT_LINKS_SIZE_STEP,
             constants,
@@ -108,6 +110,9 @@ impl<
 
     fn get_total(&self) -> T {
         let header = self.get_header();
+        if header.free > header.allocated {
+            println!("{:?}][{:?}", header.allocated, header.free);
+        }
         header.allocated - header.free
     }
 
@@ -416,7 +421,7 @@ impl<
             free = header.allocated;
             self.mem.use_mem(self.mem.used_mem() + Self::LINK_SIZE);
         } else {
-            self.unused.attach_as_first(free)
+            self.unused.detach(free)
         }
         return free;
     }
@@ -431,29 +436,32 @@ impl<
         let constants = self.constants();
         let null = constants.null;
         let index = restrictions[constants.index_part.as_()];
-        let link = self.get_link(index).clone();
 
-        // TODO: memory filled with zeros
-        if link.source != null {
-            let temp = &mut self.get_mut_header().root_as_source as *mut T;
-            unsafe { self.sources.detach(&mut *temp, index) };
-        }
-        if link.target != null {
-            let temp = &mut self.get_mut_header().root_as_target as *mut T;
-            unsafe { self.targets.detach(&mut *temp, index) };
-        }
+        unsafe {
+            let link = self.get_mut_link(index) as *mut RawLink<T>;
 
-        let mut link = self.get_link(index).clone();
-        link.source = substitution[constants.source_part.as_()];
-        link.target = substitution[constants.target_part.as_()];
-        *self.get_mut_link(index) = link.clone();
-        if link.source != null {
-            let temp = &mut self.get_mut_header().root_as_source as *mut T;
-            unsafe { self.sources.attach(&mut *temp, index) };
-        }
-        if link.target != null {
-            let temp = &mut self.get_mut_header().root_as_target as *mut T;
-            unsafe { self.targets.attach(&mut *temp, index) };
+            // TODO: memory filled with zeros
+            if (*link).source != null {
+                let temp = &mut self.get_mut_header().root_as_source as *mut T;
+                unsafe { self.sources.detach(&mut *temp, index) };
+            }
+            if (*link).target != null {
+                let temp = &mut self.get_mut_header().root_as_target as *mut T;
+                unsafe { self.targets.detach(&mut *temp, index) };
+            }
+
+            (*link).source = substitution[constants.source_part.as_()];
+            (*link).target = substitution[constants.target_part.as_()];
+
+            if (*link).source != null {
+                let temp = &mut self.get_mut_header().root_as_source as *mut T;
+                unsafe { self.sources.attach(&mut *temp, index) };
+            }
+
+            if (*link).target != null {
+                let temp = &mut self.get_mut_header().root_as_target as *mut T;
+                unsafe { self.targets.attach(&mut *temp, index) };
+            }
         }
 
         index
@@ -467,24 +475,26 @@ impl<
         let constants = self.constants();
         let header = self.get_header();
         let link = restrictions[constants.index_part.as_()];
-        if link < header.allocated || true {
+        if link < header.allocated {
             return self.unused.attach_as_first(link);
         } else if link == header.allocated {
-            let mut header = self.get_header().clone();
+            unsafe {
+                let mut header = self.get_mut_header() as *mut LinksHeader<T>;
 
-            self.mem
-                .use_mem(self.mem.used_mem() - Self::LINK_SIZE)
-                .unwrap();
-            header.allocated = header.allocated - one();
+                self.mem
+                    .use_mem(self.mem.used_mem() - Self::LINK_SIZE)
+                    .unwrap();
 
-            while header.allocated > zero() && self.is_unused(header.allocated) {
-                self.unused.detach(header.allocated);
-                header.allocated = header.allocated - one();
-                let used_mem = self.mem.used_mem();
-                self.mem.use_mem(used_mem - Self::LINK_SIZE).unwrap();
+                (*header).allocated = (*header).allocated - one();
+
+                while (*header).allocated > zero() && self.is_unused((*header).allocated) {
+                    self.unused.detach((*header).allocated);
+                    (*header).allocated = (*header).allocated - one();
+                    let used_mem = self.mem.used_mem();
+                    self.mem.use_mem(used_mem - Self::LINK_SIZE).unwrap();
+                }
             }
-
-            *self.get_mut_header() = header;
+            //*self.get_mut_header() = header;
         }
     }
 }

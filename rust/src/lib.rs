@@ -210,8 +210,34 @@ mod tests {
     fn links_bug() {
         let mut mem = HeapMem::new();
         let mut links = Links::<usize, _>::new(mem);
+/*
+        for i in 0..100 {
+            links.create_point();
+        }
+        println!("{}", links.count());
 
-        links.test_random_creations_and_deletions(10);
+        let mut to_delete = vec![];
+        let constants = links.constants;
+        links.each(|link| {
+            to_delete.push(link.index);
+            constants.r#continue
+        });
+
+        for index in to_delete {
+            links.update(index, 0, 0);
+            links.delete(index);
+        }
+
+        links.delete_all();
+        println!("{}", links.count());
+
+
+        for i in 0..100 {
+            links.create_point();
+        }
+        println!("{}", links.count());
+*/
+        links.test_random_creations_and_deletions(100);
     }
 
 }

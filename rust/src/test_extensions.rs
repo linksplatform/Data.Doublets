@@ -39,11 +39,10 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
     }
 
     fn test_random_creations_and_deletions(&mut self, per_cycle: usize) {
+
         for n in 1..per_cycle {
-            let n = 100;
             let mut created = 0;
             let mut deleted = 0;
-
             for _ in 0..n {
                 let count = self.count().as_();
                 let create_point: bool = rand::random();
@@ -56,9 +55,11 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
                         T::from_usize(target).unwrap()
                     ).as_();
 
+
+
                     if result > count {
                         created += 1;
-                        println!("create point: {}, count: {:?}", created, self.count());
+                        println!("create point[{:?}->{:?}]", source, target);
                     }
                 } else {
                     self.create();
@@ -68,18 +69,24 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
                 assert_eq!(created, self.count().as_());
             }
 
+            let mut to_delete = vec![];
+            self.each(|link| {
+                to_delete.push(link.index);
+                self.constants().r#continue
+            });
 
-            for i in 0..n {
-                let link = T::from_usize(i + 1).unwrap();
-                if self.exist(link) {
-                    self.update(link, zero(), zero());
-                    self.delete(link);
-                    deleted += 1;
-                    self.count();
-                }
+            for index in to_delete {
+                self.update(index, zero(), zero());
+                self.delete(index);
             }
+
             assert_eq!(self.count(), zero());
         }
+
+        self.each(|link| {
+            println!("{:?}->{:?}", link.source, link.target);
+            self.constants().r#continue
+        });
     }
 }
 

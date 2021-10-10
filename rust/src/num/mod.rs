@@ -6,6 +6,9 @@ use std::iter::Step;
 pub trait Num: PrimInt + Default + AsPrimitive<usize> + Debug {}
 impl<All: PrimInt + Default + AsPrimitive<usize> + Debug> Num for All {}
 
+pub trait SignNum: Num + Signed + FromPrimitive {}
+impl<All: Num + Signed + FromPrimitive> SignNum for All {}
+
 pub trait ToSigned {
     type Type: Num + Signed;
 
