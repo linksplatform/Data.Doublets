@@ -1,4 +1,4 @@
-use crate::doublets::data::links_constants::LinksConstants;
+use crate::doublets::data::LinksConstants;
 use crate::doublets::link::Link;
 use crate::doublets::mem::ilinks_tree_methods::ILinksTreeMethods;
 use crate::doublets::mem::links_header::LinksHeader;
@@ -7,7 +7,7 @@ use crate::doublets::mem::united::generic::links_size_balanced_tree_base::{
 };
 use crate::doublets::mem::united::generic::UpdatePointers;
 use crate::doublets::mem::united::raw_link::RawLink;
-use crate::methods::trees::size_balanced_tree::SizeBalancedTreeMethods;
+use crate::methods::SizeBalancedTreeMethods;
 use crate::num::LinkType;
 use num_traits::{one, zero};
 use std::borrow::BorrowMut;

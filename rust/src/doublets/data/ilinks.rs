@@ -43,6 +43,8 @@ pub trait IGenericLinksExtensions<T: LinkType>: IGenericLinks<T> {
         }
     }
 
+    // TODO: maybe use .collect() style
+    //  let link: Vec<_> = links.get_link(index)
     fn get_link(&self, link: T) -> Box<dyn ExactSizeIterator<Item = T>> {
         let constants = self.constants();
         if constants.is_external_reference(link) {
@@ -53,9 +55,7 @@ pub trait IGenericLinksExtensions<T: LinkType>: IGenericLinks<T> {
                 |link| {
                     slice = link.to_vec();
                     return constants.r#break;
-                },
-                [link],
-            );
+                }, [link]);
             box slice.into_iter()
         }
     }

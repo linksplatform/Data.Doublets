@@ -1,7 +1,7 @@
-use crate::doublets::data::ilinks::IGenericLinks;
-use crate::doublets::data::ilinks::IGenericLinksExtensions;
-use crate::doublets::ilinks::{ILinks, ILinksExtensions};
-use crate::doublets::link::Link;
+use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions};
+use crate::doublets::ILinks;
+use crate::doublets::ILinksExtensions;
+use crate::doublets::Link;
 use crate::num::LinkType;
 use num_traits::{one, zero};
 use rand::Rng;

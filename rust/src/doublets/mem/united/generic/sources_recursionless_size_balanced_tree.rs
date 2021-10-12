@@ -1,13 +1,13 @@
 use crate::doublets::mem::united::generic::links_recursionless_size_balanced_tree_base::{LinksRecursionlessSizeBalancedTreeBase, LinkRecursionlessSizeBalancedTreeBaseAbstract};
 use crate::num::LinkType;
-use crate::doublets::data::links_constants::LinksConstants;
-use crate::methods::trees::recursuionless_size_balanced_tree::RecursionlessSizeBalancedTreeMethods;
+use crate::doublets::data::LinksConstants;
+use crate::methods::RecursionlessSizeBalancedTreeMethods;
 use crate::doublets::mem::ilinks_tree_methods::ILinksTreeMethods;
 use crate::doublets::mem::united::generic::UpdatePointers;
 use crate::doublets::mem::links_header::LinksHeader;
 use crate::doublets::mem::united::raw_link::RawLink;
 use num_traits::{zero, one};
-use crate::methods::trees::size_balanced_tree_base::SizeBalancedTreeBase;
+use crate::methods::SizeBalancedTreeBase;
 
 pub struct LinksSourcesRecursionlessSizeBalancedTree<T: LinkType> {
     base: LinksRecursionlessSizeBalancedTreeBase<T>,

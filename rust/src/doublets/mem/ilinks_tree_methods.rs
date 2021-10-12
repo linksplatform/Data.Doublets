@@ -1,4 +1,4 @@
-use crate::doublets::mem::united::generic::UpdatePointers;
+use crate::doublets::mem::UpdatePointers;
 use crate::num::LinkType;
 
 pub trait ILinksTreeMethods<T: LinkType>: UpdatePointers {

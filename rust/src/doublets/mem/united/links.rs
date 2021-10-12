@@ -5,24 +5,23 @@ use std::ops::Index;
 
 use num_traits::{one, zero};
 
-use crate::doublets;
-use crate::doublets::data;
-use crate::doublets::data::ilinks::IGenericLinks;
-use crate::doublets::data::links_constants::LinksConstants;
+use crate::doublets::data::IGenericLinks;
+use crate::doublets::data::LinksConstants;
 use crate::doublets::link::Link;
-use crate::doublets::mem::ilinks_list_methods::ILinksListMethods;
-use crate::doublets::mem::ilinks_tree_methods::ILinksTreeMethods;
+use crate::doublets::mem::ILinksListMethods;
+use crate::doublets::mem::ILinksTreeMethods;
 use crate::doublets::mem::links_header::LinksHeader;
-use crate::doublets::mem::united::generic::links_sources_size_balanced_tree::LinksSourcesSizeBalancedTree;
-use crate::doublets::mem::united::generic::links_targets_size_balanced_tree::LinksTargetsSizeBalancedTree;
-use crate::doublets::mem::united::generic::unused_links::UnusedLinks;
-use crate::doublets::mem::united::raw_link::RawLink;
-use crate::mem::file_mapped_mem::FileMappedMem;
-use crate::mem::mem::{Mem, ResizeableMem};
+use crate::doublets::mem::united::LinksSourcesSizeBalancedTree;
+use crate::doublets::mem::united::LinksTargetsSizeBalancedTree;
+use crate::doublets::mem::united::UnusedLinks;
+use crate::doublets::mem::united::RawLink;
+use crate::mem::FileMappedMem;
+use crate::mem::{Mem, ResizeableMem};
 use crate::num::LinkType;
-use std::collections::HashSet;
-use crate::doublets::mem::united::generic::sources_recursionless_size_balanced_tree::LinksSourcesRecursionlessSizeBalancedTree;
-use crate::doublets::mem::united::generic::targets_recursionless_size_balanced_tree::LinksTargetsRecursionlessSizeBalancedTree;
+use crate::doublets::mem::united::LinksSourcesRecursionlessSizeBalancedTree;
+use crate::doublets::mem::united::LinksTargetsRecursionlessSizeBalancedTree;
+use crate::doublets::data;
+use crate::doublets;
 
 // TODO: use `_=_` instead of `_ = _`
 pub struct Links<
@@ -232,7 +231,7 @@ impl<
                     if link == constants.null {
                         r#continue
                     } else {
-                        let link = self.get_link_struct(index);
+                        let link = self.get_link_struct(link);
                         return handler(link.as_slice());
                     }
                 };
@@ -280,7 +279,7 @@ impl<
     TS: ILinksTreeMethods<T>,
     TT: ILinksTreeMethods<T>,
     TU: ILinksListMethods<T>,
-> data::ilinks::IGenericLinks<T> for Links<T, M, TS, TT, TU>  {
+> data::IGenericLinks<T> for Links<T, M, TS, TT, TU>  {
     fn constants(&self) -> LinksConstants<T> {
         self.constants.clone()
     }
@@ -505,4 +504,4 @@ impl<
     TS: ILinksTreeMethods<T>,
     TT: ILinksTreeMethods<T>,
     TU: ILinksListMethods<T>,
-> doublets::ilinks::ILinks<T> for Links<T, M, TS, TT, TU> {}
+> doublets::ILinks<T> for Links<T, M, TS, TT, TU> {}

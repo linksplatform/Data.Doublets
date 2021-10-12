@@ -1,2 +1,5 @@
-pub mod lists;
-pub mod trees;
+mod lists;
+mod trees;
+
+pub use lists::{*};
+pub use trees::{*};

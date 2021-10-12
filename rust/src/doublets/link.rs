@@ -1,6 +1,6 @@
 use crate::num::LinkType;
 use num_traits::zero;
-use std::fmt::Debug;
+use std::fmt::{Debug, Formatter, Display};
 use std::iter;
 use std::iter::FromIterator;
 use std::ops::{Index, IndexMut};
@@ -97,5 +97,11 @@ impl<T: LinkType> FromIterator<T> for Link<T> {
             new[i] = item
         }
         new
+    }
+}
+
+impl<T: LinkType + Display> Display for Link<T> {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        write!(f, "({}: {} {})", self.index, self.source, self.target)
     }
 }

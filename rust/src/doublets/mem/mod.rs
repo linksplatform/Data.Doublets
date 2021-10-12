@@ -1,4 +1,9 @@
-pub mod ilinks_list_methods;
-pub mod ilinks_tree_methods;
-pub mod links_header;
+mod ilinks_list_methods;
+mod ilinks_tree_methods;
+mod links_header;
 pub mod united;
+
+pub use ilinks_list_methods::ILinksListMethods;
+pub use ilinks_tree_methods::ILinksTreeMethods;
+pub use links_header::LinksHeader;
+pub use united::UpdatePointers;

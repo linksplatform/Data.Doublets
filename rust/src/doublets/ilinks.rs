@@ -1,16 +1,17 @@
-use crate::doublets;
+use std::default::default;
+
+use num_traits::{one, zero};
+
 use crate::doublets::data;
 use crate::doublets::link::Link;
 use crate::num::LinkType;
-use num_traits::{one, zero};
-use std::default::default;
 
-pub trait ILinks<T: LinkType>:
-    data::ilinks::IGenericLinks<T> + data::ilinks::IGenericLinksExtensions<T>
-{
+pub trait ILinks<T: LinkType>: data::IGenericLinks<T> + data::IGenericLinksExtensions<T> {}
+
+pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
     fn count_by<L>(&self, restrictions: L) -> T
-    where
-        L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
+        where
+            L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>,
     {
         self.count_generic(restrictions)
     }
@@ -24,9 +25,9 @@ pub trait ILinks<T: LinkType>:
     }
 
     fn each_by<H, L>(&self, mut handler: H, restrictions: L) -> T
-    where
-        H: FnMut(Link<T>) -> T,
-        L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
+        where
+            H: FnMut(Link<T>) -> T,
+            L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>,
     {
         let constants = self.constants();
         let index = constants.index_part.as_();
@@ -39,9 +40,10 @@ pub trait ILinks<T: LinkType>:
         )
     }
 
+    // TODO: maybe create `par_each`
     fn each<H>(&self, handler: H) -> T
-    where
-        H: FnMut(Link<T>) -> T,
+        where
+            H: FnMut(Link<T>) -> T,
     {
         self.each_by(handler, [])
     }
@@ -66,9 +68,7 @@ pub trait ILinks<T: LinkType>:
             }
         }
     }
-}
 
-pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
     fn create_point(&mut self) -> T {
         let new = self.create();
         self.update(new, new, new)
@@ -79,6 +79,8 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         self.update(new, source, target)
     }
 
+    // TODO: use `fn search(&self, source: T, target: T) -> Option<T>`
+    //  then `let result = links.search(source, target).unwrap_or(or)`
     fn search_or(&self, source: T, target: T, or: T) -> T {
         let constants = self.constants();
         let mut index = or;
@@ -87,7 +89,7 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
                 index = link.index;
                 return constants.r#break;
             },
-            [source, target],
+            [constants.any, source, target],
         );
         return index;
     }
@@ -99,11 +101,6 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         }
         return link;
     }
-
-    //fn exists(&self, link: T) -> bool {
-    //    let any = self.constants().any;
-    //    self.count_by([any, source, target]) > zero()
-    //}
 }
 
 impl<T: LinkType, All: ILinks<T>> ILinksExtensions<T> for All {}

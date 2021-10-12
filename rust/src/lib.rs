@@ -2,12 +2,22 @@
 #![feature(associated_type_bounds)]
 #![feature(default_free_fn)]
 #![feature(box_syntax)]
+#![feature(duration_constants)]
+#![feature(with_options)]
+
+use crate::doublets::mem::united::Links;
+use crate::num::{LinkType};
+use crate::mem::ResizeableMem;
 
 pub mod doublets;
 pub mod mem;
 pub mod methods;
 pub mod num;
 pub mod test_extensions;
+
+unsafe impl<T: LinkType, M: ResizeableMem> Send for Links<T, M> {
+
+}
 
 #[cfg(test)]
 mod tests {
@@ -16,24 +26,29 @@ mod tests {
     use std::ops::{Not, Range};
 
     use crate::doublets;
-    use crate::doublets::data::converters::{AddrToRaw, RawToAddr};
-    use crate::doublets::data::ilinks::IGenericLinks;
-    use crate::doublets::data::point::Point;
-    use crate::doublets::ilinks::{ILinks, ILinksExtensions};
-    use crate::doublets::link::Link;
-    use crate::doublets::mem::united::generic::links_size_balanced_tree_base::LinksSizeBalancedTreeBaseAbstract;
-    use crate::doublets::mem::united::links::Links;
-    use crate::mem::file_mapped_mem::FileMappedMem;
-    use crate::mem::heap_mem::HeapMem;
-    use crate::mem::mem::{Mem, ResizeableMem};
-    use crate::methods::trees::size_balanced_tree::{SizeBalancedTree, SizeBalancedTreeMethods};
+    use crate::doublets::data::{AddrToRaw, RawToAddr};
+    use crate::doublets::data::IGenericLinks;
+    use crate::doublets::data::Point;
+    use crate::doublets::ILinks;
+    use crate::doublets::ILinksExtensions;
+    use crate::doublets::Link;
+    use crate::doublets::mem::united::LinksSizeBalancedTreeBaseAbstract;
+    use crate::doublets::mem::united::Links;
+    use crate::mem::FileMappedMem;
+    use crate::mem::HeapMem;
+    use crate::mem::{Mem, ResizeableMem};
+    use crate::methods::{SizeBalancedTree, SizeBalancedTreeMethods};
     use crate::test_extensions::ILinksTestExtensions;
     use num_traits::{zero, AsPrimitive};
-    use rand::Rng;
-    use crate::doublets::mem::united::generic::links_sources_size_balanced_tree::LinksSourcesSizeBalancedTree;
+    use rand::{Rng, thread_rng};
+    use crate::doublets::mem::united::LinksSourcesSizeBalancedTree;
+    use std::time::Instant;
+
+
 
     #[test]
     fn it_works() {
+
         unsafe {
             let mut mem = HeapMem::new();
             //let mut mem = FileMappedMem::new("db.links").unwrap();
@@ -207,6 +222,14 @@ mod tests {
     }
 
     #[test]
+    fn test_crud() {
+        let mem = HeapMem::new();
+        let mut links = Links::<u32, _>::new(mem);
+
+        links.test_crud();
+    }
+
+    #[test]
     fn links_bug() {
         let mut mem = HeapMem::new();
         let mut links = Links::<usize, _>::new(mem);
@@ -240,4 +263,113 @@ mod tests {
         links.test_random_creations_and_deletions(100);
     }
 
+
+    #[test]
+    fn debug() {
+        std::fs::remove_file("дб.ссылкс");
+        //let mut mem = FileMappedMem::new("дб.ссылкс").unwrap();
+        let mut mem = HeapMem::new();
+        let mut links = Links::<usize, _>::new(mem);
+        let mut links = UniqueResolver::new(links);
+
+        let instant = Instant::now();
+
+        links.create_point();
+        links.create_point();
+
+        for i in 0..1000 {
+            links.create_and_update(
+                thread_rng().gen_range(1..=3),
+                thread_rng().gen_range(1..=3),
+            );
+        }
+
+        //links.each(|link| {
+        //    println!("{}", link);
+        //    links.constants().r#continue
+        //});
+
+        links.each_by(|link| {
+            println!("{}", link);
+            links.constants().r#continue
+        }, [links.constants().any, 1, 2]);
+
+        println!("search {}", links.search_or(1, 2, 0));
+
+        println!("count {}", links.count());
+        println!("elapsed {:?}", instant.elapsed());
+    }
+
+    use std::sync::{Arc, Mutex};
+    use std::thread;
+    use std::io::Write;
+
+
+    #[test]
+    fn synchronized_links() {
+        std::fs::remove_file("db.links").unwrap();
+
+        let mut mem = HeapMem::new();
+        let mut mem = FileMappedMem::new("db.links").unwrap();
+        let mut links = Links::<usize, _>::new(mem);
+
+        let mut out = std::fs::File::with_options()
+            .create_new(true)
+            .write(true)
+            .open("../out.csv").unwrap();
+
+        let range = 1..=1000;
+        for i in 1..=100000 {
+            let source = rand::thread_rng().gen_range(range.clone());
+            let target = rand::thread_rng().gen_range(range.clone());
+            links.get_or_create(source, target);
+        }
+
+        links.each(|link| {
+            out.write_fmt(format_args!("{}, {}\n", link.source, link.target));
+            links.constants().r#continue
+        });
+    }
+
+    use crate::doublets::UniqueResolver;
+
+    #[test]
+    fn decorators() {
+        let mem = HeapMem::new();
+        let links = Links::<usize, _>::new(mem);
+
+        let mut links = UniqueResolver::new(links);
+        links.create_and_update(1, 1);
+        links.create_and_update(1, 1);
+        links.create_and_update(1, 1);
+        links.create_and_update(1, 1);
+        links.create_and_update(1, 1);
+        links.create_and_update(1, 1);
+        links.create_and_update(1, 1);
+        links.create_and_update(1, 1);
+        links.create_and_update(1, 1);
+        links.create_and_update(1, 1);
+        links.create_and_update(1, 1);
+        links.create_and_update(1, 1);
+        links.create_and_update(1, 1);
+        links.create_and_update(1, 1);
+        links.create_and_update(1, 1);
+        links.create_and_update(1, 1);
+        links.create_and_update(1, 1);
+        links.create_and_update(1, 1);
+        links.create_and_update(1, 1);
+        links.create_and_update(1, 1);
+        links.create_and_update(1, 1);
+        links.create_and_update(1, 1);
+        links.create_and_update(1, 1);
+        links.create_and_update(1, 1);
+        links.create_and_update(1, 1);
+        links.create_and_update(1, 1);
+        links.create_and_update(1, 1);
+
+        links.each(|link| {
+            println!("{}", link);
+            links.constants().r#continue
+        });
+    }
 }

@@ -2,9 +2,9 @@ use crate::doublets::mem::ilinks_list_methods::ILinksListMethods;
 use crate::doublets::mem::links_header::LinksHeader;
 use crate::doublets::mem::united::generic::UpdatePointers;
 use crate::doublets::mem::united::raw_link::RawLink;
-use crate::methods::lists::absolute_circular_doubly_linked_list::AbsoluteCircularDoublyLinkedList;
-use crate::methods::lists::absolute_doubly_linked_list_base::AbsoluteDoublyLinkedListBase;
-use crate::methods::lists::doubly_linked_list_base::DoublyLinkedListBase;
+use crate::methods::AbsoluteCircularDoublyLinkedList;
+use crate::methods::AbsoluteDoublyLinkedListBase;
+use crate::methods::DoublyLinkedListBase;
 use crate::num::LinkType;
 use std::marker::PhantomData;
 
