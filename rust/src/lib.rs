@@ -29,7 +29,7 @@ mod tests {
     use crate::doublets::data::{AddrToRaw, RawToAddr};
     use crate::doublets::data::IGenericLinks;
     use crate::doublets::data::Point;
-    use crate::doublets::ILinks;
+    use crate::doublets::{ILinks};
     use crate::doublets::ILinksExtensions;
     use crate::doublets::Link;
     use crate::doublets::mem::united::LinksSizeBalancedTreeBaseAbstract;
@@ -274,28 +274,7 @@ mod tests {
 
         let instant = Instant::now();
 
-        links.create_point();
-        links.create_point();
-
-        for i in 0..1000 {
-            links.create_and_update(
-                thread_rng().gen_range(1..=3),
-                thread_rng().gen_range(1..=3),
-            );
-        }
-
-        //links.each(|link| {
-        //    println!("{}", link);
-        //    links.constants().r#continue
-        //});
-
-        links.each_by(|link| {
-            println!("{}", link);
-            links.constants().r#continue
-        }, [links.constants().any, 1, 2]);
-
-        println!("search {}", links.search_or(1, 2, 0));
-
+        let any = links.constants().any;
         println!("count {}", links.count());
         println!("elapsed {:?}", instant.elapsed());
     }
@@ -331,41 +310,45 @@ mod tests {
         });
     }
 
-    use crate::doublets::UniqueResolver;
+    use crate::doublets::decorators::UniqueResolver;
 
     #[test]
-    fn decorators() {
+    fn unique_resolver() {
         let mem = HeapMem::new();
         let links = Links::<usize, _>::new(mem);
 
         let mut links = UniqueResolver::new(links);
         links.create_and_update(1, 1);
+        links.create_and_update(1, 2);
+        links.create_and_update(2, 1);
+        links.create_and_update(2, 2);
+
         links.create_and_update(1, 1);
+        links.create_and_update(1, 2);
+        links.create_and_update(2, 1);
+        links.create_and_update(2, 2);
+
+        links.each(|link| {
+            println!("{}", link);
+            links.constants().r#continue
+        });
+    }
+
+    use crate::doublets::decorators::UniqueValidator;
+
+    #[test]
+    fn unique_validator() {
+        let mem = HeapMem::new();
+        let links = Links::<usize, _>::new(mem);
+
+        let mut links = UniqueValidator::new(links);
         links.create_and_update(1, 1);
-        links.create_and_update(1, 1);
-        links.create_and_update(1, 1);
-        links.create_and_update(1, 1);
-        links.create_and_update(1, 1);
-        links.create_and_update(1, 1);
-        links.create_and_update(1, 1);
-        links.create_and_update(1, 1);
-        links.create_and_update(1, 1);
-        links.create_and_update(1, 1);
-        links.create_and_update(1, 1);
-        links.create_and_update(1, 1);
-        links.create_and_update(1, 1);
-        links.create_and_update(1, 1);
-        links.create_and_update(1, 1);
-        links.create_and_update(1, 1);
-        links.create_and_update(1, 1);
-        links.create_and_update(1, 1);
-        links.create_and_update(1, 1);
-        links.create_and_update(1, 1);
-        links.create_and_update(1, 1);
-        links.create_and_update(1, 1);
-        links.create_and_update(1, 1);
-        links.create_and_update(1, 1);
-        links.create_and_update(1, 1);
+        links.create_and_update(1, 2);
+        links.create_and_update(2, 1);
+        links.create_and_update(2, 2);
+
+        // TODO: assertion
+        links.create_and_update(2, 2);
 
         links.each(|link| {
             println!("{}", link);
