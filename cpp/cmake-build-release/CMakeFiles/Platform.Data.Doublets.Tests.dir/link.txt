@@ -1,3 +1,0 @@
-"E:\JetBrains\CLion 2021.2.2\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\Platform.Data.Doublets.Tests.dir/objects.a
-C:\mingw64-latest\bin\ar.exe cr CMakeFiles\Platform.Data.Doublets.Tests.dir/objects.a @CMakeFiles\Platform.Data.Doublets.Tests.dir\objects1.rsp
-C:\mingw64-latest\bin\g++.exe -O3 -DNDEBUG -Wl,--whole-archive CMakeFiles\Platform.Data.Doublets.Tests.dir/objects.a -Wl,--no-whole-archive -o bin\Platform.Data.Doublets.Tests.exe -Wl,--out-implib,lib\libPlatform.Data.Doublets.Tests.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\Platform.Data.Doublets.Tests.dir\linklibs.rsp
