@@ -99,7 +99,7 @@ impl<
         unsafe { &mut *(self.mem.get_ptr() as *mut LinksHeader<T>) }
     }
 
-    pub fn get_link(&self, link: T) -> &RawLink<T> {
+    fn get_link(&self, link: T) -> &RawLink<T> {
         unsafe { &*((self.mem.get_ptr() as *const RawLink<T>).offset(link.as_() as isize)) }
     }
 
