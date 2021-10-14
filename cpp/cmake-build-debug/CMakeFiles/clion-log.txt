@@ -1,0 +1,13 @@
+"E:\JetBrains\CLion 2021.2.2\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -DLINKS_PLATFORM_TESTS=TRUE -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - MinGW Makefiles" F:\LinksPlatform\Data.Doublets\cpp
+CMake Error at CMakeLists.txt:10 (include):
+  include could not find requested file:
+
+    F:/LinksPlatform/Data.Doublets/cpp/cmake-build-debug/conanbuildinfo.cmake
+
+
+CMake Error at CMakeLists.txt:11 (conan_basic_setup):
+  Unknown CMake command "conan_basic_setup".
+
+
+-- Configuring incomplete, errors occurred!
+See also "F:/LinksPlatform/Data.Doublets/cpp/cmake-build-debug/CMakeFiles/CMakeOutput.log".

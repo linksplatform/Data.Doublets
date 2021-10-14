@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Platform.Data.Doublets"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\cmake-build-release\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="F:/LinksPlatform/Data.Doublets/cpp/cmake-build-release"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/mingw64-latest/bin/mingw32-make.exe -f &quot;F:/LinksPlatform/Data.Doublets/cpp/cmake-build-release/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/mingw64-latest/bin/mingw32-make.exe -f &quot;F:/LinksPlatform/Data.Doublets/cpp/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/mingw64-latest/bin/mingw32-make.exe -f &quot;F:/LinksPlatform/Data.Doublets/cpp/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/mingw64-latest/bin/mingw32-make.exe -f &quot;F:/LinksPlatform/Data.Doublets/cpp/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Platform.Data.Doublets.Tests">
+				<Option output="F:/LinksPlatform/Data.Doublets/cpp/cmake-build-release/bin/Platform.Data.Doublets.Tests.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="F:/LinksPlatform/Data.Doublets/cpp/cmake-build-release/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="F:/LinksPlatform/Data.Doublets/cpp/Platform.Data.Doublets"/>
+					<Add directory="C:/Users/Dedalius/.conan/data/gtest/cci.20210126/_/_/package/d998e0a3f50572d9a8b3ac9f02b5545868992a3f/include"/>
+					<Add directory="C:/Users/Dedalius/.conan/data/platform.collections.methods/0.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include"/>
+					<Add directory="C:/Users/Dedalius/.conan/data/platform.collections/0.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include"/>
+					<Add directory="C:/Users/Dedalius/.conan/data/platform.interfaces/0.1.4/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include"/>
+					<Add directory="C:/Users/Dedalius/.conan/data/platform.exceptions/0.2.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include"/>
+					<Add directory="C:/Users/Dedalius/.conan/data/platform.delegates/0.1.3/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include"/>
+					<Add directory="C:/Users/Dedalius/.conan/data/platform.equality/0.0.1/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include"/>
+					<Add directory="C:/Users/Dedalius/.conan/data/platform.hashing/0.2.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include"/>
+					<Add directory="C:/Users/Dedalius/.conan/data/platform.random/0.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include"/>
+					<Add directory="C:/Users/Dedalius/.conan/data/platform.ranges/0.1.2/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include"/>
+					<Add directory="C:/Users/Dedalius/.conan/data/platform.converters/0.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include"/>
+					<Add directory="C:/Users/Dedalius/.conan/data/platform.threading/0.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include"/>
+					<Add directory="C:/Users/Dedalius/.conan/data/platform.memory/0.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include"/>
+					<Add directory="C:/Users/Dedalius/.conan/data/platform.data/0.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include"/>
+					<Add directory="C:/Users/Dedalius/.conan/data/platform.setters/0.0.1/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include"/>
+					<Add directory="c:\mingw64-latest\bin\../lib/gcc/x86_64-w64-mingw32/11.1.1/../../../../include/c++/11.1.1"/>
+					<Add directory="c:\mingw64-latest\bin\../lib/gcc/x86_64-w64-mingw32/11.1.1/../../../../include/c++/11.1.1/x86_64-w64-mingw32"/>
+					<Add directory="c:\mingw64-latest\bin\../lib/gcc/x86_64-w64-mingw32/11.1.1/../../../../include/c++/11.1.1/backward"/>
+					<Add directory="c:\mingw64-latest\bin\../lib/gcc/x86_64-w64-mingw32/11.1.1/include"/>
+					<Add directory="c:\mingw64-latest\bin\../lib/gcc/x86_64-w64-mingw32/11.1.1/../../../../include"/>
+					<Add directory="c:\mingw64-latest\bin\../lib/gcc/x86_64-w64-mingw32/11.1.1/include-fixed"/>
+					<Add directory="c:\mingw64-latest\bin\../lib/gcc/x86_64-w64-mingw32/11.1.1/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/mingw64-latest/bin/mingw32-make.exe -f &quot;F:/LinksPlatform/Data.Doublets/cpp/cmake-build-release/Makefile&quot;  VERBOSE=1 Platform.Data.Doublets.Tests"/>
+					<CompileFile command="C:/mingw64-latest/bin/mingw32-make.exe -f &quot;F:/LinksPlatform/Data.Doublets/cpp/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/mingw64-latest/bin/mingw32-make.exe -f &quot;F:/LinksPlatform/Data.Doublets/cpp/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/mingw64-latest/bin/mingw32-make.exe -f &quot;F:/LinksPlatform/Data.Doublets/cpp/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Platform.Data.Doublets.Tests/fast">
+				<Option output="F:/LinksPlatform/Data.Doublets/cpp/cmake-build-release/bin/Platform.Data.Doublets.Tests.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="F:/LinksPlatform/Data.Doublets/cpp/cmake-build-release/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="F:/LinksPlatform/Data.Doublets/cpp/Platform.Data.Doublets"/>
+					<Add directory="C:/Users/Dedalius/.conan/data/gtest/cci.20210126/_/_/package/d998e0a3f50572d9a8b3ac9f02b5545868992a3f/include"/>
+					<Add directory="C:/Users/Dedalius/.conan/data/platform.collections.methods/0.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include"/>
+					<Add directory="C:/Users/Dedalius/.conan/data/platform.collections/0.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include"/>
+					<Add directory="C:/Users/Dedalius/.conan/data/platform.interfaces/0.1.4/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include"/>
+					<Add directory="C:/Users/Dedalius/.conan/data/platform.exceptions/0.2.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include"/>
+					<Add directory="C:/Users/Dedalius/.conan/data/platform.delegates/0.1.3/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include"/>
+					<Add directory="C:/Users/Dedalius/.conan/data/platform.equality/0.0.1/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include"/>
+					<Add directory="C:/Users/Dedalius/.conan/data/platform.hashing/0.2.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include"/>
+					<Add directory="C:/Users/Dedalius/.conan/data/platform.random/0.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include"/>
+					<Add directory="C:/Users/Dedalius/.conan/data/platform.ranges/0.1.2/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include"/>
+					<Add directory="C:/Users/Dedalius/.conan/data/platform.converters/0.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include"/>
+					<Add directory="C:/Users/Dedalius/.conan/data/platform.threading/0.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include"/>
+					<Add directory="C:/Users/Dedalius/.conan/data/platform.memory/0.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include"/>
+					<Add directory="C:/Users/Dedalius/.conan/data/platform.data/0.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include"/>
+					<Add directory="C:/Users/Dedalius/.conan/data/platform.setters/0.0.1/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include"/>
+					<Add directory="c:\mingw64-latest\bin\../lib/gcc/x86_64-w64-mingw32/11.1.1/../../../../include/c++/11.1.1"/>
+					<Add directory="c:\mingw64-latest\bin\../lib/gcc/x86_64-w64-mingw32/11.1.1/../../../../include/c++/11.1.1/x86_64-w64-mingw32"/>
+					<Add directory="c:\mingw64-latest\bin\../lib/gcc/x86_64-w64-mingw32/11.1.1/../../../../include/c++/11.1.1/backward"/>
+					<Add directory="c:\mingw64-latest\bin\../lib/gcc/x86_64-w64-mingw32/11.1.1/include"/>
+					<Add directory="c:\mingw64-latest\bin\../lib/gcc/x86_64-w64-mingw32/11.1.1/../../../../include"/>
+					<Add directory="c:\mingw64-latest\bin\../lib/gcc/x86_64-w64-mingw32/11.1.1/include-fixed"/>
+					<Add directory="c:\mingw64-latest\bin\../lib/gcc/x86_64-w64-mingw32/11.1.1/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/mingw64-latest/bin/mingw32-make.exe -f &quot;F:/LinksPlatform/Data.Doublets/cpp/cmake-build-release/Makefile&quot;  VERBOSE=1 Platform.Data.Doublets.Tests/fast"/>
+					<CompileFile command="C:/mingw64-latest/bin/mingw32-make.exe -f &quot;F:/LinksPlatform/Data.Doublets/cpp/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/mingw64-latest/bin/mingw32-make.exe -f &quot;F:/LinksPlatform/Data.Doublets/cpp/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/mingw64-latest/bin/mingw32-make.exe -f &quot;F:/LinksPlatform/Data.Doublets/cpp/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="F:/LinksPlatform/Data.Doublets/cpp/cmake-build-release"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/mingw64-latest/bin/mingw32-make.exe -f &quot;F:/LinksPlatform/Data.Doublets/cpp/cmake-build-release/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/mingw64-latest/bin/mingw32-make.exe -f &quot;F:/LinksPlatform/Data.Doublets/cpp/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/mingw64-latest/bin/mingw32-make.exe -f &quot;F:/LinksPlatform/Data.Doublets/cpp/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/mingw64-latest/bin/mingw32-make.exe -f &quot;F:/LinksPlatform/Data.Doublets/cpp/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="F:/LinksPlatform/Data.Doublets/cpp/cmake-build-release"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/mingw64-latest/bin/mingw32-make.exe -f &quot;F:/LinksPlatform/Data.Doublets/cpp/cmake-build-release/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/mingw64-latest/bin/mingw32-make.exe -f &quot;F:/LinksPlatform/Data.Doublets/cpp/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/mingw64-latest/bin/mingw32-make.exe -f &quot;F:/LinksPlatform/Data.Doublets/cpp/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/mingw64-latest/bin/mingw32-make.exe -f &quot;F:/LinksPlatform/Data.Doublets/cpp/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="F:/LinksPlatform/Data.Doublets/cpp/Platform.Data.Doublets.Tests/AllTests.cpp">
+			<Option target="Platform.Data.Doublets.Tests"/>
+		</Unit>
+		<Unit filename="F:/LinksPlatform/Data.Doublets/cpp/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="F:/LinksPlatform/Data.Doublets/cpp/cmake-build-release/conanbuildinfo.cmake">
+			<Option virtualFolder="CMake Files\cmake-build-release\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

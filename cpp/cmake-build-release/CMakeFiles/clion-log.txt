@@ -1,0 +1,13 @@
+"E:\JetBrains\CLion 2021.2.2\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Release -DLINKS_PLATFORM_TESTS=TRUE -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - MinGW Makefiles" F:\LinksPlatform\Data.Doublets\cpp
+-- Conan: Adjusting output directories
+-- Conan: Using cmake targets configuration
+-- Library gtest_main found C:/Users/Dedalius/.conan/data/gtest/cci.20210126/_/_/package/d998e0a3f50572d9a8b3ac9f02b5545868992a3f/lib/libgtest_main.a
+-- Library gmock_main found C:/Users/Dedalius/.conan/data/gtest/cci.20210126/_/_/package/d998e0a3f50572d9a8b3ac9f02b5545868992a3f/lib/libgmock_main.a
+-- Library gmock found C:/Users/Dedalius/.conan/data/gtest/cci.20210126/_/_/package/d998e0a3f50572d9a8b3ac9f02b5545868992a3f/lib/libgmock.a
+-- Library gtest found C:/Users/Dedalius/.conan/data/gtest/cci.20210126/_/_/package/d998e0a3f50572d9a8b3ac9f02b5545868992a3f/lib/libgtest.a
+-- Conan: Adjusting default RPATHs Conan policies
+-- Conan: Adjusting language standard
+-- WARN: Disabled conan compiler checks
+-- Configuring done
+-- Generating done
+-- Build files have been written to: F:/LinksPlatform/Data.Doublets/cpp/cmake-build-release

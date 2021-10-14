@@ -1,0 +1,4 @@
+ToolSet: w64 9.0 (local)@C:\mingw64-latest
+Options: 
+
+Options:-DLINKS_PLATFORM_TESTS=TRUE

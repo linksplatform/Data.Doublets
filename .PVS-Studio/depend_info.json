@@ -1,0 +1,17 @@
+[
+    {
+        "arguments": [
+            "C:\\mingw64-latest\\bin\\g++.exe",
+            "F:\\LinksPlatform\\Data.Doublets\\cpp\\cmake-build-release\\CMakeFiles\\Platform.Data.Doublets.Tests.dir\\includes_CXX.rsp",
+            "-DNDEBUG",
+            "-march=haswell",
+            "-mpclmul",
+            "-msse4.2",
+            "-std=gnu++2a",
+            "-DPVS_STUDIO",
+            "F:\\LinksPlatform\\Data.Doublets\\cpp\\Platform.Data.Doublets.Tests\\AllTests.cpp"
+        ],
+        "dependencies": [],
+        "id": 1
+    }
+]
