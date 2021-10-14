@@ -14,7 +14,7 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
         assert_eq!(self.count(), zero());
 
         let address = self.create();
-        let mut link: Link<T> = self.get_link(address).collect();
+        let mut link: Link<T> = self.get_generic_link(address).collect();
 
         assert_eq!(link.len(), 3);
         assert_eq!(link.index, address);
@@ -24,13 +24,13 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
 
         self.update(address, address, address);
 
-        link = self.get_link(address).collect();
+        link = self.get_generic_link(address).collect();
         assert_eq!(link.source, address);
         assert_eq!(link.target, address);
 
         let updated = self.update(address, constants.null, constants.null);
         assert_eq!(updated, address);
-        link = self.get_link(address).collect();
+        link = self.get_generic_link(address).collect();
         assert_eq!(link.source, constants.null);
         assert_eq!(link.target, constants.null);
 

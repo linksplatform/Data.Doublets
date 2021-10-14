@@ -101,6 +101,43 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         }
         return link;
     }
+
+    fn get_link(&self, index: T) -> Link<T> {
+        self.get_generic_link(index).collect()
+    }
+
+    fn count_usages(&self, index: T) -> T {
+        let constants = self.constants();
+        let any = constants.any;
+        let target_part = constants.target_part;
+        let source_part = constants.source_part;
+        let link = self.get_link(index);
+
+        let mut usage_source = self.count_by([any, link.index, any]);
+        if link.index == link.source {
+            usage_source = usage_source - one();
+        }
+
+        let mut usage_target = self.count_by([any, any, link.target]);
+        if link.index == link.target {
+            usage_target = usage_target - one();
+        }
+
+        return usage_source - usage_target
+    }
+
+    fn has_usages(&self, link: T) -> bool {
+        self.count_usages(link) > zero()
+    }
+
+    fn reset(&mut self, link: T) {
+        let null = self.constants().null;
+        self.update(link, null, null);
+    }
+
+    fn format(&self, link: T) -> String {
+        self.get_link(link).to_string()
+    }
 }
 
 impl<T: LinkType, All: ILinks<T>> ILinksExtensions<T> for All {}

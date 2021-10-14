@@ -45,7 +45,7 @@ pub trait IGenericLinksExtensions<T: LinkType>: IGenericLinks<T> {
 
     // TODO: maybe use .collect() style
     //  let link: Vec<_> = links.get_link(index)
-    fn get_link(&self, link: T) -> Box<dyn ExactSizeIterator<Item = T>> {
+    fn get_generic_link(&self, link: T) -> Box<dyn ExactSizeIterator<Item = T>> {
         let constants = self.constants();
         if constants.is_external_reference(link) {
             box Point::new(link, constants.target_part.as_() + 1).into_iter()
@@ -66,7 +66,7 @@ pub trait IGenericLinksExtensions<T: LinkType>: IGenericLinks<T> {
             true
         } else {
             assert!(self.exist(link)); // TODO: add message
-            Point::is_full(self.get_link(link))
+            Point::is_full(self.get_generic_link(link))
         }
     }
 
@@ -76,7 +76,7 @@ pub trait IGenericLinksExtensions<T: LinkType>: IGenericLinks<T> {
             true
         } else {
             assert!(self.exist(link)); // TODO: add message
-            Point::is_partial(self.get_link(link))
+            Point::is_partial(self.get_generic_link(link))
         }
     }
 }
