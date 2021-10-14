@@ -16,6 +16,7 @@ fn make_links<M: ResizeableMem>(mem: M) -> united::Links<usize, M> {
 
 #[test]
 fn create() {
+    let mem = make_mem();
     let mut links = make_links(mem);
 
     links.create();
@@ -25,6 +26,7 @@ fn create() {
 
 #[test]
 fn create_point() {
+    let mem = make_mem();
     let mut links = make_links(mem);
 
     let point = links.create_point();
