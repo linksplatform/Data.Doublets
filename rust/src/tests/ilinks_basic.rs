@@ -10,13 +10,13 @@ fn make_mem() -> HeapMem {
 }
 
 // TODO: cfg!
-fn make_links<M: ResizeableMem>() -> united::Links<usize, M> {
-    united::Links::<usize, _>::new(make_mem())
+fn make_links<M: ResizeableMem>(mem: M) -> united::Links<usize, M> {
+    united::Links::<usize, _>::new(mem)
 }
 
 #[test]
 fn create() {
-    let mut links = make_links();
+    let mut links = make_links(mem);
 
     links.create();
 
@@ -25,7 +25,7 @@ fn create() {
 
 #[test]
 fn create_point() {
-    let mut links = make_links();
+    let mut links = make_links(mem);
 
     let point = links.create_point();
 
