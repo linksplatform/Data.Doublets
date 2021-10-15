@@ -5,13 +5,14 @@ use num_traits::{one, zero};
 use crate::doublets::data;
 use crate::doublets::link::Link;
 use crate::num::LinkType;
+use crate::doublets::data::Point;
 
 pub trait ILinks<T: LinkType>: data::IGenericLinks<T> + data::IGenericLinksExtensions<T> {}
 
 pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
     fn count_by<L>(&self, restrictions: L) -> T
-    where
-        L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>,
+        where
+            L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>,
     {
         self.count_generic(restrictions)
     }
@@ -25,9 +26,9 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
     }
 
     fn each_by<H, L>(&self, mut handler: H, restrictions: L) -> T
-    where
-        H: FnMut(Link<T>) -> T,
-        L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>,
+        where
+            H: FnMut(Link<T>) -> T,
+            L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>,
     {
         let constants = self.constants();
         let index = constants.index_part.as_();
@@ -72,8 +73,8 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
     // TODO: use .del().query()
     // TODO: maybe `query: Link<T>`
     fn delete_query<L>(&mut self, query: L)
-    where
-        L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>
+        where
+            L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>
     {
         let query: Vec<T> = query.into_iter().collect();
         let len = self.count_by(query.clone()).as_();
@@ -149,11 +150,66 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
             usage_target = usage_target - one();
         }
 
-        return usage_source - usage_target
+        return usage_source - usage_target;
     }
 
     fn has_usages(&self, link: T) -> bool {
         self.count_usages(link) > zero()
+    }
+
+    // TODO: old: `merge_usages`
+    fn rebase(&mut self, old: T, new: T) -> T {
+        let link = self.get_link(old);
+        assert!(link.is_some(), "link [{}] does not exist", old);
+
+        if old == new {
+            return new;
+        }
+
+        let constants = self.constants();
+        let any = constants.any;
+
+        let sources_count = self.count_by([any, old, any]).as_();
+        let targets_count = self.count_by([any, any, old]).as_();
+        let link = link.unwrap();
+        if sources_count == 0 &&
+            targets_count == 0 &&
+            Point::is_full(link.as_slice()) {
+            return new;
+        }
+
+        let total = sources_count + targets_count;
+        if total == zero() {
+            return new;
+        }
+
+        let mut usages = Vec::with_capacity(sources_count);
+        self.each_by(|link| {
+            usages.push(link.index);
+            constants.r#continue
+        }, [any, old, any]);
+
+        // TODO: maybe `unwrap_unchecked()`
+        for index in usages {
+            if index != old {
+                let usage = self.get_link(index).unwrap(); // TODO: 100% some
+                self.update(index, new, usage.target);
+            }
+        }
+
+        let mut usages = Vec::with_capacity(targets_count);
+        self.each_by(|link| {
+            usages.push(link.index);
+            constants.r#continue
+        }, [any, any, old]);
+
+        for index in usages {
+            if index != old {
+                let usage = self.get_link(index).unwrap(); // TODO: 100% some
+                self.update(index, usage.source, new);
+            }
+        }
+        return new;
     }
 
     fn reset(&mut self, link: T) {

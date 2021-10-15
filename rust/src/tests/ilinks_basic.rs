@@ -50,6 +50,30 @@ fn each_eq_count() {
 }
 
 #[test]
+fn rebase() {
+    let mem = make_mem();
+    let mut links = make_links(mem);
+    let any = links.constants.any;
+
+    let root = links.create_point();
+
+    for _ in 0..10 {
+        let new = links.create_point();
+        links.create_and_update(new, root);
+    }
+
+    let before = links.count_by([any, any, root]);
+
+    let new_root = links.create_point();
+    let root = links.rebase(root, new_root);
+
+    let after = links.count_by([any, any, root]);
+
+    assert_eq!(before, after);
+}
+
+
+#[test]
 fn delete_all_usages() {
     let mem = make_mem();
     let mut links = make_links(mem);
