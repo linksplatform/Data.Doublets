@@ -1048,7 +1048,7 @@ namespace Platform.Data.Doublets
             var anyConstant = links.Constants.Any;
             var usagesAsSourceQuery = new Link<TLink>(anyConstant, linkIndex, anyConstant);
             links.DeleteByQuery(usagesAsSourceQuery);
-            var usagesAsTargetQuery = new Link<TLink>(anyConstant, linkIndex, anyConstant);
+            var usagesAsTargetQuery = new Link<TLink>(anyConstant, anyConstant, linkIndex);
             links.DeleteByQuery(usagesAsTargetQuery);
         }
 
