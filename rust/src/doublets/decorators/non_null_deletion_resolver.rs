@@ -54,8 +54,8 @@ impl<T: LinkType, Links: ILinks<T>> IGenericLinks<T> for NonNullDeletionResolver
     }
 
     fn delete_generic<L>(&mut self, restrictions: L)
-        where
-            L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>
+    where
+        L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>
     {
         let restrictions: Vec<T> = restrictions.into_iter().collect();
         let constants = self.constants();
