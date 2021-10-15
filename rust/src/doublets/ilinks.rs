@@ -53,8 +53,10 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         self.update_generic([index], [index, source, target])
     }
 
-    fn delete(&mut self, index: T) {
-        self.delete_generic([index])
+    fn delete(&mut self, index: T) -> T {
+        // TODO: maybe change `delete_generic`
+        self.delete_generic([index]);
+        return index
     }
 
     fn delete_all(&mut self) {
@@ -210,6 +212,15 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
             }
         }
         return new;
+    }
+
+    fn rebase_and_delete(&mut self, old: T, new: T) -> T {
+        if old == new {
+            new
+        } else {
+            self.rebase(old, new);
+            self.delete(old)
+        }
     }
 
     fn reset(&mut self, link: T) {

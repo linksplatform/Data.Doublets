@@ -61,7 +61,7 @@ impl<T: LinkType, Links: ILinks<T>> IGenericLinks<T> for UniqueResolver<T, Links
         // TODO: later use overloading style
         let resolve_conflict = |links: &mut Links, old: T, new: T| {
             if old != new && links.exist(old) {
-                links.delete(old)
+                links.delete(old);
             }
             return new;
         };
