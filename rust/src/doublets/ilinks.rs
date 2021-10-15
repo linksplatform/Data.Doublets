@@ -10,8 +10,8 @@ pub trait ILinks<T: LinkType>: data::IGenericLinks<T> + data::IGenericLinksExten
 
 pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
     fn count_by<L>(&self, restrictions: L) -> T
-        where
-            L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>,
+    where
+        L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>,
     {
         self.count_generic(restrictions)
     }
@@ -25,9 +25,9 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
     }
 
     fn each_by<H, L>(&self, mut handler: H, restrictions: L) -> T
-        where
-            H: FnMut(Link<T>) -> T,
-            L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>,
+    where
+        H: FnMut(Link<T>) -> T,
+        L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>,
     {
         let constants = self.constants();
         let index = constants.index_part.as_();
@@ -75,7 +75,8 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
     where
         L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>
     {
-        let len = self.count_by(&query).as_();
+        let query: Vec<T> = query.into_iter().collect();
+        let len = self.count_by(query.clone()).as_();
         let mut vec = Vec::with_capacity(len);
         let constants = self.constants();
         self.each_by(|link| {
