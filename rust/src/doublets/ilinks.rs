@@ -69,6 +69,31 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         }
     }
 
+    // TODO: use .del().query()
+    // TODO: maybe `query: Link<T>`
+    fn delete_query<L>(&mut self, query: L)
+    where
+        L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>
+    {
+        let len = self.count_by(&query).as_();
+        let mut vec = Vec::with_capacity(len);
+        let constants = self.constants();
+        self.each_by(|link| {
+            vec.push(link.index);
+            constants.r#continue
+        }, query);
+
+        for index in vec.into_iter().rev() {
+            self.delete(index);
+        }
+    }
+
+    fn delete_usages(&mut self, index: T) {
+        let any = self.constants().any;
+        self.delete_query([any, index, any]);
+        self.delete_query([any, any, index]);
+    }
+
     fn create_point(&mut self) -> T {
         let new = self.create();
         self.update(new, new, new)
@@ -95,11 +120,12 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
     }
 
     fn get_or_create(&mut self, source: T, target: T) -> T {
-        let mut link = self.search_or(source, target, zero());
+        let link = self.search_or(source, target, zero());
         if link == zero() {
-            link = self.create_and_update(source, target);
+            self.create_and_update(source, target)
+        } else {
+            link
         }
-        return link;
     }
 
     fn get_link(&self, index: T) -> Link<T> {
@@ -109,8 +135,6 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
     fn count_usages(&self, index: T) -> T {
         let constants = self.constants();
         let any = constants.any;
-        let target_part = constants.target_part;
-        let source_part = constants.source_part;
         let link = self.get_link(index);
 
         let mut usage_source = self.count_by([any, link.index, any]);
