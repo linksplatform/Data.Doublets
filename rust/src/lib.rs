@@ -4,6 +4,7 @@
 #![feature(box_syntax)]
 #![feature(duration_constants)]
 #![feature(with_options)]
+#![feature(option_result_unwrap_unchecked)]
 
 mod doublets;
 mod mem;

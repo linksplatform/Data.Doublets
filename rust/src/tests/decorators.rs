@@ -15,16 +15,13 @@ fn non_null_deletions() {
     let mut links = make_links(mem);
     let mut links = NonNullDeletionResolver::new(links);
 
-    for _ in 0..1000 {
-        links.create_point();
-    }
-
-    assert_eq!(links.count(), 1000);
+    let point = links.create_point();
+    assert_eq!(links.count(), 1);
     links.delete_all();
 
-    for index in 1..=1000 {
-        let link = links.get_link(index);
-        assert_eq!(link, Link::from_once(0));
-        assert_eq!(link.is_null());
-    }
+    let index = links.create();
+
+    let link = links.get_link(index);
+    let link = link.unwrap();
+    assert_eq!(link, Link::new(point, 0, 0));
 }

@@ -129,14 +129,15 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         }
     }
 
-    fn get_link(&self, index: T) -> Link<T> {
-        self.get_generic_link(index).collect()
+    fn get_link(&self, index: T) -> Option<Link<T>> {
+        self.get_generic_link(index).map(|link| link.collect())
     }
 
     fn count_usages(&self, index: T) -> T {
         let constants = self.constants();
         let any = constants.any;
-        let link = self.get_link(index);
+        // TODO: expect
+        let link = self.get_link(index).unwrap();
 
         let mut usage_source = self.count_by([any, link.index, any]);
         if link.index == link.source {
@@ -161,7 +162,8 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
     }
 
     fn format(&self, link: T) -> String {
-        self.get_link(link).to_string()
+        // TODO: expect
+        self.get_link(link).unwrap().to_string()
     }
 }
 
