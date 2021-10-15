@@ -26,6 +26,30 @@ fn create_point() {
 }
 
 #[test]
+fn each_eq_count() {
+    let mem = make_mem();
+    let mut links = make_links(mem);
+
+    let root = links.create_point();
+
+    for _ in 0..10 {
+        let new = links.create_point();
+        links.create_and_update(new, root);
+    }
+
+    let any = links.constants.any;
+    let query = [any, any, root];
+
+    let mut count = 0;
+    links.each_by(|link| {
+        count += 1;
+        links.constants.r#continue
+    }, [any, any, root]);
+
+    assert_eq!(count, links.count_by(query));
+}
+
+#[test]
 fn delete_all_usages() {
     let mem = make_mem();
     let mut links = make_links(mem);
