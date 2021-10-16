@@ -44,8 +44,6 @@ pub trait IGenericLinksExtensions<T: LinkType>: IGenericLinks<T> {
         }
     }
 
-    // TODO: maybe use .collect() style
-    //  let link: Vec<_> = links.get_link(index)
     fn get_generic_link(&self, link: T) -> Option<Box<dyn ExactSizeIterator<Item=T>>> {
         let constants = self.constants();
         if constants.is_external_reference(link) {

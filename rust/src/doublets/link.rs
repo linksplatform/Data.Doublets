@@ -27,6 +27,7 @@ impl<T: LinkType> Link<T> {
         }
     }
 
+    // TODO: maybe rename to `*point` or `point*`
     pub fn from_once(val: T) -> Self {
         Self::new(val, val, val)
     }
