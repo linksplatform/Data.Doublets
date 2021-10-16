@@ -4,6 +4,7 @@ use crate::doublets::{ILinksExtensions, Link};
 use crate::doublets::data::IGenericLinks;
 use crate::test_extensions::ILinksTestExtensions;
 use crate::mem::FileMappedMem;
+use std::time::Instant;
 
 #[test]
 fn random_creations_and_deletions() {
@@ -13,5 +14,8 @@ fn random_creations_and_deletions() {
     let mut links = make_links(mem);
     let mut links = links.decorators_kit();
 
+    let instant = Instant::now();
     links.test_random_creations_and_deletions(1000);
+
+    println!("{:?}", instant.elapsed());
 }

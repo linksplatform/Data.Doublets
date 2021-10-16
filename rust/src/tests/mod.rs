@@ -17,3 +17,5 @@ mod ilinks_basic;
 mod decorators;
 #[cfg(test)]
 mod crud;
+#[cfg(test)]
+mod sync;
