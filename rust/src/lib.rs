@@ -5,6 +5,8 @@
 #![feature(duration_constants)]
 #![feature(with_options)]
 #![feature(option_result_unwrap_unchecked)]
+#![feature(test)]
+#![feature(ptr_internals)]
 
 mod doublets;
 mod mem;
@@ -12,6 +14,7 @@ mod methods;
 mod num;
 mod test_extensions;
 mod tests;
+mod bench;
 
 //#[cfg(test)]
 //mod tests {

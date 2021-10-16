@@ -4,16 +4,27 @@ use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstan
 use std::borrow::BorrowMut;
 use std::default::default;
 use std::marker::PhantomData;
+use libc::read;
 
 pub struct UniqueResolver<T: LinkType, Links: ILinks<T>> {
     links: Links,
-
-    _phantom: PhantomData<T>
+    resolver: fn(&mut Links, old: T, new: T) -> T,
 }
 
 impl<T: LinkType, Links: ILinks<T>> UniqueResolver<T, Links> {
     pub fn new(links: Links) -> Self {
-        Self { links, _phantom: default() }
+        Self::with_resolver(links, Self::resolve_conflict)
+    }
+
+    pub fn with_resolver(links: Links, resolver: fn(&mut Links, old: T, new: T) -> T) -> Self {
+        Self { links, resolver }
+    }
+
+    pub(in crate::doublets::decorators) fn resolve_conflict(links: &mut Links, old: T, new: T) -> T {
+        if old != new && links.exist(old) {
+            links.delete(old);
+        }
+        return new;
     }
 }
 
@@ -59,12 +70,7 @@ impl<T: LinkType, Links: ILinks<T>> IGenericLinks<T> for UniqueResolver<T, Links
     {
 
         // TODO: later use overloading style
-        let resolve_conflict = |links: &mut Links, old: T, new: T| {
-            if old != new && links.exist(old) {
-                links.delete(old);
-            }
-            return new;
-        };
+
 
         let links = self.links.borrow_mut();
         let constants = links.constants();
@@ -82,7 +88,7 @@ impl<T: LinkType, Links: ILinks<T>> IGenericLinks<T> for UniqueResolver<T, Links
         if new == default() {
             links.update_generic(restrictions, substitution)
         } else {
-            resolve_conflict(links, restrictions[index_part], new)
+            (self.resolver)(links, restrictions[index_part], new)
         }
     }
 }

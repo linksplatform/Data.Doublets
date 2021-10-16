@@ -58,30 +58,17 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
                         T::from_usize(target).unwrap()
                     ).as_();
 
-
-
                     if result > count {
                         created += 1;
-                        println!("create point[{:?}->{:?}]", source, target);
                     }
                 } else {
                     self.create();
                     created += 1;
-                    println!("created {} {:?}", created, self.count());
                 }
                 assert_eq!(created, self.count().as_());
             }
 
-            let mut to_delete = vec![];
-            self.each(|link| {
-                to_delete.push(link.index);
-                self.constants().r#continue
-            });
-
-            for index in to_delete {
-                self.update(index, zero(), zero());
-                self.delete(index);
-            }
+            self.delete_all();
 
             assert_eq!(self.count(), zero());
         }

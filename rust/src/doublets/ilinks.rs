@@ -6,8 +6,9 @@ use crate::doublets::data;
 use crate::doublets::link::Link;
 use crate::num::LinkType;
 use crate::doublets::data::Point;
+use crate::doublets::decorators::{CascadeUsagesResolver, NonNullDeletionResolver, CascadeUniqueResolver};
 
-pub trait ILinks<T: LinkType>: data::IGenericLinks<T> + data::IGenericLinksExtensions<T> {}
+pub trait ILinks<T: LinkType>: data::IGenericLinks<T> + data::IGenericLinksExtensions<T> + Sized {}
 
 pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
     fn count_by<L>(&self, restrictions: L) -> T
@@ -231,6 +232,14 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
     fn format(&self, link: T) -> String {
         // TODO: expect
         self.get_link(link).unwrap().to_string()
+    }
+
+    fn decorators_kit(self) -> CascadeUniqueResolver<T, NonNullDeletionResolver<T, CascadeUsagesResolver<T, Self>>> {
+        let links = self;
+        let links = CascadeUsagesResolver::new(links);
+        let links = NonNullDeletionResolver::new(links);
+        let links = CascadeUniqueResolver::new(links);
+        return links;
     }
 }
 
