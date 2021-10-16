@@ -174,7 +174,7 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
 
         let sources_count = self.count_by([any, old, any]).as_();
         let targets_count = self.count_by([any, any, old]).as_();
-        let link = link.unwrap();
+        let link = unsafe { link.unwrap_unchecked() };
         if sources_count == 0 &&
             targets_count == 0 &&
             Point::is_full(link.as_slice()) {
@@ -195,7 +195,7 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         // TODO: maybe `unwrap_unchecked()`
         for index in usages {
             if index != old {
-                let usage = self.get_link(index).unwrap(); // TODO: 100% some
+                let usage = unsafe { self.get_link(index).unwrap_unchecked() }; // TODO: 100% some
                 self.update(index, new, usage.target);
             }
         }
@@ -208,7 +208,7 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
 
         for index in usages {
             if index != old {
-                let usage = self.get_link(index).unwrap(); // TODO: 100% some
+                let usage = unsafe { self.get_link(index).unwrap_unchecked() }; // TODO: 100% some
                 self.update(index, usage.source, new);
             }
         }

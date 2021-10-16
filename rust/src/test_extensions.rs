@@ -54,8 +54,8 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
                     let source = rand::thread_rng().gen_range(address.clone());
                     let target = rand::thread_rng().gen_range(address);
                     let result = self.get_or_create(
-                        T::from_usize(source).unwrap(),
-                        T::from_usize(target).unwrap()
+                        unsafe { T::from_usize(source).unwrap_unchecked() },
+                        unsafe { T::from_usize(target).unwrap_unchecked() }
                     ).as_();
 
                     if result > count {
@@ -72,11 +72,6 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
 
             assert_eq!(self.count(), zero());
         }
-
-        self.each(|link| {
-            println!("{:?}->{:?}", link.source, link.target);
-            self.constants().r#continue
-        });
     }
 }
 
