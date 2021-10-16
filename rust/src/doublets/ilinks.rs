@@ -134,7 +134,22 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
     }
 
     fn get_link(&self, index: T) -> Option<Link<T>> {
-        self.get_generic_link(index).map(|link| link.collect())
+        // TODO: compare performance
+        // self.get_generic_link(index).map(|link| link.collect())
+
+        // TODO: Use cfg macro
+        let constants = self.constants();
+        if constants.is_external_reference(index) {
+            Some(Link::from_once(index))
+        } else {
+            let mut slice = None;
+            self.each_by(
+                |link| {
+                    slice = Some(link);
+                    return constants.r#break;
+                }, [index]);
+            return slice
+        }
     }
 
     fn count_usages(&self, index: T) -> T {
