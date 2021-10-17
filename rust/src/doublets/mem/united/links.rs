@@ -4,6 +4,7 @@ use std::mem::size_of;
 use std::ops::Index;
 
 use num_traits::{one, zero};
+use smallvec::SmallVec;
 
 use crate::doublets::data::IGenericLinks;
 use crate::doublets::data::LinksConstants;
@@ -172,7 +173,7 @@ impl<
             return r#break;
         }
 
-        let restrictions: Vec<T> = restrictions.collect();
+        let restrictions: SmallVec<[T; 3]> = restrictions.collect();
         let r#continue = constants.r#continue;
         let any = constants.any;
         let index = restrictions[constants.index_part.as_()];
@@ -289,7 +290,7 @@ impl<
     where
         L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
     {
-        let restrictions: Vec<T> = restrictions.into_iter().collect();
+        let restrictions: SmallVec<[T; 3]> = restrictions.into_iter().collect();
 
         if restrictions.len() == 0 {
             return self.get_total();
@@ -430,8 +431,8 @@ impl<
         Lr: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
         Ls: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
     {
-        let restrictions: Vec<T> = restrictions.into_iter().collect();
-        let substitution: Vec<T> = substitution.into_iter().collect();
+        let restrictions: SmallVec<[T; 3]> = restrictions.into_iter().collect();
+        let substitution: SmallVec<[T; 3]> = substitution.into_iter().collect();
         let constants = self.constants();
         let null = constants.null;
         let index = restrictions[constants.index_part.as_()];
@@ -470,7 +471,7 @@ impl<
     where
         L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
     {
-        let restrictions: Vec<T> = restrictions.into_iter().collect();
+        let restrictions: SmallVec<[T; 3]> = restrictions.into_iter().collect();
         let constants = self.constants();
         let header = self.get_header();
         let link = restrictions[constants.index_part.as_()];

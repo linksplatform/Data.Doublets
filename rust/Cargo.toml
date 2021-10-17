@@ -6,6 +6,7 @@ edition = "2018"
 [dependencies]
 static_assertions = "0.1"
 num-traits = "0.2"
+smallvec = "1.7.0"
 memmap = "0.7.0"
 rand = "0.8.0"
 libc = "0.1.0"
