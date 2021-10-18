@@ -1,7 +1,9 @@
+use num_traits::ToPrimitive;
 use crate::tests::make_mem;
 use crate::tests::make_links;
 use crate::doublets::{ILinksExtensions, Link};
-use crate::doublets::data::IGenericLinks;
+use crate::doublets::data::{AddrToRaw, IGenericLinks, LinksConstants, RawToAddr};
+use crate::num::ToSigned;
 
 #[test]
 fn create() {
@@ -90,4 +92,18 @@ fn delete_all_usages() {
     links.delete_usages(root);
 
     assert_eq!(links.count(), 2);
+}
+
+#[test]
+fn hybrid() {
+    let constants = LinksConstants::via_only_external(true);
+
+    let to_raw = AddrToRaw::new();
+    let to_adr = RawToAddr::new();
+
+    let address = 'c' as usize;
+    let raw = to_raw.convert(address);
+
+    assert_eq!(to_adr.convert(raw), address);
+    assert!(constants.is_external_reference(raw));
 }

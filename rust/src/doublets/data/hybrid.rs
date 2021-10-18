@@ -16,11 +16,10 @@ impl<T: LinkType> Hybrid<T> {
         if value == zero() && external {
             Self::external_zero()
         } else {
-            let absolute = value;
             if external {
-                T::MAX - absolute
+                T::MAX - value + one()
             } else {
-                absolute
+                value
             }
         }
     }
@@ -57,10 +56,6 @@ impl<T: LinkType> Hybrid<T> {
         }
         .as_();
         T::from_usize(abs).unwrap()
-    }
-
-    pub fn as_usize(&self) -> usize {
-        self.value.as_()
     }
 
     pub fn as_value(&self) -> T {
