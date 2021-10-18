@@ -76,6 +76,27 @@ impl<
         new
     }
 
+    pub fn with_constants(mem: M, constants: LinksConstants<T>) -> Links<
+        T, M, LinksSourcesRecursionlessSizeBalancedTree<T>, LinksTargetsRecursionlessSizeBalancedTree<T>, UnusedLinks<T>
+    > {
+        let links = mem.get_ptr();
+        let header = links;
+        let sources = LinksSourcesRecursionlessSizeBalancedTree::new(constants.clone(), links, header);
+        let targets = LinksTargetsRecursionlessSizeBalancedTree::new(constants.clone(), links, header);
+        let unused = UnusedLinks::new(links, header);
+        let mut new = Links::<T, M, LinksSourcesRecursionlessSizeBalancedTree<T>, LinksTargetsRecursionlessSizeBalancedTree<T>, UnusedLinks<T>> {
+            mem,
+            reserve_step: Self::DEFAULT_LINKS_SIZE_STEP,
+            constants,
+            sources,
+            targets,
+            unused,
+        };
+
+        new.init();
+        new
+    }
+
     fn init(&mut self) {
         if self.mem.reserved_mem() < self.reserve_step {
             self.mem.reserve_mem(self.reserve_step).unwrap();

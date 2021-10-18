@@ -3,8 +3,8 @@ use std::fmt::{Debug, Display};
 use std::hash::Hash;
 use std::iter::Step;
 
-pub trait Num: PrimInt + Default + AsPrimitive<usize> + Debug {}
-impl<All: PrimInt + Default + AsPrimitive<usize> + Debug> Num for All {}
+pub trait Num: PrimInt + Default + AsPrimitive<usize> + Debug + Hash {}
+impl<All: PrimInt + Default + AsPrimitive<usize> + Debug + Hash> Num for All {}
 
 pub trait SignNum: Num + Signed + FromPrimitive {}
 impl<All: Num + Signed + FromPrimitive> SignNum for All {}

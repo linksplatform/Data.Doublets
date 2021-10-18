@@ -22,6 +22,7 @@ pub struct LinksConstants<T: LinkType> {
     pub external_range: Option<RangeInclusive<T>>,
 }
 
+// TODO: use Options style
 impl<T: LinkType> LinksConstants<T> {
     fn default_target_part() -> T {
         T::one() + one()

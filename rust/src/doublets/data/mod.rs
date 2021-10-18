@@ -3,6 +3,7 @@ mod hybrid;
 mod ilinks;
 mod links_constants;
 mod point;
+mod sequences;
 
 pub use ilinks::IGenericLinks;
 pub use ilinks::IGenericLinksExtensions;
@@ -13,3 +14,5 @@ pub use point::Point;
 
 pub use converters::RawToAddr;
 pub use converters::AddrToRaw;
+
+pub use sequences::StoppableWalker;

@@ -7,6 +7,14 @@
 #![feature(option_result_unwrap_unchecked)]
 #![feature(test)]
 #![feature(ptr_internals)]
+#![feature(generators)]
+#![feature(generator_trait)]
+#![feature(in_band_lifetimes)]
+#![feature(associated_type_defaults)]
+#![feature(adt_const_params)]
+#![feature(generic_const_exprs)]
+#![feature(const_generics_defaults)]
+#![feature(inherent_associated_types)]
 
 mod doublets;
 mod mem;
@@ -15,6 +23,7 @@ mod num;
 mod test_extensions;
 mod tests;
 mod bench;
+mod sequences;
 
 //#[cfg(test)]
 //mod tests {
