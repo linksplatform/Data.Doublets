@@ -1,19 +1,25 @@
 use std::default::default;
 
 use num_traits::{one, zero};
+use smallvec::SmallVec;
 
 use crate::doublets::data;
+use crate::doublets::data::Point;
+use crate::doublets::decorators::{
+    CascadeUniqueResolver, CascadeUsagesResolver, NonNullDeletionResolver,
+};
 use crate::doublets::link::Link;
 use crate::num::LinkType;
-use crate::doublets::data::Point;
-use crate::doublets::decorators::{CascadeUsagesResolver, NonNullDeletionResolver, CascadeUniqueResolver};
 
-pub trait ILinks<T: LinkType>: data::IGenericLinks<T> + data::IGenericLinksExtensions<T> + Sized {}
+pub trait ILinks<T: LinkType>:
+    data::IGenericLinks<T>/* + data::IGenericLinksExtensions<T>*/ + Sized
+{
+}
 
 pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
     fn count_by<L>(&self, restrictions: L) -> T
-        where
-            L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>,
+    where
+        L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
     {
         self.count_generic(restrictions)
     }
@@ -27,9 +33,9 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
     }
 
     fn each_by<H, L>(&self, mut handler: H, restrictions: L) -> T
-        where
-            H: FnMut(Link<T>) -> T,
-            L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>,
+    where
+        H: FnMut(Link<T>) -> T,
+        L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
     {
         let constants = self.constants();
         let index = constants.index_part.as_();
@@ -44,8 +50,8 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
 
     // TODO: maybe create `par_each`
     fn each<H>(&self, handler: H) -> T
-        where
-            H: FnMut(Link<T>) -> T,
+    where
+        H: FnMut(Link<T>) -> T,
     {
         self.each_by(handler, [])
     }
@@ -57,7 +63,7 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
     fn delete(&mut self, index: T) -> T {
         // TODO: maybe change `delete_generic`
         self.delete_generic([index]);
-        return index
+        return index;
     }
 
     fn delete_all(&mut self) {
@@ -75,18 +81,24 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
 
     // TODO: use .del().query()
     // TODO: maybe `query: Link<T>`
-    fn delete_query<L>(&mut self, query: L)
-        where
-            L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>
+    fn delete_query<L: Clone>(&mut self, query: L)
+    where
+        L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
     {
-        let query: Vec<T> = query.into_iter().collect();
-        let len = self.count_by(query.clone()).as_();
-        let mut vec = Vec::with_capacity(len);
+
         let constants = self.constants();
-        self.each_by(|link| {
-            vec.push(link.index);
-            constants.r#continue
-        }, query);
+        // TODO: use `Link::LEN`
+        let query: SmallVec<[T; 3]> = query.into_iter().collect();
+        let len = self.count_by(query.clone()).as_();
+        let mut vec: SmallVec<[T; 1024]> = SmallVec::with_capacity(len);
+
+        self.each_by(
+            |link| {
+                vec.push(link.index);
+                constants.r#continue
+            },
+            query,
+        );
 
         for index in vec.into_iter().rev() {
             self.delete(index);
@@ -117,7 +129,7 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         self.each_by(
             |link| {
                 index = link.index;
-                return constants.r#break;
+                constants.r#break
             },
             [constants.any, source, target],
         );
@@ -147,8 +159,10 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
                 |link| {
                     slice = Some(link);
                     return constants.r#break;
-                }, [index]);
-            return slice
+                },
+                [index],
+            );
+            return slice;
         }
     }
 
@@ -157,14 +171,13 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         let any = constants.any;
         // TODO: expect
         let link = self.get_link(index).unwrap();
-
-        let mut usage_source = self.count_by([any, link.index, any]);
-        if link.index == link.source {
+        let mut usage_source = self.count_by([any, index, any]);
+        if index == link.source {
             usage_source = usage_source - one();
         }
 
-        let mut usage_target = self.count_by([any, any, link.target]);
-        if link.index == link.target {
+        let mut usage_target = self.count_by([any, any, index]);
+        if index == link.target {
             usage_target = usage_target - one();
         }
 
@@ -172,7 +185,7 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
     }
 
     fn has_usages(&self, link: T) -> bool {
-        self.count_usages(link) > zero()
+        self.count_usages(link) != zero()
     }
 
     // TODO: old: `merge_usages`
@@ -190,9 +203,7 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         let sources_count = self.count_by([any, old, any]).as_();
         let targets_count = self.count_by([any, any, old]).as_();
         let link = link.unwrap();
-        if sources_count == 0 &&
-            targets_count == 0 &&
-            Point::is_full(link.as_slice()) {
+        if sources_count == 0 && targets_count == 0 && Point::is_full(link.clone()) {
             return new;
         }
 
@@ -202,10 +213,13 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         }
 
         let mut usages = Vec::with_capacity(sources_count);
-        self.each_by(|link| {
-            usages.push(link.index);
-            constants.r#continue
-        }, [any, old, any]);
+        self.each_by(
+            |link| {
+                usages.push(link.index);
+                constants.r#continue
+            },
+            [any, old, any],
+        );
 
         // TODO: maybe `unwrap_unchecked()`
         for index in usages {
@@ -216,10 +230,13 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         }
 
         let mut usages = Vec::with_capacity(targets_count);
-        self.each_by(|link| {
-            usages.push(link.index);
-            constants.r#continue
-        }, [any, any, old]);
+        self.each_by(
+            |link| {
+                usages.push(link.index);
+                constants.r#continue
+            },
+            [any, any, old],
+        );
 
         for index in usages {
             if index != old {
@@ -244,12 +261,13 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         self.update(link, null, null);
     }
 
-    fn format(&self, link: T) -> String {
-        // TODO: expect
-        self.get_link(link).unwrap().to_string()
+    fn format(&self, link: T) -> Option<String> {
+        self.get_link(link).map(|link| link.to_string())
     }
 
-    fn decorators_kit(self) -> CascadeUniqueResolver<T, NonNullDeletionResolver<T, CascadeUsagesResolver<T, Self>>> {
+    fn decorators_kit(
+        self,
+    ) -> CascadeUniqueResolver<T, NonNullDeletionResolver<T, CascadeUsagesResolver<T, Self>>> {
         let links = self;
         let links = CascadeUsagesResolver::new(links);
         let links = NonNullDeletionResolver::new(links);
