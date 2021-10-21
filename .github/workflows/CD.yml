@@ -41,6 +41,7 @@ jobs:
           conan create platform.data/all platform.data/0.1.0@ -pr=linksplatform
           conan create platform.memory/all platform.memory/0.1.0@ -pr=linksplatform
           conan create platform.threading/all platform.threading/0.1.0@ -pr=linksplatform
+          conan create platform.setters/all platform.setters/0.0.1@ -pr=linksplatform
       - name: Test C++ and scan-build
         run: |
           $cmake_flags="-DCMAKE_BUILD_TYPE=Release -DLINKS_PLATFORM_TESTS=TRUE"
