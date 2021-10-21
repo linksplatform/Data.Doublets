@@ -267,11 +267,11 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
 
     fn decorators_kit(
         self,
-    ) -> CascadeUniqueResolver<T, NonNullDeletionResolver<T, CascadeUsagesResolver<T, Self>>> {
+    ) -> NonNullDeletionResolver<T, Self> {
         let links = self;
-        let links = CascadeUsagesResolver::new(links);
+        //let links = CascadeUsagesResolver::new(links);
         let links = NonNullDeletionResolver::new(links);
-        let links = CascadeUniqueResolver::new(links);
+        //let links = CascadeUniqueResolver::new(links);
         return links;
     }
 }

@@ -5,6 +5,7 @@ use std::borrow::BorrowMut;
 use std::default::default;
 use std::marker::PhantomData;
 use num_traits::zero;
+use smallvec::SmallVec;
 
 pub struct NonNullDeletionResolver<T: LinkType, Links: ILinks<T>> {
     links: Links,
@@ -57,7 +58,7 @@ impl<T: LinkType, Links: ILinks<T>> IGenericLinks<T> for NonNullDeletionResolver
     where
         L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>
     {
-        let restrictions: Vec<T> = restrictions.into_iter().collect();
+        let restrictions: SmallVec<[_; 1]> = restrictions.into_iter().collect();
         let constants = self.constants();
         let index = restrictions[constants.index_part.as_()];
         let null = constants.null;

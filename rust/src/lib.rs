@@ -8,13 +8,13 @@
 #![feature(test)]
 #![feature(ptr_internals)]
 
-mod doublets;
-mod mem;
-mod methods;
-mod num;
-mod test_extensions;
-mod tests;
-mod bench;
+pub mod doublets;
+pub mod mem;
+pub mod methods;
+pub mod num;
+pub mod test_extensions;
+pub mod tests;
+pub mod bench;
 
 //#[cfg(test)]
 //mod tests {

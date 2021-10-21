@@ -395,7 +395,7 @@ impl<
         //panic!("not supported");
     }
 
-    fn create_generic<L>(&mut self, restrictions: L) -> T
+    fn create_generic<L>(&mut self, _: L) -> T
     where
         L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
     {
@@ -431,7 +431,7 @@ impl<
         Lr: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
         Ls: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
     {
-        let restrictions: SmallVec<[T; 3]> = restrictions.into_iter().collect();
+        let restrictions: SmallVec<[T; 1]> = restrictions.into_iter().collect();
         let substitution: SmallVec<[T; 3]> = substitution.into_iter().collect();
         let constants = self.constants();
         let null = constants.null;
@@ -471,7 +471,7 @@ impl<
     where
         L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
     {
-        let restrictions: SmallVec<[T; 3]> = restrictions.into_iter().collect();
+        let restrictions: SmallVec<[T; 1]> = restrictions.into_iter().collect();
         let constants = self.constants();
         let header = self.get_header();
         let link = restrictions[constants.index_part.as_()];
