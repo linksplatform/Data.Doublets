@@ -25,8 +25,10 @@ jobs:
       - name: Conan setup
         run: |
           conan profile new linksplatform --detect
-          conan profile update settings.compiler=Visual Studio linksplatform
-          conan profile update settings.compiler.version=16 linksplatform
+          conan profile update settings.compiler=clang linksplatform
+          conan profile update settings.compiler.version=13 linksplatform
+          conan profile update settings.compiler.libcxx=libstdc++11 linksplatform
+          conan profile update env.CXX=clang++ linksplatform
           conan profile show linksplatform
       - name: Conan install packages
         run: |
@@ -44,7 +46,7 @@ jobs:
           conan create platform.setters/all platform.setters/0.0.1@ -pr=linksplatform
       - name: Test C++ and scan-build
         run: |
-          $cmake_flags="-DCMAKE_BUILD_TYPE=Release -DLINKS_PLATFORM_TESTS=TRUE"
+          $cmake_flags="-DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=clang -DLINKS_PLATFORM_TESTS=TRUE"
           $cmake_build_dir="build"
           cd cpp && mkdir $cmake_build_dir && cd $cmake_build_dir
           conan install $pwd/.. -pr=linksplatform --build=missing
