@@ -15,9 +15,9 @@ jobs:
   bench_rust:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Bench
         run: |
-          ls
           cd rust
           cargo test --release --package doublets --lib tests::crud::random_creations_and_deletions -- --exact
 
