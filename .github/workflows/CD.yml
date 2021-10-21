@@ -19,7 +19,7 @@ jobs:
       - name: Bench
         run: |
           cd rust
-          cargo test --release --package doublets --lib tests::crud::random_creations_and_deletions -- --exact
+          cargo +nightly test --release --package doublets --lib tests::crud::random_creations_and_deletions -- --exact
 
   testAndDeploy:
     needs: [bench_rust]
