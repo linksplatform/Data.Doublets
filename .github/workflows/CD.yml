@@ -16,6 +16,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Rustup nightly
+        run: rustup toolchain install nightly
       - name: Bench
         run: |
           cd rust
