@@ -12,7 +12,14 @@ env:
   SCRIPTS_BASE_URL: https://raw.githubusercontent.com/linksplatform/Scripts/master/MultiProjectRepository
 
 jobs:
+  bench_rust:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Bench
+        run: cargo test --release --package doublets --lib tests::crud::random_creations_and_deletions -- --exact
+
   testAndDeploy:
+    needs: [bench_rust]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
