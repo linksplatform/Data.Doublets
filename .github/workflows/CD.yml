@@ -12,6 +12,44 @@ env:
   SCRIPTS_BASE_URL: https://raw.githubusercontent.com/linksplatform/Scripts/master/MultiProjectRepository
 
 jobs:
+  testCpp:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          submodules: true
+
+      - name: Conan install
+        run: pip install conan
+
+      - name: Conan setup
+        run: |
+          conan profile new linksplatform --detect
+          conan profile update settings.compiler=msvc linksplatform
+          conan profile update settings.compiler.version=19 linksplatform
+          conan profile show linksplatform
+      - name: Conan install packages
+        run: |
+          git clone https://github.com/linksplatform/conan-center-index
+          cd conan-center-index && git checkout only-development && cd recipes
+          conan create platform.converters/all platform.converters/0.1.0@ -pr=linksplatform
+          conan create platform.ranges/all platform.ranges/0.1.2@ -pr=linksplatform
+          conan create platform.random/all platform.random/0.1.0@ -pr=linksplatform
+          conan create platform.collections/all platform.collections/0.1.0@ -pr=linksplatform
+          conan create platform.collections.methods/all platform.collections.methods/0.1.0@ -pr=linksplatform
+          conan create platform.data/all platform.data/0.1.0@ -pr=linksplatform
+          conan create platform.memory/all platform.memory/0.1.0@ -pr=linksplatform
+          conan create platform.threading/all platform.threading/0.1.0@ -pr=linksplatform
+      - name: Test C++ and scan-build
+        run: |
+          cmake_flags="-DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=clang++ -DLINKS_PLATFORM_TESTS=ON"
+          cmake_build_dir="build"
+          cd cpp && mkdir $cmake_build_dir && cd $cmake_build_dir
+          conan install .. -if=. -pr=linksplatform --build=missing
+          cmake .. $cmake_flags
+          cmake --build .
+          ls
+
   testAndDeploy:
     runs-on: ubuntu-latest
     steps:
