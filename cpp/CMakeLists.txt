@@ -11,7 +11,6 @@ project(Platform.Data.Doublets CXX)
 set(CMAKE_CXX20_STANDARD_COMPILE_OPTION "-std:c++latest")
 set(CMAKE_CXX20_EXTENSION_COMPILE_OPTION "-std:c++latest")
 set(CXX_STANDARD 20)
-target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
 
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS)
