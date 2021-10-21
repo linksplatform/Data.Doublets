@@ -17,6 +17,7 @@ jobs:
     steps:
       - name: Bench
         run: |
+          ls
           cd rust
           cargo test --release --package doublets --lib tests::crud::random_creations_and_deletions -- --exact
 
