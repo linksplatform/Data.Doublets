@@ -16,7 +16,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Bench
-        run: cargo test --release --package doublets --lib tests::crud::random_creations_and_deletions -- --exact
+        run: |
+          cd rust
+          cargo test --release --package doublets --lib tests::crud::random_creations_and_deletions -- --exact
 
   testAndDeploy:
     needs: [bench_rust]
