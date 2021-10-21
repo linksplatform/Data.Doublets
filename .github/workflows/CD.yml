@@ -25,8 +25,8 @@ jobs:
       - name: Conan setup
         run: |
           conan profile new linksplatform --detect
-          conan profile update settings.compiler=msvc linksplatform
-          conan profile update settings.compiler.version=19.0 linksplatform
+          conan profile update settings.compiler=Visual Studio linksplatform
+          conan profile update settings.compiler.version=16 linksplatform
           conan profile show linksplatform
       - name: Conan install packages
         run: |
