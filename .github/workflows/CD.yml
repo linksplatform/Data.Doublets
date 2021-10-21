@@ -46,7 +46,7 @@ jobs:
           $cmake_flags="-DCMAKE_BUILD_TYPE=Release -DLINKS_PLATFORM_TESTS=TRUE"
           $cmake_build_dir="build"
           cd cpp && mkdir $cmake_build_dir && cd $cmake_build_dir
-          conan install $pwd/.. -if=. -pr=linksplatform --build=missing
+          conan install $pwd/.. -pr=linksplatform --build=missing
           cmake .. $cmake_flags
           cmake --build .
           ls
