@@ -68,6 +68,7 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
                 assert_eq!(created, self.count().as_());
             }
 
+            // TODO: maybe add cfg! flag
             //for i in one()..=self.count() {
             //    self.update(i, zero(), zero());
             //}
