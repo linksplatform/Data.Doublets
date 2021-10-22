@@ -73,26 +73,21 @@ auto main() -> int {
     //     }, std::vector<int>{});
     // }
 
-    for (int i = 0; i < 10; i++)
-    {
-        links.Create();
-    }
-
-    links.RunRandomCreations(300);
+    links.TestRandomCreationsAndDeletions(1000);
 
     auto end = std::chrono::high_resolution_clock::now();
 
-    auto fout = std::ofstream("out");
-
-    links.Each([&](auto&& link) {
-       if (link[1] == 0) fout << link[0]; else fout << link[1]; fout << "->";
-       if (link[2] == 0) fout << link[0]; else fout << link[2]; fout << "\n";
-       return constants.Continue;
-    }, std::vector<int>{});
+    //auto fout = std::ofstream("out");
+//
+    //links.Each([&](auto&& link) {
+    //   if (link[1] == 0) fout << link[0]; else fout << link[1]; fout << "->";
+    //   if (link[2] == 0) fout << link[0]; else fout << link[2]; fout << "\n";
+    //   return constants.Continue;
+    //}, std::vector<int>{});
 
     //std::cout << "links count: " << links.Count(std::vector<int>{}) << std::endl;
     std::cout << "count: " << links.Count() << std::endl;
-    std::cout << "root count: " << links.Count(_, root) << std::endl;
+    //std::cout << "root count: " << links.Count(_, root) << std::endl;
     std::cout << "elapsed: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << "ms" << std::endl;
 
 }

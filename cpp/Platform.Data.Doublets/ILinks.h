@@ -13,6 +13,52 @@
 
         //using Data::ILinks<Self, TLink, LinksConstants<TLink>>::Count;
 
+
+        void TestRandomCreationsAndDeletions(std::size_t maximumOperationsPerCycle)
+        {
+            auto&& links = *this;
+            for (auto N = 1; N < maximumOperationsPerCycle; N++)
+            {
+                auto& random = Platform::Random::RandomHelpers::Default;
+                auto created = 0UL;
+                auto deleted = 0UL;
+                for (auto i = 0; i < N; i++)
+                {
+                    auto linksCount = links.Count();
+                    auto createPoint = Platform::Random::NextBoolean(random);
+                    if (linksCount >= 2 && createPoint)
+                    {
+                        //auto linksAddressRange = Platform::Ranges::Range{1, linksCount};
+                        auto source = Platform::Random::NextUInt64(random, {1, linksCount});
+                        auto target = Platform::Random::NextUInt64(random, {1, linksCount}); //-V3086
+                        auto resultLink = links.GetOrCreate(source, target);
+                        if (resultLink > linksCount)
+                        {
+                            created++;
+                        }
+                    }
+                    else
+                    {
+                        links.Create();
+                        created++;
+                    }
+                }
+                //Assert.True(created == addressToUInt64Converter.Convert(links.Count()));
+                auto count = links.Count();
+                for (auto i = 0; i < count; i++)
+                {
+                    auto link = i + 1;
+                    //if (links.Exists(link))
+                    {
+                        links.Update(link, 0, 0);
+                        //links.Delete(link);
+                        deleted++;
+                    }
+                }
+                //Assert.True(addressToUInt64Converter.Convert(links.Count()) == 0L);
+            }
+        }
+
         void RunRandomCreations(std::size_t amountOfCreations)
         {
             using namespace Platform::Random;
@@ -66,6 +112,12 @@
         {
             auto& links = *this;
             return base::Update(LinkAddress(link), Link{link, newSource, newTarget});
+        }
+
+        auto Delete(TLink link)
+        {
+            auto& links = *this;
+            base::Delete(LinkAddress(link));
         }
 
 
