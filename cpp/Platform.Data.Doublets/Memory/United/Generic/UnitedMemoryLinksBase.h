@@ -410,6 +410,27 @@
             return freeLink;
         }
 
+        auto Delete(auto&& restrictions)
+        {
+            auto& header = GetHeaderReference();
+            auto link = restrictions[Constants.IndexPart];
+            if (LessThan(link, header.AllocatedLinks))
+            {
+                _UnusedLinksListMethods->AttachAsFirst(link);
+            }
+            else if (AreEqual(link, header.AllocatedLinks))
+            {
+                header.AllocatedLinks = Decrement(header.AllocatedLinks);
+                _memory.UsedCapacity(_memory.UsedCapacity() - LinkSizeInBytes);
+                while (GreaterThan(header.AllocatedLinks, GetZero()) && IsUnusedLink(header.AllocatedLinks))
+                {
+                    _UnusedLinksListMethods->Detach(header.AllocatedLinks);
+                    header.AllocatedLinks = Decrement(header.AllocatedLinks);
+                    _memory.UsedCapacity(_memory.UsedCapacity() - LinkSizeInBytes);
+                }
+            }
+        }
+
         auto GetLinkStruct(TLink linkIndex)
         {
             auto& link = this->GetLinkReference(linkIndex);

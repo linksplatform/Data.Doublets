@@ -53,7 +53,7 @@ auto main() -> int {
     auto constants = links.Constants;
     auto _ = constants.Any;
 
-    auto root = links.Create();
+    //auto root = links.Create();
     // int n = 5;
     // while (n--)
     // {
@@ -73,7 +73,7 @@ auto main() -> int {
     //     }, std::vector<int>{});
     // }
 
-    links.TestRandomCreationsAndDeletions(1000);
+    links.TestRandomCreationsAndDeletions(10000);
 
     auto end = std::chrono::high_resolution_clock::now();
 

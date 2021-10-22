@@ -51,7 +51,7 @@
                     //if (links.Exists(link))
                     {
                         links.Update(link, 0, 0);
-                        //links.Delete(link);
+                        links.Delete(link);
                         deleted++;
                     }
                 }
