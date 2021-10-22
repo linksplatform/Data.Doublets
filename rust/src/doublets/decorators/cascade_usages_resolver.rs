@@ -6,6 +6,7 @@ use crate::doublets::{ILinks, ILinksExtensions};
 use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstants};
 use crate::num::LinkType;
 use num_traits::zero;
+use smallvec::SmallVec;
 
 pub struct CascadeUsagesResolver<T: LinkType, Links: ILinks<T>> {
     links: Links,
@@ -59,7 +60,7 @@ impl<T: LinkType, Links: ILinks<T>> IGenericLinks<T> for CascadeUsagesResolver<T
         L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>
     {
         let links = self.links.borrow_mut();
-        let restrictions: Vec<T> = restrictions.into_iter().collect();
+        let restrictions: SmallVec<[T; 3]> = restrictions.into_iter().collect();
         let index = restrictions[links.constants().index_part.as_()];
 
         links.delete_usages(index);

@@ -6,6 +6,7 @@ use crate::doublets::{ILinks, ILinksExtensions};
 use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstants};
 use crate::num::LinkType;
 use num_traits::zero;
+use smallvec::SmallVec;
 
 pub struct UsagesValidator<T: LinkType, Links: ILinks<T>> {
     links: Links,
@@ -53,7 +54,7 @@ impl<T: LinkType, Links: ILinks<T>> IGenericLinks<T> for UsagesValidator<T, Link
     {
         let links = self.links.borrow_mut();
         let constants = links.constants();
-        let restrictions: Vec<T> = restrictions.into_iter().collect();
+        let restrictions: SmallVec<[T; 3]> = restrictions.into_iter().collect();
 
         let index = constants.index_part.as_();
         assert!(links.has_usages(restrictions[index]),
@@ -67,7 +68,7 @@ impl<T: LinkType, Links: ILinks<T>> IGenericLinks<T> for UsagesValidator<T, Link
     {
         let links = self.links.borrow_mut();
         let constants = links.constants();
-        let restrictions: Vec<T> = restrictions.into_iter().collect();
+        let restrictions: SmallVec<[T; 3]> = restrictions.into_iter().collect();
 
         let index = constants.index_part.as_();
         assert!(links.has_usages(restrictions[index]),

@@ -90,7 +90,7 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         // TODO: use `Link::LEN`
         let query: SmallVec<[T; 3]> = query.into_iter().collect();
         let len = self.count_by(query.clone()).as_();
-        let mut vec: SmallVec<[T; 1024]> = SmallVec::with_capacity(len);
+        let mut vec = Vec::with_capacity(len);
 
         self.each_by(
             |link| {
@@ -212,7 +212,7 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
             return new;
         }
 
-        let mut usages = Vec::with_capacity(sources_count);
+        let mut usages = SmallVec::<[T; 1024]>::with_capacity(sources_count);
         self.each_by(
             |link| {
                 usages.push(link.index);
@@ -229,7 +229,7 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
             }
         }
 
-        let mut usages = Vec::with_capacity(targets_count);
+        let mut usages = SmallVec::<[T; 1024]>::with_capacity(sources_count);
         self.each_by(
             |link| {
                 usages.push(link.index);
@@ -267,11 +267,11 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
 
     fn decorators_kit(
         self,
-    ) -> NonNullDeletionResolver<T, Self> {
+    ) -> CascadeUniqueResolver<T, NonNullDeletionResolver<T, CascadeUsagesResolver<T, Self>>> {
         let links = self;
-        //let links = CascadeUsagesResolver::new(links);
+        let links = CascadeUsagesResolver::new(links);
         let links = NonNullDeletionResolver::new(links);
-        //let links = CascadeUniqueResolver::new(links);
+        let links = CascadeUniqueResolver::new(links);
         return links;
     }
 }

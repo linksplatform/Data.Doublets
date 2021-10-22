@@ -5,6 +5,7 @@ use std::borrow::BorrowMut;
 use std::default::default;
 use std::marker::PhantomData;
 use libc::read;
+use smallvec::SmallVec;
 
 pub struct UniqueResolver<T: LinkType, Links: ILinks<T>> {
     links: Links,
@@ -74,8 +75,8 @@ impl<T: LinkType, Links: ILinks<T>> IGenericLinks<T> for UniqueResolver<T, Links
 
         let links = self.links.borrow_mut();
         let constants = links.constants();
-        let restrictions: Vec<T> = restrictions.into_iter().collect();
-        let substitution: Vec<T> = substitution.into_iter().collect();
+        let restrictions: SmallVec<[T; 3]> = restrictions.into_iter().collect();
+        let substitution: SmallVec<[T; 3]> = substitution.into_iter().collect();
         let index_part = constants.index_part.as_();
         let source_part = constants.source_part.as_();
         let target_part = constants.target_part.as_();
