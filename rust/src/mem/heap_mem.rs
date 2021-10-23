@@ -26,24 +26,19 @@ impl HeapMem {
     }
 
     fn on_reserved(&mut self, old_capacity: usize, new_capacity: usize) {
-        unsafe fn block_zero(ptr: *mut u8, capacity: usize) {
-            for i in 0..capacity {
-                *(ptr.offset(i as isize)) = 0
-            }
-        }
-
+        let layout = Layout::array::<u8>(new_capacity).unwrap(); // TODO: expect
         if self.get_ptr() == null_mut() {
             unsafe {
-                /// TODO: use `std::alloc`
-                self.set_ptr(libc::malloc(new_capacity as u64) as *mut u8);
-                block_zero(self.get_ptr(), new_capacity);
+                let ptr = std::alloc::alloc_zeroed(layout);
+                self.set_ptr(ptr);
             }
         } else {
             unsafe {
-                let mut_ptr = self.get_ptr() as *mut libc::c_void;
-                /// TODO: use `std::alloc`
-                self.set_ptr(libc::realloc(mut_ptr, new_capacity as u64) as *mut u8);
-                block_zero(self.get_ptr(), new_capacity - old_capacity)
+                let ptr = self.get_ptr();
+                let offset = new_capacity - old_capacity;
+                let new = std::alloc::realloc(ptr, layout, new_capacity);
+                std::ptr::write_bytes(new.offset(old_capacity as isize), 0, offset);
+                self.set_ptr(new);
             }
         }
     }
@@ -82,6 +77,7 @@ impl ResizeableMem for HeapMem {
 
 impl Drop for HeapMem {
     fn drop(&mut self) {
-        unsafe { libc::free(self.get_ptr() as *mut libc::c_void) }
+        let layout = Layout::array::<u8>(self.reserved_mem()).unwrap(); // TODO: expect
+        unsafe { std::alloc::dealloc(self.get_ptr(), layout) }
     }
 }
