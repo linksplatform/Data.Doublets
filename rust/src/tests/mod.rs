@@ -19,3 +19,5 @@ mod decorators;
 mod crud;
 #[cfg(test)]
 mod sync;
+#[cfg(test)]
+mod trees;
