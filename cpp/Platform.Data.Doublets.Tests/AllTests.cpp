@@ -48,6 +48,7 @@ auto main() -> int {
     using namespace Memory::United::Generic;
 
     auto mem = FileMappedResizableDirectMemory("db.links");
+    mem.ReservedCapacity(1024*1024*1024);
     //auto mem = HeapResizableDirectMemory();
     auto links = UnitedMemoryLinks<int>(mem);
     auto constants = links.Constants;
@@ -73,7 +74,10 @@ auto main() -> int {
     //     }, std::vector<int>{});
     // }
 
-    links.TestRandomCreationsAndDeletions(10000);
+    for (auto i = 0; i < 10000000; i++) {
+        links.CreatePoint();
+    }
+    //links.TestRandomCreationsAndDeletions(10000);
 
     auto end = std::chrono::high_resolution_clock::now();
 

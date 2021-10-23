@@ -4,13 +4,15 @@
 
     template<typename Self, typename TLink>
     class LinksSizeBalancedTreeMethodsBase
-        : public Trees::SizeBalancedTreeMethods<Self, TLink>,
+        :
+          //public Trees::SizeBalancedTreeMethods<Self, TLink>,
+          public Trees::RecursionlessSizeBalancedTreeMethods<Self, TLink>,
           public ILinksTreeMethods<TLink>,
           public Interfaces::Polymorph<Self>
     {
         using Interfaces::Polymorph<Self>::self;
 
-        public: using methods = Trees::SizeBalancedTreeMethods<Self, TLink>;
+        public: using methods = Trees::RecursionlessSizeBalancedTreeMethods<Self, TLink>;
 
         public: TLink Break = 0;
         public: TLink Continue = 0;

@@ -126,5 +126,12 @@
             auto& links = *this;
             return links.Update(links.Create(), source, target);
         }
+
+        auto CreatePoint() -> TLink
+        {
+            auto& links = *this;
+            auto point = links.Create();
+            return links.Update(point, point, point);
+        }
     };
 }
