@@ -35,9 +35,11 @@ impl HeapMem {
         } else {
             unsafe {
                 let ptr = self.get_ptr();
-                let offset = new_capacity - old_capacity;
                 let new = std::alloc::realloc(ptr, layout, new_capacity);
-                std::ptr::write_bytes(new.offset(old_capacity as isize), 0, offset);
+                if old_capacity < new_capacity {
+                    let offset = new_capacity - old_capacity;
+                    std::ptr::write_bytes(new.offset(old_capacity as isize), 0, offset);
+                }
                 self.set_ptr(new);
             }
         }
