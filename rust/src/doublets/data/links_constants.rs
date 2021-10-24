@@ -89,10 +89,12 @@ impl<T: LinkType> LinksConstants<T> {
     }
 
     // TODO: Extensions
+    // TODO: later `is_internal`
     pub fn is_internal_reference(&self, address: T) -> bool {
         self.internal_range.contains(&address)
     }
 
+    // TODO: later `is_external`
     pub fn is_external_reference(&self, address: T) -> bool {
         self.external_range
             .clone()
