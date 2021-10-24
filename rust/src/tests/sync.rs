@@ -10,6 +10,7 @@ use crate::mem::ResizeableMem;
 use crate::doublets::mem::united;
 use std::ptr::Unique;
 
+// TODO: use safe slice
 unsafe impl<T: LinkType, M: ResizeableMem> Send for united::Links<T, M> {}
 unsafe impl<T: LinkType, M: ResizeableMem> Sync for united::Links<T, M> {}
 
