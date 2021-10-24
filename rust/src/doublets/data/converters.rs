@@ -10,7 +10,7 @@ impl AddrToRaw {
     }
 
     pub fn convert<T: LinkType>(&self, source: T) -> T {
-        Hybrid::new(source, true).as_value()
+        Hybrid::external(source).as_value()
     }
 }
 
@@ -22,6 +22,6 @@ impl RawToAddr {
     }
 
     pub fn convert<T: LinkType>(&self, source: T) -> T {
-        Hybrid::new(source, false).absolute()
+        Hybrid::internal(source).absolute()
     }
 }
