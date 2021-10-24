@@ -1,5 +1,6 @@
 extern crate test;
 
+use crate::doublets::decorators::NonNullDeletionResolver;
 use crate::doublets::mem::united;
 use crate::doublets::ILinksExtensions;
 use crate::mem::{FileMappedMem, HeapMem, ResizeableMem};
@@ -17,6 +18,25 @@ fn united_random_links(b: &mut Bencher) {
 }
 
 #[bench]
+fn united_over_points(b: &mut Bencher) {
+    let mem = make_mem();
+    let links = united::Links::<usize, _>::new(mem);
+    let mut links = NonNullDeletionResolver::new(links);
+    b.iter(|| {
+        let to_create = 100_000;
+        let mut vec = Vec::with_capacity(to_create);
+
+        for _ in 0..to_create {
+            vec.push(links.create_point());
+        }
+
+        for link in vec {
+            links.delete(link);
+        }
+    })
+}
+
+#[bench]
 fn heap_reserve(b: &mut Bencher) {
     let mut mem = HeapMem::new();
 
@@ -29,7 +49,7 @@ fn heap_reserve(b: &mut Bencher) {
 
 #[bench]
 fn file_reserve(b: &mut Bencher) {
-    // TODO: use TempFileMappedMem
+    // TODO: use `TempFileMappedMem`
     std::fs::remove_file("anonymous_@@_.file").unwrap();
     let mut mem = FileMappedMem::new("anonymous_@@_.file").unwrap();
 
