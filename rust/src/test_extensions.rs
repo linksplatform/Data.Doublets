@@ -1,4 +1,4 @@
-use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions};
+use crate::doublets::data::{Hybrid, IGenericLinks, IGenericLinksExtensions};
 use crate::doublets::ILinks;
 use crate::doublets::ILinksExtensions;
 use crate::doublets::Link;
@@ -39,6 +39,80 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
 
         self.delete(address);
         assert_eq!(self.count(), zero());
+    }
+
+    fn test_raw_numbers_crud(&mut self) {
+        let links = self;
+
+        let constants = links.constants();
+
+        let n106 = T::from(106 as usize);
+        let n107 = T::from(char::from_u32(107).unwrap() as usize);
+        let n108 = T::from(((-108_i32) as usize));
+
+        let h106 = Hybrid::external(n106.unwrap());
+        let h107 = Hybrid::new(n107.unwrap());
+        let h108 = Hybrid::new(n108.unwrap());
+
+        assert_eq!(h106.absolute().as_(), 106);
+        assert_eq!(h107.absolute().as_(), 107);
+        assert_eq!(h108.absolute().as_(), 108);
+
+        let address1 = links.create();
+        links.update(address1, h106.as_value(), h108.as_value());
+
+        let link = links.get_link(address1).unwrap();
+        assert_eq!(link.source, h106.as_value());
+        assert_eq!(link.target, h108.as_value());
+
+        let address2 = links.create();
+        links.update(address2, address1, h108.as_value());
+
+        let link = links.get_link(address2).unwrap();
+        assert_eq!(link.source, address1);
+        assert_eq!(link.target, h108.as_value());
+
+        let address3 = links.create();
+        links.update(address3, address1, address2);
+
+        let link = links.get_link(address3).unwrap();
+        assert_eq!(link.source, address1);
+        assert_eq!(link.target, address2);
+
+        let any = constants.any;
+        let r#break = constants.r#break;
+
+        let mut result = None;
+        links.each_by(|link| {
+            result = Some(link.index);
+            r#break
+        }, [any, h106.as_value(), h108.as_value()]);
+        assert_eq!(result, Some(address1));
+
+        let mut result = None;
+        links.each_by(|link| {
+            result = Some(link.index);
+            r#break
+        }, [any, h106.as_value(), h107.as_value()]);
+        assert_eq!(result, None);
+
+        let updated = links.update(address3, zero(), zero());
+        assert_eq!(updated, address3);
+
+        let link = links.get_link(updated).unwrap();
+        assert_eq!(link.source, zero());
+        assert_eq!(link.target, zero());
+        links.delete(updated);
+
+        assert_eq!(links.count(), T::from(2).unwrap());
+
+        let r#continue = links.constants().r#continue;
+        let mut result = None;
+        links.each(|link| {
+            result = Some(link.index);
+            r#continue
+        });
+        assert_eq!(result, Some(address2));
     }
 
     fn test_random_creations_and_deletions(&mut self, per_cycle: usize) {
