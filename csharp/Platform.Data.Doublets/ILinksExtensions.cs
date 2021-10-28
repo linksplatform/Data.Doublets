@@ -114,8 +114,8 @@ namespace Platform.Data.Doublets
         ///<para>Удаляет связь в указанном хранилище связей.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="links">
         ///<para>The links storage.</para>
@@ -139,8 +139,8 @@ namespace Platform.Data.Doublets
         ///<para>Удаляет все связи в указанном хранилище.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="links">
         ///<para>The links storage.</para>
@@ -166,8 +166,8 @@ namespace Platform.Data.Doublets
         ///<para>Ищет первую связь в первом хранилище.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="links">
         ///<para>The links storage.</para>
@@ -199,8 +199,8 @@ namespace Platform.Data.Doublets
         ///<para>Находит связь, которая удовлетворяет указанном ограничению, если такая существует в единственном экземпляре, в противном случае возвращает адрес связи по умолчанию.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="links">
         ///<para>The links storage.</para>
@@ -211,8 +211,8 @@ namespace Platform.Data.Doublets
         ///<para>Ограничение.</para>
         ///</param>
         ///<returns>
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Return result.</para>
+        ///<para>Возвращает результат.</para>
         ///</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IList<TLink> SingleOrDefault<TLink>(this ILinks<TLink> links, IList<TLink> query)
@@ -251,12 +251,12 @@ namespace Platform.Data.Doublets
         /// TODO: Возможно нужен метод, который именно выбрасывает исключения (EnsurePathExists)
         /// </remarks>
         ///<summary>
-        ///<para>.</para>
+        ///<para>Checks the existence of a base along the given path.</para>
         ///<para>Проверяет существование базы по данному пути.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="links">
         ///<para>The links storage.</para>
@@ -267,8 +267,8 @@ namespace Platform.Data.Doublets
         ///<para>Путь к хранилищу связей.</para>
         ///</param>
         ///<returns>
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Returns true if there is a path to the link or false if there is no path to the link.</para>
+        ///<para>Возвращает значение true в случае существание пути к связе или false в случае отстутсвии пути к связи.</para>
         ///</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool CheckPathExistance<TLink>(this ILinks<TLink> links, params TLink[] path)
@@ -310,24 +310,24 @@ namespace Platform.Data.Doublets
         ///<para>.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="root">
         ///<para>.</para>
         ///<para>.</para>
         ///</param>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links storage.</para>
+        ///<para>Хранилище связи.</para>
         ///</param>
         ///<param name="path">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Main link path.</para>
+        ///<para>Путь к главной связи.</para>
         ///</param>
         ///<returns>
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Returns the current link.</para>
+        ///<para>Возвращеает текущую связь.</para>
         ///</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLink GetByKeys<TLink>(this ILinks<TLink> links, TLink root, params int[] path)
@@ -345,24 +345,24 @@ namespace Platform.Data.Doublets
         ///<para>.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="root">
         ///<para>.</para>
         ///<para>.</para>
         ///</param>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links storage.</para>
+        ///<para>Хранилище связей.</para>
         ///</param>
         ///<param name="size">
         ///<para>.</para>
         ///<para>.</para>
         ///</param>
         ///<param name="index">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The link index.</para>
+        ///<para>Индекс связи.</para>
         ///</param>
         ///<returns>
         ///<para>.</para>
@@ -395,8 +395,8 @@ namespace Platform.Data.Doublets
         ///<para>Получеает индекс указанной связи в указанном хранилище.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="links">
         ///<para>The links storage.</para>
@@ -419,8 +419,8 @@ namespace Platform.Data.Doublets
         ///<para>Получает начало связи в указанном хранилище связей.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="links">
         ///<para>The links storage.</para>
@@ -442,8 +442,8 @@ namespace Platform.Data.Doublets
         ///<para>Получает начало связи в указанном хранилище связей.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="links">
         ///<para>The links storage.</para>
@@ -465,8 +465,8 @@ namespace Platform.Data.Doublets
         ///<para>Получает конец связи в указанном хранилище связей.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="links">
         ///<para>The links storage.</para>
@@ -488,8 +488,8 @@ namespace Platform.Data.Doublets
         ///<para>Получает конец связи в указанном хранилище связей.</para>
         ///</summary>
         ///<param name="Tlink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</param>
         ///<typeparam name="links">
         ///<para>The links storage.</para>
@@ -518,12 +518,12 @@ namespace Platform.Data.Doublets
         ///<para>.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links storage.</para>
+        ///<para>Хранилище связей.</para>
         ///</param>
           ///<param name="handler">
         ///<para>.</para>
@@ -537,29 +537,21 @@ namespace Platform.Data.Doublets
         public static bool Each<TLink>(this ILinks<TLink> links, Func<IList<TLink>, TLink> handler, params TLink[] restrictions)
             => EqualityComparer<TLink>.Default.Equals(links.Each(handler, restrictions), links.Constants.Continue);
 
-        /// <summary>
-        /// Выполняет проход по всем связям, соответствующим шаблону, вызывая обработчик (handler) для каждой подходящей связи.
-        /// </summary>
-        /// <param name="links">Хранилище связей.</param>
-        /// <param name="source">Значение, определяющее соответствующие шаблону связи. (Constants.Null - 0-я связь, обозначающая ссылку на пустоту в качестве начала, Constants.Any - любое начало, 1..∞ конкретное начало)</param>
-        /// <param name="target">Значение, определяющее соответствующие шаблону связи. (Constants.Null - 0-я связь, обозначающая ссылку на пустоту в качестве конца, Constants.Any - любой конец, 1..∞ конкретный конец)</param>
-        /// <param name="handler">Обработчик каждой подходящей связи.</param>
-        /// <returns>True, в случае если проход по связям не был прерван и False в обратном случае.</returns>
         ///<summary>
         ///<para>.</para>
         ///<para>.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="target">
         ///<para>.</para>
         ///<para>.</para>
         ///</param>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links storage.</para>
+        ///<para>Хранилище связей.</para>
         ///</param>
         ///<param name="handler">
         ///<para>.</para>
@@ -593,8 +585,8 @@ namespace Platform.Data.Doublets
         ///<para>.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="target">
         ///<para>.</para>
@@ -624,8 +616,8 @@ namespace Platform.Data.Doublets
         ///<para>.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="restrictions">
         ///<para>.</para>
@@ -661,8 +653,8 @@ namespace Platform.Data.Doublets
         ///<para>.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="restrictions">
         ///<para>.</para>
@@ -705,8 +697,8 @@ namespace Platform.Data.Doublets
         ///<para>.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="source">
         ///<para>.</para>
@@ -717,8 +709,8 @@ namespace Platform.Data.Doublets
         ///<para>.</para>
         ///</param>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links storage.</para>
+        ///<para>Хранилище связей.</para>
         ///</param>
         ///<returns>
         ///<para>.</para>
@@ -734,16 +726,16 @@ namespace Platform.Data.Doublets
         ///<para>.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="restrictions">
         ///<para>.</para>
         ///<para>.</para>
         ///</param>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links storage.</para>
+        ///<para>Хранилище связей.</para>
         ///</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureLinkExists<TLink>(this ILinks<TLink> links, IList<TLink> restrictions)
@@ -762,8 +754,8 @@ namespace Platform.Data.Doublets
         ///<para>.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="reference">
         ///<para>.</para>
@@ -774,8 +766,8 @@ namespace Platform.Data.Doublets
         ///<para>.</para>
         ///</param>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links storage.</para>
+        ///<para>Хранилище связей.</para>
         ///</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureInnerReferenceExists<TLink>(this ILinks<TLink> links, TLink reference, string argumentName)
@@ -791,8 +783,8 @@ namespace Platform.Data.Doublets
         ///<para>.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="restrictions">
         ///<para>.</para>
@@ -803,8 +795,8 @@ namespace Platform.Data.Doublets
         ///<para>.</para>
         ///</param>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links storage.</para>
+        ///<para>Хранилище свящей.</para>
         ///</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureInnerReferenceExists<TLink>(this ILinks<TLink> links, IList<TLink> restrictions, string argumentName)
@@ -820,16 +812,16 @@ namespace Platform.Data.Doublets
         ///<para>.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="reference">
         ///<para>.</para>
         ///<para>.</para>
         ///</param>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links storage.</para>
+        ///<para>Хранилище связей.</para>
         ///</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureLinkIsAnyOrExists<TLink>(this ILinks<TLink> links, IList<TLink> restrictions)
@@ -850,20 +842,20 @@ namespace Platform.Data.Doublets
         ///<para>.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="link">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The link.</para>
+        ///<para>Связь.</para>
         ///</param>
         ///<param name="argumentName">
         ///<para>.</para>
         ///<para>.</para>
         ///</param>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links storage.</para>
+        ///<para>Хранилище связей.</para>
         ///</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureLinkIsAnyOrExists<TLink>(this ILinks<TLink> links, TLink link, string argumentName)
@@ -880,20 +872,20 @@ namespace Platform.Data.Doublets
         ///<para>.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="link">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The link.</para>
+        ///<para>Связь.</para>
         ///</param>
         ///<param name="argumentName">
         ///<para>.</para>
         ///<para>.</para>
         ///</param>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links storage.</para>
+        ///<para>Хранилище связей.</para>
         ///</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureLinkIsItselfOrExists<TLink>(this ILinks<TLink> links, TLink link, string argumentName)
@@ -911,24 +903,24 @@ namespace Platform.Data.Doublets
         ///<para>.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="link">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The link.</para>
+        ///<para>Связь.</para>
         ///</param>
         ///<param name="sourse">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The beggining of link.</para>
+        ///<para>Начало связи.</para>
         ///</param>
         ///<param name="target">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The end of link.</para>
+        ///<para>Конец связи.</para>
         ///</param>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links storage.</para>
+        ///<para>Хранилище связей.</para>
         ///</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureDoesNotExists<TLink>(this ILinks<TLink> links, TLink source, TLink target)
@@ -945,16 +937,16 @@ namespace Platform.Data.Doublets
         ///<para>.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="link">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The link.</para>
+        ///<para>Связь.</para>
         ///</param>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links storage.</para>
+        ///<para>Хранилище связей.</para>
         ///</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureNoUsages<TLink>(this ILinks<TLink> links, TLink link)
@@ -971,16 +963,16 @@ namespace Platform.Data.Doublets
         ///<para>.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="addresses">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links addresses.</para>
+        ///<para>Адреса связей.</para>
         ///</param>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links storage.</para>
+        ///<para>Хранилище связей.</para>
         ///</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureCreated<TLink>(this ILinks<TLink> links, params TLink[] addresses) => links.EnsureCreated(links.Create, addresses);
@@ -991,16 +983,16 @@ namespace Platform.Data.Doublets
         ///<para>.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="addresses">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links addresses.</para>
+        ///<para>Адреса связей.</para>
         ///</param>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links storage.</para>
+        ///<para>Хранилище связей.</para>
         ///</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsurePointsCreated<TLink>(this ILinks<TLink> links, params TLink[] addresses) => links.EnsureCreated(links.CreatePoint, addresses);
@@ -1011,24 +1003,24 @@ namespace Platform.Data.Doublets
         ///<para>.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="link">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The link.</para>
+        ///<para>Связь.</para>
         ///</param>
         ///<param name="creator">
         ///<para>.</para>
         ///<para>.</para>
         ///</param>
         ///<param name="addresses">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links addresses.</para>
+        ///<para>Адреса связей.</para>
         ///</param>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links Storage.</para>
+        ///<para>Хранилище связей.</para>
         ///</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureCreated<TLink>(this ILinks<TLink> links, Func<TLink> creator, params TLink[] addresses)
@@ -1065,16 +1057,16 @@ namespace Platform.Data.Doublets
         ///<para>.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="link">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The link.</para>
+        ///<para>Связь.</para>
         ///</param>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links storage.</para>
+        ///<para>Хранилище связей.</para>
         ///</param>
         ///<returns>
         ///<para>.</para>
@@ -1106,16 +1098,16 @@ namespace Platform.Data.Doublets
         ///<para>.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="link">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The link.</para>
+        ///<para>Связь.</para>
         ///</param>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links storage.</para>
+        ///<para>Хранилище связей.</para>
         ///</param>
         ///<returns>
         ///<para>.</para>
@@ -1124,26 +1116,25 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool HasUsages<TLink>(this ILinks<TLink> links, TLink link) => Comparer<TLink>.Default.Compare(links.CountUsages(link), default) > 0;
 
-        /// <param name="links">Хранилище связей.</param>
         ///<summary>
         ///<para>.</para>
         ///<para>.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="target">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The end of link.</para>
+        ///<para>Конец связи.</para>
         ///</param>
         ///<param name="sourse">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The beggining of link.</para>
+        ///<para>Начало связи.</para>
         ///</param>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links storage.</para>
+        ///<para>Хранилище связей.</para>
         ///</param>
         ///<returns>
         ///<para>.</para>
@@ -1170,20 +1161,20 @@ namespace Platform.Data.Doublets
         ///<para>.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="target">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The end of link.</para>
+        ///<para>Конец связи.</para>
         ///</param>
         ///<param name="sourse">
-        ///<para>.</para>
+        ///<para>The beggining of link.</para>
         ///<para>.</para>
         ///</param>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links storage.</para>
+        ///<para>Хранилище связей.</para>
         ///</param>
         ///<returns>
         ///<para>.</para>
@@ -1204,12 +1195,12 @@ namespace Platform.Data.Doublets
         ///<para>.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links storage.</para>
+        ///<para>Хранилище связей.</para>
         ///</param>
         ///<returns>
         ///<para>.</para>
@@ -1224,12 +1215,12 @@ namespace Platform.Data.Doublets
         ///<para>.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links storage.</para>
+        ///<para>Хранилище связей.</para>
         ///</param>
         ///<returns>
         ///<para>.</para>
@@ -1248,20 +1239,20 @@ namespace Platform.Data.Doublets
         ///<para>.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links storage.</para>
+        ///<para>Хранилище связей.</para>
         ///</param>
         ///<param name="sourse">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The beggining of link.</para>
+        ///<para>Начало связи.</para>
         ///</param>
         ///<param name="target">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The end of link.</para>
+        ///<para>Конец связи.</para>
         ///</param>
         ///<returns>
         ///<para>.</para>
@@ -1284,25 +1275,25 @@ namespace Platform.Data.Doublets
         ///<para>.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links storage.</para>
+        ///<para>Хранилище связи.</para>
         ///</param>
-        ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<param name="link">
+        ///<para>The link.</para>
+        ///<para>Связь.</para>
         ///</param>
         ///<param name="newSource">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The new beggining of link.</para>
+        ///<para>Новое начало связи.</para>
         ///</param>
         ///</param>
         ///<param name="newTarget">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The new end of link.</para>
+        ///<para>Новый конец связи.</para>
         ///</param>
         ///<returns>
         ///<para>.</para>
@@ -1320,24 +1311,24 @@ namespace Platform.Data.Doublets
         /// <returns>Индекс обновлённой связи.</returns>
 
         ///<summary>
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>In two or more equivalent links, combine or delete incoming and outgoing links to one main link.</para>
+        ///<para>В двух или более эквивалентных свзять объединяет или удаляет входящие и выходящие связи к одной главной связи.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links type address.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links storage.</para>
+        ///<para>Хранилище связей.</para>
         ///</param>
         ///<param name="restrictions">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Ограничения на содержимое связей.</para>
+        ///<para>Restrictions on the content of links.</para>
         ///</param>
         ///<returns>
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Depending on the condition, it returns the link update, the index, the link number that was deleted.</para>
+        ///<para>В зависимости от условия возвращает обновления связи, индекс, номер свзи которую удалил.</para>
         ///</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLink Update<TLink>(this ILinks<TLink> links, params TLink[] restrictions)
@@ -1361,12 +1352,12 @@ namespace Platform.Data.Doublets
         ///<para>.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links storage.</para>
+        ///<para>Хранилище связей.</para>
         ///</param>
         ///<param name="constant">
         ///<para>.</para>
@@ -1414,20 +1405,20 @@ namespace Platform.Data.Doublets
         ///<para>.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links storage.</para>
+        ///<para>Хранилище связей.</para>
         ///</param>
         ///<param name="source">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The beggining of link.</para>
+        ///<para>Начало связи.</para>
         ///</param>
         ///<param name="target">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The end of link.</para>
+        ///<para>Конец связи.</para>
         ///</param>
         ///<returns>
         ///<para>.</para>
@@ -1459,29 +1450,28 @@ namespace Platform.Data.Doublets
         ///<para>.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links storage.</para>
+        ///<para>Хранилище связей.</para>
         ///</param>
         ///<param name="source">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The beggining of link.</para>
+        ///<para>Начало связи.</para>
         ///</param>
         ///<param name="target">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The end of link.</para>
+        ///<para>Конец связи.</para>
         ///</param>
         ///<param name="newSource">
-        ///<para>.</para>
-        ///<para>.</para>
-        ///</param>
+        ///<para>The new beggining of link.</para>
+        ///<para>Новое начало связи.</para>
         ///</param>
         ///<param name="newTarget">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The new end of link.</para>
+        ///<para>Новый конец связи.</para>
         ///</param>
         ///<returns>
         ///<para>.</para>
@@ -1508,28 +1498,28 @@ namespace Platform.Data.Doublets
         /// <param name="source">Индекс связи, которая является началом удаляемой связи.</param>
         /// <param name="target">Индекс связи, которая является концом удаляемой связи.</param>
         ///<summary>
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Removes the link to the specified start and end.</para>
+        ///<para>Удаляет связь с указанным началом и концом.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links storage.</para>
+        ///<para>Хранилище связей.</para>
         ///</param>
         ///<param name="source">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The beggining of communication address..</para>
+        ///<para>Начало адреса связи.</para>
         ///</param>
         ///<param name="target">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The ennd of communication address..</para>
+        ///<para>Конец адреса связи.</para>
         ///</param>
         ///<returns>
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Returns the default link value.</para>
+        ///<para>Возвращает стандарнтоне значение связи.</para>
         ///</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLink DeleteIfExists<TLink>(this ILinks<TLink> links, TLink source, TLink target)
@@ -1547,20 +1537,20 @@ namespace Platform.Data.Doublets
         /// <param name="links">Хранилище связей.</param>
         /// <param name="deletedLinks">Список адресов связей к удалению.</param>
         ///<summary>
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Removing links.</para>
+        ///<para>Удаляет связи.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links storage.</para>
+        ///<para>Хранилище связей.</para>
         ///</param>
         ///<param name="deletedLinks">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>List of deleted links.</para>
+        ///<para>Список удаленных связей.</para>
         ///</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void DeleteMany<TLink>(this ILinks<TLink> links, IList<TLink> deletedLinks)
@@ -1573,20 +1563,21 @@ namespace Platform.Data.Doublets
 
         /// <remarks>Before execution of this method ensure that deleted link is detached (all values - source and target are reset to null) or it might enter into infinite recursion.</remarks>
         ///<summary>
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>
+Removes used links on request.</para>
+        ///<para>Удаляет использованные связи по запросу.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links storage.</para>
+        ///<para>Хранилище связей.</para>
         ///</param>
         ///<param name="linkIndex">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The link index.</para>
+        ///<para>Индекс связи.</para>
         ///</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void DeleteAllUsages<TLink>(this ILinks<TLink> links, TLink linkIndex)
@@ -1603,8 +1594,8 @@ namespace Platform.Data.Doublets
         ///<para>Удаляет связи по ограничениям.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="links">
         ///<para>The links storage.</para>
@@ -1636,8 +1627,8 @@ namespace Platform.Data.Doublets
         ///<para>Проверяет сброшены ли значения связи.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="links">
         ///<para>The links storage.</para>
@@ -1673,8 +1664,8 @@ namespace Platform.Data.Doublets
         ///<para>Сбрасывает значения связи без проведения проверок.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="links">
         ///<para>The links Storage.</para>
@@ -1694,12 +1685,12 @@ namespace Platform.Data.Doublets
 
         // TODO: Create a universal version of this method in Platform.Data (with using of for loop)
         ///<summary>
-        ///<para>.</para>
+        ///<para>Resets link values ​​if they have not been cleared earlier.</para>
         ///<para>Сбрасывает значиения связи, если они не были сброшены ранее.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="links">
         ///<para>The links Storage.</para>
@@ -1722,28 +1713,28 @@ namespace Platform.Data.Doublets
         /// Merging two usages graphs, all children of old link moved to be children of new link or deleted.
         /// </summary>
         ///<summary>
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Explores two equivalent relationships. Links to the old link either become links to the new link or are deleted.</para>
+        ///<para>Исследует две эквивалентные связи. Ссылки на старую связь либо становяттся сслыками на новую связь либо удаляются.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links storage.</para>
+        ///<para>Хранилище связей.</para>
         ///</param>
         ///<param name="oldLinkIndex">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The previous link index.</para>
+        ///<para>Предыдущий индекс связи.</para>
         ///</param>
         ///<param name="newLinkIndex">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The new link index.</para>
+        ///<para>Новый индекс связи.</para>
         ///</param>
         ///<returns>
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Returns the new link index.</para>
+        ///<para>Возвращает новый индекс связи.</para>
         ///</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLink MergeUsages<TLink>(this ILinks<TLink> links, TLink oldLinkIndex, TLink newLinkIndex)
@@ -1802,28 +1793,28 @@ namespace Platform.Data.Doublets
         /// </summary>
         /// </summary>
         ///<summary>
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Replaces one equivalent link with another,by deleting the first one, the links are either updated or deleted.</para>
+        ///<para>Заменяет одну эквивалентную связь другой, удаляя первую, ссылки либо обновляются либо удаляются.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links Storage.</para>
+        ///<para>Хранилище связи.</para>
         ///</param>
         ///<param name="oldLinkIndex">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The previous link index.</para>
+        ///<para>Предыдущий индекс связи.</para>
         ///</param>
         ///<param name="newLinkIndex">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The new link index.</para>
+        ///<para>Новый индекс связи.</para>
         ///</param>
         ///<returns>
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Returns the new link index.</para>
+        ///<para>Возвращает новый индекс свзяи.</para>
         ///</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLink MergeAndDelete<TLink>(this ILinks<TLink> links, TLink oldLinkIndex, TLink newLinkIndex)
@@ -1839,20 +1830,20 @@ namespace Platform.Data.Doublets
 
         /// </summary>
         ///<summary>
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Adds the following decorators to a link: a decorator that solves the problem of cascading links, removing links with empty content, and uniquely-used cascading links.</para>
+        ///<para>Дабавляет следующие декораторы к связи:декоратор, разешающий проблему каскадного использования связей, удаления связей с пустым содержанием и уникально-используемых каскадных связей.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="links">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>The links storage.</para>
+        ///<para>Хранилище свщяей.</para>
         ///</param>
         ///<returns>
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Returns the links.</para>
+        ///<para>Возвращает связи.</para>
         ///</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ILinks<TLink> DecorateWithAutomaticUniquenessAndUsagesResolution<TLink>(this ILinks<TLink> links)
@@ -1869,8 +1860,8 @@ namespace Platform.Data.Doublets
         ///<para>Выдает значение связи в определенном формате.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="links">
         ///<para>The Links Storage.</para>
@@ -1897,8 +1888,8 @@ namespace Platform.Data.Doublets
         ///<para>Получает связь по индексу и выводит полученную связь в определенном формате.</para>
         ///</summary>
         ///<typeparam name="TLink">
-        ///<para>.</para>
-        ///<para>.</para>
+        ///<para>Communication address type.</para>
+        ///<para>Тип адреса связи.</para>
         ///</typeparam>
         ///<param name="links">
         ///<para>The Links storage.</para>
