@@ -1,5 +1,5 @@
 use crate::doublets::data::{AddrToRaw, IGenericLinks, LinksConstants, RawToAddr};
-use crate::doublets::ILinksExtensions;
+use crate::doublets::{ILinks, ILinksExtensions};
 use crate::test_extensions::ILinksTestExtensions;
 use crate::tests::{make_links, make_mem, typed_links};
 

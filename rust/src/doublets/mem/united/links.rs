@@ -21,7 +21,7 @@ use crate::mem::{Mem, ResizeableMem};
 use crate::num::LinkType;
 use crate::doublets::mem::united::LinksSourcesRecursionlessSizeBalancedTree;
 use crate::doublets::mem::united::LinksTargetsRecursionlessSizeBalancedTree;
-use crate::doublets::data;
+use crate::doublets::{data, ILinks};
 use crate::doublets;
 
 // TODO: use `_=_` instead of `_ = _`
@@ -154,26 +154,23 @@ impl<
         Link::new(index, link.source, link.target)
     }
 
-    fn each_core<F, L>(&self, handler: &mut F, restrictions: L) -> T
+    fn each_core<F, const L: usize>(&self, handler: &mut F, restrictions: [T; L]) -> T
     where
-        F: FnMut(&[T]) -> T,
-        L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
+        F: FnMut(Link<T>) -> T,
     {
-        let restrictions = restrictions.into_iter();
         let constants = self.constants();
         let r#break = constants.r#break;
 
         if restrictions.len() == 0 {
             for index in T::one()..self.get_header().allocated + one() {
                 let link = self.get_link_struct(index);
-                if self.exists(index) && handler(link.as_slice()) == r#break {
+                if self.exists(index) && handler(link) == r#break {
                     return r#break;
                 }
             }
             return r#break;
         }
 
-        let restrictions: SmallVec<[T; 3]> = restrictions.collect();
         let r#continue = constants.r#continue;
         let any = constants.any;
         let index = restrictions[constants.index_part.as_()];
@@ -185,7 +182,7 @@ impl<
                 r#continue
             } else {
                 let link_struct = self.get_link_struct(index);
-                handler(link_struct.as_slice())
+                handler(link_struct)
             };
         }
 
@@ -205,12 +202,12 @@ impl<
                 }
                 if value == any {
                     let link = self.get_link_struct(index);
-                    return handler(link.as_slice());
+                    return handler(link);
                 }
                 let stored = self.get_link(index);
                 if stored.source == value || stored.target == value {
                     let link = self.get_link_struct(index);
-                    return handler(link.as_slice());
+                    return handler(link);
                 }
                 r#continue
             };
@@ -233,7 +230,7 @@ impl<
                         r#continue
                     } else {
                         let link = self.get_link_struct(link);
-                        return handler(link.as_slice());
+                        return handler(link);
                     }
                 };
             } else {
@@ -247,7 +244,7 @@ impl<
                 if target != any && source != any {
                     return if (source, target) == (stored.source, stored.target) {
                         let link = self.get_link_struct(index);
-                        handler(link.as_slice())
+                        handler(link)
                     } else {
                         r#continue
                     };
@@ -262,7 +259,7 @@ impl<
                 }
                 return if (stored.source == value) || (stored.target == value) {
                     let link = self.get_link_struct(index);
-                    handler(link.as_slice())
+                    handler(link)
                 } else {
                     r#continue
                 };
@@ -280,18 +277,12 @@ impl<
     TS: ILinksTreeMethods<T>,
     TT: ILinksTreeMethods<T>,
     TU: ILinksListMethods<T>,
-> data::IGenericLinks<T> for Links<T, M, TS, TT, TU>  {
+> doublets::ILinks<T> for Links<T, M, TS, TT, TU> {
     fn constants(&self) -> LinksConstants<T> {
         self.constants.clone()
     }
 
-    // TODO: [may be] use unique function for every len
-    fn count_generic<L>(&self, restrictions: L) -> T
-    where
-        L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
-    {
-        let restrictions: SmallVec<[T; 3]> = restrictions.into_iter().collect();
-
+    fn count_by<const L: usize>(&self, restrictions: [T; L]) -> T {
         if restrictions.len() == 0 {
             return self.get_total();
         };
@@ -384,21 +375,7 @@ impl<
         panic!("not implemented")
     }
 
-    fn each_generic<F, L>(&self, mut handler: F, restrictions: L) -> T
-    where
-        F: FnMut(&[T]) -> T,
-        L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
-    {
-        self.each_core(&mut handler, restrictions)
-
-        //return constants.r#break;
-        //panic!("not supported");
-    }
-
-    fn create_generic<L>(&mut self, _: L) -> T
-    where
-        L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
-    {
+    fn create(&mut self) -> T {
         let constants = self.constants();
         let header = self.get_header();
         let mut free = header.first_free;
@@ -426,16 +403,14 @@ impl<
         return free;
     }
 
-    fn update_generic<Lr, Ls>(&mut self, restrictions: Lr, substitution: Ls) -> T
-    where
-        Lr: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
-        Ls: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
-    {
-        let restrictions: SmallVec<[T; 1]> = restrictions.into_iter().collect();
-        let substitution: SmallVec<[T; 3]> = substitution.into_iter().collect();
+    fn each_by<H, const L: usize>(&self, mut handler: H, restrictions: [T; L]) -> T
+        where H: FnMut(Link<T>) -> T {
+        self.each_core(&mut handler, restrictions)
+    }
+
+    fn update(&mut self, index: T, source: T, target: T) -> T {
         let constants = self.constants();
         let null = constants.null;
-        let index = restrictions[constants.index_part.as_()];
 
         unsafe {
             let link = self.get_mut_link(index) as *mut RawLink<T>;
@@ -450,8 +425,8 @@ impl<
                 unsafe { self.targets.detach(&mut *temp, index) };
             }
 
-            (*link).source = substitution[constants.source_part.as_()];
-            (*link).target = substitution[constants.target_part.as_()];
+            (*link).source = source;
+            (*link).target = target;
 
             if (*link).source != null {
                 let temp = &mut self.get_mut_header().root_as_source as *mut T;
@@ -467,16 +442,12 @@ impl<
         index
     }
 
-    fn delete_generic<L>(&mut self, restrictions: L)
-    where
-        L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
-    {
-        let restrictions: SmallVec<[T; 1]> = restrictions.into_iter().collect();
+    fn delete(&mut self, index: T) -> T {
         let constants = self.constants();
         let header = self.get_header();
-        let link = restrictions[constants.index_part.as_()];
+        let link = index;
         if link < header.allocated {
-            return self.unused.attach_as_first(link);
+            self.unused.attach_as_first(link)
         } else if link == header.allocated {
             unsafe {
                 let mut header = self.get_mut_header() as *mut LinksHeader<T>;
@@ -496,13 +467,6 @@ impl<
             }
             //*self.get_mut_header() = header;
         }
+        return index;
     }
 }
-
-impl<
-    T: LinkType,
-    M: ResizeableMem,
-    TS: ILinksTreeMethods<T>,
-    TT: ILinksTreeMethods<T>,
-    TU: ILinksListMethods<T>,
-> doublets::ILinks<T> for Links<T, M, TS, TT, TU> {}

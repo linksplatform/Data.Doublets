@@ -119,7 +119,7 @@ impl<T: LinkType> LinksSizeBalancedTreeBaseAbstract<T> for LinksSourcesSizeBalan
     }
 }
 
-fn each_usages_core<T: LinkType, H: FnMut(&[T]) -> T>(_self: &LinksSourcesSizeBalancedTree<T>, root: T, link: T, handler: &mut H) -> T {
+fn each_usages_core<T: LinkType, H: FnMut(Link<T>) -> T>(_self: &LinksSourcesSizeBalancedTree<T>, root: T, link: T, handler: &mut H) -> T {
     let base = root;
     let r#continue = _self.base.r#continue;
     let r#break = _self.base.r#break;
@@ -135,7 +135,7 @@ fn each_usages_core<T: LinkType, H: FnMut(&[T]) -> T>(_self: &LinksSourcesSizeBa
         r#break
     } else {
         let values = _self.get_link_value(link);
-        if handler(values.as_slice()) == r#break {
+        if handler(values) == r#break {
             r#break
         } else if each_usages_core(_self, base, _self.get_left(link), handler) == r#break {
             r#break
@@ -204,7 +204,7 @@ impl<T: LinkType> ILinksTreeMethods<T> for LinksSourcesSizeBalancedTree<T> {
         zero()
     }
 
-    fn each_usages<H: FnMut(&[T]) -> T>(&self, root: T, mut handler: H) -> T {
+    fn each_usages<H: FnMut(Link<T>) -> T>(&self, root: T, mut handler: H) -> T {
         each_usages_core(self, root, self.get_tree_root(), &mut handler)
     }
 

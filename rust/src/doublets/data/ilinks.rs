@@ -36,7 +36,6 @@ pub trait IGenericLinks<T: LinkType> {
 pub trait IGenericLinksExtensions<T: LinkType>: IGenericLinks<T> {
     fn exist(&self, link: T) -> bool {
         let constants = self.constants();
-
         if constants.is_external_reference(link) {
             self.count_generic([link]) != zero()
         } else {

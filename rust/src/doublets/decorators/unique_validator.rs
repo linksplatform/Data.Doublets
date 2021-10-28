@@ -2,7 +2,7 @@ use std::borrow::BorrowMut;
 use std::default::default;
 use std::marker::PhantomData;
 
-use crate::doublets::{ILinks, ILinksExtensions};
+use crate::doublets::{ILinks, ILinksExtensions, Link};
 use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstants};
 use crate::num::LinkType;
 use num_traits::zero;
@@ -20,57 +20,27 @@ impl<T: LinkType, Links: ILinks<T>> UniqueValidator<T, Links> {
     }
 }
 
-impl<T: LinkType, Links: ILinks<T>> IGenericLinks<T> for UniqueValidator<T, Links> {
+impl<T: LinkType, Links: ILinks<T>> ILinks<T> for UniqueValidator<T, Links> {
     fn constants(&self) -> LinksConstants<T> {
         self.links.constants()
     }
 
-    fn count_generic<L>(&self, restrictions: L) -> T
-    where
-        L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>
-    {
-        self.links.count_generic(restrictions)
+    fn count_by<const L: usize>(&self, restrictions: [T; L]) -> T {
+        self.links.count_by(restrictions)
     }
 
-    fn each_generic<F, L>(&self, handler: F, restrictions: L) -> T
-    where
-        F: FnMut(&[T]) -> T,
-        L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>
-    {
-        self.links.each_generic(handler, restrictions)
+    fn create(&mut self) -> T {
+        self.links.create()
     }
 
-    fn create_generic<L>(&mut self, restrictions: L) -> T
-    where
-        L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>
-    {
-        self.links.create_generic(restrictions)
+    fn each_by<H, const L: usize>(&self, handler: H, restrictions: [T; L]) -> T
+    where H: FnMut(Link<T>) -> T {
+        self.links.each_by(handler, restrictions)
     }
 
-    fn delete_generic<L>(&mut self, restrictions: L)
-    where
-        L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>
-    {
-        self.links.delete_generic(restrictions)
-    }
-
-
-    fn update_generic<Lr, Ls>(&mut self, restrictions: Lr, substitution: Ls) -> T
-    where
-        Lr: IntoIterator<Item=T, IntoIter: ExactSizeIterator>,
-        Ls: IntoIterator<Item=T, IntoIter: ExactSizeIterator>
-    {
+    fn update(&mut self, index: T, source: T, target: T) -> T {
         let links = self.links.borrow_mut();
         let constants = links.constants();
-        let restrictions: SmallVec<[T; 3]> = restrictions.into_iter().collect();
-        let substitution: SmallVec<[T; 3]> = substitution.into_iter().collect();
-        let index_part = constants.index_part.as_();
-        let source_part = constants.source_part.as_();
-        let target_part = constants.target_part.as_();
-
-        let source = substitution[source_part];
-        let target = substitution[target_part];
-
         // TODO: create extension for this
         let found = links.count_by([
             constants.any,
@@ -79,8 +49,10 @@ impl<T: LinkType, Links: ILinks<T>> IGenericLinks<T> for UniqueValidator<T, Link
         ]);
         // TODO: use links formatter
         assert!(found != zero(), format!("link [{}->{}] already exists", source, target));
-        links.update_generic(restrictions, substitution)
+        links.update(index, source, target)
+    }
+
+    fn delete(&mut self, index: T) -> T {
+        self.links.delete(index)
     }
 }
-
-impl<T: LinkType, Links: ILinks<T>> ILinks<T> for UniqueValidator<T, Links> {}

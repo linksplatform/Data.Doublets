@@ -7,6 +7,7 @@ use crate::doublets::mem::united::generic::UpdatePointers;
 use crate::doublets::mem::links_header::LinksHeader;
 use crate::doublets::mem::united::raw_link::RawLink;
 use num_traits::{zero, one};
+use crate::doublets::Link;
 use crate::methods::SizeBalancedTreeBase;
 
 pub struct LinksSourcesRecursionlessSizeBalancedTree<T: LinkType> {
@@ -85,7 +86,7 @@ impl<T: LinkType> SizeBalancedTreeBase<T> for LinksSourcesRecursionlessSizeBalan
 impl<T: LinkType> RecursionlessSizeBalancedTreeMethods<T> for LinksSourcesRecursionlessSizeBalancedTree<T> {
 }
 
-fn each_usages_core<T: LinkType, H: FnMut(&[T]) -> T>(_self: &LinksSourcesRecursionlessSizeBalancedTree<T>, base: T, link: T, handler: &mut H) -> T {
+fn each_usages_core<T: LinkType, H: FnMut(Link<T>) -> T>(_self: &LinksSourcesRecursionlessSizeBalancedTree<T>, base: T, link: T, handler: &mut H) -> T {
     let r#continue = _self.base.r#continue;
     if (link == zero())
     {
@@ -109,7 +110,7 @@ fn each_usages_core<T: LinkType, H: FnMut(&[T]) -> T>(_self: &LinksSourcesRecurs
     }
     else
     {
-        if handler(_self.get_link_value(link).as_slice()) == r#break
+        if handler(_self.get_link_value(link)) == r#break
         {
             return r#break;
         }
@@ -184,7 +185,7 @@ impl<T: LinkType> ILinksTreeMethods<T> for LinksSourcesRecursionlessSizeBalanced
         return zero();
     }
 
-    fn each_usages<H: FnMut(&[T]) -> T>(&self, base: T, mut handler: H) -> T {
+    fn each_usages<H: FnMut(Link<T>) -> T>(&self, base: T, mut handler: H) -> T {
         each_usages_core(self, base, self.get_tree_root(), &mut handler)
     }
 

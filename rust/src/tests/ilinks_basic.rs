@@ -1,7 +1,7 @@
 use num_traits::ToPrimitive;
 use crate::tests::make_mem;
 use crate::tests::make_links;
-use crate::doublets::{ILinksExtensions, Link};
+use crate::doublets::{ILinks, ILinksExtensions, Link};
 use crate::doublets::data::{AddrToRaw, Hybrid, IGenericLinks, LinksConstants, RawToAddr};
 use crate::num::ToSigned;
 
