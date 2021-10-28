@@ -148,7 +148,11 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Delete<TLink>(this ILinks<TLink> links, TLink linkToDelete) => links.Delete(new LinkAddress<TLink>(linkToDelete));
+        public static void Delete<TLink>(this ILinks<TLink> links, TLink linkToDelete)
+        {
+            links.ResetValues(linkToDelete);
+            links.Delete(new LinkAddress<TLink>(linkToDelete));
+        } 
 
         /// <remarks>
         /// TODO: Возможно есть очень простой способ это сделать.
