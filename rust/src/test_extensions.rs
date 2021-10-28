@@ -150,11 +150,6 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
 
             assert_eq!(self.count(), zero());
         }
-
-        self.each(|link| {
-            println!("{:?}->{:?}", link.source, link.target);
-            self.constants().r#continue
-        });
     }
 }
 
