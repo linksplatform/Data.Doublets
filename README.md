@@ -12,7 +12,7 @@ Forked from: [Konard/LinksPlatform/Platform/Platform.Data.Doublets](https://gith
 
 NuGet package: [Platform.Data.Doublets](https://www.nuget.org/packages/Platform.Data.Doublets)
 
-## [Example](https://github.com/linksplatform/Examples.Doublets.CRUD.DotNet)
+## [Example](https://github.com/linksplatform/Examples.Doublets.CRUD.DotNet) | [Run .NET fiddle](https://dotnetfiddle.net/Y7Zvt0)
 ```C#
 using System;
 using Platform.Data;
