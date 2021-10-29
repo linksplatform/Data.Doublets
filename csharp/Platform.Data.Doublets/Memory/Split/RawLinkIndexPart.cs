@@ -15,6 +15,12 @@ namespace Platform.Data.Doublets.Memory.Split
     /// </summary>
     public struct RawLinkIndexPart<TLink> : IEquatable<RawLinkIndexPart<TLink>>
     {
+        /// <summary>
+        /// <para>
+        /// The default.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
 
         /// <summary>

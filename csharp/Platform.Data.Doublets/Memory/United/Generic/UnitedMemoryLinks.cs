@@ -17,9 +17,33 @@ namespace Platform.Data.Doublets.Memory.United.Generic
     /// <seealso cref="UnitedMemoryLinksBase{TLink}"/>
     public unsafe class UnitedMemoryLinks<TLink> : UnitedMemoryLinksBase<TLink>
     {
+        /// <summary>
+        /// <para>
+        /// The create source tree methods.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private readonly Func<ILinksTreeMethods<TLink>> _createSourceTreeMethods;
+        /// <summary>
+        /// <para>
+        /// The create target tree methods.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private readonly Func<ILinksTreeMethods<TLink>> _createTargetTreeMethods;
+        /// <summary>
+        /// <para>
+        /// The header.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private byte* _header;
+        /// <summary>
+        /// <para>
+        /// The links.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private byte* _links;
 
         /// <summary>

@@ -50,6 +50,16 @@ namespace Platform.Data.Doublets.Tests
             Using(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(500));
         }
 
+        /// <summary>
+        /// <para>
+        /// Usings the action.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="action">
+        /// <para>The action.</para>
+        /// <para></para>
+        /// </param>
         private static void Using(Action<ILinks<TLink>> action)
         {
             using (var dataMemory = new HeapResizableDirectMemory())
@@ -60,6 +70,16 @@ namespace Platform.Data.Doublets.Tests
             }
         }
 
+        /// <summary>
+        /// <para>
+        /// Usings the with external references using the specified action.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="action">
+        /// <para>The action.</para>
+        /// <para></para>
+        /// </param>
         private static void UsingWithExternalReferences(Action<ILinks<TLink>> action)
         {
             var contants = new LinksConstants<TLink>(enableExternalReferencesSupport: true);

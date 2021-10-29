@@ -16,8 +16,20 @@ namespace Platform.Data.Doublets.Stacks
     /// <seealso cref="IStack{TLink}"/>
     public class Stack<TLink> : LinksOperatorBase<TLink>, IStack<TLink>
     {
+        /// <summary>
+        /// <para>
+        /// The default.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
 
+        /// <summary>
+        /// <para>
+        /// The stack.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private readonly TLink _stack;
 
         /// <summary>

@@ -60,6 +60,20 @@ namespace Platform.Data.Doublets.Tests
             Using<ulong>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
         }
 
+        /// <summary>
+        /// <para>
+        /// Usings the action.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="TLink">
+        /// <para>The link.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="action">
+        /// <para>The action.</para>
+        /// <para></para>
+        /// </param>
         private static void Using<TLink>(Action<ILinks<TLink>> action)
         {
             using (var scope = new Scope<Types<HeapResizableDirectMemory, UnitedMemoryLinks<TLink>>>())

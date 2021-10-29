@@ -16,8 +16,20 @@ namespace Platform.Data.Doublets.CriterionMatchers
     /// <seealso cref="ICriterionMatcher{TLink}"/>
     public class TargetMatcher<TLink> : LinksOperatorBase<TLink>, ICriterionMatcher<TLink>
     {
+        /// <summary>
+        /// <para>
+        /// The default.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
 
+        /// <summary>
+        /// <para>
+        /// The target to match.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private readonly TLink _targetToMatch;
 
         /// <summary>

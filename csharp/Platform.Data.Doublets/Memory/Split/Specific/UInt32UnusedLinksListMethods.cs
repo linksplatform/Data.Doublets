@@ -15,7 +15,19 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
     /// <seealso cref="UnusedLinksListMethods{TLink}"/>
     public unsafe class UInt32UnusedLinksListMethods : UnusedLinksListMethods<TLink>
     {
+        /// <summary>
+        /// <para>
+        /// The links.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private readonly RawLinkDataPart<TLink>* _links;
+        /// <summary>
+        /// <para>
+        /// The header.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private readonly LinksHeader<TLink>* _header;
 
         /// <summary>

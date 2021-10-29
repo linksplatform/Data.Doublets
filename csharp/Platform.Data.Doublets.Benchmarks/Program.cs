@@ -2,7 +2,13 @@ using BenchmarkDotNet.Running;
 
 namespace Platform.Data.Doublets.Benchmarks
 {
-    private Program
+    /// <summary>
+    /// <para>
+    /// Represents the program.
+    /// </para>
+    /// <para></para>
+    /// </summary>
+    class Program
     {
         /// <summary>
         /// <para>

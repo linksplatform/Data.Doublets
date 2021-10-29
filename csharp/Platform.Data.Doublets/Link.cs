@@ -24,9 +24,27 @@ namespace Platform.Data.Doublets
         /// </summary>
         public static readonly Link<TLink> Null = new Link<TLink>();
 
+        /// <summary>
+        /// <para>
+        /// The instance.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private static readonly LinksConstants<TLink> _constants = Default<LinksConstants<TLink>>.Instance;
+        /// <summary>
+        /// <para>
+        /// The default.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
 
+        /// <summary>
+        /// <para>
+        /// The length.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private const int Length = 3;
 
         /// <summary>
