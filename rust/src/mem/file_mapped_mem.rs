@@ -97,3 +97,12 @@ impl ResizeableMem for FileMappedMem {
         self.base.reserved_mem()
     }
 }
+
+impl Drop for FileMappedMem {
+    fn drop(&mut self) {
+        self.unmap();
+        let used = self.used_mem();
+        // TODO: maybe remove `unwrap()` and ignore error
+        self.file.set_len(used as u64).unwrap();
+    }
+}
