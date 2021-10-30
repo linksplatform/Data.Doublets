@@ -63,31 +63,7 @@ impl<
         LinksTargetsRecursionlessSizeBalancedTree<T>,
         UnusedLinks<T>,
     > {
-        let links = mem.get_ptr();
-        let header = links;
-        let constants = LinksConstants::new();
-        let sources =
-            LinksSourcesRecursionlessSizeBalancedTree::new(constants.clone(), links, header);
-        let targets =
-            LinksTargetsRecursionlessSizeBalancedTree::new(constants.clone(), links, header);
-        let unused = UnusedLinks::new(links, header);
-        let mut new = Links::<
-            T,
-            M,
-            LinksSourcesRecursionlessSizeBalancedTree<T>,
-            LinksTargetsRecursionlessSizeBalancedTree<T>,
-            UnusedLinks<T>,
-        > {
-            mem,
-            reserve_step: Self::DEFAULT_LINKS_SIZE_STEP,
-            constants,
-            sources,
-            targets,
-            unused,
-        };
-
-        new.init();
-        new
+        Self::with_constants(mem, LinksConstants::new())
     }
 
     pub fn with_constants(
