@@ -10,7 +10,7 @@ env:
 
 jobs:
   bench_rust:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Rustup nightly
