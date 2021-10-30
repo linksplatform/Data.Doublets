@@ -67,10 +67,10 @@ max_value_impl!(isize);
 max_value_impl!(usize);
 
 pub trait LinkType:
-    Num + Unsigned + Step + ToSigned + MaxValue + FromPrimitive + Debug + Display
+    Num + Unsigned + Step + ToSigned + MaxValue + FromPrimitive + Debug + Display + Hash
 {
 }
 impl<All> LinkType for All where
-    All: Num + Unsigned + Step + ToSigned + MaxValue + FromPrimitive + Debug + Display
+    All: Num + Unsigned + Step + ToSigned + MaxValue + FromPrimitive + Debug + Display + Hash
 {
 }
