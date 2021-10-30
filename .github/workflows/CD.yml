@@ -9,8 +9,30 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  bench_rust:
+  bench_rust_on_windows:
     runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Rustup nightly
+        run: rustup toolchain install nightly
+      - name: Bench
+        run: |
+          cd rust
+          cargo +nightly test --release --package doublets --lib tests::sync::super_read -- --exact --nocapture
+
+  bench_rust_on_ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Rustup nightly
+        run: rustup toolchain install nightly
+      - name: Bench
+        run: |
+          cd rust
+          cargo +nightly test --release --package doublets --lib tests::sync::super_read -- --exact --nocapture
+
+  bench_rust_on_macos:
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
       - name: Rustup nightly
