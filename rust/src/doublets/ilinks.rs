@@ -12,7 +12,7 @@ use crate::doublets::link::Link;
 use crate::num::LinkType;
 
 pub trait ILinks<T: LinkType>:
-    /*data::IGenericLinks<T> + data::IGenericLinksExtensions<T> + */ Sized
+/*data::IGenericLinks<T> + data::IGenericLinksExtensions<T> + */ Sized
 {
     fn constants(&self) -> LinksConstants<T>;
 
@@ -28,6 +28,26 @@ pub trait ILinks<T: LinkType>:
 
     fn delete(&mut self, index: T) -> T;
 
+    fn get_link(&self, index: T) -> Option<Link<T>> {
+        // TODO: compare performance
+        // self.get_generic_link(index).map(|link| link.collect())
+
+        // TODO: Use cfg macro
+        let constants = self.constants();
+        if constants.is_external_reference(index) {
+            Some(Link::from_once(index))
+        } else {
+            let mut slice = None;
+            self.each_by(
+                |link| {
+                    slice = Some(link);
+                    return constants.r#break;
+                },
+                [index],
+            );
+            return slice;
+        }
+    }
 }
 
 pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
@@ -58,9 +78,7 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
 
     // TODO: use .del().query()
     // TODO: maybe `query: Link<T>`
-    fn delete_query<const L: usize>(&mut self, query: [T; L])
-    {
-
+    fn delete_query<const L: usize>(&mut self, query: [T; L]) {
         let constants = self.constants();
         let len = self.count_by(query.clone()).as_();
         let mut vec = Vec::with_capacity(len);
@@ -109,6 +127,44 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         return index;
     }
 
+    fn single<const L: usize>(&self, query: [T; L]) -> Option<Link<T>> {
+        let constants = self.constants();
+        let any = constants.any;
+        let r#break = constants.r#break;
+        let r#continue = constants.r#continue;
+
+        let mut result = None;
+        let mut marker = false;
+        self.each_by(
+            |link| {
+                if !marker {
+                    result = Some(link);
+                    marker = true;
+                    r#continue
+                } else {
+                    result = None;
+                    r#break
+                }
+            },
+            query,
+        );
+
+        return result;
+    }
+
+    fn all_indices<const L: usize>(&self, query: [T; L]) -> Vec<T> {
+        let len = self.count_by(query.clone()).as_();
+        let mut vec = Vec::with_capacity(len);
+        self.each_by(
+            |link| {
+                vec.push(link.index);
+                self.constants().r#continue
+            },
+            query,
+        );
+        return vec;
+    }
+
     fn get_or_create(&mut self, source: T, target: T) -> T {
         let link = self.search_or(source, target, zero());
         if link == zero() {
@@ -118,26 +174,7 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         }
     }
 
-    fn get_link(&self, index: T) -> Option<Link<T>> {
-        // TODO: compare performance
-        // self.get_generic_link(index).map(|link| link.collect())
 
-        // TODO: Use cfg macro
-        let constants = self.constants();
-        if constants.is_external_reference(index) {
-            Some(Link::from_once(index))
-        } else {
-            let mut slice = None;
-            self.each_by(
-                |link| {
-                    slice = Some(link);
-                    return constants.r#break;
-                },
-                [index],
-            );
-            return slice;
-        }
-    }
 
     fn count_usages(&self, index: T) -> T {
         let constants = self.constants();
@@ -255,6 +292,32 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         let links = NonNullDeletionResolver::new(links);
         let links = CascadeUniqueResolver::new(links);
         return links;
+    }
+
+    fn is_full_point(&self, link: T) -> bool {
+        let constants = self.constants();
+        if constants.is_external_reference(link) {
+            true
+        } else {
+            debug_assert!(self.exist(link));
+            // TODO:
+            // Point::is_full(self.get_link(link).unwrap())
+            let link = self.get_link(link).unwrap();
+            link.index == link.target && link.index == link.source
+        }
+    }
+
+    fn is_partial_point(&self, link: T) -> bool {
+        let constants = self.constants();
+        if constants.is_external_reference(link) {
+            true
+        } else {
+            debug_assert!(self.exist(link));
+            // TODO:
+            // Point::is_partial(self.get_link(link).unwrap())
+            let link = self.get_link(link).unwrap();
+            link.index == link.target || link.index == link.source
+        }
     }
 }
 
