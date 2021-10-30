@@ -6,23 +6,23 @@ use std::ops::Index;
 use num_traits::{one, zero};
 use smallvec::SmallVec;
 
+use crate::doublets;
 use crate::doublets::data::IGenericLinks;
 use crate::doublets::data::LinksConstants;
 use crate::doublets::link::Link;
+use crate::doublets::mem::links_header::LinksHeader;
+use crate::doublets::mem::united::LinksSourcesRecursionlessSizeBalancedTree;
+use crate::doublets::mem::united::LinksSourcesSizeBalancedTree;
+use crate::doublets::mem::united::LinksTargetsRecursionlessSizeBalancedTree;
+use crate::doublets::mem::united::LinksTargetsSizeBalancedTree;
+use crate::doublets::mem::united::RawLink;
+use crate::doublets::mem::united::UnusedLinks;
 use crate::doublets::mem::ILinksListMethods;
 use crate::doublets::mem::ILinksTreeMethods;
-use crate::doublets::mem::links_header::LinksHeader;
-use crate::doublets::mem::united::LinksSourcesSizeBalancedTree;
-use crate::doublets::mem::united::LinksTargetsSizeBalancedTree;
-use crate::doublets::mem::united::UnusedLinks;
-use crate::doublets::mem::united::RawLink;
+use crate::doublets::{data, ILinks};
 use crate::mem::FileMappedMem;
 use crate::mem::{Mem, ResizeableMem};
 use crate::num::LinkType;
-use crate::doublets::mem::united::LinksSourcesRecursionlessSizeBalancedTree;
-use crate::doublets::mem::united::LinksTargetsRecursionlessSizeBalancedTree;
-use crate::doublets::{data, ILinks};
-use crate::doublets;
 
 // TODO: use `_=_` instead of `_ = _`
 pub struct Links<
@@ -42,28 +42,78 @@ pub struct Links<
 }
 
 impl<
-    T: LinkType,
-    M: ResizeableMem,
-    TS: ILinksTreeMethods<T>,
-    TT: ILinksTreeMethods<T>,
-    TU: ILinksListMethods<T>,
-> Links<T, M, TS, TT, TU> {
-    const LINK_SIZE: usize = size_of::<RawLink<T>>();
-    const HEADER_SIZE: usize = size_of::<LinksHeader<T>>();
-    const MAGIC_CONSTANT: usize = 1024 * 1024;
-    const DEFAULT_LINKS_SIZE_STEP: usize = Self::LINK_SIZE * Self::MAGIC_CONSTANT;
+        T: LinkType,
+        M: ResizeableMem,
+        TS: ILinksTreeMethods<T>,
+        TT: ILinksTreeMethods<T>,
+        TU: ILinksListMethods<T>,
+    > Links<T, M, TS, TT, TU>
+{
+    pub const LINK_SIZE: usize = size_of::<RawLink<T>>();
+    pub const HEADER_SIZE: usize = size_of::<LinksHeader<T>>();
+    pub const MAGIC_CONSTANT: usize = 1024 * 1024;
+    pub const DEFAULT_LINKS_SIZE_STEP: usize = Self::LINK_SIZE * Self::MAGIC_CONSTANT;
 
-
-    pub fn new(mem: M) -> Links<
-        T, M, LinksSourcesRecursionlessSizeBalancedTree<T>, LinksTargetsRecursionlessSizeBalancedTree<T>, UnusedLinks<T>
+    pub fn new(
+        mem: M,
+    ) -> Links<
+        T,
+        M,
+        LinksSourcesRecursionlessSizeBalancedTree<T>,
+        LinksTargetsRecursionlessSizeBalancedTree<T>,
+        UnusedLinks<T>,
     > {
         let links = mem.get_ptr();
         let header = links;
         let constants = LinksConstants::new();
-        let sources = LinksSourcesRecursionlessSizeBalancedTree::new(constants.clone(), links, header);
-        let targets = LinksTargetsRecursionlessSizeBalancedTree::new(constants.clone(), links, header);
+        let sources =
+            LinksSourcesRecursionlessSizeBalancedTree::new(constants.clone(), links, header);
+        let targets =
+            LinksTargetsRecursionlessSizeBalancedTree::new(constants.clone(), links, header);
         let unused = UnusedLinks::new(links, header);
-        let mut new = Links::<T, M, LinksSourcesRecursionlessSizeBalancedTree<T>, LinksTargetsRecursionlessSizeBalancedTree<T>, UnusedLinks<T>> {
+        let mut new = Links::<
+            T,
+            M,
+            LinksSourcesRecursionlessSizeBalancedTree<T>,
+            LinksTargetsRecursionlessSizeBalancedTree<T>,
+            UnusedLinks<T>,
+        > {
+            mem,
+            reserve_step: Self::DEFAULT_LINKS_SIZE_STEP,
+            constants,
+            sources,
+            targets,
+            unused,
+        };
+
+        new.init();
+        new
+    }
+
+    pub fn with_constants(
+        mem: M,
+        constants: LinksConstants<T>,
+    ) -> Links<
+        T,
+        M,
+        LinksSourcesRecursionlessSizeBalancedTree<T>,
+        LinksTargetsRecursionlessSizeBalancedTree<T>,
+        UnusedLinks<T>,
+    > {
+        let links = mem.get_ptr();
+        let header = links;
+        let sources =
+            LinksSourcesRecursionlessSizeBalancedTree::new(constants.clone(), links, header);
+        let targets =
+            LinksTargetsRecursionlessSizeBalancedTree::new(constants.clone(), links, header);
+        let unused = UnusedLinks::new(links, header);
+        let mut new = Links::<
+            T,
+            M,
+            LinksSourcesRecursionlessSizeBalancedTree<T>,
+            LinksTargetsRecursionlessSizeBalancedTree<T>,
+            UnusedLinks<T>,
+        > {
             mem,
             reserve_step: Self::DEFAULT_LINKS_SIZE_STEP,
             constants,
@@ -223,7 +273,7 @@ impl<
                 } else if source == any {
                     self.targets.each_usages(target, handler)
                 } else if target == any {
-                    self.sources.each_usages(target, handler)
+                    self.sources.each_usages(source, handler)
                 } else {
                     let link = self.sources.search(source, target);
                     if link == constants.null {
@@ -272,12 +322,13 @@ impl<
 }
 
 impl<
-    T: LinkType,
-    M: ResizeableMem,
-    TS: ILinksTreeMethods<T>,
-    TT: ILinksTreeMethods<T>,
-    TU: ILinksListMethods<T>,
-> doublets::ILinks<T> for Links<T, M, TS, TT, TU> {
+        T: LinkType,
+        M: ResizeableMem,
+        TS: ILinksTreeMethods<T>,
+        TT: ILinksTreeMethods<T>,
+        TU: ILinksListMethods<T>,
+    > doublets::ILinks<T> for Links<T, M, TS, TT, TU>
+{
     fn constants(&self) -> LinksConstants<T> {
         self.constants.clone()
     }
@@ -296,7 +347,11 @@ impl<
                 self.get_total()
             } else {
                 // TODO: T::from_usize(self.exists(index) as usize).unwrap()
-                if self.exists(index) { one() } else { zero() }
+                if self.exists(index) {
+                    one()
+                } else {
+                    zero()
+                }
             };
         }
 
@@ -338,7 +393,11 @@ impl<
                     self.sources.count_usages(source)
                 } else {
                     let link = self.sources.search(source, target);
-                    if link == constants.null { zero() } else { one() }
+                    if link == constants.null {
+                        zero()
+                    } else {
+                        one()
+                    }
                 }
             } else {
                 if !self.exists(index) {
@@ -404,7 +463,9 @@ impl<
     }
 
     fn each_by<H, const L: usize>(&self, mut handler: H, restrictions: [T; L]) -> T
-        where H: FnMut(Link<T>) -> T {
+    where
+        H: FnMut(Link<T>) -> T,
+    {
         self.each_core(&mut handler, restrictions)
     }
 
@@ -443,6 +504,10 @@ impl<
     }
 
     fn delete(&mut self, index: T) -> T {
+        // TODO:
+        self.update(index, zero(), zero());
+        // TODO:
+
         let constants = self.constants();
         let header = self.get_header();
         let link = index;
@@ -468,5 +533,17 @@ impl<
             //*self.get_mut_header() = header;
         }
         return index;
+    }
+
+    fn get_link(&self, index: T) -> Option<Link<T>> {
+        if self.constants.is_external_reference(index) {
+            Some(Link::from_once(index))
+        } else {
+            if self.exists(index) {
+                Some(self.get_link_struct(index))
+            } else {
+                None
+            }
+        }
     }
 }
