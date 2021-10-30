@@ -1,9 +1,11 @@
+use std::fs::{File, OpenOptions};
+use std::io::{Read, Seek, SeekFrom, Write};
 use crate::tests::make_mem;
 use crate::tests::make_links;
 use crate::doublets::{ILinksExtensions, Link};
 use crate::doublets::data::IGenericLinks;
 use crate::test_extensions::ILinksTestExtensions;
-use crate::mem::FileMappedMem;
+use crate::mem::{FileMappedMem, ResizeableMem};
 use std::time::Instant;
 use crate::doublets::decorators::NonNullDeletionResolver;
 
@@ -19,6 +21,18 @@ fn random_creations_and_deletions() {
     links.test_random_creations_and_deletions(1000);
 
     println!("{:?}", instant.elapsed());
+}
+
+#[test]
+fn mapping() {
+    std::fs::remove_file("map.txt").unwrap();
+    let mut mem = FileMappedMem::new("map.txt").unwrap();
+
+    mem.reserve_mem(1337).unwrap();
+    mem.reserve_mem(228).unwrap();
+
+    let mut file = std::fs::File::open("map.txt").unwrap();
+    assert_eq!(1337, file.metadata().unwrap().len() as usize);
 }
 
 #[test]

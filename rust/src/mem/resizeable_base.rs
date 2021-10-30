@@ -1,6 +1,7 @@
-use std::ptr::null_mut;
-
 use crate::mem::mem::{Mem, ResizeableMem};
+use std::io::Error;
+use std::io::ErrorKind;
+use std::ptr::null_mut;
 
 pub(in crate::mem) struct ResizeableBase {
     pub used: usize,
@@ -26,12 +27,15 @@ impl Mem for ResizeableBase {
 }
 
 impl ResizeableMem for ResizeableBase {
-    fn use_mem(&mut self, capacity: usize) -> Result<(), ()> {
+    fn use_mem(&mut self, capacity: usize) -> std::io::Result<usize> {
         if capacity <= self.reserved {
             self.used = capacity;
-            Ok(())
+            Ok(self.used)
         } else {
-            Err(())
+            Err(Error::new(
+                ErrorKind::Other,
+                "cannot use greater than the memory reserved",
+            ))
         }
     }
 
@@ -39,12 +43,15 @@ impl ResizeableMem for ResizeableBase {
         self.used
     }
 
-    fn reserve_mem(&mut self, capacity: usize) -> Result<(), ()> {
+    fn reserve_mem(&mut self, capacity: usize) -> std::io::Result<usize> {
         if capacity >= self.used {
             self.reserved = capacity;
-            Ok(())
+            Ok(self.reserved)
         } else {
-            Err(())
+            Err(Error::new(
+                ErrorKind::Other,
+                "cannot reserve less than the memory used",
+            ))
         }
     }
 

@@ -57,7 +57,7 @@ impl Mem for HeapMem {
 }
 
 impl ResizeableMem for HeapMem {
-    fn use_mem(&mut self, capacity: usize) -> Result<(), ()> {
+    fn use_mem(&mut self, capacity: usize) -> std::io::Result<usize> {
         self.base.use_mem(capacity)
     }
 
@@ -65,11 +65,11 @@ impl ResizeableMem for HeapMem {
         self.base.used_mem()
     }
 
-    fn reserve_mem(&mut self, capacity: usize) -> Result<(), ()> {
+    fn reserve_mem(&mut self, capacity: usize) -> std::io::Result<usize> {
         let older = self.reserved_mem();
-        let result = self.base.reserve_mem(capacity);
+        let reserved = self.base.reserve_mem(capacity)?;
         self.on_reserved(older, capacity);
-        return result;
+        Ok(reserved)
     }
 
     fn reserved_mem(&self) -> usize {
