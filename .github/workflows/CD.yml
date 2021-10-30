@@ -1,10 +1,10 @@
 name: CD
 
-on:
-  push:
-    branches: master
-  pull_request:
-    branches: master
+# on:
+#   push:
+#     branches: master
+#   pull_request:
+#     branches: master
 
 env:
   NUGETTOKEN: ${{ secrets.NUGET_TOKEN }}
@@ -22,7 +22,7 @@ jobs:
       - name: Bench
         run: |
           cd rust
-          cargo +nightly test --release --package doublets --lib tests::crud::random_creations_and_deletions -- --exact
+          cargo +nightly test --release --package doublets --lib tests::sync::super_read -- --exact --nocapture
 
   testAndDeploy:
     needs: [bench_rust]
