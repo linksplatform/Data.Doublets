@@ -150,8 +150,11 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Delete<TLink>(this ILinks<TLink> links, TLink linkToDelete)
         {
-            links.ResetValues(linkToDelete);
-            links.Delete(new LinkAddress<TLink>(linkToDelete));
+            if (links.Exists(linkToDelete))
+            {
+                links.EnforceResetValues(linkToDelete);
+                links.Delete(new LinkAddress<TLink>(linkToDelete));
+            }
         } 
 
         /// <remarks>
@@ -1049,10 +1052,10 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void DeleteAllUsages<TLink>(this ILinks<TLink> links, TLink linkIndex)
         {
-            var anyConstant = links.Constants.Any;
-            var usagesAsSourceQuery = new Link<TLink>(anyConstant, linkIndex, anyConstant);
+            var any = links.Constants.Any;
+            var usagesAsSourceQuery = new Link<TLink>(any, linkIndex, any);
             links.DeleteByQuery(usagesAsSourceQuery);
-            var usagesAsTargetQuery = new Link<TLink>(anyConstant, anyConstant, linkIndex);
+            var usagesAsTargetQuery = new Link<TLink>(any, any, linkIndex);
             links.DeleteByQuery(usagesAsTargetQuery);
         }
 
