@@ -1,12 +1,13 @@
 use std::cmp::max;
 use std::fs::{File, OpenOptions};
-use std::io::Error;
+use std::io::{Error, Write};
 use std::io::ErrorKind;
 use std::io::Read;
 use std::ops::Deref;
 use std::path::Path;
 
-use memmap::MmapOptions;
+use memmap2;
+use memmap2::MmapOptions;
 
 use crate::mem::mem::{Mem, ResizeableMem};
 use crate::mem::resizeable_base::ResizeableBase;
@@ -14,36 +15,38 @@ use crate::mem::resizeable_base::ResizeableBase;
 pub struct FileMappedMem {
     base: ResizeableBase,
     file: File,
-    mapping: memmap::MmapMut,
+    mapping: memmap2::MmapMut,
 }
 
 impl FileMappedMem {
     pub fn reserve_new<P: AsRef<Path>>(path: P, mut capacity: usize) -> std::io::Result<Self> {
+        if let Err(_) = File::open(&path) {
+            println!("CREATE");
+            let file = File::create(&path)?;
+        }
+
         let file = OpenOptions::new() // TODO: with_options feature
             .read(true)
             .write(true)
-            .create(true)
+            .truncate(false)
             .open(path)?;
 
-        file.set_len(capacity as u64)?;
+        capacity = max(capacity, ResizeableBase::MINIMUM_CAPACITY);
+        let len = file.metadata().unwrap().len() as usize;
+        let to_reserve = if len > capacity {
+            (len / capacity + 1) * capacity
+        } else {
+            capacity
+        };
 
-        let mapping = unsafe { MmapOptions::new().len(capacity).map_mut(&file) };
-        if mapping.is_err() {
-            return Err(Error::new(ErrorKind::Other, "TODO: MAPPING ERROR"));
-        }
-
-        let mapping = mapping.unwrap();
+        let mapping = MmapOptions::new().map_anon().unwrap();
         let mut new = Self {
             base: Default::default(),
             mapping,
             file,
         };
 
-        capacity = max(capacity, ResizeableBase::MINIMUM_CAPACITY);
-        new.reserve_mem(capacity);
-        new.map(new.reserved_mem());
-        let mapping = new.mapping.as_mut_ptr();
-        new.set_ptr(mapping);
+        new.reserve_mem(to_reserve);
         Ok(new)
     }
 
@@ -53,7 +56,7 @@ impl FileMappedMem {
 
     fn map(&mut self, capacity: usize) -> *mut u8 {
         let mapping = unsafe {
-            memmap::MmapOptions::new()
+            memmap2::MmapOptions::new()
                 .len(capacity)
                 .map_mut(&self.file)
                 .unwrap()
