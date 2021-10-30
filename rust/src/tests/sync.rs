@@ -1,6 +1,6 @@
 use crate::tests::make_mem;
 use crate::tests::make_links;
-use crate::doublets::{ILinksExtensions, Link};
+use crate::doublets::{ILinks, ILinksExtensions, Link};
 use crate::doublets::data::IGenericLinks;
 use std::sync::{Arc, Mutex, RwLock};
 use std::sync::mpsc::channel;
@@ -9,6 +9,8 @@ use crate::num::LinkType;
 use crate::mem::ResizeableMem;
 use crate::doublets::mem::united;
 use std::ptr::Unique;
+use std::time::Instant;
+use rand::Rng;
 
 // TODO: use safe slice
 unsafe impl<T: LinkType, M: ResizeableMem> Send for united::Links<T, M> {}
@@ -40,4 +42,72 @@ fn basic_sync() {
 
     println!("{:?}", base_links.read().unwrap().count());
     //assert_eq!(10, base_links.write().unwrap().count());
+}
+
+#[test]
+fn super_read() {
+    let mem = make_mem();
+    let mut links = make_links(mem);
+
+    let instant = Instant::now();
+
+    for _ in 0..1000000 {
+        let source = rand::thread_rng().gen_range(1..=1000);
+        let target = rand::thread_rng().gen_range(1..=1000);
+        links.get_or_create(source, target);
+    }
+
+    println!("links count: {}", links.count());
+    println!("created time: {:?}", instant.elapsed());
+
+    let synced = RwLock::new(links);
+    let links_arc = Arc::new(synced);
+
+    let instant = Instant::now();
+
+    let mut threads = vec![];
+    for _ in 0..1000 {
+        let links = Arc::clone(&links_arc);
+        let thread = thread::spawn(move || {
+            let links = links.read().unwrap();
+
+            let mut data = vec![];
+            let r#continue = links.constants().r#continue;
+            links.each(|link| {
+                data.push(link);
+                r#continue
+            });
+        });
+        threads.push(thread);
+    }
+
+    {
+        drop(threads);
+        let links = links_arc.read().unwrap();
+        println!("links count: {}", links.count());
+        println!("read time: {:?}", instant.elapsed());
+    }
+
+    let mut threads = vec![];
+    for _ in 0..1000 {
+        let links = Arc::clone(&links_arc);
+        let thread = thread::spawn(move || {
+            let links = links.write().unwrap();
+
+            let mut data = vec![];
+            let r#continue = links.constants().r#continue;
+            links.each(|link| {
+                data.push(link);
+                r#continue
+            });
+        });
+        threads.push(thread);
+    }
+
+    {
+        drop(threads);
+        let links = links_arc.write().unwrap();
+        println!("links count: {}", links.count());
+        println!("write as read time: {:?}", instant.elapsed());
+    }
 }
