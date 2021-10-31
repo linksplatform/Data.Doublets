@@ -480,9 +480,12 @@ impl<
     }
 
     fn delete(&mut self, index: T) -> T {
+        if !self.exists(index) { return default(); }
         // TODO:
         self.update(index, zero(), zero());
         // TODO:
+
+        // TODO: move to `delete_core`
 
         let constants = self.constants();
         let header = self.get_header();

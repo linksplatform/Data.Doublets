@@ -97,6 +97,11 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
     }
 
     fn delete_usages(&mut self, index: T) {
+        // TODO: Bug
+        //  let any = self.constants().any;
+        //  self.delete_query([any, index, any]);
+        //  self.delete_query([any, any, index]);
+
         let any = self.constants().any;
         self.delete_query([any, index, any]);
         self.delete_query([any, any, index]);
