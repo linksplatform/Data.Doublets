@@ -15,7 +15,9 @@
         : public ILinks<Self, TLink>,
           public Interfaces::Polymorph<Self>
     {
-        public: using ILinks<Self, TLink>::Constants;
+    public:
+        LinksConstants<TLink> Constants;
+        //public: using ILinks<Self, TLink>::Constants;
         public: using Interfaces::Polymorph<Self>::self;
 
     public:
@@ -52,10 +54,10 @@
     public:
 
     protected:
-        UnitedMemoryLinksBase(TMemory& memory, std::int64_t memoryReservationStep, LinksConstants<TLink> constants = {})
-            : _memory(memory), _memoryReservationStep(memoryReservationStep) {}
+        UnitedMemoryLinksBase(TMemory&memory, std::int64_t memoryReservationStep, LinksConstants<TLink> constants = {})
+            : _memory(memory), _memoryReservationStep(memoryReservationStep), Constants(constants) {}
 
-        void Init(TMemory& memory, std::size_t memoryReservationStep)
+        void Init(TMemory&memory, std::size_t memoryReservationStep)
         {
             if (memory.ReservedCapacity() < memoryReservationStep)
             {
@@ -442,8 +444,8 @@
         // Указатель this.links может быть в том же месте, 
         // так как 0-я связь не используется и имеет такой же размер как Header,
         // поэтому header размещается в том же месте, что и 0-я связь
-    protected:
-        void SetPointers(TMemory& memory) { self().SetPointers(memory); }
+    public:
+        void SetPointers(TMemory&memory) { self().SetPointers(memory); }
 
         protected: auto&& GetHeaderReference() const { return self().GetHeaderReference(); }
 
@@ -451,6 +453,9 @@
 
         bool Exists(TLink link)
         {
+            if (IsExternalReference(Constants, link)) {
+                return false;
+            }
             return GreaterOrEqualThan(link, Constants.InternalReferencesRange.Minimum) && LessOrEqualThan(link, GetHeaderReference().AllocatedLinks) && !IsUnusedLink(link);
         }
 

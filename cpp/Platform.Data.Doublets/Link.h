@@ -17,6 +17,13 @@
         public: Link(const Link&) noexcept = default;
         public: Link(Link&&) noexcept = default;
 
+        public: auto& operator=(const Link& other) {
+            Index = other.Index;
+            Source = other.Source;
+            Target = other.Target;
+            return *this;
+        }
+
         public: bool operator==(const Link&) const noexcept = default;
 
         public: Link(TLink index, TLink source, TLink target) : Index(index), Source(source), Target(target) {}

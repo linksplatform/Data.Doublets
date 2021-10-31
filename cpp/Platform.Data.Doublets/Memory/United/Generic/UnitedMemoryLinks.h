@@ -76,7 +76,7 @@
             base::Init(memory, memoryReservationStep);
         }
 
-        public: void SetPointers(TMemory& memory)
+        public: void SetPointers(TMemory&memory)
         {
             _links = static_cast<std::byte*>(memory.Pointer());
             _header = _links;

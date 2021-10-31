@@ -133,5 +133,32 @@
             auto point = links.Create();
             return links.Update(point, point, point);
         }
+
+        auto GetLink(TLink index) -> std::optional<Link<TLink>> {
+            auto store = std::optional<Link<TLink>>{};
+            auto any = base::Constants.Any;
+            auto br = base::Constants.Break;
+            base::Each([&](auto link) {
+                store = std::optional{Link{link[0], link[1], link[2]}};
+                return br;
+            }, LinkAddress{index});
+            return store;
+        }
+
+        auto GetSource(TLink index) -> TLink {
+            return GetLink(index).value().Source;
+        }
+
+        auto GetTarget(TLink index) -> TLink {
+            return GetLink(index).value().Target;
+        }
+
+        auto Exist(TLink index) -> TLink {
+            return base::Count(index) != 0;
+        }
+
+        auto IsPartialPoint(TLink index) -> bool {
+
+        }
     };
 }
