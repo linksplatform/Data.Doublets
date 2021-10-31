@@ -83,10 +83,15 @@
 
             auto&& links = *this;
             auto constants = links.Constants;
-            auto setter = Setter<TLink, TLink>(constants.Continue, constants.Break, constants.Null);
-            auto set_and_return = [&](auto&& args) { return setter.SetFirstAndReturnFalse(args); };
-            base::Each(set_and_return, constants.Any, source, target);
-            return setter.Result();
+            TLink result = 0;
+            //auto setter = Setter<TLink, TLink>(constants.Continue, constants.Break, constants.Null);
+            //auto set_and_return = [&](auto&& args) { return setter.SetFirstAndReturnFalse(args); };
+            base::Each([&](auto link) {
+                result = link[0];
+                //std::cout << "finded\n";
+                return links.Constants.Break;
+            }, Link{links.Constants.Any, source, target});
+            return result;
         }
 
         auto Create() -> TLink

@@ -276,6 +276,7 @@
             }
             if (std::ranges::size(restrictions) == 3)
             {
+                any = 18446744073709551613U;
                 auto source = restrictions[constants.SourcePart];
                 auto target = restrictions[constants.TargetPart];
                 if (AreEqual(index, any))
