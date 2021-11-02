@@ -26,7 +26,9 @@ impl HeapMem {
     }
 
     fn on_reserved(&mut self, old_capacity: usize, new_capacity: usize) -> std::io::Result<usize> {
-        let layout = Layout::array::<u8>(new_capacity)?; // TODO: expect
+        use std::io::{Error, ErrorKind};
+        let layout = Layout::array::<u8>(new_capacity)
+            .map_err(|e| Error::new(ErrorKind::Other, e.to_string()))?;
         if self.get_ptr() == null_mut() {
             unsafe {
                 let ptr = std::alloc::alloc_zeroed(layout);
