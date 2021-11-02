@@ -25,8 +25,8 @@ impl HeapMem {
         Self::reserve_new(ResizeableBase::MINIMUM_CAPACITY)
     }
 
-    fn on_reserved(&mut self, old_capacity: usize, new_capacity: usize) {
-        let layout = Layout::array::<u8>(new_capacity).unwrap(); // TODO: expect
+    fn on_reserved(&mut self, old_capacity: usize, new_capacity: usize) -> std::io::Result<usize> {
+        let layout = Layout::array::<u8>(new_capacity)?; // TODO: expect
         if self.get_ptr() == null_mut() {
             unsafe {
                 let ptr = std::alloc::alloc_zeroed(layout);
@@ -43,6 +43,7 @@ impl HeapMem {
                 self.set_ptr(new);
             }
         }
+        Ok(new_capacity)
     }
 }
 
@@ -68,7 +69,7 @@ impl ResizeableMem for HeapMem {
     fn reserve_mem(&mut self, capacity: usize) -> std::io::Result<usize> {
         let older = self.reserved_mem();
         let reserved = self.base.reserve_mem(capacity)?;
-        self.on_reserved(older, capacity);
+        self.on_reserved(older, capacity)?;
         Ok(reserved)
     }
 
@@ -79,7 +80,7 @@ impl ResizeableMem for HeapMem {
 
 impl Drop for HeapMem {
     fn drop(&mut self) {
-        let layout = Layout::array::<u8>(self.reserved_mem()).unwrap(); // TODO: expect
+        let layout = Layout::array::<u8>(self.reserved_mem()).unwrap();
         unsafe { std::alloc::dealloc(self.get_ptr(), layout) }
     }
 }

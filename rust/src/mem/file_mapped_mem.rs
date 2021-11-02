@@ -100,7 +100,7 @@ impl ResizeableMem for FileMappedMem {
 
 impl Drop for FileMappedMem {
     fn drop(&mut self) {
-        self.unmap();
+        unsafe { ManuallyDrop::drop(&mut self.mapping); }
         let used = self.used_mem();
         // TODO: maybe remove `unwrap()` and ignore error
         self.file.set_len(used as u64).unwrap();
