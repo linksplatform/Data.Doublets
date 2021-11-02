@@ -1,5 +1,5 @@
 use crate::num::{LinkType, ToSigned};
-use num_traits::{abs, one, zero, AsPrimitive, ToPrimitive};
+use num_traits::{abs, one, zero, Signed};
 
 #[derive(Debug, Clone, Copy, Hash, PartialOrd, PartialEq, Ord, Eq)]
 pub struct Hybrid<T: LinkType> {
@@ -32,7 +32,7 @@ impl<T: LinkType> Hybrid<T> {
     }
 
     pub fn half() -> T {
-        T::MAX / T::from_i8(2).unwrap()
+        T::MAX / T::from_u8(2).unwrap()
     }
 
     pub fn external_zero() -> T {
@@ -60,8 +60,8 @@ impl<T: LinkType> Hybrid<T> {
             zero()
         } else {
             abs(self.signed())
-        }.to_u128().unwrap(); // TODO: unchecked
-        T::from_u128(abs).unwrap() // TODO: unchecked
+        }.abs();
+        T::from(abs).unwrap()
     }
 
     pub fn as_value(&self) -> T {
