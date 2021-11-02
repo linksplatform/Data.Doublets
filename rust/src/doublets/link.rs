@@ -1,6 +1,6 @@
 use crate::num::LinkType;
 use num_traits::zero;
-use std::fmt::{Debug, Formatter, Display};
+use std::fmt::{Debug, Display, Formatter};
 use std::iter;
 use std::iter::FromIterator;
 use std::ops::{Index, IndexMut};
@@ -72,7 +72,7 @@ impl<T: LinkType> Index<usize> for Link<T> {
             1 => &self.source,
             2 => &self.target,
             _ => {
-                panic!("TODO: LINK INDEX");
+                panic!(todo!("link index panic"));
             }
         }
     }
@@ -85,7 +85,7 @@ impl<'a, T: LinkType> IndexMut<usize> for Link<T> {
             1 => &mut self.source,
             2 => &mut self.target,
             _ => {
-                panic!("TODO: LINK INDEX");
+                panic!(todo!("link index panic"));
             }
         }
     }
