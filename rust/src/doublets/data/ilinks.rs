@@ -1,9 +1,7 @@
 use crate::doublets::data::links_constants::LinksConstants;
 use crate::doublets::data::point::Point;
 use crate::num::LinkType;
-use libc::labs;
 use num_traits::zero;
-use std::ops::Deref;
 
 pub trait IGenericLinks<T: LinkType> {
     fn constants(&self) -> LinksConstants<T> {

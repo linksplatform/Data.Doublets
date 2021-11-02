@@ -1,9 +1,8 @@
 use std::ops::RangeInclusive;
 
-use num_traits::{one, zero, One, Zero};
+use num_traits::{one, zero};
 
 use crate::doublets::data::hybrid::Hybrid;
-use crate::doublets::data::ilinks::IGenericLinks;
 use crate::num::LinkType;
 use std::default::default;
 

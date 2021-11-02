@@ -1,6 +1,5 @@
 use crate::doublets::data::hybrid::Hybrid;
 use crate::num::LinkType;
-use num_traits::zero;
 
 pub struct AddrToRaw;
 
