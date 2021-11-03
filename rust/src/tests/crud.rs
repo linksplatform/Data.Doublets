@@ -5,7 +5,7 @@ use crate::tests::make_links;
 use crate::doublets::{ILinksExtensions, Link};
 use crate::doublets::data::IGenericLinks;
 use crate::test_extensions::ILinksTestExtensions;
-use crate::mem::{FileMappedMem, ResizeableMem};
+use crate::mem::{/*FileMappedMem, */ResizeableMem};
 use std::time::Instant;
 use crate::doublets::decorators::NonNullDeletionResolver;
 
@@ -23,6 +23,7 @@ fn random_creations_and_deletions() {
     println!("{:?}", instant.elapsed());
 }
 
+/*
 #[test]
 fn mapping() {
     std::fs::remove_file("map.txt").unwrap();
@@ -50,3 +51,4 @@ fn billion_points() {
 
     println!("{:?}", instant.elapsed());
 }
+*/

@@ -3,7 +3,7 @@ extern crate test;
 use crate::doublets::decorators::NonNullDeletionResolver;
 use crate::doublets::mem::united;
 use crate::doublets::{ILinks, ILinksExtensions};
-use crate::mem::{FileMappedMem, HeapMem, ResizeableMem};
+use crate::mem::{/*FileMappedMem,*/ HeapMem, ResizeableMem};
 use crate::test_extensions::ILinksTestExtensions;
 use crate::tests::make_mem;
 use test::Bencher;
@@ -46,7 +46,7 @@ fn heap_reserve(b: &mut Bencher) {
         mem.reserve_mem(0);
     });
 }
-
+/*
 #[bench]
 fn file_reserve(b: &mut Bencher) {
     // TODO: use `TempFileMappedMem`
@@ -59,3 +59,4 @@ fn file_reserve(b: &mut Bencher) {
         mem.reserve_mem(0);
     });
 }
+*/

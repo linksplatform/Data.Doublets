@@ -1,4 +1,4 @@
-use std::cmp::max;
+/*use std::cmp::max;
 use std::fs::{File, OpenOptions};
 use std::mem::ManuallyDrop;
 use std::path::Path;
@@ -106,3 +106,4 @@ impl Drop for FileMappedMem {
         self.file.set_len(used as u64).unwrap();
     }
 }
+*/

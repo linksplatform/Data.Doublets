@@ -20,7 +20,7 @@ use crate::doublets::mem::united::UnusedLinks;
 use crate::doublets::mem::ILinksListMethods;
 use crate::doublets::mem::ILinksTreeMethods;
 use crate::doublets::{data, ILinks};
-use crate::mem::FileMappedMem;
+//use crate::mem::FileMappedMem;
 use crate::mem::{Mem, ResizeableMem};
 use crate::num::LinkType;
 

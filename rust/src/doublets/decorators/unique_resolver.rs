@@ -4,7 +4,6 @@ use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstan
 use std::borrow::BorrowMut;
 use std::default::default;
 use std::marker::PhantomData;
-use libc::read;
 use smallvec::SmallVec;
 
 pub struct UniqueResolver<T: LinkType, Links: ILinks<T>> {

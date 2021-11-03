@@ -7,7 +7,7 @@ use crate::doublets::decorators;
 
 
 use decorators::NonNullDeletionResolver;
-use crate::mem::FileMappedMem;
+//use crate::mem::FileMappedMem;
 
 #[test]
 fn non_null_deletions() {
