@@ -7,6 +7,7 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   SCRIPTS_BASE_URL: https://raw.githubusercontent.com/linksplatform/Scripts/master/MultiProjectRepository
   CARGO_TERM_COLOR: always
+  RUSTFLAGS: -Awarnings
 
 jobs:
   bench_rust_on_windows:
@@ -21,6 +22,6 @@ jobs:
       - name: Bench
         run: |
           cd rust
-          cargo +nightly test --release --package doublets --lib tests::crud::billion_points_heap_mem -- --exact --nocapture
-          cargo +nightly test --release --package doublets --lib tests::crud::billion_points_file_mapped -- --exact --nocapture
-          cargo +nightly test --release --package doublets --lib tests::crud::billion_points_bump_alloc -- --exact --nocapture
+          cargo +nightly test --release --package doublets --lib tests::crud::billion_points_heap_mem --quiet -- --exact --nocapture
+          cargo +nightly test --release --package doublets --lib tests::crud::billion_points_file_mapped --quiet  -- --exact --nocapture
+          cargo +nightly test --release --package doublets --lib tests::crud::billion_points_bump_alloc --quiet  -- --exact --nocapture
