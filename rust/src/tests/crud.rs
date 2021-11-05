@@ -6,7 +6,7 @@ use std::ptr::{NonNull, null_mut};
 use std::time::Instant;
 use bumpalo::Bump;
 
-use crate::doublets::{ILinksExtensions, Link};
+use crate::doublets::{ILinksExtensions, ILinks, Link};
 use crate::doublets::data::IGenericLinks;
 use crate::doublets::decorators::NonNullDeletionResolver;
 use crate::mem::{AllocMem, FileMappedMem, HeapMem, Mem, ResizeableBase, ResizeableMem};
