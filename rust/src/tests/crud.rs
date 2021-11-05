@@ -92,13 +92,13 @@ fn many_points_and_searches() {
     let mut links = make_links(mem);
 
     let instant = Instant::now();
-    for _ in 0..1000_000 {
+    for _ in 0..1_000_000 {
         links.create_point();
     }
     println!("{:?}", instant.elapsed());
 
     let instant = Instant::now();
-    for i in 0..1000_000 {
+    for i in 0..100 {
         links.search_or(i, i, 0);
     }
     println!("{:?}", instant.elapsed());
