@@ -76,7 +76,8 @@ impl<T: LinkType> SizeBalancedTreeMethods<T> for LinksTargetsSizeBalancedTree<T>
     fn first_is_to_the_right_of_second(&self, first: T, second: T) -> bool {
         let first = self.get_link(first);
         let second = self.get_link(second);
-        (first.target > second.target) || (first.target == second.target && first.source > second.source)
+        (first.target > second.target)
+            || (first.target == second.target && first.source > second.source)
     }
 
     fn clear_node(&mut self, node: T) {
@@ -97,11 +98,11 @@ impl<T: LinkType> LinksSizeBalancedTreeBaseAbstract<T> for LinksTargetsSizeBalan
     }
 
     fn get_link(&self, link: T) -> &RawLink<T> {
-        unsafe { &*((self.base.links as *const RawLink<T>).offset(link.as_() as isize)) }
+        unsafe { &*((self.base.links as *const RawLink<T>).add(link.as_())) }
     }
 
     fn get_mut_link(&mut self, link: T) -> &mut RawLink<T> {
-        unsafe { &mut *((self.base.links as *mut RawLink<T>).offset(link.as_() as isize)) }
+        unsafe { &mut *((self.base.links as *mut RawLink<T>).add(link.as_())) }
     }
 
     fn get_tree_root(&self) -> T {
@@ -112,16 +113,35 @@ impl<T: LinkType> LinksSizeBalancedTreeBaseAbstract<T> for LinksTargetsSizeBalan
         self.get_link(link).target
     }
 
-    fn first_is_to_the_left_of_second_4(&self, first_source: T, first_target: T, second_source: T, second_target: T) -> bool {
-        (first_target < second_target) || (first_target == second_target && first_source < second_source)
+    fn first_is_to_the_left_of_second_4(
+        &self,
+        first_source: T,
+        first_target: T,
+        second_source: T,
+        second_target: T,
+    ) -> bool {
+        (first_target < second_target)
+            || (first_target == second_target && first_source < second_source)
     }
 
-    fn first_is_to_the_right_of_second_4(&self, first_source: T, first_target: T, second_source: T, second_target: T) -> bool {
-        (first_target > second_target) || (first_target == second_target && first_source > second_source)
+    fn first_is_to_the_right_of_second_4(
+        &self,
+        first_source: T,
+        first_target: T,
+        second_source: T,
+        second_target: T,
+    ) -> bool {
+        (first_target > second_target)
+            || (first_target == second_target && first_source > second_source)
     }
 }
 
-fn each_usages_core<T: LinkType, H: FnMut(Link<T>) -> T>(_self: &LinksTargetsSizeBalancedTree<T>, root: T, link: T, handler: &mut H) -> T {
+fn each_usages_core<T: LinkType, H: FnMut(Link<T>) -> T>(
+    _self: &LinksTargetsSizeBalancedTree<T>,
+    root: T,
+    link: T,
+    handler: &mut H,
+) -> T {
     let base = root;
     let r#continue = _self.base.r#continue;
     let r#break = _self.base.r#break;
@@ -131,22 +151,23 @@ fn each_usages_core<T: LinkType, H: FnMut(Link<T>) -> T>(_self: &LinksTargetsSiz
     }
 
     let base_part = _self.get_base_part(link);
-    return if base_part > base && each_usages_core(&_self, base, _self.get_left(link), handler) == r#break {
-        r#break
-    } else if base_part < base && each_usages_core(&_self, base, _self.get_right(link), handler) == r#break {
+    if (base_part > base
+        && each_usages_core(_self, base, _self.get_left(link), handler) == r#break)
+        || (base_part < base
+        && each_usages_core(_self, base, _self.get_right(link), handler) == r#break)
+    {
         r#break
     } else {
         let values = _self.get_link_value(link);
-        if handler(values) == r#break {
-            r#break
-        } else if each_usages_core(_self, base, _self.get_left(link), handler) == r#break {
-            r#break
-        } else if each_usages_core(_self, base, _self.get_right(link), handler) == r#break {
+        if handler(values) == r#break
+            || each_usages_core(_self, base, _self.get_left(link), handler) == r#break
+            || each_usages_core(_self, base, _self.get_right(link), handler) == r#break
+        {
             r#break
         } else {
             r#continue
         }
-    };
+    }
 }
 
 impl<T: LinkType> UpdatePointers for LinksTargetsSizeBalancedTree<T> {

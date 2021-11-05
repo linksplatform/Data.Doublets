@@ -3,11 +3,12 @@ use std::default::default;
 use std::io::BufRead;
 use std::marker::PhantomData;
 
+use num_traits::zero;
+
 use crate::doublets::{ILinks, ILinksExtensions, Link};
 use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstants};
-use crate::num::LinkType;
-use num_traits::zero;
 use crate::doublets::decorators::UniqueResolver;
+use crate::num::LinkType;
 
 type Base<T, Links> = UniqueResolver<T, Links>;
 

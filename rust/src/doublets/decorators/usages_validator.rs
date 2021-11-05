@@ -2,11 +2,12 @@ use std::borrow::BorrowMut;
 use std::default::default;
 use std::marker::PhantomData;
 
-use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstants};
-use crate::doublets::{ILinks, ILinksExtensions, Link};
-use crate::num::LinkType;
 use num_traits::zero;
 use smallvec::SmallVec;
+
+use crate::doublets::{ILinks, ILinksExtensions, Link};
+use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstants};
+use crate::num::LinkType;
 
 pub struct UsagesValidator<T: LinkType, Links: ILinks<T>> {
     links: Links,
@@ -37,8 +38,8 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for UsagesValidator<T, Links> {
     }
 
     fn each_by<H, const L: usize>(&self, handler: H, restrictions: [T; L]) -> T
-    where
-        H: FnMut(Link<T>) -> T,
+        where
+            H: FnMut(Link<T>) -> T,
     {
         self.links.each_by(handler, restrictions)
     }
@@ -47,10 +48,8 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for UsagesValidator<T, Links> {
         let links = self.links.borrow_mut();
         assert!(
             links.has_usages(index),
-            format!(
-                "[{}] link has usages that prevent changing it's structure",
-                index
-            )
+            "[{}] link has usages that prevent changing it's structure",
+            index
         );
         links.update(index, source, target)
     }
@@ -59,10 +58,8 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for UsagesValidator<T, Links> {
         let links = self.links.borrow_mut();
         assert!(
             links.has_usages(index),
-            format!(
-                "[{}] link has usages that prevent changing it's structure",
-                index
-            )
+            "[{}] link has usages that prevent changing it's structure",
+            index
         );
         links.delete(index)
     }

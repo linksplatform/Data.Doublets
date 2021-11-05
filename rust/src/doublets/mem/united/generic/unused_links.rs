@@ -1,3 +1,5 @@
+use std::marker::PhantomData;
+
 use crate::doublets::mem::ilinks_list_methods::ILinksListMethods;
 use crate::doublets::mem::links_header::LinksHeader;
 use crate::doublets::mem::united::generic::UpdatePointers;
@@ -6,7 +8,6 @@ use crate::methods::AbsoluteCircularDoublyLinkedList;
 use crate::methods::AbsoluteDoublyLinkedListBase;
 use crate::methods::DoublyLinkedListBase;
 use crate::num::LinkType;
-use std::marker::PhantomData;
 
 pub struct UnusedLinks<T: LinkType> {
     links: *mut u8,
@@ -31,11 +32,11 @@ impl<T: LinkType> UnusedLinks<T> {
     }
 
     fn get_link(&self, link: T) -> &RawLink<T> {
-        unsafe { &*((self.links as *const RawLink<T>).offset(link.as_() as isize)) }
+        unsafe { &*((self.links as *const RawLink<T>).add(link.as_())) }
     }
 
     fn get_mut_link(&mut self, link: T) -> &mut RawLink<T> {
-        unsafe { &mut *((self.links as *mut RawLink<T>).offset(link.as_() as isize)) }
+        unsafe { &mut *((self.links as *mut RawLink<T>).add(link.as_())) }
     }
 }
 

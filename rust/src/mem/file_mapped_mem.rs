@@ -1,4 +1,5 @@
 use std::cmp::max;
+use std::error::Error;
 use std::fs::{File, OpenOptions};
 use std::mem::ManuallyDrop;
 use std::path::Path;
@@ -6,7 +7,7 @@ use std::path::Path;
 use memmap2;
 use memmap2::{MmapMut, MmapOptions};
 
-use crate::mem::mem::{Mem, ResizeableMem};
+use crate::mem::mem_traits::{Mem, ResizeableMem};
 use crate::mem::resizeable_base::ResizeableBase;
 
 pub struct FileMappedMem {
@@ -34,8 +35,12 @@ impl FileMappedMem {
             file,
         };
 
-        new.reserve_mem(to_reserve);
-        Ok(new)
+        if let Err(err) = new.reserve_mem(to_reserve) {
+            use std::io::{Error, ErrorKind};
+            Err(Error::new(ErrorKind::Other, err.to_string()))
+        } else {
+            Ok(new)
+        }
     }
 
     pub fn new<P: AsRef<Path>>(path: P) -> std::io::Result<Self> {
@@ -64,15 +69,15 @@ impl Mem for FileMappedMem {
 }
 
 impl ResizeableMem for FileMappedMem {
-    fn use_mem(&mut self, capacity: usize) -> std::io::Result<usize> {
-        self.base.use_mem(capacity).into()
+    fn use_mem(&mut self, capacity: usize) -> Result<usize, Box<dyn Error>> {
+        self.base.use_mem(capacity)
     }
 
     fn used_mem(&self) -> usize {
         self.base.used_mem()
     }
 
-    fn reserve_mem(&mut self, capacity: usize) -> std::io::Result<usize> {
+    fn reserve_mem(&mut self, capacity: usize) -> Result<usize, Box<dyn Error>> {
         let reserved = self.base.reserve_mem(capacity)?;
 
         self.unmap();
@@ -85,7 +90,7 @@ impl ResizeableMem for FileMappedMem {
 
         // TODO: current impl
         let file_len = self.file.metadata()?.len();
-        self.file.set_len(file_len.max(capacity as u64));
+        self.file.set_len(file_len.max(capacity as u64))?;
 
         let ptr = self.map(capacity)?;
         self.set_ptr(ptr);

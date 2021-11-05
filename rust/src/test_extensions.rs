@@ -1,11 +1,13 @@
+use std::default::default;
+
+use num_traits::{one, zero};
+use rand::Rng;
+
 use crate::doublets::data::{Hybrid, IGenericLinks, IGenericLinksExtensions};
 use crate::doublets::ILinks;
 use crate::doublets::ILinksExtensions;
 use crate::doublets::Link;
 use crate::num::LinkType;
-use num_traits::{one, zero};
-use rand::Rng;
-use std::default::default;
 
 pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
     fn test_crud(&mut self) {
@@ -46,9 +48,9 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
 
         let constants = links.constants();
 
-        let n106 = T::from(106 as usize);
+        let n106 = T::from(106_usize);
         let n107 = T::from(char::from_u32(107).unwrap() as usize);
-        let n108 = T::from(((-108_i32) as usize));
+        let n108 = T::from((-108_i32) as usize);
 
         let h106 = Hybrid::external(n106.unwrap());
         let h107 = Hybrid::new(n107.unwrap());
@@ -116,10 +118,9 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
     }
 
     fn test_random_creations_and_deletions(&mut self, per_cycle: usize) {
-
         for n in 1..per_cycle {
             let mut created = 0;
-            let mut deleted = 0;
+            let mut _deleted = 0;
             for _ in 0..n {
                 let count = self.count().as_();
                 let create_point: bool = rand::random();
@@ -129,7 +130,7 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
                     let target = rand::thread_rng().gen_range(address);
                     let result = self.get_or_create(
                         T::from_usize(source).unwrap(),
-                        T::from_usize(target).unwrap()
+                        T::from_usize(target).unwrap(),
                     ).as_();
 
                     if result > count {

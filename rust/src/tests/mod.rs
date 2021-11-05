@@ -1,5 +1,5 @@
-use crate::mem::{HeapMem, ResizeableMem};
 use crate::doublets::mem::united;
+use crate::mem::{HeapMem, ResizeableMem};
 use crate::num::LinkType;
 
 // TODO: cfg!

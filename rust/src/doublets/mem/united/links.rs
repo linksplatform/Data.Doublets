@@ -7,9 +7,12 @@ use num_traits::{one, zero};
 use smallvec::SmallVec;
 
 use crate::doublets;
+use crate::doublets::{data, ILinks};
 use crate::doublets::data::IGenericLinks;
 use crate::doublets::data::LinksConstants;
 use crate::doublets::link::Link;
+use crate::doublets::mem::ILinksListMethods;
+use crate::doublets::mem::ILinksTreeMethods;
 use crate::doublets::mem::links_header::LinksHeader;
 use crate::doublets::mem::united::LinksSourcesRecursionlessSizeBalancedTree;
 use crate::doublets::mem::united::LinksSourcesSizeBalancedTree;
@@ -17,11 +20,8 @@ use crate::doublets::mem::united::LinksTargetsRecursionlessSizeBalancedTree;
 use crate::doublets::mem::united::LinksTargetsSizeBalancedTree;
 use crate::doublets::mem::united::RawLink;
 use crate::doublets::mem::united::UnusedLinks;
-use crate::doublets::mem::ILinksListMethods;
-use crate::doublets::mem::ILinksTreeMethods;
-use crate::doublets::{data, ILinks};
-use crate::mem::FileMappedMem;
 use crate::mem::{Mem, ResizeableMem};
+use crate::mem::FileMappedMem;
 use crate::num::LinkType;
 
 // TODO: use `_=_` instead of `_ = _`
@@ -42,12 +42,12 @@ pub struct Links<
 }
 
 impl<
-        T: LinkType,
-        M: ResizeableMem,
-        TS: ILinksTreeMethods<T>,
-        TT: ILinksTreeMethods<T>,
-        TU: ILinksListMethods<T>,
-    > Links<T, M, TS, TT, TU>
+    T: LinkType,
+    M: ResizeableMem,
+    TS: ILinksTreeMethods<T>,
+    TT: ILinksTreeMethods<T>,
+    TU: ILinksListMethods<T>,
+> Links<T, M, TS, TT, TU>
 {
     pub const LINK_SIZE: usize = size_of::<RawLink<T>>();
     pub const HEADER_SIZE: usize = size_of::<LinksHeader<T>>();
@@ -108,7 +108,7 @@ impl<
         }
         self.update_pointers();
 
-        let header = self.get_header();
+        let header = *self.get_header();
         self.mem
             .use_mem(Self::HEADER_SIZE + header.allocated.as_() * Self::LINK_SIZE)
             .unwrap();
@@ -127,11 +127,11 @@ impl<
     }
 
     fn get_link(&self, link: T) -> &RawLink<T> {
-        unsafe { &*((self.mem.get_ptr() as *const RawLink<T>).offset(link.as_() as isize)) }
+        unsafe { &*((self.mem.get_ptr() as *const RawLink<T>).add(link.as_())) }
     }
 
     pub fn get_mut_link(&mut self, link: T) -> &mut RawLink<T> {
-        unsafe { &mut *((self.mem.get_ptr() as *mut RawLink<T>).offset(link.as_() as isize)) }
+        unsafe { &mut *((self.mem.get_ptr() as *mut RawLink<T>).add(link.as_())) }
     }
 
     fn get_total(&self) -> T {
@@ -181,13 +181,13 @@ impl<
     }
 
     fn each_core<F, const L: usize>(&self, handler: &mut F, restrictions: [T; L]) -> T
-    where
-        F: FnMut(Link<T>) -> T,
+        where
+            F: FnMut(Link<T>) -> T,
     {
         let constants = self.constants();
         let r#break = constants.r#break;
 
-        if restrictions.len() == 0 {
+        if restrictions.is_empty() {
             for index in T::one()..self.get_header().allocated + one() {
                 let link = self.get_link_struct(index);
                 if self.exists(index) && handler(link) == r#break {
@@ -298,19 +298,19 @@ impl<
 }
 
 impl<
-        T: LinkType,
-        M: ResizeableMem,
-        TS: ILinksTreeMethods<T>,
-        TT: ILinksTreeMethods<T>,
-        TU: ILinksListMethods<T>,
-    > doublets::ILinks<T> for Links<T, M, TS, TT, TU>
+    T: LinkType,
+    M: ResizeableMem,
+    TS: ILinksTreeMethods<T>,
+    TT: ILinksTreeMethods<T>,
+    TU: ILinksListMethods<T>,
+> doublets::ILinks<T> for Links<T, M, TS, TT, TU>
 {
     fn constants(&self) -> LinksConstants<T> {
         self.constants.clone()
     }
 
     fn count_by<const L: usize>(&self, restrictions: [T; L]) -> T {
-        if restrictions.len() == 0 {
+        if restrictions.is_empty() {
             return self.get_total();
         };
 
@@ -422,7 +422,8 @@ impl<
 
             if header.allocated >= header.reserved - one() {
                 self.mem
-                    .reserve_mem(self.mem.reserved_mem() + self.reserve_step);
+                    .reserve_mem(self.mem.reserved_mem() + self.reserve_step)
+                    .unwrap();
                 self.update_pointers();
                 let reserved = self.mem.reserved_mem();
                 let header = self.get_mut_header();
@@ -431,16 +432,16 @@ impl<
             let header = self.get_mut_header();
             header.allocated = header.allocated + one();
             free = header.allocated;
-            self.mem.use_mem(self.mem.used_mem() + Self::LINK_SIZE);
+            self.mem.use_mem(self.mem.used_mem() + Self::LINK_SIZE).unwrap();
         } else {
             self.unused.detach(free)
         }
-        return free;
+        free
     }
 
     fn each_by<H, const L: usize>(&self, mut handler: H, restrictions: [T; L]) -> T
-    where
-        H: FnMut(Link<T>) -> T,
+        where
+            H: FnMut(Link<T>) -> T,
     {
         self.each_core(&mut handler, restrictions)
     }
@@ -449,45 +450,45 @@ impl<
         let constants = self.constants();
         let null = constants.null;
 
-        unsafe {
-            let link = self.get_mut_link(index) as *mut RawLink<T>;
+        let link = *self.get_mut_link(index);
+        if link.source != null {
+            let temp = &mut self.get_mut_header().root_as_source as *mut T;
+            unsafe { self.sources.detach(&mut *temp, index) };
+        }
 
-            // TODO: memory filled with zeros
-            if (*link).source != null {
-                let temp = &mut self.get_mut_header().root_as_source as *mut T;
-                unsafe { self.sources.detach(&mut *temp, index) };
-            }
-            if (*link).target != null {
-                let temp = &mut self.get_mut_header().root_as_target as *mut T;
-                unsafe { self.targets.detach(&mut *temp, index) };
-            }
+        let link = *self.get_mut_link(index);
+        if link.target != null {
+            let temp = &mut self.get_mut_header().root_as_target as *mut T;
+            unsafe { self.targets.detach(&mut *temp, index) };
+        }
 
-            (*link).source = source;
-            (*link).target = target;
+        let link = self.get_mut_link(index);
+        link.source = source;
+        link.target = target;
 
-            if (*link).source != null {
-                let temp = &mut self.get_mut_header().root_as_source as *mut T;
-                unsafe { self.sources.attach(&mut *temp, index) };
-            }
+        let link = *self.get_mut_link(index);
+        if link.source != null {
+            let temp = &mut self.get_mut_header().root_as_source as *mut T;
+            unsafe { self.sources.attach(&mut *temp, index) };
+        }
 
-            if (*link).target != null {
-                let temp = &mut self.get_mut_header().root_as_target as *mut T;
-                unsafe { self.targets.attach(&mut *temp, index) };
-            }
+        let link = *self.get_mut_link(index);
+        if link.target != null {
+            let temp = &mut self.get_mut_header().root_as_target as *mut T;
+            unsafe { self.targets.attach(&mut *temp, index) };
         }
 
         index
     }
 
     fn delete(&mut self, index: T) -> T {
-        if !self.exists(index) { return default(); }
+        //if !self.exists(index) { return default(); }
         // TODO:
-        self.update(index, zero(), zero());
+        //self.update(index, zero(), zero());
         // TODO:
 
         // TODO: move to `delete_core`
 
-        let constants = self.constants();
         let header = self.get_header();
         let link = index;
         if link < header.allocated {
@@ -511,18 +512,16 @@ impl<
             }
             //*self.get_mut_header() = header;
         }
-        return index;
+        index
     }
 
     fn get_link(&self, index: T) -> Option<Link<T>> {
         if self.constants.is_external_reference(index) {
             Some(Link::from_once(index))
+        } else if self.exists(index) {
+            Some(self.get_link_struct(index))
         } else {
-            if self.exists(index) {
-                Some(self.get_link_struct(index))
-            } else {
-                None
-            }
+            None
         }
     }
 }

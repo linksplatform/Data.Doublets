@@ -1,9 +1,11 @@
 use std::default::default;
 use std::mem::size_of;
-use crate::num::Num;
-use crate::methods::trees::size_balanced_tree_base::SizeBalancedTreeBase;
-use num_traits::{zero, one};
+
+use num_traits::{one, zero};
+
 use crate::methods::SizeBalancedTreeMethods;
+use crate::methods::trees::size_balanced_tree_base::SizeBalancedTreeBase;
+use crate::num::Num;
 
 pub trait RecursionlessSizeBalancedTreeMethods<T: Num>: SizeBalancedTreeBase<T> {
     unsafe fn attach(&mut self, root: *mut T, node: T) {
@@ -21,9 +23,9 @@ pub trait RecursionlessSizeBalancedTreeMethods<T: Num>: SizeBalancedTreeBase<T> 
     unsafe fn attach_core(&mut self, mut root: *mut T, node: T) {
         loop {
             let left = self.get_mut_left_reference(*root);
-            let leftSize = self.get_size_or_zero(*left);
+            let left_size = self.get_size_or_zero(*left);
             let right = self.get_mut_right_reference(*root);
-            let rightSize = self.get_size_or_zero(*right);
+            let right_size = self.get_size_or_zero(*right);
             if self.first_is_to_the_left_of_second(node, *root)
             {
                 if *left == zero()
@@ -35,7 +37,7 @@ pub trait RecursionlessSizeBalancedTreeMethods<T: Num>: SizeBalancedTreeBase<T> 
                 }
                 if self.first_is_to_the_left_of_second(node, *left)
                 {
-                    if ((leftSize + one()) > rightSize)
+                    if (left_size + one()) > right_size
                     {
                         self.right_rotate(root);
                     } else {
@@ -43,14 +45,14 @@ pub trait RecursionlessSizeBalancedTreeMethods<T: Num>: SizeBalancedTreeBase<T> 
                         root = left;
                     }
                 } else {
-                    let leftRightSize = self.get_size_or_zero(self.get_right(*left));
-                    if ((leftRightSize + one()) > rightSize)
+                    let left_right_size = self.get_size_or_zero(self.get_right(*left));
+                    if (left_right_size + one()) > right_size
                     {
-                        if (leftRightSize == zero() && rightSize == zero())
+                        if left_right_size == zero() && right_size == zero()
                         {
                             self.set_left(node, *left);
                             self.set_right(node, *root);
-                            self.set_size(node, leftSize + one() + one());
+                            self.set_size(node, left_size + one() + one());
                             self.set_left(*root, zero());
                             self.set_size(*root, one());
                             *root = node;
@@ -64,16 +66,16 @@ pub trait RecursionlessSizeBalancedTreeMethods<T: Num>: SizeBalancedTreeBase<T> 
                     }
                 }
             } else {
-                if (*right == zero())
+                if *right == zero()
                 {
                     self.inc_size(*root);
                     self.set_size(node, one());
                     *right = node;
                     return;
                 }
-                if (self.first_is_to_the_right_of_second(node, *right))
+                if self.first_is_to_the_right_of_second(node, *right)
                 {
-                    if ((rightSize + one()) > leftSize)
+                    if (right_size + one()) > left_size
                     {
                         self.left_rotate(root);
                     } else {
@@ -81,14 +83,14 @@ pub trait RecursionlessSizeBalancedTreeMethods<T: Num>: SizeBalancedTreeBase<T> 
                         root = right;
                     }
                 } else {
-                    let rightLeftSize = self.get_size_or_zero(self.get_left(*right));
-                    if ((rightLeftSize + one()) > leftSize)
+                    let right_left_size = self.get_size_or_zero(self.get_left(*right));
+                    if (right_left_size + one()) > left_size
                     {
-                        if (rightLeftSize == zero() && leftSize == zero())
+                        if right_left_size == zero() && left_size == zero()
                         {
                             self.set_left(node, *root);
                             self.set_right(node, *right);
-                            self.set_size(node, rightSize + one() + one());
+                            self.set_size(node, right_size + one() + one());
                             self.set_right(*root, zero());
                             self.set_size(*root, one());
                             *root = node;
@@ -106,78 +108,62 @@ pub trait RecursionlessSizeBalancedTreeMethods<T: Num>: SizeBalancedTreeBase<T> 
     }
 
     unsafe fn detach_core(&mut self, mut root: *mut T, node: T) {
-        while (true)
-        {
+        loop {
             let left = self.get_mut_left_reference(*root);
-            let leftSize = self.get_size_or_zero(*left);
+            let left_size = self.get_size_or_zero(*left);
             let right = self.get_mut_right_reference(*root);
-            let rightSize = self.get_size_or_zero(*right);
-            if (self.first_is_to_the_left_of_second(node, *root))
+            let right_size = self.get_size_or_zero(*right);
+            if self.first_is_to_the_left_of_second(node, *root)
             {
-                let decrementedLeftSize = leftSize - one();
-                if (self.get_size_or_zero(self.get_right_or_default(*right)) > decrementedLeftSize)
+                let decremented_left_size = left_size - one();
+                if self.get_size_or_zero(self.get_right_or_default(*right)) > decremented_left_size
                 {
                     self.left_rotate(root);
-                }
-                else if (self.get_size_or_zero(self.get_left_or_default(*right)) > decrementedLeftSize)
+                } else if self.get_size_or_zero(self.get_left_or_default(*right)) > decremented_left_size
                 {
                     self.right_rotate(right);
                     self.left_rotate(root);
-                }
-                else
-                {
+                } else {
                     self.dec_size(*root);
                     root = left;
                 }
-            }
-            else if (self.first_is_to_the_right_of_second(node, *root))
+            } else if self.first_is_to_the_right_of_second(node, *root)
             {
-                let decrementedRightSize = rightSize - one();
-                if (self.get_size_or_zero(self.get_left_or_default(*left)) > decrementedRightSize)
+                let decremented_right_size = right_size - one();
+                if self.get_size_or_zero(self.get_left_or_default(*left)) > decremented_right_size
                 {
                     self.right_rotate(root);
-                }
-                else if (self.get_size_or_zero(self.get_right_or_default(*left)) > decrementedRightSize)
+                } else if self.get_size_or_zero(self.get_right_or_default(*left)) > decremented_right_size
                 {
                     self.left_rotate(left);
                     self.right_rotate(root);
-                }
-                else
-                {
+                } else {
                     self.dec_size(*root);
                     root = right;
                 }
-            }
-            else
-            {
-                if (leftSize > zero() && rightSize > zero())
+            } else {
+                if left_size > zero() && right_size > zero()
                 {
-                    let mut replacement = zero();
-                    if (leftSize > rightSize)
+                    let replacement;
+                    if left_size > right_size
                     {
                         replacement = self.get_rightest(*left);
                         self.detach_core(left, replacement);
-                    }
-                    else
-                    {
+                    } else {
                         replacement = self.get_leftest(*right);
                         self.detach_core(right, replacement);
                     }
                     self.set_left(replacement, *left);
                     self.set_right(replacement, *right);
-                    self.set_size(replacement, leftSize + rightSize);
+                    self.set_size(replacement, left_size + right_size);
                     *root = replacement;
-                }
-                else if (leftSize > zero())
+                } else if left_size > zero()
                 {
                     *root = *left;
-                }
-                else if (rightSize > zero())
+                } else if right_size > zero()
                 {
                     *root = *right;
-                }
-                else
-                {
+                } else {
                     *root = zero();
                 }
                 self.clear_node(node);
@@ -239,17 +225,20 @@ impl<T: Num> NonRecurTree<T> {
     }
 
     pub fn is_empty(&self, node: T) -> bool {
-        unsafe fn is_zero(ptr: *const usize, mut bytes: isize) -> bool {
+        unsafe fn is_zero(ptr: *const usize, bytes: isize) -> bool {
             let ptr = ptr as *const i8;
             (0..bytes).all(|i| *(ptr.offset(i)) == 0)
         }
 
-        unsafe { is_zero(self.get(node) as *mut TreeElement<T> as *const usize, size_of::<TreeElement<T>>() as isize) }
+        unsafe { is_zero(self.get(node) as *const TreeElement<T> as *const usize, size_of::<TreeElement<T>>() as isize) }
     }
 
-    fn get(&self, node: T) -> &mut TreeElement<T> {
-        // TODO: lol stupid implementation
-        unsafe { &mut *(&self.elements[node.as_()] as *const TreeElement<T> as *mut TreeElement<T>) }
+    fn get(&self, node: T) -> &TreeElement<T> {
+        &self.elements[node.as_()]
+    }
+
+    fn get_mut(&mut self, node: T) -> &mut TreeElement<T> {
+        &mut self.elements[node.as_()]
     }
 }
 
@@ -263,11 +252,11 @@ impl<T: Num> SizeBalancedTreeMethods<T> for NonRecurTree<T> {
     }
 
     fn get_mut_left_reference(&mut self, node: T) -> *mut T {
-        &mut self.get(node).left as *mut T
+        &mut self.get_mut(node).left as *mut T
     }
 
     fn get_mut_right_reference(&mut self, node: T) -> *mut T {
-        &mut self.get(node).right as *mut T
+        &mut self.get_mut(node).right as *mut T
     }
 
     fn get_left(&self, node: T) -> T {
@@ -283,15 +272,15 @@ impl<T: Num> SizeBalancedTreeMethods<T> for NonRecurTree<T> {
     }
 
     fn set_left(&mut self, node: T, left: T) {
-        self.get(node).left = left
+        self.get_mut(node).left = left
     }
 
     fn set_right(&mut self, node: T, right: T) {
-        self.get(node).right = right
+        self.get_mut(node).right = right
     }
 
     fn set_size(&mut self, node: T, size: T) {
-        self.get(node).size = size
+        self.get_mut(node).size = size
     }
 
     fn first_is_to_the_left_of_second(&self, first: T, second: T) -> bool {

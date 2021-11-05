@@ -1,5 +1,6 @@
+use num_traits::{abs, one, Signed, zero};
+
 use crate::num::{LinkType, ToSigned};
-use num_traits::{abs, one, zero, Signed};
 
 #[derive(Debug, Clone, Copy, Hash, PartialOrd, PartialEq, Ord, Eq)]
 pub struct Hybrid<T: LinkType> {

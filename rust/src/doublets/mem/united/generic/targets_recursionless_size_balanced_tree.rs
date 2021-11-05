@@ -1,14 +1,17 @@
-use crate::doublets::mem::united::generic::links_recursionless_size_balanced_tree_base::{LinksRecursionlessSizeBalancedTreeBase, LinkRecursionlessSizeBalancedTreeBaseAbstract};
-use crate::num::LinkType;
+use num_traits::{one, zero};
+
 use crate::doublets::data::LinksConstants;
-use crate::methods::RecursionlessSizeBalancedTreeMethods;
-use crate::doublets::mem::ilinks_tree_methods::ILinksTreeMethods;
-use crate::doublets::mem::united::generic::UpdatePointers;
-use crate::doublets::mem::links_header::LinksHeader;
-use crate::doublets::mem::united::raw_link::RawLink;
-use num_traits::{zero, one};
 use crate::doublets::Link;
+use crate::doublets::mem::ilinks_tree_methods::ILinksTreeMethods;
+use crate::doublets::mem::links_header::LinksHeader;
+use crate::doublets::mem::united::generic::links_recursionless_size_balanced_tree_base::{
+    LinkRecursionlessSizeBalancedTreeBaseAbstract, LinksRecursionlessSizeBalancedTreeBase,
+};
+use crate::doublets::mem::united::generic::UpdatePointers;
+use crate::doublets::mem::united::raw_link::RawLink;
+use crate::methods::RecursionlessSizeBalancedTreeMethods;
 use crate::methods::SizeBalancedTreeBase;
+use crate::num::LinkType;
 
 pub struct LinksTargetsRecursionlessSizeBalancedTree<T: LinkType> {
     base: LinksRecursionlessSizeBalancedTreeBase<T>,
@@ -66,13 +69,23 @@ impl<T: LinkType> SizeBalancedTreeBase<T> for LinksTargetsRecursionlessSizeBalan
     fn first_is_to_the_left_of_second(&self, first: T, second: T) -> bool {
         let first = self.get_link(first);
         let second = self.get_link(second);
-        self.first_is_to_the_left_of_second_4(first.source, first.target, second.source, second.target)
+        self.first_is_to_the_left_of_second_4(
+            first.source,
+            first.target,
+            second.source,
+            second.target,
+        )
     }
 
     fn first_is_to_the_right_of_second(&self, first: T, second: T) -> bool {
         let first = self.get_link(first);
         let second = self.get_link(second);
-        self.first_is_to_the_right_of_second_4(first.source, first.target, second.source, second.target)
+        self.first_is_to_the_right_of_second_4(
+            first.source,
+            first.target,
+            second.source,
+            second.target,
+        )
     }
 
     fn clear_node(&mut self, node: T) {
@@ -83,106 +96,92 @@ impl<T: LinkType> SizeBalancedTreeBase<T> for LinksTargetsRecursionlessSizeBalan
     }
 }
 
-impl<T: LinkType> RecursionlessSizeBalancedTreeMethods<T> for LinksTargetsRecursionlessSizeBalancedTree<T> {
-}
+impl<T: LinkType> RecursionlessSizeBalancedTreeMethods<T>
+for LinksTargetsRecursionlessSizeBalancedTree<T>
+{}
 
-fn each_usages_core<T: LinkType, H: FnMut(Link<T>) -> T>(_self: &LinksTargetsRecursionlessSizeBalancedTree<T>, base: T, link: T, handler: &mut H) -> T {
+fn each_usages_core<T: LinkType, H: FnMut(Link<T>) -> T>(
+    _self: &LinksTargetsRecursionlessSizeBalancedTree<T>,
+    base: T,
+    link: T,
+    handler: &mut H,
+) -> T {
     let r#continue = _self.base.r#continue;
-    if (link == zero())
-    {
+    if link == zero() {
         return r#continue;
     }
-    let linkBasePart = _self.get_base_part(link);
+    let link_base_part = _self.get_base_part(link);
     let r#break = _self.base.r#break;
-    if (linkBasePart > base)
-    {
-        if each_usages_core(_self, base, _self.get_left_or_default(link), handler) == r#break
-        {
+    if link_base_part > base {
+        if each_usages_core(_self, base, _self.get_left_or_default(link), handler) == r#break {
+            return r#break;
+        }
+    } else if link_base_part < base {
+        if each_usages_core(_self, base, _self.get_right_or_default(link), handler) == r#break {
+            return r#break;
+        }
+    } else {
+        if handler(_self.get_link_value(link)) == r#break {
+            return r#break;
+        }
+        if each_usages_core(_self, base, _self.get_left_or_default(link), handler) == r#break {
+            return r#break;
+        }
+        if each_usages_core(_self, base, _self.get_right_or_default(link), handler) == r#break {
             return r#break;
         }
     }
-    else if linkBasePart < base
-    {
-        if  each_usages_core(_self, base, _self.get_right_or_default(link), handler) == r#break
-        {
-            return r#break;
-        }
-    }
-    else
-    {
-        if handler(_self.get_link_value(link)) == r#break
-        {
-            return r#break;
-        }
-        if each_usages_core(_self, base, _self.get_left_or_default(link), handler) == r#break
-        {
-            return r#break;
-        }
-        if each_usages_core(_self, base, _self.get_right_or_default(link), handler) == r#break
-        {
-            return r#break;
-        }
-    }
-    return r#continue;
+    r#continue
 }
 
 impl<T: LinkType> ILinksTreeMethods<T> for LinksTargetsRecursionlessSizeBalancedTree<T> {
     fn count_usages(&self, link: T) -> T {
         let mut root = self.get_tree_root();
         let total = self.get_size(root);
-        let mut totalRightIgnore = zero();
-        while (root != zero())
-        {
+        let mut total_right_ignore = zero();
+        while root != zero() {
             let base = self.get_base_part(root);
-            if ((base <= link))
-            {
+            if base <= link {
                 root = self.get_right_or_default(root);
-            }
-            else
-            {
-                totalRightIgnore = totalRightIgnore + (self.get_right_size(root) + one());
+            } else {
+                total_right_ignore = total_right_ignore + (self.get_right_size(root) + one());
                 root = self.get_left_or_default(root);
             }
         }
         root = self.get_tree_root();
-        let mut totalLeftIgnore = zero();
-        while (root != zero())
-        {
+        let mut total_left_ignore = zero();
+        while root != zero() {
             let base = self.get_base_part(root);
-            if (base >= link)
-            {
+            if base >= link {
                 root = self.get_left_or_default(root);
-            }
-            else
-            {
-                totalLeftIgnore = totalLeftIgnore + (self.get_left_size(root) + one());
+            } else {
+                total_left_ignore = total_left_ignore + (self.get_left_size(root) + one());
                 root = self.get_right_or_default(root);
             }
         }
-        return total - totalRightIgnore - totalLeftIgnore;
+        total - total_right_ignore - total_left_ignore
     }
 
     fn search(&self, source: T, target: T) -> T {
         let mut root = self.get_tree_root();
-        while root != zero()
-        {
-            let rootLink = self.get_link(root);
-            let rootSource = rootLink.source;
-            let rootTarget = rootLink.target;
-            if self.first_is_to_the_left_of_second_4(source, target, rootSource, rootTarget)
-            {
+        while root != zero() {
+            let root_link = self.get_link(root);
+            let root_source = root_link.source;
+            let root_target = root_link.target;
+            if self.first_is_to_the_left_of_second_4(source, target, root_source, root_target) {
                 root = self.get_left_or_default(root);
-            }
-            else if self.first_is_to_the_right_of_second_4(source, target, rootSource, rootTarget)
-            {
+            } else if self.first_is_to_the_right_of_second_4(
+                source,
+                target,
+                root_source,
+                root_target,
+            ) {
                 root = self.get_right_or_default(root);
-            }
-            else
-            {
+            } else {
                 return root;
             }
         }
-        return zero();
+        zero()
     }
 
     fn each_usages<H: FnMut(Link<T>) -> T>(&self, base: T, mut handler: H) -> T {
@@ -205,7 +204,9 @@ impl<T: LinkType> UpdatePointers for LinksTargetsRecursionlessSizeBalancedTree<T
     }
 }
 
-impl<T: LinkType> LinkRecursionlessSizeBalancedTreeBaseAbstract<T> for LinksTargetsRecursionlessSizeBalancedTree<T> {
+impl<T: LinkType> LinkRecursionlessSizeBalancedTreeBaseAbstract<T>
+for LinksTargetsRecursionlessSizeBalancedTree<T>
+{
     fn get_header(&self) -> &LinksHeader<T> {
         unsafe { &*(self.base.header as *const LinksHeader<T>) }
     }
@@ -215,11 +216,11 @@ impl<T: LinkType> LinkRecursionlessSizeBalancedTreeBaseAbstract<T> for LinksTarg
     }
 
     fn get_link(&self, link: T) -> &RawLink<T> {
-        unsafe { &*((self.base.links as *const RawLink<T>).offset(link.as_() as isize)) }
+        unsafe { &*((self.base.links as *const RawLink<T>).add(link.as_())) }
     }
 
     fn get_mut_link(&mut self, link: T) -> &mut RawLink<T> {
-        unsafe { &mut *(self.base.links as *mut RawLink<T>).offset(link.as_() as isize) }
+        unsafe { &mut *(self.base.links as *mut RawLink<T>).add(link.as_()) }
     }
 
     fn get_tree_root(&self) -> T {
@@ -230,11 +231,25 @@ impl<T: LinkType> LinkRecursionlessSizeBalancedTreeBaseAbstract<T> for LinksTarg
         self.get_link(link).target
     }
 
-    fn first_is_to_the_left_of_second_4(&self, firstSource: T, firstTarget: T, secondSource: T, secondTarget: T) -> bool {
-        firstTarget < secondTarget || (firstTarget == secondTarget && firstSource < secondSource)
+    fn first_is_to_the_left_of_second_4(
+        &self,
+        first_source: T,
+        first_target: T,
+        second_source: T,
+        second_target: T,
+    ) -> bool {
+        first_target < second_target
+            || (first_target == second_target && first_source < second_source)
     }
 
-    fn first_is_to_the_right_of_second_4(&self, firstSource: T, firstTarget: T, secondSource: T, secondTarget: T) -> bool {
-        firstTarget > secondTarget || (firstTarget == secondTarget && firstSource > secondSource)
+    fn first_is_to_the_right_of_second_4(
+        &self,
+        first_source: T,
+        first_target: T,
+        second_source: T,
+        second_target: T,
+    ) -> bool {
+        first_target > second_target
+            || (first_target == second_target && first_source > second_source)
     }
 }

@@ -1,19 +1,22 @@
-use crate::tests::make_mem;
-use crate::tests::make_links;
-use crate::doublets::{ILinks, ILinksExtensions, Link};
-use crate::doublets::data::IGenericLinks;
+use std::ptr::Unique;
 use std::sync::{Arc, Mutex, RwLock};
 use std::sync::mpsc::channel;
 use std::thread;
-use crate::num::LinkType;
-use crate::mem::ResizeableMem;
-use crate::doublets::mem::united;
-use std::ptr::Unique;
 use std::time::Instant;
+
 use rand::Rng;
+
+use crate::doublets::{ILinks, ILinksExtensions, Link};
+use crate::doublets::data::IGenericLinks;
+use crate::doublets::mem::united;
+use crate::mem::ResizeableMem;
+use crate::num::LinkType;
+use crate::tests::make_links;
+use crate::tests::make_mem;
 
 // TODO: use safe slice
 unsafe impl<T: LinkType, M: ResizeableMem> Send for united::Links<T, M> {}
+
 unsafe impl<T: LinkType, M: ResizeableMem> Sync for united::Links<T, M> {}
 
 #[test]

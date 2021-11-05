@@ -1,4 +1,5 @@
 use std::fmt::{Debug, Display, Formatter};
+
 use crate::num::LinkType;
 
 #[derive(Debug, Eq, PartialEq, Hash, Clone)]

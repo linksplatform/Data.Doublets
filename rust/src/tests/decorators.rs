@@ -1,13 +1,12 @@
-use crate::tests::make_mem;
-use crate::tests::make_links;
-use crate::doublets::mem::united::Links;
-use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions};
-use crate::doublets::{ILinks, ILinksExtensions, Link};
-use crate::doublets::decorators;
-
-
 use decorators::NonNullDeletionResolver;
+
+use crate::doublets::{ILinks, ILinksExtensions, Link};
+use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions};
+use crate::doublets::decorators;
+use crate::doublets::mem::united::Links;
 use crate::mem::FileMappedMem;
+use crate::tests::make_links;
+use crate::tests::make_mem;
 
 #[test]
 fn non_null_deletions() {

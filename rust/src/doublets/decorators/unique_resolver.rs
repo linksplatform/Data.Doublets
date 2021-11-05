@@ -1,11 +1,13 @@
-use crate::doublets::{ILinks, ILinksExtensions, Link};
-use crate::num::LinkType;
-use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstants};
 use std::borrow::BorrowMut;
 use std::default::default;
 use std::marker::PhantomData;
+
 use libc::read;
 use smallvec::SmallVec;
+
+use crate::doublets::{ILinks, ILinksExtensions, Link};
+use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstants};
+use crate::num::LinkType;
 
 pub struct UniqueResolver<T: LinkType, Links: ILinks<T>> {
     links: Links,
@@ -25,7 +27,7 @@ impl<T: LinkType, Links: ILinks<T>> UniqueResolver<T, Links> {
         if old != new && links.exist(old) {
             links.delete(old);
         }
-        return new;
+        new
     }
 }
 

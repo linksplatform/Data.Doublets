@@ -1,16 +1,18 @@
-use crate::doublets::{ILinks, ILinksExtensions, Link};
-use crate::num::LinkType;
-use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstants};
 use std::borrow::BorrowMut;
 use std::default::default;
 use std::marker::PhantomData;
+
 use num_traits::zero;
 use smallvec::SmallVec;
+
+use crate::doublets::{ILinks, ILinksExtensions, Link};
+use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstants};
+use crate::num::LinkType;
 
 pub struct NonNullDeletionResolver<T: LinkType, Links: ILinks<T>> {
     links: Links,
 
-    _phantom: PhantomData<T>
+    _phantom: PhantomData<T>,
 }
 
 impl<T: LinkType, Links: ILinks<T>> NonNullDeletionResolver<T, Links> {

@@ -1,7 +1,8 @@
+use num_traits::zero;
+
 use crate::doublets::data::links_constants::LinksConstants;
 use crate::doublets::data::point::Point;
 use crate::num::LinkType;
-use num_traits::zero;
 
 pub trait IGenericLinks<T: LinkType> {
     fn constants(&self) -> LinksConstants<T> {
@@ -50,7 +51,7 @@ pub trait IGenericLinksExtensions<T: LinkType>: IGenericLinks<T> {
             self.each_generic(
                 |link| {
                     slice = Some(link.to_vec());
-                    return constants.r#break;
+                    constants.r#break
                 }, [link]);
             // TODO: fix type annotations
             slice.map(|slice| -> Box<dyn ExactSizeIterator<Item=T>> {

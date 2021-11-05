@@ -1,9 +1,10 @@
-use crate::mem::mem::{Mem, ResizeableMem};
 use std::io::Error;
 use std::io::ErrorKind;
 use std::ptr::null_mut;
 
-pub(in crate::mem) struct ResizeableBase {
+use crate::mem::mem_traits::{Mem, ResizeableMem};
+
+pub struct ResizeableBase {
     pub used: usize,
     pub reserved: usize,
     pub ptr: *mut u8,
@@ -11,7 +12,7 @@ pub(in crate::mem) struct ResizeableBase {
 
 impl ResizeableBase {
     // TODO: use macros for calculate in compile time
-    const PAGE_SIZE: usize = 1 * 1024;
+    const PAGE_SIZE: usize = 2 * 1024;
 
     pub const MINIMUM_CAPACITY: usize = Self::PAGE_SIZE;
 }
@@ -27,7 +28,7 @@ impl Mem for ResizeableBase {
 }
 
 impl ResizeableMem for ResizeableBase {
-    fn use_mem(&mut self, capacity: usize) -> std::io::Result<usize> {
+    fn use_mem(&mut self, capacity: usize) -> Result<usize, Box<dyn std::error::Error>> {
         if capacity <= self.reserved {
             self.used = capacity;
             Ok(self.used)
@@ -35,7 +36,7 @@ impl ResizeableMem for ResizeableBase {
             Err(Error::new(
                 ErrorKind::Other,
                 "cannot use greater than the memory reserved",
-            ))
+            ).into())
         }
     }
 
@@ -43,7 +44,7 @@ impl ResizeableMem for ResizeableBase {
         self.used
     }
 
-    fn reserve_mem(&mut self, capacity: usize) -> std::io::Result<usize> {
+    fn reserve_mem(&mut self, capacity: usize) -> Result<usize, Box<dyn std::error::Error>> {
         if capacity >= self.used {
             self.reserved = capacity;
             Ok(self.reserved)
@@ -51,7 +52,7 @@ impl ResizeableMem for ResizeableBase {
             Err(Error::new(
                 ErrorKind::Other,
                 "cannot reserve less than the memory used",
-            ))
+            ).into())
         }
     }
 

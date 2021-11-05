@@ -2,11 +2,12 @@ use std::borrow::BorrowMut;
 use std::default::default;
 use std::marker::PhantomData;
 
+use num_traits::zero;
+use smallvec::SmallVec;
+
 use crate::doublets::{ILinks, ILinksExtensions, Link};
 use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstants};
 use crate::num::LinkType;
-use num_traits::zero;
-use smallvec::SmallVec;
 
 pub struct CascadeUsagesResolver<T: LinkType, Links: ILinks<T>> {
     links: Links,
@@ -34,8 +35,8 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for CascadeUsagesResolver<T, Links
     }
 
     fn each_by<H, const L: usize>(&self, handler: H, restrictions: [T; L]) -> T
-    where
-        H: FnMut(Link<T>) -> T,
+        where
+            H: FnMut(Link<T>) -> T,
     {
         self.links.each_by(handler, restrictions)
     }

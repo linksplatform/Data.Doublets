@@ -21,8 +21,8 @@ pub trait ILinks<T: LinkType>:
     fn create(&mut self) -> T;
 
     fn each_by<H, const L: usize>(&self, handler: H, restrictions: [T; L]) -> T
-    where
-        H: FnMut(Link<T>) -> T;
+        where
+            H: FnMut(Link<T>) -> T;
 
     fn update(&mut self, index: T, source: T, target: T) -> T;
 
@@ -41,11 +41,11 @@ pub trait ILinks<T: LinkType>:
             self.each_by(
                 |link| {
                     slice = Some(link);
-                    return constants.r#break;
+                    constants.r#break
                 },
                 [index],
             );
-            return slice;
+            slice
         }
     }
 }
@@ -57,8 +57,8 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
 
     // TODO: maybe create `par_each`
     fn each<H>(&self, handler: H) -> T
-    where
-        H: FnMut(Link<T>) -> T,
+        where
+            H: FnMut(Link<T>) -> T,
     {
         self.each_by(handler, [])
     }
@@ -80,7 +80,7 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
     // TODO: maybe `query: Link<T>`
     fn delete_query<const L: usize>(&mut self, query: [T; L]) {
         let constants = self.constants();
-        let len = self.count_by(query.clone()).as_();
+        let len = self.count_by(query).as_();
         let mut vec = Vec::with_capacity(len);
 
         self.each_by(
@@ -129,12 +129,11 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
             },
             [constants.any, source, target],
         );
-        return index;
+        index
     }
 
     fn single<const L: usize>(&self, query: [T; L]) -> Option<Link<T>> {
         let constants = self.constants();
-        let any = constants.any;
         let r#break = constants.r#break;
         let r#continue = constants.r#continue;
 
@@ -153,12 +152,11 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
             },
             query,
         );
-
-        return result;
+        result
     }
 
     fn all_indices<const L: usize>(&self, query: [T; L]) -> Vec<T> {
-        let len = self.count_by(query.clone()).as_();
+        let len = self.count_by(query).as_();
         let mut vec = Vec::with_capacity(len);
         self.each_by(
             |link| {
@@ -167,7 +165,7 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
             },
             query,
         );
-        return vec;
+        vec
     }
 
     fn get_or_create(&mut self, source: T, target: T) -> T {
@@ -178,8 +176,6 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
             link
         }
     }
-
-
 
     fn count_usages(&self, index: T) -> T {
         let constants = self.constants();
@@ -196,7 +192,7 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
             usage_target = usage_target - one();
         }
 
-        return usage_source - usage_target;
+        usage_source - usage_target
     }
 
     fn exist(&self, link: T) -> bool {
@@ -227,7 +223,7 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         let sources_count = self.count_by([any, old, any]).as_();
         let targets_count = self.count_by([any, any, old]).as_();
         let link = link.unwrap();
-        if sources_count == 0 && targets_count == 0 && Point::is_full(link.clone()) {
+        if sources_count == 0 && targets_count == 0 && Point::is_full(link) {
             return new;
         }
 
@@ -236,7 +232,7 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
             return new;
         }
 
-        let mut usages = SmallVec::<[T; 1024]>::with_capacity(sources_count);
+        let mut usages = Vec::with_capacity(sources_count);
         self.each_by(
             |link| {
                 usages.push(link.index);
@@ -268,7 +264,7 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
                 self.update(index, usage.source, new);
             }
         }
-        return new;
+        new
     }
 
     fn rebase_and_delete(&mut self, old: T, new: T) -> T {
@@ -295,8 +291,7 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         let links = self;
         let links = CascadeUsagesResolver::new(links);
         let links = NonNullDeletionResolver::new(links);
-        let links = CascadeUniqueResolver::new(links);
-        return links;
+        CascadeUniqueResolver::new(links)
     }
 
     fn is_full_point(&self, link: T) -> bool {
