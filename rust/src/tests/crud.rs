@@ -33,11 +33,11 @@ fn mapping() {
     std::fs::remove_file("map.txt").unwrap();
     let mut mem = FileMappedMem::new("map.txt").unwrap();
 
-    mem.reserve_mem(1337).unwrap();
-    mem.reserve_mem(228).unwrap();
+    mem.reserve_mem(13370).unwrap();
+    mem.reserve_mem(2280).unwrap();
 
     let mut file = std::fs::File::open("map.txt").unwrap();
-    assert_eq!(1337, file.metadata().unwrap().len() as usize);
+    assert_eq!(13370, file.metadata().unwrap().len() as usize);
 }
 
 #[test]
@@ -98,8 +98,9 @@ fn many_points_and_searches() {
     println!("{:?}", instant.elapsed());
 
     let instant = Instant::now();
-    for i in 0..100 {
-        links.search_or(i, i, 0);
+    for i in 1..=1_000_000 {
+        // links.search_or(i, i, 0);
+        links.get_link(i);
     }
     println!("{:?}", instant.elapsed());
 }

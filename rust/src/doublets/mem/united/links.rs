@@ -482,9 +482,9 @@ impl<
     }
 
     fn delete(&mut self, index: T) -> T {
-        //if !self.exists(index) { return default(); }
+        if !self.exists(index) { return default(); }
         // TODO:
-        //self.update(index, zero(), zero());
+        self.update(index, zero(), zero());
         // TODO:
 
         // TODO: move to `delete_core`
@@ -494,21 +494,23 @@ impl<
         if link < header.allocated {
             self.unused.attach_as_first(link)
         } else if link == header.allocated {
-            unsafe {
-                let mut header = self.get_mut_header() as *mut LinksHeader<T>;
+            self.mem
+                .use_mem(self.mem.used_mem() - Self::LINK_SIZE)
+                .unwrap();
 
-                self.mem
-                    .use_mem(self.mem.used_mem() - Self::LINK_SIZE)
-                    .unwrap();
+            let allocated = self.get_header().allocated;
+            let header = self.get_mut_header();
+            header.allocated = allocated - one();
 
-                (*header).allocated = (*header).allocated - one();
-
-                while (*header).allocated > zero() && self.is_unused((*header).allocated) {
-                    self.unused.detach((*header).allocated);
-                    (*header).allocated = (*header).allocated - one();
-                    let used_mem = self.mem.used_mem();
-                    self.mem.use_mem(used_mem - Self::LINK_SIZE).unwrap();
+            loop {
+                let allocated = self.get_header().allocated;
+                if !(allocated > zero() && self.is_unused(allocated)) {
+                    break;
                 }
+                self.unused.detach(allocated);
+                self.get_mut_header().allocated = allocated - one();
+                let used_mem = self.mem.used_mem();
+                self.mem.use_mem(used_mem - Self::LINK_SIZE).unwrap();
             }
             //*self.get_mut_header() = header;
         }
