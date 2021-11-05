@@ -4,11 +4,12 @@ use std::fs::{File, OpenOptions};
 use std::io::{Read, Seek, SeekFrom, Write};
 use std::ptr::{NonNull, null_mut};
 use std::time::Instant;
+use bumpalo::Bump;
 
 use crate::doublets::{ILinksExtensions, Link};
 use crate::doublets::data::IGenericLinks;
 use crate::doublets::decorators::NonNullDeletionResolver;
-use crate::mem::{FileMappedMem, HeapMem, Mem, ResizeableBase, ResizeableMem};
+use crate::mem::{AllocMem, FileMappedMem, HeapMem, Mem, ResizeableBase, ResizeableMem};
 use crate::test_extensions::ILinksTestExtensions;
 use crate::tests::make_links;
 use crate::tests::make_mem;
@@ -40,7 +41,7 @@ fn mapping() {
 }
 
 #[test]
-fn billion_points() {
+fn billion_points_file_mapped() {
     std::fs::remove_file("db.txt");
 
     let mem = FileMappedMem::new("db.txt").unwrap();
@@ -49,7 +50,36 @@ fn billion_points() {
     let instant = Instant::now();
 
     for _ in 0..10_000_000 {
-        let link = links.create_point();
+        links.create_point();
+    }
+
+    println!("{:?}", instant.elapsed());
+}
+
+#[test]
+fn billion_points_heap_mem() {
+    let mem = HeapMem::new();
+    let mut links = make_links(mem);
+
+    let instant = Instant::now();
+
+    for _ in 0..10_000_000 {
+        links.create_point();
+    }
+
+    println!("{:?}", instant.elapsed());
+}
+
+#[test]
+fn billion_points_bump_alloc() {
+    let bump = Bump::new();
+    let mem = AllocMem::new(&bump);
+    let mut links = make_links(mem);
+
+    let instant = Instant::now();
+
+    for _ in 0..10_000_000 {
+        links.create_point();
     }
 
     println!("{:?}", instant.elapsed());
