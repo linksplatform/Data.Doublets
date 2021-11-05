@@ -21,4 +21,6 @@ jobs:
       - name: Bench
         run: |
           cd rust
-          cargo +nightly test --release --package doublets --lib tests::sync::super_read -- --exact --nocapture
+          cargo +nightly test --release --package doublets --lib tests::crud::billion_points_heap_mem -- --exact --nocapture
+          cargo +nightly test --release --package doublets --lib tests::crud::billion_points_file_mapped -- --exact --nocapture
+          cargo +nightly test --release --package doublets --lib tests::crud::billion_points_bump_alloc -- --exact --nocapture
