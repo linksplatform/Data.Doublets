@@ -1,6 +1,7 @@
+use num_traits::one;
+
 use crate::methods::lists::doubly_linked_list_base::DoublyLinkedListBase;
 use crate::num::Num;
-use num_traits::one;
 
 pub trait AbsoluteDoublyLinkedListBase<T: Num>: DoublyLinkedListBase<T> {
     fn get_first(&self) -> T;

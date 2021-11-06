@@ -1,7 +1,7 @@
 use crate::doublets::data::hybrid::Hybrid;
 use crate::num::LinkType;
-use num_traits::zero;
 
+#[derive(Default)]
 pub struct AddrToRaw;
 
 impl AddrToRaw {
@@ -14,6 +14,7 @@ impl AddrToRaw {
     }
 }
 
+#[derive(Default)]
 pub struct RawToAddr;
 
 impl RawToAddr {

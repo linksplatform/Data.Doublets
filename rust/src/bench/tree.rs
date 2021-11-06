@@ -1,10 +1,11 @@
 extern crate test;
 
+use test::Bencher;
+
 use crate::methods::NonRecurTree;
 use crate::methods::RecursionlessSizeBalancedTreeMethods;
 use crate::methods::SizeBalancedTreeBase;
 use crate::methods::SizeBalancedTreeMethods;
-use test::Bencher;
 
 #[bench]
 fn non_recur_tree_hard(b: &mut Bencher) {

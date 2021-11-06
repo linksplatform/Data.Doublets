@@ -1,12 +1,15 @@
-use num_traits::{AsPrimitive, FromPrimitive, PrimInt, Signed, ToPrimitive, Unsigned};
 use std::fmt::{Debug, Display};
 use std::hash::Hash;
 use std::iter::Step;
 
+use num_traits::{AsPrimitive, FromPrimitive, PrimInt, Signed, ToPrimitive, Unsigned};
+
 pub trait Num: PrimInt + Default + Debug + AsPrimitive<usize> + ToPrimitive {}
+
 impl<All> Num for All where All: PrimInt + Default + Debug + AsPrimitive<usize> + ToPrimitive {}
 
 pub trait SignNum: Num + Signed + FromPrimitive {}
+
 impl<All: Num + Signed + FromPrimitive> SignNum for All {}
 
 pub trait ToSigned {
@@ -67,10 +70,9 @@ max_value_impl!(isize);
 max_value_impl!(usize);
 
 pub trait LinkType:
-    Num + Unsigned + Step + ToSigned + MaxValue + FromPrimitive + Debug + Display
-{
-}
+Num + Unsigned + Step + ToSigned + MaxValue + FromPrimitive + Debug + Display + Hash
+{}
+
 impl<All> LinkType for All where
-    All: Num + Unsigned + Step + ToSigned + MaxValue + FromPrimitive + Debug + Display
-{
-}
+    All: Num + Unsigned + Step + ToSigned + MaxValue + FromPrimitive + Debug + Display + Hash
+{}

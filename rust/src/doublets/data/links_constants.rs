@@ -1,11 +1,10 @@
+use std::default::default;
 use std::ops::RangeInclusive;
 
-use num_traits::{one, zero, One, Zero};
+use num_traits::{one, zero};
 
 use crate::doublets::data::hybrid::Hybrid;
-use crate::doublets::data::ilinks::IGenericLinks;
 use crate::num::LinkType;
-use std::default::default;
 
 #[derive(Clone, Eq, PartialEq)]
 pub struct LinksConstants<T: LinkType> {
@@ -103,5 +102,11 @@ impl<T: LinkType> LinksConstants<T> {
 
     fn is_reference(&self, address: T) -> bool {
         self.is_internal_reference(address) || self.is_external_reference(address)
+    }
+}
+
+impl<T: LinkType> Default for LinksConstants<T> {
+    fn default() -> Self {
+        Self::new()
     }
 }

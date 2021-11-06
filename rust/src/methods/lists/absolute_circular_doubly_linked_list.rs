@@ -4,79 +4,66 @@ use crate::methods::lists::absolute_doubly_linked_list_base::AbsoluteDoublyLinke
 use crate::num::Num;
 
 pub trait AbsoluteCircularDoublyLinkedList<T: Num>: AbsoluteDoublyLinkedListBase<T> {
-    fn attach_before(&mut self, baseElement: T, newElement: T) {
-        let baseElementPrevious = self.get_previous(baseElement);
-        self.set_previous(newElement, baseElementPrevious);
-        self.set_next(newElement, baseElement);
-        if (baseElement == self.get_first())
-        {
-            self.set_first(newElement);
+    fn attach_before(&mut self, base_element: T, new_element: T) {
+        let base_element_previous = self.get_previous(base_element);
+        self.set_previous(new_element, base_element_previous);
+        self.set_next(new_element, base_element);
+        if base_element == self.get_first() {
+            self.set_first(new_element);
         }
-        self.set_next(baseElementPrevious, newElement);
-        self.set_previous(baseElement, newElement);
+        self.set_next(base_element_previous, new_element);
+        self.set_previous(base_element, new_element);
         self.inc_size();
     }
 
-    fn attach_after(&mut self, baseElement: T, newElement: T) {
-        let baseElementNext = self.get_next(baseElement);
-        self.set_previous(newElement, baseElement);
-        self.set_next(newElement, baseElementNext);
-        if (baseElement == self.get_last())
-        {
-            self.set_last(newElement);
+    fn attach_after(&mut self, base_element: T, new_element: T) {
+        let base_element_next = self.get_next(base_element);
+        self.set_previous(new_element, base_element);
+        self.set_next(new_element, base_element_next);
+        if base_element == self.get_last() {
+            self.set_last(new_element);
         }
-        self.set_previous(baseElementNext, newElement);
-        self.set_next(baseElement, newElement);
+        self.set_previous(base_element_next, new_element);
+        self.set_next(base_element, new_element);
         self.inc_size();
     }
 
     fn attach_as_first(&mut self, element: T) {
         let first = self.get_first();
-        if (first == zero())
-        {
+        if first == zero() {
             self.set_first(element);
             self.set_last(element);
             self.set_previous(element, element);
             self.set_next(element, element);
             self.inc_size();
-        }
-        else
-        {
+        } else {
             self.attach_before(first, element);
         }
     }
 
     fn attach_as_last(&mut self, element: T) {
         let last = self.get_last();
-        if (last == zero())
-        {
+        if last == zero() {
             self.attach_as_first(element);
-        }
-        else
-        {
+        } else {
             self.attach_after(last, element);
         }
     }
 
     fn detach(&mut self, element: T) {
-        let elementPrevious = self.get_previous(element);
-        let elementNext = self.get_next(element);
-        if (elementNext == element)
-        {
+        let element_previous = self.get_previous(element);
+        let element_next = self.get_next(element);
+        if element_next == element {
             self.set_first(zero());
             self.set_last(zero());
-        }
-        else
-        {
-            self.set_next(elementPrevious, elementNext);
-            self.set_previous(elementNext, elementPrevious);
-            if (element == self.get_first())
-            {
-                self.set_first(elementNext);
+        } else {
+            self.set_next(element_previous, element_next);
+            self.set_previous(element_next, element_previous);
+            if element == self.get_first() {
+                self.set_first(element_next);
             }
-            if (element == self.get_last())
-            {
-                self.set_last(elementPrevious);
+            if element == self.get_last() {
+                self.set_last(element_previous);
             }
         }
         self.set_previous(element, zero());

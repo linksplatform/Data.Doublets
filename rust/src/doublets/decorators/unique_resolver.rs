@@ -1,11 +1,13 @@
-use crate::doublets::{ILinks, ILinksExtensions};
-use crate::num::LinkType;
-use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstants};
 use std::borrow::BorrowMut;
 use std::default::default;
 use std::marker::PhantomData;
+
 use libc::read;
 use smallvec::SmallVec;
+
+use crate::doublets::{ILinks, ILinksExtensions, Link};
+use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstants};
+use crate::num::LinkType;
 
 pub struct UniqueResolver<T: LinkType, Links: ILinks<T>> {
     links: Links,
@@ -25,73 +27,43 @@ impl<T: LinkType, Links: ILinks<T>> UniqueResolver<T, Links> {
         if old != new && links.exist(old) {
             links.delete(old);
         }
-        return new;
+        new
     }
 }
 
-impl<T: LinkType, Links: ILinks<T>> IGenericLinks<T> for UniqueResolver<T, Links> {
+impl<T: LinkType, Links: ILinks<T>> ILinks<T> for UniqueResolver<T, Links> {
     fn constants(&self) -> LinksConstants<T> {
         self.links.constants()
     }
 
-    fn count_generic<L>(&self, restrictions: L) -> T
-    where
-        L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>
-    {
-        self.links.count_generic(restrictions)
+    fn count_by<const L: usize>(&self, restrictions: [T; L]) -> T {
+        self.links.count_by(restrictions)
     }
 
-    fn each_generic<F, L>(&self, handler: F, restrictions: L) -> T
-    where
-        F: FnMut(&[T]) -> T,
-        L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>
-    {
-        self.links.each_generic(handler, restrictions)
+    fn create(&mut self) -> T {
+        self.links.create()
     }
 
-    fn create_generic<L>(&mut self, restrictions: L) -> T
-    where
-        L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>
-    {
-        self.links.create_generic(restrictions)
+    fn each_by<H, const L: usize>(&self, handler: H, restrictions: [T; L]) -> T where H: FnMut(Link<T>) -> T {
+        self.links.each_by(handler, restrictions)
     }
 
-    fn delete_generic<L>(&mut self, restrictions: L)
-    where
-        L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>
-    {
-        self.links.delete_generic(restrictions)
-    }
-
-
-    fn update_generic<Lr, Ls>(&mut self, restrictions: Lr, substitution: Ls) -> T
-    where
-        Lr: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
-        Ls: IntoIterator<Item = T, IntoIter: ExactSizeIterator>
-    {
-
-        // TODO: later use overloading style
-
-
+    fn update(&mut self, index: T, source: T, target: T) -> T {
         let links = self.links.borrow_mut();
-        let constants = links.constants();
-        let restrictions: SmallVec<[T; 3]> = restrictions.into_iter().collect();
-        let substitution: SmallVec<[T; 3]> = substitution.into_iter().collect();
-        let index_part = constants.index_part.as_();
-        let source_part = constants.source_part.as_();
-        let target_part = constants.target_part.as_();
         let new = links.search_or(
-            substitution[source_part],
-            substitution[target_part],
+            source,
+            target,
             default(),
         );
 
         if new == default() {
-            links.update_generic(restrictions, substitution)
+            links.update(index, source, target)
         } else {
-            (self.resolver)(links, restrictions[index_part], new)
+            (self.resolver)(links, index, new)
         }
     }
-}
 
-impl<T: LinkType, Links: ILinks<T>> ILinks<T> for UniqueResolver<T, Links> { }
+    fn delete(&mut self, index: T) -> T {
+        self.links.delete(index)
+    }
+}

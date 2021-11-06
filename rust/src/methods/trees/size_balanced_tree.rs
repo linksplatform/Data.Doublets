@@ -2,7 +2,7 @@ use std::borrow::{Borrow, BorrowMut};
 use std::mem::size_of;
 use std::slice::SliceIndex;
 
-use num_traits::{zero, AsPrimitive, PrimInt, Unsigned, one};
+use num_traits::{AsPrimitive, one, PrimInt, Unsigned, zero};
 
 use crate::num::Num;
 
@@ -41,8 +41,8 @@ pub trait SizeBalancedTreeMethods<T: Num> {
         self.set_size(node, T::zero());
     }
 
-    fn  fix_size(&mut self, node: T) {
-        self.set_size(node, (self.get_size(self.get_left(node)) + self.get_size(self.get_right(node)) + T::one()))
+    fn fix_size(&mut self, node: T) {
+        self.set_size(node, self.get_size(self.get_left(node)) + self.get_size(self.get_right(node)) + T::one())
     }
 
     // fn fix_sizes(&self, node: T)
@@ -87,7 +87,7 @@ pub trait SizeBalancedTreeMethods<T: Num> {
             current = current_right;
             current_right = self.get_right(current);
         }
-        return current;
+        current
     }
 
     fn get_leftest(&self, mut current: T) -> T {
@@ -96,7 +96,7 @@ pub trait SizeBalancedTreeMethods<T: Num> {
             current = current_left;
             current_left = self.get_left(current);
         }
-        return current;
+        current
     }
 
     fn contains(&self, node: T, mut root: T) -> bool {
@@ -109,10 +109,10 @@ pub trait SizeBalancedTreeMethods<T: Num> {
                 return true;
             }
         }
-        return false;
+        false
     }
 
-    unsafe fn left_maintain(&mut self, mut root: *mut T) {
+    unsafe fn left_maintain(&mut self, root: *mut T) {
         if *root == T::zero() {
             return;
         }
@@ -128,7 +128,7 @@ pub trait SizeBalancedTreeMethods<T: Num> {
             } else {
                 let left_right_root = self.get_right(left_root);
                 if left_right_root != T::zero() && (right_root == T::zero() || self.get_size(left_right_root) > right_root_size) {
-                    let mut temp = self.get_mut_left_reference(*root);
+                    let temp = self.get_mut_left_reference(*root);
                     self.left_rotate(&mut *temp);
                     self.right_rotate(&mut *root);
                     return; // TODO: WARNING
@@ -136,16 +136,16 @@ pub trait SizeBalancedTreeMethods<T: Num> {
                     return;
                 }
             }
-            let mut left = self.get_mut_left_reference(*root);
+            let left = self.get_mut_left_reference(*root);
             self.left_maintain(&mut *left);
-            let mut right = self.get_mut_right_reference(*root);
+            let right = self.get_mut_right_reference(*root);
             self.right_maintain(&mut *right);
             self.left_maintain(root);
             self.right_maintain(root);
         }
     }
 
-    unsafe fn right_maintain(&mut self, mut root: *mut T) {
+    unsafe fn right_maintain(&mut self, root: *mut T) {
         if *root == T::zero() {
             return;
         }
@@ -162,7 +162,7 @@ pub trait SizeBalancedTreeMethods<T: Num> {
                 let right_left_root = self.get_left(right_root);
                 if right_left_root != T::zero() && (left_root == T::zero() || self.get_size(right_left_root) > left_root_size)
                 {
-                    let mut temp = self.get_mut_right_reference(*root);
+                    let temp = self.get_mut_right_reference(*root);
                     self.right_rotate(temp);
                     self.left_rotate(root);
                     return;
@@ -170,16 +170,16 @@ pub trait SizeBalancedTreeMethods<T: Num> {
                     return;
                 }
             }
-            let mut left = self.get_mut_left_reference(*root);
+            let left = self.get_mut_left_reference(*root);
             self.left_maintain(&mut *left);
-            let mut right = self.get_mut_right_reference(*root);
+            let right = self.get_mut_right_reference(*root);
             self.right_maintain(&mut *right);
             self.left_maintain(root);
             self.right_maintain(root);
         }
     }
 
-    unsafe fn attach_core(&mut self, mut root: *mut T, node: T) {
+    unsafe fn attach_core(&mut self, root: *mut T, node: T) {
         if *root == zero() {
             *root = node;
             self.inc_size(*root);
@@ -197,7 +197,7 @@ pub trait SizeBalancedTreeMethods<T: Num> {
         }
     }
 
-    unsafe fn detach_core(&mut self, mut root: *mut T, mut detached: T) {
+    unsafe fn detach_core(&mut self, root: *mut T, detached: T) {
         let mut current = root;
         let mut parent = root;
         let mut replacement = T::zero();
@@ -211,7 +211,7 @@ pub trait SizeBalancedTreeMethods<T: Num> {
                 parent = current;
                 current = self.get_mut_right_reference(*current);
             } else {
-                println!("{:?} -- {:?}", detached, *current,);
+                println!("{:?} -- {:?}", detached, *current, );
                 // TODO: return error
                 //self.clear_node(*root);
                 //*root = zero();

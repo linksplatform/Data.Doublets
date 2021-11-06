@@ -1,10 +1,5 @@
-use std::iter::Map;
 use std::ops::Index;
 use std::ops::Range;
-
-use num_traits::{zero, AsPrimitive};
-
-use crate::num::LinkType;
 
 pub struct Point<T: PartialEq + Copy> {
     index: T,
@@ -22,8 +17,8 @@ impl<T: PartialEq + Copy> Point<T> {
 
     // TODO: use support private is_ function
     pub fn is_full<L>(list: L) -> bool
-    where
-        L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
+        where
+            L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>,
     {
         let mut iter = list.into_iter();
         assert!(iter.len() >= 2, "cannot determine link's pointless using only its identifier");
@@ -36,8 +31,8 @@ impl<T: PartialEq + Copy> Point<T> {
     }
 
     pub fn is_partial<L>(list: L) -> bool
-    where
-        L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
+        where
+            L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>,
     {
         let mut iter = list.into_iter();
         assert!(iter.len() >= 2, "cannot determine link's pointless using only its identifier");

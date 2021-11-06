@@ -1,10 +1,12 @@
-use crate::num::LinkType;
-use num_traits::zero;
-use std::fmt::{Debug, Formatter, Display};
+use std::fmt::{Debug, Display, Formatter};
 use std::iter;
 use std::iter::FromIterator;
 use std::ops::{Index, IndexMut};
 use std::slice::from_raw_parts;
+
+use num_traits::zero;
+
+use crate::num::LinkType;
 
 #[derive(Default, Debug, Eq, PartialEq, Clone, Hash)]
 pub struct Link<T: LinkType> {
@@ -72,7 +74,7 @@ impl<T: LinkType> Index<usize> for Link<T> {
             1 => &self.source,
             2 => &self.target,
             _ => {
-                panic!("TODO: LINK INDEX");
+                todo!("link index panic")
             }
         }
     }
@@ -85,14 +87,14 @@ impl<'a, T: LinkType> IndexMut<usize> for Link<T> {
             1 => &mut self.source,
             2 => &mut self.target,
             _ => {
-                panic!("TODO: LINK INDEX");
+                todo!("link index panic")
             }
         }
     }
 }
 
 impl<T: LinkType> FromIterator<T> for Link<T> {
-    fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> Self {
+    fn from_iter<I: IntoIterator<Item=T>>(iter: I) -> Self {
         let mut new: Link<T> = Default::default(); // TODO: strange compiler type mismatching
         for (i, item) in iter.into_iter().take(new.len()).enumerate() {
             new[i] = item

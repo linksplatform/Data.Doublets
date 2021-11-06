@@ -51,7 +51,7 @@ pub trait SizeBalancedTreeBase<T: Num> {
         self.set_left(right, root);
         self.set_size(right, self.get_size(root));
         self.fix_size(root);
-        return right;
+        right
     }
 
     unsafe fn right_rotate(&mut self, root: *mut T) { *root = self.right_rotate_core(*root); }
@@ -62,7 +62,7 @@ pub trait SizeBalancedTreeBase<T: Num> {
         self.set_right(left, root);
         self.set_size(left, self.get_size(root));
         self.fix_size(root);
-        return left;
+        left
     }
 
     fn get_rightest(&self, mut current: T) -> T {
@@ -71,7 +71,7 @@ pub trait SizeBalancedTreeBase<T: Num> {
             current = current_right;
             current_right = self.get_right(current);
         }
-        return current;
+        current
     }
 
     fn get_leftest(&self, mut current: T) -> T {
@@ -80,12 +80,12 @@ pub trait SizeBalancedTreeBase<T: Num> {
             current = current_left;
             current_left = self.get_left(current);
         }
-        return current;
+        current
     }
 
     fn get_next(&self, node: T) -> T { self.get_leftest(self.get_right(node)) }
 
-    fn get_previous(&self, node: T) -> T { return self.get_rightest(self.get_left(node)); }
+    fn get_previous(&self, node: T) -> T { self.get_rightest(self.get_left(node)) }
 
     fn contains(&self, node: T, mut root: T) -> bool {
         while root != zero() {
@@ -97,7 +97,7 @@ pub trait SizeBalancedTreeBase<T: Num> {
                 return true;
             }
         }
-        return false;
+        false
     }
 
     fn clear_node(&mut self, node: T) {

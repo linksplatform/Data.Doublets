@@ -1,9 +1,8 @@
+use num_traits::zero;
+
 use crate::doublets::data::links_constants::LinksConstants;
 use crate::doublets::data::point::Point;
 use crate::num::LinkType;
-use libc::labs;
-use num_traits::zero;
-use std::ops::Deref;
 
 pub trait IGenericLinks<T: LinkType> {
     fn constants(&self) -> LinksConstants<T> {
@@ -36,7 +35,6 @@ pub trait IGenericLinks<T: LinkType> {
 pub trait IGenericLinksExtensions<T: LinkType>: IGenericLinks<T> {
     fn exist(&self, link: T) -> bool {
         let constants = self.constants();
-
         if constants.is_external_reference(link) {
             self.count_generic([link]) != zero()
         } else {
@@ -53,7 +51,7 @@ pub trait IGenericLinksExtensions<T: LinkType>: IGenericLinks<T> {
             self.each_generic(
                 |link| {
                     slice = Some(link.to_vec());
-                    return constants.r#break;
+                    constants.r#break
                 }, [link]);
             // TODO: fix type annotations
             slice.map(|slice| -> Box<dyn ExactSizeIterator<Item=T>> {

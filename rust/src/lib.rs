@@ -7,6 +7,8 @@
 #![feature(option_result_unwrap_unchecked)]
 #![feature(test)]
 #![feature(ptr_internals)]
+#![feature(allocator_api)]
+#![feature(slice_ptr_get)]
 
 pub mod doublets;
 pub mod mem;

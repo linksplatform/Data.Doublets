@@ -1,12 +1,13 @@
 extern crate test;
 
+use test::Bencher;
+
+use crate::doublets::{ILinks, ILinksExtensions};
 use crate::doublets::decorators::NonNullDeletionResolver;
 use crate::doublets::mem::united;
-use crate::doublets::ILinksExtensions;
 use crate::mem::{FileMappedMem, HeapMem, ResizeableMem};
 use crate::test_extensions::ILinksTestExtensions;
 use crate::tests::make_mem;
-use test::Bencher;
 
 #[bench]
 fn united_random_links(b: &mut Bencher) {

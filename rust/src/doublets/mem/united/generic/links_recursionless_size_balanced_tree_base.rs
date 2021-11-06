@@ -8,9 +8,9 @@ use crate::doublets::link::Link;
 use crate::doublets::mem::ilinks_tree_methods::ILinksTreeMethods;
 use crate::doublets::mem::links_header::LinksHeader;
 use crate::doublets::mem::united::raw_link::RawLink;
+use crate::methods::RecursionlessSizeBalancedTreeMethods;
 use crate::methods::SizeBalancedTreeMethods;
 use crate::num::LinkType;
-use crate::methods::RecursionlessSizeBalancedTreeMethods;
 
 // TODO: why is there so much duplication in OOP!!! FIXME
 pub struct LinksRecursionlessSizeBalancedTreeBase<T: LinkType> {
