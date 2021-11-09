@@ -103,8 +103,25 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         //  self.delete_query([any, any, index]);
 
         let any = self.constants().any;
-        self.delete_query([any, index, any]);
-        self.delete_query([any, any, index]);
+        let mut to_delete = vec![];
+
+        self.each_by(|link| {
+            if link.index != index {
+                to_delete.push(link.index);
+            }
+            self.constants().r#continue
+        }, [any, index, any]);
+
+        self.each_by(|link| {
+            if link.index != index {
+                to_delete.push(link.index);
+            }
+            self.constants().r#continue
+        }, [any, any, index]);
+
+        for link in to_delete {
+            self.delete(link);
+        }
     }
 
     fn create_point(&mut self) -> T {

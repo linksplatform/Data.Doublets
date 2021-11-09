@@ -2,7 +2,7 @@ use crate::doublets::Link;
 use crate::doublets::mem::UpdatePointers;
 use crate::num::LinkType;
 
-pub trait ILinksTreeMethods<T: LinkType>: UpdatePointers {
+pub trait ILinksTreeMethods<T: LinkType> {
     fn count_usages(&self, root: T) -> T;
 
     fn search(&self, source: T, target: T) -> T;

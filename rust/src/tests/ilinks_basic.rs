@@ -92,7 +92,7 @@ fn delete_all_usages() {
 
     links.delete_usages(root);
 
-    assert_eq!(links.count(), 2);
+    assert_eq!(links.count(), 3);
 }
 
 #[test]

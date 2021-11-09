@@ -3,7 +3,7 @@ use std::default::default;
 use num_traits::{one, zero};
 use rand::Rng;
 
-use crate::doublets::data::{Hybrid, IGenericLinks, IGenericLinksExtensions};
+use crate::doublets::data::{Hybrid, IGenericLinks, IGenericLinksExtensions, RawToAddr};
 use crate::doublets::ILinks;
 use crate::doublets::ILinksExtensions;
 use crate::doublets::Link;
@@ -95,7 +95,7 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
         links.each_by(|link| {
             result = Some(link.index);
             r#break
-        }, [any, h106.as_value(), h107.as_value()]);
+        }, [any, h106.absolute(), h107.absolute()]); // TODO: !!!
         assert_eq!(result, None);
 
         let updated = links.update(address3, zero(), zero());

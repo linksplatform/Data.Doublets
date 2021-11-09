@@ -8,7 +8,7 @@ use rand::Rng;
 
 use crate::doublets::{ILinks, ILinksExtensions, Link};
 use crate::doublets::data::IGenericLinks;
-use crate::doublets::mem::united;
+use crate::doublets::mem::{splited, united};
 use crate::mem::ResizeableMem;
 use crate::num::LinkType;
 use crate::tests::make_links;
@@ -18,6 +18,11 @@ use crate::tests::make_mem;
 unsafe impl<T: LinkType, M: ResizeableMem> Send for united::Links<T, M> {}
 
 unsafe impl<T: LinkType, M: ResizeableMem> Sync for united::Links<T, M> {}
+
+
+unsafe impl<T: LinkType, M1: ResizeableMem, M2: ResizeableMem> Send for splited::Links<T, M1, M2> {}
+
+unsafe impl<T: LinkType, M1: ResizeableMem, M2: ResizeableMem> Sync for splited::Links<T, M1, M2> {}
 
 #[test]
 fn basic_sync() {

@@ -1,6 +1,6 @@
 pub use lists::{*};
 pub use trees::{*};
 
-mod lists;
+pub(crate) mod lists;
 mod trees;
 

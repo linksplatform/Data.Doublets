@@ -11,7 +11,7 @@ use crate::doublets::{data, ILinks};
 use crate::doublets::data::IGenericLinks;
 use crate::doublets::data::LinksConstants;
 use crate::doublets::link::Link;
-use crate::doublets::mem::ILinksListMethods;
+use crate::doublets::mem::{ILinksListMethods, UpdatePointers};
 use crate::doublets::mem::ILinksTreeMethods;
 use crate::doublets::mem::links_header::LinksHeader;
 use crate::doublets::mem::united::LinksSourcesRecursionlessSizeBalancedTree;
@@ -28,9 +28,9 @@ use crate::num::LinkType;
 pub struct Links<
     T: LinkType,
     M: ResizeableMem,
-    TS: ILinksTreeMethods<T> = LinksSourcesRecursionlessSizeBalancedTree<T>,
-    TT: ILinksTreeMethods<T> = LinksTargetsRecursionlessSizeBalancedTree<T>,
-    TU: ILinksListMethods<T> = UnusedLinks<T>,
+    TS: ILinksTreeMethods<T> + UpdatePointers = LinksSourcesRecursionlessSizeBalancedTree<T>,
+    TT: ILinksTreeMethods<T> + UpdatePointers = LinksTargetsRecursionlessSizeBalancedTree<T>,
+    TU: ILinksListMethods<T> + UpdatePointers = UnusedLinks<T>,
 > {
     pub mem: M,
     pub reserve_step: usize,
@@ -44,9 +44,9 @@ pub struct Links<
 impl<
     T: LinkType,
     M: ResizeableMem,
-    TS: ILinksTreeMethods<T>,
-    TT: ILinksTreeMethods<T>,
-    TU: ILinksListMethods<T>,
+    TS: ILinksTreeMethods<T> + UpdatePointers,
+    TT: ILinksTreeMethods<T> + UpdatePointers,
+    TU: ILinksListMethods<T> + UpdatePointers,
 > Links<T, M, TS, TT, TU>
 {
     pub const LINK_SIZE: usize = size_of::<RawLink<T>>();
@@ -118,7 +118,7 @@ impl<
         header.reserved = T::from_usize((reserved - Self::HEADER_SIZE) / Self::LINK_SIZE).unwrap();
     }
 
-    fn get_header(&self) -> &LinksHeader<T> {
+    pub fn get_header(&self) -> &LinksHeader<T> {
         unsafe { &*(self.mem.get_ptr() as *const LinksHeader<T>) }
     }
 
@@ -300,9 +300,9 @@ impl<
 impl<
     T: LinkType,
     M: ResizeableMem,
-    TS: ILinksTreeMethods<T>,
-    TT: ILinksTreeMethods<T>,
-    TU: ILinksListMethods<T>,
+    TS: ILinksTreeMethods<T> + UpdatePointers,
+    TT: ILinksTreeMethods<T> + UpdatePointers,
+    TU: ILinksListMethods<T> + UpdatePointers,
 > doublets::ILinks<T> for Links<T, M, TS, TT, TU>
 {
     fn constants(&self) -> LinksConstants<T> {

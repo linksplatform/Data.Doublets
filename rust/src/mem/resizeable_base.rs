@@ -33,6 +33,7 @@ impl ResizeableMem for ResizeableBase {
             self.used = capacity;
             Ok(self.used)
         } else {
+            panic!("{} {}", capacity, self.reserved);
             Err(Error::new(
                 ErrorKind::Other,
                 "cannot use greater than the memory reserved",
