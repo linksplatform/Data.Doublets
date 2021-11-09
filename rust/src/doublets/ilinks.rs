@@ -57,8 +57,8 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
 
     // TODO: maybe create `par_each`
     fn each<H>(&self, handler: H) -> T
-        where
-            H: FnMut(Link<T>) -> T,
+    where
+        H: FnMut(Link<T>) -> T,
     {
         self.each_by(handler, [])
     }
@@ -105,19 +105,25 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         let any = self.constants().any;
         let mut to_delete = vec![];
 
-        self.each_by(|link| {
-            if link.index != index {
-                to_delete.push(link.index);
-            }
-            self.constants().r#continue
-        }, [any, index, any]);
+        self.each_by(
+            |link| {
+                if link.index != index {
+                    to_delete.push(link.index);
+                }
+                self.constants().r#continue
+            },
+            [any, index, any],
+        );
 
-        self.each_by(|link| {
-            if link.index != index {
-                to_delete.push(link.index);
-            }
-            self.constants().r#continue
-        }, [any, any, index]);
+        self.each_by(
+            |link| {
+                if link.index != index {
+                    to_delete.push(link.index);
+                }
+                self.constants().r#continue
+            },
+            [any, any, index],
+        );
 
         for link in to_delete {
             self.delete(link);
@@ -215,9 +221,9 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
     fn exist(&self, link: T) -> bool {
         let constants = self.constants();
         if constants.is_external_reference(link) {
-            self.count_by([link]) != zero()
+            true
         } else {
-            constants.is_internal_reference(link)
+            constants.is_internal_reference(link) && self.count_by([link]) != zero()
         }
     }
 
