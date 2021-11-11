@@ -108,7 +108,7 @@ impl<T: LinkType> RelativeDoublyLinkedListBase<T> for InternalSourcesLinkedList<
     }
 
     fn set_last(&mut self, head: T, element: T) {
-        todo!("empty")
+        // todo!("empty")
         // let first = self.get_index_part(head).root_as_source;
         // if first.is_zero() {
         //     self.set_first(head, element);

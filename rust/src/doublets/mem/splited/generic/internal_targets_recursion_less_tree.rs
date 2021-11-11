@@ -122,7 +122,7 @@ impl<T: LinkType> ILinksTreeMethods<T> for InternalTargetsRecursionlessTree<T> {
     }
 
     fn search(&self, source: T, target: T) -> T {
-        self.search_core(self.get_tree_root(source), target)
+        self.search_core(self.get_tree_root(target), source)
     }
 
     fn each_usages<H: FnMut(Link<T>) -> T>(&self, base: T, mut handler: H) -> T {

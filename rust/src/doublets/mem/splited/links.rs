@@ -59,7 +59,11 @@ impl<
     const INDEX_SIZE: usize = std::mem::size_of::<IndexPart<T>>();
 
     // TODO: create Options
-    pub fn with_constants(data_mem: MD, index_mem: MI, constants: LinksConstants<T>) -> Links<T, MD, MI> {
+    pub fn with_constants(
+        data_mem: MD,
+        index_mem: MI,
+        constants: LinksConstants<T>,
+    ) -> Links<T, MD, MI> {
         let data = data_mem.get_ptr();
         let index = index_mem.get_ptr();
         let header = index_mem.get_ptr();
@@ -81,7 +85,7 @@ impl<
             data_mem,
             index_mem,
             data_step: Self::SIZE_STEP,
-            index_step: Self::SIZE_STEP * 8,
+            index_step: Self::SIZE_STEP * 4,
             constants,
             internal_sources,
             external_sources,
@@ -139,9 +143,10 @@ impl<
     fn align(mut to_align: usize, target: usize) -> usize {
         debug_assert!(to_align >= target);
 
-        // if to_align % target > 0 {
-        to_align = ((to_align / target) * target) + target;
-        // }
+        // TODO: optimize this `if`
+        if to_align % target != 0 {
+            to_align = ((to_align / target) * target) + target;
+        }
         to_align
     }
 
@@ -159,7 +164,7 @@ impl<
         data_capacity = data_capacity.max(self.data_mem.reserved_mem());
         data_capacity = data_capacity.max(self.data_step);
 
-        let mut index_capacity = allocated * Self::DATA_SIZE;
+        let mut index_capacity = allocated * Self::INDEX_SIZE;
         index_capacity = index_capacity.max(self.index_mem.used_mem());
         index_capacity = index_capacity.max(self.index_mem.reserved_mem());
         index_capacity = index_capacity.max(self.index_step);
@@ -168,7 +173,7 @@ impl<
         index_capacity = Self::align(index_capacity, self.index_step);
 
         self.data_mem.reserve_mem(data_capacity).unwrap();
-        self.index_mem.reserve_mem(index_capacity * 8).unwrap();
+        self.index_mem.reserve_mem(index_capacity).unwrap();
         self.update_pointers();
 
         let allocated = header.allocated.as_();
@@ -188,7 +193,7 @@ impl<
         header.allocated - header.free
     }
 
-    fn is_unused(&self, link: T) -> bool {
+    pub(crate) fn is_unused(&self, link: T) -> bool {
         if self.get_header().first_free != link {
             // TODO: May be this check is not needed
             let index = self.get_index_part(link);
@@ -287,13 +292,15 @@ impl<
                     } else {
                         self.internal_targets.each_usages(target, handler)
                     }
-                } else if constants.is_external_reference(source) {
-                    self.external_sources.each_usages(source, handler)
                 } else if target == any {
-                    if false {
-                        todo!()
+                    if constants.is_external_reference(source) {
+                        self.external_sources.each_usages(source, handler)
                     } else {
-                        self.internal_sources.each_usages(source, handler)
+                        if false {
+                            todo!()
+                        } else {
+                            self.internal_sources.each_usages(source, handler)
+                        }
                     }
                 } else {
                     let mut link = if let Some(_) = &constants.external_range {
@@ -542,7 +549,8 @@ impl<
                 todo!()
             }
 
-            if header.allocated >= header.reserved - one() {
+            // TODO: if header.allocated >= header.reserved - one() {
+            if self.index_mem.reserved_mem() < self.index_mem.used_mem() + Self::INDEX_SIZE {
                 self.data_mem
                     .reserve_mem(self.data_mem.reserved_mem() + self.data_step)
                     .unwrap();
@@ -550,9 +558,11 @@ impl<
                     .reserve_mem(self.index_mem.reserved_mem() + self.index_step)
                     .unwrap();
                 self.update_pointers();
-                let reserved = self.data_mem.reserved_mem();
+                // let reserved = self.data_mem.reserved_mem();
+                let reserved = self.index_mem.reserved_mem();
                 let header = self.mut_header();
-                header.reserved = T::from_usize(reserved / Self::DATA_SIZE).unwrap()
+                // header.reserved = T::from_usize(reserved / Self::DATA_SIZE).unwrap()
+                header.reserved = T::from_usize(reserved / Self::INDEX_SIZE).unwrap()
             }
             let header = self.mut_header();
             header.allocated = header.allocated + one();
@@ -594,7 +604,7 @@ impl<
                     self.sources_list.detach(source, index);
                 } else {
                     let temp = &mut self.mut_index_part(source).root_as_source as *mut T;
-                    self.internal_sources.detach(unsafe { &mut *(temp) }, index);
+                    self.internal_sources.detach(unsafe { &mut *temp }, index);
                 }
             }
         }
@@ -605,7 +615,7 @@ impl<
                 self.external_targets.detach(unsafe { &mut *temp }, index)
             } else {
                 let temp = &mut self.mut_index_part(target).root_as_target as *mut T;
-                self.internal_targets.detach(unsafe { &mut *(temp) }, index);
+                self.internal_targets.detach(unsafe { &mut *temp }, index);
             }
         }
 
@@ -624,7 +634,7 @@ impl<
                     self.sources_list.attach_as_last(source, index);
                 } else {
                     let temp = &mut self.mut_index_part(source).root_as_source as *mut T;
-                    self.internal_sources.attach(unsafe { &mut *(temp) }, index);
+                    self.internal_sources.attach(unsafe { &mut *temp }, index);
                 }
             }
         }
@@ -646,15 +656,12 @@ impl<
         if !self.exists(index) {
             return default();
         }
-        // TODO:
         self.update(index, zero(), zero());
-        // TODO:
 
         // TODO: move to `delete_core`
-
         let header = self.get_header();
         let link = index;
-        if link < header.allocated {
+        if link < header.allocated || true {
             self.unused.attach_as_first(link)
         } else if link == header.allocated {
             self.data_mem
