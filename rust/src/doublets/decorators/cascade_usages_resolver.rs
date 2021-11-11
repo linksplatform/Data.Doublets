@@ -46,8 +46,7 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for CascadeUsagesResolver<T, Links
     }
 
     fn delete(&mut self, index: T) -> T {
-        let links = self.links.borrow_mut();
-        links.delete_usages(index);
-        links.delete(index)
+        self.delete_usages(index);
+        self.links.delete(index)
     }
 }
