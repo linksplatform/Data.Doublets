@@ -16,27 +16,8 @@ namespace Platform.Data.Doublets.PropertyOperators
     /// <seealso cref="IProperty{TLink, TLink}"/>
     public class PropertyOperator<TLink> : LinksOperatorBase<TLink>, IProperty<TLink, TLink>
     {
-        /// <summary>
-        /// <para>
-        /// The default.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
-
-        /// <summary>
-        /// <para>
-        /// The property marker.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private readonly TLink _propertyMarker;
-        /// <summary>
-        /// <para>
-        /// The property value marker.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private readonly TLink _propertyValueMarker;
 
         /// <summary>
@@ -84,22 +65,7 @@ namespace Platform.Data.Doublets.PropertyOperators
             var property = _links.SearchOrDefault(link, _propertyMarker);
             return GetValue(GetContainer(property));
         }
-
-        /// <summary>
-        /// <para>
-        /// Gets the container using the specified property.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="property">
-        /// <para>The property.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The value container.</para>
-        /// <para></para>
-        /// </returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+[MethodImpl(MethodImplOptions.AggressiveInlining)]
         private TLink GetContainer(TLink property)
         {
             var valueContainer = default(TLink);
@@ -126,22 +92,7 @@ namespace Platform.Data.Doublets.PropertyOperators
             }, query);
             return valueContainer;
         }
-
-        /// <summary>
-        /// <para>
-        /// Gets the value using the specified container.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="container">
-        /// <para>The container.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The link</para>
-        /// <para></para>
-        /// </returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+[MethodImpl(MethodImplOptions.AggressiveInlining)]
         private TLink GetValue(TLink container) => _equalityComparer.Equals(container, default) ? default : _links.GetTarget(container);
 
         /// <summary>

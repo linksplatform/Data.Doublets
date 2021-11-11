@@ -20,12 +20,6 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
     /// <seealso cref="ILinksTreeMethods{TLink}"/>
     public unsafe abstract class InternalLinksRecursionlessSizeBalancedTreeMethodsBase<TLink> : RecursionlessSizeBalancedTreeMethods<TLink>, ILinksTreeMethods<TLink>
     {
-        /// <summary>
-        /// <para>
-        /// The default.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private static readonly UncheckedConverter<TLink, long> _addressToInt64Converter = UncheckedConverter<TLink, long>.Default;
 
         /// <summary>
@@ -369,29 +363,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         public TLink EachUsage(TLink @base, Func<IList<TLink>, TLink> handler) => EachUsageCore(@base, GetTreeRoot(@base), handler);
 
         // TODO: 1. Move target, handler to separate object. 2. Use stack or walker 3. Use low-level MSIL stack.
-        /// <summary>
-        /// <para>
-        /// Eaches the usage core using the specified base.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="@base">
-        /// <para>The base.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="link">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="handler">
-        /// <para>The handler.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The continue.</para>
-        /// <para></para>
-        /// </returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+[MethodImpl(MethodImplOptions.AggressiveInlining)]
         private TLink EachUsageCore(TLink @base, TLink link, Func<IList<TLink>, TLink> handler)
         {
             var @continue = Continue;

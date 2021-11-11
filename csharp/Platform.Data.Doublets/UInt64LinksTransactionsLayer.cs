@@ -295,19 +295,7 @@ namespace Platform.Data.Doublets
         /// </remarks>
         public class Transaction : DisposableBase
         {
-            /// <summary>
-            /// <para>
-            /// The transitions.
-            /// </para>
-            /// <para></para>
-            /// </summary>
             private readonly Queue<Transition> _transitions;
-            /// <summary>
-            /// <para>
-            /// The layer.
-            /// </para>
-            /// <para></para>
-            /// </summary>
             private readonly UInt64LinksTransactionsLayer _layer;
             /// <summary>
             /// <para>
@@ -370,14 +358,7 @@ namespace Platform.Data.Doublets
                 _layer._lastCommitedTransactionId = _layer._currentTransactionId;
                 IsCommitted = true;
             }
-
-            /// <summary>
-            /// <para>
-            /// Reverts this instance.
-            /// </para>
-            /// <para></para>
-            /// </summary>
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+[MethodImpl(MethodImplOptions.AggressiveInlining)]
             private void Revert()
             {
                 EnsureTransactionAllowsWriteOperations(this);
@@ -478,76 +459,15 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </summary>
         public static readonly TimeSpan DefaultPushDelay = TimeSpan.FromSeconds(0.1);
-
-        /// <summary>
-        /// <para>
-        /// The log address.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private readonly string _logAddress;
-        /// <summary>
-        /// <para>
-        /// The log.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private readonly FileStream _log;
-        /// <summary>
-        /// <para>
-        /// The transitions.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private readonly Queue<Transition> _transitions;
-        /// <summary>
-        /// <para>
-        /// The unique timestamp factory.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private readonly UniqueTimestampFactory _uniqueTimestampFactory;
-        /// <summary>
-        /// <para>
-        /// The transitions pusher.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private Task _transitionsPusher;
-        /// <summary>
-        /// <para>
-        /// The last commited transition.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private Transition _lastCommitedTransition;
-        /// <summary>
-        /// <para>
-        /// The current transaction id.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private ulong _currentTransactionId;
-        /// <summary>
-        /// <para>
-        /// The current transaction transitions.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private Queue<Transition> _currentTransactionTransitions;
-        /// <summary>
-        /// <para>
-        /// The current transaction.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private Transaction _currentTransaction;
-        /// <summary>
-        /// <para>
-        /// The last commited transaction id.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private ulong _lastCommitedTransactionId;
 
         /// <summary>
@@ -694,31 +614,9 @@ namespace Platform.Data.Doublets
             _links.Delete(link);
             CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, deletedLink, default));
         }
-
-        /// <summary>
-        /// <para>
-        /// Gets the current transitions.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <returns>
-        /// <para>A queue of transition</para>
-        /// <para></para>
-        /// </returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+[MethodImpl(MethodImplOptions.AggressiveInlining)]
         private Queue<Transition> GetCurrentTransitions() => _currentTransactionTransitions ?? _transitions;
-
-        /// <summary>
-        /// <para>
-        /// Commits the transition using the specified transition.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="transition">
-        /// <para>The transition.</para>
-        /// <para></para>
-        /// </param>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+[MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void CommitTransition(Transition transition)
         {
             if (_currentTransaction != null)
@@ -728,18 +626,7 @@ namespace Platform.Data.Doublets
             var transitions = GetCurrentTransitions();
             transitions.Enqueue(transition);
         }
-
-        /// <summary>
-        /// <para>
-        /// Reverts the transition using the specified transition.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="transition">
-        /// <para>The transition.</para>
-        /// <para></para>
-        /// </param>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+[MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void RevertTransition(Transition transition)
         {
             if (transition.After.IsNull()) // Revert Deletion with Creation
@@ -755,28 +642,14 @@ namespace Platform.Data.Doublets
                 _links.Update(new[] { transition.After.Index, transition.Before.Source, transition.Before.Target });
             }
         }
-
-        /// <summary>
-        /// <para>
-        /// Resets the current transation.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+[MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void ResetCurrentTransation()
         {
             _currentTransactionId = 0;
             _currentTransactionTransitions = null;
             _currentTransaction = null;
         }
-
-        /// <summary>
-        /// <para>
-        /// Pushes the transitions.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+[MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void PushTransitions()
         {
             if (_log == null || _transitions == null)
@@ -791,14 +664,7 @@ namespace Platform.Data.Doublets
                 _lastCommitedTransition = transition;
             }
         }
-
-        /// <summary>
-        /// <para>
-        /// Transitionses the pusher.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+[MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void TransitionsPusher()
         {
             while (!Disposable.IsDisposed && _transitionsPusher != null)
@@ -820,14 +686,7 @@ namespace Platform.Data.Doublets
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Transaction BeginTransaction() => new Transaction(this);
-
-        /// <summary>
-        /// <para>
-        /// Disposes the transitions.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+[MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void DisposeTransitions()
         {
             try

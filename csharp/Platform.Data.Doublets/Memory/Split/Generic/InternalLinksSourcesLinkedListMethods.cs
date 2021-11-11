@@ -18,26 +18,8 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
     /// <seealso cref="RelativeCircularDoublyLinkedListMethods{TLink}"/>
     public unsafe class InternalLinksSourcesLinkedListMethods<TLink> : RelativeCircularDoublyLinkedListMethods<TLink>
     {
-        /// <summary>
-        /// <para>
-        /// The default.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private static readonly UncheckedConverter<TLink, long> _addressToInt64Converter = UncheckedConverter<TLink, long>.Default;
-        /// <summary>
-        /// <para>
-        /// The links data parts.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private readonly byte* _linksDataParts;
-        /// <summary>
-        /// <para>
-        /// The links index parts.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private readonly byte* _linksIndexParts;
         /// <summary>
         /// <para>

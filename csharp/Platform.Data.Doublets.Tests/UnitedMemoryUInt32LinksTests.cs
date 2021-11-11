@@ -51,17 +51,6 @@ namespace Platform.Data.Doublets.Tests
         {
             Using(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
         }
-
-        /// <summary>
-        /// <para>
-        /// Usings the action.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="action">
-        /// <para>The action.</para>
-        /// <para></para>
-        /// </param>
         private static void Using(Action<ILinks<TLink>> action)
         {
             using (var scope = new Scope<Types<HeapResizableDirectMemory, UInt32UnitedMemoryLinks>>())

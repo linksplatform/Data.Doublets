@@ -17,12 +17,6 @@ namespace Platform.Data.Doublets
     /// </typeparam>
     public struct Doublet<T> : IEquatable<Doublet<T>>
     {
-        /// <summary>
-        /// <para>
-        /// The default.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private static readonly EqualityComparer<T> _equalityComparer = EqualityComparer<T>.Default;
 
         /// <summury>
