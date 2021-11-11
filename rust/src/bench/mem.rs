@@ -51,7 +51,7 @@ fn heap_reserve(b: &mut Bencher) {
 #[bench]
 fn file_reserve(b: &mut Bencher) {
     // TODO: use `TempFileMappedMem`
-    std::fs::remove_file("anonymous_@@_.file").unwrap();
+    std::fs::remove_file("anonymous_@@_.file");
     let mut mem = FileMappedMem::new("anonymous_@@_.file").unwrap();
 
     let over = 1_000_000_usize;
