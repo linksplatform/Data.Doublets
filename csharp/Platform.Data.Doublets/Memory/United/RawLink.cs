@@ -15,12 +15,6 @@ namespace Platform.Data.Doublets.Memory.United
     /// </summary>
     public struct RawLink<TLink> : IEquatable<RawLink<TLink>>
     {
-        /// <summary>
-        /// <para>
-        /// The default.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
 
         /// <summary>

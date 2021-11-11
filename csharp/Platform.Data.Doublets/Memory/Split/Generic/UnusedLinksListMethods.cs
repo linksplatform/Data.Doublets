@@ -17,27 +17,8 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
     /// <seealso cref="ILinksListMethods{TLink}"/>
     public unsafe class UnusedLinksListMethods<TLink> : AbsoluteCircularDoublyLinkedListMethods<TLink>, ILinksListMethods<TLink>
     {
-        /// <summary>
-        /// <para>
-        /// The default.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private static readonly UncheckedConverter<TLink, long> _addressToInt64Converter = UncheckedConverter<TLink, long>.Default;
-
-        /// <summary>
-        /// <para>
-        /// The links.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private readonly byte* _links;
-        /// <summary>
-        /// <para>
-        /// The header.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private readonly byte* _header;
 
         /// <summary>

@@ -17,54 +17,12 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
     /// <seealso cref="SplitMemoryLinksBase{TLink}"/>
     public unsafe class SplitMemoryLinks<TLink> : SplitMemoryLinksBase<TLink>
     {
-        /// <summary>
-        /// <para>
-        /// The create internal source tree methods.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private readonly Func<ILinksTreeMethods<TLink>> _createInternalSourceTreeMethods;
-        /// <summary>
-        /// <para>
-        /// The create external source tree methods.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private readonly Func<ILinksTreeMethods<TLink>> _createExternalSourceTreeMethods;
-        /// <summary>
-        /// <para>
-        /// The create internal target tree methods.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private readonly Func<ILinksTreeMethods<TLink>> _createInternalTargetTreeMethods;
-        /// <summary>
-        /// <para>
-        /// The create external target tree methods.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private readonly Func<ILinksTreeMethods<TLink>> _createExternalTargetTreeMethods;
-        /// <summary>
-        /// <para>
-        /// The header.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private byte* _header;
-        /// <summary>
-        /// <para>
-        /// The links data parts.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private byte* _linksDataParts;
-        /// <summary>
-        /// <para>
-        /// The links index parts.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private byte* _linksIndexParts;
         
         /// <summary>

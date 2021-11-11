@@ -16,20 +16,7 @@ namespace Platform.Data.Doublets.Stacks
     /// <seealso cref="IStack{TLink}"/>
     public class Stack<TLink> : LinksOperatorBase<TLink>, IStack<TLink>
     {
-        /// <summary>
-        /// <para>
-        /// The default.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
-
-        /// <summary>
-        /// <para>
-        /// The stack.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private readonly TLink _stack;
 
         /// <summary>
@@ -60,30 +47,8 @@ namespace Platform.Data.Doublets.Stacks
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Stack(ILinks<TLink> links, TLink stack) : base(links) => _stack = stack;
-
-        /// <summary>
-        /// <para>
-        /// Gets the stack marker.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <returns>
-        /// <para>The link</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private TLink GetStackMarker() => _links.GetSource(_stack);
-
-        /// <summary>
-        /// <para>
-        /// Gets the top.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <returns>
-        /// <para>The link</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private TLink GetTop() => _links.GetTarget(_stack);
 

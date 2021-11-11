@@ -14,19 +14,7 @@ namespace Platform.Data.Doublets.Memory.United.Specific
     /// <seealso cref="UnusedLinksListMethods{ulong}"/>
     public unsafe class UInt64UnusedLinksListMethods : UnusedLinksListMethods<ulong>
     {
-        /// <summary>
-        /// <para>
-        /// The links.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private readonly RawLink<ulong>* _links;
-        /// <summary>
-        /// <para>
-        /// The header.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private readonly LinksHeader<ulong>* _header;
 
         /// <summary>

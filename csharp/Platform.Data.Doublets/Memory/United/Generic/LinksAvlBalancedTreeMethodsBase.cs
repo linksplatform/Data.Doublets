@@ -21,40 +21,10 @@ namespace Platform.Data.Doublets.Memory.United.Generic
     /// <seealso cref="ILinksTreeMethods{TLink}"/>
     public unsafe abstract class LinksAvlBalancedTreeMethodsBase<TLink> : SizedAndThreadedAVLBalancedTreeMethods<TLink>, ILinksTreeMethods<TLink>
     {
-        /// <summary>
-        /// <para>
-        /// The default.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private static readonly UncheckedConverter<TLink, long> _addressToInt64Converter = UncheckedConverter<TLink, long>.Default;
-        /// <summary>
-        /// <para>
-        /// The default.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private static readonly UncheckedConverter<TLink, int> _addressToInt32Converter = UncheckedConverter<TLink, int>.Default;
-        /// <summary>
-        /// <para>
-        /// The default.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private static readonly UncheckedConverter<bool, TLink> _boolToAddressConverter = UncheckedConverter<bool, TLink>.Default;
-        /// <summary>
-        /// <para>
-        /// The default.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private static readonly UncheckedConverter<TLink, bool> _addressToBoolConverter = UncheckedConverter<TLink, bool>.Default;
-        /// <summary>
-        /// <para>
-        /// The default.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private static readonly UncheckedConverter<int, TLink> _int32ToAddressConverter = UncheckedConverter<int, TLink>.Default;
 
         /// <summary>
