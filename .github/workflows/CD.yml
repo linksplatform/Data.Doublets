@@ -10,8 +10,23 @@ env:
   NUGETTOKEN: ${{ secrets.NUGET_TOKEN }}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   SCRIPTS_BASE_URL: https://raw.githubusercontent.com/linksplatform/Scripts/master/MultiProjectRepository
+  CARGO_TERM_COLOR: always
+  RUSTFLAGS: -Awarnings
 
 jobs:
+  bench_rust_on_windows:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Rustup nightly
+        run: rustup toolchain install nightly
+      - name: All Tests
+        run: |
+          cd rust
+          cargo +nightly test --release -- --exact --nocapture
   testAndDeploy:
     runs-on: ubuntu-latest
     steps:
