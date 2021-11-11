@@ -58,6 +58,21 @@ namespace Platform.Data.Doublets.Tests
             Using<uint>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
             Using<ulong>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
         }
+
+        /// <summary>
+        /// <para>
+        /// Usings the action.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="TLink">
+        /// <para>The link.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="action">
+        /// <para>The action.</para>
+        /// <para></para>
+        /// </param>
         private static void Using<TLink>(Action<ILinks<TLink>> action)
         {
             using (var dataMemory = new HeapResizableDirectMemory())
@@ -67,6 +82,21 @@ namespace Platform.Data.Doublets.Tests
                 action(memory);
             }
         }
+
+        /// <summary>
+        /// <para>
+        /// Usings the with external references using the specified action.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="TLink">
+        /// <para>The link.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="action">
+        /// <para>The action.</para>
+        /// <para></para>
+        /// </param>
         private static void UsingWithExternalReferences<TLink>(Action<ILinks<TLink>> action)
         {
             var contants = new LinksConstants<TLink>(enableExternalReferencesSupport: true);

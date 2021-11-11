@@ -14,6 +14,12 @@ namespace Platform.Data.Doublets.Tests
     /// </summary>
     public static class ResizableDirectMemoryLinksTests
     {
+        /// <summary>
+        /// <para>
+        /// The instance.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private static readonly LinksConstants<ulong> _constants = Default<LinksConstants<ulong>>.Instance;
 
         /// <summary>
@@ -48,6 +54,17 @@ namespace Platform.Data.Doublets.Tests
                 memoryAdapter.TestBasicMemoryOperations();
             }
         }
+
+        /// <summary>
+        /// <para>
+        /// Tests the basic memory operations using the specified memory adapter.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="memoryAdapter">
+        /// <para>The memory adapter.</para>
+        /// <para></para>
+        /// </param>
         private static void TestBasicMemoryOperations(this ILinks<ulong> memoryAdapter)
         {
             var link = memoryAdapter.Create();
@@ -69,6 +86,17 @@ namespace Platform.Data.Doublets.Tests
                 memoryAdapter.TestNonexistentReferences();
             }
         }
+
+        /// <summary>
+        /// <para>
+        /// Tests the nonexistent references using the specified memory adapter.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="memoryAdapter">
+        /// <para>The memory adapter.</para>
+        /// <para></para>
+        /// </param>
         private static void TestNonexistentReferences(this ILinks<ulong> memoryAdapter)
         {
             var link = memoryAdapter.Create();

@@ -17,6 +17,12 @@ namespace Platform.Data.Doublets.Decorators
     /// </remarks>
     internal class UniLinks<TLink> : LinksDecoratorBase<TLink>, IUniLinks<TLink>
     {
+        /// <summary>
+        /// <para>
+        /// The default.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
 
         /// <summary>
@@ -30,6 +36,13 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </param>
         public UniLinks(ILinks<TLink> links) : base(links) { }
+
+        /// <summary>
+        /// <para>
+        /// The transition.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private struct Transition
         {
             /// <summary>
@@ -432,6 +445,21 @@ namespace Platform.Data.Doublets.Decorators
             });
             return changes;
         }
+
+        /// <summary>
+        /// <para>
+        /// Alwayses the continue using the specified link to match.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="linkToMatch">
+        /// <para>The link to match.</para>
+        /// <para></para>
+        /// </param>
+        /// <returns>
+        /// <para>The link</para>
+        /// <para></para>
+        /// </returns>
         private TLink AlwaysContinue(IList<TLink> linkToMatch) => _constants.Continue;
     }
 }

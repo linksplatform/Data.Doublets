@@ -23,8 +23,28 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </summary>
         public static readonly Link<TLink> Null = new Link<TLink>();
+
+        /// <summary>
+        /// <para>
+        /// The instance.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private static readonly LinksConstants<TLink> _constants = Default<LinksConstants<TLink>>.Instance;
+        /// <summary>
+        /// <para>
+        /// The default.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
+
+        /// <summary>
+        /// <para>
+        /// The length.
+        /// </para>
+        /// <para></para>
+        /// </summary>
         private const int Length = 3;
 
         /// <summary>
@@ -144,14 +164,60 @@ namespace Platform.Data.Doublets
             Source = source;
             Target = target;
         }
-[MethodImpl(MethodImplOptions.AggressiveInlining)]
+
+        /// <summary>
+        /// <para>
+        /// Sets the values using the specified other.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="other">
+        /// <para>The other.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="index">
+        /// <para>The index.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="source">
+        /// <para>The source.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="target">
+        /// <para>The target.</para>
+        /// <para></para>
+        /// </param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static void SetValues(ref Link<TLink> other, out TLink index, out TLink source, out TLink target)
         {
             index = other.Index;
             source = other.Source;
             target = other.Target;
         }
-[MethodImpl(MethodImplOptions.AggressiveInlining)]
+
+        /// <summary>
+        /// <para>
+        /// Sets the values using the specified values.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="values">
+        /// <para>The values.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="index">
+        /// <para>The index.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="source">
+        /// <para>The source.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="target">
+        /// <para>The target.</para>
+        /// <para></para>
+        /// </param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static void SetValues(IList<TLink> values, out TLink index, out TLink source, out TLink target)
         {
             switch (values.Count)
