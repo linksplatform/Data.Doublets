@@ -1,4 +1,4 @@
-namespace Platform::Data::Doublets::Decorators
+﻿namespace Platform::Data::Doublets::Decorators
 {
     template <typename ...> class NonNullContentsLinkDeletionResolver;
     template <typename TLink> class NonNullContentsLinkDeletionResolver<TLink> : public LinksDecoratorBase<TLink>
