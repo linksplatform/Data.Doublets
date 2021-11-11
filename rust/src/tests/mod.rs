@@ -16,7 +16,6 @@ pub fn make_mem() -> (HeapMem, HeapMem) {
 //    united::Links::<usize, _>::new(mem)
 //}
 
-#[cfg(windows)]
 pub fn make_links<M1: ResizeableMem, M2: ResizeableMem>(mem: (M1, M2)) -> splited::Links<usize, M1, M2> {
     let constants = LinksConstants::via_only_external(true);
     splited::Links::<usize, _, _>::with_constants(mem.0, mem.1, constants)
