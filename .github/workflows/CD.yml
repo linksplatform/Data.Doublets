@@ -23,7 +23,6 @@ jobs:
         run: |
           cd rust
           cargo +nightly test --release -- --exact --nocapture
-          
   testAndDeploy:
     runs-on: ubuntu-latest
     steps:
