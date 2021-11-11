@@ -33,12 +33,11 @@ fn raw_numbers() {
     links.test_raw_numbers_crud();
 }
 
-#[cfg(unix)]
 #[test]
 fn u128_raw_numbers() {
     let mem = make_mem();
     //let mut links = typed_links::<u128, _>(mem);
-    let mut links = make_links(mem);
+    let mut links = typed_links::<u128, _, _>(mem);
 
     links.get_link(0_u128);
 
