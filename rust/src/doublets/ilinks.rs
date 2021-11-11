@@ -92,19 +92,15 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         );
 
         for index in vec.into_iter().rev() {
+            //println!("  {}", index);
             self.delete(index);
         }
     }
 
     fn delete_usages(&mut self, index: T) {
-        // TODO: Bug
-        //  let any = self.constants().any;
-        //  self.delete_query([any, index, any]);
-        //  self.delete_query([any, any, index]);
-
+        // TODO: Temp fix
         let any = self.constants().any;
         let mut to_delete = vec![];
-
         self.each_by(
             |link| {
                 if link.index != index {
@@ -125,7 +121,7 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
             [any, any, index],
         );
 
-        for link in to_delete {
+        for link in to_delete.into_iter().rev() {
             self.delete(link);
         }
     }
@@ -218,7 +214,7 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         usage_source - usage_target
     }
 
-    fn exist(&self, link: T) -> bool {
+    fn exist(&self, link: T) -> bool {// return true;
         let constants = self.constants();
         if constants.is_external_reference(link) {
             true
