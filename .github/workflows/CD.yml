@@ -30,10 +30,11 @@ jobs:
   publish_windows:
     needs: [test_rust]
     runs-on: windows-latest
+    steps:
     - name: Build
-       run: |
-         cd rust
-         cargo +nightly build --release
+      run: |
+        cd rust
+        cargo +nightly build --release
     - name: publish
       shell: bash
       run: |
@@ -44,7 +45,6 @@ jobs:
         export LIB_NAME="doublets_ffi.dll"
         export TARGET_LIB_NAME="Platform_Doublets.dll"
         ./publish-bin.sh
-
   testAndDeploy:
     runs-on: ubuntu-latest
     steps:
