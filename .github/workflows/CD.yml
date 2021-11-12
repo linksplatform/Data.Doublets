@@ -97,6 +97,7 @@ jobs:
           ls
           cd ..
 
+          cd ../../../
           export REPOSITORY_NAME=$(basename ${{ github.repository }})
           wget "$SCRIPTS_BASE_URL/push-cpp-nuget.sh"
 
@@ -108,7 +109,6 @@ jobs:
           echo "$CPP_PACKAGE_VERSION"
           echo "$CPP_PACKAGE_VERSION" > CPP_PACKAGE_VERSION.txt
 
-          bash ./push-cpp-nuget.sh
   testAndDeploy:
     runs-on: ubuntu-latest
     steps:
