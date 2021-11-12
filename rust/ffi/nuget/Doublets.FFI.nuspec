@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
   <metadata>
-    <id>Platform.Data.Triplets.Kernel</id>
+    <id>Doublets.FFI</id>
     <version>0.0.1</version>
     <authors>Voider</authors>
     <owners>Konstantin Diachenko</owners>
@@ -12,8 +12,8 @@
     <description>This package contains platform-specific native code builds of LinksPlatform's Platform.Data.Doublets library.</description>
     <releaseNotes>First version native libs</releaseNotes>
     <copyright>Konstantin Diachenko</copyright>
-    <summary>LinksPlatform's Platform.Data.Triplets.Kernel is a Portable Class Library (PCL) for low-level (raw) access to Triplets storage.</summary>
-    <tags>LinksPlatform Data.Triplets.Kernel Triplets native</tags>
+    <summary>LinksPlatform's Platform.Data.Doublets is a Portable Class Library (PCL) for low-level (raw) access to Doublets storage.</summary>
+    <tags>LinksPlatform Data.Doublets native</tags>
     <repository type="git" url="https://github.com/linksplatform/Data.Doublets" />
   </metadata>
   <files>
