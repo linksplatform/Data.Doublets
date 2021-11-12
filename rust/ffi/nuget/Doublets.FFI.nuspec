@@ -17,7 +17,7 @@
     <repository type="git" url="https://github.com/linksplatform/Data.Doublets" />
   </metadata>
   <files>
-    <file src="build\Platform.Data.Triplets.Kernel.targets" target="build\Platform.Data.Triplets.Kernel.targets" />
+    <file src="build\Doublets.FFI.targets" target="build\Doublets.FFI.targets" />
     <file src="runtimes\linux-x64\native\libPlatform.Doublets.so" target="runtimes\linux-x64\native\libPlatform.Doublets.so" />
     <file src="runtimes\macos-x64\native\libPlatform.Doublets.dylib" target="runtimes\macos-x64\native\libPlatform.Doublets.dylib" />
     <file src="runtimes\windows-x64\native\Platform.Doublets.dll" target="runtimes\windows-x64\native\Platform.Doublets.dll" />
