@@ -100,7 +100,7 @@ jobs:
           export REPOSITORY_NAME=$(basename ${{ github.repository }})
           wget "$SCRIPTS_BASE_URL/push-cpp-nuget.sh"
 
-          CPP_PACKAGE_NUSPEC_PATH="rust/ffi/nuget/"
+          CPP_PACKAGE_NUSPEC_PATH="rust/ffi/nuget/Doublets.FFI.nuspec"
           echo "$CPP_PACKAGE_NUSPEC_PATH"
           echo "$CPP_PACKAGE_NUSPEC_PATH" > CPP_PACKAGE_NUSPEC_PATH.txt
 
