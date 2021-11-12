@@ -13,6 +13,10 @@ env:
   CARGO_TERM_COLOR: always
   RUSTFLAGS: -Awarnings
 
+  TRAVIS_REPO_NAME: Data.Doublets
+  SOURCE_BRANCH: master
+  LIB_PATH: rust/ffi/target/release
+
 jobs:
   test_rust:
     runs-on: ${{ matrix.os }}
@@ -41,14 +45,44 @@ jobs:
     - name: publish
       shell: bash
       run: |
-        export TARGET_PLATFORM="win-x64"
-        export TRAVIS_REPO_NAME="Data.Doublets"
-        export SOURCE_BRANCH="master"
-        export LIB_PATH="rust/ffi/target/release"
+        export TARGET_PLATFORM="windows-x64"
         export LIB_NAME="doublets_ffi.dll"
-        export TARGET_LIB_NAME="Platform_Doublets.dll"
-        echo $PWD
+        export TARGET_LIB_NAME="Platform.Doublets.dll"
         ./publish-bin.sh
+  publish_linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Rustup nightly
+        run: |
+          rustup toolchain install nightly
+      - name: Build
+        run: |
+          cd rust/ffi
+          cargo +nightly build --release
+      - name: publish
+        run: |
+          export TARGET_PLATFORM="linux-x64"
+          export LIB_NAME="libdoublets_ffi.so"
+          export TARGET_LIB_NAME="libPlatform.Doublets.so"
+          bash ./publish-bin.sh
+  publish_macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Rustup nightly
+        run: |
+          rustup toolchain install nightly
+      - name: Build
+        run: |
+          cd rust/ffi
+          cargo +nightly build --release
+      - name: publish
+        run: |
+          export TARGET_PLATFORM="macos-x64"
+          export LIB_NAME="libdoublets_ffi.dylib"
+          export TARGET_LIB_NAME="libPlatform.Doublets.dylib"
+          bash ./publish-bin.sh
   testAndDeploy:
     runs-on: ubuntu-latest
     steps:
