@@ -44,7 +44,7 @@ jobs:
         export TARGET_PLATFORM="win-x64"
         export TRAVIS_REPO_NAME="Data.Doublets"
         export SOURCE_BRANCH="master"
-        export LIB_PATH="/rust/target/release"
+        export LIB_PATH="rust/target/release"
         export LIB_NAME="doublets_ffi.dll"
         export TARGET_LIB_NAME="Platform_Doublets.dll"
         ./publish-bin.sh
