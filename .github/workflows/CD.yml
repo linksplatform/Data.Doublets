@@ -36,7 +36,7 @@ jobs:
         rustup toolchain install nightly
     - name: Build
       run: |
-        cd rust
+        cd rust/ffi
         cargo +nightly build --release
     - name: publish
       shell: bash
