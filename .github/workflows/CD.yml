@@ -47,6 +47,9 @@ jobs:
         export LIB_PATH="rust/target/release"
         export LIB_NAME="doublets_ffi.dll"
         export TARGET_LIB_NAME="Platform_Doublets.dll"
+        ls rust
+        ls rust/target
+        ls rust/target/release
         ./publish-bin.sh
   testAndDeploy:
     runs-on: ubuntu-latest
