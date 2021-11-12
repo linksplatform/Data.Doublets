@@ -28,9 +28,13 @@ jobs:
           cd rust
           cargo +nightly test --release -- --exact --nocapture
   publish_windows:
-    needs: [test_rust]
+    needs: # [test_rust]
     runs-on: windows-latest
     steps:
+    - uses: actions/checkout@v2
+    - name: Rustup nightly
+      run: |
+        rustup toolchain install nightly
     - name: Build
       run: |
         cd rust
