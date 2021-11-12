@@ -84,11 +84,10 @@ jobs:
           export TARGET_LIB_NAME="libPlatform.Doublets.dylib"
           bash ./publish-bin.sh
   publich_to_nuget:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Push
-        shell: bash
         run: |
           mkdir runtimes && cd runtimes
           wget https://github.com/linksplatform/Data.Doublets/raw/binaries/windows-x64/native/Platform.Doublets.dll
