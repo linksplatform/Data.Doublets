@@ -98,11 +98,18 @@ jobs:
 
           export REPOSITORY_NAME=$(basename ${{ github.repository }})
           wget "$SCRIPTS_BASE_URL/push-cpp-nuget.sh"
+
           CPP_PACKAGE_NUSPEC_PATH="rust/ffi/nuget/"
           echo "$CPP_PACKAGE_NUSPEC_PATH"
           echo "$CPP_PACKAGE_NUSPEC_PATH" > CPP_PACKAGE_NUSPEC_PATH.txt
-          bash ./push-cpp-nuget.sh
 
+          CPP_PACKAGE_VERSION="rust/ffi/nuget/"
+          echo "$CPP_PACKAGE_VERSION"
+          echo "$CPP_PACKAGE_VERSION" > CPP_PACKAGE_VERSION.txt
+
+
+
+          bash ./push-cpp-nuget.sh
   testAndDeploy:
     runs-on: ubuntu-latest
     steps:
