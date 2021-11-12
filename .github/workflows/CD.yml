@@ -14,7 +14,7 @@ env:
   RUSTFLAGS: -Awarnings
 
 jobs:
-  bench_rust_on_windows:
+  test_rust:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -27,6 +27,24 @@ jobs:
         run: |
           cd rust
           cargo +nightly test --release -- --exact --nocapture
+  publish_windows:
+    needs: [test_rust]
+    runs-on: windows-latest
+    - name: Build
+       run: |
+         cd rust
+         cargo +nightly build --release
+    - name: publish
+      shell: bash
+      run: |
+        export TARGET_PLATFORM="win-x64"
+        export TRAVIS_REPO_NAME="Data.Doublets"
+        export SOURCE_BRANCH="master"
+        export LIB_PATH="/rust/target/release"
+        export LIB_NAME="doublets_ffi.dll"
+        export TARGET_LIB_NAME="Platform_Doublets.dll"
+        ./publish-bin.sh
+
   testAndDeploy:
     runs-on: ubuntu-latest
     steps:

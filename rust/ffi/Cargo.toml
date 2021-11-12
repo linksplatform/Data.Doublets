@@ -7,5 +7,5 @@ edition = "2021"
 crate-type = ["cdylib"]
 
 [dependencies]
-libc = "0.2.107"
+libc = "0.2.100"
 doublets = { path = ".." }
