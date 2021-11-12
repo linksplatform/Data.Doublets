@@ -101,7 +101,7 @@ jobs:
           CPP_PACKAGE_NUSPEC_PATH="rust/ffi/nuget/"
           echo "$CPP_PACKAGE_NUSPEC_PATH"
           echo "$CPP_PACKAGE_NUSPEC_PATH" > CPP_PACKAGE_NUSPEC_PATH.txt
-          ./push-cpp-nuget.sh
+          bash ./push-cpp-nuget.sh
 
   testAndDeploy:
     runs-on: ubuntu-latest
