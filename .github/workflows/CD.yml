@@ -104,7 +104,7 @@ jobs:
           echo "$CPP_PACKAGE_NUSPEC_PATH"
           echo "$CPP_PACKAGE_NUSPEC_PATH" > CPP_PACKAGE_NUSPEC_PATH.txt
 
-          CPP_PACKAGE_VERSION="rust/ffi/nuget/"
+          CPP_PACKAGE_VERSION="0.0.1"
           echo "$CPP_PACKAGE_VERSION"
           echo "$CPP_PACKAGE_VERSION" > CPP_PACKAGE_VERSION.txt
 
