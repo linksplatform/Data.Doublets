@@ -28,7 +28,6 @@ jobs:
           cd rust
           cargo +nightly test --release -- --exact --nocapture
   publish_windows:
-    needs: # [test_rust]
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
