@@ -3,15 +3,15 @@
   <metadata>
     <id>Platform.Data.Doublets.FFI</id>
     <version>0.0.1</version>
-    <authors>Voider</authors>
-    <owners>Konstantin Diachenko</owners>
+    <authors>voider</authors>
+    <owners>voider, konard</owners>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <license type="expression">LGPL-3.0-only</license>
     <projectUrl>https://github.com/linksplatform/Data.Doublets</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/linksplatform/Documentation/18469f4d033ee9a5b7b84caab9c585acab2ac519/doc/Avatar-rainbow-icon-64x64.png</iconUrl>
     <description>This package contains platform-specific native code builds of LinksPlatform's Platform.Data.Doublets library.</description>
     <releaseNotes>First version native libs</releaseNotes>
-    <copyright>Konstantin Diachenko</copyright>
+    <copyright>konard</copyright>
     <summary>LinksPlatform's Platform.Data.Doublets is a Portable Class Library (PCL) for low-level (raw) access to Doublets storage.</summary>
     <tags>LinksPlatform Data.Doublets native</tags>
     <repository type="git" url="https://github.com/linksplatform/Data.Doublets" />
