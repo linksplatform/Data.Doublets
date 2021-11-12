@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
+  <metadata>
+    <id>Platform.Data.Triplets.Kernel</id>
+    <version>0.0.1</version>
+    <authors>Voider</authors>
+    <owners>Konstantin Diachenko</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">LGPL-3.0-only</license>
+    <projectUrl>https://github.com/linksplatform/Data.Doublets</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/linksplatform/Documentation/18469f4d033ee9a5b7b84caab9c585acab2ac519/doc/Avatar-rainbow-icon-64x64.png</iconUrl>
+    <description>This package contains platform-specific native code builds of LinksPlatform's Platform.Data.Doublets library.</description>
+    <releaseNotes>First version native libs</releaseNotes>
+    <copyright>Konstantin Diachenko</copyright>
+    <summary>LinksPlatform's Platform.Data.Triplets.Kernel is a Portable Class Library (PCL) for low-level (raw) access to Triplets storage.</summary>
+    <tags>LinksPlatform Data.Triplets.Kernel Triplets native</tags>
+    <repository type="git" url="https://github.com/linksplatform/Data.Doublets" />
+  </metadata>
+  <files>
+    <file src="build\Platform.Data.Triplets.Kernel.targets" target="build\Platform.Data.Triplets.Kernel.targets" />
+    <file src="runtimes\linux-x64\native\libPlatform.Doublets.so" target="runtimes\linux-x64\native\libPlatform.Doublets.so" />
+    <file src="runtimes\macos-x64\native\libPlatform.Doublets.dylib" target="runtimes\macos-x64\native\libPlatform.Doublets.dylib" />
+    <file src="runtimes\windows-x64\native\Platform.Doublets.dll" target="runtimes\windows-x64\native\Platform.Doublets.dll" />
+  </files>
+</package>

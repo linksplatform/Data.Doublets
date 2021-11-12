@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Condition=" '$(OS)' == 'Windows_NT' ">
+    <Content Include="$(MSBuildThisFileDirectory)..\runtimes\win-x64\native\Platform.Doublets.dll">
+      <Link>Platform.Doublets.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>false</Pack>
+    </Content>
+  </ItemGroup>
+  <ItemGroup Condition=" '$(OS)' == 'Unix' AND Exists('/Library/Frameworks') ">
+    <Content Include="$(MSBuildThisFileDirectory)..\runtimes\osx-x64\native\libPlatform.Doublets.dylib">
+      <Link>libPlatform.Doublets.dylib</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>false</Pack>
+    </Content>
+  </ItemGroup>
+  <ItemGroup Condition=" '$(OS)' == 'Unix' AND !Exists('/Library/Frameworks') ">
+    <Content Include="$(MSBuildThisFileDirectory)..\runtimes\linux-x64\native\libPlatform.Doublets.so">
+      <Link>libPlatform.Doublets.so</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>false</Pack>
+    </Content>
+  </ItemGroup>
+</Project>

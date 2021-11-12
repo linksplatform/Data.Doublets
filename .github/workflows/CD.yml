@@ -83,6 +83,27 @@ jobs:
           export LIB_NAME="libdoublets_ffi.dylib"
           export TARGET_LIB_NAME="libPlatform.Doublets.dylib"
           bash ./publish-bin.sh
+  publich_to_nuget:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Push
+        shell: bash
+        run: |
+          mkdir runtimes && cd runtimes
+          wget https://github.com/linksplatform/Data.Doublets/raw/binaries/windows-x64/native/Platform.Doublets.dll
+          wget https://github.com/linksplatform/Data.Doublets/raw/binaries/macos-x64/native/libPlatform.Doublets.dylib
+          wget https://github.com/linksplatform/Data.Doublets/raw/binaries/linux-x64/native/libPlatform.Doublets.so
+          ls
+          cd ..
+
+          export REPOSITORY_NAME=$(basename ${{ github.repository }})
+          wget "$SCRIPTS_BASE_URL/push-cpp-nuget.sh"
+          CPP_PACKAGE_NUSPEC_PATH="rust/ffi/nuget/"
+          echo "$CPP_PACKAGE_NUSPEC_PATH"
+          echo "$CPP_PACKAGE_NUSPEC_PATH" > CPP_PACKAGE_NUSPEC_PATH.txt
+          ./push-cpp-nuget.sh
+
   testAndDeploy:
     runs-on: ubuntu-latest
     steps:
