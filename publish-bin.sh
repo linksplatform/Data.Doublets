@@ -25,7 +25,7 @@ rm -rf out/${TARGET_PLATFORM}/**/* || exit 0
 mkdir -p out/${TARGET_PLATFORM}/native
 
 # Copy compiled binaries
-cp Platform.${TRAVIS_REPO_NAME}/${LIB_PATH}/${LIB_NAME} out/${TARGET_PLATFORM}/native/${TARGET_LIB_NAME}
+cp ${LIB_PATH}/${LIB_NAME} out/${TARGET_PLATFORM}/native/${TARGET_LIB_NAME}
 
 cd out
 
