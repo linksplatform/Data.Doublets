@@ -18,8 +18,8 @@
   </metadata>
   <files>
     <file src="build\Doublets.FFI.targets" target="build\Doublets.FFI.targets" />
-    <file src="runtimes\linux-x64\native\libPlatform.Doublets.so" target="runtimes\linux-x64\native\libPlatform.Doublets.so" />
-    <file src="runtimes\macos-x64\native\libPlatform.Doublets.dylib" target="runtimes\macos-x64\native\libPlatform.Doublets.dylib" />
-    <file src="runtimes\windows-x64\native\Platform.Doublets.dll" target="runtimes\windows-x64\native\Platform.Doublets.dll" />
+    <file src="runtimes\libPlatform.Doublets.so" target="runtimes\linux-x64\native\libPlatform.Doublets.so" />
+    <file src="runtimes\libPlatform.Doublets.dylib" target="runtimes\macos-x64\native\libPlatform.Doublets.dylib" />
+    <file src="runtimes\Platform.Doublets.dll" target="runtimes\windows-x64\native\Platform.Doublets.dll" />
   </files>
 </package>
