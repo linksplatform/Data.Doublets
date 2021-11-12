@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
   <metadata>
-    <id>Doublets.FFI</id>
+    <id>Platform.Data.Doublets.FFI</id>
     <version>0.0.1</version>
     <authors>Voider</authors>
     <owners>Konstantin Diachenko</owners>
@@ -17,7 +17,7 @@
     <repository type="git" url="https://github.com/linksplatform/Data.Doublets" />
   </metadata>
   <files>
-    <file src="build\Doublets.FFI.targets" target="build\Doublets.FFI.targets" />
+    <file src="build\Platform.Data.Doublets.FFI.targets" target="build\Platform.Data.Doublets.FFI.targets" />
     <file src="runtimes\libPlatform.Doublets.so" target="runtimes\linux-x64\native\libPlatform.Doublets.so" />
     <file src="runtimes\libPlatform.Doublets.dylib" target="runtimes\macos-x64\native\libPlatform.Doublets.dylib" />
     <file src="runtimes\Platform.Doublets.dll" target="runtimes\windows-x64\native\Platform.Doublets.dll" />
