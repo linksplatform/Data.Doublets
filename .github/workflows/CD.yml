@@ -9,7 +9,7 @@ on:
 env:
   NUGETTOKEN: ${{ secrets.NUGET_TOKEN }}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  SCRIPTS_BASE_URL: https://raw.githubusercontent.com/linksplatform/Scripts/master/MultiProjectRepository
+  SCRIPTS_BASE_URL: https://raw.githubusercontent.com/linksplatform/Scripts/258a9e01276fa1f6539c39e281d5eeb7f79eb415/MultiProjectRepository
   CARGO_TERM_COLOR: always
   RUSTFLAGS: -Awarnings
 
