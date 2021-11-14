@@ -187,29 +187,36 @@ unsafe extern "C" fn EachUnited_Uint64(
     )
 }
 
-unsafe fn count_united<T: LinkType>(this: *mut c_void) -> T {
+unsafe fn count_united<T: LinkType>(this: *mut c_void, query: *const T, len: usize) -> T {
     let links = &mut *(this as *mut UnitedLinks<T>);
-    links.count()
+    let slice = slice::from_raw_parts(query, len);
+    match slice.len() {
+        0 => links.count(),
+        1 => links.count_by([slice[0]]),
+        2 => links.count_by([slice[0], slice[1]]),
+        3 => links.count_by([slice[0], slice[1], slice[2]]),
+        _ => panic!("UB")
+    }
 }
 
 #[no_mangle]
-unsafe extern "C" fn CountUnited_Uint8(this: *mut c_void) -> u8 {
-    count_united::<u8>(this)
+unsafe extern "C" fn CountUnited_Uint8(this: *mut c_void, query: *const u8, len: usize) -> u8 {
+    count_united::<u8>(this, query, len)
 }
 
 #[no_mangle]
-unsafe extern "C" fn CountUnited_Uint16(this: *mut c_void) -> u16 {
-    count_united::<u16>(this)
+unsafe extern "C" fn CountUnited_Uint16(this: *mut c_void, query: *const u16, len: usize) -> u16 {
+    count_united::<u16>(this, query, len)
 }
 
 #[no_mangle]
-unsafe extern "C" fn CountUnited_Uint32(this: *mut c_void) -> u32 {
-    count_united::<u32>(this)
+unsafe extern "C" fn CountUnited_Uint32(this: *mut c_void, query: *const u32, len: usize) -> u32 {
+    count_united::<u32>(this, query, len)
 }
 
 #[no_mangle]
-unsafe extern "C" fn CountUnited_Uint64(this: *mut c_void) -> u64 {
-    count_united::<u64>(this)
+unsafe extern "C" fn CountUnited_Uint64(this: *mut c_void, query: *const u64, len: usize) -> u64 {
+    count_united::<u64>(this, query, len)
 }
 
 unsafe fn update_united<T: LinkType>(this: *mut c_void, index: T, source: T, target: T) -> T {
