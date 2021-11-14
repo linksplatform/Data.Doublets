@@ -134,7 +134,44 @@ namespace Platform.Data.Doublets.FFI
 
     public class UnitedMemoryLinks<TLink> : DisposableBase, ILinks<TLink>
     {
+        private static readonly UncheckedConverter<Byte, TLink> from_u8 = UncheckedConverter<Byte, TLink>.Default;
+        private static readonly UncheckedConverter<UInt16, TLink> from_u16 = UncheckedConverter<UInt16, TLink>.Default;
+        private static readonly UncheckedConverter<UInt32, TLink> from_u32 = UncheckedConverter<UInt32, TLink>.Default;
+        private static readonly UncheckedConverter<UInt64, TLink> from_u64 = UncheckedConverter<UInt64, TLink>.Default;
+        private static readonly UncheckedConverter<TLink, UInt64> from_t = UncheckedConverter<TLink, UInt64>.Default;
+
+        public LinksConstants<TLink> Constants { get; }
+
         private readonly unsafe void* _body;
+        
+        public UnitedMemoryLinks(string path)
+        {
+            TLink t = default;
+            unsafe
+            {
+                switch (t)
+                {
+                    case Byte t8:
+                        this._body = Methods.NewUnitedLinks_Uint8(path);
+                        break;
+                    case UInt16 t16:
+                        this._body = Methods.NewUnitedLinks_Uint16(path);
+                        break;
+                    case UInt32 t32:
+                        this._body = Methods.NewUnitedLinks_Uint32(path);
+                        break;
+                    case UInt64:
+                        t64:
+                        this._body = Methods.NewUnitedLinks_Uint64(path);
+                        break;
+                    default:
+                        throw new NotImplementedException();
+                }
+
+                // TODO: Update api
+                Constants = new LinksConstants<TLink>(enableExternalReferencesSupport: true);
+            }
+        }
 
         public TLink Count(IList<TLink> restrictions)
         {
@@ -355,43 +392,6 @@ namespace Platform.Data.Doublets.FFI
                 }
             }
         }
-
-        public LinksConstants<TLink> Constants { get; }
-        
-        public UnitedMemoryLinks(string path)
-        {
-            TLink t = default;
-            unsafe
-            {
-                switch (t)
-                {
-                    case Byte t8:
-                        this._body = Methods.NewUnitedLinks_Uint8(path);
-                        break;
-                    case UInt16 t16:
-                        this._body = Methods.NewUnitedLinks_Uint16(path);
-                        break;
-                    case UInt32 t32:
-                        this._body = Methods.NewUnitedLinks_Uint32(path);
-                        break;
-                    case UInt64:
-                        t64:
-                        this._body = Methods.NewUnitedLinks_Uint64(path);
-                        break;
-                    default:
-                        throw new NotImplementedException();
-                }
-
-                // TODO: Update api
-                Constants = new LinksConstants<TLink>(enableExternalReferencesSupport: true);
-            }
-        }
-
-        static readonly UncheckedConverter<Byte, TLink> from_u8 = UncheckedConverter<Byte, TLink>.Default;
-        static readonly UncheckedConverter<UInt16, TLink> from_u16 = UncheckedConverter<UInt16, TLink>.Default;
-        static readonly UncheckedConverter<UInt32, TLink> from_u32 = UncheckedConverter<UInt32, TLink>.Default;
-        static readonly UncheckedConverter<UInt64, TLink> from_u64 = UncheckedConverter<UInt64, TLink>.Default;
-        static readonly UncheckedConverter<TLink, UInt64> from_t = UncheckedConverter<TLink, UInt64>.Default;
         
         protected override void Dispose(bool manual, bool wasDisposed)
         {
