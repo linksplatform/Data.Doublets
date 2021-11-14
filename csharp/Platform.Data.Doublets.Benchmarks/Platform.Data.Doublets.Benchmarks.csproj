@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.13.1" />
+    <PackageReference Include="Platform.Data.Doublets.FFI" Version="0.1.2" />
   </ItemGroup>
 
   <ItemGroup>
