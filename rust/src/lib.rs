@@ -10,6 +10,11 @@
 #![feature(allocator_api)]
 #![feature(slice_ptr_get)]
 
+use crate::doublets::mem::{ILinksListMethods, ILinksTreeMethods, UpdatePointers};
+use crate::doublets::mem::united::Links;
+use crate::mem::ResizeableMem;
+use crate::num::LinkType;
+
 pub mod doublets;
 pub mod mem;
 pub mod methods;
@@ -17,6 +22,24 @@ pub mod num;
 pub mod test_extensions;
 pub mod tests;
 pub mod bench;
+
+unsafe impl<
+    T: LinkType,
+    M: ResizeableMem,
+    TS: ILinksTreeMethods<T> + UpdatePointers,
+    TT: ILinksTreeMethods<T> + UpdatePointers,
+    TU: ILinksListMethods<T> + UpdatePointers,
+> Sync for Links<T, M, TS, TT, TU>
+{ }
+
+unsafe impl<
+    T: LinkType,
+    M: ResizeableMem,
+    TS: ILinksTreeMethods<T> + UpdatePointers,
+    TT: ILinksTreeMethods<T> + UpdatePointers,
+    TU: ILinksListMethods<T> + UpdatePointers,
+> Send for Links<T, M, TS, TT, TU>
+{ }
 
 //#[cfg(test)]
 //mod tests {
