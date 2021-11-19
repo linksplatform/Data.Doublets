@@ -9,3 +9,4 @@ crate-type = ["cdylib"]
 [dependencies]
 libc = "0.2.100"
 doublets = { path = ".." }
+ffi-attributes = { path = "ffi-attributes" }

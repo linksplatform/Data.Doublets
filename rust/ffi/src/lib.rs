@@ -14,6 +14,16 @@ use libc::c_void;
 
 type UnitedLinks<T> = Links<T, FileMappedMem>;
 
+use ffi_attributes as ffi;
+
+#[ffi::specialize_for(
+    types = "u8",
+    types = "u16",
+    types = "u32",
+    types = "u64",
+    convention = "csharp",
+    name = "*UnitedMemoryLinks_New",
+)]
 unsafe fn new_united_links<T: LinkType>(path: *const c_char) -> *mut c_void {
     let path = CStr::from_ptr(path);
     let path = path.to_str().unwrap();
@@ -23,76 +33,31 @@ unsafe fn new_united_links<T: LinkType>(path: *const c_char) -> *mut c_void {
     Box::into_raw(links) as *mut c_void
 }
 
-#[no_mangle]
-unsafe extern "C" fn NewUnitedLinks_Uint8(path: *const c_char) -> *mut c_void {
-    new_united_links::<u8>(path)
-}
-
-#[no_mangle]
-unsafe extern "C" fn NewUnitedLinks_Uint16(path: *const c_char) -> *mut c_void {
-    new_united_links::<u16>(path)
-}
-
-#[no_mangle]
-unsafe extern "C" fn NewUnitedLinks_Uint32(path: *const c_char) -> *mut c_void {
-    new_united_links::<u32>(path)
-}
-
-#[no_mangle]
-unsafe extern "C" fn NewUnitedLinks_Uint64(path: *const c_char) -> *mut c_void {
-    new_united_links::<u64>(path)
-}
-
+#[ffi::specialize_for(
+    types = "u8",
+    types = "u16",
+    types = "u32",
+    types = "u64",
+    convention = "csharp",
+    name = "*UnitedMemoryLinks_Drop",
+)]
 unsafe fn drop_united_links<T: LinkType>(this: *mut c_void) {
     let links = &mut *(this as *mut UnitedLinks<T>);
     drop_in_place(links)
 }
 
-#[no_mangle]
-unsafe extern "C" fn DropUnitedLinks_Uint8(this: *mut c_void) -> () {
-    drop_united_links::<u8>(this)
-}
-
-#[no_mangle]
-unsafe extern "C" fn DropUnitedLinks_Uint16(this: *mut c_void) -> () {
-    drop_united_links::<u16>(this)
-}
-
-#[no_mangle]
-unsafe extern "C" fn DropUnitedLinks_Uint32(this: *mut c_void) -> () {
-    drop_united_links::<u32>(this)
-}
-
-#[no_mangle]
-unsafe extern "C" fn DropUnitedLinks_Uint64(this: *mut c_void) -> () {
-    drop_united_links::<u64>(this)
-}
-
+#[ffi::specialize_for(
+    types = "u8",
+    types = "u16",
+    types = "u32",
+    types = "u64",
+    convention = "csharp",
+    name = "*UnitedMemoryLinks_Create",
+)]
 unsafe fn create_united<T: LinkType>(this: *mut c_void) -> T {
     let links = &mut *(this as *mut UnitedLinks<T>);
     links.create()
 }
-
-#[no_mangle]
-unsafe extern "C" fn CreateUnited_Uint8(this: *mut c_void) -> u8 {
-    create_united::<u8>(this)
-}
-
-#[no_mangle]
-unsafe extern "C" fn CreateUnited_Uint16(this: *mut c_void) -> u16 {
-    create_united::<u16>(this)
-}
-
-#[no_mangle]
-unsafe extern "C" fn CreateUnited_Uint32(this: *mut c_void) -> u32 {
-    create_united::<u32>(this)
-}
-
-#[no_mangle]
-unsafe extern "C" fn CreateUnited_Uint64(this: *mut c_void) -> u64 {
-    create_united::<u64>(this)
-}
-
 #[repr(C)]
 struct Link<T: LinkType> {
     index: T,
@@ -102,6 +67,14 @@ struct Link<T: LinkType> {
 
 type EachCallback<T> = extern "C" fn(Link<T>) -> T;
 
+#[ffi::specialize_for(
+    types = "u8",
+    types = "u16",
+    types = "u32",
+    types = "u64",
+    convention = "csharp",
+    name = "*UnitedMemoryLinks_Each",
+)]
 unsafe fn each_united<T: LinkType>(
     this: *mut c_void,
     callback: EachCallback<T>,
@@ -127,66 +100,14 @@ unsafe fn each_united<T: LinkType>(
     }
 }
 
-#[no_mangle]
-unsafe extern "C" fn EachUnited_Uint8(
-    this: *mut c_void,
-    callback: EachCallback<u8>,
-    query: *const u8,
-    len: usize,
-) -> u8 {
-    each_united::<u8>(
-        this,
-        callback,
-        query,
-        len,
-    )
-}
-
-#[no_mangle]
-unsafe extern "C" fn EachUnited_Uint16(
-    this: *mut c_void,
-    callback: EachCallback<u16>,
-    query: *const u16,
-    len: usize,
-) -> u16 {
-    each_united::<u16>(
-        this,
-        callback,
-        query,
-        len,
-    )
-}
-
-#[no_mangle]
-unsafe extern "C" fn EachUnited_Uint32(
-    this: *mut c_void,
-    callback: EachCallback<u32>,
-    query: *const u32,
-    len: usize,
-) -> u32 {
-    each_united::<u32>(
-        this,
-        callback,
-        query,
-        len,
-    )
-}
-
-#[no_mangle]
-unsafe extern "C" fn EachUnited_Uint64(
-    this: *mut c_void,
-    callback: EachCallback<u64>,
-    query: *const u64,
-    len: usize,
-) -> u64 {
-    each_united::<u64>(
-        this,
-        callback,
-        query,
-        len,
-    )
-}
-
+#[ffi::specialize_for(
+    types = "u8",
+    types = "u16",
+    types = "u32",
+    types = "u64",
+    convention = "csharp",
+    name = "*UnitedMemoryLinks_Count",
+)]
 unsafe fn count_united<T: LinkType>(this: *mut c_void, query: *const T, len: usize) -> T {
     let links = &mut *(this as *mut UnitedLinks<T>);
     let slice = slice::from_raw_parts(query, len);
@@ -199,90 +120,34 @@ unsafe fn count_united<T: LinkType>(this: *mut c_void, query: *const T, len: usi
     }
 }
 
-#[no_mangle]
-unsafe extern "C" fn CountUnited_Uint8(this: *mut c_void, query: *const u8, len: usize) -> u8 {
-    count_united::<u8>(this, query, len)
-}
-
-#[no_mangle]
-unsafe extern "C" fn CountUnited_Uint16(this: *mut c_void, query: *const u16, len: usize) -> u16 {
-    count_united::<u16>(this, query, len)
-}
-
-#[no_mangle]
-unsafe extern "C" fn CountUnited_Uint32(this: *mut c_void, query: *const u32, len: usize) -> u32 {
-    count_united::<u32>(this, query, len)
-}
-
-#[no_mangle]
-unsafe extern "C" fn CountUnited_Uint64(this: *mut c_void, query: *const u64, len: usize) -> u64 {
-    count_united::<u64>(this, query, len)
-}
-
+#[ffi::specialize_for(
+    types = "u8",
+    types = "u16",
+    types = "u32",
+    types = "u64",
+    convention = "csharp",
+    name = "*UnitedMemoryLinks_Update",
+)]
 unsafe fn update_united<T: LinkType>(this: *mut c_void, index: T, source: T, target: T) -> T {
     let links = &mut *(this as *mut UnitedLinks<T>);
     links.update(index, source, target)
 }
 
-#[no_mangle]
-unsafe extern "C" fn UpdateUnited_Uint8(this: *mut c_void, index: u8, source: u8, target: u8) -> u8 {
-    update_united::<u8>(this, index, source, target)
-}
-
-#[no_mangle]
-unsafe extern "C" fn UpdateUnited_Uint16(
-    this: *mut c_void,
-    index: u16,
-    source: u16,
-    target: u16,
-) -> u16 {
-    update_united::<u16>(this, index, source, target)
-}
-
-#[no_mangle]
-unsafe extern "C" fn UpdateUnited_Uint32(
-    this: *mut c_void,
-    index: u32,
-    source: u32,
-    target: u32,
-) -> u32 {
-    update_united::<u32>(this, index, source, target)
-}
-
-#[no_mangle]
-unsafe extern "C" fn UpdateUnited_Uint64(
-    this: *mut c_void,
-    index: u64,
-    source: u64,
-    target: u64,
-) -> u64 {
-    update_united::<u64>(this, index, source, target)
-}
-
+#[ffi::specialize_for(
+    types = "u8",
+    types = "u16",
+    types = "u32",
+    types = "u64",
+    convention = "csharp",
+    name = "*UnitedMemoryLinks_Delete",
+)]
 unsafe fn delete_united<T: LinkType>(this: *mut c_void, index: T) -> T {
     let links = &mut *(this as *mut UnitedLinks<T>);
     links.delete(index)
 }
 
-#[no_mangle]
-unsafe extern "C" fn DeleteUnited_Uint8(this: *mut c_void, index: u8) -> u8 {
-    delete_united::<u8>(this, index)
-}
-
-#[no_mangle]
-unsafe extern "C" fn DeleteUnited_Uint16(this: *mut c_void, index: u16) -> u16 {
-    delete_united::<u16>(this, index)
-}
-
-#[no_mangle]
-unsafe extern "C" fn DeleteUnited_Uint32(this: *mut c_void, index: u32) -> u32 {
-    delete_united::<u32>(this, index)
-}
-
-#[no_mangle]
-unsafe extern "C" fn DeleteUnited_Uint64(this: *mut c_void, index: u64) -> u64 {
-    delete_united::<u64>(this, index)
-}
-
 #[test]
-fn its_work() {}
+fn its_work() {
+
+
+}
