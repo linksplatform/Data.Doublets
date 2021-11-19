@@ -9,7 +9,7 @@ use darling::{Error, FromMeta};
 use quote::{quote, ToTokens};
 use serde::Deserialize;
 use serde::Serialize;
-use syn::{AttributeArgs, Block, Expr, FnArg, GenericArgument, GenericParam, Ident, ItemFn, Lit, Meta, NestedMeta, parse_macro_input, parse_str, Pat, PathArguments, ReturnType, Type, TypeParam, TypeTuple};
+use syn::{AttributeArgs, Block, Expr, FnArg, GenericArgument, GenericParam, Ident, ItemFn, Lit, Meta, NestedMeta, parse_macro_input, parse_str, Pat, PathArguments, ReturnType, Type, TypeParam, TypePtr, TypeTuple};
 use syn::parse::Parser;
 use syn::punctuated::Punctuated;
 use syn::spanned::Spanned;
@@ -77,11 +77,13 @@ fn ty_from_to(ty: Type, from: &str, to: &str) -> Type {
                 });
             Type::Path(path)
         }
-        Type::Ptr(ptr) => {
-            ty_from_to(*ptr.elem, from, to)
+        Type::Ptr(mut ptr) => {
+            *ptr.elem = ty_from_to(*ptr.elem, from, to);
+            Type::Ptr(ptr)
         }
-        Type::Reference(refer) => {
-            ty_from_to(*refer.elem, from, to)
+        Type::Reference(mut refer) => {
+            *refer.elem = ty_from_to(*refer.elem, from, to);
+            Type::Reference(refer)
         }
         _ => {
             panic!("unexpected ffi type");
