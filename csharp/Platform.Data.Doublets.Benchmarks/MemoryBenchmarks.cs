@@ -8,12 +8,6 @@ using Platform.Memory;
 
 namespace Platform.Data.Doublets.Benchmarks
 {
-    /// <summary>
-    /// <para>
-    /// Represents the memory benchmarks.
-    /// </para>
-    /// <para></para>
-    /// </summary>
     [SimpleJob]
     [MemoryDiagnoser]
     public class MemoryBenchmarks
@@ -23,12 +17,6 @@ namespace Platform.Data.Doublets.Benchmarks
         private static UnitedMemoryLinks<uint> _unitedMemory;
         private static ILinks<uint> _unitedMemoryLinks;
 
-        /// <summary>
-        /// <para>
-        /// Setup.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         [GlobalSetup]
         public static void Setup()
         {
@@ -42,12 +30,6 @@ namespace Platform.Data.Doublets.Benchmarks
             _unitedMemoryLinks = _unitedMemory.DecorateWithAutomaticUniquenessAndUsagesResolution();
         }
 
-        /// <summary>
-        /// <para>
-        /// Cleanups.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         [GlobalCleanup]
         public static void Cleanup()
         {
@@ -55,24 +37,12 @@ namespace Platform.Data.Doublets.Benchmarks
             _unitedMemory.Dispose();
         }
 
-        /// <summary>
-        /// <para>
-        /// Splits this instance.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         [Benchmark]
         public void Split()
         {
             _splitMemoryLinks.TestMultipleRandomCreationsAndDeletions(1000);
         }
 
-        /// <summary>
-        /// <para>
-        /// Uniteds this instance.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         [Benchmark]
         public void United()
         {

@@ -6,20 +6,8 @@ using Platform.Data.Doublets.Memory;
 
 namespace Platform.Data.Doublets.Tests
 {
-    /// <summary>
-    /// <para>
-    /// Represents the split memory generic links tests.
-    /// </para>
-    /// <para></para>
-    /// </summary>
     public unsafe static class SplitMemoryGenericLinksTests
     {
-        /// <summary>
-        /// <para>
-        /// Tests that crud test.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         [Fact]
         public static void CRUDTest()
         {
@@ -29,12 +17,6 @@ namespace Platform.Data.Doublets.Tests
             Using<ulong>(links => links.TestCRUDOperations());
         }
 
-        /// <summary>
-        /// <para>
-        /// Tests that raw numbers crud test.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         [Fact]
         public static void RawNumbersCRUDTest()
         {
@@ -44,12 +26,6 @@ namespace Platform.Data.Doublets.Tests
             UsingWithExternalReferences<ulong>(links => links.TestRawNumbersCRUDOperations());
         }
 
-        /// <summary>
-        /// <para>
-        /// Tests that multiple random creations and deletions test.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         [Fact]
         public static void MultipleRandomCreationsAndDeletionsTest()
         {

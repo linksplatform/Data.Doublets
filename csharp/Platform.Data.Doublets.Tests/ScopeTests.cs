@@ -8,20 +8,8 @@ using Platform.Data.Doublets.Memory.United.Specific;
 
 namespace Platform.Data.Doublets.Tests
 {
-    /// <summary>
-    /// <para>
-    /// Represents the scope tests.
-    /// </para>
-    /// <para></para>
-    /// </summary>
     public static class ScopeTests
     {
-        /// <summary>
-        /// <para>
-        /// Tests that single dependency test.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         [Fact]
         public static void SingleDependencyTest()
         {
@@ -33,12 +21,6 @@ namespace Platform.Data.Doublets.Tests
             }
         }
 
-        /// <summary>
-        /// <para>
-        /// Tests that cascade dependency test.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         [Fact]
         public static void CascadeDependencyTest()
         {
@@ -51,12 +33,6 @@ namespace Platform.Data.Doublets.Tests
             }
         }
 
-        /// <summary>
-        /// <para>
-        /// Tests that full auto resolution test.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         [Fact(Skip = "Would be fixed later.")]
         public static void FullAutoResolutionTest()
         {
@@ -67,12 +43,6 @@ namespace Platform.Data.Doublets.Tests
             }
         }
 
-        /// <summary>
-        /// <para>
-        /// Tests that type parameters test.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         [Fact]
         public static void TypeParametersTest()
         {
