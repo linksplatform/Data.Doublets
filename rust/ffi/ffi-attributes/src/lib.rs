@@ -167,6 +167,7 @@ pub fn specialize_for(args: TokenStream, input: TokenStream) -> TokenStream {
 
         out = quote! {
             #out
+            #[no_mangle]
             unsafe extern "C" fn #fn_pat(#inputs) -> #output_ty {
                 #ident::<#ty_tt>(#(#input_args),*)
             }
