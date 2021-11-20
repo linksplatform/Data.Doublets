@@ -6,7 +6,7 @@ use num_traits::{one, zero};
 use crate::doublets::data::hybrid::Hybrid;
 use crate::num::LinkType;
 
-#[derive(Clone, Eq, PartialEq, Debug)]
+#[derive(Clone, Eq, PartialEq)]
 pub struct LinksConstants<T: LinkType> {
     pub index_part: T,
     pub source_part: T,
