@@ -48,88 +48,88 @@ namespace Platform.Data.Doublets.FFI
         public delegate UInt64 EachCallback_Uint64(FfiLink_Uint64 link);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void* NewUnitedLinks_Uint8(string path);
+        public static extern void* ByteUnitedMemoryLinks_New(string path);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void* NewUnitedLinks_Uint16(string path);
+        public static extern void* UInt16UnitedMemoryLinks_New(string path);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void* NewUnitedLinks_Uint32(string path);
+        public static extern void* UInt32UnitedMemoryLinks_New(string path);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void* NewUnitedLinks_Uint64(string path);
+        public static extern void* UInt64UnitedMemoryLinks_New(string path);
         
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DropUnitedLinks_Uint8(void* self);
+        public static extern void ByteUnitedMemoryLinks_Drop(void* self);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DropUnitedLinks_Uint16(void* self);
+        public static extern void UInt16UnitedMemoryLinks_Drop(void* self);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void DropUnitedLinks_Uint32(void* self);
+        public static extern void UInt32UnitedMemoryLinks_Drop(void* self);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void* DropUnitedLinks_Uint64(void* self);
+        public static extern void UInt64UnitedMemoryLinks_Drop(void* self);
         
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Byte CreateUnited_Uint8(void* self);
+        public static extern Byte ByteUnitedMemoryLinks_Create(void* self);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern UInt16 CreateUnited_Uint16(void* self);
+        public static extern UInt16 UInt16UnitedMemoryLinks_Create(void* self);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern UInt32 CreateUnited_Uint32(void* self);
+        public static extern UInt32 UInt32UnitedMemoryLinks_Create(void* self);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern UInt64 CreateUnited_Uint64(void* self);
+        public static extern UInt64 UInt64UnitedMemoryLinks_Create(void* self);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Byte CountUnited_Uint8(void* self, Byte* query, nuint len);
+        public static extern Byte ByteUnitedMemoryLinks_Count(void* self, Byte* query, nuint len);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern UInt16 CountUnited_Uint16(void* self, UInt16* query, nuint len);
+        public static extern UInt16 UInt16UnitedMemoryLinks_Count(void* self, UInt16* query, nuint len);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern UInt32 CountUnited_Uint32(void* self, UInt32* query, nuint len);
+        public static extern UInt32 UInt32UnitedMemoryLinks_Count(void* self, UInt32* query, nuint len);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern UInt64 CountUnited_Uint64(void* self, UInt64* query, nuint len);
+        public static extern UInt64 UInt64UnitedMemoryLinks_Count(void* self, UInt64* query, nuint len);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Byte EachUnited_Uint8(void* self, EachCallback_Uint8 callback, Byte* query, nuint len);
+        public static extern Byte ByteUnitedMemoryLinks_Each(void* self, EachCallback_Uint8 callback, Byte* query, nuint len);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern UInt16 EachUnited_Uint16(void* self, EachCallback_Uint16 callback, UInt16* query, nuint len);
+        public static extern UInt16 UInt16UnitedMemoryLinks_Each(void* self, EachCallback_Uint16 callback, UInt16* query, nuint len);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern UInt32 EachUnited_Uint32(void* self, EachCallback_Uint32 callback, UInt32* query, nuint len);
+        public static extern UInt32 UInt32UnitedMemoryLinks_Each(void* self, EachCallback_Uint32 callback, UInt32* query, nuint len);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern UInt64 EachUnited_Uint64(void* self, EachCallback_Uint64 callback, UInt64* query, nuint len);
+        public static extern UInt64 UInt64UnitedMemoryLinks_Each(void* self, EachCallback_Uint64 callback, UInt64* query, nuint len);
         
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Byte UpdateUnited_Uint8(void* self, Byte index, Byte source, Byte target);
+        public static extern Byte ByteUnitedMemoryLinks_Update(void* self, Byte index, Byte source, Byte target);
         
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern UInt16 UpdateUnited_Uint16(void* self, UInt16 index, UInt16 source, UInt16 target);
+        public static extern UInt16 UInt16UnitedMemoryLinks_Update(void* self, UInt16 index, UInt16 source, UInt16 target);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern UInt32 UpdateUnited_Uint32(void* self, UInt32 index, UInt32 source, UInt32 target);
+        public static extern UInt32 UInt32UnitedMemoryLinks_Update(void* self, UInt32 index, UInt32 source, UInt32 target);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern UInt64 UpdateUnited_Uint64(void* self, UInt64 index, UInt64 source, UInt64 target);
+        public static extern UInt64 UInt64UnitedMemoryLinks_Update(void* self, UInt64 index, UInt64 source, UInt64 target);
         
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Byte DeleteUnited_Uint8(void* self, Byte index);
+        public static extern Byte ByteUnitedMemoryLinks_Delete(void* self, Byte index);
         
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern UInt16 DeleteUnited_Uint16(void* self, UInt16 index);
+        public static extern UInt16 UInt16UnitedMemoryLinks_Delete(void* self, UInt16 index);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern UInt32 DeleteUnited_Uint32(void* self, UInt32 index);
+        public static extern UInt32 UInt32UnitedMemoryLinks_Delete(void* self, UInt32 index);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern UInt64 DeleteUnited_Uint64(void* self, UInt64 index);
+        public static extern UInt64 UInt64UnitedMemoryLinks_Delete(void* self, UInt64 index);
     }
 
     public class UnitedMemoryLinks<TLink> : DisposableBase, ILinks<TLink>
@@ -152,17 +152,17 @@ namespace Platform.Data.Doublets.FFI
                 switch (t)
                 {
                     case Byte t8:
-                        this._body = Methods.NewUnitedLinks_Uint8(path);
+                        this._body = Methods.ByteUnitedMemoryLinks_New(path);
                         break;
                     case UInt16 t16:
-                        this._body = Methods.NewUnitedLinks_Uint16(path);
+                        this._body = Methods.UInt16UnitedMemoryLinks_New(path);
                         break;
                     case UInt32 t32:
-                        this._body = Methods.NewUnitedLinks_Uint32(path);
+                        this._body = Methods.UInt32UnitedMemoryLinks_New(path);
                         break;
                     case UInt64:
                         t64:
-                        this._body = Methods.NewUnitedLinks_Uint64(path);
+                        this._body = Methods.UInt64UnitedMemoryLinks_New(path);
                         break;
                     default:
                         throw new NotImplementedException();
@@ -185,7 +185,7 @@ namespace Platform.Data.Doublets.FFI
                     {
                         array[i] = (Byte)from_t.Convert(restrictions[i]);
                     }
-                    return from_u8.Convert(Methods.CountUnited_Uint8(_body, array, (nuint)restrictions.Count));
+                    return from_u8.Convert(Methods.ByteUnitedMemoryLinks_Count(_body, array, (nuint)restrictions.Count));
                 }
                 if (typeof(TLink) == typeof(UInt16))
                 {
@@ -194,7 +194,7 @@ namespace Platform.Data.Doublets.FFI
                     {
                         array[i] = (UInt16)from_t.Convert(restrictions[i]);
                     }
-                    return from_u16.Convert(Methods.CountUnited_Uint16(_body, array, (nuint)restrictions.Count));
+                    return from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Count(_body, array, (nuint)restrictions.Count));
                 }
                 if (typeof(TLink) == typeof(UInt32))
                 {
@@ -203,7 +203,7 @@ namespace Platform.Data.Doublets.FFI
                     {
                         array[i] = (UInt32)from_t.Convert(restrictions[i]);
                     }
-                    return from_u32.Convert(Methods.CountUnited_Uint32(_body, array, (nuint)restrictions.Count));
+                    return from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Count(_body, array, (nuint)restrictions.Count));
                 }
                 if (typeof(TLink) == typeof(UInt64))
                 {
@@ -212,7 +212,7 @@ namespace Platform.Data.Doublets.FFI
                     {
                         array[i] = (UInt64)from_t.Convert(restrictions[i]);
                     }
-                    return from_u64.Convert(Methods.CountUnited_Uint64(_body, array, (nuint)restrictions.Count));
+                    return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Count(_body, array, (nuint)restrictions.Count));
                 }
             }
             throw new NotImplementedException();
@@ -237,7 +237,7 @@ namespace Platform.Data.Doublets.FFI
                     {
                         array[i] = (Byte)from_t.Convert(restrictions[i]);
                     }
-                    return from_u8.Convert(Methods.EachUnited_Uint8(_body, callback, array, (nuint)restrictions.Count));
+                    return from_u8.Convert(Methods.ByteUnitedMemoryLinks_Each(_body, callback, array, (nuint)restrictions.Count));
                 }
                 if (typeof(TLink) == typeof(UInt16))
                 {
@@ -253,7 +253,7 @@ namespace Platform.Data.Doublets.FFI
                     {
                         array[i] = (UInt16)from_t.Convert(restrictions[i]);
                     }
-                    return from_u16.Convert(Methods.EachUnited_Uint16(_body, callback, array, (nuint)restrictions.Count));
+                    return from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Each(_body, callback, array, (nuint)restrictions.Count));
                 }
                 if (typeof(TLink) == typeof(UInt32))
                 {
@@ -269,7 +269,7 @@ namespace Platform.Data.Doublets.FFI
                     {
                         array[i] = (UInt32)from_t.Convert(restrictions[i]);
                     }
-                    return from_u32.Convert(Methods.EachUnited_Uint32(_body, callback, array, (nuint)restrictions.Count));
+                    return from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Each(_body, callback, array, (nuint)restrictions.Count));
                 }
                 if (typeof(TLink) == typeof(UInt64))
                 {
@@ -285,7 +285,7 @@ namespace Platform.Data.Doublets.FFI
                     {
                         array[i] = (UInt64)from_t.Convert(restrictions[i]);
                     }
-                    return from_u64.Convert(Methods.EachUnited_Uint64(_body, callback, array, (nuint)restrictions.Count));
+                    return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Each(_body, callback, array, (nuint)restrictions.Count));
                 }
                 throw new NotImplementedException();
             }
@@ -299,14 +299,14 @@ namespace Platform.Data.Doublets.FFI
                 switch (t)
                 {
                     case Byte _:
-                        return from_u8.Convert(Methods.CreateUnited_Uint8(_body));
+                        return from_u8.Convert(Methods.ByteUnitedMemoryLinks_Create(_body));
                     case UInt16 _:
-                        return from_u16.Convert(Methods.CreateUnited_Uint16(_body));
+                        return from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Create(_body));
                     case UInt32 _:
-                        return from_u32.Convert(Methods.CreateUnited_Uint32(_body));
+                        return from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Create(_body));
                     case UInt64:
                         _:
-                        return from_u64.Convert(Methods.CreateUnited_Uint64(_body));
+                        return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Create(_body));
                     default:
                         throw new NotImplementedException();
                 }
@@ -321,21 +321,21 @@ namespace Platform.Data.Doublets.FFI
                 switch (t)
                 {
                     case Byte _:
-                        return from_u8.Convert(Methods.UpdateUnited_Uint8(
+                        return from_u8.Convert(Methods.ByteUnitedMemoryLinks_Update(
                             _body, 
                             (Byte)from_t.Convert(restrictions[0]),
                             (Byte)from_t.Convert(substitution[1]),
                             (Byte)from_t.Convert(substitution[2])
                         ));
                     case UInt16 _:
-                        return from_u16.Convert(Methods.UpdateUnited_Uint16(
+                        return from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Update(
                             _body, 
                             (UInt16)from_t.Convert(restrictions[0]),
                             (UInt16)from_t.Convert(substitution[1]),
                             (UInt16)from_t.Convert(substitution[2])
                         ));
                     case UInt32 _:
-                        return from_u32.Convert(Methods.UpdateUnited_Uint32(
+                        return from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Update(
                             _body, 
                             (UInt32)from_t.Convert(restrictions[0]),
                             (UInt32)from_t.Convert(substitution[1]),
@@ -343,7 +343,7 @@ namespace Platform.Data.Doublets.FFI
                         ));
                     case UInt64:
                         _:
-                        return from_u64.Convert(Methods.UpdateUnited_Uint64(
+                        return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Update(
                             _body, 
                             (UInt64)from_t.Convert(restrictions[0]),
                             (UInt64)from_t.Convert(substitution[1]),
@@ -363,26 +363,26 @@ namespace Platform.Data.Doublets.FFI
                 switch (t)
                 {
                     case Byte _:
-                        Methods.DeleteUnited_Uint8(
+                        Methods.ByteUnitedMemoryLinks_Delete(
                             _body, 
                             (Byte)from_t.Convert(restrictions[0])
                         );
                         return;
                     case UInt16 _:
-                        Methods.DeleteUnited_Uint16(
+                        Methods.UInt16UnitedMemoryLinks_Delete(
                             _body, 
                             (UInt16)from_t.Convert(restrictions[0])
                         );
                         return;
                     case UInt32 _:
-                        Methods.DeleteUnited_Uint32(
+                        Methods.UInt32UnitedMemoryLinks_Delete(
                             _body, 
                             (UInt32)from_t.Convert(restrictions[0])
                         );
                         return;
                     case UInt64:
                         _:
-                        Methods.DeleteUnited_Uint64(
+                        Methods.UInt64UnitedMemoryLinks_Delete(
                             _body, 
                             (UInt64)from_t.Convert(restrictions[0])
                         );
@@ -403,17 +403,17 @@ namespace Platform.Data.Doublets.FFI
                     switch (t)
                     {
                         case Byte t8:
-                            Methods.DropUnitedLinks_Uint8(_body);
+                            Methods.ByteUnitedMemoryLinks_Drop(_body);
                             break;
                         case UInt16 t16:
-                            Methods.DropUnitedLinks_Uint16(_body);
+                            Methods.UInt16UnitedMemoryLinks_Drop(_body);
                             break;
                         case UInt32 t32:
-                            Methods.DropUnitedLinks_Uint32(_body);
+                            Methods.UInt32UnitedMemoryLinks_Drop(_body);
                             break;
                         case UInt64:
                             t64:
-                            Methods.DropUnitedLinks_Uint64(_body);
+                            Methods.UInt64UnitedMemoryLinks_Drop(_body);
                             break;
                         default:
                             throw new NotImplementedException();
