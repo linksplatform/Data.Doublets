@@ -75,7 +75,7 @@ fn billion_points_heap_mem() {
 #[test]
 fn billion_points_bump_alloc() {
     let bump = Bump::new();
-    let mem = AllocMem::new(&bump);
+    let mem = AllocMem::new(&bump).unwrap();
     let mut links = Links::<usize, _>::new(mem);
 
     let instant = Instant::now();
@@ -90,7 +90,7 @@ fn billion_points_bump_alloc() {
 #[test]
 fn many_points_and_searches() {
     let bump = Bump::new();
-    let mem = AllocMem::new(System);
+    let mem = AllocMem::new(System).unwrap();
     let mut links = Links::<usize, _>::new(mem);
 
     let instant = Instant::now();
@@ -146,8 +146,8 @@ fn billion_points_heap_mem_splited() {
 #[test]
 fn billion_points_bump_alloc_splited() {
     let bump = Bump::new();
-    let mut mem = AllocMem::new(&bump);
-    let mut index = AllocMem::new(&bump);
+    let mut mem = AllocMem::new(&bump).unwrap();
+    let mut index = AllocMem::new(&bump).unwrap();
     index.reserve_mem(1023*1023).unwrap();
     let mut links = splited::Links::<usize, _, _>::new(mem, index);
 
@@ -167,8 +167,8 @@ fn billion_points_bump_alloc_splited() {
 
 #[test]
 fn many_points_and_searches_splited() {
-    let mem = AllocMem::new(System);
-    let index = AllocMem::new(System);
+    let mem = AllocMem::new(System).unwrap();
+    let index = AllocMem::new(System).unwrap();
     let mut links = splited::Links::<usize, _, _>::new(mem, index);
 
     let instant = Instant::now();

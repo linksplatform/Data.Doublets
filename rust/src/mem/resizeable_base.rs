@@ -28,16 +28,15 @@ impl Mem for ResizeableBase {
 }
 
 impl ResizeableMem for ResizeableBase {
-    fn use_mem(&mut self, capacity: usize) -> Result<usize, Box<dyn std::error::Error>> {
+    fn use_mem(&mut self, capacity: usize) -> std::io::Result<usize> {
         if capacity <= self.reserved {
             self.used = capacity;
             Ok(self.used)
         } else {
-            panic!("{} {}", capacity, self.reserved);
             Err(Error::new(
                 ErrorKind::Other,
                 "cannot use greater than the memory reserved",
-            ).into())
+            ))
         }
     }
 
@@ -45,15 +44,15 @@ impl ResizeableMem for ResizeableBase {
         self.used
     }
 
-    fn reserve_mem(&mut self, capacity: usize) -> Result<usize, Box<dyn std::error::Error>> {
+    fn reserve_mem(&mut self, capacity: usize) -> std::io::Result<usize> {
         if capacity >= self.used {
             self.reserved = capacity;
-            Ok(self.reserved)
+            Ok(self.used)
         } else {
             Err(Error::new(
                 ErrorKind::Other,
                 "cannot reserve less than the memory used",
-            ).into())
+            ))
         }
     }
 
