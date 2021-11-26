@@ -37,7 +37,7 @@ fn each_eq_count() {
 
     for _ in 0..10 {
         let new = links.create_point().unwrap();
-        links.create_and_update(new, root);
+        links.create_and_update(new, root).unwrap();
     }
 
     let any = links.constants.any;
@@ -62,7 +62,7 @@ fn rebase() {
 
     for _ in 0..10 {
         let new = links.create_point().unwrap();
-        links.create_and_update(new, root);
+        links.create_and_update(new, root).unwrap();
     }
 
     let before = links.count_by([any, any, root]);
@@ -85,12 +85,12 @@ fn delete_all_usages() {
     let a = links.create_point().unwrap();
     let b = links.create_point().unwrap();
 
-    links.create_and_update(a, root);
-    links.create_and_update(b, root);
+    links.create_and_update(a, root).unwrap();
+    links.create_and_update(b, root).unwrap();
 
     assert_eq!(links.count(), 5);
 
-    links.delete_usages(root);
+    links.delete_usages(root).unwrap();
 
     assert_eq!(links.count(), 3);
 }

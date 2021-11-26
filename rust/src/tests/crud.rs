@@ -69,7 +69,7 @@ fn billion_points_heap_mem() {
     let instant = Instant::now();
 
     for _ in 0..1_000_000 {
-        links.create_point().unwrap();
+        links.get_or_create(1, 1).unwrap();
     }
 
     println!("{:?}", instant.elapsed());

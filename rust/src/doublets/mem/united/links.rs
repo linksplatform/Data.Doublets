@@ -98,7 +98,7 @@ impl<
             unused,
         };
 
-        new.init();
+        new.init()?;
         Ok(new)
     }
 

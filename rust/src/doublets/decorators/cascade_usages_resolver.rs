@@ -46,7 +46,7 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for CascadeUsagesResolver<T, Links
     }
 
     fn delete(&mut self, index: T) -> Result<T> {
-        self.delete_usages(index);
+        self.delete_usages(index)?;
         self.links.delete(index)
     }
 }

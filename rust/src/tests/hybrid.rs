@@ -9,7 +9,7 @@ fn non_exist_reference() {
     let mut links = make_links(mem).unwrap();
 
     let link = links.create().unwrap();
-    links.update(link, usize::MAX, usize::MAX);
+    links.update(link, usize::MAX, usize::MAX).unwrap();
 
     let mut result = 0;
     links.each_by(

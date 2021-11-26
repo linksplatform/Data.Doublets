@@ -22,7 +22,7 @@ impl<T: LinkType, Links: ILinks<T>> CascadeUniqueResolver<T, Links> {
     }
 
     pub(in crate::doublets::decorators) fn resolve_conflict(links: &mut Links, old: T, new: T) -> Result<T> {
-        links.rebase(old, new);
+        links.rebase(old, new)?;
         Base::resolve_conflict(links, old, new)
     }
 }

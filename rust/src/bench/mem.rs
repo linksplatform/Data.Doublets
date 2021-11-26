@@ -32,7 +32,7 @@ fn united_over_points(b: &mut Bencher) {
         }
 
         for link in vec {
-            links.delete(link);
+            links.delete(link).unwrap();
         }
     })
 }
@@ -43,8 +43,8 @@ fn heap_reserve(b: &mut Bencher) {
 
     let over = 1_000_000_usize;
     b.iter(|| {
-        mem.reserve_mem(over);
-        mem.reserve_mem(0);
+        mem.reserve_mem(over).unwrap();
+        mem.reserve_mem(0).unwrap();
     });
 }
 
@@ -56,7 +56,7 @@ fn file_reserve(b: &mut Bencher) {
 
     let over = 1_000_000_usize;
     b.iter(|| {
-        mem.reserve_mem(over);
-        mem.reserve_mem(0);
+        mem.reserve_mem(over).unwrap();
+        mem.reserve_mem(0).unwrap();
     });
 }

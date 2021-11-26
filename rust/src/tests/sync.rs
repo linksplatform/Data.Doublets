@@ -32,7 +32,7 @@ fn basic_sync() {
         let thread = thread::spawn(move || {
             for _ in 0..10000 {
                 let mut links = links.write().unwrap();
-                (*links).create_point();
+                (*links).create_point().unwrap();
             }
         });
         threads.push(thread);
@@ -56,7 +56,7 @@ fn super_read() {
     for _ in 0..1000000 {
         let source = rand::thread_rng().gen_range(1..=1000);
         let target = rand::thread_rng().gen_range(1..=1000);
-        links.get_or_create(source, target);
+        links.get_or_create(source, target).unwrap();
     }
 
     println!("links count: {}", links.count());

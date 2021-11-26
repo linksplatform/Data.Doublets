@@ -15,7 +15,7 @@ fn non_null_deletions() {
 
     let point = links.create_point().unwrap();
     assert_eq!(links.count(), 1);
-    links.delete_all();
+    links.delete_all().unwrap();
 
     let index = links.create().unwrap();
 

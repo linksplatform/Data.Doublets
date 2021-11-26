@@ -88,7 +88,7 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
 
     // TODO: use .del().query()
     // TODO: maybe `query: Link<T>`
-    fn delete_query<const L: usize>(&mut self, query: [T; L]) {
+    fn delete_query<const L: usize>(&mut self, query: [T; L]) -> result::Result<(), LinksError<T>> {
         let constants = self.constants();
         let len = self.count_by(query).as_();
         let mut vec = Vec::with_capacity(len);
@@ -102,9 +102,9 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         );
 
         for index in vec.into_iter().rev() {
-            //println!("  {}", index);
-            self.delete(index);
+            self.delete(index)?;
         }
+        Ok(())
     }
 
     fn delete_usages(&mut self, index: T) -> result::Result<(), LinksError<T>> {

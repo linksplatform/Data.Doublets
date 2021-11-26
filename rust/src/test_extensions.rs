@@ -25,7 +25,7 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
         assert_eq!(link.target, constants.null);
         assert_eq!(self.count(), one());
 
-        self.update(address, address, address);
+        self.update(address, address, address).unwrap();
 
         // TODO: expect
         link = self.get_link(address).unwrap();
@@ -61,21 +61,21 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
         assert_eq!(h108.absolute().as_(), 108);
 
         let address1 = links.create().unwrap();
-        links.update(address1, h106.as_value(), h108.as_value());
+        links.update(address1, h106.as_value(), h108.as_value()).unwrap();
 
         let link = links.get_link(address1).unwrap();
         assert_eq!(link.source, h106.as_value());
         assert_eq!(link.target, h108.as_value());
 
         let address2 = links.create().unwrap();
-        links.update(address2, address1, h108.as_value());
+        links.update(address2, address1, h108.as_value()).unwrap();
 
         let link = links.get_link(address2).unwrap();
         assert_eq!(link.source, address1);
         assert_eq!(link.target, h108.as_value());
 
         let address3 = links.create().unwrap();
-        links.update(address3, address1, address2);
+        links.update(address3, address1, address2).unwrap();
 
         let link = links.get_link(address3).unwrap();
         assert_eq!(link.source, address1);
@@ -137,7 +137,7 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
                         created += 1;
                     }
                 } else {
-                    self.create();
+                    self.create().unwrap();
                     created += 1;
                 }
                 assert_eq!(created, self.count().as_());
@@ -147,7 +147,7 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
             //for i in one()..=self.count() {
             //    self.update(i, zero(), zero());
             //}
-            self.delete_all();
+            self.delete_all().unwrap();
 
             assert_eq!(self.count(), zero());
         }

@@ -652,7 +652,7 @@ impl<
         if !self.exists(index) {
             return Err(LinksError::NotExists(index));
         }
-        self.update(index, zero(), zero());
+        self.update(index, zero(), zero())?;
 
         // TODO: move to `delete_core`
         let header = self.get_header();
