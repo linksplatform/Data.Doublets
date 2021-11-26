@@ -1,6 +1,7 @@
 use std::default::default;
 
 use num_traits::{one, zero};
+use crate::doublets;
 
 use crate::doublets::data::LinksConstants;
 use crate::doublets::mem::splited::generic::{
@@ -10,7 +11,7 @@ use crate::doublets::mem::splited::generic::{
 use crate::doublets::mem::splited::{DataPart, IndexPart};
 use crate::doublets::mem::united::UpdatePointersSplit;
 use crate::doublets::mem::{ILinksListMethods, ILinksTreeMethods, LinksHeader, UpdatePointers};
-use crate::doublets::{ILinks, Link};
+use crate::doublets::{ILinks, Link, LinksError};
 use crate::mem::ResizeableMem;
 use crate::methods::RelativeCircularDoublyLinkedList;
 use crate::num::LinkType;
@@ -63,7 +64,7 @@ impl<
         data_mem: MD,
         index_mem: MI,
         constants: LinksConstants<T>,
-    ) -> Links<T, MD, MI> {
+    ) -> Result<Links<T, MD, MI>, LinksError<T>> {
         let data = data_mem.get_ptr();
         let index = index_mem.get_ptr();
         let header = index_mem.get_ptr();
@@ -95,11 +96,11 @@ impl<
             unused,
         };
 
-        new.init();
-        new
+        new.init()?;
+        Ok(new)
     }
 
-    pub fn new(data_mem: MD, index_mem: MI) -> Links<T, MD, MI> {
+    pub fn new(data_mem: MD, index_mem: MI) -> Result<Links<T, MD, MI>, LinksError<T>> {
         Self::with_constants(data_mem, index_mem, default())
     }
 
@@ -150,7 +151,7 @@ impl<
         to_align
     }
 
-    fn init(&mut self) {
+    fn init(&mut self) -> Result<(), LinksError<T>> {
         if self.index_mem.reserved_mem() < Self::HEADER_SIZE {
             self.index_mem.reserve_mem(Self::HEADER_SIZE).unwrap();
         }
@@ -172,20 +173,19 @@ impl<
         data_capacity = Self::align(data_capacity, self.data_step);
         index_capacity = Self::align(index_capacity, self.index_step);
 
-        self.data_mem.reserve_mem(data_capacity).unwrap();
-        self.index_mem.reserve_mem(index_capacity).unwrap();
+        self.data_mem.reserve_mem(data_capacity)?;
+        self.index_mem.reserve_mem(index_capacity)?;
         self.update_pointers();
 
         let allocated = header.allocated.as_();
         self.data_mem
-            .use_mem(allocated * Self::DATA_SIZE + Self::DATA_SIZE)
-            .unwrap();
+            .use_mem(allocated * Self::DATA_SIZE + Self::DATA_SIZE)?;
         self.index_mem
-            .use_mem(allocated * Self::INDEX_SIZE + Self::INDEX_SIZE)
-            .unwrap();
+            .use_mem(allocated * Self::INDEX_SIZE + Self::INDEX_SIZE)?;
 
         self.mut_header().reserved =
             T::from((self.data_mem.reserved_mem() - Self::DATA_SIZE) / Self::DATA_SIZE).unwrap();
+        Ok(())
     }
 
     fn total(&self) -> T {
@@ -539,7 +539,7 @@ impl<
         todo!()
     }
 
-    fn create(&mut self) -> T {
+    fn create(&mut self) -> doublets::Result<T> {
         let constants = self.constants();
         let header = self.get_header();
         let mut free = header.first_free;
@@ -552,11 +552,9 @@ impl<
             // TODO: if header.allocated >= header.reserved - one() {
             if self.index_mem.reserved_mem() < self.index_mem.used_mem() + Self::INDEX_SIZE {
                 self.data_mem
-                    .reserve_mem(self.data_mem.reserved_mem() + self.data_step)
-                    .unwrap();
+                    .reserve_mem(self.data_mem.reserved_mem() + self.data_step)?;
                 self.index_mem
-                    .reserve_mem(self.index_mem.reserved_mem() + self.index_step)
-                    .unwrap();
+                    .reserve_mem(self.index_mem.reserved_mem() + self.index_step)?;
                 self.update_pointers();
                 // let reserved = self.data_mem.reserved_mem();
                 let reserved = self.index_mem.reserved_mem();
@@ -568,15 +566,13 @@ impl<
             header.allocated = header.allocated + one();
             free = header.allocated;
             self.data_mem
-                .use_mem(self.data_mem.used_mem() + Self::DATA_SIZE)
-                .unwrap();
+                .use_mem(self.data_mem.used_mem() + Self::DATA_SIZE)?;
             self.index_mem
-                .use_mem(self.index_mem.used_mem() + Self::INDEX_SIZE)
-                .unwrap();
+                .use_mem(self.index_mem.used_mem() + Self::INDEX_SIZE)?;
         } else {
             self.unused.detach(free)
         }
-        free
+        Ok(free)
     }
 
     // TODO: create the following functions
@@ -587,7 +583,7 @@ impl<
         self.each_by_core(&mut handler, restrictions)
     }
 
-    fn update(&mut self, index: T, new_source: T, new_target: T) -> T {
+    fn update(&mut self, index: T, new_source: T, new_target: T) -> doublets::Result<T> {
         let constants = self.constants();
         let null = constants.null;
 
@@ -649,12 +645,12 @@ impl<
             }
         }
 
-        index
+        Ok(index)
     }
 
-    fn delete(&mut self, index: T) -> T {
+    fn delete(&mut self, index: T) -> doublets::Result<T> {
         if !self.exists(index) {
-            return default();
+            return Err(LinksError::NotExists(index));
         }
         self.update(index, zero(), zero());
 
@@ -665,11 +661,9 @@ impl<
             self.unused.attach_as_first(link)
         } else if link == header.allocated {
             self.data_mem
-                .use_mem(self.data_mem.used_mem() - Self::DATA_SIZE)
-                .unwrap();
+                .use_mem(self.data_mem.used_mem() - Self::DATA_SIZE)?;
             self.index_mem
-                .use_mem(self.index_mem.used_mem() - Self::INDEX_SIZE)
-                .unwrap();
+                .use_mem(self.index_mem.used_mem() - Self::INDEX_SIZE)?;
 
             let allocated = self.get_header().allocated;
             let header = self.mut_header();
@@ -685,14 +679,14 @@ impl<
                 // TODO: create extension `update_used`
 
                 let used_mem = self.data_mem.used_mem();
-                self.data_mem.use_mem(used_mem - Self::DATA_SIZE).unwrap();
+                self.data_mem.use_mem(used_mem - Self::DATA_SIZE)?;
 
                 let used_mem = self.index_mem.used_mem();
-                self.index_mem.use_mem(used_mem - Self::INDEX_SIZE).unwrap();
+                self.index_mem.use_mem(used_mem - Self::INDEX_SIZE)?;
             }
             //*self.get_mut_header() = header;
         }
-        index
+        Ok(index)
     }
 
     fn get_link(&self, index: T) -> Option<Link<T>> {

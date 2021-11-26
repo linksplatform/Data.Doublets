@@ -21,7 +21,7 @@ unsafe impl<T: LinkType, M1: ResizeableMem, M2: ResizeableMem> Sync for splited:
 #[test]
 fn basic_sync() {
     let mem = make_mem();
-    let mut links = make_links(mem);
+    let mut links = make_links(mem).unwrap();
 
     let base_links = Arc::new(RwLock::new(links));
 
@@ -49,7 +49,7 @@ fn basic_sync() {
 #[test]
 fn super_read() {
     let mem = make_mem();
-    let mut links = make_links(mem);
+    let mut links = make_links(mem).unwrap();
 
     let instant = Instant::now();
 

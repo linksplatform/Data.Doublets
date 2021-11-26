@@ -5,7 +5,7 @@ use std::marker::PhantomData;
 use num_traits::zero;
 use smallvec::SmallVec;
 
-use crate::doublets::{ILinks, ILinksExtensions, Link};
+use crate::doublets::{ILinks, ILinksExtensions, Link, Result};
 use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstants};
 use crate::num::LinkType;
 
@@ -30,7 +30,7 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for NonNullDeletionResolver<T, Lin
         self.links.count_by(restrictions)
     }
 
-    fn create(&mut self) -> T {
+    fn create(&mut self) -> Result<T> {
         self.links.create()
     }
 
@@ -41,15 +41,15 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for NonNullDeletionResolver<T, Lin
         self.links.each_by(handler, restrictions)
     }
 
-    fn update(&mut self, index: T, source: T, target: T) -> T {
+    fn update(&mut self, index: T, source: T, target: T) -> Result<T> {
         let links = self.links.borrow_mut();
         links.update(index, source, target)
     }
 
-    fn delete(&mut self, index: T) -> T {
+    fn delete(&mut self, index: T) -> Result<T> {
         let links = self.links.borrow_mut();
         let null = links.constants().null;
-        links.update(index, null, null);
+        links.update(index, null, null)?;
         links.delete(index)
     }
 }

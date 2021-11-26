@@ -15,7 +15,7 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
 
         assert_eq!(self.count(), zero());
 
-        let address = self.create();
+        let address = self.create().unwrap();
         // TODO: expect
         let mut link: Link<T> = self.get_link(address).unwrap();
 
@@ -32,14 +32,14 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
         assert_eq!(link.source, address);
         assert_eq!(link.target, address);
 
-        let updated = self.update(address, constants.null, constants.null);
+        let updated = self.update(address, constants.null, constants.null).unwrap();
         assert_eq!(updated, address);
         // TODO: expect
         link = self.get_link(address).unwrap();
         assert_eq!(link.source, constants.null);
         assert_eq!(link.target, constants.null);
 
-        self.delete(address);
+        self.delete(address).unwrap();
         assert_eq!(self.count(), zero());
     }
 
@@ -60,21 +60,21 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
         assert_eq!(h107.absolute().as_(), 107);
         assert_eq!(h108.absolute().as_(), 108);
 
-        let address1 = links.create();
+        let address1 = links.create().unwrap();
         links.update(address1, h106.as_value(), h108.as_value());
 
         let link = links.get_link(address1).unwrap();
         assert_eq!(link.source, h106.as_value());
         assert_eq!(link.target, h108.as_value());
 
-        let address2 = links.create();
+        let address2 = links.create().unwrap();
         links.update(address2, address1, h108.as_value());
 
         let link = links.get_link(address2).unwrap();
         assert_eq!(link.source, address1);
         assert_eq!(link.target, h108.as_value());
 
-        let address3 = links.create();
+        let address3 = links.create().unwrap();
         links.update(address3, address1, address2);
 
         let link = links.get_link(address3).unwrap();
@@ -98,13 +98,13 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
         }, [any, h106.absolute(), h107.absolute()]); // TODO: !!!
         assert_eq!(result, None);
 
-        let updated = links.update(address3, zero(), zero());
+        let updated = links.update(address3, zero(), zero()).unwrap();
         assert_eq!(updated, address3);
 
         let link = links.get_link(updated).unwrap();
         assert_eq!(link.source, zero());
         assert_eq!(link.target, zero());
-        links.delete(updated);
+        links.delete(updated).unwrap();
 
         assert_eq!(links.count(), T::from(2).unwrap());
 
@@ -131,7 +131,7 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
                     let result = self.get_or_create(
                         T::from_usize(source).unwrap(),
                         T::from_usize(target).unwrap(),
-                    ).as_();
+                    ).unwrap().as_();
 
                     if result > count {
                         created += 1;

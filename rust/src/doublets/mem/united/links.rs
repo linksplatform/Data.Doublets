@@ -7,7 +7,7 @@ use num_traits::{one, zero};
 use smallvec::SmallVec;
 
 use crate::doublets;
-use crate::doublets::{data, ILinks};
+use crate::doublets::{data, ILinks, LinksError};
 use crate::doublets::data::IGenericLinks;
 use crate::doublets::data::LinksConstants;
 use crate::doublets::link::Link;
@@ -56,26 +56,26 @@ impl<
 
     pub fn new(
         mem: M,
-    ) -> Links<
+    ) -> Result<Links<
         T,
         M,
         LinksSourcesRecursionlessSizeBalancedTree<T>,
         LinksTargetsRecursionlessSizeBalancedTree<T>,
         UnusedLinks<T>,
-    > {
+    >, LinksError<T>> {
         Self::with_constants(mem, LinksConstants::new())
     }
 
     pub fn with_constants(
         mem: M,
         constants: LinksConstants<T>,
-    ) -> Links<
+    ) -> Result<Links<
         T,
         M,
         LinksSourcesRecursionlessSizeBalancedTree<T>,
         LinksTargetsRecursionlessSizeBalancedTree<T>,
         UnusedLinks<T>,
-    > {
+    >, LinksError<T>> {
         let links = mem.get_ptr();
         let header = links;
         let sources =
@@ -99,23 +99,23 @@ impl<
         };
 
         new.init();
-        new
+        Ok(new)
     }
 
-    fn init(&mut self) {
+    fn init(&mut self) -> Result<(), LinksError<T>> {
         if self.mem.reserved_mem() < self.reserve_step {
-            self.mem.reserve_mem(self.reserve_step).unwrap();
+            self.mem.reserve_mem(self.reserve_step)?;
         }
         self.update_pointers();
 
         let header = *self.get_header();
         self.mem
-            .use_mem(Self::HEADER_SIZE + header.allocated.as_() * Self::LINK_SIZE)
-            .unwrap();
+            .use_mem(Self::HEADER_SIZE + header.allocated.as_() * Self::LINK_SIZE)?;
 
         let reserved = self.mem.reserved_mem();
         let header = self.get_mut_header();
         header.reserved = T::from_usize((reserved - Self::HEADER_SIZE) / Self::LINK_SIZE).unwrap();
+        Ok(())
     }
 
     pub fn get_header(&self) -> &LinksHeader<T> {
@@ -410,20 +410,20 @@ impl<
         panic!("not implemented")
     }
 
-    fn create(&mut self) -> T {
+
+    fn create(&mut self) -> doublets::Result<T> {
         let constants = self.constants();
         let header = self.get_header();
         let mut free = header.first_free;
         if free == constants.null {
             let max_inner = *constants.internal_range.end();
             if header.allocated > max_inner {
-                todo!()
+                return Err(LinksError::LimitReached(max_inner));
             }
 
             if header.allocated >= header.reserved - one() {
                 self.mem
-                    .reserve_mem(self.mem.reserved_mem() + self.reserve_step)
-                    .unwrap();
+                    .reserve_mem(self.mem.reserved_mem() + self.reserve_step)?;
                 self.update_pointers();
                 let reserved = self.mem.reserved_mem();
                 let header = self.get_mut_header();
@@ -432,21 +432,22 @@ impl<
             let header = self.get_mut_header();
             header.allocated = header.allocated + one();
             free = header.allocated;
-            self.mem.use_mem(self.mem.used_mem() + Self::LINK_SIZE).unwrap();
+            self.mem.use_mem(self.mem.used_mem() + Self::LINK_SIZE)?;
         } else {
             self.unused.detach(free)
         }
-        free
+        Ok(free)
     }
 
     fn each_by<H, const L: usize>(&self, mut handler: H, restrictions: [T; L]) -> T
-        where
-            H: FnMut(Link<T>) -> T,
+    where
+        H: FnMut(Link<T>) -> T,
     {
         self.each_core(&mut handler, restrictions)
     }
 
-    fn update(&mut self, index: T, source: T, target: T) -> T {
+
+    fn update(&mut self, index: T, source: T, target: T) -> doublets::Result<T> {
         let constants = self.constants();
         let null = constants.null;
 
@@ -478,16 +479,15 @@ impl<
             unsafe { self.targets.attach(&mut *temp, index) };
         }
 
-        index
+        Ok(index)
     }
 
-    fn delete(&mut self, index: T) -> T {
-        if !self.exists(index) { return default(); }
-        // TODO:
-        self.update(index, zero(), zero());
-        // TODO:
+    fn delete(&mut self, index: T) -> doublets::Result<T> {
+        if !self.exists(index) {
+            return Err(LinksError::NotExists(index));
+        }
 
-        // TODO: move to `delete_core`
+        self.update(index, zero(), zero())?;
 
         let header = self.get_header();
         let link = index;
@@ -495,8 +495,7 @@ impl<
             self.unused.attach_as_first(link)
         } else if link == header.allocated {
             self.mem
-                .use_mem(self.mem.used_mem() - Self::LINK_SIZE)
-                .unwrap();
+                .use_mem(self.mem.used_mem() - Self::LINK_SIZE)?;
 
             let allocated = self.get_header().allocated;
             let header = self.get_mut_header();
@@ -510,11 +509,10 @@ impl<
                 self.unused.detach(allocated);
                 self.get_mut_header().allocated = allocated - one();
                 let used_mem = self.mem.used_mem();
-                self.mem.use_mem(used_mem - Self::LINK_SIZE).unwrap();
+                self.mem.use_mem(used_mem - Self::LINK_SIZE)?;
             }
-            //*self.get_mut_header() = header;
         }
-        index
+        Ok(index)
     }
 
     fn get_link(&self, index: T) -> Option<Link<T>> {

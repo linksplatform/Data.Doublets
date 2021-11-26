@@ -1,15 +1,21 @@
+use std::backtrace::Backtrace;
 use std::default::default;
+use std::result;
 
 use num_traits::{one, zero};
+use rand::{Rng, thread_rng};
 use smallvec::SmallVec;
 
-use crate::doublets::data;
+use crate::doublets::{data, Doublet};
 use crate::doublets::data::{LinksConstants, Point};
 use crate::doublets::decorators::{
     CascadeUniqueResolver, CascadeUsagesResolver, NonNullDeletionResolver,
 };
+use crate::doublets::error::LinksError;
 use crate::doublets::link::Link;
 use crate::num::LinkType;
+
+pub type Result<T> = std::result::Result<T, LinksError<T>>;
 
 pub trait ILinks<T: LinkType>:
 /*data::IGenericLinks<T> + data::IGenericLinksExtensions<T> + */ Sized
@@ -18,15 +24,15 @@ pub trait ILinks<T: LinkType>:
 
     fn count_by<const L: usize>(&self, restrictions: [T; L]) -> T;
 
-    fn create(&mut self) -> T;
+    fn create(&mut self) -> Result<T>;
 
     fn each_by<H, const L: usize>(&self, handler: H, restrictions: [T; L]) -> T
         where
             H: FnMut(Link<T>) -> T;
 
-    fn update(&mut self, index: T, source: T, target: T) -> T;
+    fn update(&mut self, index: T, source: T, target: T) -> Result<T>;
 
-    fn delete(&mut self, index: T) -> T;
+    fn delete(&mut self, index: T) -> Result<T>;
 
     fn get_link(&self, index: T) -> Option<Link<T>> {
         // TODO: compare performance
@@ -63,10 +69,10 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         self.each_by(handler, [])
     }
 
-    fn delete_all(&mut self) {
+    fn delete_all(&mut self) -> result::Result<(), LinksError<T>> {
         let mut count = self.count();
         while count > zero() {
-            self.delete(count);
+            self.delete(count)?;
             let sup_count = self.count();
             if sup_count != count - one() {
                 count = sup_count
@@ -74,6 +80,7 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
                 count = count - one()
             }
         }
+        Ok(())
     }
 
     // TODO: use .del().query()
@@ -97,7 +104,7 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         }
     }
 
-    fn delete_usages(&mut self, index: T) {
+    fn delete_usages(&mut self, index: T) -> result::Result<(), LinksError<T>> {
         // TODO: Temp fix
         let any = self.constants().any;
         let mut to_delete = vec![];
@@ -122,28 +129,40 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         );
 
         for link in to_delete.into_iter().rev() {
-            self.delete(link);
+            self.delete(link)?;
         }
+        Ok(())
     }
 
-    fn create_point(&mut self) -> T {
-        let new = self.create();
+    fn create_point(&mut self) -> Result<T> {
+        let new = self.create()?;
         self.update(new, new, new)
     }
 
-    fn create_and_update(&mut self, source: T, target: T) -> T {
-        let new = self.create();
+    fn create_and_update(&mut self, source: T, target: T) -> Result<T> {
+        let new = self.create()?;
         self.update(new, source, target)
     }
 
-    // TODO: use `fn search(&self, source: T, target: T) -> Option<T>`
-    //  then `let result = links.search(source, target).unwrap_or(or)`
     fn search_or(&self, source: T, target: T, or: T) -> T {
         let constants = self.constants();
         let mut index = or;
         self.each_by(
             |link| {
                 index = link.index;
+                constants.r#break
+            },
+            [constants.any, source, target],
+        );
+        index
+    }
+
+    fn search(&self, source: T, target: T) -> Option<T> {
+        let constants = self.constants();
+        let mut index = None;
+        self.each_by(
+            |link| {
+                index = Some(link.index);
                 constants.r#break
             },
             [constants.any, source, target],
@@ -187,12 +206,12 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         vec
     }
 
-    fn get_or_create(&mut self, source: T, target: T) -> T {
+    fn get_or_create(&mut self, source: T, target: T) -> Result<T> {
         let link = self.search_or(source, target, zero());
         if link == zero() {
-            self.create_and_update(source, target)
+            self.create_and_update(source, target) // TODO:
         } else {
-            link
+            Ok(link)
         }
     }
 
@@ -291,13 +310,13 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
             new
         } else {
             self.rebase(old, new);
-            self.delete(old)
+            self.delete(old).unwrap()
         }
     }
 
     fn reset(&mut self, link: T) {
         let null = self.constants().null;
-        self.update(link, null, null);
+        self.update(link, null, null).unwrap();
     }
 
     fn format(&self, link: T) -> Option<String> {

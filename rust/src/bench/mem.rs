@@ -3,12 +3,12 @@ extern crate test;
 use test::Bencher;
 
 use crate::doublets::{ILinks, ILinksExtensions};
-use crate::doublets::decorators::NonNullDeletionResolver;
+//use crate::doublets::decorators::NonNullDeletionResolver;
 use crate::doublets::mem::united;
 use crate::mem::{FileMappedMem, HeapMem, ResizeableMem};
 use crate::test_extensions::ILinksTestExtensions;
 use crate::tests::make_mem;
-
+/*
 #[bench]
 fn united_random_links(b: &mut Bencher) {
     let mem = HeapMem::new();
@@ -16,8 +16,8 @@ fn united_random_links(b: &mut Bencher) {
     let mut links = links.decorators_kit();
 
     b.iter(|| links.test_random_creations_and_deletions(100))
-}
-
+}*/
+/*
 #[bench]
 fn united_over_points(b: &mut Bencher) {
     let mem = HeapMem::new();
@@ -35,7 +35,7 @@ fn united_over_points(b: &mut Bencher) {
             links.delete(link);
         }
     })
-}
+}*/
 
 #[bench]
 fn heap_reserve(b: &mut Bencher) {

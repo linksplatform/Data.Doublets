@@ -5,7 +5,7 @@ use std::marker::PhantomData;
 
 use num_traits::zero;
 
-use crate::doublets::{ILinks, ILinksExtensions, Link};
+use crate::doublets::{ILinks, ILinksExtensions, Link, Result};
 use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstants};
 use crate::doublets::decorators::UniqueResolver;
 use crate::num::LinkType;
@@ -21,7 +21,7 @@ impl<T: LinkType, Links: ILinks<T>> CascadeUniqueResolver<T, Links> {
         Self { links: Base::with_resolver(links, Self::resolve_conflict) }
     }
 
-    pub(in crate::doublets::decorators) fn resolve_conflict(links: &mut Links, old: T, new: T) -> T {
+    pub(in crate::doublets::decorators) fn resolve_conflict(links: &mut Links, old: T, new: T) -> Result<T> {
         links.rebase(old, new);
         Base::resolve_conflict(links, old, new)
     }
@@ -36,7 +36,7 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for CascadeUniqueResolver<T, Links
         self.links.count_by(restrictions)
     }
 
-    fn create(&mut self) -> T {
+    fn create(&mut self) -> Result<T> {
         self.links.create()
     }
 
@@ -47,11 +47,11 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for CascadeUniqueResolver<T, Links
         self.links.each_by(handler, restrictions)
     }
 
-    fn update(&mut self, index: T, source: T, target: T) -> T {
+    fn update(&mut self, index: T, source: T, target: T) -> Result<T> {
         self.links.update(index, source, target)
     }
 
-    fn delete(&mut self, index: T) -> T {
+    fn delete(&mut self, index: T) -> Result<T> {
         self.links.delete(index)
     }
 }

@@ -10,6 +10,7 @@
 #![feature(allocator_api)]
 #![feature(slice_ptr_get)]
 #![feature(try_blocks)]
+#![feature(backtrace)]
 
 use crate::doublets::mem::{ILinksListMethods, ILinksTreeMethods, UpdatePointers};
 use crate::doublets::mem::united::Links;

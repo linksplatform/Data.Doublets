@@ -5,7 +5,7 @@ pub use unique_resolver::UniqueResolver;
 pub use unique_validator::UniqueValidator;
 pub use usages_validator::UsagesValidator;
 
-mod ilinks_decorator;
+//mod ilinks_decorator;
 mod unique_resolver;
 mod unique_validator;
 mod usages_validator;
