@@ -34,7 +34,7 @@ jobs:
       - name: All Behcmarks
         run: |
           cd rust
-          cargo +nightly bench --release
+          cargo +nightly bench
   publish_windows:
     needs: [test_rust]
     runs-on: windows-latest
