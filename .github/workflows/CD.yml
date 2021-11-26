@@ -37,6 +37,7 @@ jobs:
           cargo +nightly bench
   publish_windows:
     needs: [test_rust]
+    if: github.event_name == 'push'
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
@@ -56,6 +57,7 @@ jobs:
         ./publish-bin.sh
   publish_linux:
     needs: [test_rust]
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -74,6 +76,7 @@ jobs:
           bash ./publish-bin.sh
   publish_macos:
     needs: [test_rust]
+    if: github.event_name == 'push'
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
@@ -93,6 +96,7 @@ jobs:
   publish_to_nuget:
     runs-on: ubuntu-latest
     needs: [publish_macos, publish_linux, publish_windows]
+    if: github.event_name == 'push'
     steps:
       - uses: actions/checkout@v2
       - name: Push
