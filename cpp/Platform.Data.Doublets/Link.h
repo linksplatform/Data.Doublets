@@ -54,7 +54,7 @@
                 case _constants.TargetPart:
                     return Target;
                 default:
-                    Always::ArgumentInRange(index, Range{0, Length - 1}, "index");
+                    Ensure::Always::ArgumentInRange(index, Range{0, Length - 1}, "index");
             }
         }
 
