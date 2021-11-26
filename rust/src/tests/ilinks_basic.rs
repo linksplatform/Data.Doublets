@@ -68,7 +68,7 @@ fn rebase() {
     let before = links.count_by([any, any, root]);
 
     let new_root = links.create_point().unwrap();
-    let root = links.rebase(root, new_root);
+    let root = links.rebase(root, new_root).unwrap();
 
     let after = links.count_by([any, any, root]);
 
