@@ -5,7 +5,7 @@ use std::marker::PhantomData;
 use num_traits::zero;
 use smallvec::SmallVec;
 
-use crate::doublets::{ILinks, ILinksExtensions, Link};
+use crate::doublets::{ILinks, ILinksExtensions, Link, LinksError, Result};
 use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstants};
 use crate::num::LinkType;
 
@@ -33,7 +33,7 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for UsagesValidator<T, Links> {
         self.links.count_by(restrictions)
     }
 
-    fn create(&mut self) -> T {
+    fn create(&mut self) -> Result<T>  {
         self.links.create()
     }
 
@@ -44,23 +44,21 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for UsagesValidator<T, Links> {
         self.links.each_by(handler, restrictions)
     }
 
-    fn update(&mut self, index: T, source: T, target: T) -> T {
+    fn update(&mut self, index: T, source: T, target: T) -> Result<T>  {
         let links = self.links.borrow_mut();
-        assert!(
-            links.has_usages(index),
-            "[{}] link has usages that prevent changing it's structure",
-            index
-        );
-        links.update(index, source, target)
+        if links.has_usages(index) {
+            Err(LinksError::HasDeps(links.get_link(index).unwrap()))
+        } else {
+            links.update(index, source, target)
+        }
     }
 
-    fn delete(&mut self, index: T) -> T {
+    fn delete(&mut self, index: T) -> Result<T> {
         let links = self.links.borrow_mut();
-        assert!(
-            links.has_usages(index),
-            "[{}] link has usages that prevent changing it's structure",
-            index
-        );
-        links.delete(index)
+        if links.has_usages(index) {
+            Err(LinksError::HasDeps(links.get_link(index).unwrap()))
+        } else {
+            links.delete(index)
+        }
     }
 }

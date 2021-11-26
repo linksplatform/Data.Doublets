@@ -6,10 +6,10 @@ use crate::tests::{make_links, make_mem, typed_links};
 #[test]
 fn non_exist_reference() {
     let mem = make_mem();
-    let mut links = make_links(mem);
+    let mut links = make_links(mem).unwrap();
 
-    let link = links.create();
-    links.update(link, usize::MAX, usize::MAX);
+    let link = links.create().unwrap();
+    links.update(link, usize::MAX, usize::MAX).unwrap();
 
     let mut result = 0;
     links.each_by(
@@ -22,13 +22,13 @@ fn non_exist_reference() {
 
     assert_eq!(result, link);
     assert_eq!(links.count_by([usize::MAX]), 0);
-    links.delete(link);
+    links.delete(link).unwrap();
 }
 
 #[test]
 fn raw_numbers() {
     let mem = make_mem();
-    let mut links = make_links(mem);
+    let mut links = make_links(mem).unwrap();
 
     links.test_raw_numbers_crud();
 }
@@ -37,7 +37,7 @@ fn raw_numbers() {
 fn u128_raw_numbers() {
     let mem = make_mem();
     //let mut links = typed_links::<u128, _>(mem);
-    let mut links = typed_links::<u128, _, _>(mem);
+    let mut links = typed_links(mem).unwrap();
 
     links.get_link(0_u128);
 
@@ -53,7 +53,7 @@ fn u128_raw_numbers() {
 
     let source = to_raw.convert(228_1337_1754_177013_666_777_u128);
     let target = to_raw.convert(10_1011_0011_0111_0101_u128);
-    let address = links.create_and_update(source, target);
+    let address = links.create_and_update(source, target).unwrap();
 
     let link = links.get_link(address).unwrap();
     assert_eq!(

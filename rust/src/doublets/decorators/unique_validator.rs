@@ -5,7 +5,7 @@ use std::marker::PhantomData;
 use num_traits::zero;
 use smallvec::SmallVec;
 
-use crate::doublets::{ILinks, ILinksExtensions, Link};
+use crate::doublets::{Doublet, ILinks, ILinksExtensions, Link, LinksError, Result};
 use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstants};
 use crate::num::LinkType;
 
@@ -30,7 +30,7 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for UniqueValidator<T, Links> {
         self.links.count_by(restrictions)
     }
 
-    fn create(&mut self) -> T {
+    fn create(&mut self) -> Result<T> {
         self.links.create()
     }
 
@@ -39,7 +39,7 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for UniqueValidator<T, Links> {
         self.links.each_by(handler, restrictions)
     }
 
-    fn update(&mut self, index: T, source: T, target: T) -> T {
+    fn update(&mut self, index: T, source: T, target: T) -> Result<T> {
         let links = self.links.borrow_mut();
         let constants = links.constants();
         // TODO: create extension for this
@@ -48,12 +48,16 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for UniqueValidator<T, Links> {
             source,
             target,
         ]);
-        // TODO: use links formatter
-        assert!(found != zero(), "link [{}->{}] already exists", source, target);
-        links.update(index, source, target)
+        if !found.is_zero() {
+            Err(LinksError::AlreadyExists(
+                Doublet::new(source, target)
+            ))
+        } else {
+            links.update(index, source, target)
+        }
     }
 
-    fn delete(&mut self, index: T) -> T {
+    fn delete(&mut self, index: T) -> Result<T> {
         self.links.delete(index)
     }
 }

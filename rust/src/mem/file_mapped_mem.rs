@@ -69,7 +69,7 @@ impl Mem for FileMappedMem {
 }
 
 impl ResizeableMem for FileMappedMem {
-    fn use_mem(&mut self, capacity: usize) -> Result<usize, Box<dyn Error>> {
+    fn use_mem(&mut self, capacity: usize) -> std::io::Result<usize> {
         self.base.use_mem(capacity)
     }
 
@@ -77,7 +77,7 @@ impl ResizeableMem for FileMappedMem {
         self.base.used_mem()
     }
 
-    fn reserve_mem(&mut self, capacity: usize) -> Result<usize, Box<dyn Error>> {
+    fn reserve_mem(&mut self, capacity: usize) -> std::io::Result<usize> {
         let reserved = self.base.reserve_mem(capacity)?;
 
         self.unmap();

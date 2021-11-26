@@ -12,7 +12,7 @@ use crate::tests::make_mem;
 #[bench]
 fn united_random_links(b: &mut Bencher) {
     let mem = HeapMem::new();
-    let mut links = united::Links::<usize, _>::new(mem);
+    let mut links = united::Links::<usize, _>::new(mem).unwrap();
     let mut links = links.decorators_kit();
 
     b.iter(|| links.test_random_creations_and_deletions(100))
@@ -21,18 +21,18 @@ fn united_random_links(b: &mut Bencher) {
 #[bench]
 fn united_over_points(b: &mut Bencher) {
     let mem = HeapMem::new();
-    let links = united::Links::<usize, _>::new(mem);
+    let links = united::Links::<usize, _>::new(mem).unwrap();
     let mut links = NonNullDeletionResolver::new(links);
     b.iter(|| {
         let to_create = 100_000;
         let mut vec = Vec::with_capacity(to_create);
 
         for _ in 0..to_create {
-            vec.push(links.create_point());
+            vec.push(links.create_point().unwrap());
         }
 
         for link in vec {
-            links.delete(link);
+            links.delete(link).unwrap();
         }
     })
 }
@@ -43,8 +43,8 @@ fn heap_reserve(b: &mut Bencher) {
 
     let over = 1_000_000_usize;
     b.iter(|| {
-        mem.reserve_mem(over);
-        mem.reserve_mem(0);
+        mem.reserve_mem(over).unwrap();
+        mem.reserve_mem(0).unwrap();
     });
 }
 
@@ -56,7 +56,7 @@ fn file_reserve(b: &mut Bencher) {
 
     let over = 1_000_000_usize;
     b.iter(|| {
-        mem.reserve_mem(over);
-        mem.reserve_mem(0);
+        mem.reserve_mem(over).unwrap();
+        mem.reserve_mem(0).unwrap();
     });
 }

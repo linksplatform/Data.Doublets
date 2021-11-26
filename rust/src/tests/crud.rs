@@ -1,15 +1,18 @@
 use std::alloc::{Allocator, AllocError, Global, Layout, System};
 use std::default::default;
+use std::error::Error;
 use std::fs::{File, OpenOptions};
 use std::io::{Read, Seek, SeekFrom, Write};
 use std::ptr::{NonNull, null_mut};
 use std::time::Instant;
 use bumpalo::Bump;
+use rand::{random, Rng, thread_rng};
 
-use crate::doublets::{ILinksExtensions, ILinks, Link};
+use crate::doublets::{ILinksExtensions, ILinks, Link, LinksError};
 use crate::doublets::data::{AddrToRaw, IGenericLinks, LinksConstants};
-use crate::doublets::decorators::{CascadeUsagesResolver, NonNullDeletionResolver};
 use crate::doublets::mem::splited;
+//use crate::doublets::decorators::{CascadeUsagesResolver, NonNullDeletionResolver};
+//use crate::doublets::mem::splited;
 use crate::doublets::mem::united::Links;
 use crate::mem::{AllocMem, FileMappedMem, HeapMem, Mem, ResizeableBase, ResizeableMem};
 use crate::test_extensions::ILinksTestExtensions;
@@ -21,7 +24,7 @@ fn random_creations_and_deletions() {
     std::fs::remove_file("db.links");
 
     let mem = make_mem();
-    let mut links = make_links(mem);
+    let mut links = make_links(mem).unwrap();
     let mut links = links.decorators_kit();
 
     let instant = Instant::now();
@@ -47,12 +50,12 @@ fn billion_points_file_mapped() {
     std::fs::remove_file("mem_bpfm");
 
     let mem = FileMappedMem::new("mem_bpfm").unwrap();
-    let mut links = Links::<usize, _>::new(mem);
+    let mut links = Links::<usize, _>::new(mem).unwrap();
 
     let instant = Instant::now();
 
     for _ in 0..1_000_000 {
-        links.create_point();
+        links.create_point().unwrap();
     }
 
     println!("{:?}", instant.elapsed());
@@ -61,12 +64,12 @@ fn billion_points_file_mapped() {
 #[test]
 fn billion_points_heap_mem() {
     let mem = HeapMem::new();
-    let mut links = Links::<usize, _>::new(mem);
+    let mut links = Links::<usize, _>::new(mem).unwrap();
 
     let instant = Instant::now();
 
     for _ in 0..1_000_000 {
-        links.create_point();
+        links.get_or_create(1, 1).unwrap();
     }
 
     println!("{:?}", instant.elapsed());
@@ -75,13 +78,20 @@ fn billion_points_heap_mem() {
 #[test]
 fn billion_points_bump_alloc() {
     let bump = Bump::new();
-    let mem = AllocMem::new(&bump);
-    let mut links = Links::<usize, _>::new(mem);
+    let mem = AllocMem::new(&bump).unwrap();
+    let mut links = Links::<usize, _>::new(mem).unwrap();
 
     let instant = Instant::now();
 
     for _ in 0..1_000_000 {
-        links.create_point();
+        let source = thread_rng().gen_range(1..=100);
+        let target = thread_rng().gen_range(1..=100);
+        let result: Result<_, LinksError<_>> = try {
+            links.create_and_update(source, target)?;
+        };
+        if let Err(e) = result {
+            //println!("{}", e);
+        }
     }
 
     println!("{:?}", instant.elapsed());
@@ -90,12 +100,12 @@ fn billion_points_bump_alloc() {
 #[test]
 fn many_points_and_searches() {
     let bump = Bump::new();
-    let mem = AllocMem::new(System);
-    let mut links = Links::<usize, _>::new(mem);
+    let mem = AllocMem::new(System).unwrap();
+    let mut links = Links::<usize, _>::new(mem).unwrap();
 
     let instant = Instant::now();
     for _ in 0..1_000_000 {
-        links.create_point();
+        links.create_point().unwrap();
     }
     println!("{:?}", instant.elapsed());
 
@@ -109,6 +119,7 @@ fn many_points_and_searches() {
 
 
 // TODO: Create `TempFileMappedMem`
+
 #[test]
 fn billion_points_file_mapped_splited() {
     std::fs::remove_file("data_bpfms");
@@ -116,13 +127,13 @@ fn billion_points_file_mapped_splited() {
 
     let mem = FileMappedMem::new("data_bpfms").unwrap();
     let index = FileMappedMem::new("index_bpfms").unwrap();
-    let mut links = splited::Links::<usize, _, _>::new(mem, index);
+    let mut links = splited::Links::<usize, _, _>::new(mem, index).unwrap();
 
 
     let instant = Instant::now();
 
     for _ in 0..1_000_000 {
-        links.create_point();
+        links.create_point().unwrap();
     }
 
     println!("{:?}", instant.elapsed());
@@ -132,12 +143,12 @@ fn billion_points_file_mapped_splited() {
 fn billion_points_heap_mem_splited() {
     let mem = HeapMem::new();
     let index = HeapMem::new();
-    let mut links = splited::Links::<usize, _, _>::new(mem, index);
+    let mut links = splited::Links::<usize, _, _>::new(mem, index).unwrap();
 
     let instant = Instant::now();
 
     for _ in 0..1_000_000 {
-        links.create_point();
+        links.create_point().unwrap();
     }
 
     println!("{:?}", instant.elapsed());
@@ -146,17 +157,17 @@ fn billion_points_heap_mem_splited() {
 #[test]
 fn billion_points_bump_alloc_splited() {
     let bump = Bump::new();
-    let mut mem = AllocMem::new(&bump);
-    let mut index = AllocMem::new(&bump);
+    let mut mem = AllocMem::new(&bump).unwrap();
+    let mut index = AllocMem::new(&bump).unwrap();
     index.reserve_mem(1023*1023).unwrap();
-    let mut links = splited::Links::<usize, _, _>::new(mem, index);
+    let mut links = splited::Links::<usize, _, _>::new(mem, index).unwrap();
 
     println!("{}", links.get_header().reserved);
 
     let instant = Instant::now();
 
     for _ in 0..1_000_000 {
-        links.create_point();
+        links.create_point().unwrap();
     }
 
     println!("{}", links.get_header().reserved);
@@ -167,13 +178,13 @@ fn billion_points_bump_alloc_splited() {
 
 #[test]
 fn many_points_and_searches_splited() {
-    let mem = AllocMem::new(System);
-    let index = AllocMem::new(System);
-    let mut links = splited::Links::<usize, _, _>::new(mem, index);
+    let mem = AllocMem::new(System).unwrap();
+    let index = AllocMem::new(System).unwrap();
+    let mut links = splited::Links::<usize, _, _>::new(mem, index).unwrap();
 
     let instant = Instant::now();
     for _ in 0..1_000_000 {
-        links.create_point();
+        links.create_point().unwrap();
     }
     println!("{:?}", instant.elapsed());
 
@@ -185,6 +196,7 @@ fn many_points_and_searches_splited() {
 }
 
 
+
 #[test]
 fn playground() {
     std::fs::remove_file("data");
@@ -192,20 +204,20 @@ fn playground() {
 
     let mem = FileMappedMem::new("data").unwrap();
     let index = FileMappedMem::new("index").unwrap();
-    let mut links = splited::Links::<usize, _, _>::with_constants(mem, index, LinksConstants::via_only_external(true));
+    let mut links = splited::Links::<usize, _, _>::with_constants(mem, index, LinksConstants::via_only_external(true)).unwrap();
     //let mut links = Links::<usize, _>::with_constants(mem, LinksConstants::via_only_external(true));
     //let mut links = CascadeUsagesResolver::new(links);
 
-    links.create_point();
-    links.create_point();
-    links.create_point();
+    links.create_point().unwrap();
+    links.create_point().unwrap();
+    links.create_point().unwrap();
 
-    links.update(1, 1, 2);
-    links.update(2, 1, 3);
+    links.update(1, 1, 2).unwrap();
+    links.update(2, 1, 3).unwrap();
 
     //links.delete_usages(1);
-    links.delete(2);
-    links.delete(1);
+    links.delete(2).unwrap();
+    links.delete(1).unwrap();
 
     println!("{}\n", links.is_unused(2));
 

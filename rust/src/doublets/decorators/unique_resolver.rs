@@ -5,13 +5,13 @@ use std::marker::PhantomData;
 use libc::read;
 use smallvec::SmallVec;
 
-use crate::doublets::{ILinks, ILinksExtensions, Link};
+use crate::doublets::{ILinks, ILinksExtensions, Link, Result};
 use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstants};
 use crate::num::LinkType;
 
 pub struct UniqueResolver<T: LinkType, Links: ILinks<T>> {
     links: Links,
-    resolver: fn(&mut Links, old: T, new: T) -> T,
+    resolver: fn(&mut Links, old: T, new: T) -> Result<T> ,
 }
 
 impl<T: LinkType, Links: ILinks<T>> UniqueResolver<T, Links> {
@@ -19,15 +19,15 @@ impl<T: LinkType, Links: ILinks<T>> UniqueResolver<T, Links> {
         Self::with_resolver(links, Self::resolve_conflict)
     }
 
-    pub fn with_resolver(links: Links, resolver: fn(&mut Links, old: T, new: T) -> T) -> Self {
+    pub fn with_resolver(links: Links, resolver: fn(&mut Links, old: T, new: T) -> Result<T>) -> Self {
         Self { links, resolver }
     }
 
-    pub(in crate::doublets::decorators) fn resolve_conflict(links: &mut Links, old: T, new: T) -> T {
+    pub(in crate::doublets::decorators) fn resolve_conflict(links: &mut Links, old: T, new: T) -> Result<T>  {
         if old != new && links.exist(old) {
-            links.delete(old);
+            links.delete(old)?;
         }
-        new
+        Ok(new)
     }
 }
 
@@ -40,7 +40,7 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for UniqueResolver<T, Links> {
         self.links.count_by(restrictions)
     }
 
-    fn create(&mut self) -> T {
+    fn create(&mut self) -> Result<T>  {
         self.links.create()
     }
 
@@ -48,7 +48,7 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for UniqueResolver<T, Links> {
         self.links.each_by(handler, restrictions)
     }
 
-    fn update(&mut self, index: T, source: T, target: T) -> T {
+    fn update(&mut self, index: T, source: T, target: T) -> Result<T>  {
         let links = self.links.borrow_mut();
         let new = links.search_or(
             source,
@@ -63,7 +63,7 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for UniqueResolver<T, Links> {
         }
     }
 
-    fn delete(&mut self, index: T) -> T {
+    fn delete(&mut self, index: T) -> Result<T>  {
         self.links.delete(index)
     }
 }
