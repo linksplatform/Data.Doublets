@@ -15,9 +15,9 @@ pub enum LinksError<T: LinkType> {
     #[error("link [{0}] already exists")]
     AlreadyExists(Doublet<T>),
 
-    #[error("limit of the links count in the storage has been reached ({0})")]
+    #[error("limit for the number of links in the storage has been reached ({0})")]
     LimitReached(T),
 
-    #[error("mem reservation error")]
-    MemError(#[from] #[backtrace] io::Error),
+    #[error("unable to allocate memory for links storage")]
+    AllocFailed(#[from] #[backtrace] io::Error),
 }
