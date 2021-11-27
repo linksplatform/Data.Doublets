@@ -12,4 +12,11 @@ rand = "0.8.0"
 libc = "0.1.0"
 bumpalo = { version = "3.8.0", features = ["allocator_api"] }
 
+[dev-dependencies]
+criterion = "0.3"
+
+[[bench]]
+name = "benchmark"
+harness = false
+
 [profile.test]
