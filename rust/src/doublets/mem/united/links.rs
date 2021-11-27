@@ -23,6 +23,7 @@ use crate::doublets::mem::united::UnusedLinks;
 use crate::mem::{Mem, ResizeableMem};
 use crate::mem::FileMappedMem;
 use crate::num::LinkType;
+use crate::doublets::Result;
 
 // TODO: use `_=_` instead of `_ = _`
 pub struct Links<
@@ -411,7 +412,7 @@ impl<
     }
 
 
-    fn create(&mut self) -> doublets::Result<T> {
+    fn create(&mut self) -> Result<T> {
         let constants = self.constants();
         let header = self.get_header();
         let mut free = header.first_free;
@@ -447,7 +448,7 @@ impl<
     }
 
 
-    fn update(&mut self, index: T, source: T, target: T) -> doublets::Result<T> {
+    fn update(&mut self, index: T, source: T, target: T) -> Result<T> {
         let constants = self.constants();
         let null = constants.null;
 
@@ -482,7 +483,7 @@ impl<
         Ok(index)
     }
 
-    fn delete(&mut self, index: T) -> doublets::Result<T> {
+    fn delete(&mut self, index: T) -> Result<T> {
         if !self.exists(index) {
             return Err(LinksError::NotExists(index));
         }

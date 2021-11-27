@@ -15,6 +15,7 @@ use crate::doublets::{ILinks, Link, LinksError};
 use crate::mem::ResizeableMem;
 use crate::methods::RelativeCircularDoublyLinkedList;
 use crate::num::LinkType;
+use crate::doublets::Result;
 
 pub struct Links<
     T: LinkType,
@@ -539,7 +540,7 @@ impl<
         todo!()
     }
 
-    fn create(&mut self) -> doublets::Result<T> {
+    fn create(&mut self) -> Result<T> {
         let constants = self.constants();
         let header = self.get_header();
         let mut free = header.first_free;
@@ -583,7 +584,7 @@ impl<
         self.each_by_core(&mut handler, restrictions)
     }
 
-    fn update(&mut self, index: T, new_source: T, new_target: T) -> doublets::Result<T> {
+    fn update(&mut self, index: T, new_source: T, new_target: T) -> Result<T> {
         let constants = self.constants();
         let null = constants.null;
 
@@ -648,7 +649,7 @@ impl<
         Ok(index)
     }
 
-    fn delete(&mut self, index: T) -> doublets::Result<T> {
+    fn delete(&mut self, index: T) -> Result<T> {
         if !self.exists(index) {
             return Err(LinksError::NotExists(index));
         }

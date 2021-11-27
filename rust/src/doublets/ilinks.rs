@@ -15,7 +15,7 @@ use crate::doublets::error::LinksError;
 use crate::doublets::link::Link;
 use crate::num::LinkType;
 
-pub type Result<T> = std::result::Result<T, LinksError<T>>;
+pub type Result<T, E = LinksError<T>> = std::result::Result<T, E>;
 
 pub trait ILinks<T: LinkType>: Sized
 {
@@ -33,7 +33,7 @@ pub trait ILinks<T: LinkType>: Sized
 
     fn delete(&mut self, index: T) -> Result<T>;
 
-    fn try_get_link(&self, index: T) -> result::Result<Link<T>, LinksError<T>> {
+    fn try_get_link(&self, index: T) -> Result<Link<T>, LinksError<T>> {
         self.get_link(index).ok_or(LinksError::NotExists(index))
     }
 
@@ -72,7 +72,7 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         self.each_by(handler, [])
     }
 
-    fn delete_all(&mut self) -> result::Result<(), LinksError<T>> {
+    fn delete_all(&mut self) -> Result<(), LinksError<T>> {
         let mut count = self.count();
         while count > zero() {
             self.delete(count)?;
@@ -88,7 +88,7 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
 
     // TODO: use .del().query()
     // TODO: maybe `query: Link<T>`
-    fn delete_query<const L: usize>(&mut self, query: [T; L]) -> result::Result<(), LinksError<T>> {
+    fn delete_query<const L: usize>(&mut self, query: [T; L]) -> Result<(), LinksError<T>> {
         let constants = self.constants();
         let len = self.count_by(query).as_();
         let mut vec = Vec::with_capacity(len);
@@ -107,7 +107,7 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         Ok(())
     }
 
-    fn delete_usages(&mut self, index: T) -> result::Result<(), LinksError<T>> {
+    fn delete_usages(&mut self, index: T) -> Result<(), LinksError<T>> {
         // TODO: Temp fix
         let any = self.constants().any;
         let mut to_delete = vec![];
@@ -268,7 +268,7 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         }
 
         let total = sources_count + targets_count;
-        if total == zero() {
+        if total == 0 {
             return Ok(new);
         }
 
@@ -315,7 +315,7 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         }
     }
 
-    fn reset(&mut self, link: T) -> result::Result<(), LinksError<T>> {
+    fn reset(&mut self, link: T) -> Result<(), LinksError<T>> {
         let null = self.constants().null;
         self.update(link, null, null).map(|_| ())
     }
@@ -333,7 +333,7 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         CascadeUniqueResolver::new(links)
     }
 
-    fn is_full_point(&self, link: T) -> result::Result<bool, LinksError<T>> {
+    fn is_full_point(&self, link: T) -> Result<bool, LinksError<T>> {
         let constants = self.constants();
         if constants.is_external_reference(link) {
             Ok(true)
@@ -343,7 +343,7 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         }
     }
 
-    fn is_partial_point(&self, link: T) -> result::Result<bool, LinksError<T>> {
+    fn is_partial_point(&self, link: T) -> Result<bool, LinksError<T>> {
         let constants = self.constants();
         if constants.is_external_reference(link) {
             Ok(true)
