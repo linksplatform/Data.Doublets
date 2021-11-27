@@ -12,8 +12,8 @@
 #![feature(try_blocks)]
 #![feature(backtrace)]
 
-use crate::doublets::mem::{ILinksListMethods, ILinksTreeMethods, UpdatePointers};
-use crate::doublets::mem::united::Links;
+use crate::doublets::mem::{ILinksListMethods, ILinksTreeMethods, splited, UpdatePointers};
+use crate::doublets::mem::united::{Links, UpdatePointersSplit};
 use crate::mem::ResizeableMem;
 use crate::num::LinkType;
 
@@ -32,7 +32,7 @@ unsafe impl<
     TT: ILinksTreeMethods<T> + UpdatePointers,
     TU: ILinksListMethods<T> + UpdatePointers,
 > Sync for Links<T, M, TS, TT, TU>
-{ }
+{}
 
 unsafe impl<
     T: LinkType,
@@ -41,7 +41,32 @@ unsafe impl<
     TT: ILinksTreeMethods<T> + UpdatePointers,
     TU: ILinksListMethods<T> + UpdatePointers,
 > Send for Links<T, M, TS, TT, TU>
-{ }
+{}
+
+unsafe impl<
+    T: LinkType,
+    MD: ResizeableMem,
+    MI: ResizeableMem,
+    IS: ILinksTreeMethods<T> + UpdatePointersSplit,
+    ES: ILinksTreeMethods<T> + UpdatePointersSplit,
+    IT: ILinksTreeMethods<T> + UpdatePointersSplit,
+    ET: ILinksTreeMethods<T> + UpdatePointersSplit,
+    UL: ILinksListMethods<T> + UpdatePointers,
+> Sync for splited::Links<T, MD, MI, IS, ES, IT, ET, UL>
+{}
+
+
+unsafe impl<
+    T: LinkType,
+    MD: ResizeableMem,
+    MI: ResizeableMem,
+    IS: ILinksTreeMethods<T> + UpdatePointersSplit,
+    ES: ILinksTreeMethods<T> + UpdatePointersSplit,
+    IT: ILinksTreeMethods<T> + UpdatePointersSplit,
+    ET: ILinksTreeMethods<T> + UpdatePointersSplit,
+    UL: ILinksListMethods<T> + UpdatePointers,
+> Send for splited::Links<T, MD, MI, IS, ES, IT, ET, UL>
+{}
 
 //#[cfg(test)]
 //mod tests {
