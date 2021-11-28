@@ -82,13 +82,20 @@ pub trait ILinks<T: LinkType>: Sized
 
     fn delete_query<const L: usize>(&mut self, query: [T; L]) -> Result<(), LinksError<T>> {
         let constants = self.constants();
+        let len = self.count_by(query).as_();
+        let mut vec = Vec::with_capacity(len);
+
         self.each_by(
             |link| {
-                self.delete(link.index)?;
+                vec.push(link.index);
                 constants.r#continue
             },
             query,
         );
+
+        for index in vec.into_iter().rev() {
+            self.delete(index)?;
+        }
         Ok(())
     }
 
@@ -99,7 +106,7 @@ pub trait ILinks<T: LinkType>: Sized
         self.each_by(
             |link| {
                 if link.index != index {
-                    self.delete(link.index)?;
+                    to_delete.push(link.index);
                 }
                 self.constants().r#continue
             },
@@ -109,12 +116,16 @@ pub trait ILinks<T: LinkType>: Sized
         self.each_by(
             |link| {
                 if link.index != index {
-                    to_delete.push(link.index)?;
+                    to_delete.push(link.index);
                 }
                 self.constants().r#continue
             },
             [any, any, index],
         );
+
+        for link in to_delete.into_iter().rev() {
+            self.delete(link)?;
+        }
         Ok(())
     }
 

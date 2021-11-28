@@ -1,11 +1,11 @@
 use std::time::Instant;
 use criterion::{black_box, Criterion, criterion_group, criterion_main};
-use doublets::doublets::ILinksExtensions;
+use doublets::doublets::ILinks;
 use doublets::doublets::mem::{splited, united};
 use doublets::mem::HeapMem;
 
 fn criterion_benchmark(c: &mut Criterion) {
-    /*c.bench_function("1_000_000 united points", |b| {
+    c.bench_function("1_000_000 united points", |b| {
         let mem = HeapMem::new();
         let mut links = united::Links::<usize, _>::new(mem).unwrap();
         b.iter_custom(|iters| {
@@ -29,7 +29,7 @@ fn criterion_benchmark(c: &mut Criterion) {
             instant.elapsed()
         });
     });
-*/
+
     c.bench_function("1_000_000 united get or create", |b| {
         let mem = HeapMem::new();
         let mut links = united::Links::<usize, _>::new(mem).unwrap();
