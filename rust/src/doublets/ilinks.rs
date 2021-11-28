@@ -26,8 +26,8 @@ pub trait ILinks<T: LinkType>: Sized
     fn create(&mut self) -> Result<T>;
 
     fn each_by<H, const L: usize>(&self, handler: H, restrictions: [T; L]) -> T
-    where
-        H: FnMut(Link<T>) -> T;
+        where
+            H: FnMut(Link<T>) -> T;
 
     fn update(&mut self, index: T, source: T, target: T) -> Result<T>;
 
@@ -60,8 +60,8 @@ pub trait ILinks<T: LinkType>: Sized
 
     // TODO: maybe create `par_each`
     fn each<H>(&self, handler: H) -> T
-    where
-        H: FnMut(Link<T>) -> T,
+        where
+            H: FnMut(Link<T>) -> T,
     {
         self.each_by(handler, [])
     }
@@ -328,8 +328,6 @@ pub trait ILinks<T: LinkType>: Sized
 }
 
 #[deprecated(note = "use `ILinks`")]
-pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
-
-}
+pub trait ILinksExtensions<T: LinkType>: ILinks<T> {}
 
 impl<T: LinkType, All: ILinks<T>> ILinksExtensions<T> for All {}
