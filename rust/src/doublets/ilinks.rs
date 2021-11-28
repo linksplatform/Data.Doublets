@@ -26,8 +26,8 @@ pub trait ILinks<T: LinkType>: Sized
     fn create(&mut self) -> Result<T>;
 
     fn each_by<H, const L: usize>(&self, handler: H, restrictions: [T; L]) -> T
-        where
-            H: FnMut(Link<T>) -> T;
+    where
+        H: FnMut(Link<T>) -> T;
 
     fn update(&mut self, index: T, source: T, target: T) -> Result<T>;
 
@@ -38,13 +38,9 @@ pub trait ILinks<T: LinkType>: Sized
     }
 
     fn get_link(&self, index: T) -> Option<Link<T>> {
-        // TODO: compare performance
-        // self.get_generic_link(index).map(|link| link.collect())
-
-        // TODO: Use cfg macro
         let constants = self.constants();
         if constants.is_external_reference(index) {
-            Some(Link::from_once(index))
+            Some(Link::point(index))
         } else {
             let mut slice = None;
             self.each_by(
@@ -57,9 +53,7 @@ pub trait ILinks<T: LinkType>: Sized
             slice
         }
     }
-}
 
-pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
     fn count(&self) -> T {
         self.count_by([])
     }
@@ -86,35 +80,26 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         Ok(())
     }
 
-    // TODO: use .del().query()
-    // TODO: maybe `query: Link<T>`
     fn delete_query<const L: usize>(&mut self, query: [T; L]) -> Result<(), LinksError<T>> {
         let constants = self.constants();
-        let len = self.count_by(query).as_();
-        let mut vec = Vec::with_capacity(len);
-
         self.each_by(
             |link| {
-                vec.push(link.index);
+                self.delete(link.index)?;
                 constants.r#continue
             },
             query,
         );
-
-        for index in vec.into_iter().rev() {
-            self.delete(index)?;
-        }
         Ok(())
     }
 
+    // TODO: Temporary implementation
     fn delete_usages(&mut self, index: T) -> Result<(), LinksError<T>> {
-        // TODO: Temp fix
         let any = self.constants().any;
         let mut to_delete = vec![];
         self.each_by(
             |link| {
                 if link.index != index {
-                    to_delete.push(link.index);
+                    self.delete(link.index)?;
                 }
                 self.constants().r#continue
             },
@@ -124,16 +109,12 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         self.each_by(
             |link| {
                 if link.index != index {
-                    to_delete.push(link.index);
+                    to_delete.push(link.index)?;
                 }
                 self.constants().r#continue
             },
             [any, any, index],
         );
-
-        for link in to_delete.into_iter().rev() {
-            self.delete(link)?;
-        }
         Ok(())
     }
 
@@ -147,17 +128,9 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         self.update(new, source, target)
     }
 
+    #[deprecated(note = "use `links.search(source, target).unwrap_or(or)`")]
     fn search_or(&self, source: T, target: T, or: T) -> T {
-        let constants = self.constants();
-        let mut index = or;
-        self.each_by(
-            |link| {
-                index = link.index;
-                constants.r#break
-            },
-            [constants.any, source, target],
-        );
-        index
+        self.search(source, target).unwrap_or(or)
     }
 
     fn search(&self, source: T, target: T) -> Option<T> {
@@ -166,7 +139,7 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         self.each_by(
             |link| {
                 index = Some(link.index);
-                constants.r#break
+                T::zero()
             },
             [constants.any, source, target],
         );
@@ -211,11 +184,10 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
     }
 
     fn get_or_create(&mut self, source: T, target: T) -> Result<T> {
-        let link = self.search_or(source, target, zero());
-        if link == zero() {
-            self.create_and_update(source, target) // TODO:
-        } else {
+        if let Some(link) = self.search(source, target) {
             Ok(link)
+        } else {
+            self.create_and_update(source, target)
         }
     }
 
@@ -315,9 +287,9 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         }
     }
 
-    fn reset(&mut self, link: T) -> Result<(), LinksError<T>> {
-        let null = self.constants().null;
-        self.update(link, null, null).map(|_| ())
+    fn reset(&mut self, link: T) -> Result<T, LinksError<T>> {
+        // let null = self.constants().null; // TODO: assert null == 0
+        self.update(link, T::zero(), T::zero())
     }
 
     fn format(&self, link: T) -> Option<String> {
@@ -333,25 +305,20 @@ pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
         CascadeUniqueResolver::new(links)
     }
 
-    fn is_full_point(&self, link: T) -> Result<bool, LinksError<T>> {
-        let constants = self.constants();
-        if constants.is_external_reference(link) {
-            Ok(true)
-        } else {
-            let link = self.try_get_link(link)?;
-            Ok(link.index == link.target && link.index == link.source)
-        }
+    #[deprecated(note = "use `links.try_get_link(...)?.is_full()`")]
+    fn is_full_point(&self, link: T) -> Option<bool> {
+        self.get_link(link).map(|link| link.is_full())
     }
 
-    fn is_partial_point(&self, link: T) -> Result<bool, LinksError<T>> {
-        let constants = self.constants();
-        if constants.is_external_reference(link) {
-            Ok(true)
-        } else {
-            let link = self.try_get_link(link)?;
-            Ok(link.index == link.target || link.index == link.source)
-        }
+    #[deprecated(note = "use `links.try_get_link(...)?.is_partial()`")]
+    fn is_partial_point(&self, link: T) -> Option<bool> {
+        self.get_link(link).map(|link| link.is_partial())
     }
+}
+
+#[deprecated(note = "use `ILinks`")]
+pub trait ILinksExtensions<T: LinkType>: ILinks<T> {
+
 }
 
 impl<T: LinkType, All: ILinks<T>> ILinksExtensions<T> for All {}

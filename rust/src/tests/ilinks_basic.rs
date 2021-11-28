@@ -25,7 +25,7 @@ fn create_point() {
 
     assert_eq!(1, links.count());
     // TODO: expect
-    assert_eq!(links.get_link(point).unwrap(), Link::from_once(point));
+    assert_eq!(links.get_link(point).unwrap(), Link::point(point));
 }
 
 #[test]

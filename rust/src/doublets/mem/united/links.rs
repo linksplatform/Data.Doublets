@@ -57,26 +57,14 @@ impl<
 
     pub fn new(
         mem: M,
-    ) -> Result<Links<
-        T,
-        M,
-        LinksSourcesRecursionlessSizeBalancedTree<T>,
-        LinksTargetsRecursionlessSizeBalancedTree<T>,
-        UnusedLinks<T>,
-    >, LinksError<T>> {
+    ) -> Result<Links<T, M>, LinksError<T>> {
         Self::with_constants(mem, LinksConstants::new())
     }
 
     pub fn with_constants(
         mem: M,
         constants: LinksConstants<T>,
-    ) -> Result<Links<
-        T,
-        M,
-        LinksSourcesRecursionlessSizeBalancedTree<T>,
-        LinksTargetsRecursionlessSizeBalancedTree<T>,
-        UnusedLinks<T>,
-    >, LinksError<T>> {
+    ) -> Result<Links<T, M>, LinksError<T>> {
         let links = mem.get_ptr();
         let header = links;
         let sources =
@@ -171,12 +159,7 @@ impl<
         self.unused.update_pointers(ptr, ptr);
     }
 
-    pub fn show_mem(&self) {
-        // TODO:
-        println!("mem: {:?}", self.mem.get_ptr());
-    }
-
-    pub fn get_link_struct(&self, index: T) -> Link<T> {
+    pub fn get_link_unchecked(&self, index: T) -> Link<T> {
         let link = self.get_link(index);
         Link::new(index, link.source, link.target)
     }
@@ -190,7 +173,7 @@ impl<
 
         if restrictions.is_empty() {
             for index in T::one()..self.get_header().allocated + one() {
-                let link = self.get_link_struct(index);
+                let link = self.get_link_unchecked(index);
                 if self.exists(index) && handler(link) == r#break {
                     return r#break;
                 }
@@ -208,7 +191,7 @@ impl<
             } else if !self.exists(index) {
                 r#continue
             } else {
-                let link_struct = self.get_link_struct(index);
+                let link_struct = self.get_link_unchecked(index);
                 handler(link_struct)
             };
         }
@@ -228,12 +211,12 @@ impl<
                     return r#continue;
                 }
                 if value == any {
-                    let link = self.get_link_struct(index);
+                    let link = self.get_link_unchecked(index);
                     return handler(link);
                 }
                 let stored = self.get_link(index);
                 if stored.source == value || stored.target == value {
-                    let link = self.get_link_struct(index);
+                    let link = self.get_link_unchecked(index);
                     return handler(link);
                 }
                 r#continue
@@ -256,7 +239,7 @@ impl<
                     if link == constants.null {
                         r#continue
                     } else {
-                        let link = self.get_link_struct(link);
+                        let link = self.get_link_unchecked(link);
                         return handler(link);
                     }
                 };
@@ -270,7 +253,7 @@ impl<
                 let stored = self.get_link(index);
                 if target != any && source != any {
                     return if (source, target) == (stored.source, stored.target) {
-                        let link = self.get_link_struct(index);
+                        let link = self.get_link_unchecked(index);
                         handler(link)
                     } else {
                         r#continue
@@ -285,16 +268,14 @@ impl<
                     value = source;
                 }
                 return if (stored.source == value) || (stored.target == value) {
-                    let link = self.get_link_struct(index);
+                    let link = self.get_link_unchecked(index);
                     handler(link)
                 } else {
                     r#continue
                 };
             }
         }
-
-        //return constants.r#break;
-        panic!("not supported");
+        todo!()
     }
 }
 
@@ -323,7 +304,6 @@ impl<
             return if index == any {
                 self.get_total()
             } else {
-                // TODO: T::from_usize(self.exists(index) as usize).unwrap()
                 if self.exists(index) {
                     one()
                 } else {
@@ -407,8 +387,7 @@ impl<
                 }
             };
         }
-
-        panic!("not implemented")
+        todo!()
     }
 
 
@@ -518,9 +497,9 @@ impl<
 
     fn get_link(&self, index: T) -> Option<Link<T>> {
         if self.constants.is_external_reference(index) {
-            Some(Link::from_once(index))
+            Some(Link::point(index))
         } else if self.exists(index) {
-            Some(self.get_link_struct(index))
+            Some(self.get_link_unchecked(index))
         } else {
             None
         }

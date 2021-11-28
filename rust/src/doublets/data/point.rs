@@ -1,12 +1,12 @@
 use std::ops::Index;
 use std::ops::Range;
 
-pub struct Point<T: PartialEq + Copy> {
+pub struct Point<T> {
     index: T,
     size: usize,
 }
 
-impl<T: PartialEq + Copy> Point<T> {
+impl<T: PartialEq + Clone> Point<T> {
     pub fn new(index: T, size: usize) -> Self {
         Self { index, size }
     }
@@ -45,7 +45,7 @@ impl<T: PartialEq + Copy> Point<T> {
     }
 }
 
-impl<T: PartialEq + Copy> Index<usize> for Point<T> {
+impl<T: PartialEq> Index<usize> for Point<T> {
     type Output = T;
 
     fn index(&self, index: usize) -> &Self::Output {
