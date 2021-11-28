@@ -11,7 +11,7 @@ use crate::tests::make_mem;
 
 #[bench]
 fn united_random_links(b: &mut Bencher) {
-    let mem = HeapMem::new();
+    let mem = HeapMem::new().unwrap();
     let mut links = united::Links::<usize, _>::new(mem).unwrap();
     let mut links = links.decorators_kit();
 
@@ -20,7 +20,7 @@ fn united_random_links(b: &mut Bencher) {
 
 #[bench]
 fn united_over_points(b: &mut Bencher) {
-    let mem = HeapMem::new();
+    let mem = HeapMem::new().unwrap();
     let links = united::Links::<usize, _>::new(mem).unwrap();
     let mut links = NonNullDeletionResolver::new(links);
     b.iter(|| {
@@ -39,7 +39,7 @@ fn united_over_points(b: &mut Bencher) {
 
 #[bench]
 fn heap_reserve(b: &mut Bencher) {
-    let mut mem = HeapMem::new();
+    let mut mem = HeapMem::new().unwrap();
 
     let over = 1_000_000_usize;
     b.iter(|| {

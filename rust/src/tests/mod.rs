@@ -11,7 +11,7 @@ use crate::num::LinkType;
 //}
 
 pub fn make_mem() -> (HeapMem, HeapMem) {
-    (HeapMem::new(), HeapMem::new())
+    (HeapMem::new().unwrap(), HeapMem::new().unwrap())
 }
 
 //pub fn make_links<M: ResizeableMem>(mem: M) -> Result<Links<usize, M>, LinksError<usize>> {

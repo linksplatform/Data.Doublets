@@ -63,7 +63,7 @@ fn billion_points_file_mapped() {
 
 #[test]
 fn billion_points_heap_mem() {
-    let mem = HeapMem::new();
+    let mem = HeapMem::new().unwrap();
     let mut links = Links::<usize, _>::new(mem).unwrap();
 
     let instant = Instant::now();
@@ -141,8 +141,8 @@ fn billion_points_file_mapped_splited() {
 
 #[test]
 fn billion_points_heap_mem_splited() {
-    let mem = HeapMem::new();
-    let index = HeapMem::new();
+    let mem = HeapMem::new().unwrap();
+    let index = HeapMem::new().unwrap();
     let mut links = splited::Links::<usize, _, _>::new(mem, index).unwrap();
 
     let instant = Instant::now();

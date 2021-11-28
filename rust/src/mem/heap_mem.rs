@@ -22,8 +22,8 @@ impl HeapMem {
         Ok(new)
     }
 
-    pub fn new() -> Self {
-        Self::reserve_new(ResizeableBase::MINIMUM_CAPACITY).unwrap() // TODO: return Result
+    pub fn new() -> std::io::Result<Self> {
+        Self::reserve_new(ResizeableBase::MINIMUM_CAPACITY)
     }
 
     fn on_reserved(&mut self, old_capacity: usize, new_capacity: usize) -> std::io::Result<usize> {
@@ -78,12 +78,6 @@ impl ResizeableMem for HeapMem {
 
     fn reserved_mem(&self) -> usize {
         self.base.reserved_mem()
-    }
-}
-
-impl Default for HeapMem {
-    fn default() -> Self {
-        Self::new()
     }
 }
 

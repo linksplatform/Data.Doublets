@@ -99,7 +99,7 @@ unsafe impl<
 //    fn it_works() {
 //
 //        unsafe {
-//            let mut mem = HeapMem::new();
+//            let mut mem = HeapMem::new().unwrap();
 //            //let mut mem = FileMappedMem::new("db.links").unwrap();
 //            mem.reserve_mem(2048 * 1000);
 //            unsafe {
@@ -217,7 +217,7 @@ unsafe impl<
 //        std::fs::remove_file("db.links");
 //
 //        let mem = FileMappedMem::new("db.links").unwrap();
-//        let mem = HeapMem::new();
+//        let mem = HeapMem::new().unwrap();
 //        let mut links = Links::<u32, HeapMem>::new(mem);
 //        let constants = links.constants();
 //        let any = constants.any;
@@ -253,7 +253,7 @@ unsafe impl<
 //        std::fs::remove_file("db.links");
 //
 //        let mem = FileMappedMem::new("db.links").unwrap();
-//        let mem = HeapMem::new();
+//        let mem = HeapMem::new().unwrap();
 //        let mut links = Links::<u32, _>::new(mem);
 //
 //        for i in 0..1000 {
@@ -272,7 +272,7 @@ unsafe impl<
 //
 //    #[test]
 //    fn test_crud() {
-//        let mem = HeapMem::new();
+//        let mem = HeapMem::new().unwrap();
 //        let mut links = Links::<u32, _>::new(mem);
 //
 //        links.test_crud();
@@ -280,7 +280,7 @@ unsafe impl<
 //
 //    #[test]
 //    fn links_bug() {
-//        let mut mem = HeapMem::new();
+//        let mut mem = HeapMem::new().unwrap();
 //        let mut links = Links::<usize, _>::new(mem);
 //
 //        for i in 0..100 {
@@ -317,7 +317,7 @@ unsafe impl<
 //    fn debug() {
 //        std::fs::remove_file("дб.ссылкс");
 //        //let mut mem = FileMappedMem::new("дб.ссылкс").unwrap();
-//        let mut mem = HeapMem::new();
+//        let mut mem = HeapMem::new().unwrap();
 //        let mut links = Links::<usize, _>::new(mem);
 //        let mut links = UniqueResolver::new(links);
 //
@@ -337,7 +337,7 @@ unsafe impl<
 //    fn synchronized_links() {
 //        std::fs::remove_file("db.links").unwrap();
 //
-//        let mut mem = HeapMem::new();
+//        let mut mem = HeapMem::new().unwrap();
 //        let mut mem = FileMappedMem::new("db.links").unwrap();
 //        let mut links = Links::<usize, _>::new(mem);
 //
@@ -363,7 +363,7 @@ unsafe impl<
 //
 //    #[test]
 //    fn unique_resolver() {
-//        let mem = HeapMem::new();
+//        let mem = HeapMem::new().unwrap();
 //        let links = Links::<usize, _>::new(mem);
 //
 //        let mut links = UniqueResolver::new(links);
@@ -387,7 +387,7 @@ unsafe impl<
 //
 //    #[test]
 //    fn unique_validator() {
-//        let mem = HeapMem::new();
+//        let mem = HeapMem::new().unwrap();
 //        let links = Links::<usize, _>::new(mem);
 //
 //        let mut links = UniqueValidator::new(links);
