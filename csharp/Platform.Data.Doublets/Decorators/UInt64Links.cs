@@ -26,54 +26,12 @@ namespace Platform.Data.Doublets.Decorators
     /// </remarks>
     public class UInt64Links : LinksDisposableDecoratorBase<ulong>
     {
-        /// <summary>
-        /// <para>
-        /// Initializes a new <see cref="UInt64Links"/> instance.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="links">
-        /// <para>A links.</para>
-        /// <para></para>
-        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public UInt64Links(ILinks<ulong> links) : base(links) { }
 
-        /// <summary>
-        /// <para>
-        /// Creates the restrictions.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The ulong</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override ulong Create(IList<ulong> restrictions) => _links.CreatePoint();
 
-        /// <summary>
-        /// <para>
-        /// Updates the restrictions.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="substitution">
-        /// <para>The substitution.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The ulong</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override ulong Update(IList<ulong> restrictions, IList<ulong> substitution)
         {
@@ -108,16 +66,6 @@ namespace Platform.Data.Doublets.Decorators
             }
         }
 
-        /// <summary>
-        /// <para>
-        /// Deletes the restrictions.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
-        /// <para></para>
-        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override void Delete(IList<ulong> restrictions)
         {
