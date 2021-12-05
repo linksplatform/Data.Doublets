@@ -9,11 +9,115 @@ on:
 env:
   NUGETTOKEN: ${{ secrets.NUGET_TOKEN }}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  SCRIPTS_BASE_URL: https://raw.githubusercontent.com/linksplatform/Scripts/master/MultiProjectRepository
+  SCRIPTS_BASE_URL: https://raw.githubusercontent.com/linksplatform/Scripts/a2a6ab3006039e34f34d5a8cd42b9ba0b1614e1a/MultiProjectRepository
+  CARGO_TERM_COLOR: always
+  RUSTFLAGS: -Awarnings
+
+  TRAVIS_REPO_NAME: Data.Doublets
+  SOURCE_BRANCH: master
+  LIB_PATH: rust/ffi/target/release
 
 jobs:
+  test_rust:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Rustup nightly
+        run: rustup toolchain install nightly
+      - name: All Tests
+        run: |
+          cd rust
+          cargo +nightly test --release -- --exact --nocapture
+  publish_windows:
+    needs: [test_rust]
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Rustup nightly
+      run: |
+        rustup toolchain install nightly
+    - name: Build
+      run: |
+        cd rust/ffi
+        cargo +nightly build --release
+    - name: publish
+      shell: bash
+      run: |
+        export TARGET_PLATFORM="windows-x64"
+        export LIB_NAME="doublets_ffi.dll"
+        export TARGET_LIB_NAME="Platform.Doublets.dll"
+        ./publish-bin.sh
+  publish_linux:
+    needs: [test_rust]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Rustup nightly
+        run: |
+          rustup toolchain install nightly
+      - name: Build
+        run: |
+          cd rust/ffi
+          cargo +nightly build --release
+      - name: publish
+        run: |
+          export TARGET_PLATFORM="linux-x64"
+          export LIB_NAME="libdoublets_ffi.so"
+          export TARGET_LIB_NAME="libPlatform.Doublets.so"
+          bash ./publish-bin.sh
+  publish_macos:
+    needs: [test_rust]
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Rustup nightly
+        run: |
+          rustup toolchain install nightly
+      - name: Build
+        run: |
+          cd rust/ffi
+          cargo +nightly build --release
+      - name: publish
+        run: |
+          export TARGET_PLATFORM="macos-x64"
+          export LIB_NAME="libdoublets_ffi.dylib"
+          export TARGET_LIB_NAME="libPlatform.Doublets.dylib"
+          bash ./publish-bin.sh
+  publish_to_nuget:
+    runs-on: ubuntu-latest
+    needs: [publish_macos, publish_linux, publish_windows]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Push
+        run: |
+          cd rust/ffi/nuget
+          mkdir runtimes && cd runtimes
+          wget https://github.com/linksplatform/Data.Doublets/raw/binaries/windows-x64/native/Platform.Doublets.dll
+          wget https://github.com/linksplatform/Data.Doublets/raw/binaries/macos-x64/native/libPlatform.Doublets.dylib
+          wget https://github.com/linksplatform/Data.Doublets/raw/binaries/linux-x64/native/libPlatform.Doublets.so
+          ls
+          cd ..
+
+          cd ../../../
+          export REPOSITORY_NAME=$(basename ${{ github.repository }})
+          wget "$SCRIPTS_BASE_URL/push-cpp-nuget.sh"
+
+          CPP_PACKAGE_NUSPEC_PATH="rust/ffi/nuget/Platform.Data.Doublets.FFI.nuspec"
+          echo "$CPP_PACKAGE_NUSPEC_PATH"
+          echo "$CPP_PACKAGE_NUSPEC_PATH" > CPP_PACKAGE_NUSPEC_PATH.txt
+
+          CPP_PACKAGE_VERSION="0.0.1"
+          echo "$CPP_PACKAGE_VERSION"
+          echo "$CPP_PACKAGE_VERSION" > CPP_PACKAGE_VERSION.txt
+
+          bash ./push-cpp-nuget.sh
+
   testAndDeploy:
     runs-on: ubuntu-latest
+    needs: [publish_to_nuget]
     steps:
     - uses: actions/checkout@v1
       with:

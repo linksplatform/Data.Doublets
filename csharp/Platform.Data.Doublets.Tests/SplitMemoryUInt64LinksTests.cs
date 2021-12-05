@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Xunit;
 using Platform.Memory;
 using Platform.Data.Doublets.Memory.Split.Specific;
@@ -25,7 +25,6 @@ namespace Platform.Data.Doublets.Tests
         {
             Using(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(500));
         }
-
         private static void Using(Action<ILinks<TLink>> action)
         {
             using (var dataMemory = new HeapResizableDirectMemory())
@@ -35,7 +34,6 @@ namespace Platform.Data.Doublets.Tests
                 action(memory);
             }
         }
-
         private static void UsingWithExternalReferences(Action<ILinks<TLink>> action)
         {
             var contants = new LinksConstants<TLink>(enableExternalReferencesSupport: true);

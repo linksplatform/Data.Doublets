@@ -6,14 +6,63 @@ using TLink = System.UInt32;
 
 namespace Platform.Data.Doublets.Decorators
 {
+    /// <summary>
+    /// <para>
+    /// Represents the int 32 links.
+    /// </para>
+    /// <para></para>
+    /// </summary>
+    /// <seealso cref="LinksDisposableDecoratorBase{TLink}"/>
     public class UInt32Links : LinksDisposableDecoratorBase<TLink>
     {
+        /// <summary>
+        /// <para>
+        /// Initializes a new <see cref="UInt32Links"/> instance.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="links">
+        /// <para>A links.</para>
+        /// <para></para>
+        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public UInt32Links(ILinks<TLink> links) : base(links) { }
 
+        /// <summary>
+        /// <para>
+        /// Creates the restrictions.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="restrictions">
+        /// <para>The restrictions.</para>
+        /// <para></para>
+        /// </param>
+        /// <returns>
+        /// <para>The link</para>
+        /// <para></para>
+        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override TLink Create(IList<TLink> restrictions) => _links.CreatePoint();
 
+        /// <summary>
+        /// <para>
+        /// Updates the restrictions.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="restrictions">
+        /// <para>The restrictions.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="substitution">
+        /// <para>The substitution.</para>
+        /// <para></para>
+        /// </param>
+        /// <returns>
+        /// <para>The link</para>
+        /// <para></para>
+        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override TLink Update(IList<TLink> restrictions, IList<TLink> substitution)
         {
@@ -48,6 +97,16 @@ namespace Platform.Data.Doublets.Decorators
             }
         }
 
+        /// <summary>
+        /// <para>
+        /// Deletes the restrictions.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="restrictions">
+        /// <para>The restrictions.</para>
+        /// <para></para>
+        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override void Delete(IList<TLink> restrictions)
         {

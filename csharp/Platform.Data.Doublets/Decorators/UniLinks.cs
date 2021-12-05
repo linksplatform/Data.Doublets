@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Platform.Collections;
@@ -19,13 +19,48 @@ namespace Platform.Data.Doublets.Decorators
     {
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
 
+        /// <summary>
+        /// <para>
+        /// Initializes a new <see cref="UniLinks"/> instance.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="links">
+        /// <para>A links.</para>
+        /// <para></para>
+        /// </param>
         public UniLinks(ILinks<TLink> links) : base(links) { }
-
         private struct Transition
         {
+            /// <summary>
+            /// <para>
+            /// The before.
+            /// </para>
+            /// <para></para>
+            /// </summary>
             public IList<TLink> Before;
+            /// <summary>
+            /// <para>
+            /// The after.
+            /// </para>
+            /// <para></para>
+            /// </summary>
             public IList<TLink> After;
 
+            /// <summary>
+            /// <para>
+            /// Initializes a new <see cref="Transition"/> instance.
+            /// </para>
+            /// <para></para>
+            /// </summary>
+            /// <param name="before">
+            /// <para>A before.</para>
+            /// <para></para>
+            /// </param>
+            /// <param name="after">
+            /// <para>A after.</para>
+            /// <para></para>
+            /// </param>
             public Transition(IList<TLink> before, IList<TLink> after)
             {
                 Before = before;
@@ -37,6 +72,32 @@ namespace Platform.Data.Doublets.Decorators
         //public static readonly IReadOnlyList<TLink> NullLink = new ReadOnlyCollection<TLink>(new List<TLink> { NullConstant, NullConstant, NullConstant });
 
         // TODO: Подумать о том, как реализовать древовидный Restriction и Substitution (Links-Expression)
+        /// <summary>
+        /// <para>
+        /// Triggers the restriction.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="matchedHandler">
+        /// <para>The matched handler.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="substitution">
+        /// <para>The substitution.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="substitutedHandler">
+        /// <para>The substituted handler.</para>
+        /// <para></para>
+        /// </param>
+        /// <returns>
+        /// <para>The link</para>
+        /// <para></para>
+        /// </returns>
         public TLink Trigger(IList<TLink> restriction, Func<IList<TLink>, IList<TLink>, TLink> matchedHandler, IList<TLink> substitution, Func<IList<TLink>, IList<TLink>, TLink> substitutedHandler)
         {
             ////List<Transition> transitions = null;
@@ -190,6 +251,52 @@ namespace Platform.Data.Doublets.Decorators
             return _constants.Continue;
         }
 
+        /// <summary>
+        /// <para>
+        /// Triggers the pattern or condition.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="patternOrCondition">
+        /// <para>The pattern or condition.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="matchHandler">
+        /// <para>The match handler.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="substitution">
+        /// <para>The substitution.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="substitutionHandler">
+        /// <para>The substitution handler.</para>
+        /// <para></para>
+        /// </param>
+        /// <exception cref="NotImplementedException">
+        /// <para></para>
+        /// <para></para>
+        /// </exception>
+        /// <exception cref="NotSupportedException">
+        /// <para></para>
+        /// <para></para>
+        /// </exception>
+        /// <exception cref="NotSupportedException">
+        /// <para></para>
+        /// <para></para>
+        /// </exception>
+        /// <exception cref="NotSupportedException">
+        /// <para></para>
+        /// <para></para>
+        /// </exception>
+        /// <exception cref="NotSupportedException">
+        /// <para></para>
+        /// <para></para>
+        /// </exception>
+        /// <returns>
+        /// <para>The link</para>
+        /// <para></para>
+        /// </returns>
         public TLink Trigger(IList<TLink> patternOrCondition, Func<IList<TLink>, TLink> matchHandler, IList<TLink> substitution, Func<IList<TLink>, IList<TLink>, TLink> substitutionHandler)
         {
             var constants = _constants;
@@ -325,7 +432,6 @@ namespace Platform.Data.Doublets.Decorators
             });
             return changes;
         }
-
         private TLink AlwaysContinue(IList<TLink> linkToMatch) => _constants.Continue;
     }
 }

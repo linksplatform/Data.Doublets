@@ -1,4 +1,4 @@
-﻿using Xunit;
+using Xunit;
 using Platform.Scopes;
 using Platform.Memory;
 using Platform.Data.Doublets.Decorators;
