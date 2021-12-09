@@ -2,7 +2,6 @@ use std::borrow::BorrowMut;
 use std::default::default;
 use std::marker::PhantomData;
 
-use libc::read;
 use smallvec::SmallVec;
 
 use crate::doublets::{ILinks, ILinksExtensions, Link, Result};
