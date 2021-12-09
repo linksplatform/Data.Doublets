@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Xunit;
 using Platform.Reflection;
 using Platform.Memory;
@@ -35,6 +35,7 @@ namespace Platform.Data.Doublets.Tests
             Using<uint>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
             Using<ulong>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
         }
+
         private static void Using<TLink>(Action<ILinks<TLink>> action)
         {
             using (var scope = new Scope<Types<HeapResizableDirectMemory, UnitedMemoryLinks<TLink>>>())

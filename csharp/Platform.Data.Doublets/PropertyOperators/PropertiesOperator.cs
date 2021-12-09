@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Platform.Interfaces;
 
@@ -6,49 +6,13 @@ using Platform.Interfaces;
 
 namespace Platform.Data.Doublets.PropertyOperators
 {
-    /// <summary>
-    /// <para>
-    /// Represents the properties operator.
-    /// </para>
-    /// <para></para>
-    /// </summary>
-    /// <seealso cref="LinksOperatorBase{TLink}"/>
-    /// <seealso cref="IProperties{TLink, TLink, TLink}"/>
     public class PropertiesOperator<TLink> : LinksOperatorBase<TLink>, IProperties<TLink, TLink, TLink>
     {
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
 
-        /// <summary>
-        /// <para>
-        /// Initializes a new <see cref="PropertiesOperator"/> instance.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="links">
-        /// <para>A links.</para>
-        /// <para></para>
-        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public PropertiesOperator(ILinks<TLink> links) : base(links) { }
 
-        /// <summary>
-        /// <para>
-        /// Gets the value using the specified object.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="@object">
-        /// <para>The object.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="property">
-        /// <para>The property.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The link</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public TLink GetValue(TLink @object, TLink property)
         {
@@ -69,24 +33,6 @@ namespace Platform.Data.Doublets.PropertyOperators
             return links.GetTarget(valueLink[constants.IndexPart]);
         }
 
-        /// <summary>
-        /// <para>
-        /// Sets the value using the specified object.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="@object">
-        /// <para>The object.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="property">
-        /// <para>The property.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="value">
-        /// <para>The value.</para>
-        /// <para></para>
-        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void SetValue(TLink @object, TLink property, TLink value)
         {

@@ -1,4 +1,4 @@
-using System.IO;
+﻿using System.IO;
 using Xunit;
 using Platform.Singletons;
 using Platform.Memory;
@@ -30,6 +30,7 @@ namespace Platform.Data.Doublets.Tests
                 memoryAdapter.TestBasicMemoryOperations();
             }
         }
+
         private static void TestBasicMemoryOperations(this ILinks<ulong> memoryAdapter)
         {
             var link = memoryAdapter.Create();
@@ -45,6 +46,7 @@ namespace Platform.Data.Doublets.Tests
                 memoryAdapter.TestNonexistentReferences();
             }
         }
+
         private static void TestNonexistentReferences(this ILinks<ulong> memoryAdapter)
         {
             var link = memoryAdapter.Create();

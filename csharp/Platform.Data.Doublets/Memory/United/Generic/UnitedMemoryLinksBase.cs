@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Platform.Disposables;
@@ -12,20 +12,13 @@ using Platform.Data.Exceptions;
 
 namespace Platform.Data.Doublets.Memory.United.Generic
 {
-    /// <summary>
-    /// <para>
-    /// Represents the united memory links base.
-    /// </para>
-    /// <para></para>
-    /// </summary>
-    /// <seealso cref="DisposableBase"/>
-    /// <seealso cref="ILinks{TLink}"/>
     public abstract class UnitedMemoryLinksBase<TLink> : DisposableBase, ILinks<TLink>
     {
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
         private static readonly Comparer<TLink> _comparer = Comparer<TLink>.Default;
         private static readonly UncheckedConverter<TLink, long> _addressToInt64Converter = UncheckedConverter<TLink, long>.Default;
         private static readonly UncheckedConverter<long, TLink> _int64ToAddressConverter = UncheckedConverter<long, TLink>.Default;
+
         private static readonly TLink _zero = default;
         private static readonly TLink _one = Arithmetic.Increment(_zero);
 
@@ -36,58 +29,16 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// </remarks>
         public static readonly long LinkSizeInBytes = RawLink<TLink>.SizeInBytes;
 
-        /// <summary>
-        /// <para>
-        /// The size in bytes.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         public static readonly long LinkHeaderSizeInBytes = LinksHeader<TLink>.SizeInBytes;
 
-        /// <summary>
-        /// <para>
-        /// The link size in bytes.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         public static readonly long DefaultLinksSizeStep = LinkSizeInBytes * 1024 * 1024;
 
-        /// <summary>
-        /// <para>
-        /// The memory.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         protected readonly IResizableDirectMemory _memory;
-        /// <summary>
-        /// <para>
-        /// The memory reservation step.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         protected readonly long _memoryReservationStep;
 
-        /// <summary>
-        /// <para>
-        /// The targets tree methods.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         protected ILinksTreeMethods<TLink> TargetsTreeMethods;
-        /// <summary>
-        /// <para>
-        /// The sources tree methods.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         protected ILinksTreeMethods<TLink> SourcesTreeMethods;
         // TODO: Возможно чтобы гарантированно проверять на то, является ли связь удалённой, нужно использовать не список а дерево, так как так можно быстрее проверить на наличие связи внутри
-        /// <summary>
-        /// <para>
-        /// The unused links list methods.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         protected ILinksListMethods<TLink> UnusedLinksListMethods;
 
         /// <summary>
@@ -103,36 +54,12 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             }
         }
 
-        /// <summary>
-        /// <para>
-        /// Gets the constants value.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         public virtual LinksConstants<TLink> Constants
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get;
         }
 
-        /// <summary>
-        /// <para>
-        /// Initializes a new <see cref="UnitedMemoryLinksBase"/> instance.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="memory">
-        /// <para>A memory.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="memoryReservationStep">
-        /// <para>A memory reservation step.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="constants">
-        /// <para>A constants.</para>
-        /// <para></para>
-        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected UnitedMemoryLinksBase(IResizableDirectMemory memory, long memoryReservationStep, LinksConstants<TLink> constants)
         {
@@ -141,37 +68,9 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             Constants = constants;
         }
 
-        /// <summary>
-        /// <para>
-        /// Initializes a new <see cref="UnitedMemoryLinksBase"/> instance.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="memory">
-        /// <para>A memory.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="memoryReservationStep">
-        /// <para>A memory reservation step.</para>
-        /// <para></para>
-        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected UnitedMemoryLinksBase(IResizableDirectMemory memory, long memoryReservationStep) : this(memory, memoryReservationStep, Default<LinksConstants<TLink>>.Instance) { }
 
-        /// <summary>
-        /// <para>
-        /// Inits the memory.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="memory">
-        /// <para>The memory.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="memoryReservationStep">
-        /// <para>The memory reservation step.</para>
-        /// <para></para>
-        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual void Init(IResizableDirectMemory memory, long memoryReservationStep)
         {
@@ -187,24 +86,6 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             header.ReservedLinks = ConvertToAddress((memory.ReservedCapacity - LinkHeaderSizeInBytes) / LinkSizeInBytes);
         }
 
-        /// <summary>
-        /// <para>
-        /// Counts the restrictions.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
-        /// <para></para>
-        /// </param>
-        /// <exception cref="NotSupportedException">
-        /// <para>Другие размеры и способы ограничений не поддерживаются.</para>
-        /// <para></para>
-        /// </exception>
-        /// <returns>
-        /// <para>The link</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public virtual TLink Count(IList<TLink> restrictions)
         {
@@ -316,28 +197,6 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             throw new NotSupportedException("Другие размеры и способы ограничений не поддерживаются.");
         }
 
-        /// <summary>
-        /// <para>
-        /// Eaches the handler.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="handler">
-        /// <para>The handler.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
-        /// <para></para>
-        /// </param>
-        /// <exception cref="NotSupportedException">
-        /// <para>Другие размеры и способы ограничений не поддерживаются.</para>
-        /// <para></para>
-        /// </exception>
-        /// <returns>
-        /// <para>The link</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public virtual TLink Each(Func<IList<TLink>, TLink> handler, IList<TLink> restrictions)
         {
@@ -534,16 +393,6 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             return freeLink;
         }
 
-        /// <summary>
-        /// <para>
-        /// Deletes the restrictions.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
-        /// <para></para>
-        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public virtual void Delete(IList<TLink> restrictions)
         {
@@ -568,20 +417,6 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             }
         }
 
-        /// <summary>
-        /// <para>
-        /// Gets the link struct using the specified link index.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="linkIndex">
-        /// <para>The link index.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>A list of t link</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IList<TLink> GetLinkStruct(TLink linkIndex)
         {
@@ -599,12 +434,6 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected abstract void SetPointers(IResizableDirectMemory memory);
 
-        /// <summary>
-        /// <para>
-        /// Resets the pointers.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual void ResetPointers()
         {
@@ -613,70 +442,18 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             UnusedLinksListMethods = null;
         }
 
-        /// <summary>
-        /// <para>
-        /// Gets the header reference.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <returns>
-        /// <para>A ref links header of t link</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected abstract ref LinksHeader<TLink> GetHeaderReference();
 
-        /// <summary>
-        /// <para>
-        /// Gets the link reference using the specified link index.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="linkIndex">
-        /// <para>The link index.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>A ref raw link of t link</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected abstract ref RawLink<TLink> GetLinkReference(TLink linkIndex);
 
-        /// <summary>
-        /// <para>
-        /// Determines whether this instance exists.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="link">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The bool</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual bool Exists(TLink link)
             => GreaterOrEqualThan(link, Constants.InternalReferencesRange.Minimum)
             && LessOrEqualThan(link, GetHeaderReference().AllocatedLinks)
             && !IsUnusedLink(link);
 
-        /// <summary>
-        /// <para>
-        /// Determines whether this instance is unused link.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="linkIndex">
-        /// <para>The link index.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The bool</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual bool IsUnusedLink(TLink linkIndex)
         {
@@ -691,275 +468,53 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             }
         }
 
-        /// <summary>
-        /// <para>
-        /// Gets the one.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <returns>
-        /// <para>The link</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual TLink GetOne() => _one;
 
-        /// <summary>
-        /// <para>
-        /// Gets the zero.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <returns>
-        /// <para>The link</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual TLink GetZero() => default;
 
-        /// <summary>
-        /// <para>
-        /// Determines whether this instance are equal.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="first">
-        /// <para>The first.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="second">
-        /// <para>The second.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The bool</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual bool AreEqual(TLink first, TLink second) => _equalityComparer.Equals(first, second);
 
-        /// <summary>
-        /// <para>
-        /// Determines whether this instance less than.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="first">
-        /// <para>The first.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="second">
-        /// <para>The second.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The bool</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual bool LessThan(TLink first, TLink second) => _comparer.Compare(first, second) < 0;
 
-        /// <summary>
-        /// <para>
-        /// Determines whether this instance less or equal than.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="first">
-        /// <para>The first.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="second">
-        /// <para>The second.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The bool</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual bool LessOrEqualThan(TLink first, TLink second) => _comparer.Compare(first, second) <= 0;
 
-        /// <summary>
-        /// <para>
-        /// Determines whether this instance greater than.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="first">
-        /// <para>The first.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="second">
-        /// <para>The second.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The bool</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual bool GreaterThan(TLink first, TLink second) => _comparer.Compare(first, second) > 0;
 
-        /// <summary>
-        /// <para>
-        /// Determines whether this instance greater or equal than.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="first">
-        /// <para>The first.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="second">
-        /// <para>The second.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The bool</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual bool GreaterOrEqualThan(TLink first, TLink second) => _comparer.Compare(first, second) >= 0;
 
-        /// <summary>
-        /// <para>
-        /// Converts the to int 64 using the specified value.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="value">
-        /// <para>The value.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The long</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual long ConvertToInt64(TLink value) => _addressToInt64Converter.Convert(value);
 
-        /// <summary>
-        /// <para>
-        /// Converts the to address using the specified value.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="value">
-        /// <para>The value.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The link</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual TLink ConvertToAddress(long value) => _int64ToAddressConverter.Convert(value);
 
-        /// <summary>
-        /// <para>
-        /// Adds the first.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="first">
-        /// <para>The first.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="second">
-        /// <para>The second.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The link</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual TLink Add(TLink first, TLink second) => Arithmetic<TLink>.Add(first, second);
 
-        /// <summary>
-        /// <para>
-        /// Subtracts the first.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="first">
-        /// <para>The first.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="second">
-        /// <para>The second.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The link</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual TLink Subtract(TLink first, TLink second) => Arithmetic<TLink>.Subtract(first, second);
 
-        /// <summary>
-        /// <para>
-        /// Increments the link.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="link">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The link</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual TLink Increment(TLink link) => Arithmetic<TLink>.Increment(link);
 
-        /// <summary>
-        /// <para>
-        /// Decrements the link.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="link">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The link</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual TLink Decrement(TLink link) => Arithmetic<TLink>.Decrement(link);
 
         #region Disposable
 
-        /// <summary>
-        /// <para>
-        /// Gets the allow multiple dispose calls value.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         protected override bool AllowMultipleDisposeCalls
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get => true;
         }
 
-        /// <summary>
-        /// <para>
-        /// Disposes the manual.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="manual">
-        /// <para>The manual.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="wasDisposed">
-        /// <para>The was disposed.</para>
-        /// <para></para>
-        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override void Dispose(bool manual, bool wasDisposed)
         {

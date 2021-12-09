@@ -1,4 +1,4 @@
-using Platform.Collections.Lists;
+﻿using Platform.Collections.Lists;
 using Platform.Exceptions;
 using Platform.Ranges;
 using Platform.Singletons;
@@ -16,79 +16,23 @@ namespace Platform.Data.Doublets
     /// </summary>
     public struct Link<TLink> : IEquatable<Link<TLink>>, IReadOnlyList<TLink>, IList<TLink>
     {
-        /// <summary>
-        /// <para>
-        /// The link.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         public static readonly Link<TLink> Null = new Link<TLink>();
+
         private static readonly LinksConstants<TLink> _constants = Default<LinksConstants<TLink>>.Instance;
         private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
+
         private const int Length = 3;
 
-        /// <summary>
-        /// <para>
-        /// The index.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         public readonly TLink Index;
-        /// <summary>
-        /// <para>
-        /// The source.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         public readonly TLink Source;
-        /// <summary>
-        /// <para>
-        /// The target.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         public readonly TLink Target;
 
-        /// <summary>
-        /// <para>
-        /// Initializes a new <see cref="Link"/> instance.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="values">
-        /// <para>A values.</para>
-        /// <para></para>
-        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Link(params TLink[] values) => SetValues(values, out Index, out Source, out Target);
 
-        /// <summary>
-        /// <para>
-        /// Initializes a new <see cref="Link"/> instance.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="values">
-        /// <para>A values.</para>
-        /// <para></para>
-        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Link(IList<TLink> values) => SetValues(values, out Index, out Source, out Target);
 
-        /// <summary>
-        /// <para>
-        /// Initializes a new <see cref="Link"/> instance.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="other">
-        /// <para>A other.</para>
-        /// <para></para>
-        /// </param>
-        /// <exception cref="NotSupportedException">
-        /// <para></para>
-        /// <para></para>
-        /// </exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Link(object other)
         {
@@ -106,37 +50,9 @@ namespace Platform.Data.Doublets
             }
         }
 
-        /// <summary>
-        /// <para>
-        /// Initializes a new <see cref="Link"/> instance.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="other">
-        /// <para>A other.</para>
-        /// <para></para>
-        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Link(ref Link<TLink> other) => SetValues(ref other, out Index, out Source, out Target);
 
-        /// <summary>
-        /// <para>
-        /// Initializes a new <see cref="Link"/> instance.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="index">
-        /// <para>A index.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="source">
-        /// <para>A source.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="target">
-        /// <para>A target.</para>
-        /// <para></para>
-        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Link(TLink index, TLink source, TLink target)
         {
@@ -144,6 +60,7 @@ namespace Platform.Data.Doublets
             Source = source;
             Target = target;
         }
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static void SetValues(ref Link<TLink> other, out TLink index, out TLink source, out TLink target)
         {
@@ -151,6 +68,7 @@ namespace Platform.Data.Doublets
             source = other.Source;
             target = other.Target;
         }
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static void SetValues(IList<TLink> values, out TLink index, out TLink source, out TLink target)
         {
@@ -179,113 +97,25 @@ namespace Platform.Data.Doublets
             }
         }
 
-        /// <summary>
-        /// <para>
-        /// Gets the hash code.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <returns>
-        /// <para>The int</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override int GetHashCode() => (Index, Source, Target).GetHashCode();
 
-        /// <summary>
-        /// <para>
-        /// Determines whether this instance is null.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <returns>
-        /// <para>The bool</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool IsNull() => _equalityComparer.Equals(Index, _constants.Null)
                              && _equalityComparer.Equals(Source, _constants.Null)
                              && _equalityComparer.Equals(Target, _constants.Null);
 
-        /// <summary>
-        /// <para>
-        /// Determines whether this instance equals.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="other">
-        /// <para>The other.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The bool</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object other) => other is Link<TLink> && Equals((Link<TLink>)other);
 
-        /// <summary>
-        /// <para>
-        /// Determines whether this instance equals.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="other">
-        /// <para>The other.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The bool</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Equals(Link<TLink> other) => _equalityComparer.Equals(Index, other.Index)
                                               && _equalityComparer.Equals(Source, other.Source)
                                               && _equalityComparer.Equals(Target, other.Target);
 
-        /// <summary>
-        /// <para>
-        /// Returns the string using the specified index.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="index">
-        /// <para>The index.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="source">
-        /// <para>The source.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="target">
-        /// <para>The target.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The string</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string ToString(TLink index, TLink source, TLink target) => $"({index}: {source}->{target})";
 
-        /// <summary>
-        /// <para>
-        /// Returns the string using the specified source.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="source">
-        /// <para>The source.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="target">
-        /// <para>The target.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The string</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string ToString(TLink source, TLink target) => $"({source}->{target})";
 
@@ -295,51 +125,23 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static implicit operator Link<TLink>(TLink[] linkArray) => new Link<TLink>(linkArray);
 
-        /// <summary>
-        /// <para>
-        /// Returns the string.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <returns>
-        /// <para>The string</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override string ToString() => _equalityComparer.Equals(Index, _constants.Null) ? ToString(Source, Target) : ToString(Index, Source, Target);
 
         #region IList
 
-        /// <summary>
-        /// <para>
-        /// Gets the count value.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         public int Count
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get => Length;
         }
 
-        /// <summary>
-        /// <para>
-        /// Gets the is read only value.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         public bool IsReadOnly
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get => true;
         }
 
-        /// <summary>
-        /// <para>
-        /// The not supported exception.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         public TLink this[int index]
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -364,29 +166,9 @@ namespace Platform.Data.Doublets
             set => throw new NotSupportedException();
         }
 
-        /// <summary>
-        /// <para>
-        /// Gets the enumerator.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <returns>
-        /// <para>The enumerator</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-        /// <summary>
-        /// <para>
-        /// Gets the enumerator.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <returns>
-        /// <para>An enumerator of t link</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IEnumerator<TLink> GetEnumerator()
         {
@@ -395,63 +177,15 @@ namespace Platform.Data.Doublets
             yield return Target;
         }
 
-        /// <summary>
-        /// <para>
-        /// Adds the item.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="item">
-        /// <para>The item.</para>
-        /// <para></para>
-        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Add(TLink item) => throw new NotSupportedException();
 
-        /// <summary>
-        /// <para>
-        /// Clears this instance.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Clear() => throw new NotSupportedException();
 
-        /// <summary>
-        /// <para>
-        /// Determines whether this instance contains.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="item">
-        /// <para>The item.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The bool</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Contains(TLink item) => IndexOf(item) >= 0;
 
-        /// <summary>
-        /// <para>
-        /// Copies the to using the specified array.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="array">
-        /// <para>The array.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="arrayIndex">
-        /// <para>The array index.</para>
-        /// <para></para>
-        /// </param>
-        /// <exception cref="InvalidOperationException">
-        /// <para></para>
-        /// <para></para>
-        /// </exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void CopyTo(TLink[] array, int arrayIndex)
         {
@@ -466,37 +200,9 @@ namespace Platform.Data.Doublets
             array[arrayIndex] = Target;
         }
 
-        /// <summary>
-        /// <para>
-        /// Determines whether this instance remove.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="item">
-        /// <para>The item.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The bool</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Remove(TLink item) => Throw.A.NotSupportedExceptionAndReturn<bool>();
 
-        /// <summary>
-        /// <para>
-        /// Indexes the of using the specified item.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="item">
-        /// <para>The item.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The int</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public int IndexOf(TLink item)
         {
@@ -515,33 +221,9 @@ namespace Platform.Data.Doublets
             return -1;
         }
 
-        /// <summary>
-        /// <para>
-        /// Inserts the index.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="index">
-        /// <para>The index.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="item">
-        /// <para>The item.</para>
-        /// <para></para>
-        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Insert(int index, TLink item) => throw new NotSupportedException();
 
-        /// <summary>
-        /// <para>
-        /// Removes the at using the specified index.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="index">
-        /// <para>The index.</para>
-        /// <para></para>
-        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void RemoveAt(int index) => throw new NotSupportedException();
 
