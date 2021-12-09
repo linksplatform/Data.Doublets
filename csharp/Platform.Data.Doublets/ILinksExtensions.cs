@@ -50,7 +50,7 @@ namespace Platform.Data.Doublets
         }
 
         /// <summary>
-        /// <para>Search for links with random values ​​in the specified link store.</para>
+        /// <para>Search for links with random values in the specified link store.</para>
         /// <para>Ищет связи со случайными значениями в указанном хранилище связей.</para>
         /// </summary>
         /// <param name="links">
@@ -77,7 +77,7 @@ namespace Platform.Data.Doublets
         }
 
         /// <summary>
-        /// <para>Removing links with random values ​​in the specified link store.</para>
+        /// <para>Removing links with random values in the specified link store.</para>
         /// <para>Удаляет связей со случайными значениями в указанном хранилище связей.</para>
         /// </summary>
         /// <param name="links">
@@ -109,22 +109,6 @@ namespace Platform.Data.Doublets
             }
         }
 
-        /// <summary>
-        /// <para>Removing link  ​​in the specified link store.</para>
-        /// <para>Удаляет связь в указанном хранилище связей.</para>
-        /// </summary>
-        /// <typeparam name="TLink">
-        /// <para>Communication address type.</para>
-        /// <para>Тип адреса связи.</para>
-        /// </typeparam>
-        /// <param name="links">
-        /// <para>The links storage.</para>
-        /// <para>Хранилище связей.</para>
-        /// </param>
-        /// <param name="linkToDelete">
-        /// <para>The link to be removed.</para>
-        /// <para>Связь которую нужно удалить.</para>
-        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Delete<TLink>(this ILinks<TLink> links, TLink linkToDelete) => links.Delete(new LinkAddress<TLink>(linkToDelete));
 
@@ -141,6 +125,7 @@ namespace Platform.Data.Doublets
         /// <para>Хранилище связей.</para>
         /// </param>
         /// <remarks>
+        /// TODO: Возможно есть очень простой способ это сделать.
         /// (Например просто удалить файл, или изменить его размер таким образом,
         /// чтобы удалился весь контент)
         /// Например через _header->AllocatedLinks в ResizableDirectMemoryLinks
@@ -223,7 +208,7 @@ namespace Platform.Data.Doublets
             var @break = constants.Break;
             links.Each(linkHandler, query);
             return result;
-
+            
             TLink linkHandler(IList<TLink> link)
             {
                 if (count == 0)
@@ -263,9 +248,11 @@ namespace Platform.Data.Doublets
         /// <para>Возвращает значение true в случае существание пути к связе или false в случае отстутсвии пути к связи.</para>
         /// </returns>
         /// <remarks>
+        /// TODO: Как так? Как то что ниже может быть корректно?
         /// Скорее всего практически не применимо
-        /// Предполагалось, что можно было конвертировать формируемый в проходе через SequenceWalker
+        /// Предполагалось, что можно было конвертировать формируемый в проходе через SequenceWalker 
         /// Stack в конкретный путь из Source, Target до связи, но это не всегда так.
+        /// TODO: Возможно нужен метод, который именно выбрасывает исключения (EnsurePathExists)
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool CheckPathExistance<TLink>(this ILinks<TLink> links, params TLink[] path)
@@ -409,7 +396,6 @@ namespace Platform.Data.Doublets
         /// <para>Индекс указанной связи.</para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-
         public static TLink GetIndex<TLink>(this ILinks<TLink> links, IList<TLink> link) => link[links.Constants.IndexPart];
 
         /// <summary>
@@ -696,6 +682,7 @@ namespace Platform.Data.Doublets
         public static bool Exists<TLink>(this ILinks<TLink> links, TLink source, TLink target) => Comparer<TLink>.Default.Compare(links.Count(links.Constants.Any, source, target), default) > 0;
 
         #region Ensure
+        // TODO: May be move to EnsureExtensions or make it both there and here
         /// <summary>
         /// <para>Checks the connection for its existence.</para>
         /// <para>Проверяет связь на ее существование.</para>
@@ -949,7 +936,6 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureCreated<TLink>(this ILinks<TLink> links, params TLink[] addresses) => links.EnsureCreated(links.Create, addresses);
 
-        /// <param name="links">Хранилище связей.</param>
         /// <summary>
         /// <para>Checks links for addresses.</para>
         /// <para>Проверяет связи на наличие адрессов.</para>
@@ -969,7 +955,6 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsurePointsCreated<TLink>(this ILinks<TLink> links, params TLink[] addresses) => links.EnsureCreated(links.CreatePoint, addresses);
 
-        /// <param name="links">Хранилище связей.</param>
         /// <summary>
         /// <para>Checks if a link has been created with the specified address.</para>
         /// <para>Проверяет создана ли связь с указанным адрессом.</para>
@@ -1237,7 +1222,6 @@ namespace Platform.Data.Doublets
         /// <para>The new beggining of link.</para>
         /// <para>Новое начало связи.</para>
         /// </param>
-        /// </param>
         /// <param name="newTarget">
         /// <para>The new end of link.</para>
         /// <para>Новый конец связи.</para>
@@ -1287,7 +1271,7 @@ namespace Platform.Data.Doublets
         }
 
         /// <summary>
-        /// <para>Allows the use of constant values ​​as independent communication addresses.</para>
+        /// <para>Allows the use of constant values as independent communication addresses.</para>
         /// <para>Разрешает использование константных значений как самостоятельные адреса связи.</para>
         /// </summary>
         /// <typeparam name="TLink">
@@ -1415,10 +1399,6 @@ namespace Platform.Data.Doublets
             return links.Update(link, newSource, newTarget);
         }
 
-        /// <summary>Удаляет связь с указанными началом (Source) и концом (Target).</summary>
-        /// <param name="links">Хранилище связей.</param>
-        /// <param name="source">Индекс связи, которая является началом удаляемой связи.</param>
-        /// <param name="target">Индекс связи, которая является концом удаляемой связи.</param>
         /// <summary>
         /// <para>Removes the link to the specified start and end.</para>
         /// <para>Удаляет связь с указанным началом и концом.</para>
@@ -1455,9 +1435,6 @@ namespace Platform.Data.Doublets
             return default;
         }
 
-        /// <summary>Удаляет несколько связей.</summary>
-        /// <param name="links">Хранилище связей.</param>
-        /// <param name="deletedLinks">Список адресов связей к удалению.</param>
         /// <summary>
         /// <para>Removing links.</para>
         /// <para>Удаляет связи.</para>
@@ -1545,8 +1522,9 @@ namespace Platform.Data.Doublets
             }
         }
 
+        // TODO: Move to Platform.Data
         /// <summary>
-        /// <para>Checks if the link values ​​are cleared.</para>
+        /// <para>Checks if the link values are cleared.</para>
         /// <para>Проверяет сброшены ли значения связи.</para>
         /// </summary>
         /// <typeparam name="TLink">
@@ -1562,7 +1540,7 @@ namespace Platform.Data.Doublets
         /// <para>Индекс связи.</para>
         /// </param>
         /// <returns>
-        /// <para>Returns <cref="true"/> if the link values ​​are cleared, and <cref="false"/> if they are not cleared.</para>
+        /// <para>Returns <cref="true"/> if the link values are cleared, and <cref="false"/> if they are not cleared.</para>
         /// <para>Возвращает значение <cref="true"/> если сброшены значения связи, и <cref="false"/> если не сброшены.</para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1581,8 +1559,9 @@ namespace Platform.Data.Doublets
             return true;
         }
 
+        // TODO: Create a universal version of this method in Platform.Data (with using of for loop)
         /// <summary>
-        /// <para>Resets communication values ​​without testing.</para>
+        /// <para>Resets communication values without testing.</para>
         /// <para>Сбрасывает значения связи без проведения проверок.</para>
         /// </summary>
         /// <typeparam name="TLink">
@@ -1605,8 +1584,9 @@ namespace Platform.Data.Doublets
             links.Update(updateRequest);
         }
 
+        // TODO: Create a universal version of this method in Platform.Data (with using of for loop)
         /// <summary>
-        /// <para>Resets link values ​​if they have not been cleared earlier.</para>
+        /// <para>Resets link values if they have not been cleared earlier.</para>
         /// <para>Сбрасывает значиения связи, если они не были сброшены ранее.</para>
         /// </summary>
         /// <typeparam name="TLink">
