@@ -59,6 +59,35 @@ namespace Platform.Data.Doublets.Tests
             throw new ArgumentException("EnsureTrue Failed. The value is not a true. " + messageBuilder());
         }
 
+        private static void EnsureEqual<T>(T expected, T actual) => EnsureEqual(expected, actual, default);
+        private static void EnsureEqual<T>(T expected, T actual, string message) => EnsureEqual(expected, actual, message, EqualityComparer<T>.Default);
+
+        /// <summary>
+        /// <para></para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="boolean">
+        /// <para></para>
+        /// <para></para>
+        /// </param>
+        /// <param name="message">
+        /// <para></para>
+        /// <para></para>
+        /// </param>
+        /// <exception cref="ArgumentException">
+        /// <para></para>
+        /// <para></para>
+        /// </exception>
+        private static void EnsureEqual<T>(T expected, T actual, string message, IEqualityComparer<T> equalityComparer)
+        {
+            if (!equalityComparer.Equals(expected, actual))
+            {
+                return;
+            }
+            string messageBuilder() => message;
+            throw new ArgumentException("EnsureEqual Failed. The values are not equal. " + messageBuilder());
+        }
+
         /// <summary>
         /// <para>
         /// Tests the crud operations using the specified links.
