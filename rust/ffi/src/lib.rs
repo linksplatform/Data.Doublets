@@ -24,7 +24,7 @@ static LAST_ERROR: RefCell<(String, bool)> = RefCell::new((String::new(), false)
 
 #[no_mangle]
 unsafe extern "C" fn take_last_error(err: *mut c_char) -> bool {
-    let (msg, has) = LAST_ERROR.replace((String::new(), false));
+    let (msg, has) = LAST_ERROR.replace((String::new(), true));
     if err.is_null() {
         false
     } else {
@@ -57,7 +57,7 @@ unsafe fn new_united_links<T: LinkType>(path: *const c_char) -> *mut c_void {
     match result {
         Ok(links) => links,
         Err(err) => {
-            LAST_ERROR.replace((err.to_string(), false));
+            LAST_ERROR.replace((err.to_string(), true));
             null_mut()
         }
     }
@@ -79,7 +79,7 @@ unsafe fn drop_united_links<T: LinkType>(this: *mut c_void) {
     match result {
         Ok(_) => { },
         Err(err) => {
-            LAST_ERROR.replace((err.to_string(), false));
+            LAST_ERROR.replace((err.to_string(), true));
         }
     }
 }
@@ -100,7 +100,7 @@ unsafe fn create_united<T: LinkType>(this: *mut c_void) -> T {
     match result {
         Ok(link) => link,
         Err(err) => {
-            LAST_ERROR.replace((err.to_string(), false));
+            LAST_ERROR.replace((err.to_string(), true));
             T::zero()
         }
     }
@@ -183,7 +183,7 @@ unsafe fn update_united<T: LinkType>(this: *mut c_void, index: T, source: T, tar
     match result {
         Ok(link) => link,
         Err(err) => {
-            LAST_ERROR.replace((err.to_string(), false));
+            LAST_ERROR.replace((err.to_string(), true));
             T::zero()
         }
     }
@@ -205,7 +205,7 @@ unsafe fn delete_united<T: LinkType>(this: *mut c_void, index: T) -> T {
     match result {
         Ok(link) => link,
         Err(err) => {
-            LAST_ERROR.replace((err.to_string(), false));
+            LAST_ERROR.replace((err.to_string(), true));
             T::zero()
         }
     }
