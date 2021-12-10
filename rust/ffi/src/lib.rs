@@ -25,14 +25,10 @@ static LAST_ERROR: RefCell<(String, bool)> = RefCell::new((String::new(), false)
 #[no_mangle]
 unsafe extern "C" fn take_last_error(err: *mut c_char) -> bool {
     let (msg, has) = LAST_ERROR.replace((String::new(), true));
-    if err.is_null() {
-        false
-    } else {
-        if has {
-            libc::strcpy(err, msg.as_ptr().cast());
-        }
-        has
+    if !err.is_null() && has {
+        libc::strcpy(err, msg.as_ptr().cast());
     }
+    has
 }
 
 type UnitedLinks<T> = Links<T, FileMappedMem>;
