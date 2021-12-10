@@ -1,20 +1,41 @@
 #![feature(box_syntax)]
+#![feature(thread_local)]
+#![feature(try_blocks)]
+#![feature(cell_update)]
 
+use std::cell::{Cell, RefCell};
 use std::ffi::{CStr, CString, OsStr, OsString};
+use std::fmt::Write;
+use std::panic::catch_unwind;
 use std::path::Path;
 use std::ptr;
-use std::ptr::drop_in_place;
+use std::ptr::{drop_in_place, null_mut};
 use std::slice;
 
-use doublets::doublets::{data::LinksConstants, ILinks, ILinksExtensions, mem::united::Links};
+use doublets::doublets::{data::LinksConstants, ILinks, ILinksExtensions, LinksError, mem::united::Links};
 use doublets::mem::FileMappedMem;
 use doublets::num::LinkType;
+use ffi_attributes as ffi;
 use libc::c_char;
 use libc::c_void;
 
-type UnitedLinks<T> = Links<T, FileMappedMem>;
+#[thread_local]
+static LAST_ERROR: RefCell<(String, bool)> = RefCell::new((String::new(), false));
 
-use ffi_attributes as ffi;
+#[no_mangle]
+unsafe extern "C" fn take_last_error(err: *mut c_char) -> bool {
+    let (msg, has) = LAST_ERROR.replace((String::new(), false));
+    if err.is_null() {
+        false
+    } else {
+        if has {
+            libc::strcpy(err, msg.as_ptr().cast());
+        }
+        has
+    }
+}
+
+type UnitedLinks<T> = Links<T, FileMappedMem>;
 
 #[ffi::specialize_for(
     types = "u8",
@@ -25,12 +46,21 @@ use ffi_attributes as ffi;
     name = "*UnitedMemoryLinks_New",
 )]
 unsafe fn new_united_links<T: LinkType>(path: *const c_char) -> *mut c_void {
-    let path = CStr::from_ptr(path);
-    let path = path.to_str().unwrap();
-    let path = OsStr::new(path);
-    let mem = FileMappedMem::new(path).unwrap();
-    let links = box UnitedLinks::<T>::with_constants(mem, LinksConstants::via_only_external(true));
-    Box::into_raw(links) as *mut c_void
+    let result: Result<_, LinksError<T>> = try {
+        let path = CStr::from_ptr(path);
+        let path = path.to_str().unwrap();
+        let path = OsStr::new(path);
+        let mem = FileMappedMem::new(path).unwrap();
+        let links = box UnitedLinks::<T>::with_constants(mem, LinksConstants::via_only_external(true));
+        Box::into_raw(links) as *mut c_void
+    };
+    match result {
+        Ok(links) => links,
+        Err(err) => {
+            LAST_ERROR.replace((err.to_string(), false));
+            null_mut()
+        }
+    }
 }
 
 #[ffi::specialize_for(
@@ -42,8 +72,16 @@ unsafe fn new_united_links<T: LinkType>(path: *const c_char) -> *mut c_void {
     name = "*UnitedMemoryLinks_Drop",
 )]
 unsafe fn drop_united_links<T: LinkType>(this: *mut c_void) {
-    let links = &mut *(this as *mut UnitedLinks<T>);
-    drop_in_place(links)
+    let result: Result<_, LinksError<T>> = try {
+        let links = &mut *(this as *mut UnitedLinks<T>);
+        drop_in_place(links)
+    };
+    match result {
+        Ok(_) => { },
+        Err(err) => {
+            LAST_ERROR.replace((err.to_string(), false));
+        }
+    }
 }
 
 #[ffi::specialize_for(
@@ -55,8 +93,17 @@ unsafe fn drop_united_links<T: LinkType>(this: *mut c_void) {
     name = "*UnitedMemoryLinks_Create",
 )]
 unsafe fn create_united<T: LinkType>(this: *mut c_void) -> T {
-    let links = &mut *(this as *mut UnitedLinks<T>);
-    links.create()
+    let result: Result<_, LinksError<T>> = try {
+        let links = &mut *(this as *mut UnitedLinks<T>);
+        links.create()?
+    };
+    match result {
+        Ok(link) => link,
+        Err(err) => {
+            LAST_ERROR.replace((err.to_string(), false));
+            T::zero()
+        }
+    }
 }
 #[repr(C)]
 struct Link<T: LinkType> {
@@ -129,8 +176,17 @@ unsafe fn count_united<T: LinkType>(this: *mut c_void, query: *const T, len: usi
     name = "*UnitedMemoryLinks_Update",
 )]
 unsafe fn update_united<T: LinkType>(this: *mut c_void, index: T, source: T, target: T) -> T {
-    let links = &mut *(this as *mut UnitedLinks<T>);
-    links.update(index, source, target)
+    let result: Result<_, LinksError<T>> = try {
+        let links = &mut *(this as *mut UnitedLinks<T>);
+        links.update(index, source, target)?
+    };
+    match result {
+        Ok(link) => link,
+        Err(err) => {
+            LAST_ERROR.replace((err.to_string(), false));
+            T::zero()
+        }
+    }
 }
 
 #[ffi::specialize_for(
@@ -142,12 +198,15 @@ unsafe fn update_united<T: LinkType>(this: *mut c_void, index: T, source: T, tar
     name = "*UnitedMemoryLinks_Delete",
 )]
 unsafe fn delete_united<T: LinkType>(this: *mut c_void, index: T) -> T {
-    let links = &mut *(this as *mut UnitedLinks<T>);
-    links.delete(index)
-}
-
-#[test]
-fn its_work() {
-
-
+    let result: Result<_, LinksError<T>> = try {
+        let links = &mut *(this as *mut UnitedLinks<T>);
+        links.delete(index)?
+    };
+    match result {
+        Ok(link) => link,
+        Err(err) => {
+            LAST_ERROR.replace((err.to_string(), false));
+            T::zero()
+        }
+    }
 }
