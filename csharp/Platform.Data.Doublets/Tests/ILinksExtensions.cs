@@ -242,9 +242,9 @@ namespace Platform.Data.Doublets.Tests
             var h107E = new Hybrid<T>(-char.ConvertFromUtf32(107)[0]);
             var h108E = new Hybrid<T>(-108L);
 
-            Assert.Equal(106L, h106E.AbsoluteValue);
-            Assert.Equal(107L, h107E.AbsoluteValue);
-            Assert.Equal(108L, h108E.AbsoluteValue);
+            EnsureEqual(106L, h106E.AbsoluteValue);
+            EnsureEqual(107L, h107E.AbsoluteValue);
+            EnsureEqual(108L, h108E.AbsoluteValue);
 
             // Create Link (External -> External)
             var linkAddress1 = links.Create();
