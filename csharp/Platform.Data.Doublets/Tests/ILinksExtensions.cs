@@ -24,6 +24,42 @@ namespace Platform.Data.Doublets.Tests
     public static class ILinksExtensions
     {
         /// <summary>
+        /// <para></para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="boolean">
+        /// <para></para>
+        /// <para></para>
+        /// </param>
+        private static void EnsureTrue(bool boolean) => EnsureTrue(boolean, default);
+
+        /// <summary>
+        /// <para></para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="boolean">
+        /// <para></para>
+        /// <para></para>
+        /// </param>
+        /// <param name="message">
+        /// <para></para>
+        /// <para></para>
+        /// </param>
+        /// <exception cref="ArgumentException">
+        /// <para></para>
+        /// <para></para>
+        /// </exception>
+        private static void EnsureTrue(bool boolean, string message)
+        {
+            if (boolean)
+            {
+                return;
+            }
+            string messageBuilder() => message;
+            throw new ArgumentException("EnsureTrue Failed. The value is not a true. " + messageBuilder());
+        }
+
+        /// <summary>
         /// <para>
         /// Tests the crud operations using the specified links.
         /// </para>
