@@ -50,8 +50,8 @@ unsafe fn new_united_links<T: LinkType>(path: *const c_char) -> *mut c_void {
         let path = CStr::from_ptr(path);
         let path = path.to_str().unwrap();
         let path = OsStr::new(path);
-        let mem = FileMappedMem::new(path).unwrap();
-        let links = box UnitedLinks::<T>::with_constants(mem, LinksConstants::via_only_external(true));
+        let mem = FileMappedMem::new(path)?;
+        let links = box UnitedLinks::<T>::with_constants(mem, LinksConstants::via_only_external(true))?;
         Box::into_raw(links) as *mut c_void
     };
     match result {
@@ -72,16 +72,8 @@ unsafe fn new_united_links<T: LinkType>(path: *const c_char) -> *mut c_void {
     name = "*UnitedMemoryLinks_Drop",
 )]
 unsafe fn drop_united_links<T: LinkType>(this: *mut c_void) {
-    let result: Result<_, LinksError<T>> = try {
-        let links = &mut *(this as *mut UnitedLinks<T>);
-        drop_in_place(links)
-    };
-    match result {
-        Ok(_) => { },
-        Err(err) => {
-            LAST_ERROR.replace((err.to_string(), true));
-        }
-    }
+    let links = &mut *(this as *mut UnitedLinks<T>);
+    drop_in_place(links);
 }
 
 #[ffi::specialize_for(
@@ -93,9 +85,9 @@ unsafe fn drop_united_links<T: LinkType>(this: *mut c_void) {
     name = "*UnitedMemoryLinks_Create",
 )]
 unsafe fn create_united<T: LinkType>(this: *mut c_void) -> T {
-    let result: Result<_, LinksError<T>> = try {
+    let result = {
         let links = &mut *(this as *mut UnitedLinks<T>);
-        links.create()?
+        links.create()
     };
     match result {
         Ok(link) => link,
