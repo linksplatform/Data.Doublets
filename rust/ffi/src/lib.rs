@@ -3,6 +3,7 @@
 #![feature(try_blocks)]
 #![feature(cell_update)]
 
+use std::alloc::{alloc, Layout};
 use std::cell::{Cell, RefCell};
 use std::ffi::{CStr, CString, OsStr, OsString};
 use std::fmt::Write;
@@ -11,6 +12,7 @@ use std::path::Path;
 use std::ptr;
 use std::ptr::{drop_in_place, null_mut};
 use std::slice;
+use std::time::{SystemTime, UNIX_EPOCH};
 
 use doublets::doublets::{data::LinksConstants, ILinks, ILinksExtensions, LinksError, mem::united::Links};
 use doublets::mem::FileMappedMem;
@@ -26,7 +28,7 @@ static LAST_ERROR: RefCell<(String, bool)> = RefCell::new((String::new(), false)
 unsafe extern "C" fn take_last_error(err: *mut c_char) -> bool {
     let (msg, has) = LAST_ERROR.replace((String::new(), true));
     if !err.is_null() && has {
-        libc::strcpy(err, msg.as_ptr().cast());
+        libc::strcpy(err, (msg + "\0").as_ptr().cast());
     }
     has
 }
@@ -164,9 +166,9 @@ unsafe fn count_united<T: LinkType>(this: *mut c_void, query: *const T, len: usi
     name = "*UnitedMemoryLinks_Update",
 )]
 unsafe fn update_united<T: LinkType>(this: *mut c_void, index: T, source: T, target: T) -> T {
-    let result: Result<_, LinksError<T>> = try {
+    let result = {
         let links = &mut *(this as *mut UnitedLinks<T>);
-        links.update(index, source, target)?
+        links.update(index, source, target)
     };
     match result {
         Ok(link) => link,
@@ -186,9 +188,9 @@ unsafe fn update_united<T: LinkType>(this: *mut c_void, index: T, source: T, tar
     name = "*UnitedMemoryLinks_Delete",
 )]
 unsafe fn delete_united<T: LinkType>(this: *mut c_void, index: T) -> T {
-    let result: Result<_, LinksError<T>> = try {
+    let result = {
         let links = &mut *(this as *mut UnitedLinks<T>);
-        links.delete(index)?
+        links.delete(index)
     };
     match result {
         Ok(link) => link,
@@ -198,3 +200,24 @@ unsafe fn delete_united<T: LinkType>(this: *mut c_void, index: T) -> T {
         }
     }
 }
+
+#[test]
+fn it_works() { unsafe {
+    std::fs::remove_file("db.links");
+    let name = CString::new("db.links").unwrap();
+    let links = new_united_links::<u32>(name.as_ptr());
+
+    create_united::<u32>(links);
+    update_united(links, 1_u32, 1_u32, 1_u32);
+    delete_united(links, 2_u32);
+
+    let mut buf = vec![b'_'; 100];
+    let err = take_last_error(buf.as_mut_ptr().cast());
+    if err {
+        println!("[ERROR]: {}", buf.into_iter()
+            .map_while(|c| {
+                (c != b'\0').then(|| char::from(c))
+            }).collect::<String>(),
+        );
+    }
+}}
