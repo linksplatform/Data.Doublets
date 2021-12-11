@@ -101,7 +101,8 @@ impl<
         self.mem
             .use_mem(Self::HEADER_SIZE + header.allocated.as_() * Self::LINK_SIZE)?;
 
-        let reserved = self.mem.reserved_mem();
+        let reserved = self.mem.reserved_mem()
+            .min((self.constants.internal_range.end().as_() + 1) * Self::LINK_SIZE);
         let header = self.get_mut_header();
         header.reserved = T::from_usize((reserved - Self::HEADER_SIZE) / Self::LINK_SIZE).unwrap();
         Ok(())
@@ -397,11 +398,11 @@ impl<
         let mut free = header.first_free;
         if free == constants.null {
             let max_inner = *constants.internal_range.end();
-            if header.allocated > max_inner {
+            if header.allocated >= max_inner {
                 return Err(LinksError::LimitReached(max_inner));
             }
 
-            if header.allocated >= header.reserved - one() {
+            if header.allocated >= header.reserved /* TODO: - one() */ {
                 self.mem
                     .reserve_mem(self.mem.reserved_mem() + self.reserve_step)?;
                 self.update_pointers();
