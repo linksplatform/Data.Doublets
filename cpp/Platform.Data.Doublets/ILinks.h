@@ -7,20 +7,22 @@
 
         void TestRandomCreationsAndDeletions(std::size_t maximumOperationsPerCycle)
         {
+            using namespace Platform::Random;
+
             auto&& links = *this;
             for (auto N = 1; N < maximumOperationsPerCycle; N++)
             {
-                auto& random = Platform::Random::RandomHelpers::Default;
+                auto& random = RandomHelpers::Default;
                 auto created = 0UL;
                 auto deleted = 0UL;
                 for (auto i = 0; i < N; i++)
                 {
                     auto linksCount = links.Count();
-                    auto createPoint = Platform::Random::NextBoolean(random);
+                    auto createPoint = Random::NextBoolean(random);
                     if (linksCount >= 2 && createPoint)
                     {
-                        auto source = NextUInt64(random, {1, linksCount});
-                        auto target = NextUInt64(random, {1, linksCount}); //-V3086
+                        auto source = Random::NextUInt64(random, {1, linksCount});
+                        auto target = Random::NextUInt64(random, {1, linksCount}); //-V3086
                         auto resultLink = links.GetOrCreate(source, target);
                         if (resultLink > linksCount)
                         {
@@ -57,8 +59,8 @@
             {
                 // TODO: Use ranges/0.1.4 features
                 auto linksAddressRange = Range<std::size_t>(0, links.Count());
-                auto source = NextUInt64(random, linksAddressRange);
-                auto target = NextUInt64(random, linksAddressRange);
+                auto source = Random::NextUInt64(random, linksAddressRange);
+                auto target = Random::NextUInt64(random, linksAddressRange);
                 links.GetOrCreate(source, target);
             }
         }
