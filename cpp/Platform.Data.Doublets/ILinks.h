@@ -149,7 +149,7 @@
         }
 
         auto IsPartialPoint(TLink index) -> bool {
-
+            return base::IsPartialPoint(GetLink(index));
         }
     };
 }
