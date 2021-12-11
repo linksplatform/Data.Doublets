@@ -19,9 +19,8 @@
                     auto createPoint = Platform::Random::NextBoolean(random);
                     if (linksCount >= 2 && createPoint)
                     {
-                        //auto linksAddressRange = Platform::Ranges::Range{1, linksCount};
-                        auto source = Platform::Random::NextUInt64(random, {1, linksCount});
-                        auto target = Platform::Random::NextUInt64(random, {1, linksCount}); //-V3086
+                        auto source = NextUInt64(random, {1, linksCount});
+                        auto target = NextUInt64(random, {1, linksCount}); //-V3086
                         auto resultLink = links.GetOrCreate(source, target);
                         if (resultLink > linksCount)
                         {
@@ -34,19 +33,16 @@
                         created++;
                     }
                 }
-                //Assert.True(created == addressToUInt64Converter.Convert(links.Count()));
                 auto count = links.Count();
                 for (auto i = 0; i < count; i++)
                 {
                     auto link = i + 1;
-                    //if (links.Exists(link))
                     {
                         links.Update(link, 0, 0);
                         links.Delete(link);
                         deleted++;
                     }
                 }
-                //Assert.True(addressToUInt64Converter.Convert(links.Count()) == 0L);
             }
         }
 
@@ -61,8 +57,8 @@
             {
                 // TODO: Use ranges/0.1.4 features
                 auto linksAddressRange = Range<std::size_t>(0, links.Count());
-                auto source = Random::NextUInt64(random, linksAddressRange);
-                auto target = Random::NextUInt64(random, linksAddressRange);
+                auto source = NextUInt64(random, linksAddressRange);
+                auto target = NextUInt64(random, linksAddressRange);
                 links.GetOrCreate(source, target);
             }
         }
@@ -75,11 +71,8 @@
             auto&& links = *this;
             auto constants = links.Constants;
             TLink result = 0;
-            //auto setter = Setter<TLink, TLink>(constants.Continue, constants.Break, constants.Null);
-            //auto set_and_return = [&](auto&& args) { return setter.SetFirstAndReturnFalse(args); };
             base::Each([&](auto link) {
                 result = link[0];
-                //std::cout << "finded\n";
                 return links.Constants.Break;
             }, Link{links.Constants.Any, source, target});
             return result;
