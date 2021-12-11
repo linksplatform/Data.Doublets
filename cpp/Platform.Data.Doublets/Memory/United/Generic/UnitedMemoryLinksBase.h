@@ -73,7 +73,7 @@
         }
 
     public:
-        TLink Count(Interfaces::IArray auto&& restrictions) //const
+        TLink Count(Interfaces::IArray auto&& restrictions) const
         {
             // Если нет ограничений, тогда возвращаем общее число связей находящихся в хранилище.
             if (std::ranges::size(restrictions)  == 0)
@@ -211,7 +211,7 @@
         // / </returns>
 // NOTE: The following .NET attribute has no direct equivalent in C++:
 // ORIGINAL LINE: [MethodImpl(MethodImplOptions.AggressiveInlining)] public TLink Each(System.Func<IList<TLink>, TLink> handler, IList<TLink> restrictions)
-        TLink Each(auto&& handler, Interfaces::IArray auto&& restrictions)
+        TLink Each(auto&& handler, Interfaces::IArray auto&& restrictions) const
         {
             auto constants = Constants;
             auto $break = constants.Break;
@@ -434,10 +434,10 @@
             }
         }
 
-        auto GetLinkStruct(TLink linkIndex)
+        auto GetLinkStruct(TLink linkIndex) const
         {
             auto& link = this->GetLinkReference(linkIndex);
-            return Link<TLink>(linkIndex, link.Source, link.Target);
+            return Link { linkIndex, link.Source, link.Target };
         }
 
         // TODO: Возможно это должно быть событием, вызываемым из IMemory, в том случае, если адрес реально поменялся
