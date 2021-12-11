@@ -24,6 +24,120 @@ namespace Platform.Data.Doublets.Tests
     public static class ILinksExtensions
     {
         /// <summary>
+        /// <para></para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="boolean">
+        /// <para></para>
+        /// <para></para>
+        /// </param>
+        private static void EnsureTrue(bool boolean) => EnsureTrue(boolean, default);
+
+        /// <summary>
+        /// <para></para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="boolean">
+        /// <para></para>
+        /// <para></para>
+        /// </param>
+        /// <param name="message">
+        /// <para></para>
+        /// <para></para>
+        /// </param>
+        /// <exception cref="ArgumentException">
+        /// <para></para>
+        /// <para></para>
+        /// </exception>
+        private static void EnsureTrue(bool boolean, string message)
+        {
+            if (boolean)
+            {
+                return;
+            }
+            string messageBuilder() => message;
+            throw new ArgumentException("EnsureTrue Failed. The value is not a true. " + messageBuilder());
+        }
+
+        /// <summary>
+        /// <para></para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="expected">
+        /// <para></para>
+        /// <para></para>
+        /// </param>
+        /// <param name="actual">
+        /// <para></para>
+        /// <para></para>
+        /// </param>
+        /// <typeparam name="T">
+        /// <para></para>
+        /// <para></para>
+        /// </typeparam>
+        private static void EnsureEqual<T>(T expected, T actual) => EnsureEqual(expected, actual, default);
+
+        /// <summary>
+        /// <para></para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="expected">
+        /// <para></para>
+        /// <para></para>
+        /// </param>
+        /// <param name="actual">
+        /// <para></para>
+        /// <para></para>
+        /// </param>
+        /// <param name="message">
+        /// <para></para>
+        /// <para></para>
+        /// </param>
+        /// <typeparam name="T">
+        /// <para></para>
+        /// <para></para>
+        /// </typeparam>
+        private static void EnsureEqual<T>(T expected, T actual, string message) => EnsureEqual(expected, actual, message, EqualityComparer<T>.Default);
+
+        /// <summary>
+        /// <para></para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="expected">
+        /// <para></para>
+        /// <para></para>
+        /// </param>
+        /// <param name="actual">
+        /// <para></para>
+        /// <para></para>
+        /// </param>
+        /// <param name="message">
+        /// <para></para>
+        /// <para></para>
+        /// </param>
+        /// <param name="equalityComparer">
+        /// <para></para>
+        /// <para></para>
+        /// </param>
+        /// <typeparam name="T">
+        /// <para></para>
+        /// <para></para>
+        /// </typeparam>
+        /// <exception cref="ArgumentException">
+        /// <para></para>
+        /// <para></para>
+        /// </exception>
+        private static void EnsureEqual<T>(T expected, T actual, string message, IEqualityComparer<T> equalityComparer)
+        {
+            if (!equalityComparer.Equals(expected, actual))
+            {
+                return;
+            }
+            string messageBuilder() => message;
+            throw new ArgumentException("EnsureEqual Failed. The values are not equal. " + messageBuilder());
+        }
+
+        /// <summary>
         /// <para>
         /// Tests the crud operations using the specified links.
         /// </para>
@@ -128,9 +242,9 @@ namespace Platform.Data.Doublets.Tests
             var h107E = new Hybrid<T>(-char.ConvertFromUtf32(107)[0]);
             var h108E = new Hybrid<T>(-108L);
 
-            Assert.Equal(106L, h106E.AbsoluteValue);
-            Assert.Equal(107L, h107E.AbsoluteValue);
-            Assert.Equal(108L, h108E.AbsoluteValue);
+            EnsureEqual(106L, h106E.AbsoluteValue);
+            EnsureEqual(107L, h107E.AbsoluteValue);
+            EnsureEqual(108L, h108E.AbsoluteValue);
 
             // Create Link (External -> External)
             var linkAddress1 = links.Create();
