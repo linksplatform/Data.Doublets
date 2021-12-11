@@ -112,7 +112,7 @@
             }
         }
 
-        public: template <typename TLink> static bool CheckPathExistance(ILinks<TLink> &links, params TLink path[])
+        public: template <typename TLink> static bool CheckPathExistence(ILinks<TLink> &links, params TLink path[])
         {
             auto current = path[0];
             if (!links.Exists(current))
@@ -224,6 +224,7 @@
         }
 
         public: template <typename TLink> static bool Exists(ILinks<TLink> &links, TLink source, TLink target) { return Comparer<TLink>.Default.Compare(links.Count()(links.Constants.Any, source, target), 0) > 0; }
+        // CountUsages
 
         public: template <typename TLink> static void EnsureLinkExists(ILinks<TLink> &links, IList<TLink> &restrictions)
         {
