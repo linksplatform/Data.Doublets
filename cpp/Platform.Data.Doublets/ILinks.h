@@ -5,15 +5,6 @@
     {
         using base = Data::ILinks<Self, TLink, LinksConstants<TLink>>;
 
-        //using base::Count;
-        //using base::Update;
-        //using base::Delete;
-        //using base::GetLink;
-        //using base::Exists;
-
-        //using Data::ILinks<Self, TLink, LinksConstants<TLink>>::Count;
-
-
         void TestRandomCreationsAndDeletions(std::size_t maximumOperationsPerCycle)
         {
             auto&& links = *this;
