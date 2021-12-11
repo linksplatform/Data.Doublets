@@ -4,14 +4,8 @@ using Platform.Ranges;
 using Platform.Random;
 using Platform.Converters;
 using System.Collections.Generic;
-using Platform.Ranges;
 using Platform.Numbers;
-using Platform.Random;
 using Platform.Setters;
-using Platform.Converters;
-
-
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
 namespace Platform.Data.Doublets.Tests
 {
