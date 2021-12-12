@@ -14,7 +14,7 @@ use crate::doublets::link::Link;
 use crate::doublets::mem::{ILinksListMethods, UpdatePointers};
 use crate::doublets::mem::ILinksTreeMethods;
 use crate::doublets::mem::links_header::LinksHeader;
-use crate::doublets::mem::united::LinksSourcesRecursionlessSizeBalancedTree;
+use crate::doublets::mem::united::{LinksSourcesRecursionlessSizeBalancedTree, NewList, NewTree};
 use crate::doublets::mem::united::LinksSourcesSizeBalancedTree;
 use crate::doublets::mem::united::LinksTargetsRecursionlessSizeBalancedTree;
 use crate::doublets::mem::united::LinksTargetsSizeBalancedTree;
@@ -29,9 +29,9 @@ use crate::doublets::Result;
 pub struct Links<
     T: LinkType,
     M: ResizeableMem,
-    TS: ILinksTreeMethods<T> + UpdatePointers = LinksSourcesRecursionlessSizeBalancedTree<T>,
-    TT: ILinksTreeMethods<T> + UpdatePointers = LinksTargetsRecursionlessSizeBalancedTree<T>,
-    TU: ILinksListMethods<T> + UpdatePointers = UnusedLinks<T>,
+    TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers = LinksSourcesRecursionlessSizeBalancedTree<T>,
+    TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers = LinksTargetsRecursionlessSizeBalancedTree<T>,
+    TU: ILinksListMethods<T> + NewList<T> + UpdatePointers = UnusedLinks<T>,
 > {
     pub mem: M,
     pub reserve_step: usize,
@@ -45,9 +45,837 @@ pub struct Links<
 impl<
     T: LinkType,
     M: ResizeableMem,
-    TS: ILinksTreeMethods<T> + UpdatePointers,
-    TT: ILinksTreeMethods<T> + UpdatePointers,
-    TU: ILinksListMethods<T> + UpdatePointers,
+    TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
+> Links<T, M, TS, TT, TU>
+{
+    ///
+    ///                    Create a builder for building `Links`.
+    ///                    On the builder, call `.mem(...)`, `.reserve_step(...)`, `.constants(...)`, `.sources(...)`, `.targets(...)`, `.unused(...)` to set the values of the fields.
+    ///                    Finally, call `.build()` to create the instance of `Links`.
+    ///
+    #[allow(dead_code, clippy::default_trait_access)]
+    pub fn with_options() -> LinksBuilder<((), (), (), (), (), ()), T, M, TS, TT, TU> {
+        LinksBuilder {
+            fields: ((), (), (), (), (), ()),
+            phantom: ::core::default::Default::default(),
+        }
+    }
+}
+
+#[must_use]
+#[doc(hidden)]
+#[allow(dead_code, non_camel_case_types, non_snake_case)]
+pub struct LinksBuilder<TypedBuilderFields, T: LinkType, M: ResizeableMem, TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers = LinksSourcesRecursionlessSizeBalancedTree<T>, TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers = LinksTargetsRecursionlessSizeBalancedTree<T>, TU: ILinksListMethods<T> + NewList<T> + UpdatePointers = UnusedLinks<T>> {
+    fields: TypedBuilderFields,
+    phantom: (::core::marker::PhantomData<T>, ::core::marker::PhantomData<M>, ::core::marker::PhantomData<TS>, ::core::marker::PhantomData<TT>, ::core::marker::PhantomData<TU>),
+}
+
+impl<
+    TypedBuilderFields,
+    T: LinkType,
+    M: ResizeableMem,
+    TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
+> Clone for LinksBuilder<TypedBuilderFields, T, M, TS, TT, TU>
+    where
+        TypedBuilderFields: Clone,
+{
+    #[allow(clippy::default_trait_access)]
+    fn clone(&self) -> Self {
+        Self {
+            fields: self.fields.clone(),
+            phantom: ::core::default::Default::default(),
+        }
+    }
+}
+
+#[doc(hidden)]
+#[allow(dead_code, non_camel_case_types, non_snake_case)]
+pub trait LinksBuilder_Optional<T> {
+    fn into_value<F: FnOnce() -> T>(self, default: F) -> T;
+}
+
+impl<T> LinksBuilder_Optional<T> for () {
+    fn into_value<F: FnOnce() -> T>(self, default: F) -> T {
+        default()
+    }
+}
+
+impl<T> LinksBuilder_Optional<T> for (T, ) {
+    fn into_value<F: FnOnce() -> T>(self, _: F) -> T {
+        self.0
+    }
+}
+
+#[allow(dead_code, non_camel_case_types, missing_docs)]
+impl<
+    __unused,
+    __targets,
+    __sources,
+    __constants,
+    __reserve_step,
+    T: LinkType,
+    M: ResizeableMem,
+    TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
+>
+LinksBuilder<
+    (
+        (),
+        __reserve_step,
+        __constants,
+        __sources,
+        __targets,
+        __unused,
+    ),
+    T,
+    M,
+    TS,
+    TT,
+    TU,
+>
+{
+    pub fn mem(
+        self,
+        mem: M,
+    ) -> LinksBuilder<
+        (
+            (M, ),
+            __reserve_step,
+            __constants,
+            __sources,
+            __targets,
+            __unused,
+        ),
+        T,
+        M,
+        TS,
+        TT,
+        TU,
+    > {
+        let mem = (mem, );
+        let (_, reserve_step, constants, sources, targets, unused) = self.fields;
+        LinksBuilder {
+            fields: (mem, reserve_step, constants, sources, targets, unused),
+            phantom: self.phantom,
+        }
+    }
+}
+
+#[doc(hidden)]
+#[allow(dead_code, non_camel_case_types, non_snake_case)]
+pub enum LinksBuilder_Error_Repeated_field_mem {}
+
+#[doc(hidden)]
+#[allow(dead_code, non_camel_case_types, missing_docs)]
+impl<
+    __unused,
+    __targets,
+    __sources,
+    __constants,
+    __reserve_step,
+    T: LinkType,
+    M: ResizeableMem,
+    TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
+>
+LinksBuilder<
+    (
+        (M, ),
+        __reserve_step,
+        __constants,
+        __sources,
+        __targets,
+        __unused,
+    ),
+    T,
+    M,
+    TS,
+    TT,
+    TU,
+>
+{
+    #[deprecated(note = "Repeated field mem")]
+    pub fn mem(
+        self,
+        _: LinksBuilder_Error_Repeated_field_mem,
+    ) -> LinksBuilder<
+        (
+            (M, ),
+            __reserve_step,
+            __constants,
+            __sources,
+            __targets,
+            __unused,
+        ),
+        T,
+        M,
+        TS,
+        TT,
+        TU,
+    > {
+        self
+    }
+}
+
+#[allow(dead_code, non_camel_case_types, missing_docs)]
+impl<
+    __unused,
+    __targets,
+    __sources,
+    __constants,
+    __mem,
+    T: LinkType,
+    M: ResizeableMem,
+    TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
+> LinksBuilder<(__mem, (), __constants, __sources, __targets, __unused), T, M, TS, TT, TU>
+{
+    pub fn reserve_step(
+        self,
+        reserve_step: usize,
+    ) -> LinksBuilder<
+        (__mem, (usize, ), __constants, __sources, __targets, __unused),
+        T,
+        M,
+        TS,
+        TT,
+        TU,
+    > {
+        let reserve_step = (reserve_step, );
+        let (mem, _, constants, sources, targets, unused) = self.fields;
+        LinksBuilder {
+            fields: (mem, reserve_step, constants, sources, targets, unused),
+            phantom: self.phantom,
+        }
+    }
+}
+
+#[doc(hidden)]
+#[allow(dead_code, non_camel_case_types, non_snake_case)]
+pub enum LinksBuilder_Error_Repeated_field_reserve_step {}
+
+#[doc(hidden)]
+#[allow(dead_code, non_camel_case_types, missing_docs)]
+impl<
+    __unused,
+    __targets,
+    __sources,
+    __constants,
+    __mem,
+    T: LinkType,
+    M: ResizeableMem,
+    TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
+>
+LinksBuilder<
+    (__mem, (usize, ), __constants, __sources, __targets, __unused),
+    T,
+    M,
+    TS,
+    TT,
+    TU,
+>
+{
+    #[deprecated(note = "Repeated field reserve_step")]
+    pub fn reserve_step(
+        self,
+        _: LinksBuilder_Error_Repeated_field_reserve_step,
+    ) -> LinksBuilder<
+        (__mem, (usize, ), __constants, __sources, __targets, __unused),
+        T,
+        M,
+        TS,
+        TT,
+        TU,
+    > {
+        self
+    }
+}
+
+#[allow(dead_code, non_camel_case_types, missing_docs)]
+impl<
+    __unused,
+    __targets,
+    __sources,
+    __reserve_step,
+    __mem,
+    T: LinkType,
+    M: ResizeableMem,
+    TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
+>
+LinksBuilder<(__mem, __reserve_step, (), __sources, __targets, __unused), T, M, TS, TT, TU>
+{
+    pub fn constants(
+        self,
+        constants: LinksConstants<T>,
+    ) -> LinksBuilder<
+        (
+            __mem,
+            __reserve_step,
+            (LinksConstants<T>, ),
+            __sources,
+            __targets,
+            __unused,
+        ),
+        T,
+        M,
+        TS,
+        TT,
+        TU,
+    > {
+        let constants = (constants, );
+        let (mem, reserve_step, _, sources, targets, unused) = self.fields;
+        LinksBuilder {
+            fields: (mem, reserve_step, constants, sources, targets, unused),
+            phantom: self.phantom,
+        }
+    }
+}
+
+#[doc(hidden)]
+#[allow(dead_code, non_camel_case_types, non_snake_case)]
+pub enum LinksBuilder_Error_Repeated_field_constants {}
+
+#[doc(hidden)]
+#[allow(dead_code, non_camel_case_types, missing_docs)]
+impl<
+    __unused,
+    __targets,
+    __sources,
+    __reserve_step,
+    __mem,
+    T: LinkType,
+    M: ResizeableMem,
+    TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
+>
+LinksBuilder<
+    (
+        __mem,
+        __reserve_step,
+        (LinksConstants<T>, ),
+        __sources,
+        __targets,
+        __unused,
+    ),
+    T,
+    M,
+    TS,
+    TT,
+    TU,
+>
+{
+    #[deprecated(note = "Repeated field constants")]
+    pub fn constants(
+        self,
+        _: LinksBuilder_Error_Repeated_field_constants,
+    ) -> LinksBuilder<
+        (
+            __mem,
+            __reserve_step,
+            (LinksConstants<T>, ),
+            __sources,
+            __targets,
+            __unused,
+        ),
+        T,
+        M,
+        TS,
+        TT,
+        TU,
+    > {
+        self
+    }
+}
+
+#[allow(dead_code, non_camel_case_types, missing_docs)]
+impl<
+    __unused,
+    __targets,
+    __constants,
+    __reserve_step,
+    __mem,
+    T: LinkType,
+    M: ResizeableMem,
+    TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
+>
+LinksBuilder<
+    (__mem, __reserve_step, __constants, (), __targets, __unused),
+    T,
+    M,
+    TS,
+    TT,
+    TU,
+>
+{
+    pub fn sources(
+        self,
+        sources: TS,
+    ) -> LinksBuilder<
+        (
+            __mem,
+            __reserve_step,
+            __constants,
+            (TS, ),
+            __targets,
+            __unused,
+        ),
+        T,
+        M,
+        TS,
+        TT,
+        TU,
+    > {
+        let sources = (sources, );
+        let (mem, reserve_step, constants, _, targets, unused) = self.fields;
+        LinksBuilder {
+            fields: (mem, reserve_step, constants, sources, targets, unused),
+            phantom: self.phantom,
+        }
+    }
+}
+
+#[doc(hidden)]
+#[allow(dead_code, non_camel_case_types, non_snake_case)]
+pub enum LinksBuilder_Error_Repeated_field_sources {}
+
+#[doc(hidden)]
+#[allow(dead_code, non_camel_case_types, missing_docs)]
+impl<
+    __unused,
+    __targets,
+    __constants,
+    __reserve_step,
+    __mem,
+    T: LinkType,
+    M: ResizeableMem,
+    TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
+>
+LinksBuilder<
+    (
+        __mem,
+        __reserve_step,
+        __constants,
+        (TS, ),
+        __targets,
+        __unused,
+    ),
+    T,
+    M,
+    TS,
+    TT,
+    TU,
+>
+{
+    #[deprecated(note = "Repeated field sources")]
+    pub fn sources(
+        self,
+        _: LinksBuilder_Error_Repeated_field_sources,
+    ) -> LinksBuilder<
+        (
+            __mem,
+            __reserve_step,
+            __constants,
+            (TS, ),
+            __targets,
+            __unused,
+        ),
+        T,
+        M,
+        TS,
+        TT,
+        TU,
+    > {
+        self
+    }
+}
+
+#[allow(dead_code, non_camel_case_types, missing_docs)]
+impl<
+    __unused,
+    __sources,
+    __constants,
+    __reserve_step,
+    __mem,
+    T: LinkType,
+    M: ResizeableMem,
+    TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
+>
+LinksBuilder<
+    (__mem, __reserve_step, __constants, __sources, (), __unused),
+    T,
+    M,
+    TS,
+    TT,
+    TU,
+>
+{
+    pub fn targets(
+        self,
+        targets: TT,
+    ) -> LinksBuilder<
+        (
+            __mem,
+            __reserve_step,
+            __constants,
+            __sources,
+            (TT, ),
+            __unused,
+        ),
+        T,
+        M,
+        TS,
+        TT,
+        TU,
+    > {
+        let targets = (targets, );
+        let (mem, reserve_step, constants, sources, _, unused) = self.fields;
+        LinksBuilder {
+            fields: (mem, reserve_step, constants, sources, targets, unused),
+            phantom: self.phantom,
+        }
+    }
+}
+
+#[doc(hidden)]
+#[allow(dead_code, non_camel_case_types, non_snake_case)]
+pub enum LinksBuilder_Error_Repeated_field_targets {}
+
+#[doc(hidden)]
+#[allow(dead_code, non_camel_case_types, missing_docs)]
+impl<
+    __unused,
+    __sources,
+    __constants,
+    __reserve_step,
+    __mem,
+    T: LinkType,
+    M: ResizeableMem,
+    TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
+>
+LinksBuilder<
+    (
+        __mem,
+        __reserve_step,
+        __constants,
+        __sources,
+        (TT, ),
+        __unused,
+    ),
+    T,
+    M,
+    TS,
+    TT,
+    TU,
+>
+{
+    #[deprecated(note = "Repeated field targets")]
+    pub fn targets(
+        self,
+        _: LinksBuilder_Error_Repeated_field_targets,
+    ) -> LinksBuilder<
+        (
+            __mem,
+            __reserve_step,
+            __constants,
+            __sources,
+            (TT, ),
+            __unused,
+        ),
+        T,
+        M,
+        TS,
+        TT,
+        TU,
+    > {
+        self
+    }
+}
+
+#[allow(dead_code, non_camel_case_types, missing_docs)]
+impl<
+    __targets,
+    __sources,
+    __constants,
+    __reserve_step,
+    __mem,
+    T: LinkType,
+    M: ResizeableMem,
+    TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
+>
+LinksBuilder<
+    (__mem, __reserve_step, __constants, __sources, __targets, ()),
+    T,
+    M,
+    TS,
+    TT,
+    TU,
+>
+{
+    pub fn unused(
+        self,
+        unused: TU,
+    ) -> LinksBuilder<
+        (
+            __mem,
+            __reserve_step,
+            __constants,
+            __sources,
+            __targets,
+            (TU, ),
+        ),
+        T,
+        M,
+        TS,
+        TT,
+        TU,
+    > {
+        let unused = (unused, );
+        let (mem, reserve_step, constants, sources, targets, _) = self.fields;
+        LinksBuilder {
+            fields: (mem, reserve_step, constants, sources, targets, unused),
+            phantom: self.phantom,
+        }
+    }
+}
+
+#[doc(hidden)]
+#[allow(dead_code, non_camel_case_types, non_snake_case)]
+pub enum LinksBuilder_Error_Repeated_field_unused {}
+
+#[doc(hidden)]
+#[allow(dead_code, non_camel_case_types, missing_docs)]
+impl<
+    __targets,
+    __sources,
+    __constants,
+    __reserve_step,
+    __mem,
+    T: LinkType,
+    M: ResizeableMem,
+    TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
+>
+LinksBuilder<
+    (
+        __mem,
+        __reserve_step,
+        __constants,
+        __sources,
+        __targets,
+        (TU, ),
+    ),
+    T,
+    M,
+    TS,
+    TT,
+    TU,
+>
+{
+    #[deprecated(note = "Repeated field unused")]
+    pub fn unused(
+        self,
+        _: LinksBuilder_Error_Repeated_field_unused,
+    ) -> LinksBuilder<
+        (
+            __mem,
+            __reserve_step,
+            __constants,
+            __sources,
+            __targets,
+            (TU, ),
+        ),
+        T,
+        M,
+        TS,
+        TT,
+        TU,
+    > {
+        self
+    }
+}
+
+#[doc(hidden)]
+#[allow(dead_code, non_camel_case_types, non_snake_case)]
+pub enum LinksBuilder_Error_Missing_required_field_mem {}
+
+#[doc(hidden)]
+#[allow(dead_code, non_camel_case_types, missing_docs, clippy::panic)]
+impl<
+    __unused,
+    __targets,
+    __sources,
+    __constants,
+    __reserve_step,
+    T: LinkType,
+    M: ResizeableMem,
+    TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
+>
+LinksBuilder<
+    (
+        (),
+        __reserve_step,
+        __constants,
+        __sources,
+        __targets,
+        __unused,
+    ),
+    T,
+    M,
+    TS,
+    TT,
+    TU,
+>
+{
+    #[deprecated(note = "Missing required field mem")]
+    pub fn build(
+        self,
+        _: LinksBuilder_Error_Missing_required_field_mem,
+    ) -> Links<T, M, TS, TT, TU> {
+        {
+            ::std::rt::begin_panic("explicit panic")
+        };
+    }
+}
+
+#[doc(hidden)]
+#[allow(dead_code, non_camel_case_types, non_snake_case)]
+pub enum LinksBuilder_Error_Missing_required_field_constants {}
+
+#[doc(hidden)]
+#[allow(dead_code, non_camel_case_types, missing_docs, clippy::panic)]
+impl<
+    __unused,
+    __targets,
+    __sources,
+    __reserve_step,
+    T: LinkType,
+    M: ResizeableMem,
+    TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
+>
+LinksBuilder<((M, ), __reserve_step, (), __sources, __targets, __unused), T, M, TS, TT, TU>
+{
+    #[deprecated(note = "Missing required field constants")]
+    pub fn build(
+        self,
+        _: LinksBuilder_Error_Missing_required_field_constants,
+    ) -> Links<T, M, TS, TT, TU> {
+        {
+            ::std::rt::begin_panic("explicit panic")
+        };
+    }
+}
+
+#[allow(dead_code, non_camel_case_types, missing_docs)]
+impl<
+    __unused: LinksBuilder_Optional<TU>,
+    __targets: LinksBuilder_Optional<TT>,
+    __sources: LinksBuilder_Optional<TS>,
+    __reserve_step: LinksBuilder_Optional<usize>,
+    T: LinkType,
+    M: ResizeableMem,
+    TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
+>
+LinksBuilder<
+    (
+        (M, ),
+        __reserve_step,
+        (LinksConstants<T>, ),
+        __sources,
+        __targets,
+        __unused,
+    ),
+    T,
+    M,
+    TS,
+    TT,
+    TU,
+>
+{
+    pub const LINK_SIZE: usize = size_of::<RawLink<T>>();
+    pub const HEADER_SIZE: usize = size_of::<LinksHeader<T>>();
+    pub const MAGIC_CONSTANT: usize = 1024 * 1024;
+    pub const DEFAULT_LINKS_SIZE_STEP: usize = Self::LINK_SIZE * Self::MAGIC_CONSTANT;
+
+    #[allow(clippy::default_trait_access)]
+    pub fn open(self) -> Result<Links<T, M, TS, TT, TU>, LinksError<T>> {
+        let (mem, reserve_step, constants, sources, targets, unused) = self.fields;
+        let mem = mem.0;
+        let reserve_step = LinksBuilder_Optional::into_value(reserve_step, || {
+            Self::DEFAULT_LINKS_SIZE_STEP
+        });
+        let constants = constants.0;
+        let sources = LinksBuilder_Optional::into_value(sources, || {
+            let links = mem.get_ptr();
+            let header = links;
+            TS::new(
+                constants.clone(),
+                links,
+                header,
+            )
+        });
+        let targets = LinksBuilder_Optional::into_value(targets, || {
+            let links = mem.get_ptr();
+            let header = links;
+            TT::new(
+                constants.clone(),
+                links,
+                header,
+            )
+        });
+        let unused = LinksBuilder_Optional::into_value(unused, || {
+            let links = mem.get_ptr();
+            let header = links;
+            TU::new(links, header)
+        });
+        let mut new = Links {
+            mem,
+            reserve_step,
+            constants,
+            sources,
+            targets,
+            unused,
+        };
+
+        new.init()?;
+        Ok(new)
+    }
+}
+
+impl<
+    T: LinkType,
+    M: ResizeableMem,
+    TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
 > Links<T, M, TS, TT, TU>
 {
     pub const LINK_SIZE: usize = size_of::<RawLink<T>>();
@@ -101,8 +929,15 @@ impl<
         self.mem
             .use_mem(Self::HEADER_SIZE + header.allocated.as_() * Self::LINK_SIZE)?;
 
-        let reserved = self.mem.reserved_mem()
-            .min((self.constants.internal_range.end().as_() + 1) * Self::LINK_SIZE);
+        let reserved =
+            if let Some(min) =
+            (self.constants.internal_range.end().as_() + 1).checked_mul(Self::LINK_SIZE) {
+                self.mem.reserved_mem()
+                    .min(min)
+            } else {
+                self.mem.reserved_mem()
+            };
+
         let header = self.get_mut_header();
         header.reserved = T::from_usize((reserved - Self::HEADER_SIZE) / Self::LINK_SIZE).unwrap();
         Ok(())
@@ -283,9 +1118,9 @@ impl<
 impl<
     T: LinkType,
     M: ResizeableMem,
-    TS: ILinksTreeMethods<T> + UpdatePointers,
-    TT: ILinksTreeMethods<T> + UpdatePointers,
-    TU: ILinksListMethods<T> + UpdatePointers,
+    TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+    TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
 > doublets::ILinks<T> for Links<T, M, TS, TT, TU>
 {
     fn constants(&self) -> LinksConstants<T> {
@@ -421,8 +1256,8 @@ impl<
     }
 
     fn each_by<H, const L: usize>(&self, mut handler: H, restrictions: [T; L]) -> T
-    where
-        H: FnMut(Link<T>) -> T,
+        where
+            H: FnMut(Link<T>) -> T,
     {
         self.each_core(&mut handler, restrictions)
     }

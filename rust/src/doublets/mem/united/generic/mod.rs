@@ -5,10 +5,20 @@ pub(crate) use links_targets_size_balanced_tree::{*};
 pub(crate) use sources_recursionless_size_balanced_tree::{*};
 pub(crate) use targets_recursionless_size_balanced_tree::{*};
 pub(crate) use unused_links::{*};
+use crate::doublets::data::LinksConstants;
+use crate::LinkType;
 
 // TODO: move
 pub trait UpdatePointers {
     fn update_pointers(&mut self, links: *mut u8, header: *mut u8);
+}
+
+pub trait NewTree<T: LinkType> {
+    fn new(constants: LinksConstants<T>, links: *mut u8, header: *mut u8) -> Self;
+}
+
+pub trait NewList<T: LinkType> {
+    fn new(links: *mut u8, header: *mut u8) -> Self;
 }
 
 pub trait UpdatePointersSplit {

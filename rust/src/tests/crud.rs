@@ -62,17 +62,18 @@ fn billion_points_file_mapped() {
 }
 
 #[test]
-fn billion_points_heap_mem() {
-    let mem = HeapMem::new().unwrap();
-    let mut links = Links::<usize, _>::new(mem).unwrap();
+fn billion_points_heap_mem() -> Result<(), LinksError<usize>> {
+    let mem = HeapMem::new()?;
+    let mut links = Links::<usize, _>::new(mem)?;
 
     let instant = Instant::now();
 
     for _ in 0..1_000_000 {
-        links.get_or_create(1, 1).unwrap();
+        links.create_point()?;
     }
 
     println!("{:?}", instant.elapsed());
+    Ok(())
 }
 
 #[test]

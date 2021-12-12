@@ -8,6 +8,7 @@ use crate::doublets::mem::united::generic::links_recursionless_size_balanced_tre
     LinkRecursionlessSizeBalancedTreeBaseAbstract, LinksRecursionlessSizeBalancedTreeBase,
 };
 use crate::doublets::mem::united::generic::UpdatePointers;
+use crate::doublets::mem::united::NewTree;
 use crate::doublets::mem::united::raw_link::RawLink;
 use crate::methods::RecursionlessSizeBalancedTreeMethods;
 use crate::methods::SizeBalancedTreeBase;
@@ -22,6 +23,12 @@ impl<T: LinkType> LinksSourcesRecursionlessSizeBalancedTree<T> {
         Self {
             base: LinksRecursionlessSizeBalancedTreeBase::new(constants, links, header),
         }
+    }
+}
+
+impl<T: LinkType> NewTree<T> for LinksSourcesRecursionlessSizeBalancedTree<T> {
+    fn new(constants: LinksConstants<T>, links: *mut u8, header: *mut u8) -> Self {
+        LinksSourcesRecursionlessSizeBalancedTree::new(constants, links, header)
     }
 }
 
