@@ -2,9 +2,9 @@ extern crate test;
 
 use test::Bencher;
 
-use crate::doublets::{ILinks, ILinksExtensions};
 use crate::doublets::decorators::NonNullDeletionResolver;
 use crate::doublets::mem::united;
+use crate::doublets::{ILinks, ILinksExtensions};
 use crate::mem::{FileMappedMem, HeapMem, ResizeableMem};
 use crate::test_extensions::ILinksTestExtensions;
 use crate::tests::make_mem;

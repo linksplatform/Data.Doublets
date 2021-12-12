@@ -1,4 +1,5 @@
 use num_traits::{one, zero};
+use std::ops::Try;
 
 use crate::doublets::data::LinksConstants;
 use crate::doublets::mem::ilinks_tree_methods::ILinksTreeMethods;
@@ -104,38 +105,26 @@ impl<T: LinkType> SizeBalancedTreeBase<T> for ExternalTargetsRecursionlessTree<T
 
 impl<T: LinkType> RecursionlessSizeBalancedTreeMethods<T> for ExternalTargetsRecursionlessTree<T> {}
 
-fn each_usages_core<T: LinkType, H: FnMut(Link<T>) -> T>(
+fn each_usages_core<T: LinkType, R: Try<Output = ()>, H: FnMut(Link<T>) -> R>(
     _self: &ExternalTargetsRecursionlessTree<T>,
     base: T,
     link: T,
     handler: &mut H,
-) -> T {
-    let r#continue = _self.base.r#continue;
+) -> R {
     if link == zero() {
-        return r#continue;
+        return R::from_output(());
     }
     let link_base_part = _self.get_base_part(link);
-    let r#break = _self.base.r#break;
     if link_base_part > base {
-        if each_usages_core(_self, base, _self.get_left_or_default(link), handler) == r#break {
-            return r#break;
-        }
+        each_usages_core(_self, base, _self.get_left_or_default(link), handler)?;
     } else if link_base_part < base {
-        if each_usages_core(_self, base, _self.get_right_or_default(link), handler) == r#break {
-            return r#break;
-        }
+        each_usages_core(_self, base, _self.get_right_or_default(link), handler)?;
     } else {
-        if handler(_self.get_link_value(link)) == r#break {
-            return r#break;
-        }
-        if each_usages_core(_self, base, _self.get_left_or_default(link), handler) == r#break {
-            return r#break;
-        }
-        if each_usages_core(_self, base, _self.get_right_or_default(link), handler) == r#break {
-            return r#break;
-        }
+        handler(_self.get_link_value(link))?;
+        each_usages_core(_self, base, _self.get_left_or_default(link), handler)?;
+        each_usages_core(_self, base, _self.get_right_or_default(link), handler)?;
     }
-    r#continue
+    R::from_output(())
 }
 
 impl<T: LinkType> ILinksTreeMethods<T> for ExternalTargetsRecursionlessTree<T> {
@@ -188,8 +177,12 @@ impl<T: LinkType> ILinksTreeMethods<T> for ExternalTargetsRecursionlessTree<T> {
         zero()
     }
 
-    fn each_usages<H: FnMut(Link<T>) -> T>(&self, base: T, mut handler: H) -> T {
-        each_usages_core(self, base, self.get_tree_root(), &mut handler)
+    fn each_usages<H: FnMut(Link<T>) -> R, R: Try<Output = ()>>(
+        &self,
+        root: T,
+        mut handler: H,
+    ) -> R {
+        each_usages_core(self, root, self.get_tree_root(), &mut handler)
     }
 
     fn detach(&mut self, root: &mut T, index: T) {

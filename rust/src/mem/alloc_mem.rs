@@ -1,9 +1,9 @@
+use crate::mem::{Mem, ResizeableBase, ResizeableMem};
 use std::alloc::{Allocator, Layout};
 use std::default::default;
 use std::error::Error;
 use std::io;
 use std::ptr::NonNull;
-use crate::mem::{Mem, ResizeableBase, ResizeableMem};
 
 pub struct AllocMem<A: Allocator> {
     base: ResizeableBase,
@@ -67,20 +67,14 @@ impl<A: Allocator> ResizeableMem for AllocMem<A> {
                             .shrink(NonNull::new_unchecked(ptr), old_layout, new_layout)?
                             .as_mut_ptr()
                     },
-                    _ => {
-                        self.get_ptr()
-                    }
+                    _ => self.get_ptr(),
                 };
                 self.set_ptr(new);
             }
             self.base.reserve_mem(capacity)?
         };
 
-        result
-            .map_err(|e| io::Error::new(
-                io::ErrorKind::Other,
-                e
-            ))
+        result.map_err(|e| io::Error::new(io::ErrorKind::Other, e))
     }
 
     fn reserved_mem(&self) -> usize {

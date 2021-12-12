@@ -99,7 +99,7 @@ impl<'a, T: LinkType> IndexMut<usize> for Link<T> {
 }
 
 impl<T: LinkType> FromIterator<T> for Link<T> {
-    fn from_iter<I: IntoIterator<Item=T>>(iter: I) -> Self {
+    fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> Self {
         let mut new: Link<T> = Default::default(); // TODO: strange compiler type mismatching
         for (i, item) in iter.into_iter().take(new.len()).enumerate() {
             new[i] = item

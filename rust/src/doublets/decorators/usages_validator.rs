@@ -1,12 +1,13 @@
 use std::borrow::BorrowMut;
 use std::default::default;
 use std::marker::PhantomData;
+use std::ops::Try;
 
 use num_traits::zero;
 use smallvec::SmallVec;
 
-use crate::doublets::{ILinks, ILinksExtensions, Link, LinksError, Result};
 use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstants};
+use crate::doublets::{ILinks, ILinksExtensions, Link, LinksError, Result};
 use crate::num::LinkType;
 
 pub struct UsagesValidator<T: LinkType, Links: ILinks<T>> {
@@ -33,18 +34,19 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for UsagesValidator<T, Links> {
         self.links.count_by(restrictions)
     }
 
-    fn create(&mut self) -> Result<T>  {
+    fn create(&mut self) -> Result<T> {
         self.links.create()
     }
 
-    fn each_by<H, const L: usize>(&self, handler: H, restrictions: [T; L]) -> T
-        where
-            H: FnMut(Link<T>) -> T,
+    fn try_each_by<F, R, const L: usize>(&self, handler: F, restrictions: [T; L]) -> R
+    where
+        F: FnMut(Link<T>) -> R,
+        R: Try<Output = ()>,
     {
-        self.links.each_by(handler, restrictions)
+        self.links.try_each_by(handler, restrictions)
     }
 
-    fn update(&mut self, index: T, source: T, target: T) -> Result<T>  {
+    fn update(&mut self, index: T, source: T, target: T) -> Result<T> {
         let links = self.links.borrow_mut();
         if links.has_usages(index) {
             Err(LinksError::HasDeps(links.get_link(index).unwrap()))

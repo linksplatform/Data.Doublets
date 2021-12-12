@@ -1,13 +1,15 @@
-use std::marker::PhantomData;
 use crate::doublets::data::LinksConstants;
 use crate::doublets::Link;
+use std::marker::PhantomData;
 
 use crate::doublets::mem::ilinks_list_methods::ILinksListMethods;
 use crate::doublets::mem::links_header::LinksHeader;
 use crate::doublets::mem::splited::{DataPart, IndexPart};
 use crate::doublets::mem::united::generic::UpdatePointers;
 use crate::doublets::mem::united::UpdatePointersSplit;
-use crate::methods::{DoublyLinkedListBase, RelativeCircularDoublyLinkedList, RelativeDoublyLinkedListBase};
+use crate::methods::{
+    DoublyLinkedListBase, RelativeCircularDoublyLinkedList, RelativeDoublyLinkedListBase,
+};
 use crate::num::LinkType;
 
 pub struct InternalSourcesLinkedList<T: LinkType> {
@@ -19,7 +21,12 @@ pub struct InternalSourcesLinkedList<T: LinkType> {
 }
 
 impl<T: LinkType> InternalSourcesLinkedList<T> {
-    pub fn new(constants: LinksConstants<T>, data: *mut u8, indexes: *mut u8, header: *mut u8) -> Self {
+    pub fn new(
+        constants: LinksConstants<T>,
+        data: *mut u8,
+        indexes: *mut u8,
+        header: *mut u8,
+    ) -> Self {
         assert!(!data.is_null()); // TODO: messages
         assert!(!indexes.is_null()); // TODO: messages
         assert!(!header.is_null()); // TODO: messages
@@ -140,9 +147,7 @@ impl<T: LinkType> DoublyLinkedListBase<T> for InternalSourcesLinkedList<T> {
     }
 }
 
-impl<T: LinkType> RelativeCircularDoublyLinkedList<T> for InternalSourcesLinkedList<T> {
-
-}
+impl<T: LinkType> RelativeCircularDoublyLinkedList<T> for InternalSourcesLinkedList<T> {}
 
 impl<T: LinkType> UpdatePointersSplit for InternalSourcesLinkedList<T> {
     fn update_pointers(&mut self, data: *mut u8, indexes: *mut u8, header: *mut u8) {

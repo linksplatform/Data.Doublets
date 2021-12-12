@@ -1,33 +1,55 @@
 use std::backtrace::Backtrace;
 use std::default::default;
+use std::ops::{ControlFlow, Try};
 use std::result;
 
 use num_traits::{one, zero};
-use rand::{Rng, thread_rng};
+use rand::{thread_rng, Rng};
 use smallvec::SmallVec;
 
-use crate::doublets::{data, Doublet};
 use crate::doublets::data::{LinksConstants, Point};
 use crate::doublets::decorators::{
     CascadeUniqueResolver, CascadeUsagesResolver, NonNullDeletionResolver,
 };
 use crate::doublets::error::LinksError;
 use crate::doublets::link::Link;
+use crate::doublets::{data, Doublet};
 use crate::num::LinkType;
 
 pub type Result<T, E = LinksError<T>> = std::result::Result<T, E>;
 
-pub trait ILinks<T: LinkType>: Sized
-{
+pub trait ILinks<T: LinkType>: Sized {
     fn constants(&self) -> LinksConstants<T>;
 
     fn count_by<const L: usize>(&self, restrictions: [T; L]) -> T;
 
     fn create(&mut self) -> Result<T>;
 
-    fn each_by<H, const L: usize>(&self, handler: H, restrictions: [T; L]) -> T
-        where
-            H: FnMut(Link<T>) -> T;
+    fn each_by<H, const L: usize>(&self, mut handler: H, restrictions: [T; L]) -> T
+    where
+        H: FnMut(Link<T>) -> T,
+    {
+        let result = self.try_each_by(
+            |link| {
+                if handler(link) == self.constants().r#continue {
+                    ControlFlow::Continue(())
+                } else {
+                    ControlFlow::Break(())
+                }
+            },
+            restrictions,
+        );
+
+        match result {
+            ControlFlow::Continue(_) => self.constants().r#continue,
+            ControlFlow::Break(_) => self.constants().r#break,
+        }
+    }
+
+    fn try_each_by<F, R, const L: usize>(&self, handler: F, restrictions: [T; L]) -> R
+    where
+        F: FnMut(Link<T>) -> R,
+        R: Try<Output = ()>;
 
     fn update(&mut self, index: T, source: T, target: T) -> Result<T>;
 
@@ -60,10 +82,18 @@ pub trait ILinks<T: LinkType>: Sized
 
     // TODO: maybe create `par_each`
     fn each<H>(&self, handler: H) -> T
-        where
-            H: FnMut(Link<T>) -> T,
+    where
+        H: FnMut(Link<T>) -> T,
     {
         self.each_by(handler, [])
+    }
+
+    fn try_each<F, R>(&self, handler: F) -> R
+    where
+        F: FnMut(Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
+        self.try_each_by(handler, [])
     }
 
     fn delete_all(&mut self) -> Result<(), LinksError<T>> {

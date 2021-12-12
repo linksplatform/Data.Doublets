@@ -1,10 +1,13 @@
 use num_traits::ToPrimitive;
+use std::ops::ControlFlow;
 
-use crate::doublets::{ILinks, ILinksExtensions, Link};
 use crate::doublets::data::{AddrToRaw, Hybrid, IGenericLinks, LinksConstants, RawToAddr};
+use crate::doublets::{ILinks, ILinksExtensions, Link, LinksError};
+use crate::mem::HeapMem;
 use crate::num::ToSigned;
 use crate::tests::make_links;
 use crate::tests::make_mem;
+use crate::Links;
 
 #[test]
 fn create() {
@@ -44,10 +47,13 @@ fn each_eq_count() {
     let query = [any, any, root];
 
     let mut count = 0;
-    links.each_by(|link| {
-        count += 1;
-        links.constants.r#continue
-    }, [any, any, root]);
+    links.each_by(
+        |link| {
+            count += 1;
+            links.constants.r#continue
+        },
+        [any, any, root],
+    );
 
     assert_eq!(count, links.count_by(query));
 }
@@ -74,7 +80,6 @@ fn rebase() {
 
     assert_eq!(before, after);
 }
-
 
 #[test]
 fn delete_all_usages() {

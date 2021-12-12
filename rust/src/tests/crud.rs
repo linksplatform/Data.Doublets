@@ -1,16 +1,16 @@
-use std::alloc::{Allocator, AllocError, Global, Layout, System};
+use bumpalo::Bump;
+use rand::{random, thread_rng, Rng};
+use std::alloc::{AllocError, Allocator, Global, Layout, System};
 use std::default::default;
 use std::error::Error;
 use std::fs::{File, OpenOptions};
 use std::io::{Read, Seek, SeekFrom, Write};
-use std::ptr::{NonNull, null_mut};
+use std::ptr::{null_mut, NonNull};
 use std::time::Instant;
-use bumpalo::Bump;
-use rand::{random, Rng, thread_rng};
 
-use crate::doublets::{ILinksExtensions, ILinks, Link, LinksError};
 use crate::doublets::data::{AddrToRaw, IGenericLinks, LinksConstants};
 use crate::doublets::mem::splited;
+use crate::doublets::{ILinks, ILinksExtensions, Link, LinksError};
 //use crate::doublets::decorators::{CascadeUsagesResolver, NonNullDeletionResolver};
 //use crate::doublets::mem::splited;
 use crate::doublets::mem::united::Links;
@@ -18,7 +18,7 @@ use crate::mem::{AllocMem, FileMappedMem, HeapMem, Mem, ResizeableBase, Resizeab
 use crate::test_extensions::ILinksTestExtensions;
 use crate::tests::make_links;
 use crate::tests::make_mem;
-
+/*
 #[test]
 fn random_creations_and_deletions() {
     std::fs::remove_file("db.links");
@@ -32,7 +32,7 @@ fn random_creations_and_deletions() {
 
     println!("{:?}", instant.elapsed());
 }
-
+*/
 #[test]
 fn mapping() {
     std::fs::remove_file("mapping_file");
@@ -118,7 +118,6 @@ fn many_points_and_searches() {
     println!("{:?}", instant.elapsed());
 }
 
-
 // TODO: Create `TempFileMappedMem`
 
 #[test]
@@ -129,7 +128,6 @@ fn billion_points_file_mapped_splited() {
     let mem = FileMappedMem::new("data_bpfms").unwrap();
     let index = FileMappedMem::new("index_bpfms").unwrap();
     let mut links = splited::Links::<usize, _, _>::new(mem, index).unwrap();
-
 
     let instant = Instant::now();
 
@@ -160,7 +158,7 @@ fn billion_points_bump_alloc_splited() {
     let bump = Bump::new();
     let mut mem = AllocMem::new(&bump).unwrap();
     let mut index = AllocMem::new(&bump).unwrap();
-    index.reserve_mem(1023*1023).unwrap();
+    index.reserve_mem(1023 * 1023).unwrap();
     let mut links = splited::Links::<usize, _, _>::new(mem, index).unwrap();
 
     println!("{}", links.get_header().reserved);
@@ -172,7 +170,7 @@ fn billion_points_bump_alloc_splited() {
     }
 
     println!("{}", links.get_header().reserved);
-    println!("{}", 65535*2);
+    println!("{}", 65535 * 2);
 
     println!("{:?}", instant.elapsed());
 }
@@ -196,8 +194,6 @@ fn many_points_and_searches_splited() {
     println!("{:?}", instant.elapsed());
 }
 
-
-
 #[test]
 fn playground() {
     std::fs::remove_file("data");
@@ -205,7 +201,12 @@ fn playground() {
 
     let mem = FileMappedMem::new("data").unwrap();
     let index = FileMappedMem::new("index").unwrap();
-    let mut links = splited::Links::<usize, _, _>::with_constants(mem, index, LinksConstants::via_only_external(true)).unwrap();
+    let mut links = splited::Links::<usize, _, _>::with_constants(
+        mem,
+        index,
+        LinksConstants::via_only_external(true),
+    )
+    .unwrap();
     //let mut links = Links::<usize, _>::with_constants(mem, LinksConstants::via_only_external(true));
     //let mut links = CascadeUsagesResolver::new(links);
 

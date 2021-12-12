@@ -1,7 +1,9 @@
+use std::borrow::BorrowMut;
 use std::default::default;
+use std::ops::Try;
 
-use num_traits::{one, zero};
 use crate::doublets;
+use num_traits::{one, zero};
 
 use crate::doublets::data::LinksConstants;
 use crate::doublets::mem::splited::generic::{
@@ -11,11 +13,11 @@ use crate::doublets::mem::splited::generic::{
 use crate::doublets::mem::splited::{DataPart, IndexPart};
 use crate::doublets::mem::united::UpdatePointersSplit;
 use crate::doublets::mem::{ILinksListMethods, ILinksTreeMethods, LinksHeader, UpdatePointers};
+use crate::doublets::Result;
 use crate::doublets::{ILinks, Link, LinksError};
 use crate::mem::ResizeableMem;
 use crate::methods::RelativeCircularDoublyLinkedList;
 use crate::num::LinkType;
-use crate::doublets::Result;
 
 pub struct Links<
     T: LinkType,
@@ -223,50 +225,48 @@ impl<
         Link::new(index, raw.source, raw.target)
     }
 
-    fn each_by_core<H, const L: usize>(&self, mut handler: &mut H, restrictions: [T; L]) -> T
+    fn try_each_by_core<F, R, const L: usize>(&self, handler: &mut F, restrictions: [T; L]) -> R
     where
-        H: FnMut(Link<T>) -> T,
+        F: FnMut(Link<T>) -> R,
+        R: Try<Output = ()>,
     {
-        let constants = self.constants();
-
-        let r#break = constants.r#break;
         if restrictions.is_empty() {
             for index in one()..=self.get_header().allocated {
                 // TODO: 100% `Some`
                 //  exist(`link`) => get_link(`link`) is Some
-                if self.exists(index) && handler(self.get_link(index).unwrap()) == r#break {
-                    return r#break;
+                if let Some(link) = self.get_link(index) {
+                    handler(link)?;
                 }
             }
-            return r#break;
+            return R::from_output(());
         }
 
+        let constants = self.constants.clone();
         let any = constants.any;
         let r#continue = constants.r#continue;
-        let index = restrictions[constants.index_part.as_()]; // TODO: [maybe] create `const` positions
+        let index = restrictions[constants.index_part.as_()];
         if restrictions.len() == 1 {
             return if index == any {
-                self.each_by_core(handler, [])
+                self.try_each_by_core(handler, [])
             } else if !self.exists(index) {
-                r#continue
+                R::from_output(())
             } else {
                 handler(self.get_link_unchecked(index)) // TODO: 100% `Some`
             };
         }
-
+        //
         if restrictions.len() == 2 {
             let value = restrictions[1]; // TODO: Hmm... `const` position?
             return if index == any {
                 if value == any {
-                    self.each_by_core(handler, [])
-                } else if self.each_by_core(handler, [index, value, any]) == r#break {
-                    r#break
+                    self.try_each_by_core(handler, [])
                 } else {
-                    self.each_by_core(handler, [index, any, value])
+                    self.try_each_by_core(handler, [index, value, any])?;
+                    self.try_each_by_core(handler, [index, any, value])
                 }
             } else {
                 if !self.exists(index) {
-                    r#continue
+                    R::from_output(())
                 } else if value == any {
                     handler(self.get_link_unchecked(index))
                 } else {
@@ -274,19 +274,19 @@ impl<
                     if (stored.source, stored.target) == (value, value) {
                         handler(self.get_link_unchecked(index))
                     } else {
-                        r#continue
+                        R::from_output(())
                     }
                 }
             };
         }
-
+        //
         if restrictions.len() == 3 {
             let source = restrictions[constants.source_part.as_()];
             let target = restrictions[constants.target_part.as_()];
-
+            //
             return if index == any {
                 if (source, target) == (any, any) {
-                    self.each_by_core(handler, [])
+                    self.try_each_by_core(handler, [])
                 } else if source == any {
                     if constants.is_external_reference(target) {
                         self.external_targets.each_usages(target, handler)
@@ -336,7 +336,7 @@ impl<
                         }
                     };
                     return if link == constants.null {
-                        r#continue
+                        R::from_output(())
                     } else {
                         let link = self.get_link(link).unwrap();
                         handler(link)
@@ -344,7 +344,7 @@ impl<
                 }
             } else {
                 if !self.exists(index) {
-                    r#continue
+                    R::from_output(())
                 } else if (source, target) == (any, any) {
                     let link = self.get_link_unchecked(index);
                     handler(link)
@@ -354,27 +354,26 @@ impl<
                         if (link.source, link.target) == (source, target) {
                             handler(link)
                         } else {
-                            r#continue
+                            R::from_output(())
                         }
                     } else {
                         if source != any {
                             if (link.source, link.target) == (source, source) {
                                 handler(link)
                             } else {
-                                r#continue
+                                R::from_output(())
                             }
                         } else {
                             if (link.source, link.target) == (target, target) {
                                 handler(link)
                             } else {
-                                r#continue
+                                R::from_output(())
                             }
                         }
                     }
                 }
             };
         }
-
         todo!()
     }
 }
@@ -576,12 +575,12 @@ impl<
         Ok(free)
     }
 
-    // TODO: create the following functions
-    fn each_by<H, const L: usize>(&self, mut handler: H, restrictions: [T; L]) -> T
+    fn try_each_by<F, R, const L: usize>(&self, mut handler: F, restrictions: [T; L]) -> R
     where
-        H: FnMut(Link<T>) -> T,
+        F: FnMut(Link<T>) -> R,
+        R: Try<Output = ()>,
     {
-        self.each_by_core(&mut handler, restrictions)
+        self.try_each_by_core(&mut handler, restrictions)
     }
 
     fn update(&mut self, index: T, new_source: T, new_target: T) -> Result<T> {

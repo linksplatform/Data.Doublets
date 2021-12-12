@@ -1,3 +1,4 @@
+use std::ops::Try;
 use num_traits::{one, zero};
 
 use crate::doublets::data::LinksConstants;
@@ -136,38 +137,31 @@ impl<T: LinkType> LinksSizeBalancedTreeBaseAbstract<T> for LinksTargetsSizeBalan
     }
 }
 
-fn each_usages_core<T: LinkType, H: FnMut(Link<T>) -> T>(
+fn each_usages_core<T: LinkType, R: Try<Output = ()>, H: FnMut(Link<T>) -> R>(
     _self: &LinksTargetsSizeBalancedTree<T>,
     root: T,
     link: T,
     handler: &mut H,
-) -> T {
+) -> R {
     let base = root;
-    let r#continue = _self.base.r#continue;
-    let r#break = _self.base.r#break;
 
     if link == zero() {
-        return r#continue;
+        return R::from_output(());
     }
 
     let base_part = _self.get_base_part(link);
-    if (base_part > base
-        && each_usages_core(_self, base, _self.get_left(link), handler) == r#break)
-        || (base_part < base
-        && each_usages_core(_self, base, _self.get_right(link), handler) == r#break)
-    {
-        r#break
-    } else {
-        let values = _self.get_link_value(link);
-        if handler(values) == r#break
-            || each_usages_core(_self, base, _self.get_left(link), handler) == r#break
-            || each_usages_core(_self, base, _self.get_right(link), handler) == r#break
-        {
-            r#break
-        } else {
-            r#continue
-        }
+    if base_part > base {
+        each_usages_core(_self, base, _self.get_left(link), handler)?;
     }
+    if base_part < base {
+        each_usages_core(_self, base, _self.get_right(link), handler)?;
+    }
+
+    let values = _self.get_link_value(link);
+    handler(values)?;
+    each_usages_core(_self, base, _self.get_left(link), handler)?;
+    each_usages_core(_self, base, _self.get_right(link), handler)?;
+    R::from_output(())
 }
 
 impl<T: LinkType> UpdatePointers for LinksTargetsSizeBalancedTree<T> {
@@ -233,7 +227,7 @@ impl<T: LinkType> ILinksTreeMethods<T> for LinksTargetsSizeBalancedTree<T> {
         zero()
     }
 
-    fn each_usages<H: FnMut(Link<T>) -> T>(&self, root: T, mut handler: H) -> T {
+    fn each_usages<H: FnMut(Link<T>) -> R, R: Try<Output = ()>>(&self, root: T, mut handler: H) -> R {
         each_usages_core(self, root, self.get_tree_root(), &mut handler)
     }
 

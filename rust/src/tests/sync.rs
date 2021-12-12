@@ -1,14 +1,14 @@
 use std::ptr::Unique;
-use std::sync::{Arc, Mutex, RwLock};
 use std::sync::mpsc::channel;
+use std::sync::{Arc, Mutex, RwLock};
 use std::thread;
 use std::time::Instant;
 
 use rand::Rng;
 
-use crate::doublets::{ILinks, ILinksExtensions, Link};
 use crate::doublets::data::IGenericLinks;
 use crate::doublets::mem::{splited, united};
+use crate::doublets::{ILinks, ILinksExtensions, Link};
 use crate::mem::ResizeableMem;
 use crate::num::LinkType;
 use crate::tests::make_links;

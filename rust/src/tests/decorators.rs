@@ -1,12 +1,11 @@
-use crate::doublets::{ILinks, ILinksExtensions, Link};
 use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions};
 use crate::doublets::decorators;
-use crate::doublets::decorators::NonNullDeletionResolver;
 use crate::doublets::mem::united::Links;
+use crate::doublets::{ILinks, ILinksExtensions, Link};
 use crate::mem::FileMappedMem;
 use crate::tests::make_links;
 use crate::tests::make_mem;
-
+/*
 #[test]
 fn non_null_deletions() {
     let mem = make_mem();
@@ -22,3 +21,4 @@ fn non_null_deletions() {
     let link = links.get_link(index).unwrap();
     assert_eq!(link, Link::new(point, 0, 0));
 }
+*/

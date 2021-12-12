@@ -1,16 +1,17 @@
 use std::borrow::BorrowMut;
 use std::default::default;
 use std::marker::PhantomData;
+use std::ops::Try;
 
 use smallvec::SmallVec;
 
-use crate::doublets::{ILinks, ILinksExtensions, Link, Result};
 use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstants};
+use crate::doublets::{ILinks, ILinksExtensions, Link, Result};
 use crate::num::LinkType;
 
 pub struct UniqueResolver<T: LinkType, Links: ILinks<T>> {
     links: Links,
-    resolver: fn(&mut Links, old: T, new: T) -> Result<T> ,
+    resolver: fn(&mut Links, old: T, new: T) -> Result<T>,
 }
 
 impl<T: LinkType, Links: ILinks<T>> UniqueResolver<T, Links> {
@@ -18,11 +19,18 @@ impl<T: LinkType, Links: ILinks<T>> UniqueResolver<T, Links> {
         Self::with_resolver(links, Self::resolve_conflict)
     }
 
-    pub fn with_resolver(links: Links, resolver: fn(&mut Links, old: T, new: T) -> Result<T>) -> Self {
+    pub fn with_resolver(
+        links: Links,
+        resolver: fn(&mut Links, old: T, new: T) -> Result<T>,
+    ) -> Self {
         Self { links, resolver }
     }
 
-    pub(in crate::doublets::decorators) fn resolve_conflict(links: &mut Links, old: T, new: T) -> Result<T>  {
+    pub(in crate::doublets::decorators) fn resolve_conflict(
+        links: &mut Links,
+        old: T,
+        new: T,
+    ) -> Result<T> {
         if old != new && links.exist(old) {
             links.delete(old)?;
         }
@@ -39,21 +47,21 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for UniqueResolver<T, Links> {
         self.links.count_by(restrictions)
     }
 
-    fn create(&mut self) -> Result<T>  {
+    fn create(&mut self) -> Result<T> {
         self.links.create()
     }
 
-    fn each_by<H, const L: usize>(&self, handler: H, restrictions: [T; L]) -> T where H: FnMut(Link<T>) -> T {
-        self.links.each_by(handler, restrictions)
+    fn try_each_by<F, R, const L: usize>(&self, handler: F, restrictions: [T; L]) -> R
+    where
+        F: FnMut(Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
+        self.links.try_each_by(handler, restrictions)
     }
 
-    fn update(&mut self, index: T, source: T, target: T) -> Result<T>  {
+    fn update(&mut self, index: T, source: T, target: T) -> Result<T> {
         let links = self.links.borrow_mut();
-        let new = links.search_or(
-            source,
-            target,
-            default(),
-        );
+        let new = links.search_or(source, target, default());
 
         if new == default() {
             links.update(index, source, target)
@@ -62,7 +70,7 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for UniqueResolver<T, Links> {
         }
     }
 
-    fn delete(&mut self, index: T) -> Result<T>  {
+    fn delete(&mut self, index: T) -> Result<T> {
         self.links.delete(index)
     }
 }
