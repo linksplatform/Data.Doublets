@@ -1,5 +1,5 @@
 use crate::mem::{Mem, ResizeableBase, ResizeableMem};
-use std::alloc::{Allocator, Layout};
+use std::alloc::{AllocError, Allocator, Layout, LayoutError};
 use std::default::default;
 use std::error::Error;
 use std::io;
@@ -44,19 +44,17 @@ impl<A: Allocator> ResizeableMem for AllocMem<A> {
         let old_capacity = self.reserved_mem();
         let new_capacity = capacity;
 
-        let result: Result<usize, Box<dyn Error + Send + Sync>> = try {
+        let result: Result<(), Box<dyn Error + Sync + Send>> = try {
             if self.get_ptr().is_null() {
                 let layout = Layout::array::<u8>(capacity)?;
-                unsafe {
-                    let ptr = self.alloc.allocate_zeroed(layout)?;
-                    self.set_ptr(ptr.as_mut_ptr());
-                }
+                let ptr = self.alloc.allocate_zeroed(layout)?;
+                self.set_ptr(ptr.as_mut_ptr());
             } else {
                 let old_layout = Layout::array::<u8>(old_capacity)?;
                 let new_layout = Layout::array::<u8>(new_capacity)?;
 
                 let ptr = self.get_ptr();
-                let new = match old_capacity {
+                self.set_ptr(match old_capacity {
                     old if old < new_capacity => unsafe {
                         self.alloc
                             .grow_zeroed(NonNull::new_unchecked(ptr), old_layout, new_layout)?
@@ -68,13 +66,14 @@ impl<A: Allocator> ResizeableMem for AllocMem<A> {
                             .as_mut_ptr()
                     },
                     _ => self.get_ptr(),
-                };
-                self.set_ptr(new);
+                });
             }
-            self.base.reserve_mem(capacity)?
         };
 
-        result.map_err(|e| io::Error::new(io::ErrorKind::Other, e))
+        match result {
+            Ok(_) => self.base.reserve_mem(capacity),
+            Err(err) => Err(io::Error::new(io::ErrorKind::Other, err)),
+        }
     }
 
     fn reserved_mem(&self) -> usize {

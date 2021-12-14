@@ -1198,9 +1198,7 @@ impl<
                 return Err(LinksError::LimitReached(max_inner));
             }
 
-            if header.allocated >= header.reserved
-            /* TODO: - one() */
-            {
+            if header.allocated >= header.reserved - one() {
                 self.mem
                     .reserve_mem(self.mem.reserved_mem() + self.reserve_step)?;
                 self.update_pointers();

@@ -1,45 +1,43 @@
-use std::time::Instant;
-use criterion::{black_box, Criterion, criterion_group, criterion_main};
-use doublets::doublets::ILinks;
+#![feature(backtrace)]
+#![feature(allocator_api)]
+#![feature(result_option_inspect)]
+
+use criterion::{black_box, criterion_group, criterion_main, Criterion};
+use doublets::doublets::data::LinksConstants;
 use doublets::doublets::mem::{splited, united};
-use doublets::mem::HeapMem;
+use doublets::doublets::ILinks;
+use doublets::mem::{AllocMem, HeapMem};
+use std::alloc::Global;
+use std::error::Error;
+use std::time::Instant;
 
 fn criterion_benchmark(c: &mut Criterion) {
-    c.bench_function("1_000_000 united points", |b| {
+    c.bench_function("heap mem", |b| {
         let mem = HeapMem::new().unwrap();
-        let mut links = united::Links::<usize, _>::new(mem).unwrap();
-        b.iter_custom(|iters| {
-            let instant = Instant::now();
-            for _ in 0..1_000_000 {
-                links.create_point().unwrap();
-            }
-            instant.elapsed()
-        });
-    });
-
-    c.bench_function("1_000_000 splited points", |b| {
-        let mem1 = HeapMem::new().unwrap();
-        let mem2 = HeapMem::new().unwrap();
-        let mut links = splited::Links::<usize, _, _>::new(mem1, mem2).unwrap();
-        b.iter_custom(|iters| {
-            let instant = Instant::now();
-            for _ in 0..1_000_000 {
-                links.create_point().unwrap();
-            }
-            instant.elapsed()
-        });
-    });
-
-    c.bench_function("1_000_000 united get or create", |b| {
-        let mem = HeapMem::new().unwrap();
-        let mut links = united::Links::<usize, _>::new(mem).unwrap();
-        links.get_or_create(black_box(1), black_box(1)).unwrap();
-        for i in 1..=1000 {
-            links.get_or_create(black_box(i), black_box(i)).unwrap();
-        }
+        let mut links = united::Links::<usize, _>::with_options()
+            .mem(mem)
+            .constants(LinksConstants::via_only_external(true))
+            .reserve_step(1024 * 10)
+            .open()
+            .unwrap();
         b.iter(|| {
-            for _ in 0..1_000_000 {
-                links.get_or_create(black_box(1), black_box(1)).unwrap();
+            for _ in 0..1_0_000 {
+                links.create_point().unwrap();
+            }
+        });
+    });
+
+    c.bench_function("alloc global", |b| {
+        let mem = AllocMem::new(Global).unwrap();
+        let mut links = united::Links::<usize, _>::with_options()
+            .mem(mem)
+            .constants(LinksConstants::via_only_external(true))
+            .reserve_step(1024 * 10)
+            .open()
+            .unwrap();
+        b.iter(|| {
+            for _ in 0..1_0_000 {
+                links.create_point().unwrap();
             }
         });
     });

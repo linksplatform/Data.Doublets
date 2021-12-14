@@ -18,7 +18,7 @@ pub enum LinksError<T: LinkType> {
     #[error("limit for the number of links in the storage has been reached ({0})")]
     LimitReached(T),
 
-    #[error("unable to allocate memory for links storage")]
+    #[error("unable to allocate memory for links storage: `{0}`")]
     AllocFailed(
         #[from]
         #[backtrace]

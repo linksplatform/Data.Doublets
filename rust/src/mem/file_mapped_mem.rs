@@ -1,6 +1,7 @@
 use std::cmp::max;
 use std::error::Error;
 use std::fs::{File, OpenOptions};
+use std::io;
 use std::mem::ManuallyDrop;
 use std::path::Path;
 
@@ -13,13 +14,13 @@ use crate::mem::resizeable_base::ResizeableBase;
 pub struct FileMappedMem {
     base: ResizeableBase,
     file: File,
-    mapping: ManuallyDrop<MmapMut>,
+    mapping: ManuallyDrop<MmapMut>, // TODO: `MaybeUninit`
 }
 
 impl FileMappedMem {
-    pub fn reserve_new<P: AsRef<Path>>(path: P, capacity: usize) -> std::io::Result<Self> {
+    pub fn reserve_new<P: AsRef<Path>>(path: P, capacity: usize) -> io::Result<Self> {
         let capacity = max(capacity, ResizeableBase::MINIMUM_CAPACITY);
-        let file = OpenOptions::new() // TODO: with_options feature
+        let file = OpenOptions::new()
             .create(true)
             .read(true)
             .write(true)
@@ -35,12 +36,7 @@ impl FileMappedMem {
             file,
         };
 
-        if let Err(err) = new.reserve_mem(to_reserve) {
-            use std::io::{Error, ErrorKind};
-            Err(Error::new(ErrorKind::Other, err.to_string()))
-        } else {
-            Ok(new)
-        }
+        new.reserve_mem(to_reserve).map(|_| new)
     }
 
     pub fn new<P: AsRef<Path>>(path: P) -> std::io::Result<Self> {
@@ -110,6 +106,6 @@ impl Drop for FileMappedMem {
         }
         let used = self.used_mem();
         // TODO: maybe remove `unwrap()` and ignore error
-        self.file.set_len(used as u64).unwrap();
+        self.file.set_len(used as u64);
     }
 }
