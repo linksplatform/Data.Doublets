@@ -45,7 +45,7 @@ unsafe fn new_united_links<T: LinkType>(
     path: *const c_char,
     ok: *mut *mut c_void,
     err: *mut c_char,
-) {
+) -> bool {
     let result: Result<_, LinksError<T>> = try {
         let path = CStr::from_ptr(path);
         let path = path.to_str().unwrap();
@@ -59,6 +59,7 @@ unsafe fn new_united_links<T: LinkType>(
         Ok(links) => *ok = links,
         Err(error) => strcpy!(err, "{}", error.to_string()),
     }
+    result.is_ok()
 }
 
 #[ffi::specialize_for(
@@ -169,7 +170,7 @@ unsafe fn update_united<T: LinkType>(
     target: T,
     ok: *mut T,
     err: *mut c_char,
-) {
+) -> bool {
     let result = {
         let links = &mut *(this as *mut UnitedLinks<T>);
         links.update(index, source, target)
@@ -178,6 +179,7 @@ unsafe fn update_united<T: LinkType>(
         Ok(link) => *ok = link,
         Err(error) => strcpy!(err, "{}", error.to_string()),
     }
+    result.is_ok()
 }
 
 #[ffi::specialize_for(
@@ -188,7 +190,12 @@ unsafe fn update_united<T: LinkType>(
     convention = "csharp",
     name = "Try*UnitedMemoryLinks_Delete"
 )]
-unsafe fn delete_united<T: LinkType>(this: *mut c_void, index: T, ok: *mut T, err: *mut c_char) {
+unsafe fn delete_united<T: LinkType>(
+    this: *mut c_void,
+    index: T,
+    ok: *mut T,
+    err: *mut c_char,
+) -> bool {
     let result = {
         let links = &mut *(this as *mut UnitedLinks<T>);
         links.delete(index)
@@ -197,4 +204,5 @@ unsafe fn delete_united<T: LinkType>(this: *mut c_void, index: T, ok: *mut T, er
         Ok(link) => *ok = link,
         Err(error) => strcpy!(err, "{}", error.to_string()),
     }
+    result.is_ok()
 }
