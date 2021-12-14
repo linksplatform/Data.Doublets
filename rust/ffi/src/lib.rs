@@ -59,7 +59,7 @@ unsafe fn new_united_links<T: LinkType>(
         Ok(links) => *ok = links,
         Err(error) => strcpy!(err, "{}", error.to_string()),
     }
-    result.is_ok()
+    result.is_err()
 }
 
 #[ffi::specialize_for(
@@ -83,7 +83,7 @@ unsafe fn drop_united_links<T: LinkType>(this: *mut c_void) {
     convention = "csharp",
     name = "Try*UnitedMemoryLinks_Create"
 )]
-unsafe fn create_united<T: LinkType>(this: *mut c_void, ok: *mut T, err: *mut c_char) {
+unsafe fn create_united<T: LinkType>(this: *mut c_void, ok: *mut T, err: *mut c_char) -> bool {
     let result = {
         let links = &mut *(this as *mut UnitedLinks<T>);
         links.create()
@@ -92,6 +92,7 @@ unsafe fn create_united<T: LinkType>(this: *mut c_void, ok: *mut T, err: *mut c_
         Ok(link) => *ok = link,
         Err(error) => strcpy!(err, "{}", error.to_string()),
     }
+    result.is_err()
 }
 #[repr(C)]
 struct Link<T: LinkType> {
@@ -179,7 +180,7 @@ unsafe fn update_united<T: LinkType>(
         Ok(link) => *ok = link,
         Err(error) => strcpy!(err, "{}", error.to_string()),
     }
-    result.is_ok()
+    result.is_err()
 }
 
 #[ffi::specialize_for(
@@ -204,5 +205,5 @@ unsafe fn delete_united<T: LinkType>(
         Ok(link) => *ok = link,
         Err(error) => strcpy!(err, "{}", error.to_string()),
     }
-    result.is_ok()
+    result.is_err()
 }
