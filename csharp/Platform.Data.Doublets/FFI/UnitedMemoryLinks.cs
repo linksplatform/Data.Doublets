@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Text;
+using Platform.Collections;
 using Platform.Converters;
 using Platform.Disposables;
 using IDisposable = Platform.Disposables.IDisposable;
@@ -37,7 +39,7 @@ namespace Platform.Data.Doublets.FFI
 
     unsafe static class Methods
     {
-        private const string DllName = "Platform.Doublets";
+        private const string DllName = "/home/freephoenix888/RiderProjects/Data.Doublets/rust/ffi/target/release/libdoublets_ffi.so";
 
         public delegate Byte EachCallback_Uint8(FfiLink_Uint8 link);
 
@@ -48,16 +50,19 @@ namespace Platform.Data.Doublets.FFI
         public delegate UInt64 EachCallback_Uint64(FfiLink_Uint64 link);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void* ByteUnitedMemoryLinks_New(string path);
+        public static extern bool take_last_error(byte* buf);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void* UInt16UnitedMemoryLinks_New(string path);
+        public static extern bool TryByteUnitedMemoryLinks_New(string path, Byte* ok, byte* err);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void* UInt32UnitedMemoryLinks_New(string path);
+        public static extern bool TryUInt16UnitedMemoryLinks_New(string path, UInt16* ok, byte* err);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void* UInt64UnitedMemoryLinks_New(string path);
+        public static extern bool TryUInt32UnitedMemoryLinks_New(string path, UInt32* ok, byte* err);
+
+        [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
+        public static extern bool TryUInt64UnitedMemoryLinks_New(string path, UInt64* ok, byte* err);
         
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void ByteUnitedMemoryLinks_Drop(void* self);
@@ -72,16 +77,16 @@ namespace Platform.Data.Doublets.FFI
         public static extern void UInt64UnitedMemoryLinks_Drop(void* self);
         
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Byte ByteUnitedMemoryLinks_Create(void* self);
+        public static extern bool TryByteUnitedMemoryLinks_Create(void* self, Byte* ok, byte* err);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern UInt16 UInt16UnitedMemoryLinks_Create(void* self);
+        public static extern bool TryUInt16UnitedMemoryLinks_Create(void* self, UInt16* ok, byte* err);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern UInt32 UInt32UnitedMemoryLinks_Create(void* self);
+        public static extern bool TryUInt32UnitedMemoryLinks_Create(void* self, UInt32* ok, byte* err);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern UInt64 UInt64UnitedMemoryLinks_Create(void* self);
+        public static extern bool TryUInt64UnitedMemoryLinks_Create(void* self, UInt64* ok, byte* err);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
         public static extern Byte ByteUnitedMemoryLinks_Count(void* self, Byte* query, nuint len);
@@ -108,28 +113,28 @@ namespace Platform.Data.Doublets.FFI
         public static extern UInt64 UInt64UnitedMemoryLinks_Each(void* self, EachCallback_Uint64 callback, UInt64* query, nuint len);
         
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Byte ByteUnitedMemoryLinks_Update(void* self, Byte index, Byte source, Byte target);
+        public static extern bool TryByteUnitedMemoryLinks_Update(void* self, Byte index, Byte source, Byte target, Byte* ok, byte* err);
         
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern UInt16 UInt16UnitedMemoryLinks_Update(void* self, UInt16 index, UInt16 source, UInt16 target);
+        public static extern bool TryUInt16UnitedMemoryLinks_Update(void* self, UInt16 index, UInt16 source, UInt16 target, UInt16* ok, byte* err);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern UInt32 UInt32UnitedMemoryLinks_Update(void* self, UInt32 index, UInt32 source, UInt32 target);
+        public static extern bool TryUInt32UnitedMemoryLinks_Update(void* self, UInt32 index, UInt32 source, UInt32 target, UInt32* ok, byte* err);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern UInt64 UInt64UnitedMemoryLinks_Update(void* self, UInt64 index, UInt64 source, UInt64 target);
+        public static extern bool TryUInt64UnitedMemoryLinks_Update(void* self, UInt64 index, UInt64 source, UInt64 target, UInt64* ok, byte* err);
         
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern Byte ByteUnitedMemoryLinks_Delete(void* self, Byte index);
+        public static extern bool TryByteUnitedMemoryLinks_Delete(void* self, Byte index, Byte* ok, byte* err);
         
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern UInt16 UInt16UnitedMemoryLinks_Delete(void* self, UInt16 index);
+        public static extern bool TryUInt16UnitedMemoryLinks_Delete(void* self, UInt16 index, UInt16* ok, byte* err);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern UInt32 UInt32UnitedMemoryLinks_Delete(void* self, UInt32 index);
+        public static extern bool TryUInt32UnitedMemoryLinks_Delete(void* self, UInt32 index, UInt32* ok, byte* err);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern UInt64 UInt64UnitedMemoryLinks_Delete(void* self, UInt64 index);
+        public static extern bool TryUInt64UnitedMemoryLinks_Delete(void* self, UInt64 index, UInt64* ok, byte* err);
     }
 
     public class UnitedMemoryLinks<TLink> : DisposableBase, ILinks<TLink>
@@ -143,6 +148,8 @@ namespace Platform.Data.Doublets.FFI
         public LinksConstants<TLink> Constants { get; }
 
         private readonly unsafe void* _body;
+
+        private readonly byte[] _errorBuffer = new byte[1000];
         
         public UnitedMemoryLinks(string path)
         {
