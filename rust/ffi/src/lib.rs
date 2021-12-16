@@ -25,27 +25,15 @@ use libc::c_void;
 
 type UnitedLinks<T> = Links<T, FileMappedMem>;
 
-macro_rules! strcpy {
-    ($dst:expr, $($t:tt)*) => {
-        if !$dst.is_null() {
-            { libc::strcpy($dst, (format!($($t)*) + "\0").as_ptr().cast()); () }
-        }
-    };
-}
-
 #[ffi::specialize_for(
     types = "u8",
     types = "u16",
     types = "u32",
     types = "u64",
     convention = "csharp",
-    name = "Try*UnitedMemoryLinks_New"
+    name = "*UnitedMemoryLinks_New"
 )]
-unsafe fn new_united_links<T: LinkType>(
-    path: *const c_char,
-    ok: *mut *mut c_void,
-    err: *mut c_char,
-) -> bool {
+unsafe fn new_united_links<T: LinkType>(path: *const c_char) -> *mut c_void {
     let result: Result<_, LinksError<T>> = try {
         let path = CStr::from_ptr(path);
         let path = path.to_str().unwrap();
@@ -55,11 +43,7 @@ unsafe fn new_united_links<T: LinkType>(
             box UnitedLinks::<T>::with_constants(mem, LinksConstants::via_only_external(true))?;
         Box::into_raw(links) as *mut c_void
     };
-    match result {
-        Ok(links) => *ok = links,
-        Err(error) => strcpy!(err, "{}", error.to_string()),
-    }
-    result.is_err()
+    result.unwrap_or(null_mut())
 }
 
 #[ffi::specialize_for(
@@ -81,18 +65,14 @@ unsafe fn drop_united_links<T: LinkType>(this: *mut c_void) {
     types = "u32",
     types = "u64",
     convention = "csharp",
-    name = "Try*UnitedMemoryLinks_Create"
+    name = "*UnitedMemoryLinks_Create"
 )]
-unsafe fn create_united<T: LinkType>(this: *mut c_void, ok: *mut T, err: *mut c_char) -> bool {
+unsafe fn create_united<T: LinkType>(this: *mut c_void) -> T {
     let result = {
         let links = &mut *(this as *mut UnitedLinks<T>);
         links.create()
     };
-    match result {
-        Ok(link) => *ok = link,
-        Err(error) => strcpy!(err, "{}", error.to_string()),
-    }
-    result.is_err()
+    result.unwrap_or(T::zero())
 }
 #[repr(C)]
 struct Link<T: LinkType> {
@@ -162,25 +142,14 @@ unsafe fn count_united<T: LinkType>(this: *mut c_void, query: *const T, len: usi
     types = "u32",
     types = "u64",
     convention = "csharp",
-    name = "Try*UnitedMemoryLinks_Update"
+    name = "*UnitedMemoryLinks_Update"
 )]
-unsafe fn update_united<T: LinkType>(
-    this: *mut c_void,
-    index: T,
-    source: T,
-    target: T,
-    ok: *mut T,
-    err: *mut c_char,
-) -> bool {
+unsafe fn update_united<T: LinkType>(this: *mut c_void, index: T, source: T, target: T) -> T {
     let result = {
         let links = &mut *(this as *mut UnitedLinks<T>);
         links.update(index, source, target)
     };
-    match result {
-        Ok(link) => *ok = link,
-        Err(error) => strcpy!(err, "{}", error.to_string()),
-    }
-    result.is_err()
+    result.unwrap_or(T::zero())
 }
 
 #[ffi::specialize_for(
@@ -189,21 +158,12 @@ unsafe fn update_united<T: LinkType>(
     types = "u32",
     types = "u64",
     convention = "csharp",
-    name = "Try*UnitedMemoryLinks_Delete"
+    name = "*UnitedMemoryLinks_Delete"
 )]
-unsafe fn delete_united<T: LinkType>(
-    this: *mut c_void,
-    index: T,
-    ok: *mut T,
-    err: *mut c_char,
-) -> bool {
+unsafe fn delete_united<T: LinkType>(this: *mut c_void, index: T) -> T {
     let result = {
         let links = &mut *(this as *mut UnitedLinks<T>);
         links.delete(index)
     };
-    match result {
-        Ok(link) => *ok = link,
-        Err(error) => strcpy!(err, "{}", error.to_string()),
-    }
-    result.is_err()
+    result.unwrap_or(T::zero())
 }
