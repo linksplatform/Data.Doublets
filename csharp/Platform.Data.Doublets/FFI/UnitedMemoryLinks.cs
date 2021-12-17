@@ -168,221 +168,173 @@ namespace Platform.Data.Doublets.FFI
             unsafe
             {
                 TLink t = default;
-                if (typeof(TLink) == typeof(Byte))
+                switch (t)
                 {
-                    var array = stackalloc Byte[restrictions.Count];
-                    for (var i = 0; i < restrictions.Count; i++)
+                    case byte:
                     {
-                        array[i] = (Byte)from_t.Convert(restrictions[i]);
+                        var array = stackalloc byte[restrictions.Count];
+                        for (var i = 0; i < restrictions.Count; i++)
+                        {
+                            array[i] = (byte)from_t.Convert(restrictions[i]);
+                        }
+                        return from_u8.Convert(Methods.ByteUnitedMemoryLinks_Count(_body, array, (nuint)restrictions.Count));
                     }
-                    return from_u8.Convert(Methods.ByteUnitedMemoryLinks_Count(_body, array, (nuint)restrictions.Count));
-                }
-                if (typeof(TLink) == typeof(UInt16))
-                {
-                    var array = stackalloc UInt16[restrictions.Count];
-                    for (var i = 0; i < restrictions.Count; i++)
+                    case ushort:
                     {
-                        array[i] = (UInt16)from_t.Convert(restrictions[i]);
+                        var array = stackalloc ushort[restrictions.Count];
+                        for (var i = 0; i < restrictions.Count; i++)
+                        {
+                            array[i] = (ushort)from_t.Convert(restrictions[i]);
+                        }
+                        return from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Count(_body, array, (nuint)restrictions.Count));
                     }
-                    return from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Count(_body, array, (nuint)restrictions.Count));
-                }
-                if (typeof(TLink) == typeof(UInt32))
-                {
-                    var array = stackalloc UInt32[restrictions.Count];
-                    for (var i = 0; i < restrictions.Count; i++)
+                    case uint:
                     {
-                        array[i] = (UInt32)from_t.Convert(restrictions[i]);
+                        var array = stackalloc uint[restrictions.Count];
+                        for (var i = 0; i < restrictions.Count; i++)
+                        {
+                            array[i] = (uint)from_t.Convert(restrictions[i]);
+                        }
+                        return from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Count(_body, array, (nuint)restrictions.Count));
                     }
-                    return from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Count(_body, array, (nuint)restrictions.Count));
-                }
-                if (typeof(TLink) == typeof(UInt64))
-                {
-                    var array = stackalloc UInt64[restrictions.Count];
-                    for (var i = 0; i < restrictions.Count; i++)
+                    case ulong:
                     {
-                        array[i] = (UInt64)from_t.Convert(restrictions[i]);
+                        {
+                            var array = stackalloc UInt64[restrictions.Count];
+                            for (var i = 0; i < restrictions.Count; i++)
+                            {
+                                array[i] = from_t.Convert(restrictions[i]);
+                            }
+                            return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Count(_body, array, (nuint)restrictions.Count));
+                        }
                     }
-                    return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Count(_body, array, (nuint)restrictions.Count));
                 }
             }
-            throw new NotImplementedException();
         }
 
         public TLink Each(Func<IList<TLink>, TLink> handler, IList<TLink> restrictions)
-        {
-            unsafe
-            {
-                TLink t = default;
-                if (typeof(TLink) == typeof(Byte))
-                {
-                    Methods.EachCallback_Uint8 callback = ((link) => (Byte)from_t.Convert(handler(new Link<TLink>
-                    (
-                        from_u8.Convert(link.Index),
-                        from_u8.Convert(link.Source),
-                        from_u8.Convert(link.Target)
-                    ))));
+                        {
+                            unsafe
+                            {
+                                TLink t = default;
+                                if (typeof(TLink) == typeof(Byte))
+                                {
+                                    Methods.EachCallback_Uint8 callback = ((link) => (Byte)from_t.Convert(handler(new Link<TLink>(from_u8.Convert(link.Index), from_u8.Convert(link.Source), from_u8.Convert(link.Target)))));
 
-                    var array = stackalloc Byte[restrictions.Count];
-                    for (var i = 0; i < restrictions.Count; i++)
-                    {
-                        array[i] = (Byte)from_t.Convert(restrictions[i]);
-                    }
-                    return from_u8.Convert(Methods.ByteUnitedMemoryLinks_Each(_body, callback, array, (nuint)restrictions.Count));
-                }
-                if (typeof(TLink) == typeof(UInt16))
-                {
-                    Methods.EachCallback_Uint16 callback = ((link) => (UInt16)from_t.Convert(handler(new Link<TLink>
-                    (
-                        from_u16.Convert(link.Index),
-                        from_u16.Convert(link.Source),
-                        from_u16.Convert(link.Target)
-                    ))));
+                                    var array = stackalloc Byte[restrictions.Count];
+                                    for (var i = 0; i < restrictions.Count; i++)
+                                    {
+                                        array[i] = (Byte)from_t.Convert(restrictions[i]);
+                                    }
+                                    return from_u8.Convert(Methods.ByteUnitedMemoryLinks_Each(_body, callback, array, (nuint)restrictions.Count));
+                                }
+                                if (typeof(TLink) == typeof(UInt16))
+                                {
+                                    Methods.EachCallback_Uint16 callback = ((link) => (UInt16)from_t.Convert(handler(new Link<TLink>(from_u16.Convert(link.Index), from_u16.Convert(link.Source), from_u16.Convert(link.Target)))));
 
-                    var array = stackalloc UInt16[restrictions.Count];
-                    for (var i = 0; i < restrictions.Count; i++)
-                    {
-                        array[i] = (UInt16)from_t.Convert(restrictions[i]);
-                    }
-                    return from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Each(_body, callback, array, (nuint)restrictions.Count));
-                }
-                if (typeof(TLink) == typeof(UInt32))
-                {
-                    Methods.EachCallback_Uint32 callback = (( link) => (UInt16)from_t.Convert(handler(new Link<TLink>
-                    (
-                        from_u32.Convert(link.Index),
-                        from_u32.Convert(link.Source),
-                        from_u32.Convert(link.Target)
-                    ))));
+                                    var array = stackalloc UInt16[restrictions.Count];
+                                    for (var i = 0; i < restrictions.Count; i++)
+                                    {
+                                        array[i] = (UInt16)from_t.Convert(restrictions[i]);
+                                    }
+                                    return from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Each(_body, callback, array, (nuint)restrictions.Count));
+                                }
+                                if (typeof(TLink) == typeof(UInt32))
+                                {
+                                    Methods.EachCallback_Uint32 callback = ((link) => (UInt16)from_t.Convert(handler(new Link<TLink>(from_u32.Convert(link.Index), from_u32.Convert(link.Source), from_u32.Convert(link.Target)))));
 
-                    var array = stackalloc UInt32[restrictions.Count];
-                    for (var i = 0; i < restrictions.Count; i++)
-                    {
-                        array[i] = (UInt32)from_t.Convert(restrictions[i]);
-                    }
-                    return from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Each(_body, callback, array, (nuint)restrictions.Count));
-                }
-                if (typeof(TLink) == typeof(UInt64))
-                {
-                    Methods.EachCallback_Uint64 callback = ((link) => (UInt64)from_t.Convert(handler(new Link<TLink>
-                    (
-                        from_u64.Convert(link.Index),
-                        from_u64.Convert(link.Source),
-                        from_u64.Convert(link.Target)
-                    ))));
+                                    var array = stackalloc UInt32[restrictions.Count];
+                                    for (var i = 0; i < restrictions.Count; i++)
+                                    {
+                                        array[i] = (UInt32)from_t.Convert(restrictions[i]);
+                                    }
+                                    return from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Each(_body, callback, array, (nuint)restrictions.Count));
+                                }
+                                if (typeof(TLink) == typeof(UInt64))
+                                {
+                                    Methods.EachCallback_Uint64 callback = ((link) => (UInt64)from_t.Convert(handler(new Link<TLink>(from_u64.Convert(link.Index), from_u64.Convert(link.Source), from_u64.Convert(link.Target)))));
 
-                    var array = stackalloc UInt64[restrictions.Count];
-                    for (var i = 0; i < restrictions.Count; i++)
-                    {
-                        array[i] = (UInt64)from_t.Convert(restrictions[i]);
-                    }
-                    return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Each(_body, callback, array, (nuint)restrictions.Count));
-                }
-                throw new NotImplementedException();
-            }
-        }
+                                    var array = stackalloc UInt64[restrictions.Count];
+                                    for (var i = 0; i < restrictions.Count; i++)
+                                    {
+                                        array[i] = (UInt64)from_t.Convert(restrictions[i]);
+                                    }
+                                    return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Each(_body, callback, array, (nuint)restrictions.Count));
+                                }
+                                throw new NotImplementedException();
+                            }
+                        }
 
-        public TLink Create(IList<TLink> restrictions)
-        {
-            unsafe
-            {
-                TLink t = default;
-                switch (t)
-                {
-                    case Byte _:
-                        return from_u8.Convert(Methods.ByteUnitedMemoryLinks_Create(_body));
-                    case UInt16 _:
-                        return from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Create(_body));
-                    case UInt32 _:
-                        return from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Create(_body));
-                    case UInt64:
-                        _:
-                        return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Create(_body));
-                    default:
-                        throw new NotImplementedException();
-                }
-            }
-        }
+                        public TLink Create(IList<TLink> restrictions)
+                        {
+                            unsafe
+                            {
+                                TLink t = default;
+                                switch (t)
+                                {
+                                    case Byte _:
+                                        return from_u8.Convert(Methods.ByteUnitedMemoryLinks_Create(_body));
+                                    case UInt16 _:
+                                        return from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Create(_body));
+                                    case UInt32 _:
+                                        return from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Create(_body));
+                                    case UInt64:
+                                        _:
+                                        return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Create(_body));
+                                    default:
+                                        throw new NotImplementedException();
+                                }
+                            }
+                        }
 
-        public TLink Update(IList<TLink> restrictions, IList<TLink> substitution)
-        {
-            unsafe
-            {
-                TLink t = default;
-                switch (t)
-                {
-                    case Byte _:
-                        return from_u8.Convert(Methods.ByteUnitedMemoryLinks_Update(
-                            _body, 
-                            (Byte)from_t.Convert(restrictions[0]),
-                            (Byte)from_t.Convert(substitution[1]),
-                            (Byte)from_t.Convert(substitution[2])
-                        ));
-                    case UInt16 _:
-                        return from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Update(
-                            _body, 
-                            (UInt16)from_t.Convert(restrictions[0]),
-                            (UInt16)from_t.Convert(substitution[1]),
-                            (UInt16)from_t.Convert(substitution[2])
-                        ));
-                    case UInt32 _:
-                        return from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Update(
-                            _body, 
-                            (UInt32)from_t.Convert(restrictions[0]),
-                            (UInt32)from_t.Convert(substitution[1]),
-                            (UInt32)from_t.Convert(substitution[2])
-                        ));
-                    case UInt64:
-                        _:
-                        return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Update(
-                            _body, 
-                            (UInt64)from_t.Convert(restrictions[0]),
-                            (UInt64)from_t.Convert(substitution[1]),
-                            (UInt64)from_t.Convert(substitution[2])
-                        ));
-                    default:
-                        throw new NotImplementedException();
-                }
-            }
-        }
+                        public TLink Update(IList<TLink> restrictions, IList<TLink> substitution)
+                        {
+                            unsafe
+                            {
+                                TLink t = default;
+                                switch (t)
+                                {
+                                    case Byte _:
+                                        return from_u8.Convert(Methods.ByteUnitedMemoryLinks_Update(_body, (Byte)from_t.Convert(restrictions[0]), (Byte)from_t.Convert(substitution[1]), (Byte)from_t.Convert(substitution[2])));
+                                    case UInt16 _:
+                                        return from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Update(_body, (UInt16)from_t.Convert(restrictions[0]), (UInt16)from_t.Convert(substitution[1]), (UInt16)from_t.Convert(substitution[2])));
+                                    case UInt32 _:
+                                        return from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Update(_body, (UInt32)from_t.Convert(restrictions[0]), (UInt32)from_t.Convert(substitution[1]), (UInt32)from_t.Convert(substitution[2])));
+                                    case UInt64:
+                                        _:
+                                        return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Update(_body, (UInt64)from_t.Convert(restrictions[0]), (UInt64)from_t.Convert(substitution[1]), (UInt64)from_t.Convert(substitution[2])));
+                                    default:
+                                        throw new NotImplementedException();
+                                }
+                            }
+                        }
 
-        public void Delete(IList<TLink> restrictions)
-        {
-            unsafe
-            {
-                TLink t = default;
-                switch (t)
-                {
-                    case Byte _:
-                        Methods.ByteUnitedMemoryLinks_Delete(
-                            _body, 
-                            (Byte)from_t.Convert(restrictions[0])
-                        );
-                        return;
-                    case UInt16 _:
-                        Methods.UInt16UnitedMemoryLinks_Delete(
-                            _body, 
-                            (UInt16)from_t.Convert(restrictions[0])
-                        );
-                        return;
-                    case UInt32 _:
-                        Methods.UInt32UnitedMemoryLinks_Delete(
-                            _body, 
-                            (UInt32)from_t.Convert(restrictions[0])
-                        );
-                        return;
-                    case UInt64:
-                        _:
-                        Methods.UInt64UnitedMemoryLinks_Delete(
-                            _body, 
-                            (UInt64)from_t.Convert(restrictions[0])
-                        );
-                        return;
-                    default:
-                        throw new NotImplementedException();
-                }
-            }
-        }
-        
+                        public void Delete(IList<TLink> restrictions)
+                        {
+                            unsafe
+                            {
+                                TLink t = default;
+                                switch (t)
+                                {
+                                    case Byte _:
+                                        Methods.ByteUnitedMemoryLinks_Delete(_body, (Byte)from_t.Convert(restrictions[0]));
+                                        return;
+                                    case UInt16 _:
+                                        Methods.UInt16UnitedMemoryLinks_Delete(_body, (UInt16)from_t.Convert(restrictions[0]));
+                                        return;
+                                    case UInt32 _:
+                                        Methods.UInt32UnitedMemoryLinks_Delete(_body, (UInt32)from_t.Convert(restrictions[0]));
+                                        return;
+                                    case UInt64:
+                                        _:
+                                        Methods.UInt64UnitedMemoryLinks_Delete(_body, (UInt64)from_t.Convert(restrictions[0]));
+                                        return;
+                                    default:
+                                        throw new NotImplementedException();
+                                }
+                            }
+                        }
+
         protected override void Dispose(bool manual, bool wasDisposed)
         {
             if (wasDisposed) 
