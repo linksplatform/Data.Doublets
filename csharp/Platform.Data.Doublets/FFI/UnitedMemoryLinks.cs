@@ -338,24 +338,23 @@ namespace Platform.Data.Doublets.FFI
         {
             if (wasDisposed) 
             {
-            return;
+                return;
             }
             TLink t = default;
             unsafe
             {
                 switch (t)
                 {
-                    case Byte t8:
+                    case byte:
                         Methods.ByteUnitedMemoryLinks_Drop(_body);
                         break;
-                    case UInt16 t16:
+                    case ushort:
                         Methods.UInt16UnitedMemoryLinks_Drop(_body);
                         break;
-                    case UInt32 t32:
+                    case uint:
                         Methods.UInt32UnitedMemoryLinks_Drop(_body);
                         break;
-                    case UInt64:
-                        t64:
+                    case ulong:
                         Methods.UInt64UnitedMemoryLinks_Drop(_body);
                         break;
                     default:
