@@ -7,7 +7,7 @@ using Platform.Data.Doublets.Memory.United.Generic;
 
 namespace Platform.Data.Doublets.Tests
 {
-    public unsafe static class GenericLinksTests
+    public static class GenericLinksTests
     {
         [Fact]
         public static void CRUDTest()
