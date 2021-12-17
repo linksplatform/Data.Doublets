@@ -9,14 +9,70 @@
 #![feature(ptr_internals)]
 #![feature(allocator_api)]
 #![feature(slice_ptr_get)]
+#![feature(try_blocks)]
+#![feature(backtrace)]
+#![feature(libstd_sys_internals)]
+#![feature(try_trait_v2)]
+#![feature(fn_traits)]
 
+use crate::doublets::mem::united::{Links, NewList, NewTree, UpdatePointersSplit};
+use crate::doublets::mem::{splited, ILinksListMethods, ILinksTreeMethods, UpdatePointers};
+use crate::mem::ResizeableMem;
+use crate::num::LinkType;
+
+pub mod bench;
 pub mod doublets;
 pub mod mem;
 pub mod methods;
 pub mod num;
 pub mod test_extensions;
 pub mod tests;
-pub mod bench;
+
+unsafe impl<
+        T: LinkType,
+        M: ResizeableMem,
+        TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+        TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+        TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
+    > Sync for Links<T, M, TS, TT, TU>
+{
+}
+
+unsafe impl<
+        T: LinkType,
+        M: ResizeableMem,
+        TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+        TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+        TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
+    > Send for Links<T, M, TS, TT, TU>
+{
+}
+
+unsafe impl<
+        T: LinkType,
+        MD: ResizeableMem,
+        MI: ResizeableMem,
+        IS: ILinksTreeMethods<T> + UpdatePointersSplit,
+        ES: ILinksTreeMethods<T> + UpdatePointersSplit,
+        IT: ILinksTreeMethods<T> + UpdatePointersSplit,
+        ET: ILinksTreeMethods<T> + UpdatePointersSplit,
+        UL: ILinksListMethods<T> + UpdatePointers,
+    > Sync for splited::Links<T, MD, MI, IS, ES, IT, ET, UL>
+{
+}
+
+unsafe impl<
+        T: LinkType,
+        MD: ResizeableMem,
+        MI: ResizeableMem,
+        IS: ILinksTreeMethods<T> + UpdatePointersSplit,
+        ES: ILinksTreeMethods<T> + UpdatePointersSplit,
+        IT: ILinksTreeMethods<T> + UpdatePointersSplit,
+        ET: ILinksTreeMethods<T> + UpdatePointersSplit,
+        UL: ILinksListMethods<T> + UpdatePointers,
+    > Send for splited::Links<T, MD, MI, IS, ES, IT, ET, UL>
+{
+}
 
 //#[cfg(test)]
 //mod tests {
@@ -49,7 +105,7 @@ pub mod bench;
 //    fn it_works() {
 //
 //        unsafe {
-//            let mut mem = HeapMem::new();
+//            let mut mem = HeapMem::new().unwrap();
 //            //let mut mem = FileMappedMem::new("db.links").unwrap();
 //            mem.reserve_mem(2048 * 1000);
 //            unsafe {
@@ -167,7 +223,7 @@ pub mod bench;
 //        std::fs::remove_file("db.links");
 //
 //        let mem = FileMappedMem::new("db.links").unwrap();
-//        let mem = HeapMem::new();
+//        let mem = HeapMem::new().unwrap();
 //        let mut links = Links::<u32, HeapMem>::new(mem);
 //        let constants = links.constants();
 //        let any = constants.any;
@@ -203,7 +259,7 @@ pub mod bench;
 //        std::fs::remove_file("db.links");
 //
 //        let mem = FileMappedMem::new("db.links").unwrap();
-//        let mem = HeapMem::new();
+//        let mem = HeapMem::new().unwrap();
 //        let mut links = Links::<u32, _>::new(mem);
 //
 //        for i in 0..1000 {
@@ -222,7 +278,7 @@ pub mod bench;
 //
 //    #[test]
 //    fn test_crud() {
-//        let mem = HeapMem::new();
+//        let mem = HeapMem::new().unwrap();
 //        let mut links = Links::<u32, _>::new(mem);
 //
 //        links.test_crud();
@@ -230,7 +286,7 @@ pub mod bench;
 //
 //    #[test]
 //    fn links_bug() {
-//        let mut mem = HeapMem::new();
+//        let mut mem = HeapMem::new().unwrap();
 //        let mut links = Links::<usize, _>::new(mem);
 //
 //        for i in 0..100 {
@@ -267,7 +323,7 @@ pub mod bench;
 //    fn debug() {
 //        std::fs::remove_file("дб.ссылкс");
 //        //let mut mem = FileMappedMem::new("дб.ссылкс").unwrap();
-//        let mut mem = HeapMem::new();
+//        let mut mem = HeapMem::new().unwrap();
 //        let mut links = Links::<usize, _>::new(mem);
 //        let mut links = UniqueResolver::new(links);
 //
@@ -287,7 +343,7 @@ pub mod bench;
 //    fn synchronized_links() {
 //        std::fs::remove_file("db.links").unwrap();
 //
-//        let mut mem = HeapMem::new();
+//        let mut mem = HeapMem::new().unwrap();
 //        let mut mem = FileMappedMem::new("db.links").unwrap();
 //        let mut links = Links::<usize, _>::new(mem);
 //
@@ -313,7 +369,7 @@ pub mod bench;
 //
 //    #[test]
 //    fn unique_resolver() {
-//        let mem = HeapMem::new();
+//        let mem = HeapMem::new().unwrap();
 //        let links = Links::<usize, _>::new(mem);
 //
 //        let mut links = UniqueResolver::new(links);
@@ -337,7 +393,7 @@ pub mod bench;
 //
 //    #[test]
 //    fn unique_validator() {
-//        let mem = HeapMem::new();
+//        let mem = HeapMem::new().unwrap();
 //        let links = Links::<usize, _>::new(mem);
 //
 //        let mut links = UniqueValidator::new(links);

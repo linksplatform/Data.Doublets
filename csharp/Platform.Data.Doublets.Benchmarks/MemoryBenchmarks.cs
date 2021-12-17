@@ -8,12 +8,6 @@ using Platform.Memory;
 
 namespace Platform.Data.Doublets.Benchmarks
 {
-    /// <summary>
-    /// <para>
-    /// Represents the memory benchmarks.
-    /// </para>
-    /// <para></para>
-    /// </summary>
     [SimpleJob]
     [MemoryDiagnoser]
     public class MemoryBenchmarks
@@ -22,13 +16,9 @@ namespace Platform.Data.Doublets.Benchmarks
         private static ILinks<uint> _splitMemoryLinks;
         private static UnitedMemoryLinks<uint> _unitedMemory;
         private static ILinks<uint> _unitedMemoryLinks;
+        private static FFI.UnitedMemoryLinks<uint> _ffiUnitedMemory;
+        private static ILinks<uint> _ffiUnitedMemoryLinks;
 
-        /// <summary>
-        /// <para>
-        /// Setup.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         [GlobalSetup]
         public static void Setup()
         {
@@ -40,43 +30,35 @@ namespace Platform.Data.Doublets.Benchmarks
             var memory = new HeapResizableDirectMemory();
             _unitedMemory = new UnitedMemoryLinks<uint>(memory);
             _unitedMemoryLinks = _unitedMemory.DecorateWithAutomaticUniquenessAndUsagesResolution();
+
+            _ffiUnitedMemory = new FFI.UnitedMemoryLinks<uint>("db.links");
+            _ffiUnitedMemoryLinks = _ffiUnitedMemory.DecorateWithAutomaticUniquenessAndUsagesResolution();
         }
 
-        /// <summary>
-        /// <para>
-        /// Cleanups.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         [GlobalCleanup]
         public static void Cleanup()
         {
             _splitMemory.Dispose();
             _unitedMemory.Dispose();
+            _ffiUnitedMemory.Dispose();
         }
 
-        /// <summary>
-        /// <para>
-        /// Splits this instance.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         [Benchmark]
         public void Split()
         {
             _splitMemoryLinks.TestMultipleRandomCreationsAndDeletions(1000);
         }
 
-        /// <summary>
-        /// <para>
-        /// Uniteds this instance.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         [Benchmark]
         public void United()
         {
             _unitedMemoryLinks.TestMultipleRandomCreationsAndDeletions(1000);
+        }
+
+        [Benchmark]
+        public void FfiUnited()
+        {
+            _ffiUnitedMemoryLinks.TestMultipleRandomCreationsAndDeletions(1000);
         }
     }
 }

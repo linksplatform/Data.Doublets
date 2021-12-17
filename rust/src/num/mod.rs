@@ -4,4 +4,3 @@ pub use imp::SignNum;
 pub use imp::ToSigned;
 
 mod imp;
-

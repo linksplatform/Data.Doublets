@@ -19,9 +19,6 @@ impl<T: LinkType> Link<T> {
     const LEN: usize = 3;
 
     pub fn new(index: T, source: T, target: T) -> Self {
-        // TODO: use new for default construct
-        //    // TODO: use default_feature
-        //    Default::default()
         Self {
             index,
             source,
@@ -29,8 +26,7 @@ impl<T: LinkType> Link<T> {
         }
     }
 
-    // TODO: maybe rename to `*point` or `point*`
-    pub fn from_once(val: T) -> Self {
+    pub fn point(val: T) -> Self {
         Self::new(val, val, val)
     }
 
@@ -39,11 +35,20 @@ impl<T: LinkType> Link<T> {
     }
 
     pub fn is_null(&self) -> bool {
-        *self == Self::from_once(zero())
+        *self == Self::point(zero())
     }
 
+    #[deprecated(note = "internal functions expect `Link<T>`")]
     pub fn as_slice(&self) -> &[T] {
         unsafe { from_raw_parts(&self.index as *const T, self.len()) }
+    }
+
+    pub fn is_full(&self) -> bool {
+        self.index == self.source && self.index == self.target
+    }
+
+    pub fn is_partial(&self) -> bool {
+        self.index == self.source || self.index == self.target
     }
 }
 
@@ -94,7 +99,7 @@ impl<'a, T: LinkType> IndexMut<usize> for Link<T> {
 }
 
 impl<T: LinkType> FromIterator<T> for Link<T> {
-    fn from_iter<I: IntoIterator<Item=T>>(iter: I) -> Self {
+    fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> Self {
         let mut new: Link<T> = Default::default(); // TODO: strange compiler type mismatching
         for (i, item) in iter.into_iter().take(new.len()).enumerate() {
             new[i] = item
@@ -103,7 +108,7 @@ impl<T: LinkType> FromIterator<T> for Link<T> {
     }
 }
 
-impl<T: LinkType + Display> Display for Link<T> {
+impl<T: LinkType> Display for Link<T> {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         write!(f, "({}: {} {})", self.index, self.source, self.target)
     }

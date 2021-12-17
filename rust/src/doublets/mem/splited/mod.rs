@@ -1,6 +1,6 @@
 mod data_part;
-mod index_part;
 mod generic;
+mod index_part;
 mod links;
 
 pub use data_part::DataPart;

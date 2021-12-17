@@ -6,44 +6,20 @@ using TLink = System.UInt64;
 
 namespace Platform.Data.Doublets.Tests
 {
-    /// <summary>
-    /// <para>
-    /// Represents the split memory int 64 links tests.
-    /// </para>
-    /// <para></para>
-    /// </summary>
     public unsafe static class SplitMemoryUInt64LinksTests
     {
-        /// <summary>
-        /// <para>
-        /// Tests that crud test.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         [Fact]
         public static void CRUDTest()
         {
             Using(links => links.TestCRUDOperations());
         }
 
-        /// <summary>
-        /// <para>
-        /// Tests that raw numbers crud test.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         [Fact]
         public static void RawNumbersCRUDTest()
         {
             UsingWithExternalReferences(links => links.TestRawNumbersCRUDOperations());
         }
 
-        /// <summary>
-        /// <para>
-        /// Tests that multiple random creations and deletions test.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         [Fact]
         public static void MultipleRandomCreationsAndDeletionsTest()
         {

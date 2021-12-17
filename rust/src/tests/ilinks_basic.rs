@@ -1,17 +1,20 @@
 use num_traits::ToPrimitive;
+use std::ops::ControlFlow;
 
-use crate::doublets::{ILinks, ILinksExtensions, Link};
 use crate::doublets::data::{AddrToRaw, Hybrid, IGenericLinks, LinksConstants, RawToAddr};
+use crate::doublets::{ILinks, ILinksExtensions, Link, LinksError};
+use crate::mem::HeapMem;
 use crate::num::ToSigned;
 use crate::tests::make_links;
 use crate::tests::make_mem;
+use crate::Links;
 
 #[test]
 fn create() {
     let mem = make_mem();
-    let mut links = make_links(mem);
+    let mut links = make_links(mem).unwrap();
 
-    links.create();
+    links.create().unwrap();
 
     assert_eq!(1, links.count());
 }
@@ -19,35 +22,38 @@ fn create() {
 #[test]
 fn create_point() {
     let mem = make_mem();
-    let mut links = make_links(mem);
+    let mut links = make_links(mem).unwrap();
 
-    let point = links.create_point();
+    let point = links.create_point().unwrap();
 
     assert_eq!(1, links.count());
     // TODO: expect
-    assert_eq!(links.get_link(point).unwrap(), Link::from_once(point));
+    assert_eq!(links.get_link(point).unwrap(), Link::point(point));
 }
 
 #[test]
 fn each_eq_count() {
     let mem = make_mem();
-    let mut links = make_links(mem);
+    let mut links = make_links(mem).unwrap();
 
-    let root = links.create_point();
+    let root = links.create_point().unwrap();
 
     for _ in 0..10 {
-        let new = links.create_point();
-        links.create_and_update(new, root);
+        let new = links.create_point().unwrap();
+        links.create_and_update(new, root).unwrap();
     }
 
     let any = links.constants.any;
     let query = [any, any, root];
 
     let mut count = 0;
-    links.each_by(|link| {
-        count += 1;
-        links.constants.r#continue
-    }, [any, any, root]);
+    links.each_by(
+        |link| {
+            count += 1;
+            links.constants.r#continue
+        },
+        [any, any, root],
+    );
 
     assert_eq!(count, links.count_by(query));
 }
@@ -55,42 +61,41 @@ fn each_eq_count() {
 #[test]
 fn rebase() {
     let mem = make_mem();
-    let mut links = make_links(mem);
+    let mut links = make_links(mem).unwrap();
     let any = links.constants.any;
 
-    let root = links.create_point();
+    let root = links.create_point().unwrap();
 
     for _ in 0..10 {
-        let new = links.create_point();
-        links.create_and_update(new, root);
+        let new = links.create_point().unwrap();
+        links.create_and_update(new, root).unwrap();
     }
 
     let before = links.count_by([any, any, root]);
 
-    let new_root = links.create_point();
-    let root = links.rebase(root, new_root);
+    let new_root = links.create_point().unwrap();
+    let root = links.rebase(root, new_root).unwrap();
 
     let after = links.count_by([any, any, root]);
 
     assert_eq!(before, after);
 }
 
-
 #[test]
 fn delete_all_usages() {
     let mem = make_mem();
-    let mut links = make_links(mem);
+    let mut links = make_links(mem).unwrap();
 
-    let root = links.create_point();
-    let a = links.create_point();
-    let b = links.create_point();
+    let root = links.create_point().unwrap();
+    let a = links.create_point().unwrap();
+    let b = links.create_point().unwrap();
 
-    links.create_and_update(a, root);
-    links.create_and_update(b, root);
+    links.create_and_update(a, root).unwrap();
+    links.create_and_update(b, root).unwrap();
 
     assert_eq!(links.count(), 5);
 
-    links.delete_usages(root);
+    links.delete_usages(root).unwrap();
 
     assert_eq!(links.count(), 3);
 }
