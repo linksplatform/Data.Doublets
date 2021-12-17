@@ -2,7 +2,7 @@ use std::borrow::{Borrow, BorrowMut};
 use std::mem::size_of;
 use std::slice::SliceIndex;
 
-use num_traits::{AsPrimitive, one, PrimInt, Unsigned, zero};
+use num_traits::{one, zero, AsPrimitive, PrimInt, Unsigned};
 
 use crate::num::Num;
 
@@ -42,7 +42,10 @@ pub trait SizeBalancedTreeMethods<T: Num> {
     }
 
     fn fix_size(&mut self, node: T) {
-        self.set_size(node, self.get_size(self.get_left(node)) + self.get_size(self.get_right(node)) + T::one())
+        self.set_size(
+            node,
+            self.get_size(self.get_left(node)) + self.get_size(self.get_right(node)) + T::one(),
+        )
     }
 
     // fn fix_sizes(&self, node: T)
@@ -123,11 +126,15 @@ pub trait SizeBalancedTreeMethods<T: Num> {
             let right_root_size = self.get_size(right_root);
             let left_left_root = self.get_left(left_root);
             // TODO: use capture
-            if left_left_root != T::zero() && (right_root == T::zero() || self.get_size(left_left_root) > right_root_size) {
+            if left_left_root != T::zero()
+                && (right_root == T::zero() || self.get_size(left_left_root) > right_root_size)
+            {
                 self.right_rotate(&mut *root);
             } else {
                 let left_right_root = self.get_right(left_root);
-                if left_right_root != T::zero() && (right_root == T::zero() || self.get_size(left_right_root) > right_root_size) {
+                if left_right_root != T::zero()
+                    && (right_root == T::zero() || self.get_size(left_right_root) > right_root_size)
+                {
                     let temp = self.get_mut_left_reference(*root);
                     self.left_rotate(&mut *temp);
                     self.right_rotate(&mut *root);
@@ -156,11 +163,14 @@ pub trait SizeBalancedTreeMethods<T: Num> {
             let left_root_size = self.get_size(left_root);
             let right_right_root = self.get_right(right_root);
             // TODO: use capture
-            if right_right_root != T::zero() && (left_root == T::zero() || self.get_size(right_right_root) > left_root_size) {
+            if right_right_root != T::zero()
+                && (left_root == T::zero() || self.get_size(right_right_root) > left_root_size)
+            {
                 self.left_rotate(&mut *root);
             } else {
                 let right_left_root = self.get_left(right_root);
-                if right_left_root != T::zero() && (left_root == T::zero() || self.get_size(right_left_root) > left_root_size)
+                if right_left_root != T::zero()
+                    && (left_root == T::zero() || self.get_size(right_left_root) > left_root_size)
                 {
                     let temp = self.get_mut_right_reference(*root);
                     self.right_rotate(temp);
@@ -211,7 +221,7 @@ pub trait SizeBalancedTreeMethods<T: Num> {
                 parent = current;
                 current = self.get_mut_right_reference(*current);
             } else {
-                println!("{:?} -- {:?}", detached, *current, );
+                println!("{:?} -- {:?}", detached, *current,);
                 // TODO: return error
                 //self.clear_node(*root);
                 //*root = zero();
@@ -230,7 +240,10 @@ pub trait SizeBalancedTreeMethods<T: Num> {
             node = self.get_right(detached);
             if node != T::zero() {
                 self.set_right(leftest, node);
-                self.set_size(leftest, self.get_size(detached_left) + self.get_size(node) + T::one())
+                self.set_size(
+                    leftest,
+                    self.get_size(detached_left) + self.get_size(node) + T::one(),
+                )
             } else {
                 self.set_size(leftest, self.get_size(detached_left) + T::one());
             }

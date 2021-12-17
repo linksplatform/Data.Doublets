@@ -12,7 +12,7 @@ pub struct HeapMem {
 }
 
 impl HeapMem {
-    pub fn reserve_new(mut capacity: usize) -> Result<Self, Box<dyn Error>> {
+    pub fn reserve_new(mut capacity: usize) -> std::io::Result<Self> {
         let mut new = HeapMem {
             base: Default::default(),
         };
@@ -22,8 +22,8 @@ impl HeapMem {
         Ok(new)
     }
 
-    pub fn new() -> Self {
-        Self::reserve_new(ResizeableBase::MINIMUM_CAPACITY).unwrap() // TODO: return Result
+    pub fn new() -> std::io::Result<Self> {
+        Self::reserve_new(ResizeableBase::MINIMUM_CAPACITY)
     }
 
     fn on_reserved(&mut self, old_capacity: usize, new_capacity: usize) -> std::io::Result<usize> {
@@ -61,7 +61,7 @@ impl Mem for HeapMem {
 }
 
 impl ResizeableMem for HeapMem {
-    fn use_mem(&mut self, capacity: usize) -> Result<usize, Box<dyn Error>> {
+    fn use_mem(&mut self, capacity: usize) -> std::io::Result<usize> {
         self.base.use_mem(capacity)
     }
 
@@ -69,7 +69,7 @@ impl ResizeableMem for HeapMem {
         self.base.used_mem()
     }
 
-    fn reserve_mem(&mut self, capacity: usize) -> Result<usize, Box<dyn Error>> {
+    fn reserve_mem(&mut self, capacity: usize) -> std::io::Result<usize> {
         let older = self.reserved_mem();
         let reserved = self.base.reserve_mem(capacity)?;
         self.on_reserved(older, capacity)?;
@@ -78,12 +78,6 @@ impl ResizeableMem for HeapMem {
 
     fn reserved_mem(&self) -> usize {
         self.base.reserved_mem()
-    }
-}
-
-impl Default for HeapMem {
-    fn default() -> Self {
-        Self::new()
     }
 }
 

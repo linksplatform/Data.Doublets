@@ -77,5 +77,4 @@ pub trait InternalRecursionlessSizeBalancedTreeBaseAbstract<T: LinkType>:
     fn count_usages_core(&self, link: T) -> T {
         self.get_size_or_zero(self.get_tree_root(link))
     }
-
 }

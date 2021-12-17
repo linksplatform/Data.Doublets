@@ -22,7 +22,12 @@ pub struct ExternalRecursionlessSizeBalancedTreeBase<T: LinkType> {
 }
 
 impl<T: LinkType> ExternalRecursionlessSizeBalancedTreeBase<T> {
-    pub fn new(constants: LinksConstants<T>, data: *mut u8, indexes: *mut u8, header: *mut u8) -> Self {
+    pub fn new(
+        constants: LinksConstants<T>,
+        data: *mut u8,
+        indexes: *mut u8,
+        header: *mut u8,
+    ) -> Self {
         Self {
             data,
             indexes,

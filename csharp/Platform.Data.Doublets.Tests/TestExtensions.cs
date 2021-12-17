@@ -8,28 +8,8 @@ using Platform.Converters;
 
 namespace Platform.Data.Doublets.Tests
 {
-    /// <summary>
-    /// <para>
-    /// Represents the test extensions.
-    /// </para>
-    /// <para></para>
-    /// </summary>
     public static class TestExtensions
     {
-        /// <summary>
-        /// <para>
-        /// Tests the crud operations using the specified links.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <typeparam name="T">
-        /// <para>The .</para>
-        /// <para></para>
-        /// </typeparam>
-        /// <param name="links">
-        /// <para>The links.</para>
-        /// <para></para>
-        /// </param>
         public static void TestCRUDOperations<T>(this ILinks<T> links)
         {
             var constants = links.Constants;
@@ -93,20 +73,6 @@ namespace Platform.Data.Doublets.Tests
             Assert.True(equalityComparer.Equals(setter.Result, constants.Null));
         }
 
-        /// <summary>
-        /// <para>
-        /// Tests the raw numbers crud operations using the specified links.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <typeparam name="T">
-        /// <para>The .</para>
-        /// <para></para>
-        /// </typeparam>
-        /// <param name="links">
-        /// <para>The links.</para>
-        /// <para></para>
-        /// </param>
         public static void TestRawNumbersCRUDOperations<T>(this ILinks<T> links)
         {
             // Constants
@@ -188,24 +154,6 @@ namespace Platform.Data.Doublets.Tests
             Assert.True(equalityComparer.Equals(setter3.Result, linkAddress2));
         }
 
-        /// <summary>
-        /// <para>
-        /// Tests the multiple random creations and deletions using the specified links.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <typeparam name="TLink">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </typeparam>
-        /// <param name="links">
-        /// <para>The links.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="maximumOperationsPerCycle">
-        /// <para>The maximum operations per cycle.</para>
-        /// <para></para>
-        /// </param>
         public static void TestMultipleRandomCreationsAndDeletions<TLink>(this ILinks<TLink> links, int maximumOperationsPerCycle)
         {
             var comparer = Comparer<TLink>.Default;

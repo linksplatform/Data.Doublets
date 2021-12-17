@@ -1,12 +1,12 @@
 use std::ops::Index;
 use std::ops::Range;
 
-pub struct Point<T: PartialEq + Copy> {
+pub struct Point<T> {
     index: T,
     size: usize,
 }
 
-impl<T: PartialEq + Copy> Point<T> {
+impl<T: PartialEq + Clone> Point<T> {
     pub fn new(index: T, size: usize) -> Self {
         Self { index, size }
     }
@@ -17,11 +17,14 @@ impl<T: PartialEq + Copy> Point<T> {
 
     // TODO: use support private is_ function
     pub fn is_full<L>(list: L) -> bool
-        where
-            L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>,
+    where
+        L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
     {
         let mut iter = list.into_iter();
-        assert!(iter.len() >= 2, "cannot determine link's pointless using only its identifier");
+        assert!(
+            iter.len() >= 2,
+            "cannot determine link's pointless using only its identifier"
+        );
 
         if let Some(first) = iter.next() {
             iter.all(|item| item == first)
@@ -31,11 +34,14 @@ impl<T: PartialEq + Copy> Point<T> {
     }
 
     pub fn is_partial<L>(list: L) -> bool
-        where
-            L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>,
+    where
+        L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
     {
         let mut iter = list.into_iter();
-        assert!(iter.len() >= 2, "cannot determine link's pointless using only its identifier");
+        assert!(
+            iter.len() >= 2,
+            "cannot determine link's pointless using only its identifier"
+        );
 
         if let Some(first) = iter.next() {
             iter.any(|item| item == first)
@@ -45,7 +51,7 @@ impl<T: PartialEq + Copy> Point<T> {
     }
 }
 
-impl<T: PartialEq + Copy> Index<usize> for Point<T> {
+impl<T: PartialEq> Index<usize> for Point<T> {
     type Output = T;
 
     fn index(&self, index: usize) -> &Self::Output {

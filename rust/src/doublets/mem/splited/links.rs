@@ -1,5 +1,8 @@
+use std::borrow::BorrowMut;
 use std::default::default;
+use std::ops::Try;
 
+use crate::doublets;
 use num_traits::{one, zero};
 
 use crate::doublets::data::LinksConstants;
@@ -10,7 +13,8 @@ use crate::doublets::mem::splited::generic::{
 use crate::doublets::mem::splited::{DataPart, IndexPart};
 use crate::doublets::mem::united::UpdatePointersSplit;
 use crate::doublets::mem::{ILinksListMethods, ILinksTreeMethods, LinksHeader, UpdatePointers};
-use crate::doublets::{ILinks, Link};
+use crate::doublets::Result;
+use crate::doublets::{ILinks, Link, LinksError};
 use crate::mem::ResizeableMem;
 use crate::methods::RelativeCircularDoublyLinkedList;
 use crate::num::LinkType;
@@ -63,7 +67,7 @@ impl<
         data_mem: MD,
         index_mem: MI,
         constants: LinksConstants<T>,
-    ) -> Links<T, MD, MI> {
+    ) -> Result<Links<T, MD, MI>, LinksError<T>> {
         let data = data_mem.get_ptr();
         let index = index_mem.get_ptr();
         let header = index_mem.get_ptr();
@@ -95,11 +99,11 @@ impl<
             unused,
         };
 
-        new.init();
-        new
+        new.init()?;
+        Ok(new)
     }
 
-    pub fn new(data_mem: MD, index_mem: MI) -> Links<T, MD, MI> {
+    pub fn new(data_mem: MD, index_mem: MI) -> Result<Links<T, MD, MI>, LinksError<T>> {
         Self::with_constants(data_mem, index_mem, default())
     }
 
@@ -150,7 +154,7 @@ impl<
         to_align
     }
 
-    fn init(&mut self) {
+    fn init(&mut self) -> Result<(), LinksError<T>> {
         if self.index_mem.reserved_mem() < Self::HEADER_SIZE {
             self.index_mem.reserve_mem(Self::HEADER_SIZE).unwrap();
         }
@@ -172,20 +176,19 @@ impl<
         data_capacity = Self::align(data_capacity, self.data_step);
         index_capacity = Self::align(index_capacity, self.index_step);
 
-        self.data_mem.reserve_mem(data_capacity).unwrap();
-        self.index_mem.reserve_mem(index_capacity).unwrap();
+        self.data_mem.reserve_mem(data_capacity)?;
+        self.index_mem.reserve_mem(index_capacity)?;
         self.update_pointers();
 
         let allocated = header.allocated.as_();
         self.data_mem
-            .use_mem(allocated * Self::DATA_SIZE + Self::DATA_SIZE)
-            .unwrap();
+            .use_mem(allocated * Self::DATA_SIZE + Self::DATA_SIZE)?;
         self.index_mem
-            .use_mem(allocated * Self::INDEX_SIZE + Self::INDEX_SIZE)
-            .unwrap();
+            .use_mem(allocated * Self::INDEX_SIZE + Self::INDEX_SIZE)?;
 
         self.mut_header().reserved =
             T::from((self.data_mem.reserved_mem() - Self::DATA_SIZE) / Self::DATA_SIZE).unwrap();
+        Ok(())
     }
 
     fn total(&self) -> T {
@@ -222,50 +225,48 @@ impl<
         Link::new(index, raw.source, raw.target)
     }
 
-    fn each_by_core<H, const L: usize>(&self, mut handler: &mut H, restrictions: [T; L]) -> T
+    fn try_each_by_core<F, R, const L: usize>(&self, handler: &mut F, restrictions: [T; L]) -> R
     where
-        H: FnMut(Link<T>) -> T,
+        F: FnMut(Link<T>) -> R,
+        R: Try<Output = ()>,
     {
-        let constants = self.constants();
-
-        let r#break = constants.r#break;
         if restrictions.is_empty() {
             for index in one()..=self.get_header().allocated {
                 // TODO: 100% `Some`
                 //  exist(`link`) => get_link(`link`) is Some
-                if self.exists(index) && handler(self.get_link(index).unwrap()) == r#break {
-                    return r#break;
+                if let Some(link) = self.get_link(index) {
+                    handler(link)?;
                 }
             }
-            return r#break;
+            return R::from_output(());
         }
 
+        let constants = self.constants.clone();
         let any = constants.any;
         let r#continue = constants.r#continue;
-        let index = restrictions[constants.index_part.as_()]; // TODO: [maybe] create `const` positions
+        let index = restrictions[constants.index_part.as_()];
         if restrictions.len() == 1 {
             return if index == any {
-                self.each_by_core(handler, [])
+                self.try_each_by_core(handler, [])
             } else if !self.exists(index) {
-                r#continue
+                R::from_output(())
             } else {
                 handler(self.get_link_unchecked(index)) // TODO: 100% `Some`
             };
         }
-
+        //
         if restrictions.len() == 2 {
             let value = restrictions[1]; // TODO: Hmm... `const` position?
             return if index == any {
                 if value == any {
-                    self.each_by_core(handler, [])
-                } else if self.each_by_core(handler, [index, value, any]) == r#break {
-                    r#break
+                    self.try_each_by_core(handler, [])
                 } else {
-                    self.each_by_core(handler, [index, any, value])
+                    self.try_each_by_core(handler, [index, value, any])?;
+                    self.try_each_by_core(handler, [index, any, value])
                 }
             } else {
                 if !self.exists(index) {
-                    r#continue
+                    R::from_output(())
                 } else if value == any {
                     handler(self.get_link_unchecked(index))
                 } else {
@@ -273,19 +274,19 @@ impl<
                     if (stored.source, stored.target) == (value, value) {
                         handler(self.get_link_unchecked(index))
                     } else {
-                        r#continue
+                        R::from_output(())
                     }
                 }
             };
         }
-
+        //
         if restrictions.len() == 3 {
             let source = restrictions[constants.source_part.as_()];
             let target = restrictions[constants.target_part.as_()];
-
+            //
             return if index == any {
                 if (source, target) == (any, any) {
-                    self.each_by_core(handler, [])
+                    self.try_each_by_core(handler, [])
                 } else if source == any {
                     if constants.is_external_reference(target) {
                         self.external_targets.each_usages(target, handler)
@@ -335,7 +336,7 @@ impl<
                         }
                     };
                     return if link == constants.null {
-                        r#continue
+                        R::from_output(())
                     } else {
                         let link = self.get_link(link).unwrap();
                         handler(link)
@@ -343,7 +344,7 @@ impl<
                 }
             } else {
                 if !self.exists(index) {
-                    r#continue
+                    R::from_output(())
                 } else if (source, target) == (any, any) {
                     let link = self.get_link_unchecked(index);
                     handler(link)
@@ -353,27 +354,26 @@ impl<
                         if (link.source, link.target) == (source, target) {
                             handler(link)
                         } else {
-                            r#continue
+                            R::from_output(())
                         }
                     } else {
                         if source != any {
                             if (link.source, link.target) == (source, source) {
                                 handler(link)
                             } else {
-                                r#continue
+                                R::from_output(())
                             }
                         } else {
                             if (link.source, link.target) == (target, target) {
                                 handler(link)
                             } else {
-                                r#continue
+                                R::from_output(())
                             }
                         }
                     }
                 }
             };
         }
-
         todo!()
     }
 }
@@ -539,7 +539,7 @@ impl<
         todo!()
     }
 
-    fn create(&mut self) -> T {
+    fn create(&mut self) -> Result<T> {
         let constants = self.constants();
         let header = self.get_header();
         let mut free = header.first_free;
@@ -552,11 +552,9 @@ impl<
             // TODO: if header.allocated >= header.reserved - one() {
             if self.index_mem.reserved_mem() < self.index_mem.used_mem() + Self::INDEX_SIZE {
                 self.data_mem
-                    .reserve_mem(self.data_mem.reserved_mem() + self.data_step)
-                    .unwrap();
+                    .reserve_mem(self.data_mem.reserved_mem() + self.data_step)?;
                 self.index_mem
-                    .reserve_mem(self.index_mem.reserved_mem() + self.index_step)
-                    .unwrap();
+                    .reserve_mem(self.index_mem.reserved_mem() + self.index_step)?;
                 self.update_pointers();
                 // let reserved = self.data_mem.reserved_mem();
                 let reserved = self.index_mem.reserved_mem();
@@ -568,26 +566,24 @@ impl<
             header.allocated = header.allocated + one();
             free = header.allocated;
             self.data_mem
-                .use_mem(self.data_mem.used_mem() + Self::DATA_SIZE)
-                .unwrap();
+                .use_mem(self.data_mem.used_mem() + Self::DATA_SIZE)?;
             self.index_mem
-                .use_mem(self.index_mem.used_mem() + Self::INDEX_SIZE)
-                .unwrap();
+                .use_mem(self.index_mem.used_mem() + Self::INDEX_SIZE)?;
         } else {
             self.unused.detach(free)
         }
-        free
+        Ok(free)
     }
 
-    // TODO: create the following functions
-    fn each_by<H, const L: usize>(&self, mut handler: H, restrictions: [T; L]) -> T
+    fn try_each_by<F, R, const L: usize>(&self, mut handler: F, restrictions: [T; L]) -> R
     where
-        H: FnMut(Link<T>) -> T,
+        F: FnMut(Link<T>) -> R,
+        R: Try<Output = ()>,
     {
-        self.each_by_core(&mut handler, restrictions)
+        self.try_each_by_core(&mut handler, restrictions)
     }
 
-    fn update(&mut self, index: T, new_source: T, new_target: T) -> T {
+    fn update(&mut self, index: T, new_source: T, new_target: T) -> Result<T> {
         let constants = self.constants();
         let null = constants.null;
 
@@ -649,14 +645,14 @@ impl<
             }
         }
 
-        index
+        Ok(index)
     }
 
-    fn delete(&mut self, index: T) -> T {
+    fn delete(&mut self, index: T) -> Result<T> {
         if !self.exists(index) {
-            return default();
+            return Err(LinksError::NotExists(index));
         }
-        self.update(index, zero(), zero());
+        self.update(index, zero(), zero())?;
 
         // TODO: move to `delete_core`
         let header = self.get_header();
@@ -665,11 +661,9 @@ impl<
             self.unused.attach_as_first(link)
         } else if link == header.allocated {
             self.data_mem
-                .use_mem(self.data_mem.used_mem() - Self::DATA_SIZE)
-                .unwrap();
+                .use_mem(self.data_mem.used_mem() - Self::DATA_SIZE)?;
             self.index_mem
-                .use_mem(self.index_mem.used_mem() - Self::INDEX_SIZE)
-                .unwrap();
+                .use_mem(self.index_mem.used_mem() - Self::INDEX_SIZE)?;
 
             let allocated = self.get_header().allocated;
             let header = self.mut_header();
@@ -685,14 +679,14 @@ impl<
                 // TODO: create extension `update_used`
 
                 let used_mem = self.data_mem.used_mem();
-                self.data_mem.use_mem(used_mem - Self::DATA_SIZE).unwrap();
+                self.data_mem.use_mem(used_mem - Self::DATA_SIZE)?;
 
                 let used_mem = self.index_mem.used_mem();
-                self.index_mem.use_mem(used_mem - Self::INDEX_SIZE).unwrap();
+                self.index_mem.use_mem(used_mem - Self::INDEX_SIZE)?;
             }
             //*self.get_mut_header() = header;
         }
-        index
+        Ok(index)
     }
 
     fn get_link(&self, index: T) -> Option<Link<T>> {

@@ -1,4 +1,4 @@
-use num_traits::{abs, one, Signed, zero};
+use num_traits::{abs, one, zero, Signed};
 
 use crate::num::{LinkType, ToSigned};
 
@@ -19,9 +19,7 @@ impl<T: LinkType> Hybrid<T> {
     }
 
     pub fn internal(value: T) -> Self {
-        Self {
-            value
-        }
+        Self { value }
     }
 
     fn extend_value(value: T) -> T {
@@ -61,7 +59,8 @@ impl<T: LinkType> Hybrid<T> {
             zero()
         } else {
             abs(self.signed())
-        }.abs();
+        }
+        .abs();
         T::from(abs).unwrap()
     }
 

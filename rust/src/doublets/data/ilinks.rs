@@ -10,26 +10,26 @@ pub trait IGenericLinks<T: LinkType> {
     }
 
     fn count_generic<L>(&self, restrictions: L) -> T
-        where
-            L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>;
+    where
+        L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>;
 
     fn each_generic<F, L>(&self, handler: F, restrictions: L) -> T
-        where
-            F: FnMut(&[T]) -> T,
-            L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>;
+    where
+        F: FnMut(&[T]) -> T,
+        L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>;
 
     fn create_generic<L>(&mut self, restrictions: L) -> T
-        where
-            L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>;
+    where
+        L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>;
 
     fn update_generic<Lr, Ls>(&mut self, restrictions: Lr, substitution: Ls) -> T
-        where
-            Lr: IntoIterator<Item=T, IntoIter: ExactSizeIterator>,
-            Ls: IntoIterator<Item=T, IntoIter: ExactSizeIterator>;
+    where
+        Lr: IntoIterator<Item = T, IntoIter: ExactSizeIterator>,
+        Ls: IntoIterator<Item = T, IntoIter: ExactSizeIterator>;
 
     fn delete_generic<L>(&mut self, restrictions: L)
-        where
-            L: IntoIterator<Item=T, IntoIter: ExactSizeIterator>;
+    where
+        L: IntoIterator<Item = T, IntoIter: ExactSizeIterator>;
 }
 
 pub trait IGenericLinksExtensions<T: LinkType>: IGenericLinks<T> {
@@ -42,7 +42,7 @@ pub trait IGenericLinksExtensions<T: LinkType>: IGenericLinks<T> {
         }
     }
 
-    fn get_generic_link(&self, link: T) -> Option<Box<dyn ExactSizeIterator<Item=T>>> {
+    fn get_generic_link(&self, link: T) -> Option<Box<dyn ExactSizeIterator<Item = T>>> {
         let constants = self.constants();
         if constants.is_external_reference(link) {
             Some(box Point::new(link, constants.target_part.as_() + 1).into_iter())
@@ -52,11 +52,11 @@ pub trait IGenericLinksExtensions<T: LinkType>: IGenericLinks<T> {
                 |link| {
                     slice = Some(link.to_vec());
                     constants.r#break
-                }, [link]);
+                },
+                [link],
+            );
             // TODO: fix type annotations
-            slice.map(|slice| -> Box<dyn ExactSizeIterator<Item=T>> {
-                box slice.into_iter()
-            })
+            slice.map(|slice| -> Box<dyn ExactSizeIterator<Item = T>> { box slice.into_iter() })
         }
     }
 

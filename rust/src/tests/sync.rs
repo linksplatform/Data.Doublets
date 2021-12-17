@@ -1,33 +1,23 @@
 use std::ptr::Unique;
-use std::sync::{Arc, Mutex, RwLock};
 use std::sync::mpsc::channel;
+use std::sync::{Arc, Mutex, RwLock};
 use std::thread;
 use std::time::Instant;
 
 use rand::Rng;
 
-use crate::doublets::{ILinks, ILinksExtensions, Link};
 use crate::doublets::data::IGenericLinks;
 use crate::doublets::mem::{splited, united};
+use crate::doublets::{ILinks, ILinksExtensions, Link};
 use crate::mem::ResizeableMem;
 use crate::num::LinkType;
 use crate::tests::make_links;
 use crate::tests::make_mem;
 
-// TODO: use safe slice
-unsafe impl<T: LinkType, M: ResizeableMem> Send for united::Links<T, M> {}
-
-unsafe impl<T: LinkType, M: ResizeableMem> Sync for united::Links<T, M> {}
-
-
-unsafe impl<T: LinkType, M1: ResizeableMem, M2: ResizeableMem> Send for splited::Links<T, M1, M2> {}
-
-unsafe impl<T: LinkType, M1: ResizeableMem, M2: ResizeableMem> Sync for splited::Links<T, M1, M2> {}
-
 #[test]
 fn basic_sync() {
     let mem = make_mem();
-    let mut links = make_links(mem);
+    let mut links = make_links(mem).unwrap();
 
     let base_links = Arc::new(RwLock::new(links));
 
@@ -38,7 +28,7 @@ fn basic_sync() {
         let thread = thread::spawn(move || {
             for _ in 0..10000 {
                 let mut links = links.write().unwrap();
-                (*links).create_point();
+                (*links).create_point().unwrap();
             }
         });
         threads.push(thread);
@@ -55,14 +45,14 @@ fn basic_sync() {
 #[test]
 fn super_read() {
     let mem = make_mem();
-    let mut links = make_links(mem);
+    let mut links = make_links(mem).unwrap();
 
     let instant = Instant::now();
 
     for _ in 0..1000000 {
         let source = rand::thread_rng().gen_range(1..=1000);
         let target = rand::thread_rng().gen_range(1..=1000);
-        links.get_or_create(source, target);
+        links.get_or_create(source, target).unwrap();
     }
 
     println!("links count: {}", links.count());
