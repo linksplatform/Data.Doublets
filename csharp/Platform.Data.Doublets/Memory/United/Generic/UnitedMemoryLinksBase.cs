@@ -552,10 +552,11 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             if (LessThan(link, header.AllocatedLinks))
             {
                 UnusedLinksListMethods.AttachAsFirst(link);
+                return link;
             }
             else if (AreEqual(link, header.AllocatedLinks))
             {
-                var deletedLink = header.AllocatedLinks = Decrement(header.AllocatedLinks);
+                header.AllocatedLinks = Decrement(header.AllocatedLinks);
                 _memory.UsedCapacity -= LinkSizeInBytes;
                 // Убираем все связи, находящиеся в списке свободных в конце файла, до тех пор, пока не дойдём до первой существующей связи
                 // Позволяет оптимизировать количество выделенных связей (AllocatedLinks)
@@ -565,8 +566,9 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                     header.AllocatedLinks = Decrement(header.AllocatedLinks);
                     _memory.UsedCapacity -= LinkSizeInBytes;
                 }
-                return deletedLink;
+                return link;
             }
+            return Constants.Null;
         }
 
         /// <summary>
