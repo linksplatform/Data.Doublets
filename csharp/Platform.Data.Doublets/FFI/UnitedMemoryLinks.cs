@@ -149,24 +149,14 @@ namespace Platform.Data.Doublets.FFI
             TLink t = default;
             unsafe
             {
-                switch (t)
+                _body = t switch
                 {
-                    case Byte t8:
-                        this._body = Methods.ByteUnitedMemoryLinks_New(path);
-                        break;
-                    case UInt16 t16:
-                        this._body = Methods.UInt16UnitedMemoryLinks_New(path);
-                        break;
-                    case UInt32 t32:
-                        this._body = Methods.UInt32UnitedMemoryLinks_New(path);
-                        break;
-                    case UInt64:
-                        t64:
-                        this._body = Methods.UInt64UnitedMemoryLinks_New(path);
-                        break;
-                    default:
-                        throw new NotImplementedException();
-                }
+                    byte => Methods.ByteUnitedMemoryLinks_New(path),
+                    ushort => Methods.UInt16UnitedMemoryLinks_New(path),
+                    uint => Methods.UInt32UnitedMemoryLinks_New(path),
+                    ulong => Methods.UInt64UnitedMemoryLinks_New(path),
+                    _ => throw new NotImplementedException()
+                };
 
                 // TODO: Update api
                 Constants = new LinksConstants<TLink>(enableExternalReferencesSupport: true);
