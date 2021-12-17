@@ -298,20 +298,14 @@ namespace Platform.Data.Doublets.FFI
                             unsafe
                             {
                                 TLink t = default;
-                                switch (t)
+                                return t switch
                                 {
-                                    case Byte _:
-                                        return from_u8.Convert(Methods.ByteUnitedMemoryLinks_Update(_body, (Byte)from_t.Convert(restrictions[0]), (Byte)from_t.Convert(substitution[1]), (Byte)from_t.Convert(substitution[2])));
-                                    case UInt16 _:
-                                        return from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Update(_body, (UInt16)from_t.Convert(restrictions[0]), (UInt16)from_t.Convert(substitution[1]), (UInt16)from_t.Convert(substitution[2])));
-                                    case UInt32 _:
-                                        return from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Update(_body, (UInt32)from_t.Convert(restrictions[0]), (UInt32)from_t.Convert(substitution[1]), (UInt32)from_t.Convert(substitution[2])));
-                                    case UInt64:
-                                        _:
-                                        return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Update(_body, (UInt64)from_t.Convert(restrictions[0]), (UInt64)from_t.Convert(substitution[1]), (UInt64)from_t.Convert(substitution[2])));
-                                    default:
-                                        throw new NotImplementedException();
-                                }
+                                    byte => from_u8.Convert(Methods.ByteUnitedMemoryLinks_Update(_body, (Byte)from_t.Convert(restrictions[0]), (Byte)from_t.Convert(substitution[1]), (Byte)from_t.Convert(substitution[2]))),
+                                    ushort => from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Update(_body, (UInt16)from_t.Convert(restrictions[0]), (UInt16)from_t.Convert(substitution[1]), (UInt16)from_t.Convert(substitution[2]))),
+                                    uint => from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Update(_body, (UInt32)from_t.Convert(restrictions[0]), (UInt32)from_t.Convert(substitution[1]), (UInt32)from_t.Convert(substitution[2]))),
+                                    ulong => from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Update(_body, from_t.Convert(restrictions[0]), from_t.Convert(substitution[1]), from_t.Convert(substitution[2]))),
+                                    _ => throw new NotImplementedException()
+                                };
                             }
                         }
 
