@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using Xunit;
 using Platform.Reflection;
 using Platform.Memory;
@@ -45,6 +46,7 @@ namespace Platform.Data.Doublets.Tests
             {
                 action(links);
             }
+            File.Delete("db.links");
         }
     }
 }
