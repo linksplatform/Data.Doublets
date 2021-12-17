@@ -316,18 +316,17 @@ namespace Platform.Data.Doublets.FFI
                                 TLink t = default;
                                 switch (t)
                                 {
-                                    case Byte _:
-                                        Methods.ByteUnitedMemoryLinks_Delete(_body, (Byte)from_t.Convert(restrictions[0]));
+                                    case byte:
+                                        Methods.ByteUnitedMemoryLinks_Delete(_body, (byte)from_t.Convert(restrictions[0]));
                                         return;
-                                    case UInt16 _:
-                                        Methods.UInt16UnitedMemoryLinks_Delete(_body, (UInt16)from_t.Convert(restrictions[0]));
+                                    case ushort:
+                                        Methods.UInt16UnitedMemoryLinks_Delete(_body, (ushort)from_t.Convert(restrictions[0]));
                                         return;
-                                    case UInt32 _:
-                                        Methods.UInt32UnitedMemoryLinks_Delete(_body, (UInt32)from_t.Convert(restrictions[0]));
+                                    case uint:
+                                        Methods.UInt32UnitedMemoryLinks_Delete(_body, (uint)from_t.Convert(restrictions[0]));
                                         return;
-                                    case UInt64:
-                                        _:
-                                        Methods.UInt64UnitedMemoryLinks_Delete(_body, (UInt64)from_t.Convert(restrictions[0]));
+                                    case ulong:
+                                        Methods.UInt64UnitedMemoryLinks_Delete(_body, from_t.Convert(restrictions[0]));
                                         return;
                                     default:
                                         throw new NotImplementedException();
