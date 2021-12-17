@@ -282,20 +282,14 @@ namespace Platform.Data.Doublets.FFI
                             unsafe
                             {
                                 TLink t = default;
-                                switch (t)
+                                return t switch
                                 {
-                                    case Byte _:
-                                        return from_u8.Convert(Methods.ByteUnitedMemoryLinks_Create(_body));
-                                    case UInt16 _:
-                                        return from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Create(_body));
-                                    case UInt32 _:
-                                        return from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Create(_body));
-                                    case UInt64:
-                                        _:
-                                        return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Create(_body));
-                                    default:
-                                        throw new NotImplementedException();
-                                }
+                                    byte => from_u8.Convert(Methods.ByteUnitedMemoryLinks_Create(_body)),
+                                    ushort => from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Create(_body)),
+                                    uint => from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Create(_body)),
+                                    ulong => from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Create(_body)),
+                                    _ => throw new NotImplementedException()
+                                };
                             }
                         }
 
