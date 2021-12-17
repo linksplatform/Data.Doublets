@@ -58,7 +58,7 @@ namespace Platform.Data.Doublets.FFI
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void* UInt64UnitedMemoryLinks_New(string path);
-        
+
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void ByteUnitedMemoryLinks_Drop(void* self);
 
@@ -70,7 +70,7 @@ namespace Platform.Data.Doublets.FFI
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void UInt64UnitedMemoryLinks_Drop(void* self);
-        
+
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
         public static extern byte ByteUnitedMemoryLinks_Create(void* self);
 
@@ -106,10 +106,10 @@ namespace Platform.Data.Doublets.FFI
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
         public static extern ulong UInt64UnitedMemoryLinks_Each(void* self, EachCallback_Uint64 callback, ulong* query, nuint len);
-        
+
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
         public static extern byte ByteUnitedMemoryLinks_Update(void* self, byte index, byte source, byte target);
-        
+
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
         public static extern ushort UInt16UnitedMemoryLinks_Update(void* self, ushort index, ushort source, ushort target);
 
@@ -118,10 +118,10 @@ namespace Platform.Data.Doublets.FFI
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
         public static extern ulong UInt64UnitedMemoryLinks_Update(void* self, ulong index, ulong source, ulong target);
-        
+
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
         public static extern byte ByteUnitedMemoryLinks_Delete(void* self, byte index);
-        
+
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
         public static extern ushort UInt16UnitedMemoryLinks_Delete(void* self, ushort index);
 
@@ -143,7 +143,7 @@ namespace Platform.Data.Doublets.FFI
         public LinksConstants<TLink> Constants { get; }
 
         private readonly unsafe void* _body;
-        
+
         public UnitedMemoryLinks(string path)
         {
             TLink t = default;
@@ -226,7 +226,6 @@ namespace Platform.Data.Doublets.FFI
                     case byte:
                     {
                         Methods.EachCallback_Uint8 callback = (link) => (byte)from_t.Convert(handler(new Link<TLink>(from_u8.Convert(link.Index), from_u8.Convert(link.Source), from_u8.Convert(link.Target))));
-
                         var array = stackalloc byte[restrictions.Count];
                         for (var i = 0; i < restrictions.Count; i++)
                         {
@@ -237,7 +236,6 @@ namespace Platform.Data.Doublets.FFI
                     case ushort:
                     {
                         Methods.EachCallback_Uint16 callback = (link) => (ushort)from_t.Convert(handler(new Link<TLink>(from_u16.Convert(link.Index), from_u16.Convert(link.Source), from_u16.Convert(link.Target))));
-
                         var array = stackalloc ushort[restrictions.Count];
                         for (var i = 0; i < restrictions.Count; i++)
                         {
@@ -248,7 +246,6 @@ namespace Platform.Data.Doublets.FFI
                     case uint:
                     {
                         Methods.EachCallback_Uint32 callback = (link) => (ushort)from_t.Convert(handler(new Link<TLink>(from_u32.Convert(link.Index), from_u32.Convert(link.Source), from_u32.Convert(link.Target))));
-
                         var array = stackalloc uint[restrictions.Count];
                         for (var i = 0; i < restrictions.Count; i++)
                         {
@@ -260,7 +257,6 @@ namespace Platform.Data.Doublets.FFI
                     {
                         {
                             Methods.EachCallback_Uint64 callback = (link) => from_t.Convert(handler(new Link<TLink>(from_u64.Convert(link.Index), from_u64.Convert(link.Source), from_u64.Convert(link.Target))));
-
                             var array = stackalloc UInt64[restrictions.Count];
                             for (var i = 0; i < restrictions.Count; i++)
                             {
@@ -277,66 +273,66 @@ namespace Platform.Data.Doublets.FFI
             }
         }
 
-                        public TLink Create(IList<TLink> restrictions)
-                        {
-                            unsafe
-                            {
-                                TLink t = default;
-                                return t switch
-                                {
-                                    byte => from_u8.Convert(Methods.ByteUnitedMemoryLinks_Create(_body)),
-                                    ushort => from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Create(_body)),
-                                    uint => from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Create(_body)),
-                                    ulong => from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Create(_body)),
-                                    _ => throw new NotImplementedException()
-                                };
-                            }
-                        }
+        public TLink Create(IList<TLink> restrictions)
+        {
+            unsafe
+            {
+                TLink t = default;
+                return t switch
+                {
+                    byte => from_u8.Convert(Methods.ByteUnitedMemoryLinks_Create(_body)),
+                    ushort => from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Create(_body)),
+                    uint => from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Create(_body)),
+                    ulong => from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Create(_body)),
+                    _ => throw new NotImplementedException()
+                };
+            }
+        }
 
-                        public TLink Update(IList<TLink> restrictions, IList<TLink> substitution)
-                        {
-                            unsafe
-                            {
-                                TLink t = default;
-                                return t switch
-                                {
-                                    byte => from_u8.Convert(Methods.ByteUnitedMemoryLinks_Update(_body, (Byte)from_t.Convert(restrictions[0]), (Byte)from_t.Convert(substitution[1]), (Byte)from_t.Convert(substitution[2]))),
-                                    ushort => from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Update(_body, (UInt16)from_t.Convert(restrictions[0]), (UInt16)from_t.Convert(substitution[1]), (UInt16)from_t.Convert(substitution[2]))),
-                                    uint => from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Update(_body, (UInt32)from_t.Convert(restrictions[0]), (UInt32)from_t.Convert(substitution[1]), (UInt32)from_t.Convert(substitution[2]))),
-                                    ulong => from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Update(_body, from_t.Convert(restrictions[0]), from_t.Convert(substitution[1]), from_t.Convert(substitution[2]))),
-                                    _ => throw new NotImplementedException()
-                                };
-                            }
-                        }
+        public TLink Update(IList<TLink> restrictions, IList<TLink> substitution)
+        {
+            unsafe
+            {
+                TLink t = default;
+                return t switch
+                {
+                    byte => from_u8.Convert(Methods.ByteUnitedMemoryLinks_Update(_body, (Byte)from_t.Convert(restrictions[0]), (Byte)from_t.Convert(substitution[1]), (Byte)from_t.Convert(substitution[2]))),
+                    ushort => from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Update(_body, (UInt16)from_t.Convert(restrictions[0]), (UInt16)from_t.Convert(substitution[1]), (UInt16)from_t.Convert(substitution[2]))),
+                    uint => from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Update(_body, (UInt32)from_t.Convert(restrictions[0]), (UInt32)from_t.Convert(substitution[1]), (UInt32)from_t.Convert(substitution[2]))),
+                    ulong => from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Update(_body, from_t.Convert(restrictions[0]), from_t.Convert(substitution[1]), from_t.Convert(substitution[2]))),
+                    _ => throw new NotImplementedException()
+                };
+            }
+        }
 
-                        public void Delete(IList<TLink> restrictions)
-                        {
-                            unsafe
-                            {
-                                TLink t = default;
-                                switch (t)
-                                {
-                                    case byte:
-                                        Methods.ByteUnitedMemoryLinks_Delete(_body, (byte)from_t.Convert(restrictions[0]));
-                                        return;
-                                    case ushort:
-                                        Methods.UInt16UnitedMemoryLinks_Delete(_body, (ushort)from_t.Convert(restrictions[0]));
-                                        return;
-                                    case uint:
-                                        Methods.UInt32UnitedMemoryLinks_Delete(_body, (uint)from_t.Convert(restrictions[0]));
-                                        return;
-                                    case ulong:
-                                        Methods.UInt64UnitedMemoryLinks_Delete(_body, from_t.Convert(restrictions[0]));
-                                        return;
-                                    default:
-                                        throw new NotImplementedException();
-                                }
-                            }
-                        }
+        public void Delete(IList<TLink> restrictions)
+        {
+            unsafe
+            {
+                TLink t = default;
+                switch (t)
+                {
+                    case byte:
+                        Methods.ByteUnitedMemoryLinks_Delete(_body, (byte)from_t.Convert(restrictions[0]));
+                        return;
+                    case ushort:
+                        Methods.UInt16UnitedMemoryLinks_Delete(_body, (ushort)from_t.Convert(restrictions[0]));
+                        return;
+                    case uint:
+                        Methods.UInt32UnitedMemoryLinks_Delete(_body, (uint)from_t.Convert(restrictions[0]));
+                        return;
+                    case ulong:
+                        Methods.UInt64UnitedMemoryLinks_Delete(_body, from_t.Convert(restrictions[0]));
+                        return;
+                    default:
+                        throw new NotImplementedException();
+                }
+            }
+        }
 
         protected override void Dispose(bool manual, bool wasDisposed)
         {
-            if (wasDisposed) 
+            if (wasDisposed)
             {
                 return;
             }
