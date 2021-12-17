@@ -208,6 +208,10 @@ namespace Platform.Data.Doublets.FFI
                             return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Count(_body, array, (nuint)restrictions.Count));
                         }
                     }
+                    default:
+                    {
+                        throw new NotImplementedException();
+                    }
                 }
             }
         }
@@ -217,6 +221,7 @@ namespace Platform.Data.Doublets.FFI
                             unsafe
                             {
                                 TLink t = default;
+
                                 if (typeof(TLink) == typeof(Byte))
                                 {
                                     Methods.EachCallback_Uint8 callback = ((link) => (Byte)from_t.Convert(handler(new Link<TLink>(from_u8.Convert(link.Index), from_u8.Convert(link.Source), from_u8.Convert(link.Target)))));
