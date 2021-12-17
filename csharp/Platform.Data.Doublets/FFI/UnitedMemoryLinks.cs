@@ -134,11 +134,11 @@ namespace Platform.Data.Doublets.FFI
 
     public class UnitedMemoryLinks<TLink> : DisposableBase, ILinks<TLink>
     {
-        private static readonly UncheckedConverter<Byte, TLink> from_u8 = UncheckedConverter<Byte, TLink>.Default;
-        private static readonly UncheckedConverter<UInt16, TLink> from_u16 = UncheckedConverter<UInt16, TLink>.Default;
-        private static readonly UncheckedConverter<UInt32, TLink> from_u32 = UncheckedConverter<UInt32, TLink>.Default;
-        private static readonly UncheckedConverter<UInt64, TLink> from_u64 = UncheckedConverter<UInt64, TLink>.Default;
-        private static readonly UncheckedConverter<TLink, UInt64> from_t = UncheckedConverter<TLink, UInt64>.Default;
+        private static readonly UncheckedConverter<byte, TLink> from_u8 = UncheckedConverter<byte, TLink>.Default;
+        private static readonly UncheckedConverter<ushort, TLink> from_u16 = UncheckedConverter<ushort, TLink>.Default;
+        private static readonly UncheckedConverter<uint, TLink> from_u32 = UncheckedConverter<uint, TLink>.Default;
+        private static readonly UncheckedConverter<ulong, TLink> from_u64 = UncheckedConverter<ulong, TLink>.Default;
+        private static readonly UncheckedConverter<TLink, ulong> from_t = UncheckedConverter<TLink, ulong>.Default;
 
         public LinksConstants<TLink> Constants { get; }
 
