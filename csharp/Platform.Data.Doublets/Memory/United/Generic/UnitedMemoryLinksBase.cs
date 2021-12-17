@@ -545,7 +545,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual void Delete(IList<TLink> restrictions)
+        public virtual TLink Delete(IList<TLink> restrictions)
         {
             ref var header = ref GetHeaderReference();
             var link = restrictions[Constants.IndexPart];
@@ -555,7 +555,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             }
             else if (AreEqual(link, header.AllocatedLinks))
             {
-                header.AllocatedLinks = Decrement(header.AllocatedLinks);
+                var deletedLink = header.AllocatedLinks = Decrement(header.AllocatedLinks);
                 _memory.UsedCapacity -= LinkSizeInBytes;
                 // Убираем все связи, находящиеся в списке свободных в конце файла, до тех пор, пока не дойдём до первой существующей связи
                 // Позволяет оптимизировать количество выделенных связей (AllocatedLinks)
@@ -565,6 +565,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                     header.AllocatedLinks = Decrement(header.AllocatedLinks);
                     _memory.UsedCapacity -= LinkSizeInBytes;
                 }
+                return deletedLink;
             }
         }
 
