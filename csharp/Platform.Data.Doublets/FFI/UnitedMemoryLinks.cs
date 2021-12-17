@@ -217,58 +217,65 @@ namespace Platform.Data.Doublets.FFI
         }
 
         public TLink Each(Func<IList<TLink>, TLink> handler, IList<TLink> restrictions)
+        {
+            unsafe
+            {
+                TLink t = default;
+                switch (t)
+                {
+                    case byte:
+                    {
+                        Methods.EachCallback_Uint8 callback = (link) => (byte)from_t.Convert(handler(new Link<TLink>(from_u8.Convert(link.Index), from_u8.Convert(link.Source), from_u8.Convert(link.Target))));
+
+                        var array = stackalloc byte[restrictions.Count];
+                        for (var i = 0; i < restrictions.Count; i++)
                         {
-                            unsafe
-                            {
-                                TLink t = default;
-
-                                if (typeof(TLink) == typeof(Byte))
-                                {
-                                    Methods.EachCallback_Uint8 callback = ((link) => (Byte)from_t.Convert(handler(new Link<TLink>(from_u8.Convert(link.Index), from_u8.Convert(link.Source), from_u8.Convert(link.Target)))));
-
-                                    var array = stackalloc Byte[restrictions.Count];
-                                    for (var i = 0; i < restrictions.Count; i++)
-                                    {
-                                        array[i] = (Byte)from_t.Convert(restrictions[i]);
-                                    }
-                                    return from_u8.Convert(Methods.ByteUnitedMemoryLinks_Each(_body, callback, array, (nuint)restrictions.Count));
-                                }
-                                if (typeof(TLink) == typeof(UInt16))
-                                {
-                                    Methods.EachCallback_Uint16 callback = ((link) => (UInt16)from_t.Convert(handler(new Link<TLink>(from_u16.Convert(link.Index), from_u16.Convert(link.Source), from_u16.Convert(link.Target)))));
-
-                                    var array = stackalloc UInt16[restrictions.Count];
-                                    for (var i = 0; i < restrictions.Count; i++)
-                                    {
-                                        array[i] = (UInt16)from_t.Convert(restrictions[i]);
-                                    }
-                                    return from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Each(_body, callback, array, (nuint)restrictions.Count));
-                                }
-                                if (typeof(TLink) == typeof(UInt32))
-                                {
-                                    Methods.EachCallback_Uint32 callback = ((link) => (UInt16)from_t.Convert(handler(new Link<TLink>(from_u32.Convert(link.Index), from_u32.Convert(link.Source), from_u32.Convert(link.Target)))));
-
-                                    var array = stackalloc UInt32[restrictions.Count];
-                                    for (var i = 0; i < restrictions.Count; i++)
-                                    {
-                                        array[i] = (UInt32)from_t.Convert(restrictions[i]);
-                                    }
-                                    return from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Each(_body, callback, array, (nuint)restrictions.Count));
-                                }
-                                if (typeof(TLink) == typeof(UInt64))
-                                {
-                                    Methods.EachCallback_Uint64 callback = ((link) => (UInt64)from_t.Convert(handler(new Link<TLink>(from_u64.Convert(link.Index), from_u64.Convert(link.Source), from_u64.Convert(link.Target)))));
-
-                                    var array = stackalloc UInt64[restrictions.Count];
-                                    for (var i = 0; i < restrictions.Count; i++)
-                                    {
-                                        array[i] = (UInt64)from_t.Convert(restrictions[i]);
-                                    }
-                                    return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Each(_body, callback, array, (nuint)restrictions.Count));
-                                }
-                                throw new NotImplementedException();
-                            }
+                            array[i] = (byte)from_t.Convert(restrictions[i]);
                         }
+                        return from_u8.Convert(Methods.ByteUnitedMemoryLinks_Each(_body, callback, array, (nuint)restrictions.Count));
+                    }
+                    case ushort:
+                    {
+                        Methods.EachCallback_Uint16 callback = (link) => (ushort)from_t.Convert(handler(new Link<TLink>(from_u16.Convert(link.Index), from_u16.Convert(link.Source), from_u16.Convert(link.Target))));
+
+                        var array = stackalloc ushort[restrictions.Count];
+                        for (var i = 0; i < restrictions.Count; i++)
+                        {
+                            array[i] = (ushort)from_t.Convert(restrictions[i]);
+                        }
+                        return from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Each(_body, callback, array, (nuint)restrictions.Count));
+                    }
+                    case uint:
+                    {
+                        Methods.EachCallback_Uint32 callback = (link) => (ushort)from_t.Convert(handler(new Link<TLink>(from_u32.Convert(link.Index), from_u32.Convert(link.Source), from_u32.Convert(link.Target))));
+
+                        var array = stackalloc uint[restrictions.Count];
+                        for (var i = 0; i < restrictions.Count; i++)
+                        {
+                            array[i] = (uint)from_t.Convert(restrictions[i]);
+                        }
+                        return from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Each(_body, callback, array, (nuint)restrictions.Count));
+                    }
+                    case ulong:
+                    {
+                        {
+                            Methods.EachCallback_Uint64 callback = (link) => from_t.Convert(handler(new Link<TLink>(from_u64.Convert(link.Index), from_u64.Convert(link.Source), from_u64.Convert(link.Target))));
+
+                            var array = stackalloc UInt64[restrictions.Count];
+                            for (var i = 0; i < restrictions.Count; i++)
+                            {
+                                array[i] = from_t.Convert(restrictions[i]);
+                            }
+                            return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Each(_body, callback, array, (nuint)restrictions.Count));
+                        }
+                    }
+                    default:
+                    {
+                        throw new NotImplementedException();
+                    }
+                }
+            }
+        }
 
                         public TLink Create(IList<TLink> restrictions)
                         {
