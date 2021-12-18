@@ -245,7 +245,7 @@ namespace Platform.Data.Doublets.FFI
                     }
                     case uint:
                     {
-                        Methods.EachCallback_Uint32 callback = (link) => (ushort)from_t.Convert(handler(new Link<TLink>(from_u32.Convert(link.Index), from_u32.Convert(link.Source), from_u32.Convert(link.Target))));
+                        Methods.EachCallback_Uint32 callback = (link) => (uint)from_t.Convert(handler(new Link<TLink>(from_u32.Convert(link.Index), from_u32.Convert(link.Source), from_u32.Convert(link.Target))));
                         var array = stackalloc uint[restrictions.Count];
                         for (var i = 0; i < restrictions.Count; i++)
                         {
