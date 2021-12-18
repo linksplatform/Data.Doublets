@@ -8,7 +8,7 @@ use num_traits::zero;
 
 use crate::num::LinkType;
 
-#[derive(Default, Debug, Eq, PartialEq, Clone, Hash)]
+#[derive(Default, Debug, Eq, PartialEq, Clone, Hash, Copy, Ord, PartialOrd)]
 pub struct Link<T: LinkType> {
     pub index: T,
     pub source: T,

@@ -14,6 +14,7 @@
 #![feature(libstd_sys_internals)]
 #![feature(try_trait_v2)]
 #![feature(fn_traits)]
+#![feature(bench_black_box)]
 
 use crate::doublets::mem::united::{Links, NewList, NewTree, UpdatePointersSplit};
 use crate::doublets::mem::{splited, ILinksListMethods, ILinksTreeMethods, UpdatePointers};

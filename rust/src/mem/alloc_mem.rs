@@ -1,5 +1,6 @@
 use crate::mem::{Mem, ResizeableBase, ResizeableMem};
 use std::alloc::{AllocError, Allocator, Layout, LayoutError};
+use std::collections::HashMap;
 use std::default::default;
 use std::error::Error;
 use std::io;

@@ -1,10 +1,22 @@
 use num_traits::ToPrimitive;
+use rand::{random, thread_rng, Rng};
+use std::borrow::BorrowMut;
+use std::default::default;
+use std::error::Error;
+use std::hint::black_box;
 use std::ops::ControlFlow;
+use std::ops::ControlFlow::Continue;
+use std::ptr::drop_in_place;
+use std::sync::RwLockReadGuard;
+use std::thread;
+use std::thread::spawn;
+use std::time::Instant;
 
 use crate::doublets::data::{AddrToRaw, Hybrid, IGenericLinks, LinksConstants, RawToAddr};
 use crate::doublets::{ILinks, ILinksExtensions, Link, LinksError};
 use crate::mem::HeapMem;
 use crate::num::ToSigned;
+use crate::test_extensions::ILinksTestExtensions;
 use crate::tests::make_links;
 use crate::tests::make_mem;
 use crate::Links;
@@ -112,4 +124,16 @@ fn hybrid() {
 
     assert_eq!(to_adr.convert(raw), address);
     assert!(constants.is_external_reference(raw));
+}
+
+#[test]
+fn play() -> Result<(), Box<dyn Error>> {
+    let mut links = Links::<u64, _>::new(HeapMem::new()?)?;
+    let instant = Instant::now();
+
+    links.test_random_creations_and_deletions(1000);
+
+    println!("{:?}", instant.elapsed());
+
+    Ok(())
 }

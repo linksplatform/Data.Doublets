@@ -1,7 +1,10 @@
 use std::default::default;
 use std::marker::PhantomData;
 use std::mem::size_of;
+use std::ops::ControlFlow::Continue;
 use std::ops::{ControlFlow, Index, Try};
+use std::ptr::NonNull;
+use std::vec::IntoIter;
 
 use num_traits::{one, zero};
 use smallvec::SmallVec;
@@ -1202,7 +1205,10 @@ impl<
                 self.mem
                     .reserve_mem(self.mem.reserved_mem() + self.reserve_step)?;
                 self.update_pointers();
-                let reserved = self.mem.reserved_mem();
+                let reserved = self
+                    .mem
+                    .reserved_mem()
+                    .min(T::max_value().as_() * Self::LINK_SIZE);
                 let header = self.get_mut_header();
                 header.reserved = T::from_usize(reserved / Self::LINK_SIZE).unwrap()
             }
@@ -1298,6 +1304,49 @@ impl<
             Some(self.get_link_unchecked(index))
         } else {
             None
+        }
+    }
+}
+
+#[derive(Clone)]
+pub struct Iter<'a, T: LinkType> {
+    data: Vec<Link<T>>,
+    index: usize,
+    _phantom: PhantomData<&'a T>,
+}
+
+impl<'a, T: LinkType> Iterator for Iter<'a, T> {
+    type Item = Link<T>;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        let result = self.data.get(self.index);
+        self.index += 1;
+        result.map(|link| link.clone())
+    }
+}
+
+impl<
+        'a,
+        T: LinkType,
+        M: ResizeableMem,
+        TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+        TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
+        TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
+    > IntoIterator for &'a Links<T, M, TS, TT, TU>
+{
+    type Item = Link<T>;
+    type IntoIter = Iter<'a, T>;
+
+    fn into_iter(self) -> Self::IntoIter {
+        let mut data = Vec::with_capacity(self.count().as_());
+        let _: ControlFlow<(), _> = self.try_each(|link| {
+            data.push(link);
+            Continue(())
+        });
+        Iter {
+            data,
+            index: 0,
+            _phantom: PhantomData,
         }
     }
 }
