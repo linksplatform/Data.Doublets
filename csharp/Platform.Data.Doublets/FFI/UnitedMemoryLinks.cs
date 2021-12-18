@@ -108,16 +108,16 @@ namespace Platform.Data.Doublets.FFI
         public static extern ulong UInt64UnitedMemoryLinks_Each(void* self, EachCallback_Uint64 callback, ulong* restrictions, nuint len);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte ByteUnitedMemoryLinks_Update(void* self, byte* restrictions, nuint restrictionsLen,  byte* substitution, nuint substitutionLen);
+        public static extern byte ByteUnitedMemoryLinks_Update(void* self, byte* restrictions, nuint restrictionsLength,  byte* substitution, nuint substitutionLength);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern ushort UInt16UnitedMemoryLinks_Update(void* self, ushort* restrictions, nuint restrictionsLen,  ushort* substitution, nuint substitutionLen);
+        public static extern ushort UInt16UnitedMemoryLinks_Update(void* self, ushort* restrictions, nuint restrictionsLength,  ushort* substitution, nuint substitutionLength);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint UInt32UnitedMemoryLinks_Update(void* self, uint* restrictions, nuint restrictionsLen,  uint* substitution, nuint substitutionLen);
+        public static extern uint UInt32UnitedMemoryLinks_Update(void* self, uint* restrictions, nuint restrictionsLength,  uint* substitution, nuint substitutionLength);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern ulong UInt64UnitedMemoryLinks_Update(void* self, ulong* restrictions, nuint restrictionsLen,  ulong* substitution, nuint substitutionLen);
+        public static extern ulong UInt64UnitedMemoryLinks_Update(void* self, ulong* restrictions, nuint restrictionsLength,  ulong* substitution, nuint substitutionLength);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
         public static extern byte ByteUnitedMemoryLinks_Delete(void* self, byte* restrictions, nuint len);
