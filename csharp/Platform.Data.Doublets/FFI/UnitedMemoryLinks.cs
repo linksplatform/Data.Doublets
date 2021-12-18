@@ -108,28 +108,28 @@ namespace Platform.Data.Doublets.FFI
         public static extern ulong UInt64UnitedMemoryLinks_Each(void* self, EachCallback_Uint64 callback, ulong* query, nuint len);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte ByteUnitedMemoryLinks_Update(void* self, byte index, byte* source, nuint sourceLen, byte* target, nuint targetLen);
+        public static extern byte ByteUnitedMemoryLinks_Update(void* self, byte* index, uint indexLen,  byte* source, nuint sourceLen, byte* target, nuint targetLen);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern ushort UInt16UnitedMemoryLinks_Update(void* self, ushort index, ushort source, nuint sourceLen, ushort target, nuint targetLen);
+        public static extern ushort UInt16UnitedMemoryLinks_Update(void* self, ushort* index, uint indexLen,  ushort* source, nuint sourceLen, ushort* target, nuint targetLen);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint UInt32UnitedMemoryLinks_Update(void* self, uint index, uint source, uint sourceLen, uint target, uint targetLen);
+        public static extern uint UInt32UnitedMemoryLinks_Update(void* self, uint* index, uint indexLen,  uint* source, uint sourceLen, uint* target, uint targetLen);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern ulong UInt64UnitedMemoryLinks_Update(void* self, ulong index, ulong source, uint sourceLen, ulong target, uint targetLen);
+        public static extern ulong UInt64UnitedMemoryLinks_Update(void* self, ulong* index, uint indexLen,  ulong* source, uint sourceLen, ulong* target, uint targetLen);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte ByteUnitedMemoryLinks_Delete(void* self, byte index, uint len);
+        public static extern byte ByteUnitedMemoryLinks_Delete(void* self, byte* index, uint len);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern ushort UInt16UnitedMemoryLinks_Delete(void* self, ushort index, uint len);
+        public static extern ushort UInt16UnitedMemoryLinks_Delete(void* self, ushort* index, uint len);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint UInt32UnitedMemoryLinks_Delete(void* self, uint index, uint len);
+        public static extern uint UInt32UnitedMemoryLinks_Delete(void* self, uint* index, uint len);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern ulong UInt64UnitedMemoryLinks_Delete(void* self, ulong index, uint len);
+        public static extern ulong UInt64UnitedMemoryLinks_Delete(void* self, ulong* index, uint len);
     }
 
     public class UnitedMemoryLinks<TLink> : DisposableBase, ILinks<TLink>
@@ -296,7 +296,8 @@ namespace Platform.Data.Doublets.FFI
                 TLink t = default;
                 return t switch
                 {
-                    byte => from_u8.Convert(Methods.ByteUnitedMemoryLinks_Update(_body, (Byte)from_t.Convert(restrictions[0]), (Byte)from_t.Convert(substitution[1]), (Byte)from_t.Convert(substitution[2]))),
+                    byte => from_u8.Convert(Methods.ByteUnitedMemoryLinks_Update()),
+                    //byte => from_u8.Convert(Methods.ByteUnitedMemoryLinks_Update(_body, (Byte)from_t.Convert(restrictions[0]), (Byte)from_t.Convert(substitution[1]), (Byte)from_t.Convert(substitution[2]))),
                     ushort => from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Update(_body, (UInt16)from_t.Convert(restrictions[0]), (UInt16)from_t.Convert(substitution[1]), (UInt16)from_t.Convert(substitution[2]))),
                     uint => from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Update(_body, (UInt32)from_t.Convert(restrictions[0]), (UInt32)from_t.Convert(substitution[1]), (UInt32)from_t.Convert(substitution[2]))),
                     ulong => from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Update(_body, from_t.Convert(restrictions[0]), from_t.Convert(substitution[1]), from_t.Convert(substitution[2]))),
