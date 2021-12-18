@@ -42,11 +42,12 @@ namespace Platform.Data.Doublets.Tests
             {
                 action(scope.Use<ILinks<TLink>>());
             }
+            File.Delete("db.links");
+
             using (var links = new FFI.UnitedMemoryLinks<TLink>("db.links"))
             {
                 action(links);
             }
-            File.Delete("db.links");
         }
     }
 }
