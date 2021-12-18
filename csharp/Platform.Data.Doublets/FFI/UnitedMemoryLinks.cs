@@ -108,28 +108,28 @@ namespace Platform.Data.Doublets.FFI
         public static extern ulong UInt64UnitedMemoryLinks_Each(void* self, EachCallback_Uint64 callback, ulong* query, nuint len);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte ByteUnitedMemoryLinks_Update(void* self, byte index, byte source, byte target);
+        public static extern byte ByteUnitedMemoryLinks_Update(void* self, byte index, byte* source, nuint sourceLen, byte* target, nuint targetLen);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern ushort UInt16UnitedMemoryLinks_Update(void* self, ushort index, ushort source, ushort target);
+        public static extern ushort UInt16UnitedMemoryLinks_Update(void* self, ushort index, ushort source, nuint sourceLen, ushort target, nuint targetLen);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint UInt32UnitedMemoryLinks_Update(void* self, uint index, uint source, uint target);
+        public static extern uint UInt32UnitedMemoryLinks_Update(void* self, uint index, uint source, uint sourceLen, uint target, uint targetLen);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern ulong UInt64UnitedMemoryLinks_Update(void* self, ulong index, ulong source, ulong target);
+        public static extern ulong UInt64UnitedMemoryLinks_Update(void* self, ulong index, ulong source, uint sourceLen, ulong target, uint targetLen);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte ByteUnitedMemoryLinks_Delete(void* self, byte index);
+        public static extern byte ByteUnitedMemoryLinks_Delete(void* self, byte index, uint len);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern ushort UInt16UnitedMemoryLinks_Delete(void* self, ushort index);
+        public static extern ushort UInt16UnitedMemoryLinks_Delete(void* self, ushort index, uint len);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint UInt32UnitedMemoryLinks_Delete(void* self, uint index);
+        public static extern uint UInt32UnitedMemoryLinks_Delete(void* self, uint index, uint len);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern ulong UInt64UnitedMemoryLinks_Delete(void* self, ulong index);
+        public static extern ulong UInt64UnitedMemoryLinks_Delete(void* self, ulong index, uint len);
     }
 
     public class UnitedMemoryLinks<TLink> : DisposableBase, ILinks<TLink>
