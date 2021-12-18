@@ -42,7 +42,6 @@
             TUnusedLinks
         >;
         public: using base::DefaultLinksSizeStep;
-        //public: using base::GetLinkReference;
         public: using base::GetLinkStruct;
         public: using base::Constants;
 
@@ -54,14 +53,11 @@
 
         private: std::byte* _links;
 
-        //public: UnitedMemoryLinks(const std::string& path, std::size_t memoryReservationStep = DefaultLinksSizeStep)
-        //    : UnitedMemoryLinks(std::make_unique<FileMappedResizableDirectMemory>(path, memoryReservationStep), memoryReservationStep)
-        //{
-        //}
+        // private: using base::_memory;
 
         // TODO: implicit constructor for Constants
-        public: UnitedMemoryLinks(TMemory& memory, std::size_t memoryReservationStep = DefaultLinksSizeStep, LinksConstants<TLink> constants = LinksConstants<TLink>{}/*, IndexTreeType indexTreeType*/)
-            : base(memory, memoryReservationStep, constants)
+        public: UnitedMemoryLinks(TMemory memory, std::size_t memoryReservationStep = DefaultLinksSizeStep, LinksConstants<TLink> constants = LinksConstants<TLink>{}/*, IndexTreeType indexTreeType*/)
+            : base(std::move(memory), memoryReservationStep, constants)
         {
             //if (indexTreeType == IndexTreeType.SizedAndThreadedAVLBalancedTree)
             //{
@@ -73,20 +69,17 @@
             //    _createSourceTreeMethods = () => new LinksSourcesSizeBalancedTreeMethods<TLink>(Constants, _links, _header);
             //    _createTargetTreeMethods = () => new LinksTargetsSizeBalancedTreeMethods<TLink>(Constants, _links, _header);
             //}
-            base::Init(memory, memoryReservationStep);
+            base::Init(this->_memory, memoryReservationStep);
         }
 
-        public: void SetPointers(TMemory&memory)
+        public: void SetPointers(TMemory& memory)
         {
+            std::cout << memory.Pointer() << std::endl;
             _links = static_cast<std::byte*>(memory.Pointer());
             _header = _links;
             base::_SourcesTreeMethods = new TSourceTreeMethods(Constants, _links, _header);
             base::_TargetsTreeMethods = new TTargetTreeMethods(Constants, _links, _header);
             base::_UnusedLinksListMethods = new TUnusedLinks(_links, _header);
-
-            //base::_SourcesTreeMethods = std::make_unique<LinksSourcesSizeBalancedTreeMethods<TLink>>(Constants, _links, _header);
-            //base::_TargetsTreeMethods = std::make_unique<LinksTargetsSizeBalancedTreeMethods<TLink>>(Constants, _links, _header);
-            //base::_UnusedLinksListMethods = std::make_unique<UnusedLinksListMethods<TLink>>(_links, _header);
         }
 
         public: auto&& GetHeaderReference() const
