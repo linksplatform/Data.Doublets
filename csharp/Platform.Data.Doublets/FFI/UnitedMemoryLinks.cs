@@ -84,52 +84,52 @@ namespace Platform.Data.Doublets.FFI
         public static extern ulong UInt64UnitedMemoryLinks_Create(void* self);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte ByteUnitedMemoryLinks_Count(void* self, byte* query, nuint len);
+        public static extern byte ByteUnitedMemoryLinks_Count(void* self, byte* restrictions, nuint len);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern ushort UInt16UnitedMemoryLinks_Count(void* self, ushort* query, nuint len);
+        public static extern ushort UInt16UnitedMemoryLinks_Count(void* self, ushort* restrictions, nuint len);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint UInt32UnitedMemoryLinks_Count(void* self, uint* query, nuint len);
+        public static extern uint UInt32UnitedMemoryLinks_Count(void* self, uint* restrictions, nuint len);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern ulong UInt64UnitedMemoryLinks_Count(void* self, ulong* query, nuint len);
+        public static extern ulong UInt64UnitedMemoryLinks_Count(void* self, ulong* restrictions, nuint len);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte ByteUnitedMemoryLinks_Each(void* self, EachCallback_Uint8 callback, byte* query, nuint len);
+        public static extern byte ByteUnitedMemoryLinks_Each(void* self, EachCallback_Uint8 callback, byte* restrictions, nuint len);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern ushort UInt16UnitedMemoryLinks_Each(void* self, EachCallback_Uint16 callback, ushort* query, nuint len);
+        public static extern ushort UInt16UnitedMemoryLinks_Each(void* self, EachCallback_Uint16 callback, ushort* restrictions, nuint len);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint UInt32UnitedMemoryLinks_Each(void* self, EachCallback_Uint32 callback, uint* query, nuint len);
+        public static extern uint UInt32UnitedMemoryLinks_Each(void* self, EachCallback_Uint32 callback, uint* restrictions, nuint len);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern ulong UInt64UnitedMemoryLinks_Each(void* self, EachCallback_Uint64 callback, ulong* query, nuint len);
+        public static extern ulong UInt64UnitedMemoryLinks_Each(void* self, EachCallback_Uint64 callback, ulong* restrictions, nuint len);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte ByteUnitedMemoryLinks_Update(void* self, byte* index, uint indexLen,  byte* source, nuint sourceLen, byte* target, nuint targetLen);
+        public static extern byte ByteUnitedMemoryLinks_Update(void* self, byte* restrictions, nuint restrictionsLen,  byte* substitution, nuint substitutionLen);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern ushort UInt16UnitedMemoryLinks_Update(void* self, ushort* index, uint indexLen,  ushort* source, nuint sourceLen, ushort* target, nuint targetLen);
+        public static extern ushort UInt16UnitedMemoryLinks_Update(void* self, ushort* restrictions, nuint restrictionsLen,  ushort* substitution, nuint substitutionLen);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint UInt32UnitedMemoryLinks_Update(void* self, uint* index, uint indexLen,  uint* source, uint sourceLen, uint* target, uint targetLen);
+        public static extern uint UInt32UnitedMemoryLinks_Update(void* self, uint* restrictions, nuint restrictionsLen,  uint* substitution, nuint substitutionLen);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern ulong UInt64UnitedMemoryLinks_Update(void* self, ulong* index, uint indexLen,  ulong* source, uint sourceLen, ulong* target, uint targetLen);
+        public static extern ulong UInt64UnitedMemoryLinks_Update(void* self, ulong* restrictions, nuint restrictionsLen,  ulong* substitution, nuint substitutionLen);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte ByteUnitedMemoryLinks_Delete(void* self, byte* index, uint len);
+        public static extern byte ByteUnitedMemoryLinks_Delete(void* self, byte* restrictions, nuint len);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern ushort UInt16UnitedMemoryLinks_Delete(void* self, ushort* index, uint len);
+        public static extern ushort UInt16UnitedMemoryLinks_Delete(void* self, ushort* restrictions, nuint len);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint UInt32UnitedMemoryLinks_Delete(void* self, uint* index, uint len);
+        public static extern uint UInt32UnitedMemoryLinks_Delete(void* self, uint* restrictions, nuint len);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern ulong UInt64UnitedMemoryLinks_Delete(void* self, ulong* index, uint len);
+        public static extern ulong UInt64UnitedMemoryLinks_Delete(void* self, ulong* restrictions, nuint len);
     }
 
     public class UnitedMemoryLinks<TLink> : DisposableBase, ILinks<TLink>
@@ -296,7 +296,7 @@ namespace Platform.Data.Doublets.FFI
                 TLink t = default;
                 return t switch
                 {
-                    byte => from_u8.Convert(Methods.ByteUnitedMemoryLinks_Update()),
+                    byte => from_u8.Convert(Methods.ByteUnitedMemoryLinks_Update(_body)),
                     //byte => from_u8.Convert(Methods.ByteUnitedMemoryLinks_Update(_body, (Byte)from_t.Convert(restrictions[0]), (Byte)from_t.Convert(substitution[1]), (Byte)from_t.Convert(substitution[2]))),
                     ushort => from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Update(_body, (UInt16)from_t.Convert(restrictions[0]), (UInt16)from_t.Convert(substitution[1]), (UInt16)from_t.Convert(substitution[2]))),
                     uint => from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Update(_body, (UInt32)from_t.Convert(restrictions[0]), (UInt32)from_t.Convert(substitution[1]), (UInt32)from_t.Convert(substitution[2]))),
