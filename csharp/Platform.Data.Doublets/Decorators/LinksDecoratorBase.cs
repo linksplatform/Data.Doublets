@@ -169,6 +169,6 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual void Delete(IList<TLink> restrictions) => _links.Delete(restrictions);
+        public virtual TLink Delete(IList<TLink> restrictions) => _links.Delete(restrictions);
     }
 }
