@@ -342,7 +342,7 @@ namespace Platform.Data.Doublets.FFI
             }
         }
 
-        public void Delete(IList<TLink> restrictions)
+        public TLink Delete(IList<TLink> restrictions)
         {
             unsafe
             {
@@ -354,7 +354,7 @@ namespace Platform.Data.Doublets.FFI
                         var restrictionArray = restrictions.ToArray();
                         fixed (byte* restrictionPointer = (byte[])(object)restrictionArray)
                         {
-                            return Methods.ByteUnitedMemoryLinks_Delete(_body, restrictionPointer, (nuint)restrictionArray.Length);
+                            return (TLink)(object)Methods.ByteUnitedMemoryLinks_Delete(_body, restrictionPointer, (nuint)restrictionArray.Length);
                         }
                     }
                     case ushort:
@@ -362,7 +362,7 @@ namespace Platform.Data.Doublets.FFI
                         var restrictionArray = restrictions.ToArray();
                         fixed (ushort* restrictionPointer = (ushort[])(object)restrictionArray)
                         {
-                            return Methods.UInt16UnitedMemoryLinks_Delete(_body, restrictionPointer, (nuint)restrictionArray.Length);
+                            return (TLink)(object)Methods.UInt16UnitedMemoryLinks_Delete(_body, restrictionPointer, (nuint)restrictionArray.Length);
                         }
                     }
                     case uint:
@@ -370,7 +370,7 @@ namespace Platform.Data.Doublets.FFI
                         var restrictionArray = restrictions.ToArray();
                         fixed (uint* restrictionPointer = (uint[])(object)restrictionArray)
                         {
-                            return Methods.UInt32UnitedMemoryLinks_Delete(_body, restrictionPointer, (nuint)restrictionArray.Length);
+                            return (TLink)(object)Methods.UInt32UnitedMemoryLinks_Delete(_body, restrictionPointer, (nuint)restrictionArray.Length);
                         }
                     }
                     case ulong:
@@ -378,7 +378,7 @@ namespace Platform.Data.Doublets.FFI
                         var restrictionArray = restrictions.ToArray();
                         fixed (ulong* restrictionPointer = (ulong[])(object)restrictionArray)
                         {
-                            return Methods.UInt64UnitedMemoryLinks_Delete(_body, restrictionPointer, (nuint)restrictionArray.Length);
+                            return (TLink)(object)Methods.UInt64UnitedMemoryLinks_Delete(_body, restrictionPointer, (nuint)restrictionArray.Length);
                         }
                     }
                     default:
