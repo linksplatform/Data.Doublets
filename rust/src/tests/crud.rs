@@ -237,7 +237,7 @@ fn playground() {
     links.each(|link| {
         println!("{}", link);
         println!("{:?}", links.get_link(link.index));
-        println!("{:?}", links.exist(link.index));
+        // println!("{:?}", links.exist(link.index));
         links.constants().r#continue
     });
 }

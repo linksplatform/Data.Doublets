@@ -6,9 +6,8 @@ use std::ops::{ControlFlow, Index, Try};
 use num_traits::{one, zero};
 use smallvec::SmallVec;
 
-use crate::doublets;
-use crate::doublets::data::IGenericLinks;
 use crate::doublets::data::LinksConstants;
+use crate::doublets::data::{IGenericLinks, Query};
 use crate::doublets::link::Link;
 use crate::doublets::mem::links_header::LinksHeader;
 use crate::doublets::mem::united::LinksSourcesSizeBalancedTree;
@@ -24,6 +23,7 @@ use crate::doublets::{data, ILinks, LinksError};
 use crate::mem::FileMappedMem;
 use crate::mem::{Mem, ResizeableMem};
 use crate::num::LinkType;
+use crate::{doublets, query};
 
 // TODO: use `_=_` instead of `_ = _`
 pub struct Links<
@@ -958,7 +958,7 @@ impl<
         Link::new(index, link.source, link.target)
     }
 
-    fn each_core<F, R, const L: usize>(&self, handler: &mut F, restrictions: [T; L]) -> R
+    fn each_core<F, R>(&self, handler: &mut F, restrictions: Query<'_, T>) -> R
     where
         F: FnMut(Link<T>) -> R,
         R: Try<Output = ()>,
@@ -966,7 +966,7 @@ impl<
         let constants = self.constants();
         let r#break = constants.r#break;
 
-        if restrictions.is_empty() {
+        if restrictions.len() == 0 {
             for index in T::one()..self.get_header().allocated + one() {
                 let link = self.get_link_unchecked(index);
                 if self.exists(index) {
@@ -982,7 +982,7 @@ impl<
 
         if restrictions.len() == 1 {
             return if index == any {
-                self.each_core(handler, [])
+                self.each_core(handler, query![])
             } else if !self.exists(index) {
                 R::from_output(())
             } else {
@@ -995,11 +995,11 @@ impl<
             let value = restrictions[1];
             return if index == any {
                 if value == any {
-                    self.each_core(handler, [])
+                    self.each_core(handler, query![])
                 } else {
-                    match self.each_core(handler, [index, value, any]).branch() {
+                    match self.each_core(handler, query![index, value, any]).branch() {
                         ControlFlow::Continue(output) => {
-                            self.each_core(handler, [index, value, any])
+                            self.each_core(handler, query![index, value, any])
                         }
                         ControlFlow::Break(residual) => R::from_residual(residual),
                     }
@@ -1027,7 +1027,7 @@ impl<
 
             if index == any {
                 return if (source, target) == (any, any) {
-                    self.each_core(handler, [])
+                    self.each_core(handler, query![])
                 } else if source == any {
                     self.targets.each_usages(target, handler)
                 } else if target == any {
@@ -1089,8 +1089,8 @@ impl<
         self.constants.clone()
     }
 
-    fn count_by<const L: usize>(&self, restrictions: [T; L]) -> T {
-        if restrictions.is_empty() {
+    fn count_by(&self, restrictions: Query<'_, T>) -> T {
+        if restrictions.len() == 0 {
             return self.get_total();
         };
 
@@ -1216,7 +1216,7 @@ impl<
         Ok(free)
     }
 
-    fn try_each_by<F, R, const L: usize>(&self, mut handler: F, restrictions: [T; L]) -> R
+    fn try_each_by<F, R>(&self, mut handler: F, restrictions: Query<'_, T>) -> R
     where
         F: FnMut(Link<T>) -> R,
         R: Try<Output = ()>,

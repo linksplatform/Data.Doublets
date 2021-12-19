@@ -2,10 +2,10 @@ use std::borrow::BorrowMut;
 use std::default::default;
 use std::ops::Try;
 
-use crate::doublets;
+use crate::{doublets, query};
 use num_traits::{one, zero};
 
-use crate::doublets::data::LinksConstants;
+use crate::doublets::data::{LinksConstants, Query};
 use crate::doublets::mem::splited::generic::{
     ExternalSourcesRecursionlessTree, ExternalTargetsRecursionlessTree, InternalSourcesLinkedList,
     InternalSourcesRecursionlessTree, InternalTargetsRecursionlessTree, UnusedLinks,
@@ -225,12 +225,12 @@ impl<
         Link::new(index, raw.source, raw.target)
     }
 
-    fn try_each_by_core<F, R, const L: usize>(&self, handler: &mut F, restrictions: [T; L]) -> R
+    fn try_each_by_core<F, R>(&self, handler: &mut F, restrictions: Query<'_, T>) -> R
     where
         F: FnMut(Link<T>) -> R,
         R: Try<Output = ()>,
     {
-        if restrictions.is_empty() {
+        if restrictions.len() == 0 {
             for index in one()..=self.get_header().allocated {
                 // TODO: 100% `Some`
                 //  exist(`link`) => get_link(`link`) is Some
@@ -247,7 +247,7 @@ impl<
         let index = restrictions[constants.index_part.as_()];
         if restrictions.len() == 1 {
             return if index == any {
-                self.try_each_by_core(handler, [])
+                self.try_each_by_core(handler, query![])
             } else if !self.exists(index) {
                 R::from_output(())
             } else {
@@ -259,10 +259,10 @@ impl<
             let value = restrictions[1]; // TODO: Hmm... `const` position?
             return if index == any {
                 if value == any {
-                    self.try_each_by_core(handler, [])
+                    self.try_each_by_core(handler, query![])
                 } else {
-                    self.try_each_by_core(handler, [index, value, any])?;
-                    self.try_each_by_core(handler, [index, any, value])
+                    self.try_each_by_core(handler, query![index, value, any])?;
+                    self.try_each_by_core(handler, query![index, any, value])
                 }
             } else {
                 if !self.exists(index) {
@@ -286,7 +286,7 @@ impl<
             //
             return if index == any {
                 if (source, target) == (any, any) {
-                    self.try_each_by_core(handler, [])
+                    self.try_each_by_core(handler, query![])
                 } else if source == any {
                     if constants.is_external_reference(target) {
                         self.external_targets.each_usages(target, handler)
@@ -393,8 +393,8 @@ impl<
         self.constants.clone()
     }
 
-    fn count_by<const L: usize>(&self, restrictions: [T; L]) -> T {
-        if restrictions.is_empty() {
+    fn count_by(&self, restrictions: Query<'_, T>) -> T {
+        if restrictions.len() == 0 {
             return self.total();
         }
 
@@ -575,12 +575,12 @@ impl<
         Ok(free)
     }
 
-    fn try_each_by<F, R, const L: usize>(&self, mut handler: F, restrictions: [T; L]) -> R
+    fn try_each_by<F, R>(&self, mut handler: F, query: Query<'_, T>) -> R
     where
         F: FnMut(Link<T>) -> R,
         R: Try<Output = ()>,
     {
-        self.try_each_by_core(&mut handler, restrictions)
+        self.try_each_by_core(&mut handler, query)
     }
 
     fn update(&mut self, index: T, new_source: T, new_target: T) -> Result<T> {
