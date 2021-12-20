@@ -122,7 +122,7 @@ namespace Platform.Data.Doublets.FFI
         public static extern ulong UInt64UnitedMemoryLinks_Update(void* self, ulong* restriction, nuint restrictionLength,  ulong* substitution, nuint substitutionLength);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte ByteUnitedMemoryLinks_Delete(void* self, byte* restriction, nuint len);
+        public static extern byte ByteUnitedMemoryLinks_Delete(void* self, byte* restriction, nuint restrictionLength);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
         public static extern ushort UInt16UnitedMemoryLinks_Delete(void* self, ushort* restriction, nuint len);
