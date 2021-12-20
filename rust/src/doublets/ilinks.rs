@@ -7,7 +7,7 @@ use num_traits::{one, zero};
 use rand::{thread_rng, Rng};
 use smallvec::SmallVec;
 
-use crate::doublets::data::{query, LinksConstants, Point, Query};
+use crate::doublets::data::{LinksConstants, Point, Query};
 //use crate::doublets::decorators::{
 //    CascadeUniqueResolver, CascadeUsagesResolver, NonNullDeletionResolver,
 //};
@@ -171,6 +171,20 @@ pub trait ILinks<T: LinkType>: Sized {
     #[deprecated(note = "use `links.search(source, target).unwrap_or(or)`")]
     fn search_or(&self, source: T, target: T, or: T) -> T {
         self.search(source, target).unwrap_or(or)
+    }
+
+    fn found(&self, query: impl ToQuery<T>) -> bool {
+        self.count_by(query) != zero()
+    }
+
+    fn find(&self, query: impl ToQuery<T>) -> Option<T> {
+        let constants = self.constants();
+        let mut result = None;
+        self.each_by(query, |link| {
+            result = Some(link.index);
+            constants.r#break
+        });
+        result
     }
 
     fn search(&self, source: T, target: T) -> Option<T> {

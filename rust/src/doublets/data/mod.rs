@@ -13,4 +13,4 @@ mod hybrid;
 mod ilinks;
 mod links_constants;
 mod point;
-pub(crate) mod query;
+mod query;

@@ -6,9 +6,11 @@ use std::ops::Try;
 use num_traits::zero;
 use smallvec::SmallVec;
 
+use crate::doublets::data::ToQuery;
 use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstants};
 use crate::doublets::{ILinks, ILinksExtensions, Link, Result};
 use crate::num::LinkType;
+use crate::query;
 
 pub struct NonNullDeletionResolver<T: LinkType, Links: ILinks<T>> {
     links: Links,
@@ -30,31 +32,31 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for NonNullDeletionResolver<T, Lin
         self.links.constants()
     }
 
-    fn count_by<const L: usize>(&self, restrictions: [T; L]) -> T {
-        self.links.count_by(restrictions)
+    fn count_by(&self, query: impl ToQuery<T>) -> T {
+        self.links.count_by(query)
     }
 
-    fn create(&mut self) -> Result<T> {
-        self.links.create()
+    fn create_by(&mut self, query: impl ToQuery<T>) -> Result<T> {
+        self.links.create_by(query)
     }
 
-    fn try_each_by<F, R, const L: usize>(&self, handler: F, restrictions: [T; L]) -> R
+    fn try_each_by<F, R>(&self, restrictions: impl ToQuery<T>, handler: F) -> R
     where
         F: FnMut(Link<T>) -> R,
         R: Try<Output = ()>,
     {
-        self.links.try_each_by(handler, restrictions)
+        self.links.try_each_by(restrictions, handler)
     }
 
-    fn update(&mut self, index: T, source: T, target: T) -> Result<T> {
-        let links = self.links.borrow_mut();
-        links.update(index, source, target)
+    fn update_by(&mut self, query: impl ToQuery<T>, replacement: impl ToQuery<T>) -> Result<T> {
+        self.links.update_by(query, replacement)
     }
 
-    fn delete(&mut self, index: T) -> Result<T> {
-        let links = self.links.borrow_mut();
-        let null = links.constants().null;
-        links.update(index, null, null)?;
-        links.delete(index)
+    fn delete_by(&mut self, query: impl ToQuery<T>) -> Result<T> {
+        let null = self.links.constants().null;
+        let query = query.to_query();
+        self.links
+            .update_by(query.to_query(), query![query[0], null, null])?; // TODO: MAY BE STANGE BEHAVIOUR
+        self.links.delete_by(query)
     }
 }

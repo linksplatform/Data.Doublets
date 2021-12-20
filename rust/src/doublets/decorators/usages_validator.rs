@@ -6,9 +6,11 @@ use std::ops::Try;
 use num_traits::zero;
 use smallvec::SmallVec;
 
+use crate::doublets::data::ToQuery;
 use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstants};
 use crate::doublets::{ILinks, ILinksExtensions, Link, LinksError, Result};
 use crate::num::LinkType;
+use crate::query;
 
 pub struct UsagesValidator<T: LinkType, Links: ILinks<T>> {
     links: Links,
@@ -30,33 +32,37 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for UsagesValidator<T, Links> {
         self.links.constants()
     }
 
-    fn count_by<const L: usize>(&self, restrictions: [T; L]) -> T {
-        self.links.count_by(restrictions)
+    fn count_by(&self, query: impl ToQuery<T>) -> T {
+        self.links.count_by(query)
     }
 
-    fn create(&mut self) -> Result<T> {
-        self.links.create()
+    fn create_by(&mut self, query: impl ToQuery<T>) -> Result<T> {
+        self.links.create_by(query)
     }
 
-    fn try_each_by<F, R, const L: usize>(&self, handler: F, restrictions: [T; L]) -> R
+    fn try_each_by<F, R>(&self, restrictions: impl ToQuery<T>, handler: F) -> R
     where
         F: FnMut(Link<T>) -> R,
         R: Try<Output = ()>,
     {
-        self.links.try_each_by(handler, restrictions)
+        self.links.try_each_by(restrictions, handler)
     }
 
-    fn update(&mut self, index: T, source: T, target: T) -> Result<T> {
+    fn update_by(&mut self, query: impl ToQuery<T>, replacement: impl ToQuery<T>) -> Result<T> {
         let links = self.links.borrow_mut();
+        let query = query.to_query();
+        let index = query[0];
         if links.has_usages(index) {
             Err(LinksError::HasDeps(links.get_link(index).unwrap()))
         } else {
-            links.update(index, source, target)
+            links.update_by(query, replacement)
         }
     }
 
-    fn delete(&mut self, index: T) -> Result<T> {
+    fn delete_by(&mut self, query: impl ToQuery<T>) -> Result<T> {
         let links = self.links.borrow_mut();
+        let query = query.to_query();
+        let index = query[0];
         if links.has_usages(index) {
             Err(LinksError::HasDeps(links.get_link(index).unwrap()))
         } else {

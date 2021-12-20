@@ -5,6 +5,7 @@ use std::ops::Try;
 
 use smallvec::SmallVec;
 
+use crate::doublets::data::ToQuery;
 use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstants};
 use crate::doublets::{ILinks, ILinksExtensions, Link, Result};
 use crate::num::LinkType;
@@ -43,34 +44,33 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for UniqueResolver<T, Links> {
         self.links.constants()
     }
 
-    fn count_by<const L: usize>(&self, restrictions: [T; L]) -> T {
-        self.links.count_by(restrictions)
+    fn count_by(&self, query: impl ToQuery<T>) -> T {
+        self.links.count_by(query)
     }
 
-    fn create(&mut self) -> Result<T> {
-        self.links.create()
+    fn create_by(&mut self, query: impl ToQuery<T>) -> Result<T> {
+        self.links.create_by(query)
     }
 
-    fn try_each_by<F, R, const L: usize>(&self, handler: F, restrictions: [T; L]) -> R
+    fn try_each_by<F, R>(&self, restrictions: impl ToQuery<T>, handler: F) -> R
     where
         F: FnMut(Link<T>) -> R,
         R: Try<Output = ()>,
     {
-        self.links.try_each_by(handler, restrictions)
+        self.links.try_each_by(restrictions, handler)
     }
 
-    fn update(&mut self, index: T, source: T, target: T) -> Result<T> {
+    fn update_by(&mut self, query: impl ToQuery<T>, replacement: impl ToQuery<T>) -> Result<T> {
         let links = self.links.borrow_mut();
-        let new = links.search_or(source, target, default());
-
-        if new == default() {
-            links.update(index, source, target)
+        let query = query.to_query();
+        if let Some(new) = links.find(replacement.to_query()) {
+            (self.resolver)(links, query[0], new)
         } else {
-            (self.resolver)(links, index, new)
+            links.update_by(query, replacement)
         }
     }
 
-    fn delete(&mut self, index: T) -> Result<T> {
-        self.links.delete(index)
+    fn delete_by(&mut self, query: impl ToQuery<T>) -> Result<T> {
+        self.links.delete_by(query)
     }
 }

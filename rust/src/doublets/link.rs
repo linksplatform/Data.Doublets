@@ -4,8 +4,8 @@ use std::iter::FromIterator;
 use std::ops::{Index, IndexMut};
 use std::slice::from_raw_parts;
 
-use crate::doublets::data::query::ToQuery;
 use crate::doublets::data::Query;
+use crate::doublets::data::ToQuery;
 use num_traits::zero;
 use thiserror::private::DisplayAsDisplay;
 

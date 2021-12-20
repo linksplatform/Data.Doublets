@@ -6,9 +6,11 @@ use std::ops::Try;
 
 use num_traits::zero;
 
-use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstants};
+use crate::doublets::data::{
+    IGenericLinks, IGenericLinksExtensions, LinksConstants, Query, ToQuery,
+};
 use crate::doublets::decorators::UniqueResolver;
-use crate::doublets::{ILinks, ILinksExtensions, Link, Result};
+use crate::doublets::{ILinks, ILinksExtensions, Link, LinksError, Result};
 use crate::num::LinkType;
 
 type Base<T, Links> = UniqueResolver<T, Links>;
@@ -39,27 +41,27 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for CascadeUniqueResolver<T, Links
         self.links.constants()
     }
 
-    fn count_by<const L: usize>(&self, restrictions: [T; L]) -> T {
-        self.links.count_by(restrictions)
+    fn count_by(&self, query: impl ToQuery<T>) -> T {
+        self.links.count_by(query)
     }
 
-    fn create(&mut self) -> Result<T> {
-        self.links.create()
+    fn create_by(&mut self, query: impl ToQuery<T>) -> Result<T> {
+        self.links.create_by(query)
     }
 
-    fn try_each_by<F, R, const L: usize>(&self, handler: F, restrictions: [T; L]) -> R
+    fn try_each_by<F, R>(&self, restrictions: impl ToQuery<T>, handler: F) -> R
     where
         F: FnMut(Link<T>) -> R,
         R: Try<Output = ()>,
     {
-        self.links.try_each_by(handler, restrictions)
+        self.links.try_each_by(restrictions, handler)
     }
 
-    fn update(&mut self, index: T, source: T, target: T) -> Result<T> {
-        self.links.update(index, source, target)
+    fn update_by(&mut self, query: impl ToQuery<T>, replacement: impl ToQuery<T>) -> Result<T> {
+        self.links.update_by(query, replacement)
     }
 
-    fn delete(&mut self, index: T) -> Result<T> {
-        self.links.delete(index)
+    fn delete_by(&mut self, query: impl ToQuery<T>) -> Result<T> {
+        self.links.delete_by(query)
     }
 }
