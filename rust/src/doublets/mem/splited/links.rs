@@ -149,9 +149,9 @@ impl<
         debug_assert!(to_align >= target);
 
         // TODO: optimize this `if`
-        //if to_align % target != 0 {
-        //    to_align = ((to_align / target) * target) + target;
-        //}
+        if to_align % target != 0 {
+            to_align = ((to_align / target) * target) + target;
+        }
         to_align
     }
 
