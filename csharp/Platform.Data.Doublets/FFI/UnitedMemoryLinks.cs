@@ -9,28 +9,28 @@ using static System.Runtime.CompilerServices.Unsafe;
 
 namespace Platform.Data.Doublets.FFI
 {
-    struct FfiLink_Uint8
+    struct FfiLink_UInt8
     {
         public Byte Index;
         public Byte Source;
         public Byte Target;
     }
 
-    struct FfiLink_Uint16
+    struct FfiLink_UInt16
     {
         public UInt16 Index;
         public UInt16 Source;
         public UInt16 Target;
     }
 
-    struct FfiLink_Uint32
+    struct FfiLink_UInt32
     {
         public UInt32 Index;
         public UInt32 Source;
         public UInt32 Target;
     }
 
-    struct FfiLink_Uint64
+    struct FfiLink_UInt64
     {
         public UInt64 Index;
         public UInt64 Source;
@@ -41,13 +41,13 @@ namespace Platform.Data.Doublets.FFI
     {
         private const string DllName = "Platform.Doublets";
 
-        public delegate Byte EachCallback_Uint8(FfiLink_Uint8 link);
+        public delegate Byte EachCallback_Uint8(FfiLink_UInt8 link);
 
-        public delegate UInt16 EachCallback_Uint16(FfiLink_Uint16 link);
+        public delegate UInt16 EachCallback_Uint16(FfiLink_UInt16 link);
 
-        public delegate UInt32 EachCallback_Uint32(FfiLink_Uint32 link);
+        public delegate UInt32 EachCallback_Uint32(FfiLink_UInt32 link);
 
-        public delegate UInt64 EachCallback_Uint64(FfiLink_Uint64 link);
+        public delegate UInt64 EachCallback_Uint64(FfiLink_UInt64 link);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
         public static extern void* ByteUnitedMemoryLinks_New(string path);
