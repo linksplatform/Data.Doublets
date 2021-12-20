@@ -5,11 +5,12 @@ use crate::doublets::mem::united::{
 };
 use crate::doublets::mem::{splited, united};
 use crate::doublets::LinksError;
-use crate::mem::{HeapMem, ResizeableMem};
+use crate::mem::{AllocMem, HeapMem, ResizeableMem};
 use crate::num::LinkType;
+use std::alloc::Global;
 
 // TODO: cfg!
-pub fn make_mem() -> HeapMem {
+pub fn make_mem() -> AllocMem<Global> {
     HeapMem::new().unwrap()
 }
 

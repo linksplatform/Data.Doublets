@@ -85,14 +85,7 @@ fn billion_points_bump_alloc() {
     let instant = Instant::now();
 
     for _ in 0..1_000_000 {
-        let source = thread_rng().gen_range(1..=100);
-        let target = thread_rng().gen_range(1..=100);
-        let result: Result<_, LinksError<_>> = try {
-            links.create_and_update(source, target)?;
-        };
-        if let Err(e) = result {
-            //println!("{}", e);
-        }
+        links.create_point().unwrap();
     }
 
     println!("{:?}", instant.elapsed());
@@ -192,52 +185,4 @@ fn many_points_and_searches_splited() {
         links.search_or(i, i, 0);
     }
     println!("{:?}", instant.elapsed());
-}
-
-#[test]
-fn playground() {
-    std::fs::remove_file("data");
-    std::fs::remove_file("index");
-
-    let mem = FileMappedMem::new("data").unwrap();
-    let index = FileMappedMem::new("index").unwrap();
-    let mut links = splited::Links::<usize, _, _>::with_constants(
-        mem,
-        index,
-        LinksConstants::via_only_external(true),
-    )
-    .unwrap();
-    //let mut links = Links::<usize, _>::with_constants(mem, LinksConstants::via_only_external(true));
-    //let mut links = CascadeUsagesResolver::new(links);
-
-    links.create_point().unwrap();
-    links.create_point().unwrap();
-    links.create_point().unwrap();
-
-    links.update(1, 1, 2).unwrap();
-    links.update(2, 1, 3).unwrap();
-
-    //links.delete_usages(1);
-    links.delete(2).unwrap();
-    links.delete(1).unwrap();
-
-    println!("{}\n", links.is_unused(2));
-
-    let get = |index| {
-        println!("{:?}", links.get_data_part(index));
-        println!("{:?}", links.get_index_part(index));
-    };
-
-    get(1);
-    get(2);
-    get(3);
-
-    //return;
-
-    links.each(|link| {
-        println!("{}", link);
-        println!("{:?}", links.get_link(link.index));
-        // println!("{:?}", links.exist(link.index));
-        links.constants().r#continue
-    });
 }
