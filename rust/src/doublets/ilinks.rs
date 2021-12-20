@@ -7,11 +7,11 @@ use num_traits::{one, zero};
 use rand::{thread_rng, Rng};
 use smallvec::SmallVec;
 
-use crate::doublets::data::{LinksConstants, Point, Query};
-//use crate::doublets::decorators::{
-//    CascadeUniqueResolver, CascadeUsagesResolver, NonNullDeletionResolver,
-//};
 use crate::doublets::data::ToQuery;
+use crate::doublets::data::{LinksConstants, Point, Query};
+use crate::doublets::decorators::{
+    CascadeUniqueResolver, CascadeUsagesResolver, NonNullDeletionResolver,
+};
 use crate::doublets::error::LinksError;
 use crate::doublets::link::Link;
 use crate::doublets::{data, Doublet};
@@ -336,14 +336,14 @@ pub trait ILinks<T: LinkType>: Sized {
         self.get_link(link).map(|link| link.to_string())
     }
 
-    //fn decorators_kit(
-    //    self,
-    //) -> CascadeUniqueResolver<T, NonNullDeletionResolver<T, CascadeUsagesResolver<T, Self>>> {
-    //    let links = self;
-    //    let links = CascadeUsagesResolver::new(links);
-    //    let links = NonNullDeletionResolver::new(links);
-    //    CascadeUniqueResolver::new(links)
-    //}
+    fn decorators_kit(
+        self,
+    ) -> CascadeUniqueResolver<T, NonNullDeletionResolver<T, CascadeUsagesResolver<T, Self>>> {
+        let links = self;
+        let links = CascadeUsagesResolver::new(links);
+        let links = NonNullDeletionResolver::new(links);
+        CascadeUniqueResolver::new(links)
+    }
 
     #[deprecated(note = "use `links.try_get_link(...)?.is_full()`")]
     fn is_full_point(&self, link: T) -> Option<bool> {
