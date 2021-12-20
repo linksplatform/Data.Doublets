@@ -110,16 +110,16 @@ namespace Platform.Data.Doublets.FFI
         public static extern ulong UInt64UnitedMemoryLinks_Each(void* self, EachCallback_Uint64 callback, ulong* restriction, nuint len);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte ByteUnitedMemoryLinks_Update(void* self, byte* restriction, nuint restrictionsLength,  byte* substitution, nuint substitutionLength);
+        public static extern byte ByteUnitedMemoryLinks_Update(void* self, byte* restriction, nuint restrictionLength,  byte* substitution, nuint substitutionLength);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern ushort UInt16UnitedMemoryLinks_Update(void* self, ushort* restriction, nuint restrictionsLength,  ushort* substitution, nuint substitutionLength);
+        public static extern ushort UInt16UnitedMemoryLinks_Update(void* self, ushort* restriction, nuint restrictionLength,  ushort* substitution, nuint substitutionLength);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint UInt32UnitedMemoryLinks_Update(void* self, uint* restriction, nuint restrictionsLength,  uint* substitution, nuint substitutionLength);
+        public static extern uint UInt32UnitedMemoryLinks_Update(void* self, uint* restriction, nuint restrictionLength,  uint* substitution, nuint substitutionLength);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern ulong UInt64UnitedMemoryLinks_Update(void* self, ulong* restriction, nuint restrictionsLength,  ulong* substitution, nuint substitutionLength);
+        public static extern ulong UInt64UnitedMemoryLinks_Update(void* self, ulong* restriction, nuint restrictionLength,  ulong* substitution, nuint substitutionLength);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
         public static extern byte ByteUnitedMemoryLinks_Delete(void* self, byte* restriction, nuint len);
@@ -165,7 +165,7 @@ namespace Platform.Data.Doublets.FFI
             }
         }
 
-        public TLink Count(IList<TLink> restrictions)
+        public TLink Count(IList<TLink> restriction)
         {
             unsafe
             {
@@ -174,40 +174,40 @@ namespace Platform.Data.Doublets.FFI
                 {
                     case byte:
                     {
-                        var array = stackalloc byte[restrictions.Count];
-                        for (var i = 0; i < restrictions.Count; i++)
+                        var array = stackalloc byte[restriction.Count];
+                        for (var i = 0; i < restriction.Count; i++)
                         {
-                            array[i] = (byte)from_t.Convert(restrictions[i]);
+                            array[i] = (byte)from_t.Convert(restriction[i]);
                         }
-                        return from_u8.Convert(Methods.ByteUnitedMemoryLinks_Count(_body, array, (nuint)restrictions.Count));
+                        return from_u8.Convert(Methods.ByteUnitedMemoryLinks_Count(_body, array, (nuint)restriction.Count));
                     }
                     case ushort:
                     {
-                        var array = stackalloc ushort[restrictions.Count];
-                        for (var i = 0; i < restrictions.Count; i++)
+                        var array = stackalloc ushort[restriction.Count];
+                        for (var i = 0; i < restriction.Count; i++)
                         {
-                            array[i] = (ushort)from_t.Convert(restrictions[i]);
+                            array[i] = (ushort)from_t.Convert(restriction[i]);
                         }
-                        return from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Count(_body, array, (nuint)restrictions.Count));
+                        return from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Count(_body, array, (nuint)restriction.Count));
                     }
                     case uint:
                     {
-                        var array = stackalloc uint[restrictions.Count];
-                        for (var i = 0; i < restrictions.Count; i++)
+                        var array = stackalloc uint[restriction.Count];
+                        for (var i = 0; i < restriction.Count; i++)
                         {
-                            array[i] = (uint)from_t.Convert(restrictions[i]);
+                            array[i] = (uint)from_t.Convert(restriction[i]);
                         }
-                        return from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Count(_body, array, (nuint)restrictions.Count));
+                        return from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Count(_body, array, (nuint)restriction.Count));
                     }
                     case ulong:
                     {
                         {
-                            var array = stackalloc UInt64[restrictions.Count];
-                            for (var i = 0; i < restrictions.Count; i++)
+                            var array = stackalloc UInt64[restriction.Count];
+                            for (var i = 0; i < restriction.Count; i++)
                             {
-                                array[i] = from_t.Convert(restrictions[i]);
+                                array[i] = from_t.Convert(restriction[i]);
                             }
-                            return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Count(_body, array, (nuint)restrictions.Count));
+                            return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Count(_body, array, (nuint)restriction.Count));
                         }
                     }
                     default:
@@ -218,7 +218,7 @@ namespace Platform.Data.Doublets.FFI
             }
         }
 
-        public TLink Each(Func<IList<TLink>, TLink> handler, IList<TLink> restrictions)
+        public TLink Each(Func<IList<TLink>, TLink> handler, IList<TLink> restriction)
         {
             unsafe
             {
@@ -228,43 +228,43 @@ namespace Platform.Data.Doublets.FFI
                     case byte:
                     {
                         Methods.EachCallback_Uint8 callback = (link) => (byte)from_t.Convert(handler(new Link<TLink>(from_u8.Convert(link.Index), from_u8.Convert(link.Source), from_u8.Convert(link.Target))));
-                        var array = stackalloc byte[restrictions.Count];
-                        for (var i = 0; i < restrictions.Count; i++)
+                        var array = stackalloc byte[restriction.Count];
+                        for (var i = 0; i < restriction.Count; i++)
                         {
-                            array[i] = (byte)from_t.Convert(restrictions[i]);
+                            array[i] = (byte)from_t.Convert(restriction[i]);
                         }
-                        return from_u8.Convert(Methods.ByteUnitedMemoryLinks_Each(_body, callback, array, (nuint)restrictions.Count));
+                        return from_u8.Convert(Methods.ByteUnitedMemoryLinks_Each(_body, callback, array, (nuint)restriction.Count));
                     }
                     case ushort:
                     {
                         Methods.EachCallback_Uint16 callback = (link) => (ushort)from_t.Convert(handler(new Link<TLink>(from_u16.Convert(link.Index), from_u16.Convert(link.Source), from_u16.Convert(link.Target))));
-                        var array = stackalloc ushort[restrictions.Count];
-                        for (var i = 0; i < restrictions.Count; i++)
+                        var array = stackalloc ushort[restriction.Count];
+                        for (var i = 0; i < restriction.Count; i++)
                         {
-                            array[i] = (ushort)from_t.Convert(restrictions[i]);
+                            array[i] = (ushort)from_t.Convert(restriction[i]);
                         }
-                        return from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Each(_body, callback, array, (nuint)restrictions.Count));
+                        return from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Each(_body, callback, array, (nuint)restriction.Count));
                     }
                     case uint:
                     {
                         Methods.EachCallback_Uint32 callback = (link) => (uint)from_t.Convert(handler(new Link<TLink>(from_u32.Convert(link.Index), from_u32.Convert(link.Source), from_u32.Convert(link.Target))));
-                        var array = stackalloc uint[restrictions.Count];
-                        for (var i = 0; i < restrictions.Count; i++)
+                        var array = stackalloc uint[restriction.Count];
+                        for (var i = 0; i < restriction.Count; i++)
                         {
-                            array[i] = (uint)from_t.Convert(restrictions[i]);
+                            array[i] = (uint)from_t.Convert(restriction[i]);
                         }
-                        return from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Each(_body, callback, array, (nuint)restrictions.Count));
+                        return from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Each(_body, callback, array, (nuint)restriction.Count));
                     }
                     case ulong:
                     {
                         {
                             Methods.EachCallback_Uint64 callback = (link) => from_t.Convert(handler(new Link<TLink>(from_u64.Convert(link.Index), from_u64.Convert(link.Source), from_u64.Convert(link.Target))));
-                            var array = stackalloc UInt64[restrictions.Count];
-                            for (var i = 0; i < restrictions.Count; i++)
+                            var array = stackalloc UInt64[restriction.Count];
+                            for (var i = 0; i < restriction.Count; i++)
                             {
-                                array[i] = from_t.Convert(restrictions[i]);
+                                array[i] = from_t.Convert(restriction[i]);
                             }
-                            return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Each(_body, callback, array, (nuint)restrictions.Count));
+                            return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Each(_body, callback, array, (nuint)restriction.Count));
                         }
                     }
                     default:
@@ -275,7 +275,7 @@ namespace Platform.Data.Doublets.FFI
             }
         }
 
-        public TLink Create(IList<TLink> restrictions)
+        public TLink Create(IList<TLink> restriction)
         {
             unsafe
             {
@@ -291,7 +291,7 @@ namespace Platform.Data.Doublets.FFI
             }
         }
 
-        public TLink Update(IList<TLink> restrictions, IList<TLink> substitution)
+        public TLink Update(IList<TLink> restriction, IList<TLink> substitution)
         {
             unsafe
             {
@@ -300,7 +300,7 @@ namespace Platform.Data.Doublets.FFI
                 {
                     case byte:
                     {
-                        var restrictionArray = restrictions.ToArray();
+                        var restrictionArray = restriction.ToArray();
                         var substitutionArray = substitution.ToArray();
                         fixed (byte* restrictionPointer = (byte[])(object)restrictionArray, substitutionPointer = (byte[])(object)substitutionArray)
                         {
@@ -309,7 +309,7 @@ namespace Platform.Data.Doublets.FFI
                     }
                     case ushort:
                     {
-                        var restrictionArray = restrictions.ToArray();
+                        var restrictionArray = restriction.ToArray();
                         var substitutionArray = substitution.ToArray();
                         fixed (ushort* restrictionPointer = (ushort[])(object)restrictionArray, substitutionPointer = (ushort[])(object)substitutionArray)
                         {
@@ -318,7 +318,7 @@ namespace Platform.Data.Doublets.FFI
                     }
                     case uint:
                     {
-                        var restrictionArray = restrictions.ToArray();
+                        var restrictionArray = restriction.ToArray();
                         var substitutionArray = substitution.ToArray();
                         fixed (uint* restrictionPointer = (uint[])(object)restrictionArray, substitutionPointer = (uint[])(object)substitutionArray)
                         {
@@ -327,7 +327,7 @@ namespace Platform.Data.Doublets.FFI
                     }
                     case ulong:
                     {
-                        var restrictionArray = restrictions.ToArray();
+                        var restrictionArray = restriction.ToArray();
                         var substitutionArray = substitution.ToArray();
                         fixed (ulong* restrictionPointer = (ulong[])(object)restrictionArray, substitutionPointer = (ulong[])(object)substitutionArray)
                         {
@@ -342,7 +342,7 @@ namespace Platform.Data.Doublets.FFI
             }
         }
 
-        public TLink Delete(IList<TLink> restrictions)
+        public TLink Delete(IList<TLink> restriction)
         {
             unsafe
             {
@@ -351,7 +351,7 @@ namespace Platform.Data.Doublets.FFI
                 {
                     case byte:
                     {
-                        var restrictionArray = restrictions.ToArray();
+                        var restrictionArray = restriction.ToArray();
                         fixed (byte* restrictionPointer = (byte[])(object)restrictionArray)
                         {
                             return (TLink)(object)Methods.ByteUnitedMemoryLinks_Delete(_body, restrictionPointer, (nuint)restrictionArray.Length);
@@ -359,7 +359,7 @@ namespace Platform.Data.Doublets.FFI
                     }
                     case ushort:
                     {
-                        var restrictionArray = restrictions.ToArray();
+                        var restrictionArray = restriction.ToArray();
                         fixed (ushort* restrictionPointer = (ushort[])(object)restrictionArray)
                         {
                             return (TLink)(object)Methods.UInt16UnitedMemoryLinks_Delete(_body, restrictionPointer, (nuint)restrictionArray.Length);
@@ -367,7 +367,7 @@ namespace Platform.Data.Doublets.FFI
                     }
                     case uint:
                     {
-                        var restrictionArray = restrictions.ToArray();
+                        var restrictionArray = restriction.ToArray();
                         fixed (uint* restrictionPointer = (uint[])(object)restrictionArray)
                         {
                             return (TLink)(object)Methods.UInt32UnitedMemoryLinks_Delete(_body, restrictionPointer, (nuint)restrictionArray.Length);
@@ -375,7 +375,7 @@ namespace Platform.Data.Doublets.FFI
                     }
                     case ulong:
                     {
-                        var restrictionArray = restrictions.ToArray();
+                        var restrictionArray = restriction.ToArray();
                         fixed (ulong* restrictionPointer = (ulong[])(object)restrictionArray)
                         {
                             return (TLink)(object)Methods.UInt64UnitedMemoryLinks_Delete(_body, restrictionPointer, (nuint)restrictionArray.Length);
