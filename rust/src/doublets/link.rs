@@ -4,9 +4,13 @@ use std::iter::FromIterator;
 use std::ops::{Index, IndexMut};
 use std::slice::from_raw_parts;
 
+use crate::doublets::data::query::ToQuery;
+use crate::doublets::data::Query;
 use num_traits::zero;
+use thiserror::private::DisplayAsDisplay;
 
 use crate::num::LinkType;
+use crate::query;
 
 #[derive(Default, Debug, Eq, PartialEq, Clone, Hash)]
 pub struct Link<T: LinkType> {
@@ -111,5 +115,11 @@ impl<T: LinkType> FromIterator<T> for Link<T> {
 impl<T: LinkType> Display for Link<T> {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         write!(f, "({}: {} {})", self.index, self.source, self.target)
+    }
+}
+
+impl<T: LinkType> ToQuery<T> for Link<T> {
+    fn to_query(&self) -> Query<'_, T> {
+        Query::new(self.as_slice())
     }
 }

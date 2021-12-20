@@ -6,6 +6,7 @@ pub use ilinks::IGenericLinksExtensions;
 pub use links_constants::LinksConstants;
 pub use point::Point;
 pub use query::Query;
+pub use query::ToQuery;
 
 mod converters;
 mod hybrid;

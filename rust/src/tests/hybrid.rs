@@ -13,13 +13,10 @@ fn non_exist_reference() {
     links.update(link, usize::MAX, usize::MAX).unwrap();
 
     let mut result = 0;
-    links.each_by(
-        |found| {
-            result = found.index;
-            links.constants().r#break
-        },
-        query![links.constants().any, usize::MAX, usize::MAX],
-    );
+    links.each_by([links.constants().any, usize::MAX, usize::MAX], |found| {
+        result = found.index;
+        links.constants().r#break
+    });
 
     assert_eq!(result, link);
     assert_eq!(links.count_by(Query::new(&[usize::MAX][..])), 0);

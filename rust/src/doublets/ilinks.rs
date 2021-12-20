@@ -11,6 +11,7 @@ use crate::doublets::data::{query, LinksConstants, Point, Query};
 //use crate::doublets::decorators::{
 //    CascadeUniqueResolver, CascadeUsagesResolver, NonNullDeletionResolver,
 //};
+use crate::doublets::data::ToQuery;
 use crate::doublets::error::LinksError;
 use crate::doublets::link::Link;
 use crate::doublets::{data, Doublet};
@@ -22,24 +23,25 @@ pub type Result<T, E = LinksError<T>> = std::result::Result<T, E>;
 pub trait ILinks<T: LinkType>: Sized {
     fn constants(&self) -> LinksConstants<T>;
 
-    fn count_by(&self, query: Query<'_, T>) -> T;
+    fn count_by(&self, query: impl ToQuery<T>) -> T;
 
-    fn create(&mut self) -> Result<T>;
+    fn create(&mut self) -> Result<T> {
+        self.create_by([])
+    }
 
-    fn each_by<H>(&self, mut handler: H, restrictions: Query<'_, T>) -> T
+    fn create_by(&mut self, query: impl ToQuery<T>) -> Result<T>;
+
+    fn each_by<H>(&self, restrictions: impl ToQuery<T>, mut handler: H) -> T
     where
         H: FnMut(Link<T>) -> T,
     {
-        let result = self.try_each_by(
-            |link| {
-                if handler(link) == self.constants().r#continue {
-                    ControlFlow::Continue(())
-                } else {
-                    ControlFlow::Break(())
-                }
-            },
-            restrictions,
-        );
+        let result = self.try_each_by(restrictions, |link| {
+            if handler(link) == self.constants().r#continue {
+                ControlFlow::Continue(())
+            } else {
+                ControlFlow::Break(())
+            }
+        });
 
         match result {
             ControlFlow::Continue(_) => self.constants().r#continue,
@@ -47,14 +49,22 @@ pub trait ILinks<T: LinkType>: Sized {
         }
     }
 
-    fn try_each_by<F, R>(&self, handler: F, restrictions: Query<'_, T>) -> R
+    fn try_each_by<F, R>(&self, restrictions: impl ToQuery<T>, handler: F) -> R
     where
         F: FnMut(Link<T>) -> R,
         R: Try<Output = ()>;
 
-    fn update(&mut self, index: T, source: T, target: T) -> Result<T>;
+    fn update(&mut self, index: T, source: T, target: T) -> Result<T> {
+        self.update_by([index], [index, source, target])
+    }
 
-    fn delete(&mut self, index: T) -> Result<T>;
+    fn update_by(&mut self, query: impl ToQuery<T>, replacement: impl ToQuery<T>) -> Result<T>;
+
+    fn delete(&mut self, index: T) -> Result<T> {
+        self.delete_by([index])
+    }
+
+    fn delete_by(&mut self, query: impl ToQuery<T>) -> Result<T>;
 
     fn try_get_link(&self, index: T) -> Result<Link<T>, LinksError<T>> {
         self.get_link(index).ok_or(LinksError::NotExists(index))
@@ -66,19 +76,16 @@ pub trait ILinks<T: LinkType>: Sized {
             Some(Link::point(index))
         } else {
             let mut slice = None;
-            self.each_by(
-                |link| {
-                    slice = Some(link);
-                    constants.r#break
-                },
-                query![index],
-            );
+            self.each_by([index], |link| {
+                slice = Some(link);
+                constants.r#break
+            });
             slice
         }
     }
 
     fn count(&self) -> T {
-        self.count_by(query![])
+        self.count_by([])
     }
 
     // TODO: maybe create `par_each`
@@ -86,7 +93,7 @@ pub trait ILinks<T: LinkType>: Sized {
     where
         H: FnMut(Link<T>) -> T,
     {
-        self.each_by(handler, query![])
+        self.each_by([], handler)
     }
 
     fn try_each<F, R>(&self, handler: F) -> R
@@ -94,7 +101,7 @@ pub trait ILinks<T: LinkType>: Sized {
         F: FnMut(Link<T>) -> R,
         R: Try<Output = ()>,
     {
-        self.try_each_by(handler, query![])
+        self.try_each_by([], handler)
     }
 
     fn delete_all(&mut self) -> Result<(), LinksError<T>> {
@@ -116,13 +123,10 @@ pub trait ILinks<T: LinkType>: Sized {
         let len = self.count_by(query.clone()).as_();
         let mut vec = Vec::with_capacity(len);
 
-        self.each_by(
-            |link| {
-                vec.push(link.index);
-                constants.r#continue
-            },
-            query,
-        );
+        self.each_by(query, |link| {
+            vec.push(link.index);
+            constants.r#continue
+        });
 
         for index in vec.into_iter().rev() {
             self.delete(index)?;
@@ -134,25 +138,19 @@ pub trait ILinks<T: LinkType>: Sized {
     fn delete_usages(&mut self, index: T) -> Result<(), LinksError<T>> {
         let any = self.constants().any;
         let mut to_delete = vec![];
-        self.each_by(
-            |link| {
-                if link.index != index {
-                    to_delete.push(link.index);
-                }
-                self.constants().r#continue
-            },
-            query![any, index, any],
-        );
+        self.each_by([any, index, any], |link| {
+            if link.index != index {
+                to_delete.push(link.index);
+            }
+            self.constants().r#continue
+        });
 
-        self.each_by(
-            |link| {
-                if link.index != index {
-                    to_delete.push(link.index);
-                }
-                self.constants().r#continue
-            },
-            query![any, any, index],
-        );
+        self.each_by([any, any, index], |link| {
+            if link.index != index {
+                to_delete.push(link.index);
+            }
+            self.constants().r#continue
+        });
 
         for link in to_delete.into_iter().rev() {
             self.delete(link)?;
@@ -178,13 +176,10 @@ pub trait ILinks<T: LinkType>: Sized {
     fn search(&self, source: T, target: T) -> Option<T> {
         let constants = self.constants();
         let mut index = None;
-        self.each_by(
-            |link| {
-                index = Some(link.index);
-                T::zero()
-            },
-            query![constants.any, source, target],
-        );
+        self.each_by([constants.any, source, target], |link| {
+            index = Some(link.index);
+            T::zero()
+        });
         index
     }
 
@@ -195,19 +190,16 @@ pub trait ILinks<T: LinkType>: Sized {
 
         let mut result = None;
         let mut marker = false;
-        self.each_by(
-            |link| {
-                if !marker {
-                    result = Some(link);
-                    marker = true;
-                    r#continue
-                } else {
-                    result = None;
-                    r#break
-                }
-            },
-            query,
-        );
+        self.each_by(query, |link| {
+            if !marker {
+                result = Some(link);
+                marker = true;
+                r#continue
+            } else {
+                result = None;
+                r#break
+            }
+        });
         result
     }
 
@@ -215,13 +207,10 @@ pub trait ILinks<T: LinkType>: Sized {
     fn all_indices(&self, query: Query<'_, T>) -> Vec<T> {
         let len = self.count_by(Query::new(&query[..])).as_();
         let mut vec = Vec::with_capacity(len);
-        self.each_by(
-            |link| {
-                vec.push(link.index);
-                self.constants().r#continue
-            },
-            query,
-        );
+        self.each_by(query, |link| {
+            vec.push(link.index);
+            self.constants().r#continue
+        });
         vec
     }
 
@@ -288,13 +277,10 @@ pub trait ILinks<T: LinkType>: Sized {
         }
 
         let mut usages = Vec::with_capacity(sources_count);
-        self.each_by(
-            |link| {
-                usages.push(link.index);
-                constants.r#continue
-            },
-            query![any, old, any],
-        );
+        self.each_by([any, old, any], |link| {
+            usages.push(link.index);
+            constants.r#continue
+        });
 
         for index in usages {
             if index != old {
@@ -304,13 +290,10 @@ pub trait ILinks<T: LinkType>: Sized {
         }
 
         let mut usages = Vec::with_capacity(sources_count);
-        self.each_by(
-            |link| {
-                usages.push(link.index);
-                constants.r#continue
-            },
-            query![any, any, old],
-        );
+        self.each_by([any, any, old], |link| {
+            usages.push(link.index);
+            constants.r#continue
+        });
 
         for index in usages {
             if index != old {

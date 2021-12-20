@@ -7,6 +7,7 @@ use num_traits::{one, zero};
 use smallvec::SmallVec;
 
 use crate::doublets::data::LinksConstants;
+use crate::doublets::data::ToQuery;
 use crate::doublets::data::{IGenericLinks, Query};
 use crate::doublets::link::Link;
 use crate::doublets::mem::links_header::LinksHeader;
@@ -958,15 +959,17 @@ impl<
         Link::new(index, link.source, link.target)
     }
 
-    fn each_core<F, R>(&self, handler: &mut F, restrictions: Query<'_, T>) -> R
+    fn each_core<F, R>(&self, handler: &mut F, restriction: impl ToQuery<T>) -> R
     where
         F: FnMut(Link<T>) -> R,
         R: Try<Output = ()>,
     {
+        let restriction = restriction.to_query();
+
         let constants = self.constants();
         let r#break = constants.r#break;
 
-        if restrictions.len() == 0 {
+        if restriction.len() == 0 {
             for index in T::one()..self.get_header().allocated + one() {
                 let link = self.get_link_unchecked(index);
                 if self.exists(index) {
@@ -978,11 +981,11 @@ impl<
 
         let r#continue = constants.r#continue;
         let any = constants.any;
-        let index = restrictions[constants.index_part.as_()];
+        let index = restriction[constants.index_part.as_()];
 
-        if restrictions.len() == 1 {
+        if restriction.len() == 1 {
             return if index == any {
-                self.each_core(handler, query![])
+                self.each_core(handler, [])
             } else if !self.exists(index) {
                 R::from_output(())
             } else {
@@ -991,15 +994,15 @@ impl<
             };
         }
 
-        if restrictions.len() == 2 {
-            let value = restrictions[1];
+        if restriction.len() == 2 {
+            let value = restriction[1];
             return if index == any {
                 if value == any {
-                    self.each_core(handler, query![])
+                    self.each_core(handler, [])
                 } else {
-                    match self.each_core(handler, query![index, value, any]).branch() {
+                    match self.each_core(handler, [index, value, any]).branch() {
                         ControlFlow::Continue(output) => {
-                            self.each_core(handler, query![index, value, any])
+                            self.each_core(handler, [index, value, any])
                         }
                         ControlFlow::Break(residual) => R::from_residual(residual),
                     }
@@ -1021,13 +1024,13 @@ impl<
             };
         }
 
-        if restrictions.len() == 3 {
-            let source = restrictions[constants.source_part.as_()];
-            let target = restrictions[constants.target_part.as_()];
+        if restriction.len() == 3 {
+            let source = restriction[constants.source_part.as_()];
+            let target = restriction[constants.target_part.as_()];
 
             if index == any {
                 return if (source, target) == (any, any) {
-                    self.each_core(handler, query![])
+                    self.each_core(handler, [])
                 } else if source == any {
                     self.targets.each_usages(target, handler)
                 } else if target == any {
@@ -1089,16 +1092,18 @@ impl<
         self.constants.clone()
     }
 
-    fn count_by(&self, restrictions: Query<'_, T>) -> T {
-        if restrictions.len() == 0 {
+    fn count_by(&self, query: impl ToQuery<T>) -> T {
+        let query = query.to_query();
+
+        if query.len() == 0 {
             return self.get_total();
         };
 
         let constants = self.constants();
         let any = constants.any;
-        let index = restrictions[constants.index_part.as_()];
+        let index = query[constants.index_part.as_()];
 
-        if restrictions.len() == 1 {
+        if query.len() == 1 {
             return if index == any {
                 self.get_total()
             } else {
@@ -1110,8 +1115,8 @@ impl<
             };
         }
 
-        if restrictions.len() == 2 {
-            let value = restrictions[1];
+        if query.len() == 2 {
+            let value = query[1];
             return if index == any {
                 if value == any {
                     self.get_total()
@@ -1135,9 +1140,9 @@ impl<
             };
         }
 
-        if restrictions.len() == 3 {
-            let source = restrictions[constants.source_part.as_()];
-            let target = restrictions[constants.target_part.as_()];
+        if query.len() == 3 {
+            let source = query[constants.source_part.as_()];
+            let target = query[constants.target_part.as_()];
 
             return if index == any {
                 if (target, source) == (any, any) {
@@ -1188,7 +1193,7 @@ impl<
         todo!()
     }
 
-    fn create(&mut self) -> Result<T> {
+    fn create_by(&mut self, query: impl ToQuery<T>) -> Result<T> {
         let constants = self.constants();
         let header = self.get_header();
         let mut free = header.first_free;
@@ -1216,15 +1221,22 @@ impl<
         Ok(free)
     }
 
-    fn try_each_by<F, R>(&self, mut handler: F, restrictions: Query<'_, T>) -> R
+    fn try_each_by<F, R>(&self, restrictions: impl ToQuery<T>, mut handler: F) -> R
     where
         F: FnMut(Link<T>) -> R,
         R: Try<Output = ()>,
     {
-        self.each_core(&mut handler, restrictions)
+        self.each_core(&mut handler, restrictions.to_query())
     }
 
-    fn update(&mut self, index: T, source: T, target: T) -> Result<T> {
+    fn update_by(&mut self, query: impl ToQuery<T>, replacement: impl ToQuery<T>) -> Result<T> {
+        let query = query.to_query();
+        let replacement = replacement.to_query();
+
+        let index = query[0];
+        let source = replacement[1];
+        let target = replacement[2];
+
         let constants = self.constants();
         let null = constants.null;
 
@@ -1259,7 +1271,11 @@ impl<
         Ok(index)
     }
 
-    fn delete(&mut self, index: T) -> Result<T> {
+    fn delete_by(&mut self, query: impl ToQuery<T>) -> Result<T> {
+        let query = query.to_query();
+
+        let index = query[0];
+
         if !self.exists(index) {
             return Err(LinksError::NotExists(index));
         }

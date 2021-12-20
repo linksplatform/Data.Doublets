@@ -5,6 +5,7 @@ use std::ops::Try;
 use crate::{doublets, query};
 use num_traits::{one, zero};
 
+use crate::doublets::data::ToQuery;
 use crate::doublets::data::{LinksConstants, Query};
 use crate::doublets::mem::splited::generic::{
     ExternalSourcesRecursionlessTree, ExternalTargetsRecursionlessTree, InternalSourcesLinkedList,
@@ -57,7 +58,7 @@ impl<
         UL: ILinksListMethods<T> + UpdatePointers,
     > Links<T, MD, MI, IS, ES, IT, ET, UL>
 {
-    const SIZE_STEP: usize = 1024_usize.pow(2);
+    const SIZE_STEP: usize = 1024_usize.pow(2) * 64;
     const HEADER_SIZE: usize = std::mem::size_of::<LinksHeader<T>>();
     const DATA_SIZE: usize = std::mem::size_of::<DataPart<T>>();
     const INDEX_SIZE: usize = std::mem::size_of::<IndexPart<T>>();
@@ -148,15 +149,15 @@ impl<
         debug_assert!(to_align >= target);
 
         // TODO: optimize this `if`
-        if to_align % target != 0 {
-            to_align = ((to_align / target) * target) + target;
-        }
+        //if to_align % target != 0 {
+        //    to_align = ((to_align / target) * target) + target;
+        //}
         to_align
     }
 
     fn init(&mut self) -> Result<(), LinksError<T>> {
         if self.index_mem.reserved_mem() < Self::HEADER_SIZE {
-            self.index_mem.reserve_mem(Self::HEADER_SIZE).unwrap();
+            self.index_mem.reserve_mem(Self::HEADER_SIZE)?;
         }
         self.update_pointers();
 
@@ -225,12 +226,14 @@ impl<
         Link::new(index, raw.source, raw.target)
     }
 
-    fn try_each_by_core<F, R>(&self, handler: &mut F, restrictions: Query<'_, T>) -> R
+    fn try_each_by_core<F, R>(&self, handler: &mut F, restrictions: impl ToQuery<T>) -> R
     where
         F: FnMut(Link<T>) -> R,
         R: Try<Output = ()>,
     {
-        if restrictions.len() == 0 {
+        let restriction = restrictions.to_query();
+
+        if restriction.len() == 0 {
             for index in one()..=self.get_header().allocated {
                 // TODO: 100% `Some`
                 //  exist(`link`) => get_link(`link`) is Some
@@ -244,10 +247,10 @@ impl<
         let constants = self.constants.clone();
         let any = constants.any;
         let r#continue = constants.r#continue;
-        let index = restrictions[constants.index_part.as_()];
-        if restrictions.len() == 1 {
+        let index = restriction[constants.index_part.as_()];
+        if restriction.len() == 1 {
             return if index == any {
-                self.try_each_by_core(handler, query![])
+                self.try_each_by_core(handler, [])
             } else if !self.exists(index) {
                 R::from_output(())
             } else {
@@ -255,14 +258,14 @@ impl<
             };
         }
         //
-        if restrictions.len() == 2 {
-            let value = restrictions[1]; // TODO: Hmm... `const` position?
+        if restriction.len() == 2 {
+            let value = restriction[1]; // TODO: Hmm... `const` position?
             return if index == any {
                 if value == any {
-                    self.try_each_by_core(handler, query![])
+                    self.try_each_by_core(handler, [])
                 } else {
-                    self.try_each_by_core(handler, query![index, value, any])?;
-                    self.try_each_by_core(handler, query![index, any, value])
+                    self.try_each_by_core(handler, [index, value, any])?;
+                    self.try_each_by_core(handler, [index, any, value])
                 }
             } else {
                 if !self.exists(index) {
@@ -280,13 +283,13 @@ impl<
             };
         }
         //
-        if restrictions.len() == 3 {
-            let source = restrictions[constants.source_part.as_()];
-            let target = restrictions[constants.target_part.as_()];
+        if restriction.len() == 3 {
+            let source = restriction[constants.source_part.as_()];
+            let target = restriction[constants.target_part.as_()];
             //
             return if index == any {
                 if (source, target) == (any, any) {
-                    self.try_each_by_core(handler, query![])
+                    self.try_each_by_core(handler, [])
                 } else if source == any {
                     if constants.is_external_reference(target) {
                         self.external_targets.each_usages(target, handler)
@@ -393,15 +396,17 @@ impl<
         self.constants.clone()
     }
 
-    fn count_by(&self, restrictions: Query<'_, T>) -> T {
-        if restrictions.len() == 0 {
+    fn count_by(&self, query: impl ToQuery<T>) -> T {
+        let query = query.to_query();
+
+        if query.len() == 0 {
             return self.total();
         }
 
         let constants = self.constants();
         let any = constants.any;
-        let index = restrictions[constants.index_part.as_()];
-        if restrictions.len() == 1 {
+        let index = query[constants.index_part.as_()];
+        if query.len() == 1 {
             return if index == any {
                 self.total()
             } else {
@@ -413,8 +418,8 @@ impl<
             };
         }
 
-        if restrictions.len() == 2 {
-            let value = restrictions[1]; // TODO: Hmm... `const` position?
+        if query.len() == 2 {
+            let value = query[1]; // TODO: Hmm... `const` position?
             return if index == any {
                 if value == any {
                     self.total()
@@ -445,9 +450,9 @@ impl<
             };
         }
 
-        if restrictions.len() == 3 {
-            let source = restrictions[constants.source_part.as_()];
-            let target = restrictions[constants.target_part.as_()];
+        if query.len() == 3 {
+            let source = query[constants.source_part.as_()];
+            let target = query[constants.target_part.as_()];
 
             return if index == any {
                 if (source, target) == (any, any) {
@@ -539,14 +544,14 @@ impl<
         todo!()
     }
 
-    fn create(&mut self) -> Result<T> {
+    fn create_by(&mut self, query: impl ToQuery<T>) -> Result<T> {
         let constants = self.constants();
         let header = self.get_header();
         let mut free = header.first_free;
         if free == constants.null {
             let max_inner = *constants.internal_range.end();
-            if header.allocated > max_inner {
-                todo!()
+            if header.allocated >= max_inner {
+                return Err(LinksError::LimitReached(max_inner));
             }
 
             // TODO: if header.allocated >= header.reserved - one() {
@@ -575,15 +580,22 @@ impl<
         Ok(free)
     }
 
-    fn try_each_by<F, R>(&self, mut handler: F, query: Query<'_, T>) -> R
+    fn try_each_by<F, R>(&self, restrictions: impl ToQuery<T>, mut handler: F) -> R
     where
         F: FnMut(Link<T>) -> R,
         R: Try<Output = ()>,
     {
-        self.try_each_by_core(&mut handler, query)
+        self.try_each_by_core(&mut handler, restrictions.to_query())
     }
 
-    fn update(&mut self, index: T, new_source: T, new_target: T) -> Result<T> {
+    fn update_by(&mut self, query: impl ToQuery<T>, replacement: impl ToQuery<T>) -> Result<T> {
+        let query = query.to_query();
+        let replacement = replacement.to_query();
+
+        let index = query[0];
+        let new_source = replacement[1];
+        let new_target = replacement[2];
+
         let constants = self.constants();
         let null = constants.null;
 
@@ -648,7 +660,11 @@ impl<
         Ok(index)
     }
 
-    fn delete(&mut self, index: T) -> Result<T> {
+    fn delete_by(&mut self, query: impl ToQuery<T>) -> Result<T> {
+        let query = query.to_query();
+
+        let index = query[0];
+
         if !self.exists(index) {
             return Err(LinksError::NotExists(index));
         }

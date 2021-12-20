@@ -47,13 +47,10 @@ fn each_eq_count() {
     let query = [any, any, root];
 
     let mut count = 0;
-    links.each_by(
-        |link| {
-            count += 1;
-            links.constants.r#continue
-        },
-        query![any, any, root],
-    );
+    links.each_by([any, any, root], |link| {
+        count += 1;
+        links.constants.r#continue
+    });
 
     assert_eq!(count, links.count_by(Query::new(&query[..])));
 }
