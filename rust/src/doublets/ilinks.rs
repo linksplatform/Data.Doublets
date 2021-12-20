@@ -118,9 +118,10 @@ pub trait ILinks<T: LinkType>: Sized {
         Ok(())
     }
 
-    fn delete_query(&mut self, query: Query<'_, T>) -> Result<(), LinksError<T>> {
+    fn delete_query(&mut self, query: impl ToQuery<T>) -> Result<(), LinksError<T>> {
+        let query = query.to_query();
         let constants = self.constants();
-        let len = self.count_by(query.clone()).as_();
+        let len = self.count_by(query.to_query()).as_();
         let mut vec = Vec::with_capacity(len);
 
         self.each_by(query, |link| {
@@ -197,7 +198,8 @@ pub trait ILinks<T: LinkType>: Sized {
         index
     }
 
-    fn single(&self, query: Query<'_, T>) -> Option<Link<T>> {
+    fn single(&self, query: impl ToQuery<T>) -> Option<Link<T>> {
+        let query = query.to_query();
         let constants = self.constants();
         let r#break = constants.r#break;
         let r#continue = constants.r#continue;
@@ -218,8 +220,9 @@ pub trait ILinks<T: LinkType>: Sized {
     }
 
     // TODO: use later `links.iter().map(|link| link.index).collect()`
-    fn all_indices(&self, query: Query<'_, T>) -> Vec<T> {
-        let len = self.count_by(Query::new(&query[..])).as_();
+    fn all_indices(&self, query: impl ToQuery<T>) -> Vec<T> {
+        let query = query.to_query();
+        let len = self.count_by(query.to_query()).as_();
         let mut vec = Vec::with_capacity(len);
         self.each_by(query, |link| {
             vec.push(link.index);

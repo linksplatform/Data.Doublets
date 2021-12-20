@@ -51,9 +51,9 @@ pub trait ToQuery<T: LinkType> {
     fn to_query(&'a self) -> Query<'a, T>;
 }
 
-impl<'a, T: LinkType> ToQuery<T> for Query<'a, T> {
-    fn to_query(self: &Query<'a, T>) -> Query<'a, T> {
-        Query::new(self.cow.clone())
+impl<T: LinkType> ToQuery<T> for Query<'_, T> {
+    fn to_query(&self) -> Query<'_, T> {
+        Query::new(&self[..])
     }
 }
 
