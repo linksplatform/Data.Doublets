@@ -74,16 +74,16 @@ namespace Platform.Data.Doublets.FFI
         public static extern void UInt64UnitedMemoryLinks_Drop(void* self);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte ByteUnitedMemoryLinks_Create(void* self);
+        public static extern byte ByteUnitedMemoryLinks_Create(void* self, byte* substitution, nuint substitutionLength);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern ushort UInt16UnitedMemoryLinks_Create(void* self);
+        public static extern ushort UInt16UnitedMemoryLinks_Create(void* self, ushort* substitution, nuint substitutionLength);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern uint UInt32UnitedMemoryLinks_Create(void* self);
+        public static extern uint UInt32UnitedMemoryLinks_Create(void* self, uint* substitution, nuint substitutionLength);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-        public static extern ulong UInt64UnitedMemoryLinks_Create(void* self);
+        public static extern ulong UInt64UnitedMemoryLinks_Create(void* self, ulong* substitution, nuint substitutionLength);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
         public static extern byte ByteUnitedMemoryLinks_Count(void* self, byte* restriction, nuint len);
