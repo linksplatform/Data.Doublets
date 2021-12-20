@@ -391,7 +391,7 @@ namespace Platform.Data.Doublets.FFI
 
         protected override void Dispose(bool manual, bool wasDisposed)
         {
-            if (wasDisposed)
+            if (wasDisposed && _body != null)
             {
                 return;
             }
