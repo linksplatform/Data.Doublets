@@ -416,30 +416,30 @@ namespace Platform.Data.Doublets.FFI
 
         protected override void Dispose(bool manual, bool wasDisposed)
         {
-            if (wasDisposed && _body != null)
-            {
-                return;
-            }
-            TLink t = default;
             unsafe
             {
-                switch (t)
+                if (wasDisposed && _ptr != null)
                 {
-                    case byte:
-                        Methods.ByteUnitedMemoryLinks_Drop(_ptr);
-                        break;
-                    case ushort:
-                        Methods.UInt16UnitedMemoryLinks_Drop(_ptr);
-                        break;
-                    case uint:
-                        Methods.UInt32UnitedMemoryLinks_Drop(_ptr);
-                        break;
-                    case ulong:
-                        Methods.UInt64UnitedMemoryLinks_Drop(_ptr);
-                        break;
-                    default:
-                        throw new NotImplementedException();
+                    return;
                 }
+                TLink t = default;
+                switch (t)
+                    {
+                        case byte:
+                            Methods.ByteUnitedMemoryLinks_Drop(_ptr);
+                            break;
+                        case ushort:
+                            Methods.UInt16UnitedMemoryLinks_Drop(_ptr);
+                            break;
+                        case uint:
+                            Methods.UInt32UnitedMemoryLinks_Drop(_ptr);
+                            break;
+                        case ulong:
+                            Methods.UInt64UnitedMemoryLinks_Drop(_ptr);
+                            break;
+                        default:
+                            throw new NotImplementedException();
+                    }
             }
         }
     }
