@@ -41,6 +41,7 @@ namespace Platform.Data.Doublets.Benchmarks
             _splitMemory.Dispose();
             _unitedMemory.Dispose();
             _ffiUnitedMemory.Dispose();
+            File.Delete("db.links");
         }
 
         [Benchmark]
