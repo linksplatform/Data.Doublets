@@ -273,7 +273,7 @@ namespace Platform.Data.Doublets.FFI
             }
         }
 
-        public TLink Create(IList<TLink> restriction)
+        public TLink Create(IList<TLink> substitution)
         {
             unsafe
             {
