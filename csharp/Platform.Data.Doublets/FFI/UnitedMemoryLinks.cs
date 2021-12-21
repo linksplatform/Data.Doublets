@@ -4,8 +4,6 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using Platform.Converters;
 using Platform.Disposables;
-using IDisposable = Platform.Disposables.IDisposable;
-using static System.Runtime.CompilerServices.Unsafe;
 
 namespace Platform.Data.Doublets.FFI
 {
