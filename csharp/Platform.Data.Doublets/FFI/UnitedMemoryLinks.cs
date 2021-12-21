@@ -278,13 +278,40 @@ namespace Platform.Data.Doublets.FFI
             unsafe
             {
                 TLink t = default;
-                return t switch
+                switch (t)
                 {
-                    byte => from_u8.Convert(Methods.ByteUnitedMemoryLinks_Create(_ptr)),
-                    ushort => from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Create(_ptr)),
-                    uint => from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Create(_ptr)),
-                    ulong => from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Create(_ptr)),
-                    _ => throw new NotImplementedException()
+                    case byte:
+                    {
+                        fixed (byte* substitutionPtr = (byte[])(object)substitution)
+                        {
+                            from_u8.Convert(Methods.ByteUnitedMemoryLinks_Create(_ptr, substitutionPtr, (nuint)substitution.Count));
+                        }
+                    }
+                    case ushort:
+                    {
+                        fixed (ushort* substitutionPtr = (ushort[])(object)substitution)
+                        {
+                            from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Create(_ptr, substitutionPtr, (nuint)substitution.Count));
+                        }
+                    }
+                    case uint:
+                    {
+                        fixed (uint* substitutionPtr = (uint[])(object)substitution)
+                        {
+                            from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Create(_ptr, substitutionPtr, (nuint)substitution.Count));
+                        }
+                    }
+                    case ulong:
+                    {
+                        fixed (ulong* substitutionPtr = (ulong[])(object)substitution)
+                        {
+                            from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Create(_ptr, substitutionPtr, (nuint)substitution.Count));
+                        }
+                    }
+                    default:
+                    {
+                        throw new NotImplementedException();
+                    }
                 };
             }
         }
