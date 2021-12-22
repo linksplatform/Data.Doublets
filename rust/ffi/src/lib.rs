@@ -12,7 +12,7 @@ use std::path::Path;
 use std::ptr;
 use std::ptr::{drop_in_place, null_mut};
 use std::slice;
-use std::time::{SystemTime, UNIX_EPOCH};
+use std::time::{Instant, SystemTime, UNIX_EPOCH};
 
 use doublets::doublets::{
     data::LinksConstants, mem::united::Links, ILinks, ILinksExtensions, LinksError,
@@ -67,7 +67,7 @@ unsafe fn drop_united_links<T: LinkType>(this: *mut c_void) {
     convention = "csharp",
     name = "*UnitedMemoryLinks_Create"
 )]
-unsafe fn create_united<T: LinkType>(this: *mut c_void) -> T {
+unsafe fn create_united<T: LinkType>(this: *mut c_void, query: *const T, len: usize) -> T {
     let result = {
         let links = &mut *(this as *mut UnitedLinks<T>);
         links.create()
@@ -144,10 +144,22 @@ unsafe fn count_united<T: LinkType>(this: *mut c_void, query: *const T, len: usi
     convention = "csharp",
     name = "*UnitedMemoryLinks_Update"
 )]
-unsafe fn update_united<T: LinkType>(this: *mut c_void, index: T, source: T, target: T) -> T {
+unsafe fn update_united<T: LinkType>(
+    this: *mut c_void,
+    restrictions: *const T,
+    len_r: usize,
+    substitutuion: *const T,
+    len_s: usize,
+) -> T {
+    let restrictions = slice::from_raw_parts(restrictions, len_r);
+    let substitutuion = slice::from_raw_parts(substitutuion, len_s);
+
+    assert_eq!(restrictions.len(), 1);
+    assert_eq!(restrictions.len(), 3);
+
     let result = {
         let links = &mut *(this as *mut UnitedLinks<T>);
-        links.update(index, source, target)
+        links.update(restrictions[0], substitutuion[1], substitutuion[2])
     };
     result.unwrap_or(T::zero())
 }
@@ -160,10 +172,13 @@ unsafe fn update_united<T: LinkType>(this: *mut c_void, index: T, source: T, tar
     convention = "csharp",
     name = "*UnitedMemoryLinks_Delete"
 )]
-unsafe fn delete_united<T: LinkType>(this: *mut c_void, index: T) -> T {
+unsafe fn delete_united<T: LinkType>(this: *mut c_void, query: *const T, len: usize) -> T {
+    let query = slice::from_raw_parts(query, len);
+    assert_eq!(query.len(), 1);
+
     let result = {
         let links = &mut *(this as *mut UnitedLinks<T>);
-        links.delete(index)
+        links.delete(query[0])
     };
     result.unwrap_or(T::zero())
 }
