@@ -64,12 +64,12 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override void Delete(IList<TLink> restrictions)
+        public override TLink Delete(IList<TLink> restrictions)
         {
             var link = restrictions[_constants.IndexPart];
             var links = _links;
             links.EnsureNoUsages(link);
-            links.Delete(link);
+            return links.Delete(link);
         }
     }
 }
