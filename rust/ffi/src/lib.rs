@@ -6,7 +6,7 @@
 use std::alloc::{alloc, Layout};
 use std::cell::{Cell, RefCell};
 use std::ffi::{CStr, CString, OsStr, OsString};
-use std::fmt::Write;
+use std::fmt::{Display, Write};
 use std::panic::catch_unwind;
 use std::path::Path;
 use std::ptr;
@@ -14,16 +14,57 @@ use std::ptr::{drop_in_place, null_mut};
 use std::slice;
 use std::time::{Instant, SystemTime, UNIX_EPOCH};
 
+use doublets::doublets::data::Query;
+use doublets::doublets::Link as DLink;
 use doublets::doublets::{
     data::LinksConstants, mem::united::Links, ILinks, ILinksExtensions, LinksError,
 };
 use doublets::mem::FileMappedMem;
 use doublets::num::LinkType;
+use doublets::query;
 use ffi_attributes as ffi;
 use libc::c_char;
 use libc::c_void;
+use log::{debug, error, info, trace, warn};
+use std::error::Error;
 
 type UnitedLinks<T> = Links<T, FileMappedMem>;
+
+fn result_into_log<R, E: Display>(result: Result<R, E>, default: R) -> R {
+    match result {
+        Ok(r) => r,
+        Err(e) => {
+            error!("{}", e);
+            default
+        }
+    }
+}
+
+fn query_from_raw<T: LinkType>(query: *const T, len: usize) -> Query<'static, T> {
+    if !query.is_null() && len != 0 {
+        warn!("If `query` is null then `len` must be 0");
+    }
+
+    if query.is_null() {
+        query![]
+    } else {
+        Query::new(unsafe { slice::from_raw_parts(query, len) })
+    }
+}
+
+fn unnul_or_error<'a, Ptr, R>(ptr: *mut Ptr) -> &'a mut R {
+    if ptr.is_null() {
+        // todo: use std::Backtrace or crates/tracing
+        error!("Null pointer");
+        panic!("Null pointer");
+    } else {
+        unsafe { &mut *(ptr as *mut R) }
+    }
+}
+
+type EachCallback<T> = extern "C" fn(Link<T>) -> T;
+
+type LinksCallback<T> = extern "C" fn(before: Link<T>, after: Link<T>) -> T;
 
 #[ffi::specialize_for(
     types = "u8",
@@ -33,17 +74,16 @@ type UnitedLinks<T> = Links<T, FileMappedMem>;
     convention = "csharp",
     name = "*UnitedMemoryLinks_New"
 )]
-unsafe fn new_united_links<T: LinkType>(path: *const c_char) -> *mut c_void {
-    let result: Result<_, LinksError<T>> = try {
-        let path = CStr::from_ptr(path);
-        let path = path.to_str().unwrap();
+fn new_united_links<T: LinkType>(path: *const c_char) -> *mut c_void {
+    let result: Result<_, Box<dyn Error>> = try {
+        let path = unsafe { CStr::from_ptr(path) }.to_str()?;
         let path = OsStr::new(path);
         let mem = FileMappedMem::new(path)?;
         let links =
             box UnitedLinks::<T>::with_constants(mem, LinksConstants::via_only_external(true))?;
         Box::into_raw(links) as *mut c_void
     };
-    result.unwrap_or(null_mut())
+    result_into_log(result, null_mut())
 }
 
 #[ffi::specialize_for(
@@ -54,9 +94,11 @@ unsafe fn new_united_links<T: LinkType>(path: *const c_char) -> *mut c_void {
     convention = "csharp",
     name = "*UnitedMemoryLinks_Drop"
 )]
-unsafe fn drop_united_links<T: LinkType>(this: *mut c_void) {
-    let links = &mut *(this as *mut UnitedLinks<T>);
-    drop_in_place(links);
+fn drop_united_links<T: LinkType>(this: *mut c_void) {
+    let links: &mut UnitedLinks<T> = unnul_or_error(this);
+    unsafe {
+        drop_in_place(links);
+    }
 }
 
 #[ffi::specialize_for(
@@ -67,12 +109,12 @@ unsafe fn drop_united_links<T: LinkType>(this: *mut c_void) {
     convention = "csharp",
     name = "*UnitedMemoryLinks_Create"
 )]
-unsafe fn create_united<T: LinkType>(this: *mut c_void, query: *const T, len: usize) -> T {
+fn create_united<T: LinkType>(this: *mut c_void, query: *const T, len: usize) -> T {
     let result = {
-        let links = &mut *(this as *mut UnitedLinks<T>);
+        let links: &mut UnitedLinks<T> = unnul_or_error(this);
         links.create()
     };
-    result.unwrap_or(T::zero())
+    result_into_log(result, T::default())
 }
 #[repr(C)]
 struct Link<T: LinkType> {
@@ -81,7 +123,15 @@ struct Link<T: LinkType> {
     target: T,
 }
 
-type EachCallback<T> = extern "C" fn(Link<T>) -> T;
+impl<T: LinkType> From<DLink<T>> for Link<T> {
+    fn from(link: DLink<T>) -> Self {
+        Link {
+            index: link.index,
+            source: link.source,
+            target: link.target,
+        }
+    }
+}
 
 #[ffi::specialize_for(
     types = "u8",
@@ -91,29 +141,16 @@ type EachCallback<T> = extern "C" fn(Link<T>) -> T;
     convention = "csharp",
     name = "*UnitedMemoryLinks_Each"
 )]
-unsafe fn each_united<T: LinkType>(
+fn each_united<T: LinkType>(
     this: *mut c_void,
-    callback: EachCallback<T>,
     query: *const T,
     len: usize,
+    callback: EachCallback<T>,
 ) -> T {
-    let links = &mut *(this as *mut UnitedLinks<T>);
-    let slice = slice::from_raw_parts(query, len);
-    let capture = move |link: doublets::doublets::Link<_>| {
-        let new = Link {
-            index: link.index,
-            source: link.source,
-            target: link.target,
-        };
-        callback(new)
-    };
-    match slice.len() {
-        0 => links.each(capture),
-        1 => links.each_by(capture, [slice[0]]),
-        2 => links.each_by(capture, [slice[0], slice[1]]),
-        3 => links.each_by(capture, [slice[0], slice[1], slice[2]]),
-        _ => panic!("UB"),
-    }
+    let links: &mut UnitedLinks<T> = unnul_or_error(this);
+    let query = query_from_raw(query, len);
+    let handler = move |link: DLink<_>| callback(link.into());
+    links.each_by(query, handler)
 }
 
 #[ffi::specialize_for(
@@ -125,15 +162,9 @@ unsafe fn each_united<T: LinkType>(
     name = "*UnitedMemoryLinks_Count"
 )]
 unsafe fn count_united<T: LinkType>(this: *mut c_void, query: *const T, len: usize) -> T {
-    let links = &mut *(this as *mut UnitedLinks<T>);
-    let slice = slice::from_raw_parts(query, len);
-    match slice.len() {
-        0 => links.count(),
-        1 => links.count_by([slice[0]]),
-        2 => links.count_by([slice[0], slice[1]]),
-        3 => links.count_by([slice[0], slice[1], slice[2]]),
-        _ => panic!("UB"),
-    }
+    let links: &mut UnitedLinks<T> = unnul_or_error(this);
+    let query = query_from_raw(query, len);
+    links.count_by(query)
 }
 
 #[ffi::specialize_for(
@@ -150,18 +181,17 @@ unsafe fn update_united<T: LinkType>(
     len_r: usize,
     substitutuion: *const T,
     len_s: usize,
+    callback: LinksCallback<T>,
 ) -> T {
-    let restrictions = slice::from_raw_parts(restrictions, len_r);
-    let substitutuion = slice::from_raw_parts(substitutuion, len_s);
-
-    assert_eq!(restrictions.len(), 1);
-    assert_eq!(restrictions.len(), 3);
-
+    let restrictions = query_from_raw(restrictions, len_r);
+    let substitutuion = query_from_raw(substitutuion, len_s);
     let result = {
-        let links = &mut *(this as *mut UnitedLinks<T>);
-        links.update(restrictions[0], substitutuion[1], substitutuion[2])
+        let links: &mut UnitedLinks<T> = unnul_or_error(this);
+        let handler =
+            move |before: DLink<T>, after: DLink<T>| callback(before.into(), after.into());
+        links.update_by_with(restrictions, substitutuion, handler)
     };
-    result.unwrap_or(T::zero())
+    result_into_log(result, T::default())
 }
 
 #[ffi::specialize_for(
@@ -172,13 +202,18 @@ unsafe fn update_united<T: LinkType>(
     convention = "csharp",
     name = "*UnitedMemoryLinks_Delete"
 )]
-unsafe fn delete_united<T: LinkType>(this: *mut c_void, query: *const T, len: usize) -> T {
-    let query = slice::from_raw_parts(query, len);
-    assert_eq!(query.len(), 1);
-
+unsafe fn delete_united<T: LinkType>(
+    this: *mut c_void,
+    query: *const T,
+    len: usize,
+    callback: LinksCallback<T>,
+) -> T {
+    let query = query_from_raw(query, len);
     let result = {
-        let links = &mut *(this as *mut UnitedLinks<T>);
-        links.delete(query[0])
+        let links: &mut UnitedLinks<T> = unnul_or_error(this);
+        let handler =
+            move |after: DLink<_>, before: DLink<_>| callback(after.into(), before.into());
+        links.delete_by_with(query, handler)
     };
-    result.unwrap_or(T::zero())
+    result_into_log(result, T::default())
 }

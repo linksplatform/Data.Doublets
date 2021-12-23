@@ -7,6 +7,10 @@ edition = "2021"
 crate-type = ["cdylib"]
 
 [dependencies]
+log = "0.4.14"
 libc = "0.2.100"
 doublets = { path = ".." }
 ffi-attributes = { path = "ffi-attributes" }
+
+[package.log]
+features = ["std", "release_max_level_error"]
