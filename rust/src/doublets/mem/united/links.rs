@@ -1193,9 +1193,13 @@ impl<
         todo!()
     }
 
-    fn try_create_by_with<F, R>(&mut self, query: impl ToQuery<T>, mut handler: F) -> Result<T>
+    fn try_create_by_with<F, R>(
+        &mut self,
+        query: impl ToQuery<T>,
+        mut handler: F,
+    ) -> Result<R, LinksError<T>>
     where
-        F: FnMut(Link<T>) -> R,
+        F: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>,
     {
         let constants = self.constants();
@@ -1222,8 +1226,10 @@ impl<
         } else {
             self.unused.detach(free)
         }
-        handler(Link::new(free, T::zero(), T::zero()));
-        Ok(free)
+        Ok(handler(
+            Link::nothing(),
+            Link::new(free, T::zero(), T::zero()),
+        ))
     }
 
     fn try_each_by<F, R>(&self, restrictions: impl ToQuery<T>, mut handler: F) -> R
@@ -1239,9 +1245,9 @@ impl<
         query: impl ToQuery<T>,
         replacement: impl ToQuery<T>,
         mut handler: F,
-    ) -> Result<T>
+    ) -> Result<R, LinksError<T>>
     where
-        F: FnMut(Link<T>) -> R,
+        F: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>,
     {
         let query = query.to_query();
@@ -1250,6 +1256,8 @@ impl<
         let index = query[0];
         let source = replacement[1];
         let target = replacement[2];
+        let old_source = source;
+        let old_target = target;
 
         let constants = self.constants();
         let null = constants.null;
@@ -1282,13 +1290,19 @@ impl<
             unsafe { self.targets.attach(&mut *temp, index) };
         }
 
-        handler(Link::new(index, source, target));
-        Ok(index)
+        Ok(handler(
+            Link::new(index, old_source, old_target),
+            Link::new(index, source, target),
+        ))
     }
 
-    fn try_delete_by_with<F, R>(&mut self, query: impl ToQuery<T>, mut handler: F) -> Result<T>
+    fn try_delete_by_with<F, R>(
+        &mut self,
+        query: impl ToQuery<T>,
+        mut handler: F,
+    ) -> Result<R, LinksError<T>>
     where
-        F: FnMut(Link<T>) -> R,
+        F: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>,
     {
         let query = query.to_query();
@@ -1324,8 +1338,7 @@ impl<
                 self.mem.use_mem(used_mem - Self::LINK_SIZE)?;
             }
         }
-        handler(Link::new(index, source, target));
-        Ok(index)
+        Ok(handler(Link::new(index, source, target), Link::nothing()))
     }
 
     fn get_link(&self, index: T) -> Option<Link<T>> {

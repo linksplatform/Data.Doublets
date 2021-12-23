@@ -18,6 +18,7 @@
 #![feature(in_band_lifetimes)]
 #![feature(const_fn_trait_bound)]
 #![feature(cow_is_borrowed)]
+#![feature(control_flow_enum)]
 
 use crate::doublets::mem::united::{Links, NewList, NewTree, UpdatePointersSplit};
 use crate::doublets::mem::{splited, ILinksListMethods, ILinksTreeMethods, UpdatePointers};

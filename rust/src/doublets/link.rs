@@ -1,3 +1,4 @@
+use std::default::default;
 use std::fmt::{Debug, Display, Formatter};
 use std::iter;
 use std::iter::FromIterator;
@@ -21,6 +22,10 @@ pub struct Link<T: LinkType> {
 
 impl<T: LinkType> Link<T> {
     const LEN: usize = 3;
+
+    pub fn nothing() -> Self {
+        default()
+    }
 
     pub fn new(index: T, source: T, target: T) -> Self {
         Self {
