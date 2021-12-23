@@ -35,8 +35,12 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for CascadeUsagesResolver<T, Links
         self.links.count_by(query)
     }
 
-    fn create_by(&mut self, query: impl ToQuery<T>) -> Result<T> {
-        self.links.create_by(query)
+    fn try_create_by_with<F, R>(&mut self, query: impl ToQuery<T>, handler: F) -> Result<T>
+    where
+        F: FnMut(Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
+        self.links.try_create_by_with(query, handler)
     }
 
     fn try_each_by<F, R>(&self, restrictions: impl ToQuery<T>, handler: F) -> R
@@ -47,12 +51,25 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for CascadeUsagesResolver<T, Links
         self.links.try_each_by(restrictions, handler)
     }
 
-    fn update_by(&mut self, query: impl ToQuery<T>, replacement: impl ToQuery<T>) -> Result<T> {
-        self.links.update_by(query, replacement)
+    fn try_update_by_with<F, R>(
+        &mut self,
+        query: impl ToQuery<T>,
+        replacement: impl ToQuery<T>,
+        handler: F,
+    ) -> Result<T>
+    where
+        F: FnMut(Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
+        self.links.try_update_by_with(query, replacement, handler)
     }
 
-    fn delete_by(&mut self, query: impl ToQuery<T>) -> Result<T> {
-        self.delete_usages(query.to_query()[0])?; // TODO: STABILIZE RESTRICTION API
-        self.links.delete_by(query)
+    fn try_delete_by_with<F, R>(&mut self, query: impl ToQuery<T>, handler: F) -> Result<T>
+    where
+        F: FnMut(Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
+        self.delete_usages(query.to_query()[0])?;
+        self.links.try_delete_by_with(query, handler)
     }
 }

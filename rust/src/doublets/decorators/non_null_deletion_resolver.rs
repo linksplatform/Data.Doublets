@@ -36,8 +36,12 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for NonNullDeletionResolver<T, Lin
         self.links.count_by(query)
     }
 
-    fn create_by(&mut self, query: impl ToQuery<T>) -> Result<T> {
-        self.links.create_by(query)
+    fn try_create_by_with<F, R>(&mut self, query: impl ToQuery<T>, handler: F) -> Result<T>
+    where
+        F: FnMut(Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
+        self.links.try_create_by_with(query, handler)
     }
 
     fn try_each_by<F, R>(&self, restrictions: impl ToQuery<T>, handler: F) -> R
@@ -48,15 +52,28 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for NonNullDeletionResolver<T, Lin
         self.links.try_each_by(restrictions, handler)
     }
 
-    fn update_by(&mut self, query: impl ToQuery<T>, replacement: impl ToQuery<T>) -> Result<T> {
-        self.links.update_by(query, replacement)
+    fn try_update_by_with<F, R>(
+        &mut self,
+        query: impl ToQuery<T>,
+        replacement: impl ToQuery<T>,
+        handler: F,
+    ) -> Result<T>
+    where
+        F: FnMut(Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
+        self.links.try_update_by_with(query, replacement, handler)
     }
 
-    fn delete_by(&mut self, query: impl ToQuery<T>) -> Result<T> {
+    fn try_delete_by_with<F, R>(&mut self, query: impl ToQuery<T>, handler: F) -> Result<T>
+    where
+        F: FnMut(Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
         let null = self.links.constants().null;
         let query = query.to_query();
         self.links
-            .update_by(query.to_query(), query![query[0], null, null])?; // TODO: MAY BE STANGE BEHAVIOUR
+            .update_by(query.to_query(), [query[0], null, null])?; // TODO: MAY BE STANGE BEHAVIOUR
         self.links.delete_by(query)
     }
 }

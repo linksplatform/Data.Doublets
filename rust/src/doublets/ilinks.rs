@@ -9,9 +9,6 @@ use smallvec::SmallVec;
 
 use crate::doublets::data::ToQuery;
 use crate::doublets::data::{LinksConstants, Point, Query};
-use crate::doublets::decorators::{
-    CascadeUniqueResolver, CascadeUsagesResolver, NonNullDeletionResolver,
-};
 use crate::doublets::error::LinksError;
 use crate::doublets::link::Link;
 use crate::doublets::{data, Doublet};
@@ -20,33 +17,45 @@ use crate::query;
 
 pub type Result<T, E = LinksError<T>> = std::result::Result<T, E>;
 
+fn IGNORE<T: LinkType>(_: Link<T>) -> Result<(), ()> {
+    Err(())
+}
+
 pub trait ILinks<T: LinkType>: Sized {
     fn constants(&self) -> LinksConstants<T>;
 
     fn count_by(&self, query: impl ToQuery<T>) -> T;
 
+    fn count(&self) -> T {
+        self.count_by([])
+    }
+
     fn create(&mut self) -> Result<T> {
         self.create_by([])
     }
 
-    fn create_by(&mut self, query: impl ToQuery<T>) -> Result<T>;
-
-    fn each_by<H>(&self, restrictions: impl ToQuery<T>, mut handler: H) -> T
+    fn try_create_by_with<F, R>(&mut self, query: impl ToQuery<T>, handler: F) -> Result<T>
     where
-        H: FnMut(Link<T>) -> T,
+        F: FnMut(Link<T>) -> R,
+        R: Try<Output = ()>;
+
+    fn create_by_with<F>(&mut self, query: impl ToQuery<T>, mut handler: F) -> Result<T>
+    where
+        F: FnMut(Link<T>) -> T,
     {
-        let result = self.try_each_by(restrictions, |link| {
-            if handler(link) == self.constants().r#continue {
+        let r#continue = self.constants().r#continue;
+        self.try_create_by_with(query, |link| {
+            let result = handler(link);
+            if result == r#continue {
                 ControlFlow::Continue(())
             } else {
-                ControlFlow::Break(())
+                ControlFlow::Break(result)
             }
-        });
+        })
+    }
 
-        match result {
-            ControlFlow::Continue(_) => self.constants().r#continue,
-            ControlFlow::Break(_) => self.constants().r#break,
-        }
+    fn create_by(&mut self, query: impl ToQuery<T>) -> Result<T> {
+        self.try_create_by_with(query, IGNORE)
     }
 
     fn try_each_by<F, R>(&self, restrictions: impl ToQuery<T>, handler: F) -> R
@@ -54,17 +63,135 @@ pub trait ILinks<T: LinkType>: Sized {
         F: FnMut(Link<T>) -> R,
         R: Try<Output = ()>;
 
-    fn update(&mut self, index: T, source: T, target: T) -> Result<T> {
-        self.update_by([index], [index, source, target])
+    fn try_each<F, R>(&self, handler: F) -> R
+    where
+        F: FnMut(Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
+        self.try_each_by([], handler)
     }
 
-    fn update_by(&mut self, query: impl ToQuery<T>, replacement: impl ToQuery<T>) -> Result<T>;
+    fn each_by<H>(&self, restrictions: impl ToQuery<T>, mut handler: H) -> T
+    where
+        H: FnMut(Link<T>) -> T,
+    {
+        let result = self.try_each_by(restrictions, |link| {
+            let result = handler(link);
+            if result == self.constants().r#continue {
+                ControlFlow::Continue(())
+            } else {
+                ControlFlow::Break(result)
+            }
+        });
+
+        match result {
+            ControlFlow::Continue(_) => self.constants().r#continue,
+            ControlFlow::Break(result) => result,
+        }
+    }
+
+    fn each<H>(&self, handler: H) -> T
+    where
+        H: FnMut(Link<T>) -> T,
+    {
+        self.each_by([], handler)
+    }
+
+    fn try_update_by_with<F, R>(
+        &mut self,
+        query: impl ToQuery<T>,
+        replacement: impl ToQuery<T>,
+        handler: F,
+    ) -> Result<T>
+    where
+        F: FnMut(Link<T>) -> R,
+        R: Try<Output = ()>;
+
+    fn update_by_with<F>(
+        &mut self,
+        query: impl ToQuery<T>,
+        replacement: impl ToQuery<T>,
+        mut handler: F,
+    ) -> Result<T>
+    where
+        F: FnMut(Link<T>) -> T,
+    {
+        let r#continue = self.constants().r#continue;
+        self.try_update_by_with(query, replacement, |link| {
+            let result = handler(link);
+            if result == r#continue {
+                ControlFlow::Continue(())
+            } else {
+                ControlFlow::Break(result)
+            }
+        })
+    }
+
+    fn try_update_with<F, R>(&mut self, index: T, source: T, target: T, mut handler: F) -> Result<T>
+    where
+        F: FnMut(Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
+        self.try_update_by_with([index], [index, source, target], handler)
+    }
+
+    fn update_with<F>(&mut self, index: T, source: T, target: T, mut handler: F) -> Result<T>
+    where
+        F: FnMut(Link<T>) -> T,
+    {
+        self.update_by_with([index], [index, source, target], handler)
+    }
+
+    fn update_by(&mut self, query: impl ToQuery<T>, replacement: impl ToQuery<T>) -> Result<T> {
+        self.try_update_by_with(query, replacement, IGNORE)
+    }
+
+    fn update(&mut self, index: T, source: T, target: T) -> Result<T> {
+        self.try_update_with(index, source, target, IGNORE)
+    }
+
+    fn try_delete_by_with<F, R>(&mut self, query: impl ToQuery<T>, handler: F) -> Result<T>
+    where
+        F: FnMut(Link<T>) -> R,
+        R: Try<Output = ()>;
+
+    fn delete_by_with<F>(&mut self, query: impl ToQuery<T>, mut handler: F) -> Result<T>
+    where
+        F: FnMut(Link<T>) -> T,
+    {
+        let r#continue = self.constants().r#continue;
+        self.try_delete_by_with(query, |link| {
+            let result = handler(link);
+            if result == r#continue {
+                ControlFlow::Continue(())
+            } else {
+                ControlFlow::Break(result)
+            }
+        })
+    }
+
+    fn try_delete_with<F, R>(&mut self, index: T, mut handler: F) -> Result<T>
+    where
+        F: FnMut(Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
+        self.try_delete_by_with([index], handler)
+    }
+
+    fn delete_with<F>(&mut self, index: T, mut handler: F) -> Result<T>
+    where
+        F: FnMut(Link<T>) -> T,
+    {
+        self.delete_by_with([index], handler)
+    }
+
+    fn delete_by(&mut self, query: impl ToQuery<T>) -> Result<T> {
+        self.try_delete_by_with(query, IGNORE)
+    }
 
     fn delete(&mut self, index: T) -> Result<T> {
         self.delete_by([index])
     }
-
-    fn delete_by(&mut self, query: impl ToQuery<T>) -> Result<T>;
 
     fn try_get_link(&self, index: T) -> Result<Link<T>, LinksError<T>> {
         self.get_link(index).ok_or(LinksError::NotExists(index))
@@ -82,26 +209,6 @@ pub trait ILinks<T: LinkType>: Sized {
             });
             slice
         }
-    }
-
-    fn count(&self) -> T {
-        self.count_by([])
-    }
-
-    // TODO: maybe create `par_each`
-    fn each<H>(&self, handler: H) -> T
-    where
-        H: FnMut(Link<T>) -> T,
-    {
-        self.each_by([], handler)
-    }
-
-    fn try_each<F, R>(&self, handler: F) -> R
-    where
-        F: FnMut(Link<T>) -> R,
-        R: Try<Output = ()>,
-    {
-        self.try_each_by([], handler)
     }
 
     fn delete_all(&mut self) -> Result<(), LinksError<T>> {
@@ -339,14 +446,14 @@ pub trait ILinks<T: LinkType>: Sized {
         self.get_link(link).map(|link| link.to_string())
     }
 
-    fn decorators_kit(
-        self,
-    ) -> CascadeUniqueResolver<T, NonNullDeletionResolver<T, CascadeUsagesResolver<T, Self>>> {
-        let links = self;
-        let links = CascadeUsagesResolver::new(links);
-        let links = NonNullDeletionResolver::new(links);
-        CascadeUniqueResolver::new(links)
-    }
+    //fn decorators_kit(
+    //    self,
+    //) -> CascadeUniqueResolver<T, NonNullDeletionResolver<T, CascadeUsagesResolver<T, Self>>> {
+    //    let links = self;
+    //    let links = CascadeUsagesResolver::new(links);
+    //    let links = NonNullDeletionResolver::new(links);
+    //    CascadeUniqueResolver::new(links)
+    //}
 
     #[deprecated(note = "use `links.try_get_link(...)?.is_full()`")]
     fn is_full_point(&self, link: T) -> Option<bool> {

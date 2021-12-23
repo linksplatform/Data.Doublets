@@ -58,6 +58,7 @@ impl<
         UL: ILinksListMethods<T> + UpdatePointers,
     > Links<T, MD, MI, IS, ES, IT, ET, UL>
 {
+    const USE_LIST: bool = false;
     const SIZE_STEP: usize = 1024_usize.pow(2) * 64;
     const HEADER_SIZE: usize = std::mem::size_of::<LinksHeader<T>>();
     const DATA_SIZE: usize = std::mem::size_of::<DataPart<T>>();
@@ -219,14 +220,15 @@ impl<
             && !self.is_unused(link)
     }
 
-    fn get_link_unchecked(&self, index: T) -> Link<T> {
+    // SAFETY: must be link exists
+    unsafe fn get_link_unchecked(&self, index: T) -> Link<T> {
         debug_assert!(self.exists(index));
 
         let raw = self.get_data_part(index);
         Link::new(index, raw.source, raw.target)
     }
 
-    fn try_each_by_core<F, R>(&self, handler: &mut F, restrictions: impl ToQuery<T>) -> R
+    fn try_each_by_core<F, R>(&self, mut handler: &mut F, restrictions: impl ToQuery<T>) -> R
     where
         F: FnMut(Link<T>) -> R,
         R: Try<Output = ()>,
@@ -235,8 +237,6 @@ impl<
 
         if restriction.len() == 0 {
             for index in one()..=self.get_header().allocated {
-                // TODO: 100% `Some`
-                //  exist(`link`) => get_link(`link`) is Some
                 if let Some(link) = self.get_link(index) {
                     handler(link)?;
                 }
@@ -251,10 +251,10 @@ impl<
         if restriction.len() == 1 {
             return if index == any {
                 self.try_each_by_core(handler, [])
-            } else if !self.exists(index) {
-                R::from_output(())
+            } else if let Some(link) = self.get_link(index) {
+                handler(link)
             } else {
-                handler(self.get_link_unchecked(index)) // TODO: 100% `Some`
+                R::from_output(())
             };
         }
         //
@@ -268,17 +268,18 @@ impl<
                     self.try_each_by_core(handler, [index, any, value])
                 }
             } else {
-                if !self.exists(index) {
-                    R::from_output(())
-                } else if value == any {
-                    handler(self.get_link_unchecked(index))
-                } else {
-                    let stored = self.get_data_part(index);
-                    if (stored.source, stored.target) == (value, value) {
-                        handler(self.get_link_unchecked(index))
+                if let Some(link) = self.get_link(index) {
+                    if value == any {
+                        handler(link)
                     } else {
-                        R::from_output(())
+                        if (link.source, link.target) == (value, value) {
+                            handler(link)
+                        } else {
+                            R::from_output(())
+                        }
                     }
+                } else {
+                    R::from_output(())
                 }
             };
         }
@@ -300,8 +301,8 @@ impl<
                     if constants.is_external_reference(source) {
                         self.external_sources.each_usages(source, handler)
                     } else {
-                        if false {
-                            todo!()
+                        if Self::USE_LIST {
+                            self.sources_list.each_usages(source, handler)
                         } else {
                             self.internal_sources.each_usages(source, handler)
                         }
@@ -315,14 +316,15 @@ impl<
                         } else if constants.is_external_reference(source) {
                             self.internal_targets.search(source, target)
                         } else if constants.is_external_reference(target) {
-                            if false {
-                                todo!()
+                            if Self::USE_LIST {
+                                self.external_sources.search(source, target)
                             } else {
                                 self.internal_sources.search(source, target)
                             }
                         } else {
-                            if false
-                            /*|| todo!() */
+                            if Self::USE_LIST
+                                || self.internal_sources.count_usages(source)
+                                    > self.internal_targets.count_usages(target)
                             {
                                 self.internal_targets.search(source, target)
                             } else {
@@ -330,8 +332,9 @@ impl<
                             }
                         }
                     } else {
-                        if false
-                        /*|| todo!() */
+                        if Self::USE_LIST
+                            || self.internal_sources.count_usages(source)
+                                > self.internal_targets.count_usages(target)
                         {
                             self.internal_targets.search(source, target)
                         } else {
@@ -346,34 +349,34 @@ impl<
                     };
                 }
             } else {
-                if !self.exists(index) {
-                    R::from_output(())
-                } else if (source, target) == (any, any) {
-                    let link = self.get_link_unchecked(index);
-                    handler(link)
-                } else {
-                    let link = self.get_link_unchecked(index);
-                    if source != any && target != any {
-                        if (link.source, link.target) == (source, target) {
-                            handler(link)
-                        } else {
-                            R::from_output(())
-                        }
+                if let Some(link) = self.get_link(index) {
+                    if (source, target) == (any, any) {
+                        handler(unsafe { self.get_link_unchecked(index) })
                     } else {
-                        if source != any {
-                            if (link.source, link.target) == (source, source) {
+                        if source != any && target != any {
+                            if (link.source, link.target) == (source, target) {
                                 handler(link)
                             } else {
                                 R::from_output(())
                             }
                         } else {
-                            if (link.source, link.target) == (target, target) {
-                                handler(link)
+                            if source != any {
+                                if (link.source, link.target) == (source, source) {
+                                    handler(link)
+                                } else {
+                                    R::from_output(())
+                                }
                             } else {
-                                R::from_output(())
+                                if (link.source, link.target) == (target, target) {
+                                    handler(link)
+                                } else {
+                                    R::from_output(())
+                                }
                             }
                         }
                     }
+                } else {
+                    R::from_output(())
                 }
             };
         }
@@ -427,8 +430,9 @@ impl<
                     self.external_sources.count_usages(value)
                         + self.external_targets.count_usages(value)
                 } else {
-                    if false {
-                        todo!()
+                    if Self::USE_LIST {
+                        self.sources_list.count_usages(value)
+                            + self.internal_targets.count_usages(value)
                     } else {
                         self.internal_sources.count_usages(value)
                             + self.internal_targets.count_usages(value)
@@ -466,8 +470,8 @@ impl<
                 } else if constants.is_external_reference(source) {
                     self.external_sources.count_usages(source)
                 } else if target == any {
-                    if false {
-                        todo!()
+                    if Self::USE_LIST {
+                        self.sources_list.count_usages(source)
                     } else {
                         self.internal_sources.count_usages(source)
                     }
@@ -480,14 +484,15 @@ impl<
                         } else if constants.is_external_reference(source) {
                             self.internal_targets.search(source, target)
                         } else if constants.is_external_reference(target) {
-                            if false {
-                                todo!()
+                            if Self::USE_LIST {
+                                self.external_sources.search(source, target)
                             } else {
                                 self.internal_sources.search(source, target)
                             }
                         } else {
-                            if false
-                            /*|| todo!() */
+                            if Self::USE_LIST
+                                || self.internal_sources.count_usages(source)
+                                    > self.internal_targets.count_usages(target)
                             {
                                 self.internal_targets.search(source, target)
                             } else {
@@ -495,8 +500,9 @@ impl<
                             }
                         }
                     } else {
-                        if false
-                        /*|| todo!() */
+                        if Self::USE_LIST
+                            || self.internal_sources.count_usages(source)
+                                > self.internal_targets.count_usages(target)
                         {
                             self.internal_targets.search(source, target)
                         } else {
@@ -515,7 +521,7 @@ impl<
                 } else if (source, target) == (any, any) {
                     one()
                 } else {
-                    let link = self.get_link_unchecked(index);
+                    let link = unsafe { self.get_link_unchecked(index) };
                     if source != any && target != any {
                         if (link.source, link.target) == (source, target) {
                             one()
@@ -544,7 +550,11 @@ impl<
         todo!()
     }
 
-    fn create_by(&mut self, query: impl ToQuery<T>) -> Result<T> {
+    fn try_create_by_with<F, R>(&mut self, query: impl ToQuery<T>, mut handler: F) -> Result<T>
+    where
+        F: FnMut(Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
         let constants = self.constants();
         let header = self.get_header();
         let mut free = header.first_free;
@@ -577,6 +587,7 @@ impl<
         } else {
             self.unused.detach(free)
         }
+        handler(Link::new(free, T::zero(), T::zero()));
         Ok(free)
     }
 
@@ -588,7 +599,16 @@ impl<
         self.try_each_by_core(&mut handler, restrictions.to_query())
     }
 
-    fn update_by(&mut self, query: impl ToQuery<T>, replacement: impl ToQuery<T>) -> Result<T> {
+    fn try_update_by_with<F, R>(
+        &mut self,
+        query: impl ToQuery<T>,
+        replacement: impl ToQuery<T>,
+        mut handler: F,
+    ) -> Result<T>
+    where
+        F: FnMut(Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
         let query = query.to_query();
         let replacement = replacement.to_query();
 
@@ -608,7 +628,7 @@ impl<
                 let temp = &mut self.mut_header().root_as_source as *mut T;
                 self.external_sources.detach(unsafe { &mut *temp }, index)
             } else {
-                if false {
+                if Self::USE_LIST {
                     self.sources_list.detach(source, index);
                 } else {
                     let temp = &mut self.mut_index_part(source).root_as_source as *mut T;
@@ -638,7 +658,7 @@ impl<
                 let temp = &mut self.mut_header().root_as_source as *mut T;
                 self.external_sources.attach(unsafe { &mut *temp }, index)
             } else {
-                if false {
+                if Self::USE_LIST {
                     self.sources_list.attach_as_last(source, index);
                 } else {
                     let temp = &mut self.mut_index_part(source).root_as_source as *mut T;
@@ -657,17 +677,23 @@ impl<
             }
         }
 
+        handler(Link::new(index, source, target));
         Ok(index)
     }
 
-    fn delete_by(&mut self, query: impl ToQuery<T>) -> Result<T> {
+    fn try_delete_by_with<F, R>(&mut self, query: impl ToQuery<T>, mut handler: F) -> Result<T>
+    where
+        F: FnMut(Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
         let query = query.to_query();
 
         let index = query[0];
-
-        if !self.exists(index) {
+        let (source, target) = if let Some(link) = self.get_link(index) {
+            (link.source, link.target)
+        } else {
             return Err(LinksError::NotExists(index));
-        }
+        };
         self.update(index, zero(), zero())?;
 
         // TODO: move to `delete_core`
@@ -702,13 +728,13 @@ impl<
             }
             //*self.get_mut_header() = header;
         }
+        handler(Link::new(index, source, target));
         Ok(index)
     }
 
     fn get_link(&self, index: T) -> Option<Link<T>> {
         if self.exists(index) {
-            let raw = self.get_data_part(index);
-            Some(Link::new(index, raw.source, raw.target))
+            Some(unsafe { self.get_link_unchecked(index) })
         } else {
             None
         }

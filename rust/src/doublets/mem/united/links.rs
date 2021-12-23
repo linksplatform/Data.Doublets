@@ -1193,7 +1193,11 @@ impl<
         todo!()
     }
 
-    fn create_by(&mut self, query: impl ToQuery<T>) -> Result<T> {
+    fn try_create_by_with<F, R>(&mut self, query: impl ToQuery<T>, mut handler: F) -> Result<T>
+    where
+        F: FnMut(Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
         let constants = self.constants();
         let header = self.get_header();
         let mut free = header.first_free;
@@ -1218,6 +1222,7 @@ impl<
         } else {
             self.unused.detach(free)
         }
+        handler(Link::new(free, T::zero(), T::zero()));
         Ok(free)
     }
 
@@ -1229,7 +1234,16 @@ impl<
         self.each_core(&mut handler, restrictions.to_query())
     }
 
-    fn update_by(&mut self, query: impl ToQuery<T>, replacement: impl ToQuery<T>) -> Result<T> {
+    fn try_update_by_with<F, R>(
+        &mut self,
+        query: impl ToQuery<T>,
+        replacement: impl ToQuery<T>,
+        mut handler: F,
+    ) -> Result<T>
+    where
+        F: FnMut(Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
         let query = query.to_query();
         let replacement = replacement.to_query();
 
@@ -1268,18 +1282,24 @@ impl<
             unsafe { self.targets.attach(&mut *temp, index) };
         }
 
+        handler(Link::new(index, source, target));
         Ok(index)
     }
 
-    fn delete_by(&mut self, query: impl ToQuery<T>) -> Result<T> {
+    fn try_delete_by_with<F, R>(&mut self, query: impl ToQuery<T>, mut handler: F) -> Result<T>
+    where
+        F: FnMut(Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
         let query = query.to_query();
 
         let index = query[0];
-
-        if !self.exists(index) {
+        // TODO: use method style - remove .get_link
+        let (source, target) = if let Some(link) = ILinks::get_link(self, index) {
+            (link.source, link.target)
+        } else {
             return Err(LinksError::NotExists(index));
-        }
-
+        };
         self.update(index, zero(), zero())?;
 
         let header = self.get_header();
@@ -1304,6 +1324,7 @@ impl<
                 self.mem.use_mem(used_mem - Self::LINK_SIZE)?;
             }
         }
+        handler(Link::new(index, source, target));
         Ok(index)
     }
 
