@@ -726,12 +726,13 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// TODO: Возможно можно перемещать значения, если указан индекс, но значение существует в другом месте (но не в менеджере памяти, а в логике Links)
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Update(IList<TLink> restrictions, IList<TLink> substitution)
+        public virtual TLink Update(IList<TLink> restrictions, IList<TLink> substitution, Func<IList<TLink>, IList<TLink>, TLink> handler)
         {
             var constants = Constants;
             var @null = constants.Null;
             var externalReferencesRange = constants.ExternalReferencesRange;
             var linkIndex = restrictions[constants.IndexPart];
+            var before = GetLinkStruct(linkIndex);
             ref var link = ref GetLinkDataPartReference(linkIndex);
             var source = link.Source;
             var target = link.Target;
@@ -799,7 +800,8 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
                     InternalTargetsTreeMethods.Attach(ref GetLinkIndexPartReference(target).RootAsTarget, linkIndex);
                 }
             }
-            return linkIndex;
+            var after = GetLinkStruct(linkIndex);
+            return handler(before, after);
         }
 
         /// <remarks>
