@@ -1193,7 +1193,7 @@ impl<
         todo!()
     }
 
-    fn try_create_by_with<F, R>(
+    fn create_by_with<F, R>(
         &mut self,
         query: impl ToQuery<T>,
         mut handler: F,
@@ -1240,7 +1240,7 @@ impl<
         self.each_core(&mut handler, restrictions.to_query())
     }
 
-    fn try_update_by_with<F, R>(
+    fn update_by_with<F, R>(
         &mut self,
         query: impl ToQuery<T>,
         replacement: impl ToQuery<T>,
@@ -1296,7 +1296,7 @@ impl<
         ))
     }
 
-    fn try_delete_by_with<F, R>(
+    fn delete_by_with<F, R>(
         &mut self,
         query: impl ToQuery<T>,
         mut handler: F,
