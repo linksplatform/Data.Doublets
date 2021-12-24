@@ -243,22 +243,22 @@ pub trait ILinks<T: LinkType>: Sized {
         let mut to_delete = Vec::with_capacity(
             self.count_by([any, index, any]).as_() + self.count_by([any, any, index]).as_(),
         );
-        self.each_by([any, index, any], |link| {
+        self.try_each_by([any, index, any], |link| {
             if link.index != index {
                 to_delete.push(link.index);
             }
-            self.constants().r#continue
+            Flow::Continue
         });
 
-        self.each_by([any, any, index], |link| {
+        self.try_each_by([any, any, index], |link| {
             if link.index != index {
                 to_delete.push(link.index);
             }
-            self.constants().r#continue
+            Flow::Continue
         });
 
-        let mut handle = false;
-        for link in to_delete.into_iter().rev() {
+        let mut handle = true;
+        for index in to_delete.into_iter().rev() {
             if handle {
                 handle = self
                     .delete_with(index, &mut handler)?
