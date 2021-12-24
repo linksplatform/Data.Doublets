@@ -504,14 +504,6 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             return handler(before, after);
         }
 
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="restrictions"></param>
-        /// <param name="handler"></param>
-        /// <returns></returns>
-        /// <exception cref="LinksLimitReachedException{TLink}"></exception>
         /// <remarks>
         /// TODO: Возможно нужно будет заполнение нулями, если внешнее API ими не заполняет пространство
         /// </remarks>
@@ -552,10 +544,6 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// </summary>
         /// <param name="restrictions">
         /// <para>The restrictions.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="handler">
-        /// <para></para>
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
