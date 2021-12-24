@@ -127,7 +127,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <para>The substitution.</para>
         /// <para></para>
         /// </param>
         /// <returns>
@@ -139,12 +139,12 @@ namespace Platform.Data.Doublets
 
         /// <summary>
         /// <para>
-        /// Creates the restrictions.
+        /// Creates the substitution.
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="substitution">
+        /// <para>The substitution.</para>
         /// <para></para>
         /// </param>
         /// <returns>
@@ -152,16 +152,16 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLinkAddress Create(IList<TLinkAddress> restrictions) => SyncRoot.ExecuteWriteOperation(restrictions, (restrictions) => Unsync.Create(restrictions, null));
+        public TLinkAddress Create(IList<TLinkAddress> substitution) => SyncRoot.ExecuteWriteOperation(substitution, (restrictions) => Unsync.Create(restrictions, null));
 
         /// <summary>
         /// <para>
-        /// Updates the restrictions.
+        /// Updates the substitution.
         /// </para>
         /// <para></para>
         /// </summary>
         /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <para>The substitution.</para>
         /// <para></para>
         /// </param>
         /// <param name="substitution">
@@ -177,12 +177,12 @@ namespace Platform.Data.Doublets
 
         /// <summary>
         /// <para>
-        /// Deletes the restrictions.
+        /// Deletes the substitution.
         /// </para>
         /// <para></para>
         /// </summary>
         /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <para>The substitution.</para>
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
