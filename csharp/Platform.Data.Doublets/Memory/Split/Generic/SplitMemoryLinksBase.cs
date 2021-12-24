@@ -849,10 +849,11 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual void Delete(IList<TLink> restrictions)
+        public virtual TLink Delete(IList<TLink> restrictions, Func<IList<TLink>, IList<TLink>, TLink> handler)
         {
             ref var header = ref GetHeaderReference();
             var link = restrictions[Constants.IndexPart];
+            var before = GetLinkStruct(link);
             if (LessThan(link, header.AllocatedLinks))
             {
                 UnusedLinksListMethods.AttachAsFirst(link);
@@ -872,6 +873,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
                     _indexMemory.UsedCapacity -= LinkIndexPartSizeInBytes;
                 }
             }
+            return handler(before, null);
         }
 
         /// <summary>
