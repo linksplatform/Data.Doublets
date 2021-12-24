@@ -528,7 +528,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Each(Func<IList<TLink>, TLink> handler, IList<TLink> restrictions)
+        public virtual TLink Each(IList<TLink> restrictions, Func<IList<TLink>, TLink> handler)
         {
             var constants = Constants;
             var @break = constants.Break;
@@ -550,7 +550,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
             {
                 if (AreEqual(index, any))
                 {
-                    return Each(handler, Array.Empty<TLink>());
+                    return Each(Array.Empty<TLink>(), handler);
                 }
                 if (!Exists(index))
                 {
@@ -565,13 +565,13 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
                 {
                     if (AreEqual(value, any))
                     {
-                        return Each(handler, Array.Empty<TLink>());
+                        return Each(Array.Empty<TLink>(), handler);
                     }
-                    if (AreEqual(Each(handler, new Link<TLink>(index, value, any)), @break))
+                    if (AreEqual(Each(new Link<TLink>(index, value, any), handler), @break))
                     {
                         return @break;
                     }
-                    return Each(handler, new Link<TLink>(index, any, value));
+                    return Each(new Link<TLink>(index, any, value), handler);
                 }
                 else
                 {
@@ -601,7 +601,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
                 {
                     if (AreEqual(source, any) && AreEqual(target, any))
                     {
-                        return Each(handler, Array.Empty<TLink>());
+                        return Each(Array.Empty<TLink>(), handler);
                     }
                     else if (AreEqual(source, any))
                     {
