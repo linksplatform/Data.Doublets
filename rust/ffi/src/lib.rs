@@ -2,6 +2,7 @@
 #![feature(thread_local)]
 #![feature(try_blocks)]
 #![feature(cell_update)]
+#![feature(backtrace)]
 
 use std::alloc::{alloc, Layout};
 use std::cell::{Cell, RefCell};
@@ -25,8 +26,10 @@ use doublets::query;
 use ffi_attributes as ffi;
 use libc::c_char;
 use libc::c_void;
+use log::Metadata;
 use log::{debug, error, info, trace, warn};
 use std::error::Error;
+use tracing_subscriber::fmt::format::Format;
 
 type UnitedLinks<T> = Links<T, FileMappedMem>;
 
@@ -55,7 +58,10 @@ fn query_from_raw<T: LinkType>(query: *const T, len: usize) -> Query<'static, T>
 fn unnul_or_error<'a, Ptr, R>(ptr: *mut Ptr) -> &'a mut R {
     if ptr.is_null() {
         // todo: use std::Backtrace or crates/tracing
-        error!("Null pointer");
+        error!(
+            "Null pointer at:\n {}",
+            std::backtrace::Backtrace::capture()
+        );
         panic!("Null pointer");
     } else {
         unsafe { &mut *(ptr as *mut R) }
@@ -216,4 +222,61 @@ unsafe fn delete_united<T: LinkType>(
         links.delete_by_with(query, handler)
     };
     result_into_log(result, T::default())
+}
+
+#[repr(C)]
+pub struct SharedLogger {
+    formatter: for<'a> extern "C" fn(&'a log::Record<'_>),
+}
+
+impl log::Log for SharedLogger {
+    fn enabled(&self, _: &Metadata) -> bool {
+        true
+    }
+    fn log(&self, record: &log::Record) {
+        (self.formatter)(record)
+    }
+    fn flush(&self) {}
+}
+
+pub fn build_shared_logger() -> SharedLogger {
+    extern "C" fn formatter(r: &log::Record<'_>) {
+        tracing_log::format_trace(r).unwrap()
+    }
+    SharedLogger { formatter }
+}
+#[no_mangle]
+pub extern "C" fn setup_shared_logger(logger: SharedLogger) {
+    log::set_max_level(log::STATIC_MAX_LEVEL);
+
+    let subscriber = tracing_subscriber::fmt::fmt()
+        .with_max_level(tracing::Level::TRACE)
+        .finish();
+    if let Err(err) = tracing::subscriber::set_global_default(subscriber) {
+        log::warn!("subscriber error: {}", err)
+    }
+
+    if let Err(err) = log::set_boxed_logger(Box::new(logger)) {
+        log::warn!("{}", err)
+    }
+}
+
+mod tests {
+    use super::*;
+
+    fn init_log() {
+        let logger = build_shared_logger();
+        setup_shared_logger(logger);
+    }
+
+    #[test]
+    fn error_log() {
+        init_log();
+
+        trace!("trace");
+        debug!("debug");
+        info!("info");
+        warn!("warn");
+        error!("error");
+    }
 }
