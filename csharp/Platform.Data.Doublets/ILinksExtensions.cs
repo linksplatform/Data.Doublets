@@ -924,7 +924,7 @@ namespace Platform.Data.Doublets
             }
             else
             {
-                return links.Update(new LinkAddress<TLink>(restrictions[0]), restrictions);
+                return links.Update(new LinkAddress<TLink>(restrictions[0]), restrictions, null);
             }
         }
 
