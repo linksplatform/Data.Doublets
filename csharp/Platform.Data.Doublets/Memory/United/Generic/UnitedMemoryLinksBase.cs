@@ -502,6 +502,14 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             return linkIndex;
         }
 
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="restrictions"></param>
+        /// <param name="handler"></param>
+        /// <returns></returns>
+        /// <exception cref="LinksLimitReachedException{TLink}"></exception>
         /// <remarks>
         /// TODO: Возможно нужно будет заполнение нулями, если внешнее API ими не заполняет пространство
         /// </remarks>
@@ -544,15 +552,19 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para>The restrictions.</para>
         /// <para></para>
         /// </param>
+        /// <param name="handler">
+        /// <para></para>
+        /// <para></para>
+        /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Delete(IList<TLink> restrictions)
+        public virtual TLink Delete(IList<TLink> restrictions, Func<IList<TLink>, IList<TLink>, TLink> handler)
         {
             ref var header = ref GetHeaderReference();
             var link = restrictions[Constants.IndexPart];
             if (LessThan(link, header.AllocatedLinks))
             {
                 UnusedLinksListMethods.AttachAsFirst(link);
-                return link;
+                return handler(GetLinkStruct(link), null);
             }
             else if (AreEqual(link, header.AllocatedLinks))
             {
@@ -566,9 +578,9 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                     header.AllocatedLinks = Decrement(header.AllocatedLinks);
                     _memory.UsedCapacity -= LinkSizeInBytes;
                 }
-                return link;
+                return handler(GetLinkStruct(link), null);
             }
-            return Constants.Null;
+            return Constants.Continue;
         }
 
         /// <summary>
