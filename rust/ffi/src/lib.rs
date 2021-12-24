@@ -3,6 +3,8 @@
 #![feature(try_blocks)]
 #![feature(cell_update)]
 #![feature(backtrace)]
+#![feature(control_flow_enum)]
+#![feature(try_trait_v2)]
 
 use std::alloc::{alloc, Layout};
 use std::cell::{Cell, RefCell};
@@ -16,6 +18,7 @@ use std::slice;
 use std::time::{Instant, SystemTime, UNIX_EPOCH};
 
 use doublets::doublets::data::Query;
+use doublets::doublets::Flow::{Break, Continue};
 use doublets::doublets::Link as DLink;
 use doublets::doublets::{
     data::LinksConstants, mem::united::Links, ILinks, ILinksExtensions, LinksError,
@@ -29,6 +32,7 @@ use libc::c_void;
 use log::Metadata;
 use log::{debug, error, info, trace, warn};
 use std::error::Error;
+use std::ops::Try;
 use tracing_subscriber::fmt::format::Format;
 
 type UnitedLinks<T> = Links<T, FileMappedMem>;
@@ -115,12 +119,36 @@ fn drop_united_links<T: LinkType>(this: *mut c_void) {
     convention = "csharp",
     name = "*UnitedMemoryLinks_Create"
 )]
-fn create_united<T: LinkType>(this: *mut c_void, query: *const T, len: usize) -> T {
+fn create_united<T: LinkType>(
+    this: *mut c_void,
+    query: *const T,
+    len: usize,
+    callback: LinksCallback<T>,
+) -> T {
+    let links: &mut UnitedLinks<T> = unnul_or_error(this);
+    let continue_ = links.constants().r#continue;
+    let break_ = links.constants().r#break;
     let result = {
-        let links: &mut UnitedLinks<T> = unnul_or_error(this);
-        links.create()
+        let query = query_from_raw(query, len);
+        let handler = |before: DLink<_>, after: DLink<_>| {
+            if callback(before.into(), after.into()) == continue_ {
+                Break
+            } else {
+                Continue
+            }
+        };
+        links.create_by_with(query, handler)
     };
-    result_into_log(result, T::default())
+    result_into_log(
+        result.map(|flow| {
+            if flow.branch().is_continue() {
+                continue_
+            } else {
+                break_
+            }
+        }),
+        T::default(),
+    )
 }
 #[repr(C)]
 struct Link<T: LinkType> {
@@ -191,13 +219,29 @@ unsafe fn update_united<T: LinkType>(
 ) -> T {
     let restrictions = query_from_raw(restrictions, len_r);
     let substitutuion = query_from_raw(substitutuion, len_s);
+    let links: &mut UnitedLinks<T> = unnul_or_error(this);
+    let continue_ = links.constants().r#continue;
+    let break_ = links.constants().r#break;
     let result = {
-        let links: &mut UnitedLinks<T> = unnul_or_error(this);
-        let handler =
-            move |before: DLink<T>, after: DLink<T>| callback(before.into(), after.into());
+        let handler = move |before: DLink<T>, after: DLink<T>| {
+            if callback(before.into(), after.into()) == continue_ {
+                Continue
+            } else {
+                Break
+            }
+        };
         links.update_by_with(restrictions, substitutuion, handler)
     };
-    result_into_log(result, T::default())
+    result_into_log(
+        result.map(|flow| {
+            if flow.branch().is_continue() {
+                continue_
+            } else {
+                break_
+            }
+        }),
+        T::default(),
+    )
 }
 
 #[ffi::specialize_for(
@@ -215,13 +259,29 @@ unsafe fn delete_united<T: LinkType>(
     callback: LinksCallback<T>,
 ) -> T {
     let query = query_from_raw(query, len);
+    let links: &mut UnitedLinks<T> = unnul_or_error(this);
+    let continue_ = links.constants().r#continue;
+    let break_ = links.constants().r#break;
     let result = {
-        let links: &mut UnitedLinks<T> = unnul_or_error(this);
-        let handler =
-            move |after: DLink<_>, before: DLink<_>| callback(after.into(), before.into());
+        let handler = move |after: DLink<_>, before: DLink<_>| {
+            if callback(before.into(), after.into()) == break_ {
+                Break
+            } else {
+                Continue
+            }
+        };
         links.delete_by_with(query, handler)
     };
-    result_into_log(result, T::default())
+    result_into_log(
+        result.map(|flow| {
+            if flow.branch().is_continue() {
+                continue_
+            } else {
+                break_
+            }
+        }),
+        T::default(),
+    )
 }
 
 #[repr(C)]
@@ -259,6 +319,12 @@ pub extern "C" fn setup_shared_logger(logger: SharedLogger) {
     if let Err(err) = log::set_boxed_logger(Box::new(logger)) {
         log::warn!("{}", err)
     }
+}
+
+#[no_mangle]
+extern "C" fn init_fmt_logger() {
+    let logger = build_shared_logger();
+    setup_shared_logger(logger);
 }
 
 mod tests {
