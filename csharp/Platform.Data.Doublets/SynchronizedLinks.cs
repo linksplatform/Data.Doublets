@@ -186,7 +186,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLinkAddress Delete(IList<TLinkAddress> restrictions) => SyncRoot.ExecuteWriteOperation(restrictions, Unsync.Delete);
+        public TLinkAddress Delete(IList<TLinkAddress> restrictions) => SyncRoot.ExecuteWriteOperation(restrictions, restrictions => Unsync.Delete(restrictions, null));
 
         //public T Trigger(IList<T> restriction, Func<IList<T>, IList<T>, T> matchedHandler, IList<T> substitution, Func<IList<T>, IList<T>, T> substitutedHandler)
         //{
