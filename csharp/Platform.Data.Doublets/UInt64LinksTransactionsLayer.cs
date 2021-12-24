@@ -590,7 +590,7 @@ namespace Platform.Data.Doublets
         {
             var linkIndex = restrictions[_constants.IndexPart];
             var beforeLink = new Link<ulong>(_links.GetLink(linkIndex));
-            linkIndex = _links.Update(restrictions, substitution);
+            linkIndex = _links.Update(restrictions, substitution, null);
             var afterLink = new Link<ulong>(_links.GetLink(linkIndex));
             CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, beforeLink, afterLink));
             return linkIndex;
