@@ -255,7 +255,7 @@ namespace Platform.Data.Doublets
             var constants = links.Constants;
             var @continue = constants.Continue;
             var @break = constants.Break;
-            links.Each(linkHandler, query);
+            links.Each(query, linkHandler);
             return result;
             
             TLink linkHandler(IList<TLink> link)
