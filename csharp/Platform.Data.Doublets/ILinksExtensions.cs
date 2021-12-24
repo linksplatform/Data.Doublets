@@ -153,9 +153,9 @@ namespace Platform.Data.Doublets
             if (links.Exists(linkToDelete))
             {
                 links.EnforceResetValues(linkToDelete);
-                return links.Delete(new LinkAddress<TLink>(linkToDelete));
             }
-        } 
+            return links.Delete(new LinkAddress<TLink>(linkToDelete));
+        }
 
         /// <remarks>
         /// TODO: Возможно есть очень простой способ это сделать.
