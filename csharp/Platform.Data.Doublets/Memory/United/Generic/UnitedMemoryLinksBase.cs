@@ -506,7 +506,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// TODO: Возможно нужно будет заполнение нулями, если внешнее API ими не заполняет пространство
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Create(IList<TLink> restrictions)
+        public virtual TLink Create(IList<TLink> restrictions, Func<IList<TLink>, IList<TLink>, TLink> handler)
         {
             ref var header = ref GetHeaderReference();
             var freeLink = header.FirstFreeLink;
@@ -531,7 +531,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                 freeLink = header.AllocatedLinks = Increment(header.AllocatedLinks);
                 _memory.UsedCapacity += LinkSizeInBytes;
             }
-            return freeLink;
+            return handler(null, GetLinkStruct(freeLink));
         }
 
         /// <summary>
