@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
@@ -42,7 +43,11 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Create(IList<TLink> restrictions) => _links.CreatePoint();
+        public override TLink Create(IList<TLink> restrictions, Func<IList<TLink>, IList<TLink>, TLink> handler)
+        {
+            var link = _links.GetLink(_links.CreatePoint());
+            return handler(null, link);
+        }
 
         /// <summary>
         /// <para>
@@ -63,6 +68,6 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Update(IList<TLink> restrictions, IList<TLink> substitution) => _links.Update(restrictions, _links.ResolveConstantAsSelfReference(_constants.Null, restrictions, substitution));
+        public override TLink Update(IList<TLink> restrictions, IList<TLink> substitution, Func<IList<TLink>, IList<TLink>, TLink> handler) => _links.Update(restrictions, _links.ResolveConstantAsSelfReference(_constants.Null, restrictions, substitution), handler);
     }
 }
