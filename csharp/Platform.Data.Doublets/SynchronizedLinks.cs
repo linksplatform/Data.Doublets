@@ -135,7 +135,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLinkAddress Each(Func<IList<TLinkAddress>, TLinkAddress> handler, IList<TLinkAddress> restrictions) => SyncRoot.ExecuteReadOperation(handler, restrictions, (handler1, restrictions1) => Unsync.Each(restrictions, handler1));
+        public TLinkAddress Each(IList<TLinkAddress> restriction, Func<IList<TLinkAddress>, TLinkAddress> handler) => SyncRoot.ExecuteReadOperation(restriction, handler, Unsync.Each);
 
         /// <summary>
         /// <para>
