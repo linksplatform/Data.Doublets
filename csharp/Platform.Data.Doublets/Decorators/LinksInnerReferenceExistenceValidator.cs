@@ -74,13 +74,13 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Update(IList<TLink> restrictions, IList<TLink> substitution)
+        public override TLink Update(IList<TLink> restrictions, IList<TLink> substitution, Func<IList<TLink>, IList<TLink>, TLink> handler)
         {
             // TODO: Possible values: null, ExistentLink or NonExistentHybrid(ExternalReference)
             var links = _links;
             links.EnsureInnerReferenceExists(restrictions, nameof(restrictions));
             links.EnsureInnerReferenceExists(substitution, nameof(substitution));
-            return links.Update(restrictions, substitution);
+            return links.Update(restrictions, substitution, handler);
         }
 
         /// <summary>
