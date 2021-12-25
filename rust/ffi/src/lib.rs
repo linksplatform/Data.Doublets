@@ -35,8 +35,6 @@ use std::error::Error;
 use std::ops::Try;
 use tracing_subscriber::fmt::format::Format;
 
-type UnitedLinks<T> = Links<T, FileMappedMem>;
-
 fn result_into_log<R, E: Display>(result: Result<R, E>, default: R) -> R {
     match result {
         Ok(r) => r,
@@ -72,9 +70,11 @@ fn unnul_or_error<'a, Ptr, R>(ptr: *mut Ptr) -> &'a mut R {
     }
 }
 
+type UnitedLinks<T> = Links<T, FileMappedMem>;
+
 type EachCallback<T> = extern "C" fn(Link<T>) -> T;
 
-type LinksCallback<T> = extern "C" fn(before: Link<T>, after: Link<T>) -> T;
+type CUDCallback<T> = extern "C" fn(before: Link<T>, after: Link<T>) -> T;
 
 #[ffi::specialize_for(
     types = "u8",
@@ -123,7 +123,7 @@ fn create_united<T: LinkType>(
     this: *mut c_void,
     query: *const T,
     len: usize,
-    callback: LinksCallback<T>,
+    callback: CUDCallback<T>,
 ) -> T {
     let links: &mut UnitedLinks<T> = unnul_or_error(this);
     let continue_ = links.constants().r#continue;
@@ -215,7 +215,7 @@ unsafe fn update_united<T: LinkType>(
     len_r: usize,
     substitutuion: *const T,
     len_s: usize,
-    callback: LinksCallback<T>,
+    callback: CUDCallback<T>,
 ) -> T {
     let restrictions = query_from_raw(restrictions, len_r);
     let substitutuion = query_from_raw(substitutuion, len_s);
@@ -256,7 +256,7 @@ unsafe fn delete_united<T: LinkType>(
     this: *mut c_void,
     query: *const T,
     len: usize,
-    callback: LinksCallback<T>,
+    callback: CUDCallback<T>,
 ) -> T {
     let query = query_from_raw(query, len);
     let links: &mut UnitedLinks<T> = unnul_or_error(this);
