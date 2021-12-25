@@ -47,11 +47,11 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Update(IList<TLink> restrictions, IList<TLink> substitution)
+        public override TLink Update(IList<TLink> restrictions, IList<TLink> substitution, Func<IList<TLink>, IList<TLink>, TLink> handler)
         {
             var links = _links;
             links.EnsureNoUsages(restrictions[_constants.IndexPart]);
-            return links.Update(restrictions, substitution);
+            return links.Update(restrictions, substitution, handler);
         }
 
         /// <summary>
