@@ -135,7 +135,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Create(IList<TLink> restrictions) => _links.Create(restrictions);
+        public virtual TLink Create(IList<TLink> substitution, Func<IList<TLink>, IList<TLink>, TLink> handler) => _links.Create(substitution, handler);
 
         /// <summary>
         /// <para>
