@@ -48,11 +48,11 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Each(Func<IList<TLink>, TLink> handler, IList<TLink> restrictions)
+        public override TLink Each(IList<TLink> restrictions, Func<IList<TLink>, TLink> handler)
         {
             var links = _links;
             links.EnsureInnerReferenceExists(restrictions, nameof(restrictions));
-            return links.Each(handler, restrictions);
+            return links.Each(restrictions, handler);
         }
 
         /// <summary>
