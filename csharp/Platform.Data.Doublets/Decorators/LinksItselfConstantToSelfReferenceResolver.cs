@@ -49,7 +49,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Each(Func<IList<TLink>, TLink> handler, IList<TLink> restrictions)
+        public override TLink Each(IList<TLink> restrictions, Func<IList<TLink>, TLink> handler)
         {
             var constants = _constants;
             var itselfConstant = constants.Itself;
@@ -58,7 +58,7 @@ namespace Platform.Data.Doublets.Decorators
                 // Itself constant is not supported for Each method right now, skipping execution
                 return constants.Continue;
             }
-            return _links.Each(handler, restrictions);
+            return _links.Each(restrictions, handler);
         }
 
         /// <summary>
