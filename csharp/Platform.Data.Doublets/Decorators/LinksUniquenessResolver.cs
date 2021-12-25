@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
@@ -48,14 +49,14 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Update(IList<TLink> restrictions, IList<TLink> substitution)
+        public override TLink Update(IList<TLink> restrictions, IList<TLink> substitution, Func<IList<TLink>, IList<TLink>, TLink> handler)
         {
             var constants = _constants;
             var links = _links;
             var newLinkAddress = links.SearchOrDefault(substitution[constants.SourcePart], substitution[constants.TargetPart]);
             if (_equalityComparer.Equals(newLinkAddress, default))
             {
-                return links.Update(restrictions, substitution);
+                return links.Update(restrictions, substitution, handler);
             }
             return ResolveAddressChangeConflict(restrictions[constants.IndexPart], newLinkAddress);
         }
