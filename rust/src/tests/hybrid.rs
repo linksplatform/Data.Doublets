@@ -19,7 +19,7 @@ fn non_exist_reference() {
     });
 
     assert_eq!(result, link);
-    assert_eq!(links.count_by(Query::new(&[usize::MAX][..])), 0);
+    assert_eq!(links.count_by([usize::MAX]), 0);
     links.delete(link).unwrap();
 }
 

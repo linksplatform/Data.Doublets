@@ -16,6 +16,10 @@ use crate::num::LinkType;
 use crate::query;
 use ControlFlow::{Break, Continue};
 
+use crate::doublets::decorators::{
+    CascadeUniqueResolver, CascadeUsagesResolver, NonNullDeletionResolver,
+};
+
 pub type Result<T, E = LinksError<T>> = std::result::Result<T, E>;
 
 fn IGNORE<T: LinkType>(_: Link<T>, _: Link<T>) -> Result<(), ()> {
@@ -383,6 +387,73 @@ pub trait ILinks<T: LinkType>: Sized {
         self.count_usages(link) != zero()
     }
 
+    fn rebase_with<F, R>(&mut self, old: T, new: T, mut handler: F) -> Result<(), LinksError<T>>
+    where
+        F: FnMut(Link<T>, Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
+        if old == new {
+            return Ok(());
+        }
+
+        let link = self.try_get_link(old)?;
+        let constants = self.constants();
+        let any = constants.any;
+
+        let sources_count = self.count_by([any, old, any]).as_();
+        let targets_count = self.count_by([any, any, old]).as_();
+        if sources_count == 0 && targets_count == 0 && link.is_full() {
+            return Ok(());
+        }
+
+        let total = sources_count + targets_count;
+        if total == 0 {
+            return Ok(());
+        }
+
+        let mut usages = Vec::with_capacity(sources_count);
+        self.each_by([any, old, any], |link| {
+            usages.push(link.index);
+            constants.r#continue
+        });
+
+        let mut handle = true;
+        for index in usages {
+            if index != old {
+                let usage = self.try_get_link(index)?;
+                if handle {
+                    handle = self
+                        .update_with(index, new, usage.target, &mut handler)?
+                        .branch()
+                        .is_continue();
+                } else {
+                    self.update(index, new, usage.target)?;
+                }
+            }
+        }
+
+        let mut usages = Vec::with_capacity(sources_count);
+        self.each_by([any, any, old], |link| {
+            usages.push(link.index);
+            constants.r#continue
+        });
+
+        for index in usages {
+            if index != old {
+                let usage = self.try_get_link(index)?;
+                if handle {
+                    handle = self
+                        .update_with(index, new, usage.source, &mut handler)?
+                        .branch()
+                        .is_continue();
+                } else {
+                    self.update(index, new, usage.source)?;
+                }
+            }
+        }
+        Ok(())
+    }
+
     // TODO: old: `merge_usages`
     fn rebase(&mut self, old: T, new: T) -> Result<T> {
         let link = self.try_get_link(old)?;
@@ -450,14 +521,14 @@ pub trait ILinks<T: LinkType>: Sized {
         self.get_link(link).map(|link| link.to_string())
     }
 
-    //fn decorators_kit(
-    //    self,
-    //) -> CascadeUniqueResolver<T, NonNullDeletionResolver<T, CascadeUsagesResolver<T, Self>>> {
-    //    let links = self;
-    //    let links = CascadeUsagesResolver::new(links);
-    //    let links = NonNullDeletionResolver::new(links);
-    //    CascadeUniqueResolver::new(links)
-    //}
+    fn decorators_kit(
+        self,
+    ) -> CascadeUniqueResolver<T, NonNullDeletionResolver<T, CascadeUsagesResolver<T, Self>>> {
+        let links = self;
+        let links = CascadeUsagesResolver::new(links);
+        let links = NonNullDeletionResolver::new(links);
+        CascadeUniqueResolver::new(links)
+    }
 
     #[deprecated(note = "use `links.try_get_link(...)?.is_full()`")]
     fn is_full_point(&self, link: T) -> Option<bool> {

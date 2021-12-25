@@ -26,3 +26,12 @@ impl Try for Flow {
         Flow::Continue
     }
 }
+
+impl<C, B> From<ControlFlow<C, B>> for Flow {
+    fn from(flow: ControlFlow<C, B>) -> Self {
+        match flow {
+            ControlFlow::Continue(_) => Flow::Continue,
+            ControlFlow::Break(_) => Flow::Break,
+        }
+    }
+}

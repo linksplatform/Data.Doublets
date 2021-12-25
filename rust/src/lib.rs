@@ -20,6 +20,7 @@
 #![feature(cow_is_borrowed)]
 #![feature(control_flow_enum)]
 #![feature(type_alias_impl_trait)]
+#![feature(trait_alias)]
 
 use crate::doublets::mem::united::{Links, NewList, NewTree, UpdatePointersSplit};
 use crate::doublets::mem::{splited, ILinksListMethods, ILinksTreeMethods, UpdatePointers};

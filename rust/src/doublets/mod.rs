@@ -12,6 +12,7 @@ pub mod decorators;
 mod doublet;
 mod error;
 mod flow;
+mod handler;
 mod ilinks;
 mod link;
 pub mod mem;

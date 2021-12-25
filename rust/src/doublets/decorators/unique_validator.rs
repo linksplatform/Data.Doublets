@@ -35,12 +35,16 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for UniqueValidator<T, Links> {
         self.links.count_by(query)
     }
 
-    fn try_create_by_with<F, R>(&mut self, query: impl ToQuery<T>, handler: F) -> Result<T>
+    fn create_by_with<F, R>(
+        &mut self,
+        query: impl ToQuery<T>,
+        handler: F,
+    ) -> Result<R, LinksError<T>>
     where
-        F: FnMut(Link<T>) -> R,
+        F: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>,
     {
-        self.links.try_create_by_with(query, handler)
+        self.links.create_by_with(query, handler)
     }
 
     fn try_each_by<F, R>(&self, restrictions: impl ToQuery<T>, handler: F) -> R
@@ -51,14 +55,14 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for UniqueValidator<T, Links> {
         self.links.try_each_by(restrictions, handler)
     }
 
-    fn try_update_by_with<F, R>(
+    fn update_by_with<F, R>(
         &mut self,
         query: impl ToQuery<T>,
         replacement: impl ToQuery<T>,
         handler: F,
-    ) -> Result<T>
+    ) -> Result<R, LinksError<T>>
     where
-        F: FnMut(Link<T>) -> R,
+        F: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>,
     {
         let links = self.links.borrow_mut();
@@ -70,15 +74,19 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for UniqueValidator<T, Links> {
                 replacement[2],
             )))
         } else {
-            links.update_by(query, replacement)
+            links.update_by_with(query, replacement, handler)
         }
     }
 
-    fn try_delete_by_with<F, R>(&mut self, query: impl ToQuery<T>, handler: F) -> Result<T>
+    fn delete_by_with<F, R>(
+        &mut self,
+        query: impl ToQuery<T>,
+        handler: F,
+    ) -> Result<R, LinksError<T>>
     where
-        F: FnMut(Link<T>) -> R,
+        F: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>,
     {
-        self.try_delete_by_with(query, handler)
+        self.links.delete_by_with(query, handler)
     }
 }
