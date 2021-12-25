@@ -99,7 +99,7 @@ namespace Platform.Data.Doublets.Decorators
             var link = restrictions[_constants.IndexPart];
             var links = _links;
             links.EnsureLinkExists(link, nameof(link));
-            links.Delete(restrictions, handler);
+            return links.Delete(restrictions, handler);
         }
     }
 }
