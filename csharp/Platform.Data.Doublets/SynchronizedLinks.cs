@@ -152,7 +152,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLinkAddress Create(IList<TLinkAddress> substitution) => SyncRoot.ExecuteWriteOperation(substitution, (restrictions) => Unsync.Create(restrictions, null));
+        public TLinkAddress Create(IList<TLinkAddress> substitution, Func<IList<TLinkAddress>, IList<TLinkAddress>, TLinkAddress> handler) => SyncRoot.ExecuteWriteOperation(substitution, handler, Unsync.Create);
 
         /// <summary>
         /// <para>
