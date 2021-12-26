@@ -30,12 +30,12 @@ namespace Platform.Data.Doublets.Decorators
 
         /// <summary>
         /// <para>
-        /// Creates the restriction.
+        /// Creates the substitution.
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="restriction">
-        /// <para>The restriction.</para>
+        /// <param name="substitution">
+        /// <para>The substitution.</para>
         /// <para></para>
         /// </param>
         /// <returns>
@@ -43,7 +43,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Create(IList<TLink> restriction, Func<IList<TLink>, IList<TLink>, TLink> handler)
+        public override TLink Create(IList<TLink> substitution, Func<IList<TLink>, IList<TLink>, TLink> handler)
         {
             var link = _links.GetLink(_links.CreatePoint());
             return handler(null, link);
@@ -51,12 +51,12 @@ namespace Platform.Data.Doublets.Decorators
 
         /// <summary>
         /// <para>
-        /// Updates the restriction.
+        /// Updates the substitution.
         /// </para>
         /// <para></para>
         /// </summary>
         /// <param name="restriction">
-        /// <para>The restriction.</para>
+        /// <para>The substitution.</para>
         /// <para></para>
         /// </param>
         /// <param name="substitution">

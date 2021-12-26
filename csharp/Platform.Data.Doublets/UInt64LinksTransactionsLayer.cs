@@ -546,12 +546,12 @@ namespace Platform.Data.Doublets
 
         /// <summary>
         /// <para>
-        /// Creates the restriction.
+        /// Creates the substitution.
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="restriction">
-        /// <para>The restriction.</para>
+        /// <param name="substitution">
+        /// <para>The substitution.</para>
         /// <para></para>
         /// </param>
         /// <returns>
@@ -559,22 +559,22 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override ulong Create(IList<ulong> restriction, Func<IList<ulong>, IList<ulong>, ulong> handler)
+        public override ulong Create(IList<ulong> substitution, Func<IList<ulong>, IList<ulong>, ulong> handler)
         {
             var createdLinkIndex = _links.Create();
             var createdLink = new Link<ulong>(_links.GetLink(createdLinkIndex));
             CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, default, createdLink));
-            return handler(null, restriction);
+            return handler(null, substitution);
         }
 
         /// <summary>
         /// <para>
-        /// Updates the restriction.
+        /// Updates the substitution.
         /// </para>
         /// <para></para>
         /// </summary>
         /// <param name="restriction">
-        /// <para>The restriction.</para>
+        /// <para>The substitution.</para>
         /// <para></para>
         /// </param>
         /// <param name="substitution">
@@ -598,12 +598,12 @@ namespace Platform.Data.Doublets
 
         /// <summary>
         /// <para>
-        /// Deletes the restriction.
+        /// Deletes the substitution.
         /// </para>
         /// <para></para>
         /// </summary>
         /// <param name="restriction">
-        /// <para>The restriction.</para>
+        /// <para>The substitution.</para>
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

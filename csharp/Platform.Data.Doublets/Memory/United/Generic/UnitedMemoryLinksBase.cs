@@ -189,12 +189,12 @@ namespace Platform.Data.Doublets.Memory.United.Generic
 
         /// <summary>
         /// <para>
-        /// Counts the restriction.
+        /// Counts the substitution.
         /// </para>
         /// <para></para>
         /// </summary>
         /// <param name="restriction">
-        /// <para>The restriction.</para>
+        /// <para>The substitution.</para>
         /// <para></para>
         /// </param>
         /// <exception cref="NotSupportedException">
@@ -327,7 +327,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </param>
         /// <param name="restriction">
-        /// <para>The restriction.</para>
+        /// <para>The substitution.</para>
         /// <para></para>
         /// </param>
         /// <exception cref="NotSupportedException">
@@ -508,7 +508,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// TODO: Возможно нужно будет заполнение нулями, если внешнее API ими не заполняет пространство
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Create(IList<TLink> restriction, Func<IList<TLink>, IList<TLink>, TLink> handler)
+        public virtual TLink Create(IList<TLink> substitution, Func<IList<TLink>, IList<TLink>, TLink> handler)
         {
             ref var header = ref GetHeaderReference();
             var freeLink = header.FirstFreeLink;
@@ -538,12 +538,12 @@ namespace Platform.Data.Doublets.Memory.United.Generic
 
         /// <summary>
         /// <para>
-        /// Deletes the restriction.
+        /// Deletes the substitution.
         /// </para>
         /// <para></para>
         /// </summary>
         /// <param name="restriction">
-        /// <para>The restriction.</para>
+        /// <para>The substitution.</para>
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
