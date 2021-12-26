@@ -740,9 +740,8 @@ impl<
                 let used_mem = self.index_mem.used_mem();
                 self.index_mem.use_mem(used_mem - Self::INDEX_SIZE)?;
             }
-            //*self.get_mut_header() = header;
         }
-        Ok(handler(Link::nothing(), Link::new(index, source, target)))
+        Ok(handler(Link::new(index, source, target), Link::nothing()))
     }
 
     fn get_link(&self, index: T) -> Option<Link<T>> {

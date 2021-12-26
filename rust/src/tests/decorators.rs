@@ -1,24 +1,22 @@
-use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions};
-use crate::doublets::decorators;
-use crate::doublets::mem::united::Links;
-use crate::doublets::{ILinks, ILinksExtensions, Link};
-use crate::mem::FileMappedMem;
+use crate::doublets::decorators::NonNullDeletionResolver;
+use crate::doublets::Flow::Continue;
+use crate::doublets::{ILinks, Link};
 use crate::tests::make_links;
 use crate::tests::make_mem;
-/*
+use std::error::Error;
+
 #[test]
-fn non_null_deletions() {
+fn non_null_deletions() -> Result<(), Box<dyn Error>> {
     let mem = make_mem();
     let mut links = make_links(mem).unwrap();
     let mut links = NonNullDeletionResolver::new(links);
 
-    let point = links.create_point().unwrap();
-    assert_eq!(links.count(), 1);
-    links.delete_all().unwrap();
+    let point = links.create_point()?;
 
-    let index = links.create().unwrap();
+    links.delete_with(point, |before, after| {
+        println!("{} ==> {}", before, after);
+        Continue
+    });
 
-    let link = links.get_link(index).unwrap();
-    assert_eq!(link, Link::new(point, 0, 0));
+    Ok(())
 }
-*/
