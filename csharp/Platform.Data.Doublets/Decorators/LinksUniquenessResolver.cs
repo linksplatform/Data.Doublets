@@ -80,13 +80,13 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual TLink ResolveAddressChangeConflict(TLink oldLinkAddress, TLink newLinkAddress)
+        protected virtual TLink ResolveAddressChangeConflict(TLink oldLinkAddress, TLink newLinkAddress, Func<IList<TLink>, IList<TLink>, TLink> handler)
         {
             if (!_equalityComparer.Equals(oldLinkAddress, newLinkAddress) && _links.Exists(oldLinkAddress))
             {
                 _facade.Delete(oldLinkAddress);
             }
-            return newLinkAddress;
+            return handler(_links.GetLink(oldLinkAddress), _links.GetLink(newLinkAddress));
         }
     }
 }
