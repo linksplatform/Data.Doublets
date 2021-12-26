@@ -882,6 +882,8 @@ namespace Platform.Data.Doublets
 
         public static TLink Create<TLink>(this ILinks<TLink> links, IList<TLink> substitution) => links.Create(substitution, null);
 
+        public static TLink CreatePoint<TLink>(this ILinks<TLink> links) => CreatePoint(links, null);
+
         /// <param name="links">Хранилище связей.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLink CreatePoint<TLink>(this ILinks<TLink> links, Func<IList<TLink>, IList<TLink>, TLink> handler)
