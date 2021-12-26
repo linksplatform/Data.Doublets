@@ -1256,13 +1256,13 @@ namespace Platform.Data.Doublets
         /// Replace one link with another (replaced link is deleted, children are updated or deleted).
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TLink MergeAndDelete<TLink>(this ILinks<TLink> links, TLink oldLinkIndex, TLink newLinkIndex)
+        public static TLink MergeAndDelete<TLink>(this ILinks<TLink> links, TLink oldLinkIndex, TLink newLinkIndex, Func<IList<TLink>, IList<TLink>, TLink> handler)
         {
             var equalityComparer = EqualityComparer<TLink>.Default;
             if (!equalityComparer.Equals(oldLinkIndex, newLinkIndex))
             {
-                links.MergeUsages(oldLinkIndex, newLinkIndex);
-                links.Delete(oldLinkIndex);
+                links.MergeUsages(oldLinkIndex, newLinkIndex, handler);
+                links.Delete(links.GetLink(oldLinkIndex), handler);
             }
             return newLinkIndex;
         }
