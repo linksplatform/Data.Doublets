@@ -129,6 +129,8 @@ namespace Platform.Data.Doublets
             }
         }
 
+        public static TLink Delete<TLink>(this ILinks<TLink> links, TLink linkToDelete) => Delete(links, linkToDelete, null);
+
         /// <summary>
         /// <para>
         /// Deletes the links.
