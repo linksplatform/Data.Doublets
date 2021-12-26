@@ -65,7 +65,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Update(IList<TLink> restrictions, IList<TLink> substitution)
+        public override TLink Update(IList<TLink> restrictions, IList<TLink> substitution, Func<IList<TLink>, IList<TLink>, TLink> handler)
         {
             var constants = _constants;
             var indexPartConstant = constants.IndexPart;
