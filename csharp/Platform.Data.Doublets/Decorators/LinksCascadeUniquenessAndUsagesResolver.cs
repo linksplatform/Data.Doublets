@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -45,11 +47,11 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink ResolveAddressChangeConflict(TLink oldLinkAddress, TLink newLinkAddress)
+        protected override TLink ResolveAddressChangeConflict(TLink oldLinkAddress, TLink newLinkAddress, Func<IList<TLink>, IList<TLink>, TLink> handler)
         {
             // Use Facade (the last decorator) to ensure recursion working correctly
             _facade.MergeUsages(oldLinkAddress, newLinkAddress);
-            return base.ResolveAddressChangeConflict(oldLinkAddress, newLinkAddress);
+            return base.ResolveAddressChangeConflict(oldLinkAddress, newLinkAddress, handler);
         }
     }
 }
