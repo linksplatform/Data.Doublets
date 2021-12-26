@@ -44,7 +44,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Create(IList<TLink> restrictions) => _links.CreatePoint();
+        public override TLink Create(IList<TLink> restrictions, Func<IList<TLink>, IList<TLink>, TLink> handler) => _links.CreatePoint(handler);
 
         /// <summary>
         /// <para>
@@ -90,7 +90,8 @@ namespace Platform.Data.Doublets.Decorators
                     links.Update(updatedLink, newSource == itselfConstant ? updatedLink : newSource,
                                               newTarget == itselfConstant ? updatedLink : newTarget);
                 }
-                return updatedLink;
+                var after = links.GetLink(updatedLink);
+                return handler(before, after);
             }
             else
             {
