@@ -800,8 +800,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
                     InternalTargetsTreeMethods.Attach(ref GetLinkIndexPartReference(target).RootAsTarget, linkIndex);
                 }
             }
-            var after = GetLinkStruct(linkIndex);
-            return handler(before, after);
+            return handler(restriction, substitution);
         }
 
         /// <remarks>
