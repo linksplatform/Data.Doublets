@@ -559,12 +559,12 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override ulong Create(IList<ulong> restrictions)
+        public override ulong Create(IList<ulong> restrictions, Func<IList<ulong>, IList<ulong>, ulong> handler)
         {
             var createdLinkIndex = _links.Create();
             var createdLink = new Link<ulong>(_links.GetLink(createdLinkIndex));
             CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, default, createdLink));
-            return createdLinkIndex;
+            return handler(null, restrictions);
         }
 
         /// <summary>
