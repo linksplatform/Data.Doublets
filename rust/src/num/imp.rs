@@ -4,13 +4,9 @@ use std::iter::Step;
 
 use num_traits::{AsPrimitive, FromPrimitive, PrimInt, Signed, ToPrimitive, Unsigned};
 
-pub trait Num: PrimInt + Default + Debug + AsPrimitive<usize> + ToPrimitive {}
+pub trait Num = PrimInt + Default + Debug + AsPrimitive<usize> + ToPrimitive;
 
-impl<All> Num for All where All: PrimInt + Default + Debug + AsPrimitive<usize> + ToPrimitive {}
-
-pub trait SignNum: Num + Signed + FromPrimitive {}
-
-impl<All: Num + Signed + FromPrimitive> SignNum for All {}
+pub trait SignNum = Num + Signed + FromPrimitive;
 
 pub trait ToSigned {
     type Type: Num + Signed;
@@ -69,8 +65,7 @@ max_value_impl!(u128);
 max_value_impl!(isize);
 max_value_impl!(usize);
 
-pub trait LinkType:
-    Num
+pub trait LinkType = Num
     + Unsigned
     + Step
     + ToSigned
@@ -81,22 +76,4 @@ pub trait LinkType:
     + Hash
     + Send
     + Sync
-    + 'static
-{
-}
-
-impl<All> LinkType for All where
-    All: Num
-        + Unsigned
-        + Step
-        + ToSigned
-        + MaxValue
-        + FromPrimitive
-        + Debug
-        + Display
-        + Hash
-        + Send
-        + Sync
-        + 'static
-{
-}
+    + 'static;

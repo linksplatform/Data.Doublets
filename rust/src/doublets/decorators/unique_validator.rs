@@ -6,6 +6,7 @@ use std::ops::Try;
 use num_traits::zero;
 use smallvec::SmallVec;
 
+use crate::doublets::data::ToQuery;
 use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstants};
 use crate::doublets::{Doublet, ILinks, ILinksExtensions, Link, LinksError, Result};
 use crate::num::LinkType;
@@ -30,35 +31,62 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for UniqueValidator<T, Links> {
         self.links.constants()
     }
 
-    fn count_by<const L: usize>(&self, restrictions: [T; L]) -> T {
-        self.links.count_by(restrictions)
+    fn count_by(&self, query: impl ToQuery<T>) -> T {
+        self.links.count_by(query)
     }
 
-    fn create(&mut self) -> Result<T> {
-        self.links.create()
+    fn create_by_with<F, R>(
+        &mut self,
+        query: impl ToQuery<T>,
+        handler: F,
+    ) -> Result<R, LinksError<T>>
+    where
+        F: FnMut(Link<T>, Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
+        self.links.create_by_with(query, handler)
     }
 
-    fn try_each_by<F, R, const L: usize>(&self, handler: F, restrictions: [T; L]) -> R
+    fn try_each_by<F, R>(&self, restrictions: impl ToQuery<T>, handler: F) -> R
     where
         F: FnMut(Link<T>) -> R,
         R: Try<Output = ()>,
     {
-        self.links.try_each_by(handler, restrictions)
+        self.links.try_each_by(restrictions, handler)
     }
 
-    fn update(&mut self, index: T, source: T, target: T) -> Result<T> {
+    fn update_by_with<F, R>(
+        &mut self,
+        query: impl ToQuery<T>,
+        replacement: impl ToQuery<T>,
+        handler: F,
+    ) -> Result<R, LinksError<T>>
+    where
+        F: FnMut(Link<T>, Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
         let links = self.links.borrow_mut();
-        let constants = links.constants();
-        // TODO: create extension for this
-        let found = links.count_by([constants.any, source, target]);
-        if !found.is_zero() {
-            Err(LinksError::AlreadyExists(Doublet::new(source, target)))
+        let any = links.constants().any;
+        let replacement = replacement.to_query();
+        if links.found([any, replacement[1], replacement[2]]) {
+            Err(LinksError::AlreadyExists(Doublet::new(
+                replacement[1],
+                replacement[2],
+            )))
         } else {
-            links.update(index, source, target)
+            links.update_by_with(query, replacement, handler)
         }
     }
 
-    fn delete(&mut self, index: T) -> Result<T> {
-        self.links.delete(index)
+    fn delete_by_with<F, R>(
+        &mut self,
+        query: impl ToQuery<T>,
+        handler: F,
+    ) -> Result<R, LinksError<T>>
+    where
+        F: FnMut(Link<T>, Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
+        self.links.delete_by_with(query, handler)
     }
 }

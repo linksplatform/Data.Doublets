@@ -8,6 +8,7 @@ use crate::doublets::ILinks;
 use crate::doublets::ILinksExtensions;
 use crate::doublets::Link;
 use crate::num::LinkType;
+use crate::query;
 
 pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
     fn test_crud(&mut self) {
@@ -89,23 +90,17 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
         let r#break = constants.r#break;
 
         let mut result = None;
-        links.each_by(
-            |link| {
-                result = Some(link.index);
-                r#break
-            },
-            [any, h106.as_value(), h108.as_value()],
-        );
+        links.each_by([any, h106.as_value(), h108.as_value()], |link| {
+            result = Some(link.index);
+            r#break
+        });
         assert_eq!(result, Some(address1));
 
         let mut result = None;
-        links.each_by(
-            |link| {
-                result = Some(link.index);
-                r#break
-            },
-            [any, h106.absolute(), h107.absolute()],
-        ); // TODO: !!!
+        links.each_by([any, h106.absolute(), h107.absolute()], |link| {
+            result = Some(link.index);
+            r#break
+        }); // TODO: !!!
         assert_eq!(result, None);
 
         let updated = links.update(address3, zero(), zero()).unwrap();

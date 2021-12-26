@@ -6,9 +6,9 @@ use std::ops::{ControlFlow, Index, Try};
 use num_traits::{one, zero};
 use smallvec::SmallVec;
 
-use crate::doublets;
-use crate::doublets::data::IGenericLinks;
 use crate::doublets::data::LinksConstants;
+use crate::doublets::data::ToQuery;
+use crate::doublets::data::{IGenericLinks, Query};
 use crate::doublets::link::Link;
 use crate::doublets::mem::links_header::LinksHeader;
 use crate::doublets::mem::united::LinksSourcesSizeBalancedTree;
@@ -24,6 +24,7 @@ use crate::doublets::{data, ILinks, LinksError};
 use crate::mem::FileMappedMem;
 use crate::mem::{Mem, ResizeableMem};
 use crate::num::LinkType;
+use crate::{doublets, query};
 
 // TODO: use `_=_` instead of `_ = _`
 pub struct Links<
@@ -958,15 +959,17 @@ impl<
         Link::new(index, link.source, link.target)
     }
 
-    fn each_core<F, R, const L: usize>(&self, handler: &mut F, restrictions: [T; L]) -> R
+    fn each_core<F, R>(&self, handler: &mut F, restriction: impl ToQuery<T>) -> R
     where
         F: FnMut(Link<T>) -> R,
         R: Try<Output = ()>,
     {
+        let restriction = restriction.to_query();
+
         let constants = self.constants();
         let r#break = constants.r#break;
 
-        if restrictions.is_empty() {
+        if restriction.len() == 0 {
             for index in T::one()..self.get_header().allocated + one() {
                 let link = self.get_link_unchecked(index);
                 if self.exists(index) {
@@ -978,9 +981,9 @@ impl<
 
         let r#continue = constants.r#continue;
         let any = constants.any;
-        let index = restrictions[constants.index_part.as_()];
+        let index = restriction[constants.index_part.as_()];
 
-        if restrictions.len() == 1 {
+        if restriction.len() == 1 {
             return if index == any {
                 self.each_core(handler, [])
             } else if !self.exists(index) {
@@ -991,8 +994,8 @@ impl<
             };
         }
 
-        if restrictions.len() == 2 {
-            let value = restrictions[1];
+        if restriction.len() == 2 {
+            let value = restriction[1];
             return if index == any {
                 if value == any {
                     self.each_core(handler, [])
@@ -1021,9 +1024,9 @@ impl<
             };
         }
 
-        if restrictions.len() == 3 {
-            let source = restrictions[constants.source_part.as_()];
-            let target = restrictions[constants.target_part.as_()];
+        if restriction.len() == 3 {
+            let source = restriction[constants.source_part.as_()];
+            let target = restriction[constants.target_part.as_()];
 
             if index == any {
                 return if (source, target) == (any, any) {
@@ -1089,16 +1092,18 @@ impl<
         self.constants.clone()
     }
 
-    fn count_by<const L: usize>(&self, restrictions: [T; L]) -> T {
-        if restrictions.is_empty() {
+    fn count_by(&self, query: impl ToQuery<T>) -> T {
+        let query = query.to_query();
+
+        if query.len() == 0 {
             return self.get_total();
         };
 
         let constants = self.constants();
         let any = constants.any;
-        let index = restrictions[constants.index_part.as_()];
+        let index = query[constants.index_part.as_()];
 
-        if restrictions.len() == 1 {
+        if query.len() == 1 {
             return if index == any {
                 self.get_total()
             } else {
@@ -1110,8 +1115,8 @@ impl<
             };
         }
 
-        if restrictions.len() == 2 {
-            let value = restrictions[1];
+        if query.len() == 2 {
+            let value = query[1];
             return if index == any {
                 if value == any {
                     self.get_total()
@@ -1135,9 +1140,9 @@ impl<
             };
         }
 
-        if restrictions.len() == 3 {
-            let source = restrictions[constants.source_part.as_()];
-            let target = restrictions[constants.target_part.as_()];
+        if query.len() == 3 {
+            let source = query[constants.source_part.as_()];
+            let target = query[constants.target_part.as_()];
 
             return if index == any {
                 if (target, source) == (any, any) {
@@ -1188,7 +1193,15 @@ impl<
         todo!()
     }
 
-    fn create(&mut self) -> Result<T> {
+    fn create_by_with<F, R>(
+        &mut self,
+        query: impl ToQuery<T>,
+        mut handler: F,
+    ) -> Result<R, LinksError<T>>
+    where
+        F: FnMut(Link<T>, Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
         let constants = self.constants();
         let header = self.get_header();
         let mut free = header.first_free;
@@ -1213,18 +1226,39 @@ impl<
         } else {
             self.unused.detach(free)
         }
-        Ok(free)
+        Ok(handler(
+            Link::nothing(),
+            Link::new(free, T::zero(), T::zero()),
+        ))
     }
 
-    fn try_each_by<F, R, const L: usize>(&self, mut handler: F, restrictions: [T; L]) -> R
+    fn try_each_by<F, R>(&self, restrictions: impl ToQuery<T>, mut handler: F) -> R
     where
         F: FnMut(Link<T>) -> R,
         R: Try<Output = ()>,
     {
-        self.each_core(&mut handler, restrictions)
+        self.each_core(&mut handler, restrictions.to_query())
     }
 
-    fn update(&mut self, index: T, source: T, target: T) -> Result<T> {
+    fn update_by_with<F, R>(
+        &mut self,
+        query: impl ToQuery<T>,
+        replacement: impl ToQuery<T>,
+        mut handler: F,
+    ) -> Result<R, LinksError<T>>
+    where
+        F: FnMut(Link<T>, Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
+        let query = query.to_query();
+        let replacement = replacement.to_query();
+
+        let index = query[0];
+        let source = replacement[1];
+        let target = replacement[2];
+        let old_source = source;
+        let old_target = target;
+
         let constants = self.constants();
         let null = constants.null;
 
@@ -1256,14 +1290,30 @@ impl<
             unsafe { self.targets.attach(&mut *temp, index) };
         }
 
-        Ok(index)
+        Ok(handler(
+            Link::new(index, old_source, old_target),
+            Link::new(index, source, target),
+        ))
     }
 
-    fn delete(&mut self, index: T) -> Result<T> {
-        if !self.exists(index) {
-            return Err(LinksError::NotExists(index));
-        }
+    fn delete_by_with<F, R>(
+        &mut self,
+        query: impl ToQuery<T>,
+        mut handler: F,
+    ) -> Result<R, LinksError<T>>
+    where
+        F: FnMut(Link<T>, Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
+        let query = query.to_query();
 
+        let index = query[0];
+        // TODO: use method style - remove .get_link
+        let (source, target) = if let Some(link) = ILinks::get_link(self, index) {
+            (link.source, link.target)
+        } else {
+            return Err(LinksError::NotExists(index));
+        };
         self.update(index, zero(), zero())?;
 
         let header = self.get_header();
@@ -1288,7 +1338,7 @@ impl<
                 self.mem.use_mem(used_mem - Self::LINK_SIZE)?;
             }
         }
-        Ok(index)
+        Ok(handler(Link::new(index, source, target), Link::nothing()))
     }
 
     fn get_link(&self, index: T) -> Option<Link<T>> {

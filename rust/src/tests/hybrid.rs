@@ -1,5 +1,6 @@
-use crate::doublets::data::{AddrToRaw, IGenericLinks, LinksConstants, RawToAddr};
+use crate::doublets::data::{AddrToRaw, IGenericLinks, LinksConstants, Query, RawToAddr};
 use crate::doublets::{ILinks, ILinksExtensions};
+use crate::query;
 use crate::test_extensions::ILinksTestExtensions;
 use crate::tests::{make_links, make_mem, typed_links};
 
@@ -12,13 +13,10 @@ fn non_exist_reference() {
     links.update(link, usize::MAX, usize::MAX).unwrap();
 
     let mut result = 0;
-    links.each_by(
-        |found| {
-            result = found.index;
-            links.constants().r#break
-        },
-        [links.constants().any, usize::MAX, usize::MAX],
-    );
+    links.each_by([links.constants().any, usize::MAX, usize::MAX], |found| {
+        result = found.index;
+        links.constants().r#break
+    });
 
     assert_eq!(result, link);
     assert_eq!(links.count_by([usize::MAX]), 0);

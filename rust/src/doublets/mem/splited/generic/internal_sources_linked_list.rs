@@ -1,6 +1,7 @@
 use crate::doublets::data::LinksConstants;
 use crate::doublets::Link;
 use std::marker::PhantomData;
+use std::ops::Try;
 
 use crate::doublets::mem::ilinks_list_methods::ILinksListMethods;
 use crate::doublets::mem::links_header::LinksHeader;
@@ -72,23 +73,22 @@ impl<T: LinkType> InternalSourcesLinkedList<T> {
         self.get_size(head)
     }
 
-    pub fn each_usages(&self, source: T, mut handler: impl FnMut(Link<T>) -> T) -> T {
-        let r#continue = self.r#continue;
-        let r#break = self.r#break;
-
+    pub fn each_usages<R: Try<Output = ()>, H: FnMut(Link<T>) -> R>(
+        &self,
+        source: T,
+        handler: &mut H,
+    ) -> R {
         let mut current = self.get_first(source);
         let first = current;
 
         while !current.is_zero() {
-            if handler(self.get_link_value(current)) == r#break {
-                return r#break;
-            }
+            handler(self.get_link_value(current))?;
             current = self.get_next(current);
             if current == first {
-                return r#continue;
+                return R::from_output(());
             }
         }
-        r#continue
+        R::from_output(())
     }
 }
 
