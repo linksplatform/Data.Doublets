@@ -95,7 +95,7 @@ namespace Platform.Data.Doublets.Decorators
             }
             else
             {
-                return _facade.MergeAndDelete(updatedLink, existedLink);
+                return _facade.MergeAndDelete(updatedLink, existedLink, handler);
             }
         }
 
