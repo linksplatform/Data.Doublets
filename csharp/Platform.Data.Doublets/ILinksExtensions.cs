@@ -1189,11 +1189,13 @@ namespace Platform.Data.Doublets
             }
         }
 
+        public static TLink MergeUsages<TLink>(this ILinks<TLink> links, TLink oldLinkIndex, TLink newLinkIndex) => MergeUsages(links, oldLinkIndex, newLinkIndex, null);
+
         /// <summary>
         /// Merging two usages graphs, all children of old link moved to be children of new link or deleted.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TLink MergeUsages<TLink>(this ILinks<TLink> links, TLink oldLinkIndex, TLink newLinkIndex)
+        public static TLink MergeUsages<TLink>(this ILinks<TLink> links, TLink oldLinkIndex, TLink newLinkIndex, Func<IList<TLink>, IList<TLink>, TLink> handler)
         {
             var addressToInt64Converter = CheckedConverter<TLink, long>.Default;
             var equalityComparer = EqualityComparer<TLink>.Default;
@@ -1221,7 +1223,9 @@ namespace Platform.Data.Doublets
                                 var usage = usages[i];
                                 if (!equalityComparer.Equals(usage, oldLinkIndex))
                                 {
-                                    links.Update(usage, newLinkIndex, links.GetTarget(usage));
+                                    var restriction = links.GetLink(usage);
+                                    var substitution = new List<TLink>{newLinkIndex, links.GetTarget(usage)};
+                                    links.Update(restriction, substitution, handler);
                                 }
                             }
                         }
