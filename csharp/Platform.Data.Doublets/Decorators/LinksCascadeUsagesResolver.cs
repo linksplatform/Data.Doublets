@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
@@ -35,12 +36,12 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Delete(IList<TLink> restrictions)
+        public override TLink Delete(IList<TLink> restrictions, Func<IList<TLink>, IList<TLink>, TLink> handler)
         {
             var linkIndex = restrictions[_constants.IndexPart];
             // Use Facade (the last decorator) to ensure recursion working correctly
             _facade.DeleteAllUsages(linkIndex);
-            return _links.Delete(linkIndex);
+            return _links.Delete(restrictions, handler);
         }
     }
 }
