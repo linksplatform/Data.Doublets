@@ -884,10 +884,12 @@ namespace Platform.Data.Doublets
 
         /// <param name="links">Хранилище связей.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TLink CreatePoint<TLink>(this ILinks<TLink> links)
+        public static TLink CreatePoint<TLink>(this ILinks<TLink> links, Func<IList<TLink>, IList<TLink>, TLink> handler)
         {
             var link = links.Create();
-            return links.Update(link, link, link);
+            var restriction = new List<TLink> { link };
+            var substitution = new List<TLink> { link, link, link };
+            return links.Update(restriction, substitution, handler);
         }
 
         /// <param name="links">Хранилище связей.</param>
