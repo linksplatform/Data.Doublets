@@ -14,7 +14,9 @@ use crate::doublets::{ILinks, ILinksExtensions, Link, LinksError};
 //use crate::doublets::decorators::{CascadeUsagesResolver, NonNullDeletionResolver};
 //use crate::doublets::mem::splited;
 use crate::doublets::mem::united::Links;
-use crate::mem::{AllocMem, FileMappedMem, HeapMem, Mem, ResizeableBase, ResizeableMem};
+use crate::mem::{
+    AllocMem, FileMappedMem, HeapMem, Mem, ResizeableBase, ResizeableMem, TempFileMem,
+};
 use crate::test_extensions::ILinksTestExtensions;
 use crate::tests::make_links;
 use crate::tests::make_mem;
@@ -33,6 +35,7 @@ fn random_creations_and_deletions() {
     println!("{:?}", instant.elapsed());
 }
 */
+// TODO: `into_file()`
 #[test]
 fn mapping() {
     std::fs::remove_file("mapping_file");
@@ -49,7 +52,7 @@ fn mapping() {
 fn billion_points_file_mapped() {
     std::fs::remove_file("mem_bpfm");
 
-    let mem = FileMappedMem::new("mem_bpfm").unwrap();
+    let mem = TempFileMem::new().unwrap();
     let mut links = Links::<usize, _>::new(mem).unwrap();
 
     let instant = Instant::now();
@@ -115,11 +118,8 @@ fn many_points_and_searches() {
 
 #[test]
 fn billion_points_file_mapped_splited() {
-    std::fs::remove_file("data_bpfms");
-    std::fs::remove_file("index_bpfms");
-
-    let mem = FileMappedMem::new("data_bpfms").unwrap();
-    let index = FileMappedMem::new("index_bpfms").unwrap();
+    let mem = TempFileMem::new().unwrap();
+    let index = TempFileMem::new().unwrap();
     let mut links = splited::Links::<usize, _, _>::new(mem, index).unwrap();
 
     let instant = Instant::now();

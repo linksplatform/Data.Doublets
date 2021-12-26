@@ -13,23 +13,18 @@ use crate::mem::resizeable_base::ResizeableBase;
 
 pub struct FileMappedMem {
     base: ResizeableBase,
-    file: File,
+    pub(in crate::mem) file: File,
     mapping: ManuallyDrop<MmapMut>, // TODO: `MaybeUninit`
 }
 
 impl FileMappedMem {
-    pub fn reserve_new<P: AsRef<Path>>(path: P, capacity: usize) -> io::Result<Self> {
-        let capacity = max(capacity, ResizeableBase::MINIMUM_CAPACITY);
-        let file = OpenOptions::new()
-            .create(true)
-            .read(true)
-            .write(true)
-            .open(path)?;
+    pub fn from_file(file: File) -> io::Result<Self> {
+        let capacity = ResizeableBase::MINIMUM_CAPACITY;
+        let mapping = unsafe { MmapOptions::new().map_mut(&file)? };
 
         let len = file.metadata()?.len() as usize;
         let to_reserve = max(len, capacity);
 
-        let mapping = MmapOptions::new().map_anon()?;
         let mut new = Self {
             base: Default::default(),
             mapping: ManuallyDrop::new(mapping),
@@ -37,6 +32,17 @@ impl FileMappedMem {
         };
 
         new.reserve_mem(to_reserve).map(|_| new)
+    }
+
+    pub fn reserve_new<P: AsRef<Path>>(path: P, capacity: usize) -> io::Result<Self> {
+        let capacity = max(capacity, ResizeableBase::MINIMUM_CAPACITY);
+        let file = OpenOptions::new()
+            .create(true)
+            .read(true)
+            .write(true)
+            .open(path)?;
+        let mut new = Self::from_file(file)?;
+        new.reserve_mem(capacity).map(|_| new)
     }
 
     pub fn new<P: AsRef<Path>>(path: P) -> std::io::Result<Self> {
