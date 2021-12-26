@@ -607,13 +607,13 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override ulong Delete(IList<ulong> restrictions)
+        public override ulong Delete(IList<ulong> restrictions, Func<IList<ulong>, IList<ulong>, ulong> handler)
         {
             var link = restrictions[_constants.IndexPart];
             var deletedLink = new Link<ulong>(_links.GetLink(link));
-            _links.Delete(link);
+            var deletedLinkIndex = _links.Delete(restrictions, handler);
             CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, deletedLink, default));
-            return deletedLink.Index;
+            return deletedLinkIndex;
         }
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private Queue<Transition> GetCurrentTransitions() => _currentTransactionTransitions ?? _transitions;
