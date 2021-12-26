@@ -1203,52 +1203,59 @@ namespace Platform.Data.Doublets
         {
             var addressToInt64Converter = CheckedConverter<TLink, long>.Default;
             var equalityComparer = EqualityComparer<TLink>.Default;
-            if (!equalityComparer.Equals(oldLinkIndex, newLinkIndex))
+            if (equalityComparer.Equals(oldLinkIndex, newLinkIndex))
             {
-                var constants = links.Constants;
-                var usagesAsSourceQuery = new Link<TLink>(constants.Any, oldLinkIndex, constants.Any);
-                var usagesAsSourceCount = addressToInt64Converter.Convert(links.Count(usagesAsSourceQuery));
-                var usagesAsTargetQuery = new Link<TLink>(constants.Any, constants.Any, oldLinkIndex);
-                var usagesAsTargetCount = addressToInt64Converter.Convert(links.Count(usagesAsTargetQuery));
-                var isStandalonePoint = Point<TLink>.IsFullPoint(links.GetLink(oldLinkIndex)) && usagesAsSourceCount == 1 && usagesAsTargetCount == 1;
-                if (!isStandalonePoint)
+                return newLinkIndex;
+            }
+            var constants = links.Constants;
+            var usagesAsSourceQuery = new Link<TLink>(constants.Any, oldLinkIndex, constants.Any);
+            var usagesAsSourceCount = addressToInt64Converter.Convert(links.Count(usagesAsSourceQuery));
+            var usagesAsTargetQuery = new Link<TLink>(constants.Any, constants.Any, oldLinkIndex);
+            var usagesAsTargetCount = addressToInt64Converter.Convert(links.Count(usagesAsTargetQuery));
+            var isStandalonePoint = Point<TLink>.IsFullPoint(links.GetLink(oldLinkIndex)) && usagesAsSourceCount == 1 && usagesAsTargetCount == 1;
+            if (isStandalonePoint)
+            {
+                return newLinkIndex;
+            }
+            var totalUsages = usagesAsSourceCount + usagesAsTargetCount;
+            if (totalUsages <= 0)
+            {
+                return newLinkIndex;
+            }
+            var usages = ArrayPool.Allocate<TLink>(totalUsages);
+            var usagesFiller = new ArrayFiller<TLink, TLink>(usages, links.Constants.Continue);
+            var i = 0L;
+            if (usagesAsSourceCount > 0)
+            {
+                links.Each(usagesFiller.AddFirstAndReturnConstant, usagesAsSourceQuery);
+                for (; i < usagesAsSourceCount; i++)
                 {
-                    var totalUsages = usagesAsSourceCount + usagesAsTargetCount;
-                    if (totalUsages > 0)
+                    var usage = usages[i];
+                    if (equalityComparer.Equals(usage, oldLinkIndex))
                     {
-                        var usages = ArrayPool.Allocate<TLink>(totalUsages);
-                        var usagesFiller = new ArrayFiller<TLink, TLink>(usages, links.Constants.Continue);
-                        var i = 0L;
-                        if (usagesAsSourceCount > 0)
-                        {
-                            links.Each(usagesFiller.AddFirstAndReturnConstant, usagesAsSourceQuery);
-                            for (; i < usagesAsSourceCount; i++)
-                            {
-                                var usage = usages[i];
-                                if (!equalityComparer.Equals(usage, oldLinkIndex))
-                                {
-                                    var restriction = links.GetLink(usage);
-                                    var substitution = new List<TLink>{newLinkIndex, links.GetTarget(usage)};
-                                    links.Update(restriction, substitution, handler);
-                                }
-                            }
-                        }
-                        if (usagesAsTargetCount > 0)
-                        {
-                            links.Each(usagesFiller.AddFirstAndReturnConstant, usagesAsTargetQuery);
-                            for (; i < usages.Length; i++)
-                            {
-                                var usage = usages[i];
-                                if (!equalityComparer.Equals(usage, oldLinkIndex))
-                                {
-                                    links.Update(usage, links.GetSource(usage), newLinkIndex);
-                                }
-                            }
-                        }
-                        ArrayPool.Free(usages);
+                        continue;
                     }
+                    var restriction = links.GetLink(usage);
+                    var substitution = new List<TLink>{newLinkIndex, links.GetTarget(usage)};
+                    links.Update(restriction, substitution, handler);
                 }
             }
+            if (usagesAsTargetCount > 0)
+            {
+                links.Each(usagesFiller.AddFirstAndReturnConstant, usagesAsTargetQuery);
+                for (; i < usages.Length; i++)
+                {
+                    var usage = usages[i];
+                    if (equalityComparer.Equals(usage, oldLinkIndex))
+                    {
+                        continue;
+                    }
+                    var restriction = links.GetLink(usage);
+                    var substitution = new List<TLink>{links.GetTarget(usage), newLinkIndex};
+                    links.Update(restriction, substitution, handler);
+                }
+            }
+            ArrayPool.Free(usages);
             return newLinkIndex;
         }
 
