@@ -1050,13 +1050,33 @@ namespace Platform.Data.Doublets
 
         /// <remarks>Before execution of this method ensure that deleted link is detached (all values - source and target are reset to null) or it might enter into infinite recursion.</remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void DeleteAllUsages<TLink>(this ILinks<TLink> links, TLink linkIndex)
+        public static void DeleteAllUsages<TLink>(this ILinks<TLink> links, TLink linkIndex, Func<IList<TLink>, IList<TLink>, TLink> handler)
         {
             var any = links.Constants.Any;
+            var addressToInt64Converter = CheckedConverter<TLink, long>.Default;
+            var equalityComparer = EqualityComparer<TLink>.Default;
             var usagesAsSourceQuery = new Link<TLink>(any, linkIndex, any);
-            links.DeleteByQuery(usagesAsSourceQuery);
+            var usagesAsSourceCount = addressToInt64Converter.Convert(links.Count(usagesAsSourceQuery));
             var usagesAsTargetQuery = new Link<TLink>(any, any, linkIndex);
-            links.DeleteByQuery(usagesAsTargetQuery);
+            var usagesAsTargetCount = addressToInt64Converter.Convert(links.Count(usagesAsTargetQuery));
+            var totalUsages = usagesAsSourceCount + usagesAsTargetCount;
+            var usages = ArrayPool.Allocate<TLink>(totalUsages);
+            var usagesFiller = new ArrayFiller<TLink, TLink>(usages, links.Constants.Continue);
+            if (usagesAsTargetCount <= 0)
+            {
+                return;
+            }
+            links.Each(usagesFiller.AddFirstAndReturnConstant, usagesAsTargetQuery);
+            for (var i = 0L; i < usages.Length; i++)
+            {
+                var usage = usages[i];
+                if (equalityComparer.Equals(usage, linkIndex))
+                {
+                    continue;
+                }
+                var restriction = links.GetLink(usage);
+                links.Delete(restriction, handler);
+            }
         }
 
         /// <summary>
