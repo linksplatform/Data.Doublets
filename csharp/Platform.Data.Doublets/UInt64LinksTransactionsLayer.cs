@@ -586,14 +586,14 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override ulong Update(IList<ulong> restrictions, IList<ulong> substitution)
+        public override ulong Update(IList<ulong> restrictions, IList<ulong> substitution, Func<IList<ulong>, IList<ulong>, ulong> handler)
         {
             var linkIndex = restrictions[_constants.IndexPart];
             var beforeLink = new Link<ulong>(_links.GetLink(linkIndex));
             linkIndex = _links.Update(restrictions, substitution, null);
             var afterLink = new Link<ulong>(_links.GetLink(linkIndex));
             CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, beforeLink, afterLink));
-            return linkIndex;
+            return handler(restrictions, substitution);
         }
 
         /// <summary>
