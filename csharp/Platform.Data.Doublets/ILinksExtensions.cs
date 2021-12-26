@@ -1259,6 +1259,8 @@ namespace Platform.Data.Doublets
             return newLinkIndex;
         }
 
+        public static TLink MergeAndDelete<TLink>(this ILinks<TLink> links, TLink oldLinkIndex, TLink newLinkIndex) => MergeAndDelete(links, oldLinkIndex, newLinkIndex, null);
+
         /// <summary>
         /// Replace one link with another (replaced link is deleted, children are updated or deleted).
         /// </summary>
