@@ -40,7 +40,7 @@ namespace Platform.Data.Doublets.Decorators
         {
             var linkIndex = restriction[_constants.IndexPart];
             // Use Facade (the last decorator) to ensure recursion working correctly
-            _facade.DeleteAllUsages(linkIndex);
+            _facade.DeleteAllUsages(linkIndex, handler);
             return _links.Delete(restriction, handler);
         }
     }
