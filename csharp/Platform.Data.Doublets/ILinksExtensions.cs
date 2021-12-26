@@ -148,13 +148,13 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TLink Delete<TLink>(this ILinks<TLink> links, TLink linkToDelete)
+        public static TLink Delete<TLink>(this ILinks<TLink> links, TLink linkToDelete, Func<IList<TLink>, IList<TLink>, TLink> handler)
         {
             if (links.Exists(linkToDelete))
             {
                 links.EnforceResetValues(linkToDelete);
             }
-            return links.Delete(new LinkAddress<TLink>(linkToDelete), null);
+            return links.Delete(new LinkAddress<TLink>(linkToDelete), handler);
         }
 
         /// <remarks>
