@@ -58,7 +58,7 @@ namespace Platform.Data.Doublets.Decorators
             {
                 return links.Update(restriction, substitution, handler);
             }
-            return ResolveAddressChangeConflict(restriction[constants.IndexPart], newLinkAddress);
+            return ResolveAddressChangeConflict(restriction[constants.IndexPart], newLinkAddress, handler);
         }
 
         /// <summary>
