@@ -30,12 +30,12 @@ namespace Platform.Data.Doublets.Decorators
 
         /// <summary>
         /// <para>
-        /// Updates the restrictions.
+        /// Updates the restriction.
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
         /// <para></para>
         /// </param>
         /// <param name="substitution">
@@ -47,30 +47,30 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Update(IList<TLink> restrictions, IList<TLink> substitution, Func<IList<TLink>, IList<TLink>, TLink> handler)
+        public override TLink Update(IList<TLink> restriction, IList<TLink> substitution, Func<IList<TLink>, IList<TLink>, TLink> handler)
         {
             var links = _links;
-            links.EnsureNoUsages(restrictions[_constants.IndexPart]);
-            return links.Update(restrictions, substitution, handler);
+            links.EnsureNoUsages(restriction[_constants.IndexPart]);
+            return links.Update(restriction, substitution, handler);
         }
 
         /// <summary>
         /// <para>
-        /// Deletes the restrictions.
+        /// Deletes the restriction.
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Delete(IList<TLink> restrictions, Func<IList<TLink>, IList<TLink>, TLink> handler)
+        public override TLink Delete(IList<TLink> restriction, Func<IList<TLink>, IList<TLink>, TLink> handler)
         {
-            var link = restrictions[_constants.IndexPart];
+            var link = restriction[_constants.IndexPart];
             var links = _links;
             links.EnsureNoUsages(link);
-            return links.Delete(restrictions, handler);
+            return links.Delete(restriction, handler);
         }
     }
 }

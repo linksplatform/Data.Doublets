@@ -189,12 +189,12 @@ namespace Platform.Data.Doublets.Memory.United.Generic
 
         /// <summary>
         /// <para>
-        /// Counts the restrictions.
+        /// Counts the restriction.
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
         /// <para></para>
         /// </param>
         /// <exception cref="NotSupportedException">
@@ -206,17 +206,17 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Count(IList<TLink> restrictions)
+        public virtual TLink Count(IList<TLink> restriction)
         {
             // Если нет ограничений, тогда возвращаем общее число связей находящихся в хранилище.
-            if (restrictions.Count == 0)
+            if (restriction.Count == 0)
             {
                 return Total;
             }
             var constants = Constants;
             var any = constants.Any;
-            var index = restrictions[constants.IndexPart];
-            if (restrictions.Count == 1)
+            var index = restriction[constants.IndexPart];
+            if (restriction.Count == 1)
             {
                 if (AreEqual(index, any))
                 {
@@ -224,9 +224,9 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                 }
                 return Exists(index) ? GetOne() : GetZero();
             }
-            if (restrictions.Count == 2)
+            if (restriction.Count == 2)
             {
-                var value = restrictions[1];
+                var value = restriction[1];
                 if (AreEqual(index, any))
                 {
                     if (AreEqual(value, any))
@@ -253,10 +253,10 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                     return GetZero();
                 }
             }
-            if (restrictions.Count == 3)
+            if (restriction.Count == 3)
             {
-                var source = restrictions[constants.SourcePart];
-                var target = restrictions[constants.TargetPart];
+                var source = restriction[constants.SourcePart];
+                var target = restriction[constants.TargetPart];
                 if (AreEqual(index, any))
                 {
                     if (AreEqual(source, any) && AreEqual(target, any))
@@ -326,8 +326,8 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para>The handler.</para>
         /// <para></para>
         /// </param>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
         /// <para></para>
         /// </param>
         /// <exception cref="NotSupportedException">
@@ -339,11 +339,11 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Each(IList<TLink> restrictions, Func<IList<TLink>, TLink> handler)
+        public virtual TLink Each(IList<TLink> restriction, Func<IList<TLink>, TLink> handler)
         {
             var constants = Constants;
             var @break = constants.Break;
-            if (restrictions.Count == 0)
+            if (restriction.Count == 0)
             {
                 for (var link = GetOne(); LessOrEqualThan(link, GetHeaderReference().AllocatedLinks); link = Increment(link))
                 {
@@ -356,8 +356,8 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             }
             var @continue = constants.Continue;
             var any = constants.Any;
-            var index = restrictions[constants.IndexPart];
-            if (restrictions.Count == 1)
+            var index = restriction[constants.IndexPart];
+            if (restriction.Count == 1)
             {
                 if (AreEqual(index, any))
                 {
@@ -369,9 +369,9 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                 }
                 return handler(GetLinkStruct(index));
             }
-            if (restrictions.Count == 2)
+            if (restriction.Count == 2)
             {
-                var value = restrictions[1];
+                var value = restriction[1];
                 if (AreEqual(index, any))
                 {
                     if (AreEqual(value, any))
@@ -403,10 +403,10 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                     return @continue;
                 }
             }
-            if (restrictions.Count == 3)
+            if (restriction.Count == 3)
             {
-                var source = restrictions[constants.SourcePart];
-                var target = restrictions[constants.TargetPart];
+                var source = restriction[constants.SourcePart];
+                var target = restriction[constants.TargetPart];
                 if (AreEqual(index, any))
                 {
                     if (AreEqual(source, any) && AreEqual(target, any))
@@ -471,11 +471,11 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// TODO: Возможно можно перемещать значения, если указан индекс, но значение существует в другом месте (но не в менеджере памяти, а в логике Links)
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Update(IList<TLink> restrictions, IList<TLink> substitution, Func<IList<TLink>, IList<TLink>, TLink> handler)
+        public virtual TLink Update(IList<TLink> restriction, IList<TLink> substitution, Func<IList<TLink>, IList<TLink>, TLink> handler)
         {
             var constants = Constants;
             var @null = constants.Null;
-            var linkIndex = restrictions[constants.IndexPart];
+            var linkIndex = restriction[constants.IndexPart];
             var before = GetLinkStruct(linkIndex);
             ref var link = ref GetLinkReference(linkIndex);
             ref var header = ref GetHeaderReference();
@@ -508,7 +508,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// TODO: Возможно нужно будет заполнение нулями, если внешнее API ими не заполняет пространство
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Create(IList<TLink> restrictions, Func<IList<TLink>, IList<TLink>, TLink> handler)
+        public virtual TLink Create(IList<TLink> restriction, Func<IList<TLink>, IList<TLink>, TLink> handler)
         {
             ref var header = ref GetHeaderReference();
             var freeLink = header.FirstFreeLink;
@@ -538,19 +538,19 @@ namespace Platform.Data.Doublets.Memory.United.Generic
 
         /// <summary>
         /// <para>
-        /// Deletes the restrictions.
+        /// Deletes the restriction.
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Delete(IList<TLink> restrictions, Func<IList<TLink>, IList<TLink>, TLink> handler)
+        public virtual TLink Delete(IList<TLink> restriction, Func<IList<TLink>, IList<TLink>, TLink> handler)
         {
             ref var header = ref GetHeaderReference();
-            var link = restrictions[Constants.IndexPart];
+            var link = restriction[Constants.IndexPart];
             if (LessThan(link, header.AllocatedLinks))
             {
                 UnusedLinksListMethods.AttachAsFirst(link);

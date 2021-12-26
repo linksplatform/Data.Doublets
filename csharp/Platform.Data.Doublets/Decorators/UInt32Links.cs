@@ -31,12 +31,12 @@ namespace Platform.Data.Doublets.Decorators
 
         /// <summary>
         /// <para>
-        /// Creates the restrictions.
+        /// Creates the restriction.
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
         /// <para></para>
         /// </param>
         /// <returns>
@@ -44,16 +44,16 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Create(IList<TLink> restrictions, Func<IList<TLink>, IList<TLink>, TLink> handler) => _links.CreatePoint(handler);
+        public override TLink Create(IList<TLink> restriction, Func<IList<TLink>, IList<TLink>, TLink> handler) => _links.CreatePoint(handler);
 
         /// <summary>
         /// <para>
-        /// Updates the restrictions.
+        /// Updates the restriction.
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
         /// <para></para>
         /// </param>
         /// <param name="substitution">
@@ -65,7 +65,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Update(IList<TLink> restrictions, IList<TLink> substitution, Func<IList<TLink>, IList<TLink>, TLink> handler)
+        public override TLink Update(IList<TLink> restriction, IList<TLink> substitution, Func<IList<TLink>, IList<TLink>, TLink> handler)
         {
             var constants = _constants;
             var indexPartConstant = constants.IndexPart;
@@ -74,7 +74,7 @@ namespace Platform.Data.Doublets.Decorators
             var nullConstant = constants.Null;
             var itselfConstant = constants.Itself;
             var existedLink = nullConstant;
-            var updatedLink = restrictions[indexPartConstant];
+            var updatedLink = restriction[indexPartConstant];
             var newSource = substitution[sourcePartConstant];
             var newTarget = substitution[targetPartConstant];
             var links = _links;
@@ -101,22 +101,22 @@ namespace Platform.Data.Doublets.Decorators
 
         /// <summary>
         /// <para>
-        /// Deletes the restrictions.
+        /// Deletes the restriction.
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Delete(IList<TLink> restrictions, Func<IList<TLink>, IList<TLink>, TLink> handler)
+        public override TLink Delete(IList<TLink> restriction, Func<IList<TLink>, IList<TLink>, TLink> handler)
         {
-            var linkIndex = restrictions[_constants.IndexPart];
+            var linkIndex = restriction[_constants.IndexPart];
             var links = _links;
             links.EnforceResetValues(linkIndex);
             _facade.DeleteAllUsages(linkIndex);
-            return links.Delete(restrictions, handler);
+            return links.Delete(restriction, handler);
         }
     }
 }

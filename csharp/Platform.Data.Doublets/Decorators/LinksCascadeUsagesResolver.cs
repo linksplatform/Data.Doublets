@@ -27,21 +27,21 @@ namespace Platform.Data.Doublets.Decorators
 
         /// <summary>
         /// <para>
-        /// Deletes the restrictions.
+        /// Deletes the restriction.
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Delete(IList<TLink> restrictions, Func<IList<TLink>, IList<TLink>, TLink> handler)
+        public override TLink Delete(IList<TLink> restriction, Func<IList<TLink>, IList<TLink>, TLink> handler)
         {
-            var linkIndex = restrictions[_constants.IndexPart];
+            var linkIndex = restriction[_constants.IndexPart];
             // Use Facade (the last decorator) to ensure recursion working correctly
             _facade.DeleteAllUsages(linkIndex);
-            return _links.Delete(restrictions, handler);
+            return _links.Delete(restriction, handler);
         }
     }
 }

@@ -437,11 +437,11 @@ namespace Platform.Data.Doublets
         /// </summary>
         /// <param name="links">Хранилище связей.</param>
         /// <param name="handler">Обработчик каждой подходящей связи.</param>
-        /// <param name="restrictions">Ограничения на содержимое связей. Каждое ограничение может иметь значения: Constants.Null - 0-я связь, обозначающая ссылку на пустоту, Any - отсутствие ограничения, 1..∞ конкретный адрес связи.</param>
+        /// <param name="restriction">Ограничения на содержимое связей. Каждое ограничение может иметь значения: Constants.Null - 0-я связь, обозначающая ссылку на пустоту, Any - отсутствие ограничения, 1..∞ конкретный адрес связи.</param>
         /// <returns>True, в случае если проход по связям не был прерван и False в обратном случае.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool Each<TLink>(this ILinks<TLink> links, Func<IList<TLink>, TLink> handler, params TLink[] restrictions)
-            => Equals(links.Each(handler, restrictions), links.Constants.Continue);
+        public static bool Each<TLink>(this ILinks<TLink> links, Func<IList<TLink>, TLink> handler, params TLink[] restriction)
+            => Equals(links.Each(handler, restriction), links.Constants.Continue);
 
         /// <summary>
         /// Выполняет проход по всем связям, соответствующим шаблону, вызывая обработчик (handler) для каждой подходящей связи.
@@ -483,8 +483,8 @@ namespace Platform.Data.Doublets
         /// <para>The links.</para>
         /// <para></para>
         /// </param>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
         /// <para></para>
         /// </param>
         /// <returns>
@@ -492,14 +492,14 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static IList<IList<TLink>> All<TLink>(this ILinks<TLink> links, params TLink[] restrictions)
+        public static IList<IList<TLink>> All<TLink>(this ILinks<TLink> links, params TLink[] restriction)
         {
-            var arraySize = CheckedConverter<TLink, ulong>.Default.Convert(links.Count(restrictions));
+            var arraySize = CheckedConverter<TLink, ulong>.Default.Convert(links.Count(restriction));
             if (arraySize > 0)
             {
                 var array = new IList<TLink>[arraySize];
                 var filler = new ArrayFiller<IList<TLink>, TLink>(array, links.Constants.Continue);
-                links.Each(filler.AddAndReturnConstant, restrictions);
+                links.Each(filler.AddAndReturnConstant, restriction);
                 return array;
             }
             else
@@ -522,8 +522,8 @@ namespace Platform.Data.Doublets
         /// <para>The links.</para>
         /// <para></para>
         /// </param>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
         /// <para></para>
         /// </param>
         /// <returns>
@@ -531,14 +531,14 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static IList<TLink> AllIndices<TLink>(this ILinks<TLink> links, params TLink[] restrictions)
+        public static IList<TLink> AllIndices<TLink>(this ILinks<TLink> links, params TLink[] restriction)
         {
-            var arraySize = CheckedConverter<TLink, ulong>.Default.Convert(links.Count(restrictions));
+            var arraySize = CheckedConverter<TLink, ulong>.Default.Convert(links.Count(restriction));
             if (arraySize > 0)
             {
                 var array = new TLink[arraySize];
                 var filler = new ArrayFiller<TLink, TLink>(array, links.Constants.Continue);
-                links.Each(filler.AddFirstAndReturnConstant, restrictions);
+                links.Each(filler.AddFirstAndReturnConstant, restriction);
                 return array;
             }
             else
@@ -574,8 +574,8 @@ namespace Platform.Data.Doublets
         /// <para>The links.</para>
         /// <para></para>
         /// </param>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
         /// <para></para>
         /// </param>
         /// <exception cref="ArgumentLinkDoesNotExistsException{TLink}">
@@ -583,13 +583,13 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void EnsureLinkExists<TLink>(this ILinks<TLink> links, IList<TLink> restrictions)
+        public static void EnsureLinkExists<TLink>(this ILinks<TLink> links, IList<TLink> restriction)
         {
-            for (var i = 0; i < restrictions.Count; i++)
+            for (var i = 0; i < restriction.Count; i++)
             {
-                if (!links.Exists(restrictions[i]))
+                if (!links.Exists(restriction[i]))
                 {
-                    throw new ArgumentLinkDoesNotExistsException<TLink>(restrictions[i], $"sequence[{i}]");
+                    throw new ArgumentLinkDoesNotExistsException<TLink>(restriction[i], $"sequence[{i}]");
                 }
             }
         }
@@ -643,8 +643,8 @@ namespace Platform.Data.Doublets
         /// <para>The links.</para>
         /// <para></para>
         /// </param>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
         /// <para></para>
         /// </param>
         /// <param name="argumentName">
@@ -652,11 +652,11 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void EnsureInnerReferenceExists<TLink>(this ILinks<TLink> links, IList<TLink> restrictions, string argumentName)
+        public static void EnsureInnerReferenceExists<TLink>(this ILinks<TLink> links, IList<TLink> restriction, string argumentName)
         {
-            for (int i = 0; i < restrictions.Count; i++)
+            for (int i = 0; i < restriction.Count; i++)
             {
-                links.EnsureInnerReferenceExists(restrictions[i], argumentName);
+                links.EnsureInnerReferenceExists(restriction[i], argumentName);
             }
         }
 
@@ -674,8 +674,8 @@ namespace Platform.Data.Doublets
         /// <para>The links.</para>
         /// <para></para>
         /// </param>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
         /// <para></para>
         /// </param>
         /// <exception cref="ArgumentLinkDoesNotExistsException{TLink}">
@@ -683,15 +683,15 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void EnsureLinkIsAnyOrExists<TLink>(this ILinks<TLink> links, IList<TLink> restrictions)
+        public static void EnsureLinkIsAnyOrExists<TLink>(this ILinks<TLink> links, IList<TLink> restriction)
         {
             var equalityComparer = EqualityComparer<TLink>.Default;
             var any = links.Constants.Any;
-            for (var i = 0; i < restrictions.Count; i++)
+            for (var i = 0; i < restriction.Count; i++)
             {
-                if (!equalityComparer.Equals(restrictions[i], any) && !links.Exists(restrictions[i]))
+                if (!equalityComparer.Equals(restriction[i], any) && !links.Exists(restriction[i]))
                 {
-                    throw new ArgumentLinkDoesNotExistsException<TLink>(restrictions[i], $"sequence[{i}]");
+                    throw new ArgumentLinkDoesNotExistsException<TLink>(restriction[i], $"sequence[{i}]");
                 }
             }
         }
@@ -915,22 +915,22 @@ namespace Platform.Data.Doublets
         /// на связь с указанными началом (NewSource) и концом (NewTarget).
         /// </summary>
         /// <param name="links">Хранилище связей.</param>
-        /// <param name="restrictions">Ограничения на содержимое связей. Каждое ограничение может иметь значения: Constants.Null - 0-я связь, обозначающая ссылку на пустоту, Itself - требование установить ссылку на себя, 1..∞ конкретный адрес другой связи.</param>
+        /// <param name="restriction">Ограничения на содержимое связей. Каждое ограничение может иметь значения: Constants.Null - 0-я связь, обозначающая ссылку на пустоту, Itself - требование установить ссылку на себя, 1..∞ конкретный адрес другой связи.</param>
         /// <returns>Индекс обновлённой связи.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TLink Update<TLink>(this ILinks<TLink> links, params TLink[] restrictions)
+        public static TLink Update<TLink>(this ILinks<TLink> links, params TLink[] restriction)
         {
-            if (restrictions.Length == 2)
+            if (restriction.Length == 2)
             {
-                return links.MergeAndDelete(restrictions[0], restrictions[1]);
+                return links.MergeAndDelete(restriction[0], restriction[1]);
             }
-            if (restrictions.Length == 4)
+            if (restriction.Length == 4)
             {
-                return links.UpdateOrCreateOrGet(restrictions[0], restrictions[1], restrictions[2], restrictions[3]);
+                return links.UpdateOrCreateOrGet(restriction[0], restriction[1], restriction[2], restriction[3]);
             }
             else
             {
-                return links.Update(new LinkAddress<TLink>(restrictions[0]), restrictions, null);
+                return links.Update(new LinkAddress<TLink>(restriction[0]), restriction, null);
             }
         }
 
@@ -952,8 +952,8 @@ namespace Platform.Data.Doublets
         /// <para>The constant.</para>
         /// <para></para>
         /// </param>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
         /// <para></para>
         /// </param>
         /// <param name="substitution">
@@ -965,15 +965,15 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static IList<TLink> ResolveConstantAsSelfReference<TLink>(this ILinks<TLink> links, TLink constant, IList<TLink> restrictions, IList<TLink> substitution)
+        public static IList<TLink> ResolveConstantAsSelfReference<TLink>(this ILinks<TLink> links, TLink constant, IList<TLink> restriction, IList<TLink> substitution)
         {
             var equalityComparer = EqualityComparer<TLink>.Default;
             var constants = links.Constants;
-            var restrictionsIndex = restrictions[constants.IndexPart];
+            var restrictionIndex = restriction[constants.IndexPart];
             var substitutionIndex = substitution[constants.IndexPart];
             if (equalityComparer.Equals(substitutionIndex, default))
             {
-                substitutionIndex = restrictionsIndex;
+                substitutionIndex = restrictionIndex;
             }
             var source = substitution[constants.SourcePart];
             var target = substitution[constants.TargetPart];

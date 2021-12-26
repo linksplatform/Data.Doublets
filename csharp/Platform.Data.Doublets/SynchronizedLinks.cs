@@ -126,7 +126,7 @@ namespace Platform.Data.Doublets
         /// <para>The handler.</para>
         /// <para></para>
         /// </param>
-        /// <param name="restrictions">
+        /// <param name="restriction">
         /// <para>The substitution.</para>
         /// <para></para>
         /// </param>
@@ -160,7 +160,7 @@ namespace Platform.Data.Doublets
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="restrictions">
+        /// <param name="restriction">
         /// <para>The substitution.</para>
         /// <para></para>
         /// </param>
@@ -173,7 +173,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLinkAddress Update(IList<TLinkAddress> restrictions, IList<TLinkAddress> substitution, Func<IList<TLinkAddress>, IList<TLinkAddress>, TLinkAddress> handler) => SyncRoot.ExecuteWriteOperation(restrictions, substitution, handler, Unsync.Update);
+        public TLinkAddress Update(IList<TLinkAddress> restriction, IList<TLinkAddress> substitution, Func<IList<TLinkAddress>, IList<TLinkAddress>, TLinkAddress> handler) => SyncRoot.ExecuteWriteOperation(restriction, substitution, handler, Unsync.Update);
 
         /// <summary>
         /// <para>
@@ -181,12 +181,12 @@ namespace Platform.Data.Doublets
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="restrictions">
+        /// <param name="restriction">
         /// <para>The substitution.</para>
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLinkAddress Delete(IList<TLinkAddress> restrictions, Func<IList<TLinkAddress>, IList<TLinkAddress>, TLinkAddress> handler) => SyncRoot.ExecuteWriteOperation(restrictions, handler, Unsync.Delete);
+        public TLinkAddress Delete(IList<TLinkAddress> restriction, Func<IList<TLinkAddress>, IList<TLinkAddress>, TLinkAddress> handler) => SyncRoot.ExecuteWriteOperation(restriction, handler, Unsync.Delete);
 
         //public T Trigger(IList<T> restriction, Func<IList<T>, IList<T>, T> matchedHandler, IList<T> substitution, Func<IList<T>, IList<T>, T> substitutedHandler)
         //{

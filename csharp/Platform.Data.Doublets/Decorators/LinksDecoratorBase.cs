@@ -84,12 +84,12 @@ namespace Platform.Data.Doublets.Decorators
 
         /// <summary>
         /// <para>
-        /// Counts the restrictions.
+        /// Counts the restriction.
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
         /// <para></para>
         /// </param>
         /// <returns>
@@ -97,7 +97,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Count(IList<TLink> restrictions) => _links.Count(restrictions);
+        public virtual TLink Count(IList<TLink> restriction) => _links.Count(restriction);
 
         /// <summary>
         /// <para>
@@ -109,8 +109,8 @@ namespace Platform.Data.Doublets.Decorators
         /// <para>The handler.</para>
         /// <para></para>
         /// </param>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
         /// <para></para>
         /// </param>
         /// <returns>
@@ -118,16 +118,16 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Each(IList<TLink> restrictions, Func<IList<TLink>, TLink> handler) => _links.Each(restrictions, handler);
+        public virtual TLink Each(IList<TLink> restriction, Func<IList<TLink>, TLink> handler) => _links.Each(restriction, handler);
 
         /// <summary>
         /// <para>
-        /// Creates the restrictions.
+        /// Creates the restriction.
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
         /// <para></para>
         /// </param>
         /// <returns>
@@ -139,12 +139,12 @@ namespace Platform.Data.Doublets.Decorators
 
         /// <summary>
         /// <para>
-        /// Updates the restrictions.
+        /// Updates the restriction.
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
         /// <para></para>
         /// </param>
         /// <param name="substitution">
@@ -156,19 +156,19 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Update(IList<TLink> restrictions, IList<TLink> substitution, Func<IList<TLink>, IList<TLink>, TLink> handler) => _links.Update(restrictions, substitution, handler);
+        public virtual TLink Update(IList<TLink> restriction, IList<TLink> substitution, Func<IList<TLink>, IList<TLink>, TLink> handler) => _links.Update(restriction, substitution, handler);
 
         /// <summary>
         /// <para>
-        /// Deletes the restrictions.
+        /// Deletes the restriction.
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Delete(IList<TLink> restrictions, Func<IList<TLink>, IList<TLink>, TLink> handler) => _links.Delete(restrictions, handler);
+        public virtual TLink Delete(IList<TLink> restriction, Func<IList<TLink>, IList<TLink>, TLink> handler) => _links.Delete(restriction, handler);
     }
 }
