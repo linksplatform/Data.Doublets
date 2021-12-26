@@ -1048,6 +1048,8 @@ namespace Platform.Data.Doublets
             }
         }
 
+        public static void DeleteAllUsages<TLink>(this ILinks<TLink> links, TLink linkIndex) => DeleteAllUsages(links, linkIndex, null);
+
         /// <remarks>Before execution of this method ensure that deleted link is detached (all values - source and target are reset to null) or it might enter into infinite recursion.</remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void DeleteAllUsages<TLink>(this ILinks<TLink> links, TLink linkIndex, Func<IList<TLink>, IList<TLink>, TLink> handler)
