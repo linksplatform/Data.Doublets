@@ -100,7 +100,7 @@ namespace Platform.Data.Doublets.Decorators
                 {
                     return links.Update(links.GetLink(updatedLink), new List<ulong> { newSource == itselfConstant ? updatedLink : newSource, newTarget == itselfConstant ? updatedLink : newTarget }, handler);
                 }
-                return updatedLink;
+                return handler(before, before);
             }
             else
             {
