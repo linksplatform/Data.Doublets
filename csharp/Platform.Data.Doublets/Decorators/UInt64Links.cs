@@ -76,7 +76,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override ulong Update(IList<ulong> restrictions, IList<ulong> substitution)
+        public override ulong Update(IList<ulong> restrictions, IList<ulong> substitution, Func<IList<ulong>, IList<ulong>, ulong> handler)
         {
             var constants = _constants;
             var indexPartConstant = constants.IndexPart;
@@ -98,14 +98,13 @@ namespace Platform.Data.Doublets.Decorators
                 var before = links.GetLink(updatedLink);
                 if (before[sourcePartConstant] != newSource || before[targetPartConstant] != newTarget)
                 {
-                    links.Update(updatedLink, newSource == itselfConstant ? updatedLink : newSource,
-                                              newTarget == itselfConstant ? updatedLink : newTarget);
+                    return links.Update(new List<ulong> { updatedLink }, new List<ulong> { newSource == itselfConstant ? updatedLink : newSource, newTarget == itselfConstant ? updatedLink : newTarget }, handler);
                 }
                 return updatedLink;
             }
             else
             {
-                return _facade.MergeAndDelete(updatedLink, existedLink);
+                return _facade.MergeAndDelete(updatedLink, existedLink, handler);
             }
         }
 
