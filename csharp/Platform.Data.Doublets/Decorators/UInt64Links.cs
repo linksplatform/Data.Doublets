@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
@@ -54,7 +55,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override ulong Create(IList<ulong> restrictions) => _links.CreatePoint();
+        public override ulong Create(IList<ulong> restrictions, Func<IList<ulong>, IList<ulong>, ulong> handler) => _links.CreatePoint(handler);
 
         /// <summary>
         /// <para>
