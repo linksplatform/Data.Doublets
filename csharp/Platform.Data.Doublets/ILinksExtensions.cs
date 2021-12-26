@@ -1064,22 +1064,22 @@ namespace Platform.Data.Doublets
             var usagesAsTargetQuery = new Link<TLink>(any, any, linkIndex);
             var usagesAsTargetCount = addressToInt64Converter.Convert(links.Count(usagesAsTargetQuery));
             var totalUsages = usagesAsSourceCount + usagesAsTargetCount;
-            var usages = ArrayPool.Allocate<TLink>(totalUsages);
-            var usagesFiller = new ArrayFiller<TLink, TLink>(usages, links.Constants.Continue);
+            var usages = new IList<TLink>[totalUsages];
+            var usagesFiller = new ArrayFiller<IList<TLink>, TLink>(usages, links.Constants.Continue);
             if (usagesAsTargetCount <= 0)
             {
                 return;
             }
-            links.Each(usagesFiller.AddFirstAndReturnConstant, usagesAsTargetQuery);
+            links.Each(usagesFiller.AddAndReturnConstant, usagesAsSourceQuery);
+            links.Each(usagesFiller.AddAndReturnConstant, usagesAsTargetQuery);
             for (var i = 0L; i < usages.Length; i++)
             {
                 var usage = usages[i];
-                if (equalityComparer.Equals(usage, linkIndex))
+                if (equalityComparer.Equals(GetIndex(links, usage), linkIndex))
                 {
                     continue;
                 }
-                var restriction = links.GetLink(usage);
-                links.Delete(restriction, handler);
+                links.Delete(usages[i], handler);
             }
         }
 
