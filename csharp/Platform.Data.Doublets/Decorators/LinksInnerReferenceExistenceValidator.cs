@@ -48,7 +48,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Each(IList<TLink> restriction, Func<IList<TLink>, TLink> handler)
+        public override TLink Each(IList<TLink> restriction, ReadHandler<TLink> handler)
         {
             var links = _links;
             links.EnsureInnerReferenceExists(restriction, nameof(restriction));
@@ -74,7 +74,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Update(IList<TLink> restriction, IList<TLink> substitution, Func<IList<TLink>, IList<TLink>, TLink> handler)
+        public override TLink Update(IList<TLink> restriction, IList<TLink> substitution, WriteHandler<TLink> handler)
         {
             // TODO: Possible values: null, ExistentLink or NonExistentHybrid(ExternalReference)
             var links = _links;
@@ -94,7 +94,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Delete(IList<TLink> restriction, Func<IList<TLink>, IList<TLink>, TLink> handler)
+        public override TLink Delete(IList<TLink> restriction, WriteHandler<TLink> handler)
         {
             var link = restriction[_constants.IndexPart];
             var links = _links;

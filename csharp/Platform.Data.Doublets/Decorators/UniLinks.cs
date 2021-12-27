@@ -98,7 +98,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para>The link</para>
         /// <para></para>
         /// </returns>
-        public TLink Trigger(IList<TLink> restriction, Func<IList<TLink>, IList<TLink>, TLink> matchedHandler, IList<TLink> substitution, Func<IList<TLink>, IList<TLink>, TLink> substitutedHandler)
+        public TLink Trigger(IList<TLink> restriction, WriteHandler<TLink> matchedHandler, IList<TLink> substitution, WriteHandler<TLink> substitutedHandler)
         {
             ////List<Transition> transitions = null;
             ////if (!restriction.IsNullOrEmpty())
@@ -297,7 +297,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para>The link</para>
         /// <para></para>
         /// </returns>
-        public TLink Trigger(IList<TLink> patternOrCondition, Func<IList<TLink>, TLink> matchHandler, IList<TLink> substitution, Func<IList<TLink>, IList<TLink>, TLink> substitutionHandler)
+        public TLink Trigger(IList<TLink> patternOrCondition, ReadHandler<TLink> matchHandler, IList<TLink> substitution, WriteHandler<TLink> substitutionHandler)
         {
             var constants = _constants;
             if (patternOrCondition.IsNullOrEmpty() && substitution.IsNullOrEmpty())

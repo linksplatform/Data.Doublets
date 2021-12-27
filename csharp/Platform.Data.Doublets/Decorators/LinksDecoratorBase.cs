@@ -118,7 +118,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Each(IList<TLink> restriction, Func<IList<TLink>, TLink> handler) => _links.Each(restriction, handler);
+        public virtual TLink Each(IList<TLink> restriction, ReadHandler<TLink> handler) => _links.Each(restriction, handler);
 
         /// <summary>
         /// <para>
@@ -135,7 +135,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Create(IList<TLink> substitution, Func<IList<TLink>, IList<TLink>, TLink> handler) => _links.Create(substitution, handler);
+        public virtual TLink Create(IList<TLink> substitution, WriteHandler<TLink> handler) => _links.Create(substitution, handler);
 
         /// <summary>
         /// <para>
@@ -156,7 +156,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Update(IList<TLink> restriction, IList<TLink> substitution, Func<IList<TLink>, IList<TLink>, TLink> handler) => _links.Update(restriction, substitution, handler);
+        public virtual TLink Update(IList<TLink> restriction, IList<TLink> substitution, WriteHandler<TLink> handler) => _links.Update(restriction, substitution, handler);
 
         /// <summary>
         /// <para>
@@ -169,6 +169,6 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Delete(IList<TLink> restriction, Func<IList<TLink>, IList<TLink>, TLink> handler) => _links.Delete(restriction, handler);
+        public virtual TLink Delete(IList<TLink> restriction, WriteHandler<TLink> handler) => _links.Delete(restriction, handler);
     }
 }

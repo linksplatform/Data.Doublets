@@ -436,11 +436,11 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLink EachUsage(TLink @base, Func<IList<TLink>, TLink> handler) => EachUsageCore(@base, GetTreeRoot(), handler);
+        public TLink EachUsage(TLink @base, ReadHandler<TLink> handler) => EachUsageCore(@base, GetTreeRoot(), handler);
 
         // TODO: 1. Move target, handler to separate object. 2. Use stack or walker 3. Use low-level MSIL stack.
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private TLink EachUsageCore(TLink @base, TLink link, Func<IList<TLink>, TLink> handler)
+        private TLink EachUsageCore(TLink @base, TLink link, ReadHandler<TLink> handler)
         {
             var @continue = Continue;
             if (EqualToZero(link))

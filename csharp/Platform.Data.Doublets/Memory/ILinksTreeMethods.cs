@@ -71,7 +71,7 @@ namespace Platform.Data.Doublets.Memory
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        TLink EachUsage(TLink root, Func<IList<TLink>, TLink> handler);
+        TLink EachUsage(TLink root, ReadHandler<TLink> handler);
 
         /// <summary>
         /// <para>

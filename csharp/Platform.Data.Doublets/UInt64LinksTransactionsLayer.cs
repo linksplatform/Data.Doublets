@@ -559,7 +559,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override ulong Create(IList<ulong> substitution, Func<IList<ulong>, IList<ulong>, ulong> handler)
+        public override ulong Create(IList<ulong> substitution, WriteHandler<ulong> handler)
         {
             var createdLinkIndex = _links.Create();
             var createdLink = new Link<ulong>(_links.GetLink(createdLinkIndex));
@@ -586,7 +586,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override ulong Update(IList<ulong> restriction, IList<ulong> substitution, Func<IList<ulong>, IList<ulong>, ulong> handler)
+        public override ulong Update(IList<ulong> restriction, IList<ulong> substitution, WriteHandler<ulong> handler)
         {
             var linkIndex = restriction[_constants.IndexPart];
             var beforeLink = new Link<ulong>(_links.GetLink(linkIndex));
@@ -607,7 +607,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override ulong Delete(IList<ulong> restriction, Func<IList<ulong>, IList<ulong>, ulong> handler)
+        public override ulong Delete(IList<ulong> restriction, WriteHandler<ulong> handler)
         {
             var link = restriction[_constants.IndexPart];
             var deletedLink = new Link<ulong>(_links.GetLink(link));

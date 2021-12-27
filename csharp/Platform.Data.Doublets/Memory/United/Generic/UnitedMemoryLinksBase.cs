@@ -339,7 +339,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Each(IList<TLink> restriction, Func<IList<TLink>, TLink> handler)
+        public virtual TLink Each(IList<TLink> restriction, ReadHandler<TLink> handler)
         {
             var constants = Constants;
             var @break = constants.Break;
@@ -471,7 +471,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// TODO: Возможно можно перемещать значения, если указан индекс, но значение существует в другом месте (но не в менеджере памяти, а в логике Links)
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Update(IList<TLink> restriction, IList<TLink> substitution, Func<IList<TLink>, IList<TLink>, TLink> handler)
+        public virtual TLink Update(IList<TLink> restriction, IList<TLink> substitution, WriteHandler<TLink> handler)
         {
             var constants = Constants;
             var @null = constants.Null;
@@ -508,7 +508,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// TODO: Возможно нужно будет заполнение нулями, если внешнее API ими не заполняет пространство
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Create(IList<TLink> substitution, Func<IList<TLink>, IList<TLink>, TLink> handler)
+        public virtual TLink Create(IList<TLink> substitution, WriteHandler<TLink> handler)
         {
             ref var header = ref GetHeaderReference();
             var freeLink = header.FirstFreeLink;
@@ -547,7 +547,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Delete(IList<TLink> restriction, Func<IList<TLink>, IList<TLink>, TLink> handler)
+        public virtual TLink Delete(IList<TLink> restriction, WriteHandler<TLink> handler)
         {
             ref var header = ref GetHeaderReference();
             var link = restriction[Constants.IndexPart];

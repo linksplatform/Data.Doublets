@@ -346,7 +346,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLink EachUsage(TLink source, Func<IList<TLink>, TLink> handler)
+        public TLink EachUsage(TLink source, ReadHandler<TLink> handler)
         {
             var @continue = Continue;
             var @break = Break;

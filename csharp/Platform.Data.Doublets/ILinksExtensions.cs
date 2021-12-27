@@ -150,7 +150,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TLink Delete<TLink>(this ILinks<TLink> links, TLink linkToDelete, Func<IList<TLink>, IList<TLink>, TLink> handler)
+        public static TLink Delete<TLink>(this ILinks<TLink> links, TLink linkToDelete, WriteHandler<TLink> handler)
         {
             if (links.Exists(linkToDelete))
             {
@@ -442,7 +442,7 @@ namespace Platform.Data.Doublets
         /// <param name="restriction">Ограничения на содержимое связей. Каждое ограничение может иметь значения: Constants.Null - 0-я связь, обозначающая ссылку на пустоту, Any - отсутствие ограничения, 1..∞ конкретный адрес связи.</param>
         /// <returns>True, в случае если проход по связям не был прерван и False в обратном случае.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool Each<TLink>(this ILinks<TLink> links, Func<IList<TLink>, TLink> handler, params TLink[] restriction)
+        public static bool Each<TLink>(this ILinks<TLink> links, ReadHandler<TLink> handler, params TLink[] restriction)
             => Equals(links.Each(handler, restriction), links.Constants.Continue);
 
         /// <summary>
@@ -469,7 +469,7 @@ namespace Platform.Data.Doublets
         /// <param name="handler">Обработчик каждой подходящей связи.</param>
         /// <returns>True, в случае если проход по связям не был прерван и False в обратном случае.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool Each<TLink>(this ILinks<TLink> links, TLink source, TLink target, Func<IList<TLink>, TLink> handler) => links.Each(handler, links.Constants.Any, source, target);
+        public static bool Each<TLink>(this ILinks<TLink> links, TLink source, TLink target, ReadHandler<TLink> handler) => links.Each(handler, links.Constants.Any, source, target);
 
         /// <summary>
         /// <para>
@@ -888,7 +888,7 @@ namespace Platform.Data.Doublets
 
         /// <param name="links">Хранилище связей.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TLink CreatePoint<TLink>(this ILinks<TLink> links, Func<IList<TLink>, IList<TLink>, TLink> handler)
+        public static TLink CreatePoint<TLink>(this ILinks<TLink> links, WriteHandler<TLink> handler)
         {
             var link = links.Create();
             var restriction = new List<TLink> { link };
@@ -1054,7 +1054,7 @@ namespace Platform.Data.Doublets
 
         /// <remarks>Before execution of this method ensure that deleted link is detached (all values - source and target are reset to null) or it might enter into infinite recursion.</remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void DeleteAllUsages<TLink>(this ILinks<TLink> links, TLink linkIndex, Func<IList<TLink>, IList<TLink>, TLink> handler)
+        public static void DeleteAllUsages<TLink>(this ILinks<TLink> links, TLink linkIndex, WriteHandler<TLink> handler)
         {
             var any = links.Constants.Any;
             var addressToInt64Converter = CheckedConverter<TLink, long>.Default;
@@ -1217,7 +1217,7 @@ namespace Platform.Data.Doublets
         /// Merging two usages graphs, all children of old link moved to be children of new link or deleted.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TLink MergeUsages<TLink>(this ILinks<TLink> links, TLink oldLinkIndex, TLink newLinkIndex, Func<IList<TLink>, IList<TLink>, TLink> handler)
+        public static TLink MergeUsages<TLink>(this ILinks<TLink> links, TLink oldLinkIndex, TLink newLinkIndex, WriteHandler<TLink> handler)
         {
             var addressToInt64Converter = CheckedConverter<TLink, long>.Default;
             var equalityComparer = EqualityComparer<TLink>.Default;
@@ -1283,7 +1283,7 @@ namespace Platform.Data.Doublets
         /// Replace one link with another (replaced link is deleted, children are updated or deleted).
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TLink MergeAndDelete<TLink>(this ILinks<TLink> links, TLink oldLinkIndex, TLink newLinkIndex, Func<IList<TLink>, IList<TLink>, TLink> handler)
+        public static TLink MergeAndDelete<TLink>(this ILinks<TLink> links, TLink oldLinkIndex, TLink newLinkIndex, WriteHandler<TLink> handler)
         {
             var equalityComparer = EqualityComparer<TLink>.Default;
             if (!equalityComparer.Equals(oldLinkIndex, newLinkIndex))

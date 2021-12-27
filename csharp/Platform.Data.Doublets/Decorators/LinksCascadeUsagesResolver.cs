@@ -36,7 +36,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Delete(IList<TLink> restriction, Func<IList<TLink>, IList<TLink>, TLink> handler)
+        public override TLink Delete(IList<TLink> restriction, WriteHandler<TLink> handler)
         {
             var linkIndex = restriction[_constants.IndexPart];
             // Use Facade (the last decorator) to ensure recursion working correctly

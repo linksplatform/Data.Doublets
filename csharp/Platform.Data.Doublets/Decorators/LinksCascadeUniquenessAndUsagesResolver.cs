@@ -47,7 +47,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink ResolveAddressChangeConflict(TLink oldLinkAddress, TLink newLinkAddress, Func<IList<TLink>, IList<TLink>, TLink> handler)
+        protected override TLink ResolveAddressChangeConflict(TLink oldLinkAddress, TLink newLinkAddress, WriteHandler<TLink> handler)
         {
             // Use Facade (the last decorator) to ensure recursion working correctly
             _facade.MergeUsages(oldLinkAddress, newLinkAddress);

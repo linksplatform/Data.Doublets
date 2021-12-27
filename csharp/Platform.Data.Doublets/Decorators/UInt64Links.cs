@@ -55,7 +55,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override ulong Create(IList<ulong> substitution, Func<IList<ulong>, IList<ulong>, ulong> handler) => _links.CreatePoint(handler);
+        public override ulong Create(IList<ulong> substitution, WriteHandler<ulong> handler) => _links.CreatePoint(handler);
 
         /// <summary>
         /// <para>
@@ -76,7 +76,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override ulong Update(IList<ulong> restriction, IList<ulong> substitution, Func<IList<ulong>, IList<ulong>, ulong> handler)
+        public override ulong Update(IList<ulong> restriction, IList<ulong> substitution, WriteHandler<ulong> handler)
         {
             var constants = _constants;
             var indexPartConstant = constants.IndexPart;
@@ -119,7 +119,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override ulong Delete(IList<ulong> restriction, Func<IList<ulong>, IList<ulong>, ulong> handler)
+        public override ulong Delete(IList<ulong> restriction, WriteHandler<ulong> handler)
         {
             var linkIndex = restriction[_constants.IndexPart];
             var links = _links;
