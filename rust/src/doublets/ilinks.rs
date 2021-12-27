@@ -11,6 +11,7 @@ use crate::doublets::data::ToQuery;
 use crate::doublets::data::{LinksConstants, Point, Query};
 use crate::doublets::error::LinksError;
 use crate::doublets::link::Link;
+use crate::doublets::StoppedHandler;
 use crate::doublets::{data, Doublet, Flow};
 use crate::num::LinkType;
 use crate::query;
@@ -48,7 +49,7 @@ pub trait ILinks<T: LinkType>: Sized {
         let mut index = default();
         self.create_by_with(query, |before, link| {
             index = link.index;
-            Flow::Break
+            Flow::Continue
         })
         .map(|_| index)
     }
@@ -119,7 +120,7 @@ pub trait ILinks<T: LinkType>: Sized {
         let mut result = default();
         self.update_by_with(query, replacement, |before, after| {
             result = after.index;
-            Flow::Break
+            Flow::Continue
         })
         .map(|_| result)
     }
@@ -156,7 +157,7 @@ pub trait ILinks<T: LinkType>: Sized {
         let mut result = default();
         self.delete_by_with(query, |before, after| {
             result = after.index;
-            Flow::Break
+            Flow::Continue
         })
         .map(|_| result)
     }
@@ -205,7 +206,7 @@ pub trait ILinks<T: LinkType>: Sized {
         Ok(())
     }
 
-    fn delete_query_with<Marker, F, R>(
+    fn delete_query_with<F, R>(
         &mut self,
         query: impl ToQuery<T>,
         mut handler: F,
@@ -224,16 +225,9 @@ pub trait ILinks<T: LinkType>: Sized {
             constants.r#continue
         });
 
-        let mut handle = true;
+        let mut handler = StoppedHandler::new(handler);
         for index in vec.into_iter().rev() {
-            if handle {
-                handle = self
-                    .delete_with(index, &mut handler)?
-                    .branch()
-                    .is_continue()
-            } else {
-                self.delete(index)?;
-            }
+            self.delete_with(index, &mut handler)?;
         }
         Ok(())
     }
@@ -261,16 +255,9 @@ pub trait ILinks<T: LinkType>: Sized {
             Flow::Continue
         });
 
-        let mut handle = true;
+        let mut handler = StoppedHandler::new(handler);
         for index in to_delete.into_iter().rev() {
-            if handle {
-                handle = self
-                    .delete_with(index, &mut handler)?
-                    .branch()
-                    .is_continue()
-            } else {
-                self.delete(index)?;
-            }
+            self.delete_with(index, &mut handler)?;
         }
         Ok(())
     }
@@ -284,9 +271,40 @@ pub trait ILinks<T: LinkType>: Sized {
         self.update(new, new, new)
     }
 
+    #[deprecated(note = "use `create_link` instead")]
     fn create_and_update(&mut self, source: T, target: T) -> Result<T> {
-        let new = self.create()?;
-        self.update(new, source, target)
+        self.create_link(source, target)
+    }
+
+    fn create_link_with<F, R>(
+        &mut self,
+        source: T,
+        target: T,
+        mut handler: F,
+    ) -> Result<Flow, LinksError<T>>
+    where
+        F: FnMut(Link<T>, Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
+        // todo macro?
+        let mut new = default();
+        let mut handler = StoppedHandler::new(handler);
+        self.create_with(|before, after| {
+            new = after.index;
+            handler(before, after);
+            Flow::Continue
+        })?;
+
+        self.update_with(new, source, target, handler)
+    }
+
+    fn create_link(&mut self, source: T, target: T) -> Result<T> {
+        let mut result = default();
+        self.create_link_with(source, target, |_, link| {
+            result = link.index;
+            Flow::Continue
+        })
+        .map(|_| result)
     }
 
     #[deprecated(note = "use `links.search(source, target).unwrap_or(or)`")]
@@ -396,59 +414,41 @@ pub trait ILinks<T: LinkType>: Sized {
             return Ok(());
         }
 
-        let link = self.try_get_link(old)?;
-        let constants = self.constants();
-        let any = constants.any;
+        let any = self.constants().any;
+        let as_source = [any, old, any];
+        let as_target = [any, any, old];
 
-        let sources_count = self.count_by([any, old, any]).as_();
-        let targets_count = self.count_by([any, any, old]).as_();
-        if sources_count == 0 && targets_count == 0 && link.is_full() {
+        let sources_count: usize = self.count_by(as_source).as_();
+        let targets_count: usize = self.count_by(as_target).as_();
+
+        // not borrowed
+        if sources_count + targets_count == 0 {
             return Ok(());
         }
 
-        let total = sources_count + targets_count;
-        if total == 0 {
-            return Ok(());
-        }
+        let mut handler = StoppedHandler::new(handler);
 
         let mut usages = Vec::with_capacity(sources_count);
-        self.each_by([any, old, any], |link| {
-            usages.push(link.index);
-            constants.r#continue
+        self.try_each_by(as_source, |link| {
+            usages.push(link);
+            Flow::Continue
         });
 
-        let mut handle = true;
-        for index in usages {
-            if index != old {
-                let usage = self.try_get_link(index)?;
-                if handle {
-                    handle = self
-                        .update_with(index, new, usage.target, &mut handler)?
-                        .branch()
-                        .is_continue();
-                } else {
-                    self.update(index, new, usage.target)?;
-                }
+        for usage in usages {
+            if usage.index != old {
+                self.update_with(usage.index, new, usage.target, &mut handler)?;
             }
         }
 
         let mut usages = Vec::with_capacity(sources_count);
-        self.each_by([any, any, old], |link| {
-            usages.push(link.index);
-            constants.r#continue
+        self.try_each_by(as_target, |link| {
+            usages.push(link);
+            Flow::Continue
         });
 
-        for index in usages {
-            if index != old {
-                let usage = self.try_get_link(index)?;
-                if handle {
-                    handle = self
-                        .update_with(index, new, usage.source, &mut handler)?
-                        .branch()
-                        .is_continue();
-                } else {
-                    self.update(index, new, usage.source)?;
-                }
+        for usage in usages {
+            if usage.index != old {
+                self.update_with(usage.index, usage.source, new, &mut handler)?;
             }
         }
         Ok(())
@@ -465,8 +465,8 @@ pub trait ILinks<T: LinkType>: Sized {
         let constants = self.constants();
         let any = constants.any;
 
-        let sources_count = self.count_by(Query::new(&[any, old, any][..])).as_();
-        let targets_count = self.count_by(Query::new(&[any, any, old][..])).as_();
+        let sources_count = self.count_by([any, old, any]).as_();
+        let targets_count = self.count_by([any, any, old]).as_();
         if sources_count == 0 && targets_count == 0 && Point::is_full(link) {
             return Ok(new);
         }

@@ -21,6 +21,7 @@
 #![feature(control_flow_enum)]
 #![feature(type_alias_impl_trait)]
 #![feature(trait_alias)]
+#![feature(unboxed_closures)]
 
 use crate::doublets::mem::united::{Links, NewList, NewTree, UpdatePointersSplit};
 use crate::doublets::mem::{splited, ILinksListMethods, ILinksTreeMethods, UpdatePointers};

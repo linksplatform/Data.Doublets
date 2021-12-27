@@ -76,12 +76,11 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for CascadeUniqueResolver<T, Links
         // todo find by [[any], replacement[1..]].concat()
         if let Some(old) = links.search(replacement[1], replacement[2]) {
             let new = query[0];
-            links.rebase_with(old, new, &mut handler)?;
             if old != new {
-                links.delete_with(old, handler)
-            } else {
-                links.update_by_with(query, replacement, handler)
+                links.rebase_with(old, new, &mut handler);
+                links.delete_with(old, &mut handler);
             }
+            links.update_by_with(query, replacement, handler)
         } else {
             links.update_by_with(query, replacement, handler)
         }

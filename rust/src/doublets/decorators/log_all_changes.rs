@@ -1,32 +1,29 @@
-use std::borrow::BorrowMut;
 use std::default::default;
 use std::marker::PhantomData;
 use std::ops::Try;
 
-use smallvec::SmallVec;
-
+use crate::doublets::data::LinksConstants;
 use crate::doublets::data::ToQuery;
-use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstants};
-use crate::doublets::{Flow, LinksError};
-use crate::doublets::{ILinks, ILinksExtensions, Link, Result};
+use crate::doublets::LinksError;
+use crate::doublets::{ILinks, Link, Result};
 use crate::num::LinkType;
 
-pub struct UniqueResolver<T: LinkType, Links: ILinks<T>> {
+pub struct LogAllChanges<T: LinkType, Links: ILinks<T>> {
     links: Links,
 
     _phantom: PhantomData<T>,
 }
 
-impl<T: LinkType, Links: ILinks<T>> UniqueResolver<T, Links> {
+impl<T: LinkType, Links: ILinks<T>> LogAllChanges<T, Links> {
     pub fn new(links: Links) -> Self {
-        UniqueResolver {
+        Self {
             links,
-            _phantom: PhantomData,
+            _phantom: default(),
         }
     }
 }
 
-impl<T: LinkType, Links: ILinks<T>> ILinks<T> for UniqueResolver<T, Links> {
+impl<T: LinkType, Links: ILinks<T>> ILinks<T> for LogAllChanges<T, Links> {
     fn constants(&self) -> LinksConstants<T> {
         self.links.constants()
     }
@@ -38,13 +35,16 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for UniqueResolver<T, Links> {
     fn create_by_with<F, R>(
         &mut self,
         query: impl ToQuery<T>,
-        handler: F,
+        mut handler: F,
     ) -> Result<R, LinksError<T>>
     where
         F: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>,
     {
-        self.links.create_by_with(query, handler)
+        self.links.create_by_with(query, move |before, after| {
+            log::info!("{} ==> {}", before, after);
+            handler(before, after)
+        })
     }
 
     fn try_each_by<F, R>(&self, restrictions: impl ToQuery<T>, handler: F) -> R
@@ -65,30 +65,25 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for UniqueResolver<T, Links> {
         F: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>,
     {
-        let links = self.links.borrow_mut();
-        let query = query.to_query();
-        let replacement = replacement.to_query();
-
-        // todo find by [[any], replacement[1..]].concat()
-        if let Some(old) = links.search(replacement[1], replacement[2]) {
-            if old != query[0] {
-                links.delete_with(old, &mut handler);
-            }
-            links.update_by_with(query, replacement, handler)
-        } else {
-            links.update_by_with(query, replacement, handler)
-        }
+        self.links
+            .update_by_with(query, replacement, move |before, after| {
+                log::info!("{} ==> {}", before, after);
+                handler(before, after)
+            })
     }
 
     fn delete_by_with<F, R>(
         &mut self,
         query: impl ToQuery<T>,
-        handler: F,
+        mut handler: F,
     ) -> Result<R, LinksError<T>>
     where
         F: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>,
     {
-        self.links.delete_by_with(query, handler)
+        self.links.delete_by_with(query, move |before, after| {
+            log::info!("{} ==> {}", before, after);
+            handler(before, after)
+        })
     }
 }

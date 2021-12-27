@@ -11,6 +11,8 @@ memmap2 = "0.5.0"
 rand = "0.8.0"
 bumpalo = { version = "3.8.0", features = ["allocator_api"] }
 tempfile = "3.2.0"
+log = { version = "0.4.14", features = ["release_max_level_info", "max_level_info"] }
+env_logger = "0.9.0"
 
 [dev-dependencies]
 criterion = "0.3"
