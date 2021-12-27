@@ -1,32 +1,12 @@
-use crate::doublets::decorators::{
-    CascadeUniqueResolver, LogAllChanges, NonNullDeletionResolver, UniqueResolver, UniqueValidator,
-};
-use crate::doublets::Flow::{Break, Continue};
-use crate::doublets::{Doublet, ILinks, Link, LinksError};
-use crate::num::LinkType;
-use crate::tests::make_links;
-use crate::tests::make_mem;
 use std::error::Error;
-use std::marker::PhantomData;
-use std::ops::Try;
 
-// Maybe later add to library
-#[derive(Debug, Clone)]
-enum ChangesKind {
-    Create,
-    Update,
-    Delete,
-}
-
-fn what_operation<T: LinkType>(before: &Link<T>, after: &Link<T>) -> ChangesKind {
-    if before == &Link::nothing() {
-        ChangesKind::Create
-    } else if after == &Link::nothing() {
-        ChangesKind::Delete
-    } else {
-        ChangesKind::Update
-    }
-}
+use crate::doublets::decorators::{
+    CascadeUniqueResolver, CascadeUsagesResolver, NonNullDeletionResolver, UniqueResolver,
+    UniqueValidator, UsagesValidator,
+};
+use crate::doublets::Flow::Continue;
+use crate::doublets::{Doublet, ILinks, Link, LinksError};
+use crate::tests::{make_links, make_mem};
 
 #[test]
 fn non_null_deletions() -> Result<(), Box<dyn Error>> {
@@ -109,6 +89,58 @@ fn cascade_resolver() -> Result<(), Box<dyn Error>> {
     let any = links.constants().any;
     let query = [any, any, linker];
     assert_eq!(links.count_by(query), 2);
+
+    Ok(())
+}
+
+#[test]
+// TODO: rename to `BorrowingValidator` or other name
+fn usages_validator() -> Result<(), Box<dyn Error>> {
+    let mem = make_mem();
+    let links = make_links(mem).unwrap();
+    let mut links = UsagesValidator::new(links);
+
+    let point = links.create_point()?;
+    let anchor = links.create_point()?;
+
+    links.create_link(anchor, point);
+
+    match links.update(point, 0, 0).unwrap_err() {
+        LinksError::HasDeps(reference) => {
+            assert_eq!(reference, links.try_get_link(point)?);
+        }
+        _ => panic!("test not passed"),
+    }
+
+    match links.delete(point).unwrap_err() {
+        LinksError::HasDeps(reference) => {
+            assert_eq!(reference, links.try_get_link(point)?);
+        }
+        _ => panic!("test not passed"),
+    }
+
+    Ok(())
+}
+
+#[test]
+// TODO: rename to less stupid name
+fn cascade_usages_resolver() -> Result<(), Box<dyn Error>> {
+    let mem = make_mem();
+    let links = make_links(mem).unwrap();
+    let mut links = CascadeUsagesResolver::new(links);
+
+    let konard = links.create_point()?;
+
+    for _ in 0..1000 {
+        let fan = links.create_point()?;
+        links.create_link(fan, konard)?;
+    }
+
+    assert_eq!(links.count(), 1 + 1000 + 1000);
+
+    links.delete(konard)?;
+
+    assert_eq!(links.count(), 1000);
 
     Ok(())
 }

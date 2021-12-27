@@ -389,7 +389,7 @@ pub trait ILinks<T: LinkType>: Sized {
             usage_target = usage_target - one();
         }
 
-        usage_source - usage_target
+        usage_source + usage_target
     }
 
     fn exist(&self, link: T) -> bool {

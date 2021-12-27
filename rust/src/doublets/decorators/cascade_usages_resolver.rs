@@ -72,13 +72,14 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for CascadeUsagesResolver<T, Links
     fn delete_by_with<F, R>(
         &mut self,
         query: impl ToQuery<T>,
-        handler: F,
+        mut handler: F,
     ) -> Result<R, LinksError<T>>
     where
         F: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>,
     {
-        self.links.delete_usages(query.to_query()[0])?;
+        self.links
+            .delete_usages_with(query.to_query()[0], &mut handler)?;
         self.links.delete_by_with(query, handler)
     }
 }
