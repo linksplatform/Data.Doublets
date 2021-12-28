@@ -326,13 +326,7 @@ pub trait ILinks<T: LinkType>: Sized {
     }
 
     fn search(&self, source: T, target: T) -> Option<T> {
-        let constants = self.constants();
-        let mut index = None;
-        self.each_by([constants.any, source, target], |link| {
-            index = Some(link.index);
-            T::zero()
-        });
-        index
+        self.find([self.constants().any, source, target])
     }
 
     fn single(&self, query: impl ToQuery<T>) -> Option<Link<T>> {
