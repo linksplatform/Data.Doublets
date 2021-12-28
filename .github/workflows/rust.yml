@@ -8,6 +8,10 @@ on:
     branches:
       master
 
+env:
+  CARGO_TERM_COLOR: always
+  RUSTFLAGS: -Awarnings
+
 jobs:
   test:
     name: Test
@@ -22,10 +26,9 @@ jobs:
         with:
           toolchain: ${{ matrix.rust }}
           override: true
-      - uses: actions-rs/cargo@v1
-        with:
-          command: test
-          args: --release -- --nocapture
+      - name: Test
+        run: |
+          cargo test +${{ matrix.rust }} --release -- --nocapture
   check:
     runs-on: ubuntu-latest
     name: Check
