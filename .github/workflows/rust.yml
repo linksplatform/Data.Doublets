@@ -36,6 +36,7 @@ jobs:
           toolchain: nightly
           override: true
       - uses: actions-rs/cargo@v1
+      - run: cd rust
         with:
           command: fmt
           args: -- --check
