@@ -84,7 +84,7 @@ namespace Platform.Data.Doublets.Decorators
         {
             if (!_equalityComparer.Equals(oldLinkAddress, newLinkAddress) && _links.Exists(oldLinkAddress))
             {
-                _facade.Delete(oldLinkAddress);
+                _facade.Delete(oldLinkAddress, handler);
             }
             return handler(_links.GetLink(oldLinkAddress), _links.GetLink(newLinkAddress));
         }
