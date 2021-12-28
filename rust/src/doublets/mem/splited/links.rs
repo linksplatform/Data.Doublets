@@ -1,11 +1,13 @@
 use std::borrow::BorrowMut;
 use std::default::default;
-use std::ops::Try;
+use std::mem::size_of;
+use std::ops::{Index, Try};
+use std::ptr::{addr_of, NonNull};
 
 use crate::{doublets, query};
 use num_traits::{one, zero};
 
-use crate::doublets::data::ToQuery;
+use crate::doublets::data::{IGenericLinksExtensions, ToQuery};
 use crate::doublets::data::{LinksConstants, Query};
 use crate::doublets::mem::splited::generic::{
     ExternalSourcesRecursionlessTree, ExternalTargetsRecursionlessTree, InternalSourcesLinkedList,
@@ -16,7 +18,7 @@ use crate::doublets::mem::united::UpdatePointersSplit;
 use crate::doublets::mem::{ILinksListMethods, ILinksTreeMethods, LinksHeader, UpdatePointers};
 use crate::doublets::Result;
 use crate::doublets::{ILinks, Link, LinksError};
-use crate::mem::ResizeableMem;
+use crate::mem::{Mem, ResizeableMem};
 use crate::methods::RelativeCircularDoublyLinkedList;
 use crate::num::LinkType;
 
@@ -74,18 +76,39 @@ impl<
         let index = index_mem.get_ptr();
         let header = index_mem.get_ptr();
 
-        let internal_sources =
-            InternalSourcesRecursionlessTree::new(constants.clone(), data, index, header);
-        let external_sources =
-            ExternalSourcesRecursionlessTree::new(constants.clone(), data, index, header);
+        let internal_sources = InternalSourcesRecursionlessTree::new(
+            constants.clone(),
+            data.as_mut_ptr(),
+            index.as_mut_ptr(),
+            header.as_mut_ptr(),
+        );
+        let external_sources = ExternalSourcesRecursionlessTree::new(
+            constants.clone(),
+            data.as_mut_ptr(),
+            index.as_mut_ptr(),
+            header.as_mut_ptr(),
+        );
 
-        let internal_targets =
-            InternalTargetsRecursionlessTree::new(constants.clone(), data, index, header);
-        let external_targets =
-            ExternalTargetsRecursionlessTree::new(constants.clone(), data, index, header);
+        let internal_targets = InternalTargetsRecursionlessTree::new(
+            constants.clone(),
+            data.as_mut_ptr(),
+            index.as_mut_ptr(),
+            header.as_mut_ptr(),
+        );
+        let external_targets = ExternalTargetsRecursionlessTree::new(
+            constants.clone(),
+            data.as_mut_ptr(),
+            index.as_mut_ptr(),
+            header.as_mut_ptr(),
+        );
 
-        let sources_list = InternalSourcesLinkedList::new(constants.clone(), data, index, header);
-        let unused = UnusedLinks::new(data, index);
+        let sources_list = InternalSourcesLinkedList::new(
+            constants.clone(),
+            data.as_mut_ptr(),
+            index.as_mut_ptr(),
+            header.as_mut_ptr(),
+        );
+        let unused = UnusedLinks::new(data.as_mut_ptr(), index.as_mut_ptr());
 
         let mut new = Links {
             data_mem,
@@ -109,34 +132,58 @@ impl<
         Self::with_constants(data_mem, index_mem, default())
     }
 
-    pub fn get_header(&self) -> &LinksHeader<T> {
-        unsafe { &*(self.index_mem.get_ptr() as *const LinksHeader<T>) }
+    fn mut_from_mem<Output: Sized, M: Mem>(mem: &M, index: usize) -> Option<&mut Output> {
+        let ptr = mem.get_ptr();
+        let sizeof = size_of::<Output>();
+        if index * sizeof < ptr.len() {
+            Some(unsafe {
+                NonNull::slice_from_raw_parts(ptr.cast::<Output>(), ptr.len() / sizeof)
+                    .get_unchecked_mut(index)
+                    .as_mut()
+            })
+        } else {
+            None
+        }
     }
 
-    pub fn mut_header(&mut self) -> &mut LinksHeader<T> {
-        unsafe { &mut *(self.index_mem.get_ptr() as *mut LinksHeader<T>) }
+    fn get_from_mem<Output: Sized, M: Mem>(mem: &M, index: usize) -> Option<&Output> {
+        Self::mut_from_mem(mem, index).map(|v| &*v)
     }
 
-    pub fn get_data_part(&self, index: T) -> &DataPart<T> {
-        unsafe { &*((self.data_mem.get_ptr() as *const DataPart<T>).add(index.as_())) }
+    fn get_header(&self) -> &LinksHeader<T> {
+        Self::get_from_mem(&self.index_mem, 0).expect("Header should be in index memory")
     }
 
-    pub fn mut_data_part(&mut self, index: T) -> &mut DataPart<T> {
-        unsafe { &mut *((self.data_mem.get_ptr() as *mut DataPart<T>).add(index.as_())) }
+    fn mut_header(&mut self) -> &mut LinksHeader<T> {
+        Self::mut_from_mem(&self.index_mem, 0).expect("Header should be in index memory")
     }
 
-    pub fn get_index_part(&self, index: T) -> &IndexPart<T> {
-        unsafe { &*((self.index_mem.get_ptr() as *const IndexPart<T>).add(index.as_())) }
+    fn get_data_part(&self, index: T) -> &DataPart<T> {
+        Self::get_from_mem(&self.data_mem, index.as_()).expect("Data part should be in data memory")
     }
 
-    pub fn mut_index_part(&mut self, index: T) -> &mut IndexPart<T> {
-        unsafe { &mut *((self.index_mem.get_ptr() as *mut IndexPart<T>).add(index.as_())) }
+    unsafe fn get_data_unchecked(&self, index: T) -> &DataPart<T> {
+        Self::get_from_mem(&self.data_mem, index.as_()).unwrap_unchecked()
+    }
+
+    fn mut_data_part(&mut self, index: T) -> &mut DataPart<T> {
+        Self::mut_from_mem(&self.data_mem, index.as_()).expect("Data part should be in data memory")
+    }
+
+    fn get_index_part(&self, index: T) -> &IndexPart<T> {
+        Self::get_from_mem(&self.index_mem, index.as_())
+            .expect("Index part should be in index memory")
+    }
+
+    fn mut_index_part(&mut self, index: T) -> &mut IndexPart<T> {
+        Self::mut_from_mem(&self.index_mem, index.as_())
+            .expect("Index part should be in index memory")
     }
 
     fn update_pointers(&mut self) {
-        let data = self.data_mem.get_ptr();
-        let index = self.index_mem.get_ptr();
-        let header = self.index_mem.get_ptr();
+        let data = self.data_mem.get_ptr().as_mut_ptr();
+        let index = self.index_mem.get_ptr().as_mut_ptr();
+        let header = self.index_mem.get_ptr().as_mut_ptr();
 
         self.internal_sources.update_pointers(data, index, header);
         self.external_sources.update_pointers(data, index, header);
@@ -199,7 +246,8 @@ impl<
     }
 
     pub(crate) fn is_unused(&self, link: T) -> bool {
-        if self.get_header().first_free != link {
+        let header = self.get_header();
+        if link <= header.allocated && header.first_free != link {
             // TODO: May be this check is not needed
             let index = self.get_index_part(link);
             let data = self.get_data_part(link);
@@ -207,6 +255,10 @@ impl<
         } else {
             true
         }
+    }
+
+    pub(crate) fn is_virtual(&self, link: T) -> bool {
+        link > self.get_header().allocated && !self.constants.is_external_reference(link)
     }
 
     pub fn exists(&self, link: T) -> bool {
@@ -224,7 +276,7 @@ impl<
     unsafe fn get_link_unchecked(&self, index: T) -> Link<T> {
         debug_assert!(self.exists(index));
 
-        let raw = self.get_data_part(index);
+        let raw = self.get_data_unchecked(index);
         Link::new(index, raw.source, raw.target)
     }
 
@@ -713,7 +765,7 @@ impl<
         // TODO: move to `delete_core`
         let header = self.get_header();
         let link = index;
-        if link < header.allocated || true {
+        if link < header.allocated {
             self.unused.attach_as_first(link)
         } else if link == header.allocated {
             self.data_mem
@@ -740,12 +792,17 @@ impl<
                 let used_mem = self.index_mem.used_mem();
                 self.index_mem.use_mem(used_mem - Self::INDEX_SIZE)?;
             }
+        } else {
+            // must be unreachable
+            panic!("unexpected link index")
         }
         Ok(handler(Link::new(index, source, target), Link::nothing()))
     }
 
     fn get_link(&self, index: T) -> Option<Link<T>> {
-        if self.exists(index) {
+        if self.constants.is_external_reference(index) {
+            Some(Link::point(index))
+        } else if self.exists(index) {
             Some(unsafe { self.get_link_unchecked(index) })
         } else {
             None

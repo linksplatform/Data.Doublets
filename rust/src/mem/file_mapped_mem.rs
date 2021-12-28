@@ -4,6 +4,7 @@ use std::fs::{File, OpenOptions};
 use std::io;
 use std::mem::ManuallyDrop;
 use std::path::Path;
+use std::ptr::NonNull;
 
 use memmap2;
 use memmap2::{MmapMut, MmapOptions};
@@ -26,7 +27,11 @@ impl FileMappedMem {
         let to_reserve = max(len, capacity);
 
         let mut new = Self {
-            base: Default::default(),
+            base: ResizeableBase {
+                used: 0,
+                reserved: 0,
+                ptr: NonNull::slice_from_raw_parts(NonNull::dangling(), 0),
+            },
             mapping: ManuallyDrop::new(mapping),
             file,
         };
@@ -49,10 +54,10 @@ impl FileMappedMem {
         Self::reserve_new(path, ResizeableBase::MINIMUM_CAPACITY)
     }
 
-    fn map(&mut self, capacity: usize) -> std::io::Result<*mut u8> {
+    fn map(&mut self, capacity: usize) -> std::io::Result<NonNull<[u8]>> {
         let mapping = unsafe { MmapOptions::new().len(capacity).map_mut(&self.file)? };
         self.mapping = ManuallyDrop::new(mapping);
-        Ok(self.mapping.as_mut_ptr())
+        Ok(NonNull::from(self.mapping.as_mut()))
     }
 
     fn unmap(&mut self) {
@@ -61,11 +66,11 @@ impl FileMappedMem {
 }
 
 impl Mem for FileMappedMem {
-    fn get_ptr(&self) -> *mut u8 {
+    fn get_ptr(&self) -> NonNull<[u8]> {
         self.base.get_ptr()
     }
 
-    fn set_ptr(&mut self, ptr: *mut u8) {
+    fn set_ptr(&mut self, ptr: NonNull<[u8]>) {
         self.base.set_ptr(ptr)
     }
 }

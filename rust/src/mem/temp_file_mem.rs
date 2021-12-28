@@ -3,6 +3,7 @@ use crate::ResizeableMem;
 use std::fs;
 use std::io;
 use std::path::Path;
+use std::ptr::NonNull;
 
 pub struct TempFileMem {
     mem: FileMappedMem,
@@ -18,11 +19,11 @@ impl TempFileMem {
 }
 
 impl Mem for TempFileMem {
-    fn get_ptr(&self) -> *mut u8 {
+    fn get_ptr(&self) -> NonNull<[u8]> {
         self.mem.get_ptr()
     }
 
-    fn set_ptr(&mut self, ptr: *mut u8) {
+    fn set_ptr(&mut self, ptr: NonNull<[u8]>) {
         self.mem.set_ptr(ptr)
     }
 }

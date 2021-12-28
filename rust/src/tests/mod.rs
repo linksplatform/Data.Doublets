@@ -54,6 +54,8 @@ mod hybrid;
 #[cfg(test)]
 mod ilinks_basic;
 #[cfg(test)]
+mod safety;
+#[cfg(test)]
 mod sync;
 #[cfg(test)]
 mod trees;

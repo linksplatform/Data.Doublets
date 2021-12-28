@@ -154,16 +154,11 @@ fn billion_points_bump_alloc_splited() {
     index.reserve_mem(1023 * 1023).unwrap();
     let mut links = splited::Links::<usize, _, _>::new(mem, index).unwrap();
 
-    println!("{}", links.get_header().reserved);
-
     let instant = Instant::now();
 
     for _ in 0..1_000_000 {
         links.create_point().unwrap();
     }
-
-    println!("{}", links.get_header().reserved);
-    println!("{}", 65535 * 2);
 
     println!("{:?}", instant.elapsed());
 }

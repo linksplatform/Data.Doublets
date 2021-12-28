@@ -1,28 +1,28 @@
 use std::io::Error;
 use std::io::ErrorKind;
-use std::ptr::null_mut;
+use std::ptr::{null_mut, NonNull};
 
 use crate::mem::mem_traits::{Mem, ResizeableMem};
 
 pub struct ResizeableBase {
     pub used: usize,
     pub reserved: usize,
-    pub ptr: *mut u8,
+    pub ptr: NonNull<[u8]>,
 }
 
 impl ResizeableBase {
     // TODO: use macros for calculate in compile time
-    const PAGE_SIZE: usize = 2 * 1024;
+    const PAGE_SIZE: usize = 4 * 1024;
 
     pub const MINIMUM_CAPACITY: usize = Self::PAGE_SIZE;
 }
 
 impl Mem for ResizeableBase {
-    fn get_ptr(&self) -> *mut u8 {
+    fn get_ptr(&self) -> NonNull<[u8]> {
         self.ptr
     }
 
-    fn set_ptr(&mut self, ptr: *mut u8) {
+    fn set_ptr(&mut self, ptr: NonNull<[u8]>) {
         self.ptr = ptr
     }
 }
@@ -58,15 +58,5 @@ impl ResizeableMem for ResizeableBase {
 
     fn reserved_mem(&self) -> usize {
         self.reserved
-    }
-}
-
-impl Default for ResizeableBase {
-    fn default() -> Self {
-        ResizeableBase {
-            used: 0,
-            reserved: 0,
-            ptr: null_mut(),
-        }
     }
 }

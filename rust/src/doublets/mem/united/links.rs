@@ -2,6 +2,7 @@ use std::default::default;
 use std::marker::PhantomData;
 use std::mem::size_of;
 use std::ops::{ControlFlow, Index, Try};
+use std::ptr::NonNull;
 
 use num_traits::{one, zero};
 use smallvec::SmallVec;
@@ -51,795 +52,6 @@ impl<
         TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
     > Links<T, M, TS, TT, TU>
 {
-    ///
-    ///                    Create a builder for building `Links`.
-    ///                    On the builder, call `.mem(...)`, `.reserve_step(...)`, `.constants(...)`, `.sources(...)`, `.targets(...)`, `.unused(...)` to set the values of the fields.
-    ///                    Finally, call `.build()` to create the instance of `Links`.
-    ///
-    #[allow(dead_code, clippy::default_trait_access)]
-    pub fn with_options() -> LinksBuilder<((), (), (), (), (), ()), T, M, TS, TT, TU> {
-        LinksBuilder {
-            fields: ((), (), (), (), (), ()),
-            phantom: ::core::default::Default::default(),
-        }
-    }
-}
-
-#[must_use]
-#[doc(hidden)]
-#[allow(dead_code, non_camel_case_types, non_snake_case)]
-pub struct LinksBuilder<TypedBuilderFields, T: LinkType, M: ResizeableMem, TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers = LinksSourcesRecursionlessSizeBalancedTree<T>, TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers = LinksTargetsRecursionlessSizeBalancedTree<T>, TU: ILinksListMethods<T> + NewList<T> + UpdatePointers = UnusedLinks<T>> {
-    fields: TypedBuilderFields,
-    phantom: (::core::marker::PhantomData<T>, ::core::marker::PhantomData<M>, ::core::marker::PhantomData<TS>, ::core::marker::PhantomData<TT>, ::core::marker::PhantomData<TU>),
-}
-
-impl<
-        TypedBuilderFields,
-        T: LinkType,
-        M: ResizeableMem,
-        TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
-    > Clone for LinksBuilder<TypedBuilderFields, T, M, TS, TT, TU>
-where
-    TypedBuilderFields: Clone,
-{
-    #[allow(clippy::default_trait_access)]
-    fn clone(&self) -> Self {
-        Self {
-            fields: self.fields.clone(),
-            phantom: ::core::default::Default::default(),
-        }
-    }
-}
-
-#[doc(hidden)]
-#[allow(dead_code, non_camel_case_types, non_snake_case)]
-pub trait LinksBuilder_Optional<T> {
-    fn into_value<F: FnOnce() -> T>(self, default: F) -> T;
-}
-
-impl<T> LinksBuilder_Optional<T> for () {
-    fn into_value<F: FnOnce() -> T>(self, default: F) -> T {
-        default()
-    }
-}
-
-impl<T> LinksBuilder_Optional<T> for (T,) {
-    fn into_value<F: FnOnce() -> T>(self, _: F) -> T {
-        self.0
-    }
-}
-
-#[allow(dead_code, non_camel_case_types, missing_docs)]
-impl<
-        __unused,
-        __targets,
-        __sources,
-        __constants,
-        __reserve_step,
-        T: LinkType,
-        M: ResizeableMem,
-        TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
-    >
-    LinksBuilder<
-        (
-            (),
-            __reserve_step,
-            __constants,
-            __sources,
-            __targets,
-            __unused,
-        ),
-        T,
-        M,
-        TS,
-        TT,
-        TU,
-    >
-{
-    pub fn mem(
-        self,
-        mem: M,
-    ) -> LinksBuilder<
-        (
-            (M,),
-            __reserve_step,
-            __constants,
-            __sources,
-            __targets,
-            __unused,
-        ),
-        T,
-        M,
-        TS,
-        TT,
-        TU,
-    > {
-        let mem = (mem,);
-        let (_, reserve_step, constants, sources, targets, unused) = self.fields;
-        LinksBuilder {
-            fields: (mem, reserve_step, constants, sources, targets, unused),
-            phantom: self.phantom,
-        }
-    }
-}
-
-#[doc(hidden)]
-#[allow(dead_code, non_camel_case_types, non_snake_case)]
-pub enum LinksBuilder_Error_Repeated_field_mem {}
-
-#[doc(hidden)]
-#[allow(dead_code, non_camel_case_types, missing_docs)]
-impl<
-        __unused,
-        __targets,
-        __sources,
-        __constants,
-        __reserve_step,
-        T: LinkType,
-        M: ResizeableMem,
-        TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
-    >
-    LinksBuilder<
-        (
-            (M,),
-            __reserve_step,
-            __constants,
-            __sources,
-            __targets,
-            __unused,
-        ),
-        T,
-        M,
-        TS,
-        TT,
-        TU,
-    >
-{
-    #[deprecated(note = "Repeated field mem")]
-    pub fn mem(
-        self,
-        _: LinksBuilder_Error_Repeated_field_mem,
-    ) -> LinksBuilder<
-        (
-            (M,),
-            __reserve_step,
-            __constants,
-            __sources,
-            __targets,
-            __unused,
-        ),
-        T,
-        M,
-        TS,
-        TT,
-        TU,
-    > {
-        self
-    }
-}
-
-#[allow(dead_code, non_camel_case_types, missing_docs)]
-impl<
-        __unused,
-        __targets,
-        __sources,
-        __constants,
-        __mem,
-        T: LinkType,
-        M: ResizeableMem,
-        TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
-    > LinksBuilder<(__mem, (), __constants, __sources, __targets, __unused), T, M, TS, TT, TU>
-{
-    pub fn reserve_step(
-        self,
-        reserve_step: usize,
-    ) -> LinksBuilder<
-        (__mem, (usize,), __constants, __sources, __targets, __unused),
-        T,
-        M,
-        TS,
-        TT,
-        TU,
-    > {
-        let reserve_step = (reserve_step,);
-        let (mem, _, constants, sources, targets, unused) = self.fields;
-        LinksBuilder {
-            fields: (mem, reserve_step, constants, sources, targets, unused),
-            phantom: self.phantom,
-        }
-    }
-}
-
-#[doc(hidden)]
-#[allow(dead_code, non_camel_case_types, non_snake_case)]
-pub enum LinksBuilder_Error_Repeated_field_reserve_step {}
-
-#[doc(hidden)]
-#[allow(dead_code, non_camel_case_types, missing_docs)]
-impl<
-        __unused,
-        __targets,
-        __sources,
-        __constants,
-        __mem,
-        T: LinkType,
-        M: ResizeableMem,
-        TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
-    >
-    LinksBuilder<(__mem, (usize,), __constants, __sources, __targets, __unused), T, M, TS, TT, TU>
-{
-    #[deprecated(note = "Repeated field reserve_step")]
-    pub fn reserve_step(
-        self,
-        _: LinksBuilder_Error_Repeated_field_reserve_step,
-    ) -> LinksBuilder<
-        (__mem, (usize,), __constants, __sources, __targets, __unused),
-        T,
-        M,
-        TS,
-        TT,
-        TU,
-    > {
-        self
-    }
-}
-
-#[allow(dead_code, non_camel_case_types, missing_docs)]
-impl<
-        __unused,
-        __targets,
-        __sources,
-        __reserve_step,
-        __mem,
-        T: LinkType,
-        M: ResizeableMem,
-        TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
-    > LinksBuilder<(__mem, __reserve_step, (), __sources, __targets, __unused), T, M, TS, TT, TU>
-{
-    pub fn constants(
-        self,
-        constants: LinksConstants<T>,
-    ) -> LinksBuilder<
-        (
-            __mem,
-            __reserve_step,
-            (LinksConstants<T>,),
-            __sources,
-            __targets,
-            __unused,
-        ),
-        T,
-        M,
-        TS,
-        TT,
-        TU,
-    > {
-        let constants = (constants,);
-        let (mem, reserve_step, _, sources, targets, unused) = self.fields;
-        LinksBuilder {
-            fields: (mem, reserve_step, constants, sources, targets, unused),
-            phantom: self.phantom,
-        }
-    }
-}
-
-#[doc(hidden)]
-#[allow(dead_code, non_camel_case_types, non_snake_case)]
-pub enum LinksBuilder_Error_Repeated_field_constants {}
-
-#[doc(hidden)]
-#[allow(dead_code, non_camel_case_types, missing_docs)]
-impl<
-        __unused,
-        __targets,
-        __sources,
-        __reserve_step,
-        __mem,
-        T: LinkType,
-        M: ResizeableMem,
-        TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
-    >
-    LinksBuilder<
-        (
-            __mem,
-            __reserve_step,
-            (LinksConstants<T>,),
-            __sources,
-            __targets,
-            __unused,
-        ),
-        T,
-        M,
-        TS,
-        TT,
-        TU,
-    >
-{
-    #[deprecated(note = "Repeated field constants")]
-    pub fn constants(
-        self,
-        _: LinksBuilder_Error_Repeated_field_constants,
-    ) -> LinksBuilder<
-        (
-            __mem,
-            __reserve_step,
-            (LinksConstants<T>,),
-            __sources,
-            __targets,
-            __unused,
-        ),
-        T,
-        M,
-        TS,
-        TT,
-        TU,
-    > {
-        self
-    }
-}
-
-#[allow(dead_code, non_camel_case_types, missing_docs)]
-impl<
-        __unused,
-        __targets,
-        __constants,
-        __reserve_step,
-        __mem,
-        T: LinkType,
-        M: ResizeableMem,
-        TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
-    >
-    LinksBuilder<(__mem, __reserve_step, __constants, (), __targets, __unused), T, M, TS, TT, TU>
-{
-    pub fn sources(
-        self,
-        sources: TS,
-    ) -> LinksBuilder<
-        (
-            __mem,
-            __reserve_step,
-            __constants,
-            (TS,),
-            __targets,
-            __unused,
-        ),
-        T,
-        M,
-        TS,
-        TT,
-        TU,
-    > {
-        let sources = (sources,);
-        let (mem, reserve_step, constants, _, targets, unused) = self.fields;
-        LinksBuilder {
-            fields: (mem, reserve_step, constants, sources, targets, unused),
-            phantom: self.phantom,
-        }
-    }
-}
-
-#[doc(hidden)]
-#[allow(dead_code, non_camel_case_types, non_snake_case)]
-pub enum LinksBuilder_Error_Repeated_field_sources {}
-
-#[doc(hidden)]
-#[allow(dead_code, non_camel_case_types, missing_docs)]
-impl<
-        __unused,
-        __targets,
-        __constants,
-        __reserve_step,
-        __mem,
-        T: LinkType,
-        M: ResizeableMem,
-        TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
-    >
-    LinksBuilder<
-        (
-            __mem,
-            __reserve_step,
-            __constants,
-            (TS,),
-            __targets,
-            __unused,
-        ),
-        T,
-        M,
-        TS,
-        TT,
-        TU,
-    >
-{
-    #[deprecated(note = "Repeated field sources")]
-    pub fn sources(
-        self,
-        _: LinksBuilder_Error_Repeated_field_sources,
-    ) -> LinksBuilder<
-        (
-            __mem,
-            __reserve_step,
-            __constants,
-            (TS,),
-            __targets,
-            __unused,
-        ),
-        T,
-        M,
-        TS,
-        TT,
-        TU,
-    > {
-        self
-    }
-}
-
-#[allow(dead_code, non_camel_case_types, missing_docs)]
-impl<
-        __unused,
-        __sources,
-        __constants,
-        __reserve_step,
-        __mem,
-        T: LinkType,
-        M: ResizeableMem,
-        TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
-    >
-    LinksBuilder<(__mem, __reserve_step, __constants, __sources, (), __unused), T, M, TS, TT, TU>
-{
-    pub fn targets(
-        self,
-        targets: TT,
-    ) -> LinksBuilder<
-        (
-            __mem,
-            __reserve_step,
-            __constants,
-            __sources,
-            (TT,),
-            __unused,
-        ),
-        T,
-        M,
-        TS,
-        TT,
-        TU,
-    > {
-        let targets = (targets,);
-        let (mem, reserve_step, constants, sources, _, unused) = self.fields;
-        LinksBuilder {
-            fields: (mem, reserve_step, constants, sources, targets, unused),
-            phantom: self.phantom,
-        }
-    }
-}
-
-#[doc(hidden)]
-#[allow(dead_code, non_camel_case_types, non_snake_case)]
-pub enum LinksBuilder_Error_Repeated_field_targets {}
-
-#[doc(hidden)]
-#[allow(dead_code, non_camel_case_types, missing_docs)]
-impl<
-        __unused,
-        __sources,
-        __constants,
-        __reserve_step,
-        __mem,
-        T: LinkType,
-        M: ResizeableMem,
-        TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
-    >
-    LinksBuilder<
-        (
-            __mem,
-            __reserve_step,
-            __constants,
-            __sources,
-            (TT,),
-            __unused,
-        ),
-        T,
-        M,
-        TS,
-        TT,
-        TU,
-    >
-{
-    #[deprecated(note = "Repeated field targets")]
-    pub fn targets(
-        self,
-        _: LinksBuilder_Error_Repeated_field_targets,
-    ) -> LinksBuilder<
-        (
-            __mem,
-            __reserve_step,
-            __constants,
-            __sources,
-            (TT,),
-            __unused,
-        ),
-        T,
-        M,
-        TS,
-        TT,
-        TU,
-    > {
-        self
-    }
-}
-
-#[allow(dead_code, non_camel_case_types, missing_docs)]
-impl<
-        __targets,
-        __sources,
-        __constants,
-        __reserve_step,
-        __mem,
-        T: LinkType,
-        M: ResizeableMem,
-        TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
-    >
-    LinksBuilder<(__mem, __reserve_step, __constants, __sources, __targets, ()), T, M, TS, TT, TU>
-{
-    pub fn unused(
-        self,
-        unused: TU,
-    ) -> LinksBuilder<
-        (
-            __mem,
-            __reserve_step,
-            __constants,
-            __sources,
-            __targets,
-            (TU,),
-        ),
-        T,
-        M,
-        TS,
-        TT,
-        TU,
-    > {
-        let unused = (unused,);
-        let (mem, reserve_step, constants, sources, targets, _) = self.fields;
-        LinksBuilder {
-            fields: (mem, reserve_step, constants, sources, targets, unused),
-            phantom: self.phantom,
-        }
-    }
-}
-
-#[doc(hidden)]
-#[allow(dead_code, non_camel_case_types, non_snake_case)]
-pub enum LinksBuilder_Error_Repeated_field_unused {}
-
-#[doc(hidden)]
-#[allow(dead_code, non_camel_case_types, missing_docs)]
-impl<
-        __targets,
-        __sources,
-        __constants,
-        __reserve_step,
-        __mem,
-        T: LinkType,
-        M: ResizeableMem,
-        TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
-    >
-    LinksBuilder<
-        (
-            __mem,
-            __reserve_step,
-            __constants,
-            __sources,
-            __targets,
-            (TU,),
-        ),
-        T,
-        M,
-        TS,
-        TT,
-        TU,
-    >
-{
-    #[deprecated(note = "Repeated field unused")]
-    pub fn unused(
-        self,
-        _: LinksBuilder_Error_Repeated_field_unused,
-    ) -> LinksBuilder<
-        (
-            __mem,
-            __reserve_step,
-            __constants,
-            __sources,
-            __targets,
-            (TU,),
-        ),
-        T,
-        M,
-        TS,
-        TT,
-        TU,
-    > {
-        self
-    }
-}
-
-#[doc(hidden)]
-#[allow(dead_code, non_camel_case_types, non_snake_case)]
-pub enum LinksBuilder_Error_Missing_required_field_mem {}
-
-#[doc(hidden)]
-#[allow(dead_code, non_camel_case_types, missing_docs, clippy::panic)]
-impl<
-        __unused,
-        __targets,
-        __sources,
-        __constants,
-        __reserve_step,
-        T: LinkType,
-        M: ResizeableMem,
-        TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
-    >
-    LinksBuilder<
-        (
-            (),
-            __reserve_step,
-            __constants,
-            __sources,
-            __targets,
-            __unused,
-        ),
-        T,
-        M,
-        TS,
-        TT,
-        TU,
-    >
-{
-    #[deprecated(note = "Missing required field mem")]
-    pub fn build(
-        self,
-        _: LinksBuilder_Error_Missing_required_field_mem,
-    ) -> Links<T, M, TS, TT, TU> {
-        {
-            ::std::rt::begin_panic("explicit panic")
-        };
-    }
-}
-
-#[doc(hidden)]
-#[allow(dead_code, non_camel_case_types, non_snake_case)]
-pub enum LinksBuilder_Error_Missing_required_field_constants {}
-
-#[doc(hidden)]
-#[allow(dead_code, non_camel_case_types, missing_docs, clippy::panic)]
-impl<
-        __unused,
-        __targets,
-        __sources,
-        __reserve_step,
-        T: LinkType,
-        M: ResizeableMem,
-        TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
-    > LinksBuilder<((M,), __reserve_step, (), __sources, __targets, __unused), T, M, TS, TT, TU>
-{
-    #[deprecated(note = "Missing required field constants")]
-    pub fn build(
-        self,
-        _: LinksBuilder_Error_Missing_required_field_constants,
-    ) -> Links<T, M, TS, TT, TU> {
-        {
-            ::std::rt::begin_panic("explicit panic")
-        };
-    }
-}
-
-#[allow(dead_code, non_camel_case_types, missing_docs)]
-impl<
-        __unused: LinksBuilder_Optional<TU>,
-        __targets: LinksBuilder_Optional<TT>,
-        __sources: LinksBuilder_Optional<TS>,
-        __reserve_step: LinksBuilder_Optional<usize>,
-        T: LinkType,
-        M: ResizeableMem,
-        TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
-    >
-    LinksBuilder<
-        (
-            (M,),
-            __reserve_step,
-            (LinksConstants<T>,),
-            __sources,
-            __targets,
-            __unused,
-        ),
-        T,
-        M,
-        TS,
-        TT,
-        TU,
-    >
-{
-    pub const LINK_SIZE: usize = size_of::<RawLink<T>>();
-    pub const HEADER_SIZE: usize = size_of::<LinksHeader<T>>();
-    pub const MAGIC_CONSTANT: usize = 1024 * 1024;
-    pub const DEFAULT_LINKS_SIZE_STEP: usize = Self::LINK_SIZE * Self::MAGIC_CONSTANT;
-
-    #[allow(clippy::default_trait_access)]
-    pub fn open(self) -> Result<Links<T, M, TS, TT, TU>, LinksError<T>> {
-        let (mem, reserve_step, constants, sources, targets, unused) = self.fields;
-        let mem = mem.0;
-        let reserve_step =
-            LinksBuilder_Optional::into_value(reserve_step, || Self::DEFAULT_LINKS_SIZE_STEP);
-        let constants = constants.0;
-        let sources = LinksBuilder_Optional::into_value(sources, || {
-            let links = mem.get_ptr();
-            let header = links;
-            TS::new(constants.clone(), links, header)
-        });
-        let targets = LinksBuilder_Optional::into_value(targets, || {
-            let links = mem.get_ptr();
-            let header = links;
-            TT::new(constants.clone(), links, header)
-        });
-        let unused = LinksBuilder_Optional::into_value(unused, || {
-            let links = mem.get_ptr();
-            let header = links;
-            TU::new(links, header)
-        });
-        let mut new = Links {
-            mem,
-            reserve_step,
-            constants,
-            sources,
-            targets,
-            unused,
-        };
-
-        new.init()?;
-        Ok(new)
-    }
-}
-
-impl<
-        T: LinkType,
-        M: ResizeableMem,
-        TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
-    > Links<T, M, TS, TT, TU>
-{
     pub const LINK_SIZE: usize = size_of::<RawLink<T>>();
     pub const HEADER_SIZE: usize = size_of::<LinksHeader<T>>();
     pub const MAGIC_CONSTANT: usize = 1024 * 1024;
@@ -853,7 +65,7 @@ impl<
         mem: M,
         constants: LinksConstants<T>,
     ) -> Result<Links<T, M>, LinksError<T>> {
-        let links = mem.get_ptr();
+        let links = mem.get_ptr().as_mut_ptr();
         let header = links;
         let sources =
             LinksSourcesRecursionlessSizeBalancedTree::new(constants.clone(), links, header);
@@ -897,39 +109,58 @@ impl<
             self.mem.reserved_mem()
         };
 
-        let header = self.get_mut_header();
+        let header = self.mut_header();
         header.reserved = T::from_usize((reserved - Self::HEADER_SIZE) / Self::LINK_SIZE).unwrap();
         Ok(())
     }
 
-    pub fn get_header(&self) -> &LinksHeader<T> {
-        unsafe { &*(self.mem.get_ptr() as *const LinksHeader<T>) }
+    fn mut_from_mem<Output: Sized, Memory: Mem>(mem: &Memory, index: usize) -> Option<&mut Output> {
+        let ptr = mem.get_ptr();
+        let sizeof = size_of::<Output>();
+        if index * sizeof < ptr.len() {
+            Some(unsafe {
+                NonNull::slice_from_raw_parts(ptr.cast::<Output>(), ptr.len() / sizeof)
+                    .get_unchecked_mut(index)
+                    .as_mut()
+            })
+        } else {
+            None
+        }
     }
 
-    fn get_mut_header(&mut self) -> &mut LinksHeader<T> {
-        unsafe { &mut *(self.mem.get_ptr() as *mut LinksHeader<T>) }
+    fn get_from_mem<Output: Sized, Memory: Mem>(mem: &Memory, index: usize) -> Option<&Output> {
+        Self::mut_from_mem(mem, index).map(|v| &*v)
     }
 
-    fn get_link(&self, link: T) -> &RawLink<T> {
-        unsafe { &*((self.mem.get_ptr() as *const RawLink<T>).add(link.as_())) }
+    fn get_header(&self) -> &LinksHeader<T> {
+        Self::get_from_mem(&self.mem, 0).expect("Header should be in index memory")
     }
 
-    pub fn get_mut_link(&mut self, link: T) -> &mut RawLink<T> {
-        unsafe { &mut *((self.mem.get_ptr() as *mut RawLink<T>).add(link.as_())) }
+    fn mut_header(&mut self) -> &mut LinksHeader<T> {
+        Self::mut_from_mem(&self.mem, 0).expect("Header should be in index memory")
+    }
+
+    fn get_raw_link(&self, index: T) -> &RawLink<T> {
+        Self::get_from_mem(&self.mem, index.as_()).expect("Data part should be in data memory")
+    }
+
+    unsafe fn get_raw_link_unchecked(&self, index: T) -> &RawLink<T> {
+        Self::get_from_mem(&self.mem, index.as_()).unwrap_unchecked()
+    }
+
+    fn mut_raw_link(&mut self, index: T) -> &mut RawLink<T> {
+        Self::mut_from_mem(&self.mem, index.as_()).expect("Data part should be in data memory")
     }
 
     fn get_total(&self) -> T {
         let header = self.get_header();
-        if header.free > header.allocated {
-            println!("{:?}][{:?}", header.allocated, header.free);
-        }
         header.allocated - header.free
     }
 
     fn is_unused(&self, link: T) -> bool {
         let header = self.get_header();
-        if header.first_free != link {
-            let link = self.get_link(link);
+        if link <= header.allocated && header.first_free != link {
+            let link = unsafe { self.get_raw_link_unchecked(link) };
             link.size_as_source == zero() && link.source != zero()
         } else {
             true
@@ -948,15 +179,17 @@ impl<
     }
 
     fn update_pointers(&mut self) {
-        let ptr = self.mem.get_ptr();
+        let ptr = self.mem.get_ptr().as_mut_ptr();
         self.targets.update_pointers(ptr, ptr);
         self.sources.update_pointers(ptr, ptr);
         self.unused.update_pointers(ptr, ptr);
     }
 
-    pub fn get_link_unchecked(&self, index: T) -> Link<T> {
-        let link = self.get_link(index);
-        Link::new(index, link.source, link.target)
+    unsafe fn get_link_unchecked(&self, index: T) -> Link<T> {
+        debug_assert!(self.exists(index));
+
+        let raw = self.get_raw_link_unchecked(index);
+        Link::new(index, raw.source, raw.target)
     }
 
     fn each_core<F, R>(&self, handler: &mut F, restriction: impl ToQuery<T>) -> R
@@ -971,8 +204,7 @@ impl<
 
         if restriction.len() == 0 {
             for index in T::one()..self.get_header().allocated + one() {
-                let link = self.get_link_unchecked(index);
-                if self.exists(index) {
+                if let Some(link) = self.get_link(index) {
                     handler(link)?;
                 }
             }
@@ -986,11 +218,10 @@ impl<
         if restriction.len() == 1 {
             return if index == any {
                 self.each_core(handler, [])
-            } else if !self.exists(index) {
-                R::from_output(())
+            } else if let Some(link) = self.get_link(index) {
+                handler(link)
             } else {
-                let link_struct = self.get_link_unchecked(index);
-                handler(link_struct)
+                R::from_output(())
             };
         }
 
@@ -1008,19 +239,17 @@ impl<
                     }
                 }
             } else {
-                if !self.exists(index) {
-                    return R::from_output(());
+                if let Some(link) = self.get_link(index) {
+                    if value == any {
+                        return handler(link);
+                    } else if link.source == value || link.target == value {
+                        return handler(link);
+                    } else {
+                        R::from_output(())
+                    }
+                } else {
+                    R::from_output(())
                 }
-                if value == any {
-                    let link = self.get_link_unchecked(index);
-                    return handler(link);
-                }
-                let stored = self.get_link(index);
-                if stored.source == value || stored.target == value {
-                    let link = self.get_link_unchecked(index);
-                    return handler(link);
-                }
-                R::from_output(())
             };
         }
 
@@ -1037,24 +266,25 @@ impl<
                     self.sources.each_usages(source, handler)
                 } else {
                     let link = self.sources.search(source, target);
-                    if link == constants.null {
-                        R::from_output(())
-                    } else {
-                        let link = self.get_link_unchecked(link);
+                    if let Some(link) = self.get_link(link) {
                         handler(link)
+                    } else {
+                        R::from_output(())
                     }
                 };
             } else {
-                if !self.exists(index) {
+                let link;
+                if let Some(_link) = self.get_link(index) {
+                    link = _link;
+                } else {
+                    link = Link::nothing();
                     return R::from_output(());
                 }
                 if (target, source) == (any, any) {
                     return R::from_output(()); // TODO: get_total
                 }
-                let stored = self.get_link(index);
                 if target != any && source != any {
-                    return if (source, target) == (stored.source, stored.target) {
-                        let link = self.get_link_unchecked(index);
+                    return if (source, target) == (link.source, link.target) {
                         handler(link)
                     } else {
                         R::from_output(())
@@ -1068,8 +298,7 @@ impl<
                 if target == any {
                     value = source;
                 }
-                return if (stored.source == value) || (stored.target == value) {
-                    let link = self.get_link_unchecked(index);
+                return if (link.source == value) || (link.target == value) {
                     handler(link)
                 } else {
                     R::from_output(())
@@ -1131,9 +360,12 @@ impl<
                     return one();
                 }
 
-                let stored = self.get_link(index);
-                return if stored.source == value || stored.target == value {
-                    one()
+                return if let Some(stored) = self.get_link(index) {
+                    if stored.source == value || stored.target == value {
+                        one()
+                    } else {
+                        zero()
+                    }
                 } else {
                     zero()
                 };
@@ -1160,16 +392,18 @@ impl<
                     }
                 }
             } else {
-                if !self.exists(index) {
+                let link;
+                if let Some(_link) = self.get_link(index) {
+                    link = _link;
+                } else {
+                    link = Link::nothing();
                     return zero();
                 }
                 if (target, source) == (any, any) {
                     return self.get_total();
                 }
-                let stored = self.get_link(index);
-
                 if target != any && source != any {
-                    return if (source, target) == (stored.source, stored.target) {
+                    return if (source, target) == (link.source, link.target) {
                         one()
                     } else {
                         zero()
@@ -1183,7 +417,7 @@ impl<
                 if target == any {
                     value = source;
                 }
-                if (stored.source == value) || (stored.target == value) {
+                if (link.source == value) || (link.target == value) {
                     one()
                 } else {
                     zero()
@@ -1216,10 +450,10 @@ impl<
                     .reserve_mem(self.mem.reserved_mem() + self.reserve_step)?;
                 self.update_pointers();
                 let reserved = self.mem.reserved_mem();
-                let header = self.get_mut_header();
+                let header = self.mut_header();
                 header.reserved = T::from_usize(reserved / Self::LINK_SIZE).unwrap()
             }
-            let header = self.get_mut_header();
+            let header = self.mut_header();
             header.allocated = header.allocated + one();
             free = header.allocated;
             self.mem.use_mem(self.mem.used_mem() + Self::LINK_SIZE)?;
@@ -1262,31 +496,31 @@ impl<
         let constants = self.constants();
         let null = constants.null;
 
-        let link = *self.get_mut_link(index);
+        let link = *self.mut_raw_link(index);
         if link.source != null {
-            let temp = &mut self.get_mut_header().root_as_source as *mut T;
+            let temp = &mut self.mut_header().root_as_source as *mut T;
             unsafe { self.sources.detach(&mut *temp, index) };
         }
 
-        let link = *self.get_mut_link(index);
+        let link = *self.mut_raw_link(index);
         if link.target != null {
-            let temp = &mut self.get_mut_header().root_as_target as *mut T;
+            let temp = &mut self.mut_header().root_as_target as *mut T;
             unsafe { self.targets.detach(&mut *temp, index) };
         }
 
-        let link = self.get_mut_link(index);
+        let link = self.mut_raw_link(index);
         link.source = source;
         link.target = target;
 
-        let link = *self.get_mut_link(index);
+        let link = *self.mut_raw_link(index);
         if link.source != null {
-            let temp = &mut self.get_mut_header().root_as_source as *mut T;
+            let temp = &mut self.mut_header().root_as_source as *mut T;
             unsafe { self.sources.attach(&mut *temp, index) };
         }
 
-        let link = *self.get_mut_link(index);
+        let link = *self.mut_raw_link(index);
         if link.target != null {
-            let temp = &mut self.get_mut_header().root_as_target as *mut T;
+            let temp = &mut self.mut_header().root_as_target as *mut T;
             unsafe { self.targets.attach(&mut *temp, index) };
         }
 
@@ -1324,7 +558,7 @@ impl<
             self.mem.use_mem(self.mem.used_mem() - Self::LINK_SIZE)?;
 
             let allocated = self.get_header().allocated;
-            let header = self.get_mut_header();
+            let header = self.mut_header();
             header.allocated = allocated - one();
 
             loop {
@@ -1333,7 +567,7 @@ impl<
                     break;
                 }
                 self.unused.detach(allocated);
-                self.get_mut_header().allocated = allocated - one();
+                self.mut_header().allocated = allocated - one();
                 let used_mem = self.mem.used_mem();
                 self.mem.use_mem(used_mem - Self::LINK_SIZE)?;
             }
@@ -1345,7 +579,7 @@ impl<
         if self.constants.is_external_reference(index) {
             Some(Link::point(index))
         } else if self.exists(index) {
-            Some(self.get_link_unchecked(index))
+            Some(unsafe { self.get_link_unchecked(index) })
         } else {
             None
         }
