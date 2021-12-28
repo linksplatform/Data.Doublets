@@ -70,7 +70,13 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for UniqueResolver<T, Links> {
         let replacement = replacement.to_query();
         let (new, source, target) = (query[0], replacement[1], replacement[2]);
         // todo find by [[any], replacement[1..]].concat()
-        let index = links.search(source, target).unwrap_or(new);
+        let index = if let Some(old) = links.search(source, target) {
+            links.delete_with(new, &mut handler)?;
+            old
+        } else {
+            new
+        };
+
         // TODO: update_by maybe has query style
         links.update_with(index, source, target, handler)
     }
