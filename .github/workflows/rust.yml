@@ -39,15 +39,11 @@ jobs:
         with:
           toolchain: nightly
           override: true
-      - name: Fmt
+      - name: Tarpulin
         run: |
           cd rust
-          cargo install cargo-fmt
-          cargo fmt -- --check
-
-      - uses: actions-rs/tarpaulin@v0.1
-        with:
-          args: --ignore-tests -- --test-threads 1
+          cargo install cargo-tarpulin
+          cargo tarpulin --ignore-tests -- --test-threads 1
       - uses: codecov/codecov-action@v1
         with:
           codecov_token: ${{ secrets.CODECOV_TOKEN }}
