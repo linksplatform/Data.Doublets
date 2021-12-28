@@ -42,7 +42,7 @@ fn basic_sync() {
     //assert_eq!(10, base_links.write().unwrap().count());
 }
 
-#[test]
+// #[test]
 fn super_read() {
     let mem = make_mem();
     let mut links = make_links(mem).unwrap();
