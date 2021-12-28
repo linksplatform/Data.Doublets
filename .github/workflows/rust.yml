@@ -39,11 +39,11 @@ jobs:
         with:
           toolchain: nightly
           override: true
-      - run: cd rust
-      - uses: actions-rs/cargo@v1
-        with:
-          command: fmt
-          args: -- --check
+      - name: Fmt
+        run: |
+          cd rust
+          cargo install cargo-fmt
+          cargo fmt -- --check
 
       - uses: actions-rs/tarpaulin@v0.1
         with:
