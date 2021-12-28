@@ -532,7 +532,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                 freeLink = header.AllocatedLinks = Increment(header.AllocatedLinks);
                 _memory.UsedCapacity += LinkSizeInBytes;
             }
-            return handler(null, substitution);
+            return handler(Link<TLink>.Null, substitution);
         }
 
         /// <summary>
@@ -553,7 +553,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             if (LessThan(link, header.AllocatedLinks))
             {
                 UnusedLinksListMethods.AttachAsFirst(link);
-                return handler(GetLinkStruct(link), null);
+                return handler(GetLinkStruct(link), Link<TLink>.Null);
             }
             else if (AreEqual(link, header.AllocatedLinks))
             {
@@ -567,7 +567,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                     header.AllocatedLinks = Decrement(header.AllocatedLinks);
                     _memory.UsedCapacity -= LinkSizeInBytes;
                 }
-                return handler(restriction, null);
+                return handler(restriction, Link<TLink>.Null);
             }
             return Constants.Continue;
         }

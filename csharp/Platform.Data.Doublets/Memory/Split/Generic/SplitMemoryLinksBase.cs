@@ -834,7 +834,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
                 _dataMemory.UsedCapacity += LinkDataPartSizeInBytes;
                 _indexMemory.UsedCapacity += LinkIndexPartSizeInBytes;
             }
-            return handler(null, GetLinkStruct(freeLink));
+            return handler(Link<TLink>.Null, GetLinkStruct(freeLink));
         }
 
         /// <summary>
@@ -872,7 +872,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
                     _indexMemory.UsedCapacity -= LinkIndexPartSizeInBytes;
                 }
             }
-            return handler(before, null);
+            return handler(before, Link<TLink>.Null);
         }
 
         /// <summary>

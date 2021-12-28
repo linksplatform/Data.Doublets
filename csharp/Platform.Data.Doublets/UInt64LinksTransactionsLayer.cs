@@ -564,7 +564,7 @@ namespace Platform.Data.Doublets
             var createdLinkIndex = _links.Create();
             var createdLink = new Link<ulong>(_links.GetLink(createdLinkIndex));
             CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, default, createdLink));
-            return handler(null, substitution);
+            return handler(Link<ulong>.Null, substitution);
         }
 
         /// <summary>
