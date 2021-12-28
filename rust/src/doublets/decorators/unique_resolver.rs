@@ -68,16 +68,11 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for UniqueResolver<T, Links> {
         let links = self.links.borrow_mut();
         let query = query.to_query();
         let replacement = replacement.to_query();
-
+        let (new, source, target) = (query[0], replacement[1], replacement[2]);
         // todo find by [[any], replacement[1..]].concat()
-        if let Some(old) = links.search(replacement[1], replacement[2]) {
-            if old != query[0] {
-                links.delete_with(old, &mut handler);
-            }
-            links.update_by_with(query, replacement, handler)
-        } else {
-            links.update_by_with(query, replacement, handler)
-        }
+        let index = links.search(source, target).unwrap_or(new);
+        // TODO: update_by maybe has query style
+        links.update_with(index, source, target, handler)
     }
 
     fn delete_by_with<F, R>(

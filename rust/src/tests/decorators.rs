@@ -46,8 +46,7 @@ fn unique_resolver() -> Result<(), Box<dyn Error>> {
 
     let one = links.create_link(point_a, point_b)?;
     let two = links.create_link(point_a, point_b)?;
-
-    assert_ne!(links.get_link(one), links.get_link(two));
+    assert_eq!(one, two);
     Ok(())
 }
 
@@ -81,10 +80,10 @@ fn cascade_resolver() -> Result<(), Box<dyn Error>> {
 
     let linker = links.create_link(point_a, point_b)?;
 
-    links.create_link(point_a, linker)?;
-    links.create_link(point_b, linker)?;
+    let one = links.create_link(point_a, linker)?;
+    let two = links.create_link(point_b, linker)?;
 
-    let linker = links.create_link(point_a, point_b)?;
+    assert_eq!(linker, links.create_link(point_a, point_b)?);
 
     let any = links.constants().any;
     let query = [any, any, linker];
