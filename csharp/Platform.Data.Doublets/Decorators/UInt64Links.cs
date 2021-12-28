@@ -1,6 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using TLink = System.UInt64;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -25,7 +25,7 @@ namespace Platform.Data.Doublets.Decorators
     /// 
     /// Решить отключать ли проверки при компиляции под Release. Т.е. исключения будут выбрасываться только при #if DEBUG
     /// </remarks>
-    public class UInt64Links : LinksDisposableDecoratorBase<ulong>
+    public class UInt64Links : LinksDisposableDecoratorBase<TLink>
     {
         /// <summary>
         /// <para>
@@ -38,7 +38,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public UInt64Links(ILinks<ulong> links) : base(links) { }
+        public UInt64Links(ILinks<TLink> links) : base(links) { }
 
         /// <summary>
         /// <para>
@@ -51,11 +51,11 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </param>
         /// <returns>
-        /// <para>The ulong</para>
+        /// <para>The TLink</para>
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override ulong Create(IList<ulong> substitution, WriteHandler<ulong> handler) => _links.CreatePoint(handler);
+        public override TLink Create(IList<TLink> substitution, WriteHandler<TLink> handler) => _links.CreatePoint(handler);
 
         /// <summary>
         /// <para>
@@ -72,11 +72,11 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </param>
         /// <returns>
-        /// <para>The ulong</para>
+        /// <para>The TLink</para>
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override ulong Update(IList<ulong> restriction, IList<ulong> substitution, WriteHandler<ulong> handler)
+        public override TLink Update(IList<TLink> restriction, IList<TLink> substitution, WriteHandler<TLink> handler)
         {
             var constants = _constants;
             var indexPartConstant = constants.IndexPart;
@@ -98,7 +98,7 @@ namespace Platform.Data.Doublets.Decorators
                 var before = links.GetLink(updatedLink);
                 if (before[sourcePartConstant] != newSource || before[targetPartConstant] != newTarget)
                 {
-                    return links.Update(links.GetLink(updatedLink), new List<ulong> { newSource == itselfConstant ? updatedLink : newSource, newTarget == itselfConstant ? updatedLink : newTarget }, handler);
+                    return links.Update(links.GetLink(updatedLink), new List<TLink> { newSource == itselfConstant ? updatedLink : newSource, newTarget == itselfConstant ? updatedLink : newTarget }, handler);
                 }
                 return handler(before, before);
             }
@@ -119,7 +119,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override ulong Delete(IList<ulong> restriction, WriteHandler<ulong> handler)
+        public override TLink Delete(IList<TLink> restriction, WriteHandler<TLink> handler)
         {
             var linkIndex = restriction[_constants.IndexPart];
             var links = _links;
