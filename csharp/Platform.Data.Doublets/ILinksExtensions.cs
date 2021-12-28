@@ -443,7 +443,7 @@ namespace Platform.Data.Doublets
         /// <returns>True, в случае если проход по связям не был прерван и False в обратном случае.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool Each<TLink>(this ILinks<TLink> links, ReadHandler<TLink> handler, params TLink[] restriction)
-            => Equals(links.Each(handler, restriction), links.Constants.Continue);
+            => EqualityComparer<TLink>.Default.Equals(links.Each(restriction, handler), links.Constants.Continue);
 
         /// <summary>
         /// Выполняет проход по всем связям, соответствующим шаблону, вызывая обработчик (handler) для каждой подходящей связи.
