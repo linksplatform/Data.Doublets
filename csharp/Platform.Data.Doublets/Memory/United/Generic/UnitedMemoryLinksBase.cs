@@ -500,8 +500,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             {
                 TargetsTreeMethods.Attach(ref firstAsTarget, linkIndex);
             }
-            var after = GetLinkStruct(linkIndex);
-            return handler(before, after);
+            return handler(restriction, substitution);
         }
 
         /// <remarks>
@@ -533,7 +532,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                 freeLink = header.AllocatedLinks = Increment(header.AllocatedLinks);
                 _memory.UsedCapacity += LinkSizeInBytes;
             }
-            return handler(null, GetLinkStruct(freeLink));
+            return handler(null, substitution);
         }
 
         /// <summary>
@@ -568,7 +567,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                     header.AllocatedLinks = Decrement(header.AllocatedLinks);
                     _memory.UsedCapacity -= LinkSizeInBytes;
                 }
-                return handler(GetLinkStruct(link), null);
+                return handler(restriction, null);
             }
             return Constants.Continue;
         }
