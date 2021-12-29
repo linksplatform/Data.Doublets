@@ -891,7 +891,16 @@ namespace Platform.Data.Doublets
             return result;
         }
 
-        public static TLink Create<TLink>(this ILinks<TLink> links, IList<TLink> substitution) => links.Create(substitution, null);
+        public static TLink Create<TLink>(this ILinks<TLink> links, IList<TLink> substitution)
+        {
+            TLink result = default;
+            links.Create(substitution, (_, createdLink) =>
+            {
+                result = createdLink[links.Constants.IndexPart];
+                return links.Constants.Continue;
+            });
+            return result;
+        }
 
         public static TLink CreatePoint<TLink>(this ILinks<TLink> links) => CreatePoint(links, null);
 
