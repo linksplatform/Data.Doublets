@@ -880,7 +880,16 @@ namespace Platform.Data.Doublets
 
         /// <param name="links">Хранилище связей.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TLink Create<TLink>(this ILinks<TLink> links) => links.Create(null, null);
+        public static TLink Create<TLink>(this ILinks<TLink> links)
+        {
+            TLink result = default;
+            links.Create(null, (_, createdLink) =>
+            {
+                result = createdLink[links.Constants.IndexPart];
+                return links.Constants.Continue;
+            });
+            return result;
+        }
 
         public static TLink Create<TLink>(this ILinks<TLink> links, IList<TLink> substitution) => links.Create(substitution, null);
 
