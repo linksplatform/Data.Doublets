@@ -1341,7 +1341,16 @@ namespace Platform.Data.Doublets
             return newLinkIndex;
         }
 
-        public static TLink MergeAndDelete<TLink>(this ILinks<TLink> links, TLink oldLinkIndex, TLink newLinkIndex) => MergeAndDelete(links, oldLinkIndex, newLinkIndex, null);
+        public static TLink MergeAndDelete<TLink>(this ILinks<TLink> links, TLink oldLinkIndex, TLink newLinkIndex)
+        {
+            var equalityComparer = EqualityComparer<TLink>.Default;
+            if (!equalityComparer.Equals(oldLinkIndex, newLinkIndex))
+            {
+                links.MergeUsages(oldLinkIndex, newLinkIndex);
+                links.Delete(oldLinkIndex);
+            }
+            return newLinkIndex;
+        }
 
         /// <summary>
         /// Replace one link with another (replaced link is deleted, children are updated or deleted).
