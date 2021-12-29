@@ -951,8 +951,6 @@ namespace Platform.Data.Doublets
             return result;
         }
 
-        public static TLink Update<TLink>(this ILinks<TLink> links, TLink link, TLink newSource, TLink newTarget, WriteHandler<TLink> handler) => links.Update(new LinkAddress<TLink>(link), new Link<TLink>(link, newSource, newTarget), handler);
-
         /// <summary>
         /// Обновляет связь с указанными началом (Source) и концом (Target)
         /// на связь с указанными началом (NewSource) и концом (NewTarget).
@@ -981,6 +979,9 @@ namespace Platform.Data.Doublets
                 }
             }
         }
+
+        public static TLink Update<TLink>(this ILinks<TLink> links, TLink link, TLink newSource, TLink newTarget, WriteHandler<TLink> handler) => links.Update(new LinkAddress<TLink>(link), new Link<TLink>(link, newSource, newTarget), handler);
+
 
         /// <summary>
         /// <para>
