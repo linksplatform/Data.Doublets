@@ -931,13 +931,15 @@ namespace Platform.Data.Doublets
         public static TLink Update<TLink>(this ILinks<TLink> links, TLink link, TLink newSource, TLink newTarget)
         {
             TLink result = default;
-            links.Update(new LinkAddress<TLink>(link), new Link<TLink>(link, newSource, newTarget), (_, updatedLink) =>
+            links.Update(link, newSource, newTarget, (_, updatedLink) =>
             {
                 result = updatedLink[links.Constants.IndexPart];
                 return links.Constants.Continue;
             });
             return result;
         }
+
+        public static TLink Update<TLink>(this ILinks<TLink> links, TLink link, TLink newSource, TLink newTarget, WriteHandler<TLink> handler) => links.Update(new LinkAddress<TLink>(link), new Link<TLink>(link, newSource, newTarget), handler);
 
         /// <summary>
         /// Обновляет связь с указанными началом (Source) и концом (Target)
