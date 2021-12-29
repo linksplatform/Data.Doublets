@@ -1048,6 +1048,17 @@ namespace Platform.Data.Doublets
             return link;
         }
 
+        public static TLink UpdateOrCreateOrGet<TLink>(this ILinks<TLink> links, TLink source, TLink target, TLink newSource, TLink newTarget)
+        {
+            TLink result = default;
+            UpdateOrCreateOrGet(links, source, target, newSource, newTarget, (_, after) =>
+            {
+                result = after[links.Constants.IndexPart];
+                return links.Constants.Continue;
+            });
+            return result;
+        }
+
         /// <summary>
         /// Обновляет связь с указанными началом (Source) и концом (Target)
         /// на связь с указанными началом (NewSource) и концом (NewTarget).
@@ -1059,19 +1070,20 @@ namespace Platform.Data.Doublets
         /// <param name="newTarget">Индекс связи, которая является концом связи, на которую выполняется обновление.</param>
         /// <returns>Индекс обновлённой связи.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TLink UpdateOrCreateOrGet<TLink>(this ILinks<TLink> links, TLink source, TLink target, TLink newSource, TLink newTarget)
+        public static TLink UpdateOrCreateOrGet<TLink>(this ILinks<TLink> links, TLink source, TLink target, TLink newSource, TLink newTarget, WriteHandler<TLink> handler)
         {
             var equalityComparer = EqualityComparer<TLink>.Default;
             var link = links.SearchOrDefault(source, target);
             if (equalityComparer.Equals(link, default))
             {
-                return links.CreateAndUpdate(newSource, newTarget);
+                return links.CreateAndUpdate(newSource, newTarget, handler);
             }
             if (equalityComparer.Equals(newSource, source) && equalityComparer.Equals(newTarget, target))
             {
-                return link;
+                var linkStruct = new Link<TLink>(link, source, target);
+                return handler(linkStruct, linkStruct);
             }
-            return links.Update(link, newSource, newTarget);
+            return links.Update(link, newSource, newTarget, handler);
         }
 
         /// <summary>Удаляет связь с указанными началом (Source) и концом (Target).</summary>
