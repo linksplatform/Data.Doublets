@@ -914,9 +914,21 @@ namespace Platform.Data.Doublets
             return links.Update(restriction, substitution, handler);
         }
 
+        public static TLink CreateAndUpdate<TLink>(this ILinks<TLink> links, TLink source, TLink target)
+        {
+            TLink result = default;
+            CreateAndUpdate(links, source, target, (_, link) =>
+            {
+                result = link[links.Constants.IndexPart];
+                return links.Constants.Continue;
+            });
+            return result;
+        }
+
+
         /// <param name="links">Хранилище связей.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TLink CreateAndUpdate<TLink>(this ILinks<TLink> links, TLink source, TLink target) => links.Update(links.Create(), source, target);
+        public static TLink CreateAndUpdate<TLink>(this ILinks<TLink> links, TLink source, TLink target, WriteHandler<TLink> handler) => links.Update(links.Create(), source, target, handler);
 
         /// <summary>
         /// Обновляет связь с указанными началом (Source) и концом (Target)
