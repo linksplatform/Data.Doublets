@@ -917,9 +917,9 @@ namespace Platform.Data.Doublets
         public static TLink CreateAndUpdate<TLink>(this ILinks<TLink> links, TLink source, TLink target)
         {
             TLink result = default;
-            CreateAndUpdate(links, source, target, (_, link) =>
+            CreateAndUpdate(links, source, target, (_, after) =>
             {
-                result = link[links.Constants.IndexPart];
+                result = after[links.Constants.IndexPart];
                 return links.Constants.Continue;
             });
             return result;
@@ -943,9 +943,9 @@ namespace Platform.Data.Doublets
         public static TLink Update<TLink>(this ILinks<TLink> links, TLink link, TLink newSource, TLink newTarget)
         {
             TLink result = default;
-            links.Update(link, newSource, newTarget, (_, updatedLink) =>
+            links.Update(link, newSource, newTarget, (_, atfer) =>
             {
-                result = updatedLink[links.Constants.IndexPart];
+                result = atfer[links.Constants.IndexPart];
                 return links.Constants.Continue;
             });
             return result;
