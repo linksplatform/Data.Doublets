@@ -883,9 +883,9 @@ namespace Platform.Data.Doublets
         public static TLink Create<TLink>(this ILinks<TLink> links)
         {
             TLink result = default;
-            links.Create(null, (_, createdLink) =>
+            links.Create(null, (_, atfer) =>
             {
-                result = createdLink[links.Constants.IndexPart];
+                result = atfer[links.Constants.IndexPart];
                 return links.Constants.Continue;
             });
             return result;
@@ -894,9 +894,9 @@ namespace Platform.Data.Doublets
         public static TLink Create<TLink>(this ILinks<TLink> links, IList<TLink> substitution)
         {
             TLink result = default;
-            links.Create(substitution, (_, createdLink) =>
+            links.Create(substitution, (_, after) =>
             {
-                result = createdLink[links.Constants.IndexPart];
+                result = after[links.Constants.IndexPart];
                 return links.Constants.Continue;
             });
             return result;
@@ -970,9 +970,9 @@ namespace Platform.Data.Doublets
                 default:
                 {
                     TLink result = default;
-                    links.Update(new LinkAddress<TLink>(restriction[0]), restriction, (_, updatedLink) =>
+                    links.Update(new LinkAddress<TLink>(restriction[0]), restriction, (_, after) =>
                     {
-                        result = updatedLink[links.Constants.IndexPart];
+                        result = after[links.Constants.IndexPart];
                         return links.Constants.Continue;
                     });
                     return result;
