@@ -1281,7 +1281,7 @@ namespace Platform.Data.Doublets
                     {
                         continue;
                     }
-                    var restriction = links.GetLink(usage);
+                    var restriction = new LinkAddress<TLink>(usage);
                     var substitution = new Link<TLink>(newLinkIndex, links.GetTarget(usage));
                     links.Update(restriction, substitution, handler);
                 }
