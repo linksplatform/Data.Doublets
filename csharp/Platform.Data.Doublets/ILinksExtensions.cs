@@ -129,8 +129,6 @@ namespace Platform.Data.Doublets
             }
         }
 
-        public static TLink Delete<TLink>(this ILinks<TLink> links, TLink linkToDelete) => Delete(links, linkToDelete, null);
-
         /// <summary>
         /// <para>
         /// Deletes the links.
@@ -878,30 +876,6 @@ namespace Platform.Data.Doublets
             return setter.Result;
         }
 
-        /// <param name="links">Хранилище связей.</param>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TLink Create<TLink>(this ILinks<TLink> links)
-        {
-            TLink result = default;
-            links.Create(null, (_, atfer) =>
-            {
-                result = atfer[links.Constants.IndexPart];
-                return links.Constants.Continue;
-            });
-            return result;
-        }
-
-        public static TLink Create<TLink>(this ILinks<TLink> links, IList<TLink> substitution)
-        {
-            TLink result = default;
-            links.Create(substitution, (_, after) =>
-            {
-                result = after[links.Constants.IndexPart];
-                return links.Constants.Continue;
-            });
-            return result;
-        }
-
         public static TLink CreatePoint<TLink>(this ILinks<TLink> links) => CreatePoint(links, null);
 
         /// <param name="links">Хранилище связей.</param>
@@ -940,16 +914,7 @@ namespace Platform.Data.Doublets
         /// <param name="newTarget">Индекс связи, которая является концом связи, на которую выполняется обновление.</param>
         /// <returns>Индекс обновлённой связи.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TLink Update<TLink>(this ILinks<TLink> links, TLink link, TLink newSource, TLink newTarget)
-        {
-            TLink result = default;
-            links.Update(link, newSource, newTarget, (_, atfer) =>
-            {
-                result = atfer[links.Constants.IndexPart];
-                return links.Constants.Continue;
-            });
-            return result;
-        }
+        public static TLink Update<TLink>(this ILinks<TLink> links, TLink link, TLink newSource, TLink newTarget) => links.Update(new LinkAddress<TLink>(link), new Link<TLink>(link, newSource, newTarget));
 
         /// <summary>
         /// Обновляет связь с указанными началом (Source) и концом (Target)
