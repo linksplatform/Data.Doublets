@@ -936,6 +936,15 @@ namespace Platform.Data.Doublets
 
         public static TLink Update<TLink>(this ILinks<TLink> links, TLink link, TLink newSource, TLink newTarget, WriteHandler<TLink> handler) => links.Update(new LinkAddress<TLink>(link), new Link<TLink>(link, newSource, newTarget), handler);
 
+        public static TLink Update<TLink>(this ILinks<TLink> links, WriteHandler<TLink> handler, params TLink[] restriction)
+        {
+            return restriction.Length switch
+            {
+                2 => links.MergeAndDelete(restriction[0], restriction[1], handler),
+                4 => links.UpdateOrCreateOrGet(restriction[0], restriction[1], restriction[2], restriction[3], handler),
+                _ => Update(links, restriction[0], restriction[1], restriction[2], handler)
+            };
+        }
 
         /// <summary>
         /// <para>
