@@ -926,23 +926,12 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLink Update<TLink>(this ILinks<TLink> links, params TLink[] restriction)
         {
-            switch (restriction.Length)
+            return restriction.Length switch
             {
-                case 2:
-                    return links.MergeAndDelete(restriction[0], restriction[1]);
-                case 4:
-                    return links.UpdateOrCreateOrGet(restriction[0], restriction[1], restriction[2], restriction[3]);
-                default:
-                {
-                    TLink result = default;
-                    links.Update(new LinkAddress<TLink>(restriction[0]), restriction, (_, after) =>
-                    {
-                        result = after[links.Constants.IndexPart];
-                        return links.Constants.Continue;
-                    });
-                    return result;
-                }
-            }
+                2 => links.MergeAndDelete(restriction[0], restriction[1]),
+                4 => links.UpdateOrCreateOrGet(restriction[0], restriction[1], restriction[2], restriction[3]),
+                _ => Update(links, restriction[0], restriction[1], restriction[2])
+            };
         }
 
         public static TLink Update<TLink>(this ILinks<TLink> links, TLink link, TLink newSource, TLink newTarget, WriteHandler<TLink> handler) => links.Update(new LinkAddress<TLink>(link), new Link<TLink>(link, newSource, newTarget), handler);
