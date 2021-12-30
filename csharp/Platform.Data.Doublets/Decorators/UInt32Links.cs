@@ -87,7 +87,9 @@ namespace Platform.Data.Doublets.Decorators
                 var before = links.GetLink(updatedLink);
                 if (before[sourcePartConstant] != newSource || before[targetPartConstant] != newTarget)
                 {
-                    return links.Update(links.GetLink(updatedLink), new List<TLink> { newSource == itselfConstant ? updatedLink : newSource, newTarget == itselfConstant ? updatedLink : newTarget }, handler);
+                    var source = newSource == itselfConstant ? updatedLink : newSource;
+                    var target = newTarget == itselfConstant ? updatedLink : newTarget;
+                    return links.Update(links.GetLink(updatedLink), new Link<TLink>(source, target), handler);
                 }
                 return handler(before, before);
             }
