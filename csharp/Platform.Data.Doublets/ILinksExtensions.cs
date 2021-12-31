@@ -883,9 +883,7 @@ namespace Platform.Data.Doublets
         public static TLink CreatePoint<TLink>(this ILinks<TLink> links, WriteHandler<TLink> handler)
         {
             var link = links.Create();
-            var restriction = new LinkAddress<TLink>(link);
-            var substitution = new Link<TLink>(link, link, link);
-            return links.Update(restriction, substitution, handler);
+            return links.Update(link, link, link, handler);
         }
 
         public static TLink CreateAndUpdate<TLink>(this ILinks<TLink> links, TLink source, TLink target)
