@@ -1324,7 +1324,7 @@ namespace Platform.Data.Doublets
             if (!equalityComparer.Equals(oldLinkIndex, newLinkIndex))
             {
                 links.MergeUsages(oldLinkIndex, newLinkIndex, handler);
-                links.Delete(links.GetLink(oldLinkIndex), handler);
+                links.Delete(oldLinkIndex, handler);
             }
             return newLinkIndex;
         }
