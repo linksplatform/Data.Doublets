@@ -1043,7 +1043,7 @@ namespace Platform.Data.Doublets
             if (equalityComparer.Equals(newSource, source) && equalityComparer.Equals(newTarget, target))
             {
                 var linkStruct = new Link<TLink>(link, source, target);
-                return handler(linkStruct, linkStruct);
+                return link;
             }
             return links.Update(link, newSource, newTarget, handler);
         }
