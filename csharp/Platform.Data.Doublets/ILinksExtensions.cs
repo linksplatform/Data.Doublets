@@ -876,7 +876,16 @@ namespace Platform.Data.Doublets
             return setter.Result;
         }
 
-        public static TLink CreatePoint<TLink>(this ILinks<TLink> links) => CreatePoint(links, null);
+        public static TLink CreatePoint<TLink>(this ILinks<TLink> links)
+        {
+            TLink result = default;
+            CreatePoint(links, (_, after) =>
+            {
+                result = after[links.Constants.IndexPart];
+                return links.Constants.Continue;
+            });
+            return result;
+        }
 
         /// <param name="links">Хранилище связей.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
