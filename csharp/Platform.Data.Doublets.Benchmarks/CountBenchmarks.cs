@@ -18,6 +18,8 @@ namespace Platform.Data.Doublets.Benchmarks
         private static ILinks<TLink> _links;
         private static TLink _any;
         private static CheckedConverter<TLink, long> _addressToInt64Converter = CheckedConverter<TLink, long>.Default;
+        [Params(1000, 10000, 100000)]
+        public static int N;
         [GlobalSetup]
         public static void Setup()
         {
@@ -25,6 +27,15 @@ namespace Platform.Data.Doublets.Benchmarks
             _links = new UnitedMemoryLinks<TLink>(dataMemory).DecorateWithAutomaticUniquenessAndUsagesResolution();
             _any = _links.Constants.Any;
             _links.CreatePoint();
+            _links.Create();
+            for (var i = 0; i < N; i++)
+            {
+                _links.Create(new List<TLink>{ 1, 2 });
+            }
+            for (var i = 0; i < N; i++)
+            {
+                _links.Create(new List<TLink>{ 2, 1 });
+            }
         }
 
         [GlobalCleanup]
