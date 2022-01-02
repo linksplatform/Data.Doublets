@@ -532,7 +532,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                 freeLink = header.AllocatedLinks = Increment(header.AllocatedLinks);
                 _memory.UsedCapacity += LinkSizeInBytes;
             }
-            return handler(Link<TLink>.Null, substitution);
+            return handler(Link<TLink>.Null, new Link<TLink>(freeLink, Constants.Null, Constants.Null));
         }
 
         /// <summary>
