@@ -20,7 +20,6 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
         // TODO: expect
         let mut link: Link<T> = self.get_link(address).unwrap();
 
-        assert_eq!(link.len(), 3);
         assert_eq!(link.index, address);
         assert_eq!(link.source, constants.null);
         assert_eq!(link.target, constants.null);
