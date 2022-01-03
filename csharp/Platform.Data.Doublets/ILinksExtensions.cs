@@ -1119,16 +1119,12 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void DeleteByQuery<TLink>(this ILinks<TLink> links, Link<TLink> query)
         {
-            var count = CheckedConverter<TLink, long>.Default.Convert(links.Count(query));
-            if (count > 0)
+            var queryResult = new List<TLink>();
+            var queryResultFiller = new ListFiller<TLink, TLink>(queryResult, links.Constants.Continue);
+            links.Each(queryResultFiller.AddFirstAndReturnConstant, query);
+            foreach (var link in queryResult)
             {
-                var queryResult = new TLink[count];
-                var queryResultFiller = new ArrayFiller<TLink, TLink>(queryResult, links.Constants.Continue);
-                links.Each(queryResultFiller.AddFirstAndReturnConstant, query);
-                for (var i = count - 1; i >= 0; i--)
-                {
-                    links.Delete(queryResult[i]);
-                }
+                links.Delete(link);
             }
         }
 
