@@ -1237,6 +1237,7 @@ namespace Platform.Data.Doublets
             }
             var constants = links.Constants;
             var usagesAsSource = links.All(new Link<TLink>(constants.Any, oldLinkIndex, constants.Any));
+            var combinedResult = constants.Continue;
             for (var i = 0; i < usagesAsSource.Count; i++)
             {
                 var usageAsSource = usagesAsSource[i];
@@ -1246,11 +1247,11 @@ namespace Platform.Data.Doublets
                 }
                 var restriction = new LinkAddress<TLink>(usageAsSource[constants.IndexPart]);
                 var substitution = new Link<TLink>(newLinkIndex, usageAsSource[constants.TargetPart]);
-
                 var result = links.Update(restriction, substitution, handler);
                 if (equalityComparer.Equals(constants.Break, result))
                 {
                     handler = null;
+                    combinedResult = constants.Break;
                 }
             }
             var usagesAsTarget = links.All(new Link<TLink>(constants.Any, constants.Any, oldLinkIndex));
@@ -1267,9 +1268,10 @@ namespace Platform.Data.Doublets
                 if (equalityComparer.Equals(constants.Break, result))
                 {
                     handler = null;
+                    combinedResult = constants.Break;
                 }
             }
-            return newLinkIndex;
+            return combinedResult;
         }
 
         public static TLink MergeAndDelete<TLink>(this ILinks<TLink> links, TLink oldLinkIndex, TLink newLinkIndex)
