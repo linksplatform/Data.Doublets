@@ -500,7 +500,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             {
                 TargetsTreeMethods.Attach(ref firstAsTarget, linkIndex);
             }
-            return handler(restriction, substitution);
+            return handler(before, substitution);
         }
 
         /// <remarks>
