@@ -800,7 +800,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
                     InternalTargetsTreeMethods.Attach(ref GetLinkIndexPartReference(target).RootAsTarget, linkIndex);
                 }
             }
-            return handler(restriction, substitution);
+            return handler != null ? handler(restriction, substitution) : Constants.Continue;
         }
 
         /// <remarks>
@@ -834,7 +834,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
                 _dataMemory.UsedCapacity += LinkDataPartSizeInBytes;
                 _indexMemory.UsedCapacity += LinkIndexPartSizeInBytes;
             }
-            return handler(Link<TLink>.Null, GetLinkStruct(freeLink));
+            return handler != null ? handler(Link<TLink>.Null, GetLinkStruct(freeLink)) : Constants.Continue;
         }
 
         /// <summary>
@@ -872,7 +872,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
                     _indexMemory.UsedCapacity -= LinkIndexPartSizeInBytes;
                 }
             }
-            return handler(before, Link<TLink>.Null);
+            return handler != null ? handler(before, Link<TLink>.Null) : Constants.Continue;
         }
 
         /// <summary>

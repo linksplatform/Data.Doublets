@@ -335,11 +335,7 @@ namespace Platform.Data.Doublets.Decorators
                 {
                     throw new NotSupportedException();
                 }
-                if (matchHandler != null)
-                {
-                    return substitutionHandler(before, after);
-                }
-                return constants.Continue;
+                return matchHandler != null ? substitutionHandler(before, after) : constants.Continue;
             }
             else if (!patternOrCondition.IsNullOrEmpty()) // Deletion
             {
@@ -354,11 +350,7 @@ namespace Platform.Data.Doublets.Decorators
                     var after = Array.Empty<TLink>();
                     _links.Update(linkToDelete, constants.Null, constants.Null);
                     _links.Delete(linkToDelete);
-                    if (matchHandler != null)
-                    {
-                        return substitutionHandler(before, after);
-                    }
-                    return constants.Continue;
+                    return matchHandler != null ? substitutionHandler(before, after) : constants.Continue;
                 }
                 else
                 {
@@ -397,11 +389,7 @@ namespace Platform.Data.Doublets.Decorators
                     {
                         throw new NotSupportedException();
                     }
-                    if (matchHandler != null)
-                    {
-                        return substitutionHandler(before, after);
-                    }
-                    return constants.Continue;
+                    return matchHandler != null ? substitutionHandler(before, after) : constants.Continue;
                 }
                 else
                 {

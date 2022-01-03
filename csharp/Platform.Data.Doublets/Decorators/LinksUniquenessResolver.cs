@@ -86,7 +86,7 @@ namespace Platform.Data.Doublets.Decorators
             {
                 _facade.Delete(oldLinkAddress, handler);
             }
-            return handler(_links.GetLink(oldLinkAddress), _links.GetLink(newLinkAddress));
+            return handler == null ? _links.Constants.Continue : handler(_links.GetLink(oldLinkAddress), _links.GetLink(newLinkAddress));
         }
     }
 }
