@@ -18,23 +18,24 @@ namespace Platform.Data.Doublets.Benchmarks
         private static ILinks<TLink> _links;
         private static TLink _any;
         private static CheckedConverter<TLink, long> _addressToInt64Converter = CheckedConverter<TLink, long>.Default;
-        [Params(1000, 10000, 100000)]
-        public static int N;
+        [Params(10, 100, 1000, 10000, 100000)]
+        public static ulong N;
         [GlobalSetup]
         public static void Setup()
         {
             var dataMemory = new HeapResizableDirectMemory();
             _links = new UnitedMemoryLinks<TLink>(dataMemory).DecorateWithAutomaticUniquenessAndUsagesResolution();
             _any = _links.Constants.Any;
-            _links.CreatePoint();
-            _links.Create();
-            for (var i = 0; i < N; i++)
+            var firstLink = _links.CreatePoint();
+            for (ulong i = 0; i < N; i++)
             {
-                _links.Create(new List<TLink>{ 1, 2 });
+                var link = _links.CreatePoint();
+                _links.Update(new LinkAddress<TLink>(link), new List<TLink>{ link, firstLink, link });
             }
-            for (var i = 0; i < N; i++)
+            for (ulong i = 0; i < N; i++)
             {
-                _links.Create(new List<TLink>{ 2, 1 });
+                var link = _links.CreatePoint();
+                _links.Update(new LinkAddress<TLink>(link), new List<TLink>{ link, link, firstLink });
             }
         }
 
@@ -62,6 +63,22 @@ namespace Platform.Data.Doublets.Benchmarks
             var usagesAsSourceQuery = new Link<TLink>(_any, 1UL, _any);
             var usagesAsTargetQuery = new Link<TLink>(_any, _any, 1UL);
             var usages = new List<IList<TLink>>();
+            var usagesFiller = new ListFiller<IList<TLink>, TLink>(usages, _links.Constants.Continue);
+            _links.Each(usagesFiller.AddAndReturnConstant, usagesAsSourceQuery);
+            _links.Each(usagesFiller.AddAndReturnConstant, usagesAsTargetQuery);
+            return usages;
+        }
+
+        [Benchmark]
+        public IList<IList<TLink>> ListWithCapacity()
+        {
+            var addressToInt64Converter = CheckedConverter<TLink, long>.Default;
+            var usagesAsSourceQuery = new Link<TLink>(_any, 1UL, _any);
+            var usagesAsSourceCount = addressToInt64Converter.Convert(_links.Count(usagesAsSourceQuery));
+            var usagesAsTargetQuery = new Link<TLink>(_any, _any, 1UL);
+            var usagesAsTargetCount = addressToInt64Converter.Convert(_links.Count(usagesAsTargetQuery));
+            var totalUsages = usagesAsSourceCount + usagesAsTargetCount;
+            var usages = new List<IList<TLink>>((int)totalUsages);
             var usagesFiller = new ListFiller<IList<TLink>, TLink>(usages, _links.Constants.Continue);
             _links.Each(usagesFiller.AddAndReturnConstant, usagesAsSourceQuery);
             _links.Each(usagesFiller.AddAndReturnConstant, usagesAsTargetQuery);
