@@ -27,7 +27,7 @@ fn IGNORE<T: LinkType>(_: Link<T>, _: Link<T>) -> Result<(), ()> {
     Err(())
 }
 
-pub trait ILinks<T: LinkType>: Sized {
+pub trait ILinks<T: LinkType> {
     fn constants(&self) -> LinksConstants<T>;
 
     fn count_by(&self, query: impl ToQuery<T>) -> T;
@@ -461,7 +461,7 @@ pub trait ILinks<T: LinkType>: Sized {
 
         let sources_count = self.count_by([any, old, any]).as_();
         let targets_count = self.count_by([any, any, old]).as_();
-        if sources_count == 0 && targets_count == 0 && Point::is_full(link) {
+        if sources_count == 0 && targets_count == 0 && link.is_full() {
             return Ok(new);
         }
 
@@ -517,7 +517,10 @@ pub trait ILinks<T: LinkType>: Sized {
 
     fn decorators_kit(
         self,
-    ) -> CascadeUniqueResolver<T, NonNullDeletionResolver<T, CascadeUsagesResolver<T, Self>>> {
+    ) -> CascadeUniqueResolver<T, NonNullDeletionResolver<T, CascadeUsagesResolver<T, Self>>>
+    where
+        Self: Sized,
+    {
         let links = self;
         let links = CascadeUsagesResolver::new(links);
         let links = NonNullDeletionResolver::new(links);

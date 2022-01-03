@@ -16,7 +16,7 @@ use crate::tests::make_mem;
 
 #[test]
 fn basic_sync() {
-    let mem = make_mem();
+    let mem = make_mem().unwrap();
     let mut links = make_links(mem).unwrap();
 
     let base_links = Arc::new(RwLock::new(links));
@@ -44,7 +44,7 @@ fn basic_sync() {
 
 // #[test]
 fn super_read() {
-    let mem = make_mem();
+    let mem = make_mem().unwrap();
     let mut links = make_links(mem).unwrap();
 
     let instant = Instant::now();

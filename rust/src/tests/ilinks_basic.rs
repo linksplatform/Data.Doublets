@@ -3,7 +3,7 @@ use std::ops::ControlFlow;
 
 use crate::doublets::data::{AddrToRaw, Hybrid, IGenericLinks, LinksConstants, Query, RawToAddr};
 use crate::doublets::{ILinks, ILinksExtensions, Link, LinksError};
-use crate::mem::HeapMem;
+use crate::mem::GlobalMem;
 use crate::num::ToSigned;
 use crate::tests::make_links;
 use crate::tests::make_mem;
@@ -11,7 +11,7 @@ use crate::{query, Links};
 
 #[test]
 fn create() {
-    let mem = make_mem();
+    let mem = make_mem().unwrap();
     let mut links = make_links(mem).unwrap();
 
     links.create().unwrap();
@@ -21,7 +21,7 @@ fn create() {
 
 #[test]
 fn create_point() {
-    let mem = make_mem();
+    let mem = make_mem().unwrap();
     let mut links = make_links(mem).unwrap();
 
     let point = links.create_point().unwrap();
@@ -33,7 +33,7 @@ fn create_point() {
 
 #[test]
 fn each_eq_count() {
-    let mem = make_mem();
+    let mem = make_mem().unwrap();
     let mut links = make_links(mem).unwrap();
 
     let root = links.create_point().unwrap();
@@ -57,7 +57,7 @@ fn each_eq_count() {
 
 #[test]
 fn rebase() {
-    let mem = make_mem();
+    let mem = make_mem().unwrap();
     let mut links = make_links(mem).unwrap();
     let any = links.constants.any;
 
@@ -80,7 +80,7 @@ fn rebase() {
 
 #[test]
 fn delete_all_usages() {
-    let mem = make_mem();
+    let mem = make_mem().unwrap();
     let mut links = make_links(mem).unwrap();
 
     let root = links.create_point().unwrap();

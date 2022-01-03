@@ -15,7 +15,7 @@ use crate::doublets::{ILinks, ILinksExtensions, Link, LinksError};
 //use crate::doublets::mem::splited;
 use crate::doublets::mem::united::Links;
 use crate::mem::{
-    AllocMem, FileMappedMem, HeapMem, Mem, ResizeableBase, ResizeableMem, TempFileMem,
+    AllocMem, FileMappedMem, GlobalMem, Mem, ResizeableBase, ResizeableMem, TempFileMem,
 };
 use crate::test_extensions::ILinksTestExtensions;
 use crate::tests::make_links;
@@ -25,7 +25,7 @@ use crate::tests::make_mem;
 fn random_creations_and_deletions() {
     std::fs::remove_file("db.links");
 
-    let mem = make_mem();
+    let mem = make_mem().unwrap();
     let mut links = make_links(mem).unwrap();
     let mut links = links.decorators_kit();
 
@@ -66,7 +66,7 @@ fn billion_points_file_mapped() {
 
 #[test]
 fn billion_points_heap_mem() -> Result<(), LinksError<usize>> {
-    let mem = HeapMem::new()?;
+    let mem = GlobalMem::new()?;
     let mut links = Links::<usize, _>::new(mem)?;
 
     let instant = Instant::now();
@@ -133,8 +133,8 @@ fn billion_points_file_mapped_splited() {
 
 #[test]
 fn billion_points_heap_mem_splited() {
-    let mem = HeapMem::new().unwrap();
-    let index = HeapMem::new().unwrap();
+    let mem = GlobalMem::new().unwrap();
+    let index = GlobalMem::new().unwrap();
     let mut links = splited::Links::<usize, _, _>::new(mem, index).unwrap();
 
     let instant = Instant::now();

@@ -10,7 +10,7 @@ use crate::tests::{make_links, make_mem};
 
 #[test]
 fn non_null_deletions() -> Result<(), Box<dyn Error>> {
-    let mem = make_mem();
+    let mem = make_mem().unwrap();
     let links = make_links(mem).unwrap();
     let mut links = NonNullDeletionResolver::new(links);
 
@@ -37,7 +37,7 @@ fn non_null_deletions() -> Result<(), Box<dyn Error>> {
 
 #[test]
 fn unique_resolver() -> Result<(), Box<dyn Error>> {
-    let mem = make_mem();
+    let mem = make_mem().unwrap();
     let links = make_links(mem).unwrap();
     let mut links = UniqueResolver::new(links);
 
@@ -52,7 +52,7 @@ fn unique_resolver() -> Result<(), Box<dyn Error>> {
 
 #[test]
 fn unique_validator() -> Result<(), Box<dyn Error>> {
-    let mem = make_mem();
+    let mem = make_mem().unwrap();
     let links = make_links(mem).unwrap();
     let mut links = UniqueValidator::new(links);
 
@@ -71,7 +71,7 @@ fn unique_validator() -> Result<(), Box<dyn Error>> {
 
 #[test]
 fn cascade_resolver() -> Result<(), Box<dyn Error>> {
-    let mem = make_mem();
+    let mem = make_mem().unwrap();
     let links = make_links(mem).unwrap();
     let mut links = CascadeUniqueResolver::new(links);
 
@@ -95,7 +95,7 @@ fn cascade_resolver() -> Result<(), Box<dyn Error>> {
 #[test]
 // TODO: rename to `BorrowingValidator` or other name
 fn usages_validator() -> Result<(), Box<dyn Error>> {
-    let mem = make_mem();
+    let mem = make_mem().unwrap();
     let links = make_links(mem).unwrap();
     let mut links = UsagesValidator::new(links);
 
@@ -124,7 +124,7 @@ fn usages_validator() -> Result<(), Box<dyn Error>> {
 #[test]
 // TODO: rename to less stupid name
 fn cascade_usages_resolver() -> Result<(), Box<dyn Error>> {
-    let mem = make_mem();
+    let mem = make_mem().unwrap();
     let links = make_links(mem).unwrap();
     let mut links = CascadeUsagesResolver::new(links);
 

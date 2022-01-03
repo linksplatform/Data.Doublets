@@ -6,7 +6,7 @@ use crate::tests::{make_links, make_mem, typed_links};
 
 #[test]
 fn non_exist_reference() {
-    let mem = make_mem();
+    let mem = make_mem().unwrap();
     let mut links = make_links(mem).unwrap();
 
     let link = links.create().unwrap();
@@ -25,7 +25,7 @@ fn non_exist_reference() {
 
 #[test]
 fn raw_numbers() {
-    let mem = make_mem();
+    let mem = make_mem().unwrap();
     let mut links = make_links(mem).unwrap();
 
     links.test_raw_numbers_crud();
@@ -33,7 +33,7 @@ fn raw_numbers() {
 
 #[test]
 fn u128_raw_numbers() {
-    let mem = make_mem();
+    let mem = make_mem().unwrap();
     //let mut links = typed_links::<u128, _>(mem);
     let mut links = typed_links(mem).unwrap();
 

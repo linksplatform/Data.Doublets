@@ -86,3 +86,13 @@ impl<A: Allocator> ResizeableMem for AllocMem<A> {
         self.base.reserved_mem()
     }
 }
+
+impl<A: Allocator> Drop for AllocMem<A> {
+    fn drop(&mut self) {
+        unsafe {
+            let ptr = self.get_ptr();
+            let layout = Layout::for_value_raw(ptr.as_ptr());
+            self.alloc.deallocate(ptr.as_non_null_ptr(), layout);
+        }
+    }
+}
