@@ -1222,7 +1222,7 @@ namespace Platform.Data.Doublets
             }
         }
 
-        public static TLink MergeUsages<TLink>(this ILinks<TLink> links, TLink oldLinkIndex, TLink newLinkIndex) => MergeUsages(links, oldLinkIndex, newLinkIndex, null);
+        public static void MergeUsages<TLink>(this ILinks<TLink> links, TLink oldLinkIndex, TLink newLinkIndex) => MergeUsages(links, oldLinkIndex, newLinkIndex, null);
 
         /// <summary>
         /// Merging two usages graphs, all children of old link moved to be children of new link or deleted.
@@ -1246,7 +1246,12 @@ namespace Platform.Data.Doublets
                 }
                 var restriction = new LinkAddress<TLink>(usageAsSource[constants.IndexPart]);
                 var substitution = new Link<TLink>(newLinkIndex, usageAsSource[constants.TargetPart]);
-                links.Update(restriction, substitution, handler);
+
+                var result = links.Update(restriction, substitution, handler);
+                if (equalityComparer.Equals(constants.Break, result))
+                {
+                    handler = null;
+                }
             }
             var usagesAsTarget = links.All(new Link<TLink>(constants.Any, constants.Any, oldLinkIndex));
             for (var i = 0; i < usagesAsTarget.Count; i++)
@@ -1258,7 +1263,11 @@ namespace Platform.Data.Doublets
                 }
                 var restriction = links.GetLink(usageAsTarget[constants.IndexPart]);
                 var substitution = new Link<TLink>(usageAsTarget[constants.TargetPart], newLinkIndex);
-                links.Update(restriction, substitution, handler);
+                var result = links.Update(restriction, substitution, handler);
+                if (equalityComparer.Equals(constants.Break, result))
+                {
+                    handler = null;
+                }
             }
             return newLinkIndex;
         }
