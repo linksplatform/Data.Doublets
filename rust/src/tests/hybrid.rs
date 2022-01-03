@@ -1,24 +1,22 @@
-use crate::doublets::data::{AddrToRaw, IGenericLinks, LinksConstants, RawToAddr};
+use crate::doublets::data::{AddrToRaw, IGenericLinks, LinksConstants, Query, RawToAddr};
 use crate::doublets::{ILinks, ILinksExtensions};
+use crate::query;
 use crate::test_extensions::ILinksTestExtensions;
 use crate::tests::{make_links, make_mem, typed_links};
 
 #[test]
 fn non_exist_reference() {
-    let mem = make_mem();
+    let mem = make_mem().unwrap();
     let mut links = make_links(mem).unwrap();
 
     let link = links.create().unwrap();
     links.update(link, usize::MAX, usize::MAX).unwrap();
 
     let mut result = 0;
-    links.each_by(
-        |found| {
-            result = found.index;
-            links.constants().r#break
-        },
-        [links.constants().any, usize::MAX, usize::MAX],
-    );
+    links.each_by([links.constants().any, usize::MAX, usize::MAX], |found| {
+        result = found.index;
+        links.constants().r#break
+    });
 
     assert_eq!(result, link);
     assert_eq!(links.count_by([usize::MAX]), 0);
@@ -27,7 +25,7 @@ fn non_exist_reference() {
 
 #[test]
 fn raw_numbers() {
-    let mem = make_mem();
+    let mem = make_mem().unwrap();
     let mut links = make_links(mem).unwrap();
 
     links.test_raw_numbers_crud();
@@ -35,7 +33,7 @@ fn raw_numbers() {
 
 #[test]
 fn u128_raw_numbers() {
-    let mem = make_mem();
+    let mem = make_mem().unwrap();
     //let mut links = typed_links::<u128, _>(mem);
     let mut links = typed_links(mem).unwrap();
 

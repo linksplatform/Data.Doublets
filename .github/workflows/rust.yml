@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches:
+      master
+  pull_request:
+    branches:
+      master
+
+env:
+  CARGO_TERM_COLOR: always
+  RUSTFLAGS: -Awarnings
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        rust: [nightly]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: ${{ matrix.rust }}
+          override: true
+      - name: Test
+        run: |
+          cd rust
+          cargo test +${{ matrix.rust }} --release -- --nocapture
+  check:
+    runs-on: ubuntu-latest
+    name: Check
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly
+          override: true
+      - name: Tarpaulin
+        run: |
+          cd rust
+          cargo install cargo-tarpaulin
+          cargo tarpaulin --ignore-tests -- --test-threads 1
+      - uses: codecov/codecov-action@v1
+        with:
+          codecov_token: ${{ secrets.CODECOV_TOKEN }}
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v1
+        with:
+          name: code-coverage-report
+          path: rust/cobertura.xml

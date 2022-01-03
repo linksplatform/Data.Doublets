@@ -7,53 +7,172 @@ use num_traits::{one, zero};
 use rand::{thread_rng, Rng};
 use smallvec::SmallVec;
 
-use crate::doublets::data::{LinksConstants, Point};
+use crate::doublets::data::ToQuery;
+use crate::doublets::data::{LinksConstants, Point, Query};
+use crate::doublets::error::LinksError;
+use crate::doublets::link::Link;
+use crate::doublets::StoppedHandler;
+use crate::doublets::{data, Doublet, Flow};
+use crate::num::LinkType;
+use crate::query;
+use ControlFlow::{Break, Continue};
+
 use crate::doublets::decorators::{
     CascadeUniqueResolver, CascadeUsagesResolver, NonNullDeletionResolver,
 };
-use crate::doublets::error::LinksError;
-use crate::doublets::link::Link;
-use crate::doublets::{data, Doublet};
-use crate::num::LinkType;
 
 pub type Result<T, E = LinksError<T>> = std::result::Result<T, E>;
 
-pub trait ILinks<T: LinkType>: Sized {
+fn IGNORE<T: LinkType>(_: Link<T>, _: Link<T>) -> Result<(), ()> {
+    Err(())
+}
+
+pub trait ILinks<T: LinkType> {
     fn constants(&self) -> LinksConstants<T>;
 
-    fn count_by<const L: usize>(&self, restrictions: [T; L]) -> T;
+    fn count_by(&self, query: impl ToQuery<T>) -> T;
 
-    fn create(&mut self) -> Result<T>;
-
-    fn each_by<H, const L: usize>(&self, mut handler: H, restrictions: [T; L]) -> T
-    where
-        H: FnMut(Link<T>) -> T,
-    {
-        let result = self.try_each_by(
-            |link| {
-                if handler(link) == self.constants().r#continue {
-                    ControlFlow::Continue(())
-                } else {
-                    ControlFlow::Break(())
-                }
-            },
-            restrictions,
-        );
-
-        match result {
-            ControlFlow::Continue(_) => self.constants().r#continue,
-            ControlFlow::Break(_) => self.constants().r#break,
-        }
+    fn count(&self) -> T {
+        self.count_by([])
     }
 
-    fn try_each_by<F, R, const L: usize>(&self, handler: F, restrictions: [T; L]) -> R
+    fn create_by_with<F, R>(
+        &mut self,
+        query: impl ToQuery<T>,
+        handler: F,
+    ) -> Result<R, LinksError<T>>
+    where
+        F: FnMut(Link<T>, Link<T>) -> R,
+        R: Try<Output = ()>;
+
+    fn create_by(&mut self, query: impl ToQuery<T>) -> Result<T, LinksError<T>> {
+        let mut index = default();
+        self.create_by_with(query, |before, link| {
+            index = link.index;
+            Flow::Continue
+        })
+        .map(|_| index)
+    }
+
+    fn create_with<F, R>(&mut self, handler: F) -> Result<R, LinksError<T>>
+    where
+        F: FnMut(Link<T>, Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
+        self.create_by_with([], handler)
+    }
+
+    fn create(&mut self) -> Result<T> {
+        self.create_by([])
+    }
+
+    fn try_each_by<F, R>(&self, restrictions: impl ToQuery<T>, handler: F) -> R
     where
         F: FnMut(Link<T>) -> R,
         R: Try<Output = ()>;
 
-    fn update(&mut self, index: T, source: T, target: T) -> Result<T>;
+    fn try_each<F, R>(&self, handler: F) -> R
+    where
+        F: FnMut(Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
+        self.try_each_by([], handler)
+    }
 
-    fn delete(&mut self, index: T) -> Result<T>;
+    fn each_by<H>(&self, restrictions: impl ToQuery<T>, mut handler: H) -> T
+    where
+        H: FnMut(Link<T>) -> T,
+    {
+        let result = self.try_each_by(restrictions, |link| {
+            let result = handler(link);
+            if result == self.constants().r#continue {
+                Continue(())
+            } else {
+                Break(result)
+            }
+        });
+
+        match result {
+            Continue(_) => self.constants().r#continue,
+            Break(result) => result,
+        }
+    }
+
+    fn each<H>(&self, handler: H) -> T
+    where
+        H: FnMut(Link<T>) -> T,
+    {
+        self.each_by([], handler)
+    }
+
+    fn update_by_with<F, R>(
+        &mut self,
+        query: impl ToQuery<T>,
+        replacement: impl ToQuery<T>,
+        handler: F,
+    ) -> Result<R, LinksError<T>>
+    where
+        F: FnMut(Link<T>, Link<T>) -> R,
+        R: Try<Output = ()>;
+
+    fn update_by(&mut self, query: impl ToQuery<T>, replacement: impl ToQuery<T>) -> Result<T> {
+        let r#continue = self.constants().r#continue;
+        let mut result = default();
+        self.update_by_with(query, replacement, |before, after| {
+            result = after.index;
+            Flow::Continue
+        })
+        .map(|_| result)
+    }
+
+    fn update_with<F, R>(
+        &mut self,
+        index: T,
+        source: T,
+        target: T,
+        mut handler: F,
+    ) -> Result<R, LinksError<T>>
+    where
+        F: FnMut(Link<T>, Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
+        self.update_by_with([index], [index, source, target], handler)
+    }
+
+    fn update(&mut self, index: T, source: T, target: T) -> Result<T> {
+        self.update_by([index], [index, source, target])
+    }
+
+    fn delete_by_with<F, R>(
+        &mut self,
+        query: impl ToQuery<T>,
+        handler: F,
+    ) -> Result<R, LinksError<T>>
+    where
+        F: FnMut(Link<T>, Link<T>) -> R,
+        R: Try<Output = ()>;
+
+    fn delete_by(&mut self, query: impl ToQuery<T>) -> Result<T> {
+        let r#continue = self.constants().r#continue;
+        let mut result = default();
+        self.delete_by_with(query, |before, after| {
+            result = after.index;
+            Flow::Continue
+        })
+        .map(|_| result)
+    }
+
+    fn delete_with<F, R>(&mut self, index: T, mut handler: F) -> Result<R, LinksError<T>>
+    where
+        F: FnMut(Link<T>, Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
+        self.delete_by_with([index], handler)
+    }
+
+    fn delete(&mut self, index: T) -> Result<T> {
+        self.delete_by([index])
+    }
 
     fn try_get_link(&self, index: T) -> Result<Link<T>, LinksError<T>> {
         self.get_link(index).ok_or(LinksError::NotExists(index))
@@ -65,35 +184,12 @@ pub trait ILinks<T: LinkType>: Sized {
             Some(Link::point(index))
         } else {
             let mut slice = None;
-            self.each_by(
-                |link| {
-                    slice = Some(link);
-                    constants.r#break
-                },
-                [index],
-            );
+            self.each_by([index], |link| {
+                slice = Some(link);
+                constants.r#break
+            });
             slice
         }
-    }
-
-    fn count(&self) -> T {
-        self.count_by([])
-    }
-
-    // TODO: maybe create `par_each`
-    fn each<H>(&self, handler: H) -> T
-    where
-        H: FnMut(Link<T>) -> T,
-    {
-        self.each_by(handler, [])
-    }
-
-    fn try_each<F, R>(&self, handler: F) -> R
-    where
-        F: FnMut(Link<T>) -> R,
-        R: Try<Output = ()>,
-    {
-        self.try_each_by(handler, [])
     }
 
     fn delete_all(&mut self) -> Result<(), LinksError<T>> {
@@ -110,53 +206,64 @@ pub trait ILinks<T: LinkType>: Sized {
         Ok(())
     }
 
-    fn delete_query<const L: usize>(&mut self, query: [T; L]) -> Result<(), LinksError<T>> {
+    fn delete_query_with<F, R>(
+        &mut self,
+        query: impl ToQuery<T>,
+        mut handler: F,
+    ) -> Result<(), LinksError<T>>
+    where
+        F: FnMut(Link<T>, Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
+        let query = query.to_query();
         let constants = self.constants();
-        let len = self.count_by(query).as_();
+        let len = self.count_by(query.to_query()).as_();
         let mut vec = Vec::with_capacity(len);
 
-        self.each_by(
-            |link| {
-                vec.push(link.index);
-                constants.r#continue
-            },
-            query,
-        );
+        self.each_by(query, |link| {
+            vec.push(link.index);
+            constants.r#continue
+        });
 
+        let mut handler = StoppedHandler::new(handler);
         for index in vec.into_iter().rev() {
-            self.delete(index)?;
+            self.delete_with(index, &mut handler)?;
         }
         Ok(())
     }
 
-    // TODO: Temporary implementation
-    fn delete_usages(&mut self, index: T) -> Result<(), LinksError<T>> {
+    fn delete_usages_with<F, R>(&mut self, index: T, mut handler: F) -> Result<(), LinksError<T>>
+    where
+        F: FnMut(Link<T>, Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
         let any = self.constants().any;
-        let mut to_delete = vec![];
-        self.each_by(
-            |link| {
-                if link.index != index {
-                    to_delete.push(link.index);
-                }
-                self.constants().r#continue
-            },
-            [any, index, any],
+        let mut to_delete = Vec::with_capacity(
+            self.count_by([any, index, any]).as_() + self.count_by([any, any, index]).as_(),
         );
+        self.try_each_by([any, index, any], |link| {
+            if link.index != index {
+                to_delete.push(link.index);
+            }
+            Flow::Continue
+        });
 
-        self.each_by(
-            |link| {
-                if link.index != index {
-                    to_delete.push(link.index);
-                }
-                self.constants().r#continue
-            },
-            [any, any, index],
-        );
+        self.try_each_by([any, any, index], |link| {
+            if link.index != index {
+                to_delete.push(link.index);
+            }
+            Flow::Continue
+        });
 
-        for link in to_delete.into_iter().rev() {
-            self.delete(link)?;
+        let mut handler = StoppedHandler::new(handler);
+        for index in to_delete.into_iter().rev() {
+            self.delete_with(index, &mut handler)?;
         }
         Ok(())
+    }
+
+    fn delete_usages(&mut self, index: T) -> Result<(), LinksError<T>> {
+        self.delete_usages_with(index, IGNORE)
     }
 
     fn create_point(&mut self) -> Result<T> {
@@ -164,9 +271,40 @@ pub trait ILinks<T: LinkType>: Sized {
         self.update(new, new, new)
     }
 
+    #[deprecated(note = "use `create_link` instead")]
     fn create_and_update(&mut self, source: T, target: T) -> Result<T> {
-        let new = self.create()?;
-        self.update(new, source, target)
+        self.create_link(source, target)
+    }
+
+    fn create_link_with<F, R>(
+        &mut self,
+        source: T,
+        target: T,
+        mut handler: F,
+    ) -> Result<Flow, LinksError<T>>
+    where
+        F: FnMut(Link<T>, Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
+        // todo macro?
+        let mut new = default();
+        let mut handler = StoppedHandler::new(handler);
+        self.create_with(|before, after| {
+            new = after.index;
+            handler(before, after);
+            Flow::Continue
+        })?;
+
+        self.update_with(new, source, target, handler)
+    }
+
+    fn create_link(&mut self, source: T, target: T) -> Result<T> {
+        let mut result = default();
+        self.create_link_with(source, target, |_, link| {
+            result = link.index;
+            Flow::Continue
+        })
+        .map(|_| result)
     }
 
     #[deprecated(note = "use `links.search(source, target).unwrap_or(or)`")]
@@ -174,53 +312,51 @@ pub trait ILinks<T: LinkType>: Sized {
         self.search(source, target).unwrap_or(or)
     }
 
-    fn search(&self, source: T, target: T) -> Option<T> {
-        let constants = self.constants();
-        let mut index = None;
-        self.each_by(
-            |link| {
-                index = Some(link.index);
-                T::zero()
-            },
-            [constants.any, source, target],
-        );
-        index
+    fn found(&self, query: impl ToQuery<T>) -> bool {
+        self.count_by(query) != zero()
     }
 
-    fn single<const L: usize>(&self, query: [T; L]) -> Option<Link<T>> {
+    fn find(&self, query: impl ToQuery<T>) -> Option<T> {
+        let mut result = None;
+        self.try_each_by(query, |link| {
+            result = Some(link.index);
+            Flow::Break
+        });
+        result
+    }
+
+    fn search(&self, source: T, target: T) -> Option<T> {
+        self.find([self.constants().any, source, target])
+    }
+
+    fn single(&self, query: impl ToQuery<T>) -> Option<Link<T>> {
+        let query = query.to_query();
         let constants = self.constants();
-        let r#break = constants.r#break;
-        let r#continue = constants.r#continue;
 
         let mut result = None;
         let mut marker = false;
-        self.each_by(
-            |link| {
-                if !marker {
-                    result = Some(link);
-                    marker = true;
-                    r#continue
-                } else {
-                    result = None;
-                    r#break
-                }
-            },
-            query,
-        );
+        self.try_each_by(query, |link| {
+            if !marker {
+                result = Some(link);
+                marker = true;
+                Flow::Continue
+            } else {
+                result = None;
+                Flow::Break
+            }
+        });
         result
     }
 
     // TODO: use later `links.iter().map(|link| link.index).collect()`
-    fn all_indices<const L: usize>(&self, query: [T; L]) -> Vec<T> {
-        let len = self.count_by(query).as_();
+    fn all_indices(&self, query: impl ToQuery<T>) -> Vec<T> {
+        let query = query.to_query();
+        let len = self.count_by(query.to_query()).as_();
         let mut vec = Vec::with_capacity(len);
-        self.each_by(
-            |link| {
-                vec.push(link.index);
-                self.constants().r#continue
-            },
-            query,
-        );
+        self.each_by(query, |link| {
+            vec.push(link.index);
+            self.constants().r#continue
+        });
         vec
     }
 
@@ -247,7 +383,7 @@ pub trait ILinks<T: LinkType>: Sized {
             usage_target = usage_target - one();
         }
 
-        usage_source - usage_target
+        usage_source + usage_target
     }
 
     fn exist(&self, link: T) -> bool {
@@ -263,6 +399,55 @@ pub trait ILinks<T: LinkType>: Sized {
         self.count_usages(link) != zero()
     }
 
+    fn rebase_with<F, R>(&mut self, old: T, new: T, mut handler: F) -> Result<(), LinksError<T>>
+    where
+        F: FnMut(Link<T>, Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
+        if old == new {
+            return Ok(());
+        }
+
+        let any = self.constants().any;
+        let as_source = [any, old, any];
+        let as_target = [any, any, old];
+
+        let sources_count: usize = self.count_by(as_source).as_();
+        let targets_count: usize = self.count_by(as_target).as_();
+
+        // not borrowed
+        if sources_count + targets_count == 0 {
+            return Ok(());
+        }
+
+        let mut handler = StoppedHandler::new(handler);
+
+        let mut usages = Vec::with_capacity(sources_count);
+        self.try_each_by(as_source, |link| {
+            usages.push(link);
+            Flow::Continue
+        });
+
+        for usage in usages {
+            if usage.index != old {
+                self.update_with(usage.index, new, usage.target, &mut handler)?;
+            }
+        }
+
+        let mut usages = Vec::with_capacity(sources_count);
+        self.try_each_by(as_target, |link| {
+            usages.push(link);
+            Flow::Continue
+        });
+
+        for usage in usages {
+            if usage.index != old {
+                self.update_with(usage.index, usage.source, new, &mut handler)?;
+            }
+        }
+        Ok(())
+    }
+
     // TODO: old: `merge_usages`
     fn rebase(&mut self, old: T, new: T) -> Result<T> {
         let link = self.try_get_link(old)?;
@@ -276,7 +461,7 @@ pub trait ILinks<T: LinkType>: Sized {
 
         let sources_count = self.count_by([any, old, any]).as_();
         let targets_count = self.count_by([any, any, old]).as_();
-        if sources_count == 0 && targets_count == 0 && Point::is_full(link) {
+        if sources_count == 0 && targets_count == 0 && link.is_full() {
             return Ok(new);
         }
 
@@ -286,13 +471,10 @@ pub trait ILinks<T: LinkType>: Sized {
         }
 
         let mut usages = Vec::with_capacity(sources_count);
-        self.each_by(
-            |link| {
-                usages.push(link.index);
-                constants.r#continue
-            },
-            [any, old, any],
-        );
+        self.each_by([any, old, any], |link| {
+            usages.push(link.index);
+            constants.r#continue
+        });
 
         for index in usages {
             if index != old {
@@ -302,13 +484,10 @@ pub trait ILinks<T: LinkType>: Sized {
         }
 
         let mut usages = Vec::with_capacity(sources_count);
-        self.each_by(
-            |link| {
-                usages.push(link.index);
-                constants.r#continue
-            },
-            [any, any, old],
-        );
+        self.each_by([any, any, old], |link| {
+            usages.push(link.index);
+            constants.r#continue
+        });
 
         for index in usages {
             if index != old {
@@ -329,7 +508,6 @@ pub trait ILinks<T: LinkType>: Sized {
     }
 
     fn reset(&mut self, link: T) -> Result<T, LinksError<T>> {
-        // let null = self.constants().null; // TODO: assert null == 0
         self.update(link, T::zero(), T::zero())
     }
 
@@ -339,7 +517,10 @@ pub trait ILinks<T: LinkType>: Sized {
 
     fn decorators_kit(
         self,
-    ) -> CascadeUniqueResolver<T, NonNullDeletionResolver<T, CascadeUsagesResolver<T, Self>>> {
+    ) -> CascadeUniqueResolver<T, NonNullDeletionResolver<T, CascadeUsagesResolver<T, Self>>>
+    where
+        Self: Sized,
+    {
         let links = self;
         let links = CascadeUsagesResolver::new(links);
         let links = NonNullDeletionResolver::new(links);
@@ -354,6 +535,11 @@ pub trait ILinks<T: LinkType>: Sized {
     #[deprecated(note = "use `links.try_get_link(...)?.is_partial()`")]
     fn is_partial_point(&self, link: T) -> Option<bool> {
         self.get_link(link).map(|link| link.is_partial())
+    }
+
+    #[deprecated(note = "only development")]
+    fn continue_break(&self) -> (T, T) {
+        (self.constants().r#continue, self.constants().r#break)
     }
 }
 
