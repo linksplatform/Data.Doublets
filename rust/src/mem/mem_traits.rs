@@ -1,9 +1,10 @@
 use std::error::Error;
 use std::panic::catch_unwind;
+use std::ptr::NonNull;
 
 pub trait Mem {
-    fn get_ptr(&self) -> *mut u8;
-    fn set_ptr(&mut self, ptr: *mut u8);
+    fn get_ptr(&self) -> NonNull<[u8]>;
+    fn set_ptr(&mut self, ptr: NonNull<[u8]>);
 }
 
 pub trait ResizeableMem: Mem {
