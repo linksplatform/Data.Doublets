@@ -526,18 +526,10 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IList<TLink> AllIndices<TLink>(this ILinks<TLink> links, params TLink[] restriction)
         {
-            var arraySize = CheckedConverter<TLink, ulong>.Default.Convert(links.Count(restriction));
-            if (arraySize > 0)
-            {
-                var array = new TLink[arraySize];
-                var filler = new ArrayFiller<TLink, TLink>(array, links.Constants.Continue);
-                links.Each(filler.AddFirstAndReturnConstant, restriction);
-                return array;
-            }
-            else
-            {
-                return Array.Empty<TLink>();
-            }
+            var allIndices = new List<TLink>();
+            var filler = new ListFiller<TLink, TLink>(allIndices, links.Constants.Continue);
+            links.Each(filler.AddFirstAndReturnConstant, restriction);
+            return allIndices;
         }
 
         /// <summary>
