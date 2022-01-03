@@ -20,6 +20,7 @@ namespace Platform.Data.Doublets.Benchmarks
         private static CheckedConverter<TLink, long> _addressToInt64Converter = CheckedConverter<TLink, long>.Default;
         [Params(10, 100, 1000, 10000, 100000)]
         public static ulong N;
+
         [GlobalSetup]
         public static void Setup()
         {
