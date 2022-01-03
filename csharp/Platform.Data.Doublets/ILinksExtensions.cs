@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using Platform.Ranges;
 using Platform.Collections.Arrays;
+using Platform.Collections.Lists;
 using Platform.Random;
 using Platform.Setters;
 using Platform.Converters;
@@ -494,18 +495,10 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IList<IList<TLink>> All<TLink>(this ILinks<TLink> links, params TLink[] restriction)
         {
-            var arraySize = CheckedConverter<TLink, ulong>.Default.Convert(links.Count(restriction));
-            if (arraySize > 0)
-            {
-                var array = new IList<TLink>[arraySize];
-                var filler = new ArrayFiller<IList<TLink>, TLink>(array, links.Constants.Continue);
-                links.Each(filler.AddAndReturnConstant, restriction);
-                return array;
-            }
-            else
-            {
-                return Array.Empty<IList<TLink>>();
-            }
+            var allLinks = new List<IList<TLink>>();
+            var filler = new ListFiller<IList<TLink>, TLink>(allLinks, links.Constants.Continue);
+            links.Each(filler.AddAndReturnConstant, restriction);
+            return allLinks;
         }
 
         /// <summary>
