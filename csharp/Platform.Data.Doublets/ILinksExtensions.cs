@@ -1077,29 +1077,24 @@ namespace Platform.Data.Doublets
         public static void DeleteAllUsages<TLink>(this ILinks<TLink> links, TLink linkIndex, WriteHandler<TLink> handler)
         {
             var any = links.Constants.Any;
-            var addressToInt64Converter = CheckedConverter<TLink, long>.Default;
             var equalityComparer = EqualityComparer<TLink>.Default;
             var usagesAsSourceQuery = new Link<TLink>(any, linkIndex, any);
-            var usagesAsSourceCount = addressToInt64Converter.Convert(links.Count(usagesAsSourceQuery));
             var usagesAsTargetQuery = new Link<TLink>(any, any, linkIndex);
-            var usagesAsTargetCount = addressToInt64Converter.Convert(links.Count(usagesAsTargetQuery));
-            var totalUsages = usagesAsSourceCount + usagesAsTargetCount;
-            var usages = new IList<TLink>[totalUsages];
-            var usagesFiller = new ArrayFiller<IList<TLink>, TLink>(usages, links.Constants.Continue);
-            if (usagesAsTargetCount <= 0)
+            var usages = new List<IList<TLink>>();
+            var usagesFiller = new ListFiller<IList<TLink>, TLink>(usages, links.Constants.Continue);
+            if (usages.Count <= 0)
             {
                 return;
             }
             links.Each(usagesFiller.AddAndReturnConstant, usagesAsSourceQuery);
             links.Each(usagesFiller.AddAndReturnConstant, usagesAsTargetQuery);
-            for (var i = 0L; i < usages.Length; i++)
+            foreach (var usage in usages)
             {
-                var usage = usages[i];
                 if (equalityComparer.Equals(GetIndex(links, usage), linkIndex))
                 {
                     continue;
                 }
-                links.Delete(usages[i], handler);
+                links.Delete(usage, handler);
             }
         }
 
