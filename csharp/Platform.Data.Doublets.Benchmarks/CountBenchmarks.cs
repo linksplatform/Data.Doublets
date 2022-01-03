@@ -31,8 +31,8 @@ namespace Platform.Data.Doublets.Benchmarks
             var firstLink = _links.CreatePoint();
             for (ulong i = 0; i < N; i++)
             {
-                var link = _links.CreatePoint();
-                _links.Update(new LinkAddress<TLink>(link), new List<TLink>{ link, firstLink, link });
+                var link = links.Create();
+                return links.Update(link, firstLink, link);
             }
             for (ulong i = 0; i < N; i++)
             {
