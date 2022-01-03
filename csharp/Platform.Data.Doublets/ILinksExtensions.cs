@@ -1230,61 +1230,36 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLink MergeUsages<TLink>(this ILinks<TLink> links, TLink oldLinkIndex, TLink newLinkIndex, WriteHandler<TLink> handler)
         {
-            var addressToInt64Converter = CheckedConverter<TLink, long>.Default;
             var equalityComparer = EqualityComparer<TLink>.Default;
             if (equalityComparer.Equals(oldLinkIndex, newLinkIndex))
             {
                 return newLinkIndex;
             }
             var constants = links.Constants;
-            var usagesAsSourceQuery = new Link<TLink>(constants.Any, oldLinkIndex, constants.Any);
-            var usagesAsSourceCount = addressToInt64Converter.Convert(links.Count(usagesAsSourceQuery));
-            var usagesAsTargetQuery = new Link<TLink>(constants.Any, constants.Any, oldLinkIndex);
-            var usagesAsTargetCount = addressToInt64Converter.Convert(links.Count(usagesAsTargetQuery));
-            var isStandalonePoint = Point<TLink>.IsFullPoint(links.GetLink(oldLinkIndex)) && usagesAsSourceCount == 1 && usagesAsTargetCount == 1;
-            if (isStandalonePoint)
+            var usagesAsSource = links.All(new Link<TLink>(constants.Any, oldLinkIndex, constants.Any));
+            for (var i = 0; i < usagesAsSource.Count; i++)
             {
-                return newLinkIndex;
-            }
-            var totalUsages = usagesAsSourceCount + usagesAsTargetCount;
-            if (totalUsages <= 0)
-            {
-                return newLinkIndex;
-            }
-            var usages = ArrayPool.Allocate<TLink>(totalUsages);
-            var usagesFiller = new ArrayFiller<TLink, TLink>(usages, links.Constants.Continue);
-            var i = 0L;
-            if (usagesAsSourceCount > 0)
-            {
-                links.Each(usagesFiller.AddFirstAndReturnConstant, usagesAsSourceQuery);
-                for (; i < usagesAsSourceCount; i++)
+                var usageAsSource = usagesAsSource[i];
+                if (equalityComparer.Equals(usageAsSource[constants.IndexPart], oldLinkIndex))
                 {
-                    var usage = usages[i];
-                    if (equalityComparer.Equals(usage, oldLinkIndex))
-                    {
-                        continue;
-                    }
-                    var restriction = new LinkAddress<TLink>(usage);
-                    var substitution = new Link<TLink>(newLinkIndex, links.GetTarget(usage));
-                    links.Update(restriction, substitution, handler);
+                    continue;
                 }
+                var restriction = new LinkAddress<TLink>(usageAsSource[constants.IndexPart]);
+                var substitution = new Link<TLink>(newLinkIndex, usageAsSource[constants.TargetPart]);
+                links.Update(restriction, substitution, handler);
             }
-            if (usagesAsTargetCount > 0)
+            var usagesAsTarget = links.All(new Link<TLink>(constants.Any, constants.Any, oldLinkIndex));
+            for (var i = 0; i < usagesAsTarget.Count; i++)
             {
-                links.Each(usagesFiller.AddFirstAndReturnConstant, usagesAsTargetQuery);
-                for (; i < usages.Length; i++)
+                var usageAsTarget = usagesAsTarget[i];
+                if (equalityComparer.Equals(usageAsTarget[constants.IndexPart], oldLinkIndex))
                 {
-                    var usage = usages[i];
-                    if (equalityComparer.Equals(usage, oldLinkIndex))
-                    {
-                        continue;
-                    }
-                    var restriction = links.GetLink(usage);
-                    var substitution = new Link<TLink>(links.GetTarget(usage), newLinkIndex);
-                    links.Update(restriction, substitution, handler);
+                    continue;
                 }
+                var restriction = links.GetLink(usageAsTarget[constants.IndexPart]);
+                var substitution = new Link<TLink>(usageAsTarget[constants.TargetPart], newLinkIndex);
+                links.Update(restriction, substitution, handler);
             }
-            ArrayPool.Free(usages);
             return newLinkIndex;
         }
 
