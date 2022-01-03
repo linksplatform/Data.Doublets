@@ -57,6 +57,7 @@ namespace Platform.Data.Doublets.Benchmarks
             _links.Each(usagesFiller.AddAndReturnConstant, usagesAsTargetQuery);
             return usages;
         }
+
         [Benchmark]
         public IList<IList<TLink>> List()
         {
