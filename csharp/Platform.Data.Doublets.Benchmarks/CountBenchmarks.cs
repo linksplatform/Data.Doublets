@@ -18,6 +18,7 @@ namespace Platform.Data.Doublets.Benchmarks
         private static ILinks<TLink> _links;
         private static TLink _any;
         private static CheckedConverter<TLink, long> _addressToInt64Converter = CheckedConverter<TLink, long>.Default;
+        private static HeapResizableDirectMemory _dataMemory;
 
         [Params(10, 100, 1000, 10000, 100000)]
         public static ulong N;
@@ -25,8 +26,8 @@ namespace Platform.Data.Doublets.Benchmarks
         [GlobalSetup]
         public static void Setup()
         {
-            var dataMemory = new HeapResizableDirectMemory();
-            _links = new UnitedMemoryLinks<TLink>(dataMemory).DecorateWithAutomaticUniquenessAndUsagesResolution();
+            _dataMemory = new HeapResizableDirectMemory();
+            _links = new UnitedMemoryLinks<TLink>(_dataMemory).DecorateWithAutomaticUniquenessAndUsagesResolution();
             _any = _links.Constants.Any;
             var firstLink = _links.CreatePoint();
             for (ulong i = 0; i < N; i++)
@@ -42,7 +43,10 @@ namespace Platform.Data.Doublets.Benchmarks
         }
 
         [GlobalCleanup]
-        public static void Cleanup() { }
+        public static void Cleanup() 
+        {
+            _dataMemory.Dispose();
+        }
 
         [Benchmark]
         public IList<IList<TLink>> Array()
