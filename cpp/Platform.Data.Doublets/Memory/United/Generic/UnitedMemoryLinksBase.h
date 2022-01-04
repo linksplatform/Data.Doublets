@@ -17,7 +17,6 @@
     {
     public:
         LinksConstants<TLink> Constants;
-        //public: using ILinks<Self, TLink>::Constants;
         public: using Interfaces::Polymorph<Self>::self;
 
     public:
@@ -35,7 +34,7 @@
         using ILinks<Self, TLink>::GetLink;
         using ILinks<Self, TLink>::Exists;
 
-        TMemory& _memory;
+        TMemory _memory;
 
         const std::size_t _memoryReservationStep;
 
@@ -54,11 +53,12 @@
     public:
 
     protected:
-        UnitedMemoryLinksBase(TMemory&memory, std::int64_t memoryReservationStep, LinksConstants<TLink> constants = {})
-            : _memory(memory), _memoryReservationStep(memoryReservationStep), Constants(constants) {}
+        UnitedMemoryLinksBase(TMemory memory, std::int64_t memoryReservationStep, LinksConstants<TLink> constants = {})
+            : _memory(std::move(memory)), _memoryReservationStep(memoryReservationStep), Constants(constants) {}
 
-        void Init(TMemory&memory, std::size_t memoryReservationStep)
+        void Init(TMemory& memory, std::size_t memoryReservationStep)
         {
+
             if (memory.ReservedCapacity() < memoryReservationStep)
             {
                 memory.ReservedCapacity(memoryReservationStep);
@@ -66,16 +66,13 @@
             SetPointers(memory);
 
             auto& header = GetHeaderReference();
-            // Гарантия корректности _memory.UsedCapacity относительно _header.AllocatedLinks
             memory.UsedCapacity((ConvertToInt64(header.AllocatedLinks) * LinkSizeInBytes) + LinkHeaderSizeInBytes);
-            // Гарантия корректности _header.ReservedLinks относительно _memory.ReservedCapacity
             header.ReservedLinks = (memory.ReservedCapacity() - LinkHeaderSizeInBytes) / LinkSizeInBytes;
         }
 
     public:
         TLink Count(Interfaces::IArray auto&& restrictions) const
         {
-            // Если нет ограничений, тогда возвращаем общее число связей находящихся в хранилище.
             if (std::ranges::size(restrictions)  == 0)
             {
                 return GetTotal();
@@ -112,8 +109,6 @@
                     {
                         return GetOne();
                     }
-// TODO: 'ref locals' are not converted by C# to C++ Converter:
-// ORIGINAL LINE: ref var storedLinkValue = ref GetLinkReference(index);
                     auto& storedLinkValue = GetLinkReference(index);
                     if (storedLinkValue.Source == value || storedLinkValue.Target == value)
                     {
@@ -142,7 +137,6 @@
                     }
                     else // if(source != Any && target != Any)
                     {
-                        // Эквивалент Exists(source, target) => Count(Any, source, target) > 0
                         auto link = _SourcesTreeMethods->Search(source, target);
                         return AreEqual(link, constants.Null) ? GetZero() : GetOne();
                     }
@@ -157,8 +151,6 @@
                     {
                         return GetOne();
                     }
-// TODO: 'ref locals' are not converted by C# to C++ Converter:
-// ORIGINAL LINE: ref var storedLinkValue = ref GetLinkReference(index);
                     auto& storedLinkValue = GetLinkReference(index);
                     if (!source == any && !target == any)
                     {
@@ -187,30 +179,7 @@
             NotSupportedException(/*"Другие размеры и способы ограничений не поддерживаются."*/);
         }
 
-        // / <summary>
-        // / <para>
-        // / Eaches the handler.
-        // / </para>
-        // / <para></para>
-        // / </summary>
-        // / <param name="handler">
-        // / <para>The handler.</para>
-        // / <para></para>
-        // / </param>
-        // / <param name="restrictions">
-        // / <para>The restrictions.</para>
-        // / <para></para>
-        // / </param>
-        // / <exception cref="NotSupportedException">
-        // / <para>Другие размеры и способы ограничений не поддерживаются.</para>
-        // / <para></para>
-        // / </exception>
-        // / <returns>
-        // / <para>The link</para>
-        // / <para></para>
-        // / </returns>
-// NOTE: The following .NET attribute has no direct equivalent in C++:
-// ORIGINAL LINE: [MethodImpl(MethodImplOptions.AggressiveInlining)] public TLink Each(System.Func<IList<TLink>, TLink> handler, IList<TLink> restrictions)
+
         TLink Each(auto&& handler, Interfaces::IArray auto&& restrictions) const
         {
             auto constants = Constants;
@@ -276,7 +245,6 @@
             }
             if (std::ranges::size(restrictions) == 3)
             {
-                any = 18446744073709551613U;
                 auto source = restrictions[constants.SourcePart];
                 auto target = restrictions[constants.TargetPart];
                 if (AreEqual(index, any))
@@ -446,7 +414,7 @@
         // так как 0-я связь не используется и имеет такой же размер как Header,
         // поэтому header размещается в том же месте, что и 0-я связь
     public:
-        void SetPointers(TMemory&memory) { self().SetPointers(memory); }
+        void SetPointers(TMemory& memory) { self().SetPointers(memory); }
 
         protected: auto&& GetHeaderReference() const { return self().GetHeaderReference(); }
 

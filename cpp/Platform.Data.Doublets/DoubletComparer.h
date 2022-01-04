@@ -10,3 +10,5 @@
         public: std::int32_t GetHashCode(Doublet<T> obj) { return obj.GetHashCode(); }
     };
 }
+
+constexpr auto x = "LOOOOL228";

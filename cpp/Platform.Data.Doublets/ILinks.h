@@ -5,6 +5,8 @@
     {
         using base = Data::ILinks<Self, TLink, LinksConstants<TLink>>;
 
+        public: using base::Exists;
+
         void TestRandomCreationsAndDeletions(std::size_t maximumOperationsPerCycle)
         {
             using namespace Platform::Random;
@@ -66,7 +68,7 @@
         }
 
         // TODO: implement const Each
-        auto SearchOrDefault(TLink source, TLink target) /*const*/ -> TLink
+        auto SearchOrDefault(TLink source, TLink target) const -> TLink
         {
             using namespace Platform::Setters;
 
@@ -82,9 +84,9 @@
 
         auto Create() -> TLink
         {
-            constexpr TLink null[]{};
+            constexpr std::array<TLink, 0> empty{};
             auto&& links = *this;
-            return base::Create(std::vector<TLink>{});
+            return base::Create(empty);
         }
 
         auto GetOrCreate(TLink source, TLink target) -> TLink
@@ -105,12 +107,75 @@
             return base::Update(LinkAddress(link), Link{link, newSource, newTarget});
         }
 
-        auto Delete(TLink link)
+        auto UpdateOrCreateOrGet(TLink source, TLink target, TLink newSource, TLink newTarget) -> TLink
         {
             auto& links = *this;
-            base::Delete(LinkAddress(link));
+            auto constants = links.Constants;
+            auto link = links.SearchOrDefault(source, target);
+            if (link == constants.Null)
+            {
+                link = links.CreateAndUpdate(newSource, newTarget);
+            }
+            if (source == newSource && target == newTarget)
+            {
+                return link;
+            }
+            return links.Update(link, newSource, newTarget);
         }
 
+        auto Delete(TLink link) // TODO: -> TLink
+        {
+            auto& links = *this;
+            if (links.Exists(link))
+            {
+                links.ResetValues(link);
+                return base::Delete(LinkAddress(link));
+            }
+        }     
+
+        auto DeleteAll() 
+        {
+            auto& links = *this;
+            for (auto count = links.Count(); count != 0; count = links.Count())
+            {
+                links.Delete(count);
+            }
+        } 
+
+        auto DeleteIfExists(TLink source, TLink target) -> TLink
+        {
+            auto& links = *this;
+            auto constants = links.Constants;
+            auto link = links.SearchOrDefault(source, target);
+            if (link != constants.Null)
+            {
+                return links.Delete(link);
+            }
+            return constants.Null;
+        }
+
+        auto DeleteByQuery(Interfaces::IArray auto&& query) 
+        {
+            auto& links = *this;
+            auto count = links.Count(query);
+            auto toDelete = std::vector<TLink>(count);
+
+            links.Each([&](auto link) {
+                toDelete.push_back(link[0]);
+                return links.Constants.Continue;
+            }, query);
+
+            for (auto link : toDelete | std::views::reverse)
+            {
+                links.Delete(link);
+            }
+        }
+
+        auto ResetValues(TLink link)
+        {
+            auto& links = *this;
+            links.Update(link, 0, 0);
+        }
 
         auto CreateAndUpdate(TLink source, TLink target) -> TLink
         {
@@ -125,31 +190,68 @@
             return links.Update(point, point, point);
         }
 
-        auto GetLink(TLink index) -> std::optional<Link<TLink>> {
+        auto GetLink(TLink index) const -> Link<TLink> {
             auto store = std::optional<Link<TLink>>{};
             auto any = base::Constants.Any;
-            auto br = base::Constants.Break;
+            auto _break = base::Constants.Break;
             base::Each([&](auto link) {
                 store = std::optional{Link{link[0], link[1], link[2]}};
-                return br;
+                return _break;
             }, LinkAddress{index});
-            return store;
+            return store.value();
         }
 
-        auto GetSource(TLink index) -> TLink {
-            return GetLink(index).value().Source;
+        auto GetSource(TLink index) const -> TLink {
+            GetLink(index).Source;
         }
 
-        auto GetTarget(TLink index) -> TLink {
-            return GetLink(index).value().Target;
+        auto GetTarget(TLink index) const -> TLink {
+            GetLink(index).Target;
         }
 
-        auto Exist(TLink index) -> TLink {
-            return base::Count(index) != 0;
+        auto Exists(TLink source, TLink target) const -> bool {
+            auto&& links = *this;
+            return links.Count(links.Constants.Any, source, target) != 0;
         }
 
-        auto IsPartialPoint(TLink index) -> bool {
-            return base::IsPartialPoint(GetLink(index));
+        auto CountUsages(TLink link) const -> TLink 
+        {
+            auto&& links = *this;
+            auto constants = links.Constants;
+            auto values = links.GetLink(link);
+
+            TLink usages = 0;
+            usages += links.Count(constants.Any, link, constants.Any) - bool(values.Source == link);
+            usages += links.Count(constants.Any, constants.Any, link) - bool(values.Target == link);
+            return usages;
+        }
+
+        auto HasUsages(TLink link) const -> TLink 
+        {
+            auto&& links = *this;
+            return links.CountUsages(link) != 0;
+        }
+
+        auto Format(TLink link) const -> std::string 
+        {
+            auto&& links = *this;
+            auto values = links.GetLink(link);
+            return Format(values);
+        }
+
+        auto Format(Link<TLink> link) const -> std::string 
+        {
+            return std::string{}
+                .append("(")
+                .append(std::to_string(link.Index))
+                .append("): ")
+                .append("(")
+                .append(std::to_string(link.Source))
+                .append(")")
+                .append(" -> ")
+                .append("(")
+                .append(std::to_string(link.Target))
+                .append(")");
         }
     };
 }
