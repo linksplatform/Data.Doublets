@@ -444,6 +444,9 @@ namespace Platform.Data.Doublets
         public static bool Each<TLink>(this ILinks<TLink> links, ReadHandler<TLink> handler, params TLink[] restriction)
             => EqualityComparer<TLink>.Default.Equals(links.Each(restriction, handler), links.Constants.Continue);
 
+        public static bool Each<TLink>(this ILinks<TLink> links, Func<TLink, bool> handler, TLink source, TLink target) => links.Each(source, target, handler);
+
+
         /// <summary>
         /// Выполняет проход по всем связям, соответствующим шаблону, вызывая обработчик (handler) для каждой подходящей связи.
         /// </summary>
@@ -458,6 +461,9 @@ namespace Platform.Data.Doublets
             var constants = links.Constants;
             return links.Each(link => handler(link[constants.IndexPart]) ? constants.Continue : constants.Break, constants.Any, source, target);
         }
+
+        public static bool Each<TLink>(this ILinks<TLink> links, ReadHandler<TLink> handler, TLink source, TLink target) => links.Each(source, target, handler);
+
 
         /// <summary>
         /// Выполняет проход по всем связям, соответствующим шаблону, вызывая обработчик (handler) для каждой подходящей связи.
