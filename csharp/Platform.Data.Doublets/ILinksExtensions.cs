@@ -1194,7 +1194,7 @@ namespace Platform.Data.Doublets
         {
             var nullConstant = links.Constants.Null;
             var updateRequest = new Link<TLink>(linkIndex, nullConstant, nullConstant);
-            links.Update(updateRequest);
+            links.Update(updateRequest, handler);
         }
 
         // TODO: Create a universal version of this method in Platform.Data (with using of for loop)
