@@ -114,7 +114,7 @@ namespace Platform.Data.Doublets.Decorators
         {
             var linkIndex = restriction[_constants.IndexPart];
             var links = _links;
-            links.EnforceResetValues(linkIndex);
+            links.EnforceResetValues(linkIndex, handler);
             _facade.DeleteAllUsages(linkIndex, handler);
             return links.Delete(restriction, handler);
         }
