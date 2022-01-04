@@ -28,25 +28,5 @@ namespace Platform.Data.Doublets.Tests
             
             Assert.Equal(2U, links.Count());
         }
-        [Fact]
-        public static void FfiDeleteAllUsages()
-        {
-            var mem = new HeapResizableDirectMemory();
-            var links = new FFI.UnitedMemoryLinks<uint>("db.links");
-
-            var root = links.CreatePoint();
-
-            var a = links.CreatePoint();
-            var b = links.CreatePoint();
-
-            links.CreateAndUpdate(a, root);
-            links.CreateAndUpdate(b, root);
-
-            Assert.Equal(5U, links.Count());
-
-            links.DeleteAllUsages(root);
-
-            Assert.Equal(2U, links.Count());
-        }
     }
 }
