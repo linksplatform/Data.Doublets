@@ -914,6 +914,11 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLink Update<TLink>(this ILinks<TLink> links, TLink link, TLink newSource, TLink newTarget) => links.Update(new LinkAddress<TLink>(link), new Link<TLink>(link, newSource, newTarget));
 
+        public static TLink Update<TLink>(this ILinks<TLink> links, params TLink[] restriction) => links.Update(restriction, null);
+
+        public static TLink Update<TLink>(this ILinks<TLink> links, WriteHandler<TLink> handler, params TLink[] restriction) => links.Update(restriction, handler);
+
+
         /// <summary>
         /// Обновляет связь с указанными началом (Source) и концом (Target)
         /// на связь с указанными началом (NewSource) и концом (NewTarget).
@@ -922,9 +927,9 @@ namespace Platform.Data.Doublets
         /// <param name="restriction">Ограничения на содержимое связей. Каждое ограничение может иметь значения: Constants.Null - 0-я связь, обозначающая ссылку на пустоту, Itself - требование установить ссылку на себя, 1..∞ конкретный адрес другой связи.</param>
         /// <returns>Индекс обновлённой связи.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TLink Update<TLink>(this ILinks<TLink> links, params TLink[] restriction)
+        public static TLink Update<TLink>(this ILinks<TLink> links, IList<TLink> restriction, WriteHandler<TLink> handler)
         {
-            return restriction.Length switch
+            return restriction.Count switch
             {
                 2 => links.MergeAndDelete(restriction[0], restriction[1]),
                 4 => links.UpdateOrCreateOrGet(restriction[0], restriction[1], restriction[2], restriction[3]),
@@ -933,16 +938,6 @@ namespace Platform.Data.Doublets
         }
 
         public static TLink Update<TLink>(this ILinks<TLink> links, TLink link, TLink newSource, TLink newTarget, WriteHandler<TLink> handler) => links.Update(new LinkAddress<TLink>(link), new Link<TLink>(link, newSource, newTarget), handler);
-
-        public static TLink Update<TLink>(this ILinks<TLink> links, WriteHandler<TLink> handler, params TLink[] restriction)
-        {
-            return restriction.Length switch
-            {
-                2 => links.MergeAndDelete(restriction[0], restriction[1], handler),
-                4 => links.UpdateOrCreateOrGet(restriction[0], restriction[1], restriction[2], restriction[3], handler),
-                _ => Update(links, restriction[0], restriction[1], restriction[2], handler)
-            };
-        }
 
         /// <summary>
         /// <para>
