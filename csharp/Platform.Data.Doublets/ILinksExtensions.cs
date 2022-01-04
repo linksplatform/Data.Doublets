@@ -1168,6 +1168,8 @@ namespace Platform.Data.Doublets
             return true;
         }
 
+        public static void ResetValues<TLink>(this ILinks<TLink> links, TLink linkIndex) => links.ResetValues(linkIndex, null);
+
         // TODO: Create a universal version of this method in Platform.Data (with using of for loop)
         /// <summary>
         /// <para>
@@ -1188,7 +1190,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void ResetValues<TLink>(this ILinks<TLink> links, TLink linkIndex)
+        public static void ResetValues<TLink>(this ILinks<TLink> links, TLink linkIndex, WriteHandler<TLink> handler)
         {
             var nullConstant = links.Constants.Null;
             var updateRequest = new Link<TLink>(linkIndex, nullConstant, nullConstant);
