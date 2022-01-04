@@ -1224,7 +1224,7 @@ namespace Platform.Data.Doublets
         {
             if (!links.AreValuesReset(linkIndex))
             {
-                links.ResetValues(linkIndex);
+                links.ResetValues(linkIndex, handler);
             }
         }
 
