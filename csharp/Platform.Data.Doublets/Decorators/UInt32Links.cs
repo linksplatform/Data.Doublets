@@ -91,7 +91,7 @@ namespace Platform.Data.Doublets.Decorators
                     var target = newTarget == itselfConstant ? updatedLink : newTarget;
                     return links.Update(links.GetLink(updatedLink), new Link<TLink>(source, target), handler);
                 }
-                return handler?.Invoke(before, before) ?? _links.Constants.Continue;
+                return _links.Constants.Continue;
             }
             else
             {

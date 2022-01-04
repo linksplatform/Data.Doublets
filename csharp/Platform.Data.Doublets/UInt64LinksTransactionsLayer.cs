@@ -561,10 +561,11 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override ulong Create(IList<ulong> substitution, WriteHandler<ulong> handler)
         {
-            var createdLinkIndex = _links.Create();
-            var createdLink = new Link<ulong>(_links.GetLink(createdLinkIndex));
-            CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, default, createdLink));
-            return handler?.Invoke(Link<ulong>.Null, substitution) ?? _links.Constants.Continue;
+            return _links.Create(new Link<ulong>(), (before, after) =>
+            {
+                CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, new Link<ulong>(before), new Link<ulong>(after)));
+                return handler(before, after);
+            });
         }
 
         /// <summary>
@@ -588,12 +589,12 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override ulong Update(IList<ulong> restriction, IList<ulong> substitution, WriteHandler<ulong> handler)
         {
-            var linkIndex = restriction[_constants.IndexPart];
-            var beforeLink = new Link<ulong>(_links.GetLink(linkIndex));
-            linkIndex = _links.Update(restriction, substitution, null);
-            var afterLink = new Link<ulong>(_links.GetLink(linkIndex));
-            CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, beforeLink, afterLink));
-            return handler?.Invoke(restriction, substitution) ?? _links.Constants.Continue;
+            return _links.Update(restriction, substitution, (before, after) =>
+                {
+                    CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, new Link<ulong>(before), new Link<ulong>(after)));
+                    return handler(before, after);
+                }
+            );
         }
 
         /// <summary>
