@@ -1090,7 +1090,7 @@ namespace Platform.Data.Doublets
             }
             links.Each(usagesFiller.AddAndReturnConstant, usagesAsSourceQuery);
             links.Each(usagesFiller.AddAndReturnConstant, usagesAsTargetQuery);
-            TLink result = constants.Continue;
+            TLink handlerState = constants.Continue;
             foreach (var usage in usages)
             {
                 if (equalityComparer.Equals(GetIndex(links, usage), linkIndex))
@@ -1101,10 +1101,10 @@ namespace Platform.Data.Doublets
                 if (equalityComparer.Equals(constants.Break, deleteResult))
                 {
                     handler = null;
-                    result = constants.Break;
+                    handlerState = constants.Break;
                 }
             }
-            return result;
+            return handlerState;
         }
 
         /// <summary>
