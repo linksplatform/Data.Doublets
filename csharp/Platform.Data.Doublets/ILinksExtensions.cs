@@ -870,7 +870,7 @@ namespace Platform.Data.Doublets
         public static TLink CreatePoint<TLink>(this ILinks<TLink> links)
         {
             TLink result = default;
-            CreatePoint(links, (_, after) =>
+            links.CreatePoint((_, after) =>
             {
                 result = after[links.Constants.IndexPart];
                 return links.Constants.Continue;
