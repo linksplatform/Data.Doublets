@@ -1198,11 +1198,11 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void ResetValues<TLink>(this ILinks<TLink> links, TLink linkIndex, WriteHandler<TLink> handler)
+        public static TLink ResetValues<TLink>(this ILinks<TLink> links, TLink linkIndex, WriteHandler<TLink> handler)
         {
             var nullConstant = links.Constants.Null;
             var updateRequest = new Link<TLink>(linkIndex, nullConstant, nullConstant);
-            links.Update(updateRequest, handler);
+            return links.Update(updateRequest, handler);
         }
 
         public static void EnforceResetValues<TLink>(this ILinks<TLink> links, TLink linkIndex) => links.EnforceResetValues(linkIndex, null);
@@ -1228,12 +1228,13 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void EnforceResetValues<TLink>(this ILinks<TLink> links, TLink linkIndex, WriteHandler<TLink> handler)
+        public static TLink EnforceResetValues<TLink>(this ILinks<TLink> links, TLink linkIndex, WriteHandler<TLink> handler)
         {
             if (!links.AreValuesReset(linkIndex))
             {
-                links.ResetValues(linkIndex, handler);
+                return links.ResetValues(linkIndex, handler);
             }
+            return links.Constants.Continue;
         }
 
         public static void MergeUsages<TLink>(this ILinks<TLink> links, TLink oldLinkIndex, TLink newLinkIndex) => MergeUsages(links, oldLinkIndex, newLinkIndex, null);
