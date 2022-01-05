@@ -1075,28 +1075,36 @@ namespace Platform.Data.Doublets
 
         /// <remarks>Before execution of this method ensure that deleted link is detached (all values - source and target are reset to null) or it might enter into infinite recursion.</remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void DeleteAllUsages<TLink>(this ILinks<TLink> links, TLink linkIndex, WriteHandler<TLink> handler)
+        public static TLink DeleteAllUsages<TLink>(this ILinks<TLink> links, TLink linkIndex, WriteHandler<TLink> handler)
         {
-            var any = links.Constants.Any;
+            var constants = links.Constants;
+            var any = constants.Any;
             var equalityComparer = EqualityComparer<TLink>.Default;
             var usagesAsSourceQuery = new Link<TLink>(any, linkIndex, any);
             var usagesAsTargetQuery = new Link<TLink>(any, any, linkIndex);
             var usages = new List<IList<TLink>>();
-            var usagesFiller = new ListFiller<IList<TLink>, TLink>(usages, links.Constants.Continue);
+            var usagesFiller = new ListFiller<IList<TLink>, TLink>(usages, constants.Continue);
             if (usages.Count <= 0)
             {
-                return;
+                return constants.Continue;
             }
             links.Each(usagesFiller.AddAndReturnConstant, usagesAsSourceQuery);
             links.Each(usagesFiller.AddAndReturnConstant, usagesAsTargetQuery);
+            TLink result = constants.Continue;
             foreach (var usage in usages)
             {
                 if (equalityComparer.Equals(GetIndex(links, usage), linkIndex))
                 {
                     continue;
                 }
-                links.Delete(usage, handler);
+                var deleteResult = links.Delete(usage, handler);
+                if (equalityComparer.Equals(constants.Break, deleteResult))
+                {
+                    handler = null;
+                    result = constants.Break;
+                }
             }
+            return result;
         }
 
         /// <summary>
