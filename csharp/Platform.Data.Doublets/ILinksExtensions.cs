@@ -918,6 +918,18 @@ namespace Platform.Data.Doublets
 
         public static TLink Update<TLink>(this ILinks<TLink> links, WriteHandler<TLink> handler, params TLink[] restriction) => links.Update(restriction, handler);
 
+        public static TLink Update<TLink>(this ILinks<TLink> links, IList<TLink> restriction)
+        {
+            TLink result = default;
+            links.Update(restriction, (before, after) =>
+            {
+                var constants = links.Constants;
+                result = after[constants.IndexPart];
+                return constants.Continue;
+            });
+            return result;
+        }
+
 
         /// <summary>
         /// Обновляет связь с указанными началом (Source) и концом (Target)
@@ -931,9 +943,9 @@ namespace Platform.Data.Doublets
         {
             return restriction.Count switch
             {
-                2 => links.MergeAndDelete(restriction[0], restriction[1]),
-                4 => links.UpdateOrCreateOrGet(restriction[0], restriction[1], restriction[2], restriction[3]),
-                _ => Update(links, restriction[0], restriction[1], restriction[2])
+                2 => links.MergeAndDelete(restriction[0], restriction[1], handler),
+                4 => links.UpdateOrCreateOrGet(restriction[0], restriction[1], restriction[2], restriction[3], handler),
+                _ => Update(links, restriction[0], restriction[1], restriction[2], handler)
             };
         }
 
