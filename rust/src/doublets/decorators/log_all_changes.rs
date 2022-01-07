@@ -28,18 +28,18 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for LogAllChanges<T, Links> {
         self.links.constants()
     }
 
-    fn count_by(&self, query: impl ToQuery<T>) -> T {
+    fn count_by(&self, query: impl ToQuery<T> + 'async_trait) -> T {
         self.links.count_by(query)
     }
 
     fn create_by_with<F, R>(
         &mut self,
-        query: impl ToQuery<T>,
+        query: impl ToQuery<T> + 'async_trait,
         mut handler: F,
     ) -> Result<R, LinksError<T>>
     where
-        F: FnMut(Link<T>, Link<T>) -> R,
-        R: Try<Output = ()>,
+        F: FnMut(Link<T>, Link<T>) -> R + Send,
+        R: Try<Output = (), Residual: Send> + Send,
     {
         self.links.create_by_with(query, move |before, after| {
             log::info!("{} ==> {}", before, after);
@@ -47,23 +47,23 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for LogAllChanges<T, Links> {
         })
     }
 
-    fn try_each_by<F, R>(&self, restrictions: impl ToQuery<T>, handler: F) -> R
+    fn try_each_by<F, R>(&self, restrictions: impl ToQuery<T> + 'async_trait, handler: F) -> R
     where
-        F: FnMut(Link<T>) -> R,
-        R: Try<Output = ()>,
+        F: FnMut(Link<T>) -> R + Send,
+        R: Try<Output = (), Residual: Send> + Send,
     {
         self.links.try_each_by(restrictions, handler)
     }
 
     fn update_by_with<F, R>(
         &mut self,
-        query: impl ToQuery<T>,
-        replacement: impl ToQuery<T>,
+        query: impl ToQuery<T> + 'async_trait,
+        replacement: impl ToQuery<T> + 'async_trait,
         mut handler: F,
     ) -> Result<R, LinksError<T>>
     where
-        F: FnMut(Link<T>, Link<T>) -> R,
-        R: Try<Output = ()>,
+        F: FnMut(Link<T>, Link<T>) -> R + Send,
+        R: Try<Output = (), Residual: Send> + Send,
     {
         self.links
             .update_by_with(query, replacement, move |before, after| {
@@ -74,12 +74,12 @@ impl<T: LinkType, Links: ILinks<T>> ILinks<T> for LogAllChanges<T, Links> {
 
     fn delete_by_with<F, R>(
         &mut self,
-        query: impl ToQuery<T>,
+        query: impl ToQuery<T> + 'async_trait,
         mut handler: F,
     ) -> Result<R, LinksError<T>>
     where
-        F: FnMut(Link<T>, Link<T>) -> R,
-        R: Try<Output = ()>,
+        F: FnMut(Link<T>, Link<T>) -> R + Send,
+        R: Try<Output = (), Residual: Send> + Send,
     {
         self.links.delete_by_with(query, move |before, after| {
             log::info!("{} ==> {}", before, after);

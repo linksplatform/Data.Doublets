@@ -192,10 +192,15 @@ impl<
         Link::new(index, raw.source, raw.target)
     }
 
-    fn each_core<F, R>(&self, handler: &mut F, restriction: impl ToQuery<T>) -> R
+    #[async_recursion::async_recursion]
+    async fn each_core<F, R>(
+        &self,
+        handler: &mut F,
+        restriction: impl ToQuery<T> + 'async_recursion,
+    ) -> R
     where
-        F: FnMut(Link<T>) -> R,
-        R: Try<Output = ()>,
+        F: FnMut(Link<T>) -> R + Send,
+        R: Try<Output = (), Residual: Send> + Send,
     {
         let restriction = restriction.to_query();
 
@@ -204,7 +209,7 @@ impl<
 
         if restriction.len() == 0 {
             for index in T::one()..self.get_header().allocated + one() {
-                if let Some(link) = self.get_link(index) {
+                if let Some(link) = self.get_link(index).await {
                     handler(link)?;
                 }
             }
@@ -217,8 +222,8 @@ impl<
 
         if restriction.len() == 1 {
             return if index == any {
-                self.each_core(handler, [])
-            } else if let Some(link) = self.get_link(index) {
+                self.each_core(handler, []).await
+            } else if let Some(link) = self.get_link(index).await {
                 handler(link)
             } else {
                 R::from_output(())
@@ -229,17 +234,17 @@ impl<
             let value = restriction[1];
             return if index == any {
                 if value == any {
-                    self.each_core(handler, [])
+                    self.each_core(handler, []).await
                 } else {
-                    match self.each_core(handler, [index, value, any]).branch() {
+                    match self.each_core(handler, [index, value, any]).await.branch() {
                         ControlFlow::Continue(output) => {
-                            self.each_core(handler, [index, value, any])
+                            self.each_core(handler, [index, value, any]).await
                         }
                         ControlFlow::Break(residual) => R::from_residual(residual),
                     }
                 }
             } else {
-                if let Some(link) = self.get_link(index) {
+                if let Some(link) = self.get_link(index).await {
                     if value == any {
                         return handler(link);
                     } else if link.source == value || link.target == value {
@@ -259,14 +264,14 @@ impl<
 
             if index == any {
                 return if (source, target) == (any, any) {
-                    self.each_core(handler, [])
+                    self.each_core(handler, []).await
                 } else if source == any {
                     self.targets.each_usages(target, handler)
                 } else if target == any {
                     self.sources.each_usages(source, handler)
                 } else {
                     let link = self.sources.search(source, target);
-                    if let Some(link) = self.get_link(link) {
+                    if let Some(link) = self.get_link(link).await {
                         handler(link)
                     } else {
                         R::from_output(())
@@ -274,7 +279,7 @@ impl<
                 };
             } else {
                 let link;
-                if let Some(_link) = self.get_link(index) {
+                if let Some(_link) = self.get_link(index).await {
                     link = _link;
                 } else {
                     link = Link::nothing();
@@ -307,8 +312,104 @@ impl<
         }
         todo!()
     }
+
+    pub async fn _create_by_with<F, R>(
+        &mut self,
+        query: impl ToQuery<T> + 'async_trait,
+        mut handler: F,
+    ) -> Result<R, LinksError<T>>
+    where
+        F: FnMut(Link<T>, Link<T>) -> R + Send,
+        R: Try<Output = (), Residual: Send> + Send,
+    {
+        let constants = self.constants();
+        let header = self.get_header();
+        let mut free = header.first_free;
+        if free == constants.null {
+            let max_inner = *constants.internal_range.end();
+            if header.allocated >= max_inner {
+                return Err(LinksError::LimitReached(max_inner));
+            }
+
+            if header.allocated >= header.reserved - one() {
+                self.mem
+                    .reserve_mem(self.mem.reserved_mem() + self.reserve_step)?;
+                self.update_pointers();
+                let reserved = self.mem.reserved_mem();
+                let header = self.mut_header();
+                header.reserved = T::from_usize(reserved / Self::LINK_SIZE).unwrap()
+            }
+            let header = self.mut_header();
+            header.allocated = header.allocated + one();
+            free = header.allocated;
+            self.mem.use_mem(self.mem.used_mem() + Self::LINK_SIZE)?;
+        } else {
+            self.unused.detach(free)
+        }
+        Ok(handler(
+            Link::nothing(),
+            Link::new(free, T::zero(), T::zero()),
+        ))
+    }
+
+    pub async fn _update_by_with<F, R>(
+        &mut self,
+        query: impl ToQuery<T> + 'async_trait,
+        replacement: impl ToQuery<T> + 'async_trait,
+        mut handler: F,
+    ) -> Result<R, LinksError<T>>
+    where
+        F: FnMut(Link<T>, Link<T>) -> R + Send,
+        R: Try<Output = (), Residual: Send> + Send,
+    {
+        let query = query.to_query();
+        let replacement = replacement.to_query();
+
+        let index = query[0];
+        let source = replacement[1];
+        let target = replacement[2];
+        let old_source = source;
+        let old_target = target;
+
+        let constants = self.constants();
+        let null = constants.null;
+
+        let link = *self.mut_raw_link(index);
+        if link.source != null {
+            let temp = &mut self.mut_header().root_as_source as *mut T;
+            unsafe { self.sources.detach(&mut *temp, index) };
+        }
+
+        let link = *self.mut_raw_link(index);
+        if link.target != null {
+            let temp = &mut self.mut_header().root_as_target as *mut T;
+            unsafe { self.targets.detach(&mut *temp, index) };
+        }
+
+        let link = self.mut_raw_link(index);
+        link.source = source;
+        link.target = target;
+
+        let link = *self.mut_raw_link(index);
+        if link.source != null {
+            let temp = &mut self.mut_header().root_as_source as *mut T;
+            unsafe { self.sources.attach(&mut *temp, index) };
+        }
+
+        let link = *self.mut_raw_link(index);
+        if link.target != null {
+            let temp = &mut self.mut_header().root_as_target as *mut T;
+            unsafe { self.targets.attach(&mut *temp, index) };
+        }
+
+        Ok(handler(
+            Link::new(index, old_source, old_target),
+            Link::new(index, source, target),
+        ))
+    }
 }
 
+#[async_trait::async_trait]
 impl<
         T: LinkType,
         M: ResizeableMem,
@@ -321,7 +422,7 @@ impl<
         self.constants.clone()
     }
 
-    fn count_by(&self, query: impl ToQuery<T>) -> T {
+    async fn count_by(&self, query: impl ToQuery<T> + 'async_trait) -> T {
         let query = query.to_query();
 
         if query.len() == 0 {
@@ -360,7 +461,7 @@ impl<
                     return one();
                 }
 
-                return if let Some(stored) = self.get_link(index) {
+                return if let Some(stored) = self.get_link(index).await {
                     if stored.source == value || stored.target == value {
                         one()
                     } else {
@@ -393,7 +494,7 @@ impl<
                 }
             } else {
                 let link;
-                if let Some(_link) = self.get_link(index) {
+                if let Some(_link) = self.get_link(index).await {
                     link = _link;
                 } else {
                     link = Link::nothing();
@@ -427,14 +528,14 @@ impl<
         todo!()
     }
 
-    fn create_by_with<F, R>(
+    async fn create_by_with<F, R>(
         &mut self,
-        query: impl ToQuery<T>,
+        query: impl ToQuery<T> + 'async_trait,
         mut handler: F,
     ) -> Result<R, LinksError<T>>
     where
-        F: FnMut(Link<T>, Link<T>) -> R,
-        R: Try<Output = ()>,
+        F: FnMut(Link<T>, Link<T>) -> R + Send,
+        R: Try<Output = (), Residual: Send> + Send,
     {
         let constants = self.constants();
         let header = self.get_header();
@@ -466,23 +567,27 @@ impl<
         ))
     }
 
-    fn try_each_by<F, R>(&self, restrictions: impl ToQuery<T>, mut handler: F) -> R
+    async fn try_each_by<F, R>(
+        &self,
+        restrictions: impl ToQuery<T> + 'async_trait,
+        mut handler: F,
+    ) -> R
     where
-        F: FnMut(Link<T>) -> R,
-        R: Try<Output = ()>,
+        F: FnMut(Link<T>) -> R + Send,
+        R: Try<Output = (), Residual: Send> + Send,
     {
-        self.each_core(&mut handler, restrictions.to_query())
+        self.each_core(&mut handler, restrictions.to_query()).await
     }
 
-    fn update_by_with<F, R>(
+    async fn update_by_with<F, R>(
         &mut self,
-        query: impl ToQuery<T>,
-        replacement: impl ToQuery<T>,
+        query: impl ToQuery<T> + 'async_trait,
+        replacement: impl ToQuery<T> + 'async_trait,
         mut handler: F,
     ) -> Result<R, LinksError<T>>
     where
-        F: FnMut(Link<T>, Link<T>) -> R,
-        R: Try<Output = ()>,
+        F: FnMut(Link<T>, Link<T>) -> R + Send,
+        R: Try<Output = (), Residual: Send> + Send,
     {
         let query = query.to_query();
         let replacement = replacement.to_query();
@@ -530,25 +635,25 @@ impl<
         ))
     }
 
-    fn delete_by_with<F, R>(
+    async fn delete_by_with<F, R>(
         &mut self,
-        query: impl ToQuery<T>,
+        query: impl ToQuery<T> + 'async_trait,
         mut handler: F,
     ) -> Result<R, LinksError<T>>
     where
-        F: FnMut(Link<T>, Link<T>) -> R,
-        R: Try<Output = ()>,
+        F: FnMut(Link<T>, Link<T>) -> R + Send,
+        R: Try<Output = (), Residual: Send> + Send,
     {
         let query = query.to_query();
 
         let index = query[0];
         // TODO: use method style - remove .get_link
-        let (source, target) = if let Some(link) = ILinks::get_link(self, index) {
+        let (source, target) = if let Some(link) = ILinks::get_link(self, index).await {
             (link.source, link.target)
         } else {
             return Err(LinksError::NotExists(index));
         };
-        self.update(index, zero(), zero())?;
+        self.update(index, zero(), zero()).await?;
 
         let header = self.get_header();
         let link = index;
@@ -575,7 +680,7 @@ impl<
         Ok(handler(Link::new(index, source, target), Link::nothing()))
     }
 
-    fn get_link(&self, index: T) -> Option<Link<T>> {
+    async fn get_link(&self, index: T) -> Option<Link<T>> {
         if self.constants.is_external_reference(index) {
             Some(Link::point(index))
         } else if self.exists(index) {

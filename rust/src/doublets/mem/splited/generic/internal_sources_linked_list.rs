@@ -73,7 +73,7 @@ impl<T: LinkType> InternalSourcesLinkedList<T> {
         self.get_size(head)
     }
 
-    pub fn each_usages<R: Try<Output = ()>, H: FnMut(Link<T>) -> R>(
+    pub fn each_usages<R: Try<Output = (), Residual: Send> + Send, H: FnMut(Link<T>) -> R>(
         &self,
         source: T,
         handler: &mut H,

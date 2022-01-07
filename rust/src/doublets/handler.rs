@@ -4,13 +4,14 @@ use crate::LinkType;
 use std::marker::PhantomData;
 use std::ops::Try;
 
-pub trait Handler<T: LinkType, R: Try<Output = ()>> = FnMut(Link<T>, Link<T>) -> R;
+pub trait Handler<T: LinkType, R: Try<Output = (), Residual: Send> + Send> =
+    FnMut(Link<T>, Link<T>) -> R;
 
 pub struct StoppedHandler<T, F, R>
 where
     T: LinkType,
-    F: FnMut(Link<T>, Link<T>) -> R,
-    R: Try<Output = ()>,
+    F: FnMut(Link<T>, Link<T>) -> R + Send,
+    R: Try<Output = (), Residual: Send> + Send,
 {
     handler: F,
     handle: bool,
@@ -21,8 +22,8 @@ where
 impl<T, F, R> StoppedHandler<T, F, R>
 where
     T: LinkType,
-    F: FnMut(Link<T>, Link<T>) -> R,
-    R: Try<Output = ()>,
+    F: FnMut(Link<T>, Link<T>) -> R + Send,
+    R: Try<Output = (), Residual: Send> + Send,
 {
     pub fn new(handler: F) -> Self {
         StoppedHandler {
@@ -37,8 +38,8 @@ where
 impl<T, F, R> From<F> for StoppedHandler<T, F, R>
 where
     T: LinkType,
-    F: FnMut(Link<T>, Link<T>) -> R,
-    R: Try<Output = ()>,
+    F: FnMut(Link<T>, Link<T>) -> R + Send,
+    R: Try<Output = (), Residual: Send> + Send,
 {
     fn from(handler: F) -> Self {
         Self::new(handler)
@@ -47,8 +48,8 @@ where
 
 impl<T, F, R> FnOnce<(Link<T>, Link<T>)> for StoppedHandler<T, F, R>
 where
-    F: FnMut(Link<T>, Link<T>) -> R,
-    R: Try<Output = ()>,
+    F: FnMut(Link<T>, Link<T>) -> R + Send,
+    R: Try<Output = (), Residual: Send> + Send,
     T: LinkType,
 {
     type Output = Flow;
@@ -61,8 +62,8 @@ where
 impl<T, F, R> FnMut<(Link<T>, Link<T>)> for StoppedHandler<T, F, R>
 where
     T: LinkType,
-    F: FnMut(Link<T>, Link<T>) -> R,
-    R: Try<Output = ()>,
+    F: FnMut(Link<T>, Link<T>) -> R + Send,
+    R: Try<Output = (), Residual: Send> + Send,
 {
     extern "rust-call" fn call_mut(&mut self, args: (Link<T>, Link<T>)) -> Self::Output {
         if self.handle {

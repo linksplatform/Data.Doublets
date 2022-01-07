@@ -47,7 +47,7 @@ impl<'a, I: SliceIndex<[T]>, T: LinkType> Index<I> for Query<'a, T> {
     }
 }
 
-pub trait ToQuery<T: LinkType> {
+pub trait ToQuery<T: LinkType>: Send + Sync {
     fn to_query(&'a self) -> Query<'a, T>;
 }
 
@@ -85,8 +85,8 @@ macro_rules! query {
     );
 }
 
-#[test]
-fn test() {
+#[tokio::test]
+async fn test() {
     let query = query![1_u32, 2, 3];
     println!("{:?}", query.into_inner().is_borrowed());
 }

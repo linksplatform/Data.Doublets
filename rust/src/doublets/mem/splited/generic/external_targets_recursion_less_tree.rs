@@ -105,7 +105,11 @@ impl<T: LinkType> SizeBalancedTreeBase<T> for ExternalTargetsRecursionlessTree<T
 
 impl<T: LinkType> RecursionlessSizeBalancedTreeMethods<T> for ExternalTargetsRecursionlessTree<T> {}
 
-fn each_usages_core<T: LinkType, R: Try<Output = ()>, H: FnMut(Link<T>) -> R>(
+fn each_usages_core<
+    T: LinkType,
+    R: Try<Output = (), Residual: Send> + Send,
+    H: FnMut(Link<T>) -> R,
+>(
     _self: &ExternalTargetsRecursionlessTree<T>,
     base: T,
     link: T,
@@ -177,7 +181,7 @@ impl<T: LinkType> ILinksTreeMethods<T> for ExternalTargetsRecursionlessTree<T> {
         zero()
     }
 
-    fn each_usages<H: FnMut(Link<T>) -> R, R: Try<Output = ()>>(
+    fn each_usages<H: FnMut(Link<T>) -> R, R: Try<Output = (), Residual: Send> + Send>(
         &self,
         root: T,
         mut handler: H,

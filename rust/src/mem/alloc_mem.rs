@@ -96,3 +96,6 @@ impl<A: Allocator> Drop for AllocMem<A> {
         }
     }
 }
+
+unsafe impl<A: Allocator> Send for AllocMem<A> {}
+unsafe impl<A: Allocator> Sync for AllocMem<A> {}

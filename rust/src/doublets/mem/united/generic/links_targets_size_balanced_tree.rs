@@ -1,5 +1,5 @@
-use std::ops::Try;
 use num_traits::{one, zero};
+use std::ops::Try;
 
 use crate::doublets::data::LinksConstants;
 use crate::doublets::link::Link;
@@ -137,7 +137,11 @@ impl<T: LinkType> LinksSizeBalancedTreeBaseAbstract<T> for LinksTargetsSizeBalan
     }
 }
 
-fn each_usages_core<T: LinkType, R: Try<Output = ()>, H: FnMut(Link<T>) -> R>(
+fn each_usages_core<
+    T: LinkType,
+    R: Try<Output = (), Residual: Send> + Send,
+    H: FnMut(Link<T>) -> R,
+>(
     _self: &LinksTargetsSizeBalancedTree<T>,
     root: T,
     link: T,
@@ -227,7 +231,11 @@ impl<T: LinkType> ILinksTreeMethods<T> for LinksTargetsSizeBalancedTree<T> {
         zero()
     }
 
-    fn each_usages<H: FnMut(Link<T>) -> R, R: Try<Output = ()>>(&self, root: T, mut handler: H) -> R {
+    fn each_usages<H: FnMut(Link<T>) -> R, R: Try<Output = (), Residual: Send> + Send>(
+        &self,
+        root: T,
+        mut handler: H,
+    ) -> R {
         each_usages_core(self, root, self.get_tree_root(), &mut handler)
     }
 

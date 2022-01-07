@@ -25,6 +25,8 @@
 #![feature(slice_ptr_len)]
 #![feature(nonnull_slice_from_raw_parts)]
 #![feature(layout_for_ptr)]
+#![feature(async_closure)]
+#![feature(generic_associated_types)]
 
 use crate::doublets::mem::united::{Links, NewList, NewTree, UpdatePointersSplit};
 use crate::doublets::mem::{splited, ILinksListMethods, ILinksTreeMethods, UpdatePointers};

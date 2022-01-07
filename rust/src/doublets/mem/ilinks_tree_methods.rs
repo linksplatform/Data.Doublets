@@ -8,7 +8,11 @@ pub trait ILinksTreeMethods<T: LinkType> {
 
     fn search(&self, source: T, target: T) -> T;
 
-    fn each_usages<H: FnMut(Link<T>) -> R, R: Try<Output = ()>>(&self, root: T, handler: H) -> R;
+    fn each_usages<H: FnMut(Link<T>) -> R, R: Try<Output = (), Residual: Send> + Send>(
+        &self,
+        root: T,
+        handler: H,
+    ) -> R;
 
     fn detach(&mut self, root: &mut T, index: T);
 

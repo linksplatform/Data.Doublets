@@ -21,7 +21,7 @@ use crate::test_extensions::ILinksTestExtensions;
 use crate::tests::make_links;
 use crate::tests::make_mem;
 /*
-#[test]
+#[tokio::test]
 fn random_creations_and_deletions() {
     std::fs::remove_file("db.links");
 
@@ -36,8 +36,8 @@ fn random_creations_and_deletions() {
 }
 */
 // TODO: `into_file()`
-#[test]
-fn mapping() {
+#[tokio::test]
+async fn mapping() {
     std::fs::remove_file("mapping_file");
     let mut mem = FileMappedMem::new("mapping_file").unwrap();
 
@@ -48,8 +48,8 @@ fn mapping() {
     assert_eq!(13370, file.metadata().unwrap().len() as usize);
 }
 
-#[test]
-fn billion_points_file_mapped() {
+#[tokio::test]
+async fn billion_points_file_mapped() {
     std::fs::remove_file("mem_bpfm");
 
     let mem = TempFileMem::new().unwrap();
@@ -58,29 +58,29 @@ fn billion_points_file_mapped() {
     let instant = Instant::now();
 
     for _ in 0..1_000_000 {
-        links.create_point().unwrap();
+        links.create_point().await.unwrap();
     }
 
     println!("{:?}", instant.elapsed());
 }
 
-#[test]
-fn billion_points_heap_mem() -> Result<(), LinksError<usize>> {
+#[tokio::test]
+async fn billion_points_heap_mem() -> Result<(), LinksError<usize>> {
     let mem = GlobalMem::new()?;
     let mut links = Links::<usize, _>::new(mem)?;
 
     let instant = Instant::now();
 
     for _ in 0..1_000_000 {
-        links.create_point()?;
+        links.create_point().await?;
     }
 
     println!("{:?}", instant.elapsed());
     Ok(())
 }
 
-#[test]
-fn billion_points_bump_alloc() {
+#[tokio::test]
+async fn billion_points_bump_alloc() {
     let bump = Bump::new();
     let mem = AllocMem::new(&bump).unwrap();
     let mut links = Links::<usize, _>::new(mem).unwrap();
@@ -88,36 +88,36 @@ fn billion_points_bump_alloc() {
     let instant = Instant::now();
 
     for _ in 0..1_000_000 {
-        links.create_point().unwrap();
+        links.create_point().await.unwrap();
     }
 
     println!("{:?}", instant.elapsed());
 }
 
-#[test]
-fn many_points_and_searches() {
+#[tokio::test]
+async fn many_points_and_searches() {
     let bump = Bump::new();
     let mem = AllocMem::new(System).unwrap();
     let mut links = Links::<usize, _>::new(mem).unwrap();
 
     let instant = Instant::now();
     for _ in 0..1_000_000 {
-        links.create_point().unwrap();
+        links.create_point().await.unwrap();
     }
     println!("{:?}", instant.elapsed());
 
     let instant = Instant::now();
     for i in 1..=1_000_000 {
         // links.search_or(i, i, 0);
-        links.get_link(i);
+        links.get_link(i).await.unwrap();
     }
     println!("{:?}", instant.elapsed());
 }
 
 // TODO: Create `TempFileMappedMem`
 
-#[test]
-fn billion_points_file_mapped_splited() {
+#[tokio::test]
+async fn billion_points_file_mapped_splited() {
     let mem = TempFileMem::new().unwrap();
     let index = TempFileMem::new().unwrap();
     let mut links = splited::Links::<usize, _, _>::new(mem, index).unwrap();
@@ -125,14 +125,14 @@ fn billion_points_file_mapped_splited() {
     let instant = Instant::now();
 
     for _ in 0..1_000_000 {
-        links.create_point().unwrap();
+        links.create_point().await.unwrap();
     }
 
     println!("{:?}", instant.elapsed());
 }
 
-#[test]
-fn billion_points_heap_mem_splited() {
+#[tokio::test]
+async fn billion_points_heap_mem_splited() {
     let mem = GlobalMem::new().unwrap();
     let index = GlobalMem::new().unwrap();
     let mut links = splited::Links::<usize, _, _>::new(mem, index).unwrap();
@@ -140,14 +140,14 @@ fn billion_points_heap_mem_splited() {
     let instant = Instant::now();
 
     for _ in 0..1_000_000 {
-        links.create_point().unwrap();
+        links.create_point().await.unwrap();
     }
 
     println!("{:?}", instant.elapsed());
 }
 
-#[test]
-fn billion_points_bump_alloc_splited() {
+#[tokio::test]
+async fn billion_points_bump_alloc_splited() {
     let bump = Bump::new();
     let mut mem = AllocMem::new(&bump).unwrap();
     let mut index = AllocMem::new(&bump).unwrap();
@@ -157,27 +157,27 @@ fn billion_points_bump_alloc_splited() {
     let instant = Instant::now();
 
     for _ in 0..1_000_000 {
-        links.create_point().unwrap();
+        links.create_point().await.unwrap();
     }
 
     println!("{:?}", instant.elapsed());
 }
 
-#[test]
-fn many_points_and_searches_splited() {
+#[tokio::test]
+async fn many_points_and_searches_splited() {
     let mem = AllocMem::new(System).unwrap();
     let index = AllocMem::new(System).unwrap();
     let mut links = splited::Links::<usize, _, _>::new(mem, index).unwrap();
 
     let instant = Instant::now();
     for _ in 0..1_000_000 {
-        links.create_point().unwrap();
+        links.create_point().await.unwrap();
     }
     println!("{:?}", instant.elapsed());
 
     let instant = Instant::now();
     for i in 1..=1_000_000 {
-        links.search_or(i, i, 0);
+        links.search_or(i, i, 0).await;
     }
     println!("{:?}", instant.elapsed());
 }

@@ -10,42 +10,44 @@ use crate::doublets::Link;
 use crate::num::LinkType;
 use crate::query;
 
+#[async_trait::async_trait]
 pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
-    fn test_crud(&mut self) {
+    async fn test_crud(&mut self) {
         let constants = self.constants();
 
-        assert_eq!(self.count(), zero());
+        assert_eq!(self.count().await, zero());
 
-        let address = self.create().unwrap();
+        let address = self.create().await.unwrap();
         // TODO: expect
-        let mut link: Link<T> = self.get_link(address).unwrap();
+        let mut link: Link<T> = self.get_link(address).await.unwrap();
 
         assert_eq!(link.index, address);
         assert_eq!(link.source, constants.null);
         assert_eq!(link.target, constants.null);
-        assert_eq!(self.count(), one());
+        assert_eq!(self.count().await, one());
 
-        self.update(address, address, address).unwrap();
+        self.update(address, address, address).await.unwrap();
 
         // TODO: expect
-        link = self.get_link(address).unwrap();
+        link = self.get_link(address).await.unwrap();
         assert_eq!(link.source, address);
         assert_eq!(link.target, address);
 
         let updated = self
             .update(address, constants.null, constants.null)
+            .await
             .unwrap();
         assert_eq!(updated, address);
         // TODO: expect
-        link = self.get_link(address).unwrap();
+        link = self.get_link(address).await.unwrap();
         assert_eq!(link.source, constants.null);
         assert_eq!(link.target, constants.null);
 
-        self.delete(address).unwrap();
-        assert_eq!(self.count(), zero());
+        self.delete(address).await.unwrap();
+        assert_eq!(self.count().await, zero());
     }
 
-    fn test_raw_numbers_crud(&mut self) {
+    async fn test_raw_numbers_crud(&mut self) {
         let links = self;
 
         let constants = links.constants();
@@ -62,26 +64,30 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
         assert_eq!(h107.absolute().as_(), 107);
         assert_eq!(h108.absolute().as_(), 108);
 
-        let address1 = links.create().unwrap();
+        let address1 = links.create().await.unwrap();
         links
             .update(address1, h106.as_value(), h108.as_value())
+            .await
             .unwrap();
 
-        let link = links.get_link(address1).unwrap();
+        let link = links.get_link(address1).await.unwrap();
         assert_eq!(link.source, h106.as_value());
         assert_eq!(link.target, h108.as_value());
 
-        let address2 = links.create().unwrap();
-        links.update(address2, address1, h108.as_value()).unwrap();
+        let address2 = links.create().await.unwrap();
+        links
+            .update(address2, address1, h108.as_value())
+            .await
+            .unwrap();
 
-        let link = links.get_link(address2).unwrap();
+        let link = links.get_link(address2).await.unwrap();
         assert_eq!(link.source, address1);
         assert_eq!(link.target, h108.as_value());
 
-        let address3 = links.create().unwrap();
-        links.update(address3, address1, address2).unwrap();
+        let address3 = links.create().await.unwrap();
+        links.update(address3, address1, address2).await.unwrap();
 
-        let link = links.get_link(address3).unwrap();
+        let link = links.get_link(address3).await.unwrap();
         assert_eq!(link.source, address1);
         assert_eq!(link.target, address2);
 
@@ -89,44 +95,50 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
         let r#break = constants.r#break;
 
         let mut result = None;
-        links.each_by([any, h106.as_value(), h108.as_value()], |link| {
-            result = Some(link.index);
-            r#break
-        });
+        links
+            .each_by([any, h106.as_value(), h108.as_value()], |link| {
+                result = Some(link.index);
+                r#break
+            })
+            .await;
         assert_eq!(result, Some(address1));
 
         let mut result = None;
-        links.each_by([any, h106.absolute(), h107.absolute()], |link| {
-            result = Some(link.index);
-            r#break
-        }); // TODO: !!!
+        links
+            .each_by([any, h106.absolute(), h107.absolute()], |link| {
+                result = Some(link.index);
+                r#break
+            })
+            .await; // TODO: !!!
         assert_eq!(result, None);
 
-        let updated = links.update(address3, zero(), zero()).unwrap();
+        let updated = links.update(address3, zero(), zero()).await.unwrap();
         assert_eq!(updated, address3);
 
-        let link = links.get_link(updated).unwrap();
+        let link = links.get_link(updated).await.unwrap();
         assert_eq!(link.source, zero());
         assert_eq!(link.target, zero());
-        links.delete(updated).unwrap();
+        links.delete(updated).await.unwrap();
 
-        assert_eq!(links.count(), T::from(2).unwrap());
+        assert_eq!(links.count().await, T::from(2).unwrap());
 
         let r#continue = links.constants().r#continue;
         let mut result = None;
-        links.each(|link| {
-            result = Some(link.index);
-            r#continue
-        });
+        links
+            .each(|link| {
+                result = Some(link.index);
+                r#continue
+            })
+            .await;
         assert_eq!(result, Some(address2));
     }
 
-    fn test_random_creations_and_deletions(&mut self, per_cycle: usize) {
+    async fn test_random_creations_and_deletions(&mut self, per_cycle: usize) {
         for n in 1..per_cycle {
             let mut created = 0;
             let mut _deleted = 0;
             for _ in 0..n {
-                let count = self.count().as_();
+                let count = self.count().await.as_();
                 let create_point: bool = rand::random();
                 if count >= 2 && create_point {
                     let address = 1..=count;
@@ -137,6 +149,7 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
                             T::from_usize(source).unwrap(),
                             T::from_usize(target).unwrap(),
                         )
+                        .await
                         .unwrap()
                         .as_();
 
@@ -144,19 +157,19 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
                         created += 1;
                     }
                 } else {
-                    self.create().unwrap();
+                    self.create().await.unwrap();
                     created += 1;
                 }
-                assert_eq!(created, self.count().as_());
+                assert_eq!(created, self.count().await.as_());
             }
 
             // TODO: maybe add cfg! flag
             //for i in one()..=self.count() {
             //    self.update(i, zero(), zero());
             //}
-            self.delete_all().unwrap();
+            self.delete_all().await.unwrap();
 
-            assert_eq!(self.count(), zero());
+            assert_eq!(self.count().await, zero());
         }
     }
 }

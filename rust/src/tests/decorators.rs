@@ -1,5 +1,5 @@
 use std::error::Error;
-
+/*
 use crate::doublets::decorators::{
     CascadeUniqueResolver, CascadeUsagesResolver, NonNullDeletionResolver, UniqueResolver,
     UniqueValidator, UsagesValidator,
@@ -8,7 +8,7 @@ use crate::doublets::Flow::Continue;
 use crate::doublets::{Doublet, ILinks, Link, LinksError};
 use crate::tests::{make_links, make_mem};
 
-#[test]
+#[tokio::test]
 fn non_null_deletions() -> Result<(), Box<dyn Error>> {
     let mem = make_mem().unwrap();
     let links = make_links(mem).unwrap();
@@ -35,7 +35,7 @@ fn non_null_deletions() -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
-#[test]
+#[tokio::test]
 fn unique_resolver() -> Result<(), Box<dyn Error>> {
     let mem = make_mem().unwrap();
     let links = make_links(mem).unwrap();
@@ -50,7 +50,7 @@ fn unique_resolver() -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
-#[test]
+#[tokio::test]
 fn unique_validator() -> Result<(), Box<dyn Error>> {
     let mem = make_mem().unwrap();
     let links = make_links(mem).unwrap();
@@ -69,7 +69,7 @@ fn unique_validator() -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
-#[test]
+#[tokio::test]
 fn cascade_resolver() -> Result<(), Box<dyn Error>> {
     let mem = make_mem().unwrap();
     let links = make_links(mem).unwrap();
@@ -92,7 +92,7 @@ fn cascade_resolver() -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
-#[test]
+#[tokio::test]
 // TODO: rename to `BorrowingValidator` or other name
 fn usages_validator() -> Result<(), Box<dyn Error>> {
     let mem = make_mem().unwrap();
@@ -121,7 +121,7 @@ fn usages_validator() -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
-#[test]
+#[tokio::test]
 // TODO: rename to less stupid name
 fn cascade_usages_resolver() -> Result<(), Box<dyn Error>> {
     let mem = make_mem().unwrap();
@@ -143,3 +143,4 @@ fn cascade_usages_resolver() -> Result<(), Box<dyn Error>> {
 
     Ok(())
 }
+*/

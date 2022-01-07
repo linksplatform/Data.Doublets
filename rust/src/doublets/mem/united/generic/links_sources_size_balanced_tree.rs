@@ -138,7 +138,11 @@ impl<T: LinkType> LinksSizeBalancedTreeBaseAbstract<T> for LinksSourcesSizeBalan
     }
 }
 
-fn each_usages_core<T: LinkType, R: Try<Output = ()>, H: FnMut(Link<T>) -> R>(
+fn each_usages_core<
+    T: LinkType,
+    R: Try<Output = (), Residual: Send> + Send,
+    H: FnMut(Link<T>) -> R,
+>(
     _self: &LinksSourcesSizeBalancedTree<T>,
     root: T,
     link: T,
@@ -228,7 +232,7 @@ impl<T: LinkType> ILinksTreeMethods<T> for LinksSourcesSizeBalancedTree<T> {
         zero()
     }
 
-    fn each_usages<H: FnMut(Link<T>) -> R, R: Try<Output = ()>>(
+    fn each_usages<H: FnMut(Link<T>) -> R, R: Try<Output = (), Residual: Send> + Send>(
         &self,
         root: T,
         mut handler: H,

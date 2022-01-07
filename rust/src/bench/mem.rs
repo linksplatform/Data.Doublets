@@ -29,7 +29,7 @@ fn united_over_points(b: &mut Bencher) {
         let mut vec = Vec::with_capacity(to_create);
 
         for _ in 0..to_create {
-            vec.push(links.create_point().unwrap());
+            vec.push(links.create_point().await.unwrap());
         }
 
         for link in vec {

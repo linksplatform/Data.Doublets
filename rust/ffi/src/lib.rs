@@ -335,7 +335,7 @@ mod tests {
         setup_shared_logger(logger);
     }
 
-    #[test]
+    #[tokio::test]
     fn error_log() {
         init_log();
 

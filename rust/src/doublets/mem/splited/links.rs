@@ -280,16 +280,21 @@ impl<
         Link::new(index, raw.source, raw.target)
     }
 
-    fn try_each_by_core<F, R>(&self, mut handler: &mut F, restrictions: impl ToQuery<T>) -> R
+    #[async_recursion::async_recursion]
+    async fn try_each_by_core<F, R>(
+        &self,
+        mut handler: &mut F,
+        restrictions: impl ToQuery<T> + 'async_recursion,
+    ) -> R
     where
-        F: FnMut(Link<T>) -> R,
-        R: Try<Output = ()>,
+        F: FnMut(Link<T>) -> R + Send,
+        R: Try<Output = (), Residual: Send> + Send,
     {
         let restriction = restrictions.to_query();
 
         if restriction.len() == 0 {
             for index in one()..=self.get_header().allocated {
-                if let Some(link) = self.get_link(index) {
+                if let Some(link) = self.get_link(index).await {
                     handler(link)?;
                 }
             }
@@ -302,8 +307,8 @@ impl<
         let index = restriction[constants.index_part.as_()];
         if restriction.len() == 1 {
             return if index == any {
-                self.try_each_by_core(handler, [])
-            } else if let Some(link) = self.get_link(index) {
+                self.try_each_by_core(handler, []).await
+            } else if let Some(link) = self.get_link(index).await {
                 handler(link)
             } else {
                 R::from_output(())
@@ -314,13 +319,13 @@ impl<
             let value = restriction[1]; // TODO: Hmm... `const` position?
             return if index == any {
                 if value == any {
-                    self.try_each_by_core(handler, [])
+                    self.try_each_by_core(handler, []).await
                 } else {
-                    self.try_each_by_core(handler, [index, value, any])?;
-                    self.try_each_by_core(handler, [index, any, value])
+                    self.try_each_by_core(handler, [index, value, any]).await?;
+                    self.try_each_by_core(handler, [index, any, value]).await
                 }
             } else {
-                if let Some(link) = self.get_link(index) {
+                if let Some(link) = self.get_link(index).await {
                     if value == any {
                         handler(link)
                     } else {
@@ -342,7 +347,7 @@ impl<
             //
             return if index == any {
                 if (source, target) == (any, any) {
-                    self.try_each_by_core(handler, [])
+                    self.try_each_by_core(handler, []).await
                 } else if source == any {
                     if constants.is_external_reference(target) {
                         self.external_targets.each_usages(target, handler)
@@ -396,12 +401,12 @@ impl<
                     return if link == constants.null {
                         R::from_output(())
                     } else {
-                        let link = self.get_link(link).unwrap();
+                        let link = self.get_link(link).await.unwrap();
                         handler(link)
                     };
                 }
             } else {
-                if let Some(link) = self.get_link(index) {
+                if let Some(link) = self.get_link(index).await {
                     if (source, target) == (any, any) {
                         handler(unsafe { self.get_link_unchecked(index) })
                     } else {
@@ -436,6 +441,7 @@ impl<
     }
 }
 
+#[async_trait::async_trait]
 impl<
         T: LinkType,
         MD: ResizeableMem,
@@ -451,7 +457,7 @@ impl<
         self.constants.clone()
     }
 
-    fn count_by(&self, query: impl ToQuery<T>) -> T {
+    async fn count_by(&self, query: impl ToQuery<T> + 'async_trait) -> T {
         let query = query.to_query();
 
         if query.len() == 0 {
@@ -602,14 +608,14 @@ impl<
         todo!()
     }
 
-    fn create_by_with<F, R>(
+    async fn create_by_with<F, R>(
         &mut self,
-        query: impl ToQuery<T>,
+        query: impl ToQuery<T> + 'async_trait,
         mut handler: F,
     ) -> Result<R, LinksError<T>>
     where
-        F: FnMut(Link<T>, Link<T>) -> R,
-        R: Try<Output = ()>,
+        F: FnMut(Link<T>, Link<T>) -> R + Send,
+        R: Try<Output = (), Residual: Send> + Send,
     {
         let constants = self.constants();
         let header = self.get_header();
@@ -649,23 +655,28 @@ impl<
         ))
     }
 
-    fn try_each_by<F, R>(&self, restrictions: impl ToQuery<T>, mut handler: F) -> R
+    async fn try_each_by<F, R>(
+        &self,
+        restrictions: impl ToQuery<T> + 'async_trait,
+        mut handler: F,
+    ) -> R
     where
-        F: FnMut(Link<T>) -> R,
-        R: Try<Output = ()>,
+        F: FnMut(Link<T>) -> R + Send,
+        R: Try<Output = (), Residual: Send> + Send,
     {
         self.try_each_by_core(&mut handler, restrictions.to_query())
+            .await
     }
 
-    fn update_by_with<F, R>(
+    async fn update_by_with<F, R>(
         &mut self,
-        query: impl ToQuery<T>,
-        replacement: impl ToQuery<T>,
+        query: impl ToQuery<T> + 'async_trait,
+        replacement: impl ToQuery<T> + 'async_trait,
         mut handler: F,
     ) -> Result<R, LinksError<T>>
     where
-        F: FnMut(Link<T>, Link<T>) -> R,
-        R: Try<Output = ()>,
+        F: FnMut(Link<T>, Link<T>) -> R + Send,
+        R: Try<Output = (), Residual: Send> + Send,
     {
         let query = query.to_query();
         let replacement = replacement.to_query();
@@ -743,24 +754,24 @@ impl<
         ))
     }
 
-    fn delete_by_with<F, R>(
+    async fn delete_by_with<F, R>(
         &mut self,
-        query: impl ToQuery<T>,
+        query: impl ToQuery<T> + 'async_trait,
         mut handler: F,
     ) -> Result<R, LinksError<T>>
     where
-        F: FnMut(Link<T>, Link<T>) -> R,
-        R: Try<Output = ()>,
+        F: FnMut(Link<T>, Link<T>) -> R + Send,
+        R: Try<Output = (), Residual: Send> + Send,
     {
         let query = query.to_query();
 
         let index = query[0];
-        let (source, target) = if let Some(link) = self.get_link(index) {
+        let (source, target) = if let Some(link) = self.get_link(index).await {
             (link.source, link.target)
         } else {
             return Err(LinksError::NotExists(index));
         };
-        self.update(index, zero(), zero())?;
+        self.update(index, zero(), zero()).await?;
 
         // TODO: move to `delete_core`
         let header = self.get_header();
@@ -799,7 +810,7 @@ impl<
         Ok(handler(Link::new(index, source, target), Link::nothing()))
     }
 
-    fn get_link(&self, index: T) -> Option<Link<T>> {
+    async fn get_link(&self, index: T) -> Option<Link<T>> {
         if self.constants.is_external_reference(index) {
             Some(Link::point(index))
         } else if self.exists(index) {

@@ -9,96 +9,98 @@ use crate::tests::make_links;
 use crate::tests::make_mem;
 use crate::{query, Links};
 
-#[test]
-fn create() {
+#[tokio::test]
+async fn create() {
     let mem = make_mem().unwrap();
     let mut links = make_links(mem).unwrap();
 
-    links.create().unwrap();
+    links.create().await.unwrap();
 
-    assert_eq!(1, links.count());
+    assert_eq!(1, links.count().await);
 }
 
-#[test]
-fn create_point() {
+#[tokio::test]
+async fn create_point() {
     let mem = make_mem().unwrap();
     let mut links = make_links(mem).unwrap();
 
-    let point = links.create_point().unwrap();
+    let point = links.create_point().await.unwrap();
 
-    assert_eq!(1, links.count());
+    assert_eq!(1, links.count().await);
     // TODO: expect
-    assert_eq!(links.get_link(point).unwrap(), Link::point(point));
+    assert_eq!(links.get_link(point).await.unwrap(), Link::point(point));
 }
 
-#[test]
-fn each_eq_count() {
+#[tokio::test]
+async fn each_eq_count() {
     let mem = make_mem().unwrap();
     let mut links = make_links(mem).unwrap();
 
-    let root = links.create_point().unwrap();
+    let root = links.create_point().await.unwrap();
 
     for _ in 0..10 {
-        let new = links.create_point().unwrap();
-        links.create_and_update(new, root).unwrap();
+        let new = links.create_point().await.unwrap();
+        links.create_and_update(new, root).await.unwrap();
     }
 
     let any = links.constants.any;
     let query = [any, any, root];
 
     let mut count = 0;
-    links.each_by([any, any, root], |link| {
-        count += 1;
-        links.constants.r#continue
-    });
+    links
+        .each_by([any, any, root], |link| {
+            count += 1;
+            links.constants.r#continue
+        })
+        .await;
 
-    assert_eq!(count, links.count_by(Query::new(&query[..])));
+    assert_eq!(count, links.count_by(Query::new(&query[..])).await);
 }
 
-#[test]
-fn rebase() {
+#[tokio::test]
+async fn rebase() {
     let mem = make_mem().unwrap();
     let mut links = make_links(mem).unwrap();
     let any = links.constants.any;
 
-    let root = links.create_point().unwrap();
+    let root = links.create_point().await.unwrap();
 
     for _ in 0..10 {
-        let new = links.create_point().unwrap();
-        links.create_and_update(new, root).unwrap();
+        let new = links.create_point().await.unwrap();
+        links.create_and_update(new, root).await.unwrap();
     }
 
-    let before = links.count_by(Query::new(&[any, any, root][..]));
+    let before = links.count_by(Query::new(&[any, any, root][..])).await;
 
-    let new_root = links.create_point().unwrap();
-    let root = links.rebase(root, new_root).unwrap();
+    let new_root = links.create_point().await.unwrap();
+    let root = links.rebase(root, new_root).await.unwrap();
 
-    let after = links.count_by(Query::new(&[any, any, root][..]));
+    let after = links.count_by(Query::new(&[any, any, root][..])).await;
 
     assert_eq!(before, after);
 }
 
-#[test]
-fn delete_all_usages() {
+#[tokio::test]
+async fn delete_all_usages() {
     let mem = make_mem().unwrap();
     let mut links = make_links(mem).unwrap();
 
-    let root = links.create_point().unwrap();
-    let a = links.create_point().unwrap();
-    let b = links.create_point().unwrap();
+    let root = links.create_point().await.unwrap();
+    let a = links.create_point().await.unwrap();
+    let b = links.create_point().await.unwrap();
 
-    links.create_and_update(a, root).unwrap();
-    links.create_and_update(b, root).unwrap();
+    links.create_and_update(a, root).await.unwrap();
+    links.create_and_update(b, root).await.unwrap();
 
-    assert_eq!(links.count(), 5);
+    assert_eq!(links.count().await, 5);
 
-    links.delete_usages(root).unwrap();
+    links.delete_usages(root).await.unwrap();
 
-    assert_eq!(links.count(), 3);
+    assert_eq!(links.count().await, 3);
 }
 
-#[test]
-fn hybrid() {
+#[tokio::test]
+async fn hybrid() {
     let constants = LinksConstants::via_only_external(true);
 
     let to_raw = AddrToRaw::new();

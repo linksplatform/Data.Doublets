@@ -105,3 +105,6 @@ impl Drop for GlobalMem {
         }
     }
 }
+
+unsafe impl Send for GlobalMem {}
+unsafe impl Sync for GlobalMem {}
