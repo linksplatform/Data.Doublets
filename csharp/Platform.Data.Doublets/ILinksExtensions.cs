@@ -882,8 +882,28 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLink CreatePoint<TLink>(this ILinks<TLink> links, WriteHandler<TLink> handler)
         {
-            var link = links.Create();
-            return links.Update(link, link, link, handler);
+            var constants = links.Constants;
+            var handlerState = constants.Continue;
+            var equalityComparer = EqualityComparer<TLink>.Default;
+            TLink link = default;
+            TLink HandlerWrapper(IList<TLink> before, IList<TLink> after)
+            {
+                link = after[constants.IndexPart];
+                return handler(before, after);
+            }
+            var handlerStateAfterCreate = links.Create(null, HandlerWrapper);
+            if (equalityComparer.Equals(constants.Break, handlerStateAfterCreate))
+            {
+                handler = null;
+                handlerState = constants.Break;
+            }
+            var handlerStateAfterUpdate = links.Update(link, link, link, HandlerWrapper);
+            if (equalityComparer.Equals(constants.Break, handlerStateAfterUpdate))
+            {
+                handler = null;
+                handlerState = constants.Break;
+            }
+            return handlerState;
         }
 
         public static TLink CreateAndUpdate<TLink>(this ILinks<TLink> links, TLink source, TLink target)
