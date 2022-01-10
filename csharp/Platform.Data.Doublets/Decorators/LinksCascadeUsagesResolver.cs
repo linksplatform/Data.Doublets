@@ -38,10 +38,24 @@ namespace Platform.Data.Doublets.Decorators
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override TLink Delete(IList<TLink> restriction, WriteHandler<TLink> handler)
         {
+            var equalityComparer = EqualityComparer<TLink>.Default;
+            var constants = _links.Constants;
+            TLink handlerState = constants.Continue;
             var linkIndex = restriction[_constants.IndexPart];
             // Use Facade (the last decorator) to ensure recursion working correctly
-            _facade.DeleteAllUsages(linkIndex, handler);
-            return _links.Delete(restriction, handler);
+            var handlerStateAfterDeleteAllUsages = _facade.DeleteAllUsages(linkIndex, handler);
+            if (equalityComparer.Equals(constants.Break, handlerStateAfterDeleteAllUsages))
+            {
+                handler = null;
+                handlerState = handlerStateAfterDeleteAllUsages;
+            }
+            var handlerStateAfterDelete = _links.Delete(restriction, handler);
+            if (equalityComparer.Equals(constants.Break, handlerStateAfterDelete))
+            {
+                handler = null;
+                handlerState = handlerStateAfterDelete;
+            }
+            return handlerState;
         }
     }
 }
