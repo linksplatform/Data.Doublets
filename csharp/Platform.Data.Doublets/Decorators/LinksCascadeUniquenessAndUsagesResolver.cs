@@ -49,23 +49,14 @@ namespace Platform.Data.Doublets.Decorators
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override TLink ResolveAddressChangeConflict(TLink oldLinkAddress, TLink newLinkAddress, WriteHandler<TLink> handler)
         {
-            var equalityComparer = EqualityComparer<TLink>.Default;
             var constants = _links.Constants;
-            TLink handlerState = constants.Continue;
+            WriteHandlerState<TLink> handlerState = new(constants.Continue, constants.Break, handler);
             // Use Facade (the last decorator) to ensure recursion working correctly
-            var handlerStateAfterMergeUsages = _facade.MergeUsages(oldLinkAddress, newLinkAddress, handler);
-            if (equalityComparer.Equals(constants.Break, handlerStateAfterMergeUsages))
-            {
-                handler = null;
-                handlerState = handlerStateAfterMergeUsages;
-            }
-            var handlerStateAfterBaseResolveAddressChangeConflict = base.ResolveAddressChangeConflict(oldLinkAddress, newLinkAddress, handler);
-            if (equalityComparer.Equals(constants.Break, handlerStateAfterBaseResolveAddressChangeConflict))
-            {
-                handler = null;
-                handlerState = handlerStateAfterBaseResolveAddressChangeConflict;
-            }
-            return handlerState;
+            var handlerStateAfterMergeUsages = _facade.MergeUsages(oldLinkAddress, newLinkAddress, handlerState.Handler);
+            handlerState.Apply(handlerStateAfterMergeUsages);
+            var handlerStateAfterBaseResolveAddressChangeConflict = base.ResolveAddressChangeConflict(oldLinkAddress, newLinkAddress, handlerState.Handler);
+            handlerState.Apply(handlerStateAfterBaseResolveAddressChangeConflict);
+            return handlerState.Result;
         }
     }
 }
