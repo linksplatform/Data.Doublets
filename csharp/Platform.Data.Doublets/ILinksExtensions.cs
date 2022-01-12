@@ -869,13 +869,10 @@ namespace Platform.Data.Doublets
 
         public static TLink CreatePoint<TLink>(this ILinks<TLink> links)
         {
-            TLink result = default;
-            links.CreatePoint((_, after) =>
-            {
-                result = after[links.Constants.IndexPart];
-                return links.Constants.Continue;
-            });
-            return result;
+            var constants = links.Constants;
+            var setter = new Setter<TLink, TLink>(constants.Continue, constants.Break);
+            links.CreatePoint(setter.SetFirstFromSecondListAndReturnTrue);
+            return setter.Result;
         }
 
         /// <param name="links">Хранилище связей.</param>
@@ -908,13 +905,10 @@ namespace Platform.Data.Doublets
 
         public static TLink CreateAndUpdate<TLink>(this ILinks<TLink> links, TLink source, TLink target)
         {
-            TLink result = default;
-            CreateAndUpdate(links, source, target, (_, after) =>
-            {
-                result = after[links.Constants.IndexPart];
-                return links.Constants.Continue;
-            });
-            return result;
+            var constants = links.Constants;
+            var setter = new Setter<TLink, TLink>(constants.Continue, constants.Break);
+            CreateAndUpdate(links, source, target, setter.SetFirstFromSecondListAndReturnTrue);
+            return setter.Result;
         }
 
 
@@ -940,14 +934,10 @@ namespace Platform.Data.Doublets
 
         public static TLink Update<TLink>(this ILinks<TLink> links, IList<TLink> restriction)
         {
-            TLink result = default;
-            links.Update(restriction, (before, after) =>
-            {
-                var constants = links.Constants;
-                result = after[constants.IndexPart];
-                return constants.Continue;
-            });
-            return result;
+            var constants = links.Constants;
+            var setter = new Setter<TLink, TLink>(constants.Continue, constants.Break);
+            links.Update(restriction, setter.SetFirstFromSecondListAndReturnTrue);
+            return setter.Result;
         }
 
 
@@ -1039,13 +1029,10 @@ namespace Platform.Data.Doublets
 
         public static TLink UpdateOrCreateOrGet<TLink>(this ILinks<TLink> links, TLink source, TLink target, TLink newSource, TLink newTarget)
         {
-            TLink result = default;
-            UpdateOrCreateOrGet(links, source, target, newSource, newTarget, (_, after) =>
-            {
-                result = after[links.Constants.IndexPart];
-                return links.Constants.Continue;
-            });
-            return result;
+            var constants = links.Constants;
+            var setter = new Setter<TLink, TLink>(constants.Continue, constants.Break);
+            UpdateOrCreateOrGet(links, source, target, newSource, newTarget, setter.SetFirstFromSecondListAndReturnTrue);
+            return setter.Result;
         }
 
         /// <summary>
