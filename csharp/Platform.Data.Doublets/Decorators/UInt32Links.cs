@@ -112,30 +112,16 @@ namespace Platform.Data.Doublets.Decorators
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override TLink Delete(IList<TLink> restriction, WriteHandler<TLink> handler)
         {
-            var equalityComparer = EqualityComparer<TLink>.Default;
             var linkIndex = restriction[_constants.IndexPart];
             var constants = _links.Constants;
-            var @break = constants.Break;
-            var handlerState = _links.Constants.Continue;
-            var enforceResetValuesHandlerState =  _links.EnforceResetValues(linkIndex, handler);
-            if (equalityComparer.Equals(@break, enforceResetValuesHandlerState))
-            {
-                handler = null;
-                handlerState = @break;
-            }
-            var deleteAllUsagesHandlerState = _facade.DeleteAllUsages(linkIndex, handler);
-            if (equalityComparer.Equals(@break, deleteAllUsagesHandlerState))
-            {
-                handler = null;
-                handlerState = @break;
-            }
-            var deleteHandlerState = _links.Delete(restriction, handler);
-            if (equalityComparer.Equals(@break, deleteHandlerState))
-            {
-                handler = null;
-                handlerState = @break;
-            }
-            return handlerState;
+            WriteHandlerState<TLink> handlerState = new(constants.Continue, constants.Break, handler);
+            var enforceResetValuesHandlerState =  _links.EnforceResetValues(linkIndex, handlerState.Handler);
+            handlerState.Apply(enforceResetValuesHandlerState);
+            var deleteAllUsagesHandlerState = _facade.DeleteAllUsages(linkIndex, handlerState.Handler);
+            handlerState.Apply(deleteAllUsagesHandlerState);
+            var deleteHandlerState = _links.Delete(restriction, handlerState.Handler);
+            handlerState.Apply(deleteHandlerState);
+            return handlerState.Result;
         }
     }
 }
