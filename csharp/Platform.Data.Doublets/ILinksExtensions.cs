@@ -880,27 +880,18 @@ namespace Platform.Data.Doublets
         public static TLink CreatePoint<TLink>(this ILinks<TLink> links, WriteHandler<TLink> handler)
         {
             var constants = links.Constants;
-            var handlerState = constants.Continue;
-            var equalityComparer = EqualityComparer<TLink>.Default;
+            WriteHandlerState<TLink> handlerState = new(constants.Continue, constants.Break, handler);
             TLink link = default;
             TLink HandlerWrapper(IList<TLink> before, IList<TLink> after)
             {
                 link = after[constants.IndexPart];
-                return handler(before, after);
+                return handlerState.Handler != null ? handlerState.Handler(before, after) : constants.Continue;
             }
             var handlerStateAfterCreate = links.Create(null, HandlerWrapper);
-            if (equalityComparer.Equals(constants.Break, handlerStateAfterCreate))
-            {
-                handler = null;
-                handlerState = constants.Break;
-            }
+            handlerState.Apply(handlerStateAfterCreate);
             var handlerStateAfterUpdate = links.Update(link, link, link, HandlerWrapper);
-            if (equalityComparer.Equals(constants.Break, handlerStateAfterUpdate))
-            {
-                handler = null;
-                handlerState = constants.Break;
-            }
-            return handlerState;
+            handlerState.Apply(handlerStateAfterUpdate);
+            return handlerState.Result;
         }
 
         public static TLink CreateAndUpdate<TLink>(this ILinks<TLink> links, TLink source, TLink target)
