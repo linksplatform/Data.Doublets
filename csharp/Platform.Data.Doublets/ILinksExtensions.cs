@@ -1109,21 +1109,17 @@ namespace Platform.Data.Doublets
             }
             links.Each(usagesFiller.AddAndReturnConstant, usagesAsSourceQuery);
             links.Each(usagesFiller.AddAndReturnConstant, usagesAsTargetQuery);
-            TLink handlerState = constants.Continue;
+            WriteHandlerState<TLink> handlerState = new(constants.Continue, constants.Break, handler);
             foreach (var usage in usages)
             {
                 if (equalityComparer.Equals(GetIndex(links, usage), linkIndex))
                 {
                     continue;
                 }
-                var deleteResult = links.Delete(usage, handler);
-                if (equalityComparer.Equals(constants.Break, deleteResult))
-                {
-                    handler = null;
-                    handlerState = constants.Break;
-                }
+                var deleteResult = links.Delete(usage, handlerState.Handler);
+                handlerState.Apply(deleteResult);
             }
-            return handlerState;
+            return handlerState.Result;
         }
 
         /// <summary>
