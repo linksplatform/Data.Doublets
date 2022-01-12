@@ -1271,7 +1271,7 @@ namespace Platform.Data.Doublets
             }
             var constants = links.Constants;
             var usagesAsSource = links.All(new Link<TLink>(constants.Any, oldLinkIndex, constants.Any));
-            var combinedResult = constants.Continue;
+            WriteHandlerState<TLink> handlerState = new(constants.Continue, constants.Break, handler);
             for (var i = 0; i < usagesAsSource.Count; i++)
             {
                 var usageAsSource = usagesAsSource[i];
@@ -1281,12 +1281,8 @@ namespace Platform.Data.Doublets
                 }
                 var restriction = new LinkAddress<TLink>(usageAsSource[constants.IndexPart]);
                 var substitution = new Link<TLink>(newLinkIndex, usageAsSource[constants.TargetPart]);
-                var result = links.Update(restriction, substitution, handler);
-                if (equalityComparer.Equals(constants.Break, result))
-                {
-                    handler = null;
-                    combinedResult = constants.Break;
-                }
+                var result = links.Update(restriction, substitution, handlerState.Handler);
+                handlerState.Apply(result);
             }
             var usagesAsTarget = links.All(new Link<TLink>(constants.Any, constants.Any, oldLinkIndex));
             for (var i = 0; i < usagesAsTarget.Count; i++)
@@ -1298,14 +1294,10 @@ namespace Platform.Data.Doublets
                 }
                 var restriction = links.GetLink(usageAsTarget[constants.IndexPart]);
                 var substitution = new Link<TLink>(usageAsTarget[constants.TargetPart], newLinkIndex);
-                var result = links.Update(restriction, substitution, handler);
-                if (equalityComparer.Equals(constants.Break, result))
-                {
-                    handler = null;
-                    combinedResult = constants.Break;
-                }
+                var result = links.Update(restriction, substitution, handlerState.Handler);
+                handlerState.Apply(result);
             }
-            return combinedResult;
+            return handlerState.Result;
         }
 
         public static TLink MergeAndDelete<TLink>(this ILinks<TLink> links, TLink oldLinkIndex, TLink newLinkIndex)
