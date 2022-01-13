@@ -1095,10 +1095,6 @@ namespace Platform.Data.Doublets
             var usagesAsTargetQuery = new Link<TLink>(any, any, linkIndex);
             var usages = new List<IList<TLink>>();
             var usagesFiller = new ListFiller<IList<TLink>, TLink>(usages, constants.Continue);
-            if (usages.Count <= 0)
-            {
-                return constants.Continue;
-            }
             links.Each(usagesFiller.AddAndReturnConstant, usagesAsSourceQuery);
             links.Each(usagesFiller.AddAndReturnConstant, usagesAsTargetQuery);
             WriteHandlerState<TLink> handlerState = new(constants.Continue, constants.Break, handler);
