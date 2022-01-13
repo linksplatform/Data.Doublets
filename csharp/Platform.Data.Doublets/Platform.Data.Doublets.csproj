@@ -35,8 +35,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
   </ItemGroup>
-  
+
   <ItemGroup>
+    <PackageReference Include="Platform.Setters" Version="0.3.0" />
     <PackageReference Include="Platform.Random" Version="0.2.0" />
     <PackageReference Include="Platform.Timestamps" Version="0.2.0" />
     <PackageReference Include="Platform.Collections.Methods" Version="0.5.1" />
