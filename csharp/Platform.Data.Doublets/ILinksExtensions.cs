@@ -12,6 +12,7 @@ using Platform.Converters;
 using Platform.Numbers;
 using Platform.Data.Exceptions;
 using Platform.Data.Doublets.Decorators;
+using Platform.Delegates;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 

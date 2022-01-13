@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Platform.Collections.Methods.Trees;
 using Platform.Converters;
+using Platform.Delegates;
 using Platform.Numbers;
 using static System.Runtime.CompilerServices.Unsafe;
 

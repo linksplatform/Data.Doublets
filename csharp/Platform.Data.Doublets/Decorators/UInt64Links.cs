@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Net.Security;
 using System.Runtime.CompilerServices;
+using Platform.Delegates;
 using TLink = System.UInt64;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Platform.Data.Doublets;
+using Platform.Delegates;
 using Platform.Threading.Synchronization;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
