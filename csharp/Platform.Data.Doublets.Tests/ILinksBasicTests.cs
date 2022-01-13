@@ -26,7 +26,7 @@ namespace Platform.Data.Doublets.Tests
             
             links.DeleteAllUsages(root);
             
-            Assert.Equal(2U, links.Count());
+            Assert.Equal(3U, links.Count());
         }
     }
 }
