@@ -23,10 +23,10 @@ namespace Platform.Data.Doublets.Tests
             links.CreateAndUpdate(b, root);
             
             Assert.Equal(5U, links.Count());
-            
+
             links.DeleteAllUsages(root);
             
-            Assert.Equal(2U, links.Count());
+            Assert.Equal(3U, links.Count());
         }
     }
 }
