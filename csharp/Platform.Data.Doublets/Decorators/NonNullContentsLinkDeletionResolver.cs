@@ -43,9 +43,11 @@ namespace Platform.Data.Doublets.Decorators
         public override TLink Delete(IList<TLink> restriction, WriteHandler<TLink> handler)
         {
             var linkIndex = restriction[_constants.IndexPart];
-            var links = _links;
-            links.EnforceResetValues(linkIndex, handler);
-            return links.Delete(restriction, handler);
+            var constants = _links.Constants;
+            WriteHandlerState<TLink> handlerResult = new(constants.Continue, constants.Break, handler);
+            handlerResult.Apply(_links.EnforceResetValues(linkIndex, handlerResult.Handler));
+            handlerResult.Apply(_links.Delete(restriction, handlerResult.Handler));
+            return handlerResult.Result;
         }
     }
 }
