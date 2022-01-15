@@ -897,7 +897,7 @@ namespace Platform.Data.Doublets
         {
             var constants = links.Constants;
             var setter = new Setter<TLink, TLink>(constants.Continue, constants.Break);
-            CreateAndUpdate(links, source, target, setter.SetFirstFromSecondListAndReturnTrue);
+            links.CreateAndUpdate(source, target, setter.SetFirstFromSecondListAndReturnTrue);
             return setter.Result;
         }
 
@@ -1021,7 +1021,7 @@ namespace Platform.Data.Doublets
         {
             var constants = links.Constants;
             var setter = new Setter<TLink, TLink>(constants.Continue, constants.Break);
-            UpdateOrCreateOrGet(links, source, target, newSource, newTarget, setter.SetFirstFromSecondListAndReturnTrue);
+            links.UpdateOrCreateOrGet(source, target, newSource, newTarget, setter.SetFirstFromSecondListAndReturnTrue);
             return setter.Result;
         }
 
@@ -1080,7 +1080,7 @@ namespace Platform.Data.Doublets
             }
         }
 
-        public static void DeleteAllUsages<TLink>(this ILinks<TLink> links, TLink linkIndex) => DeleteAllUsages(links, linkIndex, null);
+        public static void DeleteAllUsages<TLink>(this ILinks<TLink> links, TLink linkIndex) => links.DeleteAllUsages(linkIndex, null);
 
         /// <remarks>Before execution of this method ensure that deleted link is detached (all values - source and target are reset to null) or it might enter into infinite recursion.</remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1098,7 +1098,7 @@ namespace Platform.Data.Doublets
             WriteHandlerState<TLink> handlerState = new(constants.Continue, constants.Break, handler);
             foreach (var usage in usages)
             {
-                if (equalityComparer.Equals(GetIndex(links, usage), linkIndex) || !links.Exists(links.GetIndex(usage)))
+                if (equalityComparer.Equals(links.GetIndex(usage), linkIndex) || !links.Exists(links.GetIndex(usage)))
                 {
                     continue;
                 }
@@ -1237,7 +1237,7 @@ namespace Platform.Data.Doublets
             return links.Constants.Continue;
         }
 
-        public static void MergeUsages<TLink>(this ILinks<TLink> links, TLink oldLinkIndex, TLink newLinkIndex) => MergeUsages(links, oldLinkIndex, newLinkIndex, null);
+        public static void MergeUsages<TLink>(this ILinks<TLink> links, TLink oldLinkIndex, TLink newLinkIndex) => links.MergeUsages(oldLinkIndex, newLinkIndex, null);
 
         /// <summary>
         /// Merging two usages graphs, all children of old link moved to be children of new link or deleted.
