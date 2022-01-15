@@ -569,7 +569,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                     header.AllocatedLinks = Decrement(header.AllocatedLinks);
                     _memory.UsedCapacity -= LinkSizeInBytes;
                 }
-                return handler != null ? handler(restriction, null) : Constants.Continue;
+                return handler != null ? handler(before, null) : Constants.Continue;
             }
             return Constants.Continue;
         }
