@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Platform.Collections.Methods.Lists;
 using Platform.Converters;
+using Platform.Delegates;
 using static System.Runtime.CompilerServices.Unsafe;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -346,7 +347,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLink EachUsage(TLink source, Func<IList<TLink>, TLink> handler)
+        public TLink EachUsage(TLink source, ReadHandler<TLink> handler)
         {
             var @continue = Continue;
             var @break = Break;

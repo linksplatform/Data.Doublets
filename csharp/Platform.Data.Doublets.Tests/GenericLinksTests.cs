@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using Xunit;
 using Platform.Reflection;
 using Platform.Memory;
@@ -7,7 +8,7 @@ using Platform.Data.Doublets.Memory.United.Generic;
 
 namespace Platform.Data.Doublets.Tests
 {
-    public unsafe static class GenericLinksTests
+    public static class GenericLinksTests
     {
         [Fact]
         public static void CRUDTest()

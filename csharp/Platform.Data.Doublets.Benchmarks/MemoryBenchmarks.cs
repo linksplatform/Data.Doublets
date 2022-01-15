@@ -1,3 +1,4 @@
+using System.IO;
 using BenchmarkDotNet.Attributes;
 using Platform.Data.Doublets.Memory.Split.Generic;
 using Platform.Data.Doublets.Memory.United.Generic;
@@ -16,6 +17,7 @@ namespace Platform.Data.Doublets.Benchmarks
         private static ILinks<uint> _splitMemoryLinks;
         private static UnitedMemoryLinks<uint> _unitedMemory;
         private static ILinks<uint> _unitedMemoryLinks;
+        private static ILinks<uint> _ffiUnitedMemoryLinks;
 
         [GlobalSetup]
         public static void Setup()
@@ -35,6 +37,7 @@ namespace Platform.Data.Doublets.Benchmarks
         {
             _splitMemory.Dispose();
             _unitedMemory.Dispose();
+            File.Delete("db.links");
         }
 
         [Benchmark]
@@ -47,6 +50,12 @@ namespace Platform.Data.Doublets.Benchmarks
         public void United()
         {
             _unitedMemoryLinks.TestMultipleRandomCreationsAndDeletions(1000);
+        }
+
+        [Benchmark]
+        public void FfiUnited()
+        {
+            _ffiUnitedMemoryLinks.TestMultipleRandomCreationsAndDeletions(1000);
         }
     }
 }
