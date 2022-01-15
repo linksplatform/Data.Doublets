@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Platform.Collections.Methods.Trees;
 using Platform.Converters;
+using Platform.Delegates;
 using Platform.Numbers;
 using static System.Runtime.CompilerServices.Unsafe;
 
@@ -621,7 +622,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLink EachUsage(TLink link, Func<IList<TLink>, TLink> handler)
+        public TLink EachUsage(TLink link, ReadHandler<TLink> handler)
         {
             var root = GetTreeRoot();
             if (EqualToZero(root))

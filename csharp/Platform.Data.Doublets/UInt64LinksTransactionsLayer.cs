@@ -10,6 +10,7 @@ using Platform.Timestamps;
 using Platform.Unsafe;
 using Platform.IO;
 using Platform.Data.Doublets.Decorators;
+using Platform.Delegates;
 using Platform.Exceptions;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -158,6 +159,8 @@ namespace Platform.Data.Doublets
                 After = after;
                 Timestamp = uniqueTimestampFactory.Create();
             }
+
+            public Transition(UniqueTimestampFactory uniqueTimestampFactory, ulong transactionId, IList<ulong> before, IList<ulong> after) : this(uniqueTimestampFactory, transactionId, new Link<ulong>(before), new Link<ulong>(after)) { }
 
             /// <summary>
             /// <para>
@@ -546,12 +549,12 @@ namespace Platform.Data.Doublets
 
         /// <summary>
         /// <para>
-        /// Creates the restrictions.
+        /// Creates the substitution.
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="substitution">
+        /// <para>The substitution.</para>
         /// <para></para>
         /// </param>
         /// <returns>
@@ -559,22 +562,23 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override ulong Create(IList<ulong> restrictions)
+        public override ulong Create(IList<ulong> substitution, WriteHandler<ulong> handler)
         {
-            var createdLinkIndex = _links.Create();
-            var createdLink = new Link<ulong>(_links.GetLink(createdLinkIndex));
-            CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, default, createdLink));
-            return createdLinkIndex;
+            return _links.Create(new Link<ulong>(), (before, after) =>
+            {
+                CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, new Link<ulong>(before), new Link<ulong>(after)));
+                return handler(before, after);
+            });
         }
 
         /// <summary>
         /// <para>
-        /// Updates the restrictions.
+        /// Updates the substitution.
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The substitution.</para>
         /// <para></para>
         /// </param>
         /// <param name="substitution">
@@ -586,33 +590,35 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override ulong Update(IList<ulong> restrictions, IList<ulong> substitution)
+        public override ulong Update(IList<ulong> restriction, IList<ulong> substitution, WriteHandler<ulong> handler)
         {
-            var linkIndex = restrictions[_constants.IndexPart];
-            var beforeLink = new Link<ulong>(_links.GetLink(linkIndex));
-            linkIndex = _links.Update(restrictions, substitution);
-            var afterLink = new Link<ulong>(_links.GetLink(linkIndex));
-            CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, beforeLink, afterLink));
-            return linkIndex;
+            return _links.Update(restriction, substitution, (before, after) =>
+                {
+                    CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, new Link<ulong>(before), new Link<ulong>(after)));
+                    return handler(before, after);
+                }
+            );
         }
 
         /// <summary>
         /// <para>
-        /// Deletes the restrictions.
+        /// Deletes the substitution.
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The substitution.</para>
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override void Delete(IList<ulong> restrictions)
+        public override ulong Delete(IList<ulong> restriction, WriteHandler<ulong> handler)
         {
-            var link = restrictions[_constants.IndexPart];
-            var deletedLink = new Link<ulong>(_links.GetLink(link));
-            _links.Delete(link);
-            CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, deletedLink, default));
+            var link = restriction[_constants.IndexPart];
+            return _links.Delete(restriction, (before, after) =>
+            {
+                CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, before, after));
+                return handler(before, after);
+            });
         }
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private Queue<Transition> GetCurrentTransitions() => _currentTransactionTransitions ?? _transitions;

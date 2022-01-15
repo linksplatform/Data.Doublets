@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Platform.Delegates;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -29,21 +31,23 @@ namespace Platform.Data.Doublets.Decorators
 
         /// <summary>
         /// <para>
-        /// Deletes the restrictions.
+        /// Deletes the restriction.
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override void Delete(IList<TLink> restrictions)
+        public override TLink Delete(IList<TLink> restriction, WriteHandler<TLink> handler)
         {
-            var linkIndex = restrictions[_constants.IndexPart];
-            var links = _links;
-            links.EnforceResetValues(linkIndex);
-            links.Delete(linkIndex);
+            var linkIndex = restriction[_constants.IndexPart];
+            var constants = _links.Constants;
+            WriteHandlerState<TLink> handlerResult = new(constants.Continue, constants.Break, handler);
+            handlerResult.Apply(_links.EnforceResetValues(linkIndex, handlerResult.Handler));
+            handlerResult.Apply(_links.Delete(restriction, handlerResult.Handler));
+            return handlerResult.Result;
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using Platform.Collections;
 using Platform.Collections.Lists;
 using Platform.Data.Universal;
+using Platform.Delegates;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -98,7 +99,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para>The link</para>
         /// <para></para>
         /// </returns>
-        public TLink Trigger(IList<TLink> restriction, Func<IList<TLink>, IList<TLink>, TLink> matchedHandler, IList<TLink> substitution, Func<IList<TLink>, IList<TLink>, TLink> substitutedHandler)
+        public TLink Trigger(IList<TLink> restriction, WriteHandler<TLink> matchedHandler, IList<TLink> substitution, WriteHandler<TLink> substitutedHandler)
         {
             ////List<Transition> transitions = null;
             ////if (!restriction.IsNullOrEmpty())
@@ -297,7 +298,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para>The link</para>
         /// <para></para>
         /// </returns>
-        public TLink Trigger(IList<TLink> patternOrCondition, Func<IList<TLink>, TLink> matchHandler, IList<TLink> substitution, Func<IList<TLink>, IList<TLink>, TLink> substitutionHandler)
+        public TLink Trigger(IList<TLink> patternOrCondition, ReadHandler<TLink> matchHandler, IList<TLink> substitution, WriteHandler<TLink> substitutionHandler)
         {
             var constants = _constants;
             if (patternOrCondition.IsNullOrEmpty() && substitution.IsNullOrEmpty())
@@ -335,11 +336,7 @@ namespace Platform.Data.Doublets.Decorators
                 {
                     throw new NotSupportedException();
                 }
-                if (matchHandler != null)
-                {
-                    return substitutionHandler(before, after);
-                }
-                return constants.Continue;
+                return matchHandler != null ? substitutionHandler(before, after) : constants.Continue;
             }
             else if (!patternOrCondition.IsNullOrEmpty()) // Deletion
             {
@@ -354,11 +351,7 @@ namespace Platform.Data.Doublets.Decorators
                     var after = Array.Empty<TLink>();
                     _links.Update(linkToDelete, constants.Null, constants.Null);
                     _links.Delete(linkToDelete);
-                    if (matchHandler != null)
-                    {
-                        return substitutionHandler(before, after);
-                    }
-                    return constants.Continue;
+                    return matchHandler != null ? substitutionHandler(before, after) : constants.Continue;
                 }
                 else
                 {
@@ -397,11 +390,7 @@ namespace Platform.Data.Doublets.Decorators
                     {
                         throw new NotSupportedException();
                     }
-                    if (matchHandler != null)
-                    {
-                        return substitutionHandler(before, after);
-                    }
-                    return constants.Continue;
+                    return matchHandler != null ? substitutionHandler(before, after) : constants.Continue;
                 }
                 else
                 {
