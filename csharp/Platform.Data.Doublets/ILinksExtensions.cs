@@ -947,7 +947,7 @@ namespace Platform.Data.Doublets
             {
                 2 => links.MergeAndDelete(restriction[0], restriction[1], handler),
                 4 => links.UpdateOrCreateOrGet(restriction[0], restriction[1], restriction[2], restriction[3], handler),
-                _ => Update(links, restriction[0], restriction[1], restriction[2], handler)
+                _ => links.Update(restriction[0], restriction[1], restriction[2], handler)
             };
         }
 
