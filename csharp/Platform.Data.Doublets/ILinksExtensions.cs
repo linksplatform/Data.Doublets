@@ -1098,11 +1098,11 @@ namespace Platform.Data.Doublets
             WriteHandlerState<TLink> handlerState = new(constants.Continue, constants.Break, handler);
             foreach (var usage in usages)
             {
-                if (equalityComparer.Equals(GetIndex(links, usage), linkIndex))
+                if (equalityComparer.Equals(GetIndex(links, usage), linkIndex) || !links.Exists(links.GetIndex(usage)))
                 {
                     continue;
                 }
-                handlerState.Apply(links.Delete(usage, handlerState.Handler));
+                handlerState.Apply(links.Delete(links.GetIndex(usage), handlerState.Handler));
             }
             return handlerState.Result;
         }
