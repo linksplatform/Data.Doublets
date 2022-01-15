@@ -551,10 +551,11 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         {
             ref var header = ref GetHeaderReference();
             var link = restriction[Constants.IndexPart];
+            var restrictionStruct = GetLinkStruct(link);
             if (LessThan(link, header.AllocatedLinks))
             {
                 UnusedLinksListMethods.AttachAsFirst(link);
-                return handler != null ? handler(GetLinkStruct(link), null) : Constants.Continue;
+                return handler != null ? handler(restrictionStruct, null) : Constants.Continue;
             }
             else if (AreEqual(link, header.AllocatedLinks))
             {
