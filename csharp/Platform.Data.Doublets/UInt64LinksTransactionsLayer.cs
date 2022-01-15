@@ -620,10 +620,9 @@ namespace Platform.Data.Doublets
         public override ulong Delete(IList<ulong> restriction, WriteHandler<ulong> handler)
         {
             var link = restriction[_constants.IndexPart];
-            var deletedLink = new Link<ulong>(_links.GetLink(link));
             return _links.Delete(restriction, (before, after) =>
             {
-                CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, deletedLink, default));
+                CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, before, after));
                 return handler(before, after);
             });
         }
