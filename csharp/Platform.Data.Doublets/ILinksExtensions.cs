@@ -904,7 +904,7 @@ namespace Platform.Data.Doublets
 
         /// <param name="links">Хранилище связей.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TLink CreateAndUpdate<TLink>(this ILinks<TLink> links, TLink source, TLink target, WriteHandler<TLink> handler) => links.Update(links.Create(), source, target, handler);
+        public static TLink CreateAndUpdate<TLink>(this ILinks<TLink> links, TLink source, TLink target, WriteHandler<TLink> handler) => links.Update(links.Create(null, handler), source, target, handler);
 
         /// <summary>
         /// Обновляет связь с указанными началом (Source) и концом (Target)
