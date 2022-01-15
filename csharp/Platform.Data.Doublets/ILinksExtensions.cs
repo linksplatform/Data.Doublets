@@ -1297,12 +1297,14 @@ namespace Platform.Data.Doublets
         public static TLink MergeAndDelete<TLink>(this ILinks<TLink> links, TLink oldLinkIndex, TLink newLinkIndex, WriteHandler<TLink> handler)
         {
             var equalityComparer = EqualityComparer<TLink>.Default;
+            var constants = links.Constants;
+            WriteHandlerState<TLink> handlerState = new(constants.Continue, constants.Break, handler);
             if (!equalityComparer.Equals(oldLinkIndex, newLinkIndex))
             {
-                links.MergeUsages(oldLinkIndex, newLinkIndex, handler);
-                links.Delete(oldLinkIndex, handler);
+                handlerState.Apply(links.MergeUsages(oldLinkIndex, newLinkIndex, handlerState.Handler));
+                handlerState.Apply(links.Delete(oldLinkIndex, handlerState.Handler));
             }
-            return newLinkIndex;
+            return handlerState.Result;
         }
 
         /// <summary>
