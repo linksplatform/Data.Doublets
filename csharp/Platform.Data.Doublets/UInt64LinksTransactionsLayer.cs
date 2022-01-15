@@ -160,6 +160,14 @@ namespace Platform.Data.Doublets
                 Timestamp = uniqueTimestampFactory.Create();
             }
 
+            public Transition(UniqueTimestampFactory uniqueTimestampFactory, ulong transactionId, IList<ulong> before, IList<ulong> after)
+            {
+                TransactionId = transactionId;
+                Before = new Link<ulong>(before);
+                After = new Link<ulong>(after);
+                Timestamp = uniqueTimestampFactory.Create();
+            }
+
             /// <summary>
             /// <para>
             /// Initializes a new <see cref="Transition"/> instance.
