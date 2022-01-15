@@ -154,7 +154,7 @@ namespace Platform.Data.Doublets
         {
             if (links.Exists(linkToDelete))
             {
-                links.EnforceResetValues(linkToDelete);
+                links.EnforceResetValues(linkToDelete, handler);
             }
             return links.Delete(new LinkAddress<TLink>(linkToDelete), handler);
         }
