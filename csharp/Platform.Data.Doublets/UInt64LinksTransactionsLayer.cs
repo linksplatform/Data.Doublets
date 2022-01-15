@@ -613,9 +613,11 @@ namespace Platform.Data.Doublets
         {
             var link = restriction[_constants.IndexPart];
             var deletedLink = new Link<ulong>(_links.GetLink(link));
-            var deletedLinkIndex = _links.Delete(restriction, handler);
-            CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, deletedLink, default));
-            return deletedLinkIndex;
+            return _links.Delete(restriction, (before, after) =>
+            {
+                CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, deletedLink, default));
+                return handler(before, after);
+            });
         }
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private Queue<Transition> GetCurrentTransitions() => _currentTransactionTransitions ?? _transitions;
