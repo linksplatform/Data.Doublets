@@ -43,10 +43,8 @@ namespace Platform.Data.Doublets.Decorators
             WriteHandlerState<TLink> handlerState = new(constants.Continue, constants.Break, handler);
             var linkIndex = restriction[_constants.IndexPart];
             // Use Facade (the last decorator) to ensure recursion working correctly
-            var handlerStateAfterDeleteAllUsages = _facade.DeleteAllUsages(linkIndex, handlerState.Handler);
-            handlerState.Apply(handlerStateAfterDeleteAllUsages);
-            var handlerStateAfterDelete = _links.Delete(restriction, handlerState.Handler);
-            handlerState.Apply(handlerStateAfterDelete);
+            handlerState.Apply(_facade.DeleteAllUsages(linkIndex, handlerState.Handler));
+            handlerState.Apply(_links.Delete(restriction, handlerState.Handler));
             return handlerState.Result;
         }
     }

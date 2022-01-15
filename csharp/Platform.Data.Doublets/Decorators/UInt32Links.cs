@@ -116,12 +116,9 @@ namespace Platform.Data.Doublets.Decorators
             var linkIndex = restriction[_constants.IndexPart];
             var constants = _links.Constants;
             WriteHandlerState<TLink> handlerState = new(constants.Continue, constants.Break, handler);
-            var enforceResetValuesHandlerState =  _links.EnforceResetValues(linkIndex, handlerState.Handler);
-            handlerState.Apply(enforceResetValuesHandlerState);
-            var deleteAllUsagesHandlerState = _facade.DeleteAllUsages(linkIndex, handlerState.Handler);
-            handlerState.Apply(deleteAllUsagesHandlerState);
-            var deleteHandlerState = _links.Delete(restriction, handlerState.Handler);
-            handlerState.Apply(deleteHandlerState);
+            handlerState.Apply( _links.EnforceResetValues(linkIndex, handlerState.Handler));
+            handlerState.Apply(_facade.DeleteAllUsages(linkIndex, handlerState.Handler));
+            handlerState.Apply(_links.Delete(restriction, handlerState.Handler));
             return handlerState.Result;
         }
     }

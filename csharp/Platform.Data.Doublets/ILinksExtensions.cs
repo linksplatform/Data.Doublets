@@ -888,10 +888,8 @@ namespace Platform.Data.Doublets
                 link = after[constants.IndexPart];
                 return handlerState.Handler != null ? handlerState.Handler(before, after) : constants.Continue;
             }
-            var handlerStateAfterCreate = links.Create(null, HandlerWrapper);
-            handlerState.Apply(handlerStateAfterCreate);
-            var handlerStateAfterUpdate = links.Update(link, link, link, HandlerWrapper);
-            handlerState.Apply(handlerStateAfterUpdate);
+            handlerState.Apply(links.Create(null, HandlerWrapper));
+            handlerState.Apply(links.Update(link, link, link, HandlerWrapper));
             return handlerState.Result;
         }
 
@@ -1104,8 +1102,7 @@ namespace Platform.Data.Doublets
                 {
                     continue;
                 }
-                var deleteResult = links.Delete(usage, handlerState.Handler);
-                handlerState.Apply(deleteResult);
+                handlerState.Apply(links.Delete(usage, handlerState.Handler));
             }
             return handlerState.Result;
         }
@@ -1265,8 +1262,7 @@ namespace Platform.Data.Doublets
                 }
                 var restriction = new LinkAddress<TLink>(usageAsSource[constants.IndexPart]);
                 var substitution = new Link<TLink>(newLinkIndex, usageAsSource[constants.TargetPart]);
-                var result = links.Update(restriction, substitution, handlerState.Handler);
-                handlerState.Apply(result);
+                handlerState.Apply(links.Update(restriction, substitution, handlerState.Handler));
             }
             var usagesAsTarget = links.All(new Link<TLink>(constants.Any, constants.Any, oldLinkIndex));
             for (var i = 0; i < usagesAsTarget.Count; i++)
@@ -1278,8 +1274,7 @@ namespace Platform.Data.Doublets
                 }
                 var restriction = links.GetLink(usageAsTarget[constants.IndexPart]);
                 var substitution = new Link<TLink>(usageAsTarget[constants.TargetPart], newLinkIndex);
-                var result = links.Update(restriction, substitution, handlerState.Handler);
-                handlerState.Apply(result);
+                handlerState.Apply(links.Update(restriction, substitution, handlerState.Handler));
             }
             return handlerState.Result;
         }

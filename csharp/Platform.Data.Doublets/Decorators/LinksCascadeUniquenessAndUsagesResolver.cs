@@ -53,10 +53,8 @@ namespace Platform.Data.Doublets.Decorators
             var constants = _links.Constants;
             WriteHandlerState<TLink> handlerState = new(constants.Continue, constants.Break, handler);
             // Use Facade (the last decorator) to ensure recursion working correctly
-            var handlerStateAfterMergeUsages = _facade.MergeUsages(oldLinkAddress, newLinkAddress, handlerState.Handler);
-            handlerState.Apply(handlerStateAfterMergeUsages);
-            var handlerStateAfterBaseResolveAddressChangeConflict = base.ResolveAddressChangeConflict(oldLinkAddress, newLinkAddress, handlerState.Handler);
-            handlerState.Apply(handlerStateAfterBaseResolveAddressChangeConflict);
+            handlerState.Apply(_facade.MergeUsages(oldLinkAddress, newLinkAddress, handlerState.Handler));
+            handlerState.Apply(base.ResolveAddressChangeConflict(oldLinkAddress, newLinkAddress, handlerState.Handler));
             return handlerState.Result;
         }
     }
