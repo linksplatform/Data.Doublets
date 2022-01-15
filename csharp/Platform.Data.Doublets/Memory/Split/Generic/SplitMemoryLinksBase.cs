@@ -873,7 +873,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
                     _indexMemory.UsedCapacity -= LinkIndexPartSizeInBytes;
                 }
             }
-            return handler != null ? handler(before, Link<TLink>.Null) : Constants.Continue;
+            return handler != null ? handler(before, null) : Constants.Continue;
         }
 
         /// <summary>
