@@ -801,7 +801,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
                     InternalTargetsTreeMethods.Attach(ref GetLinkIndexPartReference(target).RootAsTarget, linkIndex);
                 }
             }
-            return handler != null ? handler(restriction, substitution) : Constants.Continue;
+            return handler != null ? handler(restriction, new Link<TLink>(linkIndex, source, target)) : Constants.Continue;
         }
 
         /// <remarks>
