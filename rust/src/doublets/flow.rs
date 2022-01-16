@@ -6,7 +6,7 @@ pub enum Flow {
 }
 
 impl FromResidual for Flow {
-    fn from_residual(residual: <Self as Try>::Residual) -> Self {
+    fn from_residual(_: <Self as Try>::Residual) -> Self {
         Flow::Break
     }
 }

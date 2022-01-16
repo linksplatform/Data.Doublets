@@ -154,6 +154,13 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static void SetValues(IList<TLink> values, out TLink index, out TLink source, out TLink target)
         {
+            if (values == null)
+            {
+                index = default;
+                source = default;
+                target = default;
+                return;
+            }
             switch (values.Count)
             {
                 case 3:

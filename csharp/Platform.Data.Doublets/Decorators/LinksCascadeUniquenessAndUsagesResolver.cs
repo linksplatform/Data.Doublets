@@ -1,4 +1,7 @@
+using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Platform.Delegates;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -45,11 +48,14 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink ResolveAddressChangeConflict(TLink oldLinkAddress, TLink newLinkAddress)
+        protected override TLink ResolveAddressChangeConflict(TLink oldLinkAddress, TLink newLinkAddress, WriteHandler<TLink> handler)
         {
+            var constants = _links.Constants;
+            WriteHandlerState<TLink> handlerState = new(constants.Continue, constants.Break, handler);
             // Use Facade (the last decorator) to ensure recursion working correctly
-            _facade.MergeUsages(oldLinkAddress, newLinkAddress);
-            return base.ResolveAddressChangeConflict(oldLinkAddress, newLinkAddress);
+            handlerState.Apply(_facade.MergeUsages(oldLinkAddress, newLinkAddress, handlerState.Handler));
+            handlerState.Apply(base.ResolveAddressChangeConflict(oldLinkAddress, newLinkAddress, handlerState.Handler));
+            return handlerState.Result;
         }
     }
 }

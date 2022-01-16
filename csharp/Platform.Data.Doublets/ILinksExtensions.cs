@@ -5,12 +5,14 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using Platform.Ranges;
 using Platform.Collections.Arrays;
+using Platform.Collections.Lists;
 using Platform.Random;
 using Platform.Setters;
 using Platform.Converters;
 using Platform.Numbers;
 using Platform.Data.Exceptions;
 using Platform.Data.Doublets.Decorators;
+using Platform.Delegates;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -148,15 +150,14 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TLink Delete<TLink>(this ILinks<TLink> links, TLink linkToDelete)
+        public static TLink Delete<TLink>(this ILinks<TLink> links, TLink linkToDelete, WriteHandler<TLink> handler)
         {
-            if (!links.Exists(linkToDelete))
+            if (links.Exists(linkToDelete))
             {
-                return links.Constants.Null;
+                links.EnforceResetValues(linkToDelete, handler);
             }
-            links.EnforceResetValues(linkToDelete);
-            return links.Delete(new LinkAddress<TLink>(linkToDelete));
-        } 
+            return links.Delete(new LinkAddress<TLink>(linkToDelete), handler);
+        }
 
         /// <remarks>
         /// TODO: Возможно есть очень простой способ это сделать.
@@ -256,7 +257,7 @@ namespace Platform.Data.Doublets
             var constants = links.Constants;
             var @continue = constants.Continue;
             var @break = constants.Break;
-            links.Each(linkHandler, query);
+            links.Each(query, linkHandler);
             return result;
             
             TLink linkHandler(IList<TLink> link)
@@ -438,11 +439,14 @@ namespace Platform.Data.Doublets
         /// </summary>
         /// <param name="links">Хранилище связей.</param>
         /// <param name="handler">Обработчик каждой подходящей связи.</param>
-        /// <param name="restrictions">Ограничения на содержимое связей. Каждое ограничение может иметь значения: Constants.Null - 0-я связь, обозначающая ссылку на пустоту, Any - отсутствие ограничения, 1..∞ конкретный адрес связи.</param>
+        /// <param name="restriction">Ограничения на содержимое связей. Каждое ограничение может иметь значения: Constants.Null - 0-я связь, обозначающая ссылку на пустоту, Any - отсутствие ограничения, 1..∞ конкретный адрес связи.</param>
         /// <returns>True, в случае если проход по связям не был прерван и False в обратном случае.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool Each<TLink>(this ILinks<TLink> links, Func<IList<TLink>, TLink> handler, params TLink[] restrictions)
-            => EqualityComparer<TLink>.Default.Equals(links.Each(handler, restrictions), links.Constants.Continue);
+        public static bool Each<TLink>(this ILinks<TLink> links, ReadHandler<TLink> handler, params TLink[] restriction)
+            => EqualityComparer<TLink>.Default.Equals(links.Each(restriction, handler), links.Constants.Continue);
+
+        public static bool Each<TLink>(this ILinks<TLink> links, Func<TLink, bool> handler, TLink source, TLink target) => links.Each(source, target, handler);
+
 
         /// <summary>
         /// Выполняет проход по всем связям, соответствующим шаблону, вызывая обработчик (handler) для каждой подходящей связи.
@@ -459,6 +463,9 @@ namespace Platform.Data.Doublets
             return links.Each(link => handler(link[constants.IndexPart]) ? constants.Continue : constants.Break, constants.Any, source, target);
         }
 
+        public static bool Each<TLink>(this ILinks<TLink> links, ReadHandler<TLink> handler, TLink source, TLink target) => links.Each(source, target, handler);
+
+
         /// <summary>
         /// Выполняет проход по всем связям, соответствующим шаблону, вызывая обработчик (handler) для каждой подходящей связи.
         /// </summary>
@@ -468,7 +475,7 @@ namespace Platform.Data.Doublets
         /// <param name="handler">Обработчик каждой подходящей связи.</param>
         /// <returns>True, в случае если проход по связям не был прерван и False в обратном случае.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool Each<TLink>(this ILinks<TLink> links, TLink source, TLink target, Func<IList<TLink>, TLink> handler) => links.Each(handler, links.Constants.Any, source, target);
+        public static bool Each<TLink>(this ILinks<TLink> links, TLink source, TLink target, ReadHandler<TLink> handler) => links.Each(handler, links.Constants.Any, source, target);
 
         /// <summary>
         /// <para>
@@ -484,8 +491,8 @@ namespace Platform.Data.Doublets
         /// <para>The links.</para>
         /// <para></para>
         /// </param>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
         /// <para></para>
         /// </param>
         /// <returns>
@@ -493,20 +500,12 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static IList<IList<TLink>> All<TLink>(this ILinks<TLink> links, params TLink[] restrictions)
+        public static IList<IList<TLink>> All<TLink>(this ILinks<TLink> links, params TLink[] restriction)
         {
-            var arraySize = CheckedConverter<TLink, ulong>.Default.Convert(links.Count(restrictions));
-            if (arraySize > 0)
-            {
-                var array = new IList<TLink>[arraySize];
-                var filler = new ArrayFiller<IList<TLink>, TLink>(array, links.Constants.Continue);
-                links.Each(filler.AddAndReturnConstant, restrictions);
-                return array;
-            }
-            else
-            {
-                return Array.Empty<IList<TLink>>();
-            }
+            var allLinks = new List<IList<TLink>>();
+            var filler = new ListFiller<IList<TLink>, TLink>(allLinks, links.Constants.Continue);
+            links.Each(filler.AddAndReturnConstant, restriction);
+            return allLinks;
         }
 
         /// <summary>
@@ -523,8 +522,8 @@ namespace Platform.Data.Doublets
         /// <para>The links.</para>
         /// <para></para>
         /// </param>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
         /// <para></para>
         /// </param>
         /// <returns>
@@ -532,20 +531,12 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static IList<TLink> AllIndices<TLink>(this ILinks<TLink> links, params TLink[] restrictions)
+        public static IList<TLink> AllIndices<TLink>(this ILinks<TLink> links, params TLink[] restriction)
         {
-            var arraySize = CheckedConverter<TLink, ulong>.Default.Convert(links.Count(restrictions));
-            if (arraySize > 0)
-            {
-                var array = new TLink[arraySize];
-                var filler = new ArrayFiller<TLink, TLink>(array, links.Constants.Continue);
-                links.Each(filler.AddFirstAndReturnConstant, restrictions);
-                return array;
-            }
-            else
-            {
-                return Array.Empty<TLink>();
-            }
+            var allIndices = new List<TLink>();
+            var filler = new ListFiller<TLink, TLink>(allIndices, links.Constants.Continue);
+            links.Each(filler.AddFirstAndReturnConstant, restriction);
+            return allIndices;
         }
 
         /// <summary>
@@ -575,8 +566,8 @@ namespace Platform.Data.Doublets
         /// <para>The links.</para>
         /// <para></para>
         /// </param>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
         /// <para></para>
         /// </param>
         /// <exception cref="ArgumentLinkDoesNotExistsException{TLink}">
@@ -584,13 +575,13 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void EnsureLinkExists<TLink>(this ILinks<TLink> links, IList<TLink> restrictions)
+        public static void EnsureLinkExists<TLink>(this ILinks<TLink> links, IList<TLink> restriction)
         {
-            for (var i = 0; i < restrictions.Count; i++)
+            for (var i = 0; i < restriction.Count; i++)
             {
-                if (!links.Exists(restrictions[i]))
+                if (!links.Exists(restriction[i]))
                 {
-                    throw new ArgumentLinkDoesNotExistsException<TLink>(restrictions[i], $"sequence[{i}]");
+                    throw new ArgumentLinkDoesNotExistsException<TLink>(restriction[i], $"sequence[{i}]");
                 }
             }
         }
@@ -644,8 +635,8 @@ namespace Platform.Data.Doublets
         /// <para>The links.</para>
         /// <para></para>
         /// </param>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
         /// <para></para>
         /// </param>
         /// <param name="argumentName">
@@ -653,11 +644,11 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void EnsureInnerReferenceExists<TLink>(this ILinks<TLink> links, IList<TLink> restrictions, string argumentName)
+        public static void EnsureInnerReferenceExists<TLink>(this ILinks<TLink> links, IList<TLink> restriction, string argumentName)
         {
-            for (int i = 0; i < restrictions.Count; i++)
+            for (int i = 0; i < restriction.Count; i++)
             {
-                links.EnsureInnerReferenceExists(restrictions[i], argumentName);
+                links.EnsureInnerReferenceExists(restriction[i], argumentName);
             }
         }
 
@@ -675,8 +666,8 @@ namespace Platform.Data.Doublets
         /// <para>The links.</para>
         /// <para></para>
         /// </param>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
         /// <para></para>
         /// </param>
         /// <exception cref="ArgumentLinkDoesNotExistsException{TLink}">
@@ -684,15 +675,15 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void EnsureLinkIsAnyOrExists<TLink>(this ILinks<TLink> links, IList<TLink> restrictions)
+        public static void EnsureLinkIsAnyOrExists<TLink>(this ILinks<TLink> links, IList<TLink> restriction)
         {
             var equalityComparer = EqualityComparer<TLink>.Default;
             var any = links.Constants.Any;
-            for (var i = 0; i < restrictions.Count; i++)
+            for (var i = 0; i < restriction.Count; i++)
             {
-                if (!equalityComparer.Equals(restrictions[i], any) && !links.Exists(restrictions[i]))
+                if (!equalityComparer.Equals(restriction[i], any) && !links.Exists(restriction[i]))
                 {
-                    throw new ArgumentLinkDoesNotExistsException<TLink>(restrictions[i], $"sequence[{i}]");
+                    throw new ArgumentLinkDoesNotExistsException<TLink>(restriction[i], $"sequence[{i}]");
                 }
             }
         }
@@ -877,21 +868,43 @@ namespace Platform.Data.Doublets
             return setter.Result;
         }
 
-        /// <param name="links">Хранилище связей.</param>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TLink Create<TLink>(this ILinks<TLink> links) => links.Create(null);
-
-        /// <param name="links">Хранилище связей.</param>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLink CreatePoint<TLink>(this ILinks<TLink> links)
         {
-            var link = links.Create();
-            return links.Update(link, link, link);
+            var constants = links.Constants;
+            var setter = new Setter<TLink, TLink>(constants.Continue, constants.Break);
+            links.CreatePoint(setter.SetFirstFromSecondListAndReturnTrue);
+            return setter.Result;
         }
 
         /// <param name="links">Хранилище связей.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TLink CreateAndUpdate<TLink>(this ILinks<TLink> links, TLink source, TLink target) => links.Update(links.Create(), source, target);
+        public static TLink CreatePoint<TLink>(this ILinks<TLink> links, WriteHandler<TLink> handler)
+        {
+            var constants = links.Constants;
+            WriteHandlerState<TLink> handlerState = new(constants.Continue, constants.Break, handler);
+            TLink link = default;
+            TLink HandlerWrapper(IList<TLink> before, IList<TLink> after)
+            {
+                link = after[constants.IndexPart];
+                return handlerState.Handler != null ? handlerState.Handler(before, after) : constants.Continue;
+            }
+            handlerState.Apply(links.Create(null, HandlerWrapper));
+            handlerState.Apply(links.Update(link, link, link, HandlerWrapper));
+            return handlerState.Result;
+        }
+
+        public static TLink CreateAndUpdate<TLink>(this ILinks<TLink> links, TLink source, TLink target)
+        {
+            var constants = links.Constants;
+            var setter = new Setter<TLink, TLink>(constants.Continue, constants.Break);
+            links.CreateAndUpdate(source, target, setter.SetFirstFromSecondListAndReturnTrue);
+            return setter.Result;
+        }
+
+
+        /// <param name="links">Хранилище связей.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static TLink CreateAndUpdate<TLink>(this ILinks<TLink> links, TLink source, TLink target, WriteHandler<TLink> handler) => links.Update(links.Create(null, handler), source, target, handler);
 
         /// <summary>
         /// Обновляет связь с указанными началом (Source) и концом (Target)
@@ -905,29 +918,38 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLink Update<TLink>(this ILinks<TLink> links, TLink link, TLink newSource, TLink newTarget) => links.Update(new LinkAddress<TLink>(link), new Link<TLink>(link, newSource, newTarget));
 
+        public static TLink Update<TLink>(this ILinks<TLink> links, params TLink[] restriction) => links.Update(restriction, null);
+
+        public static TLink Update<TLink>(this ILinks<TLink> links, WriteHandler<TLink> handler, params TLink[] restriction) => links.Update(restriction, handler);
+
+        public static TLink Update<TLink>(this ILinks<TLink> links, IList<TLink> restriction)
+        {
+            var constants = links.Constants;
+            var setter = new Setter<TLink, TLink>(constants.Continue, constants.Break);
+            links.Update(restriction, setter.SetFirstFromSecondListAndReturnTrue);
+            return setter.Result;
+        }
+
+
         /// <summary>
         /// Обновляет связь с указанными началом (Source) и концом (Target)
         /// на связь с указанными началом (NewSource) и концом (NewTarget).
         /// </summary>
         /// <param name="links">Хранилище связей.</param>
-        /// <param name="restrictions">Ограничения на содержимое связей. Каждое ограничение может иметь значения: Constants.Null - 0-я связь, обозначающая ссылку на пустоту, Itself - требование установить ссылку на себя, 1..∞ конкретный адрес другой связи.</param>
+        /// <param name="restriction">Ограничения на содержимое связей. Каждое ограничение может иметь значения: Constants.Null - 0-я связь, обозначающая ссылку на пустоту, Itself - требование установить ссылку на себя, 1..∞ конкретный адрес другой связи.</param>
         /// <returns>Индекс обновлённой связи.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TLink Update<TLink>(this ILinks<TLink> links, params TLink[] restrictions)
+        public static TLink Update<TLink>(this ILinks<TLink> links, IList<TLink> restriction, WriteHandler<TLink> handler)
         {
-            if (restrictions.Length == 2)
+            return restriction.Count switch
             {
-                return links.MergeAndDelete(restrictions[0], restrictions[1]);
-            }
-            if (restrictions.Length == 4)
-            {
-                return links.UpdateOrCreateOrGet(restrictions[0], restrictions[1], restrictions[2], restrictions[3]);
-            }
-            else
-            {
-                return links.Update(new LinkAddress<TLink>(restrictions[0]), restrictions);
-            }
+                2 => links.MergeAndDelete(restriction[0], restriction[1], handler),
+                4 => links.UpdateOrCreateOrGet(restriction[0], restriction[1], restriction[2], restriction[3], handler),
+                _ => links.Update(restriction[0], restriction[1], restriction[2], handler)
+            };
         }
+
+        public static TLink Update<TLink>(this ILinks<TLink> links, TLink link, TLink newSource, TLink newTarget, WriteHandler<TLink> handler) => links.Update(new LinkAddress<TLink>(link), new Link<TLink>(link, newSource, newTarget), handler);
 
         /// <summary>
         /// <para>
@@ -947,8 +969,8 @@ namespace Platform.Data.Doublets
         /// <para>The constant.</para>
         /// <para></para>
         /// </param>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
         /// <para></para>
         /// </param>
         /// <param name="substitution">
@@ -960,15 +982,15 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static IList<TLink> ResolveConstantAsSelfReference<TLink>(this ILinks<TLink> links, TLink constant, IList<TLink> restrictions, IList<TLink> substitution)
+        public static IList<TLink> ResolveConstantAsSelfReference<TLink>(this ILinks<TLink> links, TLink constant, IList<TLink> restriction, IList<TLink> substitution)
         {
             var equalityComparer = EqualityComparer<TLink>.Default;
             var constants = links.Constants;
-            var restrictionsIndex = restrictions[constants.IndexPart];
+            var restrictionIndex = restriction[constants.IndexPart];
             var substitutionIndex = substitution[constants.IndexPart];
             if (equalityComparer.Equals(substitutionIndex, default))
             {
-                substitutionIndex = restrictionsIndex;
+                substitutionIndex = restrictionIndex;
             }
             var source = substitution[constants.SourcePart];
             var target = substitution[constants.TargetPart];
@@ -995,6 +1017,14 @@ namespace Platform.Data.Doublets
             return link;
         }
 
+        public static TLink UpdateOrCreateOrGet<TLink>(this ILinks<TLink> links, TLink source, TLink target, TLink newSource, TLink newTarget)
+        {
+            var constants = links.Constants;
+            var setter = new Setter<TLink, TLink>(constants.Continue, constants.Break);
+            links.UpdateOrCreateOrGet(source, target, newSource, newTarget, setter.SetFirstFromSecondListAndReturnTrue);
+            return setter.Result;
+        }
+
         /// <summary>
         /// Обновляет связь с указанными началом (Source) и концом (Target)
         /// на связь с указанными началом (NewSource) и концом (NewTarget).
@@ -1006,19 +1036,20 @@ namespace Platform.Data.Doublets
         /// <param name="newTarget">Индекс связи, которая является концом связи, на которую выполняется обновление.</param>
         /// <returns>Индекс обновлённой связи.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TLink UpdateOrCreateOrGet<TLink>(this ILinks<TLink> links, TLink source, TLink target, TLink newSource, TLink newTarget)
+        public static TLink UpdateOrCreateOrGet<TLink>(this ILinks<TLink> links, TLink source, TLink target, TLink newSource, TLink newTarget, WriteHandler<TLink> handler)
         {
             var equalityComparer = EqualityComparer<TLink>.Default;
             var link = links.SearchOrDefault(source, target);
             if (equalityComparer.Equals(link, default))
             {
-                return links.CreateAndUpdate(newSource, newTarget);
+                return links.CreateAndUpdate(newSource, newTarget, handler);
             }
             if (equalityComparer.Equals(newSource, source) && equalityComparer.Equals(newTarget, target))
             {
+                var linkStruct = new Link<TLink>(link, source, target);
                 return link;
             }
-            return links.Update(link, newSource, newTarget);
+            return links.Update(link, newSource, newTarget, handler);
         }
 
         /// <summary>Удаляет связь с указанными началом (Source) и концом (Target).</summary>
@@ -1049,15 +1080,31 @@ namespace Platform.Data.Doublets
             }
         }
 
+        public static void DeleteAllUsages<TLink>(this ILinks<TLink> links, TLink linkIndex) => links.DeleteAllUsages(linkIndex, null);
+
         /// <remarks>Before execution of this method ensure that deleted link is detached (all values - source and target are reset to null) or it might enter into infinite recursion.</remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void DeleteAllUsages<TLink>(this ILinks<TLink> links, TLink linkIndex)
+        public static TLink DeleteAllUsages<TLink>(this ILinks<TLink> links, TLink linkIndex, WriteHandler<TLink> handler)
         {
-            var any = links.Constants.Any;
+            var constants = links.Constants;
+            var any = constants.Any;
+            var equalityComparer = EqualityComparer<TLink>.Default;
             var usagesAsSourceQuery = new Link<TLink>(any, linkIndex, any);
-            links.DeleteByQuery(usagesAsSourceQuery);
             var usagesAsTargetQuery = new Link<TLink>(any, any, linkIndex);
-            links.DeleteByQuery(usagesAsTargetQuery);
+            var usages = new List<IList<TLink>>();
+            var usagesFiller = new ListFiller<IList<TLink>, TLink>(usages, constants.Continue);
+            links.Each(usagesFiller.AddAndReturnConstant, usagesAsSourceQuery);
+            links.Each(usagesFiller.AddAndReturnConstant, usagesAsTargetQuery);
+            WriteHandlerState<TLink> handlerState = new(constants.Continue, constants.Break, handler);
+            foreach (var usage in usages)
+            {
+                if (equalityComparer.Equals(links.GetIndex(usage), linkIndex) || !links.Exists(links.GetIndex(usage)))
+                {
+                    continue;
+                }
+                handlerState.Apply(links.Delete(links.GetIndex(usage), handlerState.Handler));
+            }
+            return handlerState.Result;
         }
 
         /// <summary>
@@ -1081,16 +1128,12 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void DeleteByQuery<TLink>(this ILinks<TLink> links, Link<TLink> query)
         {
-            var count = CheckedConverter<TLink, long>.Default.Convert(links.Count(query));
-            if (count > 0)
+            var queryResult = new List<TLink>();
+            var queryResultFiller = new ListFiller<TLink, TLink>(queryResult, links.Constants.Continue);
+            links.Each(queryResultFiller.AddFirstAndReturnConstant, query);
+            foreach (var link in queryResult)
             {
-                var queryResult = new TLink[count];
-                var queryResultFiller = new ArrayFiller<TLink, TLink>(queryResult, links.Constants.Continue);
-                links.Each(queryResultFiller.AddFirstAndReturnConstant, query);
-                for (var i = count - 1; i >= 0; i--)
-                {
-                    links.Delete(queryResult[i]);
-                }
+                links.Delete(link);
             }
         }
 
@@ -1133,6 +1176,8 @@ namespace Platform.Data.Doublets
             return true;
         }
 
+        public static void ResetValues<TLink>(this ILinks<TLink> links, TLink linkIndex) => links.ResetValues(linkIndex, null);
+
         // TODO: Create a universal version of this method in Platform.Data (with using of for loop)
         /// <summary>
         /// <para>
@@ -1153,12 +1198,15 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void ResetValues<TLink>(this ILinks<TLink> links, TLink linkIndex)
+        public static TLink ResetValues<TLink>(this ILinks<TLink> links, TLink linkIndex, WriteHandler<TLink> handler)
         {
             var nullConstant = links.Constants.Null;
             var updateRequest = new Link<TLink>(linkIndex, nullConstant, nullConstant);
-            links.Update(updateRequest);
+            return links.Update(updateRequest, handler);
         }
+
+        public static void EnforceResetValues<TLink>(this ILinks<TLink> links, TLink linkIndex) => links.EnforceResetValues(linkIndex, null);
+
 
         // TODO: Create a universal version of this method in Platform.Data (with using of for loop)
         /// <summary>
@@ -1180,73 +1228,57 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void EnforceResetValues<TLink>(this ILinks<TLink> links, TLink linkIndex)
+        public static TLink EnforceResetValues<TLink>(this ILinks<TLink> links, TLink linkIndex, WriteHandler<TLink> handler)
         {
             if (!links.AreValuesReset(linkIndex))
             {
-                links.ResetValues(linkIndex);
+                return links.ResetValues(linkIndex, handler);
             }
+            return links.Constants.Continue;
         }
+
+        public static void MergeUsages<TLink>(this ILinks<TLink> links, TLink oldLinkIndex, TLink newLinkIndex) => links.MergeUsages(oldLinkIndex, newLinkIndex, null);
 
         /// <summary>
         /// Merging two usages graphs, all children of old link moved to be children of new link or deleted.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TLink MergeUsages<TLink>(this ILinks<TLink> links, TLink oldLinkIndex, TLink newLinkIndex)
+        public static TLink MergeUsages<TLink>(this ILinks<TLink> links, TLink oldLinkIndex, TLink newLinkIndex, WriteHandler<TLink> handler)
         {
-            var addressToInt64Converter = CheckedConverter<TLink, long>.Default;
             var equalityComparer = EqualityComparer<TLink>.Default;
-            if (!equalityComparer.Equals(oldLinkIndex, newLinkIndex))
+            if (equalityComparer.Equals(oldLinkIndex, newLinkIndex))
             {
-                var constants = links.Constants;
-                var usagesAsSourceQuery = new Link<TLink>(constants.Any, oldLinkIndex, constants.Any);
-                var usagesAsSourceCount = addressToInt64Converter.Convert(links.Count(usagesAsSourceQuery));
-                var usagesAsTargetQuery = new Link<TLink>(constants.Any, constants.Any, oldLinkIndex);
-                var usagesAsTargetCount = addressToInt64Converter.Convert(links.Count(usagesAsTargetQuery));
-                var isStandalonePoint = Point<TLink>.IsFullPoint(links.GetLink(oldLinkIndex)) && usagesAsSourceCount == 1 && usagesAsTargetCount == 1;
-                if (!isStandalonePoint)
-                {
-                    var totalUsages = usagesAsSourceCount + usagesAsTargetCount;
-                    if (totalUsages > 0)
-                    {
-                        var usages = ArrayPool.Allocate<TLink>(totalUsages);
-                        var usagesFiller = new ArrayFiller<TLink, TLink>(usages, links.Constants.Continue);
-                        var i = 0L;
-                        if (usagesAsSourceCount > 0)
-                        {
-                            links.Each(usagesFiller.AddFirstAndReturnConstant, usagesAsSourceQuery);
-                            for (; i < usagesAsSourceCount; i++)
-                            {
-                                var usage = usages[i];
-                                if (!equalityComparer.Equals(usage, oldLinkIndex))
-                                {
-                                    links.Update(usage, newLinkIndex, links.GetTarget(usage));
-                                }
-                            }
-                        }
-                        if (usagesAsTargetCount > 0)
-                        {
-                            links.Each(usagesFiller.AddFirstAndReturnConstant, usagesAsTargetQuery);
-                            for (; i < usages.Length; i++)
-                            {
-                                var usage = usages[i];
-                                if (!equalityComparer.Equals(usage, oldLinkIndex))
-                                {
-                                    links.Update(usage, links.GetSource(usage), newLinkIndex);
-                                }
-                            }
-                        }
-                        ArrayPool.Free(usages);
-                    }
-                }
+                return newLinkIndex;
             }
-            return newLinkIndex;
+            var constants = links.Constants;
+            var usagesAsSource = links.All(new Link<TLink>(constants.Any, oldLinkIndex, constants.Any));
+            WriteHandlerState<TLink> handlerState = new(constants.Continue, constants.Break, handler);
+            for (var i = 0; i < usagesAsSource.Count; i++)
+            {
+                var usageAsSource = usagesAsSource[i];
+                if (equalityComparer.Equals(usageAsSource[constants.IndexPart], oldLinkIndex))
+                {
+                    continue;
+                }
+                var restriction = new LinkAddress<TLink>(usageAsSource[constants.IndexPart]);
+                var substitution = new Link<TLink>(newLinkIndex, usageAsSource[constants.TargetPart]);
+                handlerState.Apply(links.Update(restriction, substitution, handlerState.Handler));
+            }
+            var usagesAsTarget = links.All(new Link<TLink>(constants.Any, constants.Any, oldLinkIndex));
+            for (var i = 0; i < usagesAsTarget.Count; i++)
+            {
+                var usageAsTarget = usagesAsTarget[i];
+                if (equalityComparer.Equals(usageAsTarget[constants.IndexPart], oldLinkIndex))
+                {
+                    continue;
+                }
+                var restriction = links.GetLink(usageAsTarget[constants.IndexPart]);
+                var substitution = new Link<TLink>(usageAsTarget[constants.TargetPart], newLinkIndex);
+                handlerState.Apply(links.Update(restriction, substitution, handlerState.Handler));
+            }
+            return handlerState.Result;
         }
 
-        /// <summary>
-        /// Replace one link with another (replaced link is deleted, children are updated or deleted).
-        /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLink MergeAndDelete<TLink>(this ILinks<TLink> links, TLink oldLinkIndex, TLink newLinkIndex)
         {
             var equalityComparer = EqualityComparer<TLink>.Default;
@@ -1256,6 +1288,23 @@ namespace Platform.Data.Doublets
                 links.Delete(oldLinkIndex);
             }
             return newLinkIndex;
+        }
+
+        /// <summary>
+        /// Replace one link with another (replaced link is deleted, children are updated or deleted).
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static TLink MergeAndDelete<TLink>(this ILinks<TLink> links, TLink oldLinkIndex, TLink newLinkIndex, WriteHandler<TLink> handler)
+        {
+            var equalityComparer = EqualityComparer<TLink>.Default;
+            var constants = links.Constants;
+            WriteHandlerState<TLink> handlerState = new(constants.Continue, constants.Break, handler);
+            if (!equalityComparer.Equals(oldLinkIndex, newLinkIndex))
+            {
+                handlerState.Apply(links.MergeUsages(oldLinkIndex, newLinkIndex, handlerState.Handler));
+                handlerState.Apply(links.Delete(oldLinkIndex, handlerState.Handler));
+            }
+            return handlerState.Result;
         }
 
         /// <summary>

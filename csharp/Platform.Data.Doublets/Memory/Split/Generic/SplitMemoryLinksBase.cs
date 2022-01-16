@@ -7,6 +7,7 @@ using Platform.Converters;
 using Platform.Numbers;
 using Platform.Memory;
 using Platform.Data.Exceptions;
+using Platform.Delegates;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -297,12 +298,12 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
 
         /// <summary>
         /// <para>
-        /// Counts the restrictions.
+        /// Counts the substitution.
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The substitution.</para>
         /// <para></para>
         /// </param>
         /// <exception cref="NotSupportedException">
@@ -314,17 +315,17 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Count(IList<TLink> restrictions)
+        public virtual TLink Count(IList<TLink> restriction)
         {
             // Если нет ограничений, тогда возвращаем общее число связей находящихся в хранилище.
-            if (restrictions.Count == 0)
+            if (restriction.Count == 0)
             {
                 return Total;
             }
             var constants = Constants;
             var any = constants.Any;
-            var index = restrictions[constants.IndexPart];
-            if (restrictions.Count == 1)
+            var index = restriction[constants.IndexPart];
+            if (restriction.Count == 1)
             {
                 if (AreEqual(index, any))
                 {
@@ -332,9 +333,9 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
                 }
                 return Exists(index) ? GetOne() : GetZero();
             }
-            if (restrictions.Count == 2)
+            if (restriction.Count == 2)
             {
-                var value = restrictions[1];
+                var value = restriction[1];
                 if (AreEqual(index, any))
                 {
                     if (AreEqual(value, any))
@@ -376,11 +377,11 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
                     return GetZero();
                 }
             }
-            if (restrictions.Count == 3)
+            if (restriction.Count == 3)
             {
                 var externalReferencesRange = constants.ExternalReferencesRange;
-                var source = restrictions[constants.SourcePart];
-                var target = restrictions[constants.TargetPart];
+                var source = restriction[constants.SourcePart];
+                var target = restriction[constants.TargetPart];
                 if (AreEqual(index, any))
                 {
                     if (AreEqual(source, any) && AreEqual(target, any))
@@ -515,8 +516,8 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <para>The handler.</para>
         /// <para></para>
         /// </param>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The substitution.</para>
         /// <para></para>
         /// </param>
         /// <exception cref="NotSupportedException">
@@ -528,11 +529,11 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Each(Func<IList<TLink>, TLink> handler, IList<TLink> restrictions)
+        public virtual TLink Each(IList<TLink> restriction, ReadHandler<TLink> handler)
         {
             var constants = Constants;
             var @break = constants.Break;
-            if (restrictions.Count == 0)
+            if (restriction.Count == 0)
             {
                 for (var link = GetOne(); LessOrEqualThan(link, GetHeaderReference().AllocatedLinks); link = Increment(link))
                 {
@@ -545,12 +546,12 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
             }
             var @continue = constants.Continue;
             var any = constants.Any;
-            var index = restrictions[constants.IndexPart];
-            if (restrictions.Count == 1)
+            var index = restriction[constants.IndexPart];
+            if (restriction.Count == 1)
             {
                 if (AreEqual(index, any))
                 {
-                    return Each(handler, Array.Empty<TLink>());
+                    return Each(Array.Empty<TLink>(), handler);
                 }
                 if (!Exists(index))
                 {
@@ -558,20 +559,20 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
                 }
                 return handler(GetLinkStruct(index));
             }
-            if (restrictions.Count == 2)
+            if (restriction.Count == 2)
             {
-                var value = restrictions[1];
+                var value = restriction[1];
                 if (AreEqual(index, any))
                 {
                     if (AreEqual(value, any))
                     {
-                        return Each(handler, Array.Empty<TLink>());
+                        return Each(Array.Empty<TLink>(), handler);
                     }
-                    if (AreEqual(Each(handler, new Link<TLink>(index, value, any)), @break))
+                    if (AreEqual(Each(new Link<TLink>(index, value, any), handler), @break))
                     {
                         return @break;
                     }
-                    return Each(handler, new Link<TLink>(index, any, value));
+                    return Each(new Link<TLink>(index, any, value), handler);
                 }
                 else
                 {
@@ -592,16 +593,16 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
                     return @continue;
                 }
             }
-            if (restrictions.Count == 3)
+            if (restriction.Count == 3)
             {
                 var externalReferencesRange = constants.ExternalReferencesRange;
-                var source = restrictions[constants.SourcePart];
-                var target = restrictions[constants.TargetPart];
+                var source = restriction[constants.SourcePart];
+                var target = restriction[constants.TargetPart];
                 if (AreEqual(index, any))
                 {
                     if (AreEqual(source, any) && AreEqual(target, any))
                     {
-                        return Each(handler, Array.Empty<TLink>());
+                        return Each(Array.Empty<TLink>(), handler);
                     }
                     else if (AreEqual(source, any))
                     {
@@ -726,12 +727,13 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// TODO: Возможно можно перемещать значения, если указан индекс, но значение существует в другом месте (но не в менеджере памяти, а в логике Links)
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Update(IList<TLink> restrictions, IList<TLink> substitution)
+        public virtual TLink Update(IList<TLink> restriction, IList<TLink> substitution, WriteHandler<TLink> handler)
         {
             var constants = Constants;
             var @null = constants.Null;
             var externalReferencesRange = constants.ExternalReferencesRange;
-            var linkIndex = restrictions[constants.IndexPart];
+            var linkIndex = restriction[constants.IndexPart];
+            var before = GetLinkStruct(linkIndex);
             ref var link = ref GetLinkDataPartReference(linkIndex);
             var source = link.Source;
             var target = link.Target;
@@ -799,14 +801,14 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
                     InternalTargetsTreeMethods.Attach(ref GetLinkIndexPartReference(target).RootAsTarget, linkIndex);
                 }
             }
-            return linkIndex;
+            return handler != null ? handler(before, new Link<TLink>(linkIndex, source, target)) : Constants.Continue;
         }
 
         /// <remarks>
         /// TODO: Возможно нужно будет заполнение нулями, если внешнее API ими не заполняет пространство
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Create(IList<TLink> restrictions)
+        public virtual TLink Create(IList<TLink> substitution, WriteHandler<TLink> handler)
         {
             ref var header = ref GetHeaderReference();
             var freeLink = header.FirstFreeLink;
@@ -833,28 +835,28 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
                 _dataMemory.UsedCapacity += LinkDataPartSizeInBytes;
                 _indexMemory.UsedCapacity += LinkIndexPartSizeInBytes;
             }
-            return freeLink;
+            return handler != null ? handler(null, GetLinkStruct(freeLink)) : Constants.Continue;
         }
 
         /// <summary>
         /// <para>
-        /// Deletes the restrictions.
+        /// Deletes the substitution.
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The substitution.</para>
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Delete(IList<TLink> restrictions)
+        public virtual TLink Delete(IList<TLink> restriction, WriteHandler<TLink> handler)
         {
             ref var header = ref GetHeaderReference();
-            var link = restrictions[Constants.IndexPart];
+            var link = restriction[Constants.IndexPart];
+            var before = GetLinkStruct(link);
             if (LessThan(link, header.AllocatedLinks))
             {
                 UnusedLinksListMethods.AttachAsFirst(link);
-                return link;
             }
             else if (AreEqual(link, header.AllocatedLinks))
             {
@@ -870,9 +872,8 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
                     _dataMemory.UsedCapacity -= LinkDataPartSizeInBytes;
                     _indexMemory.UsedCapacity -= LinkIndexPartSizeInBytes;
                 }
-                return link;
             }
-            return Constants.Null;
+            return handler != null ? handler(before, null) : Constants.Continue;
         }
 
         /// <summary>
