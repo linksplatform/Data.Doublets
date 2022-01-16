@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using Platform.Converters;
+using Platform.Delegates;
 using Platform.Disposables;
 
 namespace Platform.Data.Doublets.FFI
