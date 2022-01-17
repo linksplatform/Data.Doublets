@@ -21,7 +21,7 @@ public class LoggingDecorator<TLink> : LinksDecoratorBase<TLink>
         {
             if (handlerState.Handler != null)
             {
-                handler(before, after);
+                handlerState.Apply(handlerState.Handler(before, after));
             }
             _logStreamWriter.WriteLineAsync($"Create. Before: {before}. After: {after}");
             return _constants.Continue;
@@ -35,7 +35,7 @@ public class LoggingDecorator<TLink> : LinksDecoratorBase<TLink>
         {
             if (handlerState.Handler != null)
             {
-                handler(before, after);
+                handlerState.Apply(handlerState.Handler(before, after));
             }
             _logStreamWriter.WriteLineAsync($"Update. Before: {before}. After: {after}");
             return _constants.Continue;
@@ -49,7 +49,7 @@ public class LoggingDecorator<TLink> : LinksDecoratorBase<TLink>
         {
             if (handlerState.Handler != null)
             {
-                handler(before, after);
+                handlerState.Apply(handlerState.Handler(before, after));
             }
             _logStreamWriter.WriteLineAsync($"Delete. Before: {before}. After: {after}");
             return _constants.Continue;
