@@ -21,14 +21,15 @@ namespace Platform.Data.Doublets.Tests
 
             links.CreateAndUpdate(a, root);
             links.CreateAndUpdate(b, root);
-            
+
             Assert.Equal(5U, links.Count());
-            
+
             links.DeleteAllUsages(root);
-            
+
             Assert.Equal(3U, links.Count());
         }
-                [Fact]
+
+        [Fact]
         public static void FfiDeleteAllUsages()
         {
             var mem = new HeapResizableDirectMemory();
@@ -47,5 +48,6 @@ namespace Platform.Data.Doublets.Tests
             links.DeleteAllUsages(root);
 
             Assert.Equal(3U, links.Count());
+        }
     }
 }
