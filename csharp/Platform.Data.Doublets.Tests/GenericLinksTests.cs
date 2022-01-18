@@ -1,9 +1,10 @@
 using System;
 using System.IO;
+using Platform.Data.Doublets.Decorators;
 using Xunit;
-using Platform.Reflection;
+
 using Platform.Memory;
-using Platform.Scopes;
+
 using Platform.Data.Doublets.Memory.United.Generic;
 
 namespace Platform.Data.Doublets.Tests
@@ -38,14 +39,14 @@ namespace Platform.Data.Doublets.Tests
         }
         private static void Using<TLink>(Action<ILinks<TLink>> action)
         {
-            using (var scope = new Scope<Types<HeapResizableDirectMemory, UnitedMemoryLinks<TLink>>>())
-            {
-                action(scope.Use<ILinks<TLink>>());
-            }
-            File.Delete("db.links");
-
-            using var links = new FFI.UnitedMemoryLinks<TLink>("db.links");
+            var unitedMemoryLinks = new UnitedMemoryLinks<TLink>(new HeapResizableDirectMemory());
+            var logFile = File.Open("linksLogger.txt", FileMode.Create, FileAccess.Write);
+            LoggingDecorator<TLink> links = new(unitedMemoryLinks, logFile);
             action(links);
+
+            File.Delete("db.links");
+            using var ffiLinks = new FFI.UnitedMemoryLinks<TLink>("db.links");
+            action(ffiLinks);
         }
     }
 }
