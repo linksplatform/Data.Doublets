@@ -101,15 +101,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: Push
         run: |
-          # Ensure NuGet package does not exist
-          NuGetPackageUrl="https://globalcdn.nuget.org/packages/Platform.$REPOSITORY_NAME.TemplateLibrary.$CPP_PACKAGE_VERSION.nupkg"
-          NuGetPackageUrl=$(echo "$NuGetPackageUrl" | tr '[:upper:]' '[:lower:]')
-          NuGetPageStatus="$(curl -Is "$NuGetPackageUrl" | head -1)"
-          StatusContents=( $NuGetPageStatus )
-          if [ "${StatusContents[1]}" == "200" ]; then
-            echo "NuGet with current version is already pushed."
-            exit 0
-          fi
           cd rust/ffi/nuget
           mkdir runtimes && cd runtimes
           wget https://github.com/linksplatform/Data.Doublets/raw/binaries/windows-x64/native/Platform.Doublets.dll
@@ -120,7 +111,7 @@ jobs:
 
           cd ../../../
           export REPOSITORY_NAME=$(basename ${{ github.repository }})
-          wget "$SCRIPTS_BASE_URL/push-cpp-nuget.sh"
+          wget "https://gist.githubusercontent.com/uselessgoddess/54e286dbda22935313615d65723e7670/raw/e98fe0073bf87f296786b543b8051d78f3144924/push-cpp-nuget.sh"
 
           CPP_PACKAGE_NUSPEC_PATH="rust/ffi/nuget/Platform.Data.Doublets.FFI.nuspec"
           echo "$CPP_PACKAGE_NUSPEC_PATH"
