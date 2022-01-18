@@ -12,6 +12,7 @@ public class LoggingDecorator<TLink> : LinksDecoratorBase<TLink>
     {
         _logStream = logStream;
         _logStreamWriter = new StreamWriter(_logStream);
+        _logStreamWriter.AutoFlush = true;
     }
 
     public override TLink Create(IList<TLink> substitution, WriteHandler<TLink> handler)
@@ -23,7 +24,7 @@ public class LoggingDecorator<TLink> : LinksDecoratorBase<TLink>
             {
                 handlerState.Apply(handlerState.Handler(before, after));
             }
-            _logStreamWriter.WriteLineAsync($"Create. Before: {before}. After: {after}");
+            _logStreamWriter.WriteLine($"Create. Before: {before}. After: {after}");
             return _constants.Continue;
         });
     }
@@ -37,7 +38,7 @@ public class LoggingDecorator<TLink> : LinksDecoratorBase<TLink>
             {
                 handlerState.Apply(handlerState.Handler(before, after));
             }
-            _logStreamWriter.WriteLineAsync($"Update. Before: {before}. After: {after}");
+            _logStreamWriter.WriteLine($"Update. Before: {before}. After: {after}");
             return _constants.Continue;
         });
     }
@@ -51,7 +52,7 @@ public class LoggingDecorator<TLink> : LinksDecoratorBase<TLink>
             {
                 handlerState.Apply(handlerState.Handler(before, after));
             }
-            _logStreamWriter.WriteLineAsync($"Delete. Before: {before}. After: {after}");
+            _logStreamWriter.WriteLine($"Delete. Before: {before}. After: {after}");
             return _constants.Continue;
         });
     }
