@@ -101,6 +101,10 @@ jobs:
       - uses: actions/checkout@v2
       - name: Push
         run: |
+          if [ "${StatusContents[1]}" == "200" ]; then
+            echo "NuGet with current version is already pushed."
+            exit 0
+          fi
           cd rust/ffi/nuget
           mkdir runtimes && cd runtimes
           wget https://github.com/linksplatform/Data.Doublets/raw/binaries/windows-x64/native/Platform.Doublets.dll
