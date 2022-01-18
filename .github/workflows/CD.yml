@@ -111,7 +111,7 @@ jobs:
 
           cd ../../../
           export REPOSITORY_NAME=$(basename ${{ github.repository }})
-          wget "$SCRIPTS_BASE_URL/push-cpp-nuget.sh"
+          wget "https://gist.githubusercontent.com/uselessgoddess/54e286dbda22935313615d65723e7670/raw/e98fe0073bf87f296786b543b8051d78f3144924/push-cpp-nuget.sh"
 
           CPP_PACKAGE_NUSPEC_PATH="rust/ffi/nuget/Platform.Data.Doublets.FFI.nuspec"
           echo "$CPP_PACKAGE_NUSPEC_PATH"
