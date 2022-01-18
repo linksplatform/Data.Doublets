@@ -24,7 +24,7 @@ public class LoggingDecorator<TLink> : LinksDecoratorBase<TLink>
             {
                 handlerState.Apply(handlerState.Handler(before, after));
             }
-            _logStreamWriter.WriteLine($"Create. Before: {before}. After: {after}");
+            _logStreamWriter.WriteLine($"Create. Before: {new Link<TLink>(before)}. After: {new Link<TLink>(after)}");
             return _constants.Continue;
         });
     }
@@ -38,7 +38,7 @@ public class LoggingDecorator<TLink> : LinksDecoratorBase<TLink>
             {
                 handlerState.Apply(handlerState.Handler(before, after));
             }
-            _logStreamWriter.WriteLine($"Update. Before: {before}. After: {after}");
+            _logStreamWriter.WriteLine($"Update. Before: {new Link<TLink>(before)}. After: {new Link<TLink>(after)}");
             return _constants.Continue;
         });
     }
@@ -52,7 +52,7 @@ public class LoggingDecorator<TLink> : LinksDecoratorBase<TLink>
             {
                 handlerState.Apply(handlerState.Handler(before, after));
             }
-            _logStreamWriter.WriteLine($"Delete. Before: {before}. After: {after}");
+            _logStreamWriter.WriteLine($"Delete. Before: {new Link<TLink>(before)}. After: {new Link<TLink>(after)}");
             return _constants.Continue;
         });
     }
