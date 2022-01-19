@@ -1,8 +1,9 @@
-﻿using System;
+﻿
+using System.IO;
 using Platform.Data.Doublets.Memory.United.Generic;
 using Platform.Memory;
 using Xunit;
-using Xunit.Abstractions;
+
 
 namespace Platform.Data.Doublets.Tests
 {
@@ -32,7 +33,7 @@ namespace Platform.Data.Doublets.Tests
         [Fact]
         public static void FfiDeleteAllUsages()
         {
-            var mem = new HeapResizableDirectMemory();
+            File.Delete("db.links");
             var links = new FFI.UnitedMemoryLinks<uint>("db.links");
 
             var root = links.CreatePoint();
