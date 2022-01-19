@@ -31,7 +31,8 @@ namespace Platform.Data.Doublets.Benchmarks
             var memory = new HeapResizableDirectMemory();
             _unitedMemory = new UnitedMemoryLinks<uint>(memory);
             _unitedMemoryLinks = _unitedMemory.DecorateWithAutomaticUniquenessAndUsagesResolution();
-            
+
+            File.Delete("db.links");
             _ffiUnitedMemory = new FFI.UnitedMemoryLinks<uint>("db.links");
             _ffiUnitedMemoryLinks = _ffiUnitedMemory.DecorateWithAutomaticUniquenessAndUsagesResolution();
         }
