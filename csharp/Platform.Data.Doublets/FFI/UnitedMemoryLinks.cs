@@ -202,7 +202,7 @@ namespace Platform.Data.Doublets.FFI
                         {
                             array[i] = (byte)from_t.Convert(restriction[i]);
                         }
-                        return from_u8.Convert(Methods.ByteUnitedMemoryLinks_Count(_ptr, array, (nuint)restriction.Count));
+                        return from_u8.Convert(Methods.ByteUnitedMemoryLinks_Count(_ptr, array, (nuint)(restriction?.Count ?? 0)));
                     }
                     case ushort:
                     {
@@ -211,7 +211,7 @@ namespace Platform.Data.Doublets.FFI
                         {
                             array[i] = (ushort)from_t.Convert(restriction[i]);
                         }
-                        return from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Count(_ptr, array, (nuint)restriction.Count));
+                        return from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Count(_ptr, array, (nuint)(restriction?.Count ?? 0)));
                     }
                     case uint:
                     {
@@ -220,7 +220,7 @@ namespace Platform.Data.Doublets.FFI
                         {
                             array[i] = (uint)from_t.Convert(restriction[i]);
                         }
-                        return from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Count(_ptr, array, (nuint)restriction.Count));
+                        return from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Count(_ptr, array, (nuint)(restriction?.Count ?? 0)));
                     }
                     case ulong:
                     {
@@ -230,7 +230,7 @@ namespace Platform.Data.Doublets.FFI
                             {
                                 array[i] = from_t.Convert(restriction[i]);
                             }
-                            return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Count(_ptr, array, (nuint)restriction.Count));
+                            return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Count(_ptr, array, (nuint)(restriction?.Count ?? 0)));
                         }
                     }
                     default:
@@ -256,7 +256,7 @@ namespace Platform.Data.Doublets.FFI
                         {
                             array[i] = (byte)from_t.Convert(restriction[i]);
                         }
-                        return from_u8.Convert(Methods.ByteUnitedMemoryLinks_Each(_ptr, array, (nuint)restriction.Count, callback));
+                        return from_u8.Convert(Methods.ByteUnitedMemoryLinks_Each(_ptr, array, (nuint)(restriction?.Count ?? 0), callback));
                     }
                     case ushort:
                     {
@@ -266,7 +266,7 @@ namespace Platform.Data.Doublets.FFI
                         {
                             array[i] = (ushort)from_t.Convert(restriction[i]);
                         }
-                        return from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Each(_ptr, array, (nuint)restriction.Count, callback));
+                        return from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Each(_ptr, array, (nuint)(restriction?.Count ?? 0), callback));
                     }
                     case uint:
                     {
@@ -276,7 +276,7 @@ namespace Platform.Data.Doublets.FFI
                         {
                             array[i] = (uint)from_t.Convert(restriction[i]);
                         }
-                        return from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Each(_ptr, array, (nuint)restriction.Count, callback));
+                        return from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Each(_ptr, array, (nuint)(restriction?.Count ?? 0), callback));
                     }
                     case ulong:
                     {
@@ -287,7 +287,7 @@ namespace Platform.Data.Doublets.FFI
                             {
                                 array[i] = from_t.Convert(restriction[i]);
                             }
-                            return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Each(_ptr, array, (nuint)restriction.Count, callback));
+                            return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Each(_ptr, array, (nuint)(restriction?.Count ?? 0), callback));
                         }
                     }
                     default:
@@ -310,7 +310,7 @@ namespace Platform.Data.Doublets.FFI
                         Methods.CreateCallback_UInt8 callback = (before, after) => (byte)from_t.Convert(handler(new Link<TLink>(from_u8.Convert(before.Index), from_u8.Convert(before.Source), from_u8.Convert(before.Target)), new Link<TLink>(from_u8.Convert(after.Index), from_u8.Convert(after.Source), from_u8.Convert(after.Target))));
                         fixed (byte* substitutionPtr = (byte[])(object)substitution)
                         {
-                            return from_u8.Convert(Methods.ByteUnitedMemoryLinks_Create(_ptr, substitutionPtr, (nuint)substitution.Count, callback));
+                            return from_u8.Convert(Methods.ByteUnitedMemoryLinks_Create(_ptr, substitutionPtr, (nuint)(substitution?.Count ?? 0), callback));
                         }
                     }
                     case ushort:
@@ -318,7 +318,7 @@ namespace Platform.Data.Doublets.FFI
                         Methods.CreateCallback_UInt16 callback = (before, after) => (byte)from_t.Convert(handler(new Link<TLink>(from_u16.Convert(before.Index), from_u16.Convert(before.Source), from_u16.Convert(before.Target)), new Link<TLink>(from_u16.Convert(after.Index), from_u16.Convert(after.Source), from_u16.Convert(after.Target))));
                         fixed (ushort* substitutionPtr = (ushort[])(object)substitution)
                         {
-                            return from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Create(_ptr, substitutionPtr, (nuint)substitution.Count, callback));
+                            return from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Create(_ptr, substitutionPtr, (nuint)(substitution?.Count ?? 0), callback));
                         }
                     }
                     case uint:
@@ -326,7 +326,7 @@ namespace Platform.Data.Doublets.FFI
                         Methods.CreateCallback_UInt32 callback = (before, after) => (byte)from_t.Convert(handler(new Link<TLink>(from_u32.Convert(before.Index), from_u32.Convert(before.Source), from_u32.Convert(before.Target)), new Link<TLink>(from_u32.Convert(after.Index), from_u32.Convert(after.Source), from_u32.Convert(after.Target))));
                         fixed (uint* substitutionPtr = (uint[])(object)substitution)
                         {
-                            return from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Create(_ptr, substitutionPtr, (nuint)substitution.Count, callback));
+                            return from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Create(_ptr, substitutionPtr, (nuint)(substitution?.Count ?? 0), callback));
                         }
                     }
                     case ulong:
@@ -334,7 +334,7 @@ namespace Platform.Data.Doublets.FFI
                         Methods.CreateCallback_UInt64 callback = (before, after) => (byte)from_t.Convert(handler(new Link<TLink>(from_u64.Convert(before.Index), from_u64.Convert(before.Source), from_u64.Convert(before.Target)), new Link<TLink>(from_u64.Convert(after.Index), from_u64.Convert(after.Source), from_u64.Convert(after.Target))));
                         fixed (ulong* substitutionPtr = (ulong[])(object)substitution)
                         {
-                            return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Create(_ptr, substitutionPtr, (nuint)substitution.Count, callback));
+                            return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Create(_ptr, substitutionPtr, (nuint)(substitution?.Count ?? 0), callback));
                         }
                     }
                     default:
@@ -359,7 +359,7 @@ namespace Platform.Data.Doublets.FFI
                         Methods.UpdateCallback_UInt8 callback = (before, after) => (byte)from_t.Convert(handler(new Link<TLink>(from_u8.Convert(before.Index), from_u8.Convert(before.Source), from_u8.Convert(before.Target)), new Link<TLink>(from_u8.Convert(after.Index), from_u8.Convert(after.Source), from_u8.Convert(after.Target))));
                         fixed (byte* restrictionPointer = (byte[])(object)restrictionArray, substitutionPointer = (byte[])(object)substitutionArray)
                         {
-                            return from_u8.Convert(Methods.ByteUnitedMemoryLinks_Update(_ptr, restrictionPointer, (nuint)restrictionArray.Length, substitutionPointer, (nuint)substitutionArray.Length, callback));
+                            return from_u8.Convert(Methods.ByteUnitedMemoryLinks_Update(_ptr, restrictionPointer, (nuint)(restrictionArray?.Length ?? 0), substitutionPointer, (nuint)(substitutionArray?.Length ?? 0), callback));
                         }
                     }
                     case ushort:
@@ -369,7 +369,7 @@ namespace Platform.Data.Doublets.FFI
                         Methods.UpdateCallback_UInt16 callback = (before, after) => (ushort)from_t.Convert(handler(new Link<TLink>(from_u16.Convert(before.Index), from_u16.Convert(before.Source), from_u16.Convert(before.Target)), new Link<TLink>(from_u16.Convert(after.Index), from_u16.Convert(after.Source), from_u16.Convert(after.Target))));
                         fixed (ushort* restrictionPointer = (ushort[])(object)restrictionArray, substitutionPointer = (ushort[])(object)substitutionArray)
                         {
-                            return from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Update(_ptr, restrictionPointer, (nuint)restrictionArray.Length, substitutionPointer, (nuint)substitutionArray.Length, callback));
+                            return from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Update(_ptr, restrictionPointer, (nuint)(restrictionArray?.Length ?? 0), substitutionPointer, (nuint)(substitutionArray?.Length ?? 0), callback));
                         }
                     }
                     case uint:
@@ -379,7 +379,7 @@ namespace Platform.Data.Doublets.FFI
                         Methods.UpdateCallback_UInt32 callback = (before, after) => (uint)from_t.Convert(handler(new Link<TLink>(from_u32.Convert(before.Index), from_u32.Convert(before.Source), from_u32.Convert(before.Target)), new Link<TLink>(from_u32.Convert(after.Index), from_u32.Convert(after.Source), from_u32.Convert(after.Target))));
                         fixed (uint* restrictionPointer = (uint[])(object)restrictionArray, substitutionPointer = (uint[])(object)substitutionArray)
                         {
-                            return from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Update(_ptr, restrictionPointer, (nuint)restrictionArray.Length, substitutionPointer, (nuint)substitutionArray.Length, callback));
+                            return from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Update(_ptr, restrictionPointer, (nuint)(restrictionArray?.Length ?? 0), substitutionPointer, (nuint)(substitutionArray?.Length ?? 0), callback));
                         }
                     }
                     case ulong:
@@ -389,7 +389,7 @@ namespace Platform.Data.Doublets.FFI
                         var substitutionArray = substitution.ToArray();
                         fixed (ulong* restrictionPointer = (ulong[])(object)restrictionArray, substitutionPointer = (ulong[])(object)substitutionArray)
                         {
-                            return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Update(_ptr, restrictionPointer, (nuint)restrictionArray.Length, substitutionPointer, (nuint)substitutionArray.Length, callback));
+                            return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Update(_ptr, restrictionPointer, (nuint)(restrictionArray?.Length ?? 0), substitutionPointer, (nuint)(substitutionArray?.Length ?? 0), callback));
                         }
                     }
                     default:
@@ -413,7 +413,7 @@ namespace Platform.Data.Doublets.FFI
                         Methods.DeleteCallback_UInt8 callback = (before, after) => (byte)from_t.Convert(handler(new Link<TLink>(from_u8.Convert(before.Index), from_u8.Convert(before.Source), from_u8.Convert(before.Target)), new Link<TLink>(from_u8.Convert(after.Index), from_u8.Convert(after.Source), from_u8.Convert(after.Target))));
                         fixed (byte* restrictionPointer = (byte[])(object)restrictionArray)
                         {
-                            return (TLink)(object)Methods.ByteUnitedMemoryLinks_Delete(_ptr, restrictionPointer, (nuint)restrictionArray.Length, callback);
+                            return (TLink)(object)Methods.ByteUnitedMemoryLinks_Delete(_ptr, restrictionPointer, (nuint)(restrictionArray?.Length ?? 0), callback);
                         }
                     }
                     case ushort:
@@ -422,7 +422,7 @@ namespace Platform.Data.Doublets.FFI
                         Methods.DeleteCallback_UInt16 callback = (before, after) => (ushort)from_t.Convert(handler(new Link<TLink>(from_u16.Convert(before.Index), from_u16.Convert(before.Source), from_u16.Convert(before.Target)), new Link<TLink>(from_u16.Convert(after.Index), from_u16.Convert(after.Source), from_u16.Convert(after.Target))));
                         fixed (ushort* restrictionPointer = (ushort[])(object)restrictionArray)
                         {
-                            return (TLink)(object)Methods.UInt16UnitedMemoryLinks_Delete(_ptr, restrictionPointer, (nuint)restrictionArray.Length, callback);
+                            return (TLink)(object)Methods.UInt16UnitedMemoryLinks_Delete(_ptr, restrictionPointer, (nuint)(restrictionArray?.Length ?? 0), callback);
                         }
                     }
                     case uint:
@@ -431,7 +431,7 @@ namespace Platform.Data.Doublets.FFI
                         Methods.DeleteCallback_UInt32 callback = (before, after) => (uint)from_t.Convert(handler(new Link<TLink>(from_u32.Convert(before.Index), from_u32.Convert(before.Source), from_u32.Convert(before.Target)), new Link<TLink>(from_u32.Convert(after.Index), from_u32.Convert(after.Source), from_u32.Convert(after.Target))));
                         fixed (uint* restrictionPointer = (uint[])(object)restrictionArray)
                         {
-                            return (TLink)(object)Methods.UInt32UnitedMemoryLinks_Delete(_ptr, restrictionPointer, (nuint)restrictionArray.Length, callback);
+                            return (TLink)(object)Methods.UInt32UnitedMemoryLinks_Delete(_ptr, restrictionPointer, (nuint)(restrictionArray?.Length ?? 0), callback);
                         }
                     }
                     case ulong:
@@ -440,7 +440,7 @@ namespace Platform.Data.Doublets.FFI
                         Methods.DeleteCallback_UInt64 callback = (before, after) => (ulong)from_t.Convert(handler(new Link<TLink>(from_u64.Convert(before.Index), from_u64.Convert(before.Source), from_u64.Convert(before.Target)), new Link<TLink>(from_u64.Convert(after.Index), from_u64.Convert(after.Source), from_u64.Convert(after.Target))));
                         fixed (ulong* restrictionPointer = (ulong[])(object)restrictionArray)
                         {
-                            return (TLink)(object)Methods.UInt64UnitedMemoryLinks_Delete(_ptr, restrictionPointer, (nuint)restrictionArray.Length, callback);
+                            return (TLink)(object)Methods.UInt64UnitedMemoryLinks_Delete(_ptr, restrictionPointer, (nuint)(restrictionArray?.Length ?? 0), callback);
                         }
                     }
                     default:
