@@ -1326,6 +1326,131 @@ references:
   commentId: N:Platform.Data.Doublets.FFI
   fullName: Platform.Data.Doublets.FFI
   nameWithType: Platform.Data.Doublets.FFI
+- uid: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks
+  name: UInt32UnitedMemoryLinks
+  href: api/Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.html
+  commentId: T:Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks
+  fullName: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks
+  nameWithType: UInt32UnitedMemoryLinks
+- uid: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.#ctor(System.String)
+  name: UInt32UnitedMemoryLinks(String)
+  href: api/Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_FFI_UInt32UnitedMemoryLinks__ctor_System_String_
+  commentId: M:Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.#ctor(System.String)
+  fullName: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.UInt32UnitedMemoryLinks(System.String)
+  nameWithType: UInt32UnitedMemoryLinks.UInt32UnitedMemoryLinks(String)
+- uid: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.#ctor*
+  name: UInt32UnitedMemoryLinks
+  href: api/Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_FFI_UInt32UnitedMemoryLinks__ctor_
+  commentId: Overload:Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.#ctor
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.UInt32UnitedMemoryLinks
+  nameWithType: UInt32UnitedMemoryLinks.UInt32UnitedMemoryLinks
+- uid: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Constants
+  name: Constants
+  href: api/Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_FFI_UInt32UnitedMemoryLinks_Constants
+  commentId: P:Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Constants
+  fullName: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Constants
+  nameWithType: UInt32UnitedMemoryLinks.Constants
+- uid: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Constants*
+  name: Constants
+  href: api/Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_FFI_UInt32UnitedMemoryLinks_Constants_
+  commentId: Overload:Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Constants
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Constants
+  nameWithType: UInt32UnitedMemoryLinks.Constants
+- uid: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Count(System.Collections.Generic.IList{System.UInt32})
+  name: Count(IList<UInt32>)
+  href: api/Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_FFI_UInt32UnitedMemoryLinks_Count_System_Collections_Generic_IList_System_UInt32__
+  commentId: M:Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Count(System.Collections.Generic.IList{System.UInt32})
+  name.vb: Count(IList(Of UInt32))
+  fullName: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Count(System.Collections.Generic.IList<System.UInt32>)
+  fullName.vb: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Count(System.Collections.Generic.IList(Of System.UInt32))
+  nameWithType: UInt32UnitedMemoryLinks.Count(IList<UInt32>)
+  nameWithType.vb: UInt32UnitedMemoryLinks.Count(IList(Of UInt32))
+- uid: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Count*
+  name: Count
+  href: api/Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_FFI_UInt32UnitedMemoryLinks_Count_
+  commentId: Overload:Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Count
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Count
+  nameWithType: UInt32UnitedMemoryLinks.Count
+- uid: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Create(System.Collections.Generic.IList{System.UInt32},WriteHandler{System.UInt32})
+  name: Create(IList<UInt32>, WriteHandler<UInt32>)
+  href: api/Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_FFI_UInt32UnitedMemoryLinks_Create_System_Collections_Generic_IList_System_UInt32__WriteHandler_System_UInt32__
+  commentId: M:Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Create(System.Collections.Generic.IList{System.UInt32},WriteHandler{System.UInt32})
+  name.vb: Create(IList(Of UInt32), WriteHandler(Of UInt32))
+  fullName: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Create(System.Collections.Generic.IList<System.UInt32>, WriteHandler<System.UInt32>)
+  fullName.vb: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Create(System.Collections.Generic.IList(Of System.UInt32), WriteHandler(Of System.UInt32))
+  nameWithType: UInt32UnitedMemoryLinks.Create(IList<UInt32>, WriteHandler<UInt32>)
+  nameWithType.vb: UInt32UnitedMemoryLinks.Create(IList(Of UInt32), WriteHandler(Of UInt32))
+- uid: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Create*
+  name: Create
+  href: api/Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_FFI_UInt32UnitedMemoryLinks_Create_
+  commentId: Overload:Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Create
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Create
+  nameWithType: UInt32UnitedMemoryLinks.Create
+- uid: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Delete(System.Collections.Generic.IList{System.UInt32},WriteHandler{System.UInt32})
+  name: Delete(IList<UInt32>, WriteHandler<UInt32>)
+  href: api/Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_FFI_UInt32UnitedMemoryLinks_Delete_System_Collections_Generic_IList_System_UInt32__WriteHandler_System_UInt32__
+  commentId: M:Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Delete(System.Collections.Generic.IList{System.UInt32},WriteHandler{System.UInt32})
+  name.vb: Delete(IList(Of UInt32), WriteHandler(Of UInt32))
+  fullName: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Delete(System.Collections.Generic.IList<System.UInt32>, WriteHandler<System.UInt32>)
+  fullName.vb: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Delete(System.Collections.Generic.IList(Of System.UInt32), WriteHandler(Of System.UInt32))
+  nameWithType: UInt32UnitedMemoryLinks.Delete(IList<UInt32>, WriteHandler<UInt32>)
+  nameWithType.vb: UInt32UnitedMemoryLinks.Delete(IList(Of UInt32), WriteHandler(Of UInt32))
+- uid: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Delete*
+  name: Delete
+  href: api/Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_FFI_UInt32UnitedMemoryLinks_Delete_
+  commentId: Overload:Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Delete
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Delete
+  nameWithType: UInt32UnitedMemoryLinks.Delete
+- uid: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Dispose(System.Boolean,System.Boolean)
+  name: Dispose(Boolean, Boolean)
+  href: api/Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_FFI_UInt32UnitedMemoryLinks_Dispose_System_Boolean_System_Boolean_
+  commentId: M:Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Dispose(System.Boolean,System.Boolean)
+  fullName: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Dispose(System.Boolean, System.Boolean)
+  nameWithType: UInt32UnitedMemoryLinks.Dispose(Boolean, Boolean)
+- uid: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Dispose*
+  name: Dispose
+  href: api/Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_FFI_UInt32UnitedMemoryLinks_Dispose_
+  commentId: Overload:Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Dispose
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Dispose
+  nameWithType: UInt32UnitedMemoryLinks.Dispose
+- uid: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Each(System.Collections.Generic.IList{System.UInt32},ReadHandler{System.UInt32})
+  name: Each(IList<UInt32>, ReadHandler<UInt32>)
+  href: api/Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_FFI_UInt32UnitedMemoryLinks_Each_System_Collections_Generic_IList_System_UInt32__ReadHandler_System_UInt32__
+  commentId: M:Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Each(System.Collections.Generic.IList{System.UInt32},ReadHandler{System.UInt32})
+  name.vb: Each(IList(Of UInt32), ReadHandler(Of UInt32))
+  fullName: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Each(System.Collections.Generic.IList<System.UInt32>, ReadHandler<System.UInt32>)
+  fullName.vb: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Each(System.Collections.Generic.IList(Of System.UInt32), ReadHandler(Of System.UInt32))
+  nameWithType: UInt32UnitedMemoryLinks.Each(IList<UInt32>, ReadHandler<UInt32>)
+  nameWithType.vb: UInt32UnitedMemoryLinks.Each(IList(Of UInt32), ReadHandler(Of UInt32))
+- uid: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Each*
+  name: Each
+  href: api/Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_FFI_UInt32UnitedMemoryLinks_Each_
+  commentId: Overload:Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Each
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Each
+  nameWithType: UInt32UnitedMemoryLinks.Each
+- uid: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Update(System.Collections.Generic.IList{System.UInt32},System.Collections.Generic.IList{System.UInt32},WriteHandler{System.UInt32})
+  name: Update(IList<UInt32>, IList<UInt32>, WriteHandler<UInt32>)
+  href: api/Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_FFI_UInt32UnitedMemoryLinks_Update_System_Collections_Generic_IList_System_UInt32__System_Collections_Generic_IList_System_UInt32__WriteHandler_System_UInt32__
+  commentId: M:Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Update(System.Collections.Generic.IList{System.UInt32},System.Collections.Generic.IList{System.UInt32},WriteHandler{System.UInt32})
+  name.vb: Update(IList(Of UInt32), IList(Of UInt32), WriteHandler(Of UInt32))
+  fullName: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Update(System.Collections.Generic.IList<System.UInt32>, System.Collections.Generic.IList<System.UInt32>, WriteHandler<System.UInt32>)
+  fullName.vb: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Update(System.Collections.Generic.IList(Of System.UInt32), System.Collections.Generic.IList(Of System.UInt32), WriteHandler(Of System.UInt32))
+  nameWithType: UInt32UnitedMemoryLinks.Update(IList<UInt32>, IList<UInt32>, WriteHandler<UInt32>)
+  nameWithType.vb: UInt32UnitedMemoryLinks.Update(IList(Of UInt32), IList(Of UInt32), WriteHandler(Of UInt32))
+- uid: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Update*
+  name: Update
+  href: api/Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_FFI_UInt32UnitedMemoryLinks_Update_
+  commentId: Overload:Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Update
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Update
+  nameWithType: UInt32UnitedMemoryLinks.Update
 - uid: Platform.Data.Doublets.FFI.UnitedMemoryLinks`1
   name: UnitedMemoryLinks<TLink>
   href: api/Platform.Data.Doublets.FFI.UnitedMemoryLinks-1.html
