@@ -70,13 +70,18 @@ namespace Platform.Data.Doublets.FFI
         {
             unsafe
             {
-                var restrictionArray = restriction.ToArray();
-                var substitutionArray = substitution.ToArray();
-                Methods.UpdateCallback_UInt32 callback = (before, after) => handler?.Invoke(new Link<TLink>(before.Index, before.Source, before.Target), new Link<TLink>(after.Index, after.Source, after.Target)) ?? Constants.Continue;
-                fixed (uint* restrictionPointer = restrictionArray, substitutionPointer = substitutionArray)
+                var restrictionArray = stackalloc uint[restriction.Count];
+                for (var i = 0; i < restriction.Count; i++)
                 {
-                    return Methods.UInt32UnitedMemoryLinks_Update(_ptr, restrictionPointer, (nuint)(restrictionArray?.Length ?? 0), substitutionPointer, (nuint)(substitutionArray?.Length ?? 0), callback);
+                    restrictionArray[i] = restriction[i];
                 }
+                var substitutionArray = stackalloc uint[substitution.Count];
+                for (var i = 0; i < restriction.Count; i++)
+                {
+                    substitutionArray[i] = restriction[i];
+                }
+                Methods.UpdateCallback_UInt32 callback = (before, after) => handler?.Invoke(new Link<TLink>(before.Index, before.Source, before.Target), new Link<TLink>(after.Index, after.Source, after.Target)) ?? Constants.Continue;
+                return Methods.UInt32UnitedMemoryLinks_Update(_ptr, restrictionArray, (nuint)(restriction?.Count ?? 0), substitutionArray, (nuint)(substitution?.Count ?? 0), callback);
             }
         }
 
@@ -84,12 +89,13 @@ namespace Platform.Data.Doublets.FFI
         {
             unsafe
             {
-                var restrictionArray = restriction.ToArray();
-                Methods.DeleteCallback_UInt32 callback = (before, after) => handler?.Invoke(new Link<TLink>(before.Index, before.Source, before.Target), new Link<TLink>(after.Index, after.Source, after.Target)) ?? Constants.Continue;
-                fixed (uint* restrictionPointer = restrictionArray)
+                var restrictionArray = stackalloc uint[restriction.Count];
+                for (var i = 0; i < restriction.Count; i++)
                 {
-                    return Methods.UInt32UnitedMemoryLinks_Delete(_ptr, restrictionPointer, (nuint)(restrictionArray?.Length ?? 0), callback);
+                    restrictionArray[i] = restriction[i];
                 }
+                Methods.DeleteCallback_UInt32 callback = (before, after) => handler?.Invoke(new Link<TLink>(before.Index, before.Source, before.Target), new Link<TLink>(after.Index, after.Source, after.Target)) ?? Constants.Continue;
+                return Methods.UInt32UnitedMemoryLinks_Delete(_ptr, restrictionArray, (nuint)(restriction?.Count ?? 0), callback);
             }
         }
 
