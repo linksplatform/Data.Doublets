@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using Platform.Collections;
 using Platform.Ranges;
 using Platform.Collections.Lists;
 using Platform.Random;
@@ -1036,6 +1037,9 @@ namespace Platform.Data.Doublets
             return setter.Result;
         }
 
+        public static TLink UpdateOrCreateOrGet<TLink>(this ILinks<TLink> links, TLink source, TLink target, TLink newSource, TLink newTarget, WriteHandler<TLink> handler) => links.UpdateOrCreateOrGet(links.SearchOrDefault(source, target), newSource, newTarget, handler);
+
+
         /// <summary>
         /// Обновляет связь с указанными началом (Source) и концом (Target)
         /// на связь с указанными началом (NewSource) и концом (NewTarget).
@@ -1047,20 +1051,21 @@ namespace Platform.Data.Doublets
         /// <param name="newTarget">Индекс связи, которая является концом связи, на которую выполняется обновление.</param>
         /// <returns>Индекс обновлённой связи.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TLink UpdateOrCreateOrGet<TLink>(this ILinks<TLink> links, TLink source, TLink target, TLink newSource, TLink newTarget, WriteHandler<TLink> handler)
+        public static TLink UpdateOrCreateOrGet<TLink>(this ILinks<TLink> links, TLink index, TLink newSource, TLink newTarget, WriteHandler<TLink> handler)
         {
             var equalityComparer = EqualityComparer<TLink>.Default;
-            var link = links.SearchOrDefault(source, target);
-            if (equalityComparer.Equals(link, default))
+            var link = (Link<TLink>)links.GetLink(index);
+            var source = link.Source;
+            var target = link.Target;
+            if (link.IsNullOrEmpty())
             {
                 return links.CreateAndUpdate(newSource, newTarget, handler);
             }
             if (equalityComparer.Equals(newSource, source) && equalityComparer.Equals(newTarget, target))
             {
-                var linkStruct = new Link<TLink>(link, source, target);
-                return link;
+                return index;
             }
-            return links.Update(link, newSource, newTarget, handler);
+            return links.Update(index, newSource, newTarget, handler);
         }
 
         /// <summary>Удаляет связь с указанными началом (Source) и концом (Target).</summary>
