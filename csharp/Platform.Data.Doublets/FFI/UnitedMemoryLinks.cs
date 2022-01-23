@@ -308,7 +308,7 @@ namespace Platform.Data.Doublets.FFI
                     case byte:
                     {
                         Methods.CreateCallback_UInt8 callback = (before, after) => (byte)from_t.Convert(handler != null? handler(new Link<TLink>(from_u8.Convert(before.Index), from_u8.Convert(before.Source), from_u8.Convert(before.Target)), new Link<TLink>(from_u8.Convert(after.Index), from_u8.Convert(after.Source), from_u8.Convert(after.Target))) : Constants.Continue);
-                        var substitutionArray = stackalloc byte[restriction.Count];
+                        var substitutionArray = stackalloc byte[substitution.Count];
                         for (var i = 0; i < substitution.Count; i++)
                         {
                             substitutionArray[i] = (byte)substitution[i];
@@ -317,8 +317,8 @@ namespace Platform.Data.Doublets.FFI
                     }
                     case ushort:
                     {
-                        Methods.CreateCallback_UInt16 callback = (before, after) => (byte)from_t.Convert(handler != null? handler(new Link<TLink>(from_u16.Convert(before.Index), from_u16.Convert(before.Source), from_u16.Convert(before.Target)), new Link<TLink>(from_u16.Convert(after.Index), from_u16.Convert(after.Source), from_u16.Convert(after.Target))) : Constants.Continue);
-                        var substitutionArray = stackalloc ushort[restriction.Count];
+                        Methods.CreateCallback_UInt16 callback = (before, after) => (ushort)from_t.Convert(handler != null? handler(new Link<TLink>(from_u16.Convert(before.Index), from_u16.Convert(before.Source), from_u16.Convert(before.Target)), new Link<TLink>(from_u16.Convert(after.Index), from_u16.Convert(after.Source), from_u16.Convert(after.Target))) : Constants.Continue);
+                        var substitutionArray = stackalloc ushort[substitution.Count];
                         for (var i = 0; i < substitution.Count; i++)
                         {
                             substitutionArray[i] = (ushort)substitution[i];
@@ -327,8 +327,8 @@ namespace Platform.Data.Doublets.FFI
                     }
                     case uint:
                     {
-                        Methods.CreateCallback_UInt32 callback = (before, after) => (byte)from_t.Convert(handler != null? handler(new Link<TLink>(from_u32.Convert(before.Index), from_u32.Convert(before.Source), from_u32.Convert(before.Target)), new Link<TLink>(from_u32.Convert(after.Index), from_u32.Convert(after.Source), from_u32.Convert(after.Target))) : Constants.Continue);
-                        var substitutionArray = stackalloc uint[restriction.Count];
+                        Methods.CreateCallback_UInt32 callback = (before, after) => (uint)from_t.Convert(handler != null? handler(new Link<TLink>(from_u32.Convert(before.Index), from_u32.Convert(before.Source), from_u32.Convert(before.Target)), new Link<TLink>(from_u32.Convert(after.Index), from_u32.Convert(after.Source), from_u32.Convert(after.Target))) : Constants.Continue);
+                        var substitutionArray = stackalloc uint[substitution.Count];
                         for (var i = 0; i < substitution.Count; i++)
                         {
                             substitutionArray[i] = (uint)substitution[i];
@@ -338,8 +338,8 @@ namespace Platform.Data.Doublets.FFI
                     }
                     case ulong:
                     {
-                        Methods.CreateCallback_UInt64 callback = (before, after) => (byte)from_t.Convert(handler != null? handler(new Link<TLink>(from_u64.Convert(before.Index), from_u64.Convert(before.Source), from_u64.Convert(before.Target)), new Link<TLink>(from_u64.Convert(after.Index), from_u64.Convert(after.Source), from_u64.Convert(after.Target))) : Constants.Continue);
-                        var substitutionArray = stackalloc ulong[restriction.Count];
+                        Methods.CreateCallback_UInt64 callback = (before, after) => (ulong)from_t.Convert(handler != null? handler(new Link<TLink>(from_u64.Convert(before.Index), from_u64.Convert(before.Source), from_u64.Convert(before.Target)), new Link<TLink>(from_u64.Convert(after.Index), from_u64.Convert(after.Source), from_u64.Convert(after.Target))) : Constants.Continue);
+                        var substitutionArray = stackalloc ulong[substitution.Count];
                         for (var i = 0; i < substitution.Count; i++)
                         {
                             substitutionArray[i] = (ulong)substitution[i];
@@ -389,7 +389,7 @@ namespace Platform.Data.Doublets.FFI
                         {
                             substitutionArray[i] = (ushort)substitution[i];
                         }  
-                        Methods.UpdateCallback_UInt16 callback = (before, after) => (byte)from_t.Convert(handler != null? handler(new Link<TLink>(from_u16.Convert(before.Index), from_u16.Convert(before.Source), from_u16.Convert(before.Target)), new Link<TLink>(from_u16.Convert(after.Index), from_u16.Convert(after.Source), from_u16.Convert(after.Target))) : Constants.Continue);
+                        Methods.UpdateCallback_UInt16 callback = (before, after) => (ushort)from_t.Convert(handler != null? handler(new Link<TLink>(from_u16.Convert(before.Index), from_u16.Convert(before.Source), from_u16.Convert(before.Target)), new Link<TLink>(from_u16.Convert(after.Index), from_u16.Convert(after.Source), from_u16.Convert(after.Target))) : Constants.Continue);
                         return from_u16.Convert(Methods.ByteUnitedMemoryLinks_Update(_ptr, restrictionArray, (nuint)(restriction?.Count ?? 0), substitutionArray, (nuint)(substitution?.Count ?? 0), callback));
                     }
                     case uint:
@@ -404,7 +404,7 @@ namespace Platform.Data.Doublets.FFI
                         {
                             substitutionArray[i] = (uint)substitution[i];
                         }  
-                        Methods.UpdateCallback_UInt32 callback = (before, after) => (byte)from_t.Convert(handler != null? handler(new Link<TLink>(from_u32.Convert(before.Index), from_u32.Convert(before.Source), from_u32.Convert(before.Target)), new Link<TLink>(from_u32.Convert(after.Index), from_u32.Convert(after.Source), from_u32.Convert(after.Target))) : Constants.Continue);
+                        Methods.UpdateCallback_UInt32 callback = (before, after) => (uint)from_t.Convert(handler != null? handler(new Link<TLink>(from_u32.Convert(before.Index), from_u32.Convert(before.Source), from_u32.Convert(before.Target)), new Link<TLink>(from_u32.Convert(after.Index), from_u32.Convert(after.Source), from_u32.Convert(after.Target))) : Constants.Continue);
                         return from_u32.Convert(Methods.ByteUnitedMemoryLinks_Update(_ptr, restrictionArray, (nuint)(restriction?.Count ?? 0), substitutionArray, (nuint)(substitution?.Count ?? 0), callback));
                     }
                     case ulong:
@@ -419,7 +419,7 @@ namespace Platform.Data.Doublets.FFI
                         {
                             substitutionArray[i] = (ulong)substitution[i];
                         }  
-                        Methods.UpdateCallback_UInt64 callback = (before, after) => (byte)from_t.Convert(handler != null? handler(new Link<TLink>(from_u64.Convert(before.Index), from_u64.Convert(before.Source), from_u64.Convert(before.Target)), new Link<TLink>(from_u64.Convert(after.Index), from_u64.Convert(after.Source), from_u64.Convert(after.Target))) : Constants.Continue);
+                        Methods.UpdateCallback_UInt64 callback = (before, after) => (ulong)from_t.Convert(handler != null? handler(new Link<TLink>(from_u64.Convert(before.Index), from_u64.Convert(before.Source), from_u64.Convert(before.Target)), new Link<TLink>(from_u64.Convert(after.Index), from_u64.Convert(after.Source), from_u64.Convert(after.Target))) : Constants.Continue);
                         return from_u64.Convert(Methods.ByteUnitedMemoryLinks_Update(_ptr, restrictionArray, (nuint)(restriction?.Count ?? 0), substitutionArray, (nuint)(substitution?.Count ?? 0), callback));
                     }
                     default:
