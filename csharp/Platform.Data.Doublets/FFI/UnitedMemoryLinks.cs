@@ -200,7 +200,7 @@ namespace Platform.Data.Doublets.FFI
                         var restrictionArray = stackalloc byte[restriction.Count];
                         for (var i = 0; i < restriction.Count; i++)
                         {
-                            restrictionArray[i] = (byte)restriction[i];
+                            restrictionArray[i] = (byte)(object)restriction[i];
                         }
                         return from_u8.Convert(Methods.ByteUnitedMemoryLinks_Count(_ptr, array, (nuint)(restriction?.Count ?? 0)));
                     }
@@ -209,7 +209,7 @@ namespace Platform.Data.Doublets.FFI
                         var restrictionArray = stackalloc ushort[restriction.Count];
                         for (var i = 0; i < restriction.Count; i++)
                         {
-                            restrictionArray[i] = (ushort)restriction[i];
+                            restrictionArray[i] = (ushort)(object)restriction[i];
                         }
                         return from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Count(_ptr, array, (nuint)(restriction?.Count ?? 0)));
                     }
@@ -218,7 +218,7 @@ namespace Platform.Data.Doublets.FFI
                         var restrictionArray = stackalloc uint[restriction.Count];
                         for (var i = 0; i < restriction.Count; i++)
                         {
-                            restrictionArray[i] = (uint)restriction[i];
+                            restrictionArray[i] = (uint)(object)restriction[i];
                         }
                         return from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Count(_ptr, array, (nuint)(restriction?.Count ?? 0)));
                     }
@@ -228,7 +228,7 @@ namespace Platform.Data.Doublets.FFI
                             var restrictionArray = stackalloc ulong[restriction.Count];
                             for (var i = 0; i < restriction.Count; i++)
                             {
-                                restrictionArray[i] = (ulong)restriction[i];
+                                restrictionArray[i] = (ulong)(object)restriction[i];
                             }
                             return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Count(_ptr, array, (nuint)(restriction?.Count ?? 0)));
                         }
@@ -254,7 +254,7 @@ namespace Platform.Data.Doublets.FFI
                         var restrictionArray = stackalloc byte[restriction.Count];
                         for (var i = 0; i < restriction.Count; i++)
                         {
-                            restrictionArray[i] = (byte)restriction[i];
+                            restrictionArray[i] = (byte)(object)restriction[i];
                         }
                         return from_u8.Convert(Methods.ByteUnitedMemoryLinks_Each(_ptr, array, (nuint)(restriction?.Count ?? 0), callback));
                     }
@@ -264,7 +264,7 @@ namespace Platform.Data.Doublets.FFI
                         var restrictionArray = stackalloc ushort[restriction.Count];
                         for (var i = 0; i < restriction.Count; i++)
                         {
-                            restrictionArray[i] = (ushort)restriction[i];
+                            restrictionArray[i] = (ushort)(object)restriction[i];
                         }
                         return from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Each(_ptr, array, (nuint)(restriction?.Count ?? 0), callback));
                     }
@@ -274,7 +274,7 @@ namespace Platform.Data.Doublets.FFI
                         var restrictionArray = stackalloc uint[restriction.Count];
                         for (var i = 0; i < restriction.Count; i++)
                         {
-                            restrictionArray[i] = (uint)restriction[i];
+                            restrictionArray[i] = (uint)(object)restriction[i];
                         }
                         return from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Each(_ptr, array, (nuint)(restriction?.Count ?? 0), callback));
                     }
@@ -285,7 +285,7 @@ namespace Platform.Data.Doublets.FFI
                             var restrictionArray = stackalloc UInt64[restriction.Count];
                             for (var i = 0; i < restriction.Count; i++)
                             {
-                                restrictionArray[i] = (ulong)restriction[i];;
+                                restrictionArray[i] = (ulong)(object)restriction[i];;
                             }
                             return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Each(_ptr, array, (nuint)(restriction?.Count ?? 0), callback));
                         }
@@ -367,7 +367,7 @@ namespace Platform.Data.Doublets.FFI
                         var restrictionArray = stackalloc byte[restriction.Count];
                         for (var i = 0; i < restriction.Count; i++)
                         {
-                            restrictionArray[i] = (byte)restriction[i];
+                            restrictionArray[i] = (byte)(object)restriction[i];
                         }
                         var substitutionArray = stackalloc byte[restriction.Count];
                         for (var i = 0; i < substitution.Count; i++)
@@ -382,7 +382,7 @@ namespace Platform.Data.Doublets.FFI
                         var restrictionArray = stackalloc ushort[restriction.Count];
                         for (var i = 0; i < restriction.Count; i++)
                         {
-                            restrictionArray[i] = (ushort)restriction[i];
+                            restrictionArray[i] = (ushort)(object)restriction[i];
                         }
                         var substitutionArray = stackalloc ushort[restriction.Count];
                         for (var i = 0; i < substitution.Count; i++)
@@ -397,7 +397,7 @@ namespace Platform.Data.Doublets.FFI
                         var restrictionArray = stackalloc uint[restriction.Count];
                         for (var i = 0; i < restriction.Count; i++)
                         {
-                            restrictionArray[i] = (uint)restriction[i];
+                            restrictionArray[i] = (uint)(object)restriction[i];
                         }
                         var substitutionArray = stackalloc uint[restriction.Count];
                         for (var i = 0; i < substitution.Count; i++)
@@ -412,7 +412,7 @@ namespace Platform.Data.Doublets.FFI
                         var restrictionArray = stackalloc ulong[restriction.Count];
                         for (var i = 0; i < restriction.Count; i++)
                         {
-                            restrictionArray[i] = (ulong)restriction[i];
+                            restrictionArray[i] = (ulong)(object)restriction[i];
                         }
                         var substitutionArray = stackalloc ulong[restriction.Count];
                         for (var i = 0; i < substitution.Count; i++)
@@ -442,7 +442,7 @@ namespace Platform.Data.Doublets.FFI
                         var restrictionArray = stackalloc byte[restriction.Count];
                         for (var i = 0; i < restriction.Count; i++)
                         {
-                            restrictionArray[i] = (byte)restriction[i];
+                            restrictionArray[i] = (byte)(object)restriction[i];
                         }
                         Methods.DeleteCallback_UInt8 callback = (before, after) => (byte)from_t.Convert(handler != null? handler(new Link<TLink>(from_u8.Convert(before.Index), from_u8.Convert(before.Source), from_u8.Convert(before.Target)), new Link<TLink>(from_u8.Convert(after.Index), from_u8.Convert(after.Source), from_u8.Convert(after.Target))) : Constants.Continue);
                         return (TLink)(object)Methods.ByteUnitedMemoryLinks_Delete(_ptr, restrictionArray, (nuint)(restriction?.Count ?? 0), callback);
@@ -452,7 +452,7 @@ namespace Platform.Data.Doublets.FFI
                         var restrictionArray = stackalloc ushort[restriction.Count];
                         for (var i = 0; i < restriction.Count; i++)
                         {
-                            restrictionArray[i] = (ushort)restriction[i];
+                            restrictionArray[i] = (ushort)(object)restriction[i];
                         }
                         Methods.DeleteCallback_UInt16 callback = (before, after) => (ushort)from_t.Convert(handler != null? handler(new Link<TLink>(from_u16.Convert(before.Index), from_u16.Convert(before.Source), from_u16.Convert(before.Target)), new Link<TLink>(from_u16.Convert(after.Index), from_u16.Convert(after.Source), from_u16.Convert(after.Target))) : Constants.Continue);
                         return (TLink)(object)Methods.UInt16UnitedMemoryLinks_Delete(_ptr, restrictionArray, (nuint)(restriction?.Count ?? 0), callback);
@@ -462,7 +462,7 @@ namespace Platform.Data.Doublets.FFI
                         var restrictionArray = stackalloc uint[restriction.Count];
                         for (var i = 0; i < restriction.Count; i++)
                         {
-                            restrictionArray[i] = (uint)restriction[i];
+                            restrictionArray[i] = (uint)(object)restriction[i];
                         }
                         Methods.DeleteCallback_UInt32 callback = (before, after) => (uint)from_t.Convert(handler != null? handler(new Link<TLink>(from_u32.Convert(before.Index), from_u32.Convert(before.Source), from_u32.Convert(before.Target)), new Link<TLink>(from_u32.Convert(after.Index), from_u32.Convert(after.Source), from_u32.Convert(after.Target))) : Constants.Continue);
                         return (TLink)(object)Methods.UInt32UnitedMemoryLinks_Delete(_ptr, restrictionArray, (nuint)(restriction?.Count ?? 0), callback);
@@ -472,7 +472,7 @@ namespace Platform.Data.Doublets.FFI
                         var restrictionArray = stackalloc ulong[restriction.Count];
                         for (var i = 0; i < restriction.Count; i++)
                         {
-                            restrictionArray[i] = (ulong)restriction[i];
+                            restrictionArray[i] = (ulong)(object)restriction[i];
                         }
                         Methods.DeleteCallback_UInt64 callback = (before, after) => (ulong)from_t.Convert(handler != null? handler(new Link<TLink>(from_u64.Convert(before.Index), from_u64.Convert(before.Source), from_u64.Convert(before.Target)), new Link<TLink>(from_u64.Convert(after.Index), from_u64.Convert(after.Source), from_u64.Convert(after.Target))) : Constants.Continue);
                         return (TLink)(object)Methods.UInt64UnitedMemoryLinks_Delete(_ptr, restrictionArray, (nuint)(restriction?.Count ?? 0), callback);
