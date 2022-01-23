@@ -202,7 +202,7 @@ namespace Platform.Data.Doublets.FFI
                         {
                             restrictionArray[i] = (byte)(object)restriction[i];
                         }
-                        return from_u8.Convert(Methods.ByteUnitedMemoryLinks_Count(_ptr, array, (nuint)(restriction?.Count ?? 0)));
+                        return from_u8.Convert(Methods.ByteUnitedMemoryLinks_Count(_ptr, restrictionArray, (nuint)(restriction?.Count ?? 0)));
                     }
                     case ushort:
                     {
@@ -211,7 +211,7 @@ namespace Platform.Data.Doublets.FFI
                         {
                             restrictionArray[i] = (ushort)(object)restriction[i];
                         }
-                        return from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Count(_ptr, array, (nuint)(restriction?.Count ?? 0)));
+                        return from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Count(_ptr, restrictionArray, (nuint)(restriction?.Count ?? 0)));
                     }
                     case uint:
                     {
@@ -220,7 +220,7 @@ namespace Platform.Data.Doublets.FFI
                         {
                             restrictionArray[i] = (uint)(object)restriction[i];
                         }
-                        return from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Count(_ptr, array, (nuint)(restriction?.Count ?? 0)));
+                        return from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Count(_ptr, restrictionArray, (nuint)(restriction?.Count ?? 0)));
                     }
                     case ulong:
                     {
@@ -230,7 +230,7 @@ namespace Platform.Data.Doublets.FFI
                             {
                                 restrictionArray[i] = (ulong)(object)restriction[i];
                             }
-                            return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Count(_ptr, array, (nuint)(restriction?.Count ?? 0)));
+                            return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Count(_ptr, restrictionArray, (nuint)(restriction?.Count ?? 0)));
                         }
                     }
                     default:
@@ -256,7 +256,7 @@ namespace Platform.Data.Doublets.FFI
                         {
                             restrictionArray[i] = (byte)(object)restriction[i];
                         }
-                        return from_u8.Convert(Methods.ByteUnitedMemoryLinks_Each(_ptr, array, (nuint)(restriction?.Count ?? 0), callback));
+                        return from_u8.Convert(Methods.ByteUnitedMemoryLinks_Each(_ptr, restrictionArray, (nuint)(restriction?.Count ?? 0), callback));
                     }
                     case ushort:
                     {
@@ -266,7 +266,7 @@ namespace Platform.Data.Doublets.FFI
                         {
                             restrictionArray[i] = (ushort)(object)restriction[i];
                         }
-                        return from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Each(_ptr, array, (nuint)(restriction?.Count ?? 0), callback));
+                        return from_u16.Convert(Methods.UInt16UnitedMemoryLinks_Each(_ptr, restrictionArray, (nuint)(restriction?.Count ?? 0), callback));
                     }
                     case uint:
                     {
@@ -276,7 +276,7 @@ namespace Platform.Data.Doublets.FFI
                         {
                             restrictionArray[i] = (uint)(object)restriction[i];
                         }
-                        return from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Each(_ptr, array, (nuint)(restriction?.Count ?? 0), callback));
+                        return from_u32.Convert(Methods.UInt32UnitedMemoryLinks_Each(_ptr, restrictionArray, (nuint)(restriction?.Count ?? 0), callback));
                     }
                     case ulong:
                     {
@@ -287,7 +287,7 @@ namespace Platform.Data.Doublets.FFI
                             {
                                 restrictionArray[i] = (ulong)(object)restriction[i];;
                             }
-                            return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Each(_ptr, array, (nuint)(restriction?.Count ?? 0), callback));
+                            return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Each(_ptr, restrictionArray, (nuint)(restriction?.Count ?? 0), callback));
                         }
                     }
                     default:
