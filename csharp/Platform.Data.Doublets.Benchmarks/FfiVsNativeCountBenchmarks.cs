@@ -11,7 +11,7 @@ namespace Platform.Data.Doublets.Benchmarks
 {
     [SimpleJob]
     [MemoryDiagnoser]
-    public class MemoryBenchmarks
+    public class FfiVsNativeCountBenchmarks
     {
         private static SplitMemoryLinks<uint> _splitMemory;
         private static ILinks<uint> _splitMemoryLinks;
@@ -65,25 +65,25 @@ namespace Platform.Data.Doublets.Benchmarks
         [Benchmark]
         public void Split()
         {
-            _splitMemoryLinks.TestMultipleRandomCreationsAndDeletions(1000);
+            _splitMemoryLinks.Count(new Link<uint>(_splitMemoryLinks.Constants.Any, _splitMemoryLinks.Constants.Any, _splitMemoryLinks.Constants.Any));
         }
 
         [Benchmark]
         public void United()
         {
-            _unitedMemoryLinks.TestMultipleRandomCreationsAndDeletions(1000);
+            _unitedMemoryLinks.Count(new Link<uint>(_unitedMemoryLinks.Constants.Any, _unitedMemoryLinks.Constants.Any, _unitedMemoryLinks.Constants.Any));
         }
 
         [Benchmark]
         public void FfiUnited()
         {
-            _ffiUnitedMemoryLinks.TestMultipleRandomCreationsAndDeletions(1000);
+            _ffiUnitedMemoryLinks.Count(new Link<uint>(_ffiUnitedMemoryLinks.Constants.Any, _ffiUnitedMemoryLinks.Constants.Any, _ffiUnitedMemoryLinks.Constants.Any));
         }
 
         [Benchmark]
         public void FfiUInt32United()
         {
-            _ffiUInt32UnitedMemoryLinks.TestMultipleRandomCreationsAndDeletions(1000);
+            _ffiUInt32UnitedMemoryLinks.Count(new Link<uint>(_ffiUInt32UnitedMemoryLinks.Constants.Any, _ffiUInt32UnitedMemoryLinks.Constants.Any, _ffiUInt32UnitedMemoryLinks.Constants.Any));
         }
     }
 }

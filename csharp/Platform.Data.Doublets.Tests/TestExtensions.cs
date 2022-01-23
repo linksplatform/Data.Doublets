@@ -154,6 +154,18 @@ namespace Platform.Data.Doublets.Tests
             Assert.True(equalityComparer.Equals(setter3.Result, linkAddress2));
         }
 
+        public static void TestMultipleCreationsAndDeletions<TLink>(this ILinks<TLink> links, int numberOfOperations)
+        {
+            for (int i = 0; i < numberOfOperations; i++)
+            {
+                links.Create();
+            }
+            for (int i = 0; i < numberOfOperations; i++)
+            {
+                links.Delete(links.Count());
+            }
+        }
+
         public static void TestMultipleRandomCreationsAndDeletions<TLink>(this ILinks<TLink> links, int maximumOperationsPerCycle)
         {
             var comparer = Comparer<TLink>.Default;

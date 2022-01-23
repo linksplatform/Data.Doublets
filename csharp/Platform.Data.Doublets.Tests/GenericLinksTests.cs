@@ -40,9 +40,11 @@ namespace Platform.Data.Doublets.Tests
         private static void Using<TLink>(Action<ILinks<TLink>> action)
         {
             var unitedMemoryLinks = new UnitedMemoryLinks<TLink>(new HeapResizableDirectMemory());
-            var logFile = File.Open("linksLogger.txt", FileMode.Create, FileAccess.Write);
-            LoggingDecorator<TLink> links = new(unitedMemoryLinks, logFile);
-            action(links);
+            using (var logFile = File.Open("linksLogger.txt", FileMode.Create, FileAccess.Write))
+            {
+                LoggingDecorator<TLink> links = new(unitedMemoryLinks, logFile);
+                action(links);
+            }
 
             File.Delete("db.links");
             using var ffiLinks = new FFI.UnitedMemoryLinks<TLink>("db.links");

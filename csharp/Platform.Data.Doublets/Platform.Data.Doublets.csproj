@@ -37,6 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Platform.Data.Doublets.FFI" Version="0.8.0" />
     <PackageReference Include="Platform.Setters" Version="0.3.0" />
     <PackageReference Include="Platform.Random" Version="0.2.0" />
     <PackageReference Include="Platform.Timestamps" Version="0.2.0" />
