@@ -198,7 +198,7 @@ namespace Platform.Data.Doublets.FFI
                     case byte:
                     {
                         var restrictionArray = stackalloc byte[restriction?.Count ?? 0];
-                        for (var i = 0; i < restriction?.Count ?? 0; i++)
+                        for (var i = 0; i < (restriction?.Count ?? 0); i++)
                         {
                             restrictionArray[i] = (byte)(object)restriction[i];
                         }
@@ -207,7 +207,7 @@ namespace Platform.Data.Doublets.FFI
                     case ushort:
                     {
                         var restrictionArray = stackalloc ushort[restriction?.Count ?? 0];
-                        for (var i = 0; i < restriction?.Count ?? 0; i++)
+                        for (var i = 0; i < (restriction?.Count ?? 0); i++)
                         {
                             restrictionArray[i] = (ushort)(object)restriction[i];
                         }
@@ -216,7 +216,7 @@ namespace Platform.Data.Doublets.FFI
                     case uint:
                     {
                         var restrictionArray = stackalloc uint[restriction?.Count ?? 0];
-                        for (var i = 0; i < restriction?.Count ?? 0; i++)
+                        for (var i = 0; i < (restriction?.Count ?? 0); i++)
                         {
                             restrictionArray[i] = (uint)(object)restriction[i];
                         }
@@ -226,7 +226,7 @@ namespace Platform.Data.Doublets.FFI
                     {
                         {
                             var restrictionArray = stackalloc ulong[restriction?.Count ?? 0];
-                            for (var i = 0; i < restriction?.Count ?? 0; i++)
+                            for (var i = 0; i < (restriction?.Count ?? 0); i++)
                             {
                                 restrictionArray[i] = (ulong)(object)restriction[i];
                             }
@@ -252,7 +252,7 @@ namespace Platform.Data.Doublets.FFI
                     {
                         Methods.EachCallback_UInt8 callback = (link) => (byte)from_t.Convert(handler != null? handler(new Link<TLink>(from_u8.Convert(link.Index), from_u8.Convert(link.Source), from_u8.Convert(link.Target))) : Constants.Continue);
                         var restrictionArray = stackalloc byte[restriction?.Count ?? 0];
-                        for (var i = 0; i < restriction?.Count ?? 0; i++)
+                        for (var i = 0; i < (restriction?.Count ?? 0); i++)
                         {
                             restrictionArray[i] = (byte)(object)restriction[i];
                         }
@@ -262,7 +262,7 @@ namespace Platform.Data.Doublets.FFI
                     {
                         Methods.EachCallback_UInt16 callback = (link) => (ushort)from_t.Convert(handler != null? handler(new Link<TLink>(from_u16.Convert(link.Index), from_u16.Convert(link.Source), from_u16.Convert(link.Target))) : Constants.Continue);
                         var restrictionArray = stackalloc ushort[restriction?.Count ?? 0];
-                        for (var i = 0; i < restriction?.Count ?? 0; i++)
+                        for (var i = 0; i < (restriction?.Count ?? 0); i++)
                         {
                             restrictionArray[i] = (ushort)(object)restriction[i];
                         }
@@ -272,7 +272,7 @@ namespace Platform.Data.Doublets.FFI
                     {
                         Methods.EachCallback_UInt32 callback = (link) => (uint)from_t.Convert(handler != null? handler(new Link<TLink>(from_u32.Convert(link.Index), from_u32.Convert(link.Source), from_u32.Convert(link.Target))) : Constants.Continue);
                         var restrictionArray = stackalloc uint[restriction?.Count ?? 0];
-                        for (var i = 0; i < restriction?.Count ?? 0; i++)
+                        for (var i = 0; i < (restriction?.Count ?? 0); i++)
                         {
                             restrictionArray[i] = (uint)(object)restriction[i];
                         }
@@ -283,7 +283,7 @@ namespace Platform.Data.Doublets.FFI
                         {
                             Methods.EachCallback_UInt64 callback = (link) => from_t.Convert(handler != null? handler(new Link<TLink>(from_u64.Convert(link.Index), from_u64.Convert(link.Source), from_u64.Convert(link.Target))) : Constants.Continue);
                             var restrictionArray = stackalloc UInt64[restriction?.Count ?? 0];
-                            for (var i = 0; i < restriction?.Count ?? 0; i++)
+                            for (var i = 0; i < (restriction?.Count ?? 0); i++)
                             {
                                 restrictionArray[i] = (ulong)(object)restriction[i];;
                             }
@@ -365,7 +365,7 @@ namespace Platform.Data.Doublets.FFI
                     case byte:
                     {
                         var restrictionArray = stackalloc byte[restriction?.Count ?? 0];
-                        for (var i = 0; i < restriction?.Count ?? 0; i++)
+                        for (var i = 0; i < (restriction?.Count ?? 0); i++)
                         {
                             restrictionArray[i] = (byte)(object)restriction[i];
                         }
@@ -380,7 +380,7 @@ namespace Platform.Data.Doublets.FFI
                     case ushort:
                     {
                         var restrictionArray = stackalloc ushort[restriction?.Count ?? 0];
-                        for (var i = 0; i < restriction?.Count ?? 0; i++)
+                        for (var i = 0; i < (restriction?.Count ?? 0); i++)
                         {
                             restrictionArray[i] = (ushort)(object)restriction[i];
                         }
@@ -395,7 +395,7 @@ namespace Platform.Data.Doublets.FFI
                     case uint:
                     {
                         var restrictionArray = stackalloc uint[restriction?.Count ?? 0];
-                        for (var i = 0; i < restriction?.Count ?? 0; i++)
+                        for (var i = 0; i < (restriction?.Count ?? 0); i++)
                         {
                             restrictionArray[i] = (uint)(object)restriction[i];
                         }
@@ -410,7 +410,7 @@ namespace Platform.Data.Doublets.FFI
                     case ulong:
                     {
                         var restrictionArray = stackalloc ulong[restriction?.Count ?? 0];
-                        for (var i = 0; i < restriction?.Count ?? 0; i++)
+                        for (var i = 0; i < (restriction?.Count ?? 0); i++)
                         {
                             restrictionArray[i] = (ulong)(object)restriction[i];
                         }
@@ -440,7 +440,7 @@ namespace Platform.Data.Doublets.FFI
                     case byte:
                     {
                         var restrictionArray = stackalloc byte[restriction?.Count ?? 0];
-                        for (var i = 0; i < restriction?.Count ?? 0; i++)
+                        for (var i = 0; i < (restriction?.Count ?? 0); i++)
                         {
                             restrictionArray[i] = (byte)(object)restriction[i];
                         }
@@ -450,7 +450,7 @@ namespace Platform.Data.Doublets.FFI
                     case ushort:
                     {
                         var restrictionArray = stackalloc ushort[restriction?.Count ?? 0];
-                        for (var i = 0; i < restriction?.Count ?? 0; i++)
+                        for (var i = 0; i < (restriction?.Count ?? 0); i++)
                         {
                             restrictionArray[i] = (ushort)(object)restriction[i];
                         }
@@ -460,7 +460,7 @@ namespace Platform.Data.Doublets.FFI
                     case uint:
                     {
                         var restrictionArray = stackalloc uint[restriction?.Count ?? 0];
-                        for (var i = 0; i < restriction?.Count ?? 0; i++)
+                        for (var i = 0; i < (restriction?.Count ?? 0); i++)
                         {
                             restrictionArray[i] = (uint)(object)restriction[i];
                         }
@@ -470,7 +470,7 @@ namespace Platform.Data.Doublets.FFI
                     case ulong:
                     {
                         var restrictionArray = stackalloc ulong[restriction?.Count ?? 0];
-                        for (var i = 0; i < restriction?.Count ?? 0; i++)
+                        for (var i = 0; i < (restriction?.Count ?? 0); i++)
                         {
                             restrictionArray[i] = (ulong)(object)restriction[i];
                         }
