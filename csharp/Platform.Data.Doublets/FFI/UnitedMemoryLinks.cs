@@ -420,7 +420,7 @@ namespace Platform.Data.Doublets.FFI
                             substitutionArray[i] = (ulong)(object)substitution[i];
                         }  
                         Methods.UpdateCallback_UInt64 callback = (before, after) => (ulong)from_t.Convert(handler != null? handler(new Link<TLink>(from_u64.Convert(before.Index), from_u64.Convert(before.Source), from_u64.Convert(before.Target)), new Link<TLink>(from_u64.Convert(after.Index), from_u64.Convert(after.Source), from_u64.Convert(after.Target))) : Constants.Continue);
-                        return from_u64.Convert(Methods.UInt32UnitedMemoryLinks_Update(_ptr, restrictionArray, (nuint)(restriction?.Count ?? 0), substitutionArray, (nuint)(substitution?.Count ?? 0), callback));
+                        return from_u64.Convert(Methods.UInt64UnitedMemoryLinks_Update(_ptr, restrictionArray, (nuint)(restriction?.Count ?? 0), substitutionArray, (nuint)(substitution?.Count ?? 0), callback));
                     }
                     default:
                     {
