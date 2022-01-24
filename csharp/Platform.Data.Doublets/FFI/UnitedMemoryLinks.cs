@@ -40,36 +40,52 @@ namespace Platform.Data.Doublets.FFI
     {
         private const string DllName = "Platform.Doublets";
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate Byte EachCallback_UInt8(FfiLink_UInt8 link);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate UInt16 EachCallback_UInt16(FfiLink_UInt16 link);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate UInt32 EachCallback_UInt32(FfiLink_UInt32 link);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate UInt64 EachCallback_UInt64(FfiLink_UInt64 link);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate Byte CreateCallback_UInt8(FfiLink_UInt8 before, FfiLink_UInt8 after);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate UInt16 CreateCallback_UInt16(FfiLink_UInt16 before, FfiLink_UInt16 after);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate UInt32 CreateCallback_UInt32(FfiLink_UInt32 before, FfiLink_UInt32 after);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate UInt64 CreateCallback_UInt64(FfiLink_UInt64 before, FfiLink_UInt64 after);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate Byte UpdateCallback_UInt8(FfiLink_UInt8 before, FfiLink_UInt8 after);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate UInt16 UpdateCallback_UInt16(FfiLink_UInt16 before, FfiLink_UInt16 after);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate UInt32 UpdateCallback_UInt32(FfiLink_UInt32 before, FfiLink_UInt32 after);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate UInt64 UpdateCallback_UInt64(FfiLink_UInt64 before, FfiLink_UInt64 after);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate Byte DeleteCallback_UInt8(FfiLink_UInt8 before, FfiLink_UInt8 after);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate UInt16 DeleteCallback_UInt16(FfiLink_UInt16 before, FfiLink_UInt16 after);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate UInt32 DeleteCallback_UInt32(FfiLink_UInt32 before, FfiLink_UInt32 after);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate UInt64 DeleteCallback_UInt64(FfiLink_UInt64 before, FfiLink_UInt64 after);
 
         [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
@@ -188,7 +204,7 @@ namespace Platform.Data.Doublets.FFI
             }
         }
 
-        public TLink Count(IList<TLink> restriction)
+        public TLink Count(IList<TLink>? restriction)
         {
             var restrictionLength = restriction?.Count ?? 0;
             unsafe

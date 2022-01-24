@@ -149,7 +149,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TLink Delete<TLink>(this ILinks<TLink> links, TLink linkToDelete, WriteHandler<TLink> handler)
+        public static TLink Delete<TLink>(this ILinks<TLink> links, TLink linkToDelete, WriteHandler<TLink>? handler)
         {
             if (links.Exists(linkToDelete))
             {

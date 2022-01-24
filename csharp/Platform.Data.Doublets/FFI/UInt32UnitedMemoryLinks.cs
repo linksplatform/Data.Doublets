@@ -27,7 +27,7 @@ namespace Platform.Data.Doublets.FFI
             }
         }
 
-        public TLink Count(IList<TLink> restriction)
+        public TLink Count(IList<TLink>? restriction)
         {
             unsafe
             {

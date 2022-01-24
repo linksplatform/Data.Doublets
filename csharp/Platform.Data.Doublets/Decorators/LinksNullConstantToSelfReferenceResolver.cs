@@ -44,7 +44,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Create(IList<TLink> substitution, WriteHandler<TLink> handler)
+        public override TLink Create(IList<TLink>? substitution, WriteHandler<TLink> handler)
         {
             return _links.CreatePoint(handler);
         }

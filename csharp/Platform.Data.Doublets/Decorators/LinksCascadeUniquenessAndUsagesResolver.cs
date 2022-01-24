@@ -48,7 +48,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink ResolveAddressChangeConflict(TLink oldLinkAddress, TLink newLinkAddress, WriteHandler<TLink> handler)
+        protected override TLink ResolveAddressChangeConflict(TLink oldLinkAddress, TLink newLinkAddress, WriteHandler<TLink>? handler)
         {
             var constants = _links.Constants;
             WriteHandlerState<TLink> handlerState = new(constants.Continue, constants.Break, handler);

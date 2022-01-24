@@ -15,7 +15,7 @@ namespace Platform.Data.Doublets.Decorators
             _logStreamWriter.AutoFlush = true;
         }
 
-        public override TLink Create(IList<TLink> substitution, WriteHandler<TLink> handler)
+        public override TLink Create(IList<TLink>? substitution, WriteHandler<TLink> handler)
         {
             WriteHandlerState<TLink> handlerState = new(_constants.Continue, _constants.Break, handler);
             return base.Create(substitution, (before, after) =>

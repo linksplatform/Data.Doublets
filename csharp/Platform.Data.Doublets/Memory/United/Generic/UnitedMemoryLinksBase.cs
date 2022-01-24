@@ -207,7 +207,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Count(IList<TLink> restriction)
+        public virtual TLink Count(IList<TLink>? restriction)
         {
             // Если нет ограничений, тогда возвращаем общее число связей находящихся в хранилище.
             if (restriction.Count == 0)

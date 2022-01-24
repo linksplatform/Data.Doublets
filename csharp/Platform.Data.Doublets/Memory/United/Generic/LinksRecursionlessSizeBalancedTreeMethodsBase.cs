@@ -212,7 +212,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual IList<TLink> GetLinkValues(TLink linkIndex)
+        protected virtual IList<TLink>? GetLinkValues(TLink linkIndex)
         {
             ref var link = ref GetLinkReference(linkIndex);
             return new Link<TLink>(linkIndex, link.Source, link.Target);

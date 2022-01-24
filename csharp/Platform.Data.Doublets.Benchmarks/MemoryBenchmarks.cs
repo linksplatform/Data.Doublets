@@ -57,25 +57,25 @@ namespace Platform.Data.Doublets.Benchmarks
         [Benchmark]
         public void Split()
         {
-            _splitMemoryLinks.TestMultipleRandomCreationsAndDeletions(1000);
+            _splitMemoryLinks.TestMultipleRandomCreationsAndDeletions(150);
         }
 
         [Benchmark]
         public void United()
         {
-            _unitedMemoryLinks.TestMultipleRandomCreationsAndDeletions(1000);
+            _unitedMemoryLinks.TestMultipleRandomCreationsAndDeletions(150);
         }
 
         [Benchmark]
         public void FfiUnited()
         {
-            _ffiUnitedMemoryLinks.TestMultipleRandomCreationsAndDeletions(1000);
+            _ffiUnitedMemoryLinks.TestMultipleRandomCreationsAndDeletions(150);
         }
 
         [Benchmark]
         public void FfiUInt32United()
         {
-            _ffiUInt32UnitedMemoryLinks.TestMultipleRandomCreationsAndDeletions(1000);
+            _ffiUInt32UnitedMemoryLinks.TestMultipleRandomCreationsAndDeletions(150);
         }
     }
 }

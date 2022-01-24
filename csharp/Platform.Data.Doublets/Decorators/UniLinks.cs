@@ -39,7 +39,7 @@ namespace Platform.Data.Doublets.Decorators
             /// </para>
             /// <para></para>
             /// </summary>
-            public IList<TLink> Before;
+            public IList<TLink>? Before;
             /// <summary>
             /// <para>
             /// The after.

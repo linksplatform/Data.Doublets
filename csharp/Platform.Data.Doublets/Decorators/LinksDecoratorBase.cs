@@ -98,7 +98,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Count(IList<TLink> restriction) => _links.Count(restriction);
+        public virtual TLink Count(IList<TLink>? restriction) => _links.Count(restriction);
 
         /// <summary>
         /// <para>

@@ -14,7 +14,7 @@ namespace Platform.Data.Doublets
     /// <summary>
     /// Структура описывающая уникальную связь.
     /// </summary>
-    public struct Link<TLink> : IEquatable<Link<TLink>>, IReadOnlyList<TLink>, IList<TLink>
+    public struct Link<TLink> : IEquatable<Link<TLink>>, IReadOnlyList<TLink>, IList<TLink>?
     {
         /// <summary>
         /// <para>

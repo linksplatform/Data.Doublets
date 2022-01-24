@@ -50,7 +50,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Each(IList<TLink> restriction, ReadHandler<TLink> handler)
+        public override TLink Each(IList<TLink>? restriction, ReadHandler<TLink> handler)
         {
             var constants = _constants;
             var itselfConstant = constants.Itself;

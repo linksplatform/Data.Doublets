@@ -49,7 +49,7 @@ namespace Platform.Data.Doublets.Benchmarks
         }
 
         [Benchmark]
-        public IList<IList<TLink>> Array()
+        public IList<IList<TLink>?> Array()
         {
             var addressToInt64Converter = CheckedConverter<TLink, long>.Default;
             var usagesAsSourceQuery = new Link<TLink>(_any, 1UL, _any);

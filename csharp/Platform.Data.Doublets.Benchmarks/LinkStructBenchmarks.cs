@@ -19,7 +19,7 @@ namespace Platform.Data.Doublets.Benchmarks
         public static void Cleanup() { }
 
         [Benchmark]
-        public IList<TLink> Struct()
+        public IList<TLink>? Struct()
         {
             return new Link<TLink>(1UL, 1UL, 1UL);
         }
