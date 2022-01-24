@@ -319,7 +319,7 @@ namespace Platform.Data.Doublets.FFI
                     case byte:
                     {
                         byte Callback(FfiLink_UInt8 before, FfiLink_UInt8 after) => (byte)from_t.Convert(handler != null ? handler(new Link<TLink>(from_u8.Convert(before.Index), from_u8.Convert(before.Source), from_u8.Convert(before.Target)), new Link<TLink>(from_u8.Convert(after.Index), from_u8.Convert(after.Source), from_u8.Convert(after.Target))) : Constants.Continue);
-                        var substitutionArray = stackalloc byte[substitution?.Count ?? 0];
+                        var substitutionArray = stackalloc byte[substitutionLength];
                         var byteSubstitutionArray = (IList<byte>)substitution;
                         for (var i = 0; i < substitutionLength; i++)
                         {
@@ -330,7 +330,7 @@ namespace Platform.Data.Doublets.FFI
                     case ushort:
                     {
                         ushort Callback(FfiLink_UInt16 before, FfiLink_UInt16 after) => (ushort)from_t.Convert(handler != null ? handler(new Link<TLink>(from_u16.Convert(before.Index), from_u16.Convert(before.Source), from_u16.Convert(before.Target)), new Link<TLink>(from_u16.Convert(after.Index), from_u16.Convert(after.Source), from_u16.Convert(after.Target))) : Constants.Continue);
-                        var substitutionArray = stackalloc ushort[substitution?.Count ?? 0];
+                        var substitutionArray = stackalloc ushort[substitutionLength];
                         var ushortSubstitutionArray = (IList<ushort>)substitution;
                         for (var i = 0; i < substitutionLength; i++)
                         {
@@ -341,7 +341,7 @@ namespace Platform.Data.Doublets.FFI
                     case uint:
                     {
                         uint Callback(FfiLink_UInt32 before, FfiLink_UInt32 after) => (uint)from_t.Convert(handler != null ? handler(new Link<TLink>(from_u32.Convert(before.Index), from_u32.Convert(before.Source), from_u32.Convert(before.Target)), new Link<TLink>(from_u32.Convert(after.Index), from_u32.Convert(after.Source), from_u32.Convert(after.Target))) : Constants.Continue);
-                        var substitutionArray = stackalloc uint[substitution?.Count ?? 0];
+                        var substitutionArray = stackalloc uint[substitutionLength];
                         var uintSubstitutionArray = (IList<uint>)substitution;
                         for (var i = 0; i < substitutionLength; i++)
                         {
@@ -353,7 +353,7 @@ namespace Platform.Data.Doublets.FFI
                     case ulong:
                     {
                         ulong Callback(FfiLink_UInt64 before, FfiLink_UInt64 after) => (ulong)from_t.Convert(handler != null ? handler(new Link<TLink>(from_u64.Convert(before.Index), from_u64.Convert(before.Source), from_u64.Convert(before.Target)), new Link<TLink>(from_u64.Convert(after.Index), from_u64.Convert(after.Source), from_u64.Convert(after.Target))) : Constants.Continue);
-                        var substitutionArray = stackalloc ulong[substitution?.Count ?? 0];
+                        var substitutionArray = stackalloc ulong[substitutionLength];
                         var ulongSubstitutionArray = (IList<ulong>)substitution;
                         for (var i = 0; i < substitutionLength; i++)
                         {
