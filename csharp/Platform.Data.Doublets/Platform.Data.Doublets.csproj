@@ -26,6 +26,7 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <LangVersion>latest</LangVersion>
     <PackageReleaseNotes>Callback for changes handling is added for Create, Update, Delete operations.</PackageReleaseNotes>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup Condition="$(TargetFramework.StartsWith('net4')) AND '$(MSBuildRuntimeType)' == 'Core' AND '$(OS)' != 'Windows_NT'">
