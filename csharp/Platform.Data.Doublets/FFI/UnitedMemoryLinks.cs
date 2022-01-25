@@ -403,7 +403,7 @@ namespace Platform.Data.Doublets.FFI
                         {
                             restrictionArray[i] = byteRestrictionArray[i];
                         }
-                        var substitutionArray = stackalloc byte[restrictionLength];
+                        var substitutionArray = stackalloc byte[substitutionLength];
                         var byteSubstitutionArray = (IList<byte>)substitution;
                         for (var i = 0; i < substitutionLength; i++)
                         {
@@ -420,7 +420,7 @@ namespace Platform.Data.Doublets.FFI
                         {
                             restrictionArray[i] = ushortRestrictionArray[i];
                         }
-                        var substitutionArray = stackalloc ushort[restrictionLength];
+                        var substitutionArray = stackalloc ushort[substitutionLength];
                         var ushortSubstitutionArray = (IList<ushort>)substitution;
                         for (var i = 0; i < substitutionLength; i++)
                         {
@@ -437,7 +437,7 @@ namespace Platform.Data.Doublets.FFI
                         {
                             restrictionArray[i] = uintRestrictionArray[i];
                         }
-                        var substitutionArray = stackalloc uint[restrictionLength];
+                        var substitutionArray = stackalloc uint[substitutionLength];
                         var uintSubstitutionArray = (IList<uint>)substitution;
                         for (var i = 0; i < substitutionLength; i++)
                         {
@@ -454,7 +454,7 @@ namespace Platform.Data.Doublets.FFI
                         {
                             restrictionArray[i] = ulongRestrictionArray[i];
                         }
-                        var substitutionArray = stackalloc ulong[restrictionLength];
+                        var substitutionArray = stackalloc ulong[substitutionLength];
                         var ulongSubstitutionArray = (IList<ulong>)substitution;
                         for (var i = 0; i < substitutionLength; i++)
                         {
