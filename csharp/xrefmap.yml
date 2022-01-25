@@ -90,15 +90,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksCascadeUniquenessAndUsagesResolver(Of TLink).LinksCascadeUniquenessAndUsagesResolver
   nameWithType: LinksCascadeUniquenessAndUsagesResolver<TLink>.LinksCascadeUniquenessAndUsagesResolver
   nameWithType.vb: LinksCascadeUniquenessAndUsagesResolver(Of TLink).LinksCascadeUniquenessAndUsagesResolver
-- uid: Platform.Data.Doublets.Decorators.LinksCascadeUniquenessAndUsagesResolver`1.ResolveAddressChangeConflict(`0,`0,WriteHandler{`0})
-  name: ResolveAddressChangeConflict(TLink, TLink, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksCascadeUniquenessAndUsagesResolver-1.html#Platform_Data_Doublets_Decorators_LinksCascadeUniquenessAndUsagesResolver_1_ResolveAddressChangeConflict__0__0_WriteHandler__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksCascadeUniquenessAndUsagesResolver`1.ResolveAddressChangeConflict(`0,`0,WriteHandler{`0})
-  name.vb: ResolveAddressChangeConflict(TLink, TLink, WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksCascadeUniquenessAndUsagesResolver<TLink>.ResolveAddressChangeConflict(TLink, TLink, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksCascadeUniquenessAndUsagesResolver(Of TLink).ResolveAddressChangeConflict(TLink, TLink, WriteHandler(Of TLink))
-  nameWithType: LinksCascadeUniquenessAndUsagesResolver<TLink>.ResolveAddressChangeConflict(TLink, TLink, WriteHandler<TLink>)
-  nameWithType.vb: LinksCascadeUniquenessAndUsagesResolver(Of TLink).ResolveAddressChangeConflict(TLink, TLink, WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksCascadeUniquenessAndUsagesResolver`1.ResolveAddressChangeConflict(`0,`0,System.Nullable{WriteHandler{`0}})
+  name: ResolveAddressChangeConflict(TLink, TLink, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Decorators.LinksCascadeUniquenessAndUsagesResolver-1.html#Platform_Data_Doublets_Decorators_LinksCascadeUniquenessAndUsagesResolver_1_ResolveAddressChangeConflict__0__0_System_Nullable_WriteHandler__0___
+  commentId: M:Platform.Data.Doublets.Decorators.LinksCascadeUniquenessAndUsagesResolver`1.ResolveAddressChangeConflict(`0,`0,System.Nullable{WriteHandler{`0}})
+  name.vb: ResolveAddressChangeConflict(TLink, TLink, Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Decorators.LinksCascadeUniquenessAndUsagesResolver<TLink>.ResolveAddressChangeConflict(TLink, TLink, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksCascadeUniquenessAndUsagesResolver(Of TLink).ResolveAddressChangeConflict(TLink, TLink, System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: LinksCascadeUniquenessAndUsagesResolver<TLink>.ResolveAddressChangeConflict(TLink, TLink, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: LinksCascadeUniquenessAndUsagesResolver(Of TLink).ResolveAddressChangeConflict(TLink, TLink, Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Decorators.LinksCascadeUniquenessAndUsagesResolver`1.ResolveAddressChangeConflict*
   name: ResolveAddressChangeConflict
   href: api/Platform.Data.Doublets.Decorators.LinksCascadeUniquenessAndUsagesResolver-1.html#Platform_Data_Doublets_Decorators_LinksCascadeUniquenessAndUsagesResolver_1_ResolveAddressChangeConflict_
@@ -1769,15 +1769,15 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.ILinksExtensions.Delete
   nameWithType: ILinksExtensions.Delete
-- uid: Platform.Data.Doublets.ILinksExtensions.Delete``1(Platform.Data.Doublets.ILinks{``0},``0,WriteHandler{``0})
-  name: Delete<TLink>(ILinks<TLink>, TLink, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Delete__1_Platform_Data_Doublets_ILinks___0____0_WriteHandler___0__
-  commentId: M:Platform.Data.Doublets.ILinksExtensions.Delete``1(Platform.Data.Doublets.ILinks{``0},``0,WriteHandler{``0})
-  name.vb: Delete(Of TLink)(ILinks(Of TLink), TLink, WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.ILinksExtensions.Delete<TLink>(Platform.Data.Doublets.ILinks<TLink>, TLink, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.ILinksExtensions.Delete(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink, WriteHandler(Of TLink))
-  nameWithType: ILinksExtensions.Delete<TLink>(ILinks<TLink>, TLink, WriteHandler<TLink>)
-  nameWithType.vb: ILinksExtensions.Delete(Of TLink)(ILinks(Of TLink), TLink, WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.ILinksExtensions.Delete``1(Platform.Data.Doublets.ILinks{``0},``0,System.Nullable{WriteHandler{``0}})
+  name: Delete<TLink>(ILinks<TLink>, TLink, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Delete__1_Platform_Data_Doublets_ILinks___0____0_System_Nullable_WriteHandler___0___
+  commentId: M:Platform.Data.Doublets.ILinksExtensions.Delete``1(Platform.Data.Doublets.ILinks{``0},``0,System.Nullable{WriteHandler{``0}})
+  name.vb: Delete(Of TLink)(ILinks(Of TLink), TLink, Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.ILinksExtensions.Delete<TLink>(Platform.Data.Doublets.ILinks<TLink>, TLink, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.ILinksExtensions.Delete(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink, System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: ILinksExtensions.Delete<TLink>(ILinks<TLink>, TLink, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: ILinksExtensions.Delete(Of TLink)(ILinks(Of TLink), TLink, Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.ILinksExtensions.DeleteAll*
   name: DeleteAll
   href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_DeleteAll_
