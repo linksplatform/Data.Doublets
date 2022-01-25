@@ -14,7 +14,7 @@ namespace Platform.Data.Doublets
     /// <summary>
     /// Структура описывающая уникальную связь.
     /// </summary>
-    public struct Link<TLink> : IEquatable<Link<TLink>>, IReadOnlyList<TLink>, IList<TLink>?
+    public struct Link<TLink> : IEquatable<Link<TLink>>, IReadOnlyList<TLink>, IList<TLink>
     {
         /// <summary>
         /// <para>
@@ -96,7 +96,7 @@ namespace Platform.Data.Doublets
             {
                 SetValues(ref otherLink, out Index, out Source, out Target);
             }
-            else if(other is IList<TLink>? otherList)
+            else if(other is IList<TLink> otherList)
             {
                 SetValues(otherList, out Index, out Source, out Target);
             }
