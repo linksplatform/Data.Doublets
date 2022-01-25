@@ -267,15 +267,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksDecoratorBase(Of TLink).Delete
   nameWithType: LinksDecoratorBase<TLink>.Delete
   nameWithType.vb: LinksDecoratorBase(Of TLink).Delete
-- uid: Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Each(System.Collections.Generic.IList{`0},ReadHandler{`0})
-  name: Each(IList<TLink>, ReadHandler<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1_Each_System_Collections_Generic_IList__0__ReadHandler__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Each(System.Collections.Generic.IList{`0},ReadHandler{`0})
-  name.vb: Each(IList(Of TLink), ReadHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksDecoratorBase<TLink>.Each(System.Collections.Generic.IList<TLink>, ReadHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksDecoratorBase(Of TLink).Each(System.Collections.Generic.IList(Of TLink), ReadHandler(Of TLink))
-  nameWithType: LinksDecoratorBase<TLink>.Each(IList<TLink>, ReadHandler<TLink>)
-  nameWithType.vb: LinksDecoratorBase(Of TLink).Each(IList(Of TLink), ReadHandler(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Each(System.Collections.Generic.IList{`0},System.Nullable{ReadHandler{`0}})
+  name: Each(IList<TLink>, Nullable<ReadHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1_Each_System_Collections_Generic_IList__0__System_Nullable_ReadHandler__0___
+  commentId: M:Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Each(System.Collections.Generic.IList{`0},System.Nullable{ReadHandler{`0}})
+  name.vb: Each(IList(Of TLink), Nullable(Of ReadHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Decorators.LinksDecoratorBase<TLink>.Each(System.Collections.Generic.IList<TLink>, System.Nullable<ReadHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDecoratorBase(Of TLink).Each(System.Collections.Generic.IList(Of TLink), System.Nullable(Of ReadHandler(Of TLink)))
+  nameWithType: LinksDecoratorBase<TLink>.Each(IList<TLink>, Nullable<ReadHandler<TLink>>)
+  nameWithType.vb: LinksDecoratorBase(Of TLink).Each(IList(Of TLink), Nullable(Of ReadHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Each*
   name: Each
   href: api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1_Each_
@@ -485,15 +485,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator(Of TLink).Delete
   nameWithType: LinksInnerReferenceExistenceValidator<TLink>.Delete
   nameWithType.vb: LinksInnerReferenceExistenceValidator(Of TLink).Delete
-- uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Each(System.Collections.Generic.IList{`0},ReadHandler{`0})
-  name: Each(IList<TLink>, ReadHandler<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceExistenceValidator_1_Each_System_Collections_Generic_IList__0__ReadHandler__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Each(System.Collections.Generic.IList{`0},ReadHandler{`0})
-  name.vb: Each(IList(Of TLink), ReadHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator<TLink>.Each(System.Collections.Generic.IList<TLink>, ReadHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator(Of TLink).Each(System.Collections.Generic.IList(Of TLink), ReadHandler(Of TLink))
-  nameWithType: LinksInnerReferenceExistenceValidator<TLink>.Each(IList<TLink>, ReadHandler<TLink>)
-  nameWithType.vb: LinksInnerReferenceExistenceValidator(Of TLink).Each(IList(Of TLink), ReadHandler(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Each(System.Collections.Generic.IList{`0},System.Nullable{ReadHandler{`0}})
+  name: Each(IList<TLink>, Nullable<ReadHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceExistenceValidator_1_Each_System_Collections_Generic_IList__0__System_Nullable_ReadHandler__0___
+  commentId: M:Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Each(System.Collections.Generic.IList{`0},System.Nullable{ReadHandler{`0}})
+  name.vb: Each(IList(Of TLink), Nullable(Of ReadHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator<TLink>.Each(System.Collections.Generic.IList<TLink>, System.Nullable<ReadHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator(Of TLink).Each(System.Collections.Generic.IList(Of TLink), System.Nullable(Of ReadHandler(Of TLink)))
+  nameWithType: LinksInnerReferenceExistenceValidator<TLink>.Each(IList<TLink>, Nullable<ReadHandler<TLink>>)
+  nameWithType.vb: LinksInnerReferenceExistenceValidator(Of TLink).Each(IList(Of TLink), Nullable(Of ReadHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Each*
   name: Each
   href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceExistenceValidator_1_Each_
@@ -548,15 +548,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver(Of TLink).LinksItselfConstantToSelfReferenceResolver
   nameWithType: LinksItselfConstantToSelfReferenceResolver<TLink>.LinksItselfConstantToSelfReferenceResolver
   nameWithType.vb: LinksItselfConstantToSelfReferenceResolver(Of TLink).LinksItselfConstantToSelfReferenceResolver
-- uid: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver`1.Each(System.Collections.Generic.IList{`0},ReadHandler{`0})
-  name: Each(IList<TLink>, ReadHandler<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksItselfConstantToSelfReferenceResolver_1_Each_System_Collections_Generic_IList__0__ReadHandler__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver`1.Each(System.Collections.Generic.IList{`0},ReadHandler{`0})
-  name.vb: Each(IList(Of TLink), ReadHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver<TLink>.Each(System.Collections.Generic.IList<TLink>, ReadHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver(Of TLink).Each(System.Collections.Generic.IList(Of TLink), ReadHandler(Of TLink))
-  nameWithType: LinksItselfConstantToSelfReferenceResolver<TLink>.Each(IList<TLink>, ReadHandler<TLink>)
-  nameWithType.vb: LinksItselfConstantToSelfReferenceResolver(Of TLink).Each(IList(Of TLink), ReadHandler(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver`1.Each(System.Collections.Generic.IList{`0},System.Nullable{ReadHandler{`0}})
+  name: Each(IList<TLink>, Nullable<ReadHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksItselfConstantToSelfReferenceResolver_1_Each_System_Collections_Generic_IList__0__System_Nullable_ReadHandler__0___
+  commentId: M:Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver`1.Each(System.Collections.Generic.IList{`0},System.Nullable{ReadHandler{`0}})
+  name.vb: Each(IList(Of TLink), Nullable(Of ReadHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver<TLink>.Each(System.Collections.Generic.IList<TLink>, System.Nullable<ReadHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver(Of TLink).Each(System.Collections.Generic.IList(Of TLink), System.Nullable(Of ReadHandler(Of TLink)))
+  nameWithType: LinksItselfConstantToSelfReferenceResolver<TLink>.Each(IList<TLink>, Nullable<ReadHandler<TLink>>)
+  nameWithType.vb: LinksItselfConstantToSelfReferenceResolver(Of TLink).Each(IList(Of TLink), Nullable(Of ReadHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver`1.Each*
   name: Each
   href: api/Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksItselfConstantToSelfReferenceResolver_1_Each_
@@ -1419,15 +1419,15 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Dispose
   nameWithType: UInt32UnitedMemoryLinks.Dispose
-- uid: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Each(System.Collections.Generic.IList{System.UInt32},ReadHandler{System.UInt32})
-  name: Each(IList<UInt32>, ReadHandler<UInt32>)
-  href: api/Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_FFI_UInt32UnitedMemoryLinks_Each_System_Collections_Generic_IList_System_UInt32__ReadHandler_System_UInt32__
-  commentId: M:Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Each(System.Collections.Generic.IList{System.UInt32},ReadHandler{System.UInt32})
-  name.vb: Each(IList(Of UInt32), ReadHandler(Of UInt32))
-  fullName: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Each(System.Collections.Generic.IList<System.UInt32>, ReadHandler<System.UInt32>)
-  fullName.vb: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Each(System.Collections.Generic.IList(Of System.UInt32), ReadHandler(Of System.UInt32))
-  nameWithType: UInt32UnitedMemoryLinks.Each(IList<UInt32>, ReadHandler<UInt32>)
-  nameWithType.vb: UInt32UnitedMemoryLinks.Each(IList(Of UInt32), ReadHandler(Of UInt32))
+- uid: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Each(System.Collections.Generic.IList{System.UInt32},System.Nullable{ReadHandler{System.UInt32}})
+  name: Each(IList<UInt32>, Nullable<ReadHandler<UInt32>>)
+  href: api/Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_FFI_UInt32UnitedMemoryLinks_Each_System_Collections_Generic_IList_System_UInt32__System_Nullable_ReadHandler_System_UInt32___
+  commentId: M:Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Each(System.Collections.Generic.IList{System.UInt32},System.Nullable{ReadHandler{System.UInt32}})
+  name.vb: Each(IList(Of UInt32), Nullable(Of ReadHandler(Of UInt32)))
+  fullName: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Each(System.Collections.Generic.IList<System.UInt32>, System.Nullable<ReadHandler<System.UInt32>>)
+  fullName.vb: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Each(System.Collections.Generic.IList(Of System.UInt32), System.Nullable(Of ReadHandler(Of System.UInt32)))
+  nameWithType: UInt32UnitedMemoryLinks.Each(IList<UInt32>, Nullable<ReadHandler<UInt32>>)
+  nameWithType.vb: UInt32UnitedMemoryLinks.Each(IList(Of UInt32), Nullable(Of ReadHandler(Of UInt32)))
 - uid: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Each*
   name: Each
   href: api/Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_FFI_UInt32UnitedMemoryLinks_Each_
@@ -1565,15 +1565,15 @@ references:
   fullName.vb: Platform.Data.Doublets.FFI.UnitedMemoryLinks(Of TLink).Dispose
   nameWithType: UnitedMemoryLinks<TLink>.Dispose
   nameWithType.vb: UnitedMemoryLinks(Of TLink).Dispose
-- uid: Platform.Data.Doublets.FFI.UnitedMemoryLinks`1.Each(System.Collections.Generic.IList{`0},ReadHandler{`0})
-  name: Each(IList<TLink>, ReadHandler<TLink>)
-  href: api/Platform.Data.Doublets.FFI.UnitedMemoryLinks-1.html#Platform_Data_Doublets_FFI_UnitedMemoryLinks_1_Each_System_Collections_Generic_IList__0__ReadHandler__0__
-  commentId: M:Platform.Data.Doublets.FFI.UnitedMemoryLinks`1.Each(System.Collections.Generic.IList{`0},ReadHandler{`0})
-  name.vb: Each(IList(Of TLink), ReadHandler(Of TLink))
-  fullName: Platform.Data.Doublets.FFI.UnitedMemoryLinks<TLink>.Each(System.Collections.Generic.IList<TLink>, ReadHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.FFI.UnitedMemoryLinks(Of TLink).Each(System.Collections.Generic.IList(Of TLink), ReadHandler(Of TLink))
-  nameWithType: UnitedMemoryLinks<TLink>.Each(IList<TLink>, ReadHandler<TLink>)
-  nameWithType.vb: UnitedMemoryLinks(Of TLink).Each(IList(Of TLink), ReadHandler(Of TLink))
+- uid: Platform.Data.Doublets.FFI.UnitedMemoryLinks`1.Each(System.Collections.Generic.IList{`0},System.Nullable{ReadHandler{`0}})
+  name: Each(IList<TLink>, Nullable<ReadHandler<TLink>>)
+  href: api/Platform.Data.Doublets.FFI.UnitedMemoryLinks-1.html#Platform_Data_Doublets_FFI_UnitedMemoryLinks_1_Each_System_Collections_Generic_IList__0__System_Nullable_ReadHandler__0___
+  commentId: M:Platform.Data.Doublets.FFI.UnitedMemoryLinks`1.Each(System.Collections.Generic.IList{`0},System.Nullable{ReadHandler{`0}})
+  name.vb: Each(IList(Of TLink), Nullable(Of ReadHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.FFI.UnitedMemoryLinks<TLink>.Each(System.Collections.Generic.IList<TLink>, System.Nullable<ReadHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.FFI.UnitedMemoryLinks(Of TLink).Each(System.Collections.Generic.IList(Of TLink), System.Nullable(Of ReadHandler(Of TLink)))
+  nameWithType: UnitedMemoryLinks<TLink>.Each(IList<TLink>, Nullable<ReadHandler<TLink>>)
+  nameWithType.vb: UnitedMemoryLinks(Of TLink).Each(IList(Of TLink), Nullable(Of ReadHandler(Of TLink)))
 - uid: Platform.Data.Doublets.FFI.UnitedMemoryLinks`1.Each*
   name: Each
   href: api/Platform.Data.Doublets.FFI.UnitedMemoryLinks-1.html#Platform_Data_Doublets_FFI_UnitedMemoryLinks_1_Each_
@@ -1874,15 +1874,6 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.ILinksExtensions.Each
   nameWithType: ILinksExtensions.Each
-- uid: Platform.Data.Doublets.ILinksExtensions.Each``1(Platform.Data.Doublets.ILinks{``0},``0,``0,ReadHandler{``0})
-  name: Each<TLink>(ILinks<TLink>, TLink, TLink, ReadHandler<TLink>)
-  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Each__1_Platform_Data_Doublets_ILinks___0____0___0_ReadHandler___0__
-  commentId: M:Platform.Data.Doublets.ILinksExtensions.Each``1(Platform.Data.Doublets.ILinks{``0},``0,``0,ReadHandler{``0})
-  name.vb: Each(Of TLink)(ILinks(Of TLink), TLink, TLink, ReadHandler(Of TLink))
-  fullName: Platform.Data.Doublets.ILinksExtensions.Each<TLink>(Platform.Data.Doublets.ILinks<TLink>, TLink, TLink, ReadHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.ILinksExtensions.Each(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink, TLink, ReadHandler(Of TLink))
-  nameWithType: ILinksExtensions.Each<TLink>(ILinks<TLink>, TLink, TLink, ReadHandler<TLink>)
-  nameWithType.vb: ILinksExtensions.Each(Of TLink)(ILinks(Of TLink), TLink, TLink, ReadHandler(Of TLink))
 - uid: Platform.Data.Doublets.ILinksExtensions.Each``1(Platform.Data.Doublets.ILinks{``0},``0,``0,System.Func{``0,System.Boolean})
   name: Each<TLink>(ILinks<TLink>, TLink, TLink, Func<TLink, Boolean>)
   href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Each__1_Platform_Data_Doublets_ILinks___0____0___0_System_Func___0_System_Boolean__
@@ -1892,24 +1883,15 @@ references:
   fullName.vb: Platform.Data.Doublets.ILinksExtensions.Each(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink, TLink, System.Func(Of TLink, System.Boolean))
   nameWithType: ILinksExtensions.Each<TLink>(ILinks<TLink>, TLink, TLink, Func<TLink, Boolean>)
   nameWithType.vb: ILinksExtensions.Each(Of TLink)(ILinks(Of TLink), TLink, TLink, Func(Of TLink, Boolean))
-- uid: Platform.Data.Doublets.ILinksExtensions.Each``1(Platform.Data.Doublets.ILinks{``0},ReadHandler{``0},``0,``0)
-  name: Each<TLink>(ILinks<TLink>, ReadHandler<TLink>, TLink, TLink)
-  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Each__1_Platform_Data_Doublets_ILinks___0__ReadHandler___0____0___0_
-  commentId: M:Platform.Data.Doublets.ILinksExtensions.Each``1(Platform.Data.Doublets.ILinks{``0},ReadHandler{``0},``0,``0)
-  name.vb: Each(Of TLink)(ILinks(Of TLink), ReadHandler(Of TLink), TLink, TLink)
-  fullName: Platform.Data.Doublets.ILinksExtensions.Each<TLink>(Platform.Data.Doublets.ILinks<TLink>, ReadHandler<TLink>, TLink, TLink)
-  fullName.vb: Platform.Data.Doublets.ILinksExtensions.Each(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), ReadHandler(Of TLink), TLink, TLink)
-  nameWithType: ILinksExtensions.Each<TLink>(ILinks<TLink>, ReadHandler<TLink>, TLink, TLink)
-  nameWithType.vb: ILinksExtensions.Each(Of TLink)(ILinks(Of TLink), ReadHandler(Of TLink), TLink, TLink)
-- uid: Platform.Data.Doublets.ILinksExtensions.Each``1(Platform.Data.Doublets.ILinks{``0},ReadHandler{``0},``0[])
-  name: Each<TLink>(ILinks<TLink>, ReadHandler<TLink>, TLink[])
-  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Each__1_Platform_Data_Doublets_ILinks___0__ReadHandler___0____0___
-  commentId: M:Platform.Data.Doublets.ILinksExtensions.Each``1(Platform.Data.Doublets.ILinks{``0},ReadHandler{``0},``0[])
-  name.vb: Each(Of TLink)(ILinks(Of TLink), ReadHandler(Of TLink), TLink())
-  fullName: Platform.Data.Doublets.ILinksExtensions.Each<TLink>(Platform.Data.Doublets.ILinks<TLink>, ReadHandler<TLink>, TLink[])
-  fullName.vb: Platform.Data.Doublets.ILinksExtensions.Each(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), ReadHandler(Of TLink), TLink())
-  nameWithType: ILinksExtensions.Each<TLink>(ILinks<TLink>, ReadHandler<TLink>, TLink[])
-  nameWithType.vb: ILinksExtensions.Each(Of TLink)(ILinks(Of TLink), ReadHandler(Of TLink), TLink())
+- uid: Platform.Data.Doublets.ILinksExtensions.Each``1(Platform.Data.Doublets.ILinks{``0},``0,``0,System.Nullable{ReadHandler{``0}})
+  name: Each<TLink>(ILinks<TLink>, TLink, TLink, Nullable<ReadHandler<TLink>>)
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Each__1_Platform_Data_Doublets_ILinks___0____0___0_System_Nullable_ReadHandler___0___
+  commentId: M:Platform.Data.Doublets.ILinksExtensions.Each``1(Platform.Data.Doublets.ILinks{``0},``0,``0,System.Nullable{ReadHandler{``0}})
+  name.vb: Each(Of TLink)(ILinks(Of TLink), TLink, TLink, Nullable(Of ReadHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.ILinksExtensions.Each<TLink>(Platform.Data.Doublets.ILinks<TLink>, TLink, TLink, System.Nullable<ReadHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.ILinksExtensions.Each(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink, TLink, System.Nullable(Of ReadHandler(Of TLink)))
+  nameWithType: ILinksExtensions.Each<TLink>(ILinks<TLink>, TLink, TLink, Nullable<ReadHandler<TLink>>)
+  nameWithType.vb: ILinksExtensions.Each(Of TLink)(ILinks(Of TLink), TLink, TLink, Nullable(Of ReadHandler(Of TLink)))
 - uid: Platform.Data.Doublets.ILinksExtensions.Each``1(Platform.Data.Doublets.ILinks{``0},System.Func{``0,System.Boolean},``0,``0)
   name: Each<TLink>(ILinks<TLink>, Func<TLink, Boolean>, TLink, TLink)
   href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Each__1_Platform_Data_Doublets_ILinks___0__System_Func___0_System_Boolean____0___0_
@@ -1919,6 +1901,24 @@ references:
   fullName.vb: Platform.Data.Doublets.ILinksExtensions.Each(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), System.Func(Of TLink, System.Boolean), TLink, TLink)
   nameWithType: ILinksExtensions.Each<TLink>(ILinks<TLink>, Func<TLink, Boolean>, TLink, TLink)
   nameWithType.vb: ILinksExtensions.Each(Of TLink)(ILinks(Of TLink), Func(Of TLink, Boolean), TLink, TLink)
+- uid: Platform.Data.Doublets.ILinksExtensions.Each``1(Platform.Data.Doublets.ILinks{``0},System.Nullable{ReadHandler{``0}},``0,``0)
+  name: Each<TLink>(ILinks<TLink>, Nullable<ReadHandler<TLink>>, TLink, TLink)
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Each__1_Platform_Data_Doublets_ILinks___0__System_Nullable_ReadHandler___0_____0___0_
+  commentId: M:Platform.Data.Doublets.ILinksExtensions.Each``1(Platform.Data.Doublets.ILinks{``0},System.Nullable{ReadHandler{``0}},``0,``0)
+  name.vb: Each(Of TLink)(ILinks(Of TLink), Nullable(Of ReadHandler(Of TLink)), TLink, TLink)
+  fullName: Platform.Data.Doublets.ILinksExtensions.Each<TLink>(Platform.Data.Doublets.ILinks<TLink>, System.Nullable<ReadHandler<TLink>>, TLink, TLink)
+  fullName.vb: Platform.Data.Doublets.ILinksExtensions.Each(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), System.Nullable(Of ReadHandler(Of TLink)), TLink, TLink)
+  nameWithType: ILinksExtensions.Each<TLink>(ILinks<TLink>, Nullable<ReadHandler<TLink>>, TLink, TLink)
+  nameWithType.vb: ILinksExtensions.Each(Of TLink)(ILinks(Of TLink), Nullable(Of ReadHandler(Of TLink)), TLink, TLink)
+- uid: Platform.Data.Doublets.ILinksExtensions.Each``1(Platform.Data.Doublets.ILinks{``0},System.Nullable{ReadHandler{``0}},``0[])
+  name: Each<TLink>(ILinks<TLink>, Nullable<ReadHandler<TLink>>, TLink[])
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Each__1_Platform_Data_Doublets_ILinks___0__System_Nullable_ReadHandler___0_____0___
+  commentId: M:Platform.Data.Doublets.ILinksExtensions.Each``1(Platform.Data.Doublets.ILinks{``0},System.Nullable{ReadHandler{``0}},``0[])
+  name.vb: Each(Of TLink)(ILinks(Of TLink), Nullable(Of ReadHandler(Of TLink)), TLink())
+  fullName: Platform.Data.Doublets.ILinksExtensions.Each<TLink>(Platform.Data.Doublets.ILinks<TLink>, System.Nullable<ReadHandler<TLink>>, TLink[])
+  fullName.vb: Platform.Data.Doublets.ILinksExtensions.Each(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), System.Nullable(Of ReadHandler(Of TLink)), TLink())
+  nameWithType: ILinksExtensions.Each<TLink>(ILinks<TLink>, Nullable<ReadHandler<TLink>>, TLink[])
+  nameWithType.vb: ILinksExtensions.Each(Of TLink)(ILinks(Of TLink), Nullable(Of ReadHandler(Of TLink)), TLink())
 - uid: Platform.Data.Doublets.ILinksExtensions.EnforceResetValues*
   name: EnforceResetValues
   href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_EnforceResetValues_
@@ -3244,15 +3244,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Memory.ILinksTreeMethods(Of TLink).Detach
   nameWithType: ILinksTreeMethods<TLink>.Detach
   nameWithType.vb: ILinksTreeMethods(Of TLink).Detach
-- uid: Platform.Data.Doublets.Memory.ILinksTreeMethods`1.EachUsage(`0,ReadHandler{`0})
-  name: EachUsage(TLink, ReadHandler<TLink>)
-  href: api/Platform.Data.Doublets.Memory.ILinksTreeMethods-1.html#Platform_Data_Doublets_Memory_ILinksTreeMethods_1_EachUsage__0_ReadHandler__0__
-  commentId: M:Platform.Data.Doublets.Memory.ILinksTreeMethods`1.EachUsage(`0,ReadHandler{`0})
-  name.vb: EachUsage(TLink, ReadHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Memory.ILinksTreeMethods<TLink>.EachUsage(TLink, ReadHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Memory.ILinksTreeMethods(Of TLink).EachUsage(TLink, ReadHandler(Of TLink))
-  nameWithType: ILinksTreeMethods<TLink>.EachUsage(TLink, ReadHandler<TLink>)
-  nameWithType.vb: ILinksTreeMethods(Of TLink).EachUsage(TLink, ReadHandler(Of TLink))
+- uid: Platform.Data.Doublets.Memory.ILinksTreeMethods`1.EachUsage(`0,System.Nullable{ReadHandler{`0}})
+  name: EachUsage(TLink, Nullable<ReadHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Memory.ILinksTreeMethods-1.html#Platform_Data_Doublets_Memory_ILinksTreeMethods_1_EachUsage__0_System_Nullable_ReadHandler__0___
+  commentId: M:Platform.Data.Doublets.Memory.ILinksTreeMethods`1.EachUsage(`0,System.Nullable{ReadHandler{`0}})
+  name.vb: EachUsage(TLink, Nullable(Of ReadHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Memory.ILinksTreeMethods<TLink>.EachUsage(TLink, System.Nullable<ReadHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Memory.ILinksTreeMethods(Of TLink).EachUsage(TLink, System.Nullable(Of ReadHandler(Of TLink)))
+  nameWithType: ILinksTreeMethods<TLink>.EachUsage(TLink, Nullable<ReadHandler<TLink>>)
+  nameWithType.vb: ILinksTreeMethods(Of TLink).EachUsage(TLink, Nullable(Of ReadHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Memory.ILinksTreeMethods`1.EachUsage*
   name: EachUsage
   href: api/Platform.Data.Doublets.Memory.ILinksTreeMethods-1.html#Platform_Data_Doublets_Memory_ILinksTreeMethods_1_EachUsage_
@@ -3541,15 +3541,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksRecursionlessSizeBalancedTreeMethodsBase(Of TLink).CountUsages
   nameWithType: ExternalLinksRecursionlessSizeBalancedTreeMethodsBase<TLink>.CountUsages
   nameWithType.vb: ExternalLinksRecursionlessSizeBalancedTreeMethodsBase(Of TLink).CountUsages
-- uid: Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksRecursionlessSizeBalancedTreeMethodsBase`1.EachUsage(`0,ReadHandler{`0})
-  name: EachUsage(TLink, ReadHandler<TLink>)
-  href: api/Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksRecursionlessSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksRecursionlessSizeBalancedTreeMethodsBase_1_EachUsage__0_ReadHandler__0__
-  commentId: M:Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksRecursionlessSizeBalancedTreeMethodsBase`1.EachUsage(`0,ReadHandler{`0})
-  name.vb: EachUsage(TLink, ReadHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksRecursionlessSizeBalancedTreeMethodsBase<TLink>.EachUsage(TLink, ReadHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksRecursionlessSizeBalancedTreeMethodsBase(Of TLink).EachUsage(TLink, ReadHandler(Of TLink))
-  nameWithType: ExternalLinksRecursionlessSizeBalancedTreeMethodsBase<TLink>.EachUsage(TLink, ReadHandler<TLink>)
-  nameWithType.vb: ExternalLinksRecursionlessSizeBalancedTreeMethodsBase(Of TLink).EachUsage(TLink, ReadHandler(Of TLink))
+- uid: Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksRecursionlessSizeBalancedTreeMethodsBase`1.EachUsage(`0,System.Nullable{ReadHandler{`0}})
+  name: EachUsage(TLink, Nullable<ReadHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksRecursionlessSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksRecursionlessSizeBalancedTreeMethodsBase_1_EachUsage__0_System_Nullable_ReadHandler__0___
+  commentId: M:Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksRecursionlessSizeBalancedTreeMethodsBase`1.EachUsage(`0,System.Nullable{ReadHandler{`0}})
+  name.vb: EachUsage(TLink, Nullable(Of ReadHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksRecursionlessSizeBalancedTreeMethodsBase<TLink>.EachUsage(TLink, System.Nullable<ReadHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksRecursionlessSizeBalancedTreeMethodsBase(Of TLink).EachUsage(TLink, System.Nullable(Of ReadHandler(Of TLink)))
+  nameWithType: ExternalLinksRecursionlessSizeBalancedTreeMethodsBase<TLink>.EachUsage(TLink, Nullable<ReadHandler<TLink>>)
+  nameWithType.vb: ExternalLinksRecursionlessSizeBalancedTreeMethodsBase(Of TLink).EachUsage(TLink, Nullable(Of ReadHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksRecursionlessSizeBalancedTreeMethodsBase`1.EachUsage*
   name: EachUsage
   href: api/Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksRecursionlessSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksRecursionlessSizeBalancedTreeMethodsBase_1_EachUsage_
@@ -3847,15 +3847,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase(Of TLink).CountUsages
   nameWithType: ExternalLinksSizeBalancedTreeMethodsBase<TLink>.CountUsages
   nameWithType.vb: ExternalLinksSizeBalancedTreeMethodsBase(Of TLink).CountUsages
-- uid: Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.EachUsage(`0,ReadHandler{`0})
-  name: EachUsage(TLink, ReadHandler<TLink>)
-  href: api/Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_EachUsage__0_ReadHandler__0__
-  commentId: M:Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.EachUsage(`0,ReadHandler{`0})
-  name.vb: EachUsage(TLink, ReadHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase<TLink>.EachUsage(TLink, ReadHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase(Of TLink).EachUsage(TLink, ReadHandler(Of TLink))
-  nameWithType: ExternalLinksSizeBalancedTreeMethodsBase<TLink>.EachUsage(TLink, ReadHandler<TLink>)
-  nameWithType.vb: ExternalLinksSizeBalancedTreeMethodsBase(Of TLink).EachUsage(TLink, ReadHandler(Of TLink))
+- uid: Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.EachUsage(`0,System.Nullable{ReadHandler{`0}})
+  name: EachUsage(TLink, Nullable<ReadHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_EachUsage__0_System_Nullable_ReadHandler__0___
+  commentId: M:Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.EachUsage(`0,System.Nullable{ReadHandler{`0}})
+  name.vb: EachUsage(TLink, Nullable(Of ReadHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase<TLink>.EachUsage(TLink, System.Nullable<ReadHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase(Of TLink).EachUsage(TLink, System.Nullable(Of ReadHandler(Of TLink)))
+  nameWithType: ExternalLinksSizeBalancedTreeMethodsBase<TLink>.EachUsage(TLink, Nullable<ReadHandler<TLink>>)
+  nameWithType.vb: ExternalLinksSizeBalancedTreeMethodsBase(Of TLink).EachUsage(TLink, Nullable(Of ReadHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase`1.EachUsage*
   name: EachUsage
   href: api/Platform.Data.Doublets.Memory.Split.Generic.ExternalLinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_Memory_Split_Generic_ExternalLinksSizeBalancedTreeMethodsBase_1_EachUsage_
@@ -5145,15 +5145,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Memory.Split.Generic.InternalLinksRecursionlessSizeBalancedTreeMethodsBase(Of TLink).CountUsages
   nameWithType: InternalLinksRecursionlessSizeBalancedTreeMethodsBase<TLink>.CountUsages
   nameWithType.vb: InternalLinksRecursionlessSizeBalancedTreeMethodsBase(Of TLink).CountUsages
-- uid: Platform.Data.Doublets.Memory.Split.Generic.InternalLinksRecursionlessSizeBalancedTreeMethodsBase`1.EachUsage(`0,ReadHandler{`0})
-  name: EachUsage(TLink, ReadHandler<TLink>)
-  href: api/Platform.Data.Doublets.Memory.Split.Generic.InternalLinksRecursionlessSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_Memory_Split_Generic_InternalLinksRecursionlessSizeBalancedTreeMethodsBase_1_EachUsage__0_ReadHandler__0__
-  commentId: M:Platform.Data.Doublets.Memory.Split.Generic.InternalLinksRecursionlessSizeBalancedTreeMethodsBase`1.EachUsage(`0,ReadHandler{`0})
-  name.vb: EachUsage(TLink, ReadHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Memory.Split.Generic.InternalLinksRecursionlessSizeBalancedTreeMethodsBase<TLink>.EachUsage(TLink, ReadHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Memory.Split.Generic.InternalLinksRecursionlessSizeBalancedTreeMethodsBase(Of TLink).EachUsage(TLink, ReadHandler(Of TLink))
-  nameWithType: InternalLinksRecursionlessSizeBalancedTreeMethodsBase<TLink>.EachUsage(TLink, ReadHandler<TLink>)
-  nameWithType.vb: InternalLinksRecursionlessSizeBalancedTreeMethodsBase(Of TLink).EachUsage(TLink, ReadHandler(Of TLink))
+- uid: Platform.Data.Doublets.Memory.Split.Generic.InternalLinksRecursionlessSizeBalancedTreeMethodsBase`1.EachUsage(`0,System.Nullable{ReadHandler{`0}})
+  name: EachUsage(TLink, Nullable<ReadHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Memory.Split.Generic.InternalLinksRecursionlessSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_Memory_Split_Generic_InternalLinksRecursionlessSizeBalancedTreeMethodsBase_1_EachUsage__0_System_Nullable_ReadHandler__0___
+  commentId: M:Platform.Data.Doublets.Memory.Split.Generic.InternalLinksRecursionlessSizeBalancedTreeMethodsBase`1.EachUsage(`0,System.Nullable{ReadHandler{`0}})
+  name.vb: EachUsage(TLink, Nullable(Of ReadHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Memory.Split.Generic.InternalLinksRecursionlessSizeBalancedTreeMethodsBase<TLink>.EachUsage(TLink, System.Nullable<ReadHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Memory.Split.Generic.InternalLinksRecursionlessSizeBalancedTreeMethodsBase(Of TLink).EachUsage(TLink, System.Nullable(Of ReadHandler(Of TLink)))
+  nameWithType: InternalLinksRecursionlessSizeBalancedTreeMethodsBase<TLink>.EachUsage(TLink, Nullable<ReadHandler<TLink>>)
+  nameWithType.vb: InternalLinksRecursionlessSizeBalancedTreeMethodsBase(Of TLink).EachUsage(TLink, Nullable(Of ReadHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Memory.Split.Generic.InternalLinksRecursionlessSizeBalancedTreeMethodsBase`1.EachUsage*
   name: EachUsage
   href: api/Platform.Data.Doublets.Memory.Split.Generic.InternalLinksRecursionlessSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_Memory_Split_Generic_InternalLinksRecursionlessSizeBalancedTreeMethodsBase_1_EachUsage_
@@ -5452,15 +5452,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSizeBalancedTreeMethodsBase(Of TLink).CountUsages
   nameWithType: InternalLinksSizeBalancedTreeMethodsBase<TLink>.CountUsages
   nameWithType.vb: InternalLinksSizeBalancedTreeMethodsBase(Of TLink).CountUsages
-- uid: Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSizeBalancedTreeMethodsBase`1.EachUsage(`0,ReadHandler{`0})
-  name: EachUsage(TLink, ReadHandler<TLink>)
-  href: api/Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_Memory_Split_Generic_InternalLinksSizeBalancedTreeMethodsBase_1_EachUsage__0_ReadHandler__0__
-  commentId: M:Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSizeBalancedTreeMethodsBase`1.EachUsage(`0,ReadHandler{`0})
-  name.vb: EachUsage(TLink, ReadHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSizeBalancedTreeMethodsBase<TLink>.EachUsage(TLink, ReadHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSizeBalancedTreeMethodsBase(Of TLink).EachUsage(TLink, ReadHandler(Of TLink))
-  nameWithType: InternalLinksSizeBalancedTreeMethodsBase<TLink>.EachUsage(TLink, ReadHandler<TLink>)
-  nameWithType.vb: InternalLinksSizeBalancedTreeMethodsBase(Of TLink).EachUsage(TLink, ReadHandler(Of TLink))
+- uid: Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSizeBalancedTreeMethodsBase`1.EachUsage(`0,System.Nullable{ReadHandler{`0}})
+  name: EachUsage(TLink, Nullable<ReadHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_Memory_Split_Generic_InternalLinksSizeBalancedTreeMethodsBase_1_EachUsage__0_System_Nullable_ReadHandler__0___
+  commentId: M:Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSizeBalancedTreeMethodsBase`1.EachUsage(`0,System.Nullable{ReadHandler{`0}})
+  name.vb: EachUsage(TLink, Nullable(Of ReadHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSizeBalancedTreeMethodsBase<TLink>.EachUsage(TLink, System.Nullable<ReadHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSizeBalancedTreeMethodsBase(Of TLink).EachUsage(TLink, System.Nullable(Of ReadHandler(Of TLink)))
+  nameWithType: InternalLinksSizeBalancedTreeMethodsBase<TLink>.EachUsage(TLink, Nullable<ReadHandler<TLink>>)
+  nameWithType.vb: InternalLinksSizeBalancedTreeMethodsBase(Of TLink).EachUsage(TLink, Nullable(Of ReadHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSizeBalancedTreeMethodsBase`1.EachUsage*
   name: EachUsage
   href: api/Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_Memory_Split_Generic_InternalLinksSizeBalancedTreeMethodsBase_1_EachUsage_
@@ -5759,15 +5759,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSourcesLinkedListMethods(Of TLink).CountUsages
   nameWithType: InternalLinksSourcesLinkedListMethods<TLink>.CountUsages
   nameWithType.vb: InternalLinksSourcesLinkedListMethods(Of TLink).CountUsages
-- uid: Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSourcesLinkedListMethods`1.EachUsage(`0,ReadHandler{`0})
-  name: EachUsage(TLink, ReadHandler<TLink>)
-  href: api/Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSourcesLinkedListMethods-1.html#Platform_Data_Doublets_Memory_Split_Generic_InternalLinksSourcesLinkedListMethods_1_EachUsage__0_ReadHandler__0__
-  commentId: M:Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSourcesLinkedListMethods`1.EachUsage(`0,ReadHandler{`0})
-  name.vb: EachUsage(TLink, ReadHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSourcesLinkedListMethods<TLink>.EachUsage(TLink, ReadHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSourcesLinkedListMethods(Of TLink).EachUsage(TLink, ReadHandler(Of TLink))
-  nameWithType: InternalLinksSourcesLinkedListMethods<TLink>.EachUsage(TLink, ReadHandler<TLink>)
-  nameWithType.vb: InternalLinksSourcesLinkedListMethods(Of TLink).EachUsage(TLink, ReadHandler(Of TLink))
+- uid: Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSourcesLinkedListMethods`1.EachUsage(`0,System.Nullable{ReadHandler{`0}})
+  name: EachUsage(TLink, Nullable<ReadHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSourcesLinkedListMethods-1.html#Platform_Data_Doublets_Memory_Split_Generic_InternalLinksSourcesLinkedListMethods_1_EachUsage__0_System_Nullable_ReadHandler__0___
+  commentId: M:Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSourcesLinkedListMethods`1.EachUsage(`0,System.Nullable{ReadHandler{`0}})
+  name.vb: EachUsage(TLink, Nullable(Of ReadHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSourcesLinkedListMethods<TLink>.EachUsage(TLink, System.Nullable<ReadHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSourcesLinkedListMethods(Of TLink).EachUsage(TLink, System.Nullable(Of ReadHandler(Of TLink)))
+  nameWithType: InternalLinksSourcesLinkedListMethods<TLink>.EachUsage(TLink, Nullable<ReadHandler<TLink>>)
+  nameWithType.vb: InternalLinksSourcesLinkedListMethods(Of TLink).EachUsage(TLink, Nullable(Of ReadHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSourcesLinkedListMethods`1.EachUsage*
   name: EachUsage
   href: api/Platform.Data.Doublets.Memory.Split.Generic.InternalLinksSourcesLinkedListMethods-1.html#Platform_Data_Doublets_Memory_Split_Generic_InternalLinksSourcesLinkedListMethods_1_EachUsage_
@@ -7408,15 +7408,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase(Of TLink).Dispose
   nameWithType: SplitMemoryLinksBase<TLink>.Dispose
   nameWithType.vb: SplitMemoryLinksBase(Of TLink).Dispose
-- uid: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase`1.Each(System.Collections.Generic.IList{`0},ReadHandler{`0})
-  name: Each(IList<TLink>, ReadHandler<TLink>)
-  href: api/Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase-1.html#Platform_Data_Doublets_Memory_Split_Generic_SplitMemoryLinksBase_1_Each_System_Collections_Generic_IList__0__ReadHandler__0__
-  commentId: M:Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase`1.Each(System.Collections.Generic.IList{`0},ReadHandler{`0})
-  name.vb: Each(IList(Of TLink), ReadHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase<TLink>.Each(System.Collections.Generic.IList<TLink>, ReadHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase(Of TLink).Each(System.Collections.Generic.IList(Of TLink), ReadHandler(Of TLink))
-  nameWithType: SplitMemoryLinksBase<TLink>.Each(IList<TLink>, ReadHandler<TLink>)
-  nameWithType.vb: SplitMemoryLinksBase(Of TLink).Each(IList(Of TLink), ReadHandler(Of TLink))
+- uid: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase`1.Each(System.Collections.Generic.IList{`0},System.Nullable{ReadHandler{`0}})
+  name: Each(IList<TLink>, Nullable<ReadHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase-1.html#Platform_Data_Doublets_Memory_Split_Generic_SplitMemoryLinksBase_1_Each_System_Collections_Generic_IList__0__System_Nullable_ReadHandler__0___
+  commentId: M:Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase`1.Each(System.Collections.Generic.IList{`0},System.Nullable{ReadHandler{`0}})
+  name.vb: Each(IList(Of TLink), Nullable(Of ReadHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase<TLink>.Each(System.Collections.Generic.IList<TLink>, System.Nullable<ReadHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase(Of TLink).Each(System.Collections.Generic.IList(Of TLink), System.Nullable(Of ReadHandler(Of TLink)))
+  nameWithType: SplitMemoryLinksBase<TLink>.Each(IList<TLink>, Nullable<ReadHandler<TLink>>)
+  nameWithType.vb: SplitMemoryLinksBase(Of TLink).Each(IList(Of TLink), Nullable(Of ReadHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase`1.Each*
   name: Each
   href: api/Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase-1.html#Platform_Data_Doublets_Memory_Split_Generic_SplitMemoryLinksBase_1_Each_
@@ -14552,15 +14552,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Memory.United.Generic.LinksAvlBalancedTreeMethodsBase(Of TLink).CountUsages
   nameWithType: LinksAvlBalancedTreeMethodsBase<TLink>.CountUsages
   nameWithType.vb: LinksAvlBalancedTreeMethodsBase(Of TLink).CountUsages
-- uid: Platform.Data.Doublets.Memory.United.Generic.LinksAvlBalancedTreeMethodsBase`1.EachUsage(`0,ReadHandler{`0})
-  name: EachUsage(TLink, ReadHandler<TLink>)
-  href: api/Platform.Data.Doublets.Memory.United.Generic.LinksAvlBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_Memory_United_Generic_LinksAvlBalancedTreeMethodsBase_1_EachUsage__0_ReadHandler__0__
-  commentId: M:Platform.Data.Doublets.Memory.United.Generic.LinksAvlBalancedTreeMethodsBase`1.EachUsage(`0,ReadHandler{`0})
-  name.vb: EachUsage(TLink, ReadHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Memory.United.Generic.LinksAvlBalancedTreeMethodsBase<TLink>.EachUsage(TLink, ReadHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Memory.United.Generic.LinksAvlBalancedTreeMethodsBase(Of TLink).EachUsage(TLink, ReadHandler(Of TLink))
-  nameWithType: LinksAvlBalancedTreeMethodsBase<TLink>.EachUsage(TLink, ReadHandler<TLink>)
-  nameWithType.vb: LinksAvlBalancedTreeMethodsBase(Of TLink).EachUsage(TLink, ReadHandler(Of TLink))
+- uid: Platform.Data.Doublets.Memory.United.Generic.LinksAvlBalancedTreeMethodsBase`1.EachUsage(`0,System.Nullable{ReadHandler{`0}})
+  name: EachUsage(TLink, Nullable<ReadHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Memory.United.Generic.LinksAvlBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_Memory_United_Generic_LinksAvlBalancedTreeMethodsBase_1_EachUsage__0_System_Nullable_ReadHandler__0___
+  commentId: M:Platform.Data.Doublets.Memory.United.Generic.LinksAvlBalancedTreeMethodsBase`1.EachUsage(`0,System.Nullable{ReadHandler{`0}})
+  name.vb: EachUsage(TLink, Nullable(Of ReadHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Memory.United.Generic.LinksAvlBalancedTreeMethodsBase<TLink>.EachUsage(TLink, System.Nullable<ReadHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Memory.United.Generic.LinksAvlBalancedTreeMethodsBase(Of TLink).EachUsage(TLink, System.Nullable(Of ReadHandler(Of TLink)))
+  nameWithType: LinksAvlBalancedTreeMethodsBase<TLink>.EachUsage(TLink, Nullable<ReadHandler<TLink>>)
+  nameWithType.vb: LinksAvlBalancedTreeMethodsBase(Of TLink).EachUsage(TLink, Nullable(Of ReadHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Memory.United.Generic.LinksAvlBalancedTreeMethodsBase`1.EachUsage*
   name: EachUsage
   href: api/Platform.Data.Doublets.Memory.United.Generic.LinksAvlBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_Memory_United_Generic_LinksAvlBalancedTreeMethodsBase_1_EachUsage_
@@ -14990,15 +14990,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Memory.United.Generic.LinksRecursionlessSizeBalancedTreeMethodsBase(Of TLink).CountUsages
   nameWithType: LinksRecursionlessSizeBalancedTreeMethodsBase<TLink>.CountUsages
   nameWithType.vb: LinksRecursionlessSizeBalancedTreeMethodsBase(Of TLink).CountUsages
-- uid: Platform.Data.Doublets.Memory.United.Generic.LinksRecursionlessSizeBalancedTreeMethodsBase`1.EachUsage(`0,ReadHandler{`0})
-  name: EachUsage(TLink, ReadHandler<TLink>)
-  href: api/Platform.Data.Doublets.Memory.United.Generic.LinksRecursionlessSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_Memory_United_Generic_LinksRecursionlessSizeBalancedTreeMethodsBase_1_EachUsage__0_ReadHandler__0__
-  commentId: M:Platform.Data.Doublets.Memory.United.Generic.LinksRecursionlessSizeBalancedTreeMethodsBase`1.EachUsage(`0,ReadHandler{`0})
-  name.vb: EachUsage(TLink, ReadHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Memory.United.Generic.LinksRecursionlessSizeBalancedTreeMethodsBase<TLink>.EachUsage(TLink, ReadHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Memory.United.Generic.LinksRecursionlessSizeBalancedTreeMethodsBase(Of TLink).EachUsage(TLink, ReadHandler(Of TLink))
-  nameWithType: LinksRecursionlessSizeBalancedTreeMethodsBase<TLink>.EachUsage(TLink, ReadHandler<TLink>)
-  nameWithType.vb: LinksRecursionlessSizeBalancedTreeMethodsBase(Of TLink).EachUsage(TLink, ReadHandler(Of TLink))
+- uid: Platform.Data.Doublets.Memory.United.Generic.LinksRecursionlessSizeBalancedTreeMethodsBase`1.EachUsage(`0,System.Nullable{ReadHandler{`0}})
+  name: EachUsage(TLink, Nullable<ReadHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Memory.United.Generic.LinksRecursionlessSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_Memory_United_Generic_LinksRecursionlessSizeBalancedTreeMethodsBase_1_EachUsage__0_System_Nullable_ReadHandler__0___
+  commentId: M:Platform.Data.Doublets.Memory.United.Generic.LinksRecursionlessSizeBalancedTreeMethodsBase`1.EachUsage(`0,System.Nullable{ReadHandler{`0}})
+  name.vb: EachUsage(TLink, Nullable(Of ReadHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Memory.United.Generic.LinksRecursionlessSizeBalancedTreeMethodsBase<TLink>.EachUsage(TLink, System.Nullable<ReadHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Memory.United.Generic.LinksRecursionlessSizeBalancedTreeMethodsBase(Of TLink).EachUsage(TLink, System.Nullable(Of ReadHandler(Of TLink)))
+  nameWithType: LinksRecursionlessSizeBalancedTreeMethodsBase<TLink>.EachUsage(TLink, Nullable<ReadHandler<TLink>>)
+  nameWithType.vb: LinksRecursionlessSizeBalancedTreeMethodsBase(Of TLink).EachUsage(TLink, Nullable(Of ReadHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Memory.United.Generic.LinksRecursionlessSizeBalancedTreeMethodsBase`1.EachUsage*
   name: EachUsage
   href: api/Platform.Data.Doublets.Memory.United.Generic.LinksRecursionlessSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_Memory_United_Generic_LinksRecursionlessSizeBalancedTreeMethodsBase_1_EachUsage_
@@ -15271,15 +15271,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Memory.United.Generic.LinksSizeBalancedTreeMethodsBase(Of TLink).CountUsages
   nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>.CountUsages
   nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink).CountUsages
-- uid: Platform.Data.Doublets.Memory.United.Generic.LinksSizeBalancedTreeMethodsBase`1.EachUsage(`0,ReadHandler{`0})
-  name: EachUsage(TLink, ReadHandler<TLink>)
-  href: api/Platform.Data.Doublets.Memory.United.Generic.LinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_Memory_United_Generic_LinksSizeBalancedTreeMethodsBase_1_EachUsage__0_ReadHandler__0__
-  commentId: M:Platform.Data.Doublets.Memory.United.Generic.LinksSizeBalancedTreeMethodsBase`1.EachUsage(`0,ReadHandler{`0})
-  name.vb: EachUsage(TLink, ReadHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Memory.United.Generic.LinksSizeBalancedTreeMethodsBase<TLink>.EachUsage(TLink, ReadHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Memory.United.Generic.LinksSizeBalancedTreeMethodsBase(Of TLink).EachUsage(TLink, ReadHandler(Of TLink))
-  nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>.EachUsage(TLink, ReadHandler<TLink>)
-  nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink).EachUsage(TLink, ReadHandler(Of TLink))
+- uid: Platform.Data.Doublets.Memory.United.Generic.LinksSizeBalancedTreeMethodsBase`1.EachUsage(`0,System.Nullable{ReadHandler{`0}})
+  name: EachUsage(TLink, Nullable<ReadHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Memory.United.Generic.LinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_Memory_United_Generic_LinksSizeBalancedTreeMethodsBase_1_EachUsage__0_System_Nullable_ReadHandler__0___
+  commentId: M:Platform.Data.Doublets.Memory.United.Generic.LinksSizeBalancedTreeMethodsBase`1.EachUsage(`0,System.Nullable{ReadHandler{`0}})
+  name.vb: EachUsage(TLink, Nullable(Of ReadHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Memory.United.Generic.LinksSizeBalancedTreeMethodsBase<TLink>.EachUsage(TLink, System.Nullable<ReadHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Memory.United.Generic.LinksSizeBalancedTreeMethodsBase(Of TLink).EachUsage(TLink, System.Nullable(Of ReadHandler(Of TLink)))
+  nameWithType: LinksSizeBalancedTreeMethodsBase<TLink>.EachUsage(TLink, Nullable<ReadHandler<TLink>>)
+  nameWithType.vb: LinksSizeBalancedTreeMethodsBase(Of TLink).EachUsage(TLink, Nullable(Of ReadHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Memory.United.Generic.LinksSizeBalancedTreeMethodsBase`1.EachUsage*
   name: EachUsage
   href: api/Platform.Data.Doublets.Memory.United.Generic.LinksSizeBalancedTreeMethodsBase-1.html#Platform_Data_Doublets_Memory_United_Generic_LinksSizeBalancedTreeMethodsBase_1_EachUsage_
@@ -17560,15 +17560,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase(Of TLink).Dispose
   nameWithType: UnitedMemoryLinksBase<TLink>.Dispose
   nameWithType.vb: UnitedMemoryLinksBase(Of TLink).Dispose
-- uid: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase`1.Each(System.Collections.Generic.IList{`0},ReadHandler{`0})
-  name: Each(IList<TLink>, ReadHandler<TLink>)
-  href: api/Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase-1.html#Platform_Data_Doublets_Memory_United_Generic_UnitedMemoryLinksBase_1_Each_System_Collections_Generic_IList__0__ReadHandler__0__
-  commentId: M:Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase`1.Each(System.Collections.Generic.IList{`0},ReadHandler{`0})
-  name.vb: Each(IList(Of TLink), ReadHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase<TLink>.Each(System.Collections.Generic.IList<TLink>, ReadHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase(Of TLink).Each(System.Collections.Generic.IList(Of TLink), ReadHandler(Of TLink))
-  nameWithType: UnitedMemoryLinksBase<TLink>.Each(IList<TLink>, ReadHandler<TLink>)
-  nameWithType.vb: UnitedMemoryLinksBase(Of TLink).Each(IList(Of TLink), ReadHandler(Of TLink))
+- uid: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase`1.Each(System.Collections.Generic.IList{`0},System.Nullable{ReadHandler{`0}})
+  name: Each(IList<TLink>, Nullable<ReadHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase-1.html#Platform_Data_Doublets_Memory_United_Generic_UnitedMemoryLinksBase_1_Each_System_Collections_Generic_IList__0__System_Nullable_ReadHandler__0___
+  commentId: M:Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase`1.Each(System.Collections.Generic.IList{`0},System.Nullable{ReadHandler{`0}})
+  name.vb: Each(IList(Of TLink), Nullable(Of ReadHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase<TLink>.Each(System.Collections.Generic.IList<TLink>, System.Nullable<ReadHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase(Of TLink).Each(System.Collections.Generic.IList(Of TLink), System.Nullable(Of ReadHandler(Of TLink)))
+  nameWithType: UnitedMemoryLinksBase<TLink>.Each(IList<TLink>, Nullable<ReadHandler<TLink>>)
+  nameWithType.vb: UnitedMemoryLinksBase(Of TLink).Each(IList(Of TLink), Nullable(Of ReadHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase`1.Each*
   name: Each
   href: api/Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase-1.html#Platform_Data_Doublets_Memory_United_Generic_UnitedMemoryLinksBase_1_Each_
@@ -22896,15 +22896,15 @@ references:
   fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of TLinkAddress).Delete
   nameWithType: SynchronizedLinks<TLinkAddress>.Delete
   nameWithType.vb: SynchronizedLinks(Of TLinkAddress).Delete
-- uid: Platform.Data.Doublets.SynchronizedLinks`1.Each(System.Collections.Generic.IList{`0},ReadHandler{`0})
-  name: Each(IList<TLinkAddress>, ReadHandler<TLinkAddress>)
-  href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1_Each_System_Collections_Generic_IList__0__ReadHandler__0__
-  commentId: M:Platform.Data.Doublets.SynchronizedLinks`1.Each(System.Collections.Generic.IList{`0},ReadHandler{`0})
-  name.vb: Each(IList(Of TLinkAddress), ReadHandler(Of TLinkAddress))
-  fullName: Platform.Data.Doublets.SynchronizedLinks<TLinkAddress>.Each(System.Collections.Generic.IList<TLinkAddress>, ReadHandler<TLinkAddress>)
-  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of TLinkAddress).Each(System.Collections.Generic.IList(Of TLinkAddress), ReadHandler(Of TLinkAddress))
-  nameWithType: SynchronizedLinks<TLinkAddress>.Each(IList<TLinkAddress>, ReadHandler<TLinkAddress>)
-  nameWithType.vb: SynchronizedLinks(Of TLinkAddress).Each(IList(Of TLinkAddress), ReadHandler(Of TLinkAddress))
+- uid: Platform.Data.Doublets.SynchronizedLinks`1.Each(System.Collections.Generic.IList{`0},System.Nullable{ReadHandler{`0}})
+  name: Each(IList<TLinkAddress>, Nullable<ReadHandler<TLinkAddress>>)
+  href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1_Each_System_Collections_Generic_IList__0__System_Nullable_ReadHandler__0___
+  commentId: M:Platform.Data.Doublets.SynchronizedLinks`1.Each(System.Collections.Generic.IList{`0},System.Nullable{ReadHandler{`0}})
+  name.vb: Each(IList(Of TLinkAddress), Nullable(Of ReadHandler(Of TLinkAddress)))
+  fullName: Platform.Data.Doublets.SynchronizedLinks<TLinkAddress>.Each(System.Collections.Generic.IList<TLinkAddress>, System.Nullable<ReadHandler<TLinkAddress>>)
+  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of TLinkAddress).Each(System.Collections.Generic.IList(Of TLinkAddress), System.Nullable(Of ReadHandler(Of TLinkAddress)))
+  nameWithType: SynchronizedLinks<TLinkAddress>.Each(IList<TLinkAddress>, Nullable<ReadHandler<TLinkAddress>>)
+  nameWithType.vb: SynchronizedLinks(Of TLinkAddress).Each(IList(Of TLinkAddress), Nullable(Of ReadHandler(Of TLinkAddress)))
 - uid: Platform.Data.Doublets.SynchronizedLinks`1.Each*
   name: Each
   href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1_Each_
