@@ -13,12 +13,12 @@ namespace Platform.Data.Doublets.Stacks
     /// </para>
     /// <para></para>
     /// </summary>
-    /// <seealso cref="LinksOperatorBase{TLink}"/>
-    /// <seealso cref="IStack{TLink}"/>
-    public class Stack<TLink> : LinksOperatorBase<TLink>, IStack<TLink>
+    /// <seealso cref="LinksOperatorBase{TLinkAddress}"/>
+    /// <seealso cref="IStack{TLinkAddress}"/>
+    public class Stack<TLinkAddress> : LinksOperatorBase<TLinkAddress>, IStack<TLinkAddress>
     {
-        private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
-        private readonly TLink _stack;
+        private static readonly EqualityComparer<TLinkAddress> _equalityComparer = EqualityComparer<TLinkAddress>.Default;
+        private readonly TLinkAddress _stack;
 
         /// <summary>
         /// <para>
@@ -47,11 +47,11 @@ namespace Platform.Data.Doublets.Stacks
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public Stack(ILinks<TLink> links, TLink stack) : base(links) => _stack = stack;
+        public Stack(ILinks<TLinkAddress> links, TLinkAddress stack) : base(links) => _stack = stack;
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private TLink GetStackMarker() => _links.GetSource(_stack);
+        private TLinkAddress GetStackMarker() => _links.GetSource(_stack);
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private TLink GetTop() => _links.GetTarget(_stack);
+        private TLinkAddress GetTop() => _links.GetTarget(_stack);
 
         /// <summary>
         /// <para>
@@ -64,7 +64,7 @@ namespace Platform.Data.Doublets.Stacks
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLink Peek() => _links.GetTarget(GetTop());
+        public TLinkAddress Peek() => _links.GetTarget(GetTop());
 
         /// <summary>
         /// <para>
@@ -77,7 +77,7 @@ namespace Platform.Data.Doublets.Stacks
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLink Pop()
+        public TLinkAddress Pop()
         {
             var element = Peek();
             if (!_equalityComparer.Equals(element, _stack))
@@ -101,6 +101,6 @@ namespace Platform.Data.Doublets.Stacks
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Push(TLink element) => _links.Update(_stack, GetStackMarker(), _links.GetOrCreate(GetTop(), element));
+        public void Push(TLinkAddress element) => _links.Update(_stack, GetStackMarker(), _links.GetOrCreate(GetTop(), element));
     }
 }

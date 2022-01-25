@@ -34,21 +34,21 @@ namespace Platform.Data.Doublets.Tests
             Using<uint>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
             Using<ulong>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
         }
-        private static void Using<TLink>(Action<ILinks<TLink>> action) where TLink : struct
+        private static void Using<TLinkAddress>(Action<ILinks<TLinkAddress>> action) where TLinkAddress : struct
         {
             using (var dataMemory = new HeapResizableDirectMemory())
             using (var indexMemory = new HeapResizableDirectMemory())
-            using (var memory = new SplitMemoryLinks<TLink>(dataMemory, indexMemory))
+            using (var memory = new SplitMemoryLinks<TLinkAddress>(dataMemory, indexMemory))
             {
                 action(memory);
             }
         }
-        private static void UsingWithExternalReferences<TLink>(Action<ILinks<TLink>> action) where TLink : struct
+        private static void UsingWithExternalReferences<TLinkAddress>(Action<ILinks<TLinkAddress>> action) where TLinkAddress : struct
         {
-            var contants = new LinksConstants<TLink>(enableExternalReferencesSupport: true);
+            var contants = new LinksConstants<TLinkAddress>(enableExternalReferencesSupport: true);
             using (var dataMemory = new HeapResizableDirectMemory())
             using (var indexMemory = new HeapResizableDirectMemory())
-            using (var memory = new SplitMemoryLinks<TLink>(dataMemory, indexMemory, SplitMemoryLinks<TLink>.DefaultLinksSizeStep, contants))
+            using (var memory = new SplitMemoryLinks<TLinkAddress>(dataMemory, indexMemory, SplitMemoryLinks<TLinkAddress>.DefaultLinksSizeStep, contants))
             {
                 action(memory);
             }

@@ -12,11 +12,11 @@ namespace Platform.Data.Doublets.PropertyOperators
     /// </para>
     /// <para></para>
     /// </summary>
-    /// <seealso cref="LinksOperatorBase{TLink}"/>
-    /// <seealso cref="IProperties{TLink, TLink, TLink}"/>
-    public class PropertiesOperator<TLink> : LinksOperatorBase<TLink>, IProperties<TLink, TLink, TLink>
+    /// <seealso cref="LinksOperatorBase{TLinkAddress}"/>
+    /// <seealso cref="IProperties{TLinkAddress, TLinkAddress, TLinkAddress}"/>
+    public class PropertiesOperator<TLinkAddress> : LinksOperatorBase<TLinkAddress>, IProperties<TLinkAddress, TLinkAddress, TLinkAddress>
     {
-        private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
+        private static readonly EqualityComparer<TLinkAddress> _equalityComparer = EqualityComparer<TLinkAddress>.Default;
 
         /// <summary>
         /// <para>
@@ -29,7 +29,7 @@ namespace Platform.Data.Doublets.PropertyOperators
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public PropertiesOperator(ILinks<TLink> links) : base(links) { }
+        public PropertiesOperator(ILinks<TLinkAddress> links) : base(links) { }
 
         /// <summary>
         /// <para>
@@ -50,7 +50,7 @@ namespace Platform.Data.Doublets.PropertyOperators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLink GetValue(TLink @object, TLink property)
+        public TLinkAddress GetValue(TLinkAddress @object, TLinkAddress property)
         {
             var links = _links;
             var objectProperty = links.SearchOrDefault(@object, property);
@@ -60,7 +60,7 @@ namespace Platform.Data.Doublets.PropertyOperators
             }
             var constants = links.Constants;
             var any = constants.Any;
-            var query = new Link<TLink>(any, objectProperty, any);
+            var query = new Link<TLinkAddress>(any, objectProperty, any);
             var valueLink = links.SingleOrDefault(query);
             if (valueLink == null)
             {
@@ -88,7 +88,7 @@ namespace Platform.Data.Doublets.PropertyOperators
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void SetValue(TLink @object, TLink property, TLink value)
+        public void SetValue(TLinkAddress @object, TLinkAddress property, TLinkAddress value)
         {
             var links = _links;
             var objectProperty = links.GetOrCreate(@object, property);

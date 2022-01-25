@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Net.Security;
 using System.Runtime.CompilerServices;
 using Platform.Delegates;
-using TLink = System.UInt64;
+using TLinkAddress = System.UInt64;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -27,7 +27,7 @@ namespace Platform.Data.Doublets.Decorators
     /// 
     /// Решить отключать ли проверки при компиляции под Release. Т.е. исключения будут выбрасываться только при #if DEBUG
     /// </remarks>
-    public class UInt64Links : LinksDisposableDecoratorBase<TLink>
+    public class UInt64Links : LinksDisposableDecoratorBase<TLinkAddress>
     {
         /// <summary>
         /// <para>
@@ -40,7 +40,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public UInt64Links(ILinks<TLink> links) : base(links) { }
+        public UInt64Links(ILinks<TLinkAddress> links) : base(links) { }
 
         /// <summary>
         /// <para>
@@ -53,11 +53,11 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </param>
         /// <returns>
-        /// <para>The TLink</para>
+        /// <para>The TLinkAddress</para>
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Create(IList<TLink>? substitution, WriteHandler<TLink>? handler) => _links.CreatePoint(handler);
+        public override TLinkAddress Create(IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler) => _links.CreatePoint(handler);
 
         /// <summary>
         /// <para>
@@ -74,11 +74,11 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </param>
         /// <returns>
-        /// <para>The TLink</para>
+        /// <para>The TLinkAddress</para>
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Update(IList<TLink>? restriction, IList<TLink>? substitution, WriteHandler<TLink>? handler)
+        public override TLinkAddress Update(IList<TLinkAddress>? restriction, IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler)
         {
             var constants = _constants;
             var indexPartConstant = constants.IndexPart;
@@ -102,7 +102,7 @@ namespace Platform.Data.Doublets.Decorators
                 {
                     var source = newSource == itselfConstant ? updatedLink : newSource;
                     var target = newTarget == itselfConstant ? updatedLink : newTarget;
-                    return links.Update(new Link<TLink>(updatedLink, source, target), handler);
+                    return links.Update(new Link<TLinkAddress>(updatedLink, source, target), handler);
                 }
                 return _links.Constants.Continue;
             }
@@ -123,11 +123,11 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Delete(IList<TLink>? restriction, WriteHandler<TLink>? handler)
+        public override TLinkAddress Delete(IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? handler)
         {
             var linkIndex = restriction[_constants.IndexPart];
             var constants = _links.Constants;
-            WriteHandlerState<TLink> handlerState = new(constants.Continue, constants.Break, handler);
+            WriteHandlerState<TLinkAddress> handlerState = new(constants.Continue, constants.Break, handler);
             handlerState.Apply(_links.EnforceResetValues(linkIndex, handlerState.Handler));
             handlerState.Apply(_facade.DeleteAllUsages(linkIndex, handlerState.Handler));
             handlerState.Apply(_links.Delete(restriction, handlerState.Handler));

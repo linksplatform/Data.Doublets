@@ -8,11 +8,11 @@ using Platform.Disposables;
 
 namespace Platform.Data.Doublets.FFI
 {
-    using TLink = System.UInt32;
+    using TLinkAddress = System.UInt32;
 
-    public class UInt32UnitedMemoryLinks : DisposableBase, ILinks<TLink>
+    public class UInt32UnitedMemoryLinks : DisposableBase, ILinks<TLinkAddress>
     {
-        public LinksConstants<TLink> Constants { get; }
+        public LinksConstants<TLinkAddress> Constants { get; }
 
         private readonly unsafe void* _ptr;
 
@@ -23,11 +23,11 @@ namespace Platform.Data.Doublets.FFI
                 _ptr = Methods.UInt32UnitedMemoryLinks_New(path);
 
                 // TODO: Update api
-                Constants = new LinksConstants<TLink>(enableExternalReferencesSupport: true);
+                Constants = new LinksConstants<TLinkAddress>(enableExternalReferencesSupport: true);
             }
         }
 
-        public TLink Count(IList<TLink>? restriction)
+        public TLinkAddress Count(IList<TLinkAddress>? restriction)
         {
             unsafe
             {
@@ -40,11 +40,11 @@ namespace Platform.Data.Doublets.FFI
             }
         }
 
-        public TLink Each(IList<TLink>? restriction, ReadHandler<TLink>? handler)
+        public TLinkAddress Each(IList<TLinkAddress>? restriction, ReadHandler<TLinkAddress>? handler)
         {
             unsafe
             {
-                Methods.EachCallback_UInt32 callback = (link) => handler?.Invoke(new Link<TLink>(link.Index, link.Source, link.Target)) ?? Constants.Continue;
+                Methods.EachCallback_UInt32 callback = (link) => handler?.Invoke(new Link<TLinkAddress>(link.Index, link.Source, link.Target)) ?? Constants.Continue;
                 var array = stackalloc uint[restriction.Count];
                 for (var i = 0; i < restriction.Count; i++)
                 {
@@ -54,11 +54,11 @@ namespace Platform.Data.Doublets.FFI
             }
         }
 
-        public TLink Create(IList<TLink>? substitution, WriteHandler<TLink>? handler)
+        public TLinkAddress Create(IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler)
         {
             unsafe
             {
-                Methods.CreateCallback_UInt32 callback = (before, after) => handler?.Invoke(new Link<TLink>(before.Index, before.Source, before.Target), new Link<TLink>(after.Index, after.Source, after.Target)) ?? Constants.Continue;
+                Methods.CreateCallback_UInt32 callback = (before, after) => handler?.Invoke(new Link<TLinkAddress>(before.Index, before.Source, before.Target), new Link<TLinkAddress>(after.Index, after.Source, after.Target)) ?? Constants.Continue;
                 fixed (uint* substitutionPtr = (uint[])substitution)
                 {
                     return Methods.UInt32UnitedMemoryLinks_Create(_ptr, substitutionPtr, (nuint)(substitution?.Count ?? 0), callback);
@@ -66,7 +66,7 @@ namespace Platform.Data.Doublets.FFI
             }
         }
 
-        public TLink Update(IList<TLink>? restriction, IList<TLink>? substitution, WriteHandler<TLink>? handler)
+        public TLinkAddress Update(IList<TLinkAddress>? restriction, IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler)
         {
             unsafe
             {
@@ -80,12 +80,12 @@ namespace Platform.Data.Doublets.FFI
                 {
                     substitutionArray[i] = restriction[i];
                 }
-                Methods.UpdateCallback_UInt32 callback = (before, after) => handler?.Invoke(new Link<TLink>(before.Index, before.Source, before.Target), new Link<TLink>(after.Index, after.Source, after.Target)) ?? Constants.Continue;
+                Methods.UpdateCallback_UInt32 callback = (before, after) => handler?.Invoke(new Link<TLinkAddress>(before.Index, before.Source, before.Target), new Link<TLinkAddress>(after.Index, after.Source, after.Target)) ?? Constants.Continue;
                 return Methods.UInt32UnitedMemoryLinks_Update(_ptr, restrictionArray, (nuint)(restriction?.Count ?? 0), substitutionArray, (nuint)(substitution?.Count ?? 0), callback);
             }
         }
 
-        public TLink Delete(IList<TLink>? restriction, WriteHandler<TLink>? handler)
+        public TLinkAddress Delete(IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? handler)
         {
             unsafe
             {
@@ -94,7 +94,7 @@ namespace Platform.Data.Doublets.FFI
                 {
                     restrictionArray[i] = restriction[i];
                 }
-                Methods.DeleteCallback_UInt32 callback = (before, after) => handler?.Invoke(new Link<TLink>(before.Index, before.Source, before.Target), new Link<TLink>(after.Index, after.Source, after.Target)) ?? Constants.Continue;
+                Methods.DeleteCallback_UInt32 callback = (before, after) => handler?.Invoke(new Link<TLinkAddress>(before.Index, before.Source, before.Target), new Link<TLinkAddress>(after.Index, after.Source, after.Target)) ?? Constants.Continue;
                 return Methods.UInt32UnitedMemoryLinks_Delete(_ptr, restrictionArray, (nuint)(restriction?.Count ?? 0), callback);
             }
         }

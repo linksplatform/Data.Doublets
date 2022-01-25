@@ -13,8 +13,8 @@ namespace Platform.Data.Doublets.Decorators
     /// </para>
     /// <para></para>
     /// </summary>
-    /// <seealso cref="LinksUniquenessResolver{TLink}"/>
-    public class LinksCascadeUniquenessAndUsagesResolver<TLink> : LinksUniquenessResolver<TLink>
+    /// <seealso cref="LinksUniquenessResolver{TLinkAddress}"/>
+    public class LinksCascadeUniquenessAndUsagesResolver<TLinkAddress> : LinksUniquenessResolver<TLinkAddress>
     {
         /// <summary>
         /// <para>
@@ -27,7 +27,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public LinksCascadeUniquenessAndUsagesResolver(ILinks<TLink> links) : base(links) { }
+        public LinksCascadeUniquenessAndUsagesResolver(ILinks<TLinkAddress> links) : base(links) { }
 
         /// <summary>
         /// <para>
@@ -48,10 +48,10 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink ResolveAddressChangeConflict(TLink oldLinkAddress, TLink newLinkAddress, WriteHandler<TLink>? handler)
+        protected override TLinkAddress ResolveAddressChangeConflict(TLinkAddress oldLinkAddress, TLinkAddress newLinkAddress, WriteHandler<TLinkAddress>? handler)
         {
             var constants = _links.Constants;
-            WriteHandlerState<TLink> handlerState = new(constants.Continue, constants.Break, handler);
+            WriteHandlerState<TLinkAddress> handlerState = new(constants.Continue, constants.Break, handler);
             // Use Facade (the last decorator) to ensure recursion working correctly
             handlerState.Apply(_facade.MergeUsages(oldLinkAddress, newLinkAddress, handlerState.Handler));
             handlerState.Apply(base.ResolveAddressChangeConflict(oldLinkAddress, newLinkAddress, handlerState.Handler));

@@ -16,10 +16,10 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
     /// </para>
     /// <para></para>
     /// </summary>
-    /// <seealso cref="RelativeCircularDoublyLinkedListMethods{TLink}"/>
-    public unsafe class InternalLinksSourcesLinkedListMethods<TLink> : RelativeCircularDoublyLinkedListMethods<TLink>
+    /// <seealso cref="RelativeCircularDoublyLinkedListMethods{TLinkAddress}"/>
+    public unsafe class InternalLinksSourcesLinkedListMethods<TLinkAddress> : RelativeCircularDoublyLinkedListMethods<TLinkAddress>
     {
-        private static readonly UncheckedConverter<TLink, long> _addressToInt64Converter = UncheckedConverter<TLink, long>.Default;
+        private static readonly UncheckedConverter<TLinkAddress, long> _addressToInt64Converter = UncheckedConverter<TLinkAddress, long>.Default;
         private readonly byte* _linksDataParts;
         private readonly byte* _linksIndexParts;
         /// <summary>
@@ -28,14 +28,14 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// </para>
         /// <para></para>
         /// </summary>
-        protected readonly TLink Break;
+        protected readonly TLinkAddress Break;
         /// <summary>
         /// <para>
         /// The continue.
         /// </para>
         /// <para></para>
         /// </summary>
-        protected readonly TLink Continue;
+        protected readonly TLinkAddress Continue;
 
         /// <summary>
         /// <para>
@@ -56,7 +56,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public InternalLinksSourcesLinkedListMethods(LinksConstants<TLink> constants, byte* linksDataParts, byte* linksIndexParts)
+        public InternalLinksSourcesLinkedListMethods(LinksConstants<TLinkAddress> constants, byte* linksDataParts, byte* linksIndexParts)
         {
             _linksDataParts = linksDataParts;
             _linksIndexParts = linksIndexParts;
@@ -79,7 +79,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual ref RawLinkDataPart<TLink> GetLinkDataPartReference(TLink link) => ref AsRef<RawLinkDataPart<TLink>>(_linksDataParts + (RawLinkDataPart<TLink>.SizeInBytes * _addressToInt64Converter.Convert(link)));
+        protected virtual ref RawLinkDataPart<TLinkAddress> GetLinkDataPartReference(TLinkAddress link) => ref AsRef<RawLinkDataPart<TLinkAddress>>(_linksDataParts + (RawLinkDataPart<TLinkAddress>.SizeInBytes * _addressToInt64Converter.Convert(link)));
 
         /// <summary>
         /// <para>
@@ -96,7 +96,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual ref RawLinkIndexPart<TLink> GetLinkIndexPartReference(TLink link) => ref AsRef<RawLinkIndexPart<TLink>>(_linksIndexParts + (RawLinkIndexPart<TLink>.SizeInBytes * _addressToInt64Converter.Convert(link)));
+        protected virtual ref RawLinkIndexPart<TLinkAddress> GetLinkIndexPartReference(TLinkAddress link) => ref AsRef<RawLinkIndexPart<TLinkAddress>>(_linksIndexParts + (RawLinkIndexPart<TLinkAddress>.SizeInBytes * _addressToInt64Converter.Convert(link)));
 
         /// <summary>
         /// <para>
@@ -113,7 +113,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink GetFirst(TLink head) => GetLinkIndexPartReference(head).RootAsSource;
+        protected override TLinkAddress GetFirst(TLinkAddress head) => GetLinkIndexPartReference(head).RootAsSource;
 
         /// <summary>
         /// <para>
@@ -130,7 +130,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink GetLast(TLink head)
+        protected override TLinkAddress GetLast(TLinkAddress head)
         {
             var first = GetLinkIndexPartReference(head).RootAsSource;
             if (EqualToZero(first))
@@ -158,7 +158,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink GetPrevious(TLink element) => GetLinkIndexPartReference(element).LeftAsSource;
+        protected override TLinkAddress GetPrevious(TLinkAddress element) => GetLinkIndexPartReference(element).LeftAsSource;
 
         /// <summary>
         /// <para>
@@ -175,7 +175,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink GetNext(TLink element) => GetLinkIndexPartReference(element).RightAsSource;
+        protected override TLinkAddress GetNext(TLinkAddress element) => GetLinkIndexPartReference(element).RightAsSource;
 
         /// <summary>
         /// <para>
@@ -192,7 +192,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink GetSize(TLink head) => GetLinkIndexPartReference(head).SizeAsSource;
+        protected override TLinkAddress GetSize(TLinkAddress head) => GetLinkIndexPartReference(head).SizeAsSource;
 
         /// <summary>
         /// <para>
@@ -209,7 +209,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetFirst(TLink head, TLink element) => GetLinkIndexPartReference(head).RootAsSource = element;
+        protected override void SetFirst(TLinkAddress head, TLinkAddress element) => GetLinkIndexPartReference(head).RootAsSource = element;
 
         /// <summary>
         /// <para>
@@ -226,7 +226,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetLast(TLink head, TLink element)
+        protected override void SetLast(TLinkAddress head, TLinkAddress element)
         {
             //var first = GetLinkIndexPartReference(head).RootAsSource;
             //if (EqualToZero(first))
@@ -254,7 +254,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetPrevious(TLink element, TLink previous) => GetLinkIndexPartReference(element).LeftAsSource = previous;
+        protected override void SetPrevious(TLinkAddress element, TLinkAddress previous) => GetLinkIndexPartReference(element).LeftAsSource = previous;
 
         /// <summary>
         /// <para>
@@ -271,7 +271,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetNext(TLink element, TLink next) => GetLinkIndexPartReference(element).RightAsSource = next;
+        protected override void SetNext(TLinkAddress element, TLinkAddress next) => GetLinkIndexPartReference(element).RightAsSource = next;
 
         /// <summary>
         /// <para>
@@ -288,7 +288,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetSize(TLink head, TLink size) => GetLinkIndexPartReference(head).SizeAsSource = size;
+        protected override void SetSize(TLinkAddress head, TLinkAddress size) => GetLinkIndexPartReference(head).SizeAsSource = size;
 
         /// <summary>
         /// <para>
@@ -305,7 +305,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLink CountUsages(TLink head) => GetSize(head);
+        public TLinkAddress CountUsages(TLinkAddress head) => GetSize(head);
 
         /// <summary>
         /// <para>
@@ -322,10 +322,10 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual IList<TLink>? GetLinkValues(TLink linkIndex)
+        protected virtual IList<TLinkAddress>? GetLinkValues(TLinkAddress linkIndex)
         {
             ref var link = ref GetLinkDataPartReference(linkIndex);
-            return new Link<TLink>(linkIndex, link.Source, link.Target);
+            return new Link<TLinkAddress>(linkIndex, link.Source, link.Target);
         }
 
         /// <summary>
@@ -347,7 +347,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLink EachUsage(TLink source, ReadHandler<TLink>? handler)
+        public TLinkAddress EachUsage(TLinkAddress source, ReadHandler<TLinkAddress>? handler)
         {
             var @continue = Continue;
             var @break = Break;

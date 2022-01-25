@@ -14,13 +14,13 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
     /// </para>
     /// <para></para>
     /// </summary>
-    /// <seealso cref="SplitMemoryLinksBase{TLink}"/>
-    public unsafe class SplitMemoryLinks<TLink> : SplitMemoryLinksBase<TLink> where TLink : struct
+    /// <seealso cref="SplitMemoryLinksBase{TLinkAddress}"/>
+    public unsafe class SplitMemoryLinks<TLinkAddress> : SplitMemoryLinksBase<TLinkAddress> where TLinkAddress : struct
     {
-        private readonly Func<ILinksTreeMethods<TLink>> _createInternalSourceTreeMethods;
-        private readonly Func<ILinksTreeMethods<TLink>> _createExternalSourceTreeMethods;
-        private readonly Func<ILinksTreeMethods<TLink>> _createInternalTargetTreeMethods;
-        private readonly Func<ILinksTreeMethods<TLink>> _createExternalTargetTreeMethods;
+        private readonly Func<ILinksTreeMethods<TLinkAddress>> _createInternalSourceTreeMethods;
+        private readonly Func<ILinksTreeMethods<TLinkAddress>> _createExternalSourceTreeMethods;
+        private readonly Func<ILinksTreeMethods<TLinkAddress>> _createInternalTargetTreeMethods;
+        private readonly Func<ILinksTreeMethods<TLinkAddress>> _createExternalTargetTreeMethods;
         private byte* _header;
         private byte* _linksDataParts;
         private byte* _linksIndexParts;
@@ -78,7 +78,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep) : this(dataMemory, indexMemory, memoryReservationStep, Default<LinksConstants<TLink>>.Instance, IndexTreeType.Default, useLinkedList: true) { }
+        public SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep) : this(dataMemory, indexMemory, memoryReservationStep, Default<LinksConstants<TLinkAddress>>.Instance, IndexTreeType.Default, useLinkedList: true) { }
 
         /// <summary>
         /// <para>
@@ -103,7 +103,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep, LinksConstants<TLink> constants) : this(dataMemory, indexMemory, memoryReservationStep, constants, IndexTreeType.Default, useLinkedList: true) { }
+        public SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep, LinksConstants<TLinkAddress> constants) : this(dataMemory, indexMemory, memoryReservationStep, constants, IndexTreeType.Default, useLinkedList: true) { }
 
         /// <summary>
         /// <para>
@@ -136,21 +136,21 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep, LinksConstants<TLink> constants, IndexTreeType indexTreeType, bool useLinkedList) : base(dataMemory, indexMemory, memoryReservationStep, constants, useLinkedList)
+        public SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep, LinksConstants<TLinkAddress> constants, IndexTreeType indexTreeType, bool useLinkedList) : base(dataMemory, indexMemory, memoryReservationStep, constants, useLinkedList)
         {
             if (indexTreeType == IndexTreeType.SizeBalancedTree)
             {
-                _createInternalSourceTreeMethods = () => new InternalLinksSourcesSizeBalancedTreeMethods<TLink>(Constants, _linksDataParts, _linksIndexParts, _header);
-                _createExternalSourceTreeMethods = () => new ExternalLinksSourcesSizeBalancedTreeMethods<TLink>(Constants, _linksDataParts, _linksIndexParts, _header);
-                _createInternalTargetTreeMethods = () => new InternalLinksTargetsSizeBalancedTreeMethods<TLink>(Constants, _linksDataParts, _linksIndexParts, _header);
-                _createExternalTargetTreeMethods = () => new ExternalLinksTargetsSizeBalancedTreeMethods<TLink>(Constants, _linksDataParts, _linksIndexParts, _header);
+                _createInternalSourceTreeMethods = () => new InternalLinksSourcesSizeBalancedTreeMethods<TLinkAddress>(Constants, _linksDataParts, _linksIndexParts, _header);
+                _createExternalSourceTreeMethods = () => new ExternalLinksSourcesSizeBalancedTreeMethods<TLinkAddress>(Constants, _linksDataParts, _linksIndexParts, _header);
+                _createInternalTargetTreeMethods = () => new InternalLinksTargetsSizeBalancedTreeMethods<TLinkAddress>(Constants, _linksDataParts, _linksIndexParts, _header);
+                _createExternalTargetTreeMethods = () => new ExternalLinksTargetsSizeBalancedTreeMethods<TLinkAddress>(Constants, _linksDataParts, _linksIndexParts, _header);
             }
             else
             {
-                _createInternalSourceTreeMethods = () => new InternalLinksSourcesRecursionlessSizeBalancedTreeMethods<TLink>(Constants, _linksDataParts, _linksIndexParts, _header);
-                _createExternalSourceTreeMethods = () => new ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods<TLink>(Constants, _linksDataParts, _linksIndexParts, _header);
-                _createInternalTargetTreeMethods = () => new InternalLinksTargetsRecursionlessSizeBalancedTreeMethods<TLink>(Constants, _linksDataParts, _linksIndexParts, _header);
-                _createExternalTargetTreeMethods = () => new ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods<TLink>(Constants, _linksDataParts, _linksIndexParts, _header);
+                _createInternalSourceTreeMethods = () => new InternalLinksSourcesRecursionlessSizeBalancedTreeMethods<TLinkAddress>(Constants, _linksDataParts, _linksIndexParts, _header);
+                _createExternalSourceTreeMethods = () => new ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods<TLinkAddress>(Constants, _linksDataParts, _linksIndexParts, _header);
+                _createInternalTargetTreeMethods = () => new InternalLinksTargetsRecursionlessSizeBalancedTreeMethods<TLinkAddress>(Constants, _linksDataParts, _linksIndexParts, _header);
+                _createExternalTargetTreeMethods = () => new ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods<TLinkAddress>(Constants, _linksDataParts, _linksIndexParts, _header);
             }
             Init(dataMemory, indexMemory);
         }
@@ -177,7 +177,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
             _header = _linksIndexParts;
             if (_useLinkedList)
             {
-                InternalSourcesListMethods = new InternalLinksSourcesLinkedListMethods<TLink>(Constants, _linksDataParts, _linksIndexParts);
+                InternalSourcesListMethods = new InternalLinksSourcesLinkedListMethods<TLinkAddress>(Constants, _linksDataParts, _linksIndexParts);
             }
             else
             {
@@ -186,7 +186,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
             ExternalSourcesTreeMethods = _createExternalSourceTreeMethods();
             InternalTargetsTreeMethods = _createInternalTargetTreeMethods();
             ExternalTargetsTreeMethods = _createExternalTargetTreeMethods();
-            UnusedLinksListMethods = new UnusedLinksListMethods<TLink>(_linksDataParts, _header);
+            UnusedLinksListMethods = new UnusedLinksListMethods<TLinkAddress>(_linksDataParts, _header);
         }
 
         /// <summary>
@@ -215,7 +215,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override ref LinksHeader<TLink> GetHeaderReference() => ref AsRef<LinksHeader<TLink>>(_header);
+        protected override ref LinksHeader<TLinkAddress> GetHeaderReference() => ref AsRef<LinksHeader<TLinkAddress>>(_header);
 
         /// <summary>
         /// <para>
@@ -232,7 +232,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override ref RawLinkDataPart<TLink> GetLinkDataPartReference(TLink linkIndex) => ref AsRef<RawLinkDataPart<TLink>>(_linksDataParts + (LinkDataPartSizeInBytes * ConvertToInt64(linkIndex)));
+        protected override ref RawLinkDataPart<TLinkAddress> GetLinkDataPartReference(TLinkAddress linkIndex) => ref AsRef<RawLinkDataPart<TLinkAddress>>(_linksDataParts + (LinkDataPartSizeInBytes * ConvertToInt64(linkIndex)));
 
         /// <summary>
         /// <para>
@@ -249,6 +249,6 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override ref RawLinkIndexPart<TLink> GetLinkIndexPartReference(TLink linkIndex) => ref AsRef<RawLinkIndexPart<TLink>>(_linksIndexParts + (LinkIndexPartSizeInBytes * ConvertToInt64(linkIndex)));
+        protected override ref RawLinkIndexPart<TLinkAddress> GetLinkIndexPartReference(TLinkAddress linkIndex) => ref AsRef<RawLinkIndexPart<TLinkAddress>>(_linksIndexParts + (LinkIndexPartSizeInBytes * ConvertToInt64(linkIndex)));
     }
 }

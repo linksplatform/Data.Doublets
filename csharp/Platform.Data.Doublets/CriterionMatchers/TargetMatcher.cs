@@ -12,12 +12,12 @@ namespace Platform.Data.Doublets.CriterionMatchers
     /// </para>
     /// <para></para>
     /// </summary>
-    /// <seealso cref="LinksOperatorBase{TLink}"/>
-    /// <seealso cref="ICriterionMatcher{TLink}"/>
-    public class TargetMatcher<TLink> : LinksOperatorBase<TLink>, ICriterionMatcher<TLink>
+    /// <seealso cref="LinksOperatorBase{TLinkAddress}"/>
+    /// <seealso cref="ICriterionMatcher{TLinkAddress}"/>
+    public class TargetMatcher<TLinkAddress> : LinksOperatorBase<TLinkAddress>, ICriterionMatcher<TLinkAddress>
     {
-        private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
-        private readonly TLink _targetToMatch;
+        private static readonly EqualityComparer<TLinkAddress> _equalityComparer = EqualityComparer<TLinkAddress>.Default;
+        private readonly TLinkAddress _targetToMatch;
 
         /// <summary>
         /// <para>
@@ -34,7 +34,7 @@ namespace Platform.Data.Doublets.CriterionMatchers
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TargetMatcher(ILinks<TLink> links, TLink targetToMatch) : base(links) => _targetToMatch = targetToMatch;
+        public TargetMatcher(ILinks<TLinkAddress> links, TLinkAddress targetToMatch) : base(links) => _targetToMatch = targetToMatch;
 
         /// <summary>
         /// <para>
@@ -51,6 +51,6 @@ namespace Platform.Data.Doublets.CriterionMatchers
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool IsMatched(TLink link) => _equalityComparer.Equals(_links.GetTarget(link), _targetToMatch);
+        public bool IsMatched(TLinkAddress link) => _equalityComparer.Equals(_links.GetTarget(link), _targetToMatch);
     }
 }

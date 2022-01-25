@@ -18,15 +18,15 @@ namespace Platform.Data.Doublets.Memory.United.Generic
     /// </para>
     /// <para></para>
     /// </summary>
-    /// <seealso cref="SizedAndThreadedAVLBalancedTreeMethods{TLink}"/>
-    /// <seealso cref="ILinksTreeMethods{TLink}"/>
-    public unsafe abstract class LinksAvlBalancedTreeMethodsBase<TLink> : SizedAndThreadedAVLBalancedTreeMethods<TLink>, ILinksTreeMethods<TLink>
+    /// <seealso cref="SizedAndThreadedAVLBalancedTreeMethods{TLinkAddress}"/>
+    /// <seealso cref="ILinksTreeMethods{TLinkAddress}"/>
+    public unsafe abstract class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : SizedAndThreadedAVLBalancedTreeMethods<TLinkAddress>, ILinksTreeMethods<TLinkAddress>
     {
-        private static readonly UncheckedConverter<TLink, long> _addressToInt64Converter = UncheckedConverter<TLink, long>.Default;
-        private static readonly UncheckedConverter<TLink, int> _addressToInt32Converter = UncheckedConverter<TLink, int>.Default;
-        private static readonly UncheckedConverter<bool, TLink> _boolToAddressConverter = UncheckedConverter<bool, TLink>.Default;
-        private static readonly UncheckedConverter<TLink, bool> _addressToBoolConverter = UncheckedConverter<TLink, bool>.Default;
-        private static readonly UncheckedConverter<int, TLink> _int32ToAddressConverter = UncheckedConverter<int, TLink>.Default;
+        private static readonly UncheckedConverter<TLinkAddress, long> _addressToInt64Converter = UncheckedConverter<TLinkAddress, long>.Default;
+        private static readonly UncheckedConverter<TLinkAddress, int> _addressToInt32Converter = UncheckedConverter<TLinkAddress, int>.Default;
+        private static readonly UncheckedConverter<bool, TLinkAddress> _boolToAddressConverter = UncheckedConverter<bool, TLinkAddress>.Default;
+        private static readonly UncheckedConverter<TLinkAddress, bool> _addressToBoolConverter = UncheckedConverter<TLinkAddress, bool>.Default;
+        private static readonly UncheckedConverter<int, TLinkAddress> _int32ToAddressConverter = UncheckedConverter<int, TLinkAddress>.Default;
 
         /// <summary>
         /// <para>
@@ -34,14 +34,14 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// </para>
         /// <para></para>
         /// </summary>
-        protected readonly TLink Break;
+        protected readonly TLinkAddress Break;
         /// <summary>
         /// <para>
         /// The continue.
         /// </para>
         /// <para></para>
         /// </summary>
-        protected readonly TLink Continue;
+        protected readonly TLinkAddress Continue;
         /// <summary>
         /// <para>
         /// The links.
@@ -76,7 +76,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected LinksAvlBalancedTreeMethodsBase(LinksConstants<TLink> constants, byte* links, byte* header)
+        protected LinksAvlBalancedTreeMethodsBase(LinksConstants<TLinkAddress> constants, byte* links, byte* header)
         {
             Links = links;
             Header = header;
@@ -95,7 +95,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected abstract TLink GetTreeRoot();
+        protected abstract TLinkAddress GetTreeRoot();
 
         /// <summary>
         /// <para>
@@ -112,7 +112,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected abstract TLink GetBasePartValue(TLink link);
+        protected abstract TLinkAddress GetBasePartValue(TLinkAddress link);
 
         /// <summary>
         /// <para>
@@ -141,7 +141,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected abstract bool FirstIsToTheRightOfSecond(TLink source, TLink target, TLink rootSource, TLink rootTarget);
+        protected abstract bool FirstIsToTheRightOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget);
 
         /// <summary>
         /// <para>
@@ -170,7 +170,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected abstract bool FirstIsToTheLeftOfSecond(TLink source, TLink target, TLink rootSource, TLink rootTarget);
+        protected abstract bool FirstIsToTheLeftOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget);
 
         /// <summary>
         /// <para>
@@ -183,7 +183,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual ref LinksHeader<TLink> GetHeaderReference() => ref AsRef<LinksHeader<TLink>>(Header);
+        protected virtual ref LinksHeader<TLinkAddress> GetHeaderReference() => ref AsRef<LinksHeader<TLinkAddress>>(Header);
 
         /// <summary>
         /// <para>
@@ -200,7 +200,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual ref RawLink<TLink> GetLinkReference(TLink link) => ref AsRef<RawLink<TLink>>(Links + (RawLink<TLink>.SizeInBytes * _addressToInt64Converter.Convert(link)));
+        protected virtual ref RawLink<TLinkAddress> GetLinkReference(TLinkAddress link) => ref AsRef<RawLink<TLinkAddress>>(Links + (RawLink<TLinkAddress>.SizeInBytes * _addressToInt64Converter.Convert(link)));
 
         /// <summary>
         /// <para>
@@ -217,10 +217,10 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual IList<TLink>? GetLinkValues(TLink linkIndex)
+        protected virtual IList<TLinkAddress>? GetLinkValues(TLinkAddress linkIndex)
         {
             ref var link = ref GetLinkReference(linkIndex);
-            return new Link<TLink>(linkIndex, link.Source, link.Target);
+            return new Link<TLinkAddress>(linkIndex, link.Source, link.Target);
         }
 
         /// <summary>
@@ -242,7 +242,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override bool FirstIsToTheLeftOfSecond(TLink first, TLink second)
+        protected override bool FirstIsToTheLeftOfSecond(TLinkAddress first, TLinkAddress second)
         {
             ref var firstLink = ref GetLinkReference(first);
             ref var secondLink = ref GetLinkReference(second);
@@ -268,7 +268,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override bool FirstIsToTheRightOfSecond(TLink first, TLink second)
+        protected override bool FirstIsToTheRightOfSecond(TLinkAddress first, TLinkAddress second)
         {
             ref var firstLink = ref GetLinkReference(first);
             ref var secondLink = ref GetLinkReference(second);
@@ -290,7 +290,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual TLink GetSizeValue(TLink value) => Bit<TLink>.PartialRead(value, 5, -5);
+        protected virtual TLinkAddress GetSizeValue(TLinkAddress value) => Bit<TLinkAddress>.PartialRead(value, 5, -5);
 
         /// <summary>
         /// <para>
@@ -307,7 +307,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual void SetSizeValue(ref TLink storedValue, TLink size) => storedValue = Bit<TLink>.PartialWrite(storedValue, size, 5, -5);
+        protected virtual void SetSizeValue(ref TLinkAddress storedValue, TLinkAddress size) => storedValue = Bit<TLinkAddress>.PartialWrite(storedValue, size, 5, -5);
 
         /// <summary>
         /// <para>
@@ -324,12 +324,12 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual bool GetLeftIsChildValue(TLink value)
+        protected virtual bool GetLeftIsChildValue(TLinkAddress value)
         {
             unchecked
             {
-                return _addressToBoolConverter.Convert(Bit<TLink>.PartialRead(value, 4, 1));
-                //return !EqualityComparer.Equals(Bit<TLink>.PartialRead(value, 4, 1), default);
+                return _addressToBoolConverter.Convert(Bit<TLinkAddress>.PartialRead(value, 4, 1));
+                //return !EqualityComparer.Equals(Bit<TLinkAddress>.PartialRead(value, 4, 1), default);
             }
         }
 
@@ -348,12 +348,12 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual void SetLeftIsChildValue(ref TLink storedValue, bool value)
+        protected virtual void SetLeftIsChildValue(ref TLinkAddress storedValue, bool value)
         {
             unchecked
             {
                 var previousValue = storedValue;
-                var modified = Bit<TLink>.PartialWrite(previousValue, _boolToAddressConverter.Convert(value), 4, 1);
+                var modified = Bit<TLinkAddress>.PartialWrite(previousValue, _boolToAddressConverter.Convert(value), 4, 1);
                 storedValue = modified;
             }
         }
@@ -373,12 +373,12 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual bool GetRightIsChildValue(TLink value)
+        protected virtual bool GetRightIsChildValue(TLinkAddress value)
         {
             unchecked
             {
-                return _addressToBoolConverter.Convert(Bit<TLink>.PartialRead(value, 3, 1));
-                //return !EqualityComparer.Equals(Bit<TLink>.PartialRead(value, 3, 1), default);
+                return _addressToBoolConverter.Convert(Bit<TLinkAddress>.PartialRead(value, 3, 1));
+                //return !EqualityComparer.Equals(Bit<TLinkAddress>.PartialRead(value, 3, 1), default);
             }
         }
 
@@ -397,12 +397,12 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual void SetRightIsChildValue(ref TLink storedValue, bool value)
+        protected virtual void SetRightIsChildValue(ref TLinkAddress storedValue, bool value)
         {
             unchecked
             {
                 var previousValue = storedValue;
-                var modified = Bit<TLink>.PartialWrite(previousValue, _boolToAddressConverter.Convert(value), 3, 1);
+                var modified = Bit<TLinkAddress>.PartialWrite(previousValue, _boolToAddressConverter.Convert(value), 3, 1);
                 storedValue = modified;
             }
         }
@@ -426,7 +426,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected bool IsChild(TLink parent, TLink possibleChild)
+        protected bool IsChild(TLinkAddress parent, TLinkAddress possibleChild)
         {
             var parentSize = GetSize(parent);
             var childSize = GetSizeOrZero(possibleChild);
@@ -448,11 +448,11 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual sbyte GetBalanceValue(TLink storedValue)
+        protected virtual sbyte GetBalanceValue(TLinkAddress storedValue)
         {
             unchecked
             {
-                var value = _addressToInt32Converter.Convert(Bit<TLink>.PartialRead(storedValue, 0, 3));
+                var value = _addressToInt32Converter.Convert(Bit<TLinkAddress>.PartialRead(storedValue, 0, 3));
                 value |= 0xF8 * ((value & 4) >> 2); // if negative, then continue ones to the end of sbyte
                 return (sbyte)value;
             }
@@ -473,12 +473,12 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual void SetBalanceValue(ref TLink storedValue, sbyte value)
+        protected virtual void SetBalanceValue(ref TLinkAddress storedValue, sbyte value)
         {
             unchecked
             {
                 var packagedValue = _int32ToAddressConverter.Convert((byte)value >> 5 & 4 | value & 3);
-                var modified = Bit<TLink>.PartialWrite(storedValue, packagedValue, 0, 3);
+                var modified = Bit<TLinkAddress>.PartialWrite(storedValue, packagedValue, 0, 3);
                 storedValue = modified;
             }
         }
@@ -489,7 +489,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// </para>
         /// <para></para>
         /// </summary>
-        public TLink this[TLink index]
+        public TLinkAddress this[TLinkAddress index]
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get
@@ -526,7 +526,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <param name="target">Индекс связи, которая является концом на искомой связи.</param>
         /// <returns>Индекс искомой связи.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLink Search(TLink source, TLink target)
+        public TLinkAddress Search(TLinkAddress source, TLinkAddress target)
         {
             var root = GetTreeRoot();
             while (!EqualToZero(root))
@@ -566,7 +566,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLink CountUsages(TLink link)
+        public TLinkAddress CountUsages(TLinkAddress link)
         {
             var root = GetTreeRoot();
             var total = GetSize(root);
@@ -622,14 +622,14 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLink EachUsage(TLink link, ReadHandler<TLink>? handler)
+        public TLinkAddress EachUsage(TLinkAddress link, ReadHandler<TLinkAddress>? handler)
         {
             var root = GetTreeRoot();
             if (EqualToZero(root))
             {
                 return Continue;
             }
-            TLink first = Zero, current = root;
+            TLinkAddress first = Zero, current = root;
             while (!EqualToZero(current))
             {
                 var @base = GetBasePartValue(current);
@@ -680,7 +680,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void PrintNodeValue(TLink node, StringBuilder sb)
+        protected override void PrintNodeValue(TLinkAddress node, StringBuilder sb)
         {
             ref var link = ref GetLinkReference(node);
             sb.Append(' ');

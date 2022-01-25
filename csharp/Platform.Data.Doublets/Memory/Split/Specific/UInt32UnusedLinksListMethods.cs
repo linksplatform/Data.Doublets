@@ -1,6 +1,6 @@
 using System.Runtime.CompilerServices;
 using Platform.Data.Doublets.Memory.Split.Generic;
-using TLink = System.UInt32;
+using TLinkAddress = System.UInt32;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -12,11 +12,11 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
     /// </para>
     /// <para></para>
     /// </summary>
-    /// <seealso cref="UnusedLinksListMethods{TLink}"/>
-    public unsafe class UInt32UnusedLinksListMethods : UnusedLinksListMethods<TLink>
+    /// <seealso cref="UnusedLinksListMethods{TLinkAddress}"/>
+    public unsafe class UInt32UnusedLinksListMethods : UnusedLinksListMethods<TLinkAddress>
     {
-        private readonly RawLinkDataPart<TLink>* _links;
-        private readonly LinksHeader<TLink>* _header;
+        private readonly RawLinkDataPart<TLinkAddress>* _links;
+        private readonly LinksHeader<TLinkAddress>* _header;
 
         /// <summary>
         /// <para>
@@ -33,7 +33,7 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public UInt32UnusedLinksListMethods(RawLinkDataPart<TLink>* links, LinksHeader<TLink>* header)
+        public UInt32UnusedLinksListMethods(RawLinkDataPart<TLinkAddress>* links, LinksHeader<TLinkAddress>* header)
             : base((byte*)links, (byte*)header)
         {
             _links = links;
@@ -55,7 +55,7 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override ref RawLinkDataPart<TLink> GetLinkDataPartReference(TLink link) => ref _links[link];
+        protected override ref RawLinkDataPart<TLinkAddress> GetLinkDataPartReference(TLinkAddress link) => ref _links[link];
 
         /// <summary>
         /// <para>
@@ -68,6 +68,6 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override ref LinksHeader<TLink> GetHeaderReference() => ref *_header;
+        protected override ref LinksHeader<TLinkAddress> GetHeaderReference() => ref *_header;
     }
 }

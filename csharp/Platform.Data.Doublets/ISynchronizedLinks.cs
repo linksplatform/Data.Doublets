@@ -8,9 +8,9 @@ namespace Platform.Data.Doublets
     /// </para>
     /// <para></para>
     /// </summary>
-    /// <seealso cref="ISynchronizedLinks{TLink, ILinks{TLink}, LinksConstants{TLink}}"/>
-    /// <seealso cref="ILinks{TLink}"/>
-    public interface ISynchronizedLinks<TLink> : ISynchronizedLinks<TLink, ILinks<TLink>, LinksConstants<TLink>>, ILinks<TLink>
+    /// <seealso cref="ISynchronizedLinks{TLinkAddress, ILinks{TLinkAddress}, LinksConstants{TLinkAddress}}"/>
+    /// <seealso cref="ILinks{TLinkAddress}"/>
+    public interface ISynchronizedLinks<TLinkAddress> : ISynchronizedLinks<TLinkAddress, ILinks<TLinkAddress>, LinksConstants<TLinkAddress>>, ILinks<TLinkAddress>
     {
     }
 }
