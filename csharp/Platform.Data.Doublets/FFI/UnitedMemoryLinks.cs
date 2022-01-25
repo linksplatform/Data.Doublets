@@ -262,7 +262,7 @@ namespace Platform.Data.Doublets.FFI
             }
         }
 
-        public TLink Each(IList<TLink> restriction, ReadHandler<TLink>? handler)
+        public TLink Each(IList<TLink>? restriction, ReadHandler<TLink>? handler)
         {
             var restrictionLength = restriction?.Count ?? 0;
             unsafe
@@ -324,7 +324,7 @@ namespace Platform.Data.Doublets.FFI
             }
         }
 
-        public TLink Create(IList<TLink> substitution, WriteHandler<TLink> handler)
+        public TLink Create(IList<TLink>? substitution, WriteHandler<TLink>? handler)
         {
             var substitutionLength = substitution?.Count ?? 0;
             unsafe
@@ -386,7 +386,7 @@ namespace Platform.Data.Doublets.FFI
             }
         }
 
-        public TLink Update(IList<TLink> restriction, IList<TLink> substitution, WriteHandler<TLink> handler)
+        public TLink Update(IList<TLink>? restriction, IList<TLink>? substitution, WriteHandler<TLink>? handler)
         {
             var restrictionLength = restriction?.Count ?? 0;
             var substitutionLength = substitution?.Count ?? 0;
@@ -471,7 +471,7 @@ namespace Platform.Data.Doublets.FFI
             }
         }
 
-        public TLink Delete(IList<TLink> restriction, WriteHandler<TLink> handler)
+        public TLink Delete(IList<TLink>? restriction, WriteHandler<TLink>? handler)
         {
             var restrictionLength = restriction?.Count ?? 0;
             unsafe

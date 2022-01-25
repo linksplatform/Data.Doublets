@@ -46,7 +46,7 @@ namespace Platform.Data.Doublets.Decorators
             /// </para>
             /// <para></para>
             /// </summary>
-            public IList<TLink> After;
+            public IList<TLink>? After;
 
             /// <summary>
             /// <para>
@@ -62,7 +62,7 @@ namespace Platform.Data.Doublets.Decorators
             /// <para>A after.</para>
             /// <para></para>
             /// </param>
-            public Transition(IList<TLink> before, IList<TLink> after)
+            public Transition(IList<TLink>? before, IList<TLink>? after)
             {
                 Before = before;
                 After = after;
@@ -99,7 +99,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para>The link</para>
         /// <para></para>
         /// </returns>
-        public TLink Trigger(IList<TLink> restriction, WriteHandler<TLink> matchedHandler, IList<TLink> substitution, WriteHandler<TLink> substitutedHandler)
+        public TLink Trigger(IList<TLink>? restriction, WriteHandler<TLink>? matchedHandler, IList<TLink>? substitution, WriteHandler<TLink>? substitutedHandler)
         {
             ////List<Transition> transitions = null;
             ////if (!restriction.IsNullOrEmpty())
@@ -298,7 +298,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para>The link</para>
         /// <para></para>
         /// </returns>
-        public TLink Trigger(IList<TLink> patternOrCondition, ReadHandler<TLink>? matchHandler, IList<TLink> substitution, WriteHandler<TLink> substitutionHandler)
+        public TLink Trigger(IList<TLink>? patternOrCondition, ReadHandler<TLink>? matchHandler, IList<TLink>? substitution, WriteHandler<TLink>? substitutionHandler)
         {
             var constants = _constants;
             if (patternOrCondition.IsNullOrEmpty() && substitution.IsNullOrEmpty())
@@ -318,7 +318,7 @@ namespace Platform.Data.Doublets.Decorators
                 {
                     return constants.Break;
                 }
-                var after = (IList<TLink>)substitution.ToArray();
+                var after = (IList<TLink>?)substitution.ToArray();
                 if (_equalityComparer.Equals(after[0], default))
                 {
                     var newLink = _links.Create();
@@ -368,7 +368,7 @@ namespace Platform.Data.Doublets.Decorators
                     {
                         return constants.Break;
                     }
-                    var after = (IList<TLink>)substitution.ToArray(); //-V3125
+                    var after = (IList<TLink>?)substitution.ToArray(); //-V3125
                     if (_equalityComparer.Equals(after[0], default))
                     {
                         after[0] = linkToUpdate;
@@ -409,9 +409,9 @@ namespace Platform.Data.Doublets.Decorators
         ///  --------------------
         ///        changes
         /// </remarks>
-        public IList<IList<IList<TLink>>> Trigger(IList<TLink> condition, IList<TLink> substitution)
+        public IList<IList<IList<TLink>?>> Trigger(IList<TLink>? condition, IList<TLink>? substitution)
         {
-            var changes = new List<IList<IList<TLink>>>();
+            var changes = new List<IList<IList<TLink>?>>();
             var @continue = _constants.Continue;
             Trigger(condition, AlwaysContinue, substitution, (before, after) =>
             {
@@ -421,6 +421,6 @@ namespace Platform.Data.Doublets.Decorators
             });
             return changes;
         }
-        private TLink AlwaysContinue(IList<TLink> linkToMatch) => _constants.Continue;
+        private TLink AlwaysContinue(IList<TLink>? linkToMatch) => _constants.Continue;
     }
 }

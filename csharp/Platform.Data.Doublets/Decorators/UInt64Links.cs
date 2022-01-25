@@ -57,7 +57,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Create(IList<TLink>? substitution, WriteHandler<TLink> handler) => _links.CreatePoint(handler);
+        public override TLink Create(IList<TLink>? substitution, WriteHandler<TLink>? handler) => _links.CreatePoint(handler);
 
         /// <summary>
         /// <para>
@@ -78,7 +78,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Update(IList<TLink> restriction, IList<TLink> substitution, WriteHandler<TLink> handler)
+        public override TLink Update(IList<TLink>? restriction, IList<TLink>? substitution, WriteHandler<TLink>? handler)
         {
             var constants = _constants;
             var indexPartConstant = constants.IndexPart;
@@ -123,7 +123,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Delete(IList<TLink> restriction, WriteHandler<TLink> handler)
+        public override TLink Delete(IList<TLink>? restriction, WriteHandler<TLink>? handler)
         {
             var linkIndex = restriction[_constants.IndexPart];
             var constants = _links.Constants;

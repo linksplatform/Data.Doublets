@@ -57,27 +57,27 @@ namespace Platform.Data.Doublets.Benchmarks
             var usagesAsTargetQuery = new Link<TLink>(_any, _any, 1UL);
             var usagesAsTargetCount = addressToInt64Converter.Convert(_links.Count(usagesAsTargetQuery));
             var totalUsages = usagesAsSourceCount + usagesAsTargetCount;
-            var usages = new IList<TLink>[totalUsages];
-            var usagesFiller = new ArrayFiller<IList<TLink>, TLink>(usages, _links.Constants.Continue);
+            var usages = new IList<TLink>?[totalUsages];
+            var usagesFiller = new ArrayFiller<IList<TLink>?, TLink>(usages, _links.Constants.Continue);
             _links.Each(usagesFiller.AddAndReturnConstant, usagesAsSourceQuery);
             _links.Each(usagesFiller.AddAndReturnConstant, usagesAsTargetQuery);
             return usages;
         }
 
         [Benchmark]
-        public IList<IList<TLink>> List()
+        public IList<IList<TLink>?> List()
         {
             var usagesAsSourceQuery = new Link<TLink>(_any, 1UL, _any);
             var usagesAsTargetQuery = new Link<TLink>(_any, _any, 1UL);
-            var usages = new List<IList<TLink>>();
-            var usagesFiller = new ListFiller<IList<TLink>, TLink>(usages, _links.Constants.Continue);
+            var usages = new List<IList<TLink>?>();
+            var usagesFiller = new ListFiller<IList<TLink>?, TLink>(usages, _links.Constants.Continue);
             _links.Each(usagesFiller.AddAndReturnConstant, usagesAsSourceQuery);
             _links.Each(usagesFiller.AddAndReturnConstant, usagesAsTargetQuery);
             return usages;
         }
 
         [Benchmark]
-        public IList<IList<TLink>> ListWithCapacity()
+        public IList<IList<TLink>?> ListWithCapacity()
         {
             var addressToInt64Converter = CheckedConverter<TLink, long>.Default;
             var usagesAsSourceQuery = new Link<TLink>(_any, 1UL, _any);
@@ -85,8 +85,8 @@ namespace Platform.Data.Doublets.Benchmarks
             var usagesAsTargetQuery = new Link<TLink>(_any, _any, 1UL);
             var usagesAsTargetCount = addressToInt64Converter.Convert(_links.Count(usagesAsTargetQuery));
             var totalUsages = usagesAsSourceCount + usagesAsTargetCount;
-            var usages = new List<IList<TLink>>((int)totalUsages);
-            var usagesFiller = new ListFiller<IList<TLink>, TLink>(usages, _links.Constants.Continue);
+            var usages = new List<IList<TLink>?>((int)totalUsages);
+            var usagesFiller = new ListFiller<IList<TLink>?, TLink>(usages, _links.Constants.Continue);
             _links.Each(usagesFiller.AddAndReturnConstant, usagesAsSourceQuery);
             _links.Each(usagesFiller.AddAndReturnConstant, usagesAsTargetQuery);
             return usages;

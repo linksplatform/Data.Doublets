@@ -14,7 +14,7 @@ namespace Platform.Data.Doublets
     /// <summary>
     /// Структура описывающая уникальную связь.
     /// </summary>
-    public struct Link<TLink> : IEquatable<Link<TLink>>, IReadOnlyList<TLink>, IList<TLink>
+    public struct Link<TLink> : IEquatable<Link<TLink>>, IReadOnlyList<TLink>, IList<TLink>?
     {
         /// <summary>
         /// <para>
@@ -73,7 +73,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public Link(IList<TLink> values) => SetValues(values, out Index, out Source, out Target);
+        public Link(IList<TLink>? values) => SetValues(values, out Index, out Source, out Target);
 
         /// <summary>
         /// <para>
@@ -96,7 +96,7 @@ namespace Platform.Data.Doublets
             {
                 SetValues(ref otherLink, out Index, out Source, out Target);
             }
-            else if(other is IList<TLink> otherList)
+            else if(other is IList<TLink>? otherList)
             {
                 SetValues(otherList, out Index, out Source, out Target);
             }
@@ -152,7 +152,7 @@ namespace Platform.Data.Doublets
             target = other.Target;
         }
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static void SetValues(IList<TLink> values, out TLink index, out TLink source, out TLink target)
+        private static void SetValues(IList<TLink>? values, out TLink index, out TLink source, out TLink target)
         {
             if (values == null)
             {

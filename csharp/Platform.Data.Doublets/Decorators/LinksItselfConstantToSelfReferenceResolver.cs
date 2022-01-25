@@ -81,6 +81,6 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Update(IList<TLink> restriction, IList<TLink> substitution, WriteHandler<TLink> handler) => _links.Update(restriction, _links.ResolveConstantAsSelfReference(_constants.Itself, restriction, substitution), handler);
+        public override TLink Update(IList<TLink>? restriction, IList<TLink>? substitution, WriteHandler<TLink>? handler) => _links.Update(restriction, _links.ResolveConstantAsSelfReference(_constants.Itself, restriction, substitution), handler);
     }
 }

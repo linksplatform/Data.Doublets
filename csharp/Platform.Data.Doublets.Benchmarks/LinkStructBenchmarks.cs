@@ -25,13 +25,13 @@ namespace Platform.Data.Doublets.Benchmarks
         }
 
         [Benchmark]
-        public IList<TLink> Array()
+        public IList<TLink>? Array()
         {
             return new TLink[] {1UL, 1UL, 1UL};
         }
 
         [Benchmark]
-        public IList<TLink> List()
+        public IList<TLink>? List()
         {
             return new List<TLink>{1UL, 1UL, 1UL};
         }

@@ -15,7 +15,7 @@ namespace Platform.Data.Doublets.Decorators
             _logStreamWriter.AutoFlush = true;
         }
 
-        public override TLink Create(IList<TLink>? substitution, WriteHandler<TLink> handler)
+        public override TLink Create(IList<TLink>? substitution, WriteHandler<TLink>? handler)
         {
             WriteHandlerState<TLink> handlerState = new(_constants.Continue, _constants.Break, handler);
             return base.Create(substitution, (before, after) =>
@@ -29,7 +29,7 @@ namespace Platform.Data.Doublets.Decorators
             });
         }
 
-        public override TLink Update(IList<TLink> restriction, IList<TLink> substitution, WriteHandler<TLink> handler)
+        public override TLink Update(IList<TLink>? restriction, IList<TLink>? substitution, WriteHandler<TLink>? handler)
         {
             WriteHandlerState<TLink> handlerState = new(_constants.Continue, _constants.Break, handler);
             return base.Update(restriction, substitution, (before, after) =>
@@ -43,7 +43,7 @@ namespace Platform.Data.Doublets.Decorators
             });
         }
 
-        public override TLink Delete(IList<TLink> restriction, WriteHandler<TLink> handler)
+        public override TLink Delete(IList<TLink>? restriction, WriteHandler<TLink>? handler)
         {
             WriteHandlerState<TLink> handlerState = new(_constants.Continue, _constants.Break, handler);
             return base.Delete(restriction, (before, after) =>

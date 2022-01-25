@@ -40,7 +40,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Delete(IList<TLink>? restriction, WriteHandler<TLink> handler)
+        public override TLink Delete(IList<TLink>? restriction, WriteHandler<TLink>? handler)
         {
             var linkIndex = restriction[_constants.IndexPart];
             var constants = _links.Constants;

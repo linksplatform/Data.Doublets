@@ -40,7 +40,7 @@ namespace Platform.Data.Doublets.FFI
             }
         }
 
-        public TLink Each(IList<TLink> restriction, ReadHandler<TLink>? handler)
+        public TLink Each(IList<TLink>? restriction, ReadHandler<TLink>? handler)
         {
             unsafe
             {
@@ -54,7 +54,7 @@ namespace Platform.Data.Doublets.FFI
             }
         }
 
-        public TLink Create(IList<TLink> substitution, WriteHandler<TLink> handler)
+        public TLink Create(IList<TLink>? substitution, WriteHandler<TLink>? handler)
         {
             unsafe
             {
@@ -66,7 +66,7 @@ namespace Platform.Data.Doublets.FFI
             }
         }
 
-        public TLink Update(IList<TLink> restriction, IList<TLink> substitution, WriteHandler<TLink> handler)
+        public TLink Update(IList<TLink>? restriction, IList<TLink>? substitution, WriteHandler<TLink>? handler)
         {
             unsafe
             {
@@ -85,7 +85,7 @@ namespace Platform.Data.Doublets.FFI
             }
         }
 
-        public TLink Delete(IList<TLink> restriction, WriteHandler<TLink> handler)
+        public TLink Delete(IList<TLink>? restriction, WriteHandler<TLink>? handler)
         {
             unsafe
             {
