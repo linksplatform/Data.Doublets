@@ -37,7 +37,7 @@ namespace Platform.Data.Doublets.Tests
             Using<uint>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
             Using<ulong>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
         }
-        private static void Using<TLink>(Action<ILinks<TLink>> action)
+        private static void Using<TLink>(Action<ILinks<TLink>> action) where TLink : struct
         {
             var unitedMemoryLinks = new UnitedMemoryLinks<TLink>(new HeapResizableDirectMemory());
             using (var logFile = File.Open("linksLogger.txt", FileMode.Create, FileAccess.Write))

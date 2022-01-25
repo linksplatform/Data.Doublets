@@ -34,7 +34,7 @@ namespace Platform.Data.Doublets.Tests
             Using<uint>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
             Using<ulong>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
         }
-        private static void Using<TLink>(Action<ILinks<TLink>> action)
+        private static void Using<TLink>(Action<ILinks<TLink>> action) where TLink : struct
         {
             using (var dataMemory = new HeapResizableDirectMemory())
             using (var indexMemory = new HeapResizableDirectMemory())
@@ -43,7 +43,7 @@ namespace Platform.Data.Doublets.Tests
                 action(memory);
             }
         }
-        private static void UsingWithExternalReferences<TLink>(Action<ILinks<TLink>> action)
+        private static void UsingWithExternalReferences<TLink>(Action<ILinks<TLink>> action) where TLink : struct
         {
             var contants = new LinksConstants<TLink>(enableExternalReferencesSupport: true);
             using (var dataMemory = new HeapResizableDirectMemory())

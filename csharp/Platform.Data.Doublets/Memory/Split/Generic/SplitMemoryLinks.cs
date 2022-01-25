@@ -15,7 +15,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
     /// <para></para>
     /// </summary>
     /// <seealso cref="SplitMemoryLinksBase{TLink}"/>
-    public unsafe class SplitMemoryLinks<TLink> : SplitMemoryLinksBase<TLink>
+    public unsafe class SplitMemoryLinks<TLink> : SplitMemoryLinksBase<TLink> where TLink : struct
     {
         private readonly Func<ILinksTreeMethods<TLink>> _createInternalSourceTreeMethods;
         private readonly Func<ILinksTreeMethods<TLink>> _createExternalSourceTreeMethods;

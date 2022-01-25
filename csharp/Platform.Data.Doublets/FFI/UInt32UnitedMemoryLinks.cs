@@ -58,7 +58,7 @@ namespace Platform.Data.Doublets.FFI
         {
             unsafe
             {
-                Methods.CreateCallback_UInt32 callback = (before, after) => handler != null ? handler(new Link<TLink>(before.Index, before.Source, before.Target), new Link<TLink>(after.Index, after.Source, after.Target)) : Constants.Continue;
+                Methods.CreateCallback_UInt32 callback = (before, after) => handler?.Invoke(new Link<TLink>(before.Index, before.Source, before.Target), new Link<TLink>(after.Index, after.Source, after.Target)) ?? Constants.Continue;
                 fixed (uint* substitutionPtr = (uint[])substitution)
                 {
                     return Methods.UInt32UnitedMemoryLinks_Create(_ptr, substitutionPtr, (nuint)(substitution?.Count ?? 0), callback);
