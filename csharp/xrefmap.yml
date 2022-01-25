@@ -22860,15 +22860,15 @@ references:
   fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of TLinkAddress).Count
   nameWithType: SynchronizedLinks<TLinkAddress>.Count
   nameWithType.vb: SynchronizedLinks(Of TLinkAddress).Count
-- uid: Platform.Data.Doublets.SynchronizedLinks`1.Create(System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name: Create(IList<TLinkAddress>, WriteHandler<TLinkAddress>)
-  href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1_Create_System_Collections_Generic_IList__0__WriteHandler__0__
-  commentId: M:Platform.Data.Doublets.SynchronizedLinks`1.Create(System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name.vb: Create(IList(Of TLinkAddress), WriteHandler(Of TLinkAddress))
-  fullName: Platform.Data.Doublets.SynchronizedLinks<TLinkAddress>.Create(System.Collections.Generic.IList<TLinkAddress>, WriteHandler<TLinkAddress>)
-  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of TLinkAddress).Create(System.Collections.Generic.IList(Of TLinkAddress), WriteHandler(Of TLinkAddress))
-  nameWithType: SynchronizedLinks<TLinkAddress>.Create(IList<TLinkAddress>, WriteHandler<TLinkAddress>)
-  nameWithType.vb: SynchronizedLinks(Of TLinkAddress).Create(IList(Of TLinkAddress), WriteHandler(Of TLinkAddress))
+- uid: Platform.Data.Doublets.SynchronizedLinks`1.Create(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name: Create(IList<TLinkAddress>, Nullable<WriteHandler<TLinkAddress>>)
+  href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1_Create_System_Collections_Generic_IList__0__System_Nullable_WriteHandler__0___
+  commentId: M:Platform.Data.Doublets.SynchronizedLinks`1.Create(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name.vb: Create(IList(Of TLinkAddress), Nullable(Of WriteHandler(Of TLinkAddress)))
+  fullName: Platform.Data.Doublets.SynchronizedLinks<TLinkAddress>.Create(System.Collections.Generic.IList<TLinkAddress>, System.Nullable<WriteHandler<TLinkAddress>>)
+  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of TLinkAddress).Create(System.Collections.Generic.IList(Of TLinkAddress), System.Nullable(Of WriteHandler(Of TLinkAddress)))
+  nameWithType: SynchronizedLinks<TLinkAddress>.Create(IList<TLinkAddress>, Nullable<WriteHandler<TLinkAddress>>)
+  nameWithType.vb: SynchronizedLinks(Of TLinkAddress).Create(IList(Of TLinkAddress), Nullable(Of WriteHandler(Of TLinkAddress)))
 - uid: Platform.Data.Doublets.SynchronizedLinks`1.Create*
   name: Create
   href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1_Create_
@@ -22878,15 +22878,15 @@ references:
   fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of TLinkAddress).Create
   nameWithType: SynchronizedLinks<TLinkAddress>.Create
   nameWithType.vb: SynchronizedLinks(Of TLinkAddress).Create
-- uid: Platform.Data.Doublets.SynchronizedLinks`1.Delete(System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name: Delete(IList<TLinkAddress>, WriteHandler<TLinkAddress>)
-  href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1_Delete_System_Collections_Generic_IList__0__WriteHandler__0__
-  commentId: M:Platform.Data.Doublets.SynchronizedLinks`1.Delete(System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name.vb: Delete(IList(Of TLinkAddress), WriteHandler(Of TLinkAddress))
-  fullName: Platform.Data.Doublets.SynchronizedLinks<TLinkAddress>.Delete(System.Collections.Generic.IList<TLinkAddress>, WriteHandler<TLinkAddress>)
-  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of TLinkAddress).Delete(System.Collections.Generic.IList(Of TLinkAddress), WriteHandler(Of TLinkAddress))
-  nameWithType: SynchronizedLinks<TLinkAddress>.Delete(IList<TLinkAddress>, WriteHandler<TLinkAddress>)
-  nameWithType.vb: SynchronizedLinks(Of TLinkAddress).Delete(IList(Of TLinkAddress), WriteHandler(Of TLinkAddress))
+- uid: Platform.Data.Doublets.SynchronizedLinks`1.Delete(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name: Delete(IList<TLinkAddress>, Nullable<WriteHandler<TLinkAddress>>)
+  href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1_Delete_System_Collections_Generic_IList__0__System_Nullable_WriteHandler__0___
+  commentId: M:Platform.Data.Doublets.SynchronizedLinks`1.Delete(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name.vb: Delete(IList(Of TLinkAddress), Nullable(Of WriteHandler(Of TLinkAddress)))
+  fullName: Platform.Data.Doublets.SynchronizedLinks<TLinkAddress>.Delete(System.Collections.Generic.IList<TLinkAddress>, System.Nullable<WriteHandler<TLinkAddress>>)
+  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of TLinkAddress).Delete(System.Collections.Generic.IList(Of TLinkAddress), System.Nullable(Of WriteHandler(Of TLinkAddress)))
+  nameWithType: SynchronizedLinks<TLinkAddress>.Delete(IList<TLinkAddress>, Nullable<WriteHandler<TLinkAddress>>)
+  nameWithType.vb: SynchronizedLinks(Of TLinkAddress).Delete(IList(Of TLinkAddress), Nullable(Of WriteHandler(Of TLinkAddress)))
 - uid: Platform.Data.Doublets.SynchronizedLinks`1.Delete*
   name: Delete
   href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1_Delete_
@@ -22965,15 +22965,15 @@ references:
   fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of TLinkAddress).Unsync
   nameWithType: SynchronizedLinks<TLinkAddress>.Unsync
   nameWithType.vb: SynchronizedLinks(Of TLinkAddress).Unsync
-- uid: Platform.Data.Doublets.SynchronizedLinks`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name: Update(IList<TLinkAddress>, IList<TLinkAddress>, WriteHandler<TLinkAddress>)
-  href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__WriteHandler__0__
-  commentId: M:Platform.Data.Doublets.SynchronizedLinks`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name.vb: Update(IList(Of TLinkAddress), IList(Of TLinkAddress), WriteHandler(Of TLinkAddress))
-  fullName: Platform.Data.Doublets.SynchronizedLinks<TLinkAddress>.Update(System.Collections.Generic.IList<TLinkAddress>, System.Collections.Generic.IList<TLinkAddress>, WriteHandler<TLinkAddress>)
-  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of TLinkAddress).Update(System.Collections.Generic.IList(Of TLinkAddress), System.Collections.Generic.IList(Of TLinkAddress), WriteHandler(Of TLinkAddress))
-  nameWithType: SynchronizedLinks<TLinkAddress>.Update(IList<TLinkAddress>, IList<TLinkAddress>, WriteHandler<TLinkAddress>)
-  nameWithType.vb: SynchronizedLinks(Of TLinkAddress).Update(IList(Of TLinkAddress), IList(Of TLinkAddress), WriteHandler(Of TLinkAddress))
+- uid: Platform.Data.Doublets.SynchronizedLinks`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name: Update(IList<TLinkAddress>, IList<TLinkAddress>, Nullable<WriteHandler<TLinkAddress>>)
+  href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__System_Nullable_WriteHandler__0___
+  commentId: M:Platform.Data.Doublets.SynchronizedLinks`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name.vb: Update(IList(Of TLinkAddress), IList(Of TLinkAddress), Nullable(Of WriteHandler(Of TLinkAddress)))
+  fullName: Platform.Data.Doublets.SynchronizedLinks<TLinkAddress>.Update(System.Collections.Generic.IList<TLinkAddress>, System.Collections.Generic.IList<TLinkAddress>, System.Nullable<WriteHandler<TLinkAddress>>)
+  fullName.vb: Platform.Data.Doublets.SynchronizedLinks(Of TLinkAddress).Update(System.Collections.Generic.IList(Of TLinkAddress), System.Collections.Generic.IList(Of TLinkAddress), System.Nullable(Of WriteHandler(Of TLinkAddress)))
+  nameWithType: SynchronizedLinks<TLinkAddress>.Update(IList<TLinkAddress>, IList<TLinkAddress>, Nullable<WriteHandler<TLinkAddress>>)
+  nameWithType.vb: SynchronizedLinks(Of TLinkAddress).Update(IList(Of TLinkAddress), IList(Of TLinkAddress), Nullable(Of WriteHandler(Of TLinkAddress)))
 - uid: Platform.Data.Doublets.SynchronizedLinks`1.Update*
   name: Update
   href: api/Platform.Data.Doublets.SynchronizedLinks-1.html#Platform_Data_Doublets_SynchronizedLinks_1_Update_
