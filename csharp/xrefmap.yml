@@ -135,15 +135,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksCascadeUsagesResolver(Of TLink).LinksCascadeUsagesResolver
   nameWithType: LinksCascadeUsagesResolver<TLink>.LinksCascadeUsagesResolver
   nameWithType.vb: LinksCascadeUsagesResolver(Of TLink).LinksCascadeUsagesResolver
-- uid: Platform.Data.Doublets.Decorators.LinksCascadeUsagesResolver`1.Delete(System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name: Delete(IList<TLink>, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksCascadeUsagesResolver-1.html#Platform_Data_Doublets_Decorators_LinksCascadeUsagesResolver_1_Delete_System_Collections_Generic_IList__0__WriteHandler__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksCascadeUsagesResolver`1.Delete(System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name.vb: Delete(IList(Of TLink), WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksCascadeUsagesResolver<TLink>.Delete(System.Collections.Generic.IList<TLink>, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksCascadeUsagesResolver(Of TLink).Delete(System.Collections.Generic.IList(Of TLink), WriteHandler(Of TLink))
-  nameWithType: LinksCascadeUsagesResolver<TLink>.Delete(IList<TLink>, WriteHandler<TLink>)
-  nameWithType.vb: LinksCascadeUsagesResolver(Of TLink).Delete(IList(Of TLink), WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksCascadeUsagesResolver`1.Delete(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name: Delete(IList<TLink>, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Decorators.LinksCascadeUsagesResolver-1.html#Platform_Data_Doublets_Decorators_LinksCascadeUsagesResolver_1_Delete_System_Collections_Generic_IList__0__System_Nullable_WriteHandler__0___
+  commentId: M:Platform.Data.Doublets.Decorators.LinksCascadeUsagesResolver`1.Delete(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name.vb: Delete(IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Decorators.LinksCascadeUsagesResolver<TLink>.Delete(System.Collections.Generic.IList<TLink>, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksCascadeUsagesResolver(Of TLink).Delete(System.Collections.Generic.IList(Of TLink), System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: LinksCascadeUsagesResolver<TLink>.Delete(IList<TLink>, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: LinksCascadeUsagesResolver(Of TLink).Delete(IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Decorators.LinksCascadeUsagesResolver`1.Delete*
   name: Delete
   href: api/Platform.Data.Doublets.Decorators.LinksCascadeUsagesResolver-1.html#Platform_Data_Doublets_Decorators_LinksCascadeUsagesResolver_1_Delete_
@@ -231,15 +231,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksDecoratorBase(Of TLink).Count
   nameWithType: LinksDecoratorBase<TLink>.Count
   nameWithType.vb: LinksDecoratorBase(Of TLink).Count
-- uid: Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Create(System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name: Create(IList<TLink>, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1_Create_System_Collections_Generic_IList__0__WriteHandler__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Create(System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name.vb: Create(IList(Of TLink), WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksDecoratorBase<TLink>.Create(System.Collections.Generic.IList<TLink>, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksDecoratorBase(Of TLink).Create(System.Collections.Generic.IList(Of TLink), WriteHandler(Of TLink))
-  nameWithType: LinksDecoratorBase<TLink>.Create(IList<TLink>, WriteHandler<TLink>)
-  nameWithType.vb: LinksDecoratorBase(Of TLink).Create(IList(Of TLink), WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Create(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name: Create(IList<TLink>, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1_Create_System_Collections_Generic_IList__0__System_Nullable_WriteHandler__0___
+  commentId: M:Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Create(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name.vb: Create(IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Decorators.LinksDecoratorBase<TLink>.Create(System.Collections.Generic.IList<TLink>, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDecoratorBase(Of TLink).Create(System.Collections.Generic.IList(Of TLink), System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: LinksDecoratorBase<TLink>.Create(IList<TLink>, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: LinksDecoratorBase(Of TLink).Create(IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Create*
   name: Create
   href: api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1_Create_
@@ -249,15 +249,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksDecoratorBase(Of TLink).Create
   nameWithType: LinksDecoratorBase<TLink>.Create
   nameWithType.vb: LinksDecoratorBase(Of TLink).Create
-- uid: Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Delete(System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name: Delete(IList<TLink>, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1_Delete_System_Collections_Generic_IList__0__WriteHandler__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Delete(System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name.vb: Delete(IList(Of TLink), WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksDecoratorBase<TLink>.Delete(System.Collections.Generic.IList<TLink>, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksDecoratorBase(Of TLink).Delete(System.Collections.Generic.IList(Of TLink), WriteHandler(Of TLink))
-  nameWithType: LinksDecoratorBase<TLink>.Delete(IList<TLink>, WriteHandler<TLink>)
-  nameWithType.vb: LinksDecoratorBase(Of TLink).Delete(IList(Of TLink), WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Delete(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name: Delete(IList<TLink>, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1_Delete_System_Collections_Generic_IList__0__System_Nullable_WriteHandler__0___
+  commentId: M:Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Delete(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name.vb: Delete(IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Decorators.LinksDecoratorBase<TLink>.Delete(System.Collections.Generic.IList<TLink>, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDecoratorBase(Of TLink).Delete(System.Collections.Generic.IList(Of TLink), System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: LinksDecoratorBase<TLink>.Delete(IList<TLink>, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: LinksDecoratorBase(Of TLink).Delete(IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Delete*
   name: Delete
   href: api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1_Delete_
@@ -302,15 +302,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksDecoratorBase(Of TLink).Facade
   nameWithType: LinksDecoratorBase<TLink>.Facade
   nameWithType.vb: LinksDecoratorBase(Of TLink).Facade
-- uid: Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name: Update(IList<TLink>, IList<TLink>, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__WriteHandler__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name.vb: Update(IList(Of TLink), IList(Of TLink), WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksDecoratorBase<TLink>.Update(System.Collections.Generic.IList<TLink>, System.Collections.Generic.IList<TLink>, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksDecoratorBase(Of TLink).Update(System.Collections.Generic.IList(Of TLink), System.Collections.Generic.IList(Of TLink), WriteHandler(Of TLink))
-  nameWithType: LinksDecoratorBase<TLink>.Update(IList<TLink>, IList<TLink>, WriteHandler<TLink>)
-  nameWithType.vb: LinksDecoratorBase(Of TLink).Update(IList(Of TLink), IList(Of TLink), WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name: Update(IList<TLink>, IList<TLink>, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__System_Nullable_WriteHandler__0___
+  commentId: M:Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name.vb: Update(IList(Of TLink), IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Decorators.LinksDecoratorBase<TLink>.Update(System.Collections.Generic.IList<TLink>, System.Collections.Generic.IList<TLink>, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksDecoratorBase(Of TLink).Update(System.Collections.Generic.IList(Of TLink), System.Collections.Generic.IList(Of TLink), System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: LinksDecoratorBase<TLink>.Update(IList<TLink>, IList<TLink>, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: LinksDecoratorBase(Of TLink).Update(IList(Of TLink), IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Decorators.LinksDecoratorBase`1.Update*
   name: Update
   href: api/Platform.Data.Doublets.Decorators.LinksDecoratorBase-1.html#Platform_Data_Doublets_Decorators_LinksDecoratorBase_1_Update_
@@ -467,15 +467,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator(Of TLink).LinksInnerReferenceExistenceValidator
   nameWithType: LinksInnerReferenceExistenceValidator<TLink>.LinksInnerReferenceExistenceValidator
   nameWithType.vb: LinksInnerReferenceExistenceValidator(Of TLink).LinksInnerReferenceExistenceValidator
-- uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Delete(System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name: Delete(IList<TLink>, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceExistenceValidator_1_Delete_System_Collections_Generic_IList__0__WriteHandler__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Delete(System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name.vb: Delete(IList(Of TLink), WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator<TLink>.Delete(System.Collections.Generic.IList<TLink>, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator(Of TLink).Delete(System.Collections.Generic.IList(Of TLink), WriteHandler(Of TLink))
-  nameWithType: LinksInnerReferenceExistenceValidator<TLink>.Delete(IList<TLink>, WriteHandler<TLink>)
-  nameWithType.vb: LinksInnerReferenceExistenceValidator(Of TLink).Delete(IList(Of TLink), WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Delete(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name: Delete(IList<TLink>, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceExistenceValidator_1_Delete_System_Collections_Generic_IList__0__System_Nullable_WriteHandler__0___
+  commentId: M:Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Delete(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name.vb: Delete(IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator<TLink>.Delete(System.Collections.Generic.IList<TLink>, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator(Of TLink).Delete(System.Collections.Generic.IList(Of TLink), System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: LinksInnerReferenceExistenceValidator<TLink>.Delete(IList<TLink>, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: LinksInnerReferenceExistenceValidator(Of TLink).Delete(IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Delete*
   name: Delete
   href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceExistenceValidator_1_Delete_
@@ -503,15 +503,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator(Of TLink).Each
   nameWithType: LinksInnerReferenceExistenceValidator<TLink>.Each
   nameWithType.vb: LinksInnerReferenceExistenceValidator(Of TLink).Each
-- uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name: Update(IList<TLink>, IList<TLink>, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceExistenceValidator_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__WriteHandler__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name.vb: Update(IList(Of TLink), IList(Of TLink), WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator<TLink>.Update(System.Collections.Generic.IList<TLink>, System.Collections.Generic.IList<TLink>, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator(Of TLink).Update(System.Collections.Generic.IList(Of TLink), System.Collections.Generic.IList(Of TLink), WriteHandler(Of TLink))
-  nameWithType: LinksInnerReferenceExistenceValidator<TLink>.Update(IList<TLink>, IList<TLink>, WriteHandler<TLink>)
-  nameWithType.vb: LinksInnerReferenceExistenceValidator(Of TLink).Update(IList(Of TLink), IList(Of TLink), WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name: Update(IList<TLink>, IList<TLink>, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceExistenceValidator_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__System_Nullable_WriteHandler__0___
+  commentId: M:Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name.vb: Update(IList(Of TLink), IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator<TLink>.Update(System.Collections.Generic.IList<TLink>, System.Collections.Generic.IList<TLink>, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator(Of TLink).Update(System.Collections.Generic.IList(Of TLink), System.Collections.Generic.IList(Of TLink), System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: LinksInnerReferenceExistenceValidator<TLink>.Update(IList<TLink>, IList<TLink>, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: LinksInnerReferenceExistenceValidator(Of TLink).Update(IList(Of TLink), IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator`1.Update*
   name: Update
   href: api/Platform.Data.Doublets.Decorators.LinksInnerReferenceExistenceValidator-1.html#Platform_Data_Doublets_Decorators_LinksInnerReferenceExistenceValidator_1_Update_
@@ -566,15 +566,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver(Of TLink).Each
   nameWithType: LinksItselfConstantToSelfReferenceResolver<TLink>.Each
   nameWithType.vb: LinksItselfConstantToSelfReferenceResolver(Of TLink).Each
-- uid: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name: Update(IList<TLink>, IList<TLink>, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksItselfConstantToSelfReferenceResolver_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__WriteHandler__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name.vb: Update(IList(Of TLink), IList(Of TLink), WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver<TLink>.Update(System.Collections.Generic.IList<TLink>, System.Collections.Generic.IList<TLink>, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver(Of TLink).Update(System.Collections.Generic.IList(Of TLink), System.Collections.Generic.IList(Of TLink), WriteHandler(Of TLink))
-  nameWithType: LinksItselfConstantToSelfReferenceResolver<TLink>.Update(IList<TLink>, IList<TLink>, WriteHandler<TLink>)
-  nameWithType.vb: LinksItselfConstantToSelfReferenceResolver(Of TLink).Update(IList(Of TLink), IList(Of TLink), WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name: Update(IList<TLink>, IList<TLink>, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksItselfConstantToSelfReferenceResolver_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__System_Nullable_WriteHandler__0___
+  commentId: M:Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name.vb: Update(IList(Of TLink), IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver<TLink>.Update(System.Collections.Generic.IList<TLink>, System.Collections.Generic.IList<TLink>, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver(Of TLink).Update(System.Collections.Generic.IList(Of TLink), System.Collections.Generic.IList(Of TLink), System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: LinksItselfConstantToSelfReferenceResolver<TLink>.Update(IList<TLink>, IList<TLink>, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: LinksItselfConstantToSelfReferenceResolver(Of TLink).Update(IList(Of TLink), IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver`1.Update*
   name: Update
   href: api/Platform.Data.Doublets.Decorators.LinksItselfConstantToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksItselfConstantToSelfReferenceResolver_1_Update_
@@ -611,15 +611,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksNonExistentDependenciesCreator(Of TLink).LinksNonExistentDependenciesCreator
   nameWithType: LinksNonExistentDependenciesCreator<TLink>.LinksNonExistentDependenciesCreator
   nameWithType.vb: LinksNonExistentDependenciesCreator(Of TLink).LinksNonExistentDependenciesCreator
-- uid: Platform.Data.Doublets.Decorators.LinksNonExistentDependenciesCreator`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name: Update(IList<TLink>, IList<TLink>, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksNonExistentDependenciesCreator-1.html#Platform_Data_Doublets_Decorators_LinksNonExistentDependenciesCreator_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__WriteHandler__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksNonExistentDependenciesCreator`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name.vb: Update(IList(Of TLink), IList(Of TLink), WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksNonExistentDependenciesCreator<TLink>.Update(System.Collections.Generic.IList<TLink>, System.Collections.Generic.IList<TLink>, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksNonExistentDependenciesCreator(Of TLink).Update(System.Collections.Generic.IList(Of TLink), System.Collections.Generic.IList(Of TLink), WriteHandler(Of TLink))
-  nameWithType: LinksNonExistentDependenciesCreator<TLink>.Update(IList<TLink>, IList<TLink>, WriteHandler<TLink>)
-  nameWithType.vb: LinksNonExistentDependenciesCreator(Of TLink).Update(IList(Of TLink), IList(Of TLink), WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksNonExistentDependenciesCreator`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name: Update(IList<TLink>, IList<TLink>, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Decorators.LinksNonExistentDependenciesCreator-1.html#Platform_Data_Doublets_Decorators_LinksNonExistentDependenciesCreator_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__System_Nullable_WriteHandler__0___
+  commentId: M:Platform.Data.Doublets.Decorators.LinksNonExistentDependenciesCreator`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name.vb: Update(IList(Of TLink), IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Decorators.LinksNonExistentDependenciesCreator<TLink>.Update(System.Collections.Generic.IList<TLink>, System.Collections.Generic.IList<TLink>, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksNonExistentDependenciesCreator(Of TLink).Update(System.Collections.Generic.IList(Of TLink), System.Collections.Generic.IList(Of TLink), System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: LinksNonExistentDependenciesCreator<TLink>.Update(IList<TLink>, IList<TLink>, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: LinksNonExistentDependenciesCreator(Of TLink).Update(IList(Of TLink), IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Decorators.LinksNonExistentDependenciesCreator`1.Update*
   name: Update
   href: api/Platform.Data.Doublets.Decorators.LinksNonExistentDependenciesCreator-1.html#Platform_Data_Doublets_Decorators_LinksNonExistentDependenciesCreator_1_Update_
@@ -656,15 +656,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver(Of TLink).LinksNullConstantToSelfReferenceResolver
   nameWithType: LinksNullConstantToSelfReferenceResolver<TLink>.LinksNullConstantToSelfReferenceResolver
   nameWithType.vb: LinksNullConstantToSelfReferenceResolver(Of TLink).LinksNullConstantToSelfReferenceResolver
-- uid: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver`1.Create(System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name: Create(IList<TLink>, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksNullConstantToSelfReferenceResolver_1_Create_System_Collections_Generic_IList__0__WriteHandler__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver`1.Create(System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name.vb: Create(IList(Of TLink), WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver<TLink>.Create(System.Collections.Generic.IList<TLink>, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver(Of TLink).Create(System.Collections.Generic.IList(Of TLink), WriteHandler(Of TLink))
-  nameWithType: LinksNullConstantToSelfReferenceResolver<TLink>.Create(IList<TLink>, WriteHandler<TLink>)
-  nameWithType.vb: LinksNullConstantToSelfReferenceResolver(Of TLink).Create(IList(Of TLink), WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver`1.Create(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name: Create(IList<TLink>, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksNullConstantToSelfReferenceResolver_1_Create_System_Collections_Generic_IList__0__System_Nullable_WriteHandler__0___
+  commentId: M:Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver`1.Create(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name.vb: Create(IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver<TLink>.Create(System.Collections.Generic.IList<TLink>, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver(Of TLink).Create(System.Collections.Generic.IList(Of TLink), System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: LinksNullConstantToSelfReferenceResolver<TLink>.Create(IList<TLink>, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: LinksNullConstantToSelfReferenceResolver(Of TLink).Create(IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver`1.Create*
   name: Create
   href: api/Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksNullConstantToSelfReferenceResolver_1_Create_
@@ -674,15 +674,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver(Of TLink).Create
   nameWithType: LinksNullConstantToSelfReferenceResolver<TLink>.Create
   nameWithType.vb: LinksNullConstantToSelfReferenceResolver(Of TLink).Create
-- uid: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name: Update(IList<TLink>, IList<TLink>, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksNullConstantToSelfReferenceResolver_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__WriteHandler__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name.vb: Update(IList(Of TLink), IList(Of TLink), WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver<TLink>.Update(System.Collections.Generic.IList<TLink>, System.Collections.Generic.IList<TLink>, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver(Of TLink).Update(System.Collections.Generic.IList(Of TLink), System.Collections.Generic.IList(Of TLink), WriteHandler(Of TLink))
-  nameWithType: LinksNullConstantToSelfReferenceResolver<TLink>.Update(IList<TLink>, IList<TLink>, WriteHandler<TLink>)
-  nameWithType.vb: LinksNullConstantToSelfReferenceResolver(Of TLink).Update(IList(Of TLink), IList(Of TLink), WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name: Update(IList<TLink>, IList<TLink>, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksNullConstantToSelfReferenceResolver_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__System_Nullable_WriteHandler__0___
+  commentId: M:Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name.vb: Update(IList(Of TLink), IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver<TLink>.Update(System.Collections.Generic.IList<TLink>, System.Collections.Generic.IList<TLink>, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver(Of TLink).Update(System.Collections.Generic.IList(Of TLink), System.Collections.Generic.IList(Of TLink), System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: LinksNullConstantToSelfReferenceResolver<TLink>.Update(IList<TLink>, IList<TLink>, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: LinksNullConstantToSelfReferenceResolver(Of TLink).Update(IList(Of TLink), IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver`1.Update*
   name: Update
   href: api/Platform.Data.Doublets.Decorators.LinksNullConstantToSelfReferenceResolver-1.html#Platform_Data_Doublets_Decorators_LinksNullConstantToSelfReferenceResolver_1_Update_
@@ -719,15 +719,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksUniquenessResolver(Of TLink).LinksUniquenessResolver
   nameWithType: LinksUniquenessResolver<TLink>.LinksUniquenessResolver
   nameWithType.vb: LinksUniquenessResolver(Of TLink).LinksUniquenessResolver
-- uid: Platform.Data.Doublets.Decorators.LinksUniquenessResolver`1.ResolveAddressChangeConflict(`0,`0,WriteHandler{`0})
-  name: ResolveAddressChangeConflict(TLink, TLink, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksUniquenessResolver-1.html#Platform_Data_Doublets_Decorators_LinksUniquenessResolver_1_ResolveAddressChangeConflict__0__0_WriteHandler__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksUniquenessResolver`1.ResolveAddressChangeConflict(`0,`0,WriteHandler{`0})
-  name.vb: ResolveAddressChangeConflict(TLink, TLink, WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksUniquenessResolver<TLink>.ResolveAddressChangeConflict(TLink, TLink, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksUniquenessResolver(Of TLink).ResolveAddressChangeConflict(TLink, TLink, WriteHandler(Of TLink))
-  nameWithType: LinksUniquenessResolver<TLink>.ResolveAddressChangeConflict(TLink, TLink, WriteHandler<TLink>)
-  nameWithType.vb: LinksUniquenessResolver(Of TLink).ResolveAddressChangeConflict(TLink, TLink, WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksUniquenessResolver`1.ResolveAddressChangeConflict(`0,`0,System.Nullable{WriteHandler{`0}})
+  name: ResolveAddressChangeConflict(TLink, TLink, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Decorators.LinksUniquenessResolver-1.html#Platform_Data_Doublets_Decorators_LinksUniquenessResolver_1_ResolveAddressChangeConflict__0__0_System_Nullable_WriteHandler__0___
+  commentId: M:Platform.Data.Doublets.Decorators.LinksUniquenessResolver`1.ResolveAddressChangeConflict(`0,`0,System.Nullable{WriteHandler{`0}})
+  name.vb: ResolveAddressChangeConflict(TLink, TLink, Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Decorators.LinksUniquenessResolver<TLink>.ResolveAddressChangeConflict(TLink, TLink, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksUniquenessResolver(Of TLink).ResolveAddressChangeConflict(TLink, TLink, System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: LinksUniquenessResolver<TLink>.ResolveAddressChangeConflict(TLink, TLink, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: LinksUniquenessResolver(Of TLink).ResolveAddressChangeConflict(TLink, TLink, Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Decorators.LinksUniquenessResolver`1.ResolveAddressChangeConflict*
   name: ResolveAddressChangeConflict
   href: api/Platform.Data.Doublets.Decorators.LinksUniquenessResolver-1.html#Platform_Data_Doublets_Decorators_LinksUniquenessResolver_1_ResolveAddressChangeConflict_
@@ -737,15 +737,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksUniquenessResolver(Of TLink).ResolveAddressChangeConflict
   nameWithType: LinksUniquenessResolver<TLink>.ResolveAddressChangeConflict
   nameWithType.vb: LinksUniquenessResolver(Of TLink).ResolveAddressChangeConflict
-- uid: Platform.Data.Doublets.Decorators.LinksUniquenessResolver`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name: Update(IList<TLink>, IList<TLink>, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksUniquenessResolver-1.html#Platform_Data_Doublets_Decorators_LinksUniquenessResolver_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__WriteHandler__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksUniquenessResolver`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name.vb: Update(IList(Of TLink), IList(Of TLink), WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksUniquenessResolver<TLink>.Update(System.Collections.Generic.IList<TLink>, System.Collections.Generic.IList<TLink>, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksUniquenessResolver(Of TLink).Update(System.Collections.Generic.IList(Of TLink), System.Collections.Generic.IList(Of TLink), WriteHandler(Of TLink))
-  nameWithType: LinksUniquenessResolver<TLink>.Update(IList<TLink>, IList<TLink>, WriteHandler<TLink>)
-  nameWithType.vb: LinksUniquenessResolver(Of TLink).Update(IList(Of TLink), IList(Of TLink), WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksUniquenessResolver`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name: Update(IList<TLink>, IList<TLink>, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Decorators.LinksUniquenessResolver-1.html#Platform_Data_Doublets_Decorators_LinksUniquenessResolver_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__System_Nullable_WriteHandler__0___
+  commentId: M:Platform.Data.Doublets.Decorators.LinksUniquenessResolver`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name.vb: Update(IList(Of TLink), IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Decorators.LinksUniquenessResolver<TLink>.Update(System.Collections.Generic.IList<TLink>, System.Collections.Generic.IList<TLink>, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksUniquenessResolver(Of TLink).Update(System.Collections.Generic.IList(Of TLink), System.Collections.Generic.IList(Of TLink), System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: LinksUniquenessResolver<TLink>.Update(IList<TLink>, IList<TLink>, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: LinksUniquenessResolver(Of TLink).Update(IList(Of TLink), IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Decorators.LinksUniquenessResolver`1.Update*
   name: Update
   href: api/Platform.Data.Doublets.Decorators.LinksUniquenessResolver-1.html#Platform_Data_Doublets_Decorators_LinksUniquenessResolver_1_Update_
@@ -782,15 +782,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksUniquenessValidator(Of TLink).LinksUniquenessValidator
   nameWithType: LinksUniquenessValidator<TLink>.LinksUniquenessValidator
   nameWithType.vb: LinksUniquenessValidator(Of TLink).LinksUniquenessValidator
-- uid: Platform.Data.Doublets.Decorators.LinksUniquenessValidator`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name: Update(IList<TLink>, IList<TLink>, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksUniquenessValidator-1.html#Platform_Data_Doublets_Decorators_LinksUniquenessValidator_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__WriteHandler__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksUniquenessValidator`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name.vb: Update(IList(Of TLink), IList(Of TLink), WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksUniquenessValidator<TLink>.Update(System.Collections.Generic.IList<TLink>, System.Collections.Generic.IList<TLink>, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksUniquenessValidator(Of TLink).Update(System.Collections.Generic.IList(Of TLink), System.Collections.Generic.IList(Of TLink), WriteHandler(Of TLink))
-  nameWithType: LinksUniquenessValidator<TLink>.Update(IList<TLink>, IList<TLink>, WriteHandler<TLink>)
-  nameWithType.vb: LinksUniquenessValidator(Of TLink).Update(IList(Of TLink), IList(Of TLink), WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksUniquenessValidator`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name: Update(IList<TLink>, IList<TLink>, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Decorators.LinksUniquenessValidator-1.html#Platform_Data_Doublets_Decorators_LinksUniquenessValidator_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__System_Nullable_WriteHandler__0___
+  commentId: M:Platform.Data.Doublets.Decorators.LinksUniquenessValidator`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name.vb: Update(IList(Of TLink), IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Decorators.LinksUniquenessValidator<TLink>.Update(System.Collections.Generic.IList<TLink>, System.Collections.Generic.IList<TLink>, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksUniquenessValidator(Of TLink).Update(System.Collections.Generic.IList(Of TLink), System.Collections.Generic.IList(Of TLink), System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: LinksUniquenessValidator<TLink>.Update(IList<TLink>, IList<TLink>, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: LinksUniquenessValidator(Of TLink).Update(IList(Of TLink), IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Decorators.LinksUniquenessValidator`1.Update*
   name: Update
   href: api/Platform.Data.Doublets.Decorators.LinksUniquenessValidator-1.html#Platform_Data_Doublets_Decorators_LinksUniquenessValidator_1_Update_
@@ -827,15 +827,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksUsagesValidator(Of TLink).LinksUsagesValidator
   nameWithType: LinksUsagesValidator<TLink>.LinksUsagesValidator
   nameWithType.vb: LinksUsagesValidator(Of TLink).LinksUsagesValidator
-- uid: Platform.Data.Doublets.Decorators.LinksUsagesValidator`1.Delete(System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name: Delete(IList<TLink>, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksUsagesValidator-1.html#Platform_Data_Doublets_Decorators_LinksUsagesValidator_1_Delete_System_Collections_Generic_IList__0__WriteHandler__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksUsagesValidator`1.Delete(System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name.vb: Delete(IList(Of TLink), WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksUsagesValidator<TLink>.Delete(System.Collections.Generic.IList<TLink>, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksUsagesValidator(Of TLink).Delete(System.Collections.Generic.IList(Of TLink), WriteHandler(Of TLink))
-  nameWithType: LinksUsagesValidator<TLink>.Delete(IList<TLink>, WriteHandler<TLink>)
-  nameWithType.vb: LinksUsagesValidator(Of TLink).Delete(IList(Of TLink), WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksUsagesValidator`1.Delete(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name: Delete(IList<TLink>, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Decorators.LinksUsagesValidator-1.html#Platform_Data_Doublets_Decorators_LinksUsagesValidator_1_Delete_System_Collections_Generic_IList__0__System_Nullable_WriteHandler__0___
+  commentId: M:Platform.Data.Doublets.Decorators.LinksUsagesValidator`1.Delete(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name.vb: Delete(IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Decorators.LinksUsagesValidator<TLink>.Delete(System.Collections.Generic.IList<TLink>, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksUsagesValidator(Of TLink).Delete(System.Collections.Generic.IList(Of TLink), System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: LinksUsagesValidator<TLink>.Delete(IList<TLink>, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: LinksUsagesValidator(Of TLink).Delete(IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Decorators.LinksUsagesValidator`1.Delete*
   name: Delete
   href: api/Platform.Data.Doublets.Decorators.LinksUsagesValidator-1.html#Platform_Data_Doublets_Decorators_LinksUsagesValidator_1_Delete_
@@ -845,15 +845,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LinksUsagesValidator(Of TLink).Delete
   nameWithType: LinksUsagesValidator<TLink>.Delete
   nameWithType.vb: LinksUsagesValidator(Of TLink).Delete
-- uid: Platform.Data.Doublets.Decorators.LinksUsagesValidator`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name: Update(IList<TLink>, IList<TLink>, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LinksUsagesValidator-1.html#Platform_Data_Doublets_Decorators_LinksUsagesValidator_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__WriteHandler__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LinksUsagesValidator`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name.vb: Update(IList(Of TLink), IList(Of TLink), WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LinksUsagesValidator<TLink>.Update(System.Collections.Generic.IList<TLink>, System.Collections.Generic.IList<TLink>, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LinksUsagesValidator(Of TLink).Update(System.Collections.Generic.IList(Of TLink), System.Collections.Generic.IList(Of TLink), WriteHandler(Of TLink))
-  nameWithType: LinksUsagesValidator<TLink>.Update(IList<TLink>, IList<TLink>, WriteHandler<TLink>)
-  nameWithType.vb: LinksUsagesValidator(Of TLink).Update(IList(Of TLink), IList(Of TLink), WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LinksUsagesValidator`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name: Update(IList<TLink>, IList<TLink>, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Decorators.LinksUsagesValidator-1.html#Platform_Data_Doublets_Decorators_LinksUsagesValidator_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__System_Nullable_WriteHandler__0___
+  commentId: M:Platform.Data.Doublets.Decorators.LinksUsagesValidator`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name.vb: Update(IList(Of TLink), IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Decorators.LinksUsagesValidator<TLink>.Update(System.Collections.Generic.IList<TLink>, System.Collections.Generic.IList<TLink>, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LinksUsagesValidator(Of TLink).Update(System.Collections.Generic.IList(Of TLink), System.Collections.Generic.IList(Of TLink), System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: LinksUsagesValidator<TLink>.Update(IList<TLink>, IList<TLink>, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: LinksUsagesValidator(Of TLink).Update(IList(Of TLink), IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Decorators.LinksUsagesValidator`1.Update*
   name: Update
   href: api/Platform.Data.Doublets.Decorators.LinksUsagesValidator-1.html#Platform_Data_Doublets_Decorators_LinksUsagesValidator_1_Update_
@@ -890,15 +890,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LoggingDecorator(Of TLink).LoggingDecorator
   nameWithType: LoggingDecorator<TLink>.LoggingDecorator
   nameWithType.vb: LoggingDecorator(Of TLink).LoggingDecorator
-- uid: Platform.Data.Doublets.Decorators.LoggingDecorator`1.Create(System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name: Create(IList<TLink>, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LoggingDecorator-1.html#Platform_Data_Doublets_Decorators_LoggingDecorator_1_Create_System_Collections_Generic_IList__0__WriteHandler__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LoggingDecorator`1.Create(System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name.vb: Create(IList(Of TLink), WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LoggingDecorator<TLink>.Create(System.Collections.Generic.IList<TLink>, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LoggingDecorator(Of TLink).Create(System.Collections.Generic.IList(Of TLink), WriteHandler(Of TLink))
-  nameWithType: LoggingDecorator<TLink>.Create(IList<TLink>, WriteHandler<TLink>)
-  nameWithType.vb: LoggingDecorator(Of TLink).Create(IList(Of TLink), WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LoggingDecorator`1.Create(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name: Create(IList<TLink>, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Decorators.LoggingDecorator-1.html#Platform_Data_Doublets_Decorators_LoggingDecorator_1_Create_System_Collections_Generic_IList__0__System_Nullable_WriteHandler__0___
+  commentId: M:Platform.Data.Doublets.Decorators.LoggingDecorator`1.Create(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name.vb: Create(IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Decorators.LoggingDecorator<TLink>.Create(System.Collections.Generic.IList<TLink>, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LoggingDecorator(Of TLink).Create(System.Collections.Generic.IList(Of TLink), System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: LoggingDecorator<TLink>.Create(IList<TLink>, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: LoggingDecorator(Of TLink).Create(IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Decorators.LoggingDecorator`1.Create*
   name: Create
   href: api/Platform.Data.Doublets.Decorators.LoggingDecorator-1.html#Platform_Data_Doublets_Decorators_LoggingDecorator_1_Create_
@@ -908,15 +908,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LoggingDecorator(Of TLink).Create
   nameWithType: LoggingDecorator<TLink>.Create
   nameWithType.vb: LoggingDecorator(Of TLink).Create
-- uid: Platform.Data.Doublets.Decorators.LoggingDecorator`1.Delete(System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name: Delete(IList<TLink>, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LoggingDecorator-1.html#Platform_Data_Doublets_Decorators_LoggingDecorator_1_Delete_System_Collections_Generic_IList__0__WriteHandler__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LoggingDecorator`1.Delete(System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name.vb: Delete(IList(Of TLink), WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LoggingDecorator<TLink>.Delete(System.Collections.Generic.IList<TLink>, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LoggingDecorator(Of TLink).Delete(System.Collections.Generic.IList(Of TLink), WriteHandler(Of TLink))
-  nameWithType: LoggingDecorator<TLink>.Delete(IList<TLink>, WriteHandler<TLink>)
-  nameWithType.vb: LoggingDecorator(Of TLink).Delete(IList(Of TLink), WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LoggingDecorator`1.Delete(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name: Delete(IList<TLink>, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Decorators.LoggingDecorator-1.html#Platform_Data_Doublets_Decorators_LoggingDecorator_1_Delete_System_Collections_Generic_IList__0__System_Nullable_WriteHandler__0___
+  commentId: M:Platform.Data.Doublets.Decorators.LoggingDecorator`1.Delete(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name.vb: Delete(IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Decorators.LoggingDecorator<TLink>.Delete(System.Collections.Generic.IList<TLink>, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LoggingDecorator(Of TLink).Delete(System.Collections.Generic.IList(Of TLink), System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: LoggingDecorator<TLink>.Delete(IList<TLink>, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: LoggingDecorator(Of TLink).Delete(IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Decorators.LoggingDecorator`1.Delete*
   name: Delete
   href: api/Platform.Data.Doublets.Decorators.LoggingDecorator-1.html#Platform_Data_Doublets_Decorators_LoggingDecorator_1_Delete_
@@ -926,15 +926,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LoggingDecorator(Of TLink).Delete
   nameWithType: LoggingDecorator<TLink>.Delete
   nameWithType.vb: LoggingDecorator(Of TLink).Delete
-- uid: Platform.Data.Doublets.Decorators.LoggingDecorator`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name: Update(IList<TLink>, IList<TLink>, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.LoggingDecorator-1.html#Platform_Data_Doublets_Decorators_LoggingDecorator_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__WriteHandler__0__
-  commentId: M:Platform.Data.Doublets.Decorators.LoggingDecorator`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name.vb: Update(IList(Of TLink), IList(Of TLink), WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.LoggingDecorator<TLink>.Update(System.Collections.Generic.IList<TLink>, System.Collections.Generic.IList<TLink>, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.LoggingDecorator(Of TLink).Update(System.Collections.Generic.IList(Of TLink), System.Collections.Generic.IList(Of TLink), WriteHandler(Of TLink))
-  nameWithType: LoggingDecorator<TLink>.Update(IList<TLink>, IList<TLink>, WriteHandler<TLink>)
-  nameWithType.vb: LoggingDecorator(Of TLink).Update(IList(Of TLink), IList(Of TLink), WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.LoggingDecorator`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name: Update(IList<TLink>, IList<TLink>, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Decorators.LoggingDecorator-1.html#Platform_Data_Doublets_Decorators_LoggingDecorator_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__System_Nullable_WriteHandler__0___
+  commentId: M:Platform.Data.Doublets.Decorators.LoggingDecorator`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name.vb: Update(IList(Of TLink), IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Decorators.LoggingDecorator<TLink>.Update(System.Collections.Generic.IList<TLink>, System.Collections.Generic.IList<TLink>, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Decorators.LoggingDecorator(Of TLink).Update(System.Collections.Generic.IList(Of TLink), System.Collections.Generic.IList(Of TLink), System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: LoggingDecorator<TLink>.Update(IList<TLink>, IList<TLink>, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: LoggingDecorator(Of TLink).Update(IList(Of TLink), IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Decorators.LoggingDecorator`1.Update*
   name: Update
   href: api/Platform.Data.Doublets.Decorators.LoggingDecorator-1.html#Platform_Data_Doublets_Decorators_LoggingDecorator_1_Update_
@@ -971,15 +971,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.NonNullContentsLinkDeletionResolver(Of TLink).NonNullContentsLinkDeletionResolver
   nameWithType: NonNullContentsLinkDeletionResolver<TLink>.NonNullContentsLinkDeletionResolver
   nameWithType.vb: NonNullContentsLinkDeletionResolver(Of TLink).NonNullContentsLinkDeletionResolver
-- uid: Platform.Data.Doublets.Decorators.NonNullContentsLinkDeletionResolver`1.Delete(System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name: Delete(IList<TLink>, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.Decorators.NonNullContentsLinkDeletionResolver-1.html#Platform_Data_Doublets_Decorators_NonNullContentsLinkDeletionResolver_1_Delete_System_Collections_Generic_IList__0__WriteHandler__0__
-  commentId: M:Platform.Data.Doublets.Decorators.NonNullContentsLinkDeletionResolver`1.Delete(System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name.vb: Delete(IList(Of TLink), WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Decorators.NonNullContentsLinkDeletionResolver<TLink>.Delete(System.Collections.Generic.IList<TLink>, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Decorators.NonNullContentsLinkDeletionResolver(Of TLink).Delete(System.Collections.Generic.IList(Of TLink), WriteHandler(Of TLink))
-  nameWithType: NonNullContentsLinkDeletionResolver<TLink>.Delete(IList<TLink>, WriteHandler<TLink>)
-  nameWithType.vb: NonNullContentsLinkDeletionResolver(Of TLink).Delete(IList(Of TLink), WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.Decorators.NonNullContentsLinkDeletionResolver`1.Delete(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name: Delete(IList<TLink>, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Decorators.NonNullContentsLinkDeletionResolver-1.html#Platform_Data_Doublets_Decorators_NonNullContentsLinkDeletionResolver_1_Delete_System_Collections_Generic_IList__0__System_Nullable_WriteHandler__0___
+  commentId: M:Platform.Data.Doublets.Decorators.NonNullContentsLinkDeletionResolver`1.Delete(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name.vb: Delete(IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Decorators.NonNullContentsLinkDeletionResolver<TLink>.Delete(System.Collections.Generic.IList<TLink>, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Decorators.NonNullContentsLinkDeletionResolver(Of TLink).Delete(System.Collections.Generic.IList(Of TLink), System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: NonNullContentsLinkDeletionResolver<TLink>.Delete(IList<TLink>, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: NonNullContentsLinkDeletionResolver(Of TLink).Delete(IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Decorators.NonNullContentsLinkDeletionResolver`1.Delete*
   name: Delete
   href: api/Platform.Data.Doublets.Decorators.NonNullContentsLinkDeletionResolver-1.html#Platform_Data_Doublets_Decorators_NonNullContentsLinkDeletionResolver_1_Delete_
@@ -1011,15 +1011,15 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Decorators.UInt32Links.UInt32Links
   nameWithType: UInt32Links.UInt32Links
-- uid: Platform.Data.Doublets.Decorators.UInt32Links.Create(System.Collections.Generic.IList{System.UInt32},WriteHandler{System.UInt32})
-  name: Create(IList<UInt32>, WriteHandler<UInt32>)
-  href: api/Platform.Data.Doublets.Decorators.UInt32Links.html#Platform_Data_Doublets_Decorators_UInt32Links_Create_System_Collections_Generic_IList_System_UInt32__WriteHandler_System_UInt32__
-  commentId: M:Platform.Data.Doublets.Decorators.UInt32Links.Create(System.Collections.Generic.IList{System.UInt32},WriteHandler{System.UInt32})
-  name.vb: Create(IList(Of UInt32), WriteHandler(Of UInt32))
-  fullName: Platform.Data.Doublets.Decorators.UInt32Links.Create(System.Collections.Generic.IList<System.UInt32>, WriteHandler<System.UInt32>)
-  fullName.vb: Platform.Data.Doublets.Decorators.UInt32Links.Create(System.Collections.Generic.IList(Of System.UInt32), WriteHandler(Of System.UInt32))
-  nameWithType: UInt32Links.Create(IList<UInt32>, WriteHandler<UInt32>)
-  nameWithType.vb: UInt32Links.Create(IList(Of UInt32), WriteHandler(Of UInt32))
+- uid: Platform.Data.Doublets.Decorators.UInt32Links.Create(System.Collections.Generic.IList{System.UInt32},System.Nullable{WriteHandler{System.UInt32}})
+  name: Create(IList<UInt32>, Nullable<WriteHandler<UInt32>>)
+  href: api/Platform.Data.Doublets.Decorators.UInt32Links.html#Platform_Data_Doublets_Decorators_UInt32Links_Create_System_Collections_Generic_IList_System_UInt32__System_Nullable_WriteHandler_System_UInt32___
+  commentId: M:Platform.Data.Doublets.Decorators.UInt32Links.Create(System.Collections.Generic.IList{System.UInt32},System.Nullable{WriteHandler{System.UInt32}})
+  name.vb: Create(IList(Of UInt32), Nullable(Of WriteHandler(Of UInt32)))
+  fullName: Platform.Data.Doublets.Decorators.UInt32Links.Create(System.Collections.Generic.IList<System.UInt32>, System.Nullable<WriteHandler<System.UInt32>>)
+  fullName.vb: Platform.Data.Doublets.Decorators.UInt32Links.Create(System.Collections.Generic.IList(Of System.UInt32), System.Nullable(Of WriteHandler(Of System.UInt32)))
+  nameWithType: UInt32Links.Create(IList<UInt32>, Nullable<WriteHandler<UInt32>>)
+  nameWithType.vb: UInt32Links.Create(IList(Of UInt32), Nullable(Of WriteHandler(Of UInt32)))
 - uid: Platform.Data.Doublets.Decorators.UInt32Links.Create*
   name: Create
   href: api/Platform.Data.Doublets.Decorators.UInt32Links.html#Platform_Data_Doublets_Decorators_UInt32Links_Create_
@@ -1027,15 +1027,15 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Decorators.UInt32Links.Create
   nameWithType: UInt32Links.Create
-- uid: Platform.Data.Doublets.Decorators.UInt32Links.Delete(System.Collections.Generic.IList{System.UInt32},WriteHandler{System.UInt32})
-  name: Delete(IList<UInt32>, WriteHandler<UInt32>)
-  href: api/Platform.Data.Doublets.Decorators.UInt32Links.html#Platform_Data_Doublets_Decorators_UInt32Links_Delete_System_Collections_Generic_IList_System_UInt32__WriteHandler_System_UInt32__
-  commentId: M:Platform.Data.Doublets.Decorators.UInt32Links.Delete(System.Collections.Generic.IList{System.UInt32},WriteHandler{System.UInt32})
-  name.vb: Delete(IList(Of UInt32), WriteHandler(Of UInt32))
-  fullName: Platform.Data.Doublets.Decorators.UInt32Links.Delete(System.Collections.Generic.IList<System.UInt32>, WriteHandler<System.UInt32>)
-  fullName.vb: Platform.Data.Doublets.Decorators.UInt32Links.Delete(System.Collections.Generic.IList(Of System.UInt32), WriteHandler(Of System.UInt32))
-  nameWithType: UInt32Links.Delete(IList<UInt32>, WriteHandler<UInt32>)
-  nameWithType.vb: UInt32Links.Delete(IList(Of UInt32), WriteHandler(Of UInt32))
+- uid: Platform.Data.Doublets.Decorators.UInt32Links.Delete(System.Collections.Generic.IList{System.UInt32},System.Nullable{WriteHandler{System.UInt32}})
+  name: Delete(IList<UInt32>, Nullable<WriteHandler<UInt32>>)
+  href: api/Platform.Data.Doublets.Decorators.UInt32Links.html#Platform_Data_Doublets_Decorators_UInt32Links_Delete_System_Collections_Generic_IList_System_UInt32__System_Nullable_WriteHandler_System_UInt32___
+  commentId: M:Platform.Data.Doublets.Decorators.UInt32Links.Delete(System.Collections.Generic.IList{System.UInt32},System.Nullable{WriteHandler{System.UInt32}})
+  name.vb: Delete(IList(Of UInt32), Nullable(Of WriteHandler(Of UInt32)))
+  fullName: Platform.Data.Doublets.Decorators.UInt32Links.Delete(System.Collections.Generic.IList<System.UInt32>, System.Nullable<WriteHandler<System.UInt32>>)
+  fullName.vb: Platform.Data.Doublets.Decorators.UInt32Links.Delete(System.Collections.Generic.IList(Of System.UInt32), System.Nullable(Of WriteHandler(Of System.UInt32)))
+  nameWithType: UInt32Links.Delete(IList<UInt32>, Nullable<WriteHandler<UInt32>>)
+  nameWithType.vb: UInt32Links.Delete(IList(Of UInt32), Nullable(Of WriteHandler(Of UInt32)))
 - uid: Platform.Data.Doublets.Decorators.UInt32Links.Delete*
   name: Delete
   href: api/Platform.Data.Doublets.Decorators.UInt32Links.html#Platform_Data_Doublets_Decorators_UInt32Links_Delete_
@@ -1043,15 +1043,15 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Decorators.UInt32Links.Delete
   nameWithType: UInt32Links.Delete
-- uid: Platform.Data.Doublets.Decorators.UInt32Links.Update(System.Collections.Generic.IList{System.UInt32},System.Collections.Generic.IList{System.UInt32},WriteHandler{System.UInt32})
-  name: Update(IList<UInt32>, IList<UInt32>, WriteHandler<UInt32>)
-  href: api/Platform.Data.Doublets.Decorators.UInt32Links.html#Platform_Data_Doublets_Decorators_UInt32Links_Update_System_Collections_Generic_IList_System_UInt32__System_Collections_Generic_IList_System_UInt32__WriteHandler_System_UInt32__
-  commentId: M:Platform.Data.Doublets.Decorators.UInt32Links.Update(System.Collections.Generic.IList{System.UInt32},System.Collections.Generic.IList{System.UInt32},WriteHandler{System.UInt32})
-  name.vb: Update(IList(Of UInt32), IList(Of UInt32), WriteHandler(Of UInt32))
-  fullName: Platform.Data.Doublets.Decorators.UInt32Links.Update(System.Collections.Generic.IList<System.UInt32>, System.Collections.Generic.IList<System.UInt32>, WriteHandler<System.UInt32>)
-  fullName.vb: Platform.Data.Doublets.Decorators.UInt32Links.Update(System.Collections.Generic.IList(Of System.UInt32), System.Collections.Generic.IList(Of System.UInt32), WriteHandler(Of System.UInt32))
-  nameWithType: UInt32Links.Update(IList<UInt32>, IList<UInt32>, WriteHandler<UInt32>)
-  nameWithType.vb: UInt32Links.Update(IList(Of UInt32), IList(Of UInt32), WriteHandler(Of UInt32))
+- uid: Platform.Data.Doublets.Decorators.UInt32Links.Update(System.Collections.Generic.IList{System.UInt32},System.Collections.Generic.IList{System.UInt32},System.Nullable{WriteHandler{System.UInt32}})
+  name: Update(IList<UInt32>, IList<UInt32>, Nullable<WriteHandler<UInt32>>)
+  href: api/Platform.Data.Doublets.Decorators.UInt32Links.html#Platform_Data_Doublets_Decorators_UInt32Links_Update_System_Collections_Generic_IList_System_UInt32__System_Collections_Generic_IList_System_UInt32__System_Nullable_WriteHandler_System_UInt32___
+  commentId: M:Platform.Data.Doublets.Decorators.UInt32Links.Update(System.Collections.Generic.IList{System.UInt32},System.Collections.Generic.IList{System.UInt32},System.Nullable{WriteHandler{System.UInt32}})
+  name.vb: Update(IList(Of UInt32), IList(Of UInt32), Nullable(Of WriteHandler(Of UInt32)))
+  fullName: Platform.Data.Doublets.Decorators.UInt32Links.Update(System.Collections.Generic.IList<System.UInt32>, System.Collections.Generic.IList<System.UInt32>, System.Nullable<WriteHandler<System.UInt32>>)
+  fullName.vb: Platform.Data.Doublets.Decorators.UInt32Links.Update(System.Collections.Generic.IList(Of System.UInt32), System.Collections.Generic.IList(Of System.UInt32), System.Nullable(Of WriteHandler(Of System.UInt32)))
+  nameWithType: UInt32Links.Update(IList<UInt32>, IList<UInt32>, Nullable<WriteHandler<UInt32>>)
+  nameWithType.vb: UInt32Links.Update(IList(Of UInt32), IList(Of UInt32), Nullable(Of WriteHandler(Of UInt32)))
 - uid: Platform.Data.Doublets.Decorators.UInt32Links.Update*
   name: Update
   href: api/Platform.Data.Doublets.Decorators.UInt32Links.html#Platform_Data_Doublets_Decorators_UInt32Links_Update_
@@ -1081,15 +1081,15 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Decorators.UInt64Links.UInt64Links
   nameWithType: UInt64Links.UInt64Links
-- uid: Platform.Data.Doublets.Decorators.UInt64Links.Create(System.Collections.Generic.IList{System.UInt64},WriteHandler{System.UInt64})
-  name: Create(IList<UInt64>, WriteHandler<UInt64>)
-  href: api/Platform.Data.Doublets.Decorators.UInt64Links.html#Platform_Data_Doublets_Decorators_UInt64Links_Create_System_Collections_Generic_IList_System_UInt64__WriteHandler_System_UInt64__
-  commentId: M:Platform.Data.Doublets.Decorators.UInt64Links.Create(System.Collections.Generic.IList{System.UInt64},WriteHandler{System.UInt64})
-  name.vb: Create(IList(Of UInt64), WriteHandler(Of UInt64))
-  fullName: Platform.Data.Doublets.Decorators.UInt64Links.Create(System.Collections.Generic.IList<System.UInt64>, WriteHandler<System.UInt64>)
-  fullName.vb: Platform.Data.Doublets.Decorators.UInt64Links.Create(System.Collections.Generic.IList(Of System.UInt64), WriteHandler(Of System.UInt64))
-  nameWithType: UInt64Links.Create(IList<UInt64>, WriteHandler<UInt64>)
-  nameWithType.vb: UInt64Links.Create(IList(Of UInt64), WriteHandler(Of UInt64))
+- uid: Platform.Data.Doublets.Decorators.UInt64Links.Create(System.Collections.Generic.IList{System.UInt64},System.Nullable{WriteHandler{System.UInt64}})
+  name: Create(IList<UInt64>, Nullable<WriteHandler<UInt64>>)
+  href: api/Platform.Data.Doublets.Decorators.UInt64Links.html#Platform_Data_Doublets_Decorators_UInt64Links_Create_System_Collections_Generic_IList_System_UInt64__System_Nullable_WriteHandler_System_UInt64___
+  commentId: M:Platform.Data.Doublets.Decorators.UInt64Links.Create(System.Collections.Generic.IList{System.UInt64},System.Nullable{WriteHandler{System.UInt64}})
+  name.vb: Create(IList(Of UInt64), Nullable(Of WriteHandler(Of UInt64)))
+  fullName: Platform.Data.Doublets.Decorators.UInt64Links.Create(System.Collections.Generic.IList<System.UInt64>, System.Nullable<WriteHandler<System.UInt64>>)
+  fullName.vb: Platform.Data.Doublets.Decorators.UInt64Links.Create(System.Collections.Generic.IList(Of System.UInt64), System.Nullable(Of WriteHandler(Of System.UInt64)))
+  nameWithType: UInt64Links.Create(IList<UInt64>, Nullable<WriteHandler<UInt64>>)
+  nameWithType.vb: UInt64Links.Create(IList(Of UInt64), Nullable(Of WriteHandler(Of UInt64)))
 - uid: Platform.Data.Doublets.Decorators.UInt64Links.Create*
   name: Create
   href: api/Platform.Data.Doublets.Decorators.UInt64Links.html#Platform_Data_Doublets_Decorators_UInt64Links_Create_
@@ -1097,15 +1097,15 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Decorators.UInt64Links.Create
   nameWithType: UInt64Links.Create
-- uid: Platform.Data.Doublets.Decorators.UInt64Links.Delete(System.Collections.Generic.IList{System.UInt64},WriteHandler{System.UInt64})
-  name: Delete(IList<UInt64>, WriteHandler<UInt64>)
-  href: api/Platform.Data.Doublets.Decorators.UInt64Links.html#Platform_Data_Doublets_Decorators_UInt64Links_Delete_System_Collections_Generic_IList_System_UInt64__WriteHandler_System_UInt64__
-  commentId: M:Platform.Data.Doublets.Decorators.UInt64Links.Delete(System.Collections.Generic.IList{System.UInt64},WriteHandler{System.UInt64})
-  name.vb: Delete(IList(Of UInt64), WriteHandler(Of UInt64))
-  fullName: Platform.Data.Doublets.Decorators.UInt64Links.Delete(System.Collections.Generic.IList<System.UInt64>, WriteHandler<System.UInt64>)
-  fullName.vb: Platform.Data.Doublets.Decorators.UInt64Links.Delete(System.Collections.Generic.IList(Of System.UInt64), WriteHandler(Of System.UInt64))
-  nameWithType: UInt64Links.Delete(IList<UInt64>, WriteHandler<UInt64>)
-  nameWithType.vb: UInt64Links.Delete(IList(Of UInt64), WriteHandler(Of UInt64))
+- uid: Platform.Data.Doublets.Decorators.UInt64Links.Delete(System.Collections.Generic.IList{System.UInt64},System.Nullable{WriteHandler{System.UInt64}})
+  name: Delete(IList<UInt64>, Nullable<WriteHandler<UInt64>>)
+  href: api/Platform.Data.Doublets.Decorators.UInt64Links.html#Platform_Data_Doublets_Decorators_UInt64Links_Delete_System_Collections_Generic_IList_System_UInt64__System_Nullable_WriteHandler_System_UInt64___
+  commentId: M:Platform.Data.Doublets.Decorators.UInt64Links.Delete(System.Collections.Generic.IList{System.UInt64},System.Nullable{WriteHandler{System.UInt64}})
+  name.vb: Delete(IList(Of UInt64), Nullable(Of WriteHandler(Of UInt64)))
+  fullName: Platform.Data.Doublets.Decorators.UInt64Links.Delete(System.Collections.Generic.IList<System.UInt64>, System.Nullable<WriteHandler<System.UInt64>>)
+  fullName.vb: Platform.Data.Doublets.Decorators.UInt64Links.Delete(System.Collections.Generic.IList(Of System.UInt64), System.Nullable(Of WriteHandler(Of System.UInt64)))
+  nameWithType: UInt64Links.Delete(IList<UInt64>, Nullable<WriteHandler<UInt64>>)
+  nameWithType.vb: UInt64Links.Delete(IList(Of UInt64), Nullable(Of WriteHandler(Of UInt64)))
 - uid: Platform.Data.Doublets.Decorators.UInt64Links.Delete*
   name: Delete
   href: api/Platform.Data.Doublets.Decorators.UInt64Links.html#Platform_Data_Doublets_Decorators_UInt64Links_Delete_
@@ -1113,15 +1113,15 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.Decorators.UInt64Links.Delete
   nameWithType: UInt64Links.Delete
-- uid: Platform.Data.Doublets.Decorators.UInt64Links.Update(System.Collections.Generic.IList{System.UInt64},System.Collections.Generic.IList{System.UInt64},WriteHandler{System.UInt64})
-  name: Update(IList<UInt64>, IList<UInt64>, WriteHandler<UInt64>)
-  href: api/Platform.Data.Doublets.Decorators.UInt64Links.html#Platform_Data_Doublets_Decorators_UInt64Links_Update_System_Collections_Generic_IList_System_UInt64__System_Collections_Generic_IList_System_UInt64__WriteHandler_System_UInt64__
-  commentId: M:Platform.Data.Doublets.Decorators.UInt64Links.Update(System.Collections.Generic.IList{System.UInt64},System.Collections.Generic.IList{System.UInt64},WriteHandler{System.UInt64})
-  name.vb: Update(IList(Of UInt64), IList(Of UInt64), WriteHandler(Of UInt64))
-  fullName: Platform.Data.Doublets.Decorators.UInt64Links.Update(System.Collections.Generic.IList<System.UInt64>, System.Collections.Generic.IList<System.UInt64>, WriteHandler<System.UInt64>)
-  fullName.vb: Platform.Data.Doublets.Decorators.UInt64Links.Update(System.Collections.Generic.IList(Of System.UInt64), System.Collections.Generic.IList(Of System.UInt64), WriteHandler(Of System.UInt64))
-  nameWithType: UInt64Links.Update(IList<UInt64>, IList<UInt64>, WriteHandler<UInt64>)
-  nameWithType.vb: UInt64Links.Update(IList(Of UInt64), IList(Of UInt64), WriteHandler(Of UInt64))
+- uid: Platform.Data.Doublets.Decorators.UInt64Links.Update(System.Collections.Generic.IList{System.UInt64},System.Collections.Generic.IList{System.UInt64},System.Nullable{WriteHandler{System.UInt64}})
+  name: Update(IList<UInt64>, IList<UInt64>, Nullable<WriteHandler<UInt64>>)
+  href: api/Platform.Data.Doublets.Decorators.UInt64Links.html#Platform_Data_Doublets_Decorators_UInt64Links_Update_System_Collections_Generic_IList_System_UInt64__System_Collections_Generic_IList_System_UInt64__System_Nullable_WriteHandler_System_UInt64___
+  commentId: M:Platform.Data.Doublets.Decorators.UInt64Links.Update(System.Collections.Generic.IList{System.UInt64},System.Collections.Generic.IList{System.UInt64},System.Nullable{WriteHandler{System.UInt64}})
+  name.vb: Update(IList(Of UInt64), IList(Of UInt64), Nullable(Of WriteHandler(Of UInt64)))
+  fullName: Platform.Data.Doublets.Decorators.UInt64Links.Update(System.Collections.Generic.IList<System.UInt64>, System.Collections.Generic.IList<System.UInt64>, System.Nullable<WriteHandler<System.UInt64>>)
+  fullName.vb: Platform.Data.Doublets.Decorators.UInt64Links.Update(System.Collections.Generic.IList(Of System.UInt64), System.Collections.Generic.IList(Of System.UInt64), System.Nullable(Of WriteHandler(Of System.UInt64)))
+  nameWithType: UInt64Links.Update(IList<UInt64>, IList<UInt64>, Nullable<WriteHandler<UInt64>>)
+  nameWithType.vb: UInt64Links.Update(IList(Of UInt64), IList(Of UInt64), Nullable(Of WriteHandler(Of UInt64)))
 - uid: Platform.Data.Doublets.Decorators.UInt64Links.Update*
   name: Update
   href: api/Platform.Data.Doublets.Decorators.UInt64Links.html#Platform_Data_Doublets_Decorators_UInt64Links_Update_
@@ -1374,15 +1374,15 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Count
   nameWithType: UInt32UnitedMemoryLinks.Count
-- uid: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Create(System.Collections.Generic.IList{System.UInt32},WriteHandler{System.UInt32})
-  name: Create(IList<UInt32>, WriteHandler<UInt32>)
-  href: api/Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_FFI_UInt32UnitedMemoryLinks_Create_System_Collections_Generic_IList_System_UInt32__WriteHandler_System_UInt32__
-  commentId: M:Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Create(System.Collections.Generic.IList{System.UInt32},WriteHandler{System.UInt32})
-  name.vb: Create(IList(Of UInt32), WriteHandler(Of UInt32))
-  fullName: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Create(System.Collections.Generic.IList<System.UInt32>, WriteHandler<System.UInt32>)
-  fullName.vb: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Create(System.Collections.Generic.IList(Of System.UInt32), WriteHandler(Of System.UInt32))
-  nameWithType: UInt32UnitedMemoryLinks.Create(IList<UInt32>, WriteHandler<UInt32>)
-  nameWithType.vb: UInt32UnitedMemoryLinks.Create(IList(Of UInt32), WriteHandler(Of UInt32))
+- uid: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Create(System.Collections.Generic.IList{System.UInt32},System.Nullable{WriteHandler{System.UInt32}})
+  name: Create(IList<UInt32>, Nullable<WriteHandler<UInt32>>)
+  href: api/Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_FFI_UInt32UnitedMemoryLinks_Create_System_Collections_Generic_IList_System_UInt32__System_Nullable_WriteHandler_System_UInt32___
+  commentId: M:Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Create(System.Collections.Generic.IList{System.UInt32},System.Nullable{WriteHandler{System.UInt32}})
+  name.vb: Create(IList(Of UInt32), Nullable(Of WriteHandler(Of UInt32)))
+  fullName: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Create(System.Collections.Generic.IList<System.UInt32>, System.Nullable<WriteHandler<System.UInt32>>)
+  fullName.vb: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Create(System.Collections.Generic.IList(Of System.UInt32), System.Nullable(Of WriteHandler(Of System.UInt32)))
+  nameWithType: UInt32UnitedMemoryLinks.Create(IList<UInt32>, Nullable<WriteHandler<UInt32>>)
+  nameWithType.vb: UInt32UnitedMemoryLinks.Create(IList(Of UInt32), Nullable(Of WriteHandler(Of UInt32)))
 - uid: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Create*
   name: Create
   href: api/Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_FFI_UInt32UnitedMemoryLinks_Create_
@@ -1390,15 +1390,15 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Create
   nameWithType: UInt32UnitedMemoryLinks.Create
-- uid: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Delete(System.Collections.Generic.IList{System.UInt32},WriteHandler{System.UInt32})
-  name: Delete(IList<UInt32>, WriteHandler<UInt32>)
-  href: api/Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_FFI_UInt32UnitedMemoryLinks_Delete_System_Collections_Generic_IList_System_UInt32__WriteHandler_System_UInt32__
-  commentId: M:Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Delete(System.Collections.Generic.IList{System.UInt32},WriteHandler{System.UInt32})
-  name.vb: Delete(IList(Of UInt32), WriteHandler(Of UInt32))
-  fullName: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Delete(System.Collections.Generic.IList<System.UInt32>, WriteHandler<System.UInt32>)
-  fullName.vb: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Delete(System.Collections.Generic.IList(Of System.UInt32), WriteHandler(Of System.UInt32))
-  nameWithType: UInt32UnitedMemoryLinks.Delete(IList<UInt32>, WriteHandler<UInt32>)
-  nameWithType.vb: UInt32UnitedMemoryLinks.Delete(IList(Of UInt32), WriteHandler(Of UInt32))
+- uid: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Delete(System.Collections.Generic.IList{System.UInt32},System.Nullable{WriteHandler{System.UInt32}})
+  name: Delete(IList<UInt32>, Nullable<WriteHandler<UInt32>>)
+  href: api/Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_FFI_UInt32UnitedMemoryLinks_Delete_System_Collections_Generic_IList_System_UInt32__System_Nullable_WriteHandler_System_UInt32___
+  commentId: M:Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Delete(System.Collections.Generic.IList{System.UInt32},System.Nullable{WriteHandler{System.UInt32}})
+  name.vb: Delete(IList(Of UInt32), Nullable(Of WriteHandler(Of UInt32)))
+  fullName: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Delete(System.Collections.Generic.IList<System.UInt32>, System.Nullable<WriteHandler<System.UInt32>>)
+  fullName.vb: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Delete(System.Collections.Generic.IList(Of System.UInt32), System.Nullable(Of WriteHandler(Of System.UInt32)))
+  nameWithType: UInt32UnitedMemoryLinks.Delete(IList<UInt32>, Nullable<WriteHandler<UInt32>>)
+  nameWithType.vb: UInt32UnitedMemoryLinks.Delete(IList(Of UInt32), Nullable(Of WriteHandler(Of UInt32)))
 - uid: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Delete*
   name: Delete
   href: api/Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_FFI_UInt32UnitedMemoryLinks_Delete_
@@ -1435,15 +1435,15 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Each
   nameWithType: UInt32UnitedMemoryLinks.Each
-- uid: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Update(System.Collections.Generic.IList{System.UInt32},System.Collections.Generic.IList{System.UInt32},WriteHandler{System.UInt32})
-  name: Update(IList<UInt32>, IList<UInt32>, WriteHandler<UInt32>)
-  href: api/Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_FFI_UInt32UnitedMemoryLinks_Update_System_Collections_Generic_IList_System_UInt32__System_Collections_Generic_IList_System_UInt32__WriteHandler_System_UInt32__
-  commentId: M:Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Update(System.Collections.Generic.IList{System.UInt32},System.Collections.Generic.IList{System.UInt32},WriteHandler{System.UInt32})
-  name.vb: Update(IList(Of UInt32), IList(Of UInt32), WriteHandler(Of UInt32))
-  fullName: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Update(System.Collections.Generic.IList<System.UInt32>, System.Collections.Generic.IList<System.UInt32>, WriteHandler<System.UInt32>)
-  fullName.vb: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Update(System.Collections.Generic.IList(Of System.UInt32), System.Collections.Generic.IList(Of System.UInt32), WriteHandler(Of System.UInt32))
-  nameWithType: UInt32UnitedMemoryLinks.Update(IList<UInt32>, IList<UInt32>, WriteHandler<UInt32>)
-  nameWithType.vb: UInt32UnitedMemoryLinks.Update(IList(Of UInt32), IList(Of UInt32), WriteHandler(Of UInt32))
+- uid: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Update(System.Collections.Generic.IList{System.UInt32},System.Collections.Generic.IList{System.UInt32},System.Nullable{WriteHandler{System.UInt32}})
+  name: Update(IList<UInt32>, IList<UInt32>, Nullable<WriteHandler<UInt32>>)
+  href: api/Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_FFI_UInt32UnitedMemoryLinks_Update_System_Collections_Generic_IList_System_UInt32__System_Collections_Generic_IList_System_UInt32__System_Nullable_WriteHandler_System_UInt32___
+  commentId: M:Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Update(System.Collections.Generic.IList{System.UInt32},System.Collections.Generic.IList{System.UInt32},System.Nullable{WriteHandler{System.UInt32}})
+  name.vb: Update(IList(Of UInt32), IList(Of UInt32), Nullable(Of WriteHandler(Of UInt32)))
+  fullName: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Update(System.Collections.Generic.IList<System.UInt32>, System.Collections.Generic.IList<System.UInt32>, System.Nullable<WriteHandler<System.UInt32>>)
+  fullName.vb: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Update(System.Collections.Generic.IList(Of System.UInt32), System.Collections.Generic.IList(Of System.UInt32), System.Nullable(Of WriteHandler(Of System.UInt32)))
+  nameWithType: UInt32UnitedMemoryLinks.Update(IList<UInt32>, IList<UInt32>, Nullable<WriteHandler<UInt32>>)
+  nameWithType.vb: UInt32UnitedMemoryLinks.Update(IList(Of UInt32), IList(Of UInt32), Nullable(Of WriteHandler(Of UInt32)))
 - uid: Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.Update*
   name: Update
   href: api/Platform.Data.Doublets.FFI.UInt32UnitedMemoryLinks.html#Platform_Data_Doublets_FFI_UInt32UnitedMemoryLinks_Update_
@@ -1512,15 +1512,15 @@ references:
   fullName.vb: Platform.Data.Doublets.FFI.UnitedMemoryLinks(Of TLink).Count
   nameWithType: UnitedMemoryLinks<TLink>.Count
   nameWithType.vb: UnitedMemoryLinks(Of TLink).Count
-- uid: Platform.Data.Doublets.FFI.UnitedMemoryLinks`1.Create(System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name: Create(IList<TLink>, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.FFI.UnitedMemoryLinks-1.html#Platform_Data_Doublets_FFI_UnitedMemoryLinks_1_Create_System_Collections_Generic_IList__0__WriteHandler__0__
-  commentId: M:Platform.Data.Doublets.FFI.UnitedMemoryLinks`1.Create(System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name.vb: Create(IList(Of TLink), WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.FFI.UnitedMemoryLinks<TLink>.Create(System.Collections.Generic.IList<TLink>, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.FFI.UnitedMemoryLinks(Of TLink).Create(System.Collections.Generic.IList(Of TLink), WriteHandler(Of TLink))
-  nameWithType: UnitedMemoryLinks<TLink>.Create(IList<TLink>, WriteHandler<TLink>)
-  nameWithType.vb: UnitedMemoryLinks(Of TLink).Create(IList(Of TLink), WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.FFI.UnitedMemoryLinks`1.Create(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name: Create(IList<TLink>, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.FFI.UnitedMemoryLinks-1.html#Platform_Data_Doublets_FFI_UnitedMemoryLinks_1_Create_System_Collections_Generic_IList__0__System_Nullable_WriteHandler__0___
+  commentId: M:Platform.Data.Doublets.FFI.UnitedMemoryLinks`1.Create(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name.vb: Create(IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.FFI.UnitedMemoryLinks<TLink>.Create(System.Collections.Generic.IList<TLink>, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.FFI.UnitedMemoryLinks(Of TLink).Create(System.Collections.Generic.IList(Of TLink), System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: UnitedMemoryLinks<TLink>.Create(IList<TLink>, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: UnitedMemoryLinks(Of TLink).Create(IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.FFI.UnitedMemoryLinks`1.Create*
   name: Create
   href: api/Platform.Data.Doublets.FFI.UnitedMemoryLinks-1.html#Platform_Data_Doublets_FFI_UnitedMemoryLinks_1_Create_
@@ -1530,15 +1530,15 @@ references:
   fullName.vb: Platform.Data.Doublets.FFI.UnitedMemoryLinks(Of TLink).Create
   nameWithType: UnitedMemoryLinks<TLink>.Create
   nameWithType.vb: UnitedMemoryLinks(Of TLink).Create
-- uid: Platform.Data.Doublets.FFI.UnitedMemoryLinks`1.Delete(System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name: Delete(IList<TLink>, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.FFI.UnitedMemoryLinks-1.html#Platform_Data_Doublets_FFI_UnitedMemoryLinks_1_Delete_System_Collections_Generic_IList__0__WriteHandler__0__
-  commentId: M:Platform.Data.Doublets.FFI.UnitedMemoryLinks`1.Delete(System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name.vb: Delete(IList(Of TLink), WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.FFI.UnitedMemoryLinks<TLink>.Delete(System.Collections.Generic.IList<TLink>, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.FFI.UnitedMemoryLinks(Of TLink).Delete(System.Collections.Generic.IList(Of TLink), WriteHandler(Of TLink))
-  nameWithType: UnitedMemoryLinks<TLink>.Delete(IList<TLink>, WriteHandler<TLink>)
-  nameWithType.vb: UnitedMemoryLinks(Of TLink).Delete(IList(Of TLink), WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.FFI.UnitedMemoryLinks`1.Delete(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name: Delete(IList<TLink>, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.FFI.UnitedMemoryLinks-1.html#Platform_Data_Doublets_FFI_UnitedMemoryLinks_1_Delete_System_Collections_Generic_IList__0__System_Nullable_WriteHandler__0___
+  commentId: M:Platform.Data.Doublets.FFI.UnitedMemoryLinks`1.Delete(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name.vb: Delete(IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.FFI.UnitedMemoryLinks<TLink>.Delete(System.Collections.Generic.IList<TLink>, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.FFI.UnitedMemoryLinks(Of TLink).Delete(System.Collections.Generic.IList(Of TLink), System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: UnitedMemoryLinks<TLink>.Delete(IList<TLink>, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: UnitedMemoryLinks(Of TLink).Delete(IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.FFI.UnitedMemoryLinks`1.Delete*
   name: Delete
   href: api/Platform.Data.Doublets.FFI.UnitedMemoryLinks-1.html#Platform_Data_Doublets_FFI_UnitedMemoryLinks_1_Delete_
@@ -1583,15 +1583,15 @@ references:
   fullName.vb: Platform.Data.Doublets.FFI.UnitedMemoryLinks(Of TLink).Each
   nameWithType: UnitedMemoryLinks<TLink>.Each
   nameWithType.vb: UnitedMemoryLinks(Of TLink).Each
-- uid: Platform.Data.Doublets.FFI.UnitedMemoryLinks`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name: Update(IList<TLink>, IList<TLink>, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.FFI.UnitedMemoryLinks-1.html#Platform_Data_Doublets_FFI_UnitedMemoryLinks_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__WriteHandler__0__
-  commentId: M:Platform.Data.Doublets.FFI.UnitedMemoryLinks`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name.vb: Update(IList(Of TLink), IList(Of TLink), WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.FFI.UnitedMemoryLinks<TLink>.Update(System.Collections.Generic.IList<TLink>, System.Collections.Generic.IList<TLink>, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.FFI.UnitedMemoryLinks(Of TLink).Update(System.Collections.Generic.IList(Of TLink), System.Collections.Generic.IList(Of TLink), WriteHandler(Of TLink))
-  nameWithType: UnitedMemoryLinks<TLink>.Update(IList<TLink>, IList<TLink>, WriteHandler<TLink>)
-  nameWithType.vb: UnitedMemoryLinks(Of TLink).Update(IList(Of TLink), IList(Of TLink), WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.FFI.UnitedMemoryLinks`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name: Update(IList<TLink>, IList<TLink>, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.FFI.UnitedMemoryLinks-1.html#Platform_Data_Doublets_FFI_UnitedMemoryLinks_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__System_Nullable_WriteHandler__0___
+  commentId: M:Platform.Data.Doublets.FFI.UnitedMemoryLinks`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name.vb: Update(IList(Of TLink), IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.FFI.UnitedMemoryLinks<TLink>.Update(System.Collections.Generic.IList<TLink>, System.Collections.Generic.IList<TLink>, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.FFI.UnitedMemoryLinks(Of TLink).Update(System.Collections.Generic.IList(Of TLink), System.Collections.Generic.IList(Of TLink), System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: UnitedMemoryLinks<TLink>.Update(IList<TLink>, IList<TLink>, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: UnitedMemoryLinks(Of TLink).Update(IList(Of TLink), IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.FFI.UnitedMemoryLinks`1.Update*
   name: Update
   href: api/Platform.Data.Doublets.FFI.UnitedMemoryLinks-1.html#Platform_Data_Doublets_FFI_UnitedMemoryLinks_1_Update_
@@ -1712,15 +1712,15 @@ references:
   fullName.vb: Platform.Data.Doublets.ILinksExtensions.CreateAndUpdate(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink, TLink)
   nameWithType: ILinksExtensions.CreateAndUpdate<TLink>(ILinks<TLink>, TLink, TLink)
   nameWithType.vb: ILinksExtensions.CreateAndUpdate(Of TLink)(ILinks(Of TLink), TLink, TLink)
-- uid: Platform.Data.Doublets.ILinksExtensions.CreateAndUpdate``1(Platform.Data.Doublets.ILinks{``0},``0,``0,WriteHandler{``0})
-  name: CreateAndUpdate<TLink>(ILinks<TLink>, TLink, TLink, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_CreateAndUpdate__1_Platform_Data_Doublets_ILinks___0____0___0_WriteHandler___0__
-  commentId: M:Platform.Data.Doublets.ILinksExtensions.CreateAndUpdate``1(Platform.Data.Doublets.ILinks{``0},``0,``0,WriteHandler{``0})
-  name.vb: CreateAndUpdate(Of TLink)(ILinks(Of TLink), TLink, TLink, WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.ILinksExtensions.CreateAndUpdate<TLink>(Platform.Data.Doublets.ILinks<TLink>, TLink, TLink, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.ILinksExtensions.CreateAndUpdate(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink, TLink, WriteHandler(Of TLink))
-  nameWithType: ILinksExtensions.CreateAndUpdate<TLink>(ILinks<TLink>, TLink, TLink, WriteHandler<TLink>)
-  nameWithType.vb: ILinksExtensions.CreateAndUpdate(Of TLink)(ILinks(Of TLink), TLink, TLink, WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.ILinksExtensions.CreateAndUpdate``1(Platform.Data.Doublets.ILinks{``0},``0,``0,System.Nullable{WriteHandler{``0}})
+  name: CreateAndUpdate<TLink>(ILinks<TLink>, TLink, TLink, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_CreateAndUpdate__1_Platform_Data_Doublets_ILinks___0____0___0_System_Nullable_WriteHandler___0___
+  commentId: M:Platform.Data.Doublets.ILinksExtensions.CreateAndUpdate``1(Platform.Data.Doublets.ILinks{``0},``0,``0,System.Nullable{WriteHandler{``0}})
+  name.vb: CreateAndUpdate(Of TLink)(ILinks(Of TLink), TLink, TLink, Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.ILinksExtensions.CreateAndUpdate<TLink>(Platform.Data.Doublets.ILinks<TLink>, TLink, TLink, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.ILinksExtensions.CreateAndUpdate(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink, TLink, System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: ILinksExtensions.CreateAndUpdate<TLink>(ILinks<TLink>, TLink, TLink, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: ILinksExtensions.CreateAndUpdate(Of TLink)(ILinks(Of TLink), TLink, TLink, Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.ILinksExtensions.CreatePoint*
   name: CreatePoint
   href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_CreatePoint_
@@ -1737,15 +1737,15 @@ references:
   fullName.vb: Platform.Data.Doublets.ILinksExtensions.CreatePoint(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink))
   nameWithType: ILinksExtensions.CreatePoint<TLink>(ILinks<TLink>)
   nameWithType.vb: ILinksExtensions.CreatePoint(Of TLink)(ILinks(Of TLink))
-- uid: Platform.Data.Doublets.ILinksExtensions.CreatePoint``1(Platform.Data.Doublets.ILinks{``0},WriteHandler{``0})
-  name: CreatePoint<TLink>(ILinks<TLink>, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_CreatePoint__1_Platform_Data_Doublets_ILinks___0__WriteHandler___0__
-  commentId: M:Platform.Data.Doublets.ILinksExtensions.CreatePoint``1(Platform.Data.Doublets.ILinks{``0},WriteHandler{``0})
-  name.vb: CreatePoint(Of TLink)(ILinks(Of TLink), WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.ILinksExtensions.CreatePoint<TLink>(Platform.Data.Doublets.ILinks<TLink>, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.ILinksExtensions.CreatePoint(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), WriteHandler(Of TLink))
-  nameWithType: ILinksExtensions.CreatePoint<TLink>(ILinks<TLink>, WriteHandler<TLink>)
-  nameWithType.vb: ILinksExtensions.CreatePoint(Of TLink)(ILinks(Of TLink), WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.ILinksExtensions.CreatePoint``1(Platform.Data.Doublets.ILinks{``0},System.Nullable{WriteHandler{``0}})
+  name: CreatePoint<TLink>(ILinks<TLink>, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_CreatePoint__1_Platform_Data_Doublets_ILinks___0__System_Nullable_WriteHandler___0___
+  commentId: M:Platform.Data.Doublets.ILinksExtensions.CreatePoint``1(Platform.Data.Doublets.ILinks{``0},System.Nullable{WriteHandler{``0}})
+  name.vb: CreatePoint(Of TLink)(ILinks(Of TLink), Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.ILinksExtensions.CreatePoint<TLink>(Platform.Data.Doublets.ILinks<TLink>, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.ILinksExtensions.CreatePoint(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: ILinksExtensions.CreatePoint<TLink>(ILinks<TLink>, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: ILinksExtensions.CreatePoint(Of TLink)(ILinks(Of TLink), Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.ILinksExtensions.DecorateWithAutomaticUniquenessAndUsagesResolution*
   name: DecorateWithAutomaticUniquenessAndUsagesResolution
   href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_DecorateWithAutomaticUniquenessAndUsagesResolution_
@@ -1810,15 +1810,15 @@ references:
   fullName.vb: Platform.Data.Doublets.ILinksExtensions.DeleteAllUsages(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink)
   nameWithType: ILinksExtensions.DeleteAllUsages<TLink>(ILinks<TLink>, TLink)
   nameWithType.vb: ILinksExtensions.DeleteAllUsages(Of TLink)(ILinks(Of TLink), TLink)
-- uid: Platform.Data.Doublets.ILinksExtensions.DeleteAllUsages``1(Platform.Data.Doublets.ILinks{``0},``0,WriteHandler{``0})
-  name: DeleteAllUsages<TLink>(ILinks<TLink>, TLink, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_DeleteAllUsages__1_Platform_Data_Doublets_ILinks___0____0_WriteHandler___0__
-  commentId: M:Platform.Data.Doublets.ILinksExtensions.DeleteAllUsages``1(Platform.Data.Doublets.ILinks{``0},``0,WriteHandler{``0})
-  name.vb: DeleteAllUsages(Of TLink)(ILinks(Of TLink), TLink, WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.ILinksExtensions.DeleteAllUsages<TLink>(Platform.Data.Doublets.ILinks<TLink>, TLink, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.ILinksExtensions.DeleteAllUsages(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink, WriteHandler(Of TLink))
-  nameWithType: ILinksExtensions.DeleteAllUsages<TLink>(ILinks<TLink>, TLink, WriteHandler<TLink>)
-  nameWithType.vb: ILinksExtensions.DeleteAllUsages(Of TLink)(ILinks(Of TLink), TLink, WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.ILinksExtensions.DeleteAllUsages``1(Platform.Data.Doublets.ILinks{``0},``0,System.Nullable{WriteHandler{``0}})
+  name: DeleteAllUsages<TLink>(ILinks<TLink>, TLink, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_DeleteAllUsages__1_Platform_Data_Doublets_ILinks___0____0_System_Nullable_WriteHandler___0___
+  commentId: M:Platform.Data.Doublets.ILinksExtensions.DeleteAllUsages``1(Platform.Data.Doublets.ILinks{``0},``0,System.Nullable{WriteHandler{``0}})
+  name.vb: DeleteAllUsages(Of TLink)(ILinks(Of TLink), TLink, Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.ILinksExtensions.DeleteAllUsages<TLink>(Platform.Data.Doublets.ILinks<TLink>, TLink, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.ILinksExtensions.DeleteAllUsages(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink, System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: ILinksExtensions.DeleteAllUsages<TLink>(ILinks<TLink>, TLink, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: ILinksExtensions.DeleteAllUsages(Of TLink)(ILinks(Of TLink), TLink, Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.ILinksExtensions.DeleteByQuery*
   name: DeleteByQuery
   href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_DeleteByQuery_
@@ -1935,15 +1935,15 @@ references:
   fullName.vb: Platform.Data.Doublets.ILinksExtensions.EnforceResetValues(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink)
   nameWithType: ILinksExtensions.EnforceResetValues<TLink>(ILinks<TLink>, TLink)
   nameWithType.vb: ILinksExtensions.EnforceResetValues(Of TLink)(ILinks(Of TLink), TLink)
-- uid: Platform.Data.Doublets.ILinksExtensions.EnforceResetValues``1(Platform.Data.Doublets.ILinks{``0},``0,WriteHandler{``0})
-  name: EnforceResetValues<TLink>(ILinks<TLink>, TLink, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_EnforceResetValues__1_Platform_Data_Doublets_ILinks___0____0_WriteHandler___0__
-  commentId: M:Platform.Data.Doublets.ILinksExtensions.EnforceResetValues``1(Platform.Data.Doublets.ILinks{``0},``0,WriteHandler{``0})
-  name.vb: EnforceResetValues(Of TLink)(ILinks(Of TLink), TLink, WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.ILinksExtensions.EnforceResetValues<TLink>(Platform.Data.Doublets.ILinks<TLink>, TLink, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.ILinksExtensions.EnforceResetValues(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink, WriteHandler(Of TLink))
-  nameWithType: ILinksExtensions.EnforceResetValues<TLink>(ILinks<TLink>, TLink, WriteHandler<TLink>)
-  nameWithType.vb: ILinksExtensions.EnforceResetValues(Of TLink)(ILinks(Of TLink), TLink, WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.ILinksExtensions.EnforceResetValues``1(Platform.Data.Doublets.ILinks{``0},``0,System.Nullable{WriteHandler{``0}})
+  name: EnforceResetValues<TLink>(ILinks<TLink>, TLink, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_EnforceResetValues__1_Platform_Data_Doublets_ILinks___0____0_System_Nullable_WriteHandler___0___
+  commentId: M:Platform.Data.Doublets.ILinksExtensions.EnforceResetValues``1(Platform.Data.Doublets.ILinks{``0},``0,System.Nullable{WriteHandler{``0}})
+  name.vb: EnforceResetValues(Of TLink)(ILinks(Of TLink), TLink, Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.ILinksExtensions.EnforceResetValues<TLink>(Platform.Data.Doublets.ILinks<TLink>, TLink, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.ILinksExtensions.EnforceResetValues(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink, System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: ILinksExtensions.EnforceResetValues<TLink>(ILinks<TLink>, TLink, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: ILinksExtensions.EnforceResetValues(Of TLink)(ILinks(Of TLink), TLink, Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.ILinksExtensions.EnsureCreated*
   name: EnsureCreated
   href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_EnsureCreated_
@@ -2318,15 +2318,15 @@ references:
   fullName.vb: Platform.Data.Doublets.ILinksExtensions.MergeAndDelete(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink, TLink)
   nameWithType: ILinksExtensions.MergeAndDelete<TLink>(ILinks<TLink>, TLink, TLink)
   nameWithType.vb: ILinksExtensions.MergeAndDelete(Of TLink)(ILinks(Of TLink), TLink, TLink)
-- uid: Platform.Data.Doublets.ILinksExtensions.MergeAndDelete``1(Platform.Data.Doublets.ILinks{``0},``0,``0,WriteHandler{``0})
-  name: MergeAndDelete<TLink>(ILinks<TLink>, TLink, TLink, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_MergeAndDelete__1_Platform_Data_Doublets_ILinks___0____0___0_WriteHandler___0__
-  commentId: M:Platform.Data.Doublets.ILinksExtensions.MergeAndDelete``1(Platform.Data.Doublets.ILinks{``0},``0,``0,WriteHandler{``0})
-  name.vb: MergeAndDelete(Of TLink)(ILinks(Of TLink), TLink, TLink, WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.ILinksExtensions.MergeAndDelete<TLink>(Platform.Data.Doublets.ILinks<TLink>, TLink, TLink, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.ILinksExtensions.MergeAndDelete(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink, TLink, WriteHandler(Of TLink))
-  nameWithType: ILinksExtensions.MergeAndDelete<TLink>(ILinks<TLink>, TLink, TLink, WriteHandler<TLink>)
-  nameWithType.vb: ILinksExtensions.MergeAndDelete(Of TLink)(ILinks(Of TLink), TLink, TLink, WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.ILinksExtensions.MergeAndDelete``1(Platform.Data.Doublets.ILinks{``0},``0,``0,System.Nullable{WriteHandler{``0}})
+  name: MergeAndDelete<TLink>(ILinks<TLink>, TLink, TLink, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_MergeAndDelete__1_Platform_Data_Doublets_ILinks___0____0___0_System_Nullable_WriteHandler___0___
+  commentId: M:Platform.Data.Doublets.ILinksExtensions.MergeAndDelete``1(Platform.Data.Doublets.ILinks{``0},``0,``0,System.Nullable{WriteHandler{``0}})
+  name.vb: MergeAndDelete(Of TLink)(ILinks(Of TLink), TLink, TLink, Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.ILinksExtensions.MergeAndDelete<TLink>(Platform.Data.Doublets.ILinks<TLink>, TLink, TLink, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.ILinksExtensions.MergeAndDelete(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink, TLink, System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: ILinksExtensions.MergeAndDelete<TLink>(ILinks<TLink>, TLink, TLink, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: ILinksExtensions.MergeAndDelete(Of TLink)(ILinks(Of TLink), TLink, TLink, Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.ILinksExtensions.MergeUsages*
   name: MergeUsages
   href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_MergeUsages_
@@ -2343,15 +2343,15 @@ references:
   fullName.vb: Platform.Data.Doublets.ILinksExtensions.MergeUsages(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink, TLink)
   nameWithType: ILinksExtensions.MergeUsages<TLink>(ILinks<TLink>, TLink, TLink)
   nameWithType.vb: ILinksExtensions.MergeUsages(Of TLink)(ILinks(Of TLink), TLink, TLink)
-- uid: Platform.Data.Doublets.ILinksExtensions.MergeUsages``1(Platform.Data.Doublets.ILinks{``0},``0,``0,WriteHandler{``0})
-  name: MergeUsages<TLink>(ILinks<TLink>, TLink, TLink, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_MergeUsages__1_Platform_Data_Doublets_ILinks___0____0___0_WriteHandler___0__
-  commentId: M:Platform.Data.Doublets.ILinksExtensions.MergeUsages``1(Platform.Data.Doublets.ILinks{``0},``0,``0,WriteHandler{``0})
-  name.vb: MergeUsages(Of TLink)(ILinks(Of TLink), TLink, TLink, WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.ILinksExtensions.MergeUsages<TLink>(Platform.Data.Doublets.ILinks<TLink>, TLink, TLink, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.ILinksExtensions.MergeUsages(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink, TLink, WriteHandler(Of TLink))
-  nameWithType: ILinksExtensions.MergeUsages<TLink>(ILinks<TLink>, TLink, TLink, WriteHandler<TLink>)
-  nameWithType.vb: ILinksExtensions.MergeUsages(Of TLink)(ILinks(Of TLink), TLink, TLink, WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.ILinksExtensions.MergeUsages``1(Platform.Data.Doublets.ILinks{``0},``0,``0,System.Nullable{WriteHandler{``0}})
+  name: MergeUsages<TLink>(ILinks<TLink>, TLink, TLink, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_MergeUsages__1_Platform_Data_Doublets_ILinks___0____0___0_System_Nullable_WriteHandler___0___
+  commentId: M:Platform.Data.Doublets.ILinksExtensions.MergeUsages``1(Platform.Data.Doublets.ILinks{``0},``0,``0,System.Nullable{WriteHandler{``0}})
+  name.vb: MergeUsages(Of TLink)(ILinks(Of TLink), TLink, TLink, Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.ILinksExtensions.MergeUsages<TLink>(Platform.Data.Doublets.ILinks<TLink>, TLink, TLink, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.ILinksExtensions.MergeUsages(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink, TLink, System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: ILinksExtensions.MergeUsages<TLink>(ILinks<TLink>, TLink, TLink, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: ILinksExtensions.MergeUsages(Of TLink)(ILinks(Of TLink), TLink, TLink, Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.ILinksExtensions.ResetValues*
   name: ResetValues
   href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_ResetValues_
@@ -2368,15 +2368,15 @@ references:
   fullName.vb: Platform.Data.Doublets.ILinksExtensions.ResetValues(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink)
   nameWithType: ILinksExtensions.ResetValues<TLink>(ILinks<TLink>, TLink)
   nameWithType.vb: ILinksExtensions.ResetValues(Of TLink)(ILinks(Of TLink), TLink)
-- uid: Platform.Data.Doublets.ILinksExtensions.ResetValues``1(Platform.Data.Doublets.ILinks{``0},``0,WriteHandler{``0})
-  name: ResetValues<TLink>(ILinks<TLink>, TLink, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_ResetValues__1_Platform_Data_Doublets_ILinks___0____0_WriteHandler___0__
-  commentId: M:Platform.Data.Doublets.ILinksExtensions.ResetValues``1(Platform.Data.Doublets.ILinks{``0},``0,WriteHandler{``0})
-  name.vb: ResetValues(Of TLink)(ILinks(Of TLink), TLink, WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.ILinksExtensions.ResetValues<TLink>(Platform.Data.Doublets.ILinks<TLink>, TLink, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.ILinksExtensions.ResetValues(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink, WriteHandler(Of TLink))
-  nameWithType: ILinksExtensions.ResetValues<TLink>(ILinks<TLink>, TLink, WriteHandler<TLink>)
-  nameWithType.vb: ILinksExtensions.ResetValues(Of TLink)(ILinks(Of TLink), TLink, WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.ILinksExtensions.ResetValues``1(Platform.Data.Doublets.ILinks{``0},``0,System.Nullable{WriteHandler{``0}})
+  name: ResetValues<TLink>(ILinks<TLink>, TLink, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_ResetValues__1_Platform_Data_Doublets_ILinks___0____0_System_Nullable_WriteHandler___0___
+  commentId: M:Platform.Data.Doublets.ILinksExtensions.ResetValues``1(Platform.Data.Doublets.ILinks{``0},``0,System.Nullable{WriteHandler{``0}})
+  name.vb: ResetValues(Of TLink)(ILinks(Of TLink), TLink, Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.ILinksExtensions.ResetValues<TLink>(Platform.Data.Doublets.ILinks<TLink>, TLink, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.ILinksExtensions.ResetValues(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink, System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: ILinksExtensions.ResetValues<TLink>(ILinks<TLink>, TLink, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: ILinksExtensions.ResetValues(Of TLink)(ILinks(Of TLink), TLink, Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.ILinksExtensions.ResolveConstantAsSelfReference*
   name: ResolveConstantAsSelfReference
   href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_ResolveConstantAsSelfReference_
@@ -2489,15 +2489,15 @@ references:
   fullName.vb: Platform.Data.Doublets.ILinksExtensions.Update(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink, TLink, TLink)
   nameWithType: ILinksExtensions.Update<TLink>(ILinks<TLink>, TLink, TLink, TLink)
   nameWithType.vb: ILinksExtensions.Update(Of TLink)(ILinks(Of TLink), TLink, TLink, TLink)
-- uid: Platform.Data.Doublets.ILinksExtensions.Update``1(Platform.Data.Doublets.ILinks{``0},``0,``0,``0,WriteHandler{``0})
-  name: Update<TLink>(ILinks<TLink>, TLink, TLink, TLink, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Update__1_Platform_Data_Doublets_ILinks___0____0___0___0_WriteHandler___0__
-  commentId: M:Platform.Data.Doublets.ILinksExtensions.Update``1(Platform.Data.Doublets.ILinks{``0},``0,``0,``0,WriteHandler{``0})
-  name.vb: Update(Of TLink)(ILinks(Of TLink), TLink, TLink, TLink, WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.ILinksExtensions.Update<TLink>(Platform.Data.Doublets.ILinks<TLink>, TLink, TLink, TLink, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.ILinksExtensions.Update(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink, TLink, TLink, WriteHandler(Of TLink))
-  nameWithType: ILinksExtensions.Update<TLink>(ILinks<TLink>, TLink, TLink, TLink, WriteHandler<TLink>)
-  nameWithType.vb: ILinksExtensions.Update(Of TLink)(ILinks(Of TLink), TLink, TLink, TLink, WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.ILinksExtensions.Update``1(Platform.Data.Doublets.ILinks{``0},``0,``0,``0,System.Nullable{WriteHandler{``0}})
+  name: Update<TLink>(ILinks<TLink>, TLink, TLink, TLink, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Update__1_Platform_Data_Doublets_ILinks___0____0___0___0_System_Nullable_WriteHandler___0___
+  commentId: M:Platform.Data.Doublets.ILinksExtensions.Update``1(Platform.Data.Doublets.ILinks{``0},``0,``0,``0,System.Nullable{WriteHandler{``0}})
+  name.vb: Update(Of TLink)(ILinks(Of TLink), TLink, TLink, TLink, Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.ILinksExtensions.Update<TLink>(Platform.Data.Doublets.ILinks<TLink>, TLink, TLink, TLink, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.ILinksExtensions.Update(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink, TLink, TLink, System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: ILinksExtensions.Update<TLink>(ILinks<TLink>, TLink, TLink, TLink, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: ILinksExtensions.Update(Of TLink)(ILinks(Of TLink), TLink, TLink, TLink, Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.ILinksExtensions.Update``1(Platform.Data.Doublets.ILinks{``0},``0[])
   name: Update<TLink>(ILinks<TLink>, TLink[])
   href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Update__1_Platform_Data_Doublets_ILinks___0____0___
@@ -2516,24 +2516,24 @@ references:
   fullName.vb: Platform.Data.Doublets.ILinksExtensions.Update(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), System.Collections.Generic.IList(Of TLink))
   nameWithType: ILinksExtensions.Update<TLink>(ILinks<TLink>, IList<TLink>)
   nameWithType.vb: ILinksExtensions.Update(Of TLink)(ILinks(Of TLink), IList(Of TLink))
-- uid: Platform.Data.Doublets.ILinksExtensions.Update``1(Platform.Data.Doublets.ILinks{``0},System.Collections.Generic.IList{``0},WriteHandler{``0})
-  name: Update<TLink>(ILinks<TLink>, IList<TLink>, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Update__1_Platform_Data_Doublets_ILinks___0__System_Collections_Generic_IList___0__WriteHandler___0__
-  commentId: M:Platform.Data.Doublets.ILinksExtensions.Update``1(Platform.Data.Doublets.ILinks{``0},System.Collections.Generic.IList{``0},WriteHandler{``0})
-  name.vb: Update(Of TLink)(ILinks(Of TLink), IList(Of TLink), WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.ILinksExtensions.Update<TLink>(Platform.Data.Doublets.ILinks<TLink>, System.Collections.Generic.IList<TLink>, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.ILinksExtensions.Update(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), System.Collections.Generic.IList(Of TLink), WriteHandler(Of TLink))
-  nameWithType: ILinksExtensions.Update<TLink>(ILinks<TLink>, IList<TLink>, WriteHandler<TLink>)
-  nameWithType.vb: ILinksExtensions.Update(Of TLink)(ILinks(Of TLink), IList(Of TLink), WriteHandler(Of TLink))
-- uid: Platform.Data.Doublets.ILinksExtensions.Update``1(Platform.Data.Doublets.ILinks{``0},WriteHandler{``0},``0[])
-  name: Update<TLink>(ILinks<TLink>, WriteHandler<TLink>, TLink[])
-  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Update__1_Platform_Data_Doublets_ILinks___0__WriteHandler___0____0___
-  commentId: M:Platform.Data.Doublets.ILinksExtensions.Update``1(Platform.Data.Doublets.ILinks{``0},WriteHandler{``0},``0[])
-  name.vb: Update(Of TLink)(ILinks(Of TLink), WriteHandler(Of TLink), TLink())
-  fullName: Platform.Data.Doublets.ILinksExtensions.Update<TLink>(Platform.Data.Doublets.ILinks<TLink>, WriteHandler<TLink>, TLink[])
-  fullName.vb: Platform.Data.Doublets.ILinksExtensions.Update(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), WriteHandler(Of TLink), TLink())
-  nameWithType: ILinksExtensions.Update<TLink>(ILinks<TLink>, WriteHandler<TLink>, TLink[])
-  nameWithType.vb: ILinksExtensions.Update(Of TLink)(ILinks(Of TLink), WriteHandler(Of TLink), TLink())
+- uid: Platform.Data.Doublets.ILinksExtensions.Update``1(Platform.Data.Doublets.ILinks{``0},System.Collections.Generic.IList{``0},System.Nullable{WriteHandler{``0}})
+  name: Update<TLink>(ILinks<TLink>, IList<TLink>, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Update__1_Platform_Data_Doublets_ILinks___0__System_Collections_Generic_IList___0__System_Nullable_WriteHandler___0___
+  commentId: M:Platform.Data.Doublets.ILinksExtensions.Update``1(Platform.Data.Doublets.ILinks{``0},System.Collections.Generic.IList{``0},System.Nullable{WriteHandler{``0}})
+  name.vb: Update(Of TLink)(ILinks(Of TLink), IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.ILinksExtensions.Update<TLink>(Platform.Data.Doublets.ILinks<TLink>, System.Collections.Generic.IList<TLink>, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.ILinksExtensions.Update(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), System.Collections.Generic.IList(Of TLink), System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: ILinksExtensions.Update<TLink>(ILinks<TLink>, IList<TLink>, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: ILinksExtensions.Update(Of TLink)(ILinks(Of TLink), IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
+- uid: Platform.Data.Doublets.ILinksExtensions.Update``1(Platform.Data.Doublets.ILinks{``0},System.Nullable{WriteHandler{``0}},``0[])
+  name: Update<TLink>(ILinks<TLink>, Nullable<WriteHandler<TLink>>, TLink[])
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Update__1_Platform_Data_Doublets_ILinks___0__System_Nullable_WriteHandler___0_____0___
+  commentId: M:Platform.Data.Doublets.ILinksExtensions.Update``1(Platform.Data.Doublets.ILinks{``0},System.Nullable{WriteHandler{``0}},``0[])
+  name.vb: Update(Of TLink)(ILinks(Of TLink), Nullable(Of WriteHandler(Of TLink)), TLink())
+  fullName: Platform.Data.Doublets.ILinksExtensions.Update<TLink>(Platform.Data.Doublets.ILinks<TLink>, System.Nullable<WriteHandler<TLink>>, TLink[])
+  fullName.vb: Platform.Data.Doublets.ILinksExtensions.Update(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), System.Nullable(Of WriteHandler(Of TLink)), TLink())
+  nameWithType: ILinksExtensions.Update<TLink>(ILinks<TLink>, Nullable<WriteHandler<TLink>>, TLink[])
+  nameWithType.vb: ILinksExtensions.Update(Of TLink)(ILinks(Of TLink), Nullable(Of WriteHandler(Of TLink)), TLink())
 - uid: Platform.Data.Doublets.ILinksExtensions.UpdateOrCreateOrGet*
   name: UpdateOrCreateOrGet
   href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_UpdateOrCreateOrGet_
@@ -2550,15 +2550,15 @@ references:
   fullName.vb: Platform.Data.Doublets.ILinksExtensions.UpdateOrCreateOrGet(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink, TLink, TLink, TLink)
   nameWithType: ILinksExtensions.UpdateOrCreateOrGet<TLink>(ILinks<TLink>, TLink, TLink, TLink, TLink)
   nameWithType.vb: ILinksExtensions.UpdateOrCreateOrGet(Of TLink)(ILinks(Of TLink), TLink, TLink, TLink, TLink)
-- uid: Platform.Data.Doublets.ILinksExtensions.UpdateOrCreateOrGet``1(Platform.Data.Doublets.ILinks{``0},``0,``0,``0,``0,WriteHandler{``0})
-  name: UpdateOrCreateOrGet<TLink>(ILinks<TLink>, TLink, TLink, TLink, TLink, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_UpdateOrCreateOrGet__1_Platform_Data_Doublets_ILinks___0____0___0___0___0_WriteHandler___0__
-  commentId: M:Platform.Data.Doublets.ILinksExtensions.UpdateOrCreateOrGet``1(Platform.Data.Doublets.ILinks{``0},``0,``0,``0,``0,WriteHandler{``0})
-  name.vb: UpdateOrCreateOrGet(Of TLink)(ILinks(Of TLink), TLink, TLink, TLink, TLink, WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.ILinksExtensions.UpdateOrCreateOrGet<TLink>(Platform.Data.Doublets.ILinks<TLink>, TLink, TLink, TLink, TLink, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.ILinksExtensions.UpdateOrCreateOrGet(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink, TLink, TLink, TLink, WriteHandler(Of TLink))
-  nameWithType: ILinksExtensions.UpdateOrCreateOrGet<TLink>(ILinks<TLink>, TLink, TLink, TLink, TLink, WriteHandler<TLink>)
-  nameWithType.vb: ILinksExtensions.UpdateOrCreateOrGet(Of TLink)(ILinks(Of TLink), TLink, TLink, TLink, TLink, WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.ILinksExtensions.UpdateOrCreateOrGet``1(Platform.Data.Doublets.ILinks{``0},``0,``0,``0,``0,System.Nullable{WriteHandler{``0}})
+  name: UpdateOrCreateOrGet<TLink>(ILinks<TLink>, TLink, TLink, TLink, TLink, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_UpdateOrCreateOrGet__1_Platform_Data_Doublets_ILinks___0____0___0___0___0_System_Nullable_WriteHandler___0___
+  commentId: M:Platform.Data.Doublets.ILinksExtensions.UpdateOrCreateOrGet``1(Platform.Data.Doublets.ILinks{``0},``0,``0,``0,``0,System.Nullable{WriteHandler{``0}})
+  name.vb: UpdateOrCreateOrGet(Of TLink)(ILinks(Of TLink), TLink, TLink, TLink, TLink, Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.ILinksExtensions.UpdateOrCreateOrGet<TLink>(Platform.Data.Doublets.ILinks<TLink>, TLink, TLink, TLink, TLink, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.ILinksExtensions.UpdateOrCreateOrGet(Of TLink)(Platform.Data.Doublets.ILinks(Of TLink), TLink, TLink, TLink, TLink, System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: ILinksExtensions.UpdateOrCreateOrGet<TLink>(ILinks<TLink>, TLink, TLink, TLink, TLink, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: ILinksExtensions.UpdateOrCreateOrGet(Of TLink)(ILinks(Of TLink), TLink, TLink, TLink, TLink, Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.ISynchronizedLinks`1
   name: ISynchronizedLinks<TLink>
   href: api/Platform.Data.Doublets.ISynchronizedLinks-1.html
@@ -7330,15 +7330,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase(Of TLink).Count
   nameWithType: SplitMemoryLinksBase<TLink>.Count
   nameWithType.vb: SplitMemoryLinksBase(Of TLink).Count
-- uid: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase`1.Create(System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name: Create(IList<TLink>, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase-1.html#Platform_Data_Doublets_Memory_Split_Generic_SplitMemoryLinksBase_1_Create_System_Collections_Generic_IList__0__WriteHandler__0__
-  commentId: M:Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase`1.Create(System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name.vb: Create(IList(Of TLink), WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase<TLink>.Create(System.Collections.Generic.IList<TLink>, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase(Of TLink).Create(System.Collections.Generic.IList(Of TLink), WriteHandler(Of TLink))
-  nameWithType: SplitMemoryLinksBase<TLink>.Create(IList<TLink>, WriteHandler<TLink>)
-  nameWithType.vb: SplitMemoryLinksBase(Of TLink).Create(IList(Of TLink), WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase`1.Create(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name: Create(IList<TLink>, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase-1.html#Platform_Data_Doublets_Memory_Split_Generic_SplitMemoryLinksBase_1_Create_System_Collections_Generic_IList__0__System_Nullable_WriteHandler__0___
+  commentId: M:Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase`1.Create(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name.vb: Create(IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase<TLink>.Create(System.Collections.Generic.IList<TLink>, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase(Of TLink).Create(System.Collections.Generic.IList(Of TLink), System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: SplitMemoryLinksBase<TLink>.Create(IList<TLink>, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: SplitMemoryLinksBase(Of TLink).Create(IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase`1.Create*
   name: Create
   href: api/Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase-1.html#Platform_Data_Doublets_Memory_Split_Generic_SplitMemoryLinksBase_1_Create_
@@ -7373,15 +7373,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase(Of TLink).DefaultLinksSizeStep
   nameWithType: SplitMemoryLinksBase<TLink>.DefaultLinksSizeStep
   nameWithType.vb: SplitMemoryLinksBase(Of TLink).DefaultLinksSizeStep
-- uid: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase`1.Delete(System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name: Delete(IList<TLink>, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase-1.html#Platform_Data_Doublets_Memory_Split_Generic_SplitMemoryLinksBase_1_Delete_System_Collections_Generic_IList__0__WriteHandler__0__
-  commentId: M:Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase`1.Delete(System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name.vb: Delete(IList(Of TLink), WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase<TLink>.Delete(System.Collections.Generic.IList<TLink>, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase(Of TLink).Delete(System.Collections.Generic.IList(Of TLink), WriteHandler(Of TLink))
-  nameWithType: SplitMemoryLinksBase<TLink>.Delete(IList<TLink>, WriteHandler<TLink>)
-  nameWithType.vb: SplitMemoryLinksBase(Of TLink).Delete(IList(Of TLink), WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase`1.Delete(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name: Delete(IList<TLink>, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase-1.html#Platform_Data_Doublets_Memory_Split_Generic_SplitMemoryLinksBase_1_Delete_System_Collections_Generic_IList__0__System_Nullable_WriteHandler__0___
+  commentId: M:Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase`1.Delete(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name.vb: Delete(IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase<TLink>.Delete(System.Collections.Generic.IList<TLink>, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase(Of TLink).Delete(System.Collections.Generic.IList(Of TLink), System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: SplitMemoryLinksBase<TLink>.Delete(IList<TLink>, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: SplitMemoryLinksBase(Of TLink).Delete(IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase`1.Delete*
   name: Delete
   href: api/Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase-1.html#Platform_Data_Doublets_Memory_Split_Generic_SplitMemoryLinksBase_1_Delete_
@@ -7804,15 +7804,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase(Of TLink).UnusedLinksListMethods
   nameWithType: SplitMemoryLinksBase<TLink>.UnusedLinksListMethods
   nameWithType.vb: SplitMemoryLinksBase(Of TLink).UnusedLinksListMethods
-- uid: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name: Update(IList<TLink>, IList<TLink>, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase-1.html#Platform_Data_Doublets_Memory_Split_Generic_SplitMemoryLinksBase_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__WriteHandler__0__
-  commentId: M:Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name.vb: Update(IList(Of TLink), IList(Of TLink), WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase<TLink>.Update(System.Collections.Generic.IList<TLink>, System.Collections.Generic.IList<TLink>, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase(Of TLink).Update(System.Collections.Generic.IList(Of TLink), System.Collections.Generic.IList(Of TLink), WriteHandler(Of TLink))
-  nameWithType: SplitMemoryLinksBase<TLink>.Update(IList<TLink>, IList<TLink>, WriteHandler<TLink>)
-  nameWithType.vb: SplitMemoryLinksBase(Of TLink).Update(IList(Of TLink), IList(Of TLink), WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name: Update(IList<TLink>, IList<TLink>, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase-1.html#Platform_Data_Doublets_Memory_Split_Generic_SplitMemoryLinksBase_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__System_Nullable_WriteHandler__0___
+  commentId: M:Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name.vb: Update(IList(Of TLink), IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase<TLink>.Update(System.Collections.Generic.IList<TLink>, System.Collections.Generic.IList<TLink>, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase(Of TLink).Update(System.Collections.Generic.IList(Of TLink), System.Collections.Generic.IList(Of TLink), System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: SplitMemoryLinksBase<TLink>.Update(IList<TLink>, IList<TLink>, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: SplitMemoryLinksBase(Of TLink).Update(IList(Of TLink), IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase`1.Update*
   name: Update
   href: api/Platform.Data.Doublets.Memory.Split.Generic.SplitMemoryLinksBase-1.html#Platform_Data_Doublets_Memory_Split_Generic_SplitMemoryLinksBase_1_Update_
@@ -17482,15 +17482,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase(Of TLink).Count
   nameWithType: UnitedMemoryLinksBase<TLink>.Count
   nameWithType.vb: UnitedMemoryLinksBase(Of TLink).Count
-- uid: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase`1.Create(System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name: Create(IList<TLink>, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase-1.html#Platform_Data_Doublets_Memory_United_Generic_UnitedMemoryLinksBase_1_Create_System_Collections_Generic_IList__0__WriteHandler__0__
-  commentId: M:Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase`1.Create(System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name.vb: Create(IList(Of TLink), WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase<TLink>.Create(System.Collections.Generic.IList<TLink>, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase(Of TLink).Create(System.Collections.Generic.IList(Of TLink), WriteHandler(Of TLink))
-  nameWithType: UnitedMemoryLinksBase<TLink>.Create(IList<TLink>, WriteHandler<TLink>)
-  nameWithType.vb: UnitedMemoryLinksBase(Of TLink).Create(IList(Of TLink), WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase`1.Create(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name: Create(IList<TLink>, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase-1.html#Platform_Data_Doublets_Memory_United_Generic_UnitedMemoryLinksBase_1_Create_System_Collections_Generic_IList__0__System_Nullable_WriteHandler__0___
+  commentId: M:Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase`1.Create(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name.vb: Create(IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase<TLink>.Create(System.Collections.Generic.IList<TLink>, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase(Of TLink).Create(System.Collections.Generic.IList(Of TLink), System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: UnitedMemoryLinksBase<TLink>.Create(IList<TLink>, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: UnitedMemoryLinksBase(Of TLink).Create(IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase`1.Create*
   name: Create
   href: api/Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase-1.html#Platform_Data_Doublets_Memory_United_Generic_UnitedMemoryLinksBase_1_Create_
@@ -17525,15 +17525,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase(Of TLink).DefaultLinksSizeStep
   nameWithType: UnitedMemoryLinksBase<TLink>.DefaultLinksSizeStep
   nameWithType.vb: UnitedMemoryLinksBase(Of TLink).DefaultLinksSizeStep
-- uid: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase`1.Delete(System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name: Delete(IList<TLink>, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase-1.html#Platform_Data_Doublets_Memory_United_Generic_UnitedMemoryLinksBase_1_Delete_System_Collections_Generic_IList__0__WriteHandler__0__
-  commentId: M:Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase`1.Delete(System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name.vb: Delete(IList(Of TLink), WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase<TLink>.Delete(System.Collections.Generic.IList<TLink>, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase(Of TLink).Delete(System.Collections.Generic.IList(Of TLink), WriteHandler(Of TLink))
-  nameWithType: UnitedMemoryLinksBase<TLink>.Delete(IList<TLink>, WriteHandler<TLink>)
-  nameWithType.vb: UnitedMemoryLinksBase(Of TLink).Delete(IList(Of TLink), WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase`1.Delete(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name: Delete(IList<TLink>, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase-1.html#Platform_Data_Doublets_Memory_United_Generic_UnitedMemoryLinksBase_1_Delete_System_Collections_Generic_IList__0__System_Nullable_WriteHandler__0___
+  commentId: M:Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase`1.Delete(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name.vb: Delete(IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase<TLink>.Delete(System.Collections.Generic.IList<TLink>, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase(Of TLink).Delete(System.Collections.Generic.IList(Of TLink), System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: UnitedMemoryLinksBase<TLink>.Delete(IList<TLink>, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: UnitedMemoryLinksBase(Of TLink).Delete(IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase`1.Delete*
   name: Delete
   href: api/Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase-1.html#Platform_Data_Doublets_Memory_United_Generic_UnitedMemoryLinksBase_1_Delete_
@@ -17907,15 +17907,15 @@ references:
   fullName.vb: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase(Of TLink).UnusedLinksListMethods
   nameWithType: UnitedMemoryLinksBase<TLink>.UnusedLinksListMethods
   nameWithType.vb: UnitedMemoryLinksBase(Of TLink).UnusedLinksListMethods
-- uid: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name: Update(IList<TLink>, IList<TLink>, WriteHandler<TLink>)
-  href: api/Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase-1.html#Platform_Data_Doublets_Memory_United_Generic_UnitedMemoryLinksBase_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__WriteHandler__0__
-  commentId: M:Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},WriteHandler{`0})
-  name.vb: Update(IList(Of TLink), IList(Of TLink), WriteHandler(Of TLink))
-  fullName: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase<TLink>.Update(System.Collections.Generic.IList<TLink>, System.Collections.Generic.IList<TLink>, WriteHandler<TLink>)
-  fullName.vb: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase(Of TLink).Update(System.Collections.Generic.IList(Of TLink), System.Collections.Generic.IList(Of TLink), WriteHandler(Of TLink))
-  nameWithType: UnitedMemoryLinksBase<TLink>.Update(IList<TLink>, IList<TLink>, WriteHandler<TLink>)
-  nameWithType.vb: UnitedMemoryLinksBase(Of TLink).Update(IList(Of TLink), IList(Of TLink), WriteHandler(Of TLink))
+- uid: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name: Update(IList<TLink>, IList<TLink>, Nullable<WriteHandler<TLink>>)
+  href: api/Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase-1.html#Platform_Data_Doublets_Memory_United_Generic_UnitedMemoryLinksBase_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__System_Nullable_WriteHandler__0___
+  commentId: M:Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name.vb: Update(IList(Of TLink), IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
+  fullName: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase<TLink>.Update(System.Collections.Generic.IList<TLink>, System.Collections.Generic.IList<TLink>, System.Nullable<WriteHandler<TLink>>)
+  fullName.vb: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase(Of TLink).Update(System.Collections.Generic.IList(Of TLink), System.Collections.Generic.IList(Of TLink), System.Nullable(Of WriteHandler(Of TLink)))
+  nameWithType: UnitedMemoryLinksBase<TLink>.Update(IList<TLink>, IList<TLink>, Nullable<WriteHandler<TLink>>)
+  nameWithType.vb: UnitedMemoryLinksBase(Of TLink).Update(IList(Of TLink), IList(Of TLink), Nullable(Of WriteHandler(Of TLink)))
 - uid: Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase`1.Update*
   name: Update
   href: api/Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinksBase-1.html#Platform_Data_Doublets_Memory_United_Generic_UnitedMemoryLinksBase_1_Update_
