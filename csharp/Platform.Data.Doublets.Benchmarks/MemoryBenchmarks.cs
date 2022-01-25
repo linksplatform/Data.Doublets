@@ -19,8 +19,6 @@ namespace Platform.Data.Doublets.Benchmarks
         private static ILinks<uint> _unitedMemoryLinks;
         private static FFI.UnitedMemoryLinks<uint> _ffiUnitedMemory;
         private static ILinks<uint> _ffiUnitedMemoryLinks;
-        private static FFI.UInt32UnitedMemoryLinks _ffiUInt32UnitedMemory;
-        private static ILinks<uint> _ffiUInt32UnitedMemoryLinks;
 
         [GlobalSetup]
         public static void Setup()
@@ -37,10 +35,6 @@ namespace Platform.Data.Doublets.Benchmarks
             File.Delete("db.links");
             _ffiUnitedMemory = new FFI.UnitedMemoryLinks<uint>("db.links");
             _ffiUnitedMemoryLinks = _ffiUnitedMemory.DecorateWithAutomaticUniquenessAndUsagesResolution();
-
-            File.Delete("db.links1");
-            _ffiUInt32UnitedMemory = new FFI.UInt32UnitedMemoryLinks("db.links1");
-            _ffiUInt32UnitedMemoryLinks = _ffiUInt32UnitedMemory.DecorateWithAutomaticUniquenessAndUsagesResolution();
         }
 
         [GlobalCleanup]
@@ -50,7 +44,6 @@ namespace Platform.Data.Doublets.Benchmarks
             _unitedMemory.Dispose();
              _ffiUnitedMemory.Dispose();
             File.Delete("db.links");
-            _ffiUInt32UnitedMemory.Dispose();
             File.Delete("db.links1");
         }
 
@@ -70,12 +63,6 @@ namespace Platform.Data.Doublets.Benchmarks
         public void FfiUnited()
         {
             _ffiUnitedMemoryLinks.TestMultipleRandomCreationsAndDeletions(150);
-        }
-
-        [Benchmark]
-        public void FfiUInt32United()
-        {
-            _ffiUInt32UnitedMemoryLinks.TestMultipleRandomCreationsAndDeletions(150);
         }
     }
 }
