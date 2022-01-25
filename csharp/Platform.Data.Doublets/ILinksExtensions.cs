@@ -441,7 +441,7 @@ namespace Platform.Data.Doublets
         /// <param name="restriction">Ограничения на содержимое связей. Каждое ограничение может иметь значения: Constants.Null - 0-я связь, обозначающая ссылку на пустоту, Any - отсутствие ограничения, 1..∞ конкретный адрес связи.</param>
         /// <returns>True, в случае если проход по связям не был прерван и False в обратном случае.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool Each<TLink>(this ILinks<TLink> links, ReadHandler<TLink> handler, params TLink[] restriction)
+        public static bool Each<TLink>(this ILinks<TLink> links, ReadHandler<TLink>? handler, params TLink[] restriction)
             => EqualityComparer<TLink>.Default.Equals(links.Each(restriction, handler), links.Constants.Continue);
 
         public static bool Each<TLink>(this ILinks<TLink> links, Func<TLink, bool> handler, TLink source, TLink target) => links.Each(source, target, handler);
@@ -462,7 +462,7 @@ namespace Platform.Data.Doublets
             return links.Each(link => handler(link[constants.IndexPart]) ? constants.Continue : constants.Break, constants.Any, source, target);
         }
 
-        public static bool Each<TLink>(this ILinks<TLink> links, ReadHandler<TLink> handler, TLink source, TLink target) => links.Each(source, target, handler);
+        public static bool Each<TLink>(this ILinks<TLink> links, ReadHandler<TLink>? handler, TLink source, TLink target) => links.Each(source, target, handler);
 
 
         /// <summary>
@@ -474,7 +474,7 @@ namespace Platform.Data.Doublets
         /// <param name="handler">Обработчик каждой подходящей связи.</param>
         /// <returns>True, в случае если проход по связям не был прерван и False в обратном случае.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool Each<TLink>(this ILinks<TLink> links, TLink source, TLink target, ReadHandler<TLink> handler) => links.Each(handler, links.Constants.Any, source, target);
+        public static bool Each<TLink>(this ILinks<TLink> links, TLink source, TLink target, ReadHandler<TLink>? handler) => links.Each(handler, links.Constants.Any, source, target);
 
         /// <summary>
         /// <para>

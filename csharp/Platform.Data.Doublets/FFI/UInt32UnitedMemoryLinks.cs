@@ -40,7 +40,7 @@ namespace Platform.Data.Doublets.FFI
             }
         }
 
-        public TLink Each(IList<TLink> restriction, ReadHandler<TLink> handler)
+        public TLink Each(IList<TLink> restriction, ReadHandler<TLink>? handler)
         {
             unsafe
             {

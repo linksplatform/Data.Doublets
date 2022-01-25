@@ -298,7 +298,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para>The link</para>
         /// <para></para>
         /// </returns>
-        public TLink Trigger(IList<TLink> patternOrCondition, ReadHandler<TLink> matchHandler, IList<TLink> substitution, WriteHandler<TLink> substitutionHandler)
+        public TLink Trigger(IList<TLink> patternOrCondition, ReadHandler<TLink>? matchHandler, IList<TLink> substitution, WriteHandler<TLink> substitutionHandler)
         {
             var constants = _constants;
             if (patternOrCondition.IsNullOrEmpty() && substitution.IsNullOrEmpty())

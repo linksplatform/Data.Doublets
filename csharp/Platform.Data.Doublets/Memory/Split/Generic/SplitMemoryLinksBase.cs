@@ -529,7 +529,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Each(IList<TLink> restriction, ReadHandler<TLink> handler)
+        public virtual TLink Each(IList<TLink> restriction, ReadHandler<TLink>? handler)
         {
             var constants = Constants;
             var @break = constants.Break;

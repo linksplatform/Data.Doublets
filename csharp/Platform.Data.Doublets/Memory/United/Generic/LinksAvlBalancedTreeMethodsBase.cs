@@ -622,7 +622,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLink EachUsage(TLink link, ReadHandler<TLink> handler)
+        public TLink EachUsage(TLink link, ReadHandler<TLink>? handler)
         {
             var root = GetTreeRoot();
             if (EqualToZero(root))

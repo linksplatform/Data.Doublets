@@ -119,7 +119,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Each(IList<TLink> restriction, ReadHandler<TLink> handler) => _links.Each(restriction, handler);
+        public virtual TLink Each(IList<TLink> restriction, ReadHandler<TLink>? handler) => _links.Each(restriction, handler);
 
         /// <summary>
         /// <para>
