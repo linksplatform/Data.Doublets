@@ -42,7 +42,7 @@ namespace Platform.Data.Doublets.Decorators
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override TLinkAddress Delete(IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? handler)
         {
-            var linkIndex = restriction[_constants.IndexPart];
+            var linkIndex = _links.GetIndex(restriction);
             var constants = _links.Constants;
             WriteHandlerState<TLinkAddress> handlerResult = new(constants.Continue, constants.Break, handler);
             handlerResult.Apply(_links.EnforceResetValues(linkIndex, handlerResult.Handler));

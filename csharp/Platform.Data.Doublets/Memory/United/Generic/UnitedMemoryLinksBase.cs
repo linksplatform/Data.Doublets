@@ -15,7 +15,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
 {
     /// <summary>
     /// <para>
-    /// Represents the united memory links base.
+    /// Represents the united memory this base.
     /// </para>
     /// <para></para>
     /// </summary>
@@ -85,7 +85,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         // TODO: Возможно чтобы гарантированно проверять на то, является ли связь удалённой, нужно использовать не список а дерево, так как так можно быстрее проверить на наличие связи внутри
         /// <summary>
         /// <para>
-        /// The unused links list methods.
+        /// The unused this list methods.
         /// </para>
         /// <para></para>
         /// </summary>
@@ -216,7 +216,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             }
             var constants = Constants;
             var any = constants.Any;
-            var index = restriction[constants.IndexPart];
+            var index = this.GetIndex(restriction);
             if (restriction.Count == 1)
             {
                 if (AreEqual(index, any))
@@ -256,8 +256,8 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             }
             if (restriction.Count == 3)
             {
-                var source = restriction[constants.SourcePart];
-                var target = restriction[constants.TargetPart];
+                var source = this.GetSource(restriction);
+                var target = this.GetTarget(restriction);
                 if (AreEqual(index, any))
                 {
                     if (AreEqual(source, any) && AreEqual(target, any))
@@ -357,7 +357,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             }
             var @continue = constants.Continue;
             var any = constants.Any;
-            var index = restriction[constants.IndexPart];
+            var index = this.GetIndex(restriction);
             if (restriction.Count == 1)
             {
                 if (AreEqual(index, any))
@@ -406,8 +406,8 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             }
             if (restriction.Count == 3)
             {
-                var source = restriction[constants.SourcePart];
-                var target = restriction[constants.TargetPart];
+                var source = this.GetSource(restriction);
+                var target = this.GetTarget(restriction);
                 if (AreEqual(index, any))
                 {
                     if (AreEqual(source, any) && AreEqual(target, any))
@@ -476,7 +476,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         {
             var constants = Constants;
             var @null = constants.Null;
-            var linkIndex = restriction[constants.IndexPart];
+            var linkIndex = this.GetIndex(restriction);
             var before = GetLinkStruct(linkIndex);
             ref var link = ref GetLinkReference(linkIndex);
             ref var header = ref GetHeaderReference();
@@ -491,8 +491,8 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             {
                 TargetsTreeMethods.Detach(ref firstAsTarget, linkIndex);
             }
-            link.Source = substitution[constants.SourcePart];
-            link.Target = substitution[constants.TargetPart];
+            link.Source = this.GetSource(substitution);
+            link.Target = this.GetTarget(substitution);
             if (!AreEqual(link.Source, @null))
             {
                 SourcesTreeMethods.Attach(ref firstAsSource, linkIndex);
@@ -598,7 +598,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <remarks>
         /// TODO: Возможно это должно быть событием, вызываемым из IMemory, в том случае, если адрес реально поменялся
         ///
-        /// Указатель this.links может быть в том же месте, 
+        /// Указатель this.this может быть в том же месте, 
         /// так как 0-я связь не используется и имеет такой же размер как Header,
         /// поэтому header размещается в том же месте, что и 0-я связь
         /// </remarks>
@@ -626,7 +626,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </summary>
         /// <returns>
-        /// <para>A ref links header of t link</para>
+        /// <para>A ref this header of t link</para>
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

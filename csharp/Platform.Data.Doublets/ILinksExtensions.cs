@@ -299,8 +299,8 @@ namespace Platform.Data.Doublets
             {
                 var next = path[i];
                 var values = links.GetLink(current);
-                var source = values[constants.SourcePart];
-                var target = values[constants.TargetPart];
+                var source = links.GetSource(values);
+                var target = links.GetTarget(values);
                 if (equalityComparer.Equals(source, target) && equalityComparer.Equals(source, next))
                 {
                     //throw new InvalidOperationException(string.Format("Невозможно выбрать путь, так как и Source и Target совпадают с элементом пути {0}.", next));
@@ -459,7 +459,7 @@ namespace Platform.Data.Doublets
         public static bool Each<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress source, TLinkAddress target, Func<TLinkAddress, bool> handler) where TLinkAddress : struct
         {
             var constants = links.Constants;
-            return links.Each(link => handler(link[constants.IndexPart]) ? constants.Continue : constants.Break, constants.Any, source, target);
+            return links.Each(link => handler(links.GetIndex(link)) ? constants.Continue : constants.Break, constants.Any, source, target);
         }
 
         public static bool Each<TLinkAddress>(this ILinks<TLinkAddress> links, ReadHandler<TLinkAddress>? handler, TLinkAddress source, TLinkAddress target) where TLinkAddress : struct => links.Each(source, target, handler);
@@ -825,12 +825,12 @@ namespace Platform.Data.Doublets
             var values = links.GetLink(link);
             TLinkAddress usagesAsSource = links.Count(new Link<TLinkAddress>(constants.Any, link, constants.Any));
             var equalityComparer = EqualityComparer<TLinkAddress>.Default;
-            if (equalityComparer.Equals(values[constants.SourcePart], link))
+            if (equalityComparer.Equals(links.GetSource(values), link))
             {
                 usagesAsSource = Arithmetic<TLinkAddress>.Decrement(usagesAsSource);
             }
             TLinkAddress usagesAsTarget = links.Count(new Link<TLinkAddress>(constants.Any, constants.Any, link));
-            if (equalityComparer.Equals(values[constants.TargetPart], link))
+            if (equalityComparer.Equals(links.GetTarget(values), link))
             {
                 usagesAsTarget = Arithmetic<TLinkAddress>.Decrement(usagesAsTarget);
             }
@@ -848,7 +848,7 @@ namespace Platform.Data.Doublets
             var constants = links.Constants;
             var values = links.GetLink(link);
             var equalityComparer = EqualityComparer<TLinkAddress>.Default;
-            return equalityComparer.Equals(values[constants.SourcePart], source) && equalityComparer.Equals(values[constants.TargetPart], target);
+            return equalityComparer.Equals(links.GetSource(values), source) && equalityComparer.Equals(links.GetTarget(values), target);
         }
 
         /// <summary>
@@ -884,7 +884,7 @@ namespace Platform.Data.Doublets
             TLinkAddress link = default;
             TLinkAddress HandlerWrapper(IList<TLinkAddress>? before, IList<TLinkAddress>? after)
             {
-                link = after[constants.IndexPart];
+                link = links.GetIndex(after);
                 return handlerState.Handle(before, after);;
             }
             handlerState.Apply(links.Create(null, HandlerWrapper));
@@ -997,14 +997,14 @@ namespace Platform.Data.Doublets
         {
             var equalityComparer = EqualityComparer<TLinkAddress>.Default;
             var constants = links.Constants;
-            var restrictionIndex = restriction[constants.IndexPart];
-            var substitutionIndex = substitution[constants.IndexPart];
+            var restrictionIndex = links.GetIndex(restriction);
+            var substitutionIndex = links.GetIndex(substitution);
             if (equalityComparer.Equals(substitutionIndex, default))
             {
                 substitutionIndex = restrictionIndex;
             }
-            var source = substitution[constants.SourcePart];
-            var target = substitution[constants.TargetPart];
+            var source = links.GetSource(substitution);
+            var target = links.GetTarget(substitution);
             source = equalityComparer.Equals(source, constant) ? substitutionIndex : source;
             target = equalityComparer.Equals(target, constant) ? substitutionIndex : target;
             return new Link<TLinkAddress>(substitutionIndex, source, target);
@@ -1267,24 +1267,24 @@ namespace Platform.Data.Doublets
             for (var i = 0; i < usagesAsSource.Count; i++)
             {
                 var usageAsSource = usagesAsSource[i];
-                if (equalityComparer.Equals(usageAsSource[constants.IndexPart], oldLinkIndex))
+                if (equalityComparer.Equals(links.GetIndex(usageAsSource), oldLinkIndex))
                 {
                     continue;
                 }
-                var restriction = new LinkAddress<TLinkAddress>(usageAsSource[constants.IndexPart]);
-                var substitution = new Link<TLinkAddress>(newLinkIndex, usageAsSource[constants.TargetPart]);
+                var restriction = new LinkAddress<TLinkAddress>(links.GetIndex(usageAsSource));
+                var substitution = new Link<TLinkAddress>(newLinkIndex, links.GetTarget(usageAsSource));
                 handlerState.Apply(links.Update(restriction, substitution, handlerState.Handler));
             }
             var usagesAsTarget = links.All(new Link<TLinkAddress>(constants.Any, constants.Any, oldLinkIndex));
             for (var i = 0; i < usagesAsTarget.Count; i++)
             {
                 var usageAsTarget = usagesAsTarget[i];
-                if (equalityComparer.Equals(usageAsTarget[constants.IndexPart], oldLinkIndex))
+                if (equalityComparer.Equals(links.GetIndex(usageAsTarget), oldLinkIndex))
                 {
                     continue;
                 }
-                var restriction = links.GetLink(usageAsTarget[constants.IndexPart]);
-                var substitution = new Link<TLinkAddress>(usageAsTarget[constants.TargetPart], newLinkIndex);
+                var restriction = links.GetLink(links.GetIndex(usageAsTarget));
+                var substitution = new Link<TLinkAddress>(links.GetTarget(usageAsTarget), newLinkIndex);
                 handlerState.Apply(links.Update(restriction, substitution, handlerState.Handler));
             }
             return handlerState.Result;
@@ -1371,7 +1371,7 @@ namespace Platform.Data.Doublets
         public static string Format<TLinkAddress>(this ILinks<TLinkAddress> links, IList<TLinkAddress>? link) where TLinkAddress : struct
         {
             var constants = links.Constants;
-            return $"({link[constants.IndexPart]}: {link[constants.SourcePart]} {link[constants.TargetPart]})";
+            return $"({links.GetIndex(link)}: {links.GetSource(link)} {links.GetTarget(link)})";
         }
 
         /// <summary>

@@ -51,7 +51,7 @@ namespace Platform.Data.Doublets.Decorators
         public override TLinkAddress Update(IList<TLinkAddress>? restriction, IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler)
         {
             var links = _links;
-            links.EnsureNoUsages(restriction[_constants.IndexPart]);
+            links.EnsureNoUsages(links.GetIndex(restriction));
             return links.Update(restriction, substitution, handler);
         }
 
@@ -68,8 +68,8 @@ namespace Platform.Data.Doublets.Decorators
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override TLinkAddress Delete(IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? handler)
         {
-            var link = restriction[_constants.IndexPart];
             var links = _links;
+            var link = links.GetIndex(restriction);
             links.EnsureNoUsages(link);
             return links.Delete(restriction, handler);
         }

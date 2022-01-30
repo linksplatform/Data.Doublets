@@ -66,7 +66,7 @@ namespace Platform.Data.Doublets.PropertyOperators
             {
                 return default;
             }
-            return links.GetTarget(valueLink[constants.IndexPart]);
+            return links.GetTarget(links.GetIndex(valueLink));
         }
 
         /// <summary>

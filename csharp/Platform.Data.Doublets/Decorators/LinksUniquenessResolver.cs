@@ -54,12 +54,12 @@ namespace Platform.Data.Doublets.Decorators
         {
             var constants = _constants;
             var links = _links;
-            var newLinkAddress = links.SearchOrDefault(substitution[constants.SourcePart], substitution[constants.TargetPart]);
+            var newLinkAddress = links.SearchOrDefault(links.GetSource(substitution), links.GetTarget(substitution));
             if (_equalityComparer.Equals(newLinkAddress, default))
             {
                 return links.Update(restriction, substitution, handler);
             }
-            return ResolveAddressChangeConflict(restriction[constants.IndexPart], newLinkAddress, handler);
+            return ResolveAddressChangeConflict(links.GetIndex(restriction), newLinkAddress, handler);
         }
 
         /// <summary>

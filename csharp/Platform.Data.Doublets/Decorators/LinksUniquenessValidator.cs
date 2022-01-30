@@ -52,7 +52,7 @@ namespace Platform.Data.Doublets.Decorators
         {
             var links = _links;
             var constants = _constants;
-            links.EnsureDoesNotExists(substitution[constants.SourcePart], substitution[constants.TargetPart]);
+            links.EnsureDoesNotExists(links.GetSource(substitution), links.GetTarget(substitution));
             return links.Update(restriction, substitution, handler);
         }
     }

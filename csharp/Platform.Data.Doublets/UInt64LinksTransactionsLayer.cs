@@ -614,7 +614,7 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override TLinkAddress Delete(IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? handler)
         {
-            var link = restriction[_constants.IndexPart];
+            var link = this.GetIndex(restriction);
             return _links.Delete(restriction, (before, after) =>
             {
                 CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, before, after));

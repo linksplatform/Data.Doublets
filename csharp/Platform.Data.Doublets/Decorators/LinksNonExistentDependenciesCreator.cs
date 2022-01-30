@@ -50,7 +50,7 @@ namespace Platform.Data.Doublets.Decorators
         {
             var constants = _constants;
             var links = _links;
-            links.EnsureCreated(substitution[constants.SourcePart], substitution[constants.TargetPart]);
+            links.EnsureCreated(links.GetSource(substitution), links.GetTarget(substitution));
             return links.Update(restriction, substitution, handler);
         }
     }
