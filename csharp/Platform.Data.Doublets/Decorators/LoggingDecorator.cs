@@ -20,10 +20,7 @@ namespace Platform.Data.Doublets.Decorators
             WriteHandlerState<TLinkAddress> handlerState = new(_constants.Continue, _constants.Break, handler);
             return base.Create(substitution, (before, after) =>
             {
-                if (handlerState.Handler != null)
-                {
-                    handlerState.Apply(handlerState.Handler(before, after));
-                }
+                handlerState.Handle(before, after);
                 _logStreamWriter.WriteLine($"Create. Before: {new Link<TLinkAddress>(before)}. After: {new Link<TLinkAddress>(after)}");
                 return _constants.Continue;
             });
@@ -34,10 +31,7 @@ namespace Platform.Data.Doublets.Decorators
             WriteHandlerState<TLinkAddress> handlerState = new(_constants.Continue, _constants.Break, handler);
             return base.Update(restriction, substitution, (before, after) =>
             {
-                if (handlerState.Handler != null)
-                {
-                    handlerState.Apply(handlerState.Handler(before, after));
-                }
+                handlerState.Handle(before, after);
                 _logStreamWriter.WriteLine($"Update. Before: {new Link<TLinkAddress>(before)}. After: {new Link<TLinkAddress>(after)}");
                 return _constants.Continue;
             });
@@ -48,10 +42,7 @@ namespace Platform.Data.Doublets.Decorators
             WriteHandlerState<TLinkAddress> handlerState = new(_constants.Continue, _constants.Break, handler);
             return base.Delete(restriction, (before, after) =>
             {
-                if (handlerState.Handler != null)
-                {
-                    handlerState.Apply(handlerState.Handler(before, after));
-                }
+                handlerState.Handle(before, after);
                 _logStreamWriter.WriteLine($"Delete. Before: {new Link<TLinkAddress>(before)}. After: {new Link<TLinkAddress>(after)}");
                 return _constants.Continue;
             });

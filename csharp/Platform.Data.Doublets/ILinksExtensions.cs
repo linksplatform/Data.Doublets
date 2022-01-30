@@ -885,7 +885,7 @@ namespace Platform.Data.Doublets
             TLinkAddress HandlerWrapper(IList<TLinkAddress>? before, IList<TLinkAddress>? after)
             {
                 link = after[constants.IndexPart];
-                return handlerState.Handler != null ? handlerState.Handler(before, after) : constants.Continue;
+                return handlerState.Handle(before, after);;
             }
             handlerState.Apply(links.Create(null, HandlerWrapper));
             handlerState.Apply(links.Update(link, link, link, HandlerWrapper));
@@ -911,7 +911,7 @@ namespace Platform.Data.Doublets
             handlerState.Apply(links.Create(null, (before, after) =>
             {
                 createdLink = links.GetIndex(after);
-                return handlerState.Handler != null ? handlerState.Handler(before, after) : constants.Continue;
+                return handlerState.Handle(before, after);;
             }));
             handlerState.Apply(links.Update(createdLink, source, target, handler));
             return handlerState.Result;
