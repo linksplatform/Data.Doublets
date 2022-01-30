@@ -23087,15 +23087,15 @@ references:
   isSpec: "True"
   fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.BeginTransaction
   nameWithType: UInt64LinksTransactionsLayer.BeginTransaction
-- uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Create(System.Collections.Generic.IList{System.UInt64},WriteHandler{System.UInt64})
-  name: Create(IList<UInt64>, WriteHandler<UInt64>)
-  href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_Create_System_Collections_Generic_IList_System_UInt64__WriteHandler_System_UInt64__
-  commentId: M:Platform.Data.Doublets.UInt64LinksTransactionsLayer.Create(System.Collections.Generic.IList{System.UInt64},WriteHandler{System.UInt64})
-  name.vb: Create(IList(Of UInt64), WriteHandler(Of UInt64))
-  fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Create(System.Collections.Generic.IList<System.UInt64>, WriteHandler<System.UInt64>)
-  fullName.vb: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Create(System.Collections.Generic.IList(Of System.UInt64), WriteHandler(Of System.UInt64))
-  nameWithType: UInt64LinksTransactionsLayer.Create(IList<UInt64>, WriteHandler<UInt64>)
-  nameWithType.vb: UInt64LinksTransactionsLayer.Create(IList(Of UInt64), WriteHandler(Of UInt64))
+- uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Create(System.Collections.Generic.IList{System.UInt64},System.Nullable{WriteHandler{System.UInt64}})
+  name: Create(IList<UInt64>, Nullable<WriteHandler<UInt64>>)
+  href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_Create_System_Collections_Generic_IList_System_UInt64__System_Nullable_WriteHandler_System_UInt64___
+  commentId: M:Platform.Data.Doublets.UInt64LinksTransactionsLayer.Create(System.Collections.Generic.IList{System.UInt64},System.Nullable{WriteHandler{System.UInt64}})
+  name.vb: Create(IList(Of UInt64), Nullable(Of WriteHandler(Of UInt64)))
+  fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Create(System.Collections.Generic.IList<System.UInt64>, System.Nullable<WriteHandler<System.UInt64>>)
+  fullName.vb: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Create(System.Collections.Generic.IList(Of System.UInt64), System.Nullable(Of WriteHandler(Of System.UInt64)))
+  nameWithType: UInt64LinksTransactionsLayer.Create(IList<UInt64>, Nullable<WriteHandler<UInt64>>)
+  nameWithType.vb: UInt64LinksTransactionsLayer.Create(IList(Of UInt64), Nullable(Of WriteHandler(Of UInt64)))
 - uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Create*
   name: Create
   href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_Create_
@@ -23109,15 +23109,15 @@ references:
   commentId: F:Platform.Data.Doublets.UInt64LinksTransactionsLayer.DefaultPushDelay
   fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.DefaultPushDelay
   nameWithType: UInt64LinksTransactionsLayer.DefaultPushDelay
-- uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Delete(System.Collections.Generic.IList{System.UInt64},WriteHandler{System.UInt64})
-  name: Delete(IList<UInt64>, WriteHandler<UInt64>)
-  href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_Delete_System_Collections_Generic_IList_System_UInt64__WriteHandler_System_UInt64__
-  commentId: M:Platform.Data.Doublets.UInt64LinksTransactionsLayer.Delete(System.Collections.Generic.IList{System.UInt64},WriteHandler{System.UInt64})
-  name.vb: Delete(IList(Of UInt64), WriteHandler(Of UInt64))
-  fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Delete(System.Collections.Generic.IList<System.UInt64>, WriteHandler<System.UInt64>)
-  fullName.vb: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Delete(System.Collections.Generic.IList(Of System.UInt64), WriteHandler(Of System.UInt64))
-  nameWithType: UInt64LinksTransactionsLayer.Delete(IList<UInt64>, WriteHandler<UInt64>)
-  nameWithType.vb: UInt64LinksTransactionsLayer.Delete(IList(Of UInt64), WriteHandler(Of UInt64))
+- uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Delete(System.Collections.Generic.IList{System.UInt64},System.Nullable{WriteHandler{System.UInt64}})
+  name: Delete(IList<UInt64>, Nullable<WriteHandler<UInt64>>)
+  href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_Delete_System_Collections_Generic_IList_System_UInt64__System_Nullable_WriteHandler_System_UInt64___
+  commentId: M:Platform.Data.Doublets.UInt64LinksTransactionsLayer.Delete(System.Collections.Generic.IList{System.UInt64},System.Nullable{WriteHandler{System.UInt64}})
+  name.vb: Delete(IList(Of UInt64), Nullable(Of WriteHandler(Of UInt64)))
+  fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Delete(System.Collections.Generic.IList<System.UInt64>, System.Nullable<WriteHandler<System.UInt64>>)
+  fullName.vb: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Delete(System.Collections.Generic.IList(Of System.UInt64), System.Nullable(Of WriteHandler(Of System.UInt64)))
+  nameWithType: UInt64LinksTransactionsLayer.Delete(IList<UInt64>, Nullable<WriteHandler<UInt64>>)
+  nameWithType.vb: UInt64LinksTransactionsLayer.Delete(IList(Of UInt64), Nullable(Of WriteHandler(Of UInt64)))
 - uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Delete*
   name: Delete
   href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_Delete_
@@ -23395,15 +23395,15 @@ references:
   commentId: F:Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.TransactionId
   fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Transition.TransactionId
   nameWithType: UInt64LinksTransactionsLayer.Transition.TransactionId
-- uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Update(System.Collections.Generic.IList{System.UInt64},System.Collections.Generic.IList{System.UInt64},WriteHandler{System.UInt64})
-  name: Update(IList<UInt64>, IList<UInt64>, WriteHandler<UInt64>)
-  href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_Update_System_Collections_Generic_IList_System_UInt64__System_Collections_Generic_IList_System_UInt64__WriteHandler_System_UInt64__
-  commentId: M:Platform.Data.Doublets.UInt64LinksTransactionsLayer.Update(System.Collections.Generic.IList{System.UInt64},System.Collections.Generic.IList{System.UInt64},WriteHandler{System.UInt64})
-  name.vb: Update(IList(Of UInt64), IList(Of UInt64), WriteHandler(Of UInt64))
-  fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Update(System.Collections.Generic.IList<System.UInt64>, System.Collections.Generic.IList<System.UInt64>, WriteHandler<System.UInt64>)
-  fullName.vb: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Update(System.Collections.Generic.IList(Of System.UInt64), System.Collections.Generic.IList(Of System.UInt64), WriteHandler(Of System.UInt64))
-  nameWithType: UInt64LinksTransactionsLayer.Update(IList<UInt64>, IList<UInt64>, WriteHandler<UInt64>)
-  nameWithType.vb: UInt64LinksTransactionsLayer.Update(IList(Of UInt64), IList(Of UInt64), WriteHandler(Of UInt64))
+- uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Update(System.Collections.Generic.IList{System.UInt64},System.Collections.Generic.IList{System.UInt64},System.Nullable{WriteHandler{System.UInt64}})
+  name: Update(IList<UInt64>, IList<UInt64>, Nullable<WriteHandler<UInt64>>)
+  href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_Update_System_Collections_Generic_IList_System_UInt64__System_Collections_Generic_IList_System_UInt64__System_Nullable_WriteHandler_System_UInt64___
+  commentId: M:Platform.Data.Doublets.UInt64LinksTransactionsLayer.Update(System.Collections.Generic.IList{System.UInt64},System.Collections.Generic.IList{System.UInt64},System.Nullable{WriteHandler{System.UInt64}})
+  name.vb: Update(IList(Of UInt64), IList(Of UInt64), Nullable(Of WriteHandler(Of UInt64)))
+  fullName: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Update(System.Collections.Generic.IList<System.UInt64>, System.Collections.Generic.IList<System.UInt64>, System.Nullable<WriteHandler<System.UInt64>>)
+  fullName.vb: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Update(System.Collections.Generic.IList(Of System.UInt64), System.Collections.Generic.IList(Of System.UInt64), System.Nullable(Of WriteHandler(Of System.UInt64)))
+  nameWithType: UInt64LinksTransactionsLayer.Update(IList<UInt64>, IList<UInt64>, Nullable<WriteHandler<UInt64>>)
+  nameWithType.vb: UInt64LinksTransactionsLayer.Update(IList(Of UInt64), IList(Of UInt64), Nullable(Of WriteHandler(Of UInt64)))
 - uid: Platform.Data.Doublets.UInt64LinksTransactionsLayer.Update*
   name: Update
   href: api/Platform.Data.Doublets.UInt64LinksTransactionsLayer.html#Platform_Data_Doublets_UInt64LinksTransactionsLayer_Update_
