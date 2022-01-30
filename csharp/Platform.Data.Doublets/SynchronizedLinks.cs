@@ -14,7 +14,7 @@ namespace Platform.Data.Doublets
     /// TODO: Try to unfold code of each method using IL generation for performance improvements.
     /// TODO: Or even to unfold multiple layers of implementations.
     /// </remarks>
-    public class SynchronizedLinks<TLinkAddress> : ISynchronizedLinks<TLinkAddress>
+    public class SynchronizedLinks<TLinkAddress> : ISynchronizedLinks<TLinkAddress> where TLinkAddress : struct
     {
         /// <summary>
         /// <para>

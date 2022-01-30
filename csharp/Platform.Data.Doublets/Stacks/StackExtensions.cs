@@ -35,7 +35,7 @@ namespace Platform.Data.Doublets.Stacks
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TLinkAddress CreateStack<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress stackMarker)
+        public static TLinkAddress CreateStack<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress stackMarker) where TLinkAddress : struct
         {
             var stackPoint = links.CreatePoint();
             var stack = links.Update(stackPoint, stackMarker, stackPoint);

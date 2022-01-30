@@ -14,7 +14,7 @@ namespace Platform.Data.Doublets.CriterionMatchers
     /// </summary>
     /// <seealso cref="LinksOperatorBase{TLinkAddress}"/>
     /// <seealso cref="ICriterionMatcher{TLinkAddress}"/>
-    public class TargetMatcher<TLinkAddress> : LinksOperatorBase<TLinkAddress>, ICriterionMatcher<TLinkAddress>
+    public class TargetMatcher<TLinkAddress> : LinksOperatorBase<TLinkAddress>, ICriterionMatcher<TLinkAddress> where TLinkAddress : struct
     {
         private static readonly EqualityComparer<TLinkAddress> _equalityComparer = EqualityComparer<TLinkAddress>.Default;
         private readonly TLinkAddress _targetToMatch;

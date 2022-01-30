@@ -12,7 +12,7 @@ namespace Platform.Data.Doublets.Decorators
     /// To be able to use practical version we should allow to create link at any specific location inside ResizableDirectMemoryLinks.
     /// This in turn will require to implement not a list of empty links, but a list of ranges to store it more efficiently.
     /// </remarks>
-    public class LinksNonExistentDependenciesCreator<TLinkAddress> : LinksDecoratorBase<TLinkAddress>
+    public class LinksNonExistentDependenciesCreator<TLinkAddress> : LinksDecoratorBase<TLinkAddress> where TLinkAddress : struct
     {
         /// <summary>
         /// <para>

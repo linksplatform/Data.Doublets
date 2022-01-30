@@ -14,7 +14,7 @@ namespace Platform.Data.Doublets.Decorators
     /// <para></para>
     /// </summary>
     /// <seealso cref="LinksUniquenessResolver{TLinkAddress}"/>
-    public class LinksCascadeUniquenessAndUsagesResolver<TLinkAddress> : LinksUniquenessResolver<TLinkAddress>
+    public class LinksCascadeUniquenessAndUsagesResolver<TLinkAddress> : LinksUniquenessResolver<TLinkAddress> where TLinkAddress : struct
     {
         /// <summary>
         /// <para>

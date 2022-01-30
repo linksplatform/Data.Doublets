@@ -10,7 +10,7 @@ namespace Platform.Data.Doublets.Tests
 {
     public static class TestExtensions
     {
-        public static void TestCRUDOperations<T>(this ILinks<T> links)
+        public static void TestCRUDOperations<T>(this ILinks<T> links) where T : struct
         {
             var constants = links.Constants;
 
@@ -73,7 +73,7 @@ namespace Platform.Data.Doublets.Tests
             Assert.True(equalityComparer.Equals(setter.Result, constants.Null));
         }
 
-        public static void TestRawNumbersCRUDOperations<T>(this ILinks<T> links)
+        public static void TestRawNumbersCRUDOperations<T>(this ILinks<T> links) where T : struct
         {
             // Constants
             var constants = links.Constants;
@@ -166,7 +166,7 @@ namespace Platform.Data.Doublets.Tests
             }
         }
 
-        public static void TestMultipleRandomCreationsAndDeletions<TLinkAddress>(this ILinks<TLinkAddress> links, int maximumOperationsPerCycle)
+        public static void TestMultipleRandomCreationsAndDeletions<TLinkAddress>(this ILinks<TLinkAddress> links, int maximumOperationsPerCycle) where TLinkAddress : struct
         {
             var comparer = Comparer<TLinkAddress>.Default;
             var addressToUInt64Converter = CheckedConverter<TLinkAddress, ulong>.Default;

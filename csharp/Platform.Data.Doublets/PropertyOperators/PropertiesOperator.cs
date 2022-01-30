@@ -14,7 +14,7 @@ namespace Platform.Data.Doublets.PropertyOperators
     /// </summary>
     /// <seealso cref="LinksOperatorBase{TLinkAddress}"/>
     /// <seealso cref="IProperties{TLinkAddress, TLinkAddress, TLinkAddress}"/>
-    public class PropertiesOperator<TLinkAddress> : LinksOperatorBase<TLinkAddress>, IProperties<TLinkAddress, TLinkAddress, TLinkAddress>
+    public class PropertiesOperator<TLinkAddress> : LinksOperatorBase<TLinkAddress>, IProperties<TLinkAddress, TLinkAddress, TLinkAddress> where TLinkAddress : struct
     {
         private static readonly EqualityComparer<TLinkAddress> _equalityComparer = EqualityComparer<TLinkAddress>.Default;
 

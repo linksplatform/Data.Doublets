@@ -25,7 +25,7 @@ namespace Platform.Data.Doublets
     /// <para></para>
     /// </summary>
     /// <seealso cref="LinksDisposableDecoratorBase{TLinkAddress}"/>
-    public class UInt64LinksTransactionsLayer : LinksDisposableDecoratorBase<TLinkAddress> //-V3073
+    public class UInt64LinksTransactionsLayer : LinksDisposableDecoratorBase<TLinkAddress> //-V3073 where TLinkAddress : struct
     {
         /// <remarks>
         /// Альтернативные варианты хранения трансформации (элемента транзакции):
