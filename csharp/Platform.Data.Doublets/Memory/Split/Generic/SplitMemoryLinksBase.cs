@@ -15,7 +15,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
 {
     /// <summary>
     /// <para>
-    /// Represents the split memory this base.
+    /// Represents the split memory links base.
     /// </para>
     /// <para></para>
     /// </summary>
@@ -55,7 +55,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
 
         /// <summary>
         /// <para>
-        /// The default this size step.
+        /// The default links size step.
         /// </para>
         /// <para></para>
         /// </summary>
@@ -135,7 +135,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         // TODO: Возможно чтобы гарантированно проверять на то, является ли связь удалённой, нужно использовать не список а дерево, так как так можно быстрее проверить на наличие связи внутри
         /// <summary>
         /// <para>
-        /// The unused this list methods.
+        /// The unused links list methods.
         /// </para>
         /// <para></para>
         /// </summary>
@@ -241,7 +241,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual void Init(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory)
         {
-            // Read allocated this from header
+            // Read allocated links from header
             if (indexMemory.ReservedCapacity < LinkHeaderSizeInBytes)
             {
                 indexMemory.ReservedCapacity = LinkHeaderSizeInBytes;
@@ -900,7 +900,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <remarks>
         /// TODO: Возможно это должно быть событием, вызываемым из IMemory, в том случае, если адрес реально поменялся
         ///
-        /// Указатель this.this может быть в том же месте, 
+        /// Указатель this.links может быть в том же месте, 
         /// так как 0-я связь не используется и имеет такой же размер как Header,
         /// поэтому header размещается в том же месте, что и 0-я связь
         /// </remarks>
@@ -931,7 +931,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <para></para>
         /// </summary>
         /// <returns>
-        /// <para>A ref this header of t link</para>
+        /// <para>A ref links header of t link</para>
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
