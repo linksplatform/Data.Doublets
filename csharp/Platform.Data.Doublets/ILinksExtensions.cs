@@ -442,6 +442,9 @@ namespace Platform.Data.Doublets
         /// <returns>True, в случае если проход по связям не был прерван и False в обратном случае.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool Each<TLinkAddress>(this ILinks<TLinkAddress> links, ReadHandler<TLinkAddress>? handler, params TLinkAddress[] restriction) where TLinkAddress : struct
+            => links.Each(handler, (IList<TLinkAddress>)restriction);
+
+        public static bool Each<TLinkAddress>(this ILinks<TLinkAddress> links, ReadHandler<TLinkAddress>? handler, IList<TLinkAddress> restriction) where TLinkAddress : struct
             => EqualityComparer<TLinkAddress>.Default.Equals(links.Each(restriction, handler), links.Constants.Continue);
 
         public static bool Each<TLinkAddress>(this ILinks<TLinkAddress> links, Func<TLinkAddress, bool> handler, TLinkAddress source, TLinkAddress target) where TLinkAddress : struct => links.Each(source, target, handler);
