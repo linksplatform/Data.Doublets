@@ -1919,6 +1919,15 @@ references:
   fullName.vb: Platform.Data.Doublets.ILinksExtensions.Each(Of TLinkAddress)(Platform.Data.Doublets.ILinks(Of TLinkAddress), System.Nullable(Of ReadHandler(Of TLinkAddress)), TLinkAddress())
   nameWithType: ILinksExtensions.Each<TLinkAddress>(ILinks<TLinkAddress>, Nullable<ReadHandler<TLinkAddress>>, TLinkAddress[])
   nameWithType.vb: ILinksExtensions.Each(Of TLinkAddress)(ILinks(Of TLinkAddress), Nullable(Of ReadHandler(Of TLinkAddress)), TLinkAddress())
+- uid: Platform.Data.Doublets.ILinksExtensions.Each``1(Platform.Data.Doublets.ILinks{``0},System.Nullable{ReadHandler{``0}},System.Collections.Generic.IList{``0})
+  name: Each<TLinkAddress>(ILinks<TLinkAddress>, Nullable<ReadHandler<TLinkAddress>>, IList<TLinkAddress>)
+  href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_Each__1_Platform_Data_Doublets_ILinks___0__System_Nullable_ReadHandler___0___System_Collections_Generic_IList___0__
+  commentId: M:Platform.Data.Doublets.ILinksExtensions.Each``1(Platform.Data.Doublets.ILinks{``0},System.Nullable{ReadHandler{``0}},System.Collections.Generic.IList{``0})
+  name.vb: Each(Of TLinkAddress)(ILinks(Of TLinkAddress), Nullable(Of ReadHandler(Of TLinkAddress)), IList(Of TLinkAddress))
+  fullName: Platform.Data.Doublets.ILinksExtensions.Each<TLinkAddress>(Platform.Data.Doublets.ILinks<TLinkAddress>, System.Nullable<ReadHandler<TLinkAddress>>, System.Collections.Generic.IList<TLinkAddress>)
+  fullName.vb: Platform.Data.Doublets.ILinksExtensions.Each(Of TLinkAddress)(Platform.Data.Doublets.ILinks(Of TLinkAddress), System.Nullable(Of ReadHandler(Of TLinkAddress)), System.Collections.Generic.IList(Of TLinkAddress))
+  nameWithType: ILinksExtensions.Each<TLinkAddress>(ILinks<TLinkAddress>, Nullable<ReadHandler<TLinkAddress>>, IList<TLinkAddress>)
+  nameWithType.vb: ILinksExtensions.Each(Of TLinkAddress)(ILinks(Of TLinkAddress), Nullable(Of ReadHandler(Of TLinkAddress)), IList(Of TLinkAddress))
 - uid: Platform.Data.Doublets.ILinksExtensions.EnforceResetValues*
   name: EnforceResetValues
   href: api/Platform.Data.Doublets.ILinksExtensions.html#Platform_Data_Doublets_ILinksExtensions_EnforceResetValues_
