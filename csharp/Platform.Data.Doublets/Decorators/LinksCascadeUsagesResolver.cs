@@ -11,7 +11,7 @@ namespace Platform.Data.Doublets.Decorators
     /// <para>Must be used in conjunction with NonNullContentsLinkDeletionResolver.</para>
     /// <para>Должен использоваться вместе с NonNullContentsLinkDeletionResolver.</para>
     /// </remarks>
-    public class LinksCascadeUsagesResolver<TLinkAddress> : LinksDecoratorBase<TLinkAddress> where TLinkAddress : struct
+    public class LinksCascadeUsagesResolver<TLinkAddress> : LinksDecoratorBase<TLinkAddress> 
     {
         /// <summary>
         /// <para>

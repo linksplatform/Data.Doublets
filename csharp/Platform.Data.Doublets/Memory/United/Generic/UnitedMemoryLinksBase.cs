@@ -21,7 +21,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
     /// </summary>
     /// <seealso cref="DisposableBase"/>
     /// <seealso cref="ILinks{TLinkAddress}"/>
-    public abstract class UnitedMemoryLinksBase<TLinkAddress> : DisposableBase, ILinks<TLinkAddress> where TLinkAddress : struct
+    public abstract class UnitedMemoryLinksBase<TLinkAddress> : DisposableBase, ILinks<TLinkAddress>
     {
         private static readonly EqualityComparer<TLinkAddress> _equalityComparer = EqualityComparer<TLinkAddress>.Default;
         private static readonly Comparer<TLinkAddress> _comparer = Comparer<TLinkAddress>.Default;
@@ -501,7 +501,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             {
                 TargetsTreeMethods.Attach(ref firstAsTarget, linkIndex);
             }
-            return handler?.Invoke(before, GetLinkStruct(linkIndex)) ?? Constants.Continue;
+            return handler != null ? handler(before, GetLinkStruct(linkIndex)) : Constants.Continue;
         }
 
         /// <remarks>
@@ -533,7 +533,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                 freeLink = header.AllocatedLinks = Increment(header.AllocatedLinks);
                 _memory.UsedCapacity += LinkSizeInBytes;
             }
-            return handler?.Invoke(null, new Link<TLinkAddress>(freeLink, Constants.Null, Constants.Null)) ?? Constants.Continue;
+            return handler != null ? handler(null, new Link<TLinkAddress>(freeLink, Constants.Null, Constants.Null)) : Constants.Continue;
         }
 
         /// <summary>
@@ -555,7 +555,8 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             if (LessThan(link, header.AllocatedLinks))
             {
                 UnusedLinksListMethods.AttachAsFirst(link);
-                return handler?.Invoke(before, null) ?? Constants.Continue;
+                // return handler?.Invoke(before, null);
+                return handler != null ? handler(before, null) : Constants.Continue;
             }
             else if (AreEqual(link, header.AllocatedLinks))
             {
@@ -569,7 +570,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                     header.AllocatedLinks = Decrement(header.AllocatedLinks);
                     _memory.UsedCapacity -= LinkSizeInBytes;
                 }
-                return handler?.Invoke(before, null) ?? Constants.Continue;
+                return handler != null ? handler(before, null) : Constants.Continue;
             }
             return Constants.Continue;
         }

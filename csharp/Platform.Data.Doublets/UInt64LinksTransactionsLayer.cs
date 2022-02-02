@@ -25,7 +25,7 @@ namespace Platform.Data.Doublets
     /// <para></para>
     /// </summary>
     /// <seealso cref="LinksDisposableDecoratorBase{TLinkAddress}"/>
-    public class UInt64LinksTransactionsLayer : LinksDisposableDecoratorBase<TLinkAddress> //-V3073 where TLinkAddress : struct
+    public class UInt64LinksTransactionsLayer : LinksDisposableDecoratorBase<TLinkAddress> //-V3073 
     {
         /// <remarks>
         /// Альтернативные варианты хранения трансформации (элемента транзакции):
@@ -596,7 +596,7 @@ namespace Platform.Data.Doublets
             return _links.Update(restriction, substitution, (before, after) =>
                 {
                     CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, new Link<TLinkAddress>(before), new Link<TLinkAddress>(after)));
-                    return handler?.Invoke(before, after) ?? Constants.Continue;
+                    return handler != null ? handler(before, after) : Constants.Continue;
                 }
             );
         }
@@ -618,7 +618,7 @@ namespace Platform.Data.Doublets
             return _links.Delete(restriction, (before, after) =>
             {
                 CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, before, after));
-                return handler?.Invoke(before, after) ?? Constants.Continue;
+                return handler != null ? handler(before, after) : Constants.Continue;
             });
         }
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

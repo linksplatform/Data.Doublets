@@ -4,7 +4,7 @@ using Platform.Delegates;
 
 namespace Platform.Data.Doublets.Decorators
 {
-    public class LoggingDecorator<TLinkAddress> : LinksDecoratorBase<TLinkAddress> where TLinkAddress : struct
+    public class LoggingDecorator<TLinkAddress> : LinksDecoratorBase<TLinkAddress> 
     {
         private readonly Stream _logStream;
         private readonly StreamWriter _logStreamWriter;

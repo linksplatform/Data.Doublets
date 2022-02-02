@@ -13,7 +13,7 @@ namespace Platform.Data.Doublets.Tests
     {
         public static ILinks<TLinkAddress> CreateLinks() => CreateLinks<TLinkAddress>(new Platform.IO.TemporaryFile());
 
-        public static ILinks<TLinkAddress> CreateLinks<TLinkAddress>(string dataDBFilename) where TLinkAddress : struct
+        public static ILinks<TLinkAddress> CreateLinks<TLinkAddress>(string dataDBFilename) 
         {
             var linksConstants = new LinksConstants<TLinkAddress>(enableExternalReferencesSupport: true);
             return new UnitedMemoryLinks<TLinkAddress>(new FileMappedResizableDirectMemory(dataDBFilename), UnitedMemoryLinks<TLinkAddress>.DefaultLinksSizeStep, linksConstants, IndexTreeType.Default);

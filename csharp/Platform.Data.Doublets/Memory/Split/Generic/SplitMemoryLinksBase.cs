@@ -21,7 +21,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
     /// </summary>
     /// <seealso cref="DisposableBase"/>
     /// <seealso cref="ILinks{TLinkAddress}"/>
-    public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILinks<TLinkAddress> where TLinkAddress : struct
+    public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILinks<TLinkAddress> 
     {
         private static readonly EqualityComparer<TLinkAddress> _equalityComparer = EqualityComparer<TLinkAddress>.Default;
         private static readonly Comparer<TLinkAddress> _comparer = Comparer<TLinkAddress>.Default;
@@ -801,7 +801,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
                     InternalTargetsTreeMethods.Attach(ref GetLinkIndexPartReference(target).RootAsTarget, linkIndex);
                 }
             }
-            return handler?.Invoke(before, new Link<TLinkAddress>(linkIndex, source, target)) ?? Constants.Continue;
+            return handler != null ? handler(before, new Link<TLinkAddress>(linkIndex, source, target)) : Constants.Continue;
         }
 
         /// <remarks>
@@ -835,7 +835,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
                 _dataMemory.UsedCapacity += LinkDataPartSizeInBytes;
                 _indexMemory.UsedCapacity += LinkIndexPartSizeInBytes;
             }
-            return handler?.Invoke(null, GetLinkStruct(freeLink)) ?? Constants.Continue;
+            return handler != null ? handler(null, GetLinkStruct(freeLink)) : Constants.Continue;
         }
 
         /// <summary>
@@ -873,7 +873,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
                     _indexMemory.UsedCapacity -= LinkIndexPartSizeInBytes;
                 }
             }
-            return handler?.Invoke(before, null) ?? Constants.Continue;
+            return handler != null ? handler(before, null) : Constants.Continue;
         }
 
         /// <summary>
