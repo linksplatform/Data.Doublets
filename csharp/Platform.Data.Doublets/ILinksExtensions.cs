@@ -214,7 +214,7 @@ namespace Platform.Data.Doublets
             {
                 throw new InvalidOperationException("В хранилище нет связей.");
             }
-            links.Each(links.Constants.Any, links.Constants.Any, link =>
+            links.Each(new Link<TLinkAddress>(links.Constants.Any, links.Constants.Any, links.Constants.Any), link =>
             {
                 firstLink = link[links.Constants.IndexPart];
                 return links.Constants.Break;
@@ -432,52 +432,6 @@ namespace Platform.Data.Doublets
         /// <returns>Индекс конечной связи для указанной связи.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress GetTarget<TLinkAddress>(this ILinks<TLinkAddress> links, IList<TLinkAddress>? link)  => link[links.Constants.TargetPart];
-
-        /// <summary>
-        /// Выполняет проход по всем связям, соответствующим шаблону, вызывая обработчик (handler) для каждой подходящей связи.
-        /// </summary>
-        /// <param name="links">Хранилище связей.</param>
-        /// <param name="handler">Обработчик каждой подходящей связи.</param>
-        /// <param name="restriction">Ограничения на содержимое связей. Каждое ограничение может иметь значения: Constants.Null - 0-я связь, обозначающая ссылку на пустоту, Any - отсутствие ограничения, 1..∞ конкретный адрес связи.</param>
-        /// <returns>True, в случае если проход по связям не был прерван и False в обратном случае.</returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool Each<TLinkAddress>(this ILinks<TLinkAddress> links, ReadHandler<TLinkAddress>? handler, params TLinkAddress[] restriction) 
-            => links.Each(handler, (IList<TLinkAddress>)restriction);
-
-        public static bool Each<TLinkAddress>(this ILinks<TLinkAddress> links, ReadHandler<TLinkAddress>? handler, IList<TLinkAddress> restriction) 
-            => EqualityComparer<TLinkAddress>.Default.Equals(links.Each(restriction, handler), links.Constants.Continue);
-
-        public static bool Each<TLinkAddress>(this ILinks<TLinkAddress> links, Func<TLinkAddress, bool> handler, TLinkAddress source, TLinkAddress target)  => links.Each(source, target, handler);
-
-
-        /// <summary>
-        /// Выполняет проход по всем связям, соответствующим шаблону, вызывая обработчик (handler) для каждой подходящей связи.
-        /// </summary>
-        /// <param name="links">Хранилище связей.</param>
-        /// <param name="source">Значение, определяющее соответствующие шаблону связи. (Constants.Null - 0-я связь, обозначающая ссылку на пустоту в качестве начала, Constants.Any - любое начало, 1..∞ конкретное начало)</param>
-        /// <param name="target">Значение, определяющее соответствующие шаблону связи. (Constants.Null - 0-я связь, обозначающая ссылку на пустоту в качестве конца, Constants.Any - любой конец, 1..∞ конкретный конец)</param>
-        /// <param name="handler">Обработчик каждой подходящей связи.</param>
-        /// <returns>True, в случае если проход по связям не был прерван и False в обратном случае.</returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool Each<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress source, TLinkAddress target, Func<TLinkAddress, bool> handler) 
-        {
-            var constants = links.Constants;
-            return links.Each(link => handler(links.GetIndex(link)) ? constants.Continue : constants.Break, constants.Any, source, target);
-        }
-
-        public static bool Each<TLinkAddress>(this ILinks<TLinkAddress> links, ReadHandler<TLinkAddress>? handler, TLinkAddress source, TLinkAddress target)  => links.Each(source, target, handler);
-
-
-        /// <summary>
-        /// Выполняет проход по всем связям, соответствующим шаблону, вызывая обработчик (handler) для каждой подходящей связи.
-        /// </summary>
-        /// <param name="links">Хранилище связей.</param>
-        /// <param name="source">Значение, определяющее соответствующие шаблону связи. (Constants.Null - 0-я связь, обозначающая ссылку на пустоту в качестве начала, Constants.Any - любое начало, 1..∞ конкретное начало)</param>
-        /// <param name="target">Значение, определяющее соответствующие шаблону связи. (Constants.Null - 0-я связь, обозначающая ссылку на пустоту в качестве конца, Constants.Any - любой конец, 1..∞ конкретный конец)</param>
-        /// <param name="handler">Обработчик каждой подходящей связи.</param>
-        /// <returns>True, в случае если проход по связям не был прерван и False в обратном случае.</returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool Each<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress source, TLinkAddress target, ReadHandler<TLinkAddress>? handler)  => links.Each(handler, links.Constants.Any, source, target);
 
         /// <summary>
         /// <para>

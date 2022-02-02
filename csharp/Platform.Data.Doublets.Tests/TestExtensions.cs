@@ -5,6 +5,7 @@ using Platform.Numbers;
 using Platform.Random;
 using Platform.Setters;
 using Platform.Converters;
+using Platform.Delegates;
 
 namespace Platform.Data.Doublets.Tests
 {
@@ -22,8 +23,8 @@ namespace Platform.Data.Doublets.Tests
             // Create Link
             Assert.True(equalityComparer.Equals(links.Count(), zero));
 
-            var setter = new Setter<T>(constants.Null);
-            links.Each(constants.Any, constants.Any, setter.SetAndReturnTrue);
+            var setter = new Setter<T,T>(constants.Continue, constants.Break, constants.Null);
+            links.Each(new Link<T>(constants.Any, constants.Any, constants.Any), setter.SetFirstFromListAndReturnTrue);
 
             Assert.True(equalityComparer.Equals(setter.Result, constants.Null));
 
@@ -39,8 +40,8 @@ namespace Platform.Data.Doublets.Tests
             Assert.True(equalityComparer.Equals(links.Count(), one));
 
             // Get first link
-            setter = new Setter<T>(constants.Null);
-            links.Each(constants.Any, constants.Any, setter.SetAndReturnFalse);
+            setter = new Setter<T,T>(constants.Continue, constants.Break, constants.Null);
+            links.Each(new Link<T>(constants.Any, constants.Any, constants.Any), setter.SetFirstFromListAndReturnTrue);
 
             Assert.True(equalityComparer.Equals(setter.Result, linkAddress));
 
@@ -67,8 +68,8 @@ namespace Platform.Data.Doublets.Tests
 
             Assert.True(equalityComparer.Equals(links.Count(), zero));
 
-            setter = new Setter<T>(constants.Null);
-            links.Each(constants.Any, constants.Any, setter.SetAndReturnTrue);
+            setter = new Setter<T,T>(constants.Continue, constants.Break, constants.Null);
+            links.Each(new Link<T>(constants.Any, constants.Any, constants.Any), setter.SetFirstFromListAndReturnTrue);
 
             Assert.True(equalityComparer.Equals(setter.Result, constants.Null));
         }
@@ -122,14 +123,14 @@ namespace Platform.Data.Doublets.Tests
             Assert.True(equalityComparer.Equals(link3.Target, linkAddress2));
 
             // Search for created link
-            var setter1 = new Setter<T>(constants.Null);
-            links.Each(h106E, h108E, setter1.SetAndReturnFalse);
+            var setter1 = new Setter<T, T>(constants.Continue, constants.Break, constants.Null);
+            links.Each(new Link<T>(constants.Any, h106E, h108E), setter1.SetFirstFromListAndReturnTrue);
 
             Assert.True(equalityComparer.Equals(setter1.Result, linkAddress1));
 
             // Search for nonexistent link
-            var setter2 = new Setter<T>(constants.Null);
-            links.Each(h106E, h107E, setter2.SetAndReturnFalse);
+            var setter2 = new Setter<T, T>(constants.Continue, constants.Break, constants.Null);
+            links.Each(new Link<T>(constants.Any, h106E, h108E), setter1.SetFirstFromListAndReturnTrue);
 
             Assert.True(equalityComparer.Equals(setter2.Result, constants.Null));
 
@@ -148,8 +149,8 @@ namespace Platform.Data.Doublets.Tests
 
             Assert.True(equalityComparer.Equals(links.Count(), two));
 
-            var setter3 = new Setter<T>(constants.Null);
-            links.Each(constants.Any, constants.Any, setter3.SetAndReturnTrue);
+            var setter3 = new Setter<T, T>(constants.Continue, constants.Break, constants.Null);
+            links.Each(new Link<T>(constants.Any, constants.Any, constants.Any), setter3.SetFirstFromListAndReturnTrue);
 
             Assert.True(equalityComparer.Equals(setter3.Result, linkAddress2));
         }
