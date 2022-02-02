@@ -4,7 +4,7 @@
     <Description>LinksPlatform's Platform.Data.Doublets Class Library</Description>
     <Copyright>konard, FreePhoenix888</Copyright>
     <AssemblyTitle>Platform.Data.Doublets</AssemblyTitle>
-    <VersionPrefix>0.11.1</VersionPrefix>
+    <VersionPrefix>0.12.0</VersionPrefix>
     <Authors>konard, FreePhoenix888</Authors>
     <TargetFrameworks>net472;netstandard2.0;netstandard2.1;net5</TargetFrameworks>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -25,7 +25,7 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <LangVersion>latest</LangVersion>
-    <PackageReleaseNotes>Platform.Data dependency updated from 0.10.1 to 0.10.2.</PackageReleaseNotes>
+    <PackageReleaseNotes>Platform.Data dependency updated from 0.10.2 to 0.11.0. TLinkAddress typed parameter is not constrained anymore</PackageReleaseNotes>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
