@@ -34,8 +34,8 @@ And rerun build
 
 
 What is it?\
-`debug` - controls the amount of debug information included in the compiled binary.
-`overflow-checks` - ontrols the behavior of runtime [integer overflow](https://doc.rust-lang.org/reference/expressions/operator-expr.html#overflow).
+`debug` - controls the amount of debug information included in the compiled binary.\
+`overflow-checks` - controls the behavior of runtime [integer overflow](https://doc.rust-lang.org/reference/expressions/operator-expr.html#overflow).
 
 [More options](https://doc.rust-lang.org/cargo/reference/profiles.html)
 
