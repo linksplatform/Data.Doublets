@@ -18,7 +18,7 @@ namespace Platform.Data.Doublets
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <typeparam name="TLink">
+        /// <typeparam name="TLinkAddress">
         /// <para>The link.</para>
         /// <para></para>
         /// </typeparam>
@@ -31,7 +31,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsFullPoint<TLink>(this Link<TLink> link) => Point<TLink>.IsFullPoint(link);
+        public static bool IsFullPoint<TLinkAddress>(this Link<TLinkAddress> link) => Point<TLinkAddress>.IsFullPoint(link);
 
         /// <summary>
         /// <para>
@@ -39,7 +39,7 @@ namespace Platform.Data.Doublets
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <typeparam name="TLink">
+        /// <typeparam name="TLinkAddress">
         /// <para>The link.</para>
         /// <para></para>
         /// </typeparam>
@@ -52,6 +52,6 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsPartialPoint<TLink>(this Link<TLink> link) => Point<TLink>.IsPartialPoint(link);
+        public static bool IsPartialPoint<TLinkAddress>(this Link<TLinkAddress> link) => Point<TLinkAddress>.IsPartialPoint(link);
     }
 }

@@ -13,11 +13,11 @@ namespace Platform.Data.Doublets.Memory.United.Generic
     /// </para>
     /// <para></para>
     /// </summary>
-    /// <seealso cref="AbsoluteCircularDoublyLinkedListMethods{TLink}"/>
-    /// <seealso cref="ILinksListMethods{TLink}"/>
-    public unsafe class UnusedLinksListMethods<TLink> : AbsoluteCircularDoublyLinkedListMethods<TLink>, ILinksListMethods<TLink>
+    /// <seealso cref="AbsoluteCircularDoublyLinkedListMethods{TLinkAddress}"/>
+    /// <seealso cref="ILinksListMethods{TLinkAddress}"/>
+    public unsafe class UnusedLinksListMethods<TLinkAddress> : AbsoluteCircularDoublyLinkedListMethods<TLinkAddress>, ILinksListMethods<TLinkAddress>
     {
-        private static readonly UncheckedConverter<TLink, long> _addressToInt64Converter = UncheckedConverter<TLink, long>.Default;
+        private static readonly UncheckedConverter<TLinkAddress, long> _addressToInt64Converter = UncheckedConverter<TLinkAddress, long>.Default;
         private readonly byte* _links;
         private readonly byte* _header;
 
@@ -53,7 +53,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual ref LinksHeader<TLink> GetHeaderReference() => ref AsRef<LinksHeader<TLink>>(_header);
+        protected virtual ref LinksHeader<TLinkAddress> GetHeaderReference() => ref AsRef<LinksHeader<TLinkAddress>>(_header);
 
         /// <summary>
         /// <para>
@@ -70,7 +70,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual ref RawLink<TLink> GetLinkReference(TLink link) => ref AsRef<RawLink<TLink>>(_links + (RawLink<TLink>.SizeInBytes * _addressToInt64Converter.Convert(link)));
+        protected virtual ref RawLink<TLinkAddress> GetLinkReference(TLinkAddress link) => ref AsRef<RawLink<TLinkAddress>>(_links + (RawLink<TLinkAddress>.SizeInBytes * _addressToInt64Converter.Convert(link)));
 
         /// <summary>
         /// <para>
@@ -83,7 +83,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink GetFirst() => GetHeaderReference().FirstFreeLink;
+        protected override TLinkAddress GetFirst() => GetHeaderReference().FirstFreeLink;
 
         /// <summary>
         /// <para>
@@ -96,7 +96,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink GetLast() => GetHeaderReference().LastFreeLink;
+        protected override TLinkAddress GetLast() => GetHeaderReference().LastFreeLink;
 
         /// <summary>
         /// <para>
@@ -113,7 +113,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink GetPrevious(TLink element) => GetLinkReference(element).Source;
+        protected override TLinkAddress GetPrevious(TLinkAddress element) => GetLinkReference(element).Source;
 
         /// <summary>
         /// <para>
@@ -130,7 +130,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink GetNext(TLink element) => GetLinkReference(element).Target;
+        protected override TLinkAddress GetNext(TLinkAddress element) => GetLinkReference(element).Target;
 
         /// <summary>
         /// <para>
@@ -143,7 +143,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink GetSize() => GetHeaderReference().FreeLinks;
+        protected override TLinkAddress GetSize() => GetHeaderReference().FreeLinks;
 
         /// <summary>
         /// <para>
@@ -156,7 +156,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetFirst(TLink element) => GetHeaderReference().FirstFreeLink = element;
+        protected override void SetFirst(TLinkAddress element) => GetHeaderReference().FirstFreeLink = element;
 
         /// <summary>
         /// <para>
@@ -169,7 +169,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetLast(TLink element) => GetHeaderReference().LastFreeLink = element;
+        protected override void SetLast(TLinkAddress element) => GetHeaderReference().LastFreeLink = element;
 
         /// <summary>
         /// <para>
@@ -186,7 +186,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetPrevious(TLink element, TLink previous) => GetLinkReference(element).Source = previous;
+        protected override void SetPrevious(TLinkAddress element, TLinkAddress previous) => GetLinkReference(element).Source = previous;
 
         /// <summary>
         /// <para>
@@ -203,7 +203,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetNext(TLink element, TLink next) => GetLinkReference(element).Target = next;
+        protected override void SetNext(TLinkAddress element, TLinkAddress next) => GetLinkReference(element).Target = next;
 
         /// <summary>
         /// <para>
@@ -216,6 +216,6 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetSize(TLink size) => GetHeaderReference().FreeLinks = size;
+        protected override void SetSize(TLinkAddress size) => GetHeaderReference().FreeLinks = size;
     }
 }

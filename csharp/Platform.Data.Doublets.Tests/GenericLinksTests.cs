@@ -37,17 +37,17 @@ namespace Platform.Data.Doublets.Tests
             Using<uint>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
             Using<ulong>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
         }
-        private static void Using<TLink>(Action<ILinks<TLink>> action)
+        private static void Using<TLinkAddress>(Action<ILinks<TLinkAddress>> action) 
         {
-            var unitedMemoryLinks = new UnitedMemoryLinks<TLink>(new HeapResizableDirectMemory());
+            var unitedMemoryLinks = new UnitedMemoryLinks<TLinkAddress>(new HeapResizableDirectMemory());
             using (var logFile = File.Open("linksLogger.txt", FileMode.Create, FileAccess.Write))
             {
-                LoggingDecorator<TLink> links = new(unitedMemoryLinks, logFile);
+                LoggingDecorator<TLinkAddress> links = new(unitedMemoryLinks, logFile);
                 action(links);
             }
 
             File.Delete("db.links");
-            using var ffiLinks = new FFI.UnitedMemoryLinks<TLink>("db.links");
+            using var ffiLinks = new FFI.UnitedMemoryLinks<TLinkAddress>("db.links");
             action(ffiLinks);
         }
     }

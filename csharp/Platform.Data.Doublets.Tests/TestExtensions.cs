@@ -5,6 +5,7 @@ using Platform.Numbers;
 using Platform.Random;
 using Platform.Setters;
 using Platform.Converters;
+using Platform.Delegates;
 
 namespace Platform.Data.Doublets.Tests
 {
@@ -22,8 +23,8 @@ namespace Platform.Data.Doublets.Tests
             // Create Link
             Assert.True(equalityComparer.Equals(links.Count(), zero));
 
-            var setter = new Setter<T>(constants.Null);
-            links.Each(constants.Any, constants.Any, setter.SetAndReturnTrue);
+            var setter = new Setter<T,T>(constants.Continue, constants.Break, constants.Null);
+            links.Each(new Link<T>(constants.Any, constants.Any, constants.Any), setter.SetFirstFromListAndReturnTrue);
 
             Assert.True(equalityComparer.Equals(setter.Result, constants.Null));
 
@@ -39,8 +40,8 @@ namespace Platform.Data.Doublets.Tests
             Assert.True(equalityComparer.Equals(links.Count(), one));
 
             // Get first link
-            setter = new Setter<T>(constants.Null);
-            links.Each(constants.Any, constants.Any, setter.SetAndReturnFalse);
+            setter = new Setter<T,T>(constants.Continue, constants.Break, constants.Null);
+            links.Each(new Link<T>(constants.Any, constants.Any, constants.Any), setter.SetFirstFromListAndReturnTrue);
 
             Assert.True(equalityComparer.Equals(setter.Result, linkAddress));
 
@@ -67,8 +68,8 @@ namespace Platform.Data.Doublets.Tests
 
             Assert.True(equalityComparer.Equals(links.Count(), zero));
 
-            setter = new Setter<T>(constants.Null);
-            links.Each(constants.Any, constants.Any, setter.SetAndReturnTrue);
+            setter = new Setter<T,T>(constants.Continue, constants.Break, constants.Null);
+            links.Each(new Link<T>(constants.Any, constants.Any, constants.Any), setter.SetFirstFromListAndReturnTrue);
 
             Assert.True(equalityComparer.Equals(setter.Result, constants.Null));
         }
@@ -122,14 +123,14 @@ namespace Platform.Data.Doublets.Tests
             Assert.True(equalityComparer.Equals(link3.Target, linkAddress2));
 
             // Search for created link
-            var setter1 = new Setter<T>(constants.Null);
-            links.Each(h106E, h108E, setter1.SetAndReturnFalse);
+            var setter1 = new Setter<T, T>(constants.Continue, constants.Break, constants.Null);
+            links.Each(new Link<T>(constants.Any, h106E, h108E), setter1.SetFirstFromListAndReturnTrue);
 
             Assert.True(equalityComparer.Equals(setter1.Result, linkAddress1));
 
             // Search for nonexistent link
-            var setter2 = new Setter<T>(constants.Null);
-            links.Each(h106E, h107E, setter2.SetAndReturnFalse);
+            var setter2 = new Setter<T, T>(constants.Continue, constants.Break, constants.Null);
+            links.Each(new Link<T>(constants.Any, h106E, h108E), setter1.SetFirstFromListAndReturnTrue);
 
             Assert.True(equalityComparer.Equals(setter2.Result, constants.Null));
 
@@ -148,13 +149,13 @@ namespace Platform.Data.Doublets.Tests
 
             Assert.True(equalityComparer.Equals(links.Count(), two));
 
-            var setter3 = new Setter<T>(constants.Null);
-            links.Each(constants.Any, constants.Any, setter3.SetAndReturnTrue);
+            var setter3 = new Setter<T, T>(constants.Continue, constants.Break, constants.Null);
+            links.Each(new Link<T>(constants.Any, constants.Any, constants.Any), setter3.SetFirstFromListAndReturnTrue);
 
             Assert.True(equalityComparer.Equals(setter3.Result, linkAddress2));
         }
 
-        public static void TestMultipleCreationsAndDeletions<TLink>(this ILinks<TLink> links, int numberOfOperations)
+        public static void TestMultipleCreationsAndDeletions<TLinkAddress>(this ILinks<TLinkAddress> links, int numberOfOperations)
         {
             for (int i = 0; i < numberOfOperations; i++)
             {
@@ -166,11 +167,11 @@ namespace Platform.Data.Doublets.Tests
             }
         }
 
-        public static void TestMultipleRandomCreationsAndDeletions<TLink>(this ILinks<TLink> links, int maximumOperationsPerCycle)
+        public static void TestMultipleRandomCreationsAndDeletions<TLinkAddress>(this ILinks<TLinkAddress> links, int maximumOperationsPerCycle) 
         {
-            var comparer = Comparer<TLink>.Default;
-            var addressToUInt64Converter = CheckedConverter<TLink, ulong>.Default;
-            var uInt64ToAddressConverter = CheckedConverter<ulong, TLink>.Default;
+            var comparer = Comparer<TLinkAddress>.Default;
+            var addressToUInt64Converter = CheckedConverter<TLinkAddress, ulong>.Default;
+            var uInt64ToAddressConverter = CheckedConverter<ulong, TLinkAddress>.Default;
             for (var N = 1; N < maximumOperationsPerCycle; N++)
             {
                 var random = new System.Random(N);
@@ -183,8 +184,8 @@ namespace Platform.Data.Doublets.Tests
                     if (linksCount >= 2 && createPoint)
                     {
                         var linksAddressRange = new Range<ulong>(1, linksCount);
-                        TLink source = uInt64ToAddressConverter.Convert(random.NextUInt64(linksAddressRange));
-                        TLink target = uInt64ToAddressConverter.Convert(random.NextUInt64(linksAddressRange)); //-V3086
+                        TLinkAddress source = uInt64ToAddressConverter.Convert(random.NextUInt64(linksAddressRange));
+                        TLinkAddress target = uInt64ToAddressConverter.Convert(random.NextUInt64(linksAddressRange)); //-V3086
                         var resultLink = links.GetOrCreate(source, target);
                         if (comparer.Compare(resultLink, uInt64ToAddressConverter.Convert(linksCount)) > 0)
                         {
@@ -200,7 +201,7 @@ namespace Platform.Data.Doublets.Tests
                 Assert.True(created == addressToUInt64Converter.Convert(links.Count()));
                 for (var i = 0; i < N; i++)
                 {
-                    TLink link = uInt64ToAddressConverter.Convert((ulong)i + 1UL);
+                    TLinkAddress link = uInt64ToAddressConverter.Convert((ulong)i + 1UL);
                     if (links.Exists(link))
                     {
                         links.Delete(link);

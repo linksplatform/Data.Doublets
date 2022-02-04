@@ -12,6 +12,7 @@ using Platform.IO;
 using Platform.Data.Doublets.Decorators;
 using Platform.Delegates;
 using Platform.Exceptions;
+using TLinkAddress = System.UInt64;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -23,8 +24,8 @@ namespace Platform.Data.Doublets
     /// </para>
     /// <para></para>
     /// </summary>
-    /// <seealso cref="LinksDisposableDecoratorBase{ulong}"/>
-    public class UInt64LinksTransactionsLayer : LinksDisposableDecoratorBase<ulong> //-V3073
+    /// <seealso cref="LinksDisposableDecoratorBase{TLinkAddress}"/>
+    public class UInt64LinksTransactionsLayer : LinksDisposableDecoratorBase<TLinkAddress> //-V3073 
     {
         /// <remarks>
         /// Альтернативные варианты хранения трансформации (элемента транзакции):
@@ -39,7 +40,7 @@ namespace Platform.Data.Doublets
         /// 
         /// private struct Transition
         /// {
-        ///     public ulong TransactionId;
+        ///     public TLinkAddress TransactionId;
         ///     public UniqueTimestamp Timestamp;
         ///     public TransactionItemType Type;
         ///     public Link Source;
@@ -51,14 +52,14 @@ namespace Platform.Data.Doublets
         /// 
         /// public struct TransitionHeader
         /// {
-        ///     public ulong TransactionIdCombined;
-        ///     public ulong TimestampCombined;
+        ///     public TLinkAddress TransactionIdCombined;
+        ///     public TLinkAddress TimestampCombined;
         /// 
-        ///     public ulong TransactionId
+        ///     public TLinkAddress TransactionId
         ///     {
         ///         get
         ///         {
-        ///             return (ulong) mask &amp; TransactionIdCombined;
+        ///             return (TLinkAddress) mask &amp; TransactionIdCombined;
         ///         }
         ///     }
         /// 
@@ -106,21 +107,21 @@ namespace Platform.Data.Doublets
             /// </para>
             /// <para></para>
             /// </summary>
-            public readonly ulong TransactionId;
+            public readonly TLinkAddress TransactionId;
             /// <summary>
             /// <para>
             /// The before.
             /// </para>
             /// <para></para>
             /// </summary>
-            public readonly Link<ulong> Before;
+            public readonly Link<TLinkAddress> Before;
             /// <summary>
             /// <para>
             /// The after.
             /// </para>
             /// <para></para>
             /// </summary>
-            public readonly Link<ulong> After;
+            public readonly Link<TLinkAddress> After;
             /// <summary>
             /// <para>
             /// The timestamp.
@@ -152,7 +153,7 @@ namespace Platform.Data.Doublets
             /// <para></para>
             /// </param>
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public Transition(UniqueTimestampFactory uniqueTimestampFactory, ulong transactionId, Link<ulong> before, Link<ulong> after)
+            public Transition(UniqueTimestampFactory uniqueTimestampFactory, TLinkAddress transactionId, Link<TLinkAddress> before, Link<TLinkAddress> after)
             {
                 TransactionId = transactionId;
                 Before = before;
@@ -160,7 +161,7 @@ namespace Platform.Data.Doublets
                 Timestamp = uniqueTimestampFactory.Create();
             }
 
-            public Transition(UniqueTimestampFactory uniqueTimestampFactory, ulong transactionId, IList<ulong> before, IList<ulong> after) : this(uniqueTimestampFactory, transactionId, new Link<ulong>(before), new Link<ulong>(after)) { }
+            public Transition(UniqueTimestampFactory uniqueTimestampFactory, TLinkAddress transactionId, IList<TLinkAddress> before, IList<TLinkAddress> after) : this(uniqueTimestampFactory, transactionId, new Link<TLinkAddress>(before), new Link<TLinkAddress>(after)) { }
 
             /// <summary>
             /// <para>
@@ -181,7 +182,7 @@ namespace Platform.Data.Doublets
             /// <para></para>
             /// </param>
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public Transition(UniqueTimestampFactory uniqueTimestampFactory, ulong transactionId, Link<ulong> before) : this(uniqueTimestampFactory, transactionId, before, default) { }
+            public Transition(UniqueTimestampFactory uniqueTimestampFactory, TLinkAddress transactionId, Link<TLinkAddress> before) : this(uniqueTimestampFactory, transactionId, before, default) { }
 
             /// <summary>
             /// <para>
@@ -198,7 +199,7 @@ namespace Platform.Data.Doublets
             /// <para></para>
             /// </param>
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public Transition(UniqueTimestampFactory uniqueTimestampFactory, ulong transactionId) : this(uniqueTimestampFactory, transactionId, default, default) { }
+            public Transition(UniqueTimestampFactory uniqueTimestampFactory, TLinkAddress transactionId) : this(uniqueTimestampFactory, transactionId, default, default) { }
 
             /// <summary>
             /// <para>
@@ -468,10 +469,10 @@ namespace Platform.Data.Doublets
         private readonly UniqueTimestampFactory _uniqueTimestampFactory;
         private Task _transitionsPusher;
         private Transition _lastCommitedTransition;
-        private ulong _currentTransactionId;
+        private TLinkAddress _currentTransactionId;
         private Queue<Transition> _currentTransactionTransitions;
         private Transaction _currentTransaction;
-        private ulong _lastCommitedTransactionId;
+        private TLinkAddress _lastCommitedTransactionId;
 
         /// <summary>
         /// <para>
@@ -496,7 +497,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public UInt64LinksTransactionsLayer(ILinks<ulong> links, string logAddress)
+        public UInt64LinksTransactionsLayer(ILinks<TLinkAddress> links, string logAddress)
             : base(links)
         {
             if (string.IsNullOrWhiteSpace(logAddress))
@@ -541,11 +542,11 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         /// <returns>
-        /// <para>A list of ulong</para>
+        /// <para>A list of TLinkAddress</para>
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public IList<ulong> GetLinkValue(ulong link) => _links.GetLink(link);
+        public IList<TLinkAddress> GetLinkValue(TLinkAddress link) => _links.GetLink(link);
 
         /// <summary>
         /// <para>
@@ -562,12 +563,12 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override ulong Create(IList<ulong> substitution, WriteHandler<ulong> handler)
+        public override TLinkAddress Create(IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler)
         {
-            return _links.Create(new Link<ulong>(), (before, after) =>
+            return _links.Create(new Link<TLinkAddress>(), (before, after) =>
             {
-                CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, new Link<ulong>(before), new Link<ulong>(after)));
-                return handler(before, after);
+                CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, new Link<TLinkAddress>(before), new Link<TLinkAddress>(after)));
+                return handler?.Invoke(before, after) ?? Links.Constants.Continue;
             });
         }
 
@@ -590,12 +591,12 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override ulong Update(IList<ulong> restriction, IList<ulong> substitution, WriteHandler<ulong> handler)
+        public override TLinkAddress Update(IList<TLinkAddress>? restriction, IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler)
         {
             return _links.Update(restriction, substitution, (before, after) =>
                 {
-                    CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, new Link<ulong>(before), new Link<ulong>(after)));
-                    return handler(before, after);
+                    CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, new Link<TLinkAddress>(before), new Link<TLinkAddress>(after)));
+                    return handler != null ? handler(before, after) : Constants.Continue;
                 }
             );
         }
@@ -611,13 +612,13 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override ulong Delete(IList<ulong> restriction, WriteHandler<ulong> handler)
+        public override TLinkAddress Delete(IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? handler)
         {
-            var link = restriction[_constants.IndexPart];
+            var link = this.GetIndex(restriction);
             return _links.Delete(restriction, (before, after) =>
             {
                 CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, before, after));
-                return handler(before, after);
+                return handler != null ? handler(before, after) : Constants.Continue;
             });
         }
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -52,7 +52,7 @@ namespace Platform.Data.Doublets.Tests
             var resultLink = _constants.Null;
             memoryAdapter.Each(foundLink =>
             {
-                resultLink = foundLink[_constants.IndexPart];
+                resultLink = memoryAdapter.GetIndex(foundLink);
                 return _constants.Break;
             }, _constants.Any, ulong.MaxValue, ulong.MaxValue);
             Assert.True(resultLink == link);

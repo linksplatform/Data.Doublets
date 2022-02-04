@@ -11,7 +11,7 @@ namespace Platform.Data.Doublets.Decorators
     /// <para>Must be used in conjunction with NonNullContentsLinkDeletionResolver.</para>
     /// <para>Должен использоваться вместе с NonNullContentsLinkDeletionResolver.</para>
     /// </remarks>
-    public class LinksCascadeUsagesResolver<TLink> : LinksDecoratorBase<TLink>
+    public class LinksCascadeUsagesResolver<TLinkAddress> : LinksDecoratorBase<TLinkAddress> 
     {
         /// <summary>
         /// <para>
@@ -24,7 +24,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public LinksCascadeUsagesResolver(ILinks<TLink> links) : base(links) { }
+        public LinksCascadeUsagesResolver(ILinks<TLinkAddress> links) : base(links) { }
 
         /// <summary>
         /// <para>
@@ -37,11 +37,11 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Delete(IList<TLink> restriction, WriteHandler<TLink> handler)
+        public override TLinkAddress Delete(IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? handler)
         {
             var constants = _links.Constants;
-            WriteHandlerState<TLink> handlerState = new(constants.Continue, constants.Break, handler);
-            var linkIndex = restriction[_constants.IndexPart];
+            WriteHandlerState<TLinkAddress> handlerState = new(constants.Continue, constants.Break, handler);
+            var linkIndex = _links.GetIndex(restriction);
             // Use Facade (the last decorator) to ensure recursion working correctly
             handlerState.Apply(_facade.DeleteAllUsages(linkIndex, handlerState.Handler));
             handlerState.Apply(_links.Delete(restriction, handlerState.Handler));

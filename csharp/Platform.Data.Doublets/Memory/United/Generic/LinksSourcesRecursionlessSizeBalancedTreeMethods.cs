@@ -10,8 +10,8 @@ namespace Platform.Data.Doublets.Memory.United.Generic
     /// </para>
     /// <para></para>
     /// </summary>
-    /// <seealso cref="LinksRecursionlessSizeBalancedTreeMethodsBase{TLink}"/>
-    public unsafe class LinksSourcesRecursionlessSizeBalancedTreeMethods<TLink> : LinksRecursionlessSizeBalancedTreeMethodsBase<TLink>
+    /// <seealso cref="LinksRecursionlessSizeBalancedTreeMethodsBase{TLinkAddress}"/>
+    public unsafe class LinksSourcesRecursionlessSizeBalancedTreeMethods<TLinkAddress> : LinksRecursionlessSizeBalancedTreeMethodsBase<TLinkAddress>
     {
         /// <summary>
         /// <para>
@@ -32,7 +32,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public LinksSourcesRecursionlessSizeBalancedTreeMethods(LinksConstants<TLink> constants, byte* links, byte* header) : base(constants, links, header) { }
+        public LinksSourcesRecursionlessSizeBalancedTreeMethods(LinksConstants<TLinkAddress> constants, byte* links, byte* header) : base(constants, links, header) { }
 
         /// <summary>
         /// <para>
@@ -49,7 +49,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override ref TLink GetLeftReference(TLink node) => ref GetLinkReference(node).LeftAsSource;
+        protected override ref TLinkAddress GetLeftReference(TLinkAddress node) => ref GetLinkReference(node).LeftAsSource;
 
         /// <summary>
         /// <para>
@@ -66,7 +66,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override ref TLink GetRightReference(TLink node) => ref GetLinkReference(node).RightAsSource;
+        protected override ref TLinkAddress GetRightReference(TLinkAddress node) => ref GetLinkReference(node).RightAsSource;
 
         /// <summary>
         /// <para>
@@ -83,7 +83,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink GetLeft(TLink node) => GetLinkReference(node).LeftAsSource;
+        protected override TLinkAddress GetLeft(TLinkAddress node) => GetLinkReference(node).LeftAsSource;
 
         /// <summary>
         /// <para>
@@ -100,7 +100,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink GetRight(TLink node) => GetLinkReference(node).RightAsSource;
+        protected override TLinkAddress GetRight(TLinkAddress node) => GetLinkReference(node).RightAsSource;
 
         /// <summary>
         /// <para>
@@ -117,7 +117,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetLeft(TLink node, TLink left) => GetLinkReference(node).LeftAsSource = left;
+        protected override void SetLeft(TLinkAddress node, TLinkAddress left) => GetLinkReference(node).LeftAsSource = left;
 
         /// <summary>
         /// <para>
@@ -134,7 +134,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetRight(TLink node, TLink right) => GetLinkReference(node).RightAsSource = right;
+        protected override void SetRight(TLinkAddress node, TLinkAddress right) => GetLinkReference(node).RightAsSource = right;
 
         /// <summary>
         /// <para>
@@ -151,7 +151,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink GetSize(TLink node) => GetLinkReference(node).SizeAsSource;
+        protected override TLinkAddress GetSize(TLinkAddress node) => GetLinkReference(node).SizeAsSource;
 
         /// <summary>
         /// <para>
@@ -168,7 +168,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SetSize(TLink node, TLink size) => GetLinkReference(node).SizeAsSource = size;
+        protected override void SetSize(TLinkAddress node, TLinkAddress size) => GetLinkReference(node).SizeAsSource = size;
 
         /// <summary>
         /// <para>
@@ -181,7 +181,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink GetTreeRoot() => GetHeaderReference().RootAsSource;
+        protected override TLinkAddress GetTreeRoot() => GetHeaderReference().RootAsSource;
 
         /// <summary>
         /// <para>
@@ -198,7 +198,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink GetBasePartValue(TLink link) => GetLinkReference(link).Source;
+        protected override TLinkAddress GetBasePartValue(TLinkAddress link) => GetLinkReference(link).Source;
 
         /// <summary>
         /// <para>
@@ -227,7 +227,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override bool FirstIsToTheLeftOfSecond(TLink firstSource, TLink firstTarget, TLink secondSource, TLink secondTarget) => LessThan(firstSource, secondSource) || (AreEqual(firstSource, secondSource) && LessThan(firstTarget, secondTarget));
+        protected override bool FirstIsToTheLeftOfSecond(TLinkAddress firstSource, TLinkAddress firstTarget, TLinkAddress secondSource, TLinkAddress secondTarget) => LessThan(firstSource, secondSource) || (AreEqual(firstSource, secondSource) && LessThan(firstTarget, secondTarget));
 
         /// <summary>
         /// <para>
@@ -256,7 +256,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override bool FirstIsToTheRightOfSecond(TLink firstSource, TLink firstTarget, TLink secondSource, TLink secondTarget) => GreaterThan(firstSource, secondSource) || (AreEqual(firstSource, secondSource) && GreaterThan(firstTarget, secondTarget));
+        protected override bool FirstIsToTheRightOfSecond(TLinkAddress firstSource, TLinkAddress firstTarget, TLinkAddress secondSource, TLinkAddress secondTarget) => GreaterThan(firstSource, secondSource) || (AreEqual(firstSource, secondSource) && GreaterThan(firstTarget, secondTarget));
 
         /// <summary>
         /// <para>
@@ -269,7 +269,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void ClearNode(TLink node)
+        protected override void ClearNode(TLinkAddress node)
         {
             ref var link = ref GetLinkReference(node);
             link.LeftAsSource = Zero;

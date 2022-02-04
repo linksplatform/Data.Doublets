@@ -14,8 +14,8 @@ namespace Platform.Data.Doublets.Decorators
     /// </para>
     /// <para></para>
     /// </summary>
-    /// <seealso cref="LinksDecoratorBase{TLink}"/>
-    public class LinksInnerReferenceExistenceValidator<TLink> : LinksDecoratorBase<TLink>
+    /// <seealso cref="LinksDecoratorBase{TLinkAddress}"/>
+    public class LinksInnerReferenceExistenceValidator<TLinkAddress> : LinksDecoratorBase<TLinkAddress> 
     {
         /// <summary>
         /// <para>
@@ -28,7 +28,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public LinksInnerReferenceExistenceValidator(ILinks<TLink> links) : base(links) { }
+        public LinksInnerReferenceExistenceValidator(ILinks<TLinkAddress> links) : base(links) { }
 
         /// <summary>
         /// <para>
@@ -49,7 +49,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Each(IList<TLink> restriction, ReadHandler<TLink> handler)
+        public override TLinkAddress Each(IList<TLinkAddress>? restriction, ReadHandler<TLinkAddress>? handler)
         {
             var links = _links;
             links.EnsureInnerReferenceExists(restriction, nameof(restriction));
@@ -75,7 +75,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Update(IList<TLink> restriction, IList<TLink> substitution, WriteHandler<TLink> handler)
+        public override TLinkAddress Update(IList<TLinkAddress>? restriction, IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler)
         {
             // TODO: Possible values: null, ExistentLink or NonExistentHybrid(ExternalReference)
             var links = _links;
@@ -95,10 +95,10 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Delete(IList<TLink> restriction, WriteHandler<TLink> handler)
+        public override TLinkAddress Delete(IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? handler)
         {
-            var link = restriction[_constants.IndexPart];
             var links = _links;
+            var link = links.GetIndex(restriction);
             links.EnsureLinkExists(link, nameof(link));
             return links.Delete(restriction, handler);
         }

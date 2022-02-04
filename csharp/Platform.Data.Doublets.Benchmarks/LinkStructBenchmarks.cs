@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
-using TLink = System.UInt64;
+using TLinkAddress = System.UInt64;
 
 #pragma warning disable CA1822 // Mark members as static
 
@@ -19,21 +19,21 @@ namespace Platform.Data.Doublets.Benchmarks
         public static void Cleanup() { }
 
         [Benchmark]
-        public IList<TLink> Struct()
+        public IList<TLinkAddress>? Struct()
         {
-            return new Link<TLink>(1UL, 1UL, 1UL);
+            return new Link<TLinkAddress>(1UL, 1UL, 1UL);
         }
 
         [Benchmark]
-        public IList<TLink> Array()
+        public IList<TLinkAddress>? Array()
         {
-            return new TLink[] {1UL, 1UL, 1UL};
+            return new TLinkAddress[] {1UL, 1UL, 1UL};
         }
 
         [Benchmark]
-        public IList<TLink> List()
+        public IList<TLinkAddress>? List()
         {
-            return new List<TLink>{1UL, 1UL, 1UL};
+            return new List<TLinkAddress>{1UL, 1UL, 1UL};
         }
     }
 }

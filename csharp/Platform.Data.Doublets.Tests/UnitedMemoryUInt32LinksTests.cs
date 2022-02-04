@@ -4,7 +4,7 @@ using Platform.Reflection;
 using Platform.Memory;
 using Platform.Scopes;
 using Platform.Data.Doublets.Memory.United.Specific;
-using TLink = System.UInt32;
+using TLinkAddress = System.UInt32;
 
 namespace Platform.Data.Doublets.Tests
 {
@@ -27,11 +27,11 @@ namespace Platform.Data.Doublets.Tests
         {
             Using(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
         }
-        private static void Using(Action<ILinks<TLink>> action)
+        private static void Using(Action<ILinks<TLinkAddress>> action)
         {
             using (var scope = new Scope<Types<HeapResizableDirectMemory, UInt32UnitedMemoryLinks>>())
             {
-                action(scope.Use<ILinks<TLink>>());
+                action(scope.Use<ILinks<TLinkAddress>>());
             }
         }
     }

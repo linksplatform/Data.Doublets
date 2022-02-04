@@ -4,7 +4,7 @@
     <Description>LinksPlatform's Platform.Data.Doublets Class Library</Description>
     <Copyright>konard, FreePhoenix888</Copyright>
     <AssemblyTitle>Platform.Data.Doublets</AssemblyTitle>
-    <VersionPrefix>0.8.0</VersionPrefix>
+    <VersionPrefix>0.13.0</VersionPrefix>
     <Authors>konard, FreePhoenix888</Authors>
     <TargetFrameworks>net472;netstandard2.0;netstandard2.1;net5</TargetFrameworks>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -25,7 +25,8 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <LangVersion>latest</LangVersion>
-    <PackageReleaseNotes>Callback for changes handling is added for Create, Update, Delete operations.</PackageReleaseNotes>
+    <PackageReleaseNotes>Platform.Setters dependency updated from 0.3.0 to 0.3.1. All Each method overloads with boolean return type are removed.</PackageReleaseNotes>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup Condition="$(TargetFramework.StartsWith('net4')) AND '$(MSBuildRuntimeType)' == 'Core' AND '$(OS)' != 'Windows_NT'">
@@ -37,14 +38,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Platform.Data" Version="0.11.0" />
     <PackageReference Include="Platform.Data.Doublets.FFI" Version="0.8.0" />
-    <PackageReference Include="Platform.Setters" Version="0.3.0" />
+    <PackageReference Include="Platform.Setters" Version="0.3.1" />
     <PackageReference Include="Platform.Random" Version="0.2.0" />
     <PackageReference Include="Platform.Timestamps" Version="0.2.0" />
     <PackageReference Include="Platform.Collections.Methods" Version="0.5.1" />
     <PackageReference Include="Platform.Singletons" Version="0.2.1" />
     <PackageReference Include="Platform.Memory" Version="0.3.1" />
-    <PackageReference Include="Platform.Data" Version="0.8.1" />
   </ItemGroup>
 
 </Project>

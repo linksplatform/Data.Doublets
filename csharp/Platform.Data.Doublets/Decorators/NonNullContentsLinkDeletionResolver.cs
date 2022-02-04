@@ -13,8 +13,8 @@ namespace Platform.Data.Doublets.Decorators
     /// </para>
     /// <para></para>
     /// </summary>
-    /// <seealso cref="LinksDecoratorBase{TLink}"/>
-    public class NonNullContentsLinkDeletionResolver<TLink> : LinksDecoratorBase<TLink>
+    /// <seealso cref="LinksDecoratorBase{TLinkAddress}"/>
+    public class NonNullContentsLinkDeletionResolver<TLinkAddress> : LinksDecoratorBase<TLinkAddress> 
     {
         /// <summary>
         /// <para>
@@ -27,7 +27,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public NonNullContentsLinkDeletionResolver(ILinks<TLink> links) : base(links) { }
+        public NonNullContentsLinkDeletionResolver(ILinks<TLinkAddress> links) : base(links) { }
 
         /// <summary>
         /// <para>
@@ -40,11 +40,11 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Delete(IList<TLink> restriction, WriteHandler<TLink> handler)
+        public override TLinkAddress Delete(IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? handler)
         {
-            var linkIndex = restriction[_constants.IndexPart];
+            var linkIndex = _links.GetIndex(restriction);
             var constants = _links.Constants;
-            WriteHandlerState<TLink> handlerResult = new(constants.Continue, constants.Break, handler);
+            WriteHandlerState<TLinkAddress> handlerResult = new(constants.Continue, constants.Break, handler);
             handlerResult.Apply(_links.EnforceResetValues(linkIndex, handlerResult.Handler));
             handlerResult.Apply(_links.Delete(restriction, handlerResult.Handler));
             return handlerResult.Result;

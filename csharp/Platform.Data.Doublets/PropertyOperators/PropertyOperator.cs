@@ -12,13 +12,13 @@ namespace Platform.Data.Doublets.PropertyOperators
     /// </para>
     /// <para></para>
     /// </summary>
-    /// <seealso cref="LinksOperatorBase{TLink}"/>
-    /// <seealso cref="IProperty{TLink, TLink}"/>
-    public class PropertyOperator<TLink> : LinksOperatorBase<TLink>, IProperty<TLink, TLink>
+    /// <seealso cref="LinksOperatorBase{TLinkAddress}"/>
+    /// <seealso cref="IProperty{TLinkAddress, TLinkAddress}"/>
+    public class PropertyOperator<TLinkAddress> : LinksOperatorBase<TLinkAddress>, IProperty<TLinkAddress, TLinkAddress> 
     {
-        private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
-        private readonly TLink _propertyMarker;
-        private readonly TLink _propertyValueMarker;
+        private static readonly EqualityComparer<TLinkAddress> _equalityComparer = EqualityComparer<TLinkAddress>.Default;
+        private readonly TLinkAddress _propertyMarker;
+        private readonly TLinkAddress _propertyValueMarker;
 
         /// <summary>
         /// <para>
@@ -39,7 +39,7 @@ namespace Platform.Data.Doublets.PropertyOperators
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public PropertyOperator(ILinks<TLink> links, TLink propertyMarker, TLink propertyValueMarker) : base(links)
+        public PropertyOperator(ILinks<TLinkAddress> links, TLinkAddress propertyMarker, TLinkAddress propertyValueMarker) : base(links)
         {
             _propertyMarker = propertyMarker;
             _propertyValueMarker = propertyValueMarker;
@@ -60,15 +60,15 @@ namespace Platform.Data.Doublets.PropertyOperators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLink Get(TLink link)
+        public TLinkAddress Get(TLinkAddress link)
         {
             var property = _links.SearchOrDefault(link, _propertyMarker);
             return GetValue(GetContainer(property));
         }
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private TLink GetContainer(TLink property)
+        private TLinkAddress GetContainer(TLinkAddress property)
         {
-            var valueContainer = default(TLink);
+            var valueContainer = default(TLinkAddress);
             if (_equalityComparer.Equals(property, default))
             {
                 return valueContainer;
@@ -78,7 +78,7 @@ namespace Platform.Data.Doublets.PropertyOperators
             var countinueConstant = constants.Continue;
             var breakConstant = constants.Break;
             var anyConstant = constants.Any;
-            var query = new Link<TLink>(anyConstant, property, anyConstant);
+            var query = new Link<TLinkAddress>(anyConstant, property, anyConstant);
             links.Each(candidate =>
             {
                 var candidateTarget = links.GetTarget(candidate);
@@ -93,7 +93,7 @@ namespace Platform.Data.Doublets.PropertyOperators
             return valueContainer;
         }
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private TLink GetValue(TLink container) => _equalityComparer.Equals(container, default) ? default : _links.GetTarget(container);
+        private TLinkAddress GetValue(TLinkAddress container) => _equalityComparer.Equals(container, default) ? default : _links.GetTarget(container);
 
         /// <summary>
         /// <para>
@@ -110,7 +110,7 @@ namespace Platform.Data.Doublets.PropertyOperators
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Set(TLink link, TLink value)
+        public void Set(TLinkAddress link, TLinkAddress value)
         {
             var links = _links;
             var property = links.GetOrCreate(link, _propertyMarker);
