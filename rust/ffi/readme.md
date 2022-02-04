@@ -23,7 +23,7 @@ cargo +nightly build --release
 Great! Your libray is located in the `target/release` folder.
 
 ### Advanced build library
-You can configure your build in the Cargo.toml file:
+You can configure your build in the __`Cargo.toml`__ file:
 Try write the following code:
 ```toml
 [profile.release]
