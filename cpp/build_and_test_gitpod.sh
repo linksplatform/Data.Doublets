@@ -18,10 +18,10 @@ cd conan-center-index && cd recipes
 git checkout update-interfaces
 conan create platform.interfaces/0.2.0+ platform.interfaces/0.2.0@ -pr=linksplatform
 git checkout only-development
-platform.exceptions/0.2.0
-platform.equality/0.0.1
-platform.hashing/0.2.0
-platform.random/0.1.0
+conan create platform.exceptions/0.2.0@ -pr=linksplatform
+conan create platform.equality/0.0.1@ -pr=linksplatform
+conan create platform.hashing/0.2.0@ -pr=linksplatform
+conan create platform.random/0.1.0@ -pr=linksplatform
 cd ../..
 ls
 cd Collections
