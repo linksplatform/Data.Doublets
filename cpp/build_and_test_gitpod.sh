@@ -24,7 +24,7 @@ conan create platform.hashing/0.2.0@ -pr=linksplatform
 conan create platform.random/0.1.0@ -pr=linksplatform
 cd ../..
 ls
-cd Collections
+cd Data.Doublets
 cmake_flags="-DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=g++-10 -DLINKS_PLATFORM_TESTS=ON"
 cmake_build_dir="build"
 cd cpp && mkdir -p $cmake_build_dir && cd $cmake_build_dir
