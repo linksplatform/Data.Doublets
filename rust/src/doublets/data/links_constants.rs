@@ -17,6 +17,7 @@ pub struct LinksConstants<T: LinkType> {
     pub skip: T,
     pub any: T,
     pub itself: T,
+    pub error: T,
     pub internal_range: RangeInclusive<T>,
     pub external_range: Option<RangeInclusive<T>>,
 }
@@ -31,10 +32,12 @@ impl<T: LinkType> LinksConstants<T> {
         internal: RangeInclusive<T>,
         external: Option<RangeInclusive<T>>,
     ) -> Self {
+        // TODO: refactor this
         let one = one();
         let two = one + one;
         let three = two + one;
         let four = three + one;
+        let five = four + one;
         Self {
             index_part: zero(),
             source_part: one,
@@ -45,7 +48,8 @@ impl<T: LinkType> LinksConstants<T> {
             skip: *internal.end() - one,
             any: *internal.end() - two,
             itself: *internal.end() - three,
-            internal_range: *internal.start()..=*internal.end() - four,
+            error: *internal.end() - four,
+            internal_range: *internal.start()..=*internal.end() - five,
             external_range: external,
         }
     }
@@ -67,8 +71,16 @@ impl<T: LinkType> LinksConstants<T> {
         Self::via_external(Self::default_target_part(), external)
     }
 
-    pub fn new() -> Self {
+    pub fn external() -> Self {
+        Self::via_only_external(true)
+    }
+
+    pub fn internal() -> Self {
         Self::via_only_external(false)
+    }
+
+    pub fn new() -> Self {
+        Self::internal()
     }
 
     fn default_internal(external: bool) -> RangeInclusive<T> {
@@ -89,19 +101,19 @@ impl<T: LinkType> LinksConstants<T> {
 
     // TODO: Extensions
     // TODO: later `is_internal`
-    pub fn is_internal_reference(&self, address: T) -> bool {
+    pub fn is_internal(&self, address: T) -> bool {
         self.internal_range.contains(&address)
     }
 
     // TODO: later `is_external`
-    pub fn is_external_reference(&self, address: T) -> bool {
+    pub fn is_external(&self, address: T) -> bool {
         self.external_range
             .clone()
             .map_or(false, |range| range.contains(&address))
     }
 
     fn is_reference(&self, address: T) -> bool {
-        self.is_internal_reference(address) || self.is_external_reference(address)
+        self.is_internal(address) || self.is_external(address)
     }
 }
 
