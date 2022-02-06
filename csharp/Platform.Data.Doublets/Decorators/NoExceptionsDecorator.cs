@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Platform.Delegates;
+using Platform.Exceptions;
 
 namespace Platform.Data.Doublets.Decorators;
 
@@ -16,7 +17,7 @@ public class NoExceptionsDecorator<TLinkAddress> : LinksDecoratorBase<TLinkAddre
         }
         catch (Exception exception)
         {
-
+            exception.Ignore();
             return Constants.Error;
         }
     }
@@ -29,6 +30,7 @@ public class NoExceptionsDecorator<TLinkAddress> : LinksDecoratorBase<TLinkAddre
         }
         catch (Exception exception)
         {
+            exception.Ignore();
             return Constants.Error;
         }
     }
@@ -41,6 +43,7 @@ public class NoExceptionsDecorator<TLinkAddress> : LinksDecoratorBase<TLinkAddre
         }
         catch (Exception exception)
         {
+            exception.Ignore();
             return Constants.Error;
         }
     }
@@ -53,6 +56,7 @@ public class NoExceptionsDecorator<TLinkAddress> : LinksDecoratorBase<TLinkAddre
         }
         catch (Exception exception)
         {
+            exception.Ignore();
             return Constants.Error;
         }
     }
@@ -65,6 +69,7 @@ public class NoExceptionsDecorator<TLinkAddress> : LinksDecoratorBase<TLinkAddre
         }
         catch (Exception exception)
         {
+            exception.Ignore();
             return Constants.Error;
         }
     }
