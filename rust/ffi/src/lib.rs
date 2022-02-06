@@ -57,16 +57,13 @@ fn query_from_raw<T: LinkType>(query: *const T, len: usize) -> Query<'static, T>
     }
 }
 
-fn unnul_or_error<'a, Ptr, R>(ptr: *mut Ptr) -> &'a mut R {
+unsafe fn unnul_or_error<'a, Ptr, R>(ptr: *mut Ptr) -> &'a mut R {
     if ptr.is_null() {
         // todo: use std::Backtrace or crates/tracing
-        error!(
-            "Null pointer at:\n {}",
-            std::backtrace::Backtrace::capture()
-        );
+        error!("Null pointer");
         panic!("Null pointer");
     } else {
-        unsafe { &mut *(ptr as *mut R) }
+        &mut *(ptr as *mut R)
     }
 }
 
@@ -104,7 +101,7 @@ fn new_united_links<T: LinkType>(path: *const c_char) -> *mut c_void {
     convention = "csharp",
     name = "*UnitedMemoryLinks_Drop"
 )]
-fn drop_united_links<T: LinkType>(this: *mut c_void) {
+unsafe fn drop_united_links<T: LinkType>(this: *mut c_void) {
     let links: &mut UnitedLinks<T> = unnul_or_error(this);
     unsafe {
         drop_in_place(links);
@@ -147,7 +144,7 @@ fn create_united<T: LinkType>(
                 break_
             }
         }),
-        T::default(),
+        links.constants().error,
     )
 }
 #[repr(C)]
@@ -240,7 +237,7 @@ unsafe fn update_united<T: LinkType>(
                 break_
             }
         }),
-        T::default(),
+        links.constants().error,
     )
 }
 
@@ -280,7 +277,7 @@ unsafe fn delete_united<T: LinkType>(
                 break_
             }
         }),
-        T::default(),
+        links.constants().error,
     )
 }
 
@@ -322,7 +319,7 @@ pub extern "C" fn setup_shared_logger(logger: SharedLogger) {
 }
 
 #[no_mangle]
-extern "C" fn init_fmt_logger() {
+pub extern "C" fn init_fmt_logger() {
     let logger = build_shared_logger();
     setup_shared_logger(logger);
 }
@@ -338,7 +335,6 @@ mod tests {
     #[test]
     fn error_log() {
         init_log();
-
         trace!("trace");
         debug!("debug");
         info!("info");
