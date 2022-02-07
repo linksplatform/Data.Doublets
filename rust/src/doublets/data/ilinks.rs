@@ -35,16 +35,16 @@ pub trait IGenericLinks<T: LinkType> {
 pub trait IGenericLinksExtensions<T: LinkType>: IGenericLinks<T> {
     fn exist(&self, link: T) -> bool {
         let constants = self.constants();
-        if constants.is_external_reference(link) {
+        if constants.is_external(link) {
             self.count_generic([link]) != zero()
         } else {
-            constants.is_internal_reference(link)
+            constants.is_internal(link)
         }
     }
 
     fn get_generic_link(&self, link: T) -> Option<Box<dyn ExactSizeIterator<Item = T>>> {
         let constants = self.constants();
-        if constants.is_external_reference(link) {
+        if constants.is_external(link) {
             Some(box Point::new(link, constants.target_part.as_() + 1).into_iter())
         } else {
             let mut slice = None;
@@ -62,7 +62,7 @@ pub trait IGenericLinksExtensions<T: LinkType>: IGenericLinks<T> {
 
     fn is_full_point(&self, link: T) -> bool {
         let constants = self.constants();
-        if constants.is_external_reference(link) {
+        if constants.is_external(link) {
             true
         } else {
             assert!(self.exist(link)); // TODO: add message
@@ -72,7 +72,7 @@ pub trait IGenericLinksExtensions<T: LinkType>: IGenericLinks<T> {
 
     fn is_partial_point(&self, link: T) -> bool {
         let constants = self.constants();
-        if constants.is_external_reference(link) {
+        if constants.is_external(link) {
             true
         } else {
             assert!(self.exist(link)); // TODO: add message

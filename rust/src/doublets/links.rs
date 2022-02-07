@@ -27,7 +27,7 @@ fn IGNORE<T: LinkType>(_: Link<T>, _: Link<T>) -> Result<(), ()> {
     Err(())
 }
 
-pub trait ILinks<T: LinkType> {
+pub trait Links<T: LinkType> {
     fn constants(&self) -> LinksConstants<T>;
 
     fn count_by(&self, query: impl ToQuery<T>) -> T;
@@ -180,7 +180,7 @@ pub trait ILinks<T: LinkType> {
 
     fn get_link(&self, index: T) -> Option<Link<T>> {
         let constants = self.constants();
-        if constants.is_external_reference(index) {
+        if constants.is_external(index) {
             Some(Link::point(index))
         } else {
             let mut slice = None;
@@ -388,10 +388,10 @@ pub trait ILinks<T: LinkType> {
 
     fn exist(&self, link: T) -> bool {
         let constants = self.constants();
-        if constants.is_external_reference(link) {
+        if constants.is_external(link) {
             true
         } else {
-            constants.is_internal_reference(link) && self.count_by([link]) != zero()
+            constants.is_internal(link) && self.count_by([link]) != zero()
         }
     }
 
@@ -544,6 +544,6 @@ pub trait ILinks<T: LinkType> {
 }
 
 #[deprecated(note = "use `ILinks`")]
-pub trait ILinksExtensions<T: LinkType>: ILinks<T> {}
+pub trait ILinksExtensions<T: LinkType>: Links<T> {}
 
-impl<T: LinkType, All: ILinks<T>> ILinksExtensions<T> for All {}
+impl<T: LinkType, All: Links<T>> ILinksExtensions<T> for All {}

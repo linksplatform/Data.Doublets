@@ -2,12 +2,12 @@ use num_traits::ToPrimitive;
 use std::ops::ControlFlow;
 
 use crate::doublets::data::{AddrToRaw, Hybrid, IGenericLinks, LinksConstants, Query, RawToAddr};
-use crate::doublets::{ILinks, ILinksExtensions, Link, LinksError};
+use crate::doublets::{ILinksExtensions, Link, Links, LinksError};
 use crate::mem::GlobalMem;
 use crate::num::ToSigned;
 use crate::tests::make_links;
 use crate::tests::make_mem;
-use crate::{query, Links};
+use crate::{query, Store};
 
 #[test]
 fn create() {
@@ -108,5 +108,5 @@ fn hybrid() {
     let raw = to_raw.convert(address);
 
     assert_eq!(to_adr.convert(raw), address);
-    assert!(constants.is_external_reference(raw));
+    assert!(constants.is_external(raw));
 }

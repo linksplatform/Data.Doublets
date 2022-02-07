@@ -10,19 +10,19 @@ use crate::doublets::data::{
     IGenericLinks, IGenericLinksExtensions, LinksConstants, Query, ToQuery,
 };
 use crate::doublets::decorators::UniqueResolver;
-use crate::doublets::{Flow, ILinks, ILinksExtensions, Link, LinksError, Result};
+use crate::doublets::{Flow, ILinksExtensions, Link, Links, LinksError, Result};
 use crate::num::LinkType;
 
 type Base<T, Links> = UniqueResolver<T, Links>;
 
-pub struct CascadeUniqueResolver<T: LinkType, Links: ILinks<T>> {
-    links: Links,
+pub struct CascadeUniqueResolver<T: LinkType, L: Links<T>> {
+    links: L,
 
     _phantom: PhantomData<T>,
 }
 
-impl<T: LinkType, Links: ILinks<T>> CascadeUniqueResolver<T, Links> {
-    pub fn new(links: Links) -> Self {
+impl<T: LinkType, L: Links<T>> CascadeUniqueResolver<T, L> {
+    pub fn new(links: L) -> Self {
         Self {
             links,
             _phantom: PhantomData,
@@ -30,7 +30,7 @@ impl<T: LinkType, Links: ILinks<T>> CascadeUniqueResolver<T, Links> {
     }
 }
 
-impl<T: LinkType, Links: ILinks<T>> ILinks<T> for CascadeUniqueResolver<T, Links> {
+impl<T: LinkType, L: Links<T>> Links<T> for CascadeUniqueResolver<T, L> {
     fn constants(&self) -> LinksConstants<T> {
         self.links.constants()
     }

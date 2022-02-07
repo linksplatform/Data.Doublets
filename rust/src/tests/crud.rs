@@ -10,10 +10,10 @@ use std::time::Instant;
 
 use crate::doublets::data::{AddrToRaw, IGenericLinks, LinksConstants};
 use crate::doublets::mem::splited;
-use crate::doublets::{ILinks, ILinksExtensions, Link, LinksError};
+use crate::doublets::{ILinksExtensions, Link, Links, LinksError};
 //use crate::doublets::decorators::{CascadeUsagesResolver, NonNullDeletionResolver};
 //use crate::doublets::mem::splited;
-use crate::doublets::mem::united::Links;
+use crate::doublets::mem::united::Store;
 use crate::mem::{
     AllocMem, FileMappedMem, GlobalMem, Mem, ResizeableBase, ResizeableMem, TempFileMem,
 };
@@ -53,7 +53,7 @@ fn billion_points_file_mapped() {
     std::fs::remove_file("mem_bpfm");
 
     let mem = TempFileMem::new().unwrap();
-    let mut links = Links::<usize, _>::new(mem).unwrap();
+    let mut links = Store::<usize, _>::new(mem).unwrap();
 
     let instant = Instant::now();
 
@@ -67,7 +67,7 @@ fn billion_points_file_mapped() {
 #[test]
 fn billion_points_heap_mem() -> Result<(), LinksError<usize>> {
     let mem = GlobalMem::new()?;
-    let mut links = Links::<usize, _>::new(mem)?;
+    let mut links = Store::<usize, _>::new(mem)?;
 
     let instant = Instant::now();
 
@@ -83,7 +83,7 @@ fn billion_points_heap_mem() -> Result<(), LinksError<usize>> {
 fn billion_points_bump_alloc() {
     let bump = Bump::new();
     let mem = AllocMem::new(&bump).unwrap();
-    let mut links = Links::<usize, _>::new(mem).unwrap();
+    let mut links = Store::<usize, _>::new(mem).unwrap();
 
     let instant = Instant::now();
 
@@ -98,7 +98,7 @@ fn billion_points_bump_alloc() {
 fn many_points_and_searches() {
     let bump = Bump::new();
     let mem = AllocMem::new(System).unwrap();
-    let mut links = Links::<usize, _>::new(mem).unwrap();
+    let mut links = Store::<usize, _>::new(mem).unwrap();
 
     let instant = Instant::now();
     for _ in 0..1_000_000 {
@@ -120,7 +120,7 @@ fn many_points_and_searches() {
 fn billion_points_file_mapped_splited() {
     let mem = TempFileMem::new().unwrap();
     let index = TempFileMem::new().unwrap();
-    let mut links = splited::Links::<usize, _, _>::new(mem, index).unwrap();
+    let mut links = splited::Store::<usize, _, _>::new(mem, index).unwrap();
 
     let instant = Instant::now();
 
@@ -135,7 +135,7 @@ fn billion_points_file_mapped_splited() {
 fn billion_points_heap_mem_splited() {
     let mem = GlobalMem::new().unwrap();
     let index = GlobalMem::new().unwrap();
-    let mut links = splited::Links::<usize, _, _>::new(mem, index).unwrap();
+    let mut links = splited::Store::<usize, _, _>::new(mem, index).unwrap();
 
     let instant = Instant::now();
 
@@ -152,7 +152,7 @@ fn billion_points_bump_alloc_splited() {
     let mut mem = AllocMem::new(&bump).unwrap();
     let mut index = AllocMem::new(&bump).unwrap();
     index.reserve_mem(1023 * 1023).unwrap();
-    let mut links = splited::Links::<usize, _, _>::new(mem, index).unwrap();
+    let mut links = splited::Store::<usize, _, _>::new(mem, index).unwrap();
 
     let instant = Instant::now();
 
@@ -167,7 +167,7 @@ fn billion_points_bump_alloc_splited() {
 fn many_points_and_searches_splited() {
     let mem = AllocMem::new(System).unwrap();
     let index = AllocMem::new(System).unwrap();
-    let mut links = splited::Links::<usize, _, _>::new(mem, index).unwrap();
+    let mut links = splited::Store::<usize, _, _>::new(mem, index).unwrap();
 
     let instant = Instant::now();
     for _ in 0..1_000_000 {

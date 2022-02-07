@@ -1,8 +1,9 @@
 use std::default::default;
 use std::marker::PhantomData;
-use std::mem::size_of;
+use std::mem::{align_of, size_of};
 use std::ops::{ControlFlow, Index, Try};
 use std::ptr::NonNull;
+use std::slice::from_raw_parts_mut;
 
 use num_traits::{one, zero};
 use smallvec::SmallVec;
@@ -21,14 +22,14 @@ use crate::doublets::mem::united::{LinksSourcesRecursionlessSizeBalancedTree, Ne
 use crate::doublets::mem::ILinksTreeMethods;
 use crate::doublets::mem::{ILinksListMethods, UpdatePointers};
 use crate::doublets::Result;
-use crate::doublets::{data, ILinks, LinksError};
+use crate::doublets::{data, Links, LinksError};
 use crate::mem::FileMappedMem;
 use crate::mem::{Mem, ResizeableMem};
 use crate::num::LinkType;
 use crate::{doublets, query};
 
 // TODO: use `_=_` instead of `_ = _`
-pub struct Links<
+pub struct Store<
     T: LinkType,
     M: ResizeableMem,
     TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers = LinksSourcesRecursionlessSizeBalancedTree<T>,
@@ -50,21 +51,21 @@ impl<
         TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
         TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
         TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
-    > Links<T, M, TS, TT, TU>
+    > Store<T, M, TS, TT, TU>
 {
     pub const LINK_SIZE: usize = size_of::<RawLink<T>>();
     pub const HEADER_SIZE: usize = size_of::<LinksHeader<T>>();
     pub const MAGIC_CONSTANT: usize = 1024 * 1024;
     pub const DEFAULT_LINKS_SIZE_STEP: usize = Self::LINK_SIZE * Self::MAGIC_CONSTANT;
 
-    pub fn new(mem: M) -> Result<Links<T, M>, LinksError<T>> {
+    pub fn new(mem: M) -> Result<Store<T, M>, LinksError<T>> {
         Self::with_constants(mem, LinksConstants::new())
     }
 
     pub fn with_constants(
         mem: M,
         constants: LinksConstants<T>,
-    ) -> Result<Links<T, M>, LinksError<T>> {
+    ) -> Result<Store<T, M>, LinksError<T>> {
         let links = mem.get_ptr().as_mut_ptr();
         let header = links;
         let sources =
@@ -72,7 +73,7 @@ impl<
         let targets =
             LinksTargetsRecursionlessSizeBalancedTree::new(constants.clone(), links, header);
         let unused = UnusedLinks::new(links, header);
-        let mut new = Links::<
+        let mut new = Store::<
             T,
             M,
             LinksSourcesRecursionlessSizeBalancedTree<T>,
@@ -115,13 +116,13 @@ impl<
     }
 
     fn mut_from_mem<Output: Sized, Memory: Mem>(mem: &Memory, index: usize) -> Option<&mut Output> {
-        let ptr = mem.get_ptr();
+        let mut ptr = mem.get_ptr();
         let sizeof = size_of::<Output>();
         if index * sizeof < ptr.len() {
             Some(unsafe {
-                NonNull::slice_from_raw_parts(ptr.cast::<Output>(), ptr.len() / sizeof)
-                    .get_unchecked_mut(index)
-                    .as_mut()
+                let slice = ptr.as_mut();
+                let (_, slice, _) = slice.align_to_mut();
+                &mut slice[index]
             })
         } else {
             None
@@ -315,7 +316,7 @@ impl<
         TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
         TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
         TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
-    > doublets::ILinks<T> for Links<T, M, TS, TT, TU>
+    > doublets::Links<T> for Store<T, M, TS, TT, TU>
 {
     fn constants(&self) -> LinksConstants<T> {
         self.constants.clone()
@@ -543,7 +544,7 @@ impl<
 
         let index = query[0];
         // TODO: use method style - remove .get_link
-        let (source, target) = if let Some(link) = ILinks::get_link(self, index) {
+        let (source, target) = if let Some(link) = Links::get_link(self, index) {
             (link.source, link.target)
         } else {
             return Err(LinksError::NotExists(index));
@@ -576,7 +577,7 @@ impl<
     }
 
     fn get_link(&self, index: T) -> Option<Link<T>> {
-        if self.constants.is_external_reference(index) {
+        if self.constants.is_external(index) {
             Some(Link::point(index))
         } else if self.exists(index) {
             Some(unsafe { self.get_link_unchecked(index) })

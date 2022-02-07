@@ -8,17 +8,17 @@ use smallvec::SmallVec;
 use crate::doublets::data::ToQuery;
 use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstants};
 use crate::doublets::{Flow, LinksError};
-use crate::doublets::{ILinks, ILinksExtensions, Link, Result};
+use crate::doublets::{ILinksExtensions, Link, Links, Result};
 use crate::num::LinkType;
 
-pub struct UniqueResolver<T: LinkType, Links: ILinks<T>> {
-    links: Links,
+pub struct UniqueResolver<T: LinkType, L: Links<T>> {
+    links: L,
 
     _phantom: PhantomData<T>,
 }
 
-impl<T: LinkType, Links: ILinks<T>> UniqueResolver<T, Links> {
-    pub fn new(links: Links) -> Self {
+impl<T: LinkType, L: Links<T>> UniqueResolver<T, L> {
+    pub fn new(links: L) -> Self {
         UniqueResolver {
             links,
             _phantom: PhantomData,
@@ -26,7 +26,7 @@ impl<T: LinkType, Links: ILinks<T>> UniqueResolver<T, Links> {
     }
 }
 
-impl<T: LinkType, Links: ILinks<T>> ILinks<T> for UniqueResolver<T, Links> {
+impl<T: LinkType, L: Links<T>> Links<T> for UniqueResolver<T, L> {
     fn constants(&self) -> LinksConstants<T> {
         self.links.constants()
     }

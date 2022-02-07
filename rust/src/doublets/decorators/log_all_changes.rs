@@ -5,17 +5,17 @@ use std::ops::Try;
 use crate::doublets::data::LinksConstants;
 use crate::doublets::data::ToQuery;
 use crate::doublets::LinksError;
-use crate::doublets::{ILinks, Link, Result};
+use crate::doublets::{Link, Links, Result};
 use crate::num::LinkType;
 
-pub struct LogAllChanges<T: LinkType, Links: ILinks<T>> {
-    links: Links,
+pub struct LogAllChanges<T: LinkType, L: Links<T>> {
+    links: L,
 
     _phantom: PhantomData<T>,
 }
 
-impl<T: LinkType, Links: ILinks<T>> LogAllChanges<T, Links> {
-    pub fn new(links: Links) -> Self {
+impl<T: LinkType, L: Links<T>> LogAllChanges<T, L> {
+    pub fn new(links: L) -> Self {
         Self {
             links,
             _phantom: default(),
@@ -23,7 +23,7 @@ impl<T: LinkType, Links: ILinks<T>> LogAllChanges<T, Links> {
     }
 }
 
-impl<T: LinkType, Links: ILinks<T>> ILinks<T> for LogAllChanges<T, Links> {
+impl<T: LinkType, L: Links<T>> Links<T> for LogAllChanges<T, L> {
     fn constants(&self) -> LinksConstants<T> {
         self.links.constants()
     }

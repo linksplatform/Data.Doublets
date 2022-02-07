@@ -22,6 +22,7 @@ impl GlobalMem {
                 ptr: NonNull::slice_from_raw_parts(NonNull::dangling(), 0),
             },
         };
+        new.base.reserve_mem(capacity)?;
         new.on_reserved_impl(0, capacity, false)?;
         Ok(new)
     }
@@ -30,17 +31,19 @@ impl GlobalMem {
         Self::reserve_new(ResizeableBase::MINIMUM_CAPACITY)
     }
 
+    fn layout_impl(capacity: usize) -> io::Result<Layout> {
+        Layout::array::<u8>(capacity).map_err(|err| io::Error::new(io::ErrorKind::Other, err))
+    }
+
     fn on_reserved_impl(
         &mut self,
         old_capacity: usize,
         new_capacity: usize,
         reallocate: bool,
     ) -> io::Result<usize> {
-        use io::{Error, ErrorKind};
-        let layout =
-            Layout::array::<u8>(new_capacity).map_err(|err| Error::new(ErrorKind::Other, err))?;
         if !reallocate {
             unsafe {
+                let layout = Self::layout_impl(new_capacity)?;
                 let ptr = alloc::alloc_zeroed(layout);
                 self.set_ptr(NonNull::slice_from_raw_parts(
                     unsafe { NonNull::new_unchecked(ptr) },
@@ -50,6 +53,7 @@ impl GlobalMem {
         } else {
             unsafe {
                 let ptr = self.get_ptr();
+                let layout = Self::layout_impl(old_capacity)?;
                 let new = alloc::realloc(ptr.as_mut_ptr(), layout, new_capacity);
                 if old_capacity < new_capacity {
                     let offset = new_capacity - old_capacity;
@@ -57,7 +61,7 @@ impl GlobalMem {
                 }
                 self.set_ptr(NonNull::slice_from_raw_parts(
                     unsafe { NonNull::new_unchecked(new) },
-                    layout.size(),
+                    new_capacity,
                 ));
             }
         }
@@ -100,7 +104,7 @@ impl Drop for GlobalMem {
     fn drop(&mut self) {
         unsafe {
             let ptr = self.get_ptr();
-            let layout = Layout::for_value_raw(ptr.as_ptr());
+            let layout = Layout::array::<u8>(ptr.len()).unwrap(); // TODO: unchecked
             alloc::dealloc(ptr.as_mut_ptr(), layout)
         }
     }

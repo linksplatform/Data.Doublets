@@ -26,7 +26,7 @@
 #![feature(nonnull_slice_from_raw_parts)]
 #![feature(layout_for_ptr)]
 
-use crate::doublets::mem::united::{Links, NewList, NewTree, UpdatePointersSplit};
+use crate::doublets::mem::united::{NewList, NewTree, Store, UpdatePointersSplit};
 use crate::doublets::mem::{splited, ILinksListMethods, ILinksTreeMethods, UpdatePointers};
 use crate::mem::ResizeableMem;
 use crate::num::LinkType;
@@ -45,7 +45,7 @@ unsafe impl<
         TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
         TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
         TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
-    > Sync for Links<T, M, TS, TT, TU>
+    > Sync for Store<T, M, TS, TT, TU>
 {
 }
 
@@ -55,7 +55,7 @@ unsafe impl<
         TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
         TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
         TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
-    > Send for Links<T, M, TS, TT, TU>
+    > Send for Store<T, M, TS, TT, TU>
 {
 }
 
@@ -68,7 +68,7 @@ unsafe impl<
         IT: ILinksTreeMethods<T> + UpdatePointersSplit,
         ET: ILinksTreeMethods<T> + UpdatePointersSplit,
         UL: ILinksListMethods<T> + UpdatePointers,
-    > Sync for splited::Links<T, MD, MI, IS, ES, IT, ET, UL>
+    > Sync for splited::Store<T, MD, MI, IS, ES, IT, ET, UL>
 {
 }
 
@@ -81,7 +81,7 @@ unsafe impl<
         IT: ILinksTreeMethods<T> + UpdatePointersSplit,
         ET: ILinksTreeMethods<T> + UpdatePointersSplit,
         UL: ILinksListMethods<T> + UpdatePointers,
-    > Send for splited::Links<T, MD, MI, IS, ES, IT, ET, UL>
+    > Send for splited::Store<T, MD, MI, IS, ES, IT, ET, UL>
 {
 }
 

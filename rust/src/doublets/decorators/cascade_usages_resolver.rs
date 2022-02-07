@@ -9,17 +9,17 @@ use smallvec::SmallVec;
 use crate::doublets::data::ToQuery;
 use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstants};
 use crate::doublets::LinksError;
-use crate::doublets::{ILinks, ILinksExtensions, Link, Result};
+use crate::doublets::{ILinksExtensions, Link, Links, Result};
 use crate::num::LinkType;
 
-pub struct CascadeUsagesResolver<T: LinkType, Links: ILinks<T>> {
-    links: Links,
+pub struct CascadeUsagesResolver<T: LinkType, L: Links<T>> {
+    links: L,
 
     _phantom: PhantomData<T>,
 }
 
-impl<T: LinkType, Links: ILinks<T>> CascadeUsagesResolver<T, Links> {
-    pub fn new(links: Links) -> Self {
+impl<T: LinkType, L: Links<T>> CascadeUsagesResolver<T, L> {
+    pub fn new(links: L) -> Self {
         Self {
             links,
             _phantom: default(),
@@ -27,7 +27,7 @@ impl<T: LinkType, Links: ILinks<T>> CascadeUsagesResolver<T, Links> {
     }
 }
 
-impl<T: LinkType, Links: ILinks<T>> ILinks<T> for CascadeUsagesResolver<T, Links> {
+impl<T: LinkType, L: Links<T>> Links<T> for CascadeUsagesResolver<T, L> {
     fn constants(&self) -> LinksConstants<T> {
         self.links.constants()
     }

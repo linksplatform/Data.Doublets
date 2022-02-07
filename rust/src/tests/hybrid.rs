@@ -1,5 +1,5 @@
 use crate::doublets::data::{AddrToRaw, IGenericLinks, LinksConstants, Query, RawToAddr};
-use crate::doublets::{ILinks, ILinksExtensions};
+use crate::doublets::{ILinksExtensions, Links};
 use crate::query;
 use crate::test_extensions::ILinksTestExtensions;
 use crate::tests::{make_links, make_mem, typed_links};
@@ -44,10 +44,10 @@ fn u128_raw_numbers() {
     let to_adr = RawToAddr;
 
     let raw = to_raw.convert(1_u128);
-    assert!(constants.is_external_reference(raw));
+    assert!(constants.is_external(raw));
 
     let adr = to_adr.convert(raw);
-    assert!(constants.is_internal_reference(adr));
+    assert!(constants.is_internal(adr));
 
     let source = to_raw.convert(228_1337_1754_177013_666_777_u128);
     let target = to_raw.convert(10_1011_0011_0111_0101_u128);

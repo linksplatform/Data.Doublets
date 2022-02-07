@@ -57,13 +57,13 @@ fn query_from_raw<T: LinkType>(query: *const T, len: usize) -> Query<'static, T>
     }
 }
 
-unsafe fn unnul_or_error<'a, Ptr, R>(ptr: *mut Ptr) -> &'a mut R {
+fn unnul_or_error<'a, Ptr, R>(ptr: *mut Ptr) -> &'a mut R {
     if ptr.is_null() {
         // todo: use std::Backtrace or crates/tracing
         error!("Null pointer");
         panic!("Null pointer");
     } else {
-        &mut *(ptr as *mut R)
+        unsafe { &mut *(ptr as *mut R) }
     }
 }
 
@@ -148,7 +148,7 @@ fn create_united<T: LinkType>(
     )
 }
 #[repr(C)]
-struct Link<T: LinkType> {
+pub struct Link<T: LinkType> {
     index: T,
     source: T,
     target: T,

@@ -1,6 +1,6 @@
 use crate::doublets::data::LinksConstants;
 use crate::doublets::mem::united::{
-    Links, LinksSourcesRecursionlessSizeBalancedTree, LinksTargetsRecursionlessSizeBalancedTree,
+    LinksSourcesRecursionlessSizeBalancedTree, LinksTargetsRecursionlessSizeBalancedTree, Store,
     UnusedLinks,
 };
 use crate::doublets::mem::{splited, united};
@@ -25,9 +25,9 @@ pub fn make_mem() -> io::Result<(GlobalMem, GlobalMem)> {
 
 pub fn make_links<M1: ResizeableMem, M2: ResizeableMem>(
     mem: (M1, M2),
-) -> Result<splited::Links<usize, M1, M2>, LinksError<usize>> {
+) -> Result<splited::Store<usize, M1, M2>, LinksError<usize>> {
     let constants = LinksConstants::via_only_external(true);
-    splited::Links::<usize, _, _>::with_constants(mem.0, mem.1, constants)
+    splited::Store::<usize, _, _>::with_constants(mem.0, mem.1, constants)
 }
 
 //pub fn typed_links<T: LinkType, M: ResizeableMem>(mem: M) -> Result<Links<T, M>, LinksError<T>> {
@@ -36,8 +36,8 @@ pub fn make_links<M1: ResizeableMem, M2: ResizeableMem>(
 
 pub fn typed_links<T: LinkType, M1: ResizeableMem, M2: ResizeableMem>(
     mem: (M1, M2),
-) -> Result<splited::Links<T, M1, M2>, LinksError<T>> {
-    splited::Links::<T, _, _>::with_constants(mem.0, mem.1, LinksConstants::via_only_external(true))
+) -> Result<splited::Store<T, M1, M2>, LinksError<T>> {
+    splited::Store::<T, _, _>::with_constants(mem.0, mem.1, LinksConstants::via_only_external(true))
 }
 
 // TODO: use the follow style:

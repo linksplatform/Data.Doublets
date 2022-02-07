@@ -1,8 +1,9 @@
 use std::borrow::BorrowMut;
 use std::default::default;
-use std::mem::size_of;
+use std::mem::{align_of, size_of};
 use std::ops::{Index, Try};
 use std::ptr::{addr_of, NonNull};
+use std::slice::from_raw_parts_mut;
 
 use crate::{doublets, query};
 use num_traits::{one, zero};
@@ -17,12 +18,12 @@ use crate::doublets::mem::splited::{DataPart, IndexPart};
 use crate::doublets::mem::united::UpdatePointersSplit;
 use crate::doublets::mem::{ILinksListMethods, ILinksTreeMethods, LinksHeader, UpdatePointers};
 use crate::doublets::Result;
-use crate::doublets::{ILinks, Link, LinksError};
+use crate::doublets::{Link, Links, LinksError};
 use crate::mem::{Mem, ResizeableMem};
 use crate::methods::RelativeCircularDoublyLinkedList;
 use crate::num::LinkType;
 
-pub struct Links<
+pub struct Store<
     T: LinkType,
     MD: ResizeableMem,
     MI: ResizeableMem,
@@ -58,7 +59,7 @@ impl<
         IT: ILinksTreeMethods<T> + UpdatePointersSplit,
         ET: ILinksTreeMethods<T> + UpdatePointersSplit,
         UL: ILinksListMethods<T> + UpdatePointers,
-    > Links<T, MD, MI, IS, ES, IT, ET, UL>
+    > Store<T, MD, MI, IS, ES, IT, ET, UL>
 {
     const USE_LIST: bool = false;
     const SIZE_STEP: usize = 1024_usize.pow(2) * 64;
@@ -71,7 +72,7 @@ impl<
         data_mem: MD,
         index_mem: MI,
         constants: LinksConstants<T>,
-    ) -> Result<Links<T, MD, MI>, LinksError<T>> {
+    ) -> Result<Store<T, MD, MI>, LinksError<T>> {
         let data = data_mem.get_ptr();
         let index = index_mem.get_ptr();
         let header = index_mem.get_ptr();
@@ -110,7 +111,7 @@ impl<
         );
         let unused = UnusedLinks::new(data.as_mut_ptr(), index.as_mut_ptr());
 
-        let mut new = Links {
+        let mut new = Store {
             data_mem,
             index_mem,
             data_step: Self::SIZE_STEP,
@@ -128,18 +129,18 @@ impl<
         Ok(new)
     }
 
-    pub fn new(data_mem: MD, index_mem: MI) -> Result<Links<T, MD, MI>, LinksError<T>> {
+    pub fn new(data_mem: MD, index_mem: MI) -> Result<Store<T, MD, MI>, LinksError<T>> {
         Self::with_constants(data_mem, index_mem, default())
     }
 
-    fn mut_from_mem<Output: Sized, M: Mem>(mem: &M, index: usize) -> Option<&mut Output> {
-        let ptr = mem.get_ptr();
+    fn mut_from_mem<Output: Sized, Memory: Mem>(mem: &Memory, index: usize) -> Option<&mut Output> {
+        let mut ptr = mem.get_ptr();
         let sizeof = size_of::<Output>();
         if index * sizeof < ptr.len() {
             Some(unsafe {
-                NonNull::slice_from_raw_parts(ptr.cast::<Output>(), ptr.len() / sizeof)
-                    .get_unchecked_mut(index)
-                    .as_mut()
+                let slice = ptr.as_mut();
+                let (_, slice, _) = slice.align_to_mut();
+                &mut slice[index]
             })
         } else {
             None
@@ -258,7 +259,7 @@ impl<
     }
 
     pub(crate) fn is_virtual(&self, link: T) -> bool {
-        link > self.get_header().allocated && !self.constants.is_external_reference(link)
+        link > self.get_header().allocated && !self.constants.is_external(link)
     }
 
     pub fn exists(&self, link: T) -> bool {
@@ -344,13 +345,13 @@ impl<
                 if (source, target) == (any, any) {
                     self.try_each_by_core(handler, [])
                 } else if source == any {
-                    if constants.is_external_reference(target) {
+                    if constants.is_external(target) {
                         self.external_targets.each_usages(target, handler)
                     } else {
                         self.internal_targets.each_usages(target, handler)
                     }
                 } else if target == any {
-                    if constants.is_external_reference(source) {
+                    if constants.is_external(source) {
                         self.external_sources.each_usages(source, handler)
                     } else {
                         if Self::USE_LIST {
@@ -361,13 +362,11 @@ impl<
                     }
                 } else {
                     let mut link = if let Some(_) = &constants.external_range {
-                        if constants.is_external_reference(source)
-                            && constants.is_external_reference(target)
-                        {
+                        if constants.is_external(source) && constants.is_external(target) {
                             self.external_sources.search(source, target)
-                        } else if constants.is_external_reference(source) {
+                        } else if constants.is_external(source) {
                             self.internal_targets.search(source, target)
-                        } else if constants.is_external_reference(target) {
+                        } else if constants.is_external(target) {
                             if Self::USE_LIST {
                                 self.external_sources.search(source, target)
                             } else {
@@ -445,7 +444,7 @@ impl<
         IT: ILinksTreeMethods<T> + UpdatePointersSplit,
         ET: ILinksTreeMethods<T> + UpdatePointersSplit,
         UL: ILinksListMethods<T> + UpdatePointers,
-    > ILinks<T> for Links<T, MD, MI, IS, ES, IT, ET, UL>
+    > Links<T> for Store<T, MD, MI, IS, ES, IT, ET, UL>
 {
     fn constants(&self) -> LinksConstants<T> {
         self.constants.clone()
@@ -478,7 +477,7 @@ impl<
             return if index == any {
                 if value == any {
                     self.total()
-                } else if constants.is_external_reference(value) {
+                } else if constants.is_external(value) {
                     self.external_sources.count_usages(value)
                         + self.external_targets.count_usages(value)
                 } else {
@@ -514,12 +513,12 @@ impl<
                 if (source, target) == (any, any) {
                     self.total()
                 } else if source == any {
-                    if constants.is_external_reference(target) {
+                    if constants.is_external(target) {
                         self.external_targets.count_usages(target)
                     } else {
                         self.internal_targets.count_usages(target)
                     }
-                } else if constants.is_external_reference(source) {
+                } else if constants.is_external(source) {
                     self.external_sources.count_usages(source)
                 } else if target == any {
                     if Self::USE_LIST {
@@ -529,13 +528,11 @@ impl<
                     }
                 } else {
                     let mut link = if let Some(_) = &constants.external_range {
-                        if constants.is_external_reference(source)
-                            && constants.is_external_reference(target)
-                        {
+                        if constants.is_external(source) && constants.is_external(target) {
                             self.external_sources.search(source, target)
-                        } else if constants.is_external_reference(source) {
+                        } else if constants.is_external(source) {
                             self.internal_targets.search(source, target)
-                        } else if constants.is_external_reference(target) {
+                        } else if constants.is_external(target) {
                             if Self::USE_LIST {
                                 self.external_sources.search(source, target)
                             } else {
@@ -684,7 +681,7 @@ impl<
         let old_target = target;
 
         if source != null {
-            if constants.is_external_reference(source) {
+            if constants.is_external(source) {
                 let temp = &mut self.mut_header().root_as_source as *mut T;
                 self.external_sources.detach(unsafe { &mut *temp }, index)
             } else {
@@ -698,7 +695,7 @@ impl<
         }
 
         if target != null {
-            if constants.is_external_reference(target) {
+            if constants.is_external(target) {
                 let temp = &mut self.mut_header().root_as_target as *mut T;
                 self.external_targets.detach(unsafe { &mut *temp }, index)
             } else {
@@ -714,7 +711,7 @@ impl<
         let target = link.target;
 
         if source != null {
-            if constants.is_external_reference(source) {
+            if constants.is_external(source) {
                 let temp = &mut self.mut_header().root_as_source as *mut T;
                 self.external_sources.attach(unsafe { &mut *temp }, index)
             } else {
@@ -728,7 +725,7 @@ impl<
         }
 
         if target != null {
-            if constants.is_external_reference(target) {
+            if constants.is_external(target) {
                 let temp = &mut self.mut_header().root_as_target as *mut T;
                 self.external_targets.attach(unsafe { &mut *temp }, index)
             } else {
@@ -800,7 +797,7 @@ impl<
     }
 
     fn get_link(&self, index: T) -> Option<Link<T>> {
-        if self.constants.is_external_reference(index) {
+        if self.constants.is_external(index) {
             Some(Link::point(index))
         } else if self.exists(index) {
             Some(unsafe { self.get_link_unchecked(index) })

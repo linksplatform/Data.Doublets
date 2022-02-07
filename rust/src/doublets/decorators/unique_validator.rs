@@ -8,17 +8,17 @@ use smallvec::SmallVec;
 
 use crate::doublets::data::ToQuery;
 use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstants};
-use crate::doublets::{Doublet, ILinks, ILinksExtensions, Link, LinksError, Result};
+use crate::doublets::{Doublet, ILinksExtensions, Link, Links, LinksError, Result};
 use crate::num::LinkType;
 
-pub struct UniqueValidator<T: LinkType, Links: ILinks<T>> {
-    links: Links,
+pub struct UniqueValidator<T: LinkType, L: Links<T>> {
+    links: L,
 
     _phantom: PhantomData<T>,
 }
 
-impl<T: LinkType, Links: ILinks<T>> UniqueValidator<T, Links> {
-    pub fn new(links: Links) -> Self {
+impl<T: LinkType, L: Links<T>> UniqueValidator<T, L> {
+    pub fn new(links: L) -> Self {
         Self {
             links,
             _phantom: default(),
@@ -26,7 +26,7 @@ impl<T: LinkType, Links: ILinks<T>> UniqueValidator<T, Links> {
     }
 }
 
-impl<T: LinkType, Links: ILinks<T>> ILinks<T> for UniqueValidator<T, Links> {
+impl<T: LinkType, L: Links<T>> Links<T> for UniqueValidator<T, L> {
     fn constants(&self) -> LinksConstants<T> {
         self.links.constants()
     }

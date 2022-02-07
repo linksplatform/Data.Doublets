@@ -8,7 +8,7 @@ use rand::Rng;
 
 use crate::doublets::data::IGenericLinks;
 use crate::doublets::mem::{splited, united};
-use crate::doublets::{ILinks, ILinksExtensions, Link};
+use crate::doublets::{ILinksExtensions, Link, Links};
 use crate::mem::ResizeableMem;
 use crate::num::LinkType;
 use crate::tests::make_links;

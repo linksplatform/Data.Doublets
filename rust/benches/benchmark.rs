@@ -5,7 +5,7 @@
 use criterion::{black_box, criterion_group, criterion_main, Criterion};
 use doublets::doublets::data::LinksConstants;
 use doublets::doublets::mem::{splited, united};
-use doublets::doublets::ILinks;
+use doublets::doublets::Links;
 use doublets::mem::{AllocMem, GlobalMem};
 use doublets::query;
 use std::alloc::Global;
