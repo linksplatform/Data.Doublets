@@ -1,55 +1,27 @@
-#ifndef DATA_DOUBLETS_FFI_H
-#define DATA_DOUBLETS_FFI_H
+#include <cstdarg>
+#include <cstdint>
+#include <cstdlib>
+#include <ostream>
+#include <new>
 
-#include <stdarg.h>
-#include <stdbool.h>
-#include <stdint.h>
-#include <stdlib.h>
+template<typename T>
+struct Link {
+    T index;
+    T source;
+    T target;
+};
 
-typedef struct Link_u8 {
-    uint8_t index;
-    uint8_t source;
-    uint8_t target;
-} Link_u8;
+template<typename T>
+using CUDCallback = T(*)(Link<T> before, Link<T> after);
 
-typedef uint8_t (* CUDCallback_u8)(struct Link_u8 before, struct Link_u8 after);
+template<typename T>
+using EachCallback = T(*)(Link<T>);
 
-typedef struct Link_u16 {
-    uint16_t index;
-    uint16_t source;
-    uint16_t target;
-} Link_u16;
+struct SharedLogger {
+    void (* formatter)(const Record*);
+};
 
-typedef uint16_t (* CUDCallback_u16)(struct Link_u16 before, struct Link_u16 after);
-
-typedef struct Link_u32 {
-    uint32_t index;
-    uint32_t source;
-    uint32_t target;
-} Link_u32;
-
-typedef uint32_t (* CUDCallback_u32)(struct Link_u32 before, struct Link_u32 after);
-
-typedef struct Link_u64 {
-    uint64_t index;
-    uint64_t source;
-    uint64_t target;
-} Link_u64;
-
-typedef uint64_t (* CUDCallback_u64)(struct Link_u64 before, struct Link_u64 after);
-
-typedef uint8_t (* EachCallback_u8)(struct Link_u8);
-
-typedef uint16_t (* EachCallback_u16)(struct Link_u16);
-
-typedef uint32_t (* EachCallback_u32)(struct Link_u32);
-
-typedef uint64_t (* EachCallback_u64)(struct Link_u64);
-
-// TODO:
-// typedef struct SharedLogger {
-//     void (*formatter)(const Record*);
-// } SharedLogger;
+extern "C" {
 
 void* ByteUnitedMemoryLinks_New(const char* path);
 
@@ -70,42 +42,42 @@ void UInt64UnitedMemoryLinks_Drop(void* this_);
 uint8_t ByteUnitedMemoryLinks_Create(void* this_,
         const uint8_t* query,
         uintptr_t len,
-        CUDCallback_u8 callback);
+        CUDCallback<uint8_t> callback);
 
 uint16_t UInt16UnitedMemoryLinks_Create(void* this_,
         const uint16_t* query,
         uintptr_t len,
-        CUDCallback_u16 callback);
+        CUDCallback<uint16_t> callback);
 
 uint32_t UInt32UnitedMemoryLinks_Create(void* this_,
         const uint32_t* query,
         uintptr_t len,
-        CUDCallback_u32 callback);
+        CUDCallback<uint32_t> callback);
 
 uint64_t UInt64UnitedMemoryLinks_Create(void* this_,
         const uint64_t* query,
         uintptr_t len,
-        CUDCallback_u64 callback);
+        CUDCallback<uint64_t> callback);
 
 uint8_t ByteUnitedMemoryLinks_Each(void* this_,
         const uint8_t* query,
         uintptr_t len,
-        EachCallback_u8 callback);
+        EachCallback<uint8_t> callback);
 
 uint16_t UInt16UnitedMemoryLinks_Each(void* this_,
         const uint16_t* query,
         uintptr_t len,
-        EachCallback_u16 callback);
+        EachCallback<uint16_t> callback);
 
 uint32_t UInt32UnitedMemoryLinks_Each(void* this_,
         const uint32_t* query,
         uintptr_t len,
-        EachCallback_u32 callback);
+        EachCallback<uint32_t> callback);
 
 uint64_t UInt64UnitedMemoryLinks_Each(void* this_,
         const uint64_t* query,
         uintptr_t len,
-        EachCallback_u64 callback);
+        EachCallback<uint64_t> callback);
 
 uint8_t ByteUnitedMemoryLinks_Count(void* this_, const uint8_t* query, uintptr_t len);
 
@@ -120,51 +92,51 @@ uint8_t ByteUnitedMemoryLinks_Update(void* this_,
         uintptr_t len_r,
         const uint8_t* substitutuion,
         uintptr_t len_s,
-        CUDCallback_u8 callback);
+        CUDCallback<uint8_t> callback);
 
 uint16_t UInt16UnitedMemoryLinks_Update(void* this_,
         const uint16_t* restrictions,
         uintptr_t len_r,
         const uint16_t* substitutuion,
         uintptr_t len_s,
-        CUDCallback_u16 callback);
+        CUDCallback<uint16_t> callback);
 
 uint32_t UInt32UnitedMemoryLinks_Update(void* this_,
         const uint32_t* restrictions,
         uintptr_t len_r,
         const uint32_t* substitutuion,
         uintptr_t len_s,
-        CUDCallback_u32 callback);
+        CUDCallback<uint32_t> callback);
 
 uint64_t UInt64UnitedMemoryLinks_Update(void* this_,
         const uint64_t* restrictions,
         uintptr_t len_r,
         const uint64_t* substitutuion,
         uintptr_t len_s,
-        CUDCallback_u64 callback);
+        CUDCallback<uint64_t> callback);
 
 uint8_t ByteUnitedMemoryLinks_Delete(void* this_,
         const uint8_t* query,
         uintptr_t len,
-        CUDCallback_u8 callback);
+        CUDCallback<uint8_t> callback);
 
 uint16_t UInt16UnitedMemoryLinks_Delete(void* this_,
         const uint16_t* query,
         uintptr_t len,
-        CUDCallback_u16 callback);
+        CUDCallback<uint16_t> callback);
 
 uint32_t UInt32UnitedMemoryLinks_Delete(void* this_,
         const uint32_t* query,
         uintptr_t len,
-        CUDCallback_u32 callback);
+        CUDCallback<uint32_t> callback);
 
 uint64_t UInt64UnitedMemoryLinks_Delete(void* this_,
         const uint64_t* query,
         uintptr_t len,
-        CUDCallback_u64 callback);
+        CUDCallback<uint64_t> callback);
 
-void setup_shared_logger(struct SharedLogger logger);
+void setup_shared_logger(SharedLogger logger);
 
-void init_fmt_logger(void);
+void init_fmt_logger();
 
-#endif
+} // extern "C"
