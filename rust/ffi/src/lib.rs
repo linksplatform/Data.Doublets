@@ -5,6 +5,8 @@
 #![feature(backtrace)]
 #![feature(control_flow_enum)]
 #![feature(try_trait_v2)]
+#![feature(const_fn_trait_bound)]
+#![feature(const_trait_impl)]
 
 use std::alloc::{alloc, Layout};
 use std::cell::{Cell, RefCell};
@@ -21,7 +23,7 @@ use doublets::doublets::data::Query;
 use doublets::doublets::Flow::{Break, Continue};
 use doublets::doublets::Link as DLink;
 use doublets::doublets::{
-    data::LinksConstants, mem::united::Links, ILinks, ILinksExtensions, LinksError,
+    data::LinksConstants, mem::united::Store, ILinksExtensions, Links, LinksError,
 };
 use doublets::mem::FileMappedMem;
 use doublets::num::LinkType;
@@ -32,7 +34,7 @@ use libc::c_void;
 use log::Metadata;
 use log::{debug, error, info, trace, warn};
 use std::error::Error;
-use std::ops::Try;
+use std::ops::{RangeInclusive, Try};
 use tracing_subscriber::fmt::format::Format;
 
 fn result_into_log<R, E: Display>(result: Result<R, E>, default: R) -> R {
@@ -67,11 +69,98 @@ fn unnul_or_error<'a, Ptr, R>(ptr: *mut Ptr) -> &'a mut R {
     }
 }
 
-type UnitedLinks<T> = Links<T, FileMappedMem>;
+type UnitedLinks<T> = Store<T, FileMappedMem>;
 
 type EachCallback<T> = extern "C" fn(Link<T>) -> T;
 
 type CUDCallback<T> = extern "C" fn(before: Link<T>, after: Link<T>) -> T;
+
+#[repr(C)]
+#[derive(Eq, PartialEq)]
+pub struct Range<T: LinkType>(pub T, pub T);
+
+#[repr(C)]
+pub struct Constants<T: LinkType> {
+    pub index_part: T,
+    pub source_part: T,
+    pub target_part: T,
+    pub r#break: T,
+    pub null: T,
+    pub r#continue: T,
+    pub skip: T,
+    pub any: T,
+    pub itself: T,
+    pub error: T,
+    pub internal_range: Range<T>,
+    pub external_range: Range<T>,
+    pub _opt_marker: bool,
+}
+
+impl<T: LinkType> From<LinksConstants<T>> for Constants<T> {
+    fn from(c: LinksConstants<T>) -> Self {
+        Self {
+            index_part: c.index_part,
+            source_part: c.source_part,
+            target_part: c.target_part,
+            r#break: c.r#break,
+            null: c.null,
+            r#continue: c.r#continue,
+            skip: c.skip,
+            any: c.any,
+            itself: c.itself,
+            error: c.error,
+            internal_range: Range(*c.internal_range.start(), *c.internal_range.end()),
+            // external_range: c.external_range.map(|r| Range(*r.start(), *r.end())),
+            external_range: c
+                .external_range
+                .map_or(Range(T::zero(), T::zero()), |r| Range(*r.start(), *r.end())),
+            _opt_marker: c.external_range.is_some(),
+        }
+    }
+}
+
+impl<T: LinkType> Into<LinksConstants<T>> for Constants<T> {
+    fn into(self) -> LinksConstants<T> {
+        LinksConstants {
+            index_part: self.index_part,
+            source_part: self.source_part,
+            target_part: self.target_part,
+            r#break: self.r#break,
+            null: self.null,
+            r#continue: self.r#continue,
+            skip: self.skip,
+            any: self.any,
+            itself: self.itself,
+            error: self.error,
+            internal_range: RangeInclusive::new(self.internal_range.0, self.internal_range.1),
+            external_range: if self._opt_marker {
+                Some(RangeInclusive::new(
+                    self.external_range.0,
+                    self.external_range.1,
+                ))
+            } else {
+                None
+            },
+        }
+    }
+}
+
+#[repr(C)]
+pub struct Link<T: LinkType> {
+    index: T,
+    source: T,
+    target: T,
+}
+
+impl<T: LinkType> From<DLink<T>> for Link<T> {
+    fn from(link: DLink<T>) -> Self {
+        Link {
+            index: link.index,
+            source: link.source,
+            target: link.target,
+        }
+    }
+}
 
 #[ffi::specialize_for(
     types = "u8",
@@ -82,12 +171,26 @@ type CUDCallback<T> = extern "C" fn(before: Link<T>, after: Link<T>) -> T;
     name = "*UnitedMemoryLinks_New"
 )]
 fn new_united_links<T: LinkType>(path: *const c_char) -> *mut c_void {
+    new_with_constants_united_links::<T>(path, Constants::from(LinksConstants::default()))
+}
+
+#[ffi::specialize_for(
+    types = "u8",
+    types = "u16",
+    types = "u32",
+    types = "u64",
+    convention = "csharp",
+    name = "*UnitedMemoryLinks_NewWithConstants"
+)]
+fn new_with_constants_united_links<T: LinkType>(
+    path: *const c_char,
+    constants: Constants<T>,
+) -> *mut c_void {
     let result: Result<_, Box<dyn Error>> = try {
         let path = unsafe { CStr::from_ptr(path) }.to_str()?;
         let path = OsStr::new(path);
         let mem = FileMappedMem::new(path)?;
-        let links =
-            box UnitedLinks::<T>::with_constants(mem, LinksConstants::via_only_external(true))?;
+        let links = box UnitedLinks::<T>::with_constants(mem, constants.into())?;
         Box::into_raw(links) as *mut c_void
     };
     result_into_log(result, null_mut())
@@ -146,22 +249,6 @@ fn create_united<T: LinkType>(
         }),
         links.constants().error,
     )
-}
-#[repr(C)]
-pub struct Link<T: LinkType> {
-    index: T,
-    source: T,
-    target: T,
-}
-
-impl<T: LinkType> From<DLink<T>> for Link<T> {
-    fn from(link: DLink<T>) -> Self {
-        Link {
-            index: link.index,
-            source: link.source,
-            target: link.target,
-        }
-    }
 }
 
 #[ffi::specialize_for(
