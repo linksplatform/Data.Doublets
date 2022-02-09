@@ -1,6 +1,8 @@
 #include <gtest/gtest.h>
 #include <Platform.Data.Doublets.h>
 
+#include "UnitedMemoryLinksFfiTests.cpp"
+
 using namespace Platform::Memory;
 using namespace Platform::Data::Doublets;
 using namespace Memory::United::Generic;
