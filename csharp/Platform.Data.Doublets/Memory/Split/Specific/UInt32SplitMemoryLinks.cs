@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using Platform.Singletons;
 using Platform.Memory;
 using Platform.Data.Doublets.Memory.Split.Generic;
-using TLink = System.UInt32;
+using TLinkAddress = System.UInt32;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -15,58 +15,16 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
     /// </para>
     /// <para></para>
     /// </summary>
-    /// <seealso cref="SplitMemoryLinksBase{TLink}"/>
-    public unsafe class UInt32SplitMemoryLinks : SplitMemoryLinksBase<TLink>
+    /// <seealso cref="SplitMemoryLinksBase{TLinkAddress}"/>
+    public unsafe class UInt32SplitMemoryLinks : SplitMemoryLinksBase<TLinkAddress>
     {
-        /// <summary>
-        /// <para>
-        /// The create internal source tree methods.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        private readonly Func<ILinksTreeMethods<TLink>> _createInternalSourceTreeMethods;
-        /// <summary>
-        /// <para>
-        /// The create external source tree methods.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        private readonly Func<ILinksTreeMethods<TLink>> _createExternalSourceTreeMethods;
-        /// <summary>
-        /// <para>
-        /// The create internal target tree methods.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        private readonly Func<ILinksTreeMethods<TLink>> _createInternalTargetTreeMethods;
-        /// <summary>
-        /// <para>
-        /// The create external target tree methods.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        private readonly Func<ILinksTreeMethods<TLink>> _createExternalTargetTreeMethods;
-        /// <summary>
-        /// <para>
-        /// The header.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        private LinksHeader<TLink>* _header;
-        /// <summary>
-        /// <para>
-        /// The links data parts.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        private RawLinkDataPart<TLink>* _linksDataParts;
-        /// <summary>
-        /// <para>
-        /// The links index parts.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        private RawLinkIndexPart<TLink>* _linksIndexParts;
+        private readonly Func<ILinksTreeMethods<TLinkAddress>> _createInternalSourceTreeMethods;
+        private readonly Func<ILinksTreeMethods<TLinkAddress>> _createExternalSourceTreeMethods;
+        private readonly Func<ILinksTreeMethods<TLinkAddress>> _createInternalTargetTreeMethods;
+        private readonly Func<ILinksTreeMethods<TLinkAddress>> _createExternalTargetTreeMethods;
+        private LinksHeader<TLinkAddress>* _header;
+        private RawLinkDataPart<TLinkAddress>* _linksDataParts;
+        private RawLinkIndexPart<TLinkAddress>* _linksIndexParts;
 
         /// <summary>
         /// <para>
@@ -104,7 +62,7 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public UInt32SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep) : this(dataMemory, indexMemory, memoryReservationStep, Default<LinksConstants<TLink>>.Instance, IndexTreeType.Default, useLinkedList: true) { }
+        public UInt32SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep) : this(dataMemory, indexMemory, memoryReservationStep, Default<LinksConstants<TLinkAddress>>.Instance, IndexTreeType.Default, useLinkedList: true) { }
 
         /// <summary>
         /// <para>
@@ -129,7 +87,7 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public UInt32SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep, LinksConstants<TLink> constants) : this(dataMemory, indexMemory, memoryReservationStep, constants, IndexTreeType.Default, useLinkedList: true) { }
+        public UInt32SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep, LinksConstants<TLinkAddress> constants) : this(dataMemory, indexMemory, memoryReservationStep, constants, IndexTreeType.Default, useLinkedList: true) { }
 
         /// <summary>
         /// <para>
@@ -162,7 +120,7 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public UInt32SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep, LinksConstants<TLink> constants, IndexTreeType indexTreeType, bool useLinkedList) : base(dataMemory, indexMemory, memoryReservationStep, constants, useLinkedList)
+        public UInt32SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep, LinksConstants<TLinkAddress> constants, IndexTreeType indexTreeType, bool useLinkedList) : base(dataMemory, indexMemory, memoryReservationStep, constants, useLinkedList)
         {
             if (indexTreeType == IndexTreeType.SizeBalancedTree)
             {
@@ -198,9 +156,9 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override void SetPointers(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory)
         {
-            _linksDataParts = (RawLinkDataPart<TLink>*)dataMemory.Pointer;
-            _linksIndexParts = (RawLinkIndexPart<TLink>*)indexMemory.Pointer;
-            _header = (LinksHeader<TLink>*)indexMemory.Pointer;
+            _linksDataParts = (RawLinkDataPart<TLinkAddress>*)dataMemory.Pointer;
+            _linksIndexParts = (RawLinkIndexPart<TLinkAddress>*)indexMemory.Pointer;
+            _header = (LinksHeader<TLinkAddress>*)indexMemory.Pointer;
             if (_useLinkedList)
             {
                 InternalSourcesListMethods = new UInt32InternalLinksSourcesLinkedListMethods(Constants, _linksDataParts, _linksIndexParts);
@@ -241,7 +199,7 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override ref LinksHeader<TLink> GetHeaderReference() => ref *_header;
+        protected override ref LinksHeader<TLinkAddress> GetHeaderReference() => ref *_header;
 
         /// <summary>
         /// <para>
@@ -258,7 +216,7 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override ref RawLinkDataPart<TLink> GetLinkDataPartReference(TLink linkIndex) => ref _linksDataParts[linkIndex];
+        protected override ref RawLinkDataPart<TLinkAddress> GetLinkDataPartReference(TLinkAddress linkIndex) => ref _linksDataParts[linkIndex];
 
         /// <summary>
         /// <para>
@@ -275,7 +233,7 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override ref RawLinkIndexPart<TLink> GetLinkIndexPartReference(TLink linkIndex) => ref _linksIndexParts[linkIndex];
+        protected override ref RawLinkIndexPart<TLinkAddress> GetLinkIndexPartReference(TLinkAddress linkIndex) => ref _linksIndexParts[linkIndex];
 
         /// <summary>
         /// <para>
@@ -296,7 +254,7 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override bool AreEqual(TLink first, TLink second) => first == second;
+        protected override bool AreEqual(TLinkAddress first, TLinkAddress second) => first == second;
 
         /// <summary>
         /// <para>
@@ -317,7 +275,7 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override bool LessThan(TLink first, TLink second) => first < second;
+        protected override bool LessThan(TLinkAddress first, TLinkAddress second) => first < second;
 
         /// <summary>
         /// <para>
@@ -338,7 +296,7 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override bool LessOrEqualThan(TLink first, TLink second) => first <= second;
+        protected override bool LessOrEqualThan(TLinkAddress first, TLinkAddress second) => first <= second;
 
         /// <summary>
         /// <para>
@@ -359,7 +317,7 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override bool GreaterThan(TLink first, TLink second) => first > second;
+        protected override bool GreaterThan(TLinkAddress first, TLinkAddress second) => first > second;
 
         /// <summary>
         /// <para>
@@ -380,7 +338,7 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override bool GreaterOrEqualThan(TLink first, TLink second) => first >= second;
+        protected override bool GreaterOrEqualThan(TLinkAddress first, TLinkAddress second) => first >= second;
 
         /// <summary>
         /// <para>
@@ -393,7 +351,7 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink GetZero() => 0U;
+        protected override TLinkAddress GetZero() => 0U;
 
         /// <summary>
         /// <para>
@@ -406,7 +364,7 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink GetOne() => 1U;
+        protected override TLinkAddress GetOne() => 1U;
 
         /// <summary>
         /// <para>
@@ -423,7 +381,7 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override long ConvertToInt64(TLink value) => value;
+        protected override long ConvertToInt64(TLinkAddress value) => value;
 
         /// <summary>
         /// <para>
@@ -440,7 +398,7 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink ConvertToAddress(long value) => (TLink)value;
+        protected override TLinkAddress ConvertToAddress(long value) => (TLinkAddress)value;
 
         /// <summary>
         /// <para>
@@ -461,7 +419,7 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink Add(TLink first, TLink second) => first + second;
+        protected override TLinkAddress Add(TLinkAddress first, TLinkAddress second) => first + second;
 
         /// <summary>
         /// <para>
@@ -482,7 +440,7 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink Subtract(TLink first, TLink second) => first - second;
+        protected override TLinkAddress Subtract(TLinkAddress first, TLinkAddress second) => first - second;
 
         /// <summary>
         /// <para>
@@ -499,7 +457,7 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink Increment(TLink link) => ++link;
+        protected override TLinkAddress Increment(TLinkAddress link) => ++link;
 
         /// <summary>
         /// <para>
@@ -516,6 +474,6 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink Decrement(TLink link) => --link;
+        protected override TLinkAddress Decrement(TLinkAddress link) => --link;
     }
 }

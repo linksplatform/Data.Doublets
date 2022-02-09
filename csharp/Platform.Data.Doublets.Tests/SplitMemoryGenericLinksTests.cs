@@ -6,20 +6,8 @@ using Platform.Data.Doublets.Memory;
 
 namespace Platform.Data.Doublets.Tests
 {
-    /// <summary>
-    /// <para>
-    /// Represents the split memory generic links tests.
-    /// </para>
-    /// <para></para>
-    /// </summary>
     public unsafe static class SplitMemoryGenericLinksTests
     {
-        /// <summary>
-        /// <para>
-        /// Tests that crud test.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         [Fact]
         public static void CRUDTest()
         {
@@ -29,12 +17,6 @@ namespace Platform.Data.Doublets.Tests
             Using<ulong>(links => links.TestCRUDOperations());
         }
 
-        /// <summary>
-        /// <para>
-        /// Tests that raw numbers crud test.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         [Fact]
         public static void RawNumbersCRUDTest()
         {
@@ -44,12 +26,6 @@ namespace Platform.Data.Doublets.Tests
             UsingWithExternalReferences<ulong>(links => links.TestRawNumbersCRUDOperations());
         }
 
-        /// <summary>
-        /// <para>
-        /// Tests that multiple random creations and deletions test.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         [Fact]
         public static void MultipleRandomCreationsAndDeletionsTest()
         {
@@ -58,51 +34,21 @@ namespace Platform.Data.Doublets.Tests
             Using<uint>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
             Using<ulong>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
         }
-
-        /// <summary>
-        /// <para>
-        /// Usings the action.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <typeparam name="TLink">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </typeparam>
-        /// <param name="action">
-        /// <para>The action.</para>
-        /// <para></para>
-        /// </param>
-        private static void Using<TLink>(Action<ILinks<TLink>> action)
+        private static void Using<TLinkAddress>(Action<ILinks<TLinkAddress>> action) 
         {
             using (var dataMemory = new HeapResizableDirectMemory())
             using (var indexMemory = new HeapResizableDirectMemory())
-            using (var memory = new SplitMemoryLinks<TLink>(dataMemory, indexMemory))
+            using (var memory = new SplitMemoryLinks<TLinkAddress>(dataMemory, indexMemory))
             {
                 action(memory);
             }
         }
-
-        /// <summary>
-        /// <para>
-        /// Usings the with external references using the specified action.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <typeparam name="TLink">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </typeparam>
-        /// <param name="action">
-        /// <para>The action.</para>
-        /// <para></para>
-        /// </param>
-        private static void UsingWithExternalReferences<TLink>(Action<ILinks<TLink>> action)
+        private static void UsingWithExternalReferences<TLinkAddress>(Action<ILinks<TLinkAddress>> action) 
         {
-            var contants = new LinksConstants<TLink>(enableExternalReferencesSupport: true);
+            var contants = new LinksConstants<TLinkAddress>(enableExternalReferencesSupport: true);
             using (var dataMemory = new HeapResizableDirectMemory())
             using (var indexMemory = new HeapResizableDirectMemory())
-            using (var memory = new SplitMemoryLinks<TLink>(dataMemory, indexMemory, SplitMemoryLinks<TLink>.DefaultLinksSizeStep, contants))
+            using (var memory = new SplitMemoryLinks<TLinkAddress>(dataMemory, indexMemory, SplitMemoryLinks<TLinkAddress>.DefaultLinksSizeStep, contants))
             {
                 action(memory);
             }

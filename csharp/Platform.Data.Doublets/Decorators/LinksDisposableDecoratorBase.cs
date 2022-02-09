@@ -12,10 +12,10 @@ namespace Platform.Data.Doublets.Decorators
     /// </para>
     /// <para></para>
     /// </summary>
-    /// <seealso cref="LinksDecoratorBase{TLink}"/>
-    /// <seealso cref="ILinks{TLink}"/>
+    /// <seealso cref="LinksDecoratorBase{TLinkAddress}"/>
+    /// <seealso cref="ILinks{TLinkAddress}"/>
     /// <seealso cref="System.IDisposable"/>
-    public abstract class LinksDisposableDecoratorBase<TLink> : LinksDecoratorBase<TLink>, ILinks<TLink>, System.IDisposable
+    public abstract class LinksDisposableDecoratorBase<TLinkAddress> : LinksDecoratorBase<TLinkAddress>, ILinks<TLinkAddress>, System.IDisposable
     {
         /// <summary>
         /// <para>
@@ -71,7 +71,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected LinksDisposableDecoratorBase(ILinks<TLink> links) : base(links) => Disposable = new DisposableWithMultipleCallsAllowed(Dispose);
+        protected LinksDisposableDecoratorBase(ILinks<TLinkAddress> links) : base(links) => Disposable = new DisposableWithMultipleCallsAllowed(Dispose);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         ~LinksDisposableDecoratorBase() => Disposable.Destruct();

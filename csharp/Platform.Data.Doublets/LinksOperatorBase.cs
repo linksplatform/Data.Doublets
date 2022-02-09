@@ -10,7 +10,7 @@ namespace Platform.Data.Doublets
     /// </para>
     /// <para></para>
     /// </summary>
-    public abstract class LinksOperatorBase<TLink>
+    public abstract class LinksOperatorBase<TLinkAddress>
     {
         /// <summary>
         /// <para>
@@ -18,7 +18,7 @@ namespace Platform.Data.Doublets
         /// </para>
         /// <para></para>
         /// </summary>
-        protected readonly ILinks<TLink> _links;
+        protected readonly ILinks<TLinkAddress> _links;
 
         /// <summary>
         /// <para>
@@ -26,7 +26,7 @@ namespace Platform.Data.Doublets
         /// </para>
         /// <para></para>
         /// </summary>
-        public ILinks<TLink> Links
+        public ILinks<TLinkAddress> Links
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get => _links;
@@ -43,6 +43,6 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected LinksOperatorBase(ILinks<TLink> links) => _links = links;
+        protected LinksOperatorBase(ILinks<TLinkAddress> links) => _links = links;
     }
 }

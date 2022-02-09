@@ -14,36 +14,12 @@ namespace Platform.Data.Doublets.Memory.United.Generic
     /// </para>
     /// <para></para>
     /// </summary>
-    /// <seealso cref="UnitedMemoryLinksBase{TLink}"/>
-    public unsafe class UnitedMemoryLinks<TLink> : UnitedMemoryLinksBase<TLink>
+    /// <seealso cref="UnitedMemoryLinksBase{TLinkAddress}"/>
+    public unsafe class UnitedMemoryLinks<TLinkAddress> : UnitedMemoryLinksBase<TLinkAddress> 
     {
-        /// <summary>
-        /// <para>
-        /// The create source tree methods.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        private readonly Func<ILinksTreeMethods<TLink>> _createSourceTreeMethods;
-        /// <summary>
-        /// <para>
-        /// The create target tree methods.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        private readonly Func<ILinksTreeMethods<TLink>> _createTargetTreeMethods;
-        /// <summary>
-        /// <para>
-        /// The header.
-        /// </para>
-        /// <para></para>
-        /// </summary>
+        private readonly Func<ILinksTreeMethods<TLinkAddress>> _createSourceTreeMethods;
+        private readonly Func<ILinksTreeMethods<TLinkAddress>> _createTargetTreeMethods;
         private byte* _header;
-        /// <summary>
-        /// <para>
-        /// The links.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private byte* _links;
 
         /// <summary>
@@ -95,7 +71,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public UnitedMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep) : this(memory, memoryReservationStep, Default<LinksConstants<TLink>>.Instance, IndexTreeType.Default) { }
+        public UnitedMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep) : this(memory, memoryReservationStep, Default<LinksConstants<TLinkAddress>>.Instance, IndexTreeType.Default) { }
 
         /// <summary>
         /// <para>
@@ -120,17 +96,17 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public UnitedMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep, LinksConstants<TLink> constants, IndexTreeType indexTreeType) : base(memory, memoryReservationStep, constants)
+        public UnitedMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep, LinksConstants<TLinkAddress> constants, IndexTreeType indexTreeType) : base(memory, memoryReservationStep, constants)
         {
             if (indexTreeType == IndexTreeType.SizedAndThreadedAVLBalancedTree)
             {
-                _createSourceTreeMethods = () => new LinksSourcesAvlBalancedTreeMethods<TLink>(Constants, _links, _header);
-                _createTargetTreeMethods = () => new LinksTargetsAvlBalancedTreeMethods<TLink>(Constants, _links, _header);
+                _createSourceTreeMethods = () => new LinksSourcesAvlBalancedTreeMethods<TLinkAddress>(Constants, _links, _header);
+                _createTargetTreeMethods = () => new LinksTargetsAvlBalancedTreeMethods<TLinkAddress>(Constants, _links, _header);
             }
             else
             {
-                _createSourceTreeMethods = () => new LinksSourcesSizeBalancedTreeMethods<TLink>(Constants, _links, _header);
-                _createTargetTreeMethods = () => new LinksTargetsSizeBalancedTreeMethods<TLink>(Constants, _links, _header);
+                _createSourceTreeMethods = () => new LinksSourcesSizeBalancedTreeMethods<TLinkAddress>(Constants, _links, _header);
+                _createTargetTreeMethods = () => new LinksTargetsSizeBalancedTreeMethods<TLinkAddress>(Constants, _links, _header);
             }
             Init(memory, memoryReservationStep);
         }
@@ -152,7 +128,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             _header = _links;
             SourcesTreeMethods = _createSourceTreeMethods();
             TargetsTreeMethods = _createTargetTreeMethods();
-            UnusedLinksListMethods = new UnusedLinksListMethods<TLink>(_links, _header);
+            UnusedLinksListMethods = new UnusedLinksListMethods<TLinkAddress>(_links, _header);
         }
 
         /// <summary>
@@ -180,7 +156,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override ref LinksHeader<TLink> GetHeaderReference() => ref AsRef<LinksHeader<TLink>>(_header);
+        protected override ref LinksHeader<TLinkAddress> GetHeaderReference() => ref AsRef<LinksHeader<TLinkAddress>>(_header);
 
         /// <summary>
         /// <para>
@@ -197,6 +173,6 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override ref RawLink<TLink> GetLinkReference(TLink linkIndex) => ref AsRef<RawLink<TLink>>(_links + (LinkSizeInBytes * ConvertToInt64(linkIndex)));
+        protected override ref RawLink<TLinkAddress> GetLinkReference(TLinkAddress linkIndex) => ref AsRef<RawLink<TLinkAddress>>(_links + (LinkSizeInBytes * ConvertToInt64(linkIndex)));
     }
 }

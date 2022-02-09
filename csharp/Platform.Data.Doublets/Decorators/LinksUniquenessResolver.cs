@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Platform.Delegates;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -11,16 +13,10 @@ namespace Platform.Data.Doublets.Decorators
     /// </para>
     /// <para></para>
     /// </summary>
-    /// <seealso cref="LinksDecoratorBase{TLink}"/>
-    public class LinksUniquenessResolver<TLink> : LinksDecoratorBase<TLink>
+    /// <seealso cref="LinksDecoratorBase{TLinkAddress}"/>
+    public class LinksUniquenessResolver<TLinkAddress> : LinksDecoratorBase<TLinkAddress> 
     {
-        /// <summary>
-        /// <para>
-        /// The default.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
+        private static readonly EqualityComparer<TLinkAddress> _equalityComparer = EqualityComparer<TLinkAddress>.Default;
 
         /// <summary>
         /// <para>
@@ -33,16 +29,16 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public LinksUniquenessResolver(ILinks<TLink> links) : base(links) { }
+        public LinksUniquenessResolver(ILinks<TLinkAddress> links) : base(links) { }
 
         /// <summary>
         /// <para>
-        /// Updates the restrictions.
+        /// Updates the restriction.
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
         /// <para></para>
         /// </param>
         /// <param name="substitution">
@@ -54,16 +50,16 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Update(IList<TLink> restrictions, IList<TLink> substitution)
+        public override TLinkAddress Update(IList<TLinkAddress>? restriction, IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler)
         {
             var constants = _constants;
             var links = _links;
-            var newLinkAddress = links.SearchOrDefault(substitution[constants.SourcePart], substitution[constants.TargetPart]);
+            var newLinkAddress = links.SearchOrDefault(links.GetSource(substitution), links.GetTarget(substitution));
             if (_equalityComparer.Equals(newLinkAddress, default))
             {
-                return links.Update(restrictions, substitution);
+                return links.Update(restriction, substitution, handler);
             }
-            return ResolveAddressChangeConflict(restrictions[constants.IndexPart], newLinkAddress);
+            return ResolveAddressChangeConflict(links.GetIndex(restriction), newLinkAddress, handler);
         }
 
         /// <summary>
@@ -85,13 +81,13 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual TLink ResolveAddressChangeConflict(TLink oldLinkAddress, TLink newLinkAddress)
+        protected virtual TLinkAddress ResolveAddressChangeConflict(TLinkAddress oldLinkAddress, TLinkAddress newLinkAddress, WriteHandler<TLinkAddress>? handler)
         {
             if (!_equalityComparer.Equals(oldLinkAddress, newLinkAddress) && _links.Exists(oldLinkAddress))
             {
-                _facade.Delete(oldLinkAddress);
+                return _facade.Delete(oldLinkAddress, handler);
             }
-            return newLinkAddress;
+            return _links.Constants.Continue;
         }
     }
 }

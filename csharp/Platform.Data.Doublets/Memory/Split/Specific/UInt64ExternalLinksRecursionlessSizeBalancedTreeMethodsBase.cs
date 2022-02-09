@@ -1,6 +1,6 @@
 using System.Runtime.CompilerServices;
 using Platform.Data.Doublets.Memory.Split.Generic;
-using TLink = System.UInt64;
+using TLinkAddress = System.UInt64;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -12,9 +12,9 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
     /// </para>
     /// <para></para>
     /// </summary>
-    /// <seealso cref="ExternalLinksRecursionlessSizeBalancedTreeMethodsBase{TLink}"/>
-    /// <seealso cref="ILinksTreeMethods{TLink}"/>
-    public unsafe abstract class UInt64ExternalLinksRecursionlessSizeBalancedTreeMethodsBase : ExternalLinksRecursionlessSizeBalancedTreeMethodsBase<TLink>, ILinksTreeMethods<TLink>
+    /// <seealso cref="ExternalLinksRecursionlessSizeBalancedTreeMethodsBase{TLinkAddress}"/>
+    /// <seealso cref="ILinksTreeMethods{TLinkAddress}"/>
+    public unsafe abstract class UInt64ExternalLinksRecursionlessSizeBalancedTreeMethodsBase : ExternalLinksRecursionlessSizeBalancedTreeMethodsBase<TLinkAddress>, ILinksTreeMethods<TLinkAddress>
     {
         /// <summary>
         /// <para>
@@ -22,21 +22,21 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// </para>
         /// <para></para>
         /// </summary>
-        protected new readonly RawLinkDataPart<TLink>* LinksDataParts;
+        protected new readonly RawLinkDataPart<TLinkAddress>* LinksDataParts;
         /// <summary>
         /// <para>
         /// The links index parts.
         /// </para>
         /// <para></para>
         /// </summary>
-        protected new readonly RawLinkIndexPart<TLink>* LinksIndexParts;
+        protected new readonly RawLinkIndexPart<TLinkAddress>* LinksIndexParts;
         /// <summary>
         /// <para>
         /// The header.
         /// </para>
         /// <para></para>
         /// </summary>
-        protected new readonly LinksHeader<TLink>* Header;
+        protected new readonly LinksHeader<TLinkAddress>* Header;
 
         /// <summary>
         /// <para>
@@ -61,7 +61,7 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected UInt64ExternalLinksRecursionlessSizeBalancedTreeMethodsBase(LinksConstants<TLink> constants, RawLinkDataPart<TLink>* linksDataParts, RawLinkIndexPart<TLink>* linksIndexParts, LinksHeader<TLink>* header)
+        protected UInt64ExternalLinksRecursionlessSizeBalancedTreeMethodsBase(LinksConstants<TLinkAddress> constants, RawLinkDataPart<TLinkAddress>* linksDataParts, RawLinkIndexPart<TLinkAddress>* linksIndexParts, LinksHeader<TLinkAddress>* header)
             : base(constants, (byte*)linksDataParts, (byte*)linksIndexParts, (byte*)header)
         {
             LinksDataParts = linksDataParts;
@@ -359,7 +359,7 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override ref LinksHeader<TLink> GetHeaderReference() => ref *Header;
+        protected override ref LinksHeader<TLinkAddress> GetHeaderReference() => ref *Header;
 
         /// <summary>
         /// <para>
@@ -376,7 +376,7 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override ref RawLinkDataPart<TLink> GetLinkDataPartReference(TLink link) => ref LinksDataParts[link];
+        protected override ref RawLinkDataPart<TLinkAddress> GetLinkDataPartReference(TLinkAddress link) => ref LinksDataParts[link];
 
         /// <summary>
         /// <para>
@@ -393,7 +393,7 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override ref RawLinkIndexPart<TLink> GetLinkIndexPartReference(TLink link) => ref LinksIndexParts[link];
+        protected override ref RawLinkIndexPart<TLinkAddress> GetLinkIndexPartReference(TLinkAddress link) => ref LinksIndexParts[link];
 
         /// <summary>
         /// <para>
@@ -414,7 +414,7 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override bool FirstIsToTheLeftOfSecond(TLink first, TLink second)
+        protected override bool FirstIsToTheLeftOfSecond(TLinkAddress first, TLinkAddress second)
         {
             ref var firstLink = ref LinksDataParts[first];
             ref var secondLink = ref LinksDataParts[second];
@@ -440,7 +440,7 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override bool FirstIsToTheRightOfSecond(TLink first, TLink second)
+        protected override bool FirstIsToTheRightOfSecond(TLinkAddress first, TLinkAddress second)
         {
             ref var firstLink = ref LinksDataParts[first];
             ref var secondLink = ref LinksDataParts[second];

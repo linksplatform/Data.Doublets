@@ -12,7 +12,7 @@
 
 NuGet пакет: [Platform.Data.Doublets](https://www.nuget.org/packages/Platform.Data.Doublets)
 
-## [Пример](https://github.com/linksplatform/Examples.Doublets.CRUD.DotNet)
+## [Пример](https://github.com/linksplatform/Examples.Doublets.CRUD.DotNet) | [Запустить .NET fiddle](https://dotnetfiddle.net/Y7Zvt0)
 ```C#
 using System;
 using Platform.Data;

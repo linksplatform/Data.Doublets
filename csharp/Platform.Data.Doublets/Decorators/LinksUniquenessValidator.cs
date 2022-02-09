@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Platform.Delegates;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -11,8 +13,8 @@ namespace Platform.Data.Doublets.Decorators
     /// </para>
     /// <para></para>
     /// </summary>
-    /// <seealso cref="LinksDecoratorBase{TLink}"/>
-    public class LinksUniquenessValidator<TLink> : LinksDecoratorBase<TLink>
+    /// <seealso cref="LinksDecoratorBase{TLinkAddress}"/>
+    public class LinksUniquenessValidator<TLinkAddress> : LinksDecoratorBase<TLinkAddress> 
     {
         /// <summary>
         /// <para>
@@ -25,16 +27,16 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public LinksUniquenessValidator(ILinks<TLink> links) : base(links) { }
+        public LinksUniquenessValidator(ILinks<TLinkAddress> links) : base(links) { }
 
         /// <summary>
         /// <para>
-        /// Updates the restrictions.
+        /// Updates the restriction.
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
         /// <para></para>
         /// </param>
         /// <param name="substitution">
@@ -46,12 +48,12 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override TLink Update(IList<TLink> restrictions, IList<TLink> substitution)
+        public override TLinkAddress Update(IList<TLinkAddress>? restriction, IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler)
         {
             var links = _links;
             var constants = _constants;
-            links.EnsureDoesNotExists(substitution[constants.SourcePart], substitution[constants.TargetPart]);
-            return links.Update(restrictions, substitution);
+            links.EnsureDoesNotExists(links.GetSource(substitution), links.GetTarget(substitution));
+            return links.Update(restriction, substitution, handler);
         }
     }
 }

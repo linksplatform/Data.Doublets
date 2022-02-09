@@ -1,3 +1,4 @@
+using System.IO;
 using BenchmarkDotNet.Attributes;
 using Platform.Data.Doublets.Memory.Split.Generic;
 using Platform.Data.Doublets.Memory.United.Generic;
@@ -8,51 +9,19 @@ using Platform.Memory;
 
 namespace Platform.Data.Doublets.Benchmarks
 {
-    /// <summary>
-    /// <para>
-    /// Represents the memory benchmarks.
-    /// </para>
-    /// <para></para>
-    /// </summary>
     [SimpleJob]
     [MemoryDiagnoser]
     public class MemoryBenchmarks
     {
-        /// <summary>
-        /// <para>
-        /// The split memory.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private static SplitMemoryLinks<uint> _splitMemory;
-        /// <summary>
-        /// <para>
-        /// The split memory links.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private static ILinks<uint> _splitMemoryLinks;
-        /// <summary>
-        /// <para>
-        /// The united memory.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private static UnitedMemoryLinks<uint> _unitedMemory;
-        /// <summary>
-        /// <para>
-        /// The united memory links.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private static ILinks<uint> _unitedMemoryLinks;
+        private static FFI.UnitedMemoryLinks<uint> _ffiUnitedMemory;
+        private static ILinks<uint> _ffiUnitedMemoryLinks;
+        private static FFI.UInt32UnitedMemoryLinks _ffiUInt32UnitedMemory;
+        private static ILinks<uint> _ffiUInt32UnitedMemoryLinks;
 
-        /// <summary>
-        /// <para>
-        /// Setup.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         [GlobalSetup]
         public static void Setup()
         {
@@ -64,43 +33,49 @@ namespace Platform.Data.Doublets.Benchmarks
             var memory = new HeapResizableDirectMemory();
             _unitedMemory = new UnitedMemoryLinks<uint>(memory);
             _unitedMemoryLinks = _unitedMemory.DecorateWithAutomaticUniquenessAndUsagesResolution();
+
+            File.Delete("db.links");
+            _ffiUnitedMemory = new FFI.UnitedMemoryLinks<uint>("db.links");
+            _ffiUnitedMemoryLinks = _ffiUnitedMemory.DecorateWithAutomaticUniquenessAndUsagesResolution();
+
+            File.Delete("db.links1");
+            _ffiUInt32UnitedMemory = new FFI.UInt32UnitedMemoryLinks("db.links1");
+            _ffiUInt32UnitedMemoryLinks = _ffiUInt32UnitedMemory.DecorateWithAutomaticUniquenessAndUsagesResolution();
         }
 
-        /// <summary>
-        /// <para>
-        /// Cleanups.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         [GlobalCleanup]
         public static void Cleanup()
         {
             _splitMemory.Dispose();
             _unitedMemory.Dispose();
+             _ffiUnitedMemory.Dispose();
+            File.Delete("db.links");
+            _ffiUInt32UnitedMemory.Dispose();
+            File.Delete("db.links1");
         }
 
-        /// <summary>
-        /// <para>
-        /// Splits this instance.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         [Benchmark]
         public void Split()
         {
-            _splitMemoryLinks.TestMultipleRandomCreationsAndDeletions(1000);
+            _splitMemoryLinks.TestMultipleRandomCreationsAndDeletions(150);
         }
 
-        /// <summary>
-        /// <para>
-        /// Uniteds this instance.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         [Benchmark]
         public void United()
         {
-            _unitedMemoryLinks.TestMultipleRandomCreationsAndDeletions(1000);
+            _unitedMemoryLinks.TestMultipleRandomCreationsAndDeletions(150);
+        }
+
+        [Benchmark]
+        public void FfiUnited()
+        {
+            _ffiUnitedMemoryLinks.TestMultipleRandomCreationsAndDeletions(150);
+        }
+
+        [Benchmark]
+        public void FfiUInt32United()
+        {
+            _ffiUInt32UnitedMemoryLinks.TestMultipleRandomCreationsAndDeletions(150);
         }
     }
 }

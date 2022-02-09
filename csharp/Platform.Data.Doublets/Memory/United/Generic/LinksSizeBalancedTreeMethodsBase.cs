@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Platform.Collections.Methods.Trees;
 using Platform.Converters;
+using Platform.Delegates;
 using static System.Runtime.CompilerServices.Unsafe;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -16,17 +17,11 @@ namespace Platform.Data.Doublets.Memory.United.Generic
     /// </para>
     /// <para></para>
     /// </summary>
-    /// <seealso cref="SizeBalancedTreeMethods{TLink}"/>
-    /// <seealso cref="ILinksTreeMethods{TLink}"/>
-    public unsafe abstract class LinksSizeBalancedTreeMethodsBase<TLink> : SizeBalancedTreeMethods<TLink>, ILinksTreeMethods<TLink>
+    /// <seealso cref="SizeBalancedTreeMethods{TLinkAddress}"/>
+    /// <seealso cref="ILinksTreeMethods{TLinkAddress}"/>
+    public unsafe abstract class LinksSizeBalancedTreeMethodsBase<TLinkAddress> : SizeBalancedTreeMethods<TLinkAddress>, ILinksTreeMethods<TLinkAddress>
     {
-        /// <summary>
-        /// <para>
-        /// The default.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        private static readonly UncheckedConverter<TLink, long> _addressToInt64Converter = UncheckedConverter<TLink, long>.Default;
+        private static readonly UncheckedConverter<TLinkAddress, long> _addressToInt64Converter = UncheckedConverter<TLinkAddress, long>.Default;
 
         /// <summary>
         /// <para>
@@ -34,14 +29,14 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// </para>
         /// <para></para>
         /// </summary>
-        protected readonly TLink Break;
+        protected readonly TLinkAddress Break;
         /// <summary>
         /// <para>
         /// The continue.
         /// </para>
         /// <para></para>
         /// </summary>
-        protected readonly TLink Continue;
+        protected readonly TLinkAddress Continue;
         /// <summary>
         /// <para>
         /// The links.
@@ -76,7 +71,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected LinksSizeBalancedTreeMethodsBase(LinksConstants<TLink> constants, byte* links, byte* header)
+        protected LinksSizeBalancedTreeMethodsBase(LinksConstants<TLinkAddress> constants, byte* links, byte* header)
         {
             Links = links;
             Header = header;
@@ -95,7 +90,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected abstract TLink GetTreeRoot();
+        protected abstract TLinkAddress GetTreeRoot();
 
         /// <summary>
         /// <para>
@@ -112,7 +107,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected abstract TLink GetBasePartValue(TLink link);
+        protected abstract TLinkAddress GetBasePartValue(TLinkAddress link);
 
         /// <summary>
         /// <para>
@@ -141,7 +136,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected abstract bool FirstIsToTheRightOfSecond(TLink source, TLink target, TLink rootSource, TLink rootTarget);
+        protected abstract bool FirstIsToTheRightOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget);
 
         /// <summary>
         /// <para>
@@ -170,7 +165,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected abstract bool FirstIsToTheLeftOfSecond(TLink source, TLink target, TLink rootSource, TLink rootTarget);
+        protected abstract bool FirstIsToTheLeftOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget);
 
         /// <summary>
         /// <para>
@@ -183,7 +178,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual ref LinksHeader<TLink> GetHeaderReference() => ref AsRef<LinksHeader<TLink>>(Header);
+        protected virtual ref LinksHeader<TLinkAddress> GetHeaderReference() => ref AsRef<LinksHeader<TLinkAddress>>(Header);
 
         /// <summary>
         /// <para>
@@ -200,7 +195,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual ref RawLink<TLink> GetLinkReference(TLink link) => ref AsRef<RawLink<TLink>>(Links + (RawLink<TLink>.SizeInBytes * _addressToInt64Converter.Convert(link)));
+        protected virtual ref RawLink<TLinkAddress> GetLinkReference(TLinkAddress link) => ref AsRef<RawLink<TLinkAddress>>(Links + (RawLink<TLinkAddress>.SizeInBytes * _addressToInt64Converter.Convert(link)));
 
         /// <summary>
         /// <para>
@@ -217,10 +212,10 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual IList<TLink> GetLinkValues(TLink linkIndex)
+        protected virtual IList<TLinkAddress>? GetLinkValues(TLinkAddress linkIndex)
         {
             ref var link = ref GetLinkReference(linkIndex);
-            return new Link<TLink>(linkIndex, link.Source, link.Target);
+            return new Link<TLinkAddress>(linkIndex, link.Source, link.Target);
         }
 
         /// <summary>
@@ -242,7 +237,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override bool FirstIsToTheLeftOfSecond(TLink first, TLink second)
+        protected override bool FirstIsToTheLeftOfSecond(TLinkAddress first, TLinkAddress second)
         {
             ref var firstLink = ref GetLinkReference(first);
             ref var secondLink = ref GetLinkReference(second);
@@ -268,7 +263,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override bool FirstIsToTheRightOfSecond(TLink first, TLink second)
+        protected override bool FirstIsToTheRightOfSecond(TLinkAddress first, TLinkAddress second)
         {
             ref var firstLink = ref GetLinkReference(first);
             ref var secondLink = ref GetLinkReference(second);
@@ -281,7 +276,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// </para>
         /// <para></para>
         /// </summary>
-        public TLink this[TLink index]
+        public TLinkAddress this[TLinkAddress index]
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get
@@ -318,7 +313,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <param name="target">Индекс связи, которая является концом на искомой связи.</param>
         /// <returns>Индекс искомой связи.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLink Search(TLink source, TLink target)
+        public TLinkAddress Search(TLinkAddress source, TLinkAddress target)
         {
             var root = GetTreeRoot();
             while (!EqualToZero(root))
@@ -358,7 +353,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLink CountUsages(TLink link)
+        public TLinkAddress CountUsages(TLinkAddress link)
         {
             var root = GetTreeRoot();
             var total = GetSize(root);
@@ -413,33 +408,11 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLink EachUsage(TLink @base, Func<IList<TLink>, TLink> handler) => EachUsageCore(@base, GetTreeRoot(), handler);
+        public TLinkAddress EachUsage(TLinkAddress @base, ReadHandler<TLinkAddress>? handler) => EachUsageCore(@base, GetTreeRoot(), handler);
 
         // TODO: 1. Move target, handler to separate object. 2. Use stack or walker 3. Use low-level MSIL stack.
-        /// <summary>
-        /// <para>
-        /// Eaches the usage core using the specified base.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="@base">
-        /// <para>The base.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="link">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="handler">
-        /// <para>The handler.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The continue.</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private TLink EachUsageCore(TLink @base, TLink link, Func<IList<TLink>, TLink> handler)
+        private TLinkAddress EachUsageCore(TLinkAddress @base, TLinkAddress link, ReadHandler<TLinkAddress>? handler)
         {
             var @continue = Continue;
             if (EqualToZero(link))
@@ -495,7 +468,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void PrintNodeValue(TLink node, StringBuilder sb)
+        protected override void PrintNodeValue(TLinkAddress node, StringBuilder sb)
         {
             ref var link = ref GetLinkReference(node);
             sb.Append(' ');

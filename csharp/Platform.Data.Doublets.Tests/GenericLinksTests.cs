@@ -1,26 +1,16 @@
 using System;
+using System.IO;
+using Platform.Data.Doublets.Decorators;
 using Xunit;
-using Platform.Reflection;
+
 using Platform.Memory;
-using Platform.Scopes;
+
 using Platform.Data.Doublets.Memory.United.Generic;
 
 namespace Platform.Data.Doublets.Tests
 {
-    /// <summary>
-    /// <para>
-    /// Represents the generic links tests.
-    /// </para>
-    /// <para></para>
-    /// </summary>
-    public unsafe static class GenericLinksTests
+    public static class GenericLinksTests
     {
-        /// <summary>
-        /// <para>
-        /// Tests that crud test.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         [Fact]
         public static void CRUDTest()
         {
@@ -30,12 +20,6 @@ namespace Platform.Data.Doublets.Tests
             Using<ulong>(links => links.TestCRUDOperations());
         }
 
-        /// <summary>
-        /// <para>
-        /// Tests that raw numbers crud test.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         [Fact]
         public static void RawNumbersCRUDTest()
         {
@@ -45,12 +29,6 @@ namespace Platform.Data.Doublets.Tests
             Using<ulong>(links => links.TestRawNumbersCRUDOperations());
         }
 
-        /// <summary>
-        /// <para>
-        /// Tests that multiple random creations and deletions test.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         [Fact]
         public static void MultipleRandomCreationsAndDeletionsTest()
         {
@@ -59,27 +37,18 @@ namespace Platform.Data.Doublets.Tests
             Using<uint>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
             Using<ulong>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
         }
-
-        /// <summary>
-        /// <para>
-        /// Usings the action.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <typeparam name="TLink">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </typeparam>
-        /// <param name="action">
-        /// <para>The action.</para>
-        /// <para></para>
-        /// </param>
-        private static void Using<TLink>(Action<ILinks<TLink>> action)
+        private static void Using<TLinkAddress>(Action<ILinks<TLinkAddress>> action) 
         {
-            using (var scope = new Scope<Types<HeapResizableDirectMemory, UnitedMemoryLinks<TLink>>>())
+            var unitedMemoryLinks = new UnitedMemoryLinks<TLinkAddress>(new HeapResizableDirectMemory());
+            using (var logFile = File.Open("linksLogger.txt", FileMode.Create, FileAccess.Write))
             {
-                action(scope.Use<ILinks<TLink>>());
+                LoggingDecorator<TLinkAddress> links = new(unitedMemoryLinks, logFile);
+                action(links);
             }
+
+            File.Delete("db.links");
+            using var ffiLinks = new FFI.UnitedMemoryLinks<TLinkAddress>("db.links");
+            action(ffiLinks);
         }
     }
 }

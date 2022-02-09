@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using Platform.Singletons;
 using Platform.Memory;
 using Platform.Data.Doublets.Memory.Split.Generic;
-using TLink = System.UInt64;
+using TLinkAddress = System.UInt64;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -15,57 +15,15 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
     /// </para>
     /// <para></para>
     /// </summary>
-    /// <seealso cref="SplitMemoryLinksBase{TLink}"/>
-    public unsafe class UInt64SplitMemoryLinks : SplitMemoryLinksBase<TLink>
+    /// <seealso cref="SplitMemoryLinksBase{TLinkAddress}"/>
+    public unsafe class UInt64SplitMemoryLinks : SplitMemoryLinksBase<TLinkAddress>
     {
-        /// <summary>
-        /// <para>
-        /// The create internal source tree methods.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        private readonly Func<ILinksTreeMethods<TLink>> _createInternalSourceTreeMethods;
-        /// <summary>
-        /// <para>
-        /// The create external source tree methods.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        private readonly Func<ILinksTreeMethods<TLink>> _createExternalSourceTreeMethods;
-        /// <summary>
-        /// <para>
-        /// The create internal target tree methods.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        private readonly Func<ILinksTreeMethods<TLink>> _createInternalTargetTreeMethods;
-        /// <summary>
-        /// <para>
-        /// The create external target tree methods.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        private readonly Func<ILinksTreeMethods<TLink>> _createExternalTargetTreeMethods;
-        /// <summary>
-        /// <para>
-        /// The header.
-        /// </para>
-        /// <para></para>
-        /// </summary>
+        private readonly Func<ILinksTreeMethods<TLinkAddress>> _createInternalSourceTreeMethods;
+        private readonly Func<ILinksTreeMethods<TLinkAddress>> _createExternalSourceTreeMethods;
+        private readonly Func<ILinksTreeMethods<TLinkAddress>> _createInternalTargetTreeMethods;
+        private readonly Func<ILinksTreeMethods<TLinkAddress>> _createExternalTargetTreeMethods;
         private LinksHeader<ulong>* _header;
-        /// <summary>
-        /// <para>
-        /// The links data parts.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private RawLinkDataPart<ulong>* _linksDataParts;
-        /// <summary>
-        /// <para>
-        /// The links index parts.
-        /// </para>
-        /// <para></para>
-        /// </summary>
         private RawLinkIndexPart<ulong>* _linksIndexParts;
 
         /// <summary>
@@ -104,7 +62,7 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public UInt64SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep) : this(dataMemory, indexMemory, memoryReservationStep, Default<LinksConstants<TLink>>.Instance, IndexTreeType.Default, useLinkedList: true) { }
+        public UInt64SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep) : this(dataMemory, indexMemory, memoryReservationStep, Default<LinksConstants<TLinkAddress>>.Instance, IndexTreeType.Default, useLinkedList: true) { }
 
         /// <summary>
         /// <para>
@@ -129,7 +87,7 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public UInt64SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep, LinksConstants<TLink> constants) : this(dataMemory, indexMemory, memoryReservationStep, constants, IndexTreeType.Default, useLinkedList: true) { }
+        public UInt64SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep, LinksConstants<TLinkAddress> constants) : this(dataMemory, indexMemory, memoryReservationStep, constants, IndexTreeType.Default, useLinkedList: true) { }
 
         /// <summary>
         /// <para>
@@ -162,7 +120,7 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public UInt64SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep, LinksConstants<TLink> constants, IndexTreeType indexTreeType, bool useLinkedList) : base(dataMemory, indexMemory, memoryReservationStep, constants, useLinkedList)
+        public UInt64SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep, LinksConstants<TLinkAddress> constants, IndexTreeType indexTreeType, bool useLinkedList) : base(dataMemory, indexMemory, memoryReservationStep, constants, useLinkedList)
         {
             if (indexTreeType == IndexTreeType.SizeBalancedTree)
             {
@@ -198,9 +156,9 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override void SetPointers(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory)
         {
-            _linksDataParts = (RawLinkDataPart<TLink>*)dataMemory.Pointer;
-            _linksIndexParts = (RawLinkIndexPart<TLink>*)indexMemory.Pointer;
-            _header = (LinksHeader<TLink>*)indexMemory.Pointer;
+            _linksDataParts = (RawLinkDataPart<TLinkAddress>*)dataMemory.Pointer;
+            _linksIndexParts = (RawLinkIndexPart<TLinkAddress>*)indexMemory.Pointer;
+            _header = (LinksHeader<TLinkAddress>*)indexMemory.Pointer;
             if (_useLinkedList)
             {
                 InternalSourcesListMethods = new UInt64InternalLinksSourcesLinkedListMethods(Constants, _linksDataParts, _linksIndexParts);
@@ -241,7 +199,7 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override ref LinksHeader<TLink> GetHeaderReference() => ref *_header;
+        protected override ref LinksHeader<TLinkAddress> GetHeaderReference() => ref *_header;
 
         /// <summary>
         /// <para>
@@ -258,7 +216,7 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override ref RawLinkDataPart<TLink> GetLinkDataPartReference(TLink linkIndex) => ref _linksDataParts[linkIndex];
+        protected override ref RawLinkDataPart<TLinkAddress> GetLinkDataPartReference(TLinkAddress linkIndex) => ref _linksDataParts[linkIndex];
 
         /// <summary>
         /// <para>
@@ -275,7 +233,7 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override ref RawLinkIndexPart<TLink> GetLinkIndexPartReference(TLink linkIndex) => ref _linksIndexParts[linkIndex];
+        protected override ref RawLinkIndexPart<TLinkAddress> GetLinkIndexPartReference(TLinkAddress linkIndex) => ref _linksIndexParts[linkIndex];
 
         /// <summary>
         /// <para>

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Platform.Delegates;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -12,7 +13,7 @@ namespace Platform.Data.Doublets.Memory
     /// </para>
     /// <para></para>
     /// </summary>
-    public interface ILinksTreeMethods<TLink>
+    public interface ILinksTreeMethods<TLinkAddress>
     {
         /// <summary>
         /// <para>
@@ -29,7 +30,7 @@ namespace Platform.Data.Doublets.Memory
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        TLink CountUsages(TLink root);
+        TLinkAddress CountUsages(TLinkAddress root);
 
         /// <summary>
         /// <para>
@@ -50,7 +51,7 @@ namespace Platform.Data.Doublets.Memory
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        TLink Search(TLink source, TLink target);
+        TLinkAddress Search(TLinkAddress source, TLinkAddress target);
 
         /// <summary>
         /// <para>
@@ -71,7 +72,7 @@ namespace Platform.Data.Doublets.Memory
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        TLink EachUsage(TLink root, Func<IList<TLink>, TLink> handler);
+        TLinkAddress EachUsage(TLinkAddress root, ReadHandler<TLinkAddress>? handler);
 
         /// <summary>
         /// <para>
@@ -88,7 +89,7 @@ namespace Platform.Data.Doublets.Memory
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        void Detach(ref TLink root, TLink linkIndex);
+        void Detach(ref TLinkAddress root, TLinkAddress linkIndex);
 
         /// <summary>
         /// <para>
@@ -105,6 +106,6 @@ namespace Platform.Data.Doublets.Memory
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        void Attach(ref TLink root, TLink linkIndex);
+        void Attach(ref TLinkAddress root, TLinkAddress linkIndex);
     }
 }

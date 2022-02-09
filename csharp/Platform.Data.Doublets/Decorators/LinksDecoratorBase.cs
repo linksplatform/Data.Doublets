@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Platform.Delegates;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -12,9 +13,9 @@ namespace Platform.Data.Doublets.Decorators
     /// </para>
     /// <para></para>
     /// </summary>
-    /// <seealso cref="LinksOperatorBase{TLink}"/>
-    /// <seealso cref="ILinks{TLink}"/>
-    public abstract class LinksDecoratorBase<TLink> : LinksOperatorBase<TLink>, ILinks<TLink>
+    /// <seealso cref="LinksOperatorBase{TLinkAddress}"/>
+    /// <seealso cref="ILinks{TLinkAddress}"/>
+    public abstract class LinksDecoratorBase<TLinkAddress> : LinksOperatorBase<TLinkAddress>, ILinks<TLinkAddress>
     {
         /// <summary>
         /// <para>
@@ -22,7 +23,7 @@ namespace Platform.Data.Doublets.Decorators
         /// </para>
         /// <para></para>
         /// </summary>
-        protected readonly LinksConstants<TLink> _constants;
+        protected readonly LinksConstants<TLinkAddress> _constants;
 
         /// <summary>
         /// <para>
@@ -30,7 +31,7 @@ namespace Platform.Data.Doublets.Decorators
         /// </para>
         /// <para></para>
         /// </summary>
-        public LinksConstants<TLink> Constants
+        public LinksConstants<TLinkAddress> Constants
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get => _constants;
@@ -42,7 +43,7 @@ namespace Platform.Data.Doublets.Decorators
         /// </para>
         /// <para></para>
         /// </summary>
-        protected ILinks<TLink> _facade;
+        protected ILinks<TLinkAddress> _facade;
 
         /// <summary>
         /// <para>
@@ -50,7 +51,7 @@ namespace Platform.Data.Doublets.Decorators
         /// </para>
         /// <para></para>
         /// </summary>
-        public ILinks<TLink> Facade
+        public ILinks<TLinkAddress> Facade
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get => _facade;
@@ -58,7 +59,7 @@ namespace Platform.Data.Doublets.Decorators
             set
             {
                 _facade = value;
-                if (_links is LinksDecoratorBase<TLink> decorator)
+                if (_links is LinksDecoratorBase<TLinkAddress> decorator)
                 {
                     decorator.Facade = value;
                 }
@@ -76,7 +77,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected LinksDecoratorBase(ILinks<TLink> links) : base(links)
+        protected LinksDecoratorBase(ILinks<TLinkAddress> links) : base(links)
         {
             _constants = links.Constants;
             Facade = this;
@@ -84,12 +85,12 @@ namespace Platform.Data.Doublets.Decorators
 
         /// <summary>
         /// <para>
-        /// Counts the restrictions.
+        /// Counts the restriction.
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
         /// <para></para>
         /// </param>
         /// <returns>
@@ -97,7 +98,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Count(IList<TLink> restrictions) => _links.Count(restrictions);
+        public virtual TLinkAddress Count(IList<TLinkAddress>? restriction) => _links.Count(restriction);
 
         /// <summary>
         /// <para>
@@ -109,8 +110,8 @@ namespace Platform.Data.Doublets.Decorators
         /// <para>The handler.</para>
         /// <para></para>
         /// </param>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
         /// <para></para>
         /// </param>
         /// <returns>
@@ -118,16 +119,16 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Each(Func<IList<TLink>, TLink> handler, IList<TLink> restrictions) => _links.Each(handler, restrictions);
+        public virtual TLinkAddress Each(IList<TLinkAddress>? restriction, ReadHandler<TLinkAddress>? handler) => _links.Each(restriction, handler);
 
         /// <summary>
         /// <para>
-        /// Creates the restrictions.
+        /// Creates the restriction.
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
         /// <para></para>
         /// </param>
         /// <returns>
@@ -135,16 +136,16 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Create(IList<TLink> restrictions) => _links.Create(restrictions);
+        public virtual TLinkAddress Create(IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler) => _links.Create(substitution, handler);
 
         /// <summary>
         /// <para>
-        /// Updates the restrictions.
+        /// Updates the restriction.
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
         /// <para></para>
         /// </param>
         /// <param name="substitution">
@@ -156,19 +157,19 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLink Update(IList<TLink> restrictions, IList<TLink> substitution) => _links.Update(restrictions, substitution);
+        public virtual TLinkAddress Update(IList<TLinkAddress>? restriction, IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler) => _links.Update(restriction, substitution, handler);
 
         /// <summary>
         /// <para>
-        /// Deletes the restrictions.
+        /// Deletes the restriction.
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual void Delete(IList<TLink> restrictions) => _links.Delete(restrictions);
+        public virtual TLinkAddress Delete(IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? handler) => _links.Delete(restriction, handler);
     }
 }
