@@ -27,6 +27,7 @@
 #include "Memory/United/Generic/LinksSourcesSizeBalancedTreeMethods.h"
 #include "Memory/United/Generic/UnitedMemoryLinksBase.h"
 #include "Memory/United/Generic/UnitedMemoryLinks.h"
+#include "Memory/United/Generic/Ffi/UnitedMemoryLinksFfi.h"
 
 
 #endif
