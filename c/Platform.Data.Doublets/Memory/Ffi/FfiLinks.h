@@ -45,9 +45,9 @@ typedef uint32_t (* EachCallback_u32)(struct Link_u32);
 
 typedef uint64_t (* EachCallback_u64)(struct Link_u64);
 
-typedef struct SharedLogger {
-    void (* formatter)(const Record*);
-} SharedLogger;
+//typedef struct SharedLogger {
+//    void (* formatter)(const Record*);
+//} SharedLogger;
 
 void* ByteUnitedMemoryLinks_New(const char* path);
 
