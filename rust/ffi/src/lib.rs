@@ -37,6 +37,9 @@ use std::error::Error;
 use std::ops::{RangeInclusive, Try};
 use tracing_subscriber::fmt::format::Format;
 
+// TODO: for macro
+use doublets::doublets::decorators::*;
+
 fn result_into_log<R, E: Display>(result: Result<R, E>, default: R) -> R {
     match result {
         Ok(r) => r,
@@ -48,7 +51,7 @@ fn result_into_log<R, E: Display>(result: Result<R, E>, default: R) -> R {
 }
 
 fn query_from_raw<T: LinkType>(query: *const T, len: usize) -> Query<'static, T> {
-    if !query.is_null() && len != 0 {
+    if query.is_null() && len != 0 {
         warn!("If `query` is null then `len` must be 0");
     }
 
@@ -70,6 +73,8 @@ fn unnul_or_error<'a, Ptr, R>(ptr: *mut Ptr) -> &'a mut R {
 }
 
 type UnitedLinks<T> = Store<T, FileMappedMem>;
+
+type WrappedLinks<T> = env_decorators::env_type!("JS_LETS_GO", "<T, *>", UnitedLinks<T>);
 
 type EachCallback<T> = extern "C" fn(Link<T>) -> T;
 
@@ -112,6 +117,7 @@ impl<T: LinkType> From<LinksConstants<T>> for Constants<T> {
             internal_range: Range(*c.internal_range.start(), *c.internal_range.end()),
             // external_range: c.external_range.map(|r| Range(*r.start(), *r.end())),
             external_range: c
+                .clone()
                 .external_range
                 .map_or(Range(T::zero(), T::zero()), |r| Range(*r.start(), *r.end())),
             _opt_marker: c.external_range.is_some(),
@@ -190,7 +196,10 @@ fn new_with_constants_united_links<T: LinkType>(
         let path = unsafe { CStr::from_ptr(path) }.to_str()?;
         let path = OsStr::new(path);
         let mem = FileMappedMem::new(path)?;
-        let links = box UnitedLinks::<T>::with_constants(mem, constants.into())?;
+        let links = box env_decorators::env_value!(
+            "JS_LETS_GO",
+            UnitedLinks::<T>::with_constants(mem, constants.into())?
+        );
         Box::into_raw(links) as *mut c_void
     };
     result_into_log(result, null_mut())
@@ -205,7 +214,7 @@ fn new_with_constants_united_links<T: LinkType>(
     name = "*UnitedMemoryLinks_Drop"
 )]
 unsafe fn drop_united_links<T: LinkType>(this: *mut c_void) {
-    let links: &mut UnitedLinks<T> = unnul_or_error(this);
+    let links: &mut WrappedLinks<T> = unnul_or_error(this);
     unsafe {
         drop_in_place(links);
     }
@@ -225,7 +234,7 @@ fn create_united<T: LinkType>(
     len: usize,
     callback: CUDCallback<T>,
 ) -> T {
-    let links: &mut UnitedLinks<T> = unnul_or_error(this);
+    let links: &mut WrappedLinks<T> = unnul_or_error(this);
     let continue_ = links.constants().r#continue;
     let break_ = links.constants().r#break;
     let result = {
@@ -265,7 +274,7 @@ fn each_united<T: LinkType>(
     len: usize,
     callback: EachCallback<T>,
 ) -> T {
-    let links: &mut UnitedLinks<T> = unnul_or_error(this);
+    let links: &mut WrappedLinks<T> = unnul_or_error(this);
     let query = query_from_raw(query, len);
     let handler = move |link: DLink<_>| callback(link.into());
     links.each_by(query, handler)
@@ -280,7 +289,7 @@ fn each_united<T: LinkType>(
     name = "*UnitedMemoryLinks_Count"
 )]
 unsafe fn count_united<T: LinkType>(this: *mut c_void, query: *const T, len: usize) -> T {
-    let links: &mut UnitedLinks<T> = unnul_or_error(this);
+    let links: &mut WrappedLinks<T> = unnul_or_error(this);
     let query = query_from_raw(query, len);
     links.count_by(query)
 }
@@ -303,7 +312,7 @@ unsafe fn update_united<T: LinkType>(
 ) -> T {
     let restrictions = query_from_raw(restrictions, len_r);
     let substitutuion = query_from_raw(substitutuion, len_s);
-    let links: &mut UnitedLinks<T> = unnul_or_error(this);
+    let links: &mut WrappedLinks<T> = unnul_or_error(this);
     let continue_ = links.constants().r#continue;
     let break_ = links.constants().r#break;
     let result = {
@@ -343,7 +352,7 @@ unsafe fn delete_united<T: LinkType>(
     callback: CUDCallback<T>,
 ) -> T {
     let query = query_from_raw(query, len);
-    let links: &mut UnitedLinks<T> = unnul_or_error(this);
+    let links: &mut WrappedLinks<T> = unnul_or_error(this);
     let continue_ = links.constants().r#continue;
     let break_ = links.constants().r#break;
     let result = {
