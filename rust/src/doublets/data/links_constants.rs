@@ -11,9 +11,9 @@ pub struct LinksConstants<T: LinkType> {
     pub index_part: T,
     pub source_part: T,
     pub target_part: T,
-    pub r#break: T,
     pub null: T,
     pub r#continue: T,
+    pub r#break: T,
     pub skip: T,
     pub any: T,
     pub itself: T,
@@ -38,18 +38,20 @@ impl<T: LinkType> LinksConstants<T> {
         let three = two + one;
         let four = three + one;
         let five = four + one;
+        let six = five + one;
+
         Self {
             index_part: zero(),
             source_part: one,
             target_part,
-            r#break: default(),
             null: default(),
             r#continue: *internal.end(),
-            skip: *internal.end() - one,
-            any: *internal.end() - two,
-            itself: *internal.end() - three,
-            error: *internal.end() - four,
-            internal_range: *internal.start()..=*internal.end() - five,
+            r#break: *internal.end() - one,
+            skip: *internal.end() - two,
+            any: *internal.end() - three,
+            itself: *internal.end() - four,
+            error: *internal.end() - five,
+            internal_range: *internal.start()..=*internal.end() - six,
             external_range: external,
         }
     }
