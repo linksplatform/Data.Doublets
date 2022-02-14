@@ -1,0 +1,60 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.13"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Platform.Data.Doublets",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Platform.Data.Doublets.Tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Platform.Data.Doublets.Tests-Debug-687813ffea198cb80e4a.json",
+					"name" : "Platform.Data.Doublets.Tests",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/freephoenix888/Documents/Programming/LinksPlatform/Data.Doublets/c/cmake-build-debug",
+		"source" : "/home/freephoenix888/Documents/Programming/LinksPlatform/Data.Doublets/c"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

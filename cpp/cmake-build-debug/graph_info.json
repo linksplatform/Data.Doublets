@@ -1,0 +1,30 @@
+{
+ "options": [
+  [
+   "gtest:build_gmock",
+   "True"
+  ],
+  [
+   "gtest:fPIC",
+   "True"
+  ],
+  [
+   "gtest:hide_symbols",
+   "False"
+  ],
+  [
+   "gtest:no_main",
+   "False"
+  ],
+  [
+   "gtest:shared",
+   "False"
+  ]
+ ],
+ "root": {
+  "name": null,
+  "version": null,
+  "user": null,
+  "channel": null
+ }
+}
