@@ -13,7 +13,7 @@ namespace Platform.Data.Doublets.Benchmarks
     [MemoryDiagnoser]
     public class MemoryBenchmarks
     {
-        private const int n = 1000;
+        private const int N = 1000;
         private static SplitMemoryLinks<uint> _splitMemory;
         private static ILinks<uint> _splitMemoryLinks;
         private static UnitedMemoryLinks<uint> _unitedMemory;
@@ -58,25 +58,25 @@ namespace Platform.Data.Doublets.Benchmarks
         [Benchmark]
         public void Split()
         {
-            _splitMemoryLinks.TestMultipleRandomCreationsAndDeletions(n);
+            _splitMemoryLinks.TestMultipleRandomCreationsAndDeletions(N);
         }
 
         [Benchmark]
         public void United()
         {
-            _unitedMemoryLinks.TestMultipleRandomCreationsAndDeletions(n);
+            _unitedMemoryLinks.TestMultipleRandomCreationsAndDeletions(N);
         }
 
         [Benchmark]
         public void FfiUnited()
         {
-            _ffiUnitedMemoryLinks.TestMultipleRandomCreationsAndDeletions(n);
+            _ffiUnitedMemoryLinks.TestMultipleRandomCreationsAndDeletions(N);
         }
 
         [Benchmark]
         public void FfiUInt32United()
         {
-            _ffiUInt32UnitedMemoryLinks.TestMultipleRandomCreationsAndDeletions(n);
+            _ffiUInt32UnitedMemoryLinks.TestMultipleRandomCreationsAndDeletions(N);
         }
     }
 }
