@@ -131,7 +131,7 @@ jobs:
       with:
         submodules: true
     - name: Test
-      run: dotnet test -c Release -f net6
+      run: dotnet test -c Release -f net5
     - name: Generate PDF with CSharp code
       if: github.event_name == 'push'
       run: |
