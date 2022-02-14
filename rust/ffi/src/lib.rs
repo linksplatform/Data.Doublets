@@ -178,7 +178,7 @@ impl<T: LinkType> From<DLink<T>> for Link<T> {
 )]
 fn new_united_links<T: LinkType>(path: *const c_char) -> *mut c_void {
     let constants = LinksConstants::external();
-    println!("{:?}", constants);
+    dbg!(constants);
     new_with_constants_united_links::<T>(path, Constants::from(constants))
 }
 
