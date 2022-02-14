@@ -177,7 +177,7 @@ impl<T: LinkType> From<DLink<T>> for Link<T> {
     name = "*UnitedMemoryLinks_New"
 )]
 fn new_united_links<T: LinkType>(path: *const c_char) -> *mut c_void {
-    new_with_constants_united_links::<T>(path, Constants::from(LinksConstants::default()))
+    new_with_constants_united_links::<T>(path, Constants::from(LinksConstants::external()))
 }
 
 #[ffi::specialize_for(
