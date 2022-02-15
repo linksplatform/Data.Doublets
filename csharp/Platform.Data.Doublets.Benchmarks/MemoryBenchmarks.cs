@@ -37,7 +37,7 @@ namespace Platform.Data.Doublets.Benchmarks
 
             File.Delete("db.links");
             _ffiUnitedMemory = new FFI.UnitedMemoryLinks<uint>("db.links");
-            _ffiUnitedMemoryLinks = _ffiUnitedMemory.DecorateWithAutomaticUniquenessAndUsagesResolution();
+            _ffiUnitedMemoryLinks = _ffiUnitedMemory;
 
             File.Delete("db.links1");
             _ffiUInt32UnitedMemory = new FFI.UInt32UnitedMemoryLinks("db.links1");
