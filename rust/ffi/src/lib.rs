@@ -7,6 +7,7 @@
 #![feature(try_trait_v2)]
 #![feature(const_fn_trait_bound)]
 #![feature(const_trait_impl)]
+#![feature(default_free_fn)]
 
 use std::alloc::{alloc, Layout};
 use std::cell::{Cell, RefCell};
@@ -89,10 +90,10 @@ pub struct Constants<T: LinkType> {
     pub index_part: T,
     pub source_part: T,
     pub target_part: T,
+    pub null: T,
     pub r#continue: T,
     pub r#break: T,
     pub skip: T,
-    pub null: T,
     pub any: T,
     pub itself: T,
     pub error: T,
@@ -107,9 +108,9 @@ impl<T: LinkType> From<LinksConstants<T>> for Constants<T> {
             index_part: c.index_part,
             source_part: c.source_part,
             target_part: c.target_part,
-            r#break: c.r#break,
             null: c.null,
             r#continue: c.r#continue,
+            r#break: c.r#break,
             skip: c.skip,
             any: c.any,
             itself: c.itself,
@@ -177,7 +178,7 @@ impl<T: LinkType> From<DLink<T>> for Link<T> {
     name = "*UnitedMemoryLinks_New"
 )]
 fn new_united_links<T: LinkType>(path: *const c_char) -> *mut c_void {
-    new_with_constants_united_links::<T>(path, Constants::from(LinksConstants::external()))
+    new_with_constants_united_links::<T>(path, LinksConstants::external().into())
 }
 
 #[ffi::specialize_for(
@@ -218,6 +219,19 @@ unsafe fn drop_united_links<T: LinkType>(this: *mut c_void) {
     unsafe {
         drop_in_place(links);
     }
+}
+
+#[ffi::specialize_for(
+    types = "u8",
+    types = "u16",
+    types = "u32",
+    types = "u64",
+    convention = "csharp",
+    name = "*UnitedMemoryLinks_GetConstants"
+)]
+unsafe fn get_constants_united_links<T: LinkType>(this: *mut c_void) -> Constants<T> {
+    let links: &mut WrappedLinks<T> = unnul_or_error(this);
+    links.constants().into()
 }
 
 #[ffi::specialize_for(
