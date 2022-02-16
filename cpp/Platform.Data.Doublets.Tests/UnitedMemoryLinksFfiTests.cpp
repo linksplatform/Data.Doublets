@@ -1,10 +1,10 @@
-using namespace Platform::Data::Doublets::Memory::United::Generic::Ffi::externC;
+//using namespace Platform::Data::Doublets::Memory::United::Generic::Ffi::externC;
 
 namespace Platform::Data::Doublets::Tests
 {
     TEST(UnitedMemoryLinksFfiTests, ConstructorTest)
     {
-        auto storage = ByteUnitedMemoryLinksFfi_New("db.links");
-        ByteUnitedMemoryLinksFfi_Drop(storage);
+        auto storage = Platform::Data::Doublets::Memory::United::Generic::Ffi::ByteUnitedMemoryLinks_New("db.links");
+        Platform::Data::Doublets::Memory::United::Generic::Ffi::ByteUnitedMemoryLinks_Drop(storage);
     };
 }
