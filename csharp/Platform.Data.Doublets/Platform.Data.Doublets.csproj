@@ -38,7 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Platform.Data" Version="0.11.1" />
+    <PackageReference Include="Platform.Data" Version="0.11.3" />
     <PackageReference Include="Platform.Data.Doublets.FFI" Version="0.8.0" />
     <PackageReference Include="Platform.Setters" Version="0.3.1" />
     <PackageReference Include="Platform.Random" Version="0.2.0" />
