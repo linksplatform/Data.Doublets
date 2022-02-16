@@ -6,7 +6,7 @@
     <AssemblyTitle>Platform.Data.Doublets</AssemblyTitle>
     <VersionPrefix>0.13.0</VersionPrefix>
     <Authors>konard, FreePhoenix888</Authors>
-    <TargetFrameworks>net472;netstandard2.0;netstandard2.1;net5;net6</TargetFrameworks>
+    <TargetFrameworks>net472;netstandard2.0;netstandard3.1;net5;net6</TargetFrameworks>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <AssemblyName>Platform.Data.Doublets</AssemblyName>
     <PackageId>Platform.Data.Doublets</PackageId>
