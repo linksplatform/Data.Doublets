@@ -16,7 +16,7 @@ conan profile show linksplatform
 git clone https://github.com/linksplatform/conan-center-index
 cd conan-center-index && cd recipes
 git checkout update-interfaces
-conan create platform.interfaces/0.1.4+ platform.interfaces/0.1.4@ -pr=linksplatform
+conan create platform.interfaces/0.2.0+ platform.interfaces/0.2.5@ -pr=linksplatform
 git checkout only-development
 conan create platform.collections.methods/all platform.collections.methods/0.1.0@ -pr=linksplatform
 conan create platform.collections/all platform.collections/0.1.0@ -pr=linksplatform
