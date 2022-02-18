@@ -7,7 +7,7 @@ namespace Platform::Data::Doublets::Tests
         static void TestCrudOperations(ILinks<TLinkAddress> storage)
         {
             const auto constants = storage.Constants;
-            Assert.True(0, storage.Count());
+            ASSERT_TRUE(0, storage.Count());
             // Create link
             Setter<TLinkAddress, TLinkAddress> setter { constants.Continue, constants.Break, constants.Null };
             storage.Each(Link{constants.Any, constants.Any, constants.Any}, setter.SetFirstFromList);
@@ -77,7 +77,76 @@ namespace Platform::Data::Doublets::Tests
             ASSERT_TRUE(linkAddress1, setter1.Result);
             // Search for nonexistent link
             Setter<TLinkAddress, TLinkAddress> setter2 { constants.Continue, constants.Break, constants.Null };
-            storage.Each(Link<TLinkAddress>{constants.Any, h106E, h108E})
+            storage.Each(Link<TLinkAddress>{constants.Any, h106E, h108E}, setter2.SetFirstFromListAndReturnTrue);
+            ASSERT_TRUE(constants.Null == setter2.Result);
+            // Update link to reference null (prepare for delete)
+            auto updatedLinkAddress { links.Update(linkAddress3, constants.Null, constants.Null) };
+            ASSERT_TRUE(linkAddress3 == updatedLinkAddress);
+            Link<TLinkAddress> link3 = { links.GetLink(linkAddress3) };
+            ASSERT_TRUE(constants.Null == link3.Source);
+            ASSERT_TRUE(constants.Null == link3.Target);
+            // Delete link
+            links.Delete(linkAddress3);
+            ASSERT_TRUE(two == links.Count());
+            Setter<TLinkAddress, TLinkAddress> setter3 { constants.Continue, constants.Break, constants.Null) };
+            links.Each(Link<TLinkAddress>{ constants.Any, constants.Any, constants.Any }, setter3.SetFirstFromListAndReturnTrue);
+            ASSERT_TRUE(linkAddress2 == setter3.Result);
+        }
+
+        template<typename TLinkAddress>
+        static void TestMultipleCreationsAndDeletions(ILinks<TLinkAddress> storage, int numberOfOperations)
+        {
+            for (int i = 0; i < numberOfOperations; i++)
+            {
+                storage.Create();
+            }
+            for (int i = 0; i < numberOfOperations; i++)
+            {
+                storage.Delete(storage.Count());
+            }
+        }
+
+        template<typename TLinkAddress>
+        static void TestMultipleRandomCreationsAndDeletions(ILinks<TLinkAddress> storage, int maximumOperationsPerCycle)
+        {
+            for (auto N { 1 }; N < maximumOperationsPerCycle; N++)
+            {
+                auto random { std::rand(N) };
+                auto created { 0UL };
+                auto deleted { 0UL };
+                for (auto i { 0 }; i < N; ++i)
+                {
+                    auto linksCount { addressToUInt64Converter.Convert(storage.Count()) };
+                    auto createPoint { random.NextBoolean() };
+                    if (linksCount >= 2 && createPoint)
+                    {
+                        Range<TLinkAddress> linksAddressRange { new (1, linksCount) };
+                        TLinkAddress source { random.NextUInt64(linksAddressRange) };
+                        TLinkAddress target { random.NextUInt64(linksAddressRange) }; //-V3086
+                        auto resultLink { links.GetOrCreate(source, target) };
+                        if (resultLink > linksCount)
+                        {
+                            ++created;
+                        }
+                    }
+                    else
+                    {
+                        storage.Create();
+                        ++created;
+                    }
+                }
+                ASSERT_TRUE(storage.Count() == created);
+                for (auto i { 0 }; i < N; ++i)
+                {
+                    TLinkAddress link = i + 1;
+                    if (storage.Exists(link))
+                    {
+                        storage.Delete(link);
+                        deleted++;
+                    }
+                }
+                ASSERT_TRUE(0 == storage.Count());
+            }
         }
     };
 }
