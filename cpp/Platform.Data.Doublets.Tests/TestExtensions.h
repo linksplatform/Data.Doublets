@@ -142,7 +142,7 @@ namespace Platform::Data::Doublets::Tests
                     if (storage.Exists(link))
                     {
                         storage.Delete(link);
-                        deleted++;
+                        ++deleted;
                     }
                 }
                 ASSERT_TRUE(0 == storage.Count());
