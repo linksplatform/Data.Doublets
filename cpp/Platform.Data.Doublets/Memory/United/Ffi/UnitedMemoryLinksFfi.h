@@ -5,7 +5,7 @@
 #include <new>
 
 
-namespace Platform::Data::Doublets::Memory::United::Generic::Ffi
+namespace Platform::Data::Doublets::Memory::United::Ffi
 {
     template<typename T>
     using CUDCallback = T(*)(Link<T> before, Link<T> after);
@@ -136,6 +136,138 @@ namespace Platform::Data::Doublets::Memory::United::Generic::Ffi
     void init_fmt_logger();
 
     } // extern "C"
+
+    template <typename TLinkAddress>
+    class UnitedMemoryLinksFfi
+    {
+    private:
+        void* _ptr;
+    public:
+        UnitedMemoryLinksFfi(std::string path)
+        {
+            _ptr = ByteUnitedMemoryLinks_New(path.c_str());
+        }
+
+        ~UnitedMemoryLinksFfi()
+        {
+            ByteUnitedMemoryLinks_Drop(_ptr);
+        }
+
+        TLinkAddress Create(auto&& restriction, auto&& handler)
+        {
+            switch(typeid(TLinkAddress))
+            {
+                case typeid(uint8_t):
+                {
+                    ByteUnitedMemoryLinks_Create(_ptr, &restriction, std::ranges::size(restriction), handler);
+                }
+                case typeid(uint16_t):
+                {
+                    UInt16UnitedMemoryLinks_Create(_ptr, &restriction, std::ranges::size(restriction), handler);
+                }
+                case typeid(uint32_t):
+                {
+                    UInt32UnitedMemoryLinks_Create(_ptr, &restriction, std::ranges::size(restriction), handler);
+                }
+                case typeid(uint64_t):
+                {
+                    UInt64UnitedMemoryLinks_Create(_ptr, &restriction, std::ranges::size(restriction), handler);
+                }
+            }
+        }
+
+        TLinkAddress Update(auto&& restriction, auto&& substitution, auto&& handler)
+        {
+            switch(typeid(TLinkAddress))
+            {
+                case typeid(uint8_t):
+                {
+                    ByteUnitedMemoryLinks_Update(_ptr, &restriction, std::ranges::size(restriction), &substitution, std::ranges::size(substitution), handler);
+                }
+                case typeid(uint16_t):
+                {
+                    UInt16UnitedMemoryLinks_Update(_ptr, &restriction, std::ranges::size(restriction), &substitution, std::ranges::size(substitution), handler);
+                }
+                case typeid(uint32_t):
+                {
+                    UInt32UnitedMemoryLinks_Update(_ptr, &restriction, std::ranges::size(restriction), &substitution, std::ranges::size(substitution), handler);
+                }
+                case typeid(uint64_t):
+                {
+                    UInt64UnitedMemoryLinks_Update(_ptr, &restriction, std::ranges::size(restriction), &substitution, std::ranges::size(substitution), handler);
+                }
+            }
+        }
+
+        TLinkAddress Delete(auto&& restriction, auto&& handler)
+        {
+            switch(typeid(TLinkAddress))
+            {
+                case typeid(uint8_t):
+                {
+                    ByteUnitedMemoryLinks_Delete(_ptr, &restriction, std::ranges::size(restriction), handler);
+                }
+                case typeid(uint16_t):
+                {
+                    UInt16UnitedMemoryLinks_Delete(_ptr, &restriction, std::ranges::size(restriction), handler);
+                }
+                case typeid(uint32_t):
+                {
+                    UInt32UnitedMemoryLinks_Delete(_ptr, &restriction, std::ranges::size(restriction), handler);
+                }
+                case typeid(uint64_t):
+                {
+                    UInt64UnitedMemoryLinks_Delete(_ptr, &restriction, std::ranges::size(restriction), handler);
+                }
+            }
+        }
+
+        TLinkAddress Each(auto&& restriction, auto&& handler)
+        {
+            switch(typeid(TLinkAddress))
+            {
+                case typeid(uint8_t):
+                {
+                    ByteUnitedMemoryLinks_Each(_ptr, &restriction, std::ranges::size(restriction), handler);
+                }
+                case typeid(uint16_t):
+                {
+                    UInt16UnitedMemoryLinks_Each(_ptr, &restriction, std::ranges::size(restriction), handler);
+                }
+                case typeid(uint32_t):
+                {
+                    UInt32UnitedMemoryLinks_Each(_ptr, &restriction, std::ranges::size(restriction), handler);
+                }
+                case typeid(uint64_t):
+                {
+                    UInt64UnitedMemoryLinks_Each(_ptr, &restriction, std::ranges::size(restriction), handler);
+                }
+            }
+        }
+
+        TLinkAddress Count(auto&& restriction)
+        {
+            switch(typeid(TLinkAddress))
+            {
+                case typeid(uint8_t):
+                {
+                    ByteUnitedMemoryLinks_Count(_ptr, &restriction, std::ranges::size(restriction));
+                }
+                case typeid(uint16_t):
+                {
+                    UInt16UnitedMemoryLinks_Count(_ptr, &restriction, std::ranges::size(restriction));
+                }
+                case typeid(uint32_t):
+                {
+                    UInt32UnitedMemoryLinks_Count(_ptr, &restriction, std::ranges::size(restriction));
+                }
+                case typeid(uint64_t):
+                {
+                    UInt64UnitedMemoryLinks_Count(_ptr, &restriction, std::ranges::size(restriction));
+                }
+            }
+        }
+    };
 }
 
 
