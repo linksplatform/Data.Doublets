@@ -4,7 +4,7 @@
     <Description>LinksPlatform's Platform.Data.Doublets Class Library</Description>
     <Copyright>konard, FreePhoenix888</Copyright>
     <AssemblyTitle>Platform.Data.Doublets</AssemblyTitle>
-    <VersionPrefix>0.13.0</VersionPrefix>
+    <VersionPrefix>0.13.1</VersionPrefix>
     <Authors>konard, FreePhoenix888</Authors>
     <TargetFrameworks>net472;netstandard2.0;netstandard2.1;net5;net6</TargetFrameworks>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -25,7 +25,13 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <LangVersion>latest</LangVersion>
-    <PackageReleaseNotes>Platform.Setters dependency updated from 0.3.0 to 0.3.1. All Each method overloads with boolean return type are removed.</PackageReleaseNotes>
+    <PackageReleaseNotes>.NET 6 support is added.
+NoExceptionsDecorator is added.
+Platform.Data dependency is updated from 0.11.0 to 0.11.3.
+Platform.Singletons dependency is updated from 0.2.1 to 0.2.2.
+Platform.Collections.Methods dependency is updated from 0.5.1 to 0.5.2.
+Platform.Memory dependency is updated from 0.3.1 to 0.3.2.
+Platform.Timestamps dependency is updated from 0.2.0 to 0.2.1.</PackageReleaseNotes>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
@@ -38,14 +44,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Platform.Data" Version="0.11.1" />
-    <PackageReference Include="Platform.Data.Doublets.FFI" Version="0.9.0" />
-    <PackageReference Include="Platform.Setters" Version="0.3.1" />
+    <PackageReference Include="Platform.Data" Version="0.11.3" />
+    <PackageReference Include="Platform.Data.Doublets.FFI" Version="0.8.0" />
     <PackageReference Include="Platform.Random" Version="0.2.0" />
-    <PackageReference Include="Platform.Timestamps" Version="0.2.0" />
-    <PackageReference Include="Platform.Collections.Methods" Version="0.5.1" />
-    <PackageReference Include="Platform.Singletons" Version="0.2.1" />
-    <PackageReference Include="Platform.Memory" Version="0.3.1" />
+    <PackageReference Include="Platform.Timestamps" Version="0.2.1" />
+    <PackageReference Include="Platform.Collections.Methods" Version="0.5.2" />
+    <PackageReference Include="Platform.Singletons" Version="0.2.2" />
+    <PackageReference Include="Platform.Memory" Version="0.3.2" />
   </ItemGroup>
 
 </Project>
