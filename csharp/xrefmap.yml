@@ -944,6 +944,123 @@ references:
   fullName.vb: Platform.Data.Doublets.Decorators.LoggingDecorator(Of TLinkAddress).Update
   nameWithType: LoggingDecorator<TLinkAddress>.Update
   nameWithType.vb: LoggingDecorator(Of TLinkAddress).Update
+- uid: Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1
+  name: NoExceptionsDecorator<TLinkAddress>
+  href: api/Platform.Data.Doublets.Decorators.NoExceptionsDecorator-1.html
+  commentId: T:Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1
+  name.vb: NoExceptionsDecorator(Of TLinkAddress)
+  fullName: Platform.Data.Doublets.Decorators.NoExceptionsDecorator<TLinkAddress>
+  fullName.vb: Platform.Data.Doublets.Decorators.NoExceptionsDecorator(Of TLinkAddress)
+  nameWithType: NoExceptionsDecorator<TLinkAddress>
+  nameWithType.vb: NoExceptionsDecorator(Of TLinkAddress)
+- uid: Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.#ctor(Platform.Data.Doublets.ILinks{`0})
+  name: NoExceptionsDecorator(ILinks<TLinkAddress>)
+  href: api/Platform.Data.Doublets.Decorators.NoExceptionsDecorator-1.html#Platform_Data_Doublets_Decorators_NoExceptionsDecorator_1__ctor_Platform_Data_Doublets_ILinks__0__
+  commentId: M:Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.#ctor(Platform.Data.Doublets.ILinks{`0})
+  name.vb: NoExceptionsDecorator(ILinks(Of TLinkAddress))
+  fullName: Platform.Data.Doublets.Decorators.NoExceptionsDecorator<TLinkAddress>.NoExceptionsDecorator(Platform.Data.Doublets.ILinks<TLinkAddress>)
+  fullName.vb: Platform.Data.Doublets.Decorators.NoExceptionsDecorator(Of TLinkAddress).NoExceptionsDecorator(Platform.Data.Doublets.ILinks(Of TLinkAddress))
+  nameWithType: NoExceptionsDecorator<TLinkAddress>.NoExceptionsDecorator(ILinks<TLinkAddress>)
+  nameWithType.vb: NoExceptionsDecorator(Of TLinkAddress).NoExceptionsDecorator(ILinks(Of TLinkAddress))
+- uid: Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.#ctor*
+  name: NoExceptionsDecorator
+  href: api/Platform.Data.Doublets.Decorators.NoExceptionsDecorator-1.html#Platform_Data_Doublets_Decorators_NoExceptionsDecorator_1__ctor_
+  commentId: Overload:Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.#ctor
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Decorators.NoExceptionsDecorator<TLinkAddress>.NoExceptionsDecorator
+  fullName.vb: Platform.Data.Doublets.Decorators.NoExceptionsDecorator(Of TLinkAddress).NoExceptionsDecorator
+  nameWithType: NoExceptionsDecorator<TLinkAddress>.NoExceptionsDecorator
+  nameWithType.vb: NoExceptionsDecorator(Of TLinkAddress).NoExceptionsDecorator
+- uid: Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.Count(System.Collections.Generic.IList{`0})
+  name: Count(IList<TLinkAddress>)
+  href: api/Platform.Data.Doublets.Decorators.NoExceptionsDecorator-1.html#Platform_Data_Doublets_Decorators_NoExceptionsDecorator_1_Count_System_Collections_Generic_IList__0__
+  commentId: M:Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.Count(System.Collections.Generic.IList{`0})
+  name.vb: Count(IList(Of TLinkAddress))
+  fullName: Platform.Data.Doublets.Decorators.NoExceptionsDecorator<TLinkAddress>.Count(System.Collections.Generic.IList<TLinkAddress>)
+  fullName.vb: Platform.Data.Doublets.Decorators.NoExceptionsDecorator(Of TLinkAddress).Count(System.Collections.Generic.IList(Of TLinkAddress))
+  nameWithType: NoExceptionsDecorator<TLinkAddress>.Count(IList<TLinkAddress>)
+  nameWithType.vb: NoExceptionsDecorator(Of TLinkAddress).Count(IList(Of TLinkAddress))
+- uid: Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.Count*
+  name: Count
+  href: api/Platform.Data.Doublets.Decorators.NoExceptionsDecorator-1.html#Platform_Data_Doublets_Decorators_NoExceptionsDecorator_1_Count_
+  commentId: Overload:Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.Count
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Decorators.NoExceptionsDecorator<TLinkAddress>.Count
+  fullName.vb: Platform.Data.Doublets.Decorators.NoExceptionsDecorator(Of TLinkAddress).Count
+  nameWithType: NoExceptionsDecorator<TLinkAddress>.Count
+  nameWithType.vb: NoExceptionsDecorator(Of TLinkAddress).Count
+- uid: Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.Create(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name: Create(IList<TLinkAddress>, Nullable<WriteHandler<TLinkAddress>>)
+  href: api/Platform.Data.Doublets.Decorators.NoExceptionsDecorator-1.html#Platform_Data_Doublets_Decorators_NoExceptionsDecorator_1_Create_System_Collections_Generic_IList__0__System_Nullable_WriteHandler__0___
+  commentId: M:Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.Create(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name.vb: Create(IList(Of TLinkAddress), Nullable(Of WriteHandler(Of TLinkAddress)))
+  fullName: Platform.Data.Doublets.Decorators.NoExceptionsDecorator<TLinkAddress>.Create(System.Collections.Generic.IList<TLinkAddress>, System.Nullable<WriteHandler<TLinkAddress>>)
+  fullName.vb: Platform.Data.Doublets.Decorators.NoExceptionsDecorator(Of TLinkAddress).Create(System.Collections.Generic.IList(Of TLinkAddress), System.Nullable(Of WriteHandler(Of TLinkAddress)))
+  nameWithType: NoExceptionsDecorator<TLinkAddress>.Create(IList<TLinkAddress>, Nullable<WriteHandler<TLinkAddress>>)
+  nameWithType.vb: NoExceptionsDecorator(Of TLinkAddress).Create(IList(Of TLinkAddress), Nullable(Of WriteHandler(Of TLinkAddress)))
+- uid: Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.Create*
+  name: Create
+  href: api/Platform.Data.Doublets.Decorators.NoExceptionsDecorator-1.html#Platform_Data_Doublets_Decorators_NoExceptionsDecorator_1_Create_
+  commentId: Overload:Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.Create
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Decorators.NoExceptionsDecorator<TLinkAddress>.Create
+  fullName.vb: Platform.Data.Doublets.Decorators.NoExceptionsDecorator(Of TLinkAddress).Create
+  nameWithType: NoExceptionsDecorator<TLinkAddress>.Create
+  nameWithType.vb: NoExceptionsDecorator(Of TLinkAddress).Create
+- uid: Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.Delete(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name: Delete(IList<TLinkAddress>, Nullable<WriteHandler<TLinkAddress>>)
+  href: api/Platform.Data.Doublets.Decorators.NoExceptionsDecorator-1.html#Platform_Data_Doublets_Decorators_NoExceptionsDecorator_1_Delete_System_Collections_Generic_IList__0__System_Nullable_WriteHandler__0___
+  commentId: M:Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.Delete(System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name.vb: Delete(IList(Of TLinkAddress), Nullable(Of WriteHandler(Of TLinkAddress)))
+  fullName: Platform.Data.Doublets.Decorators.NoExceptionsDecorator<TLinkAddress>.Delete(System.Collections.Generic.IList<TLinkAddress>, System.Nullable<WriteHandler<TLinkAddress>>)
+  fullName.vb: Platform.Data.Doublets.Decorators.NoExceptionsDecorator(Of TLinkAddress).Delete(System.Collections.Generic.IList(Of TLinkAddress), System.Nullable(Of WriteHandler(Of TLinkAddress)))
+  nameWithType: NoExceptionsDecorator<TLinkAddress>.Delete(IList<TLinkAddress>, Nullable<WriteHandler<TLinkAddress>>)
+  nameWithType.vb: NoExceptionsDecorator(Of TLinkAddress).Delete(IList(Of TLinkAddress), Nullable(Of WriteHandler(Of TLinkAddress)))
+- uid: Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.Delete*
+  name: Delete
+  href: api/Platform.Data.Doublets.Decorators.NoExceptionsDecorator-1.html#Platform_Data_Doublets_Decorators_NoExceptionsDecorator_1_Delete_
+  commentId: Overload:Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.Delete
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Decorators.NoExceptionsDecorator<TLinkAddress>.Delete
+  fullName.vb: Platform.Data.Doublets.Decorators.NoExceptionsDecorator(Of TLinkAddress).Delete
+  nameWithType: NoExceptionsDecorator<TLinkAddress>.Delete
+  nameWithType.vb: NoExceptionsDecorator(Of TLinkAddress).Delete
+- uid: Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.Each(System.Collections.Generic.IList{`0},System.Nullable{ReadHandler{`0}})
+  name: Each(IList<TLinkAddress>, Nullable<ReadHandler<TLinkAddress>>)
+  href: api/Platform.Data.Doublets.Decorators.NoExceptionsDecorator-1.html#Platform_Data_Doublets_Decorators_NoExceptionsDecorator_1_Each_System_Collections_Generic_IList__0__System_Nullable_ReadHandler__0___
+  commentId: M:Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.Each(System.Collections.Generic.IList{`0},System.Nullable{ReadHandler{`0}})
+  name.vb: Each(IList(Of TLinkAddress), Nullable(Of ReadHandler(Of TLinkAddress)))
+  fullName: Platform.Data.Doublets.Decorators.NoExceptionsDecorator<TLinkAddress>.Each(System.Collections.Generic.IList<TLinkAddress>, System.Nullable<ReadHandler<TLinkAddress>>)
+  fullName.vb: Platform.Data.Doublets.Decorators.NoExceptionsDecorator(Of TLinkAddress).Each(System.Collections.Generic.IList(Of TLinkAddress), System.Nullable(Of ReadHandler(Of TLinkAddress)))
+  nameWithType: NoExceptionsDecorator<TLinkAddress>.Each(IList<TLinkAddress>, Nullable<ReadHandler<TLinkAddress>>)
+  nameWithType.vb: NoExceptionsDecorator(Of TLinkAddress).Each(IList(Of TLinkAddress), Nullable(Of ReadHandler(Of TLinkAddress)))
+- uid: Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.Each*
+  name: Each
+  href: api/Platform.Data.Doublets.Decorators.NoExceptionsDecorator-1.html#Platform_Data_Doublets_Decorators_NoExceptionsDecorator_1_Each_
+  commentId: Overload:Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.Each
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Decorators.NoExceptionsDecorator<TLinkAddress>.Each
+  fullName.vb: Platform.Data.Doublets.Decorators.NoExceptionsDecorator(Of TLinkAddress).Each
+  nameWithType: NoExceptionsDecorator<TLinkAddress>.Each
+  nameWithType.vb: NoExceptionsDecorator(Of TLinkAddress).Each
+- uid: Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name: Update(IList<TLinkAddress>, IList<TLinkAddress>, Nullable<WriteHandler<TLinkAddress>>)
+  href: api/Platform.Data.Doublets.Decorators.NoExceptionsDecorator-1.html#Platform_Data_Doublets_Decorators_NoExceptionsDecorator_1_Update_System_Collections_Generic_IList__0__System_Collections_Generic_IList__0__System_Nullable_WriteHandler__0___
+  commentId: M:Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.Update(System.Collections.Generic.IList{`0},System.Collections.Generic.IList{`0},System.Nullable{WriteHandler{`0}})
+  name.vb: Update(IList(Of TLinkAddress), IList(Of TLinkAddress), Nullable(Of WriteHandler(Of TLinkAddress)))
+  fullName: Platform.Data.Doublets.Decorators.NoExceptionsDecorator<TLinkAddress>.Update(System.Collections.Generic.IList<TLinkAddress>, System.Collections.Generic.IList<TLinkAddress>, System.Nullable<WriteHandler<TLinkAddress>>)
+  fullName.vb: Platform.Data.Doublets.Decorators.NoExceptionsDecorator(Of TLinkAddress).Update(System.Collections.Generic.IList(Of TLinkAddress), System.Collections.Generic.IList(Of TLinkAddress), System.Nullable(Of WriteHandler(Of TLinkAddress)))
+  nameWithType: NoExceptionsDecorator<TLinkAddress>.Update(IList<TLinkAddress>, IList<TLinkAddress>, Nullable<WriteHandler<TLinkAddress>>)
+  nameWithType.vb: NoExceptionsDecorator(Of TLinkAddress).Update(IList(Of TLinkAddress), IList(Of TLinkAddress), Nullable(Of WriteHandler(Of TLinkAddress)))
+- uid: Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.Update*
+  name: Update
+  href: api/Platform.Data.Doublets.Decorators.NoExceptionsDecorator-1.html#Platform_Data_Doublets_Decorators_NoExceptionsDecorator_1_Update_
+  commentId: Overload:Platform.Data.Doublets.Decorators.NoExceptionsDecorator`1.Update
+  isSpec: "True"
+  fullName: Platform.Data.Doublets.Decorators.NoExceptionsDecorator<TLinkAddress>.Update
+  fullName.vb: Platform.Data.Doublets.Decorators.NoExceptionsDecorator(Of TLinkAddress).Update
+  nameWithType: NoExceptionsDecorator<TLinkAddress>.Update
+  nameWithType.vb: NoExceptionsDecorator(Of TLinkAddress).Update
 - uid: Platform.Data.Doublets.Decorators.NonNullContentsLinkDeletionResolver`1
   name: NonNullContentsLinkDeletionResolver<TLinkAddress>
   href: api/Platform.Data.Doublets.Decorators.NonNullContentsLinkDeletionResolver-1.html
