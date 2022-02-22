@@ -19,10 +19,10 @@
 
     TEST(GenericLinksTests, RawNumbersCrudTest)
     {
-        Using<std::uint8_t>([] (auto&& links) { ILinksTestExtensions::TestRawNumbersCrudOperations<<decltype(links), std::uint8_t>(links); });
-        Using<std::uint16_t>([] (auto&& links) { ILinksTestExtensions::TestRawNumbersCrudOperations<<decltype(links), std::uint16_t>(links); });
-        Using<std::uint32_t>([] (auto&& links) { ILinksTestExtensions::TestRawNumbersCrudOperations<<decltype(links), std::uint32_t>(links); });
-        Using<std::uint64_t>([] (auto&& links) { ILinksTestExtensions::TestRawNumbersCrudOperations<<decltype(links), std::uint64_t>(links); });
+        Using<std::uint8_t>([] (auto&& links) { ILinksTestExtensions::TestRawNumbersCrudOperations<decltype(links), std::uint8_t>(links); });
+        Using<std::uint16_t>([] (auto&& links) { ILinksTestExtensions::TestRawNumbersCrudOperations<decltype(links), std::uint16_t>(links); });
+        Using<std::uint32_t>([] (auto&& links) { ILinksTestExtensions::TestRawNumbersCrudOperations<decltype(links), std::uint32_t>(links); });
+        Using<std::uint64_t>([] (auto&& links) { ILinksTestExtensions::TestRawNumbersCrudOperations<decltype(links), std::uint64_t>(links); });
     }
 
     TEST(GenericLinksTests, MultipleRandomCreationsAndDeletionsTest)
