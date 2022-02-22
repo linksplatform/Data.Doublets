@@ -1,37 +1,47 @@
 ﻿namespace Platform::Data::Doublets::Tests
 {
-    public unsafe TEST_CLASS(GenericLinksTests)
+    template <typename TLink, typename Action>
+    static void Using(Action action)
     {
-        public: TEST_METHOD(CrudTest)
-        {
-            Using<std::uint8_t>(links => links.TestCrudOperations());
-            Using<std::uint16_t>(links => links.TestCrudOperations());
-            Using<std::uint32_t>(links => links.TestCrudOperations());
-            Using<std::uint64_t>(links => links.TestCrudOperations());
-        }
+        using namespace Platform::Memory;
+        using namespace Platform::Data::Doublets::Memory::United::Generic;
+        HeapResizableDirectMemory memory {};
+        UnitedMemoryLinks<TLink, HeapResizableDirectMemory> storage { memory };
+        action(storage);
+    }
+    TEST(GenericLinksTests, CrudTest)
+    {
+        Using<std::uint8_t>([] (auto&& links) { ILinksTestExtensions::TestCrudOperations(links); });
+        Using<std::uint16_t>([] (auto&& links) { ILinksTestExtensions::TestCrudOperations(links); });
+        Using<std::uint32_t>([] (auto&& links) { ILinksTestExtensions::TestCrudOperations(links); });
+        Using<std::uint64_t>([] (auto&& links) { ILinksTestExtensions::TestCrudOperations(links); });
+    }
 
-        public: TEST_METHOD(RawNumbersCrudTest)
-        {
-            Using<std::uint8_t>(links => links.TestRawNumbersCrudOperations());
-            Using<std::uint16_t>(links => links.TestRawNumbersCrudOperations());
-            Using<std::uint32_t>(links => links.TestRawNumbersCrudOperations());
-            Using<std::uint64_t>(links => links.TestRawNumbersCrudOperations());
-        }
+    TEST(GenericLinksTests, RawNumbersCrudTest)
+    {
+        Using<std::uint8_t>([] (auto&& links) { ILinksTestExtensions::TestRawNumbersCrudOperations(links); });
+        Using<std::uint16_t>([] (auto&& links) { ILinksTestExtensions::TestRawNumbersCrudOperations(links); });
+        Using<std::uint32_t>([] (auto&& links) { ILinksTestExtensions::TestRawNumbersCrudOperations(links); });
+        Using<std::uint64_t>([] (auto&& links) { ILinksTestExtensions::TestRawNumbersCrudOperations(links); });
+    }
 
-        public: TEST_METHOD(MultipleRandomCreationsAndDeletionsTest)
-        {
-            Using<std::uint8_t>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(16));
-            Using<std::uint16_t>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
-            Using<std::uint32_t>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
-            Using<std::uint64_t>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
-        }
-
-        private: template <typename TLink> static void Using(Action<ILinks<TLink>> action)
-        {
-            using (auto scope = Scope<Types<HeapResizableDirectMemory, UnitedMemoryLinks<TLink>>>())
-            {
-                action(scope.Use<ILinks<TLink>>());
-            }
-        }
-    };
+    TEST(GenericLinksTests, MultipleRandomCreationsAndDeletionsTest)
+    {
+        Using<std::uint8_t>([] (auto&& links){
+            auto decoratedStorage = links.DecorateWithAutomaticUniquenessAndUsagesResolution();
+            TextExtensions::TestMultipleRandomCreationsAndDeletions(decoratedStorage, 16);
+        });
+        Using<std::uint16_t>([] (auto&& links){
+            auto decoratedStorage = links.DecorateWithAutomaticUniquenessAndUsagesResolution();
+            TextExtensions::TestMultipleRandomCreationsAndDeletions(decoratedStorage, 100);
+        });
+        Using<std::uint32_t>([] (auto&& links){
+            auto decoratedStorage = links.DecorateWithAutomaticUniquenessAndUsagesResolution();
+            TextExtensions::TestMultipleRandomCreationsAndDeletions(decoratedStorage, 100);
+        });
+        Using<std::uint64_t>([] (auto&& links){
+            auto decoratedStorage = links.DecorateWithAutomaticUniquenessAndUsagesResolution();
+            TextExtensions::TestMultipleRandomCreationsAndDeletions(decoratedStorage, 100);
+        });
+    }
 }
