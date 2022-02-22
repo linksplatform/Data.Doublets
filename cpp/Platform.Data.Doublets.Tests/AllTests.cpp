@@ -1,7 +1,9 @@
 #include <gtest/gtest.h>
 #include <Platform.Data.Doublets.h>
 
+#include "GenericLinksTests.cpp"
 #include "UnitedMemoryLinksFfiTests.cpp"
+#include "ILinksTestExtensions.h"
 
 using namespace Platform::Memory;
 using namespace Platform::Data::Doublets;
