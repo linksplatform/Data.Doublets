@@ -71,7 +71,7 @@
         }
 
     public:
-        TLink Count(Interfaces::IArray auto&& restrictions) const
+        TLink Count(Interfaces::CArray auto&& restrictions) const
         {
             if (std::ranges::size(restrictions)  == 0)
             {
@@ -180,7 +180,7 @@
         }
 
 
-        TLink Each(auto&& handler, Interfaces::IArray auto&& restrictions) const
+        TLink Each(auto&& handler, Interfaces::CArray auto&& restrictions) const
         {
             auto constants = Constants;
             auto $break = constants.Break;
@@ -312,7 +312,7 @@
         // / </remarks>
 // NOTE: The following .NET attribute has no direct equivalent in C++:
 // ORIGINAL LINE: [MethodImpl(MethodImplOptions.AggressiveInlining)] public TLink Update(IList<TLink> restrictions, IList<TLink> substitution)
-        TLink Update(Interfaces::IArray auto&& restrictions, Interfaces::IArray auto&& substitution)
+        TLink Update(Interfaces::CArray auto&& restrictions, Interfaces::CArray auto&& substitution)
         {
             auto constants = Constants;
             auto null = constants.Null;

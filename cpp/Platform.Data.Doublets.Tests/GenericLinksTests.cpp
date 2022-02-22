@@ -2,20 +2,20 @@
 {
     public unsafe TEST_CLASS(GenericLinksTests)
     {
-        public: TEST_METHOD(CRUDTest)
+        public: TEST_METHOD(CrudTest)
         {
-            Using<std::uint8_t>(links => links.TestCRUDOperations());
-            Using<std::uint16_t>(links => links.TestCRUDOperations());
-            Using<std::uint32_t>(links => links.TestCRUDOperations());
-            Using<std::uint64_t>(links => links.TestCRUDOperations());
+            Using<std::uint8_t>(links => links.TestCrudOperations());
+            Using<std::uint16_t>(links => links.TestCrudOperations());
+            Using<std::uint32_t>(links => links.TestCrudOperations());
+            Using<std::uint64_t>(links => links.TestCrudOperations());
         }
 
-        public: TEST_METHOD(RawNumbersCRUDTest)
+        public: TEST_METHOD(RawNumbersCrudTest)
         {
-            Using<std::uint8_t>(links => links.TestRawNumbersCRUDOperations());
-            Using<std::uint16_t>(links => links.TestRawNumbersCRUDOperations());
-            Using<std::uint32_t>(links => links.TestRawNumbersCRUDOperations());
-            Using<std::uint64_t>(links => links.TestRawNumbersCRUDOperations());
+            Using<std::uint8_t>(links => links.TestRawNumbersCrudOperations());
+            Using<std::uint16_t>(links => links.TestRawNumbersCrudOperations());
+            Using<std::uint32_t>(links => links.TestRawNumbersCrudOperations());
+            Using<std::uint64_t>(links => links.TestRawNumbersCrudOperations());
         }
 
         public: TEST_METHOD(MultipleRandomCreationsAndDeletionsTest)

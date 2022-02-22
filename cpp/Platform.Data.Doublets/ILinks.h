@@ -154,7 +154,7 @@
             return constants.Null;
         }
 
-        auto DeleteByQuery(Interfaces::IArray auto&& query) 
+        auto DeleteByQuery(Interfaces::CArray auto&& query)
         {
             auto& links = *this;
             auto count = links.Count(query);
