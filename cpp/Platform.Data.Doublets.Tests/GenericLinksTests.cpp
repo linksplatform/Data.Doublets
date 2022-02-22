@@ -1,6 +1,4 @@
-﻿#include "ILinksTestExtensions.h"
-
-namespace Platform::Data::Doublets::Tests
+﻿namespace Platform::Data::Doublets::Tests
 {
     template <typename TLink, typename Action>
     static void Using(Action action)
@@ -13,37 +11,37 @@ namespace Platform::Data::Doublets::Tests
     }
     TEST(GenericLinksTests, CrudTest)
     {
-        Using<std::uint8_t>([] (auto&& links) { ILinksTestExtensions::TestCrudOperations(links); });
-        Using<std::uint16_t>([] (auto&& links) { ILinksTestExtensions::TestCrudOperations(links); });
-        Using<std::uint32_t>([] (auto&& links) { ILinksTestExtensions::TestCrudOperations(links); });
-        Using<std::uint64_t>([] (auto&& links) { ILinksTestExtensions::TestCrudOperations(links); });
+        Using<std::uint8_t>([] (auto&& links) { ILinksTestExtensions::TestCrudOperations<decltype(links), std::uint8_t>(links); });
+        Using<std::uint16_t>([] (auto&& links) { ILinksTestExtensions::TestCrudOperations<decltype(links), std::uint16_t>(links); });
+        Using<std::uint32_t>([] (auto&& links) { ILinksTestExtensions::TestCrudOperations<decltype(links), std::uint32_t>(links); });
+        Using<std::uint64_t>([] (auto&& links) { ILinksTestExtensions::TestCrudOperations<decltype(links), std::uint64_t>(links); });
     }
 
     TEST(GenericLinksTests, RawNumbersCrudTest)
     {
-        Using<std::uint8_t>([] (auto&& links) { ILinksTestExtensions::TestRawNumbersCrudOperations(links); });
-        Using<std::uint16_t>([] (auto&& links) { ILinksTestExtensions::TestRawNumbersCrudOperations(links); });
-        Using<std::uint32_t>([] (auto&& links) { ILinksTestExtensions::TestRawNumbersCrudOperations(links); });
-        Using<std::uint64_t>([] (auto&& links) { ILinksTestExtensions::TestRawNumbersCrudOperations(links); });
+        Using<std::uint8_t>([] (auto&& links) { ILinksTestExtensions::TestRawNumbersCrudOperations<<decltype(links), std::uint8_t>(links); });
+        Using<std::uint16_t>([] (auto&& links) { ILinksTestExtensions::TestRawNumbersCrudOperations<<decltype(links), std::uint16_t>(links); });
+        Using<std::uint32_t>([] (auto&& links) { ILinksTestExtensions::TestRawNumbersCrudOperations<<decltype(links), std::uint32_t>(links); });
+        Using<std::uint64_t>([] (auto&& links) { ILinksTestExtensions::TestRawNumbersCrudOperations<<decltype(links), std::uint64_t>(links); });
     }
 
     TEST(GenericLinksTests, MultipleRandomCreationsAndDeletionsTest)
     {
         Using<std::uint8_t>([] (auto&& links){
             auto decoratedStorage = links.DecorateWithAutomaticUniquenessAndUsagesResolution();
-            TextExtensions::TestMultipleRandomCreationsAndDeletions(decoratedStorage, 16);
+            ILinksTestExtensions::TestMultipleRandomCreationsAndDeletions<decltype(links), std::uint8_t>(decoratedStorage, 16);
         });
         Using<std::uint16_t>([] (auto&& links){
             auto decoratedStorage = links.DecorateWithAutomaticUniquenessAndUsagesResolution();
-            TextExtensions::TestMultipleRandomCreationsAndDeletions(decoratedStorage, 100);
+            ILinksTestExtensions::TestMultipleRandomCreationsAndDeletions<decltype(links), std::uint16_t>(decoratedStorage, 100);
         });
         Using<std::uint32_t>([] (auto&& links){
             auto decoratedStorage = links.DecorateWithAutomaticUniquenessAndUsagesResolution();
-            TextExtensions::TestMultipleRandomCreationsAndDeletions(decoratedStorage, 100);
+            ILinksTestExtensions::TestMultipleRandomCreationsAndDeletions<decltype(links), std::uint32_t>(decoratedStorage, 100);
         });
         Using<std::uint64_t>([] (auto&& links){
             auto decoratedStorage = links.DecorateWithAutomaticUniquenessAndUsagesResolution();
-            TextExtensions::TestMultipleRandomCreationsAndDeletions(decoratedStorage, 100);
+            ILinksTestExtensions::TestMultipleRandomCreationsAndDeletions<decltype(links), std::uint64_t>(decoratedStorage, 100);
         });
     }
 }
