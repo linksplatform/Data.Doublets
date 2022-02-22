@@ -17,7 +17,6 @@
     {
     public:
         LinksConstants<TLink> Constants;
-        public: using Interfaces::Polymorph<Self>::self;
 
     public:
         static constexpr std::size_t LinkSizeInBytes = sizeof(RawLink<TLink>);
@@ -414,11 +413,11 @@
         // так как 0-я связь не используется и имеет такой же размер как Header,
         // поэтому header размещается в том же месте, что и 0-я связь
     public:
-        void SetPointers(TMemory& memory) { self().SetPointers(memory); }
+        void SetPointers(TMemory& memory) { this->object().SetPointers(memory); }
 
-        protected: auto&& GetHeaderReference() const { return self().GetHeaderReference(); }
+        protected: auto&& GetHeaderReference() const { return this->object().GetHeaderReference(); }
 
-        protected: auto&& GetLinkReference(std::size_t index) const { return self().GetLinkReference(index); }
+        protected: auto&& GetLinkReference(std::size_t index) const { return this->object().GetLinkReference(index); }
 
         bool Exists(TLink link)
         {
