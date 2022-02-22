@@ -1,4 +1,6 @@
-﻿namespace Platform::Data::Doublets::Tests
+﻿#include "ILinksTestExtensions.h"
+
+namespace Platform::Data::Doublets::Tests
 {
     template <typename TLink, typename Action>
     static void Using(Action action)
