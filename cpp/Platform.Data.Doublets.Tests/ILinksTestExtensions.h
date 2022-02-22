@@ -1,10 +1,9 @@
 namespace Platform::Data::Doublets::Tests
 {
-    template<typename TSelf>
     class ILinksTestExtensions
     {
     public:
-        template<typename TLinkAddress>
+        template<typename TSelf, typename TLinkAddress>
         static void TestCrudOperations(ILinks<TSelf, TLinkAddress>& storage)
         {
             const auto constants = storage.Constants;
@@ -43,7 +42,7 @@ namespace Platform::Data::Doublets::Tests
             ASSERT_TRUE(constants.Null == setter.Result());
         }
 
-        template<typename TLinkAddress>
+        template<typename TSelf, typename TLinkAddress>
         static void TestRawNumbersCrudOperations(ILinks<TSelf, TLinkAddress>& storage)
         {
             // Constants
@@ -94,7 +93,7 @@ namespace Platform::Data::Doublets::Tests
             ASSERT_TRUE(linkAddress2 == setter3.Result);
         }
 
-        template<typename TLinkAddress>
+        template<typename TSelf, typename TLinkAddress>
         static void TestMultipleCreationsAndDeletions(ILinks<TSelf, TLinkAddress>& storage, int numberOfOperations)
         {
             for (int i = 0; i < numberOfOperations; i++)
@@ -107,7 +106,7 @@ namespace Platform::Data::Doublets::Tests
             }
         }
 
-        template<typename TLinkAddress>
+        template<typename TSelf, typename TLinkAddress>
         static void TestMultipleRandomCreationsAndDeletions(ILinks<TSelf, TLinkAddress>& storage, int maximumOperationsPerCycle)
         {
 //            using namespace Platform::Random;
