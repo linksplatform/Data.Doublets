@@ -4,7 +4,7 @@
     <Description>LinksPlatform's Platform.Data.Doublets Class Library</Description>
     <Copyright>konard, FreePhoenix888</Copyright>
     <AssemblyTitle>Platform.Data.Doublets</AssemblyTitle>
-    <VersionPrefix>0.13.1</VersionPrefix>
+    <VersionPrefix>0.13.2</VersionPrefix>
     <Authors>konard, FreePhoenix888</Authors>
     <TargetFrameworks>net472;netstandard2.0;netstandard2.1;net5;net6</TargetFrameworks>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -25,13 +25,7 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <LangVersion>latest</LangVersion>
-    <PackageReleaseNotes>.NET 6 support is added.
-NoExceptionsDecorator is added.
-Platform.Data dependency is updated from 0.11.0 to 0.11.3.
-Platform.Singletons dependency is updated from 0.2.1 to 0.2.2.
-Platform.Collections.Methods dependency is updated from 0.5.1 to 0.5.2.
-Platform.Memory dependency is updated from 0.3.1 to 0.3.2.
-Platform.Timestamps dependency is updated from 0.2.0 to 0.2.1.</PackageReleaseNotes>
+    <PackageReleaseNotes>Update extension method bug is fixed, now it returns an updated link address.</PackageReleaseNotes>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
