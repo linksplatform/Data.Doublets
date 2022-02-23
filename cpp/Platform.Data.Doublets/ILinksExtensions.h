@@ -48,8 +48,8 @@
     }
 
 
-    template<typename TLinkAddress, typename Handler>
-    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
+    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
+    requires Interfaces::CList<TList1, TLinkAddress> && Interfaces::CList<TList2, TLinkAddress> && std::invocable<Handler&, TList1, TList2>
     static TLinkAddress Delete(auto&& storage, TLinkAddress linkToDelete, Handler handler)
     {
         if (storage.Exists(linkToDelete))
@@ -367,7 +367,7 @@
         return setter.Result;
     }
 
-    template<typename TLinkAddress, typename Handler>
+    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
     requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
     static TLinkAddress CreatePoint(auto&& storage, Handler handler)
     {
@@ -392,7 +392,7 @@
         return setter.Result;
     }
 
-    template<typename TLinkAddress, typename Handler>
+    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
     requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
     static TLinkAddress CreateAndUpdate(auto&& storage, TLinkAddress source, TLinkAddress target, Handler handler)
     {
@@ -414,7 +414,7 @@
     template<typename TLinkAddress>
     static TLinkAddress Update(auto&& storage, CList auto&& restriction) { return storage.Update((IList<TLinkAddress>)restriction); }
 
-    template<typename TLinkAddress, typename Handler>
+    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
     requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
     static TLinkAddress Update(auto&& storage, Handler handler, CList auto&& restriction) { return storage.Update(restriction, handler); }
 
@@ -427,7 +427,7 @@
         return setter.Result;
     }
 
-    template<typename TLinkAddress, typename Handler>
+    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
     requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
     static TLinkAddress Update(auto&& storage, IList<TLinkAddress>? restriction, Handler handler)
     {
@@ -439,7 +439,7 @@
         };
     }
 
-    template<typename TLinkAddress, typename Handler>
+    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
     requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
     static TLinkAddress Update(auto&& storage, TLinkAddress link, TLinkAddress newSource, TLinkAddress newTarget, Handler handler) { return storage.Update(LinkAddress{link}, Link<TLinkAddress>(link, newSource, newTarget), handler); }
 
@@ -479,7 +479,7 @@
         return setter.Result;
     }
 
-    template<typename TLinkAddress, typename Handler>
+    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
     requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
     static TLinkAddress UpdateOrCreateOrGet(auto&& storage, TLinkAddress source, TLinkAddress target, TLinkAddress newSource, TLinkAddress newTarget, Handler handler)
     {
@@ -520,7 +520,7 @@
     template<typename TLinkAddress>
     static void DeleteAllUsages(auto&& storage, TLinkAddress linkIndex) { storage.DeleteAllUsages(linkIndex, {}); }
 
-    template<typename TLinkAddress, typename Handler>
+    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
     requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
     static TLinkAddress DeleteAllUsages(auto&& storage, TLinkAddress linkIndex, Handler handler)
     {
@@ -574,7 +574,7 @@
     template<typename TLinkAddress>
     static void ResetValues(auto&& storage, TLinkAddress linkIndex) { storage.ResetValues(linkIndex, {}); }
 
-    template<typename TLinkAddress, typename Handler>
+    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
     requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
     static TLinkAddress ResetValues(auto&& storage, TLinkAddress linkIndex, Handler handler)
     {
@@ -586,7 +586,7 @@
     template<typename TLinkAddress>
     static void EnforceResetValues(auto&& storage, TLinkAddress linkIndex) { storage.EnforceResetValues(linkIndex, {}); }
 
-    template<typename TLinkAddress, typename Handler>
+    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
     requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
     static TLinkAddress EnforceResetValues(auto&& storage, TLinkAddress linkIndex, Handler handler)
     {
@@ -600,7 +600,7 @@
     template<typename TLinkAddress>
     static void MergeUsages(auto&& storage, TLinkAddress oldLinkIndex, TLinkAddress newLinkIndex) { storage.MergeUsages(oldLinkIndex, newLinkIndex, {}); }
 
-    template<typename TLinkAddress, typename Handler>
+    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
     requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
     static TLinkAddress MergeUsages(auto&& storage, TLinkAddress oldLinkIndex, TLinkAddress newLinkIndex, Handler handler)
     {
@@ -648,7 +648,7 @@
         return newLinkIndex;
     }
 
-    template<typename TLinkAddress, typename Handler>
+    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
     requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
     static TLinkAddress MergeAndDelete(auto&& storage, TLinkAddress oldLinkIndex, TLinkAddress newLinkIndex, Handler handler)
     {
