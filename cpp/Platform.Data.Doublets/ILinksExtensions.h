@@ -86,7 +86,7 @@
             firstLink = link[storage.Constants.IndexPart];
             return storage.Constants.Break;
         });
-        if (equalityComparer.Equals(firstLink, 0))
+        if ( 0 == firstLink)
         {
             throw std::runtime_error("No links are found in the storage.");
         }
@@ -134,7 +134,7 @@
             auto values = storage.GetLink(current);
             auto source = storage.GetSource(values);
             auto target = storage.GetTarget(values);
-            if (equalityComparer.Equals(source, target) && equalityComparer.Equals(source, next))
+            if ( target == source &&  next == source)
             {
                 return false;
             }
@@ -329,16 +329,16 @@
         auto constants = storage.Constants;
         auto values = storage.GetLink(link);
         TLinkAddress usagesAsSource = storage.Count()(Link<TLinkAddress>(constants.Any, link, constants.Any));
-        if (equalityComparer.Equals(storage.GetSource(values), link))
+        if ( link == storage.GetSource(values))
         {
-            usagesAsSource = Arithmetic<TLinkAddress>.Decrement(usagesAsSource);
+            usagesAsSource = usagesAsSource - 1;
         }
         TLinkAddress usagesAsTarget = storage.Count()(Link<TLinkAddress>(constants.Any, constants.Any, link));
-        if (equalityComparer.Equals(storage.GetTarget(values), link))
+        if ( link == storage.GetTarget(values))
         {
-            usagesAsTarget = Arithmetic<TLinkAddress>.Decrement(usagesAsTarget);
+            usagesAsTarget = usagesAsTarget - 1;
         }
-        return Arithmetic<TLinkAddress>.Add(usagesAsSource, usagesAsTarget);
+        return usagesAsSource + usagesAsTarget;
     }
 
     template<typename TLinkAddress>
@@ -349,7 +349,7 @@
     {
         auto constants = storage.Constants;
         auto values = storage.GetLink(link);
-        return equalityComparer.Equals(storage.GetSource(values), source) && equalityComparer.Equals(storage.GetTarget(values), target);
+        return  source == storage.GetSource(values) &&  target == storage.GetTarget(values);
     }
 
     template<typename TLinkAddress>
@@ -451,14 +451,14 @@
         auto constants = storage.Constants;
         auto restrictionIndex = storage.GetIndex(restriction);
         auto substitutionIndex = storage.GetIndex(substitution);
-        if (equalityComparer.Equals(substitutionIndex, 0))
+        if ( 0 == substitutionIndex)
         {
             substitutionIndex = restrictionIndex;
         }
         auto source = storage.GetSource(substitution);
         auto target = storage.GetTarget(substitution);
-        source = equalityComparer.Equals(source, constant) ? substitutionIndex : source;
-        target = equalityComparer.Equals(target, constant) ? substitutionIndex : target;
+        source =  constant == source ? substitutionIndex : source;
+        target =  constant == target ? substitutionIndex : target;
         return Link<TLinkAddress>(substitutionIndex, source, target);
     }
 
@@ -487,11 +487,11 @@
     static TLinkAddress UpdateOrCreateOrGet(auto&& storage, TLinkAddress source, TLinkAddress target, TLinkAddress newSource, TLinkAddress newTarget, Handler handler)
     {
         auto link = SearchOrDefault(storage, source, target);
-        if (equalityComparer.Equals(link, 0))
+        if ( 0 == link)
         {
             return storage.CreateAndUpdate(newSource, newTarget, handler);
         }
-        if (equalityComparer.Equals(newSource, source) && equalityComparer.Equals(newTarget, target))
+        if ( source == newSource &&  target == newTarget)
         {
             auto linkStruct = Link<TLinkAddress>(link, source, target);
             return link;
@@ -538,7 +538,7 @@
         WriteHandlerState<TLinkAddress> handlerState = new(constants.Continue, constants.Break, handler);
         foreach (auto usage in usages)
         {
-            if (equalityComparer.Equals(storage.GetIndex(usage), linkIndex) || !storage.Exists(storage.GetIndex(usage)))
+            if ( linkIndex == storage.GetIndex(usage) || !storage.Exists(storage.GetIndex(usage)))
             {
                 continue;
             }
@@ -607,7 +607,7 @@
     requires std::invocable<Handler&, IList<TLinkAddress>, IList<TLinkAddress>>
     static TLinkAddress MergeUsages(auto&& storage, TLinkAddress oldLinkIndex, TLinkAddress newLinkIndex, Handler handler)
     {
-        if (equalityComparer.Equals(oldLinkIndex, newLinkIndex))
+        if ( newLinkIndex == oldLinkIndex)
         {
             return newLinkIndex;
         }
@@ -617,7 +617,7 @@
         for (auto i { 0 }; i < usagesAsSource.Count(); ++i)
         {
             auto usageAsSource = usagesAsSource[i];
-            if (equalityComparer.Equals(storage.GetIndex(usageAsSource), oldLinkIndex))
+            if ( oldLinkIndex == storage.GetIndex(usageAsSource))
             {
                 continue;
             }
@@ -629,7 +629,7 @@
         for (auto i { 0 }; i < usagesAsTarget.Count(); ++i)
         {
             auto usageAsTarget = usagesAsTarget[i];
-            if (equalityComparer.Equals(storage.GetIndex(usageAsTarget), oldLinkIndex))
+            if ( oldLinkIndex == storage.GetIndex(usageAsTarget))
             {
                 continue;
             }
