@@ -62,7 +62,6 @@
     template<typename TLinkAddress>
     static void DeleteAll(auto&& storage)
     {
-        auto comparer = Comparer<TLinkAddress>.Default;
         for (auto i { storage.Count() }; i > 0; --i)
         {
             storage.Delete(i);
@@ -76,16 +75,14 @@
     template<typename TLinkAddress>
     static TLinkAddress First(auto&& storage)
     {
+        auto constants = storage.Constants;
         TLinkAddress firstLink = 0;
         if (0 == storage.Count())
         {
             throw std::runtime_error("No links in the storage..");
         }
-        storage.Each(Link<TLinkAddress>(storage.Constants.Any, storage.Constants.Any, storage.Constants.Any), link =>
-        {
-            firstLink = link[storage.Constants.IndexPart];
-            return storage.Constants.Break;
-        });
+        Setter setter { constants.Continue, constants.Break, 0 };
+        storage.Each(Link<TLinkAddress>(storage.Constants.Any, storage.Constants.Any, storage.Constants.Any), setter.SetFirstAndReturnFalse);
         if ( 0 == firstLink)
         {
             throw std::runtime_error("No links are found in the storage.");
