@@ -120,7 +120,7 @@
     }
 
     template<typename TLinkAddress>
-    static bool CheckPathExistance(auto&& storage, params TLinkAddress path[])
+    static bool CheckPathExistance(auto&& storage, CList auto&& path)
     {
         auto current = path[0];
         if (!storage.Exists(current))
@@ -195,7 +195,7 @@
     template<typename TLinkAddress>
     static TLinkAddress GetTarget(auto&& storage, IList<TLinkAddress>? link) { return link[storage.Constants.TargetPart]; }
 
-    static IList<IList<TLinkAddress>?> All<TLinkAddress>(auto&& storage, params TLinkAddress restriction[])
+    static IList<IList<TLinkAddress>?> All<TLinkAddress>(auto&& storage, CList auto&& restriction)
     {
         auto allLinks = List<IList<TLinkAddress>?>();
         auto filler = ListFiller<IList<TLinkAddress>?, TLinkAddress>(allLinks, storage.Constants.Continue);
@@ -203,7 +203,7 @@
         return allLinks;
     }
 
-    static IList<TLinkAddress>? AllIndices<TLinkAddress>(auto&& storage, params TLinkAddress restriction[])
+    static IList<TLinkAddress>? AllIndices<TLinkAddress>(auto&& storage, CList auto&& restriction)
     {
         auto allIndices = List<TLinkAddress>();
         auto filler = ListFiller<TLinkAddress, TLinkAddress>(allIndices, storage.Constants.Continue);
@@ -294,13 +294,13 @@
     }
 
     template<typename TLinkAddress>
-    static void EnsureCreated(auto&& storage, params TLinkAddress addresses[]) { storage.EnsureCreated(storage.Create, addresses); }
+    static void EnsureCreated(auto&& storage, CList auto&& addresses) { storage.EnsureCreated(storage.Create, addresses); }
 
     template<typename TLinkAddress>
-    static void EnsurePointsCreated(auto&& storage, params TLinkAddress addresses[]) { storage.EnsureCreated(storage.CreatePoint, addresses); }
+    static void EnsurePointsCreated(auto&& storage, CList auto&& addresses) { storage.EnsureCreated(storage.CreatePoint, addresses); }
 
     template<typename TLinkAddress>
-    static void EnsureCreated(auto&& storage, std::function<TLinkAddress()> creator, params TLinkAddress addresses[])
+    static void EnsureCreated(auto&& storage, std::function<TLinkAddress()> creator, CList auto&& addresses)
     {
         auto nonExistentAddresses = HashSet<TLinkAddress>(addresses.Where(x => !storage.Exists(x)));
         if (nonExistentAddresses.Count() > 0)
@@ -415,11 +415,11 @@
     static TLinkAddress Update(auto&& storage, TLinkAddress link, TLinkAddress newSource, TLinkAddress newTarget) { return storage.Update(LinkAddress{link}, Link<TLinkAddress>(link, newSource, newTarget)); }
 
     template<typename TLinkAddress>
-    static TLinkAddress Update(auto&& storage, params TLinkAddress restriction[]) { return storage.Update((IList<TLinkAddress>)restriction); }
+    static TLinkAddress Update(auto&& storage, CList auto&& restriction) { return storage.Update((IList<TLinkAddress>)restriction); }
 
     template<typename TLinkAddress, typename Handler>
     requires std::invocable<Handler&, IList<TLinkAddress>, IList<TLinkAddress>>
-    static TLinkAddress Update(auto&& storage, Handler handler, params TLinkAddress restriction[]) { return storage.Update(restriction, handler); }
+    static TLinkAddress Update(auto&& storage, Handler handler, CList auto&& restriction) { return storage.Update(restriction, handler); }
 
     template<typename TLinkAddress>
     static TLinkAddress Update(auto&& storage, IList<TLinkAddress>? restriction)
