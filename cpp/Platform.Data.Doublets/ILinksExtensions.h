@@ -485,7 +485,7 @@
         {
             return storage.CreateAndUpdate(newSource, newTarget, handler);
         }
-        if ( source == newSource &&  target == newTarget)
+        if ((source == newSource) && (target == newTarget))
         {
             auto linkStruct = Link<TLinkAddress>(link, source, target);
             return link;
@@ -532,7 +532,7 @@
         WriteHandlerState<TLinkAddress> handlerState = new(constants.Continue, constants.Break, handler);
         foreach (auto usage in usages)
         {
-            if ( linkIndex == storage.GetIndex(usage) || !storage.Exists(storage.GetIndex(usage)))
+            if ( (linkIndex == storage.GetIndex(usage)) || (!storage.Exists(storage.GetIndex(usage))) )
             {
                 continue;
             }
