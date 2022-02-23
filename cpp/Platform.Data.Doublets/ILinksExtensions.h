@@ -260,7 +260,7 @@
     template<typename TLinkAddress>
     static void EnsureLinkIsAnyOrExists(auto&& storage, TLinkAddress link, std::string argumentName)
     {
-        if (!equalityComparer.Equals(link, storage.Constants.Any) && !storage.Exists(link))
+        if ((storage.Constants.Any != link) && !storage.Exists(link))
         {
             throw ArgumentLinkDoesNotExistsException<TLinkAddress>(link, argumentName);
         }
@@ -269,7 +269,7 @@
     template<typename TLinkAddress>
     static void EnsureLinkIsItselfOrExists(auto&& storage, TLinkAddress link, std::string argumentName)
     {
-        if (!equalityComparer.Equals(link, storage.Constants.Itself) && !storage.Exists(link))
+        if ((storage.Constants.Itself != link) && !storage.Exists(link))
         {
             throw ArgumentLinkDoesNotExistsException<TLinkAddress>(link, argumentName);
         }
