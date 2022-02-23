@@ -90,6 +90,7 @@
         return firstLink;
     }
 
+    template<typename TLinkAddress>
     static Interfaces::CList auto SingleOrDefault(auto&& storage, Interfaces::CList auto&& query)
     {
         std::vector<TLinkAddress> result = {};
