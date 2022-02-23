@@ -191,7 +191,7 @@
     static TLinkAddress GetTarget(auto&& storage, Interfaces::CList auto&& link) { return link[storage.Constants.TargetPart]; }
 
     template<typename TLinkAddress>
-    static auto&& All<(auto&& storage, Interfaces::CList auto&& restriction)
+    static auto&& All(auto&& storage, Interfaces::CList auto&& restriction)
     {
         using namespace Platform::Collections;
         auto allLinks = std::vector<std::vector<TLinkAddress>>();
