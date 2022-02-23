@@ -9,7 +9,7 @@
             using namespace Platform::Random;
             using namespace Platform::Ranges;
             auto randomGenerator64 = RandomHelpers.Default;
-            for (auto i = 0UL; i < amountOfCreations; i++)
+            for (auto i { 0UL }; i < amountOfCreations; ++i)
             {
                 Range<std::uint64_t> linksAddressRange { 0, links.Count() };
                 auto source = Random::NextUInt64(randomGenerator64, linksAddressRange)
@@ -22,7 +22,7 @@
         static void RunRandomSearches(ILinks<TLinkAddress> &links, std::uint64_t amountOfSearches) 
         {
             auto random = RandomHelpers.Default;
-            for (auto i = 0UL; i < amountOfSearches; i++)
+            for (auto i { 0UL }; i < amountOfSearches; ++i)
             {
                 auto linksAddressRange = Range<std::uint64_t>(0, links.Count());
                 auto source = Random::NextUInt64(randomGenerator64, linksAddressRange)
@@ -37,7 +37,7 @@
             auto random = RandomHelpers.Default;
             auto linksCount = links.Count();
             auto min = amountOfDeletions > linksCount ? 0UL : linksCount - amountOfDeletions;
-            for (auto i = 0UL; i < amountOfDeletions; i++)
+            for (auto i { 0UL }; i < amountOfDeletions; ++i)
             {
                 linksCount = links.Count();
                 if (linksCount <= min)
@@ -132,7 +132,7 @@
             }
             auto equalityComparer = EqualityComparer<TLinkAddress>.Default;
             auto constants = links.Constants;
-            for (auto i = 1; i < path.Length; i++)
+            for (auto i = 1; i < path.Length; ++i)
             {
                 auto next = path[i];
                 auto values = links.GetLink(current);
@@ -156,7 +156,7 @@
         {
             links.EnsureLinkExists(root, "root");
             auto currentLink = root;
-            for (auto i = 0; i < path.Length; i++)
+            for (auto i = 0; i < path.Length; ++i)
             {
                 currentLink = links.GetLink(currentLink)[path[i]];
             }
@@ -221,7 +221,7 @@
         template<typename TLinkAddress>
         static void EnsureLinkExists(ILinks<TLinkAddress> &links, IList<TLinkAddress>? restriction) 
         {
-            for (auto i = 0; i < restriction.Count(); i++)
+            for (auto i = 0; i < restriction.Count(); ++i)
             {
                 if (!links.Exists(restriction[i]))
                 {
@@ -242,7 +242,7 @@
         template<typename TLinkAddress>
         static void EnsureInnerReferenceExists(ILinks<TLinkAddress> &links, IList<TLinkAddress>? restriction, std::string argumentName) 
         {
-            for (std::int32_t i = 0; i < restriction.Count(); i++)
+            for (std::int32_t i = 0; i < restriction.Count(); ++i)
             {
                 links.EnsureInnerReferenceExists(restriction[i], argumentName);
             }
@@ -253,7 +253,7 @@
         {
             auto equalityComparer = EqualityComparer<TLinkAddress>.Default;
             auto any = links.Constants.Any;
-            for (auto i = 0; i < restriction.Count(); i++)
+            for (auto i = 0; i < restriction.Count(); ++i)
             {
                 if (!equalityComparer.Equals(restriction[i], any) && !links.Exists(restriction[i]))
                 {
@@ -321,7 +321,7 @@
                 {
                     createdLinks.Add(createdLink);
                 }
-                for (auto i = 0; i < createdLinks.Count(); i++)
+                for (auto i = 0; i < createdLinks.Count(); ++i)
                 {
                     if (!nonExistentAddresses.Contains(createdLinks[i]))
                     {
@@ -520,7 +520,7 @@
         template<typename TLinkAddress>
         static void DeleteMany(ILinks<TLinkAddress> &links, IList<TLinkAddress>? deletedLinks) 
         {
-            for (std::int32_t i = 0; i < deletedLinks.Count(); i++)
+            for (std::int32_t i = 0; i < deletedLinks.Count(); ++i)
             {
                 links.Delete(deletedLinks[i]);
             }
@@ -571,7 +571,7 @@
             auto nullConstant = links.Constants.Null;
             auto equalityComparer = EqualityComparer<TLinkAddress>.Default;
             auto link = links.GetLink(linkIndex);
-            for (std::int32_t i = 1; i < link.Count(); i++)
+            for (std::int32_t i = 1; i < link.Count(); ++i)
             {
                 if (!equalityComparer.Equals(link[i], nullConstant))
                 {
@@ -619,7 +619,7 @@
             auto constants = links.Constants;
             auto usagesAsSource = links.All(Link<TLinkAddress>(constants.Any, oldLinkIndex, constants.Any));
             WriteHandlerState<TLinkAddress> handlerState = new(constants.Continue, constants.Break, handler);
-            for (auto i = 0; i < usagesAsSource.Count(); i++)
+            for (auto i = 0; i < usagesAsSource.Count(); ++i)
             {
                 auto usageAsSource = usagesAsSource[i];
                 if (equalityComparer.Equals(links.GetIndex(usageAsSource), oldLinkIndex))
@@ -631,7 +631,7 @@
                 handlerState.Apply(links.Update(restriction, substitution, handlerState.Handler));
             }
             auto usagesAsTarget = links.All(Link<TLinkAddress>(constants.Any, constants.Any, oldLinkIndex));
-            for (auto i = 0; i < usagesAsTarget.Count(); i++)
+            for (auto i = 0; i < usagesAsTarget.Count(); ++i)
             {
                 auto usageAsTarget = usagesAsTarget[i];
                 if (equalityComparer.Equals(links.GetIndex(usageAsTarget), oldLinkIndex))
