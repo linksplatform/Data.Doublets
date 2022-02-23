@@ -153,27 +153,27 @@
         return currentLink;
     }
 
-    template<typename TLinkAddress>
-    static TLinkAddress GetSquareMatrixSequenceElementByIndex(auto&& storage, TLinkAddress root, std::uint64_t size, std::uint64_t index)
-    {
-        using namespace Platform::Numbers;
-        auto constants = storage.Constants;
-        auto source = constants.SourcePart;
-        auto target = constants.TargetPart;
-        if (!Numbers::Math::IsPowerOfTwo(size))
-        {
-            throw std::invalid_argument("size", "Sequences with sizes other than powers of two are not supported.");
-        }
-        auto path = BitArray(BitConverter.GetBytes(index));
-        auto length = Bit.GetLowestPosition(size);
-        storage.EnsureLinkExists(root, "root");
-        auto currentLink = root;
-        for (auto i { length - 1 }; i >= 0; i--)
-        {
-            currentLink = storage.GetLink(currentLink)[path[i] ? target : source];
-        }
-        return currentLink;
-    }
+//    template<typename TLinkAddress>
+//    static TLinkAddress GetSquareMatrixSequenceElementByIndex(auto&& storage, TLinkAddress root, std::uint64_t size, std::uint64_t index)
+//    {
+//        using namespace Platform::Numbers;
+//        auto constants = storage.Constants;
+//        auto source = constants.SourcePart;
+//        auto target = constants.TargetPart;
+//        if (!Numbers::Math::IsPowerOfTwo(size))
+//        {
+//            throw std::invalid_argument("size", "Sequences with sizes other than powers of two are not supported.");
+//        }
+//        auto path = BitArray(BitConverter.GetBytes(index));
+//        auto length = Bit.GetLowestPosition(size);
+//        storage.EnsureLinkExists(root, "root");
+//        auto currentLink = root;
+//        for (auto i { length - 1 }; i >= 0; i--)
+//        {
+//            currentLink = storage.GetLink(currentLink)[path[i] ? target : source];
+//        }
+//        return currentLink;
+//    }
 
     template<typename TLinkAddress>
     static TLinkAddress GetIndex(auto&& storage, Interfaces::CList auto&& link) { return link[storage.Constants.IndexPart]; }
@@ -192,8 +192,9 @@
 
     static CList<CList auto> auto All<TLinkAddress>(auto&& storage, Interfaces::CList auto&& restriction)
     {
-        auto allLinks = List<IList<TLinkAddress>?>();
-        auto filler = ListFiller<IList<TLinkAddress>?, TLinkAddress>(allLinks, storage.Constants.Continue);
+        using namespace Platform::Collections;
+        auto allLinks = std::vector<std::vector<TLinkAddress>>();
+        auto filler = Collections::ListFiller<IList<TLinkAddress>?, TLinkAddress>(allLinks, storage.Constants.Continue);
         storage.Each(filler.AddAndReturnConstant, restriction);
         return allLinks;
     }
