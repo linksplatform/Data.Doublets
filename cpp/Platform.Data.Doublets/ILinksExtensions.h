@@ -12,8 +12,8 @@
             for (auto i = 0UL; i < amountOfCreations; i++)
             {
                 Range<std::uint64_t> linksAddressRange { 0, links.Count() };
-                auto source = uInt64ToAddressConverter.Convert(Random::NextUInt64(randomGenerator64, linksAddressRange));
-                auto target = uInt64ToAddressConverter.Convert(Random::NextUInt64(randomGenerator64, linksAddressRange));
+                auto source = Random::NextUInt64(randomGenerator64, linksAddressRange)
+                auto target = Random::NextUInt64(randomGenerator64, linksAddressRange)
                 links.GetOrCreate(source, target);
             }
         }
@@ -25,8 +25,8 @@
             for (auto i = 0UL; i < amountOfSearches; i++)
             {
                 auto linksAddressRange = Range<std::uint64_t>(0, links.Count());
-                auto source = uInt64ToAddressConverter.Convert(Random::NextUInt64(randomGenerator64, linksAddressRange));
-                auto target = uInt64ToAddressConverter.Convert(Random::NextUInt64(randomGenerator64, linksAddressRange));
+                auto source = Random::NextUInt64(randomGenerator64, linksAddressRange)
+                auto target = Random::NextUInt64(randomGenerator64, linksAddressRange)
                 links.SearchOrDefault(source, target);
             }
         }
@@ -45,7 +45,7 @@
                     break;
                 }
                 auto linksAddressRange = Range<std::uint64_t>(min, linksCount);
-                auto link = uInt64ToAddressConverter.Convert(Random::NextUInt64(randomGenerator64, linksAddressRange));
+                auto link = Random::NextUInt64(randomGenerator64, linksAddressRange)
                 links.Delete(link);
             }
         }
@@ -313,7 +313,7 @@
             if (nonExistentAddresses.Count() > 0)
             {
                 auto max = nonExistentAddresses.Max();
-                max = uInt64ToAddressConverter.Convert(System::Math::Min(max), addressToUInt64Converter.Convert(links.Constants.InternalReferencesRange.Maximum));
+                max = System::Math::Min(max), addressToUInt64Converter.Convert(links.Constants.InternalReferencesRange.Maximum)
                 auto createdLinks = List<TLinkAddress>();
                 auto equalityComparer = EqualityComparer<TLinkAddress>.Default;
                 TLinkAddress createdLink = creator();
