@@ -66,7 +66,7 @@
         for (auto i { storage.Count() }; i > 0; --i)
         {
             storage.Delete(i);
-            if (!equalityComparer.Equals(storage.Count(), i - 1))
+            if (i - 1 != storage.Count())
             {
                 i = storage.Count();
             }
@@ -77,9 +77,9 @@
     static TLinkAddress First(auto&& storage)
     {
         TLinkAddress firstLink = 0;
-        if (equalityComparer.Equals(storage.Count(), 0))
+        if (0 == storage.Count())
         {
-            throw std::runtime_error("В хранилище нет связей.");
+            throw std::runtime_error("No links in the storage..");
         }
         storage.Each(Link<TLinkAddress>(storage.Constants.Any, storage.Constants.Any, storage.Constants.Any), link =>
         {
@@ -88,7 +88,7 @@
         });
         if (equalityComparer.Equals(firstLink, 0))
         {
-            throw std::runtime_error("В процессе поиска по хранилищу не было найдено связей.");
+            throw std::runtime_error("No links are found in the storage.");
         }
         return firstLink;
     }
