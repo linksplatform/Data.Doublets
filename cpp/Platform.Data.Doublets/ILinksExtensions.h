@@ -306,7 +306,7 @@
         if (nonExistentAddresses.Count() > 0)
         {
             auto max = nonExistentAddresses.Max();
-            max = System::Math::Min(max), addressToUInt64Converter.Convert(storage.Constants.InternalReferencesRange.Maximum)
+            max = System::Math::Min(max), storage.Constants.InternalReferencesRange.Maximum
             auto createdLinks = List<TLinkAddress>();
             TLinkAddress createdLink = creator();
             while (!equalityComparer.Equals(createdLink, max))
