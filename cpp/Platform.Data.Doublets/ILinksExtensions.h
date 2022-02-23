@@ -81,7 +81,7 @@
         {
             throw std::runtime_error("No links in the storage..");
         }
-        Setter setter { constants.Continue, constants.Break, 0 };
+        Setters::Setter setter { constants.Continue, constants.Break, 0 };
         storage.Each(Link<TLinkAddress>(storage.Constants.Any, storage.Constants.Any, storage.Constants.Any), setter.SetFirstAndReturnFalse);
         if ( 0 == firstLink)
         {
@@ -90,7 +90,7 @@
         return firstLink;
     }
 
-    static IList<TLinkAddress>? SingleOrDefault<TLinkAddress>(auto&& storage, IList<TLinkAddress>? query)
+    static auto SingleOrDefault(auto&& storage, IList<TLinkAddress>? query)
     {
         IList<TLinkAddress>? result = {};
         auto count = 0;
@@ -200,7 +200,7 @@
         return allLinks;
     }
 
-    static IList<TLinkAddress>? AllIndices<TLinkAddress>(auto&& storage, CList auto&& restriction)
+    static auto AllIndices<TLinkAddress>(auto&& storage, CList auto&& restriction)
     {
         auto allIndices = List<TLinkAddress>();
         auto filler = ListFiller<TLinkAddress, TLinkAddress>(allIndices, storage.Constants.Continue);
@@ -443,7 +443,7 @@
     requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
     static TLinkAddress Update(auto&& storage, TLinkAddress link, TLinkAddress newSource, TLinkAddress newTarget, Handler handler) { return storage.Update(LinkAddress{link}, Link<TLinkAddress>(link, newSource, newTarget), handler); }
 
-    static IList<TLinkAddress>? ResolveConstantAsSelfReference<TLinkAddress>(auto&& storage, TLinkAddress constant, IList<TLinkAddress>? restriction, IList<TLinkAddress>? substitution)
+    static auto ResolveConstantAsSelfReference<TLinkAddress>(auto&& storage, TLinkAddress constant, IList<TLinkAddress>? restriction, IList<TLinkAddress>? substitution)
     {
         auto constants = storage.Constants;
         auto restrictionIndex = storage.GetIndex(restriction);
