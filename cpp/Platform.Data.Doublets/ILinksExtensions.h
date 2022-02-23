@@ -132,7 +132,7 @@
             {
                 return false;
             }
-            if (!equalityComparer.Equals(next, source) && !equalityComparer.Equals(next, target))
+            if ((source != next) && (target != next))
             {
                 return false;
             }
@@ -244,7 +244,7 @@
         auto any = storage.Constants.Any;
         for (auto i { 0 }; i < restriction.Count(); ++i)
         {
-            if (!equalityComparer.Equals(restriction[i], any) && !storage.Exists(restriction[i]))
+            if ((any != restriction[i]) && !storage.Exists(restriction[i]))
             {
                 throw ArgumentLinkDoesNotExistsException<TLinkAddress>(restriction[i], std::string("sequence[").append(Platform::Converters::To<std::string>(i)).append(1, ']'));
             }
@@ -303,7 +303,7 @@
             max = System::Math::Min(max), storage.Constants.InternalReferencesRange.Maximum
             auto createdLinks = List<TLinkAddress>();
             TLinkAddress createdLink = creator();
-            while (!equalityComparer.Equals(createdLink, max))
+            while ( max != createdLink)
             {
                 createdLinks.Add(createdLink);
             }
@@ -560,7 +560,7 @@
         auto link = storage.GetLink(linkIndex);
         for (std::int32_t i = 1; i < link.Count(); ++i)
         {
-            if (!equalityComparer.Equals(link[i], nullConstant))
+            if ( nullConstant != link[i])
             {
                 return false;
             }
@@ -637,7 +637,7 @@
     template<typename TLinkAddress>
     static TLinkAddress MergeAndDelete(auto&& storage, TLinkAddress oldLinkIndex, TLinkAddress newLinkIndex)
     {
-        if (!equalityComparer.Equals(oldLinkIndex, newLinkIndex))
+        if ( newLinkIndex != oldLinkIndex)
         {
             storage.MergeUsages(oldLinkIndex, newLinkIndex);
             storage.Delete(oldLinkIndex);
@@ -651,7 +651,7 @@
     {
         auto constants = storage.Constants;
         WriteHandlerState<TLinkAddress> handlerState = new(constants.Continue, constants.Break, handler);
-        if (!equalityComparer.Equals(oldLinkIndex, newLinkIndex))
+        if ( newLinkIndex != oldLinkIndex)
         {
             handlerState.Apply(storage.MergeUsages(oldLinkIndex, newLinkIndex, handlerState.Handler));
             handlerState.Apply(storage.Delete(oldLinkIndex, handlerState.Handler));
