@@ -142,7 +142,7 @@
     }
 
     template<typename TLinkAddress>
-    static TLinkAddress GetByKeys(auto&& storage, TLinkAddress root, params std::int32_t path[])
+    static TLinkAddress GetByKeys(auto&& storage, TLinkAddress root, Interfaces::CList auto&& path)
     {
         storage.EnsureLinkExists(root, "root");
         auto currentLink = root;
