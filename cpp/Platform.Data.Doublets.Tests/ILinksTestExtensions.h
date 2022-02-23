@@ -3,8 +3,8 @@ namespace Platform::Data::Doublets::Tests
     class ILinksTestExtensions
     {
     public:
-        template<typename TSelf, typename TLinkAddress>
-        static void TestCrudOperations(ILinks<TSelf, TLinkAddress>& storage)
+        template<typename TLinkAddress>
+        static void TestCrudOperations(auto&& storage)
         {
             const auto constants = storage.Constants;
             ASSERT_TRUE(0 == storage.Count());
@@ -42,8 +42,8 @@ namespace Platform::Data::Doublets::Tests
             ASSERT_TRUE(constants.Null == setter.Result());
         }
 
-        template<typename TSelf, typename TLinkAddress>
-        static void TestRawNumbersCrudOperations(ILinks<TSelf, TLinkAddress>& storage)
+        template<typename TLinkAddress>
+        static void TestRawNumbersCrudOperations(auto&& storage)
         {
             // Constants
             const auto constants = storage.Constants;
@@ -93,8 +93,8 @@ namespace Platform::Data::Doublets::Tests
             ASSERT_TRUE(linkAddress2 == setter3.Result);
         }
 
-        template<typename TSelf, typename TLinkAddress>
-        static void TestMultipleCreationsAndDeletions(ILinks<TSelf, TLinkAddress>& storage, int numberOfOperations)
+        template<typename TLinkAddress>
+        static void TestMultipleCreationsAndDeletions(auto&& storage, int numberOfOperations)
         {
             for (int i = 0; i < numberOfOperations; i++)
             {
@@ -106,16 +106,14 @@ namespace Platform::Data::Doublets::Tests
             }
         }
 
-        template<typename TSelf, typename TLinkAddress>
-        static void TestMultipleRandomCreationsAndDeletions(ILinks<TSelf, TLinkAddress>& storage, int maximumOperationsPerCycle)
+        template<typename TLinkAddress>
+        static void TestMultipleRandomCreationsAndDeletions(auto&& storage, int maximumOperationsPerCycle)
         {
 //            using namespace Platform::Random;
             for (auto N { 1 }; N < maximumOperationsPerCycle; ++N)
             {
                 std::srand(N);
-//                auto randomInt { std::rand() };
-//                auto random { Platform::Random::NextBoolean(std::rand) };
-                std::mt19937_64 randomGen64 {};
+                RandomHelpers::Default randomGen64 {};
                 auto created { 0UL };
                 auto deleted { 0UL };
                 for (auto i { 0 }; i < N; ++i)
@@ -125,8 +123,8 @@ namespace Platform::Data::Doublets::Tests
                     if (linksCount >= 2 && createPoint)
                     {
                         Ranges::Range<TLinkAddress> linksAddressRange { 1, linksCount };
-                        TLinkAddress source { Random::NextUInt64(linksAddressRange) };
-                        TLinkAddress target { Random::NextUInt64(linksAddressRange) }; //-V3086
+                        TLinkAddress source { Random::NextUInt64(randomGen64, linksAddressRange) };
+                        TLinkAddress target { Random::NextUInt64(randomGen64, linksAddressRange) }; //-V3086
                         auto resultLink { storage.GetOrCreate(source, target) };
                         if (resultLink > linksCount)
                         {
