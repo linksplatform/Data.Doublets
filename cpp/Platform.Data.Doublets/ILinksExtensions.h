@@ -190,7 +190,7 @@
     template<typename TLinkAddress>
     static TLinkAddress GetTarget(auto&& storage, Interfaces::CList auto&& link) { return link[storage.Constants.TargetPart]; }
 
-    static IList<IList<TLinkAddress>?> All<TLinkAddress>(auto&& storage, Interfaces::CList auto&& restriction)
+    static CList<CList auto> auto All<TLinkAddress>(auto&& storage, Interfaces::CList auto&& restriction)
     {
         auto allLinks = List<IList<TLinkAddress>?>();
         auto filler = ListFiller<IList<TLinkAddress>?, TLinkAddress>(allLinks, storage.Constants.Continue);
