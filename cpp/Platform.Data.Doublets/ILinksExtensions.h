@@ -49,7 +49,7 @@
 
 
     template<typename TLinkAddress, typename Handler>
-    requires std::invocable<Handler&, IList<TLinkAddress>, IList<TLinkAddress>>
+    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
     static TLinkAddress Delete(auto&& storage, TLinkAddress linkToDelete, Handler handler)
     {
         if (storage.Exists(linkToDelete))
@@ -371,7 +371,7 @@
     }
 
     template<typename TLinkAddress, typename Handler>
-    requires std::invocable<Handler&, IList<TLinkAddress>, IList<TLinkAddress>>
+    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
     static TLinkAddress CreatePoint(auto&& storage, Handler handler)
     {
         auto constants = storage.Constants;
@@ -396,7 +396,7 @@
     }
 
     template<typename TLinkAddress, typename Handler>
-    requires std::invocable<Handler&, IList<TLinkAddress>, IList<TLinkAddress>>
+    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
     static TLinkAddress CreateAndUpdate(auto&& storage, TLinkAddress source, TLinkAddress target, Handler handler)
     {
         auto constants = storage.Constants;
@@ -418,7 +418,7 @@
     static TLinkAddress Update(auto&& storage, CList auto&& restriction) { return storage.Update((IList<TLinkAddress>)restriction); }
 
     template<typename TLinkAddress, typename Handler>
-    requires std::invocable<Handler&, IList<TLinkAddress>, IList<TLinkAddress>>
+    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
     static TLinkAddress Update(auto&& storage, Handler handler, CList auto&& restriction) { return storage.Update(restriction, handler); }
 
     template<typename TLinkAddress>
@@ -431,7 +431,7 @@
     }
 
     template<typename TLinkAddress, typename Handler>
-    requires std::invocable<Handler&, IList<TLinkAddress>, IList<TLinkAddress>>
+    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
     static TLinkAddress Update(auto&& storage, IList<TLinkAddress>? restriction, Handler handler)
     {
         return restriction.Count() switch
@@ -443,7 +443,7 @@
     }
 
     template<typename TLinkAddress, typename Handler>
-    requires std::invocable<Handler&, IList<TLinkAddress>, IList<TLinkAddress>>
+    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
     static TLinkAddress Update(auto&& storage, TLinkAddress link, TLinkAddress newSource, TLinkAddress newTarget, Handler handler) { return storage.Update(LinkAddress{link}, Link<TLinkAddress>(link, newSource, newTarget), handler); }
 
     static IList<TLinkAddress>? ResolveConstantAsSelfReference<TLinkAddress>(auto&& storage, TLinkAddress constant, IList<TLinkAddress>? restriction, IList<TLinkAddress>? substitution)
@@ -483,7 +483,7 @@
     }
 
     template<typename TLinkAddress, typename Handler>
-    requires std::invocable<Handler&, IList<TLinkAddress>, IList<TLinkAddress>>
+    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
     static TLinkAddress UpdateOrCreateOrGet(auto&& storage, TLinkAddress source, TLinkAddress target, TLinkAddress newSource, TLinkAddress newTarget, Handler handler)
     {
         auto link = SearchOrDefault(storage, source, target);
@@ -524,7 +524,7 @@
     static void DeleteAllUsages(auto&& storage, TLinkAddress linkIndex) { storage.DeleteAllUsages(linkIndex, {}); }
 
     template<typename TLinkAddress, typename Handler>
-    requires std::invocable<Handler&, IList<TLinkAddress>, IList<TLinkAddress>>
+    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
     static TLinkAddress DeleteAllUsages(auto&& storage, TLinkAddress linkIndex, Handler handler)
     {
         auto constants = storage.Constants;
@@ -578,7 +578,7 @@
     static void ResetValues(auto&& storage, TLinkAddress linkIndex) { storage.ResetValues(linkIndex, {}); }
 
     template<typename TLinkAddress, typename Handler>
-    requires std::invocable<Handler&, IList<TLinkAddress>, IList<TLinkAddress>>
+    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
     static TLinkAddress ResetValues(auto&& storage, TLinkAddress linkIndex, Handler handler)
     {
         auto nullConstant = storage.Constants.Null;
@@ -590,7 +590,7 @@
     static void EnforceResetValues(auto&& storage, TLinkAddress linkIndex) { storage.EnforceResetValues(linkIndex, {}); }
 
     template<typename TLinkAddress, typename Handler>
-    requires std::invocable<Handler&, IList<TLinkAddress>, IList<TLinkAddress>>
+    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
     static TLinkAddress EnforceResetValues(auto&& storage, TLinkAddress linkIndex, Handler handler)
     {
         if (!storage.AreValuesReset(linkIndex))
@@ -604,7 +604,7 @@
     static void MergeUsages(auto&& storage, TLinkAddress oldLinkIndex, TLinkAddress newLinkIndex) { storage.MergeUsages(oldLinkIndex, newLinkIndex, {}); }
 
     template<typename TLinkAddress, typename Handler>
-    requires std::invocable<Handler&, IList<TLinkAddress>, IList<TLinkAddress>>
+    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
     static TLinkAddress MergeUsages(auto&& storage, TLinkAddress oldLinkIndex, TLinkAddress newLinkIndex, Handler handler)
     {
         if ( newLinkIndex == oldLinkIndex)
@@ -652,7 +652,7 @@
     }
 
     template<typename TLinkAddress, typename Handler>
-    requires std::invocable<Handler&, IList<TLinkAddress>, IList<TLinkAddress>>
+    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
     static TLinkAddress MergeAndDelete(auto&& storage, TLinkAddress oldLinkIndex, TLinkAddress newLinkIndex, Handler handler)
     {
         auto constants = storage.Constants;
