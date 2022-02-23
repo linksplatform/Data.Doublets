@@ -138,17 +138,17 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
     } // extern "C"
 
     template <typename TLinkAddress>
-    class UnitedMemoryLinksFfi
+    class UnitedMemoryLinks
     {
     private:
         void* _ptr;
     public:
-        UnitedMemoryLinksFfi(std::string path)
+        UnitedMemoryLinks(std::string path)
         {
             _ptr = ByteUnitedMemoryLinks_New(path.c_str());
         }
 
-        ~UnitedMemoryLinksFfi()
+        ~UnitedMemoryLinks()
         {
             ByteUnitedMemoryLinks_Drop(_ptr);
         }
