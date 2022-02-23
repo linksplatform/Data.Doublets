@@ -19,8 +19,8 @@
         public: std::byte* const Links;
         public: std::byte* const Header;
 
-        public: LinksSizeBalancedTreeMethodsBase(const LinksConstants<TLink>& constants, std::byte* links, std::byte* header)
-            : Links(links), Header(header), Break(constants.Break), Continue(constants.Continue) {}
+        public: LinksSizeBalancedTreeMethodsBase(const LinksConstants<TLink>& constants, std::byte* storage, std::byte* header)
+            : Links(storage), Header(header), Break(constants.Break), Continue(constants.Continue) {}
 
         public: TLink GetTreeRoot() { return self().GetTreeRoot(); }
 

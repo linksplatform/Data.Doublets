@@ -2,7 +2,7 @@
 {
     public unsafe class UInt64LinksSourcesAvlBalancedTreeMethods : public UInt64LinksAvlBalancedTreeMethodsBase
     {
-        public: UInt64LinksSourcesAvlBalancedTreeMethods(LinksConstants<std::uint64_t> constants, RawLink<std::uint64_t>* links, LinksHeader<std::uint64_t>* header) : base(constants, links, header) { }
+        public: UInt64LinksSourcesAvlBalancedTreeMethods(LinksConstants<std::uint64_t> constants, RawLink<std::uint64_t>* storage, LinksHeader<std::uint64_t>* header) : base(constants, storage, header) { }
 
         protected: ref std::uint64_t GetLeftReference(std::uint64_t node) override { return ref Links[node].LeftAsSource; }
 

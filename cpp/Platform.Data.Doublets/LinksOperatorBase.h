@@ -10,6 +10,6 @@
             return _links;
         }
 
-        protected: LinksOperatorBase(ILinks<TLink> &links) { _links = links; }
+        protected: LinksOperatorBase(ILinks<TLink> &storage) { _links = storage; }
     };
 }

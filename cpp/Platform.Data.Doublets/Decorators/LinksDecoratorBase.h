@@ -25,9 +25,9 @@
             }
         }
 
-        protected: LinksDecoratorBase(ILinks<TLink> &links) : base(links)
+        protected: LinksDecoratorBase(ILinks<TLink> &storage) : base(storage)
         {
-            _constants = links.Constants;
+            _constants = storage.Constants;
             Facade = this;
         }
 

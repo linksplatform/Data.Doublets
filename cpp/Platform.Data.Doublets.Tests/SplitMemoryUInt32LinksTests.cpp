@@ -8,17 +8,17 @@ namespace Platform::Data::Doublets::Tests
     {
         public: TEST_METHOD(CRUDTest)
         {
-            Using(links => links.TestCRUDOperations());
+            Using(storage => storage.TestCRUDOperations());
         }
 
         public: TEST_METHOD(RawNumbersCRUDTest)
         {
-            UsingWithExternalReferences(links => links.TestRawNumbersCRUDOperations());
+            UsingWithExternalReferences(storage => storage.TestRawNumbersCRUDOperations());
         }
 
         public: TEST_METHOD(MultipleRandomCreationsAndDeletionsTest)
         {
-            Using(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(500));
+            Using(storage => storage.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(500));
         }
 
         private: static void Using(Action<ILinks<TLink>> action)

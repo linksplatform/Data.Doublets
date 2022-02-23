@@ -3,14 +3,14 @@
     template <typename ...> class NonNullContentsLinkDeletionResolver;
     template <typename TLink> class NonNullContentsLinkDeletionResolver<TLink> : public LinksDecoratorBase<TLink>
     {
-        public: NonNullContentsLinkDeletionResolver(ILinks<TLink> &links) : LinksDecoratorBase(links) { }
+        public: NonNullContentsLinkDeletionResolver(ILinks<TLink> &storage) : LinksDecoratorBase(storage) { }
 
         public: void Delete(CList auto&&restrictions) override
         {
             auto linkIndex = restrictions[_constants.IndexPart];
-            auto links = _links;
-            links.EnforceResetValues(linkIndex);
-            links.Delete(linkIndex);
+            auto storage = _links;
+            storage.EnforceResetValues(linkIndex);
+            storage.Delete(linkIndex);
         }
     };
 }

@@ -3,7 +3,7 @@
     template <typename ...> class LinksItselfConstantToSelfReferenceResolver;
     template <typename TLink> class LinksItselfConstantToSelfReferenceResolver<TLink> : public LinksDecoratorBase<TLink>
     {
-        public: LinksItselfConstantToSelfReferenceResolver(ILinks<TLink> &links) : LinksDecoratorBase(links) { }
+        public: LinksItselfConstantToSelfReferenceResolver(ILinks<TLink> &storage) : LinksDecoratorBase(storage) { }
 
         public: TLink Each(Func<IList<TLink>, TLink> handler, CList auto&&restrictions) override
         {

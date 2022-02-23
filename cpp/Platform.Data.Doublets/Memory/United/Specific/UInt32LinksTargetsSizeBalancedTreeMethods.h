@@ -2,7 +2,7 @@
 {
     public unsafe class UInt32LinksTargetsSizeBalancedTreeMethods : public UInt32LinksSizeBalancedTreeMethodsBase
     {
-        public: UInt32LinksTargetsSizeBalancedTreeMethods(LinksConstants<std::uint32_t> constants, RawLink<std::uint32_t>* links, LinksHeader<std::uint32_t>* header) : base(constants, links, header) { }
+        public: UInt32LinksTargetsSizeBalancedTreeMethods(LinksConstants<std::uint32_t> constants, RawLink<std::uint32_t>* storage, LinksHeader<std::uint32_t>* header) : base(constants, storage, header) { }
 
         protected: ref std::uint32_t GetLeftReference(std::uint32_t node) override { return ref Links[node].LeftAsTarget; }
 

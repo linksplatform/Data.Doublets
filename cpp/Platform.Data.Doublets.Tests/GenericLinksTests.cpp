@@ -11,36 +11,36 @@
     }
     TEST(GenericLinksTests, CrudTest)
     {
-        Using<std::uint8_t>([] (auto&& links) { ILinksTestExtensions::TestCrudOperations<std::uint8_t>(links); });
-        Using<std::uint16_t>([] (auto&& links) { ILinksTestExtensions::TestCrudOperations<std::uint16_t>(links); });
-        Using<std::uint32_t>([] (auto&& links) { ILinksTestExtensions::TestCrudOperations<std::uint32_t>(links); });
-        Using<std::uint64_t>([] (auto&& links) { ILinksTestExtensions::TestCrudOperations<std::uint64_t>(links); });
+        Using<std::uint8_t>([] (auto&& storage) { ILinksTestExtensions::TestCrudOperations<std::uint8_t>(storage); });
+        Using<std::uint16_t>([] (auto&& storage) { ILinksTestExtensions::TestCrudOperations<std::uint16_t>(storage); });
+        Using<std::uint32_t>([] (auto&& storage) { ILinksTestExtensions::TestCrudOperations<std::uint32_t>(storage); });
+        Using<std::uint64_t>([] (auto&& storage) { ILinksTestExtensions::TestCrudOperations<std::uint64_t>(storage); });
     }
 
     TEST(GenericLinksTests, RawNumbersCrudTest)
     {
-        Using<std::uint8_t>([] (auto&& links) { ILinksTestExtensions::TestRawNumbersCrudOperations<std::uint8_t>(links); });
-        Using<std::uint16_t>([] (auto&& links) { ILinksTestExtensions::TestRawNumbersCrudOperations<std::uint16_t>(links); });
-        Using<std::uint32_t>([] (auto&& links) { ILinksTestExtensions::TestRawNumbersCrudOperations<std::uint32_t>(links); });
-        Using<std::uint64_t>([] (auto&& links) { ILinksTestExtensions::TestRawNumbersCrudOperations<std::uint64_t>(links); });
+        Using<std::uint8_t>([] (auto&& storage) { ILinksTestExtensions::TestRawNumbersCrudOperations<std::uint8_t>(storage); });
+        Using<std::uint16_t>([] (auto&& storage) { ILinksTestExtensions::TestRawNumbersCrudOperations<std::uint16_t>(storage); });
+        Using<std::uint32_t>([] (auto&& storage) { ILinksTestExtensions::TestRawNumbersCrudOperations<std::uint32_t>(storage); });
+        Using<std::uint64_t>([] (auto&& storage) { ILinksTestExtensions::TestRawNumbersCrudOperations<std::uint64_t>(storage); });
     }
 
     TEST(GenericLinksTests, MultipleRandomCreationsAndDeletionsTest)
     {
-        Using<std::uint8_t>([] (auto&& links){
-        auto decoratedStorage = ILinksExtensions::DecorateWithAutomaticUniquenessAndUsagesResolution(links);
+        Using<std::uint8_t>([] (auto&& storage){
+        auto decoratedStorage = ILinksExtensions::DecorateWithAutomaticUniquenessAndUsagesResolution(storage);
         ILinksTestExtensions::TestMultipleRandomCreationsAndDeletions<std::uint8_t>(decoratedStorage, 16);
         });
-        Using<std::uint16_t>([] (auto&& links){
-            auto decoratedStorage = ILinksExtensions::DecorateWithAutomaticUniquenessAndUsagesResolution(links);
+        Using<std::uint16_t>([] (auto&& storage){
+            auto decoratedStorage = ILinksExtensions::DecorateWithAutomaticUniquenessAndUsagesResolution(storage);
             ILinksTestExtensions::TestMultipleRandomCreationsAndDeletions<std::uint16_t>(decoratedStorage, 100);
         });
-        Using<std::uint32_t>([] (auto&& links){
-            auto decoratedStorage = links.DecorateWithAutomaticUniquenessAndUsagesResolution();
+        Using<std::uint32_t>([] (auto&& storage){
+            auto decoratedStorage = storage.DecorateWithAutomaticUniquenessAndUsagesResolution();
             ILinksTestExtensions::TestMultipleRandomCreationsAndDeletions<std::uint32_t>(decoratedStorage, 100);
         });
-        Using<std::uint64_t>([] (auto&& links){
-            auto decoratedStorage = links.DecorateWithAutomaticUniquenessAndUsagesResolution();
+        Using<std::uint64_t>([] (auto&& storage){
+            auto decoratedStorage = storage.DecorateWithAutomaticUniquenessAndUsagesResolution();
             ILinksTestExtensions::TestMultipleRandomCreationsAndDeletions<std::uint64_t>(decoratedStorage, 100);
         });
     }

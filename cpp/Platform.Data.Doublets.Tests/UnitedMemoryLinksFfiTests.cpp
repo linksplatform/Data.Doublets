@@ -5,12 +5,12 @@
 //{
 //    TEST(UnitedMemoryLinksFfiTests, ConstructorTest)
 //    {
-//        UnitedMemoryLinksFfi<TLinkAddressByte> storage {"db.links"};
+//        UnitedMemoryLinksFfi<TLinkAddressByte> storage {"db.storage"};
 //    };
 //
 //    TEST(UnitedMemoryLinksFfiTests, CreateTest)
 //    {
-//        UnitedMemoryLinksFfi<TLinkAddressByte> storage {"db.links"};
+//        UnitedMemoryLinksFfi<TLinkAddressByte> storage {"db.storage"};
 //        Link link {1, 2, 3};
 //        storage.Create(link, null);
 //        Assert.Equal(1, storage.Count());
@@ -18,7 +18,7 @@
 //
 //    TEST(UnitedMemoryLinksFfiTests, DeleteTest)
 //    {
-//        UnitedMemoryLinksFfi<TLinkAddressByte> storage {"db.links"};
+//        UnitedMemoryLinksFfi<TLinkAddressByte> storage {"db.storage"};
 //        Link link {1, 2, 3};
 //        storage.Create(link, null);
 //        storage.Delete(link);
@@ -27,7 +27,7 @@
 //
 //    TEST(UnitedMemoryLinksFfiTests, DeleteTest)
 //    {
-//        UnitedMemoryLinksFfi<TLinkAddressByte> storage {"db.links"};
+//        UnitedMemoryLinksFfi<TLinkAddressByte> storage {"db.storage"};
 //        Link link {1, 2, 3};
 //        storage.Create(link, null);
 //        Link newLink {4, 5, 6};
@@ -38,7 +38,7 @@
 //
 //    TEST(UnitedMemoryLinksFfiTests, DeleteTest)
 //    {
-//        UnitedMemoryLinksFfi<TLinkAddressByte> storage {"db.links"};
+//        UnitedMemoryLinksFfi<TLinkAddressByte> storage {"db.storage"};
 //        Link link {1, 2, 3};
 //        storage.Create(link, std::ranges::size(link), null);
 //        Link newLink {4, 5, 6};

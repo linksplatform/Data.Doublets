@@ -5,7 +5,7 @@
     {
         private: TLink _targetToMatch = 0;
 
-        public: TargetMatcher(ILinks<TLink> &links, TLink targetToMatch) : base(links) { return _targetToMatch = targetToMatch; }
+        public: TargetMatcher(ILinks<TLink> &storage, TLink targetToMatch) : base(storage) { return _targetToMatch = targetToMatch; }
 
         public: bool IsMatched(TLink link) { return _links.GetTarget(link) == _targetToMatch; }
     };

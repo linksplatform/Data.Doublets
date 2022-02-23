@@ -3,7 +3,7 @@
     template <typename ...> class LinksNullConstantToSelfReferenceResolver;
     template <typename TLink> class LinksNullConstantToSelfReferenceResolver<TLink> : public LinksDecoratorBase<TLink>
     {
-        public: LinksNullConstantToSelfReferenceResolver(ILinks<TLink> &links) : LinksDecoratorBase(links) { }
+        public: LinksNullConstantToSelfReferenceResolver(ILinks<TLink> &storage) : LinksDecoratorBase(storage) { }
 
         public: TLink Create(CList auto&&restrictions) override { return _links.CreatePoint(); }
 

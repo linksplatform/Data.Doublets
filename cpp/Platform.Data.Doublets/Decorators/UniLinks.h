@@ -3,7 +3,7 @@
     template <typename ...> class UniLinks;
     template <typename TLink> class UniLinks<TLink> : public LinksDecoratorBase<TLink>, IUniLinks<TLink>
     {
-        public: UniLinks(ILinks<TLink> &links) : base(links) { }
+        public: UniLinks(ILinks<TLink> &storage) : base(storage) { }
 
         struct Transition
         {

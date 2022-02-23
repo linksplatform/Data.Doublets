@@ -6,7 +6,7 @@
     {
         using base = LinksSizeBalancedTreeMethodsBase<LinksTargetsSizeBalancedTreeMethods<TLink>, TLink>;
 
-        public: LinksTargetsSizeBalancedTreeMethods(const LinksConstants<TLink>& constants, std::byte* links, std::byte* header) : base(constants, links, header) { }
+        public: LinksTargetsSizeBalancedTreeMethods(const LinksConstants<TLink>& constants, std::byte* storage, std::byte* header) : base(constants, storage, header) { }
 
         public: TLink* GetLeftReference(TLink node) { return &this->GetLinkReference(node).LeftAsTarget; }
 

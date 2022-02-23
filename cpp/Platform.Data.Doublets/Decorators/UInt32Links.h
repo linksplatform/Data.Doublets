@@ -6,7 +6,7 @@ namespace Platform::Data::Doublets::Decorators
 {
     class UInt32Links : public LinksDisposableDecoratorBase<TLink>
     {
-        public: UInt32Links(ILinks<TLink> &links) : base(links) { }
+        public: UInt32Links(ILinks<TLink> &storage) : base(storage) { }
 
         public: TLink Create(CList auto&&restrictions) override { return _links.CreatePoint(); }
 
@@ -22,17 +22,17 @@ namespace Platform::Data::Doublets::Decorators
             auto updatedLink = restrictions[indexPartConstant];
             auto newSource = substitution[sourcePartConstant];
             auto newTarget = substitution[targetPartConstant];
-            auto links = _links;
+            auto storage = _links;
             if (newSource != itselfConstant && newTarget != itselfConstant)
             {
-                existedLink = links.SearchOrDefault(newSource, newTarget);
+                existedLink = storage.SearchOrDefault(newSource, newTarget);
             }
             if (existedLink == nullConstant)
             {
-                auto before = links.GetLink(updatedLink);
+                auto before = storage.GetLink(updatedLink);
                 if (before[sourcePartConstant] != newSource || before[targetPartConstant] != newTarget)
                 {
-                    links.Update(updatedLink, newSource == itselfConstant ? updatedLink : newSource,
+                    storage.Update(updatedLink, newSource == itselfConstant ? updatedLink : newSource,
                                               newTarget == itselfConstant ? updatedLink : newTarget);
                 }
                 return updatedLink;
@@ -46,10 +46,10 @@ namespace Platform::Data::Doublets::Decorators
         public: void Delete(CList auto&&restrictions) override
         {
             auto linkIndex = restrictions[_constants.IndexPart];
-            auto links = _links;
-            links.EnforceResetValues(linkIndex);
+            auto storage = _links;
+            storage.EnforceResetValues(linkIndex);
             _facade.DeleteAllUsages(linkIndex);
-            links.Delete(linkIndex);
+            storage.Delete(linkIndex);
         }
     };
 }
