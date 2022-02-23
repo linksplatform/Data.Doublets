@@ -11,37 +11,37 @@
     }
     TEST(GenericLinksTests, CrudTest)
     {
-        Using<std::uint8_t>([] (auto&& links) { ILinksTestExtensions::TestCrudOperations<decltype(links), std::uint8_t>(links); });
-        Using<std::uint16_t>([] (auto&& links) { ILinksTestExtensions::TestCrudOperations<decltype(links), std::uint16_t>(links); });
-        Using<std::uint32_t>([] (auto&& links) { ILinksTestExtensions::TestCrudOperations<decltype(links), std::uint32_t>(links); });
-        Using<std::uint64_t>([] (auto&& links) { ILinksTestExtensions::TestCrudOperations<decltype(links), std::uint64_t>(links); });
+        Using<std::uint8_t>([] (auto&& links) { ILinksTestExtensions::TestCrudOperations<std::uint8_t>(links); });
+        Using<std::uint16_t>([] (auto&& links) { ILinksTestExtensions::TestCrudOperations<std::uint16_t>(links); });
+        Using<std::uint32_t>([] (auto&& links) { ILinksTestExtensions::TestCrudOperations<std::uint32_t>(links); });
+        Using<std::uint64_t>([] (auto&& links) { ILinksTestExtensions::TestCrudOperations<std::uint64_t>(links); });
     }
 
     TEST(GenericLinksTests, RawNumbersCrudTest)
     {
-        Using<std::uint8_t>([] (auto&& links) { ILinksTestExtensions::TestRawNumbersCrudOperations<decltype(links), std::uint8_t>(links); });
-        Using<std::uint16_t>([] (auto&& links) { ILinksTestExtensions::TestRawNumbersCrudOperations<decltype(links), std::uint16_t>(links); });
-        Using<std::uint32_t>([] (auto&& links) { ILinksTestExtensions::TestRawNumbersCrudOperations<decltype(links), std::uint32_t>(links); });
-        Using<std::uint64_t>([] (auto&& links) { ILinksTestExtensions::TestRawNumbersCrudOperations<decltype(links), std::uint64_t>(links); });
+        Using<std::uint8_t>([] (auto&& links) { ILinksTestExtensions::TestRawNumbersCrudOperations<std::uint8_t>(links); });
+        Using<std::uint16_t>([] (auto&& links) { ILinksTestExtensions::TestRawNumbersCrudOperations<std::uint16_t>(links); });
+        Using<std::uint32_t>([] (auto&& links) { ILinksTestExtensions::TestRawNumbersCrudOperations<std::uint32_t>(links); });
+        Using<std::uint64_t>([] (auto&& links) { ILinksTestExtensions::TestRawNumbersCrudOperations<std::uint64_t>(links); });
     }
 
     TEST(GenericLinksTests, MultipleRandomCreationsAndDeletionsTest)
     {
         Using<std::uint8_t>([] (auto&& links){
-            auto decoratedStorage = links.DecorateWithAutomaticUniquenessAndUsagesResolution();
-            ILinksTestExtensions::TestMultipleRandomCreationsAndDeletions<decltype(links), std::uint8_t>(decoratedStorage, 16);
+        auto decoratedStorage = ILinksExtensions::DecorateWithAutomaticUniquenessAndUsagesResolution(links);
+        ILinksTestExtensions::TestMultipleRandomCreationsAndDeletions<std::uint8_t>(decoratedStorage, 16);
         });
         Using<std::uint16_t>([] (auto&& links){
-            auto decoratedStorage = links.DecorateWithAutomaticUniquenessAndUsagesResolution();
-            ILinksTestExtensions::TestMultipleRandomCreationsAndDeletions<decltype(links), std::uint16_t>(decoratedStorage, 100);
+            auto decoratedStorage = ILinksExtensions::DecorateWithAutomaticUniquenessAndUsagesResolution(links);
+            ILinksTestExtensions::TestMultipleRandomCreationsAndDeletions<std::uint16_t>(decoratedStorage, 100);
         });
         Using<std::uint32_t>([] (auto&& links){
             auto decoratedStorage = links.DecorateWithAutomaticUniquenessAndUsagesResolution();
-            ILinksTestExtensions::TestMultipleRandomCreationsAndDeletions<decltype(links), std::uint32_t>(decoratedStorage, 100);
+            ILinksTestExtensions::TestMultipleRandomCreationsAndDeletions<std::uint32_t>(decoratedStorage, 100);
         });
         Using<std::uint64_t>([] (auto&& links){
             auto decoratedStorage = links.DecorateWithAutomaticUniquenessAndUsagesResolution();
-            ILinksTestExtensions::TestMultipleRandomCreationsAndDeletions<decltype(links), std::uint64_t>(decoratedStorage, 100);
+            ILinksTestExtensions::TestMultipleRandomCreationsAndDeletions<std::uint64_t>(decoratedStorage, 100);
         });
     }
 }
