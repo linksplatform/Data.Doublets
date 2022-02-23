@@ -10,21 +10,22 @@
         void TestRandomCreationsAndDeletions(std::size_t maximumOperationsPerCycle)
         {
             using namespace Platform::Random;
+            using namespace Platform::Ranges;
 
             auto&& links = *this;
             for (auto N = 1; N < maximumOperationsPerCycle; N++)
             {
-                auto& random = RandomHelpers::Default;
+                auto& randomGen64 = RandomHelpers::Default;
                 auto created = 0UL;
                 auto deleted = 0UL;
                 for (auto i = 0; i < N; i++)
                 {
                     auto linksCount = links.Count();
-                    auto createPoint = Random::NextBoolean(random);
+                    auto createPoint = Random::NextBoolean(randomGen64);
                     if (linksCount >= 2 && createPoint)
                     {
-                        auto source = Random::NextUInt64(random, {1, linksCount});
-                        auto target = Random::NextUInt64(random, {1, linksCount}); //-V3086
+                        auto source = Random::NextUInt64(randomGen64, Ranges::Range{1, linksCount});
+                        auto target = Random::NextUInt64(randomGen64, Ranges::Range{1, linksCount}); //-V3086
                         auto resultLink = links.GetOrCreate(source, target);
                         if (resultLink > linksCount)
                         {
@@ -56,13 +57,13 @@
             using namespace Platform::Ranges;
 
             auto& links = *this;
-            auto& random = RandomHelpers::Default;
+            auto& randomGen64 = RandomHelpers::Default;
             for (std::size_t i = 0; i < amountOfCreations; i++)
             {
                 // TODO: Use ranges/0.1.4 features
                 auto linksAddressRange = Range<std::size_t>(0, links.Count());
-                auto source = Random::NextUInt64(random, linksAddressRange);
-                auto target = Random::NextUInt64(random, linksAddressRange);
+                auto source = Random::NextUInt64(randomGen64, linksAddressRange);
+                auto target = Random::NextUInt64(randomGen64, linksAddressRange);
                 links.GetOrCreate(source, target);
             }
         }
