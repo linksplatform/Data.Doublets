@@ -10,19 +10,19 @@
             public: IList<TLink> *Before;
             public: IList<TLink> *After;
 
-            public: Transition(IList<TLink> &before, IList<TLink> &after)
+            public: Transition(CList auto&&before, CList auto&&after)
             {
                 Before = before;
                 After = after;
             }
         }
 
-        public: TLink Trigger(IList<TLink> &restriction, Func<IList<TLink>, IList<TLink>, TLink> matchedHandler, IList<TLink> &substitution, Func<IList<TLink>, IList<TLink>, TLink> substitutedHandler)
+        public: TLink Trigger(CList auto&&restriction, Func<IList<TLink>, IList<TLink>, TLink> matchedHandler, CList auto&&substitution, Func<IList<TLink>, IList<TLink>, TLink> substitutedHandler)
         {
             return _constants.Continue;
         }
 
-        public: TLink Trigger(IList<TLink> &patternOrCondition, Func<IList<TLink>, TLink> matchHandler, IList<TLink> &substitution, Func<IList<TLink>, IList<TLink>, TLink> substitutionHandler)
+        public: TLink Trigger(CList auto&&patternOrCondition, Func<IList<TLink>, TLink> matchHandler, CList auto&&substitution, Func<IList<TLink>, IList<TLink>, TLink> substitutionHandler)
         {
             auto constants = _constants;
             if (patternOrCondition.IsNullOrEmpty() && substitution.IsNullOrEmpty())
@@ -131,7 +131,7 @@
             }
         }
 
-        public: IList<IList<IList<TLink>>> Trigger(IList<TLink> &condition, IList<TLink> &substitution)
+        public: IList<IList<IList<TLink>>> Trigger(CList auto&&condition, CList auto&&substitution)
         {
             auto changes = List<IList<IList<TLink>>>();
             auto continue = _constants.Continue;
@@ -144,6 +144,6 @@
             return changes;
         }
 
-        private: TLink AlwaysContinue(IList<TLink> &linkToMatch) { return _constants.Continue; }
+        private: TLink AlwaysContinue(CList auto&&linkToMatch) { return _constants.Continue; }
     };
 }

@@ -5,7 +5,7 @@
     {
         public: LinksNonExistentDependenciesCreator(ILinks<TLink> &links) : LinksDecoratorBase(links) { }
 
-        public: TLink Update(IList<TLink> &restrictions, IList<TLink> &substitution) override
+        public: TLink Update(CList auto&&restrictions, CList auto&&substitution) override
         {
             auto constants = _constants;
             auto links = _links;

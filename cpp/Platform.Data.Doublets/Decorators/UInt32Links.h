@@ -8,9 +8,9 @@ namespace Platform::Data::Doublets::Decorators
     {
         public: UInt32Links(ILinks<TLink> &links) : base(links) { }
 
-        public: TLink Create(IList<TLink> &restrictions) override { return _links.CreatePoint(); }
+        public: TLink Create(CList auto&&restrictions) override { return _links.CreatePoint(); }
 
-        public: TLink Update(IList<TLink> &restrictions, IList<TLink> &substitution) override
+        public: TLink Update(CList auto&&restrictions, CList auto&&substitution) override
         {
             auto constants = _constants;
             auto indexPartConstant = constants.IndexPart;
@@ -43,7 +43,7 @@ namespace Platform::Data::Doublets::Decorators
             }
         }
 
-        public: void Delete(IList<TLink> &restrictions) override
+        public: void Delete(CList auto&&restrictions) override
         {
             auto linkIndex = restrictions[_constants.IndexPart];
             auto links = _links;

@@ -5,14 +5,14 @@
     {
         public: LinksInnerReferenceExistenceValidator(ILinks<TLink> &links) : LinksDecoratorBase(links) { }
 
-        public: TLink Each(Func<IList<TLink>, TLink> handler, IList<TLink> &restrictions) override
+        public: TLink Each(Func<IList<TLink>, TLink> handler, CList auto&&restrictions) override
         {
             auto links = _links;
             links.EnsureInnerReferenceExists(restrictions, "restrictions");
             return links.Each(handler, restrictions);
         }
 
-        public: TLink Update(IList<TLink> &restrictions, IList<TLink> &substitution) override
+        public: TLink Update(CList auto&&restrictions, CList auto&&substitution) override
         {
             auto links = _links;
             links.EnsureInnerReferenceExists(restrictions, "restrictions");
@@ -20,7 +20,7 @@
             return links.Update(restrictions, substitution);
         }
 
-        public: void Delete(IList<TLink> &restrictions) override
+        public: void Delete(CList auto&&restrictions) override
         {
             auto link = restrictions[_constants.IndexPart];
             auto links = _links;

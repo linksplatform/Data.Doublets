@@ -5,7 +5,7 @@
     {
         public: LinksCascadeUsagesResolver(ILinks<TLink> &links) : LinksDecoratorBase(links) { }
 
-        public: void Delete(IList<TLink> &restrictions) override
+        public: void Delete(CList auto&&restrictions) override
         {
             auto linkIndex = restrictions[_constants.IndexPart];
             _facade.DeleteAllUsages(linkIndex);

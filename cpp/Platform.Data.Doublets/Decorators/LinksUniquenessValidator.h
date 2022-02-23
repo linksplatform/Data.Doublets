@@ -5,7 +5,7 @@
     {
         public: LinksUniquenessValidator(ILinks<TLink> &links) : LinksDecoratorBase(links) { }
 
-        public: TLink Update(IList<TLink> &restrictions, IList<TLink> &substitution) override
+        public: TLink Update(CList auto&&restrictions, CList auto&&substitution) override
         {
             auto links = _links;
             auto constants = _constants;
