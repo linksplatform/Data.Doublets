@@ -1,12 +1,11 @@
 ﻿namespace Platform::Data::Doublets
 {
-public:
     template<typename TLinkAddress>
     static void RunRandomCreations(auto&& storage, std::uint64_t amountOfCreations)
     {
         using namespace Platform::Random;
         using namespace Platform::Ranges;
-        auto randomGenerator64 = RandomHelpers.Default;
+        auto randomGenerator64 = Random::RandomHelpers::Default;
         for (auto i { 0UL }; i < amountOfCreations; ++i)
         {
             Range<std::uint64_t> linksAddressRange { 0, storage.Count() };
@@ -19,7 +18,7 @@ public:
     template<typename TLinkAddress>
     static void RunRandomSearches(auto&& storage, std::uint64_t amountOfSearches)
     {
-        auto random = RandomHelpers.Default;
+        auto random = Random::RandomHelpers::Default;
         for (auto i { 0UL }; i < amountOfSearches; ++i)
         {
             auto linksAddressRange = Range<std::uint64_t>(0, storage.Count());
@@ -32,7 +31,7 @@ public:
     template<typename TLinkAddress>
     static void RunRandomDeletions(auto&& storage, std::uint64_t amountOfDeletions)
     {
-        auto random = RandomHelpers.Default;
+        auto random = Random::RandomHelpers::Default;
         auto linksCount = storage.Count();
         auto min = amountOfDeletions > linksCount ? 0UL : linksCount - amountOfDeletions;
         for (auto i { 0UL }; i < amountOfDeletions; ++i)
