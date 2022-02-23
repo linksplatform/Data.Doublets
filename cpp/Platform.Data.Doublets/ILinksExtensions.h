@@ -96,7 +96,7 @@
         std::vector<TLinkAddress> result = {};
         auto count = 0;
         auto constants = storage.Constants;
-        auto linkHandler { [] (Interfaces::CList auto&& link) {
+        auto linkHandler { [count] (Interfaces::CList auto&& link) {
             if (count == 0)
             {
                 result = link;
