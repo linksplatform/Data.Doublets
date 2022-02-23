@@ -29,5 +29,7 @@
 #include "Memory/United/Generic/UnitedMemoryLinks.h"
 #include "Memory/United/Ffi/UnitedMemoryLinksFfi.h"
 
+#include "ILinksExtensions.h"
+
 
 #endif
