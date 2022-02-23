@@ -9,8 +9,8 @@
         for (auto i { 0UL }; i < amountOfCreations; ++i)
         {
             Range<std::uint64_t> linksAddressRange { 0, storage.Count() };
-            auto source = Random::NextUInt64(randomGenerator64, linksAddressRange)
-            auto target = Random::NextUInt64(randomGenerator64, linksAddressRange)
+            auto source = Random::NextUInt64(randomGenerator64, linksAddressRange);
+            auto target = Random::NextUInt64(randomGenerator64, linksAddressRange);
             storage.GetOrCreate(source, target);
         }
     }
@@ -22,8 +22,8 @@
         for (auto i { 0UL }; i < amountOfSearches; ++i)
         {
             auto linksAddressRange = Range<std::uint64_t>(0, storage.Count());
-            auto source = Random::NextUInt64(randomGenerator64, linksAddressRange)
-            auto target = Random::NextUInt64(randomGenerator64, linksAddressRange)
+            auto source = Random::NextUInt64(randomGenerator64, linksAddressRange);
+            auto target = Random::NextUInt64(randomGenerator64, linksAddressRange);
             SearchOrDefault(storage, source, target);
         }
     }
