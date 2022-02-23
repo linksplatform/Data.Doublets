@@ -27,7 +27,7 @@
                 auto linksAddressRange = Range<std::uint64_t>(0, links.Count());
                 auto source = Random::NextUInt64(randomGenerator64, linksAddressRange)
                 auto target = Random::NextUInt64(randomGenerator64, linksAddressRange)
-                links.SearchOrDefault(source, target);
+                SearchOrDefault(links, source, target);
             }
         }
 
@@ -63,7 +63,6 @@
         template<typename TLinkAddress>
         static void DeleteAll(ILinks<TLinkAddress> &links) 
         {
-            auto equalityComparer = EqualityComparer<TLinkAddress>.Default;
             auto comparer = Comparer<TLinkAddress>.Default;
             for (auto i = links.Count(); comparer.Compare(i, 0) > 0; i = i - 1)
             {
@@ -79,7 +78,6 @@
         static TLinkAddress First(ILinks<TLinkAddress> &links) 
         {
             TLinkAddress firstLink = 0;
-            auto equalityComparer = EqualityComparer<TLinkAddress>.Default;
             if (equalityComparer.Equals(links.Count(), 0))
             {
                 throw std::runtime_error("В хранилище нет связей.");
@@ -130,7 +128,6 @@
             {
                 return false;
             }
-            auto equalityComparer = EqualityComparer<TLinkAddress>.Default;
             auto constants = links.Constants;
             for (auto i = 1; i < path.Length; ++i)
             {
@@ -251,7 +248,6 @@
         template<typename TLinkAddress>
         static void EnsureLinkIsAnyOrExists(ILinks<TLinkAddress> &links, IList<TLinkAddress>? restriction) 
         {
-            auto equalityComparer = EqualityComparer<TLinkAddress>.Default;
             auto any = links.Constants.Any;
             for (auto i = 0; i < restriction.Count(); ++i)
             {
@@ -265,7 +261,6 @@
         template<typename TLinkAddress>
         static void EnsureLinkIsAnyOrExists(ILinks<TLinkAddress> &links, TLinkAddress link, std::string argumentName) 
         {
-            auto equalityComparer = EqualityComparer<TLinkAddress>.Default;
             if (!equalityComparer.Equals(link, links.Constants.Any) && !links.Exists(link))
             {
                 throw ArgumentLinkDoesNotExistsException<TLinkAddress>(link, argumentName);
@@ -275,7 +270,6 @@
         template<typename TLinkAddress>
         static void EnsureLinkIsItselfOrExists(ILinks<TLinkAddress> &links, TLinkAddress link, std::string argumentName) 
         {
-            auto equalityComparer = EqualityComparer<TLinkAddress>.Default;
             if (!equalityComparer.Equals(link, links.Constants.Itself) && !links.Exists(link))
             {
                 throw ArgumentLinkDoesNotExistsException<TLinkAddress>(link, argumentName);
@@ -315,7 +309,6 @@
                 auto max = nonExistentAddresses.Max();
                 max = System::Math::Min(max), addressToUInt64Converter.Convert(links.Constants.InternalReferencesRange.Maximum)
                 auto createdLinks = List<TLinkAddress>();
-                auto equalityComparer = EqualityComparer<TLinkAddress>.Default;
                 TLinkAddress createdLink = creator();
                 while (!equalityComparer.Equals(createdLink, max))
                 {
@@ -337,7 +330,6 @@
             auto constants = links.Constants;
             auto values = links.GetLink(link);
             TLinkAddress usagesAsSource = links.Count()(Link<TLinkAddress>(constants.Any, link, constants.Any));
-            auto equalityComparer = EqualityComparer<TLinkAddress>.Default;
             if (equalityComparer.Equals(links.GetSource(values), link))
             {
                 usagesAsSource = Arithmetic<TLinkAddress>.Decrement(usagesAsSource);
@@ -358,7 +350,6 @@
         {
             auto constants = links.Constants;
             auto values = links.GetLink(link);
-            auto equalityComparer = EqualityComparer<TLinkAddress>.Default;
             return equalityComparer.Equals(links.GetSource(values), source) && equalityComparer.Equals(links.GetTarget(values), target);
         }
 
@@ -453,7 +444,6 @@
 
         static IList<TLinkAddress>? ResolveConstantAsSelfReference<TLinkAddress>(ILinks<TLinkAddress> &links, TLinkAddress constant, IList<TLinkAddress>? restriction, IList<TLinkAddress>? substitution) 
         {
-            auto equalityComparer = EqualityComparer<TLinkAddress>.Default;
             auto constants = links.Constants;
             auto restrictionIndex = links.GetIndex(restriction);
             auto substitutionIndex = links.GetIndex(substitution);
@@ -471,10 +461,10 @@
         template<typename TLinkAddress>
         static TLinkAddress GetOrCreate(ILinks<TLinkAddress> &links, TLinkAddress source, TLinkAddress target) 
         {
-            auto link = links.SearchOrDefault(source, target);
+            auto link = SearchOrDefault(links, source, target);
             if (link == 0)
             {
-                link = links.CreateAndUpdate(source, target);
+                link = CreateAndUpdate(links, source, target);
             }
             return link;
         }
@@ -484,15 +474,14 @@
         {
             auto constants = links.Constants;
             auto setter = Setter<TLinkAddress, TLinkAddress>(constants.Continue, constants.Break);
-            links.UpdateOrCreateOrGet(source, target, newSource, newTarget, setter.SetFirstFromSecondListAndReturnTrue);
+            UpdateOrCreateOrGet(links, source, target, newSource, newTarget, setter.SetFirstFromSecondListAndReturnTrue);
             return setter.Result;
         }
 
         template<typename TLinkAddress>
         static TLinkAddress UpdateOrCreateOrGet(ILinks<TLinkAddress> &links, TLinkAddress source, TLinkAddress target, TLinkAddress newSource, TLinkAddress newTarget, WriteHandler<TLinkAddress>? handler) 
         {
-            auto equalityComparer = EqualityComparer<TLinkAddress>.Default;
-            auto link = links.SearchOrDefault(source, target);
+            auto link = SearchOrDefault(links, source, target);
             if (equalityComparer.Equals(link, 0))
             {
                 return links.CreateAndUpdate(newSource, newTarget, handler);
@@ -508,7 +497,7 @@
         template<typename TLinkAddress>
         static TLinkAddress DeleteIfExists(ILinks<TLinkAddress> &links, TLinkAddress source, TLinkAddress target) 
         {
-            auto link = links.SearchOrDefault(source, target);
+            auto link = SearchOrDefault(links, source, target);
             if (link != 0)
             {
                 links.Delete(link);
@@ -534,7 +523,6 @@
         {
             auto constants = links.Constants;
             auto any = constants.Any;
-            auto equalityComparer = EqualityComparer<TLinkAddress>.Default;
             auto usagesAsSourceQuery = Link<TLinkAddress>(any, linkIndex, any);
             auto usagesAsTargetQuery = Link<TLinkAddress>(any, any, linkIndex);
             auto usages = List<IList<TLinkAddress>?>();
@@ -569,7 +557,6 @@
         static bool AreValuesReset(ILinks<TLinkAddress> &links, TLinkAddress linkIndex) 
         {
             auto nullConstant = links.Constants.Null;
-            auto equalityComparer = EqualityComparer<TLinkAddress>.Default;
             auto link = links.GetLink(linkIndex);
             for (std::int32_t i = 1; i < link.Count(); ++i)
             {
@@ -611,7 +598,6 @@
         template<typename TLinkAddress>
         static TLinkAddress MergeUsages(ILinks<TLinkAddress> &links, TLinkAddress oldLinkIndex, TLinkAddress newLinkIndex, WriteHandler<TLinkAddress>? handler) 
         {
-            auto equalityComparer = EqualityComparer<TLinkAddress>.Default;
             if (equalityComparer.Equals(oldLinkIndex, newLinkIndex))
             {
                 return newLinkIndex;
@@ -648,7 +634,6 @@
         template<typename TLinkAddress>
         static TLinkAddress MergeAndDelete(ILinks<TLinkAddress> &links, TLinkAddress oldLinkIndex, TLinkAddress newLinkIndex) 
         {
-            auto equalityComparer = EqualityComparer<TLinkAddress>.Default;
             if (!equalityComparer.Equals(oldLinkIndex, newLinkIndex))
             {
                 links.MergeUsages(oldLinkIndex, newLinkIndex);
@@ -660,7 +645,6 @@
         template<typename TLinkAddress>
         static TLinkAddress MergeAndDelete(ILinks<TLinkAddress> &links, TLinkAddress oldLinkIndex, TLinkAddress newLinkIndex, WriteHandler<TLinkAddress>? handler) 
         {
-            auto equalityComparer = EqualityComparer<TLinkAddress>.Default;
             auto constants = links.Constants;
             WriteHandlerState<TLinkAddress> handlerState = new(constants.Continue, constants.Break, handler);
             if (!equalityComparer.Equals(oldLinkIndex, newLinkIndex))
