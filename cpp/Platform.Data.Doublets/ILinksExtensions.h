@@ -662,13 +662,14 @@
 //        return handlerState.Result;
 //    }
 //
-//    static ILinks<TLinkAddress> DecorateWithAutomaticUniquenessAndUsagesResolution<TLinkAddress>(auto&& storage)
-//    {
-//        storage = LinksCascadeUsagesResolver<TLinkAddress>(storage);
-//        storage = NonNullContentsLinkDeletionResolver<TLinkAddress>(storage);
-//        storage = LinksCascadeUniquenessAndUsagesResolver<TLinkAddress>(storage);
-//        return storage;
-//    }
+    template<typename TLinkAddress>
+    static auto&& DecorateWithAutomaticUniquenessAndUsagesResolution(auto&& storage)
+    {
+        storage = LinksCascadeUsagesResolver<TLinkAddress>(storage);
+        storage = NonNullContentsLinkDeletionResolver<TLinkAddress>(storage);
+        storage = LinksCascadeUniquenessAndUsagesResolver<TLinkAddress>(storage);
+        return storage;
+    }
 //
 //    template<typename TLinkAddress>
 //    static std::string Format(auto&& storage, Interfaces::CList auto&& link)
