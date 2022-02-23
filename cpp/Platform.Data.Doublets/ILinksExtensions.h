@@ -92,28 +92,24 @@
 
     static auto SingleOrDefault(auto&& storage, CList auto&& query)
     {
-        IList<TLinkAddress>? result = {};
+        std::vector<TLinkAddress> result = {};
         auto count = 0;
         auto constants = storage.Constants;
-        auto continue = constants.Continue;
-        auto break = constants.Break;
-        storage.Each(query, linkHandler);
-        return result;
-
-        TLinkAddress linkHandler(CList auto&& link)
-        {
+        auto linkHandler { [] CList auto&& link) {
             if (count == 0)
             {
                 result = link;
                 count++;
-                return continue;
+                return constants.Continue;
             }
             else
             {
                 result = {};
-                return break;
+                return constants.Break;
             }
-        }
+        }};
+        storage.Each(query, linkHandler);
+        return result;
     }
 
     template<typename TLinkAddress>
