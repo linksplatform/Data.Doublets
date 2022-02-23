@@ -156,10 +156,11 @@
     template<typename TLinkAddress>
     static TLinkAddress GetSquareMatrixSequenceElementByIndex(auto&& storage, TLinkAddress root, std::uint64_t size, std::uint64_t index)
     {
+        using namespace Platform::Numbers;
         auto constants = storage.Constants;
         auto source = constants.SourcePart;
         auto target = constants.TargetPart;
-        if (!Platform.Numbers.Math.IsPowerOfTwo(size))
+        if (!Numbers::Math::IsPowerOfTwo(size))
         {
             throw std::invalid_argument("size", "Sequences with sizes other than powers of two are not supported.");
         }
