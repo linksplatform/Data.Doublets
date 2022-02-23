@@ -42,7 +42,7 @@
                 break;
             }
             auto linksAddressRange = Range<std::uint64_t>(min, linksCount);
-            auto link = Random::NextUInt64(randomGenerator64, linksAddressRange)
+            auto link = Random::NextUInt64(randomGenerator64, linksAddressRange);
             storage.Delete(link);
         }
     }
