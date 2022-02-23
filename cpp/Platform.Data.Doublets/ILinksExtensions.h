@@ -63,7 +63,7 @@
     static void DeleteAll(auto&& storage)
     {
         auto comparer = Comparer<TLinkAddress>.Default;
-        for (auto i = storage.Count(); comparer.Compare(i, 0) > 0; i = i - 1)
+        for (auto i { storage.Count() }; i > 0; --i)
         {
             storage.Delete(i);
             if (!equalityComparer.Equals(storage.Count(), i - 1))
@@ -128,7 +128,7 @@
             return false;
         }
         auto constants = storage.Constants;
-        for (auto i = 1; i < path.Length; ++i)
+        for (auto i { 1 }; i < path.Length; ++i)
         {
             auto next = path[i];
             auto values = storage.GetLink(current);
@@ -152,7 +152,7 @@
     {
         storage.EnsureLinkExists(root, "root");
         auto currentLink = root;
-        for (auto i = 0; i < path.Length; ++i)
+        for (auto i { 0 }; i < path.Length; ++i)
         {
             currentLink = storage.GetLink(currentLink)[path[i]];
         }
@@ -173,7 +173,7 @@
         auto length = Bit.GetLowestPosition(size);
         storage.EnsureLinkExists(root, "root");
         auto currentLink = root;
-        for (auto i = length - 1; i >= 0; i--)
+        for (auto i { length - 1 }; i >= 0; i--)
         {
             currentLink = storage.GetLink(currentLink)[path[i] ? target : source];
         }
@@ -217,7 +217,7 @@
     template<typename TLinkAddress>
     static void EnsureLinkExists(auto&& storage, IList<TLinkAddress>? restriction)
     {
-        for (auto i = 0; i < restriction.Count(); ++i)
+        for (auto i { 0 }; i < restriction.Count(); ++i)
         {
             if (!storage.Exists(restriction[i]))
             {
@@ -248,7 +248,7 @@
     static void EnsureLinkIsAnyOrExists(auto&& storage, IList<TLinkAddress>? restriction)
     {
         auto any = storage.Constants.Any;
-        for (auto i = 0; i < restriction.Count(); ++i)
+        for (auto i { 0 }; i < restriction.Count(); ++i)
         {
             if (!equalityComparer.Equals(restriction[i], any) && !storage.Exists(restriction[i]))
             {
@@ -313,7 +313,7 @@
             {
                 createdLinks.Add(createdLink);
             }
-            for (auto i = 0; i < createdLinks.Count(); ++i)
+            for (auto i { 0 }; i < createdLinks.Count(); ++i)
             {
                 if (!nonExistentAddresses.Contains(createdLinks[i]))
                 {
@@ -614,7 +614,7 @@
         auto constants = storage.Constants;
         auto usagesAsSource = storage.All(Link<TLinkAddress>(constants.Any, oldLinkIndex, constants.Any));
         WriteHandlerState<TLinkAddress> handlerState = new(constants.Continue, constants.Break, handler);
-        for (auto i = 0; i < usagesAsSource.Count(); ++i)
+        for (auto i { 0 }; i < usagesAsSource.Count(); ++i)
         {
             auto usageAsSource = usagesAsSource[i];
             if (equalityComparer.Equals(storage.GetIndex(usageAsSource), oldLinkIndex))
@@ -626,7 +626,7 @@
             handlerState.Apply(storage.Update(restriction, substitution, handlerState.Handler));
         }
         auto usagesAsTarget = storage.All(Link<TLinkAddress>(constants.Any, constants.Any, oldLinkIndex));
-        for (auto i = 0; i < usagesAsTarget.Count(); ++i)
+        for (auto i { 0 }; i < usagesAsTarget.Count(); ++i)
         {
             auto usageAsTarget = usagesAsTarget[i];
             if (equalityComparer.Equals(storage.GetIndex(usageAsTarget), oldLinkIndex))
