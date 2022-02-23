@@ -90,12 +90,12 @@
         return firstLink;
     }
 
-    static Interfaces::CList auto SingleOrDefault(auto&& storage, CList auto&& query)
+    static Interfaces::CList auto SingleOrDefault(auto&& storage, Interfaces::CList auto&& query)
     {
         std::vector<TLinkAddress> result = {};
         auto count = 0;
         auto constants = storage.Constants;
-        auto linkHandler { [] CList auto&& link) {
+        auto linkHandler { [] Interfaces::CList auto&& link) {
             if (count == 0)
             {
                 result = link;
@@ -113,7 +113,7 @@
     }
 
     template<typename TLinkAddress>
-    static bool CheckPathExistance(auto&& storage, CList auto&& path)
+    static bool CheckPathExistance(auto&& storage, Interfaces::CList auto&& path)
     {
         auto current = path[0];
         if (!storage.Exists(current))
@@ -174,21 +174,21 @@
     }
 
     template<typename TLinkAddress>
-    static TLinkAddress GetIndex(auto&& storage, CList auto&& link) { return link[storage.Constants.IndexPart]; }
+    static TLinkAddress GetIndex(auto&& storage, Interfaces::CList auto&& link) { return link[storage.Constants.IndexPart]; }
 
     template<typename TLinkAddress>
     static TLinkAddress GetSource(auto&& storage, TLinkAddress link) { return storage.GetLink(link)[storage.Constants.SourcePart]; }
 
     template<typename TLinkAddress>
-    static TLinkAddress GetSource(auto&& storage, CList auto&& link) { return link[storage.Constants.SourcePart]; }
+    static TLinkAddress GetSource(auto&& storage, Interfaces::CList auto&& link) { return link[storage.Constants.SourcePart]; }
 
     template<typename TLinkAddress>
     static TLinkAddress GetTarget(auto&& storage, TLinkAddress link) { return storage.GetLink(link)[storage.Constants.TargetPart]; }
 
     template<typename TLinkAddress>
-    static TLinkAddress GetTarget(auto&& storage, CList auto&& link) { return link[storage.Constants.TargetPart]; }
+    static TLinkAddress GetTarget(auto&& storage, Interfaces::CList auto&& link) { return link[storage.Constants.TargetPart]; }
 
-    static IList<IList<TLinkAddress>?> All<TLinkAddress>(auto&& storage, CList auto&& restriction)
+    static IList<IList<TLinkAddress>?> All<TLinkAddress>(auto&& storage, Interfaces::CList auto&& restriction)
     {
         auto allLinks = List<IList<TLinkAddress>?>();
         auto filler = ListFiller<IList<TLinkAddress>?, TLinkAddress>(allLinks, storage.Constants.Continue);
@@ -196,7 +196,7 @@
         return allLinks;
     }
 
-    static Interfaces::CList auto AllIndices<TLinkAddress>(auto&& storage, CList auto&& restriction)
+    static Interfaces::CList auto AllIndices<TLinkAddress>(auto&& storage, Interfaces::CList auto&& restriction)
     {
         auto allIndices = List<TLinkAddress>();
         auto filler = ListFiller<TLinkAddress, TLinkAddress>(allIndices, storage.Constants.Continue);
@@ -208,7 +208,7 @@
     static bool Exists(auto&& storage, TLinkAddress source, TLinkAddress target) { return Comparer<TLinkAddress>.Default.Compare(storage.Count()(storage.Constants.Any, source, target), 0) > 0; }
 
     template<typename TLinkAddress>
-    static void EnsureLinkExists(auto&& storage, CList auto&& restriction)
+    static void EnsureLinkExists(auto&& storage, Interfaces::CList auto&& restriction)
     {
         for (auto i { 0 }; i < restriction.Count(); ++i)
         {
@@ -229,7 +229,7 @@
     }
 
     template<typename TLinkAddress>
-    static void EnsureInnerReferenceExists(auto&& storage, CList auto&& restriction, std::string argumentName)
+    static void EnsureInnerReferenceExists(auto&& storage, Interfaces::CList auto&& restriction, std::string argumentName)
     {
         for (std::int32_t i = 0; i < restriction.Count(); ++i)
         {
@@ -238,7 +238,7 @@
     }
 
     template<typename TLinkAddress>
-    static void EnsureLinkIsAnyOrExists(auto&& storage, CList auto&& restriction)
+    static void EnsureLinkIsAnyOrExists(auto&& storage, Interfaces::CList auto&& restriction)
     {
         auto any = storage.Constants.Any;
         for (auto i { 0 }; i < restriction.Count(); ++i)
@@ -287,13 +287,13 @@
     }
 
     template<typename TLinkAddress>
-    static void EnsureCreated(auto&& storage, CList auto&& addresses) { storage.EnsureCreated(storage.Create, addresses); }
+    static void EnsureCreated(auto&& storage, Interfaces::CList auto&& addresses) { storage.EnsureCreated(storage.Create, addresses); }
 
     template<typename TLinkAddress>
-    static void EnsurePointsCreated(auto&& storage, CList auto&& addresses) { storage.EnsureCreated(storage.CreatePoint, addresses); }
+    static void EnsurePointsCreated(auto&& storage, Interfaces::CList auto&& addresses) { storage.EnsureCreated(storage.CreatePoint, addresses); }
 
     template<typename TLinkAddress>
-    static void EnsureCreated(auto&& storage, std::function<TLinkAddress()> creator, CList auto&& addresses)
+    static void EnsureCreated(auto&& storage, std::function<TLinkAddress()> creator, Interfaces::CList auto&& addresses)
     {
         auto nonExistentAddresses = HashSet<TLinkAddress>(addresses.Where(x => !storage.Exists(x)));
         if (nonExistentAddresses.Count() > 0)
@@ -408,14 +408,14 @@
     static TLinkAddress Update(auto&& storage, TLinkAddress link, TLinkAddress newSource, TLinkAddress newTarget) { return storage.Update(LinkAddress{link}, Link<TLinkAddress>(link, newSource, newTarget)); }
 
     template<typename TLinkAddress>
-    static TLinkAddress Update(auto&& storage, CList auto&& restriction) { return storage.Update((IList<TLinkAddress>)restriction); }
+    static TLinkAddress Update(auto&& storage, Interfaces::CList auto&& restriction) { return storage.Update((IList<TLinkAddress>)restriction); }
 
     template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
     requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
-    static TLinkAddress Update(auto&& storage, Handler handler, CList auto&& restriction) { return storage.Update(restriction, handler); }
+    static TLinkAddress Update(auto&& storage, Handler handler, Interfaces::CList auto&& restriction) { return storage.Update(restriction, handler); }
 
     template<typename TLinkAddress>
-    static TLinkAddress Update(auto&& storage, CList auto&& restriction)
+    static TLinkAddress Update(auto&& storage, Interfaces::CList auto&& restriction)
     {
         auto constants = storage.Constants;
         auto setter = Setter<TLinkAddress, TLinkAddress>(constants.Continue, constants.Break);
@@ -425,7 +425,7 @@
 
     template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
     requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
-    static TLinkAddress Update(auto&& storage, CList auto&& restriction, Handler handler)
+    static TLinkAddress Update(auto&& storage, Interfaces::CList auto&& restriction, Handler handler)
     {
         return restriction.Count() switch
         {
@@ -439,7 +439,7 @@
     requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
     static TLinkAddress Update(auto&& storage, TLinkAddress link, TLinkAddress newSource, TLinkAddress newTarget, Handler handler) { return storage.Update(LinkAddress{link}, Link<TLinkAddress>(link, newSource, newTarget), handler); }
 
-    static Interfaces::CList auto ResolveConstantAsSelfReference<TLinkAddress>(auto&& storage, TLinkAddress constant, CList auto&& restriction, CList auto&& substitution)
+    static Interfaces::CList auto ResolveConstantAsSelfReference<TLinkAddress>(auto&& storage, TLinkAddress constant, Interfaces::CList auto&& restriction, Interfaces::CList auto&& substitution)
     {
         auto constants = storage.Constants;
         auto restrictionIndex = storage.GetIndex(restriction);
@@ -505,7 +505,7 @@
     }
 
     template<typename TLinkAddress>
-    static void DeleteMany(auto&& storage, CList auto&& deletedLinks)
+    static void DeleteMany(auto&& storage, Interfaces::CList auto&& deletedLinks)
     {
         for (std::int32_t i = 0; i < deletedLinks.Count(); ++i)
         {
@@ -667,7 +667,7 @@
     }
 
     template<typename TLinkAddress>
-    static std::string Format(auto&& storage, CList auto&& link)
+    static std::string Format(auto&& storage, Interfaces::CList auto&& link)
     {
         auto constants = storage.Constants;
         return "({storage.GetIndex(link)}: {storage.GetSource(link)} {storage.GetTarget(link)})";
