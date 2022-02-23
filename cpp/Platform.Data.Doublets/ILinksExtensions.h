@@ -190,493 +190,493 @@
     template<typename TLinkAddress>
     static TLinkAddress GetTarget(auto&& storage, Interfaces::CList auto&& link) { return link[storage.Constants.TargetPart]; }
 
-    template<typename TLinkAddress>
-    static auto&& All(auto&& storage, Interfaces::CList auto&& restriction)
-    {
-        using namespace Platform::Collections;
-        auto allLinks = std::vector<std::vector<TLinkAddress>>();
-        auto filler = Collections::ListFiller<IList<TLinkAddress>?, TLinkAddress>(allLinks, storage.Constants.Continue);
-        storage.Each(filler.AddAndReturnConstant, restriction);
-        return allLinks;
-    }
-
-    static Interfaces::CList auto AllIndices<TLinkAddress>(auto&& storage, Interfaces::CList auto&& restriction)
-    {
-        auto allIndices = List<TLinkAddress>();
-        auto filler = ListFiller<TLinkAddress, TLinkAddress>(allIndices, storage.Constants.Continue);
-        storage.Each(filler.AddFirstAndReturnConstant, restriction);
-        return allIndices;
-    }
-
-    template<typename TLinkAddress>
-    static bool Exists(auto&& storage, TLinkAddress source, TLinkAddress target) { return Comparer<TLinkAddress>.Default.Compare(storage.Count()(storage.Constants.Any, source, target), 0) > 0; }
-
-    template<typename TLinkAddress>
-    static void EnsureLinkExists(auto&& storage, Interfaces::CList auto&& restriction)
-    {
-        for (auto i { 0 }; i < restriction.Count(); ++i)
-        {
-            if (!storage.Exists(restriction[i]))
-            {
-                throw ArgumentLinkDoesNotExistsException<TLinkAddress>(restriction[i], std::string("sequence[").append(Platform::Converters::To<std::string>(i)).append(1, ']'));
-            }
-        }
-    }
-
-    template<typename TLinkAddress>
-    static void EnsureInnerReferenceExists(auto&& storage, TLinkAddress reference, std::string argumentName)
-    {
-        if (storage.Constants.IsInternalReference(reference) && !storage.Exists(reference))
-        {
-            throw ArgumentLinkDoesNotExistsException<TLinkAddress>(reference, argumentName);
-        }
-    }
-
-    template<typename TLinkAddress>
-    static void EnsureInnerReferenceExists(auto&& storage, Interfaces::CList auto&& restriction, std::string argumentName)
-    {
-        for (std::int32_t i = 0; i < restriction.Count(); ++i)
-        {
-            storage.EnsureInnerReferenceExists(restriction[i], argumentName);
-        }
-    }
-
-    template<typename TLinkAddress>
-    static void EnsureLinkIsAnyOrExists(auto&& storage, Interfaces::CList auto&& restriction)
-    {
-        auto any = storage.Constants.Any;
-        for (auto i { 0 }; i < restriction.Count(); ++i)
-        {
-            if ((any != restriction[i]) && !storage.Exists(restriction[i]))
-            {
-                throw ArgumentLinkDoesNotExistsException<TLinkAddress>(restriction[i], std::string("sequence[").append(Platform::Converters::To<std::string>(i)).append(1, ']'));
-            }
-        }
-    }
-
-    template<typename TLinkAddress>
-    static void EnsureLinkIsAnyOrExists(auto&& storage, TLinkAddress link, std::string argumentName)
-    {
-        if ((storage.Constants.Any != link) && !storage.Exists(link))
-        {
-            throw ArgumentLinkDoesNotExistsException<TLinkAddress>(link, argumentName);
-        }
-    }
-
-    template<typename TLinkAddress>
-    static void EnsureLinkIsItselfOrExists(auto&& storage, TLinkAddress link, std::string argumentName)
-    {
-        if ((storage.Constants.Itself != link) && !storage.Exists(link))
-        {
-            throw ArgumentLinkDoesNotExistsException<TLinkAddress>(link, argumentName);
-        }
-    }
-
-    template<typename TLinkAddress>
-    static void EnsureDoesNotExists(auto&& storage, TLinkAddress source, TLinkAddress target)
-    {
-        if (storage.Exists(source, target))
-        {
-            throw LinkWithSameValueAlreadyExistsException();
-        }
-    }
-
-    template<typename TLinkAddress>
-    static void EnsureNoUsages(auto&& storage, TLinkAddress link)
-    {
-        if (storage.HasUsages(link))
-        {
-            throw ArgumentLinkHasDependenciesException<TLinkAddress>(link);
-        }
-    }
-
-    template<typename TLinkAddress>
-    static void EnsureCreated(auto&& storage, Interfaces::CList auto&& addresses) { storage.EnsureCreated(storage.Create, addresses); }
-
-    template<typename TLinkAddress>
-    static void EnsurePointsCreated(auto&& storage, Interfaces::CList auto&& addresses) { storage.EnsureCreated(storage.CreatePoint, addresses); }
-
-    template<typename TLinkAddress>
-    static void EnsureCreated(auto&& storage, std::function<TLinkAddress()> creator, Interfaces::CList auto&& addresses)
-    {
-        auto nonExistentAddresses = HashSet<TLinkAddress>(addresses.Where(x => !storage.Exists(x)));
-        if (nonExistentAddresses.Count() > 0)
-        {
-            auto max = nonExistentAddresses.Max();
-            max = System::Math::Min(max), storage.Constants.InternalReferencesRange.Maximum
-            auto createdLinks = List<TLinkAddress>();
-            TLinkAddress createdLink = creator();
-            while ( max != createdLink)
-            {
-                createdLinks.Add(createdLink);
-            }
-            for (auto i { 0 }; i < createdLinks.Count(); ++i)
-            {
-                if (!nonExistentAddresses.Contains(createdLinks[i]))
-                {
-                    storage.Delete(createdLinks[i]);
-                }
-            }
-        }
-    }
-
-    template<typename TLinkAddress>
-    static TLinkAddress CountUsages(auto&& storage, TLinkAddress link)
-    {
-        auto constants = storage.Constants;
-        auto values = storage.GetLink(link);
-        TLinkAddress usagesAsSource = storage.Count()(Link<TLinkAddress>(constants.Any, link, constants.Any));
-        if ( link == storage.GetSource(values))
-        {
-            usagesAsSource = usagesAsSource - 1;
-        }
-        TLinkAddress usagesAsTarget = storage.Count()(Link<TLinkAddress>(constants.Any, constants.Any, link));
-        if ( link == storage.GetTarget(values))
-        {
-            usagesAsTarget = usagesAsTarget - 1;
-        }
-        return usagesAsSource + usagesAsTarget;
-    }
-
-    template<typename TLinkAddress>
-    static bool HasUsages(auto&& storage, TLinkAddress link) { return Comparer<TLinkAddress>.Default.Compare(storage.Count()Usages(link), 0) > 0; }
-
-    template<typename TLinkAddress>
-    static bool operator ==(const auto&& storage, TLinkAddress link, TLinkAddress source, TLinkAddress &target) const
-    {
-        auto constants = storage.Constants;
-        auto values = storage.GetLink(link);
-        return  source == storage.GetSource(values) &&  target == storage.GetTarget(values);
-    }
-
-    template<typename TLinkAddress>
-    static TLinkAddress SearchOrDefault(auto&& storage, TLinkAddress source, TLinkAddress target)
-    {
-        auto contants = storage.Constants;
-        auto setter = Setter<TLinkAddress, TLinkAddress>(contants.Continue, contants.Break, 0);
-        storage.Each(setter.SetFirstAndReturnFalse, contants.Any, source, target);
-        return setter.Result;
-    }
-
-    template<typename TLinkAddress>
-    static TLinkAddress CreatePoint(auto&& storage)
-    {
-        auto constants = storage.Constants;
-        auto setter = Setter<TLinkAddress, TLinkAddress>(constants.Continue, constants.Break);
-        storage.CreatePoint(setter.SetFirstFromSecondListAndReturnTrue);
-        return setter.Result;
-    }
-
-    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
-    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
-    static TLinkAddress CreatePoint(auto&& storage, Handler handler)
-    {
-        auto constants = storage.Constants;
-        WriteHandlerState<TLinkAddress> handlerState = new(constants.Continue, constants.Break, handler);
-        TLinkAddress link = 0;
-        auto HandlerWrapper = [&]() -> TLinkAddress {
-            link = storage.GetIndex(after);
-            return handlerState.Handle(before, after);;
-        };
-        handlerState.Apply(storage.Create({}, HandlerWrapper));
-        handlerState.Apply(storage.Update(link, link, link, HandlerWrapper));
-        return handlerState.Result;
-    }
-
-    template<typename TLinkAddress>
-    static TLinkAddress CreateAndUpdate(auto&& storage, TLinkAddress source, TLinkAddress target)
-    {
-        auto constants = storage.Constants;
-        auto setter = Setter<TLinkAddress, TLinkAddress>(constants.Continue, constants.Break);
-        storage.CreateAndUpdate(source, target, setter.SetFirstFromSecondListAndReturnTrue);
-        return setter.Result;
-    }
-
-    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
-    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
-    static TLinkAddress CreateAndUpdate(auto&& storage, TLinkAddress source, TLinkAddress target, Handler handler)
-    {
-        auto constants = storage.Constants;
-        TLinkAddress createdLink = 0;
-        WriteHandlerState<TLinkAddress> handlerState = new(constants.Continue, constants.Break, handler);
-        handlerState.Apply(storage.Create({}, (before, after) =>
-        {
-            createdLink = storage.GetIndex(after);
-            return handlerState.Handle(before, after);;
-        }));
-        handlerState.Apply(storage.Update(createdLink, source, target, handler));
-        return handlerState.Result;
-    }
-
-    template<typename TLinkAddress>
-    static TLinkAddress Update(auto&& storage, TLinkAddress link, TLinkAddress newSource, TLinkAddress newTarget) { return storage.Update(LinkAddress{link}, Link<TLinkAddress>(link, newSource, newTarget)); }
-
-    template<typename TLinkAddress>
-    static TLinkAddress Update(auto&& storage, Interfaces::CList auto&& restriction) { return storage.Update((IList<TLinkAddress>)restriction); }
-
-    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
-    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
-    static TLinkAddress Update(auto&& storage, Handler handler, Interfaces::CList auto&& restriction) { return storage.Update(restriction, handler); }
-
-    template<typename TLinkAddress>
-    static TLinkAddress Update(auto&& storage, Interfaces::CList auto&& restriction)
-    {
-        auto constants = storage.Constants;
-        auto setter = Setter<TLinkAddress, TLinkAddress>(constants.Continue, constants.Break);
-        storage.Update(restriction, setter.SetFirstFromSecondListAndReturnTrue);
-        return setter.Result;
-    }
-
-    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
-    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
-    static TLinkAddress Update(auto&& storage, Interfaces::CList auto&& restriction, Handler handler)
-    {
-        return restriction.Count() switch
-        {
-            2 => storage.MergeAndDelete(restriction[0], restriction[1], handler),
-            4 => storage.UpdateOrCreateOrGet(restriction[0], restriction[1], restriction[2], restriction[3], handler),
-            _ => storage.Update(restriction[0], restriction[1], restriction[2], handler)
-        };
-    }
-
-    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
-    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
-    static TLinkAddress Update(auto&& storage, TLinkAddress link, TLinkAddress newSource, TLinkAddress newTarget, Handler handler) { return storage.Update(LinkAddress{link}, Link<TLinkAddress>(link, newSource, newTarget), handler); }
-
-    static Interfaces::CList auto ResolveConstantAsSelfReference<TLinkAddress>(auto&& storage, TLinkAddress constant, Interfaces::CList auto&& restriction, Interfaces::CList auto&& substitution)
-    {
-        auto constants = storage.Constants;
-        auto restrictionIndex = storage.GetIndex(restriction);
-        auto substitutionIndex = storage.GetIndex(substitution);
-        if ( 0 == substitutionIndex)
-        {
-            substitutionIndex = restrictionIndex;
-        }
-        auto source = storage.GetSource(substitution);
-        auto target = storage.GetTarget(substitution);
-        source =  constant == source ? substitutionIndex : source;
-        target =  constant == target ? substitutionIndex : target;
-        return Link<TLinkAddress>(substitutionIndex, source, target);
-    }
-
-    template<typename TLinkAddress>
-    static TLinkAddress GetOrCreate(auto&& storage, TLinkAddress source, TLinkAddress target)
-    {
-        auto link = SearchOrDefault(storage, source, target);
-        if (link == 0)
-        {
-            link = CreateAndUpdate(storage, source, target);
-        }
-        return link;
-    }
-
-    template<typename TLinkAddress>
-    static TLinkAddress UpdateOrCreateOrGet(auto&& storage, TLinkAddress source, TLinkAddress target, TLinkAddress newSource, TLinkAddress newTarget)
-    {
-        auto constants = storage.Constants;
-        auto setter = Setter<TLinkAddress, TLinkAddress>(constants.Continue, constants.Break);
-        UpdateOrCreateOrGet(storage, source, target, newSource, newTarget, setter.SetFirstFromSecondListAndReturnTrue);
-        return setter.Result;
-    }
-
-    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
-    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
-    static TLinkAddress UpdateOrCreateOrGet(auto&& storage, TLinkAddress source, TLinkAddress target, TLinkAddress newSource, TLinkAddress newTarget, Handler handler)
-    {
-        auto link = SearchOrDefault(storage, source, target);
-        if ( 0 == link)
-        {
-            return storage.CreateAndUpdate(newSource, newTarget, handler);
-        }
-        if ((source == newSource) && (target == newTarget))
-        {
-            auto linkStruct = Link<TLinkAddress>(link, source, target);
-            return link;
-        }
-        return storage.Update(link, newSource, newTarget, handler);
-    }
-
-    template<typename TLinkAddress>
-    static TLinkAddress DeleteIfExists(auto&& storage, TLinkAddress source, TLinkAddress target)
-    {
-        auto link = SearchOrDefault(storage, source, target);
-        if (link != 0)
-        {
-            storage.Delete(link);
-            return link;
-        }
-        return 0;
-    }
-
-    template<typename TLinkAddress>
-    static void DeleteMany(auto&& storage, Interfaces::CList auto&& deletedLinks)
-    {
-        for (std::int32_t i = 0; i < deletedLinks.Count(); ++i)
-        {
-            storage.Delete(deletedLinks[i]);
-        }
-    }
-
-    template<typename TLinkAddress>
-    static void DeleteAllUsages(auto&& storage, TLinkAddress linkIndex) { storage.DeleteAllUsages(linkIndex, {}); }
-
-    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
-    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
-    static TLinkAddress DeleteAllUsages(auto&& storage, TLinkAddress linkIndex, Handler handler)
-    {
-        auto constants = storage.Constants;
-        auto any = constants.Any;
-        auto usagesAsSourceQuery = Link<TLinkAddress>(any, linkIndex, any);
-        auto usagesAsTargetQuery = Link<TLinkAddress>(any, any, linkIndex);
-        auto usages = List<IList<TLinkAddress>?>();
-        auto usagesFiller = ListFiller<IList<TLinkAddress>?, TLinkAddress>(usages, constants.Continue);
-        storage.Each(usagesFiller.AddAndReturnConstant, usagesAsSourceQuery);
-        storage.Each(usagesFiller.AddAndReturnConstant, usagesAsTargetQuery);
-        WriteHandlerState<TLinkAddress> handlerState = new(constants.Continue, constants.Break, handler);
-        foreach (auto usage in usages)
-        {
-            if ( (linkIndex == storage.GetIndex(usage)) || (!storage.Exists(storage.GetIndex(usage))) )
-            {
-                continue;
-            }
-            handlerState.Apply(storage.Delete(storage.GetIndex(usage), handlerState.Handler));
-        }
-        return handlerState.Result;
-    }
-
-    template<typename TLinkAddress>
-    static void DeleteByQuery(auto&& storage, Link<TLinkAddress> query)
-    {
-        auto queryResult = List<TLinkAddress>();
-        auto queryResultFiller = ListFiller<TLinkAddress, TLinkAddress>(queryResult, storage.Constants.Continue);
-        storage.Each(queryResultFiller.AddFirstAndReturnConstant, query);
-        foreach (auto link in queryResult)
-        {
-            storage.Delete(link);
-        }
-    }
-
-    template<typename TLinkAddress>
-    static bool AreValuesReset(auto&& storage, TLinkAddress linkIndex)
-    {
-        auto nullConstant = storage.Constants.Null;
-        auto link = storage.GetLink(linkIndex);
-        for (std::int32_t i = 1; i < link.Count(); ++i)
-        {
-            if ( nullConstant != link[i])
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    template<typename TLinkAddress>
-    static void ResetValues(auto&& storage, TLinkAddress linkIndex) { storage.ResetValues(linkIndex, {}); }
-
-    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
-    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
-    static TLinkAddress ResetValues(auto&& storage, TLinkAddress linkIndex, Handler handler)
-    {
-        auto nullConstant = storage.Constants.Null;
-        auto updateRequest = Link<TLinkAddress>(linkIndex, nullConstant, nullConstant);
-        return storage.Update(updateRequest, handler);
-    }
-
-    template<typename TLinkAddress>
-    static void EnforceResetValues(auto&& storage, TLinkAddress linkIndex) { storage.EnforceResetValues(linkIndex, {}); }
-
-    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
-    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
-    static TLinkAddress EnforceResetValues(auto&& storage, TLinkAddress linkIndex, Handler handler)
-    {
-        if (!storage.AreValuesReset(linkIndex))
-        {
-            return storage.ResetValues(linkIndex, handler);
-        }
-        return storage.Constants.Continue;
-    }
-
-    template<typename TLinkAddress>
-    static void MergeUsages(auto&& storage, TLinkAddress oldLinkIndex, TLinkAddress newLinkIndex) { storage.MergeUsages(oldLinkIndex, newLinkIndex, {}); }
-
-    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
-    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
-    static TLinkAddress MergeUsages(auto&& storage, TLinkAddress oldLinkIndex, TLinkAddress newLinkIndex, Handler handler)
-    {
-        if ( newLinkIndex == oldLinkIndex)
-        {
-            return newLinkIndex;
-        }
-        auto constants = storage.Constants;
-        auto usagesAsSource = storage.All(Link<TLinkAddress>(constants.Any, oldLinkIndex, constants.Any));
-        WriteHandlerState<TLinkAddress> handlerState = new(constants.Continue, constants.Break, handler);
-        for (auto i { 0 }; i < usagesAsSource.Count(); ++i)
-        {
-            auto usageAsSource = usagesAsSource[i];
-            if ( oldLinkIndex == storage.GetIndex(usageAsSource))
-            {
-                continue;
-            }
-            auto restriction = LinkAddress{storage.GetIndex(usageAsSource});
-            auto substitution = Link<TLinkAddress>(newLinkIndex, storage.GetTarget(usageAsSource));
-            handlerState.Apply(storage.Update(restriction, substitution, handlerState.Handler));
-        }
-        auto usagesAsTarget = storage.All(Link<TLinkAddress>(constants.Any, constants.Any, oldLinkIndex));
-        for (auto i { 0 }; i < usagesAsTarget.Count(); ++i)
-        {
-            auto usageAsTarget = usagesAsTarget[i];
-            if ( oldLinkIndex == storage.GetIndex(usageAsTarget))
-            {
-                continue;
-            }
-            auto restriction = storage.GetLink(storage.GetIndex(usageAsTarget));
-            auto substitution = Link<TLinkAddress>(storage.GetTarget(usageAsTarget), newLinkIndex);
-            handlerState.Apply(storage.Update(restriction, substitution, handlerState.Handler));
-        }
-        return handlerState.Result;
-    }
-
-    template<typename TLinkAddress>
-    static TLinkAddress MergeAndDelete(auto&& storage, TLinkAddress oldLinkIndex, TLinkAddress newLinkIndex)
-    {
-        if ( newLinkIndex != oldLinkIndex)
-        {
-            storage.MergeUsages(oldLinkIndex, newLinkIndex);
-            storage.Delete(oldLinkIndex);
-        }
-        return newLinkIndex;
-    }
-
-    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
-    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
-    static TLinkAddress MergeAndDelete(auto&& storage, TLinkAddress oldLinkIndex, TLinkAddress newLinkIndex, Handler handler)
-    {
-        auto constants = storage.Constants;
-        WriteHandlerState<TLinkAddress> handlerState = new(constants.Continue, constants.Break, handler);
-        if ( newLinkIndex != oldLinkIndex)
-        {
-            handlerState.Apply(storage.MergeUsages(oldLinkIndex, newLinkIndex, handlerState.Handler));
-            handlerState.Apply(storage.Delete(oldLinkIndex, handlerState.Handler));
-        }
-        return handlerState.Result;
-    }
-
-    static ILinks<TLinkAddress> DecorateWithAutomaticUniquenessAndUsagesResolution<TLinkAddress>(auto&& storage)
-    {
-        storage = LinksCascadeUsagesResolver<TLinkAddress>(storage);
-        storage = NonNullContentsLinkDeletionResolver<TLinkAddress>(storage);
-        storage = LinksCascadeUniquenessAndUsagesResolver<TLinkAddress>(storage);
-        return storage;
-    }
-
-    template<typename TLinkAddress>
-    static std::string Format(auto&& storage, Interfaces::CList auto&& link)
-    {
-        auto constants = storage.Constants;
-        return "({storage.GetIndex(link)}: {storage.GetSource(link)} {storage.GetTarget(link)})";
-    }
-
-    template<typename TLinkAddress>
-    static std::string Format(auto&& storage, TLinkAddress link) { return storage.Format(storage.GetLink(link)); }
+//    template<typename TLinkAddress>
+//    static auto&& All(auto&& storage, Interfaces::CList auto&& restriction)
+//    {
+//        using namespace Platform::Collections;
+//        auto allLinks = std::vector<std::vector<TLinkAddress>>();
+//        auto filler = Collections::ListFiller<IList<TLinkAddress>?, TLinkAddress>(allLinks, storage.Constants.Continue);
+//        storage.Each(filler.AddAndReturnConstant, restriction);
+//        return allLinks;
+//    }
+//
+//    static Interfaces::CList auto AllIndices<TLinkAddress>(auto&& storage, Interfaces::CList auto&& restriction)
+//    {
+//        auto allIndices = List<TLinkAddress>();
+//        auto filler = ListFiller<TLinkAddress, TLinkAddress>(allIndices, storage.Constants.Continue);
+//        storage.Each(filler.AddFirstAndReturnConstant, restriction);
+//        return allIndices;
+//    }
+//
+//    template<typename TLinkAddress>
+//    static bool Exists(auto&& storage, TLinkAddress source, TLinkAddress target) { return Comparer<TLinkAddress>.Default.Compare(storage.Count()(storage.Constants.Any, source, target), 0) > 0; }
+//
+//    template<typename TLinkAddress>
+//    static void EnsureLinkExists(auto&& storage, Interfaces::CList auto&& restriction)
+//    {
+//        for (auto i { 0 }; i < restriction.Count(); ++i)
+//        {
+//            if (!storage.Exists(restriction[i]))
+//            {
+//                throw ArgumentLinkDoesNotExistsException<TLinkAddress>(restriction[i], std::string("sequence[").append(Platform::Converters::To<std::string>(i)).append(1, ']'));
+//            }
+//        }
+//    }
+//
+//    template<typename TLinkAddress>
+//    static void EnsureInnerReferenceExists(auto&& storage, TLinkAddress reference, std::string argumentName)
+//    {
+//        if (storage.Constants.IsInternalReference(reference) && !storage.Exists(reference))
+//        {
+//            throw ArgumentLinkDoesNotExistsException<TLinkAddress>(reference, argumentName);
+//        }
+//    }
+//
+//    template<typename TLinkAddress>
+//    static void EnsureInnerReferenceExists(auto&& storage, Interfaces::CList auto&& restriction, std::string argumentName)
+//    {
+//        for (std::int32_t i = 0; i < restriction.Count(); ++i)
+//        {
+//            storage.EnsureInnerReferenceExists(restriction[i], argumentName);
+//        }
+//    }
+//
+//    template<typename TLinkAddress>
+//    static void EnsureLinkIsAnyOrExists(auto&& storage, Interfaces::CList auto&& restriction)
+//    {
+//        auto any = storage.Constants.Any;
+//        for (auto i { 0 }; i < restriction.Count(); ++i)
+//        {
+//            if ((any != restriction[i]) && !storage.Exists(restriction[i]))
+//            {
+//                throw ArgumentLinkDoesNotExistsException<TLinkAddress>(restriction[i], std::string("sequence[").append(Platform::Converters::To<std::string>(i)).append(1, ']'));
+//            }
+//        }
+//    }
+//
+//    template<typename TLinkAddress>
+//    static void EnsureLinkIsAnyOrExists(auto&& storage, TLinkAddress link, std::string argumentName)
+//    {
+//        if ((storage.Constants.Any != link) && !storage.Exists(link))
+//        {
+//            throw ArgumentLinkDoesNotExistsException<TLinkAddress>(link, argumentName);
+//        }
+//    }
+//
+//    template<typename TLinkAddress>
+//    static void EnsureLinkIsItselfOrExists(auto&& storage, TLinkAddress link, std::string argumentName)
+//    {
+//        if ((storage.Constants.Itself != link) && !storage.Exists(link))
+//        {
+//            throw ArgumentLinkDoesNotExistsException<TLinkAddress>(link, argumentName);
+//        }
+//    }
+//
+//    template<typename TLinkAddress>
+//    static void EnsureDoesNotExists(auto&& storage, TLinkAddress source, TLinkAddress target)
+//    {
+//        if (storage.Exists(source, target))
+//        {
+//            throw LinkWithSameValueAlreadyExistsException();
+//        }
+//    }
+//
+//    template<typename TLinkAddress>
+//    static void EnsureNoUsages(auto&& storage, TLinkAddress link)
+//    {
+//        if (storage.HasUsages(link))
+//        {
+//            throw ArgumentLinkHasDependenciesException<TLinkAddress>(link);
+//        }
+//    }
+//
+//    template<typename TLinkAddress>
+//    static void EnsureCreated(auto&& storage, Interfaces::CList auto&& addresses) { storage.EnsureCreated(storage.Create, addresses); }
+//
+//    template<typename TLinkAddress>
+//    static void EnsurePointsCreated(auto&& storage, Interfaces::CList auto&& addresses) { storage.EnsureCreated(storage.CreatePoint, addresses); }
+//
+//    template<typename TLinkAddress>
+//    static void EnsureCreated(auto&& storage, std::function<TLinkAddress()> creator, Interfaces::CList auto&& addresses)
+//    {
+//        auto nonExistentAddresses = HashSet<TLinkAddress>(addresses.Where(x => !storage.Exists(x)));
+//        if (nonExistentAddresses.Count() > 0)
+//        {
+//            auto max = nonExistentAddresses.Max();
+//            max = System::Math::Min(max), storage.Constants.InternalReferencesRange.Maximum
+//            auto createdLinks = List<TLinkAddress>();
+//            TLinkAddress createdLink = creator();
+//            while ( max != createdLink)
+//            {
+//                createdLinks.Add(createdLink);
+//            }
+//            for (auto i { 0 }; i < createdLinks.Count(); ++i)
+//            {
+//                if (!nonExistentAddresses.Contains(createdLinks[i]))
+//                {
+//                    storage.Delete(createdLinks[i]);
+//                }
+//            }
+//        }
+//    }
+//
+//    template<typename TLinkAddress>
+//    static TLinkAddress CountUsages(auto&& storage, TLinkAddress link)
+//    {
+//        auto constants = storage.Constants;
+//        auto values = storage.GetLink(link);
+//        TLinkAddress usagesAsSource = storage.Count()(Link<TLinkAddress>(constants.Any, link, constants.Any));
+//        if ( link == storage.GetSource(values))
+//        {
+//            usagesAsSource = usagesAsSource - 1;
+//        }
+//        TLinkAddress usagesAsTarget = storage.Count()(Link<TLinkAddress>(constants.Any, constants.Any, link));
+//        if ( link == storage.GetTarget(values))
+//        {
+//            usagesAsTarget = usagesAsTarget - 1;
+//        }
+//        return usagesAsSource + usagesAsTarget;
+//    }
+//
+//    template<typename TLinkAddress>
+//    static bool HasUsages(auto&& storage, TLinkAddress link) { return Comparer<TLinkAddress>.Default.Compare(storage.Count()Usages(link), 0) > 0; }
+//
+//    template<typename TLinkAddress>
+//    static bool operator ==(const auto&& storage, TLinkAddress link, TLinkAddress source, TLinkAddress &target) const
+//    {
+//        auto constants = storage.Constants;
+//        auto values = storage.GetLink(link);
+//        return  source == storage.GetSource(values) &&  target == storage.GetTarget(values);
+//    }
+//
+//    template<typename TLinkAddress>
+//    static TLinkAddress SearchOrDefault(auto&& storage, TLinkAddress source, TLinkAddress target)
+//    {
+//        auto contants = storage.Constants;
+//        auto setter = Setter<TLinkAddress, TLinkAddress>(contants.Continue, contants.Break, 0);
+//        storage.Each(setter.SetFirstAndReturnFalse, contants.Any, source, target);
+//        return setter.Result;
+//    }
+//
+//    template<typename TLinkAddress>
+//    static TLinkAddress CreatePoint(auto&& storage)
+//    {
+//        auto constants = storage.Constants;
+//        auto setter = Setter<TLinkAddress, TLinkAddress>(constants.Continue, constants.Break);
+//        storage.CreatePoint(setter.SetFirstFromSecondListAndReturnTrue);
+//        return setter.Result;
+//    }
+//
+//    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
+//    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
+//    static TLinkAddress CreatePoint(auto&& storage, Handler handler)
+//    {
+//        auto constants = storage.Constants;
+//        WriteHandlerState<TLinkAddress> handlerState = new(constants.Continue, constants.Break, handler);
+//        TLinkAddress link = 0;
+//        auto HandlerWrapper = [&]() -> TLinkAddress {
+//            link = storage.GetIndex(after);
+//            return handlerState.Handle(before, after);;
+//        };
+//        handlerState.Apply(storage.Create({}, HandlerWrapper));
+//        handlerState.Apply(storage.Update(link, link, link, HandlerWrapper));
+//        return handlerState.Result;
+//    }
+//
+//    template<typename TLinkAddress>
+//    static TLinkAddress CreateAndUpdate(auto&& storage, TLinkAddress source, TLinkAddress target)
+//    {
+//        auto constants = storage.Constants;
+//        auto setter = Setter<TLinkAddress, TLinkAddress>(constants.Continue, constants.Break);
+//        storage.CreateAndUpdate(source, target, setter.SetFirstFromSecondListAndReturnTrue);
+//        return setter.Result;
+//    }
+//
+//    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
+//    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
+//    static TLinkAddress CreateAndUpdate(auto&& storage, TLinkAddress source, TLinkAddress target, Handler handler)
+//    {
+//        auto constants = storage.Constants;
+//        TLinkAddress createdLink = 0;
+//        WriteHandlerState<TLinkAddress> handlerState = new(constants.Continue, constants.Break, handler);
+//        handlerState.Apply(storage.Create({}, (before, after) =>
+//        {
+//            createdLink = storage.GetIndex(after);
+//            return handlerState.Handle(before, after);;
+//        }));
+//        handlerState.Apply(storage.Update(createdLink, source, target, handler));
+//        return handlerState.Result;
+//    }
+//
+//    template<typename TLinkAddress>
+//    static TLinkAddress Update(auto&& storage, TLinkAddress link, TLinkAddress newSource, TLinkAddress newTarget) { return storage.Update(LinkAddress{link}, Link<TLinkAddress>(link, newSource, newTarget)); }
+//
+//    template<typename TLinkAddress>
+//    static TLinkAddress Update(auto&& storage, Interfaces::CList auto&& restriction) { return storage.Update((IList<TLinkAddress>)restriction); }
+//
+//    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
+//    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
+//    static TLinkAddress Update(auto&& storage, Handler handler, Interfaces::CList auto&& restriction) { return storage.Update(restriction, handler); }
+//
+//    template<typename TLinkAddress>
+//    static TLinkAddress Update(auto&& storage, Interfaces::CList auto&& restriction)
+//    {
+//        auto constants = storage.Constants;
+//        auto setter = Setter<TLinkAddress, TLinkAddress>(constants.Continue, constants.Break);
+//        storage.Update(restriction, setter.SetFirstFromSecondListAndReturnTrue);
+//        return setter.Result;
+//    }
+//
+//    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
+//    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
+//    static TLinkAddress Update(auto&& storage, Interfaces::CList auto&& restriction, Handler handler)
+//    {
+//        return restriction.Count() switch
+//        {
+//            2 => storage.MergeAndDelete(restriction[0], restriction[1], handler),
+//            4 => storage.UpdateOrCreateOrGet(restriction[0], restriction[1], restriction[2], restriction[3], handler),
+//            _ => storage.Update(restriction[0], restriction[1], restriction[2], handler)
+//        };
+//    }
+//
+//    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
+//    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
+//    static TLinkAddress Update(auto&& storage, TLinkAddress link, TLinkAddress newSource, TLinkAddress newTarget, Handler handler) { return storage.Update(LinkAddress{link}, Link<TLinkAddress>(link, newSource, newTarget), handler); }
+//
+//    static Interfaces::CList auto ResolveConstantAsSelfReference<TLinkAddress>(auto&& storage, TLinkAddress constant, Interfaces::CList auto&& restriction, Interfaces::CList auto&& substitution)
+//    {
+//        auto constants = storage.Constants;
+//        auto restrictionIndex = storage.GetIndex(restriction);
+//        auto substitutionIndex = storage.GetIndex(substitution);
+//        if ( 0 == substitutionIndex)
+//        {
+//            substitutionIndex = restrictionIndex;
+//        }
+//        auto source = storage.GetSource(substitution);
+//        auto target = storage.GetTarget(substitution);
+//        source =  constant == source ? substitutionIndex : source;
+//        target =  constant == target ? substitutionIndex : target;
+//        return Link<TLinkAddress>(substitutionIndex, source, target);
+//    }
+//
+//    template<typename TLinkAddress>
+//    static TLinkAddress GetOrCreate(auto&& storage, TLinkAddress source, TLinkAddress target)
+//    {
+//        auto link = SearchOrDefault(storage, source, target);
+//        if (link == 0)
+//        {
+//            link = CreateAndUpdate(storage, source, target);
+//        }
+//        return link;
+//    }
+//
+//    template<typename TLinkAddress>
+//    static TLinkAddress UpdateOrCreateOrGet(auto&& storage, TLinkAddress source, TLinkAddress target, TLinkAddress newSource, TLinkAddress newTarget)
+//    {
+//        auto constants = storage.Constants;
+//        auto setter = Setter<TLinkAddress, TLinkAddress>(constants.Continue, constants.Break);
+//        UpdateOrCreateOrGet(storage, source, target, newSource, newTarget, setter.SetFirstFromSecondListAndReturnTrue);
+//        return setter.Result;
+//    }
+//
+//    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
+//    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
+//    static TLinkAddress UpdateOrCreateOrGet(auto&& storage, TLinkAddress source, TLinkAddress target, TLinkAddress newSource, TLinkAddress newTarget, Handler handler)
+//    {
+//        auto link = SearchOrDefault(storage, source, target);
+//        if ( 0 == link)
+//        {
+//            return storage.CreateAndUpdate(newSource, newTarget, handler);
+//        }
+//        if ((source == newSource) && (target == newTarget))
+//        {
+//            auto linkStruct = Link<TLinkAddress>(link, source, target);
+//            return link;
+//        }
+//        return storage.Update(link, newSource, newTarget, handler);
+//    }
+//
+//    template<typename TLinkAddress>
+//    static TLinkAddress DeleteIfExists(auto&& storage, TLinkAddress source, TLinkAddress target)
+//    {
+//        auto link = SearchOrDefault(storage, source, target);
+//        if (link != 0)
+//        {
+//            storage.Delete(link);
+//            return link;
+//        }
+//        return 0;
+//    }
+//
+//    template<typename TLinkAddress>
+//    static void DeleteMany(auto&& storage, Interfaces::CList auto&& deletedLinks)
+//    {
+//        for (std::int32_t i = 0; i < deletedLinks.Count(); ++i)
+//        {
+//            storage.Delete(deletedLinks[i]);
+//        }
+//    }
+//
+//    template<typename TLinkAddress>
+//    static void DeleteAllUsages(auto&& storage, TLinkAddress linkIndex) { storage.DeleteAllUsages(linkIndex, {}); }
+//
+//    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
+//    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
+//    static TLinkAddress DeleteAllUsages(auto&& storage, TLinkAddress linkIndex, Handler handler)
+//    {
+//        auto constants = storage.Constants;
+//        auto any = constants.Any;
+//        auto usagesAsSourceQuery = Link<TLinkAddress>(any, linkIndex, any);
+//        auto usagesAsTargetQuery = Link<TLinkAddress>(any, any, linkIndex);
+//        auto usages = List<IList<TLinkAddress>?>();
+//        auto usagesFiller = ListFiller<IList<TLinkAddress>?, TLinkAddress>(usages, constants.Continue);
+//        storage.Each(usagesFiller.AddAndReturnConstant, usagesAsSourceQuery);
+//        storage.Each(usagesFiller.AddAndReturnConstant, usagesAsTargetQuery);
+//        WriteHandlerState<TLinkAddress> handlerState = new(constants.Continue, constants.Break, handler);
+//        foreach (auto usage in usages)
+//        {
+//            if ( (linkIndex == storage.GetIndex(usage)) || (!storage.Exists(storage.GetIndex(usage))) )
+//            {
+//                continue;
+//            }
+//            handlerState.Apply(storage.Delete(storage.GetIndex(usage), handlerState.Handler));
+//        }
+//        return handlerState.Result;
+//    }
+//
+//    template<typename TLinkAddress>
+//    static void DeleteByQuery(auto&& storage, Link<TLinkAddress> query)
+//    {
+//        auto queryResult = List<TLinkAddress>();
+//        auto queryResultFiller = ListFiller<TLinkAddress, TLinkAddress>(queryResult, storage.Constants.Continue);
+//        storage.Each(queryResultFiller.AddFirstAndReturnConstant, query);
+//        foreach (auto link in queryResult)
+//        {
+//            storage.Delete(link);
+//        }
+//    }
+//
+//    template<typename TLinkAddress>
+//    static bool AreValuesReset(auto&& storage, TLinkAddress linkIndex)
+//    {
+//        auto nullConstant = storage.Constants.Null;
+//        auto link = storage.GetLink(linkIndex);
+//        for (std::int32_t i = 1; i < link.Count(); ++i)
+//        {
+//            if ( nullConstant != link[i])
+//            {
+//                return false;
+//            }
+//        }
+//        return true;
+//    }
+//
+//    template<typename TLinkAddress>
+//    static void ResetValues(auto&& storage, TLinkAddress linkIndex) { storage.ResetValues(linkIndex, {}); }
+//
+//    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
+//    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
+//    static TLinkAddress ResetValues(auto&& storage, TLinkAddress linkIndex, Handler handler)
+//    {
+//        auto nullConstant = storage.Constants.Null;
+//        auto updateRequest = Link<TLinkAddress>(linkIndex, nullConstant, nullConstant);
+//        return storage.Update(updateRequest, handler);
+//    }
+//
+//    template<typename TLinkAddress>
+//    static void EnforceResetValues(auto&& storage, TLinkAddress linkIndex) { storage.EnforceResetValues(linkIndex, {}); }
+//
+//    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
+//    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
+//    static TLinkAddress EnforceResetValues(auto&& storage, TLinkAddress linkIndex, Handler handler)
+//    {
+//        if (!storage.AreValuesReset(linkIndex))
+//        {
+//            return storage.ResetValues(linkIndex, handler);
+//        }
+//        return storage.Constants.Continue;
+//    }
+//
+//    template<typename TLinkAddress>
+//    static void MergeUsages(auto&& storage, TLinkAddress oldLinkIndex, TLinkAddress newLinkIndex) { storage.MergeUsages(oldLinkIndex, newLinkIndex, {}); }
+//
+//    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
+//    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
+//    static TLinkAddress MergeUsages(auto&& storage, TLinkAddress oldLinkIndex, TLinkAddress newLinkIndex, Handler handler)
+//    {
+//        if ( newLinkIndex == oldLinkIndex)
+//        {
+//            return newLinkIndex;
+//        }
+//        auto constants = storage.Constants;
+//        auto usagesAsSource = storage.All(Link<TLinkAddress>(constants.Any, oldLinkIndex, constants.Any));
+//        WriteHandlerState<TLinkAddress> handlerState = new(constants.Continue, constants.Break, handler);
+//        for (auto i { 0 }; i < usagesAsSource.Count(); ++i)
+//        {
+//            auto usageAsSource = usagesAsSource[i];
+//            if ( oldLinkIndex == storage.GetIndex(usageAsSource))
+//            {
+//                continue;
+//            }
+//            auto restriction = LinkAddress{storage.GetIndex(usageAsSource});
+//            auto substitution = Link<TLinkAddress>(newLinkIndex, storage.GetTarget(usageAsSource));
+//            handlerState.Apply(storage.Update(restriction, substitution, handlerState.Handler));
+//        }
+//        auto usagesAsTarget = storage.All(Link<TLinkAddress>(constants.Any, constants.Any, oldLinkIndex));
+//        for (auto i { 0 }; i < usagesAsTarget.Count(); ++i)
+//        {
+//            auto usageAsTarget = usagesAsTarget[i];
+//            if ( oldLinkIndex == storage.GetIndex(usageAsTarget))
+//            {
+//                continue;
+//            }
+//            auto restriction = storage.GetLink(storage.GetIndex(usageAsTarget));
+//            auto substitution = Link<TLinkAddress>(storage.GetTarget(usageAsTarget), newLinkIndex);
+//            handlerState.Apply(storage.Update(restriction, substitution, handlerState.Handler));
+//        }
+//        return handlerState.Result;
+//    }
+//
+//    template<typename TLinkAddress>
+//    static TLinkAddress MergeAndDelete(auto&& storage, TLinkAddress oldLinkIndex, TLinkAddress newLinkIndex)
+//    {
+//        if ( newLinkIndex != oldLinkIndex)
+//        {
+//            storage.MergeUsages(oldLinkIndex, newLinkIndex);
+//            storage.Delete(oldLinkIndex);
+//        }
+//        return newLinkIndex;
+//    }
+//
+//    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
+//    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
+//    static TLinkAddress MergeAndDelete(auto&& storage, TLinkAddress oldLinkIndex, TLinkAddress newLinkIndex, Handler handler)
+//    {
+//        auto constants = storage.Constants;
+//        WriteHandlerState<TLinkAddress> handlerState = new(constants.Continue, constants.Break, handler);
+//        if ( newLinkIndex != oldLinkIndex)
+//        {
+//            handlerState.Apply(storage.MergeUsages(oldLinkIndex, newLinkIndex, handlerState.Handler));
+//            handlerState.Apply(storage.Delete(oldLinkIndex, handlerState.Handler));
+//        }
+//        return handlerState.Result;
+//    }
+//
+//    static ILinks<TLinkAddress> DecorateWithAutomaticUniquenessAndUsagesResolution<TLinkAddress>(auto&& storage)
+//    {
+//        storage = LinksCascadeUsagesResolver<TLinkAddress>(storage);
+//        storage = NonNullContentsLinkDeletionResolver<TLinkAddress>(storage);
+//        storage = LinksCascadeUniquenessAndUsagesResolver<TLinkAddress>(storage);
+//        return storage;
+//    }
+//
+//    template<typename TLinkAddress>
+//    static std::string Format(auto&& storage, Interfaces::CList auto&& link)
+//    {
+//        auto constants = storage.Constants;
+//        return "({storage.GetIndex(link)}: {storage.GetSource(link)} {storage.GetTarget(link)})";
+//    }
+//
+//    template<typename TLinkAddress>
+//    static std::string Format(auto&& storage, TLinkAddress link) { return storage.Format(storage.GetLink(link)); }
 }
