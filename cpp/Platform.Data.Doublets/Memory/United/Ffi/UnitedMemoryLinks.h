@@ -7,6 +7,27 @@
 
 namespace Platform::Data::Doublets::Memory::United::Ffi
 {
+    template <typename TFunction>
+    thread_local std::function<TFunction> GLOBAL_FUNCTION = nullptr;
+
+    template <typename TReturn>
+    TReturn ffiCall(TReturn(*f)()) {
+        return f();
+    }
+
+    template <typename TFunction>
+    auto callLastGlobal() {
+        auto result { GLOBAL_FUNCTION<TFunction>() };
+        GLOBAL_FUNCTION<TFunction> = nullptr;
+        return result;
+    }
+
+    template <typename TFunction>
+    auto&& call(std::function<TFunction()> f) {
+        GLOBAL_FUNCTION<TFunction()> = std::move(f);
+        return ffiCall(callLastGlobal<TFunction()>);
+    }
+
     template<typename T>
     using CUDCallback = T(*)(Link<T> before, Link<T> after);
 
