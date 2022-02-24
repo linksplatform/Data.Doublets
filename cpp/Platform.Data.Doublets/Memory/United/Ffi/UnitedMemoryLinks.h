@@ -252,7 +252,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             }
         }
 
-        TLinkAddress Each(auto&& restriction, std::function<TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>)> handler)
+        auto&& Each(auto&& restriction, auto&& handler)
         {
             GLOBAL_FUNCTION<TLinkAddress> = handler;
             if(typeid(TLinkAddress) == typeid(uint8_t))
