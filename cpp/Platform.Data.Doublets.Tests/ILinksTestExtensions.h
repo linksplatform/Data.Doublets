@@ -7,7 +7,7 @@ namespace Platform::Data::Doublets::Tests
         ASSERT_EQ(0, storage.Count());
         // Create link
         Setters::Setter<TLinkAddress, TLinkAddress> setter { constants.Continue, constants.Break, constants.Null };
-        storage.Each(Link{constants.Any, constants.Any, constants.Any}, setter.SetFirstFromList);
+        storage.Each( std::array{constants.Any, constants.Any, constants.Any} , setter.SetFirstAndReturnTrue);
         ASSERT_EQ(constants.Null, setter.Result());
         auto linkAddress = storage.Create();
         Link<TLinkAddress> link { storage.GetLink(linkAddress) };
