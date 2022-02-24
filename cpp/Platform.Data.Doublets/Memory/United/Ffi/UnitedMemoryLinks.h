@@ -155,116 +155,121 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
 
         TLinkAddress Create(auto&& restriction, auto&& handler)
         {
-            switch(typeid(TLinkAddress))
+            if(typeid(TLinkAddress) == typeid(uint8_t))
             {
-                case typeid(uint8_t):
-                {
-                    ByteUnitedMemoryLinks_Create(_ptr, &restriction, std::ranges::size(restriction), handler);
-                }
-                case typeid(uint16_t):
-                {
-                    UInt16UnitedMemoryLinks_Create(_ptr, &restriction, std::ranges::size(restriction), handler);
-                }
-                case typeid(uint32_t):
-                {
-                    UInt32UnitedMemoryLinks_Create(_ptr, &restriction, std::ranges::size(restriction), handler);
-                }
-                case typeid(uint64_t):
-                {
-                    UInt64UnitedMemoryLinks_Create(_ptr, &restriction, std::ranges::size(restriction), handler);
-                }
+                return ByteUnitedMemoryLinks_Create<uint8_t>(_ptr, &restriction, std::ranges::size(restriction), handler);
+            }
+            else if(typeid(TLinkAddress) == typeid(uint16_t))
+            {
+                return ByteUnitedMemoryLinks_Create<uint16_t>(_ptr, &restriction, std::ranges::size(restriction), handler);
+            }
+            else if(typeid(TLinkAddress) == typeid(uint32_t))
+            {
+                return ByteUnitedMemoryLinks_Create<uint32_t>(_ptr, &restriction, std::ranges::size(restriction), handler);
+            }
+            else if(typeid(TLinkAddress) == typeid(uint64_t))
+            {
+                return ByteUnitedMemoryLinks_Create<uint64_t>(_ptr, &restriction, std::ranges::size(restriction), handler);
+            }
+            else
+            {
+                throw std::runtime_error("The type of TLinkAddress is not supported. Use any type of uint8_t, uint16_t, uint32_t, uint64_t.");
             }
         }
 
         TLinkAddress Update(auto&& restriction, auto&& substitution, auto&& handler)
         {
-            switch(typeid(TLinkAddress))
+            if(typeid(TLinkAddress) == typeid(uint8_t))
             {
-                case typeid(uint8_t):
-                {
-                    ByteUnitedMemoryLinks_Update(_ptr, &restriction, std::ranges::size(restriction), &substitution, std::ranges::size(substitution), handler);
-                }
-                case typeid(uint16_t):
-                {
-                    UInt16UnitedMemoryLinks_Update(_ptr, &restriction, std::ranges::size(restriction), &substitution, std::ranges::size(substitution), handler);
-                }
-                case typeid(uint32_t):
-                {
-                    UInt32UnitedMemoryLinks_Update(_ptr, &restriction, std::ranges::size(restriction), &substitution, std::ranges::size(substitution), handler);
-                }
-                case typeid(uint64_t):
-                {
-                    UInt64UnitedMemoryLinks_Update(_ptr, &restriction, std::ranges::size(restriction), &substitution, std::ranges::size(substitution), handler);
-                }
+                return ByteUnitedMemoryLinks_Update<uint8_t>(_ptr, &restriction, std::ranges::size(restriction), &substitution, std::ranges::size(substitution), handler);
+            }
+            else if(typeid(TLinkAddress) == typeid(uint16_t))
+            {
+                return ByteUnitedMemoryLinks_Update<uint16_t>(_ptr, &restriction, std::ranges::size(restriction), &substitution, std::ranges::size(substitution), handler);
+            }
+            else if(typeid(TLinkAddress) == typeid(uint32_t))
+            {
+                return ByteUnitedMemoryLinks_Update<uint32_t>(_ptr, &restriction, std::ranges::size(restriction), &substitution, std::ranges::size(substitution), handler);
+            }
+            else if(typeid(TLinkAddress) == typeid(uint64_t))
+            {
+                return ByteUnitedMemoryLinks_Update<uint64_t>(_ptr, &restriction, std::ranges::size(restriction), &substitution, std::ranges::size(substitution), handler);
+            }
+            else
+            {
+                throw std::runtime_error("The type of TLinkAddress is not supported. Use any type of uint8_t, uint16_t, uint32_t, uint64_t.");
             }
         }
 
         TLinkAddress Delete(auto&& restriction, auto&& handler)
         {
-            switch(typeid(TLinkAddress))
+            if(typeid(TLinkAddress) == typeid(uint8_t))
             {
-                case typeid(uint8_t):
-                {
-                    ByteUnitedMemoryLinks_Delete(_ptr, &restriction, std::ranges::size(restriction), handler);
-                }
-                case typeid(uint16_t):
-                {
-                    UInt16UnitedMemoryLinks_Delete(_ptr, &restriction, std::ranges::size(restriction), handler);
-                }
-                case typeid(uint32_t):
-                {
-                    UInt32UnitedMemoryLinks_Delete(_ptr, &restriction, std::ranges::size(restriction), handler);
-                }
-                case typeid(uint64_t):
-                {
-                    UInt64UnitedMemoryLinks_Delete(_ptr, &restriction, std::ranges::size(restriction), handler);
-                }
+                return ByteUnitedMemoryLinks_Delete<uint8_t>(_ptr, &restriction, std::ranges::size(restriction), handler);
+            }
+            else if(typeid(TLinkAddress) == typeid(uint16_t))
+            {
+                return ByteUnitedMemoryLinks_Delete<uint16_t>(_ptr, &restriction, std::ranges::size(restriction), handler);
+            }
+            else if(typeid(TLinkAddress) == typeid(uint32_t))
+            {
+                return ByteUnitedMemoryLinks_Delete<uint32_t>(_ptr, &restriction, std::ranges::size(restriction), handler);
+            }
+            else if(typeid(TLinkAddress) == typeid(uint64_t))
+            {
+                return ByteUnitedMemoryLinks_Delete<uint64_t>(_ptr, &restriction, std::ranges::size(restriction), handler);
+            }
+            else
+            {
+                throw std::runtime_error("The type of TLinkAddress is not supported. Use any type of uint8_t, uint16_t, uint32_t, uint64_t.");
             }
         }
 
         TLinkAddress Each(auto&& restriction, auto&& handler)
         {
-            switch(typeid(TLinkAddress))
+            if(typeid(TLinkAddress) == typeid(uint8_t))
             {
-                case typeid(uint8_t):
-                {
-                    ByteUnitedMemoryLinks_Each(_ptr, &restriction, std::ranges::size(restriction), handler);
-                }
-                case typeid(uint16_t):
-                {
-                    UInt16UnitedMemoryLinks_Each(_ptr, &restriction, std::ranges::size(restriction), handler);
-                }
-                case typeid(uint32_t):
-                {
-                    UInt32UnitedMemoryLinks_Each(_ptr, &restriction, std::ranges::size(restriction), handler);
-                }
-                case typeid(uint64_t):
-                {
-                    UInt64UnitedMemoryLinks_Each(_ptr, &restriction, std::ranges::size(restriction), handler);
-                }
+                return ByteUnitedMemoryLinks_Each<uint8_t>(_ptr, &restriction, std::ranges::size(restriction), handler);
+            }
+            else if(typeid(TLinkAddress) == typeid(uint16_t))
+            {
+                return ByteUnitedMemoryLinks_Each<uint16_t>(_ptr, &restriction, std::ranges::size(restriction), handler);
+            }
+            else if(typeid(TLinkAddress) == typeid(uint32_t))
+            {
+                return ByteUnitedMemoryLinks_Each<uint32_t>(_ptr, &restriction, std::ranges::size(restriction), handler);
+            }
+            else if(typeid(TLinkAddress) == typeid(uint64_t))
+            {
+                return ByteUnitedMemoryLinks_Each<uint64_t>(_ptr, &restriction, std::ranges::size(restriction), handler);
+            }
+            else
+            {
+                throw std::runtime_error("The type of TLinkAddress is not supported. Use any type of uint8_t, uint16_t, uint32_t, uint64_t.");
             }
         }
 
         TLinkAddress Count(auto&& restriction)
         {
-            switch(typeid(TLinkAddress))
+            if(typeid(TLinkAddress) == typeid(uint8_t))
             {
-                case typeid(uint8_t):
-                {
-                    ByteUnitedMemoryLinks_Count(_ptr, &restriction, std::ranges::size(restriction));
-                }
-                case typeid(uint16_t):
-                {
-                    UInt16UnitedMemoryLinks_Count(_ptr, &restriction, std::ranges::size(restriction));
-                }
-                case typeid(uint32_t):
-                {
-                    UInt32UnitedMemoryLinks_Count(_ptr, &restriction, std::ranges::size(restriction));
-                }
-                case typeid(uint64_t):
-                {
-                    UInt64UnitedMemoryLinks_Count(_ptr, &restriction, std::ranges::size(restriction));
-                }
+                return ByteUnitedMemoryLinks_Count<uint8_t>(_ptr, &restriction, std::ranges::size(restriction));
+            }
+            else if(typeid(TLinkAddress) == typeid(uint16_t))
+            {
+                return ByteUnitedMemoryLinks_Count<uint16_t>(_ptr, &restriction, std::ranges::size(restriction));
+            }
+            else if(typeid(TLinkAddress) == typeid(uint32_t))
+            {
+                return ByteUnitedMemoryLinks_Count<uint32_t>(_ptr, &restriction, std::ranges::size(restriction));
+            }
+            else if(typeid(TLinkAddress) == typeid(uint64_t))
+            {
+                return ByteUnitedMemoryLinks_Count<uint64_t>(_ptr, &restriction, std::ranges::size(restriction));
+            }
+            else
+            {
+                throw std::runtime_error("The type of TLinkAddress is not supported. Use any type of uint8_t, uint16_t, uint32_t, uint64_t.");
             }
         }
     };
