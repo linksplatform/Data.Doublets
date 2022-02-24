@@ -28,6 +28,12 @@
 #include "Memory/United/Generic/UnitedMemoryLinksBase.h"
 #include "Memory/United/Generic/UnitedMemoryLinks.h"
 #include "Memory/United/Ffi/UnitedMemoryLinks.h"
+#include "Memory/United/Ffi/DefaultUnitedMemoryLinks.h"
+
+//#include "Decorators/LinksDecoratorBase.h"
+//#include "Decorators/LinksCascadeUsagesResolver.h"
+//#include "Decorators/NonNullContentsLinkDeletionResolver.h"
+//#include "Decorators/LinksCascadeUniquenessAndUsagesResolver.h"
 
 #include "ILinksExtensions.h"
 
