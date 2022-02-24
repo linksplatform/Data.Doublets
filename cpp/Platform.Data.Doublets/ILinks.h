@@ -5,7 +5,8 @@
     {
         using base = Data::ILinks<Self, TLink, LinksConstants<TLink>>;
 
-        public: using base::Exists;
+    public:
+        using base::Exists;
 
         void TestRandomCreationsAndDeletions(std::size_t maximumOperationsPerCycle)
         {
@@ -256,6 +257,8 @@
         }
 
         // Extensions
+
+        using base::Count;
 
         template<typename TLinkAddress>
         static void RunRandomCreations(auto&& storage, std::uint64_t amountOfCreations)

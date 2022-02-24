@@ -164,6 +164,8 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
     private:
         void* _ptr;
     public:
+        using base = ILinks<TSelf, TLinkAddress>;
+
         LinksConstants<TLinkAddress> Constants;
 
         UnitedMemoryLinks(std::string path) : _ptr { ByteUnitedMemoryLinks_New(path.c_str()) }, Constants { true }
@@ -298,6 +300,9 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
                 throw std::runtime_error("The type of TLinkAddress is not supported. Use any type of uint8_t, uint16_t, uint32_t, uint64_t.");
             }
         }
+
+        // Extensions
+        using base::Count;
     };
 }
 
