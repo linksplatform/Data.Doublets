@@ -7,26 +7,26 @@
 
 namespace Platform::Data::Doublets::Memory::United::Ffi
 {
-    template <typename TFunction>
-    thread_local std::function<TFunction> GLOBAL_FUNCTION = nullptr;
+    template <typename TLinkAddress>
+    thread_local std::function<TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>)> GLOBAL_FUNCTION = nullptr;
 
-    template <typename TReturn>
-    TReturn ffiCall(TReturn(*f)()) {
-        return f();
-    }
-
-    template <typename TFunction>
-    auto callLastGlobal() {
-        auto result { GLOBAL_FUNCTION<TFunction>() };
-        GLOBAL_FUNCTION<TFunction> = nullptr;
-        return result;
-    }
-
-    template <typename TFunction>
-    auto&& call(std::function<TFunction()> f) {
-        GLOBAL_FUNCTION<TFunction()> = std::move(f);
-        return ffiCall(callLastGlobal<TFunction()>);
-    }
+//    template <typename TReturn, class... Args>
+//    TReturn ffiCall(TReturn(*f)(Args&&... args)) {
+//        return f(args);
+//    }
+//
+//    template <typename TFunction, class... Args>
+//    auto callLastGlobal(Args&&... args) {
+//        auto result { GLOBAL_FUNCTION<TFunction>(args) };
+//        GLOBAL_FUNCTION<TFunction> = nullptr;
+//        return result;
+//    }
+//
+//    template <typename TLinkAddress, class... Args>
+//    auto&& call(std::function<TLinkAddress(Args&&...)> f) {
+//        GLOBAL_FUNCTION<TLinkAddress(Args&&...)> = std::move(f);
+//        return ffiCall<TLinkAddress, Args>(callLastGlobal<TLinkAddress(Args&&...), Args>);
+//    }
 
     template<typename T>
     using CUDCallback = T(*)(Link<T> before, Link<T> after);
@@ -158,15 +158,16 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
 
     } // extern "C"
 
-    template <typename TLinkAddress>
-    class UnitedMemoryLinks
+    template <typename TSelf, typename TLinkAddress, typename ...TBase>
+    class UnitedMemoryLinks : public Interfaces::Polymorph<TSelf, TBase...>, public ILinks<TSelf, TLinkAddress>
     {
     private:
         void* _ptr;
     public:
-        UnitedMemoryLinks(std::string path)
+        LinksConstants<TLinkAddress> Constants;
+
+        UnitedMemoryLinks(std::string path) : _ptr { ByteUnitedMemoryLinks_New(path.c_str()) }, Constants { true }
         {
-            _ptr = ByteUnitedMemoryLinks_New(path.c_str());
         }
 
         ~UnitedMemoryLinks()
@@ -174,8 +175,9 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             ByteUnitedMemoryLinks_Drop(_ptr);
         }
 
-        TLinkAddress Create(auto&& restriction, auto&& handler)
+        TLinkAddress Create(auto&& restriction, std::function<TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>)> handler)
         {
+            GLOBAL_FUNCTION<TLinkAddress> = handler;
             if(typeid(TLinkAddress) == typeid(uint8_t))
             {
                 return ByteUnitedMemoryLinks_Create<uint8_t>(_ptr, &restriction, std::ranges::size(restriction), handler);
@@ -198,8 +200,9 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             }
         }
 
-        TLinkAddress Update(auto&& restriction, auto&& substitution, auto&& handler)
+        TLinkAddress Update(auto&& restriction, auto&& substitution, std::function<TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>)> handler)
         {
+            GLOBAL_FUNCTION<TLinkAddress> = handler;
             if(typeid(TLinkAddress) == typeid(uint8_t))
             {
                 return ByteUnitedMemoryLinks_Update<uint8_t>(_ptr, &restriction, std::ranges::size(restriction), &substitution, std::ranges::size(substitution), handler);
@@ -222,8 +225,9 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             }
         }
 
-        TLinkAddress Delete(auto&& restriction, auto&& handler)
+        TLinkAddress Delete(auto&& restriction, std::function<TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>)> handler)
         {
+            GLOBAL_FUNCTION<TLinkAddress> = handler;
             if(typeid(TLinkAddress) == typeid(uint8_t))
             {
                 return ByteUnitedMemoryLinks_Delete<uint8_t>(_ptr, &restriction, std::ranges::size(restriction), handler);
@@ -246,8 +250,9 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             }
         }
 
-        TLinkAddress Each(auto&& restriction, auto&& handler)
+        TLinkAddress Each(auto&& restriction, std::function<TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>)> handler)
         {
+            GLOBAL_FUNCTION<TLinkAddress> = handler;
             if(typeid(TLinkAddress) == typeid(uint8_t))
             {
                 return ByteUnitedMemoryLinks_Each<uint8_t>(_ptr, &restriction, std::ranges::size(restriction), handler);
