@@ -177,7 +177,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             ByteUnitedMemoryLinks_Drop(_ptr);
         }
 
-        TLinkAddress Create(auto&& restriction, std::function<TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>)> handler)
+        TLinkAddress Create(Interfaces::CArray auto&& restriction, std::function<TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>)> handler)
         {
             GLOBAL_FUNCTION<TLinkAddress> = handler;
             if(typeid(TLinkAddress) == typeid(uint8_t))
@@ -202,7 +202,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             }
         }
 
-        TLinkAddress Update(auto&& restriction, auto&& substitution, std::function<TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>)> handler)
+        TLinkAddress Update(Interfaces::CArray auto&& restriction, Interfaces::CArray auto&& substitution, std::function<TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>)> handler)
         {
             GLOBAL_FUNCTION<TLinkAddress> = handler;
             if(typeid(TLinkAddress) == typeid(uint8_t))
@@ -227,7 +227,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             }
         }
 
-        TLinkAddress Delete(auto&& restriction, std::function<TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>)> handler)
+        TLinkAddress Delete(Interfaces::CArray auto&& restriction, std::function<TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>)> handler)
         {
             GLOBAL_FUNCTION<TLinkAddress> = handler;
             if(typeid(TLinkAddress) == typeid(uint8_t))
@@ -252,7 +252,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             }
         }
 
-        auto&& Each(auto&& restriction, auto&& handler)
+        auto&& Each(Interfaces::CArray auto&& restriction, auto&& handler)
         {
             GLOBAL_FUNCTION<TLinkAddress> = handler;
             if(typeid(TLinkAddress) == typeid(uint8_t))
@@ -277,7 +277,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             }
         }
 
-        TLinkAddress Count(auto&& restriction)
+        TLinkAddress Count(Interfaces::CArray auto&& restriction)
         {
             if(typeid(TLinkAddress) == typeid(uint8_t))
             {
