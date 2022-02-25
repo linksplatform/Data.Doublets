@@ -4,7 +4,6 @@
     struct ILinks : public Data::ILinks<Self, TLink, LinksConstants<TLink>>
     {
         using base = Data::ILinks<Self, TLink, LinksConstants<TLink>>;
-
     public:
         using base::Exists;
 
@@ -84,6 +83,7 @@
             return result;
         }
 
+    public:
         auto Create() -> TLink
         {
             constexpr std::array<TLink, 0> empty{};
@@ -678,14 +678,30 @@
     //    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
     //    static TLinkAddress Update(auto&& storage, Handler handler, Interfaces::CList auto&& restriction) { return storage.Update(restriction, handler); }
     //
-    //    template<typename TLinkAddress>
-    //    static TLinkAddress Update(auto&& storage, Interfaces::CList auto&& restriction)
-    //    {
-    //        auto constants = storage.Constants;
-    //        auto setter = Setter<TLinkAddress, TLinkAddress>(constants.Continue, constants.Break);
-    //        storage.Update(restriction, setter.SetFirstFromSecondListAndReturnTrue);
-    //        return setter.Result;
-    //    }
+//        template<typename TLinkAddress>
+//        TLinkAddress&& Update(Interfaces::CArray auto&& restriction)
+//        {
+//            auto constants = storage.Constants;
+//            TLinkAddress linkAddress {};
+//            storage.Update(restriction, [&constants](Interfaces::CArray link) {
+//                linkAddress = link[constants.IndexPart];
+//                return constants.Continue;
+//            });
+//            return linkAddress;
+//        }
+
+        template<typename TLinkAddress>
+        Interfaces::CArray auto&& Update(Interfaces::CArray auto&& restriction)
+        {
+            auto storage = *this;
+            auto constants = storage.Constants;
+            TLinkAddress updatedLink {};
+            storage.Update(restriction, [&constants, &updatedLink](Interfaces::CArray auto&& link) {
+                updatedLink = link;
+                return constants.Continue;
+            });
+            return updatedLink;
+        }
     //
     //    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
     //    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
@@ -941,5 +957,5 @@
     //
     //    template<typename TLinkAddress>
     //    static std::string Format(auto&& storage, TLinkAddress link) { return storage.Format(storage.GetLink(link)); }
-        };
+    };
 }
