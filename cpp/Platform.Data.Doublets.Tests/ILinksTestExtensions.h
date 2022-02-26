@@ -109,8 +109,8 @@ namespace Platform::Data::Doublets::Tests
         ASSERT_EQ(108L, h108E.AbsoluteValue());
         // Create link (External -> External)
         auto linkAddress1 = storage.Create();
-        storage.Update(linkAddress1, h106E, h108E);
-        Link<TLinkAddress> link1 { storage.GetLink(linkAddress1) };
+        auto link1 { storage.Update(linkAddress1, h106E, h108E) };
+//        Link<TLinkAddress> link1 { storage.GetLink(linkAddress1) };
         ASSERT_EQ(h106E, link1.Source);
         ASSERT_EQ(h108E, link1.Target);
         // Create link (Internal -> External)
