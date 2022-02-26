@@ -84,7 +84,7 @@
         }
 
     public:
-        auto Create() -> TLink
+        TLink Create()
         {
             constexpr std::array<TLink, 0> empty{};
             auto&& storage = *this;
@@ -691,13 +691,13 @@
 //        }
 
         template<typename TLinkAddress>
-        Interfaces::CArray auto&& Update(Interfaces::CArray auto&& restriction)
+        TLinkAddress Update(Interfaces::CArray auto&& restriction)
         {
             auto storage = *this;
             auto constants = storage.Constants;
             TLinkAddress updatedLink {};
             storage.Update(restriction, [&constants, &updatedLink](Interfaces::CArray auto&& link) {
-                updatedLink = link;
+                updatedLink = link[constants.IndexPart];
                 return constants.Continue;
             });
             return updatedLink;
@@ -938,15 +938,15 @@
     //        return handlerState.Result;
     //    }
     //
-    //    template<typename TLinkAddress>
-    //    static auto&& DecorateWithAutomaticUniquenessAndUsagesResolution(auto&& storage)
-    //    {
-    //        using namespace Platform::Data::Doublets::Decorators;
-    //        storage = LinksCascadeUsagesResolver<TLinkAddress>(storage);
-    //        storage = NonNullContentsLinkDeletionResolver<TLinkAddress>(storage);
-    //        storage = LinksCascadeUniquenessAndUsagesResolver<TLinkAddress>(storage);
-    //        return storage;
-    //    }
+//        template<typename TLinkAddress>
+//        static auto&& DecorateWithAutomaticUniquenessAndUsagesResolution(auto&& storage)
+//        {
+//            using namespace Platform::Data::Doublets::Decorators;
+//            storage = LinksCascadeUsagesResolver<TLinkAddress>(storage);
+//            storage = NonNullContentsLinkDeletionResolver<TLinkAddress>(storage);
+//            storage = LinksCascadeUniquenessAndUsagesResolver<TLinkAddress>(storage);
+//            return storage;
+//        }
     //
     //    template<typename TLinkAddress>
     //    static std::string Format(auto&& storage, Interfaces::CList auto&& link)
