@@ -2,6 +2,7 @@
 #define PLATFORM_DATA_DOUBLETS
 
 #include <map>
+#include <ranges>
 
 #include <Platform.Collections.Methods.h>
 
