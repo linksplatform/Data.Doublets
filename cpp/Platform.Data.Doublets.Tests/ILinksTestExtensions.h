@@ -83,7 +83,7 @@ namespace Platform::Data::Doublets::Tests
     static void TestCrudOperations(auto&& storage)
     {
         const auto constants = storage.Constants;
-        ASSERT_EQ(0, storage.Count());
+        ASSERT_EQ(0, Platform::Data::Count<TLinkAddress>(storage));
         // Create link
         auto linkAddress { CrudOperationsTester::TestCreate<TLinkAddress>(storage) };
         // Get first link
@@ -108,8 +108,8 @@ namespace Platform::Data::Doublets::Tests
         ASSERT_EQ(107L, h107E.AbsoluteValue());
         ASSERT_EQ(108L, h108E.AbsoluteValue());
         // Create link (External -> External)
-        auto linkAddress1 = storage.Create();
-        auto link1 { storage.Update(linkAddress1, h106E, h108E) };
+        auto linkAddress1 = Platform::Data::Create<TLinkAddress>(storage);
+        auto link1 { Platform::Data::Doublets::Update(storage, linkAddress1, h106E, h108E) };
 //        Link<TLinkAddress> link1 { storage.GetLink(linkAddress1) };
         ASSERT_EQ(h106E, link1.Source);
         ASSERT_EQ(h108E, link1.Target);
