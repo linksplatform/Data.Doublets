@@ -104,21 +104,24 @@ namespace Platform::Data::Doublets::Tests
         Hybrid<TLinkAddress> h106E {106L, true};
         Hybrid<TLinkAddress> h107E {107L, true};
         Hybrid<TLinkAddress> h108E {108L, true};
+        TLinkAddress h106EValue { static_cast<TLinkAddress>(h106E) };
+        TLinkAddress h107EValue { static_cast<TLinkAddress>(h107E) };
+        TLinkAddress h108EValue { static_cast<TLinkAddress>(h108E) };
         ASSERT_EQ(106L, h106E.AbsoluteValue());
         ASSERT_EQ(107L, h107E.AbsoluteValue());
         ASSERT_EQ(108L, h108E.AbsoluteValue());
         // Create link (External -> External)
         auto linkAddress1 = Platform::Data::Create<TLinkAddress>(storage);
-        auto link1 { Platform::Data::Doublets::Update(storage, linkAddress1, h106E, h108E) };
-//        Link<TLinkAddress> link1 { storage.GetLink(linkAddress1) };
-        ASSERT_EQ(h106E, link1.Source);
-        ASSERT_EQ(h108E, link1.Target);
+        Platform::Data::Doublets::Update<TLinkAddress>(storage, linkAddress1, h106EValue, h108EValue);
+        Link<TLinkAddress> link1 { Platform::Data::GetLink(storage, linkAddress1) };
+        ASSERT_EQ(h106EValue, link1.Source);
+        ASSERT_EQ(h108EValue, link1.Target);
         // Create link (Internal -> External)
         auto linkAddress2 { storage.Create() };
-        storage.Update(linkAddress2, linkAddress1, h108E);
+        storage.Update(linkAddress2, linkAddress1, h108EValue);
         Link<TLinkAddress> link2 { storage.GetLink(linkAddress2) };
         ASSERT_EQ(linkAddress1, link2.Source);
-        ASSERT_EQ(h108E, link2.Target);
+        ASSERT_EQ(h108EValue, link2.Target);
         // Create link (Internal -> Internal)
         auto linkAddress3 { storage.Create() };
         storage.update(linkAddress3, linkAddress1, linkAddress2);
