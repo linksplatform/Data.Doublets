@@ -28,17 +28,17 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
 //        return ffiCall<TLinkAddress, Args>(callLastGlobal<TLinkAddress(Args&&...), Args>);
 //    }
 
-    template<typename T>
-    using CUDCallback = T(*)(Link<T> before, Link<T> after);
+    template<typename TLinkAddress>
+    using CUDCallback = TLinkAddress(*)(Link<TLinkAddress> before, Link<TLinkAddress> after);
 
-    template<typename T>
-    using EachCallback = T(*)(Link<T>);
+    template<typename TLinkAddress>
+    using EachCallback = TLinkAddress(*)(Link<TLinkAddress>);
 
 //struct SharedLogger {
 //    void (* formatter)(const Record*);
 //};
 
-    extern "C" {
+extern "C" {
 
     void* ByteUnitedMemoryLinks_New(const char* path);
 
@@ -156,7 +156,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
 
     void init_fmt_logger();
 
-    } // extern "C"
+} // extern "C"
 
     template <typename TLinkAddress, typename ...TBase>
 class UnitedMemoryLinks : public Interfaces::Polymorph<UnitedMemoryLinks<TLinkAddress, TBase...>, TBase...>
@@ -180,22 +180,23 @@ class UnitedMemoryLinks : public Interfaces::Polymorph<UnitedMemoryLinks<TLinkAd
 
         TLinkAddress Create(Interfaces::CArray auto&& restriction, auto&& handler)
         {
-            GLOBAL_FUNCTION<TLinkAddress> = handler;
+            auto length = std::ranges::size(restriction);
+            std::array restrictionArray { restriction };
             if(typeid(TLinkAddress) == typeid(uint8_t))
             {
-                return ByteUnitedMemoryLinks_Create<uint8_t>(_ptr, &restriction, std::ranges::size(restriction), handler);
+                return ByteUnitedMemoryLinks_Create<uint8_t>(_ptr, &restrictionArray, length, handler);
             }
             else if(typeid(TLinkAddress) == typeid(uint16_t))
             {
-                return ByteUnitedMemoryLinks_Create<uint16_t>(_ptr, &restriction, std::ranges::size(restriction), handler);
+                return ByteUnitedMemoryLinks_Create<uint16_t>(_ptr, &restrictionArray, length, handler);
             }
             else if(typeid(TLinkAddress) == typeid(uint32_t))
             {
-                return ByteUnitedMemoryLinks_Create<uint32_t>(_ptr, &restriction, std::ranges::size(restriction), handler);
+                return ByteUnitedMemoryLinks_Create<uint32_t>(_ptr, &restrictionArray, length, handler);
             }
             else if(typeid(TLinkAddress) == typeid(uint64_t))
             {
-                return ByteUnitedMemoryLinks_Create<uint64_t>(_ptr, &restriction, std::ranges::size(restriction), handler);
+                return ByteUnitedMemoryLinks_Create<uint64_t>(_ptr, &restrictionArray, length, handler);
             }
             else
             {
@@ -205,22 +206,25 @@ class UnitedMemoryLinks : public Interfaces::Polymorph<UnitedMemoryLinks<TLinkAd
 
         TLinkAddress Update(Interfaces::CArray auto&& restriction, Interfaces::CArray auto&& substitution, auto&& handler)
         {
-            GLOBAL_FUNCTION<TLinkAddress> = handler;
+            auto restrictionLength = std::ranges::size(restriction);
+            std::array restrictionArray { restriction };
+            auto substitutionLength = std::ranges::size(substitution);
+            std::array substitutionArray { substitution };
             if(typeid(TLinkAddress) == typeid(uint8_t))
             {
-                return ByteUnitedMemoryLinks_Update<uint8_t>(_ptr, &restriction, std::ranges::size(restriction), &substitution, std::ranges::size(substitution), handler);
+                return ByteUnitedMemoryLinks_Update<uint8_t>(_ptr, &restrictionArray, restrictionLength, &substitutionArray, substitutionLength, handler);
             }
             else if(typeid(TLinkAddress) == typeid(uint16_t))
             {
-                return ByteUnitedMemoryLinks_Update<uint16_t>(_ptr, &restriction, std::ranges::size(restriction), &substitution, std::ranges::size(substitution), handler);
+                return ByteUnitedMemoryLinks_Update<uint16_t>(_ptr, &restrictionArray, restrictionLength, &substitutionArray, substitutionLength, handler);
             }
             else if(typeid(TLinkAddress) == typeid(uint32_t))
             {
-                return ByteUnitedMemoryLinks_Update<uint32_t>(_ptr, &restriction, std::ranges::size(restriction), &substitution, std::ranges::size(substitution), handler);
+                return ByteUnitedMemoryLinks_Update<uint32_t>(_ptr, &restrictionArray, restrictionLength, &substitutionArray, substitutionLength, handler);
             }
             else if(typeid(TLinkAddress) == typeid(uint64_t))
             {
-                return ByteUnitedMemoryLinks_Update<uint64_t>(_ptr, &restriction, std::ranges::size(restriction), &substitution, std::ranges::size(substitution), handler);
+                return ByteUnitedMemoryLinks_Update<uint64_t>(_ptr, &restrictionArray, restrictionLength, &substitutionArray, substitutionLength, handler);
             }
             else
             {
@@ -230,22 +234,23 @@ class UnitedMemoryLinks : public Interfaces::Polymorph<UnitedMemoryLinks<TLinkAd
 
         TLinkAddress Delete(Interfaces::CArray auto&& restriction, auto&& handler)
         {
-            GLOBAL_FUNCTION<TLinkAddress> = handler;
+            auto length = std::ranges::size(restriction);
+            std::array restrictionArray { restriction };
             if(typeid(TLinkAddress) == typeid(uint8_t))
             {
-                return ByteUnitedMemoryLinks_Delete<uint8_t>(_ptr, &restriction, std::ranges::size(restriction), handler);
+                return ByteUnitedMemoryLinks_Delete<uint8_t>(_ptr, &restrictionArray, length, handler);
             }
             else if(typeid(TLinkAddress) == typeid(uint16_t))
             {
-                return ByteUnitedMemoryLinks_Delete<uint16_t>(_ptr, &restriction, std::ranges::size(restriction), handler);
+                return ByteUnitedMemoryLinks_Delete<uint16_t>(_ptr, &restrictionArray, length, handler);
             }
             else if(typeid(TLinkAddress) == typeid(uint32_t))
             {
-                return ByteUnitedMemoryLinks_Delete<uint32_t>(_ptr, &restriction, std::ranges::size(restriction), handler);
+                return ByteUnitedMemoryLinks_Delete<uint32_t>(_ptr, &restrictionArray, length, handler);
             }
             else if(typeid(TLinkAddress) == typeid(uint64_t))
             {
-                return ByteUnitedMemoryLinks_Delete<uint64_t>(_ptr, &restriction, std::ranges::size(restriction), handler);
+                return ByteUnitedMemoryLinks_Delete<uint64_t>(_ptr, &restrictionArray, length, handler);
             }
             else
             {
@@ -253,24 +258,26 @@ class UnitedMemoryLinks : public Interfaces::Polymorph<UnitedMemoryLinks<TLinkAd
             }
         }
 
-        auto&& Each(Interfaces::CArray auto&& restriction, auto&& handler)
+        template<typename HandlerSignature>
+        auto&& Each(Interfaces::CArray auto&& restriction, std::function<HandlerSignature> handler) const
         {
-            GLOBAL_FUNCTION<TLinkAddress> = handler;
+            auto length = std::ranges::size(restriction);
+            std::array restrictionArray { restriction };
             if(typeid(TLinkAddress) == typeid(uint8_t))
             {
-                return ByteUnitedMemoryLinks_Each<uint8_t>(_ptr, &restriction, std::ranges::size(restriction), handler);
+                return ByteUnitedMemoryLinks_Each<uint8_t>(_ptr, &restrictionArray, length, handler);
             }
             else if(typeid(TLinkAddress) == typeid(uint16_t))
             {
-                return ByteUnitedMemoryLinks_Each<uint16_t>(_ptr, &restriction, std::ranges::size(restriction), handler);
+                return ByteUnitedMemoryLinks_Each<uint16_t>(_ptr, &restrictionArray, length, handler);
             }
             else if(typeid(TLinkAddress) == typeid(uint32_t))
             {
-                return ByteUnitedMemoryLinks_Each<uint32_t>(_ptr, &restriction, std::ranges::size(restriction), handler);
+                return ByteUnitedMemoryLinks_Each<uint32_t>(_ptr, &restrictionArray, length, handler);
             }
             else if(typeid(TLinkAddress) == typeid(uint64_t))
             {
-                return ByteUnitedMemoryLinks_Each<uint64_t>(_ptr, &restriction, std::ranges::size(restriction), handler);
+                return ByteUnitedMemoryLinks_Each<uint64_t>(_ptr, &restrictionArray, length, handler);
             }
             else
             {
@@ -280,21 +287,23 @@ class UnitedMemoryLinks : public Interfaces::Polymorph<UnitedMemoryLinks<TLinkAd
 
         TLinkAddress Count(Interfaces::CArray auto&& restriction)
         {
+            auto length = std::ranges::size(restriction);
+            std::array restrictionArray { restriction };
             if(typeid(TLinkAddress) == typeid(uint8_t))
             {
-                return ByteUnitedMemoryLinks_Count<uint8_t>(_ptr, &restriction, std::ranges::size(restriction));
+                return ByteUnitedMemoryLinks_Count<uint8_t>(_ptr, &restrictionArray, length);
             }
             else if(typeid(TLinkAddress) == typeid(uint16_t))
             {
-                return ByteUnitedMemoryLinks_Count<uint16_t>(_ptr, &restriction, std::ranges::size(restriction));
+                return ByteUnitedMemoryLinks_Count<uint16_t>(_ptr, &restrictionArray, length);
             }
             else if(typeid(TLinkAddress) == typeid(uint32_t))
             {
-                return ByteUnitedMemoryLinks_Count<uint32_t>(_ptr, &restriction, std::ranges::size(restriction));
+                return ByteUnitedMemoryLinks_Count<uint32_t>(_ptr, &restrictionArray, length);
             }
             else if(typeid(TLinkAddress) == typeid(uint64_t))
             {
-                return ByteUnitedMemoryLinks_Count<uint64_t>(_ptr, &restriction, std::ranges::size(restriction));
+                return ByteUnitedMemoryLinks_Count<uint64_t>(_ptr, &restrictionArray, length);
             }
             else
             {
