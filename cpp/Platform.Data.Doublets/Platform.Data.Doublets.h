@@ -20,6 +20,7 @@
 #include "Memory/ILinksListMethods.h"
 #include "Memory/ILinksTreeMethods.h"
 
+
 #include "Memory/United/RawLink.h"
 #include "Memory/United/Generic/UnusedLinksListMethods.h"
 
@@ -29,6 +30,13 @@
 //#include "Memory/United/Generic/UnitedMemoryLinksBase.h"
 //#include "Memory/United/Generic/UnitedMemoryLinks.h"
 #include "Memory/United/Ffi/UnitedMemoryLinks.h"
+
+#include "Memory/Split/RawLinkDataPart.h"
+
+#include "Memory/Split/RawLinkIndexPart.h"
+#include "Memory/Split/RawLinkIndexPart.h"
+#include "Memory/Split/Generic/InternalLinksSourcesLinkedListMethods.h"
+#include "Memory/Split/Generic/SplitMemoryLinks.h"
 
 #include "ILinksExtensions.h"
 
