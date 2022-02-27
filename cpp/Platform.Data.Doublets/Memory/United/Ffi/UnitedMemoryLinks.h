@@ -4,29 +4,22 @@
 #include <ostream>
 #include <new>
 
-
 namespace Platform::Data::Doublets::Memory::United::Ffi
 {
-    template <typename TLinkAddress>
-    thread_local std::function<TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>)> GLOBAL_FUNCTION = nullptr;
+    template<typename Signature>
+    thread_local std::function<Signature> GLOBAL_FUNCTION = nullptr;
 
-//    template <typename TReturn, class... Args>
-//    TReturn ffiCall(TReturn(*f)(Args&&... args)) {
-//        return f(args);
-//    }
-//
-//    template <typename TFunction, class... Args>
-//    auto callLastGlobal(Args&&... args) {
-//        auto result { GLOBAL_FUNCTION<TFunction>(args) };
-//        GLOBAL_FUNCTION<TFunction> = nullptr;
-//        return result;
-//    }
-//
-//    template <typename TLinkAddress, class... Args>
-//    auto&& call(std::function<TLinkAddress(Args&&...)> f) {
-//        GLOBAL_FUNCTION<TLinkAddress(Args&&...)> = std::move(f);
-//        return ffiCall<TLinkAddress, Args>(callLastGlobal<TLinkAddress(Args&&...), Args>);
-//    }
+    template<typename Signature>
+    decltype(auto) call_last_global(auto&& ... args) {
+        decltype(auto) result = GLOBAL_FUNCTION<Signature>(std::forward<decltype(args)>(args)...);
+        GLOBAL_FUNCTION<Signature> = nullptr;
+        return result;
+    }
+
+    template<typename Signature>
+    void schedule_global(std::function<Signature> function) {
+        GLOBAL_FUNCTION<Signature> = std::move(function);
+    }
 
     template<typename TLinkAddress>
     using CUDCallback = TLinkAddress(*)(Link<TLinkAddress> before, Link<TLinkAddress> after);
@@ -34,12 +27,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
     template<typename TLinkAddress>
     using EachCallback = TLinkAddress(*)(Link<TLinkAddress>);
 
-//struct SharedLogger {
-//    void (* formatter)(const Record*);
-//};
-
-extern "C" {
-
+    extern "C" {
     void* ByteUnitedMemoryLinks_New(const char* path);
 
     void* UInt16UnitedMemoryLinks_New(const char* path);
@@ -57,44 +45,44 @@ extern "C" {
     void UInt64UnitedMemoryLinks_Drop(void* this_);
 
     uint8_t ByteUnitedMemoryLinks_Create(void* this_,
-                                         const uint8_t* query,
-                                         uintptr_t len,
-                                         CUDCallback<uint8_t> callback);
+            const uint8_t* query,
+            uintptr_t len,
+            CUDCallback<uint8_t> callback);
 
     uint16_t UInt16UnitedMemoryLinks_Create(void* this_,
-                                            const uint16_t* query,
-                                            uintptr_t len,
-                                            CUDCallback<uint16_t> callback);
+            const uint16_t* query,
+            uintptr_t len,
+            CUDCallback<uint16_t> callback);
 
     uint32_t UInt32UnitedMemoryLinks_Create(void* this_,
-                                            const uint32_t* query,
-                                            uintptr_t len,
-                                            CUDCallback<uint32_t> callback);
+            const uint32_t* query,
+            uintptr_t len,
+            CUDCallback<uint32_t> callback);
 
     uint64_t UInt64UnitedMemoryLinks_Create(void* this_,
-                                            const uint64_t* query,
-                                            uintptr_t len,
-                                            CUDCallback<uint64_t> callback);
+            const uint64_t* query,
+            uintptr_t len,
+            CUDCallback<uint64_t> callback);
 
     uint8_t ByteUnitedMemoryLinks_Each(void* this_,
-                                       const uint8_t* query,
-                                       uintptr_t len,
-                                       EachCallback<uint8_t> callback);
+            const uint8_t* query,
+            uintptr_t len,
+            EachCallback<uint8_t> callback);
 
     uint16_t UInt16UnitedMemoryLinks_Each(void* this_,
-                                          const uint16_t* query,
-                                          uintptr_t len,
-                                          EachCallback<uint16_t> callback);
+            const uint16_t* query,
+            uintptr_t len,
+            EachCallback<uint16_t> callback);
 
     uint32_t UInt32UnitedMemoryLinks_Each(void* this_,
-                                          const uint32_t* query,
-                                          uintptr_t len,
-                                          EachCallback<uint32_t> callback);
+            const uint32_t* query,
+            uintptr_t len,
+            EachCallback<uint32_t> callback);
 
     uint64_t UInt64UnitedMemoryLinks_Each(void* this_,
-                                          const uint64_t* query,
-                                          uintptr_t len,
-                                          EachCallback<uint64_t> callback);
+            const uint64_t* query,
+            uintptr_t len,
+            EachCallback<uint64_t> callback);
 
     uint8_t ByteUnitedMemoryLinks_Count(void* this_, const uint8_t* query, uintptr_t len);
 
@@ -105,209 +93,184 @@ extern "C" {
     uint64_t UInt64UnitedMemoryLinks_Count(void* this_, const uint64_t* query, uintptr_t len);
 
     uint8_t ByteUnitedMemoryLinks_Update(void* this_,
-                                         const uint8_t* restrictions,
-                                         uintptr_t len_r,
-                                         const uint8_t* substitutuion,
-                                         uintptr_t len_s,
-                                         CUDCallback<uint8_t> callback);
+            const uint8_t* restrictions,
+            uintptr_t len_r,
+            const uint8_t* substitutuion,
+            uintptr_t len_s,
+            CUDCallback<uint8_t> callback);
 
     uint16_t UInt16UnitedMemoryLinks_Update(void* this_,
-                                            const uint16_t* restrictions,
-                                            uintptr_t len_r,
-                                            const uint16_t* substitutuion,
-                                            uintptr_t len_s,
-                                            CUDCallback<uint16_t> callback);
+            const uint16_t* restrictions,
+            uintptr_t len_r,
+            const uint16_t* substitutuion,
+            uintptr_t len_s,
+            CUDCallback<uint16_t> callback);
 
     uint32_t UInt32UnitedMemoryLinks_Update(void* this_,
-                                            const uint32_t* restrictions,
-                                            uintptr_t len_r,
-                                            const uint32_t* substitutuion,
-                                            uintptr_t len_s,
-                                            CUDCallback<uint32_t> callback);
+            const uint32_t* restrictions,
+            uintptr_t len_r,
+            const uint32_t* substitutuion,
+            uintptr_t len_s,
+            CUDCallback<uint32_t> callback);
 
     uint64_t UInt64UnitedMemoryLinks_Update(void* this_,
-                                            const uint64_t* restrictions,
-                                            uintptr_t len_r,
-                                            const uint64_t* substitutuion,
-                                            uintptr_t len_s,
-                                            CUDCallback<uint64_t> callback);
+            const uint64_t* restrictions,
+            uintptr_t len_r,
+            const uint64_t* substitutuion,
+            uintptr_t len_s,
+            CUDCallback<uint64_t> callback);
 
     uint8_t ByteUnitedMemoryLinks_Delete(void* this_,
-                                         const uint8_t* query,
-                                         uintptr_t len,
-                                         CUDCallback<uint8_t> callback);
+            const uint8_t* query,
+            uintptr_t len,
+            CUDCallback<uint8_t> callback);
 
     uint16_t UInt16UnitedMemoryLinks_Delete(void* this_,
-                                            const uint16_t* query,
-                                            uintptr_t len,
-                                            CUDCallback<uint16_t> callback);
+            const uint16_t* query,
+            uintptr_t len,
+            CUDCallback<uint16_t> callback);
 
     uint32_t UInt32UnitedMemoryLinks_Delete(void* this_,
-                                            const uint32_t* query,
-                                            uintptr_t len,
-                                            CUDCallback<uint32_t> callback);
+            const uint32_t* query,
+            uintptr_t len,
+            CUDCallback<uint32_t> callback);
 
     uint64_t UInt64UnitedMemoryLinks_Delete(void* this_,
-                                            const uint64_t* query,
-                                            uintptr_t len,
-                                            CUDCallback<uint64_t> callback);
-
-//void setup_shared_logger(SharedLogger logger);
+            const uint64_t* query,
+            uintptr_t len,
+            CUDCallback<uint64_t> callback);
 
     void init_fmt_logger();
+    }
 
-} // extern "C"
+    template<typename Stop>
+    struct stopper {
+        static constexpr bool value = false;
+    };
 
-    template <typename TLinkAddress, typename ...TBase>
-class UnitedMemoryLinks : public Interfaces::Polymorph<UnitedMemoryLinks<TLinkAddress, TBase...>, TBase...>
-    {
+#define DECLARE_WRAPPER($Real, $Name) \
+    template<typename T> \
+    auto $Name(auto... args) { \
+        if constexpr (std::same_as<T, std::uint8_t>) { \
+            Byte##$Real(args...); \
+        } else if constexpr (std::same_as<T, std::uint16_t>) { \
+            UInt16##$Real(args...); \
+        } else if constexpr (std::same_as<T, std::uint32_t>) { \
+            UInt32##$Real(args...); \
+        } else if constexpr (std::same_as<T, std::uint64_t>) { \
+            UInt64##$Real(args...); \
+        } else { \
+            static_assert(stopper<T>::value, \
+                    "T must be one of std::uint8_t, std::uint16_t, std::uint32_t, std::uint64_t"); \
+        } \
+    }
+
+    DECLARE_WRAPPER(UnitedMemoryLinks_New, LinksNew);
+    DECLARE_WRAPPER(UnitedMemoryLinks_New, LinksCreate);
+    DECLARE_WRAPPER(UnitedMemoryLinks_Drop, LinksDrop);
+
+    template<typename TLinkAddress>
+    class UnitedMemoryLinks/*: public Interfaces::Polymorph<UnitedMemoryLinks<TLinkAddress, TBase...>, TBase...>*/ {
     private:
         void* _ptr;
     public:
 
-
         LinksConstants<TLinkAddress> Constants;
 
-        UnitedMemoryLinks(std::string path) : _ptr {ByteUnitedMemoryLinks_New(path.c_str()) }, Constants{ LinksConstants<TLinkAddress>{ true } }
-        {
+        UnitedMemoryLinks(std::string_view path)
+                : _ptr(ByteUnitedMemoryLinks_New(path.data())),
+                  Constants(LinksConstants<TLinkAddress>(true)) {}
 
-        }
-
-        ~UnitedMemoryLinks()
-        {
-            ByteUnitedMemoryLinks_Drop(_ptr);
-        }
-
-        TLinkAddress Create(Interfaces::CArray auto&& restriction, auto&& handler)
-        {
-            auto length = std::ranges::size(restriction);
-            std::array restrictionArray { restriction };
-            if(typeid(TLinkAddress) == typeid(uint8_t))
-            {
-                return ByteUnitedMemoryLinks_Create<uint8_t>(_ptr, &restrictionArray, length, handler);
-            }
-            else if(typeid(TLinkAddress) == typeid(uint16_t))
-            {
-                return ByteUnitedMemoryLinks_Create<uint16_t>(_ptr, &restrictionArray, length, handler);
-            }
-            else if(typeid(TLinkAddress) == typeid(uint32_t))
-            {
-                return ByteUnitedMemoryLinks_Create<uint32_t>(_ptr, &restrictionArray, length, handler);
-            }
-            else if(typeid(TLinkAddress) == typeid(uint64_t))
-            {
-                return ByteUnitedMemoryLinks_Create<uint64_t>(_ptr, &restrictionArray, length, handler);
-            }
-            else
-            {
-                throw std::runtime_error("The type of TLinkAddress is not supported. Use any type of uint8_t, uint16_t, uint32_t, uint64_t.");
+        ~UnitedMemoryLinks() {
+            if (_ptr != nullptr) {
+                ByteUnitedMemoryLinks_Drop(_ptr);
             }
         }
 
-        TLinkAddress Update(Interfaces::CArray auto&& restriction, Interfaces::CArray auto&& substitution, auto&& handler)
-        {
+        TLinkAddress Create(Interfaces::IArray auto&& restriction, auto&& handler) {
+            auto len = std::ranges::size(restriction);
+            auto ptr = std::ranges::data(restriction);
+            auto callback = [&] <typename T> (Link<T> before, Link<T> after) {
+                handler(before, after);
+            };
+            using Sig = TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>);
+            schedule_global<Sig>(callback);
+            return LinksCreate<TLinkAddress>(_ptr, ptr, len, call_last_global<Sig>);
+        };
+
+        TLinkAddress Update(Interfaces::IArray auto&& restriction, Interfaces::IArray auto&& substitution,
+                auto&& handler) {
             auto restrictionLength = std::ranges::size(restriction);
             std::array restrictionArray { restriction };
             auto substitutionLength = std::ranges::size(substitution);
             std::array substitutionArray { substitution };
-            if(typeid(TLinkAddress) == typeid(uint8_t))
-            {
-                return ByteUnitedMemoryLinks_Update<uint8_t>(_ptr, &restrictionArray, restrictionLength, &substitutionArray, substitutionLength, handler);
-            }
-            else if(typeid(TLinkAddress) == typeid(uint16_t))
-            {
-                return ByteUnitedMemoryLinks_Update<uint16_t>(_ptr, &restrictionArray, restrictionLength, &substitutionArray, substitutionLength, handler);
-            }
-            else if(typeid(TLinkAddress) == typeid(uint32_t))
-            {
-                return ByteUnitedMemoryLinks_Update<uint32_t>(_ptr, &restrictionArray, restrictionLength, &substitutionArray, substitutionLength, handler);
-            }
-            else if(typeid(TLinkAddress) == typeid(uint64_t))
-            {
-                return ByteUnitedMemoryLinks_Update<uint64_t>(_ptr, &restrictionArray, restrictionLength, &substitutionArray, substitutionLength, handler);
-            }
-            else
-            {
-                throw std::runtime_error("The type of TLinkAddress is not supported. Use any type of uint8_t, uint16_t, uint32_t, uint64_t.");
+            if (typeid(TLinkAddress) == typeid(uint8_t)) {
+                return ByteUnitedMemoryLinks_Update < uint8_t
+                        > (_ptr, &restrictionArray, restrictionLength, &substitutionArray, substitutionLength, handler);
+            } else if (typeid(TLinkAddress) == typeid(uint16_t)) {
+                return ByteUnitedMemoryLinks_Update < uint16_t
+                        > (_ptr, &restrictionArray, restrictionLength, &substitutionArray, substitutionLength, handler);
+            } else if (typeid(TLinkAddress) == typeid(uint32_t)) {
+                return ByteUnitedMemoryLinks_Update < uint32_t
+                        > (_ptr, &restrictionArray, restrictionLength, &substitutionArray, substitutionLength, handler);
+            } else if (typeid(TLinkAddress) == typeid(uint64_t)) {
+                return ByteUnitedMemoryLinks_Update < uint64_t
+                        > (_ptr, &restrictionArray, restrictionLength, &substitutionArray, substitutionLength, handler);
+            } else {
+                throw std::runtime_error(
+                        "The type of TLinkAddress is not supported. Use any type of uint8_t, uint16_t, uint32_t, uint64_t.");
             }
         }
 
-        TLinkAddress Delete(Interfaces::CArray auto&& restriction, auto&& handler)
-        {
+        TLinkAddress Delete(Interfaces::IArray auto&& restriction, auto&& handler) {
             auto length = std::ranges::size(restriction);
             std::array restrictionArray { restriction };
-            if(typeid(TLinkAddress) == typeid(uint8_t))
-            {
-                return ByteUnitedMemoryLinks_Delete<uint8_t>(_ptr, &restrictionArray, length, handler);
-            }
-            else if(typeid(TLinkAddress) == typeid(uint16_t))
-            {
-                return ByteUnitedMemoryLinks_Delete<uint16_t>(_ptr, &restrictionArray, length, handler);
-            }
-            else if(typeid(TLinkAddress) == typeid(uint32_t))
-            {
-                return ByteUnitedMemoryLinks_Delete<uint32_t>(_ptr, &restrictionArray, length, handler);
-            }
-            else if(typeid(TLinkAddress) == typeid(uint64_t))
-            {
-                return ByteUnitedMemoryLinks_Delete<uint64_t>(_ptr, &restrictionArray, length, handler);
-            }
-            else
-            {
-                throw std::runtime_error("The type of TLinkAddress is not supported. Use any type of uint8_t, uint16_t, uint32_t, uint64_t.");
+            if (typeid(TLinkAddress) == typeid(uint8_t)) {
+                return ByteUnitedMemoryLinks_Delete < uint8_t > (_ptr, &restrictionArray, length, handler);
+            } else if (typeid(TLinkAddress) == typeid(uint16_t)) {
+                return ByteUnitedMemoryLinks_Delete < uint16_t > (_ptr, &restrictionArray, length, handler);
+            } else if (typeid(TLinkAddress) == typeid(uint32_t)) {
+                return ByteUnitedMemoryLinks_Delete < uint32_t > (_ptr, &restrictionArray, length, handler);
+            } else if (typeid(TLinkAddress) == typeid(uint64_t)) {
+                return ByteUnitedMemoryLinks_Delete < uint64_t > (_ptr, &restrictionArray, length, handler);
+            } else {
+                throw std::runtime_error(
+                        "The type of TLinkAddress is not supported. Use any type of uint8_t, uint16_t, uint32_t, uint64_t.");
             }
         }
 
         template<typename HandlerSignature>
-        auto&& Each(Interfaces::CArray auto&& restriction, std::function<HandlerSignature> handler) const
-        {
+        auto&& Each(Interfaces::IArray auto&& restriction, std::function<HandlerSignature> handler) const {
             auto length = std::ranges::size(restriction);
             std::array restrictionArray { restriction };
-            if(typeid(TLinkAddress) == typeid(uint8_t))
-            {
-                return ByteUnitedMemoryLinks_Each<uint8_t>(_ptr, &restrictionArray, length, handler);
-            }
-            else if(typeid(TLinkAddress) == typeid(uint16_t))
-            {
-                return ByteUnitedMemoryLinks_Each<uint16_t>(_ptr, &restrictionArray, length, handler);
-            }
-            else if(typeid(TLinkAddress) == typeid(uint32_t))
-            {
-                return ByteUnitedMemoryLinks_Each<uint32_t>(_ptr, &restrictionArray, length, handler);
-            }
-            else if(typeid(TLinkAddress) == typeid(uint64_t))
-            {
-                return ByteUnitedMemoryLinks_Each<uint64_t>(_ptr, &restrictionArray, length, handler);
-            }
-            else
-            {
-                throw std::runtime_error("The type of TLinkAddress is not supported. Use any type of uint8_t, uint16_t, uint32_t, uint64_t.");
+            if (typeid(TLinkAddress) == typeid(uint8_t)) {
+                return ByteUnitedMemoryLinks_Each < uint8_t > (_ptr, &restrictionArray, length, handler);
+            } else if (typeid(TLinkAddress) == typeid(uint16_t)) {
+                return ByteUnitedMemoryLinks_Each < uint16_t > (_ptr, &restrictionArray, length, handler);
+            } else if (typeid(TLinkAddress) == typeid(uint32_t)) {
+                return ByteUnitedMemoryLinks_Each < uint32_t > (_ptr, &restrictionArray, length, handler);
+            } else if (typeid(TLinkAddress) == typeid(uint64_t)) {
+                return ByteUnitedMemoryLinks_Each < uint64_t > (_ptr, &restrictionArray, length, handler);
+            } else {
+                throw std::runtime_error(
+                        "The type of TLinkAddress is not supported. Use any type of uint8_t, uint16_t, uint32_t, uint64_t.");
             }
         }
 
-        TLinkAddress Count(Interfaces::CArray auto&& restriction)
-        {
+        TLinkAddress Count(Interfaces::IArray auto&& restriction) {
             auto length = std::ranges::size(restriction);
             std::array restrictionArray { restriction };
-            if(typeid(TLinkAddress) == typeid(uint8_t))
-            {
-                return ByteUnitedMemoryLinks_Count<uint8_t>(_ptr, &restrictionArray, length);
-            }
-            else if(typeid(TLinkAddress) == typeid(uint16_t))
-            {
-                return ByteUnitedMemoryLinks_Count<uint16_t>(_ptr, &restrictionArray, length);
-            }
-            else if(typeid(TLinkAddress) == typeid(uint32_t))
-            {
-                return ByteUnitedMemoryLinks_Count<uint32_t>(_ptr, &restrictionArray, length);
-            }
-            else if(typeid(TLinkAddress) == typeid(uint64_t))
-            {
-                return ByteUnitedMemoryLinks_Count<uint64_t>(_ptr, &restrictionArray, length);
-            }
-            else
-            {
-                throw std::runtime_error("The type of TLinkAddress is not supported. Use any type of uint8_t, uint16_t, uint32_t, uint64_t.");
+            if (typeid(TLinkAddress) == typeid(uint8_t)) {
+                return ByteUnitedMemoryLinks_Count < uint8_t > (_ptr, &restrictionArray, length);
+            } else if (typeid(TLinkAddress) == typeid(uint16_t)) {
+                return ByteUnitedMemoryLinks_Count < uint16_t > (_ptr, &restrictionArray, length);
+            } else if (typeid(TLinkAddress) == typeid(uint32_t)) {
+                return ByteUnitedMemoryLinks_Count < uint32_t > (_ptr, &restrictionArray, length);
+            } else if (typeid(TLinkAddress) == typeid(uint64_t)) {
+                return ByteUnitedMemoryLinks_Count < uint64_t > (_ptr, &restrictionArray, length);
+            } else {
+                throw std::runtime_error(
+                        "The type of TLinkAddress is not supported. Use any type of uint8_t, uint16_t, uint32_t, uint64_t.");
             }
         }
 
