@@ -166,7 +166,8 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
     }
 
     DECLARE_WRAPPER(UnitedMemoryLinks_New, LinksNew);
-    DECLARE_WRAPPER(UnitedMemoryLinks_New, LinksCreate);
+    DECLARE_WRAPPER(UnitedMemoryLinks_Create, LinksCreate);
+    DECLARE_WRAPPER(UnitedMemoryLinks_Update, LinksUpdate);
     DECLARE_WRAPPER(UnitedMemoryLinks_Drop, LinksDrop);
 
     template<typename TLinkAddress>
@@ -187,7 +188,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             }
         }
 
-        TLinkAddress Create(Interfaces::IArray auto&& restriction, auto&& handler) {
+        TLinkAddress Create(Interfaces::CArray auto&& restriction, auto&& handler) {
             auto len = std::ranges::size(restriction);
             auto ptr = std::ranges::data(restriction);
             auto callback = [&] <typename T> (Link<T> before, Link<T> after) {
@@ -198,31 +199,21 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             return LinksCreate<TLinkAddress>(_ptr, ptr, len, call_last_global<Sig>);
         };
 
-        TLinkAddress Update(Interfaces::IArray auto&& restriction, Interfaces::IArray auto&& substitution,
+        TLinkAddress Update(Interfaces::CArray auto&& restriction, Interfaces::CArray auto&& substitution,
                 auto&& handler) {
             auto restrictionLength = std::ranges::size(restriction);
-            std::array restrictionArray { restriction };
+            auto restrictionPtr { std::ranges::data(restriction) };
             auto substitutionLength = std::ranges::size(substitution);
-            std::array substitutionArray { substitution };
-            if (typeid(TLinkAddress) == typeid(uint8_t)) {
-                return ByteUnitedMemoryLinks_Update < uint8_t
-                        > (_ptr, &restrictionArray, restrictionLength, &substitutionArray, substitutionLength, handler);
-            } else if (typeid(TLinkAddress) == typeid(uint16_t)) {
-                return ByteUnitedMemoryLinks_Update < uint16_t
-                        > (_ptr, &restrictionArray, restrictionLength, &substitutionArray, substitutionLength, handler);
-            } else if (typeid(TLinkAddress) == typeid(uint32_t)) {
-                return ByteUnitedMemoryLinks_Update < uint32_t
-                        > (_ptr, &restrictionArray, restrictionLength, &substitutionArray, substitutionLength, handler);
-            } else if (typeid(TLinkAddress) == typeid(uint64_t)) {
-                return ByteUnitedMemoryLinks_Update < uint64_t
-                        > (_ptr, &restrictionArray, restrictionLength, &substitutionArray, substitutionLength, handler);
-            } else {
-                throw std::runtime_error(
-                        "The type of TLinkAddress is not supported. Use any type of uint8_t, uint16_t, uint32_t, uint64_t.");
-            }
+            auto substitutionPtr { std::ranges::data(substitution) };
+            auto callback = [&] <typename T> (Link<T> before, Link<T> after) {
+                handler(before, after);
+            };
+            using Sig = TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>);
+            schedule_global<Sig>(callback);
+            return LinksUpdate<TLinkAddress>(_ptr, restrictionPtr, restrictionLength, substitutionPtr, substitutionLength, call_last_global<Sig>);
         }
 
-        TLinkAddress Delete(Interfaces::IArray auto&& restriction, auto&& handler) {
+        TLinkAddress Delete(Interfaces::CArray auto&& restriction, auto&& handler) {
             auto length = std::ranges::size(restriction);
             std::array restrictionArray { restriction };
             if (typeid(TLinkAddress) == typeid(uint8_t)) {
@@ -240,7 +231,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
         }
 
         template<typename HandlerSignature>
-        auto&& Each(Interfaces::IArray auto&& restriction, std::function<HandlerSignature> handler) const {
+        auto&& Each(Interfaces::CArray auto&& restriction, std::function<HandlerSignature> handler) const {
             auto length = std::ranges::size(restriction);
             std::array restrictionArray { restriction };
             if (typeid(TLinkAddress) == typeid(uint8_t)) {
@@ -257,7 +248,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             }
         }
 
-        TLinkAddress Count(Interfaces::IArray auto&& restriction) {
+        TLinkAddress Count(Interfaces::CArray auto&& restriction) {
             auto length = std::ranges::size(restriction);
             std::array restrictionArray { restriction };
             if (typeid(TLinkAddress) == typeid(uint8_t)) {
