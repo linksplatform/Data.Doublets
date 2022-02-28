@@ -148,21 +148,29 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
         static constexpr bool value = false;
     };
 
-#define DECLARE_WRAPPER($Real, $Name) \
-    template<typename T> \
-    auto $Name(auto... args) { \
-        if constexpr (std::same_as<T, std::uint8_t>) { \
-            Byte##$Real(args...); \
-        } else if constexpr (std::same_as<T, std::uint16_t>) { \
-            UInt16##$Real(args...); \
-        } else if constexpr (std::same_as<T, std::uint32_t>) { \
-            UInt32##$Real(args...); \
-        } else if constexpr (std::same_as<T, std::uint64_t>) { \
-            UInt64##$Real(args...); \
-        } else { \
-            static_assert(stopper<T>::value, \
-                    "T must be one of std::uint8_t, std::uint16_t, std::uint32_t, std::uint64_t"); \
-        } \
+#define DECLARE_WRAPPER($Real, $Name)
+    template<typename T>
+    auto $Name(auto... args) {
+        if constexpr (std::same_as<T, std::uint8_t>)
+        {
+            Byte##$Real(args...);
+        }
+        else if constexpr (std::same_as<T, std::uint16_t>)
+        {
+            UInt16##$Real(args...);
+        }
+        else if constexpr (std::same_as<T, std::uint32_t>)
+        {
+            UInt32##$Real(args...);
+        }
+        else if constexpr (std::same_as<T, std::uint64_t>)
+        {
+            UInt64##$Real(args...);
+        }
+        else
+        {
+            static_assert(stopper<T>::value, "T must be one of std::uint8_t, std::uint16_t, std::uint32_t, std::uint64_t");
+        }
     }
 
     DECLARE_WRAPPER(UnitedMemoryLinks_New, LinksNew);
