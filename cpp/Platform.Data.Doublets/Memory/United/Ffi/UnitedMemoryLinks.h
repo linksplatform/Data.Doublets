@@ -189,14 +189,14 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
         }
 
         TLinkAddress Create(Interfaces::CArray auto&& restriction, auto&& handler) {
-            auto len = std::ranges::size(restriction);
-            auto ptr = std::ranges::data(restriction);
+            auto restrictionLength = std::ranges::size(restriction);
+            auto restrictionPtr = std::ranges::data(restriction);
             auto callback = [&] <typename T> (Link<T> before, Link<T> after) {
                 handler(before, after);
             };
             using Sig = TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>);
             schedule_global<Sig>(callback);
-            return LinksCreate<TLinkAddress>(_ptr, ptr, len, call_last_global<Sig>);
+            return LinksCreate<TLinkAddress>(_ptr, restrictionPtr, restrictionLength, call_last_global<Sig>);
         };
 
         TLinkAddress Update(Interfaces::CArray auto&& restriction, Interfaces::CArray auto&& substitution,
@@ -214,32 +214,26 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
         }
 
         TLinkAddress Delete(Interfaces::CArray auto&& restriction, auto&& handler) {
-            auto length = std::ranges::size(restriction);
+            auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr = std::ranges::data(restriction);
             auto callback = [&] <typename T> (Link<T> before, Link<T> after) {
                 handler(before, after);
             };
             using Sig = TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>);
             schedule_global<Sig>(callback);
-            return LinksDelete<TLinkAddress>(_ptr, restrictionPtr, length, call_last_global<Sig>);
+            return LinksDelete<TLinkAddress>(_ptr, restrictionPtr, restrictionLength, call_last_global<Sig>);
         }
 
         template<typename HandlerSignature>
         auto&& Each(Interfaces::CArray auto&& restriction, std::function<HandlerSignature> handler) const {
-            auto length = std::ranges::size(restriction);
-            std::array restrictionArray { restriction };
-            if (typeid(TLinkAddress) == typeid(uint8_t)) {
-                return ByteUnitedMemoryLinks_Each < uint8_t > (_ptr, &restrictionArray, length, handler);
-            } else if (typeid(TLinkAddress) == typeid(uint16_t)) {
-                return ByteUnitedMemoryLinks_Each < uint16_t > (_ptr, &restrictionArray, length, handler);
-            } else if (typeid(TLinkAddress) == typeid(uint32_t)) {
-                return ByteUnitedMemoryLinks_Each < uint32_t > (_ptr, &restrictionArray, length, handler);
-            } else if (typeid(TLinkAddress) == typeid(uint64_t)) {
-                return ByteUnitedMemoryLinks_Each < uint64_t > (_ptr, &restrictionArray, length, handler);
-            } else {
-                throw std::runtime_error(
-                        "The type of TLinkAddress is not supported. Use any type of uint8_t, uint16_t, uint32_t, uint64_t.");
-            }
+            auto restrictionLength = std::ranges::size(restriction);
+            auto restrictionPtr = std::ranges::data(restriction);
+            auto callback = [&] <typename T> (Link<T> before, Link<T> after) {
+                handler(before, after);
+            };
+            using Sig = TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>);
+            schedule_global<Sig>(callback);
+            return LinksEach<TLinkAddress>(_ptr, restrictionPtr, restrictionLength, call_last_global<Sig>);
         }
 
         TLinkAddress Count(Interfaces::CArray auto&& restriction) {
