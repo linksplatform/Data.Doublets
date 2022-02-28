@@ -173,13 +173,38 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
         }
     }
 
-    DECLARE_WRAPPER(UnitedMemoryLinks_New, LinksNew);
-    DECLARE_WRAPPER(UnitedMemoryLinks_Create, LinksCreate);
-    DECLARE_WRAPPER(UnitedMemoryLinks_Update, LinksUpdate);
-    DECLARE_WRAPPER(UnitedMemoryLinks_Drop, LinksDrop);
+    DECLARE_WRAPPER(LinksNew, UnitedMemoryLinks_New);
+    DECLARE_WRAPPER(LinksCreate, UnitedMemoryLinks_Create);
+    DECLARE_WRAPPER(LinksUpdate, UnitedMemoryLinks_Update);
+    DECLARE_WRAPPER(LinksDelete, UnitedMemoryLinks_Delete);
+//    DECLARE_WRAPPER(LinksEach, UnitedMemoryLinks_Each);
+    template<typename T>
+    auto LinksEach(auto... args)
+    {
+        if constexpr (std::same_as<T, std::uint8_t>)
+        {
+            ByteUnitedMemoryLinks_Each(args...);
+        } else if constexpr (std::same_as<T, std::uint16_t>)
+        {
+            UInt16UnitedMemoryLinks_Each(args...);
+        } else if constexpr (std::same_as<T, std::uint32_t>)
+        {
+            UInt32UnitedMemoryLinks_Each(args...);
+        } else if constexpr (std::same_as<T, std::uint64_t>)
+        {
+            UInt64UnitedMemoryLinks_Each(args...);
+        } else
+        {
+            static_assert(stopper<T>::value,
+                          "T must be one of std::uint8_t, std::uint16_t, std::uint32_t, std::uint64_t");
+        }
+    }
+    DECLARE_WRAPPER(LinksCount, UnitedMemoryLinks_Count);
+    DECLARE_WRAPPER(LinksDrop, UnitedMemoryLinks_Drop);
 
     template<typename TLinkAddress>
-    class UnitedMemoryLinks/*: public Interfaces::Polymorph<UnitedMemoryLinks<TLinkAddress, TBase...>, TBase...>*/ {
+    class UnitedMemoryLinks /*: public Interfaces::Polymorph<UnitedMemoryLinks<TLinkAddress, TBase...>, TBase...>*/
+    {
     private:
         void* _ptr;
     public:
@@ -202,7 +227,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr = std::ranges::data(restriction);
             auto callback = [&] <typename T> (Link<T> before, Link<T> after) {
-                handler(before, after);
+                return handler(before, after);
             };
             using Sig = TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>);
             schedule_global<Sig>(callback);
@@ -216,7 +241,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             auto substitutionLength = std::ranges::size(substitution);
             auto substitutionPtr { std::ranges::data(substitution) };
             auto callback = [&] <typename T> (Link<T> before, Link<T> after) {
-                handler(before, after);
+                return handler(before, after);
             };
             using Sig = TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>);
             schedule_global<Sig>(callback);
@@ -228,24 +253,23 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr = std::ranges::data(restriction);
             auto callback = [&] <typename T> (Link<T> before, Link<T> after) {
-                handler(before, after);
+                return handler(before, after);
             };
             using Sig = TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>);
             schedule_global<Sig>(callback);
             return LinksDelete<TLinkAddress>(_ptr, restrictionPtr, restrictionLength, call_last_global<Sig>);
         }
 
-        template<typename HandlerSignature>
-        auto&& Each(Interfaces::CArray auto&& restriction, std::function<HandlerSignature> handler) const
+        auto&& Each(Interfaces::CArray auto&& restriction, auto&& handler) const
         {
             auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr = std::ranges::data(restriction);
             auto callback = [&] <typename T> (Link<T> link) {
-                handler(link);
+                return handler(link);
             };
             using Sig = TLinkAddress(Link<TLinkAddress>);
             schedule_global<Sig>(callback);
-            return LinksEach<TLinkAddress>(_ptr, restrictionPtr, restrictionLength, call_last_global<Sig>);
+            return Platform::Data::Doublets::Memory::United::Ffi::LinksEach<TLinkAddress>(_ptr, restrictionPtr, restrictionLength, call_last_global<Sig>);
         }
 
         TLinkAddress Count(Interfaces::CArray auto&& restriction)
