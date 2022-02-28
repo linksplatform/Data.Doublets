@@ -215,19 +215,13 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
 
         TLinkAddress Delete(Interfaces::CArray auto&& restriction, auto&& handler) {
             auto length = std::ranges::size(restriction);
-            std::array restrictionArray { restriction };
-            if (typeid(TLinkAddress) == typeid(uint8_t)) {
-                return ByteUnitedMemoryLinks_Delete < uint8_t > (_ptr, &restrictionArray, length, handler);
-            } else if (typeid(TLinkAddress) == typeid(uint16_t)) {
-                return ByteUnitedMemoryLinks_Delete < uint16_t > (_ptr, &restrictionArray, length, handler);
-            } else if (typeid(TLinkAddress) == typeid(uint32_t)) {
-                return ByteUnitedMemoryLinks_Delete < uint32_t > (_ptr, &restrictionArray, length, handler);
-            } else if (typeid(TLinkAddress) == typeid(uint64_t)) {
-                return ByteUnitedMemoryLinks_Delete < uint64_t > (_ptr, &restrictionArray, length, handler);
-            } else {
-                throw std::runtime_error(
-                        "The type of TLinkAddress is not supported. Use any type of uint8_t, uint16_t, uint32_t, uint64_t.");
-            }
+            auto restrictionPtr = std::ranges::data(restriction);
+            auto callback = [&] <typename T> (Link<T> before, Link<T> after) {
+                handler(before, after);
+            };
+            using Sig = TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>);
+            schedule_global<Sig>(callback);
+            return LinksDelete<TLinkAddress>(_ptr, restrictionPtr, length, call_last_global<Sig>);
         }
 
         template<typename HandlerSignature>
