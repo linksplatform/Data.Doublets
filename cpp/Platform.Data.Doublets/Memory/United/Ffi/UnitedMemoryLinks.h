@@ -182,13 +182,15 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
                 : _ptr(ByteUnitedMemoryLinks_New(path.data())),
                   Constants(LinksConstants<TLinkAddress>(true)) {}
 
-        ~UnitedMemoryLinks() {
+        ~UnitedMemoryLinks()
+        {
             if (_ptr != nullptr) {
                 ByteUnitedMemoryLinks_Drop(_ptr);
             }
         }
 
-        TLinkAddress Create(Interfaces::CArray auto&& restriction, auto&& handler) {
+        TLinkAddress Create(Interfaces::CArray auto&& restriction, auto&& handler)
+        {
             auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr = std::ranges::data(restriction);
             auto callback = [&] <typename T> (Link<T> before, Link<T> after) {
@@ -199,8 +201,8 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             return LinksCreate<TLinkAddress>(_ptr, restrictionPtr, restrictionLength, call_last_global<Sig>);
         };
 
-        TLinkAddress Update(Interfaces::CArray auto&& restriction, Interfaces::CArray auto&& substitution,
-                auto&& handler) {
+        TLinkAddress Update(Interfaces::CArray auto&& restriction, Interfaces::CArray auto&& substitution, auto&& handler)
+                {
             auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr { std::ranges::data(restriction) };
             auto substitutionLength = std::ranges::size(substitution);
@@ -213,7 +215,8 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             return LinksUpdate<TLinkAddress>(_ptr, restrictionPtr, restrictionLength, substitutionPtr, substitutionLength, call_last_global<Sig>);
         }
 
-        TLinkAddress Delete(Interfaces::CArray auto&& restriction, auto&& handler) {
+        TLinkAddress Delete(Interfaces::CArray auto&& restriction, auto&& handler)
+        {
             auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr = std::ranges::data(restriction);
             auto callback = [&] <typename T> (Link<T> before, Link<T> after) {
@@ -225,7 +228,8 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
         }
 
         template<typename HandlerSignature>
-        auto&& Each(Interfaces::CArray auto&& restriction, std::function<HandlerSignature> handler) const {
+        auto&& Each(Interfaces::CArray auto&& restriction, std::function<HandlerSignature> handler) const
+        {
             auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr = std::ranges::data(restriction);
             auto callback = [&] <typename T> (Link<T> link) {
