@@ -236,21 +236,11 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             return LinksEach<TLinkAddress>(_ptr, restrictionPtr, restrictionLength, call_last_global<Sig>);
         }
 
-        TLinkAddress Count(Interfaces::CArray auto&& restriction) {
-            auto length = std::ranges::size(restriction);
-            std::array restrictionArray { restriction };
-            if (typeid(TLinkAddress) == typeid(uint8_t)) {
-                return ByteUnitedMemoryLinks_Count < uint8_t > (_ptr, &restrictionArray, length);
-            } else if (typeid(TLinkAddress) == typeid(uint16_t)) {
-                return ByteUnitedMemoryLinks_Count < uint16_t > (_ptr, &restrictionArray, length);
-            } else if (typeid(TLinkAddress) == typeid(uint32_t)) {
-                return ByteUnitedMemoryLinks_Count < uint32_t > (_ptr, &restrictionArray, length);
-            } else if (typeid(TLinkAddress) == typeid(uint64_t)) {
-                return ByteUnitedMemoryLinks_Count < uint64_t > (_ptr, &restrictionArray, length);
-            } else {
-                throw std::runtime_error(
-                        "The type of TLinkAddress is not supported. Use any type of uint8_t, uint16_t, uint32_t, uint64_t.");
-            }
+        TLinkAddress Count(Interfaces::CArray auto&& restriction)
+        {
+            auto restrictionLength = std::ranges::size(restriction);
+            auto restrictionPtr = std::ranges::data(restriction);
+            return LinksCount<TLinkAddress>(_ptr, restrictionPtr, restrictionLength);
         }
 
         // Extensions
