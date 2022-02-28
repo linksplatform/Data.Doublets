@@ -228,10 +228,10 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
         auto&& Each(Interfaces::CArray auto&& restriction, std::function<HandlerSignature> handler) const {
             auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr = std::ranges::data(restriction);
-            auto callback = [&] <typename T> (Link<T> before, Link<T> after) {
-                handler(before, after);
+            auto callback = [&] <typename T> (Link<T> link) {
+                handler(link);
             };
-            using Sig = TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>);
+            using Sig = TLinkAddress(Link<TLinkAddress>);
             schedule_global<Sig>(callback);
             return LinksEach<TLinkAddress>(_ptr, restrictionPtr, restrictionLength, call_last_global<Sig>);
         }
