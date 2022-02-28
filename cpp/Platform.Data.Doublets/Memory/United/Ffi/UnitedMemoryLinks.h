@@ -153,19 +153,19 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
     auto $Name(auto... args) {
         if constexpr (std::same_as<T, std::uint8_t>)
         {
-            Byte##$Real(args...);
+            Byte$Real(args...);
         }
         else if constexpr (std::same_as<T, std::uint16_t>)
         {
-            UInt16##$Real(args...);
+            UInt16$Real(args...);
         }
         else if constexpr (std::same_as<T, std::uint32_t>)
         {
-            UInt32##$Real(args...);
+            UInt32$Real(args...);
         }
         else if constexpr (std::same_as<T, std::uint64_t>)
         {
-            UInt64##$Real(args...);
+            UInt64$Real(args...);
         }
         else
         {
