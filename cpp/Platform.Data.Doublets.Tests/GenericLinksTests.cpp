@@ -13,7 +13,7 @@
         std::string fileName { std::tmpnam(nullptr) };
         Expects(!Collections::IsWhiteSpace(fileName));
         std::cout << "\n\nFilename: " << fileName << std::endl;
-        Ffi::UnitedMemoryLinks<TLink> ffiStorage {fileName };
+        Ffi::UnitedMemoryLinks<TLink> ffiStorage { fileName };
         action(ffiStorage);
         std::remove(fileName.c_str());
     }
