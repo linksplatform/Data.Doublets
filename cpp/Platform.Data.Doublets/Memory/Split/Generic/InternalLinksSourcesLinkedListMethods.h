@@ -19,9 +19,9 @@
             Continue = constants.Continue;
         }
 
-        protected: virtual RawLinkDataPart<TLinkAddress>&& GetLinkDataPartReference(TLinkAddress link) 
+        protected: virtual RawLinkDataPart<TLinkAddress>& GetLinkDataPartReference(TLinkAddress link)
         { 
-            return RawLinkDataPart<TLinkAddress>{ _linksDataParts + (RawLinkDataPart<TLinkAddress>.SizeInBytes * link) };
+            return &(*(_linksDataParts + (RawLinkDataPart<TLinkAddress>.SizeInBytes * link)));
         }
 
         protected: virtual RawLinkIndexPart<TLinkAddress>&& GetLinkIndexPartReference(TLinkAddress link) 
@@ -88,13 +88,13 @@
 
         public: TLinkAddress CountUsages(TLinkAddress head) { return this->GetSize(head); }
 
-        protected: virtual IList<TLinkAddress> GetLinkValues(TLinkAddress linkIndex)
+    protected: Interfaces::CArray auto GetLinkValues(TLinkAddress linkIndex)
         {
             auto* link = GetLinkDataPartReference(linkIndex);
             return Link{ linkIndex, link.Source, link.Target };
         }
 
-        public: TLinkAddress EachUsage(TLinkAddress source, Func<IList<TLinkAddress>, TLinkAddress> handler)
+        public: TLinkAddress EachUsage(TLinkAddress source, auto&& handler)
         {
             auto current = this->GetFirst(source);
             auto first = current;
