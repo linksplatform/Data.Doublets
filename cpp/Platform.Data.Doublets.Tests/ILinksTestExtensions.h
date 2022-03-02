@@ -11,15 +11,15 @@ namespace Platform::Data::Doublets::Tests
             using namespace Platform::Interfaces;
             auto constants { storage.Constants };
             auto _continue = constants.Continue;
-            Link<TLinkAddress> linkStruct {  };
+            Link<TLinkAddress> linkStruct;
             storage.Each( std::array{constants.Any, constants.Any, constants.Any} , [_continue, &linkStruct](Interfaces::CArray auto&& link) {
                 linkStruct = link;
                 return _continue;
             });
             Ensures(constants.Null == linkStruct.Index);
             auto linkAddress { Create<TLinkAddress>(storage) };
-            linkStruct = { storage.GetLink(linkAddress) };
-            Ensures(3 == linkStruct.Count);
+            linkStruct = { GetLink(storage, linkAddress) };
+            Ensures(3 == linkStruct.size());
             Ensures(linkAddress == linkStruct.Index);
             Ensures(constants.Null == linkStruct.Source);
             Ensures(constants.Null == linkStruct.Target);
@@ -31,10 +31,10 @@ namespace Platform::Data::Doublets::Tests
         static TLinkAddress GetFirstLink(auto&& storage, TLinkAddress linkAddress)
         {
             using namespace Platform::Interfaces;
-            auto constants { storage.Constants() };
-            auto _continue = constants.Continue;
+            auto constants { storage.Constants };
+            auto _continue { constants.Continue };
             TLinkAddress linkAddressFromEach {};
-            storage.Each(Link{constants.Any, constants.Any, constants.Any}, [_continue, &linkAddressFromEach](Interfaces::CArray auto&& link) {
+            storage.Each(std::array{constants.Any, constants.Any, constants.Any}, [_continue, &linkAddressFromEach](Interfaces::CArray auto&& link) {
                 linkAddressFromEach = link[0];
                 return _continue;
             });
@@ -45,20 +45,20 @@ namespace Platform::Data::Doublets::Tests
         template<typename TLinkAddress>
         static TLinkAddress TestUpdateLinkToReferenceItself(auto&& storage, TLinkAddress linkAddress)
         {
-            auto constants { storage.Constants() };
-            auto link { Update(storage, linkAddress, linkAddress, linkAddress) };
-            Link linkStruct { link };
-            Ensures(linkStruct.Index == linkStruct.Source);
-            Ensures(linkStruct.Index == linkStruct.Target);
-            return linkStruct.Index;
+            auto constants { storage.Constants };
+            auto updatedLinkAddress { Update(storage, linkAddress, linkAddress, linkAddress) };
+            Link link { GetLink(storage, updatedLinkAddress) };
+            Ensures(link.Index == link.Source);
+            Ensures(link.Index == link.Target);
+            return link.Index;
         }
 
         template<typename TLinkAddress>
         static TLinkAddress TestUpdateLinkToReferenceNull(auto&& storage, TLinkAddress linkAddress)
         {
-            auto constants { storage.Constants() };
-            auto link { Update(storage, linkAddress, linkAddress, linkAddress) };
-            Link linkStruct { link };
+            auto constants { storage.Constants };
+            auto updatedLinkAddress { Update(storage, linkAddress, linkAddress, linkAddress) };
+            Link linkStruct { GetLink(storage, updatedLinkAddress) };
             Ensures(constants.Null == linkStruct.Source);
             Ensures(constants.Null == linkStruct.Target);
             return linkStruct.Index;
@@ -68,14 +68,14 @@ namespace Platform::Data::Doublets::Tests
         static void TestDelete(auto&& storage, TLinkAddress linkAddress)
         {
             using namespace Platform::Interfaces;
-            auto constants { storage.Constants() };
+            auto constants { storage.Constants };
             auto _continue = constants.Continue;
-            auto link { Update(storage, linkAddress, linkAddress, linkAddress) };
-            Link linkStruct { link };
-            storage.Delete(linkAddress);
+            auto updatedLinkAddress { Update(storage, linkAddress, linkAddress, linkAddress) };
+            Link linkStruct { GetLink(storage, updatedLinkAddress) };
+            Data::Delete(storage, linkAddress);
             Ensures(0 == Count<TLinkAddress>(storage));
-            TLinkAddress deletedLinkAddress {};
-            storage.Each(Link{constants.Any, constants.Any, constants.Any}, [_continue, &deletedLinkAddress](Interfaces::CArray auto&& link) {
+            TLinkAddress deletedLinkAddress;
+            storage.Each(std::array{constants.Any, constants.Any, constants.Any}, [_continue, &deletedLinkAddress](Interfaces::CArray auto&& link) {
                 deletedLinkAddress = link[0];
                 return _continue;
             });
@@ -107,6 +107,7 @@ namespace Platform::Data::Doublets::Tests
         // Constants
         const auto constants = storage.Constants;
         auto _continue = constants.Continue;
+        auto any = constants.Any;
         Hybrid<TLinkAddress> h106E {106L, true};
         Hybrid<TLinkAddress> h107E {107L, true};
         Hybrid<TLinkAddress> h108E {108L, true};
@@ -133,14 +134,14 @@ namespace Platform::Data::Doublets::Tests
         Ensures(linkAddress1 == link3.Target);
         // Search for created link
         TLinkAddress searchedLinkAddress;
-        storage.Each(Link{constants.Any, h106E.Value, h108E.Value}, [&searchedLinkAddress, _continue](Interfaces::CArray auto&& link) {
+        storage.Each(std::array{linkAddress3, h106E.Value, h108E.Value}, [&searchedLinkAddress, _continue](Interfaces::CArray auto&& link) {
             searchedLinkAddress = link[0];
             return _continue;
         });
         Ensures(linkAddress1 == searchedLinkAddress);
         // Search for nonexistent link
         TLinkAddress searchedNonExistentLinkAddress;
-        storage.Each(Link{constants.Any, h106E.Value, h108E.Value}, [&searchedNonExistentLinkAddress, _continue](Interfaces::CArray auto&& link) {
+        storage.Each(std::array{any, h106E.Value, h108E.Value}, [&searchedNonExistentLinkAddress, _continue](Interfaces::CArray auto&& link) {
             searchedNonExistentLinkAddress = link[0];
             return _continue;
         });
@@ -155,7 +156,7 @@ namespace Platform::Data::Doublets::Tests
         Data::Delete(storage, linkAddress3);
         Ensures(2 == Count<TLinkAddress>(storage));
         TLinkAddress deletedLinkAddress;
-        storage.Each(Link{ constants.Any, constants.Any, constants.Any }, [&deletedLinkAddress, _continue](Interfaces::CArray auto&& link) {
+        storage.Each(std::array{any, any, any}, [&deletedLinkAddress, _continue](Interfaces::CArray auto&& link) {
             deletedLinkAddress = link[0];
             return _continue;
         });
