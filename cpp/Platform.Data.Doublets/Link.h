@@ -54,9 +54,25 @@
                 case _constants.TargetPart:
                     return Target;
                 default:
-                    Ensure::Always::ArgumentInRange(index, Range{0, Length - 1}, "index");
+                    Expects(index > 0 && index < Length - 1);
             }
         }
+
+        public: auto&& operator[](std::size_t index)
+            {
+                using namespace Platform::Ranges; // TODO: EnsureExtensions
+                switch (index)
+                {
+                    case _constants.IndexPart:
+                        return Index;
+                    case _constants.SourcePart:
+                        return Source;
+                    case _constants.TargetPart:
+                        return Target;
+                    default:
+                        Expects(index > 0 && index < Length - 1);
+                }
+            }
 
 
         public: std::size_t size() const noexcept
