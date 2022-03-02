@@ -152,18 +152,7 @@ extern "C" {
 #define DECLARE_WRAPPER($Real, $Name) \
     template<typename T> \
     auto $Name(auto... args) { \
-        if constexpr (std::same_as<T, std::uint8_t>) { \
-            return Byte##$Real(args...); \
-        } else if constexpr (std::same_as<T, std::uint16_t>) { \
-            return UInt16##$Real(args...); \
-        } else if constexpr (std::same_as<T, std::uint32_t>) { \
-            return UInt32##$Real(args...); \
-        } else if constexpr (std::same_as<T, std::uint64_t>) { \
-            return UInt64##$Real(args...); \
-        } else { \
-            static_assert(stopper<T>::value, \
-                    "T must be one of std::uint8_t, std::uint16_t, std::uint32_t, std::uint64_t"); \
-        } \
+        std::cout << sizeof...(args) << std::endl; \
     }
 
     DECLARE_WRAPPER(UnitedMemoryLinks_New, LinksNew);
@@ -252,7 +241,8 @@ extern "C" {
             };
             using Signature = TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>);
             set_global<Signature>(callback);
-            return LinksCreate<TLinkAddress>(_ptr, restrictionPtr, restrictionLength, call_last_global<Signature>);
+            return 0;
+//            return LinksCreate<TLinkAddress>(_ptr, restrictionPtr, restrictionLength, call_last_global<Signature>);
         };
 
         TLinkAddress Update(Interfaces::CArray auto&& restriction, Interfaces::CArray auto&& substitution, auto&& handler)
@@ -268,7 +258,8 @@ extern "C" {
             };
             using Signature = TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>);
             set_global<Signature>(callback);
-            return LinksUpdate<TLinkAddress>(_ptr, restrictionPtr, restrictionLength, substitutionPtr, substitutionLength, call_last_global<Signature>);
+            return 0;
+//            return LinksUpdate<TLinkAddress>(_ptr, restrictionPtr, restrictionLength, substitutionPtr, substitutionLength, call_last_global<Signature>);
         }
 
         TLinkAddress Delete(Interfaces::CArray auto&& restriction, auto&& handler)
@@ -282,7 +273,8 @@ extern "C" {
             };
             using Signature = TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>);
             set_global<Signature>(callback);
-            return LinksDelete<TLinkAddress>(_ptr, restrictionPtr, restrictionLength, call_last_global<TLinkAddress, Signature>);
+            return 0;
+//            return LinksDelete<TLinkAddress>(_ptr, restrictionPtr, restrictionLength, call_last_global<TLinkAddress, Signature>);
         }
 
         auto&& Each(Interfaces::CArray auto&& restriction, auto&& handler) const
@@ -294,14 +286,27 @@ extern "C" {
                 return handler(std::array{link.Index, link.Source, link.Target});
             };
             set_global<Signature>(callback);
-            return LinksEach<TLinkAddress>(_ptr, restrictionPtr, restrictionLength, call_last_global<TLinkAddress, Signature, Link<TLinkAddress>>);
+            if constexpr (std::same_as<TLinkAddress, std::uint8_t>) {
+                return ByteUnitedMemoryLinks_Each(_ptr, restrictionPtr, restrictionLength, call_last_global<TLinkAddress, Signature, Link<TLinkAddress>>);
+            } else if constexpr (std::same_as<TLinkAddress, std::uint16_t>) {
+                return UInt16UnitedMemoryLinks_Each(_ptr, restrictionPtr, restrictionLength, call_last_global<TLinkAddress, Signature, Link<TLinkAddress>>);
+            } else if constexpr (std::same_as<TLinkAddress, std::uint32_t>) {
+                return UInt32UnitedMemoryLinks_Each(_ptr, restrictionPtr, restrictionLength, call_last_global<TLinkAddress, Signature, Link<TLinkAddress>>);
+            } else if constexpr (std::same_as<TLinkAddress, std::uint64_t>) {
+                return UInt64UnitedMemoryLinks_Each(_ptr, restrictionPtr, restrictionLength, call_last_global<TLinkAddress, Signature, Link<TLinkAddress>>);
+            } else {
+                static_assert(stopper<TLinkAddress>::value,
+                        "TLinkAddress must be one of std::uint8_t, std::uint16_t, std::uint32_t, std::uint64_t");
+            }
+//            return LinksEach<TLinkAddress>(_ptr, restrictionPtr, restrictionLength, call_last_global<TLinkAddress, Signature, Link<TLinkAddress>>);
         }
 
         TLinkAddress Count(Interfaces::CArray auto&& restriction) const
         {
             auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr = std::ranges::data(restriction);
-            return LinksCount<TLinkAddress>(_ptr, restrictionPtr, restrictionLength);
+            return 0;
+//            return LinksCount<TLinkAddress>(_ptr, restrictionPtr, restrictionLength);
         }
 
         // Extensions
