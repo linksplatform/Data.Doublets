@@ -501,7 +501,39 @@ namespace Platform::Data::Doublets
         }
 
         template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
-        static TLinkAddress Update(auto&& storage, TLinkAddress link, TLinkAddress newSource, TLinkAddress newTarget, Handler handler) { return storage.Update(LinkAddress{link}, Link<TLinkAddress>(link, newSource, newTarget), handler); }
+        static TLinkAddress Update(auto&& storage, TLinkAddress link, TLinkAddress newSource, TLinkAddress newTarget, Handler handler)
+        {
+            return storage.Update(Link{link, newSource, newTarget}, handler);
+        }
+
+    template<typename TLinkAddress>
+    static TLinkAddress UpdateOrCreateOrGet(auto&& storage, TLinkAddress source, TLinkAddress target, TLinkAddress newSource, TLinkAddress newTarget)
+    {
+        auto constants = storage.Constants;
+        auto _continue = constants.Continue;
+        TLinkAddress resultLink;
+        UpdateOrCreateOrGet(storage, source, target, newSource, newTarget, [&resultLink, _continue](Interfaces::CArray auto&& before, Interfaces::CArray auto&& after) {
+            resultLink = after[0];
+            return _continue;
+        });
+        return resultLink;
+    }
+
+    template<typename TLinkAddress>
+    static TLinkAddress UpdateOrCreateOrGet(auto&& storage, TLinkAddress source, TLinkAddress target, TLinkAddress newSource, TLinkAddress newTarget, auto&& handler)
+    {
+        auto link = SearchOrDefault(storage, source, target);
+        if (0 == link)
+        {
+            return storage.CreateAndUpdate(newSource, newTarget, handler);
+        }
+        if ((source == newSource) && (target == newTarget))
+        {
+            auto linkStruct = Link{link, source, target};
+            return link;
+        }
+        return storage.Update(link, newSource, newTarget, handler);
+    }
 
         template<typename TLinkAddress>
         static Interfaces::CList auto ResolveConstantAsSelfReference(auto&& storage, TLinkAddress constant, Interfaces::CList auto&& restriction, Interfaces::CList auto&& substitution)
