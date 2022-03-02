@@ -138,7 +138,7 @@ namespace Platform::Data::Doublets
             throw std::runtime_error("No links in the storage..");
         }
         Setters::Setter setter { constants.Continue, constants.Break, 0 };
-        storage.Each(Link<TLinkAddress>(storage.Constants.Any, storage.Constants.Any, storage.Constants.Any), setter.SetFirstAndReturnFalse);
+        storage.Each(std::array{storage.Constants.Any, storage.Constants.Any, storage.Constants.Any}, setter.SetFirstAndReturnFalse);
         if ( 0 == firstLink)
         {
             throw std::runtime_error("No links are found in the storage.");
