@@ -264,8 +264,6 @@ namespace Platform::Data::Doublets
     //        return allIndices;
     //    }
     //
-    //    template<typename TLinkAddress>
-    //    static bool Exists(auto&& storage, TLinkAddress source, TLinkAddress target) { return Comparer<TLinkAddress>.Default.Compare(storage.Count()(storage.Constants.Any, source, target), 0) > 0; }
     //
     //    template<typename TLinkAddress>
     //    static void EnsureLinkExists(auto&& storage, Interfaces::CList auto&& restriction)
