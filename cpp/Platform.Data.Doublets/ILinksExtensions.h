@@ -564,10 +564,10 @@ namespace Platform::Data::Doublets
     TLinkAddress GetOrCreate(auto&& storage, TLinkAddress source, TLinkAddress target)
     {
         auto constants = storage.Constants;
-        auto link = storage.SearchOrDefault(source, target);
+        auto link = SearchOrDefault(storage, source, target);
         if (link == constants.Null)
         {
-            link = storage.CreateAndUpdate(source, target);
+            link = CreateAndUpdate(storage, source, target);
         }
         return link;
     }
