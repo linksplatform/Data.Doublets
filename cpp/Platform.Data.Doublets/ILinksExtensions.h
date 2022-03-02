@@ -105,9 +105,8 @@ namespace Platform::Data::Doublets
     }
 
 
-    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
-    requires Interfaces::CList<TList1, TLinkAddress> && Interfaces::CList<TList2, TLinkAddress> && std::invocable<Handler&, TList1, TList2>
-    static TLinkAddress Delete(auto&& storage, TLinkAddress linkToDelete, Handler handler)
+    template<typename TLinkAddress>
+    static TLinkAddress Delete(auto&& storage, TLinkAddress linkToDelete, auto&& handler)
     {
         if (storage.Exists(linkToDelete))
         {
