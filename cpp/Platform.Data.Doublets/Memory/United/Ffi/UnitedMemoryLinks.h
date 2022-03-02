@@ -288,7 +288,7 @@ extern "C" {
                 return handler(link);
             };
             set_global<Signature>(callback);
-            return ByteUnitedMemoryLinks_Each(_ptr, restrictionPtr, restrictionLength, call_last_global<TLinkAddress, Signature, Link<TLinkAddress>>);
+            return LinksEach<TLinkAddress>(_ptr, restrictionPtr, restrictionLength, call_last_global<TLinkAddress, Signature, Link<TLinkAddress>>);
         }
 
         TLinkAddress Count(Interfaces::CArray auto&& restriction) const
