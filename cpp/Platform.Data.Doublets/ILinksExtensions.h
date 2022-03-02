@@ -555,6 +555,12 @@ namespace Platform::Data::Doublets
         }
 
     template<typename TLinkAddress>
+    TLinkAddress CreateAndUpdate(auto&& storage, TLinkAddress source, TLinkAddress target)
+    {
+        return Update(storage, Create<TLinkAddress>(storage), source, target);
+    }
+
+    template<typename TLinkAddress>
     TLinkAddress GetOrCreate(auto&& storage, TLinkAddress source, TLinkAddress target)
     {
         auto constants = storage.Constants;
