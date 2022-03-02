@@ -481,22 +481,22 @@ namespace Platform::Data::Doublets
             });
             return linkAddress;
         }
-    //
-        template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
-        static TLinkAddress Update(auto&& storage, Interfaces::CList auto&& restriction, Handler handler)
+
+        template<typename TLinkAddress>
+        static TLinkAddress Update(auto&& storage, Interfaces::CList auto&& restriction, auto&& handler)
         {
             const auto length { std::ranges::size(restriction) };
             if (length == 2)
             {
-                return storage.MergeAndDelete(restriction[0], restriction[1], handler);
+                return MergeAndDelete(storage, restriction[0], restriction[1], handler);
             }
             else if (length == 4)
             {
-                return storage.UpdateOrCreateOrGet(restriction[0], restriction[1], restriction[2], restriction[3], handler);
+                return UpdateOrCreateOrGet(storage, restriction[0], restriction[1], restriction[2], restriction[3], handler);
             }
             else
             {
-                return storage.Update(restriction[0], restriction[1], restriction[2], handler);
+                return Update(storage, restriction[0], restriction[1], restriction[2], handler);
             }
         }
 
