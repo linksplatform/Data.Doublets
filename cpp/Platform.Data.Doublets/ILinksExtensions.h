@@ -468,8 +468,7 @@ namespace Platform::Data::Doublets
         template<typename TLinkAddress>
         static TLinkAddress Update(auto&& storage, TLinkAddress link, TLinkAddress newSource, TLinkAddress newTarget) { return Update(std::array{link, newSource, newTarget}); }
 
-//        requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
-    //
+
         template<typename TLinkAddress>
         TLinkAddress Update(auto&& storage, Interfaces::CArray auto&& restriction)
         {
@@ -574,21 +573,7 @@ namespace Platform::Data::Doublets
     //        return link;
     //    }
     //
-    template<typename TLinkAddress>
-    TLinkAddress UpdateOrCreateOrGet(auto&& storage, TLinkAddress source, TLinkAddress target, TLinkAddress newSource, TLinkAddress newTarget)
-    {
-        auto constants = storage.Constants;
-        auto link = storage.SearchOrDefault(source, target);
-        if (link == constants.Null)
-        {
-            link = storage.CreateAndUpdate(newSource, newTarget);
-        }
-        if (source == newSource && target == newTarget)
-        {
-            return link;
-        }
-        return storage.Update(link, newSource, newTarget);
-    }
+
 
     template<typename TLinkAddress>
     auto DeleteAll(auto&& storage)
@@ -702,31 +687,7 @@ namespace Platform::Data::Doublets
                 .append(std::to_string(link.Target))
                 .append(")");
     }
-    //    template<typename TLinkAddress>
-    //    static TLinkAddress UpdateOrCreateOrGet(auto&& storage, TLinkAddress source, TLinkAddress target, TLinkAddress newSource, TLinkAddress newTarget)
-    //    {
-    //        auto constants = storage.Constants;
-    //        auto setter = Setter<TLinkAddress, TLinkAddress>(constants.Continue, constants.Break);
-    //        UpdateOrCreateOrGet(storage, source, target, newSource, newTarget, setter.SetFirstFromSecondListAndReturnTrue);
-    //        return setter.Result;
-    //    }
     //
-    //    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
-    //    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
-    //    static TLinkAddress UpdateOrCreateOrGet(auto&& storage, TLinkAddress source, TLinkAddress target, TLinkAddress newSource, TLinkAddress newTarget, Handler handler)
-    //    {
-    //        auto link = SearchOrDefault(storage, source, target);
-    //        if ( 0 == link)
-    //        {
-    //            return storage.CreateAndUpdate(newSource, newTarget, handler);
-    //        }
-    //        if ((source == newSource) && (target == newTarget))
-    //        {
-    //            auto linkStruct = Link<TLinkAddress>(link, source, target);
-    //            return link;
-    //        }
-    //        return storage.Update(link, newSource, newTarget, handler);
-    //    }
     //
     //    template<typename TLinkAddress>
     //    static TLinkAddress DeleteIfExists(auto&& storage, TLinkAddress source, TLinkAddress target)
