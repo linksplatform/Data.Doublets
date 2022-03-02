@@ -291,7 +291,7 @@ extern "C" {
             return ByteUnitedMemoryLinks_Each(_ptr, restrictionPtr, restrictionLength, call_last_global<TLinkAddress, Signature, Link<TLinkAddress>>);
         }
 
-        TLinkAddress Count(Interfaces::CArray auto&& restriction)
+        TLinkAddress Count(Interfaces::CArray auto&& restriction) const
         {
             auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr = std::ranges::data(restriction);
