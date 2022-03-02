@@ -465,19 +465,23 @@ namespace Platform::Data::Doublets
     //    }
     //
         template<typename TLinkAddress>
-        static TLinkAddress Update(auto&& storage, TLinkAddress link, TLinkAddress newSource, TLinkAddress newTarget) { return Update(std::array{link, newSource, newTarget}); }
-
+        TLinkAddress Update(auto&& storage, Interfaces::CArray auto&& restriction, Interfaces::CArray auto&& substitution)
+        {
+            auto _continue {storage.Constants};
+            TLinkAddress updatedLinkAddress;
+            storage.Update(restriction, substitution, [&updatedLinkAddress, _continue] (Interfaces::CArray auto&& before, Interfaces::CArray auto&& after) {
+                updatedLinkAddress = after[0];
+                return _continue;
+            });
+            return updatedLinkAddress;
+        }
 
         template<typename TLinkAddress>
-        TLinkAddress Update(auto&& storage, Interfaces::CArray auto&& restriction)
+        static TLinkAddress Update(auto&& storage, TLinkAddress linkAddress, TLinkAddress newSource, TLinkAddress newTarget)
         {
-            auto constants = storage.Constants;
-            TLinkAddress linkAddress {};
-            storage.Update(restriction, [&constants, &linkAddress](Interfaces::CArray auto&& link) {
-                linkAddress = link[constants.IndexPart];
-                return constants.Continue;
-            });
-            return linkAddress;
+            std::array restriction {linkAddress};
+            std::array substitution {linkAddress, newSource, newTarget};
+            return Update<TLinkAddress>(storage, restriction, substitution);
         }
 
         template<typename TLinkAddress>
