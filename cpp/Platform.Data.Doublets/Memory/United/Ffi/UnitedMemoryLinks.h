@@ -246,7 +246,9 @@ extern "C" {
             auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr = std::ranges::data(restriction);
             auto callback = [&] (Link<TLinkAddress> before, Link<TLinkAddress> after) {
-                return handler(before, after);
+                std::array beforeArray {before.Index, before.Source, before.Target};
+                std::array afterArray {after.Index, after.Source, after.Target};
+                return handler(beforeArray, afterArray);
             };
             using Signature = TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>);
             set_global<Signature>(callback);
@@ -260,7 +262,9 @@ extern "C" {
             auto substitutionLength = std::ranges::size(substitution);
             auto substitutionPtr { std::ranges::data(substitution) };
             auto callback = [&] (Link<TLinkAddress> before, Link<TLinkAddress> after) {
-                return handler(before, after);
+                std::array beforeArray {before.Index, before.Source, before.Target};
+                std::array afterArray {after.Index, after.Source, after.Target};
+                return handler(beforeArray, afterArray);
             };
             using Signature = TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>);
             set_global<Signature>(callback);
@@ -272,7 +276,9 @@ extern "C" {
             auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr = std::ranges::data(restriction);
             auto callback = [&] (Link<TLinkAddress> before, Link<TLinkAddress> after) {
-                return handler(before, after);
+                std::array beforeArray {before.Index, before.Source, before.Target};
+                std::array afterArray {after.Index, after.Source, after.Target};
+                return handler(beforeArray, afterArray);
             };
             using Signature = TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>);
             set_global<Signature>(callback);
@@ -285,7 +291,7 @@ extern "C" {
             auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr = std::ranges::data(restriction);
             auto callback = [&] (Link<TLinkAddress> link) {
-                return handler(link);
+                return handler(std::array{link.Index, link.Source, link.Target});
             };
             set_global<Signature>(callback);
             return LinksEach<TLinkAddress>(_ptr, restrictionPtr, restrictionLength, call_last_global<TLinkAddress, Signature, Link<TLinkAddress>>);
