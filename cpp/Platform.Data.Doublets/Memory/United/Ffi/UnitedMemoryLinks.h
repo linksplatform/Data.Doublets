@@ -9,8 +9,8 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
     template<typename Signature>
     thread_local std::function<Signature> GLOBAL_FUNCTION = nullptr;
 
-    template<typename TLinkAddress, typename Signature>
-    decltype(auto) call_last_global(auto ...args) {
+    template<typename TReturn, typename Signature, typename ...TArgs>
+    TReturn call_last_global(TArgs ...args) {
         decltype(auto) result = GLOBAL_FUNCTION<Signature>(args...);
         GLOBAL_FUNCTION<Signature> = nullptr;
         return result;
@@ -245,7 +245,7 @@ extern "C" {
         {
             auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr = std::ranges::data(restriction);
-            auto callback = [&] (Link<T> before, Link<T> after) {
+            auto callback = [&] (Link<TLinkAddress> before, Link<TLinkAddress> after) {
                 return handler(before, after);
             };
             using Signature = TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>);
@@ -259,7 +259,7 @@ extern "C" {
             auto restrictionPtr { std::ranges::data(restriction) };
             auto substitutionLength = std::ranges::size(substitution);
             auto substitutionPtr { std::ranges::data(substitution) };
-            auto callback = [&] (Link<T> before, Link<T> after) {
+            auto callback = [&] (Link<TLinkAddress> before, Link<TLinkAddress> after) {
                 return handler(before, after);
             };
             using Signature = TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>);
@@ -271,7 +271,7 @@ extern "C" {
         {
             auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr = std::ranges::data(restriction);
-            auto callback = [&] (Link<T> before, Link<T> after) {
+            auto callback = [&] (Link<TLinkAddress> before, Link<TLinkAddress> after) {
                 return handler(before, after);
             };
             using Signature = TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>);
@@ -288,7 +288,7 @@ extern "C" {
                 return handler(link);
             };
             set_global<Signature>(callback);
-            return LinksEach<TLinkAddress>(_ptr, restrictionPtr, restrictionLength, call_last_global<Signature>);
+            return ByteUnitedMemoryLinks_Each(_ptr, restrictionPtr, restrictionLength, call_last_global<TLinkAddress, Signature, Link<TLinkAddress>>);
         }
 
         TLinkAddress Count(Interfaces::CArray auto&& restriction)
