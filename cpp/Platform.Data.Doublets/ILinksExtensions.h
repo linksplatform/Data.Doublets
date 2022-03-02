@@ -45,12 +45,12 @@ namespace Platform::Data::Doublets
     }
 
     template<typename TLinkAddress>
-    TLinkAddress SearchOrDefault(const auto&& storage, TLinkAddress source, TLinkAddress target)
+    TLinkAddress SearchOrDefault(const auto& storage, TLinkAddress source, TLinkAddress target)
     {
         auto constants = storage.Constants;
         auto _break = constants.Break;
         TLinkAddress searchedLinkAddress;
-        storage.Each(Link{storage.Constants.Any, source, target}, [&searchedLinkAddress, _break] (auto link) {
+        storage.Each(std::array{storage.Constants.Any, source, target}, [&searchedLinkAddress, _break] (auto link) {
             searchedLinkAddress = link[0];
             return _break;
         });
