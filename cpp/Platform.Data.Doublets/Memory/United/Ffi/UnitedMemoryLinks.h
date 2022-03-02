@@ -149,20 +149,6 @@ extern "C" {
         static constexpr bool value = false;
     };
 
-#define DECLARE_WRAPPER($Real, $Name) \
-    template<typename T> \
-    auto $Name(auto... args) { \
-        std::cout << sizeof...(args) << std::endl; \
-    }
-
-    DECLARE_WRAPPER(UnitedMemoryLinks_New, LinksNew);
-    DECLARE_WRAPPER(UnitedMemoryLinks_Create, LinksCreate);
-    DECLARE_WRAPPER(UnitedMemoryLinks_Update, LinksUpdate);
-    DECLARE_WRAPPER(UnitedMemoryLinks_Delete, LinksDelete);
-    DECLARE_WRAPPER(UnitedMemoryLinks_Each, LinksEach);
-    DECLARE_WRAPPER(UnitedMemoryLinks_Count, LinksCount);
-    DECLARE_WRAPPER(UnitedMemoryLinks_Drop, LinksDrop);
-
     template<typename TLinkAddress>
     class UnitedMemoryLinks /*: public Interfaces::Polymorph<UnitedMemoryLinks<TLinkAddress, TBase...>, TBase...>*/
     {
@@ -230,10 +216,10 @@ extern "C" {
             }
         }
 
-        TLinkAddress Create(Interfaces::CArray auto&& restriction, auto&& handler)
+        TLinkAddress Create(Interfaces::CArray auto&& substitution, auto&& handler)
         {
-            auto restrictionLength = std::ranges::size(restriction);
-            auto restrictionPtr = std::ranges::data(restriction);
+            auto substitutionLength = std::ranges::size(substitution);
+            auto substitutionPtr = std::ranges::data(substitution);
             auto callback = [&] (Link<TLinkAddress> before, Link<TLinkAddress> after) {
                 std::array beforeArray {before.Index, before.Source, before.Target};
                 std::array afterArray {after.Index, after.Source, after.Target};
@@ -241,8 +227,26 @@ extern "C" {
             };
             using Signature = TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>);
             set_global<Signature>(callback);
-            return 0;
-//            return LinksCreate<TLinkAddress>(_ptr, restrictionPtr, restrictionLength, call_last_global<Signature>);
+            if constexpr (std::same_as<TLinkAddress, std::uint8_t>)
+            {
+                return ByteUnitedMemoryLinks_Create(_ptr, substitutionPtr, substitutionLength, call_last_global<TLinkAddress, Signature, Link<TLinkAddress>>);
+            }
+            else if constexpr (std::same_as<TLinkAddress, std::uint16_t>)
+            {
+                return UInt16UnitedMemoryLinks_Create(_ptr, substitutionPtr, substitutionLength, call_last_global<TLinkAddress, Signature, Link<TLinkAddress>>);
+            }
+            else if constexpr (std::same_as<TLinkAddress, std::uint32_t>)
+            {
+                return UInt32UnitedMemoryLinks_Create(_ptr, substitutionPtr, substitutionLength, call_last_global<TLinkAddress, Signature, Link<TLinkAddress>>);
+            }
+            else if constexpr (std::same_as<TLinkAddress, std::uint64_t>)
+            {
+                return UInt64UnitedMemoryLinks_Create(_ptr, substitutionPtr, substitutionLength, call_last_global<TLinkAddress, Signature, Link<TLinkAddress>>);
+            }
+            else
+            {
+                static_assert(stopper<TLinkAddress>::value, "TLinkAddress must be one of std::uint8_t, std::uint16_t, std::uint32_t, std::uint64_t");
+            }
         };
 
         TLinkAddress Update(Interfaces::CArray auto&& restriction, Interfaces::CArray auto&& substitution, auto&& handler)
@@ -258,8 +262,26 @@ extern "C" {
             };
             using Signature = TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>);
             set_global<Signature>(callback);
-            return 0;
-//            return LinksUpdate<TLinkAddress>(_ptr, restrictionPtr, restrictionLength, substitutionPtr, substitutionLength, call_last_global<Signature>);
+            if constexpr (std::same_as<TLinkAddress, std::uint8_t>)
+            {
+                return ByteUnitedMemoryLinks_Update(_ptr, restrictionPtr, restrictionLength, substitutionPtr, substitutionLength, call_last_global<TLinkAddress, Signature, Link<TLinkAddress>>);
+            }
+            else if constexpr (std::same_as<TLinkAddress, std::uint16_t>)
+            {
+                return UInt16UnitedMemoryLinks_Update(_ptr, restrictionPtr, restrictionLength, substitutionPtr, substitutionLength, call_last_global<TLinkAddress, Signature, Link<TLinkAddress>>);
+            }
+            else if constexpr (std::same_as<TLinkAddress, std::uint32_t>)
+            {
+                return UInt32UnitedMemoryLinks_Update(_ptr, restrictionPtr, restrictionLength, substitutionPtr, substitutionLength, call_last_global<TLinkAddress, Signature, Link<TLinkAddress>>);
+            }
+            else if constexpr (std::same_as<TLinkAddress, std::uint64_t>)
+            {
+                return UInt64UnitedMemoryLinks_Update(_ptr, restrictionPtr, restrictionLength, substitutionPtr, substitutionLength, call_last_global<TLinkAddress, Signature, Link<TLinkAddress>>);
+            }
+            else
+            {
+                static_assert(stopper<TLinkAddress>::value, "TLinkAddress must be one of std::uint8_t, std::uint16_t, std::uint32_t, std::uint64_t");
+            }
         }
 
         TLinkAddress Delete(Interfaces::CArray auto&& restriction, auto&& handler)
@@ -273,8 +295,26 @@ extern "C" {
             };
             using Signature = TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>);
             set_global<Signature>(callback);
-            return 0;
-//            return LinksDelete<TLinkAddress>(_ptr, restrictionPtr, restrictionLength, call_last_global<TLinkAddress, Signature>);
+            if constexpr (std::same_as<TLinkAddress, std::uint8_t>)
+            {
+                return ByteUnitedMemoryLinks_Delete(_ptr, restrictionPtr, restrictionLength, call_last_global<TLinkAddress, Signature, Link<TLinkAddress>>);
+            }
+            else if constexpr (std::same_as<TLinkAddress, std::uint16_t>)
+            {
+                return UInt16UnitedMemoryLinks_Delete(_ptr, restrictionPtr, restrictionLength, call_last_global<TLinkAddress, Signature, Link<TLinkAddress>>);
+            }
+            else if constexpr (std::same_as<TLinkAddress, std::uint32_t>)
+            {
+                return UInt32UnitedMemoryLinks_Delete(_ptr, restrictionPtr, restrictionLength, call_last_global<TLinkAddress, Signature, Link<TLinkAddress>>);
+            }
+            else if constexpr (std::same_as<TLinkAddress, std::uint64_t>)
+            {
+                return UInt64UnitedMemoryLinks_Delete(_ptr, restrictionPtr, restrictionLength, call_last_global<TLinkAddress, Signature, Link<TLinkAddress>>);
+            }
+            else
+            {
+                static_assert(stopper<TLinkAddress>::value, "TLinkAddress must be one of std::uint8_t, std::uint16_t, std::uint32_t, std::uint64_t");
+            }
         }
 
         auto&& Each(Interfaces::CArray auto&& restriction, auto&& handler) const
@@ -286,27 +326,52 @@ extern "C" {
                 return handler(std::array{link.Index, link.Source, link.Target});
             };
             set_global<Signature>(callback);
-            if constexpr (std::same_as<TLinkAddress, std::uint8_t>) {
+            if constexpr (std::same_as<TLinkAddress, std::uint8_t>)
+            {
                 return ByteUnitedMemoryLinks_Each(_ptr, restrictionPtr, restrictionLength, call_last_global<TLinkAddress, Signature, Link<TLinkAddress>>);
-            } else if constexpr (std::same_as<TLinkAddress, std::uint16_t>) {
-                return UInt16UnitedMemoryLinks_Each(_ptr, restrictionPtr, restrictionLength, call_last_global<TLinkAddress, Signature, Link<TLinkAddress>>);
-            } else if constexpr (std::same_as<TLinkAddress, std::uint32_t>) {
-                return UInt32UnitedMemoryLinks_Each(_ptr, restrictionPtr, restrictionLength, call_last_global<TLinkAddress, Signature, Link<TLinkAddress>>);
-            } else if constexpr (std::same_as<TLinkAddress, std::uint64_t>) {
-                return UInt64UnitedMemoryLinks_Each(_ptr, restrictionPtr, restrictionLength, call_last_global<TLinkAddress, Signature, Link<TLinkAddress>>);
-            } else {
-                static_assert(stopper<TLinkAddress>::value,
-                        "TLinkAddress must be one of std::uint8_t, std::uint16_t, std::uint32_t, std::uint64_t");
             }
-//            return LinksEach<TLinkAddress>(_ptr, restrictionPtr, restrictionLength, call_last_global<TLinkAddress, Signature, Link<TLinkAddress>>);
+            else if constexpr (std::same_as<TLinkAddress, std::uint16_t>)
+            {
+                return UInt16UnitedMemoryLinks_Each(_ptr, restrictionPtr, restrictionLength, call_last_global<TLinkAddress, Signature, Link<TLinkAddress>>);
+            }
+            else if constexpr (std::same_as<TLinkAddress, std::uint32_t>)
+            {
+                return UInt32UnitedMemoryLinks_Each(_ptr, restrictionPtr, restrictionLength, call_last_global<TLinkAddress, Signature, Link<TLinkAddress>>);
+            }
+            else if constexpr (std::same_as<TLinkAddress, std::uint64_t>)
+            {
+                return UInt64UnitedMemoryLinks_Each(_ptr, restrictionPtr, restrictionLength, call_last_global<TLinkAddress, Signature, Link<TLinkAddress>>);
+            }
+            else
+            {
+                static_assert(stopper<TLinkAddress>::value, "TLinkAddress must be one of std::uint8_t, std::uint16_t, std::uint32_t, std::uint64_t");
+            }
         }
 
         TLinkAddress Count(Interfaces::CArray auto&& restriction) const
         {
             auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr = std::ranges::data(restriction);
-            return 0;
-//            return LinksCount<TLinkAddress>(_ptr, restrictionPtr, restrictionLength);
+            if constexpr (std::same_as<TLinkAddress, std::uint8_t>)
+            {
+                return ByteUnitedMemoryLinks_Count(_ptr, restrictionPtr, restrictionLength);
+            }
+            else if constexpr (std::same_as<TLinkAddress, std::uint16_t>)
+            {
+                return UInt16UnitedMemoryLinks_Count(_ptr, restrictionPtr, restrictionLength);
+            }
+            else if constexpr (std::same_as<TLinkAddress, std::uint32_t>)
+            {
+                return UInt32UnitedMemoryLinks_Count(_ptr, restrictionPtr, restrictionLength);
+            }
+            else if constexpr (std::same_as<TLinkAddress, std::uint64_t>)
+            {
+                return UInt64UnitedMemoryLinks_Count(_ptr, restrictionPtr, restrictionLength);
+            }
+            else
+            {
+                static_assert(stopper<TLinkAddress>::value, "TLinkAddress must be one of std::uint8_t, std::uint16_t, std::uint32_t, std::uint64_t");
+            }
         }
 
         // Extensions
