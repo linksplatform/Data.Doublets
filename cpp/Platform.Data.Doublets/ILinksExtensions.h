@@ -465,7 +465,7 @@ namespace Platform::Data::Doublets
         template<typename TLinkAddress>
         TLinkAddress Update(auto&& storage, Interfaces::CArray auto&& restriction, Interfaces::CArray auto&& substitution)
         {
-            auto _continue {storage.Constants};
+            auto _continue {storage.Constants.Continue};
             TLinkAddress updatedLinkAddress;
             storage.Update(restriction, substitution, [&updatedLinkAddress, _continue] (Interfaces::CArray auto&& before, Interfaces::CArray auto&& after) {
                 updatedLinkAddress = after[0];
