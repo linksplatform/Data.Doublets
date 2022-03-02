@@ -627,12 +627,6 @@ namespace Platform::Data::Doublets
     }
 
     template<typename TLinkAddress>
-    TLinkAddress CreateAndUpdate(auto&& storage, TLinkAddress source, TLinkAddress target)
-    {
-        return storage.Update(storage.Create(), source, target);
-    }
-
-    template<typename TLinkAddress>
     TLinkAddress CreatePoint(auto&& storage)
     {
         auto point = storage.Create();
