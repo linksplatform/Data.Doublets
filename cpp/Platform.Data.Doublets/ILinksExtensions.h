@@ -44,21 +44,18 @@ namespace Platform::Data::Doublets
         }
     }
 
-//    // TODO: implement const Each
-//    template<typename TLinkAddress>
-//    TLinkAddress SearchOrDefault(auto&& storage, TLinkAddress source, TLinkAddress target) const
-//    {
-//        using namespace Platform::Setters;
-//
-//        auto&& storage = *this;
-//        auto constants = storage.Constants;
-//        TLinkAddress result = 0;
-//        storage.Each([&](auto link) {
-//            result = link[0];
-//            return storage.Constants.Break;
-//        }, Link{storage.Constants.Any, source, target});
-//        return result;
-//    }
+    template<typename TLinkAddress>
+    TLinkAddress SearchOrDefault(const auto&& storage, TLinkAddress source, TLinkAddress target)
+    {
+        auto constants = storage.Constants;
+        auto _break = constants.Break;
+        TLinkAddress searchedLinkAddress;
+        storage.Each(Link{storage.Constants.Any, source, target}, [&searchedLinkAddress, _break] (auto link) {
+            searchedLinkAddress = link[0];
+            return _break;
+        });
+        return searchedLinkAddress;
+    }
 
     template<typename TLinkAddress>
     static void RunRandomCreations(auto&& storage, std::uint64_t amountOfCreations)
