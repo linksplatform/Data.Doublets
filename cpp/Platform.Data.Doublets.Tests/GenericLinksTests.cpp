@@ -10,12 +10,20 @@
 //        HeapResizableDirectMemory memory {};
 //        UnitedMemoryLinks<TLink, HeapResizableDirectMemory> storage { memory };
 //        action(storage);
-        std::string fileName { std::tmpnam(nullptr) };
-        Expects(!Collections::IsWhiteSpace(fileName));
-        std::cout << "\n\nFilename: " << fileName << std::endl;
-        Ffi::UnitedMemoryLinks<TLink> ffiStorage {fileName };
-        action(ffiStorage);
-        std::remove(fileName.c_str());
+        std::string tempFilePath { std::tmpnam(nullptr) };
+        Expects(!Collections::IsWhiteSpace(tempFilePath));
+        std::cout << "\n\ntempFilePath: " << tempFilePath << std::endl;
+        try
+        {
+            Ffi::UnitedMemoryLinks<TLink> ffiStorage {tempFilePath };
+            action(ffiStorage);
+        }
+        catch (...)
+        {
+            std::remove(tempFilePath.c_str());
+            throw;
+        }
+        std::remove(tempFilePath.c_str());
     }
     TEST(GenericLinksTests, CrudTest)
     {
