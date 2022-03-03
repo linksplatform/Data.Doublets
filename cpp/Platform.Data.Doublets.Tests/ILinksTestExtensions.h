@@ -16,14 +16,14 @@ namespace Platform::Data::Doublets::Tests
                 linkStruct = link;
                 return _continue;
             });
-            Ensures(constants.Null == linkStruct.Index);
+            Expects(constants.Null == linkStruct.Index);
             auto linkAddress { Create<TLinkAddress>(storage) };
             linkStruct = { GetLink(storage, linkAddress) };
-            Ensures(3 == linkStruct.size());
-            Ensures(linkAddress == linkStruct.Index);
-            Ensures(constants.Null == linkStruct.Source);
-            Ensures(constants.Null == linkStruct.Target);
-            Ensures(1 == Count<TLinkAddress>(storage));
+            Expects(3 == linkStruct.size());
+            Expects(linkAddress == linkStruct.Index);
+            Expects(constants.Null == linkStruct.Source);
+            Expects(constants.Null == linkStruct.Target);
+            Expects(1 == Count<TLinkAddress>(storage));
             return linkAddress;
         }
 
@@ -38,7 +38,7 @@ namespace Platform::Data::Doublets::Tests
                 linkAddressFromEach = link[0];
                 return _continue;
             });
-            Ensures(linkAddress == linkAddressFromEach);
+            Expects(linkAddress == linkAddressFromEach);
             return linkAddressFromEach;
         }
 
@@ -48,8 +48,8 @@ namespace Platform::Data::Doublets::Tests
             auto constants { storage.Constants };
             auto updatedLinkAddress { Update(storage, linkAddress, linkAddress, linkAddress) };
             Link link { GetLink(storage, updatedLinkAddress) };
-            Ensures(link.Index == link.Source);
-            Ensures(link.Index == link.Target);
+            Expects(link.Index == link.Source);
+            Expects(link.Index == link.Target);
             return link.Index;
         }
 
@@ -59,8 +59,8 @@ namespace Platform::Data::Doublets::Tests
             auto constants { storage.Constants };
             auto updatedLinkAddress { Update(storage, linkAddress, linkAddress, linkAddress) };
             Link linkStruct { GetLink(storage, updatedLinkAddress) };
-            Ensures(constants.Null == linkStruct.Source);
-            Ensures(constants.Null == linkStruct.Target);
+            Expects(constants.Null == linkStruct.Source);
+            Expects(constants.Null == linkStruct.Target);
             return linkStruct.Index;
         }
 
@@ -73,13 +73,13 @@ namespace Platform::Data::Doublets::Tests
             auto updatedLinkAddress { Update(storage, linkAddress, linkAddress, linkAddress) };
             Link linkStruct { GetLink(storage, updatedLinkAddress) };
             Data::Delete(storage, linkAddress);
-            Ensures(0 == Count<TLinkAddress>(storage));
+            Expects(0 == Count<TLinkAddress>(storage));
             TLinkAddress deletedLinkAddress;
             storage.Each(std::array{constants.Any, constants.Any, constants.Any}, [_continue, &deletedLinkAddress](Interfaces::CArray auto&& link) {
                 deletedLinkAddress = link[0];
                 return _continue;
             });
-            Ensures(constants.Null == deletedLinkAddress);
+            Expects(constants.Null == deletedLinkAddress);
         }
     };
 
@@ -88,7 +88,7 @@ namespace Platform::Data::Doublets::Tests
     static void TestCrudOperations(auto&& storage)
     {
         const auto constants = storage.Constants;
-        Ensures(0 == Platform::Data::Count<TLinkAddress>(storage));
+        Expects(0 == Platform::Data::Count<TLinkAddress>(storage));
         // Create link
         auto linkAddress { CrudOperationsTester::TestCreate<TLinkAddress>(storage) };
         // Get first link
@@ -111,56 +111,56 @@ namespace Platform::Data::Doublets::Tests
         Hybrid<TLinkAddress> h106E {106L, true};
         Hybrid<TLinkAddress> h107E {107L, true};
         Hybrid<TLinkAddress> h108E {108L, true};
-        Ensures(106L == h106E.Value);
-        Ensures(107L == h107E.Value);
-        Ensures(108L == h108E.Value);
+        Expects(106L == h106E.Value);
+        Expects(107L == h107E.Value);
+        Expects(108L == h108E.Value);
         // Create link (External -> External)
         auto linkAddress1 = Create<TLinkAddress>(storage);
         Update<TLinkAddress>(storage, linkAddress1, h106E.Value, h108E.Value);
         Link<TLinkAddress> link1 { GetLink(storage, linkAddress1) };
-        Ensures(h106E.Value == link1.Source);
-        Ensures(h108E.Value == link1.Target);
+        Expects(h106E.Value == link1.Source);
+        Expects(h108E.Value == link1.Target);
         // Create link (Internal -> External)
         auto linkAddress2 { Create<TLinkAddress>(storage) };
         Update(storage, linkAddress2, linkAddress1, h108E.Value);
         Link<TLinkAddress> link2 { GetLink(storage, linkAddress2) };
-        Ensures(linkAddress1 == link2.Source);
-        Ensures(h108E.Value == link2.Target);
+        Expects(linkAddress1 == link2.Source);
+        Expects(h108E.Value == link2.Target);
         // Create link (Internal -> Internal)
         auto linkAddress3 { Create<TLinkAddress>(storage) };
         Update(storage,linkAddress3, linkAddress1, linkAddress2);
         Link<TLinkAddress> link3 { GetLink(storage, linkAddress3) };
-        Ensures(linkAddress1 == link3.Source);
-        Ensures(linkAddress1 == link3.Target);
+        Expects(linkAddress1 == link3.Source);
+        Expects(linkAddress1 == link3.Target);
         // Search for created link
         TLinkAddress searchedLinkAddress;
         storage.Each(std::array{linkAddress3, h106E.Value, h108E.Value}, [&searchedLinkAddress, _continue](Interfaces::CArray auto&& link) {
             searchedLinkAddress = link[0];
             return _continue;
         });
-        Ensures(linkAddress1 == searchedLinkAddress);
+        Expects(linkAddress1 == searchedLinkAddress);
         // Search for nonexistent link
         TLinkAddress searchedNonExistentLinkAddress;
         storage.Each(std::array{any, h106E.Value, h108E.Value}, [&searchedNonExistentLinkAddress, _continue](Interfaces::CArray auto&& link) {
             searchedNonExistentLinkAddress = link[0];
             return _continue;
         });
-        Ensures(constants.Null == searchedNonExistentLinkAddress);
+        Expects(constants.Null == searchedNonExistentLinkAddress);
         // Update link to reference null (prepare for delete)
         auto updatedLinkAddress { Update(storage, linkAddress3, constants.Null, constants.Null) };
-        Ensures(linkAddress3 == updatedLinkAddress);
+        Expects(linkAddress3 == updatedLinkAddress);
         link3 = { GetLink(storage, linkAddress3) };
-        Ensures(constants.Null == link3.Source);
-        Ensures(constants.Null == link3.Target);
+        Expects(constants.Null == link3.Source);
+        Expects(constants.Null == link3.Target);
         // Delete link
         Data::Delete(storage, linkAddress3);
-        Ensures(2 == Count<TLinkAddress>(storage));
+        Expects(2 == Count<TLinkAddress>(storage));
         TLinkAddress deletedLinkAddress;
         storage.Each(std::array{any, any, any}, [&deletedLinkAddress, _continue](Interfaces::CArray auto&& link) {
             deletedLinkAddress = link[0];
             return _continue;
         });
-        Ensures(linkAddress2 == deletedLinkAddress);
+        Expects(linkAddress2 == deletedLinkAddress);
     }
 
     template<typename TLinkAddress>
@@ -207,7 +207,7 @@ namespace Platform::Data::Doublets::Tests
                     ++created;
                 }
             }
-            Ensures(Count<TLinkAddress>(storage) == created);
+            Expects(Count<TLinkAddress>(storage) == created);
             for (auto i { 0 }; i < N; ++i)
             {
                 TLinkAddress link = i + 1;
@@ -217,7 +217,7 @@ namespace Platform::Data::Doublets::Tests
                     ++deleted;
                 }
             }
-            Ensures(0 == Count<TLinkAddress>(storage));
+            Expects(0 == Count<TLinkAddress>(storage));
         }
     }
 }
