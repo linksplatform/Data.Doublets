@@ -96,28 +96,28 @@ extern "C" {
     uint8_t ByteUnitedMemoryLinks_Update(void* this_,
             const uint8_t* restrictions,
             uintptr_t len_r,
-            const uint8_t* substitutuion,
+            const uint8_t* substitution,
             uintptr_t len_s,
             CUDCallback<uint8_t> callback);
 
     uint16_t UInt16UnitedMemoryLinks_Update(void* this_,
             const uint16_t* restrictions,
             uintptr_t len_r,
-            const uint16_t* substitutuion,
+            const uint16_t* substitution,
             uintptr_t len_s,
             CUDCallback<uint16_t> callback);
 
     uint32_t UInt32UnitedMemoryLinks_Update(void* this_,
             const uint32_t* restrictions,
             uintptr_t len_r,
-            const uint32_t* substitutuion,
+            const uint32_t* substitution,
             uintptr_t len_s,
             CUDCallback<uint32_t> callback);
 
     uint64_t UInt64UnitedMemoryLinks_Update(void* this_,
             const uint64_t* restrictions,
             uintptr_t len_r,
-            const uint64_t* substitutuion,
+            const uint64_t* substitution,
             uintptr_t len_s,
             CUDCallback<uint64_t> callback);
 
