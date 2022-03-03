@@ -317,7 +317,7 @@ extern "C" {
             }
         }
 
-        auto&& Each(Interfaces::CArray auto&& restriction, auto&& handler) const
+        TLinkAddress Each(Interfaces::CArray auto&& restriction, auto&& handler) const
         {
             using Signature = TLinkAddress(Link<TLinkAddress>);
             auto restrictionLength = std::ranges::size(restriction);
