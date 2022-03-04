@@ -394,16 +394,19 @@ namespace Platform::Data::Doublets
             return usagesAsSource + usagesAsTarget;
         }
     //
-    //    template<typename TLinkAddress>
-    //    static bool HasUsages(auto&& storage, TLinkAddress link) { return Comparer<TLinkAddress>.Default.Compare(Count(storage)Usages(link), 0) > 0; }
-    //
-    //    template<typename TLinkAddress>
-    //    static bool operator ==(const auto&& storage, TLinkAddress link, TLinkAddress source, TLinkAddress &target) const
-    //    {
-    //        auto constants = storage.Constants;
-    //        auto values = storage.GetLink(link);
-    //        return  source == storage.GetSource(values) &&  target == storage.GetTarget(values);
-    //    }
+        template<typename TLinkAddress>
+        static bool HasUsages(auto&& storage, TLinkAddress linkAddress)
+        {
+            return CountUsages(storage, linkAddress) > 0;
+        }
+
+        template<typename TLinkAddress>
+        static bool operator ==(const auto&& storage, TLinkAddress link, TLinkAddress source, TLinkAddress &target) const
+        {
+            auto constants = storage.Constants;
+            auto values = storage.GetLink(link);
+            return  source == storage.GetSource(values) &&  target == storage.GetTarget(values);
+        }
     //
     //    template<typename TLinkAddress>
     //    static TLinkAddress SearchOrDefault(auto&& storage, TLinkAddress source, TLinkAddress target)
