@@ -1,56 +1,55 @@
 ﻿namespace Platform::Data::Doublets::Tests
 {
-    TEST_CLASS(ResizableDirectMemoryLinksTests)
+    using TLinkAddress = uint64_t;
+    static LinksConstants<TLinkAddress > _constants {LinksConstants<TLinkAddress>{}};
+    static void TestNonexistentReferences(auto&& &memoryAdapter)
     {
-        private: static readonly LinksConstants<std::uint64_t> _constants = Default<LinksConstants<std::uint64_t>>.Instance;
+        auto link = memoryAdapter.Create();
+        Update(memoryAdapter, link, std::numeric_limits<std::uint64_t>::max(), std::numeric_limits<std::uint64_t>::max());
+        TLinkAddress resultLink {_constants.Null};
+        memoryAdapter.Each(std::array{_constants.Any, std::numeric_limits<std::uint64_t>::max(), std::numeric_limits<std::uint64_t>::max()}, [&resultLink] (Interfaces::CArray auto foundLink) {
+            resultLink = foundLink[_constants.IndexPart];
+            return _constants.Break;
+        });
+        Expects(resultLink == link);
+        Expects(0 == Count(memoryAdapter, std::numeric_limits<std::uint64_t>::max()));
+        Delete(memoryAdapter, link);
+    }
 
-        public: TEST_METHOD(BasicFileMappedMemoryTest)
+    static void TestBasicMemoryOperations(auto&& memoryAdapter)
+    {
+        auto link {Create(memoryAdapter)};
+        Delete(memoryAdapter, link);
+    }
+
+    TEST(ResizableDirectMemoryLinksTests, BasicFileMappedMemoryTest)
+    {
+        auto tempName {std::tmpnam(nullptr)};
+        try
         {
-            auto tempFilename = Path.GetTempFileName();
-            using (auto memoryAdapter = UInt64UnitedMemoryLinks(tempFilename))
-            {
-                TestBasicMemoryOperations(memoryAdapter, );
-            }
+            UInt64UnitedMemoryLinks memoryAdapter { tempName };
+            TestBasicMemoryOperations(memoryAdapter);
             File.Delete(tempFilename);
         }
-
-        public: TEST_METHOD(BasicHeapMemoryTest)
+        catch (...)
         {
-            using (auto memory = HeapResizableDirectMemory(UInt64UnitedMemoryLinks.DefaultLinksSizeStep))
-            using (auto memoryAdapter = UInt64UnitedMemoryLinks(memory, UInt64UnitedMemoryLinks.DefaultLinksSizeStep))
-            {
-                TestBasicMemoryOperations(memoryAdapter, );
-            }
+            std::remove(tempName.c_str());
+            throw;
         }
-
-        private: static void TestBasicMemoryOperations(ILinks<std::uint64_t> &memoryAdapter)
-        {
-            auto link = memoryAdapter.Create();
-            memoryAdapter.Delete(link);
-        }
-
-        public: TEST_METHOD(NonexistentReferencesHeapMemoryTest)
-        {
-            using (auto memory = HeapResizableDirectMemory(UInt64UnitedMemoryLinks.DefaultLinksSizeStep))
-            using (auto memoryAdapter = UInt64UnitedMemoryLinks(memory, UInt64UnitedMemoryLinks.DefaultLinksSizeStep))
-            {
-                TestNonexistentReferences(memoryAdapter, );
-            }
-        }
-
-        private: static void TestNonexistentReferences(ILinks<std::uint64_t> &memoryAdapter)
-        {
-            auto link = memoryAdapter.Create();
-            memoryAdapter.Update(link, std::numeric_limits<std::uint64_t>::max(), std::numeric_limits<std::uint64_t>::max());
-            auto resultLink = _constants.Null;
-            memoryAdapter.Each(foundLink =>
-            {
-                resultLink = foundLink[_constants.IndexPart];
-                return _constants.Break;
-            }, _constants.Any, std::numeric_limits<std::uint64_t>::max(), std::numeric_limits<std::uint64_t>::max());
-            Assert::IsTrue(resultLink == link);
-            Assert::IsTrue(memoryAdapter.Count()(std::numeric_limits<std::uint64_t>::max()) == 0);
-            memoryAdapter.Delete(link);
-        }
+        std::remove(tempName.c_str());
     };
+
+    TEST(ResizableDirectMemoryLinksTests, BasicHeapMemoryTest)
+    {
+        HeapResizableDirectMemory memory {UInt64UnitedMemoryLinks.DefaultLinksSizeStep};
+        UInt64UnitedMemoryLinks memoryAdapter {memory, UInt64UnitedMemoryLinks.DefaultLinksSizeStep};
+        TestBasicMemoryOperations(memoryAdapter);
+    }
+
+    TEST(ResizableDirectMemoryLinksTests, NonexistentReferencesHeapMemoryTest)
+    {
+        HeapResizableDirectMemory memory {UInt64UnitedMemoryLinks.DefaultLinksSizeStep};
+        UInt64UnitedMemoryLinks memoryAdapter {memory, UInt64UnitedMemoryLinks.DefaultLinksSizeStep};
+        TestNonexistentReferences(memoryAdapter);
+    }
 }
