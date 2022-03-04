@@ -407,14 +407,17 @@ namespace Platform::Data::Doublets
             return (storage.GetSource(values) == source) && (storage.GetTarget(values) == target);
         }
     //
-    //    template<typename TLinkAddress>
-    //    static TLinkAddress SearchOrDefault(auto&& storage, TLinkAddress source, TLinkAddress target)
-    //    {
-    //        auto contants = storage.Constants;
-    //        auto setter = Setter<TLinkAddress, TLinkAddress>(contants.Continue, contants.Break, 0);
-    //        storage.Each(setter.SetFirstAndReturnFalse, contants.Any, source, target);
-    //        return setter.Result;
-    //    }
+        template<typename TLinkAddress>
+        static TLinkAddress SearchOrDefault(auto&& storage, TLinkAddress source, TLinkAddress target)
+        {
+            auto $break {storage.Constants.Break};
+            TLinkAddress resultLinkAddress;
+            storage.Each(std::array{Constants.Any, source, target}, [&resultLinkAddress, $break](Interfaces::CArray auto&& link){
+                resultLinkAddress = link[0];
+                return $break;
+            });
+            return resultLinkAddress;
+        }
     //
     //    template<typename TLinkAddress>
     //    static TLinkAddress CreatePoint(auto&& storage)
