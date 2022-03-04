@@ -419,14 +419,18 @@ namespace Platform::Data::Doublets
             return resultLinkAddress;
         }
     //
-    //    template<typename TLinkAddress>
-    //    static TLinkAddress CreatePoint(auto&& storage)
-    //    {
-    //        auto constants = storage.Constants;
-    //        auto setter = Setter<TLinkAddress, TLinkAddress>(constants.Continue, constants.Break);
-    //        storage.CreatePoint(setter.SetFirstFromSecondListAndReturnTrue);
-    //        return setter.Result;
-    //    }
+        template<typename TLinkAddress>
+        static TLinkAddress CreatePoint(auto&& storage)
+        {
+            auto $continue {storage.Constants.Continue};
+            TLinkAddress resultLinkAddress;
+            storage.CreatePoint([&resultLinkAddress, $continue](Interfaces::CArray auto&& before, Interfaces::CArray auto&& after)
+            {
+                resultLinkAddress = after[0];
+                return $continue;
+            });
+            return resultLinkAddress;
+        }
     //
     //    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
     //    requires std::invocable<Handler&, Interfaces::CArray<TLinkAddress><TLinkAddress> auto, Interfaces::CArray<TLinkAddress><TLinkAddress> auto>
