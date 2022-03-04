@@ -131,14 +131,16 @@ namespace Platform::Data::Doublets
     template<typename TLinkAddress>
     static TLinkAddress First(auto&& storage)
     {
-        auto constants = storage.Constants;
-        TLinkAddress firstLink = 0;
+        auto $break {storage.Constants.Break};
+        TLinkAddress firstLink;
         if (0 == storage.Count())
         {
             throw std::runtime_error("No links in the storage..");
         }
-        Setters::Setter setter { constants.Continue, constants.Break, 0 };
-        storage.Each(std::array{storage.Constants.Any, storage.Constants.Any, storage.Constants.Any}, setter.SetFirstAndReturnFalse);
+        storage.Each(std::array{storage.Constants.Any, storage.Constants.Any, storage.Constants.Any}, [&firstLink, $break] (Interfaces::CArray auto&& link){
+            firstLink = link[0];
+            return $break;
+        });
         if ( 0 == firstLink)
         {
             throw std::runtime_error("No links are found in the storage.");
