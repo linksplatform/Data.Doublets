@@ -137,7 +137,7 @@ namespace Platform::Data::Doublets
         {
             throw std::runtime_error("No links in the storage..");
         }
-        storage.Each(std::array{storage.Constants.Any, storage.Constants.Any, storage.Constants.Any}, [&firstLink, $break] (Interfaces::CArray auto&& link){
+        storage.Each(std::array{storage.Constants.Any, storage.Constants.Any, storage.Constants.Any}, [&firstLink, $break] (Interfaces::CArray<TLinkAddress> auto&& link){
             firstLink = link[0];
             return $break;
         });
@@ -149,12 +149,12 @@ namespace Platform::Data::Doublets
     }
 
     template<typename TLinkAddress>
-    static Interfaces::CArray auto SingleOrDefault(auto&& storage, Interfaces::CArray auto&& query)
+    static Interfaces::CArray<TLinkAddress> auto SingleOrDefault(auto&& storage, Interfaces::CArray<TLinkAddress> auto&& query)
     {
-        std::vector<TLinkAddress> result = {};
+        std::vector<TLinkAddress> result {};
         auto count = 0;
         auto constants = storage.Constants;
-        auto linkHandler { [&result, &count, &constants] (Interfaces::CArray auto&& link) {
+        auto linkHandler { [&result, &count, &constants] (Interfaces::CArray<TLinkAddress> auto&& link) {
             if (count == 0)
             {
                 result = link;
@@ -172,7 +172,7 @@ namespace Platform::Data::Doublets
     }
 
     template<typename TLinkAddress>
-    static bool CheckPathExistance(auto&& storage, Interfaces::CArray auto&& path)
+    static bool CheckPathExistance(auto&& storage, Interfaces::CArray<TLinkAddress> auto&& path)
     {
         auto current = path[0];
         if (!storage.Exists(current))
@@ -200,7 +200,7 @@ namespace Platform::Data::Doublets
     }
 
     template<typename TLinkAddress>
-    static TLinkAddress GetByKeys(auto&& storage, TLinkAddress root, Interfaces::CArray auto&& path)
+    static TLinkAddress GetByKeys(auto&& storage, TLinkAddress root, Interfaces::CArray<TLinkAddress> auto&& path)
     {
         storage.EnsureLinkExists(root, "root");
         auto currentLink = root;
@@ -234,22 +234,22 @@ namespace Platform::Data::Doublets
     //    }
 
     template<typename TLinkAddress>
-    static TLinkAddress GetIndex(auto&& storage, Interfaces::CArray auto&& link) { return link[storage.Constants.IndexPart]; }
+    static TLinkAddress GetIndex(auto&& storage, Interfaces::CArray<TLinkAddress> auto&& link) { return link[storage.Constants.IndexPart]; }
 
     template<typename TLinkAddress>
     static TLinkAddress GetSource(auto&& storage, TLinkAddress link) { return storage.GetLink(link)[storage.Constants.SourcePart]; }
 
     template<typename TLinkAddress>
-    static TLinkAddress GetSource(auto&& storage, Interfaces::CArray auto&& link) { return link[storage.Constants.SourcePart]; }
+    static TLinkAddress GetSource(auto&& storage, Interfaces::CArray<TLinkAddress> auto&& link) { return link[storage.Constants.SourcePart]; }
 
     template<typename TLinkAddress>
     static TLinkAddress GetTarget(auto&& storage, TLinkAddress link) { return storage.GetLink(link)[storage.Constants.TargetPart]; }
 
     template<typename TLinkAddress>
-    static TLinkAddress GetTarget(auto&& storage, Interfaces::CArray auto&& link) { return link[storage.Constants.TargetPart]; }
+    static TLinkAddress GetTarget(auto&& storage, Interfaces::CArray<TLinkAddress> auto&& link) { return link[storage.Constants.TargetPart]; }
 
     //    template<typename TLinkAddress>
-    //    static auto&& All(auto&& storage, Interfaces::CArray auto&& restriction)
+    //    static auto&& All(auto&& storage, Interfaces::CArray<TLinkAddress> auto&& restriction)
     //    {
     //        using namespace Platform::Collections;
     //        auto allLinks = std::vector<std::vector<TLinkAddress>>();
@@ -258,7 +258,7 @@ namespace Platform::Data::Doublets
     //        return allLinks;
     //    }
     //
-    //    static Interfaces::CArray auto AllIndices<TLinkAddress>(auto&& storage, Interfaces::CArray auto&& restriction)
+    //    static Interfaces::CArray<TLinkAddress> auto AllIndices<TLinkAddress>(auto&& storage, Interfaces::CArray<TLinkAddress> auto&& restriction)
     //    {
     //        auto allIndices = List<TLinkAddress>();
     //        auto filler = ListFiller<TLinkAddress, TLinkAddress>(allIndices, storage.Constants.Continue);
@@ -268,7 +268,7 @@ namespace Platform::Data::Doublets
     //
     //
     //    template<typename TLinkAddress>
-    //    static void EnsureLinkExists(auto&& storage, Interfaces::CArray auto&& restriction)
+    //    static void EnsureLinkExists(auto&& storage, Interfaces::CArray<TLinkAddress> auto&& restriction)
     //    {
     //        for (auto i { 0 }; i < restriction.Count(); ++i)
     //        {
@@ -289,7 +289,7 @@ namespace Platform::Data::Doublets
     //    }
     //
     //    template<typename TLinkAddress>
-    //    static void EnsureInnerReferenceExists(auto&& storage, Interfaces::CArray auto&& restriction, std::string argumentName)
+    //    static void EnsureInnerReferenceExists(auto&& storage, Interfaces::CArray<TLinkAddress> auto&& restriction, std::string argumentName)
     //    {
     //        for (std::int32_t i = 0; i < restriction.Count(); ++i)
     //        {
@@ -298,7 +298,7 @@ namespace Platform::Data::Doublets
     //    }
     //
     //    template<typename TLinkAddress>
-    //    static void EnsureLinkIsAnyOrExists(auto&& storage, Interfaces::CArray auto&& restriction)
+    //    static void EnsureLinkIsAnyOrExists(auto&& storage, Interfaces::CArray<TLinkAddress> auto&& restriction)
     //    {
     //        auto any = storage.Constants.Any;
     //        for (auto i { 0 }; i < restriction.Count(); ++i)
@@ -347,13 +347,13 @@ namespace Platform::Data::Doublets
     //    }
     //
     //    template<typename TLinkAddress>
-    //    static void EnsureCreated(auto&& storage, Interfaces::CArray auto&& addresses) { storage.EnsureCreated(storage.Create, addresses); }
+    //    static void EnsureCreated(auto&& storage, Interfaces::CArray<TLinkAddress> auto&& addresses) { storage.EnsureCreated(storage.Create, addresses); }
     //
     //    template<typename TLinkAddress>
-    //    static void EnsurePointsCreated(auto&& storage, Interfaces::CArray auto&& addresses) { storage.EnsureCreated(storage.CreatePoint, addresses); }
+    //    static void EnsurePointsCreated(auto&& storage, Interfaces::CArray<TLinkAddress> auto&& addresses) { storage.EnsureCreated(storage.CreatePoint, addresses); }
     //
     //    template<typename TLinkAddress>
-    //    static void EnsureCreated(auto&& storage, std::function<TLinkAddress()> creator, Interfaces::CArray auto&& addresses)
+    //    static void EnsureCreated(auto&& storage, std::function<TLinkAddress()> creator, Interfaces::CArray<TLinkAddress> auto&& addresses)
     //    {
     //        auto nonExistentAddresses = HashSet<TLinkAddress>(addresses.Where(x => !storage.Exists(x)));
     //        if (nonExistentAddresses.Count() > 0)
@@ -424,7 +424,7 @@ namespace Platform::Data::Doublets
     //    }
     //
     //    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
-    //    requires std::invocable<Handler&, Interfaces::CArray<TLinkAddress> auto, Interfaces::CArray<TLinkAddress> auto>
+    //    requires std::invocable<Handler&, Interfaces::CArray<TLinkAddress><TLinkAddress> auto, Interfaces::CArray<TLinkAddress><TLinkAddress> auto>
     //    static TLinkAddress CreatePoint(auto&& storage, Handler handler)
     //    {
     //        auto constants = storage.Constants;
@@ -449,7 +449,7 @@ namespace Platform::Data::Doublets
     //    }
     //
     //    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
-    //    requires std::invocable<Handler&, Interfaces::CArray<TLinkAddress> auto, Interfaces::CArray<TLinkAddress> auto>
+    //    requires std::invocable<Handler&, Interfaces::CArray<TLinkAddress><TLinkAddress> auto, Interfaces::CArray<TLinkAddress><TLinkAddress> auto>
     //    static TLinkAddress CreateAndUpdate(auto&& storage, TLinkAddress source, TLinkAddress target, Handler handler)
     //    {
     //        auto constants = storage.Constants;
@@ -465,11 +465,11 @@ namespace Platform::Data::Doublets
     //    }
     //
         template<typename TLinkAddress>
-        TLinkAddress Update(auto&& storage, Interfaces::CArray auto&& restriction, Interfaces::CArray auto&& substitution)
+        TLinkAddress Update(auto&& storage, Interfaces::CArray<TLinkAddress> auto&& restriction, Interfaces::CArray<TLinkAddress> auto&& substitution)
         {
             auto _continue {storage.Constants.Continue};
             TLinkAddress updatedLinkAddress;
-            storage.Update(restriction, substitution, [&updatedLinkAddress, _continue] (Interfaces::CArray auto&& before, Interfaces::CArray auto&& after) {
+            storage.Update(restriction, substitution, [&updatedLinkAddress, _continue] (Interfaces::CArray<TLinkAddress> auto&& before, Interfaces::CArray<TLinkAddress> auto&& after) {
                 updatedLinkAddress = after[0];
                 return _continue;
             });
@@ -485,7 +485,7 @@ namespace Platform::Data::Doublets
         }
 
         template<typename TLinkAddress>
-        static TLinkAddress Update(auto&& storage, Interfaces::CArray auto&& restriction, auto&& handler)
+        static TLinkAddress Update(auto&& storage, Interfaces::CArray<TLinkAddress> auto&& restriction, auto&& handler)
         {
             const auto length { std::ranges::size(restriction) };
             if (length == 2)
@@ -514,7 +514,7 @@ namespace Platform::Data::Doublets
         auto constants = storage.Constants;
         auto _continue = constants.Continue;
         TLinkAddress resultLink;
-        UpdateOrCreateOrGet(storage, source, target, newSource, newTarget, [&resultLink, _continue](Interfaces::CArray auto&& before, Interfaces::CArray auto&& after) {
+        UpdateOrCreateOrGet(storage, source, target, newSource, newTarget, [&resultLink, _continue](Interfaces::CArray<TLinkAddress> auto&& before, Interfaces::CArray<TLinkAddress> auto&& after) {
             resultLink = after[0];
             return _continue;
         });
@@ -538,7 +538,7 @@ namespace Platform::Data::Doublets
     }
 
         template<typename TLinkAddress>
-        static Interfaces::CArray auto ResolveConstantAsSelfReference(auto&& storage, TLinkAddress constant, Interfaces::CArray auto&& restriction, Interfaces::CArray auto&& substitution)
+        static Interfaces::CArray<TLinkAddress> auto ResolveConstantAsSelfReference(auto&& storage, TLinkAddress constant, Interfaces::CArray<TLinkAddress> auto&& restriction, Interfaces::CArray<TLinkAddress> auto&& substitution)
         {
             auto constants = storage.Constants;
             auto restrictionIndex = storage.GetIndex(restriction);
@@ -606,7 +606,7 @@ namespace Platform::Data::Doublets
     }
 
     template<typename TLinkAddress>
-    auto DeleteByQuery(auto&& storage,  Interfaces::CArray auto&& query)
+    auto DeleteByQuery(auto&& storage,  Interfaces::CArray<TLinkAddress> auto&& query)
     {
         auto count = storage.Count(query);
         auto toDelete = std::vector<TLinkAddress>(count);
@@ -712,7 +712,7 @@ namespace Platform::Data::Doublets
     //    }
     //
     //    template<typename TLinkAddress>
-    //    static void DeleteMany(auto&& storage, Interfaces::CArray auto&& deletedLinks)
+    //    static void DeleteMany(auto&& storage, Interfaces::CArray<TLinkAddress> auto&& deletedLinks)
     //    {
     //        for (std::int32_t i = 0; i < deletedLinks.Count(); ++i)
     //        {
@@ -724,7 +724,7 @@ namespace Platform::Data::Doublets
     //    static void DeleteAllUsages(auto&& storage, TLinkAddress linkIndex) { storage.DeleteAllUsages(linkIndex, {}); }
     //
     //    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
-    //    requires std::invocable<Handler&, Interfaces::CArray<TLinkAddress> auto, Interfaces::CArray<TLinkAddress> auto>
+    //    requires std::invocable<Handler&, Interfaces::CArray<TLinkAddress><TLinkAddress> auto, Interfaces::CArray<TLinkAddress><TLinkAddress> auto>
     //    static TLinkAddress DeleteAllUsages(auto&& storage, TLinkAddress linkIndex, Handler handler)
     //    {
     //        auto constants = storage.Constants;
@@ -778,7 +778,7 @@ namespace Platform::Data::Doublets
     //    static void ResetValues(auto&& storage, TLinkAddress linkIndex) { storage.ResetValues(linkIndex, {}); }
     //
     //    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
-    //    requires std::invocable<Handler&, Interfaces::CArray<TLinkAddress> auto, Interfaces::CArray<TLinkAddress> auto>
+    //    requires std::invocable<Handler&, Interfaces::CArray<TLinkAddress><TLinkAddress> auto, Interfaces::CArray<TLinkAddress><TLinkAddress> auto>
     //    static TLinkAddress ResetValues(auto&& storage, TLinkAddress linkIndex, Handler handler)
     //    {
     //        auto nullConstant = storage.Constants.Null;
@@ -790,7 +790,7 @@ namespace Platform::Data::Doublets
     //    static void EnforceResetValues(auto&& storage, TLinkAddress linkIndex) { storage.EnforceResetValues(linkIndex, {}); }
     //
     //    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
-    //    requires std::invocable<Handler&, Interfaces::CArray<TLinkAddress> auto, Interfaces::CArray<TLinkAddress> auto>
+    //    requires std::invocable<Handler&, Interfaces::CArray<TLinkAddress><TLinkAddress> auto, Interfaces::CArray<TLinkAddress><TLinkAddress> auto>
     //    static TLinkAddress EnforceResetValues(auto&& storage, TLinkAddress linkIndex, Handler handler)
     //    {
     //        if (!storage.AreValuesReset(linkIndex))
@@ -804,7 +804,7 @@ namespace Platform::Data::Doublets
     //    static void MergeUsages(auto&& storage, TLinkAddress oldLinkIndex, TLinkAddress newLinkIndex) { storage.MergeUsages(oldLinkIndex, newLinkIndex, {}); }
     //
     //    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
-    //    requires std::invocable<Handler&, Interfaces::CArray<TLinkAddress> auto, Interfaces::CArray<TLinkAddress> auto>
+    //    requires std::invocable<Handler&, Interfaces::CArray<TLinkAddress><TLinkAddress> auto, Interfaces::CArray<TLinkAddress><TLinkAddress> auto>
     //    static TLinkAddress MergeUsages(auto&& storage, TLinkAddress oldLinkIndex, TLinkAddress newLinkIndex, Handler handler)
     //    {
     //        if ( newLinkIndex == oldLinkIndex)
@@ -852,7 +852,7 @@ namespace Platform::Data::Doublets
     //    }
     //
     //    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
-    //    requires std::invocable<Handler&, Interfaces::CArray<TLinkAddress> auto, Interfaces::CArray<TLinkAddress> auto>
+    //    requires std::invocable<Handler&, Interfaces::CArray<TLinkAddress><TLinkAddress> auto, Interfaces::CArray<TLinkAddress><TLinkAddress> auto>
     //    static TLinkAddress MergeAndDelete(auto&& storage, TLinkAddress oldLinkIndex, TLinkAddress newLinkIndex, Handler handler)
     //    {
     //        auto constants = storage.Constants;
@@ -876,7 +876,7 @@ namespace Platform::Data::Doublets
 //        }
     //
     //    template<typename TLinkAddress>
-    //    static std::string Format(auto&& storage, Interfaces::CArray auto&& link)
+    //    static std::string Format(auto&& storage, Interfaces::CArray<TLinkAddress> auto&& link)
     //    {
     //        auto constants = storage.Constants;
     //        return "({storage.GetIndex(link)}: {storage.GetSource(link)} {storage.GetTarget(link)})";
