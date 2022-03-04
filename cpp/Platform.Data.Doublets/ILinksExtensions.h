@@ -267,17 +267,17 @@ namespace Platform::Data::Doublets
     //    }
     //
     //
-    //    template<typename TLinkAddress>
-    //    static void EnsureLinkExists(auto&& storage, Interfaces::CArray<TLinkAddress> auto&& restriction)
-    //    {
-    //        for (auto i { 0 }; i < restriction.Count(); ++i)
-    //        {
-    //            if (!storage.Exists(restriction[i]))
-    //            {
-    //                throw ArgumentLinkDoesNotExistsException<TLinkAddress>(restriction[i], std::string("sequence[").append(Platform::Converters::To<std::string>(i)).append(1, ']'));
-    //            }
-    //        }
-    //    }
+//        template<typename TLinkAddress>
+//        static void EnsureLinkExists(auto&& storage, Interfaces::CArray<TLinkAddress> auto&& restriction)
+//        {
+//            for (auto i { 0 }; i < restriction.Count(); ++i)
+//            {
+//                if (!storage.Exists(restriction[i]))
+//                {
+//                    throw ArgumentLinkDoesNotExistsException<TLinkAddress>(restriction[i], std::string("sequence[").append(Platform::Converters::To<std::string>(i)).append(1, ']'));
+//                }
+//            }
+//        }
     //
     //    template<typename TLinkAddress>
     //    static void EnsureInnerReferenceExists(auto&& storage, TLinkAddress reference, std::string argumentName)
@@ -376,23 +376,23 @@ namespace Platform::Data::Doublets
     //        }
     //    }
     //
-    //    template<typename TLinkAddress>
-    //    static TLinkAddress CountUsages(auto&& storage, TLinkAddress link)
-    //    {
-    //        auto constants = storage.Constants;
-    //        auto values = storage.GetLink(link);
-    //        TLinkAddress usagesAsSource = Count(storage)(Link<TLinkAddress>(constants.Any, link, constants.Any));
-    //        if ( link == storage.GetSource(values))
-    //        {
-    //            usagesAsSource = usagesAsSource - 1;
-    //        }
-    //        TLinkAddress usagesAsTarget = Count(storage)(Link<TLinkAddress>(constants.Any, constants.Any, link));
-    //        if ( link == storage.GetTarget(values))
-    //        {
-    //            usagesAsTarget = usagesAsTarget - 1;
-    //        }
-    //        return usagesAsSource + usagesAsTarget;
-    //    }
+        template<typename TLinkAddress>
+        static TLinkAddress CountUsages(auto&& storage, TLinkAddress link)
+        {
+            auto constants {storage.Constants};
+            auto values {storage.GetLink(linkAddress)};
+            TLinkAddress usagesAsSource = Count(storage, std::array{constants.Any, linkAddress, constants.Any});
+            if (storage.GetSource(values) == linkAddress)
+            {
+                --usagesAsSource;
+            }
+            TLinkAddress usagesAsTarget = Count(storage, std::array{constants.Any, constants.Any, linkAddress});
+            if (storage.GetTarget(values) == linkAddress)
+            {
+                --usagesAsTarget;
+            }
+            return usagesAsSource + usagesAsTarget;
+        }
     //
     //    template<typename TLinkAddress>
     //    static bool HasUsages(auto&& storage, TLinkAddress link) { return Comparer<TLinkAddress>.Default.Compare(Count(storage)Usages(link), 0) > 0; }
