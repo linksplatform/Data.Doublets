@@ -172,7 +172,7 @@ namespace Platform::Data::Doublets
     }
 
     template<typename TLinkAddress>
-    static bool CheckPathExistance(auto&& storage, Interfaces::CArray<TLinkAddress> auto&& path)
+    static bool CheckPathExistence(auto&& storage, Interfaces::CArray<TLinkAddress> auto&& path)
     {
         auto current = path[0];
         if (!storage.Exists(current))
@@ -248,15 +248,15 @@ namespace Platform::Data::Doublets
     template<typename TLinkAddress>
     static TLinkAddress GetTarget(auto&& storage, Interfaces::CArray<TLinkAddress> auto&& link) { return link[storage.Constants.TargetPart]; }
 
-    //    template<typename TLinkAddress>
-    //    static auto&& All(auto&& storage, Interfaces::CArray<TLinkAddress> auto&& restriction)
-    //    {
-    //        using namespace Platform::Collections;
-    //        auto allLinks = std::vector<std::vector<TLinkAddress>>();
-    //        auto filler = Collections::ListFiller<IList<TLinkAddress>?, TLinkAddress>(allLinks, storage.Constants.Continue);
-    //        storage.Each(filler.AddAndReturnConstant, restriction);
-    //        return allLinks;
-    //    }
+        template<typename TLinkAddress>
+        static auto&& All(auto&& storage, Interfaces::CArray<TLinkAddress> auto&& restriction)
+        {
+            using namespace Platform::Collections;
+            std::vector<std::vector<TLinkAddress>> allLinks {};
+            auto filler = Collections::ListFiller<std::vector<std::vector<TLinkAddress>>, TLinkAddress>(allLinks, storage.Constants.Continue);
+            storage.Each(restriction, filler.AddAndReturnConstant);
+            return allLinks;
+        }
     //
     //    static Interfaces::CArray<TLinkAddress> auto AllIndices<TLinkAddress>(auto&& storage, Interfaces::CArray<TLinkAddress> auto&& restriction)
     //    {
