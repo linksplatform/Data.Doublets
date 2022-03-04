@@ -220,7 +220,7 @@ extern "C" {
         {
             auto substitutionLength = std::ranges::size(substitution);
             auto substitutionPtr = std::ranges::data(substitution);
-            auto callback = [&] (Link<TLinkAddress> before, Link<TLinkAddress> after) {
+            auto callback = [&] (Link<TLinkAddress> before, Link<TLinkAddress> after) -> TLinkAddress {
                 std::array beforeArray {before.Index, before.Source, before.Target};
                 std::array afterArray {after.Index, after.Source, after.Target};
                 return handler(beforeArray, afterArray);
