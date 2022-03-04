@@ -401,11 +401,10 @@ namespace Platform::Data::Doublets
         }
 
         template<typename TLinkAddress>
-        static bool operator ==(const auto&& storage, TLinkAddress link, TLinkAddress source, TLinkAddress &target) const
+        static bool operator ==(const auto&& storage, TLinkAddress linkAddress, TLinkAddress source, TLinkAddress target)
         {
-            auto constants = storage.Constants;
-            auto values = storage.GetLink(link);
-            return  source == storage.GetSource(values) &&  target == storage.GetTarget(values);
+            auto values {storage.GetLink(linkAddress)};
+            return (storage.GetSource(values) == source) && (storage.GetTarget(values) == target);
         }
     //
     //    template<typename TLinkAddress>
