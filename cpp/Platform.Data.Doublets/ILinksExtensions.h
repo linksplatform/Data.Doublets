@@ -13,7 +13,7 @@ namespace Platform::Data::Doublets
             auto deleted = 0UL;
             for (auto i = 0; i < N; i++)
             {
-                auto linksCount = storage.Count();
+                auto linksCount = Count(storage);
                 auto createPoint = Random::NextBoolean(randomGen64);
                 if (linksCount >= 2 && createPoint)
                 {
@@ -31,7 +31,7 @@ namespace Platform::Data::Doublets
                     created++;
                 }
             }
-            auto count = storage.Count();
+            auto count = Count(storage);
             for (auto i = 0; i < count; i++)
             {
                 auto link = i + 1;
@@ -65,7 +65,7 @@ namespace Platform::Data::Doublets
         auto randomGenerator64 = Random::RandomHelpers::Default;
         for (auto i { 0UL }; i < amountOfCreations; ++i)
         {
-            Range<std::uint64_t> linksAddressRange { 0, storage.Count() };
+            Range<std::uint64_t> linksAddressRange { 0, Count(storage) };
             auto source = Random::NextUInt64(randomGenerator64, linksAddressRange);
             auto target = Random::NextUInt64(randomGenerator64, linksAddressRange);
             storage.GetOrCreate(source, target);
@@ -78,7 +78,7 @@ namespace Platform::Data::Doublets
         auto randomGenerator64 = Random::RandomHelpers::Default;
         for (auto i { 0UL }; i < amountOfSearches; ++i)
         {
-            auto linksAddressRange = Range<std::uint64_t>(0, storage.Count());
+            auto linksAddressRange = Range<std::uint64_t>(0, Count(storage));
             auto source = Random::NextUInt64(randomGenerator64, linksAddressRange);
             auto target = Random::NextUInt64(randomGenerator64, linksAddressRange);
             SearchOrDefault(storage, source, target);
@@ -89,11 +89,11 @@ namespace Platform::Data::Doublets
     static void RunRandomDeletions(auto&& storage, std::uint64_t amountOfDeletions)
     {
         auto randomGenerator64 = Random::RandomHelpers::Default;
-        auto linksCount = storage.Count();
+        auto linksCount = Count(storage);
         auto min = amountOfDeletions > linksCount ? 0UL : linksCount - amountOfDeletions;
         for (auto i { 0UL }; i < amountOfDeletions; ++i)
         {
-            linksCount = storage.Count();
+            linksCount = Count(storage);
             if (linksCount <= min)
             {
                 break;
@@ -118,12 +118,12 @@ namespace Platform::Data::Doublets
     template<typename TLinkAddress>
     static void DeleteAll(auto&& storage)
     {
-        for (auto i { storage.Count() }; i > 0; --i)
+        for (auto i { Count(storage) }; i > 0; --i)
         {
             storage.Delete(i);
-            if (i - 1 != storage.Count())
+            if (i - 1 != Count(storage))
             {
-                i = storage.Count();
+                i = Count(storage);
             }
         }
     }
@@ -133,7 +133,7 @@ namespace Platform::Data::Doublets
     {
         auto $break {storage.Constants.Break};
         TLinkAddress firstLink;
-        if (0 == storage.Count())
+        if (0 == Count(storage))
         {
             throw std::runtime_error("No links in the storage..");
         }
@@ -381,12 +381,12 @@ namespace Platform::Data::Doublets
     //    {
     //        auto constants = storage.Constants;
     //        auto values = storage.GetLink(link);
-    //        TLinkAddress usagesAsSource = storage.Count()(Link<TLinkAddress>(constants.Any, link, constants.Any));
+    //        TLinkAddress usagesAsSource = Count(storage)(Link<TLinkAddress>(constants.Any, link, constants.Any));
     //        if ( link == storage.GetSource(values))
     //        {
     //            usagesAsSource = usagesAsSource - 1;
     //        }
-    //        TLinkAddress usagesAsTarget = storage.Count()(Link<TLinkAddress>(constants.Any, constants.Any, link));
+    //        TLinkAddress usagesAsTarget = Count(storage)(Link<TLinkAddress>(constants.Any, constants.Any, link));
     //        if ( link == storage.GetTarget(values))
     //        {
     //            usagesAsTarget = usagesAsTarget - 1;
@@ -395,7 +395,7 @@ namespace Platform::Data::Doublets
     //    }
     //
     //    template<typename TLinkAddress>
-    //    static bool HasUsages(auto&& storage, TLinkAddress link) { return Comparer<TLinkAddress>.Default.Compare(storage.Count()Usages(link), 0) > 0; }
+    //    static bool HasUsages(auto&& storage, TLinkAddress link) { return Comparer<TLinkAddress>.Default.Compare(Count(storage)Usages(link), 0) > 0; }
     //
     //    template<typename TLinkAddress>
     //    static bool operator ==(const auto&& storage, TLinkAddress link, TLinkAddress source, TLinkAddress &target) const
@@ -587,7 +587,7 @@ namespace Platform::Data::Doublets
     template<typename TLinkAddress>
     auto DeleteAll(auto&& storage)
     {
-        for (auto count = storage.Count(); count != 0; count = storage.Count())
+        for (auto count = Count(storage); count != 0; count = Count(storage))
         {
             storage.Delete(count);
         }
