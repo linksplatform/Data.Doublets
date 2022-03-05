@@ -164,25 +164,23 @@ extern "C" {
 
         LinksConstants<TLinkAddress> Constants;
 
-        UnitedMemoryLinks(std::string_view path)
-                : _ptr(ByteUnitedMemoryLinks_New(path.data())),
-                  Constants(LinksConstants<TLinkAddress>(true))
+        UnitedMemoryLinks(std::string_view path) : Constants{LinksConstants<TLinkAddress>(true)}
       {
             if constexpr (std::same_as<TLinkAddress, std::uint8_t>)
             {
-                ByteUnitedMemoryLinks_New(path.data());
+                _ptr = ByteUnitedMemoryLinks_New(path.data());
             }
             else if constexpr (std::same_as<TLinkAddress, std::uint16_t>)
             {
-                UInt16UnitedMemoryLinks_New(path.data());
+                _ptr = UInt16UnitedMemoryLinks_New(path.data());
             }
             else if constexpr (std::same_as<TLinkAddress, std::uint32_t>)
             {
-                UInt32UnitedMemoryLinks_New(path.data());
+                _ptr = UInt32UnitedMemoryLinks_New(path.data());
             }
             else if constexpr (std::same_as<TLinkAddress, std::uint64_t>)
             {
-                UInt64UnitedMemoryLinks_New(path.data());
+                _ptr = UInt64UnitedMemoryLinks_New(path.data());
             }
             else
             {
