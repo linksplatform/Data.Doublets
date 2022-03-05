@@ -463,11 +463,11 @@ namespace Platform::Data::Doublets
     //    }
     //
         template<typename TLinkAddress>
-        TLinkAddress Update(auto&& storage, Interfaces::CArray auto&& restriction, Interfaces::CArray auto&& substitution)
+        TLinkAddress Update(auto&& storage, Interfaces::CArray<TLinkAddress> auto&& restriction, Interfaces::CArray<TLinkAddress> auto&& substitution)
         {
             auto _continue {storage.Constants.Continue};
             TLinkAddress updatedLinkAddress;
-            storage.Update(restriction, substitution, [&updatedLinkAddress, _continue] (Interfaces::CArray auto&& before, Interfaces::CArray auto&& after) {
+            storage.Update(restriction, substitution, [&updatedLinkAddress, _continue] (Interfaces::CArray<TLinkAddress> auto&& before, Interfaces::CArray<TLinkAddress> auto&& after) {
                 updatedLinkAddress = after[0];
                 return _continue;
             });
@@ -512,7 +512,7 @@ namespace Platform::Data::Doublets
         auto constants = storage.Constants;
         auto _continue = constants.Continue;
         TLinkAddress resultLink;
-        UpdateOrCreateOrGet(storage, source, target, newSource, newTarget, [&resultLink, _continue](Interfaces::CArray auto&& before, Interfaces::CArray auto&& after) {
+        UpdateOrCreateOrGet(storage, source, target, newSource, newTarget, [&resultLink, _continue](Interfaces::CArray<TLinkAddress> auto&& before, Interfaces::CArray<TLinkAddress> auto&& after) {
             resultLink = after[0];
             return _continue;
         });
@@ -604,7 +604,7 @@ namespace Platform::Data::Doublets
     }
 
     template<typename TLinkAddress>
-    auto DeleteByQuery(auto&& storage,  Interfaces::CArray auto&& query)
+    auto DeleteByQuery(auto&& storage,  Interfaces::CArray<TLinkAddress> auto&& query)
     {
         auto count = storage.Count(query);
         auto toDelete = std::vector<TLinkAddress>(count);
