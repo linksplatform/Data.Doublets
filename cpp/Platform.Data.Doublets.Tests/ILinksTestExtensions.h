@@ -12,8 +12,8 @@ namespace Platform::Data::Doublets::Tests
             auto constants { storage.Constants };
             auto _continue = constants.Continue;
             Link<TLinkAddress> linkStruct;
-            storage.Each( std::array{constants.Any, constants.Any, constants.Any} , [_continue, &linkStruct](Interfaces::CArray auto&& link) {
-                linkStruct = link;
+            storage.Each( std::array{constants.Any, constants.Any, constants.Any} , [&linkStruct, _continue](Interfaces::CArray<TLinkAddress> auto&& link) {
+                linkStruct = Link(link);
                 return _continue;
             });
             Expects(constants.Null == linkStruct.Index);
