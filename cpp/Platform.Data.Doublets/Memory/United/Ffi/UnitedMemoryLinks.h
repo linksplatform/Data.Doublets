@@ -22,6 +22,12 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
         GLOBAL_FUNCTION<Signature> = std::move(function);
     }
 
+    template<typename Signature>
+    auto get_global()
+    {
+        return GLOBAL_FUNCTION<Signature>;
+    }
+
     template<typename TLinkAddress>
     using CUDCallback = TLinkAddress(*)(Link<TLinkAddress> before, Link<TLinkAddress> after);
 
