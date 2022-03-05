@@ -220,7 +220,7 @@ extern "C" {
             }
         }
 
-        TLinkAddress Create(Interfaces::CArray auto&& substitution, auto&& handler)
+        TLinkAddress Create(Interfaces::CArray<TLinkAddress> auto&& substitution, auto&& handler)
         {
             auto substitutionLength = std::ranges::size(substitution);
             auto substitutionPtr = std::ranges::data(substitution);
@@ -253,7 +253,7 @@ extern "C" {
             }
         };
 
-        TLinkAddress Update(Interfaces::CArray auto&& restriction, Interfaces::CArray auto&& substitution, auto&& handler)
+        TLinkAddress Update(Interfaces::CArray<TLinkAddress> auto&& restriction, Interfaces::CArray<TLinkAddress> auto&& substitution, auto&& handler)
         {
             auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr { std::ranges::data(restriction) };
@@ -288,7 +288,7 @@ extern "C" {
             }
         }
 
-        TLinkAddress Delete(Interfaces::CArray auto&& restriction, auto&& handler)
+        TLinkAddress Delete(Interfaces::CArray<TLinkAddress> auto&& restriction, auto&& handler)
         {
             auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr = std::ranges::data(restriction);
@@ -321,7 +321,7 @@ extern "C" {
             }
         }
 
-        TLinkAddress Each(Interfaces::CArray auto&& restriction, auto&& handler) const
+        TLinkAddress Each(Interfaces::CArray<TLinkAddress> auto&& restriction, auto&& handler) const
         {
             using Signature = TLinkAddress(Link<TLinkAddress>);
             auto restrictionLength = std::ranges::size(restriction);
@@ -352,7 +352,7 @@ extern "C" {
             }
         }
 
-        TLinkAddress Count(Interfaces::CArray auto&& restriction) const
+        TLinkAddress Count(Interfaces::CArray<TLinkAddress> auto&& restriction) const
         {
             auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr = std::ranges::data(restriction);
