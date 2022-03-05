@@ -12,7 +12,6 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
     template<typename TReturn, typename Signature, typename ...TArgs>
     TReturn call_last_global(TArgs ...args) {
         decltype(auto) result = GLOBAL_FUNCTION<Signature>(args...);
-        GLOBAL_FUNCTION<Signature> = nullptr;
         return result;
     }
 
