@@ -384,7 +384,7 @@
 
         auto GetLinkStruct(TLinkAddress linkIndex) const
         {
-            auto& link = this->GetLinkReference(linkIndex);
+            auto& link = this->object().GetLinkReference(linkIndex);
             return Link{linkIndex, link.Source, link.Target};
         }
 
@@ -413,24 +413,12 @@
 
         bool Exists(TLinkAddress link)
         {
-            if (IsExternalReference(Constants, link))
-            {
-                return false;
-            }
-            return GreaterOrEqualThan(link, Constants.InternalReferencesRange.Minimum) && LessOrEqualThan(link, GetHeaderReference().AllocatedLinks) && !IsUnusedLink(link);
+            this->object().Exists(link);
         }
 
         bool IsUnusedLink(TLinkAddress linkIndex)
         {
-            if ((linkIndex != GetHeaderReference().FirstFreeLink) // May be this check is not needed
-            {
-                auto& link = GetLinkReference(linkIndex);
-                return TLinkAddress{} == link.SizeAsSource && TLinkAddress{} != link.Source;
-            }
-            else
-            {
-                return true;
-            }
+            this->object().IsUnusedLink(linkIndex);
         }
     };
 }// namespace Platform::Data::Doublets::Memory::United::Generic
