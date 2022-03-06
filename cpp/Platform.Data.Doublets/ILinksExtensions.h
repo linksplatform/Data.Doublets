@@ -644,15 +644,9 @@ namespace Platform::Data::Doublets
     }
 
     template<typename TLinkAddress>
-    bool Exists(const auto&& storage, TLinkAddress source, TLinkAddress target)
-    {
-        return storage.Count(storage.Constants.Any, source, target) != 0;
-    }
-
-    template<typename TLinkAddress>
     static bool Exists(auto&& storage, TLinkAddress source, TLinkAddress target)
     {
-        return storage.Count(Link{storage.Constants.Any, source, target}) > 0;
+        return storage.Count(std::array{storage.Constants.Any, source, target}) > 0;
     }
 
     template<typename TLinkAddress>
