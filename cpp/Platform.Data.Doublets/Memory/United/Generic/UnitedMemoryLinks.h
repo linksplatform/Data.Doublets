@@ -3,7 +3,7 @@
     using namespace Platform::Memory;
 
     template<typename TLinkAddress, typename TMemory = FileMappedResizableDirectMemory, typename TSourceTreeMethods = LinksSourcesSizeBalancedTreeMethods<TLinkAddress>, typename TTargetTreeMethods = LinksTargetsSizeBalancedTreeMethods<TLinkAddress>, typename TUnusedLinks = UnusedLinksListMethods<TLinkAddress>>
-    class UnitedMemoryLinks : public UnitedMemoryLinksBase<UnitedMemoryLinks<TLinkAddress, TMemory, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks>, TLinkAddress, TMemory, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks>, public std::enable_shared_from_this<UnitedMemoryLinks<TLinkAddress>>
+    class UnitedMemoryLinks : public UnitedMemoryLinksBase<UnitedMemoryLinks<TLinkAddress, TMemory, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks>, TLinkAddress, TMemory, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks> /*, public std::enable_shared_from_this<UnitedMemoryLinks<TLinkAddress>>*/
     {
         using base = UnitedMemoryLinksBase<
             UnitedMemoryLinks<
@@ -80,6 +80,28 @@
         auto&& GetLinkReference(TLinkAddress linkIndex) const
         {
             return *(reinterpret_cast<RawLink<TLinkAddress>*>(_links) + linkIndex);
+        }
+
+        bool Exists(TLinkAddress link)
+        {
+            if (IsExternalReference(Constants, link))
+            {
+                return false;
+            }
+            return GreaterOrEqualThan(link, Constants.InternalReferencesRange.Minimum) && LessOrEqualThan(link, GetHeaderReference().AllocatedLinks) && !IsUnusedLink(link);
+        }
+
+        bool IsUnusedLink(TLinkAddress linkIndex)
+        {
+            if ((linkIndex != GetHeaderReference().FirstFreeLink) // May be this check is not needed
+            {
+                auto& link = GetLinkReference(linkIndex);
+                return TLinkAddress{} == link.SizeAsSource && TLinkAddress{} != link.Source;
+            }
+            else
+            {
+                return true;
+            }
         }
     };
 }// namespace Platform::Data::Doublets::Memory::United::Generic
