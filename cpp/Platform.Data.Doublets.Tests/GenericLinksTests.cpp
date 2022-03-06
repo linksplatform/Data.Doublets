@@ -7,23 +7,9 @@
         using namespace Platform::Data::Doublets::Memory::United::Generic;
         using namespace Platform::Data::Doublets::Memory::United;
         using namespace Platform::Collections;
-//        HeapResizableDirectMemory memory {};
-//        UnitedMemoryLinks<TLink, HeapResizableDirectMemory> storage { memory };
-//        action(storage);
-        std::string tempFilePath { std::tmpnam(nullptr) };
-        Expects(!Collections::IsWhiteSpace(tempFilePath));
-        std::cout << "\n\ntempFilePath: " << tempFilePath << std::endl;
-        try
-        {
-            Ffi::UnitedMemoryLinks<TLink> ffiStorage {tempFilePath };
-            action(ffiStorage);
-        }
-        catch (...)
-        {
-            std::remove(tempFilePath.c_str());
-            throw;
-        }
-        std::remove(tempFilePath.c_str());
+        HeapResizableDirectMemory memory {};
+        UnitedMemoryLinks<TLink, HeapResizableDirectMemory> storage { memory };
+        action(storage);
     }
     TEST(GenericLinksTests, CrudTest)
     {
