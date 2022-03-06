@@ -185,7 +185,7 @@ namespace Platform::Data::Doublets::Tests
             }};
             using EachSignature = TLinkAddress(Link<TLinkAddress>);
             set_global<EachSignature>(eachCallback);
-            std::array eachRestriction{createdLinkAddress, constants.Any, constants.Any};
+            std::array eachRestriction{constants.Any, constants.Any, constants.Any};
             auto eachRestrictionPtr{std::ranges::data(eachRestriction)};
             auto eachRestrictionLength = std::ranges::size(eachRestriction);
             ByteUnitedMemoryLinks_Each(ptr, eachRestrictionPtr, eachRestrictionLength, call_last_global<TLinkAddress, EachSignature, Link<TLinkAddress>>);
