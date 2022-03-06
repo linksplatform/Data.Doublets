@@ -2,51 +2,51 @@
 {
     using namespace Platform::Collections::Methods;
 
-    template<typename Self, typename TLink>
+    template<typename Self, typename TLinkAddress>
     class LinksSizeBalancedTreeMethodsBase
         :
-          //public Trees::SizeBalancedTreeMethods<Self, TLink>,
-          public Trees::RecursionlessSizeBalancedTreeMethods<Self, TLink>,
-          public ILinksTreeMethods<TLink>,
+          //public Trees::SizeBalancedTreeMethods<Self, TLinkAddress>,
+          public Trees::RecursionlessSizeBalancedTreeMethods<Self, TLinkAddress>,
+          public ILinksTreeMethods<TLinkAddress>,
           public Interfaces::Polymorph<Self>
     {
 
-        public: using methods = Trees::RecursionlessSizeBalancedTreeMethods<Self, TLink>;
+        public: using methods = Trees::RecursionlessSizeBalancedTreeMethods<Self, TLinkAddress>;
 
-        public: TLink Break = 0;
-        public: TLink Continue = 0;
+        public: TLinkAddress Break = 0;
+        public: TLinkAddress Continue = 0;
         public: std::byte* const Links;
         public: std::byte* const Header;
 
-        public: LinksSizeBalancedTreeMethodsBase(const LinksConstants<TLink>& constants, std::byte* storage, std::byte* header)
+        public: LinksSizeBalancedTreeMethodsBase(const LinksConstants<TLinkAddress>& constants, std::byte* storage, std::byte* header)
             : Links(storage), Header(header), Break(constants.Break), Continue(constants.Continue) {}
 
-        public: TLink GetTreeRoot() { return this->object().GetTreeRoot(); }
+        public: TLinkAddress GetTreeRoot() { return this->object().GetTreeRoot(); }
 
-        public: TLink GetBasePartValue(TLink link) { return this->object().GetBasePartValue(link); }
+        public: TLinkAddress GetBasePartValue(TLinkAddress link) { return this->object().GetBasePartValue(link); }
 
-        public: bool FirstIsToTheRightOfSecond(TLink source, TLink target, TLink rootSource, TLink rootTarget) { return this->object().FirstIsToTheRightOfSecond(source, target, rootSource, rootTarget); }
+        public: bool FirstIsToTheRightOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget) { return this->object().FirstIsToTheRightOfSecond(source, target, rootSource, rootTarget); }
 
-        public: bool FirstIsToTheLeftOfSecond(TLink source, TLink target, TLink rootSource, TLink rootTarget) { return this->object().FirstIsToTheLeftOfSecond(source, target, rootSource, rootTarget); }
+        public: bool FirstIsToTheLeftOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget) { return this->object().FirstIsToTheLeftOfSecond(source, target, rootSource, rootTarget); }
 
-        public: auto& GetHeaderReference() { return *reinterpret_cast<LinksHeader<TLink>*>(Header); }
+        public: auto& GetHeaderReference() { return *reinterpret_cast<LinksHeader<TLinkAddress>*>(Header); }
 
-        public: auto& GetLinkReference(TLink link) { return *(reinterpret_cast<RawLink<TLink>*>(Links) + link); }
+        public: auto& GetLinkReference(TLinkAddress link) { return *(reinterpret_cast<RawLink<TLinkAddress>*>(Links) + link); }
 
-        public: auto GetLinkValues(TLink linkIndex)
+        public: auto GetLinkValues(TLinkAddress linkIndex)
         {
             auto& link = GetLinkReference(linkIndex);
             return Link{linkIndex, link.Source, link.Target};
         }
 
-        public: bool FirstIsToTheLeftOfSecond(TLink first, TLink second)
+        public: bool FirstIsToTheLeftOfSecond(TLinkAddress first, TLinkAddress second)
         {
             auto& firstLink = this->GetLinkReference(first);
             auto& secondLink = this->GetLinkReference(second);
             return this->FirstIsToTheLeftOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
         }
 
-        public: bool FirstIsToTheRightOfSecond(TLink first, TLink second)
+        public: bool FirstIsToTheRightOfSecond(TLinkAddress first, TLinkAddress second)
         {
             auto& firstLink = this->GetLinkReference(first);
             auto& secondLink = this->GetLinkReference(second);
@@ -79,7 +79,7 @@
             return 0;
         }
 
-        public: TLink Search(TLink source, TLink target)
+        public: TLinkAddress Search(TLinkAddress source, TLinkAddress target)
         {
             auto root = this->GetTreeRoot();
             while (root != 0)
@@ -103,7 +103,7 @@
             return 0;
         }
 
-        public: TLink CountUsages(TLink link)
+        public: TLinkAddress CountUsages(TLinkAddress link)
         {
             auto root = this->GetTreeRoot();
             auto total = this->GetSize(root);
@@ -139,9 +139,9 @@
             return total - totalRightIgnore - totalLeftIgnore;
         }
 
-        public: TLink EachUsage(TLink base, auto&& handler) { return this->EachUsageCore(base, this->GetTreeRoot(), handler); }
+        public: TLinkAddress EachUsage(TLinkAddress base, auto&& handler) { return this->EachUsageCore(base, this->GetTreeRoot(), handler); }
 
-        private: TLink EachUsageCore(TLink base, TLink link, auto&& handler)
+        private: TLinkAddress EachUsageCore(TLinkAddress base, TLinkAddress link, auto&& handler)
         {
             auto $continue = Continue;
             if (link == 0)
