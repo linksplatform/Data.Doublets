@@ -70,7 +70,7 @@
         }
 
     public:
-        TLink Count(Interfaces::CArray auto&& restrictions) const
+        TLink Count(Interfaces::CArray<TLinkAddress> auto&& restrictions) const
         {
             if (std::ranges::size(restrictions)  == 0)
             {
@@ -179,7 +179,7 @@
         }
 
 
-        TLink Each(auto&& handler, Interfaces::CArray auto&& restrictions) const
+        TLink Each(auto&& handler, Interfaces::CArray<TLinkAddress> auto&& restrictions) const
         {
             auto constants = Constants;
             auto $break = constants.Break;
@@ -194,7 +194,7 @@
                 }
                 return $break;
             }
-            auto $continue = constants.Continue;
+            auto _continue = constants.Continue;
             auto any = constants.Any;
             auto index = restrictions[constants.IndexPart];
             if (std::ranges::size(restrictions) == 1)
@@ -205,7 +205,7 @@
                 }
                 if (!Exists(index))
                 {
-                    return $continue;
+                    return _continue;
                 }
                 return handler(GetLinkStruct(index));
             }
@@ -228,7 +228,7 @@
                 {
                     if (!Exists(index))
                     {
-                        return $continue;
+                        return _continue;
                     }
                     if (AreEqual(value, any))
                     {
@@ -239,7 +239,7 @@
                     {
                         return handler(GetLinkStruct(index));
                     }
-                    return $continue;
+                    return _continue;
                 }
             }
             if (std::ranges::size(restrictions) == 3)
@@ -263,14 +263,14 @@
                     else // if(source != Any && target != Any)
                     {
                         auto link = _SourcesTreeMethods->Search(source, target);
-                        return AreEqual(link, constants.Null) ? $continue : handler(GetLinkStruct(link));
+                        return AreEqual(link, constants.Null) ? _continue : handler(GetLinkStruct(link));
                     }
                 }
                 else
                 {
                     if (!Exists(index))
                     {
-                        return $continue;
+                        return _continue;
                     }
                     if (source == any && target == any)
                     {
@@ -285,7 +285,7 @@
                         {
                             return handler(GetLinkStruct(index));
                         }
-                        return $continue;
+                        return _continue;
                     }
                     auto value = TLink();
                     if (source == any)
@@ -300,7 +300,7 @@
                     {
                         return handler(GetLinkStruct(index));
                     }
-                    return $continue;
+                    return _continue;
                 }
             }
             NotSupportedException(/*"Другие размеры и способы ограничений не поддерживаются."*/);
@@ -311,7 +311,7 @@
         // / </remarks>
 // NOTE: The following .NET attribute has no direct equivalent in C++:
 // ORIGINAL LINE: [MethodImpl(MethodImplOptions.AggressiveInlining)] public TLink Update(IList<TLink> restrictions, IList<TLink> substitution)
-        TLink Update(Interfaces::CArray auto&& restrictions, Interfaces::CArray auto&& substitution)
+        TLink Update(Interfaces::CArray<TLinkAddress> auto&& restrictions, Interfaces::CArray<TLinkAddress> auto&& substitution)
         {
             auto constants = Constants;
             auto null = constants.Null;
