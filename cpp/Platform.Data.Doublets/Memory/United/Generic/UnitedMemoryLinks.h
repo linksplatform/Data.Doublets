@@ -2,30 +2,10 @@
 {
     using namespace Platform::Memory;
 
-    template<
-        typename TLink,
-        typename TMemory = FileMappedResizableDirectMemory,
-        typename TSourceTreeMethods = LinksSourcesSizeBalancedTreeMethods<TLink>,
-        typename TTargetTreeMethods = LinksTargetsSizeBalancedTreeMethods<TLink>,
-        typename TUnusedLinks = UnusedLinksListMethods<TLink>
-    >
+    template<typename TLink, typename TMemory = FileMappedResizableDirectMemory, typename TSourceTreeMethods = LinksSourcesSizeBalancedTreeMethods <TLink>, typename TTargetTreeMethods = LinksTargetsSizeBalancedTreeMethods <TLink>, typename TUnusedLinks = UnusedLinksListMethods <TLink> >
     class UnitedMemoryLinks
-        : public UnitedMemoryLinksBase<
-            UnitedMemoryLinks<
-                TLink,
-                TMemory,
-                TSourceTreeMethods,
-                TTargetTreeMethods,
-                TUnusedLinks
-            >, 
-            TLink,
-            TMemory,
-            TSourceTreeMethods,
-            TTargetTreeMethods,
-            TUnusedLinks
-        >,
-
-          public std::enable_shared_from_this<UnitedMemoryLinks<TLink>>
+            : public UnitedMemoryLinksBase<UnitedMemoryLinks<TLink, TMemory, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks>, TLink, TMemory, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks>,
+              public std::enable_shared_from_this<UnitedMemoryLinks<TLink>>
     {
         using base = UnitedMemoryLinksBase<
             UnitedMemoryLinks<
@@ -34,7 +14,7 @@
                 TSourceTreeMethods,
                 TTargetTreeMethods,
                 TUnusedLinks
-            >, 
+            >,
             TLink,
             TMemory,
             TSourceTreeMethods,
