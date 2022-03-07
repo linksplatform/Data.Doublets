@@ -11,7 +11,7 @@
         Expects(!Collections::IsWhiteSpace(tempFilePath));
         try
         {
-            Ffi::UnitedMemoryLinks<TLink> ffiStorage {tempFilePath };
+            Ffi::UnitedMemoryLinks<TLink> ffiStorage {tempFilePath};
             action(ffiStorage);
         }
         catch (...)
