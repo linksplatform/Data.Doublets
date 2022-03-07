@@ -5,7 +5,8 @@ namespace Platform::Data::Doublets
     {
         using namespace Platform::Random;
         using namespace Platform::Ranges;
-        
+        using namespace Platform::Interfaces;
+
         for (auto N = 1; N < maximumOperationsPerCycle; N++)
         {
             auto& randomGen64 = RandomHelpers::Default;
@@ -49,7 +50,7 @@ namespace Platform::Data::Doublets
     {
         auto constants = storage.Constants;
         auto _break = constants.Break;
-        TLinkAddress searchedLinkAddress;
+        TLinkAddress searchedLinkAddress {};
         storage.Each(std::array{storage.Constants.Any, source, target}, [&searchedLinkAddress, _break] (auto link) {
             searchedLinkAddress = link[0];
             return _break;
@@ -246,15 +247,21 @@ namespace Platform::Data::Doublets
     template<typename TLinkAddress>
     static TLinkAddress GetTarget(auto&& storage, Interfaces::CList auto&& link) { return link[storage.Constants.TargetPart]; }
 
-    //    template<typename TLinkAddress>
-    //    static auto&& All(auto&& storage, Interfaces::CList auto&& restriction)
-    //    {
-    //        using namespace Platform::Collections;
-    //        auto allLinks = std::vector<std::vector<TLinkAddress>>();
-    //        auto filler = Collections::ListFiller<IList<TLinkAddress>?, TLinkAddress>(allLinks, storage.Constants.Continue);
-    //        storage.Each(filler.AddAndReturnConstant, restriction);
-    //        return allLinks;
-    //    }
+        template<typename TLinkAddress>
+        static auto All(auto&& storage, std::convertible_to<TLinkAddress> auto ...restriction)
+        {
+            using namespace Platform::Collections;
+            using namespace Platform::Interfaces;
+            std::array<TLinkAddress, sizeof...(restriction)> restrictionArray {restriction...};
+            auto $continue {storage.Constants.Continue};
+            auto allLinks = std::vector<std::vector<TLinkAddress>>();
+            storage.Each(restrictionArray, [&allLinks, $continue](Interfaces::CArray auto&& link){
+                std::vector<TLinkAddress> linkVector {std::ranges::begin(link), std::ranges::end(link)};
+                allLinks.push_back(linkVector);
+                return $continue;
+            });
+            return allLinks;
+        }
     //
     //    static Interfaces::CList auto AllIndices<TLinkAddress>(auto&& storage, Interfaces::CList auto&& restriction)
     //    {
