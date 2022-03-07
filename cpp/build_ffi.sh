@@ -1,9 +1,7 @@
 #!/bin/bash
 
-# Install cargo
-curl https://sh.rustup.rs -sSf | sh
+# Install rustup, cargo
+rustup install nightly
 
-cd ../rust;
-cargo build --release;
-cd ffi;
-cargo build --release;
+cd ../rust/ffi;
+cargo +nightly build --release;
