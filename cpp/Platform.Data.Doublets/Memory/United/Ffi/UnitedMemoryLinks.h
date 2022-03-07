@@ -12,7 +12,6 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
     template<typename TReturn, typename Signature, typename ...TArgs>
     TReturn call_last_global(TArgs ...args) {
         decltype(auto) result = GLOBAL_FUNCTION<Signature>(args...);
-        GLOBAL_FUNCTION<Signature> = nullptr;
         return result;
     }
 
@@ -20,6 +19,12 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
     void set_global(std::function<Signature> function)
     {
         GLOBAL_FUNCTION<Signature> = std::move(function);
+    }
+
+    template<typename Signature>
+    auto get_global()
+    {
+        return GLOBAL_FUNCTION<Signature>;
     }
 
     template<typename TLinkAddress>
@@ -158,25 +163,23 @@ extern "C" {
 
         LinksConstants<TLinkAddress> Constants;
 
-        UnitedMemoryLinks(std::string_view path)
-                : _ptr(ByteUnitedMemoryLinks_New(path.data())),
-                  Constants(LinksConstants<TLinkAddress>(true))
+        UnitedMemoryLinks(std::string_view path) : Constants{LinksConstants<TLinkAddress>(true)}
       {
             if constexpr (std::same_as<TLinkAddress, std::uint8_t>)
             {
-                ByteUnitedMemoryLinks_New(path.data());
+                _ptr = ByteUnitedMemoryLinks_New(path.data());
             }
             else if constexpr (std::same_as<TLinkAddress, std::uint16_t>)
             {
-                UInt16UnitedMemoryLinks_New(path.data());
+                _ptr = UInt16UnitedMemoryLinks_New(path.data());
             }
             else if constexpr (std::same_as<TLinkAddress, std::uint32_t>)
             {
-                UInt32UnitedMemoryLinks_New(path.data());
+                _ptr = UInt32UnitedMemoryLinks_New(path.data());
             }
             else if constexpr (std::same_as<TLinkAddress, std::uint64_t>)
             {
-                UInt64UnitedMemoryLinks_New(path.data());
+                _ptr = UInt64UnitedMemoryLinks_New(path.data());
             }
             else
             {
@@ -216,11 +219,11 @@ extern "C" {
             }
         }
 
-        TLinkAddress Create(Interfaces::CArray auto&& substitution, auto&& handler)
+        TLinkAddress Create(Interfaces::CArray<TLinkAddress> auto&& substitution, auto&& handler)
         {
             auto substitutionLength = std::ranges::size(substitution);
             auto substitutionPtr = std::ranges::data(substitution);
-            auto callback = [&] (Link<TLinkAddress> before, Link<TLinkAddress> after) {
+            auto callback = [&] (Link<TLinkAddress> before, Link<TLinkAddress> after) -> TLinkAddress {
                 std::array beforeArray {before.Index, before.Source, before.Target};
                 std::array afterArray {after.Index, after.Source, after.Target};
                 return handler(beforeArray, afterArray);
@@ -249,7 +252,7 @@ extern "C" {
             }
         };
 
-        TLinkAddress Update(Interfaces::CArray auto&& restriction, Interfaces::CArray auto&& substitution, auto&& handler)
+        TLinkAddress Update(Interfaces::CArray<TLinkAddress> auto&& restriction, Interfaces::CArray<TLinkAddress> auto&& substitution, auto&& handler)
         {
             auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr { std::ranges::data(restriction) };
@@ -284,7 +287,7 @@ extern "C" {
             }
         }
 
-        TLinkAddress Delete(Interfaces::CArray auto&& restriction, auto&& handler)
+        TLinkAddress Delete(Interfaces::CArray<TLinkAddress> auto&& restriction, auto&& handler)
         {
             auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr = std::ranges::data(restriction);
@@ -317,7 +320,7 @@ extern "C" {
             }
         }
 
-        TLinkAddress Each(Interfaces::CArray auto&& restriction, auto&& handler) const
+        TLinkAddress Each(Interfaces::CArray<TLinkAddress> auto&& restriction, auto&& handler) const
         {
             using Signature = TLinkAddress(Link<TLinkAddress>);
             auto restrictionLength = std::ranges::size(restriction);
@@ -348,7 +351,7 @@ extern "C" {
             }
         }
 
-        TLinkAddress Count(Interfaces::CArray auto&& restriction) const
+        TLinkAddress Count(Interfaces::CArray<TLinkAddress> auto&& restriction) const
         {
             auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr = std::ranges::data(restriction);
