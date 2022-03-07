@@ -634,10 +634,10 @@ namespace Platform::Data::Doublets
     }
 
     template<typename TLinkAddress>
-    TLinkAddress CreatePoint(auto&& storage)
+    auto CreatePoint(auto&& storage)
     {
-        auto point = storage.Create();
-        return storage.Update(point, point, point);
+        auto point = Create<TLinkAddress>(storage);
+        return Update(storage, point, point, point);
     }
 
     template<typename TLinkAddress>
@@ -728,29 +728,46 @@ namespace Platform::Data::Doublets
     //    template<typename TLinkAddress>
     //    static void DeleteAllUsages(auto&& storage, TLinkAddress linkIndex) { storage.DeleteAllUsages(linkIndex, {}); }
     //
-    //    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
-    //    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
-    //    static TLinkAddress DeleteAllUsages(auto&& storage, TLinkAddress linkIndex, Handler handler)
-    //    {
-    //        auto constants = storage.Constants;
-    //        auto any = constants.Any;
-    //        auto usagesAsSourceQuery = Link<TLinkAddress>(any, linkIndex, any);
-    //        auto usagesAsTargetQuery = Link<TLinkAddress>(any, any, linkIndex);
-    //        auto usages = List<IList<TLinkAddress>?>();
-    //        auto usagesFiller = ListFiller<IList<TLinkAddress>?, TLinkAddress>(usages, constants.Continue);
-    //        storage.Each(usagesFiller.AddAndReturnConstant, usagesAsSourceQuery);
-    //        storage.Each(usagesFiller.AddAndReturnConstant, usagesAsTargetQuery);
-    //        WriteHandlerState<TLinkAddress> handlerState = new(constants.Continue, constants.Break, handler);
-    //        foreach (auto usage in usages)
-    //        {
-    //            if ( (linkIndex == storage.GetIndex(usage)) || (!storage.Exists(storage.GetIndex(usage))) )
-    //            {
-    //                continue;
-    //            }
-    //            handlerState.Apply(storage.Delete(storage.GetIndex(usage), handlerState.Handler));
-    //        }
-    //        return handlerState.Result;
-    //    }
+
+        template<typename TLinkAddress>
+        static TLinkAddress DeleteAllUsages(auto&& storage, TLinkAddress linkIndex, auto&& handler)
+        {
+            auto constants = storage.Constants;
+            auto any = constants.Any;
+            auto $continue = storage.Constants.Continue;
+            auto $break = storage.Constants.Break;
+            auto usagesAsSourceQuery = std::array(any, linkIndex, any);
+            auto usagesAsTargetQuery = std::array(any, any, linkIndex);
+            auto usages = std::vector<std::vector<TLinkAddress>>();
+            TLinkAddress result {};
+            storage.Each(usagesAsSourceQuery, [&usages, &handler, &result, $continue, $break](Interfaces::CArray auto&& link) {
+                usages.push_back(link);
+                result = handler(link);
+                if ($break == result)
+                {
+                    handler = [](Interfaces::CArray auto&& link){};
+                }
+                return result;
+            });
+            storage.Each(usagesAsTargetQuery, [&usages, &handler, &result, $continue, $break](auto&& link) {
+                usages.push_back(link);
+                result = handler(link);
+                if ($break == result)
+                {
+                    handler = [](Interfaces::CArray auto&& link){};
+                }
+                return result;
+            });
+            for (auto usage : usages)
+            {
+                if ( (linkIndex == storage.GetIndex(usage)) )
+                {
+                    continue;
+                }
+                storage.Delete(storage.GetIndex(usage), handler);
+            }
+            return result;
+        }
     //
     //    template<typename TLinkAddress>
     //    static void DeleteByQuery(auto&& storage, Link<TLinkAddress> query)
