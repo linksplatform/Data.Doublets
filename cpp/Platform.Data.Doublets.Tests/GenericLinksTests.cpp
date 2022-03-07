@@ -8,7 +8,7 @@
         using namespace Platform::Data::Doublets::Memory::United;
         using namespace Platform::Collections;
         HeapResizableDirectMemory memory {};
-        UnitedMemoryLinks<UnitedMemoryLinks<>, TLink, HeapResizableDirectMemory, LinksSourcesSizeBalancedTreeMethods<TLink>, LinksTargetsSizeBalancedTreeMethods<TLink>, UnusedLinksListMethods<TLink>> storage { memory };
+        UnitedMemoryLinks<TLink, HeapResizableDirectMemory> storage { memory };
         action(storage);
     }
     TEST(GenericLinksTests, CrudTest)
