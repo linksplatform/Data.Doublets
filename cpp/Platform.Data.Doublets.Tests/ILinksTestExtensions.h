@@ -197,29 +197,23 @@ namespace Platform::Data::Doublets::Tests
                     TLinkAddress source { Random::NextUInt64(randomGen64, linksAddressRange) };
                     TLinkAddress target { Random::NextUInt64(randomGen64, linksAddressRange) }; //-V3086
                     auto allLinks { All<TLinkAddress>(storage)};
-                    std::cout << "All links: " << std::endl;
                     for (auto link : allLinks)
                     {
                         Link<TLinkAddress> linkStruct {link[0], link[1], link[2]};
-                        std::cout << linkStruct.Index << " " << linkStruct.Source << " " << linkStruct.Target << std::endl;
                     }
-                    std::cout << "Create link from " << source << " to " << target << std::endl;
                     auto resultLink { GetOrCreate(storage, source, target) };
                     if (resultLink > linksCount)
                     {
-                        std::cout << "[GetOrCreate] Created: " << static_cast<uint64_t>(resultLink) << std::endl;
                         ++created;
                     }
                 }
                 else
                 {
                     auto createdLinkAddress = Create<TLinkAddress>(storage);
-                    std::cout << "[Create] Created: " << static_cast<uint64_t>(createdLinkAddress) << std::endl;
                     ++created;
                 }
             }
             auto allLinks { All<TLinkAddress>(storage)};
-            std::cout << "Count: " << static_cast<uint64_t>(Count<TLinkAddress>(storage)) << std::endl;
             Expects(Count<TLinkAddress>(storage) == created);
             for (auto i { 0 }; i < N; ++i)
             {

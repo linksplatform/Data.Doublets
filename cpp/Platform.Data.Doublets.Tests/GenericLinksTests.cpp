@@ -9,7 +9,6 @@
         using namespace Platform::Collections;
         std::string tempFilePath { std::tmpnam(nullptr) };
         Expects(!Collections::IsWhiteSpace(tempFilePath));
-        std::cout << "\n\ntempFilePath: " << tempFilePath << std::endl;
         try
         {
             Ffi::UnitedMemoryLinks<TLink> ffiStorage {tempFilePath };
