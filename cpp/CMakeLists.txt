@@ -23,8 +23,8 @@ target_link_libraries(${PROJECT_NAME}.Library INTERFACE CONAN_PKG::platform.thre
 target_link_libraries(${PROJECT_NAME}.Library INTERFACE CONAN_PKG::platform.memory)
 target_link_libraries(${PROJECT_NAME}.Library INTERFACE CONAN_PKG::platform.data)
 
-add_library(doublets_ffi SHARED IMPORTED)
-set_target_properties(doublets_ffi PROPERTIES IMPORTED_LOCATION /home/freephoenix888/Documents/Programming/LinksPlatform/Data.Doublets/rust/ffi/target/release/libdoublets_ffi.a)
+add_library(doublets_ffi STATIC IMPORTED)
+set_target_properties(doublets_ffi PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_LIST_DIR}/rust/ffi/target/release/libdoublets_ffi.a)
 target_link_libraries(doublets_ffi INTERFACE ${CMAKE_DL_LIBS})
 target_link_libraries(${PROJECT_NAME}.Library INTERFACE doublets_ffi)
 
