@@ -15,7 +15,7 @@ use crate::mem::resizeable_base::ResizeableBase;
 pub struct FileMappedMem {
     base: ResizeableBase,
     pub(in crate::mem) file: File,
-    mapping: ManuallyDrop<MmapMut>, // TODO: `MaybeUninit`
+    mapping: MaybeUn<MmapMut>, // TODO: `MaybeUninit`
 }
 
 impl FileMappedMem {
@@ -61,6 +61,7 @@ impl FileMappedMem {
     }
 
     unsafe fn unmap(&mut self) {
+        // TODO: WARNING! self.mapping must be initialized
         ManuallyDrop::drop(&mut self.mapping)
     }
 }
