@@ -173,7 +173,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
         static constexpr bool value = false;
     };
 
-    template<typename TSelf, typename TLinkAddress, const LinksConstants<TLinkAddress> VConstants, typename... TBase>
+    template<typename TSelf, typename TLinkAddress,LinksConstants<TLinkAddress> VConstants, typename... TBase>
     class UnitedMemoryLinksBase : public Interfaces::Polymorph<TSelf, TBase...>
     {
     private:
