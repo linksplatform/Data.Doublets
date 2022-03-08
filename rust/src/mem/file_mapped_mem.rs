@@ -54,14 +54,14 @@ impl FileMappedMem {
         Self::reserve_new(path, ResizeableBase::MINIMUM_CAPACITY)
     }
 
-    fn map(&mut self, capacity: usize) -> std::io::Result<NonNull<[u8]>> {
-        let mapping = unsafe { MmapOptions::new().len(capacity).map_mut(&self.file)? };
+    unsafe fn map(&mut self, capacity: usize) -> std::io::Result<NonNull<[u8]>> {
+        let mapping = MmapOptions::new().len(capacity).map_mut(&self.file)?;
         self.mapping = ManuallyDrop::new(mapping);
         Ok(NonNull::from(self.mapping.as_mut()))
     }
 
-    fn unmap(&mut self) {
-        unsafe { ManuallyDrop::drop(&mut self.mapping) }
+    unsafe fn unmap(&mut self) {
+        ManuallyDrop::drop(&mut self.mapping)
     }
 }
 
@@ -87,7 +87,9 @@ impl ResizeableMem for FileMappedMem {
     fn reserve_mem(&mut self, capacity: usize) -> std::io::Result<usize> {
         let reserved = self.base.reserve_mem(capacity)?;
 
-        self.unmap();
+        unsafe {
+            self.unmap();
+        }
         // TODO: file.set_len
         //  self.file.set_len(capacity as u64)?;
 
@@ -99,7 +101,7 @@ impl ResizeableMem for FileMappedMem {
         let file_len = self.file.metadata()?.len();
         self.file.set_len(file_len.max(capacity as u64))?;
 
-        let ptr = self.map(capacity)?;
+        let ptr = unsafe { self.map(capacity) }?;
         self.set_ptr(ptr);
 
         Ok(reserved)
