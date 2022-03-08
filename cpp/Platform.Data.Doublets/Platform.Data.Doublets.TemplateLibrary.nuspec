@@ -3,7 +3,7 @@
   <metadata>
     <id>Platform.Data.Doublets.TemplateLibrary</id>
     <title>LinksPlatform's Platform.Data.Doublets Template Library</title>
-    <summary>LinksPlatform's Platform.Data.Doublets is a Template Library what contains common concepts templates.</summary>
+    <summary>LinksPlatform's Platform.Data.Doublets is a Template Library what contains templates to implement Doublets links storage.</summary>
     <description>LinksPlatform's Platform.Data.Doublets is a Template Library what contains set of C++ templates. Use Platform.Data.Doublets.h file to include the library.</description>
     <releaseNotes>Initial release.</releaseNotes>
     <version>0.0.1</version>
