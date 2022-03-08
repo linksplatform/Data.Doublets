@@ -1,6 +1,11 @@
 #ifndef PLATFORM_DATA_DOUBLETS
 #define PLATFORM_DATA_DOUBLETS
 
+#include <cstdarg>
+#include <cstdint>
+#include <cstdlib>
+#include <ostream>
+#include <new>
 #include <map>
 #include <ranges>
 
@@ -28,6 +33,7 @@
 //#include "Memory/United/Generic/LinksSourcesSizeBalancedTreeMethods.h"
 //#include "Memory/United/Generic/UnitedMemoryLinksBase.h"
 //#include "Memory/United/Generic/UnitedMemoryLinks.h"
+#include "Memory/United/Ffi/UnitedMemoryLinksBase.h"
 #include "Memory/United/Ffi/UnitedMemoryLinks.h"
 
 #include "ILinksExtensions.h"
