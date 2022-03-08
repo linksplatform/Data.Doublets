@@ -9,20 +9,57 @@ on:
 env:
   NUGETTOKEN: ${{ secrets.NUGET_TOKEN }}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  SCRIPTS_BASE_URL: https://raw.githubusercontent.com/linksplatform/Scripts/a2a6ab3006039e34f34d5a8cd42b9ba0b1614e1a/MultiProjectRepository
-  CARGO_TERM_COLOR: always
-  RUSTFLAGS: -Awarnings
-
-  TRAVIS_REPO_NAME: Data.Doublets
-  SOURCE_BRANCH: master
-  LIB_PATH: rust/ffi/target/release
+  SCRIPTS_BASE_URL: https://raw.githubusercontent.com/linksplatform/Scripts/master/MultiProjectRepository
 
 jobs:
+  test_cpp:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          submodules: true
+
+      - name: Conan install
+        run: pip install conan
+
+      - name: Conan setup
+        run: |
+          conan profile new linksplatform --detect
+          conan profile update settings.compiler=clang linksplatform
+          conan profile update settings.compiler.version=13 linksplatform
+          conan profile update settings.compiler.libcxx=libstdc++11 linksplatform
+          conan profile update env.CXX=clang++ linksplatform
+          conan profile show linksplatform
+      - name: Conan install packages
+        run: |
+          git clone https://github.com/linksplatform/conan-center-index
+          cd conan-center-index && git checkout only-development && cd recipes
+          conan create platform.converters/all platform.converters/0.1.0@ -pr=linksplatform
+          conan create platform.interfaces/all platform.interfaces/0.1.4@ -pr=linksplatform
+          conan create platform.ranges/all platform.ranges/0.1.2@ -pr=linksplatform
+          conan create platform.random/all platform.random/0.1.0@ -pr=linksplatform
+          conan create platform.collections/all platform.collections/0.1.0@ -pr=linksplatform
+          conan create platform.collections.methods/all platform.collections.methods/0.1.0@ -pr=linksplatform
+          conan create platform.data/all platform.data/0.1.0@ -pr=linksplatform
+          conan create platform.memory/all platform.memory/0.1.0@ -pr=linksplatform
+          conan create platform.threading/all platform.threading/0.1.0@ -pr=linksplatform
+          conan create platform.setters/all platform.setters/0.0.1@ -pr=linksplatform
+      - name: Test C++ and scan-build
+        run: |
+          $CXX=clang++
+          $cmake_flags="-DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=clang++ -DLINKS_PLATFORM_TESTS=TRUE"
+          $cmake_build_dir="build"
+          cd cpp && mkdir $cmake_build_dir && cd $cmake_build_dir
+          conan install $pwd/.. -pr=linksplatform --build=missing
+          cmake .. $cmake_flags
+          cmake --build .
+          ls
+
   test_rust:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
+        os: [ macos-latest, windows-latest, ubuntu-latest ]
     steps:
       - uses: actions/checkout@v2
       - name: Rustup nightly
@@ -35,28 +72,28 @@ jobs:
         run: |
           cd rust
           cargo +nightly bench
-  publish_windows:
-    needs: [test_rust]
+  publish_rust_windows:
+    needs: [ test_rust ]
     if: github.event_name == 'push'
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Rustup nightly
-      run: |
-        rustup toolchain install nightly
-    - name: Build
-      run: |
-        cd rust/ffi
-        cargo +nightly build --release
-    - name: publish
-      shell: bash
-      run: |
-        export TARGET_PLATFORM="windows-x64"
-        export LIB_NAME="doublets_ffi.dll"
-        export TARGET_LIB_NAME="Platform.Doublets.dll"
-        ./publish-bin.sh
-  publish_linux:
-    needs: [test_rust]
+      - uses: actions/checkout@v2
+      - name: Rustup nightly
+        run: |
+          rustup toolchain install nightly
+      - name: Build
+        run: |
+          cd rust/ffi
+          cargo +nightly build --release
+      - name: publish
+        shell: bash
+        run: |
+          export TARGET_PLATFORM="windows-x64"
+          export LIB_NAME="doublets_ffi.dll"
+          export TARGET_LIB_NAME="Platform.Doublets.dll"
+          ./publish-bin.sh
+  publish_rust_linux:
+    needs: [ test_rust ]
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
@@ -74,8 +111,8 @@ jobs:
           export LIB_NAME="libdoublets_ffi.so"
           export TARGET_LIB_NAME="libPlatform.Doublets.so"
           bash ./publish-bin.sh
-  publish_macos:
-    needs: [test_rust]
+  publish_rust_macos:
+    needs: [ test_rust ]
     if: github.event_name == 'push'
     runs-on: macos-latest
     steps:
@@ -93,9 +130,9 @@ jobs:
           export LIB_NAME="libdoublets_ffi.dylib"
           export TARGET_LIB_NAME="libPlatform.Doublets.dylib"
           bash ./publish-bin.sh
-  publish_to_nuget:
+  publish_rust_to_nuget:
     runs-on: ubuntu-latest
-    needs: [publish_macos, publish_linux, publish_windows]
+    needs: [ publish_macos, publish_linux, publish_windows ]
     if: github.event_name == 'push'
     steps:
       - uses: actions/checkout@v2
@@ -122,10 +159,9 @@ jobs:
           echo "$CPP_PACKAGE_VERSION" > CPP_PACKAGE_VERSION.txt
 
           bash ./push-cpp-nuget.sh
-
   testAndDeploy:
     runs-on: ubuntu-latest
-    needs: [publish_to_nuget]
+    needs: [publish_rust_to_nuget]
     steps:
     - uses: actions/checkout@v1
       with:

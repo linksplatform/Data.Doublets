@@ -4,13 +4,13 @@
     {
         public: static readonly LinksConstants<std::uint64_t> Constants = Default<LinksConstants<std::uint64_t>>.Instance;
 
-        public: static bool AnyLinkIsAny(ILinks<std::uint64_t> &links, params std::uint64_t sequence[])
+        public: static bool AnyLinkIsAny(ILinks<std::uint64_t> &storage, params std::uint64_t sequence[])
         {
             if (sequence == nullptr)
             {
                 return false;
             }
-            auto constants = links.Constants;
+            auto constants = storage.Constants;
             for (auto i = 0; i < sequence.Length; i++)
             {
                 if (sequence[i] == constants.Any)
@@ -21,23 +21,23 @@
             return false;
         }
 
-        public: static std::string FormatStructure(ILinks<std::uint64_t> &links, std::uint64_t linkIndex, Func<Link<std::uint64_t>, bool> isElement, bool renderIndex = false, bool renderDebug = false)
+        public: static std::string FormatStructure(ILinks<std::uint64_t> &storage, std::uint64_t linkIndex, Func<Link<std::uint64_t>, bool> isElement, bool renderIndex = false, bool renderDebug = false)
         {
             std::string sb;
             auto visited = HashSet<std::uint64_t>();
-            links.AppendStructure(sb, visited, linkIndex, isElement, (innerSb, link) { return innerSb.Append(link.Index), renderIndex, renderDebug); }
+            storage.AppendStructure(sb, visited, linkIndex, isElement, (innerSb, link) { return innerSb.Append(link.Index), renderIndex, renderDebug); }
             return sb;
         }
 
-        public: static std::string FormatStructure(ILinks<std::uint64_t> &links, std::uint64_t linkIndex, Func<Link<std::uint64_t>, bool> isElement, Action<StringBuilder, Link<std::uint64_t>> appendElement, bool renderIndex = false, bool renderDebug = false)
+        public: static std::string FormatStructure(ILinks<std::uint64_t> &storage, std::uint64_t linkIndex, Func<Link<std::uint64_t>, bool> isElement, Action<StringBuilder, Link<std::uint64_t>> appendElement, bool renderIndex = false, bool renderDebug = false)
         {
             std::string sb;
             auto visited = HashSet<std::uint64_t>();
-            links.AppendStructure(sb, visited, linkIndex, isElement, appendElement, renderIndex, renderDebug);
+            storage.AppendStructure(sb, visited, linkIndex, isElement, appendElement, renderIndex, renderDebug);
             return sb;
         }
 
-        public: static void AppendStructure(ILinks<std::uint64_t> &links, std::string& sb, HashSet<std::uint64_t> visited, std::uint64_t linkIndex, Func<Link<std::uint64_t>, bool> isElement, Action<StringBuilder, Link<std::uint64_t>> appendElement, bool renderIndex = false, bool renderDebug = false)
+        public: static void AppendStructure(ILinks<std::uint64_t> &storage, std::string& sb, HashSet<std::uint64_t> visited, std::uint64_t linkIndex, Func<Link<std::uint64_t>, bool> isElement, Action<StringBuilder, Link<std::uint64_t>> appendElement, bool renderIndex = false, bool renderDebug = false)
         {
             if (sb == nullptr)
             {
@@ -47,12 +47,12 @@
             {
                 return;
             }
-            if (links.Exists(linkIndex))
+            if (storage.Exists(linkIndex))
             {
                 if (visited.Add(linkIndex))
                 {
                     sb.append(Platform::Converters::To<std::string>('('));
-                    auto link = Link<std::uint64_t>(links.GetLink(linkIndex));
+                    auto link = Link<std::uint64_t>(storage.GetLink(linkIndex));
                     if (renderIndex)
                     {
                         sb.append(Platform::Converters::To<std::string>(link.Index));
@@ -64,14 +64,14 @@
                     }
                     else
                     {
-                        auto source = Link<std::uint64_t>(links.GetLink(link.Source));
+                        auto source = Link<std::uint64_t>(storage.GetLink(link.Source));
                         if (isElement(source))
                         {
                             appendElement(sb, source);
                         }
                         else
                         {
-                            links.AppendStructure(sb, visited, source.Index, isElement, appendElement, renderIndex);
+                            storage.AppendStructure(sb, visited, source.Index, isElement, appendElement, renderIndex);
                         }
                     }
                     sb.append(Platform::Converters::To<std::string>(' '));
@@ -81,14 +81,14 @@
                     }
                     else
                     {
-                        auto target = Link<std::uint64_t>(links.GetLink(link.Target));
+                        auto target = Link<std::uint64_t>(storage.GetLink(link.Target));
                         if (isElement(target))
                         {
                             appendElement(sb, target);
                         }
                         else
                         {
-                            links.AppendStructure(sb, visited, target.Index, isElement, appendElement, renderIndex);
+                            storage.AppendStructure(sb, visited, target.Index, isElement, appendElement, renderIndex);
                         }
                     }
                     sb.append(Platform::Converters::To<std::string>('))');

@@ -17,9 +17,9 @@ namespace Platform::Data::Doublets::Memory::United::Generic
         protected: readonly std::uint8_t* Links;
         protected: readonly std::uint8_t* Header;
 
-        protected: LinksAvlBalancedTreeMethodsBase(LinksConstants<TLink> constants, std::uint8_t* links, std::uint8_t* header)
+        protected: LinksAvlBalancedTreeMethodsBase(LinksConstants<TLink> constants, std::uint8_t* storage, std::uint8_t* header)
         {
-            Links = links;
+            Links = storage;
             Header = header;
             Break = constants.Break;
             Continue = constants.Continue;
@@ -63,7 +63,6 @@ namespace Platform::Data::Doublets::Memory::United::Generic
 
         protected: virtual bool GetLeftIsChildValue(TLink value)
         {
-            unchecked
             {
                 return _addressToBoolConverter.Convert(Bit<TLink>.PartialRead(value, 4, 1));
             }
@@ -71,7 +70,6 @@ namespace Platform::Data::Doublets::Memory::United::Generic
 
         protected: virtual void SetLeftIsChildValue(TLink* storedValue, bool value)
         {
-            unchecked
             {
                 auto previousValue = *storedValue;
                 auto modified = Bit<TLink>.PartialWrite(previousValue, _boolToAddressConverter.Convert(value), 4, 1);
@@ -81,7 +79,6 @@ namespace Platform::Data::Doublets::Memory::United::Generic
 
         protected: virtual bool GetRightIsChildValue(TLink value)
         {
-            unchecked
             {
                 return _addressToBoolConverter.Convert(Bit<TLink>.PartialRead(value, 3, 1));
             }
@@ -89,7 +86,6 @@ namespace Platform::Data::Doublets::Memory::United::Generic
 
         protected: virtual void SetRightIsChildValue(TLink* storedValue, bool value)
         {
-            unchecked
             {
                 auto previousValue = *storedValue;
                 auto modified = Bit<TLink>.PartialWrite(previousValue, _boolToAddressConverter.Convert(value), 3, 1);
@@ -106,7 +102,6 @@ namespace Platform::Data::Doublets::Memory::United::Generic
 
         protected: virtual std::int8_t GetBalanceValue(TLink storedValue)
         {
-            unchecked
             {
                 auto value = _addressToInt32Converter.Convert(Bit<TLink>.PartialRead(storedValue, 0, 3));
                 value |= 0xF8 * ((value & 4) >> 2);
@@ -116,7 +111,6 @@ namespace Platform::Data::Doublets::Memory::United::Generic
 
         protected: virtual void SetBalanceValue(TLink* storedValue, std::int8_t value)
         {
-            unchecked
             {
                 auto packagedValue = _int32ToAddressConverter.Convert((std::uint8_t)value >> 5 & 4 | value & 3);
                 auto modified = Bit<TLink>.PartialWrite(*storedValue, packagedValue, 0, 3);

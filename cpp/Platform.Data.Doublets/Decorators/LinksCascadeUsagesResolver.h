@@ -3,9 +3,9 @@
     template <typename ...> class LinksCascadeUsagesResolver;
     template <typename TLink> class LinksCascadeUsagesResolver<TLink> : public LinksDecoratorBase<TLink>
     {
-        public: LinksCascadeUsagesResolver(ILinks<TLink> &links) : LinksDecoratorBase(links) { }
+        public: LinksCascadeUsagesResolver(ILinks<TLink> &storage) : LinksDecoratorBase(storage) { }
 
-        public: void Delete(IList<TLink> &restrictions) override
+        public: void Delete(CList auto&&restrictions) override
         {
             auto linkIndex = restrictions[_constants.IndexPart];
             _facade.DeleteAllUsages(linkIndex);

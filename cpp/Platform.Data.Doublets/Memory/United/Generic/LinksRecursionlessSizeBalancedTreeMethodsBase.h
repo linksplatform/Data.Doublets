@@ -13,9 +13,9 @@ namespace Platform::Data::Doublets::Memory::United::Generic
         protected: readonly std::uint8_t* Links;
         protected: readonly std::uint8_t* Header;
 
-        protected: LinksRecursionlessSizeBalancedTreeMethodsBase(LinksConstants<TLink> constants, std::uint8_t* links, std::uint8_t* header)
+        protected: LinksRecursionlessSizeBalancedTreeMethodsBase(LinksConstants<TLink> constants, std::uint8_t* storage, std::uint8_t* header)
         {
-            Links = links;
+            Links = storage;
             Header = header;
             Break = constants.Break;
             Continue = constants.Continue;

@@ -2,7 +2,7 @@
 {
     class UInt64Links : public LinksDisposableDecoratorBase<std::uint64_t>
     {
-        public: UInt64Links(ILinks<std::uint64_t> &links) : base(links) { }
+        public: UInt64Links(ILinks<std::uint64_t> &storage) : base(storage) { }
 
         public: std::uint64_t Create(IList<std::uint64_t> &restrictions) override { return _links.CreatePoint(); }
 
@@ -18,17 +18,17 @@
             auto updatedLink = restrictions[indexPartConstant];
             auto newSource = substitution[sourcePartConstant];
             auto newTarget = substitution[targetPartConstant];
-            auto links = _links;
+            auto storage = _links;
             if (newSource != itselfConstant && newTarget != itselfConstant)
             {
-                existedLink = links.SearchOrDefault(newSource, newTarget);
+                existedLink = storage.SearchOrDefault(newSource, newTarget);
             }
             if (existedLink == nullConstant)
             {
-                auto before = links.GetLink(updatedLink);
+                auto before = storage.GetLink(updatedLink);
                 if (before[sourcePartConstant] != newSource || before[targetPartConstant] != newTarget)
                 {
-                    links.Update(updatedLink, newSource == itselfConstant ? updatedLink : newSource,
+                    storage.Update(updatedLink, newSource == itselfConstant ? updatedLink : newSource,
                                               newTarget == itselfConstant ? updatedLink : newTarget);
                 }
                 return updatedLink;
@@ -42,10 +42,10 @@
         public: void Delete(IList<std::uint64_t> &restrictions) override
         {
             auto linkIndex = restrictions[_constants.IndexPart];
-            auto links = _links;
-            links.EnforceResetValues(linkIndex);
+            auto storage = _links;
+            storage.EnforceResetValues(linkIndex);
             _facade.DeleteAllUsages(linkIndex);
-            links.Delete(linkIndex);
+            storage.Delete(linkIndex);
         }
     };
 }

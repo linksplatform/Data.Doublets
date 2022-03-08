@@ -11,9 +11,9 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         private: readonly std::uint8_t* _links;
         private: readonly std::uint8_t* _header;
 
-        public: UnusedLinksListMethods(std::uint8_t* links, std::uint8_t* header)
+        public: UnusedLinksListMethods(std::uint8_t* storage, std::uint8_t* header)
         {
-            _links = links;
+            _links = storage;
             _header = header;
         }
 

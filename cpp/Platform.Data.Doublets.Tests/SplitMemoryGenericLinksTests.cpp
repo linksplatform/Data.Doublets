@@ -4,26 +4,26 @@
     {
         public: TEST_METHOD(CRUDTest)
         {
-            Using<std::uint8_t>(links => links.TestCRUDOperations());
-            Using<std::uint16_t>(links => links.TestCRUDOperations());
-            Using<std::uint32_t>(links => links.TestCRUDOperations());
-            Using<std::uint64_t>(links => links.TestCRUDOperations());
+            Using<std::uint8_t>(storage => storage.TestCRUDOperations());
+            Using<std::uint16_t>(storage => storage.TestCRUDOperations());
+            Using<std::uint32_t>(storage => storage.TestCRUDOperations());
+            Using<std::uint64_t>(storage => storage.TestCRUDOperations());
         }
 
         public: TEST_METHOD(RawNumbersCRUDTest)
         {
-            UsingWithExternalReferences<std::uint8_t>(links => links.TestRawNumbersCRUDOperations());
-            UsingWithExternalReferences<std::uint16_t>(links => links.TestRawNumbersCRUDOperations());
-            UsingWithExternalReferences<std::uint32_t>(links => links.TestRawNumbersCRUDOperations());
-            UsingWithExternalReferences<std::uint64_t>(links => links.TestRawNumbersCRUDOperations());
+            UsingWithExternalReferences<std::uint8_t>(storage => storage.TestRawNumbersCRUDOperations());
+            UsingWithExternalReferences<std::uint16_t>(storage => storage.TestRawNumbersCRUDOperations());
+            UsingWithExternalReferences<std::uint32_t>(storage => storage.TestRawNumbersCRUDOperations());
+            UsingWithExternalReferences<std::uint64_t>(storage => storage.TestRawNumbersCRUDOperations());
         }
 
         public: TEST_METHOD(MultipleRandomCreationsAndDeletionsTest)
         {
-            Using<std::uint8_t>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(16));
-            Using<std::uint16_t>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
-            Using<std::uint32_t>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
-            Using<std::uint64_t>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
+            Using<std::uint8_t>(storage => storage.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(16));
+            Using<std::uint16_t>(storage => storage.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
+            Using<std::uint32_t>(storage => storage.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
+            Using<std::uint64_t>(storage => storage.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
         }
 
         private: template <typename TLink> static void Using(Action<ILinks<TLink>> action)

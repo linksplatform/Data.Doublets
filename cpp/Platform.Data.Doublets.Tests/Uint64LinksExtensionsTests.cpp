@@ -15,16 +15,16 @@ namespace Platform::Data::Doublets::Tests
         }
         public: TEST_METHOD(FormatStructureWithExternalReferenceTest)
         {
-            ILinks<TLink> links = CreateLinks();
+            ILinks<TLink> storage = CreateLinks();
             TLink zero = 0;
             auto one = zero + 1;
             auto markerIndex = one;
-            auto meaningRoot = links.GetOrCreate(markerIndex, markerIndex);
-            auto numberMarker = links.GetOrCreate(meaningRoot, markerIndex + 1);
+            auto meaningRoot = storage.GetOrCreate(markerIndex, markerIndex);
+            auto numberMarker = storage.GetOrCreate(meaningRoot, markerIndex + 1);
             AddressToRawNumberConverter<TLink> addressToNumberConverter = new();
             auto numberAddress = addressToNumberConverter.Convert(1);
-            auto numberLink = links.GetOrCreate(numberMarker, numberAddress);
-            auto linkNotation = links.FormatStructure(numberLink, link => link.IsFullPoint(), true);
+            auto numberLink = storage.GetOrCreate(numberMarker, numberAddress);
+            auto linkNotation = storage.FormatStructure(numberLink, link => link.IsFullPoint(), true);
             Assert::AreEqual("(3:(2:1 2) 18446744073709551615)", linkNotation);
         }
     };

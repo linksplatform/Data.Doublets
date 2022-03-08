@@ -3,16 +3,16 @@
     template <typename ...> class LinksUniquenessResolver;
     template <typename TLink> class LinksUniquenessResolver<TLink> : public LinksDecoratorBase<TLink>
     {
-        public: LinksUniquenessResolver(ILinks<TLink> &links) : LinksDecoratorBase(links) { }
+        public: LinksUniquenessResolver(ILinks<TLink> &storage) : LinksDecoratorBase(storage) { }
 
-        public: TLink Update(IList<TLink> &restrictions, IList<TLink> &substitution) override
+        public: TLink Update(CList auto&&restrictions, CList auto&&substitution) override
         {
             auto constants = _constants;
-            auto links = _links;
-            auto newLinkAddress = links.SearchOrDefault(substitution[constants.SourcePart], substitution[constants.TargetPart]);
+            auto storage = _links;
+            auto newLinkAddress = storage.SearchOrDefault(substitution[constants.SourcePart], substitution[constants.TargetPart]);
             if (newLinkAddress == 0)
             {
-                return links.Update(restrictions, substitution);
+                return storage.Update(restrictions, substitution);
             }
             return this->ResolveAddressChangeConflict(restrictions[constants.IndexPart], newLinkAddress);
         }
