@@ -36,8 +36,8 @@
         {
             using (auto scope = Scope<Types<HeapResizableDirectMemory, UnitedMemoryLinks<std::uint64_t>>>())
             {
-                auto links = scope.Use<ILinks<std::uint64_t>>();
-                Assert.IsType<UnitedMemoryLinks<std::uint64_t>>(links);
+                auto storage = scope.Use<ILinks<std::uint64_t>>();
+                Assert.IsType<UnitedMemoryLinks<std::uint64_t>>(storage);
             }
         }
     };

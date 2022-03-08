@@ -11,14 +11,14 @@
 
         public: const ILinks<TLinkAddress> *Unsync;
 
-        public: SynchronizedLinks(ILinks<TLinkAddress> &links) : this(ReaderWriterLockSynchronization(), links) { }
+        public: SynchronizedLinks(ILinks<TLinkAddress> &storage) : this(ReaderWriterLockSynchronization(), storage) { }
 
-        public: SynchronizedLinks(ISynchronization &synchronization, ILinks<TLinkAddress> &links)
+        public: SynchronizedLinks(ISynchronization &synchronization, ILinks<TLinkAddress> &storage)
         {
             SyncRoot = synchronization;
             Sync = this;
-            Unsync = links;
-            Constants = links.Constants;
+            Unsync = storage;
+            Constants = storage.Constants;
         }
 
         public: TLinkAddress Count(IList<TLinkAddress> &restriction) { return SyncRoot.ExecuteReadOperation(restriction, Unsync.Count()); }

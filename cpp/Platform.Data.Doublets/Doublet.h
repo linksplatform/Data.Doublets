@@ -1,36 +1,32 @@
 ﻿namespace Platform::Data::Doublets
 {
-    template <typename ...> struct Doublet;
-    template <typename T> struct Doublet<T>
+    // todo! use link concept
+    template<typename T>
+    struct Doublet
     {
         public: T Source = 0;
 
         public: T Target = 0;
 
-        public: Doublet(T source, T target)
-        {
-            Source = source;
-            Target = target;
-        }
+        public: Doublet(T source = 0, T target = 0)
+            : Source(source), Target(target) {}
 
-        public: operator std::string() const { return std::string("").append(Platform::Converters::To<std::string>(Source)).append("->").append(Platform::Converters::To<std::string>(Target)).append(""); }
+        public: explicit operator std::string() const { return std::string("").append(Platform::Converters::To<std::string>(Source)).append("->").append(Platform::Converters::To<std::string>(Target)); }
 
-        public: friend std::ostream & operator <<(std::ostream &out, const Doublet<T> &obj) { return out << (std::string)obj; }
+        public: friend std::ostream& operator<<(std::ostream& stream, const Doublet<T>& self) { return stream << static_cast<std::string>(self); }
 
-        public: bool operator ==(const Doublet<T> &other) const { return Source == other.Source && Target == other.Target; }
-
-        public: bool Equals(void *obj) override { return obj is Doublet<T> doublet ? base.Equals(doublet) : false; }
+        public: bool operator==(const Doublet<T> &other) const = default;
     };
+
+    template<typename... Args>
+    Doublet(Args...) -> Doublet<std::common_type_t<Args...>>;
 }
 
-namespace std
+template<typename T>
+struct std::hash<Platform::Data::Doublets::Doublet<T>>
 {
-    template <typename T>
-    struct hash<Platform::Data::Doublets::Doublet<T>>
+    std::size_t operator()(const Platform::Data::Doublets::Doublet<T>& self) const
     {
-        std::size_t operator()(const Platform::Data::Doublets::Doublet<T> &obj) const
-        {
-            return Platform::Hashing::Hash(obj.Source, obj.Target);
-        }
-    };
-}
+        return Platform::Hashing::Hash(self.Source, self.Target);
+    }
+};

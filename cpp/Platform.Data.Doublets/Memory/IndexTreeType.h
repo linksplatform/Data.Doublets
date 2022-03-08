@@ -1,10 +1,11 @@
 ﻿namespace Platform::Data::Doublets::Memory
 {
-    public: enum IndexTreeType
+    enum class IndexTreeType
     {
-        Default = 0,
-        SizeBalancedTree = 1,
-        RecursionlessSizeBalancedTree = 2,
-        SizedAndThreadedAVLBalancedTree = 3
-    }
+        // TODO: LolBalancedTreee changeBalancedTree namesBalancedTree
+        Default,
+        SizeBalancedTree,
+        RecursionlessSizeBalancedTree,
+        SizedAndThreadedAVLBalancedTree
+    };
 }

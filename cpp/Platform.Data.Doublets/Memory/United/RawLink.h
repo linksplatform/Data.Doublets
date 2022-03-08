@@ -1,29 +1,46 @@
 ﻿namespace Platform::Data::Doublets::Memory::United
 {
-    template <typename ...> struct RawLink;
-    template <typename TLink> struct RawLink<TLink>
+    template<typename TLink>
+    struct RawLink
     {
-        public: inline static const std::int64_t SizeInBytes = Structure<RawLink<TLink>>.Size;
+        TLink Source;
 
-        public: TLink Source = 0;
-        public: TLink Target = 0;
-        public: TLink LeftAsSource = 0;
-        public: TLink RightAsSource = 0;
-        public: TLink SizeAsSource = 0;
-        public: TLink LeftAsTarget = 0;
-        public: TLink RightAsTarget = 0;
-        public: TLink SizeAsTarget = 0;
+        TLink Target;
 
-        public: bool Equals(RawLink<TLink> other)
-            => Source == other.Source
-            && Target == other.Target
-            && LeftAsSource == other.LeftAsSource
-            && RightAsSource == other.RightAsSource
-            && SizeAsSource == other.SizeAsSource
-            && LeftAsTarget == other.LeftAsTarget
-            && RightAsTarget == other.RightAsTarget
-            && SizeAsTarget == other.SizeAsTarget;
+        TLink LeftAsSource;
 
-        public: override std::int32_t GetHashCode() { return Platform::Hashing::Hash(Source, Target, LeftAsSource, RightAsSource, SizeAsSource, LeftAsTarget, RightAsTarget, SizeAsTarget); }
+        TLink RightAsSource;
+
+        TLink SizeAsSource;
+
+        TLink LeftAsTarget;
+
+        TLink RightAsTarget;
+
+        TLink SizeAsTarget;
+
+        constexpr bool operator==(const RawLink&) const noexcept = default;
     };
 }
+
+
+template<typename TLink>
+struct std::hash<Platform::Data::Doublets::Memory::United::RawLink<TLink>>
+{
+    using Self = Platform::Data::Doublets::Memory::United::RawLink<TLink>;
+
+    auto operator()(const Self& self) const noexcept
+    {
+        using Platform::Hashing::Hash;
+        return Hash(
+            self.Source,
+            self.Target,
+            self.LeftAsSource,
+            self.RightAsSource,
+            self.SizeAsSource,
+            self.LeftAsTarget,
+            self.RightAsTarget,
+            self.SizeAsTarget
+        );
+    }
+};

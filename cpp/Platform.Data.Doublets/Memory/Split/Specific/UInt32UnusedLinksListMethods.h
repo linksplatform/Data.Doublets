@@ -9,10 +9,10 @@ namespace Platform::Data::Doublets::Memory::Split::Specific
         private: readonly RawLinkDataPart<TLink>* _links;
         private: readonly LinksHeader<TLink>* _header;
 
-        public: UInt32UnusedLinksListMethods(RawLinkDataPart<TLink>* links, LinksHeader<TLink>* header)
-            : base((std::uint8_t*)links, (std::uint8_t*)header)
+        public: UInt32UnusedLinksListMethods(RawLinkDataPart<TLink>* storage, LinksHeader<TLink>* header)
+            : base((std::uint8_t*)storage, (std::uint8_t*)header)
         {
-            _links = links;
+            _links = storage;
             _header = header;
         }
 

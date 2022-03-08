@@ -1,16 +1,14 @@
 ﻿namespace Platform::Data::Doublets::Tests
 {
-    TEST_CLASS(LinksConstantsTests)
+    using TLinkAddress = std::uint64_t;
+    TEST(LinksConstantsTests, ExternalReferencesTest)
     {
-        public: TEST_METHOD(ExternalReferencesTest)
-        {
-            LinksConstants<std::uint64_t> constants = LinksConstants<std::uint64_t>((1, std::numeric_limits<std::int64_t>::max()), (std::numeric_limits<std::int64_t>::max() + 1UL, std::numeric_limits<std::uint64_t>::max()));
-
-            auto minimum = Hybrid<std::uint64_t>(1, isExternal: true);
-            auto maximum = Hybrid<std::uint64_t>(std::numeric_limits<std::int64_t>::max(), isExternal: true);
-
-            Assert::IsTrue(constants.IsExternalReference(minimum));
-            Assert::IsTrue(constants.IsExternalReference(maximum));
-        }
+        Ranges::Range possibleInternalReferencesRange {1, std::numeric_limits<std::int64_t>::max()};
+        Ranges::Range possibleExternalReferencesRange {std::numeric_limits<std::int64_t>::max() + 1UL, std::numeric_limits<TLinkAddress>::max()};
+        LinksConstants<TLinkAddress> constants {possibleInternalReferencesRange, possibleExternalReferencesRange};
+        Hybrid<TLinkAddress> minimum {1, isExternal: true};
+        Hybrid<TLinkAddress> maximum {std::numeric_limits<TLinkAddress>::max(), isExternal: true};
+        Expects(constants.IsExternalReference(minimum))
+        Expects(constants.IsExternalReference(maximum));
     };
 }
