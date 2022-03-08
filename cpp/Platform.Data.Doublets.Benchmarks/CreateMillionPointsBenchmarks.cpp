@@ -11,7 +11,8 @@ namespace Platform::Data::Doublets::Benchmarks
         Expects(!Collections::IsWhiteSpace(tempFilePath));
         try
         {
-            Ffi::UnitedMemoryLinks<TLinkAddress> ffiStorage {tempFilePath};
+            constexpr LinksConstants<TLinkAddress> constants {true};
+            Ffi::UnitedMemoryLinks<TLinkAddress, constants> ffiStorage {tempFilePath};
             for (auto _ : state)
             {
                 for (std::size_t i = 0; i < state.range(0); ++i)
