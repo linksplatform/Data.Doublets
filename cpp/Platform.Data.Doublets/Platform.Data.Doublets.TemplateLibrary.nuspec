@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Platform.Data.Doublets.TemplateLibrary</id>
+    <title>LinksPlatform's Platform.Data.Doublets Template Library</title>
+    <summary>LinksPlatform's Platform.Data.Doublets is a Template Library what contains common concepts templates.</summary>
+    <description>LinksPlatform's Platform.Data.Doublets is a Template Library what contains set of C++ concepts templates. Use Platform.Data.Doublets.h file to include the library.</description>
+    <releaseNotes>Initial release.</releaseNotes>
+    <version>0.0.1</version>
+    <authors>konard, uselessgoddess, FreePhoenix888</authors>
+    <owners>konard, uselessgoddess, FreePhoenix888</owners>
+    <copyright>konard, uselessgoddess, FreePhoenix888</copyright>
+    <projectUrl>https://linksplatform.github.io/Data.Doublets</projectUrl>
+    <repository type="git" url="https://github.com/linksplatform/Data.Doublets" />
+    <icon>images/icon.png</icon>
+    <tags>C++ Native Data.Doublets</tags>
+    <license type="expression">LGPL-3.0</license>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <dependencies>
+      <group targetFramework="native"></group>
+    </dependencies>
+  </metadata>
+</package>
