@@ -1,5 +1,4 @@
-#ifndef DATA_DOUBLETS_FFI_H
-#define DATA_DOUBLETS_FFI_H
+#pragma once
 #include <stdarg.h>
 #include <stdbool.h>
 #include <stdint.h>
@@ -165,4 +164,3 @@ void setup_shared_logger(struct SharedLogger logger);
 
 void init_fmt_logger(void);
 
-#endif
