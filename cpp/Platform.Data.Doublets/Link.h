@@ -70,7 +70,7 @@
                     case _constants.TargetPart:
                         return Target;
                     default:
-                        Expects(index > 0 && index < Length - 1);
+                        throw std::out_of_range("Link index out of range");
                 }
             }
 
