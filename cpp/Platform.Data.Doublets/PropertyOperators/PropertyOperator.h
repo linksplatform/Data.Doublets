@@ -6,7 +6,7 @@
         private: TLink _propertyMarker = 0;
         private: TLink _propertyValueMarker = 0;
 
-        public: PropertyOperator(ILinks<TLink> &links, TLink propertyMarker, TLink propertyValueMarker) : base(links)
+        public: PropertyOperator(ILinks<TLink> &storage, TLink propertyMarker, TLink propertyValueMarker) : base(storage)
         {
             _propertyMarker = propertyMarker;
             _propertyValueMarker = propertyValueMarker;
@@ -25,19 +25,19 @@
             {
                 return valueContainer;
             }
-            auto links = _links;
-            auto constants = links.Constants;
+            auto storage = _links;
+            auto constants = storage.Constants;
             auto countinueConstant = constants.Continue;
             auto breakConstant = constants.Break;
             auto anyConstant = constants.Any;
             auto query = Link<TLink>(anyConstant, property, anyConstant);
-            links.Each(candidate =>
+            storage.Each(candidate =>
             {
-                auto candidateTarget = links.GetTarget(candidate);
-                auto valueTarget = links.GetTarget(candidateTarget);
+                auto candidateTarget = storage.GetTarget(candidate);
+                auto valueTarget = storage.GetTarget(candidateTarget);
                 if (valueTarget == _propertyValueMarker)
                 {
-                    valueContainer = links.GetIndex(candidate);
+                    valueContainer = storage.GetIndex(candidate);
                     return breakConstant;
                 }
                 return countinueConstant;
@@ -49,16 +49,16 @@
 
         public: void Set(TLink link, TLink value)
         {
-            auto links = _links;
-            auto property = links.GetOrCreate(link, _propertyMarker);
+            auto storage = _links;
+            auto property = storage.GetOrCreate(link, _propertyMarker);
             auto container = this->GetContainer(property);
             if (container == 0)
             {
-                links.GetOrCreate(property, value);
+                storage.GetOrCreate(property, value);
             }
             else
             {
-                links.Update(container, property, value);
+                storage.Update(container, property, value);
             }
         }
     };

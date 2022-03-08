@@ -2,10 +2,10 @@
 {
     class StackExtensions
     {
-        public: template <typename TLink> static TLink CreateStack(ILinks<TLink> &links, TLink stackMarker)
+        public: template <typename TLink> static TLink CreateStack(ILinks<TLink> &storage, TLink stackMarker)
         {
-            auto stackPoint = links.CreatePoint();
-            auto stack = links.Update(stackPoint, stackMarker, stackPoint);
+            auto stackPoint = storage.CreatePoint();
+            auto stack = storage.Update(stackPoint, stackMarker, stackPoint);
             return stack;
         }
     };

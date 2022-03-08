@@ -345,3 +345,11 @@ org.kde.konsole.desktop
 *-swp
 *.kate-swp
 .swp.*
+
+# CMake
+**/cmake-build-*/**
+
+# Rust
+Cargo.lock
+target
+

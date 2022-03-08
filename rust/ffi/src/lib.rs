@@ -175,7 +175,7 @@ impl<T: LinkType> From<DLink<T>> for Link<T> {
     types = "u32",
     types = "u64",
     convention = "csharp",
-    name = "*UnitedMemoryLinks_New"
+    name = "*Links_New"
 )]
 fn new_united_links<T: LinkType>(path: *const c_char) -> *mut c_void {
     new_with_constants_united_links::<T>(path, LinksConstants::external().into())
@@ -187,7 +187,7 @@ fn new_united_links<T: LinkType>(path: *const c_char) -> *mut c_void {
     types = "u32",
     types = "u64",
     convention = "csharp",
-    name = "*UnitedMemoryLinks_NewWithConstants"
+    name = "*Links_NewWithConstants"
 )]
 fn new_with_constants_united_links<T: LinkType>(
     path: *const c_char,
@@ -212,7 +212,7 @@ fn new_with_constants_united_links<T: LinkType>(
     types = "u32",
     types = "u64",
     convention = "csharp",
-    name = "*UnitedMemoryLinks_Drop"
+    name = "*Links_Drop"
 )]
 unsafe fn drop_united_links<T: LinkType>(this: *mut c_void) {
     let links: &mut WrappedLinks<T> = unnul_or_error(this);
@@ -227,7 +227,7 @@ unsafe fn drop_united_links<T: LinkType>(this: *mut c_void) {
     types = "u32",
     types = "u64",
     convention = "csharp",
-    name = "*UnitedMemoryLinks_GetConstants"
+    name = "*Links_GetConstants"
 )]
 unsafe fn get_constants_united_links<T: LinkType>(this: *mut c_void) -> Constants<T> {
     let links: &mut WrappedLinks<T> = unnul_or_error(this);
@@ -240,7 +240,7 @@ unsafe fn get_constants_united_links<T: LinkType>(this: *mut c_void) -> Constant
     types = "u32",
     types = "u64",
     convention = "csharp",
-    name = "*UnitedMemoryLinks_Create"
+    name = "*Links_Create"
 )]
 fn create_united<T: LinkType>(
     this: *mut c_void,
@@ -280,7 +280,7 @@ fn create_united<T: LinkType>(
     types = "u32",
     types = "u64",
     convention = "csharp",
-    name = "*UnitedMemoryLinks_Each"
+    name = "*Links_Each"
 )]
 fn each_united<T: LinkType>(
     this: *mut c_void,
@@ -300,7 +300,7 @@ fn each_united<T: LinkType>(
     types = "u32",
     types = "u64",
     convention = "csharp",
-    name = "*UnitedMemoryLinks_Count"
+    name = "*Links_Count"
 )]
 unsafe fn count_united<T: LinkType>(this: *mut c_void, query: *const T, len: usize) -> T {
     let links: &mut WrappedLinks<T> = unnul_or_error(this);
@@ -314,7 +314,7 @@ unsafe fn count_united<T: LinkType>(this: *mut c_void, query: *const T, len: usi
     types = "u32",
     types = "u64",
     convention = "csharp",
-    name = "*UnitedMemoryLinks_Update"
+    name = "*Links_Update"
 )]
 unsafe fn update_united<T: LinkType>(
     this: *mut c_void,
@@ -357,7 +357,7 @@ unsafe fn update_united<T: LinkType>(
     types = "u32",
     types = "u64",
     convention = "csharp",
-    name = "*UnitedMemoryLinks_Delete"
+    name = "*Links_Delete"
 )]
 unsafe fn delete_united<T: LinkType>(
     this: *mut c_void,

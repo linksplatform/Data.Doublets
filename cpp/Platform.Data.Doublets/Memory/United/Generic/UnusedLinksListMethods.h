@@ -1,44 +1,83 @@
-﻿
-
-using static System::Runtime::CompilerServices::Unsafe;
-
-namespace Platform::Data::Doublets::Memory::United::Generic
+﻿namespace Platform::Data::Doublets::Memory::United::Generic
 {
-    public unsafe class UnusedLinksListMethods<TLink> : public AbsoluteCircularDoublyLinkedListMethods<TLink>, ILinksListMethods<TLink>
+    using namespace Platform::Collections::Methods::Lists;
+
+    template<typename TLink>
+    class UnusedLinksListMethods
+        : public AbsoluteCircularDoublyLinkedListMethods<UnusedLinksListMethods<TLink>, TLink>,
+          public ILinksListMethods<TLink>
     {
-        private: static readonly UncheckedConverter<TLink, std::int64_t> _addressToInt64Converter = UncheckedConverter<TLink, std::int64_t>.Default;
+        using base = AbsoluteCircularDoublyLinkedListMethods<UnusedLinksListMethods<TLink>, TLink>;
 
-        private: readonly std::uint8_t* _links;
-        private: readonly std::uint8_t* _header;
+        private: std::byte* _links;
 
-        public: UnusedLinksListMethods(std::uint8_t* links, std::uint8_t* header)
+        private: std::byte* _header;
+
+        public: UnusedLinksListMethods(std::byte* storage, std::byte* header)
+            : _links(storage), _header(header) {}
+
+        public: auto& GetHeaderReference()
         {
-            _links = links;
-            _header = header;
+            return *reinterpret_cast<LinksHeader<TLink>*>(_header);
         }
 
-        protected: virtual ref LinksHeader<TLink> GetHeaderReference() { return ref AsRef<LinksHeader<TLink>>(_header); }
+        public: auto& GetLinkReference(TLink linkIndex)
+        {
+            return *(reinterpret_cast<RawLink<TLink>*>(_links) + linkIndex);
+        }
 
-        protected: virtual ref RawLink<TLink> GetLinkReference(TLink link) { return ref AsRef<RawLink<TLink>>(_links + (RawLink<TLink>.SizeInBytes * _addressToInt64Converter.Convert(link))); }
+        public: TLink GetFirst()
+        {
+            return GetHeaderReference().FirstFreeLink;
+        }
 
-        protected: override TLink GetFirst() { return GetHeaderReference().FirstFreeLink; }
+        public: TLink GetLast()
+        {
+            return GetHeaderReference().LastFreeLink;
+        }
 
-        protected: override TLink GetLast() { return GetHeaderReference().LastFreeLink; }
+        public: TLink GetPrevious(TLink element)
+        {
+            return GetLinkReference(element).Source;
+        }
 
-        protected: TLink GetPrevious(TLink element) override { return this->GetLinkReference(element)->Source; }
+        public: TLink GetNext(TLink element)
+        {
+            return GetLinkReference(element).Target;
+        }
 
-        protected: TLink GetNext(TLink element) override { return this->GetLinkReference(element)->Target; }
+        public: TLink GetSize()
+        {
+            return GetHeaderReference().FreeLinks;
+        }
 
-        protected: override TLink GetSize() { return GetHeaderReference().FreeLinks; }
+        public: void SetFirst(TLink element)
+        {
+            GetHeaderReference().FirstFreeLink = element;
+        }
 
-        protected: void SetFirst(TLink element) override { this->GetHeaderReference().FirstFreeLink = element; }
+        public: void SetLast(TLink element)
+        {
+            GetHeaderReference().LastFreeLink = element;
+        }
 
-        protected: void SetLast(TLink element) override { this->GetHeaderReference().LastFreeLink = element; }
+        public: void SetPrevious(TLink element, TLink previous)
+        {
+            GetLinkReference(element).Source = previous;
+        }
 
-        protected: void SetPrevious(TLink element, TLink previous) override { this->GetLinkReference(element)->Source = previous; }
+        public: void SetNext(TLink element, TLink next)
+        {
+            GetLinkReference(element).Target = next;
+        }
 
-        protected: void SetNext(TLink element, TLink next) override { this->GetLinkReference(element)->Target = next; }
+        public: void SetSize(TLink size)
+        {
+            GetHeaderReference().FreeLinks = size;
+        }
 
-        protected: void SetSize(TLink size) override { this->GetHeaderReference().FreeLinks = size; }
+        public: void Detach(TLink link) override { base::Detach(link); }
+
+        public: void AttachAsFirst(TLink link) override { base::AttachAsFirst(link); }
     };
 }
