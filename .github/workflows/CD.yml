@@ -197,6 +197,18 @@ jobs:
         export REPOSITORY_NAME=$(basename ${{ github.repository }})
         wget "$SCRIPTS_BASE_URL/push-csharp-nuget.sh"
         bash ./push-csharp-nuget.sh
+    - name: Read Cpp package information
+      if: github.event_name == 'push'
+      run: |
+        export REPOSITORY_NAME=$(basename ${{ github.repository }})
+        wget "$SCRIPTS_BASE_URL/read_cpp_package_info.sh"
+        bash ./read_cpp_package_info.sh
+    - name: Publish Cpp NuGet package
+      if: github.event_name == 'push'
+      run: |
+        export REPOSITORY_NAME=$(basename ${{ github.repository }})
+        wget "$SCRIPTS_BASE_URL/push-cpp-nuget.sh"
+        bash ./push-cpp-nuget.sh
     - name: Publish release
       if: github.event_name == 'push'
       run: |
