@@ -2,7 +2,7 @@
 {
     public unsafe class LinksSourcesAvlBalancedTreeMethods<TLink> : public LinksAvlBalancedTreeMethodsBase<TLink>
     {
-        public: LinksSourcesAvlBalancedTreeMethods(LinksConstants<TLink> constants, std::uint8_t* links, std::uint8_t* header) : base(constants, links, header) { }
+        public: LinksSourcesAvlBalancedTreeMethods(LinksConstants<TLink> constants, std::uint8_t* storage, std::uint8_t* header) : base(constants, storage, header) { }
 
         protected: TLink* GetLeftReference(TLink node) override { return &GetLinkReference(node)->LeftAsSource; }
 

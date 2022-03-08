@@ -3,7 +3,7 @@
     template <typename ...> class LinksCascadeUniquenessAndUsagesResolver;
     template <typename TLink> class LinksCascadeUniquenessAndUsagesResolver<TLink> : public LinksUniquenessResolver<TLink>
     {
-        public: LinksCascadeUniquenessAndUsagesResolver(ILinks<TLink> &links) : LinksUniquenessResolver(links) { }
+        public: LinksCascadeUniquenessAndUsagesResolver(ILinks<TLink> &storage) : LinksUniquenessResolver(storage) { }
 
         protected: TLink ResolveAddressChangeConflict(TLink oldLinkAddress, TLink newLinkAddress) override
         {

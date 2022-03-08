@@ -119,8 +119,8 @@
         private: Transaction _currentTransaction = 0;
         private: std::uint64_t _lastCommitedTransactionId = 0;
 
-        public: UInt64LinksTransactionsLayer(ILinks<std::uint64_t> &links, std::string logAddress)
-            : base(links)
+        public: UInt64LinksTransactionsLayer(ILinks<std::uint64_t> &storage, std::string logAddress)
+            : base(storage)
         {
             if (std::string.IsNullOrWhiteSpace(logAddress))
             {

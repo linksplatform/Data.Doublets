@@ -282,7 +282,7 @@ impl<
                     return R::from_output(());
                 }
                 if (target, source) == (any, any) {
-                    return R::from_output(()); // TODO: get_total
+                    return handler(unsafe { self.get_link_unchecked(index) }); // TODO: add (x * *) search test
                 }
                 if target != any && source != any {
                     return if (source, target) == (link.source, link.target) {

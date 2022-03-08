@@ -48,7 +48,7 @@ impl<'a, I: SliceIndex<[T]>, T: LinkType> Index<I> for Query<'a, T> {
 }
 
 pub trait ToQuery<T: LinkType> {
-    fn to_query(&'a self) -> Query<'a, T>;
+    fn to_query(&self) -> Query<'_, T>;
 }
 
 impl<T: LinkType> ToQuery<T> for Query<'_, T> {
@@ -58,7 +58,7 @@ impl<T: LinkType> ToQuery<T> for Query<'_, T> {
 }
 
 impl<T: LinkType> ToQuery<T> for [T] {
-    fn to_query(&'a self) -> Query<'a, T> {
+    fn to_query(&self) -> Query<'_, T> {
         Query::new(self)
     }
 }

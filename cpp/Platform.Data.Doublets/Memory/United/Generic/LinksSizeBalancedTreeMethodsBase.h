@@ -10,7 +10,6 @@
           public ILinksTreeMethods<TLink>,
           public Interfaces::Polymorph<Self>
     {
-        using Interfaces::Polymorph<Self>::self;
 
         public: using methods = Trees::RecursionlessSizeBalancedTreeMethods<Self, TLink>;
 
@@ -19,16 +18,16 @@
         public: std::byte* const Links;
         public: std::byte* const Header;
 
-        public: LinksSizeBalancedTreeMethodsBase(const LinksConstants<TLink>& constants, std::byte* links, std::byte* header)
-            : Links(links), Header(header), Break(constants.Break), Continue(constants.Continue) {}
+        public: LinksSizeBalancedTreeMethodsBase(const LinksConstants<TLink>& constants, std::byte* storage, std::byte* header)
+            : Links(storage), Header(header), Break(constants.Break), Continue(constants.Continue) {}
 
-        public: TLink GetTreeRoot() { return self().GetTreeRoot(); }
+        public: TLink GetTreeRoot() { return this->object().GetTreeRoot(); }
 
-        public: TLink GetBasePartValue(TLink link) { return self().GetBasePartValue(link); }
+        public: TLink GetBasePartValue(TLink link) { return this->object().GetBasePartValue(link); }
 
-        public: bool FirstIsToTheRightOfSecond(TLink source, TLink target, TLink rootSource, TLink rootTarget) { return self().FirstIsToTheRightOfSecond(source, target, rootSource, rootTarget); }
+        public: bool FirstIsToTheRightOfSecond(TLink source, TLink target, TLink rootSource, TLink rootTarget) { return this->object().FirstIsToTheRightOfSecond(source, target, rootSource, rootTarget); }
 
-        public: bool FirstIsToTheLeftOfSecond(TLink source, TLink target, TLink rootSource, TLink rootTarget) { return self().FirstIsToTheLeftOfSecond(source, target, rootSource, rootTarget); }
+        public: bool FirstIsToTheLeftOfSecond(TLink source, TLink target, TLink rootSource, TLink rootTarget) { return this->object().FirstIsToTheLeftOfSecond(source, target, rootSource, rootTarget); }
 
         public: auto& GetHeaderReference() { return *reinterpret_cast<LinksHeader<TLink>*>(Header); }
 

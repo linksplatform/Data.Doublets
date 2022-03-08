@@ -13,6 +13,7 @@ namespace Platform.Data.Doublets.Benchmarks
     [MemoryDiagnoser]
     public class MemoryBenchmarks
     {
+        private const int N = 1000;
         private static SplitMemoryLinks<uint> _splitMemory;
         private static ILinks<uint> _splitMemoryLinks;
         private static UnitedMemoryLinks<uint> _unitedMemory;
@@ -36,7 +37,7 @@ namespace Platform.Data.Doublets.Benchmarks
 
             File.Delete("db.links");
             _ffiUnitedMemory = new FFI.UnitedMemoryLinks<uint>("db.links");
-            _ffiUnitedMemoryLinks = _ffiUnitedMemory.DecorateWithAutomaticUniquenessAndUsagesResolution();
+            _ffiUnitedMemoryLinks = _ffiUnitedMemory;
 
             File.Delete("db.links1");
             _ffiUInt32UnitedMemory = new FFI.UInt32UnitedMemoryLinks("db.links1");
@@ -57,25 +58,25 @@ namespace Platform.Data.Doublets.Benchmarks
         [Benchmark]
         public void Split()
         {
-            _splitMemoryLinks.TestMultipleRandomCreationsAndDeletions(150);
+            _splitMemoryLinks.TestMultipleRandomCreationsAndDeletions(N);
         }
 
         [Benchmark]
         public void United()
         {
-            _unitedMemoryLinks.TestMultipleRandomCreationsAndDeletions(150);
+            _unitedMemoryLinks.TestMultipleRandomCreationsAndDeletions(N);
         }
 
         [Benchmark]
         public void FfiUnited()
         {
-            _ffiUnitedMemoryLinks.TestMultipleRandomCreationsAndDeletions(150);
+            _ffiUnitedMemoryLinks.TestMultipleRandomCreationsAndDeletions(N);
         }
 
         [Benchmark]
         public void FfiUInt32United()
         {
-            _ffiUInt32UnitedMemoryLinks.TestMultipleRandomCreationsAndDeletions(150);
+            _ffiUInt32UnitedMemoryLinks.TestMultipleRandomCreationsAndDeletions(N);
         }
     }
 }

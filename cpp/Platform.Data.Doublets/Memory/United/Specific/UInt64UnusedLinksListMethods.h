@@ -5,10 +5,10 @@
         private: readonly RawLink<std::uint64_t>* _links;
         private: readonly LinksHeader<std::uint64_t>* _header;
 
-        public: UInt64UnusedLinksListMethods(RawLink<std::uint64_t>* links, LinksHeader<std::uint64_t>* header)
-            : base((std::uint8_t*)links, (std::uint8_t*)header)
+        public: UInt64UnusedLinksListMethods(RawLink<std::uint64_t>* storage, LinksHeader<std::uint64_t>* header)
+            : base((std::uint8_t*)storage, (std::uint8_t*)header)
         {
-            _links = links;
+            _links = storage;
             _header = header;
         }
 

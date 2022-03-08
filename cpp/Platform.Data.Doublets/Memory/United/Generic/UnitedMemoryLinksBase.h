@@ -17,7 +17,6 @@
     {
     public:
         LinksConstants<TLink> Constants;
-        public: using Interfaces::Polymorph<Self>::self;
 
     public:
         static constexpr std::size_t LinkSizeInBytes = sizeof(RawLink<TLink>);
@@ -71,7 +70,7 @@
         }
 
     public:
-        TLink Count(Interfaces::IArray auto&& restrictions) const
+        TLink Count(Interfaces::CArray<TLinkAddress> auto&& restrictions) const
         {
             if (std::ranges::size(restrictions)  == 0)
             {
@@ -180,7 +179,7 @@
         }
 
 
-        TLink Each(auto&& handler, Interfaces::IArray auto&& restrictions) const
+        TLink Each(auto&& handler, Interfaces::CArray<TLinkAddress> auto&& restrictions) const
         {
             auto constants = Constants;
             auto $break = constants.Break;
@@ -195,7 +194,7 @@
                 }
                 return $break;
             }
-            auto $continue = constants.Continue;
+            auto _continue = constants.Continue;
             auto any = constants.Any;
             auto index = restrictions[constants.IndexPart];
             if (std::ranges::size(restrictions) == 1)
@@ -206,7 +205,7 @@
                 }
                 if (!Exists(index))
                 {
-                    return $continue;
+                    return _continue;
                 }
                 return handler(GetLinkStruct(index));
             }
@@ -229,7 +228,7 @@
                 {
                     if (!Exists(index))
                     {
-                        return $continue;
+                        return _continue;
                     }
                     if (AreEqual(value, any))
                     {
@@ -240,7 +239,7 @@
                     {
                         return handler(GetLinkStruct(index));
                     }
-                    return $continue;
+                    return _continue;
                 }
             }
             if (std::ranges::size(restrictions) == 3)
@@ -264,14 +263,14 @@
                     else // if(source != Any && target != Any)
                     {
                         auto link = _SourcesTreeMethods->Search(source, target);
-                        return AreEqual(link, constants.Null) ? $continue : handler(GetLinkStruct(link));
+                        return AreEqual(link, constants.Null) ? _continue : handler(GetLinkStruct(link));
                     }
                 }
                 else
                 {
                     if (!Exists(index))
                     {
-                        return $continue;
+                        return _continue;
                     }
                     if (source == any && target == any)
                     {
@@ -286,7 +285,7 @@
                         {
                             return handler(GetLinkStruct(index));
                         }
-                        return $continue;
+                        return _continue;
                     }
                     auto value = TLink();
                     if (source == any)
@@ -301,7 +300,7 @@
                     {
                         return handler(GetLinkStruct(index));
                     }
-                    return $continue;
+                    return _continue;
                 }
             }
             NotSupportedException(/*"Другие размеры и способы ограничений не поддерживаются."*/);
@@ -312,7 +311,7 @@
         // / </remarks>
 // NOTE: The following .NET attribute has no direct equivalent in C++:
 // ORIGINAL LINE: [MethodImpl(MethodImplOptions.AggressiveInlining)] public TLink Update(IList<TLink> restrictions, IList<TLink> substitution)
-        TLink Update(Interfaces::IArray auto&& restrictions, Interfaces::IArray auto&& substitution)
+        TLink Update(Interfaces::CArray<TLinkAddress> auto&& restrictions, Interfaces::CArray<TLinkAddress> auto&& substitution)
         {
             auto constants = Constants;
             auto null = constants.Null;
@@ -410,15 +409,15 @@
 
         // TODO: Возможно это должно быть событием, вызываемым из IMemory, в том случае, если адрес реально поменялся
         // 
-        // Указатель this.links может быть в том же месте, 
+        // Указатель this.storage может быть в том же месте,
         // так как 0-я связь не используется и имеет такой же размер как Header,
         // поэтому header размещается в том же месте, что и 0-я связь
     public:
-        void SetPointers(TMemory& memory) { self().SetPointers(memory); }
+        void SetPointers(TMemory& memory) { this->object().SetPointers(memory); }
 
-        protected: auto&& GetHeaderReference() const { return self().GetHeaderReference(); }
+        protected: auto&& GetHeaderReference() const { return this->object().GetHeaderReference(); }
 
-        protected: auto&& GetLinkReference(std::size_t index) const { return self().GetLinkReference(index); }
+        protected: auto&& GetLinkReference(std::size_t index) const { return this->object().GetLinkReference(index); }
 
         bool Exists(TLink link)
         {

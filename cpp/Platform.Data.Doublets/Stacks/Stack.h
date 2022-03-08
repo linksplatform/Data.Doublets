@@ -10,7 +10,7 @@
             return this->Peek() == _stack;
         }
 
-        public: Stack(ILinks<TLink> &links, TLink stack) : base(links) { return _stack = stack; }
+        public: Stack(ILinks<TLink> &storage, TLink stack) : base(storage) { return _stack = stack; }
 
         private: TLink GetStackMarker() { return _links.GetSource(_stack); }
 

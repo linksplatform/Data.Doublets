@@ -15,7 +15,7 @@
 
         protected: DisposableWithMultipleCallsAllowed Disposable = 0;
 
-        protected: LinksDisposableDecoratorBase(ILinks<TLink> &links) : base(links) { return Disposable = DisposableWithMultipleCallsAllowed(Dispose); }
+        protected: LinksDisposableDecoratorBase(ILinks<TLink> &storage) : base(storage) { return Disposable = DisposableWithMultipleCallsAllowed(Dispose); }
 
         ~LinksDisposableDecoratorBase() { Disposable.Destruct(); }
 

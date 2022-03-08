@@ -13,8 +13,8 @@
 
         private: std::byte* _header;
 
-        public: UnusedLinksListMethods(std::byte* links, std::byte* header)
-            : _links(links), _header(header) {}
+        public: UnusedLinksListMethods(std::byte* storage, std::byte* header)
+            : _links(storage), _header(header) {}
 
         public: auto& GetHeaderReference()
         {
