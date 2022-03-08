@@ -15,7 +15,7 @@
     <icon>images/icon.png</icon>
     <tags>C++ Native Data.Doublets</tags>
     <license type="expression">LGPL-3.0-only</license>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <dependencies>
       <group targetFramework="native"></group>
     </dependencies>
