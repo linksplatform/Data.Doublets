@@ -7,6 +7,7 @@
         typename TSelf,
         typename TLinkAddress,
         typename TMemory,
+        LinksConstants<TLinkAddress> VConstants,
         typename TSourceTreeMethods,
         typename TTargetTreeMethods,
         typename TUnusedLinks,
@@ -14,7 +15,7 @@
     class UnitedMemoryLinksBase : public Interfaces::Polymorph<TSelf, TBase...>
     {
     public:
-        LinksConstants<TLinkAddress> Constants;
+        static constexpr LinksConstants<TLinkAddress> Constants = VConstants;
 
     public:
         static constexpr std::size_t LinkSizeInBytes = sizeof(RawLink<TLinkAddress>);
