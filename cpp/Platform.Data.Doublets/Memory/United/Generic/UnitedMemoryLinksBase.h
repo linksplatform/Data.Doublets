@@ -179,7 +179,7 @@
         }
 
 
-        TLink Each(auto&& handler, Interfaces::CArray<TLinkAddress> auto&& restrictions) const
+        TLink Each(Interfaces::CArray<TLinkAddress> auto&& restrictions, auto&& handler) const
         {
             auto constants = Constants;
             auto $break = constants.Break;
