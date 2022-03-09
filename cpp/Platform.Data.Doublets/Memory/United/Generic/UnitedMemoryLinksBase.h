@@ -439,7 +439,7 @@
             if (GetHeaderReference().FirstFreeLink != linkIndex)// May be this check is not needed
             {
                 auto& link = GetLinkReference(linkIndex);
-                return (link.SizeAsSource == {}) && (link.Source != {});
+                return (link.SizeAsSource == TLinkAddress {}) && (link.Source != TLinkAddress {});
             }
             else
             {
