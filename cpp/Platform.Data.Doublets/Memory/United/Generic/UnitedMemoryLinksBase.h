@@ -78,7 +78,7 @@
                 {
                     return GetTotal();
                 }
-                return Exists(index) ? GetOne() : GetZero();
+                return Exists(index) ? TLinkAddress {1} : TLinkAddress {};
             }
             if (std::ranges::size(restrictions) == 2)
             {
@@ -95,18 +95,18 @@
                 {
                     if (!Exists(index))
                     {
-                        return GetZero();
+                        return TLinkAddress {};
                     }
                     if (value == any)
                     {
-                        return GetOne();
+                        return TLinkAddress {1};
                     }
                     auto& storedLinkValue = GetLinkReference(index);
                     if (storedLinkValue.Source == value || storedLinkValue.Target == value)
                     {
-                        return GetOne();
+                        return TLinkAddress {1};
                     }
-                    return GetZero();
+                    return TLinkAddress {};
                 }
             }
             if (std::ranges::size(restrictions) == 3)
@@ -130,27 +130,27 @@
                     else// if(source != Any && target != Any)
                     {
                         auto link = _SourcesTreeMethods->Search(source, target);
-                        return link == constants.Null ? GetZero() : GetOne();
+                        return link == constants.Null ? TLinkAddress {} : TLinkAddress {1};
                     }
                 }
                 else
                 {
                     if (!Exists(index))
                     {
-                        return GetZero();
+                        return TLinkAddress {};
                     }
                     if (source == any && target == any)
                     {
-                        return GetOne();
+                        return TLinkAddress {1};
                     }
                     auto& storedLinkValue = GetLinkReference(index);
                     if (!source == any && !target == any)
                     {
                         if ((storedLinkValue.Source == source) && (storedLinkValue.Target == target))
                         {
-                            return GetOne();
+                            return TLinkAddress {1};
                         }
-                        return GetZero();
+                        return TLinkAddress {};
                     }
                     auto value = TLinkAddress();
                     if (source == any)
@@ -163,9 +163,9 @@
                     }
                     if ((storedLinkValue.Source == value) || (storedLinkValue.Target == value))
                     {
-                        return GetOne();
+                        return TLinkAddress {1};
                     }
-                    return GetZero();
+                    return TLinkAddress {};
                 }
             }
             NotSupportedException(/*"Другие размеры и способы ограничений не поддерживаются."*/);
@@ -177,7 +177,7 @@
             auto $break = constants.Break;
             if (std::ranges::size(restrictions) == 0)
             {
-                for (auto link = GetOne(); link <= GetHeaderReference().AllocatedLinks; link = Increment(link))
+                for (auto link = TLinkAddress {1}; link <= GetHeaderReference().AllocatedLinks; link = Increment(link))
                 {
                     if (Exists(link) && (handler(GetLink(*this, link)) == $break))
                     {
@@ -386,7 +386,7 @@
             {
                 header.AllocatedLinks = Decrement(header.AllocatedLinks);
                 _memory.UsedCapacity(_memory.UsedCapacity() - LinkSizeInBytes);
-                while (GreaterThan(header.AllocatedLinks, GetZero()) && IsUnusedLink(header.AllocatedLinks))
+                while (GreaterThan(header.AllocatedLinks, TLinkAddress {}) && IsUnusedLink(header.AllocatedLinks))
                 {
                     _UnusedLinksListMethods->Detach(header.AllocatedLinks);
                     header.AllocatedLinks = Decrement(header.AllocatedLinks);
