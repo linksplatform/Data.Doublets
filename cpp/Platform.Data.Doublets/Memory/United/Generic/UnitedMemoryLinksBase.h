@@ -74,7 +74,7 @@
             auto index = restrictions[constants.IndexPart];
             if (std::ranges::size(restrictions) == 1)
             {
-                if (AreEqual(index, any))
+                if (index == any)
                 {
                     return GetTotal();
                 }
@@ -83,9 +83,9 @@
             if (std::ranges::size(restrictions) == 2)
             {
                 auto value = restrictions[1];
-                if (AreEqual(index, any))
+                if (index == any)
                 {
-                    if (AreEqual(value, any))
+                    if (value == any)
                     {
                         return GetTotal();// Any - как отсутствие ограничения
                     }
@@ -113,7 +113,7 @@
             {
                 auto source = restrictions[constants.SourcePart];
                 auto target = restrictions[constants.TargetPart];
-                if (AreEqual(index, any))
+                if (index == any)
                 {
                     if (source == any && target == any)
                     {
@@ -130,7 +130,7 @@
                     else// if(source != Any && target != Any)
                     {
                         auto link = _SourcesTreeMethods->Search(source, target);
-                        return AreEqual(link, constants.Null) ? GetZero() : GetOne();
+                        return link == constants.Null ? GetZero() : GetOne();
                     }
                 }
                 else
@@ -146,7 +146,7 @@
                     auto& storedLinkValue = GetLinkReference(index);
                     if (!source == any && !target == any)
                     {
-                        if (AreEqual(storedLinkValue.Source, source) && AreEqual(storedLinkValue.Target, target))
+                        if ((storedLinkValue.Source == source) && (storedLinkValue.Target == target))
                         {
                             return GetOne();
                         }
@@ -161,7 +161,7 @@
                     {
                         value = source;
                     }
-                    if (AreEqual(storedLinkValue.Source, value) || AreEqual(storedLinkValue.Target, value))
+                    if ((storedLinkValue.Source == value) || (storedLinkValue.Target == value))
                     {
                         return GetOne();
                     }
@@ -177,9 +177,9 @@
             auto $break = constants.Break;
             if (std::ranges::size(restrictions) == 0)
             {
-                for (auto link = GetOne(); LessOrEqualThan(link, GetHeaderReference().AllocatedLinks); link = Increment(link))
+                for (auto link = GetOne(); link <= GetHeaderReference().AllocatedLinks; link = Increment(link))
                 {
-                    if (Exists(link) && AreEqual(handler(GetLinkStruct(link)), $break))
+                    if (Exists(link) && (handler(GetLink(*this, link)) == $break))
                     {
                         return $break;
                     }
@@ -191,30 +191,30 @@
             auto index = restrictions[constants.IndexPart];
             if (std::ranges::size(restrictions) == 1)
             {
-                if (AreEqual(index, any))
+                if (index == any)
                 {
-                    return Each(handler, std::array<TLinkAddress, 0>{});
+                    return Data::Each<TLinkAddress>(*this, handler);
                 }
                 if (!Exists(index))
                 {
                     return _continue;
                 }
-                return handler(GetLinkStruct(index));
+                return handler(GetLink(*this, index));
             }
             if (std::ranges::size(restrictions) == 2)
             {
                 auto value = restrictions[1];
-                if (AreEqual(index, any))
+                if (index == any)
                 {
-                    if (AreEqual(value, any))
+                    if (value == any)
                     {
-                        return Each(handler, std::array<TLinkAddress, 0>{});
+                        return Data::Each<TLinkAddress>(*this, handler);
                     }
-                    if (AreEqual(Each(handler, Link<TLinkAddress>(index, value, any)), $break))
+                    if (Each(std::array{index, value, any}, handler) == $break)
                     {
                         return $break;
                     }
-                    return Each(handler, Link<TLinkAddress>(index, any, value));
+                    return Each(std::array{index, any, value}, handler);
                 }
                 else
                 {
@@ -222,14 +222,14 @@
                     {
                         return _continue;
                     }
-                    if (AreEqual(value, any))
+                    if (value == any)
                     {
-                        return handler(GetLinkStruct(index));
+                        return handler(GetLink(*this, index));
                     }
                     auto& storedLinkValue = GetLinkReference(index);
-                    if (AreEqual(storedLinkValue.Source, value) || AreEqual(storedLinkValue.Target, value))
+                    if ((storedLinkValue.Source == value) || (storedLinkValue.Target == value))
                     {
-                        return handler(GetLinkStruct(index));
+                        return handler(GetLink(*this, index));
                     }
                     return _continue;
                 }
@@ -238,11 +238,11 @@
             {
                 auto source = restrictions[constants.SourcePart];
                 auto target = restrictions[constants.TargetPart];
-                if (AreEqual(index, any))
+                if (index == any)
                 {
                     if (source == any && target == any)
                     {
-                        return Each(handler, std::array<TLinkAddress, 0>{});
+                        return Data::Each<TLinkAddress>(*this, handler);
                     }
                     else if (source == any)
                     {
@@ -255,7 +255,7 @@
                     else// if(source != Any && target != Any)
                     {
                         auto link = _SourcesTreeMethods->Search(source, target);
-                        return AreEqual(link, constants.Null) ? _continue : handler(GetLinkStruct(link));
+                        return (link == constants.Null) ? _continue : handler(GetLink(*this, link));
                     }
                 }
                 else
@@ -266,7 +266,7 @@
                     }
                     if (source == any && target == any)
                     {
-                        return handler(GetLinkStruct(index));
+                        return handler(GetLink(*this, index));
                     }
                     // TODO: 'ref locals' are not converted by C# to C++ Converter:
                     // ORIGINAL LINE: ref var storedLinkValue = ref GetLinkReference(index);
@@ -275,7 +275,7 @@
                     {
                         if (storedLinkValue.Source == source && storedLinkValue.Target == target)
                         {
-                            return handler(GetLinkStruct(index));
+                            return handler(GetLink(*this, index));
                         }
                         return _continue;
                     }
@@ -290,7 +290,7 @@
                     }
                     if (storedLinkValue.Source == value || storedLinkValue.Target == value)
                     {
-                        return handler(GetLinkStruct(index));
+                        return handler(GetLink(*this, index));
                     }
                     return _continue;
                 }
@@ -311,7 +311,7 @@
             // TODO: 'ref locals' are not converted by C# to C++ Converter:
             // ORIGINAL LINE: ref var link = ref GetLinkReference(linkIndex);
             auto& link = GetLinkReference(linkIndex);
-            auto before = link;
+            auto before = std::array{linkindex, link.Source, link.Target};
             // TODO: 'ref locals' are not converted by C# to C++ Converter:
             // ORIGINAL LINE: ref var header = ref GetHeaderReference();
             auto& header = GetHeaderReference();
@@ -322,25 +322,25 @@
             // ORIGINAL LINE: ref var firstAsTarget = ref header.RootAsTarget;
             auto& firstAsTarget = header.RootAsTarget;
             // Будет корректно работать только в том случае, если пространство выделенной связи предварительно заполнено нулями
-            if (!AreEqual(link.Source, null))
+            if (link.Source != null)
             {
                 _SourcesTreeMethods->Detach(firstAsSource, linkIndex);
             }
-            if (!AreEqual(link.Target, null))
+            if (link.Target != null)
             {
                 _TargetsTreeMethods->Detach(firstAsTarget, linkIndex);
             }
             link.Source = substitution[constants.SourcePart];
             link.Target = substitution[constants.TargetPart];
-            if (!AreEqual(link.Source, null))
+            if (link.Source != null)
             {
                 _SourcesTreeMethods->Attach(firstAsSource, linkIndex);
             }
-            if (!AreEqual(link.Target, null))
+            if (link.Target != null)
             {
                 _TargetsTreeMethods->Attach(firstAsTarget, linkIndex);
             }
-            return handler(before, std::array{link.Index, link.Source, link.Target});
+            return handler(before, std::array{linkIndex, link.Source, link.Target});
         }
 
         // TODO: Возможно нужно будет заполнение нулями, если внешнее API ими не заполняет пространство
@@ -348,7 +348,7 @@
         {
             auto& header = GetHeaderReference();
             auto freeLink = header.FirstFreeLink;
-            if (!AreEqual(freeLink, Constants.Null))
+            if (freeLink != Constants.Null)
             {
                 _UnusedLinksListMethods->Detach(freeLink);
             }
@@ -360,7 +360,7 @@
                     // TODO: !!!!!
                     // throw std::make_shared<LinksLimitReachedException<TLinkAddress>>(maximumPossibleInnerReference);
                 }
-                if (GreaterOrEqualThan(header.AllocatedLinks, Decrement(header.ReservedLinks)))
+                if (header.AllocatedLinks >= Decrement(header.ReservedLinks))
                 {
                     _memory.ReservedCapacity(_memory.ReservedCapacity() + _memoryReservationStep);
                     SetPointers(_memory);
@@ -370,19 +370,19 @@
                 freeLink = header.AllocatedLinks = Increment(header.AllocatedLinks);
                 _memory.UsedCapacity(_memory.UsedCapacity() + LinkSizeInBytes);
             }
-            return handler(NULL, std::array{freeLink, 0, 0});
+            return handler(std::nullptr, std::array{freeLink, TLinkAddress{}, TLinkAddress{}});
         }
 
         auto Delete(auto&& restrictions, auto&& handler)
         {
             auto& header = GetHeaderReference();
             auto linkAddress = restrictions[Constants.IndexPart];
-            auto before = GetLink(this, linkAddress);
+            auto before = GetLink(*this, linkAddress);
             if (LessThan(linkAddress, header.AllocatedLinks))
             {
                 _UnusedLinksListMethods->AttachAsFirst(linkAddress);
             }
-            else if (AreEqual(linkAddress, header.AllocatedLinks))
+            else if ((linkAddress == header.AllocatedLinks))
             {
                 header.AllocatedLinks = Decrement(header.AllocatedLinks);
                 _memory.UsedCapacity(_memory.UsedCapacity() - LinkSizeInBytes);
@@ -425,21 +425,21 @@
             return this->object().GetLinkReference(index);
         }
 
-        bool Exists(TLinkAddress link)
+        bool Exists(TLinkAddress link) const
         {
             if (IsExternalReference(Constants, link))
             {
                 return false;
             }
-            return GreaterOrEqualThan(link, Constants.InternalReferencesRange.Minimum) && LessOrEqualThan(link, GetHeaderReference().AllocatedLinks) && !IsUnusedLink(link);
+            return (link >= Constants.InternalReferencesRange.Minimum) && (link <= GetHeaderReference().AllocatedLinks) && !IsUnusedLink(link);
         }
 
         bool IsUnusedLink(TLinkAddress linkIndex)
         {
-            if (!AreEqual(GetHeaderReference().FirstFreeLink, linkIndex))// May be this check is not needed
+            if (GetHeaderReference().FirstFreeLink != linkIndex)// May be this check is not needed
             {
                 auto& link = GetLinkReference(linkIndex);
-                return AreEqual(link.SizeAsSource, {}) && !AreEqual(link.Source, {});
+                return (link.SizeAsSource == {}) && (link.Source != {});
             }
             else
             {
