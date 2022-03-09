@@ -58,7 +58,7 @@
             SetPointers(memory);
 
             auto& header = GetHeaderReference();
-            memory.UsedCapacity((ConvertToInt64(header.AllocatedLinks) * LinkSizeInBytes) + LinkHeaderSizeInBytes);
+            memory.UsedCapacity((header.AllocatedLinks * LinkSizeInBytes) + LinkHeaderSizeInBytes);
             header.ReservedLinks = (memory.ReservedCapacity() - LinkHeaderSizeInBytes) / LinkSizeInBytes;
         }
 
