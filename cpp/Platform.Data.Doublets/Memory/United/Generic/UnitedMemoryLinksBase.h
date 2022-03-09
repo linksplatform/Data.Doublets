@@ -390,7 +390,7 @@
                 while (GreaterThan(header.AllocatedLinks, TLinkAddress {}) && IsUnusedLink(header.AllocatedLinks))
                 {
                     _UnusedLinksListMethods->Detach(header.AllocatedLinks);
-                    --header.AllocatedLinks);
+                    --header.AllocatedLinks;
                     _memory.UsedCapacity(_memory.UsedCapacity() - LinkSizeInBytes);
                 }
             }
