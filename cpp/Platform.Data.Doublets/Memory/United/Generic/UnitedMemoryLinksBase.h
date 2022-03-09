@@ -5,7 +5,7 @@
 
     template<
         typename TSelf,
-        typename TLink,
+        typename TLinkAddress,
         typename TMemory,
         typename TSourceTreeMethods,
         typename TTargetTreeMethods,
@@ -14,12 +14,12 @@
     class UnitedMemoryLinksBase : public Interfaces::Polymorph<TSelf, TBase...>
     {
     public:
-        LinksConstants<TLink> Constants;
+        LinksConstants<TLinkAddress> Constants;
 
     public:
-        static constexpr std::size_t LinkSizeInBytes = sizeof(RawLink<TLink>);
+        static constexpr std::size_t LinkSizeInBytes = sizeof(RawLink<TLinkAddress>);
 
-        static constexpr std::size_t LinkHeaderSizeInBytes = sizeof(LinksHeader<TLink>);
+        static constexpr std::size_t LinkHeaderSizeInBytes = sizeof(LinksHeader<TLinkAddress>);
 
         static constexpr std::size_t DefaultLinksSizeStep = LinkSizeInBytes * 1024 * 1024;
 
@@ -34,7 +34,7 @@
 
         TUnusedLinks* _UnusedLinksListMethods;
 
-        TLink GetTotal() const
+        TLinkAddress GetTotal() const
         {
             auto& header = GetHeaderReference();
             return Subtract(header.AllocatedLinks, header.FreeLinks);
@@ -42,7 +42,7 @@
 
     public:
     protected:
-        UnitedMemoryLinksBase(TMemory memory, std::int64_t memoryReservationStep, LinksConstants<TLink> constants = {}) :
+        UnitedMemoryLinksBase(TMemory memory, std::int64_t memoryReservationStep, LinksConstants<TLinkAddress> constants = {}) :
             _memory(std::move(memory)), _memoryReservationStep(memoryReservationStep), Constants(constants)
         {
         }
@@ -62,7 +62,7 @@
         }
 
     public:
-        TLink Count(Interfaces::CArray<TLinkAddress> auto&& restrictions) const
+        TLinkAddress Count(Interfaces::CArray<TLinkAddress> auto&& restrictions) const
         {
             if (std::ranges::size(restrictions) == 0)
             {
@@ -151,7 +151,7 @@
                         }
                         return GetZero();
                     }
-                    auto value = TLink();
+                    auto value = TLinkAddress();
                     if (source == any)
                     {
                         value = target;
@@ -170,7 +170,7 @@
             NotSupportedException(/*"Другие размеры и способы ограничений не поддерживаются."*/);
         }
 
-        TLink Each(Interfaces::CArray<TLinkAddress> auto&& restrictions, auto&& handler) const
+        TLinkAddress Each(Interfaces::CArray<TLinkAddress> auto&& restrictions, auto&& handler) const
         {
             auto constants = Constants;
             auto $break = constants.Break;
@@ -192,7 +192,7 @@
             {
                 if (AreEqual(index, any))
                 {
-                    return Each(handler, std::array<TLink, 0>{});
+                    return Each(handler, std::array<TLinkAddress, 0>{});
                 }
                 if (!Exists(index))
                 {
@@ -207,13 +207,13 @@
                 {
                     if (AreEqual(value, any))
                     {
-                        return Each(handler, std::array<TLink, 0>{});
+                        return Each(handler, std::array<TLinkAddress, 0>{});
                     }
-                    if (AreEqual(Each(handler, Link<TLink>(index, value, any)), $break))
+                    if (AreEqual(Each(handler, Link<TLinkAddress>(index, value, any)), $break))
                     {
                         return $break;
                     }
-                    return Each(handler, Link<TLink>(index, any, value));
+                    return Each(handler, Link<TLinkAddress>(index, any, value));
                 }
                 else
                 {
@@ -241,7 +241,7 @@
                 {
                     if (source == any && target == any)
                     {
-                        return Each(handler, std::array<TLink, 0>{});
+                        return Each(handler, std::array<TLinkAddress, 0>{});
                     }
                     else if (source == any)
                     {
@@ -278,7 +278,7 @@
                         }
                         return _continue;
                     }
-                    auto value = TLink();
+                    auto value = TLinkAddress();
                     if (source == any)
                     {
                         value = target;
@@ -301,8 +301,8 @@
         // / TODO: Возможно можно перемещать значения, если указан индекс, но значение существует в другом месте (но не в менеджере памяти, а в логике Links)
         // / </remarks>
         // NOTE: The following .NET attribute has no direct equivalent in C++:
-        // ORIGINAL LINE: [MethodImpl(MethodImplOptions.AggressiveInlining)] public TLink Update(IList<TLink> restrictions, IList<TLink> substitution)
-        TLink Update(Interfaces::CArray<TLinkAddress> auto&& restrictions, Interfaces::CArray<TLinkAddress> auto&& substitution, auto&& handler)
+        // ORIGINAL LINE: [MethodImpl(MethodImplOptions.AggressiveInlining)] public TLinkAddress Update(IList<TLinkAddress> restrictions, IList<TLinkAddress> substitution)
+        TLinkAddress Update(Interfaces::CArray<TLinkAddress> auto&& restrictions, Interfaces::CArray<TLinkAddress> auto&& substitution, auto&& handler)
         {
             auto constants = Constants;
             auto null = constants.Null;
@@ -343,7 +343,7 @@
         }
 
         // TODO: Возможно нужно будет заполнение нулями, если внешнее API ими не заполняет пространство
-        TLink Create(auto&& restrictions, auto&& handler)
+        TLinkAddress Create(auto&& restrictions, auto&& handler)
         {
             auto& header = GetHeaderReference();
             auto freeLink = header.FirstFreeLink;
@@ -357,7 +357,7 @@
                 if (GreaterThan(header.AllocatedLinks, maximumPossibleInnerReference))
                 {
                     // TODO: !!!!!
-                    // throw std::make_shared<LinksLimitReachedException<TLink>>(maximumPossibleInnerReference);
+                    // throw std::make_shared<LinksLimitReachedException<TLinkAddress>>(maximumPossibleInnerReference);
                 }
                 if (GreaterOrEqualThan(header.AllocatedLinks, Decrement(header.ReservedLinks)))
                 {
@@ -395,7 +395,7 @@
             return handler(before, NULL);
         }
 
-        auto GetLinkStruct(TLink linkIndex) const
+        auto GetLinkStruct(TLinkAddress linkIndex) const
         {
             auto& link = this->GetLinkReference(linkIndex);
             return Link{linkIndex, link.Source, link.Target};
@@ -424,7 +424,7 @@
             return this->object().GetLinkReference(index);
         }
 
-        bool Exists(TLink link)
+        bool Exists(TLinkAddress link)
         {
             if (IsExternalReference(Constants, link))
             {
@@ -433,7 +433,7 @@
             return GreaterOrEqualThan(link, Constants.InternalReferencesRange.Minimum) && LessOrEqualThan(link, GetHeaderReference().AllocatedLinks) && !IsUnusedLink(link);
         }
 
-        bool IsUnusedLink(TLink linkIndex)
+        bool IsUnusedLink(TLinkAddress linkIndex)
         {
             if (!AreEqual(GetHeaderReference().FirstFreeLink, linkIndex))// May be this check is not needed
             {
@@ -446,67 +446,67 @@
             }
         }
 
-        static TLink GetOne()
+        static TLinkAddress GetOne()
         {
-            return TLink{1};
+            return TLinkAddress{1};
         }
 
-        static TLink GetZero()
+        static TLinkAddress GetZero()
         {
-            return TLink{0};
+            return TLinkAddress{0};
         }
 
-        static bool AreEqual(TLink first, TLink second)
+        static bool AreEqual(TLinkAddress first, TLinkAddress second)
         {
             return first == second;
         }
 
-        static bool LessThan(TLink first, TLink second)
+        static bool LessThan(TLinkAddress first, TLinkAddress second)
         {
             return first < second;
         }
 
-        static bool LessOrEqualThan(TLink first, TLink second)
+        static bool LessOrEqualThan(TLinkAddress first, TLinkAddress second)
         {
             return first <= second;
         }
 
-        static bool GreaterThan(TLink first, TLink second)
+        static bool GreaterThan(TLinkAddress first, TLinkAddress second)
         {
             return first > second;
         }
 
-        static bool GreaterOrEqualThan(TLink first, TLink second)
+        static bool GreaterOrEqualThan(TLinkAddress first, TLinkAddress second)
         {
             return first >= second;
         }
 
-        static std::int64_t ConvertToInt64(TLink value)
+        static std::int64_t ConvertToInt64(TLinkAddress value)
         {
             return value;
         }
 
-        static TLink ConvertToAddress(std::int64_t value)
+        static TLinkAddress ConvertToAddress(std::int64_t value)
         {
             return value;
         }
 
-        static TLink Add(TLink first, TLink second)
+        static TLinkAddress Add(TLinkAddress first, TLinkAddress second)
         {
             return first + second;
         }
 
-        static TLink Subtract(TLink first, TLink second)
+        static TLinkAddress Subtract(TLinkAddress first, TLinkAddress second)
         {
             return first - second;
         }
 
-        static TLink Increment(TLink link)
+        static TLinkAddress Increment(TLinkAddress link)
         {
             return link + 1;
         }
 
-        static TLink Decrement(TLink link)
+        static TLinkAddress Decrement(TLinkAddress link)
         {
             return link - 1;
         }
