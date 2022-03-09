@@ -1,6 +1,8 @@
-#ifndef PLATFORM_DATA_DOUBLETS
-#define PLATFORM_DATA_DOUBLETS
+#pragma once
+
+#include <stdarg.h>
+#include <stdbool.h>
+#include <stdint.h>
+#include <stdlib.h>
 
 #include "Memory/Ffi/FfiLinks.h"
-
-#endif
