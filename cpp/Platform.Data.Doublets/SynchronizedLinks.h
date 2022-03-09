@@ -23,7 +23,7 @@
 
         public: TLinkAddress Count(IList<TLinkAddress> &restriction) { return SyncRoot.ExecuteReadOperation(restriction, Unsync.Count()); }
 
-        public: TLinkAddress Each(Func<IList<TLinkAddress>, TLinkAddress> handler, IList<TLinkAddress> &restrictions) { return SyncRoot.ExecuteReadOperation(handler, restrictions, (handler1, restrictions1) { return Unsync.Each(handler1, restrictions1)); } }
+        public: TLinkAddress Each(Func<IList<TLinkAddress>, TLinkAddress> handler, IList<TLinkAddress> &restrictions) { return SyncRoot.ExecuteReadOperation(handler, restrictions, (handler1, restrictions1) { return Unsync.Each(restrictions1, handler1)); } }
 
         public: TLinkAddress Create(IList<TLinkAddress> &restrictions) { return SyncRoot.ExecuteWriteOperation(restrictions, Unsync.Create); }
 

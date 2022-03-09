@@ -9,7 +9,7 @@
         {
             auto storage = _links;
             storage.EnsureInnerReferenceExists(restrictions, "restrictions");
-            return storage.Each(handler, restrictions);
+            return storage.Each(restrictions, handler);
         }
 
         public: TLink Update(CList auto&&restrictions, CList auto&&substitution) override

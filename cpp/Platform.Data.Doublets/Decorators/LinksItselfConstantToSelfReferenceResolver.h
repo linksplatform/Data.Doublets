@@ -13,7 +13,7 @@
             {
                 return constants.Continue;
             }
-            return _links.Each(handler, restrictions);
+            return _links.Each(restrictions, handler);
         }
 
         public: TLink Update(CList auto&&restrictions, CList auto&&substitution) override { return _links.Update(restrictions, _links.ResolveConstantAsSelfReference(_constants.Itself, restrictions, substitution)); }
