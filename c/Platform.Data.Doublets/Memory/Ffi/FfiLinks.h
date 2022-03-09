@@ -1,8 +1,7 @@
 #pragma once
-#include <stdarg.h>
-#include <stdbool.h>
-#include <stdint.h>
-#include <stdlib.h>
+
+namespace Platform::Data::Doublets::Memory::United::Ffi
+{
 
 typedef struct Link_u8 {
     uint8_t index;
@@ -164,3 +163,4 @@ void setup_shared_logger(struct SharedLogger logger);
 
 void init_fmt_logger(void);
 
+}
