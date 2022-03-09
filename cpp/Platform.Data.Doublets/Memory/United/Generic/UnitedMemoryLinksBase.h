@@ -355,7 +355,7 @@
             else
             {
                 auto maximumPossibleInnerReference = Constants.InternalReferencesRange.Maximum;
-                if (GreaterThan(header.AllocatedLinks, maximumPossibleInnerReference))
+                if (header.AllocatedLinks > maximumPossibleInnerReference)
                 {
                     // TODO: !!!!!
                     // throw std::make_shared<LinksLimitReachedException<TLinkAddress>>(maximumPossibleInnerReference);
@@ -387,7 +387,7 @@
             {
                 --header.AllocatedLinks;
                 _memory.UsedCapacity(_memory.UsedCapacity() - LinkSizeInBytes);
-                while (GreaterThan(header.AllocatedLinks, TLinkAddress {}) && IsUnusedLink(header.AllocatedLinks))
+                while ((header.AllocatedLinks > TLinkAddress {}) && IsUnusedLink(header.AllocatedLinks))
                 {
                     _UnusedLinksListMethods->Detach(header.AllocatedLinks);
                     --header.AllocatedLinks;
