@@ -4,16 +4,14 @@
     using namespace Platform::Exceptions;
 
     template<
-        typename TSelf, 
+        typename TSelf,
         typename TLink,
         typename TMemory,
         typename TSourceTreeMethods,
-        typename TTargetTreeMethods, 
-        typename TUnusedLinks
-    >
-    class UnitedMemoryLinksBase 
-        : public ILinks<TSelf, TLink>,
-          public Interfaces::Polymorph<TSelf>
+        typename TTargetTreeMethods,
+        typename TUnusedLinks,
+        typename... TBase>
+    class UnitedMemoryLinksBase : public Interfaces::Polymorph<TSelf, TBase...>
     {
     public:
         LinksConstants<TLink> Constants;
@@ -26,13 +24,6 @@
         static constexpr std::size_t DefaultLinksSizeStep = LinkSizeInBytes * 1024 * 1024;
 
     public:
-        using ILinks<TSelf, TLink>::Create;
-        using ILinks<TSelf, TLink>::Count;
-        using ILinks<TSelf, TLink>::Update;
-        using ILinks<TSelf, TLink>::Delete;
-        using ILinks<TSelf, TLink>::GetLink;
-        using ILinks<TSelf, TLink>::Exists;
-
         TMemory _memory;
 
         const std::size_t _memoryReservationStep;
@@ -50,10 +41,11 @@
         }
 
     public:
-
     protected:
-        UnitedMemoryLinksBase(TMemory memory, std::int64_t memoryReservationStep, LinksConstants<TLink> constants = {})
-            : _memory(std::move(memory)), _memoryReservationStep(memoryReservationStep), Constants(constants) {}
+        UnitedMemoryLinksBase(TMemory memory, std::int64_t memoryReservationStep, LinksConstants<TLink> constants = {}) :
+            _memory(std::move(memory)), _memoryReservationStep(memoryReservationStep), Constants(constants)
+        {
+        }
 
         void Init(TMemory& memory, std::size_t memoryReservationStep)
         {
@@ -72,14 +64,14 @@
     public:
         TLink Count(Interfaces::CArray<TLinkAddress> auto&& restrictions) const
         {
-            if (std::ranges::size(restrictions)  == 0)
+            if (std::ranges::size(restrictions) == 0)
             {
                 return GetTotal();
             }
             auto constants = Constants;
             auto any = constants.Any;
             auto index = restrictions[constants.IndexPart];
-            if (std::ranges::size(restrictions)  == 1)
+            if (std::ranges::size(restrictions) == 1)
             {
                 if (AreEqual(index, any))
                 {
@@ -87,14 +79,14 @@
                 }
                 return Exists(index) ? GetOne() : GetZero();
             }
-            if (std::ranges::size(restrictions)  == 2)
+            if (std::ranges::size(restrictions) == 2)
             {
                 auto value = restrictions[1];
                 if (AreEqual(index, any))
                 {
                     if (AreEqual(value, any))
                     {
-                        return GetTotal(); // Any - как отсутствие ограничения
+                        return GetTotal();// Any - как отсутствие ограничения
                     }
                     return _SourcesTreeMethods->CountUsages(value) + _TargetsTreeMethods->CountUsages(value);
                 }
@@ -134,7 +126,7 @@
                     {
                         return _SourcesTreeMethods->CountUsages(source);
                     }
-                    else // if(source != Any && target != Any)
+                    else// if(source != Any && target != Any)
                     {
                         auto link = _SourcesTreeMethods->Search(source, target);
                         return AreEqual(link, constants.Null) ? GetZero() : GetOne();
@@ -177,7 +169,6 @@
             }
             NotSupportedException(/*"Другие размеры и способы ограничений не поддерживаются."*/);
         }
-
 
         TLink Each(Interfaces::CArray<TLinkAddress> auto&& restrictions, auto&& handler) const
         {
@@ -260,7 +251,7 @@
                     {
                         return _SourcesTreeMethods->EachUsage(source, handler);
                     }
-                    else // if(source != Any && target != Any)
+                    else// if(source != Any && target != Any)
                     {
                         auto link = _SourcesTreeMethods->Search(source, target);
                         return AreEqual(link, constants.Null) ? _continue : handler(GetLinkStruct(link));
@@ -276,8 +267,8 @@
                     {
                         return handler(GetLinkStruct(index));
                     }
-// TODO: 'ref locals' are not converted by C# to C++ Converter:
-// ORIGINAL LINE: ref var storedLinkValue = ref GetLinkReference(index);
+                    // TODO: 'ref locals' are not converted by C# to C++ Converter:
+                    // ORIGINAL LINE: ref var storedLinkValue = ref GetLinkReference(index);
                     auto& storedLinkValue = GetLinkReference(index);
                     if (source != any && target != any)
                     {
@@ -309,25 +300,25 @@
         // / <remarks>
         // / TODO: Возможно можно перемещать значения, если указан индекс, но значение существует в другом месте (но не в менеджере памяти, а в логике Links)
         // / </remarks>
-// NOTE: The following .NET attribute has no direct equivalent in C++:
-// ORIGINAL LINE: [MethodImpl(MethodImplOptions.AggressiveInlining)] public TLink Update(IList<TLink> restrictions, IList<TLink> substitution)
+        // NOTE: The following .NET attribute has no direct equivalent in C++:
+        // ORIGINAL LINE: [MethodImpl(MethodImplOptions.AggressiveInlining)] public TLink Update(IList<TLink> restrictions, IList<TLink> substitution)
         TLink Update(Interfaces::CArray<TLinkAddress> auto&& restrictions, Interfaces::CArray<TLinkAddress> auto&& substitution, auto&& handler)
         {
             auto constants = Constants;
             auto null = constants.Null;
             auto linkIndex = restrictions[constants.IndexPart];
-// TODO: 'ref locals' are not converted by C# to C++ Converter:
-// ORIGINAL LINE: ref var link = ref GetLinkReference(linkIndex);
+            // TODO: 'ref locals' are not converted by C# to C++ Converter:
+            // ORIGINAL LINE: ref var link = ref GetLinkReference(linkIndex);
             auto& link = GetLinkReference(linkIndex);
             auto before = link;
-// TODO: 'ref locals' are not converted by C# to C++ Converter:
-// ORIGINAL LINE: ref var header = ref GetHeaderReference();
+            // TODO: 'ref locals' are not converted by C# to C++ Converter:
+            // ORIGINAL LINE: ref var header = ref GetHeaderReference();
             auto& header = GetHeaderReference();
-// TODO: 'ref locals' are not converted by C# to C++ Converter:
-// ORIGINAL LINE: ref var firstAsSource = ref header.RootAsSource;
+            // TODO: 'ref locals' are not converted by C# to C++ Converter:
+            // ORIGINAL LINE: ref var firstAsSource = ref header.RootAsSource;
             auto& firstAsSource = header.RootAsSource;
-// TODO: 'ref locals' are not converted by C# to C++ Converter:
-// ORIGINAL LINE: ref var firstAsTarget = ref header.RootAsTarget;
+            // TODO: 'ref locals' are not converted by C# to C++ Converter:
+            // ORIGINAL LINE: ref var firstAsTarget = ref header.RootAsTarget;
             auto& firstAsTarget = header.RootAsTarget;
             // Будет корректно работать только в том случае, если пространство выделенной связи предварительно заполнено нулями
             if (!AreEqual(link.Source, null))
@@ -407,24 +398,36 @@
         auto GetLinkStruct(TLink linkIndex) const
         {
             auto& link = this->GetLinkReference(linkIndex);
-            return Link { linkIndex, link.Source, link.Target };
+            return Link{linkIndex, link.Source, link.Target};
         }
 
         // TODO: Возможно это должно быть событием, вызываемым из IMemory, в том случае, если адрес реально поменялся
-        // 
+        //
         // Указатель this.storage может быть в том же месте,
         // так как 0-я связь не используется и имеет такой же размер как Header,
         // поэтому header размещается в том же месте, что и 0-я связь
     public:
-        void SetPointers(TMemory& memory) { this->object().SetPointers(memory); }
+        void SetPointers(TMemory& memory)
+        {
+            this->object().SetPointers(memory);
+        }
 
-        protected: auto&& GetHeaderReference() const { return this->object().GetHeaderReference(); }
+    protected:
+        auto&& GetHeaderReference() const
+        {
+            return this->object().GetHeaderReference();
+        }
 
-        protected: auto&& GetLinkReference(std::size_t index) const { return this->object().GetLinkReference(index); }
+    protected:
+        auto&& GetLinkReference(std::size_t index) const
+        {
+            return this->object().GetLinkReference(index);
+        }
 
         bool Exists(TLink link)
         {
-            if (IsExternalReference(Constants, link)) {
+            if (IsExternalReference(Constants, link))
+            {
                 return false;
             }
             return GreaterOrEqualThan(link, Constants.InternalReferencesRange.Minimum) && LessOrEqualThan(link, GetHeaderReference().AllocatedLinks) && !IsUnusedLink(link);
@@ -432,7 +435,7 @@
 
         bool IsUnusedLink(TLink linkIndex)
         {
-            if (!AreEqual(GetHeaderReference().FirstFreeLink, linkIndex)) // May be this check is not needed
+            if (!AreEqual(GetHeaderReference().FirstFreeLink, linkIndex))// May be this check is not needed
             {
                 auto& link = GetLinkReference(linkIndex);
                 return AreEqual(link.SizeAsSource, {}) && !AreEqual(link.Source, {});
@@ -508,4 +511,4 @@
             return link - 1;
         }
     };
-}
+}// namespace Platform::Data::Doublets::Memory::United::Generic
