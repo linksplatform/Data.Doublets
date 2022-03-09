@@ -39,8 +39,8 @@
 
         // TODO: implicit constructor for Constants
     public:
-        UnitedMemoryLinks(TMemory memory, std::size_t memoryReservationStep = DefaultLinksSizeStep, LinksConstants<TLinkAddress> constants = LinksConstants<TLinkAddress>{} /*, IndexTreeType indexTreeType*/) :
-            base(std::move(memory), memoryReservationStep, constants)
+        UnitedMemoryLinks(TMemory memory, std::size_t memoryReservationStep = DefaultLinksSizeStep) :
+            base(std::move(memory), memoryReservationStep)
         {
             //if (indexTreeType == IndexTreeType.SizedAndThreadedAVLBalancedTree)
             //{
