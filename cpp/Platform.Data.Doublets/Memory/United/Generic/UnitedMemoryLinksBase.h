@@ -360,7 +360,7 @@
                     // TODO: !!!!!
                     // throw std::make_shared<LinksLimitReachedException<TLinkAddress>>(maximumPossibleInnerReference);
                 }
-                if (header.AllocatedLinks >= Decrement(header.ReservedLinks))
+                if (header.AllocatedLinks >= (header.ReservedLinks - 1))
                 {
                     _memory.ReservedCapacity(_memory.ReservedCapacity() + _memoryReservationStep);
                     SetPointers(_memory);
@@ -385,12 +385,12 @@
             }
             else if ((linkAddress == header.AllocatedLinks))
             {
-                header.AllocatedLinks = Decrement(header.AllocatedLinks);
+                --header.AllocatedLinks;
                 _memory.UsedCapacity(_memory.UsedCapacity() - LinkSizeInBytes);
                 while (GreaterThan(header.AllocatedLinks, TLinkAddress {}) && IsUnusedLink(header.AllocatedLinks))
                 {
                     _UnusedLinksListMethods->Detach(header.AllocatedLinks);
-                    header.AllocatedLinks = Decrement(header.AllocatedLinks);
+                    --header.AllocatedLinks);
                     _memory.UsedCapacity(_memory.UsedCapacity() - LinkSizeInBytes);
                 }
             }
