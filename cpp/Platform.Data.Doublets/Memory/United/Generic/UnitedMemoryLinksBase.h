@@ -370,7 +370,7 @@
                 freeLink = header.AllocatedLinks = Increment(header.AllocatedLinks);
                 _memory.UsedCapacity(_memory.UsedCapacity() + LinkSizeInBytes);
             }
-            return handler(std::nullptr, std::array{freeLink, TLinkAddress{}, TLinkAddress{}});
+            return handler(nullptr, std::array{freeLink, TLinkAddress{}, TLinkAddress{}});
         }
 
         auto Delete(auto&& restrictions, auto&& handler)
