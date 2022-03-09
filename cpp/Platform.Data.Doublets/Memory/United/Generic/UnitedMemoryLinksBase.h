@@ -394,7 +394,7 @@
                     _memory.UsedCapacity(_memory.UsedCapacity() - LinkSizeInBytes);
                 }
             }
-            return handler(before, NULL);
+            return handler(before, nullptr);
         }
 
         auto GetLinkStruct(TLinkAddress linkIndex) const
