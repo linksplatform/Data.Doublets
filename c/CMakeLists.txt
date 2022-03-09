@@ -10,18 +10,8 @@ set(LINKS_PLATFORM_BENCHMARKS TRUE)
 
 project(Platform.Data.Doublets C)
 
-include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
-conan_basic_setup(TARGETS)
-
-list(APPEND LINKS_PLATFORM_EXTRA_FLAGS ${CONAN_USER_PLATFORM.HASHING_suggested_flags})
-
 add_library(${PROJECT_NAME}.Library INTERFACE)
 target_include_directories(${PROJECT_NAME}.Library INTERFACE ${PROJECT_NAME})
-target_link_libraries(${PROJECT_NAME}.Library INTERFACE CONAN_PKG::platform.collections.methods)
-target_link_libraries(${PROJECT_NAME}.Library INTERFACE CONAN_PKG::platform.collections)
-target_link_libraries(${PROJECT_NAME}.Library INTERFACE CONAN_PKG::platform.threading)
-target_link_libraries(${PROJECT_NAME}.Library INTERFACE CONAN_PKG::platform.memory)
-target_link_libraries(${PROJECT_NAME}.Library INTERFACE CONAN_PKG::platform.data)
 
 target_link_directories(${PROJECT_NAME}.Library INTERFACE ${CMAKE_CURRENT_LIST_DIR})
 target_link_libraries(${PROJECT_NAME}.Library INTERFACE doublets_ffi)
