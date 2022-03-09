@@ -43,8 +43,8 @@
 
     public:
     protected:
-        UnitedMemoryLinksBase(TMemory memory, std::int64_t memoryReservationStep, LinksConstants<TLinkAddress> constants = {}) :
-            _memory(std::move(memory)), _memoryReservationStep(memoryReservationStep), Constants(constants)
+        UnitedMemoryLinksBase(TMemory memory, std::int64_t memoryReservationStep) :
+            _memory(std::move(memory)), _memoryReservationStep(memoryReservationStep)
         {
         }
 
