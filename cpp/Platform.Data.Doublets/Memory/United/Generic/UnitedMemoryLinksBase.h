@@ -4,7 +4,7 @@
     using namespace Platform::Exceptions;
 
     template<
-        typename Self, 
+        typename TSelf, 
         typename TLink,
         typename TMemory,
         typename TSourceTreeMethods,
@@ -12,8 +12,8 @@
         typename TUnusedLinks
     >
     class UnitedMemoryLinksBase 
-        : public ILinks<Self, TLink>,
-          public Interfaces::Polymorph<Self>
+        : public ILinks<TSelf, TLink>,
+          public Interfaces::Polymorph<TSelf>
     {
     public:
         LinksConstants<TLink> Constants;
@@ -26,12 +26,12 @@
         static constexpr std::size_t DefaultLinksSizeStep = LinkSizeInBytes * 1024 * 1024;
 
     public:
-        using ILinks<Self, TLink>::Create;
-        using ILinks<Self, TLink>::Count;
-        using ILinks<Self, TLink>::Update;
-        using ILinks<Self, TLink>::Delete;
-        using ILinks<Self, TLink>::GetLink;
-        using ILinks<Self, TLink>::Exists;
+        using ILinks<TSelf, TLink>::Create;
+        using ILinks<TSelf, TLink>::Count;
+        using ILinks<TSelf, TLink>::Update;
+        using ILinks<TSelf, TLink>::Delete;
+        using ILinks<TSelf, TLink>::GetLink;
+        using ILinks<TSelf, TLink>::Exists;
 
         TMemory _memory;
 
@@ -179,7 +179,7 @@
         }
 
 
-        TLink Each(auto&& handler, Interfaces::CArray<TLinkAddress> auto&& restrictions) const
+        TLink Each(Interfaces::CArray<TLinkAddress> auto&& restrictions, auto&& handler) const
         {
             auto constants = Constants;
             auto $break = constants.Break;
@@ -311,7 +311,7 @@
         // / </remarks>
 // NOTE: The following .NET attribute has no direct equivalent in C++:
 // ORIGINAL LINE: [MethodImpl(MethodImplOptions.AggressiveInlining)] public TLink Update(IList<TLink> restrictions, IList<TLink> substitution)
-        TLink Update(Interfaces::CArray<TLinkAddress> auto&& restrictions, Interfaces::CArray<TLinkAddress> auto&& substitution)
+        TLink Update(Interfaces::CArray<TLinkAddress> auto&& restrictions, Interfaces::CArray<TLinkAddress> auto&& substitution, auto&& handler)
         {
             auto constants = Constants;
             auto null = constants.Null;
@@ -319,6 +319,7 @@
 // TODO: 'ref locals' are not converted by C# to C++ Converter:
 // ORIGINAL LINE: ref var link = ref GetLinkReference(linkIndex);
             auto& link = GetLinkReference(linkIndex);
+            auto before = link;
 // TODO: 'ref locals' are not converted by C# to C++ Converter:
 // ORIGINAL LINE: ref var header = ref GetHeaderReference();
             auto& header = GetHeaderReference();
@@ -347,11 +348,11 @@
             {
                 _TargetsTreeMethods->Attach(firstAsTarget, linkIndex);
             }
-            return linkIndex;
+            return handler(before, std::array{link.Index, link.Source, link.Target});
         }
 
         // TODO: Возможно нужно будет заполнение нулями, если внешнее API ими не заполняет пространство
-        TLink Create(auto&& restrictions)
+        TLink Create(auto&& restrictions, auto&& handler)
         {
             auto& header = GetHeaderReference();
             auto freeLink = header.FirstFreeLink;
@@ -377,18 +378,19 @@
                 freeLink = header.AllocatedLinks = Increment(header.AllocatedLinks);
                 _memory.UsedCapacity(_memory.UsedCapacity() + LinkSizeInBytes);
             }
-            return freeLink;
+            return handler(NULL, std::array{freeLink, 0, 0});
         }
 
-        auto Delete(auto&& restrictions)
+        auto Delete(auto&& restrictions, auto&& handler)
         {
             auto& header = GetHeaderReference();
-            auto link = restrictions[Constants.IndexPart];
-            if (LessThan(link, header.AllocatedLinks))
+            auto linkAddress = restrictions[Constants.IndexPart];
+            auto before = GetLink(this, linkAddress);
+            if (LessThan(linkAddress, header.AllocatedLinks))
             {
-                _UnusedLinksListMethods->AttachAsFirst(link);
+                _UnusedLinksListMethods->AttachAsFirst(linkAddress);
             }
-            else if (AreEqual(link, header.AllocatedLinks))
+            else if (AreEqual(linkAddress, header.AllocatedLinks))
             {
                 header.AllocatedLinks = Decrement(header.AllocatedLinks);
                 _memory.UsedCapacity(_memory.UsedCapacity() - LinkSizeInBytes);
@@ -399,6 +401,7 @@
                     _memory.UsedCapacity(_memory.UsedCapacity() - LinkSizeInBytes);
                 }
             }
+            return handler(before, NULL);
         }
 
         auto GetLinkStruct(TLink linkIndex) const
