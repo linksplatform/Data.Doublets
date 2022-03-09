@@ -8,7 +8,7 @@
         typename TSourceTreeMethods = LinksSourcesSizeBalancedTreeMethods<TLink>,
         typename TTargetTreeMethods = LinksTargetsSizeBalancedTreeMethods<TLink>,
         typename TUnusedLinks = UnusedLinksListMethods<TLink>,
-        typename... TBase>
+        typename ...TBase>
     class UnitedMemoryLinks : public UnitedMemoryLinksBase<UnitedMemoryLinks<TLink, TMemory, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks, TBase...>, TLink, TMemory, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks, TBase...>, public std::enable_shared_from_this<UnitedMemoryLinks<TLink>>
     {
         using base = UnitedMemoryLinksBase<
@@ -17,12 +17,14 @@
                 TMemory,
                 TSourceTreeMethods,
                 TTargetTreeMethods,
-                TUnusedLinks>,
+                TUnusedLinks,
+                TBase...>,
             TLink,
             TMemory,
             TSourceTreeMethods,
             TTargetTreeMethods,
-            TUnusedLinks>;
+            TUnusedLinks,
+            TBase...>;
 
     public:
         using base::DefaultLinksSizeStep;
