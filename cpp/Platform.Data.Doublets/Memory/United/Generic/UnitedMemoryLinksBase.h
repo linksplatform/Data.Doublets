@@ -4,7 +4,7 @@
     using namespace Platform::Exceptions;
 
     template<
-        typename Self, 
+        typename TSelf, 
         typename TLink,
         typename TMemory,
         typename TSourceTreeMethods,
@@ -12,8 +12,8 @@
         typename TUnusedLinks
     >
     class UnitedMemoryLinksBase 
-        : public ILinks<Self, TLink>,
-          public Interfaces::Polymorph<Self>
+        : public ILinks<TSelf, TLink>,
+          public Interfaces::Polymorph<TSelf>
     {
     public:
         LinksConstants<TLink> Constants;
@@ -26,12 +26,12 @@
         static constexpr std::size_t DefaultLinksSizeStep = LinkSizeInBytes * 1024 * 1024;
 
     public:
-        using ILinks<Self, TLink>::Create;
-        using ILinks<Self, TLink>::Count;
-        using ILinks<Self, TLink>::Update;
-        using ILinks<Self, TLink>::Delete;
-        using ILinks<Self, TLink>::GetLink;
-        using ILinks<Self, TLink>::Exists;
+        using ILinks<TSelf, TLink>::Create;
+        using ILinks<TSelf, TLink>::Count;
+        using ILinks<TSelf, TLink>::Update;
+        using ILinks<TSelf, TLink>::Delete;
+        using ILinks<TSelf, TLink>::GetLink;
+        using ILinks<TSelf, TLink>::Exists;
 
         TMemory _memory;
 
