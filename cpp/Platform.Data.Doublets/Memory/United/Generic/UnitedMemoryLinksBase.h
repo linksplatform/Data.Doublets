@@ -177,7 +177,7 @@
             auto $break = constants.Break;
             if (std::ranges::size(restrictions) == 0)
             {
-                for (auto link = TLinkAddress {1}; link <= GetHeaderReference().AllocatedLinks; link = Increment(link))
+                for (auto link = TLinkAddress {1}; link <= GetHeaderReference().AllocatedLinks; ++link)
                 {
                     if (Exists(link) && (handler(GetLink(*this, link)) == $break))
                     {
@@ -367,7 +367,8 @@
                     header = GetHeaderReference();
                     header.ReservedLinks = ConvertToAddress(_memory.ReservedCapacity() / LinkSizeInBytes);
                 }
-                freeLink = header.AllocatedLinks = Increment(header.AllocatedLinks);
+                ++header.AllocatedLinks;
+                freeLink = header.AllocatedLinks;
                 _memory.UsedCapacity(_memory.UsedCapacity() + LinkSizeInBytes);
             }
             return handler(nullptr, std::array{freeLink, TLinkAddress{}, TLinkAddress{}});
