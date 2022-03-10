@@ -51,7 +51,7 @@ namespace Platform::Data::Doublets
         auto constants = storage.Constants;
         auto _break = constants.Break;
         TLinkAddress searchedLinkAddress {};
-        storage.Each(std::array{storage.Constants.Any, source, target}, [&searchedLinkAddress, _break] (auto link) {
+        storage.Each(Link{storage.Constants.Any, source, target}, [&searchedLinkAddress, _break] (auto link) {
             searchedLinkAddress = link[0];
             return _break;
         });
@@ -139,7 +139,7 @@ namespace Platform::Data::Doublets
             throw std::runtime_error("No links in the storage..");
         }
         Setters::Setter setter { constants.Continue, constants.Break, 0 };
-        storage.Each(std::array{storage.Constants.Any, storage.Constants.Any, storage.Constants.Any}, setter.SetFirstAndReturnFalse);
+        storage.Each(Link{storage.Constants.Any, storage.Constants.Any, storage.Constants.Any}, setter.SetFirstAndReturnFalse);
         if ( 0 == firstLink)
         {
             throw std::runtime_error("No links are found in the storage.");
@@ -484,8 +484,8 @@ namespace Platform::Data::Doublets
         template<typename TLinkAddress>
         static TLinkAddress Update(auto&& storage, TLinkAddress linkAddress, TLinkAddress newSource, TLinkAddress newTarget)
         {
-            std::array restriction {linkAddress};
-            std::array substitution {linkAddress, newSource, newTarget};
+            LinkAddress restriction {linkAddress};
+            Link substitution {linkAddress, newSource, newTarget};
             return Update<TLinkAddress>(storage, restriction, substitution);
         }
 
@@ -736,8 +736,8 @@ namespace Platform::Data::Doublets
             auto any = constants.Any;
             auto $continue = storage.Constants.Continue;
             auto $break = storage.Constants.Break;
-            auto usagesAsSourceQuery = std::array(any, linkIndex, any);
-            auto usagesAsTargetQuery = std::array(any, any, linkIndex);
+            auto usagesAsSourceQuery = Link(any, linkIndex, any);
+            auto usagesAsTargetQuery = Link(any, any, linkIndex);
             auto usages = std::vector<std::vector<TLinkAddress>>();
             TLinkAddress result {};
             storage.Each(usagesAsSourceQuery, [&usages, &handler, &result, $continue, $break](Interfaces::CArray auto&& link) {

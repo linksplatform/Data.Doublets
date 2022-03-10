@@ -192,7 +192,7 @@
             {
                 if (AreEqual(index, any))
                 {
-                    return Each(handler, std::array<TLinkAddress, 0>{});
+                    return Each(handler, Link<TLinkAddress>::Null);
                 }
                 if (!Exists(index))
                 {
@@ -207,7 +207,7 @@
                 {
                     if (AreEqual(value, any))
                     {
-                        return Each(handler, std::array<TLinkAddress, 0>{});
+                        return Each(handler, Link<TLinkAddress>::Null);
                     }
                     if (AreEqual(Each(handler, Link<TLinkAddress>(index, value, any)), $break))
                     {
@@ -241,7 +241,7 @@
                 {
                     if (source == any && target == any)
                     {
-                        return Each(handler, std::array<TLinkAddress, 0>{});
+                        return Each(handler, Link<TLinkAddress>::Null);
                     }
                     else if (source == any)
                     {
@@ -339,7 +339,7 @@
             {
                 _TargetsTreeMethods->Attach(firstAsTarget, linkIndex);
             }
-            return handler(before, std::array{link.Index, link.Source, link.Target});
+            return handler(before, Link{link.Index, link.Source, link.Target});
         }
 
         // TODO: Возможно нужно будет заполнение нулями, если внешнее API ими не заполняет пространство
@@ -369,7 +369,7 @@
                 freeLink = header.AllocatedLinks = Increment(header.AllocatedLinks);
                 _memory.UsedCapacity(_memory.UsedCapacity() + LinkSizeInBytes);
             }
-            return handler(NULL, std::array{freeLink, 0, 0});
+            return handler(NULL, Link{freeLink, 0, 0});
         }
 
         auto Delete(auto&& restrictions, auto&& handler)

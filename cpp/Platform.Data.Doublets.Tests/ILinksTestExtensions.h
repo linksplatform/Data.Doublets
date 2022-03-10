@@ -12,7 +12,7 @@ namespace Platform::Data::Doublets::Tests
             auto constants { storage.Constants };
             auto _continue = constants.Continue;
             Link<TLinkAddress> linkStruct;
-            storage.Each( std::array{constants.Any, constants.Any, constants.Any} , [&linkStruct, _continue](Interfaces::CArray<TLinkAddress> auto&& link) {
+            storage.Each( Link{constants.Any, constants.Any, constants.Any} , [&linkStruct, _continue](Interfaces::CArray<TLinkAddress> auto&& link) {
                 linkStruct = Link(link);
                 return _continue;
             });
@@ -34,7 +34,7 @@ namespace Platform::Data::Doublets::Tests
             auto constants { storage.Constants };
             auto _continue { constants.Continue };
             TLinkAddress linkAddressFromEach {};
-            storage.Each(std::array{constants.Any, constants.Any, constants.Any}, [_continue, &linkAddressFromEach](Interfaces::CArray<TLinkAddress> auto&& link) {
+            storage.Each(Link{constants.Any, constants.Any, constants.Any}, [_continue, &linkAddressFromEach](Interfaces::CArray<TLinkAddress> auto&& link) {
                 linkAddressFromEach = link[0];
                 return _continue;
             });
@@ -75,7 +75,7 @@ namespace Platform::Data::Doublets::Tests
             Data::Delete<TLinkAddress>(storage, linkAddress);
             Expects(0 == Count<TLinkAddress>(storage));
             TLinkAddress deletedLinkAddress {};
-            storage.Each(std::array{constants.Any, constants.Any, constants.Any}, [_continue, &deletedLinkAddress](Interfaces::CArray<TLinkAddress> auto&& link) {
+            storage.Each(Link{constants.Any, constants.Any, constants.Any}, [_continue, &deletedLinkAddress](Interfaces::CArray<TLinkAddress> auto&& link) {
                 deletedLinkAddress = link[0];
                 return _continue;
             });
@@ -134,7 +134,7 @@ namespace Platform::Data::Doublets::Tests
         Expects(linkAddress2 == link3.Target);
         // Search for created link
         TLinkAddress searchedLinkAddress {};
-        storage.Each(std::array{any, h106E.Value, h108E.Value}, [&searchedLinkAddress, _continue](Interfaces::CArray<TLinkAddress> auto&& link) {
+        storage.Each(Link{any, h106E.Value, h108E.Value}, [&searchedLinkAddress, _continue](Interfaces::CArray<TLinkAddress> auto&& link) {
             searchedLinkAddress = link[0];
             return _continue;
         });
@@ -142,7 +142,7 @@ namespace Platform::Data::Doublets::Tests
         Expects(linkAddress1 == searchedLinkAddress);
         // Search for nonexistent link
 //        TLinkAddress searchedNonExistentLinkAddress {};
-//        storage.Each(std::array{any, h106E.Value, h108E.Value}, [&searchedNonExistentLinkAddress, _continue](Interfaces::CArray<TLinkAddress> auto&& link) {
+//        storage.Each(Link{any, h106E.Value, h108E.Value}, [&searchedNonExistentLinkAddress, _continue](Interfaces::CArray<TLinkAddress> auto&& link) {
 //            searchedNonExistentLinkAddress = link[0];
 //            return _continue;
 //        });
@@ -157,7 +157,7 @@ namespace Platform::Data::Doublets::Tests
         Data::Delete<TLinkAddress>(storage, linkAddress3);
         Expects(2 == Count<TLinkAddress>(storage));
         TLinkAddress deletedLinkAddress {};
-        storage.Each(std::array{any, any, any}, [&deletedLinkAddress, _continue](Interfaces::CArray<TLinkAddress> auto&& link) {
+        storage.Each(Link{any, any, any}, [&deletedLinkAddress, _continue](Interfaces::CArray<TLinkAddress> auto&& link) {
             deletedLinkAddress = link[0];
             return _continue;
         });
