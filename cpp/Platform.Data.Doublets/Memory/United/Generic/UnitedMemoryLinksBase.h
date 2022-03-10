@@ -340,7 +340,7 @@
             {
                 _TargetsTreeMethods->Attach(firstAsTarget, linkIndex);
             }
-            return handler(before, std::array{linkIndex, link.Source, link.Target});
+            return handler(before, Link{linkIndex, link.Source, link.Target});
         }
 
         // TODO: Возможно нужно будет заполнение нулями, если внешнее API ими не заполняет пространство
@@ -371,7 +371,7 @@
                 freeLink = header.AllocatedLinks;
                 _memory.UsedCapacity(_memory.UsedCapacity() + LinkSizeInBytes);
             }
-            return handler(nullptr, std::array{freeLink, TLinkAddress{}, TLinkAddress{}});
+            return handler(nullptr, Link{freeLink, TLinkAddress{}, TLinkAddress{}});
         }
 
         auto Delete(auto&& restrictions, auto&& handler)

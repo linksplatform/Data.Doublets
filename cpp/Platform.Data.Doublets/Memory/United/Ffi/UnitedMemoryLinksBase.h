@@ -247,9 +247,9 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             auto substitutionLength = std::ranges::size(substitution);
             auto substitutionPtr = std::ranges::data(substitution);
             auto callback = [&](Link<TLinkAddress> before, Link<TLinkAddress> after) -> TLinkAddress {
-                std::array beforeArray{before.Index, before.Source, before.Target};
-                std::array afterArray{after.Index, after.Source, after.Target};
-                return handler(beforeArray, afterArray);
+                Link beforeLink{before.Index, before.Source, before.Target};
+                Link afterLink{after.Index, after.Source, after.Target};
+                return handler(beforeLink, afterLink);
             };
             using Signature = TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>);
             set_global<Signature>(callback);
@@ -282,9 +282,9 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             auto substitutionLength = std::ranges::size(substitution);
             auto substitutionPtr{std::ranges::data(substitution)};
             auto callback = [&](Link<TLinkAddress> before, Link<TLinkAddress> after) {
-                std::array beforeArray{before.Index, before.Source, before.Target};
-                std::array afterArray{after.Index, after.Source, after.Target};
-                return handler(beforeArray, afterArray);
+                Link beforeLink{before.Index, before.Source, before.Target};
+                Link afterLink{after.Index, after.Source, after.Target};
+                return handler(beforeLink, afterLink);
             };
             using Signature = TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>);
             set_global<Signature>(callback);
@@ -315,9 +315,9 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr = std::ranges::data(restriction);
             auto callback = [&](Link<TLinkAddress> before, Link<TLinkAddress> after) {
-                std::array beforeArray{before.Index, before.Source, before.Target};
-                std::array afterArray{after.Index, after.Source, after.Target};
-                return handler(beforeArray, afterArray);
+                Link beforeLink{before.Index, before.Source, before.Target};
+                Link afterLink{after.Index, after.Source, after.Target};
+                return handler(beforeLink, afterLink);
             };
             using Signature = TLinkAddress(Link<TLinkAddress>, Link<TLinkAddress>);
             set_global<Signature>(callback);
@@ -349,7 +349,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr = std::ranges::data(restriction);
             auto callback = [&](Link<TLinkAddress> link) {
-                return handler(std::array{link.Index, link.Source, link.Target});
+                return handler(Link{link.Index, link.Source, link.Target});
             };
             set_global<Signature>(callback);
             if constexpr (std::same_as<TLinkAddress, std::uint8_t>)
