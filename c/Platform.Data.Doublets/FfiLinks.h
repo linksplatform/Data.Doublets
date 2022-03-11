@@ -68,37 +68,37 @@
 //} SharedLogger;
 
 #define DECLARE_UNITED_MEMORY_LINKS_NEW($FunctionPrefixType) \
-    void* $FunctionPrefixType##UnitedMemoryLinks_New(const char* path);
+    void* $FunctionPrefixType##Links_New(const char* path);
 
 #define DECLARE_UNITED_MEMORY_LINKS_DROP($FunctionPrefixType) \
-    void $FunctionPrefixType##UnitedMemoryLinks_Drop(void* this_); 
+    void $FunctionPrefixType##Links_Drop(void* this_); 
 
 #define DECLARE_UNITED_MEMORY_LINKS_CREATE($TLinkAddress, $FunctionPrefixType) \
-    $TLinkAddress $FunctionPrefixType##UnitedMemoryLinks_Create(void* this_, \
+    $TLinkAddress $FunctionPrefixType##Links_Create(void* this_, \
                                          const $TLinkAddress* query, \
                                          uintptr_t len, \
                                          CUDCallback_##$TLinkAddress callback); 
 
 
 #define DECLARE_UNITED_MEMORY_LINKS_EACH($TLinkAddress, $FunctionPrefixType) \
-    $TLinkAddress $FunctionPrefixType##UnitedMemoryLinks_Each(void* this_, \
+    $TLinkAddress $FunctionPrefixType##Links_Each(void* this_, \
                                          const $TLinkAddress* query, \
                                          uintptr_t len, \
                                          EachCallback_##$TLinkAddress callback); 
 
 #define DECLARE_UNITED_MEMORY_LINKS_COUNT($TLinkAddress, $FunctionPrefixType) \
-    uintptr_t $FunctionPrefixType##UnitedMemoryLinks_Count(void* this_, \
+    uintptr_t $FunctionPrefixType##Links_Count(void* this_, \
                                          const $TLinkAddress* query, \
                                          uintptr_t len); 
 
 #define DECLARE_UNITED_MEMORY_LINKS_UPDATE($TLinkAddress, $FunctionPrefixType) \
-    $TLinkAddress $FunctionPrefixType##UnitedMemoryLinks_Update(void* this_, \
+    $TLinkAddress $FunctionPrefixType##Links_Update(void* this_, \
                                          const $TLinkAddress* query, \
                                          uintptr_t len, \
                                          CUDCallback_##$TLinkAddress callback); 
 
 #define DECLARE_UNITED_MEMORY_LINKS_DELETE($TLinkAddress, $FunctionPrefixType) \
-    void $FunctionPrefixType##UnitedMemoryLinks_Delete(void* this_, \
+    void $FunctionPrefixType##Links_Delete(void* this_, \
                                          const $TLinkAddress* query, \
                                          uintptr_t len); 
 
