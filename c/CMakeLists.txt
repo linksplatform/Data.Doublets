@@ -19,11 +19,10 @@ target_link_libraries(${PROJECT_NAME}.Library INTERFACE ${CMAKE_DL_LIBS})
 
 target_compile_options(${PROJECT_NAME}.Library INTERFACE ${LINKS_PLATFORM_EXTRA_FLAGS})
 
-#if(${LINKS_PLATFORM_TESTS})
-#    add_executable(${PROJECT_NAME}.Tests ${PROJECT_NAME}.Tests/AllTests.cpp)
-#    target_link_libraries(${PROJECT_NAME}.Tests PRIVATE CONAN_PKG::gtest)
-#    target_link_libraries(${PROJECT_NAME}.Tests PRIVATE ${PROJECT_NAME}.Library)
-#endif()
+if(${LINKS_PLATFORM_TESTS})
+    add_executable(${PROJECT_NAME}.Tests ${PROJECT_NAME}.Tests/FfiTest.c)
+    target_link_libraries(${PROJECT_NAME}.Tests PRIVATE ${PROJECT_NAME}.Library)
+endif()
 #
 #if(${LINKS_PLATFORM_BENCHMARKS})
 #    add_executable(${PROJECT_NAME}.Benchmarks ${PROJECT_NAME}.Benchmarks/AllBenchmarks.cpp)
