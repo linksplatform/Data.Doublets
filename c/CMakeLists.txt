@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.13)
 set(LINKS_PLATFORM_TESTS OFF CACHE BOOL "Whether to compile tests")
 set(LINKS_PLATFORM_BENCHMARKS OFF CACHE BOOL "Whether to compile benchmarks")
 set(LINKS_PLATFORM_EXTRA_FLAGS "" CACHE STRING "Extra compiler flags")
-
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pthread -ldl")
 set(CONAN_DISABLE_CHECK_COMPILER TRUE)
 set(LINKS_PLATFORM_TESTS TRUE)
 set(LINKS_PLATFORM_BENCHMARKS TRUE)
