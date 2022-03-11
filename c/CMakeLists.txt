@@ -21,6 +21,7 @@ target_compile_options(${PROJECT_NAME}.Library INTERFACE ${LINKS_PLATFORM_EXTRA_
 
 if(${LINKS_PLATFORM_TESTS})
     add_executable(${PROJECT_NAME}.Tests ${PROJECT_NAME}.Tests/FfiTest.c)
+    set_target_properties(${PROJECT_NAME}.Benchmarks PROPERTIES C_STANDARD 17)
     target_link_libraries(${PROJECT_NAME}.Tests PRIVATE ${PROJECT_NAME}.Library)
 endif()
 #
