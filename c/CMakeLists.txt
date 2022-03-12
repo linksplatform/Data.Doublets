@@ -8,7 +8,7 @@ set(CONAN_DISABLE_CHECK_COMPILER TRUE)
 set(LINKS_PLATFORM_TESTS TRUE)
 set(LINKS_PLATFORM_BENCHMARKS TRUE)
 
-project(Platform.Data.Doublets C)
+project(Platform.Data.Doublets)
 
 set(CONAN_DISABLE_CHECK_COMPILER TRUE)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
@@ -26,10 +26,11 @@ target_link_libraries(${PROJECT_NAME}.Library INTERFACE ${CMAKE_DL_LIBS})
 target_compile_options(${PROJECT_NAME}.Library INTERFACE ${LINKS_PLATFORM_EXTRA_FLAGS})
 
 if(${LINKS_PLATFORM_TESTS})
-    add_executable(${PROJECT_NAME}.Tests tests/FfiTests.c)
-#    set_target_properties(${PROJECT_NAME}.Tests PROPERTIES LINKER_LANGUAGE CXX)
-#    set_target_properties(${PROJECT_NAME}.Tests PROPERTIES CXX_STANDARD 20)
-#    target_link_libraries(${PROJECT_NAME}.Tests PRIVATE CONAN_PKG::gtest)
+    add_executable(${PROJECT_NAME}.Tests tests/FfiTests.cpp)
+    set_target_properties(${PROJECT_NAME}.Tests PROPERTIES LINKER_LANGUAGE CXX)
+    target_link_libraries(${PROJECT_NAME}.Tests PRIVATE CONAN_PKG::gtest)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -ldl")
+
     target_link_libraries(${PROJECT_NAME}.Tests PRIVATE ${PROJECT_NAME}.Library)
 endif()
 #
