@@ -48,7 +48,6 @@ int main() {
     UInt64Links_Each(uint64FfiStorage, (const uint64_t*) &restriction, 1, eachHandler);
     printf("Found link after delete: %lu : %lu -> %lu \n", foundLink.Index, foundLink.Source, foundLink.Target);
     UInt64Links_Drop(uint64FfiStorage);
-    free(uint64FfiStorage);
     remove(tempFileName);
     return 0;
 }
