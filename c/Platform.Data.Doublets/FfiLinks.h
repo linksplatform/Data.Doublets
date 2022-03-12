@@ -53,15 +53,15 @@
         .source_part = 1,                                                 \
         .target_part = 2,                                                 \
         .null = 0,                                                        \
-        .$break = 0,                                                      \
         .$continue = $PrefixUpperCase##_MAX,                              \
-        .skip = $PrefixUpperCase##_MAX - 1,                               \
-        .any = $PrefixUpperCase##_MAX - 2,                                \
-        .itself = $PrefixUpperCase##_MAX - 3,                             \
-        .error = 0,                                                       \
+        .$break = $PrefixUpperCase##_MAX - 1,                                                      \
+        .skip = $PrefixUpperCase##_MAX - 2,                               \
+        .any = $PrefixUpperCase##_MAX - 3,                                \
+        .itself = $PrefixUpperCase##_MAX - 4,                             \
+        .error = $PrefixUpperCase##_MAX - 5,                                                       \
         .internal_range = {                                               \
             .minimum = 0,                                                 \
-            .maximum = $PrefixUpperCase##_MAX - 4,                        \
+            .maximum = $PrefixUpperCase##_MAX - 6,                        \
         },                                                                \
         .external_range = {                                               \
             .minimum = ($PrefixUpperCase##_MAX / 2) + 1,                  \
