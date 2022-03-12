@@ -1,11 +1,5 @@
 #pragma once
 
-#define CALL_MACRO_WITH_SUPPORTED_TLINKADDRESS_TYPES($Macro) \
-    $Macro(uint8_t);                                         \
-    $Macro(uint16_t);                                        \
-    $Macro(uint32_t);                                        \
-    $Macro(uint64_t);
-
 #define CALL_MACRO_WITH_SUPPORTED_FUNCTION_PREFIX_TYPES($Macro) \
     $Macro(UInt8);                                              \
     $Macro(UInt16);                                             \
