@@ -11,7 +11,7 @@ set(LINKS_PLATFORM_BENCHMARKS TRUE)
 project(Platform.Data.Doublets C)
 
 add_library(${PROJECT_NAME}.Library INTERFACE)
-target_include_directories(${PROJECT_NAME}.Library INTERFACE ${PROJECT_NAME})
+target_include_directories(${PROJECT_NAME}.Library INTERFACE src)
 
 target_link_directories(${PROJECT_NAME}.Library INTERFACE ${CMAKE_CURRENT_LIST_DIR})
 target_link_libraries(${PROJECT_NAME}.Library INTERFACE doublets_ffi)
@@ -20,7 +20,7 @@ target_link_libraries(${PROJECT_NAME}.Library INTERFACE ${CMAKE_DL_LIBS})
 target_compile_options(${PROJECT_NAME}.Library INTERFACE ${LINKS_PLATFORM_EXTRA_FLAGS})
 
 if(${LINKS_PLATFORM_TESTS})
-    add_executable(${PROJECT_NAME}.Tests ${PROJECT_NAME}.Tests/FfiTest.c)
+    add_executable(${PROJECT_NAME}.Tests tests/FfiTest.c)
     set_target_properties(${PROJECT_NAME}.Tests PROPERTIES C_STANDARD 17)
     target_link_libraries(${PROJECT_NAME}.Tests PRIVATE ${PROJECT_NAME}.Library)
 endif()
