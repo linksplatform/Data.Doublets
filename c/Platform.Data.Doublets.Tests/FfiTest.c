@@ -31,7 +31,7 @@ uint64_t deleteHandler(UInt64Link before, UInt64Link after)
 }
 
 int main() {
-    char* tempFileName = tmpnam(NULL);
+    const char* tempFileName = tmpnam(NULL);
     void* uint64FfiStorage = UInt64Links_New(tempFileName);
     UInt64Links_Create(uint64FfiStorage, NULL, 0, createHandler);
     printf("Created link: %lu : %lu -> %lu \n", createdLink.Index, createdLink.Source, createdLink.Target);
@@ -47,5 +47,6 @@ int main() {
     printf("Found link after delete: %lu : %lu -> %lu \n", foundLink.Index, foundLink.Source, foundLink.Target);
     UInt64Links_Drop(uint64FfiStorage);
     free(uint64FfiStorage);
+    remove(tempFileName);
     return 0;
 }
