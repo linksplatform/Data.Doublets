@@ -1,5 +1,6 @@
 #include <Platform.Data.Doublets.h>
 #include <stdio.h>
+#include <string.h>
 
 UInt64Link createdLink;
 UInt64Link updatedLink;
@@ -43,6 +44,7 @@ int main() {
     printf("Found link after update: %lu : %lu -> %lu \n", foundLink.Index, foundLink.Source, foundLink.Target);
     UInt64Links_Delete(uint64FfiStorage, (const uint64_t*) &restriction, 1, deleteHandler);
     printf("Deleted link: %lu : %lu -> %lu \n", deletedLink.Index, deletedLink.Source, deletedLink.Target);
+    memset(&foundLink, 0, sizeof(foundLink));
     UInt64Links_Each(uint64FfiStorage, (const uint64_t*) &restriction, 1, eachHandler);
     printf("Found link after delete: %lu : %lu -> %lu \n", foundLink.Index, foundLink.Source, foundLink.Target);
     UInt64Links_Drop(uint64FfiStorage);
