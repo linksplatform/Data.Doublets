@@ -12,57 +12,6 @@
     $Macro(uint32_t, UInt32);                                                 \
     $Macro(uint64_t, UInt64);
 
-#define DECLARE_RANGE($TLinkAddress, $Prefix) \
-    typedef struct $Prefix##Range             \
-    {                                         \
-        $TLinkAddress minimum;                \
-        $TLinkAddress maximum;                \
-    } $Prefix##Range;                         \
-    //    void InitializeRange_##$TLinkAddress( Range_##$TLinkAddress* range, $TLinkAddress minimum, $TLinkAddress maximum) \
-//    {                                                                                              \
-//        range->Minimum = minimum;                                                                  \
-//        range->Maximum = maximum;                                                                  \
-//    }
-
-#define DECLARE_LINKS_CONSTANTS($TLinkAddress, $Prefix, $PrefixUpperCase) \
-    typedef struct $Prefix##LinksConstantsType                            \
-    {                                                                     \
-        $TLinkAddress index_part;                                         \
-        $TLinkAddress source_part;                                        \
-        $TLinkAddress target_part;                                        \
-        $TLinkAddress null;                                               \
-        $TLinkAddress $continue;                                          \
-        $TLinkAddress $break;                                             \
-        $TLinkAddress skip;                                               \
-        $TLinkAddress any;                                                \
-        $TLinkAddress itself;                                             \
-        $TLinkAddress error;                                              \
-        $Prefix##Range internal_range;                                    \
-        $Prefix##Range external_range;                                    \
-        bool _opt_marker;                                                 \
-    } $Prefix##LinksConstantsType;                                        \
-                                                                          \
-    $Prefix##LinksConstantsType Default##$Prefix##LinksConstants = {      \
-        .index_part = 0,                                                  \
-        .source_part = 1,                                                 \
-        .target_part = 2,                                                 \
-        .null = 0,                                                        \
-        .$continue = $PrefixUpperCase##_MAX,                              \
-        .$break = $PrefixUpperCase##_MAX - 1,                                                      \
-        .skip = $PrefixUpperCase##_MAX - 2,                               \
-        .any = $PrefixUpperCase##_MAX - 3,                                \
-        .itself = $PrefixUpperCase##_MAX - 4,                             \
-        .error = $PrefixUpperCase##_MAX - 5,                                                       \
-        .internal_range = {                                               \
-            .minimum = 0,                                                 \
-            .maximum = $PrefixUpperCase##_MAX - 6,                        \
-        },                                                                \
-        .external_range = {                                               \
-            .minimum = ($PrefixUpperCase##_MAX / 2) + 1,                  \
-            .maximum = $PrefixUpperCase##_MAX,                            \
-        },                                                                \
-    };
-
 #define DECLARE_LINK($TLinkAddress, $Prefix) \
     typedef struct $Prefix##Link             \
     {                                        \

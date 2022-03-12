@@ -1,6 +1,4 @@
 #include <Platform.Data.Doublets.h>
-#include <stdio.h>
-#include <string.h>
 
 UInt64Link createdLink;
 UInt64Link updatedLink;
@@ -10,25 +8,25 @@ UInt64Link deletedLink;
 uint64_t createHandler(UInt64Link before, UInt64Link after)
 {
     createdLink = after;
-    return DefaultUInt64LinksConstants.$continue;
+    return DefaultUInt64LinksConstants.Continue;
 }
 
 uint64_t updateHandler(UInt64Link before, UInt64Link after)
 {
     updatedLink = after;
-    return DefaultUInt64LinksConstants.$continue;
+    return DefaultUInt64LinksConstants.Continue;
 }
 
 uint64_t eachHandler(UInt64Link link)
 {
     foundLink = link;
-    return DefaultUInt64LinksConstants.$continue;
+    return DefaultUInt64LinksConstants.Continue;
 }
 
 uint64_t deleteHandler(UInt64Link before, UInt64Link after)
 {
     deletedLink = before;
-    return DefaultUInt64LinksConstants.$continue;
+    return DefaultUInt64LinksConstants.Continue;
 }
 
 int main() {
