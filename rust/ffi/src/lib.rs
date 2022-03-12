@@ -370,7 +370,7 @@ unsafe fn delete_united<T: LinkType>(
     let continue_ = links.constants().r#continue;
     let break_ = links.constants().r#break;
     let result = {
-        let handler = move |after: DLink<_>, before: DLink<_>| {
+        let handler = move |before: DLink<_>, after: DLink<_>| {
             if callback(before.into(), after.into()) == break_ {
                 Break
             } else {
