@@ -368,11 +368,11 @@ pub trait Links<T: LinkType> {
         }
     }
 
-    fn count_usages(&self, index: T) -> T {
+    fn count_usages(&self, index: T) -> Result<T> {
         let constants = self.constants();
         let any = constants.any;
         // TODO: expect
-        let link = self.get_link(index).unwrap();
+        let link = self.try_get_link(index)?;
         let mut usage_source = self.count_by([any, index, any]);
         if index == link.source {
             usage_source = usage_source - one();
@@ -383,7 +383,7 @@ pub trait Links<T: LinkType> {
             usage_target = usage_target - one();
         }
 
-        usage_source + usage_target
+        Ok(usage_source + usage_target)
     }
 
     fn exist(&self, link: T) -> bool {
@@ -396,7 +396,7 @@ pub trait Links<T: LinkType> {
     }
 
     fn has_usages(&self, link: T) -> bool {
-        self.count_usages(link) != zero()
+        self.count_usages(link).map_or(false, |link| link != zero())
     }
 
     fn rebase_with<F, R>(&mut self, old: T, new: T, mut handler: F) -> Result<(), LinksError<T>>
