@@ -38,10 +38,12 @@
 
 #include "ILinksExtensions.h"
 
-//#include "Decorators/LinksDecoratorBase.h"
-//#include "Decorators/LinksCascadeUsagesResolver.h"
-//#include "Decorators/NonNullContentsLinkDeletionResolver.h"
-//#include "Decorators/LinksCascadeUniquenessAndUsagesResolver.h"
-
+#include "Decorators/LinksDecoratorBase.h"
+#include "Decorators/LinksUniquenessResolver.h"
+#include "Decorators/LinksCascadeUniquenessAndUsagesResolver.h"
+#include "Decorators/LinksCascadeUsagesResolver.h"
+#include "Decorators/NonNullContentsLinkDeletionResolver.h"
+#include "Decorators/Decorators.h"
+//#include "Decorators/LinksCascadeUniquenessAndUsagesResolverBase.h"
 
 #endif

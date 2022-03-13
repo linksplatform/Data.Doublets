@@ -1,29 +1,30 @@
 ﻿namespace Platform::Data::Doublets::Decorators
 {
-    template <typename ...> class LinksUniquenessResolver;
-    template <typename TLink> class LinksUniquenessResolver<TLink> : public LinksDecoratorBase<TLink>
+    template <typename TFacade, typename TDecorated>
+    class LinksUniquenessResolver : DecoratorBase<TFacade, TDecorated>
     {
-        public: LinksUniquenessResolver(ILinks<TLink> &storage) : LinksDecoratorBase(storage) { }
+        using base = DecoratorBase<TFacade, TDecorated>;
+    public:
+        USE_ALL_BASE_CONSTRUCTORS(LinksUniquenessResolver, base);
 
-        public: TLink Update(CList auto&&restrictions, CList auto&&substitution) override
+    public: LinkAddressType Update(CArray auto&& restrictions, CArray auto&& substitution)
         {
-            auto constants = _constants;
-            auto storage = _links;
-            auto newLinkAddress = storage.SearchOrDefault(substitution[constants.SourcePart], substitution[constants.TargetPart]);
-            if (newLinkAddress == 0)
+            auto storage = this->decorated();
+            auto newLinkAddress = storage.SearchOrDefault(substitution[Constants.SourcePart], substitution[Constants.TargetPart]);
+            if (newLinkAddress == LinkAddressType{})
             {
                 return storage.Update(restrictions, substitution);
             }
             return this->ResolveAddressChangeConflict(restrictions[constants.IndexPart], newLinkAddress);
         }
 
-        protected: virtual TLink ResolveAddressChangeConflict(TLink oldLinkAddress, TLink newLinkAddress)
+        protected: TLink ResolveAddressChangeConflict(TLink oldLinkAddress, TLink newLinkAddress)
         {
-            if (!oldLinkAddress == newLinkAddress && _links.Exists(oldLinkAddress))
+            if (oldLinkAddress != newLinkAddress && Exists(this->decorated(), oldLinkAddress))
             {
-                _facade.Delete(oldLinkAddress);
+                this->facade().Delete(oldLinkAddress);
             }
-            return newLinkAddress;
+            return this->decorated().Constants.Continue;
         }
     };
 }

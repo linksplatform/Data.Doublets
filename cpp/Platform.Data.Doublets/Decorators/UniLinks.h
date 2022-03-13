@@ -1,7 +1,7 @@
 ﻿namespace Platform::Data::Doublets::Decorators
 {
     template <typename ...> class UniLinks;
-    template <typename TLink> class UniLinks<TLink> : public LinksDecoratorBase<TLink>, IUniLinks<TLink>
+    template <typename TLink> class UniLinks<TLink> : public LinksDecoratorBase<TFacade, TDecorated>, IUniLinks<TLink>
     {
         public: UniLinks(ILinks<TLink> &storage) : base(storage) { }
 
@@ -43,12 +43,12 @@
                 auto after = (IList<TLink>)substitution.ToArray();
                 if (after[0] == 0)
                 {
-                    auto newLink = _links.Create();
+                    auto newLink = this->decorated().Create();
                     after[0] = newLink;
                 }
                 if (substitution.Count() == 1)
                 {
-                    after = _links.GetLink(substitution[0]);
+                    after = this->decorated().GetLink(substitution[0]);
                 }
                 else if (substitution.Count() == 3)
                 {
@@ -68,14 +68,14 @@
                 if (patternOrCondition.Count() == 1)
                 {
                     auto linkToDelete = patternOrCondition[0];
-                    auto before = _links.GetLink(linkToDelete);
+                    auto before = this->decorated().GetLink(linkToDelete);
                     if (matchHandler != nullptr && this->matchHandler(before) == constants.Break)
                     {
                         return constants.Break;
                     }
                     auto after = Array.Empty<TLink>();
-                    _links.Update(linkToDelete, constants.Null, constants.Null);
-                    _links.Delete(linkToDelete);
+                    this->decorated().Update(linkToDelete, constants.Null, constants.Null);
+                    this->decorated().Delete(linkToDelete);
                     if (matchHandler != nullptr)
                     {
                         return this->substitutionHandler(before, after);
@@ -92,7 +92,7 @@
                 if (patternOrCondition.Count() == 1)
                 {
                     auto linkToUpdate = patternOrCondition[0];
-                    auto before = _links.GetLink(linkToUpdate);
+                    auto before = this->decorated().GetLink(linkToUpdate);
                     if (matchHandler != nullptr && this->matchHandler(before) == constants.Break)
                     {
                         return constants.Break;
@@ -106,9 +106,9 @@
                     {
                         if (!substitution[0] == linkToUpdate)
                         {
-                            after = _links.GetLink(substitution[0]);
-                            _links.Update(linkToUpdate, constants.Null, constants.Null);
-                            _links.Delete(linkToUpdate);
+                            after = this->decorated().GetLink(substitution[0]);
+                            this->decorated().Update(linkToUpdate, constants.Null, constants.Null);
+                            this->decorated().Delete(linkToUpdate);
                         }
                     }
                     else if (substitution.Count() == 3)

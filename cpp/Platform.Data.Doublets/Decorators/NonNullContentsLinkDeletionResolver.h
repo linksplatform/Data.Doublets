@@ -1,14 +1,17 @@
 ﻿namespace Platform::Data::Doublets::Decorators
 {
     template <typename ...> class NonNullContentsLinkDeletionResolver;
-    template <typename TLink> class NonNullContentsLinkDeletionResolver<TLink> : public LinksDecoratorBase<TLink>
+    template <typename TFacade, typename TDecorated>
+    class NonNullContentsLinkDeletionResolver : public LinksDecoratorBase<TFacade, TDecorated>
     {
-        public: NonNullContentsLinkDeletionResolver(ILinks<TLink> &storage) : LinksDecoratorBase(storage) { }
+        using base = LinksDecoratorBase<TFacade, TDecorated>;
+    public:
+        USE_ALL_BASE_CONSTRUCTORS(NonNullContentsLinkDeletionResolver, base);
 
         public: void Delete(CList auto&&restrictions) override
         {
             auto linkIndex = restrictions[_constants.IndexPart];
-            auto storage = _links;
+            auto storage = this->decorated();
             storage.EnforceResetValues(linkIndex);
             storage.Delete(linkIndex);
         }

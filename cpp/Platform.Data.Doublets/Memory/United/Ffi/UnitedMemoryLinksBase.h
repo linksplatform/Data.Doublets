@@ -181,6 +181,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
 
     public:
         static constexpr auto Constants = VConstants;
+        using LinkAddressType = TLinkAddress;
 
             UnitedMemoryLinksBase(std::string_view path)
         {

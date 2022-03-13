@@ -1,7 +1,7 @@
 ﻿namespace Platform::Data::Doublets::Decorators
 {
     template <typename ...> class LinksItselfConstantToSelfReferenceResolver;
-    template <typename TLink> class LinksItselfConstantToSelfReferenceResolver<TLink> : public LinksDecoratorBase<TLink>
+    template <typename TLink> class LinksItselfConstantToSelfReferenceResolver<TLink> : public LinksDecoratorBase<TFacade, TDecorated>
     {
         public: LinksItselfConstantToSelfReferenceResolver(ILinks<TLink> &storage) : LinksDecoratorBase(storage) { }
 
@@ -13,9 +13,9 @@
             {
                 return constants.Continue;
             }
-            return _links.Each(restrictions, handler);
+            return this->decorated().Each(restrictions, handler);
         }
 
-        public: TLink Update(CList auto&&restrictions, CList auto&&substitution) override { return _links.Update(restrictions, _links.ResolveConstantAsSelfReference(_constants.Itself, restrictions, substitution)); }
+        public: TLink Update(CList auto&&restrictions, CList auto&&substitution) override { return this->decorated().Update(restrictions, this->decorated().ResolveConstantAsSelfReference(_constants.Itself, restrictions, substitution)); }
     };
 }

@@ -887,15 +887,7 @@ namespace Platform::Data::Doublets
     //        return handlerState.Result;
     //    }
     //
-//        template<typename TLinkAddress>
-//        static auto&& DecorateWithAutomaticUniquenessAndUsagesResolution(auto&& storage)
-//        {
-//            using namespace Platform::Data::Doublets::Decorators;
-//            storage = LinksCascadeUsagesResolver<TLinkAddress>(storage);
-//            storage = NonNullContentsLinkDeletionResolver<TLinkAddress>(storage);
-//            storage = LinksCascadeUniquenessAndUsagesResolver<TLinkAddress>(storage);
-//            return storage;
-//        }
+
     //
     //    template<typename TLinkAddress>
     //    static std::string Format(auto&& storage, Interfaces::CList auto&& link)

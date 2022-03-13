@@ -8,7 +8,7 @@ namespace Platform::Data::Doublets::Decorators
     {
         public: UInt32Links(ILinks<TLink> &storage) : base(storage) { }
 
-        public: TLink Create(CList auto&&restrictions) override { return _links.CreatePoint(); }
+        public: TLink Create(CList auto&&restrictions) override { return this->decorated().CreatePoint(); }
 
         public: TLink Update(CList auto&&restrictions, CList auto&&substitution) override
         {
@@ -22,7 +22,7 @@ namespace Platform::Data::Doublets::Decorators
             auto updatedLink = restrictions[indexPartConstant];
             auto newSource = substitution[sourcePartConstant];
             auto newTarget = substitution[targetPartConstant];
-            auto storage = _links;
+            auto storage = this->decorated();
             if (newSource != itselfConstant && newTarget != itselfConstant)
             {
                 existedLink = storage.SearchOrDefault(newSource, newTarget);
@@ -39,16 +39,16 @@ namespace Platform::Data::Doublets::Decorators
             }
             else
             {
-                return _facade.MergeAndDelete(updatedLink, existedLink);
+                return this->facade().MergeAndDelete(updatedLink, existedLink);
             }
         }
 
         public: void Delete(CList auto&&restrictions) override
         {
             auto linkIndex = restrictions[_constants.IndexPart];
-            auto storage = _links;
+            auto storage = this->decorated();
             storage.EnforceResetValues(linkIndex);
-            _facade.DeleteAllUsages(linkIndex);
+            this->facade().DeleteAllUsages(linkIndex);
             storage.Delete(linkIndex);
         }
     };

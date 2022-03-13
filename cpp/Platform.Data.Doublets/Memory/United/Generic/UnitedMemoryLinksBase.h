@@ -14,6 +14,8 @@
         typename... TBase>
     class UnitedMemoryLinksBase : public Interfaces::Polymorph<TSelf, TBase...>
     {
+    private:
+        static constexpr auto null = Link<TLinkAddress>::Null;
     public:
         static constexpr LinksConstants<TLinkAddress> Constants = VConstants;
 
@@ -38,7 +40,7 @@
         TLinkAddress GetTotal() const
         {
             auto& header = GetHeaderReference();
-            return Subtract(header.AllocatedLinks, header.FreeLinks);
+            return header.AllocatedLinks - header.FreeLinks;
         }
 
     public:
@@ -179,7 +181,7 @@
             {
                 for (auto link = TLinkAddress {1}; link <= GetHeaderReference().AllocatedLinks; ++link)
                 {
-                    if (Exists(link) && (handler(GetLink(*this, link)) == $break))
+                    if (Exists(link) && (handler(GetLinkStruct(link)) == $break))
                     {
                         return $break;
                     }
@@ -199,7 +201,7 @@
                 {
                     return _continue;
                 }
-                return handler(GetLink(*this, index));
+                return handler(GetLinkStruct(index));
             }
             if (std::ranges::size(restrictions) == 2)
             {
@@ -224,12 +226,12 @@
                     }
                     if (value == any)
                     {
-                        return handler(GetLink(*this, index));
+                        return handler(GetLinkStruct(index));
                     }
                     auto& storedLinkValue = GetLinkReference(index);
                     if ((storedLinkValue.Source == value) || (storedLinkValue.Target == value))
                     {
-                        return handler(GetLink(*this, index));
+                        return handler(GetLinkStruct(index));
                     }
                     return _continue;
                 }
@@ -255,7 +257,7 @@
                     else// if(source != Any && target != Any)
                     {
                         auto link = _SourcesTreeMethods->Search(source, target);
-                        return (link == constants.Null) ? _continue : handler(GetLink(*this, link));
+                        return (link == constants.Null) ? _continue : handler(GetLinkStruct(link));
                     }
                 }
                 else
@@ -266,7 +268,7 @@
                     }
                     if (source == any && target == any)
                     {
-                        return handler(GetLink(*this, index));
+                        return handler(GetLinkStruct(index));
                     }
                     // TODO: 'ref locals' are not converted by C# to C++ Converter:
                     // ORIGINAL LINE: ref var storedLinkValue = ref GetLinkReference(index);
@@ -275,7 +277,7 @@
                     {
                         if (storedLinkValue.Source == source && storedLinkValue.Target == target)
                         {
-                            return handler(GetLink(*this, index));
+                            return handler(GetLinkStruct(index));
                         }
                         return _continue;
                     }
@@ -290,7 +292,7 @@
                     }
                     if (storedLinkValue.Source == value || storedLinkValue.Target == value)
                     {
-                        return handler(GetLink(*this, index));
+                        return handler(GetLinkStruct(index));
                     }
                     return _continue;
                 }
@@ -365,13 +367,13 @@
                     _memory.ReservedCapacity(_memory.ReservedCapacity() + _memoryReservationStep);
                     SetPointers(_memory);
                     header = GetHeaderReference();
-                    header.ReservedLinks = ConvertToAddress(_memory.ReservedCapacity() / LinkSizeInBytes);
+                    header.ReservedLinks = _memory.ReservedCapacity() / LinkSizeInBytes;
                 }
                 ++header.AllocatedLinks;
                 freeLink = header.AllocatedLinks;
                 _memory.UsedCapacity(_memory.UsedCapacity() + LinkSizeInBytes);
             }
-            return handler(nullptr, Link{freeLink, TLinkAddress{}, TLinkAddress{}});
+            return handler(null, Link{freeLink, TLinkAddress{}, TLinkAddress{}});
         }
 
         auto Delete(auto&& restrictions, auto&& handler)
@@ -394,7 +396,7 @@
                     _memory.UsedCapacity(_memory.UsedCapacity() - LinkSizeInBytes);
                 }
             }
-            return handler(before, nullptr);
+            return handler(before, null);
         }
 
         auto GetLinkStruct(TLinkAddress linkIndex) const
@@ -435,7 +437,7 @@
             return (link >= Constants.InternalReferencesRange.Minimum) && (link <= GetHeaderReference().AllocatedLinks) && !IsUnusedLink(link);
         }
 
-        bool IsUnusedLink(TLinkAddress linkIndex)
+        bool IsUnusedLink(TLinkAddress linkIndex) const
         {
             if (GetHeaderReference().FirstFreeLink != linkIndex)// May be this check is not needed
             {
