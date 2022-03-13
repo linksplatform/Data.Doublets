@@ -4,8 +4,8 @@
     class LinksCascadeUsagesResolver : DecoratorBase<TFacade, TDecorated>
     {
         using base = DecoratorBase<TFacade, TDecorated>;
-        using typename base::LinkAddressType;
-        using base::Constants;
+    public: using typename base::LinkAddressType;
+    public: using base::Constants;
     public:
         USE_ALL_BASE_CONSTRUCTORS(LinksCascadeUsagesResolver, base);
 
@@ -17,7 +17,7 @@
             handlerState = this->facade().DeleteAllUsages(linkIndex, handler);
             if(Constants.Break == handlerState)
             {
-                return this->decorated().Delete(linkIndex, [$continue](CArray auto&& before, CArray auto&& after)
+                return this->decorated().Delete(linkIndex, [$continue](CArray<TLinkAddress> auto&& before, CArray<TLinkAddress> auto&& after)
                 {
                     return $continue;
                 });

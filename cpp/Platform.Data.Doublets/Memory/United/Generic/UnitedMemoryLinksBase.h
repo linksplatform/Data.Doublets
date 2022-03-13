@@ -1,5 +1,6 @@
 ﻿namespace Platform::Data::Doublets::Memory::United::Generic
 {
+    using namespace Platform::Interfaces;
     using namespace Platform::Memory;
     using namespace Platform::Exceptions;
 
@@ -66,7 +67,7 @@
         }
 
     public:
-        TLinkAddress Count(Interfaces::CArray<TLinkAddress> auto&& restrictions) const
+        TLinkAddress Count(CArray<TLinkAddress> auto&& restrictions) const
         {
             if (std::ranges::size(restrictions) == 0)
             {
@@ -174,7 +175,7 @@
             NotSupportedException(/*"Другие размеры и способы ограничений не поддерживаются."*/);
         }
 
-        TLinkAddress Each(Interfaces::CArray<TLinkAddress> auto&& restrictions, auto&& handler) const
+    public: TLinkAddress Each(CArray<TLinkAddress> auto&& restrictions, auto&& handler) const
         {
             auto constants = Constants;
             auto $break = constants.Break;
@@ -306,7 +307,8 @@
         // / </remarks>
         // NOTE: The following .NET attribute has no direct equivalent in C++:
         // ORIGINAL LINE: [MethodImpl(MethodImplOptions.AggressiveInlining)] public TLinkAddress Update(IList<TLinkAddress> restrictions, IList<TLinkAddress> substitution)
-        TLinkAddress Update(Interfaces::CArray<TLinkAddress> auto&& restrictions, Interfaces::CArray<TLinkAddress> auto&& substitution, auto&& handler)
+    public:
+        TLinkAddress Update(CArray<TLinkAddress> auto&& restrictions, CArray<TLinkAddress> auto&& substitution, auto&& handler)
         {
             auto constants = Constants;
             auto null = constants.Null;
@@ -347,6 +349,7 @@
         }
 
         // TODO: Возможно нужно будет заполнение нулями, если внешнее API ими не заполняет пространство
+    public:
         TLinkAddress Create(auto&& restrictions, auto&& handler)
         {
             auto& header = GetHeaderReference();
@@ -377,7 +380,8 @@
             return handler(null, Link{freeLink, TLinkAddress{}, TLinkAddress{}});
         }
 
-        auto Delete(auto&& restrictions, auto&& handler)
+    public:
+        auto Delete(CArray<TLinkAddress> auto&& restrictions, auto&& handler)
         {
             auto& header = GetHeaderReference();
             auto linkAddress = restrictions[Constants.IndexPart];

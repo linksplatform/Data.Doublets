@@ -1,5 +1,6 @@
 namespace Platform::Data::Doublets
 {
+    using namespace Platform::Interfaces;
     template<typename TLinkAddress>
     void TestRandomCreationsAndDeletions(auto&& storage, std::size_t maximumOperationsPerCycle)
     {
@@ -255,7 +256,7 @@ namespace Platform::Data::Doublets
             std::array<TLinkAddress, sizeof...(restriction)> restrictionArray {restriction...};
             auto $continue {storage.Constants.Continue};
             auto allLinks = std::vector<std::vector<TLinkAddress>>();
-            storage.Each(restrictionArray, [&allLinks, $continue](Interfaces::CArray auto&& link){
+            storage.Each(restrictionArray, [&allLinks, $continue](CArray<TLinkAddress> auto&& link){
                 std::vector<TLinkAddress> linkVector {std::ranges::begin(link), std::ranges::end(link)};
                 allLinks.push_back(linkVector);
                 return $continue;
@@ -470,11 +471,11 @@ namespace Platform::Data::Doublets
     //    }
     //
         template<typename TLinkAddress>
-        TLinkAddress Update(auto&& storage, Interfaces::CArray<TLinkAddress> auto&& restriction, Interfaces::CArray<TLinkAddress> auto&& substitution)
+        TLinkAddress Update(auto&& storage, CArray<TLinkAddress> auto&& restriction, CArray<TLinkAddress> auto&& substitution)
         {
             auto _continue {storage.Constants.Continue};
             TLinkAddress updatedLinkAddress;
-            storage.Update(restriction, substitution, [&updatedLinkAddress, _continue] (Interfaces::CArray<TLinkAddress> auto&& before, Interfaces::CArray<TLinkAddress> auto&& after) {
+            storage.Update(restriction, substitution, [&updatedLinkAddress, _continue] (CArray<TLinkAddress> auto&& before, CArray<TLinkAddress> auto&& after) {
                 updatedLinkAddress = after[0];
                 return _continue;
             });
@@ -519,7 +520,7 @@ namespace Platform::Data::Doublets
         auto constants = storage.Constants;
         auto _continue = constants.Continue;
         TLinkAddress resultLink;
-        UpdateOrCreateOrGet(storage, source, target, newSource, newTarget, [&resultLink, _continue](Interfaces::CArray<TLinkAddress> auto&& before, Interfaces::CArray<TLinkAddress> auto&& after) {
+        UpdateOrCreateOrGet(storage, source, target, newSource, newTarget, [&resultLink, _continue](CArray<TLinkAddress> auto&& before, CArray<TLinkAddress> auto&& after) {
             resultLink = after[0];
             return _continue;
         });
@@ -611,7 +612,7 @@ namespace Platform::Data::Doublets
     }
 
     template<typename TLinkAddress>
-    auto DeleteByQuery(auto&& storage,  Interfaces::CArray<TLinkAddress> auto&& query)
+    auto DeleteByQuery(auto&& storage,  CArray<TLinkAddress> auto&& query)
     {
         auto count = storage.Count(query);
         auto toDelete = std::vector<TLinkAddress>(count);
@@ -740,12 +741,12 @@ namespace Platform::Data::Doublets
             auto usagesAsTargetQuery = Link(any, any, linkIndex);
             auto usages = std::vector<std::vector<TLinkAddress>>();
             TLinkAddress result {};
-            storage.Each(usagesAsSourceQuery, [&usages, &handler, &result, $continue, $break](Interfaces::CArray auto&& link) {
+            storage.Each(usagesAsSourceQuery, [&usages, &handler, &result, $continue, $break](CArray<TLinkAddress> auto&& link) {
                 usages.push_back(link);
                 result = handler(link);
                 if ($break == result)
                 {
-                    handler = [](Interfaces::CArray auto&& link){};
+                    handler = [](CArray<TLinkAddress> auto&& link){};
                 }
                 return result;
             });
@@ -754,7 +755,7 @@ namespace Platform::Data::Doublets
                 result = handler(link);
                 if ($break == result)
                 {
-                    handler = [](Interfaces::CArray auto&& link){};
+                    handler = [](CArray<TLinkAddress> auto&& link){};
                 }
                 return result;
             });

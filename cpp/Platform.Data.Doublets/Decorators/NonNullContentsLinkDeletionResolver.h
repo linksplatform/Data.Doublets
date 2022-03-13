@@ -4,12 +4,12 @@
     class NonNullContentsLinkDeletionResolver : public DecoratorBase<TFacade, TDecorated>
     {
         using base = DecoratorBase<TFacade, TDecorated>;
-        using typename base::LinkAddressType;
-        using base::Constants;
+    public: using typename base::LinkAddressType;
+    public: using base::Constants;
     public:
         USE_ALL_BASE_CONSTRUCTORS(NonNullContentsLinkDeletionResolver, base);
 
-        public: void Delete(CArray auto&&restrictions, auto&& handler)
+        public: void Delete(CArray<TLinkAddress> auto&&restrictions, auto&& handler)
         {
             auto linkIndex = restrictions[Constants.IndexPart];
             auto storage = this->decorated();
@@ -22,7 +22,7 @@
             else if (Constants.Break = handlerState)
             {
                 auto $continue {Constants.Continue};
-                storage.Delete(linkIndex, [$continue](CArray auto&& before, CArray auto&& after){
+                storage.Delete(linkIndex, [$continue](CArray<TLinkAddress> auto&& before, CArray<TLinkAddress> auto&& after){
                     return $continue;
                 });
             }
