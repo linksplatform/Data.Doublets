@@ -1,9 +1,9 @@
 ﻿namespace Platform::Data::Doublets::Decorators
 {
     template <typename ...> class LinksNonExistentDependenciesCreator;
-    template <typename TLink> class LinksNonExistentDependenciesCreator<TLink> : public LinksDecoratorBase<TFacade, TDecorated>
+    template <typename TLink> class LinksNonExistentDependenciesCreator<TLink> : public DecoratorBase<TFacade, TDecorated>
     {
-        public: LinksNonExistentDependenciesCreator(ILinks<TLink> &storage) : LinksDecoratorBase(storage) { }
+        public: LinksNonExistentDependenciesCreator(ILinks<TLink> &storage) : DecoratorBase(storage) { }
 
         public: TLink Update(CList auto&&restrictions, CList auto&&substitution) override
         {

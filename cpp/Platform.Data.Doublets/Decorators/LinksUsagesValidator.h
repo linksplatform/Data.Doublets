@@ -1,9 +1,9 @@
 ﻿namespace Platform::Data::Doublets::Decorators
 {
     template <typename ...> class LinksUsagesValidator;
-    template <typename TLink> class LinksUsagesValidator<TLink> : public LinksDecoratorBase<TFacade, TDecorated>
+    template <typename TLink> class LinksUsagesValidator<TLink> : public DecoratorBase<TFacade, TDecorated>
     {
-        public: LinksUsagesValidator(ILinks<TLink> &storage) : LinksDecoratorBase(storage) { }
+        public: LinksUsagesValidator(ILinks<TLink> &storage) : DecoratorBase(storage) { }
 
         public: TLink Update(CList auto&&restrictions, CList auto&&substitution) override
         {

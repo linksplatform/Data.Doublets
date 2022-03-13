@@ -1,9 +1,9 @@
 ﻿namespace Platform::Data::Doublets::Decorators
 {
     template <typename ...> class LinksInnerReferenceExistenceValidator;
-    template <typename TLink> class LinksInnerReferenceExistenceValidator<TLink> : public LinksDecoratorBase<TFacade, TDecorated>
+    template <typename TLink> class LinksInnerReferenceExistenceValidator<TLink> : public DecoratorBase<TFacade, TDecorated>
     {
-        public: LinksInnerReferenceExistenceValidator(ILinks<TLink> &storage) : LinksDecoratorBase(storage) { }
+        public: LinksInnerReferenceExistenceValidator(ILinks<TLink> &storage) : DecoratorBase(storage) { }
 
         public: TLink Each(Func<IList<TLink>, TLink> handler, CList auto&&restrictions) override
         {

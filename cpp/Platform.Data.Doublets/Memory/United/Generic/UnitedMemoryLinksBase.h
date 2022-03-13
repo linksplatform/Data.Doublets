@@ -17,6 +17,7 @@
     private:
         static constexpr auto null = Link<TLinkAddress>::Null;
     public:
+        typedef TLinkAddress LinkAddressType;
         static constexpr LinksConstants<TLinkAddress> Constants = VConstants;
 
     public:

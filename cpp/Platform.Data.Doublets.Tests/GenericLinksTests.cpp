@@ -1,5 +1,9 @@
 ﻿namespace Platform::Data::Doublets::Tests
 {
+            using namespace Platform::Memory;
+            using namespace Platform::Data::Doublets::Memory::United::Generic;
+            using namespace Platform::Data::Doublets::Memory::United;
+            using namespace Platform::Collections;
 //    template <typename TLink>
 //    static void Using(auto&& action)
 //    {
@@ -42,6 +46,7 @@
 
     TEST(GenericLinksTests, MultipleRandomCreationsAndDeletionsTest)
     {
+        using TLink = std::uint64_t;
         constexpr LinksConstants<TLink> constants {true};
         HeapResizableDirectMemory memory {};
         auto decoratedStorage = LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<UnitedMemoryLinks<TLink, HeapResizableDirectMemory, constants>>(memory);

@@ -1,9 +1,9 @@
 ﻿namespace Platform::Data::Doublets::Decorators
 {
     template <typename ...> class LinksUniquenessValidator;
-    template <typename TLink> class LinksUniquenessValidator<TLink> : public LinksDecoratorBase<TFacade, TDecorated>
+    template <typename TLink> class LinksUniquenessValidator<TLink> : public DecoratorBase<TFacade, TDecorated>
     {
-        public: LinksUniquenessValidator(ILinks<TLink> &storage) : LinksDecoratorBase(storage) { }
+        public: LinksUniquenessValidator(ILinks<TLink> &storage) : DecoratorBase(storage) { }
 
         public: TLink Update(CList auto&&restrictions, CList auto&&substitution) override
         {

@@ -1,9 +1,9 @@
 ﻿namespace Platform::Data::Doublets::Decorators
 {
     template <typename ...> class LinksNullConstantToSelfReferenceResolver;
-    template <typename TLink> class LinksNullConstantToSelfReferenceResolver<TLink> : public LinksDecoratorBase<TFacade, TDecorated>
+    template <typename TLink> class LinksNullConstantToSelfReferenceResolver<TLink> : public DecoratorBase<TFacade, TDecorated>
     {
-        public: LinksNullConstantToSelfReferenceResolver(ILinks<TLink> &storage) : LinksDecoratorBase(storage) { }
+        public: LinksNullConstantToSelfReferenceResolver(ILinks<TLink> &storage) : DecoratorBase(storage) { }
 
         public: TLink Create(CList auto&&restrictions) override { return this->decorated().CreatePoint(); }
 

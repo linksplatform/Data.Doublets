@@ -1,9 +1,12 @@
 ﻿namespace Platform::Data::Doublets::Decorators
 {
+    using namespace Platform::Interfaces;
     template <typename TFacade, typename TDecorated>
     class LinksUniquenessResolver : DecoratorBase<TFacade, TDecorated>
     {
         using base = DecoratorBase<TFacade, TDecorated>;
+        using typename base::LinkAddressType;
+        using base::Constants;
     public:
         USE_ALL_BASE_CONSTRUCTORS(LinksUniquenessResolver, base);
 
@@ -15,10 +18,10 @@
             {
                 return storage.Update(restrictions, substitution);
             }
-            return this->ResolveAddressChangeConflict(restrictions[constants.IndexPart], newLinkAddress);
+            return this->ResolveAddressChangeConflict(restrictions[Constants.IndexPart], newLinkAddress);
         }
 
-        protected: TLink ResolveAddressChangeConflict(TLink oldLinkAddress, TLink newLinkAddress)
+        protected: LinkAddressType ResolveAddressChangeConflict(LinkAddressType oldLinkAddress, LinkAddressType newLinkAddress)
         {
             if (oldLinkAddress != newLinkAddress && Exists(this->decorated(), oldLinkAddress))
             {
