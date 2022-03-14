@@ -253,7 +253,7 @@ namespace Platform::Data::Doublets
         {
             using namespace Platform::Collections;
             using namespace Platform::Interfaces;
-            std::array<TLinkAddress, sizeof...(restriction)> restrictionArray {restriction...};
+            std::array<TLinkAddress, sizeof...(restriction)> restrictionArray { static_cast<TLinkAddress>(restriction)... };
             auto $continue {storage.Constants.Continue};
             auto allLinks = std::vector<std::vector<TLinkAddress>>();
             storage.Each(restrictionArray, [&allLinks, $continue](CArray<TLinkAddress> auto&& link){
