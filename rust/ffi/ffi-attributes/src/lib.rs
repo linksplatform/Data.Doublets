@@ -18,6 +18,8 @@ use syn::{
     TypeTuple,
 };
 
+
+/// TODO: use traits or remove it
 fn csharp_convention(s: String) -> String {
     match s.as_str() {
         "i8" => "SByte",
@@ -35,10 +37,15 @@ fn csharp_convention(s: String) -> String {
     .to_string()
 }
 
+fn transparent_convention(s: String) -> String {
+    s
+}
+
 #[derive(FromMeta, PartialEq, Eq, Debug)]
 #[allow(non_camel_case_types)]
 enum Conventions {
     csharp,
+    transparent,
 }
 
 #[derive(FromMeta)]
@@ -142,6 +149,7 @@ pub fn specialize_for(args: TokenStream, input: TokenStream) -> TokenStream {
                 "*",
                 match &args.convention {
                     Conventions::csharp => csharp_convention(ty.clone()),
+                    Conventions::transparent => transparent_convention(ty.clone()),
                     _ => {
                         panic!("unknown convention")
                     }
