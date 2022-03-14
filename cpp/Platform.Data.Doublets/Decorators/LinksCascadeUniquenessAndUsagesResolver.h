@@ -3,7 +3,7 @@
     template <typename TFacade, typename TDecorated>
     class LinksCascadeUniquenessAndUsagesResolver : public LinksUniquenessResolver<TFacade, TDecorated>
     {
-    using base = DecoratorBase<TFacade, TDecorated>;
+    using base = LinksUniquenessResolver<TFacade, TDecorated>;
     public: using typename base::LinkAddressType;
         public:
             USE_ALL_BASE_CONSTRUCTORS(LinksCascadeUniquenessAndUsagesResolver, base);
