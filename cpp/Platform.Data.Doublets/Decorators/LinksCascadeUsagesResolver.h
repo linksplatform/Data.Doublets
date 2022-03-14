@@ -17,7 +17,7 @@
             handlerState = this->facade().DeleteAllUsages(linkIndex, handler);
             if(Constants.Break == handlerState)
             {
-                return this->decorated().Delete(linkIndex, [$continue](CArray<TLinkAddress> auto&& before, CArray<TLinkAddress> auto&& after)
+                return this->decorated().Delete(linkIndex, [$continue](CArray<LinkAddressType> auto&& before, CArray<LinkAddressType> auto&& after)
                 {
                     return $continue;
                 });

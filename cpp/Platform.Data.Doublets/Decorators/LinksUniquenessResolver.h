@@ -10,7 +10,7 @@
     public:
         USE_ALL_BASE_CONSTRUCTORS(LinksUniquenessResolver, base);
 
-    public: LinkAddressType Update(CArray<TLinkAddress> auto&& restrictions, CArray<TLinkAddress> auto&& substitution)
+    public: LinkAddressType Update(CArray<LinkAddressType> auto&& restrictions, CArray<LinkAddressType> auto&& substitution)
         {
             auto storage = this->decorated();
             auto newLinkAddress = storage.SearchOrDefault(substitution[Constants.SourcePart], substitution[Constants.TargetPart]);

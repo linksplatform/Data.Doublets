@@ -9,7 +9,7 @@
     public:
         USE_ALL_BASE_CONSTRUCTORS(NonNullContentsLinkDeletionResolver, base);
 
-        public: void Delete(CArray<TLinkAddress> auto&&restrictions, auto&& handler)
+        public: void Delete(CArray<LinkAddressType> auto&&restrictions, auto&& handler)
         {
             auto linkIndex = restrictions[Constants.IndexPart];
             auto storage = this->decorated();
@@ -22,7 +22,7 @@
             else if (Constants.Break = handlerState)
             {
                 auto $continue {Constants.Continue};
-                storage.Delete(linkIndex, [$continue](CArray<TLinkAddress> auto&& before, CArray<TLinkAddress> auto&& after){
+                storage.Delete(linkIndex, [$continue](CArray<LinkAddressType> auto&& before, CArray<LinkAddressType> auto&& after){
                     return $continue;
                 });
             }

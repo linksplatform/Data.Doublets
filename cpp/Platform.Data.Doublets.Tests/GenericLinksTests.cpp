@@ -49,8 +49,9 @@
         using TLink = std::uint64_t;
         constexpr LinksConstants<TLink> constants {true};
         HeapResizableDirectMemory memory {};
-        auto decoratedStorage = LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<UnitedMemoryLinks<TLink, HeapResizableDirectMemory, constants>>(memory);
-        TestMultipleRandomCreationsAndDeletions<std::uint8_t>(decoratedStorage, 16);
+//        UnitedMemoryLinks<TLink, HeapResizableDirectMemory, constants> storage {memory};
+        LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<UnitedMemoryLinks<TLink, HeapResizableDirectMemory, constants>> storage {memory};
+//        TestMultipleRandomCreationsAndDeletions<std::uint8_t>(decoratedStorage, 16);
 //        Using<std::uint16_t>([] (auto&& storage){
 //            auto decoratedStorage = LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<decltype(storage)>(storage);
 //            TestMultipleRandomCreationsAndDeletions<std::uint16_t>(decoratedStorage, 100);
