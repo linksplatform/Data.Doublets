@@ -204,7 +204,7 @@ namespace Platform::Data::Doublets::Tests
                 }
                 else
                 {
-                    auto createdLinkAddress = Create<TLinkAddress>(storage);
+                    Create<TLinkAddress>(storage);
                     ++created;
                 }
             }
