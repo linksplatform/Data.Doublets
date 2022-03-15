@@ -404,7 +404,7 @@ namespace Platform::Data::Doublets
     //    static bool HasUsages(auto&& storage, TLinkAddress link) { return Comparer<TLinkAddress>.Default.Compare(storage.Count()Usages(link), 0) > 0; }
     //
     //    template<typename TLinkAddress>
-    //    static bool operator ==(const auto&& storage, TLinkAddress link, TLinkAddress source, TLinkAddress &target) const
+    //    static bool operator ==(auto&& storage, TLinkAddress link, TLinkAddress source, TLinkAddress &target) const
     //    {
     //        auto constants = storage.Constants;
     //        auto values = storage.GetLink(link);
@@ -642,17 +642,7 @@ namespace Platform::Data::Doublets
     }
 
     template<typename TLinkAddress>
-    TLinkAddress GetSource(const auto&& storage, TLinkAddress index) {
-        GetLink(index).Source;
-    }
-
-    template<typename TLinkAddress>
-    TLinkAddress GetTarget(const auto&& storage, TLinkAddress index) {
-        GetLink(index).Target;
-    }
-
-    template<typename TLinkAddress>
-    bool Exists(const auto&& storage, TLinkAddress source, TLinkAddress target)
+    bool Exists(auto&& storage, TLinkAddress source, TLinkAddress target)
     {
         return storage.Count(storage.Constants.Any, source, target) != 0;
     }
@@ -664,7 +654,7 @@ namespace Platform::Data::Doublets
     }
 
     template<typename TLinkAddress>
-    TLinkAddress CountUsages(const auto&& storage, TLinkAddress link)
+    TLinkAddress CountUsages(auto&& storage, TLinkAddress link)
     {
         auto constants = storage.Constants;
         auto values = storage.GetLink(link);
@@ -676,20 +666,20 @@ namespace Platform::Data::Doublets
     }
 
     template<typename TLinkAddress>
-    TLinkAddress HasUsages(const auto&& storage, TLinkAddress link)
+    TLinkAddress HasUsages(auto&& storage, TLinkAddress link)
     {
         return storage.CountUsages(link) != 0;
     }
 
     template<typename TLinkAddress>
-    std::string Format(const auto&& storage, TLinkAddress link)
+    std::string Format(auto&& storage, TLinkAddress link)
     {
         auto values = storage.GetLink(link);
         return Format(values);
     }
 
     template<typename TLinkAddress>
-    std::string Format(const auto&& storage, Link<TLinkAddress> link)
+    std::string Format(auto&& storage, Link<TLinkAddress> link)
     {
         return std::string{}
                 .append("(")
