@@ -47,7 +47,7 @@ namespace Platform::Data::Doublets
     }
 
     template<typename TLinkAddress>
-    TLinkAddress SearchOrDefault(const auto& storage, TLinkAddress source, TLinkAddress target)
+    TLinkAddress SearchOrDefault(auto&& storage, TLinkAddress source, TLinkAddress target)
     {
         auto constants = storage.Constants;
         auto _break = constants.Break;
@@ -641,10 +641,22 @@ namespace Platform::Data::Doublets
         return Update(storage, point, point, point);
     }
 
+    static bool Exists(auto&& storage, CArray auto&& restriction)
+	{
+		return storage.Count(restriction) > 0;
+	}
+
+    template<std::integral TLinkAddress>
+    static bool Exists(auto&& storage, TLinkAddress index)
+    {
+        auto any { storage.Constants.Any };
+        return Exists(storage, std::array{index, any, any});
+    }
+
     template<typename TLinkAddress>
     static bool Exists(auto&& storage, TLinkAddress source, TLinkAddress target)
     {
-        return storage.Count(Link{storage.Constants.Any, source, target}) > 0;
+        return Exists(storage, Link{storage.Constants.Any, source, target});
     }
 
     template<typename TLinkAddress>
