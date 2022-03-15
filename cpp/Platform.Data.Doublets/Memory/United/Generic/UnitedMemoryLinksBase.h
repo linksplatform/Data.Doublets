@@ -172,7 +172,7 @@
                     return TLinkAddress {};
                 }
             }
-            NotSupportedException(/*"Другие размеры и способы ограничений не поддерживаются."*/);
+            throw std::logic_error("Not supported exception.");
         }
 
     public: TLinkAddress Each(CArray<TLinkAddress> auto&& restrictions, auto&& handler) const
@@ -299,7 +299,7 @@
                     return _continue;
                 }
             }
-            NotSupportedException(/*"Другие размеры и способы ограничений не поддерживаются."*/);
+            throw std::logic_error("Not supported exception.");
         }
 
         // / <remarks>
