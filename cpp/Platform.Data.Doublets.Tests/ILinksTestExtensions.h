@@ -196,16 +196,7 @@ namespace Platform::Data::Doublets::Tests
                     Ranges::Range<TLinkAddress> linksAddressRange { 1, linksCount };
                     TLinkAddress source { Random::NextUInt64(randomGen64, linksAddressRange) };
                     TLinkAddress target { Random::NextUInt64(randomGen64, linksAddressRange) }; //-V3086
-                    std::cout << "Create link from " << source << " to " << target << std::endl;
-                    auto allLinks { All<TLinkAddress>(storage)};
-                    for (auto link : allLinks)
-                    {
-                        Link<TLinkAddress> linkStruct {link[0], link[1], link[2]};
-                        std::cout << "Link " << linkStruct.Index << " : " << linkStruct.Source << " -> " << linkStruct.Target << std::endl;
-                    }
                     auto resultLink { GetOrCreate(storage, source, target) };
-                    auto resultLinkStruct { GetLink(storage, resultLink) };
-                    std::cout << "Result link" << resultLinkStruct[0] << " : " << resultLinkStruct[1] << " -> " << resultLinkStruct[2] << std::endl;
                     if (resultLink > linksCount)
                     {
                         ++created;
@@ -223,7 +214,7 @@ namespace Platform::Data::Doublets::Tests
             for (auto i { 0 }; i < N; ++i)
             {
                 TLinkAddress link = i + 1;
-                if (Data::Exists(storage, link))
+                if (Exists(storage, link))
                 {
                     Data::Delete<TLinkAddress>(storage, link);
                     ++deleted;
