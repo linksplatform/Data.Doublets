@@ -63,6 +63,12 @@ impl<T: LinkType> ToQuery<T> for [T] {
     }
 }
 
+impl<'a, T: LinkType> ToQuery<T> for &'a [T] {
+    fn to_query(&self) -> Query<'a, T> {
+        Query::new(*self)
+    }
+}
+
 impl<T: LinkType> ToQuery<T> for Vec<T> {
     fn to_query(&self) -> Query<'_, T> {
         Query::new(&self[..])

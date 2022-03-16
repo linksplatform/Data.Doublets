@@ -1,6 +1,7 @@
 use std::default::default;
 use std::fmt::{Debug, Display, Formatter};
-use std::slice::from_raw_parts;
+use std::ops::Index;
+use std::slice::{from_raw_parts, SliceIndex};
 
 use num_traits::zero;
 
@@ -45,6 +46,15 @@ impl<T: LinkType> Link<T> {
     }
 }
 
+impl<T: LinkType, I: SliceIndex<[T]>> Index<I> for Link<T> {
+    type Output = I::Output;
+
+    fn index(&self, index: I) -> &Self::Output {
+        let slice = unsafe { from_raw_parts(&self.index, 3) };
+        Index::index(slice, index)
+    }
+}
+
 impl<T: LinkType> Display for Link<T> {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         write!(f, "({}: {} {})", self.index, self.source, self.target)
@@ -53,6 +63,6 @@ impl<T: LinkType> Display for Link<T> {
 
 impl<T: LinkType> ToQuery<T> for Link<T> {
     fn to_query(&self) -> Query<'_, T> {
-        Query::new(unsafe { from_raw_parts(&self.index as *const _, 3) })
+        Query::new(unsafe { from_raw_parts(&self.index, 3) })
     }
 }
