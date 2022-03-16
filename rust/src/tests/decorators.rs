@@ -5,7 +5,7 @@ use crate::doublets::decorators::{
     UniqueValidator, UsagesValidator,
 };
 use crate::doublets::Flow::Continue;
-use crate::doublets::{Doublet, Link, Links, LinksError};
+use crate::doublets::{Doublet, Doublets, Link, LinksError};
 use crate::tests::{make_links, make_mem};
 
 #[test]

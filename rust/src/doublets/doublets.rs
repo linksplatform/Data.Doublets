@@ -27,7 +27,7 @@ fn IGNORE<T: LinkType>(_: Link<T>, _: Link<T>) -> Result<(), ()> {
     Err(())
 }
 
-pub trait Links<T: LinkType> {
+pub trait Doublets<T: LinkType> {
     fn constants(&self) -> LinksConstants<T>;
 
     fn count_by(&self, query: impl ToQuery<T>) -> T;
@@ -286,7 +286,6 @@ pub trait Links<T: LinkType> {
         F: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>,
     {
-        // todo macro?
         let mut new = default();
         let mut handler = StoppedHandler::new(handler);
         self.create_with(|before, after| {
@@ -371,7 +370,7 @@ pub trait Links<T: LinkType> {
     fn count_usages(&self, index: T) -> Result<T> {
         let constants = self.constants();
         let any = constants.any;
-        // TODO: expect
+        // TODO: delegate error
         let link = self.try_get_link(index)?;
         let mut usage_source = self.count_by([any, index, any]);
         if index == link.source {
@@ -448,7 +447,6 @@ pub trait Links<T: LinkType> {
         Ok(())
     }
 
-    // TODO: old: `merge_usages`
     fn rebase(&mut self, old: T, new: T) -> Result<T> {
         let link = self.try_get_link(old)?;
 
@@ -544,6 +542,6 @@ pub trait Links<T: LinkType> {
 }
 
 #[deprecated(note = "use `ILinks`")]
-pub trait ILinksExtensions<T: LinkType>: Links<T> {}
+pub trait ILinksExtensions<T: LinkType>: Doublets<T> {}
 
-impl<T: LinkType, All: Links<T>> ILinksExtensions<T> for All {}
+impl<T: LinkType, All: Doublets<T>> ILinksExtensions<T> for All {}
