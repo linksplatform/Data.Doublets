@@ -16,7 +16,7 @@ type WriteHandler<'a, T> = &'a dyn FnMut(&[T], &[T]) -> Flow;
 pub trait Links<T: LinkType> {
     fn constants(&self) -> LinksConstants<T>;
 
-    fn count_links(&self, query: &[T]) -> Result;
+    fn count_links(&self, query: &[T]) -> T;
 
     fn create_links(&mut self, query: &[T], handler: WriteHandler<T>) -> Result;
 
