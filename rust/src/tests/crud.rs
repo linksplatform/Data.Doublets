@@ -8,9 +8,9 @@ use std::io::{Read, Seek, SeekFrom, Write};
 use std::ptr::{null_mut, NonNull};
 use std::time::Instant;
 
-use crate::doublets::data::{AddrToRaw, IGenericLinks, LinksConstants};
+use crate::doublets::data::{AddrToRaw, Links, LinksConstants};
 use crate::doublets::mem::splited;
-use crate::doublets::{ILinksExtensions, Link, Links, LinksError};
+use crate::doublets::{Doublets, ILinksExtensions, Link, LinksError};
 //use crate::doublets::decorators::{CascadeUsagesResolver, NonNullDeletionResolver};
 //use crate::doublets::mem::splited;
 use crate::doublets::mem::united::Store;

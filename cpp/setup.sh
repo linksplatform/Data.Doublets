@@ -16,6 +16,7 @@ conan profile show linksplatform
 git clone https://github.com/linksplatform/conan-center-index
 cd conan-center-index && cd recipes
 git checkout only-development
+git pull
 conan create platform.interfaces/0.2.0+ platform.interfaces/0.2.5@ -pr=linksplatform
 conan create platform.ranges/all platform.ranges/0.1.3@ -pr=linksplatform
 conan create platform.random/all platform.random/0.1.0@ -pr=linksplatform

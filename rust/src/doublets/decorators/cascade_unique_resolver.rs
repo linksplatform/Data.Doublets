@@ -6,22 +6,20 @@ use std::ops::Try;
 
 use num_traits::zero;
 
-use crate::doublets::data::{
-    IGenericLinks, IGenericLinksExtensions, LinksConstants, Query, ToQuery,
-};
+use crate::doublets::data::{Links, LinksConstants, Query, ToQuery};
 use crate::doublets::decorators::UniqueResolver;
-use crate::doublets::{Flow, ILinksExtensions, Link, Links, LinksError, Result};
+use crate::doublets::{Doublets, Flow, ILinksExtensions, Link, LinksError, Result};
 use crate::num::LinkType;
 
 type Base<T, Links> = UniqueResolver<T, Links>;
 
-pub struct CascadeUniqueResolver<T: LinkType, L: Links<T>> {
+pub struct CascadeUniqueResolver<T: LinkType, L: Doublets<T>> {
     links: L,
 
     _phantom: PhantomData<T>,
 }
 
-impl<T: LinkType, L: Links<T>> CascadeUniqueResolver<T, L> {
+impl<T: LinkType, L: Doublets<T>> CascadeUniqueResolver<T, L> {
     pub fn new(links: L) -> Self {
         Self {
             links,
@@ -30,7 +28,7 @@ impl<T: LinkType, L: Links<T>> CascadeUniqueResolver<T, L> {
     }
 }
 
-impl<T: LinkType, L: Links<T>> Links<T> for CascadeUniqueResolver<T, L> {
+impl<T: LinkType, L: Doublets<T>> Doublets<T> for CascadeUniqueResolver<T, L> {
     fn constants(&self) -> LinksConstants<T> {
         self.links.constants()
     }

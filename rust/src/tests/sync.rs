@@ -6,9 +6,9 @@ use std::time::Instant;
 
 use rand::Rng;
 
-use crate::doublets::data::IGenericLinks;
+use crate::doublets::data::Links;
 use crate::doublets::mem::{splited, united};
-use crate::doublets::{ILinksExtensions, Link, Links};
+use crate::doublets::{Doublets, ILinksExtensions, Link};
 use crate::mem::ResizeableMem;
 use crate::num::LinkType;
 use crate::tests::make_links;

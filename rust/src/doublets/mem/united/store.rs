@@ -10,7 +10,7 @@ use smallvec::SmallVec;
 
 use crate::doublets::data::LinksConstants;
 use crate::doublets::data::ToQuery;
-use crate::doublets::data::{IGenericLinks, Query};
+use crate::doublets::data::{Links, Query};
 use crate::doublets::link::Link;
 use crate::doublets::mem::links_header::LinksHeader;
 use crate::doublets::mem::united::LinksSourcesSizeBalancedTree;
@@ -22,13 +22,12 @@ use crate::doublets::mem::united::{LinksSourcesRecursionlessSizeBalancedTree, Ne
 use crate::doublets::mem::ILinksTreeMethods;
 use crate::doublets::mem::{ILinksListMethods, UpdatePointers};
 use crate::doublets::Result;
-use crate::doublets::{data, Links, LinksError};
+use crate::doublets::{data, Doublets, LinksError};
 use crate::mem::FileMappedMem;
 use crate::mem::{Mem, ResizeableMem};
 use crate::num::LinkType;
 use crate::{doublets, query};
 
-// TODO: use `_=_` instead of `_ = _`
 pub struct Store<
     T: LinkType,
     M: ResizeableMem,
@@ -172,7 +171,6 @@ impl<
         let constants = self.constants();
         let header = self.get_header();
 
-        // TODO: use attributes expressions feature
         // TODO: use `Range::contains`
         link >= *constants.internal_range.start()
             && link <= header.allocated
@@ -316,7 +314,7 @@ impl<
         TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
         TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
         TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
-    > doublets::Links<T> for Store<T, M, TS, TT, TU>
+    > doublets::Doublets<T> for Store<T, M, TS, TT, TU>
 {
     fn constants(&self) -> LinksConstants<T> {
         self.constants.clone()
@@ -544,7 +542,7 @@ impl<
 
         let index = query[0];
         // TODO: use method style - remove .get_link
-        let (source, target) = if let Some(link) = Links::get_link(self, index) {
+        let (source, target) = if let Some(link) = self.get_link(index) {
             (link.source, link.target)
         } else {
             return Err(LinksError::NotExists(index));
