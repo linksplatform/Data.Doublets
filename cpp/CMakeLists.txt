@@ -22,6 +22,7 @@ target_link_libraries(${PROJECT_NAME}.Library INTERFACE CONAN_PKG::platform.coll
 target_link_libraries(${PROJECT_NAME}.Library INTERFACE CONAN_PKG::platform.threading)
 target_link_libraries(${PROJECT_NAME}.Library INTERFACE CONAN_PKG::platform.memory)
 target_link_libraries(${PROJECT_NAME}.Library INTERFACE CONAN_PKG::platform.data)
+target_link_libraries(${PROJECT_NAME}.Library INTERFACE CONAN_PKG::platform.interfaces)
 
 target_link_directories(${PROJECT_NAME}.Library INTERFACE ${CMAKE_CURRENT_LIST_DIR})
 target_link_libraries(${PROJECT_NAME}.Library INTERFACE doublets_ffi)
