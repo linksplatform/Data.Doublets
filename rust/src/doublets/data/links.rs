@@ -24,5 +24,5 @@ pub trait Links<T: LinkType> {
 
     fn update_links(&mut self, query: &[T], replacement: &[T], handler: WriteHandler<T>) -> Result;
 
-    fn delete_generic(&mut self, query: &[T], handler: WriteHandler<T>) -> Result;
+    fn delete_links(&mut self, query: &[T], handler: WriteHandler<T>) -> Result;
 }
