@@ -20,6 +20,8 @@
 #include "Link.h"
 //#include "ILinks.h"
 
+#include "ILinksExtensions.h"
+
 #include "Memory/LinksHeader.h"
 #include "Memory/IndexTreeType.h"
 #include "Memory/ILinksListMethods.h"
@@ -36,7 +38,6 @@
 #include "Memory/United/Ffi/UnitedMemoryLinksBase.h"
 #include "Memory/United/Ffi/UnitedMemoryLinks.h"
 
-#include "ILinksExtensions.h"
 
 #include "Decorators/LinksUniquenessResolver.h"
 #include "Decorators/LinksCascadeUniquenessAndUsagesResolver.h"
