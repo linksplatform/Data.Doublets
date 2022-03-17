@@ -1,0 +1,40 @@
+
+on:
+  push:
+    branches: ["master"]
+  pull_request:
+    branches: ["master"]
+
+name: Rust
+
+env:
+  RUST_BACKTRACE: 1
+  # rust_stable: stable
+  rust_nightly: nightly
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+
+  test:
+    name: test doublets full
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - windows-latest
+          - ubuntu-latest
+          - macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Rust ${{ env.rust_nigthly }}
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: ${{ env.rust_nigthly }}
+          override: true
+
+      - name: test doublets
+        run: cargo test
+        working-directory: rust
