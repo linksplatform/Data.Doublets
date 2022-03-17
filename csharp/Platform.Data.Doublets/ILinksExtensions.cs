@@ -828,7 +828,7 @@ namespace Platform.Data.Doublets
         {
             var constants = links.Constants;
             var setter = new Setter<TLinkAddress, TLinkAddress>(constants.Continue, constants.Break);
-            links.CreatePoint(setter.SetFirstFromSecondListAndReturnTrue);
+            links.CreatePoint(setter.SetFirstFromNonNullSecondListAndReturnTrue);
             return setter.Result;
         }
 
@@ -853,7 +853,7 @@ namespace Platform.Data.Doublets
         {
             var constants = links.Constants;
             var setter = new Setter<TLinkAddress, TLinkAddress>(constants.Continue, constants.Break);
-            links.CreateAndUpdate(source, target, setter.SetFirstFromSecondListAndReturnTrue);
+            links.CreateAndUpdate(source, target, setter.SetFirstFromNonNullSecondListAndReturnTrue);
             return setter.Result;
         }
 
@@ -894,7 +894,7 @@ namespace Platform.Data.Doublets
         {
             var constants = links.Constants;
             var setter = new Setter<TLinkAddress, TLinkAddress>(constants.Continue, constants.Break);
-            links.Update(restriction, setter.SetFirstFromSecondListAndReturnTrue);
+            links.Update(restriction, setter.SetFirstFromNonNullSecondListAndReturnTrue);
             return setter.Result;
         }
 
@@ -989,7 +989,7 @@ namespace Platform.Data.Doublets
         {
             var constants = links.Constants;
             var setter = new Setter<TLinkAddress, TLinkAddress>(constants.Continue, constants.Break);
-            links.UpdateOrCreateOrGet(source, target, newSource, newTarget, setter.SetFirstFromSecondListAndReturnTrue);
+            links.UpdateOrCreateOrGet(source, target, newSource, newTarget, setter.SetFirstFromNonNullSecondListAndReturnTrue);
             return setter.Result;
         }
 

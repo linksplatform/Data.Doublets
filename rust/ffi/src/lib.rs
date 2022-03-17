@@ -231,7 +231,7 @@ unsafe fn drop_united_links<T: LinkType>(this: *mut c_void) {
 )]
 unsafe fn get_constants_united_links<T: LinkType>(this: *mut c_void) -> Constants<T> {
     let links: &mut WrappedLinks<T> = unnul_or_error(this);
-    links.constants().into()
+    links.constants_links().into()
 }
 
 #[ffi::specialize_for(
@@ -249,8 +249,8 @@ fn create_united<T: LinkType>(
     callback: CUDCallback<T>,
 ) -> T {
     let links: &mut WrappedLinks<T> = unnul_or_error(this);
-    let continue_ = links.constants().r#continue;
-    let break_ = links.constants().r#break;
+    let continue_ = links.constants_links().r#continue;
+    let break_ = links.constants_links().r#break;
     let result = {
         let query = query_from_raw(query, len);
         let handler = |before: DLink<_>, after: DLink<_>| {
@@ -270,7 +270,7 @@ fn create_united<T: LinkType>(
                 break_
             }
         }),
-        links.constants().error,
+        links.constants_links().error,
     )
 }
 
@@ -327,8 +327,8 @@ unsafe fn update_united<T: LinkType>(
     let restrictions = query_from_raw(restrictions, len_r);
     let substitutuion = query_from_raw(substitutuion, len_s);
     let links: &mut WrappedLinks<T> = unnul_or_error(this);
-    let continue_ = links.constants().r#continue;
-    let break_ = links.constants().r#break;
+    let continue_ = links.constants_links().r#continue;
+    let break_ = links.constants_links().r#break;
     let result = {
         let handler = move |before: DLink<T>, after: DLink<T>| {
             if callback(before.into(), after.into()) == continue_ {
@@ -347,7 +347,7 @@ unsafe fn update_united<T: LinkType>(
                 break_
             }
         }),
-        links.constants().error,
+        links.constants_links().error,
     )
 }
 
@@ -367,8 +367,8 @@ unsafe fn delete_united<T: LinkType>(
 ) -> T {
     let query = query_from_raw(query, len);
     let links: &mut WrappedLinks<T> = unnul_or_error(this);
-    let continue_ = links.constants().r#continue;
-    let break_ = links.constants().r#break;
+    let continue_ = links.constants_links().r#continue;
+    let break_ = links.constants_links().r#break;
     let result = {
         let handler = move |before: DLink<_>, after: DLink<_>| {
             if callback(before.into(), after.into()) == break_ {
@@ -387,7 +387,7 @@ unsafe fn delete_united<T: LinkType>(
                 break_
             }
         }),
-        links.constants().error,
+        links.constants_links().error,
     )
 }
 

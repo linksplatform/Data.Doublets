@@ -168,7 +168,7 @@ impl<
     }
 
     fn exists(&self, link: T) -> bool {
-        let constants = self.constants();
+        let constants = self.constants_links();
         let header = self.get_header();
 
         // TODO: use `Range::contains`
@@ -198,7 +198,7 @@ impl<
     {
         let restriction = restriction.to_query();
 
-        let constants = self.constants();
+        let constants = self.constants_links();
         let r#break = constants.r#break;
 
         if restriction.len() == 0 {
@@ -327,7 +327,7 @@ impl<
             return self.get_total();
         };
 
-        let constants = self.constants();
+        let constants = self.constants_links();
         let any = constants.any;
         let index = query[constants.index_part.as_()];
 
@@ -435,7 +435,7 @@ impl<
         F: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>,
     {
-        let constants = self.constants();
+        let constants = self.constants_links();
         let header = self.get_header();
         let mut free = header.first_free;
         if free == constants.null {
@@ -492,7 +492,7 @@ impl<
         let old_source = source;
         let old_target = target;
 
-        let constants = self.constants();
+        let constants = self.constants_links();
         let null = constants.null;
 
         let link = *self.mut_raw_link(index);

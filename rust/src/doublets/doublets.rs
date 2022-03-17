@@ -7,7 +7,7 @@ use num_traits::{one, zero};
 use rand::{thread_rng, Rng};
 use smallvec::SmallVec;
 
-use crate::doublets::data::ToQuery;
+use crate::doublets::data::{Links, ReadHandler, ToQuery, WriteHandler};
 use crate::doublets::data::{LinksConstants, Point, Query};
 use crate::doublets::error::LinksError;
 use crate::doublets::link::Link;
@@ -15,6 +15,7 @@ use crate::doublets::StoppedHandler;
 use crate::doublets::{data, Doublet, Flow};
 use crate::num::LinkType;
 use crate::query;
+use std::error::Error;
 use ControlFlow::{Break, Continue};
 
 use crate::doublets::decorators::{
@@ -541,7 +542,52 @@ pub trait Doublets<T: LinkType> {
     }
 }
 
+// TODO: Remove it
 #[deprecated(note = "use `ILinks`")]
 pub trait ILinksExtensions<T: LinkType>: Doublets<T> {}
 
 impl<T: LinkType, All: Doublets<T>> ILinksExtensions<T> for All {}
+
+impl<T: LinkType, All: Doublets<T>> Links<T> for All {
+    fn constants_links(&self) -> LinksConstants<T> {
+        self.constants()
+    }
+
+    fn count_links(&self, query: &[T]) -> T {
+        self.count_by(query)
+    }
+
+    fn create_links(
+        &mut self,
+        query: &[T],
+        handler: WriteHandler<T>,
+    ) -> Result<Flow, Box<dyn Error>> {
+        self.create_by_with(query, |before, after| handler(&before[..], &after[..]))
+            .map_err(|err| err.into())
+    }
+
+    fn each_links(&self, query: &[T], handler: ReadHandler<T>) -> Result<Flow, Box<dyn Error>> {
+        Ok(self.try_each_by(query, |link| handler(&link[..])))
+    }
+
+    fn update_links(
+        &mut self,
+        query: &[T],
+        replacement: &[T],
+        handler: WriteHandler<T>,
+    ) -> Result<Flow, Box<dyn Error>> {
+        self.update_by_with(query, replacement, |before, after| {
+            handler(&before[..], &after[..])
+        })
+        .map_err(|err| err.into())
+    }
+
+    fn delete_links(
+        &mut self,
+        query: &[T],
+        handler: WriteHandler<T>,
+    ) -> result::Result<Flow, Box<dyn Error>> {
+        self.delete_by_with(query, |before, after| handler(&before[..], &after[..]))
+            .map_err(|err| err.into())
+    }
+}
