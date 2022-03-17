@@ -9,7 +9,7 @@ name: Rust
 
 env:
   RUST_BACKTRACE: 1
-  # rust_stable: stable
+  rust_stable: stable
   rust_nightly: nightly
 
 defaults:
@@ -34,6 +34,8 @@ jobs:
         with:
           toolchain: ${{ env.rust_nigthly }}
           override: true
+      - name: Install Rust Nightly
+        run: rustup update stable
 
       - name: test doublets
         run: cargo test
