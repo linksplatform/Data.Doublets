@@ -183,22 +183,30 @@ namespace Platform::Data::Doublets::Tests
         using namespace Platform::Random;
         for (auto N { 1 }; N < maximumOperationsPerCycle; ++N)
         {
+            std::cout << "\n\n\n N == " << N;
             std::srand(N);
             auto randomGen64 { RandomHelpers::Default };
             auto created { 0UL };
             auto deleted { 0UL };
             for (auto i { 0 }; i < N; ++i)
             {
+                std::cout << "\n\n i == " << i;
                 auto linksCount { Count<TLinkAddress>(storage) };
                 auto createPoint { Random::NextBoolean(randomGen64) };
                 if (linksCount >= 2 && createPoint)
                 {
                     Ranges::Range<TLinkAddress> linksAddressRange { 1, linksCount };
-                    TLinkAddress source { Random::NextUInt64(randomGen64, linksAddressRange) };
-                    TLinkAddress target { Random::NextUInt64(randomGen64, linksAddressRange) }; //-V3086
+                    auto source { Random::NextUInt64(randomGen64, linksAddressRange) };
+                    auto target { Random::NextUInt64(randomGen64, linksAddressRange) }; //-V3086
+                    std::cout << "linksAddressRange: " << linksAddressRange << std::endl;
+                    std::cout << "GetOrCreate " << source << " to " << target << std::endl;
                     auto resultLink { GetOrCreate(storage, source, target) };
+                    auto linksCountAfterGetOrCreate { Count<TLinkAddress>(storage) };
+                    std::cout << "linksCountAfterGetOrCreate: " << linksCountAfterGetOrCreate << std::endl;
+                    std::cout << "resultLink: " << resultLink << std::endl;
                     if (resultLink > linksCount)
                     {
+                        std::cout << "resultLink > linksCount" << std::endl;
                         ++created;
                     }
                 }
@@ -208,7 +216,7 @@ namespace Platform::Data::Doublets::Tests
                     ++created;
                 }
             }
-            auto allLinks { All<TLinkAddress>(storage)};
+//            auto allLinks { All<TLinkAddress>(storage)};
 
             Expects(Count<TLinkAddress>(storage) == created);
             for (auto i { 0 }; i < N; ++i)
