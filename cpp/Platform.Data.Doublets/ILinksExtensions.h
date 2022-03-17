@@ -52,7 +52,7 @@ namespace Platform::Data::Doublets
         auto constants = storage.Constants;
         auto _break = constants.Break;
         TLinkAddress searchedLinkAddress {};
-        storage.Each(Link{storage.Constants.Any, source, target}, [&searchedLinkAddress, _break] (auto link) {
+        storage.Each(Link{storage.Constants.Any, source, target}, [&searchedLinkAddress, _break] (CArray<TLinkAddress> auto&& link) {
             searchedLinkAddress = link[0];
             return _break;
         });
