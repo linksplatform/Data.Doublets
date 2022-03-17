@@ -1,7 +1,7 @@
 ﻿namespace Platform::Data::Doublets::Decorators
 {
     template <typename TFacade, typename TDecorated>
-    class NonNullContentsLinkDeletionResolver : public DecoratorBase<TFacade, TDecorated>
+    struct NonNullContentsLinkDeletionResolver : public DecoratorBase<TFacade, TDecorated>
     {
         using base = DecoratorBase<TFacade, TDecorated>;
     public: using typename base::LinkAddressType;
@@ -9,22 +9,23 @@
     public:
         USE_ALL_BASE_CONSTRUCTORS(NonNullContentsLinkDeletionResolver, base);
 
-        public: void Delete(CArray<LinkAddressType> auto&&restrictions, auto&& handler)
+        public: LinkAddressType Delete(CArray<LinkAddressType> auto&& restrictions, auto&& handler)
         {
+            auto $break = Constants.Break;
             auto linkIndex = restrictions[Constants.IndexPart];
             auto storage = this->decorated();
             LinkAddressType handlerState;
-            handlerState = storage.EnforceResetValues(linkIndex, handler);
-            if(Constants.Continue = handlerState)
+            handlerState = EnforceResetValues(storage, linkIndex, handler);
+            if(Constants.Break == handlerState)
             {
-                storage.Delete(linkIndex, handler);
-            }
-            else if (Constants.Break = handlerState)
-            {
-                auto $continue {Constants.Continue};
-                storage.Delete(linkIndex, [$continue](CArray<LinkAddressType> auto&& before, CArray<LinkAddressType> auto&& after){
-                    return $continue;
+                return storage.Delete(LinkAddress{linkIndex}, [$break](CArray<LinkAddressType> auto&& before, CArray<LinkAddressType> auto&& after)
+                {
+                    return $break;
                 });
+            }
+            else
+            {
+                return storage.Delete(LinkAddress{linkIndex}, handler);
             }
         }
     };

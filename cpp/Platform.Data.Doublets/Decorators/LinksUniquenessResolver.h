@@ -2,7 +2,7 @@
 {
     using namespace Platform::Interfaces;
     template <typename TFacade, typename TDecorated>
-    class LinksUniquenessResolver : DecoratorBase<TFacade, TDecorated>
+    struct LinksUniquenessResolver : DecoratorBase<TFacade, TDecorated>
     {
         using base = DecoratorBase<TFacade, TDecorated>;
     public: using typename base::LinkAddressType;
@@ -27,7 +27,7 @@
             {
                 this->facade().Delete(oldLinkAddress);
             }
-            return this->decorated().Constants.Continue;
+            return Constants.Continue;
         }
     };
 }

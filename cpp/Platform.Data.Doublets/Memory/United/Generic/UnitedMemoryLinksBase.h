@@ -13,7 +13,7 @@
         typename TTargetTreeMethods,
         typename TUnusedLinks,
         typename... TBase>
-    class UnitedMemoryLinksBase : public Interfaces::Polymorph<TSelf, TBase...>
+    struct UnitedMemoryLinksBase : public Interfaces::Polymorph<TSelf, TBase...>
     {
     private:
         static constexpr auto null = Link<TLinkAddress>::Null;
@@ -381,7 +381,7 @@
         }
 
     public:
-        auto Delete(CArray<TLinkAddress> auto&& restrictions, auto&& handler)
+        TLinkAddress Delete(CArray<TLinkAddress> auto&& restrictions, auto&& handler)
         {
             auto& header = GetHeaderReference();
             auto linkAddress = restrictions[Constants.IndexPart];
@@ -392,13 +392,16 @@
             }
             else if ((linkAddress == header.AllocatedLinks))
             {
+                auto allLinksBeforeDecrementAllocatedLinks = All<TLinkAddress>(*this);
                 --header.AllocatedLinks;
                 _memory.UsedCapacity(_memory.UsedCapacity() - LinkSizeInBytes);
                 while ((header.AllocatedLinks > TLinkAddress {}) && IsUnusedLink(header.AllocatedLinks))
                 {
+                    auto allLinksBeforeDetachAllocatedLinks = All<TLinkAddress>(*this);
                     _UnusedLinksListMethods->Detach(header.AllocatedLinks);
                     --header.AllocatedLinks;
                     _memory.UsedCapacity(_memory.UsedCapacity() - LinkSizeInBytes);
+                    auto allLinksBeforeAfterAllocatedLinks = All<TLinkAddress>(*this);
                 }
             }
             return handler(before, null);

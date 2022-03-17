@@ -1,7 +1,7 @@
 ﻿namespace Platform::Data::Doublets::Decorators
 {
     template <typename TFacade, typename TDecorated>
-    class LinksCascadeUsagesResolver : DecoratorBase<TFacade, TDecorated>
+    struct LinksCascadeUsagesResolver : DecoratorBase<TFacade, TDecorated>
     {
         using base = DecoratorBase<TFacade, TDecorated>;
     public: using typename base::LinkAddressType;
@@ -9,7 +9,7 @@
     public:
         USE_ALL_BASE_CONSTRUCTORS(LinksCascadeUsagesResolver, base);
 
-        public: void Delete(CList auto&& restrictions, auto&& handler)
+        public: void Delete(CArray<LinkAddressType> auto&& restrictions, auto&& handler)
         {
             auto $continue {Constants.Continue};
             auto linkIndex = restrictions[Constants.IndexPart];

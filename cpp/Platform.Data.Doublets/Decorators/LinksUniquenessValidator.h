@@ -5,7 +5,7 @@
     {
         public: LinksUniquenessValidator(ILinks<TLink> &storage) : DecoratorBase(storage) { }
 
-        public: TLink Update(CList auto&&restrictions, CList auto&&substitution) override
+        public: TLink Update(CArray<TLinkAddress> auto&& restrictions, CArray<TLinkAddress> auto&& substitution) override
         {
             auto storage = this->decorated();
             auto constants = _constants;

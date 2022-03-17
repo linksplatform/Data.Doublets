@@ -5,8 +5,8 @@
     {
         public: LinksNullConstantToSelfReferenceResolver(ILinks<TLink> &storage) : DecoratorBase(storage) { }
 
-        public: TLink Create(CList auto&&restrictions) override { return this->decorated().CreatePoint(); }
+        public: TLink Create(CArray<TLinkAddress> auto&& restrictions) override { return this->decorated().CreatePoint(); }
 
-        public: TLink Update(CList auto&&restrictions, CList auto&&substitution) override { return this->decorated().Update(restrictions, this->decorated().ResolveConstantAsSelfReference(_constants.Null, restrictions, substitution)); }
+        public: TLink Update(CArray<TLinkAddress> auto&& restrictions, CArray<TLinkAddress> auto&& substitution) override { return this->decorated().Update(restrictions, this->decorated().ResolveConstantAsSelfReference(_constants.Null, restrictions, substitution)); }
     };
 }

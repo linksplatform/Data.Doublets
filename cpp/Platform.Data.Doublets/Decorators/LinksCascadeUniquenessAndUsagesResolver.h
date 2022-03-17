@@ -1,7 +1,7 @@
 ﻿namespace Platform::Data::Doublets::Decorators
 {
     template <typename TFacade, typename TDecorated>
-    class LinksCascadeUniquenessAndUsagesResolver : public LinksUniquenessResolver<TFacade, TDecorated>
+    struct LinksCascadeUniquenessAndUsagesResolver : public LinksUniquenessResolver<TFacade, TDecorated>
     {
     using base = LinksUniquenessResolver<TFacade, TDecorated>;
     public: using typename base::LinkAddressType;
