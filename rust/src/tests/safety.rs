@@ -1,7 +1,7 @@
 use crate::doublets::decorators::UniqueValidator;
 use crate::doublets::mem::splited;
 use crate::doublets::Flow::Continue;
-use crate::doublets::{Links, LinksError::AlreadyExists};
+use crate::doublets::{Doublets, LinksError::AlreadyExists};
 use crate::mem::GlobalMem;
 use log::error;
 use std::error::Error;

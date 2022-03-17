@@ -7,18 +7,18 @@ use num_traits::zero;
 use smallvec::SmallVec;
 
 use crate::doublets::data::ToQuery;
-use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstants};
-use crate::doublets::{ILinksExtensions, Link, Links, LinksError, Result};
+use crate::doublets::data::{Links, LinksConstants};
+use crate::doublets::{Doublets, ILinksExtensions, Link, LinksError, Result};
 use crate::num::LinkType;
 use crate::query;
 
-pub struct UsagesValidator<T: LinkType, L: Links<T>> {
+pub struct UsagesValidator<T: LinkType, L: Doublets<T>> {
     links: L,
 
     _phantom: PhantomData<T>,
 }
 
-impl<T: LinkType, L: Links<T>> UsagesValidator<T, L> {
+impl<T: LinkType, L: Doublets<T>> UsagesValidator<T, L> {
     pub fn new(links: L) -> Self {
         Self {
             links,
@@ -27,7 +27,7 @@ impl<T: LinkType, L: Links<T>> UsagesValidator<T, L> {
     }
 }
 
-impl<T: LinkType, L: Links<T>> Links<T> for UsagesValidator<T, L> {
+impl<T: LinkType, L: Doublets<T>> Doublets<T> for UsagesValidator<T, L> {
     fn constants(&self) -> LinksConstants<T> {
         self.links.constants()
     }

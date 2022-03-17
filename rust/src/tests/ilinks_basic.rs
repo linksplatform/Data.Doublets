@@ -1,8 +1,8 @@
 use num_traits::ToPrimitive;
 use std::ops::ControlFlow;
 
-use crate::doublets::data::{AddrToRaw, Hybrid, IGenericLinks, LinksConstants, Query, RawToAddr};
-use crate::doublets::{ILinksExtensions, Link, Links, LinksError};
+use crate::doublets::data::{AddrToRaw, Hybrid, Links, LinksConstants, Query, RawToAddr};
+use crate::doublets::{Doublets, ILinksExtensions, Link, LinksError};
 use crate::mem::GlobalMem;
 use crate::num::ToSigned;
 use crate::tests::make_links;

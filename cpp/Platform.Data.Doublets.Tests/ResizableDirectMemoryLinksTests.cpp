@@ -7,7 +7,7 @@
         auto link = memoryAdapter.Create();
         Update(memoryAdapter, link, std::numeric_limits<std::uint64_t>::max(), std::numeric_limits<std::uint64_t>::max());
         TLinkAddress resultLink {_constants.Null};
-        memoryAdapter.Each(std::array{_constants.Any, std::numeric_limits<std::uint64_t>::max(), std::numeric_limits<std::uint64_t>::max()}, [&resultLink] (Interfaces::CArray auto foundLink) {
+        memoryAdapter.Each(Link{_constants.Any, std::numeric_limits<std::uint64_t>::max(), std::numeric_limits<std::uint64_t>::max()}, [&resultLink] (Interfaces::CArray<TLinkAddress> auto foundLink) {
             resultLink = foundLink[_constants.IndexPart];
             return _constants.Break;
         });

@@ -7,18 +7,18 @@ use num_traits::zero;
 use smallvec::SmallVec;
 
 use crate::doublets::data::ToQuery;
-use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstants};
+use crate::doublets::data::{Links, LinksConstants};
 use crate::doublets::LinksError;
-use crate::doublets::{ILinksExtensions, Link, Links, Result};
+use crate::doublets::{Doublets, ILinksExtensions, Link, Result};
 use crate::num::LinkType;
 
-pub struct CascadeUsagesResolver<T: LinkType, L: Links<T>> {
+pub struct CascadeUsagesResolver<T: LinkType, L: Doublets<T>> {
     links: L,
 
     _phantom: PhantomData<T>,
 }
 
-impl<T: LinkType, L: Links<T>> CascadeUsagesResolver<T, L> {
+impl<T: LinkType, L: Doublets<T>> CascadeUsagesResolver<T, L> {
     pub fn new(links: L) -> Self {
         Self {
             links,
@@ -27,7 +27,7 @@ impl<T: LinkType, L: Links<T>> CascadeUsagesResolver<T, L> {
     }
 }
 
-impl<T: LinkType, L: Links<T>> Links<T> for CascadeUsagesResolver<T, L> {
+impl<T: LinkType, L: Doublets<T>> Doublets<T> for CascadeUsagesResolver<T, L> {
     fn constants(&self) -> LinksConstants<T> {
         self.links.constants()
     }

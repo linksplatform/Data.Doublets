@@ -7,7 +7,7 @@ use num_traits::{one, zero};
 use rand::{thread_rng, Rng};
 use smallvec::SmallVec;
 
-use crate::doublets::data::ToQuery;
+use crate::doublets::data::{Links, ReadHandler, ToQuery, WriteHandler};
 use crate::doublets::data::{LinksConstants, Point, Query};
 use crate::doublets::error::LinksError;
 use crate::doublets::link::Link;
@@ -15,6 +15,7 @@ use crate::doublets::StoppedHandler;
 use crate::doublets::{data, Doublet, Flow};
 use crate::num::LinkType;
 use crate::query;
+use std::error::Error;
 use ControlFlow::{Break, Continue};
 
 use crate::doublets::decorators::{
@@ -27,7 +28,7 @@ fn IGNORE<T: LinkType>(_: Link<T>, _: Link<T>) -> Result<(), ()> {
     Err(())
 }
 
-pub trait Links<T: LinkType> {
+pub trait Doublets<T: LinkType> {
     fn constants(&self) -> LinksConstants<T>;
 
     fn count_by(&self, query: impl ToQuery<T>) -> T;
@@ -286,7 +287,6 @@ pub trait Links<T: LinkType> {
         F: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>,
     {
-        // todo macro?
         let mut new = default();
         let mut handler = StoppedHandler::new(handler);
         self.create_with(|before, after| {
@@ -368,11 +368,11 @@ pub trait Links<T: LinkType> {
         }
     }
 
-    fn count_usages(&self, index: T) -> T {
+    fn count_usages(&self, index: T) -> Result<T> {
         let constants = self.constants();
         let any = constants.any;
-        // TODO: expect
-        let link = self.get_link(index).unwrap();
+        // TODO: delegate error
+        let link = self.try_get_link(index)?;
         let mut usage_source = self.count_by([any, index, any]);
         if index == link.source {
             usage_source = usage_source - one();
@@ -383,7 +383,7 @@ pub trait Links<T: LinkType> {
             usage_target = usage_target - one();
         }
 
-        usage_source + usage_target
+        Ok(usage_source + usage_target)
     }
 
     fn exist(&self, link: T) -> bool {
@@ -396,7 +396,7 @@ pub trait Links<T: LinkType> {
     }
 
     fn has_usages(&self, link: T) -> bool {
-        self.count_usages(link) != zero()
+        self.count_usages(link).map_or(false, |link| link != zero())
     }
 
     fn rebase_with<F, R>(&mut self, old: T, new: T, mut handler: F) -> Result<(), LinksError<T>>
@@ -448,7 +448,6 @@ pub trait Links<T: LinkType> {
         Ok(())
     }
 
-    // TODO: old: `merge_usages`
     fn rebase(&mut self, old: T, new: T) -> Result<T> {
         let link = self.try_get_link(old)?;
 
@@ -543,7 +542,52 @@ pub trait Links<T: LinkType> {
     }
 }
 
+// TODO: Remove it
 #[deprecated(note = "use `ILinks`")]
-pub trait ILinksExtensions<T: LinkType>: Links<T> {}
+pub trait ILinksExtensions<T: LinkType>: Doublets<T> {}
 
-impl<T: LinkType, All: Links<T>> ILinksExtensions<T> for All {}
+impl<T: LinkType, All: Doublets<T>> ILinksExtensions<T> for All {}
+
+impl<T: LinkType, All: Doublets<T>> Links<T> for All {
+    fn constants_links(&self) -> LinksConstants<T> {
+        self.constants()
+    }
+
+    fn count_links(&self, query: &[T]) -> T {
+        self.count_by(query)
+    }
+
+    fn create_links(
+        &mut self,
+        query: &[T],
+        handler: WriteHandler<T>,
+    ) -> Result<Flow, Box<dyn Error>> {
+        self.create_by_with(query, |before, after| handler(&before[..], &after[..]))
+            .map_err(|err| err.into())
+    }
+
+    fn each_links(&self, query: &[T], handler: ReadHandler<T>) -> Result<Flow, Box<dyn Error>> {
+        Ok(self.try_each_by(query, |link| handler(&link[..])))
+    }
+
+    fn update_links(
+        &mut self,
+        query: &[T],
+        replacement: &[T],
+        handler: WriteHandler<T>,
+    ) -> Result<Flow, Box<dyn Error>> {
+        self.update_by_with(query, replacement, |before, after| {
+            handler(&before[..], &after[..])
+        })
+        .map_err(|err| err.into())
+    }
+
+    fn delete_links(
+        &mut self,
+        query: &[T],
+        handler: WriteHandler<T>,
+    ) -> result::Result<Flow, Box<dyn Error>> {
+        self.delete_by_with(query, |before, after| handler(&before[..], &after[..]))
+            .map_err(|err| err.into())
+    }
+}
