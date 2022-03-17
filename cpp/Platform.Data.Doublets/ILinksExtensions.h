@@ -781,46 +781,42 @@ namespace Platform::Data::Doublets
     //        }
     //    }
     //
-    //    template<typename TLinkAddress>
-    //    static bool AreValuesReset(auto&& storage, TLinkAddress linkIndex)
-    //    {
-    //        auto nullConstant = storage.Constants.Null;
-    //        auto link = storage.GetLink(linkIndex);
-    //        for (std::int32_t i = 1; i < link.Count(); ++i)
-    //        {
-    //            if ( nullConstant != link[i])
-    //            {
-    //                return false;
-    //            }
-    //        }
-    //        return true;
-    //    }
-    //
-    //    template<typename TLinkAddress>
-    //    static void ResetValues(auto&& storage, TLinkAddress linkIndex) { storage.ResetValues(linkIndex, {}); }
-    //
-    //    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
-    //    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
-    //    static TLinkAddress ResetValues(auto&& storage, TLinkAddress linkIndex, Handler handler)
-    //    {
-    //        auto nullConstant = storage.Constants.Null;
-    //        auto updateRequest = Link<TLinkAddress>(linkIndex, nullConstant, nullConstant);
-    //        return storage.Update(updateRequest, handler);
-    //    }
-    //
-    //    template<typename TLinkAddress>
-    //    static void EnforceResetValues(auto&& storage, TLinkAddress linkIndex) { storage.EnforceResetValues(linkIndex, {}); }
-    //
-    //    template<typename TLinkAddress, typename Handler, typename TList1, typename TList2>
-    //    requires std::invocable<Handler&, Interfaces::CList<TLinkAddress> auto, Interfaces::CList<TLinkAddress> auto>
-    //    static TLinkAddress EnforceResetValues(auto&& storage, TLinkAddress linkIndex, Handler handler)
-    //    {
-    //        if (!storage.AreValuesReset(linkIndex))
-    //        {
-    //            return storage.ResetValues(linkIndex, handler);
-    //        }
-    //        return storage.Constants.Continue;
-    //    }
+        template<typename TLinkAddress>
+        static bool AreValuesReset(auto&& storage, TLinkAddress linkIndex)
+        {
+            auto nullConstant = storage.Constants.Null;
+            auto link = storage.GetLink(linkIndex);
+            for (TLinkAddress i = TLinkAddress{1}; i < link.Count(); ++i)
+            {
+                if ( nullConstant != link[i])
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        template<typename TLinkAddress>
+        static void ResetValues(auto&& storage, TLinkAddress linkIndex) { storage.ResetValues(linkIndex, {}); }
+
+        template<typename TLinkAddress>
+        static TLinkAddress ResetValues(auto&& storage, TLinkAddress linkIndex, auto&& handler)
+        {
+            auto nullConstant = storage.Constants.Null;
+            LinkAddress restriction {linkIndex};
+            auto substitution = Link<TLinkAddress>(linkIndex, nullConstant, nullConstant);
+            return storage.Update(restriction, substitution, handler);
+        }
+
+        template<typename TLinkAddress>
+        static TLinkAddress EnforceResetValues(auto&& storage, TLinkAddress linkIndex, auto&& handler)
+        {
+            if (!AreValuesReset(storage, linkIndex))
+            {
+                return ResetValues(storage, linkIndex, handler);
+            }
+            return storage.Constants.Continue;
+        }
     //
     //    template<typename TLinkAddress>
     //    static void MergeUsages(auto&& storage, TLinkAddress oldLinkIndex, TLinkAddress newLinkIndex) { storage.MergeUsages(oldLinkIndex, newLinkIndex, {}); }
