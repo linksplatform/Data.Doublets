@@ -32,10 +32,10 @@ jobs:
       - name: Install Rust ${{ env.rust_nigthly }}
         uses: actions-rs/toolchain@v1
         with:
-          toolchain: ${{ env.rust_nigthly }}
+          toolchain: ${{ env.rust_stable }}
           override: true
       - name: Install Rust Nightly
-        run: rustup update stable
+        run: rustup default nightly
 
       - name: test doublets
         run: cargo test
