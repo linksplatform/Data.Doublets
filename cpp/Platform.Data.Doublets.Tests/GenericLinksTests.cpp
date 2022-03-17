@@ -46,9 +46,9 @@
 */
     TEST(GenericLinksTests, MultipleRandomCreationsAndDeletionsTest)
     {
-//        LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<UnitedMemoryLinks<TLinkAddress, HeapResizableDirectMemory, constants>> storage {memory};
         HeapResizableDirectMemory memory {};
-        UnitedMemoryLinks<std::uint64_t, HeapResizableDirectMemory, LinksConstants<std::uint64_t>{}> storage {memory};
+        LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<UnitedMemoryLinks<TLinkAddress, HeapResizableDirectMemory, constants>> storage {memory};
+//        UnitedMemoryLinks<std::uint64_t, HeapResizableDirectMemory, LinksConstants<std::uint64_t>{}> storage {memory};
         TestMultipleRandomCreationsAndDeletions<std::uint64_t>(storage, 16);
 //        Using<std::uint16_t>([] (auto&& storage){
 //            auto decoratedStorage = LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<decltype(storage)>(storage);
