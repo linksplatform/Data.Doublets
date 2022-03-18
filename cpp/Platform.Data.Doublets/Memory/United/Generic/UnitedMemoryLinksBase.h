@@ -385,7 +385,7 @@
         {
             auto& header = GetHeaderReference();
             auto linkAddress = restrictions[Constants.IndexPart];
-            auto before = GetLink(*this, linkAddress);
+            auto before = GetLinkStruct(linkAddress);
             if (linkAddress < header.AllocatedLinks)
             {
                 _UnusedLinksListMethods->AttachAsFirst(linkAddress);
