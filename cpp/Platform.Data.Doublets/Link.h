@@ -54,7 +54,7 @@
                 case _constants.TargetPart:
                     return Target;
                 default:
-                    std::out_of_range("Link index out of range");
+                    throw std::out_of_range("Link index out of range");
             }
         }
 
