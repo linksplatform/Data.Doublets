@@ -12,11 +12,10 @@
 
     public: LinkAddressType Update(CArray<LinkAddressType> auto&& restrictions, CArray<LinkAddressType> auto&& substitution, auto&& handler)
         {
-            auto storage = this->decorated();
-            auto newLinkAddress = SearchOrDefault(storage, substitution[Constants.SourcePart], substitution[Constants.TargetPart]);
+            auto newLinkAddress = SearchOrDefault(this->decorated(), substitution[Constants.SourcePart], substitution[Constants.TargetPart]);
             if (newLinkAddress == LinkAddressType{})
             {
-                return storage.Update(restrictions, substitution, handler);
+                return this->decorated().Update(restrictions, substitution, handler);
             }
             return this->ResolveAddressChangeConflict(restrictions[Constants.IndexPart], newLinkAddress, handler);
         }

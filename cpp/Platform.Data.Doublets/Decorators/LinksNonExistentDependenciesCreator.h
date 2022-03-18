@@ -8,7 +8,6 @@
         public: TLink Update(CArray<TLinkAddress> auto&& restrictions, CArray<TLinkAddress> auto&& substitution) override
         {
             auto constants = _constants;
-            auto storage = this->decorated();
             storage.EnsureCreated(substitution[constants.SourcePart], substitution[constants.TargetPart]);
             return storage.Update(restrictions, substitution);
         }

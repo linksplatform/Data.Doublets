@@ -7,14 +7,12 @@
 
         public: TLink Each(Func<IList<TLink>, TLink> handler, CArray<TLinkAddress> auto&& restrictions) override
         {
-            auto storage = this->decorated();
             storage.EnsureInnerReferenceExists(restrictions, "restrictions");
             return storage.Each(restrictions, handler);
         }
 
         public: TLink Update(CArray<TLinkAddress> auto&& restrictions, CArray<TLinkAddress> auto&& substitution) override
         {
-            auto storage = this->decorated();
             storage.EnsureInnerReferenceExists(restrictions, "restrictions");
             storage.EnsureInnerReferenceExists(substitution, "substitution");
             return storage.Update(restrictions, substitution);
@@ -23,7 +21,6 @@
         public: void Delete(CArray<TLinkAddress> auto&& restrictions) override
         {
             auto link = restrictions[_constants.IndexPart];
-            auto storage = this->decorated();
             storage.EnsureLinkExists(link, "link");
             storage.Delete(link);
         }
