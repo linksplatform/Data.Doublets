@@ -1,4 +1,4 @@
-use crate::doublets::data::LinksConstants;
+use crate::data::LinksConstants;
 use crate::LinkType;
 pub(crate) use links_recursionless_size_balanced_tree_base::*;
 pub(crate) use links_size_balanced_tree_base::*;

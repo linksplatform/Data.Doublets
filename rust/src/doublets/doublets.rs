@@ -1,20 +1,15 @@
-use std::backtrace::Backtrace;
 use std::default::default;
 use std::ops::{ControlFlow, Try};
 use std::result;
 
-use num_traits::{one, zero};
-use rand::{thread_rng, Rng};
-use smallvec::SmallVec;
-
-use crate::doublets::data::{Links, ReadHandler, ToQuery, WriteHandler};
-use crate::doublets::data::{LinksConstants, Point, Query};
+use crate::data::LinksConstants;
+use crate::data::{Links, ReadHandler, ToQuery, WriteHandler};
 use crate::doublets::error::LinksError;
 use crate::doublets::link::Link;
+use crate::doublets::Flow;
 use crate::doublets::StoppedHandler;
-use crate::doublets::{data, Doublet, Flow};
 use crate::num::LinkType;
-use crate::query;
+use num_traits::{one, zero};
 use std::error::Error;
 use ControlFlow::{Break, Continue};
 

@@ -1,4 +1,4 @@
-use crate::doublets::data::hybrid::Hybrid;
+use crate::data::hybrid::Hybrid;
 use crate::num::LinkType;
 
 #[derive(Default)]

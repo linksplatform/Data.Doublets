@@ -1,8 +1,8 @@
 use num_traits::zero;
 use std::error::Error;
 
-use crate::doublets::data::constants::LinksConstants;
-use crate::doublets::data::point::Point;
+use crate::data::constants::LinksConstants;
+use crate::data::point::Point;
 use crate::doublets::Flow;
 use crate::num::LinkType;
 
