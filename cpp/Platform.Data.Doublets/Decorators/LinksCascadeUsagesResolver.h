@@ -13,7 +13,7 @@
         {
             auto $continue {Constants.Continue};
             auto linkIndex = restrictions[Constants.IndexPart];
-            WriteHandlerState<TLinkAddress, decltype(handler)> handlerState {Constants.Continue, Constants,Break, handler};
+            WriteHandlerState<LinkAddressType, decltype(handler)> handlerState {Constants.Continue, Constants.Break, handler};
             DeleteAllUsages(this->facade(), linkIndex, handlerState);
             return this->decorated().Delete(LinkAddress{linkIndex}, handlerState);
         }
