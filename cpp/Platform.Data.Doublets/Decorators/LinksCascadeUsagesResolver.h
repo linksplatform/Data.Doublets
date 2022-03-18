@@ -9,22 +9,22 @@
     public:
         USE_ALL_BASE_CONSTRUCTORS(LinksCascadeUsagesResolver, base);
 
-        public: void Delete(CArray<LinkAddressType> auto&& restrictions, auto&& handler)
+        public: LinkAddressType Delete(CArray<LinkAddressType> auto&& restrictions, auto&& handler)
         {
             auto $continue {Constants.Continue};
             auto linkIndex = restrictions[Constants.IndexPart];
-            LinkAddressType handlerState {Constants.Continue};
-            handlerState = this->facade().DeleteAllUsages(linkIndex, handler);
+            LinkAddressType handlerState;
+            handlerState = DeleteAllUsages(this->facade(), linkIndex, handler);
             if(Constants.Break == handlerState)
             {
-                return this->decorated().Delete(linkIndex, [$continue](CArray<LinkAddressType> auto&& before, CArray<LinkAddressType> auto&& after)
+                return this->decorated().Delete(LinkAddress{linkIndex}, [$continue](CArray<LinkAddressType> auto&& before, CArray<LinkAddressType> auto&& after)
                 {
                     return $continue;
                 });
             }
             else
             {
-                return this->decorated().Delete(linkIndex, handler);
+                return this->decorated().Delete(LinkAddress{linkIndex}, handler);
             }
         }
     };
