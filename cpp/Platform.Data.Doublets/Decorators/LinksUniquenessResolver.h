@@ -10,22 +10,22 @@
     public:
         USE_ALL_BASE_CONSTRUCTORS(LinksUniquenessResolver, base);
 
-    public: LinkAddressType Update(CArray<LinkAddressType> auto&& restrictions, CArray<LinkAddressType> auto&& substitution)
+    public: LinkAddressType Update(CArray<LinkAddressType> auto&& restrictions, CArray<LinkAddressType> auto&& substitution, auto&& handler)
         {
             auto storage = this->decorated();
-            auto newLinkAddress = storage.SearchOrDefault(substitution[Constants.SourcePart], substitution[Constants.TargetPart]);
+            auto newLinkAddress = SearchOrDefault(storage, substitution[Constants.SourcePart], substitution[Constants.TargetPart]);
             if (newLinkAddress == LinkAddressType{})
             {
-                return storage.Update(restrictions, substitution);
+                return storage.Update(restrictions, substitution, handler);
             }
-            return this->ResolveAddressChangeConflict(restrictions[Constants.IndexPart], newLinkAddress);
+            return this->ResolveAddressChangeConflict(restrictions[Constants.IndexPart], newLinkAddress, handler);
         }
 
-        protected: LinkAddressType ResolveAddressChangeConflict(LinkAddressType oldLinkAddress, LinkAddressType newLinkAddress)
+        protected: LinkAddressType ResolveAddressChangeConflict(LinkAddressType oldLinkAddress, LinkAddressType newLinkAddress, auto&& handler)
         {
             if (oldLinkAddress != newLinkAddress && Exists(this->decorated(), oldLinkAddress))
             {
-                this->facade().Delete(oldLinkAddress);
+                this->facade().Delete(LinkAddress{oldLinkAddress}, handler);
             }
             return Constants.Continue;
         }
