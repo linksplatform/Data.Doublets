@@ -185,7 +185,7 @@ namespace Platform::Data::Doublets::Tests
         {
             std::cout << "\n\n\n N == " << N;
             std::srand(N);
-            auto randomGen64 { RandomHelpers::Default };
+            auto& randomGen64 { RandomHelpers::Default };
             auto created { 0UL };
             auto deleted { 0UL };
             for (auto i { 0 }; i < N; ++i)
