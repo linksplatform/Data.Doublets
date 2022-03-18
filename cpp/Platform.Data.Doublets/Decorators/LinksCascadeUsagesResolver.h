@@ -13,19 +13,9 @@
         {
             auto $continue {Constants.Continue};
             auto linkIndex = restrictions[Constants.IndexPart];
-            LinkAddressType handlerState;
-            handlerState = DeleteAllUsages(this->facade(), linkIndex, handler);
-            if(Constants.Break == handlerState)
-            {
-                return this->decorated().Delete(LinkAddress{linkIndex}, [$continue](CArray<LinkAddressType> auto&& before, CArray<LinkAddressType> auto&& after)
-                {
-                    return $continue;
-                });
-            }
-            else
-            {
-                return this->decorated().Delete(LinkAddress{linkIndex}, handler);
-            }
+            WriteHandlerState<TLinkAddress, decltype(handler)> handlerState {Constants.Continue, Constants,Break, handler};
+            DeleteAllUsages(this->facade(), linkIndex, handlerState);
+            return this->decorated().Delete(LinkAddress{linkIndex}, handlerState);
         }
     };
 }

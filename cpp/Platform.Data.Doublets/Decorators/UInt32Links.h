@@ -22,7 +22,6 @@ namespace Platform::Data::Doublets::Decorators
             auto updatedLink = restrictions[indexPartConstant];
             auto newSource = substitution[sourcePartConstant];
             auto newTarget = substitution[targetPartConstant];
-            auto storage = this->decorated();
             if (newSource != itselfConstant && newTarget != itselfConstant)
             {
                 existedLink = storage.SearchOrDefault(newSource, newTarget);
@@ -46,7 +45,6 @@ namespace Platform::Data::Doublets::Decorators
         public: void Delete(CArray<TLinkAddress> auto&& restrictions) override
         {
             auto linkIndex = restrictions[_constants.IndexPart];
-            auto storage = this->decorated();
             storage.EnforceResetValues(linkIndex);
             this->facade().DeleteAllUsages(linkIndex);
             storage.Delete(linkIndex);
