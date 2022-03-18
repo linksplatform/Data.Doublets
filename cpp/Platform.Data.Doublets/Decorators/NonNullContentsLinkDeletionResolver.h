@@ -13,20 +13,10 @@
         {
             auto $break = Constants.Break;
             auto linkIndex = restrictions[Constants.IndexPart];
-            auto storage = this->decorated();
-            LinkAddressType handlerState;
-            handlerState = EnforceResetValues(storage, linkIndex, handler);
-            if(Constants.Break == handlerState)
-            {
-                return storage.Delete(LinkAddress{linkIndex}, [$break](CArray<LinkAddressType> auto&& before, CArray<LinkAddressType> auto&& after)
-                {
-                    return $break;
-                });
-            }
-            else
-            {
-                return storage.Delete(LinkAddress{linkIndex}, handler);
-            }
+            WriteHandlerState<LinkAddressType, decltype(handler)> handlerState {Constants.Continue, Constants.Break, handler};
+            EnforceResetValues(this->decorated(), linkIndex, handlerState);
+            return this->decorated().Delete(LinkAddress{linkIndex}, handlerState);
+
         }
     };
 }
