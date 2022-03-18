@@ -15,6 +15,7 @@
 #include <Platform.Threading.h>
 #include <Platform.Memory.h>
 #include <Platform.Data.h>
+#include <Platform.Interfaces.h>
 
 #include "Doublet.h"
 #include "Link.h"
