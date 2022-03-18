@@ -199,11 +199,11 @@ namespace Platform::Data::Doublets::Tests
                     auto source { Random::NextUInt64(randomGen64, linksAddressRange) };
                     auto target { Random::NextUInt64(randomGen64, linksAddressRange) }; //-V3086
                     std::cout << "linksAddressRange: " << linksAddressRange << std::endl;
-                    std::cout << "GetOrCreate " << source << " to " << target << std::endl;
+                    std::cout << "GetOrCreate " << source << " -> " << target << std::endl;
                     auto resultLink { GetOrCreate(storage, source, target) };
+                    std::cout << "GetOrCreate result: " << resultLink << std::endl;
                     auto linksCountAfterGetOrCreate { Count<TLinkAddress>(storage) };
                     std::cout << "linksCountAfterGetOrCreate: " << linksCountAfterGetOrCreate << std::endl;
-                    std::cout << "resultLink: " << resultLink << std::endl;
                     if (resultLink > linksCount)
                     {
                         std::cout << "resultLink > linksCount" << std::endl;
@@ -216,7 +216,11 @@ namespace Platform::Data::Doublets::Tests
                     ++created;
                 }
             }
-//            auto allLinks { All<TLinkAddress>(storage)};
+            auto allLinks { All<TLinkAddress>(storage)};
+            for(auto link : allLinks)
+            {
+                std::cout << "link: " << link[0] << ": " << link[1] << " -> " << link[2] << std::endl;
+            }
 
             Expects(Count<TLinkAddress>(storage) == created);
             for (auto i { 0 }; i < N; ++i)
@@ -228,6 +232,7 @@ namespace Platform::Data::Doublets::Tests
                     ++deleted;
                 }
             }
+            std::cout << "Links count after deleting: " << Count<TLinkAddress>(storage) << std::endl;
             Expects(0 == Count<TLinkAddress>(storage));
         }
     }
