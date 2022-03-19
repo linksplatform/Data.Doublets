@@ -1,4 +1,4 @@
-use crate::doublets::data::LinksConstants;
+use crate::data::LinksConstants;
 use crate::doublets::mem::united::{
     LinksSourcesRecursionlessSizeBalancedTree, LinksTargetsRecursionlessSizeBalancedTree, Store,
     UnusedLinks,

@@ -1,16 +1,16 @@
-use std::ops::Try;
 use num_traits::{one, zero};
+use std::ops::Try;
 
-use crate::doublets::data::LinksConstants;
-use crate::doublets::Link;
+use crate::data::LinksConstants;
 use crate::doublets::mem::ilinks_tree_methods::ILinksTreeMethods;
 use crate::doublets::mem::links_header::LinksHeader;
 use crate::doublets::mem::united::generic::links_recursionless_size_balanced_tree_base::{
     LinkRecursionlessSizeBalancedTreeBaseAbstract, LinksRecursionlessSizeBalancedTreeBase,
 };
 use crate::doublets::mem::united::generic::UpdatePointers;
-use crate::doublets::mem::united::NewTree;
 use crate::doublets::mem::united::raw_link::RawLink;
+use crate::doublets::mem::united::NewTree;
+use crate::doublets::Link;
 use crate::methods::RecursionlessSizeBalancedTreeMethods;
 use crate::methods::SizeBalancedTreeBase;
 use crate::num::LinkType;
@@ -105,8 +105,9 @@ impl<T: LinkType> SizeBalancedTreeBase<T> for LinksSourcesRecursionlessSizeBalan
 }
 
 impl<T: LinkType> RecursionlessSizeBalancedTreeMethods<T>
-for LinksSourcesRecursionlessSizeBalancedTree<T>
-{}
+    for LinksSourcesRecursionlessSizeBalancedTree<T>
+{
+}
 
 fn each_usages_core<T: LinkType, R: Try<Output = ()>, H: FnMut(Link<T>) -> R>(
     _self: &LinksSourcesRecursionlessSizeBalancedTree<T>,
@@ -167,8 +168,12 @@ impl<T: LinkType> ILinksTreeMethods<T> for LinksSourcesRecursionlessSizeBalanced
             let root_target = root_link.target;
             if self.first_is_to_the_left_of_second_4(source, target, root_source, root_target) {
                 root = self.get_left_or_default(root);
-            } else if self.first_is_to_the_right_of_second_4(source, target, root_source, root_target)
-            {
+            } else if self.first_is_to_the_right_of_second_4(
+                source,
+                target,
+                root_source,
+                root_target,
+            ) {
                 root = self.get_right_or_default(root);
             } else {
                 return root;
@@ -177,7 +182,11 @@ impl<T: LinkType> ILinksTreeMethods<T> for LinksSourcesRecursionlessSizeBalanced
         zero()
     }
 
-    fn each_usages<H: FnMut(Link<T>) -> R, R: Try<Output = ()>>(&self, root: T, mut handler: H) -> R {
+    fn each_usages<H: FnMut(Link<T>) -> R, R: Try<Output = ()>>(
+        &self,
+        root: T,
+        mut handler: H,
+    ) -> R {
         each_usages_core(self, root, self.get_tree_root(), &mut handler)
     }
 
@@ -198,7 +207,7 @@ impl<T: LinkType> UpdatePointers for LinksSourcesRecursionlessSizeBalancedTree<T
 }
 
 impl<T: LinkType> LinkRecursionlessSizeBalancedTreeBaseAbstract<T>
-for LinksSourcesRecursionlessSizeBalancedTree<T>
+    for LinksSourcesRecursionlessSizeBalancedTree<T>
 {
     fn get_header(&self) -> &LinksHeader<T> {
         unsafe { &*(self.base.header as *const LinksHeader<T>) }
@@ -231,7 +240,8 @@ for LinksSourcesRecursionlessSizeBalancedTree<T>
         second_source: T,
         second_target: T,
     ) -> bool {
-        (first_source < second_source) || (first_source == second_source && first_target < second_target)
+        (first_source < second_source)
+            || (first_source == second_source && first_target < second_target)
     }
 
     fn first_is_to_the_right_of_second_4(
@@ -241,6 +251,7 @@ for LinksSourcesRecursionlessSizeBalancedTree<T>
         second_source: T,
         second_target: T,
     ) -> bool {
-        (first_source > second_source) || (first_source == second_source && first_target > second_target)
+        (first_source > second_source)
+            || (first_source == second_source && first_target > second_target)
     }
 }

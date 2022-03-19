@@ -5,8 +5,8 @@ use std::slice::{from_raw_parts, SliceIndex};
 
 use num_traits::zero;
 
-use crate::doublets::data::Query;
-use crate::doublets::data::ToQuery;
+use crate::data::Query;
+use crate::data::ToQuery;
 use crate::num::LinkType;
 
 #[derive(Default, Debug, Eq, PartialEq, Clone, Hash)]

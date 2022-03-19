@@ -1,7 +1,7 @@
 use num_traits::{one, zero};
 use std::ops::Try;
 
-use crate::doublets::data::LinksConstants;
+use crate::data::LinksConstants;
 use crate::doublets::mem::ilinks_tree_methods::ILinksTreeMethods;
 use crate::doublets::mem::links_header::LinksHeader;
 use crate::doublets::mem::splited::generic::internal_recursion_less_base::{

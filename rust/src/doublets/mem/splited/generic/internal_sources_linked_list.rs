@@ -1,4 +1,4 @@
-use crate::doublets::data::LinksConstants;
+use crate::data::LinksConstants;
 use crate::doublets::Link;
 use std::marker::PhantomData;
 use std::ops::Try;
