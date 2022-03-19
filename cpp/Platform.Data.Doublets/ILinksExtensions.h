@@ -295,15 +295,15 @@ namespace Platform::Data::Doublets
             }
         }
 
-    //    template<typename TStorage>
-    //    static void EnsureInnerReferenceExists(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction, std::string argumentName)
-    //    {
-    //        for (std::int32_t i = 0; i < restriction.Count(); ++i)
-    //        {
-    //            storage.EnsureInnerReferenceExists(restriction[i], argumentName);
-    //        }
-    //    }
-    //
+        template<typename TStorage>
+        static void EnsureInnerReferenceExists(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction, std::string argumentName)
+        {
+            for (TStorage i = 0; i < restriction.Count(); ++i)
+            {
+                storage.EnsureInnerReferenceExists(restriction[i], argumentName);
+            }
+        }
+
     //    template<typename TStorage>
     //    static void EnsureLinkIsAnyOrExists(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction)
     //    {
