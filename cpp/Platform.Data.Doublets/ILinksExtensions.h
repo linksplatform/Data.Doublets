@@ -60,7 +60,7 @@ namespace Platform::Data::Doublets
     }
 
     template<typename TLinkAddress>
-    static void RunRandomCreations(auto&& storage, std::uint64_t amountOfCreations)
+    static void RunRandomCreations(auto&& storage, TLinkAddress amountOfCreations)
     {
         using namespace Platform::Random;
         using namespace Platform::Ranges;
