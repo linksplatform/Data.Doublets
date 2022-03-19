@@ -15,8 +15,8 @@
             auto $break = Constants.Break;
             auto linkIndex = restrictions[Constants.IndexPart];
             WriteHandlerState<LinkAddressType, HandlerParameterType> handlerState {Constants.Continue, Constants.Break, handler};
-            handlerState.Apply(EnforceResetValues(this->decorated(), linkIndex, handlerState));
-            return handlerState.Apply(this->decorated().Delete(LinkAddress{linkIndex}, handlerState));
+            handlerState.Apply(EnforceResetValues(this->decorated(), linkIndex, handlerState.Handler()));
+            return handlerState.Apply(this->decorated().Delete(LinkAddress{linkIndex}, handlerState.Handler()));
         }
     };
 }

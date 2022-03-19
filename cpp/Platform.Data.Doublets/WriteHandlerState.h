@@ -18,16 +18,21 @@ namespace Platform::Data::Doublets
             return result;
         }
 
-        TLinkAddress operator () (auto&& ...args)
+//        TLinkAddress Handle () (auto&& ...args)
+//        {
+//            if(nullptr == _handler)
+//            {
+//                return _result;
+//            }
+//            else
+//            {
+//                return _handler(std::forward<decltype(args)>(args)...);
+//            }
+//        }
+
+        auto Handler () const
         {
-            if(nullptr == _handler)
-            {
-                return _result;
-            }
-            else
-            {
-                return _handler(std::forward<decltype(args)>(args)...);
-            }
+            return _handler;
         }
 
         TLinkAddress Result() const
