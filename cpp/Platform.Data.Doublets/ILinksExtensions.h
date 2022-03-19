@@ -211,27 +211,27 @@ namespace Platform::Data::Doublets
         return currentLink;
     }
 
-    //    template<typename TStorage>
-    //    static typename TStorage::LinkAddressType GetSquareMatrixSequenceElementByIndex(TStorage& storage, typename TStorage::LinkAddressType root, std::uint64_t size, std::uint64_t index)
-    //    {
-    //        using namespace Platform::Numbers;
-    //        auto constants = storage.Constants;
-    //        auto source = constants.SourcePart;
-    //        auto target = constants.TargetPart;
-    //        if (!Numbers::Math::IsPowerOfTwo(size))
-    //        {
-    //            throw std::invalid_argument("size", "Sequences with sizes other than powers of two are not supported.");
-    //        }
-    //        auto path = BitArray(BitConverter.GetBytes(index));
-    //        auto length = Bit.GetLowestPosition(size);
-    //        storage.EnsureLinkExists(root, "root");
-    //        auto currentLink = root;
-    //        for (auto i { length - 1 }; i >= 0; i--)
-    //        {
-    //            currentLink = storage.GetLink(currentLink)[path[i] ? target : source];
-    //        }
-    //        return currentLink;
-    //    }
+        template<typename TStorage>
+        static typename TStorage::LinkAddressType GetSquareMatrixSequenceElementByIndex(TStorage& storage, typename TStorage::LinkAddressType root, std::uint64_t size, std::uint64_t index)
+        {
+            using namespace Platform::Numbers;
+            auto constants = storage.Constants;
+            auto source = constants.SourcePart;
+            auto target = constants.TargetPart;
+            if (!Numbers::Math::IsPowerOfTwo(size))
+            {
+                throw std::invalid_argument("size", "Sequences with sizes other than powers of two are not supported.");
+            }
+            auto path = BitArray(BitConverter.GetBytes(index));
+            auto length = Bit.GetLowestPosition(size);
+            storage.EnsureLinkExists(root, "root");
+            auto currentLink = root;
+            for (TStorage i = TStorage{ length - 1 }; i >= 0; i--)
+            {
+                currentLink = storage.GetLink(currentLink)[path[i] ? target : source];
+            }
+            return currentLink;
+        }
 
     template<typename TStorage>
     static auto GetIndex(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& link) { return link[storage.Constants.IndexPart]; }
