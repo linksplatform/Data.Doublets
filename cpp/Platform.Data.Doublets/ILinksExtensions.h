@@ -263,16 +263,16 @@ namespace Platform::Data::Doublets
             });
             return allLinks;
         }
-    //
-    //    static Interfaces::CArray<typename TStorage::LinkAddressType>auto AllIndices<typename TStorage::LinkAddressType>(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction)
-    //    {
-    //        auto allIndices = List<typename TStorage::LinkAddressType>();
-    //        auto filler = ListFiller<typename TStorage::LinkAddressType, typename TStorage::LinkAddressType>(allIndices, storage.Constants.Continue);
-    //        storage.Each(filler.AddFirstAndReturnConstant, restriction);
-    //        return allIndices;
-    //    }
-    //
-    //
+
+       static Interfaces::CArray<typename TStorage::LinkAddressType>auto AllIndices<typename TStorage::LinkAddressType>(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction)
+        {
+            auto allIndices = List<typename TStorage::LinkAddressType>();
+            auto filler = ListFiller<typename TStorage::LinkAddressType, typename TStorage::LinkAddressType>(allIndices, storage.Constants.Continue);
+            storage.Each(filler.AddFirstAndReturnConstant, restriction);
+            return allIndices;
+        }
+
+
     //    template<typename TStorage>
     //    static void EnsureLinkExists(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction)
     //    {
