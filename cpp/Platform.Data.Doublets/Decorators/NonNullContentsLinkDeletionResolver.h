@@ -5,6 +5,7 @@
     {
         using base = DecoratorBase<TFacade, TDecorated>;
     public: using typename base::LinkAddressType;
+    public: using typename base::HandlerParameterType;
     public: using base::Constants;
     public:
         USE_ALL_BASE_CONSTRUCTORS(NonNullContentsLinkDeletionResolver, base);
@@ -13,10 +14,9 @@
         {
             auto $break = Constants.Break;
             auto linkIndex = restrictions[Constants.IndexPart];
-            WriteHandlerState<LinkAddressType, decltype(handler)> handlerState {Constants.Continue, Constants.Break, handler};
-            EnforceResetValues(this->decorated(), linkIndex, handlerState);
-            return this->decorated().Delete(LinkAddress{linkIndex}, handlerState);
-
+            WriteHandlerState<LinkAddressType, HandlerParameterType> handlerState {Constants.Continue, Constants.Break, handler};
+            handlerState.Apply(EnforceResetValues(this->decorated(), linkIndex, handlerState));
+            return handlerState.Apply(this->decorated().Delete(LinkAddress{linkIndex}, handlerState));
         }
     };
 }
