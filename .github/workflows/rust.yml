@@ -38,5 +38,5 @@ jobs:
         run: rustup default nightly
 
       - name: test doublets
-        run: cargo +nightly test
+        run: cargo +nightly test --lib
         working-directory: rust
