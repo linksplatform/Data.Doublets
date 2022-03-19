@@ -234,7 +234,7 @@ namespace Platform::Data::Doublets
     //    }
 
     template<typename TLinkAddress>
-    static TLinkAddress GetIndex(auto&& storage, Interfaces::CArray<TLinkAddress> auto&& link) { return link[storage.Constants.IndexPart]; }
+    static auto GetIndex(auto&& storage, Interfaces::CArray<TLinkAddress> auto&& link) { return link[storage.Constants.IndexPart]; }
 
     template<typename TLinkAddress>
     static TLinkAddress GetSource(auto&& storage, TLinkAddress link) { return storage.GetLink(link)[storage.Constants.SourcePart]; }
