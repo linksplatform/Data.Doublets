@@ -783,8 +783,8 @@ namespace Platform::Data::Doublets
         static bool AreValuesReset(auto&& storage, TLinkAddress linkIndex)
         {
             auto nullConstant = storage.Constants.Null;
-            auto link = storage.GetLink(linkIndex);
-            for (TLinkAddress i = TLinkAddress{1}; i < link.Count(); ++i)
+            auto link = GetLink(storage, linkIndex);
+            for (TLinkAddress i = TLinkAddress{1}; i < std::ranges::size(link); ++i)
             {
                 if ( nullConstant != link[i])
                 {
