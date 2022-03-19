@@ -22,7 +22,7 @@
 
         protected: LinkAddressType ResolveAddressChangeConflict(LinkAddressType oldLinkAddress, LinkAddressType newLinkAddress, auto&& handler)
         {
-            if (oldLinkAddress != newLinkAddress && Exists<LinkAddressType>(this->decorated(), oldLinkAddress))
+            if (oldLinkAddress != newLinkAddress && Exists(this->decorated(), oldLinkAddress))
             {
                 this->facade().Delete(LinkAddress{oldLinkAddress}, handler);
             }

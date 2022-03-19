@@ -8,6 +8,7 @@
         typename TSelf,
         typename TLinkAddress,
         typename TMemory,
+        CArray<TLinkAddress> THandlerParameter,
         LinksConstants<TLinkAddress> VConstants,
         typename TSourceTreeMethods,
         typename TTargetTreeMethods,
@@ -19,6 +20,7 @@
         static constexpr auto null = Link<TLinkAddress>::Null;
     public:
         typedef TLinkAddress LinkAddressType;
+        typedef THandlerParameter HandlerParameterType;
         static constexpr LinksConstants<TLinkAddress> Constants = VConstants;
 
     public:
@@ -197,7 +199,7 @@
             {
                 if (index == any)
                 {
-                    return Data::Each<TLinkAddress>(*this, handler);
+                    return Data::Each(*this, handler);
                 }
                 if (!Exists(index))
                 {
@@ -212,7 +214,7 @@
                 {
                     if (value == any)
                     {
-                        return Data::Each<TLinkAddress>(*this, handler);
+                        return Data::Each(*this, handler);
                     }
                     if (Each(std::array{index, value, any}, handler) == $break)
                     {
@@ -246,7 +248,7 @@
                 {
                     if (source == any && target == any)
                     {
-                        return Data::Each<TLinkAddress>(*this, handler);
+                        return Data::Each(*this, handler);
                     }
                     else if (source == any)
                     {
@@ -392,16 +394,16 @@
             }
             else if ((linkAddress == header.AllocatedLinks))
             {
-                auto allLinksBeforeDecrementAllocatedLinks = All<TLinkAddress>(*this);
+                auto allLinksBeforeDecrementAllocatedLinks = All(*this);
                 --header.AllocatedLinks;
                 _memory.UsedCapacity(_memory.UsedCapacity() - LinkSizeInBytes);
                 while ((header.AllocatedLinks > TLinkAddress {}) && IsUnusedLink(header.AllocatedLinks))
                 {
-                    auto allLinksBeforeDetachAllocatedLinks = All<TLinkAddress>(*this);
+                    auto allLinksBeforeDetachAllocatedLinks = All(*this);
                     _UnusedLinksListMethods->Detach(header.AllocatedLinks);
                     --header.AllocatedLinks;
                     _memory.UsedCapacity(_memory.UsedCapacity() - LinkSizeInBytes);
-                    auto allLinksBeforeAfterAllocatedLinks = All<TLinkAddress>(*this);
+                    auto allLinksBeforeAfterAllocatedLinks = All(*this);
                 }
             }
             return handler(before, null);
