@@ -233,6 +233,11 @@ namespace Platform::Data::Doublets::Tests
 
                     Data::Delete(storage, link);
                     ++deleted;
+                    allLinks = { All(storage)};
+                    for(auto link : allLinks)
+                    {
+                        std::cout << "link: " << link[0] << ": " << link[1] << " -> " << link[2] << std::endl;
+                    }
                 }
                 std::cout << "Links count after deleting: " << Count(storage) << std::endl;
             }
