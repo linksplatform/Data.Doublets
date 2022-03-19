@@ -285,16 +285,16 @@ namespace Platform::Data::Doublets
             }
         }
 
-    //    template<typename TStorage>
-    //    static void EnsureInnerReferenceExists(TStorage& storage, typename TStorage::LinkAddressType reference, std::string argumentName)
-    //    {
-    //        if (storage.Constants.IsInternalReference(reference) && !storage.Exists(reference))
-    //        {
-    //            throw ArgumentLinkDoesNotExistsException<typename TStorage::LinkAddressType>(reference, argumentName);
-    //        }
-    //        }
-    //    }
-//  //
+        template<typename TStorage>
+        static void EnsureInnerReferenceExists(TStorage& storage, typename TStorage::LinkAddressType reference, std::string argumentName)
+        {
+            if (storage.Constants.IsInternalReference(reference) && !storage.Exists(reference))
+            {
+                throw ArgumentLinkDoesNotExistsException<typename TStorage::LinkAddressType>(reference, argumentName);
+            }
+            }
+        }
+
     //    template<typename TStorage>
     //    static void EnsureInnerReferenceExists(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction, std::string argumentName)
     //    {
