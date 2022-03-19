@@ -10,6 +10,7 @@ pub use query::ToQuery;
 
 mod constants;
 mod converters;
+pub mod flow;
 mod hybrid;
 mod links;
 mod point;

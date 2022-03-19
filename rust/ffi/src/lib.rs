@@ -20,12 +20,10 @@ use std::ptr::{drop_in_place, null_mut};
 use std::slice;
 use std::time::{Instant, SystemTime, UNIX_EPOCH};
 
-use doublets::doublets::data::Query;
+use doublets::data::{Links, LinksConstants, Query};
 use doublets::doublets::Flow::{Break, Continue};
 use doublets::doublets::Link as DLink;
-use doublets::doublets::{
-    data::LinksConstants, mem::united::Store, ILinksExtensions, Links, LinksError,
-};
+use doublets::doublets::{mem::united::Store, Doublets, ILinksExtensions, LinksError};
 use doublets::mem::FileMappedMem;
 use doublets::num::LinkType;
 use doublets::query;

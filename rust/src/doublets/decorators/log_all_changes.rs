@@ -2,8 +2,8 @@ use std::default::default;
 use std::marker::PhantomData;
 use std::ops::Try;
 
-use crate::doublets::data::LinksConstants;
-use crate::doublets::data::ToQuery;
+use crate::data::LinksConstants;
+use crate::data::ToQuery;
 use crate::doublets::LinksError;
 use crate::doublets::{Doublets, Link, Result};
 use crate::num::LinkType;

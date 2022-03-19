@@ -1,32 +1,23 @@
-use std::default::default;
-use std::marker::PhantomData;
-use std::mem::{align_of, size_of};
-use std::ops::{ControlFlow, Index, Try};
-use std::ptr::NonNull;
-use std::slice::from_raw_parts_mut;
-
-use num_traits::{one, zero};
-use smallvec::SmallVec;
-
-use crate::doublets::data::LinksConstants;
-use crate::doublets::data::ToQuery;
-use crate::doublets::data::{Links, Query};
+use crate::data::Links;
+use crate::data::LinksConstants;
+use crate::data::ToQuery;
+use crate::doublets;
 use crate::doublets::link::Link;
 use crate::doublets::mem::links_header::LinksHeader;
-use crate::doublets::mem::united::LinksSourcesSizeBalancedTree;
 use crate::doublets::mem::united::LinksTargetsRecursionlessSizeBalancedTree;
-use crate::doublets::mem::united::LinksTargetsSizeBalancedTree;
 use crate::doublets::mem::united::RawLink;
 use crate::doublets::mem::united::UnusedLinks;
 use crate::doublets::mem::united::{LinksSourcesRecursionlessSizeBalancedTree, NewList, NewTree};
 use crate::doublets::mem::ILinksTreeMethods;
 use crate::doublets::mem::{ILinksListMethods, UpdatePointers};
 use crate::doublets::Result;
-use crate::doublets::{data, Doublets, LinksError};
-use crate::mem::FileMappedMem;
+use crate::doublets::{Doublets, LinksError};
 use crate::mem::{Mem, ResizeableMem};
 use crate::num::LinkType;
-use crate::{doublets, query};
+use num_traits::{one, zero};
+use std::default::default;
+use std::mem::size_of;
+use std::ops::{ControlFlow, Try};
 
 pub struct Store<
     T: LinkType,

@@ -8,8 +8,8 @@ use std::slice::from_raw_parts_mut;
 use crate::{doublets, query};
 use num_traits::{one, zero};
 
-use crate::doublets::data::ToQuery;
-use crate::doublets::data::{LinksConstants, Query};
+use crate::data::ToQuery;
+use crate::data::{LinksConstants, Query};
 use crate::doublets::mem::splited::generic::{
     ExternalSourcesRecursionlessTree, ExternalTargetsRecursionlessTree, InternalSourcesLinkedList,
     InternalSourcesRecursionlessTree, InternalTargetsRecursionlessTree, UnusedLinks,

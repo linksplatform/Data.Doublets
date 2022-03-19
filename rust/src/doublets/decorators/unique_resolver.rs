@@ -5,8 +5,8 @@ use std::ops::Try;
 
 use smallvec::SmallVec;
 
-use crate::doublets::data::ToQuery;
-use crate::doublets::data::{Links, LinksConstants};
+use crate::data::ToQuery;
+use crate::data::{Links, LinksConstants};
 use crate::doublets::{Doublets, ILinksExtensions, Link, Result};
 use crate::doublets::{Flow, LinksError};
 use crate::num::LinkType;

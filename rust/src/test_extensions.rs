@@ -3,7 +3,7 @@ use std::default::default;
 use num_traits::{one, zero};
 use rand::Rng;
 
-use crate::doublets::data::{Hybrid, Links, RawToAddr};
+use crate::data::{Hybrid, Links, RawToAddr};
 use crate::doublets::Doublets;
 use crate::doublets::ILinksExtensions;
 use crate::doublets::Link;
