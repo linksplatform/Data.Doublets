@@ -190,7 +190,7 @@ namespace Platform::Data::Doublets::Tests
             auto deleted { 0UL };
             for (auto i { 0 }; i < N; ++i)
             {
-                std::cout << "\n\n i == " << i;
+                std::cout << "\n\n i == " << i << std::endl;
                 auto linksCount { Count(storage) };
                 auto createPoint { Random::NextBoolean(randomGen64) };
                 if (linksCount >= 2 && createPoint)
@@ -226,7 +226,7 @@ namespace Platform::Data::Doublets::Tests
             for (auto i { 0 }; i < N; ++i)
             {
                 typename TStorage::LinkAddressType link = i + 1;
-                std::cout << "Before Delete " << link << std::endl;
+                std::cout << "Links count before deleting: " << Count(storage) << std::endl;
                 if (Exists(storage, link))
                 {
                     std::cout << "Delete " << link << std::endl;
@@ -234,8 +234,9 @@ namespace Platform::Data::Doublets::Tests
                     Data::Delete(storage, link);
                     ++deleted;
                 }
+                std::cout << "Links count after deleting: " << Count(storage) << std::endl;
             }
-            std::cout << "Links count after deleting: " << Count(storage) << std::endl;
+            std::cout << "Links count after deleting all links: " << Count(storage) << std::endl;
             Expects(0 == Count(storage));
         }
     }
