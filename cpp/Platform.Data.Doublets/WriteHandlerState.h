@@ -12,6 +12,11 @@ namespace Platform::Data::Doublets
 
         WriteHandlerState(TLinkAddress $continue, TLinkAddress $break, THandler& handler) : _result{$continue}, _break{$break}, _handler{handler} {}
 
+        void Apply(TLinkAddress result)
+        {
+            _result = result;
+        }
+
         TLinkAddress operator () (auto&& ...args)
         {
             if(_break == _result)
@@ -20,8 +25,7 @@ namespace Platform::Data::Doublets
             }
             else
             {
-                _result = _handler(std::forward<decltype(args)>(args)...);
-                return _result;
+                return _handler(std::forward<decltype(args)>(args)...);
             }
         }
     };
