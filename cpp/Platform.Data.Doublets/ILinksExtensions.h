@@ -750,7 +750,7 @@ namespace Platform::Data::Doublets
             for (auto usage : usages)
             {
                 auto usageAddress {GetIndex(storage, usage)};
-                if (linkIndex == usageAddress)
+                if (linkIndex == usageAddress || Exists(storage, usageAddress))
                 {
                     continue;
                 }
