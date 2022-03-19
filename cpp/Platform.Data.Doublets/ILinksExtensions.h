@@ -112,7 +112,7 @@ namespace Platform::Data::Doublets
     {
         if (storage.Exists(linkToDelete))
         {
-            storage.EnforceResetValues(linkToDelete, handler);
+            EnforceResetValues(storage, linkToDelete, handler);
         }
         return storage.Delete(LinkAddress{linkToDelete}, handler);
     }
