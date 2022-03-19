@@ -15,8 +15,8 @@
             auto $continue {Constants.Continue};
             auto linkIndex = restrictions[Constants.IndexPart];
             WriteHandlerState<LinkAddressType, HandlerParameterType> handlerState {Constants.Continue, Constants.Break, handler};
-            handlerState.Apply(DeleteAllUsages(this->facade(), linkIndex, handlerState.Handler()));
-            return handlerState.Apply(this->decorated().Delete(LinkAddress{linkIndex}, handlerState.Handler()));
+            handlerState.Apply(DeleteAllUsages(this->facade(), linkIndex, handlerState.Handler));
+            return handlerState.Apply(this->decorated().Delete(LinkAddress{linkIndex}, handlerState.Handler));
         }
     };
 }

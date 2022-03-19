@@ -7,10 +7,10 @@ namespace Platform::Data::Doublets
     private:
         TLinkAddress _result;
         TLinkAddress _break;
-        std::function<TLinkAddress(THandlerParameter, THandlerParameter)> _handler;
     public:
+        std::function<TLinkAddress(THandlerParameter, THandlerParameter)> Handler;
 
-        WriteHandlerState(TLinkAddress $continue, TLinkAddress $break, auto&& handler) : _result{$continue}, _break{$break}, _handler{handler} {}
+        WriteHandlerState(TLinkAddress $continue, TLinkAddress $break, auto&& handler) : _result{$continue}, _break{$break}, Handler{handler} {}
 
         TLinkAddress Apply(TLinkAddress result)
         {
@@ -29,15 +29,5 @@ namespace Platform::Data::Doublets
 //                return _handler(std::forward<decltype(args)>(args)...);
 //            }
 //        }
-
-        auto Handler () const
-        {
-            return _handler;
-        }
-
-        TLinkAddress Result() const
-        {
-            return _result;
-        }
     };
 }
