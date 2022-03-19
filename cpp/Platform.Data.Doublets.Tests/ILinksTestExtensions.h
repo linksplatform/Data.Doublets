@@ -226,8 +226,11 @@ namespace Platform::Data::Doublets::Tests
             for (auto i { 0 }; i < N; ++i)
             {
                 TLinkAddress link = i + 1;
-                if (Exists(storage, link))
+                std::cout << "Before Delete " << link << std::endl;
+                if (Exists<TLinkAddress>(storage, link))
                 {
+                    std::cout << "Delete " << link << std::endl;
+
                     Data::Delete<TLinkAddress>(storage, link);
                     ++deleted;
                 }
