@@ -67,7 +67,7 @@ namespace Platform::Data::Doublets
         auto randomGenerator64 = Random::RandomHelpers::Default;
         for (auto i { 0UL }; i < amountOfCreations; ++i)
         {
-            Range<std::uint64_t> linksAddressRange { 0, storage.Count() };
+            Range<TLinkAddress> linksAddressRange { 0, storage.Count() };
             auto source = Random::NextUInt64(randomGenerator64, linksAddressRange);
             auto target = Random::NextUInt64(randomGenerator64, linksAddressRange);
             storage.GetOrCreate(source, target);
