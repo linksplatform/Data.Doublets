@@ -335,24 +335,24 @@ namespace Platform::Data::Doublets
             }
         }
 
-    //    template<typename TStorage>
-    //    static void EnsureDoesNotExists(TStorage& storage, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType target)
-    //    {
-    //        if (storage.Exists(source, target))
-    //        {
-    //            throw LinkWithSameValueAlreadyExistsException();
-    //        }
-    //    }
-    //
-    //    template<typename TStorage>
-    //    static void EnsureNoUsages(TStorage& storage, typename TStorage::LinkAddressType link)
-    //    {
-    //        if (storage.HasUsages(link))
-    //        {
-    //            throw ArgumentLinkHasDependenciesException<typename TStorage::LinkAddressType>(link);
-    //        }
-    //    }
-    //
+        template<typename TStorage>
+        static void EnsureDoesNotExists(TStorage& storage, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType target)
+        {
+            if (storage.Exists(source, target))
+            {
+                throw LinkWithSameValueAlreadyExistsException();
+            }
+        }
+
+        template<typename TStorage>
+        static void EnsureNoUsages(TStorage& storage, typename TStorage::LinkAddressType link)
+        {
+            if (storage.HasUsages(link))
+            {
+                throw ArgumentLinkHasDependenciesException<typename TStorage::LinkAddressType>(link);
+            }
+        }
+
     //    template<typename TStorage>
     //    static void EnsureCreated(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& addresses) { storage.EnsureCreated(storage.Create, addresses); }
     //
