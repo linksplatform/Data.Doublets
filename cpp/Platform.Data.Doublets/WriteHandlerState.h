@@ -2,24 +2,28 @@ namespace Platform::Data::Doublets
 {
     using namespace Platform::Interfaces;
     template<typename TStorage>
-    class WriteHandlerState
+    struct WriteHandlerState
     {
-    private:
-        typename TStorage::LinkAddressType _break;
     public:
+        typename TStorage::LinkAddressType Break;
         typename TStorage::LinkAddressType Result;
         std::function<typename TStorage::LinkAddressType(typename TStorage::HandlerParameterType, typename TStorage::HandlerParameterType)> Handler;
 
         WriteHandlerState(typename TStorage::LinkAddressType $continue, typename TStorage::LinkAddressType $break, auto&& handler) :
-            Result{$continue}, _break{$break}, Handler{handler} {}
+            Result{$continue}, Break{$break}, Handler{handler} {}
 
         typename TStorage::LinkAddressType Apply(typename TStorage::LinkAddressType result)
         {
+            if(Break == Result || Break != result)
+            {
+                return Result;
+            }
             Result = result;
             return result;
         }
 
-        typename TStorage::LinkAddressType Handle(auto ...args)
+        template<typename ...TArgs>
+        typename TStorage::LinkAddressType Handle(TArgs ...args)
         {
             if(nullptr == Handler)
             {
@@ -27,7 +31,8 @@ namespace Platform::Data::Doublets
             }
             else
             {
-                return Handler(std::forward<decltype(args)>(args)...);
+                auto result {Handler(std::forward<TArgs>(args)...)};
+                return Apply(result);
             }
         }
     };
