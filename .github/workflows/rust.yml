@@ -18,6 +18,13 @@ defaults:
 
 jobs:
 
+  pass:
+    name: all passed
+    runs-on: ubuntu-latest
+    needs:
+      - test
+      - valgrind
+
   test:
     name: test doublets full
     runs-on: ${{ matrix.os }}
@@ -40,3 +47,30 @@ jobs:
       - name: test doublets
         run: cargo +nightly test --lib
         working-directory: rust
+
+  valgrind:
+    name: valgrind
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Rust ${{ env.rust_nigthly }}
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: ${{ env.rust_stable }}
+          override: true
+      - name: Install Rust Nightly
+        run: rustup default nightly
+
+      - uses: Swatinem/rust-cache@v1
+        -
+      - name: Install Valgrind
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y valgrind
+
+      - name: cargo build
+        run: cargo build --bin test-mem
+        working-directory: rust/integration
+
+      - name: Run valgrind
+        run: valgrind --error-exitcode=1 --leak-check=full --show-leak-kinds=all ./target/debug/test-mem
