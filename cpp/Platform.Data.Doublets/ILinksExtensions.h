@@ -239,7 +239,7 @@ namespace Platform::Data::Doublets
     template<typename TStorage>
     static typename TStorage::LinkAddressType GetTarget(const TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& link) { return link[storage.Constants.TargetPart]; }
 
-        template<typename TStorage>
+        template<typename TStorage,typename TList, typename TReturnConstant>
         static auto All(const TStorage& storage, std::convertible_to<typename TStorage::LinkAddressType> auto ... restrictionPack)
         {
             using namespace Platform::Collections;
@@ -252,27 +252,27 @@ namespace Platform::Data::Doublets
             });
             return allLinks;
         }
-    //
-    //    static Interfaces::CArray<typename TStorage::LinkAddressType>auto AllIndices<typename TStorage::LinkAddressType>(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction)
-    //    {
-    //        auto allIndices = List<typename TStorage::LinkAddressType>();
-    //        auto filler = ListFiller<typename TStorage::LinkAddressType, typename TStorage::LinkAddressType>(allIndices, storage.Constants.Continue);
-    //        storage.Each(filler.AddFirstAndReturnConstant, restriction);
-    //        return allIndices;
-    //    }
-    //
-    //
-    //    template<typename TStorage>
-    //    static void EnsureLinkExists(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction)
-    //    {
-    //        for (auto i { 0 }; i < restriction.Count(); ++i)
-    //        {
-    //            if (!storage.Exists(restriction[i]))
-    //            {
-    //                throw ArgumentLinkDoesNotExistsException<typename TStorage::LinkAddressType>(restriction[i], std::string("sequence[").append(Platform::Converters::To<std::string>(i)).append(1, ']'));
-    //            }
-    //        }
-    //    }
+    
+        static Interfaces::CArray<typename TStorage::LinkAddressType>auto AllIndices<typename TStorage::LinkAddressType>(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction)
+        {
+            auto allIndices = List<typename TStorage::LinkAddressType>();
+            auto filler = ListFiller<TList, TReturnConstant>(allIndices, storage.Constants.Continue);
+            storage.Each(filler.AddFirstAndReturnConstant, restriction);
+            return allIndices;
+        }
+    
+    
+        template<typename TStorage>
+        static void EnsureLinkExists(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction)
+        {
+            for (auto i{ 0 }; i < restriction.Count(); ++i)
+            {
+                if (!storage.Exists(restriction[i]))
+                {
+                    throw ArgumentLinkDoesNotExistsException<typename TStorage::LinkAddressType>(restriction[i], std::string("sequence[").append(Platform::Converters::To<std::string>(i)).append(1, ']'));
+                }
+            }
+        }
         
         template<typename TStorage>
         static bool Exists(TStorage& storage, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType target)
