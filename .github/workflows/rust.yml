@@ -24,6 +24,8 @@ jobs:
     needs:
       - test
       - valgrind
+    steps:
+      - run: exit 0
 
   test:
     name: test doublets full
