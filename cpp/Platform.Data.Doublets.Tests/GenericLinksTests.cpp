@@ -48,7 +48,7 @@
         using namespace Platform::Collections;
         using TLinkAddress = std::uint64_t;
                 constexpr LinksConstants<TLinkAddress> constants {true};
-                LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<UnitedMemoryLinks<TLinkAddress, HeapResizableDirectMemory, Link<TLinkAddress>, constants>> decoratedStorage {HeapResizableDirectMemory{}};
+                LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<UnitedMemoryLinks<TLinkAddress, HeapResizableDirectMemory, constants>> decoratedStorage {HeapResizableDirectMemory{}};
         TestMultipleRandomCreationsAndDeletions(decoratedStorage, TLinkAddress{16});
 //        UsingMultipleRandomCreationsAndDeletionsTest<std::uint8_t>([] (auto&& storage){
 //            auto decoratedStorage = LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<decltype(storage)>(storage);
