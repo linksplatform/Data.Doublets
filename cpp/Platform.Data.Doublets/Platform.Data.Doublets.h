@@ -21,8 +21,6 @@
 #include "Link.h"
 //#include "ILinks.h"
 
-#include "WriteHandlerState.h"
-
 #include "ILinksExtensions.h"
 
 #include "Memory/LinksHeader.h"
