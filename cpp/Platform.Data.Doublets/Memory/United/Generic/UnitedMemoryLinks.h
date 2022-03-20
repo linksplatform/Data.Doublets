@@ -5,15 +5,15 @@
     template<
         typename TLinkAddress,
         typename TMemory = FileMappedResizableDirectMemory,
-        CArray<TLinkAddress> THandlerParameter = Link<TLinkAddress>,
         LinksConstants<TLinkAddress> VConstants = LinksConstants<TLinkAddress>{true},
+        CArray<TLinkAddress> THandlerParameter = Link<TLinkAddress>,
         typename TSourceTreeMethods = LinksSourcesSizeBalancedTreeMethods<TLinkAddress>,
         typename TTargetTreeMethods = LinksTargetsSizeBalancedTreeMethods<TLinkAddress>,
         typename TUnusedLinks = UnusedLinksListMethods<TLinkAddress>,
         typename ...TBase>
-    struct UnitedMemoryLinks : public UnitedMemoryLinksBase<UnitedMemoryLinks<TLinkAddress, TMemory, THandlerParameter, VConstants, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks, TBase...>, TLinkAddress, TMemory, THandlerParameter, VConstants, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks, TBase...>, public std::enable_shared_from_this<UnitedMemoryLinks<TLinkAddress>>
+    struct UnitedMemoryLinks : public UnitedMemoryLinksBase<UnitedMemoryLinks<TLinkAddress, TMemory, VConstants, THandlerParameter, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks, TBase...>, TLinkAddress, TMemory, VConstants, THandlerParameter,TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks, TBase...>, public std::enable_shared_from_this<UnitedMemoryLinks<TLinkAddress>>
     {
-        using base = UnitedMemoryLinksBase<UnitedMemoryLinks<TLinkAddress, TMemory, THandlerParameter, VConstants, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks, TBase...>, TLinkAddress, TMemory, THandlerParameter, VConstants, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks, TBase...>;
+        using base = UnitedMemoryLinksBase<UnitedMemoryLinks<TLinkAddress, TMemory, VConstants, THandlerParameter, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks, TBase...>, TLinkAddress, TMemory, VConstants, THandlerParameter, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks, TBase...>;
 
     public:
         using base::DefaultLinksSizeStep;
