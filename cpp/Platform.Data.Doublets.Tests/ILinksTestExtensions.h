@@ -12,7 +12,7 @@ namespace Platform::Data::Doublets::Tests
             auto constants { storage.Constants };
             auto _continue = constants.Continue;
             Link<typename TStorage::LinkAddressType> linkStruct;
-            storage.Each( Link{constants.Any, constants.Any, constants.Any} , [&linkStruct, _continue](typename TStorage::HandlerParameterType link) {
+            storage.Each( Link{constants.Any, constants.Any, constants.Any} , [&linkStruct, _continue](const typename TStorage::HandlerParameterType& link) {
                 linkStruct = Link(link);
                 return _continue;
             });
@@ -34,7 +34,7 @@ namespace Platform::Data::Doublets::Tests
             auto constants { storage.Constants };
             auto _continue { constants.Continue };
             typename TStorage::LinkAddressType linkAddressFromEach {};
-            storage.Each(Link{constants.Any, constants.Any, constants.Any}, [_continue, &linkAddressFromEach](typename TStorage::HandlerParameterType link) {
+            storage.Each(Link{constants.Any, constants.Any, constants.Any}, [_continue, &linkAddressFromEach](const typename TStorage::HandlerParameterType& link) {
                 linkAddressFromEach = link[0];
                 return _continue;
             });
@@ -75,7 +75,7 @@ namespace Platform::Data::Doublets::Tests
             Data::Delete(storage, linkAddress);
             Expects(0 == Count(storage));
             typename TStorage::LinkAddressType deletedLinkAddress {};
-            storage.Each(Link{constants.Any, constants.Any, constants.Any}, [_continue, &deletedLinkAddress](typename TStorage::HandlerParameterType link) {
+            storage.Each(Link{constants.Any, constants.Any, constants.Any}, [_continue, &deletedLinkAddress](const typename TStorage::HandlerParameterType& link) {
                 deletedLinkAddress = link[0];
                 return _continue;
             });
@@ -134,7 +134,7 @@ namespace Platform::Data::Doublets::Tests
         Expects(linkAddress2 == link3.Target);
         // Search for created link
         typename TStorage::LinkAddressType searchedLinkAddress {};
-        storage.Each(Link{any, h106E.Value, h108E.Value}, [&searchedLinkAddress, _continue](typename TStorage::HandlerParameterType link) {
+        storage.Each(Link{any, h106E.Value, h108E.Value}, [&searchedLinkAddress, _continue](const typename TStorage::HandlerParameterType& link) {
             searchedLinkAddress = link[0];
             return _continue;
         });
@@ -142,7 +142,7 @@ namespace Platform::Data::Doublets::Tests
         Expects(linkAddress1 == searchedLinkAddress);
         // Search for nonexistent link
 //        typename TStorage::LinkAddressType searchedNonExistentypename TStorage::LinkAddressType {};
-//        storage.Each(Link{any, h106E.Value, h108E.Value}, [&searchedNonExistentypename TStorage::LinkAddressType, _continue](typename TStorage::HandlerParameterType link) {
+//        storage.Each(Link{any, h106E.Value, h108E.Value}, [&searchedNonExistentypename TStorage::LinkAddressType, _continue](const typename TStorage::HandlerParameterType& link) {
 //            searchedNonExistentypename TStorage::LinkAddressType = link[0];
 //            return _continue;
 //        });
@@ -157,7 +157,7 @@ namespace Platform::Data::Doublets::Tests
         Data::Delete(storage, linkAddress3);
         Expects(2 == Count(storage));
         typename TStorage::LinkAddressType deletedLinkAddress {};
-        storage.Each(Link{any, any, any}, [&deletedLinkAddress, _continue](typename TStorage::HandlerParameterType link) {
+        storage.Each(Link{any, any, any}, [&deletedLinkAddress, _continue](const typename TStorage::HandlerParameterType& link) {
             deletedLinkAddress = link[0];
             return _continue;
         });
