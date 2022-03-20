@@ -1,29 +1,26 @@
 ﻿namespace Platform::Data::Doublets::Decorators
 {
     template <typename ...> class LinksInnerReferenceExistenceValidator;
-    template <typename TLink> class LinksInnerReferenceExistenceValidator<TLink> : public LinksDecoratorBase<TLink>
+    template <typename TLink> class LinksInnerReferenceExistenceValidator<TLink> : public DecoratorBase<TFacade, TDecorated>
     {
-        public: LinksInnerReferenceExistenceValidator(ILinks<TLink> &storage) : LinksDecoratorBase(storage) { }
+        public: LinksInnerReferenceExistenceValidator(ILinks<TLink> &storage) : DecoratorBase(storage) { }
 
-        public: TLink Each(Func<IList<TLink>, TLink> handler, CList auto&&restrictions) override
+        public: TLink Each(Func<IList<TLink>, TLink> handler, CArray<TLinkAddress> auto&& restrictions) override
         {
-            auto storage = _links;
             storage.EnsureInnerReferenceExists(restrictions, "restrictions");
-            return storage.Each(handler, restrictions);
+            return storage.Each(restrictions, handler);
         }
 
-        public: TLink Update(CList auto&&restrictions, CList auto&&substitution) override
+        public: TLink Update(CArray<TLinkAddress> auto&& restrictions, CArray<TLinkAddress> auto&& substitution) override
         {
-            auto storage = _links;
             storage.EnsureInnerReferenceExists(restrictions, "restrictions");
             storage.EnsureInnerReferenceExists(substitution, "substitution");
             return storage.Update(restrictions, substitution);
         }
 
-        public: void Delete(CList auto&&restrictions) override
+        public: void Delete(CArray<TLinkAddress> auto&& restrictions) override
         {
             auto link = restrictions[_constants.IndexPart];
-            auto storage = _links;
             storage.EnsureLinkExists(link, "link");
             storage.Delete(link);
         }

@@ -31,6 +31,7 @@ use crate::mem::ResizeableMem;
 use crate::num::LinkType;
 
 pub mod bench;
+pub mod data;
 pub mod doublets;
 pub mod mem;
 pub mod methods;
@@ -85,7 +86,7 @@ unsafe impl<
 }
 
 pub mod prelude {
-    pub use crate::doublets::data::{AddrToRaw, LinksConstants, Query, RawToAddr};
+    pub use crate::data::{AddrToRaw, LinksConstants, Query, RawToAddr};
     pub use crate::doublets::{Doublet, Flow, Link, LinksError};
     pub use crate::num::LinkType;
 }

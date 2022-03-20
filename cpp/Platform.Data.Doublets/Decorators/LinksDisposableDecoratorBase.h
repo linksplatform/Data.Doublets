@@ -1,7 +1,7 @@
 ﻿namespace Platform::Data::Doublets::Decorators
 {
     template <typename ...> class LinksDisposableDecoratorBase;
-    template <typename TLink> class LinksDisposableDecoratorBase<TLink> : public LinksDecoratorBase<TLink>, ILinks<TLink>, System::IDisposable
+    template <typename TLink> class LinksDisposableDecoratorBase<TLink> : public DecoratorBase<TFacade, TDecorated>, ILinks<TLink>, System::IDisposable
     {
         class DisposableWithMultipleCallsAllowed : public Disposable
         {
@@ -25,7 +25,7 @@
         {
             if (!wasDisposed)
             {
-                _links.DisposeIfPossible();
+                this->decorated().DisposeIfPossible();
             }
         }
     };

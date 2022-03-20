@@ -8,9 +8,9 @@ namespace Platform::Data::Doublets::Decorators
     {
         public: UInt32Links(ILinks<TLink> &storage) : base(storage) { }
 
-        public: TLink Create(CList auto&&restrictions) override { return _links.CreatePoint(); }
+        public: TLink Create(CArray<TLinkAddress> auto&& restrictions) override { return this->decorated().CreatePoint(); }
 
-        public: TLink Update(CList auto&&restrictions, CList auto&&substitution) override
+        public: TLink Update(CArray<TLinkAddress> auto&& restrictions, CArray<TLinkAddress> auto&& substitution) override
         {
             auto constants = _constants;
             auto indexPartConstant = constants.IndexPart;
@@ -22,7 +22,6 @@ namespace Platform::Data::Doublets::Decorators
             auto updatedLink = restrictions[indexPartConstant];
             auto newSource = substitution[sourcePartConstant];
             auto newTarget = substitution[targetPartConstant];
-            auto storage = _links;
             if (newSource != itselfConstant && newTarget != itselfConstant)
             {
                 existedLink = storage.SearchOrDefault(newSource, newTarget);
@@ -39,16 +38,15 @@ namespace Platform::Data::Doublets::Decorators
             }
             else
             {
-                return _facade.MergeAndDelete(updatedLink, existedLink);
+                return this->facade().MergeAndDelete(updatedLink, existedLink);
             }
         }
 
-        public: void Delete(CList auto&&restrictions) override
+        public: void Delete(CArray<TLinkAddress> auto&& restrictions) override
         {
             auto linkIndex = restrictions[_constants.IndexPart];
-            auto storage = _links;
             storage.EnforceResetValues(linkIndex);
-            _facade.DeleteAllUsages(linkIndex);
+            this->facade().DeleteAllUsages(linkIndex);
             storage.Delete(linkIndex);
         }
     };

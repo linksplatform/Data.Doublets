@@ -42,7 +42,7 @@
                 _layer = layer;
                 if (_layer._currentTransactionId != 0)
                 {
-                    throw NotSupportedException("Nested transactions not supported.");
+                    throw throw std::logic_error("Not supported exception.");
                 }
                 IsCommitted = false;
                 IsReverted = false;
@@ -131,7 +131,7 @@
             if (!lastCommitedTransition.Equals(lastWrittenTransition))
             {
                 this->Dispose();
-                throw NotSupportedException("Database is damaged, autorecovery is not supported yet.");
+                throw throw std::logic_error("Not supported exception.");
             }
             if (lastCommitedTransition == 0)
             {

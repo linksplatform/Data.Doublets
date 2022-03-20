@@ -3,7 +3,7 @@
 #![feature(result_option_inspect)]
 
 use criterion::{black_box, criterion_group, criterion_main, Criterion};
-use doublets::doublets::data::LinksConstants;
+use doublets::data::LinksConstants;
 use doublets::doublets::mem::{splited, united};
 use doublets::doublets::Doublets;
 use doublets::mem::{AllocMem, GlobalMem};

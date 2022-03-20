@@ -6,7 +6,7 @@ use std::time::Instant;
 
 use rand::Rng;
 
-use crate::doublets::data::Links;
+use crate::data::Links;
 use crate::doublets::mem::{splited, united};
 use crate::doublets::{Doublets, ILinksExtensions, Link};
 use crate::mem::ResizeableMem;

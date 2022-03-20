@@ -5,26 +5,15 @@
     template<
         typename TLinkAddress,
         typename TMemory = FileMappedResizableDirectMemory,
+        LinksConstants<TLinkAddress> VConstants = LinksConstants<TLinkAddress>{true},
+        CArray<TLinkAddress> THandlerParameter = Link<TLinkAddress>,
         typename TSourceTreeMethods = LinksSourcesSizeBalancedTreeMethods<TLinkAddress>,
         typename TTargetTreeMethods = LinksTargetsSizeBalancedTreeMethods<TLinkAddress>,
         typename TUnusedLinks = UnusedLinksListMethods<TLinkAddress>,
         typename ...TBase>
-    class UnitedMemoryLinks : public UnitedMemoryLinksBase<UnitedMemoryLinks<TLinkAddress, TMemory, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks, TBase...>, TLinkAddress, TMemory, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks, TBase...>, public std::enable_shared_from_this<UnitedMemoryLinks<TLinkAddress>>
+    struct UnitedMemoryLinks : public UnitedMemoryLinksBase<UnitedMemoryLinks<TLinkAddress, TMemory, VConstants, THandlerParameter, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks, TBase...>, TLinkAddress, TMemory, VConstants, THandlerParameter,TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks, TBase...>, public std::enable_shared_from_this<UnitedMemoryLinks<TLinkAddress>>
     {
-        using base = UnitedMemoryLinksBase<
-            UnitedMemoryLinks<
-                TLinkAddress,
-                TMemory,
-                TSourceTreeMethods,
-                TTargetTreeMethods,
-                TUnusedLinks,
-                TBase...>,
-            TLinkAddress,
-            TMemory,
-            TSourceTreeMethods,
-            TTargetTreeMethods,
-            TUnusedLinks,
-            TBase...>;
+        using base = UnitedMemoryLinksBase<UnitedMemoryLinks<TLinkAddress, TMemory, VConstants, THandlerParameter, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks, TBase...>, TLinkAddress, TMemory, VConstants, THandlerParameter, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks, TBase...>;
 
     public:
         using base::DefaultLinksSizeStep;
@@ -51,8 +40,8 @@
 
         // TODO: implicit constructor for Constants
     public:
-        UnitedMemoryLinks(TMemory memory, std::size_t memoryReservationStep = DefaultLinksSizeStep, LinksConstants<TLinkAddress> constants = LinksConstants<TLinkAddress>{} /*, IndexTreeType indexTreeType*/) :
-            base(std::move(memory), memoryReservationStep, constants)
+        UnitedMemoryLinks(TMemory memory, std::size_t memoryReservationStep = DefaultLinksSizeStep) :
+            base(std::move(memory), memoryReservationStep)
         {
             //if (indexTreeType == IndexTreeType.SizedAndThreadedAVLBalancedTree)
             //{

@@ -1,15 +1,22 @@
 ﻿namespace Platform::Data::Doublets::Decorators
 {
-    template <typename ...> class LinksCascadeUsagesResolver;
-    template <typename TLink> class LinksCascadeUsagesResolver<TLink> : public LinksDecoratorBase<TLink>
+    template <typename TFacade, typename TDecorated>
+    struct LinksCascadeUsagesResolver : DecoratorBase<TFacade, TDecorated>
     {
-        public: LinksCascadeUsagesResolver(ILinks<TLink> &storage) : LinksDecoratorBase(storage) { }
+        using base = DecoratorBase<TFacade, TDecorated>;
+    public: using typename base::LinkAddressType;
+    public: using typename base::HandlerParameterType;
+    public: using base::Constants;
+    public:
+        USE_ALL_BASE_CONSTRUCTORS(LinksCascadeUsagesResolver, base);
 
-        public: void Delete(CList auto&&restrictions) override
+        public: LinkAddressType Delete(CArray<LinkAddressType> auto&& restrictions, auto&& handler)
         {
-            auto linkIndex = restrictions[_constants.IndexPart];
-            _facade.DeleteAllUsages(linkIndex);
-            _links.Delete(linkIndex);
+            auto $continue {Constants.Continue};
+            auto linkIndex = restrictions[Constants.IndexPart];
+            WriteHandlerState<TDecorated> handlerState {Constants.Continue, Constants.Break, handler};
+            handlerState.Apply(DeleteAllUsages(this->facade(), linkIndex, handlerState.Handler));
+            return handlerState.Apply(this->decorated().Delete(LinkAddress{linkIndex}, handlerState.Handler));
         }
     };
 }

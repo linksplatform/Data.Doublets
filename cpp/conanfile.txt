@@ -7,6 +7,7 @@ platform.threading/0.1.0
 platform.memory/0.1.0
 platform.data/0.1.0
 platform.random/0.1.0
+platform.interfaces/0.2.5
 platform.ranges/0.1.3
 
 [generators]

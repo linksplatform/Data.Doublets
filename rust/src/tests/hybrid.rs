@@ -1,4 +1,4 @@
-use crate::doublets::data::{AddrToRaw, Links, LinksConstants, Query, RawToAddr};
+use crate::data::{AddrToRaw, Links, LinksConstants, Query, RawToAddr};
 use crate::doublets::{Doublets, ILinksExtensions};
 use crate::query;
 use crate::test_extensions::ILinksTestExtensions;

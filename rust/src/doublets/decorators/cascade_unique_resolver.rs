@@ -6,7 +6,7 @@ use std::ops::Try;
 
 use num_traits::zero;
 
-use crate::doublets::data::{Links, LinksConstants, Query, ToQuery};
+use crate::data::{Links, LinksConstants, Query, ToQuery};
 use crate::doublets::decorators::UniqueResolver;
 use crate::doublets::{Doublets, Flow, ILinksExtensions, Link, LinksError, Result};
 use crate::num::LinkType;

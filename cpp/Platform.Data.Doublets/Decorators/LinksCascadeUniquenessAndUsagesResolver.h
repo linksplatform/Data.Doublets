@@ -1,14 +1,17 @@
 ﻿namespace Platform::Data::Doublets::Decorators
 {
-    template <typename ...> class LinksCascadeUniquenessAndUsagesResolver;
-    template <typename TLink> class LinksCascadeUniquenessAndUsagesResolver<TLink> : public LinksUniquenessResolver<TLink>
+    template <typename TFacade, typename TDecorated>
+    struct LinksCascadeUniquenessAndUsagesResolver : public LinksUniquenessResolver<TFacade, TDecorated>
     {
-        public: LinksCascadeUniquenessAndUsagesResolver(ILinks<TLink> &storage) : LinksUniquenessResolver(storage) { }
+    using base = LinksUniquenessResolver<TFacade, TDecorated>;
+    public: using typename base::LinkAddressType;
+        public:
+            USE_ALL_BASE_CONSTRUCTORS(LinksCascadeUniquenessAndUsagesResolver, base);
 
-        protected: TLink ResolveAddressChangeConflict(TLink oldLinkAddress, TLink newLinkAddress) override
+        protected: LinkAddressType ResolveAddressChangeConflict(LinkAddressType oldLinkAddress, LinkAddressType newLinkAddress)
         {
-            _facade.MergeUsages(oldLinkAddress, newLinkAddress);
-            return base.ResolveAddressChangeConflict(oldLinkAddress, newLinkAddress);
+            this->facade().MergeUsages(oldLinkAddress, newLinkAddress);
+            return ResolveAddressChangeConflict(oldLinkAddress, newLinkAddress);
         }
     };
 }
