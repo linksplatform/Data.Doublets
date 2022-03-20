@@ -4,7 +4,6 @@ namespace Platform::Data::Doublets
     template<typename TStorage>
     struct WriteHandlerState
     {
-    public:
         typename TStorage::LinkAddressType Break;
         typename TStorage::LinkAddressType Result;
         std::function<typename TStorage::LinkAddressType(typename TStorage::HandlerParameterType, typename TStorage::HandlerParameterType)> Handler;
