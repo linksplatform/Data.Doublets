@@ -612,9 +612,6 @@ namespace Platform::Data::Doublets
     //        }
     //    }
     //
-    //    template<typename TStorage>
-    //    static void DeleteAllUsages(TStorage& storage, typename TStorage::LinkAddressType linkIndex) { storage.DeleteAllUsages(linkIndex, {}); }
-    //
 
     template<typename TStorage>
     static typename TStorage::LinkAddressType DeleteAllUsages(TStorage& storage, typename TStorage::LinkAddressType linkIndex, auto&& handler)
@@ -646,6 +643,12 @@ namespace Platform::Data::Doublets
             handlerState.Apply(result);
         }
         return handlerState.Result;
+    }
+
+    template<typename TStorage>
+    static void DeleteAllUsages(TStorage& storage, typename TStorage::LinkAddressType linkIndex)
+    {
+        DeleteAllUsages(storage, linkIndex, nullptr);
     }
 
     // Do not translate this
