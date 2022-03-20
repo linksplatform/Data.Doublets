@@ -161,18 +161,18 @@ namespace Platform::Data::Doublets
     }
 
     template<typename TStorage>
-    static bool CheckPathExistence(const TStorage& storage, std::convertible_to<typename TStorage::LinkAddressType> auto ...path)
+    static bool CheckPathExistence(const TStorage& storage, std::convertible_to<typename TStorage::LinkAddressType> auto ... pathPack)
     {
-        typename TStorage::HandlerParameterType pathContainer { static_cast<typename TStorage::LinkdAddressType>(path)... };
-        auto current = pathContainer[0];
+        typename TStorage::HandlerParameterType path{ static_cast<typename TStorage::LinkdAddressType>(pathPack)... };
+        auto current = path[0];
         if (!Exists(storage, current))
         {
             return false;
         }
         auto constants = storage.Constants;
-        for (typename TStorage::LinkAddressType i { 1 }; i < std::ranges::size(pathContainer); ++i)
+        for (typename TStorage::LinkAddressType i { 1 }; i < std::ranges::size(path); ++i)
         {
-            auto next = pathContainer[i];
+            auto next = path[i];
             auto values = GetLink(storage, current);
             auto source = GetSource(storage, values);
             auto target = GetTarget(storage, values);
@@ -190,14 +190,14 @@ namespace Platform::Data::Doublets
     }
 
     template<typename TStorage>
-    static typename TStorage::LinkAddressType GetByKeys(TStorage& storage, typename TStorage::LinkAddressType root, std::convertible_to<typename TStorage::LinkAddressType> auto ...path)
+    static typename TStorage::LinkAddressType GetByKeys(TStorage& storage, typename TStorage::LinkAddressType root, std::convertible_to<typename TStorage::LinkAddressType> auto ... pathPack)
     {
-        typename TStorage::HandlerParameterType pathContainer { static_cast<typename TStorage::LinkdAddressType>(path)... };
+        typename TStorage::HandlerParameterType path{ static_cast<typename TStorage::LinkdAddressType>(pathPack)... };
         storage.EnsureLinkExists(root, "root");
         auto currentLink = root;
-        for (typename TStorage::LinkAddressType i { 0 }; i < std::ranges::size(pathContainer); ++i)
+        for (typename TStorage::LinkAddressType i { 0 }; i < std::ranges::size(path); ++i)
         {
-            currentLink = GetLink(storage, currentLink)[pathContainer[i]];
+            currentLink = GetLink(storage, currentLink)[path[i]];
         }
         return currentLink;
     }
@@ -240,13 +240,13 @@ namespace Platform::Data::Doublets
     static typename TStorage::LinkAddressType GetTarget(const TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& link) { return link[storage.Constants.TargetPart]; }
 
         template<typename TStorage>
-        static auto All(const TStorage& storage, std::convertible_to<typename TStorage::LinkAddressType> auto ...restriction)
+        static auto All(const TStorage& storage, std::convertible_to<typename TStorage::LinkAddressType> auto ... restrictionPack)
         {
             using namespace Platform::Collections;
-            typename TStorage::HandlerParameterType restrictionContainer { static_cast<typename TStorage::LinkAddressType>(restriction)... };
+            typename TStorage::HandlerParameterType restriction	{ static_cast<typename TStorage::LinkAddressType>(restrictionPack)... };
             auto $continue {storage.Constants.Continue};
             auto allLinks = std::vector<typename TStorage::HanlderParameterType>();
-            storage.Each(restrictionContainer, [&allLinks, $continue](const typename TStorage::HandlerParameterType& link){
+            storage.Each(restriction, [&allLinks, $continue](const typename TStorage::HandlerParameterType& link){
                 allLinks.push_back(link);
                 return $continue;
             });
@@ -528,11 +528,11 @@ namespace Platform::Data::Doublets
         }
 
         template<typename TStorage>
-        static typename TStorage::LinkAddressType Update(TStorage& storage, auto&& handler, std::convertible_to<typename TStorage::LinkAddressType> auto ...restriction)
+        static typename TStorage::LinkAddressType Update(TStorage& storage, auto&& handler, std::convertible_to<typename TStorage::LinkAddressType> auto ... restrictionPack)
         {
-            typename TStorage::HandlerParameterType restrictionContainer {
-                static_cast<typename TStorage::HandlerParameterType>(restriction)... };
-            return Update(storage, restrictionContainer, handler);
+            typename TStorage::HandlerParameterType restriction{
+                static_cast<typename TStorage::HandlerParameterType>(restrictionPack)... };
+            return Update(storage, restriction, handler);
         }
         //
         template<typename TStorage>
