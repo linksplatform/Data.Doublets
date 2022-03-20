@@ -5,7 +5,7 @@ use doublets::test_extensions::ILinksTestExtensions;
 
 
 fn main() -> Result<(), Box<dyn Error>> {
-    let links = Store::new(GlobalMem::new())?;
+    let mut links = Store::new(GlobalMem::new())?;
     links.test_random_creations_and_deletions()?;
     Ok(())
 }
