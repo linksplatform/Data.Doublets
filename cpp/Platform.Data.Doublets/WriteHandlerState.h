@@ -14,12 +14,12 @@ namespace Platform::Data::Doublets
 
         typename TStorage::LinkAddressType Apply(typename TStorage::LinkAddressType result)
         {
-            if(Break == Result || Break != result)
+            if (Break == result)
             {
-                return Result;
+                Result = Break;
+                Handler = nullptr;
             }
-            Result = result;
-            return result;
+            return Result;
         }
 
         template<typename ...TArgs>
