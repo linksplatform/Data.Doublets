@@ -22,8 +22,7 @@ namespace Platform::Data::Doublets
             return Result;
         }
 
-        template<typename ...TArgs>
-        typename TStorage::LinkAddressType Handle(TArgs ...args)
+        typename TStorage::LinkAddressType Handle(auto&& ...args)
         {
             if(nullptr == Handler)
             {
@@ -31,7 +30,7 @@ namespace Platform::Data::Doublets
             }
             else
             {
-                return Apply({Handler(std::forward<TArgs>(args)...)});
+                return Apply({Handler(std::forward<decltype(args)>(args)...)});
             }
         }
     };
