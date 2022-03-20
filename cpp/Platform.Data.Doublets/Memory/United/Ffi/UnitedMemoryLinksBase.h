@@ -174,7 +174,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
         static constexpr bool value = false;
     };
 
-    template<typename TSelf, typename TLinkAddress,LinksConstants<TLinkAddress> VConstants, typename... TBase>
+    template<typename TSelf, typename TLinkAddress, LinksConstants<TLinkAddress> VConstants, CArray<TLinkAddress> THandlerParameter, typename... TBase>
     class UnitedMemoryLinksBase : public Interfaces::Polymorph<TSelf, TBase...>
     {
     private:
@@ -183,6 +183,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
     public:
         static constexpr auto Constants = VConstants;
         using LinkAddressType = TLinkAddress;
+        using HandlerParameterType = THandlerParameter;
 
             UnitedMemoryLinksBase(std::string_view path)
         {
