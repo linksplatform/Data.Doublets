@@ -777,28 +777,18 @@ namespace Platform::Data::Doublets
     //        return handlerState.Result;
     //    }
 
-    template<typename TStorage>
-    std::string Format(TStorage& storage, typename TStorage::LinkAddressType link)
-    {
-        auto values = GetLink(storage, link);
-        return Format(values);
-    }
+        template<typename TStorage>
+        static std::string Format(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& link)
+        {
+            auto constants = storage.Constants;
+            return std::format("({0}: {1} -> {2})", GetIndex(storage, link), GetSource(storage, link), GetTarget(storage,link));
+        }
 
-    template<typename TStorage>
-    std::string Format(TStorage& storage, Link<typename TStorage::LinkAddressType> link)
-    {
-        return std::string{}
-            .append("(")
-            .append(std::to_string(link.Index))
-            .append("): ")
-            .append("(")
-            .append(std::to_string(link.Source))
-            .append(")")
-            .append(" -> ")
-            .append("(")
-            .append(std::to_string(link.Target))
-            .append(")");
-    }
+        template<typename TStorage>
+        std::string Format(TStorage& storage, typename TStorage::LinkAddressType linkAddress)
+        {
+            return Format(GetLink(storage, linkAddress));
+        }
 
 
     template<typename TStorage>
@@ -851,13 +841,5 @@ namespace Platform::Data::Doublets
     //
 
     //
-    //    template<typename TStorage>
-    //    static std::string Format(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& link)
-    //    {
-    //        auto constants = storage.Constants;
-    //        return "({GetIndex(storage, link)}: {GetSource(storage, link)} {GetTarget(storage, link)})";
-    //    }
-    //
-    //    template<typename TStorage>
-    //    static std::string Format(TStorage& storage, typename TStorage::LinkAddressType link) { return storage.Format(GetLink(storage, link)); }
+
 }
