@@ -31,8 +31,7 @@ namespace Platform::Data::Doublets
             }
             else
             {
-                auto result {Handler(std::forward<TArgs>(args)...)};
-                return Apply(result);
+                return Apply({Handler(std::forward<TArgs>(args)...)});
             }
         }
     };
