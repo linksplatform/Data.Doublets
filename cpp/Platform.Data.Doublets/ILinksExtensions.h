@@ -383,12 +383,12 @@ namespace Platform::Data::Doublets
     //    {
     //        auto constants = storage.Constants;
     //        auto values = GetLink(storage, link);
-    //        typename TStorage::LinkAddressType usagesAsSource = Count(storage)(Link<typename TStorage::LinkAddressType>(constants.Any, link, constants.Any));
+    //        typename TStorage::LinkAddressType usagesAsSource = Count(storage)(Link(constants.Any, link, constants.Any));
     //        if ( link == GetSource(storage, values))
     //        {
     //            usagesAsSource = usagesAsSource - 1;
     //        }
-    //        typename TStorage::LinkAddressType usagesAsTarget = Count(storage)(Link<typename TStorage::LinkAddressType>(constants.Any, constants.Any, link));
+    //        typename TStorage::LinkAddressType usagesAsTarget = Count(storage)(Link(constants.Any, constants.Any, link));
     //        if ( link == GetTarget(storage, values))
     //        {
     //            usagesAsTarget = usagesAsTarget - 1;
@@ -724,70 +724,71 @@ namespace Platform::Data::Doublets
          return EnforceResetValues(storage, linkIndex, nullptr);
     }
 
-    //    template<typename TStorage>
-    //    static void MergeUsages(TStorage& storage, typename TStorage::LinkAddressType oldLinkIndex, typename TStorage::LinkAddressType newLinkIndex) { storage.MergeUsages(oldLinkIndex, newLinkIndex, {}); }
-    //
-    //    template<typename typename TStorage::LinkAddressType, typename Handler, typename TList1, typename TList2>
-    //    requires std::invocable<Handler&, Interfaces::CArray<typename TStorage::LinkAddressType> auto, Interfaces::CArray<typename TStorage::LinkAddressType> auto>
-    //    static typename TStorage::LinkAddressType MergeUsages(TStorage& storage, typename TStorage::LinkAddressType oldLinkIndex, typename TStorage::LinkAddressType newLinkIndex, Handler handler)
-    //    {
-    //        if ( newLinkIndex == oldLinkIndex)
-    //        {
-    //            return newLinkIndex;
-    //        }
-    //        auto constants = storage.Constants;
-    //        auto usagesAsSource = storage.All(Link<typename TStorage::LinkAddressType>(constants.Any, oldLinkIndex, constants.Any));
-    //        WriteHandlerState<TStorage> handlerState = new(constants.Continue, constants.Break, handler);
-    //        for (auto i { 0 }; i < usagesAsSource.Count(); ++i)
-    //        {
-    //            auto usageAsSource = usagesAsSource[i];
-    //            if ( oldLinkIndex == GetIndex(storage, usageAsSource))
-    //            {
-    //                continue;
-    //            }
-    //            auto restriction = LinkAddress{GetIndex(storage, usageAsSource});
-    //            auto substitution = Link<typename TStorage::LinkAddressType>(newLinkIndex, GetTarget(storage, usageAsSource));
-    //            handlerState.Apply(storage.Update(restriction, substitution, handlerState.Handler));
-    //        }
-    //        auto usagesAsTarget = storage.All(Link<typename TStorage::LinkAddressType>(constants.Any, constants.Any, oldLinkIndex));
-    //        for (auto i { 0 }; i < usagesAsTarget.Count(); ++i)
-    //        {
-    //            auto usageAsTarget = usagesAsTarget[i];
-    //            if ( oldLinkIndex == GetIndex(storage, usageAsTarget))
-    //            {
-    //                continue;
-    //            }
-    //            auto restriction = GetLink(storage, GetIndex(storage, usageAsTarget));
-    //            auto substitution = Link<typename TStorage::LinkAddressType>(GetTarget(storage, usageAsTarget), newLinkIndex);
-    //            handlerState.Apply(storage.Update(restriction, substitution, handlerState.Handler));
-    //        }
-    //        return handlerState.Result;
-    //    }
+        template<typename TStorage>
+        static typename TStorage::LinkAddressType MergeUsages(TStorage& storage, typename TStorage::LinkAddressType oldLinkIndex, typename TStorage::LinkAddressType newLinkIndex, auto&& handler)
+        {
+            if (newLinkIndex == oldLinkIndex)
+            {
+                return newLinkIndex;
+            }
+            auto constants = storage.Constants;
+            auto usagesAsSource = All(storage, Link(constants.Any, oldLinkIndex, constants.Any));
+            WriteHandlerState<TStorage> handlerState = new(constants.Continue, constants.Break, handler);
+            for (auto i { 0 }; i < usagesAsSource.Count(); ++i)
+            {
+                auto usageAsSource = usagesAsSource[i];
+                if ( oldLinkIndex == GetIndex(storage, usageAsSource))
+                {
+                    continue;
+                }
+                auto restriction = LinkAddress{GetIndex(storage, usageAsSource});
+                auto substitution = Link(newLinkIndex, GetTarget(storage, usageAsSource));
+                handlerState.Apply(storage.Update(restriction, substitution, handlerState.Handler));
+            }
+            auto usagesAsTarget = All(storage, Link(constants.Any, constants.Any, oldLinkIndex));
+            for (auto i { 0 }; i < usagesAsTarget.Count(); ++i)
+            {
+                auto usageAsTarget = usagesAsTarget[i];
+                if ( oldLinkIndex == GetIndex(storage, usageAsTarget))
+                {
+                    continue;
+                }
+                auto restriction = GetLink(storage, GetIndex(storage, usageAsTarget));
+                auto substitution = Link(GetTarget(storage, usageAsTarget), newLinkIndex);
+                handlerState.Apply(storage.Update(restriction, substitution, handlerState.Handler));
+            }
+            return handlerState.Result;
+        }
 
-    //    template<typename TStorage>
-    //    static typename TStorage::LinkAddressType MergeAndDelete(TStorage& storage, typename TStorage::LinkAddressType oldLinkIndex, typename TStorage::LinkAddressType newLinkIndex)
-    //    {
-    //        if ( newLinkIndex != oldLinkIndex)
-    //        {
-    //            storage.MergeUsages(oldLinkIndex, newLinkIndex);
-    //            storage.Delete(oldLinkIndex);
-    //        }
-    //        return newLinkIndex;
-    //    }
-    //
-    //    template<typename typename TStorage::LinkAddressType, typename Handler, typename TList1, typename TList2>
-    //    requires std::invocable<Handler&, Interfaces::CArray<typename TStorage::LinkAddressType> auto, Interfaces::CArray<typename TStorage::LinkAddressType> auto>
-    //    static typename TStorage::LinkAddressType MergeAndDelete(TStorage& storage, typename TStorage::LinkAddressType oldLinkIndex, typename TStorage::LinkAddressType newLinkIndex, Handler handler)
-    //    {
-    //        auto constants = storage.Constants;
-    //        WriteHandlerState<TStorage> handlerState = new(constants.Continue, constants.Break, handler);
-    //        if ( newLinkIndex != oldLinkIndex)
-    //        {
-    //            handlerState.Apply(storage.MergeUsages(oldLinkIndex, newLinkIndex, handlerState.Handler));
-    //            handlerState.Apply(storage.Delete(oldLinkIndex, handlerState.Handler));
-    //        }
-    //        return handlerState.Result;
-    //    }
+        template<typename TStorage>
+        static void MergeUsages(TStorage& storage, typename TStorage::LinkAddressType oldLinkIndex, typename TStorage::LinkAddressType newLinkIndex)
+        {
+            MergeUsages(storage, oldLinkIndex, newLinkIndex, nullptr);
+        }
+
+        template<typename TStorage>
+        static typename TStorage::LinkAddressType MergeAndDelete(TStorage& storage, typename TStorage::LinkAddressType oldLinkIndex, typename TStorage::LinkAddressType newLinkIndex)
+        {
+            if ( newLinkIndex != oldLinkIndex)
+            {
+                MergeUsages(storage, oldLinkIndex, newLinkIndex);
+                Delete(storage, oldLinkIndex);
+            }
+            return newLinkIndex;
+        }
+
+        template<typename typename TStorage>
+        static typename TStorage::LinkAddressType MergeAndDelete(TStorage& storage, typename TStorage::LinkAddressType oldLinkIndex, typename TStorage::LinkAddressType newLinkIndex, auto&& handler)
+        {
+            auto constants = storage.Constants;
+            WriteHandlerState<TStorage> handlerState = new(constants.Continue, constants.Break, handler);
+            if ( newLinkIndex != oldLinkIndex)
+            {
+                handlerState.Apply(storage.MergeUsages(oldLinkIndex, newLinkIndex, handlerState.Handler));
+                handlerState.Apply(storage.Delete(oldLinkIndex, handlerState.Handler));
+            }
+            return handlerState.Result;
+        }
 
         template<typename TStorage>
         static std::string Format(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& link)
