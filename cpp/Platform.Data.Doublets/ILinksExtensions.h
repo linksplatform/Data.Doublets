@@ -818,10 +818,9 @@ namespace Platform::Data::Doublets
     {
         auto constants = storage.Constants;
         auto values = GetLink(storage, link);
-
         typename TStorage::LinkAddressType usages = 0;
-        usages += storage.Count(constants.Any, link, constants.Any) - bool(values.Source == link);
-        usages += storage.Count(constants.Any, constants.Any, link) - bool(values.Target == link);
+        usages += storage.Count(constants.Any, link, constants.Any) - (values.Source == link);
+        usages += storage.Count(constants.Any, constants.Any, link) - (values.Target == link);
         return usages;
     }
 
