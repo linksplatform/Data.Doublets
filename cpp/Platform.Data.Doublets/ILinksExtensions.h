@@ -425,22 +425,20 @@ namespace Platform::Data::Doublets
             auto point = Platform::Data::Create(storage);
             return Update(storage, point, point, point);
         }
-    //
-    //    template<typename typename TStorage::LinkAddressType, typename Handler, typename TList1, typename TList2>
-    //    requires std::invocable<Handler&, Interfaces::CArray<typename TStorage::LinkAddressType> auto, Interfaces::CArray<typename TStorage::LinkAddressType> auto>
-    //    static typename TStorage::LinkAddressType CreatePoint(TStorage& storage, Handler handler)
-    //    {
-    //        auto constants = storage.Constants;
-    //        WriteHandlerState<TStorage> handlerState = new(constants.Continue, constants.Break, handler);
-    //        typename TStorage::LinkAddressType link = 0;
-    //        typename TStorage::LinkAddressType HandlerWrapper = [&]()Address {
-    //            link = GetIndex(storage, after);
-    //            return handlerState.Handle(before, after);;
-    //        };
-    //        handlerState.Apply(storage.Create({}, HandlerWrapper));
-    //        handlerState.Apply(storage.Update(link, link, link, HandlerWrapper));
-    //        return handlerState.Result;
-    //    }
+
+        template<typename typename TStorage>
+        static typename TStorage::LinkAddressType CreatePoint(TStorage& storage, auto&& handler)
+        {
+            auto constants = storage.Constants;
+            WriteHandlerState<TStorage> handlerState = new(constants.Continue, constants.Break, handler);
+            typename TStorage::LinkAddressType linkAddress = 0;
+            typename TStorage::LinkAddressType HandlerWrapper = [&linkAddress, $handlerState](const typename TStorage::HandlerParameterType& before, const typename TStorage::HandlerParameterType& after)
+                linkAddress = GetIndex(storage, after);
+                return handlerState.Handle(before, after);
+            };
+            handlerState.Apply(storage.Create(Link{}, HandlerWrapper));
+            return handlerState.Apply(storage.Update(linkAddress, linkAddress, linkAddress, HandlerWrapper));
+        }
 
         template<typename TStorage>
         typename TStorage::LinkAddressType CreateAndUpdate(TStorage& storage, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType target)
