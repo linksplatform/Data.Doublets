@@ -441,32 +441,34 @@ namespace Platform::Data::Doublets
     //        handlerState.Apply(storage.Update(link, link, link, HandlerWrapper));
     //        return handlerState.Result;
     //    }
-    //
-    //    template<typename TStorage>
-    //    static typename TStorage::LinkAddressType CreateAndUpdate(TStorage& storage, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType target)
-    //    {
-    //        auto constants = storage.Constants;
-    //        auto setter = Setter<typename TStorage::LinkAddressType, typename TStorage::LinkAddressType>(constants.Continue, constants.Break);
-    //        storage.CreateAndUpdate(source, target, setter.SetFirstFromSecondListAndReturnTrue);
-    //        return setter.Result;
-    //    }
-    //
-    //    template<typename typename TStorage::LinkAddressType, typename Handler, typename TList1, typename TList2>
-    //    requires std::invocable<Handler&, Interfaces::CArray<typename TStorage::LinkAddressType> auto, Interfaces::CArray<typename TStorage::LinkAddressType> auto>
-    //    static typename TStorage::LinkAddressType CreateAndUpdate(TStorage& storage, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType target, Handler handler)
-    //    {
-    //        auto constants = storage.Constants;
-    //        typename TStorage::LinkAddressType createdLink = 0;
-    //        WriteHandlerState<TStorage> handlerState = new(constants.Continue, constants.Break, handler);
-    //        handlerState.Apply(storage.Create({}, (before, after) =>
-    //        {
-    //            createdLink = GetIndex(storage, after);
-    //            return handlerState.Handle(before, after);;
-    //        }));
-    //        handlerState.Apply(storage.Update(createdLink, source, target, handler));
-    //        return handlerState.Result;
-    //    }
-    //
+
+        template<typename TStorage>
+        typename TStorage::LinkAddressType CreateAndUpdate(TStorage& storage, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType target)
+        {
+            auto constants = storage.Constants;
+            auto $continue {constants.Continue};
+            typename TStorage::LinkAddressType createdLinkAddress = 0;
+            WriteHandlerState<TStorage> handlerState = new(constants.Continue, constants.Break, handler);
+            handlerState.Apply(storage.Create(Link{}, [$continue, $createdLinkAddress](const typename TStorage::HandlerParameterType& before, const typename TStorage::HandlerParameterType& after) =>
+                                          {
+                                                createdLinkAddress = GetIndex(storage, after);
+                                                return handlerState.Handle(before, after);
+                                          }));
+            handlerState.Apply(Update(storage, createdLinkAddress, source, target, handler));
+            return handlerState.Result;
+        }
+
+        template<typename typename TStorage>
+        static typename TStorage::LinkAddressType CreateAndUpdate(TStorage& storage, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType target, auto&& handler)
+        {
+            auto constants = storage.Constants;
+            typename TStorage::LinkAddressType createdLink = 0;
+            WriteHandlerState<TStorage> handlerState = new(constants.Continue, constants.Break, handler);
+            handlerState.Apply(storage.Create(Link{}, handlerState.Handler));
+            handlerState.Apply(storage.Update(createdLink, source, target, handlerState.Handler));
+            return handlerState.Result;
+        }
+
         template<typename TStorage>
         typename TStorage::LinkAddressType Update(TStorage& storage, CArray<typename TStorage::LinkAddressType> auto&& restriction, CArray<typename TStorage::LinkAddressType> auto&& substitution)
         {
@@ -667,12 +669,6 @@ namespace Platform::Data::Doublets
 //            Delete(storage, link);
 //        }
 //    }
-
-    template<typename TStorage>
-    typename TStorage::LinkAddressType CreateAndUpdate(TStorage& storage, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType target)
-    {
-        return Update(storage, Create(storage), source, target);
-    }
 
     template<typename TStorage>
     auto DeleteAll(TStorage& storage)
