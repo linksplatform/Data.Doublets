@@ -8,6 +8,7 @@ readme = "readme.md"
 repository = "https://github.com/linksplatform/Data.Doublets"
 homepage = "https://github.com/linksplatform/Data.Doublets/blob/master/rust"
 description = """
+Modular framework to automation by automation
 """
 
 [dependencies]
