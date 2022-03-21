@@ -2,6 +2,13 @@
 name = "doublets"
 version = "0.1.0-alpha.1"
 edition = "2018"
+authors = ["Linksplatform Team <linksplatformtechnologies@gmail.com>"]
+license = "lgpl-3.0"
+readme = "readme.md"
+repository = "https://github.com/linksplatform/Data.Doublets"
+homepage = "https://github.com/linksplatform/Data.Doublets/blob/master/rust"
+description = """
+"""
 
 [dependencies]
 thiserror = "1.0.30"
