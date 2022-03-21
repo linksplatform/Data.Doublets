@@ -1,6 +1,6 @@
 [package]
 name = "doublets"
-version = "0.1.0-alpha.3"
+version = "0.1.0-alpha.4"
 edition = "2018"
 authors = ["Linksplatform Team <linksplatformtechnologies@gmail.com>"]
 license = "LGPL-3.0"
