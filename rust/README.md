@@ -3,18 +3,18 @@
 ## Example 
 ```rust,no_run
 // alpha does not has human prelude
-use std::error::Error;
 use doublets::{
-    data::Flow::{Continue, Break}, // also can use std::ops::ControlFlow
-    mem::FileMappedMem,
-    doublets::Doublets,
+    data::Flow::{Break, Continue}, // also can use std::ops::ControlFlow
     doublets::mem::united,
+    doublets::Doublets,
+    mem::FileMappedMem,
 };
+use std::error::Error;
 
 fn main() -> Result<(), Box<dyn Error>> {
     // A doublet links store is mapped to "db.links" file:
     let mem = FileMappedMem::new("db.links")?;
-    let mut links = united::Links::<usize, _>::new(mem)?;
+    let mut links = united::Store::<usize, _>::new(mem)?;
 
     // A creation of the doublet link:
     let link = links.create()?;
@@ -25,7 +25,6 @@ fn main() -> Result<(), Box<dyn Error>> {
     println!("The number of links in the data store is {}", links.count());
     println!("Data store contents:");
 
-    let r#continue = links.constants().r#continue;
     links.try_each(|link| {
         println!("{}", link);
         Continue
