@@ -245,7 +245,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             }
         }
 
-        TLinkAddress Create(CArray<TLinkAddress> auto&& substitution, auto&& handler)
+        TLinkAddress Create(const LinkType& substitution, auto&& handler)
         {
             auto substitutionLength = std::ranges::size(substitution);
             auto substitutionPtr = std::ranges::data(substitution);
@@ -278,7 +278,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             }
         };
 
-        TLinkAddress Update(const  LinkType& restriction, CArray<TLinkAddress> auto&& substitution, auto&& handler)
+        TLinkAddress Update(const  LinkType& restriction, const LinkType& substitution, auto&& handler)
         {
             auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr{std::ranges::data(restriction)};

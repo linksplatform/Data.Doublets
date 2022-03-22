@@ -310,7 +310,7 @@
         // NOTE: The following .NET attribute has no direct equivalent in C++:
         // ORIGINAL LINE: [MethodImpl(MethodImplOptions.AggressiveInlining)] public TLinkAddress Update(IList<TLinkAddress> restriction, IList<TLinkAddress> substitution)
     public:
-        TLinkAddress Update(const  LinkType& restriction, CArray<TLinkAddress> auto&& substitution, auto&& handler)
+        TLinkAddress Update(const  LinkType& restriction, const LinkType& substitution, auto&& handler)
         {
             auto constants = Constants;
             auto null = constants.Null;

@@ -10,7 +10,7 @@ namespace Platform::Data::Doublets::Decorators
 
         public: TLink Create(const  LinkType& restriction) override { return this->decorated().CreatePoint(); }
 
-        public: TLink Update(const  LinkType& restriction, CArray<TLinkAddress> auto&& substitution) override
+        public: TLink Update(const  LinkType& restriction, const LinkType& substitution) override
         {
             auto constants = _constants;
             auto indexPartConstant = constants.IndexPart;
