@@ -19,6 +19,7 @@
 
 #include "Doublet.h"
 #include "Link.h"
+#include "LinksOptions.h"
 //#include "ILinks.h"
 
 #include "ILinksExtensions.h"

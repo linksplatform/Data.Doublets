@@ -16,8 +16,6 @@
         typename... TBase>
     struct UnitedMemoryLinksBase : public Interfaces::Polymorph<TSelf, TBase...>
     {
-    private:
-        static constexpr auto null = Link<TLinkAddress>::Null;
     public:
         typedef TLinkAddress LinkAddressType;
         typedef THandlerParameter HandlerParameterType;
@@ -379,7 +377,7 @@
                 freeLink = header.AllocatedLinks;
                 _memory.UsedCapacity(_memory.UsedCapacity() + LinkSizeInBytes);
             }
-            return handler(null, Link{freeLink, TLinkAddress{}, TLinkAddress{}});
+            return handler(LinkType{}, Link{freeLink, TLinkAddress{}, TLinkAddress{}});
         }
 
     public:
@@ -406,7 +404,7 @@
                     auto allLinksBeforeAfterAllocatedLinks = All(*this);
                 }
             }
-            return handler(before, null);
+            return handler(before, LinkType{});
         }
 
         auto GetLinkStruct(TLinkAddress linkIndex) const
