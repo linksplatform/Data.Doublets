@@ -10,10 +10,10 @@
     public:
         USE_ALL_BASE_CONSTRUCTORS(NonNullContentsLinkDeletionResolver, base);
 
-        public: LinkAddressType Delete(CArray<LinkAddressType> auto&& restrictions, auto&& handler)
+        public: LinkAddressType Delete(CArray<LinkAddressType> auto&& restriction, auto&& handler)
         {
             auto $break = Constants.Break;
-            auto linkIndex = restrictions[Constants.IndexPart];
+            auto linkIndex = restriction[Constants.IndexPart];
             WriteHandlerState<TDecorated> handlerState {Constants.Continue, Constants.Break, handler};
             handlerState.Apply(EnforceResetValues(this->decorated(), linkIndex, handlerState.Handler));
             return handlerState.Apply(this->decorated().Delete(LinkAddress{linkIndex}, handlerState.Handler));

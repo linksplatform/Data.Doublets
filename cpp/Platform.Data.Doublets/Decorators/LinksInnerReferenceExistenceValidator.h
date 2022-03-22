@@ -5,22 +5,22 @@
     {
         public: LinksInnerReferenceExistenceValidator(ILinks<TLink> &storage) : DecoratorBase(storage) { }
 
-        public: TLink Each(Func<IList<TLink>, TLink> handler, CArray<TLinkAddress> auto&& restrictions) override
+        public: TLink Each(Func<IList<TLink>, TLink> handler, CArray<TLinkAddress> auto&& restriction) override
         {
-            storage.EnsureInnerReferenceExists(restrictions, "restrictions");
-            return storage.Each(restrictions, handler);
+            storage.EnsureInnerReferenceExists(restriction, "restriction");
+            return storage.Each(restriction, handler);
         }
 
-        public: TLink Update(CArray<TLinkAddress> auto&& restrictions, CArray<TLinkAddress> auto&& substitution) override
+        public: TLink Update(CArray<TLinkAddress> auto&& restriction, CArray<TLinkAddress> auto&& substitution) override
         {
-            storage.EnsureInnerReferenceExists(restrictions, "restrictions");
+            storage.EnsureInnerReferenceExists(restriction, "restriction");
             storage.EnsureInnerReferenceExists(substitution, "substitution");
-            return storage.Update(restrictions, substitution);
+            return storage.Update(restriction, substitution);
         }
 
-        public: void Delete(CArray<TLinkAddress> auto&& restrictions) override
+        public: void Delete(CArray<TLinkAddress> auto&& restriction) override
         {
-            auto link = restrictions[_constants.IndexPart];
+            auto link = restriction[_constants.IndexPart];
             storage.EnsureLinkExists(link, "link");
             storage.Delete(link);
         }

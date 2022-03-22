@@ -5,11 +5,11 @@
     {
         public: LinksUniquenessValidator(ILinks<TLink> &storage) : DecoratorBase(storage) { }
 
-        public: TLink Update(CArray<TLinkAddress> auto&& restrictions, CArray<TLinkAddress> auto&& substitution) override
+        public: TLink Update(CArray<TLinkAddress> auto&& restriction, CArray<TLinkAddress> auto&& substitution) override
         {
             auto constants = _constants;
             storage.EnsureDoesNotExists(substitution[constants.SourcePart], substitution[constants.TargetPart]);
-            return storage.Update(restrictions, substitution);
+            return storage.Update(restriction, substitution);
         }
     };
 }

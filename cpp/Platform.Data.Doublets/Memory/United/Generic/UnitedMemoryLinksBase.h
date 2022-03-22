@@ -69,16 +69,16 @@
         }
 
     public:
-        TLinkAddress Count(CArray<TLinkAddress> auto&& restrictions) const
+        TLinkAddress Count(CArray<TLinkAddress> auto&& restriction) const
         {
-            if (std::ranges::size(restrictions) == 0)
+            if (std::ranges::size(restriction) == 0)
             {
                 return GetTotal();
             }
             auto constants = Constants;
             auto any = constants.Any;
-            auto index = restrictions[constants.IndexPart];
-            if (std::ranges::size(restrictions) == 1)
+            auto index = restriction[constants.IndexPart];
+            if (std::ranges::size(restriction) == 1)
             {
                 if (index == any)
                 {
@@ -86,9 +86,9 @@
                 }
                 return Exists(index) ? TLinkAddress {1} : TLinkAddress {};
             }
-            if (std::ranges::size(restrictions) == 2)
+            if (std::ranges::size(restriction) == 2)
             {
-                auto value = restrictions[1];
+                auto value = restriction[1];
                 if (index == any)
                 {
                     if (value == any)
@@ -115,10 +115,10 @@
                     return TLinkAddress {};
                 }
             }
-            if (std::ranges::size(restrictions) == 3)
+            if (std::ranges::size(restriction) == 3)
             {
-                auto source = restrictions[constants.SourcePart];
-                auto target = restrictions[constants.TargetPart];
+                auto source = restriction[constants.SourcePart];
+                auto target = restriction[constants.TargetPart];
                 if (index == any)
                 {
                     if (source == any && target == any)
@@ -177,11 +177,11 @@
             throw std::logic_error("Not supported exception.");
         }
 
-    public: TLinkAddress Each(CArray<TLinkAddress> auto&& restrictions, auto&& handler) const
+    public: TLinkAddress Each(CArray<TLinkAddress> auto&& restriction, auto&& handler) const
         {
             auto constants = Constants;
             auto $break = constants.Break;
-            if (std::ranges::size(restrictions) == 0)
+            if (std::ranges::size(restriction) == 0)
             {
                 for (auto link = TLinkAddress {1}; link <= GetHeaderReference().AllocatedLinks; ++link)
                 {
@@ -194,8 +194,8 @@
             }
             auto _continue = constants.Continue;
             auto any = constants.Any;
-            auto index = restrictions[constants.IndexPart];
-            if (std::ranges::size(restrictions) == 1)
+            auto index = restriction[constants.IndexPart];
+            if (std::ranges::size(restriction) == 1)
             {
                 if (index == any)
                 {
@@ -207,9 +207,9 @@
                 }
                 return handler(GetLinkStruct(index));
             }
-            if (std::ranges::size(restrictions) == 2)
+            if (std::ranges::size(restriction) == 2)
             {
-                auto value = restrictions[1];
+                auto value = restriction[1];
                 if (index == any)
                 {
                     if (value == any)
@@ -240,10 +240,10 @@
                     return _continue;
                 }
             }
-            if (std::ranges::size(restrictions) == 3)
+            if (std::ranges::size(restriction) == 3)
             {
-                auto source = restrictions[constants.SourcePart];
-                auto target = restrictions[constants.TargetPart];
+                auto source = restriction[constants.SourcePart];
+                auto target = restriction[constants.TargetPart];
                 if (index == any)
                 {
                     if (source == any && target == any)
@@ -308,13 +308,13 @@
         // / TODO: Возможно можно перемещать значения, если указан индекс, но значение существует в другом месте (но не в менеджере памяти, а в логике Links)
         // / </remarks>
         // NOTE: The following .NET attribute has no direct equivalent in C++:
-        // ORIGINAL LINE: [MethodImpl(MethodImplOptions.AggressiveInlining)] public TLinkAddress Update(IList<TLinkAddress> restrictions, IList<TLinkAddress> substitution)
+        // ORIGINAL LINE: [MethodImpl(MethodImplOptions.AggressiveInlining)] public TLinkAddress Update(IList<TLinkAddress> restriction, IList<TLinkAddress> substitution)
     public:
-        TLinkAddress Update(CArray<TLinkAddress> auto&& restrictions, CArray<TLinkAddress> auto&& substitution, auto&& handler)
+        TLinkAddress Update(CArray<TLinkAddress> auto&& restriction, CArray<TLinkAddress> auto&& substitution, auto&& handler)
         {
             auto constants = Constants;
             auto null = constants.Null;
-            auto linkIndex = restrictions[constants.IndexPart];
+            auto linkIndex = restriction[constants.IndexPart];
             // TODO: 'ref locals' are not converted by C# to C++ Converter:
             // ORIGINAL LINE: ref var link = ref GetLinkReference(linkIndex);
             auto& link = GetLinkReference(linkIndex);
@@ -352,7 +352,7 @@
 
         // TODO: Возможно нужно будет заполнение нулями, если внешнее API ими не заполняет пространство
     public:
-        TLinkAddress Create(auto&& restrictions, auto&& handler)
+        TLinkAddress Create(auto&& restriction, auto&& handler)
         {
             auto& header = GetHeaderReference();
             auto freeLink = header.FirstFreeLink;
@@ -383,10 +383,10 @@
         }
 
     public:
-        TLinkAddress Delete(CArray<TLinkAddress> auto&& restrictions, auto&& handler)
+        TLinkAddress Delete(CArray<TLinkAddress> auto&& restriction, auto&& handler)
         {
             auto& header = GetHeaderReference();
-            auto linkAddress = restrictions[Constants.IndexPart];
+            auto linkAddress = restriction[Constants.IndexPart];
             auto before = GetLinkStruct(linkAddress);
             if (linkAddress < header.AllocatedLinks)
             {

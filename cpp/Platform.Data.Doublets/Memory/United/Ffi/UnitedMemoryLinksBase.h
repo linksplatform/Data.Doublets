@@ -118,28 +118,28 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
         uint64_t UInt64Links_Count(void* this_, const uint64_t* query, uintptr_t len);
 
         uint8_t ByteLinks_Update(void* this_,
-                                 const uint8_t* restrictions,
+                                 const uint8_t* restriction,
                                  uintptr_t len_r,
                                  const uint8_t* substitution,
                                  uintptr_t len_s,
                                  CUDCallback<uint8_t> callback);
 
         uint16_t UInt16Links_Update(void* this_,
-                                    const uint16_t* restrictions,
+                                    const uint16_t* restriction,
                                     uintptr_t len_r,
                                     const uint16_t* substitution,
                                     uintptr_t len_s,
                                     CUDCallback<uint16_t> callback);
 
         uint32_t UInt32Links_Update(void* this_,
-                                    const uint32_t* restrictions,
+                                    const uint32_t* restriction,
                                     uintptr_t len_r,
                                     const uint32_t* substitution,
                                     uintptr_t len_s,
                                     CUDCallback<uint32_t> callback);
 
         uint64_t UInt64Links_Update(void* this_,
-                                    const uint64_t* restrictions,
+                                    const uint64_t* restriction,
                                     uintptr_t len_r,
                                     const uint64_t* substitution,
                                     uintptr_t len_s,

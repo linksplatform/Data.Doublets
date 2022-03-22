@@ -10,10 +10,10 @@
     public:
         USE_ALL_BASE_CONSTRUCTORS(LinksCascadeUsagesResolver, base);
 
-        public: LinkAddressType Delete(CArray<LinkAddressType> auto&& restrictions, auto&& handler)
+        public: LinkAddressType Delete(CArray<LinkAddressType> auto&& restriction, auto&& handler)
         {
             auto $continue {Constants.Continue};
-            auto linkIndex = restrictions[Constants.IndexPart];
+            auto linkIndex = restriction[Constants.IndexPart];
             WriteHandlerState<TDecorated> handlerState {Constants.Continue, Constants.Break, handler};
             handlerState.Apply(DeleteAllUsages(this->facade(), linkIndex, handlerState.Handler));
             return handlerState.Apply(this->decorated().Delete(LinkAddress{linkIndex}, handlerState.Handler));
