@@ -1,5 +1,5 @@
 # Doublets
-A header only library that represents database engine that uses doublets.
+A library that represents database engine that uses doublets.
 
 ## Overview
 Doublet is a link that has index, a beginning (source), an end (target).
