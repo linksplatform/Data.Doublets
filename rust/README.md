@@ -1,7 +1,15 @@
 # Doublets
+A header only library that represents database engine that uses doublets.
 
-## Example 
-```rust,no_run
+## Overview
+Doublet is a link that has index, a beginning (source), an end (target).
+Index, source and target are addresses of links and represented as unsigned integers.
+
+## Note
+Link can point at itself. We call such links "points".
+
+## Example:
+```rust
 // alpha does not has human prelude
 use doublets::{
     data::Flow::{Break, Continue}, // also can use std::ops::ControlFlow
@@ -38,3 +46,12 @@ fn main() -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 ```
+
+## FAQ
+> How can I save non-number data using doublets?  
+
+Any data can be represented as numbers.
+
+> Where can I store doublets data?
+
+You can use file mapped memory, heap memory by using according memory classes from mem namespace
