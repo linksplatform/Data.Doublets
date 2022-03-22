@@ -10,7 +10,7 @@
     public:
         USE_ALL_BASE_CONSTRUCTORS(LinksUniquenessResolver, base);
 
-    public: LinkAddressType Update(CArray<LinkAddressType> auto&& restriction, CArray<LinkAddressType> auto&& substitution, auto&& handler)
+    public: LinkAddressType Update(CArray<LinkAddressType> auto&& restriction, CArray<LinkAddressType> auto&& substitution, const WriteHandlerType& handler)
         {
             auto newLinkAddress = SearchOrDefault(this->decorated(), substitution[Constants.SourcePart], substitution[Constants.TargetPart]);
             if (newLinkAddress == LinkAddressType{})
@@ -20,7 +20,7 @@
             return this->ResolveAddressChangeConflict(restriction[Constants.IndexPart], newLinkAddress, handler);
         }
 
-        protected: LinkAddressType ResolveAddressChangeConflict(LinkAddressType oldLinkAddress, LinkAddressType newLinkAddress, auto&& handler)
+        protected: LinkAddressType ResolveAddressChangeConflict(LinkAddressType oldLinkAddress, LinkAddressType newLinkAddress, const WriteHandlerType& handler)
         {
             if (oldLinkAddress != newLinkAddress && Exists(this->decorated(), oldLinkAddress))
             {

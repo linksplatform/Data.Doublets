@@ -245,7 +245,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             }
         }
 
-        TLinkAddress Create(const LinkType& substitution, auto&& handler)
+        TLinkAddress Create(const LinkType& substitution, const WriteHandlerType& handler)
         {
             auto substitutionLength = std::ranges::size(substitution);
             auto substitutionPtr = std::ranges::data(substitution);
@@ -278,7 +278,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             }
         };
 
-        TLinkAddress Update(const  LinkType& restriction, const LinkType& substitution, auto&& handler)
+        TLinkAddress Update(const  LinkType& restriction, const LinkType& substitution, const WriteHandlerType& handler)
         {
             auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr{std::ranges::data(restriction)};
@@ -313,7 +313,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             }
         }
 
-        TLinkAddress Delete(const  LinkType& restriction, auto&& handler)
+        TLinkAddress Delete(const  LinkType& restriction, const WriteHandlerType& handler)
         {
             auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr = std::ranges::data(restriction);
@@ -346,7 +346,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             }
         }
 
-        TLinkAddress Each(const  LinkType& restriction, auto&& handler) const
+        TLinkAddress Each(const  LinkType& restriction, const ReadHandlerType& handler) const
         {
             using Signature = TLinkAddress(Link<TLinkAddress>);
             auto restrictionLength = std::ranges::size(restriction);

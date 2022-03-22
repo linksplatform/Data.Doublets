@@ -139,9 +139,9 @@
             return total - totalRightIgnore - totalLeftIgnore;
         }
 
-        public: TLink EachUsage(TLink base, auto&& handler) { return this->EachUsageCore(base, this->GetTreeRoot(), handler); }
+        public: TLink EachUsage(TLink base, const ReadHandlerType& handler) { return this->EachUsageCore(base, this->GetTreeRoot(), handler); }
 
-        private: TLink EachUsageCore(TLink base, TLink link, auto&& handler)
+        private: TLink EachUsageCore(TLink base, TLink link, const ReadHandlerType& handler)
         {
             auto $continue = Continue;
             if (link == 0)

@@ -10,7 +10,7 @@
     public:
         USE_ALL_BASE_CONSTRUCTORS(LinksCascadeUsagesResolver, base);
 
-        public: LinkAddressType Delete(CArray<LinkAddressType> auto&& restriction, auto&& handler)
+        public: LinkAddressType Delete(CArray<LinkAddressType> auto&& restriction, const WriteHandlerType& handler)
         {
             auto $continue {Constants.Continue};
             auto linkIndex = restriction[Constants.IndexPart];

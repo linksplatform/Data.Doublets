@@ -100,7 +100,7 @@ namespace Platform::Data::Doublets
     }
 
     template<typename TStorage>
-    static typename TStorage::LinkAddressType Delete(TStorage& storage, typename TStorage::LinkAddressType linkToDelete, auto&& handler)
+    static typename TStorage::LinkAddressType Delete(TStorage& storage, typename TStorage::LinkAddressType linkToDelete, const typename TStorage::WriteHandlerType& handler)
     {
         if (Exists(storage, linkToDelete))
         {
@@ -480,7 +480,7 @@ namespace Platform::Data::Doublets
         }
 
         template<typename TStorage>
-        static typename TStorage::LinkAddressType Update(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction, auto&& handler)
+        static typename TStorage::LinkAddressType Update(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction, const typename TStorage::WriteHandlerType& handler)
         {
             const auto length { std::ranges::size(restriction) };
             if (length == 2)
@@ -498,7 +498,7 @@ namespace Platform::Data::Doublets
         }
 
         template<typename TStorage>
-        static typename TStorage::LinkAddressType Update(TStorage& storage, typename TStorage::LinkAddressType linkAddress, typename TStorage::LinkAddressType newSource, typename TStorage::LinkAddressType newTarget, auto&& handler)
+        static typename TStorage::LinkAddressType Update(TStorage& storage, typename TStorage::LinkAddressType linkAddress, typename TStorage::LinkAddressType newSource, typename TStorage::LinkAddressType newTarget, const typename TStorage::WriteHandlerType& handler)
         {
             auto $continue {storage.Constants.Continue};
             return Update(storage, Link{linkAddress, newSource, newTarget}, handler);
@@ -528,7 +528,7 @@ namespace Platform::Data::Doublets
         }
 
         template<typename TStorage>
-        static typename TStorage::LinkAddressType Update(TStorage& storage, auto&& handler, std::convertible_to<typename TStorage::LinkAddressType> auto ...restriction)
+        static typename TStorage::LinkAddressType Update(TStorage& storage, const typename TStorage::WriteHandlerType& handler, std::convertible_to<typename TStorage::LinkAddressType> auto ...restriction)
         {
             typename TStorage::HandlerParameterType restrictionContainer {
                 static_cast<typename TStorage::HandlerParameterType>(restriction)... };
@@ -565,7 +565,7 @@ namespace Platform::Data::Doublets
         }
 
     template<typename TStorage>
-    static typename TStorage::LinkAddressType UpdateOrCreateOrGet(TStorage& storage, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType target, typename TStorage::LinkAddressType newSource, typename TStorage::LinkAddressType newTarget, auto&& handler)
+    static typename TStorage::LinkAddressType UpdateOrCreateOrGet(TStorage& storage, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType target, typename TStorage::LinkAddressType newSource, typename TStorage::LinkAddressType newTarget, const typename TStorage::WriteHandlerType& handler)
     {
         auto link = SearchOrDefault(storage, source, target);
         if (storage.constants.Null == link)
@@ -617,7 +617,7 @@ namespace Platform::Data::Doublets
     //
 
     template<typename TStorage>
-    static typename TStorage::LinkAddressType DeleteAllUsages(TStorage& storage, typename TStorage::LinkAddressType linkIndex, auto&& handler)
+    static typename TStorage::LinkAddressType DeleteAllUsages(TStorage& storage, typename TStorage::LinkAddressType linkIndex, const typename TStorage::WriteHandlerType& handler)
     {
         auto constants = storage.Constants;
         auto any = constants.Any;
@@ -696,7 +696,7 @@ namespace Platform::Data::Doublets
     }
 
     template<typename TStorage>
-    void ResetValues(TStorage& storage, typename TStorage::LinkAddressType link, auto&& handler)
+     ResetValues(TStorage& storage, typename TStorage::LinkAddressType link, const typename TStorage::WriteHandlerType& handler)
     {
         storage.Update(link, 0, 0, handler);
     }
@@ -709,7 +709,7 @@ namespace Platform::Data::Doublets
     }
 
     template<typename TStorage>
-    static typename TStorage::LinkAddressType EnforceResetValues(TStorage& storage, typename TStorage::LinkAddressType linkIndex, auto&& handler)
+    static typename TStorage::LinkAddressType EnforceResetValues(TStorage& storage, typename TStorage::LinkAddressType linkIndex, const typename TStorage::WriteHandlerType& handler)
     {
         if (!AreValuesReset(storage, linkIndex))
         {

@@ -10,7 +10,7 @@
     public:
         USE_ALL_BASE_CONSTRUCTORS(NonNullContentsLinkDeletionResolver, base);
 
-        public: LinkAddressType Delete(CArray<LinkAddressType> auto&& restriction, auto&& handler)
+        public: LinkAddressType Delete(CArray<LinkAddressType> auto&& restriction, const WriteHandlerType& handler)
         {
             auto $break = Constants.Break;
             auto linkIndex = restriction[Constants.IndexPart];
