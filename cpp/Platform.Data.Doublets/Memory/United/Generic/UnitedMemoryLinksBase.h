@@ -69,7 +69,7 @@
         }
 
     public:
-        TLinkAddress Count(CArray<TLinkAddress> auto&& restriction) const
+        TLinkAddress Count(const  LinkType& restriction) const
         {
             if (std::ranges::size(restriction) == 0)
             {
@@ -177,7 +177,7 @@
             throw std::logic_error("Not supported exception.");
         }
 
-    public: TLinkAddress Each(CArray<TLinkAddress> auto&& restriction, auto&& handler) const
+    public: TLinkAddress Each(const  LinkType& restriction, auto&& handler) const
         {
             auto constants = Constants;
             auto $break = constants.Break;
@@ -310,7 +310,7 @@
         // NOTE: The following .NET attribute has no direct equivalent in C++:
         // ORIGINAL LINE: [MethodImpl(MethodImplOptions.AggressiveInlining)] public TLinkAddress Update(IList<TLinkAddress> restriction, IList<TLinkAddress> substitution)
     public:
-        TLinkAddress Update(CArray<TLinkAddress> auto&& restriction, CArray<TLinkAddress> auto&& substitution, auto&& handler)
+        TLinkAddress Update(const  LinkType& restriction, CArray<TLinkAddress> auto&& substitution, auto&& handler)
         {
             auto constants = Constants;
             auto null = constants.Null;
@@ -383,7 +383,7 @@
         }
 
     public:
-        TLinkAddress Delete(CArray<TLinkAddress> auto&& restriction, auto&& handler)
+        TLinkAddress Delete(const  LinkType& restriction, auto&& handler)
         {
             auto& header = GetHeaderReference();
             auto linkAddress = restriction[Constants.IndexPart];

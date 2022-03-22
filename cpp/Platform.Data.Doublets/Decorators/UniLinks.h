@@ -17,7 +17,7 @@
             }
         }
 
-        public: TLink Trigger(CArray<TLinkAddress> auto&& restriction, Func<IList<TLink>, IList<TLink>, TLink> matchedHandler, CArray<TLinkAddress> auto&& substitution, Func<IList<TLink>, IList<TLink>, TLink> substitutedHandler)
+        public: TLink Trigger(const  LinkType& restriction, Func<IList<TLink>, IList<TLink>, TLink> matchedHandler, CArray<TLinkAddress> auto&& substitution, Func<IList<TLink>, IList<TLink>, TLink> substitutedHandler)
         {
             return _constants.Continue;
         }

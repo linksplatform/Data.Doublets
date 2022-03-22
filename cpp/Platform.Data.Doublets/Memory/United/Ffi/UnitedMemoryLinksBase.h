@@ -278,7 +278,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             }
         };
 
-        TLinkAddress Update(CArray<TLinkAddress> auto&& restriction, CArray<TLinkAddress> auto&& substitution, auto&& handler)
+        TLinkAddress Update(const  LinkType& restriction, CArray<TLinkAddress> auto&& substitution, auto&& handler)
         {
             auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr{std::ranges::data(restriction)};
@@ -313,7 +313,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             }
         }
 
-        TLinkAddress Delete(CArray<TLinkAddress> auto&& restriction, auto&& handler)
+        TLinkAddress Delete(const  LinkType& restriction, auto&& handler)
         {
             auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr = std::ranges::data(restriction);
@@ -346,7 +346,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             }
         }
 
-        TLinkAddress Each(CArray<TLinkAddress> auto&& restriction, auto&& handler) const
+        TLinkAddress Each(const  LinkType& restriction, auto&& handler) const
         {
             using Signature = TLinkAddress(Link<TLinkAddress>);
             auto restrictionLength = std::ranges::size(restriction);
@@ -377,7 +377,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             }
         }
 
-        TLinkAddress Count(CArray<TLinkAddress> auto&& restriction) const
+        TLinkAddress Count(const  LinkType& restriction) const
         {
             auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr = std::ranges::data(restriction);

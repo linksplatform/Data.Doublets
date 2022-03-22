@@ -5,13 +5,13 @@
     {
         public: LinksUsagesValidator(ILinks<TLink> &storage) : DecoratorBase(storage) { }
 
-        public: TLink Update(CArray<TLinkAddress> auto&& restriction, CArray<TLinkAddress> auto&& substitution) override
+        public: TLink Update(const  LinkType& restriction, CArray<TLinkAddress> auto&& substitution) override
         {
             storage.EnsureNoUsages(restriction[_constants.IndexPart]);
             return storage.Update(restriction, substitution);
         }
 
-        public: void Delete(CArray<TLinkAddress> auto&& restriction) override
+        public: void Delete(const  LinkType& restriction) override
         {
             auto link = restriction[_constants.IndexPart];
             storage.EnsureNoUsages(link);
