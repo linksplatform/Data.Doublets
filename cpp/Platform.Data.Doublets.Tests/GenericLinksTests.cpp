@@ -46,10 +46,8 @@
         using namespace Platform::Memory;
         using namespace Platform::Data::Doublets::Memory::United::Generic;
         using namespace Platform::Collections;
-        using TLinkAddress = std::uint64_t;
-                constexpr LinksConstants<TLinkAddress> constants {true};
-                LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<UnitedMemoryLinks<TLinkAddress, HeapResizableDirectMemory, constants>> decoratedStorage {HeapResizableDirectMemory{}};
-        TestMultipleRandomCreationsAndDeletions(decoratedStorage, TLinkAddress{16});
+        LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<UnitedMemoryLinks<LinksOptions<>, HeapResizableDirectMemory>> decoratedStorage {HeapResizableDirectMemory{}};
+//        TestMultipleRandomCreationsAndDeletions(decoratedStorage, 16);
 //        UsingMultipleRandomCreationsAndDeletionsTest<std::uint8_t>([] (auto&& storage){
 //            auto decoratedStorage = LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<decltype(storage)>(storage);
 //            TestMultipleRandomCreationsAndDeletions<std::uint8_t>(decoratedStorage, 16);
