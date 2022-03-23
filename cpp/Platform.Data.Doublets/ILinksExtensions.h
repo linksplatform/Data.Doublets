@@ -112,7 +112,7 @@ namespace Platform::Data::Doublets
     template<typename TStorage>
     static void DeleteAll(TStorage& storage)
     {
-        for (auto i { Count(storage) }; i > storage.constants.Null; --i)
+        for (auto i { Count(storage) }; i > storage.Constants.Null; --i)
         {
             Delete(storage, i);
             if (i - 1 != Count(storage))
@@ -565,7 +565,7 @@ namespace Platform::Data::Doublets
     static typename TStorage::LinkAddressType UpdateOrCreateOrGet(TStorage& storage, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType target, typename TStorage::LinkAddressType newSource, typename TStorage::LinkAddressType newTarget, auto&& handler)
     {
         auto link = SearchOrDefault(storage, source, target);
-        if (storage.constants.Null == link)
+        if (storage.Constants.Null == link)
         {
             return storage.CreateAndUpdate(newSource, newTarget, handler);
         }
