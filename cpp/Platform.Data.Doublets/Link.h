@@ -116,6 +116,8 @@
             return Length;
         }
 
+    public: bool empty() const noexcept { return 0 == size(); }
+
         // TODO: a little unsafe
         public: auto begin() const noexcept { return &Index; }
 
