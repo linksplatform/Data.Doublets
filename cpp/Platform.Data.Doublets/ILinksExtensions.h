@@ -775,7 +775,7 @@ namespace Platform::Data::Doublets
         static typename TStorage::LinkAddressType MergeAndDelete(TStorage& storage, typename TStorage::LinkAddressType oldLinkIndex, typename TStorage::LinkAddressType newLinkIndex, auto&& handler)
         {
             auto constants = storage.Constants;
-            WriteHandlerState<TStorage> handlerState = new(constants.Continue, constants.Break, handler);
+            WriteHandlerState<TStorage> handlerState {constants.Continue, constants.Break, handler};
             if ( newLinkIndex != oldLinkIndex)
             {
                 handlerState.Apply(storage.MergeUsages(oldLinkIndex, newLinkIndex, handlerState.Handler));
