@@ -455,11 +455,13 @@ namespace Platform::Data::Doublets
         static typename TStorage::LinkAddressType CreateAndUpdate(TStorage& storage, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType target, auto&& handler)
         {
             auto constants = storage.Constants;
-            typename TStorage::LinkAddressType createdLink = 0;
-            WriteHandlerState<TStorage> handlerState = new(constants.Continue, constants.Break, handler);
-            handlerState.Apply(storage.Create(Link{}, handlerState.Handler));
-            handlerState.Apply(storage.Update(createdLink, source, target, handlerState.Handler));
-            return handlerState.Result;
+            typename TStorage::LinkAddressType createdLinkAddress;
+            WriteHandlerState<TStorage> handlerState {constants.Continue, constants.Break, handler};
+            handlerState.Apply(storage.Create(Link<typename TStorage::LinkAddressType>{}, [&createdLinkAddress, &handlerState](const typename TStorage::HandlerParameterType& before, const typename TStorage::HandlerParameterType& after){
+                createdLinkAddress = after[0];
+                return handlerState.Handle(before, after);
+            }));
+            return handlerState.Apply(Update(storage, createdLinkAddress, source, target, handlerState.Handler));
         }
 
         template<typename TStorage>
