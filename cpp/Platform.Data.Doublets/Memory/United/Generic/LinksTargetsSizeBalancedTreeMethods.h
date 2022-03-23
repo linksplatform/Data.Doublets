@@ -5,8 +5,9 @@
         : public LinksSizeBalancedTreeMethodsBase<LinksTargetsSizeBalancedTreeMethods<TLinksOptions>, TLinksOptions>
     {
         using base = LinksSizeBalancedTreeMethodsBase<LinksTargetsSizeBalancedTreeMethods<TLinksOptions>, TLinksOptions>;
-        using LinkAddressType = base::LinkAddressType;
-        using ReadHandlerType = base::ReadHandlerType;
+        using typename base::LinkType;
+        using typename base::LinkAddressType;
+        using typename base::ReadHandlerType;
 
         public: LinksTargetsSizeBalancedTreeMethods(std::byte* storage, std::byte* header) : base(storage, header) { }
 
@@ -62,7 +63,7 @@
 
         LinkAddressType Search(LinkAddressType source, LinkAddressType target) { return base::Search(source, target); }
 
-        LinkAddressType EachUsage(LinkAddressType root, const std::function<LinkAddressType(const std::vector<LinkAddressType>&)>& handler) { return base::EachUsage(root, handler); }
+        LinkAddressType EachUsage(LinkAddressType root, const std::function<LinkAddressType(const LinkType&)>& handler) { return base::EachUsage(root, handler); }
 
         void Detach(LinkAddressType& root, LinkAddressType linkIndex) { base::methods::Detach(&root, linkIndex); }
 
