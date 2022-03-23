@@ -778,8 +778,8 @@ namespace Platform::Data::Doublets
             WriteHandlerState<TStorage> handlerState {constants.Continue, constants.Break, handler};
             if ( newLinkIndex != oldLinkIndex)
             {
-                handlerState.Apply(storage.MergeUsages(oldLinkIndex, newLinkIndex, handlerState.Handler));
-                handlerState.Apply(storage.Delete(oldLinkIndex, handlerState.Handler));
+                handlerState.Apply(MergeUsages(storage, oldLinkIndex, newLinkIndex, handlerState.Handler));
+                handlerState.Apply(Delete(storage, oldLinkIndex, handlerState.Handler));
             }
             return handlerState.Result;
         }
