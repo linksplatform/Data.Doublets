@@ -448,7 +448,7 @@ namespace Platform::Data::Doublets
             return createdLink;
         }
 
-        template<typename typename TStorage>
+        template<typename TStorage>
         static typename TStorage::LinkAddressType CreateAndUpdate(TStorage& storage, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType target, auto&& handler)
         {
             auto constants = storage.Constants;
