@@ -243,7 +243,7 @@ namespace Platform::Data::Doublets
         static auto All(const TStorage& storage, std::convertible_to<typename TStorage::LinkAddressType> auto ... restrictionPack)
         {
             using namespace Platform::Collections;
-            typename TStorage::HandlerParameterType restriction{ static_cast<typename TStorage::LinkAddressType>(restrictionPack)... };
+            typename TStorage::LinkType restriction{ static_cast<typename TStorage::LinkAddressType>(restrictionPack)... };
             auto $continue {storage.Constants.Continue};
             auto allLinks = std::vector<typename TStorage::HanlderParameterType>();
             storage.Each(restriction, [&allLinks, $continue](const typename TStorage::HandlerParameterType& link){
@@ -530,7 +530,7 @@ namespace Platform::Data::Doublets
         template<typename TStorage>
         static typename TStorage::LinkAddressType Update(TStorage& storage, const typename TStorage::WriteHandlerType& handler, std::convertible_to<typename TStorage::LinkAddressType> auto ... restrictionPack)
         {
-            typename TStorage::HandlerParameterType restriction{ static_cast<typename TStorage::HandlerParameterType>(restrictionPack)... };
+            typename TStorage::LinkType restriction{ static_cast<typename TStorage::HandlerParameterType>(restrictionPack)... };
             return Update(storage, restriction, handler);
         }
         //
