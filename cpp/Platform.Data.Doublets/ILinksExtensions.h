@@ -826,17 +826,6 @@ namespace Platform::Data::Doublets
     }
     //
     //
-        template<typename TStorage>
-        static typename TStorage::LinkAddressType DeleteIfExists(TStorage& storage, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType target)
-        {
-            auto link = SearchOrDefault(storage, source, target);
-            if (link != 0)
-            {
-                Delete(storage, link);
-                return link;
-            }
-            return 0;
-        }
     //
     //
     //    template<typename TStorage>
