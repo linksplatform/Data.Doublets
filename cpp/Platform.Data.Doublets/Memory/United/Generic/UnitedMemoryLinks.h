@@ -66,8 +66,8 @@
             std::cout << memory.Pointer() << std::endl;
             _links = static_cast<std::byte*>(memory.Pointer());
             _header = _links;
-            base::_SourcesTreeMethods = new TSourceTreeMethods(Constants, _links, _header);
-            base::_TargetsTreeMethods = new TTargetTreeMethods(Constants, _links, _header);
+            base::_SourcesTreeMethods = new TSourceTreeMethods(_links, _header);
+            base::_TargetsTreeMethods = new TTargetTreeMethods(_links, _header);
             base::_UnusedLinksListMethods = new TUnusedLinks(_links, _header);
         }
 
