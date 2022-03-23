@@ -129,7 +129,7 @@ namespace Platform::Data::Doublets
         auto $break {constants.Break};
         typename TStorage::LinkAddressType firstLink = 0;
         Expects(constants.Null != firstLink);
-        storage.Each(Link{storage.Constants.Any, storage.Constants.Any, storage.Constants.Any}, [&firstLink, $break](const typename TStorage::HandlerParameterType& link){
+        storage.Each(Link{storage.Constants.Any, storage.Constants.Any, storage.Constants.Any}, [&firstLink, $break](const typename TStorage::LinkType& link){
             firstLink = link[0];
             return $break;
                                                                                                 });
@@ -143,7 +143,7 @@ namespace Platform::Data::Doublets
         std::vector<typename TStorage::LinkAddressType> result {};
         auto count = 0;
         auto constants = storage.Constants;
-        auto linkHandler { [&result, &count, &constants] (const typename TStorage::HandlerParameterType& link) {
+        auto linkHandler { [&result, &count, &constants] (const typename TStorage::LinkType& link) {
             if (count == 0)
             {
                 result = link;
@@ -246,7 +246,7 @@ namespace Platform::Data::Doublets
             typename TStorage::HandlerParameterType restriction	{ static_cast<typename TStorage::LinkAddressType>(restrictionPack)... };
             auto $continue {storage.Constants.Continue};
             auto allLinks = std::vector<typename TStorage::HanlderParameterType>();
-            storage.Each(restriction, [&allLinks, $continue](const typename TStorage::HandlerParameterType& link){
+            storage.Each(restriction, [&allLinks, $continue](const typename TStorage::LinkType& link){
                 allLinks.push_back(link);
                 return $continue;
             });
@@ -413,7 +413,7 @@ namespace Platform::Data::Doublets
             auto constants = storage.Constants;
             auto _break = constants.Break;
             typename TStorage::LinkAddressType searchedLinkAddress {};
-            storage.Each(Link{storage.Constants.Any, source, target}, [&searchedLinkAddress, _break] (const typename TStorage::HandlerParameterType& link) {
+            storage.Each(Link{storage.Constants.Any, source, target}, [&searchedLinkAddress, _break] (const typename TStorage::LinkType& link) {
                 searchedLinkAddress = link[0];
                 return _break;
             });
@@ -432,7 +432,7 @@ namespace Platform::Data::Doublets
             auto constants = storage.Constants;
             WriteHandlerState<TStorage> handlerState {constants.Continue, constants.Break, handler};
             typename TStorage::LinkAddressType linkAddress;
-            typename TStorage::LinkAddressType HandlerWrapper = [&linkAddress, &handlerState](const typename TStorage::HandlerParameterType& before, const typename TStorage::HandlerParameterType& after){
+            typename TStorage::LinkAddressType HandlerWrapper = [&linkAddress, &handlerState](const typename TStorage::LinkType& before, const typename TStorage::LinkType& after){
                 linkAddress = after[0];
                 return handlerState.Handle(before, after);
             };
@@ -445,7 +445,7 @@ namespace Platform::Data::Doublets
         {
             auto $continue {storage.Constants.Continue};
             typename TStorage::LinkAddressType linkAddress;
-            CreateAndUpdate(storage, source, target, [&linkAddress, $continue](const typename TStorage::HandlerParameterType& before, const typename TStorage::HandlerParameterType& after){
+            CreateAndUpdate(storage, source, target, [&linkAddress, $continue](const typename TStorage::LinkType& before, const typename TStorage::LinkType& after){
                 linkAddress = after[0];
                 return $continue;
             });
@@ -457,7 +457,7 @@ namespace Platform::Data::Doublets
             auto constants = storage.Constants;
             typename TStorage::LinkAddressType createdLinkAddress;
             WriteHandlerState<TStorage> handlerState {constants.Continue, constants.Break, handler};
-            handlerState.Apply(storage.Create(Link<typename TStorage::LinkAddressType>{}, [&createdLinkAddress, &handlerState](const typename TStorage::HandlerParameterType& before, const typename TStorage::HandlerParameterType& after){
+            handlerState.Apply(storage.Create(Link<typename TStorage::LinkAddressType>{}, [&createdLinkAddress, &handlerState](const typename TStorage::LinkType& before, const typename TStorage::LinkType& after){
                 createdLinkAddress = after[0];
                 return handlerState.Handle(before, after);
             }));
@@ -469,7 +469,7 @@ namespace Platform::Data::Doublets
         {
             auto $continue {storage.Constants.Continue};
             typename TStorage::LinkAddressType updatedLinkAddress;
-            storage.Update(restriction, substitution, [&updatedLinkAddress, $continue] (const typename TStorage::HandlerParameterType& before, const typename TStorage::HandlerParameterType& after) {
+            storage.Update(restriction, substitution, [&updatedLinkAddress, $continue] (const typename TStorage::LinkType& before, const typename TStorage::LinkType& after) {
                 updatedLinkAddress = after[0];
                 return $continue;
             });
@@ -506,7 +506,7 @@ namespace Platform::Data::Doublets
         {
             auto $continue {storage.Constants.Continue};
             typename TStorage::LinkAddressType updatedLinkAddress;
-            Update(storage, linkAddress, newSource, newTarget, [&updatedLinkAddress, $continue] (const typename TStorage::HandlerParameterType& before, const typename TStorage::HandlerParameterType& after) {
+            Update(storage, linkAddress, newSource, newTarget, [&updatedLinkAddress, $continue] (const typename TStorage::LinkType& before, const typename TStorage::LinkType& after) {
                 updatedLinkAddress = after[0];
                 return $continue;
             });
@@ -518,7 +518,7 @@ namespace Platform::Data::Doublets
         {
             auto $continue {storage.Constants.Continue};
             typename TStorage::LinkAddressType updatedLinkAddress;
-            return Update(storage, restriction, [&updatedLinkAddress, $continue](const typename TStorage::HandlerParameterType& before, const typename TStorage::HandlerParameterType& after){
+            return Update(storage, restriction, [&updatedLinkAddress, $continue](const typename TStorage::LinkType& before, const typename TStorage::LinkType& after){
                 updatedLinkAddress = after;
                 return $continue;
             });
@@ -581,7 +581,7 @@ namespace Platform::Data::Doublets
     {
         auto $continue = storage.Constants.Continue;
         typename TStorage::LinkAddressType resultLink;
-        UpdateOrCreateOrGet(storage, source, target, newSource, newTarget, [&resultLink, $continue](const typename TStorage::HandlerParameterType& before, const typename TStorage::HandlerParameterType& after) {
+        UpdateOrCreateOrGet(storage, source, target, newSource, newTarget, [&resultLink, $continue](const typename TStorage::LinkType& before, const typename TStorage::LinkType& after) {
             resultLink = after[0];
             return $continue;
         });
@@ -620,7 +620,7 @@ namespace Platform::Data::Doublets
         auto usagesAsSourceQuery = Link(any, linkIndex, any);
         auto usagesAsTargetQuery = Link(any, any, linkIndex);
         auto usages = std::vector<typename TStorage::HandlerParameterType>();
-        storage.Each(usagesAsSourceQuery, [&usages, $continue](const typename TStorage::HandlerParameterType& link) {
+        storage.Each(usagesAsSourceQuery, [&usages, $continue](const typename TStorage::LinkType& link) {
             usages.push_back(link);
             return $continue;
         });
