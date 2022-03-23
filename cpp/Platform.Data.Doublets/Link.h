@@ -1,18 +1,18 @@
 ﻿namespace Platform::Data::Doublets
 {
-    template<typename TLink>
+    template<typename TLinkAddress>
     struct Link
     {
-        using value_type = TLink;
+        using value_type = TLinkAddress;
         public: static constexpr Link Null{};
 
-        private: static constexpr LinksConstants<TLink> _constants{};
+        private: static constexpr LinksConstants<TLinkAddress> _constants{};
 
         private: static constexpr std::size_t Length = 3;
 
-        public: TLink Index = _constants.Null;
-        public: TLink Source = _constants.Null;
-        public: TLink Target = _constants.Null;
+        public: TLinkAddress Index = _constants.Null;
+        public: TLinkAddress Source = _constants.Null;
+        public: TLinkAddress Target = _constants.Null;
 
         public: Link() noexcept = default;
         public: Link(const Link&) noexcept = default;
@@ -27,12 +27,12 @@
 
         public: bool operator==(const Link&) const noexcept = default;
 
-        public: Link(TLink index, TLink source, TLink target) : Index(index), Source(source), Target(target) {}
+        public: Link(TLinkAddress index, TLinkAddress source, TLinkAddress target) : Index(index), Source(source), Target(target) {}
 
-        public: Link(std::convertible_to<TLink> auto ...valuesPack)
+        public: Link(std::convertible_to<TLinkAddress> auto ...valuesPack)
             {
                 constexpr auto length = sizeof...(valuesPack);
-                std::array<TLink, length> values {static_cast<TLink>(valuesPack)... };
+                std::array<TLinkAddress, length> values {static_cast<TLinkAddress>(valuesPack)... };
                 if constexpr(0 == length)
                 {
                     Index = _constants.Null;
@@ -123,11 +123,11 @@
 
         public: explicit operator std::string() const { return Index == _constants.Null ? ToString(Source, Target) : ToString(Index, Source, Target); }
 
-        public: friend auto& operator<<(std::ostream& stream, const Link<TLink>& self) { return stream << static_cast<std::string>(self); }
+        public: friend auto& operator<<(std::ostream& stream, const Link<TLinkAddress>& self) { return stream << static_cast<std::string>(self); }
 
-        public: static std::string ToString(TLink index, TLink source, TLink target) { return std::string("(").append(Platform::Converters::To<std::string>(index)).append(": ").append(Platform::Converters::To<std::string>(source)).append("->").append(Platform::Converters::To<std::string>(target)).append(1, ')'); }
+        public: static std::string ToString(TLinkAddress index, TLinkAddress source, TLinkAddress target) { return std::string("(").append(Platform::Converters::To<std::string>(index)).append(": ").append(Platform::Converters::To<std::string>(source)).append("->").append(Platform::Converters::To<std::string>(target)).append(1, ')'); }
 
-        public: static std::string ToString(TLink source, TLink target) { return std::string("(").append(Platform::Converters::To<std::string>(source)).append("->").append(Platform::Converters::To<std::string>(target)).append(1, ')'); }
+        public: static std::string ToString(TLinkAddress source, TLinkAddress target) { return std::string("(").append(Platform::Converters::To<std::string>(source)).append("->").append(Platform::Converters::To<std::string>(target)).append(1, ')'); }
     };
 
     template<typename... Args>
@@ -137,10 +137,10 @@
     Link(Range) -> Link<std::ranges::range_value_t<Range>>;
 }
 
-template<typename TLink>
-struct std::hash<Platform::Data::Doublets::Link<TLink>>
+template<typename TLinkAddress>
+struct std::hash<Platform::Data::Doublets::Link<TLinkAddress>>
 {
-    using Self = Platform::Data::Doublets::Link<TLink>;
+    using Self = Platform::Data::Doublets::Link<TLinkAddress>;
     std::size_t operator()(const Self& self) const noexcept
     {
         return Platform::Hashing::Hash(self.Index, self.Source, self.Target);
