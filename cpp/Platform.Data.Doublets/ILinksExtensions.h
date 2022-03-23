@@ -443,9 +443,12 @@ namespace Platform::Data::Doublets
         template<typename TStorage>
         typename TStorage::LinkAddressType CreateAndUpdate(TStorage& storage, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType target)
         {
-            auto createdLink {Create(storage)};
-            createdLink = Update(storage, createdLink, source, target);
-            return createdLink;
+            auto $continue {storage.Constants.Continue};
+            typename TStorage::LinkAddressType linkAddress;
+            CreateAndUpdate(storage, source, target, [&linkAddress, $continue](const typename TStorage::HandlerParameterType& before, const typename TStorage::HandlerParameterType& after){
+                linkAddress = after[0];
+                return $continue;
+            });
         }
 
         template<typename TStorage>
