@@ -2,51 +2,54 @@
 {
     using namespace Platform::Collections::Methods;
 
-    template<typename Self, typename TLink>
-    class LinksSizeBalancedTreeMethodsBase
+    template<typename Self, typename TLinksOptions>
+    struct LinksSizeBalancedTreeMethodsBase
         :
-          //public Trees::SizeBalancedTreeMethods<Self, TLink>,
-          public Trees::RecursionlessSizeBalancedTreeMethods<Self, TLink>,
-          public ILinksTreeMethods<TLink>,
+          //public Trees::SizeBalancedTreeMethods<Self, LinkAddressType>,
+          public Trees::RecursionlessSizeBalancedTreeMethods<Self, typename TLinksOptions::LinkAddressType>,
+          public ILinksTreeMethods<typename TLinksOptions::LinkAddressType>,
           public Interfaces::Polymorph<Self>
     {
+        using OptionsType = TLinksOptions;
+        using LinkAddressType = typename OptionsType::LinkAddressType;
+        using ReadHandlerType = typename OptionsType::ReadHandlerType;
+        static constexpr LinksConstants<LinkAddressType> Constants = OptionsType::Constants;
 
-        public: using methods = Trees::RecursionlessSizeBalancedTreeMethods<Self, TLink>;
 
-        public: TLink Break = 0;
-        public: TLink Continue = 0;
+        public: using methods = Trees::RecursionlessSizeBalancedTreeMethods<Self, LinkAddressType>;
+
         public: std::byte* const Links;
         public: std::byte* const Header;
 
-        public: LinksSizeBalancedTreeMethodsBase(const LinksConstants<TLink>& constants, std::byte* storage, std::byte* header)
-            : Links(storage), Header(header), Break(constants.Break), Continue(constants.Continue) {}
+        public: LinksSizeBalancedTreeMethodsBase(std::byte* storage, std::byte* header)
+            : Links(storage), Header(header) {}
 
-        public: TLink GetTreeRoot() { return this->object().GetTreeRoot(); }
+        public: LinkAddressType GetTreeRoot() { return this->object().GetTreeRoot(); }
 
-        public: TLink GetBasePartValue(TLink link) { return this->object().GetBasePartValue(link); }
+        public: LinkAddressType GetBasePartValue(LinkAddressType link) { return this->object().GetBasePartValue(link); }
 
-        public: bool FirstIsToTheRightOfSecond(TLink source, TLink target, TLink rootSource, TLink rootTarget) { return this->object().FirstIsToTheRightOfSecond(source, target, rootSource, rootTarget); }
+        public: bool FirstIsToTheRightOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource, LinkAddressType rootTarget) { return this->object().FirstIsToTheRightOfSecond(source, target, rootSource, rootTarget); }
 
-        public: bool FirstIsToTheLeftOfSecond(TLink source, TLink target, TLink rootSource, TLink rootTarget) { return this->object().FirstIsToTheLeftOfSecond(source, target, rootSource, rootTarget); }
+        public: bool FirstIsToTheLeftOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource, LinkAddressType rootTarget) { return this->object().FirstIsToTheLeftOfSecond(source, target, rootSource, rootTarget); }
 
-        public: auto& GetHeaderReference() { return *reinterpret_cast<LinksHeader<TLink>*>(Header); }
+        public: auto& GetHeaderReference() { return *reinterpret_cast<LinksHeader<LinkAddressType>*>(Header); }
 
-        public: auto& GetLinkReference(TLink link) { return *(reinterpret_cast<RawLink<TLink>*>(Links) + link); }
+        public: auto& GetLinkReference(LinkAddressType link) { return *(reinterpret_cast<RawLink<LinkAddressType>*>(Links) + link); }
 
-        public: auto GetLinkValues(TLink linkIndex)
+        public: auto GetLinkValues(LinkAddressType linkIndex)
         {
             auto& link = GetLinkReference(linkIndex);
             return Link{linkIndex, link.Source, link.Target};
         }
 
-        public: bool FirstIsToTheLeftOfSecond(TLink first, TLink second)
+        public: bool FirstIsToTheLeftOfSecond(LinkAddressType first, LinkAddressType second)
         {
             auto& firstLink = this->GetLinkReference(first);
             auto& secondLink = this->GetLinkReference(second);
             return this->FirstIsToTheLeftOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
         }
 
-        public: bool FirstIsToTheRightOfSecond(TLink first, TLink second)
+        public: bool FirstIsToTheRightOfSecond(LinkAddressType first, LinkAddressType second)
         {
             auto& firstLink = this->GetLinkReference(first);
             auto& secondLink = this->GetLinkReference(second);
@@ -79,7 +82,7 @@
             return 0;
         }
 
-        public: TLink Search(TLink source, TLink target)
+        public: LinkAddressType Search(LinkAddressType source, LinkAddressType target)
         {
             auto root = this->GetTreeRoot();
             while (root != 0)
@@ -103,7 +106,7 @@
             return 0;
         }
 
-        public: TLink CountUsages(TLink link)
+        public: LinkAddressType CountUsages(LinkAddressType link)
         {
             auto root = this->GetTreeRoot();
             auto total = this->GetSize(root);
@@ -139,17 +142,17 @@
             return total - totalRightIgnore - totalLeftIgnore;
         }
 
-        public: TLink EachUsage(TLink base, const ReadHandlerType& handler) { return this->EachUsageCore(base, this->GetTreeRoot(), handler); }
+        public: LinkAddressType EachUsage(LinkAddressType base, const ReadHandlerType& handler) { return this->EachUsageCore(base, this->GetTreeRoot(), handler); }
 
-        private: TLink EachUsageCore(TLink base, TLink link, const ReadHandlerType& handler)
+        private: LinkAddressType EachUsageCore(LinkAddressType base, LinkAddressType link, const ReadHandlerType& handler)
         {
-            auto $continue = Continue;
+            auto $continue = Constants.Continue;
             if (link == 0)
             {
                 return $continue;
             }
             auto linkBasePart = this->GetBasePartValue(link);
-            auto $break = Break;
+            auto $break = Constants.Break;
             if (linkBasePart > (base))
             {
                 if ((this->EachUsageCore(base, this->GetLeftOrDefault(link), handler) == $break))

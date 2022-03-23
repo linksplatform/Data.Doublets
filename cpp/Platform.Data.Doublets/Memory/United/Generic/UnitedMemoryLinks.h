@@ -3,17 +3,21 @@
     using namespace Platform::Memory;
 
     template<
-        typename TLinkAddress,
+        typename TLinksOptions = LinksOptions<>,
         typename TMemory = FileMappedResizableDirectMemory,
-        LinksConstants<TLinkAddress> VConstants = LinksConstants<TLinkAddress>{true},
-        CArray<TLinkAddress> THandlerParameter = Link<TLinkAddress>,
-        typename TSourceTreeMethods = LinksSourcesSizeBalancedTreeMethods<TLinkAddress>,
-        typename TTargetTreeMethods = LinksTargetsSizeBalancedTreeMethods<TLinkAddress>,
-        typename TUnusedLinks = UnusedLinksListMethods<TLinkAddress>,
+        typename TSourceTreeMethods = LinksSourcesSizeBalancedTreeMethods<TLinksOptions>,
+        typename TTargetTreeMethods = LinksTargetsSizeBalancedTreeMethods<TLinksOptions>,
+        typename TUnusedLinks = UnusedLinksListMethods<typename TLinksOptions::LinkAddressType>,
         typename ...TBase>
-    struct UnitedMemoryLinks : public UnitedMemoryLinksBase<UnitedMemoryLinks<TLinkAddress, TMemory, VConstants, THandlerParameter, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks, TBase...>, TLinkAddress, TMemory, VConstants, THandlerParameter,TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks, TBase...>, public std::enable_shared_from_this<UnitedMemoryLinks<TLinkAddress>>
+    struct UnitedMemoryLinks : public UnitedMemoryLinksBase<UnitedMemoryLinks<TLinksOptions, TMemory, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks, TBase...>, TLinksOptions, TMemory, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks, TBase...>, public std::enable_shared_from_this<UnitedMemoryLinks<TLinksOptions>>
     {
-        using base = UnitedMemoryLinksBase<UnitedMemoryLinks<TLinkAddress, TMemory, VConstants, THandlerParameter, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks, TBase...>, TLinkAddress, TMemory, VConstants, THandlerParameter, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks, TBase...>;
+        using base = UnitedMemoryLinksBase<UnitedMemoryLinks<TLinksOptions, TMemory, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks, TBase...>, TLinksOptions, TMemory, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks, TBase...>;
+
+        using LinkType = base::LinkType;
+        using LinkAddressType = base::LinkAddressType;
+        using WriteHandlerType = base::WriteHandlerType;
+        using ReadHandlerType = base::ReadHandlerType;
+//        using base::Constants;
 
     public:
         using base::DefaultLinksSizeStep;
@@ -25,10 +29,10 @@
         using base::Constants;
 
     private:
-        std::function<void(std::unique_ptr<ILinksTreeMethods<TLinkAddress>>)> _createSourceTreeMethods;
+        std::function<void(std::unique_ptr<ILinksTreeMethods<LinkAddressType>>)> _createSourceTreeMethods;
 
     private:
-        std::function<void(std::unique_ptr<ILinksTreeMethods<TLinkAddress>>)> _createTargetTreeMethods;
+        std::function<void(std::unique_ptr<ILinksTreeMethods<LinkAddressType>>)> _createTargetTreeMethods;
 
     private:
         std::byte* _header;
@@ -45,13 +49,13 @@
         {
             //if (indexTreeType == IndexTreeType.SizedAndThreadedAVLBalancedTree)
             //{
-            //    _createSourceTreeMethods = () => new LinksSourcesAvlBalancedTreeMethods<TLinkAddress>(Constants, _links, _header);
-            //    _createTargetTreeMethods = () => new LinksTargetsAvlBalancedTreeMethods<TLinkAddress>(Constants, _links, _header);
+            //    _createSourceTreeMethods = () => new LinksSourcesAvlBalancedTreeMethods<LinkAddressType>(Constants, _links, _header);
+            //    _createTargetTreeMethods = () => new LinksTargetsAvlBalancedTreeMethods<LinkAddressType>(Constants, _links, _header);
             //}
             //else
             //{
-            //    _createSourceTreeMethods = () => new LinksSourcesSizeBalancedTreeMethods<TLinkAddress>(Constants, _links, _header);
-            //    _createTargetTreeMethods = () => new LinksTargetsSizeBalancedTreeMethods<TLinkAddress>(Constants, _links, _header);
+            //    _createSourceTreeMethods = () => new LinksSourcesSizeBalancedTreeMethods<LinkAddressType>(Constants, _links, _header);
+            //    _createTargetTreeMethods = () => new LinksTargetsSizeBalancedTreeMethods<LinkAddressType>(Constants, _links, _header);
             //}
             base::Init(this->_memory, memoryReservationStep);
         }
@@ -70,13 +74,13 @@
     public:
         auto&& GetHeaderReference() const
         {
-            return *reinterpret_cast<LinksHeader<TLinkAddress>*>(_header);
+            return *reinterpret_cast<LinksHeader<LinkAddressType>*>(_header);
         }
 
     public:
-        auto&& GetLinkReference(TLinkAddress linkIndex) const
+        auto&& GetLinkReference(LinkAddressType linkIndex) const
         {
-            return *(reinterpret_cast<RawLink<TLinkAddress>*>(_links) + linkIndex);
+            return *(reinterpret_cast<RawLink<LinkAddressType>*>(_links) + linkIndex);
         }
     };
 }// namespace Platform::Data::Doublets::Memory::United::Generic

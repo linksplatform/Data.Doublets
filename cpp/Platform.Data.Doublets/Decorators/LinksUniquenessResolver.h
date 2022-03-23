@@ -5,7 +5,10 @@
     struct LinksUniquenessResolver : DecoratorBase<TFacade, TDecorated>
     {
         using base = DecoratorBase<TFacade, TDecorated>;
-    public: using typename base::LinkAddressType;
+        using LinkType = base::LinkType;
+        using LinkAddressType = base::LinkAddressType;
+        using WriteHandlerType = base::WriteHandlerType;
+        using ReadHandlerType = base::ReadHandlerType;
     public: using base::Constants;
     public:
         USE_ALL_BASE_CONSTRUCTORS(LinksUniquenessResolver, base);

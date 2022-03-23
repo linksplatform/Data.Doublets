@@ -3,6 +3,7 @@
     template<typename TLink>
     struct Link
     {
+        using value_type = TLink;
         public: static constexpr Link Null{};
 
         private: static constexpr LinksConstants<TLink> _constants{};
