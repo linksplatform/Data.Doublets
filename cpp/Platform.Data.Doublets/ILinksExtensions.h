@@ -727,7 +727,7 @@ namespace Platform::Data::Doublets
             }
             auto constants = storage.Constants;
             auto usagesAsSource = All(storage, Link(constants.Any, oldLinkIndex, constants.Any));
-            WriteHandlerState<TStorage> handlerState = new(constants.Continue, constants.Break, handler);
+            WriteHandlerState<TStorage> handlerState {constants.Continue, constants.Break, handler};
             for (auto i { 0 }; i < usagesAsSource.Count(); ++i)
             {
                 auto usageAsSource = usagesAsSource[i];
@@ -735,8 +735,8 @@ namespace Platform::Data::Doublets
                 {
                     continue;
                 }
-                auto restriction = LinkAddress{GetIndex(storage, usageAsSource});
-                auto substitution = Link(newLinkIndex, GetTarget(storage, usageAsSource));
+                LinkAddress restriction = {GetIndex(storage, usageAsSource)};
+                Link substitution = (newLinkIndex, GetTarget(storage, usageAsSource));
                 handlerState.Apply(storage.Update(restriction, substitution, handlerState.Handler));
             }
             auto usagesAsTarget = All(storage, Link(constants.Any, constants.Any, oldLinkIndex));
