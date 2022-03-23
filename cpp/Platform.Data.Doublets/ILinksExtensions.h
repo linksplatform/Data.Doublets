@@ -239,18 +239,23 @@ namespace Platform::Data::Doublets
     template<typename TStorage>
     static typename TStorage::LinkAddressType GetTarget(const TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& link) { return link[storage.Constants.TargetPart]; }
 
+    template<typename TStorage>
+    static auto All(const TStorage& storage, const typename TStorage::LinkType& restriction)
+    {
+        using namespace Platform::Collections;
+        auto $continue {storage.Constants.Continue};
+        auto allLinks = std::vector<typename TStorage::HanlderParameterType>();
+        storage.Each(restriction, [&allLinks, $continue](const typename TStorage::LinkType& link){
+            allLinks.push_back(link);
+            return $continue;
+        });
+        return allLinks;
+    }
+
         template<typename TStorage>
         static auto All(const TStorage& storage, std::convertible_to<typename TStorage::LinkAddressType> auto ... restrictionPack)
         {
-            using namespace Platform::Collections;
-            typename TStorage::HandlerParameterType restriction	{ static_cast<typename TStorage::LinkAddressType>(restrictionPack)... };
-            auto $continue {storage.Constants.Continue};
-            auto allLinks = std::vector<typename TStorage::HanlderParameterType>();
-            storage.Each(restriction, [&allLinks, $continue](const typename TStorage::LinkType& link){
-                allLinks.push_back(link);
-                return $continue;
-            });
-            return allLinks;
+            return All(storage, static_cast<typename TStorage::LinkAddressType>(restrictionPack)...);
         }
     //
     //    static Interfaces::CArray<typename TStorage::LinkAddressType>auto AllIndices<typename TStorage::LinkAddressType>(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction)
