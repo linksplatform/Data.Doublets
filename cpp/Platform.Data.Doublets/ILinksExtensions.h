@@ -624,7 +624,7 @@ namespace Platform::Data::Doublets
         auto $break = storage.Constants.Break;
         auto usagesAsSourceQuery = Link(any, linkIndex, any);
         auto usagesAsTargetQuery = Link(any, any, linkIndex);
-        auto usages = std::vector<typename TStorage::HandlerParameterType>();
+        auto usages = std::vector<typename TStorage::LinkType>();
         storage.Each(usagesAsSourceQuery, [&usages, $continue](const typename TStorage::LinkType& link) {
             usages.push_back(link);
             return $continue;
