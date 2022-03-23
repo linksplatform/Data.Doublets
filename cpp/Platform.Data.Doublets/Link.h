@@ -29,6 +29,41 @@
 
         public: Link(TLink index, TLink source, TLink target) : Index(index), Source(source), Target(target) {}
 
+        public: Link(std::convertible_to<TLink> auto ...valuesPack)
+            {
+                constexpr auto length = sizeof...(valuesPack);
+                std::array<TLink, length> values {static_cast<TLink>(valuesPack)... };
+                if constexpr(0 == length)
+                {
+                    Index = _constants.Null;
+                    Source = _constants.Null;
+                    Target = _constants.Null;
+                }
+                else if constexpr(1 == length)
+                {
+                    Index = values[0];
+                    Source = _constants.Null;
+                    Target = _constants.Null;
+                }
+                else if constexpr(2 == length)
+                {
+                    Index = values[0];
+                    Source = values[1];
+                    Target = _constants.Null;
+                }
+                else if constexpr(3 == length)
+                {
+                    Index = values[0];
+                    Source = values[1];
+                    Target = values[2];
+                }
+                else
+                {
+                    throw std::invalid_argument("Link: too many values");
+                }
+            }
+
+
         public: Link(std::ranges::range auto&& range)
         {
             for (std::size_t i = 0; auto&& item : range | std::views::take(3))
