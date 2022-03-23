@@ -752,9 +752,8 @@ namespace Platform::Data::Doublets
                 {
                     continue;
                 }
-                auto restriction = GetLink(storage, GetIndex(storage, usageAsTarget));
                 auto substitution = Link(GetTarget(storage, usageAsTarget), newLinkIndex);
-                handlerState.Apply(storage.Update(restriction, substitution, handlerState.Handler));
+                handlerState.Apply(storage.Update(usageAsTarget, substitution, handlerState.Handler));
             }
             return handlerState.Result;
         }
