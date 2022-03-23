@@ -771,7 +771,7 @@ namespace Platform::Data::Doublets
             return newLinkIndex;
         }
 
-        template<typename typename TStorage>
+        template<typename TStorage>
         static typename TStorage::LinkAddressType MergeAndDelete(TStorage& storage, typename TStorage::LinkAddressType oldLinkIndex, typename TStorage::LinkAddressType newLinkIndex, auto&& handler)
         {
             auto constants = storage.Constants;
