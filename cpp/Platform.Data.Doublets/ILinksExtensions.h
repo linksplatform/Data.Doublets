@@ -240,13 +240,13 @@ namespace Platform::Data::Doublets
     static typename TStorage::LinkAddressType GetTarget(const TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& link) { return link[storage.Constants.TargetPart]; }
 
         template<typename TStorage>
-        static auto All(const TStorage& storage, std::convertible_to<typename TStorage::LinkAddressType> auto ...restriction)
+        static auto All(const TStorage& storage, std::convertible_to<typename TStorage::LinkAddressType> auto ... restrictionPack)
         {
             using namespace Platform::Collections;
-            typename TStorage::HandlerParameterType restrictionContainer { static_cast<typename TStorage::LinkAddressType>(restriction)... };
+            typename TStorage::HandlerParameterType restriction{ static_cast<typename TStorage::LinkAddressType>(restrictionPack)... };
             auto $continue {storage.Constants.Continue};
             auto allLinks = std::vector<typename TStorage::HanlderParameterType>();
-            storage.Each(restrictionContainer, [&allLinks, $continue](const typename TStorage::HandlerParameterType& link){
+            storage.Each(restriction, [&allLinks, $continue](const typename TStorage::HandlerParameterType& link){
                 allLinks.push_back(link);
                 return $continue;
             });
@@ -528,11 +528,10 @@ namespace Platform::Data::Doublets
         }
 
         template<typename TStorage>
-        static typename TStorage::LinkAddressType Update(TStorage& storage, const typename TStorage::WriteHandlerType& handler, std::convertible_to<typename TStorage::LinkAddressType> auto ...restriction)
+        static typename TStorage::LinkAddressType Update(TStorage& storage, const typename TStorage::WriteHandlerType& handler, std::convertible_to<typename TStorage::LinkAddressType> auto ... restrictionPack)
         {
-            typename TStorage::HandlerParameterType restrictionContainer {
-                static_cast<typename TStorage::HandlerParameterType>(restriction)... };
-            return Update(storage, restrictionContainer, handler);
+            typename TStorage::HandlerParameterType restriction{ static_cast<typename TStorage::HandlerParameterType>(restrictionPack)... };
+            return Update(storage, restriction, handler);
         }
         //
         template<typename TStorage>
