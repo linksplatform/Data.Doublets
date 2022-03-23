@@ -451,7 +451,7 @@ namespace Platform::Data::Doublets
         {
             auto $continue {storage.Constants.Continue};
             typename TStorage::LinkAddressType linkAddress;
-            CreateAndUpdate(storage, source, target, [&linkAddress, $continue](const typename TStorage::LinkType& before, const typename TStorage::LinkType& after){
+            return CreateAndUpdate(storage, source, target, [&linkAddress, $continue](const typename TStorage::LinkType& before, const typename TStorage::LinkType& after){
                 linkAddress = after[0];
                 return $continue;
             });
