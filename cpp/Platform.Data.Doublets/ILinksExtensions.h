@@ -426,17 +426,17 @@ namespace Platform::Data::Doublets
             return Update(storage, point, point, point);
         }
 
-        template<typename typename TStorage>
+        template<typename TStorage>
         static typename TStorage::LinkAddressType CreatePoint(TStorage& storage, auto&& handler)
         {
             auto constants = storage.Constants;
-            WriteHandlerState<TStorage> handlerState = new(constants.Continue, constants.Break, handler);
-            typename TStorage::LinkAddressType linkAddress = 0;
-            typename TStorage::LinkAddressType HandlerWrapper = [&linkAddress, $handlerState](const typename TStorage::HandlerParameterType& before, const typename TStorage::HandlerParameterType& after)
-                linkAddress = GetIndex(storage, after);
+            WriteHandlerState<TStorage> handlerState {constants.Continue, constants.Break, handler};
+            typename TStorage::LinkAddressType linkAddress;
+            typename TStorage::LinkAddressType HandlerWrapper = [&linkAddress, &handlerState](const typename TStorage::HandlerParameterType& before, const typename TStorage::HandlerParameterType& after){
+                linkAddress = after[0];
                 return handlerState.Handle(before, after);
             };
-            handlerState.Apply(storage.Create(Link{}, HandlerWrapper));
+            handlerState.Apply(storage.Create(Link<typename TStorage::LinkAddressType>{}, HandlerWrapper));
             return handlerState.Apply(storage.Update(linkAddress, linkAddress, linkAddress, HandlerWrapper));
         }
 
