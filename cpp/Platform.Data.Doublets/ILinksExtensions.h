@@ -567,13 +567,13 @@ namespace Platform::Data::Doublets
         auto link = SearchOrDefault(storage, source, target);
         if (storage.Constants.Null == link)
         {
-            return storage.CreateAndUpdate(newSource, newTarget, handler);
+            return CreateAndUpdate(storage, newSource, newTarget, handler);
         }
         if ((source == newSource) && (target == newTarget))
         {
             return link;
         }
-        return storage.Update(link, newSource, newTarget, handler);
+        return Update(storage, link, newSource, newTarget, handler);
     }
 
     template<typename TStorage>
