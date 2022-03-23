@@ -244,7 +244,7 @@ namespace Platform::Data::Doublets
     {
         using namespace Platform::Collections;
         auto $continue {storage.Constants.Continue};
-        auto allLinks = std::vector<typename TStorage::HanlderParameterType>();
+        auto allLinks = std::vector<typename TStorage::LinkType>();
         storage.Each(restriction, [&allLinks, $continue](const typename TStorage::LinkType& link){
             allLinks.push_back(link);
             return $continue;
