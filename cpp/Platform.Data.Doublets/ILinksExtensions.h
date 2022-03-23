@@ -695,9 +695,9 @@ namespace Platform::Data::Doublets
     }
 
     template<typename TStorage>
-    void ResetValues(TStorage& storage, typename TStorage::LinkAddressType link, auto&& handler)
+    typename TStorage::LinkAddressType ResetValues(TStorage& storage, typename TStorage::LinkAddressType link, auto&& handler)
     {
-        storage.Update(link, 0, 0, handler);
+        return Update(storage, link, 0, 0, handler);
     }
 
     template<typename TStorage>
