@@ -733,7 +733,7 @@ namespace Platform::Data::Doublets
             auto constants = storage.Constants;
             auto usagesAsSource = All(storage, Link(constants.Any, oldLinkIndex, constants.Any));
             WriteHandlerState<TStorage> handlerState {constants.Continue, constants.Break, handler};
-            for (auto i { 0 }; i < usagesAsSource.Count(); ++i)
+            for (auto i { 0 }; i < std::ranges::size(usagesAsSource); ++i)
             {
                 auto usageAsSource = usagesAsSource[i];
                 if ( oldLinkIndex == GetIndex(storage, usageAsSource))
@@ -745,7 +745,7 @@ namespace Platform::Data::Doublets
                 handlerState.Apply(storage.Update(restriction, substitution, handlerState.Handler));
             }
             auto usagesAsTarget = All(storage, Link(constants.Any, constants.Any, oldLinkIndex));
-            for (auto i { 0 }; i < usagesAsTarget.Count(); ++i)
+            for (auto i { 0 }; i < std::ranges::size(usagesAsTarget); ++i)
             {
                 auto usageAsTarget = usagesAsTarget[i];
                 if ( oldLinkIndex == GetIndex(storage, usageAsTarget))
