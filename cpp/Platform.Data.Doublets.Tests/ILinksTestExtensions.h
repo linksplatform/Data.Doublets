@@ -181,6 +181,7 @@ namespace Platform::Data::Doublets::Tests
     static void TestMultipleRandomCreationsAndDeletions(TStorage& storage, int maximumOperationsPerCycle)
     {
         using namespace Platform::Random;
+        using namespace Platform::Data;
         for (auto N { 1 }; N < maximumOperationsPerCycle; ++N)
         {
             std::cout << "\n\n\n N == " << N;
