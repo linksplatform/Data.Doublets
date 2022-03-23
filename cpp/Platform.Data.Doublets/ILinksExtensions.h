@@ -138,7 +138,7 @@ namespace Platform::Data::Doublets
     }
 
     template<typename TStorage>
-    static typename TStorage::LinkType SingleOrDefault(const TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& query)
+    static typename TStorage::LinkAddressType SingleOrDefault(const TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& query)
     {
         std::vector<typename TStorage::LinkAddressType> result {};
         auto count = 0;
