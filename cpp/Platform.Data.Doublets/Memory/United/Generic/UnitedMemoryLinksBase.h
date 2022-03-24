@@ -317,7 +317,7 @@
             // TODO: 'ref locals' are not converted by C# to C++ Converter:
             // ORIGINAL LINE: ref var link = ref GetLinkReference(linkIndex);
             auto& link = GetLinkReference(linkIndex);
-            auto before = LinkType{link};
+            LinkType before {linkIndex, link.Source, link.Target};
             // TODO: 'ref locals' are not converted by C# to C++ Converter:
             // ORIGINAL LINE: ref var header = ref GetHeaderReference();
             auto& header = GetHeaderReference();
