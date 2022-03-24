@@ -5,7 +5,6 @@
         : public LinksSizeBalancedTreeMethodsBase<LinksSourcesSizeBalancedTreeMethods<TLinksOptions>, TLinksOptions>
     {
         using base = LinksSizeBalancedTreeMethodsBase<LinksSourcesSizeBalancedTreeMethods<TLinksOptions>, TLinksOptions>;
-        using typename base::LinkType;
         using typename base::LinkAddressType;
         using typename base::ReadHandlerType;
 

@@ -5,7 +5,6 @@ namespace Platform::Data::Doublets
     struct LinksOptions : Platform::Data::LinksOptions<TLink, TWriteHandler, TReadHandler, VConstants>
     {
         using base = Platform::Data::LinksOptions<TLink, TWriteHandler, TReadHandler, VConstants>;
-        using base::LinkType;
         using base::LinkAddressType;
         using base::WriteHandlerType;
         using base::ReadHandlerType;
