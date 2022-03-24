@@ -228,13 +228,13 @@ namespace Platform::Data::Doublets
     static auto GetIndex(const TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& link) { return link[storage.Constants.IndexPart]; }
 
     template<typename TStorage>
-    static typename TStorage::LinkAddressType GetSource(const TStorage& storage, typename TStorage::LinkAddressType link) { return GetLink(storage, link)[storage.Constants.SourcePart]; }
+    static typename TStorage::LinkAddressType GetSource(const TStorage& storage, typename TStorage::LinkAddressType linkAddress) { return GetLink(storage, link)[storage.Constants.SourcePart]; }
 
     template<typename TStorage>
     static typename TStorage::LinkAddressType GetSource(const TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& link) { return link[storage.Constants.SourcePart]; }
 
     template<typename TStorage>
-    static typename TStorage::LinkAddressType GetTarget(const TStorage& storage, typename TStorage::LinkAddressType link) { return GetLink(storage, link)[storage.Constants.TargetPart]; }
+    static typename TStorage::LinkAddressType GetTarget(const TStorage& storage, typename TStorage::LinkAddressType linkAddress) { return GetLink(storage, link)[storage.Constants.TargetPart]; }
 
     template<typename TStorage>
     static typename TStorage::LinkAddressType GetTarget(const TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& link) { return link[storage.Constants.TargetPart]; }
@@ -319,7 +319,7 @@ namespace Platform::Data::Doublets
     //    }
     //
     //    template<typename TStorage>
-    //    static void EnsureLinkIsAnyOrExists(TStorage& storage, typename TStorage::LinkAddressType link, std::string argumentName)
+    //    static void EnsureLinkIsAnyOrExists(TStorage& storage, typename TStorage::LinkAddressType linkAddress, std::string argumentName)
     //    {
     //        if ((storage.Constants.Any != link) && !storage.Exists(link))
     //        {
@@ -328,7 +328,7 @@ namespace Platform::Data::Doublets
     //    }
     //
     //    template<typename TStorage>
-    //    static void EnsureLinkIsItselfOrExists(TStorage& storage, typename TStorage::LinkAddressType link, std::string argumentName)
+    //    static void EnsureLinkIsItselfOrExists(TStorage& storage, typename TStorage::LinkAddressType linkAddress, std::string argumentName)
     //    {
     //        if ((storage.Constants.Itself != link) && !storage.Exists(link))
     //        {
@@ -346,7 +346,7 @@ namespace Platform::Data::Doublets
     //    }
     //
     //    template<typename TStorage>
-    //    static void EnsureNoUsages(TStorage& storage, typename TStorage::LinkAddressType link)
+    //    static void EnsureNoUsages(TStorage& storage, typename TStorage::LinkAddressType linkAddress)
     //    {
     //        if (storage.HasUsages(link))
     //        {
@@ -385,7 +385,7 @@ namespace Platform::Data::Doublets
     //    }
     //
     //    template<typename TStorage>
-    //    static typename TStorage::LinkAddressType CountUsages(TStorage& storage, typename TStorage::LinkAddressType link)
+    //    static typename TStorage::LinkAddressType CountUsages(TStorage& storage, typename TStorage::LinkAddressType linkAddress)
     //    {
     //        auto constants = storage.Constants;
     //        auto values = GetLink(storage, link);
@@ -403,10 +403,10 @@ namespace Platform::Data::Doublets
     //    }
     //
     //    template<typename TStorage>
-    //    static bool HasUsages(TStorage& storage, typename TStorage::LinkAddressType link) { return Comparer<typename TStorage::LinkAddressType>.Default.Compare(Count(storage)Usages(link), 0) > 0; }
+    //    static bool HasUsages(TStorage& storage, typename TStorage::LinkAddressType linkAddress) { return Comparer<typename TStorage::LinkAddressType>.Default.Compare(Count(storage)Usages(link), 0) > 0; }
     //
     //    template<typename TStorage>
-    //    static bool operator ==(TStorage& storage, typename TStorage::LinkAddressType link, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType &target) const
+    //    static bool operator ==(TStorage& storage, typename TStorage::LinkAddressType linkAddress, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType &target) const
     //    {
     //        auto constants = storage.Constants;
     //        auto values = GetLink(storage, link);
@@ -696,13 +696,13 @@ namespace Platform::Data::Doublets
     }
 
     template<typename TStorage>
-    typename TStorage::LinkAddressType ResetValues(TStorage& storage, typename TStorage::LinkAddressType link, auto&& handler)
+    typename TStorage::LinkAddressType ResetValues(TStorage& storage, typename TStorage::LinkAddressType linkAddress, auto&& handler)
     {
         return Update(storage, link, 0, 0, handler);
     }
 
     template<typename TStorage>
-    void ResetValues(TStorage& storage, typename TStorage::LinkAddressType link)
+    void ResetValues(TStorage& storage, typename TStorage::LinkAddressType linkAddress)
     {
         auto $break = storage.Constants.Break;
         ResetValues(storage, link, nullptr);
@@ -814,7 +814,7 @@ namespace Platform::Data::Doublets
 
 
     template<typename TStorage>
-    typename TStorage::LinkAddressType CountUsages(TStorage& storage, typename TStorage::LinkAddressType link)
+    typename TStorage::LinkAddressType CountUsages(TStorage& storage, typename TStorage::LinkAddressType linkAddress)
     {
         auto constants = storage.Constants;
         auto values = GetLink(storage, link);
@@ -825,7 +825,7 @@ namespace Platform::Data::Doublets
     }
 
     template<typename TStorage>
-    typename TStorage::LinkAddressType HasUsages(TStorage& storage, typename TStorage::LinkAddressType link)
+    typename TStorage::LinkAddressType HasUsages(TStorage& storage, typename TStorage::LinkAddressType linkAddress)
     {
         return storage.CountUsages(link) != 0;
     }
