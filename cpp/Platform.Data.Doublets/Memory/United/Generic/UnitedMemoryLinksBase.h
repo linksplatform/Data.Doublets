@@ -67,7 +67,7 @@
         }
 
     public:
-        LinkAddressType Count(const  LinkType& restriction) const
+        LinkAddressType Count(const  std::vector<LinkAddressType>& restriction) const
         {
             if (std::ranges::size(restriction) == 0)
             {
@@ -175,7 +175,7 @@
             throw std::logic_error("Not supported exception.");
         }
 
-    public: LinkAddressType Each(const  LinkType& restriction, const ReadHandlerType& handler) const
+    public: LinkAddressType Each(const  std::vector<LinkAddressType>& restriction, const ReadHandlerType& handler) const
         {
             auto constants = Constants;
             auto $continue {constants.Continue};
@@ -215,11 +215,11 @@
                     {
                         return Data::Each(*this, handler);
                     }
-                    if (Each(LinkType{index, value, any}, handler) == $break)
+                    if (Each(std::vector<LinkAddressType>{index, value, any}, handler) == $break)
                     {
                         return $break;
                     }
-                    return Each(LinkType{index, any, value}, handler);
+                    return Each(std::vector<LinkAddressType>{index, any, value}, handler);
                 }
                 else
                 {
@@ -309,7 +309,7 @@
         // NOTE: The following .NET attribute has no direct equivalent in C++:
         // ORIGINAL LINE: [MethodImpl(MethodImplOptions.AggressiveInlining)] public LinkAddressType Update(IList<LinkAddressType> restriction, IList<LinkAddressType> substitution)
     public:
-        LinkAddressType Update(const  LinkType& restriction, const LinkType& substitution, const WriteHandlerType& handler)
+        LinkAddressType Update(const  std::vector<LinkAddressType>& restriction, const std::vector<LinkAddressType>& substitution, const WriteHandlerType& handler)
         {
             auto constants = Constants;
             auto null = constants.Null;
@@ -317,7 +317,7 @@
             // TODO: 'ref locals' are not converted by C# to C++ Converter:
             // ORIGINAL LINE: ref var link = ref GetLinkReference(linkIndex);
             auto& link = GetLinkReference(linkIndex);
-            LinkType before {linkIndex, link.Source, link.Target};
+            std::vector<LinkAddressType> before {linkIndex, link.Source, link.Target};
             // TODO: 'ref locals' are not converted by C# to C++ Converter:
             // ORIGINAL LINE: ref var header = ref GetHeaderReference();
             auto& header = GetHeaderReference();
@@ -378,11 +378,11 @@
                 freeLink = header.AllocatedLinks;
                 _memory.UsedCapacity(_memory.UsedCapacity() + LinkSizeInBytes);
             }
-            return handler(LinkType{}, Link{freeLink, LinkAddressType{}, LinkAddressType{}});
+            return handler(std::vector<LinkAddressType>{}, Link{freeLink, LinkAddressType{}, LinkAddressType{}});
         }
 
     public:
-        LinkAddressType Delete(const  LinkType& restriction, const WriteHandlerType& handler)
+        LinkAddressType Delete(const  std::vector<LinkAddressType>& restriction, const WriteHandlerType& handler)
         {
             auto& header = GetHeaderReference();
             auto linkAddress = restriction[Constants.IndexPart];
@@ -405,7 +405,7 @@
                     auto allLinksBeforeAfterAllocatedLinks = All(*this);
                 }
             }
-            return handler(before, LinkType{});
+            return handler(before, std::vector<LinkAddressType>{});
         }
 
         auto GetLinkStruct(LinkAddressType linkIndex) const

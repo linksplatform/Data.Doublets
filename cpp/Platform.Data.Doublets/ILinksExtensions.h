@@ -129,7 +129,7 @@ namespace Platform::Data::Doublets
         auto $break {constants.Break};
         typename TStorage::LinkAddressType firstLink = 0;
         Expects(constants.Null != firstLink);
-        storage.Each(Link{storage.Constants.Any, storage.Constants.Any, storage.Constants.Any}, [&firstLink, $break](const typename TStorage::LinkType& link){
+        storage.Each(Link{storage.Constants.Any, storage.Constants.Any, storage.Constants.Any}, [&firstLink, $break](const std::vector<typename TStorage::LinkAddressType>& link){
             firstLink = link[0];
             return $break;
                                                                                                 });
@@ -143,7 +143,7 @@ namespace Platform::Data::Doublets
         std::vector<typename TStorage::LinkAddressType> result {};
         auto count = 0;
         auto constants = storage.Constants;
-        auto linkHandler { [&result, &count, &constants] (const typename TStorage::LinkType& link) {
+        auto linkHandler { [&result, &count, &constants] (const std::vector<typename TStorage::LinkAddressType>& link) {
             if (count == 0)
             {
                 result = link;
@@ -240,23 +240,23 @@ namespace Platform::Data::Doublets
     static typename TStorage::LinkAddressType GetTarget(const TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& link) { return link[storage.Constants.TargetPart]; }
 
     template<typename TStorage>
-    static std::vector<typename TStorage::LinkType> All(const TStorage& storage, const typename TStorage::LinkType& restriction)
+    static std::vector<std::vector<typename TStorage::LinkAddressType>> All(const TStorage& storage, const std::vector<typename TStorage::LinkAddressType>& restriction)
     {
         using namespace Platform::Collections;
         auto $continue {storage.Constants.Continue};
-        std::vector<typename TStorage::LinkType> allLinks {};
-        storage.Each(restriction, [&allLinks, $continue](const typename TStorage::LinkType& link){
+        std::vector<std::vector<typename TStorage::LinkAddressType>> allLinks {};
+        storage.Each(restriction, [&allLinks, $continue](const std::vector<typename TStorage::LinkAddressType>& link){
             allLinks.push_back(link);
             return $continue;
         });
-        return std::vector<typename TStorage::LinkType>{};
+        return std::vector<std::vector<typename TStorage::LinkAddressType>>{};
     }
 
         template<typename TStorage>
         static auto All(const TStorage& storage, std::convertible_to<typename TStorage::LinkAddressType> auto ... restrictionPack)
         {
-//            typename TStorage::LinkType restriction { static_cast<typename TStorage::LinkAddressType>(restrictionPack)... };
-            return All(storage, typename TStorage::LinkType{});
+//            std::vector<typename TStorage::LinkAddressType> restriction { static_cast<typename TStorage::LinkAddressType>(restrictionPack)... };
+            return All(storage, std::vector<typename TStorage::LinkAddressType>{});
         }
     //
     //    static Interfaces::CArray<typename TStorage::LinkAddressType>auto AllIndices<typename TStorage::LinkAddressType>(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction)
@@ -419,7 +419,7 @@ namespace Platform::Data::Doublets
             auto constants = storage.Constants;
             auto _break = constants.Break;
             typename TStorage::LinkAddressType searchedLinkAddress {};
-            storage.Each(Link{storage.Constants.Any, source, target}, [&searchedLinkAddress, _break] (const typename TStorage::LinkType& link) {
+            storage.Each(Link{storage.Constants.Any, source, target}, [&searchedLinkAddress, _break] (const std::vector<typename TStorage::LinkAddressType>& link) {
                 searchedLinkAddress = link[0];
                 return _break;
             });
@@ -438,7 +438,7 @@ namespace Platform::Data::Doublets
             auto constants = storage.Constants;
             WriteHandlerState<TStorage> handlerState {constants.Continue, constants.Break, handler};
             typename TStorage::LinkAddressType linkAddress;
-            typename TStorage::LinkAddressType HandlerWrapper = [&linkAddress, &handlerState](const typename TStorage::LinkType& before, const typename TStorage::LinkType& after){
+            typename TStorage::LinkAddressType HandlerWrapper = [&linkAddress, &handlerState](const std::vector<typename TStorage::LinkAddressType>& before, const std::vector<typename TStorage::LinkAddressType>& after){
                 linkAddress = after[0];
                 return handlerState.Handle(before, after);
             };
@@ -451,7 +451,7 @@ namespace Platform::Data::Doublets
         {
             auto $continue {storage.Constants.Continue};
             typename TStorage::LinkAddressType linkAddress;
-            return CreateAndUpdate(storage, source, target, [&linkAddress, $continue](const typename TStorage::LinkType& before, const typename TStorage::LinkType& after){
+            return CreateAndUpdate(storage, source, target, [&linkAddress, $continue](const std::vector<typename TStorage::LinkAddressType>& before, const std::vector<typename TStorage::LinkAddressType>& after){
                 linkAddress = after[0];
                 return $continue;
             });
@@ -463,7 +463,7 @@ namespace Platform::Data::Doublets
             auto constants = storage.Constants;
             typename TStorage::LinkAddressType createdLinkAddress;
             WriteHandlerState<TStorage> handlerState {constants.Continue, constants.Break, handler};
-            handlerState.Apply(storage.Create(Link<typename TStorage::LinkAddressType>{}, [&createdLinkAddress, &handlerState](const typename TStorage::LinkType& before, const typename TStorage::LinkType& after){
+            handlerState.Apply(storage.Create(Link<typename TStorage::LinkAddressType>{}, [&createdLinkAddress, &handlerState](const std::vector<typename TStorage::LinkAddressType>& before, const std::vector<typename TStorage::LinkAddressType>& after){
                 createdLinkAddress = after[0];
                 return handlerState.Handle(before, after);
             }));
@@ -475,7 +475,7 @@ namespace Platform::Data::Doublets
         {
             auto $continue {storage.Constants.Continue};
             typename TStorage::LinkAddressType updatedLinkAddress;
-            storage.Update(restriction, substitution, [&updatedLinkAddress, $continue] (const typename TStorage::LinkType& before, const typename TStorage::LinkType& after) {
+            storage.Update(restriction, substitution, [&updatedLinkAddress, $continue] (const std::vector<typename TStorage::LinkAddressType>& before, const std::vector<typename TStorage::LinkAddressType>& after) {
                 updatedLinkAddress = after[0];
                 return $continue;
             });
@@ -512,7 +512,7 @@ namespace Platform::Data::Doublets
         {
             auto $continue {storage.Constants.Continue};
             typename TStorage::LinkAddressType updatedLinkAddress;
-            Update(storage, linkAddress, newSource, newTarget, [&updatedLinkAddress, $continue] (const typename TStorage::LinkType& before, const typename TStorage::LinkType& after) {
+            Update(storage, linkAddress, newSource, newTarget, [&updatedLinkAddress, $continue] (const std::vector<typename TStorage::LinkAddressType>& before, const std::vector<typename TStorage::LinkAddressType>& after) {
                 updatedLinkAddress = after[0];
                 return $continue;
             });
@@ -524,7 +524,7 @@ namespace Platform::Data::Doublets
         {
             auto $continue {storage.Constants.Continue};
             typename TStorage::LinkAddressType updatedLinkAddress;
-            return Update(storage, restriction, [&updatedLinkAddress, $continue](const typename TStorage::LinkType& before, const typename TStorage::LinkType& after){
+            return Update(storage, restriction, [&updatedLinkAddress, $continue](const std::vector<typename TStorage::LinkAddressType>& before, const std::vector<typename TStorage::LinkAddressType>& after){
                 updatedLinkAddress = after;
                 return $continue;
             });
@@ -587,7 +587,7 @@ namespace Platform::Data::Doublets
     {
         auto $continue = storage.Constants.Continue;
         typename TStorage::LinkAddressType resultLink;
-        UpdateOrCreateOrGet(storage, source, target, newSource, newTarget, [&resultLink, $continue](const typename TStorage::LinkType& before, const typename TStorage::LinkType& after) {
+        UpdateOrCreateOrGet(storage, source, target, newSource, newTarget, [&resultLink, $continue](const std::vector<typename TStorage::LinkAddressType>& before, const std::vector<typename TStorage::LinkAddressType>& after) {
             resultLink = after[0];
             return $continue;
         });
@@ -625,8 +625,8 @@ namespace Platform::Data::Doublets
         auto $break = storage.Constants.Break;
         auto usagesAsSourceQuery = Link(any, linkIndex, any);
         auto usagesAsTargetQuery = Link(any, any, linkIndex);
-        auto usages = std::vector<typename TStorage::LinkType>();
-        storage.Each(usagesAsSourceQuery, [&usages, $continue](const typename TStorage::LinkType& link) {
+        auto usages = std::vector<std::vector<typename TStorage::LinkAddressType>>();
+        storage.Each(usagesAsSourceQuery, [&usages, $continue](const std::vector<typename TStorage::LinkAddressType>& link) {
             usages.push_back(link);
             return $continue;
         });
@@ -741,7 +741,7 @@ namespace Platform::Data::Doublets
                 {
                     continue;
                 }
-                typename TStorage::LinkType restriction {GetIndex(storage, usageAsSource)};
+                std::vector<typename TStorage::LinkAddressType> restriction {GetIndex(storage, usageAsSource)};
                 Link substitution = (newLinkIndex, GetTarget(storage, usageAsSource));
                 handlerState.Apply(storage.Update(restriction, substitution, handlerState.Handler));
             }

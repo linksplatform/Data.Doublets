@@ -17,7 +17,7 @@
             auto linkIndex = restriction[Constants.IndexPart];
             WriteHandlerState<TDecorated> handlerState {Constants.Continue, Constants.Break, handler};
             handlerState.Apply(DeleteAllUsages(this->facade(), linkIndex, handlerState.Handler));
-            return handlerState.Apply(this->decorated().Delete(LinkType{linkIndex}, handlerState.Handler));
+            return handlerState.Apply(this->decorated().Delete(std::vector<LinkAddressType>{linkIndex}, handlerState.Handler));
         }
     };
 }

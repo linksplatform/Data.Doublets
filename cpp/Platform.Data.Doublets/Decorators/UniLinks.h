@@ -17,12 +17,12 @@
             }
         }
 
-        public: TLink Trigger(const  LinkType& restriction, Func<IList<TLink>, IList<TLink>, TLink> matchedHandler, const LinkType& substitution, Func<IList<TLink>, IList<TLink>, TLink> substitutedHandler)
+        public: TLink Trigger(const  std::vector<LinkAddressType>& restriction, Func<IList<TLink>, IList<TLink>, TLink> matchedHandler, const std::vector<LinkAddressType>& substitution, Func<IList<TLink>, IList<TLink>, TLink> substitutedHandler)
         {
             return _constants.Continue;
         }
 
-        public: TLink Trigger(CArray<TLinkAddress> auto&& patternOrCondition, Func<IList<TLink>, TLink> matchHandler, const LinkType& substitution, Func<IList<TLink>, IList<TLink>, TLink> substitutionHandler)
+        public: TLink Trigger(CArray<TLinkAddress> auto&& patternOrCondition, Func<IList<TLink>, TLink> matchHandler, const std::vector<LinkAddressType>& substitution, Func<IList<TLink>, IList<TLink>, TLink> substitutionHandler)
         {
             auto constants = _constants;
             if (patternOrCondition.IsNullOrEmpty() && substitution.IsNullOrEmpty())
@@ -131,7 +131,7 @@
             }
         }
 
-        public: IList<IList<IList<TLink>>> Trigger(CArray<TLinkAddress> auto&& condition, const LinkType& substitution)
+        public: IList<IList<IList<TLink>>> Trigger(CArray<TLinkAddress> auto&& condition, const std::vector<LinkAddressType>& substitution)
         {
             auto changes = List<IList<IList<TLink>>>();
             auto continue = _constants.Continue;
