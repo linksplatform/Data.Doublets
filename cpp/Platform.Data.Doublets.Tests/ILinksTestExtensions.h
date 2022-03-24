@@ -182,68 +182,68 @@ namespace Platform::Data::Doublets::Tests
     {
         using namespace Platform::Random;
         using namespace Platform::Data;
-        for (auto N { 1 }; N < maximumOperationsPerCycle; ++N)
-        {
-            std::cout << "\n\n\n N == " << N;
-            std::srand(N);
-            auto& randomGen64 { RandomHelpers::Default };
-            auto created { 0UL };
-            auto deleted { 0UL };
-            for (auto i { 0 }; i < N; ++i)
-            {
-                std::cout << "\n\n i == " << i << std::endl;
-                auto linksCount { Count(storage) };
-                auto createPoint { Random::NextBoolean(randomGen64) };
-                if (linksCount >= 2 && createPoint)
-                {
-                    Ranges::Range<typename TStorage::LinkAddressType> linksAddressRange { 1, linksCount };
-                    auto source { Random::NextUInt64(randomGen64, linksAddressRange) };
-                    auto target { Random::NextUInt64(randomGen64, linksAddressRange) }; //-V3086
-                    std::cout << "linksAddressRange: " << linksAddressRange << std::endl;
-                    std::cout << "GetOrCreate " << source << " -> " << target << std::endl;
-                    auto resultLink { GetOrCreate(storage, source, target) };
-                    std::cout << "GetOrCreate result: " << resultLink << std::endl;
-                    auto linksCountAfterGetOrCreate { Count(storage) };
-                    std::cout << "linksCountAfterGetOrCreate: " << linksCountAfterGetOrCreate << std::endl;
-                    if (resultLink > linksCount)
-                    {
-                        std::cout << "resultLink > linksCount" << std::endl;
-                        ++created;
-                    }
-                }
-                else
-                {
-                    Create(storage);
-                    ++created;
-                }
-            }
-            auto allLinks { All(storage)};
-            for(auto link : allLinks)
-            {
-                std::cout << "link: " << link[0] << ": " << link[1] << " -> " << link[2] << std::endl;
-            }
+//        for (auto N { 1 }; N < maximumOperationsPerCycle; ++N)
+//        {
+//            std::cout << "\n\n\n N == " << N;
+//            std::srand(N);
+//            auto& randomGen64 { RandomHelpers::Default };
+//            auto created { 0UL };
+//            auto deleted { 0UL };
+//            for (auto i { 0 }; i < N; ++i)
+//            {
+//                std::cout << "\n\n i == " << i << std::endl;
+//                auto linksCount { Count(storage) };
+//                auto createPoint { Random::NextBoolean(randomGen64) };
+//                if (linksCount >= 2 && createPoint)
+//                {
+//                    Ranges::Range<typename TStorage::LinkAddressType> linksAddressRange { 1, linksCount };
+//                    auto source { Random::NextUInt64(randomGen64, linksAddressRange) };
+//                    auto target { Random::NextUInt64(randomGen64, linksAddressRange) }; //-V3086
+//                    std::cout << "linksAddressRange: " << linksAddressRange << std::endl;
+//                    std::cout << "GetOrCreate " << source << " -> " << target << std::endl;
+//                    auto resultLink { GetOrCreate(storage, source, target) };
+//                    std::cout << "GetOrCreate result: " << resultLink << std::endl;
+//                    auto linksCountAfterGetOrCreate { Count(storage) };
+//                    std::cout << "linksCountAfterGetOrCreate: " << linksCountAfterGetOrCreate << std::endl;
+//                    if (resultLink > linksCount)
+//                    {
+//                        std::cout << "resultLink > linksCount" << std::endl;
+//                        ++created;
+//                    }
+//                }
+//                else
+//                {
+//                    Create(storage);
+//                    ++created;
+//                }
+//            }
+            std::vector<typename TStorage::LinkType> allLinks { All(storage) };
+//            for(auto link : allLinks)
+//            {
+//                std::cout << "link: " << link[0] << ": " << link[1] << " -> " << link[2] << std::endl;
+//            }
 
-            Expects(Count(storage) == created);
-            for (auto i { 0 }; i < N; ++i)
-            {
-                typename TStorage::LinkAddressType link = i + 1;
-                std::cout << "Links count before deleting: " << Count(storage) << std::endl;
-                if (Exists(storage, link))
-                {
-                    std::cout << "Delete " << link << std::endl;
-
-                    Data::Delete(storage, link);
-                    ++deleted;
-                    allLinks = { All(storage)};
-                    for(auto link : allLinks)
-                    {
-                        std::cout << "link: " << link[0] << ": " << link[1] << " -> " << link[2] << std::endl;
-                    }
-                }
-                std::cout << "Links count after deleting: " << Count(storage) << std::endl;
-            }
-            std::cout << "Links count after deleting all links: " << Count(storage) << std::endl;
-            Expects(0 == Count(storage));
-        }
+//            Expects(Count(storage) == created);
+//            for (auto i { 0 }; i < N; ++i)
+//            {
+//                typename TStorage::LinkAddressType link = i + 1;
+//                std::cout << "Links count before deleting: " << Count(storage) << std::endl;
+//                if (Exists(storage, link))
+//                {
+//                    std::cout << "Delete " << link << std::endl;
+//
+//                    Data::Delete(storage, link);
+//                    ++deleted;
+//                    allLinks = { All(storage)};
+//                    for(auto link : allLinks)
+//                    {
+//                        std::cout << "link: " << link[0] << ": " << link[1] << " -> " << link[2] << std::endl;
+//                    }
+//                }
+//                std::cout << "Links count after deleting: " << Count(storage) << std::endl;
+//            }
+//            std::cout << "Links count after deleting all links: " << Count(storage) << std::endl;
+//            Expects(0 == Count(storage));
+//        }
     }
 }
