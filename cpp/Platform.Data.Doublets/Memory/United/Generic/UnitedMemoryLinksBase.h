@@ -437,7 +437,7 @@
             return this->object().GetLinkReference(index);
         }
 
-        bool Exists(LinkAddressType linkAddress) const
+        bool Exists(LinkAddressType link) const
         {
             if (IsExternalReference(Constants, link))
             {
