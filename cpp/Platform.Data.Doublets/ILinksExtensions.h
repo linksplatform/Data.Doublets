@@ -546,11 +546,11 @@ namespace Platform::Data::Doublets
             typename TStorage::LinkType restriction;
             if constexpr (0 == length)
             {
-                restriction{ storage.Constants.Any, storage.Constants.Any, storage.Constants.Any };
+                restriction = { storage.Constants.Any, storage.Constants.Any, storage.Constants.Any };
             }
             else
             {
-                restriction{ static_cast<typename TStorage::HandlerParameterType>(restrictionPack)... };
+                restriction = { static_cast<typename TStorage::HandlerParameterType>(restrictionPack)... };
             }
             return Update(storage, restriction, handler);
         }
