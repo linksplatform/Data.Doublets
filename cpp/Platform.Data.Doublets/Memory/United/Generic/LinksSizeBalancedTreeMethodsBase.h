@@ -170,8 +170,8 @@
             }
             else
             {
-                auto values = this->GetLinkValues(linkAddress);
-                if (handler(std::vector(values.begin(), values.end())) == ($break))
+                auto link = this->GetLinkValues(linkAddress);
+                if (handler(link) == ($break))
                 {
                     return $break;
                 }
