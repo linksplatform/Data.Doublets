@@ -215,11 +215,11 @@
                     {
                         return Data::Each(*this, handler);
                     }
-                    if (Each(std::array{index, value, any}, handler) == $break)
+                    if (Each(LinkType{index, value, any}, handler) == $break)
                     {
                         return $break;
                     }
-                    return Each(std::array{index, any, value}, handler);
+                    return Each(LinkType{index, any, value}, handler);
                 }
                 else
                 {
@@ -317,7 +317,7 @@
             // TODO: 'ref locals' are not converted by C# to C++ Converter:
             // ORIGINAL LINE: ref var link = ref GetLinkReference(linkIndex);
             auto& link = GetLinkReference(linkIndex);
-            auto before = std::array{linkIndex, link.Source, link.Target};
+            auto before = LinkType{link};
             // TODO: 'ref locals' are not converted by C# to C++ Converter:
             // ORIGINAL LINE: ref var header = ref GetHeaderReference();
             auto& header = GetHeaderReference();

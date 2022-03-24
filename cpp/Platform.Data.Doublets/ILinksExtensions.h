@@ -741,7 +741,7 @@ namespace Platform::Data::Doublets
                 {
                     continue;
                 }
-                LinkAddress restriction {GetIndex(storage, usageAsSource)};
+                typename TStorage::LinkType restriction {GetIndex(storage, usageAsSource)};
                 Link substitution = (newLinkIndex, GetTarget(storage, usageAsSource));
                 handlerState.Apply(storage.Update(restriction, substitution, handlerState.Handler));
             }
