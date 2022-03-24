@@ -46,7 +46,7 @@
         using namespace Platform::Memory;
         using namespace Platform::Data::Doublets::Memory::United::Generic;
         using namespace Platform::Collections;
-        LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<UnitedMemoryLinks<LinksOptions<>, HeapResizableDirectMemory>> decoratedStorage {HeapResizableDirectMemory{}};
+        LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<>, HeapResizableDirectMemory>> decoratedStorage {HeapResizableDirectMemory{}};
         TestMultipleRandomCreationsAndDeletions(decoratedStorage, 16);
 //        UsingMultipleRandomCreationsAndDeletionsTest<std::uint8_t>([] (auto&& storage){
 //            auto decoratedStorage = LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<decltype(storage)>(storage);
