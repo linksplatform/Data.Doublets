@@ -15,8 +15,20 @@
         public: TLinkAddress Target = _constants.Null;
 
         public: Link() noexcept = default;
-        public: Link(const Link&) noexcept = default;
-        public: Link(Link&&) noexcept = default;
+
+        public: Link(const Link& link) noexcept
+        {
+            Index = link.Index;
+            Source = link.Index;
+            Target = link.Index;
+        }
+
+        public: Link(Link&& link) noexcept
+        {
+            Index = std::move(link.Index);
+            Source = std::move(link.Source);
+            Target = std::move(link.Target);
+        };
 
         public: auto& operator=(const Link& other) {
             Index = other.Index;
