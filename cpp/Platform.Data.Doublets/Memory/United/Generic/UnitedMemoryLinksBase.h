@@ -6,27 +6,26 @@
 
     template<
         typename TSelf,
-        typename TLinkAddress,
+        typename TLinkOptions,
         typename TMemory,
-        LinksConstants<TLinkAddress> VConstants,
-        CArray<TLinkAddress> THandlerParameter,
         typename TSourceTreeMethods,
         typename TTargetTreeMethods,
         typename TUnusedLinks,
         typename... TBase>
     struct UnitedMemoryLinksBase : public Interfaces::Polymorph<TSelf, TBase...>
     {
-    private:
-        static constexpr auto null = Link<TLinkAddress>::Null;
     public:
-        typedef TLinkAddress LinkAddressType;
-        typedef THandlerParameter HandlerParameterType;
-        static constexpr LinksConstants<TLinkAddress> Constants = VConstants;
+        using OptionsType = TLinkOptions;
+        using LinkType = OptionsType::LinkType;
+        using LinkAddressType = OptionsType::LinkAddressType;
+        using WriteHandlerType = OptionsType::WriteHandlerType;
+        using ReadHandlerType = OptionsType::ReadHandlerType;
+        static constexpr LinksConstants<LinkAddressType> Constants = OptionsType::Constants;
 
     public:
-        static constexpr std::size_t LinkSizeInBytes = sizeof(RawLink<TLinkAddress>);
+        static constexpr std::size_t LinkSizeInBytes = sizeof(RawLink<LinkAddressType>);
 
-        static constexpr std::size_t LinkHeaderSizeInBytes = sizeof(LinksHeader<TLinkAddress>);
+        static constexpr std::size_t LinkHeaderSizeInBytes = sizeof(LinksHeader<LinkAddressType>);
 
         static constexpr std::size_t DefaultLinksSizeStep = LinkSizeInBytes * 1024 * 1024;
 
@@ -41,7 +40,7 @@
 
         TUnusedLinks* _UnusedLinksListMethods;
 
-        TLinkAddress GetTotal() const
+        LinkAddressType GetTotal() const
         {
             auto& header = GetHeaderReference();
             return header.AllocatedLinks - header.FreeLinks;
@@ -69,26 +68,26 @@
         }
 
     public:
-        TLinkAddress Count(CArray<TLinkAddress> auto&& restrictions) const
+        LinkAddressType Count(const  LinkType& restriction) const
         {
-            if (std::ranges::size(restrictions) == 0)
+            if (std::ranges::size(restriction) == 0)
             {
                 return GetTotal();
             }
             auto constants = Constants;
             auto any = constants.Any;
-            auto index = restrictions[constants.IndexPart];
-            if (std::ranges::size(restrictions) == 1)
+            auto index = restriction[constants.IndexPart];
+            if (std::ranges::size(restriction) == 1)
             {
                 if (index == any)
                 {
                     return GetTotal();
                 }
-                return Exists(index) ? TLinkAddress {1} : TLinkAddress {};
+                return Exists(index) ? LinkAddressType {1} : LinkAddressType {};
             }
-            if (std::ranges::size(restrictions) == 2)
+            if (std::ranges::size(restriction) == 2)
             {
-                auto value = restrictions[1];
+                auto value = restriction[1];
                 if (index == any)
                 {
                     if (value == any)
@@ -101,24 +100,24 @@
                 {
                     if (!Exists(index))
                     {
-                        return TLinkAddress {};
+                        return LinkAddressType {};
                     }
                     if (value == any)
                     {
-                        return TLinkAddress {1};
+                        return LinkAddressType {1};
                     }
                     auto& storedLinkValue = GetLinkReference(index);
                     if (storedLinkValue.Source == value || storedLinkValue.Target == value)
                     {
-                        return TLinkAddress {1};
+                        return LinkAddressType {1};
                     }
-                    return TLinkAddress {};
+                    return LinkAddressType {};
                 }
             }
-            if (std::ranges::size(restrictions) == 3)
+            if (std::ranges::size(restriction) == 3)
             {
-                auto source = restrictions[constants.SourcePart];
-                auto target = restrictions[constants.TargetPart];
+                auto source = restriction[constants.SourcePart];
+                auto target = restriction[constants.TargetPart];
                 if (index == any)
                 {
                     if (source == any && target == any)
@@ -136,29 +135,29 @@
                     else// if(source != Any && target != Any)
                     {
                         auto link = _SourcesTreeMethods->Search(source, target);
-                        return link == constants.Null ? TLinkAddress {} : TLinkAddress {1};
+                        return link == constants.Null ? LinkAddressType {} : LinkAddressType {1};
                     }
                 }
                 else
                 {
                     if (!Exists(index))
                     {
-                        return TLinkAddress {};
+                        return LinkAddressType {};
                     }
                     if (source == any && target == any)
                     {
-                        return TLinkAddress {1};
+                        return LinkAddressType {1};
                     }
                     auto& storedLinkValue = GetLinkReference(index);
                     if (!source == any && !target == any)
                     {
                         if ((storedLinkValue.Source == source) && (storedLinkValue.Target == target))
                         {
-                            return TLinkAddress {1};
+                            return LinkAddressType {1};
                         }
-                        return TLinkAddress {};
+                        return LinkAddressType {};
                     }
-                    auto value = TLinkAddress();
+                    auto value = LinkAddressType();
                     if (source == any)
                     {
                         value = target;
@@ -169,21 +168,21 @@
                     }
                     if ((storedLinkValue.Source == value) || (storedLinkValue.Target == value))
                     {
-                        return TLinkAddress {1};
+                        return LinkAddressType {1};
                     }
-                    return TLinkAddress {};
+                    return LinkAddressType {};
                 }
             }
             throw std::logic_error("Not supported exception.");
         }
 
-    public: TLinkAddress Each(CArray<TLinkAddress> auto&& restrictions, auto&& handler) const
+    public: LinkAddressType Each(const  LinkType& restriction, const ReadHandlerType& handler) const
         {
             auto constants = Constants;
             auto $break = constants.Break;
-            if (std::ranges::size(restrictions) == 0)
+            if (std::ranges::size(restriction) == 0)
             {
-                for (auto link = TLinkAddress {1}; link <= GetHeaderReference().AllocatedLinks; ++link)
+                for (auto link = LinkAddressType {1}; link <= GetHeaderReference().AllocatedLinks; ++link)
                 {
                     if (Exists(link) && (handler(GetLinkStruct(link)) == $break))
                     {
@@ -194,8 +193,8 @@
             }
             auto _continue = constants.Continue;
             auto any = constants.Any;
-            auto index = restrictions[constants.IndexPart];
-            if (std::ranges::size(restrictions) == 1)
+            auto index = restriction[constants.IndexPart];
+            if (std::ranges::size(restriction) == 1)
             {
                 if (index == any)
                 {
@@ -207,20 +206,20 @@
                 }
                 return handler(GetLinkStruct(index));
             }
-            if (std::ranges::size(restrictions) == 2)
+            if (std::ranges::size(restriction) == 2)
             {
-                auto value = restrictions[1];
+                auto value = restriction[1];
                 if (index == any)
                 {
                     if (value == any)
                     {
                         return Data::Each(*this, handler);
                     }
-                    if (Each(std::array{index, value, any}, handler) == $break)
+                    if (Each(LinkType{index, value, any}, handler) == $break)
                     {
                         return $break;
                     }
-                    return Each(std::array{index, any, value}, handler);
+                    return Each(LinkType{index, any, value}, handler);
                 }
                 else
                 {
@@ -240,10 +239,10 @@
                     return _continue;
                 }
             }
-            if (std::ranges::size(restrictions) == 3)
+            if (std::ranges::size(restriction) == 3)
             {
-                auto source = restrictions[constants.SourcePart];
-                auto target = restrictions[constants.TargetPart];
+                auto source = restriction[constants.SourcePart];
+                auto target = restriction[constants.TargetPart];
                 if (index == any)
                 {
                     if (source == any && target == any)
@@ -285,7 +284,7 @@
                         }
                         return _continue;
                     }
-                    auto value = TLinkAddress();
+                    auto value = LinkAddressType();
                     if (source == any)
                     {
                         value = target;
@@ -308,17 +307,17 @@
         // / TODO: Возможно можно перемещать значения, если указан индекс, но значение существует в другом месте (но не в менеджере памяти, а в логике Links)
         // / </remarks>
         // NOTE: The following .NET attribute has no direct equivalent in C++:
-        // ORIGINAL LINE: [MethodImpl(MethodImplOptions.AggressiveInlining)] public TLinkAddress Update(IList<TLinkAddress> restrictions, IList<TLinkAddress> substitution)
+        // ORIGINAL LINE: [MethodImpl(MethodImplOptions.AggressiveInlining)] public LinkAddressType Update(IList<LinkAddressType> restriction, IList<LinkAddressType> substitution)
     public:
-        TLinkAddress Update(CArray<TLinkAddress> auto&& restrictions, CArray<TLinkAddress> auto&& substitution, auto&& handler)
+        LinkAddressType Update(const  LinkType& restriction, const LinkType& substitution, const WriteHandlerType& handler)
         {
             auto constants = Constants;
             auto null = constants.Null;
-            auto linkIndex = restrictions[constants.IndexPart];
+            auto linkIndex = restriction[constants.IndexPart];
             // TODO: 'ref locals' are not converted by C# to C++ Converter:
             // ORIGINAL LINE: ref var link = ref GetLinkReference(linkIndex);
             auto& link = GetLinkReference(linkIndex);
-            auto before = std::array{linkIndex, link.Source, link.Target};
+            LinkType before {linkIndex, link.Source, link.Target};
             // TODO: 'ref locals' are not converted by C# to C++ Converter:
             // ORIGINAL LINE: ref var header = ref GetHeaderReference();
             auto& header = GetHeaderReference();
@@ -352,7 +351,7 @@
 
         // TODO: Возможно нужно будет заполнение нулями, если внешнее API ими не заполняет пространство
     public:
-        TLinkAddress Create(auto&& restrictions, auto&& handler)
+        LinkAddressType Create(auto&& restriction, const WriteHandlerType& handler)
         {
             auto& header = GetHeaderReference();
             auto freeLink = header.FirstFreeLink;
@@ -366,7 +365,7 @@
                 if (header.AllocatedLinks > maximumPossibleInnerReference)
                 {
                     // TODO: !!!!!
-                    // throw std::make_shared<LinksLimitReachedException<TLinkAddress>>(maximumPossibleInnerReference);
+                    // throw std::make_shared<LinksLimitReachedException<LinkAddressType>>(maximumPossibleInnerReference);
                 }
                 if (header.AllocatedLinks >= (header.ReservedLinks - 1))
                 {
@@ -379,14 +378,14 @@
                 freeLink = header.AllocatedLinks;
                 _memory.UsedCapacity(_memory.UsedCapacity() + LinkSizeInBytes);
             }
-            return handler(null, Link{freeLink, TLinkAddress{}, TLinkAddress{}});
+            return handler(LinkType{}, Link{freeLink, LinkAddressType{}, LinkAddressType{}});
         }
 
     public:
-        TLinkAddress Delete(CArray<TLinkAddress> auto&& restrictions, auto&& handler)
+        LinkAddressType Delete(const  LinkType& restriction, const WriteHandlerType& handler)
         {
             auto& header = GetHeaderReference();
-            auto linkAddress = restrictions[Constants.IndexPart];
+            auto linkAddress = restriction[Constants.IndexPart];
             auto before = GetLinkStruct(linkAddress);
             if (linkAddress < header.AllocatedLinks)
             {
@@ -397,7 +396,7 @@
                 auto allLinksBeforeDecrementAllocatedLinks = All(*this);
                 --header.AllocatedLinks;
                 _memory.UsedCapacity(_memory.UsedCapacity() - LinkSizeInBytes);
-                while ((header.AllocatedLinks > TLinkAddress {}) && IsUnusedLink(header.AllocatedLinks))
+                while ((header.AllocatedLinks > LinkAddressType {}) && IsUnusedLink(header.AllocatedLinks))
                 {
                     auto allLinksBeforeDetachAllocatedLinks = All(*this);
                     _UnusedLinksListMethods->Detach(header.AllocatedLinks);
@@ -406,10 +405,10 @@
                     auto allLinksBeforeAfterAllocatedLinks = All(*this);
                 }
             }
-            return handler(before, null);
+            return handler(before, LinkType{});
         }
 
-        auto GetLinkStruct(TLinkAddress linkIndex) const
+        auto GetLinkStruct(LinkAddressType linkIndex) const
         {
             auto& link = this->GetLinkReference(linkIndex);
             return Link{linkIndex, link.Source, link.Target};
@@ -438,21 +437,21 @@
             return this->object().GetLinkReference(index);
         }
 
-        bool Exists(TLinkAddress link) const
+        bool Exists(LinkAddressType linkAddress) const
         {
-            if (IsExternalReference(Constants, link))
+            if (IsExternalReference(Constants, linkAddress))
             {
                 return false;
             }
-            return (link >= Constants.InternalReferencesRange.Minimum) && (link <= GetHeaderReference().AllocatedLinks) && !IsUnusedLink(link);
+            return (linkAddress >= Constants.InternalReferencesRange.Minimum) && (linkAddress <= GetHeaderReference().AllocatedLinks) && !IsUnusedLink(linkAddress);
         }
 
-        bool IsUnusedLink(TLinkAddress linkIndex) const
+        bool IsUnusedLink(LinkAddressType linkIndex) const
         {
             if (GetHeaderReference().FirstFreeLink != linkIndex)// May be this check is not needed
             {
                 auto& link = GetLinkReference(linkIndex);
-                return (link.SizeAsSource == TLinkAddress {}) && (link.Source != TLinkAddress {});
+                return (link.SizeAsSource == LinkAddressType {}) && (link.Source != LinkAddressType {});
             }
             else
             {

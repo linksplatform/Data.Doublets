@@ -4,7 +4,10 @@
     struct LinksCascadeUniquenessAndUsagesResolver : public LinksUniquenessResolver<TFacade, TDecorated>
     {
     using base = LinksUniquenessResolver<TFacade, TDecorated>;
-    public: using typename base::LinkAddressType;
+    using typename base::LinkType;
+    using typename base::LinkAddressType;
+    using typename base::WriteHandlerType;
+    using typename base::ReadHandlerType;
         public:
             USE_ALL_BASE_CONSTRUCTORS(LinksCascadeUniquenessAndUsagesResolver, base);
 

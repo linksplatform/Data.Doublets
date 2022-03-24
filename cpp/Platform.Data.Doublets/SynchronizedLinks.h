@@ -23,12 +23,12 @@
 
         public: TLinkAddress Count(IList<TLinkAddress> &restriction) { return SyncRoot.ExecuteReadOperation(restriction, Unsync.Count()); }
 
-        public: TLinkAddress Each(Func<IList<TLinkAddress>, TLinkAddress> handler, IList<TLinkAddress> &restrictions) { return SyncRoot.ExecuteReadOperation(handler, restrictions, (handler1, restrictions1) { return Unsync.Each(restrictions1, handler1)); } }
+        public: TLinkAddress Each(Func<IList<TLinkAddress>, TLinkAddress> handler, IList<TLinkAddress> &restriction) { return SyncRoot.ExecuteReadOperation(handler, restriction, (handler1, restriction1) { return Unsync.Each(restriction1, handler1)); } }
 
-        public: TLinkAddress Create(IList<TLinkAddress> &restrictions) { return SyncRoot.ExecuteWriteOperation(restrictions, Unsync.Create); }
+        public: TLinkAddress Create(IList<TLinkAddress> &restriction) { return SyncRoot.ExecuteWriteOperation(restriction, Unsync.Create); }
 
-        public: TLinkAddress Update(IList<TLinkAddress> &restrictions, IList<TLinkAddress> &substitution) { return SyncRoot.ExecuteWriteOperation(restrictions, substitution, Unsync.Update); }
+        public: TLinkAddress Update(IList<TLinkAddress> &restriction, IList<TLinkAddress> &substitution) { return SyncRoot.ExecuteWriteOperation(restriction, substitution, Unsync.Update); }
 
-        public: void Delete(IList<TLinkAddress> &restrictions) { SyncRoot.ExecuteWriteOperation(restrictions, Unsync.Delete); }
+        public: void Delete(IList<TLinkAddress> &restriction) { SyncRoot.ExecuteWriteOperation(restriction, Unsync.Delete); }
     };
 }
