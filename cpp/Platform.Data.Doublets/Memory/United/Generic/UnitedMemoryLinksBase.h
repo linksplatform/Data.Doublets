@@ -190,7 +190,7 @@
                         return $break;
                     }
                 }
-                return $break;
+                return $continue;
             }
             auto _continue = constants.Continue;
             auto any = constants.Any;
