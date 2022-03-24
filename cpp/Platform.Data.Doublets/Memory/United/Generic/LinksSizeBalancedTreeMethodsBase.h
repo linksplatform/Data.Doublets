@@ -145,41 +145,41 @@
 
         public: LinkAddressType EachUsage(LinkAddressType base, const ReadHandlerType& handler) { return this->EachUsageCore(base, this->GetTreeRoot(), handler); }
 
-        private: LinkAddressType EachUsageCore(LinkAddressType base, LinkAddressType link, const ReadHandlerType& handler)
+        private: LinkAddressType EachUsageCore(LinkAddressType base, LinkAddressType linkAddress, const ReadHandlerType& handler)
         {
             auto $continue = Constants.Continue;
-            if (link == 0)
+            if (linkAddress == 0)
             {
                 return $continue;
             }
-            auto linkBasePart = this->GetBasePartValue(link);
+            auto linkBasePart = this->GetBasePartValue(linkAddress);
             auto $break = Constants.Break;
             if (linkBasePart > (base))
             {
-                if ((this->EachUsageCore(base, this->GetLeftOrDefault(link), handler) == $break))
+                if ((this->EachUsageCore(base, this->GetLeftOrDefault(linkAddress), handler) == $break))
                 {
                     return $break;
                 }
             }
             else if (linkBasePart < base)
             {
-                if ((this->EachUsageCore(base, this->GetRightOrDefault(link), handler) == $break))
+                if ((this->EachUsageCore(base, this->GetRightOrDefault(linkAddress), handler) == $break))
                 {
                     return $break;
                 }
             }
             else
             {
-                auto values = this->GetLinkValues(link);
+                auto values = this->GetLinkValues(linkAddress);
                 if (handler(std::vector(values.begin(), values.end())) == ($break))
                 {
                     return $break;
                 }
-                if ((this->EachUsageCore(base, this->GetLeftOrDefault(link), handler) == $break))
+                if ((this->EachUsageCore(base, this->GetLeftOrDefault(linkAddress), handler) == $break))
                 {
                     return $break;
                 }
-                if ((this->EachUsageCore(base, this->GetRightOrDefault(link), handler) == $break))
+                if ((this->EachUsageCore(base, this->GetRightOrDefault(linkAddress), handler) == $break))
                 {
                     return $break;
                 }
