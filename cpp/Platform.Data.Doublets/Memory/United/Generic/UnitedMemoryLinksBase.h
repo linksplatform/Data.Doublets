@@ -16,7 +16,7 @@
     {
     public:
         using OptionsType = TLinkOptions;
-;
+        using LinkType = OptionsType::LinkType;
         using LinkAddressType = OptionsType::LinkAddressType;
         using WriteHandlerType = OptionsType::WriteHandlerType;
         using ReadHandlerType = OptionsType::ReadHandlerType;
