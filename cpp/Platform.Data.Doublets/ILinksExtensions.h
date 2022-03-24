@@ -253,18 +253,9 @@ namespace Platform::Data::Doublets
     }
 
         template<typename TStorage>
-        static auto All(const TStorage& storage, std::convertible_to<typename TStorage::LinkAddressType> auto ...restrictionPack)
+        static auto All(const TStorage& storage, std::convertible_to<typename TStorage::LinkAddressType> auto ... restrictionPack)
         {
-            constexpr auto length = sizeof...(valuesPack);
-            typename TStorage::LinkType restriction;
-            if constexpr (0 == length)
-            {
-                restriction { storage.Constants.Any, storage.Constants.Any, storage.Constants.Any };
-            }
-            else
-            {
-                restriction { static_cast<typename TStorage::LinkAddressType>(restrictionPack)... };
-            }
+//            typename TStorage::LinkType restriction { static_cast<typename TStorage::LinkAddressType>(restrictionPack)... };
             return All(storage, typename TStorage::LinkType{});
         }
     //
