@@ -542,8 +542,8 @@ namespace Platform::Data::Doublets
         template<typename TStorage>
         static typename TStorage::LinkAddressType Update(TStorage& storage, auto&& handler, std::convertible_to<typename TStorage::LinkAddressType> auto ...restrictionPack)
         {
-            constexpr auto length = sizeof...(valuesPack);
-            typename TStorage::LinkType restriction
+            constexpr auto length = sizeof...(restrictionPack);
+            typename TStorage::LinkType restriction;
             if constexpr (0 == length)
             {
                 restriction{ storage.Constants.Any, storage.Constants.Any, storage.Constants.Any };
