@@ -240,23 +240,23 @@ namespace Platform::Data::Doublets
     static typename TStorage::LinkAddressType GetTarget(const TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& link) { return link[storage.Constants.TargetPart]; }
 
     template<typename TStorage>
-    static auto All(const TStorage& storage, const typename TStorage::LinkType& restriction)
+    static std::vector<typename TStorage::LinkType> All(const TStorage& storage, const typename TStorage::LinkType& restriction)
     {
         using namespace Platform::Collections;
-        auto $continue {storage.Constants.Continue};
-        auto allLinks = std::vector<typename TStorage::LinkType>();
-        storage.Each(restriction, [&allLinks, $continue](const typename TStorage::LinkType& link){
-            allLinks.push_back(link);
-            return $continue;
-        });
-        return allLinks;
+//        auto $continue {storage.Constants.Continue};
+//        std::vector<typename TStorage::LinkType> allLinks {};
+//        storage.Each(restriction, [&allLinks, $continue](const typename TStorage::LinkType& link){
+//            allLinks.push_back(link);
+//            return $continue;
+//        });
+        return std::vector<typename TStorage::LinkType>{};
     }
 
         template<typename TStorage>
         static auto All(const TStorage& storage, std::convertible_to<typename TStorage::LinkAddressType> auto ... restrictionPack)
         {
-            typename TStorage::LinkType restriction { static_cast<typename TStorage::LinkAddressType>(restrictionPack)... };
-            return All(storage, restriction);
+//            typename TStorage::LinkType restriction { static_cast<typename TStorage::LinkAddressType>(restrictionPack)... };
+            return All(storage, typename TStorage::LinkType{});
         }
     //
     //    static Interfaces::CArray<typename TStorage::LinkAddressType>auto AllIndices<typename TStorage::LinkAddressType>(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction)
