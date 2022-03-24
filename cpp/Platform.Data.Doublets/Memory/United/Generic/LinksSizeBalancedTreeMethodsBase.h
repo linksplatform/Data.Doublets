@@ -37,7 +37,7 @@
 
         public: auto& GetLinkReference(LinkAddressType link) { return *(reinterpret_cast<RawLink<LinkAddressType>*>(Links) + link); }
 
-        public: auto GetLinkValues(LinkAddressType linkIndex)
+        public: Link<LinkAddressType> GetLinkValues(LinkAddressType linkIndex)
         {
             auto& link = GetLinkReference(linkIndex);
             return Link{linkIndex, link.Source, link.Target};
