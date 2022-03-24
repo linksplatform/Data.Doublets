@@ -179,6 +179,7 @@
     public: LinkAddressType Each(const  LinkType& restriction, const ReadHandlerType& handler) const
         {
             auto constants = Constants;
+            auto $continue {constants.Continue};
             auto $break = constants.Break;
             if (std::ranges::size(restriction) == 0)
             {
