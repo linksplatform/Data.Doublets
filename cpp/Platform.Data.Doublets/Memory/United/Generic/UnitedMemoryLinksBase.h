@@ -248,7 +248,14 @@
                 {
                     if (source == any && target == any)
                     {
-                        return Data::Each(*this, handler);
+                        for (auto link = LinkAddressType {1}; link <= GetHeaderReference().AllocatedLinks; ++link)
+                        {
+                            if (Exists(link) && (handler(GetLinkStruct(link)) == $break))
+                            {
+                                return $break;
+                            }
+                        }
+                        return $continue;
                     }
                     else if (source == any)
                     {
