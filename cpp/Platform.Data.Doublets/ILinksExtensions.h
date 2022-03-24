@@ -543,13 +543,14 @@ namespace Platform::Data::Doublets
         static typename TStorage::LinkAddressType Update(TStorage& storage, auto&& handler, std::convertible_to<typename TStorage::LinkAddressType> auto ...restrictionPack)
         {
             constexpr auto length = sizeof...(valuesPack);
+            typename TStorage::LinkType restriction
             if constexpr (0 == length)
             {
-                typename TStorage::LinkType restriction{ storage.Constants.Any, storage.Constants.Any, storage.Constants.Any };
+                restriction{ storage.Constants.Any, storage.Constants.Any, storage.Constants.Any };
             }
             else
             {
-                typename TStorage::LinkType restriction{ static_cast<typename TStorage::HandlerParameterType>(restrictionPack)... };
+                restriction{ static_cast<typename TStorage::HandlerParameterType>(restrictionPack)... };
             }
             return Update(storage, restriction, handler);
         }
