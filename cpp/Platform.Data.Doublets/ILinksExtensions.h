@@ -255,7 +255,7 @@ namespace Platform::Data::Doublets
         template<typename TStorage>
         static auto All(const TStorage& storage, std::convertible_to<typename TStorage::LinkAddressType> auto ...restrictionPack)
         {
-            constexpr auto length = sizeof...(restrictionPack);
+            constexpr auto length = sizeof...(valuesPack);
             typename TStorage::LinkType restriction;
             if constexpr (0 == length)
             {
