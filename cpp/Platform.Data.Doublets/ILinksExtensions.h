@@ -259,11 +259,11 @@ namespace Platform::Data::Doublets
             typename TStorage::LinkType restriction;
             if constexpr (0 == length)
             {
-                restriction = { storage.Constants.Any, storage.Constants.Any, storage.Constants.Any };
+                restriction { storage.Constants.Any, storage.Constants.Any, storage.Constants.Any };
             }
             else
             {
-                restriction = { static_cast<typename TStorage::LinkAddressType>(restrictionPack)... };
+                restriction { static_cast<typename TStorage::LinkAddressType>(restrictionPack)... };
             }
             return All(storage, typename TStorage::LinkType{});
         }
