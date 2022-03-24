@@ -243,12 +243,12 @@ namespace Platform::Data::Doublets
     static std::vector<typename TStorage::LinkType> All(const TStorage& storage, const typename TStorage::LinkType& restriction)
     {
         using namespace Platform::Collections;
-//        auto $continue {storage.Constants.Continue};
-//        std::vector<typename TStorage::LinkType> allLinks {};
-//        storage.Each(restriction, [&allLinks, $continue](const typename TStorage::LinkType& link){
-//            allLinks.push_back(link);
-//            return $continue;
-//        });
+        auto $continue {storage.Constants.Continue};
+        std::vector<typename TStorage::LinkType> allLinks {};
+        storage.Each(restriction, [&allLinks, $continue](const typename TStorage::LinkType& link){
+            allLinks.push_back(link);
+            return $continue;
+        });
         return std::vector<typename TStorage::LinkType>{};
     }
 
