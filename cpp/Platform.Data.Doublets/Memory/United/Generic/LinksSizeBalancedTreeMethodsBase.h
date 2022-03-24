@@ -11,6 +11,7 @@
           public Interfaces::Polymorph<Self>
     {
         using OptionsType = TLinksOptions;
+        using LinkType = typename OptionsType::LinkType;
         using LinkAddressType = typename OptionsType::LinkAddressType;
         using ReadHandlerType = typename OptionsType::ReadHandlerType;
         static constexpr LinksConstants<LinkAddressType> Constants = OptionsType::Constants;

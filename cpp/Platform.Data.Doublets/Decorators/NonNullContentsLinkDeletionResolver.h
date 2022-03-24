@@ -4,6 +4,7 @@
     struct NonNullContentsLinkDeletionResolver : public DecoratorBase<TFacade, TDecorated>
     {
         using base = DecoratorBase<TFacade, TDecorated>;
+        using typename base::LinkType;
         using typename base::LinkAddressType;
         using typename base::WriteHandlerType;
         using typename base::ReadHandlerType;

@@ -13,6 +13,7 @@
     {
         using base = UnitedMemoryLinksBase<UnitedMemoryLinks<TLinksOptions, TMemory, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks, TBase...>, TLinksOptions, TMemory, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks, TBase...>;
 
+        using LinkType = base::LinkType;
         using LinkAddressType = base::LinkAddressType;
         using WriteHandlerType = base::WriteHandlerType;
         using ReadHandlerType = base::ReadHandlerType;
