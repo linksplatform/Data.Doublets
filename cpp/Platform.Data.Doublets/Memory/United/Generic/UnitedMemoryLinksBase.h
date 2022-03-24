@@ -437,13 +437,13 @@
             return this->object().GetLinkReference(index);
         }
 
-        bool Exists(LinkAddressType link) const
+        bool Exists(LinkAddressType linkAddress) const
         {
-            if (IsExternalReference(Constants, link))
+            if (IsExternalReference(Constants, linkAddress))
             {
                 return false;
             }
-            return (link >= Constants.InternalReferencesRange.Minimum) && (link <= GetHeaderReference().AllocatedLinks) && !IsUnusedLink(link);
+            return (linkAddress >= Constants.InternalReferencesRange.Minimum) && (linkAddress <= GetHeaderReference().AllocatedLinks) && !IsUnusedLink(linkAddress);
         }
 
         bool IsUnusedLink(LinkAddressType linkIndex) const

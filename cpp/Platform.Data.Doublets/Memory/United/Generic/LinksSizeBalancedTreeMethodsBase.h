@@ -27,7 +27,7 @@
 
         public: LinkAddressType GetTreeRoot() { return this->object().GetTreeRoot(); }
 
-        public: LinkAddressType GetBasePartValue(LinkAddressType link) { return this->object().GetBasePartValue(link); }
+        public: LinkAddressType GetBasePartValue(LinkAddressType linkAddress) { return this->object().GetBasePartValue(linkAddress); }
 
         public: bool FirstIsToTheRightOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource, LinkAddressType rootTarget) { return this->object().FirstIsToTheRightOfSecond(source, target, rootSource, rootTarget); }
 
@@ -35,7 +35,7 @@
 
         public: auto& GetHeaderReference() { return *reinterpret_cast<LinksHeader<LinkAddressType>*>(Header); }
 
-        public: auto& GetLinkReference(LinkAddressType link) { return *(reinterpret_cast<RawLink<LinkAddressType>*>(Links) + link); }
+        public: auto& GetLinkReference(LinkAddressType linkAddress) { return *(reinterpret_cast<RawLink<LinkAddressType>*>(Links) + linkAddress); }
 
         public: Link<LinkAddressType> GetLinkValues(LinkAddressType linkIndex)
         {
@@ -107,7 +107,7 @@
             return 0;
         }
 
-        public: LinkAddressType CountUsages(LinkAddressType link)
+        public: LinkAddressType CountUsages(LinkAddressType linkAddress)
         {
             auto root = this->GetTreeRoot();
             auto total = this->GetSize(root);
@@ -115,7 +115,7 @@
             while (root != 0)
             {
                 auto base = this->GetBasePartValue(root);
-                if (base <= link)
+                if (base <= linkAddress)
                 {
                     root = this->GetRightOrDefault(root);
                 }
@@ -130,7 +130,7 @@
             while (root != 0)
             {
                 auto base = this->GetBasePartValue(root);
-                if (base >= link)
+                if (base >= linkAddress)
                 {
                     root = this->GetLeftOrDefault(root);
                 }

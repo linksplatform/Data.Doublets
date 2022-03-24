@@ -226,13 +226,13 @@ namespace Platform::Data::Doublets::Tests
 //            Expects(Count(storage) == created);
 //            for (auto i { 0 }; i < N; ++i)
 //            {
-//                typename TStorage::LinkAddressType link = i + 1;
+//                typename TStorage::LinkAddressType linkAddress = i + 1;
 //                std::cout << "Links count before deleting: " << Count(storage) << std::endl;
-//                if (Exists(storage, link))
+//                if (Exists(storage, linkAddress))
 //                {
-//                    std::cout << "Delete " << link << std::endl;
+//                    std::cout << "Delete " << linkAddress << std::endl;
 //
-//                    Data::Delete(storage, link);
+//                    Data::Delete(storage, linkAddress);
 //                    ++deleted;
 //                    allLinks = { All(storage)};
 //                    for(auto link : allLinks)

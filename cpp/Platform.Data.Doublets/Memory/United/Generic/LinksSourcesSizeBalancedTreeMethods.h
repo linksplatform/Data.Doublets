@@ -29,7 +29,7 @@
 
         public: LinkAddressType GetTreeRoot() { return this->GetHeaderReference().RootAsSource; }
 
-        public: LinkAddressType GetBasePartValue(LinkAddressType link) { return this->GetLinkReference(link).Source; }
+        public: LinkAddressType GetBasePartValue(LinkAddressType linkAddress) { return this->GetLinkReference(linkAddress).Source; }
 
         public: bool FirstIsToTheLeftOfSecond(LinkAddressType firstSource, LinkAddressType firstTarget, LinkAddressType secondSource, LinkAddressType secondTarget) { return (firstSource < secondSource) || (firstSource == secondSource && firstTarget < secondTarget); }
 
