@@ -64,13 +64,18 @@
             }
 
 
-//        public: Link(std::ranges::range auto&& range)
-//        {
-//            for (std::size_t i = 0; auto&& item : range | std::views::take(3))
-//            {
-//                (*this)[i++] = item; // TODO: later later use std::forward
-//            }
-//        }
+        public: Link(std::ranges::range auto&& range)
+        {
+            for (std::size_t i = 0; auto&& item : range | std::views::take(3))
+            {
+                (*this)[i++] = item; // TODO: later later use std::forward
+            }
+        }
+
+    public: operator std::vector<TLinkAddress> ()
+        {
+            return std::vector<TLinkAddress>{Index, Source, Target};
+        }
 
         public: bool IsNull() const noexcept
         {

@@ -378,7 +378,7 @@
                 freeLink = header.AllocatedLinks;
                 _memory.UsedCapacity(_memory.UsedCapacity() + LinkSizeInBytes);
             }
-            return handler(std::vector<LinkAddressType>{}, Link{freeLink, LinkAddressType{}, LinkAddressType{}});
+            return handler(Link<LinkAddressType>{0, 0, 0}, Link<LinkAddressType>{freeLink, 0, 0});
         }
 
     public:
@@ -405,10 +405,10 @@
                     auto allLinksBeforeAfterAllocatedLinks = All(*this);
                 }
             }
-            return handler(before, std::vector<LinkAddressType>{});
+            return handler(before, Link<LinkAddressType>{});
         }
 
-        auto GetLinkStruct(LinkAddressType linkIndex) const
+        Link<LinkAddressType> GetLinkStruct(LinkAddressType linkIndex) const
         {
             auto& link = this->GetLinkReference(linkIndex);
             return Link{linkIndex, link.Source, link.Target};
