@@ -62,7 +62,6 @@
     public:
         void SetPointers(TMemory& memory)
         {
-            std::cout << memory.Pointer() << std::endl;
             _links = static_cast<std::byte*>(memory.Pointer());
             _header = _links;
             base::_SourcesTreeMethods = new TSourceTreeMethods(_links, _header);
