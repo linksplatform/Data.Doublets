@@ -846,27 +846,21 @@ namespace Platform::Data::Doublets
     {
         return storage.CountUsages(linkAddress) != 0;
     }
-    //
-    //
-    //
-    //
-    //    template<typename TStorage>
-    //    static void DeleteByQuery(TStorage& storage, Link<typename TStorage::LinkAddressType> query)
-    //    {
-    //        auto queryResult = List<typename TStorage::LinkAddressType>();
-    //        auto queryResultFiller = ListFiller<typename TStorage::LinkAddressType, typename TStorage::LinkAddressType>(queryResult, storage.Constants.Continue);
-    //        storage.Each(queryResultFiller.AddFirstAndReturnConstant, query);
-    //        foreach (auto link in queryResult)
-    //        {
-    //            Delete(storage, link);
-    //        }
-    //    }
-    //
-    //
-    //
 
-    //
 
-    //
+
+    template<typename TStorage>
+    static void DeleteByQuery(TStorage& storage, Link<typename TStorage::LinkAddressType> query)
+    {
+        std::vector<typename TStorage::LinkAddressType> queryResult;
+        auto queryResultFiller = ListFiller<typename TStorage::LinkAddressType, typename TStorage::LinkAddressType>(queryResult, storage.Constants.Continue);
+        storage.Each(queryResultFiller.AddFirstAndReturnConstant, query);
+        for (auto link: queryResult)
+        {
+            Delete(storage, link);
+        }
+    }
+
+
 
 }
