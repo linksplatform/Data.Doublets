@@ -1,6 +1,7 @@
 pub use constants::LinksConstants;
 pub use converters::AddrToRaw;
 pub use converters::RawToAddr;
+pub use flow::Flow;
 pub use hybrid::Hybrid;
 pub use links::Links;
 pub use links::{ReadHandler, WriteHandler};
