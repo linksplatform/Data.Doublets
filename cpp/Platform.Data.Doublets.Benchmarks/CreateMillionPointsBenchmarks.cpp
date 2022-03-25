@@ -9,8 +9,7 @@ namespace Platform::Data::Doublets::Benchmarks
         Expects(!Collections::IsWhiteSpace(tempFilePath));
         try
         {
-            constexpr LinksConstants<TLinkAddress> constants {true};
-            Ffi::UnitedMemoryLinks<TLinkAddress, constants> ffiStorage {tempFilePath};
+            Ffi::UnitedMemoryLinks<LinksOptions<>> ffiStorage {tempFilePath};
             for (auto _ : state)
             {
                 for (std::size_t i = 0; i < state.range(0); ++i)
@@ -32,27 +31,14 @@ namespace Platform::Data::Doublets::Benchmarks
     {
         using namespace Platform::Memory;
         using namespace Platform::Data::Doublets::Memory::United::Generic;
-        std::string tempFilePath { std::tmpnam(nullptr) };
-        Expects(!Collections::IsWhiteSpace(tempFilePath));
-        try
+        UnitedMemoryLinks<LinksOptions<>, HeapResizableDirectMemory> storage {HeapResizableDirectMemory{}};
+        for (auto _ : state)
         {
-            constexpr LinksConstants<TLinkAddress> constants {true};
-            FileMappedResizableDirectMemory memory {tempFilePath};
-            UnitedMemoryLinks<TLinkAddress, FileMappedResizableDirectMemory, constants> storage {std::move(memory)};
-            for (auto _ : state)
+            for (std::size_t i = 0; i < state.range(0); ++i)
             {
-                for (std::size_t i = 0; i < state.range(0); ++i)
-                {
-                    CreatePoint(storage);
-                }
+                CreatePoint(storage);
             }
         }
-        catch (...)
-        {
-            std::remove(tempFilePath.c_str());
-            throw;
-        }
-        std::remove(tempFilePath.c_str());
     }
 
     BENCHMARK(BM_CreateMillionPointsFfi)->Arg(1000000);
