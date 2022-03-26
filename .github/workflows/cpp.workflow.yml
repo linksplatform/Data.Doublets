@@ -14,7 +14,6 @@ env:
 jobs:
   testCpp:
     runs-on: ubuntu-latest
-    needs: findCppDirectory
     steps:
       - uses: actions/checkout@v1
         with:
