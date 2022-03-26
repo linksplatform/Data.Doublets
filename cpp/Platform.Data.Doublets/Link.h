@@ -35,7 +35,7 @@
                 (*this)[i++] = item; // TODO: later later use std::forward
             }
         }
-
+ 
         public: bool IsNull() const noexcept
         {
             constexpr auto null = _constants.Null;
