@@ -3,8 +3,8 @@ name: cppWorkflow
 on:
   push:
     branches: main
-    paths:
-      - 'cpp/**'
+#     paths:
+#       - 'cpp/**'
 
 env:
   NUGETTOKEN: ${{ secrets.NUGET_TOKEN }}
