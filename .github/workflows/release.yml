@@ -2,7 +2,7 @@ name: releaseWorkflow
 
 on:
   workflow_run:
-    workflows: ["cppWorkflow", "csWorkflow"]
+    workflows: ["cppWorkflow", "csWorkflow", "rustWorkflow"]
     types:
       - completed
 
