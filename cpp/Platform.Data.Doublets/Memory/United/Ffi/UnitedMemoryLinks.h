@@ -6,5 +6,5 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
         public:
         using base = UnitedMemoryLinksBase<UnitedMemoryLinks<TLinkAddress, VConstants, TBase...>, TLinkAddress, VConstants, TBase...>;
         using base::base;
-    };
+    }; 
 }
