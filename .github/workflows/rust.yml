@@ -1,114 +1,79 @@
-name: CD
+name: rustWorkflow
 
 on:
   push:
-    branches: main
-    paths:
-      - 'rust/**'
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+name: Rust
 
 env:
-  NUGETTOKEN: ${{ secrets.NUGET_TOKEN }}
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  SCRIPTS_BASE_URL: https://raw.githubusercontent.com/linksplatform/Scripts/master/MultiProjectRepository
+  RUST_BACKTRACE: 1
+  rust_stable: stable
+  rust_nightly: nightly
+
+defaults:
+  run:
+    shell: bash
 
 jobs:
-  test_rust:
+
+  pass:
+    name: all passed
+    runs-on: ubuntu-latest
+    needs:
+      - test
+      - valgrind
+    steps:
+      - run: exit 0
+
+  test:
+    name: test doublets full
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ macos-latest, windows-latest, ubuntu-latest ]
+        os:
+          - windows-latest
+          - ubuntu-latest
+          - macos-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Rustup nightly
-        run: rustup toolchain install nightly
-      - name: All Tests
-        run: |
-          cd rust
-          cargo +nightly test --release -- --exact --nocapture
-      - name: All Behcmarks
-        run: |
-          cd rust
-          cargo +nightly bench
-  publish_rust_windows:
-    needs: [ test_rust ]
-    if: github.event_name == 'push'
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Rustup nightly
-        run: |
-          rustup toolchain install nightly
-      - name: Build
-        run: |
-          cd rust/ffi
-          cargo +nightly build --release
-      - name: publish
-        shell: bash
-        run: |
-          export TARGET_PLATFORM="windows-x64"
-          export LIB_NAME="doublets_ffi.dll"
-          export TARGET_LIB_NAME="Platform.Doublets.dll"
-          ./publish-bin.sh
-  publish_rust_linux:
-    needs: [ test_rust ]
-    if: github.event_name == 'push'
+      - name: Install Rust ${{ env.rust_nigthly }}
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: ${{ env.rust_stable }}
+          override: true
+      - name: Install Rust Nightly
+        run: rustup default nightly
+
+      - name: test doublets
+        run: cargo +nightly test --lib
+        working-directory: rust
+
+  valgrind:
+    name: valgrind
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Rustup nightly
+      - name: Install Rust ${{ env.rust_nigthly }}
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: ${{ env.rust_stable }}
+          override: true
+      - name: Install Rust Nightly
+        run: rustup default nightly
+
+      - uses: Swatinem/rust-cache@v1
+
+      - name: Install Valgrind
         run: |
-          rustup toolchain install nightly
-      - name: Build
-        run: |
-          cd rust/ffi
-          cargo +nightly build --release
-      - name: publish
-        run: |
-          export TARGET_PLATFORM="linux-x64"
-          export LIB_NAME="libdoublets_ffi.so"
-          export TARGET_LIB_NAME="libPlatform.Doublets.so"
-          bash ./publish-bin.sh
-  publish_rust_macos:
-    needs: [ test_rust ]
-    if: github.event_name == 'push'
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Rustup nightly
-        run: |
-          rustup toolchain install nightly
-      - name: Build
-        run: |
-          cd rust/ffi
-          cargo +nightly build --release
-      - name: publish
-        run: |
-          export TARGET_PLATFORM="macos-x64"
-          export LIB_NAME="libdoublets_ffi.dylib"
-          export TARGET_LIB_NAME="libPlatform.Doublets.dylib"
-          bash ./publish-bin.sh
-  publish_rust_to_nuget:
-    runs-on: ubuntu-latest
-    needs: [ publish_rust_macos, publish_rust_linux, publish_rust_windows ]
-    if: github.event_name == 'push'
-    steps:
-      - uses: actions/checkout@v2
-      - name: Push
-        run: |
-          cd rust/ffi/nuget
-          mkdir runtimes && cd runtimes
-          wget https://github.com/linksplatform/Data.Doublets/raw/binaries/windows-x64/native/Platform.Doublets.dll
-          wget https://github.com/linksplatform/Data.Doublets/raw/binaries/macos-x64/native/libPlatform.Doublets.dylib
-          wget https://github.com/linksplatform/Data.Doublets/raw/binaries/linux-x64/native/libPlatform.Doublets.so
-          ls
-          cd ..
-          cd ../../../
-          export REPOSITORY_NAME=$(basename ${{ github.repository }})
-          wget "https://gist.githubusercontent.com/uselessgoddess/54e286dbda22935313615d65723e7670/raw/e98fe0073bf87f296786b543b8051d78f3144924/push-cpp-nuget.sh"
-          CPP_PACKAGE_NUSPEC_PATH="rust/ffi/nuget/Platform.Data.Doublets.FFI.nuspec"
-          echo "$CPP_PACKAGE_NUSPEC_PATH"
-          echo "$CPP_PACKAGE_NUSPEC_PATH" > CPP_PACKAGE_NUSPEC_PATH.txt
-          CPP_PACKAGE_VERSION="0.0.1"
-          echo "$CPP_PACKAGE_VERSION"
-          echo "$CPP_PACKAGE_VERSION" > CPP_PACKAGE_VERSION.txt
-          bash ./push-cpp-nuget.sh
+          sudo apt-get update -y
+          sudo apt-get install -y valgrind
+      - name: cargo build
+        run: cargo +nightly build --bin test-mem
+        working-directory: rust/integration
+
+      - name: Run valgrind
+        run: valgrind --error-exitcode=1 --leak-check=full --show-leak-kinds=all ./target/debug/test-mem
+        working-directory: rust/integration
