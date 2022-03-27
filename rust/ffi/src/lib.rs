@@ -36,7 +36,7 @@ use std::error::Error;
 use std::ops::{RangeInclusive, Try};
 use tracing_subscriber::fmt::format::Format;
 
-// TODO: for macro
+// TODO: For macro 
 use doublets::doublets::decorators::*;
 
 fn result_into_log<R, E: Display>(result: Result<R, E>, default: R) -> R {
