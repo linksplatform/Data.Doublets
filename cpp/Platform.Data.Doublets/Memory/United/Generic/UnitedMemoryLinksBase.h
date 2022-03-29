@@ -47,7 +47,7 @@
 
     public:
     protected:
-        UnitedMemoryLinksBase(TMemory memory, std::int64_t memoryReservationStep) :
+        UnitedMemoryLinksBase(TMemory&& memory, std::int64_t memoryReservationStep) :
             _memory(std::move(memory)), _memoryReservationStep(memoryReservationStep)
         {
         }
