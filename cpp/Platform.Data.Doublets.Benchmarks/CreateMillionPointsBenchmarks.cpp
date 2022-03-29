@@ -5,25 +5,25 @@ namespace Platform::Data::Doublets::Benchmarks
     {
         using namespace Platform::Memory;
         using namespace Platform::Data::Doublets::Memory::United;
-        std::string tempFilePath { std::tmpnam(nullptr) };
-        Expects(!Collections::IsWhiteSpace(tempFilePath));
-        try
+        for (auto _ : state)
         {
-            Ffi::UnitedMemoryLinks<LinksOptions<>> ffiStorage {tempFilePath};
-            for (auto _ : state)
+            std::string tempFilePath { std::tmpnam(nullptr) };
+            Expects(!Collections::IsWhiteSpace(tempFilePath));
+            try
             {
+                Ffi::UnitedMemoryLinks<LinksOptions<>> ffiStorage{tempFilePath};
                 for (std::size_t i = 0; i < state.range(0); ++i)
                 {
                     CreatePoint(ffiStorage);
                 }
             }
-        }
-        catch (...)
-        {
+            catch (...)
+            {
+                std::remove(tempFilePath.c_str());
+                throw;
+            }
             std::remove(tempFilePath.c_str());
-            throw;
         }
-        std::remove(tempFilePath.c_str());
     }
 
     using TLinkAddress = std::uint64_t;
@@ -31,13 +31,24 @@ namespace Platform::Data::Doublets::Benchmarks
     {
         using namespace Platform::Memory;
         using namespace Platform::Data::Doublets::Memory::United::Generic;
-        UnitedMemoryLinks<LinksOptions<>, HeapResizableDirectMemory> storage {HeapResizableDirectMemory{}};
         for (auto _ : state)
         {
-            for (std::size_t i = 0; i < state.range(0); ++i)
+            std::string tempFilePath { std::tmpnam(nullptr) };
+            Expects(!Collections::IsWhiteSpace(tempFilePath));
+            try
             {
-                CreatePoint(storage);
+                UnitedMemoryLinks<LinksOptions<>, FileMappedResizableDirectMemory> storage{FileMappedResizableDirectMemory{tempFilePath}};
+                for (std::size_t i = 0; i < state.range(0); ++i)
+                {
+                    CreatePoint(storage);
+                }
             }
+            catch (...)
+            {
+                std::remove(tempFilePath.c_str());
+                throw;
+            }
+            std::remove(tempFilePath.c_str());
         }
     }
 
