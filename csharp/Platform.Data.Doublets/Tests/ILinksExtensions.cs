@@ -35,7 +35,7 @@ namespace Platform.Data.Doublets.Tests
 
         private static void EnsureEqual<T>(T expected, T actual, string message, IEqualityComparer<T> equalityComparer)
         {
-            if (!equalityComparer.Equals(expected, actual))
+            if (equalityComparer.Equals(expected, actual))
             {
                 return;
             }
