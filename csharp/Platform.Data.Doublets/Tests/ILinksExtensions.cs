@@ -57,7 +57,7 @@ namespace Platform.Data.Doublets.Tests
         /// <para>The links.</para>
         /// <para></para>
         /// </param>
-        public static void TestCRUDOperations<T>(this ILinks<T> links)
+        public static void TestCRUDOperations<T> (this ILinks<T> links)
         {
             var constants = links.Constants;
 
@@ -69,8 +69,8 @@ namespace Platform.Data.Doublets.Tests
             // Create Link
             EnsureTrue(equalityComparer.Equals(links.Count(), zero));
 
-            var setter = new Setter<T>(constants.Null);
-            links.Each(constants.Any, constants.Any, setter.SetAndReturnTrue);
+            var setter = new Setter<T, T>(constants.Continue, constants.Continue, constants.Null);
+            links.Each(setter.SetFirstFromNonNullListAndReturnTrue, constants.Any, constants.Any);
 
             EnsureTrue(equalityComparer.Equals(setter.Result, constants.Null));
 
@@ -86,8 +86,8 @@ namespace Platform.Data.Doublets.Tests
             EnsureTrue(equalityComparer.Equals(links.Count(), one));
 
             // Get first link
-            setter = new Setter<T>(constants.Null);
-            links.Each(constants.Any, constants.Any, setter.SetAndReturnFalse);
+            setter = new Setter<T, T>(constants.Continue, constants.Continue, constants.Null);
+            links.Each(setter.SetFirstFromNonNullListAndReturnTrue, constants.Any, constants.Any);
 
             EnsureTrue(equalityComparer.Equals(setter.Result, linkAddress));
 
@@ -114,8 +114,8 @@ namespace Platform.Data.Doublets.Tests
 
             EnsureTrue(equalityComparer.Equals(links.Count(), zero));
 
-            setter = new Setter<T>(constants.Null);
-            links.Each(constants.Any, constants.Any, setter.SetAndReturnTrue);
+            setter = new Setter<T, T>(constants.Continue, constants.Continue, constants.Null);
+            links.Each(setter.SetFirstFromNonNullListAndReturnTrue, constants.Any, constants.Any);
 
             EnsureTrue(equalityComparer.Equals(setter.Result, constants.Null));
         }
@@ -183,14 +183,14 @@ namespace Platform.Data.Doublets.Tests
             EnsureTrue(equalityComparer.Equals(link3.Target, linkAddress2));
 
             // Search for created link
-            var setter1 = new Setter<T>(constants.Null);
-            links.Each(h106E, h108E, setter1.SetAndReturnFalse);
+            var setter1 = new Setter<T, T>(constants.Continue, constants.Continue, constants.Null);
+            links.Each(setter1.SetFirstAndReturnFalse, h106E, h108E);
 
             EnsureTrue(equalityComparer.Equals(setter1.Result, linkAddress1));
 
             // Search for nonexistent link
-            var setter2 = new Setter<T>(constants.Null);
-            links.Each(h106E, h107E, setter2.SetAndReturnFalse);
+            var setter2 = new Setter<T, T>(constants.Continue, constants.Continue, constants.Null);
+            links.Each(setter2.SetFirstAndReturnFalse, h106E, h107E);
 
             EnsureTrue(equalityComparer.Equals(setter2.Result, constants.Null));
 
@@ -209,8 +209,8 @@ namespace Platform.Data.Doublets.Tests
 
             EnsureTrue(equalityComparer.Equals(links.Count(), two));
 
-            var setter3 = new Setter<T>(constants.Null);
-            links.Each(constants.Any, constants.Any, setter3.SetAndReturnTrue);
+            var setter3 = new Setter<T, T>(constants.Continue, constants.Continue, constants.Null);
+            links.Each(setter3.SetFirstAndReturnFalse, constants.Any, constants.Any);
 
             EnsureTrue(equalityComparer.Equals(setter3.Result, linkAddress2));
         }
@@ -275,6 +275,24 @@ namespace Platform.Data.Doublets.Tests
                     }
                 }
                 EnsureTrue(addressToUInt64Converter.Convert(links.Count()) == 0L);
+            }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="links"></param>
+        /// <param name="numberOfOperations"></param>
+        /// <typeparam name="TLinkAddress"></typeparam>
+        public static void TestMultipleCreationsAndDeletions<TLinkAddress>(this ILinks<TLinkAddress> links, int numberOfOperations)
+        {
+            for (int i = 0; i < numberOfOperations; i++)
+            {
+                links.Create();
+            }
+            for (int i = 0; i < numberOfOperations; i++)
+            {
+                links.Delete(links.Count());
             }
         }
 
