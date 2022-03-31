@@ -17,32 +17,8 @@ namespace Platform.Data.Doublets.Tests
     /// </summary>
     public static class ILinksExtensions
     {
-        /// <summary>
-        /// <para></para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="boolean">
-        /// <para></para>
-        /// <para></para>
-        /// </param>
         private static void EnsureTrue(bool boolean) => EnsureTrue(boolean, default);
 
-        /// <summary>
-        /// <para></para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="boolean">
-        /// <para></para>
-        /// <para></para>
-        /// </param>
-        /// <param name="message">
-        /// <para></para>
-        /// <para></para>
-        /// </param>
-        /// <exception cref="ArgumentException">
-        /// <para></para>
-        /// <para></para>
-        /// </exception>
         private static void EnsureTrue(bool boolean, string message)
         {
             if (boolean)
@@ -53,74 +29,10 @@ namespace Platform.Data.Doublets.Tests
             throw new ArgumentException("EnsureTrue Failed. The value is not a true. " + messageBuilder());
         }
 
-        /// <summary>
-        /// <para></para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="expected">
-        /// <para></para>
-        /// <para></para>
-        /// </param>
-        /// <param name="actual">
-        /// <para></para>
-        /// <para></para>
-        /// </param>
-        /// <typeparam name="T">
-        /// <para></para>
-        /// <para></para>
-        /// </typeparam>
         private static void EnsureEqual<T>(T expected, T actual) => EnsureEqual(expected, actual, default);
 
-        /// <summary>
-        /// <para></para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="expected">
-        /// <para></para>
-        /// <para></para>
-        /// </param>
-        /// <param name="actual">
-        /// <para></para>
-        /// <para></para>
-        /// </param>
-        /// <param name="message">
-        /// <para></para>
-        /// <para></para>
-        /// </param>
-        /// <typeparam name="T">
-        /// <para></para>
-        /// <para></para>
-        /// </typeparam>
         private static void EnsureEqual<T>(T expected, T actual, string message) => EnsureEqual(expected, actual, message, EqualityComparer<T>.Default);
 
-        /// <summary>
-        /// <para></para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="expected">
-        /// <para></para>
-        /// <para></para>
-        /// </param>
-        /// <param name="actual">
-        /// <para></para>
-        /// <para></para>
-        /// </param>
-        /// <param name="message">
-        /// <para></para>
-        /// <para></para>
-        /// </param>
-        /// <param name="equalityComparer">
-        /// <para></para>
-        /// <para></para>
-        /// </param>
-        /// <typeparam name="T">
-        /// <para></para>
-        /// <para></para>
-        /// </typeparam>
-        /// <exception cref="ArgumentException">
-        /// <para></para>
-        /// <para></para>
-        /// </exception>
         private static void EnsureEqual<T>(T expected, T actual, string message, IEqualityComparer<T> equalityComparer)
         {
             if (!equalityComparer.Equals(expected, actual))
