@@ -1,12 +1,8 @@
-name: rustWorkflow
+name: RustWorkflow
 
 on:
   push:
     branches: ["main"]
-  pull_request:
-    branches: ["main"]
-
-name: Rust
 
 env:
   RUST_BACKTRACE: 1
@@ -70,6 +66,7 @@ jobs:
         run: |
           sudo apt-get update -y
           sudo apt-get install -y valgrind
+
       - name: cargo build
         run: cargo +nightly build --bin test-mem
         working-directory: rust/integration
