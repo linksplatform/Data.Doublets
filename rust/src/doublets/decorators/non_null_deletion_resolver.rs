@@ -1,55 +1,88 @@
 use std::borrow::BorrowMut;
 use std::default::default;
 use std::marker::PhantomData;
+use std::ops::Try;
 
 use num_traits::zero;
 use smallvec::SmallVec;
 
-use crate::doublets::{ILinks, ILinksExtensions, Link, Result};
-use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstants};
+use crate::data::ToQuery;
+use crate::data::{Links, LinksConstants};
+use crate::doublets::LinksError;
+use crate::doublets::{Doublets, ILinksExtensions, Link, Result};
 use crate::num::LinkType;
+use crate::query;
 
-pub struct NonNullDeletionResolver<T: LinkType, Links: ILinks<T>> {
-    links: Links,
+pub struct NonNullDeletionResolver<T: LinkType, L: Doublets<T>> {
+    links: L,
 
     _phantom: PhantomData<T>,
 }
 
-impl<T: LinkType, Links: ILinks<T>> NonNullDeletionResolver<T, Links> {
-    pub fn new(links: Links) -> Self {
-        Self { links, _phantom: default() }
+impl<T: LinkType, L: Doublets<T>> NonNullDeletionResolver<T, L> {
+    pub fn new(links: L) -> Self {
+        Self {
+            links,
+            _phantom: default(),
+        }
     }
 }
 
-impl<T: LinkType, Links: ILinks<T>> ILinks<T> for NonNullDeletionResolver<T, Links> {
+impl<T: LinkType, L: Doublets<T>> Doublets<T> for NonNullDeletionResolver<T, L> {
     fn constants(&self) -> LinksConstants<T> {
         self.links.constants()
     }
 
-    fn count_by<const L: usize>(&self, restrictions: [T; L]) -> T {
-        self.links.count_by(restrictions)
+    fn count_by(&self, query: impl ToQuery<T>) -> T {
+        self.links.count_by(query)
     }
 
-    fn create(&mut self) -> Result<T> {
-        self.links.create()
-    }
-
-    fn each_by<H, const L: usize>(&self, handler: H, restrictions: [T; L]) -> T
-        where
-            H: FnMut(Link<T>) -> T,
+    fn create_by_with<F, R>(
+        &mut self,
+        query: impl ToQuery<T>,
+        handler: F,
+    ) -> Result<R, LinksError<T>>
+    where
+        F: FnMut(Link<T>, Link<T>) -> R,
+        R: Try<Output = ()>,
     {
-        self.links.each_by(handler, restrictions)
+        self.links.create_by_with(query, handler)
     }
 
-    fn update(&mut self, index: T, source: T, target: T) -> Result<T> {
-        let links = self.links.borrow_mut();
-        links.update(index, source, target)
+    fn try_each_by<F, R>(&self, restrictions: impl ToQuery<T>, handler: F) -> R
+    where
+        F: FnMut(Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
+        self.links.try_each_by(restrictions, handler)
     }
 
-    fn delete(&mut self, index: T) -> Result<T> {
-        let links = self.links.borrow_mut();
-        let null = links.constants().null;
-        links.update(index, null, null)?;
-        links.delete(index)
+    fn update_by_with<F, R>(
+        &mut self,
+        query: impl ToQuery<T>,
+        replacement: impl ToQuery<T>,
+        handler: F,
+    ) -> Result<R, LinksError<T>>
+    where
+        F: FnMut(Link<T>, Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
+        self.links.update_by_with(query, replacement, handler)
+    }
+
+    fn delete_by_with<F, R>(
+        &mut self,
+        query: impl ToQuery<T>,
+        mut handler: F,
+    ) -> Result<R, LinksError<T>>
+    where
+        F: FnMut(Link<T>, Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
+        let null = self.links.constants().null;
+        let query = query.to_query();
+        self.links
+            .update_by_with(query.to_query(), [query[0], null, null], &mut handler)?; // TODO: MAY BE STANGE BEHAVIOUR
+        self.links.delete_by_with(query, handler)
     }
 }

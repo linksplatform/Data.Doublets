@@ -6,6 +6,8 @@ namespace Platform.Data.Doublets.Benchmarks
     {
         static void Main()
         {
+            BenchmarkRunner.Run<CountBenchmarks>();
+            BenchmarkRunner.Run<LinkStructBenchmarks>();
             BenchmarkRunner.Run<MemoryBenchmarks>();
         }
     }

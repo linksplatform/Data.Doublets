@@ -3,7 +3,7 @@ use std::marker::PhantomData;
 
 use num_traits::zero;
 
-use crate::doublets::data::LinksConstants;
+use crate::data::LinksConstants;
 use crate::doublets::link::Link;
 use crate::doublets::mem::ilinks_tree_methods::ILinksTreeMethods;
 use crate::doublets::mem::links_header::LinksHeader;
@@ -34,7 +34,9 @@ impl<T: LinkType> LinksRecursionlessSizeBalancedTreeBase<T> {
     }
 }
 
-pub trait LinkRecursionlessSizeBalancedTreeBaseAbstract<T: LinkType>: RecursionlessSizeBalancedTreeMethods<T> + ILinksTreeMethods<T> {
+pub trait LinkRecursionlessSizeBalancedTreeBaseAbstract<T: LinkType>:
+    RecursionlessSizeBalancedTreeMethods<T> + ILinksTreeMethods<T>
+{
     fn get_header(&self) -> &LinksHeader<T>;
 
     fn get_mut_header(&mut self) -> &mut LinksHeader<T>;
@@ -48,9 +50,21 @@ pub trait LinkRecursionlessSizeBalancedTreeBaseAbstract<T: LinkType>: Recursionl
     fn get_base_part(&self, link: T) -> T;
 
     // TODO: rename
-    fn first_is_to_the_left_of_second_4(&self, source: T, target: T, root_source: T, root_target: T) -> bool;
+    fn first_is_to_the_left_of_second_4(
+        &self,
+        source: T,
+        target: T,
+        root_source: T,
+        root_target: T,
+    ) -> bool;
 
-    fn first_is_to_the_right_of_second_4(&self, source: T, target: T, root_source: T, root_target: T) -> bool;
+    fn first_is_to_the_right_of_second_4(
+        &self,
+        source: T,
+        target: T,
+        root_source: T,
+        root_target: T,
+    ) -> bool;
 
     fn get_link_value(&self, index: T) -> Link<T> {
         let link = self.get_link(index);

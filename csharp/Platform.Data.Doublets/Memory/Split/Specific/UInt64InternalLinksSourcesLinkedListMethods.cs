@@ -1,5 +1,5 @@
 using System.Runtime.CompilerServices;
-using TLink = System.UInt64;
+using TLinkAddress = System.UInt64;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -11,11 +11,11 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
     /// </para>
     /// <para></para>
     /// </summary>
-    /// <seealso cref="InternalLinksSourcesLinkedListMethods{TLink}"/>
-    public unsafe class UInt64InternalLinksSourcesLinkedListMethods : InternalLinksSourcesLinkedListMethods<TLink>
+    /// <seealso cref="InternalLinksSourcesLinkedListMethods{TLinkAddress}"/>
+    public unsafe class UInt64InternalLinksSourcesLinkedListMethods : InternalLinksSourcesLinkedListMethods<TLinkAddress>
     {
-        private readonly RawLinkDataPart<TLink>* _linksDataParts;
-        private readonly RawLinkIndexPart<TLink>* _linksIndexParts;
+        private readonly RawLinkDataPart<TLinkAddress>* _linksDataParts;
+        private readonly RawLinkIndexPart<TLinkAddress>* _linksIndexParts;
 
         /// <summary>
         /// <para>
@@ -36,7 +36,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public UInt64InternalLinksSourcesLinkedListMethods(LinksConstants<TLink> constants, RawLinkDataPart<TLink>* linksDataParts, RawLinkIndexPart<TLink>* linksIndexParts)
+        public UInt64InternalLinksSourcesLinkedListMethods(LinksConstants<TLinkAddress> constants, RawLinkDataPart<TLinkAddress>* linksDataParts, RawLinkIndexPart<TLinkAddress>* linksIndexParts)
             : base(constants, (byte*)linksDataParts, (byte*)linksIndexParts)
         {
             _linksDataParts = linksDataParts;
@@ -58,7 +58,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override ref RawLinkDataPart<TLink> GetLinkDataPartReference(TLink link) => ref _linksDataParts[link];
+        protected override ref RawLinkDataPart<TLinkAddress> GetLinkDataPartReference(TLinkAddress link) => ref _linksDataParts[link];
 
         /// <summary>
         /// <para>
@@ -75,6 +75,6 @@ namespace Platform.Data.Doublets.Memory.Split.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override ref RawLinkIndexPart<TLink> GetLinkIndexPartReference(TLink link) => ref _linksIndexParts[link];
+        protected override ref RawLinkIndexPart<TLinkAddress> GetLinkIndexPartReference(TLinkAddress link) => ref _linksIndexParts[link];
     }
 }

@@ -1,8 +1,8 @@
+use crate::doublets::{Doublet, Link};
+use crate::num::LinkType;
 use std::backtrace::Backtrace;
 use std::io;
 use thiserror::Error;
-use crate::doublets::{Doublet, Link};
-use crate::num::LinkType;
 
 #[derive(Error, Debug)]
 pub enum LinksError<T: LinkType> {
@@ -18,6 +18,10 @@ pub enum LinksError<T: LinkType> {
     #[error("limit for the number of links in the storage has been reached ({0})")]
     LimitReached(T),
 
-    #[error("unable to allocate memory for links storage")]
-    AllocFailed(#[from] #[backtrace] io::Error),
+    #[error("unable to allocate memory for links storage: `{0}`")]
+    AllocFailed(
+        #[from]
+        #[backtrace]
+        io::Error,
+    ),
 }

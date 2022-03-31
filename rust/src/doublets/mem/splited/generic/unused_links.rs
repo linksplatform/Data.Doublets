@@ -20,7 +20,11 @@ impl<T: LinkType> UnusedLinks<T> {
     pub fn new(links: *mut u8, header: *mut u8) -> Self {
         assert!(!links.is_null()); // TODO: messages
         assert!(!header.is_null()); // TODO: messages
-        Self { links, header, _phantom: Default::default() }
+        Self {
+            links,
+            header,
+            _phantom: Default::default(),
+        }
     }
 
     fn get_header(&self) -> &LinksHeader<T> {

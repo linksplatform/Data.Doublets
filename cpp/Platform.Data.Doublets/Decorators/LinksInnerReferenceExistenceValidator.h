@@ -3,29 +3,29 @@
     template <typename ...> class LinksInnerReferenceExistenceValidator;
     template <typename TLink> class LinksInnerReferenceExistenceValidator<TLink> : public LinksDecoratorBase<TLink>
     {
-        public: LinksInnerReferenceExistenceValidator(ILinks<TLink> &links) : LinksDecoratorBase(links) { }
+        public: LinksInnerReferenceExistenceValidator(ILinks<TLink> &storage) : LinksDecoratorBase(storage) { }
 
-        public: TLink Each(Func<IList<TLink>, TLink> handler, IList<TLink> &restrictions) override
+        public: TLink Each(Func<IList<TLink>, TLink> handler, CList auto&&restrictions) override
         {
-            auto links = _links;
-            links.EnsureInnerReferenceExists(restrictions, "restrictions");
-            return links.Each(handler, restrictions);
+            auto storage = _links;
+            storage.EnsureInnerReferenceExists(restrictions, "restrictions");
+            return storage.Each(handler, restrictions);
         }
 
-        public: TLink Update(IList<TLink> &restrictions, IList<TLink> &substitution) override
+        public: TLink Update(CList auto&&restrictions, CList auto&&substitution) override
         {
-            auto links = _links;
-            links.EnsureInnerReferenceExists(restrictions, "restrictions");
-            links.EnsureInnerReferenceExists(substitution, "substitution");
-            return links.Update(restrictions, substitution);
+            auto storage = _links;
+            storage.EnsureInnerReferenceExists(restrictions, "restrictions");
+            storage.EnsureInnerReferenceExists(substitution, "substitution");
+            return storage.Update(restrictions, substitution);
         }
 
-        public: void Delete(IList<TLink> &restrictions) override
+        public: void Delete(CList auto&&restrictions) override
         {
             auto link = restrictions[_constants.IndexPart];
-            auto links = _links;
-            links.EnsureLinkExists(link, "link");
-            links.Delete(link);
+            auto storage = _links;
+            storage.EnsureLinkExists(link, "link");
+            storage.Delete(link);
         }
     };
 }

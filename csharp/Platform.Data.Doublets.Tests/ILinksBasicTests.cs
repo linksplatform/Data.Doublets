@@ -1,8 +1,9 @@
-﻿using System;
+﻿
+using System.IO;
 using Platform.Data.Doublets.Memory.United.Generic;
 using Platform.Memory;
 using Xunit;
-using Xunit.Abstractions;
+
 
 namespace Platform.Data.Doublets.Tests
 {
@@ -21,12 +22,33 @@ namespace Platform.Data.Doublets.Tests
 
             links.CreateAndUpdate(a, root);
             links.CreateAndUpdate(b, root);
-            
+
             Assert.Equal(5U, links.Count());
-            
+
             links.DeleteAllUsages(root);
-            
-            Assert.Equal(2U, links.Count());
+
+            Assert.Equal(3U, links.Count());
+        }
+
+        [Fact]
+        public static void FfiDeleteAllUsages()
+        {
+            File.Delete("db.links");
+            var links = new FFI.UnitedMemoryLinks<uint>("db.links");
+
+            var root = links.CreatePoint();
+
+            var a = links.CreatePoint();
+            var b = links.CreatePoint();
+
+            links.CreateAndUpdate(a, root);
+            links.CreateAndUpdate(b, root);
+
+            Assert.Equal(5U, links.Count());
+
+            links.DeleteAllUsages(root);
+
+            Assert.Equal(3U, links.Count());
         }
     }
 }

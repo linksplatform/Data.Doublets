@@ -5,29 +5,29 @@ using Platform.Memory;
 using Platform.Numbers;
 using Xunit;
 using Xunit.Abstractions;
-using TLink = System.UInt64;
+using TLinkAddress = System.UInt64;
 
 namespace Platform.Data.Doublets.Tests
 {
     public class Uint64LinksExtensionsTests
     {
-        public static ILinks<TLink> CreateLinks() => CreateLinks<TLink>(new Platform.IO.TemporaryFile());
+        public static ILinks<TLinkAddress> CreateLinks() => CreateLinks<TLinkAddress>(new Platform.IO.TemporaryFile());
 
-        public static ILinks<TLink> CreateLinks<TLink>(string dataDBFilename)
+        public static ILinks<TLinkAddress> CreateLinks<TLinkAddress>(string dataDBFilename) 
         {
-            var linksConstants = new LinksConstants<TLink>(enableExternalReferencesSupport: true);
-            return new UnitedMemoryLinks<TLink>(new FileMappedResizableDirectMemory(dataDBFilename), UnitedMemoryLinks<TLink>.DefaultLinksSizeStep, linksConstants, IndexTreeType.Default);
+            var linksConstants = new LinksConstants<TLinkAddress>(enableExternalReferencesSupport: true);
+            return new UnitedMemoryLinks<TLinkAddress>(new FileMappedResizableDirectMemory(dataDBFilename), UnitedMemoryLinks<TLinkAddress>.DefaultLinksSizeStep, linksConstants, IndexTreeType.Default);
         }
         [Fact]
         public void FormatStructureWithExternalReferenceTest()
         {
-            ILinks<TLink> links = CreateLinks();
-            TLink zero = default;
+            ILinks<TLinkAddress> links = CreateLinks();
+            TLinkAddress zero = default;
             var one = Arithmetic.Increment(zero);
             var markerIndex = one;
             var meaningRoot = links.GetOrCreate(markerIndex, markerIndex);
             var numberMarker = links.GetOrCreate(meaningRoot, Arithmetic.Increment(ref markerIndex));
-            AddressToRawNumberConverter<TLink> addressToNumberConverter = new();
+            AddressToRawNumberConverter<TLinkAddress> addressToNumberConverter = new();
             var numberAddress = addressToNumberConverter.Convert(1);
             var numberLink = links.GetOrCreate(numberMarker, numberAddress);
             var linkNotation = links.FormatStructure(numberLink, link => link.IsFullPoint(), true);

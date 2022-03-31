@@ -4,6 +4,7 @@ using System.Linq;
 using Platform.Collections;
 using Platform.Collections.Lists;
 using Platform.Data.Universal;
+using Platform.Delegates;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -15,9 +16,9 @@ namespace Platform.Data.Doublets.Decorators
     /// 
     /// TODO: Decide to change to IDoubletLinks or not to change. (Better to create DefaultUniLinksBase, that contains logic itself and can be implemented using both IDoubletLinks and ILinks.)
     /// </remarks>
-    internal class UniLinks<TLink> : LinksDecoratorBase<TLink>, IUniLinks<TLink>
+    internal class UniLinks<TLinkAddress> : LinksDecoratorBase<TLinkAddress>, IUniLinks<TLinkAddress> 
     {
-        private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
+        private static readonly EqualityComparer<TLinkAddress> _equalityComparer = EqualityComparer<TLinkAddress>.Default;
 
         /// <summary>
         /// <para>
@@ -29,7 +30,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para>A links.</para>
         /// <para></para>
         /// </param>
-        public UniLinks(ILinks<TLink> links) : base(links) { }
+        public UniLinks(ILinks<TLinkAddress> links) : base(links) { }
         private struct Transition
         {
             /// <summary>
@@ -38,14 +39,14 @@ namespace Platform.Data.Doublets.Decorators
             /// </para>
             /// <para></para>
             /// </summary>
-            public IList<TLink> Before;
+            public IList<TLinkAddress>? Before;
             /// <summary>
             /// <para>
             /// The after.
             /// </para>
             /// <para></para>
             /// </summary>
-            public IList<TLink> After;
+            public IList<TLinkAddress>? After;
 
             /// <summary>
             /// <para>
@@ -61,15 +62,15 @@ namespace Platform.Data.Doublets.Decorators
             /// <para>A after.</para>
             /// <para></para>
             /// </param>
-            public Transition(IList<TLink> before, IList<TLink> after)
+            public Transition(IList<TLinkAddress>? before, IList<TLinkAddress>? after)
             {
                 Before = before;
                 After = after;
             }
         }
 
-        //public static readonly TLink NullConstant = Use<LinksConstants<TLink>>.Single.Null;
-        //public static readonly IReadOnlyList<TLink> NullLink = new ReadOnlyCollection<TLink>(new List<TLink> { NullConstant, NullConstant, NullConstant });
+        //public static readonly TLinkAddress NullConstant = Use<LinksConstants<TLinkAddress>>.Single.Null;
+        //public static readonly IReadOnlyList<TLinkAddress> NullLink = new ReadOnlyCollection<TLinkAddress>(new List<TLinkAddress> { NullConstant, NullConstant, NullConstant });
 
         // TODO: Подумать о том, как реализовать древовидный Restriction и Substitution (Links-Expression)
         /// <summary>
@@ -98,7 +99,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para>The link</para>
         /// <para></para>
         /// </returns>
-        public TLink Trigger(IList<TLink> restriction, Func<IList<TLink>, IList<TLink>, TLink> matchedHandler, IList<TLink> substitution, Func<IList<TLink>, IList<TLink>, TLink> substitutedHandler)
+        public TLinkAddress Trigger(IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? matchedHandler, IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? substitutedHandler)
         {
             ////List<Transition> transitions = null;
             ////if (!restriction.IsNullOrEmpty())
@@ -297,7 +298,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para>The link</para>
         /// <para></para>
         /// </returns>
-        public TLink Trigger(IList<TLink> patternOrCondition, Func<IList<TLink>, TLink> matchHandler, IList<TLink> substitution, Func<IList<TLink>, IList<TLink>, TLink> substitutionHandler)
+        public TLinkAddress Trigger(IList<TLinkAddress>? patternOrCondition, ReadHandler<TLinkAddress>? matchHandler, IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? substitutionHandler)
         {
             var constants = _constants;
             if (patternOrCondition.IsNullOrEmpty() && substitution.IsNullOrEmpty())
@@ -311,13 +312,13 @@ namespace Platform.Data.Doublets.Decorators
             }
             else if (!substitution.IsNullOrEmpty()) // Creation
             {
-                var before = Array.Empty<TLink>();
+                var before = Array.Empty<TLinkAddress>();
                 // Что должно означать False здесь? Остановиться (перестать идти) или пропустить (пройти мимо) или пустить (взять)?
                 if (matchHandler != null && _equalityComparer.Equals(matchHandler(before), constants.Break))
                 {
                     return constants.Break;
                 }
-                var after = (IList<TLink>)substitution.ToArray();
+                var after = (IList<TLinkAddress>?)substitution.ToArray();
                 if (_equalityComparer.Equals(after[0], default))
                 {
                     var newLink = _links.Create();
@@ -335,11 +336,7 @@ namespace Platform.Data.Doublets.Decorators
                 {
                     throw new NotSupportedException();
                 }
-                if (matchHandler != null)
-                {
-                    return substitutionHandler(before, after);
-                }
-                return constants.Continue;
+                return matchHandler != null ? substitutionHandler(before, after) : constants.Continue;
             }
             else if (!patternOrCondition.IsNullOrEmpty()) // Deletion
             {
@@ -351,14 +348,10 @@ namespace Platform.Data.Doublets.Decorators
                     {
                         return constants.Break;
                     }
-                    var after = Array.Empty<TLink>();
+                    var after = Array.Empty<TLinkAddress>();
                     _links.Update(linkToDelete, constants.Null, constants.Null);
                     _links.Delete(linkToDelete);
-                    if (matchHandler != null)
-                    {
-                        return substitutionHandler(before, after);
-                    }
-                    return constants.Continue;
+                    return matchHandler != null ? substitutionHandler(before, after) : constants.Continue;
                 }
                 else
                 {
@@ -375,7 +368,7 @@ namespace Platform.Data.Doublets.Decorators
                     {
                         return constants.Break;
                     }
-                    var after = (IList<TLink>)substitution.ToArray(); //-V3125
+                    var after = (IList<TLinkAddress>?)substitution.ToArray(); //-V3125
                     if (_equalityComparer.Equals(after[0], default))
                     {
                         after[0] = linkToUpdate;
@@ -397,11 +390,7 @@ namespace Platform.Data.Doublets.Decorators
                     {
                         throw new NotSupportedException();
                     }
-                    if (matchHandler != null)
-                    {
-                        return substitutionHandler(before, after);
-                    }
-                    return constants.Continue;
+                    return matchHandler != null ? substitutionHandler(before, after) : constants.Continue;
                 }
                 else
                 {
@@ -420,9 +409,9 @@ namespace Platform.Data.Doublets.Decorators
         ///  --------------------
         ///        changes
         /// </remarks>
-        public IList<IList<IList<TLink>>> Trigger(IList<TLink> condition, IList<TLink> substitution)
+        public IList<IList<IList<TLinkAddress>?>> Trigger(IList<TLinkAddress>? condition, IList<TLinkAddress>? substitution)
         {
-            var changes = new List<IList<IList<TLink>>>();
+            var changes = new List<IList<IList<TLinkAddress>?>>();
             var @continue = _constants.Continue;
             Trigger(condition, AlwaysContinue, substitution, (before, after) =>
             {
@@ -432,6 +421,6 @@ namespace Platform.Data.Doublets.Decorators
             });
             return changes;
         }
-        private TLink AlwaysContinue(IList<TLink> linkToMatch) => _constants.Continue;
+        private TLinkAddress AlwaysContinue(IList<TLinkAddress>? linkToMatch) => _constants.Continue;
     }
 }

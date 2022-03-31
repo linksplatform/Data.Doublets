@@ -1,6 +1,6 @@
 using System.Runtime.CompilerServices;
 using Platform.Data.Doublets.Memory.Split.Generic;
-using TLink = System.UInt64;
+using TLinkAddress = System.UInt64;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -12,8 +12,8 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
     /// </para>
     /// <para></para>
     /// </summary>
-    /// <seealso cref="UnusedLinksListMethods{TLink}"/>
-    public unsafe class UInt64UnusedLinksListMethods : UnusedLinksListMethods<TLink>
+    /// <seealso cref="UnusedLinksListMethods{TLinkAddress}"/>
+    public unsafe class UInt64UnusedLinksListMethods : UnusedLinksListMethods<TLinkAddress>
     {
         private readonly RawLinkDataPart<ulong>* _links;
         private readonly LinksHeader<ulong>* _header;
@@ -55,7 +55,7 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override ref RawLinkDataPart<TLink> GetLinkDataPartReference(TLink link) => ref _links[link];
+        protected override ref RawLinkDataPart<TLinkAddress> GetLinkDataPartReference(TLinkAddress link) => ref _links[link];
 
         /// <summary>
         /// <para>
@@ -68,6 +68,6 @@ namespace Platform.Data.Doublets.Memory.Split.Specific
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override ref LinksHeader<TLink> GetHeaderReference() => ref *_header;
+        protected override ref LinksHeader<TLinkAddress> GetHeaderReference() => ref *_header;
     }
 }

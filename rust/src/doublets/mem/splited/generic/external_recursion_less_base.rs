@@ -3,7 +3,7 @@ use std::marker::PhantomData;
 
 use num_traits::zero;
 
-use crate::doublets::data::LinksConstants;
+use crate::data::LinksConstants;
 use crate::doublets::link::Link;
 use crate::doublets::mem::ilinks_tree_methods::ILinksTreeMethods;
 use crate::doublets::mem::links_header::LinksHeader;
@@ -22,7 +22,12 @@ pub struct ExternalRecursionlessSizeBalancedTreeBase<T: LinkType> {
 }
 
 impl<T: LinkType> ExternalRecursionlessSizeBalancedTreeBase<T> {
-    pub fn new(constants: LinksConstants<T>, data: *mut u8, indexes: *mut u8, header: *mut u8) -> Self {
+    pub fn new(
+        constants: LinksConstants<T>,
+        data: *mut u8,
+        indexes: *mut u8,
+        header: *mut u8,
+    ) -> Self {
         Self {
             data,
             indexes,

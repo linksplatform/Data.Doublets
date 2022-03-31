@@ -1,9 +1,9 @@
 mod data_part;
-mod index_part;
 mod generic;
-mod links;
+mod index_part;
+mod store;
 
 pub use data_part::DataPart;
 pub use index_part::IndexPart;
 
-pub use links::Links;
+pub use store::Store;

@@ -27,23 +27,56 @@ pub trait SizeBalancedTreeBase<T: Num> {
 
     fn first_is_to_the_right_of_second(&self, first: T, second: T) -> bool;
 
-    fn get_left_or_default(&self, node: T) -> T { if node == zero() { zero() } else { self.get_left(node) } }
+    fn get_left_or_default(&self, node: T) -> T {
+        if node == zero() {
+            zero()
+        } else {
+            self.get_left(node)
+        }
+    }
 
-    fn get_right_or_default(&self, node: T) -> T { if node == zero() { zero() } else { self.get_right(node) } }
+    fn get_right_or_default(&self, node: T) -> T {
+        if node == zero() {
+            zero()
+        } else {
+            self.get_right(node)
+        }
+    }
 
-    fn get_size_or_zero(&self, node: T) -> T { if node == zero() { zero() } else { self.get_size(node) } }
+    fn get_size_or_zero(&self, node: T) -> T {
+        if node == zero() {
+            zero()
+        } else {
+            self.get_size(node)
+        }
+    }
 
-    fn inc_size(&mut self, node: T) { self.set_size(node, self.get_size(node) + one()); }
+    fn inc_size(&mut self, node: T) {
+        self.set_size(node, self.get_size(node) + one());
+    }
 
-    fn dec_size(&mut self, node: T) { self.set_size(node, self.get_size(node) - one()); }
+    fn dec_size(&mut self, node: T) {
+        self.set_size(node, self.get_size(node) - one());
+    }
 
-    fn get_left_size(&self, node: T) -> T { self.get_size_or_zero(self.get_left_or_default(node)) }
+    fn get_left_size(&self, node: T) -> T {
+        self.get_size_or_zero(self.get_left_or_default(node))
+    }
 
-    fn get_right_size(&self, node: T) -> T { self.get_size_or_zero(self.get_right_or_default(node)) }
+    fn get_right_size(&self, node: T) -> T {
+        self.get_size_or_zero(self.get_right_or_default(node))
+    }
 
-    fn fix_size(&mut self, node: T) { self.set_size(node, (self.get_left_size(node) + self.get_right_size(node)) + one()); }
+    fn fix_size(&mut self, node: T) {
+        self.set_size(
+            node,
+            (self.get_left_size(node) + self.get_right_size(node)) + one(),
+        );
+    }
 
-    unsafe fn left_rotate(&mut self, root: *mut T) { *root = self.left_rotate_core(*root); }
+    unsafe fn left_rotate(&mut self, root: *mut T) {
+        *root = self.left_rotate_core(*root);
+    }
 
     fn left_rotate_core(&mut self, root: T) -> T {
         let right = self.get_right(root);
@@ -54,7 +87,9 @@ pub trait SizeBalancedTreeBase<T: Num> {
         right
     }
 
-    unsafe fn right_rotate(&mut self, root: *mut T) { *root = self.right_rotate_core(*root); }
+    unsafe fn right_rotate(&mut self, root: *mut T) {
+        *root = self.right_rotate_core(*root);
+    }
 
     fn right_rotate_core(&mut self, root: T) -> T {
         let left = self.get_left(root);
@@ -83,9 +118,13 @@ pub trait SizeBalancedTreeBase<T: Num> {
         current
     }
 
-    fn get_next(&self, node: T) -> T { self.get_leftest(self.get_right(node)) }
+    fn get_next(&self, node: T) -> T {
+        self.get_leftest(self.get_right(node))
+    }
 
-    fn get_previous(&self, node: T) -> T { self.get_rightest(self.get_left(node)) }
+    fn get_previous(&self, node: T) -> T {
+        self.get_rightest(self.get_left(node))
+    }
 
     fn contains(&self, node: T, mut root: T) -> bool {
         while root != zero() {

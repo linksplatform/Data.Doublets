@@ -3,7 +3,7 @@ use std::marker::PhantomData;
 
 use num_traits::zero;
 
-use crate::doublets::data::LinksConstants;
+use crate::data::LinksConstants;
 use crate::doublets::link::Link;
 use crate::doublets::mem::ilinks_tree_methods::ILinksTreeMethods;
 use crate::doublets::mem::links_header::LinksHeader;
@@ -77,5 +77,4 @@ pub trait InternalRecursionlessSizeBalancedTreeBaseAbstract<T: LinkType>:
     fn count_usages_core(&self, link: T) -> T {
         self.get_size_or_zero(self.get_tree_root(link))
     }
-
 }

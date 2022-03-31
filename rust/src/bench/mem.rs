@@ -2,9 +2,10 @@ extern crate test;
 
 use test::Bencher;
 
-use crate::doublets::{ILinks, ILinksExtensions};
 use crate::doublets::decorators::NonNullDeletionResolver;
 use crate::doublets::mem::united;
+use crate::doublets::{ILinks, ILinksExtensions};
+use crate::mem::TempFileMem;
 use crate::mem::{FileMappedMem, HeapMem, ResizeableMem};
 use crate::test_extensions::ILinksTestExtensions;
 use crate::tests::make_mem;
@@ -50,9 +51,7 @@ fn heap_reserve(b: &mut Bencher) {
 
 #[bench]
 fn file_reserve(b: &mut Bencher) {
-    // TODO: use `TempFileMappedMem`
-    std::fs::remove_file("anonymous_@@_.file");
-    let mut mem = FileMappedMem::new("anonymous_@@_.file").unwrap();
+    let mut mem = TempFileMem::new().unwrap();
 
     let over = 1_000_000_usize;
     b.iter(|| {

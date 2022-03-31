@@ -1,0 +1,79 @@
+name: rustWorkflow
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+name: Rust
+
+env:
+  RUST_BACKTRACE: 1
+  rust_stable: stable
+  rust_nightly: nightly
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+
+  pass:
+    name: all passed
+    runs-on: ubuntu-latest
+    needs:
+      - test
+      - valgrind
+    steps:
+      - run: exit 0
+
+  test:
+    name: test doublets full
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - windows-latest
+          - ubuntu-latest
+          - macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Rust ${{ env.rust_nigthly }}
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: ${{ env.rust_stable }}
+          override: true
+      - name: Install Rust Nightly
+        run: rustup default nightly
+
+      - name: test doublets
+        run: cargo +nightly test --lib
+        working-directory: rust
+
+  valgrind:
+    name: valgrind
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Rust ${{ env.rust_nigthly }}
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: ${{ env.rust_stable }}
+          override: true
+      - name: Install Rust Nightly
+        run: rustup default nightly
+
+      - uses: Swatinem/rust-cache@v1
+
+      - name: Install Valgrind
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y valgrind
+      - name: cargo build
+        run: cargo +nightly build --bin test-mem
+        working-directory: rust/integration
+
+      - name: Run valgrind
+        run: valgrind --error-exitcode=1 --leak-check=full --show-leak-kinds=all ./target/debug/test-mem
+        working-directory: rust/integration

@@ -1,29 +1,45 @@
 ﻿namespace Platform::Data::Doublets::Memory
 {
-    template <typename ...> struct LinksHeader;
-    template <typename TLink> struct LinksHeader<TLink>
+    template<typename TLink>
+    struct LinksHeader
     {
-        public: inline static const std::int64_t SizeInBytes = Structure<LinksHeader<TLink>>.Size;
+        TLink AllocatedLinks;
 
-        public: TLink AllocatedLinks = 0;
-        public: TLink ReservedLinks = 0;
-        public: TLink FreeLinks = 0;
-        public: TLink FirstFreeLink = 0;
-        public: TLink RootAsSource = 0;
-        public: TLink RootAsTarget = 0;
-        public: TLink LastFreeLink = 0;
-        public: TLink Reserved8 = 0;
+        TLink ReservedLinks;
 
-        public: bool Equals(LinksHeader<TLink> other)
-            => AllocatedLinks == other.AllocatedLinks
-            && ReservedLinks == other.ReservedLinks
-            && FreeLinks == other.FreeLinks
-            && FirstFreeLink == other.FirstFreeLink
-            && RootAsSource == other.RootAsSource
-            && RootAsTarget == other.RootAsTarget
-            && LastFreeLink == other.LastFreeLink
-            && Reserved8 == other.Reserved8;
+        TLink FreeLinks;
 
-        public: override std::int32_t GetHashCode() { return Platform::Hashing::Hash(AllocatedLinks, ReservedLinks, FreeLinks, FirstFreeLink, RootAsSource, RootAsTarget, LastFreeLink, Reserved8); }
+        TLink FirstFreeLink;
+
+        TLink RootAsSource;
+
+        TLink RootAsTarget;
+
+        TLink LastFreeLink;
+
+        TLink Reserved8;
+
+        constexpr bool operator==(const LinksHeader&) const noexcept = default;
     };
 }
+
+template<typename TLink>
+struct std::hash<Platform::Data::Doublets::Memory::LinksHeader<TLink>>
+{
+    using Self = Platform::Data::Doublets::Memory::LinksHeader<TLink>;
+
+    auto operator()(const Self& self) const noexcept
+    {
+        using Platform::Hashing::Hash;
+        return Hash(
+            self.AllocatedLinks,
+            self.ReservedLinks,
+            self.FreeLinks,
+            self.FirstFreeLink,
+            self.RootAsSource,
+            self.RootAsTarget,
+            self.LastFreeLink,
+            self.Reserved8
+        );
+    }
+};

@@ -1,68 +1,95 @@
 use std::borrow::BorrowMut;
 use std::default::default;
 use std::marker::PhantomData;
+use std::ops::Try;
 
 use smallvec::SmallVec;
 
-use crate::doublets::{ILinks, ILinksExtensions, Link, Result};
-use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstants};
+use crate::data::ToQuery;
+use crate::data::{Links, LinksConstants};
+use crate::doublets::{Doublets, ILinksExtensions, Link, Result};
+use crate::doublets::{Flow, LinksError};
 use crate::num::LinkType;
 
-pub struct UniqueResolver<T: LinkType, Links: ILinks<T>> {
-    links: Links,
-    resolver: fn(&mut Links, old: T, new: T) -> Result<T> ,
+pub struct UniqueResolver<T: LinkType, L: Doublets<T>> {
+    links: L,
+
+    _phantom: PhantomData<T>,
 }
 
-impl<T: LinkType, Links: ILinks<T>> UniqueResolver<T, Links> {
-    pub fn new(links: Links) -> Self {
-        Self::with_resolver(links, Self::resolve_conflict)
-    }
-
-    pub fn with_resolver(links: Links, resolver: fn(&mut Links, old: T, new: T) -> Result<T>) -> Self {
-        Self { links, resolver }
-    }
-
-    pub(in crate::doublets::decorators) fn resolve_conflict(links: &mut Links, old: T, new: T) -> Result<T>  {
-        if old != new && links.exist(old) {
-            links.delete(old)?;
+impl<T: LinkType, L: Doublets<T>> UniqueResolver<T, L> {
+    pub fn new(links: L) -> Self {
+        UniqueResolver {
+            links,
+            _phantom: PhantomData,
         }
-        Ok(new)
     }
 }
 
-impl<T: LinkType, Links: ILinks<T>> ILinks<T> for UniqueResolver<T, Links> {
+impl<T: LinkType, L: Doublets<T>> Doublets<T> for UniqueResolver<T, L> {
     fn constants(&self) -> LinksConstants<T> {
         self.links.constants()
     }
 
-    fn count_by<const L: usize>(&self, restrictions: [T; L]) -> T {
-        self.links.count_by(restrictions)
+    fn count_by(&self, query: impl ToQuery<T>) -> T {
+        self.links.count_by(query)
     }
 
-    fn create(&mut self) -> Result<T>  {
-        self.links.create()
+    fn create_by_with<F, R>(
+        &mut self,
+        query: impl ToQuery<T>,
+        handler: F,
+    ) -> Result<R, LinksError<T>>
+    where
+        F: FnMut(Link<T>, Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
+        self.links.create_by_with(query, handler)
     }
 
-    fn each_by<H, const L: usize>(&self, handler: H, restrictions: [T; L]) -> T where H: FnMut(Link<T>) -> T {
-        self.links.each_by(handler, restrictions)
+    fn try_each_by<F, R>(&self, restrictions: impl ToQuery<T>, handler: F) -> R
+    where
+        F: FnMut(Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
+        self.links.try_each_by(restrictions, handler)
     }
 
-    fn update(&mut self, index: T, source: T, target: T) -> Result<T>  {
+    fn update_by_with<F, R>(
+        &mut self,
+        query: impl ToQuery<T>,
+        replacement: impl ToQuery<T>,
+        mut handler: F,
+    ) -> Result<R, LinksError<T>>
+    where
+        F: FnMut(Link<T>, Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
         let links = self.links.borrow_mut();
-        let new = links.search_or(
-            source,
-            target,
-            default(),
-        );
-
-        if new == default() {
-            links.update(index, source, target)
+        let query = query.to_query();
+        let replacement = replacement.to_query();
+        let (new, source, target) = (query[0], replacement[1], replacement[2]);
+        // todo find by [[any], replacement[1..]].concat()
+        let index = if let Some(old) = links.search(source, target) {
+            links.delete_with(new, &mut handler)?;
+            old
         } else {
-            (self.resolver)(links, index, new)
-        }
+            new
+        };
+
+        // TODO: update_by maybe has query style
+        links.update_with(index, source, target, handler)
     }
 
-    fn delete(&mut self, index: T) -> Result<T>  {
-        self.links.delete(index)
+    fn delete_by_with<F, R>(
+        &mut self,
+        query: impl ToQuery<T>,
+        handler: F,
+    ) -> Result<R, LinksError<T>>
+    where
+        F: FnMut(Link<T>, Link<T>) -> R,
+        R: Try<Output = ()>,
+    {
+        self.links.delete_by_with(query, handler)
     }
 }

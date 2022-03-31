@@ -1,39 +1,69 @@
 ﻿namespace Platform::Data::Doublets::Memory::United::Generic
 {
-    public unsafe class LinksTargetsSizeBalancedTreeMethods<TLink> : public LinksSizeBalancedTreeMethodsBase<TLink>
+    template<typename TLink>
+    class LinksTargetsSizeBalancedTreeMethods
+        : public LinksSizeBalancedTreeMethodsBase<LinksTargetsSizeBalancedTreeMethods<TLink>, TLink>
     {
-        public: LinksTargetsSizeBalancedTreeMethods(LinksConstants<TLink> constants, std::uint8_t* links, std::uint8_t* header) : base(constants, links, header) { }
+        using base = LinksSizeBalancedTreeMethodsBase<LinksTargetsSizeBalancedTreeMethods<TLink>, TLink>;
 
-        protected: TLink* GetLeftReference(TLink node) override { return &GetLinkReference(node)->LeftAsTarget; }
+        public: LinksTargetsSizeBalancedTreeMethods(const LinksConstants<TLink>& constants, std::byte* storage, std::byte* header) : base(constants, storage, header) { }
 
-        protected: TLink* GetRightReference(TLink node) override { return &GetLinkReference(node)->RightAsTarget; }
+        public: TLink* GetLeftReference(TLink node) { return &this->GetLinkReference(node).LeftAsTarget; }
 
-        protected: TLink GetLeft(TLink node) override { return this->GetLinkReference(node)->LeftAsTarget; }
+        public: TLink* GetRightReference(TLink node) { return &this->GetLinkReference(node).RightAsTarget; }
 
-        protected: TLink GetRight(TLink node) override { return this->GetLinkReference(node)->RightAsTarget; }
+        public: TLink GetLeft(TLink node) { return this->GetLinkReference(node).LeftAsTarget; }
 
-        protected: void SetLeft(TLink node, TLink left) override { this->GetLinkReference(node)->LeftAsTarget = left; }
+        public: TLink GetRight(TLink node) { return this->GetLinkReference(node).RightAsTarget; }
 
-        protected: void SetRight(TLink node, TLink right) override { this->GetLinkReference(node)->RightAsTarget = right; }
+        public: void SetLeft(TLink node, TLink left) { this->GetLinkReference(node).LeftAsTarget = left; }
 
-        protected: TLink GetSize(TLink node) override { return this->GetLinkReference(node)->SizeAsTarget; }
+        public: void SetRight(TLink node, TLink right) { this->GetLinkReference(node).RightAsTarget = right; }
 
-        protected: void SetSize(TLink node, TLink size) override { this->GetLinkReference(node)->SizeAsTarget = size; }
+        public: TLink GetSize(TLink node) { return this->GetLinkReference(node).SizeAsTarget; }
 
-        protected: override TLink GetTreeRoot() { return GetHeaderReference().RootAsTarget; }
+        public: void SetSize(TLink node, TLink size) { this->GetLinkReference(node).SizeAsTarget = size; }
 
-        protected: TLink GetBasePartValue(TLink link) override { return this->GetLinkReference(link)->Target; }
+        public: TLink GetTreeRoot() { return this->GetHeaderReference().RootAsTarget; }
 
-        protected: bool FirstIsToTheLeftOfSecond(TLink firstSource, TLink firstTarget, TLink secondSource, TLink secondTarget) override { return this->LessThan(firstTarget, secondTarget) || (firstTarget == secondTarget && this->LessThan(firstSource, secondSource)); }
+        public: TLink GetBasePartValue(TLink link) { return this->GetLinkReference(link).Target; }
 
-        protected: bool FirstIsToTheRightOfSecond(TLink firstSource, TLink firstTarget, TLink secondSource, TLink secondTarget) override { return firstTarget > secondTarget || (firstTarget == secondTarget && firstSource > secondSource); }
+        public: bool FirstIsToTheLeftOfSecond(TLink firstSource, TLink firstTarget, TLink secondSource, TLink secondTarget) { return (firstTarget < secondTarget) || (firstTarget == secondTarget && firstSource < secondSource); }
 
-        protected: void ClearNode(TLink node) override
+        public: bool FirstIsToTheRightOfSecond(TLink firstSource, TLink firstTarget, TLink secondSource, TLink secondTarget) { return (firstTarget > secondTarget) || (firstTarget == secondTarget && firstSource > secondSource); }
+
+        public: void ClearNode(TLink node)
         {
-            auto* link = this->GetLinkReference(node);
+            auto& link = this->GetLinkReference(node);
             link.LeftAsTarget = 0;
             link.RightAsTarget = 0;
             link.SizeAsTarget = 0;
         }
+
+    public: bool FirstIsToTheLeftOfSecond(TLink first, TLink second)
+        {
+            auto& firstLink = this->GetLinkReference(first);
+            auto& secondLink = this->GetLinkReference(second);
+            return this->FirstIsToTheLeftOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
+        }
+
+    public: bool FirstIsToTheRightOfSecond(TLink first, TLink second)
+        {
+            auto& firstLink = this->GetLinkReference(first);
+            auto& secondLink = this->GetLinkReference(second);
+            return this->FirstIsToTheRightOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
+        }
+
+    public:
+
+        TLink CountUsages(TLink root) { return base::CountUsages(root); }
+
+        TLink Search(TLink source, TLink target) { return base::Search(source, target); }
+
+        TLink EachUsage(TLink root, const std::function<TLink(const std::vector<TLink>&)>& handler) { return base::EachUsage(root, handler); }
+
+        void Detach(TLink& root, TLink linkIndex) { base::methods::Detach(&root, linkIndex); }
+
+        void Attach(TLink& root, TLink linkIndex) { base::methods::Attach(&root, linkIndex); }
     };
 }

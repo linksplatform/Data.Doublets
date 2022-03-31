@@ -1,11 +1,12 @@
-use crate::doublets::data::{AddrToRaw, IGenericLinks, LinksConstants, RawToAddr};
-use crate::doublets::{ILinks, ILinksExtensions};
+use crate::data::{AddrToRaw, Links, LinksConstants, Query, RawToAddr};
+use crate::doublets::{Doublets, ILinksExtensions};
+use crate::query;
 use crate::test_extensions::ILinksTestExtensions;
 use crate::tests::{make_links, make_mem, typed_links};
 
 #[test]
 fn non_exist_reference() {
-    let mem = make_mem();
+    let mem = make_mem().unwrap();
     let mut links = make_links(mem).unwrap();
 
     let link = links.create().unwrap();
@@ -13,11 +14,11 @@ fn non_exist_reference() {
 
     let mut result = 0;
     links.each_by(
+        [links.constants_links().any, usize::MAX, usize::MAX],
         |found| {
             result = found.index;
-            links.constants().r#break
+            links.constants_links().r#break
         },
-        [links.constants().any, usize::MAX, usize::MAX],
     );
 
     assert_eq!(result, link);
@@ -27,7 +28,7 @@ fn non_exist_reference() {
 
 #[test]
 fn raw_numbers() {
-    let mem = make_mem();
+    let mem = make_mem().unwrap();
     let mut links = make_links(mem).unwrap();
 
     links.test_raw_numbers_crud();
@@ -35,7 +36,7 @@ fn raw_numbers() {
 
 #[test]
 fn u128_raw_numbers() {
-    let mem = make_mem();
+    let mem = make_mem().unwrap();
     //let mut links = typed_links::<u128, _>(mem);
     let mut links = typed_links(mem).unwrap();
 
@@ -46,10 +47,10 @@ fn u128_raw_numbers() {
     let to_adr = RawToAddr;
 
     let raw = to_raw.convert(1_u128);
-    assert!(constants.is_external_reference(raw));
+    assert!(constants.is_external(raw));
 
     let adr = to_adr.convert(raw);
-    assert!(constants.is_internal_reference(adr));
+    assert!(constants.is_internal(adr));
 
     let source = to_raw.convert(228_1337_1754_177013_666_777_u128);
     let target = to_raw.convert(10_1011_0011_0111_0101_u128);

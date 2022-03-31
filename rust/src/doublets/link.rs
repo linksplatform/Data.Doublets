@@ -1,11 +1,12 @@
+use std::default::default;
 use std::fmt::{Debug, Display, Formatter};
-use std::iter;
-use std::iter::FromIterator;
-use std::ops::{Index, IndexMut};
-use std::slice::from_raw_parts;
+use std::ops::Index;
+use std::slice::{from_raw_parts, SliceIndex};
 
 use num_traits::zero;
 
+use crate::data::Query;
+use crate::data::ToQuery;
 use crate::num::LinkType;
 
 #[derive(Default, Debug, Eq, PartialEq, Clone, Hash)]
@@ -16,7 +17,9 @@ pub struct Link<T: LinkType> {
 }
 
 impl<T: LinkType> Link<T> {
-    const LEN: usize = 3;
+    pub fn nothing() -> Self {
+        default()
+    }
 
     pub fn new(index: T, source: T, target: T) -> Self {
         Self {
@@ -30,17 +33,8 @@ impl<T: LinkType> Link<T> {
         Self::new(val, val, val)
     }
 
-    pub fn len(&self) -> usize {
-        Self::LEN
-    }
-
     pub fn is_null(&self) -> bool {
         *self == Self::point(zero())
-    }
-
-    #[deprecated(note = "internal functions expect `Link<T>`")]
-    pub fn as_slice(&self) -> &[T] {
-        unsafe { from_raw_parts(&self.index as *const T, self.len()) }
     }
 
     pub fn is_full(&self) -> bool {
@@ -52,64 +46,23 @@ impl<T: LinkType> Link<T> {
     }
 }
 
-impl<T: LinkType> IntoIterator for Link<T> {
-    type Item = T;
-    type IntoIter = std::array::IntoIter<T, 3>;
+impl<T: LinkType, I: SliceIndex<[T]>> Index<I> for Link<T> {
+    type Output = I::Output;
 
-    fn into_iter(self) -> Self::IntoIter {
-        std::array::IntoIter::new([self.index, self.source, self.target])
-    }
-}
-
-impl<'a, T: LinkType> IntoIterator for &'a Link<T> {
-    type Item = &'a T;
-    type IntoIter = std::array::IntoIter<&'a T, 3>;
-
-    fn into_iter(self) -> Self::IntoIter {
-        std::array::IntoIter::new([&self.index, &self.source, &self.target])
-    }
-}
-
-impl<T: LinkType> Index<usize> for Link<T> {
-    type Output = T;
-
-    fn index(&self, index: usize) -> &Self::Output {
-        match index {
-            0 => &self.index,
-            1 => &self.source,
-            2 => &self.target,
-            _ => {
-                todo!("link index panic")
-            }
-        }
-    }
-}
-
-impl<'a, T: LinkType> IndexMut<usize> for Link<T> {
-    fn index_mut(&mut self, index: usize) -> &mut Self::Output {
-        match index {
-            0 => &mut self.index,
-            1 => &mut self.source,
-            2 => &mut self.target,
-            _ => {
-                todo!("link index panic")
-            }
-        }
-    }
-}
-
-impl<T: LinkType> FromIterator<T> for Link<T> {
-    fn from_iter<I: IntoIterator<Item=T>>(iter: I) -> Self {
-        let mut new: Link<T> = Default::default(); // TODO: strange compiler type mismatching
-        for (i, item) in iter.into_iter().take(new.len()).enumerate() {
-            new[i] = item
-        }
-        new
+    fn index(&self, index: I) -> &Self::Output {
+        let slice = unsafe { from_raw_parts(&self.index, 3) };
+        Index::index(slice, index)
     }
 }
 
 impl<T: LinkType> Display for Link<T> {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         write!(f, "({}: {} {})", self.index, self.source, self.target)
+    }
+}
+
+impl<T: LinkType> ToQuery<T> for Link<T> {
+    fn to_query(&self) -> Query<'_, T> {
+        Query::new(unsafe { from_raw_parts(&self.index, 3) })
     }
 }

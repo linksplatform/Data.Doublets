@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Platform.Delegates;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -9,7 +11,7 @@ namespace Platform.Data.Doublets.Decorators
     /// <para>Must be used in conjunction with NonNullContentsLinkDeletionResolver.</para>
     /// <para>Должен использоваться вместе с NonNullContentsLinkDeletionResolver.</para>
     /// </remarks>
-    public class LinksCascadeUsagesResolver<TLink> : LinksDecoratorBase<TLink>
+    public class LinksCascadeUsagesResolver<TLinkAddress> : LinksDecoratorBase<TLinkAddress> 
     {
         /// <summary>
         /// <para>
@@ -22,25 +24,28 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public LinksCascadeUsagesResolver(ILinks<TLink> links) : base(links) { }
+        public LinksCascadeUsagesResolver(ILinks<TLinkAddress> links) : base(links) { }
 
         /// <summary>
         /// <para>
-        /// Deletes the restrictions.
+        /// Deletes the restriction.
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override void Delete(IList<TLink> restrictions)
+        public override TLinkAddress Delete(IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? handler)
         {
-            var linkIndex = restrictions[_constants.IndexPart];
+            var constants = _links.Constants;
+            WriteHandlerState<TLinkAddress> handlerState = new(constants.Continue, constants.Break, handler);
+            var linkIndex = _links.GetIndex(restriction);
             // Use Facade (the last decorator) to ensure recursion working correctly
-            _facade.DeleteAllUsages(linkIndex);
-            _links.Delete(linkIndex);
+            handlerState.Apply(_facade.DeleteAllUsages(linkIndex, handlerState.Handler));
+            handlerState.Apply(_links.Delete(restriction, handlerState.Handler));
+            return handlerState.Result;
         }
     }
 }

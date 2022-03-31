@@ -13,9 +13,9 @@ namespace Platform.Data.Doublets.Memory.Split
     /// </para>
     /// <para></para>
     /// </summary>
-    public struct RawLinkDataPart<TLink> : IEquatable<RawLinkDataPart<TLink>>
+    public struct RawLinkDataPart<TLinkAddress> : IEquatable<RawLinkDataPart<TLinkAddress>>
     {
-        private static readonly EqualityComparer<TLink> _equalityComparer = EqualityComparer<TLink>.Default;
+        private static readonly EqualityComparer<TLinkAddress> _equalityComparer = EqualityComparer<TLinkAddress>.Default;
 
         /// <summary>
         /// <para>
@@ -23,7 +23,7 @@ namespace Platform.Data.Doublets.Memory.Split
         /// </para>
         /// <para></para>
         /// </summary>
-        public static readonly long SizeInBytes = Structure<RawLinkDataPart<TLink>>.Size;
+        public static readonly long SizeInBytes = Structure<RawLinkDataPart<TLinkAddress>>.Size;
 
         /// <summary>
         /// <para>
@@ -31,14 +31,14 @@ namespace Platform.Data.Doublets.Memory.Split
         /// </para>
         /// <para></para>
         /// </summary>
-        public TLink Source;
+        public TLinkAddress Source;
         /// <summary>
         /// <para>
         /// The target.
         /// </para>
         /// <para></para>
         /// </summary>
-        public TLink Target;
+        public TLinkAddress Target;
 
         /// <summary>
         /// <para>
@@ -55,7 +55,7 @@ namespace Platform.Data.Doublets.Memory.Split
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override bool Equals(object obj) => obj is RawLinkDataPart<TLink> link ? Equals(link) : false;
+        public override bool Equals(object obj) => obj is RawLinkDataPart<TLinkAddress> link ? Equals(link) : false;
 
         /// <summary>
         /// <para>
@@ -72,7 +72,7 @@ namespace Platform.Data.Doublets.Memory.Split
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool Equals(RawLinkDataPart<TLink> other)
+        public bool Equals(RawLinkDataPart<TLinkAddress> other)
             => _equalityComparer.Equals(Source, other.Source)
             && _equalityComparer.Equals(Target, other.Target);
 
@@ -90,9 +90,9 @@ namespace Platform.Data.Doublets.Memory.Split
         public override int GetHashCode() => (Source, Target).GetHashCode();
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool operator ==(RawLinkDataPart<TLink> left, RawLinkDataPart<TLink> right) => left.Equals(right);
+        public static bool operator ==(RawLinkDataPart<TLinkAddress> left, RawLinkDataPart<TLinkAddress> right) => left.Equals(right);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool operator !=(RawLinkDataPart<TLink> left, RawLinkDataPart<TLink> right) => !(left == right);
+        public static bool operator !=(RawLinkDataPart<TLinkAddress> left, RawLinkDataPart<TLinkAddress> right) => !(left == right);
     }
 }

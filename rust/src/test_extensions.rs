@@ -3,13 +3,14 @@ use std::default::default;
 use num_traits::{one, zero};
 use rand::Rng;
 
-use crate::doublets::data::{Hybrid, IGenericLinks, IGenericLinksExtensions, RawToAddr};
-use crate::doublets::ILinks;
+use crate::data::{Hybrid, Links, RawToAddr};
+use crate::doublets::Doublets;
 use crate::doublets::ILinksExtensions;
 use crate::doublets::Link;
 use crate::num::LinkType;
+use crate::query;
 
-pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
+pub trait ILinksTestExtensions<T: LinkType>: Doublets<T> + ILinksExtensions<T> {
     fn test_crud(&mut self) {
         let constants = self.constants();
 
@@ -19,7 +20,6 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
         // TODO: expect
         let mut link: Link<T> = self.get_link(address).unwrap();
 
-        assert_eq!(link.len(), 3);
         assert_eq!(link.index, address);
         assert_eq!(link.source, constants.null);
         assert_eq!(link.target, constants.null);
@@ -32,7 +32,9 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
         assert_eq!(link.source, address);
         assert_eq!(link.target, address);
 
-        let updated = self.update(address, constants.null, constants.null).unwrap();
+        let updated = self
+            .update(address, constants.null, constants.null)
+            .unwrap();
         assert_eq!(updated, address);
         // TODO: expect
         link = self.get_link(address).unwrap();
@@ -61,7 +63,9 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
         assert_eq!(h108.absolute().as_(), 108);
 
         let address1 = links.create().unwrap();
-        links.update(address1, h106.as_value(), h108.as_value()).unwrap();
+        links
+            .update(address1, h106.as_value(), h108.as_value())
+            .unwrap();
 
         let link = links.get_link(address1).unwrap();
         assert_eq!(link.source, h106.as_value());
@@ -85,17 +89,17 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
         let r#break = constants.r#break;
 
         let mut result = None;
-        links.each_by(|link| {
+        links.each_by([any, h106.as_value(), h108.as_value()], |link| {
             result = Some(link.index);
             r#break
-        }, [any, h106.as_value(), h108.as_value()]);
+        });
         assert_eq!(result, Some(address1));
 
         let mut result = None;
-        links.each_by(|link| {
+        links.each_by([any, h106.absolute(), h107.absolute()], |link| {
             result = Some(link.index);
             r#break
-        }, [any, h106.absolute(), h107.absolute()]); // TODO: !!!
+        }); // TODO: !!!
         assert_eq!(result, None);
 
         let updated = links.update(address3, zero(), zero()).unwrap();
@@ -128,10 +132,13 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
                     let address = 1..=count;
                     let source = rand::thread_rng().gen_range(address.clone());
                     let target = rand::thread_rng().gen_range(address);
-                    let result = self.get_or_create(
-                        T::from_usize(source).unwrap(),
-                        T::from_usize(target).unwrap(),
-                    ).unwrap().as_();
+                    let result = self
+                        .get_or_create(
+                            T::from_usize(source).unwrap(),
+                            T::from_usize(target).unwrap(),
+                        )
+                        .unwrap()
+                        .as_();
 
                     if result > count {
                         created += 1;
@@ -154,4 +161,4 @@ pub trait ILinksTestExtensions<T: LinkType>: ILinks<T> + ILinksExtensions<T> {
     }
 }
 
-impl<T: LinkType, All: ILinks<T>> ILinksTestExtensions<T> for All {}
+impl<T: LinkType, All: Doublets<T>> ILinksTestExtensions<T> for All {}

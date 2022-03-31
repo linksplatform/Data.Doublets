@@ -1,8 +1,8 @@
 ﻿namespace Platform::Data::Doublets
 {
-    template <typename ...> class ILinks;
-    template <typename TLink> class ILinks<TLink> : public ILinks<TLink, LinksConstants<TLink>>
+    template<typename Self, typename TLink>
+    struct ILinks : public Data::ILinks<ILinks<Self, TLink>, TLink, LinksConstants<TLink>>
     {
-    public:
+
     };
 }

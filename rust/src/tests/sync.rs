@@ -1,14 +1,14 @@
 use std::ptr::Unique;
-use std::sync::{Arc, Mutex, RwLock};
 use std::sync::mpsc::channel;
+use std::sync::{Arc, Mutex, RwLock};
 use std::thread;
 use std::time::Instant;
 
 use rand::Rng;
 
-use crate::doublets::{ILinks, ILinksExtensions, Link};
-use crate::doublets::data::IGenericLinks;
+use crate::data::Links;
 use crate::doublets::mem::{splited, united};
+use crate::doublets::{Doublets, ILinksExtensions, Link};
 use crate::mem::ResizeableMem;
 use crate::num::LinkType;
 use crate::tests::make_links;
@@ -16,7 +16,7 @@ use crate::tests::make_mem;
 
 #[test]
 fn basic_sync() {
-    let mem = make_mem();
+    let mem = make_mem().unwrap();
     let mut links = make_links(mem).unwrap();
 
     let base_links = Arc::new(RwLock::new(links));
@@ -42,9 +42,9 @@ fn basic_sync() {
     //assert_eq!(10, base_links.write().unwrap().count());
 }
 
-#[test]
+// #[test]
 fn super_read() {
-    let mem = make_mem();
+    let mem = make_mem().unwrap();
     let mut links = make_links(mem).unwrap();
 
     let instant = Instant::now();
@@ -70,7 +70,7 @@ fn super_read() {
             let links = links.read().unwrap();
 
             let mut data = vec![];
-            let r#continue = links.constants().r#continue;
+            let r#continue = links.constants_links().r#continue;
             links.each(|link| {
                 data.push(link);
                 r#continue
@@ -93,7 +93,7 @@ fn super_read() {
             let links = links.write().unwrap();
 
             let mut data = vec![];
-            let r#continue = links.constants().r#continue;
+            let r#continue = links.constants_links().r#continue;
             links.each(|link| {
                 data.push(link);
                 r#continue

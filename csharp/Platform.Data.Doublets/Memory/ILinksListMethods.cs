@@ -10,7 +10,7 @@ namespace Platform.Data.Doublets.Memory
     /// </para>
     /// <para></para>
     /// </summary>
-    public interface ILinksListMethods<TLink>
+    public interface ILinksListMethods<TLinkAddress>
     {
         /// <summary>
         /// <para>
@@ -23,7 +23,7 @@ namespace Platform.Data.Doublets.Memory
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        void Detach(TLink freeLink);
+        void Detach(TLinkAddress freeLink);
 
         /// <summary>
         /// <para>
@@ -36,6 +36,6 @@ namespace Platform.Data.Doublets.Memory
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        void AttachAsFirst(TLink link);
+        void AttachAsFirst(TLinkAddress link);
     }
 }

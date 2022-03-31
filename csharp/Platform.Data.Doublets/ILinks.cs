@@ -10,8 +10,8 @@ namespace Platform.Data.Doublets
     /// </para>
     /// <para></para>
     /// </summary>
-    /// <seealso cref="ILinks{TLink, LinksConstants{TLink}}"/>
-    public interface ILinks<TLink> : ILinks<TLink, LinksConstants<TLink>>
+    /// <seealso cref="ILinks{TLinkAddress, LinksConstants{TLinkAddress}}"/>
+    public interface ILinks<TLinkAddress> : ILinks<TLinkAddress, LinksConstants<TLinkAddress>>
     {
     }
 }

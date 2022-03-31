@@ -1,4 +1,7 @@
+using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Platform.Delegates;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
@@ -10,8 +13,8 @@ namespace Platform.Data.Doublets.Decorators
     /// </para>
     /// <para></para>
     /// </summary>
-    /// <seealso cref="LinksUniquenessResolver{TLink}"/>
-    public class LinksCascadeUniquenessAndUsagesResolver<TLink> : LinksUniquenessResolver<TLink>
+    /// <seealso cref="LinksUniquenessResolver{TLinkAddress}"/>
+    public class LinksCascadeUniquenessAndUsagesResolver<TLinkAddress> : LinksUniquenessResolver<TLinkAddress> 
     {
         /// <summary>
         /// <para>
@@ -24,7 +27,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public LinksCascadeUniquenessAndUsagesResolver(ILinks<TLink> links) : base(links) { }
+        public LinksCascadeUniquenessAndUsagesResolver(ILinks<TLinkAddress> links) : base(links) { }
 
         /// <summary>
         /// <para>
@@ -45,11 +48,14 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override TLink ResolveAddressChangeConflict(TLink oldLinkAddress, TLink newLinkAddress)
+        protected override TLinkAddress ResolveAddressChangeConflict(TLinkAddress oldLinkAddress, TLinkAddress newLinkAddress, WriteHandler<TLinkAddress>? handler)
         {
+            var constants = _links.Constants;
+            WriteHandlerState<TLinkAddress> handlerState = new(constants.Continue, constants.Break, handler);
             // Use Facade (the last decorator) to ensure recursion working correctly
-            _facade.MergeUsages(oldLinkAddress, newLinkAddress);
-            return base.ResolveAddressChangeConflict(oldLinkAddress, newLinkAddress);
+            handlerState.Apply(_facade.MergeUsages(oldLinkAddress, newLinkAddress, handlerState.Handler));
+            handlerState.Apply(base.ResolveAddressChangeConflict(oldLinkAddress, newLinkAddress, handlerState.Handler));
+            return handlerState.Result;
         }
     }
 }

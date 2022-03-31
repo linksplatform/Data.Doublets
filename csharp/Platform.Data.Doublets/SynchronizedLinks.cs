@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Platform.Data.Doublets;
+using Platform.Delegates;
 using Platform.Threading.Synchronization;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -13,7 +14,7 @@ namespace Platform.Data.Doublets
     /// TODO: Try to unfold code of each method using IL generation for performance improvements.
     /// TODO: Or even to unfold multiple layers of implementations.
     /// </remarks>
-    public class SynchronizedLinks<TLinkAddress> : ISynchronizedLinks<TLinkAddress>
+    public class SynchronizedLinks<TLinkAddress> : ISynchronizedLinks<TLinkAddress> 
     {
         /// <summary>
         /// <para>
@@ -114,7 +115,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLinkAddress Count(IList<TLinkAddress> restriction) => SyncRoot.ExecuteReadOperation(restriction, Unsync.Count);
+        public TLinkAddress Count(IList<TLinkAddress>? restriction) => SyncRoot.DoRead(restriction, Unsync.Count);
 
         /// <summary>
         /// <para>
@@ -126,8 +127,8 @@ namespace Platform.Data.Doublets
         /// <para>The handler.</para>
         /// <para></para>
         /// </param>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The substitution.</para>
         /// <para></para>
         /// </param>
         /// <returns>
@@ -135,16 +136,16 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLinkAddress Each(Func<IList<TLinkAddress>, TLinkAddress> handler, IList<TLinkAddress> restrictions) => SyncRoot.ExecuteReadOperation(handler, restrictions, (handler1, restrictions1) => Unsync.Each(handler1, restrictions1));
+        public TLinkAddress Each(IList<TLinkAddress>? restriction, ReadHandler<TLinkAddress>? handler) => SyncRoot.DoRead(restriction, handler, Unsync.Each);
 
         /// <summary>
         /// <para>
-        /// Creates the restrictions.
+        /// Creates the substitution.
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="substitution">
+        /// <para>The substitution.</para>
         /// <para></para>
         /// </param>
         /// <returns>
@@ -152,16 +153,16 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLinkAddress Create(IList<TLinkAddress> restrictions) => SyncRoot.ExecuteWriteOperation(restrictions, Unsync.Create);
+        public TLinkAddress Create(IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler) => SyncRoot.DoWrite(substitution, handler, Unsync.Create);
 
         /// <summary>
         /// <para>
-        /// Updates the restrictions.
+        /// Updates the substitution.
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The substitution.</para>
         /// <para></para>
         /// </param>
         /// <param name="substitution">
@@ -173,20 +174,20 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLinkAddress Update(IList<TLinkAddress> restrictions, IList<TLinkAddress> substitution) => SyncRoot.ExecuteWriteOperation(restrictions, substitution, Unsync.Update);
+        public TLinkAddress Update(IList<TLinkAddress>? restriction, IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler) => SyncRoot.DoWrite(restriction, substitution, handler, Unsync.Update);
 
         /// <summary>
         /// <para>
-        /// Deletes the restrictions.
+        /// Deletes the substitution.
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="restrictions">
-        /// <para>The restrictions.</para>
+        /// <param name="restriction">
+        /// <para>The substitution.</para>
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Delete(IList<TLinkAddress> restrictions) => SyncRoot.ExecuteWriteOperation(restrictions, Unsync.Delete);
+        public TLinkAddress Delete(IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? handler) => SyncRoot.DoWrite(restriction, handler, Unsync.Delete);
 
         //public T Trigger(IList<T> restriction, Func<IList<T>, IList<T>, T> matchedHandler, IList<T> substitution, Func<IList<T>, IList<T>, T> substitutedHandler)
         //{
