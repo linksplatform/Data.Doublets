@@ -853,8 +853,10 @@ namespace Platform::Data::Doublets
     static void DeleteByQuery(TStorage& storage, Link<typename TStorage::LinkAddressType> query)
     {
         std::vector<typename TStorage::LinkAddressType> queryResult;
-        auto queryResultFiller = ListFiller<typename TStorage::LinkAddressType, typename TStorage::LinkAddressType>(queryResult, storage.Constants.Continue);
-        storage.Each(queryResultFiller.AddFirstAndReturnConstant, query);
+        storage.Each(query, [&](std::vector<typename TStorage::LinkAddressType> vec) -> typename TStorage::LinkAddressType{
+            return storage.Constants.Continue;
+        });
+
         for (auto link: queryResult)
         {
             Delete(storage, link);
