@@ -3,6 +3,9 @@ name: RustWorkflow
 on:
   push:
     branches: ["main"]
+    paths:
+      - 'rust/**'
+      - '.github/workflows/rust.yml'
 
 env:
   RUST_BACKTRACE: 1
