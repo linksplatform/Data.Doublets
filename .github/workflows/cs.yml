@@ -5,6 +5,7 @@ on:
     branches: main
     paths:
       - 'csharp/**'
+      - '.github/workflows/cs.yml'
 env:
   NUGETTOKEN: ${{ secrets.NUGET_TOKEN }}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
