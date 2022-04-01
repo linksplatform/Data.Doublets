@@ -20,7 +20,7 @@ jobs:
       - name: Test C#
         run: |
           dotnet test -c Release -f net6
-  deployCs:
+  deploy:
     runs-on: ubuntu-latest
     needs: testCs
     steps:
@@ -39,6 +39,7 @@ jobs:
         bash ./push-csharp-nuget.sh
   publiseRelease:
     runs-on: ubuntu-latest
+    needs: deploy
     steps:
       - uses: actions/checkout@v1
         with:
