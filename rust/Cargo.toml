@@ -1,14 +1,7 @@
 [package]
 name = "doublets"
-version = "0.1.0-alpha.4"
+version = "0.1.0"
 edition = "2018"
-authors = ["Linksplatform Team <linksplatformtechnologies@gmail.com>"]
-license = "LGPL-3.0"
-repository = "https://github.com/linksplatform/Data.Doublets"
-homepage = "https://github.com/linksplatform/Data.Doublets/blob/master/rust"
-description = """
-Modular framework to automation by automation
-"""
 
 [dependencies]
 thiserror = "1.0.30"
