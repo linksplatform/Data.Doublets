@@ -345,15 +345,15 @@ namespace Platform::Data::Doublets
             }
         }
 
-    //    template<typename TStorage>
-    //    static void EnsureDoesNotExists(TStorage& storage, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType target)
-    //    {
-    //        if (storage.Exists(source, target))
-    //        {
-    //            throw LinkWithSameValueAlreadyExistsException();
-    //        }
-    //    }
-    //
+        template<typename TStorage>
+        static void EnsureDoesNotExists(TStorage& storage, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType target)
+        {
+            if (storage.Exists(source, target))
+            {
+                throw LinkWithSameValueAlreadyExistsException();
+            }
+        }
+
     //    template<typename TStorage>
     //    static void EnsureNoUsages(TStorage& storage, typename TStorage::LinkAddressType linkAddress)
     //    {
