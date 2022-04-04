@@ -295,25 +295,25 @@ namespace Platform::Data::Doublets
             return storage.Count(Link{storage.Constants.Any, source, target}) > 0;
         }
         
-    //
-    //    template<typename TStorage>
-    //    static void EnsureInnerReferenceExists(TStorage& storage, typename TStorage::LinkAddressType reference, std::string argumentName)
-    //    {
-    //        if (storage.Constants.IsInternalReference(reference) && !storage.Exists(reference))
-    //        {
-    //            throw ArgumentLinkDoesNotExistsException<typename TStorage::LinkAddressType>(reference, argumentName);
-    //        }
-    //    }
-    //
-    //    template<typename TStorage>
-    //    static void EnsureInnerReferenceExists(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction, std::string argumentName)
-    //    {
-    //        for (std::int32_t i = 0; i < restriction.Count(); ++i)
-    //        {
-    //            storage.EnsureInnerReferenceExists(restriction[i], argumentName);
-    //        }
-    //    }
-    //
+
+        template<typename TStorage>
+        static void EnsureInnerReferenceExists(TStorage& storage, typename TStorage::LinkAddressType reference, std::string argumentName)
+        {
+            if (storage.Constants.IsInternalReference(reference) && !storage.Exists(reference))
+            {
+                throw ArgumentLinkDoesNotExistsException<typename TStorage::LinkAddressType>(reference, argumentName);
+            }
+        }
+
+        template<typename TStorage>
+        static void EnsureInnerReferenceExists(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction, std::string argumentName)
+        {
+            for (std::int32_t i = 0; i < restriction.Count(); ++i)
+            {
+                storage.EnsureInnerReferenceExists(restriction[i], argumentName);
+            }
+        }
+
     //    template<typename TStorage>
     //    static void EnsureLinkIsAnyOrExists(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction)
     //    {
