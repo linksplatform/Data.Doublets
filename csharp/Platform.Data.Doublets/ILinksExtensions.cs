@@ -820,7 +820,7 @@ namespace Platform.Data.Doublets
         {
             var contants = links.Constants;
             var setter = new Setter<TLinkAddress, TLinkAddress>(contants.Continue, contants.Break, default);
-            links.Each(setter.SetFirstAndReturnFalse, source, target);
+            links.Each(setter.SetFirstAndReturnFalse, contants.Any, source, target);
             return setter.Result;
         }
 
