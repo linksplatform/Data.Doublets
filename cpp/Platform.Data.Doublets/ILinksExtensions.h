@@ -277,17 +277,17 @@ namespace Platform::Data::Doublets
         }
 
 
-    //    template<typename TStorage>
-    //    static void EnsureLinkExists(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction)
-    //    {
-    //        for (auto i { 0 }; i < restriction.Count(); ++i)
-    //        {
-    //            if (!storage.Exists(restriction[i]))
-    //            {
-    //                throw ArgumentLinkDoesNotExistsException<typename TStorage::LinkAddressType>(restriction[i], std::string("sequence[").append(Platform::Converters::To<std::string>(i)).append(1, ']'));
-    //            }
-    //        }
-    //    }
+        template<typename TStorage>
+        static void EnsureLinkExists(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction)
+        {
+            for (auto i { 0 }; i < restriction.Count(); ++i)
+            {
+                if (!storage.Exists(restriction[i]))
+                {
+                    throw ArgumentLinkDoesNotExistsException<typename TStorage::LinkAddressType>(restriction[i], std::string("sequence[").append(Platform::Converters::To<std::string>(i)).append(1, ']'));
+                }
+            }
+        }
         
         template<typename TStorage>
         static bool Exists(TStorage& storage, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType target)
