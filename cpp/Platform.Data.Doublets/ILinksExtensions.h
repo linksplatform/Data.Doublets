@@ -327,15 +327,15 @@ namespace Platform::Data::Doublets
     //        }
     //    }
     //
-    //    template<typename TStorage>
-    //    static void EnsureLinkIsAnyOrExists(TStorage& storage, typename TStorage::LinkAddressType linkAddress, std::string argumentName)
-    //    {
-    //        if ((storage.Constants.Any != linkAddress) && !storage.Exists(linkAddress))
-    //        {
-    //            throw ArgumentLinkDoesNotExistsException<typename TStorage::LinkAddressType>(linkAddress, argumentName);
-    //        }
-    //    }
-    //
+        template<typename TStorage>
+        static void EnsureLinkIsAnyOrExists(TStorage& storage, typename TStorage::LinkAddressType linkAddress, std::string argumentName)
+        {
+            if ((storage.Constants.Any != linkAddress) && !storage.Exists(linkAddress))
+            {
+                throw ArgumentLinkDoesNotExistsException<typename TStorage::LinkAddressType>(linkAddress, argumentName);
+            }
+        }
+
     //    template<typename TStorage>
     //    static void EnsureLinkIsItselfOrExists(TStorage& storage, typename TStorage::LinkAddressType linkAddress, std::string argumentName)
     //    {
