@@ -291,13 +291,13 @@ namespace Platform::Data::Doublets
                 }
             }
         }
-        
+
         template<typename TStorage>
         static bool Exists(TStorage& storage, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType target)
         {
             return storage.Count(Link{storage.Constants.Any, source, target}) > 0;
         }
-        
+
 
         template<typename TStorage>
         static void EnsureInnerReferenceExists(TStorage& storage, typename TStorage::LinkAddressType reference, std::string argumentName)
@@ -626,14 +626,14 @@ namespace Platform::Data::Doublets
         return constants.Null;
     }
 
-        template<typename TStorage>
-        static void DeleteMany(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& deletedLinks)
+    template<typename TStorage>
+    static void DeleteMany(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& deletedLinks)
+    {
+        for (std::int32_t i = 0; i < deletedLinks.Count(); ++i)
         {
-            for (std::int32_t i = 0; i < deletedLinks.Count(); ++i)
-            {
-                storage.Delete(deletedLinks[i]);
-            }
+            storage.Delete(deletedLinks[i]);
         }
+    }
 
 
     template<typename TStorage>
