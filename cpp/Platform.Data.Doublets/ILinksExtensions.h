@@ -276,6 +276,7 @@ namespace Platform::Data::Doublets
                 allIndices.push_back(link);
                 return $continue;
             });
+            return allIndices;
         }
 
 
