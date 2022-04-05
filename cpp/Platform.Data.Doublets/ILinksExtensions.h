@@ -372,30 +372,30 @@ namespace Platform::Data::Doublets
         template<typename TStorage>
         static void EnsurePointsCreated(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& addresses) { storage.EnsureCreated(storage.CreatePoint, addresses); }
 
-    //    template<typename TStorage>
-    //    static void EnsureCreated(TStorage& storage, std::function<typename TStorage::LinkAddressType()> creator, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& addresses)
-    //    {
-    //        auto nonExistentAddresses = HashSet<typename TStorage::LinkAddressType>(addresses.Where(x => !storage.Exists(x)));
-    //        if (nonExistentAddresses.Count() > 0)
-    //        {
-    //            auto max = nonExistentAddresses.Max();
-    //            max = System::Math::Min(max), storage.Constants.InternalReferencesRange.Maximum
-    //            auto createdLinks = List<typename TStorage::LinkAddressType>();
-    //            typename TStorage::LinkAddressType createdLink = creator();
-    //            while ( max != createdLink)
-    //            {
-    //                createdLinks.Add(createdLink);
-    //            }
-    //            for (auto i { 0 }; i < createdLinks.Count(); ++i)
-    //            {
-    //                if (!nonExistentAddresses.Contains(createdLinks[i]))
-    //                {
-    //                    storage.Delete(createdLinks[i]);
-    //                }
-    //            }
-    //        }
-    //    }
-    //
+        template<typename TStorage>
+        static void EnsureCreated(TStorage& storage, std::function<typename TStorage::LinkAddressType()> creator, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& addresses)
+        {
+            auto nonExistentAddresses = HashSet<typename TStorage::LinkAddressType>(addresses.Where(x => !storage.Exists(x)));
+            if (nonExistentAddresses.Count() > 0)
+            {
+                auto max = nonExistentAddresses.Max();
+                max = System::Math::Min(max), storage.Constants.InternalReferencesRange.Maximum
+                std::vector<typename TStorage::LinkType> createdLinks {};
+                typename TStorage::LinkAddressType createdLink = creator();
+                while ( max != createdLink)
+                {
+                    createdLinks.Add(createdLink);
+                }
+                for (auto i { 0 }; i < createdLinks.Count(); ++i)
+                {
+                    if (!nonExistentAddresses.Contains(createdLinks[i]))
+                    {
+                        storage.Delete(createdLinks[i]);
+                    }
+                }
+            }
+        }
+
     //    template<typename TStorage>
     //    static typename TStorage::LinkAddressType CountUsages(TStorage& storage, typename TStorage::LinkAddressType linkAddress)
     //    {
