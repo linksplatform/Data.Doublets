@@ -317,19 +317,19 @@ namespace Platform::Data::Doublets
             }
         }
 
-    //    template<typename TStorage>
-    //    static void EnsureLinkIsAnyOrExists(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction)
-    //    {
-    //        auto any = storage.Constants.Any;
-    //        for (auto i { 0 }; i < restriction.Count(); ++i)
-    //        {
-    //            if ((any != restriction[i]) && !storage.Exists(restriction[i]))
-    //            {
-    //                throw ArgumentLinkDoesNotExistsException<typename TStorage::LinkAddressType>(restriction[i], std::string("sequence[").append(Platform::Converters::To<std::string>(i)).append(1, ']'));
-    //            }
-    //        }
-    //    }
-    //
+        template<typename TStorage>
+        static void EnsureLinkIsAnyOrExists(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction)
+        {
+            auto any = storage.Constants.Any;
+            for (auto i { 0 }; i < restriction.Count(); ++i)
+            {
+                if ((any != restriction[i]) && !storage.Exists(restriction[i]))
+                {
+                    throw ArgumentLinkDoesNotExistsException<typename TStorage::LinkAddressType>(restriction[i], std::string("sequence[").append(Platform::Converters::To<std::string>(i)).append(1, ']'));
+                }
+            }
+        }
+
         template<typename TStorage>
         static void EnsureLinkIsAnyOrExists(TStorage& storage, typename TStorage::LinkAddressType linkAddress, std::string argumentName)
         {
