@@ -626,15 +626,15 @@ namespace Platform::Data::Doublets
         return constants.Null;
     }
 
-    //    template<typename TStorage>
-    //    static void DeleteMany(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& deletedLinks)
-    //    {
-    //        for (std::int32_t i = 0; i < deletedLinks.Count(); ++i)
-    //        {
-    //            storage.Delete(deletedLinks[i]);
-    //        }
-    //    }
-    //
+        template<typename TStorage>
+        static void DeleteMany(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& deletedLinks)
+        {
+            for (std::int32_t i = 0; i < deletedLinks.Count(); ++i)
+            {
+                storage.Delete(deletedLinks[i]);
+            }
+        }
+
 
     template<typename TStorage>
     static typename TStorage::LinkAddressType DeleteAllUsages(TStorage& storage, typename TStorage::LinkAddressType linkIndex, auto&& handler)
