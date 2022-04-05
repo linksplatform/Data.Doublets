@@ -417,14 +417,14 @@ namespace Platform::Data::Doublets
         template<typename TStorage>
         static bool HasUsages(TStorage& storage, typename TStorage::LinkAddressType linkAddress) { return Comparer<typename TStorage::LinkAddressType>.Default.Compare(Count(storage)Usages(linkAddress), 0) > 0; }
 
-    //    template<typename TStorage>
-    //    static bool operator ==(TStorage& storage, typename TStorage::LinkAddressType linkAddress, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType &target) const
-    //    {
-    //        auto constants = storage.Constants;
-    //        auto values = GetLink(storage, linkAddress);
-    //        return  source == GetSource(storage, values) &&  target == GetTarget(storage, values);
-    //    }
-    //
+        template<typename TStorage>
+        static bool operator ==(TStorage& storage, typename TStorage::LinkAddressType linkAddress, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType &target) const
+        {
+            auto constants = storage.Constants;
+            auto values = GetLink(storage, linkAddress);
+            return  source == GetSource(storage, values) &&  target == GetTarget(storage, values);
+        }
+
         template<typename TStorage>
         typename TStorage::LinkAddressType SearchOrDefault(TStorage& storage, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType target)
         {
