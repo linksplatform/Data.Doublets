@@ -270,10 +270,12 @@ namespace Platform::Data::Doublets
 
         static Interfaces::CArray<typename TStorage::LinkAddressType>auto AllIndices<typename TStorage::LinkAddressType>(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction)
         {
-            auto allIndices = List<typename TStorage::LinkAddressType>();
+            std::vector<typename TStorage::LinkType> allIndices {};
             auto usages = std::vector<typename TStorage::LinkType>();
-            storage.Each(filler.AddFirstAndReturnConstant, restriction);
-            return allIndices;
+            storage.Each(restriction, [&allIndices, $continue](const typename TStorage::LinkType& link){
+                allIndices.push_back(link);
+                return $continue;
+            });
         }
 
 
