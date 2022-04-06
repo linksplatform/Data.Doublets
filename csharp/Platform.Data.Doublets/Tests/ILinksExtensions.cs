@@ -4,6 +4,7 @@ using Platform.Ranges;
 using Platform.Random;
 using Platform.Converters;
 using System.Collections.Generic;
+using System.Linq;
 using Platform.Numbers;
 using Platform.Setters;
 
@@ -209,10 +210,8 @@ namespace Platform.Data.Doublets.Tests
 
             EnsureTrue(equalityComparer.Equals(links.Count(), two));
 
-            var setter3 = new Setter<T, T>(constants.Continue, constants.Break, constants.Null);
-            // links.Each(setter3.SetFirstAndReturnTrue, constants.Any, constants.Any, constants.Any);
-            //
-            // EnsureTrue(equalityComparer.Equals(setter3.Result, linkAddress2));
+            var isLinkAddress2Found = links.All().Any(link => equalityComparer.Equals(link![constants.IndexPart],linkAddress2));
+            EnsureTrue(isLinkAddress2Found);
         }
 
         /// <summary>
