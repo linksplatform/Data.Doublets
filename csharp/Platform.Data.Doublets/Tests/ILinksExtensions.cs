@@ -250,8 +250,8 @@ namespace Platform.Data.Doublets.Tests
                     if (created >= 2 && createPoint)
                     {
                         var linksAddressRange = new Range<ulong>(0, created);
-                        var source = uInt64ToAddressConverter.Convert(createdAddresses[random.NextUInt64(linksAddressRange)]);
-                        var target = uInt64ToAddressConverter.Convert(createdAddresses[random.NextUInt64(linksAddressRange)]); //-V3086
+                        var source = uInt64ToAddressConverter.Convert(createdAddresses[(int)random.NextUInt64(linksAddressRange)]);
+                        var target = uInt64ToAddressConverter.Convert(createdAddresses[(int)random.NextUInt64(linksAddressRange)]); //-V3086
                         var resultLink = links.GetOrCreate(source, target);
                         if (comparer.Compare(resultLink, default) > 0)
                         {
@@ -267,11 +267,11 @@ namespace Platform.Data.Doublets.Tests
                 }
                 EnsureTrue(created == addressToUInt64Converter.Convert(links.Count()));
                 var allLinks = links.All();
-                var linksAddressRange = new Range<ulong>(0, created);
+                var deletedLinksAddressRange = new Range<ulong>(0, created);
                 // Random deletions
                 for (var i = 0; i < N; i++)
                 {
-                    var id = uInt64ToAddressConverter.Convert(createdAddresses[random.NextUInt64(linksAddressRange)]);
+                    var id = uInt64ToAddressConverter.Convert(createdAddresses[(int)random.NextUInt64(deletedLinksAddressRange)]);
                     if (links.Exists(id))
                     {
                         links.Delete(id);
