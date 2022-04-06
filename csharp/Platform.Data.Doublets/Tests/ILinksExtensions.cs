@@ -265,13 +265,13 @@ namespace Platform.Data.Doublets.Tests
                     }
                 }
                 EnsureTrue(created == addressToUInt64Converter.Convert(links.Count()));
-                for (var i = 0; i < N; i++)
+                var allLinks = links.All();
+                foreach (var linkToDelete in allLinks)
                 {
-                    TLink link = uInt64ToAddressConverter.Convert((ulong)i + 1UL);
-                    if (links.Exists(link))
+                    var id = linkToDelete![0];
+                    if (links.Exists(id))
                     {
-                        links.Delete(link);
-                        deleted++;
+                        links.Delete(id);
                     }
                 }
                 EnsureTrue(addressToUInt64Converter.Convert(links.Count()) == 0L);
