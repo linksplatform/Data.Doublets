@@ -241,16 +241,15 @@ namespace Platform.Data.Doublets.Tests
             {
                 var random = new System.Random(N);
                 var createdAddresses = new List<TLink>();
-                var created = 0UL;
-                var deleted = 0UL;
+                var created = 0;
                 for (var i = 0; i < N; i++)
                 {
                     var createPoint = random.NextBoolean();
                     if (created >= 2 && createPoint)
                     {
                         var linksAddressRange = new Range<int>(0, created);
-                        var source = createdAddresses[random.Next(linksAddressRange)];
-                        var target = createdAddresses[random.Next(linksAddressRange)]; //-V3086
+                        var source = createdAddresses[random.Next(linksAddressRange.Minimum, linksAddressRange.Maximum)];
+                        var target = createdAddresses[random.Next(linksAddressRange.Minimum, linksAddressRange.Maximum)]; //-V3086
                         var resultLink = links.GetOrCreate(source, target);
                         if (comparer.Compare(resultLink, default) > 0)
                         {
@@ -264,13 +263,13 @@ namespace Platform.Data.Doublets.Tests
                         created++;
                     }
                 }
-                EnsureTrue(created == addressToUInt64Converter.Convert(links.Count()));
+                EnsureTrue((ulong)created == addressToUInt64Converter.Convert(links.Count()));
                 var allLinks = links.All();
                 var deletedLinksAddressRange = new Range<int>(0, created);
                 // Random deletions
                 for (var i = 0; i < N; i++)
                 {
-                    var id = createdAddresses[random.Next(deletedLinksAddressRange)];
+                    var id = createdAddresses[random.Next(deletedLinksAddressRange.Minimum, deletedLinksAddressRange.Maximum)];
                     if (links.Exists(id))
                     {
                         links.Delete(id);
