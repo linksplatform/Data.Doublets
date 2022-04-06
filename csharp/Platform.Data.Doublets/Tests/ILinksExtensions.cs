@@ -278,11 +278,11 @@ namespace Platform.Data.Doublets.Tests
                     }
                 }
                 // Delete all remaining links
-                foreach (var linkToDelete in createdAddresses)
+                for (var i = 0; i < createdAddresses.Count; i++)
                 {
-                    if (links.Exists(id))
+                    if (links.Exists(createdAddresses[i]))
                     {
-                        links.Delete(id);
+                        links.Delete(createdAddresses[i]);
                     }
                 }
                 EnsureTrue(addressToUInt64Converter.Convert(links.Count()) == 0L);
