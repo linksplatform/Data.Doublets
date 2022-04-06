@@ -237,7 +237,6 @@ namespace Platform.Data.Doublets.Tests
         {
             var comparer = Comparer<TLink>.Default;
             var addressToUInt64Converter = CheckedConverter<TLink, ulong>.Default;
-            var uInt64ToAddressConverter = CheckedConverter<ulong, TLink>.Default;
             for (var N = 1; N < maximumOperationsPerCycle; N++)
             {
                 var random = new System.Random(N);
@@ -249,9 +248,9 @@ namespace Platform.Data.Doublets.Tests
                     var createPoint = random.NextBoolean();
                     if (created >= 2 && createPoint)
                     {
-                        var linksAddressRange = new Range<ulong>(0, created);
-                        var source = uInt64ToAddressConverter.Convert(createdAddresses[(int)random.NextUInt64(linksAddressRange)]);
-                        var target = uInt64ToAddressConverter.Convert(createdAddresses[(int)random.NextUInt64(linksAddressRange)]); //-V3086
+                        var linksAddressRange = new Range<int>(0, created);
+                        var source = createdAddresses[random.Next(linksAddressRange)];
+                        var target = createdAddresses[random.Next(linksAddressRange)]; //-V3086
                         var resultLink = links.GetOrCreate(source, target);
                         if (comparer.Compare(resultLink, default) > 0)
                         {
@@ -267,11 +266,11 @@ namespace Platform.Data.Doublets.Tests
                 }
                 EnsureTrue(created == addressToUInt64Converter.Convert(links.Count()));
                 var allLinks = links.All();
-                var deletedLinksAddressRange = new Range<ulong>(0, created);
+                var deletedLinksAddressRange = new Range<int>(0, created);
                 // Random deletions
                 for (var i = 0; i < N; i++)
                 {
-                    var id = uInt64ToAddressConverter.Convert(createdAddresses[(int)random.NextUInt64(deletedLinksAddressRange)]);
+                    var id = createdAddresses[random.Next(deletedLinksAddressRange)];
                     if (links.Exists(id))
                     {
                         links.Delete(id);
