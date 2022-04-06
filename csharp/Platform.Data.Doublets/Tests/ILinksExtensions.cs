@@ -237,41 +237,51 @@ namespace Platform.Data.Doublets.Tests
         {
             var comparer = Comparer<TLink>.Default;
             var addressToUInt64Converter = CheckedConverter<TLink, ulong>.Default;
-            var uInt64ToAddressConverter = CheckedConverter<ulong, TLink>.Default;
             for (var N = 1; N < maximumOperationsPerCycle; N++)
             {
                 var random = new System.Random(N);
+                var createdAddresses = new List<TLink>();
                 var created = 0UL;
                 var deleted = 0UL;
                 for (var i = 0; i < N; i++)
                 {
-                    var linksCount = addressToUInt64Converter.Convert(links.Count());
                     var createPoint = random.NextBoolean();
-                    if (linksCount >= 2 && createPoint)
+                    if (created >= 2 && createPoint)
                     {
-                        var linksAddressRange = new Range<ulong>(1, linksCount);
-                        TLink source = uInt64ToAddressConverter.Convert(random.NextUInt64(linksAddressRange));
-                        TLink target = uInt64ToAddressConverter.Convert(random.NextUInt64(linksAddressRange)); //-V3086
+                        var linksAddressRange = new Range<int>(0, created);
+                        var source = createdAddresses[random.Next(linksAddressRange)];
+                        var target = createdAddresses[random.Next(linksAddressRange)]; //-V3086
                         var resultLink = links.GetOrCreate(source, target);
-                        if (comparer.Compare(resultLink, uInt64ToAddressConverter.Convert(linksCount)) > 0)
+                        if (comparer.Compare(resultLink, default) > 0)
                         {
+                            createdAddresses.Add(resultLink);
                             created++;
                         }
                     }
                     else
                     {
-                        links.Create();
+                        createdAddresses.Add(links.Create());
                         created++;
                     }
                 }
                 EnsureTrue(created == addressToUInt64Converter.Convert(links.Count()));
                 var allLinks = links.All();
-                foreach (var linkToDelete in allLinks)
+                var deletedLinksAddressRange = new Range<int>(0, created);
+                // Random deletions
+                for (var i = 0; i < N; i++)
                 {
-                    var id = linkToDelete![0];
+                    var id = createdAddresses[random.Next(deletedLinksAddressRange)];
                     if (links.Exists(id))
                     {
                         links.Delete(id);
+                    }
+                }
+                // Delete all remaining links
+                for (var i = 0; i < createdAddresses.Count; i++)
+                {
+                    if (links.Exists(createdAddresses[i]))
+                    {
+                        links.Delete(createdAddresses[i]);
                     }
                 }
                 EnsureTrue(addressToUInt64Converter.Convert(links.Count()) == 0L);
