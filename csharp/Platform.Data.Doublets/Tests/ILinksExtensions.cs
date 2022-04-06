@@ -234,6 +234,7 @@ namespace Platform.Data.Doublets.Tests
         /// </param>
         public static void TestMultipleRandomCreationsAndDeletions<TLink>(this ILinks<TLink> links, int maximumOperationsPerCycle)
         {
+            EqualityComparer<TLink> equalityComparer = EqualityComparer<TLink>.Default;
             var comparer = Comparer<TLink>.Default;
             var addressToUInt64Converter = CheckedConverter<TLink, ulong>.Default;
             for (var N = 1; N < maximumOperationsPerCycle; N++)
@@ -249,7 +250,12 @@ namespace Platform.Data.Doublets.Tests
                         var linksAddressRange = new Range<int>(0, created);
                         var source = createdAddresses[random.Next(linksAddressRange.Minimum, linksAddressRange.Maximum)];
                         var target = createdAddresses[random.Next(linksAddressRange.Minimum, linksAddressRange.Maximum)]; //-V3086
-                        var resultLink = links.GetOrCreate(source, target);
+                        var resultLink = links.SearchOrDefault(source, target);
+                        if (!equalityComparer.Equals(resultLink, default))
+                        {
+                            continue;
+                        }
+                        resultLink = links.CreateAndUpdate(source, target);
                         if (comparer.Compare(resultLink, default) > 0)
                         {
                             createdAddresses.Add(resultLink);
