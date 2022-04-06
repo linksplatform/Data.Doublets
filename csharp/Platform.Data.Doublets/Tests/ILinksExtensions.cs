@@ -210,7 +210,7 @@ namespace Platform.Data.Doublets.Tests
             EnsureTrue(equalityComparer.Equals(links.Count(), two));
 
             var setter3 = new Setter<T, T>(constants.Continue, constants.Break, constants.Null);
-            links.Each(setter3.SetFirstAndReturnTrue, constants.Any, constants.Any, constants.Any);
+            links.Each(setter3.SetFirstAndReturnFalse, constants.Any, constants.Any, constants.Any);
 
             EnsureTrue(equalityComparer.Equals(setter3.Result, linkAddress2));
         }
