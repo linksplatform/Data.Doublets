@@ -5,6 +5,7 @@
 use criterion::{black_box, criterion_group, criterion_main, Criterion};
 use data::query;
 use data::LinksConstants;
+use data::Query;
 use doublets::mem::{splited, united};
 use doublets::Doublets;
 use mem::{AllocMem, GlobalMem};
