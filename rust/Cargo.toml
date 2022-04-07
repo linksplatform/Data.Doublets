@@ -1,6 +1,6 @@
 [package]
 name = "doublets"
-version = "0.1.0-alpha.4"
+version = "0.1.0-alpha.5"
 edition = "2021"
 authors = ["Linksplatform Team <linksplatformtechnologies@gmail.com>"]
 license = "LGPL-3.0"
@@ -18,10 +18,10 @@ log = { version = "0.4.14", features = ["release_max_level_info", "max_level_inf
 env_logger = "0.9.0"
 num-traits = "^0.2.14"
 
-data = { git = "https://github.com/linksplatform/platform-rs", package = "platform-data", version = "0.1.0" }
-num = { git = "https://github.com/linksplatform/platform-rs", package = "platform-num", version = "0.1.0" }
-mem = { git = "https://github.com/linksplatform/platform-rs", package = "platform-mem", version = "0.1.0" }
-methods = { git = "https://github.com/linksplatform/platform-rs", package = "platform-treesmethods", version = "0.1.0" }
+data = { package = "platform-data", version = "0.1.0-alpha.0" }
+num = { package = "platform-num", version = "0.1.0-alpha.0" }
+mem = { package = "platform-mem", version = "0.1.0-alpha.0" }
+methods = { package = "platform-treesmethods", version = "0.1.0-alpha.0" }
 
 [dev-dependencies]
 criterion = "0.3"
