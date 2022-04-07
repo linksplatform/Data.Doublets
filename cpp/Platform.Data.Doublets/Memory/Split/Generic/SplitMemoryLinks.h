@@ -20,7 +20,6 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         static constexpr LinksConstants<LinkAddressType> Constants = OptionsType::Constants;
     private:
         std::int64_t _memoryReservationStep;
-        LinksConstants<LinkAddressType> _constants;
         IndexTreeType _indexTreeType;
         std::function<ILinksTreeMethods<LinkAddressType>> _createInternalSourceTreeMethods
     protected:
