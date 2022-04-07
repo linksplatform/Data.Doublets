@@ -29,7 +29,6 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         bool _useLinkedList;
         std::int64_t _dataMemoryReservationStepInBytes;
         std::int64t _indexMemoryReservationStepInBytes;
-        Internal
 
     public:
         static std::int64_t LinkDataPartSizeInBytes()
