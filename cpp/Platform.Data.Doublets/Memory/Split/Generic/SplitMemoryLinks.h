@@ -2,14 +2,27 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
 {
     using namespace Platform::Interfaces;
     using Platform::Memory::IResizableDirectMemory;
-    template<typename TLinkAddress, typename ...TBase>
-    class SplitMemoryLinks : Interfaces::Polymorph<SplitMemoryLinks<TLinkAddress, TBase...>, TBase...>
+    template<
+        typename TSelf,
+        typename TLinkOptions,
+        typename TMemory,
+        typename TSourceTreeMethods,
+        typename TTargetTreeMethods,
+        typename TUnusedLinks,
+        typename... TBase>
+    struct SplitMemoryLinksBase : public Interfaces::Polymorph<TSelf, TBase...>
     {
+    public:
+        using OptionsType = TLinkOptions;
+        using LinkAddressType = OptionsType::LinkAddressType;
+        using WriteHandlerType = OptionsType::WriteHandlerType;
+        using ReadHandlerType = OptionsType::ReadHandlerType;
+        static constexpr LinksConstants<LinkAddressType> Constants = OptionsType::Constants;
     private:
         std::int64_t _memoryReservationStep;
-        LinksConstants<TLinkAddress> _constants;
+        LinksConstants<LinkAddressType> _constants;
         IndexTreeType _indexTreeType;
-        std::function<ILinksTreeMethods<TLinkAddress>> _createInternalSourceTreeMethods
+        std::function<ILinksTreeMethods<LinkAddressType>> _createInternalSourceTreeMethods
     protected:
         IResizableDirectMemory _dataMemory;
         IResizableDirectMemory _indexMemory;
@@ -22,17 +35,17 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
     public:
         static std::int64_t LinkDataPartSizeInBytes()
         {
-            return RawLinkDataPart<TLinkAddress>.SizeInBytes();
+            return RawLinkDataPart<LinkAddressType>.SizeInBytes();
         }
 
         static std::int64_t LinkIndexPartSizeInBytes()
         {
-            return RawLinkIndexPart<TLinkAddress>.SizeInBytes();
+            return RawLinkIndexPart<LinkAddressType>.SizeInBytes();
         }
 
         static std::int64_t LinkHeaderSizeInBytes()
         {
-            return LinksHeader<TLinkAddress>.SizeInBytes();
+            return LinksHeader<LinkAddressType>.SizeInBytes();
         }
 
         static std::int64_t DefaultLinksSizeStep()
@@ -40,17 +53,17 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             return 1 * 1024 * 1024;
         }
 
-        SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, std::int64_t memoryReservationStep) : this(dataMemory, indexMemory, memoryReservationStep, LinksConstants<TLinkAddress>{}, true)
+        SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, std::int64_t memoryReservationStep) : this(dataMemory, indexMemory, memoryReservationStep, LinksConstants<LinkAddressType>{}, true)
         {
 
         }
 
-        SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, std::int64_t memoryReservationStep, LinksConstants<TLinkAddress> constants, IndexTreeType indexTreeType, bool useLinkedList) : _dataMemory{ dataMemory }, _indexMemory{ indexMemory }, _memoryReservationStep{ memoryReservationStep }, _constants{ constants }, _indexTreeType{ indexTreeType }, _useLinkedList{ useLinkedList }
+        SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, std::int64_t memoryReservationStep, LinksConstants<LinkAddressType> constants, IndexTreeType indexTreeType, bool useLinkedList) : _dataMemory{ dataMemory }, _indexMemory{ indexMemory }, _memoryReservationStep{ memoryReservationStep }, _constants{ constants }, _indexTreeType{ indexTreeType }, _useLinkedList{ useLinkedList }
         {
             if(indexTreeType == IndexTreeType::SizeBalancedTree)
             {
                 // TODO
-                _createInternalSourceTreeMethods { [](){ return InternalLinksSourcesSizeBalancedTreeMethods<TLinkAddress> } }
+                _createInternalSourceTreeMethods { [](){ return InternalLinksSourcesSizeBalancedTreeMethods<LinkAddressType> } }
             }
             Init(dataMemory, indexMemory);
         }
@@ -109,7 +122,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             header.ReservedLinks = (dataMemory.ReservedCapacity - LinkDataPartSizeInBytes) / LinkDataPartSizeInBytes;
         }
 
-        TLinkAddress Count(Interfaces::CList<TLinkAddress> auto&& restriction)
+        LinkAddressType Count(Interfaces::CList<LinkAddressType> auto&& restriction)
         {
             auto length { std::ranges::size(restriction) };
             if(0 == length)
@@ -195,7 +208,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
 //            _header = _linksIndexParts;
 //            if (_useLinkedList)
 //            {
-//                InternalSourcesListMethods = new InternalLinksSourcesLinkedListMethods<TLinkAddress>(Constants, _linksDataParts, _linksIndexParts);
+//                InternalSourcesListMethods = new InternalLinksSourcesLinkedListMethods<LinkAddressType>(Constants, _linksDataParts, _linksIndexParts);
 //            }
 //            else
 //            {
@@ -204,7 +217,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
 //            ExternalSourcesTreeMethods = _createExternalSourceTreeMethods();
 //            InternalTargetsTreeMethods = _createInternalTargetTreeMethods();
 //            ExternalTargetsTreeMethods = _createExternalTargetTreeMethods();
-//            UnusedLinksListMethods = new UnusedLinksListMethods<TLinkAddress>(_linksDataParts, _header);
+//            UnusedLinksListMethods = new UnusedLinksListMethods<LinkAddressType>(_linksDataParts, _header);
 //        }
 //
 //        void ResetPointers()
