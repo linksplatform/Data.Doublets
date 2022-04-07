@@ -23,7 +23,7 @@ use std::time::{Instant, SystemTime, UNIX_EPOCH};
 use doublets::data::{Links, LinksConstants, Query};
 use doublets::doublets::Flow::{Break, Continue};
 use doublets::doublets::Link as DLink;
-use doublets::doublets::{mem::united::Store, Doublets, ILinksExtensions, LinksError};
+use doublets::doublets::{mem::united::Store, Doublets, LinksError};
 use doublets::mem::FileMappedMem;
 use doublets::num::LinkType;
 use doublets::query;
@@ -36,7 +36,7 @@ use std::error::Error;
 use std::ops::{RangeInclusive, Try};
 use tracing_subscriber::fmt::format::Format;
 
-// TODO: For macro 
+// TODO: For macro
 use doublets::doublets::decorators::*;
 
 fn result_into_log<R, E: Display>(result: Result<R, E>, default: R) -> R {
