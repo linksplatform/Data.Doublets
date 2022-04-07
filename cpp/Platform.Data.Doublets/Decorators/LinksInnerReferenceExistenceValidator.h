@@ -1,29 +1,26 @@
 ﻿namespace Platform::Data::Doublets::Decorators
 {
     template <typename ...> class LinksInnerReferenceExistenceValidator;
-    template <typename TLink> class LinksInnerReferenceExistenceValidator<TLink> : public LinksDecoratorBase<TLink>
+    template <typename TLink> class LinksInnerReferenceExistenceValidator<TLink> : public DecoratorBase<TFacade, TDecorated>
     {
-        public: LinksInnerReferenceExistenceValidator(ILinks<TLink> &storage) : LinksDecoratorBase(storage) { }
+        public: LinksInnerReferenceExistenceValidator(ILinks<TLink> &storage) : DecoratorBase(storage) { }
 
-        public: TLink Each(Func<IList<TLink>, TLink> handler, CList auto&&restrictions) override
+        public: TLink Each(Func<IList<TLink>, TLink> handler, const  std::vector<LinkAddressType>& restriction) override
         {
-            auto storage = _links;
-            storage.EnsureInnerReferenceExists(restrictions, "restrictions");
-            return storage.Each(handler, restrictions);
+            storage.EnsureInnerReferenceExists(restriction, "restriction");
+            return storage.Each(restriction, handler);
         }
 
-        public: TLink Update(CList auto&&restrictions, CList auto&&substitution) override
+        public: TLink Update(const  std::vector<LinkAddressType>& restriction, const std::vector<LinkAddressType>& substitution) override
         {
-            auto storage = _links;
-            storage.EnsureInnerReferenceExists(restrictions, "restrictions");
+            storage.EnsureInnerReferenceExists(restriction, "restriction");
             storage.EnsureInnerReferenceExists(substitution, "substitution");
-            return storage.Update(restrictions, substitution);
+            return storage.Update(restriction, substitution);
         }
 
-        public: void Delete(CList auto&&restrictions) override
+        public: void Delete(const  std::vector<LinkAddressType>& restriction) override
         {
-            auto link = restrictions[_constants.IndexPart];
-            auto storage = _links;
+            auto link = restriction[_constants.IndexPart];
             storage.EnsureLinkExists(link, "link");
             storage.Delete(link);
         }

@@ -15,16 +15,19 @@
 #include <Platform.Threading.h>
 #include <Platform.Memory.h>
 #include <Platform.Data.h>
+#include <Platform.Interfaces.h>
 
 #include "Doublet.h"
 #include "Link.h"
+#include "LinksOptions.h"
 //#include "ILinks.h"
+
+#include "ILinksExtensions.h"
 
 #include "Memory/LinksHeader.h"
 #include "Memory/IndexTreeType.h"
 #include "Memory/ILinksListMethods.h"
 #include "Memory/ILinksTreeMethods.h"
-
 
 #include "Memory/United/RawLink.h"
 #include "Memory/United/Generic/UnusedLinksListMethods.h"
@@ -44,10 +47,11 @@
 
 #include "ILinksExtensions.h"
 
-//#include "Decorators/LinksDecoratorBase.h"
-//#include "Decorators/LinksCascadeUsagesResolver.h"
-//#include "Decorators/NonNullContentsLinkDeletionResolver.h"
-//#include "Decorators/LinksCascadeUniquenessAndUsagesResolver.h"
-
+#include "Decorators/LinksUniquenessResolver.h"
+#include "Decorators/LinksCascadeUniquenessAndUsagesResolver.h"
+#include "Decorators/LinksCascadeUsagesResolver.h"
+#include "Decorators/NonNullContentsLinkDeletionResolver.h"
+#include "Decorators/Decorators.h"
+//#include "Decorators/LinksCascadeUniquenessAndUsagesResolverBase.h"
 
 #endif

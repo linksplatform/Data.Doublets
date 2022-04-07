@@ -1,16 +1,23 @@
 ﻿namespace Platform::Data::Doublets::Decorators
 {
-    template <typename ...> class NonNullContentsLinkDeletionResolver;
-    template <typename TLink> class NonNullContentsLinkDeletionResolver<TLink> : public LinksDecoratorBase<TLink>
+    template <typename TFacade, typename TDecorated>
+    struct NonNullContentsLinkDeletionResolver : public DecoratorBase<TFacade, TDecorated>
     {
-        public: NonNullContentsLinkDeletionResolver(ILinks<TLink> &storage) : LinksDecoratorBase(storage) { }
+        using base = DecoratorBase<TFacade, TDecorated>;
+        using typename base::LinkAddressType;
+        using typename base::WriteHandlerType;
+        using typename base::ReadHandlerType;
+    public: using base::Constants;
+    public:
+        USE_ALL_BASE_CONSTRUCTORS(NonNullContentsLinkDeletionResolver, base);
 
-        public: void Delete(CList auto&&restrictions) override
+        public: LinkAddressType Delete(CArray<LinkAddressType> auto&& restriction, const WriteHandlerType& handler)
         {
-            auto linkIndex = restrictions[_constants.IndexPart];
-            auto storage = _links;
-            storage.EnforceResetValues(linkIndex);
-            storage.Delete(linkIndex);
+            auto $break = Constants.Break;
+            auto linkIndex = restriction[Constants.IndexPart];
+            WriteHandlerState<TDecorated> handlerState {Constants.Continue, Constants.Break, handler};
+            handlerState.Apply(EnforceResetValues(this->decorated(), linkIndex, handlerState.Handler));
+            return handlerState.Apply(this->decorated().Delete(std::vector<LinkAddressType>{linkIndex}, handlerState.Handler));
         }
     };
 }

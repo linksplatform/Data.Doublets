@@ -1,12 +1,12 @@
 ﻿namespace Platform::Data::Doublets::Decorators
 {
     template <typename ...> class LinksNullConstantToSelfReferenceResolver;
-    template <typename TLink> class LinksNullConstantToSelfReferenceResolver<TLink> : public LinksDecoratorBase<TLink>
+    template <typename TLink> class LinksNullConstantToSelfReferenceResolver<TLink> : public DecoratorBase<TFacade, TDecorated>
     {
-        public: LinksNullConstantToSelfReferenceResolver(ILinks<TLink> &storage) : LinksDecoratorBase(storage) { }
+        public: LinksNullConstantToSelfReferenceResolver(ILinks<TLink> &storage) : DecoratorBase(storage) { }
 
-        public: TLink Create(CList auto&&restrictions) override { return _links.CreatePoint(); }
+        public: TLink Create(const  std::vector<LinkAddressType>& restriction) override { return this->decorated().CreatePoint(); }
 
-        public: TLink Update(CList auto&&restrictions, CList auto&&substitution) override { return _links.Update(restrictions, _links.ResolveConstantAsSelfReference(_constants.Null, restrictions, substitution)); }
+        public: TLink Update(const  std::vector<LinkAddressType>& restriction, const std::vector<LinkAddressType>& substitution) override { return this->decorated().Update(restriction, this->decorated().ResolveConstantAsSelfReference(_constants.Null, restriction, substitution)); }
     };
 }
