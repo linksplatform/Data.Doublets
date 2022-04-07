@@ -1,8 +1,8 @@
-use crate::data::{AddrToRaw, Links, LinksConstants, Query, RawToAddr};
-use crate::doublets::{Doublets, ILinksExtensions};
-use crate::query;
 use crate::test_extensions::ILinksTestExtensions;
 use crate::tests::{make_links, make_mem, typed_links};
+use crate::Doublets;
+use data::query;
+use data::{AddrToRaw, Links, LinksConstants, Query, RawToAddr};
 
 #[test]
 fn non_exist_reference() {

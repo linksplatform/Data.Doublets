@@ -3,14 +3,13 @@ use std::default::default;
 use num_traits::{one, zero};
 use rand::Rng;
 
-use crate::data::{Hybrid, Links, RawToAddr};
-use crate::doublets::Doublets;
-use crate::doublets::ILinksExtensions;
-use crate::doublets::Link;
-use crate::num::LinkType;
-use crate::query;
+use crate::data::Doublets;
+use crate::data::Link;
 
-pub trait ILinksTestExtensions<T: LinkType>: Doublets<T> + ILinksExtensions<T> {
+use data::{Hybrid, Links, RawToAddr};
+use num::LinkType;
+
+pub trait ILinksTestExtensions<T: LinkType>: Doublets<T> {
     fn test_crud(&mut self) {
         let constants = self.constants();
 

@@ -12,14 +12,16 @@ Modular framework to automation by automation
 
 [dependencies]
 thiserror = "1.0.30"
-num-traits = "0.2"
-smallvec = "1.7.0"
-memmap2 = "0.5.0"
 rand = "0.8.0"
 bumpalo = { version = "3.8.0", features = ["allocator_api"] }
-tempfile = "3.2.0"
 log = { version = "0.4.14", features = ["release_max_level_info", "max_level_info"] }
 env_logger = "0.9.0"
+num-traits = "^0.2.14"
+
+data = { git = "https://github.com/linksplatform/platform-rs", package = "platform-data", version = "0.1.0" }
+num = { git = "https://github.com/linksplatform/platform-rs", package = "platform-num", version = "0.1.0" }
+mem = { git = "https://github.com/linksplatform/platform-rs", package = "platform-mem", version = "0.1.0" }
+methods = { git = "https://github.com/linksplatform/platform-rs", package = "platform-treesmethods", version = "0.1.0" }
 
 [dev-dependencies]
 criterion = "0.3"
