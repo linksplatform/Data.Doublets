@@ -1,6 +1,11 @@
 #ifndef PLATFORM_DATA_DOUBLETS
 #define PLATFORM_DATA_DOUBLETS
 
+#include <cstdarg>
+#include <cstdint>
+#include <cstdlib>
+#include <ostream>
+#include <new>
 #include <map>
 #include <ranges>
 
@@ -24,11 +29,12 @@
 #include "Memory/United/RawLink.h"
 #include "Memory/United/Generic/UnusedLinksListMethods.h"
 
-//#include "Memory/United/Generic/LinksSizeBalancedTreeMethodsBase.h"
-//#include "Memory/United/Generic/LinksTargetsSizeBalancedTreeMethods.h"
-//#include "Memory/United/Generic/LinksSourcesSizeBalancedTreeMethods.h"
-//#include "Memory/United/Generic/UnitedMemoryLinksBase.h"
-//#include "Memory/United/Generic/UnitedMemoryLinks.h"
+#include "Memory/United/Generic/LinksSizeBalancedTreeMethodsBase.h"
+#include "Memory/United/Generic/LinksTargetsSizeBalancedTreeMethods.h"
+#include "Memory/United/Generic/LinksSourcesSizeBalancedTreeMethods.h"
+#include "Memory/United/Generic/UnitedMemoryLinksBase.h"
+#include "Memory/United/Generic/UnitedMemoryLinks.h"
+#include "Memory/United/Ffi/UnitedMemoryLinksBase.h"
 #include "Memory/United/Ffi/UnitedMemoryLinks.h"
 
 #include "Memory/Split/RawLinkDataPart.h"

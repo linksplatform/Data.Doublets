@@ -8,8 +8,8 @@ use std::slice::from_raw_parts_mut;
 use crate::{doublets, query};
 use num_traits::{one, zero};
 
-use crate::doublets::data::{IGenericLinksExtensions, ToQuery};
-use crate::doublets::data::{LinksConstants, Query};
+use crate::data::ToQuery;
+use crate::data::{LinksConstants, Query};
 use crate::doublets::mem::splited::generic::{
     ExternalSourcesRecursionlessTree, ExternalTargetsRecursionlessTree, InternalSourcesLinkedList,
     InternalSourcesRecursionlessTree, InternalTargetsRecursionlessTree, UnusedLinks,
@@ -18,7 +18,7 @@ use crate::doublets::mem::splited::{DataPart, IndexPart};
 use crate::doublets::mem::united::UpdatePointersSplit;
 use crate::doublets::mem::{ILinksListMethods, ILinksTreeMethods, LinksHeader, UpdatePointers};
 use crate::doublets::Result;
-use crate::doublets::{Link, Links, LinksError};
+use crate::doublets::{Doublets, Link, LinksError};
 use crate::mem::{Mem, ResizeableMem};
 use crate::methods::RelativeCircularDoublyLinkedList;
 use crate::num::LinkType;
@@ -444,7 +444,7 @@ impl<
         IT: ILinksTreeMethods<T> + UpdatePointersSplit,
         ET: ILinksTreeMethods<T> + UpdatePointersSplit,
         UL: ILinksListMethods<T> + UpdatePointers,
-    > Links<T> for Store<T, MD, MI, IS, ES, IT, ET, UL>
+    > Doublets<T> for Store<T, MD, MI, IS, ES, IT, ET, UL>
 {
     fn constants(&self) -> LinksConstants<T> {
         self.constants.clone()

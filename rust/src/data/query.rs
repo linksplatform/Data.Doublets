@@ -48,7 +48,7 @@ impl<'a, I: SliceIndex<[T]>, T: LinkType> Index<I> for Query<'a, T> {
 }
 
 pub trait ToQuery<T: LinkType> {
-    fn to_query(&'a self) -> Query<'a, T>;
+    fn to_query(&self) -> Query<'_, T>;
 }
 
 impl<T: LinkType> ToQuery<T> for Query<'_, T> {
@@ -58,8 +58,14 @@ impl<T: LinkType> ToQuery<T> for Query<'_, T> {
 }
 
 impl<T: LinkType> ToQuery<T> for [T] {
-    fn to_query(&'a self) -> Query<'a, T> {
+    fn to_query(&self) -> Query<'_, T> {
         Query::new(self)
+    }
+}
+
+impl<'a, T: LinkType> ToQuery<T> for &'a [T] {
+    fn to_query(&self) -> Query<'a, T> {
+        Query::new(*self)
     }
 }
 
@@ -78,10 +84,10 @@ impl<T: LinkType, const L: usize> ToQuery<T> for [T; L] {
 #[macro_export]
 macro_rules! query {
     () => (
-        $crate::doublets::data::Query::new(&[][..])
+        $crate::data::Query::new(&[][..])
     );
     ($($x:expr),*) => (
-        $crate::doublets::data::Query::new(&[$($x),*][..])
+        $crate::data::Query::new(&[$($x),*][..])
     );
 }
 

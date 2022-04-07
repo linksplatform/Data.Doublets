@@ -1,3 +1,5 @@
+[![Gitpod](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/linksplatform/Data.Doublets)
+
 [![NuGet Version and Downloads count](https://buildstats.info/nuget/Platform.Data.Doublets)](https://www.nuget.org/packages/Platform.Data.Doublets)
 [![Actions Status](https://github.com/linksplatform/Data.Doublets/workflows/CD/badge.svg)](https://github.com/linksplatform/Data.Doublets/actions?workflow=CD)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/d92f59d08c604e95ba2469ee8e9d88c1)](https://app.codacy.com/gh/linksplatform/Data.Doublets?utm_source=github.com&utm_medium=referral&utm_content=linksplatform/Data.Doublets&utm_campaign=Badge_Grade_Settings)

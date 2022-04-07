@@ -6,20 +6,20 @@ use std::ops::Try;
 use num_traits::zero;
 use smallvec::SmallVec;
 
-use crate::doublets::data::ToQuery;
-use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstants};
+use crate::data::ToQuery;
+use crate::data::{Links, LinksConstants};
 use crate::doublets::LinksError;
-use crate::doublets::{ILinksExtensions, Link, Links, Result};
+use crate::doublets::{Doublets, ILinksExtensions, Link, Result};
 use crate::num::LinkType;
 use crate::query;
 
-pub struct NonNullDeletionResolver<T: LinkType, L: Links<T>> {
+pub struct NonNullDeletionResolver<T: LinkType, L: Doublets<T>> {
     links: L,
 
     _phantom: PhantomData<T>,
 }
 
-impl<T: LinkType, L: Links<T>> NonNullDeletionResolver<T, L> {
+impl<T: LinkType, L: Doublets<T>> NonNullDeletionResolver<T, L> {
     pub fn new(links: L) -> Self {
         Self {
             links,
@@ -28,7 +28,7 @@ impl<T: LinkType, L: Links<T>> NonNullDeletionResolver<T, L> {
     }
 }
 
-impl<T: LinkType, L: Links<T>> Links<T> for NonNullDeletionResolver<T, L> {
+impl<T: LinkType, L: Doublets<T>> Doublets<T> for NonNullDeletionResolver<T, L> {
     fn constants(&self) -> LinksConstants<T> {
         self.links.constants()
     }

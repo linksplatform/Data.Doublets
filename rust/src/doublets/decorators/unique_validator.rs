@@ -6,18 +6,18 @@ use std::ops::Try;
 use num_traits::zero;
 use smallvec::SmallVec;
 
-use crate::doublets::data::ToQuery;
-use crate::doublets::data::{IGenericLinks, IGenericLinksExtensions, LinksConstants};
-use crate::doublets::{Doublet, ILinksExtensions, Link, Links, LinksError, Result};
+use crate::data::ToQuery;
+use crate::data::{Links, LinksConstants};
+use crate::doublets::{Doublet, Doublets, ILinksExtensions, Link, LinksError, Result};
 use crate::num::LinkType;
 
-pub struct UniqueValidator<T: LinkType, L: Links<T>> {
+pub struct UniqueValidator<T: LinkType, L: Doublets<T>> {
     links: L,
 
     _phantom: PhantomData<T>,
 }
 
-impl<T: LinkType, L: Links<T>> UniqueValidator<T, L> {
+impl<T: LinkType, L: Doublets<T>> UniqueValidator<T, L> {
     pub fn new(links: L) -> Self {
         Self {
             links,
@@ -26,7 +26,7 @@ impl<T: LinkType, L: Links<T>> UniqueValidator<T, L> {
     }
 }
 
-impl<T: LinkType, L: Links<T>> Links<T> for UniqueValidator<T, L> {
+impl<T: LinkType, L: Doublets<T>> Doublets<T> for UniqueValidator<T, L> {
     fn constants(&self) -> LinksConstants<T> {
         self.links.constants()
     }

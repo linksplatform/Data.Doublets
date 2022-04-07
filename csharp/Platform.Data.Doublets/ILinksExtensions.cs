@@ -828,7 +828,7 @@ namespace Platform.Data.Doublets
         {
             var constants = links.Constants;
             var setter = new Setter<TLinkAddress, TLinkAddress>(constants.Continue, constants.Break);
-            links.CreatePoint(setter.SetFirstFromSecondListAndReturnTrue);
+            links.CreatePoint(setter.SetFirstFromNonNullSecondListAndReturnTrue);
             return setter.Result;
         }
 
@@ -853,7 +853,7 @@ namespace Platform.Data.Doublets
         {
             var constants = links.Constants;
             var setter = new Setter<TLinkAddress, TLinkAddress>(constants.Continue, constants.Break);
-            links.CreateAndUpdate(source, target, setter.SetFirstFromSecondListAndReturnTrue);
+            links.CreateAndUpdate(source, target, setter.SetFirstFromNonNullSecondListAndReturnTrue);
             return setter.Result;
         }
 
@@ -886,7 +886,7 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress Update<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link, TLinkAddress newSource, TLinkAddress newTarget)  => links.Update(new LinkAddress<TLinkAddress>(link), new Link<TLinkAddress>(link, newSource, newTarget));
 
-        public static TLinkAddress Update<TLinkAddress>(this ILinks<TLinkAddress> links, params TLinkAddress[] restriction)  => links.Update(restriction, null);
+        public static TLinkAddress Update<TLinkAddress>(this ILinks<TLinkAddress> links, params TLinkAddress[] restriction)  => links.Update((IList<TLinkAddress>)restriction);
 
         public static TLinkAddress Update<TLinkAddress>(this ILinks<TLinkAddress> links, WriteHandler<TLinkAddress>? handler, params TLinkAddress[] restriction)  => links.Update(restriction, handler);
 
@@ -894,7 +894,7 @@ namespace Platform.Data.Doublets
         {
             var constants = links.Constants;
             var setter = new Setter<TLinkAddress, TLinkAddress>(constants.Continue, constants.Break);
-            links.Update(restriction, setter.SetFirstFromSecondListAndReturnTrue);
+            links.Update(restriction, setter.SetFirstFromNonNullSecondListAndReturnTrue);
             return setter.Result;
         }
 
@@ -989,7 +989,7 @@ namespace Platform.Data.Doublets
         {
             var constants = links.Constants;
             var setter = new Setter<TLinkAddress, TLinkAddress>(constants.Continue, constants.Break);
-            links.UpdateOrCreateOrGet(source, target, newSource, newTarget, setter.SetFirstFromSecondListAndReturnTrue);
+            links.UpdateOrCreateOrGet(source, target, newSource, newTarget, setter.SetFirstFromNonNullSecondListAndReturnTrue);
             return setter.Result;
         }
 

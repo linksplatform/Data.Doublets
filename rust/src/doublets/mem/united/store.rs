@@ -1,34 +1,24 @@
-use std::default::default;
-use std::marker::PhantomData;
-use std::mem::{align_of, size_of};
-use std::ops::{ControlFlow, Index, Try};
-use std::ptr::NonNull;
-use std::slice::from_raw_parts_mut;
-
-use num_traits::{one, zero};
-use smallvec::SmallVec;
-
-use crate::doublets::data::LinksConstants;
-use crate::doublets::data::ToQuery;
-use crate::doublets::data::{IGenericLinks, Query};
+use crate::data::Links;
+use crate::data::LinksConstants;
+use crate::data::ToQuery;
+use crate::doublets;
 use crate::doublets::link::Link;
 use crate::doublets::mem::links_header::LinksHeader;
-use crate::doublets::mem::united::LinksSourcesSizeBalancedTree;
 use crate::doublets::mem::united::LinksTargetsRecursionlessSizeBalancedTree;
-use crate::doublets::mem::united::LinksTargetsSizeBalancedTree;
 use crate::doublets::mem::united::RawLink;
 use crate::doublets::mem::united::UnusedLinks;
 use crate::doublets::mem::united::{LinksSourcesRecursionlessSizeBalancedTree, NewList, NewTree};
 use crate::doublets::mem::ILinksTreeMethods;
 use crate::doublets::mem::{ILinksListMethods, UpdatePointers};
 use crate::doublets::Result;
-use crate::doublets::{data, Links, LinksError};
-use crate::mem::FileMappedMem;
+use crate::doublets::{Doublets, LinksError};
 use crate::mem::{Mem, ResizeableMem};
 use crate::num::LinkType;
-use crate::{doublets, query};
+use num_traits::{one, zero};
+use std::default::default;
+use std::mem::size_of;
+use std::ops::{ControlFlow, Try};
 
-// TODO: use `_=_` instead of `_ = _`
 pub struct Store<
     T: LinkType,
     M: ResizeableMem,
@@ -169,10 +159,9 @@ impl<
     }
 
     fn exists(&self, link: T) -> bool {
-        let constants = self.constants();
+        let constants = self.constants_links();
         let header = self.get_header();
 
-        // TODO: use attributes expressions feature
         // TODO: use `Range::contains`
         link >= *constants.internal_range.start()
             && link <= header.allocated
@@ -200,7 +189,7 @@ impl<
     {
         let restriction = restriction.to_query();
 
-        let constants = self.constants();
+        let constants = self.constants_links();
         let r#break = constants.r#break;
 
         if restriction.len() == 0 {
@@ -282,7 +271,7 @@ impl<
                     return R::from_output(());
                 }
                 if (target, source) == (any, any) {
-                    return R::from_output(()); // TODO: get_total
+                    return handler(link); // TODO: add (x * *) search test
                 }
                 if target != any && source != any {
                     return if (source, target) == (link.source, link.target) {
@@ -316,7 +305,7 @@ impl<
         TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
         TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
         TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
-    > doublets::Links<T> for Store<T, M, TS, TT, TU>
+    > doublets::Doublets<T> for Store<T, M, TS, TT, TU>
 {
     fn constants(&self) -> LinksConstants<T> {
         self.constants.clone()
@@ -329,7 +318,7 @@ impl<
             return self.get_total();
         };
 
-        let constants = self.constants();
+        let constants = self.constants_links();
         let any = constants.any;
         let index = query[constants.index_part.as_()];
 
@@ -437,7 +426,7 @@ impl<
         F: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>,
     {
-        let constants = self.constants();
+        let constants = self.constants_links();
         let header = self.get_header();
         let mut free = header.first_free;
         if free == constants.null {
@@ -494,7 +483,7 @@ impl<
         let old_source = source;
         let old_target = target;
 
-        let constants = self.constants();
+        let constants = self.constants_links();
         let null = constants.null;
 
         let link = *self.mut_raw_link(index);
@@ -544,7 +533,7 @@ impl<
 
         let index = query[0];
         // TODO: use method style - remove .get_link
-        let (source, target) = if let Some(link) = Links::get_link(self, index) {
+        let (source, target) = if let Some(link) = self.get_link(index) {
             (link.source, link.target)
         } else {
             return Err(LinksError::NotExists(index));

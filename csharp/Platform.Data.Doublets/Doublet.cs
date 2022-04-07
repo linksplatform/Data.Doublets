@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 namespace Platform.Data.Doublets
 {
 
-    /// <summury>
+    /// <summury> 
     /// <para>.</para>
     /// <para>.</para>
     /// </summury>

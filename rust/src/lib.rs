@@ -15,7 +15,6 @@
 #![feature(try_trait_v2)]
 #![feature(fn_traits)]
 #![feature(bench_black_box)]
-#![feature(in_band_lifetimes)]
 #![feature(const_fn_trait_bound)]
 #![feature(cow_is_borrowed)]
 #![feature(control_flow_enum)]
@@ -32,6 +31,7 @@ use crate::mem::ResizeableMem;
 use crate::num::LinkType;
 
 pub mod bench;
+pub mod data;
 pub mod doublets;
 pub mod mem;
 pub mod methods;
@@ -86,7 +86,7 @@ unsafe impl<
 }
 
 pub mod prelude {
-    pub use crate::doublets::data::{AddrToRaw, LinksConstants, Query, RawToAddr};
+    pub use crate::data::{AddrToRaw, LinksConstants, Query, RawToAddr};
     pub use crate::doublets::{Doublet, Flow, Link, LinksError};
     pub use crate::num::LinkType;
 }

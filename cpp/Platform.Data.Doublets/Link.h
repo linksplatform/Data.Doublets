@@ -35,7 +35,7 @@
                 (*this)[i++] = item; // TODO: later later use std::forward
             }
         }
-
+ 
         public: bool IsNull() const noexcept
         {
             constexpr auto null = _constants.Null;
@@ -54,9 +54,25 @@
                 case _constants.TargetPart:
                     return Target;
                 default:
-                    Ensure::Always::ArgumentInRange(index, Range{0, Length - 1}, "index");
+                    std::out_of_range("Link index out of range");
             }
         }
+
+        public: auto&& operator[](std::size_t index)
+            {
+                using namespace Platform::Ranges; // TODO: EnsureExtensions
+                switch (index)
+                {
+                    case _constants.IndexPart:
+                        return Index;
+                    case _constants.SourcePart:
+                        return Source;
+                    case _constants.TargetPart:
+                        return Target;
+                    default:
+                        throw std::out_of_range("Link index out of range");
+                }
+            }
 
 
         public: std::size_t size() const noexcept

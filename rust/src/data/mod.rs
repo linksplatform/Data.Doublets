@@ -1,16 +1,17 @@
+pub use constants::LinksConstants;
 pub use converters::AddrToRaw;
 pub use converters::RawToAddr;
 pub use hybrid::Hybrid;
-pub use ilinks::IGenericLinks;
-pub use ilinks::IGenericLinksExtensions;
-pub use links_constants::LinksConstants;
+pub use links::Links;
+pub use links::{ReadHandler, WriteHandler};
 pub use point::Point;
 pub use query::Query;
 pub use query::ToQuery;
 
+mod constants;
 mod converters;
+pub mod flow;
 mod hybrid;
-mod ilinks;
-mod links_constants;
+mod links;
 mod point;
 mod query;

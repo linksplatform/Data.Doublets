@@ -6,9 +6,9 @@ use std::time::Instant;
 
 use rand::Rng;
 
-use crate::doublets::data::IGenericLinks;
+use crate::data::Links;
 use crate::doublets::mem::{splited, united};
-use crate::doublets::{ILinksExtensions, Link, Links};
+use crate::doublets::{Doublets, ILinksExtensions, Link};
 use crate::mem::ResizeableMem;
 use crate::num::LinkType;
 use crate::tests::make_links;
@@ -70,7 +70,7 @@ fn super_read() {
             let links = links.read().unwrap();
 
             let mut data = vec![];
-            let r#continue = links.constants().r#continue;
+            let r#continue = links.constants_links().r#continue;
             links.each(|link| {
                 data.push(link);
                 r#continue
@@ -93,7 +93,7 @@ fn super_read() {
             let links = links.write().unwrap();
 
             let mut data = vec![];
-            let r#continue = links.constants().r#continue;
+            let r#continue = links.constants_links().r#continue;
             links.each(|link| {
                 data.push(link);
                 r#continue
