@@ -401,13 +401,13 @@ namespace Platform::Data::Doublets
         {
             auto constants = storage.Constants;
             auto values = GetLink(storage, linkAddress);
-            typename TStorage::LinkAddressType usagesAsSource = Count(storage)(Link(constants.Any, linkAddress, constants.Any));
-            if ( link == GetSource(storage, values))
+            typename TStorage::LinkAddressType usagesAsSource = CountLink(constants.Any, storage, linkAddress, constants.Any));
+            if ( typename TStorage::LinkType == GetSource(storage, values))
             {
                 usagesAsSource = usagesAsSource - 1;
             }
-            typename TStorage::LinkAddressType usagesAsTarget = Count(storage)(Link(constants.Any, constants.Any, linkAddress));
-            if ( link == GetTarget(storage, values))
+            typename TStorage::LinkAddressType usagesAsTarget = CountLink(constants.Any, storage, linkAddress, constants.Any));
+            if ( typename TStorage::LinkType == GetTarget(storage, values))
             {
                 usagesAsTarget = usagesAsTarget - 1;
             }
@@ -415,15 +415,7 @@ namespace Platform::Data::Doublets
         }
 
         template<typename TStorage>
-        static bool HasUsages(TStorage& storage, typename TStorage::LinkAddressType linkAddress) { return Comparer<typename TStorage::LinkAddressType>.Default.Compare(Count(storage)Usages(linkAddress), 0) > 0; }
-
-        template<typename TStorage>
-        static bool operator ==(TStorage& storage, typename TStorage::LinkAddressType linkAddress, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType &target) const
-        {
-            auto constants = storage.Constants;
-            auto values = GetLink(storage, linkAddress);
-            return  source == GetSource(storage, values) &&  target == GetTarget(storage, values);
-        }
+        static bool HasUsages(TStorage& storage, typename TStorage::LinkAddressType linkAddress) { return CountUsages(storage,linkAddress)>0; }
 
         template<typename TStorage>
         typename TStorage::LinkAddressType SearchOrDefault(TStorage& storage, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType target)
@@ -629,9 +621,8 @@ namespace Platform::Data::Doublets
     template<typename TStorage>
     static void DeleteMany(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& deletedLinks)
     {
-        for (std::int32_t i = 0; i < deletedLinks.Count(); ++i)
-        {
-            storage.Delete(deletedLinks[i]);
+        for (auto&& link : deletedLinks) {
+            storage.Delete(storage, link);
         }
     }
 
