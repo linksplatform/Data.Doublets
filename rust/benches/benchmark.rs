@@ -3,11 +3,11 @@
 #![feature(result_option_inspect)]
 
 use criterion::{black_box, criterion_group, criterion_main, Criterion};
-use doublets::data::LinksConstants;
-use doublets::doublets::mem::{splited, united};
-use doublets::doublets::Doublets;
-use doublets::mem::{AllocMem, GlobalMem};
-use doublets::query;
+use data::query;
+use data::LinksConstants;
+use doublets::mem::{splited, united};
+use doublets::Doublets;
+use mem::{AllocMem, GlobalMem};
 use std::alloc::Global;
 use std::error::Error;
 use std::time::Instant;
