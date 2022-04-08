@@ -401,13 +401,13 @@ namespace Platform::Data::Doublets
         {
             auto constants = storage.Constants;
             auto values = GetLink(storage, linkAddress);
-            typename TStorage::LinkAddressType usagesAsSource = CountLink(constants.Any, storage, linkAddress, constants.Any));
-            if ( typename TStorage::LinkType == GetSource(storage, values))
+            auto usagesAsSource = storage.Count(Link(constants.Any, storage, linkAddress, constants.Any));
+            if ( link == GetSource(storage, values))
             {
                 usagesAsSource = usagesAsSource - 1;
             }
-            typename TStorage::LinkAddressType usagesAsTarget = CountLink(constants.Any, storage, linkAddress, constants.Any));
-            if ( typename TStorage::LinkType == GetTarget(storage, values))
+            auto usagesAsSource = storage.Count(Link(constants.Any, storage, linkAddress, constants.Any));
+            if ( link == GetTarget(storage, values))
             {
                 usagesAsTarget = usagesAsTarget - 1;
             }
@@ -619,10 +619,10 @@ namespace Platform::Data::Doublets
     }
 
     template<typename TStorage>
-    static void DeleteMany(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& deletedLinks)
+    static void DeleteMany(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& linkAddressesToDelete)
     {
-        for (auto&& link : deletedLinks) {
-            storage.Delete(storage, link);
+        for (auto linkAddress : linkAddressesToDelete) {
+            Delete(storage, linkAddress);
         }
     }
 
