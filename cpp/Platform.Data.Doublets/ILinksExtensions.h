@@ -560,7 +560,7 @@ namespace Platform::Data::Doublets
         }
         //
         template<typename TStorage>
-        static Interfaces::CArray<typename TStorage::LinkAddressType>auto ResolveConstantAsSelfReference(const TStorage& storage, typename TStorage::LinkAddressType constant,  const typename TStorage::LinkType& restriction,  const typename TStorage::LinkType& substitution)
+        static typename TStorage::LinkType ResolveConstantAsSelfReference(const TStorage& storage, typename TStorage::LinkAddressType constant,  const typename TStorage::LinkType& restriction,  const typename TStorage::LinkType& substitution)
         {
             auto constants = storage.Constants;
             auto restrictionIndex = GetIndex(storage, restriction);
