@@ -5,6 +5,7 @@
     {
         using base = DecoratorBase<TFacade, TDecorated>;
         using typename base::LinkAddressType;
+        using typename base::LinkType;
         using typename base::WriteHandlerType;
         using typename base::ReadHandlerType;
     public: using base::Constants;
