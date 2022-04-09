@@ -17,7 +17,7 @@
             }
         }
 
-        public: TLink Trigger(const  std::vector<LinkAddressType>& restriction, Func<IList<TLink>, IList<TLink>, TLink> matchedHandler, const std::vector<LinkAddressType>& substitution, Func<IList<TLink>, IList<TLink>, TLink> substitutedHandler)
+        public: TLink Trigger(const  LinkType& restriction, Func<IList<TLink>, IList<TLink>, TLink> matchedHandler, const std::vector<LinkAddressType>& substitution, Func<IList<TLink>, IList<TLink>, TLink> substitutedHandler)
         {
             return _constants.Continue;
         }

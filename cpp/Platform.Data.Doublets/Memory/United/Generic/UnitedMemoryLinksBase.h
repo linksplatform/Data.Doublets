@@ -67,7 +67,7 @@
         }
 
     public:
-        LinkAddressType Count(const  std::vector<LinkAddressType>& restriction) const
+        LinkAddressType Count(const  LinkType& restriction) const
         {
             if (std::ranges::size(restriction) == 0)
             {
@@ -175,7 +175,7 @@
             throw std::logic_error("Not supported exception.");
         }
 
-    public: LinkAddressType Each(const  std::vector<LinkAddressType>& restriction, const ReadHandlerType& handler) const
+    public: LinkAddressType Each(const  LinkType& restriction, const ReadHandlerType& handler) const
         {
             auto constants = Constants;
             auto $continue {constants.Continue};
@@ -309,7 +309,7 @@
         // NOTE: The following .NET attribute has no direct equivalent in C++:
         // ORIGINAL LINE: [MethodImpl(MethodImplOptions.AggressiveInlining)] public LinkAddressType Update(IList<LinkAddressType> restriction, IList<LinkAddressType> substitution)
     public:
-        LinkAddressType Update(const  std::vector<LinkAddressType>& restriction, const std::vector<LinkAddressType>& substitution, const WriteHandlerType& handler)
+        LinkAddressType Update(const  LinkType& restriction, const std::vector<LinkAddressType>& substitution, const WriteHandlerType& handler)
         {
             auto constants = Constants;
             auto null = constants.Null;
@@ -382,7 +382,7 @@
         }
 
     public:
-        LinkAddressType Delete(const  std::vector<LinkAddressType>& restriction, const WriteHandlerType& handler)
+        LinkAddressType Delete(const  LinkType& restriction, const WriteHandlerType& handler)
         {
             auto& header = GetHeaderReference();
             auto linkAddress = restriction[Constants.IndexPart];
