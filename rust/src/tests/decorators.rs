@@ -1,12 +1,12 @@
 use std::error::Error;
 
-use crate::doublets::decorators::{
+use crate::decorators::{
     CascadeUniqueResolver, CascadeUsagesResolver, NonNullDeletionResolver, UniqueResolver,
     UniqueValidator, UsagesValidator,
 };
-use crate::doublets::Flow::Continue;
-use crate::doublets::{Doublet, Doublets, Link, LinksError};
 use crate::tests::{make_links, make_mem};
+use crate::{Doublet, Doublets, Link, LinksError};
+use data::Flow::Continue;
 
 #[test]
 fn non_null_deletions() -> Result<(), Box<dyn Error>> {

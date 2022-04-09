@@ -12,6 +12,7 @@
     {
         using OptionsType = TLinksOptions;
         using LinkAddressType = typename OptionsType::LinkAddressType;
+        using LinkType = typename OptionsType::LinkType;
         using ReadHandlerType = typename OptionsType::ReadHandlerType;
         static constexpr LinksConstants<LinkAddressType> Constants = OptionsType::Constants;
 

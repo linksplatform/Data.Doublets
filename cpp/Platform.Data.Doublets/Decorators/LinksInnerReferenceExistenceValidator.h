@@ -5,20 +5,20 @@
     {
         public: LinksInnerReferenceExistenceValidator(ILinks<TLink> &storage) : DecoratorBase(storage) { }
 
-        public: TLink Each(Func<IList<TLink>, TLink> handler, const  std::vector<LinkAddressType>& restriction) override
+        public: TLink Each(Func<IList<TLink>, TLink> handler, const  LinkType& restriction) override
         {
             storage.EnsureInnerReferenceExists(restriction, "restriction");
             return storage.Each(restriction, handler);
         }
 
-        public: TLink Update(const  std::vector<LinkAddressType>& restriction, const std::vector<LinkAddressType>& substitution) override
+        public: TLink Update(const  LinkType& restriction, const LinkType& substitution) override
         {
             storage.EnsureInnerReferenceExists(restriction, "restriction");
             storage.EnsureInnerReferenceExists(substitution, "substitution");
             return storage.Update(restriction, substitution);
         }
 
-        public: void Delete(const  std::vector<LinkAddressType>& restriction) override
+        public: void Delete(const  LinkType& restriction) override
         {
             auto link = restriction[_constants.IndexPart];
             storage.EnsureLinkExists(link, "link");

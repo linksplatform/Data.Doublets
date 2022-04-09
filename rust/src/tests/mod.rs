@@ -1,12 +1,12 @@
-use crate::data::LinksConstants;
-use crate::doublets::mem::united::{
+use crate::mem::united::{
     LinksSourcesRecursionlessSizeBalancedTree, LinksTargetsRecursionlessSizeBalancedTree, Store,
     UnusedLinks,
 };
-use crate::doublets::mem::{splited, united};
-use crate::doublets::LinksError;
-use crate::mem::{AllocMem, GlobalMem, ResizeableMem};
-use crate::num::LinkType;
+use crate::mem::{splited, united};
+use crate::LinksError;
+use data::LinksConstants;
+use mem::{AllocMem, GlobalMem, ResizeableMem};
+use num::LinkType;
 use std::alloc::Global;
 use std::io;
 

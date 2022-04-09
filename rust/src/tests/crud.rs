@@ -8,18 +8,16 @@ use std::io::{Read, Seek, SeekFrom, Write};
 use std::ptr::{null_mut, NonNull};
 use std::time::Instant;
 
-use crate::data::{AddrToRaw, Links, LinksConstants};
-use crate::doublets::mem::splited;
-use crate::doublets::{Doublets, ILinksExtensions, Link, LinksError};
-//use crate::doublets::decorators::{CascadeUsagesResolver, NonNullDeletionResolver};
-//use crate::doublets::mem::splited;
-use crate::doublets::mem::united::Store;
-use crate::mem::{
-    AllocMem, FileMappedMem, GlobalMem, Mem, ResizeableBase, ResizeableMem, TempFileMem,
-};
+use crate::mem::splited;
+use crate::{Doublets, Link, LinksError};
+use data::{AddrToRaw, Links, LinksConstants};
+//use crate::decorators::{CascadeUsagesResolver, NonNullDeletionResolver};
+//use crate::mem::splited;
+use crate::mem::united::Store;
 use crate::test_extensions::ILinksTestExtensions;
 use crate::tests::make_links;
 use crate::tests::make_mem;
+use mem::{AllocMem, FileMappedMem, GlobalMem, Mem, ResizeableBase, ResizeableMem, TempFileMem};
 /*
 #[test]
 fn random_creations_and_deletions() {

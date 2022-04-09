@@ -10,19 +10,19 @@
             public: IList<TLink> *Before;
             public: IList<TLink> *After;
 
-            public: Transition(CArray<TLinkAddress> auto&& before, CArray<TLinkAddress> auto&& after)
+            public: Transition( const LinkType& before,  const LinkType& after)
             {
                 Before = before;
                 After = after;
             }
         }
 
-        public: TLink Trigger(const  std::vector<LinkAddressType>& restriction, Func<IList<TLink>, IList<TLink>, TLink> matchedHandler, const std::vector<LinkAddressType>& substitution, Func<IList<TLink>, IList<TLink>, TLink> substitutedHandler)
+        public: TLink Trigger(const  LinkType& restriction, Func<IList<TLink>, IList<TLink>, TLink> matchedHandler, const LinkType& substitution, Func<IList<TLink>, IList<TLink>, TLink> substitutedHandler)
         {
             return _constants.Continue;
         }
 
-        public: TLink Trigger(CArray<TLinkAddress> auto&& patternOrCondition, Func<IList<TLink>, TLink> matchHandler, const std::vector<LinkAddressType>& substitution, Func<IList<TLink>, IList<TLink>, TLink> substitutionHandler)
+        public: TLink Trigger( const LinkType& patternOrCondition, Func<IList<TLink>, TLink> matchHandler, const LinkType& substitution, Func<IList<TLink>, IList<TLink>, TLink> substitutionHandler)
         {
             auto constants = _constants;
             if (patternOrCondition.IsNullOrEmpty() && substitution.IsNullOrEmpty())
@@ -131,7 +131,7 @@
             }
         }
 
-        public: IList<IList<IList<TLink>>> Trigger(CArray<TLinkAddress> auto&& condition, const std::vector<LinkAddressType>& substitution)
+        public: IList<IList<IList<TLink>>> Trigger( const LinkType& condition, const LinkType& substitution)
         {
             auto changes = List<IList<IList<TLink>>>();
             auto continue = _constants.Continue;
@@ -144,6 +144,6 @@
             return changes;
         }
 
-        private: TLink AlwaysContinue(CArray<TLinkAddress> auto&& linkToMatch) { return _constants.Continue; }
+        private: TLink AlwaysContinue( const LinkType& linkToMatch) { return _constants.Continue; }
     };
 }

@@ -6,13 +6,14 @@
     {
         using base = DecoratorBase<TFacade, TDecorated>;
         using LinkAddressType = base::LinkAddressType;
+        using LinkType = base::LinkType;
         using WriteHandlerType = base::WriteHandlerType;
         using ReadHandlerType = base::ReadHandlerType;
     public: using base::Constants;
     public:
         USE_ALL_BASE_CONSTRUCTORS(LinksUniquenessResolver, base);
 
-    public: LinkAddressType Update(CArray<LinkAddressType> auto&& restriction, CArray<LinkAddressType> auto&& substitution, const WriteHandlerType& handler)
+    public: LinkAddressType Update( const LinkType& restriction,  const LinkType& substitution, const WriteHandlerType& handler)
         {
             auto newLinkAddress = SearchOrDefault(this->decorated(), substitution[Constants.SourcePart], substitution[Constants.TargetPart]);
             if (newLinkAddress == LinkAddressType{})
@@ -26,7 +27,7 @@
         {
             if (oldLinkAddress != newLinkAddress && Exists(this->decorated(), oldLinkAddress))
             {
-                this->facade().Delete(std::vector<LinkAddressType>{oldLinkAddress}, handler);
+                this->facade().Delete(LinkType{oldLinkAddress}, handler);
             }
             return Constants.Continue;
         }

@@ -1,13 +1,13 @@
 use num_traits::ToPrimitive;
 use std::ops::ControlFlow;
 
-use crate::data::{AddrToRaw, Hybrid, Links, LinksConstants, Query, RawToAddr};
-use crate::doublets::{Doublets, ILinksExtensions, Link, LinksError};
-use crate::mem::GlobalMem;
-use crate::num::ToSigned;
 use crate::tests::make_links;
 use crate::tests::make_mem;
-use crate::{query, Store};
+use crate::{Doublets, Link, LinksError};
+use data::query;
+use data::{AddrToRaw, Hybrid, Links, LinksConstants, Query, RawToAddr};
+use mem::GlobalMem;
+use num::ToSigned;
 
 #[test]
 fn create() {

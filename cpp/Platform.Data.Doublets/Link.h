@@ -71,7 +71,7 @@
                 (*this)[i++] = item; // TODO: later later use std::forward
             }
         }
-
+      
     public: operator std::vector<TLinkAddress> ()
         {
             return std::vector<TLinkAddress>{Index, Source, Target};
