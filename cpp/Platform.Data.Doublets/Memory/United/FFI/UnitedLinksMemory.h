@@ -111,7 +111,7 @@ namespace Platform::Data::Doublets::Memory::United::FFI
 
 		}
 
-		TLinkAddress Each(std::function<TLinkAddress(IList<TLinkAddress>)> handler, IList<TLinkAddress>& restrictions) {
+		TLinkAddress Each(std::function<TLinkAddress(IList<TLinkAddress>)> handler, IList<TLinkAddress>& restriction) {
 
 			std::uintptr_t restrictionLength = (restriction != null) ? restriction.Count : 0;
 
@@ -275,7 +275,7 @@ namespace Platform::Data::Doublets::Memory::United::FFI
 			}
 		}
 
-		TLinkAddress Update(std::function<TLinkAddress(IList<TLinkAddress>, IList<TLinkAddress>)> handler, IList<TLinkAddress>& restrictions, IList<TLinkAddress>& substitution) {
+		TLinkAddress Update(std::function<TLinkAddress(IList<TLinkAddress>, IList<TLinkAddress>)> handler, IList<TLinkAddress>& restriction, IList<TLinkAddress>& substitution) {
 			std::uintptr_t restrictionLength = (restriction!=NULL) ? restriction.Count : 0;
 			std::uintptr_t substitutionLength = (substitution!=NULL) ? substitution.Count : 0;
 

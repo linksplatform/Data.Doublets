@@ -5,36 +5,36 @@ namespace Platform::Data::Doublets::Tests
     class CrudOperationsTester
     {
     public:
-        template<typename TLinkAddress>
-        static TLinkAddress TestCreate(auto&& storage)
+        template<typename TStorage>
+        static typename TStorage::LinkAddressType TestCreate(TStorage& storage)
         {
             using namespace Platform::Interfaces;
             auto constants { storage.Constants };
             auto _continue = constants.Continue;
-            Link<TLinkAddress> linkStruct;
-            storage.Each( Link{constants.Any, constants.Any, constants.Any} , [&linkStruct, _continue](Interfaces::CArray<TLinkAddress> auto&& link) {
+            Link<typename TStorage::LinkAddressType> linkStruct;
+            storage.Each(std::vector{constants.Any, constants.Any, constants.Any} , [&linkStruct, _continue](const typename TStorage::LinkType& link) {
                 linkStruct = Link(link);
                 return _continue;
             });
             Expects(constants.Null == linkStruct.Index);
-            auto linkAddress { Create<TLinkAddress>(storage) };
+            auto linkAddress { Create(storage) };
             linkStruct = { GetLink(storage, linkAddress) };
             Expects(3 == linkStruct.size());
             Expects(linkAddress == linkStruct.Index);
             Expects(constants.Null == linkStruct.Source);
             Expects(constants.Null == linkStruct.Target);
-            Expects(1 == Count<TLinkAddress>(storage));
+            Expects(1 == Count(storage));
             return linkAddress;
         }
 
-        template<typename TLinkAddress>
-        static TLinkAddress GetFirstLink(auto&& storage, TLinkAddress linkAddress)
+        template<typename TStorage>
+        static typename TStorage::LinkAddressType GetFirstLink(TStorage& storage, typename TStorage::LinkAddressType linkAddress)
         {
             using namespace Platform::Interfaces;
             auto constants { storage.Constants };
             auto _continue { constants.Continue };
-            TLinkAddress linkAddressFromEach {};
-            storage.Each(Link{constants.Any, constants.Any, constants.Any}, [_continue, &linkAddressFromEach](Interfaces::CArray<TLinkAddress> auto&& link) {
+            typename TStorage::LinkAddressType linkAddressFromEach {};
+            storage.Each(std::vector{constants.Any, constants.Any, constants.Any}, [_continue, &linkAddressFromEach](const typename TStorage::LinkType& link) {
                 linkAddressFromEach = link[0];
                 return _continue;
             });
@@ -42,8 +42,8 @@ namespace Platform::Data::Doublets::Tests
             return linkAddressFromEach;
         }
 
-        template<typename TLinkAddress>
-        static TLinkAddress TestUpdateLinkToReferenceItself(auto&& storage, TLinkAddress linkAddress)
+        template<typename TStorage>
+        static typename TStorage::LinkAddressType TestUpdateLinkToReferenceItself(TStorage& storage, typename TStorage::LinkAddressType linkAddress)
         {
             auto constants { storage.Constants };
             auto updatedLinkAddress { Update(storage, linkAddress, linkAddress, linkAddress) };
@@ -53,8 +53,8 @@ namespace Platform::Data::Doublets::Tests
             return link.Index;
         }
 
-        template<typename TLinkAddress>
-        static TLinkAddress TestUpdateLinkToReferenceNull(auto&& storage, TLinkAddress linkAddress)
+        template<typename TStorage>
+        static typename TStorage::LinkAddressType TestUpdateLinkToReferenceNull(TStorage& storage, typename TStorage::LinkAddressType linkAddress)
         {
             auto constants { storage.Constants };
             auto updatedLinkAddress { Update(storage, linkAddress, constants.Null, constants.Null) };
@@ -64,18 +64,18 @@ namespace Platform::Data::Doublets::Tests
             return linkStruct.Index;
         }
 
-        template<typename TLinkAddress>
-        static void TestDelete(auto&& storage, TLinkAddress linkAddress)
+        template<typename TStorage>
+        static void TestDelete(TStorage& storage, typename TStorage::LinkAddressType linkAddress)
         {
             using namespace Platform::Interfaces;
             auto constants { storage.Constants };
             auto _continue = constants.Continue;
             auto updatedLinkAddress { Update(storage, linkAddress, linkAddress, linkAddress) };
             Link linkStruct { GetLink(storage, updatedLinkAddress) };
-            Data::Delete<TLinkAddress>(storage, linkAddress);
-            Expects(0 == Count<TLinkAddress>(storage));
-            TLinkAddress deletedLinkAddress {};
-            storage.Each(Link{constants.Any, constants.Any, constants.Any}, [_continue, &deletedLinkAddress](Interfaces::CArray<TLinkAddress> auto&& link) {
+            Data::Delete(storage, linkAddress);
+            Expects(0 == Count(storage));
+            typename TStorage::LinkAddressType deletedLinkAddress {};
+            storage.Each(std::vector{constants.Any, constants.Any, constants.Any}, [_continue, &deletedLinkAddress](const typename TStorage::LinkType& link) {
                 deletedLinkAddress = link[0];
                 return _continue;
             });
@@ -84,15 +84,15 @@ namespace Platform::Data::Doublets::Tests
     };
 
     
-    template<typename TLinkAddress>
-    static void TestCrudOperations(auto&& storage)
+    template<typename TStorage>
+    static void TestCrudOperations(TStorage& storage)
     {
         const auto constants = storage.Constants;
-        Expects(0 == Platform::Data::Count<TLinkAddress>(storage));
+        Expects(0 == Platform::Data::Count(storage));
         // Create link
-        auto linkAddress { CrudOperationsTester::TestCreate<TLinkAddress>(storage) };
+        auto linkAddress { CrudOperationsTester::TestCreate(storage) };
         // Get first link
-        linkAddress = { CrudOperationsTester::GetFirstLink<TLinkAddress>(storage, linkAddress) };
+        linkAddress = { CrudOperationsTester::GetFirstLink(storage, linkAddress) };
         // Update link to reference itself
         linkAddress = { CrudOperationsTester::TestUpdateLinkToReferenceItself(storage, linkAddress) };
         // Update link to reference null (prepare for delete)
@@ -101,52 +101,52 @@ namespace Platform::Data::Doublets::Tests
         CrudOperationsTester::TestDelete(storage, linkAddress);
     }
 
-    template<typename TLinkAddress>
-    static void TestRawNumbersCrudOperations(auto&& storage)
+    template<typename TStorage>
+    static void TestRawNumbersCrudOperations(TStorage& storage)
     {
         // Constants
         const auto constants = storage.Constants;
         auto _continue = constants.Continue;
         auto any = constants.Any;
-        Hybrid<TLinkAddress> h106E {106L, true};
-        Hybrid<TLinkAddress> h107E {107L, true};
-        Hybrid<TLinkAddress> h108E {108L, true};
+        Hybrid<typename TStorage::LinkAddressType> h106E {106L, true};
+        Hybrid<typename TStorage::LinkAddressType> h107E {107L, true};
+        Hybrid<typename TStorage::LinkAddressType> h108E {108L, true};
         Expects(106L == h106E.AbsoluteValue());
         Expects(107L == h107E.AbsoluteValue());
         Expects(108L == h108E.AbsoluteValue());
         // Create link (External -> External)
-        auto linkAddress1 = Create<TLinkAddress>(storage);
-        Update<TLinkAddress>(storage, linkAddress1, h106E.Value, h108E.Value);
-        Link<TLinkAddress> link1 { GetLink(storage, linkAddress1) };
+        auto linkAddress1 = Create(storage);
+        Update(storage, linkAddress1, h106E.Value, h108E.Value);
+        Link<typename TStorage::LinkAddressType> link1 { GetLink(storage, linkAddress1) };
         Expects(h106E.Value == link1.Source);
         Expects(h108E.Value == link1.Target);
         // Create link (Internal -> External)
-        auto linkAddress2 { Create<TLinkAddress>(storage) };
+        auto linkAddress2 { Create(storage) };
         Update(storage, linkAddress2, linkAddress1, h108E.Value);
-        Link<TLinkAddress> link2 { GetLink(storage, linkAddress2) };
+        Link<typename TStorage::LinkAddressType> link2 { GetLink(storage, linkAddress2) };
         Expects(linkAddress1 == link2.Source);
         Expects(h108E.Value == link2.Target);
         // Create link (Internal -> Internal)
-        auto linkAddress3 { Create<TLinkAddress>(storage) };
+        auto linkAddress3 { Create(storage) };
         Update(storage,linkAddress3, linkAddress1, linkAddress2);
-        Link<TLinkAddress> link3 { GetLink(storage, linkAddress3) };
+        Link<typename TStorage::LinkAddressType> link3 { GetLink(storage, linkAddress3) };
         Expects(linkAddress1 == link3.Source);
         Expects(linkAddress2 == link3.Target);
         // Search for created link
-        TLinkAddress searchedLinkAddress {};
-        storage.Each(Link{any, h106E.Value, h108E.Value}, [&searchedLinkAddress, _continue](Interfaces::CArray<TLinkAddress> auto&& link) {
+        typename TStorage::LinkAddressType searchedLinkAddress {};
+        storage.Each(std::vector{any, h106E.Value, h108E.Value}, [&searchedLinkAddress, _continue](const typename TStorage::LinkType& link) {
             searchedLinkAddress = link[0];
             return _continue;
         });
         auto aaa = GetLink(storage, linkAddress1);
         Expects(linkAddress1 == searchedLinkAddress);
         // Search for nonexistent link
-//        TLinkAddress searchedNonExistentLinkAddress {};
-//        storage.Each(Link{any, h106E.Value, h108E.Value}, [&searchedNonExistentLinkAddress, _continue](Interfaces::CArray<TLinkAddress> auto&& link) {
-//            searchedNonExistentLinkAddress = link[0];
+//        typename TStorage::LinkAddressType searchedNonExistentypename TStorage::LinkAddressType {};
+//        storage.Each(std::vector{any, h106E.Value, h108E.Value}, [&searchedNonExistentypename TStorage::LinkAddressType, _continue](const typename TStorage::LinkType& link) {
+//            searchedNonExistentypename TStorage::LinkAddressType = link[0];
 //            return _continue;
 //        });
-//        Expects(constants.Null == searchedNonExistentLinkAddress);
+//        Expects(constants.Null == searchedNonExistentypename TStorage::LinkAddressType);
         // Update link to reference null (prepare for delete)
         auto updatedLinkAddress { Update(storage, linkAddress3, constants.Null, constants.Null) };
         Expects(linkAddress3 == updatedLinkAddress);
@@ -154,54 +154,51 @@ namespace Platform::Data::Doublets::Tests
         Expects(constants.Null == link3.Source);
         Expects(constants.Null == link3.Target);
         // Delete link
-        Data::Delete<TLinkAddress>(storage, linkAddress3);
-        Expects(2 == Count<TLinkAddress>(storage));
-        TLinkAddress deletedLinkAddress {};
-        storage.Each(Link{any, any, any}, [&deletedLinkAddress, _continue](Interfaces::CArray<TLinkAddress> auto&& link) {
+        Data::Delete(storage, linkAddress3);
+        Expects(2 == Count(storage));
+        typename TStorage::LinkAddressType deletedLinkAddress {};
+        storage.Each(std::vector{any, any, any}, [&deletedLinkAddress, _continue](const typename TStorage::LinkType& link) {
             deletedLinkAddress = link[0];
             return _continue;
         });
         Expects(linkAddress2 == deletedLinkAddress);
     }
 
-    template<typename TLinkAddress>
-    static void TestMultipleCreationsAndDeletions(auto&& storage, int numberOfOperations)
+    template<typename TStorage>
+    static void TestMultipleCreationsAndDeletions(TStorage& storage, int numberOfOperations)
     {
         for (int i = 0; i < numberOfOperations; i++)
         {
-            Create<TLinkAddress>(storage);
+            Create(storage);
         }
         for (int i = 0; i < numberOfOperations; i++)
         {
-            storage.Delete(Count<TLinkAddress>(storage));
+            storage.Delete(Count(storage));
         }
     }
 
-    template<typename TLinkAddress>
-    static void TestMultipleRandomCreationsAndDeletions(auto&& storage, int maximumOperationsPerCycle)
+    template<typename TStorage>
+    static void TestMultipleRandomCreationsAndDeletions(TStorage& storage, int maximumOperationsPerCycle)
     {
         using namespace Platform::Random;
+        using namespace Platform::Data;
         for (auto N { 1 }; N < maximumOperationsPerCycle; ++N)
         {
             std::srand(N);
-            auto randomGen64 { RandomHelpers::Default };
+            auto& randomGen64 { RandomHelpers::Default };
             auto created { 0UL };
             auto deleted { 0UL };
             for (auto i { 0 }; i < N; ++i)
             {
-                auto linksCount { Count<TLinkAddress>(storage) };
+                auto linksCount { Count(storage) };
                 auto createPoint { Random::NextBoolean(randomGen64) };
                 if (linksCount >= 2 && createPoint)
                 {
-                    Ranges::Range<TLinkAddress> linksAddressRange { 1, linksCount };
-                    TLinkAddress source { Random::NextUInt64(randomGen64, linksAddressRange) };
-                    TLinkAddress target { Random::NextUInt64(randomGen64, linksAddressRange) }; //-V3086
-                    auto allLinks { All<TLinkAddress>(storage)};
-                    for (auto link : allLinks)
-                    {
-                        Link<TLinkAddress> linkStruct {link[0], link[1], link[2]};
-                    }
+                    Ranges::Range<typename TStorage::LinkAddressType> linksAddressRange { 1, linksCount };
+                    auto source { Random::NextUInt64(randomGen64, linksAddressRange) };
+                    auto target { Random::NextUInt64(randomGen64, linksAddressRange) }; //-V3086
                     auto resultLink { GetOrCreate(storage, source, target) };
+                    auto linksCountAfterGetOrCreate { Count(storage) };
                     if (resultLink > linksCount)
                     {
                         ++created;
@@ -209,22 +206,31 @@ namespace Platform::Data::Doublets::Tests
                 }
                 else
                 {
-                    auto createdLinkAddress = Create<TLinkAddress>(storage);
+                    Create(storage);
                     ++created;
                 }
             }
-            auto allLinks { All<TLinkAddress>(storage)};
-            Expects(Count<TLinkAddress>(storage) == created);
+            std::vector<typename TStorage::LinkType> allLinks { All(storage) };
+            for(auto link : allLinks)
+            {
+            }
+
+            Expects(Count(storage) == created);
             for (auto i { 0 }; i < N; ++i)
             {
-                TLinkAddress link = i + 1;
-                if (Data::Exists(storage, link))
+                typename TStorage::LinkAddressType linkAddress = i + 1;
+                if (Exists(storage, linkAddress))
                 {
-                    Data::Delete<TLinkAddress>(storage, link);
+
+                    Delete(storage, linkAddress);
                     ++deleted;
+                    allLinks = { All(storage)};
+                    for(auto link : allLinks)
+                    {
+                    }
                 }
             }
-            Expects(0 == Count<TLinkAddress>(storage));
+            Expects(0 == Count(storage));
         }
     }
 }
