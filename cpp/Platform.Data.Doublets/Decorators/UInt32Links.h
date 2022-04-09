@@ -1,16 +1,16 @@
 ﻿
 
-using TLink = std::uint32_t;
+using TLinkAddress = std::uint32_t;
 
 namespace Platform::Data::Doublets::Decorators
 {
-    class UInt32Links : public LinksDisposableDecoratorBase<TLink>
+    class UInt32Links : public LinksDisposableDecoratorBase<TLinkAddress>
     {
-        public: UInt32Links(ILinks<TLink> &storage) : base(storage) { }
+        public: UInt32Links(ILinks<TLinkAddress> &storage) : base(storage) { }
 
-        public: TLink Create(const  LinkType& restriction) override { return this->decorated().CreatePoint(); }
+        public: TLinkAddress Create(const  LinkType& restriction) override { return this->decorated().CreatePoint(); }
 
-        public: TLink Update(const  LinkType& restriction, const LinkType& substitution) override
+        public: TLinkAddress Update(const  LinkType& restriction, const LinkType& substitution) override
         {
             auto constants = _constants;
             auto indexPartConstant = constants.IndexPart;

@@ -1,12 +1,12 @@
 ﻿namespace Platform::Data::Doublets::CriterionMatchers
 {
     template <typename ...> class TargetMatcher;
-    template <typename TLink> class TargetMatcher<TLink> : public LinksOperatorBase<TLink>, ICriterionMatcher<TLink>
+    template <typename TLinkAddress> class TargetMatcher<TLinkAddress> : public LinksOperatorBase<TLinkAddress>, ICriterionMatcher<TLinkAddress>
     {
-        private: TLink _targetToMatch = 0;
+        private: TLinkAddress _targetToMatch = 0;
 
-        public: TargetMatcher(ILinks<TLink> &storage, TLink targetToMatch) : base(storage) { return _targetToMatch = targetToMatch; }
+        public: TargetMatcher(ILinks<TLinkAddress> &storage, TLinkAddress targetToMatch) : base(storage) { return _targetToMatch = targetToMatch; }
 
-        public: bool IsMatched(TLink link) { return _links.GetTarget(link) == _targetToMatch; }
+        public: bool IsMatched(TLinkAddress link) { return _links.GetTarget(link) == _targetToMatch; }
     };
 }

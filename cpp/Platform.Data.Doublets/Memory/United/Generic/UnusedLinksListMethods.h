@@ -2,12 +2,12 @@
 {
     using namespace Platform::Collections::Methods::Lists;
 
-    template<typename TLink>
+    template<typename TLinkAddress>
     class UnusedLinksListMethods
-        : public AbsoluteCircularDoublyLinkedListMethods<UnusedLinksListMethods<TLink>, TLink>,
-          public ILinksListMethods<TLink>
+        : public AbsoluteCircularDoublyLinkedListMethods<UnusedLinksListMethods<TLinkAddress>, TLinkAddress>,
+          public ILinksListMethods<TLinkAddress>
     {
-        using base = AbsoluteCircularDoublyLinkedListMethods<UnusedLinksListMethods<TLink>, TLink>;
+        using base = AbsoluteCircularDoublyLinkedListMethods<UnusedLinksListMethods<TLinkAddress>, TLinkAddress>;
 
         private: std::byte* _links;
 
@@ -18,66 +18,66 @@
 
         public: auto& GetHeaderReference()
         {
-            return *reinterpret_cast<LinksHeader<TLink>*>(_header);
+            return *reinterpret_cast<LinksHeader<TLinkAddress>*>(_header);
         }
 
-        public: auto& GetLinkReference(TLink linkIndex)
+        public: auto& GetLinkReference(TLinkAddress linkIndex)
         {
-            return *(reinterpret_cast<RawLink<TLink>*>(_links) + linkIndex);
+            return *(reinterpret_cast<RawLink<TLinkAddress>*>(_links) + linkIndex);
         }
 
-        public: TLink GetFirst()
+        public: TLinkAddress GetFirst()
         {
             return GetHeaderReference().FirstFreeLink;
         }
 
-        public: TLink GetLast()
+        public: TLinkAddress GetLast()
         {
             return GetHeaderReference().LastFreeLink;
         }
 
-        public: TLink GetPrevious(TLink element)
+        public: TLinkAddress GetPrevious(TLinkAddress element)
         {
             return GetLinkReference(element).Source;
         }
 
-        public: TLink GetNext(TLink element)
+        public: TLinkAddress GetNext(TLinkAddress element)
         {
             return GetLinkReference(element).Target;
         }
 
-        public: TLink GetSize()
+        public: TLinkAddress GetSize()
         {
             return GetHeaderReference().FreeLinks;
         }
 
-        public: void SetFirst(TLink element)
+        public: void SetFirst(TLinkAddress element)
         {
             GetHeaderReference().FirstFreeLink = element;
         }
 
-        public: void SetLast(TLink element)
+        public: void SetLast(TLinkAddress element)
         {
             GetHeaderReference().LastFreeLink = element;
         }
 
-        public: void SetPrevious(TLink element, TLink previous)
+        public: void SetPrevious(TLinkAddress element, TLinkAddress previous)
         {
             GetLinkReference(element).Source = previous;
         }
 
-        public: void SetNext(TLink element, TLink next)
+        public: void SetNext(TLinkAddress element, TLinkAddress next)
         {
             GetLinkReference(element).Target = next;
         }
 
-        public: void SetSize(TLink size)
+        public: void SetSize(TLinkAddress size)
         {
             GetHeaderReference().FreeLinks = size;
         }
 
-        public: void Detach(TLink link) override { base::Detach(link); }
+        public: void Detach(TLinkAddress link) override { base::Detach(link); }
 
-        public: void AttachAsFirst(TLink link) override { base::AttachAsFirst(link); }
+        public: void AttachAsFirst(TLinkAddress link) override { base::AttachAsFirst(link); }
     };
 }

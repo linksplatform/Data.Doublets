@@ -1,37 +1,37 @@
 ﻿
-using TLink = std::uint64_t;
+using TLinkAddress = std::uint64_t;
 
 namespace Platform::Data::Doublets::Memory::Split::Specific
 {
     public unsafe class UInt64ExternalLinksSourcesSizeBalancedTreeMethods : public UInt64ExternalLinksSizeBalancedTreeMethodsBase
     {
-        public: UInt64ExternalLinksSourcesSizeBalancedTreeMethods(LinksConstants<TLink> constants, RawLinkDataPart<TLink>* linksDataParts, RawLinkIndexPart<TLink>* linksIndexParts, LinksHeader<TLink>* header) : base(constants, linksDataParts, linksIndexParts, header) { }
+        public: UInt64ExternalLinksSourcesSizeBalancedTreeMethods(LinksConstants<TLinkAddress> constants, RawLinkDataPart<TLinkAddress>* linksDataParts, RawLinkIndexPart<TLinkAddress>* linksIndexParts, LinksHeader<TLinkAddress>* header) : base(constants, linksDataParts, linksIndexParts, header) { }
 
-        protected: TLink* GetLeftReference(TLink node) override { return ref LinksIndexParts[node].LeftAsSource; }
+        protected: TLinkAddress* GetLeftReference(TLinkAddress node) override { return ref LinksIndexParts[node].LeftAsSource; }
 
-        protected: TLink* GetRightReference(TLink node) override { return ref LinksIndexParts[node].RightAsSource; }
+        protected: TLinkAddress* GetRightReference(TLinkAddress node) override { return ref LinksIndexParts[node].RightAsSource; }
 
-        protected: TLink GetLeft(TLink node) override { return LinksIndexParts[node].LeftAsSource; }
+        protected: TLinkAddress GetLeft(TLinkAddress node) override { return LinksIndexParts[node].LeftAsSource; }
 
-        protected: TLink GetRight(TLink node) override { return LinksIndexParts[node].RightAsSource; }
+        protected: TLinkAddress GetRight(TLinkAddress node) override { return LinksIndexParts[node].RightAsSource; }
 
-        protected: void SetLeft(TLink node, TLink left) override { LinksIndexParts[node].LeftAsSource = left; }
+        protected: void SetLeft(TLinkAddress node, TLinkAddress left) override { LinksIndexParts[node].LeftAsSource = left; }
 
-        protected: void SetRight(TLink node, TLink right) override { LinksIndexParts[node].RightAsSource = right; }
+        protected: void SetRight(TLinkAddress node, TLinkAddress right) override { LinksIndexParts[node].RightAsSource = right; }
 
-        protected: TLink GetSize(TLink node) override { return LinksIndexParts[node].SizeAsSource; }
+        protected: TLinkAddress GetSize(TLinkAddress node) override { return LinksIndexParts[node].SizeAsSource; }
 
-        protected: void SetSize(TLink node, TLink size) override { LinksIndexParts[node].SizeAsSource = size; }
+        protected: void SetSize(TLinkAddress node, TLinkAddress size) override { LinksIndexParts[node].SizeAsSource = size; }
 
-        protected: override TLink GetTreeRoot() { return Header->RootAsSource; }
+        protected: override TLinkAddress GetTreeRoot() { return Header->RootAsSource; }
 
-        protected: TLink GetBasePartValue(TLink node) override { return LinksDataParts[node].Source; }
+        protected: TLinkAddress GetBasePartValue(TLinkAddress node) override { return LinksDataParts[node].Source; }
 
-        protected: bool FirstIsToTheLeftOfSecond(TLink firstSource, TLink firstTarget, TLink secondSource, TLink secondTarget) override { return firstSource < secondSource || firstSource == secondSource && firstTarget < secondTarget; }
+        protected: bool FirstIsToTheLeftOfSecond(TLinkAddress firstSource, TLinkAddress firstTarget, TLinkAddress secondSource, TLinkAddress secondTarget) override { return firstSource < secondSource || firstSource == secondSource && firstTarget < secondTarget; }
 
-        protected: bool FirstIsToTheRightOfSecond(TLink firstSource, TLink firstTarget, TLink secondSource, TLink secondTarget) override { return firstSource > secondSource || firstSource == secondSource && firstTarget > secondTarget; }
+        protected: bool FirstIsToTheRightOfSecond(TLinkAddress firstSource, TLinkAddress firstTarget, TLinkAddress secondSource, TLinkAddress secondTarget) override { return firstSource > secondSource || firstSource == secondSource && firstTarget > secondTarget; }
 
-        protected: void ClearNode(TLink node) override
+        protected: void ClearNode(TLinkAddress node) override
         {
             auto* link = LinksIndexParts[node];
             link.LeftAsSource = 0;

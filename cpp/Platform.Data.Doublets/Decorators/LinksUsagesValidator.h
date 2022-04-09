@@ -1,11 +1,11 @@
 ﻿namespace Platform::Data::Doublets::Decorators
 {
     template <typename ...> class LinksUsagesValidator;
-    template <typename TLink> class LinksUsagesValidator<TLink> : public DecoratorBase<TFacade, TDecorated>
+    template <typename TLinkAddress> class LinksUsagesValidator<TLinkAddress> : public DecoratorBase<TFacade, TDecorated>
     {
-        public: LinksUsagesValidator(ILinks<TLink> &storage) : DecoratorBase(storage) { }
+        public: LinksUsagesValidator(ILinks<TLinkAddress> &storage) : DecoratorBase(storage) { }
 
-        public: TLink Update(const  LinkType& restriction, const LinkType& substitution) override
+        public: TLinkAddress Update(const  LinkType& restriction, const LinkType& substitution) override
         {
             storage.EnsureNoUsages(restriction[_constants.IndexPart]);
             return storage.Update(restriction, substitution);

@@ -1,33 +1,33 @@
 ﻿namespace Platform::Data::Doublets::Memory::United
 {
-    template<typename TLink>
+    template<typename TLinkAddress>
     struct RawLink
     {
-        TLink Source;
+        TLinkAddress Source;
 
-        TLink Target;
+        TLinkAddress Target;
 
-        TLink LeftAsSource;
+        TLinkAddress LeftAsSource;
 
-        TLink RightAsSource;
+        TLinkAddress RightAsSource;
 
-        TLink SizeAsSource;
+        TLinkAddress SizeAsSource;
 
-        TLink LeftAsTarget;
+        TLinkAddress LeftAsTarget;
 
-        TLink RightAsTarget;
+        TLinkAddress RightAsTarget;
 
-        TLink SizeAsTarget;
+        TLinkAddress SizeAsTarget;
 
         constexpr bool operator==(const RawLink&) const noexcept = default;
     };
 }
 
 
-template<typename TLink>
-struct std::hash<Platform::Data::Doublets::Memory::United::RawLink<TLink>>
+template<typename TLinkAddress>
+struct std::hash<Platform::Data::Doublets::Memory::United::RawLink<TLinkAddress>>
 {
-    using Self = Platform::Data::Doublets::Memory::United::RawLink<TLink>;
+    using Self = Platform::Data::Doublets::Memory::United::RawLink<TLinkAddress>;
 
     auto operator()(const Self& self) const noexcept
     {

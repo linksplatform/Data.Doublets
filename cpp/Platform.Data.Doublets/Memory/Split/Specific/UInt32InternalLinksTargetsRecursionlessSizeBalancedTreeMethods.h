@@ -1,35 +1,35 @@
 ﻿
-using TLink = std::uint32_t;
+using TLinkAddress = std::uint32_t;
 
 namespace Platform::Data::Doublets::Memory::Split::Specific
 {
     public unsafe class UInt32InternalLinksTargetsRecursionlessSizeBalancedTreeMethods : public UInt32InternalLinksRecursionlessSizeBalancedTreeMethodsBase
     {
-        public: UInt32InternalLinksTargetsRecursionlessSizeBalancedTreeMethods(LinksConstants<TLink> constants, RawLinkDataPart<TLink>* linksDataParts, RawLinkIndexPart<TLink>* linksIndexParts, LinksHeader<TLink>* header) : base(constants, linksDataParts, linksIndexParts, header) { }
+        public: UInt32InternalLinksTargetsRecursionlessSizeBalancedTreeMethods(LinksConstants<TLinkAddress> constants, RawLinkDataPart<TLinkAddress>* linksDataParts, RawLinkIndexPart<TLinkAddress>* linksIndexParts, LinksHeader<TLinkAddress>* header) : base(constants, linksDataParts, linksIndexParts, header) { }
 
-        protected: TLink* GetLeftReference(TLink node) override { return ref LinksIndexParts[node].LeftAsTarget; }
+        protected: TLinkAddress* GetLeftReference(TLinkAddress node) override { return ref LinksIndexParts[node].LeftAsTarget; }
 
-        protected: TLink* GetRightReference(TLink node) override { return ref LinksIndexParts[node].RightAsTarget; }
+        protected: TLinkAddress* GetRightReference(TLinkAddress node) override { return ref LinksIndexParts[node].RightAsTarget; }
 
-        protected: TLink GetLeft(TLink node) override { return LinksIndexParts[node].LeftAsTarget; }
+        protected: TLinkAddress GetLeft(TLinkAddress node) override { return LinksIndexParts[node].LeftAsTarget; }
 
-        protected: TLink GetRight(TLink node) override { return LinksIndexParts[node].RightAsTarget; }
+        protected: TLinkAddress GetRight(TLinkAddress node) override { return LinksIndexParts[node].RightAsTarget; }
 
-        protected: void SetLeft(TLink node, TLink left) override { LinksIndexParts[node].LeftAsTarget = left; }
+        protected: void SetLeft(TLinkAddress node, TLinkAddress left) override { LinksIndexParts[node].LeftAsTarget = left; }
 
-        protected: void SetRight(TLink node, TLink right) override { LinksIndexParts[node].RightAsTarget = right; }
+        protected: void SetRight(TLinkAddress node, TLinkAddress right) override { LinksIndexParts[node].RightAsTarget = right; }
 
-        protected: TLink GetSize(TLink node) override { return LinksIndexParts[node].SizeAsTarget; }
+        protected: TLinkAddress GetSize(TLinkAddress node) override { return LinksIndexParts[node].SizeAsTarget; }
 
-        protected: void SetSize(TLink node, TLink size) override { LinksIndexParts[node].SizeAsTarget = size; }
+        protected: void SetSize(TLinkAddress node, TLinkAddress size) override { LinksIndexParts[node].SizeAsTarget = size; }
 
-        protected: TLink GetTreeRoot(TLink node) override { return LinksIndexParts[node].RootAsTarget; }
+        protected: TLinkAddress GetTreeRoot(TLinkAddress node) override { return LinksIndexParts[node].RootAsTarget; }
 
-        protected: TLink GetBasePartValue(TLink node) override { return LinksDataParts[node].Target; }
+        protected: TLinkAddress GetBasePartValue(TLinkAddress node) override { return LinksDataParts[node].Target; }
 
-        protected: TLink GetKeyPartValue(TLink node) override { return LinksDataParts[node].Source; }
+        protected: TLinkAddress GetKeyPartValue(TLinkAddress node) override { return LinksDataParts[node].Source; }
 
-        protected: void ClearNode(TLink node) override
+        protected: void ClearNode(TLinkAddress node) override
         {
             auto* link = LinksIndexParts[node];
             link.LeftAsTarget = 0;
@@ -37,6 +37,6 @@ namespace Platform::Data::Doublets::Memory::Split::Specific
             link.SizeAsTarget = 0;
         }
 
-        public: TLink Search(TLink source, TLink target) override { return this->SearchCore(this->GetTreeRoot(target), source); }
+        public: TLinkAddress Search(TLinkAddress source, TLinkAddress target) override { return this->SearchCore(this->GetTreeRoot(target), source); }
     };
 }

@@ -26,22 +26,22 @@
             Using<std::uint64_t>(storage => storage.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
         }
 
-        private: template <typename TLink> static void Using(Action<ILinks<TLink>> action)
+        private: template <typename TLinkAddress> static void Using(Action<ILinks<TLinkAddress>> action)
         {
             using (auto dataMemory = HeapResizableDirectMemory())
             using (auto indexMemory = HeapResizableDirectMemory())
-            using (auto memory = SplitMemoryLinks<TLink>(dataMemory, indexMemory))
+            using (auto memory = SplitMemoryLinks<TLinkAddress>(dataMemory, indexMemory))
             {
                 action(memory);
             }
         }
 
-        private: template <typename TLink> static void UsingWithExternalReferences(Action<ILinks<TLink>> action)
+        private: template <typename TLinkAddress> static void UsingWithExternalReferences(Action<ILinks<TLinkAddress>> action)
         {
-            auto contants = LinksConstants<TLink>(enableExternalReferencesSupport: true);
+            auto contants = LinksConstants<TLinkAddress>(enableExternalReferencesSupport: true);
             using (auto dataMemory = HeapResizableDirectMemory())
             using (auto indexMemory = HeapResizableDirectMemory())
-            using (auto memory = SplitMemoryLinks<TLink>(dataMemory, indexMemory, SplitMemoryLinks<TLink>.DefaultLinksSizeStep, contants))
+            using (auto memory = SplitMemoryLinks<TLinkAddress>(dataMemory, indexMemory, SplitMemoryLinks<TLinkAddress>.DefaultLinksSizeStep, contants))
             {
                 action(memory);
             }

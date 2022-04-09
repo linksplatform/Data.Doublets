@@ -1,10 +1,10 @@
 ﻿namespace Platform::Data::Doublets::Memory
 {
-    template<typename TLink>
+    template<typename TLinkAddress>
     struct ILinksListMethods
     {
-        virtual void Detach(TLink freeLink) = 0;
+        virtual void Detach(TLinkAddress freeLink) = 0;
 
-        virtual void AttachAsFirst(TLink link) = 0;
+        virtual void AttachAsFirst(TLinkAddress link) = 0;
     };
 }

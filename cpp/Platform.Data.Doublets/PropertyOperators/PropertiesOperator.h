@@ -1,11 +1,11 @@
 ﻿namespace Platform::Data::Doublets::PropertyOperators
 {
     template <typename ...> class PropertiesOperator;
-    template <typename TLink> class PropertiesOperator<TLink> : public LinksOperatorBase<TLink>, IProperties<TLink, TLink, TLink>
+    template <typename TLinkAddress> class PropertiesOperator<TLinkAddress> : public LinksOperatorBase<TLinkAddress>, IProperties<TLinkAddress, TLinkAddress, TLinkAddress>
     {
-        public: PropertiesOperator(ILinks<TLink> &storage) : base(storage) { }
+        public: PropertiesOperator(ILinks<TLinkAddress> &storage) : base(storage) { }
 
-        public: TLink GetValue(TLink object, TLink property)
+        public: TLinkAddress GetValue(TLinkAddress object, TLinkAddress property)
         {
             auto storage = _links;
             auto objectProperty = storage.SearchOrDefault(object, property);
@@ -15,7 +15,7 @@
             }
             auto constants = storage.Constants;
             auto any = constants.Any;
-            auto query = Link<TLink>(any, objectProperty, any);
+            auto query = Link<TLinkAddress>(any, objectProperty, any);
             auto valueLink = storage.SingleOrDefault(query);
             if (valueLink == nullptr)
             {
@@ -24,7 +24,7 @@
             return storage.GetTarget(valueLink[constants.IndexPart]);
         }
 
-        public: void SetValue(TLink object, TLink property, TLink value)
+        public: void SetValue(TLinkAddress object, TLinkAddress property, TLinkAddress value)
         {
             auto storage = _links;
             auto objectProperty = storage.GetOrCreate(object, property);

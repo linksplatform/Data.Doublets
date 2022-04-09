@@ -1,20 +1,20 @@
 ﻿namespace Platform::Data::Doublets::Memory::Split
 {
     template <typename ...> struct RawLinkIndexPart;
-    template <typename TLink> struct RawLinkIndexPart<TLink>
+    template <typename TLinkAddress> struct RawLinkIndexPart<TLinkAddress>
     {
-        public: inline static const std::int64_t SizeInBytes = Structure<RawLinkIndexPart<TLink>>.Size;
+        public: inline static const std::int64_t SizeInBytes = Structure<RawLinkIndexPart<TLinkAddress>>.Size;
 
-        public: TLink RootAsSource = 0;
-        public: TLink LeftAsSource = 0;
-        public: TLink RightAsSource = 0;
-        public: TLink SizeAsSource = 0;
-        public: TLink RootAsTarget = 0;
-        public: TLink LeftAsTarget = 0;
-        public: TLink RightAsTarget = 0;
-        public: TLink SizeAsTarget = 0;
+        public: TLinkAddress RootAsSource = 0;
+        public: TLinkAddress LeftAsSource = 0;
+        public: TLinkAddress RightAsSource = 0;
+        public: TLinkAddress SizeAsSource = 0;
+        public: TLinkAddress RootAsTarget = 0;
+        public: TLinkAddress LeftAsTarget = 0;
+        public: TLinkAddress RightAsTarget = 0;
+        public: TLinkAddress SizeAsTarget = 0;
 
-        public: bool Equals(RawLinkIndexPart<TLink> other)
+        public: bool Equals(RawLinkIndexPart<TLinkAddress> other)
             => RootAsSource == other.RootAsSource
             && LeftAsSource == other.LeftAsSource
             && RightAsSource == other.RightAsSource
