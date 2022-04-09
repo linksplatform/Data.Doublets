@@ -138,7 +138,7 @@ namespace Platform::Data::Doublets
     }
 
     template<typename TStorage>
-    static typename TStorage::HandlerParameterType SingleOrDefault(const TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& query)
+    static typename TStorage::HandlerParameterType SingleOrDefault(const TStorage& storage,  const typename TStorage::LinkType& query)
     {
         typename TStorage::LinkType result {};
         auto count = 0;
@@ -225,19 +225,19 @@ namespace Platform::Data::Doublets
     //    }
 
     template<typename TStorage>
-    static auto GetIndex(const TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& link) { return link[storage.Constants.IndexPart]; }
+    static auto GetIndex(const TStorage& storage,  const typename TStorage::LinkType& link) { return link[storage.Constants.IndexPart]; }
 
     template<typename TStorage>
     static typename TStorage::LinkAddressType GetSource(const TStorage& storage, typename TStorage::LinkAddressType linkAddress) { return GetLink(storage, linkAddress)[storage.Constants.SourcePart]; }
 
     template<typename TStorage>
-    static typename TStorage::LinkAddressType GetSource(const TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& link) { return link[storage.Constants.SourcePart]; }
+    static typename TStorage::LinkAddressType GetSource(const TStorage& storage,  const typename TStorage::LinkType& link) { return link[storage.Constants.SourcePart]; }
 
     template<typename TStorage>
     static typename TStorage::LinkAddressType GetTarget(const TStorage& storage, typename TStorage::LinkAddressType linkAddress) { return GetLink(storage, linkAddress)[storage.Constants.TargetPart]; }
 
     template<typename TStorage>
-    static typename TStorage::LinkAddressType GetTarget(const TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& link) { return link[storage.Constants.TargetPart]; }
+    static typename TStorage::LinkAddressType GetTarget(const TStorage& storage,  const typename TStorage::LinkType& link) { return link[storage.Constants.TargetPart]; }
 
     template<typename TStorage>
     static std::vector<typename TStorage::LinkType> All(const TStorage& storage, const typename TStorage::LinkType& restriction)
@@ -260,7 +260,7 @@ namespace Platform::Data::Doublets
         }
 
         template<typename TStorage>
-        static typename TStorage::LinkAddressType AllIndices(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction)
+        static typename TStorage::LinkAddressType AllIndices(TStorage& storage,  const typename TStorage::LinkType& restriction)
         {
             std::vector<typename TStorage::LinkType> allIndices {};
             auto usages = std::vector<typename TStorage::LinkType>();
@@ -274,7 +274,7 @@ namespace Platform::Data::Doublets
 
 
         template<typename TStorage>
-        static void EnsureLinkExists(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction)
+        static void EnsureLinkExists(TStorage& storage,  const typename TStorage::LinkType& restriction)
         {
             for (auto i { 0 }; i < restriction.Count(); ++i)
             {
@@ -303,7 +303,7 @@ namespace Platform::Data::Doublets
         }
 
         template<typename TStorage>
-        static void EnsureInnerReferenceExists(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction, std::string argumentName)
+        static void EnsureInnerReferenceExists(TStorage& storage,  const typename TStorage::LinkType& restriction, std::string argumentName)
         {
             using namespace Platform::Exceptions;
             for (std::int32_t i = 0; i < restriction.Count(); ++i)
@@ -313,7 +313,7 @@ namespace Platform::Data::Doublets
         }
 
         template<typename TStorage>
-        static void EnsureLinkIsAnyOrExists(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction)
+        static void EnsureLinkIsAnyOrExists(TStorage& storage,  const typename TStorage::LinkType& restriction)
         {
             using namespace Platform::Exceptions;
             auto any = storage.Constants.Any;
@@ -367,19 +367,19 @@ namespace Platform::Data::Doublets
         }
 
         template<typename TStorage>
-        static void EnsureCreated(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& addresses)
+        static void EnsureCreated(TStorage& storage,  const typename TStorage::LinkType& addresses)
         {
             storage.EnsureCreated(storage.Create, addresses);
         }
 
         template<typename TStorage>
-        static void EnsurePointsCreated(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& addresses)
+        static void EnsurePointsCreated(TStorage& storage,  const typename TStorage::LinkType& addresses)
         {
             storage.EnsureCreated(storage.CreatePoint, addresses);
         }
 
         template<typename TStorage>
-        static void EnsureCreated(TStorage& storage, std::function<typename TStorage::LinkAddressType()> creator, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& addresses)
+        static void EnsureCreated(TStorage& storage, std::function<typename TStorage::LinkAddressType()> creator,  const typename TStorage::LinkType& addresses)
         {
             std::unordered_set<typename TStorage::LinkAddressType> nonExistentLinkAddresses{};
             typename TStorage::LinkAddressType maxLinkAddress {};
@@ -504,7 +504,7 @@ namespace Platform::Data::Doublets
         }
 
         template<typename TStorage>
-        static typename TStorage::LinkAddressType Update(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction, auto&& handler)
+        static typename TStorage::LinkAddressType Update(TStorage& storage,  const typename TStorage::LinkType& restriction, auto&& handler)
         {
             const auto length { std::ranges::size(restriction) };
             if (length == 2)
@@ -541,7 +541,7 @@ namespace Platform::Data::Doublets
         }
 
         template<typename TStorage>
-        static typename TStorage::LinkAddressType Update(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction)
+        static typename TStorage::LinkAddressType Update(TStorage& storage,  const typename TStorage::LinkType& restriction)
         {
             auto $continue {storage.Constants.Continue};
             typename TStorage::LinkAddressType updatedLinkAddress;
@@ -560,7 +560,7 @@ namespace Platform::Data::Doublets
         }
         //
         template<typename TStorage>
-        static Interfaces::CArray<typename TStorage::LinkAddressType>auto ResolveConstantAsSelfReference(const TStorage& storage, typename TStorage::LinkAddressType constant, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& substitution)
+        static Interfaces::CArray<typename TStorage::LinkAddressType>auto ResolveConstantAsSelfReference(const TStorage& storage, typename TStorage::LinkAddressType constant,  const typename TStorage::LinkType& restriction,  const typename TStorage::LinkType& substitution)
         {
             auto constants = storage.Constants;
             auto restrictionIndex = GetIndex(storage, restriction);
@@ -628,7 +628,7 @@ namespace Platform::Data::Doublets
     }
 
     template<typename TStorage>
-    static void DeleteMany(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& linkAddressesToDelete)
+    static void DeleteMany(TStorage& storage,  const typename TStorage::LinkType& linkAddressesToDelete)
     {
         for (auto linkAddress : linkAddressesToDelete) {
             Delete(storage, linkAddress);
@@ -810,7 +810,7 @@ namespace Platform::Data::Doublets
         }
 
         template<typename TStorage>
-        static std::string Format(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& link)
+        static std::string Format(TStorage& storage,  const typename TStorage::LinkType& link)
         {
             auto constants = storage.Constants;
             return std::string{}
