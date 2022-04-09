@@ -16,6 +16,6 @@
             return this->decorated().Each(restriction, handler);
         }
 
-        public: TLink Update(const  LinkType& restriction, const std::vector<LinkAddressType>& substitution) override { return this->decorated().Update(restriction, this->decorated().ResolveConstantAsSelfReference(_constants.Itself, restriction, substitution)); }
+        public: TLink Update(const  LinkType& restriction, const LinkType& substitution) override { return this->decorated().Update(restriction, this->decorated().ResolveConstantAsSelfReference(_constants.Itself, restriction, substitution)); }
     };
 }

@@ -11,7 +11,7 @@
             return storage.Each(restriction, handler);
         }
 
-        public: TLink Update(const  LinkType& restriction, const std::vector<LinkAddressType>& substitution) override
+        public: TLink Update(const  LinkType& restriction, const LinkType& substitution) override
         {
             storage.EnsureInnerReferenceExists(restriction, "restriction");
             storage.EnsureInnerReferenceExists(substitution, "substitution");

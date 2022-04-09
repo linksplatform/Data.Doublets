@@ -247,7 +247,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             }
         }
 
-        LinkAddressType Create(const std::vector<LinkAddressType>& substitution, const WriteHandlerType& handler)
+        LinkAddressType Create(const LinkType& substitution, const WriteHandlerType& handler)
         {
             auto substitutionLength = std::ranges::size(substitution);
             auto substitutionPtr = std::ranges::data(substitution);
@@ -280,7 +280,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             }
         };
 
-        LinkAddressType Update(const  LinkType& restriction, const std::vector<LinkAddressType>& substitution, const WriteHandlerType& handler)
+        LinkAddressType Update(const  LinkType& restriction, const LinkType& substitution, const WriteHandlerType& handler)
         {
             auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr{std::ranges::data(restriction)};

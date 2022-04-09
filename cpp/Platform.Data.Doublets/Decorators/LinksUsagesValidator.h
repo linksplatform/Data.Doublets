@@ -5,7 +5,7 @@
     {
         public: LinksUsagesValidator(ILinks<TLink> &storage) : DecoratorBase(storage) { }
 
-        public: TLink Update(const  LinkType& restriction, const std::vector<LinkAddressType>& substitution) override
+        public: TLink Update(const  LinkType& restriction, const LinkType& substitution) override
         {
             storage.EnsureNoUsages(restriction[_constants.IndexPart]);
             return storage.Update(restriction, substitution);

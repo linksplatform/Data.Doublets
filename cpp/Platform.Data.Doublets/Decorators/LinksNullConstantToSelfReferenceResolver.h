@@ -7,6 +7,6 @@
 
         public: TLink Create(const  LinkType& restriction) override { return this->decorated().CreatePoint(); }
 
-        public: TLink Update(const  LinkType& restriction, const std::vector<LinkAddressType>& substitution) override { return this->decorated().Update(restriction, this->decorated().ResolveConstantAsSelfReference(_constants.Null, restriction, substitution)); }
+        public: TLink Update(const  LinkType& restriction, const LinkType& substitution) override { return this->decorated().Update(restriction, this->decorated().ResolveConstantAsSelfReference(_constants.Null, restriction, substitution)); }
     };
 }

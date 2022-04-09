@@ -5,7 +5,7 @@
     {
         public: LinksNonExistentDependenciesCreator(ILinks<TLink> &storage) : DecoratorBase(storage) { }
 
-        public: TLink Update(const  LinkType& restriction, const std::vector<LinkAddressType>& substitution) override
+        public: TLink Update(const  LinkType& restriction, const LinkType& substitution) override
         {
             auto constants = _constants;
             storage.EnsureCreated(substitution[constants.SourcePart], substitution[constants.TargetPart]);

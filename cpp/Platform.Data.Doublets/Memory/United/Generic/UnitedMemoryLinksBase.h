@@ -309,7 +309,7 @@
         // NOTE: The following .NET attribute has no direct equivalent in C++:
         // ORIGINAL LINE: [MethodImpl(MethodImplOptions.AggressiveInlining)] public LinkAddressType Update(IList<LinkAddressType> restriction, IList<LinkAddressType> substitution)
     public:
-        LinkAddressType Update(const  LinkType& restriction, const std::vector<LinkAddressType>& substitution, const WriteHandlerType& handler)
+        LinkAddressType Update(const  LinkType& restriction, const LinkType& substitution, const WriteHandlerType& handler)
         {
             auto constants = Constants;
             auto null = constants.Null;
