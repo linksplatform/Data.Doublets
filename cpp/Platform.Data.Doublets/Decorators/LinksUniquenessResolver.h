@@ -12,7 +12,7 @@
     public:
         USE_ALL_BASE_CONSTRUCTORS(LinksUniquenessResolver, base);
 
-    public: LinkAddressType Update(CArray<LinkAddressType> auto&& restriction, CArray<LinkAddressType> auto&& substitution, const WriteHandlerType& handler)
+    public: LinkAddressType Update( const LinkType& restriction,  const LinkType& substitution, const WriteHandlerType& handler)
         {
             auto newLinkAddress = SearchOrDefault(this->decorated(), substitution[Constants.SourcePart], substitution[Constants.TargetPart]);
             if (newLinkAddress == LinkAddressType{})
