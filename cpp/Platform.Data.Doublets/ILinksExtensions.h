@@ -260,7 +260,7 @@ namespace Platform::Data::Doublets
         }
 
         template<typename TStorage>
-        static typename TStorage::LinkAddressType AllIndices<typename TStorage::LinkAddressType>(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction)
+        static typename TStorage::LinkAddressType AllIndices(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction)
         {
             std::vector<typename TStorage::LinkType> allIndices {};
             auto usages = std::vector<typename TStorage::LinkType>();
