@@ -832,18 +832,6 @@ namespace Platform::Data::Doublets
             return Format(GetLink(storage, linkAddress));
         }
 
-
-    template<typename TStorage>
-    typename TStorage::LinkAddressType CountUsages(TStorage& storage, typename TStorage::LinkAddressType linkAddress)
-    {
-        auto constants = storage.Constants;
-        auto values = GetLink(storage, linkAddress);
-        typename TStorage::LinkAddressType usages = 0;
-        usages += storage.Count(constants.Any, linkAddress, constants.Any) - (values.Source == linkAddress);
-        usages += storage.Count(constants.Any, constants.Any, linkAddress) - (values.Target == linkAddress);
-        return usages;
-    }
-
     template<typename TStorage>
     typename TStorage::LinkAddressType HasUsages(TStorage& storage, typename TStorage::LinkAddressType linkAddress)
     {
