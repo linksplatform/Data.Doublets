@@ -5,6 +5,7 @@
     {
         using OptionsType = TLinksOptions;
         using LinkAddressType = OptionsType::LinkAddressType;
+        using LinkType = base::LinkType;
         using ReadHandlerType = OptionsType::ReadHandlerType;
         virtual LinkAddressType CountUsages(LinkAddressType root) = 0;
 
