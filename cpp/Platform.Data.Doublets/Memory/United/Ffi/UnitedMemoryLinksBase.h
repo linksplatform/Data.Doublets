@@ -183,6 +183,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
     public:
         using OptionsType = TLinkOptions;
         using LinkAddressType = OptionsType::LinkAddressType;
+        using LinkType = OptionsType::LinkType;
         using WriteHandlerType = OptionsType::WriteHandlerType;
         using ReadHandlerType = OptionsType::ReadHandlerType;
         static constexpr LinksConstants<LinkAddressType> Constants = OptionsType::Constants;
