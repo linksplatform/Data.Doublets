@@ -216,11 +216,11 @@
                     {
                         return Data::Each(*this, handler);
                     }
-                    if (Each(std::vector<LinkAddressType>{index, value, any}, handler) == $break)
+                    if (Each(LinkType{index, value, any}, handler) == $break)
                     {
                         return $break;
                     }
-                    return Each(std::vector<LinkAddressType>{index, any, value}, handler);
+                    return Each(LinkType{index, any, value}, handler);
                 }
                 else
                 {
@@ -318,7 +318,7 @@
             // TODO: 'ref locals' are not converted by C# to C++ Converter:
             // ORIGINAL LINE: ref var link = ref GetLinkReference(linkIndex);
             auto& link = GetLinkReference(linkIndex);
-            std::vector<LinkAddressType> before {linkIndex, link.Source, link.Target};
+            LinkType before {linkIndex, link.Source, link.Target};
             // TODO: 'ref locals' are not converted by C# to C++ Converter:
             // ORIGINAL LINE: ref var header = ref GetHeaderReference();
             auto& header = GetHeaderReference();
