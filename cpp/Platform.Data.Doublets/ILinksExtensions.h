@@ -396,7 +396,7 @@ namespace Platform::Data::Doublets
             }
             if (!nonExistentLinkAddresses.empty())
             {
-                maxLinkAddress = std::min(maxLinkAddress, storage.Constants.InternalReferencesRange.Maximum)
+                maxLinkAddress = std::min(maxLinkAddress, storage.Constants.InternalReferencesRange.Maximum);
                 std::vector<typename TStorage::LinkType> createdLinks {};
                 typename TStorage::LinkAddressType createdLink = creator();
                 while (maxLinkAddress != createdLink)
