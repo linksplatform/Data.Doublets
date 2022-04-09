@@ -418,15 +418,15 @@ namespace Platform::Data::Doublets
         {
             auto constants = storage.Constants;
             auto values = GetLink(storage, linkAddress);
-            auto usagesAsSource = storage.Count(Link(constants.Any, storage, linkAddress, constants.Any));
-            if ( link == GetSource(storage, values))
+            auto usagesAsSource = storage.Count(typename TStorage::LinkType(constants.Any, storage, linkAddress, constants.Any));
+            if (link == GetSource(storage, values))
             {
-                usagesAsSource = usagesAsSource - 1;
+                --usagesAsSource;
             }
-            auto usagesAsSource = storage.Count(Link(constants.Any, storage, linkAddress, constants.Any));
-            if ( link == GetTarget(storage, values))
+            auto usagesAsTarget = storage.Count(typename TStorage::LinkType(constants.Any, storage, constants.Any, linkAddress));
+            if (link == GetTarget(storage, values))
             {
-                usagesAsTarget = usagesAsTarget - 1;
+                --usagesAsTarget;
             }
             return usagesAsSource + usagesAsTarget;
         }
