@@ -383,7 +383,7 @@ namespace Platform::Data::Doublets
         {
             std::unordered_set<typename TStorage::LinkAddressType> nonExistentLinkAddresses{};
             typename TStorage::LinkAddressType maxLinkAddress {};
-            for(auto linkAddress : linkAddresses)
+            for(auto linkAddress : nonExistentLinkAddresses)
             {
                 if(!storage.Exists(linkAddress))
                 {
