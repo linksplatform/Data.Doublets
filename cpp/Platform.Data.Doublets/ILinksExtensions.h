@@ -264,6 +264,7 @@ namespace Platform::Data::Doublets
         {
             std::vector<typename TStorage::LinkType> allIndices {};
             auto usages = std::vector<typename TStorage::LinkType>();
+            auto $continue = storage.Constants.Continue;
             storage.Each(restriction, [&allIndices, $continue](const typename TStorage::LinkType& link){
                 allIndices.push_back(link);
                 return $continue;
