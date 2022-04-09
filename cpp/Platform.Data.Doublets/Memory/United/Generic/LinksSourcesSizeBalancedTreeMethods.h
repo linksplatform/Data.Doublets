@@ -6,6 +6,7 @@
     {
         using base = LinksSizeBalancedTreeMethodsBase<LinksSourcesSizeBalancedTreeMethods<TLinksOptions>, TLinksOptions>;
         using typename base::LinkAddressType;
+        using typename base::LinkType;
         using typename base::ReadHandlerType;
 
         public: LinksSourcesSizeBalancedTreeMethods(std::byte* storage, std::byte* header) : base( storage, header) { }
