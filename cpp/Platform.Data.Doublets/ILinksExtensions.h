@@ -295,6 +295,7 @@ namespace Platform::Data::Doublets
         template<typename TStorage>
         static void EnsureInnerReferenceExists(TStorage& storage, typename TStorage::LinkAddressType reference, std::string argumentName)
         {
+            using namespace Platform::Exceptions;
             if (storage.Constants.IsInternalReference(reference) && !storage.Exists(reference))
             {
                 throw ArgumentLinkDoesNotExistsException<typename TStorage::LinkAddressType>(reference, argumentName);
@@ -304,6 +305,7 @@ namespace Platform::Data::Doublets
         template<typename TStorage>
         static void EnsureInnerReferenceExists(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction, std::string argumentName)
         {
+            using namespace Platform::Exceptions;
             for (std::int32_t i = 0; i < restriction.Count(); ++i)
             {
                 storage.EnsureInnerReferenceExists(restriction[i], argumentName);
@@ -313,6 +315,7 @@ namespace Platform::Data::Doublets
         template<typename TStorage>
         static void EnsureLinkIsAnyOrExists(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction)
         {
+            using namespace Platform::Exceptions;
             auto any = storage.Constants.Any;
             for (auto i { 0 }; i < restriction.Count(); ++i)
             {
@@ -326,6 +329,7 @@ namespace Platform::Data::Doublets
         template<typename TStorage>
         static void EnsureLinkIsAnyOrExists(TStorage& storage, typename TStorage::LinkAddressType linkAddress, std::string argumentName)
         {
+            using namespace Platform::Exceptions;
             if ((storage.Constants.Any != linkAddress) && !storage.Exists(linkAddress))
             {
                 throw ArgumentLinkDoesNotExistsException<typename TStorage::LinkAddressType>(linkAddress, argumentName);
@@ -335,6 +339,7 @@ namespace Platform::Data::Doublets
         template<typename TStorage>
         static void EnsureLinkIsItselfOrExists(TStorage& storage, typename TStorage::LinkAddressType linkAddress, std::string argumentName)
         {
+            using namespace Platform::Exceptions;
             if ((storage.Constants.Itself != linkAddress) && !storage.Exists(linkAddress))
             {
                 throw ArgumentLinkDoesNotExistsException<typename TStorage::LinkAddressType>(linkAddress, argumentName);
@@ -344,6 +349,7 @@ namespace Platform::Data::Doublets
         template<typename TStorage>
         static void EnsureDoesNotExists(TStorage& storage, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType target)
         {
+            using namespace Platform::Exceptions;
             if (storage.Exists(source, target))
             {
                 throw LinkWithSameValueAlreadyExistsException();
@@ -353,6 +359,7 @@ namespace Platform::Data::Doublets
         template<typename TStorage>
         static void EnsureNoUsages(TStorage& storage, typename TStorage::LinkAddressType linkAddress)
         {
+            using namespace Platform::Exceptions;
             if (storage.HasUsages(linkAddress))
             {
                 throw ArgumentLinkHasDependenciesException<typename TStorage::LinkAddressType>(linkAddress);
@@ -360,10 +367,16 @@ namespace Platform::Data::Doublets
         }
 
         template<typename TStorage>
-        static void EnsureCreated(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& addresses) { storage.EnsureCreated(storage.Create, addresses); }
+        static void EnsureCreated(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& addresses)
+        {
+            storage.EnsureCreated(storage.Create, addresses);
+        }
 
         template<typename TStorage>
-        static void EnsurePointsCreated(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& addresses) { storage.EnsureCreated(storage.CreatePoint, addresses); }
+        static void EnsurePointsCreated(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& addresses)
+        {
+            storage.EnsureCreated(storage.CreatePoint, addresses);
+        }
 
         template<typename TStorage>
         static void EnsureCreated(TStorage& storage, std::function<typename TStorage::LinkAddressType()> creator, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& addresses)
