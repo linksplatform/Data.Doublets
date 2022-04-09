@@ -1,14 +1,10 @@
-pub use alloc_mem::AllocMem;
-pub use file_mapped_mem::FileMappedMem;
-pub use global_mem::GlobalMem;
-pub use mem_traits::{Mem, ResizeableMem};
-pub use temp_file_mem::TempFileMem;
+pub use ilinks_list_methods::ILinksListMethods;
+pub use ilinks_tree_methods::ILinksTreeMethods;
+pub use links_header::LinksHeader;
+pub use united::UpdatePointers;
 
-pub(crate) use resizeable_base::ResizeableBase;
-
-mod alloc_mem;
-mod file_mapped_mem;
-mod global_mem;
-mod mem_traits;
-mod resizeable_base;
-mod temp_file_mem;
+mod ilinks_list_methods;
+mod ilinks_tree_methods;
+mod links_header;
+pub mod splited;
+pub mod united;

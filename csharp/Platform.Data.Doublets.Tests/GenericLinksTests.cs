@@ -42,8 +42,8 @@ namespace Platform.Data.Doublets.Tests
             var unitedMemoryLinks = new UnitedMemoryLinks<TLinkAddress>(new HeapResizableDirectMemory());
             using (var logFile = File.Open("linksLogger.txt", FileMode.Create, FileAccess.Write))
             {
-                LoggingDecorator<TLinkAddress> links = new(unitedMemoryLinks, logFile);
-                action(links);
+                LoggingDecorator<TLinkAddress> decoratedStorage = new(unitedMemoryLinks, logFile);
+                action(decoratedStorage);
             }
 
             File.Delete("db.links");

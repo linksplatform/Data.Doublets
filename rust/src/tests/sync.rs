@@ -6,13 +6,13 @@ use std::time::Instant;
 
 use rand::Rng;
 
-use crate::data::Links;
-use crate::doublets::mem::{splited, united};
-use crate::doublets::{Doublets, ILinksExtensions, Link};
-use crate::mem::ResizeableMem;
-use crate::num::LinkType;
+use crate::mem::{splited, united};
 use crate::tests::make_links;
 use crate::tests::make_mem;
+use crate::{Doublets, Link};
+use data::Links;
+use mem::ResizeableMem;
+use num::LinkType;
 
 #[test]
 fn basic_sync() {

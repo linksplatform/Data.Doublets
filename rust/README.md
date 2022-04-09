@@ -48,7 +48,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 ```
 
 ## FAQ
-> How can I save non-number data using doublets?  
+> How can I save non-number data using doublets?
 
 Any data can be represented as numbers.
 

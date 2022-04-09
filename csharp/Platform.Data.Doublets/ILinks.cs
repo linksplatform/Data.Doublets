@@ -8,7 +8,7 @@ namespace Platform.Data.Doublets
     /// <para>
     /// Defines the links.
     /// </para>
-    /// <para></para>
+    /// <para></para> 
     /// </summary>
     /// <seealso cref="ILinks{TLinkAddress, LinksConstants{TLinkAddress}}"/>
     public interface ILinks<TLinkAddress> : ILinks<TLinkAddress, LinksConstants<TLinkAddress>>
