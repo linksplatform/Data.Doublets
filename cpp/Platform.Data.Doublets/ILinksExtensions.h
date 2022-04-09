@@ -381,22 +381,33 @@ namespace Platform::Data::Doublets
         template<typename TStorage>
         static void EnsureCreated(TStorage& storage, std::function<typename TStorage::LinkAddressType()> creator, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& addresses)
         {
-            auto nonExistentAddresses = HashSet<typename TStorage::LinkAddressType>(addresses.Where(x => !storage.Exists(x)));
-            if (nonExistentAddresses.Count() > 0)
+            std::unordered_set<typename TStorage::LinkAddressType> nonExistentLinkAddresses{};
+            typename TStorage::LinkAddressType maxLinkAddress {};
+            for(auto linkAddress : linkAddresses)
             {
-                auto max = nonExistentAddresses.Max();
-                max = System::Math::Min(max), storage.Constants.InternalReferencesRange.Maximum
+                if(!storage.Exists(linkAddress))
+                {
+                    nonExistentLinkAddresses.insert(linkAddress);
+                    if(linkAddress > maxLinkAddress)
+                    {
+                        maxLinkAddress = linkAddress;
+                    }
+                }
+            }
+            if (!nonExistentLinkAddresses.empty())
+            {
+                maxLinkAddress = std::min(max, storage.Constants.InternalReferencesRange.Maximum)
                 std::vector<typename TStorage::LinkType> createdLinks {};
                 typename TStorage::LinkAddressType createdLink = creator();
-                while ( max != createdLink)
+                while (maxLinkAddress != createdLink)
                 {
                     createdLinks.Add(createdLink);
                 }
-                for (auto i { 0 }; i < createdLinks.Count(); ++i)
+                for (auto i { 0 }; i < createdLinks.size(); ++i)
                 {
-                    if (!nonExistentAddresses.Contains(createdLinks[i]))
+                    if (!nonExistentLinkAddresses.contains(createdLinks[i]))
                     {
-                        storage.Delete(createdLinks[i]);
+                        Delete(storage, createdLinks[i]);
                     }
                 }
             }
