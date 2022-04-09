@@ -259,7 +259,8 @@ namespace Platform::Data::Doublets
             return All(storage, typename TStorage::LinkType{});
         }
 
-        static Interfaces::CArray<typename TStorage::LinkAddressType>auto AllIndices<typename TStorage::LinkAddressType>(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction)
+        template<typename TStorage>
+        static typename TStorage::LinkAddressType auto AllIndices<typename TStorage::LinkAddressType>(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction)
         {
             std::vector<typename TStorage::LinkType> allIndices {};
             auto usages = std::vector<typename TStorage::LinkType>();
