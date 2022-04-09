@@ -258,161 +258,156 @@ namespace Platform::Data::Doublets
             std::vector<typename TStorage::LinkAddressType> restriction { static_cast<typename TStorage::LinkAddressType>(restrictionPack)... };
             return All(storage, std::vector<typename TStorage::LinkAddressType>{});
         }
-    //
-    //    static Interfaces::CArray<typename TStorage::LinkAddressType>auto AllIndices<typename TStorage::LinkAddressType>(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction)
-    //    {
-    //        auto allIndices = List<typename TStorage::LinkAddressType>();
-    //        auto filler = ListFiller<typename TStorage::LinkAddressType, typename TStorage::LinkAddressType>(allIndices, storage.Constants.Continue);
-    //        storage.Each(filler.AddFirstAndReturnConstant, restriction);
-    //        return allIndices;
-    //    }
-    //
-    //
-    //    template<typename TStorage>
-    //    static void EnsureLinkExists(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction)
-    //    {
-    //        for (auto i { 0 }; i < restriction.Count(); ++i)
-    //        {
-    //            if (!storage.Exists(restriction[i]))
-    //            {
-    //                throw ArgumentLinkDoesNotExistsException<typename TStorage::LinkAddressType>(restriction[i], std::string("sequence[").append(Platform::Converters::To<std::string>(i)).append(1, ']'));
-    //            }
-    //        }
-    //    }
-        
+
+        static Interfaces::CArray<typename TStorage::LinkAddressType>auto AllIndices<typename TStorage::LinkAddressType>(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction)
+        {
+            std::vector<typename TStorage::LinkType> allIndices {};
+            auto usages = std::vector<typename TStorage::LinkType>();
+            storage.Each(restriction, [&allIndices, $continue](const typename TStorage::LinkType& link){
+                allIndices.push_back(link);
+                return $continue;
+            });
+            return allIndices;
+        }
+
+
+        template<typename TStorage>
+        static void EnsureLinkExists(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction)
+        {
+            for (auto i { 0 }; i < restriction.Count(); ++i)
+            {
+                if (!storage.Exists(restriction[i]))
+                {
+                    throw ArgumentLinkDoesNotExistsException<typename TStorage::LinkAddressType>(restriction[i], std::string("sequence[").append(Platform::Converters::To<std::string>(i)).append(1, ']'));
+                }
+            }
+        }
+
         template<typename TStorage>
         static bool Exists(TStorage& storage, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType target)
         {
             return storage.Count(Link{storage.Constants.Any, source, target}) > 0;
         }
-        
-    //
-    //    template<typename TStorage>
-    //    static void EnsureInnerReferenceExists(TStorage& storage, typename TStorage::LinkAddressType reference, std::string argumentName)
-    //    {
-    //        if (storage.Constants.IsInternalReference(reference) && !storage.Exists(reference))
-    //        {
-    //            throw ArgumentLinkDoesNotExistsException<typename TStorage::LinkAddressType>(reference, argumentName);
-    //        }
-    //    }
-    //
-    //    template<typename TStorage>
-    //    static void EnsureInnerReferenceExists(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction, std::string argumentName)
-    //    {
-    //        for (std::int32_t i = 0; i < restriction.Count(); ++i)
-    //        {
-    //            storage.EnsureInnerReferenceExists(restriction[i], argumentName);
-    //        }
-    //    }
-    //
-    //    template<typename TStorage>
-    //    static void EnsureLinkIsAnyOrExists(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction)
-    //    {
-    //        auto any = storage.Constants.Any;
-    //        for (auto i { 0 }; i < restriction.Count(); ++i)
-    //        {
-    //            if ((any != restriction[i]) && !storage.Exists(restriction[i]))
-    //            {
-    //                throw ArgumentLinkDoesNotExistsException<typename TStorage::LinkAddressType>(restriction[i], std::string("sequence[").append(Platform::Converters::To<std::string>(i)).append(1, ']'));
-    //            }
-    //        }
-    //    }
-    //
-    //    template<typename TStorage>
-    //    static void EnsureLinkIsAnyOrExists(TStorage& storage, typename TStorage::LinkAddressType linkAddress, std::string argumentName)
-    //    {
-    //        if ((storage.Constants.Any != linkAddress) && !storage.Exists(linkAddress))
-    //        {
-    //            throw ArgumentLinkDoesNotExistsException<typename TStorage::LinkAddressType>(linkAddress, argumentName);
-    //        }
-    //    }
-    //
-    //    template<typename TStorage>
-    //    static void EnsureLinkIsItselfOrExists(TStorage& storage, typename TStorage::LinkAddressType linkAddress, std::string argumentName)
-    //    {
-    //        if ((storage.Constants.Itself != linkAddress) && !storage.Exists(linkAddress))
-    //        {
-    //            throw ArgumentLinkDoesNotExistsException<typename TStorage::LinkAddressType>(linkAddress, argumentName);
-    //        }
-    //    }
-    //
-    //    template<typename TStorage>
-    //    static void EnsureDoesNotExists(TStorage& storage, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType target)
-    //    {
-    //        if (storage.Exists(source, target))
-    //        {
-    //            throw LinkWithSameValueAlreadyExistsException();
-    //        }
-    //    }
-    //
-    //    template<typename TStorage>
-    //    static void EnsureNoUsages(TStorage& storage, typename TStorage::LinkAddressType linkAddress)
-    //    {
-    //        if (storage.HasUsages(linkAddress))
-    //        {
-    //            throw ArgumentLinkHasDependenciesException<typename TStorage::LinkAddressType>(linkAddress);
-    //        }
-    //    }
-    //
-    //    template<typename TStorage>
-    //    static void EnsureCreated(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& addresses) { storage.EnsureCreated(storage.Create, addresses); }
-    //
-    //    template<typename TStorage>
-    //    static void EnsurePointsCreated(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& addresses) { storage.EnsureCreated(storage.CreatePoint, addresses); }
-    //
-    //    template<typename TStorage>
-    //    static void EnsureCreated(TStorage& storage, std::function<typename TStorage::LinkAddressType()> creator, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& addresses)
-    //    {
-    //        auto nonExistentAddresses = HashSet<typename TStorage::LinkAddressType>(addresses.Where(x => !storage.Exists(x)));
-    //        if (nonExistentAddresses.Count() > 0)
-    //        {
-    //            auto max = nonExistentAddresses.Max();
-    //            max = System::Math::Min(max), storage.Constants.InternalReferencesRange.Maximum
-    //            auto createdLinks = List<typename TStorage::LinkAddressType>();
-    //            typename TStorage::LinkAddressType createdLink = creator();
-    //            while ( max != createdLink)
-    //            {
-    //                createdLinks.Add(createdLink);
-    //            }
-    //            for (auto i { 0 }; i < createdLinks.Count(); ++i)
-    //            {
-    //                if (!nonExistentAddresses.Contains(createdLinks[i]))
-    //                {
-    //                    storage.Delete(createdLinks[i]);
-    //                }
-    //            }
-    //        }
-    //    }
-    //
-    //    template<typename TStorage>
-    //    static typename TStorage::LinkAddressType CountUsages(TStorage& storage, typename TStorage::LinkAddressType linkAddress)
-    //    {
-    //        auto constants = storage.Constants;
-    //        auto values = GetLink(storage, linkAddress);
-    //        typename TStorage::LinkAddressType usagesAsSource = Count(storage)(Link(constants.Any, linkAddress, constants.Any));
-    //        if ( link == GetSource(storage, values))
-    //        {
-    //            usagesAsSource = usagesAsSource - 1;
-    //        }
-    //        typename TStorage::LinkAddressType usagesAsTarget = Count(storage)(Link(constants.Any, constants.Any, linkAddress));
-    //        if ( link == GetTarget(storage, values))
-    //        {
-    //            usagesAsTarget = usagesAsTarget - 1;
-    //        }
-    //        return usagesAsSource + usagesAsTarget;
-    //    }
-    //
-    //    template<typename TStorage>
-    //    static bool HasUsages(TStorage& storage, typename TStorage::LinkAddressType linkAddress) { return Comparer<typename TStorage::LinkAddressType>.Default.Compare(Count(storage)Usages(linkAddress), 0) > 0; }
-    //
-    //    template<typename TStorage>
-    //    static bool operator ==(TStorage& storage, typename TStorage::LinkAddressType linkAddress, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType &target) const
-    //    {
-    //        auto constants = storage.Constants;
-    //        auto values = GetLink(storage, linkAddress);
-    //        return  source == GetSource(storage, values) &&  target == GetTarget(storage, values);
-    //    }
-    //
+
+
+        template<typename TStorage>
+        static void EnsureInnerReferenceExists(TStorage& storage, typename TStorage::LinkAddressType reference, std::string argumentName)
+        {
+            if (storage.Constants.IsInternalReference(reference) && !storage.Exists(reference))
+            {
+                throw ArgumentLinkDoesNotExistsException<typename TStorage::LinkAddressType>(reference, argumentName);
+            }
+        }
+
+        template<typename TStorage>
+        static void EnsureInnerReferenceExists(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction, std::string argumentName)
+        {
+            for (std::int32_t i = 0; i < restriction.Count(); ++i)
+            {
+                storage.EnsureInnerReferenceExists(restriction[i], argumentName);
+            }
+        }
+
+        template<typename TStorage>
+        static void EnsureLinkIsAnyOrExists(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& restriction)
+        {
+            auto any = storage.Constants.Any;
+            for (auto i { 0 }; i < restriction.Count(); ++i)
+            {
+                if ((any != restriction[i]) && !storage.Exists(restriction[i]))
+                {
+                    throw ArgumentLinkDoesNotExistsException<typename TStorage::LinkAddressType>(restriction[i], std::string("sequence[").append(Platform::Converters::To<std::string>(i)).append(1, ']'));
+                }
+            }
+        }
+
+        template<typename TStorage>
+        static void EnsureLinkIsAnyOrExists(TStorage& storage, typename TStorage::LinkAddressType linkAddress, std::string argumentName)
+        {
+            if ((storage.Constants.Any != linkAddress) && !storage.Exists(linkAddress))
+            {
+                throw ArgumentLinkDoesNotExistsException<typename TStorage::LinkAddressType>(linkAddress, argumentName);
+            }
+        }
+
+        template<typename TStorage>
+        static void EnsureLinkIsItselfOrExists(TStorage& storage, typename TStorage::LinkAddressType linkAddress, std::string argumentName)
+        {
+            if ((storage.Constants.Itself != linkAddress) && !storage.Exists(linkAddress))
+            {
+                throw ArgumentLinkDoesNotExistsException<typename TStorage::LinkAddressType>(linkAddress, argumentName);
+            }
+        }
+
+        template<typename TStorage>
+        static void EnsureDoesNotExists(TStorage& storage, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType target)
+        {
+            if (storage.Exists(source, target))
+            {
+                throw LinkWithSameValueAlreadyExistsException();
+            }
+        }
+
+        template<typename TStorage>
+        static void EnsureNoUsages(TStorage& storage, typename TStorage::LinkAddressType linkAddress)
+        {
+            if (storage.HasUsages(linkAddress))
+            {
+                throw ArgumentLinkHasDependenciesException<typename TStorage::LinkAddressType>(linkAddress);
+            }
+        }
+
+        template<typename TStorage>
+        static void EnsureCreated(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& addresses) { storage.EnsureCreated(storage.Create, addresses); }
+
+        template<typename TStorage>
+        static void EnsurePointsCreated(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& addresses) { storage.EnsureCreated(storage.CreatePoint, addresses); }
+
+        template<typename TStorage>
+        static void EnsureCreated(TStorage& storage, std::function<typename TStorage::LinkAddressType()> creator, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& addresses)
+        {
+            auto nonExistentAddresses = HashSet<typename TStorage::LinkAddressType>(addresses.Where(x => !storage.Exists(x)));
+            if (nonExistentAddresses.Count() > 0)
+            {
+                auto max = nonExistentAddresses.Max();
+                max = System::Math::Min(max), storage.Constants.InternalReferencesRange.Maximum
+                std::vector<typename TStorage::LinkType> createdLinks {};
+                typename TStorage::LinkAddressType createdLink = creator();
+                while ( max != createdLink)
+                {
+                    createdLinks.Add(createdLink);
+                }
+                for (auto i { 0 }; i < createdLinks.Count(); ++i)
+                {
+                    if (!nonExistentAddresses.Contains(createdLinks[i]))
+                    {
+                        storage.Delete(createdLinks[i]);
+                    }
+                }
+            }
+        }
+
+        template<typename TStorage>
+        static typename TStorage::LinkAddressType CountUsages(TStorage& storage, typename TStorage::LinkAddressType linkAddress)
+        {
+            auto constants = storage.Constants;
+            auto values = GetLink(storage, linkAddress);
+            auto usagesAsSource = storage.Count(Link(constants.Any, storage, linkAddress, constants.Any));
+            if ( link == GetSource(storage, values))
+            {
+                usagesAsSource = usagesAsSource - 1;
+            }
+            auto usagesAsSource = storage.Count(Link(constants.Any, storage, linkAddress, constants.Any));
+            if ( link == GetTarget(storage, values))
+            {
+                usagesAsTarget = usagesAsTarget - 1;
+            }
+            return usagesAsSource + usagesAsTarget;
+        }
+
+        template<typename TStorage>
+        static bool HasUsages(TStorage& storage, typename TStorage::LinkAddressType linkAddress) { return CountUsages(storage,linkAddress)>0; }
+
         template<typename TStorage>
         typename TStorage::LinkAddressType SearchOrDefault(TStorage& storage, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType target)
         {
@@ -606,15 +601,14 @@ namespace Platform::Data::Doublets
         return constants.Null;
     }
 
-    //    template<typename TStorage>
-    //    static void DeleteMany(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& deletedLinks)
-    //    {
-    //        for (std::int32_t i = 0; i < deletedLinks.Count(); ++i)
-    //        {
-    //            storage.Delete(deletedLinks[i]);
-    //        }
-    //    }
-    //
+    template<typename TStorage>
+    static void DeleteMany(TStorage& storage, Interfaces::CArray<typename TStorage::LinkAddressType> auto&& linkAddressesToDelete)
+    {
+        for (auto linkAddress : linkAddressesToDelete) {
+            Delete(storage, linkAddress);
+        }
+    }
+
 
     template<typename TStorage>
     static typename TStorage::LinkAddressType DeleteAllUsages(TStorage& storage, typename TStorage::LinkAddressType linkIndex, auto&& handler)
@@ -829,27 +823,23 @@ namespace Platform::Data::Doublets
     {
         return storage.CountUsages(linkAddress) != 0;
     }
-    //
-    //
-    //
-    //
-    //    template<typename TStorage>
-    //    static void DeleteByQuery(TStorage& storage, Link<typename TStorage::LinkAddressType> query)
-    //    {
-    //        auto queryResult = List<typename TStorage::LinkAddressType>();
-    //        auto queryResultFiller = ListFiller<typename TStorage::LinkAddressType, typename TStorage::LinkAddressType>(queryResult, storage.Constants.Continue);
-    //        storage.Each(queryResultFiller.AddFirstAndReturnConstant, query);
-    //        foreach (auto link in queryResult)
-    //        {
-    //            Delete(storage, link);
-    //        }
-    //    }
-    //
-    //
-    //
 
-    //
 
-    //
+
+    template<typename TStorage>
+    static void DeleteByQuery(TStorage& storage, Link<typename TStorage::LinkAddressType> query)
+    {
+        std::vector<typename TStorage::LinkAddressType> queryResult;
+        storage.Each(query, [&](std::vector<typename TStorage::LinkAddressType> vec) -> typename TStorage::LinkAddressType{
+            return storage.Constants.Continue;
+        });
+
+        for (auto link: queryResult)
+        {
+            Delete(storage, link);
+        }
+    }
+
+
 
 }
