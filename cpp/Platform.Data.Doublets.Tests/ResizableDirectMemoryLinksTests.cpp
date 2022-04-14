@@ -1,12 +1,12 @@
 ﻿namespace Platform::Data::Doublets::Tests
 {
     using TLinkAddress = uint64_t;
-    static constexpr LinksConstants<TLinkAddress> constants {LinksConstants<TLinkAddress>{true}};
 
     template<typename TStorage>
     static void TestNonexistentReferences(TStorage& storage)
     {
         using namespace Platform::Interfaces;
+        constexpr auto constants = storage.Constants;
         auto linkAddress = Create(storage);
         Update(storage, linkAddress, std::numeric_limits<TLinkAddress>::max(), std::numeric_limits<TLinkAddress>::max());
         TLinkAddress resultLinkAddress{constants.Null};
