@@ -5,4 +5,4 @@
 #include "GenericLinksTests.cpp"
 #include "LinksConstantsTests.cpp"
 #include "ResizableDirectMemoryLinksTests.cpp"
-#include "SplitMemoryGenericLinksTests.cpp"
+//#include "SplitMemoryGenericLinksTests.cpp"
