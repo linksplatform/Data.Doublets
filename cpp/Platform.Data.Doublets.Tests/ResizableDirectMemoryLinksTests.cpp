@@ -47,9 +47,11 @@
 
     TEST(ResizableDirectMemoryLinksTests, BasicHeapMemoryTest)
     {
-        HeapResizableDirectMemory memory {UInt64UnitedMemoryLinks.DefaultLinksSizeStep};
-        UInt64UnitedMemoryLinks memoryAdapter {memory, UInt64UnitedMemoryLinks.DefaultLinksSizeStep};
-        TestBasicMemoryOperations(memoryAdapter);
+        using namespace Platform::Data::Doublets::Memory::United::Generic;
+        using namespace Platform::Memory;
+        HeapResizableDirectMemory memory {UnitedMemoryLinks::DefaultLinksSizeStep};
+        UnitedMemoryLinks<LinksOptions<TLinkAddress>> storage{memory, UnitedMemoryLinks::DefaultLinksSizeStep};
+        TestBasicMemoryOperations(storage);
     }
 
     TEST(ResizableDirectMemoryLinksTests, NonexistentReferencesHeapMemoryTest)
