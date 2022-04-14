@@ -30,11 +30,12 @@
     {
         using namespace Platform::Data::Doublets::Memory::United::Generic;
         using namespace Platform::Memory;
+        using LinksOptionsType = LinksOptions<TLinkAddress>;
         auto tempName {std::tmpnam(nullptr)};
         try
         {
             FileMappedResizableDirectMemory memory { tempName };
-            UnitedMemoryLinks<LinksOptions<TLinkAddress>> storage {std::move(memory)};
+            UnitedMemoryLinks<LinksOptionsType> storage {std::move(memory)};
             TestBasicMemoryOperations(storage);
         }
         catch (...)
@@ -49,8 +50,9 @@
     {
         using namespace Platform::Data::Doublets::Memory::United::Generic;
         using namespace Platform::Memory;
-        HeapResizableDirectMemory memory {UnitedMemoryLinks<LinksOptions<TLinkAddress>>::DefaultLinksSizeStep};
-        UnitedMemoryLinks<LinksOptions<TLinkAddress>, HeapResizableDirectMemory> storage {std::move(memory), UnitedMemoryLinks<LinksOptions<TLinkAddress>>::DefaultLinksSizeStep};
+        using LinksOptionsType = LinksOptions<TLinkAddress>;
+        HeapResizableDirectMemory memory {UnitedMemoryLinks<LinksOptionsType>::DefaultLinksSizeStep};
+        UnitedMemoryLinks<LinksOptionsType, HeapResizableDirectMemory> storage {std::move(memory), UnitedMemoryLinks<LinksOptionsType>::DefaultLinksSizeStep};
         TestBasicMemoryOperations(storage);
     }
 
@@ -58,8 +60,9 @@
     {
         using namespace Platform::Data::Doublets::Memory::United::Generic;
         using namespace Platform::Memory;
-        HeapResizableDirectMemory memory {UnitedMemoryLinks<LinksOptions<TLinkAddress>>::DefaultLinksSizeStep};
-        UnitedMemoryLinks<LinksOptions<TLinkAddress>, HeapResizableDirectMemory> storage {std::move(memory), UnitedMemoryLinks<LinksOptions<TLinkAddress>>::DefaultLinksSizeStep};
+        using LinksOptionsType = LinksOptions<TLinkAddress>;
+        HeapResizableDirectMemory memory {UnitedMemoryLinks<LinksOptionsType>::DefaultLinksSizeStep};
+        UnitedMemoryLinks<LinksOptionsType, HeapResizableDirectMemory> storage {std::move(memory), UnitedMemoryLinks<LinksOptionsType>::DefaultLinksSizeStep};
         TestNonexistentReferences(storage);
     }
 }
