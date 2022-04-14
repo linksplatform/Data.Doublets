@@ -74,9 +74,8 @@
             {
                 return GetTotal();
             }
-            auto constants = Constants;
-            auto any = constants.Any;
-            auto index = restriction[constants.IndexPart];
+            auto any = Constants.Any;
+            auto index = restriction[Constants.IndexPart];
             if (std::ranges::size(restriction) == 1)
             {
                 if (index == any)
@@ -116,8 +115,8 @@
             }
             if (std::ranges::size(restriction) == 3)
             {
-                auto source = restriction[constants.SourcePart];
-                auto target = restriction[constants.TargetPart];
+                auto source = restriction[Constants.SourcePart];
+                auto target = restriction[Constants.TargetPart];
                 if (index == any)
                 {
                     if (source == any && target == any)
@@ -135,7 +134,7 @@
                     else// if(source != Any && target != Any)
                     {
                         auto link = _SourcesTreeMethods->Search(source, target);
-                        return link == constants.Null ? LinkAddressType {} : LinkAddressType {1};
+                        return link == Constants.Null ? LinkAddressType {} : LinkAddressType {1};
                     }
                 }
                 else
@@ -178,9 +177,8 @@
 
     public: LinkAddressType Each(const  LinkType& restriction, const ReadHandlerType& handler) const
         {
-            auto constants = Constants;
-            auto $continue {constants.Continue};
-            auto $break = constants.Break;
+            auto $continue {Constants.Continue};
+            auto $break = Constants.Break;
             if (std::ranges::size(restriction) == 0)
             {
                 for (auto link = LinkAddressType {1}; link <= GetHeaderReference().AllocatedLinks; ++link)
@@ -192,9 +190,9 @@
                 }
                 return $continue;
             }
-            auto _continue = constants.Continue;
-            auto any = constants.Any;
-            auto index = restriction[constants.IndexPart];
+            auto _continue = Constants.Continue;
+            auto any = Constants.Any;
+            auto index = restriction[Constants.IndexPart];
             if (std::ranges::size(restriction) == 1)
             {
                 if (index == any)
@@ -242,8 +240,8 @@
             }
             if (std::ranges::size(restriction) == 3)
             {
-                auto source = restriction[constants.SourcePart];
-                auto target = restriction[constants.TargetPart];
+                auto source = restriction[Constants.SourcePart];
+                auto target = restriction[Constants.TargetPart];
                 if (index == any)
                 {
                     if (source == any && target == any)
@@ -261,7 +259,7 @@
                     else// if(source != Any && target != Any)
                     {
                         auto link = _SourcesTreeMethods->Search(source, target);
-                        return (link == constants.Null) ? _continue : handler(GetLinkStruct(link));
+                        return (link == Constants.Null) ? _continue : handler(GetLinkStruct(link));
                     }
                 }
                 else
@@ -312,9 +310,8 @@
     public:
         LinkAddressType Update(const  LinkType& restriction, const LinkType& substitution, const WriteHandlerType& handler)
         {
-            auto constants = Constants;
-            auto null = constants.Null;
-            auto linkIndex = restriction[constants.IndexPart];
+            auto null = Constants.Null;
+            auto linkIndex = restriction[Constants.IndexPart];
             // TODO: 'ref locals' are not converted by C# to C++ Converter:
             // ORIGINAL LINE: ref var link = ref GetLinkReference(linkIndex);
             auto& link = GetLinkReference(linkIndex);
@@ -337,8 +334,8 @@
             {
                 _TargetsTreeMethods->Detach(firstAsTarget, linkIndex);
             }
-            link.Source = substitution[constants.SourcePart];
-            link.Target = substitution[constants.TargetPart];
+            link.Source = substitution[Constants.SourcePart];
+            link.Target = substitution[Constants.TargetPart];
             if (link.Source != null)
             {
                 _SourcesTreeMethods->Attach(firstAsSource, linkIndex);
@@ -440,7 +437,7 @@
 
         bool Exists(LinkAddressType linkAddress) const
         {
-            if (IsExternalReference(Constants, linkAddress))
+            if (IsExternalReference<LinkAddressType, Constants>(linkAddress))
             {
                 return false;
             }

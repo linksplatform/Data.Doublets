@@ -13,7 +13,7 @@
             {
                 return 0;
             }
-            auto constants = storage.Constants;
+            constexpr auto constants = storage.Constants;
             auto any = constants.Any;
             auto query = Link<TLinkAddress>(any, objectProperty, any);
             auto valueLink = storage.SingleOrDefault(query);
