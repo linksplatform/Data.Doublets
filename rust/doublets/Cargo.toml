@@ -1,0 +1,27 @@
+[package]
+name = "doublets"
+version = "0.1.0-alpha.7"
+edition = "2021"
+authors = [
+    "uselessgoddess",
+    "Linksplatform Team <linksplatformtechnologies@gmail.com>"
+]
+license = "LGPL-3.0"
+repository = "https://github.com/linksplatform/Data.Doublets"
+homepage = "https://github.com/linksplatform/Data.Doublets/blob/main/rust"
+description = """
+Modular framework to automation by automation
+"""
+
+[dependencies]
+thiserror = "1.0.30"
+rand = "0.8.0"
+bumpalo = { version = "3.8.0", features = ["allocator_api"] }
+log = { version = "0.4.14", features = ["release_max_level_info", "max_level_info"] }
+env_logger = "0.9.0"
+num-traits = "^0.2.14"
+
+data = { package = "platform-data", version = "0.1.0-alpha.0" }
+num = { package = "platform-num", version = "0.1.0-alpha.0" }
+mem = { package = "platform-mem", version = "0.1.0-alpha.0" }
+methods = { package = "platform-treesmethods", version = "0.1.0-alpha.0" }

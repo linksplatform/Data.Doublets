@@ -1,8 +1,7 @@
-use std::error::Error;
-use doublets::doublets::{Doublets, mem::united::Store};
-use doublets::mem::GlobalMem;
 use doublets::test_extensions::ILinksTestExtensions;
-
+use doublets::{mem::united::Store, Doublets};
+use mem::GlobalMem;
+use std::error::Error;
 
 fn main() -> Result<(), Box<dyn Error>> {
     let mut links = Store::<usize, _>::new(GlobalMem::new()?)?;
