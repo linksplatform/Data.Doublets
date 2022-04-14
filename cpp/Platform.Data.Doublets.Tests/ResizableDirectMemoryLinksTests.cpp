@@ -34,7 +34,7 @@
         try
         {
             FileMappedResizableDirectMemory memory { tempName };
-            UnitedMemoryLinks<LinksOptions<TLinkAddress>> storage { memory };
+            UnitedMemoryLinks<LinksOptions<TLinkAddress>> storage {std::move(memory)};
             TestBasicMemoryOperations(storage);
         }
         catch (...)
@@ -49,8 +49,8 @@
     {
         using namespace Platform::Data::Doublets::Memory::United::Generic;
         using namespace Platform::Memory;
-        HeapResizableDirectMemory memory {UnitedMemoryLinks::DefaultLinksSizeStep};
-        UnitedMemoryLinks<LinksOptions<TLinkAddress>> storage{memory, UnitedMemoryLinks::DefaultLinksSizeStep};
+        HeapResizableDirectMemory memory {UnitedMemoryLinks<LinksOptions<TLinkAddress>>::DefaultLinksSizeStep};
+        UnitedMemoryLinks<LinksOptions<TLinkAddress>, HeapResizableDirectMemory> storage {std::move(memory), UnitedMemoryLinks<LinksOptions<TLinkAddress>>::DefaultLinksSizeStep};
         TestBasicMemoryOperations(storage);
     }
 
@@ -58,8 +58,8 @@
     {
         using namespace Platform::Data::Doublets::Memory::United::Generic;
         using namespace Platform::Memory;
-        HeapResizableDirectMemory memory {UnitedMemoryLinks::DefaultLinksSizeStep};
-        UnitedMemoryLinks<LinksOptions<TLinkAddress> storage {memory, UnitedMemoryLinks::DefaultLinksSizeStep};
+        HeapResizableDirectMemory memory {UnitedMemoryLinks<LinksOptions<TLinkAddress>>::DefaultLinksSizeStep};
+        UnitedMemoryLinks<LinksOptions<TLinkAddress>, HeapResizableDirectMemory> storage {std::move(memory), UnitedMemoryLinks<LinksOptions<TLinkAddress>>::DefaultLinksSizeStep};
         TestNonexistentReferences(storage);
     }
 }
