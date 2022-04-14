@@ -4,7 +4,7 @@
     static constexpr LinksConstants<TLinkAddress> constants {LinksConstants<TLinkAddress>{true}};
 
     template<typename TStorage>
-    static void TestNonexistentReferences(TStorage& & storage)
+    static void TestNonexistentReferences(TStorage& storage)
     {
         using namespace Platform::Interfaces;
         auto linkAddress = storage.Create();
