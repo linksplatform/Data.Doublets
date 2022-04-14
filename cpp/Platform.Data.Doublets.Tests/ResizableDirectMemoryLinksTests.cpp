@@ -28,12 +28,14 @@
 
     TEST(ResizableDirectMemoryLinksTests, BasicFileMappedMemoryTest)
     {
+        using namespace Platform::Data::Doublets::Memory::United::Generic;
+        using namespace Platform::Memory;
         auto tempName {std::tmpnam(nullptr)};
         try
         {
-            UInt64UnitedMemoryLinks memoryAdapter { tempName };
-            TestBasicMemoryOperations(memoryAdapter);
-            File.Delete(tempFilename);
+            FileMappedResizableDirectMemory memory { tempName };
+            UnitedMemoryLinks<LinksOptions<TLinkAddress>> storage { memory };
+            TestBasicMemoryOperations(storage);
         }
         catch (...)
         {
