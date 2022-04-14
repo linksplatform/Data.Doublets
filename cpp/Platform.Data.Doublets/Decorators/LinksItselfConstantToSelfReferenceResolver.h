@@ -1,21 +1,21 @@
 ﻿namespace Platform::Data::Doublets::Decorators
 {
     template <typename ...> class LinksItselfConstantToSelfReferenceResolver;
-    template <typename TLink> class LinksItselfConstantToSelfReferenceResolver<TLink> : public LinksDecoratorBase<TLink>
+    template <typename TLinkAddress> class LinksItselfConstantToSelfReferenceResolver<TLinkAddress> : public DecoratorBase<TFacade, TDecorated>
     {
-        public: LinksItselfConstantToSelfReferenceResolver(ILinks<TLink> &storage) : LinksDecoratorBase(storage) { }
+        public: LinksItselfConstantToSelfReferenceResolver(ILinks<TLinkAddress> &storage) : DecoratorBase(storage) { }
 
-        public: TLink Each(Func<IList<TLink>, TLink> handler, CList auto&&restrictions) override
+        public: TLinkAddress Each(Func<IList<TLinkAddress>, TLinkAddress> handler, const  LinkType& restriction) override
         {
             auto constants = _constants;
             auto itselfConstant = constants.Itself;
-            if (!constants.Any == itselfConstant && restrictions.Contains(itselfConstant))
+            if (!constants.Any == itselfConstant && restriction.Contains(itselfConstant))
             {
                 return constants.Continue;
             }
-            return _links.Each(handler, restrictions);
+            return this->decorated().Each(restriction, handler);
         }
 
-        public: TLink Update(CList auto&&restrictions, CList auto&&substitution) override { return _links.Update(restrictions, _links.ResolveConstantAsSelfReference(_constants.Itself, restrictions, substitution)); }
+        public: TLinkAddress Update(const  LinkType& restriction, const LinkType& substitution) override { return this->decorated().Update(restriction, this->decorated().ResolveConstantAsSelfReference(_constants.Itself, restriction, substitution)); }
     };
 }

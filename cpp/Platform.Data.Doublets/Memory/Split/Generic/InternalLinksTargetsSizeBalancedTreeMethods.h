@@ -1,32 +1,32 @@
 ﻿namespace Platform::Data::Doublets::Memory::Split::Generic
 {
-    public unsafe class InternalLinksTargetsSizeBalancedTreeMethods<TLink> : public InternalLinksSizeBalancedTreeMethodsBase<TLink>
+    public unsafe class InternalLinksTargetsSizeBalancedTreeMethods<TLinkAddress> : public InternalLinksSizeBalancedTreeMethodsBase<TLinkAddress>
     {
-        public: InternalLinksTargetsSizeBalancedTreeMethods(LinksConstants<TLink> constants, std::uint8_t* linksDataParts, std::uint8_t* linksIndexParts, std::uint8_t* header) : base(constants, linksDataParts, linksIndexParts, header) { }
+        public: InternalLinksTargetsSizeBalancedTreeMethods(LinksConstants<TLinkAddress> constants, std::uint8_t* linksDataParts, std::uint8_t* linksIndexParts, std::uint8_t* header) : base(constants, linksDataParts, linksIndexParts, header) { }
 
-        protected: TLink* GetLeftReference(TLink node) override { return &GetLinkIndexPartReference(node)->LeftAsTarget; }
+        protected: TLinkAddress* GetLeftReference(TLinkAddress node) override { return &GetLinkIndexPartReference(node)->LeftAsTarget; }
 
-        protected: TLink* GetRightReference(TLink node) override { return &GetLinkIndexPartReference(node)->RightAsTarget; }
+        protected: TLinkAddress* GetRightReference(TLinkAddress node) override { return &GetLinkIndexPartReference(node)->RightAsTarget; }
 
-        protected: TLink GetLeft(TLink node) override { return this->GetLinkIndexPartReference(node)->LeftAsTarget; }
+        protected: TLinkAddress GetLeft(TLinkAddress node) override { return this->GetLinkIndexPartReference(node)->LeftAsTarget; }
 
-        protected: TLink GetRight(TLink node) override { return this->GetLinkIndexPartReference(node)->RightAsTarget; }
+        protected: TLinkAddress GetRight(TLinkAddress node) override { return this->GetLinkIndexPartReference(node)->RightAsTarget; }
 
-        protected: void SetLeft(TLink node, TLink left) override { this->GetLinkIndexPartReference(node)->LeftAsTarget = left; }
+        protected: void SetLeft(TLinkAddress node, TLinkAddress left) override { this->GetLinkIndexPartReference(node)->LeftAsTarget = left; }
 
-        protected: void SetRight(TLink node, TLink right) override { this->GetLinkIndexPartReference(node)->RightAsTarget = right; }
+        protected: void SetRight(TLinkAddress node, TLinkAddress right) override { this->GetLinkIndexPartReference(node)->RightAsTarget = right; }
 
-        protected: TLink GetSize(TLink node) override { return this->GetLinkIndexPartReference(node)->SizeAsTarget; }
+        protected: TLinkAddress GetSize(TLinkAddress node) override { return this->GetLinkIndexPartReference(node)->SizeAsTarget; }
 
-        protected: void SetSize(TLink node, TLink size) override { this->GetLinkIndexPartReference(node)->SizeAsTarget = size; }
+        protected: void SetSize(TLinkAddress node, TLinkAddress size) override { this->GetLinkIndexPartReference(node)->SizeAsTarget = size; }
 
-        protected: TLink GetTreeRoot(TLink link) override { return this->GetLinkIndexPartReference(link)->RootAsTarget; }
+        protected: TLinkAddress GetTreeRoot(TLinkAddress link) override { return this->GetLinkIndexPartReference(link)->RootAsTarget; }
 
-        protected: TLink GetBasePartValue(TLink link) override { return this->GetLinkDataPartReference(link)->Target; }
+        protected: TLinkAddress GetBasePartValue(TLinkAddress link) override { return this->GetLinkDataPartReference(link)->Target; }
 
-        protected: TLink GetKeyPartValue(TLink link) override { return this->GetLinkDataPartReference(link)->Source; }
+        protected: TLinkAddress GetKeyPartValue(TLinkAddress link) override { return this->GetLinkDataPartReference(link)->Source; }
 
-        protected: void ClearNode(TLink node) override
+        protected: void ClearNode(TLinkAddress node) override
         {
             auto* link = this->GetLinkIndexPartReference(node);
             link.LeftAsTarget = 0;
@@ -34,6 +34,6 @@
             link.SizeAsTarget = 0;
         }
 
-        public: TLink Search(TLink source, TLink target) override { return this->SearchCore(this->GetTreeRoot(target), source); }
+        public: TLinkAddress Search(TLinkAddress source, TLinkAddress target) override { return this->SearchCore(this->GetTreeRoot(target), source); }
     };
 }

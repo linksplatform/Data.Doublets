@@ -42,7 +42,7 @@
                 _layer = layer;
                 if (_layer._currentTransactionId != 0)
                 {
-                    throw NotSupportedException("Nested transactions not supported.");
+                    throw throw std::logic_error("Not supported exception.");
                 }
                 IsCommitted = false;
                 IsReverted = false;
@@ -131,7 +131,7 @@
             if (!lastCommitedTransition.Equals(lastWrittenTransition))
             {
                 this->Dispose();
-                throw NotSupportedException("Database is damaged, autorecovery is not supported yet.");
+                throw throw std::logic_error("Not supported exception.");
             }
             if (lastCommitedTransition == 0)
             {
@@ -150,7 +150,7 @@
 
         public: IList<std::uint64_t> GetLinkValue(std::uint64_t link) { return _links.GetLink(link); }
 
-        public: std::uint64_t Create(IList<std::uint64_t> &restrictions) override
+        public: std::uint64_t Create(IList<std::uint64_t> &restriction) override
         {
             auto createdLinkIndex = _links.Create();
             auto createdLink = Link<std::uint64_t>(_links.GetLink(createdLinkIndex));
@@ -158,19 +158,19 @@
             return createdLinkIndex;
         }
 
-        public: std::uint64_t Update(IList<std::uint64_t> &restrictions, IList<std::uint64_t> &substitution) override
+        public: std::uint64_t Update(IList<std::uint64_t> &restriction, IList<std::uint64_t> &substitution) override
         {
-            auto linkIndex = restrictions[_constants.IndexPart];
+            auto linkIndex = restriction[_constants.IndexPart];
             auto beforeLink = Link<std::uint64_t>(_links.GetLink(linkIndex));
-            linkIndex = _links.Update(restrictions, substitution);
+            linkIndex = _links.Update(restriction, substitution);
             auto afterLink = Link<std::uint64_t>(_links.GetLink(linkIndex));
             this->CommitTransition(this->Transition(_uniqueTimestampFactory, _currentTransactionId, beforeLink, afterLink));
             return linkIndex;
         }
 
-        public: void Delete(IList<std::uint64_t> &restrictions) override
+        public: void Delete(IList<std::uint64_t> &restriction) override
         {
-            auto link = restrictions[_constants.IndexPart];
+            auto link = restriction[_constants.IndexPart];
             auto deletedLink = Link<std::uint64_t>(_links.GetLink(link));
             _links.Delete(link);
             this->CommitTransition(this->Transition(_uniqueTimestampFactory, _currentTransactionId, deletedLink, 0));

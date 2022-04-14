@@ -1,37 +1,37 @@
 ﻿
-using TLink = std::uint32_t;
+using TLinkAddress = std::uint32_t;
 
 namespace Platform::Data::Doublets::Memory::Split::Specific
 {
     public unsafe class UInt32ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods : public UInt32ExternalLinksRecursionlessSizeBalancedTreeMethodsBase
     {
-        public: UInt32ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods(LinksConstants<TLink> constants, RawLinkDataPart<TLink>* linksDataParts, RawLinkIndexPart<TLink>* linksIndexParts, LinksHeader<TLink>* header) : base(constants, linksDataParts, linksIndexParts, header) { }
+        public: UInt32ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods(LinksConstants<TLinkAddress> constants, RawLinkDataPart<TLinkAddress>* linksDataParts, RawLinkIndexPart<TLinkAddress>* linksIndexParts, LinksHeader<TLinkAddress>* header) : base(constants, linksDataParts, linksIndexParts, header) { }
 
-        protected: TLink* GetLeftReference(TLink node) override { return ref LinksIndexParts[node].LeftAsTarget; }
+        protected: TLinkAddress* GetLeftReference(TLinkAddress node) override { return ref LinksIndexParts[node].LeftAsTarget; }
 
-        protected: TLink* GetRightReference(TLink node) override { return ref LinksIndexParts[node].RightAsTarget; }
+        protected: TLinkAddress* GetRightReference(TLinkAddress node) override { return ref LinksIndexParts[node].RightAsTarget; }
 
-        protected: TLink GetLeft(TLink node) override { return LinksIndexParts[node].LeftAsTarget; }
+        protected: TLinkAddress GetLeft(TLinkAddress node) override { return LinksIndexParts[node].LeftAsTarget; }
 
-        protected: TLink GetRight(TLink node) override { return LinksIndexParts[node].RightAsTarget; }
+        protected: TLinkAddress GetRight(TLinkAddress node) override { return LinksIndexParts[node].RightAsTarget; }
 
-        protected: void SetLeft(TLink node, TLink left) override { LinksIndexParts[node].LeftAsTarget = left; }
+        protected: void SetLeft(TLinkAddress node, TLinkAddress left) override { LinksIndexParts[node].LeftAsTarget = left; }
 
-        protected: void SetRight(TLink node, TLink right) override { LinksIndexParts[node].RightAsTarget = right; }
+        protected: void SetRight(TLinkAddress node, TLinkAddress right) override { LinksIndexParts[node].RightAsTarget = right; }
 
-        protected: TLink GetSize(TLink node) override { return LinksIndexParts[node].SizeAsTarget; }
+        protected: TLinkAddress GetSize(TLinkAddress node) override { return LinksIndexParts[node].SizeAsTarget; }
 
-        protected: void SetSize(TLink node, TLink size) override { LinksIndexParts[node].SizeAsTarget = size; }
+        protected: void SetSize(TLinkAddress node, TLinkAddress size) override { LinksIndexParts[node].SizeAsTarget = size; }
 
-        protected: override TLink GetTreeRoot() { return Header->RootAsTarget; }
+        protected: override TLinkAddress GetTreeRoot() { return Header->RootAsTarget; }
 
-        protected: TLink GetBasePartValue(TLink node) override { return LinksDataParts[node].Target; }
+        protected: TLinkAddress GetBasePartValue(TLinkAddress node) override { return LinksDataParts[node].Target; }
 
-        protected: bool FirstIsToTheLeftOfSecond(TLink firstSource, TLink firstTarget, TLink secondSource, TLink secondTarget) override { return firstTarget < secondTarget || firstTarget == secondTarget && firstSource < secondSource; }
+        protected: bool FirstIsToTheLeftOfSecond(TLinkAddress firstSource, TLinkAddress firstTarget, TLinkAddress secondSource, TLinkAddress secondTarget) override { return firstTarget < secondTarget || firstTarget == secondTarget && firstSource < secondSource; }
 
-        protected: bool FirstIsToTheRightOfSecond(TLink firstSource, TLink firstTarget, TLink secondSource, TLink secondTarget) override { return firstTarget > secondTarget || firstTarget == secondTarget && firstSource > secondSource; }
+        protected: bool FirstIsToTheRightOfSecond(TLinkAddress firstSource, TLinkAddress firstTarget, TLinkAddress secondSource, TLinkAddress secondTarget) override { return firstTarget > secondTarget || firstTarget == secondTarget && firstSource > secondSource; }
 
-        protected: void ClearNode(TLink node) override
+        protected: void ClearNode(TLinkAddress node) override
         {
             auto* link = LinksIndexParts[node];
             link.LeftAsTarget = 0;

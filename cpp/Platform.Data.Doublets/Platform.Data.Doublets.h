@@ -8,17 +8,22 @@
 #include <new>
 #include <map>
 #include <ranges>
+#include <unordered_set>
 
+#include <Platform.Exceptions.h>
 #include <Platform.Collections.Methods.h>
-
 #include <Platform.Collections.h>
 #include <Platform.Threading.h>
 #include <Platform.Memory.h>
 #include <Platform.Data.h>
+#include <Platform.Interfaces.h>
 
 #include "Doublet.h"
 #include "Link.h"
+#include "LinksOptions.h"
 //#include "ILinks.h"
+
+#include "ILinksExtensions.h"
 
 #include "Memory/LinksHeader.h"
 #include "Memory/IndexTreeType.h"
@@ -36,12 +41,12 @@
 #include "Memory/United/Ffi/UnitedMemoryLinksBase.h"
 #include "Memory/United/Ffi/UnitedMemoryLinks.h"
 
-#include "ILinksExtensions.h"
 
-//#include "Decorators/LinksDecoratorBase.h"
-//#include "Decorators/LinksCascadeUsagesResolver.h"
-//#include "Decorators/NonNullContentsLinkDeletionResolver.h"
-//#include "Decorators/LinksCascadeUniquenessAndUsagesResolver.h"
-
+#include "Decorators/LinksUniquenessResolver.h"
+#include "Decorators/LinksCascadeUniquenessAndUsagesResolver.h"
+#include "Decorators/LinksCascadeUsagesResolver.h"
+#include "Decorators/NonNullContentsLinkDeletionResolver.h"
+#include "Decorators/Decorators.h"
+//#include "Decorators/LinksCascadeUniquenessAndUsagesResolverBase.h"
 
 #endif

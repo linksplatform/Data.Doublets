@@ -1,50 +1,57 @@
 ﻿namespace Platform::Data::Doublets::Tests
 {
-    public unsafe TEST_CLASS(SplitMemoryGenericLinksTests)
+    TEST(GenericLinksTests, CrudTest)
     {
-        public: TEST_METHOD(CRUDTest)
+        Using<std::uint8_t>([] (auto&& storage) { TestCrudOperations(storage); });
+        Using<std::uint16_t>([] (auto&& storage) { TestCrudOperations(storage); });
+        Using<std::uint32_t>([] (auto&& storage) { TestCrudOperations(storage); });
+        Using<std::uint64_t>([] (auto&& storage) { TestCrudOperations(storage); });
+    }
+
+    TEST(GenericLinksTests, RawNumbersCrudTest)
+    {
+        Using<std::uint8_t>([] (auto&& storage) { TestRawNumbersCrudOperations(storage); });
+        Using<std::uint16_t>([] (auto&& storage) { TestRawNumbersCrudOperations(storage); });
+        Using<std::uint32_t>([] (auto&& storage) { TestRawNumbersCrudOperations(storage); });
+        Using<std::uint64_t>([] (auto&& storage) { TestRawNumbersCrudOperations(storage); });
+    }
+
+    TEST(SplitMemoryGenericLinksTests, MultipleRandomCreationsAndDeletionsTest)
         {
-            Using<std::uint8_t>(storage => storage.TestCRUDOperations());
-            Using<std::uint16_t>(storage => storage.TestCRUDOperations());
-            Using<std::uint32_t>(storage => storage.TestCRUDOperations());
-            Using<std::uint64_t>(storage => storage.TestCRUDOperations());
+            using namespace Platform::Memory;
+            using namespace Platform::Data::Doublets::Memory::Split::Generic;
+            using namespace Platform::Collections;
+            LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<UnitedMemoryLinks<LinksOptions<std::uint8_t>, HeapResizableDirectMemory>> UInt8TDecoratedStorage{HeapResizableDirectMemory{}};
+            TestMultipleRandomCreationsAndDeletions(UInt8TDecoratedStorage, 16);
+            LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<UnitedMemoryLinks<LinksOptions<std::uint16_t>, HeapResizableDirectMemory>> UInt16TDecoratedStorage{HeapResizableDirectMemory{}};
+            TestMultipleRandomCreationsAndDeletions(UInt16TDecoratedStorage, 100);
+            LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<UnitedMemoryLinks<LinksOptions<std::uint32_t>, HeapResizableDirectMemory>> UInt32TDecoratedStorage{HeapResizableDirectMemory{}};
+            TestMultipleRandomCreationsAndDeletions(UInt32TDecoratedStorage, 100);
+            LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<UnitedMemoryLinks<LinksOptions<std::uint64_t>, HeapResizableDirectMemory>> UInt64TDecoratedStorage{HeapResizableDirectMemory{}};
+            TestMultipleRandomCreationsAndDeletions(UInt64TDecoratedStorage, 100);
         }
 
-        public: TEST_METHOD(RawNumbersCRUDTest)
+    template <typename TLinkAddress>
+    static void Using(auto&& action)
         {
-            UsingWithExternalReferences<std::uint8_t>(storage => storage.TestRawNumbersCRUDOperations());
-            UsingWithExternalReferences<std::uint16_t>(storage => storage.TestRawNumbersCRUDOperations());
-            UsingWithExternalReferences<std::uint32_t>(storage => storage.TestRawNumbersCRUDOperations());
-            UsingWithExternalReferences<std::uint64_t>(storage => storage.TestRawNumbersCRUDOperations());
+            static constexpr constants {LinksConstants<TLinkAddress>{false}}
+            using LinksOptionsType = LinksOptions<TLinkAddress, constants>
+            HeapResizableDirectMemory memory{};
+            HeapResizableDirectMemory indexMemory = {};
+            using TStorage = SplitMemoryLinks<LinksOptionsType>;
+            TStorage storage {memory, indexMemory, TStorage::DefaultLinksSizeStep}
+            action(storage);
         }
 
-        public: TEST_METHOD(MultipleRandomCreationsAndDeletionsTest)
+    template <typename TLinkAddress>
+    static void UsingWithExternalReferences(auto&& action)
         {
-            Using<std::uint8_t>(storage => storage.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(16));
-            Using<std::uint16_t>(storage => storage.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
-            Using<std::uint32_t>(storage => storage.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
-            Using<std::uint64_t>(storage => storage.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
+            static constexpr constants {LinksConstants<TLinkAddress>{true}};
+            using LinksOptionsType = LinksOptions<TLinkAddress, constants>;
+            using TStorage = SplitMemoryLinks<LinksOptionsType>;
+            HeapResizableDirectMemory memory{};
+            HeapResizableDirectMemory indexMemory = {};
+            TStorage storage {memory, indexMemory, TStorage::DefaultLinksSizeStep}
+            action(storage);
         }
-
-        private: template <typename TLink> static void Using(Action<ILinks<TLink>> action)
-        {
-            using (auto dataMemory = HeapResizableDirectMemory())
-            using (auto indexMemory = HeapResizableDirectMemory())
-            using (auto memory = SplitMemoryLinks<TLink>(dataMemory, indexMemory))
-            {
-                action(memory);
-            }
-        }
-
-        private: template <typename TLink> static void UsingWithExternalReferences(Action<ILinks<TLink>> action)
-        {
-            auto contants = LinksConstants<TLink>(enableExternalReferencesSupport: true);
-            using (auto dataMemory = HeapResizableDirectMemory())
-            using (auto indexMemory = HeapResizableDirectMemory())
-            using (auto memory = SplitMemoryLinks<TLink>(dataMemory, indexMemory, SplitMemoryLinks<TLink>.DefaultLinksSizeStep, contants))
-            {
-                action(memory);
-            }
-        }
-    };
 }

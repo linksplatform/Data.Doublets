@@ -1,36 +1,36 @@
 ﻿namespace Platform::Data::Doublets::PropertyOperators
 {
     template <typename ...> class PropertyOperator;
-    template <typename TLink> class PropertyOperator<TLink> : public LinksOperatorBase<TLink>, IProperty<TLink, TLink>
+    template <typename TLinkAddress> class PropertyOperator<TLinkAddress> : public LinksOperatorBase<TLinkAddress>, IProperty<TLinkAddress, TLinkAddress>
     {
-        private: TLink _propertyMarker = 0;
-        private: TLink _propertyValueMarker = 0;
+        private: TLinkAddress _propertyMarker = 0;
+        private: TLinkAddress _propertyValueMarker = 0;
 
-        public: PropertyOperator(ILinks<TLink> &storage, TLink propertyMarker, TLink propertyValueMarker) : base(storage)
+        public: PropertyOperator(ILinks<TLinkAddress> &storage, TLinkAddress propertyMarker, TLinkAddress propertyValueMarker) : base(storage)
         {
             _propertyMarker = propertyMarker;
             _propertyValueMarker = propertyValueMarker;
         }
 
-        public: TLink Get(TLink link)
+        public: TLinkAddress Get(TLinkAddress link)
         {
             auto property = _links.SearchOrDefault(link, _propertyMarker);
             return this->GetValue(this->GetContainer(property));
         }
 
-        private: TLink GetContainer(TLink property)
+        private: TLinkAddress GetContainer(TLinkAddress property)
         {
-            auto valueContainer = this->0(TLink);
+            auto valueContainer = this->0(TLinkAddress);
             if (property == 0)
             {
                 return valueContainer;
             }
             auto storage = _links;
-            auto constants = storage.Constants;
+            constexpr auto constants = storage.Constants;
             auto countinueConstant = constants.Continue;
             auto breakConstant = constants.Break;
             auto anyConstant = constants.Any;
-            auto query = Link<TLink>(anyConstant, property, anyConstant);
+            auto query = Link<TLinkAddress>(anyConstant, property, anyConstant);
             storage.Each(candidate =>
             {
                 auto candidateTarget = storage.GetTarget(candidate);
@@ -45,9 +45,9 @@
             return valueContainer;
         }
 
-        private: TLink GetValue(TLink container) { return container == 0 ? 0 : _links.GetTarget(container); }
+        private: TLinkAddress GetValue(TLinkAddress container) { return container == 0 ? 0 : _links.GetTarget(container); }
 
-        public: void Set(TLink link, TLink value)
+        public: void Set(TLinkAddress link, TLinkAddress value)
         {
             auto storage = _links;
             auto property = storage.GetOrCreate(link, _propertyMarker);

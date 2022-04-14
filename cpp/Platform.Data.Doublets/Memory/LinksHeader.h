@@ -1,32 +1,32 @@
 ﻿namespace Platform::Data::Doublets::Memory
 {
-    template<typename TLink>
+    template<typename TLinkAddress>
     struct LinksHeader
     {
-        TLink AllocatedLinks;
+        TLinkAddress AllocatedLinks;
 
-        TLink ReservedLinks;
+        TLinkAddress ReservedLinks;
 
-        TLink FreeLinks;
+        TLinkAddress FreeLinks;
 
-        TLink FirstFreeLink;
+        TLinkAddress FirstFreeLink;
 
-        TLink RootAsSource;
+        TLinkAddress RootAsSource;
 
-        TLink RootAsTarget;
+        TLinkAddress RootAsTarget;
 
-        TLink LastFreeLink;
+        TLinkAddress LastFreeLink;
 
-        TLink Reserved8;
+        TLinkAddress Reserved8;
 
         constexpr bool operator==(const LinksHeader&) const noexcept = default;
     };
 }
 
-template<typename TLink>
-struct std::hash<Platform::Data::Doublets::Memory::LinksHeader<TLink>>
+template<typename TLinkAddress>
+struct std::hash<Platform::Data::Doublets::Memory::LinksHeader<TLinkAddress>>
 {
-    using Self = Platform::Data::Doublets::Memory::LinksHeader<TLink>;
+    using Self = Platform::Data::Doublets::Memory::LinksHeader<TLinkAddress>;
 
     auto operator()(const Self& self) const noexcept
     {

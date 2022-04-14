@@ -1,29 +1,35 @@
 ﻿namespace Platform::Data::Doublets::Decorators
 {
-    template <typename ...> class LinksUniquenessResolver;
-    template <typename TLink> class LinksUniquenessResolver<TLink> : public LinksDecoratorBase<TLink>
+    using namespace Platform::Interfaces;
+    template <typename TFacade, typename TDecorated>
+    struct LinksUniquenessResolver : DecoratorBase<TFacade, TDecorated>
     {
-        public: LinksUniquenessResolver(ILinks<TLink> &storage) : LinksDecoratorBase(storage) { }
+        using base = DecoratorBase<TFacade, TDecorated>;
+        using LinkAddressType = base::LinkAddressType;
+        using LinkType = base::LinkType;
+        using WriteHandlerType = base::WriteHandlerType;
+        using ReadHandlerType = base::ReadHandlerType;
+    public: using base::Constants;
+    public:
+        USE_ALL_BASE_CONSTRUCTORS(LinksUniquenessResolver, base);
 
-        public: TLink Update(CList auto&&restrictions, CList auto&&substitution) override
+    public: LinkAddressType Update( const LinkType& restriction,  const LinkType& substitution, const WriteHandlerType& handler)
         {
-            auto constants = _constants;
-            auto storage = _links;
-            auto newLinkAddress = storage.SearchOrDefault(substitution[constants.SourcePart], substitution[constants.TargetPart]);
-            if (newLinkAddress == 0)
+            auto newLinkAddress = SearchOrDefault(this->decorated(), substitution[Constants.SourcePart], substitution[Constants.TargetPart]);
+            if (newLinkAddress == LinkAddressType{})
             {
-                return storage.Update(restrictions, substitution);
+                return this->decorated().Update(restriction, substitution, handler);
             }
-            return this->ResolveAddressChangeConflict(restrictions[constants.IndexPart], newLinkAddress);
+            return this->ResolveAddressChangeConflict(restriction[Constants.IndexPart], newLinkAddress, handler);
         }
 
-        protected: virtual TLink ResolveAddressChangeConflict(TLink oldLinkAddress, TLink newLinkAddress)
+        protected: LinkAddressType ResolveAddressChangeConflict(LinkAddressType oldLinkAddress, LinkAddressType newLinkAddress, const WriteHandlerType& handler)
         {
-            if (!oldLinkAddress == newLinkAddress && _links.Exists(oldLinkAddress))
+            if (oldLinkAddress != newLinkAddress && Exists(this->decorated(), oldLinkAddress))
             {
-                _facade.Delete(oldLinkAddress);
+                this->facade().Delete(LinkType{oldLinkAddress}, handler);
             }
-            return newLinkAddress;
+            return Constants.Continue;
         }
     };
 }

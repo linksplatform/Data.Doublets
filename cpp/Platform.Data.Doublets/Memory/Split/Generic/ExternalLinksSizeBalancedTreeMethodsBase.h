@@ -4,17 +4,17 @@ using static System::Runtime::CompilerServices::Unsafe;
 
 namespace Platform::Data::Doublets::Memory::Split::Generic
 {
-    public unsafe class ExternalLinksSizeBalancedTreeMethodsBase<TLink> : public SizeBalancedTreeMethods<TLink>, ILinksTreeMethods<TLink>
+    public unsafe class ExternalLinksSizeBalancedTreeMethodsBase<TLinkAddress> : public SizeBalancedTreeMethods<TLinkAddress>, ILinksTreeMethods<TLinkAddress>
     {
-        private: static readonly UncheckedConverter<TLink, std::int64_t> _addressToInt64Converter = UncheckedConverter<TLink, std::int64_t>.Default;
+        private: static readonly UncheckedConverter<TLinkAddress, std::int64_t> _addressToInt64Converter = UncheckedConverter<TLinkAddress, std::int64_t>.Default;
 
-        protected: TLink Break = 0;
-        protected: TLink Continue = 0;
+        protected: TLinkAddress Break = 0;
+        protected: TLinkAddress Continue = 0;
         protected: readonly std::uint8_t* LinksDataParts;
         protected: readonly std::uint8_t* LinksIndexParts;
         protected: readonly std::uint8_t* Header;
 
-        protected: ExternalLinksSizeBalancedTreeMethodsBase(LinksConstants<TLink> constants, std::uint8_t* linksDataParts, std::uint8_t* linksIndexParts, std::uint8_t* header)
+        protected: ExternalLinksSizeBalancedTreeMethodsBase(LinksConstants<TLinkAddress> constants, std::uint8_t* linksDataParts, std::uint8_t* linksIndexParts, std::uint8_t* header)
         {
             LinksDataParts = linksDataParts;
             LinksIndexParts = linksIndexParts;
@@ -23,41 +23,41 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             Continue = constants.Continue;
         }
 
-        protected: virtual TLink GetTreeRoot() = 0;
+        protected: virtual TLinkAddress GetTreeRoot() = 0;
 
-        protected: virtual TLink GetBasePartValue(TLink link) = 0;
+        protected: virtual TLinkAddress GetBasePartValue(TLinkAddress link) = 0;
 
-        protected: virtual bool FirstIsToTheRightOfSecond(TLink source, TLink target, TLink rootSource, TLink rootTarget) = 0;
+        protected: virtual bool FirstIsToTheRightOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget) = 0;
 
-        protected: virtual bool FirstIsToTheLeftOfSecond(TLink source, TLink target, TLink rootSource, TLink rootTarget) = 0;
+        protected: virtual bool FirstIsToTheLeftOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget) = 0;
 
-        protected: virtual ref LinksHeader<TLink> GetHeaderReference() { return ref AsRef<LinksHeader<TLink>>(Header); }
+        protected: virtual ref LinksHeader<TLinkAddress> GetHeaderReference() { return ref AsRef<LinksHeader<TLinkAddress>>(Header); }
 
-        protected: virtual ref RawLinkDataPart<TLink> GetLinkDataPartReference(TLink link) { return ref AsRef<RawLinkDataPart<TLink>>(LinksDataParts + (RawLinkDataPart<TLink>.SizeInBytes * _addressToInt64Converter.Convert(link))); }
+        protected: virtual ref RawLinkDataPart<TLinkAddress> GetLinkDataPartReference(TLinkAddress link) { return ref AsRef<RawLinkDataPart<TLinkAddress>>(LinksDataParts + (RawLinkDataPart<TLinkAddress>.SizeInBytes * _addressToInt64Converter.Convert(link))); }
 
-        protected: virtual ref RawLinkIndexPart<TLink> GetLinkIndexPartReference(TLink link) { return ref AsRef<RawLinkIndexPart<TLink>>(LinksIndexParts + (RawLinkIndexPart<TLink>.SizeInBytes * _addressToInt64Converter.Convert(link))); }
+        protected: virtual ref RawLinkIndexPart<TLinkAddress> GetLinkIndexPartReference(TLinkAddress link) { return ref AsRef<RawLinkIndexPart<TLinkAddress>>(LinksIndexParts + (RawLinkIndexPart<TLinkAddress>.SizeInBytes * _addressToInt64Converter.Convert(link))); }
 
-        protected: virtual IList<TLink> GetLinkValues(TLink linkIndex)
+        protected: virtual IList<TLinkAddress> GetLinkValues(TLinkAddress linkIndex)
         {
             auto* link = GetLinkDataPartReference(linkIndex);
-            return Link<TLink>(linkIndex, link.Source, link.Target);
+            return Link<TLinkAddress>(linkIndex, link.Source, link.Target);
         }
 
-        protected: bool FirstIsToTheLeftOfSecond(TLink first, TLink second) override
+        protected: bool FirstIsToTheLeftOfSecond(TLinkAddress first, TLinkAddress second) override
         {
             auto* firstLink = this->GetLinkDataPartReference(first);
             auto* secondLink = this->GetLinkDataPartReference(second);
             return this->FirstIsToTheLeftOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
         }
 
-        protected: bool FirstIsToTheRightOfSecond(TLink first, TLink second) override
+        protected: bool FirstIsToTheRightOfSecond(TLinkAddress first, TLinkAddress second) override
         {
             auto* firstLink = this->GetLinkDataPartReference(first);
             auto* secondLink = this->GetLinkDataPartReference(second);
             return this->FirstIsToTheRightOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
         }
 
-        public: TLink this[TLink index]
+        public: TLinkAddress this[TLinkAddress index]
         {
             get
             {
@@ -86,7 +86,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             }
         }
 
-        public: TLink Search(TLink source, TLink target)
+        public: TLinkAddress Search(TLinkAddress source, TLinkAddress target)
         {
             auto root = this->GetTreeRoot();
             while (root != 0)
@@ -110,7 +110,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             return 0;
         }
 
-        public: TLink CountUsages(TLink link)
+        public: TLinkAddress CountUsages(TLinkAddress link)
         {
             auto root = this->GetTreeRoot();
             auto total = this->GetSize(root);
@@ -146,9 +146,9 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             return this->Subtract(this->Subtract(total, totalRightIgnore), totalLeftIgnore);
         }
 
-        public: TLink EachUsage(TLink base, Func<IList<TLink>, TLink> handler) { return this->EachUsageCore(base, this->GetTreeRoot(), handler); }
+        public: TLinkAddress EachUsage(TLinkAddress base, Func<IList<TLinkAddress>, TLinkAddress> handler) { return this->EachUsageCore(base, this->GetTreeRoot(), handler); }
 
-        private: TLink EachUsageCore(TLink base, TLink link, Func<IList<TLink>, TLink> handler)
+        private: TLinkAddress EachUsageCore(TLinkAddress base, TLinkAddress link, Func<IList<TLinkAddress>, TLinkAddress> handler)
         {
             auto continue = Continue;
             if (link == 0)
