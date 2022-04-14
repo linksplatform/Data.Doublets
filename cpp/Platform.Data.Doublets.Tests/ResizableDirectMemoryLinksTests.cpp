@@ -39,10 +39,10 @@
         }
         catch (...)
         {
-            std::remove(tempName.c_str());
+            std::remove(tempName);
             throw;
         }
-        std::remove(tempName.c_str());
+        std::remove(tempName);
     };
 
     TEST(ResizableDirectMemoryLinksTests, BasicHeapMemoryTest)
