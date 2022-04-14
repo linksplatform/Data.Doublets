@@ -19,10 +19,11 @@
         Delete(storage, linkAddress);
     }
 
-    static void TestBasicMemoryOperations(auto&& memoryAdapter)
+    template<typename TStorage>
+    static void TestBasicMemoryOperations(TStorage& storage)
     {
-        auto link {Create(memoryAdapter)};
-        Delete(memoryAdapter, link);
+        auto linkAddress {Create(storage)};
+        Delete(storage, linkAddress);
     }
 
     TEST(ResizableDirectMemoryLinksTests, BasicFileMappedMemoryTest)
