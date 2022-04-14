@@ -1,19 +1,22 @@
 ﻿namespace Platform::Data::Doublets::Tests
 {
     using TLinkAddress = uint64_t;
-    static LinksConstants<TLinkAddress > _constants {LinksConstants<TLinkAddress>{}};
-    static void TestNonexistentReferences(auto&& &memoryAdapter)
+    static constexpr LinksConstants<TLinkAddress > constants {LinksConstants<TLinkAddress>{}};
+
+    template<typename TStorage>
+    static void TestNonexistentReferences(TStorage& & storage)
     {
-        auto link = memoryAdapter.Create();
-        Update(memoryAdapter, link, std::numeric_limits<std::uint64_t>::max(), std::numeric_limits<std::uint64_t>::max());
-        TLinkAddress resultLink {_constants.Null};
-        memoryAdapter.Each(std::vector{_constants.Any, std::numeric_limits<std::uint64_t>::max(), std::numeric_limits<std::uint64_t>::max()}, [&resultLink] (Interfaces::CArray<TLinkAddress> auto foundLink) {
-            resultLink = foundLink[_constants.IndexPart];
-            return _constants.Break;
+        using namespace Platform::Interfaces;
+        auto linkAddress = storage.Create();
+        Update(storage, linkAddress, std::numeric_limits<std::uint64_t>::max(), std::numeric_limits<std::uint64_t>::max());
+        TLinkAddress resultLinkAddress{constants.Null};
+        storage.Each(std::vector{constants.Any, std::numeric_limits<std::uint64_t>::max(), std::numeric_limits<std::uint64_t>::max()}, [&resultLinkAddress] (typename TStorage::LinkType foundLink) {
+            resultLinkAddress = foundLink[constants.IndexPart];
+            return constants.Break;
         });
-        Expects(resultLink == link);
-        Expects(0 == Count(memoryAdapter, std::numeric_limits<std::uint64_t>::max()));
-        Delete(memoryAdapter, link);
+        Expects(resultLinkAddress == linkAddress);
+        Expects(0 == Count(storage, std::numeric_limits<std::uint64_t>::max()));
+        Delete(storage, linkAddress);
     }
 
     static void TestBasicMemoryOperations(auto&& memoryAdapter)
