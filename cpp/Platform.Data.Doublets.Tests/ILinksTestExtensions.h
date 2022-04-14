@@ -87,7 +87,7 @@ namespace Platform::Data::Doublets::Tests
     template<typename TStorage>
     static void TestCrudOperations(TStorage& storage)
     {
-        const auto constants = storage.Constants;
+        constexpr auto constants = storage.Constants;
         Expects(0 == Platform::Data::Count(storage));
         // Create link
         auto linkAddress { CrudOperationsTester::TestCreate(storage) };
