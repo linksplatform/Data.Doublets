@@ -10,7 +10,7 @@
             {
                 return false;
             }
-            auto constants = storage.Constants;
+            constexpr auto constants = storage.Constants;
             for (auto i = 0; i < sequence.Length; i++)
             {
                 if (sequence[i] == constants.Any)

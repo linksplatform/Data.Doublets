@@ -26,7 +26,7 @@
                 return valueContainer;
             }
             auto storage = _links;
-            auto constants = storage.Constants;
+            constexpr auto constants = storage.Constants;
             auto countinueConstant = constants.Continue;
             auto breakConstant = constants.Break;
             auto anyConstant = constants.Any;
