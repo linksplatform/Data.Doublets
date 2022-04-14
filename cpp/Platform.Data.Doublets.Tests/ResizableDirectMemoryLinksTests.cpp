@@ -7,15 +7,15 @@
     static void TestNonexistentReferences(TStorage& storage)
     {
         using namespace Platform::Interfaces;
-        auto linkAddress = storage.Create();
-        Update(storage, linkAddress, std::numeric_limits<std::uint64_t>::max(), std::numeric_limits<std::uint64_t>::max());
+        auto linkAddress = Create(storage);
+        Update(storage, linkAddress, std::numeric_limits<TLinkAddress>::max(), std::numeric_limits<TLinkAddress>::max());
         TLinkAddress resultLinkAddress{constants.Null};
-        storage.Each(std::vector{constants.Any, std::numeric_limits<std::uint64_t>::max(), std::numeric_limits<std::uint64_t>::max()}, [&resultLinkAddress] (typename TStorage::LinkType foundLink) {
+        storage.Each(typename TStorage::LinkType{constants.Any, std::numeric_limits<TLinkAddress>::max(), std::numeric_limits<TLinkAddress>::max()}, [&resultLinkAddress] (typename TStorage::LinkType foundLink) {
             resultLinkAddress = foundLink[constants.IndexPart];
             return constants.Break;
         });
         Expects(resultLinkAddress == linkAddress);
-        Expects(0 == Count(storage, std::numeric_limits<std::uint64_t>::max()));
+        Expects(0 == Count(storage, std::numeric_limits<TLinkAddress>::max()));
         Delete(storage, linkAddress);
     }
 
