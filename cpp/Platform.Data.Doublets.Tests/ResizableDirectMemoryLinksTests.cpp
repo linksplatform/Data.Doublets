@@ -7,12 +7,13 @@
     {
         using namespace Platform::Interfaces;
         constexpr auto constants = storage.Constants;
+        auto $break = constants.Break;
         auto linkAddress = Create(storage);
         Update(storage, linkAddress, std::numeric_limits<TLinkAddress>::max(), std::numeric_limits<TLinkAddress>::max());
         TLinkAddress resultLinkAddress{constants.Null};
-        storage.Each(typename TStorage::LinkType{constants.Any, std::numeric_limits<TLinkAddress>::max(), std::numeric_limits<TLinkAddress>::max()}, [&resultLinkAddress] (typename TStorage::LinkType foundLink) {
+        storage.Each(typename TStorage::LinkType{constants.Any, std::numeric_limits<TLinkAddress>::max(), std::numeric_limits<TLinkAddress>::max()}, [&resultLinkAddress, $break] (typename TStorage::LinkType foundLink) {
             resultLinkAddress = foundLink[constants.IndexPart];
-            return constants.Break;
+            return $break;
         });
         Expects(resultLinkAddress == linkAddress);
         Expects(0 == Count(storage, std::numeric_limits<TLinkAddress>::max()));
