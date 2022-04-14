@@ -1,7 +1,7 @@
 ﻿namespace Platform::Data::Doublets::Tests
 {
     using TLinkAddress = uint64_t;
-    static constexpr LinksConstants<TLinkAddress > constants {LinksConstants<TLinkAddress>{}};
+    static constexpr LinksConstants<TLinkAddress> constants {LinksConstants<TLinkAddress>{true}};
 
     template<typename TStorage>
     static void TestNonexistentReferences(TStorage& & storage)
