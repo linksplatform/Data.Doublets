@@ -4,3 +4,5 @@
 
 #include "GenericLinksTests.cpp"
 #include "LinksConstantsTests.cpp"
+#include "ResizableDirectMemoryLinksTests.cpp"
+
