@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include <Platform.Data.Doublets.h>
+#include <Links.h>
 
 UInt64Link createdLink;
 UInt64Link updatedLink;
