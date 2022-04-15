@@ -41,24 +41,24 @@
 
 #define DECLARE_UNITED_MEMORY_LINKS_CREATE($TLinkAddress, $Prefix)  \
     $TLinkAddress $Prefix##Links_Create(void* this_,                \
-                                        const $TLinkAddress* query, \
+                                        const $TLinkAddress* substitution, \
                                         uintptr_t len,              \
                                         $Prefix##CUDCallback callback);
 
 #define DECLARE_UNITED_MEMORY_LINKS_EACH($TLinkAddress, $Prefix)  \
     $TLinkAddress $Prefix##Links_Each(void* this_,                \
-                                      const $TLinkAddress* query, \
+                                      const $TLinkAddress* restriction, \
                                       uintptr_t len,              \
                                       $Prefix##EachCallback callback);
 
 #define DECLARE_UNITED_MEMORY_LINKS_COUNT($TLinkAddress, $Prefix) \
     uintptr_t $Prefix##Links_Count(void* this_,                   \
-                                   const $TLinkAddress* query,    \
+                                   const $TLinkAddress* restriction,    \
                                    uintptr_t len);
 
 #define DECLARE_UNITED_MEMORY_LINKS_UPDATE($TLinkAddress, $Prefix)         \
     $TLinkAddress $Prefix##Links_Update(void* this_,                       \
-                                        const $TLinkAddress* restrictions, \
+                                        const $TLinkAddress* restriction, \
                                         uintptr_t len_r,                   \
                                         const $TLinkAddress* substitution, \
                                         uintptr_t len_s,                   \
@@ -66,7 +66,7 @@
 
 #define DECLARE_UNITED_MEMORY_LINKS_DELETE($TLinkAddress, $Prefix) \
     void $Prefix##Links_Delete(void* this_,                        \
-                               const $TLinkAddress* query,         \
+                               const $TLinkAddress* restriction,         \
                                uintptr_t len,                      \
                                $Prefix##CUDCallback callback);
 
