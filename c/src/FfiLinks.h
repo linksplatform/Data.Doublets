@@ -37,27 +37,27 @@
     void* $Prefix##Links_NewWithConstants(const char* path, $Prefix##LinksConstantsType* constants);
 
 #define DECLARE_UNITED_MEMORY_LINKS_DROP($Prefix) \
-    void $Prefix##Links_Drop(void* this_);
+    void $Prefix##Links_Drop(void* storage);
 
 #define DECLARE_UNITED_MEMORY_LINKS_CREATE($TLinkAddress, $Prefix)  \
-    $TLinkAddress $Prefix##Links_Create(void* this_,                \
+    $TLinkAddress $Prefix##Links_Create(void* storage,                \
                                         const $TLinkAddress* substitution, \
                                         uintptr_t len,              \
                                         $Prefix##CUDCallback callback);
 
 #define DECLARE_UNITED_MEMORY_LINKS_EACH($TLinkAddress, $Prefix)  \
-    $TLinkAddress $Prefix##Links_Each(void* this_,                \
+    $TLinkAddress $Prefix##Links_Each(void* storage,                \
                                       const $TLinkAddress* restriction, \
                                       uintptr_t len,              \
                                       $Prefix##EachCallback callback);
 
 #define DECLARE_UNITED_MEMORY_LINKS_COUNT($TLinkAddress, $Prefix) \
-    uintptr_t $Prefix##Links_Count(void* this_,                   \
+    uintptr_t $Prefix##Links_Count(void* storage,                   \
                                    const $TLinkAddress* restriction,    \
                                    uintptr_t len);
 
 #define DECLARE_UNITED_MEMORY_LINKS_UPDATE($TLinkAddress, $Prefix)         \
-    $TLinkAddress $Prefix##Links_Update(void* this_,                       \
+    $TLinkAddress $Prefix##Links_Update(void* storage,                       \
                                         const $TLinkAddress* restriction, \
                                         uintptr_t len_r,                   \
                                         const $TLinkAddress* substitution, \
@@ -65,7 +65,7 @@
                                         $Prefix##CUDCallback callback);
 
 #define DECLARE_UNITED_MEMORY_LINKS_DELETE($TLinkAddress, $Prefix) \
-    void $Prefix##Links_Delete(void* this_,                        \
+    void $Prefix##Links_Delete(void* storage,                        \
                                const $TLinkAddress* restriction,         \
                                uintptr_t len,                      \
                                $Prefix##CUDCallback callback);
