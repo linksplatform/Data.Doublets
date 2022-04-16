@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29123.88
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Platform.Data.Doublets", "csharp\Platform.Data.Doublets\Platform.Data.Doublets.csproj", "{A6463D44-E42B-4FCF-AAB5-568E0AF1B6CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Platform.Data.Doublets", "Platform.Data.Doublets\Platform.Data.Doublets.csproj", "{A6463D44-E42B-4FCF-AAB5-568E0AF1B6CD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Platform.Data.Doublets.Tests", "csharp\Platform.Data.Doublets.Tests\Platform.Data.Doublets.Tests.csproj", "{26400745-9D0F-4993-A23D-49EB381E4EBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Platform.Data.Doublets.Tests", "Platform.Data.Doublets.Tests\Platform.Data.Doublets.Tests.csproj", "{26400745-9D0F-4993-A23D-49EB381E4EBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platform.Data.Doublets.Benchmarks", "csharp\Platform.Data.Doublets.Benchmarks\Platform.Data.Doublets.Benchmarks.csproj", "{B3526338-1437-41A6-A613-B5B1222D3BB4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platform.Data.Doublets.Benchmarks", "Platform.Data.Doublets.Benchmarks\Platform.Data.Doublets.Benchmarks.csproj", "{B3526338-1437-41A6-A613-B5B1222D3BB4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
