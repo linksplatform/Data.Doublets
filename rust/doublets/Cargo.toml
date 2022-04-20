@@ -7,7 +7,10 @@ authors = [
     "Linksplatform Team <linksplatformtechnologies@gmail.com>"
 ]
 categories = [
-    "associative", "data", "db", "doublets"
+    "database", # wait rfcs#3185 "asynchronous"
+]
+keywords = [
+    "associative", "doublets", "db",
 ]
 license = "LGPL-3.0"
 repository = "https://github.com/linksplatform/Data.Doublets"
