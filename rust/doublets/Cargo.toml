@@ -7,7 +7,7 @@ authors = [
     "Linksplatform Team <linksplatformtechnologies@gmail.com>"
 ]
 categories = [
-    "database", # wait rfcs#3185 "asynchronous"
+    "database-implementations", # wait rfcs#3185 "asynchronous"
 ]
 keywords = [
     "associative", "doublets", "db",
