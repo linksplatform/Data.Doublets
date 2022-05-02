@@ -11,7 +11,6 @@ use crate::tests::make_links;
 use crate::tests::make_mem;
 use crate::{Doublets, Link};
 use data::Links;
-use mem::ResizeableMem;
 use num::LinkType;
 
 #[test]

@@ -43,13 +43,13 @@ fn each_eq_count() {
         links.create_and_update(new, root).unwrap();
     }
 
-    let any = links.constants.any;
+    let any = links.constants().any;
     let query = [any, any, root];
 
     let mut count = 0;
     links.each_by([any, any, root], |link| {
         count += 1;
-        links.constants.r#continue
+        links.constants().r#continue
     });
 
     assert_eq!(count, links.count_by(Query::new(&query[..])));
@@ -59,7 +59,7 @@ fn each_eq_count() {
 fn rebase() {
     let mem = make_mem().unwrap();
     let mut links = make_links(mem).unwrap();
-    let any = links.constants.any;
+    let any = links.constants().any;
 
     let root = links.create_point().unwrap();
 

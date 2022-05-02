@@ -10,7 +10,7 @@ use crate::{Doublets, LinksError};
 use data::LinksConstants;
 use data::ToQuery;
 use data::{Flow, Links, ReadHandler, WriteHandler};
-use mem::{Mem, ResizeableMem};
+use mem::RawMem;
 use num::LinkType;
 use num_traits::{one, zero};
 use std::default::default;
@@ -20,7 +20,7 @@ use std::ops::{ControlFlow, Try};
 
 pub struct Store<
     T: LinkType,
-    M: ResizeableMem,
+    M: RawMem,
     TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers = LinksSourcesRecursionlessSizeBalancedTree<T>,
     TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers = LinksTargetsRecursionlessSizeBalancedTree<T>,
     TU: ILinksListMethods<T> + NewList<T> + UpdatePointers = UnusedLinks<T>,
@@ -36,7 +36,7 @@ pub struct Store<
 
 impl<
         T: LinkType,
-        M: ResizeableMem,
+        M: RawMem,
         TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
         TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
         TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
@@ -55,7 +55,7 @@ impl<
         mem: M,
         constants: LinksConstants<T>,
     ) -> Result<Store<T, M>, LinksError<T>> {
-        let links = mem.get_ptr().as_mut_ptr();
+        let links = mem.ptr().as_mut_ptr();
         let header = links;
         let sources =
             LinksSourcesRecursionlessSizeBalancedTree::new(constants.clone(), links, header);
@@ -82,21 +82,21 @@ impl<
     }
 
     fn init(&mut self) -> Result<(), LinksError<T>> {
-        if self.mem.reserved_mem() < self.reserve_step {
-            self.mem.reserve_mem(self.reserve_step)?;
+        if self.mem.allocated() < self.reserve_step {
+            self.mem.alloc(self.reserve_step)?;
         }
         self.update_pointers();
 
         let header = *self.get_header();
         self.mem
-            .use_mem(Self::HEADER_SIZE + header.allocated.as_() * Self::LINK_SIZE)?;
+            .occupy(Self::HEADER_SIZE + header.allocated.as_() * Self::LINK_SIZE)?;
 
         let reserved = if let Some(min) =
             (self.constants.internal_range.end().as_() + 1).checked_mul(Self::LINK_SIZE)
         {
-            self.mem.reserved_mem().min(min)
+            self.mem.allocated().min(min)
         } else {
-            self.mem.reserved_mem()
+            self.mem.allocated()
         };
 
         let header = self.mut_header();
@@ -104,8 +104,11 @@ impl<
         Ok(())
     }
 
-    fn mut_from_mem<Output: Sized, Memory: Mem>(mem: &Memory, index: usize) -> Option<&mut Output> {
-        let mut ptr = mem.get_ptr();
+    fn mut_from_mem<Output: Sized, Memory: RawMem>(
+        mem: &Memory,
+        index: usize,
+    ) -> Option<&mut Output> {
+        let mut ptr = mem.ptr();
         let sizeof = size_of::<Output>();
         if index * sizeof < ptr.len() {
             Some(unsafe {
@@ -118,7 +121,7 @@ impl<
         }
     }
 
-    fn get_from_mem<Output: Sized, Memory: Mem>(mem: &Memory, index: usize) -> Option<&Output> {
+    fn get_from_mem<Output: Sized, Memory: RawMem>(mem: &Memory, index: usize) -> Option<&Output> {
         Self::mut_from_mem(mem, index).map(|v| &*v)
     }
 
@@ -168,7 +171,7 @@ impl<
     }
 
     fn update_pointers(&mut self) {
-        let ptr = self.mem.get_ptr().as_mut_ptr();
+        let ptr = self.mem.ptr().as_mut_ptr();
         self.targets.update_pointers(ptr, ptr);
         self.sources.update_pointers(ptr, ptr);
         self.unused.update_pointers(ptr, ptr);
@@ -300,7 +303,7 @@ impl<
 
 impl<
         T: LinkType,
-        M: ResizeableMem,
+        M: RawMem,
         TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
         TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
         TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
@@ -435,17 +438,16 @@ impl<
             }
 
             if header.allocated >= header.reserved - one() {
-                self.mem
-                    .reserve_mem(self.mem.reserved_mem() + self.reserve_step)?;
+                self.mem.alloc(self.mem.allocated() + self.reserve_step)?;
                 self.update_pointers();
-                let reserved = self.mem.reserved_mem();
+                let reserved = self.mem.allocated();
                 let header = self.mut_header();
                 header.reserved = T::from_usize(reserved / Self::LINK_SIZE).unwrap()
             }
             let header = self.mut_header();
             header.allocated = header.allocated + one();
             free = header.allocated;
-            self.mem.use_mem(self.mem.used_mem() + Self::LINK_SIZE)?;
+            self.mem.occupy(self.mem.occupied() + Self::LINK_SIZE)?;
         } else {
             self.unused.detach(free)
         }
@@ -544,7 +546,7 @@ impl<
         if link < header.allocated {
             self.unused.attach_as_first(link)
         } else if link == header.allocated {
-            self.mem.use_mem(self.mem.used_mem() - Self::LINK_SIZE)?;
+            self.mem.occupy(self.mem.occupied() - Self::LINK_SIZE)?;
 
             let allocated = self.get_header().allocated;
             let header = self.mut_header();
@@ -557,8 +559,8 @@ impl<
                 }
                 self.unused.detach(allocated);
                 self.mut_header().allocated = allocated - one();
-                let used_mem = self.mem.used_mem();
-                self.mem.use_mem(used_mem - Self::LINK_SIZE)?;
+                let used_mem = self.mem.occupied();
+                self.mem.occupy(used_mem - Self::LINK_SIZE)?;
             }
         }
         Ok(handler(Link::new(index, source, target), Link::nothing()))
@@ -577,7 +579,7 @@ impl<
 
 impl<
         T: LinkType,
-        M: ResizeableMem,
+        M: RawMem,
         TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
         TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
         TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
@@ -628,7 +630,7 @@ impl<
 
 unsafe impl<
         T: LinkType,
-        M: ResizeableMem,
+        M: RawMem,
         TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
         TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
         TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
@@ -638,7 +640,7 @@ unsafe impl<
 
 unsafe impl<
         T: LinkType,
-        M: ResizeableMem,
+        M: RawMem,
         TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
         TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
         TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,

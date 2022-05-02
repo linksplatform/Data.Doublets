@@ -3,12 +3,13 @@ use crate::mem::united::{
     UnusedLinks,
 };
 use crate::mem::{splited, united};
-use crate::LinksError;
+use crate::{Doublets, LinksError};
 use data::LinksConstants;
-use mem::{AllocMem, GlobalMem, ResizeableMem};
+use mem::{AllocMem, GlobalMem, RawMem};
 use num::LinkType;
 use std::alloc::Global;
 use std::io;
+use std::time::Instant;
 
 // TODO: cfg!
 //pub fn make_mem() -> io::Result<HeapMem> {
@@ -23,7 +24,7 @@ pub fn make_mem() -> io::Result<(GlobalMem, GlobalMem)> {
 //    united::Links::<usize, _>::new(mem)
 //}
 
-pub fn make_links<M1: ResizeableMem, M2: ResizeableMem>(
+pub fn make_links<M1: RawMem, M2: RawMem>(
     mem: (M1, M2),
 ) -> Result<splited::Store<usize, M1, M2>, LinksError<usize>> {
     let constants = LinksConstants::via_only_external(true);
@@ -34,7 +35,7 @@ pub fn make_links<M1: ResizeableMem, M2: ResizeableMem>(
 //    united::Links::<T, _>::with_constants(mem, LinksConstants::via_only_external(true))
 //}
 
-pub fn typed_links<T: LinkType, M1: ResizeableMem, M2: ResizeableMem>(
+pub fn typed_links<T: LinkType, M1: RawMem, M2: RawMem>(
     mem: (M1, M2),
 ) -> Result<splited::Store<T, M1, M2>, LinksError<T>> {
     splited::Store::<T, _, _>::with_constants(mem.0, mem.1, LinksConstants::via_only_external(true))

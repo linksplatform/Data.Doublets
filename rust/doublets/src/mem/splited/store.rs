@@ -18,41 +18,41 @@ use crate::mem::{ILinksListMethods, ILinksTreeMethods, LinksHeader, UpdatePointe
 use crate::{Doublets, Link, LinksError};
 use data::{Flow, Links, ReadHandler, ToQuery, WriteHandler};
 use data::{LinksConstants, Query};
-use mem::{Mem, ResizeableMem};
+use mem::RawMem;
 use methods::RelativeCircularDoublyLinkedList;
 use num::LinkType;
 
 pub struct Store<
     T: LinkType,
-    MD: ResizeableMem,
-    MI: ResizeableMem,
+    MD: RawMem,
+    MI: RawMem,
     IS: ILinksTreeMethods<T> + UpdatePointersSplit = InternalSourcesRecursionlessTree<T>,
     ES: ILinksTreeMethods<T> + UpdatePointersSplit = ExternalSourcesRecursionlessTree<T>,
     IT: ILinksTreeMethods<T> + UpdatePointersSplit = InternalTargetsRecursionlessTree<T>,
     ET: ILinksTreeMethods<T> + UpdatePointersSplit = ExternalTargetsRecursionlessTree<T>,
     UL: ILinksListMethods<T> + UpdatePointers = UnusedLinks<T>,
 > {
-    pub data_mem: MD,
-    pub index_mem: MI,
+    data_mem: MD,
+    index_mem: MI,
 
-    pub data_step: usize,
-    pub index_step: usize,
+    data_step: usize,
+    index_step: usize,
 
-    pub constants: LinksConstants<T>,
+    constants: LinksConstants<T>,
 
-    pub internal_sources: IS,
-    pub external_sources: ES,
-    pub internal_targets: IT,
-    pub external_targets: ET,
+    internal_sources: IS,
+    external_sources: ES,
+    internal_targets: IT,
+    external_targets: ET,
 
-    pub sources_list: InternalSourcesLinkedList<T>,
-    pub unused: UL,
+    sources_list: InternalSourcesLinkedList<T>,
+    unused: UL,
 }
 
 impl<
         T: LinkType,
-        MD: ResizeableMem,
-        MI: ResizeableMem,
+        MD: RawMem,
+        MI: RawMem,
         IS: ILinksTreeMethods<T> + UpdatePointersSplit,
         ES: ILinksTreeMethods<T> + UpdatePointersSplit,
         IT: ILinksTreeMethods<T> + UpdatePointersSplit,
@@ -72,9 +72,9 @@ impl<
         index_mem: MI,
         constants: LinksConstants<T>,
     ) -> Result<Store<T, MD, MI>, LinksError<T>> {
-        let data = data_mem.get_ptr();
-        let index = index_mem.get_ptr();
-        let header = index_mem.get_ptr();
+        let data = data_mem.ptr();
+        let index = index_mem.ptr();
+        let header = index_mem.ptr();
 
         let internal_sources = InternalSourcesRecursionlessTree::new(
             constants.clone(),
@@ -132,8 +132,11 @@ impl<
         Self::with_constants(data_mem, index_mem, default())
     }
 
-    fn mut_from_mem<Output: Sized, Memory: Mem>(mem: &Memory, index: usize) -> Option<&mut Output> {
-        let mut ptr = mem.get_ptr();
+    fn mut_from_mem<Output: Sized, Memory: RawMem>(
+        mem: &Memory,
+        index: usize,
+    ) -> Option<&mut Output> {
+        let mut ptr = mem.ptr();
         let sizeof = size_of::<Output>();
         if index * sizeof < ptr.len() {
             Some(unsafe {
@@ -146,7 +149,7 @@ impl<
         }
     }
 
-    fn get_from_mem<Output: Sized, M: Mem>(mem: &M, index: usize) -> Option<&Output> {
+    fn get_from_mem<Output: Sized, M: RawMem>(mem: &M, index: usize) -> Option<&Output> {
         Self::mut_from_mem(mem, index).map(|v| &*v)
     }
 
@@ -181,9 +184,9 @@ impl<
     }
 
     fn update_pointers(&mut self) {
-        let data = self.data_mem.get_ptr().as_mut_ptr();
-        let index = self.index_mem.get_ptr().as_mut_ptr();
-        let header = self.index_mem.get_ptr().as_mut_ptr();
+        let data = self.data_mem.ptr().as_mut_ptr();
+        let index = self.index_mem.ptr().as_mut_ptr();
+        let header = self.index_mem.ptr().as_mut_ptr();
 
         self.internal_sources.update_pointers(data, index, header);
         self.external_sources.update_pointers(data, index, header);
@@ -204,8 +207,8 @@ impl<
     }
 
     fn init(&mut self) -> Result<(), LinksError<T>> {
-        if self.index_mem.reserved_mem() < Self::HEADER_SIZE {
-            self.index_mem.reserve_mem(Self::HEADER_SIZE)?;
+        if self.index_mem.allocated() < Self::HEADER_SIZE {
+            self.index_mem.alloc(Self::HEADER_SIZE)?;
         }
         self.update_pointers();
 
@@ -213,30 +216,30 @@ impl<
         let allocated = header.allocated.as_();
 
         let mut data_capacity = allocated * Self::DATA_SIZE;
-        data_capacity = data_capacity.max(self.data_mem.used_mem());
-        data_capacity = data_capacity.max(self.data_mem.reserved_mem());
+        data_capacity = data_capacity.max(self.data_mem.occupied());
+        data_capacity = data_capacity.max(self.data_mem.allocated());
         data_capacity = data_capacity.max(self.data_step);
 
         let mut index_capacity = allocated * Self::INDEX_SIZE;
-        index_capacity = index_capacity.max(self.index_mem.used_mem());
-        index_capacity = index_capacity.max(self.index_mem.reserved_mem());
+        index_capacity = index_capacity.max(self.index_mem.occupied());
+        index_capacity = index_capacity.max(self.index_mem.allocated());
         index_capacity = index_capacity.max(self.index_step);
 
         data_capacity = Self::align(data_capacity, self.data_step);
         index_capacity = Self::align(index_capacity, self.index_step);
 
-        self.data_mem.reserve_mem(data_capacity)?;
-        self.index_mem.reserve_mem(index_capacity)?;
+        self.data_mem.alloc(data_capacity)?;
+        self.index_mem.alloc(index_capacity)?;
         self.update_pointers();
 
         let allocated = header.allocated.as_();
         self.data_mem
-            .use_mem(allocated * Self::DATA_SIZE + Self::DATA_SIZE)?;
+            .occupy(allocated * Self::DATA_SIZE + Self::DATA_SIZE)?;
         self.index_mem
-            .use_mem(allocated * Self::INDEX_SIZE + Self::INDEX_SIZE)?;
+            .occupy(allocated * Self::INDEX_SIZE + Self::INDEX_SIZE)?;
 
         self.mut_header().reserved =
-            T::from((self.data_mem.reserved_mem() - Self::DATA_SIZE) / Self::DATA_SIZE).unwrap();
+            T::from((self.data_mem.allocated() - Self::DATA_SIZE) / Self::DATA_SIZE).unwrap();
         Ok(())
     }
 
@@ -436,8 +439,8 @@ impl<
 
 impl<
         T: LinkType,
-        MD: ResizeableMem,
-        MI: ResizeableMem,
+        MD: RawMem,
+        MI: RawMem,
         IS: ILinksTreeMethods<T> + UpdatePointersSplit,
         ES: ILinksTreeMethods<T> + UpdatePointersSplit,
         IT: ILinksTreeMethods<T> + UpdatePointersSplit,
@@ -617,14 +620,14 @@ impl<
             }
 
             // TODO: if header.allocated >= header.reserved - one() {
-            if self.index_mem.reserved_mem() < self.index_mem.used_mem() + Self::INDEX_SIZE {
+            if self.index_mem.allocated() < self.index_mem.occupied() + Self::INDEX_SIZE {
                 self.data_mem
-                    .reserve_mem(self.data_mem.reserved_mem() + self.data_step)?;
+                    .alloc(self.data_mem.allocated() + self.data_step)?;
                 self.index_mem
-                    .reserve_mem(self.index_mem.reserved_mem() + self.index_step)?;
+                    .alloc(self.index_mem.allocated() + self.index_step)?;
                 self.update_pointers();
-                // let reserved = self.data_mem.reserved_mem();
-                let reserved = self.index_mem.reserved_mem();
+                // let reserved = self.data_mem.allocated();
+                let reserved = self.index_mem.allocated();
                 let header = self.mut_header();
                 // header.reserved = T::from_usize(reserved / Self::DATA_SIZE).unwrap()
                 header.reserved = T::from_usize(reserved / Self::INDEX_SIZE).unwrap()
@@ -633,9 +636,9 @@ impl<
             header.allocated = header.allocated + one();
             free = header.allocated;
             self.data_mem
-                .use_mem(self.data_mem.used_mem() + Self::DATA_SIZE)?;
+                .occupy(self.data_mem.occupied() + Self::DATA_SIZE)?;
             self.index_mem
-                .use_mem(self.index_mem.used_mem() + Self::INDEX_SIZE)?;
+                .occupy(self.index_mem.occupied() + Self::INDEX_SIZE)?;
         } else {
             self.unused.detach(free)
         }
@@ -765,9 +768,9 @@ impl<
             self.unused.attach_as_first(link)
         } else if link == header.allocated {
             self.data_mem
-                .use_mem(self.data_mem.used_mem() - Self::DATA_SIZE)?;
+                .occupy(self.data_mem.occupied() - Self::DATA_SIZE)?;
             self.index_mem
-                .use_mem(self.index_mem.used_mem() - Self::INDEX_SIZE)?;
+                .occupy(self.index_mem.occupied() - Self::INDEX_SIZE)?;
 
             let allocated = self.get_header().allocated;
             let header = self.mut_header();
@@ -782,11 +785,11 @@ impl<
                 self.mut_header().allocated = allocated - one();
                 // TODO: create extension `update_used`
 
-                let used_mem = self.data_mem.used_mem();
-                self.data_mem.use_mem(used_mem - Self::DATA_SIZE)?;
+                let used_mem = self.data_mem.occupied();
+                self.data_mem.occupy(used_mem - Self::DATA_SIZE)?;
 
-                let used_mem = self.index_mem.used_mem();
-                self.index_mem.use_mem(used_mem - Self::INDEX_SIZE)?;
+                let used_mem = self.index_mem.occupied();
+                self.index_mem.occupy(used_mem - Self::INDEX_SIZE)?;
             }
         } else {
             // must be unreachable
@@ -808,8 +811,8 @@ impl<
 
 impl<
         T: LinkType,
-        MD: ResizeableMem,
-        MI: ResizeableMem,
+        MD: RawMem,
+        MI: RawMem,
         IS: ILinksTreeMethods<T> + UpdatePointersSplit,
         ES: ILinksTreeMethods<T> + UpdatePointersSplit,
         IT: ILinksTreeMethods<T> + UpdatePointersSplit,
@@ -862,8 +865,8 @@ impl<
 
 unsafe impl<
         T: LinkType,
-        MD: ResizeableMem,
-        MI: ResizeableMem,
+        MD: RawMem,
+        MI: RawMem,
         IS: ILinksTreeMethods<T> + UpdatePointersSplit,
         ES: ILinksTreeMethods<T> + UpdatePointersSplit,
         IT: ILinksTreeMethods<T> + UpdatePointersSplit,
@@ -875,8 +878,8 @@ unsafe impl<
 
 unsafe impl<
         T: LinkType,
-        MD: ResizeableMem,
-        MI: ResizeableMem,
+        MD: RawMem,
+        MI: RawMem,
         IS: ILinksTreeMethods<T> + UpdatePointersSplit,
         ES: ILinksTreeMethods<T> + UpdatePointersSplit,
         IT: ILinksTreeMethods<T> + UpdatePointersSplit,
