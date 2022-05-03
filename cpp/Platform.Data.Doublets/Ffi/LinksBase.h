@@ -175,7 +175,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
     };
 
     template<typename TSelf, typename TLinkOptions, typename... TBase>
-    class UnitedMemoryLinksBase : public Interfaces::Polymorph<TSelf, TBase...>
+    class LinksBase : public Interfaces::Polymorph<TSelf, TBase...>
     {
     private:
         void* _ptr;
@@ -188,7 +188,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
         using ReadHandlerType = OptionsType::ReadHandlerType;
         static constexpr LinksConstants<LinkAddressType> Constants = OptionsType::Constants;
 
-            UnitedMemoryLinksBase(std::string_view path)
+        LinksBase(std::string_view path)
         {
             if constexpr (std::same_as<LinkAddressType, std::uint8_t>)
             {
@@ -212,7 +212,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             }
         }
 
-        ~UnitedMemoryLinksBase()
+        ~LinksBase()
         {
             if constexpr (std::same_as<LinkAddressType, std::uint8_t>)
             {
