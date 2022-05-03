@@ -1,0 +1,20 @@
+[package]
+name = "doublets-decorators"
+version = "0.1.0-alpha.0"
+edition = "2021"
+authors = [
+    "uselessgoddess",
+    "Linksplatform Team <linksplatformtechnologies@gmail.com>"
+]
+license = "LGPL-3.0"
+repository = "https://github.com/linksplatform/Data.Doublets"
+homepage = "https://github.com/linksplatform/Data.Doublets/blob/main/rust/doublets-decorators"
+description = """
+Decorators for doublets
+"""
+
+[dependencies]
+num-traits = "0.2.14"
+doublets = { path = "../doublets", package = "doublets", version = "0.1.0-alpha.7" }
+data = { package = "platform-data", version = "0.1.0-alpha.0" }
+num = { package = "platform-num", version = "0.1.0-alpha.0" }

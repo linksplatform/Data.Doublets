@@ -10,10 +10,15 @@ env:
   NUGETTOKEN: ${{ secrets.NUGET_TOKEN }}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   SCRIPTS_BASE_URL: https://raw.githubusercontent.com/linksplatform/Scripts/master/MultiProjectRepository
+  CSHARP_DIRECTORY_PATH: csharp
 
 jobs:
   testCs:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ env.CSHARP_DIRECTORY_PATH }}
     steps:
       - uses: actions/checkout@v1
         with:
@@ -24,6 +29,10 @@ jobs:
   pushCSharpNuGetToGitHubPackageRegistry:
     needs: testCs
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ env.CSHARP_DIRECTORY_PATH }}
     steps:
       - uses: actions/checkout@v1
         with:
@@ -37,6 +46,10 @@ jobs:
           nuget push **/*.nupkg -Source "GitHub" -SkipDuplicate
   pusnToNuget:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ env.CSHARP_DIRECTORY_PATH }}
     needs: testCs
     steps:
     - uses: actions/checkout@v1
@@ -54,6 +67,10 @@ jobs:
         bash ./push-csharp-nuget.sh
   publiseRelease:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ env.CSHARP_DIRECTORY_PATH }}
     needs: pusnToNuget
     steps:
       - uses: actions/checkout@v1
@@ -66,6 +83,10 @@ jobs:
           bash ./publish-release.sh
   findChangedCsFiles:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ env.CSHARP_DIRECTORY_PATH }}
     needs: publiseRelease
     outputs:
       isCsFilesChanged: steps.check_if_csharp_files_changed.outputs.findChangesCsFiles
@@ -81,6 +102,10 @@ jobs:
            *.cs
   generatePdfWithCsharpCode:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ env.CSHARP_DIRECTORY_PATH }}
     needs: [findChangedCsFiles]
     if: needs.findChangedCsFiles.outputs.isCsFilesChanged == 'true'
     steps:
@@ -96,6 +121,10 @@ jobs:
         bash ./generate-csharp-pdf.sh
   publishCsDocumentation:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ env.CSHARP_DIRECTORY_PATH }}
     needs: [findChangedCsFiles]
     if: needs.findChangedCsFiles.outputs.isCsFilesChanged == 'true'
     steps:

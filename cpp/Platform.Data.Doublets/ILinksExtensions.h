@@ -125,7 +125,7 @@ namespace Platform::Data::Doublets
     template<typename TStorage>
     static typename TStorage::LinkAddressType First(const TStorage& storage)
     {
-        auto constants = storage.Constants;
+        constexpr auto constants = storage.Constants;
         auto $break {constants.Break};
         typename TStorage::LinkAddressType firstLink = 0;
         Expects(constants.Null != firstLink);
@@ -142,7 +142,7 @@ namespace Platform::Data::Doublets
     {
         typename TStorage::LinkType result {};
         auto count = 0;
-        auto constants = storage.Constants;
+        constexpr auto constants = storage.Constants;
         auto linkHandler { [&result, &count, &constants] (const typename TStorage::LinkType& link) {
             if (count == 0)
             {
@@ -169,7 +169,7 @@ namespace Platform::Data::Doublets
         {
             return false;
         }
-        auto constants = storage.Constants;
+        constexpr auto constants = storage.Constants;
         for (typename TStorage::LinkAddressType i { 1 }; i < std::ranges::size(path); ++i)
         {
             auto next = path[i];
@@ -206,7 +206,7 @@ namespace Platform::Data::Doublets
     //    static typename TStorage::LinkAddressType GetSquareMatrixSequenceElementByIndex(TStorage& storage, typename TStorage::LinkAddressType root, std::uint64_t size, std::uint64_t index)
     //    {
     //        using namespace Platform::Numbers;
-    //        auto constants = storage.Constants;
+    //        constexpr auto constants = storage.Constants;
     //        auto source = constants.SourcePart;
     //        auto target = constants.TargetPart;
     //        if (!Numbers::Math::IsPowerOfTwo(size))
@@ -416,7 +416,7 @@ namespace Platform::Data::Doublets
         template<typename TStorage>
         static typename TStorage::LinkAddressType CountUsages(TStorage& storage, typename TStorage::LinkAddressType linkAddress)
         {
-            auto constants = storage.Constants;
+            constexpr auto constants = storage.Constants;
             auto values = GetLink(storage, linkAddress);
             auto usagesAsSource = storage.Count(typename TStorage::LinkType(constants.Any, storage, linkAddress, constants.Any));
             if (link == GetSource(storage, values))
@@ -437,7 +437,7 @@ namespace Platform::Data::Doublets
         template<typename TStorage>
         typename TStorage::LinkAddressType SearchOrDefault(TStorage& storage, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType target)
         {
-            auto constants = storage.Constants;
+            constexpr auto constants = storage.Constants;
             auto _break = constants.Break;
             typename TStorage::LinkAddressType searchedLinkAddress {};
             storage.Each(std::vector{storage.Constants.Any, source, target}, [&searchedLinkAddress, _break] (const typename TStorage::LinkType& link) {
@@ -456,7 +456,7 @@ namespace Platform::Data::Doublets
         template<typename TStorage>
         static typename TStorage::LinkAddressType CreatePoint(TStorage& storage, auto&& handler)
         {
-            auto constants = storage.Constants;
+            constexpr auto constants = storage.Constants;
             WriteHandlerState<TStorage> handlerState {constants.Continue, constants.Break, handler};
             typename TStorage::LinkAddressType linkAddress;
             typename TStorage::LinkAddressType HandlerWrapper = [&linkAddress, &handlerState](const typename TStorage::LinkType& before, const typename TStorage::LinkType& after){
@@ -481,7 +481,7 @@ namespace Platform::Data::Doublets
         template<typename TStorage>
         static typename TStorage::LinkAddressType CreateAndUpdate(TStorage& storage, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType target, auto&& handler)
         {
-            auto constants = storage.Constants;
+            constexpr auto constants = storage.Constants;
             typename TStorage::LinkAddressType createdLinkAddress;
             WriteHandlerState<TStorage> handlerState {constants.Continue, constants.Break, handler};
             handlerState.Apply(storage.Create(Link<typename TStorage::LinkAddressType>{}, [&createdLinkAddress, &handlerState](const typename TStorage::LinkType& before, const typename TStorage::LinkType& after){
@@ -562,7 +562,7 @@ namespace Platform::Data::Doublets
         template<typename TStorage>
         static typename TStorage::LinkType ResolveConstantAsSelfReference(const TStorage& storage, typename TStorage::LinkAddressType constant,  const typename TStorage::LinkType& restriction,  const typename TStorage::LinkType& substitution)
         {
-            auto constants = storage.Constants;
+            constexpr auto constants = storage.Constants;
             auto restrictionIndex = GetIndex(storage, restriction);
             auto substitutionIndex = GetIndex(storage, substitution);
             if ( constants.Null == substitutionIndex)
@@ -579,7 +579,7 @@ namespace Platform::Data::Doublets
         template<typename TStorage>
         typename TStorage::LinkAddressType GetOrCreate(TStorage& storage, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType target)
         {
-            auto constants = storage.Constants;
+            constexpr auto constants = storage.Constants;
             auto link = SearchOrDefault(storage, source, target);
             if (link == constants.Null)
             {
@@ -618,7 +618,7 @@ namespace Platform::Data::Doublets
     template<typename TStorage>
     typename TStorage::LinkAddressType DeleteIfExists(TStorage& storage, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType target)
     {
-        auto constants = storage.Constants;
+        constexpr auto constants = storage.Constants;
         auto linkAddress = storage.SearchOrDefault(source, target);
         if (linkAddress != constants.Null)
         {
@@ -639,7 +639,7 @@ namespace Platform::Data::Doublets
     template<typename TStorage>
     static typename TStorage::LinkAddressType DeleteAllUsages(TStorage& storage, typename TStorage::LinkAddressType linkIndex, auto&& handler)
     {
-        auto constants = storage.Constants;
+        constexpr auto constants = storage.Constants;
         auto any = constants.Any;
         auto $continue = storage.Constants.Continue;
         auto $break = storage.Constants.Break;
@@ -751,7 +751,7 @@ namespace Platform::Data::Doublets
             {
                 return newLinkIndex;
             }
-            auto constants = storage.Constants;
+            constexpr auto constants = storage.Constants;
             auto usagesAsSource = All(storage, Link(constants.Any, oldLinkIndex, constants.Any));
             WriteHandlerState<TStorage> handlerState {constants.Continue, constants.Break, handler};
             for (auto i { 0 }; i < std::ranges::size(usagesAsSource); ++i)
@@ -799,7 +799,7 @@ namespace Platform::Data::Doublets
         template<typename TStorage>
         static typename TStorage::LinkAddressType MergeAndDelete(TStorage& storage, typename TStorage::LinkAddressType oldLinkIndex, typename TStorage::LinkAddressType newLinkIndex, auto&& handler)
         {
-            auto constants = storage.Constants;
+            constexpr auto constants = storage.Constants;
             WriteHandlerState<TStorage> handlerState {constants.Continue, constants.Break, handler};
             if ( newLinkIndex != oldLinkIndex)
             {
@@ -812,7 +812,7 @@ namespace Platform::Data::Doublets
         template<typename TStorage>
         static std::string Format(TStorage& storage,  const typename TStorage::LinkType& link)
         {
-            auto constants = storage.Constants;
+            constexpr auto constants = storage.Constants;
             return std::string{}
                 .append("(")
                 .append(std::to_string(GetIndex(storage, link)))

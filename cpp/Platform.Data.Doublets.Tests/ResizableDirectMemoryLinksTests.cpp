@@ -1,55 +1,69 @@
 ﻿namespace Platform::Data::Doublets::Tests
 {
     using TLinkAddress = uint64_t;
-    static LinksConstants<TLinkAddress > _constants {LinksConstants<TLinkAddress>{}};
-    static void TestNonexistentReferences(auto&& &memoryAdapter)
+
+    template<typename TStorage>
+    static void TestNonexistentReferences(TStorage& storage)
     {
-        auto link = memoryAdapter.Create();
-        Update(memoryAdapter, link, std::numeric_limits<std::uint64_t>::max(), std::numeric_limits<std::uint64_t>::max());
-        TLinkAddress resultLink {_constants.Null};
-        memoryAdapter.Each(std::vector{_constants.Any, std::numeric_limits<std::uint64_t>::max(), std::numeric_limits<std::uint64_t>::max()}, [&resultLink] (Interfaces::CArray<TLinkAddress> auto foundLink) {
-            resultLink = foundLink[_constants.IndexPart];
-            return _constants.Break;
+        using namespace Platform::Interfaces;
+        constexpr auto constants = storage.Constants;
+        auto $break = constants.Break;
+        auto linkAddress = Create(storage);
+        Update(storage, linkAddress, std::numeric_limits<TLinkAddress>::max(), std::numeric_limits<TLinkAddress>::max());
+        TLinkAddress resultLinkAddress{constants.Null};
+        storage.Each(typename TStorage::LinkType{constants.Any, std::numeric_limits<TLinkAddress>::max(), std::numeric_limits<TLinkAddress>::max()}, [&resultLinkAddress, $break] (typename TStorage::LinkType foundLink) {
+            resultLinkAddress = foundLink[constants.IndexPart];
+            return $break;
         });
-        Expects(resultLink == link);
-        Expects(0 == Count(memoryAdapter, std::numeric_limits<std::uint64_t>::max()));
-        Delete(memoryAdapter, link);
+        Expects(resultLinkAddress == linkAddress);
+        Expects(0 == Count(storage, std::numeric_limits<TLinkAddress>::max()));
+        Delete(storage, linkAddress);
     }
 
-    static void TestBasicMemoryOperations(auto&& memoryAdapter)
+    template<typename TStorage>
+    static void TestBasicMemoryOperations(TStorage& storage)
     {
-        auto link {Create(memoryAdapter)};
-        Delete(memoryAdapter, link);
+        auto linkAddress {Create(storage)};
+        Delete(storage, linkAddress);
     }
 
     TEST(ResizableDirectMemoryLinksTests, BasicFileMappedMemoryTest)
     {
+        using namespace Platform::Data::Doublets::Memory::United::Generic;
+        using namespace Platform::Memory;
+        using LinksOptionsType = LinksOptions<TLinkAddress>;
         auto tempName {std::tmpnam(nullptr)};
         try
         {
-            UInt64UnitedMemoryLinks memoryAdapter { tempName };
-            TestBasicMemoryOperations(memoryAdapter);
-            File.Delete(tempFilename);
+            FileMappedResizableDirectMemory memory { tempName };
+            UnitedMemoryLinks<LinksOptionsType> storage {std::move(memory)};
+            TestBasicMemoryOperations(storage);
         }
         catch (...)
         {
-            std::remove(tempName.c_str());
+            std::remove(tempName);
             throw;
         }
-        std::remove(tempName.c_str());
+        std::remove(tempName);
     };
 
     TEST(ResizableDirectMemoryLinksTests, BasicHeapMemoryTest)
     {
-        HeapResizableDirectMemory memory {UInt64UnitedMemoryLinks.DefaultLinksSizeStep};
-        UInt64UnitedMemoryLinks memoryAdapter {memory, UInt64UnitedMemoryLinks.DefaultLinksSizeStep};
-        TestBasicMemoryOperations(memoryAdapter);
+        using namespace Platform::Data::Doublets::Memory::United::Generic;
+        using namespace Platform::Memory;
+        using LinksOptionsType = LinksOptions<TLinkAddress>;
+        HeapResizableDirectMemory memory {UnitedMemoryLinks<LinksOptionsType>::DefaultLinksSizeStep};
+        UnitedMemoryLinks<LinksOptionsType, HeapResizableDirectMemory> storage {std::move(memory), UnitedMemoryLinks<LinksOptionsType>::DefaultLinksSizeStep};
+        TestBasicMemoryOperations(storage);
     }
 
     TEST(ResizableDirectMemoryLinksTests, NonexistentReferencesHeapMemoryTest)
     {
-        HeapResizableDirectMemory memory {UInt64UnitedMemoryLinks.DefaultLinksSizeStep};
-        UInt64UnitedMemoryLinks memoryAdapter {memory, UInt64UnitedMemoryLinks.DefaultLinksSizeStep};
-        TestNonexistentReferences(memoryAdapter);
+        using namespace Platform::Data::Doublets::Memory::United::Generic;
+        using namespace Platform::Memory;
+        using LinksOptionsType = LinksOptions<TLinkAddress>;
+        HeapResizableDirectMemory memory {UnitedMemoryLinks<LinksOptionsType>::DefaultLinksSizeStep};
+        UnitedMemoryLinks<LinksOptionsType, HeapResizableDirectMemory> storage {std::move(memory), UnitedMemoryLinks<LinksOptionsType>::DefaultLinksSizeStep};
+        TestNonexistentReferences(storage);
     }
 }
