@@ -440,7 +440,7 @@
 
         bool Exists(LinkAddressType linkAddress) const
         {
-            if (IsExternalReference(Constants, linkAddress))
+            if (IsExternalReference<LinkAddressType, Constants>(linkAddress))
             {
                 return false;
             }
