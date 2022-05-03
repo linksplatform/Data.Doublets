@@ -47,7 +47,7 @@ namespace Platform.Data.Doublets.Tests
             }
 
             File.Delete("db.links");
-            using var ffiLinks = new FFI.UnitedMemoryLinks<TLinkAddress>("db.links");
+            using var ffiLinks = new Ffi.Links<TLinkAddress>("db.links");
             action(ffiLinks);
         }
     }

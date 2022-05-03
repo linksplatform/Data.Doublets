@@ -34,7 +34,7 @@ namespace Platform.Data.Doublets.Tests
         public static void FfiDeleteAllUsages()
         {
             File.Delete("db.links");
-            var links = new FFI.UnitedMemoryLinks<uint>("db.links");
+            var links = new Ffi.Links<uint>("db.links");
 
             var root = links.CreatePoint();
 
