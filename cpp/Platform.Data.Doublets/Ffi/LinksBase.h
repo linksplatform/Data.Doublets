@@ -281,7 +281,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             }
         };
 
-        LinkAddressType Update(const  LinkType& restriction, const LinkType& substitution, const WriteHandlerType& handler)
+        LinkAddressType Update(const LinkType& restriction, const LinkType& substitution, const WriteHandlerType& handler)
         {
             auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr{std::ranges::data(restriction)};
@@ -316,7 +316,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             }
         }
 
-        LinkAddressType Delete(const  LinkType& restriction, const WriteHandlerType& handler)
+        LinkAddressType Delete(const LinkType& restriction, const WriteHandlerType& handler)
         {
             auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr = std::ranges::data(restriction);
@@ -349,7 +349,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             }
         }
 
-        LinkAddressType Each(const  LinkType& restriction, const ReadHandlerType& handler) const
+        LinkAddressType Each(const LinkType& restriction, const ReadHandlerType& handler) const
         {
             using Signature = LinkAddressType(Link<LinkAddressType>);
             auto restrictionLength = std::ranges::size(restriction);
@@ -380,7 +380,7 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
             }
         }
 
-        LinkAddressType Count(const  LinkType& restriction) const
+        LinkAddressType Count(const LinkType& restriction) const
         {
             auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr = std::ranges::data(restriction);
