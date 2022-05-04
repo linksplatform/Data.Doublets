@@ -1,21 +1,25 @@
 ﻿namespace Platform::Data::Doublets::Memory::Split
 {
-    template <typename ...> struct RawLinkIndexPart;
-    template <typename TLinkAddress> struct RawLinkIndexPart<TLinkAddress>
+    template <typename ...>
+    struct RawLinkIndexPart;
+
+    template <typename TLinkAddress>
+    struct RawLinkIndexPart<TLinkAddress>
     {
-        public: inline static const std::int64_t SizeInBytes = Structure<RawLinkIndexPart<TLinkAddress>>.Size;
+        public: inline static const std::int64_t SizeInBytes = sizeof(RawLinkIndexPart<TLinkAddress>);
 
-        public: TLinkAddress RootAsSource = 0;
-        public: TLinkAddress LeftAsSource = 0;
-        public: TLinkAddress RightAsSource = 0;
-        public: TLinkAddress SizeAsSource = 0;
-        public: TLinkAddress RootAsTarget = 0;
-        public: TLinkAddress LeftAsTarget = 0;
-        public: TLinkAddress RightAsTarget = 0;
-        public: TLinkAddress SizeAsTarget = 0;
+        TLinkAddress RootAsSource;
+        TLinkAddress LeftAsSource;
+        TLinkAddress RightAsSource;
+        TLinkAddress SizeAsSource;
+        TLinkAddress RootAsTarget;
+        TLinkAddress LeftAsTarget;
+        TLinkAddress RightAsTarget;
+        TLinkAddress SizeAsTarget;
 
-        public: bool Equals(RawLinkIndexPart<TLinkAddress> other)
-            => RootAsSource == other.RootAsSource
+        bool operator ==(RawLinkIndexPart<TLinkAddress> other)
+        {
+            return RootAsSource == other.RootAsSource
             && LeftAsSource == other.LeftAsSource
             && RightAsSource == other.RightAsSource
             && SizeAsSource == other.SizeAsSource
@@ -23,7 +27,23 @@
             && LeftAsTarget == other.LeftAsTarget
             && RightAsTarget == other.RightAsTarget
             && SizeAsTarget == other.SizeAsTarget;
+        }
 
-        public: override std::int32_t GetHashCode() { return Platform::Hashing::Hash(RootAsSource, LeftAsSource, RightAsSource, SizeAsSource, RootAsTarget, LeftAsTarget, RightAsTarget, SizeAsTarget); }
+        bool operator !=(RawLinkIndexPart<TLinkAddress> other)
+        {
+            return !(this == other);
+        }
+    };
+}
+
+namespace std
+{
+    template<typename TLinkAddress>
+    struct hash<Platform::Data::Doublets::Memory::Split::RawLinkIndexPart<TLinkAddress>>
+    {
+        std::size_t operator()(const Platform::Data::Doublets::Memory::Split::RawLinkIndexPart<TLinkAddress>& obj) const
+        {
+            return Platform::Hashing::Hash(obj.RootAsSource, obj.LeftAsSource, obj.RightAsSource, obj.SizeAsSource, obj.RootAsTarget, obj.LeftAsTarget, obj.RightAsTarget, obj.SizeAsTarget);
+        }
     };
 }

@@ -3,15 +3,31 @@
     template <typename ...> struct RawLinkDataPart;
     template <typename TLinkAddress> struct RawLinkDataPart<TLinkAddress>
     {
-        public: inline static const std::int64_t SizeInBytes = Structure<RawLinkDataPart<TLinkAddress>>.Size;
+    public:
+        static const std::int64_t SizeInBytes = sizeof(RawLinkDataPart<TLinkAddress>);
 
-        public: TLinkAddress Source = 0;
-        public: TLinkAddress Target = 0;
+        TLinkAddress Source;
+        TLinkAddress Target;
 
-        public: bool Equals(RawLinkDataPart<TLinkAddress> other)
-            => Source == other.Source
-            && Target == other.Target;
+        bool operator =(RawLinkDataPart<TLinkAddress> other)
+        {
+            return (Source == other.Source) && (Target == other.Target);
+        }
 
-        public: override std::int32_t GetHashCode() { return Platform::Hashing::Hash(Source, Target); }
+    public:
+        std::int32_t GetHashCode() override
+        {
+            return Platform::Hashing::Hash(Source, Target);
+        }
+
+        bool operator ==(RawLinkDataPart<TLinkAddress> other)
+        {
+            return (Source == other.Source) && (Target == other.Target);
+        }
+
+        bool operator !=(RawLinkDataPart<TLinkAddress> other)
+        {
+            return !(this == other);
+        }
     };
 }
