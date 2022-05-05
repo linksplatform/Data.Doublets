@@ -7,9 +7,9 @@
         public: static constexpr TLinkAddress Constants = VConstants;
         protected: static constexpr TLinkAddress Break = Constants.Break;
         protected: static constexpr TLinkAddress Continue = Constants.Continue;
-        protected: readonly std::uint8_t* LinksDataParts;
-        protected: readonly std::uint8_t* LinksIndexParts;
-        protected: readonly std::uint8_t* Header;
+        protected: std::uint8_t* LinksDataParts;
+        protected: std::uint8_t* LinksIndexParts;
+        protected: std::uint8_t* Header;
 
         protected: ExternalLinksRecursionlessSizeBalancedTreeMethodsBase(std::uint8_t* linksDataParts, std::uint8_t* linksIndexParts, std::uint8_t* header)
         {
