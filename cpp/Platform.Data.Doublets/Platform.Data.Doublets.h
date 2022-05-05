@@ -38,9 +38,8 @@
 #include "Memory/United/Generic/LinksSourcesSizeBalancedTreeMethods.h"
 #include "Memory/United/Generic/UnitedMemoryLinksBase.h"
 #include "Memory/United/Generic/UnitedMemoryLinks.h"
-#include "Memory/United/Ffi/UnitedMemoryLinksBase.h"
-#include "Memory/United/Ffi/UnitedMemoryLinks.h"
-
+#include "Ffi/LinksBase.h"
+#include "Ffi/Links.h"
 
 #include "Decorators/LinksUniquenessResolver.h"
 #include "Decorators/LinksCascadeUniquenessAndUsagesResolver.h"

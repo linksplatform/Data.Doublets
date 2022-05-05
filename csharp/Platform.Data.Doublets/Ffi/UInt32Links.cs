@@ -6,21 +6,21 @@ using Platform.Converters;
 using Platform.Delegates;
 using Platform.Disposables;
 
-namespace Platform.Data.Doublets.FFI
+namespace Platform.Data.Doublets.Ffi
 {
     using TLinkAddress = System.UInt32;
 
-    public class UInt32UnitedMemoryLinks : DisposableBase, ILinks<TLinkAddress>
+    public class UInt32Links : DisposableBase, ILinks<TLinkAddress>
     {
         public LinksConstants<TLinkAddress> Constants { get; }
 
         private readonly unsafe void* _ptr;
 
-        public UInt32UnitedMemoryLinks(string path)
+        public UInt32Links(string path)
         {
             unsafe
             {
-                _ptr = Methods.UInt32UnitedMemoryLinks_New(path);
+                _ptr = Methods.UInt32Links_New(path);
 
                 // TODO: Update api
                 Constants = new LinksConstants<TLinkAddress>(enableExternalReferencesSupport: true);
@@ -36,7 +36,7 @@ namespace Platform.Data.Doublets.FFI
                 {
                     array[i] = restriction[i];
                 }
-                return Methods.UInt32UnitedMemoryLinks_Count(_ptr, array, (nuint)(restriction?.Count ?? 0));
+                return Methods.UInt32Links_Count(_ptr, array, (nuint)(restriction?.Count ?? 0));
             }
         }
 
@@ -50,7 +50,7 @@ namespace Platform.Data.Doublets.FFI
                 {
                     array[i] = restriction[i];
                 }
-                return Methods.UInt32UnitedMemoryLinks_Each(_ptr, array, (nuint)(restriction?.Count ?? 0), callback);
+                return Methods.UInt32Links_Each(_ptr, array, (nuint)(restriction?.Count ?? 0), callback);
             }
         }
 
@@ -61,7 +61,7 @@ namespace Platform.Data.Doublets.FFI
                 Methods.CreateCallback_UInt32 callback = (before, after) => handler != null ? handler(new Link<TLinkAddress>(before.Index, before.Source, before.Target), new Link<TLinkAddress>(after.Index, after.Source, after.Target)) : Constants.Continue;
                 fixed (uint* substitutionPtr = (uint[])substitution)
                 {
-                    return Methods.UInt32UnitedMemoryLinks_Create(_ptr, substitutionPtr, (nuint)(substitution?.Count ?? 0), callback);
+                    return Methods.UInt32Links_Create(_ptr, substitutionPtr, (nuint)(substitution?.Count ?? 0), callback);
                 }
             }
         }
@@ -81,7 +81,7 @@ namespace Platform.Data.Doublets.FFI
                     substitutionArray[i] = restriction[i];
                 }
                 Methods.UpdateCallback_UInt32 callback = (before, after) => handler != null ? handler(new Link<TLinkAddress>(before.Index, before.Source, before.Target), new Link<TLinkAddress>(after.Index, after.Source, after.Target)) : Constants.Continue;
-                return Methods.UInt32UnitedMemoryLinks_Update(_ptr, restrictionArray, (nuint)(restriction?.Count ?? 0), substitutionArray, (nuint)(substitution?.Count ?? 0), callback);
+                return Methods.UInt32Links_Update(_ptr, restrictionArray, (nuint)(restriction?.Count ?? 0), substitutionArray, (nuint)(substitution?.Count ?? 0), callback);
             }
         }
 
@@ -95,7 +95,7 @@ namespace Platform.Data.Doublets.FFI
                     restrictionArray[i] = restriction[i];
                 }
                 Methods.DeleteCallback_UInt32 callback = (before, after) => handler != null ? handler(new Link<TLinkAddress>(before.Index, before.Source, before.Target), new Link<TLinkAddress>(after.Index, after.Source, after.Target)) : Constants.Continue;
-                return Methods.UInt32UnitedMemoryLinks_Delete(_ptr, restrictionArray, (nuint)(restriction?.Count ?? 0), callback);
+                return Methods.UInt32Links_Delete(_ptr, restrictionArray, (nuint)(restriction?.Count ?? 0), callback);
             }
         }
 
@@ -107,7 +107,7 @@ namespace Platform.Data.Doublets.FFI
                 {
                     return;
                 }
-                Methods.UInt32UnitedMemoryLinks_Drop(_ptr);
+                Methods.UInt32Links_Drop(_ptr);
             }
         }
     }

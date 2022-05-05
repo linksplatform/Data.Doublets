@@ -18,9 +18,9 @@ namespace Platform.Data.Doublets.Benchmarks
         private static ILinks<uint> _splitMemoryLinks;
         private static UnitedMemoryLinks<uint> _unitedMemory;
         private static ILinks<uint> _unitedMemoryLinks;
-        private static FFI.UnitedMemoryLinks<uint> _ffiUnitedMemory;
+        private static Ffi.Links<uint> _ffi;
         private static ILinks<uint> _ffiUnitedMemoryLinks;
-        private static FFI.UInt32UnitedMemoryLinks _ffiUInt32UnitedMemory;
+        private static Ffi.UInt32Links _ffiUInt32;
         private static ILinks<uint> _ffiUInt32UnitedMemoryLinks;
 
         [GlobalSetup]
@@ -36,12 +36,12 @@ namespace Platform.Data.Doublets.Benchmarks
             _unitedMemoryLinks = _unitedMemory.DecorateWithAutomaticUniquenessAndUsagesResolution();
 
             File.Delete("db.links");
-            _ffiUnitedMemory = new FFI.UnitedMemoryLinks<uint>("db.links");
-            _ffiUnitedMemoryLinks = _ffiUnitedMemory;
+            _ffi = new Ffi.Links<uint>("db.links");
+            _ffiUnitedMemoryLinks = _ffi;
 
             File.Delete("db.links1");
-            _ffiUInt32UnitedMemory = new FFI.UInt32UnitedMemoryLinks("db.links1");
-            _ffiUInt32UnitedMemoryLinks = _ffiUInt32UnitedMemory.DecorateWithAutomaticUniquenessAndUsagesResolution();
+            _ffiUInt32 = new Ffi.UInt32Links("db.links1");
+            _ffiUInt32UnitedMemoryLinks = _ffiUInt32.DecorateWithAutomaticUniquenessAndUsagesResolution();
         }
 
         [GlobalCleanup]
@@ -49,9 +49,9 @@ namespace Platform.Data.Doublets.Benchmarks
         {
             _splitMemory.Dispose();
             _unitedMemory.Dispose();
-             _ffiUnitedMemory.Dispose();
+             _ffi.Dispose();
             File.Delete("db.links");
-            _ffiUInt32UnitedMemory.Dispose();
+            _ffiUInt32.Dispose();
             File.Delete("db.links1");
         }
 
