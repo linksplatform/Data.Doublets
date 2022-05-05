@@ -2,7 +2,7 @@
 {
     using namespace Platform::Collections::Methods::Trees;
     template<typename TLinkAddress, LinksConstants<TLinkAddress> VConstants>
-    public class ExternalLinksRecursionlessSizeBalancedTreeMethodsBase : public RecursionlessSizeBalancedTreeMethods, ILinksTreeMethods<TLinkAddress>
+    class ExternalLinksRecursionlessSizeBalancedTreeMethodsBase : public RecursionlessSizeBalancedTreeMethods<ExternalLinksRecursionlessSizeBalancedTreeMethodsBase<TLinkAddress, VConstants>, TLinkAddress>, ILinksTreeMethods<TLinkAddress>
     {
         public: static constexpr TLinkAddress Constants = VConstants;
         protected: static constexpr TLinkAddress Break = Constants.Break;
