@@ -23,8 +23,6 @@
 #include "LinksOptions.h"
 //#include "ILinks.h"
 
-#include "ILinksExtensions.h"
-
 #include "Memory/LinksHeader.h"
 #include "Memory/IndexTreeType.h"
 #include "Memory/ILinksListMethods.h"
@@ -38,9 +36,9 @@
 #include "Memory/United/Generic/LinksSourcesSizeBalancedTreeMethods.h"
 #include "Memory/United/Generic/UnitedMemoryLinksBase.h"
 #include "Memory/United/Generic/UnitedMemoryLinks.h"
-#include "Memory/United/Ffi/UnitedMemoryLinksBase.h"
-#include "Memory/United/Generic/LinksRecursionlessSizeBalancedTreeMethodsBase.h"
-#include "Memory/United/Ffi/UnitedMemoryLinks.h"
+#include "Ffi/LinksBase.h"
+#include "Ffi/Links.h"
+
 
 #include "Memory/Split/RawLinkDataPart.h"
 #include "Memory/Split/RawLinkIndexPart.h"
