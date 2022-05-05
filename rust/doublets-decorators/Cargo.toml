@@ -1,6 +1,6 @@
 [package]
 name = "doublets-decorators"
-version = "0.1.0-alpha.0"
+version = "0.1.0-alpha.1"
 edition = "2021"
 authors = [
     "uselessgoddess",
@@ -15,6 +15,6 @@ Decorators for doublets
 
 [dependencies]
 num-traits = "0.2.14"
-doublets = { path = "../doublets", package = "doublets", version = "0.1.0-alpha.7" }
+doublets = { path = "../doublets", package = "doublets", version = "0.1.0-alpha.13" }
 data = { package = "platform-data", version = "0.1.0-alpha.0" }
 num = { package = "platform-num", version = "0.1.0-alpha.0" }

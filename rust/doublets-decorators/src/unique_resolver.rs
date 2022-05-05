@@ -1,13 +1,12 @@
 use std::borrow::BorrowMut;
-use std::default::default;
 use std::marker::PhantomData;
 use std::ops::Try;
 
-use data::Flow;
+use data::LinksConstants;
 use data::ToQuery;
-use data::{Links, LinksConstants};
-use doublets::{Doublets, Link, LinksError};
 use num::LinkType;
+
+use doublets::{Doublets, Error, Link};
 
 pub struct UniqueResolver<T: LinkType, L: Doublets<T>> {
     links: L,
@@ -33,11 +32,7 @@ impl<T: LinkType, L: Doublets<T>> Doublets<T> for UniqueResolver<T, L> {
         self.links.count_by(query)
     }
 
-    fn create_by_with<F, R>(
-        &mut self,
-        query: impl ToQuery<T>,
-        handler: F,
-    ) -> Result<R, LinksError<T>>
+    fn create_by_with<F, R>(&mut self, query: impl ToQuery<T>, handler: F) -> Result<R, Error<T>>
     where
         F: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>,
@@ -58,7 +53,7 @@ impl<T: LinkType, L: Doublets<T>> Doublets<T> for UniqueResolver<T, L> {
         query: impl ToQuery<T>,
         replacement: impl ToQuery<T>,
         mut handler: F,
-    ) -> Result<R, LinksError<T>>
+    ) -> Result<R, Error<T>>
     where
         F: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>,
@@ -79,11 +74,7 @@ impl<T: LinkType, L: Doublets<T>> Doublets<T> for UniqueResolver<T, L> {
         links.update_with(index, source, target, handler)
     }
 
-    fn delete_by_with<F, R>(
-        &mut self,
-        query: impl ToQuery<T>,
-        handler: F,
-    ) -> Result<R, LinksError<T>>
+    fn delete_by_with<F, R>(&mut self, query: impl ToQuery<T>, handler: F) -> Result<R, Error<T>>
     where
         F: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>,

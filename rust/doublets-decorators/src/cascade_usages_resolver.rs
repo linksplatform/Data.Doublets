@@ -1,15 +1,13 @@
-use std::borrow::BorrowMut;
 use std::default::default;
 use std::marker::PhantomData;
 use std::ops::Try;
 
-use num_traits::zero;
-
+use data::LinksConstants;
 use data::ToQuery;
-use data::{Links, LinksConstants};
-use doublets::LinksError;
-use doublets::{Doublets, Link};
 use num::LinkType;
+
+use doublets::Error;
+use doublets::{Doublets, Link};
 
 pub struct CascadeUsagesResolver<T: LinkType, L: Doublets<T>> {
     links: L,
@@ -35,11 +33,7 @@ impl<T: LinkType, L: Doublets<T>> Doublets<T> for CascadeUsagesResolver<T, L> {
         self.links.count_by(query)
     }
 
-    fn create_by_with<F, R>(
-        &mut self,
-        query: impl ToQuery<T>,
-        handler: F,
-    ) -> Result<R, LinksError<T>>
+    fn create_by_with<F, R>(&mut self, query: impl ToQuery<T>, handler: F) -> Result<R, Error<T>>
     where
         F: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>,
@@ -60,7 +54,7 @@ impl<T: LinkType, L: Doublets<T>> Doublets<T> for CascadeUsagesResolver<T, L> {
         query: impl ToQuery<T>,
         replacement: impl ToQuery<T>,
         handler: F,
-    ) -> Result<R, LinksError<T>>
+    ) -> Result<R, Error<T>>
     where
         F: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>,
@@ -72,7 +66,7 @@ impl<T: LinkType, L: Doublets<T>> Doublets<T> for CascadeUsagesResolver<T, L> {
         &mut self,
         query: impl ToQuery<T>,
         mut handler: F,
-    ) -> Result<R, LinksError<T>>
+    ) -> Result<R, Error<T>>
     where
         F: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>,

@@ -378,6 +378,26 @@ pub trait Doublets<T: LinkType> {
         Ok(usage_source + usage_target)
     }
 
+    fn usages(&self, index: T) -> Result<Vec<T>, LinksError<T>> {
+        let any = self.constants().any;
+        let mut usages = Vec::with_capacity(self.count_usages(index)?.as_());
+
+        self.try_each_by([any, index, any], |link| {
+            if link.index != index {
+                usages.push(link.index);
+            }
+            Flow::Continue
+        });
+
+        self.try_each_by([any, any, index], |link| {
+            if link.index != index {
+                usages.push(link.index);
+            }
+            Flow::Continue
+        });
+        Ok(usages)
+    }
+
     fn exist(&self, link: T) -> bool {
         let constants = self.constants();
         if constants.is_external(link) {

@@ -3,12 +3,11 @@ use std::default::default;
 use std::marker::PhantomData;
 use std::ops::Try;
 
-use num_traits::zero;
-
+use data::LinksConstants;
 use data::ToQuery;
-use data::{Links, LinksConstants};
-use doublets::{Doublet, Doublets, Link, LinksError};
 use num::LinkType;
+
+use doublets::{Doublet, Doublets, Error, Link};
 
 pub struct UniqueValidator<T: LinkType, L: Doublets<T>> {
     links: L,
@@ -34,11 +33,7 @@ impl<T: LinkType, L: Doublets<T>> Doublets<T> for UniqueValidator<T, L> {
         self.links.count_by(query)
     }
 
-    fn create_by_with<F, R>(
-        &mut self,
-        query: impl ToQuery<T>,
-        handler: F,
-    ) -> Result<R, LinksError<T>>
+    fn create_by_with<F, R>(&mut self, query: impl ToQuery<T>, handler: F) -> Result<R, Error<T>>
     where
         F: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>,
@@ -59,7 +54,7 @@ impl<T: LinkType, L: Doublets<T>> Doublets<T> for UniqueValidator<T, L> {
         query: impl ToQuery<T>,
         replacement: impl ToQuery<T>,
         handler: F,
-    ) -> Result<R, LinksError<T>>
+    ) -> Result<R, Error<T>>
     where
         F: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>,
@@ -68,7 +63,7 @@ impl<T: LinkType, L: Doublets<T>> Doublets<T> for UniqueValidator<T, L> {
         let any = links.constants().any;
         let replacement = replacement.to_query();
         if links.found([any, replacement[1], replacement[2]]) {
-            Err(LinksError::AlreadyExists(Doublet::new(
+            Err(Error::AlreadyExists(Doublet::new(
                 replacement[1],
                 replacement[2],
             )))
@@ -77,11 +72,7 @@ impl<T: LinkType, L: Doublets<T>> Doublets<T> for UniqueValidator<T, L> {
         }
     }
 
-    fn delete_by_with<F, R>(
-        &mut self,
-        query: impl ToQuery<T>,
-        handler: F,
-    ) -> Result<R, LinksError<T>>
+    fn delete_by_with<F, R>(&mut self, query: impl ToQuery<T>, handler: F) -> Result<R, Error<T>>
     where
         F: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>,
