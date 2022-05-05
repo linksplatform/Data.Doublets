@@ -7,6 +7,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         typename TLinkOptions,
         typename TMemory,
         typename TSourceTreeMethods,
+        bool VUseLinkedList,
         typename TTargetTreeMethods,
         typename TUnusedLinks,
         typename... TBase>
@@ -15,35 +16,35 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
     public:
         using OptionsType = TLinkOptions;
         using LinkAddressType = OptionsType::LinkAddressType;
+        using LinkType = OptionsType::LinkType;
         using WriteHandlerType = OptionsType::WriteHandlerType;
         using ReadHandlerType = OptionsType::ReadHandlerType;
         static constexpr LinksConstants<LinkAddressType> Constants = OptionsType::Constants;
+        static constexpr UseLinkedList = VUseLinkedList;
     private:
-        std::int64_t _memoryReservationStep;
+        std::int64_t _datadataMemoryReservationStepInBytesInBytes;
         IndexTreeType _indexTreeType;
         std::function<ILinksTreeMethods<LinkAddressType>> _createInternalSourceTreeMethods
     protected:
         IResizableDirectMemory _dataMemory;
         IResizableDirectMemory _indexMemory;
-
-        bool _useLinkedList;
-        std::int64_t _dataMemoryReservationStepInBytes;
-        std::int64t _indexMemoryReservationStepInBytes;
+        std::int64_t _datadataMemoryReservationStepInBytesInBytes;
+        std::int64t _indexdataMemoryReservationStepInBytesInBytes;
 
     public:
         static std::int64_t LinkDataPartSizeInBytes()
         {
-            return RawLinkDataPart<LinkAddressType>.SizeInBytes();
+            return RawLinkDataPart<LinkAddressType>::SizeInBytes();
         }
 
         static std::int64_t LinkIndexPartSizeInBytes()
         {
-            return RawLinkIndexPart<LinkAddressType>.SizeInBytes();
+            return RawLinkIndexPart<LinkAddressType>::SizeInBytes();
         }
 
         static std::int64_t LinkHeaderSizeInBytes()
         {
-            return LinksHeader<LinkAddressType>.SizeInBytes();
+            return LinksHeader<LinkAddressType>::SizeInBytes();
         }
 
         static std::int64_t DefaultLinksSizeStep()
@@ -51,18 +52,24 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             return 1 * 1024 * 1024;
         }
 
-        SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, std::int64_t memoryReservationStep) : this(dataMemory, indexMemory, memoryReservationStep, LinksConstants<LinkAddressType>{}, true)
+        SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, std::int64_t dataMemoryReservationStepInBytes) : this(dataMemory, indexMemory, dataMemoryReservationStepInBytes, LinksConstants<LinkAddressType>{}, true)
         {
 
         }
 
-        SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, std::int64_t memoryReservationStep, LinksConstants<LinkAddressType> constants, IndexTreeType indexTreeType, bool useLinkedList) : _dataMemory{ dataMemory }, _indexMemory{ indexMemory }, _memoryReservationStep{ memoryReservationStep }, _constants{ constants }, _indexTreeType{ indexTreeType }, _useLinkedList{ useLinkedList }
+        SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, std::int64_t dataMemoryReservationStepInBytes, LinksConstants<LinkAddressType> constants, IndexTreeType indexTreeType) : _dataMemory{ dataMemory }, _indexMemory{ indexMemory }, _datadataMemoryReservationStepInBytesInBytes{ dataMemoryReservationStepInBytes }, _indexTreeType{ indexTreeType } }
         {
-            if(indexTreeType == IndexTreeType::SizeBalancedTree)
+            if (UseLinkedList)
             {
-                // TODO
-                _createInternalSourceTreeMethods { [](){ return InternalLinksSourcesSizeBalancedTreeMethods<LinkAddressType> } }
+                InternalSourcesListMethods = InternalLinksSourcesLinkedListMethods<LinkAddressType>(Constants, _linksDataParts, _linksIndexParts);
             }
+            else
+            {
+                InternalSourcesTreeMethods = new TInternalSourcesTreeMethods(Constants, _linksDataParts, _linksIndexParts, _header);
+            }
+            ExternalSourcesTreeMethods = new TExternalSourcesTreeMethods(Constants, _linksDataParts, _linksIndexParts, _header);
+            InternalTargetsTreeMethods = new TInternalTargetsTreeMethods(Constants, _linksDataParts, _linksIndexParts, _header);
+            ExternalTargetsTreeMethods = new TExternalTargetsTreeMethods(Constants, _linksDataParts, _linksIndexParts, _header);
             Init(dataMemory, indexMemory);
         }
 
@@ -73,35 +80,35 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 indexMemory.ReservedCapacity(LinkHeaderSizeInBytes);
             }
             SetPointers(dataMemory, indexMemory);
-            auto header { GetHeaderReference() };
-            auto allocatedLinks { static_cast<std::int64_t>(header.AllocatedLinks()) };
+            auto& header { GetHeaderReference() };
+            auto allocatedLinks { header.AllocatedLinks() };
             // Adjust reserved capacity
             auto minimumDataReservedCapacity { allocatedLinks * LinkDataPartSizeInBytes };
             if(minimumDataReservedCapacity < dataMemory.UsedCapacity())
             {
                 minimumDataReservedCapacity = dataMemory.UsedCapacity();
             }
-            if(minimumDataReservedCapacity < _dataMemoryReservationStepInBytes)
+            if(minimumDataReservedCapacity < _datadataMemoryReservationStepInBytesInBytes)
             {
-                minimumDataReservedCapacity = _dataMemoryReservationStepInBytes;
+                minimumDataReservedCapacity = _datadataMemoryReservationStepInBytesInBytes;
             }
             auto minimumIndexReservedCapacity { allocatedLinks * LinkDataPartSizeInBytes };
             if (minimumIndexReservedCapacity < indexMemory.UsedCapacity)
             {
                 minimumIndexReservedCapacity = indexMemory.UsedCapacity;
             }
-            if (minimumIndexReservedCapacity < _indexMemoryReservationStepInBytes)
+            if (minimumIndexReservedCapacity < _indexdataMemoryReservationStepInBytesInBytes)
             {
-                minimumIndexReservedCapacity = _indexMemoryReservationStepInBytes;
+                minimumIndexReservedCapacity = _indexdataMemoryReservationStepInBytesInBytes;
             }
             // Check for alignment
-            if (minimumDataReservedCapacity % _dataMemoryReservationStepInBytes > 0)
+            if (minimumDataReservedCapacity % _datadataMemoryReservationStepInBytesInBytes > 0)
             {
-                minimumDataReservedCapacity = ((minimumDataReservedCapacity / _dataMemoryReservationStepInBytes) * _dataMemoryReservationStepInBytes) + _dataMemoryReservationStepInBytes;
+                minimumDataReservedCapacity = ((minimumDataReservedCapacity / _datadataMemoryReservationStepInBytesInBytes) * _datadataMemoryReservationStepInBytesInBytes) + _datadataMemoryReservationStepInBytesInBytes;
             }
-            if (minimumIndexReservedCapacity % _indexMemoryReservationStepInBytes > 0)
+            if (minimumIndexReservedCapacity % _indexdataMemoryReservationStepInBytesInBytes > 0)
             {
-                minimumIndexReservedCapacity = ((minimumIndexReservedCapacity / _indexMemoryReservationStepInBytes) * _indexMemoryReservationStepInBytes) + _indexMemoryReservationStepInBytes;
+                minimumIndexReservedCapacity = ((minimumIndexReservedCapacity / _indexdataMemoryReservationStepInBytesInBytes) * _indexdataMemoryReservationStepInBytesInBytes) + _indexdataMemoryReservationStepInBytesInBytes;
             }
             if (dataMemory.ReservedCapacity != minimumDataReservedCapacity)
             {
@@ -120,15 +127,15 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             header.ReservedLinks = (dataMemory.ReservedCapacity - LinkDataPartSizeInBytes) / LinkDataPartSizeInBytes;
         }
 
-        LinkAddressType Count(Interfaces::CList<LinkAddressType> auto&& restriction)
+        LinkAddressType Count(Interfaces::CList<LinkAddressType> auto&& restriction) const
         {
             auto length { std::ranges::size(restriction) };
             if(0 == length)
             {
                 return Total;
             }
-            var any = Constants.Any;
-            var index = GetIndex(thes, restriction);
+            auto any = Constants.Any;
+            auto index = GetIndex(this, restriction);
             if (1 == length)
             {
                 if (any == index))
@@ -139,27 +146,27 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             }
             if (2 == length)
             {
-                var value = restriction[1];
+                auto value = restriction[1];
                 if (any == index)
                 {
                     if (value == any))
                     {
                         return Total; // Any - как отсутствие ограничения
                     }
-                    var externalReferencesRange = constants.ExternalReferencesRange;
+                    auto externalReferencesRange = constants.ExternalReferencesRange;
                     if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value))
                     {
-                        return Add(ExternalSourcesTreeMethods.CountUsages(value), ExternalTargetsTreeMethods.CountUsages(value));
+                        return ExternalSourcesTreeMethods.CountUsages(value) + ExternalTargetsTreeMethods.CountUsages(value);
                     }
                     else
                     {
-                        if (_useLinkedList)
+                        if (UseLinkedList)
                         {
-                            return Add(InternalSourcesListMethods.CountUsages(value), InternalTargetsTreeMethods.CountUsages(value));
+                            return InternalSourcesListMethods.CountUsages(value) + InternalTargetsTreeMethods.CountUsages(value);
                         }
                         else
                         {
-                            return Add(InternalSourcesTreeMethods.CountUsages(value), InternalTargetsTreeMethods.CountUsages(value));
+                            return InternalSourcesTreeMethods.CountUsages(value) + InternalTargetsTreeMethods.CountUsages(value);
                         }
                     }
                 }
@@ -183,8 +190,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             }
             if(3 == length)
             {
-                auto source { GetSource(thes, restriction) };
-                auto target { GetTarget(thes, restriction) };
+                auto source { this->GetSource(this, restriction) };
+                auto target { this->GetTarget(this, restriction) };
                 if(any == index)
                 {
                     if((any == source) && (any == target))
@@ -199,31 +206,24 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             }
         }
 //
-//        void SetPointers(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory)
-//        {
-//            _linksDataParts = (byte*)dataMemory.Pointer;
-//            _linksIndexParts = (byte*)indexMemory.Pointer;
-//            _header = _linksIndexParts;
-//            if (_useLinkedList)
-//            {
-//                InternalSourcesListMethods = new InternalLinksSourcesLinkedListMethods<LinkAddressType>(Constants, _linksDataParts, _linksIndexParts);
-//            }
-//            else
-//            {
-//                InternalSourcesTreeMethods = _createInternalSourceTreeMethods();
-//            }
-//            ExternalSourcesTreeMethods = _createExternalSourceTreeMethods();
-//            InternalTargetsTreeMethods = _createInternalTargetTreeMethods();
-//            ExternalTargetsTreeMethods = _createExternalTargetTreeMethods();
-//            UnusedLinksListMethods = new UnusedLinksListMethods<LinkAddressType>(_linksDataParts, _header);
-//        }
-//
-//        void ResetPointers()
-//        {
-//            base.ResetPointers();
-//            _linksDataParts = null;
-//            _linksIndexParts = null;
-//            _header = null;
-//        }
+        void SetPointers(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory)
+        {
+            _linksDataParts = (byte*)dataMemory.Pointer;
+            _linksIndexParts = (byte*)indexMemory.Pointer;
+            _header = _linksIndexParts;
+
+            ExternalSourcesTreeMethods = new ExternalSourcesTreeMethods();
+            InternalTargetsTreeMethods = new InternalTargetsTreeMethods();
+            ExternalTargetsTreeMethods = new ExternalTargetsTreeMethods();
+            UnusedLinksListMethods = new UnusedLinksListMethods(_linksDataParts, _header);
+        }
+
+        void ResetPointers()
+        {
+            base.ResetPointers();
+            _linksDataParts = null;
+            _linksIndexParts = null;
+            _header = null;
+        }
     };
 }
