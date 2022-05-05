@@ -1,5 +1,6 @@
 ﻿namespace Platform::Data::Doublets::Memory::Split::Generic
 {
+    using namespace Platform::Collections::Methods::Trees;
     template<typename TLinkAddress, LinksConstants<TLinkAddress> VConstants>
     public class ExternalLinksRecursionlessSizeBalancedTreeMethodsBase : public RecursionlessSizeBalancedTreeMethods, ILinksTreeMethods<TLinkAddress>
     {
