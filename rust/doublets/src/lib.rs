@@ -30,4 +30,6 @@ pub mod mem;
 pub mod test_extensions;
 pub mod tests;
 
-pub use crate::data::{Doublet, Doublets, Handler, Link, LinksError, StoppedHandler};
+pub(crate) use crate::data::LinksError;
+pub use crate::data::{Doublet, Doublets, Handler, Link, StoppedHandler};
+pub type Error<T> = LinksError<T>;
