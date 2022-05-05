@@ -1,15 +1,10 @@
-﻿
-
-using static System::Runtime::CompilerServices::Unsafe;
-
-namespace Platform::Data::Doublets::Memory::Split::Generic
+﻿namespace Platform::Data::Doublets::Memory::Split::Generic
 {
-    public unsafe class ExternalLinksSizeBalancedTreeMethodsBase<TLinkAddress> : public SizeBalancedTreeMethods<TLinkAddress>, ILinksTreeMethods<TLinkAddress>
+    public class ExternalLinksSizeBalancedTreeMethodsBase : public SizeBalancedTreeMethods, ILinksTreeMethods
     {
-        private: static readonly UncheckedConverter<TLinkAddress, std::int64_t> _addressToInt64Converter = UncheckedConverter<TLinkAddress, std::int64_t>.Default;
-
-        protected: TLinkAddress Break = 0;
-        protected: TLinkAddress Continue = 0;
+    public:
+        protected: TLinkAddress Break = Constants.Break;
+        protected: TLinkAddress Continue = Constants.Continue;
         protected: readonly std::uint8_t* LinksDataParts;
         protected: readonly std::uint8_t* LinksIndexParts;
         protected: readonly std::uint8_t* Header;
@@ -40,17 +35,17 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         protected: virtual IList<TLinkAddress> GetLinkValues(TLinkAddress linkIndex)
         {
             auto* link = GetLinkDataPartReference(linkIndex);
-            return Link<TLinkAddress>(linkIndex, link.Source, link.Target);
+            return LinkType(linkIndex, link.Source, link.Target);
         }
 
-        protected: bool FirstIsToTheLeftOfSecond(TLinkAddress first, TLinkAddress second) override
+        protected: bool FirstIsToTheLeftOfSecond(TLinkAddress first, TLinkAddress second)
         {
             auto* firstLink = this->GetLinkDataPartReference(first);
             auto* secondLink = this->GetLinkDataPartReference(second);
             return this->FirstIsToTheLeftOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
         }
 
-        protected: bool FirstIsToTheRightOfSecond(TLinkAddress first, TLinkAddress second) override
+        protected: bool FirstIsToTheRightOfSecond(TLinkAddress first, TLinkAddress second)
         {
             auto* firstLink = this->GetLinkDataPartReference(first);
             auto* secondLink = this->GetLinkDataPartReference(second);

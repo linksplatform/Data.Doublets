@@ -1,27 +1,26 @@
 ﻿namespace Platform::Data::Doublets::Memory::Split::Generic
 {
     using Platform::Collections::Methods::Lists::RelativeCircularDoublyLinkedListMethods;
-    template<typename TLinkAddress>
+    template<typename TLinkAddress, LinksConstants<TLinkAddress> VConstants>
     class InternalLinksSourcesLinkedListMethods : public RelativeCircularDoublyLinkedListMethods<TLinkAddress>
     {
+        public: static constexpr LinksConstants<TLinkAddress> Constants = VConstants;
         private:
         std::uint8_t* _linksDataParts;
         std::uint8_t* _linksIndexParts;
         protected:
-        TLinkAddress Break;
-        TLinkAddress Continue;
+        TLinkAddress Break = Constants.Break;
+        TLinkAddress Continue = Constants.Continue;
 
-        public: InternalLinksSourcesLinkedListMethods(LinksConstants<TLinkAddress> constants, std::uint8_t* linksDataParts, std::uint8_t* linksIndexParts)
+        public: InternalLinksSourcesLinkedListMethods(std::uint8_t* linksDataParts, std::uint8_t* linksIndexParts)
         {
             _linksDataParts = linksDataParts;
             _linksIndexParts = linksIndexParts;
-            Break = constants.Break;
-            Continue = constants.Continue;
         }
 
         protected: virtual RawLinkDataPart<TLinkAddress>& GetLinkDataPartReference(TLinkAddress link)
         { 
-            return &(*(_linksDataParts + (RawLinkDataPart<TLinkAddress>.SizeInBytes * link)));
+            return &(*(_linksDataParts + (RawLinkDataPart<TLinkAddress>::SizeInBytes * link)));
         }
 
         protected: virtual RawLinkIndexPart<TLinkAddress>&& GetLinkIndexPartReference(TLinkAddress link) 
@@ -29,12 +28,12 @@
             return RawLinkIndexPart<TLinkAddress>>{ _linksIndexParts + (RawLinkIndexPart<TLinkAddress>.SizeInBytes * link) };
         }
 
-        protected: TLinkAddress GetFirst(TLinkAddress head) override 
+        protected: TLinkAddress GetFirst(TLinkAddress head)
         {
             return this->GetLinkIndexPartReference(head)->RootAsSource; 
         }
 
-        protected: TLinkAddress GetLast(TLinkAddress head) override
+        protected: TLinkAddress GetLast(TLinkAddress head)
         {
             auto first = this->GetLinkIndexPartReference(head)->RootAsSource;
             if (0 == first)
@@ -47,41 +46,41 @@
             }
         }
 
-        protected: TLinkAddress GetPrevious(TLinkAddress element) override
+        protected: TLinkAddress GetPrevious(TLinkAddress element)
         {
              return this->GetLinkIndexPartReference(element)->LeftAsSource; 
         }
 
-        protected: TLinkAddress GetNext(TLinkAddress element) override
+        protected: TLinkAddress GetNext(TLinkAddress element)
         {
              return this->GetLinkIndexPartReference(element)->RightAsSource; 
         }
 
-        protected: TLinkAddress GetSize(TLinkAddress head) override
+        protected: TLinkAddress GetSize(TLinkAddress head)
         {
              return this->GetLinkIndexPartReference(head)->SizeAsSource; 
         }
 
-        protected: void SetFirst(TLinkAddress head, TLinkAddress element) override
+        protected: void SetFirst(TLinkAddress head, TLinkAddress element)
         {
              this->GetLinkIndexPartReference(head)->RootAsSource = element; 
         }
 
-        protected: void SetLast(TLinkAddress head, TLinkAddress element) override
+        protected: void SetLast(TLinkAddress head, TLinkAddress element)
         {
         }
 
-        protected: void SetPrevious(TLinkAddress element, TLinkAddress previous) override
+        protected: void SetPrevious(TLinkAddress element, TLinkAddress previous)
         {
              this->GetLinkIndexPartReference(element)->LeftAsSource = previous; 
         }
 
-        protected: void SetNext(TLinkAddress element, TLinkAddress next) override
+        protected: void SetNext(TLinkAddress element, TLinkAddress next)
         {
              this->GetLinkIndexPartReference(element)->RightAsSource = next; 
         }
 
-        protected: void SetSize(TLinkAddress head, TLinkAddress size) override
+        protected: void SetSize(TLinkAddress head, TLinkAddress size)
         {
              this->GetLinkIndexPartReference(head)->SizeAsSource = size; 
         }
