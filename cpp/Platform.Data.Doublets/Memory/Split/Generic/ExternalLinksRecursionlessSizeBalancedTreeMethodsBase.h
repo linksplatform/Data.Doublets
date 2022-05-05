@@ -67,7 +67,7 @@
             return this->FirstIsToTheRightOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
         }
 
-        public: TLinkAddress this[TLinkAddress index]
+        public: TLinkAddress operator[](TLinkAddress index)
         {
                 auto root = GetTreeRoot();
                 if (index >= GetSize(root))
