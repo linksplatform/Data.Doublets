@@ -6,8 +6,8 @@
     public:
         using OptionsType = TLinksOptions;
         static constexpr LinksConstants<TLinkAddress> Constants = OptionsType::Constants;
-        protected: TLinkAddress Break = Constants.Break;
-        protected: TLinkAddress Continue = Constants.Continue;
+        protected: static constexpr TLinkAddress Break = Constants.Break;
+        protected: static constexpr TLinkAddress Continue = Constants.Continue;
         protected: std::uint8_t* LinksDataParts;
         protected: std::uint8_t* LinksIndexParts;
         protected: std::uint8_t* Header;

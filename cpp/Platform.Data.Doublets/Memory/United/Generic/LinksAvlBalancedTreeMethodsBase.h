@@ -12,8 +12,8 @@ namespace Platform::Data::Doublets::Memory::United::Generic
         private: static UncheckedConverter<TLinkAddress, bool> _addressToBoolConverter = UncheckedConverter<TLinkAddress, bool>.Default;
         private: static UncheckedConverter<std::int32_t, TLinkAddress> _int32ToAddressConverter = UncheckedConverter<std::int32_t, TLinkAddress>.Default;
 
-        protected: TLinkAddress Break = 0;
-        protected: TLinkAddress Continue = 0;
+        protected: static constexpr TLinkAddress Break = 0;
+        protected: static constexpr TLinkAddress Continue = 0;
         protected: std::uint8_t* Links;
         protected: std::uint8_t* Header;
 
