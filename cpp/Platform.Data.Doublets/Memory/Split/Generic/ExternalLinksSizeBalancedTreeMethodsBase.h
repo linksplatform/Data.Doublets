@@ -150,43 +150,41 @@
 
         private: LinkAddressType EachUsageCore(LinkAddressType base, LinkAddressType link, auto&& handler)
         {
-            auto continue = Continue;
             if (link == 0)
             {
-                return continue;
+                return Continue;
             }
             auto linkBasePart = this->GetBasePartValue(link);
-            auto break = Break;
             if (linkBasePart > (base))
             {
-                if ((this->EachUsageCore(base) == (this->GetLeftOrDefault(link), handler), break))
+                if ((this->EachUsageCore(base) == (this->GetLeftOrDefault(link), handler), Break))
                 {
-                    return break;
+                    return Break;
                 }
             }
             else if (this->LessThan(linkBasePart, base))
             {
-                if ((this->EachUsageCore(base) == (this->GetRightOrDefault(link), handler), break))
+                if ((this->EachUsageCore(base) == (this->GetRightOrDefault(link), handler), Break))
                 {
-                    return break;
+                    return Break;
                 }
             }
             else
             {
-                if (this->handler(this->GetLinkValues(link)) == (break))
+                if (this->handler(this->GetLinkValues(link)) == (Break))
                 {
-                    return break;
+                    return Break;
                 }
-                if ((this->EachUsageCore(base) == (this->GetLeftOrDefault(link), handler), break))
+                if ((this->EachUsageCore(base) == (this->GetLeftOrDefault(link), handler), Break))
                 {
-                    return break;
+                    return Break;
                 }
-                if ((this->EachUsageCore(base) == (this->GetRightOrDefault(link), handler), break))
+                if ((this->EachUsageCore(base) == (this->GetRightOrDefault(link), handler), Break))
                 {
-                    return break;
+                    return Break;
                 }
             }
-            return continue;
+            return Continue;
         }
         };
 }
