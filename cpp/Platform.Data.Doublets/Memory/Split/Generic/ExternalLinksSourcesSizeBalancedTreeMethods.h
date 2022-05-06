@@ -6,7 +6,7 @@
     public:
         using base = ExternalLinksSizeBalancedTreeMethodsBase<TLinksOptions>;
         using LinksOptionsType = TLinksOptions;
-        static constexpr Constants = LinksOptionsType::Constants;
+        static constexpr auto Constants = LinksOptionsType::Constants;
         public: ExternalLinksSourcesSizeBalancedTreeMethods, std::uint8_t* linksDataParts, std::uint8_t* linksIndexParts, std::uint8_t* header) : base(linksDataParts, linksIndexParts, header) { }
 
         protected: TLinkAddress* GetLeftReference(TLinkAddress node)  { return &GetLinkIndexPartReference(node)->LeftAsSource; }
