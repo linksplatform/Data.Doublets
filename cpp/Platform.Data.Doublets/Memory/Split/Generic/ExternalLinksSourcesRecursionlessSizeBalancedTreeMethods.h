@@ -7,7 +7,7 @@
     public: using LinksOptionsType = TLinksOptions;
     public: using LinkAddressType = typename LinksOptionsType::LinkAddressType;
     public: static constexpr auto Constants = LinksOptionsType::Constants;
-    public: ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods(std::uint8_t* linksDataParts, std::uint8_t* linksIndexParts, std::uint8_t* header) : base(Constants, linksDataParts, linksIndexParts, header) { }
+    public: ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods(std::uint8_t* linksDataParts, std::uint8_t* linksIndexParts, std::uint8_t* header) : base(linksDataParts, linksIndexParts, header) { }
 
         protected: LinkAddressType* GetLeftReference(LinkAddressType node)  { return &GetLinkIndexPartReference(node)->LeftAsSource; }
 
