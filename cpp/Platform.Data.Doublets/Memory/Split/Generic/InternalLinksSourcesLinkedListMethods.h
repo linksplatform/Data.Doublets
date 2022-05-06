@@ -4,7 +4,7 @@
     template<typename TLinkAddress, LinksConstants<TLinkAddress> VConstants>
     class InternalLinksSourcesLinkedListMethods : public RelativeCircularDoublyLinkedListMethods<TLinkAddress>
     {
-        public: static constexpr LinksConstants<TLinkAddress> Constants = VConstants;
+        public: static constexpr auto Constants = VConstants;
         private:
         std::uint8_t* _linksDataParts;
         std::uint8_t* _linksIndexParts;
