@@ -25,7 +25,7 @@
 
         protected: virtual RawLinkIndexPart<TLinkAddress>&& GetLinkIndexPartReference(TLinkAddress link) 
         { 
-            return RawLinkIndexPart<TLinkAddress>>{ _linksIndexParts + (RawLinkIndexPart<TLinkAddress>.SizeInBytes * link) };
+            return RawLinkIndexPart<TLinkAddress>>{ _linksIndexParts + (RawLinkIndexPart<TLinkAddress>::SizeInBytes * link) };
         }
 
         protected: TLinkAddress GetFirst(TLinkAddress head)
