@@ -59,7 +59,7 @@
             return this->FirstIsToTheRightOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
         }
 
-        public: LinkAddressType this[LinkAddressType index]
+        public: LinkAddressType operator[](LinkAddressType index)
         {
             get
             {
