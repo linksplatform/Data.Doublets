@@ -148,9 +148,9 @@
             return this->Subtract(this->Subtract(total, totalRightIgnore), totalLeftIgnore);
         }
 
-        public: LinkAddressType EachUsage(LinkAddressType base, Func<IList<LinkAddressType>, LinkAddressType> handler) { return this->EachUsageCore(base, this->GetTreeRoot(), handler); }
+        public: LinkAddressType EachUsage(LinkAddressType base, auto&& handler) { return this->EachUsageCore(base, this->GetTreeRoot(), handler); }
 
-        private: LinkAddressType EachUsageCore(LinkAddressType base, LinkAddressType link, Func<IList<LinkAddressType>, LinkAddressType> handler)
+        private: LinkAddressType EachUsageCore(LinkAddressType base, LinkAddressType link, auto&& handler)
         {
             auto continue = Continue;
             if (link == 0)
