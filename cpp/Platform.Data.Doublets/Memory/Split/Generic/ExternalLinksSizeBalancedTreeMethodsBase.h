@@ -1,10 +1,11 @@
 ﻿namespace Platform::Data::Doublets::Memory::Split::Generic
 {
-    template<typename TLinkAddress, LinksConstants<TLinkAddress> VConstants>
-    class ExternalLinksSizeBalancedTreeMethodsBase : public SizeBalancedTreeMethods<ExternalLinksRecursionlessSizeBalancedTreeMethodsBase<TLinkAddress, VConstants>, TLinkAddress>, ILinksTreeMethods
+    template<typename TLinksOptions>
+    class ExternalLinksSizeBalancedTreeMethodsBase : public SizeBalancedTreeMethods<ExternalLinksRecursionlessSizeBalancedTreeMethodsBase<typename TLinksOptions::TLinkAddress, TLinksOptions::Constants>, TLinkAddress>, ILinksTreeMethods<TLinksOptions>
     {
     public:
-        static constexpr LinksConstants<TLinkAddress> Constants = VConstants;
+        using OptionsType = TLinksOptions;
+        static constexpr LinksConstants<TLinkAddress> Constants = OptionsType::Constants;
         protected: TLinkAddress Break = Constants.Break;
         protected: TLinkAddress Continue = Constants.Continue;
         protected: std::uint8_t* LinksDataParts;
