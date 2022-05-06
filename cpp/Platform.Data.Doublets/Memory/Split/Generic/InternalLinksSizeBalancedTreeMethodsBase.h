@@ -11,7 +11,7 @@
         protected: std::uint8_t* LinksIndexParts;
         protected: std::uint8_t* Header;
 
-        protected: InternalLinksSizeBalancedTreeMethodsBase(LinksConstants<TLinkAddress> constants, std::uint8_t* linksDataParts, std::uint8_t* linksIndexParts, std::uint8_t* header)
+        protected: InternalLinksSizeBalancedTreeMethodsBase(std::uint8_t* linksDataParts, std::uint8_t* linksIndexParts, std::uint8_t* header)
         {
             LinksDataParts = linksDataParts;
             LinksIndexParts = linksIndexParts;
