@@ -1,6 +1,6 @@
 ﻿namespace Platform::Data::Doublets::Memory::Split::Generic
 {
-    public class InternalLinksTargetsSizeBalancedTreeMethods<TLinkAddress> : public InternalLinksSizeBalancedTreeMethodsBase<TLinkAddress>
+    class InternalLinksTargetsSizeBalancedTreeMethods<TLinkAddress> : public InternalLinksSizeBalancedTreeMethodsBase<TLinkAddress>
     {
         public: InternalLinksTargetsSizeBalancedTreeMethods(LinksConstants<TLinkAddress> constants, std::uint8_t* linksDataParts, std::uint8_t* linksIndexParts, std::uint8_t* header) : base(constants, linksDataParts, linksIndexParts, header) { }
 
