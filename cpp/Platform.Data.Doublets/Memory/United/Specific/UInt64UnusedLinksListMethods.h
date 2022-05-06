@@ -2,8 +2,8 @@
 {
     public unsafe class UInt64UnusedLinksListMethods : public UnusedLinksListMethods<std::uint64_t>
     {
-        private: readonly RawLink<std::uint64_t>* _links;
-        private: readonly LinksHeader<std::uint64_t>* _header;
+        private: RawLink<std::uint64_t>* _links;
+        private: LinksHeader<std::uint64_t>* _header;
 
         public: UInt64UnusedLinksListMethods(RawLink<std::uint64_t>* storage, LinksHeader<std::uint64_t>* header)
             : base((std::uint8_t*)storage, (std::uint8_t*)header)

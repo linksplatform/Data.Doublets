@@ -2,8 +2,8 @@
 {
     public unsafe class UInt32UnusedLinksListMethods : public UnusedLinksListMethods<std::uint32_t>
     {
-        private: readonly RawLink<std::uint32_t>* _links;
-        private: readonly LinksHeader<std::uint32_t>* _header;
+        private: RawLink<std::uint32_t>* _links;
+        private: LinksHeader<std::uint32_t>* _header;
 
         public: UInt32UnusedLinksListMethods(RawLink<std::uint32_t>* storage, LinksHeader<std::uint32_t>* header)
             : base((std::uint8_t*)storage, (std::uint8_t*)header)

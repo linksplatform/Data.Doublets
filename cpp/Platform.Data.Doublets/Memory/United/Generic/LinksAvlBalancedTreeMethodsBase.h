@@ -6,16 +6,16 @@ namespace Platform::Data::Doublets::Memory::United::Generic
 {
     public unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : public SizedAndThreadedAVLBalancedTreeMethods<TLinkAddress>, ILinksTreeMethods<TLinkAddress>
     {
-        private: static readonly UncheckedConverter<TLinkAddress, std::int64_t> _addressToInt64Converter = UncheckedConverter<TLinkAddress, std::int64_t>.Default;
-        private: static readonly UncheckedConverter<TLinkAddress, std::int32_t> _addressToInt32Converter = UncheckedConverter<TLinkAddress, std::int32_t>.Default;
-        private: static readonly UncheckedConverter<bool, TLinkAddress> _boolToAddressConverter = UncheckedConverter<bool, TLinkAddress>.Default;
-        private: static readonly UncheckedConverter<TLinkAddress, bool> _addressToBoolConverter = UncheckedConverter<TLinkAddress, bool>.Default;
-        private: static readonly UncheckedConverter<std::int32_t, TLinkAddress> _int32ToAddressConverter = UncheckedConverter<std::int32_t, TLinkAddress>.Default;
+        private: static UncheckedConverter<TLinkAddress, std::int64_t> _addressToInt64Converter = UncheckedConverter<TLinkAddress, std::int64_t>.Default;
+        private: static UncheckedConverter<TLinkAddress, std::int32_t> _addressToInt32Converter = UncheckedConverter<TLinkAddress, std::int32_t>.Default;
+        private: static UncheckedConverter<bool, TLinkAddress> _boolToAddressConverter = UncheckedConverter<bool, TLinkAddress>.Default;
+        private: static UncheckedConverter<TLinkAddress, bool> _addressToBoolConverter = UncheckedConverter<TLinkAddress, bool>.Default;
+        private: static UncheckedConverter<std::int32_t, TLinkAddress> _int32ToAddressConverter = UncheckedConverter<std::int32_t, TLinkAddress>.Default;
 
         protected: TLinkAddress Break = 0;
         protected: TLinkAddress Continue = 0;
-        protected: readonly std::uint8_t* Links;
-        protected: readonly std::uint8_t* Header;
+        protected: std::uint8_t* Links;
+        protected: std::uint8_t* Header;
 
         protected: LinksAvlBalancedTreeMethodsBase(LinksConstants<TLinkAddress> constants, std::uint8_t* storage, std::uint8_t* header)
         {

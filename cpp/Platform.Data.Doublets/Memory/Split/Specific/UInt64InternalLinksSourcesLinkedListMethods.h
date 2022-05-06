@@ -5,8 +5,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
 {
     public unsafe class UInt64InternalLinksSourcesLinkedListMethods : public InternalLinksSourcesLinkedListMethods<TLinkAddress>
     {
-        private: readonly RawLinkDataPart<TLinkAddress>* _linksDataParts;
-        private: readonly RawLinkIndexPart<TLinkAddress>* _linksIndexParts;
+        private: RawLinkDataPart<TLinkAddress>* _linksDataParts;
+        private: RawLinkIndexPart<TLinkAddress>* _linksIndexParts;
 
         public: UInt64InternalLinksSourcesLinkedListMethods(LinksConstants<TLinkAddress> constants, RawLinkDataPart<TLinkAddress>* linksDataParts, RawLinkIndexPart<TLinkAddress>* linksIndexParts)
             : base(constants, (std::uint8_t*)linksDataParts, (std::uint8_t*)linksIndexParts)

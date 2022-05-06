@@ -6,10 +6,10 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
 {
     public unsafe class UnusedLinksListMethods<TLinkAddress> : public AbsoluteCircularDoublyLinkedListMethods<TLinkAddress>, ILinksListMethods<TLinkAddress>
     {
-        private: static readonly UncheckedConverter<TLinkAddress, std::int64_t> _addressToInt64Converter = UncheckedConverter<TLinkAddress, std::int64_t>.Default;
+        private: static UncheckedConverter<TLinkAddress, std::int64_t> _addressToInt64Converter = UncheckedConverter<TLinkAddress, std::int64_t>.Default;
 
-        private: readonly std::uint8_t* _links;
-        private: readonly std::uint8_t* _header;
+        private: std::uint8_t* _links;
+        private: std::uint8_t* _header;
 
         public: UnusedLinksListMethods(std::uint8_t* storage, std::uint8_t* header)
         {

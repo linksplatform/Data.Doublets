@@ -6,8 +6,8 @@ namespace Platform::Data::Doublets::Memory::Split::Specific
 {
     public unsafe class UInt64UnusedLinksListMethods : public UnusedLinksListMethods<TLinkAddress>
     {
-        private: readonly RawLinkDataPart<std::uint64_t>* _links;
-        private: readonly LinksHeader<std::uint64_t>* _header;
+        private: RawLinkDataPart<std::uint64_t>* _links;
+        private: LinksHeader<std::uint64_t>* _header;
 
         public: UInt64UnusedLinksListMethods(RawLinkDataPart<std::uint64_t>* storage, LinksHeader<std::uint64_t>* header)
             : base((std::uint8_t*)storage, (std::uint8_t*)header)

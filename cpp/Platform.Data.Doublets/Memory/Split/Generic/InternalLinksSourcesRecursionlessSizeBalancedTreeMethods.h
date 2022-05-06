@@ -1,7 +1,7 @@
 ﻿namespace Platform::Data::Doublets::Memory::Split::Generic
 {
     template<typename TLinkAddress, LinksConstants<TLinkAddress> VConstants>
-    public class InternalLinksSourcesRecursionlessSizeBalancedTreeMethods : public InternalLinksRecursionlessSizeBalancedTreeMethodsBase
+    class InternalLinksSourcesRecursionlessSizeBalancedTreeMethods : public InternalLinksRecursionlessSizeBalancedTreeMethodsBase
     {
         using Constants = VConstants;
         public: InternalLinksSourcesRecursionlessSizeBalancedTreeMethods(std::uint8_t* linksDataParts, std::uint8_t* linksIndexParts, std::uint8_t* header) : base(constants, linksDataParts, linksIndexParts, header) { }
