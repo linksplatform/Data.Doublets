@@ -153,7 +153,7 @@
             return (total - totalRightIgnore) - totalLeftIgnore;
         }
 
-        public: TLinkAddress EachUsage(TLinkAddress base, Func<IList<TLinkAddress>, TLinkAddress> handler) { return this->EachUsageCore(base, this->GetTreeRoot(), handler); }
+        public: TLinkAddress EachUsage(TLinkAddress base, auto&& handler) { return this->EachUsageCore(base, this->GetTreeRoot(), handler); }
 
         private: TLinkAddress EachUsageCore(TLinkAddress base, TLinkAddress link, auto&& handler)
         {
