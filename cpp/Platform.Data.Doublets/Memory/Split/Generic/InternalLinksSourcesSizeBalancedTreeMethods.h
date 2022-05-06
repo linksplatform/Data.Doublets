@@ -3,7 +3,7 @@
     class InternalLinksSourcesSizeBalancedTreeMethods : public InternalLinksSizeBalancedTreeMethodsBase<TLinkAddress>
     {
         using base = InternalLinksSizeBalancedTreeMethodsBase<TLinkAddress>;
-        public: InternalLinksSourcesSizeBalancedTreeMethods(LinksConstants<TLinkAddress> constants, std::uint8_t* linksDataParts, std::uint8_t* linksIndexParts, std::uint8_t* header) : base(constants, linksDataParts, linksIndexParts, header) { }
+        public: InternalLinksSourcesSizeBalancedTreeMethods, std::uint8_t* linksDataParts, std::uint8_t* linksIndexParts, std::uint8_t* header) : base(linksDataParts, linksIndexParts, header) { }
 
         protected: TLinkAddress* GetLeftReference(TLinkAddress node)  { return &GetLinkIndexPartReference(node)->LeftAsSource; }
 
