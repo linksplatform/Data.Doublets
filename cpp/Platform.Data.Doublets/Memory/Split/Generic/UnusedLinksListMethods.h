@@ -17,7 +17,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             _header = header;
         }
 
-        protected: virtual ref LinksHeader<TLinkAddress> GetHeaderReference() { return ref AsRef<LinksHeader<TLinkAddress>>(_header); }
+        protected: LinksHeader<TLinkAddress>& GetHeaderReference() { return ref AsRef<LinksHeader<TLinkAddress>>(_header); }
 
         protected: virtual ref RawLinkDataPart<TLinkAddress> GetLinkDataPartReference(TLinkAddress link) { return ref AsRef<RawLinkDataPart<TLinkAddress>>(_links + (RawLinkDataPart<TLinkAddress>.SizeInBytes * _addressToInt64Converter.Convert(link))); }
 

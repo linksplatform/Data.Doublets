@@ -33,7 +33,10 @@ namespace Platform::Data::Doublets::Memory::United::Generic
 
         protected: virtual bool FirstIsToTheLeftOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget) = 0;
 
-        protected: virtual ref LinksHeader<TLinkAddress> GetHeaderReference() { return ref AsRef<LinksHeader<TLinkAddress>>(Header); }
+        protected:         auto&& GetHeaderReference() const
+        {
+            return *reinterpret_cast<LinksHeader<LinkAddressType>*>(_header);
+        }
 
         protected: virtual ref RawLink<TLinkAddress> GetLinkReference(TLinkAddress link) { return ref AsRef<RawLink<TLinkAddress>>(Links + (RawLink<TLinkAddress>.SizeInBytes * _addressToInt64Converter.Convert(link))); }
 
