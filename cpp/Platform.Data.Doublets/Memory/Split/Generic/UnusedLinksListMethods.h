@@ -4,7 +4,7 @@ using static System::Runtime::CompilerServices::Unsafe;
 
 namespace Platform::Data::Doublets::Memory::Split::Generic
 {
-    public unsafe class UnusedLinksListMethods<TLinkAddress> : public AbsoluteCircularDoublyLinkedListMethods<TLinkAddress>, ILinksListMethods<TLinkAddress>
+    public class UnusedLinksListMethods<TLinkAddress> : public AbsoluteCircularDoublyLinkedListMethods<TLinkAddress>, ILinksListMethods<TLinkAddress>
     {
         private: static UncheckedConverter<TLinkAddress, std::int64_t> _addressToInt64Converter = UncheckedConverter<TLinkAddress, std::int64_t>.Default;
 

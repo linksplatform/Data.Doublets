@@ -6,7 +6,7 @@
     {
     public: using LinkOptionsType = TLinksOptions;
         using LinkAddressType = typename LinksOptionsType::LinkAddressType;
-        public: static constexpr auto Constants = LinksOptionsType.Constants;
+        public: static constexpr auto Constants = LinksOptionsType::Constants;
         private:
         std::uint8_t* _linksDataParts;
         std::uint8_t* _linksIndexParts;

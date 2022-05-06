@@ -1,6 +1,6 @@
 ﻿namespace Platform::Data::Doublets::Memory::Split::Generic
 {
-    public unsafe class ExternalLinksTargetsSizeBalancedTreeMethods<TLinkAddress> : public ExternalLinksSizeBalancedTreeMethodsBase<TLinkAddress>
+    public class ExternalLinksTargetsSizeBalancedTreeMethods<TLinkAddress> : public ExternalLinksSizeBalancedTreeMethodsBase<TLinkAddress>
     {
         public: ExternalLinksTargetsSizeBalancedTreeMethods(LinksConstants<TLinkAddress> constants, std::uint8_t* linksDataParts, std::uint8_t* linksIndexParts, std::uint8_t* header) : base(constants, linksDataParts, linksIndexParts, header) { }
 

@@ -2,11 +2,11 @@
 {
     using namespace Platform::Collections::Methods::Trees;
     template<typename TLinksOptions>
-    class ExternalLinksRecursionlessSizeBalancedTreeMethodsBase : public RecursionlessSizeBalancedTreeMethods<ExternalLinksRecursionlessSizeBalancedTreeMethodsBase<typename TLinksOptions::LinkAddressType, VConstants>, typename TLinksOptions::LinkAddressType>, ILinksTreeMethods<typename TLinksOptions::LinkAddressType>
+    class ExternalLinksRecursionlessSizeBalancedTreeMethodsBase : public RecursionlessSizeBalancedTreeMethods<ExternalLinksRecursionlessSizeBalancedTreeMethodsBase<TLinksOptions>, typename TLinksOptions::LinkAddressType>, ILinksTreeMethods<typename TLinksOptions::LinkAddressType>
     {
     public: using LinksOptionsType = TLinksOptions;
-    public: static constexpr auto Constants = OptionsType.Constants;
-    public: using LinkAddressType = typename OptionsType::LinkAddressType;
+    public: static constexpr auto Constants = LinksOptionsType::Constants;
+    public: using LinkAddressType = typename LinksOptionsType::LinkAddressType;
         protected: static constexpr LinkAddressType Break = Constants.Break;
         protected: static constexpr LinkAddressType Continue = Constants.Continue;
         protected: std::uint8_t* LinksDataParts;

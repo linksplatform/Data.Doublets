@@ -1,7 +1,8 @@
 ﻿namespace Platform::Data::Doublets::Memory::Split::Generic
 {
-    public unsafe class InternalLinksSourcesSizeBalancedTreeMethods<TLinkAddress> : public InternalLinksSizeBalancedTreeMethodsBase<TLinkAddress>
+    public class InternalLinksSourcesSizeBalancedTreeMethods<TLinkAddress> : public InternalLinksSizeBalancedTreeMethodsBase<TLinkAddress>
     {
+        using base = InternalLinksSizeBalancedTreeMethodsBase<TLinkAddress>;
         public: InternalLinksSourcesSizeBalancedTreeMethods(LinksConstants<TLinkAddress> constants, std::uint8_t* linksDataParts, std::uint8_t* linksIndexParts, std::uint8_t* header) : base(constants, linksDataParts, linksIndexParts, header) { }
 
         protected: TLinkAddress* GetLeftReference(TLinkAddress node)  { return &GetLinkIndexPartReference(node)->LeftAsSource; }
