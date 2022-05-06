@@ -35,9 +35,9 @@
             return *reinterpret_cast<LinksHeader<LinkAddressType>*>(_header);
         }
 
-        protected: RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link) { return *reinterpret_cast<RawLinkDataPart<LinkAddressType>*>(LinksDataParts + (RawLinkDataPart<LinkAddressType>.SizeInBytes * _addressToInt64Converter.Convert(link))); }
+        protected: RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link) { return *reinterpret_cast<RawLinkDataPart<LinkAddressType>*>(LinksDataParts + (RawLinkDataPart<LinkAddressType>.SizeInBytes * (link))); }
 
-        protected: virtual ref RawLinkIndexPart<LinkAddressType> GetLinkIndexPartReference(LinkAddressType link) { return ref AsRef<RawLinkIndexPart<LinkAddressType>>(LinksIndexParts + (RawLinkIndexPart<LinkAddressType>.SizeInBytes * _addressToInt64Converter.Convert(link))); }
+        protected: virtual ref RawLinkIndexPart<LinkAddressType> GetLinkIndexPartReference(LinkAddressType link) { return ref AsRef<RawLinkIndexPart<LinkAddressType>>(LinksIndexParts + (RawLinkIndexPart<LinkAddressType>.SizeInBytes * (link))); }
 
         protected: virtual IList<LinkAddressType> GetLinkValues(LinkAddressType linkIndex)
         {

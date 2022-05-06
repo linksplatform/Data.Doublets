@@ -34,9 +34,9 @@
                     return this->object()->GetKeyPartValue(link);
                 };
 
-            protected: RawLinkDataPart<TLinkAddress> GetLinkDataPartReference(TLinkAddress link) { return RawLinkDataPart<TLinkAddress>(LinksDataParts + (RawLinkDataPart<TLinkAddress>::SizeInBytes * _addressToInt64Converter.Convert(link))); }
+            protected: RawLinkDataPart<TLinkAddress> GetLinkDataPartReference(TLinkAddress link) { return RawLinkDataPart<TLinkAddress>(LinksDataParts + (RawLinkDataPart<TLinkAddress>::SizeInBytes * (link))); }
 
-            protected: RawLinkIndexPart<TLinkAddress> GetLinkIndexPartReference(TLinkAddress link) { return RawLinkIndexPart<TLinkAddress>(LinksIndexParts + (RawLinkIndexPart<TLinkAddress>::SizeInBytes * _addressToInt64Converter.Convert(link))); }
+            protected: RawLinkIndexPart<TLinkAddress> GetLinkIndexPartReference(TLinkAddress link) { return RawLinkIndexPart<TLinkAddress>(LinksIndexParts + (RawLinkIndexPart<TLinkAddress>::SizeInBytes * (link))); }
 
         protected: bool FirstIsToTheLeftOfSecond(TLinkAddress first, TLinkAddress second)  { return this->this->GetKeyPartValue(first) < this->GetKeyPartValue(second); }
 
