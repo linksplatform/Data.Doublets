@@ -39,7 +39,7 @@
 
         protected: RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType link) { return ref AsRef<RawLinkIndexPart<LinkAddressType>>(LinksIndexParts + (RawLinkIndexPart<LinkAddressType>::SizeInBytes * (link))); }
 
-        protected: virtual IList<LinkAddressType> GetLinkValues(LinkAddressType linkIndex)
+        protected: auto GetLinkValues(LinkAddressType linkIndex)
         {
             auto* link = GetLinkDataPartReference(linkIndex);
             return LinkType(linkIndex, link.Source, link.Target);
