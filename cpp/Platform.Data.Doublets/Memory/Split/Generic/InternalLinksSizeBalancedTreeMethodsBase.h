@@ -4,7 +4,7 @@
     class InternalLinksSizeBalancedTreeMethodsBase : public SizeBalancedTreeMethods<InternalLinksSizeBalancedTreeMethodsBase<typename TLinksOptions::LinkAddressType, TLinksOptions::Constants>, TLinkAddress>, ILinksTreeMethods<TLinksOptions>
     {
         using OptionsType = TLinkOptions;
-    public: static constexpr Constants = OptionsType::Constants;
+    public: static constexpr auto Constants = OptionsType::Constants;
         protected: static constexpr TLinkAddress Break = Constants.Break;
         protected: static constexpr TLinkAddress Continue = Constants.Continue;
         protected: std::uint8_t* LinksDataParts;
