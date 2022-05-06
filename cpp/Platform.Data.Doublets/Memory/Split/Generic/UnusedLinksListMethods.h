@@ -17,9 +17,9 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             _header = header;
         }
 
-        protected: LinksHeader<TLinkAddress>& GetHeaderReference() { return ref AsRef<LinksHeader<TLinkAddress>>(_header); }
+        protected: LinksHeader<TLinkAddress>& GetHeaderReference() { *reinterpret_cast<LinksHeader<TLinkAddress>*>(_header); }
 
-        protected: RawLinkDataPart<TLinkAddress>& GetLinkDataPartReference(TLinkAddress link) { return ref AsRef<RawLinkDataPart<TLinkAddress>>(_links + (RawLinkDataPart<TLinkAddress>::SizeInBytes * (link))); }
+        protected: RawLinkDataPart<TLinkAddress>& GetLinkDataPartReference(TLinkAddress link) { *reinterpret_cast<RawLinkDataPart<TLinkAddress>*>(_links + (RawLinkDataPart<TLinkAddress>::SizeInBytes * (link))); }
 
         protected: override TLinkAddress GetFirst() { return GetHeaderReference().FirstFreeLink; }
 

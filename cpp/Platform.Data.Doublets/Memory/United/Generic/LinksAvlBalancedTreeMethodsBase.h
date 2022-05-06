@@ -38,7 +38,7 @@ namespace Platform::Data::Doublets::Memory::United::Generic
             return *reinterpret_cast<LinksHeader<LinkAddressType>*>(_header);
         }
 
-        protected: RawLink<TLinkAddress>& GetLinkReference(TLinkAddress link) { return ref AsRef<RawLink<TLinkAddress>>(Links + (RawLink<TLinkAddress>::SizeInBytes * (link))); }
+        protected: RawLink<TLinkAddress>& GetLinkReference(TLinkAddress link) { *reinterpret_cast<RawLink<TLinkAddress>*>(Links + (RawLink<TLinkAddress>::SizeInBytes * (link))); }
 
         protected: virtual IList<TLinkAddress> GetLinkValues(TLinkAddress linkIndex)
         {
