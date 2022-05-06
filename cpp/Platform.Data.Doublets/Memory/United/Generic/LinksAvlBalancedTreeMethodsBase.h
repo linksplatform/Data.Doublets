@@ -123,8 +123,6 @@ namespace Platform::Data::Doublets::Memory::United::Generic
 
         public: TLinkAddress this[TLinkAddress index]
         {
-            get
-            {
                 auto root = GetTreeRoot();
                 if (GreaterOrEqualThan(index, GetSize(root)))
                 {
@@ -147,7 +145,7 @@ namespace Platform::Data::Doublets::Memory::United::Generic
                     index = Subtract(index, Increment(leftSize));
                 }
                 return 0;
-            }
+
         }
 
         public: TLinkAddress Search(TLinkAddress source, TLinkAddress target)

@@ -61,31 +61,29 @@
 
         public: LinkAddressType operator[](LinkAddressType index)
         {
-            get
+            auto root = GetTreeRoot();
+            if (GreaterOrEqualThan(index, GetSize(root)))
             {
-                auto root = GetTreeRoot();
-                if (GreaterOrEqualThan(index, GetSize(root)))
-                {
-                    return 0;
-                }
-                while (!EqualToZero(root))
-                {
-                    auto left = GetLeftOrDefault(root);
-                    auto leftSize = GetSizeOrZero(left);
-                    if (LessThan(index, leftSize))
-                    {
-                        root = left;
-                        continue;
-                    }
-                    if (AreEqual(index, leftSize))
-                    {
-                        return root;
-                    }
-                    root = GetRightOrDefault(root);
-                    index = Subtract(index, Increment(leftSize));
-                }
                 return 0;
             }
+            while (!EqualToZero(root))
+            {
+                auto left = GetLeftOrDefault(root);
+                auto leftSize = GetSizeOrZero(left);
+                if (LessThan(index, leftSize))
+                {
+                    root = left;
+                    continue;
+                }
+                if (AreEqual(index, leftSize))
+                {
+                    return root;
+                }
+                root = GetRightOrDefault(root);
+                index = Subtract(index, Increment(leftSize));
+            }
+            return 0;
+
         }
 
         public: LinkAddressType Search(LinkAddressType source, LinkAddressType target)
