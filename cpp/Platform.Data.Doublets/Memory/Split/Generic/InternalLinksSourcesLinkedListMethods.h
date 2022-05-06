@@ -1,16 +1,18 @@
 ﻿namespace Platform::Data::Doublets::Memory::Split::Generic
 {
     using Platform::Collections::Methods::Lists::RelativeCircularDoublyLinkedListMethods;
-    template<typename TLinkAddress, LinksConstants<TLinkAddress> VConstants>
-    class InternalLinksSourcesLinkedListMethods : public RelativeCircularDoublyLinkedListMethods<TLinkAddress>
+    template<typename TLinksOptions>
+    class InternalLinksSourcesLinkedListMethods : public RelativeCircularDoublyLinkedListMethods<typename TLinksOptions::LinkAddressType>
     {
-        public: static constexpr auto Constants = VConstants;
+    public: using LinkOptionsType = TLinksOptions;
+        using LinkAddressType = typename LinksOptionsType::LinkAddressType;
+        public: static constexpr auto Constants = LinksOptionsType.Constants;
         private:
         std::uint8_t* _linksDataParts;
         std::uint8_t* _linksIndexParts;
         protected:
-        TLinkAddress Break = Constants.Break;
-        TLinkAddress Continue = Constants.Continue;
+        LinkAddressType Break = Constants.Break;
+        LinkAddressType Continue = Constants.Continue;
 
         public: InternalLinksSourcesLinkedListMethods(std::uint8_t* linksDataParts, std::uint8_t* linksIndexParts)
         {
@@ -18,22 +20,22 @@
             _linksIndexParts = linksIndexParts;
         }
 
-        protected: virtual RawLinkDataPart<TLinkAddress>& GetLinkDataPartReference(TLinkAddress link)
+        protected: virtual RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link)
         { 
-            return &(*(_linksDataParts + (RawLinkDataPart<TLinkAddress>::SizeInBytes * link)));
+            return &(*(_linksDataParts + (RawLinkDataPart<LinkAddressType>::SizeInBytes * link)));
         }
 
-        protected: virtual RawLinkIndexPart<TLinkAddress>&& GetLinkIndexPartReference(TLinkAddress link) 
+        protected: virtual RawLinkIndexPart<LinkAddressType>&& GetLinkIndexPartReference(LinkAddressType link) 
         { 
-            return RawLinkIndexPart<TLinkAddress>>{ _linksIndexParts + (RawLinkIndexPart<TLinkAddress>::SizeInBytes * link) };
+            return RawLinkIndexPart<LinkAddressType>>{ _linksIndexParts + (RawLinkIndexPart<LinkAddressType>::SizeInBytes * link) };
         }
 
-        protected: TLinkAddress GetFirst(TLinkAddress head)
+        protected: LinkAddressType GetFirst(LinkAddressType head)
         {
             return this->GetLinkIndexPartReference(head)->RootAsSource; 
         }
 
-        protected: TLinkAddress GetLast(TLinkAddress head)
+        protected: LinkAddressType GetLast(LinkAddressType head)
         {
             auto first = this->GetLinkIndexPartReference(head)->RootAsSource;
             if (0 == first)
@@ -46,54 +48,54 @@
             }
         }
 
-        protected: TLinkAddress GetPrevious(TLinkAddress element)
+        protected: LinkAddressType GetPrevious(LinkAddressType element)
         {
              return this->GetLinkIndexPartReference(element)->LeftAsSource; 
         }
 
-        protected: TLinkAddress GetNext(TLinkAddress element)
+        protected: LinkAddressType GetNext(LinkAddressType element)
         {
              return this->GetLinkIndexPartReference(element)->RightAsSource; 
         }
 
-        protected: TLinkAddress GetSize(TLinkAddress head)
+        protected: LinkAddressType GetSize(LinkAddressType head)
         {
              return this->GetLinkIndexPartReference(head)->SizeAsSource; 
         }
 
-        protected: void SetFirst(TLinkAddress head, TLinkAddress element)
+        protected: void SetFirst(LinkAddressType head, LinkAddressType element)
         {
              this->GetLinkIndexPartReference(head)->RootAsSource = element; 
         }
 
-        protected: void SetLast(TLinkAddress head, TLinkAddress element)
+        protected: void SetLast(LinkAddressType head, LinkAddressType element)
         {
         }
 
-        protected: void SetPrevious(TLinkAddress element, TLinkAddress previous)
+        protected: void SetPrevious(LinkAddressType element, LinkAddressType previous)
         {
              this->GetLinkIndexPartReference(element)->LeftAsSource = previous; 
         }
 
-        protected: void SetNext(TLinkAddress element, TLinkAddress next)
+        protected: void SetNext(LinkAddressType element, LinkAddressType next)
         {
              this->GetLinkIndexPartReference(element)->RightAsSource = next; 
         }
 
-        protected: void SetSize(TLinkAddress head, TLinkAddress size)
+        protected: void SetSize(LinkAddressType head, LinkAddressType size)
         {
              this->GetLinkIndexPartReference(head)->SizeAsSource = size; 
         }
 
-        public: TLinkAddress CountUsages(TLinkAddress head) { return this->GetSize(head); }
+        public: LinkAddressType CountUsages(LinkAddressType head) { return this->GetSize(head); }
 
-    protected: Interfaces::CArray auto GetLinkValues(TLinkAddress linkIndex)
+    protected: Interfaces::CArray auto GetLinkValues(LinkAddressType linkIndex)
         {
             auto* link = GetLinkDataPartReference(linkIndex);
             return Link{ linkIndex, link.Source, link.Target };
         }
 
-        public: TLinkAddress EachUsage(TLinkAddress source, auto&& handler)
+        public: LinkAddressType EachUsage(LinkAddressType source, auto&& handler)
         {
             auto current = this->GetFirst(source);
             auto first = current;
