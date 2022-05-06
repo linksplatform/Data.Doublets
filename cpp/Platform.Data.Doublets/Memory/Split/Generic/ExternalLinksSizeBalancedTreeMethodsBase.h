@@ -32,7 +32,7 @@
 
         protected:         auto&& GetHeaderReference() const
         {
-            return *reinterpret_cast<LinksHeader<LinkAddressType>*>(_header);
+            return *reinterpret_cast<LinksHeader<LinkAddressType>*>(Header);
         }
 
         protected: RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link) { return *reinterpret_cast<RawLinkDataPart<LinkAddressType>*>(LinksDataParts + (RawLinkDataPart<LinkAddressType>::SizeInBytes * (link))); }
