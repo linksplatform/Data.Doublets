@@ -26,6 +26,10 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         TMemory _indexMemory;
         std::int64_t _dataMemoryReservationStepInBytesInBytes;
         std::int64_t _indexDataMemoryReservationStepInBytesInBytes;
+        TSourceTreeMethods* InternalSourcesTreeMethods;
+        TSourceTreeMethods* ExternalSourcesTreeMethods;
+        TTargetTreeMethods* InternalTargetsTreeMethods;
+        TTargetTreeMethods* ExternalTargetsTreeMethods;
 
     public:
         static std::int64_t LinkDataPartSizeInBytes()
