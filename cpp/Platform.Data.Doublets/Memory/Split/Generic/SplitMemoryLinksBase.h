@@ -15,10 +15,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
     {
     public:
         using LinksOptionsType = TLinksOptions;
-                using LinkAddressType = LinksOptionsType::LinkAddressType;
-        using LinkType = LinksOptionsType::LinkType;
-        using WriteHandlerType = LinksOptionsType::WriteHandlerType;
-        using ReadHandlerType = LinksOptionsType::ReadHandlerType;
+        using LinkAddressType = LinksOptionsType::LinkAddressType;
         using LinkType = LinksOptionsType::LinkType;
         using WriteHandlerType = LinksOptionsType::WriteHandlerType;
         using ReadHandlerType = LinksOptionsType::ReadHandlerType;
