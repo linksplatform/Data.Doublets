@@ -69,7 +69,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
 
         }
 
-        SplitMemoryLinksBase(TMemory dataMemory, TMemory indexMemory, std::int64_t dataMemoryReservationStepInBytes, LinksConstants<LinkAddressType> constants) : _dataMemory{ dataMemory }, _indexMemory{ indexMemory }, _dataMemoryReservationStepInBytesInBytes{ dataMemoryReservationStepInBytes }
+        SplitMemoryLinksBase(TMemory dataMemory, TMemory indexMemory, std::int64_t dataMemoryReservationStepInBytes) : _dataMemory{ dataMemory }, _indexMemory{ indexMemory }, _dataMemoryReservationStepInBytesInBytes{ dataMemoryReservationStepInBytes }
         {
             if (UseLinkedList)
             {
@@ -165,7 +165,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     {
                         return Total(); // Any - как отсутствие ограничения
                     }
-                    auto externalReferencesRange = constants.ExternalReferencesRange;
+                    auto externalReferencesRange = Constants.ExternalReferencesRange;
                     if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value))
                     {
                         return ExternalSourcesTreeMethods.CountUsages(value) + ExternalTargetsTreeMethods.CountUsages(value);

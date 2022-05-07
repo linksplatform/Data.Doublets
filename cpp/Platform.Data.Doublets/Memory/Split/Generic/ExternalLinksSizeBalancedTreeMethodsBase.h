@@ -16,13 +16,13 @@
         protected: std::uint8_t* LinksIndexParts;
         protected: std::uint8_t* Header;
 
-        protected: ExternalLinksSizeBalancedTreeMethodsBase(LinksConstants<LinkAddressType> constants, std::uint8_t* linksDataParts, std::uint8_t* linksIndexParts, std::uint8_t* header)
+        protected: ExternalLinksSizeBalancedTreeMethodsBase(std::uint8_t* linksDataParts, std::uint8_t* linksIndexParts, std::uint8_t* header)
         {
             LinksDataParts = linksDataParts;
             LinksIndexParts = linksIndexParts;
             Header = header;
-            Break = constants.Break;
-            Continue = constants.Continue;
+            Break = Constants.Break;
+            Continue = Constants.Continue;
         }
 
         protected: LinkAddressType GetTreeRoot() = 0;
