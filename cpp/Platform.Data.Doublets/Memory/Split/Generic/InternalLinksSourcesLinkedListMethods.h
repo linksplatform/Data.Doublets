@@ -23,12 +23,12 @@
             _linksIndexParts = linksIndexParts;
         }
 
-        protected: virtual RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link)
+        protected: RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link)
         { 
             return &(*(_linksDataParts + (RawLinkDataPart<LinkAddressType>::SizeInBytes * link)));
         }
 
-        protected: virtual RawLinkIndexPart<LinkAddressType>&& GetLinkIndexPartReference(LinkAddressType link) 
+        protected: RawLinkIndexPart<LinkAddressType>&& GetLinkIndexPartReference(LinkAddressType link)
         { 
             return RawLinkIndexPart<LinkAddressType>>{ _linksIndexParts + (RawLinkIndexPart<LinkAddressType>::SizeInBytes * link) };
         }

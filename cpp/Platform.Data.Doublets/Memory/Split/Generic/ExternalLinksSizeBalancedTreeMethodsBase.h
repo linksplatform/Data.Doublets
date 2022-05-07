@@ -25,13 +25,13 @@
             Continue = constants.Continue;
         }
 
-        protected: virtual LinkAddressType GetTreeRoot() = 0;
+        protected: LinkAddressType GetTreeRoot() = 0;
 
-        protected: virtual LinkAddressType GetBasePartValue(LinkAddressType link) = 0;
+        protected: LinkAddressType GetBasePartValue(LinkAddressType link) = 0;
 
-        protected: virtual bool FirstIsToTheRightOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource, LinkAddressType rootTarget) = 0;
+        protected: bool FirstIsToTheRightOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource, LinkAddressType rootTarget) = 0;
 
-        protected: virtual bool FirstIsToTheLeftOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource, LinkAddressType rootTarget) = 0;
+        protected: bool FirstIsToTheLeftOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource, LinkAddressType rootTarget) = 0;
 
         protected:         auto&& GetHeaderReference() const
         {
