@@ -43,7 +43,7 @@
 
         protected: bool FirstIsToTheRightOfSecond(LinkAddressType first, LinkAddressType second)  { return this->GetKeyPartValue(first) > this->GetKeyPartValue(second); }
 
-        protected: IList<LinkAddressType> GetLinkValues(LinkAddressType linkIndex)
+        protected: CArray<LinkAddressType> auto GetLinkValues(LinkAddressType linkIndex)
         {
             auto* link = GetLinkDataPartReference(linkIndex);
             return LinkType(linkIndex, link.Source, link.Target);
@@ -103,9 +103,9 @@
 
         public: LinkAddressType CountUsages(LinkAddressType link) { return this->GetSizeOrZero(this->GetTreeRoot(link)); }
 
-        public: LinkAddressType EachUsage(LinkAddressType base, Func<IList<LinkAddressType>, LinkAddressType> handler) { return this->EachUsageCore(base, this->GetTreeRoot(base), handler); }
+        public: LinkAddressType EachUsage(LinkAddressType base, Func<CArray<LinkAddressType> auto, LinkAddressType> handler) { return this->EachUsageCore(base, this->GetTreeRoot(base), handler); }
 
-        private: LinkAddressType EachUsageCore(LinkAddressType base, LinkAddressType link, Func<IList<LinkAddressType>, LinkAddressType> handler)
+        private: LinkAddressType EachUsageCore(LinkAddressType base, LinkAddressType link, Func<CArray<LinkAddressType> auto, LinkAddressType> handler)
         {
             if (link == 0)
             {
