@@ -4,7 +4,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
     using Platform::Memory::IResizableDirectMemory;
     template<
         typename TSelf,
-        typename TLinkOptions,
+        typename TLinksOptions,
         typename TMemory,
         typename TSourceTreeMethods,
         bool VUseLinkedList,
@@ -14,7 +14,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
     struct SplitMemoryLinksBase : public Interfaces::Polymorph<TSelf, TBase...>
     {
     public:
-        using OptionsType = TLinkOptions;
+        using OptionsType = TLinksOptions;
         using LinkAddressType = OptionsType::LinkAddressType;
         using LinkType = OptionsType::LinkType;
         using WriteHandlerType = OptionsType::WriteHandlerType;
