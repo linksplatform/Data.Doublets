@@ -48,12 +48,12 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             return 1 * 1024 * 1024;
         }
 
-        SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, std::int64_t dataMemoryReservationStepInBytes) : this(dataMemory, indexMemory, dataMemoryReservationStepInBytes, LinksConstants<LinkAddressType>{}, true)
+        SplitMemoryLinksBase(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, std::int64_t dataMemoryReservationStepInBytes) : this(dataMemory, indexMemory, dataMemoryReservationStepInBytes, LinksConstants<LinkAddressType>{}, true)
         {
 
         }
 
-        SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, std::int64_t dataMemoryReservationStepInBytes, LinksConstants<LinkAddressType> constants, IndexTreeType indexTreeType) : _dataMemory{ dataMemory }, _indexMemory{ indexMemory }, _dataMemoryReservationStepInBytesInBytes{ dataMemoryReservationStepInBytes }, _indexTreeType{ indexTreeType }
+        SplitMemoryLinksBase(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, std::int64_t dataMemoryReservationStepInBytes, LinksConstants<LinkAddressType> constants, IndexTreeType indexTreeType) : _dataMemory{ dataMemory }, _indexMemory{ indexMemory }, _dataMemoryReservationStepInBytesInBytes{ dataMemoryReservationStepInBytes }, _indexTreeType{ indexTreeType }
         {
             if (UseLinkedList)
             {
