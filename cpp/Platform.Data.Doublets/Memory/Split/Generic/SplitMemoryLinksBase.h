@@ -85,7 +85,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 indexMemory.ReservedCapacity(LinkHeaderSizeInBytes);
             }
             SetPointers(dataMemory, indexMemory);
-            auto& header { GetHeaderReference() };
+            auto& header { this->GetHeaderReference() };
             auto allocatedLinks { header.AllocatedLinks() };
             // Adjust reserved capacity
             auto minimumDataReservedCapacity { allocatedLinks * LinkDataPartSizeInBytes };
