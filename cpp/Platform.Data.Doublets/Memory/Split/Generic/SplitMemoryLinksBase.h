@@ -93,9 +93,9 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             {
                 minimumDataReservedCapacity = dataMemory.UsedCapacity();
             }
-            if(minimumDataReservedCapacity < _datadataMemoryReservationStepInBytesInBytes)
+            if(minimumDataReservedCapacity < _dataMemoryReservationStepInBytesInBytes)
             {
-                minimumDataReservedCapacity = _datadataMemoryReservationStepInBytesInBytes;
+                minimumDataReservedCapacity = _dataMemoryReservationStepInBytesInBytes;
             }
             auto minimumIndexReservedCapacity { allocatedLinks * LinkDataPartSizeInBytes };
             if (minimumIndexReservedCapacity < indexMemory.UsedCapacity)
@@ -107,9 +107,9 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 minimumIndexReservedCapacity = _indexdataMemoryReservationStepInBytesInBytes;
             }
             // Check for alignment
-            if (minimumDataReservedCapacity % _datadataMemoryReservationStepInBytesInBytes > 0)
+            if (minimumDataReservedCapacity % _dataMemoryReservationStepInBytesInBytes > 0)
             {
-                minimumDataReservedCapacity = ((minimumDataReservedCapacity / _datadataMemoryReservationStepInBytesInBytes) * _datadataMemoryReservationStepInBytesInBytes) + _datadataMemoryReservationStepInBytesInBytes;
+                minimumDataReservedCapacity = ((minimumDataReservedCapacity / _dataMemoryReservationStepInBytesInBytes) * _dataMemoryReservationStepInBytesInBytes) + _dataMemoryReservationStepInBytesInBytes;
             }
             if (minimumIndexReservedCapacity % _indexdataMemoryReservationStepInBytesInBytes > 0)
             {
