@@ -21,13 +21,11 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         using ReadHandlerType = LinksOptionsType::ReadHandlerType;
         static constexpr LinksConstants<LinkAddressType> Constants = LinksOptionsType::Constants;
         static constexpr bool UseLinkedList = VUseLinkedList;
-    private:
-        std::int64_t _datadataMemoryReservationStepInBytesInBytes;
     protected:
         IResizableDirectMemory _dataMemory;
         IResizableDirectMemory _indexMemory;
-        std::int64_t _datadataMemoryReservationStepInBytesInBytes;
-        std::int64t _indexdataMemoryReservationStepInBytesInBytes;
+        std::int64_t _dataMemoryReservationStepInBytesInBytes;
+        std::int64t _indexDataMemoryReservationStepInBytesInBytes;
 
     public:
         static std::int64_t LinkDataPartSizeInBytes()
@@ -55,7 +53,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
 
         }
 
-        SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, std::int64_t dataMemoryReservationStepInBytes, LinksConstants<LinkAddressType> constants, IndexTreeType indexTreeType) : _dataMemory{ dataMemory }, _indexMemory{ indexMemory }, _datadataMemoryReservationStepInBytesInBytes{ dataMemoryReservationStepInBytes }, _indexTreeType{ indexTreeType } }
+        SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, std::int64_t dataMemoryReservationStepInBytes, LinksConstants<LinkAddressType> constants, IndexTreeType indexTreeType) : _dataMemory{ dataMemory }, _indexMemory{ indexMemory }, _dataMemoryReservationStepInBytesInBytes{ dataMemoryReservationStepInBytes }, _indexTreeType{ indexTreeType } }
         {
             if (UseLinkedList)
             {
