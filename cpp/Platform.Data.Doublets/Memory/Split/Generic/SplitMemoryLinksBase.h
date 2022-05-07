@@ -30,6 +30,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         TSourceTreeMethods* ExternalSourcesTreeMethods;
         TTargetTreeMethods* InternalTargetsTreeMethods;
         TTargetTreeMethods* ExternalTargetsTreeMethods;
+        std::int8_t* _header;
         std::int8_t* _linksDataParts;
         std::int8_t* _linksIndexParts;
 
