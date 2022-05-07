@@ -150,7 +150,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             auto index = GetIndex(this, restriction);
             if (1 == length)
             {
-                if (any == index))
+                if (any == index)
                 {
                     return Total();
                 }
