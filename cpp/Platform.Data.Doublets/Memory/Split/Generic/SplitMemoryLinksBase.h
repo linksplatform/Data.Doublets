@@ -20,7 +20,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         using WriteHandlerType = LinksOptionsType::WriteHandlerType;
         using ReadHandlerType = LinksOptionsType::ReadHandlerType;
         static constexpr LinksConstants<LinkAddressType> Constants = LinksOptionsType::Constants;
-        static constexpr UseLinkedList = VUseLinkedList;
+        static constexpr bool UseLinkedList = VUseLinkedList;
     private:
         std::int64_t _datadataMemoryReservationStepInBytesInBytes;
         IndexTreeType _indexTreeType;
