@@ -48,7 +48,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             return 1 * 1024 * 1024;
         }
 
-        SplitMemoryLinksBase(TMemory dataMemory, TMemory indexMemory, std::int64_t dataMemoryReservationStepInBytes) : this(dataMemory, indexMemory, dataMemoryReservationStepInBytes, LinksConstants<LinkAddressType>{}, true)
+        SplitMemoryLinksBase(TMemory dataMemory, TMemory indexMemory, std::int64_t dataMemoryReservationStepInBytes) : SplitMemoryLinksBase(dataMemory, indexMemory, dataMemoryReservationStepInBytes, LinksConstants<LinkAddressType>{}, true)
         {
 
         }
