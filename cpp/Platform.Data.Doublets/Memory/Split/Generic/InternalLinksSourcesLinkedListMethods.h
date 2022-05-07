@@ -30,7 +30,7 @@
 
         protected: RawLinkIndexPart<LinkAddressType>&& GetLinkIndexPartReference(LinkAddressType link)
         { 
-            return RawLinkIndexPart<LinkAddressType>>{ _linksIndexParts + (RawLinkIndexPart<LinkAddressType>::SizeInBytes * link) };
+            return RawLinkIndexPart<LinkAddressType>{ _linksIndexParts + (RawLinkIndexPart<LinkAddressType>::SizeInBytes * link) };
         }
 
         protected: LinkAddressType GetFirst(LinkAddressType head)
