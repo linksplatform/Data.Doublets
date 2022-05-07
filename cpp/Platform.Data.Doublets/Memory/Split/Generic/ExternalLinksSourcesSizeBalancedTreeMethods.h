@@ -26,7 +26,7 @@
 
         protected: void SetSize(LinkAddressType node, LinkAddressType size)  { this->GetLinkIndexPartReference(node)->SizeAsSource = size; }
 
-        protected:  LinkAddressType GetTreeRoot() { return GetHeaderReference().RootAsSource; }
+        protected:  LinkAddressType GetTreeRoot() { return this->GetHeaderReference().RootAsSource; }
 
         protected: LinkAddressType GetBasePartValue(LinkAddressType link)  { return this->GetLinkDataPartReference(link)->Source; }
 
