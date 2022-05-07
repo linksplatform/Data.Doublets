@@ -1,7 +1,7 @@
 namespace Platform::Data::Doublets::Memory::Split::Generic
 {
     using namespace Platform::Interfaces;
-    using Platform::Memory::IResizableDirectMemory;
+    using Platform::Memory::TMemory;
     template<
         typename TSelf,
         typename TLinksOptions,
@@ -22,8 +22,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         static constexpr LinksConstants<LinkAddressType> Constants = LinksOptionsType::Constants;
         static constexpr bool UseLinkedList = VUseLinkedList;
     protected:
-        IResizableDirectMemory _dataMemory;
-        IResizableDirectMemory _indexMemory;
+        TMemory _dataMemory;
+        TMemory _indexMemory;
         std::int64_t _dataMemoryReservationStepInBytesInBytes;
         std::int64_t _indexDataMemoryReservationStepInBytesInBytes;
 
@@ -48,12 +48,12 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             return 1 * 1024 * 1024;
         }
 
-        SplitMemoryLinksBase(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, std::int64_t dataMemoryReservationStepInBytes) : this(dataMemory, indexMemory, dataMemoryReservationStepInBytes, LinksConstants<LinkAddressType>{}, true)
+        SplitMemoryLinksBase(TMemory dataMemory, TMemory indexMemory, std::int64_t dataMemoryReservationStepInBytes) : this(dataMemory, indexMemory, dataMemoryReservationStepInBytes, LinksConstants<LinkAddressType>{}, true)
         {
 
         }
 
-        SplitMemoryLinksBase(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, std::int64_t dataMemoryReservationStepInBytes, LinksConstants<LinkAddressType> constants, IndexTreeType indexTreeType) : _dataMemory{ dataMemory }, _indexMemory{ indexMemory }, _dataMemoryReservationStepInBytesInBytes{ dataMemoryReservationStepInBytes }, _indexTreeType{ indexTreeType }
+        SplitMemoryLinksBase(TMemory dataMemory, TMemory indexMemory, std::int64_t dataMemoryReservationStepInBytes, LinksConstants<LinkAddressType> constants, IndexTreeType indexTreeType) : _dataMemory{ dataMemory }, _indexMemory{ indexMemory }, _dataMemoryReservationStepInBytesInBytes{ dataMemoryReservationStepInBytes }, _indexTreeType{ indexTreeType }
         {
             if (UseLinkedList)
             {
@@ -69,7 +69,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             Init(dataMemory, indexMemory);
         }
 
-        void Init(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory)
+        void Init(TMemory dataMemory, TMemory indexMemory)
         {
             if(indexMemory.ReservedCapacity() < LinkHeaderSizeInBytes)
             {
@@ -202,7 +202,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             }
         }
 //
-        void SetPointers(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory)
+        void SetPointers(TMemory dataMemory, TMemory indexMemory)
         {
             _linksDataParts = (byte*)dataMemory.Pointer;
             _linksIndexParts = (byte*)indexMemory.Pointer;
