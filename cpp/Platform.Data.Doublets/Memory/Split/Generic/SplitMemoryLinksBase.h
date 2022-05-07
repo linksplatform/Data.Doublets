@@ -10,6 +10,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         typename TInternalTargetsTreeMethods,
         typename TExternalSourceTreeMethods,
         typename TExternalTargetsTreeMethods,
+        typename TInternalLinksSourcesLinkedTreeMethods,
         typename TUnusedLinks,
         typename... TBase>
     struct SplitMemoryLinksBase : public Interfaces::Polymorph<TSelf, TBase...>
@@ -65,13 +66,13 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         {
             if (UseLinkedList)
             {
-                InternalSourcesTreeMethods = InternalLinksSourcesLinkedTreeMethods<LinkAddressType>(Constants, _linksDataParts, _linksIndexParts);
+                InternalSourcesTreeMethods = TInternalLinksSourcesLinkedTreeMethods(Constants, _linksDataParts, _linksIndexParts);
             }
             else
             {
-                InternalSourcesTreeMethods = new TInternalSourcesTreeMethods(Constants, _linksDataParts, _linksIndexParts, _header);
+                InternalSourcesTreeMethods = new TInternalSourceTreeMethods(Constants, _linksDataParts, _linksIndexParts, _header);
             }
-            ExternalSourcesTreeMethods = new TExternalSourcesTreeMethods(Constants, _linksDataParts, _linksIndexParts, _header);
+            ExternalSourcesTreeMethods = new TExternalSourceTreeMethods(Constants, _linksDataParts, _linksIndexParts, _header);
             InternalTargetsTreeMethods = new TInternalTargetsTreeMethods(Constants, _linksDataParts, _linksIndexParts, _header);
             ExternalTargetsTreeMethods = new TExternalTargetsTreeMethods(Constants, _linksDataParts, _linksIndexParts, _header);
             Init(dataMemory, indexMemory);
