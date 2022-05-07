@@ -5,6 +5,7 @@
     {
         public:
         using LinksOptionsType = TLinksOptions;
+        using LinkAddressType = typename LinksOptionsType::LinkAddressType;
     public: static constexpr auto Constants = LinksOptionsType::Constants;
         protected: static constexpr LinkAddressType Break = Constants.Break;
         protected: static constexpr LinkAddressType Continue = Constants.Continue;
