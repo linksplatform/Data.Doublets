@@ -4,7 +4,7 @@
     template<typename TLinksOptions>
     class InternalLinksSourcesLinkedListMethods : public RelativeCircularDoublyLinkedListMethods<typename TLinksOptions::LinkAddressType>
     {
-    public: using LinkOptionsType = TLinksOptions;
+    public: using LinksOptionsType = TLinksOptions;
                 using LinkAddressType = LinksOptionsType::LinkAddressType;
         using LinkType = LinksOptionsType::LinkType;
         using WriteHandlerType = LinksOptionsType::WriteHandlerType;
