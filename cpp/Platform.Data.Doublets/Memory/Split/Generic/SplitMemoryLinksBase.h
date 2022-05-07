@@ -61,7 +61,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         {
             if (UseLinkedList)
             {
-                InternalSourcesListMethods = InternalLinksSourcesLinkedListMethods<LinkAddressType>(Constants, _linksDataParts, _linksIndexParts);
+                InternalSourcesTreeMethods = InternalLinksSourcesLinkedTreeMethods<LinkAddressType>(Constants, _linksDataParts, _linksIndexParts);
             }
             else
             {
@@ -162,7 +162,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     {
                         if (UseLinkedList)
                         {
-                            return InternalSourcesListMethods.CountUsages(value) + InternalTargetsTreeMethods.CountUsages(value);
+                            return InternalSourcesTreeMethods.CountUsages(value) + InternalTargetsTreeMethods.CountUsages(value);
                         }
                         else
                         {
