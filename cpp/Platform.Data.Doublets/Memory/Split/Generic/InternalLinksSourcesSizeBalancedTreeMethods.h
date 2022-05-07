@@ -1,33 +1,33 @@
 ﻿namespace Platform::Data::Doublets::Memory::Split::Generic
 {
-    class InternalLinksSourcesSizeBalancedTreeMethods : public InternalLinksSizeBalancedTreeMethodsBase<TLinkAddress>
+    class InternalLinksSourcesSizeBalancedTreeMethods : public InternalLinksSizeBalancedTreeMethodsBase<LinkAddressType>
     {
-        using base = InternalLinksSizeBalancedTreeMethodsBase<TLinkAddress>;
+        using base = InternalLinksSizeBalancedTreeMethodsBase<LinkAddressType>;
         public: InternalLinksSourcesSizeBalancedTreeMethods(std::uint8_t* linksDataParts, std::uint8_t* linksIndexParts, std::uint8_t* header) : base(linksDataParts, linksIndexParts, header) { }
 
-        protected: TLinkAddress* GetLeftReference(TLinkAddress node)  { return &GetLinkIndexPartReference(node)->LeftAsSource; }
+        protected: LinkAddressType* GetLeftReference(LinkAddressType node)  { return &GetLinkIndexPartReference(node)->LeftAsSource; }
 
-        protected: TLinkAddress* GetRightReference(TLinkAddress node)  { return &GetLinkIndexPartReference(node)->RightAsSource; }
+        protected: LinkAddressType* GetRightReference(LinkAddressType node)  { return &GetLinkIndexPartReference(node)->RightAsSource; }
 
-        protected: TLinkAddress GetLeft(TLinkAddress node)  { return this->GetLinkIndexPartReference(node)->LeftAsSource; }
+        protected: LinkAddressType GetLeft(LinkAddressType node)  { return this->GetLinkIndexPartReference(node)->LeftAsSource; }
 
-        protected: TLinkAddress GetRight(TLinkAddress node)  { return this->GetLinkIndexPartReference(node)->RightAsSource; }
+        protected: LinkAddressType GetRight(LinkAddressType node)  { return this->GetLinkIndexPartReference(node)->RightAsSource; }
 
-        protected: void SetLeft(TLinkAddress node, TLinkAddress left)  { this->GetLinkIndexPartReference(node)->LeftAsSource = left; }
+        protected: void SetLeft(LinkAddressType node, LinkAddressType left)  { this->GetLinkIndexPartReference(node)->LeftAsSource = left; }
 
-        protected: void SetRight(TLinkAddress node, TLinkAddress right)  { this->GetLinkIndexPartReference(node)->RightAsSource = right; }
+        protected: void SetRight(LinkAddressType node, LinkAddressType right)  { this->GetLinkIndexPartReference(node)->RightAsSource = right; }
 
-        protected: TLinkAddress GetSize(TLinkAddress node)  { return this->GetLinkIndexPartReference(node)->SizeAsSource; }
+        protected: LinkAddressType GetSize(LinkAddressType node)  { return this->GetLinkIndexPartReference(node)->SizeAsSource; }
 
-        protected: void SetSize(TLinkAddress node, TLinkAddress size)  { this->GetLinkIndexPartReference(node)->SizeAsSource = size; }
+        protected: void SetSize(LinkAddressType node, LinkAddressType size)  { this->GetLinkIndexPartReference(node)->SizeAsSource = size; }
 
-        protected: TLinkAddress GetTreeRoot(TLinkAddress link)  { return this->GetLinkIndexPartReference(link)->RootAsSource; }
+        protected: LinkAddressType GetTreeRoot(LinkAddressType link)  { return this->GetLinkIndexPartReference(link)->RootAsSource; }
 
-        protected: TLinkAddress GetBasePartValue(TLinkAddress link)  { return this->GetLinkDataPartReference(link)->Source; }
+        protected: LinkAddressType GetBasePartValue(LinkAddressType link)  { return this->GetLinkDataPartReference(link)->Source; }
 
-        protected: TLinkAddress GetKeyPartValue(TLinkAddress link)  { return this->GetLinkDataPartReference(link)->Target; }
+        protected: LinkAddressType GetKeyPartValue(LinkAddressType link)  { return this->GetLinkDataPartReference(link)->Target; }
 
-        protected: void ClearNode(TLinkAddress node)
+        protected: void ClearNode(LinkAddressType node)
         {
             auto* link = this->GetLinkIndexPartReference(node);
             link.LeftAsSource = 0;
@@ -35,6 +35,6 @@
             link.SizeAsSource = 0;
         }
 
-        public: TLinkAddress Search(TLinkAddress source, TLinkAddress target)  { return this->SearchCore(this->GetTreeRoot(source), target); }
+        public: LinkAddressType Search(LinkAddressType source, LinkAddressType target)  { return this->SearchCore(this->GetTreeRoot(source), target); }
     };
 }
