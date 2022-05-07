@@ -37,6 +37,13 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         std::int8_t* _linksIndexParts;
 
     public:
+        TLinksOptions Total() const
+        {
+            auto& header = this->GetHeaderReference();
+            return header.AllocatedLinks - header.FreeLinks;
+        }
+
+    public:
         static std::int64_t LinkDataPartSizeInBytes()
         {
             return RawLinkDataPart<LinkAddressType>::SizeInBytes();
@@ -137,7 +144,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             auto length { std::ranges::size(restriction) };
             if(0 == length)
             {
-                return Total;
+                return Total();
             }
             auto any = Constants.Any;
             auto index = GetIndex(this, restriction);
@@ -145,7 +152,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             {
                 if (any == index))
                 {
-                    return Total;
+                    return Total();
                 }
                 return Exists(this, index) ? 1 : 0;
             }
@@ -156,7 +163,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 {
                     if (value == any))
                     {
-                        return Total; // Any - как отсутствие ограничения
+                        return Total(); // Any - как отсутствие ограничения
                     }
                     auto externalReferencesRange = constants.ExternalReferencesRange;
                     if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value))
@@ -201,7 +208,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 {
                     if((any == source) && (any == target))
                     {
-                        return Total;
+                        return Total();
                     }
                     else if (any == source)
                     {
