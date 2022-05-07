@@ -182,7 +182,10 @@ namespace Platform::Data::Doublets::Memory::United::Ffi
 
     public:
         using LinksOptionsType = TLinkOptions;
-        using LinkAddressType = LinksOptionsType::LinkAddressType;
+                using LinkAddressType = LinksOptionsType::LinkAddressType;
+        using LinkType = LinksOptionsType::LinkType;
+        using WriteHandlerType = LinksOptionsType::WriteHandlerType;
+        using ReadHandlerType = LinksOptionsType::ReadHandlerType;
         using LinkType = LinksOptionsType::LinkType;
         using WriteHandlerType = LinksOptionsType::WriteHandlerType;
         using ReadHandlerType = LinksOptionsType::ReadHandlerType;
