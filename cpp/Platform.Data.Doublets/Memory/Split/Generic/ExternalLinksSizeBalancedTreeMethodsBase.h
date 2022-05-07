@@ -149,9 +149,9 @@
             return this->Subtract(this->Subtract(total, totalRightIgnore), totalLeftIgnore);
         }
 
-        public: LinkAddressType EachUsage(LinkAddressType base, ReadHandlerType handler) { return this->EachUsageCore(base, this->GetTreeRoot(), handler); }
+        public: LinkAddressType EachUsage(LinkAddressType base, auto&& handler) { return this->EachUsageCore(base, this->GetTreeRoot(), handler); }
 
-        private: LinkAddressType EachUsageCore(LinkAddressType base, LinkAddressType link, ReadHandlerType handler)
+        private: LinkAddressType EachUsageCore(LinkAddressType base, LinkAddressType link, auto&& handler)
         {
             if (link == 0)
             {
