@@ -10,11 +10,11 @@
           public ILinksTreeMethods<TLinksOptions>,
           public Interfaces::Polymorph<Self>
     {
-        using OptionsType = TLinksOptions;
-        using LinkAddressType = typename OptionsType::LinkAddressType;
-        using LinkType = typename OptionsType::LinkType;
-        using ReadHandlerType = typename OptionsType::ReadHandlerType;
-        static constexpr LinksConstants<LinkAddressType> Constants = OptionsType::Constants;
+        using LinksOptionsType = TLinksOptions;
+        using LinkAddressType = typename LinksOptionsType::LinkAddressType;
+        using LinkType = typename LinksOptionsType::LinkType;
+        using ReadHandlerType = typename LinksOptionsType::ReadHandlerType;
+        static constexpr LinksConstants<LinkAddressType> Constants = LinksOptionsType::Constants;
 
 
         public: using methods = Trees::RecursionlessSizeBalancedTreeMethods<Self, LinkAddressType>;

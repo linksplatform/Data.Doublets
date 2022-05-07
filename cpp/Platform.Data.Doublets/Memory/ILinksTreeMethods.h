@@ -3,10 +3,10 @@
     template<typename TLinksOptions>
     struct ILinksTreeMethods
     {
-        using OptionsType = TLinksOptions;
-        using LinkAddressType = OptionsType::LinkAddressType;
-        using LinkType = OptionsType::LinkType;
-        using ReadHandlerType = OptionsType::ReadHandlerType;
+        using LinksOptionsType = TLinksOptions;
+        using LinkAddressType = LinksOptionsType::LinkAddressType;
+        using LinkType = LinksOptionsType::LinkType;
+        using ReadHandlerType = LinksOptionsType::ReadHandlerType;
         virtual LinkAddressType CountUsages(LinkAddressType root) = 0;
 
         virtual LinkAddressType Search(LinkAddressType source, LinkAddressType target) = 0;

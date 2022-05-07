@@ -15,12 +15,12 @@
     struct UnitedMemoryLinksBase : public Interfaces::Polymorph<TSelf, TBase...>
     {
     public:
-        using OptionsType = TLinkOptions;
-        using LinkAddressType = OptionsType::LinkAddressType;
-        using LinkType = OptionsType::LinkType;
-        using WriteHandlerType = OptionsType::WriteHandlerType;
-        using ReadHandlerType = OptionsType::ReadHandlerType;
-        static constexpr LinksConstants<LinkAddressType> Constants = OptionsType::Constants;
+        using LinksOptionsType = TLinkOptions;
+        using LinkAddressType = LinksOptionsType::LinkAddressType;
+        using LinkType = LinksOptionsType::LinkType;
+        using WriteHandlerType = LinksOptionsType::WriteHandlerType;
+        using ReadHandlerType = LinksOptionsType::ReadHandlerType;
+        static constexpr LinksConstants<LinkAddressType> Constants = LinksOptionsType::Constants;
 
     public:
         static constexpr std::size_t LinkSizeInBytes = sizeof(RawLink<LinkAddressType>);
