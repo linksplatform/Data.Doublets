@@ -53,7 +53,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
 
         }
 
-        SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, std::int64_t dataMemoryReservationStepInBytes, LinksConstants<LinkAddressType> constants, IndexTreeType indexTreeType) : _dataMemory{ dataMemory }, _indexMemory{ indexMemory }, _dataMemoryReservationStepInBytesInBytes{ dataMemoryReservationStepInBytes }, _indexTreeType{ indexTreeType } }
+        SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, std::int64_t dataMemoryReservationStepInBytes, LinksConstants<LinkAddressType> constants, IndexTreeType indexTreeType) : _dataMemory{ dataMemory }, _indexMemory{ indexMemory }, _dataMemoryReservationStepInBytesInBytes{ dataMemoryReservationStepInBytes }, _indexTreeType{ indexTreeType }
         {
             if (UseLinkedList)
             {
