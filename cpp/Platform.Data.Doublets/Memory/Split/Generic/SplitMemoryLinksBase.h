@@ -25,7 +25,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         IResizableDirectMemory _dataMemory;
         IResizableDirectMemory _indexMemory;
         std::int64_t _dataMemoryReservationStepInBytesInBytes;
-        std::int64t _indexDataMemoryReservationStepInBytesInBytes;
+        std::int64_t _indexDataMemoryReservationStepInBytesInBytes;
 
     public:
         static std::int64_t LinkDataPartSizeInBytes()
