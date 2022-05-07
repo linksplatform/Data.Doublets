@@ -1,7 +1,16 @@
 ﻿namespace Platform::Data::Doublets::Memory::Split::Generic
 {
-    class InternalLinksTargetsSizeBalancedTreeMethods : public InternalLinksSizeBalancedTreeMethodsBase<LinkAddressType>
+    template<typename TLinksOptions>
+    class InternalLinksTargetsSizeBalancedTreeMethods : public InternalLinksSizeBalancedTreeMethodsBase<TLinksOptions>
     {
+    public:
+        using LinksOptionsType = TLinksOptions;
+        using LinkAddressType = LinksOptionsType::LinkAddressType;
+        using LinkType = LinksOptionsType::LinkType;
+        using WriteHandlerType = LinksOptionsType::WriteHandlerType;
+        using ReadHandlerType = LinksOptionsType::ReadHandlerType;
+    public: static constexpr auto Constants = LinksOptionsType::Constants;
+        using base = InternalLinksSizeBalancedTreeMethodsBase<TLinksOptions>;
         public: InternalLinksTargetsSizeBalancedTreeMethods(std::uint8_t* linksDataParts, std::uint8_t* linksIndexParts, std::uint8_t* header) : base(linksDataParts, linksIndexParts, header) { }
 
         protected: LinkAddressType* GetLeftReference(LinkAddressType node)  { return &GetLinkIndexPartReference(node)->LeftAsTarget; }
