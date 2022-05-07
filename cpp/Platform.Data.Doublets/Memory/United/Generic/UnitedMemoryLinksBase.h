@@ -42,7 +42,7 @@
 
         LinkAddressType GetTotal() const
         {
-            auto& header = GetHeaderReference();
+            auto& header = this->GetHeaderReference();
             return header.AllocatedLinks - header.FreeLinks;
         }
 
@@ -62,7 +62,7 @@
             }
             SetPointers(memory);
 
-            auto& header = GetHeaderReference();
+            auto& header = this->GetHeaderReference();
             memory.UsedCapacity((header.AllocatedLinks * LinkSizeInBytes) + LinkHeaderSizeInBytes);
             header.ReservedLinks = (memory.ReservedCapacity() - LinkHeaderSizeInBytes) / LinkSizeInBytes;
         }
@@ -181,7 +181,7 @@
             auto $break = Constants.Break;
             if (std::ranges::size(restriction) == 0)
             {
-                for (auto link = LinkAddressType {1}; link <= GetHeaderReference().AllocatedLinks; ++link)
+                for (auto link = LinkAddressType {1}; link <= this->GetHeaderReference().AllocatedLinks; ++link)
                 {
                     if (Exists(link) && (handler(GetLinkStruct(link)) == $break))
                     {
@@ -318,7 +318,7 @@
             LinkType before {linkIndex, link.Source, link.Target};
             // TODO: 'ref locals' are not converted by C# to C++ Converter:
             // ORIGINAL LINE: ref var header = ref GetHeaderReference();
-            auto& header = GetHeaderReference();
+            auto& header = this->GetHeaderReference();
             // TODO: 'ref locals' are not converted by C# to C++ Converter:
             // ORIGINAL LINE: ref var firstAsSource = ref header.RootAsSource;
             auto& firstAsSource = header.RootAsSource;
@@ -351,7 +351,7 @@
     public:
         LinkAddressType Create(auto&& restriction, const WriteHandlerType& handler)
         {
-            auto& header = GetHeaderReference();
+            auto& header = this->GetHeaderReference();
             auto freeLink = header.FirstFreeLink;
             if (freeLink != Constants.Null)
             {
@@ -369,7 +369,7 @@
                 {
                     _memory.ReservedCapacity(_memory.ReservedCapacity() + _memoryReservationStep);
                     SetPointers(_memory);
-                    header = GetHeaderReference();
+                    header = this->GetHeaderReference();
                     header.ReservedLinks = _memory.ReservedCapacity() / LinkSizeInBytes;
                 }
                 ++header.AllocatedLinks;
@@ -382,7 +382,7 @@
     public:
         LinkAddressType Delete(const  LinkType& restriction, const WriteHandlerType& handler)
         {
-            auto& header = GetHeaderReference();
+            auto& header = this->GetHeaderReference();
             auto linkAddress = restriction[Constants.IndexPart];
             auto before = GetLinkStruct(linkAddress);
             if (linkAddress < header.AllocatedLinks)
@@ -441,7 +441,7 @@
             {
                 return false;
             }
-            return (linkAddress >= Constants.InternalReferencesRange.Minimum) && (linkAddress <= GetHeaderReference().AllocatedLinks) && !IsUnusedLink(linkAddress);
+            return (linkAddress >= Constants.InternalReferencesRange.Minimum) && (linkAddress <= this->GetHeaderReference().AllocatedLinks) && !IsUnusedLink(linkAddress);
         }
 
         bool IsUnusedLink(LinkAddressType linkIndex) const

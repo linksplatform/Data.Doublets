@@ -124,7 +124,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 indexMemory.ReservedCapacity = minimumIndexReservedCapacity;
             }
             SetPointers(dataMemory, indexMemory);
-            header = GetHeaderReference();
+            header = this->GetHeaderReference();
             // Ensure correctness _memory.UsedCapacity over _header->AllocatedLinks
             dataMemory.UsedCapacity((header.AllocatedLinks * LinkDataPartSizeInBytes) + LinkDataPartSizeInBytes); // First link is read only zero link.
             indexMemory.UsedCapacity((header.AllocatedLinks * LinkIndexPartSizeInBytes) + LinkHeaderSizeInBytes);
