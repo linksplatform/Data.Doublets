@@ -6,7 +6,10 @@
     public:
         using base = ExternalLinksSizeBalancedTreeMethodsBase<TLinksOptions>;
         using LinksOptionsType = TLinksOptions;
-        using LinkAddressType = typename LinksOptionsType::LinkAddressType;
+                using LinkAddressType = LinksOptionsType::LinkAddressType;
+        using LinkType = LinksOptionsType::LinkType;
+        using WriteHandlerType = LinksOptionsType::WriteHandlerType;
+        using ReadHandlerType = LinksOptionsType::ReadHandlerType;
         static constexpr auto Constants = LinksOptionsType::Constants;
         public: ExternalLinksSourcesSizeBalancedTreeMethods(std::uint8_t* linksDataParts, std::uint8_t* linksIndexParts, std::uint8_t* header) : base(linksDataParts, linksIndexParts, header) { }
 

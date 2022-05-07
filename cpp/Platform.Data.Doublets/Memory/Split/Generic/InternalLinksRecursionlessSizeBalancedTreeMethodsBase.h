@@ -5,7 +5,10 @@
     {
         public:
         using LinksOptionsType = TLinksOptions;
-        using LinkAddressType = typename LinksOptionsType::LinkAddressType;
+                using LinkAddressType = LinksOptionsType::LinkAddressType;
+        using LinkType = LinksOptionsType::LinkType;
+        using WriteHandlerType = LinksOptionsType::WriteHandlerType;
+        using ReadHandlerType = LinksOptionsType::ReadHandlerType;
     public: static constexpr auto Constants = LinksOptionsType::Constants;
         protected: static constexpr LinkAddressType Break = Constants.Break;
         protected: static constexpr LinkAddressType Continue = Constants.Continue;
