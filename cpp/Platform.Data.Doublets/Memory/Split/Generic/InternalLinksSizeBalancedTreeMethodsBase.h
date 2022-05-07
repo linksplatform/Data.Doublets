@@ -47,7 +47,7 @@
             return LinkType(linkIndex, link.Source, link.Target);
         }
 
-        public: LinkAddressType this[LinkAddressType link, LinkAddressType index]
+        public: LinkAddressType operator[](LinkAddressType link, LinkAddressType index)
         {
             auto root = GetTreeRoot(*link);
             if (index >= GetSize(root))
