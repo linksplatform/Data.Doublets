@@ -102,18 +102,18 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             {
                 minimumIndexReservedCapacity = indexMemory.UsedCapacity;
             }
-            if (minimumIndexReservedCapacity < _indexdataMemoryReservationStepInBytesInBytes)
+            if (minimumIndexReservedCapacity < _indexDataMemoryReservationStepInBytesInBytes)
             {
-                minimumIndexReservedCapacity = _indexdataMemoryReservationStepInBytesInBytes;
+                minimumIndexReservedCapacity = _indexDataMemoryReservationStepInBytesInBytes;
             }
             // Check for alignment
             if (minimumDataReservedCapacity % _dataMemoryReservationStepInBytesInBytes > 0)
             {
                 minimumDataReservedCapacity = ((minimumDataReservedCapacity / _dataMemoryReservationStepInBytesInBytes) * _dataMemoryReservationStepInBytesInBytes) + _dataMemoryReservationStepInBytesInBytes;
             }
-            if (minimumIndexReservedCapacity % _indexdataMemoryReservationStepInBytesInBytes > 0)
+            if (minimumIndexReservedCapacity % _indexDataMemoryReservationStepInBytesInBytes > 0)
             {
-                minimumIndexReservedCapacity = ((minimumIndexReservedCapacity / _indexdataMemoryReservationStepInBytesInBytes) * _indexdataMemoryReservationStepInBytesInBytes) + _indexdataMemoryReservationStepInBytesInBytes;
+                minimumIndexReservedCapacity = ((minimumIndexReservedCapacity / _indexDataMemoryReservationStepInBytesInBytes) * _indexDataMemoryReservationStepInBytesInBytes) + _indexDataMemoryReservationStepInBytesInBytes;
             }
             if (dataMemory.ReservedCapacity != minimumDataReservedCapacity)
             {
