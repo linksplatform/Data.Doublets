@@ -6,9 +6,10 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         typename TSelf,
         typename TLinksOptions,
         typename TMemory,
-        typename TSourceTreeMethods,
-        bool VUseLinkedList,
-        typename TTargetTreeMethods,
+        typename TInternalSourceTreeMethods,
+        typename TInternalTargetsTreeMethods,
+        typename TExternalSourceTreeMethods,
+        typename TExternalTargetsTreeMethods,
         typename TUnusedLinks,
         typename... TBase>
     struct SplitMemoryLinksBase : public Interfaces::Polymorph<TSelf, TBase...>
@@ -20,16 +21,16 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         using WriteHandlerType = LinksOptionsType::WriteHandlerType;
         using ReadHandlerType = LinksOptionsType::ReadHandlerType;
         static constexpr LinksConstants<LinkAddressType> Constants = LinksOptionsType::Constants;
-        static constexpr bool UseLinkedList = VUseLinkedList;
+        static constexpr bool UseLinkedList = false;
     protected:
         TMemory _dataMemory;
         TMemory _indexMemory;
         std::int64_t _dataMemoryReservationStepInBytesInBytes;
         std::int64_t _indexDataMemoryReservationStepInBytesInBytes;
-        TSourceTreeMethods* InternalSourcesTreeMethods;
-        TSourceTreeMethods* ExternalSourcesTreeMethods;
-        TTargetTreeMethods* InternalTargetsTreeMethods;
-        TTargetTreeMethods* ExternalTargetsTreeMethods;
+        TInternalSourceTreeMethods* InternalSourcesTreeMethods;
+        TInternalTargetsTreeMethods* InternalTargetsTreeMethods;
+        TExternalSourceTreeMethods* ExternalSourcesTreeMethods;
+        TExternalTargetsTreeMethods* ExternalTargetsTreeMethods;
         std::int8_t* _header;
         std::int8_t* _linksDataParts;
         std::int8_t* _linksIndexParts;
