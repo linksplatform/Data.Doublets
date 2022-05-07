@@ -25,7 +25,7 @@
 
         protected: LinkAddressType GetTreeRoot()
             {
-                return thls->object()->GetTreeRoot();
+                return this->object()->GetTreeRoot();
             };
 
         protected: LinkAddressType GetBasePartValue(LinkAddressType link)
