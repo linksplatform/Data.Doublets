@@ -161,7 +161,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 auto value = restriction[1];
                 if (any == index)
                 {
-                    if (value == any))
+                    if (value == any)
                     {
                         return Total(); // Any - как отсутствие ограничения
                     }
