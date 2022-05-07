@@ -21,15 +21,15 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
 
         protected: RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link) { *reinterpret_cast<RawLinkDataPart<LinkAddressType>*>(_links + (RawLinkDataPart<LinkAddressType>::SizeInBytes * (link))); }
 
-        protected: override LinkAddressType GetFirst() { return GetHeaderReference().FirstFreeLink; }
+        protected: override LinkAddressType GetFirst() { return this->GetHeaderReference().FirstFreeLink; }
 
-        protected: override LinkAddressType GetLast() { return GetHeaderReference().LastFreeLink; }
+        protected: override LinkAddressType GetLast() { return this->GetHeaderReference().LastFreeLink; }
 
         protected: LinkAddressType GetPrevious(LinkAddressType element) override { return this->GetLinkDataPartReference(element)->Source; }
 
         protected: LinkAddressType GetNext(LinkAddressType element) override { return this->GetLinkDataPartReference(element)->Target; }
 
-        protected: override LinkAddressType GetSize() { return GetHeaderReference().FreeLinks; }
+        protected: override LinkAddressType GetSize() { return this->GetHeaderReference().FreeLinks; }
 
         protected: void SetFirst(LinkAddressType element) override { this->GetHeaderReference().FirstFreeLink = element; }
 
