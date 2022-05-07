@@ -4,9 +4,9 @@
     class ExternalLinksSizeBalancedTreeMethodsBase : public SizeBalancedTreeMethods<ExternalLinksRecursionlessSizeBalancedTreeMethodsBase<TLinksOptions>, typename TLinksOptions::LinkAddressType>, ILinksTreeMethods<TLinksOptions>
     {
     public:
-        using OptionsType = TLinksOptions;
-        static constexpr auto Constants = OptionsType::Constants;
-        using LinkAddressType = typename OptionsType::LinkAddressType;
+        using LinksOptionsType = TLinksOptions;
+        static constexpr auto Constants = LinksOptionsType::Constants;
+        using LinkAddressType = typename LinksOptionsType::LinkAddressType;
         protected: static constexpr LinkAddressType Break = Constants.Break;
         protected: static constexpr LinkAddressType Continue = Constants.Continue;
         protected: std::uint8_t* LinksDataParts;

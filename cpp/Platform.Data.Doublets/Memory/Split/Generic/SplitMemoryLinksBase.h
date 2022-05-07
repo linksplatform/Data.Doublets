@@ -14,12 +14,12 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
     struct SplitMemoryLinksBase : public Interfaces::Polymorph<TSelf, TBase...>
     {
     public:
-        using OptionsType = TLinksOptions;
-        using LinkAddressType = OptionsType::LinkAddressType;
-        using LinkType = OptionsType::LinkType;
-        using WriteHandlerType = OptionsType::WriteHandlerType;
-        using ReadHandlerType = OptionsType::ReadHandlerType;
-        static constexpr LinksConstants<LinkAddressType> Constants = OptionsType::Constants;
+        using LinksOptionsType = TLinksOptions;
+        using LinkAddressType = LinksOptionsType::LinkAddressType;
+        using LinkType = LinksOptionsType::LinkType;
+        using WriteHandlerType = LinksOptionsType::WriteHandlerType;
+        using ReadHandlerType = LinksOptionsType::ReadHandlerType;
+        static constexpr LinksConstants<LinkAddressType> Constants = LinksOptionsType::Constants;
         static constexpr UseLinkedList = VUseLinkedList;
     private:
         std::int64_t _datadataMemoryReservationStepInBytesInBytes;

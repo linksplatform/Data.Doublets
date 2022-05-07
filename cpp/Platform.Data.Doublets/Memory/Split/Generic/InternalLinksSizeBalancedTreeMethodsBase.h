@@ -3,8 +3,8 @@
     template<typename TLinksOptions>
     class InternalLinksSizeBalancedTreeMethodsBase : public SizeBalancedTreeMethods<InternalLinksSizeBalancedTreeMethodsBase<typename TLinksOptions::LinkAddressType, TLinksOptions::Constants>, LinkAddressType>, ILinksTreeMethods<TLinksOptions>
     {
-        using OptionsType = TLinksOptions;
-    public: static constexpr auto Constants = OptionsType::Constants;
+        using LinksOptionsType = TLinksOptions;
+    public: static constexpr auto Constants = LinksOptionsType::Constants;
         protected: static constexpr LinkAddressType Break = Constants.Break;
         protected: static constexpr LinkAddressType Continue = Constants.Continue;
         protected: std::uint8_t* LinksDataParts;
