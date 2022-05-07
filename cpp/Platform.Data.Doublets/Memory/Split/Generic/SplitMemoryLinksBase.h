@@ -23,8 +23,6 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         static constexpr bool UseLinkedList = VUseLinkedList;
     private:
         std::int64_t _datadataMemoryReservationStepInBytesInBytes;
-        IndexTreeType _indexTreeType;
-        std::function<ILinksTreeMethods<LinkAddressType>> _createInternalSourceTreeMethods
     protected:
         IResizableDirectMemory _dataMemory;
         IResizableDirectMemory _indexMemory;
