@@ -188,7 +188,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                         return 1;
                     }
                     auto storedLinkValue { GetLinkDataPartReference(index) };
-                    if ((values == storedLinkValue.Source) || (value == storedLinkValue.Target))
+                    if ((value == storedLinkValue.Source) || (value == storedLinkValue.Target))
                     {
                         return 1;
                     }
