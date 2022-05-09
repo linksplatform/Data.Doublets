@@ -320,7 +320,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     return LinkAddressType{0};
                 }
             }
-            throw Platform::Exceptions::NotSupportedException("Not supported size of restriction.");
+            throw Platform::Exceptions::NotSupportedException();
         }
 //
         void SetPointers(TMemory dataMemory, TMemory indexMemory)
