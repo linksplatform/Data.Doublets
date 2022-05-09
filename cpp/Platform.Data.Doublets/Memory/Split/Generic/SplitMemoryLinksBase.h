@@ -325,8 +325,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
 //
         void SetPointers(TMemory dataMemory, TMemory indexMemory)
         {
-            _linksDataParts = (byte*)dataMemory.Pointer;
-            _linksIndexParts = (byte*)indexMemory.Pointer;
+            _linksDataParts = (std::int8_t*)dataMemory.Pointer;
+            _linksIndexParts = (std::int8_t*)indexMemory.Pointer;
             _header = _linksIndexParts;
 
             ExternalSourcesTreeMethods = new TExternalSourcesTreeMethods();
