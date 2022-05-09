@@ -168,7 +168,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     {
                         if (UseLinkedList)
                         {
-                            return InternalSourcesListMethods.CountUsages(value) + InternalTargetsTreeMethods.CountUsages(value);
+                            return InternalSourcesTreeMethods.CountUsages(value) + InternalTargetsTreeMethods.CountUsages(value);
                         }
                         else
                         {
@@ -226,7 +226,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                         {
                             if (UseLinkedList)
                             {
-                                return InternalSourcesListMethods.CountUsages(source);
+                                return InternalSourcesTreeMethods.CountUsages(source);
                             }
                             else
                             {
@@ -329,10 +329,10 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             _linksIndexParts = (byte*)indexMemory.Pointer;
             _header = _linksIndexParts;
 
-            ExternalSourcesTreeMethods = new ExternalSourcesTreeMethods();
-            InternalTargetsTreeMethods = new InternalTargetsTreeMethods();
-            ExternalTargetsTreeMethods = new ExternalTargetsTreeMethods();
-            UnusedLinksListMethods = new UnusedLinksListMethods(_linksDataParts, _header);
+            ExternalSourcesTreeMethods = new TExternalSourcesTreeMethods();
+            InternalTargetsTreeMethods = new TInternalTargetsTreeMethods();
+            ExternalTargetsTreeMethods = new TExternalTargetsTreeMethods();
+            UnusedLinksTreeMethods = new TUnusedLinksTreeMethods(_linksDataParts, _header);
         }
 
         void ResetPointers()
