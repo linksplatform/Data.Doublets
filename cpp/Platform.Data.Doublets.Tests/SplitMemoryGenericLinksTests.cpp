@@ -7,17 +7,7 @@
         using namespace Platform::Data::Doublets::Memory::Split::Generic;
         HeapResizableDirectMemory dataMemory { };
         HeapResizableDirectMemory indexMemory { };
-        SplitMemoryLinks<TLinkAddress> memory { dataMemory, indexMemory };
-        action(memory);
-    }
-
-    template <typename TLinkAddress>
-    static void Using(auto&& action)
-    {
-        HeapResizableDirectMemory dataMemory { };
-        HeapResizableDirectMemory indexMemory { };
-        LinksConstants<TLinkAddress> constants { true };
-        SplitMemoryLinks<TLinkAddress> memory { dataMemory, indexMemory, SplitMemoryLinks<TLinkAddress>::DefaultIndexSize, constants };
+        SplitMemoryLinks<LinksOptions<>, HeapResizableDirectMemory> memory { dataMemory, indexMemory };
         action(memory);
     }
 
