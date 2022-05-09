@@ -4,14 +4,14 @@ namespace Platform::Data::Doublets::Benchmarks
     static void BM_CreateMillionPointsFfi(benchmark::State& state)
     {
         using namespace Platform::Memory;
-        using namespace Platform::Data::Doublets::Memory::United;
+        using namespace Platform::Data::Doublets::Ffi;
         for (auto _ : state)
         {
             std::string tempFilePath { std::tmpnam(nullptr) };
             Expects(!Collections::IsWhiteSpace(tempFilePath));
             try
             {
-                Ffi::UnitedMemoryLinks<LinksOptions<>> ffiStorage{tempFilePath};
+                Links<LinksOptions<>> ffiStorage{tempFilePath};
                 for (std::size_t i = 0; i < state.range(0); ++i)
                 {
                     CreatePoint(ffiStorage);
