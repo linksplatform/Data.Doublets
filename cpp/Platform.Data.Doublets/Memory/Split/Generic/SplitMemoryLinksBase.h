@@ -11,7 +11,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         typename TExternalSourcesTreeMethods,
         typename TExternalTargetsTreeMethods,
         typename TInternalLinksSourcesLinkedTreeMethods,
-        typename TUnusedLinks,
+        typename TUnusedLinksTreeMethods,
         typename... TBase>
     struct SplitMemoryLinksBase : public Interfaces::Polymorph<TSelf, TBase...>
     {
@@ -32,6 +32,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         TInternalTargetsTreeMethods* InternalTargetsTreeMethods;
         TExternalSourcesTreeMethods* ExternalSourcesTreeMethods;
         TExternalTargetsTreeMethods* ExternalTargetsTreeMethods;
+        TUnusedLinksTreeMethods* UnusedLinksTreeMethods;
         std::int8_t* _header;
         std::int8_t* _linksDataParts;
         std::int8_t* _linksIndexParts;
