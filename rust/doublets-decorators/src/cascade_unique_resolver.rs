@@ -1,15 +1,13 @@
 use std::borrow::BorrowMut;
-use std::default::default;
-use std::io::BufRead;
 use std::marker::PhantomData;
 use std::ops::Try;
 
-use num_traits::zero;
+use data::{LinksConstants, ToQuery};
+use num::LinkType;
+
+use doublets::{Doublets, Error, Link};
 
 use crate::UniqueResolver;
-use data::{Links, LinksConstants, ToQuery};
-use doublets::{Doublets, Link, LinksError};
-use num::LinkType;
 
 type Base<T, Links> = UniqueResolver<T, Links>;
 
@@ -37,11 +35,7 @@ impl<T: LinkType, L: Doublets<T>> Doublets<T> for CascadeUniqueResolver<T, L> {
         self.links.count_by(query)
     }
 
-    fn create_by_with<F, R>(
-        &mut self,
-        query: impl ToQuery<T>,
-        handler: F,
-    ) -> Result<R, LinksError<T>>
+    fn create_by_with<F, R>(&mut self, query: impl ToQuery<T>, handler: F) -> Result<R, Error<T>>
     where
         F: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>,
@@ -62,7 +56,7 @@ impl<T: LinkType, L: Doublets<T>> Doublets<T> for CascadeUniqueResolver<T, L> {
         query: impl ToQuery<T>,
         replacement: impl ToQuery<T>,
         mut handler: F,
-    ) -> Result<R, LinksError<T>>
+    ) -> Result<R, Error<T>>
     where
         F: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>,
@@ -84,11 +78,7 @@ impl<T: LinkType, L: Doublets<T>> Doublets<T> for CascadeUniqueResolver<T, L> {
         links.update_with(index, source, target, handler)
     }
 
-    fn delete_by_with<F, R>(
-        &mut self,
-        query: impl ToQuery<T>,
-        handler: F,
-    ) -> Result<R, LinksError<T>>
+    fn delete_by_with<F, R>(&mut self, query: impl ToQuery<T>, handler: F) -> Result<R, Error<T>>
     where
         F: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>,

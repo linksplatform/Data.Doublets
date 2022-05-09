@@ -1,6 +1,7 @@
-use crate::ILinks;
 use doublets::LinksConstants;
 use num::LinkType;
+
+use crate::ILinks;
 
 // TODO:
 //   _______ ____  _____   ____

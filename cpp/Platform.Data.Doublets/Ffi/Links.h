@@ -1,4 +1,4 @@
-namespace Platform::Data::Doublets::Memory::United::Ffi
+namespace Platform::Data::Doublets::Ffi
 {
     template<typename TLinkOptions, typename ...TBase>
     class Links : public LinksBase<Links<TLinkOptions, TBase...>, TLinkOptions, TBase...>

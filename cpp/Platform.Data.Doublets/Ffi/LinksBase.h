@@ -1,4 +1,4 @@
-namespace Platform::Data::Doublets::Memory::United::Ffi
+namespace Platform::Data::Doublets::Ffi
 {
     using namespace Platform::Interfaces;
     using namespace Platform::Ranges;

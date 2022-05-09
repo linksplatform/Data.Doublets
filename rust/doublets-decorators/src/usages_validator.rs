@@ -3,13 +3,11 @@ use std::default::default;
 use std::marker::PhantomData;
 use std::ops::Try;
 
-use num_traits::zero;
-
-use doublets::{Doublets, Link, LinksError};
-
+use data::LinksConstants;
 use data::ToQuery;
-use data::{Links, LinksConstants};
 use num::LinkType;
+
+use doublets::{Doublets, Error, Link};
 
 pub struct UsagesValidator<T: LinkType, L: Doublets<T>> {
     links: L,
@@ -35,11 +33,7 @@ impl<T: LinkType, L: Doublets<T>> Doublets<T> for UsagesValidator<T, L> {
         self.links.count_by(query)
     }
 
-    fn create_by_with<F, R>(
-        &mut self,
-        query: impl ToQuery<T>,
-        handler: F,
-    ) -> Result<R, LinksError<T>>
+    fn create_by_with<F, R>(&mut self, query: impl ToQuery<T>, handler: F) -> Result<R, Error<T>>
     where
         F: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>,
@@ -60,37 +54,43 @@ impl<T: LinkType, L: Doublets<T>> Doublets<T> for UsagesValidator<T, L> {
         query: impl ToQuery<T>,
         replacement: impl ToQuery<T>,
         handler: F,
-    ) -> Result<R, LinksError<T>>
+    ) -> Result<R, Error<T>>
     where
         F: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>,
     {
         let links = self.links.borrow_mut();
         let query = query.to_query();
-        let index = query[0];
-        if links.has_usages(index) {
-            Err(LinksError::HasDeps(links.try_get_link(index)?))
-        } else {
+        let index = query[links.constants().index_part.as_()];
+        let usages = links.usages(index)?;
+        if usages.is_empty() {
             links.update_by_with(query, replacement, handler)
+        } else {
+            let usages: Result<_, Error<T>> = usages
+                .into_iter()
+                .map(|index| links.try_get_link(index))
+                .collect();
+            Err(Error::HasUsages(usages?))
         }
     }
 
-    fn delete_by_with<F, R>(
-        &mut self,
-        query: impl ToQuery<T>,
-        handler: F,
-    ) -> Result<R, LinksError<T>>
+    fn delete_by_with<F, R>(&mut self, query: impl ToQuery<T>, handler: F) -> Result<R, Error<T>>
     where
         F: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>,
     {
         let links = self.links.borrow_mut();
         let query = query.to_query();
-        let index = query[0];
-        if links.has_usages(index) {
-            Err(LinksError::HasDeps(links.try_get_link(index)?))
+        let index = query[links.constants().index_part.as_()];
+        let usages = links.usages(index)?;
+        if usages.is_empty() {
+            links.delete_by_with(query, handler)
         } else {
-            links.delete_with(index, handler)
+            let usages: Result<_, Error<T>> = usages
+                .into_iter()
+                .map(|index| links.try_get_link(index))
+                .collect();
+            Err(Error::HasUsages(usages?))
         }
     }
 }
