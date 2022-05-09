@@ -338,7 +338,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
 
         void ResetPointers()
         {
-            base.ResetPointers();
+            ResetPointers();
             _linksDataParts = null;
             _linksIndexParts = null;
             _header = null;
