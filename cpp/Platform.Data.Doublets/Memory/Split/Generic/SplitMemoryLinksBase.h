@@ -159,7 +159,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     {
                         return Total; // Any - как отсутствие ограничения
                     }
-                    auto externalReferencesRange = constants.ExternalReferencesRange;
+                    auto externalReferencesRange = Constants.ExternalReferencesRange;
                     if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value))
                     {
                         return ExternalSourcesTreeMethods.CountUsages(value) + ExternalTargetsTreeMethods.CountUsages(value);
@@ -196,7 +196,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             }
             if (std::ranges::size(restriction) == 3)
             {
-                auto externalReferencesRange = constants.ExternalReferencesRange;
+                auto externalReferencesRange = Constants.ExternalReferencesRange;
                 auto source = this.GetSource(restriction);
                 auto target = this.GetTarget(restriction);
                 if (index == any)
@@ -282,7 +282,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                                 link = InternalSourcesTreeMethods.Search(source, target);
                             }
                         }
-                        return (link == constants.Null) ? LinkAddressType{0} : LinkAddressType{1};
+                        return (link == Constants.Null) ? LinkAddressType{0} : LinkAddressType{1};
                     }
                 }
                 else
