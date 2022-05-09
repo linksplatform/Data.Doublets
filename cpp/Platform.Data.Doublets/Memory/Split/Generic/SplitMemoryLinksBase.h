@@ -335,13 +335,5 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             ExternalTargetsTreeMethods = new TExternalTargetsTreeMethods();
             UnusedLinksTreeMethods = new TUnusedLinksTreeMethods(_linksDataParts, _header);
         }
-
-        void ResetPointers()
-        {
-            ResetPointers();
-            _linksDataParts = null;
-            _linksIndexParts = null;
-            _header = null;
-        }
     };
 }
