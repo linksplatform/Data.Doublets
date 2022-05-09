@@ -1,45 +1,24 @@
-#![feature(box_syntax)]
-#![feature(thread_local)]
 #![feature(try_blocks)]
-#![feature(cell_update)]
-#![feature(backtrace)]
-#![feature(control_flow_enum)]
+#![feature(box_syntax)]
 #![feature(try_trait_v2)]
-#![feature(const_fn_trait_bound)]
-#![feature(const_trait_impl)]
-#![feature(default_free_fn)]
 
-use std::alloc::{alloc, Layout};
-use std::cell::{Cell, RefCell};
-use std::ffi::{CStr, CString, OsStr, OsString};
-use std::fmt::{Display, Write};
-use std::panic::catch_unwind;
-use std::path::Path;
-use std::ptr;
-use std::ptr::{drop_in_place, null_mut};
-use std::slice;
-use std::time::{Instant, SystemTime, UNIX_EPOCH};
-
-use doublets::data::{Links, LinksConstants, Query};
-use doublets::doublets::Flow::{Break, Continue};
-use doublets::doublets::Link as DLink;
-use doublets::doublets::{mem::united::Store, Doublets, LinksError};
-use doublets::mem::FileMappedMem;
-use doublets::num::LinkType;
-use doublets::query;
-use ffi_attributes as ffi;
-use libc::c_char;
-use libc::c_void;
-use log::Metadata;
-use log::{debug, error, info, trace, warn};
 use std::error::Error;
-use std::ops::{RangeInclusive, Try};
-use tracing_subscriber::fmt::format::Format;
+use std::ffi::CStr;
+use std::fs::File;
+use std::ops::RangeInclusive;
+use std::ops::Try;
+use std::ptr::{drop_in_place, null_mut};
 
-// TODO: For macro
-use doublets::doublets::decorators::*;
+use data::{LinksConstants, Query, query};
+use data::Flow::{Break, Continue};
+use libc::{c_char, c_void};
+use log::{error, warn};
+use num::LinkType;
 
-fn result_into_log<R, E: Display>(result: Result<R, E>, default: R) -> R {
+use doublets::Doublets;
+use ffi_attributes as ffi;
+
+fn result_into_log<R, E: std::fmt::Display>(result: Result<R, E>, default: R) -> R {
     match result {
         Ok(r) => r,
         Err(e) => {
@@ -57,7 +36,7 @@ fn query_from_raw<T: LinkType>(query: *const T, len: usize) -> Query<'static, T>
     if query.is_null() {
         query![]
     } else {
-        Query::new(unsafe { slice::from_raw_parts(query, len) })
+        Query::new(unsafe { std::slice::from_raw_parts(query, len) })
     }
 }
 
@@ -71,7 +50,8 @@ fn unnul_or_error<'a, Ptr, R>(ptr: *mut Ptr) -> &'a mut R {
     }
 }
 
-type UnitedLinks<T> = Store<T, FileMappedMem>;
+// TODO: remove ::mem:: in doublets crate
+type UnitedLinks<T> = doublets::mem::united::Store<T, mem::FileMappedMem>;
 
 type WrappedLinks<T> = env_decorators::env_type!("JS_LETS_GO", "<T, *>", UnitedLinks<T>);
 
@@ -150,6 +130,8 @@ impl<T: LinkType> Into<LinksConstants<T>> for Constants<T> {
     }
 }
 
+type DLink<T> = doublets::Link<T>;
+
 #[repr(C)]
 pub struct Link<T: LinkType> {
     index: T,
@@ -168,24 +150,24 @@ impl<T: LinkType> From<DLink<T>> for Link<T> {
 }
 
 #[ffi::specialize_for(
-    types = "u8",
-    types = "u16",
-    types = "u32",
-    types = "u64",
-    convention = "csharp",
-    name = "*Links_New"
+types = "u8",
+types = "u16",
+types = "u32",
+types = "u64",
+convention = "csharp",
+name = "*Links_New"
 )]
 fn new_united_links<T: LinkType>(path: *const c_char) -> *mut c_void {
     new_with_constants_united_links::<T>(path, LinksConstants::external().into())
 }
 
 #[ffi::specialize_for(
-    types = "u8",
-    types = "u16",
-    types = "u32",
-    types = "u64",
-    convention = "csharp",
-    name = "*Links_NewWithConstants"
+types = "u8",
+types = "u16",
+types = "u32",
+types = "u64",
+convention = "csharp",
+name = "*Links_NewWithConstants"
 )]
 fn new_with_constants_united_links<T: LinkType>(
     path: *const c_char,
@@ -193,8 +175,12 @@ fn new_with_constants_united_links<T: LinkType>(
 ) -> *mut c_void {
     let result: Result<_, Box<dyn Error>> = try {
         let path = unsafe { CStr::from_ptr(path) }.to_str()?;
-        let path = OsStr::new(path);
-        let mem = FileMappedMem::new(path)?;
+        let file = File::options()
+            .create(true)
+            .read(true)
+            .write(true)
+            .open(path)?;
+        let mem = mem::FileMappedMem::new(file)?;
         let links = box env_decorators::env_value!(
             "JS_LETS_GO",
             UnitedLinks::<T>::with_constants(mem, constants.into())?
@@ -205,12 +191,12 @@ fn new_with_constants_united_links<T: LinkType>(
 }
 
 #[ffi::specialize_for(
-    types = "u8",
-    types = "u16",
-    types = "u32",
-    types = "u64",
-    convention = "csharp",
-    name = "*Links_Drop"
+types = "u8",
+types = "u16",
+types = "u32",
+types = "u64",
+convention = "csharp",
+name = "*Links_Drop"
 )]
 unsafe fn drop_united_links<T: LinkType>(this: *mut c_void) {
     let links: &mut WrappedLinks<T> = unnul_or_error(this);
@@ -220,25 +206,25 @@ unsafe fn drop_united_links<T: LinkType>(this: *mut c_void) {
 }
 
 #[ffi::specialize_for(
-    types = "u8",
-    types = "u16",
-    types = "u32",
-    types = "u64",
-    convention = "csharp",
-    name = "*Links_GetConstants"
+types = "u8",
+types = "u16",
+types = "u32",
+types = "u64",
+convention = "csharp",
+name = "*Links_GetConstants"
 )]
 unsafe fn get_constants_united_links<T: LinkType>(this: *mut c_void) -> Constants<T> {
     let links: &mut WrappedLinks<T> = unnul_or_error(this);
-    links.constants_links().into()
+    links.constants().into()
 }
 
 #[ffi::specialize_for(
-    types = "u8",
-    types = "u16",
-    types = "u32",
-    types = "u64",
-    convention = "csharp",
-    name = "*Links_Create"
+types = "u8",
+types = "u16",
+types = "u32",
+types = "u64",
+convention = "csharp",
+name = "*Links_Create"
 )]
 fn create_united<T: LinkType>(
     this: *mut c_void,
@@ -247,8 +233,8 @@ fn create_united<T: LinkType>(
     callback: CUDCallback<T>,
 ) -> T {
     let links: &mut WrappedLinks<T> = unnul_or_error(this);
-    let continue_ = links.constants_links().r#continue;
-    let break_ = links.constants_links().r#break;
+    let continue_ = links.constants().r#continue;
+    let break_ = links.constants().r#break;
     let result = {
         let query = query_from_raw(query, len);
         let handler = |before: DLink<_>, after: DLink<_>| {
@@ -268,17 +254,17 @@ fn create_united<T: LinkType>(
                 break_
             }
         }),
-        links.constants_links().error,
+        links.constants().error,
     )
 }
 
 #[ffi::specialize_for(
-    types = "u8",
-    types = "u16",
-    types = "u32",
-    types = "u64",
-    convention = "csharp",
-    name = "*Links_Each"
+types = "u8",
+types = "u16",
+types = "u32",
+types = "u64",
+convention = "csharp",
+name = "*Links_Each"
 )]
 fn each_united<T: LinkType>(
     this: *mut c_void,
@@ -293,12 +279,12 @@ fn each_united<T: LinkType>(
 }
 
 #[ffi::specialize_for(
-    types = "u8",
-    types = "u16",
-    types = "u32",
-    types = "u64",
-    convention = "csharp",
-    name = "*Links_Count"
+types = "u8",
+types = "u16",
+types = "u32",
+types = "u64",
+convention = "csharp",
+name = "*Links_Count"
 )]
 unsafe fn count_united<T: LinkType>(this: *mut c_void, query: *const T, len: usize) -> T {
     let links: &mut WrappedLinks<T> = unnul_or_error(this);
@@ -307,12 +293,12 @@ unsafe fn count_united<T: LinkType>(this: *mut c_void, query: *const T, len: usi
 }
 
 #[ffi::specialize_for(
-    types = "u8",
-    types = "u16",
-    types = "u32",
-    types = "u64",
-    convention = "csharp",
-    name = "*Links_Update"
+types = "u8",
+types = "u16",
+types = "u32",
+types = "u64",
+convention = "csharp",
+name = "*Links_Update"
 )]
 unsafe fn update_united<T: LinkType>(
     this: *mut c_void,
@@ -325,8 +311,8 @@ unsafe fn update_united<T: LinkType>(
     let restrictions = query_from_raw(restrictions, len_r);
     let substitutuion = query_from_raw(substitutuion, len_s);
     let links: &mut WrappedLinks<T> = unnul_or_error(this);
-    let continue_ = links.constants_links().r#continue;
-    let break_ = links.constants_links().r#break;
+    let continue_ = links.constants().r#continue;
+    let break_ = links.constants().r#break;
     let result = {
         let handler = move |before: DLink<T>, after: DLink<T>| {
             if callback(before.into(), after.into()) == continue_ {
@@ -345,17 +331,17 @@ unsafe fn update_united<T: LinkType>(
                 break_
             }
         }),
-        links.constants_links().error,
+        links.constants().error,
     )
 }
 
 #[ffi::specialize_for(
-    types = "u8",
-    types = "u16",
-    types = "u32",
-    types = "u64",
-    convention = "csharp",
-    name = "*Links_Delete"
+types = "u8",
+types = "u16",
+types = "u32",
+types = "u64",
+convention = "csharp",
+name = "*Links_Delete"
 )]
 unsafe fn delete_united<T: LinkType>(
     this: *mut c_void,
@@ -365,8 +351,8 @@ unsafe fn delete_united<T: LinkType>(
 ) -> T {
     let query = query_from_raw(query, len);
     let links: &mut WrappedLinks<T> = unnul_or_error(this);
-    let continue_ = links.constants_links().r#continue;
-    let break_ = links.constants_links().r#break;
+    let continue_ = links.constants().r#continue;
+    let break_ = links.constants().r#break;
     let result = {
         let handler = move |before: DLink<_>, after: DLink<_>| {
             if callback(before.into(), after.into()) == break_ {
@@ -385,7 +371,7 @@ unsafe fn delete_united<T: LinkType>(
                 break_
             }
         }),
-        links.constants_links().error,
+        links.constants().error,
     )
 }
 
@@ -395,7 +381,7 @@ pub struct SharedLogger {
 }
 
 impl log::Log for SharedLogger {
-    fn enabled(&self, _: &Metadata) -> bool {
+    fn enabled(&self, _: &log::Metadata) -> bool {
         true
     }
     fn log(&self, record: &log::Record) {
@@ -410,6 +396,7 @@ pub fn build_shared_logger() -> SharedLogger {
     }
     SharedLogger { formatter }
 }
+
 #[no_mangle]
 pub extern "C" fn setup_shared_logger(logger: SharedLogger) {
     log::set_max_level(log::STATIC_MAX_LEVEL);
@@ -433,6 +420,8 @@ pub extern "C" fn init_fmt_logger() {
 }
 
 mod tests {
+    use log::{debug, info, trace};
+
     use super::*;
 
     fn init_log() {

@@ -1,6 +1,7 @@
 [workspace]
 
 members = [
+    "ffi",
     "doublets",
     "doublets-decorators",
 
