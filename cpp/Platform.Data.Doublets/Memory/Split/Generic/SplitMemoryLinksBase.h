@@ -6,9 +6,9 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         typename TSelf,
         typename TLinksOptions,
         typename TMemory,
-        typename TInternalSourceTreeMethods,
+        typename TInternalSourcesTreeMethods,
         typename TInternalTargetsTreeMethods,
-        typename TExternalSourceTreeMethods,
+        typename TExternalSourcesTreeMethods,
         typename TExternalTargetsTreeMethods,
         typename TInternalLinksSourcesLinkedTreeMethods,
         typename TUnusedLinks,
@@ -28,9 +28,9 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         TMemory _indexMemory;
         std::int64_t _dataMemoryReservationStepInBytesInBytes;
         std::int64_t _indexDataMemoryReservationStepInBytesInBytes;
-        TInternalSourceTreeMethods* InternalSourcesTreeMethods;
+        TInternalSourcesTreeMethods* InternalSourcesTreeMethods;
         TInternalTargetsTreeMethods* InternalTargetsTreeMethods;
-        TExternalSourceTreeMethods* ExternalSourcesTreeMethods;
+        TExternalSourcesTreeMethods* ExternalSourcesTreeMethods;
         TExternalTargetsTreeMethods* ExternalTargetsTreeMethods;
         std::int8_t* _header;
         std::int8_t* _linksDataParts;
@@ -72,9 +72,9 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             }
             else
             {
-                InternalSourcesTreeMethods = new TInternalSourceTreeMethods(Constants, _linksDataParts, _linksIndexParts, _header);
+                InternalSourcesTreeMethods = new TInternalSourcesTreeMethods(Constants, _linksDataParts, _linksIndexParts, _header);
             }
-            ExternalSourcesTreeMethods = new TExternalSourceTreeMethods(Constants, _linksDataParts, _linksIndexParts, _header);
+            ExternalSourcesTreeMethods = new TExternalSourcesTreeMethods(Constants, _linksDataParts, _linksIndexParts, _header);
             InternalTargetsTreeMethods = new TInternalTargetsTreeMethods(Constants, _linksDataParts, _linksIndexParts, _header);
             ExternalTargetsTreeMethods = new TExternalTargetsTreeMethods(Constants, _linksDataParts, _linksIndexParts, _header);
             Init(dataMemory, indexMemory);
