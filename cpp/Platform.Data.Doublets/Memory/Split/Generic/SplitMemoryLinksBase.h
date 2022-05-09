@@ -134,33 +134,32 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             header.ReservedLinks = (dataMemory.ReservedCapacity - LinkDataPartSizeInBytes) / LinkDataPartSizeInBytes;
         }
 
-        LinkAddressType Count(Interfaces::CList<LinkAddressType> auto&& restriction) const
+        LinkAddressType Count(const LinkType& restriction) const
         {
-            auto length { std::ranges::size(restriction) };
-            if(0 == length)
+            if (std::ranges::size(restriction) == 0)
             {
-                return Total();
+                return Total;
             }
-            auto any = Constants.Any;
             auto index = GetIndex(this, restriction);
-            if (1 == length)
+            auto any = Constants.Any;
+            if (std::ranges::size(restriction) == 1)
             {
-                if (any == index)
+                if (index == any)
                 {
-                    return Total();
+                    return Total;
                 }
-                return Exists(this, index) ? 1 : 0;
+                return Exists(index) ? LinkAddressType{1} : LinkAddressType{0};
             }
-            if (2 == length)
+            if (std::ranges::size(restriction) == 2)
             {
                 auto value = restriction[1];
-                if (any == index)
+                if (index == any)
                 {
                     if (value == any)
                     {
-                        return Total(); // Any - как отсутствие ограничения
+                        return Total; // Any - как отсутствие ограничения
                     }
-                    auto externalReferencesRange = Constants.ExternalReferencesRange;
+                    auto externalReferencesRange = constants.ExternalReferencesRange;
                     if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value))
                     {
                         return ExternalSourcesTreeMethods.CountUsages(value) + ExternalTargetsTreeMethods.CountUsages(value);
@@ -169,7 +168,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     {
                         if (UseLinkedList)
                         {
-                            return InternalSourcesTreeMethods.CountUsages(value) + InternalTargetsTreeMethods.CountUsages(value);
+                            return InternalSourcesListMethods.CountUsages(value) + InternalTargetsTreeMethods.CountUsages(value);
                         }
                         else
                         {
@@ -181,36 +180,147 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 {
                     if (!Exists(this, index))
                     {
-                        return 0;
+                        return LinkAddressType{0};
                     }
-                    if (any == value)
+                    if (value == any)
                     {
-                        return 1;
+                        return LinkAddressType{1};
                     }
-                    auto storedLinkValue { GetLinkDataPartReference(index) };
-                    if ((value == storedLinkValue.Source) || (value == storedLinkValue.Target))
+                    auto& storedLinkValue = this->GetLinkDataPartReference(index);
+                    if ((storedLinkValue.Source == value) || (storedLinkValue.Target == value))
                     {
-                        return 1;
+                        return LinkAddressType{1};
                     }
-                    return 0;
+                    return LinkAddressType{0};
                 }
             }
-            if(3 == length)
+            if (std::ranges::size(restriction) == 3)
             {
-                auto source { this->GetSource(this, restriction) };
-                auto target { this->GetTarget(this, restriction) };
-                if(any == index)
+                auto externalReferencesRange = constants.ExternalReferencesRange;
+                auto source = this.GetSource(restriction);
+                auto target = this.GetTarget(restriction);
+                if (index == any)
                 {
-                    if((any == source) && (any == target))
+                    if ((source == any) && (target == any))
                     {
-                        return Total();
+                        return Total;
                     }
-                    else if (any == source)
+                    else if ((source == any))
                     {
-                        if(externalReferenceRange)
+                        if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(target))
+                        {
+                            return ExternalTargetsTreeMethods.CountUsages(target);
+                        }
+                        else
+                        {
+                            return InternalTargetsTreeMethods.CountUsages(target);
+                        }
+                    }
+                    else if ((target == any))
+                    {
+                        if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(source))
+                        {
+                            return ExternalSourcesTreeMethods.CountUsages(source);
+                        }
+                        else
+                        {
+                            if (UseLinkedList)
+                            {
+                                return InternalSourcesListMethods.CountUsages(source);
+                            }
+                            else
+                            {
+                                return InternalSourcesTreeMethods.CountUsages(source);
+                            }
+                        }
+                    }
+                    else //if(source != Any && target != Any)
+                    {
+                        // Эквивалент Exists(source, target) => Count(Any, source, target) > 0
+                        LinkAddressType link;
+                        if (externalReferencesRange.HasValue)
+                        {
+                            if (externalReferencesRange.Value.Contains(source) && externalReferencesRange.Value.Contains(target))
+                            {
+                                link = ExternalSourcesTreeMethods.Search(source, target);
+                            }
+                            else if (externalReferencesRange.Value.Contains(source))
+                            {
+                                link = InternalTargetsTreeMethods.Search(source, target);
+                            }
+                            else if (externalReferencesRange.Value.Contains(target))
+                            {
+                                if (UseLinkedList)
+                                {
+                                    link = ExternalSourcesTreeMethods.Search(source, target);
+                                }
+                                else
+                                {
+                                    link = InternalSourcesTreeMethods.Search(source, target);
+                                }
+                            }
+                            else
+                            {
+                                if (UseLinkedList || InternalSourcesTreeMethods.CountUsages(source) > InternalTargetsTreeMethods.CountUsages(target))
+                                {
+                                    link = InternalTargetsTreeMethods.Search(source, target);
+                                }
+                                else
+                                {
+                                    link = InternalSourcesTreeMethods.Search(source, target);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (UseLinkedList || InternalSourcesTreeMethods.CountUsages(source) > InternalTargetsTreeMethods.CountUsages(target))
+                            {
+                                link = InternalTargetsTreeMethods.Search(source, target);
+                            }
+                            else
+                            {
+                                link = InternalSourcesTreeMethods.Search(source, target);
+                            }
+                        }
+                        return (link == constants.Null) ? LinkAddressType{0} : LinkAddressType{1};
                     }
                 }
+                else
+                {
+                    if (!Exists(this, index))
+                    {
+                        return LinkAddressType{0};
+                    }
+                    if ((source == any) && (target == any))
+                    {
+                        return LinkAddressType{1};
+                    }
+                    auto& storedLinkValue = GetLinkDataPartReference(index);
+                    if ((source != any) && (target != any))
+                    {
+                        if ((storedLinkValue.Source == source) && (storedLinkValue.Target == target))
+                        {
+                            return LinkAddressType{1};
+                        }
+                        return LinkAddressType{0};
+                    }
+                    auto value = LinkAddressType{};
+                    if ((source == any))
+                    {
+                        value = target;
+                    }
+                    if ((target == any))
+                    {
+                        value = source;
+                    }
+                    if ((storedLinkValue.Source == value) || (storedLinkValue.Target == value))
+                    {
+                        return LinkAddressType{1};
+                    }
+                    return LinkAddressType{0};
+                }
             }
+            throw new Platform::Exceptions::NotSupportedException("Not supported size of restriction.");
         }
 //
         void SetPointers(TMemory dataMemory, TMemory indexMemory)
