@@ -25,9 +25,15 @@
             Continue = Constants.Continue;
         }
 
-        protected: LinkAddressType GetTreeRoot() = 0;
+        protected: LinkAddressType GetTreeRoot()
+                {
+                    return this->object()->GetTreeRoot();
+                };
 
-        protected: LinkAddressType GetBasePartValue(LinkAddressType link) = 0;
+        protected: LinkAddressType GetBasePartValue(LinkAddressType link)
+                {
+                    return this->object()->GetBasePartValue(link);
+                };
 
         protected: bool FirstIsToTheRightOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource, LinkAddressType rootTarget) = 0;
 
