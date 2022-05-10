@@ -7,6 +7,17 @@
         using namespace Platform::Data::Doublets::Memory::Split::Generic;
         HeapResizableDirectMemory dataMemory { };
         HeapResizableDirectMemory indexMemory { };
+        SplitMemoryLinks<LinksOptions<TLinkAddress, LinksConstants<TLinkAddress>{false}>, HeapResizableDirectMemory> memory { dataMemory, indexMemory };
+        action(memory);
+    }
+
+    template <typename TLinkAddress>
+    static void UsingWithExternalReferences(auto&& action)
+    {
+        using namespace Platform::Memory;
+        using namespace Platform::Data::Doublets::Memory::Split::Generic;
+        HeapResizableDirectMemory dataMemory { };
+        HeapResizableDirectMemory indexMemory { };
         SplitMemoryLinks<LinksOptions<>, HeapResizableDirectMemory> memory { dataMemory, indexMemory };
         action(memory);
     }
