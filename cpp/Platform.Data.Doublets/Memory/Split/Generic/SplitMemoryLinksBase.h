@@ -142,7 +142,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         {
             if (std::ranges::size(restriction) == 0)
             {
-                return Total;
+                return Total();
             }
             auto index = GetIndex(this, restriction);
             auto any = Constants.Any;
@@ -150,7 +150,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             {
                 if (index == any)
                 {
-                    return Total;
+                    return Total();
                 }
                 return Exists(index) ? LinkAddressType{1} : LinkAddressType{0};
             }
@@ -161,7 +161,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 {
                     if (value == any)
                     {
-                        return Total; // Any - как отсутствие ограничения
+                        return Total(); // Any - как отсутствие ограничения
                     }
                     auto externalReferencesRange = Constants.ExternalReferencesRange;
                     if (Constants.IsExternalReferencesRangesEnabled && externalReferencesRange.Contains(value))
@@ -207,7 +207,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 {
                     if ((source == any) && (target == any))
                     {
-                        return Total;
+                        return Total();
                     }
                     else if ((source == any))
                     {
