@@ -73,15 +73,15 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         {
             if (UseLinkedList)
             {
-                InternalSourcesTreeMethods = TInternalLinksSourcesLinkedTreeMethods(Constants, _linksDataParts, _linksIndexParts);
+                InternalSourcesTreeMethods = new TInternalLinksSourcesLinkedTreeMethods(_linksDataParts, _linksIndexParts);
             }
             else
             {
-                InternalSourcesTreeMethods = new TInternalSourcesTreeMethods(Constants, _linksDataParts, _linksIndexParts, _header);
+                InternalSourcesTreeMethods = new TInternalSourcesTreeMethods(_linksDataParts, _linksIndexParts, _header);
             }
-            ExternalSourcesTreeMethods = new TExternalSourcesTreeMethods(Constants, _linksDataParts, _linksIndexParts, _header);
-            InternalTargetsTreeMethods = new TInternalTargetsTreeMethods(Constants, _linksDataParts, _linksIndexParts, _header);
-            ExternalTargetsTreeMethods = new TExternalTargetsTreeMethods(Constants, _linksDataParts, _linksIndexParts, _header);
+            ExternalSourcesTreeMethods = new TExternalSourcesTreeMethods(_linksDataParts, _linksIndexParts, _header);
+            InternalTargetsTreeMethods = new TInternalTargetsTreeMethods(_linksDataParts, _linksIndexParts, _header);
+            ExternalTargetsTreeMethods = new TExternalTargetsTreeMethods(_linksDataParts, _linksIndexParts, _header);
             Init(dataMemory, indexMemory);
         }
 
