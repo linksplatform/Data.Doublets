@@ -172,11 +172,11 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     {
                         if (UseLinkedList)
                         {
-                            return InternalSourcesTreeMethods.CountUsages(value) + InternalTargetsTreeMethods.CountUsages(value);
+                            return InternalSourcesTreeMethods.CountUsages(value) + InternalTargetsTreeMethods->CountUsages(value);
                         }
                         else
                         {
-                            return InternalSourcesTreeMethods.CountUsages(value) + InternalTargetsTreeMethods.CountUsages(value);
+                            return InternalSourcesTreeMethods.CountUsages(value) + InternalTargetsTreeMethods->CountUsages(value);
                         }
                     }
                 }
@@ -217,7 +217,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                         }
                         else
                         {
-                            return InternalTargetsTreeMethods.CountUsages(target);
+                            return InternalTargetsTreeMethods->CountUsages(target);
                         }
                     }
                     else if ((target == any))
@@ -250,7 +250,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                             }
                             else if (externalReferencesRange.Contains(source))
                             {
-                                link = InternalTargetsTreeMethods.Search(source, target);
+                                link = InternalTargetsTreeMethods->Search(source, target);
                             }
                             else if (externalReferencesRange.Contains(target))
                             {
@@ -265,9 +265,9 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                             }
                             else
                             {
-                                if (UseLinkedList || InternalSourcesTreeMethods.CountUsages(source) > InternalTargetsTreeMethods.CountUsages(target))
+                                if (UseLinkedList || InternalSourcesTreeMethods.CountUsages(source) > InternalTargetsTreeMethods->CountUsages(target))
                                 {
-                                    link = InternalTargetsTreeMethods.Search(source, target);
+                                    link = InternalTargetsTreeMethods->Search(source, target);
                                 }
                                 else
                                 {
@@ -277,9 +277,9 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                         }
                         else
                         {
-                            if (UseLinkedList || InternalSourcesTreeMethods.CountUsages(source) > InternalTargetsTreeMethods.CountUsages(target))
+                            if (UseLinkedList || InternalSourcesTreeMethods.CountUsages(source) > InternalTargetsTreeMethods->CountUsages(target))
                             {
-                                link = InternalTargetsTreeMethods.Search(source, target);
+                                link = InternalTargetsTreeMethods->Search(source, target);
                             }
                             else
                             {
