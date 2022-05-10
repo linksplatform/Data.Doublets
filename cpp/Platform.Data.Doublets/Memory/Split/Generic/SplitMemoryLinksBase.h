@@ -38,7 +38,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         std::int8_t* _linksIndexParts;
 
     public:
-        TLinksOptions Total() const
+        TLinkAddress Total() const
         {
             auto& header = this->GetHeaderReference();
             return header.AllocatedLinks - header.FreeLinks;
@@ -202,8 +202,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             if (std::ranges::size(restriction) == 3)
             {
                 auto externalReferencesRange = Constants.ExternalReferencesRange;
-                auto source = GetSource(this, restriction);
-                auto target = GetTarget(this, restriction);
+                auto source = GetSource(*this, restriction);
+                auto target = GetTarget(*this, restriction);
                 if (index == any)
                 {
                     if ((source == any) && (target == any))
