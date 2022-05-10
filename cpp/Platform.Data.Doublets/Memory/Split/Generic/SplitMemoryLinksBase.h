@@ -202,8 +202,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             if (std::ranges::size(restriction) == 3)
             {
                 auto externalReferencesRange = Constants.ExternalReferencesRange;
-                auto source = this->GetSource(restriction);
-                auto target = this->GetTarget(restriction);
+                auto source = GetSource(this, restriction);
+                auto target = GetTarget(this, restriction);
                 if (index == any)
                 {
                     if ((source == any) && (target == any))
