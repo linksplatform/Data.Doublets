@@ -1,7 +1,6 @@
 namespace Platform::Data::Doublets::Memory::Split::Generic
 {
     using namespace Platform::Interfaces;
-    using Platform::Memory::IResizableDirectMemory;
     template<
         typename TSelf,
         typename TLinksOptions,
