@@ -164,7 +164,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                         return Total; // Any - как отсутствие ограничения
                     }
                     auto externalReferencesRange = Constants.ExternalReferencesRange;
-                    if (Constants.IsExternalReferencesRangesEnabled && externalReferencesRange.Value.Contains(value))
+                    if (Constants.IsExternalReferencesRangesEnabled && externalReferencesRange.Contains(value))
                     {
                         return ExternalSourcesTreeMethods.CountUsages(value) + ExternalTargetsTreeMethods.CountUsages(value);
                     }
@@ -211,7 +211,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     }
                     else if ((source == any))
                     {
-                        if (Constants.IsExternalReferencesRangesEnabled && externalReferencesRange.Value.Contains(target))
+                        if (Constants.IsExternalReferencesRangesEnabled && externalReferencesRange.Contains(target))
                         {
                             return ExternalTargetsTreeMethods.CountUsages(target);
                         }
@@ -222,7 +222,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     }
                     else if ((target == any))
                     {
-                        if (Constants.IsExternalReferencesRangesEnabled && externalReferencesRange.Value.Contains(source))
+                        if (Constants.IsExternalReferencesRangesEnabled && externalReferencesRange.Contains(source))
                         {
                             return ExternalSourcesTreeMethods.CountUsages(source);
                         }
@@ -244,15 +244,15 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                         LinkAddressType link;
                         if (Constants.IsExternalReferencesRangesEnabled)
                         {
-                            if (externalReferencesRange.Value.Contains(source) && externalReferencesRange.Value.Contains(target))
+                            if (externalReferencesRange.Contains(source) && externalReferencesRange.Contains(target))
                             {
                                 link = ExternalSourcesTreeMethods.Search(source, target);
                             }
-                            else if (externalReferencesRange.Value.Contains(source))
+                            else if (externalReferencesRange.Contains(source))
                             {
                                 link = InternalTargetsTreeMethods.Search(source, target);
                             }
-                            else if (externalReferencesRange.Value.Contains(target))
+                            else if (externalReferencesRange.Contains(target))
                             {
                                 if (UseLinkedList)
                                 {
