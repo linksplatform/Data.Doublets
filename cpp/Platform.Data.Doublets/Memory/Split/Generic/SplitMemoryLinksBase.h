@@ -173,11 +173,11 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     {
                         if (UseLinkedList)
                         {
-                            return InternalSourcesTreeMethods.CountUsages(value) + InternalTargetsTreeMethods->CountUsages(value);
+                            return InternalSourcesTreeMethods->CountUsages(value) + InternalTargetsTreeMethods->CountUsages(value);
                         }
                         else
                         {
-                            return InternalSourcesTreeMethods.CountUsages(value) + InternalTargetsTreeMethods->CountUsages(value);
+                            return InternalSourcesTreeMethods->CountUsages(value) + InternalTargetsTreeMethods->CountUsages(value);
                         }
                     }
                 }
@@ -231,11 +231,11 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                         {
                             if (UseLinkedList)
                             {
-                                return InternalSourcesTreeMethods.CountUsages(source);
+                                return InternalSourcesTreeMethods->CountUsages(source);
                             }
                             else
                             {
-                                return InternalSourcesTreeMethods.CountUsages(source);
+                                return InternalSourcesTreeMethods->CountUsages(source);
                             }
                         }
                     }
@@ -261,30 +261,30 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                                 }
                                 else
                                 {
-                                    link = InternalSourcesTreeMethods.Search(source, target);
+                                    link = InternalSourcesTreeMethods->Search(source, target);
                                 }
                             }
                             else
                             {
-                                if (UseLinkedList || InternalSourcesTreeMethods.CountUsages(source) > InternalTargetsTreeMethods->CountUsages(target))
+                                if (UseLinkedList || InternalSourcesTreeMethods->CountUsages(source) > InternalTargetsTreeMethods->CountUsages(target))
                                 {
                                     link = InternalTargetsTreeMethods->Search(source, target);
                                 }
                                 else
                                 {
-                                    link = InternalSourcesTreeMethods.Search(source, target);
+                                    link = InternalSourcesTreeMethods->Search(source, target);
                                 }
                             }
                         }
                         else
                         {
-                            if (UseLinkedList || InternalSourcesTreeMethods.CountUsages(source) > InternalTargetsTreeMethods->CountUsages(target))
+                            if (UseLinkedList || InternalSourcesTreeMethods->CountUsages(source) > InternalTargetsTreeMethods->CountUsages(target))
                             {
                                 link = InternalTargetsTreeMethods->Search(source, target);
                             }
                             else
                             {
-                                link = InternalSourcesTreeMethods.Search(source, target);
+                                link = InternalSourcesTreeMethods->Search(source, target);
                             }
                         }
                         return (link == Constants.Null) ? LinkAddressType{0} : LinkAddressType{1};
