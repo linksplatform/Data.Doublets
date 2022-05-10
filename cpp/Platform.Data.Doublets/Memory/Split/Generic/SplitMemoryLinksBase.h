@@ -167,7 +167,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     auto externalReferencesRange = Constants.ExternalReferencesRange;
                     if (Constants.IsExternalReferencesRangesEnabled && externalReferencesRange.Contains(value))
                     {
-                        return ExternalSourcesTreeMethods.CountUsages(value) + ExternalTargetsTreeMethods.CountUsages(value);
+                        return ExternalSourcesTreeMethods->CountUsages(value) + ExternalTargetsTreeMethods.CountUsages(value);
                     }
                     else
                     {
@@ -225,7 +225,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     {
                         if (Constants.IsExternalReferencesRangesEnabled && externalReferencesRange.Contains(source))
                         {
-                            return ExternalSourcesTreeMethods.CountUsages(source);
+                            return ExternalSourcesTreeMethods->CountUsages(source);
                         }
                         else
                         {
@@ -247,7 +247,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                         {
                             if (externalReferencesRange.Contains(source) && externalReferencesRange.Contains(target))
                             {
-                                link = ExternalSourcesTreeMethods.Search(source, target);
+                                link = ExternalSourcesTreeMethods->Search(source, target);
                             }
                             else if (externalReferencesRange.Contains(source))
                             {
@@ -257,7 +257,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                             {
                                 if (UseLinkedList)
                                 {
-                                    link = ExternalSourcesTreeMethods.Search(source, target);
+                                    link = ExternalSourcesTreeMethods->Search(source, target);
                                 }
                                 else
                                 {
