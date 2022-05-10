@@ -14,6 +14,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         typename... TBase>
     class SplitMemoryLinks : SplitMemoryLinksBase<SplitMemoryLinks<TLinksOptions, TMemory, TInternalSourcesTreeMethods, TInternalTargetsTreeMethods, TExternalSourcesTreeMethods, TExternalTargetsTreeMethods, TInternalLinksSourcesLinkedTreeMethods, TUnusedLinksTreeMethods, TBase...>, TLinksOptions, TMemory, TInternalSourcesTreeMethods, TInternalTargetsTreeMethods, TExternalSourcesTreeMethods, TExternalTargetsTreeMethods, TInternalLinksSourcesLinkedTreeMethods, TUnusedLinksTreeMethods, TBase...>
     {
-
+        using base = SplitMemoryLinksBase<SplitMemoryLinks<TLinksOptions, TMemory, TInternalSourcesTreeMethods, TInternalTargetsTreeMethods, TExternalSourcesTreeMethods, TExternalTargetsTreeMethods, TInternalLinksSourcesLinkedTreeMethods, TUnusedLinksTreeMethods, TBase...>, TLinksOptions, TMemory, TInternalSourcesTreeMethods, TInternalTargetsTreeMethods, TExternalSourcesTreeMethods, TExternalTargetsTreeMethods, TInternalLinksSourcesLinkedTreeMethods, TUnusedLinksTreeMethods, TBase...>;
+    public:
+        using base::base;
     };
 }
