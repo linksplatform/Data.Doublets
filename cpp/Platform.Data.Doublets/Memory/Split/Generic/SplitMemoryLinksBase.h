@@ -57,7 +57,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
 
         static std::uint64_t LinkHeaderSizeInBytes()
         {
-            return LinksHeader<LinkAddressType>::SizeInBytes();
+            return sizeof(LinksHeader<LinkAddressType>);
         }
 
         static std::uint64_t DefaultLinksSizeStep()
