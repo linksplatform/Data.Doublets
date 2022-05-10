@@ -25,25 +25,13 @@ namespace Platform::Data::Doublets::Memory::United::Generic
             Continue = constants.Continue;
         }
 
-        protected:  TLinkAddress GetTreeRoot()
-{
-return this->object()->GetTreeRoot();
-};
+        protected: virtual TLinkAddress GetTreeRoot() = 0;
 
-        protected:  TLinkAddress GetBasePartValue(TLinkAddress link)
-{
-return this->object()->GetBasePartValue(TLinkAddress link);
-};
+        protected: virtual TLinkAddress GetBasePartValue(TLinkAddress link) = 0;
 
-        protected:  bool FirstIsToTheRightOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget)
-{
-return this->object()->FirstIsToTheRightOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget);
-};
+        protected: virtual bool FirstIsToTheRightOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget) = 0;
 
-        protected:  bool FirstIsToTheLeftOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget)
-{
-return this->object()->FirstIsToTheLeftOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget);
-};
+        protected: virtual bool FirstIsToTheLeftOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget) = 0;
 
         protected:         auto&& GetHeaderReference() const
         {
