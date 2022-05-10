@@ -64,6 +64,10 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             return 1 * 1024 * 1024;
         }
 
+        SplitMemoryLinksBase(TMemory dataMemory, TMemory indexMemory) : SplitMemoryLinksBase(dataMemory, indexMemory, DefaultLinksSizeStep())
+        {
+        }
+
         SplitMemoryLinksBase(TMemory dataMemory, TMemory indexMemory, std::int64_t dataMemoryReservationStepInBytes) : _dataMemory{ dataMemory }, _indexMemory{ indexMemory }, _dataMemoryReservationStepInBytesInBytes{ dataMemoryReservationStepInBytes }
         {
             if (UseLinkedList)
