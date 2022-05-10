@@ -35,9 +35,15 @@
                     return this->object()->GetBasePartValue(link);
                 };
 
-        protected: bool FirstIsToTheRightOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource, LinkAddressType rootTarget) = 0;
+        protected: bool FirstIsToTheRightOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource, LinkAddressType rootTarget)
+                {
+                    return this->object()->FirstIsToTheRightOfSecond(source, target, rootSource, rootTarget);
+                };
 
-        protected: bool FirstIsToTheLeftOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource, LinkAddressType rootTarget) = 0;
+        protected: bool FirstIsToTheLeftOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource, LinkAddressType rootTarget)
+                {
+                    return this->object()->FirstIsToTheLeftOfSecond(source, target, rootSource, rootTarget);
+                };
 
         protected:         auto&& GetHeaderReference() const
         {
