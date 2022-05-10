@@ -38,25 +38,25 @@
 
     TEST(SplitMemoryGenericLinksTests, CrudTest)
     {
-        Using<std::uint8_t>([] (auto&& storage) { return storage.TestCrudOperations(); });
-        Using<std::uint16_t>([] (auto&& storage) { return storage.TestCrudOperations(); });
-        Using<std::uint32_t>([] (auto&& storage) { return storage.TestCrudOperations(); });
-        Using<std::uint64_t>([] (auto&& storage) { return storage.TestCrudOperations(); });
+        Using<std::uint8_t>([] (auto&& storage) { return TestCrudOperations(storage); });
+        Using<std::uint16_t>([] (auto&& storage) { return TestCrudOperations(storage); });
+        Using<std::uint32_t>([] (auto&& storage) { return TestCrudOperations(storage); });
+        Using<std::uint64_t>([] (auto&& storage) { return TestCrudOperations(storage); });
     }
 
     TEST(SplitMemoryGenericLinksTests, RawNumbersCrudTest)
     {
-        UsingWithExternalReferences<std::uint8_t>([] (auto&& storage) { return storage.TestRawNumbersCrudOperations(); });
-        UsingWithExternalReferences<std::uint16_t>([] (auto&& storage) { return storage.TestRawNumbersCrudOperations(); });
-        UsingWithExternalReferences<std::uint32_t>([] (auto&& storage) { return storage.TestRawNumbersCrudOperations(); });
-        UsingWithExternalReferences<std::uint64_t>([] (auto&& storage) { return storage.TestRawNumbersCrudOperations(); });
+        UsingWithExternalReferences<std::uint8_t>([] (auto&& storage) { return TestRawNumbersCrudOperations(storage); });
+        UsingWithExternalReferences<std::uint16_t>([] (auto&& storage) { return TestRawNumbersCrudOperations(storage); });
+        UsingWithExternalReferences<std::uint32_t>([] (auto&& storage) { return TestRawNumbersCrudOperations(storage); });
+        UsingWithExternalReferences<std::uint64_t>([] (auto&& storage) { return TestRawNumbersCrudOperations(storage); });
     }
 
     TEST(SplitMemoryGenericLinksTests, MultipleRandomCreationsAndDeletionsTest)
     {
-        Using<std::uint8_t>([] (auto&& storage) { return  storage.DecorateWithAutomaticUniquenessAndUsagesResolution(); }.TestMultipleRandomCreationsAndDeletions(16));
-        Using<std::uint16_t>([] (auto&& storage) { return storage.DecorateWithAutomaticUniquenessAndUsagesResolution(); }.TestMultipleRandomCreationsAndDeletions(100));
-        Using<std::uint32_t>([] (auto&& storage) { return storage.DecorateWithAutomaticUniquenessAndUsagesResolution(); }.TestMultipleRandomCreationsAndDeletions(100));
-        Using<std::uint64_t>([] (auto&& storage) { return storage.DecorateWithAutomaticUniquenessAndUsagesResolution(); }.TestMultipleRandomCreationsAndDeletions(100));
+        Using<std::uint8_t>([] (auto&& storage) { return  TestMultipleRandomCreationsAndDeletions(storage,16); });
+        Using<std::uint16_t>([] (auto&& storage) { return  TestMultipleRandomCreationsAndDeletions(storage,100); });
+        Using<std::uint32_t>([] (auto&& storage) { return  TestMultipleRandomCreationsAndDeletions(storage,100); });
+        Using<std::uint64_t>([] (auto&& storage) { return  TestMultipleRandomCreationsAndDeletions(storage,100); });
     }
 }
