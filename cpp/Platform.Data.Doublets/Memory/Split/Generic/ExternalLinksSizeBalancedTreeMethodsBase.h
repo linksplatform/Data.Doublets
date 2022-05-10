@@ -148,7 +148,7 @@
             while (root != 0)
             {
                 auto base = this->GetBasePartValue(root);
-                if (this->base >= link)
+                if (base >= link)
                 {
                     root = this->GetLeftOrDefault(root);
                 }
