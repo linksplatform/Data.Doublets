@@ -7,14 +7,29 @@
         using LinkAddressType = LinksOptionsType::LinkAddressType;
         using LinkType = LinksOptionsType::LinkType;
         using ReadHandlerType = LinksOptionsType::ReadHandlerType;
-        virtual LinkAddressType CountUsages(LinkAddressType root) = 0;
+         LinkAddressType CountUsages(LinkAddressType root)
+{
+return this->object()->CountUsages(LinkAddressType root);
+};
 
-        virtual LinkAddressType Search(LinkAddressType source, LinkAddressType target) = 0;
+         LinkAddressType Search(LinkAddressType source, LinkAddressType target)
+{
+return this->object()->Search(LinkAddressType source, LinkAddressType target);
+};
 
-        virtual LinkAddressType EachUsage(LinkAddressType root, const ReadHandlerType& handler) = 0;
+         LinkAddressType EachUsage(LinkAddressType root, const ReadHandlerType& handler)
+{
+return this->object()->EachUsage(LinkAddressType root, const ReadHandlerType& handler);
+};
 
-        virtual void Detach(LinkAddressType& root, LinkAddressType linkIndex) = 0;
+         void Detach(LinkAddressType& root, LinkAddressType linkIndex)
+{
+return this->object()->Detach(LinkAddressType& root, LinkAddressType linkIndex);
+};
 
-        virtual void Attach(LinkAddressType& root, LinkAddressType linkIndex) = 0;
+         void Attach(LinkAddressType& root, LinkAddressType linkIndex)
+{
+return this->object()->Attach(LinkAddressType& root, LinkAddressType linkIndex);
+};
     };
 }
