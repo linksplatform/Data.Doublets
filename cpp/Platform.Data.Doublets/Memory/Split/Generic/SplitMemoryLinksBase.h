@@ -38,7 +38,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         std::uint8_t* _linksIndexParts;
 
     public:
-        TLinkAddress Total() const
+        LinkAddressType Total() const
         {
             auto& header = this->GetHeaderReference();
             return header.AllocatedLinks - header.FreeLinks;
