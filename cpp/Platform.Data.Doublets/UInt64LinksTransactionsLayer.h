@@ -4,7 +4,7 @@
     {
         struct Transition : public IEquatable<Transition>
         {
-            public: inline static const std::int64_t Size = Structure<Transition>.Size;
+            public: inline static const std::uint64_t Size = Structure<Transition>.Size;
 
             public: std::uint64_t TransactionId = 0;
             public: Link<std::uint64_t> Before;

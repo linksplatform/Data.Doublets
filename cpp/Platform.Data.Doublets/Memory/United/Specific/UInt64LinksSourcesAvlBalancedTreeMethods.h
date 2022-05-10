@@ -28,9 +28,9 @@
 
         protected: void SetRightIsChild(std::uint64_t node, bool value) override { this->SetRightIsChildValue(ref Links[node].SizeAsSource, value); }
 
-        protected: std::int8_t GetBalance(std::uint64_t node) override { return this->GetBalanceValue(Links[node].SizeAsSource); }
+        protected: std::uint8_t GetBalance(std::uint64_t node) override { return this->GetBalanceValue(Links[node].SizeAsSource); }
 
-        protected: void SetBalance(std::uint64_t node, std::int8_t value) override { this->SetBalanceValue(ref Links[node].SizeAsSource, value); }
+        protected: void SetBalance(std::uint64_t node, std::uint8_t value) override { this->SetBalanceValue(ref Links[node].SizeAsSource, value); }
 
         protected: override std::uint64_t GetTreeRoot() { return Header->RootAsSource; }
 

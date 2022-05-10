@@ -28,9 +28,9 @@
 
         protected: void SetRightIsChild(TLinkAddress node, bool value) override { this->SetRightIsChildValue(this->GetLinkReference(node)->SizeAsTarget, value); }
 
-        protected: std::int8_t GetBalance(TLinkAddress node) override { return this->GetBalanceValue(this->GetLinkReference(node)->SizeAsTarget); }
+        protected: std::uint8_t GetBalance(TLinkAddress node) override { return this->GetBalanceValue(this->GetLinkReference(node)->SizeAsTarget); }
 
-        protected: void SetBalance(TLinkAddress node, std::int8_t value) override { this->SetBalanceValue(this->GetLinkReference(node)->SizeAsTarget, value); }
+        protected: void SetBalance(TLinkAddress node, std::uint8_t value) override { this->SetBalanceValue(this->GetLinkReference(node)->SizeAsTarget, value); }
 
         protected: override TLinkAddress GetTreeRoot() { return GetHeaderReference().RootAsTarget; }
 

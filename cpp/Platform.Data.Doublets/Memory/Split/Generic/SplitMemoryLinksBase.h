@@ -26,16 +26,16 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
     protected:
         TMemory _dataMemory;
         TMemory _indexMemory;
-        std::int64_t _dataMemoryReservationStepInBytesInBytes;
-        std::int64_t _indexDataMemoryReservationStepInBytesInBytes;
+        std::uint64_t _dataMemoryReservationStepInBytesInBytes;
+        std::uint64_t _indexDataMemoryReservationStepInBytesInBytes;
         TInternalSourcesTreeMethods* InternalSourcesTreeMethods;
         TInternalTargetsTreeMethods* InternalTargetsTreeMethods;
         TExternalSourcesTreeMethods* ExternalSourcesTreeMethods;
         TExternalTargetsTreeMethods* ExternalTargetsTreeMethods;
         TUnusedLinksTreeMethods* UnusedLinksTreeMethods;
-        std::int8_t* _header;
-        std::int8_t* _linksDataParts;
-        std::int8_t* _linksIndexParts;
+        std::uint8_t* _header;
+        std::uint8_t* _linksDataParts;
+        std::uint8_t* _linksIndexParts;
 
     public:
         TLinkAddress Total() const
@@ -45,22 +45,22 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         }
 
     public:
-        static std::int64_t LinkDataPartSizeInBytes()
+        static std::uint64_t LinkDataPartSizeInBytes()
         {
             return RawLinkDataPart<LinkAddressType>::SizeInBytes();
         }
 
-        static std::int64_t LinkIndexPartSizeInBytes()
+        static std::uint64_t LinkIndexPartSizeInBytes()
         {
             return RawLinkIndexPart<LinkAddressType>::SizeInBytes();
         }
 
-        static std::int64_t LinkHeaderSizeInBytes()
+        static std::uint64_t LinkHeaderSizeInBytes()
         {
             return LinksHeader<LinkAddressType>::SizeInBytes();
         }
 
-        static std::int64_t DefaultLinksSizeStep()
+        static std::uint64_t DefaultLinksSizeStep()
         {
             return 1 * 1024 * 1024;
         }
@@ -69,11 +69,11 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         {
         }
 
-        SplitMemoryLinksBase(TMemory dataMemory, TMemory indexMemory, std::int64_t dataMemoryReservationStepInBytes) : _dataMemory{ dataMemory }, _indexMemory{ indexMemory }, _dataMemoryReservationStepInBytesInBytes{ dataMemoryReservationStepInBytes }
+        SplitMemoryLinksBase(TMemory dataMemory, TMemory indexMemory, std::uint64_t dataMemoryReservationStepInBytes) : _dataMemory{ dataMemory }, _indexMemory{ indexMemory }, _dataMemoryReservationStepInBytesInBytes{ dataMemoryReservationStepInBytes }
         {
             if (UseLinkedList)
             {
-                InternalSourcesTreeMethods = new TInternalLinksSourcesLinkedTreeMethods(_linksDataParts, _linksIndexParts);
+//                InternalSourcesTreeMethods = new TInternalLinksSourcesLinkedTreeMethods(_linksDataParts, _linksIndexParts);
             }
             else
             {
@@ -330,8 +330,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
 //
         void SetPointers(TMemory dataMemory, TMemory indexMemory)
         {
-            _linksDataParts = (std::int8_t*)dataMemory.Pointer;
-            _linksIndexParts = (std::int8_t*)indexMemory.Pointer;
+            _linksDataParts = (std::uint8_t*)dataMemory.Pointer;
+            _linksIndexParts = (std::uint8_t*)indexMemory.Pointer;
             _header = _linksIndexParts;
 
             ExternalSourcesTreeMethods = new TExternalSourcesTreeMethods();

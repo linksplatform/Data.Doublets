@@ -6,7 +6,7 @@
     template <typename TLinkAddress>
     struct RawLinkIndexPart<TLinkAddress>
     {
-        public: inline static const std::int64_t SizeInBytes = sizeof(RawLinkIndexPart<TLinkAddress>);
+        public: inline static const std::uint64_t SizeInBytes = sizeof(RawLinkIndexPart<TLinkAddress>);
 
         TLinkAddress RootAsSource;
         TLinkAddress LeftAsSource;

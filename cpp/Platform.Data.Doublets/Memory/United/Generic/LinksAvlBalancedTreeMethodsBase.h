@@ -6,7 +6,7 @@ namespace Platform::Data::Doublets::Memory::United::Generic
 {
     public unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : public SizedAndThreadedAVLBalancedTreeMethods<TLinkAddress>, ILinksTreeMethods<TLinkAddress>
     {
-        private: static UncheckedConverter<TLinkAddress, std::int64_t> _addressToInt64Converter = UncheckedConverter<TLinkAddress, std::int64_t>.Default;
+        private: static UncheckedConverter<TLinkAddress, std::uint64_t> _addressToInt64Converter = UncheckedConverter<TLinkAddress, std::uint64_t>.Default;
         private: static UncheckedConverter<TLinkAddress, std::int32_t> _addressToInt32Converter = UncheckedConverter<TLinkAddress, std::int32_t>.Default;
         private: static UncheckedConverter<bool, TLinkAddress> _boolToAddressConverter = UncheckedConverter<bool, TLinkAddress>.Default;
         private: static UncheckedConverter<TLinkAddress, bool> _addressToBoolConverter = UncheckedConverter<TLinkAddress, bool>.Default;
@@ -115,16 +115,16 @@ namespace Platform::Data::Doublets::Memory::United::Generic
             return childSize > 0 && this->LessOrEqualThan(childSize, parentSize);
         }
 
-        protected: std::int8_t GetBalanceValue(TLinkAddress storedValue)
+        protected: std::uint8_t GetBalanceValue(TLinkAddress storedValue)
         {
             {
                 auto value = _addressToInt32Converter.Convert(Bit<TLinkAddress>.PartialRead(storedValue, 0, 3));
                 value |= 0xF8 * ((value & 4) >> 2);
-                return (std::int8_t)value;
+                return (std::uint8_t)value;
             }
         }
 
-        protected: void SetBalanceValue(TLinkAddress* storedValue, std::int8_t value)
+        protected: void SetBalanceValue(TLinkAddress* storedValue, std::uint8_t value)
         {
             {
                 auto packagedValue = _int32ToAddressConverter.Convert((std::uint8_t)value >> 5 & 4 | value & 3);
