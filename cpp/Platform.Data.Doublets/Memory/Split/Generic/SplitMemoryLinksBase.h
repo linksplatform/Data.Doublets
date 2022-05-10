@@ -1,6 +1,7 @@
 namespace Platform::Data::Doublets::Memory::Split::Generic
 {
     using namespace Platform::Interfaces;
+    using namespace Platform::Data;
     template<
         typename TSelf,
         typename TLinksOptions,
@@ -144,7 +145,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             {
                 return Total();
             }
-            auto index = GetIndex(this, restriction);
+            auto index = GetIndex(*this, restriction);
             auto any = Constants.Any;
             if (std::ranges::size(restriction) == 1)
             {
@@ -152,7 +153,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 {
                     return Total();
                 }
-                return Exists(index) ? LinkAddressType{1} : LinkAddressType{0};
+                return Exists(this, index) ? LinkAddressType{1} : LinkAddressType{0};
             }
             if (std::ranges::size(restriction) == 2)
             {
