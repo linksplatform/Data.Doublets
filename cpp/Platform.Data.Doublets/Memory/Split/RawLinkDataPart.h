@@ -35,9 +35,9 @@
 namespace std
 {
     template <typename TLinkAddress>
-    struct hash<RawLinkDataPart<TLinkAddress>>
+    struct hash<Platform::Data::Doublets::Memory::Split::RawLinkDataPart<TLinkAddress>>
     {
-        std::size_t operator()(const RawLinkDataPart<TLinkAddress> &obj) const
+        std::size_t operator()(const Platform::Data::Doublets::Memory::Split::RawLinkDataPart<TLinkAddress> &obj) const
         {
             return obj.GetHashCode();
         }
