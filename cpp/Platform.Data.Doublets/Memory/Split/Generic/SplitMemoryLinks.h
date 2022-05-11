@@ -10,11 +10,11 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         typename TExternalSourcesTreeMethods = ExternalLinksSourcesSizeBalancedTreeMethods<TLinksOptions>,
         typename TExternalTargetsTreeMethods = ExternalLinksSourcesSizeBalancedTreeMethods<TLinksOptions>,
         typename TInternalLinksSourcesLinkedTreeMethods = InternalLinksSourcesLinkedListMethods<TLinksOptions>,
-        typename TUnusedLinksTreeMethods = UnusedLinksListMethods<TLinksOptions>,
+        typename TUnusedLinksListMethods = UnusedLinksListMethods<TLinksOptions>,
         typename... TBase>
-    struct SplitMemoryLinks : public SplitMemoryLinksBase<SplitMemoryLinks<TLinksOptions, TMemory, TInternalSourcesTreeMethods, TInternalTargetsTreeMethods, TExternalSourcesTreeMethods, TExternalTargetsTreeMethods, TInternalLinksSourcesLinkedTreeMethods, TUnusedLinksTreeMethods, TBase...>, TLinksOptions, TMemory, TInternalSourcesTreeMethods, TInternalTargetsTreeMethods, TExternalSourcesTreeMethods, TExternalTargetsTreeMethods, TInternalLinksSourcesLinkedTreeMethods, TUnusedLinksTreeMethods, TBase...>
+    struct SplitMemoryLinks : public SplitMemoryLinksBase<SplitMemoryLinks<TLinksOptions, TMemory, TInternalSourcesTreeMethods, TInternalTargetsTreeMethods, TExternalSourcesTreeMethods, TExternalTargetsTreeMethods, TInternalLinksSourcesLinkedTreeMethods, TUnusedLinksListMethods, TBase...>, TLinksOptions, TMemory, TInternalSourcesTreeMethods, TInternalTargetsTreeMethods, TExternalSourcesTreeMethods, TExternalTargetsTreeMethods, TInternalLinksSourcesLinkedTreeMethods, TUnusedLinksListMethods, TBase...>
     {
-        using base = SplitMemoryLinksBase<SplitMemoryLinks<TLinksOptions, TMemory, TInternalSourcesTreeMethods, TInternalTargetsTreeMethods, TExternalSourcesTreeMethods, TExternalTargetsTreeMethods, TInternalLinksSourcesLinkedTreeMethods, TUnusedLinksTreeMethods, TBase...>, TLinksOptions, TMemory, TInternalSourcesTreeMethods, TInternalTargetsTreeMethods, TExternalSourcesTreeMethods, TExternalTargetsTreeMethods, TInternalLinksSourcesLinkedTreeMethods, TUnusedLinksTreeMethods, TBase...>;
+        using base = SplitMemoryLinksBase<SplitMemoryLinks<TLinksOptions, TMemory, TInternalSourcesTreeMethods, TInternalTargetsTreeMethods, TExternalSourcesTreeMethods, TExternalTargetsTreeMethods, TInternalLinksSourcesLinkedTreeMethods, TUnusedLinksListMethods, TBase...>, TLinksOptions, TMemory, TInternalSourcesTreeMethods, TInternalTargetsTreeMethods, TExternalSourcesTreeMethods, TExternalTargetsTreeMethods, TInternalLinksSourcesLinkedTreeMethods, TUnusedLinksListMethods, TBase...>;
     public:
         using base::base;
     };
