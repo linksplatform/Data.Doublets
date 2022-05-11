@@ -6,6 +6,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         typename TSelf,
         typename TLinksOptions,
         typename TMemory,
+        typename TInternalSourcesListMethods,
         typename TInternalSourcesTreeMethods,
         typename TInternalTargetsTreeMethods,
         typename TExternalSourcesTreeMethods,
@@ -28,6 +29,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         TMemory _indexMemory;
         std::uint64_t _dataMemoryReservationStepInBytesInBytes;
         std::uint64_t _indexDataMemoryReservationStepInBytesInBytes;
+        TInternalSourcesListMethods* InternalSourcesListMethods;
         TInternalSourcesTreeMethods* InternalSourcesTreeMethods;
         TInternalTargetsTreeMethods* InternalTargetsTreeMethods;
         TExternalSourcesTreeMethods* ExternalSourcesTreeMethods;
@@ -177,7 +179,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     {
                         if (UseLinkedList)
                         {
-                            return InternalSourcesTreeMethods->CountUsages(value) + InternalTargetsTreeMethods->CountUsages(value);
+                            return InternalSourcesListMethods->CountUsages(value) + InternalTargetsTreeMethods->CountUsages(value);
                         }
                         else
                         {
