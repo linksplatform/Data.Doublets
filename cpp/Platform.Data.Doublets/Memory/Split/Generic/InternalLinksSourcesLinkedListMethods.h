@@ -104,7 +104,7 @@
             auto first = current;
             while (current != 0)
             {
-                if (this->handler(this->GetLinkValues(current)) == (Break))
+                if (handler(this->GetLinkValues(current)) == (Break))
                 {
                     return Break;
                 }

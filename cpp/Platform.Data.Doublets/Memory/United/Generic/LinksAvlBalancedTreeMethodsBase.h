@@ -250,7 +250,7 @@ namespace Platform::Data::Doublets::Memory::United::Generic
                 current = first;
                 while (true)
                 {
-                    if (this->handler(this->GetLinkValues(current)) == Break)
+                    if (handler(this->GetLinkValues(current)) == Break)
                     {
                         return Break;
                     }

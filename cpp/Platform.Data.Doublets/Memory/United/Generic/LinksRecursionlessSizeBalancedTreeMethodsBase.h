@@ -172,7 +172,7 @@
             }
             else
             {
-                if (this->handler(this->GetLinkValues(link)) == (break))
+                if (handler(this->GetLinkValues(link)) == (break))
                 {
                     return break;
                 }

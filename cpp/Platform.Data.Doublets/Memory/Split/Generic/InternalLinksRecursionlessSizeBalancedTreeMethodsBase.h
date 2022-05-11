@@ -118,7 +118,7 @@
             {
                 return Break;
             }
-            if (this->handler(this->GetLinkValues(link)) == (Break))
+            if (handler(this->GetLinkValues(link)) == (Break))
             {
                 return Break;
             }
