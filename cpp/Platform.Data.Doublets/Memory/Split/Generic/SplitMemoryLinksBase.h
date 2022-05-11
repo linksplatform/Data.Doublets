@@ -134,11 +134,11 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             }
             if (dataMemory.ReservedCapacity() != minimumDataReservedCapacity)
             {
-                dataMemory.ReservedCapacity() = minimumDataReservedCapacity;
+                dataMemory.ReservedCapacity(minimumDataReservedCapacity);
             }
             if (indexMemory.ReservedCapacity() != minimumIndexReservedCapacity)
             {
-                indexMemory.ReservedCapacity() = minimumIndexReservedCapacity;
+                indexMemory.ReservedCapacity(minimumIndexReservedCapacity);
             }
             SetPointers(dataMemory, indexMemory);
             header = this->GetHeaderReference();
