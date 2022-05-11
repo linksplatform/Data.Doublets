@@ -814,7 +814,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     InternalTargetsTreeMethods->Attach(GetLinkIndexPartReference(target).RootAsTarget, linkIndex);
                 }
             }
-            return handler ? handler(before, LinkType(linkIndex, source, target)) : Constants.Continue;
+            return handler ? handler(before, LinkType{linkIndex, source, target}) : Constants.Continue;
         }
 
 

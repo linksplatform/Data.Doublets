@@ -48,7 +48,7 @@
         protected: auto GetLinkValues(LinkAddressType linkIndex)
         {
             auto& link = GetLinkDataPartReference(linkIndex);
-            return LinkType(linkIndex, link.Source, link.Target);
+            return LinkType{linkIndex, link.Source, link.Target};
         }
 
 //        public: LinkAddressType operator[](LinkAddressType link, LinkAddressType index)
