@@ -298,7 +298,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                                 linkAddress = InternalSourcesTreeMethods->Search(source, target);
                             }
                         }
-                        return (linkAddress == Constants.Null) ? LinkAddressType{0} : LinkAddressType{1};
+                        return (linkAddress == Constants.LinkType{}) ? LinkAddressType{0} : LinkAddressType{1};
                     }
                 }
                 else
@@ -503,7 +503,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                                 linkAddress = InternalSourcesTreeMethods->Search(source, target);
                             }
                         }
-                        return (linkAddress == constants.Null) ? LinkAddressType{0} : LinkAddressType{1};
+                        return (linkAddress == constants.LinkType{}) ? LinkAddressType{0} : LinkAddressType{1};
                     }
                 }
                 else
@@ -698,7 +698,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                                 linkAddress = InternalSourcesTreeMethods->Search(source, target);
                             }
                         }
-                        return (linkAddress == constants.Null) ? $continue : handler(GetLinkStruct(linkAddress));
+                        return (linkAddress == constants.LinkType{}) ? $continue : handler(GetLinkStruct(linkAddress));
                     }
                 }
                 else
@@ -744,7 +744,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
          LinkAddressType Update(const LinkType& restriction, const LinkType& substitution, const WriteHandlerType& handler)
         {
             auto constants = Constants;
-            auto $null = constants.Null;
+            auto $LinkType{} = constants.LinkType{};
             auto externalReferencesRange = constants.ExternalReferencesRange;
             auto linkIndex = GetIndex(*this, restriction);
             auto before = this->GetLinkStruct(linkIndex);
@@ -755,7 +755,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             auto& rootAsSource = header.RootAsSource;
             auto& rootAsTarget = header.RootAsTarget;
             // Будет корректно работать только в том случае, если пространство выделенной связи предварительно заполнено нулями
-            if (source != $null)
+            if (source != $LinkType{})
             {
                 if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(source))
                 {
@@ -773,7 +773,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     }
                 }
             }
-            if (target != $null)
+            if (target != $LinkType{})
             {
                 if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(target))
                 {
@@ -786,7 +786,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             }
             source = link.Source = GetSource(*this, substitution);
             target = link.Target = GetTarget(*this, substitution);
-            if (source != $null)
+            if (source != $LinkType{})
             {
                 if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(source))
                 {
@@ -804,7 +804,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     }
                 }
             }
-            if (target != $null)
+            if (target != $LinkType{})
             {
                 if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(target))
                 {
@@ -824,7 +824,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             using namespace Platform::Exceptions;
             auto& header = GetHeaderReference();
             auto freeLink = header.FirstFreeLink;
-            if (freeLink != Constants.Null)
+            if (freeLink != Constants.LinkType{})
             {
                 this->Detach(freeLink);
             }
@@ -847,7 +847,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 _dataMemory.UsedCapacity(_dataMemory.UsedCapacity() + LinkDataPartSizeInBytes);
                 _indexMemory.UsedCapacity(_indexMemory.UsedCapacity() + LinkIndexPartSizeInBytes);
             }
-            return handler ? handler(null, GetLinkStruct(freeLink)) : Constants.Continue;
+            return handler ? handler(LinkType{}, GetLinkStruct(freeLink)) : Constants.Continue;
         }
 
 
@@ -875,7 +875,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     _indexMemory.UsedCapacity() -= LinkIndexPartSizeInBytes;
                 }
             }
-            return handler ? handler(before, null) : Constants.Continue;
+            return handler ? handler(before, LinkType{}) : Constants.Continue;
         }
 
     protected:
