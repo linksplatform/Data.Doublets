@@ -540,7 +540,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     return LinkAddressType{0};
                 }
             }
-            throw NotSupportedException("Другие размеры и способы ограничений не поддерживаются.");
+            throw NotSupportedException();
         }
 
 
