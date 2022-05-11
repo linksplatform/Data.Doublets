@@ -381,11 +381,11 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     {
                         if (_useLinkedList)
                         {
-                            return Add(InternalSourcesListMethods->CountUsages(value), InternalTargetsTreeMethods->CountUsages(value));
+                            return (InternalSourcesListMethods->CountUsages(value) + InternalTargetsTreeMethods->CountUsages(value));
                         }
                         else
                         {
-                            return Add(InternalSourcesTreeMethods->CountUsages(value), InternalTargetsTreeMethods->CountUsages(value));
+                            return (InternalSourcesTreeMethods->CountUsages(value) + InternalTargetsTreeMethods->CountUsages(value));
                         }
                     }
                 }
