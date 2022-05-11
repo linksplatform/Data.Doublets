@@ -169,7 +169,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                         return this->Total(); // Any - как отсутствие ограничения
                     }
                     auto externalReferencesRange = Constants.ExternalReferencesRange;
-                    if (Constants.IsExternalReferencesRangesEnabled && externalReferencesRange.Contains(value))
+                    if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(value))
                     {
                         return ExternalSourcesTreeMethods->CountUsages(value) + ExternalTargetsTreeMethods->CountUsages(value);
                     }
@@ -216,7 +216,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     }
                     else if ((source == any))
                     {
-                        if (Constants.IsExternalReferencesRangesEnabled && externalReferencesRange.Contains(target))
+                        if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(target))
                         {
                             return ExternalTargetsTreeMethods->CountUsages(target);
                         }
@@ -227,7 +227,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     }
                     else if ((target == any))
                     {
-                        if (Constants.IsExternalReferencesRangesEnabled && externalReferencesRange.Contains(source))
+                        if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(source))
                         {
                             return ExternalSourcesTreeMethods->CountUsages(source);
                         }
@@ -247,7 +247,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     {
                         // Эквивалент Exists(source, target) => Count(Any, source, target) > 0
                         LinkAddressType linkAddress;
-                        if (Constants.IsExternalReferencesRangesEnabled)
+                        if (Constants.IsExternalReferencesRangeEnabled)
                         {
                             if (externalReferencesRange.Contains(source) && externalReferencesRange.Contains(target))
                             {
