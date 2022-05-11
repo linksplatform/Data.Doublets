@@ -157,7 +157,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 {
                     return this->Total();
                 }
-                return Exists(*this, index) ? LinkAddressType{1} : LinkAddressType{0};
+                return this->Exists(index) ? LinkAddressType{1} : LinkAddressType{0};
             }
             if (std::ranges::size(restriction) == 2)
             {
@@ -187,7 +187,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 }
                 else
                 {
-                    if (!Exists(*this, index))
+                    if (!this->Exists(index))
                     {
                         return LinkAddressType{0};
                     }
@@ -296,7 +296,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 }
                 else
                 {
-                    if (!Exists(*this, index))
+                    if (!this->Exists(index))
                     {
                         return LinkAddressType{0};
                     }
