@@ -37,7 +37,7 @@
 
         protected: void ClearNode(LinkAddressType node)
         {
-            auto* link = this->GetLinkIndexPartReference(node);
+            auto& link = this->GetLinkIndexPartReference(node);
             link.LeftAsSource = 0;
             link.RightAsSource = 0;
             link.SizeAsSource = 0;

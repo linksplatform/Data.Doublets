@@ -48,7 +48,7 @@
 
         protected: CArray<LinkAddressType> auto GetLinkValues(LinkAddressType linkIndex)
         {
-            auto* link = GetLinkDataPartReference(linkIndex);
+            auto& link = GetLinkDataPartReference(linkIndex);
             return LinkType(linkIndex, link.Source, link.Target);
         }
 

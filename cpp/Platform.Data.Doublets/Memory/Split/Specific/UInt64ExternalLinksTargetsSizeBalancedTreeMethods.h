@@ -33,7 +33,7 @@ namespace Platform::Data::Doublets::Memory::Split::Specific
 
         protected: void ClearNode(TLinkAddress node) override
         {
-            auto* link = LinksIndexParts[node];
+            auto& link = LinksIndexParts[node];
             link.LeftAsTarget = 0;
             link.RightAsTarget = 0;
             link.SizeAsTarget = 0;

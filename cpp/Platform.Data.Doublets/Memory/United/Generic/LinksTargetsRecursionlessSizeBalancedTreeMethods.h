@@ -30,7 +30,7 @@
 
         protected: void ClearNode(TLinkAddress node) override
         {
-            auto* link = this->GetLinkReference(node);
+            auto& link = this->GetLinkReference(node);
             link.LeftAsTarget = 0;
             link.RightAsTarget = 0;
             link.SizeAsTarget = 0;

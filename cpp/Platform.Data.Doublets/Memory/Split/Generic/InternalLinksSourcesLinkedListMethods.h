@@ -23,12 +23,12 @@
             _linksIndexParts = linksIndexParts;
         }
 
-        protected: RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link)
+        protected: const RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link) const
         { 
             return &(*(_linksDataParts + (RawLinkDataPart<LinkAddressType>::SizeInBytes * link)));
         }
 
-        protected: RawLinkIndexPart<LinkAddressType>&& GetLinkIndexPartReference(LinkAddressType link)
+        protected: RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType link)
         { 
             return RawLinkIndexPart<LinkAddressType>{ _linksIndexParts + (RawLinkIndexPart<LinkAddressType>::SizeInBytes * link) };
         }
@@ -94,7 +94,7 @@
 
     protected: Interfaces::CArray auto GetLinkValues(LinkAddressType linkIndex)
         {
-            auto* link = this->GetLinkDataPartReference(linkIndex);
+            auto& link = this->GetLinkDataPartReference(linkIndex);
             return Link{ linkIndex, link.Source, link.Target };
         }
 

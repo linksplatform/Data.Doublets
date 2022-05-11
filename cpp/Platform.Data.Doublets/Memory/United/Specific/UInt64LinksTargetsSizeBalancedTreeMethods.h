@@ -30,7 +30,7 @@
 
         protected: void ClearNode(std::uint64_t node) override
         {
-            auto* link = Links[node];
+            auto& link = Links[node];
             link.LeftAsTarget = 0UL;
             link.RightAsTarget = 0UL;
             link.SizeAsTarget = 0UL;

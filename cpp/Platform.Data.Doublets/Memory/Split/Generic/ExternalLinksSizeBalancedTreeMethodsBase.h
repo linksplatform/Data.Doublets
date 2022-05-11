@@ -56,21 +56,21 @@
 
         protected: auto GetLinkValues(LinkAddressType linkIndex)
         {
-            auto* link = GetLinkDataPartReference(linkIndex);
+            auto& link = GetLinkDataPartReference(linkIndex);
             return LinkType(linkIndex, link.Source, link.Target);
         }
 
         public: bool FirstIsToTheLeftOfSecond(LinkAddressType first, LinkAddressType second)
         {
-            auto* firstLink = this->GetLinkDataPartReference(first);
-            auto* secondLink = this->GetLinkDataPartReference(second);
+            auto& firstLink = this->GetLinkDataPartReference(first);
+            auto& secondLink = this->GetLinkDataPartReference(second);
             return this->FirstIsToTheLeftOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
         }
 
         public: bool FirstIsToTheRightOfSecond(LinkAddressType first, LinkAddressType second)
         {
-            auto* firstLink = this->GetLinkDataPartReference(first);
-            auto* secondLink = this->GetLinkDataPartReference(second);
+            auto& firstLink = this->GetLinkDataPartReference(first);
+            auto& secondLink = this->GetLinkDataPartReference(second);
             return this->FirstIsToTheRightOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
         }
 
@@ -106,7 +106,7 @@
             auto root = this->GetTreeRoot();
             while (root != 0)
             {
-                auto* rootLink = this->GetLinkDataPartReference(root);
+                auto& rootLink = this->GetLinkDataPartReference(root);
                 auto rootSource = rootLink.Source;
                 auto rootTarget = rootLink.Target;
                 if (this->FirstIsToTheLeftOfSecond(source, target, rootSource, rootTarget))

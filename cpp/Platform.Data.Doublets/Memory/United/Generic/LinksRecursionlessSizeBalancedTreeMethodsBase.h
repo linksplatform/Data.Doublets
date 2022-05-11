@@ -47,15 +47,15 @@
 
         public: bool FirstIsToTheLeftOfSecond(TLinkAddress first, TLinkAddress second) override
         {
-            auto* firstLink = this->GetLinkReference(first);
-            auto* secondLink = this->GetLinkReference(second);
+            auto& firstLink = this->GetLinkReference(first);
+            auto& secondLink = this->GetLinkReference(second);
             return this->FirstIsToTheLeftOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
         }
 
         public: bool FirstIsToTheRightOfSecond(TLinkAddress first, TLinkAddress second) override
         {
-            auto* firstLink = this->GetLinkReference(first);
-            auto* secondLink = this->GetLinkReference(second);
+            auto& firstLink = this->GetLinkReference(first);
+            auto& secondLink = this->GetLinkReference(second);
             return this->FirstIsToTheRightOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
         }
 
@@ -90,7 +90,7 @@
             auto root = this->GetTreeRoot();
             while (root != 0)
             {
-                auto* rootLink = this->GetLinkReference(root);
+                auto& rootLink = this->GetLinkReference(root);
                 auto rootSource = rootLink.Source;
                 auto rootTarget = rootLink.Target;
                 if (this->FirstIsToTheLeftOfSecond(source, target, rootSource, rootTarget))
