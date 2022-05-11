@@ -94,7 +94,7 @@
 
     protected: Interfaces::CArray auto GetLinkValues(LinkAddressType linkIndex)
         {
-            auto* link = GetLinkDataPartReference(linkIndex);
+            auto* link = this->GetLinkDataPartReference(linkIndex);
             return Link{ linkIndex, link.Source, link.Target };
         }
 
