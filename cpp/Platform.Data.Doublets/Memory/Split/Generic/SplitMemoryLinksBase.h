@@ -568,7 +568,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             {
                 if ((index == any))
                 {
-                    return Each(Array.Empty<LinkAddressType>(), handler);
+                    return Each(LinkType{}, handler);
                 }
                 if (!Exists(index))
                 {
@@ -583,7 +583,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 {
                     if (value == any)
                     {
-                        return Each(Array.Empty<LinkAddressType>(), handler);
+                        return Each(LinkType{}, handler);
                     }
                     if (Each(LinkType(index, value, any), handler) == $break)
                     {
@@ -619,7 +619,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 {
                     if ((source == any) && (target == any))
                     {
-                        return Each(Array.Empty<LinkAddressType>(), handler);
+                        return Each(LinkType{}, handler);
                     }
                     else if ((source == any))
                     {
