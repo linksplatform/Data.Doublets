@@ -895,7 +895,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
 
         bool Exists(LinkAddressType linkAddress) const
         {
-            (linkAddress >= Constants.InternalReferencesRange.Minimum)
+            return (linkAddress >= Constants.InternalReferencesRange.Minimum)
                 && (linkAddress <= GetHeaderReference().AllocatedLinks)
                 && !IsUnusedLink(linkAddress);
         }
