@@ -28,8 +28,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         TMemory _indexMemory;
         std::uint64_t _dataMemoryReservationStepInBytesInBytes;
         std::uint64_t _indexDataMemoryReservationStepInBytesInBytes;
-        TInternalSourcesListMethods* InternalSourcesListMethods;
         TInternalSourcesTreeMethods* InternalSourcesTreeMethods;
+        TInternalLinksSourcesLinkedListMethods* InternalSourcesListMethods;
         TInternalTargetsTreeMethods* InternalTargetsTreeMethods;
         TExternalSourcesTreeMethods* ExternalSourcesTreeMethods;
         TExternalTargetsTreeMethods* ExternalTargetsTreeMethods;
