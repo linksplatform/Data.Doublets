@@ -833,8 +833,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     header.ReservedLinks = _dataMemory.ReservedCapacity() / LinkDataPartSizeInBytes;
                 }
                 freeLink = ++header.AllocatedLinks;
-                _dataMemory.UsedCapacity() += LinkDataPartSizeInBytes;
-                _indexMemory.UsedCapacity() += LinkIndexPartSizeInBytes;
+                _dataMemory.UsedCapacity(_dataMemory.UsedCapacity() + LinkDataPartSizeInBytes);
+                _indexMemory.UsedCapacity(_indexMemory.UsedCapacity() + LinkIndexPartSizeInBytes);
             }
             return handler ? handler(null, GetLinkStruct(freeLink)) : Constants.Continue;
         }
