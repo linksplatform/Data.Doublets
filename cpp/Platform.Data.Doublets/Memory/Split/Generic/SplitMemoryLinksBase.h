@@ -811,6 +811,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
 
          LinkAddressType Create(const LinkType& substitution, const WriteHandlerType& handler)
         {
+            using namespace Platform::Exceptions;
             auto& header = GetHeaderReference();
             auto freeLink = header.FirstFreeLink;
             if (freeLink != Constants.Null)
