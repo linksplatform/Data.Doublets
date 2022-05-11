@@ -399,8 +399,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             if (length == 3)
             {
                 auto externalReferencesRange = constants.ExternalReferencesRange;
-                auto source = this->GetSource(restriction);
-                auto target = this->GetTarget(restriction);
+                auto source = GetSource(*thisrestriction);
+                auto target = GetTarget(*thisrestriction);
                 if (AreEqual(index, any))
                 {
                     if (AreEqual(source, any) && AreEqual(target, any))
@@ -593,8 +593,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             if (length == 3)
             {
                 auto externalReferencesRange = constants.ExternalReferencesRange;
-                auto source = this->GetSource(restriction);
-                auto target = this->GetTarget(restriction);
+                auto source = GetSource(*thisrestriction);
+                auto target = GetTarget(*thisrestriction);
                 if (AreEqual(index, any))
                 {
                     if (AreEqual(source, any) && AreEqual(target, any))
@@ -763,8 +763,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     InternalTargetsTreeMethods.Detach(ref GetLinkIndexPartReference(target).RootAsTarget, linkIndex);
                 }
             }
-            source = link.Source = this->GetSource(substitution);
-            target = link.Target = this->GetTarget(substitution);
+            source = link.Source = GetSource(*thissubstitution);
+            target = link.Target = GetTarget(*thissubstitution);
             if (source != @null)
             {
                 if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(source))
