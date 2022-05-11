@@ -12,7 +12,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         typename TExternalSourcesTreeMethods,
         typename TExternalTargetsTreeMethods,
         typename TInternalLinksSourcesLinkedTreeMethods,
-        typename TUnusedLinksTreeMethods,
+        typename TUnusedLinksListMethods,
         typename... TBase>
     struct SplitMemoryLinksBase : public Interfaces::Polymorph<TSelf, TBase...>
     {
@@ -34,7 +34,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         TInternalTargetsTreeMethods* InternalTargetsTreeMethods;
         TExternalSourcesTreeMethods* ExternalSourcesTreeMethods;
         TExternalTargetsTreeMethods* ExternalTargetsTreeMethods;
-        TUnusedLinksTreeMethods* UnusedLinksTreeMethods;
+        TUnusedLinksListMethods* UnusedLinksListMethods;
         std::byte* _header;
         std::byte* _linksDataParts;
         std::byte* _linksIndexParts;
@@ -348,7 +348,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             ExternalSourcesTreeMethods = new TExternalSourcesTreeMethods(_linksDataParts, _linksIndexParts, _header);
             InternalTargetsTreeMethods = new TInternalTargetsTreeMethods(_linksDataParts, _linksIndexParts, _header);
             ExternalTargetsTreeMethods = new TExternalTargetsTreeMethods(_linksDataParts, _linksIndexParts, _header);
-            UnusedLinksTreeMethods = new TUnusedLinksTreeMethods(static_cast<std::byte*>(_dataMemory.Pointer()), _header);
+            UnusedLinksListMethods = new TUnusedLinksListMethods(static_cast<std::byte*>(_dataMemory.Pointer()), _header);
         }
 
         LinkAddressType Count(const LinkType& restriction)
