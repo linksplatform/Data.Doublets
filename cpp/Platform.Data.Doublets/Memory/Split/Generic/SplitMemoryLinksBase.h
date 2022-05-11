@@ -850,7 +850,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         }
 
 
-        LinkAddressType Delete(const LinkType& restriction, auto&& handler)
+        LinkAddressType Delete(const LinkType& restriction, const WriteHandlerType& handler)
         {
             auto& header = this->GetHeaderReference();
             auto linkAddress = GetIndex(*this, restriction);
