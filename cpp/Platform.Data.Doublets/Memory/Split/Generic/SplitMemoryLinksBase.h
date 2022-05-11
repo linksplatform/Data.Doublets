@@ -39,8 +39,13 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         std::byte* _linksDataParts;
         std::byte* _linksIndexParts;
 
-    protected:
-        auto&& GetLinkDataPartReference(TLinkAddress linkIndex)
+    public:
+        const RawLinkDataPart<TLinkAddress>& GetLinkDataPartReference(TLinkAddress linkIndex) const
+        {
+            return *reinterpret_cast<RawLinkDataPart<TLinkAddress>*>(_linksDataParts + (LinkDataPartSizeInBytes * linkIndex))
+        }
+
+        RawLinkDataPart<TLinkAddress>& GetLinkDataPartReference(TLinkAddress linkIndex)
         {
             return *reinterpret_cast<RawLinkDataPart<TLinkAddress>*>(_linksDataParts + (LinkDataPartSizeInBytes * linkIndex))
         }
