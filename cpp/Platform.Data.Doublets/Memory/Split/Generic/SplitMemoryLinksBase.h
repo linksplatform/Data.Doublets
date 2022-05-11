@@ -894,7 +894,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
     public:
         LinkType GetLinkStruct(LinkAddressType linkIndex) const
         {
-            const auto& link = GetLinkDataPartReference(linkIndex);
+            const auto& link = this->GetLinkDataPartReference(linkIndex);
             return LinkType(linkIndex, link.Source, link.Target);
         }
 
