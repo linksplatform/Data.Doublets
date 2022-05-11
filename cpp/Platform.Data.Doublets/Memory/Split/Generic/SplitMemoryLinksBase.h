@@ -6,12 +6,11 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         typename TSelf,
         typename TLinksOptions,
         typename TMemory,
-        typename TInternalSourcesListMethods,
         typename TInternalSourcesTreeMethods,
+        typename TInternalLinksSourcesLinkedListMethods,
         typename TInternalTargetsTreeMethods,
         typename TExternalSourcesTreeMethods,
         typename TExternalTargetsTreeMethods,
-        typename TInternalLinksSourcesLinkedTreeMethods,
         typename TUnusedLinksListMethods,
         typename... TBase>
     struct SplitMemoryLinksBase : public Interfaces::Polymorph<TSelf, TBase...>
