@@ -17,22 +17,22 @@
 
         protected: TLinkAddress GetTreeRoot()
                 {
-                    return thls->object.GetTreeRoot();
+                    return thls->object()->GetTreeRoot();
                 };
 
         protected: TLinkAddress GetBasePartValue(TLinkAddress link)
                 {
-                    return thls->object.GetBasePartValue(link);
+                    return thls->object()->GetBasePartValue(link);
                 };
 
         protected: bool FirstIsToTheRightOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget)
                 {
-                    return thls->object.FirstIsToTheRightOfSecond(source, target, rootSource, rootTarget);
+                    return thls->object()->FirstIsToTheRightOfSecond(source, target, rootSource, rootTarget);
                 };
 
         protected: bool FirstIsToTheLeftOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget)
                 {
-                    return thls->object.FirstIsToTheLeftOfSecond(source, target, rootSource, rootTarget);
+                    return thls->object()->FirstIsToTheLeftOfSecond(source, target, rootSource, rootTarget);
                 };
 
         protected:  auto& GetHeaderReference() { return *reinterpret_cast<LinksHeader<LinkAddressType>*>(Header); }

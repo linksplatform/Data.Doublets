@@ -24,17 +24,17 @@
 
         protected: LinkAddressType GetTreeRoot(LinkAddressType link)
                 {
-                    return this->object.GetTreeRoot(link);
+                    return this->object()->GetTreeRoot(link);
                 };
 
         protected: LinkAddressType GetBasePartValue(LinkAddressType link)
                 {
-                    return this->object.GetBasePartValue(link);
+                    return this->object()->GetBasePartValue(link);
                 };
 
         protected: LinkAddressType GetKeyPartValue(LinkAddressType link)
                 {
-                    return this->object.GetKeyPartValue(link);
+                    return this->object()->GetKeyPartValue(link);
                 };
 
             protected: RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link) { return RawLinkDataPart<LinkAddressType>(LinksDataParts + (RawLinkDataPart<LinkAddressType>::SizeInBytes * link)); }
@@ -79,7 +79,7 @@
 
         public: LinkAddressType Search(LinkAddressType source, LinkAddressType target)
                          {
-                             return this->object.Search(source, target);
+                             return this->object()->Search(source, target);
                          };
 
         protected: LinkAddressType SearchCore(LinkAddressType root, LinkAddressType key)
