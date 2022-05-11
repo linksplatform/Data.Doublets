@@ -544,7 +544,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         }
 
 
-         LinkAddressType Each(const LinkType& restriction, const ReadHandlerType& handler)
+         LinkAddressType Each(const LinkType& restriction, const ReadHandlerType& handler) const
         {
             using namespace Platform::Exceptions;
             auto constants = Constants;
