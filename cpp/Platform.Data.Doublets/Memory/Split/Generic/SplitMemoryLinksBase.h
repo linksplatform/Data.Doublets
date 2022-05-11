@@ -837,8 +837,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 }
                 if (header.AllocatedLinks >= (header.ReservedLinks - 1))
                 {
-                    _dataMemory.ReservedCapacity( _dataMemory.ReservedCapacity() + _dataMemoryReservationStepInBytes);
-                    _indexMemory.ReservedCapacity(_indexMemory.ReservedCapacity() + _indexMemoryReservationStepInBytes);
+                    _dataMemory.ReservedCapacity( _dataMemory.ReservedCapacity() + _dataMemoryReservationStepInBytesInBytes);
+                    _indexMemory.ReservedCapacity(_indexMemory.ReservedCapacity() + _indexDataMemoryReservationStepInBytesInBytes);
                     SetPointers(_dataMemory, _indexMemory);
                     header = GetHeaderReference();
                     header.ReservedLinks = _dataMemory.ReservedCapacity() / LinkDataPartSizeInBytes;
