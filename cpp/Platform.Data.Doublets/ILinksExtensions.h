@@ -524,8 +524,7 @@ namespace Platform::Data::Doublets
         template<typename TStorage>
         static typename TStorage::LinkAddressType Update(TStorage& storage, typename TStorage::LinkAddressType linkAddress, typename TStorage::LinkAddressType newSource, typename TStorage::LinkAddressType newTarget, auto&& handler)
         {
-            auto $continue {storage.Constants.Continue};
-            return storage.Update(LinkAddress{linkAddress}, Link{linkAddress, newSource, newTarget}, handler);
+            return storage.Update(typename TStorage::LinkType{linkAddress}, typename TStorage::LinkType{linkAddress, newSource, newTarget}, handler);
         }
 
         template<typename TStorage>
