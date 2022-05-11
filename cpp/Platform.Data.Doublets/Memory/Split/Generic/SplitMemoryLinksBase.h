@@ -354,7 +354,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             }
             auto constants = Constants;
             auto any = constants.Any;
-            auto index = this->GetIndex(restriction);
+            auto index = GetIndex(*this, restriction);
             if (length == 1)
             {
                 if (index == any)
@@ -554,7 +554,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             }
             auto $continue = constants.Continue;
             auto any = constants.Any;
-            auto index = this->GetIndex(restriction);
+            auto index = GetIndex(*this, restriction);
             if (length == 1)
             {
                 if ((index == any))
@@ -736,7 +736,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             auto constants = Constants;
             auto @null = constants.Null;
             auto externalReferencesRange = constants.ExternalReferencesRange;
-            auto linkIndex = this->GetIndex(restriction);
+            auto linkIndex = GetIndex(*this, restriction);
             auto before = this->GetLinkStruct(linkIndex);
             auto& link = this->GetLinkDataPartReference(linkIndex);
             auto source = link.Source;
