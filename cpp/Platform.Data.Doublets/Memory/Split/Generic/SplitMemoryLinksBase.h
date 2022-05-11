@@ -33,9 +33,9 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         TExternalSourcesTreeMethods* ExternalSourcesTreeMethods;
         TExternalTargetsTreeMethods* ExternalTargetsTreeMethods;
         TUnusedLinksTreeMethods* UnusedLinksTreeMethods;
-        std::uint8_t* _header;
-        std::uint8_t* _linksDataParts;
-        std::uint8_t* _linksIndexParts;
+        std::byte* _header;
+        std::byte* _linksDataParts;
+        std::byte* _linksIndexParts;
 
     protected:
         auto&& GetLinkDataPartReference(TLinkAddress linkIndex)
@@ -334,8 +334,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
 //
         void SetPointers(TMemory dataMemory, TMemory indexMemory)
         {
-            _linksDataParts = (std::uint8_t*)dataMemory.Pointer();
-            _linksIndexParts = (std::uint8_t*)indexMemory.Pointer();
+            _linksDataParts = static_cast<std::byte*>(dataMemory.Pointer());
+            _linksIndexParts = static_cast<std::byte*>(indexMemory.Pointer());
             _header = _linksIndexParts;
 
             ExternalSourcesTreeMethods = new TExternalSourcesTreeMethods(_linksDataParts, _linksIndexParts, _header);
