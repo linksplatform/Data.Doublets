@@ -867,7 +867,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 _indexMemory.UsedCapacity(_indexMemory.UsedCapacity() - LinkIndexPartSizeInBytes);
                 // Убираем все связи, находящиеся в списке свободных в конце файла, до тех пор, пока не дойдём до первой существующей связи
                 // Позволяет оптимизировать количество выделенных связей (AllocatedLinks)
-                while ((header.AllocatedLinks > LinkAddressType{0};) && this->IsUnusedLink(header.AllocatedLinks))
+                while ((header.AllocatedLinks > LinkAddressType{0}) && this->IsUnusedLink(header.AllocatedLinks))
                 {
                     UnusedLinksListMethods->Detach(header.AllocatedLinks);
                     --header.AllocatedLinks;
