@@ -15,7 +15,7 @@
         }
 
     public:
-        std::int32_t GetHashCode() override
+        std::int32_t GetHashCode()
         {
             return Platform::Hashing::Hash(Source, Target);
         }
@@ -28,6 +28,18 @@
         bool operator !=(RawLinkDataPart<TLinkAddress> other)
         {
             return !(this == other);
+        }
+    };
+}
+
+namespace std
+{
+    template <typename TLinkAddress>
+    struct hash<RawLinkDataPart<TLinkAddress>>
+    {
+        std::size_t operator()(const RawLinkDataPart<TLinkAddress> &obj) const
+        {
+            return obj.GetHashCode();
         }
     };
 }
