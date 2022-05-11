@@ -4,7 +4,7 @@
     class ExternalLinksSourcesSizeBalancedTreeMethods : public ExternalLinksSizeBalancedTreeMethodsBase<ExternalLinksSourcesSizeBalancedTreeMethods<TLinksOptions>, TLinksOptions>
     {
     public:
-        using base = ExternalLinksSizeBalancedTreeMethodsBase<TLinksOptions>;
+        using base = ExternalLinksSizeBalancedTreeMethodsBase<ExternalLinksSourcesSizeBalancedTreeMethods<TLinksOptions>, TLinksOptions>;
         using LinksOptionsType = TLinksOptions;
                 using LinkAddressType = LinksOptionsType::LinkAddressType;
         using LinkType = LinksOptionsType::LinkType;
