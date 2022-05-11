@@ -826,7 +826,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             auto freeLink = header.FirstFreeLink;
             if (freeLink != Constants.Null)
             {
-                UnusedLinksListMethods->Detach(freeLink);
+                this->Detach(freeLink);
             }
             else
             {
