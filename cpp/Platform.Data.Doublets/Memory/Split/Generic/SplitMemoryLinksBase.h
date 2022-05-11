@@ -362,7 +362,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                         return Total(); // Any - как отсутствие ограничения
                     }
                     auto externalReferencesRange = constants.ExternalReferencesRange;
-                    if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value))
+                    if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Value.Contains(value))
                     {
                         return (ExternalSourcesTreeMethods.CountUsages(value) + ExternalTargetsTreeMethods->CountUsages(value));
                     }
@@ -409,7 +409,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     }
                     else if ((source == any))
                     {
-                        if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(target))
+                        if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Value.Contains(target))
                         {
                             return ExternalTargetsTreeMethods->CountUsages(target);
                         }
@@ -420,7 +420,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     }
                     else if ((target == any))
                     {
-                        if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(source))
+                        if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Value.Contains(source))
                         {
                             return ExternalSourcesTreeMethods.CountUsages(source);
                         }
@@ -440,7 +440,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     {
                         // Эквивалент Exists(source, target) => Count(Any, source, target) > 0
                         LinkAddressType link;
-                        if (externalReferencesRange.HasValue)
+                        if (Constants.IsExternalReferencesRangeEnabled)
                         {
                             if (externalReferencesRange.Value.Contains(source) && externalReferencesRange.Value.Contains(target))
                             {
@@ -603,7 +603,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     }
                     else if ((source == any))
                     {
-                        if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(target))
+                        if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Value.Contains(target))
                         {
                             return ExternalTargetsTreeMethods->EachUsage(target, handler);
                         }
@@ -614,7 +614,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     }
                     else if ((target == any))
                     {
-                        if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(source))
+                        if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Value.Contains(source))
                         {
                             return ExternalSourcesTreeMethods.EachUsage(source, handler);
                         }
@@ -633,7 +633,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     else //if(source != Any && target != Any)
                     {
                         LinkAddressType link;
-                        if (externalReferencesRange.HasValue)
+                        if (Constants.IsExternalReferencesRangeEnabled)
                         {
                             if (externalReferencesRange.Value.Contains(source) && externalReferencesRange.Value.Contains(target))
                             {
@@ -736,7 +736,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             // Будет корректно работать только в том случае, если пространство выделенной связи предварительно заполнено нулями
             if (source != @null)
             {
-                if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(source))
+                if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Value.Contains(source))
                 {
                     ExternalSourcesTreeMethods.Detach(rootAsSource, linkIndex);
                 }
@@ -754,7 +754,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             }
             if (target != @null)
             {
-                if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(target))
+                if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Value.Contains(target))
                 {
                     ExternalTargetsTreeMethods->Detach(rootAsTarget, linkIndex);
                 }
@@ -767,7 +767,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             target = link.Target = GetTarget(*this, substitution);
             if (source != @null)
             {
-                if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(source))
+                if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Value.Contains(source))
                 {
                     ExternalSourcesTreeMethods.Attach(rootAsSource, linkIndex);
                 }
@@ -785,7 +785,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             }
             if (target != @null)
             {
-                if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(target))
+                if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Value.Contains(target))
                 {
                     ExternalTargetsTreeMethods->Attach(rootAsTarget, linkIndex);
                 }
