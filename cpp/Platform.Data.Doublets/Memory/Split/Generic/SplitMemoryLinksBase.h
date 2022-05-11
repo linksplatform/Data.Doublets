@@ -547,6 +547,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
 
          LinkAddressType Each(const LinkType& restriction, const ReadHandlerType& handler)
         {
+            using namespace Platform::Exceptions;
             auto constants = Constants;
             auto $break = constants.Break;
             auto length = std::ranges::size(restriction);
