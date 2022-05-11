@@ -826,7 +826,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             auto freeLink = header.FirstFreeLink;
             if (freeLink != Constants.Null)
             {
-                UnusedLinksListMethods.Detach(freeLink);
+                UnusedLinksListMethods->Detach(freeLink);
             }
             else
             {
@@ -858,7 +858,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             auto before = GetLinkStruct(linkAddress);
             if (linkAddress < header.AllocatedLinks)
             {
-                UnusedLinksListMethods.AttachAsFirst(linkAddress);
+                UnusedLinksListMethods->AttachAsFirst(linkAddress);
             }
             else if (linkAddress == header.AllocatedLinks)
             {
@@ -869,7 +869,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 // Позволяет оптимизировать количество выделенных связей (AllocatedLinks)
                 while ((header.AllocatedLinks > LinkAddressType{0};) && this->IsUnusedLink(header.AllocatedLinks))
                 {
-                    UnusedLinksListMethods.Detach(header.AllocatedLinks);
+                    UnusedLinksListMethods->Detach(header.AllocatedLinks);
                     --header.AllocatedLinks;
                     _dataMemory.UsedCapacity() -= LinkDataPartSizeInBytes;
                     _indexMemory.UsedCapacity() -= LinkIndexPartSizeInBytes;
