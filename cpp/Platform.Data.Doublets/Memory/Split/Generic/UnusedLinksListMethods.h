@@ -45,7 +45,7 @@
 
         protected: void SetSize(LinkAddressType size) { this->GetHeaderReference().FreeLinks = size; }
 
-        protected: void Detach(LinkAddressType freeLink)
+        public: void Detach(LinkAddressType freeLink)
         {
             return base::Detach(freeLink);
         };
