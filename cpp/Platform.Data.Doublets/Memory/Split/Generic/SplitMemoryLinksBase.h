@@ -332,5 +332,559 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             ExternalTargetsTreeMethods = new TExternalTargetsTreeMethods();
             UnusedLinksTreeMethods = new TUnusedLinksTreeMethods(_linksDataParts, _header);
         }
+
+    public virtual LinkAddressType Count(const LinkType& restriction)
+        {
+            auto length = std::ranges::size(restriction);
+            // Если нет ограничений, тогда возвращаем общее число связей находящихся в хранилище.
+            if (length == 0)
+            {
+                return Total();
+            }
+            auto constants = Constants;
+            auto any = constants.Any;
+            auto index = this.GetIndex(restriction);
+            if (length == 1)
+            {
+                if (index == any)
+                {
+                    return Total();
+                }
+                return Exists(index) ? LinkAddressType{1} : LinkAddressType{0};
+            }
+            if (length == 2)
+            {
+                auto value = restriction[1];
+                if (AreEqual(index, any))
+                {
+                    if (AreEqual(value, any))
+                    {
+                        return Total(); // Any - как отсутствие ограничения
+                    }
+                    auto externalReferencesRange = constants.ExternalReferencesRange;
+                    if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value))
+                    {
+                        return Add(ExternalSourcesTreeMethods.CountUsages(value), ExternalTargetsTreeMethods.CountUsages(value));
+                    }
+                    else
+                    {
+                        if (_useLinkedList)
+                        {
+                            return Add(InternalSourcesListMethods.CountUsages(value), InternalTargetsTreeMethods.CountUsages(value));
+                        }
+                        else
+                        {
+                            return Add(InternalSourcesTreeMethods.CountUsages(value), InternalTargetsTreeMethods.CountUsages(value));
+                        }
+                    }
+                }
+                else
+                {
+                    if (!Exists(index))
+                    {
+                        return LinkAddressType{0};
+                    }
+                    if (AreEqual(value, any))
+                    {
+                        return LinkAddressType{1};
+                    }
+                    auto& storedLinkValue = GetLinkDataPartReference(index);
+                    if (AreEqual(storedLinkValue.Source, value) || AreEqual(storedLinkValue.Target, value))
+                    {
+                        return LinkAddressType{1};
+                    }
+                    return LinkAddressType{0};
+                }
+            }
+            if (length == 3)
+            {
+                auto externalReferencesRange = constants.ExternalReferencesRange;
+                auto source = this.GetSource(restriction);
+                auto target = this.GetTarget(restriction);
+                if (AreEqual(index, any))
+                {
+                    if (AreEqual(source, any) && AreEqual(target, any))
+                    {
+                        return Total();
+                    }
+                    else if (AreEqual(source, any))
+                    {
+                        if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(target))
+                        {
+                            return ExternalTargetsTreeMethods.CountUsages(target);
+                        }
+                        else
+                        {
+                            return InternalTargetsTreeMethods.CountUsages(target);
+                        }
+                    }
+                    else if (AreEqual(target, any))
+                    {
+                        if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(source))
+                        {
+                            return ExternalSourcesTreeMethods.CountUsages(source);
+                        }
+                        else
+                        {
+                            if (_useLinkedList)
+                            {
+                                return InternalSourcesListMethods.CountUsages(source);
+                            }
+                            else
+                            {
+                                return InternalSourcesTreeMethods.CountUsages(source);
+                            }
+                        }
+                    }
+                    else //if(source != Any && target != Any)
+                    {
+                        // Эквивалент Exists(source, target) => Count(Any, source, target) > 0
+                        LinkAddressType link;
+                        if (externalReferencesRange.HasValue)
+                        {
+                            if (externalReferencesRange.Value.Contains(source) && externalReferencesRange.Value.Contains(target))
+                            {
+                                link = ExternalSourcesTreeMethods.Search(source, target);
+                            }
+                            else if (externalReferencesRange.Value.Contains(source))
+                            {
+                                link = InternalTargetsTreeMethods.Search(source, target);
+                            }
+                            else if (externalReferencesRange.Value.Contains(target))
+                            {
+                                if (_useLinkedList)
+                                {
+                                    link = ExternalSourcesTreeMethods.Search(source, target);
+                                }
+                                else
+                                {
+                                    link = InternalSourcesTreeMethods.Search(source, target);
+                                }
+                            }
+                            else
+                            {
+                                if (_useLinkedList || GreaterThan(InternalSourcesTreeMethods.CountUsages(source), InternalTargetsTreeMethods.CountUsages(target)))
+                                {
+                                    link = InternalTargetsTreeMethods.Search(source, target);
+                                }
+                                else
+                                {
+                                    link = InternalSourcesTreeMethods.Search(source, target);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (_useLinkedList || GreaterThan(InternalSourcesTreeMethods.CountUsages(source), InternalTargetsTreeMethods.CountUsages(target)))
+                            {
+                                link = InternalTargetsTreeMethods.Search(source, target);
+                            }
+                            else
+                            {
+                                link = InternalSourcesTreeMethods.Search(source, target);
+                            }
+                        }
+                        return AreEqual(link, constants.Null) ? LinkAddressType{0} : LinkAddressType{1};
+                    }
+                }
+                else
+                {
+                    if (!Exists(index))
+                    {
+                        return LinkAddressType{0};
+                    }
+                    if (AreEqual(source, any) && AreEqual(target, any))
+                    {
+                        return LinkAddressType{1};
+                    }
+                    auto& storedLinkValue = GetLinkDataPartReference(index);
+                    if (!AreEqual(source, any) && !AreEqual(target, any))
+                    {
+                        if (AreEqual(storedLinkValue.Source, source) && AreEqual(storedLinkValue.Target, target))
+                        {
+                            return LinkAddressType{1};
+                        }
+                        return LinkAddressType{0};
+                    }
+                    auto value = LinkAddressType{0};
+                    if (AreEqual(source, any))
+                    {
+                        value = target;
+                    }
+                    if (AreEqual(target, any))
+                    {
+                        value = source;
+                    }
+                    if (AreEqual(storedLinkValue.Source, value) || AreEqual(storedLinkValue.Target, value))
+                    {
+                        return LinkAddressType{1};
+                    }
+                    return LinkAddressType{0};
+                }
+            }
+            throw NotSupportedException("Другие размеры и способы ограничений не поддерживаются.");
+        }
+        
+
+         LinkAddressType Each(const LinkType& restriction, const ReadHandlerType& handler)
+        {
+            auto constants = Constants;
+            auto $break = constants.Break;
+            if (length == 0)
+            {
+                for (auto link = LinkAddressType{1}; (link <= GetHeaderReference().AllocatedLinks); ++link)
+                {
+                    if (Exists(link) && (handler(GetLinkStruct(link)) == $break))
+                    {
+                        return $break;
+                    }
+                }
+                return $break;
+            }
+            auto $continue = constants.Continue;
+            auto any = constants.Any;
+            auto index = this.GetIndex(restriction);
+            if (length == 1)
+            {
+                if (AreEqual(index, any))
+                {
+                    return Each(Array.Empty<LinkAddressType>(), handler);
+                }
+                if (!Exists(index))
+                {
+                    return $continue;
+                }
+                return handler(GetLinkStruct(index));
+            }
+            if (length == 2)
+            {
+                auto value = restriction[1];
+                if (index == any)
+                {
+                    if (value == any)
+                    {
+                        return Each(Array.Empty<LinkAddressType>(), handler);
+                    }
+                    if (Each(LinkType(index, value, any), handler) == $break)
+                    {
+                        return $break;
+                    }
+                    return Each(LinkType(index, any, value), handler);
+                }
+                else
+                {
+                    if (!Exists(index))
+                    {
+                        return $continue;
+                    }
+                    if (AreEqual(value, any))
+                    {
+                        return handler(GetLinkStruct(index));
+                    }
+                    auto& storedLinkValue = GetLinkDataPartReference(index);
+                    if (AreEqual(storedLinkValue.Source, value) ||
+                        AreEqual(storedLinkValue.Target, value))
+                    {
+                        return handler(GetLinkStruct(index));
+                    }
+                    return $continue;
+                }
+            }
+            if (length == 3)
+            {
+                auto externalReferencesRange = constants.ExternalReferencesRange;
+                auto source = this.GetSource(restriction);
+                auto target = this.GetTarget(restriction);
+                if (AreEqual(index, any))
+                {
+                    if (AreEqual(source, any) && AreEqual(target, any))
+                    {
+                        return Each(Array.Empty<LinkAddressType>(), handler);
+                    }
+                    else if (AreEqual(source, any))
+                    {
+                        if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(target))
+                        {
+                            return ExternalTargetsTreeMethods.EachUsage(target, handler);
+                        }
+                        else
+                        {
+                            return InternalTargetsTreeMethods.EachUsage(target, handler);
+                        }
+                    }
+                    else if (AreEqual(target, any))
+                    {
+                        if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(source))
+                        {
+                            return ExternalSourcesTreeMethods.EachUsage(source, handler);
+                        }
+                        else
+                        {
+                            if (_useLinkedList)
+                            {
+                                return InternalSourcesListMethods.EachUsage(source, handler);
+                            }
+                            else
+                            {
+                                return InternalSourcesTreeMethods.EachUsage(source, handler);
+                            }
+                        }
+                    }
+                    else //if(source != Any && target != Any)
+                    {
+                        LinkAddressType link;
+                        if (externalReferencesRange.HasValue)
+                        {
+                            if (externalReferencesRange.Value.Contains(source) && externalReferencesRange.Value.Contains(target))
+                            {
+                                link = ExternalSourcesTreeMethods.Search(source, target);
+                            }
+                            else if (externalReferencesRange.Value.Contains(source))
+                            {
+                                link = InternalTargetsTreeMethods.Search(source, target);
+                            }
+                            else if (externalReferencesRange.Value.Contains(target))
+                            {
+                                if (_useLinkedList)
+                                {
+                                    link = ExternalSourcesTreeMethods.Search(source, target);
+                                }
+                                else
+                                {
+                                    link = InternalSourcesTreeMethods.Search(source, target);
+                                }
+                            }
+                            else
+                            {
+                                if (_useLinkedList || GreaterThan(InternalSourcesTreeMethods.CountUsages(source), InternalTargetsTreeMethods.CountUsages(target)))
+                                {
+                                    link = InternalTargetsTreeMethods.Search(source, target);
+                                }
+                                else
+                                {
+                                    link = InternalSourcesTreeMethods.Search(source, target);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (_useLinkedList || GreaterThan(InternalSourcesTreeMethods.CountUsages(source), InternalTargetsTreeMethods.CountUsages(target)))
+                            {
+                                link = InternalTargetsTreeMethods.Search(source, target);
+                            }
+                            else
+                            {
+                                link = InternalSourcesTreeMethods.Search(source, target);
+                            }
+                        }
+                        return AreEqual(link, constants.Null) ? $continue : handler(GetLinkStruct(link));
+                    }
+                }
+                else
+                {
+                    if (!Exists(index))
+                    {
+                        return $continue;
+                    }
+                    if (AreEqual(source, any) && AreEqual(target, any))
+                    {
+                        return handler(GetLinkStruct(index));
+                    }
+                    auto& storedLinkValue = GetLinkDataPartReference(index);
+                    if (!AreEqual(source, any) && !AreEqual(target, any))
+                    {
+                        if (AreEqual(storedLinkValue.Source, source) &&
+                            AreEqual(storedLinkValue.Target, target))
+                        {
+                            return handler(GetLinkStruct(index));
+                        }
+                        return $continue;
+                    }
+                    auto value = LinkAddressType{0};
+                    if (source == any)
+                    {
+                        value = target;
+                    }
+                    if (target == any)
+                    {
+                        value = source;
+                    }
+                    if ((storedLinkValue.Source == value) || (storedLinkValue.Target == value))
+                    {
+                        return handler(GetLinkStruct(index));
+                    }
+                    return $continue;
+                }
+            }
+            throw NotSupportedException();
+        }
+
+
+         LinkAddressType Update(const LinkType& restriction, const LinkType& substitution, const WriteHandlerType& handler)
+        {
+            auto constants = Constants;
+            auto @null = constants.Null;
+            auto externalReferencesRange = constants.ExternalReferencesRange;
+            auto linkIndex = this.GetIndex(restriction);
+            auto before = GetLinkStruct(linkIndex);
+            auto& link = GetLinkDataPartReference(linkIndex);
+            auto source = link.Source;
+            auto target = link.Target;
+            auto& header = GetHeaderReference();
+            auto& rootAsSource = header.RootAsSource;
+            auto& rootAsTarget = header.RootAsTarget;
+            // Будет корректно работать только в том случае, если пространство выделенной связи предварительно заполнено нулями
+            if (source != @null)
+            {
+                if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(source))
+                {
+                    ExternalSourcesTreeMethods.Detach(ref rootAsSource, linkIndex);
+                }
+                else
+                {
+                    if (_useLinkedList)
+                    {
+                        InternalSourcesListMethods.Detach(source, linkIndex);
+                    }
+                    else
+                    {
+                        InternalSourcesTreeMethods.Detach(ref GetLinkIndexPartReference(source).RootAsSource, linkIndex);
+                    }
+                }
+            }
+            if (target != @null)
+            {
+                if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(target))
+                {
+                    ExternalTargetsTreeMethods.Detach(ref rootAsTarget, linkIndex);
+                }
+                else
+                {
+                    InternalTargetsTreeMethods.Detach(ref GetLinkIndexPartReference(target).RootAsTarget, linkIndex);
+                }
+            }
+            source = link.Source = this.GetSource(substitution);
+            target = link.Target = this.GetTarget(substitution);
+            if (source != @null)
+            {
+                if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(source))
+                {
+                    ExternalSourcesTreeMethods.Attach(ref rootAsSource, linkIndex);
+                }
+                else
+                {
+                    if (_useLinkedList)
+                    {
+                        InternalSourcesListMethods.AttachAsLast(source, linkIndex);
+                    }
+                    else
+                    {
+                        InternalSourcesTreeMethods.Attach(ref GetLinkIndexPartReference(source).RootAsSource, linkIndex);
+                    }
+                }
+            }
+            if (target != @null)
+            {
+                if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(target))
+                {
+                    ExternalTargetsTreeMethods.Attach(ref rootAsTarget, linkIndex);
+                }
+                else
+                {
+                    InternalTargetsTreeMethods.Attach(ref GetLinkIndexPartReference(target).RootAsTarget, linkIndex);
+                }
+            }
+            return handler ? handler(before, LinkType(linkIndex, source, target)) : Constants.Continue;
+        }
+
+
+         LinkAddressType Create(const LinkType& substitution, const WriteHandlerType& handler)
+        {
+            auto& header = GetHeaderReference();
+            auto freeLink = header.FirstFreeLink;
+            if (freeLink != Constants.Null)
+            {
+                UnusedLinksListMethods.Detach(freeLink);
+            }
+            else
+            {
+                auto maximumPossibleInnerReference = Constants.InternalReferencesRange.Maximum;
+                if (header.AllocatedLinks > maximumPossibleInnerReference)
+                {
+                    throw LinksLimitReachedException<LinkAddressType>(maximumPossibleInnerReference);
+                }
+                if (header.AllocatedLinks >= (header.ReservedLinks - 1))
+                {
+                    _dataMemory.ReservedCapacity += _dataMemoryReservationStepInBytes;
+                    _indexMemory.ReservedCapacity += _indexMemoryReservationStepInBytes;
+                    SetPointers(_dataMemory, _indexMemory);
+                    header = GetHeaderReference();
+                    header.ReservedLinks = _dataMemory.ReservedCapacity / LinkDataPartSizeInBytes;
+                }
+                freeLink = ++header.AllocatedLinks;
+                _dataMemory.UsedCapacity += LinkDataPartSizeInBytes;
+                _indexMemory.UsedCapacity += LinkIndexPartSizeInBytes;
+            }
+            return handler ? handler(null, GetLinkStruct(freeLink)) : Constants.Continue;
+        }
+
+
+        LinkAddressType Delete(const LinkType& restriction, auto&& handler)
+        {
+            auto& header = this->GetHeaderReference();
+            auto linkAddress = GetIndex(*this, restriction);
+            auto before = GetLinkStruct(link);
+            if (link < header.AllocatedLinks)
+            {
+                UnusedLinksListMethods.AttachAsFirst(link);
+            }
+            else if (link == header.AllocatedLinks)
+            {
+                --header.AllocatedLinks;
+                _dataMemory.UsedCapacity -= LinkDataPartSizeInBytes;
+                _indexMemory.UsedCapacity -= LinkIndexPartSizeInBytes;
+                // Убираем все связи, находящиеся в списке свободных в конце файла, до тех пор, пока не дойдём до первой существующей связи
+                // Позволяет оптимизировать количество выделенных связей (AllocatedLinks)
+                while ((header.AllocatedLinks > LinkAddressType{0};) && this->IsUnusedLink(header.AllocatedLinks))
+                {
+                    UnusedLinksListMethods.Detach(header.AllocatedLinks);
+                    --header.AllocatedLinks;
+                    _dataMemory.UsedCapacity -= LinkDataPartSizeInBytes;
+                    _indexMemory.UsedCapacity -= LinkIndexPartSizeInBytes;
+                }
+            }
+            return handler ? handler(before, null) : Constants.Continue;
+        }
+
+    protected:
+        bool IsUnusedLink(LinkAddressType linkIndex) const
+        {
+            if (GetHeaderReference().FirstFreeLink != linkIndex) // May be this check is not needed
+            {
+                // TODO: Reduce access to memory in different location (should be enough to use just linkIndexPart)
+                const auto& linkDataPart = GetLinkDataPartReference(linkIndex);
+                const auto& linkIndexPart = GetLinkIndexPartReference(linkIndex);
+                return (linkIndexPart.SizeAsTarget == LinkAddressType{0}) && (linkDataPart.Source != LinkAddressType{0});
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        bool Exists(LinkAddressType link)
+        {
+            (link >= Constants.InternalReferencesRange.Minimum)
+                && (link <= GetHeaderReference().AllocatedLinks)
+                && !IsUnusedLink(link);
+        }
+
+    public:
+        LinkType GetLinkStruct(LinkAddressType linkIndex) const
+        {
+            const auto& link = GetLinkDataPartReference(linkIndex);
+            return LinkType(linkIndex, link.Source, link.Target);
+        }
+
     };
 }
