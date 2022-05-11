@@ -37,6 +37,17 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         std::uint8_t* _linksDataParts;
         std::uint8_t* _linksIndexParts;
 
+    protected:
+        auto&& GetLinkDataPartReference(TLinkAddress linkIndex)
+        {
+            return *reinterpret_cast<RawLinkDataPart<TLinkAddress>*>(_linksDataParts + (LinkDataPartSizeInBytes * linkIndex))
+        }
+
+        auto&& GetLinkIndexPartReference(TLinkAddress linkIndex)
+        {
+            return *reinterpret_cast<RawLinkIndexPart<TLinkAddress>*>(_linksIndexParts + (LinkIndexPartSizeInBytes * linkIndex))
+        }
+
     public:
         auto&& GetHeaderReference() const
         {
@@ -862,8 +873,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             if (GetHeaderReference().FirstFreeLink != linkIndex) // May be this check is not needed
             {
                 // TODO: Reduce access to memory in different location (should be enough to use just linkIndexPart)
-                const auto& linkDataPart = GetLinkDataPartReference(linkIndex);
-                const auto& linkIndexPart = GetLinkIndexPartReference(linkIndex);
+                const auto& linkDataPart = this->GetLinkDataPartReference(linkIndex);
+                const auto& linkIndexPart = this->GetLinkIndexPartReference(linkIndex);
                 return (linkIndexPart.SizeAsTarget == LinkAddressType{0}) && (linkDataPart.Source != LinkAddressType{0});
             }
             else
