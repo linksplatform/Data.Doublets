@@ -105,9 +105,9 @@
 
         public: LinkAddressType CountUsages(LinkAddressType link) { return this->GetSizeOrZero(this->GetTreeRoot(link)); }
 
-        public: LinkAddressType EachUsage(LinkAddressType base, auto&& handler) { return this->EachUsageCore(base, this->GetTreeRoot(base), handler); }
+        public: LinkAddressType EachUsage(LinkAddressType base, const ReadHandlerType& handler) { return this->EachUsageCore(base, this->GetTreeRoot(base), handler); }
 
-        private: LinkAddressType EachUsageCore(LinkAddressType base, LinkAddressType link, auto&& handler)
+        private: LinkAddressType EachUsageCore(LinkAddressType base, LinkAddressType link, const ReadHandlerType& handler)
         {
             if (link == 0)
             {

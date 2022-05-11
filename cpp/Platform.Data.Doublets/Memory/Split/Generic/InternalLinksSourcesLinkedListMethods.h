@@ -98,7 +98,7 @@
             return Link{ linkIndex, link.Source, link.Target };
         }
 
-        public: LinkAddressType EachUsage(LinkAddressType source, auto&& handler)
+        public: LinkAddressType EachUsage(LinkAddressType source, const ReadHandlerType& handler)
         {
             auto current = this->GetFirst(source);
             auto first = current;
