@@ -27,22 +27,22 @@
 
         protected: LinkAddressType GetTreeRoot()
                 {
-                    return this->object()->GetTreeRoot();
+                    return this->object.GetTreeRoot();
                 };
 
         protected: LinkAddressType GetBasePartValue(LinkAddressType link)
                 {
-                    return this->object()->GetBasePartValue(link);
+                    return this->object.GetBasePartValue(link);
                 };
 
         protected: bool FirstIsToTheRightOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource, LinkAddressType rootTarget)
                 {
-                    return this->object()->FirstIsToTheRightOfSecond(source, target, rootSource, rootTarget);
+                    return this->object.FirstIsToTheRightOfSecond(source, target, rootSource, rootTarget);
                 };
 
         protected: bool FirstIsToTheLeftOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource, LinkAddressType rootTarget)
                 {
-                    return this->object()->FirstIsToTheLeftOfSecond(source, target, rootSource, rootTarget);
+                    return this->object.FirstIsToTheLeftOfSecond(source, target, rootSource, rootTarget);
                 };
 
         protected:         auto&& GetHeaderReference() const

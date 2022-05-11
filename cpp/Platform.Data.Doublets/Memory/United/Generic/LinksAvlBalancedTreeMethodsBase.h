@@ -27,22 +27,22 @@ namespace Platform::Data::Doublets::Memory::United::Generic
 
         protected: TLinkAddress GetTreeRoot()
                 {
-                    return this->object()->GetTreeRoot();
+                    return this->object.GetTreeRoot();
                 };
 
         protected: TLinkAddress GetBasePartValue(TLinkAddress link)
                 {
-                    return this->object()->GetBasePartValue(link);
+                    return this->object.GetBasePartValue(link);
                 };
 
         protected: bool FirstIsToTheRightOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget)
                 {
-                    return this->object()->FirstIsToTheRightOfSecond(source, target, rootSource, rootTarget);
+                    return this->object.FirstIsToTheRightOfSecond(source, target, rootSource, rootTarget);
                 };
 
         protected: bool FirstIsToTheLeftOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget)
                 {
-                    return this->object()->FirstIsToTheLeftOfSecond(source, target, rootSource, rootTarget);
+                    return this->object.FirstIsToTheLeftOfSecond(source, target, rootSource, rootTarget);
                 };
 
         protected:         auto&& GetHeaderReference() const
