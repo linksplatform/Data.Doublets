@@ -362,7 +362,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                         return Total(); // Any - как отсутствие ограничения
                     }
                     auto externalReferencesRange = constants.ExternalReferencesRange;
-                    if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Value.Contains(value))
+                    if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(value))
                     {
                         return (ExternalSourcesTreeMethods.CountUsages(value) + ExternalTargetsTreeMethods->CountUsages(value));
                     }
@@ -409,7 +409,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     }
                     else if ((source == any))
                     {
-                        if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Value.Contains(target))
+                        if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(target))
                         {
                             return ExternalTargetsTreeMethods->CountUsages(target);
                         }
@@ -420,7 +420,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     }
                     else if ((target == any))
                     {
-                        if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Value.Contains(source))
+                        if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(source))
                         {
                             return ExternalSourcesTreeMethods.CountUsages(source);
                         }
@@ -442,15 +442,15 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                         LinkAddressType link;
                         if (Constants.IsExternalReferencesRangeEnabled)
                         {
-                            if (externalReferencesRange.Value.Contains(source) && externalReferencesRange.Value.Contains(target))
+                            if (externalReferencesRange.Contains(source) && externalReferencesRange.Contains(target))
                             {
                                 link = ExternalSourcesTreeMethods.Search(source, target);
                             }
-                            else if (externalReferencesRange.Value.Contains(source))
+                            else if (externalReferencesRange.Contains(source))
                             {
                                 link = InternalTargetsTreeMethods->Search(source, target);
                             }
-                            else if (externalReferencesRange.Value.Contains(target))
+                            else if (externalReferencesRange.Contains(target))
                             {
                                 if (_useLinkedList)
                                 {
@@ -603,7 +603,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     }
                     else if ((source == any))
                     {
-                        if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Value.Contains(target))
+                        if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(target))
                         {
                             return ExternalTargetsTreeMethods->EachUsage(target, handler);
                         }
@@ -614,7 +614,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     }
                     else if ((target == any))
                     {
-                        if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Value.Contains(source))
+                        if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(source))
                         {
                             return ExternalSourcesTreeMethods.EachUsage(source, handler);
                         }
@@ -635,15 +635,15 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                         LinkAddressType link;
                         if (Constants.IsExternalReferencesRangeEnabled)
                         {
-                            if (externalReferencesRange.Value.Contains(source) && externalReferencesRange.Value.Contains(target))
+                            if (externalReferencesRange.Contains(source) && externalReferencesRange.Contains(target))
                             {
                                 link = ExternalSourcesTreeMethods.Search(source, target);
                             }
-                            else if (externalReferencesRange.Value.Contains(source))
+                            else if (externalReferencesRange.Contains(source))
                             {
                                 link = InternalTargetsTreeMethods->Search(source, target);
                             }
-                            else if (externalReferencesRange.Value.Contains(target))
+                            else if (externalReferencesRange.Contains(target))
                             {
                                 if (_useLinkedList)
                                 {
@@ -736,7 +736,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             // Будет корректно работать только в том случае, если пространство выделенной связи предварительно заполнено нулями
             if (source != @null)
             {
-                if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Value.Contains(source))
+                if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(source))
                 {
                     ExternalSourcesTreeMethods.Detach(rootAsSource, linkIndex);
                 }
@@ -754,7 +754,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             }
             if (target != @null)
             {
-                if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Value.Contains(target))
+                if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(target))
                 {
                     ExternalTargetsTreeMethods->Detach(rootAsTarget, linkIndex);
                 }
@@ -767,7 +767,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             target = link.Target = GetTarget(*this, substitution);
             if (source != @null)
             {
-                if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Value.Contains(source))
+                if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(source))
                 {
                     ExternalSourcesTreeMethods.Attach(rootAsSource, linkIndex);
                 }
@@ -785,7 +785,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             }
             if (target != @null)
             {
-                if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Value.Contains(target))
+                if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(target))
                 {
                     ExternalTargetsTreeMethods->Attach(rootAsTarget, linkIndex);
                 }
