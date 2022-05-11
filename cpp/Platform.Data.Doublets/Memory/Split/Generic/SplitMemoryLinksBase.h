@@ -351,7 +351,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             UnusedLinksTreeMethods = new TUnusedLinksTreeMethods(static_cast<std::byte*>(_dataMemory.Pointer()), _header);
         }
 
-    public virtual LinkAddressType Count(const LinkType& restriction)
+        LinkAddressType Count(const LinkType& restriction)
         {
             auto length = std::ranges::size(restriction);
             // Если нет ограничений, тогда возвращаем общее число связей находящихся в хранилище.
