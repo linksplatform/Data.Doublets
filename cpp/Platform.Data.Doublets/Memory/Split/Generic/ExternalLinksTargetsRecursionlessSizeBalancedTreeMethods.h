@@ -30,11 +30,11 @@
 
         protected:  LinkAddressType GetTreeRoot() { return this->GetHeaderReference().RootAsTarget; }
 
-        protected: LinkAddressType GetBasePartValue(LinkAddressType link)  { return this->GetLinkDataPartReference(link)->Target; }
+        public: LinkAddressType GetBasePartValue(LinkAddressType link)  { return this->GetLinkDataPartReference(link)->Target; }
 
-        protected: bool FirstIsToTheLeftOfSecond(LinkAddressType firstSource, LinkAddressType firstTarget, LinkAddressType secondSource, LinkAddressType secondTarget)  { return (firstTarget < secondTarget) || (firstTarget == secondTarget && (firstSource < secondSource)); }
+        public: bool FirstIsToTheLeftOfSecond(LinkAddressType firstSource, LinkAddressType firstTarget, LinkAddressType secondSource, LinkAddressType secondTarget)  { return (firstTarget < secondTarget) || (firstTarget == secondTarget && (firstSource < secondSource)); }
 
-        protected: bool FirstIsToTheRightOfSecond(LinkAddressType firstSource, LinkAddressType firstTarget, LinkAddressType secondSource, LinkAddressType secondTarget)  { return (firstTarget > secondTarget) || (firstTarget == secondTarget && (firstSource > secondSource)); }
+        public: bool FirstIsToTheRightOfSecond(LinkAddressType firstSource, LinkAddressType firstTarget, LinkAddressType secondSource, LinkAddressType secondTarget)  { return (firstTarget > secondTarget) || (firstTarget == secondTarget && (firstSource > secondSource)); }
 
         protected: void ClearNode(LinkAddressType node)
         {

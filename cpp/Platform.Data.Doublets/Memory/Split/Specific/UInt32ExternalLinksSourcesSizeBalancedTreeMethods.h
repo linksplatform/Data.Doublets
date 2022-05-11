@@ -27,9 +27,9 @@ namespace Platform::Data::Doublets::Memory::Split::Specific
 
         protected: TLinkAddress GetBasePartValue(TLinkAddress node) override { return LinksDataParts[node].Source; }
 
-        protected: bool FirstIsToTheLeftOfSecond(TLinkAddress firstSource, TLinkAddress firstTarget, TLinkAddress secondSource, TLinkAddress secondTarget) override { return firstSource < secondSource || firstSource == secondSource && firstTarget < secondTarget; }
+        public: bool FirstIsToTheLeftOfSecond(TLinkAddress firstSource, TLinkAddress firstTarget, TLinkAddress secondSource, TLinkAddress secondTarget) override { return firstSource < secondSource || firstSource == secondSource && firstTarget < secondTarget; }
 
-        protected: bool FirstIsToTheRightOfSecond(TLinkAddress firstSource, TLinkAddress firstTarget, TLinkAddress secondSource, TLinkAddress secondTarget) override { return firstSource > secondSource || firstSource == secondSource && firstTarget > secondTarget; }
+        public: bool FirstIsToTheRightOfSecond(TLinkAddress firstSource, TLinkAddress firstTarget, TLinkAddress secondSource, TLinkAddress secondTarget) override { return firstSource > secondSource || firstSource == secondSource && firstTarget > secondTarget; }
 
         protected: void ClearNode(TLinkAddress node) override
         {

@@ -25,12 +25,12 @@
                     return thls->object()->GetBasePartValue(link);
                 };
 
-        protected: bool FirstIsToTheRightOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget)
+        public: bool FirstIsToTheRightOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget)
                 {
                     return thls->object()->FirstIsToTheRightOfSecond(source, target, rootSource, rootTarget);
                 };
 
-        protected: bool FirstIsToTheLeftOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget)
+        public: bool FirstIsToTheLeftOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget)
                 {
                     return thls->object()->FirstIsToTheLeftOfSecond(source, target, rootSource, rootTarget);
                 };
@@ -45,14 +45,14 @@
                 return Link{linkIndex, link.Source, link.Target};
             }
 
-        protected: bool FirstIsToTheLeftOfSecond(TLinkAddress first, TLinkAddress second) override
+        public: bool FirstIsToTheLeftOfSecond(TLinkAddress first, TLinkAddress second) override
         {
             auto* firstLink = this->GetLinkReference(first);
             auto* secondLink = this->GetLinkReference(second);
             return this->FirstIsToTheLeftOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
         }
 
-        protected: bool FirstIsToTheRightOfSecond(TLinkAddress first, TLinkAddress second) override
+        public: bool FirstIsToTheRightOfSecond(TLinkAddress first, TLinkAddress second) override
         {
             auto* firstLink = this->GetLinkReference(first);
             auto* secondLink = this->GetLinkReference(second);

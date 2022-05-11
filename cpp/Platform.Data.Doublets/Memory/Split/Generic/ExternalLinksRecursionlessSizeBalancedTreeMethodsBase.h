@@ -23,22 +23,22 @@
             Header = header;
         }
 
-        protected: LinkAddressType GetTreeRoot()
+        public: LinkAddressType GetTreeRoot()
                 {
                     return this->object().GetTreeRoot();
                 };
 
-        protected: LinkAddressType GetBasePartValue(LinkAddressType link)
+        public: LinkAddressType GetBasePartValue(LinkAddressType link)
                 {
                     return this->object().GetBasePartValue(link);
                 };
 
-        protected: bool FirstIsToTheRightOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource, LinkAddressType rootTarget)
+        public: bool FirstIsToTheRightOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource, LinkAddressType rootTarget)
                 {
                     return this->object().FirstIsToTheRightOfSecond(source, target, rootSource, rootTarget);
                 };
 
-        protected: bool FirstIsToTheLeftOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource, LinkAddressType rootTarget)
+        public: bool FirstIsToTheLeftOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource, LinkAddressType rootTarget)
                 {
                     return this->object().FirstIsToTheLeftOfSecond(source, target, rootSource, rootTarget);
                 };
@@ -58,14 +58,14 @@
             return LinkType(linkIndex, link.Source, link.Target);
         }
 
-        protected: bool FirstIsToTheLeftOfSecond(LinkAddressType first, LinkAddressType second)
+        public: bool FirstIsToTheLeftOfSecond(LinkAddressType first, LinkAddressType second)
         {
             auto* firstLink = this->GetLinkDataPartReference(first);
             auto* secondLink = this->GetLinkDataPartReference(second);
             return this->FirstIsToTheLeftOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
         }
 
-        protected: bool FirstIsToTheRightOfSecond(LinkAddressType first, LinkAddressType second)
+        public: bool FirstIsToTheRightOfSecond(LinkAddressType first, LinkAddressType second)
         {
             auto* firstLink = this->GetLinkDataPartReference(first);
             auto* secondLink = this->GetLinkDataPartReference(second);

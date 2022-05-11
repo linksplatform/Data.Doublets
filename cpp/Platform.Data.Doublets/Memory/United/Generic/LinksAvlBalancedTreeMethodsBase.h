@@ -35,17 +35,17 @@ namespace Platform::Data::Doublets::Memory::United::Generic
                     return this->object().GetBasePartValue(link);
                 };
 
-        protected: bool FirstIsToTheRightOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget)
+        public: bool FirstIsToTheRightOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget)
                 {
                     return this->object().FirstIsToTheRightOfSecond(source, target, rootSource, rootTarget);
                 };
 
-        protected: bool FirstIsToTheLeftOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget)
+        public: bool FirstIsToTheLeftOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget)
                 {
                     return this->object().FirstIsToTheLeftOfSecond(source, target, rootSource, rootTarget);
                 };
 
-        protected:         auto&& GetHeaderReference() const
+        public: auto&& GetHeaderReference() const
         {
             return *reinterpret_cast<LinksHeader<LinkAddressType>*>(_header);
         }
@@ -58,14 +58,14 @@ namespace Platform::Data::Doublets::Memory::United::Generic
             return Link<TLinkAddress>(linkIndex, link.Source, link.Target);
         }
 
-        protected: bool FirstIsToTheLeftOfSecond(TLinkAddress first, TLinkAddress second) override
+        public: bool FirstIsToTheLeftOfSecond(TLinkAddress first, TLinkAddress second) override
         {
             auto* firstLink = this->GetLinkReference(first);
             auto* secondLink = this->GetLinkReference(second);
             return this->FirstIsToTheLeftOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
         }
 
-        protected: bool FirstIsToTheRightOfSecond(TLinkAddress first, TLinkAddress second) override
+        public: bool FirstIsToTheRightOfSecond(TLinkAddress first, TLinkAddress second) override
         {
             auto* firstLink = this->GetLinkReference(first);
             auto* secondLink = this->GetLinkReference(second);

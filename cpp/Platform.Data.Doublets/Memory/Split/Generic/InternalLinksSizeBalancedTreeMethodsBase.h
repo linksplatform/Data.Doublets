@@ -22,12 +22,12 @@
             Header = header;
         }
 
-        protected: LinkAddressType GetTreeRoot(LinkAddressType link)
+        public: LinkAddressType GetTreeRoot(LinkAddressType link)
                 {
                     return this->object().GetTreeRoot(link);
                 };
 
-        protected: LinkAddressType GetBasePartValue(LinkAddressType link)
+        public: LinkAddressType GetBasePartValue(LinkAddressType link)
                 {
                     return this->object().GetBasePartValue(link);
                 };
@@ -41,9 +41,9 @@
 
             protected: RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType link) { return RawLinkIndexPart<LinkAddressType>(LinksIndexParts + (RawLinkIndexPart<LinkAddressType>::SizeInBytes * link)); }
 
-        protected: bool FirstIsToTheLeftOfSecond(LinkAddressType first, LinkAddressType second)  { return this->GetKeyPartValue(first) < this->GetKeyPartValue(second); }
+        public: bool FirstIsToTheLeftOfSecond(LinkAddressType first, LinkAddressType second)  { return this->GetKeyPartValue(first) < this->GetKeyPartValue(second); }
 
-        protected: bool FirstIsToTheRightOfSecond(LinkAddressType first, LinkAddressType second)  { return this->GetKeyPartValue(first) > this->GetKeyPartValue(second); }
+        public: bool FirstIsToTheRightOfSecond(LinkAddressType first, LinkAddressType second)  { return this->GetKeyPartValue(first) > this->GetKeyPartValue(second); }
 
         protected: auto GetLinkValues(LinkAddressType linkIndex)
         {
