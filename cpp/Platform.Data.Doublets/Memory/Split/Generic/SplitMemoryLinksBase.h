@@ -126,13 +126,13 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             {
                 minimumIndexReservedCapacity = ((minimumIndexReservedCapacity / _indexDataMemoryReservationStepInBytesInBytes) * _indexDataMemoryReservationStepInBytesInBytes) + _indexDataMemoryReservationStepInBytesInBytes;
             }
-            if (dataMemory.ReservedCapacity != minimumDataReservedCapacity)
+            if (dataMemory.ReservedCapacity() != minimumDataReservedCapacity)
             {
-                dataMemory.ReservedCapacity = minimumDataReservedCapacity;
+                dataMemory.ReservedCapacity() = minimumDataReservedCapacity;
             }
-            if (indexMemory.ReservedCapacity != minimumIndexReservedCapacity)
+            if (indexMemory.ReservedCapacity() != minimumIndexReservedCapacity)
             {
-                indexMemory.ReservedCapacity = minimumIndexReservedCapacity;
+                indexMemory.ReservedCapacity() = minimumIndexReservedCapacity;
             }
             SetPointers(dataMemory, indexMemory);
             header = this->GetHeaderReference();
@@ -140,7 +140,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             dataMemory.UsedCapacity((header.AllocatedLinks * LinkDataPartSizeInBytes) + LinkDataPartSizeInBytes); // First link is read only zero link.
             indexMemory.UsedCapacity((header.AllocatedLinks * LinkIndexPartSizeInBytes) + LinkHeaderSizeInBytes);
             // Ensure correctness _memory.ReservedLinks over _header->ReservedCapacity
-            header.ReservedLinks = (dataMemory.ReservedCapacity - LinkDataPartSizeInBytes) / LinkDataPartSizeInBytes;
+            header.ReservedLinks = (dataMemory.ReservedCapacity() - LinkDataPartSizeInBytes) / LinkDataPartSizeInBytes;
         }
 
         LinkAddressType Count(const LinkType& restriction) const
@@ -826,11 +826,11 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 }
                 if (header.AllocatedLinks >= (header.ReservedLinks - 1))
                 {
-                    _dataMemory.ReservedCapacity += _dataMemoryReservationStepInBytes;
-                    _indexMemory.ReservedCapacity += _indexMemoryReservationStepInBytes;
+                    _dataMemory.ReservedCapacity() += _dataMemoryReservationStepInBytes;
+                    _indexMemory.ReservedCapacity() += _indexMemoryReservationStepInBytes;
                     SetPointers(_dataMemory, _indexMemory);
                     header = GetHeaderReference();
-                    header.ReservedLinks = _dataMemory.ReservedCapacity / LinkDataPartSizeInBytes;
+                    header.ReservedLinks = _dataMemory.ReservedCapacity() / LinkDataPartSizeInBytes;
                 }
                 freeLink = ++header.AllocatedLinks;
                 _dataMemory.UsedCapacity += LinkDataPartSizeInBytes;
