@@ -353,6 +353,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
 
         LinkAddressType Count(const LinkType& restriction)
         {
+            using namespace Platform::Exceptions;
             auto length = std::ranges::size(restriction);
             // Если нет ограничений, тогда возвращаем общее число связей находящихся в хранилище.
             if (length == 0)
