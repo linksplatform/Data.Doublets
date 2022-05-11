@@ -549,6 +549,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         {
             auto constants = Constants;
             auto $break = constants.Break;
+            auto length = std::ranges::size(restriction);
             if (length == 0)
             {
                 for (auto linkAddress = LinkAddressType{1}; (linkAddress <= GetHeaderReference().AllocatedLinks); ++linkAddress)
