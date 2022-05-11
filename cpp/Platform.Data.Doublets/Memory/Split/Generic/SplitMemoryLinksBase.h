@@ -823,7 +823,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 auto maximumPossibleInnerReference = Constants.InternalReferencesRange.Maximum;
                 if (header.AllocatedLinks > maximumPossibleInnerReference)
                 {
-                    throw LinksLimitReachedException<LinkAddressType>(maximumPossibleInnerReference);
+                    throw LinksLimitReachedException();
                 }
                 if (header.AllocatedLinks >= (header.ReservedLinks - 1))
                 {
