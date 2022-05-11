@@ -535,7 +535,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             }
             throw NotSupportedException("Другие размеры и способы ограничений не поддерживаются.");
         }
-        
+
 
          LinkAddressType Each(const LinkType& restriction, const ReadHandlerType& handler)
         {
@@ -737,11 +737,11 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             auto @null = constants.Null;
             auto externalReferencesRange = constants.ExternalReferencesRange;
             auto linkIndex = this->GetIndex(restriction);
-            auto before = GetLinkStruct(linkIndex);
-            auto& link = GetLinkDataPartReference(linkIndex);
+            auto before = this->GetLinkStruct(linkIndex);
+            auto& link = this->GetLinkDataPartReference(linkIndex);
             auto source = link.Source;
             auto target = link.Target;
-            auto& header = GetHeaderReference();
+            auto& header = this->GetHeaderReference();
             auto& rootAsSource = header.RootAsSource;
             auto& rootAsTarget = header.RootAsTarget;
             // Будет корректно работать только в том случае, если пространство выделенной связи предварительно заполнено нулями
