@@ -4,9 +4,10 @@
     struct ILinksTreeMethods
     {
         using LinksOptionsType = TLinksOptions;
-        using LinkAddressType = LinksOptionsType::LinkAddressType;
-        using LinkType = LinksOptionsType::LinkType;
-        using ReadHandlerType = LinksOptionsType::ReadHandlerType;
+        using LinkAddressType = typename LinksOptionsType::LinkAddressType;
+        using LinkType = typename LinksOptionsType::LinkType;
+        using ReadHandlerType = typename LinksOptionsType::ReadHandlerType;
+
         LinkAddressType CountUsages(LinkAddressType root)
             {
                 return this->object()->CountUsages(root);
