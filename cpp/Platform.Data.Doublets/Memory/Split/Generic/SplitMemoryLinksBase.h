@@ -585,11 +585,11 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     {
                         return Each(LinkType{}, handler);
                     }
-                    if (Each(LinkType(index, value, any), handler) == $break)
+                    if (Each(LinkType{index, value, any}, handler) == $break)
                     {
                         return $break;
                     }
-                    return Each(LinkType(index, any, value), handler);
+                    return Each(LinkType{index, any, value}, handler);
                 }
                 else
                 {
