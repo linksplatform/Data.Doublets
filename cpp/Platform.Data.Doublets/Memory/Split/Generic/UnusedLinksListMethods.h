@@ -10,6 +10,7 @@
         using LinkType = LinksOptionsType::LinkType;
         using WriteHandlerType = LinksOptionsType::WriteHandlerType;
         using ReadHandlerType = LinksOptionsType::ReadHandlerType;
+        using base = AbsoluteCircularDoublyLinkedListMethods<UnusedLinksListMethods<TLinksOptions>, typename TLinksOptions::LinkAddressType>;
     public: static constexpr auto Constants = LinksOptionsType::Constants;
         private: std::byte* _storage;
         private: std::byte* _header;
@@ -43,5 +44,10 @@
         protected: void SetNext(LinkAddressType element, LinkAddressType next) { this->GetLinkDataPartReference(element)->Target = next; }
 
         protected: void SetSize(LinkAddressType size) { this->GetHeaderReference().FreeLinks = size; }
+
+        protected: void Detach(LinkAddressType freeLink)
+        {
+            return base::Detach(freeLink);
+        };
     };
 }
