@@ -21,8 +21,6 @@
             LinksDataParts = linksDataParts;
             LinksIndexParts = linksIndexParts;
             Header = header;
-            Break = Constants.Break;
-            Continue = Constants.Continue;
         }
 
         public: LinkAddressType GetTreeRoot()
