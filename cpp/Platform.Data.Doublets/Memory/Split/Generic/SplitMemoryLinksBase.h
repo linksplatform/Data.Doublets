@@ -86,7 +86,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             }
             SetPointers(dataMemory, indexMemory);
             auto& header { this->GetHeaderReference() };
-            auto allocatedLinks { header.AllocatedLinks() };
+            auto allocatedLinks { header.AllocatedLinks };
             // Adjust reserved capacity
             auto minimumDataReservedCapacity { allocatedLinks * LinkDataPartSizeInBytes };
             if(minimumDataReservedCapacity < dataMemory.UsedCapacity())
