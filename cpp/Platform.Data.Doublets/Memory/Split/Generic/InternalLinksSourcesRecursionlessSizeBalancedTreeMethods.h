@@ -11,7 +11,7 @@
         using ReadHandlerType = LinksOptionsType::ReadHandlerType;
         static constexpr auto Constants = LinksOptionsType::Constants;
         using base = InternalLinksRecursionlessSizeBalancedTreeMethodsBase<TLinksOptions>;
-        public: InternalLinksSourcesRecursionlessSizeBalancedTreeMethods(std::uint8_t* linksDataParts, std::uint8_t* linksIndexParts, std::uint8_t* header) : base(linksDataParts, linksIndexParts, header) { }
+        public: InternalLinksSourcesRecursionlessSizeBalancedTreeMethods(std::byte* linksDataParts, std::byte* linksIndexParts, std::byte* header) : base(linksDataParts, linksIndexParts, header) { }
 
         protected: LinkAddressType* GetLeftReference(LinkAddressType node)  { return &GetLinkIndexPartReference(node)->LeftAsSource; }
 

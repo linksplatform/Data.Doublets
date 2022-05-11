@@ -9,7 +9,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         private: RawLinkIndexPart<TLinkAddress>* _linksIndexParts;
 
         public: UInt64InternalLinksSourcesLinkedListMethods(LinksConstants<TLinkAddress> constants, RawLinkDataPart<TLinkAddress>* linksDataParts, RawLinkIndexPart<TLinkAddress>* linksIndexParts)
-            : base(constants, (std::uint8_t*)linksDataParts, (std::uint8_t*)linksIndexParts)
+            : base(constants, (std::byte*)linksDataParts, (std::byte*)linksIndexParts)
         {
             _linksDataParts = linksDataParts;
             _linksIndexParts = linksIndexParts;

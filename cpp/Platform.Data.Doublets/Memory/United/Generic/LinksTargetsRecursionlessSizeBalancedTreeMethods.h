@@ -2,7 +2,7 @@
 {
     public unsafe class LinksTargetsRecursionlessSizeBalancedTreeMethods<TLinkAddress> : public LinksRecursionlessSizeBalancedTreeMethodsBase<TLinkAddress>
     {
-        public: LinksTargetsRecursionlessSizeBalancedTreeMethods(LinksConstants<TLinkAddress> constants, std::uint8_t* storage, std::uint8_t* header) : base(constants, storage, header) { }
+        public: LinksTargetsRecursionlessSizeBalancedTreeMethods(LinksConstants<TLinkAddress> constants, std::byte* storage, std::byte* header) : base(constants, storage, header) { }
 
         protected: TLinkAddress* GetLeftReference(TLinkAddress node) override { return &GetLinkReference(node)->LeftAsTarget; }
 

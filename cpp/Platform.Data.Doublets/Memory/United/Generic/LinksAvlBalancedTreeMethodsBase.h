@@ -14,10 +14,10 @@ namespace Platform::Data::Doublets::Memory::United::Generic
 
         protected: static constexpr TLinkAddress Break = 0;
         protected: static constexpr TLinkAddress Continue = 0;
-        protected: std::uint8_t* Links;
-        protected: std::uint8_t* Header;
+        protected: std::byte* Links;
+        protected: std::byte* Header;
 
-        protected: LinksAvlBalancedTreeMethodsBase(LinksConstants<TLinkAddress> constants, std::uint8_t* storage, std::uint8_t* header)
+        protected: LinksAvlBalancedTreeMethodsBase(LinksConstants<TLinkAddress> constants, std::byte* storage, std::byte* header)
         {
             Links = storage;
             Header = header;

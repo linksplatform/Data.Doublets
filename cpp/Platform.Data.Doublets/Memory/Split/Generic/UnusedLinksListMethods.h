@@ -11,10 +11,10 @@
         using WriteHandlerType = LinksOptionsType::WriteHandlerType;
         using ReadHandlerType = LinksOptionsType::ReadHandlerType;
     public: static constexpr auto Constants = LinksOptionsType::Constants;
-        private: std::uint8_t* _storage;
-        private: std::uint8_t* _header;
+        private: std::byte* _storage;
+        private: std::byte* _header;
 
-        public: UnusedLinksListMethods(std::uint8_t* storage, std::uint8_t* header)
+        public: UnusedLinksListMethods(std::byte* storage, std::byte* header)
         {
             _storage = storage;
             _header = header;

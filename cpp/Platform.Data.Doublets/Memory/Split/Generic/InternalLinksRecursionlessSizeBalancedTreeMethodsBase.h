@@ -12,11 +12,11 @@
     public: static constexpr auto Constants = LinksOptionsType::Constants;
         protected: static constexpr LinkAddressType Break = Constants.Break;
         protected: static constexpr LinkAddressType Continue = Constants.Continue;
-        protected: std::uint8_t* LinksDataParts;
-        protected: std::uint8_t* LinksIndexParts;
-        protected: std::uint8_t* Header;
+        protected: std::byte* LinksDataParts;
+        protected: std::byte* LinksIndexParts;
+        protected: std::byte* Header;
 
-        protected: InternalLinksRecursionlessSizeBalancedTreeMethodsBase(std::uint8_t* linksDataParts, std::uint8_t* linksIndexParts, std::uint8_t* header)
+        protected: InternalLinksRecursionlessSizeBalancedTreeMethodsBase(std::byte* linksDataParts, std::byte* linksIndexParts, std::byte* header)
         {
             LinksDataParts = linksDataParts;
             LinksIndexParts = linksIndexParts;

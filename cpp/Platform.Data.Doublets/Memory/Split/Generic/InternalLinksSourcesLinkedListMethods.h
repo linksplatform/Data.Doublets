@@ -11,13 +11,13 @@
         using ReadHandlerType = LinksOptionsType::ReadHandlerType;
         public: static constexpr auto Constants = LinksOptionsType::Constants;
         private:
-        std::uint8_t* _linksDataParts;
-        std::uint8_t* _linksIndexParts;
+        std::byte* _linksDataParts;
+        std::byte* _linksIndexParts;
         protected:
         LinkAddressType Break = Constants.Break;
         LinkAddressType Continue = Constants.Continue;
 
-        public: InternalLinksSourcesLinkedListMethods(std::uint8_t* linksDataParts, std::uint8_t* linksIndexParts)
+        public: InternalLinksSourcesLinkedListMethods(std::byte* linksDataParts, std::byte* linksIndexParts)
         {
             _linksDataParts = linksDataParts;
             _linksIndexParts = linksIndexParts;

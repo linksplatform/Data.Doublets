@@ -7,7 +7,7 @@
         using LinksOptionsType = TLinksOptions;
         using LinkAddressType = TLinksOptions::LinkAddressType;
         using base = ExternalLinksSizeBalancedTreeMethodsBase<TLinksOptions>;
-        public: ExternalLinksTargetsSizeBalancedTreeMethods(std::uint8_t* linksDataParts, std::uint8_t* linksIndexParts, std::uint8_t* header) : base(linksDataParts, linksIndexParts, header) { }
+        public: ExternalLinksTargetsSizeBalancedTreeMethods(std::byte* linksDataParts, std::byte* linksIndexParts, std::byte* header) : base(linksDataParts, linksIndexParts, header) { }
 
         protected: LinkAddressType* GetLeftReference(LinkAddressType node)  { return &GetLinkIndexPartReference(node)->LeftAsTarget; }
 

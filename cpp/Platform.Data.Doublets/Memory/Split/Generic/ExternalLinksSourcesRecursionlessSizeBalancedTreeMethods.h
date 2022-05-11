@@ -10,7 +10,7 @@
         using WriteHandlerType = LinksOptionsType::WriteHandlerType;
         using ReadHandlerType = LinksOptionsType::ReadHandlerType;
     public: static constexpr auto Constants = LinksOptionsType::Constants;
-    public: ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods(std::uint8_t* linksDataParts, std::uint8_t* linksIndexParts, std::uint8_t* header) : base(linksDataParts, linksIndexParts, header) { }
+    public: ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods(std::byte* linksDataParts, std::byte* linksIndexParts, std::byte* header) : base(linksDataParts, linksIndexParts, header) { }
 
         protected: LinkAddressType* GetLeftReference(LinkAddressType node)  { return &GetLinkIndexPartReference(node)->LeftAsSource; }
 

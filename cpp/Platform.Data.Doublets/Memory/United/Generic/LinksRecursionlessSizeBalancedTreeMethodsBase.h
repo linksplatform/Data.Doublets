@@ -6,10 +6,10 @@
         public: static constexpr Constants = VConstants;
         protected: static constexpr TLinkAddress Break = Constants.Break;
         protected: static constexpr TLinkAddress Continue = Constants.Continue;
-        protected: std::uint8_t* Storage;
-        protected: std::uint8_t* Header;
+        protected: std::byte* Storage;
+        protected: std::byte* Header;
 
-        protected: LinksRecursionlessSizeBalancedTreeMethodsBase(std::uint8_t* storage, std::uint8_t* header)
+        protected: LinksRecursionlessSizeBalancedTreeMethodsBase(std::byte* storage, std::byte* header)
         {
             Storage = storage;
             Header = header;

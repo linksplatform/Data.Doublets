@@ -6,7 +6,7 @@
         private: LinksHeader<std::uint32_t>* _header;
 
         public: UInt32UnusedLinksListMethods(RawLink<std::uint32_t>* storage, LinksHeader<std::uint32_t>* header)
-            : base((std::uint8_t*)storage, (std::uint8_t*)header)
+            : base((std::byte*)storage, (std::byte*)header)
         {
             _links = storage;
             _header = header;
