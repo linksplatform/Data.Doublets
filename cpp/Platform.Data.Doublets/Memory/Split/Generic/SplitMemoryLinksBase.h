@@ -338,10 +338,10 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             _linksIndexParts = (std::uint8_t*)indexMemory.Pointer();
             _header = _linksIndexParts;
 
-            ExternalSourcesTreeMethods = new TExternalSourcesTreeMethods();
-            InternalTargetsTreeMethods = new TInternalTargetsTreeMethods();
-            ExternalTargetsTreeMethods = new TExternalTargetsTreeMethods();
-            UnusedLinksTreeMethods = new TUnusedLinksTreeMethods(_linksDataParts, _header);
+            ExternalSourcesTreeMethods = new TExternalSourcesTreeMethods(_linksDataParts, _linksIndexParts, _header);
+            InternalTargetsTreeMethods = new TInternalTargetsTreeMethods(_linksDataParts, _linksIndexParts, _header);
+            ExternalTargetsTreeMethods = new TExternalTargetsTreeMethods(_linksDataParts, _linksIndexParts, _header);
+            UnusedLinksTreeMethods = new TUnusedLinksTreeMethods(_linksDataParts, _linksIndexParts, _header);
         }
 
     public virtual LinkAddressType Count(const LinkType& restriction)
