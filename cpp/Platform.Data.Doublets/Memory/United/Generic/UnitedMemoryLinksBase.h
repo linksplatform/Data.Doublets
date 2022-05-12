@@ -355,7 +355,7 @@
             auto freeLink = header.FirstFreeLink;
             if (freeLink != Constants.Null)
             {
-                _UnusedLinksListMethods->Detach(&freeLink);
+                _UnusedLinksListMethods->Detach(freeLink);
             }
             else
             {
@@ -397,7 +397,7 @@
                 while ((header.AllocatedLinks > LinkAddressType {}) && IsUnusedLink(header.AllocatedLinks))
                 {
                     auto allLinksBeforeDetachAllocatedLinks = All(*this);
-                    _UnusedLinksListMethods->Detach(&(header.AllocatedLinks));
+                    _UnusedLinksListMethods->Detach(header.AllocatedLinks);
                     --header.AllocatedLinks;
                     _memory.UsedCapacity(_memory.UsedCapacity() - LinkSizeInBytes);
                     auto allLinksBeforeAfterAllocatedLinks = All(*this);

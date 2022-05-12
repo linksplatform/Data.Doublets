@@ -794,7 +794,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             {
                 if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(source))
                 {
-                    ExternalSourcesTreeMethods->Attach(rootAsSource, linkIndex);
+                    ExternalSourcesTreeMethods->Attach(&rootAsSource, linkIndex);
                 }
                 else
                 {
@@ -804,7 +804,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     }
                     else
                     {
-                        InternalSourcesTreeMethods->Attach(GetLinkIndexPartReference(source).RootAsSource, linkIndex);
+                        InternalSourcesTreeMethods->Attach(&(GetLinkIndexPartReference(source).RootAsSource), linkIndex);
                     }
                 }
             }
@@ -812,11 +812,11 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             {
                 if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(target))
                 {
-                    ExternalTargetsTreeMethods->Attach(rootAsTarget, linkIndex);
+                    ExternalTargetsTreeMethods->Attach(&rootAsTarget, linkIndex);
                 }
                 else
                 {
-                    InternalTargetsTreeMethods->Attach(GetLinkIndexPartReference(target).RootAsTarget, linkIndex);
+                    InternalTargetsTreeMethods->Attach(&(GetLinkIndexPartReference(target).RootAsTarget), linkIndex);
                 }
             }
             return handler ? handler(before, LinkType{linkIndex, source, target}) : Constants.Continue;
@@ -830,7 +830,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             auto freeLink = header.FirstFreeLink;
             if (freeLink != Constants.Null)
             {
-                UnusedLinksListMethods->Detach(&freeLink);
+                UnusedLinksListMethods->Detach(freeLink);
             }
             else
             {
@@ -873,7 +873,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 // Позволяет оптимизировать количество выделенных связей (AllocatedLinks)
                 while ((header.AllocatedLinks > LinkAddressType{0}) && this->IsUnusedLink(header.AllocatedLinks))
                 {
-                    UnusedLinksListMethods->Detach(&(header.AllocatedLinks));
+                    UnusedLinksListMethods->Detach(header.AllocatedLinks);
                     --header.AllocatedLinks;
                     _dataMemory.UsedCapacity(_dataMemory.UsedCapacity() - LinkDataPartSizeInBytes);
                     _indexMemory.UsedCapacity(_indexMemory.UsedCapacity() - LinkIndexPartSizeInBytes);
