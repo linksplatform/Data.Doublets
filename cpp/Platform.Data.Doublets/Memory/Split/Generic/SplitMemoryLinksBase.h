@@ -769,7 +769,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 {
                     if (UseLinkedList)
                     {
-                        InternalSourcesListMethods->Detach(source, linkIndex);
+                        InternalSourcesListMethods->Detach(&source, linkIndex);
                     }
                     else
                     {
@@ -781,11 +781,11 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             {
                 if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(target))
                 {
-                    ExternalTargetsTreeMethods->Detach(rootAsTarget, linkIndex);
+                    ExternalTargetsTreeMethods->Detach(&rootAsTarget, linkIndex);
                 }
                 else
                 {
-                    InternalTargetsTreeMethods->Detach(GetLinkIndexPartReference(target).RootAsTarget, linkIndex);
+                    InternalTargetsTreeMethods->Detach(&(GetLinkIndexPartReference(target).RootAsTarget), linkIndex);
                 }
             }
             source = link.Source = GetSource(*this, substitution);
@@ -830,7 +830,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             auto freeLink = header.FirstFreeLink;
             if (freeLink != Constants.Null)
             {
-                UnusedLinksListMethods->Detach(freeLink);
+                UnusedLinksListMethods->Detach(&freeLink);
             }
             else
             {
@@ -873,7 +873,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 // Позволяет оптимизировать количество выделенных связей (AllocatedLinks)
                 while ((header.AllocatedLinks > LinkAddressType{0}) && this->IsUnusedLink(header.AllocatedLinks))
                 {
-                    UnusedLinksListMethods->Detach(header.AllocatedLinks);
+                    UnusedLinksListMethods->Detach(&(header.AllocatedLinks));
                     --header.AllocatedLinks;
                     _dataMemory.UsedCapacity(_dataMemory.UsedCapacity() - LinkDataPartSizeInBytes);
                     _indexMemory.UsedCapacity(_indexMemory.UsedCapacity() - LinkIndexPartSizeInBytes);

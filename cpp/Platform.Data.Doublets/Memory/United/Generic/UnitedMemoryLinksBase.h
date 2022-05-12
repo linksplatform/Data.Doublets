@@ -328,11 +328,11 @@
             // Будет корректно работать только в том случае, если пространство выделенной связи предварительно заполнено нулями
             if (link.Source != null)
             {
-                _SourcesTreeMethods->Detach(firstAsSource, linkIndex);
+                _SourcesTreeMethods->Detach(&firstAsSource, linkIndex);
             }
             if (link.Target != null)
             {
-                _TargetsTreeMethods->Detach(firstAsTarget, linkIndex);
+                _TargetsTreeMethods->Detach(&firstAsTarget, linkIndex);
             }
             link.Source = substitution[Constants.SourcePart];
             link.Target = substitution[Constants.TargetPart];
@@ -355,7 +355,7 @@
             auto freeLink = header.FirstFreeLink;
             if (freeLink != Constants.Null)
             {
-                _UnusedLinksListMethods->Detach(freeLink);
+                _UnusedLinksListMethods->Detach(&freeLink);
             }
             else
             {
@@ -397,7 +397,7 @@
                 while ((header.AllocatedLinks > LinkAddressType {}) && IsUnusedLink(header.AllocatedLinks))
                 {
                     auto allLinksBeforeDetachAllocatedLinks = All(*this);
-                    _UnusedLinksListMethods->Detach(header.AllocatedLinks);
+                    _UnusedLinksListMethods->Detach(&(header.AllocatedLinks));
                     --header.AllocatedLinks;
                     _memory.UsedCapacity(_memory.UsedCapacity() - LinkSizeInBytes);
                     auto allLinksBeforeAfterAllocatedLinks = All(*this);
