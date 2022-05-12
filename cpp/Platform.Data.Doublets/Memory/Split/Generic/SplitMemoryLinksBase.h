@@ -769,7 +769,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 {
                     if (UseLinkedList)
                     {
-                        InternalSourcesListMethods->Detach(&source, linkIndex);
+                        InternalSourcesListMethods->Detach(source, linkIndex);
                     }
                     else
                     {
