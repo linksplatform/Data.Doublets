@@ -77,7 +77,12 @@
         }
 
     public:
-        auto&& GetLinkReference(LinkAddressType linkIndex) const
+        const RawLink<LinkAddressType>& GetLinkReference(LinkAddressType linkIndex) const
+        {
+            return *(reinterpret_cast<RawLink<LinkAddressType>*>(_links) + linkIndex);
+        }
+
+        RawLink<LinkAddressType>& GetLinkReference(LinkAddressType linkIndex)
         {
             return *(reinterpret_cast<RawLink<LinkAddressType>*>(_links) + linkIndex);
         }
