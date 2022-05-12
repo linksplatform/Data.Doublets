@@ -76,4 +76,4 @@ jobs:
 
       - name: Run valgrind
         run: valgrind --error-exitcode=1 --leak-check=full --show-leak-kinds=all ./target/debug/test-mem
-        working-directory: rust/integration
+        working-directory: rust
