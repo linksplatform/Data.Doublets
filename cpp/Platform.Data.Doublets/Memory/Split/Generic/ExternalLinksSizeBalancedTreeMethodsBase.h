@@ -170,7 +170,7 @@
             auto linkBasePart = this->GetBasePartValue(link);
             if (linkBasePart > (base))
             {
-                if ((this->EachUsageCore(base) == (this->GetLeftOrDefault(link), handler), Break))
+                if ((this->EachUsageCore(base, this->GetLeftOrDefault(link), handler) == Break))
                 {
                     return Break;
                 }
