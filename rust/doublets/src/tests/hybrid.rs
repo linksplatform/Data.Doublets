@@ -14,10 +14,10 @@ fn non_exist_reference() {
 
     let mut result = 0;
     links.each_by(
-        [links.constants_links().any, usize::MAX, usize::MAX],
+        [links.constants().any, usize::MAX, usize::MAX],
         |found| {
             result = found.index;
-            links.constants_links().r#break
+            links.constants().r#break
         },
     );
 

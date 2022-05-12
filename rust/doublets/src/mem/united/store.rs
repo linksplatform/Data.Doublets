@@ -161,7 +161,7 @@ impl<
     }
 
     fn exists(&self, link: T) -> bool {
-        let constants = self.constants_links();
+        let constants = self.constants();
         let header = self.get_header();
 
         // TODO: use `Range::contains`
@@ -191,7 +191,7 @@ impl<
     {
         let restriction = restriction.to_query();
 
-        let constants = self.constants_links();
+        let constants = self.constants();
         let r#break = constants.r#break;
 
         if restriction.len() == 0 {
@@ -320,7 +320,7 @@ impl<
             return self.get_total();
         };
 
-        let constants = self.constants_links();
+        let constants = self.constants();
         let any = constants.any;
         let index = query[constants.index_part.as_()];
 
@@ -428,7 +428,7 @@ impl<
         F: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>,
     {
-        let constants = self.constants_links();
+        let constants = self.constants();
         let header = self.get_header();
         let mut free = header.first_free;
         if free == constants.null {
@@ -484,7 +484,7 @@ impl<
         let old_source = source;
         let old_target = target;
 
-        let constants = self.constants_links();
+        let constants = self.constants();
         let null = constants.null;
 
         let link = *self.mut_raw_link(index);
@@ -585,10 +585,6 @@ impl<
         TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
     > Links<T> for Store<T, M, TS, TT, TU>
 {
-    fn constants_links(&self) -> LinksConstants<T> {
-        self.constants()
-    }
-
     fn count_links(&self, query: &[T]) -> T {
         self.count_by(query)
     }

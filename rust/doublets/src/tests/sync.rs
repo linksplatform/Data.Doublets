@@ -69,7 +69,7 @@ fn super_read() {
             let links = links.read().unwrap();
 
             let mut data = vec![];
-            let r#continue = links.constants_links().r#continue;
+            let r#continue = links.constants().r#continue;
             links.each(|link| {
                 data.push(link);
                 r#continue
@@ -92,7 +92,7 @@ fn super_read() {
             let links = links.write().unwrap();
 
             let mut data = vec![];
-            let r#continue = links.constants_links().r#continue;
+            let r#continue = links.constants().r#continue;
             links.each(|link| {
                 data.push(link);
                 r#continue
