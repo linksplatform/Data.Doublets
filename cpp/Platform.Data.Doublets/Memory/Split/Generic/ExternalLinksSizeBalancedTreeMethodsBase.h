@@ -175,7 +175,7 @@
                     return Break;
                 }
             }
-            else if (this->LessThan(linkBasePart, base))
+            else if (linkBasePart < base)
             {
                 if ((this->EachUsageCore(base) == (this->GetRightOrDefault(link), handler), Break))
                 {
