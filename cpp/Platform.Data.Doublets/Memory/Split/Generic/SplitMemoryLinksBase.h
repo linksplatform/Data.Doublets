@@ -763,7 +763,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             {
                 if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(source))
                 {
-                    ExternalSourcesTreeMethods->Detach(rootAsSource, linkIndex);
+                    ExternalSourcesTreeMethods->Detach(&rootAsSource, linkIndex);
                 }
                 else
                 {
