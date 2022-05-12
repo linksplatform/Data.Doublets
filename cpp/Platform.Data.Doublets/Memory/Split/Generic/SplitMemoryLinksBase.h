@@ -773,7 +773,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     }
                     else
                     {
-                        InternalSourcesTreeMethods->Detach(GetLinkIndexPartReference(source).RootAsSource, linkIndex);
+                        InternalSourcesTreeMethods->Detach(&(GetLinkIndexPartReference(source).RootAsSource), linkIndex);
                     }
                 }
             }
