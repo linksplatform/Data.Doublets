@@ -47,7 +47,7 @@
         }
 
     public:
-    protected:
+    public:
         UnitedMemoryLinksBase(TMemory&& memory, std::uint64_t memoryReservationStep) :
             _memory(std::move(memory)), _memoryReservationStep(memoryReservationStep)
         {
@@ -423,13 +423,13 @@
             this->object().SetPointers(memory);
         }
 
-    protected:
+    public:
         auto&& GetHeaderReference() const
         {
             return this->object().GetHeaderReference();
         }
 
-    protected:
+    public:
         auto&& GetLinkReference(std::size_t index) const
         {
             return this->object().GetLinkReference(index);

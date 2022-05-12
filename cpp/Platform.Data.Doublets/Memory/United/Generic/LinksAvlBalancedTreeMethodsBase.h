@@ -12,12 +12,12 @@ namespace Platform::Data::Doublets::Memory::United::Generic
         private: static UncheckedConverter<TLinkAddress, bool> _addressToBoolConverter = UncheckedConverter<TLinkAddress, bool>.Default;
         private: static UncheckedConverter<std::int32_t, TLinkAddress> _int32ToAddressConverter = UncheckedConverter<std::int32_t, TLinkAddress>.Default;
 
-        protected: static constexpr TLinkAddress Break = 0;
-        protected: static constexpr TLinkAddress Continue = 0;
-        protected: std::byte* Links;
-        protected: std::byte* Header;
+        public: static constexpr TLinkAddress Break = 0;
+        public: static constexpr TLinkAddress Continue = 0;
+        public: std::byte* Links;
+        public: std::byte* Header;
 
-        protected: LinksAvlBalancedTreeMethodsBase(LinksConstants<TLinkAddress> constants, std::byte* storage, std::byte* header)
+        public: LinksAvlBalancedTreeMethodsBase(LinksConstants<TLinkAddress> constants, std::byte* storage, std::byte* header)
         {
             Links = storage;
             Header = header;
@@ -25,12 +25,12 @@ namespace Platform::Data::Doublets::Memory::United::Generic
             Continue = constants.Continue;
         }
 
-        protected: TLinkAddress GetTreeRoot()
+        public: TLinkAddress GetTreeRoot()
                 {
                     return this->object().GetTreeRoot();
                 };
 
-        protected: TLinkAddress GetBasePartValue(TLinkAddress link)
+        public: TLinkAddress GetBasePartValue(TLinkAddress link)
                 {
                     return this->object().GetBasePartValue(link);
                 };
@@ -50,9 +50,9 @@ namespace Platform::Data::Doublets::Memory::United::Generic
             return *reinterpret_cast<LinksHeader<LinkAddressType>*>(_header);
         }
 
-        protected: RawLink<TLinkAddress>& GetLinkReference(TLinkAddress link) { *reinterpret_cast<RawLink<TLinkAddress>*>(Links + (RawLink<TLinkAddress>::SizeInBytes * (link))); }
+        public: RawLink<TLinkAddress>& GetLinkReference(TLinkAddress link) { *reinterpret_cast<RawLink<TLinkAddress>*>(Links + (RawLink<TLinkAddress>::SizeInBytes * (link))); }
 
-        protected: IList<TLinkAddress> GetLinkValues(TLinkAddress linkIndex)
+        public: IList<TLinkAddress> GetLinkValues(TLinkAddress linkIndex)
         {
             auto& link = GetLinkReference(linkIndex);
             return Link<TLinkAddress>(linkIndex, link.Source, link.Target);
@@ -72,18 +72,18 @@ namespace Platform::Data::Doublets::Memory::United::Generic
             return this->FirstIsToTheRightOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
         }
 
-        protected: TLinkAddress GetSizeValue(TLinkAddress value) { return Bit<TLinkAddress>.PartialRead(value, 5, -5); }
+        public: TLinkAddress GetSizeValue(TLinkAddress value) { return Bit<TLinkAddress>.PartialRead(value, 5, -5); }
 
-        protected: void SetSizeValue(TLinkAddress* storedValue, TLinkAddress size) { return storedValue = Bit<TLinkAddress>.PartialWrite(storedValue, size, 5, -5); }
+        public: void SetSizeValue(TLinkAddress* storedValue, TLinkAddress size) { return storedValue = Bit<TLinkAddress>.PartialWrite(storedValue, size, 5, -5); }
 
-        protected: bool GetLeftIsChildValue(TLinkAddress value)
+        public: bool GetLeftIsChildValue(TLinkAddress value)
         {
             {
                 return _addressToBoolConverter.Convert(Bit<TLinkAddress>.PartialRead(value, 4, 1));
             }
         }
 
-        protected: void SetLeftIsChildValue(TLinkAddress* storedValue, bool value)
+        public: void SetLeftIsChildValue(TLinkAddress* storedValue, bool value)
         {
             {
                 auto previousValue = *storedValue;
@@ -92,14 +92,14 @@ namespace Platform::Data::Doublets::Memory::United::Generic
             }
         }
 
-        protected: bool GetRightIsChildValue(TLinkAddress value)
+        public: bool GetRightIsChildValue(TLinkAddress value)
         {
             {
                 return _addressToBoolConverter.Convert(Bit<TLinkAddress>.PartialRead(value, 3, 1));
             }
         }
 
-        protected: void SetRightIsChildValue(TLinkAddress* storedValue, bool value)
+        public: void SetRightIsChildValue(TLinkAddress* storedValue, bool value)
         {
             {
                 auto previousValue = *storedValue;
@@ -108,14 +108,14 @@ namespace Platform::Data::Doublets::Memory::United::Generic
             }
         }
 
-        protected: bool IsChild(TLinkAddress parent, TLinkAddress possibleChild)
+        public: bool IsChild(TLinkAddress parent, TLinkAddress possibleChild)
         {
             auto parentSize = this->GetSize(parent);
             auto childSize = this->GetSizeOrZero(possibleChild);
             return childSize > 0 && this->LessOrEqualThan(childSize, parentSize);
         }
 
-        protected: std::uint8_t GetBalanceValue(TLinkAddress storedValue)
+        public: std::uint8_t GetBalanceValue(TLinkAddress storedValue)
         {
             {
                 auto value = _addressToInt32Converter.Convert(Bit<TLinkAddress>.PartialRead(storedValue, 0, 3));
@@ -124,7 +124,7 @@ namespace Platform::Data::Doublets::Memory::United::Generic
             }
         }
 
-        protected: void SetBalanceValue(TLinkAddress* storedValue, std::uint8_t value)
+        public: void SetBalanceValue(TLinkAddress* storedValue, std::uint8_t value)
         {
             {
                 auto packagedValue = _int32ToAddressConverter.Convert((std::uint8_t)value >> 5 & 4 | value & 3);

@@ -23,7 +23,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         using ReadHandlerType = LinksOptionsType::ReadHandlerType;
         static constexpr LinksConstants<LinkAddressType> Constants = LinksOptionsType::Constants;
         static constexpr bool UseLinkedList = false;
-    protected:
+    public:
         TMemory _dataMemory;
         TMemory _indexMemory;
         std::uint64_t _dataMemoryReservationStepInBytesInBytes;
@@ -882,7 +882,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             return handler ? handler(before, LinkType{}) : Constants.Continue;
         }
 
-    protected:
+    public:
         bool IsUnusedLink(LinkAddressType linkIndex) const
         {
             if (GetHeaderReference().FirstFreeLink != linkIndex) // May be this check is not needed

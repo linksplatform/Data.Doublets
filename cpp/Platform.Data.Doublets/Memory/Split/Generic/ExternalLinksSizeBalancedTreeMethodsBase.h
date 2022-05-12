@@ -10,13 +10,13 @@
         using LinkType = LinksOptionsType::LinkType;
         using WriteHandlerType = LinksOptionsType::WriteHandlerType;
         using ReadHandlerType = LinksOptionsType::ReadHandlerType;
-        protected: static constexpr LinkAddressType Break = Constants.Break;
-        protected: static constexpr LinkAddressType Continue = Constants.Continue;
-        protected: std::byte* LinksDataParts;
-        protected: std::byte* LinksIndexParts;
-        protected: std::byte* Header;
+        public: static constexpr LinkAddressType Break = Constants.Break;
+        public: static constexpr LinkAddressType Continue = Constants.Continue;
+        public: std::byte* LinksDataParts;
+        public: std::byte* LinksIndexParts;
+        public: std::byte* Header;
 
-        protected: ExternalLinksSizeBalancedTreeMethodsBase(std::byte* linksDataParts, std::byte* linksIndexParts, std::byte* header)
+        public: ExternalLinksSizeBalancedTreeMethodsBase(std::byte* linksDataParts, std::byte* linksIndexParts, std::byte* header)
         {
             LinksDataParts = linksDataParts;
             LinksIndexParts = linksIndexParts;
@@ -48,11 +48,11 @@
             return *reinterpret_cast<LinksHeader<LinkAddressType>*>(Header);
         }
 
-        protected: RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link) { return *reinterpret_cast<RawLinkDataPart<LinkAddressType>*>(LinksDataParts + (RawLinkDataPart<LinkAddressType>::SizeInBytes * (link))); }
+        public: RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link) { return *reinterpret_cast<RawLinkDataPart<LinkAddressType>*>(LinksDataParts + (RawLinkDataPart<LinkAddressType>::SizeInBytes * (link))); }
 
-        protected: RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType link) { *reinterpret_cast<RawLinkIndexPart<LinkAddressType>*>(LinksIndexParts + (RawLinkIndexPart<LinkAddressType>::SizeInBytes * (link))); }
+        public: RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType link) { *reinterpret_cast<RawLinkIndexPart<LinkAddressType>*>(LinksIndexParts + (RawLinkIndexPart<LinkAddressType>::SizeInBytes * (link))); }
 
-        protected: auto GetLinkValues(LinkAddressType linkIndex)
+        public: auto GetLinkValues(LinkAddressType linkIndex)
         {
             auto& link = GetLinkDataPartReference(linkIndex);
             return LinkType{linkIndex, link.Source, link.Target};

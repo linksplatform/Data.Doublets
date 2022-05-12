@@ -93,7 +93,7 @@
                 }
             }
 
-            protected: void Dispose(bool manual, bool wasDisposed) override
+            public: void Dispose(bool manual, bool wasDisposed) override
             {
                 if (!wasDisposed && _layer != nullptr && !_layer.Disposable.IsDisposed)
                 {
@@ -260,7 +260,7 @@
             }
         }
 
-        protected: void Dispose(bool manual, bool wasDisposed) override
+        public: void Dispose(bool manual, bool wasDisposed) override
         {
             if (!wasDisposed)
             {

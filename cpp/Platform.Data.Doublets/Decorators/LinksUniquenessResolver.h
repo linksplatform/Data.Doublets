@@ -23,7 +23,7 @@
             return this->ResolveAddressChangeConflict(restriction[Constants.IndexPart], newLinkAddress, handler);
         }
 
-        protected: LinkAddressType ResolveAddressChangeConflict(LinkAddressType oldLinkAddress, LinkAddressType newLinkAddress, const WriteHandlerType& handler)
+        public: LinkAddressType ResolveAddressChangeConflict(LinkAddressType oldLinkAddress, LinkAddressType newLinkAddress, const WriteHandlerType& handler)
         {
             if (oldLinkAddress != newLinkAddress && Exists(this->decorated(), oldLinkAddress))
             {

@@ -21,28 +21,28 @@
             _header = header;
         }
 
-        protected: LinksHeader<LinkAddressType>& GetHeaderReference() { *reinterpret_cast<LinksHeader<LinkAddressType>*>(_header); }
+        public: LinksHeader<LinkAddressType>& GetHeaderReference() { *reinterpret_cast<LinksHeader<LinkAddressType>*>(_header); }
 
-        protected: RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link) { *reinterpret_cast<RawLinkDataPart<LinkAddressType>*>(_storage + (RawLinkDataPart<LinkAddressType>::SizeInBytes * (link))); }
+        public: RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link) { *reinterpret_cast<RawLinkDataPart<LinkAddressType>*>(_storage + (RawLinkDataPart<LinkAddressType>::SizeInBytes * (link))); }
 
-        protected: LinkAddressType GetFirst() { return this->GetHeaderReference().FirstFreeLink; }
+        public: LinkAddressType GetFirst() { return this->GetHeaderReference().FirstFreeLink; }
 
-        protected: LinkAddressType GetLast() { return this->GetHeaderReference().LastFreeLink; }
+        public: LinkAddressType GetLast() { return this->GetHeaderReference().LastFreeLink; }
 
-        protected: LinkAddressType GetPrevious(LinkAddressType element) { return this->GetLinkDataPartReference(element)->Source; }
+        public: LinkAddressType GetPrevious(LinkAddressType element) { return this->GetLinkDataPartReference(element)->Source; }
 
-        protected: LinkAddressType GetNext(LinkAddressType element) { return this->GetLinkDataPartReference(element)->Target; }
+        public: LinkAddressType GetNext(LinkAddressType element) { return this->GetLinkDataPartReference(element)->Target; }
 
-        protected: LinkAddressType GetSize() { return this->GetHeaderReference().FreeLinks; }
+        public: LinkAddressType GetSize() { return this->GetHeaderReference().FreeLinks; }
 
-        protected: void SetFirst(LinkAddressType element) { this->GetHeaderReference().FirstFreeLink = element; }
+        public: void SetFirst(LinkAddressType element) { this->GetHeaderReference().FirstFreeLink = element; }
 
-        protected: void SetLast(LinkAddressType element) { this->GetHeaderReference().LastFreeLink = element; }
+        public: void SetLast(LinkAddressType element) { this->GetHeaderReference().LastFreeLink = element; }
 
-        protected: void SetPrevious(LinkAddressType element, LinkAddressType previous) { this->GetLinkDataPartReference(element)->Source = previous; }
+        public: void SetPrevious(LinkAddressType element, LinkAddressType previous) { this->GetLinkDataPartReference(element)->Source = previous; }
 
-        protected: void SetNext(LinkAddressType element, LinkAddressType next) { this->GetLinkDataPartReference(element)->Target = next; }
+        public: void SetNext(LinkAddressType element, LinkAddressType next) { this->GetLinkDataPartReference(element)->Target = next; }
 
-        protected: void SetSize(LinkAddressType size) { this->GetHeaderReference().FreeLinks = size; }
+        public: void SetSize(LinkAddressType size) { this->GetHeaderReference().FreeLinks = size; }
     };
 }

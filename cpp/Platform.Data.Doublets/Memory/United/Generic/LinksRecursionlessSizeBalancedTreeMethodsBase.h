@@ -4,23 +4,23 @@
     class LinksRecursionlessSizeBalancedTreeMethodsBase : public RecursionlessSizeBalancedTreeMethods<TLinkAddress>, ILinksTreeMethods<TLinkAddress>
     {
         public: static constexpr Constants = VConstants;
-        protected: static constexpr TLinkAddress Break = Constants.Break;
-        protected: static constexpr TLinkAddress Continue = Constants.Continue;
-        protected: std::byte* Storage;
-        protected: std::byte* Header;
+        public: static constexpr TLinkAddress Break = Constants.Break;
+        public: static constexpr TLinkAddress Continue = Constants.Continue;
+        public: std::byte* Storage;
+        public: std::byte* Header;
 
-        protected: LinksRecursionlessSizeBalancedTreeMethodsBase(std::byte* storage, std::byte* header)
+        public: LinksRecursionlessSizeBalancedTreeMethodsBase(std::byte* storage, std::byte* header)
         {
             Storage = storage;
             Header = header;
         }
 
-        protected: TLinkAddress GetTreeRoot()
+        public: TLinkAddress GetTreeRoot()
                 {
                     return thls->object()->GetTreeRoot();
                 };
 
-        protected: TLinkAddress GetBasePartValue(TLinkAddress link)
+        public: TLinkAddress GetBasePartValue(TLinkAddress link)
                 {
                     return thls->object()->GetBasePartValue(link);
                 };
@@ -35,11 +35,11 @@
                     return thls->object()->FirstIsToTheLeftOfSecond(source, target, rootSource, rootTarget);
                 };
 
-        protected:  auto& GetHeaderReference() { return *reinterpret_cast<LinksHeader<LinkAddressType>*>(Header); }
+        public:  auto& GetHeaderReference() { return *reinterpret_cast<LinksHeader<LinkAddressType>*>(Header); }
 
-        protected: auto& GetLinkReference(LinkAddressType linkAddress) { return *(reinterpret_cast<RawLink<LinkAddressType>*>(Links) + linkAddress); }
+        public: auto& GetLinkReference(LinkAddressType linkAddress) { return *(reinterpret_cast<RawLink<LinkAddressType>*>(Links) + linkAddress); }
 
-        protected: Link<LinkAddressType> GetLinkValues(LinkAddressType linkIndex)
+        public: Link<LinkAddressType> GetLinkValues(LinkAddressType linkIndex)
             {
                 auto& link = GetLinkReference(linkIndex);
                 return Link{linkIndex, link.Source, link.Target};

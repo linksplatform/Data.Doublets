@@ -16,8 +16,8 @@ namespace Platform::Data::Doublets::Memory::Split::Specific
             _header = header;
         }
 
-        protected: override ref RawLinkDataPart<TLinkAddress> GetLinkDataPartReference(TLinkAddress link) { return &_links[link]; }
+        public: override ref RawLinkDataPart<TLinkAddress> GetLinkDataPartReference(TLinkAddress link) { return &_links[link]; }
 
-        protected: override ref LinksHeader<TLinkAddress> GetHeaderReference() { return ref *_header; }
+        public: override ref LinksHeader<TLinkAddress> GetHeaderReference() { return ref *_header; }
     };
 }

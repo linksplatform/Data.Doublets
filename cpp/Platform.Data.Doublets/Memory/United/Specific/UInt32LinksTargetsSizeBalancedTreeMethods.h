@@ -4,31 +4,31 @@
     {
         public: UInt32LinksTargetsSizeBalancedTreeMethods(LinksConstants<std::uint32_t> constants, RawLink<std::uint32_t>* storage, LinksHeader<std::uint32_t>* header) : base(constants, storage, header) { }
 
-        protected: ref std::uint32_t GetLeftReference(std::uint32_t node) override { return ref Links[node].LeftAsTarget; }
+        public: ref std::uint32_t GetLeftReference(std::uint32_t node) override { return ref Links[node].LeftAsTarget; }
 
-        protected: ref std::uint32_t GetRightReference(std::uint32_t node) override { return ref Links[node].RightAsTarget; }
+        public: ref std::uint32_t GetRightReference(std::uint32_t node) override { return ref Links[node].RightAsTarget; }
 
-        protected: std::uint32_t GetLeft(std::uint32_t node) override { return Links[node].LeftAsTarget; }
+        public: std::uint32_t GetLeft(std::uint32_t node) override { return Links[node].LeftAsTarget; }
 
-        protected: std::uint32_t GetRight(std::uint32_t node) override { return Links[node].RightAsTarget; }
+        public: std::uint32_t GetRight(std::uint32_t node) override { return Links[node].RightAsTarget; }
 
-        protected: void SetLeft(std::uint32_t node, std::uint32_t left) override { Links[node].LeftAsTarget = left; }
+        public: void SetLeft(std::uint32_t node, std::uint32_t left) override { Links[node].LeftAsTarget = left; }
 
-        protected: void SetRight(std::uint32_t node, std::uint32_t right) override { Links[node].RightAsTarget = right; }
+        public: void SetRight(std::uint32_t node, std::uint32_t right) override { Links[node].RightAsTarget = right; }
 
-        protected: std::uint32_t GetSize(std::uint32_t node) override { return Links[node].SizeAsTarget; }
+        public: std::uint32_t GetSize(std::uint32_t node) override { return Links[node].SizeAsTarget; }
 
-        protected: void SetSize(std::uint32_t node, std::uint32_t size) override { Links[node].SizeAsTarget = size; }
+        public: void SetSize(std::uint32_t node, std::uint32_t size) override { Links[node].SizeAsTarget = size; }
 
-        protected: override std::uint32_t GetTreeRoot() { return Header->RootAsTarget; }
+        public: override std::uint32_t GetTreeRoot() { return Header->RootAsTarget; }
 
-        protected: std::uint32_t GetBasePartValue(std::uint32_t link) override { return Links[link].Target; }
+        public: std::uint32_t GetBasePartValue(std::uint32_t link) override { return Links[link].Target; }
 
         public: bool FirstIsToTheLeftOfSecond(std::uint32_t firstSource, std::uint32_t firstTarget, std::uint32_t secondSource, std::uint32_t secondTarget) override { return firstTarget < secondTarget || (firstTarget == secondTarget && firstSource < secondSource); }
 
         public: bool FirstIsToTheRightOfSecond(std::uint32_t firstSource, std::uint32_t firstTarget, std::uint32_t secondSource, std::uint32_t secondTarget) override { return firstTarget > secondTarget || (firstTarget == secondTarget && firstSource > secondSource); }
 
-        protected: void ClearNode(std::uint32_t node) override
+        public: void ClearNode(std::uint32_t node) override
         {
             auto& link = Links[node];
             link.LeftAsTarget = 0U;

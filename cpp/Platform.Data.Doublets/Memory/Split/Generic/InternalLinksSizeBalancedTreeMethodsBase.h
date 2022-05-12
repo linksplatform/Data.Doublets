@@ -9,13 +9,13 @@
         using LinkType = LinksOptionsType::LinkType;
         using WriteHandlerType = LinksOptionsType::WriteHandlerType;
         using ReadHandlerType = LinksOptionsType::ReadHandlerType;
-        protected: static constexpr LinkAddressType Break = Constants.Break;
-        protected: static constexpr LinkAddressType Continue = Constants.Continue;
-        protected: std::byte* LinksDataParts;
-        protected: std::byte* LinksIndexParts;
-        protected: std::byte* Header;
+        public: static constexpr LinkAddressType Break = Constants.Break;
+        public: static constexpr LinkAddressType Continue = Constants.Continue;
+        public: std::byte* LinksDataParts;
+        public: std::byte* LinksIndexParts;
+        public: std::byte* Header;
 
-        protected: InternalLinksSizeBalancedTreeMethodsBase(std::byte* linksDataParts, std::byte* linksIndexParts, std::byte* header)
+        public: InternalLinksSizeBalancedTreeMethodsBase(std::byte* linksDataParts, std::byte* linksIndexParts, std::byte* header)
         {
             LinksDataParts = linksDataParts;
             LinksIndexParts = linksIndexParts;
@@ -32,20 +32,20 @@
                     return this->object().GetBasePartValue(link);
                 };
 
-        protected: LinkAddressType GetKeyPartValue(LinkAddressType link)
+        public: LinkAddressType GetKeyPartValue(LinkAddressType link)
                 {
                     return this->object().GetKeyPartValue(link);
                 };
 
-            protected: RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link) { return RawLinkDataPart<LinkAddressType>(LinksDataParts + (RawLinkDataPart<LinkAddressType>::SizeInBytes * link)); }
+            public: RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link) { return RawLinkDataPart<LinkAddressType>(LinksDataParts + (RawLinkDataPart<LinkAddressType>::SizeInBytes * link)); }
 
-            protected: RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType link) { return RawLinkIndexPart<LinkAddressType>(LinksIndexParts + (RawLinkIndexPart<LinkAddressType>::SizeInBytes * link)); }
+            public: RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType link) { return RawLinkIndexPart<LinkAddressType>(LinksIndexParts + (RawLinkIndexPart<LinkAddressType>::SizeInBytes * link)); }
 
         public: bool FirstIsToTheLeftOfSecond(LinkAddressType first, LinkAddressType second)  { return this->GetKeyPartValue(first) < this->GetKeyPartValue(second); }
 
         public: bool FirstIsToTheRightOfSecond(LinkAddressType first, LinkAddressType second)  { return this->GetKeyPartValue(first) > this->GetKeyPartValue(second); }
 
-        protected: auto GetLinkValues(LinkAddressType linkIndex)
+        public: auto GetLinkValues(LinkAddressType linkIndex)
         {
             auto& link = GetLinkDataPartReference(linkIndex);
             return LinkType{linkIndex, link.Source, link.Target};
@@ -82,7 +82,7 @@
                              return this->object().Search(source, target);
                          };
 
-        protected: LinkAddressType SearchCore(LinkAddressType root, LinkAddressType key)
+        public: LinkAddressType SearchCore(LinkAddressType root, LinkAddressType key)
         {
             while (root != 0)
             {

@@ -13,7 +13,7 @@
         private:
         std::byte* _linksDataParts;
         std::byte* _linksIndexParts;
-        protected:
+        public:
         LinkAddressType Break = Constants.Break;
         LinkAddressType Continue = Constants.Continue;
 
@@ -23,22 +23,22 @@
             _linksIndexParts = linksIndexParts;
         }
 
-        protected: const RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link) const
+        public: const RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link) const
         { 
             return &(*(_linksDataParts + (RawLinkDataPart<LinkAddressType>::SizeInBytes * link)));
         }
 
-        protected: RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType link)
+        public: RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType link)
         { 
             return RawLinkIndexPart<LinkAddressType>{ _linksIndexParts + (RawLinkIndexPart<LinkAddressType>::SizeInBytes * link) };
         }
 
-        protected: LinkAddressType GetFirst(LinkAddressType head)
+        public: LinkAddressType GetFirst(LinkAddressType head)
         {
             return this->GetLinkIndexPartReference(head)->RootAsSource; 
         }
 
-        protected: LinkAddressType GetLast(LinkAddressType head)
+        public: LinkAddressType GetLast(LinkAddressType head)
         {
             auto first = this->GetLinkIndexPartReference(head)->RootAsSource;
             if (0 == first)
@@ -51,48 +51,48 @@
             }
         }
 
-        protected: LinkAddressType GetPrevious(LinkAddressType element)
+        public: LinkAddressType GetPrevious(LinkAddressType element)
         {
              return this->GetLinkIndexPartReference(element)->LeftAsSource; 
         }
 
-        protected: LinkAddressType GetNext(LinkAddressType element)
+        public: LinkAddressType GetNext(LinkAddressType element)
         {
              return this->GetLinkIndexPartReference(element)->RightAsSource; 
         }
 
-        protected: LinkAddressType GetSize(LinkAddressType head)
+        public: LinkAddressType GetSize(LinkAddressType head)
         {
              return this->GetLinkIndexPartReference(head)->SizeAsSource; 
         }
 
-        protected: void SetFirst(LinkAddressType head, LinkAddressType element)
+        public: void SetFirst(LinkAddressType head, LinkAddressType element)
         {
              this->GetLinkIndexPartReference(head)->RootAsSource = element; 
         }
 
-        protected: void SetLast(LinkAddressType head, LinkAddressType element)
+        public: void SetLast(LinkAddressType head, LinkAddressType element)
         {
         }
 
-        protected: void SetPrevious(LinkAddressType element, LinkAddressType previous)
+        public: void SetPrevious(LinkAddressType element, LinkAddressType previous)
         {
              this->GetLinkIndexPartReference(element)->LeftAsSource = previous; 
         }
 
-        protected: void SetNext(LinkAddressType element, LinkAddressType next)
+        public: void SetNext(LinkAddressType element, LinkAddressType next)
         {
              this->GetLinkIndexPartReference(element)->RightAsSource = next; 
         }
 
-        protected: void SetSize(LinkAddressType head, LinkAddressType size)
+        public: void SetSize(LinkAddressType head, LinkAddressType size)
         {
              this->GetLinkIndexPartReference(head)->SizeAsSource = size; 
         }
 
         public: LinkAddressType CountUsages(LinkAddressType head) { return this->GetSize(head); }
 
-    protected: Interfaces::CArray auto GetLinkValues(LinkAddressType linkIndex)
+    public: Interfaces::CArray auto GetLinkValues(LinkAddressType linkIndex)
         {
             auto& link = this->GetLinkDataPartReference(linkIndex);
             return Link{ linkIndex, link.Source, link.Target };
