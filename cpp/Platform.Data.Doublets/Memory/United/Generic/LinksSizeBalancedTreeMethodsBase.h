@@ -7,7 +7,7 @@
         :
           //public Trees::SizeBalancedTreeMethods<Self, LinkAddressType>,
           public Trees::RecursionlessSizeBalancedTreeMethods<Self, typename TLinksOptions::LinkAddressType>,
-          public ILinksTreeMethods<TLinksOptions>,
+          /* public ILinksTreeMethods<TLinksOptions>, */
           public Interfaces::Polymorph<Self>
     {
         using LinksOptionsType = TLinksOptions;

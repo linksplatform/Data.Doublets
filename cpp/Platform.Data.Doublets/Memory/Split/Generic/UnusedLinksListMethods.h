@@ -2,7 +2,7 @@
 {
     using namespace Platform::Collections::Methods::Lists;
     template<typename TLinksOptions>
-    class UnusedLinksListMethods : public  AbsoluteCircularDoublyLinkedListMethods<UnusedLinksListMethods<TLinksOptions>, typename TLinksOptions::LinkAddressType>, ILinksListMethods<typename TLinksOptions::LinkAddressType>
+    class UnusedLinksListMethods : public  AbsoluteCircularDoublyLinkedListMethods<UnusedLinksListMethods<TLinksOptions>, typename TLinksOptions::LinkAddressType> /*, ILinksListMethods<typename TLinksOptions::LinkAddressType> */
     {
     public:
         using LinksOptionsType = TLinksOptions;
