@@ -188,11 +188,11 @@
                 {
                     return Break;
                 }
-                if ((this->EachUsageCore(base) == (this->GetLeftOrDefault(link), handler), Break))
+                if ((this->EachUsageCore(base,this->GetLeftOrDefault(link), handler) == Break))
                 {
                     return Break;
                 }
-                if ((this->EachUsageCore(base) == (this->GetRightOrDefault(link), handler), Break))
+                if ((this->EachUsageCore(base,this->GetRightOrDefault(link), handler) == Break))
                 {
                     return Break;
                 }

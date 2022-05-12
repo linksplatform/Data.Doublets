@@ -158,14 +158,14 @@
             auto break = Break;
             if (linkBasePart > (base))
             {
-                if ((this->EachUsageCore(base) == (this->GetLeftOrDefault(link), handler), break))
+                if ((this->EachUsageCore(base,this->GetLeftOrDefault(link), handler) == Break))
                 {
                     return break;
                 }
             }
             else if (linkBasePart < base)
             {
-                if ((this->EachUsageCore(base) == (this->GetRightOrDefault(link), handler), break))
+                if ((this->EachUsageCore(base,this->GetRightOrDefault(link), handler) == Break))
                 {
                     return break;
                 }
@@ -176,11 +176,11 @@
                 {
                     return break;
                 }
-                if ((this->EachUsageCore(base) == (this->GetLeftOrDefault(link), handler), break))
+                if ((this->EachUsageCore(base,this->GetLeftOrDefault(link), handler) == Break))
                 {
                     return break;
                 }
-                if ((this->EachUsageCore(base) == (this->GetRightOrDefault(link), handler), break))
+                if ((this->EachUsageCore(base,this->GetRightOrDefault(link), handler) == Break))
                 {
                     return break;
                 }
