@@ -44,10 +44,5 @@
         protected: void SetNext(LinkAddressType element, LinkAddressType next) { this->GetLinkDataPartReference(element)->Target = next; }
 
         protected: void SetSize(LinkAddressType size) { this->GetHeaderReference().FreeLinks = size; }
-
-        public: void Detach(LinkAddressType freeLink)
-        {
-            return base::Detach(freeLink);
-        };
     };
 }
