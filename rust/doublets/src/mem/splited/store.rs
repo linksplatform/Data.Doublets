@@ -820,6 +820,10 @@ impl<
         UL: ILinksListMethods<T> + UpdatePointers,
     > Links<T> for Store<T, MD, MI, IS, ES, IT, ET, UL>
 {
+    fn constants_links(&self) -> LinksConstants<T> {
+        self.constants()
+    }
+
     fn count_links(&self, query: &[T]) -> T {
         self.count_by(query)
     }

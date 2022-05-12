@@ -585,6 +585,10 @@ impl<
         TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
     > Links<T> for Store<T, M, TS, TT, TU>
 {
+    fn constants_links(&self) -> LinksConstants<T> {
+        self.constants()
+    }
+
     fn count_links(&self, query: &[T]) -> T {
         self.count_by(query)
     }
