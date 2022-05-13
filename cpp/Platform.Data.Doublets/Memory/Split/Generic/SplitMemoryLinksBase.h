@@ -119,6 +119,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 minimumDataReservedCapacity = _dataMemoryReservationStepInBytes;
             }
             auto minimumIndexReservedCapacity = allocatedLinks * LinkDataPartSizeInBytes;
+            std::cout << "LinkDataPartSizeInBytes: " << LinkDataPartSizeInBytes << "\n";
             if (minimumIndexReservedCapacity < indexMemory.UsedCapacity())
             {
                 minimumIndexReservedCapacity = indexMemory.UsedCapacity();
