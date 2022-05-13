@@ -80,7 +80,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
 
         static constexpr std::uint64_t DefaultLinksSizeStep = 1 * 1024 * 1024;
 
-        SplitMemoryLinksBase(TMemory&& dataMemory, TMemory&& indexMemory) : SplitMemoryLinksBase(dataMemory, indexMemory, DefaultLinksSizeStep)
+        SplitMemoryLinksBase(TMemory&& dataMemory, TMemory&& indexMemory) : SplitMemoryLinksBase(std::move(dataMemory), std::move(indexMemory), DefaultLinksSizeStep)
         {
         }
 

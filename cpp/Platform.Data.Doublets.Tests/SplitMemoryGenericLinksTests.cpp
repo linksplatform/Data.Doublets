@@ -7,7 +7,7 @@
         using namespace Platform::Data::Doublets::Memory::Split::Generic;
         HeapResizableDirectMemory dataMemory { };
         HeapResizableDirectMemory indexMemory { };
-        SplitMemoryLinks<LinksOptions<TLinkAddress, LinksConstants<TLinkAddress>{false}>, HeapResizableDirectMemory> storage{ dataMemory, indexMemory };
+        SplitMemoryLinks<LinksOptions<TLinkAddress, LinksConstants<TLinkAddress>{false}>, HeapResizableDirectMemory> storage{ std::move(dataMemory), std::move(indexMemory) };
         action(storage);
     }
 
@@ -18,7 +18,7 @@
         using namespace Platform::Data::Doublets::Memory::Split::Generic;
         HeapResizableDirectMemory dataMemory { };
         HeapResizableDirectMemory indexMemory { };
-        SplitMemoryLinks<LinksOptions<>, HeapResizableDirectMemory> storage{ dataMemory, indexMemory };
+        SplitMemoryLinks<LinksOptions<>, HeapResizableDirectMemory> storage{ std::move(dataMemory), std::move(indexMemory) };
         action(storage);
     }
     
@@ -32,7 +32,7 @@
         HeapResizableDirectMemory indexMemory { };
         using StorageType = SplitMemoryLinks<LinksOptions<>, HeapResizableDirectMemory>; 
         using DecoratedStorageType = LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<StorageType>;
-        DecoratedStorageType storage{ dataMemory, indexMemory };
+        DecoratedStorageType storage{ std::move(dataMemory), std::move(indexMemory) };
         action(storage);
     }
 
