@@ -23,12 +23,12 @@
             _linksIndexParts = linksIndexParts;
         }
 
-        public: const RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link) const
+        public: const RawLinkDataPart<LinkAddressType>* GetLinkDataPartReference(LinkAddressType link) const
         { 
             return &(*(_linksDataParts + (RawLinkDataPart<LinkAddressType>::SizeInBytes * link)));
         }
 
-        public: RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType link)
+        public: RawLinkIndexPart<LinkAddressType>* GetLinkIndexPartReference(LinkAddressType link)
         { 
             return RawLinkIndexPart<LinkAddressType>{ _linksIndexParts + (RawLinkIndexPart<LinkAddressType>::SizeInBytes * link) };
         }

@@ -33,9 +33,9 @@
 
         public: bool FirstIsToTheLeftOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource, LinkAddressType rootTarget) { return this->object().FirstIsToTheLeftOfSecond(source, target, rootSource, rootTarget); }
 
-        public: auto& GetHeaderReference() { return *reinterpret_cast<LinksHeader<LinkAddressType>*>(Header); }
+        public: auto* GetHeaderReference() { return *reinterpret_cast<LinksHeader<LinkAddressType>*>(Header); }
 
-        public: auto& GetLinkReference(LinkAddressType linkAddress) { return *(reinterpret_cast<RawLink<LinkAddressType>*>(Links) + linkAddress); }
+        public: auto* GetLinkReference(LinkAddressType linkAddress) { return *(reinterpret_cast<RawLink<LinkAddressType>*>(Links) + linkAddress); }
 
         public: Link<LinkAddressType> GetLinkValues(LinkAddressType linkIndex)
         {

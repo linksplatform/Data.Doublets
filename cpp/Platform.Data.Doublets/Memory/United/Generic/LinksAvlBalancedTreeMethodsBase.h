@@ -45,12 +45,12 @@ namespace Platform::Data::Doublets::Memory::United::Generic
                     return this->object().FirstIsToTheLeftOfSecond(source, target, rootSource, rootTarget);
                 };
 
-        public: auto&& GetHeaderReference() const
+        public: auto&* GetHeaderReference() const
         {
             return *reinterpret_cast<LinksHeader<LinkAddressType>*>(_header);
         }
 
-        public: RawLink<TLinkAddress>& GetLinkReference(TLinkAddress link) { *reinterpret_cast<RawLink<TLinkAddress>*>(Links + (RawLink<TLinkAddress>::SizeInBytes * (link))); }
+        public: RawLink<TLinkAddress>* GetLinkReference(TLinkAddress link) { *reinterpret_cast<RawLink<TLinkAddress>*>(Links + (RawLink<TLinkAddress>::SizeInBytes * (link))); }
 
         public: IList<TLinkAddress> GetLinkValues(TLinkAddress linkIndex)
         {

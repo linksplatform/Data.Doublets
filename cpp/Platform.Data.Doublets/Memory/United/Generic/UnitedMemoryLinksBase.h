@@ -424,13 +424,13 @@
         }
 
     public:
-        auto&& GetHeaderReference() const
+        auto&* GetHeaderReference() const
         {
             return this->object().GetHeaderReference();
         }
 
     public:
-        auto&& GetLinkReference(std::size_t index) const
+        auto&* GetLinkReference(std::size_t index) const
         {
             return this->object().GetLinkReference(index);
         }
