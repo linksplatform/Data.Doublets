@@ -109,6 +109,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             SetPointers(dataMemory, indexMemory);
             auto& header { this->GetHeaderReference() };
             auto allocatedLinks { header.AllocatedLinks };
+            std::cout << "header.AllocatedLinks: " << static_cast<std::uint64_t>(header.AllocatedLinks) << "\n";
+            std::cout << "allocatedLinks: "<< static_cast<std::uint64_t>(allocatedLinks) << "\n";
             // Adjust reserved capacity
             auto minimumDataReservedCapacity { allocatedLinks * LinkDataPartSizeInBytes };
             if(minimumDataReservedCapacity < dataMemory.UsedCapacity())
@@ -119,6 +121,9 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             {
                 minimumDataReservedCapacity = _dataMemoryReservationStepInBytesInBytes;
             }
+            std::cout << "LinkDataPartSizeInBytes: " << static_cast<std::uint64_t>(LinkDataPartSizeInBytes) << "\n";
+            std::cout << "allocatedLinks * LinkDataPartSizeInBytes: " << static_cast<std::uint64_t>(allocatedLinks * LinkDataPartSizeInBytes) << "\n";
+
             auto minimumIndexReservedCapacity { allocatedLinks * LinkDataPartSizeInBytes };
             if (minimumIndexReservedCapacity < indexMemory.UsedCapacity())
             {
