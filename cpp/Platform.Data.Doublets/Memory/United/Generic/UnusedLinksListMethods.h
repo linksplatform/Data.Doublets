@@ -16,12 +16,12 @@
         public: UnusedLinksListMethods(std::byte* storage, std::byte* header)
             : _links(storage), _header(header) {}
 
-        public: auto* GetHeaderReference()
+        public: auto& GetHeaderReference()
         {
             return *reinterpret_cast<LinksHeader<TLinkAddress>*>(_header);
         }
 
-        public: auto* GetLinkReference(TLinkAddress linkIndex)
+        public: auto& GetLinkReference(TLinkAddress linkIndex)
         {
             return *(reinterpret_cast<RawLink<TLinkAddress>*>(_links) + linkIndex);
         }
