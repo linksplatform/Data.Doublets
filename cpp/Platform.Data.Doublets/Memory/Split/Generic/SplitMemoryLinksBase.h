@@ -84,7 +84,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         {
         }
 
-        SplitMemoryLinksBase(TMemory&& dataMemory, TMemory&& indexMemory, std::uint64_t dataMemoryReservationStepInBytes) : _dataMemory{ std::move(dataMemory) }, _indexMemory{ std::move(indexMemory) }, _dataMemoryReservationStepInBytesInBytes{ dataMemoryReservationStepInBytes }
+        SplitMemoryLinksBase(TMemory&& dataMemory, TMemory&& indexMemory, std::uint64_t memoryReservationStep) : _dataMemory{ std::move(dataMemory) }, _indexMemory{ std::move(indexMemory) }, _dataMemoryReservationStepInBytesInBytes{ memoryReservationStep * LinkDataPartSizeInBytes }, _indexMemoryReservationStepInBytesInBytes{ memoryReservationStep * LinkIndexPartSizeInBytes }
         {
             if (UseLinkedList)
             {
