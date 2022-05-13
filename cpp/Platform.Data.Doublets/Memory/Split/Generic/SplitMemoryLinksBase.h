@@ -80,11 +80,11 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
 
         static constexpr std::uint64_t DefaultLinksSizeStep = 1 * 1024 * 1024;
 
-        SplitMemoryLinksBase(TMemory dataMemory, TMemory indexMemory) : SplitMemoryLinksBase(dataMemory, indexMemory, DefaultLinksSizeStep)
+        SplitMemoryLinksBase(TMemory&& dataMemory, TMemory&& indexMemory) : SplitMemoryLinksBase(dataMemory, indexMemory, DefaultLinksSizeStep)
         {
         }
 
-        SplitMemoryLinksBase(TMemory dataMemory, TMemory indexMemory, std::uint64_t dataMemoryReservationStepInBytes) : _dataMemory{ dataMemory }, _indexMemory{ indexMemory }, _dataMemoryReservationStepInBytesInBytes{ dataMemoryReservationStepInBytes }
+        SplitMemoryLinksBase(TMemory&& dataMemory, TMemory&& indexMemory, std::uint64_t dataMemoryReservationStepInBytes) : _dataMemory{ std::move(dataMemory) }, _indexMemory{ std::move(indexMemory) }, _dataMemoryReservationStepInBytesInBytes{ dataMemoryReservationStepInBytes }
         {
             if (UseLinkedList)
             {
@@ -100,7 +100,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             Init(dataMemory, indexMemory);
         }
 
-        void Init(TMemory dataMemory, TMemory indexMemory)
+        void Init(TMemory& dataMemory, TMemory& indexMemory)
         {
             if(indexMemory.ReservedCapacity() < LinkHeaderSizeInBytes)
             {
@@ -343,7 +343,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             throw Platform::Exceptions::NotSupportedException();
         }
 //
-        void SetPointers(TMemory dataMemory, TMemory indexMemory)
+        void SetPointers(TMemory& dataMemory, TMemory& indexMemory)
         {
             _linksDataParts = static_cast<std::byte*>(dataMemory.Pointer());
             _linksIndexParts = static_cast<std::byte*>(indexMemory.Pointer());
