@@ -768,7 +768,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             {
                 if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(source))
                 {
-                    ExternalSourcesTreeMethods->Detach(&rootAsSource, linkIndex);
+                    ExternalSourcesTreeMethods->Detach(rootAsSource, linkIndex);
                 }
                 else
                 {
@@ -778,7 +778,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     }
                     else
                     {
-                        InternalSourcesTreeMethods->Detach(&(GetLinkIndexPartReference(source).RootAsSource), linkIndex);
+                        InternalSourcesTreeMethods->Detach((GetLinkIndexPartReference(source).RootAsSource), linkIndex);
                     }
                 }
             }
@@ -786,11 +786,11 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             {
                 if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(target))
                 {
-                    ExternalTargetsTreeMethods->Detach(&rootAsTarget, linkIndex);
+                    ExternalTargetsTreeMethods->Detach(rootAsTarget, linkIndex);
                 }
                 else
                 {
-                    InternalTargetsTreeMethods->Detach(&(GetLinkIndexPartReference(target).RootAsTarget), linkIndex);
+                    InternalTargetsTreeMethods->Detach((GetLinkIndexPartReference(target).RootAsTarget), linkIndex);
                 }
             }
             source = link.Source = GetSource(*this, substitution);
