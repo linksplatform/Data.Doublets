@@ -76,8 +76,8 @@
             GetHeaderReference().FreeLinks = size;
         }
 
-        public: void Detach(TLinkAddress link) override { base::Detach(link); }
+        public: void Detach(TLinkAddress link) { base::Detach(link); }
 
-        public: void AttachAsFirst(TLinkAddress link) override { base::AttachAsFirst(link); }
+        public: void AttachAsFirst(TLinkAddress link) { base::AttachAsFirst(link); }
     };
 }

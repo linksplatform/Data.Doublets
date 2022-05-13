@@ -12,8 +12,8 @@
             _header = header;
         }
 
-        public: override ref RawLink<std::uint32_t> GetLinkReference(std::uint32_t link) { return &_links[link]; }
+        public: ref RawLink<std::uint32_t> GetLinkReference(std::uint32_t link) { return &_links[link]; }
 
-        public: override ref LinksHeader<std::uint32_t> GetHeaderReference() { return ref *_header; }
+        public: ref LinksHeader<std::uint32_t> GetHeaderReference() { return ref *_header; }
     };
 }

@@ -7,7 +7,7 @@
         {
             public: DisposableWithMultipleCallsAllowed(std::function<Disposal> disposal) : base(disposal) { }
 
-            public: override bool AllowMultipleDisposeCalls
+            public: bool AllowMultipleDisposeCalls
             {
                 get => true;
             }

@@ -58,14 +58,14 @@ namespace Platform::Data::Doublets::Memory::United::Generic
             return Link<TLinkAddress>(linkIndex, link.Source, link.Target);
         }
 
-        public: bool FirstIsToTheLeftOfSecond(TLinkAddress first, TLinkAddress second) override
+        public: bool FirstIsToTheLeftOfSecond(TLinkAddress first, TLinkAddress second)
         {
             auto& firstLink = this->GetLinkReference(first);
             auto& secondLink = this->GetLinkReference(second);
             return this->FirstIsToTheLeftOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
         }
 
-        public: bool FirstIsToTheRightOfSecond(TLinkAddress first, TLinkAddress second) override
+        public: bool FirstIsToTheRightOfSecond(TLinkAddress first, TLinkAddress second)
         {
             auto& firstLink = this->GetLinkReference(first);
             auto& secondLink = this->GetLinkReference(second);

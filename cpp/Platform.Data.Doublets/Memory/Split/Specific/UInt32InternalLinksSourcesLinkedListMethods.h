@@ -15,8 +15,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             _linksIndexParts = linksIndexParts;
         }
 
-        public: override ref RawLinkDataPart<TLinkAddress> GetLinkDataPartReference(TLinkAddress link) { return &_linksDataParts[link]; }
+        public: ref RawLinkDataPart<TLinkAddress> GetLinkDataPartReference(TLinkAddress link) { return &_linksDataParts[link]; }
 
-        public: override ref RawLinkIndexPart<TLinkAddress> GetLinkIndexPartReference(TLinkAddress link) { return &_linksIndexParts[link]; }
+        public: ref RawLinkIndexPart<TLinkAddress> GetLinkIndexPartReference(TLinkAddress link) { return &_linksIndexParts[link]; }
     };
 }
