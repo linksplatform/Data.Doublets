@@ -430,7 +430,12 @@
         }
 
     public:
-        auto&& GetLinkReference(std::size_t index) const
+        RawLink<LinkAddressType>& GetLinkReference(std::size_t index)
+        {
+            return this->object().GetLinkReference(index);
+        }
+
+        const RawLink<LinkAddressType>& GetLinkReference(std::size_t index) const
         {
             return this->object().GetLinkReference(index);
         }
