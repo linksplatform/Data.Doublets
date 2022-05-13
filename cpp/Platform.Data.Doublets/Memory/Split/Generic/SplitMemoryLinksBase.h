@@ -72,13 +72,13 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         }
 
     public:
-        static constexpr std::uint64_t LinkDataPartSizeInBytes = sizeof(RawLinkDataPart<LinkAddressType>);
+        static constexpr std::size_t LinkDataPartSizeInBytes = sizeof(RawLinkDataPart<LinkAddressType>);
 
-        static constexpr std::uint64_t LinkIndexPartSizeInBytes = sizeof(RawLinkIndexPart<LinkAddressType>);
+        static constexpr std::size_t LinkIndexPartSizeInBytes = sizeof(RawLinkIndexPart<LinkAddressType>);
 
-        static constexpr std::uint64_t LinkHeaderSizeInBytes = sizeof(LinksHeader<LinkAddressType>);
+        static constexpr std::size_t LinkHeaderSizeInBytes = sizeof(LinksHeader<LinkAddressType>);
 
-        static constexpr std::uint64_t DefaultLinksSizeStep = 1 * 1024 * 1024;
+        static constexpr std::size_t DefaultLinksSizeStep = 1 * 1024 * 1024;
 
         SplitMemoryLinksBase(TMemory&& dataMemory, TMemory&& indexMemory) : SplitMemoryLinksBase(std::move(dataMemory), std::move(indexMemory), DefaultLinksSizeStep)
         {
