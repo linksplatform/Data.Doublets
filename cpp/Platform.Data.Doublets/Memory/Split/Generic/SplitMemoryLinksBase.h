@@ -60,7 +60,13 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         }
 
     public:
-        auto&& GetHeaderReference() const
+
+        const LinksHeader<LinkAddressType>& GetHeaderReference() const
+        {
+            return *reinterpret_cast<LinksHeader<LinkAddressType>*>(this->_header);
+        }
+
+        LinksHeader<LinkAddressType>& GetHeaderReference()
         {
             return *reinterpret_cast<LinksHeader<LinkAddressType>*>(this->_header);
         }
