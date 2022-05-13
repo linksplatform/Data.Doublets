@@ -35,12 +35,12 @@
 
         public: LinkAddressType GetFirst(LinkAddressType head)
         {
-            return this->GetLinkIndexPartReference(head)->RootAsSource; 
+            return this->GetLinkIndexPartReference(head).RootAsSource;
         }
 
         public: LinkAddressType GetLast(LinkAddressType head)
         {
-            auto first = this->GetLinkIndexPartReference(head)->RootAsSource;
+            auto first = this->GetLinkIndexPartReference(head).RootAsSource;
             if (0 == first)
             {
                 return first;
@@ -53,22 +53,22 @@
 
         public: LinkAddressType GetPrevious(LinkAddressType element)
         {
-             return this->GetLinkIndexPartReference(element)->LeftAsSource; 
+             return this->GetLinkIndexPartReference(element).LeftAsSource;
         }
 
         public: LinkAddressType GetNext(LinkAddressType element)
         {
-             return this->GetLinkIndexPartReference(element)->RightAsSource; 
+             return this->GetLinkIndexPartReference(element).RightAsSource;
         }
 
         public: LinkAddressType GetSize(LinkAddressType head)
         {
-             return this->GetLinkIndexPartReference(head)->SizeAsSource; 
+             return this->GetLinkIndexPartReference(head).SizeAsSource;
         }
 
         public: void SetFirst(LinkAddressType head, LinkAddressType element)
         {
-             this->GetLinkIndexPartReference(head)->RootAsSource = element; 
+             this->GetLinkIndexPartReference(head).RootAsSource = element;
         }
 
         public: void SetLast(LinkAddressType head, LinkAddressType element)
@@ -77,17 +77,17 @@
 
         public: void SetPrevious(LinkAddressType element, LinkAddressType previous)
         {
-             this->GetLinkIndexPartReference(element)->LeftAsSource = previous; 
+             this->GetLinkIndexPartReference(element).LeftAsSource = previous;
         }
 
         public: void SetNext(LinkAddressType element, LinkAddressType next)
         {
-             this->GetLinkIndexPartReference(element)->RightAsSource = next; 
+             this->GetLinkIndexPartReference(element).RightAsSource = next;
         }
 
         public: void SetSize(LinkAddressType head, LinkAddressType size)
         {
-             this->GetLinkIndexPartReference(head)->SizeAsSource = size; 
+             this->GetLinkIndexPartReference(head).SizeAsSource = size;
         }
 
         public: LinkAddressType CountUsages(LinkAddressType head) { return this->GetSize(head); }

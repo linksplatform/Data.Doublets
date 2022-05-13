@@ -29,9 +29,9 @@
 
         public: LinkAddressType GetLast() { return this->GetHeaderReference().LastFreeLink; }
 
-        public: LinkAddressType GetPrevious(LinkAddressType element) { return this->GetLinkDataPartReference(element)->Source; }
+        public: LinkAddressType GetPrevious(LinkAddressType element) { return this->GetLinkDataPartReference(element).Source; }
 
-        public: LinkAddressType GetNext(LinkAddressType element) { return this->GetLinkDataPartReference(element)->Target; }
+        public: LinkAddressType GetNext(LinkAddressType element) { return this->GetLinkDataPartReference(element).Target; }
 
         public: LinkAddressType GetSize() { return this->GetHeaderReference().FreeLinks; }
 
@@ -39,9 +39,9 @@
 
         public: void SetLast(LinkAddressType element) { this->GetHeaderReference().LastFreeLink = element; }
 
-        public: void SetPrevious(LinkAddressType element, LinkAddressType previous) { this->GetLinkDataPartReference(element)->Source = previous; }
+        public: void SetPrevious(LinkAddressType element, LinkAddressType previous) { this->GetLinkDataPartReference(element).Source = previous; }
 
-        public: void SetNext(LinkAddressType element, LinkAddressType next) { this->GetLinkDataPartReference(element)->Target = next; }
+        public: void SetNext(LinkAddressType element, LinkAddressType next) { this->GetLinkDataPartReference(element).Target = next; }
 
         public: void SetSize(LinkAddressType size) { this->GetHeaderReference().FreeLinks = size; }
     };

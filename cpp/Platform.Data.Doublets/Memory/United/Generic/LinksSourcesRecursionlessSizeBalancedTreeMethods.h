@@ -8,21 +8,21 @@
 
         public: TLinkAddress* GetRightReference(TLinkAddress node) override { return &GetLinkReference(node)->RightAsSource; }
 
-        public: TLinkAddress GetLeft(TLinkAddress node) override { return this->GetLinkReference(node)->LeftAsSource; }
+        public: TLinkAddress GetLeft(TLinkAddress node) override { return this->GetLinkReference(node).LeftAsSource; }
 
-        public: TLinkAddress GetRight(TLinkAddress node) override { return this->GetLinkReference(node)->RightAsSource; }
+        public: TLinkAddress GetRight(TLinkAddress node) override { return this->GetLinkReference(node).RightAsSource; }
 
-        public: void SetLeft(TLinkAddress node, TLinkAddress left) override { this->GetLinkReference(node)->LeftAsSource = left; }
+        public: void SetLeft(TLinkAddress node, TLinkAddress left) override { this->GetLinkReference(node).LeftAsSource = left; }
 
-        public: void SetRight(TLinkAddress node, TLinkAddress right) override { this->GetLinkReference(node)->RightAsSource = right; }
+        public: void SetRight(TLinkAddress node, TLinkAddress right) override { this->GetLinkReference(node).RightAsSource = right; }
 
-        public: TLinkAddress GetSize(TLinkAddress node) override { return this->GetLinkReference(node)->SizeAsSource; }
+        public: TLinkAddress GetSize(TLinkAddress node) override { return this->GetLinkReference(node).SizeAsSource; }
 
-        public: void SetSize(TLinkAddress node, TLinkAddress size) override { this->GetLinkReference(node)->SizeAsSource = size; }
+        public: void SetSize(TLinkAddress node, TLinkAddress size) override { this->GetLinkReference(node).SizeAsSource = size; }
 
         public: override TLinkAddress GetTreeRoot() { return GetHeaderReference().RootAsSource; }
 
-        public: TLinkAddress GetBasePartValue(TLinkAddress link) override { return this->GetLinkReference(link)->Source; }
+        public: TLinkAddress GetBasePartValue(TLinkAddress link) override { return this->GetLinkReference(link).Source; }
 
         public: bool FirstIsToTheLeftOfSecond(TLinkAddress firstSource, TLinkAddress firstTarget, TLinkAddress secondSource, TLinkAddress secondTarget) override { return this->LessThan(firstSource, secondSource) || (firstSource == secondSource && this->LessThan(firstTarget, secondTarget)); }
 
