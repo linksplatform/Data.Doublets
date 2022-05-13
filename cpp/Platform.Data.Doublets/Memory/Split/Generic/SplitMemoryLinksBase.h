@@ -563,7 +563,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             auto length = std::ranges::size(restriction);
             if (length == 0)
             {
-                for (auto linkAddress = LinkAddressType{1}; (linkAddress <= GetHeaderReference().AllocatedLinks); ++linkAddress)
+                for (auto linkAddress = LinkAddressType{1}; (linkAddress <= this->GetHeaderReference().AllocatedLinks); ++linkAddress)
                 {
                     if (Exists(linkAddress) && (handler(GetLinkStruct(linkAddress)) == $break))
                     {
@@ -832,7 +832,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
          LinkAddressType Create(const LinkType& substitution, const WriteHandlerType& handler)
         {
             using namespace Platform::Exceptions;
-            auto& header = GetHeaderReference();
+            auto& header = this->GetHeaderReference();
             auto freeLink = header.FirstFreeLink;
             if (freeLink != Constants.Null)
             {
@@ -850,7 +850,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     _dataMemory.ReservedCapacity( _dataMemory.ReservedCapacity() + _dataMemoryReservationStepInBytes);
                     _indexMemory.ReservedCapacity(_indexMemory.ReservedCapacity() + _indexMemoryReservationStepInBytes);
                     SetPointers(_dataMemory, _indexMemory);
-                    header = GetHeaderReference();
+                    header = this->GetHeaderReference();
                     header.ReservedLinks = _dataMemory.ReservedCapacity() / LinkDataPartSizeInBytes;
                 }
                 freeLink = ++header.AllocatedLinks;
@@ -907,7 +907,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         bool Exists(LinkAddressType linkAddress) const
         {
             return (linkAddress >= Constants.InternalReferencesRange.Minimum)
-                && (linkAddress <= GetHeaderReference().AllocatedLinks)
+                && (linkAddress <= this->GetHeaderReference().AllocatedLinks)
                 && !IsUnusedLink(linkAddress);
         }
 
