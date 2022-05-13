@@ -97,7 +97,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             ExternalSourcesTreeMethods = new TExternalSourcesTreeMethods(_linksDataParts, _linksIndexParts, _header);
             InternalTargetsTreeMethods = new TInternalTargetsTreeMethods(_linksDataParts, _linksIndexParts, _header);
             ExternalTargetsTreeMethods = new TExternalTargetsTreeMethods(_linksDataParts, _linksIndexParts, _header);
-            Init(dataMemory, indexMemory);
+            Init(_dataMemory, _indexMemory);
         }
 
         void Init(TMemory& dataMemory, TMemory& indexMemory)
