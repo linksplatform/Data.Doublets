@@ -37,9 +37,25 @@
                     return this->object().GetKeyPartValue(link);
                 };
 
-            public: RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link) { return RawLinkDataPart<LinkAddressType>(LinksDataParts + (RawLinkDataPart<LinkAddressType>::SizeInBytes * link)); }
+            public: const RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link) const
+                {
+                    return *reinterpret_cast<RawLinkDataPart<LinkAddressType>*>(LinksDataParts + (RawLinkDataPart<LinkAddressType>::SizeInBytes * link));
+                }
 
-            public: RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType link) { return RawLinkIndexPart<LinkAddressType>(LinksIndexParts + (RawLinkIndexPart<LinkAddressType>::SizeInBytes * link)); }
+            public: RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link)
+                {
+                    return *reinterpret_cast<RawLinkDataPart<LinkAddressType>*>(LinksDataParts + (RawLinkDataPart<LinkAddressType>::SizeInBytes * link));
+                }
+
+            public: const RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType link) const
+                {
+                    return *reinterpret_cast<RawLinkIndexPart<LinkAddressType>*>(LinksIndexParts + (RawLinkIndexPart<LinkAddressType>::SizeInBytes * link));
+                }
+
+            public: RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType link)
+                {
+                    return *reinterpret_cast<RawLinkIndexPart<LinkAddressType>*>(LinksIndexParts + (RawLinkIndexPart<LinkAddressType>::SizeInBytes * link));
+                }
 
         public: bool FirstIsToTheLeftOfSecond(LinkAddressType first, LinkAddressType second)  { return this->GetKeyPartValue(first) < this->GetKeyPartValue(second); }
 

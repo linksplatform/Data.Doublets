@@ -21,9 +21,25 @@
             _header = header;
         }
 
-        public: LinksHeader<LinkAddressType>& GetHeaderReference() { *reinterpret_cast<LinksHeader<LinkAddressType>*>(_header); }
+    public: const LinksHeader<LinkAddressType>& GetHeaderReference() const
+        {
+            return *reinterpret_cast<LinksHeader<LinkAddressType>*>(_header);
+        }
 
-        public: RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link) { *reinterpret_cast<RawLinkDataPart<LinkAddressType>*>(_storage + (RawLinkDataPart<LinkAddressType>::SizeInBytes * (link))); }
+        public: LinksHeader<LinkAddressType>& GetHeaderReference()
+            {
+                return *reinterpret_cast<LinksHeader<LinkAddressType>*>(_header);
+            }
+
+        public: const RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link) const
+            {
+                return *reinterpret_cast<RawLinkDataPart<LinkAddressType>*>(_storage + (RawLinkDataPart<LinkAddressType>::SizeInBytes * (link)));
+            }
+
+        public: RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link)
+            {
+                return *reinterpret_cast<RawLinkDataPart<LinkAddressType>*>(_storage + (RawLinkDataPart<LinkAddressType>::SizeInBytes * (link)));
+            }
 
         public: LinkAddressType GetFirst() { return this->GetHeaderReference().FirstFreeLink; }
 

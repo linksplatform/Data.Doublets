@@ -24,13 +24,23 @@
         }
 
         public: const RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link) const
-        { 
-            return &(*(_linksDataParts + (RawLinkDataPart<LinkAddressType>::SizeInBytes * link)));
+        {
+            return *reinterpret_cast<RawLinkDataPart<LinkAddressType>*>(_linksDataParts + (RawLinkDataPart<LinkAddressType>::SizeInBytes * link));
         }
 
-        public: RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType link)
+    public: RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link)
+        {
+            return *reinterpret_cast<RawLinkDataPart<LinkAddressType>*>(_linksDataParts + (RawLinkDataPart<LinkAddressType>::SizeInBytes * link));
+        }
+
+        public: const RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType link) const
         { 
-            return RawLinkIndexPart<LinkAddressType>{ _linksIndexParts + (RawLinkIndexPart<LinkAddressType>::SizeInBytes * link) };
+            return *reinterpret_cast<RawLinkIndexPart<LinkAddressType>*>(_linksDataParts + (RawLinkIndexPart<LinkAddressType>::SizeInBytes * link));
+        }
+
+    public: RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType link)
+        {
+            return *reinterpret_cast<RawLinkIndexPart<LinkAddressType>*>(_linksDataParts + (RawLinkIndexPart<LinkAddressType>::SizeInBytes * link));
         }
 
         public: LinkAddressType GetFirst(LinkAddressType head)
