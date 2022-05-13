@@ -799,7 +799,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             {
                 if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(source))
                 {
-                    ExternalSourcesTreeMethods->Attach(&rootAsSource, linkIndex);
+                    ExternalSourcesTreeMethods->Attach(rootAsSource, linkIndex);
                 }
                 else
                 {
@@ -809,7 +809,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     }
                     else
                     {
-                        InternalSourcesTreeMethods->Attach(&(GetLinkIndexPartReference(source).RootAsSource), linkIndex);
+                        InternalSourcesTreeMethods->Attach((GetLinkIndexPartReference(source).RootAsSource), linkIndex);
                     }
                 }
             }
@@ -817,11 +817,11 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             {
                 if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(target))
                 {
-                    ExternalTargetsTreeMethods->Attach(&rootAsTarget, linkIndex);
+                    ExternalTargetsTreeMethods->Attach(rootAsTarget, linkIndex);
                 }
                 else
                 {
-                    InternalTargetsTreeMethods->Attach(&(GetLinkIndexPartReference(target).RootAsTarget), linkIndex);
+                    InternalTargetsTreeMethods->Attach((GetLinkIndexPartReference(target).RootAsTarget), linkIndex);
                 }
             }
             return handler ? handler(before, LinkType{linkIndex, source, target}) : Constants.Continue;
