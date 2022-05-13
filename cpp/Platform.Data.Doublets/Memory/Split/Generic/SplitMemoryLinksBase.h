@@ -358,7 +358,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             ExternalSourcesTreeMethods = new TExternalSourcesTreeMethods(_linksDataParts, _linksIndexParts, _header);
             InternalTargetsTreeMethods = new TInternalTargetsTreeMethods(_linksDataParts, _linksIndexParts, _header);
             ExternalTargetsTreeMethods = new TExternalTargetsTreeMethods(_linksDataParts, _linksIndexParts, _header);
-            UnusedLinksListMethods = new TUnusedLinksListMethods(static_cast<std::byte*>(_dataMemory.Pointer()), _header);
+            UnusedLinksListMethods = new TUnusedLinksListMethods(_linksDataParts, _header);
         }
 
         LinkAddressType Count(const LinkType& restriction)
