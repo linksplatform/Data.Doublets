@@ -26,8 +26,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
     public:
         TMemory _dataMemory;
         TMemory _indexMemory;
-        std::uint64_t _dataMemoryReservationStepInBytesInBytes;
-        std::uint64_t _indexMemoryReservationStepInBytesInBytes;
+        std::uint64_t _dataMemoryReservationStepInBytes;
+        std::uint64_t _indexMemoryReservationStepInBytes;
         TInternalSourcesTreeMethods* InternalSourcesTreeMethods;
         TInternalLinksSourcesLinkedListMethods* InternalSourcesListMethods;
         TInternalTargetsTreeMethods* InternalTargetsTreeMethods;
@@ -84,7 +84,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         {
         }
 
-        SplitMemoryLinksBase(TMemory&& dataMemory, TMemory&& indexMemory, std::uint64_t memoryReservationStep) : _dataMemory{ std::move(dataMemory) }, _indexMemory{ std::move(indexMemory) }, _dataMemoryReservationStepInBytesInBytes{ memoryReservationStep * LinkDataPartSizeInBytes }, _indexMemoryReservationStepInBytesInBytes{ memoryReservationStep * LinkIndexPartSizeInBytes }
+        SplitMemoryLinksBase(TMemory&& dataMemory, TMemory&& indexMemory, std::uint64_t memoryReservationStep) : _dataMemory{ std::move(dataMemory) }, _indexMemory{ std::move(indexMemory) }, _dataMemoryReservationStepInBytes{ memoryReservationStep * LinkDataPartSizeInBytes }, _indexMemoryReservationStepInBytes{ memoryReservationStep * LinkIndexPartSizeInBytes }
         {
             if (UseLinkedList)
             {
@@ -109,38 +109,32 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             SetPointers(dataMemory, indexMemory);
             auto& header { this->GetHeaderReference() };
             auto allocatedLinks { header.AllocatedLinks };
-            std::cout << "header.AllocatedLinks: " << static_cast<std::uint64_t>(header.AllocatedLinks) << "\n";
-            std::cout << "allocatedLinks: "<< static_cast<std::uint64_t>(allocatedLinks) << "\n";
-            // Adjust reserved capacity
-            auto minimumDataReservedCapacity { allocatedLinks * LinkDataPartSizeInBytes };
-            if(minimumDataReservedCapacity < dataMemory.UsedCapacity())
+            auto minimumDataReservedCapacity = allocatedLinks * LinkDataPartSizeInBytes;
+            if (minimumDataReservedCapacity < dataMemory.UsedCapacity())
             {
                 minimumDataReservedCapacity = dataMemory.UsedCapacity();
             }
-            if(minimumDataReservedCapacity < _dataMemoryReservationStepInBytesInBytes)
+            if (minimumDataReservedCapacity < _dataMemoryReservationStepInBytes)
             {
-                minimumDataReservedCapacity = _dataMemoryReservationStepInBytesInBytes;
+                minimumDataReservedCapacity = _dataMemoryReservationStepInBytes;
             }
-            std::cout << "LinkDataPartSizeInBytes: " << static_cast<std::uint64_t>(LinkDataPartSizeInBytes) << "\n";
-            std::cout << "allocatedLinks * LinkDataPartSizeInBytes: " << static_cast<std::uint64_t>(allocatedLinks * LinkDataPartSizeInBytes) << "\n";
-
-            auto minimumIndexReservedCapacity { allocatedLinks * LinkDataPartSizeInBytes };
+            auto minimumIndexReservedCapacity = allocatedLinks * LinkDataPartSizeInBytes;
             if (minimumIndexReservedCapacity < indexMemory.UsedCapacity())
             {
                 minimumIndexReservedCapacity = indexMemory.UsedCapacity();
             }
-            if (minimumIndexReservedCapacity < _indexMemoryReservationStepInBytesInBytes)
+            if (minimumIndexReservedCapacity < _indexMemoryReservationStepInBytes)
             {
-                minimumIndexReservedCapacity = _indexMemoryReservationStepInBytesInBytes;
+                minimumIndexReservedCapacity = _indexMemoryReservationStepInBytes;
             }
             // Check for alignment
-            if (minimumDataReservedCapacity % _dataMemoryReservationStepInBytesInBytes > 0)
+            if (minimumDataReservedCapacity % _dataMemoryReservationStepInBytes > 0)
             {
-                minimumDataReservedCapacity = ((minimumDataReservedCapacity / _dataMemoryReservationStepInBytesInBytes) * _dataMemoryReservationStepInBytesInBytes) + _dataMemoryReservationStepInBytesInBytes;
+                minimumDataReservedCapacity = ((minimumDataReservedCapacity / _dataMemoryReservationStepInBytes) * _dataMemoryReservationStepInBytes) + _dataMemoryReservationStepInBytes;
             }
-            if (minimumIndexReservedCapacity % _indexMemoryReservationStepInBytesInBytes > 0)
+            if (minimumIndexReservedCapacity % _indexMemoryReservationStepInBytes > 0)
             {
-                minimumIndexReservedCapacity = ((minimumIndexReservedCapacity / _indexMemoryReservationStepInBytesInBytes) * _indexMemoryReservationStepInBytesInBytes) + _indexMemoryReservationStepInBytesInBytes;
+                minimumIndexReservedCapacity = ((minimumIndexReservedCapacity / _indexMemoryReservationStepInBytes) * _indexMemoryReservationStepInBytes) + _indexMemoryReservationStepInBytes;
             }
             if (dataMemory.ReservedCapacity() != minimumDataReservedCapacity)
             {
@@ -846,8 +840,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 }
                 if (header.AllocatedLinks >= (header.ReservedLinks - 1))
                 {
-                    _dataMemory.ReservedCapacity( _dataMemory.ReservedCapacity() + _dataMemoryReservationStepInBytesInBytes);
-                    _indexMemory.ReservedCapacity(_indexMemory.ReservedCapacity() + _indexMemoryReservationStepInBytesInBytes);
+                    _dataMemory.ReservedCapacity( _dataMemory.ReservedCapacity() + _dataMemoryReservationStepInBytes);
+                    _indexMemory.ReservedCapacity(_indexMemory.ReservedCapacity() + _indexMemoryReservationStepInBytes);
                     SetPointers(_dataMemory, _indexMemory);
                     header = GetHeaderReference();
                     header.ReservedLinks = _dataMemory.ReservedCapacity() / LinkDataPartSizeInBytes;
