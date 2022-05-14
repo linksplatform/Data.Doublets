@@ -419,12 +419,12 @@ namespace Platform::Data::Doublets
             constexpr auto constants = storage.Constants;
             auto values = GetLink(storage, linkAddress);
             auto usagesAsSource = storage.Count(typename TStorage::LinkType{constants.Any, storage, linkAddress, constants.Any});
-            if (link == GetSource(storage, values))
+            if (linkAddress == GetSource(storage, values))
             {
                 --usagesAsSource;
             }
             auto usagesAsTarget = storage.Count(typename TStorage::LinkType{constants.Any, storage, constants.Any, linkAddress});
-            if (link == GetTarget(storage, values))
+            if (linkAddress == GetTarget(storage, values))
             {
                 --usagesAsTarget;
             }
