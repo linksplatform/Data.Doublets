@@ -1,7 +1,7 @@
 ﻿namespace Platform::Data::Doublets::Memory::Split::Generic
 {
     template<typename TLinksOptions>
-    class ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods : public ExternalLinksRecursionlessSizeBalancedTreeMethodsBase<TLinksOptions>
+    class ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods : public ExternalLinksRecursionlessSizeBalancedTreeMethodsBase<ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods<TLinksOptions>, TLinksOptions>
     {
     public: using LinksOptionsType = TLinksOptions;
                 using LinkAddressType = LinksOptionsType::LinkAddressType;
@@ -9,7 +9,7 @@
         using WriteHandlerType = LinksOptionsType::WriteHandlerType;
         using ReadHandlerType = LinksOptionsType::ReadHandlerType;
         public: static constexpr auto Constants = LinksOptionsType::Constants;
-        using base = ExternalLinksRecursionlessSizeBalancedTreeMethodsBase<LinksOptionsType>;
+        using base = ExternalLinksRecursionlessSizeBalancedTreeMethodsBase<ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods<TLinksOptions>, TLinksOptions>;
         public: ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods(std::byte* linksDataParts, std::byte* linksIndexParts, std::byte* header) : base(linksDataParts, linksIndexParts, header) { }
 
         public: LinkAddressType* GetLeftReference(LinkAddressType node)  { return &GetLinkIndexPartReference(node)->LeftAsTarget; }

@@ -1,9 +1,9 @@
 ﻿namespace Platform::Data::Doublets::Memory::Split::Generic
 {
     template<typename TLinksOptions>
-    class ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods : public ExternalLinksRecursionlessSizeBalancedTreeMethodsBase<TLinksOptions>
+    class ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods : public ExternalLinksRecursionlessSizeBalancedTreeMethodsBase<ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods<TLinksOptions>, TLinksOptions>
     {
-        using base = ExternalLinksRecursionlessSizeBalancedTreeMethodsBase<TLinksOptions>;
+        using base = ExternalLinksRecursionlessSizeBalancedTreeMethodsBase<ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods<TLinksOptions>, TLinksOptions>;
     public: using LinksOptionsType = TLinksOptions;
     public:         using LinkAddressType = LinksOptionsType::LinkAddressType;
         using LinkType = LinksOptionsType::LinkType;
