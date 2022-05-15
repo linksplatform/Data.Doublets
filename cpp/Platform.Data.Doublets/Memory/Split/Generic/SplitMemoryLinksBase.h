@@ -148,8 +148,9 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             indexMemory.UsedCapacity((header.AllocatedLinks * LinkIndexPartSizeInBytes) + LinkHeaderSizeInBytes);
             // Ensure correctness _memory.ReservedLinks over _header->ReservedCapacity
             header.ReservedLinks = (dataMemory.ReservedCapacity() - LinkDataPartSizeInBytes) / LinkDataPartSizeInBytes;
-//            header = this->GetHeaderReference() ;
-//            header = this->GetHeaderReference() ;
+            std::cout << header.ReservedLinks << std::endl;
+            auto& header1 = this->GetHeaderReference();
+            std::cout << header1.ReservedLinks << std::endl;
         }
 
         LinkAddressType Count(const LinkType& restriction) const
