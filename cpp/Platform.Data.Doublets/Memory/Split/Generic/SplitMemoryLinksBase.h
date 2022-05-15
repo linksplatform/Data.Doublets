@@ -73,8 +73,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
 
         LinkAddressType Total() const
         {
-            const auto& header = this->GetHeaderReference();
-            return header.AllocatedLinks - header.FreeLinks;
+            return this->GetHeaderReference().AllocatedLinks - this->GetHeaderReference().FreeLinks;
         }
 
     public:
@@ -103,8 +102,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 indexMemory.ReservedCapacity(LinkHeaderSizeInBytes);
             }
             SetPointers(dataMemory, indexMemory);
-            auto& header { this->GetHeaderReference() };
-            auto allocatedLinks { header.AllocatedLinks };
+            auto allocatedLinks { this->GetHeaderReference().AllocatedLinks };
             auto minimumDataReservedCapacity = allocatedLinks * LinkDataPartSizeInBytes;
             if (minimumDataReservedCapacity < dataMemory.UsedCapacity())
             {
@@ -142,15 +140,12 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 indexMemory.ReservedCapacity(minimumIndexReservedCapacity);
             }
             SetPointers(dataMemory, indexMemory);
-            header = this->GetHeaderReference();
+            this->GetHeaderReference() = this->GetHeaderReference();
             // Ensure correctness _memory.UsedCapacity over _header->AllocatedLinks
-            dataMemory.UsedCapacity((header.AllocatedLinks * LinkDataPartSizeInBytes) + LinkDataPartSizeInBytes); // First link is read only zero link.
-            indexMemory.UsedCapacity((header.AllocatedLinks * LinkIndexPartSizeInBytes) + LinkHeaderSizeInBytes);
+            dataMemory.UsedCapacity((this->GetHeaderReference().AllocatedLinks * LinkDataPartSizeInBytes) + LinkDataPartSizeInBytes); // First link is read only zero link.
+            indexMemory.UsedCapacity((this->GetHeaderReference().AllocatedLinks * LinkIndexPartSizeInBytes) + LinkHeaderSizeInBytes);
             // Ensure correctness _memory.ReservedLinks over _header->ReservedCapacity
-            header.ReservedLinks = (dataMemory.ReservedCapacity() - LinkDataPartSizeInBytes) / LinkDataPartSizeInBytes;
-            std::cout << header.ReservedLinks << std::endl;
-            auto& header1 = this->GetHeaderReference();
-            std::cout << header1.ReservedLinks << std::endl;
+            this->GetHeaderReference().ReservedLinks = (dataMemory.ReservedCapacity() - LinkDataPartSizeInBytes) / LinkDataPartSizeInBytes;
         }
 
         LinkAddressType Count(const LinkType& restriction) const
@@ -762,9 +757,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             auto& link = this->GetLinkDataPartReference(linkIndex);
             auto source = link.Source;
             auto target = link.Target;
-            auto& header = this->GetHeaderReference();
-            auto& rootAsSource = header.RootAsSource;
-            auto& rootAsTarget = header.RootAsTarget;
+            auto& rootAsSource = this->GetHeaderReference().RootAsSource;
+            auto& rootAsTarget = this->GetHeaderReference().RootAsTarget;
             // Будет корректно работать только в том случае, если пространство выделенной связи предварительно заполнено нулями
             if (source != $null)
             {
@@ -833,8 +827,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
          LinkAddressType Create(const LinkType& substitution, const WriteHandlerType& handler)
         {
             using namespace Platform::Exceptions;
-            auto& header = this->GetHeaderReference();
-            auto freeLink = header.FirstFreeLink;
+            auto freeLink = this->GetHeaderReference().FirstFreeLink;
             if (freeLink != Constants.Null)
             {
                 UnusedLinksListMethods->Detach(freeLink);
@@ -842,19 +835,19 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             else
             {
                 auto maximumPossibleInnerReference = Constants.InternalReferencesRange.Maximum;
-                if (header.AllocatedLinks > maximumPossibleInnerReference)
+                if (this->GetHeaderReference().AllocatedLinks > maximumPossibleInnerReference)
                 {
                     throw LinksLimitReachedException();
                 }
-                if (header.AllocatedLinks >= (header.ReservedLinks - 1))
+                if (this->GetHeaderReference().AllocatedLinks >= (this->GetHeaderReference().ReservedLinks - 1))
                 {
                     _dataMemory.ReservedCapacity( _dataMemory.ReservedCapacity() + _dataMemoryReservationStepInBytes);
                     _indexMemory.ReservedCapacity(_indexMemory.ReservedCapacity() + _indexMemoryReservationStepInBytes);
                     SetPointers(_dataMemory, _indexMemory);
-                    header = this->GetHeaderReference();
-                    header.ReservedLinks = _dataMemory.ReservedCapacity() / LinkDataPartSizeInBytes;
+                    this->GetHeaderReference() = this->GetHeaderReference();
+                    this->GetHeaderReference().ReservedLinks = _dataMemory.ReservedCapacity() / LinkDataPartSizeInBytes;
                 }
-                freeLink = ++header.AllocatedLinks;
+                freeLink = ++this->GetHeaderReference().AllocatedLinks;
                 _dataMemory.UsedCapacity(_dataMemory.UsedCapacity() + LinkDataPartSizeInBytes);
                 _indexMemory.UsedCapacity(_indexMemory.UsedCapacity() + LinkIndexPartSizeInBytes);
             }
@@ -864,24 +857,23 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
 
         LinkAddressType Delete(const LinkType& restriction, const WriteHandlerType& handler)
         {
-            auto& header = this->GetHeaderReference();
             auto linkAddress = GetIndex(*this, restriction);
             auto before = GetLinkStruct(linkAddress);
-            if (linkAddress < header.AllocatedLinks)
+            if (linkAddress < this->GetHeaderReference().AllocatedLinks)
             {
                 UnusedLinksListMethods->AttachAsFirst(linkAddress);
             }
-            else if (linkAddress == header.AllocatedLinks)
+            else if (linkAddress == this->GetHeaderReference().AllocatedLinks)
             {
-                --header.AllocatedLinks;
+                --this->GetHeaderReference().AllocatedLinks;
                 _dataMemory.UsedCapacity(_dataMemory.UsedCapacity() - LinkDataPartSizeInBytes);
                 _indexMemory.UsedCapacity(_indexMemory.UsedCapacity() - LinkIndexPartSizeInBytes);
                 // Убираем все связи, находящиеся в списке свободных в конце файла, до тех пор, пока не дойдём до первой существующей связи
                 // Позволяет оптимизировать количество выделенных связей (AllocatedLinks)
-                while ((header.AllocatedLinks > LinkAddressType{0}) && this->IsUnusedLink(header.AllocatedLinks))
+                while ((this->GetHeaderReference().AllocatedLinks > LinkAddressType{0}) && this->IsUnusedLink(this->GetHeaderReference().AllocatedLinks))
                 {
-                    UnusedLinksListMethods->Detach(header.AllocatedLinks);
-                    --header.AllocatedLinks;
+                    UnusedLinksListMethods->Detach(this->GetHeaderReference().AllocatedLinks);
+                    --this->GetHeaderReference().AllocatedLinks;
                     _dataMemory.UsedCapacity(_dataMemory.UsedCapacity() - LinkDataPartSizeInBytes);
                     _indexMemory.UsedCapacity(_indexMemory.UsedCapacity() - LinkIndexPartSizeInBytes);
                 }
