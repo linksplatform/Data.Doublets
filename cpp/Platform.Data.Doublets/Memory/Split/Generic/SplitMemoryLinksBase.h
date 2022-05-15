@@ -92,17 +92,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
 
         SplitMemoryLinksBase(TMemory&& dataMemory, TMemory&& indexMemory, std::uint64_t memoryReservationStep) : _dataMemory{ std::move(dataMemory) }, _indexMemory{ std::move(indexMemory) }, _dataMemoryReservationStepInBytes{ memoryReservationStep * LinkDataPartSizeInBytes }, _indexMemoryReservationStepInBytes{ memoryReservationStep * LinkIndexPartSizeInBytes }
         {
-            if (UseLinkedList)
-            {
-//                InternalSourcesTreeMethods = new TInternalLinksSourcesLinkedTreeMethods(_linksDataParts, _linksIndexParts);
-            }
-            else
-            {
-                InternalSourcesTreeMethods = new TInternalSourcesTreeMethods(_linksDataParts, _linksIndexParts, _header);
-            }
-            ExternalSourcesTreeMethods = new TExternalSourcesTreeMethods(_linksDataParts, _linksIndexParts, _header);
-            InternalTargetsTreeMethods = new TInternalTargetsTreeMethods(_linksDataParts, _linksIndexParts, _header);
-            ExternalTargetsTreeMethods = new TExternalTargetsTreeMethods(_linksDataParts, _linksIndexParts, _header);
+
             Init(_dataMemory, _indexMemory);
         }
 
@@ -158,6 +148,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             indexMemory.UsedCapacity((header.AllocatedLinks * LinkIndexPartSizeInBytes) + LinkHeaderSizeInBytes);
             // Ensure correctness _memory.ReservedLinks over _header->ReservedCapacity
             header.ReservedLinks = (dataMemory.ReservedCapacity() - LinkDataPartSizeInBytes) / LinkDataPartSizeInBytes;
+//            header = this->GetHeaderReference() ;
+//            header = this->GetHeaderReference() ;
         }
 
         LinkAddressType Count(const LinkType& restriction) const
@@ -354,9 +346,17 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             _linksDataParts = static_cast<std::byte*>(dataMemory.Pointer());
             _linksIndexParts = static_cast<std::byte*>(indexMemory.Pointer());
             _header = _linksIndexParts;
-
-            ExternalSourcesTreeMethods = new TExternalSourcesTreeMethods(_linksDataParts, _linksIndexParts, _header);
+            if (UseLinkedList)
+            {
+                //                InternalSourcesTreeMethods = new TInternalLinksSourcesLinkedTreeMethods(_linksDataParts, _linksIndexParts);
+            }
+            else
+            {
+                InternalSourcesTreeMethods = new TInternalSourcesTreeMethods(_linksDataParts, _linksIndexParts, _header);
+            }
             InternalTargetsTreeMethods = new TInternalTargetsTreeMethods(_linksDataParts, _linksIndexParts, _header);
+            ExternalTargetsTreeMethods = new TExternalTargetsTreeMethods(_linksDataParts, _linksIndexParts, _header);
+            ExternalSourcesTreeMethods = new TExternalSourcesTreeMethods(_linksDataParts, _linksIndexParts, _header);
             ExternalTargetsTreeMethods = new TExternalTargetsTreeMethods(_linksDataParts, _linksIndexParts, _header);
             UnusedLinksListMethods = new TUnusedLinksListMethods(_linksDataParts, _header);
         }
