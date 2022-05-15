@@ -32,6 +32,12 @@
     public:
         TMemory _memory;
 
+    private:
+        std::byte* _header;
+
+    private:
+        std::byte* _links;
+
         const std::size_t _memoryReservationStep;
 
         TTargetTreeMethods* _TargetsTreeMethods;
@@ -39,6 +45,26 @@
         TSourceTreeMethods* _SourcesTreeMethods;
 
         TUnusedLinks* _UnusedLinksListMethods;
+
+        LinksHeader<LinkAddressType>& GetHeaderReference()
+        {
+            return *reinterpret_cast<LinksHeader<LinkAddressType>*>(_header);
+        }
+
+        const LinksHeader<LinkAddressType>& GetHeaderReference() const
+        {
+            return *reinterpret_cast<LinksHeader<LinkAddressType>*>(_header);
+        }
+
+        const RawLink<LinkAddressType>& GetLinkReference(LinkAddressType linkIndex) const
+        {
+            return *(reinterpret_cast<RawLink<LinkAddressType>*>(_links) + linkIndex);
+        }
+
+        RawLink<LinkAddressType>& GetLinkReference(LinkAddressType linkIndex)
+        {
+            return *(reinterpret_cast<RawLink<LinkAddressType>*>(_links) + linkIndex);
+        }
 
         LinkAddressType GetTotal() const
         {
@@ -48,9 +74,15 @@
 
     public:
     public:
+        UnitedMemoryLinksBase(TMemory&& memory) : UnitedMemoryLinksBase(std::move(memory), DefaultLinksSizeStep)
+        {
+
+        }
+
         UnitedMemoryLinksBase(TMemory&& memory, std::uint64_t memoryReservationStep) :
             _memory(std::move(memory)), _memoryReservationStep(memoryReservationStep)
         {
+            Init(_memory, memoryReservationStep);
         }
 
         void Init(TMemory& memory, std::size_t memoryReservationStep)
@@ -420,24 +452,11 @@
     public:
         void SetPointers(TMemory& memory)
         {
-            this->object().SetPointers(memory);
-        }
-
-    public:
-        auto&& GetHeaderReference() const
-        {
-            return this->object().GetHeaderReference();
-        }
-
-    public:
-        RawLink<LinkAddressType>& GetLinkReference(std::size_t index)
-        {
-            return this->object().GetLinkReference(index);
-        }
-
-        const RawLink<LinkAddressType>& GetLinkReference(std::size_t index) const
-        {
-            return this->object().GetLinkReference(index);
+            _links = static_cast<std::byte*>(memory.Pointer());
+            _header = _links;
+            _SourcesTreeMethods = new TSourceTreeMethods(_links, _header);
+            _TargetsTreeMethods = new TTargetTreeMethods(_links, _header);
+            _UnusedLinksListMethods = new TUnusedLinks(_links, _header);
         }
 
         bool Exists(LinkAddressType linkAddress) const
