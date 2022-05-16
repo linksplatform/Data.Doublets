@@ -899,9 +899,16 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
 
         bool Exists(LinkAddressType linkAddress) const
         {
-            return (linkAddress >= Constants.InternalReferencesRange.Minimum)
+             auto result = (linkAddress >= Constants.InternalReferencesRange.Minimum)
                 && (linkAddress <= this->GetHeaderReference().AllocatedLinks)
                 && !IsUnusedLink(linkAddress);
+             std::cout << "(linkAddress >= Constants.InternalReferencesRange.Minimum)\n"
+                          "                && (linkAddress <= this->GetHeaderReference().AllocatedLinks)\n"
+                          "                && !IsUnusedLink(linkAddress): " << result << std::endl;
+             std::cout << "linkAddress >= Constants.InternalReferencesRange.Minimum: " << (linkAddress >= Constants.InternalReferencesRange.Minimum) << std::endl;
+             std::cout << "linkAddress <= this->GetHeaderReference().AllocatedLinks: " << (linkAddress <= this->GetHeaderReference().AllocatedLinks) << std::endl;
+             std::cout << "IsUnusedLink(linkAddress): " << IsUnusedLink(linkAddress) << std::endl;
+             return result;
         }
 
     public:
