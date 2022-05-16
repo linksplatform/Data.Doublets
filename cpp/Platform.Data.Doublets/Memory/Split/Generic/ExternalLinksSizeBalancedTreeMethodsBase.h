@@ -4,6 +4,7 @@
     class ExternalLinksSizeBalancedTreeMethodsBase : public SizeBalancedTreeMethods<TSelf, typename TLinksOptions::LinkAddressType> /* public ILinksTreeMethods<TLinksOptions>, */
     {
     public:
+        using Polymorph<TSelf>::object;
         using LinksOptionsType = TLinksOptions;
         static constexpr auto Constants = LinksOptionsType::Constants;
                 using LinkAddressType = LinksOptionsType::LinkAddressType;
