@@ -1,7 +1,7 @@
 ﻿namespace Platform::Data::Doublets::Memory::Split::Generic
 {
     template<typename TSelf, typename TLinksOptions>
-    class InternalLinksSizeBalancedTreeMethodsBase : public SizeBalancedTreeMethods<TSelf, typename TLinksOptions::LinkAddressType>, /* public ILinksTreeMethods<TLinksOptions>, */ public Platform::Interfaces::Polymorph<TSelf>
+    class InternalLinksSizeBalancedTreeMethodsBase : public SizeBalancedTreeMethods<TSelf, typename TLinksOptions::LinkAddressType> /* public ILinksTreeMethods<TLinksOptions>, */
     {
         using LinksOptionsType = TLinksOptions;
     public: static constexpr auto Constants = LinksOptionsType::Constants;
