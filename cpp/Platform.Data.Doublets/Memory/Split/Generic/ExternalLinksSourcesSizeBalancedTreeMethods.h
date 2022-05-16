@@ -13,9 +13,9 @@
         static constexpr auto Constants = LinksOptionsType::Constants;
         public: ExternalLinksSourcesSizeBalancedTreeMethods(std::byte* linksDataParts, std::byte* linksIndexParts, std::byte* header) : base(linksDataParts, linksIndexParts, header) { }
 
-        public: LinkAddressType* GetLeftReference(LinkAddressType node)  { return &GetLinkIndexPartReference(node)->LeftAsSource; }
+        public: LinkAddressType* GetLeftReference(LinkAddressType node)  { return &(this->GetLinkIndexPartReference(node).LeftAsSource); }
 
-        public: LinkAddressType* GetRightReference(LinkAddressType node)  { return &GetLinkIndexPartReference(node)->RightAsSource; }
+        public: LinkAddressType* GetRightReference(LinkAddressType node)  { return &(this->GetLinkIndexPartReference(node).RightAsSource); }
 
         public: LinkAddressType GetLeft(LinkAddressType node)  { return this->GetLinkIndexPartReference(node).LeftAsSource; }
 
