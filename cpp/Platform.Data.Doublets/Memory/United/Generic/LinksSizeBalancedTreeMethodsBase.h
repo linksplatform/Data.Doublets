@@ -6,9 +6,8 @@
     struct LinksSizeBalancedTreeMethodsBase
         :
           //public Trees::SizeBalancedTreeMethods<Self, LinkAddressType>,
-          public Trees::RecursionlessSizeBalancedTreeMethods<Self, typename TLinksOptions::LinkAddressType>,
+          public Trees::RecursionlessSizeBalancedTreeMethods<Self, typename TLinksOptions::LinkAddressType>
           /* public ILinksTreeMethods<TLinksOptions>, */
-          public Interfaces::Polymorph<Self>
     {
         using LinksOptionsType = TLinksOptions;
         using LinkAddressType = typename LinksOptionsType::LinkAddressType;
