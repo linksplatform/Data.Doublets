@@ -30,8 +30,10 @@
         public: LinkAddressType GetBasePartValue(LinkAddressType link)  { return this->GetLinkDataPartReference(link).Target; }
 
         public: bool FirstIsToTheLeftOfSecond(LinkAddressType firstSource, LinkAddressType firstTarget, LinkAddressType secondSource, LinkAddressType secondTarget)  { return this->LessThan(firstTarget, secondTarget) || (firstTarget == secondTarget && this->LessThan(firstSource, secondSource)); }
+            using base::FirstIsToTheLeftOfSecond;
 
         public: bool FirstIsToTheRightOfSecond(LinkAddressType firstSource, LinkAddressType firstTarget, LinkAddressType secondSource, LinkAddressType secondTarget)  { return firstTarget > secondTarget || (firstTarget == secondTarget && firstSource > secondSource); }
+            using base::FirstIsToTheRightOfSecond;
 
         public: void ClearNode(LinkAddressType node)
         {
