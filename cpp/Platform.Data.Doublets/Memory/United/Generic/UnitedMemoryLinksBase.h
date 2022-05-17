@@ -376,7 +376,7 @@
             {
                 _TargetsTreeMethods->Attach(firstAsTarget, linkIndex);
             }
-            return handler(before, Link{linkIndex, link.Source, link.Target});
+            return handler(before, LinkType{linkIndex, link.Source, link.Target});
         }
 
         // TODO: Возможно нужно будет заполнение нулями, если внешнее API ими не заполняет пространство
@@ -408,7 +408,7 @@
                 freeLink = header.AllocatedLinks;
                 _memory.UsedCapacity(_memory.UsedCapacity() + LinkSizeInBytes);
             }
-            return handler(Link<LinkAddressType>{0, 0, 0}, Link<LinkAddressType>{freeLink, 0, 0});
+            return handler(LinkType{0, 0, 0}, LinkType{freeLink, 0, 0});
         }
 
     public:
@@ -435,13 +435,13 @@
                     auto allLinksBeforeAfterAllocatedLinks = All(*this);
                 }
             }
-            return handler(before, Link<LinkAddressType>{});
+            return handler(before, LinkType{});
         }
 
-        Link<LinkAddressType> GetLinkStruct(LinkAddressType linkIndex) const
+        LinkType GetLinkStruct(LinkAddressType linkIndex) const
         {
             auto& link = this->GetLinkReference(linkIndex);
-            return Link{linkIndex, link.Source, link.Target};
+            return LinkType{linkIndex, link.Source, link.Target};
         }
 
         // TODO: Возможно это должно быть событием, вызываемым из IMemory, в том случае, если адрес реально поменялся
