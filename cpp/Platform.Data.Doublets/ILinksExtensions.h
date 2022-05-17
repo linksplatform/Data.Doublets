@@ -572,7 +572,7 @@ namespace Platform::Data::Doublets
             auto target = GetTarget(storage, substitution);
             source = constant == source ? substitutionIndex : source;
             target = constant == target ? substitutionIndex : target;
-            return typename TStorage::LinkType(substitutionIndex, source, target);
+            return typename TStorage::LinkType{substitutionIndex, source, target};
         }
 
         template<typename TStorage>
@@ -642,8 +642,8 @@ namespace Platform::Data::Doublets
         auto any = constants.Any;
         auto $continue = storage.Constants.Continue;
         auto $break = storage.Constants.Break;
-        auto usagesAsSourceQuery = typename TStorage::LinkType(any, linkIndex, any);
-        auto usagesAsTargetQuery = typename TStorage::LinkType(any, any, linkIndex);
+        auto usagesAsSourceQuery = typename TStorage::LinkType{any, linkIndex, any};
+        auto usagesAsTargetQuery = typename TStorage::LinkType{any, any, linkIndex};
         auto usages = std::vector<typename TStorage::LinkType>();
         storage.Each(usagesAsSourceQuery, [&usages, $continue](const typename TStorage::LinkType& link) {
             usages.push_back(link);
