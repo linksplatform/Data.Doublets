@@ -7,9 +7,9 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         typename TMemory = FileMappedResizableDirectMemory,
         typename TInternalSourcesTreeMethods = InternalLinksSourcesSizeBalancedTreeMethods<TLinksOptions>,
         typename TInternalLinksSourcesLinkedListMethods = InternalLinksSourcesLinkedListMethods<TLinksOptions>,
-        typename TInternalTargetsTreeMethods = InternalLinksSourcesSizeBalancedTreeMethods<TLinksOptions>,
+        typename TInternalTargetsTreeMethods = InternalLinksTargetsSizeBalancedTreeMethods<TLinksOptions>,
         typename TExternalSourcesTreeMethods = ExternalLinksSourcesSizeBalancedTreeMethods<TLinksOptions>,
-        typename TExternalTargetsTreeMethods = ExternalLinksSourcesSizeBalancedTreeMethods<TLinksOptions>,
+        typename TExternalTargetsTreeMethods = ExternalLinksTargetsSizeBalancedTreeMethods<TLinksOptions>,
         typename TUnusedLinksListMethods = UnusedLinksListMethods<TLinksOptions>,
         typename... TBase>
     struct SplitMemoryLinks : public SplitMemoryLinksBase<SplitMemoryLinks<TLinksOptions, TMemory, TInternalSourcesTreeMethods, TInternalLinksSourcesLinkedListMethods, TInternalTargetsTreeMethods, TExternalSourcesTreeMethods, TExternalTargetsTreeMethods, TUnusedLinksListMethods, TBase...>, TLinksOptions, TMemory, TInternalSourcesTreeMethods, TInternalLinksSourcesLinkedListMethods, TInternalTargetsTreeMethods, TExternalSourcesTreeMethods, TExternalTargetsTreeMethods, TUnusedLinksListMethods, TBase...>
