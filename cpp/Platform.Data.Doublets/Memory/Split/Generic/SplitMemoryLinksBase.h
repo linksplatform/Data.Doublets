@@ -41,22 +41,22 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
     public:
         const RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType linkIndex) const
         {
-            return *reinterpret_cast<RawLinkDataPart<LinkAddressType>*>(_linksDataParts + (LinkDataPartSizeInBytes * linkIndex));
+            return *(reinterpret_cast<RawLinkDataPart<LinkAddressType>*>(_linksDataParts + (LinkDataPartSizeInBytes * linkIndex)));
         }
 
         RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType linkIndex)
         {
-            return *reinterpret_cast<RawLinkDataPart<LinkAddressType>*>(_linksDataParts + (LinkDataPartSizeInBytes * linkIndex));
+            return *(reinterpret_cast<RawLinkDataPart<LinkAddressType>*>(_linksDataParts + (LinkDataPartSizeInBytes * linkIndex)));
         }
 
         const RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType linkIndex) const
         {
-            return *reinterpret_cast<RawLinkIndexPart<LinkAddressType>*>(_linksIndexParts + (LinkIndexPartSizeInBytes * linkIndex));
+            return *(reinterpret_cast<RawLinkIndexPart<LinkAddressType>*>(_linksIndexParts + (LinkIndexPartSizeInBytes * linkIndex)));
         }
 
         RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType linkIndex)
         {
-            return *reinterpret_cast<RawLinkIndexPart<LinkAddressType>*>(_linksIndexParts + (LinkIndexPartSizeInBytes * linkIndex));
+            return *(reinterpret_cast<RawLinkIndexPart<LinkAddressType>*>(_linksIndexParts + (LinkIndexPartSizeInBytes * linkIndex)));
         }
 
     public:
