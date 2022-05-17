@@ -9,9 +9,9 @@
         using base = ExternalLinksSizeBalancedTreeMethodsBase<ExternalLinksTargetsSizeBalancedTreeMethods<TLinksOptions>, TLinksOptions>;
         public: ExternalLinksTargetsSizeBalancedTreeMethods(std::byte* linksDataParts, std::byte* linksIndexParts, std::byte* header) : base(linksDataParts, linksIndexParts, header) { }
 
-        public: LinkAddressType* GetLeftReference(LinkAddressType node)  { return &GetLinkIndexPartReference(node)->LeftAsTarget; }
+        public: LinkAddressType* GetLeftReference(LinkAddressType node)  { return &(this->GetLinkIndexPartReference(node).LeftAsTarget); }
 
-        public: LinkAddressType* GetRightReference(LinkAddressType node)  { return &GetLinkIndexPartReference(node)->RightAsTarget; }
+        public: LinkAddressType* GetRightReference(LinkAddressType node)  { return &(this->GetLinkIndexPartReference(node).RightAsTarget); }
 
         public: LinkAddressType GetLeft(LinkAddressType node)  { return this->GetLinkIndexPartReference(node).LeftAsTarget; }
 
