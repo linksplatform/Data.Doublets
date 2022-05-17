@@ -36,10 +36,10 @@
 
         public: auto& GetLinkReference(LinkAddressType linkAddress) { return *(reinterpret_cast<RawLink<LinkAddressType>*>(Links) + linkAddress); }
 
-        public: Link<LinkAddressType> GetLinkValues(LinkAddressType linkIndex)
+        public: LinkType GetLinkValues(LinkAddressType linkIndex)
         {
             auto& link = GetLinkReference(linkIndex);
-            return Link{linkIndex, link.Source, link.Target};
+            return LinkType{linkIndex, link.Source, link.Target};
         }
 
         public: bool FirstIsToTheLeftOfSecond(LinkAddressType first, LinkAddressType second)
