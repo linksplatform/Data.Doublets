@@ -25,11 +25,13 @@
 #![feature(nonnull_slice_from_raw_parts)]
 #![feature(layout_for_ptr)]
 
-mod data;
+pub mod data;
 pub mod mem;
 pub mod test_extensions;
 pub mod tests;
+pub mod num;
 
 pub(crate) use crate::data::LinksError;
 pub use crate::data::{Doublet, Doublets, Handler, Link, StoppedHandler};
+
 pub type Error<T> = LinksError<T>;

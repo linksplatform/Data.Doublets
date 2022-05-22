@@ -9,3 +9,6 @@ pub use doublets::Doublets;
 pub use error::LinksError;
 pub use handler::{Handler, StoppedHandler};
 pub use link::Link;
+
+#[cfg(feature = "data")]
+pub use data::*;

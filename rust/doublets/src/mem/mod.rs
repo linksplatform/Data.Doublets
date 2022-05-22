@@ -8,3 +8,6 @@ mod ilinks_tree_methods;
 mod links_header;
 pub mod splited;
 pub mod united;
+
+#[cfg(feature = "mem")]
+pub use mem::*;
