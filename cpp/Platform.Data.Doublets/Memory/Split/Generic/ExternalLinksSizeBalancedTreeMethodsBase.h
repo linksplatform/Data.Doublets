@@ -76,25 +76,25 @@
         public: LinkAddressType operator[](LinkAddressType index)
         {
             auto root = GetTreeRoot();
-            if (GreaterOrEqualThan(index, GetSize(root)))
+            if ((index >= GetSize(root)))
             {
                 return 0;
             }
-            while (!EqualToZero(root))
+            while (root != 0)
             {
                 auto left = GetLeftOrDefault(root);
                 auto leftSize = GetSizeOrZero(left);
-                if (LessThan(index, leftSize))
+                if ((index < leftSize))
                 {
                     root = left;
                     continue;
                 }
-                if (AreEqual(index, leftSize))
+                if ((index == leftSize))
                 {
                     return root;
                 }
                 root = GetRightOrDefault(root);
-                index = Subtract(index, Increment(leftSize));
+                index = (index - (leftSize + 1));
             }
             return 0;
 

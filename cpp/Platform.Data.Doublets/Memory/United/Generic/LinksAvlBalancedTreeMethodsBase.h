@@ -112,7 +112,7 @@ namespace Platform::Data::Doublets::Memory::United::Generic
         {
             auto parentSize = this->GetSize(parent);
             auto childSize = this->GetSizeOrZero(possibleChild);
-            return childSize > 0 && this->LessOrEqualThan(childSize, parentSize);
+            return childSize > 0 && (childSize <= parentSize);
         }
 
         public: std::uint8_t GetBalanceValue(TLinkAddress storedValue)
@@ -136,7 +136,7 @@ namespace Platform::Data::Doublets::Memory::United::Generic
         public: TLinkAddress this[TLinkAddress index]
         {
                 auto root = GetTreeRoot();
-                if (GreaterOrEqualThan(index, GetSize(root)))
+                if (index >= GetSize(root))
                 {
                     return 0;
                 }
@@ -144,7 +144,7 @@ namespace Platform::Data::Doublets::Memory::United::Generic
                 {
                     auto left = GetLeftOrDefault(root);
                     auto leftSize = GetSizeOrZero(left);
-                    if (LessThan(index, leftSize))
+                    if (index < leftSize)
                     {
                         root = left;
                         continue;
@@ -154,7 +154,7 @@ namespace Platform::Data::Doublets::Memory::United::Generic
                         return root;
                     }
                     root = GetRightOrDefault(root);
-                    index = Subtract(index, Increment(leftSize));
+                    index = Subtract(index, (leftSize + 1));
                 }
                 return 0;
 
@@ -192,7 +192,7 @@ namespace Platform::Data::Doublets::Memory::United::Generic
             while (root != 0)
             {
                 auto base = this->GetBasePartValue(root);
-                if (this->LessOrEqualThan(base, link))
+                if (base <= link)
                 {
                     root = this->GetRightOrDefault(root);
                 }
@@ -207,7 +207,7 @@ namespace Platform::Data::Doublets::Memory::United::Generic
             while (root != 0)
             {
                 auto base = this->GetBasePartValue(root);
-                if (this->GreaterOrEqualThan(base, link))
+                if (base >= link)
                 {
                     root = this->GetLeftOrDefault(root);
                 }
@@ -232,7 +232,7 @@ namespace Platform::Data::Doublets::Memory::United::Generic
             while (current != 0)
             {
                 auto base = this->GetBasePartValue(current);
-                if (this->GreaterOrEqualThan(base, link))
+                if (base >= link)
                 {
                     if ((base) == link)
                     {

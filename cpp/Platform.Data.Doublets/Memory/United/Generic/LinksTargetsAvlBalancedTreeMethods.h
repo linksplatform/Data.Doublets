@@ -36,7 +36,7 @@
 
         public: TLinkAddress GetBasePartValue(TLinkAddress link) { return this->GetLinkReference(link).Target; }
 
-        public: bool FirstIsToTheLeftOfSecond(TLinkAddress firstSource, TLinkAddress firstTarget, TLinkAddress secondSource, TLinkAddress secondTarget) { return this->LessThan(firstTarget, secondTarget) || (firstTarget == secondTarget && this->LessThan(firstSource, secondSource)); }
+        public: bool FirstIsToTheLeftOfSecond(TLinkAddress firstSource, TLinkAddress firstTarget, TLinkAddress secondSource, TLinkAddress secondTarget) { return (firstTarget < secondTarget) || (firstTarget == secondTarget && (firstSource < secondSource)); }
 
         public: bool FirstIsToTheRightOfSecond(TLinkAddress firstSource, TLinkAddress firstTarget, TLinkAddress secondSource, TLinkAddress secondTarget) { return firstTarget > secondTarget || (firstTarget == secondTarget && firstSource > secondSource); }
 
