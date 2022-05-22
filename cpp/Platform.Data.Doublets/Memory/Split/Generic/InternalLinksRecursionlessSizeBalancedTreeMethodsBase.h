@@ -23,9 +23,9 @@
             Header = header;
         }
 
-        public: LinkAddressType GetTreeRoot()
+        public: LinkAddressType GetTreeRoot(LinkAddressType linkAddress)
             {
-                return this->object().GetTreeRoot();
+                return this->object().GetTreeRoot(linkAddress);
             };
 
         public: LinkAddressType GetBasePartValue(LinkAddressType link)
