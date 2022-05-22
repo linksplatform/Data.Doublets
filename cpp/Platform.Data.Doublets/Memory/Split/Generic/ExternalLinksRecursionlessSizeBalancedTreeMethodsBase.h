@@ -48,9 +48,9 @@
                 return *reinterpret_cast<LinksHeader<LinkAddressType>*>(Header);
             }
 
-        public: RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link) { return RawLinkDataPart<LinkAddressType>(LinksDataParts + (RawLinkDataPart<LinkAddressType>::SizeInBytes * link)); }
+        public: RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link) { return *reinterpret_cast<RawLinkDataPart<LinkAddressType>*>(LinksDataParts + (RawLinkDataPart<LinkAddressType>::SizeInBytes * link)); }
 
-        public: RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType link) { return RawLinkIndexPart<LinkAddressType>(LinksIndexParts + (RawLinkIndexPart<LinkAddressType>::SizeInBytes * link)); }
+        public: RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType link) { return *reinterpret_cast<RawLinkIndexPart<LinkAddressType>*>(LinksIndexParts + (RawLinkIndexPart<LinkAddressType>::SizeInBytes * link)); }
 
         public: auto GetLinkValues(LinkAddressType linkIndex)
         {
