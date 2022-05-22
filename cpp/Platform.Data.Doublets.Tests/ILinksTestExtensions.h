@@ -108,9 +108,9 @@ namespace Platform::Data::Doublets::Tests
         constexpr auto constants = storage.Constants;
         auto _continue = constants.Continue;
         auto any = constants.Any;
-        Hybrid<typename TStorage::LinkAddressType> h106E {106L, true};
-        Hybrid<typename TStorage::LinkAddressType> h107E {107L, true};
-        Hybrid<typename TStorage::LinkAddressType> h108E {108L, true};
+        Hybrid<typename TStorage::LinkAddressType> h106E {106, true};
+        Hybrid<typename TStorage::LinkAddressType> h107E {107, true};
+        Hybrid<typename TStorage::LinkAddressType> h108E {108, true};
         Expects(106L == h106E.AbsoluteValue());
         Expects(107L == h107E.AbsoluteValue());
         Expects(108L == h108E.AbsoluteValue());
