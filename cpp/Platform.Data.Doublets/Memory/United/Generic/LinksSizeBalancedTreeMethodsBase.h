@@ -6,15 +6,14 @@
     struct LinksSizeBalancedTreeMethodsBase
         :
           //public Trees::SizeBalancedTreeMethods<Self, LinkAddressType>,
-          public Trees::RecursionlessSizeBalancedTreeMethods<Self, typename TLinksOptions::LinkAddressType>,
-          public ILinksTreeMethods<TLinksOptions>,
-          public Interfaces::Polymorph<Self>
+          public Trees::RecursionlessSizeBalancedTreeMethods<Self, typename TLinksOptions::LinkAddressType>
+          /* public ILinksTreeMethods<TLinksOptions>, */
     {
-        using OptionsType = TLinksOptions;
-        using LinkAddressType = typename OptionsType::LinkAddressType;
-        using LinkType = typename OptionsType::LinkType;
-        using ReadHandlerType = typename OptionsType::ReadHandlerType;
-        static constexpr LinksConstants<LinkAddressType> Constants = OptionsType::Constants;
+        using LinksOptionsType = TLinksOptions;
+        using LinkAddressType = typename LinksOptionsType::LinkAddressType;
+        using LinkType = typename LinksOptionsType::LinkType;
+        using ReadHandlerType = typename LinksOptionsType::ReadHandlerType;
+        static constexpr LinksConstants<LinkAddressType> Constants = LinksOptionsType::Constants;
 
 
         public: using methods = Trees::RecursionlessSizeBalancedTreeMethods<Self, LinkAddressType>;
@@ -37,10 +36,10 @@
 
         public: auto& GetLinkReference(LinkAddressType linkAddress) { return *(reinterpret_cast<RawLink<LinkAddressType>*>(Links) + linkAddress); }
 
-        public: Link<LinkAddressType> GetLinkValues(LinkAddressType linkIndex)
+        public: LinkType GetLinkValues(LinkAddressType linkIndex)
         {
             auto& link = GetLinkReference(linkIndex);
-            return Link{linkIndex, link.Source, link.Target};
+            return LinkType{linkIndex, link.Source, link.Target};
         }
 
         public: bool FirstIsToTheLeftOfSecond(LinkAddressType first, LinkAddressType second)

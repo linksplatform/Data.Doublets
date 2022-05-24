@@ -4,7 +4,7 @@
     {
         struct Transition : public IEquatable<Transition>
         {
-            public: inline static const std::int64_t Size = Structure<Transition>.Size;
+            public: inline static const std::uint64_t Size = Structure<Transition>.Size;
 
             public: std::uint64_t TransactionId = 0;
             public: Link<std::uint64_t> Before;
@@ -23,9 +23,9 @@
 
             public: Transition(UniqueTimestampFactory uniqueTimestampFactory, std::uint64_t transactionId) : this(uniqueTimestampFactory, transactionId, 0, 0) { }
 
-            public: override std::string ToString() { return std::string("").append(Platform::Converters::To<std::string>(Timestamp)).append(1, ' ').append(Platform::Converters::To<std::string>(TransactionId)).append(": ").append(Platform::Converters::To<std::string>(Before)).append(" => ").append(Platform::Converters::To<std::string>(After)).append(""); }
+            public: std::string ToString() { return std::string("").append(Platform::Converters::To<std::string>(Timestamp)).append(1, ' ').append(Platform::Converters::To<std::string>(TransactionId)).append(": ").append(Platform::Converters::To<std::string>(Before)).append(" => ").append(Platform::Converters::To<std::string>(After)).append(""); }
 
-            public: override std::int32_t GetHashCode() { return Platform::Hashing::Hash(TransactionId, Before, After, Timestamp); }
+            public: std::int32_t GetHashCode() { return Platform::Hashing::Hash(TransactionId, Before, After, Timestamp); }
 
             public: bool operator ==(const Transition &other) const { return TransactionId == other.TransactionId && Before == other.Before && After == other.After && Timestamp == other.Timestamp; }
         }
@@ -93,7 +93,7 @@
                 }
             }
 
-            protected: void Dispose(bool manual, bool wasDisposed) override
+            public: void Dispose(bool manual, bool wasDisposed)
             {
                 if (!wasDisposed && _layer != nullptr && !_layer.Disposable.IsDisposed)
                 {
@@ -150,7 +150,7 @@
 
         public: IList<std::uint64_t> GetLinkValue(std::uint64_t link) { return _links.GetLink(link); }
 
-        public: std::uint64_t Create(IList<std::uint64_t> &restriction) override
+        public: std::uint64_t Create(IList<std::uint64_t> &restriction)
         {
             auto createdLinkIndex = _links.Create();
             auto createdLink = Link<std::uint64_t>(_links.GetLink(createdLinkIndex));
@@ -158,7 +158,7 @@
             return createdLinkIndex;
         }
 
-        public: std::uint64_t Update(IList<std::uint64_t> &restriction, IList<std::uint64_t> &substitution) override
+        public: std::uint64_t Update(IList<std::uint64_t> &restriction, IList<std::uint64_t> &substitution)
         {
             auto linkIndex = restriction[_constants.IndexPart];
             auto beforeLink = Link<std::uint64_t>(_links.GetLink(linkIndex));
@@ -168,7 +168,7 @@
             return linkIndex;
         }
 
-        public: void Delete(IList<std::uint64_t> &restriction) override
+        public: void Delete(IList<std::uint64_t> &restriction)
         {
             auto link = restriction[_constants.IndexPart];
             auto deletedLink = Link<std::uint64_t>(_links.GetLink(link));
@@ -260,7 +260,7 @@
             }
         }
 
-        protected: void Dispose(bool manual, bool wasDisposed) override
+        public: void Dispose(bool manual, bool wasDisposed)
         {
             if (!wasDisposed)
             {

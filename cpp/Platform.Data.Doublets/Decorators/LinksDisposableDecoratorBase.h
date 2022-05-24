@@ -7,21 +7,21 @@
         {
             public: DisposableWithMultipleCallsAllowed(std::function<Disposal> disposal) : base(disposal) { }
 
-            protected: override bool AllowMultipleDisposeCalls
+            public: bool AllowMultipleDisposeCalls
             {
                 get => true;
             }
         }
 
-        protected: DisposableWithMultipleCallsAllowed Disposable = 0;
+        public: DisposableWithMultipleCallsAllowed Disposable = 0;
 
-        protected: LinksDisposableDecoratorBase(ILinks<TLinkAddress> &storage) : base(storage) { return Disposable = DisposableWithMultipleCallsAllowed(Dispose); }
+        public: LinksDisposableDecoratorBase(ILinks<TLinkAddress> &storage) : base(storage) { return Disposable = DisposableWithMultipleCallsAllowed(Dispose); }
 
         ~LinksDisposableDecoratorBase() { Disposable.Destruct(); }
 
         public: void Dispose() { Disposable.Dispose(); }
 
-        protected: virtual void Dispose(bool manual, bool wasDisposed)
+        public: virtual void Dispose(bool manual, bool wasDisposed)
         {
             if (!wasDisposed)
             {

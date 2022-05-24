@@ -1,35 +1,57 @@
-﻿
-
-using static System::Runtime::CompilerServices::Unsafe;
-
-namespace Platform::Data::Doublets::Memory::Split::Generic
+﻿namespace Platform::Data::Doublets::Memory::Split::Generic
 {
-    public unsafe class InternalLinksSourcesLinkedListMethods<TLinkAddress> : public RelativeCircularDoublyLinkedListMethods<TLinkAddress>
+    using namespace Platform::Collections::Methods::Lists;
+    template<typename TLinksOptions>
+    class InternalLinksSourcesLinkedListMethods : public RelativeCircularDoublyLinkedListMethods<InternalLinksSourcesLinkedListMethods<TLinksOptions>, typename TLinksOptions::LinkAddressType>
     {
-        private: static readonly UncheckedConverter<TLinkAddress, std::int64_t> _addressToInt64Converter = UncheckedConverter<TLinkAddress, std::int64_t>.Default;
-        private: readonly std::uint8_t* _linksDataParts;
-        private: readonly std::uint8_t* _linksIndexParts;
-        protected: TLinkAddress Break = 0;
-        protected: TLinkAddress Continue = 0;
+    public: using LinksOptionsType = TLinksOptions;
+                using LinkAddressType = LinksOptionsType::LinkAddressType;
+        using LinkType = LinksOptionsType::LinkType;
+        using WriteHandlerType = LinksOptionsType::WriteHandlerType;
+        using ReadHandlerType = LinksOptionsType::ReadHandlerType;
+        public: static constexpr auto Constants = LinksOptionsType::Constants;
+        private:
+        std::byte* _linksDataParts;
+        std::byte* _linksIndexParts;
+        public:
+        LinkAddressType Break = Constants.Break;
+        LinkAddressType Continue = Constants.Continue;
 
-        public: InternalLinksSourcesLinkedListMethods(LinksConstants<TLinkAddress> constants, std::uint8_t* linksDataParts, std::uint8_t* linksIndexParts)
+        public: InternalLinksSourcesLinkedListMethods(std::byte* linksDataParts, std::byte* linksIndexParts)
         {
             _linksDataParts = linksDataParts;
             _linksIndexParts = linksIndexParts;
-            Break = constants.Break;
-            Continue = constants.Continue;
         }
 
-        protected: virtual ref RawLinkDataPart<TLinkAddress> GetLinkDataPartReference(TLinkAddress link) { return ref AsRef<RawLinkDataPart<TLinkAddress>>(_linksDataParts + (RawLinkDataPart<TLinkAddress>.SizeInBytes * _addressToInt64Converter.Convert(link))); }
-
-        protected: virtual ref RawLinkIndexPart<TLinkAddress> GetLinkIndexPartReference(TLinkAddress link) { return ref AsRef<RawLinkIndexPart<TLinkAddress>>(_linksIndexParts + (RawLinkIndexPart<TLinkAddress>.SizeInBytes * _addressToInt64Converter.Convert(link))); }
-
-        protected: TLinkAddress GetFirst(TLinkAddress head) override { return this->GetLinkIndexPartReference(head)->RootAsSource; }
-
-        protected: TLinkAddress GetLast(TLinkAddress head) override
+        public: const RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link) const
         {
-            auto first = this->GetLinkIndexPartReference(head)->RootAsSource;
-            if (first == 0)
+            return *reinterpret_cast<RawLinkDataPart<LinkAddressType>*>(_linksDataParts + (RawLinkDataPart<LinkAddressType>::SizeInBytes * link));
+        }
+
+    public: RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link)
+        {
+            return *reinterpret_cast<RawLinkDataPart<LinkAddressType>*>(_linksDataParts + (RawLinkDataPart<LinkAddressType>::SizeInBytes * link));
+        }
+
+        public: const RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType link) const
+        { 
+            return *reinterpret_cast<RawLinkIndexPart<LinkAddressType>*>(_linksDataParts + (RawLinkIndexPart<LinkAddressType>::SizeInBytes * link));
+        }
+
+    public: RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType link)
+        {
+            return *reinterpret_cast<RawLinkIndexPart<LinkAddressType>*>(_linksDataParts + (RawLinkIndexPart<LinkAddressType>::SizeInBytes * link));
+        }
+
+        public: LinkAddressType GetFirst(LinkAddressType head)
+        {
+            return this->GetLinkIndexPartReference(head).RootAsSource;
+        }
+
+        public: LinkAddressType GetLast(LinkAddressType head)
+        {
+            auto first = this->GetLinkIndexPartReference(head).RootAsSource;
+            if (0 == first)
             {
                 return first;
             }
@@ -39,51 +61,70 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             }
         }
 
-        protected: TLinkAddress GetPrevious(TLinkAddress element) override { return this->GetLinkIndexPartReference(element)->LeftAsSource; }
+        public: LinkAddressType GetPrevious(LinkAddressType element)
+        {
+             return this->GetLinkIndexPartReference(element).LeftAsSource;
+        }
 
-        protected: TLinkAddress GetNext(TLinkAddress element) override { return this->GetLinkIndexPartReference(element)->RightAsSource; }
+        public: LinkAddressType GetNext(LinkAddressType element)
+        {
+             return this->GetLinkIndexPartReference(element).RightAsSource;
+        }
 
-        protected: TLinkAddress GetSize(TLinkAddress head) override { return this->GetLinkIndexPartReference(head)->SizeAsSource; }
+        public: LinkAddressType GetSize(LinkAddressType head)
+        {
+             return this->GetLinkIndexPartReference(head).SizeAsSource;
+        }
 
-        protected: void SetFirst(TLinkAddress head, TLinkAddress element) override { this->GetLinkIndexPartReference(head)->RootAsSource = element; }
+        public: void SetFirst(LinkAddressType head, LinkAddressType element)
+        {
+             this->GetLinkIndexPartReference(head).RootAsSource = element;
+        }
 
-        protected: void SetLast(TLinkAddress head, TLinkAddress element) override
+        public: void SetLast(LinkAddressType head, LinkAddressType element)
         {
         }
 
-        protected: void SetPrevious(TLinkAddress element, TLinkAddress previous) override { this->GetLinkIndexPartReference(element)->LeftAsSource = previous; }
-
-        protected: void SetNext(TLinkAddress element, TLinkAddress next) override { this->GetLinkIndexPartReference(element)->RightAsSource = next; }
-
-        protected: void SetSize(TLinkAddress head, TLinkAddress size) override { this->GetLinkIndexPartReference(head)->SizeAsSource = size; }
-
-        public: TLinkAddress CountUsages(TLinkAddress head) { return this->GetSize(head); }
-
-        protected: virtual IList<TLinkAddress> GetLinkValues(TLinkAddress linkIndex)
+        public: void SetPrevious(LinkAddressType element, LinkAddressType previous)
         {
-            auto* link = GetLinkDataPartReference(linkIndex);
-            return Link<TLinkAddress>(linkIndex, link.Source, link.Target);
+             this->GetLinkIndexPartReference(element).LeftAsSource = previous;
         }
 
-        public: TLinkAddress EachUsage(TLinkAddress source, Func<IList<TLinkAddress>, TLinkAddress> handler)
+        public: void SetNext(LinkAddressType element, LinkAddressType next)
         {
-            auto continue = Continue;
-            auto break = Break;
+             this->GetLinkIndexPartReference(element).RightAsSource = next;
+        }
+
+        public: void SetSize(LinkAddressType head, LinkAddressType size)
+        {
+             this->GetLinkIndexPartReference(head).SizeAsSource = size;
+        }
+
+        public: LinkAddressType CountUsages(LinkAddressType head) { return this->GetSize(head); }
+
+    public: Interfaces::CArray auto GetLinkValues(LinkAddressType linkIndex)
+        {
+            auto& link = this->GetLinkDataPartReference(linkIndex);
+            return Link{ linkIndex, link.Source, link.Target };
+        }
+
+        public: LinkAddressType EachUsage(LinkAddressType source, const ReadHandlerType& handler)
+        {
             auto current = this->GetFirst(source);
             auto first = current;
             while (current != 0)
             {
-                if (this->handler(this->GetLinkValues(current)) == (break))
+                if (handler(this->GetLinkValues(current)) == (Break))
                 {
-                    return break;
+                    return Break;
                 }
                 current = this->GetNext(current);
                 if (current == first)
                 {
-                    return continue;
+                    return Continue;
                 }
             }
-            return continue;
+            return Continue;
         }
     };
 }

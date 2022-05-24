@@ -6,18 +6,18 @@ namespace Platform::Data::Doublets::Memory::United::Generic
 {
     public unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : public SizedAndThreadedAVLBalancedTreeMethods<TLinkAddress>, ILinksTreeMethods<TLinkAddress>
     {
-        private: static readonly UncheckedConverter<TLinkAddress, std::int64_t> _addressToInt64Converter = UncheckedConverter<TLinkAddress, std::int64_t>.Default;
-        private: static readonly UncheckedConverter<TLinkAddress, std::int32_t> _addressToInt32Converter = UncheckedConverter<TLinkAddress, std::int32_t>.Default;
-        private: static readonly UncheckedConverter<bool, TLinkAddress> _boolToAddressConverter = UncheckedConverter<bool, TLinkAddress>.Default;
-        private: static readonly UncheckedConverter<TLinkAddress, bool> _addressToBoolConverter = UncheckedConverter<TLinkAddress, bool>.Default;
-        private: static readonly UncheckedConverter<std::int32_t, TLinkAddress> _int32ToAddressConverter = UncheckedConverter<std::int32_t, TLinkAddress>.Default;
+        private: static UncheckedConverter<TLinkAddress, std::uint64_t> _addressToInt64Converter = UncheckedConverter<TLinkAddress, std::uint64_t>.Default;
+        private: static UncheckedConverter<TLinkAddress, std::int32_t> _addressToInt32Converter = UncheckedConverter<TLinkAddress, std::int32_t>.Default;
+        private: static UncheckedConverter<bool, TLinkAddress> _boolToAddressConverter = UncheckedConverter<bool, TLinkAddress>.Default;
+        private: static UncheckedConverter<TLinkAddress, bool> _addressToBoolConverter = UncheckedConverter<TLinkAddress, bool>.Default;
+        private: static UncheckedConverter<std::int32_t, TLinkAddress> _int32ToAddressConverter = UncheckedConverter<std::int32_t, TLinkAddress>.Default;
 
-        protected: TLinkAddress Break = 0;
-        protected: TLinkAddress Continue = 0;
-        protected: readonly std::uint8_t* Links;
-        protected: readonly std::uint8_t* Header;
+        public: static constexpr TLinkAddress Break = 0;
+        public: static constexpr TLinkAddress Continue = 0;
+        public: std::byte* Links;
+        public: std::byte* Header;
 
-        protected: LinksAvlBalancedTreeMethodsBase(LinksConstants<TLinkAddress> constants, std::uint8_t* storage, std::uint8_t* header)
+        public: LinksAvlBalancedTreeMethodsBase(LinksConstants<TLinkAddress> constants, std::byte* storage, std::byte* header)
         {
             Links = storage;
             Header = header;
@@ -25,50 +25,65 @@ namespace Platform::Data::Doublets::Memory::United::Generic
             Continue = constants.Continue;
         }
 
-        protected: virtual TLinkAddress GetTreeRoot() = 0;
+        public: TLinkAddress GetTreeRoot()
+                {
+                    return this->object().GetTreeRoot();
+                };
 
-        protected: virtual TLinkAddress GetBasePartValue(TLinkAddress link) = 0;
+        public: TLinkAddress GetBasePartValue(TLinkAddress link)
+                {
+                    return this->object().GetBasePartValue(link);
+                };
 
-        protected: virtual bool FirstIsToTheRightOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget) = 0;
+        public: bool FirstIsToTheRightOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget)
+                {
+                    return this->object().FirstIsToTheRightOfSecond(source, target, rootSource, rootTarget);
+                };
 
-        protected: virtual bool FirstIsToTheLeftOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget) = 0;
+        public: bool FirstIsToTheLeftOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget)
+                {
+                    return this->object().FirstIsToTheLeftOfSecond(source, target, rootSource, rootTarget);
+                };
 
-        protected: virtual ref LinksHeader<TLinkAddress> GetHeaderReference() { return ref AsRef<LinksHeader<TLinkAddress>>(Header); }
-
-        protected: virtual ref RawLink<TLinkAddress> GetLinkReference(TLinkAddress link) { return ref AsRef<RawLink<TLinkAddress>>(Links + (RawLink<TLinkAddress>.SizeInBytes * _addressToInt64Converter.Convert(link))); }
-
-        protected: virtual IList<TLinkAddress> GetLinkValues(TLinkAddress linkIndex)
+        public: auto&& GetHeaderReference() const
         {
-            auto* link = GetLinkReference(linkIndex);
+            return *reinterpret_cast<LinksHeader<LinkAddressType>*>(_header);
+        }
+
+        public: RawLink<TLinkAddress>& GetLinkReference(TLinkAddress link) { *reinterpret_cast<RawLink<TLinkAddress>*>(Links + (RawLink<TLinkAddress>::SizeInBytes * (link))); }
+
+        public: IList<TLinkAddress> GetLinkValues(TLinkAddress linkIndex)
+        {
+            auto& link = GetLinkReference(linkIndex);
             return Link<TLinkAddress>(linkIndex, link.Source, link.Target);
         }
 
-        protected: bool FirstIsToTheLeftOfSecond(TLinkAddress first, TLinkAddress second) override
+        public: bool FirstIsToTheLeftOfSecond(TLinkAddress first, TLinkAddress second)
         {
-            auto* firstLink = this->GetLinkReference(first);
-            auto* secondLink = this->GetLinkReference(second);
+            auto& firstLink = this->GetLinkReference(first);
+            auto& secondLink = this->GetLinkReference(second);
             return this->FirstIsToTheLeftOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
         }
 
-        protected: bool FirstIsToTheRightOfSecond(TLinkAddress first, TLinkAddress second) override
+        public: bool FirstIsToTheRightOfSecond(TLinkAddress first, TLinkAddress second)
         {
-            auto* firstLink = this->GetLinkReference(first);
-            auto* secondLink = this->GetLinkReference(second);
+            auto& firstLink = this->GetLinkReference(first);
+            auto& secondLink = this->GetLinkReference(second);
             return this->FirstIsToTheRightOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
         }
 
-        protected: virtual TLinkAddress GetSizeValue(TLinkAddress value) { return Bit<TLinkAddress>.PartialRead(value, 5, -5); }
+        public: TLinkAddress GetSizeValue(TLinkAddress value) { return Bit<TLinkAddress>.PartialRead(value, 5, -5); }
 
-        protected: virtual void SetSizeValue(TLinkAddress* storedValue, TLinkAddress size) { return storedValue = Bit<TLinkAddress>.PartialWrite(storedValue, size, 5, -5); }
+        public: void SetSizeValue(TLinkAddress* storedValue, TLinkAddress size) { return storedValue = Bit<TLinkAddress>.PartialWrite(storedValue, size, 5, -5); }
 
-        protected: virtual bool GetLeftIsChildValue(TLinkAddress value)
+        public: bool GetLeftIsChildValue(TLinkAddress value)
         {
             {
                 return _addressToBoolConverter.Convert(Bit<TLinkAddress>.PartialRead(value, 4, 1));
             }
         }
 
-        protected: virtual void SetLeftIsChildValue(TLinkAddress* storedValue, bool value)
+        public: void SetLeftIsChildValue(TLinkAddress* storedValue, bool value)
         {
             {
                 auto previousValue = *storedValue;
@@ -77,14 +92,14 @@ namespace Platform::Data::Doublets::Memory::United::Generic
             }
         }
 
-        protected: virtual bool GetRightIsChildValue(TLinkAddress value)
+        public: bool GetRightIsChildValue(TLinkAddress value)
         {
             {
                 return _addressToBoolConverter.Convert(Bit<TLinkAddress>.PartialRead(value, 3, 1));
             }
         }
 
-        protected: virtual void SetRightIsChildValue(TLinkAddress* storedValue, bool value)
+        public: void SetRightIsChildValue(TLinkAddress* storedValue, bool value)
         {
             {
                 auto previousValue = *storedValue;
@@ -93,23 +108,23 @@ namespace Platform::Data::Doublets::Memory::United::Generic
             }
         }
 
-        protected: bool IsChild(TLinkAddress parent, TLinkAddress possibleChild)
+        public: bool IsChild(TLinkAddress parent, TLinkAddress possibleChild)
         {
             auto parentSize = this->GetSize(parent);
             auto childSize = this->GetSizeOrZero(possibleChild);
-            return childSize > 0 && this->LessOrEqualThan(childSize, parentSize);
+            return childSize > 0 && (childSize <= parentSize);
         }
 
-        protected: virtual std::int8_t GetBalanceValue(TLinkAddress storedValue)
+        public: std::uint8_t GetBalanceValue(TLinkAddress storedValue)
         {
             {
                 auto value = _addressToInt32Converter.Convert(Bit<TLinkAddress>.PartialRead(storedValue, 0, 3));
                 value |= 0xF8 * ((value & 4) >> 2);
-                return (std::int8_t)value;
+                return (std::uint8_t)value;
             }
         }
 
-        protected: virtual void SetBalanceValue(TLinkAddress* storedValue, std::int8_t value)
+        public: void SetBalanceValue(TLinkAddress* storedValue, std::uint8_t value)
         {
             {
                 auto packagedValue = _int32ToAddressConverter.Convert((std::uint8_t)value >> 5 & 4 | value & 3);
@@ -120,10 +135,8 @@ namespace Platform::Data::Doublets::Memory::United::Generic
 
         public: TLinkAddress this[TLinkAddress index]
         {
-            get
-            {
                 auto root = GetTreeRoot();
-                if (GreaterOrEqualThan(index, GetSize(root)))
+                if (index >= GetSize(root))
                 {
                     return 0;
                 }
@@ -131,7 +144,7 @@ namespace Platform::Data::Doublets::Memory::United::Generic
                 {
                     auto left = GetLeftOrDefault(root);
                     auto leftSize = GetSizeOrZero(left);
-                    if (LessThan(index, leftSize))
+                    if (index < leftSize)
                     {
                         root = left;
                         continue;
@@ -141,10 +154,10 @@ namespace Platform::Data::Doublets::Memory::United::Generic
                         return root;
                     }
                     root = GetRightOrDefault(root);
-                    index = Subtract(index, Increment(leftSize));
+                    index = Subtract(index, (leftSize + 1));
                 }
                 return 0;
-            }
+
         }
 
         public: TLinkAddress Search(TLinkAddress source, TLinkAddress target)
@@ -152,7 +165,7 @@ namespace Platform::Data::Doublets::Memory::United::Generic
             auto root = this->GetTreeRoot();
             while (root != 0)
             {
-                auto* rootLink = this->GetLinkReference(root);
+                auto& rootLink = this->GetLinkReference(root);
                 auto rootSource = rootLink.Source;
                 auto rootTarget = rootLink.Target;
                 if (this->FirstIsToTheLeftOfSecond(source, target, rootSource, rootTarget))
@@ -179,7 +192,7 @@ namespace Platform::Data::Doublets::Memory::United::Generic
             while (root != 0)
             {
                 auto base = this->GetBasePartValue(root);
-                if (this->LessOrEqualThan(base, link))
+                if (base <= link)
                 {
                     root = this->GetRightOrDefault(root);
                 }
@@ -194,7 +207,7 @@ namespace Platform::Data::Doublets::Memory::United::Generic
             while (root != 0)
             {
                 auto base = this->GetBasePartValue(root);
-                if (this->GreaterOrEqualThan(base, link))
+                if (base >= link)
                 {
                     root = this->GetLeftOrDefault(root);
                 }
@@ -219,7 +232,7 @@ namespace Platform::Data::Doublets::Memory::United::Generic
             while (current != 0)
             {
                 auto base = this->GetBasePartValue(current);
-                if (this->GreaterOrEqualThan(base, link))
+                if (base >= link)
                 {
                     if ((base) == link)
                     {
@@ -237,7 +250,7 @@ namespace Platform::Data::Doublets::Memory::United::Generic
                 current = first;
                 while (true)
                 {
-                    if (this->handler(this->GetLinkValues(current)) == Break)
+                    if (handler(this->GetLinkValues(current)) == Break)
                     {
                         return Break;
                     }

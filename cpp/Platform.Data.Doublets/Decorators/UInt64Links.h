@@ -4,9 +4,9 @@
     {
         public: UInt64Links(ILinks<std::uint64_t> &storage) : base(storage) { }
 
-        public: std::uint64_t Create(IList<std::uint64_t> &restriction) override { return this->decorated().CreatePoint(); }
+        public: std::uint64_t Create(IList<std::uint64_t> &restriction) { return this->decorated().CreatePoint(); }
 
-        public: std::uint64_t Update(IList<std::uint64_t> &restriction, IList<std::uint64_t> &substitution) override
+        public: std::uint64_t Update(IList<std::uint64_t> &restriction, IList<std::uint64_t> &substitution)
         {
             auto constants = _constants;
             auto indexPartConstant = constants.IndexPart;
@@ -38,7 +38,7 @@
             }
         }
 
-        public: void Delete(IList<std::uint64_t> &restriction) override
+        public: void Delete(IList<std::uint64_t> &restriction)
         {
             auto linkIndex = restriction[_constants.IndexPart];
             storage.EnforceResetValues(linkIndex);

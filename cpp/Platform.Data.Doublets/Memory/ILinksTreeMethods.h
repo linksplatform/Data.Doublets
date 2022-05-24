@@ -3,18 +3,34 @@
     template<typename TLinksOptions>
     struct ILinksTreeMethods
     {
-        using OptionsType = TLinksOptions;
-        using LinkAddressType = OptionsType::LinkAddressType;
-        using LinkType = OptionsType::LinkType;
-        using ReadHandlerType = OptionsType::ReadHandlerType;
-        virtual LinkAddressType CountUsages(LinkAddressType root) = 0;
+        using LinksOptionsType = TLinksOptions;
+        using LinkAddressType = typename LinksOptionsType::LinkAddressType;
+        using LinkType = typename LinksOptionsType::LinkType;
+        using ReadHandlerType = typename LinksOptionsType::ReadHandlerType;
 
-        virtual LinkAddressType Search(LinkAddressType source, LinkAddressType target) = 0;
+        LinkAddressType CountUsages(LinkAddressType root)
+            {
+                return this->object().CountUsages(root);
+            };
 
-        virtual LinkAddressType EachUsage(LinkAddressType root, const ReadHandlerType& handler) = 0;
+        LinkAddressType Search(LinkAddressType source, LinkAddressType target)
+                {
+                    return this->object().Search(source, target);
+                };
 
-        virtual void Detach(LinkAddressType& root, LinkAddressType linkIndex) = 0;
+        LinkAddressType EachUsage(LinkAddressType root, const ReadHandlerType& handler)
+                    {
+                        return this->object().EachUsage(root, handler);
+                    };
 
-        virtual void Attach(LinkAddressType& root, LinkAddressType linkIndex) = 0;
+        void Detach(LinkAddressType& root, LinkAddressType linkIndex)
+                        {
+                            this->object().Detach(root, linkIndex);
+                        };
+
+        void Attach(LinkAddressType& root, LinkAddressType linkIndex)
+                            {
+                                this->object().Attach(root, linkIndex);
+                            };
     };
 }
