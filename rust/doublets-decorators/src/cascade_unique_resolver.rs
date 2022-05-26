@@ -2,8 +2,8 @@ use std::borrow::BorrowMut;
 use std::marker::PhantomData;
 use std::ops::Try;
 
-use data::{LinksConstants, ToQuery};
-use num::LinkType;
+use doublets::data::{LinksConstants, ToQuery};
+use doublets::num::LinkType;
 
 use doublets::{Doublets, Error, Link};
 

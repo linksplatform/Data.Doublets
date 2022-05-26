@@ -1,5 +1,5 @@
+use doublets::num::LinkType;
 use doublets::LinksConstants;
-use num::LinkType;
 
 use crate::ILinks;
 

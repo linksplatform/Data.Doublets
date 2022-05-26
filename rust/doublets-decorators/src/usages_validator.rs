@@ -3,9 +3,9 @@ use std::default::default;
 use std::marker::PhantomData;
 use std::ops::Try;
 
-use data::LinksConstants;
-use data::ToQuery;
-use num::LinkType;
+use doublets::data::LinksConstants;
+use doublets::data::ToQuery;
+use doublets::num::LinkType;
 
 use doublets::{Doublets, Error, Link};
 
