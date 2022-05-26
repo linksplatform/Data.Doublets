@@ -1,44 +1,64 @@
-﻿
-
-using static System::Runtime::CompilerServices::Unsafe;
-
-namespace Platform::Data::Doublets::Memory::Split::Generic
+﻿namespace Platform::Data::Doublets::Memory::Split::Generic
 {
-    public unsafe class UnusedLinksListMethods<TLinkAddress> : public AbsoluteCircularDoublyLinkedListMethods<TLinkAddress>, ILinksListMethods<TLinkAddress>
+    using namespace Platform::Collections::Methods::Lists;
+    template<typename TLinksOptions>
+    class UnusedLinksListMethods : public  AbsoluteCircularDoublyLinkedListMethods<UnusedLinksListMethods<TLinksOptions>, typename TLinksOptions::LinkAddressType> /*, ILinksListMethods<typename TLinksOptions::LinkAddressType> */
     {
-        private: static readonly UncheckedConverter<TLinkAddress, std::int64_t> _addressToInt64Converter = UncheckedConverter<TLinkAddress, std::int64_t>.Default;
+    public:
+        using LinksOptionsType = TLinksOptions;
+        using LinkAddressType = LinksOptionsType::LinkAddressType;
+        using LinkType = LinksOptionsType::LinkType;
+        using WriteHandlerType = LinksOptionsType::WriteHandlerType;
+        using ReadHandlerType = LinksOptionsType::ReadHandlerType;
+        using base = AbsoluteCircularDoublyLinkedListMethods<UnusedLinksListMethods<TLinksOptions>, typename TLinksOptions::LinkAddressType>;
+    public: static constexpr auto Constants = LinksOptionsType::Constants;
+        private: std::byte* _storage;
+        private: std::byte* _header;
 
-        private: readonly std::uint8_t* _links;
-        private: readonly std::uint8_t* _header;
-
-        public: UnusedLinksListMethods(std::uint8_t* storage, std::uint8_t* header)
+        public: UnusedLinksListMethods(std::byte* storage, std::byte* header)
         {
-            _links = storage;
+            _storage = storage;
             _header = header;
         }
 
-        protected: virtual ref LinksHeader<TLinkAddress> GetHeaderReference() { return ref AsRef<LinksHeader<TLinkAddress>>(_header); }
+    public: const LinksHeader<LinkAddressType>& GetHeaderReference() const
+        {
+            return *reinterpret_cast<LinksHeader<LinkAddressType>*>(_header);
+        }
 
-        protected: virtual ref RawLinkDataPart<TLinkAddress> GetLinkDataPartReference(TLinkAddress link) { return ref AsRef<RawLinkDataPart<TLinkAddress>>(_links + (RawLinkDataPart<TLinkAddress>.SizeInBytes * _addressToInt64Converter.Convert(link))); }
+        public: LinksHeader<LinkAddressType>& GetHeaderReference()
+            {
+                return *reinterpret_cast<LinksHeader<LinkAddressType>*>(_header);
+            }
 
-        protected: override TLinkAddress GetFirst() { return GetHeaderReference().FirstFreeLink; }
+        public: const RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link) const
+            {
+                return *reinterpret_cast<RawLinkDataPart<LinkAddressType>*>(_storage + (RawLinkDataPart<LinkAddressType>::SizeInBytes * (link)));
+            }
 
-        protected: override TLinkAddress GetLast() { return GetHeaderReference().LastFreeLink; }
+        public: RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link)
+            {
+                return *reinterpret_cast<RawLinkDataPart<LinkAddressType>*>(_storage + (RawLinkDataPart<LinkAddressType>::SizeInBytes * (link)));
+            }
 
-        protected: TLinkAddress GetPrevious(TLinkAddress element) override { return this->GetLinkDataPartReference(element)->Source; }
+        public: LinkAddressType GetFirst() { return this->GetHeaderReference().FirstFreeLink; }
 
-        protected: TLinkAddress GetNext(TLinkAddress element) override { return this->GetLinkDataPartReference(element)->Target; }
+        public: LinkAddressType GetLast() { return this->GetHeaderReference().LastFreeLink; }
 
-        protected: override TLinkAddress GetSize() { return GetHeaderReference().FreeLinks; }
+        public: LinkAddressType GetPrevious(LinkAddressType element) { return this->GetLinkDataPartReference(element).Source; }
 
-        protected: void SetFirst(TLinkAddress element) override { this->GetHeaderReference().FirstFreeLink = element; }
+        public: LinkAddressType GetNext(LinkAddressType element) { return this->GetLinkDataPartReference(element).Target; }
 
-        protected: void SetLast(TLinkAddress element) override { this->GetHeaderReference().LastFreeLink = element; }
+        public: LinkAddressType GetSize() { return this->GetHeaderReference().FreeLinks; }
 
-        protected: void SetPrevious(TLinkAddress element, TLinkAddress previous) override { this->GetLinkDataPartReference(element)->Source = previous; }
+        public: void SetFirst(LinkAddressType element) { this->GetHeaderReference().FirstFreeLink = element; }
 
-        protected: void SetNext(TLinkAddress element, TLinkAddress next) override { this->GetLinkDataPartReference(element)->Target = next; }
+        public: void SetLast(LinkAddressType element) { this->GetHeaderReference().LastFreeLink = element; }
 
-        protected: void SetSize(TLinkAddress size) override { this->GetHeaderReference().FreeLinks = size; }
+        public: void SetPrevious(LinkAddressType element, LinkAddressType previous) { this->GetLinkDataPartReference(element).Source = previous; }
+
+        public: void SetNext(LinkAddressType element, LinkAddressType next) { this->GetLinkDataPartReference(element).Target = next; }
+
+        public: void SetSize(LinkAddressType size) { this->GetHeaderReference().FreeLinks = size; }
     };
 }

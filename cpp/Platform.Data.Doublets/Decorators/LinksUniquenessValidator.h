@@ -5,7 +5,7 @@
     {
         public: LinksUniquenessValidator(ILinks<TLinkAddress> &storage) : DecoratorBase(storage) { }
 
-        public: TLinkAddress Update(const  LinkType& restriction, const LinkType& substitution) override
+        public: TLinkAddress Update(const  LinkType& restriction, const LinkType& substitution)
         {
             auto constants = _constants;
             storage.EnsureDoesNotExists(substitution[constants.SourcePart], substitution[constants.TargetPart]);

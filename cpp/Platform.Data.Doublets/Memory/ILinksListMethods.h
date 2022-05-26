@@ -3,8 +3,14 @@
     template<typename TLinkAddress>
     struct ILinksListMethods
     {
-        virtual void Detach(TLinkAddress freeLink) = 0;
+        void Detach(TLinkAddress freeLink)
+            {
+                return this->object().Detach(freeLink);
+            };
 
-        virtual void AttachAsFirst(TLinkAddress link) = 0;
+        void AttachAsFirst(TLinkAddress link)
+                {
+                    return this->object().AttachAsFirst(link);
+                };
     };
 }

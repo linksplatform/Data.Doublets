@@ -23,8 +23,6 @@
 #include "LinksOptions.h"
 //#include "ILinks.h"
 
-#include "ILinksExtensions.h"
-
 #include "Memory/LinksHeader.h"
 #include "Memory/IndexTreeType.h"
 #include "Memory/ILinksListMethods.h"
@@ -40,6 +38,28 @@
 #include "Memory/United/Generic/UnitedMemoryLinks.h"
 #include "Ffi/LinksBase.h"
 #include "Ffi/Links.h"
+
+
+#include "Memory/Split/RawLinkDataPart.h"
+#include "Memory/Split/RawLinkIndexPart.h"
+#include "Memory/Split/Generic/ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.h"
+#include "Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.h"
+#include "Memory/Split/Generic/ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods.h"
+#include "Memory/Split/Generic/ExternalLinksSourcesSizeBalancedTreeMethods.h"
+#include "Memory/Split/Generic/ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods.h"
+#include "Memory/Split/Generic/ExternalLinksTargetsSizeBalancedTreeMethods.h"
+#include "Memory/Split/Generic/InternalLinksRecursionlessSizeBalancedTreeMethodsBase.h"
+#include "Memory/Split/Generic/InternalLinksSizeBalancedTreeMethodsBase.h"
+#include "Memory/Split/Generic/InternalLinksSourcesLinkedListMethods.h"
+#include "Memory/Split/Generic/InternalLinksSourcesRecursionlessSizeBalancedTreeMethods.h"
+#include "Memory/Split/Generic/InternalLinksSourcesSizeBalancedTreeMethods.h"
+#include "Memory/Split/Generic/InternalLinksTargetsRecursionlessSizeBalancedTreeMethods.h"
+#include "Memory/Split/Generic/InternalLinksTargetsSizeBalancedTreeMethods.h"
+#include "Memory/Split/Generic/UnusedLinksListMethods.h"
+#include "Memory/Split/Generic/SplitMemoryLinksBase.h"
+#include "Memory/Split/Generic/SplitMemoryLinks.h"
+
+#include "ILinksExtensions.h"
 
 #include "Decorators/LinksUniquenessResolver.h"
 #include "Decorators/LinksCascadeUniquenessAndUsagesResolver.h"

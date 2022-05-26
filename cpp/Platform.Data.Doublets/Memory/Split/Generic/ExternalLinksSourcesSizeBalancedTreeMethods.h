@@ -1,36 +1,47 @@
 ﻿namespace Platform::Data::Doublets::Memory::Split::Generic
 {
-    public unsafe class ExternalLinksSourcesSizeBalancedTreeMethods<TLinkAddress> : public ExternalLinksSizeBalancedTreeMethodsBase<TLinkAddress>
+    template<typename TLinksOptions>
+    class ExternalLinksSourcesSizeBalancedTreeMethods : public ExternalLinksSizeBalancedTreeMethodsBase<ExternalLinksSourcesSizeBalancedTreeMethods<TLinksOptions>, TLinksOptions>
     {
-        public: ExternalLinksSourcesSizeBalancedTreeMethods(LinksConstants<TLinkAddress> constants, std::uint8_t* linksDataParts, std::uint8_t* linksIndexParts, std::uint8_t* header) : base(constants, linksDataParts, linksIndexParts, header) { }
+    public:
+        using base = ExternalLinksSizeBalancedTreeMethodsBase<ExternalLinksSourcesSizeBalancedTreeMethods<TLinksOptions>, TLinksOptions>;
+        using LinksOptionsType = TLinksOptions;
+                using LinkAddressType = LinksOptionsType::LinkAddressType;
+        using LinkType = LinksOptionsType::LinkType;
+        using WriteHandlerType = LinksOptionsType::WriteHandlerType;
+        using ReadHandlerType = LinksOptionsType::ReadHandlerType;
+        static constexpr auto Constants = LinksOptionsType::Constants;
+        public: ExternalLinksSourcesSizeBalancedTreeMethods(std::byte* linksDataParts, std::byte* linksIndexParts, std::byte* header) : base(linksDataParts, linksIndexParts, header) { }
 
-        protected: TLinkAddress* GetLeftReference(TLinkAddress node) override { return &GetLinkIndexPartReference(node)->LeftAsSource; }
+        public: LinkAddressType* GetLeftReference(LinkAddressType node)  { return &(this->GetLinkIndexPartReference(node).LeftAsSource); }
 
-        protected: TLinkAddress* GetRightReference(TLinkAddress node) override { return &GetLinkIndexPartReference(node)->RightAsSource; }
+        public: LinkAddressType* GetRightReference(LinkAddressType node)  { return &(this->GetLinkIndexPartReference(node).RightAsSource); }
 
-        protected: TLinkAddress GetLeft(TLinkAddress node) override { return this->GetLinkIndexPartReference(node)->LeftAsSource; }
+        public: LinkAddressType GetLeft(LinkAddressType node)  { return this->GetLinkIndexPartReference(node).LeftAsSource; }
 
-        protected: TLinkAddress GetRight(TLinkAddress node) override { return this->GetLinkIndexPartReference(node)->RightAsSource; }
+        public: LinkAddressType GetRight(LinkAddressType node)  { return this->GetLinkIndexPartReference(node).RightAsSource; }
 
-        protected: void SetLeft(TLinkAddress node, TLinkAddress left) override { this->GetLinkIndexPartReference(node)->LeftAsSource = left; }
+        public: void SetLeft(LinkAddressType node, LinkAddressType left)  { this->GetLinkIndexPartReference(node).LeftAsSource = left; }
 
-        protected: void SetRight(TLinkAddress node, TLinkAddress right) override { this->GetLinkIndexPartReference(node)->RightAsSource = right; }
+        public: void SetRight(LinkAddressType node, LinkAddressType right)  { this->GetLinkIndexPartReference(node).RightAsSource = right; }
 
-        protected: TLinkAddress GetSize(TLinkAddress node) override { return this->GetLinkIndexPartReference(node)->SizeAsSource; }
+        public: LinkAddressType GetSize(LinkAddressType node)  { return this->GetLinkIndexPartReference(node).SizeAsSource; }
 
-        protected: void SetSize(TLinkAddress node, TLinkAddress size) override { this->GetLinkIndexPartReference(node)->SizeAsSource = size; }
+        public: void SetSize(LinkAddressType node, LinkAddressType size)  { this->GetLinkIndexPartReference(node).SizeAsSource = size; }
 
-        protected: override TLinkAddress GetTreeRoot() { return GetHeaderReference().RootAsSource; }
+        public:  LinkAddressType GetTreeRoot() { return this->GetHeaderReference().RootAsSource; }
 
-        protected: TLinkAddress GetBasePartValue(TLinkAddress link) override { return this->GetLinkDataPartReference(link)->Source; }
+        public: LinkAddressType GetBasePartValue(LinkAddressType link)  { return this->GetLinkDataPartReference(link).Source; }
 
-        protected: bool FirstIsToTheLeftOfSecond(TLinkAddress firstSource, TLinkAddress firstTarget, TLinkAddress secondSource, TLinkAddress secondTarget) override { return this->LessThan(firstSource, secondSource) || (firstSource == secondSource && this->LessThan(firstTarget, secondTarget)); }
+        public: bool FirstIsToTheLeftOfSecond(LinkAddressType firstSource, LinkAddressType firstTarget, LinkAddressType secondSource, LinkAddressType secondTarget)  { return (firstSource < secondSource) || (firstSource == secondSource && (firstTarget < secondTarget)); }
+            using base::FirstIsToTheLeftOfSecond;
 
-        protected: bool FirstIsToTheRightOfSecond(TLinkAddress firstSource, TLinkAddress firstTarget, TLinkAddress secondSource, TLinkAddress secondTarget) override { return firstSource > secondSource || (firstSource == secondSource && firstTarget > secondTarget); }
+        public: bool FirstIsToTheRightOfSecond(LinkAddressType firstSource, LinkAddressType firstTarget, LinkAddressType secondSource, LinkAddressType secondTarget)  { return firstSource > secondSource || (firstSource == secondSource && firstTarget > secondTarget); }
+            using base::FirstIsToTheRightOfSecond;
 
-        protected: void ClearNode(TLinkAddress node) override
+        public: void ClearNode(LinkAddressType node)
         {
-            auto* link = this->GetLinkIndexPartReference(node);
+            auto& link = this->GetLinkIndexPartReference(node);
             link.LeftAsSource = 0;
             link.RightAsSource = 0;
             link.SizeAsSource = 0;

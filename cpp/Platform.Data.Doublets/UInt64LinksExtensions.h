@@ -2,7 +2,7 @@
 {
     class UInt64LinksExtensions
     {
-        public: static readonly LinksConstants<std::uint64_t> Constants = Default<LinksConstants<std::uint64_t>>.Instance;
+        public: static LinksConstants<std::uint64_t> Constants = Default<LinksConstants<std::uint64_t>>.Instance;
 
         public: static bool AnyLinkIsAny(ILinks<std::uint64_t> &storage, params std::uint64_t sequence[])
         {

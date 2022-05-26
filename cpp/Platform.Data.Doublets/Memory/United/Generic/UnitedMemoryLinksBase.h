@@ -15,12 +15,12 @@
     struct UnitedMemoryLinksBase : public Interfaces::Polymorph<TSelf, TBase...>
     {
     public:
-        using OptionsType = TLinkOptions;
-        using LinkAddressType = OptionsType::LinkAddressType;
-        using LinkType = OptionsType::LinkType;
-        using WriteHandlerType = OptionsType::WriteHandlerType;
-        using ReadHandlerType = OptionsType::ReadHandlerType;
-        static constexpr LinksConstants<LinkAddressType> Constants = OptionsType::Constants;
+        using LinksOptionsType = TLinkOptions;
+        using LinkAddressType = LinksOptionsType::LinkAddressType;
+        using LinkType = LinksOptionsType::LinkType;
+        using WriteHandlerType = LinksOptionsType::WriteHandlerType;
+        using ReadHandlerType = LinksOptionsType::ReadHandlerType;
+        static constexpr LinksConstants<LinkAddressType> Constants = LinksOptionsType::Constants;
 
     public:
         static constexpr std::size_t LinkSizeInBytes = sizeof(RawLink<LinkAddressType>);
@@ -32,6 +32,12 @@
     public:
         TMemory _memory;
 
+    private:
+        std::byte* _header;
+
+    private:
+        std::byte* _links;
+
         const std::size_t _memoryReservationStep;
 
         TTargetTreeMethods* _TargetsTreeMethods;
@@ -40,17 +46,43 @@
 
         TUnusedLinks* _UnusedLinksListMethods;
 
+        LinksHeader<LinkAddressType>& GetHeaderReference()
+        {
+            return *reinterpret_cast<LinksHeader<LinkAddressType>*>(_header);
+        }
+
+        const LinksHeader<LinkAddressType>& GetHeaderReference() const
+        {
+            return *reinterpret_cast<LinksHeader<LinkAddressType>*>(_header);
+        }
+
+        const RawLink<LinkAddressType>& GetLinkReference(LinkAddressType linkIndex) const
+        {
+            return *(reinterpret_cast<RawLink<LinkAddressType>*>(_links) + linkIndex);
+        }
+
+        RawLink<LinkAddressType>& GetLinkReference(LinkAddressType linkIndex)
+        {
+            return *(reinterpret_cast<RawLink<LinkAddressType>*>(_links) + linkIndex);
+        }
+
         LinkAddressType GetTotal() const
         {
-            auto& header = GetHeaderReference();
+            auto& header = this->GetHeaderReference();
             return header.AllocatedLinks - header.FreeLinks;
         }
 
     public:
-    protected:
-        UnitedMemoryLinksBase(TMemory&& memory, std::int64_t memoryReservationStep) :
+    public:
+        UnitedMemoryLinksBase(TMemory&& memory) : UnitedMemoryLinksBase(std::move(memory), DefaultLinksSizeStep)
+        {
+
+        }
+
+        UnitedMemoryLinksBase(TMemory&& memory, std::uint64_t memoryReservationStep) :
             _memory(std::move(memory)), _memoryReservationStep(memoryReservationStep)
         {
+            Init(_memory, memoryReservationStep);
         }
 
         void Init(TMemory& memory, std::size_t memoryReservationStep)
@@ -62,7 +94,7 @@
             }
             SetPointers(memory);
 
-            auto& header = GetHeaderReference();
+            auto& header = this->GetHeaderReference();
             memory.UsedCapacity((header.AllocatedLinks * LinkSizeInBytes) + LinkHeaderSizeInBytes);
             header.ReservedLinks = (memory.ReservedCapacity() - LinkHeaderSizeInBytes) / LinkSizeInBytes;
         }
@@ -181,7 +213,7 @@
             auto $break = Constants.Break;
             if (std::ranges::size(restriction) == 0)
             {
-                for (auto link = LinkAddressType {1}; link <= GetHeaderReference().AllocatedLinks; ++link)
+                for (auto link = LinkAddressType {1}; link <= this->GetHeaderReference().AllocatedLinks; ++link)
                 {
                     if (Exists(link) && (handler(GetLinkStruct(link)) == $break))
                     {
@@ -318,7 +350,7 @@
             LinkType before {linkIndex, link.Source, link.Target};
             // TODO: 'ref locals' are not converted by C# to C++ Converter:
             // ORIGINAL LINE: ref var header = ref GetHeaderReference();
-            auto& header = GetHeaderReference();
+            auto& header = this->GetHeaderReference();
             // TODO: 'ref locals' are not converted by C# to C++ Converter:
             // ORIGINAL LINE: ref var firstAsSource = ref header.RootAsSource;
             auto& firstAsSource = header.RootAsSource;
@@ -344,14 +376,14 @@
             {
                 _TargetsTreeMethods->Attach(firstAsTarget, linkIndex);
             }
-            return handler(before, Link{linkIndex, link.Source, link.Target});
+            return handler(before, LinkType{linkIndex, link.Source, link.Target});
         }
 
         // TODO: Возможно нужно будет заполнение нулями, если внешнее API ими не заполняет пространство
     public:
         LinkAddressType Create(auto&& restriction, const WriteHandlerType& handler)
         {
-            auto& header = GetHeaderReference();
+            auto& header = this->GetHeaderReference();
             auto freeLink = header.FirstFreeLink;
             if (freeLink != Constants.Null)
             {
@@ -369,20 +401,20 @@
                 {
                     _memory.ReservedCapacity(_memory.ReservedCapacity() + _memoryReservationStep);
                     SetPointers(_memory);
-                    header = GetHeaderReference();
+                    header = this->GetHeaderReference();
                     header.ReservedLinks = _memory.ReservedCapacity() / LinkSizeInBytes;
                 }
                 ++header.AllocatedLinks;
                 freeLink = header.AllocatedLinks;
                 _memory.UsedCapacity(_memory.UsedCapacity() + LinkSizeInBytes);
             }
-            return handler(Link<LinkAddressType>{0, 0, 0}, Link<LinkAddressType>{freeLink, 0, 0});
+            return handler(LinkType{0, 0, 0}, LinkType{freeLink, 0, 0});
         }
 
     public:
         LinkAddressType Delete(const  LinkType& restriction, const WriteHandlerType& handler)
         {
-            auto& header = GetHeaderReference();
+            auto& header = this->GetHeaderReference();
             auto linkAddress = restriction[Constants.IndexPart];
             auto before = GetLinkStruct(linkAddress);
             if (linkAddress < header.AllocatedLinks)
@@ -403,13 +435,13 @@
                     auto allLinksBeforeAfterAllocatedLinks = All(*this);
                 }
             }
-            return handler(before, Link<LinkAddressType>{});
+            return handler(before, LinkType{});
         }
 
-        Link<LinkAddressType> GetLinkStruct(LinkAddressType linkIndex) const
+        LinkType GetLinkStruct(LinkAddressType linkIndex) const
         {
             auto& link = this->GetLinkReference(linkIndex);
-            return Link{linkIndex, link.Source, link.Target};
+            return LinkType{linkIndex, link.Source, link.Target};
         }
 
         // TODO: Возможно это должно быть событием, вызываемым из IMemory, в том случае, если адрес реально поменялся
@@ -420,19 +452,11 @@
     public:
         void SetPointers(TMemory& memory)
         {
-            this->object().SetPointers(memory);
-        }
-
-    protected:
-        auto&& GetHeaderReference() const
-        {
-            return this->object().GetHeaderReference();
-        }
-
-    protected:
-        auto&& GetLinkReference(std::size_t index) const
-        {
-            return this->object().GetLinkReference(index);
+            _links = static_cast<std::byte*>(memory.Pointer());
+            _header = _links;
+            _SourcesTreeMethods = new TSourceTreeMethods(_links, _header);
+            _TargetsTreeMethods = new TTargetTreeMethods(_links, _header);
+            _UnusedLinksListMethods = new TUnusedLinks(_links, _header);
         }
 
         bool Exists(LinkAddressType linkAddress) const
@@ -441,7 +465,7 @@
             {
                 return false;
             }
-            return (linkAddress >= Constants.InternalReferencesRange.Minimum) && (linkAddress <= GetHeaderReference().AllocatedLinks) && !IsUnusedLink(linkAddress);
+            return (linkAddress >= Constants.InternalReferencesRange.Minimum) && (linkAddress <= this->GetHeaderReference().AllocatedLinks) && !IsUnusedLink(linkAddress);
         }
 
         bool IsUnusedLink(LinkAddressType linkIndex) const

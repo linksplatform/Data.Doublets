@@ -1,85 +1,109 @@
-﻿
-
-using static System::Runtime::CompilerServices::Unsafe;
-
-namespace Platform::Data::Doublets::Memory::Split::Generic
+﻿namespace Platform::Data::Doublets::Memory::Split::Generic
 {
-    public unsafe class InternalLinksSizeBalancedTreeMethodsBase<TLinkAddress> : public SizeBalancedTreeMethods<TLinkAddress>, ILinksTreeMethods<TLinkAddress>
+    template<typename TSelf, typename TLinksOptions>
+    class InternalLinksSizeBalancedTreeMethodsBase : public SizeBalancedTreeMethods<TSelf, typename TLinksOptions::LinkAddressType> /* public ILinksTreeMethods<TLinksOptions>, */
     {
-        private: static readonly UncheckedConverter<TLinkAddress, std::int64_t> _addressToInt64Converter = UncheckedConverter<TLinkAddress, std::int64_t>.Default;
+        using LinksOptionsType = TLinksOptions;
+    public: static constexpr auto Constants = LinksOptionsType::Constants;
+        using LinkAddressType = LinksOptionsType::LinkAddressType;
+        using LinkType = LinksOptionsType::LinkType;
+        using WriteHandlerType = LinksOptionsType::WriteHandlerType;
+        using ReadHandlerType = LinksOptionsType::ReadHandlerType;
+        public: static constexpr LinkAddressType Break = Constants.Break;
+        public: static constexpr LinkAddressType Continue = Constants.Continue;
+        public: std::byte* LinksDataParts;
+        public: std::byte* LinksIndexParts;
+        public: std::byte* Header;
 
-        protected: TLinkAddress Break = 0;
-        protected: TLinkAddress Continue = 0;
-        protected: readonly std::uint8_t* LinksDataParts;
-        protected: readonly std::uint8_t* LinksIndexParts;
-        protected: readonly std::uint8_t* Header;
-
-        protected: InternalLinksSizeBalancedTreeMethodsBase(LinksConstants<TLinkAddress> constants, std::uint8_t* linksDataParts, std::uint8_t* linksIndexParts, std::uint8_t* header)
+        public: InternalLinksSizeBalancedTreeMethodsBase(std::byte* linksDataParts, std::byte* linksIndexParts, std::byte* header)
         {
             LinksDataParts = linksDataParts;
             LinksIndexParts = linksIndexParts;
             Header = header;
-            Break = constants.Break;
-            Continue = constants.Continue;
         }
 
-        protected: virtual TLinkAddress GetTreeRoot(TLinkAddress link) = 0;
-
-        protected: virtual TLinkAddress GetBasePartValue(TLinkAddress link) = 0;
-
-        protected: virtual TLinkAddress GetKeyPartValue(TLinkAddress link) = 0;
-
-        protected: virtual ref RawLinkDataPart<TLinkAddress> GetLinkDataPartReference(TLinkAddress link) { return ref AsRef<RawLinkDataPart<TLinkAddress>>(LinksDataParts + (RawLinkDataPart<TLinkAddress>.SizeInBytes * _addressToInt64Converter.Convert(link))); }
-
-        protected: virtual ref RawLinkIndexPart<TLinkAddress> GetLinkIndexPartReference(TLinkAddress link) { return ref AsRef<RawLinkIndexPart<TLinkAddress>>(LinksIndexParts + (RawLinkIndexPart<TLinkAddress>.SizeInBytes * _addressToInt64Converter.Convert(link))); }
-
-        protected: bool FirstIsToTheLeftOfSecond(TLinkAddress first, TLinkAddress second) override { return this->LessThan(this->GetKeyPartValue(first), this->GetKeyPartValue(second)); }
-
-        protected: bool FirstIsToTheRightOfSecond(TLinkAddress first, TLinkAddress second) override { return this->GetKeyPartValue(first) > this->GetKeyPartValue(second); }
-
-        protected: virtual IList<TLinkAddress> GetLinkValues(TLinkAddress linkIndex)
-        {
-            auto* link = GetLinkDataPartReference(linkIndex);
-            return Link<TLinkAddress>(linkIndex, link.Source, link.Target);
-        }
-
-        public: TLinkAddress this[TLinkAddress link, TLinkAddress index]
-        {
-            get
-            {
-                auto root = GetTreeRoot(*link);
-                if (GreaterOrEqualThan(index, GetSize(root)))
+        public: LinkAddressType GetTreeRoot(LinkAddressType link)
                 {
-                    return 0;
-                }
-                while (!EqualToZero(root))
+                    return this->object().GetTreeRoot(link);
+                };
+
+        public: LinkAddressType GetBasePartValue(LinkAddressType link)
                 {
-                    auto left = GetLeftOrDefault(root);
-                    auto leftSize = GetSizeOrZero(left);
-                    if (LessThan(index, leftSize))
-                    {
-                        root = left;
-                        continue;
-                    }
-                    if (AreEqual(index, leftSize))
-                    {
-                        return root;
-                    }
-                    root = GetRightOrDefault(root);
-                    index = Subtract(index, Increment(leftSize));
+                    return this->object().GetBasePartValue(link);
+                };
+
+        public: LinkAddressType GetKeyPartValue(LinkAddressType link)
+                {
+                    return this->object().GetKeyPartValue(link);
+                };
+
+            public: const RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link) const
+                {
+                    return *reinterpret_cast<RawLinkDataPart<LinkAddressType>*>(LinksDataParts + (RawLinkDataPart<LinkAddressType>::SizeInBytes * link));
                 }
-                return 0;
-            }
+
+            public: RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link)
+                {
+                    return *reinterpret_cast<RawLinkDataPart<LinkAddressType>*>(LinksDataParts + (RawLinkDataPart<LinkAddressType>::SizeInBytes * link));
+                }
+
+            public: const RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType link) const
+                {
+                    return *reinterpret_cast<RawLinkIndexPart<LinkAddressType>*>(LinksIndexParts + (RawLinkIndexPart<LinkAddressType>::SizeInBytes * link));
+                }
+
+            public: RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType link)
+                {
+                    return *reinterpret_cast<RawLinkIndexPart<LinkAddressType>*>(LinksIndexParts + (RawLinkIndexPart<LinkAddressType>::SizeInBytes * link));
+                }
+
+        public: bool FirstIsToTheLeftOfSecond(LinkAddressType first, LinkAddressType second)  { return this->GetKeyPartValue(first) < this->GetKeyPartValue(second); }
+
+        public: bool FirstIsToTheRightOfSecond(LinkAddressType first, LinkAddressType second)  { return this->GetKeyPartValue(first) > this->GetKeyPartValue(second); }
+
+        public: auto GetLinkValues(LinkAddressType linkIndex)
+        {
+            auto& link = GetLinkDataPartReference(linkIndex);
+            return LinkType{linkIndex, link.Source, link.Target};
         }
 
-        public: virtual TLinkAddress Search(TLinkAddress source, TLinkAddress target) = 0;
+//        public: LinkAddressType operator[](LinkAddressType link, LinkAddressType index)
+//        {
+//            auto root = GetTreeRoot(*link);
+//            if (index >= GetSize(root))
+//            {
+//                return 0;
+//            }
+//            while (root != 0)
+//            {
+//                auto left = GetLeftOrDefault(root);
+//                auto leftSize = GetSizeOrZero(left);
+//                if (index < leftSize)
+//                {
+//                    root = left;
+//                    continue;
+//                }
+//                if (index == leftSize)
+//                {
+//                    return root;
+//                }
+//                root = GetRightOrDefault(root);
+//                index = index - (leftbSize + 1);
+//            }
+//            return 0;
+//        }
 
-        protected: TLinkAddress SearchCore(TLinkAddress root, TLinkAddress key)
+        public: LinkAddressType Search(LinkAddressType source, LinkAddressType target)
+                         {
+                             return this->object().Search(source, target);
+                         };
+
+        public: LinkAddressType SearchCore(LinkAddressType root, LinkAddressType key)
         {
             while (root != 0)
             {
                 auto rootKey = this->GetKeyPartValue(root);
-                if (this->LessThan(key, rootKey))
+                if (key < rootKey)
                 {
                     root = this->GetLeftOrDefault(root);
                 }
@@ -95,31 +119,29 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             return 0;
         }
 
-        public: TLinkAddress CountUsages(TLinkAddress link) { return this->GetSizeOrZero(this->GetTreeRoot(link)); }
+        public: LinkAddressType CountUsages(LinkAddressType link) { return this->GetSizeOrZero(this->GetTreeRoot(link)); }
 
-        public: TLinkAddress EachUsage(TLinkAddress base, Func<IList<TLinkAddress>, TLinkAddress> handler) { return this->EachUsageCore(base, this->GetTreeRoot(base), handler); }
+        public: LinkAddressType EachUsage(LinkAddressType base, const ReadHandlerType& handler) { return this->EachUsageCore(base, this->GetTreeRoot(base), handler); }
 
-        private: TLinkAddress EachUsageCore(TLinkAddress base, TLinkAddress link, Func<IList<TLinkAddress>, TLinkAddress> handler)
+        private: LinkAddressType EachUsageCore(LinkAddressType base, LinkAddressType link, const ReadHandlerType& handler)
         {
-            auto continue = Continue;
             if (link == 0)
             {
-                return continue;
+                return Continue;
             }
-            auto break = Break;
-            if ((this->EachUsageCore(base) == (this->GetLeftOrDefault(link), handler), break))
+            if ((this->EachUsageCore(base,this->GetLeftOrDefault(link), handler) == Break))
             {
-                return break;
+                return Break;
             }
-            if (this->handler(this->GetLinkValues(link)) == (break))
+            if (handler(this->GetLinkValues(link)) == (Break))
             {
-                return break;
+                return Break;
             }
-            if ((this->EachUsageCore(base) == (this->GetRightOrDefault(link), handler), break))
+            if ((this->EachUsageCore(base,this->GetRightOrDefault(link), handler) == Break))
             {
-                return break;
+                return Break;
             }
-            return continue;
+            return Continue;
         }
         };
 }
