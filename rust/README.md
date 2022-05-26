@@ -1,34 +1,47 @@
 # Doublets
 A library that represents database engine that uses doublets.
 
-## Overview
-Doublet is a link that has index, a beginning (source), an end (target).
-Index, source and target are addresses of links and represented as unsigned integers.
+## [Overview](https://github.com/linksplatform)
 
-## Note
-Link can point at itself. We call such links "points".
+## Example
 
-## Example:
+A basic hello world in doublets
+
+Make sure you activated the full features of the tokio crate on Cargo.toml:
+
+```toml
+[dependencies]
+doublets = { version = "0.1.0-alpha.17", features = ["full"] }
+```
+
 ```rust
-// alpha does not has human prelude
-use doublets::{
-    data::Flow::{Break, Continue}, // also can use std::ops::ControlFlow
-    doublets::mem::united,
-    doublets::Doublets,
-    mem::FileMappedMem,
-};
-use std::error::Error;
+use doublets::data::Flow::Continue;
+use doublets::mem::FileMappedMem;
+use doublets::{united, Doublets};
+use std::fs::File;
 
-fn main() -> Result<(), Box<dyn Error>> {
-    // A doublet links store is mapped to "db.links" file:
-    let mem = FileMappedMem::new("db.links")?;
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    // create or open read/write file
+    let file = File::options()
+        .create(true)
+        .read(true)
+        .write(true)
+        .open("db.links")?;
+
+    let mem = FileMappedMem::new(file)?;
     let mut links = united::Store::<usize, _>::new(mem)?;
 
-    // A creation of the doublet link:
-    let link = links.create()?;
+    // Creation of the doublet in tiny style
+    let mut point = links.create()?;
 
-    // The link is updated to reference itself twice (as a source and a target):
-    let link = links.update(link, link, link)?;
+    // Update of the doublet in handler style
+    // The link is updated to reference itself twice (as source and target):
+    links.update_with(point, point, point, |_, after| {
+        // link is { index, source, target }
+        point = after.index;
+        // give handler state (any ops::Try)
+        Continue
+    })?;
 
     println!("The number of links in the data store is {}", links.count());
     println!("Data store contents:");
@@ -38,20 +51,13 @@ fn main() -> Result<(), Box<dyn Error>> {
         Continue
     });
 
-    // The link's content reset:
-    let link = links.update(link, 0, 0)?;
-
-    // The link deletion:
-    links.delete(link)?;
+    // The link deletion in full style:
+    let any = links.constants().any;
+    // query in [index source target] style
+    links.delete_by_with([point, any, any], |before, _| {
+        println!("Goodbye {}", before);
+        Continue
+    })?;
     Ok(())
 }
 ```
-
-## FAQ
-> How can I save non-number data using doublets?
-
-Any data can be represented as numbers.
-
-> Where can I store doublets data?
-
-You can use file mapped memory, heap memory by using according memory classes from mem namespace
