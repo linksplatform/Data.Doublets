@@ -1,6 +1,6 @@
 [package]
 name = "doublets"
-version = "0.1.0-alpha.17"
+version = "0.1.0-alpha.18"
 edition = "2021"
 authors = [
     "uselessgoddess",
@@ -38,3 +38,10 @@ mem = []
 num = []
 data = []
 full = ["mem", "num", "data"]
+
+[dev-dependencies]
+criterion = "0.3"
+
+[[bench]]
+name = "benchmark"
+harness = false

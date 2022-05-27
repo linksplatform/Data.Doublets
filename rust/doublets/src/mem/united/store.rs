@@ -500,8 +500,12 @@ impl<
         }
 
         let link = self.mut_raw_link(index);
-        link.source = source;
-        link.target = target;
+        if link.source != source {
+            link.source = source;
+        }
+        if link.target != target {
+            link.target = target;
+        }
 
         let link = *self.mut_raw_link(index);
         if link.source != null {
@@ -539,7 +543,9 @@ impl<
         } else {
             return Err(LinksError::NotExists(index));
         };
-        self.update(index, zero(), zero())?;
+        if (source, target) != (zero(), zero()) {
+            self.update(index, zero(), zero())?;
+        }
 
         let header = self.get_header();
         let link = index;

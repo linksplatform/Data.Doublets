@@ -707,8 +707,12 @@ impl<
         }
 
         let link = self.mut_data_part(index);
-        link.source = new_source;
-        link.target = new_target;
+        if link.source != new_source {
+            link.source = new_source;
+        }
+        if link.target != new_target {
+            link.target = new_target;
+        }
         let source = link.source;
         let target = link.target;
 
@@ -759,7 +763,9 @@ impl<
         } else {
             return Err(LinksError::NotExists(index));
         };
-        self.update(index, zero(), zero())?;
+        if (source, target) != (zero(), zero()) {
+            self.update(index, zero(), zero())?;
+        }
 
         // TODO: move to `delete_core`
         let header = self.get_header();
