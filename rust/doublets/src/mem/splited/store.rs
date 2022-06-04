@@ -321,9 +321,7 @@ impl<
                     self.try_each_by_core(handler, [index, any, value])
                 }
             } else if let Some(link) = self.get_link(index) {
-                if value == any {
-                    handler(link)
-                } else if (link.source, link.target) == (value, value) {
+                if value == any || link.source == value || link.target == value {
                     handler(link)
                 } else {
                     R::from_output(())
@@ -349,15 +347,13 @@ impl<
                 } else if target == any {
                     if constants.is_external(source) {
                         self.external_sources.each_usages(source, handler)
+                    } else if Self::USE_LIST {
+                        self.sources_list.each_usages(source, handler)
                     } else {
-                        if Self::USE_LIST {
-                            self.sources_list.each_usages(source, handler)
-                        } else {
-                            self.internal_sources.each_usages(source, handler)
-                        }
+                        self.internal_sources.each_usages(source, handler)
                     }
                 } else {
-                    let link = if let Some(_) = &constants.external_range {
+                    let link = if constants.external_range.is_some() {
                         if constants.is_external(source) && constants.is_external(target) {
                             self.external_sources.search(source, target)
                         } else if constants.is_external(source) {
@@ -505,7 +501,7 @@ impl<
                         self.internal_sources.count_usages(source)
                     }
                 } else {
-                    let link = if let Some(_) = &constants.external_range {
+                    let link = if constants.external_range.is_some() {
                         if constants.is_external(source) && constants.is_external(target) {
                             self.external_sources.search(source, target)
                         } else if constants.is_external(source) {

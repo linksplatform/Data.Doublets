@@ -82,7 +82,7 @@ fn delete_all_usages() {
     let a = links.create_point().unwrap();
     let b = links.create_point().unwrap();
 
-    links.v(a, root).unwrap();
+    links.create_link(a, root).unwrap();
     links.create_link(b, root).unwrap();
 
     assert_eq!(links.count(), 5);

@@ -232,9 +232,7 @@ impl<
                     }
                 }
             } else if let Some(link) = self.get_link(index) {
-                if value == any {
-                    return handler(link);
-                } else if link.source == value || link.target == value {
+                if value == any || link.source == value || link.target == value {
                     return handler(link);
                 } else {
                     R::from_output(())
