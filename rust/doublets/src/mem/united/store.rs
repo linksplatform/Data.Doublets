@@ -192,7 +192,7 @@ impl<
         let restriction = restriction.to_query();
 
         let constants = self.constants();
-        let r#break = constants.r#break;
+        let _break = constants.r#break;
 
         if restriction.len() == 0 {
             for index in T::one()..self.get_header().allocated + one() {
@@ -203,7 +203,7 @@ impl<
             return R::from_output(());
         }
 
-        let r#continue = constants.r#continue;
+        let _continue = constants.r#continue;
         let any = constants.any;
         let index = restriction[constants.index_part.as_()];
 
@@ -224,7 +224,7 @@ impl<
                     self.each_core(handler, [])
                 } else {
                     match self.each_core(handler, [index, value, any]).branch() {
-                        ControlFlow::Continue(output) => {
+                        ControlFlow::Continue(_output) => {
                             self.each_core(handler, [index, value, any])
                         }
                         ControlFlow::Break(residual) => R::from_residual(residual),
@@ -421,7 +421,7 @@ impl<
 
     fn create_by_with<F, R>(
         &mut self,
-        query: impl ToQuery<T>,
+        _query: impl ToQuery<T>,
         mut handler: F,
     ) -> Result<R, LinksError<T>>
     where

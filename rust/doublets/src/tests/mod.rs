@@ -1,15 +1,10 @@
-use crate::mem::united::{
-    LinksSourcesRecursionlessSizeBalancedTree, LinksTargetsRecursionlessSizeBalancedTree, Store,
-    UnusedLinks,
-};
-use crate::mem::{splited, united};
-use crate::{Doublets, LinksError};
+use crate::mem::splited;
+use crate::LinksError;
 use data::LinksConstants;
-use mem::{AllocMem, GlobalMem, RawMem};
+use mem::{GlobalMem, RawMem};
 use num::LinkType;
-use std::alloc::Global;
+
 use std::io;
-use std::time::Instant;
 
 // TODO: cfg!
 //pub fn make_mem() -> io::Result<HeapMem> {

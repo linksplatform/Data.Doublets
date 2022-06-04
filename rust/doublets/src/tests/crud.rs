@@ -1,23 +1,17 @@
 use bumpalo::Bump;
-use rand::{random, thread_rng, Rng};
-use std::alloc::{AllocError, Allocator, Global, Layout, System};
-use std::default::default;
-use std::error::Error;
-use std::fs::{File, OpenOptions};
-use std::io::{Read, Seek, SeekFrom, Write};
-use std::ptr::{null_mut, NonNull};
+
+use std::alloc::System;
+
 use std::time::Instant;
 
 use crate::mem::splited;
-use crate::{Doublets, Link, LinksError};
-use data::{AddrToRaw, Links, LinksConstants};
+use crate::{Doublets, LinksError};
+
 use mem::{AllocMem, GlobalMem, RawMem, TempFileMem};
 //use crate::decorators::{CascadeUsagesResolver, NonNullDeletionResolver};
 //use crate::mem::splited;
 use crate::mem::united::Store;
-use crate::test_extensions::ILinksTestExtensions;
-use crate::tests::make_links;
-use crate::tests::make_mem;
+
 /*
 #[test]
 fn random_creations_and_deletions() {
@@ -94,7 +88,7 @@ fn billion_points_bump_alloc() {
 
 #[test]
 fn many_points_and_searches() {
-    let bump = Bump::new();
+    let _bump = Bump::new();
     let mem = AllocMem::new(System).unwrap();
     let mut links = Store::<usize, _>::new(mem).unwrap();
 
@@ -147,7 +141,7 @@ fn billion_points_heap_mem_splited() {
 #[test]
 fn billion_points_bump_alloc_splited() {
     let bump = Bump::new();
-    let mut mem = AllocMem::new(&bump).unwrap();
+    let mem = AllocMem::new(&bump).unwrap();
     let mut index = AllocMem::new(&bump).unwrap();
     index.alloc(1023 * 1023).unwrap();
     let mut links = splited::Store::<usize, _, _>::new(mem, index).unwrap();

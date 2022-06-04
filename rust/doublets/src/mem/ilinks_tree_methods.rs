@@ -1,4 +1,3 @@
-use crate::mem::UpdatePointers;
 use crate::Link;
 use num::LinkType;
 use std::ops::Try;

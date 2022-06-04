@@ -1,8 +1,3 @@
-use std::default::default;
-use std::marker::PhantomData;
-
-use num_traits::zero;
-
 use crate::mem::ilinks_tree_methods::ILinksTreeMethods;
 use crate::mem::links_header::LinksHeader;
 use crate::mem::splited::{DataPart, IndexPart};

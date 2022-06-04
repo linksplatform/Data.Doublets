@@ -1,6 +1,6 @@
 use crate::{Doublet, Link};
 use num::LinkType;
-use std::backtrace::Backtrace;
+
 use std::io;
 use thiserror::Error;
 

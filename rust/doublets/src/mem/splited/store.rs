@@ -1,10 +1,7 @@
-use std::borrow::BorrowMut;
 use std::default::default;
 use std::error::Error;
-use std::mem::{align_of, size_of};
-use std::ops::{Index, Try};
-use std::ptr::{addr_of, NonNull};
-use std::slice::from_raw_parts_mut;
+use std::mem::size_of;
+use std::ops::Try;
 
 use num_traits::{one, zero};
 
@@ -16,8 +13,8 @@ use crate::mem::splited::{DataPart, IndexPart};
 use crate::mem::united::UpdatePointersSplit;
 use crate::mem::{ILinksListMethods, ILinksTreeMethods, LinksHeader, UpdatePointers};
 use crate::{Doublets, Link, LinksError};
+use data::LinksConstants;
 use data::{Flow, Links, ReadHandler, ToQuery, WriteHandler};
-use data::{LinksConstants, Query};
 use mem::RawMem;
 use methods::RelativeCircularDoublyLinkedList;
 use num::LinkType;
@@ -283,7 +280,7 @@ impl<
         Link::new(index, raw.source, raw.target)
     }
 
-    fn try_each_by_core<F, R>(&self, mut handler: &mut F, restrictions: impl ToQuery<T>) -> R
+    fn try_each_by_core<F, R>(&self, handler: &mut F, restrictions: impl ToQuery<T>) -> R
     where
         F: FnMut(Link<T>) -> R,
         R: Try<Output = ()>,
@@ -301,7 +298,7 @@ impl<
 
         let constants = self.constants.clone();
         let any = constants.any;
-        let r#continue = constants.r#continue;
+        let _continue = constants.r#continue;
         let index = restriction[constants.index_part.as_()];
         if restriction.len() == 1 {
             return if index == any {
@@ -363,7 +360,7 @@ impl<
                         }
                     }
                 } else {
-                    let mut link = if let Some(_) = &constants.external_range {
+                    let link = if let Some(_) = &constants.external_range {
                         if constants.is_external(source) && constants.is_external(target) {
                             self.external_sources.search(source, target)
                         } else if constants.is_external(source) {
@@ -529,7 +526,7 @@ impl<
                         self.internal_sources.count_usages(source)
                     }
                 } else {
-                    let mut link = if let Some(_) = &constants.external_range {
+                    let link = if let Some(_) = &constants.external_range {
                         if constants.is_external(source) && constants.is_external(target) {
                             self.external_sources.search(source, target)
                         } else if constants.is_external(source) {
@@ -603,7 +600,7 @@ impl<
 
     fn create_by_with<F, R>(
         &mut self,
-        query: impl ToQuery<T>,
+        _query: impl ToQuery<T>,
         mut handler: F,
     ) -> Result<R, LinksError<T>>
     where

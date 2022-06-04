@@ -1,13 +1,8 @@
-use num_traits::ToPrimitive;
-use std::ops::ControlFlow;
-
 use crate::tests::make_links;
 use crate::tests::make_mem;
-use crate::{Doublets, Link, LinksError};
-use data::query;
-use data::{AddrToRaw, Hybrid, Links, LinksConstants, Query, RawToAddr};
-use mem::GlobalMem;
-use num::ToSigned;
+use crate::{Doublets, Link};
+
+use data::{AddrToRaw, LinksConstants, Query, RawToAddr};
 
 #[test]
 fn create() {
@@ -47,7 +42,7 @@ fn each_eq_count() {
     let query = [any, any, root];
 
     let mut count = 0;
-    links.each_by([any, any, root], |link| {
+    links.each_by([any, any, root], |_link| {
         count += 1;
         links.constants().r#continue
     });

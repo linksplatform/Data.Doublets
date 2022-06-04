@@ -119,7 +119,7 @@ fn each_usages_core<T: LinkType, R: Try<Output = ()>, H: FnMut(Link<T>) -> R>(
         return R::from_output(());
     }
     let link_base_part = _self.get_base_part(link);
-    let r#break = _self.base.r#break;
+    let _break = _self.base.r#break;
     if link_base_part > base {
         each_usages_core(_self, base, _self.get_left_or_default(link), handler)?;
     } else if link_base_part < base {
