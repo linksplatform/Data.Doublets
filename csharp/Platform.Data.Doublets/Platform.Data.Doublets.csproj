@@ -4,7 +4,7 @@
     <Description>LinksPlatform's Platform.Data.Doublets Class Library</Description>
     <Copyright>konard, FreePhoenix888</Copyright>
     <AssemblyTitle>Platform.Data.Doublets</AssemblyTitle>
-    <VersionPrefix>0.13.4</VersionPrefix>
+    <VersionPrefix>0.14.0</VersionPrefix>
     <Authors>konard, FreePhoenix888</Authors>
     <TargetFrameworks>net472;netstandard2.0;netstandard2.1;net5;net6</TargetFrameworks>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -25,7 +25,8 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <LangVersion>latest</LangVersion>
-    <PackageReleaseNotes>TestMultipleRandomCreationsAndDeletions test extensins is updated.</PackageReleaseNotes>
+    <PackageReleaseNotes>FFI namespace renamed to Ffi.
+Platform.Data.Doublets.FFI dependency is updated from 0.9.0 to 0.10.0.</PackageReleaseNotes>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
@@ -39,7 +40,7 @@
 
   <ItemGroup>
     <PackageReference Include="Platform.Data" Version="0.11.4" />
-    <PackageReference Include="Platform.Data.Doublets.FFI" Version="0.9.0" />
+    <PackageReference Include="Platform.Data.Doublets.FFI" Version="0.10.0" />
     <PackageReference Include="Platform.Random" Version="0.2.0" />
     <PackageReference Include="Platform.Timestamps" Version="0.2.1" />
     <PackageReference Include="Platform.Collections.Methods" Version="0.5.2" />
