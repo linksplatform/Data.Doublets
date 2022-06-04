@@ -264,6 +264,48 @@ types = "u16",
 types = "u32",
 types = "u64",
 convention = "csharp",
+name = "*Links_SmartCreate"
+)]
+fn smart_create_united<T: LinkType>(
+    this: *mut c_void
+) -> T {
+    let links: &mut WrappedLinks<T> = unnul_or_error(this);
+    let result = links.create();
+    result_into_log(
+        result,
+        links.constants().error,
+    )
+}
+
+
+#[ffi::specialize_for(
+types = "u8",
+types = "u16",
+types = "u32",
+types = "u64",
+convention = "csharp",
+name = "*Links_SmartUpdate"
+)]
+fn smart_update_united<T: LinkType>(
+    this: *mut c_void,
+    index: T,
+    source: T,
+    target: T,
+) -> T {
+    let links: &mut WrappedLinks<T> = unnul_or_error(this);
+    let result = links.update(index, source, target);
+    result_into_log(
+        result,
+        links.constants().error,
+    )
+}
+
+#[ffi::specialize_for(
+types = "u8",
+types = "u16",
+types = "u32",
+types = "u64",
+convention = "csharp",
 name = "*Links_Each"
 )]
 fn each_united<T: LinkType>(

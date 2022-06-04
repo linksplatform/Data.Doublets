@@ -1,12 +1,10 @@
-use std::default::default;
-
 use num_traits::{one, zero};
 use rand::Rng;
 
 use crate::Doublets;
 use crate::Link;
 
-use data::{Hybrid, Links, RawToAddr};
+use data::Hybrid;
 use num::LinkType;
 
 pub trait ILinksTestExtensions<T: LinkType>: Doublets<T> {

@@ -1,22 +1,17 @@
-use std::ptr::Unique;
-use std::sync::mpsc::channel;
-use std::sync::{Arc, Mutex, RwLock};
+use std::sync::{Arc, RwLock};
 use std::thread;
 use std::time::Instant;
 
 use rand::Rng;
 
-use crate::mem::{splited, united};
 use crate::tests::make_links;
 use crate::tests::make_mem;
-use crate::{Doublets, Link};
-use data::Links;
-use num::LinkType;
+use crate::Doublets;
 
 #[test]
 fn basic_sync() {
     let mem = make_mem().unwrap();
-    let mut links = make_links(mem).unwrap();
+    let links = make_links(mem).unwrap();
 
     let base_links = Arc::new(RwLock::new(links));
 

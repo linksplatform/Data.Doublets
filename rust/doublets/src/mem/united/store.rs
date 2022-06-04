@@ -13,6 +13,7 @@ use data::{Flow, Links, ReadHandler, WriteHandler};
 use mem::RawMem;
 use num::LinkType;
 use num_traits::{one, zero};
+use std::cmp::Ordering;
 use std::default::default;
 use std::error::Error;
 use std::mem::size_of;
@@ -192,7 +193,7 @@ impl<
         let restriction = restriction.to_query();
 
         let constants = self.constants();
-        let r#break = constants.r#break;
+        let _break = constants.r#break;
 
         if restriction.len() == 0 {
             for index in T::one()..self.get_header().allocated + one() {
@@ -203,7 +204,7 @@ impl<
             return R::from_output(());
         }
 
-        let r#continue = constants.r#continue;
+        let _continue = constants.r#continue;
         let any = constants.any;
         let index = restriction[constants.index_part.as_()];
 
@@ -224,24 +225,22 @@ impl<
                     self.each_core(handler, [])
                 } else {
                     match self.each_core(handler, [index, value, any]).branch() {
-                        ControlFlow::Continue(output) => {
+                        ControlFlow::Continue(_output) => {
                             self.each_core(handler, [index, value, any])
                         }
                         ControlFlow::Break(residual) => R::from_residual(residual),
                     }
                 }
-            } else {
-                if let Some(link) = self.get_link(index) {
-                    if value == any {
-                        return handler(link);
-                    } else if link.source == value || link.target == value {
-                        return handler(link);
-                    } else {
-                        R::from_output(())
-                    }
+            } else if let Some(link) = self.get_link(index) {
+                if value == any {
+                    return handler(link);
+                } else if link.source == value || link.target == value {
+                    return handler(link);
                 } else {
                     R::from_output(())
                 }
+            } else {
+                R::from_output(())
             };
         }
 
@@ -265,13 +264,10 @@ impl<
                     }
                 };
             } else {
-                let link;
-                if let Some(_link) = self.get_link(index) {
-                    link = _link;
-                } else {
-                    link = Link::nothing();
-                    return R::from_output(());
-                }
+                let link = match self.get_link(index) {
+                    Some(link) => link,
+                    None => return R::from_output(()),
+                };
                 if (target, source) == (any, any) {
                     return handler(link); // TODO: add (x * *) search test
                 }
@@ -327,12 +323,10 @@ impl<
         if query.len() == 1 {
             return if index == any {
                 self.get_total()
+            } else if self.exists(index) {
+                one()
             } else {
-                if self.exists(index) {
-                    one()
-                } else {
-                    zero()
-                }
+                zero()
             };
         }
 
@@ -384,13 +378,10 @@ impl<
                     }
                 }
             } else {
-                let link;
-                if let Some(_link) = self.get_link(index) {
-                    link = _link;
-                } else {
-                    link = Link::nothing();
-                    return zero();
-                }
+                let link = match self.get_link(index) {
+                    Some(link) => link,
+                    None => return zero(),
+                };
                 if (target, source) == (any, any) {
                     return self.get_total();
                 }
@@ -421,7 +412,7 @@ impl<
 
     fn create_by_with<F, R>(
         &mut self,
-        query: impl ToQuery<T>,
+        _query: impl ToQuery<T>,
         mut handler: F,
     ) -> Result<R, LinksError<T>>
     where
@@ -549,26 +540,30 @@ impl<
 
         let header = self.get_header();
         let link = index;
-        if link < header.allocated {
-            self.unused.attach_as_first(link)
-        } else if link == header.allocated {
-            self.mem.occupy(self.mem.occupied() - Self::LINK_SIZE)?;
 
-            let allocated = self.get_header().allocated;
-            let header = self.mut_header();
-            header.allocated = allocated - one();
+        match link.cmp(&header.allocated) {
+            Ordering::Less => self.unused.attach_as_first(link),
+            Ordering::Greater => unreachable!(),
+            Ordering::Equal => {
+                self.mem.occupy(self.mem.occupied() - Self::LINK_SIZE)?;
 
-            loop {
                 let allocated = self.get_header().allocated;
-                if !(allocated > zero() && self.is_unused(allocated)) {
-                    break;
+                let header = self.mut_header();
+                header.allocated = allocated - one();
+
+                loop {
+                    let allocated = self.get_header().allocated;
+                    if !(allocated > zero() && self.is_unused(allocated)) {
+                        break;
+                    }
+                    self.unused.detach(allocated);
+                    self.mut_header().allocated = allocated - one();
+                    let used_mem = self.mem.occupied();
+                    self.mem.occupy(used_mem - Self::LINK_SIZE)?;
                 }
-                self.unused.detach(allocated);
-                self.mut_header().allocated = allocated - one();
-                let used_mem = self.mem.occupied();
-                self.mem.occupy(used_mem - Self::LINK_SIZE)?;
             }
         }
+
         Ok(handler(Link::new(index, source, target), Link::nothing()))
     }
 

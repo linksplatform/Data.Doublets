@@ -1,13 +1,12 @@
 use std::default::default;
 use std::ops::{ControlFlow, Try};
-use std::result;
 
 use crate::Link;
 use crate::LinksError;
 use crate::StoppedHandler;
 use data::Flow;
 use data::LinksConstants;
-use data::{Links, ReadHandler, ToQuery, WriteHandler};
+use data::ToQuery;
 use num::LinkType;
 use num_traits::{one, zero};
 
@@ -16,7 +15,7 @@ use ControlFlow::{Break, Continue};
 
 pub type Result<T, E = LinksError<T>> = std::result::Result<T, E>;
 
-fn IGNORE<T: LinkType>(_: Link<T>, _: Link<T>) -> Result<(), ()> {
+fn ignore<T: LinkType>(_: Link<T>, _: Link<T>) -> Result<(), ()> {
     Err(())
 }
 
@@ -40,7 +39,7 @@ pub trait Doublets<T: LinkType> {
 
     fn create_by(&mut self, query: impl ToQuery<T>) -> Result<T, LinksError<T>> {
         let mut index = default();
-        self.create_by_with(query, |before, link| {
+        self.create_by_with(query, |_before, link| {
             index = link.index;
             Flow::Continue
         })
@@ -109,9 +108,9 @@ pub trait Doublets<T: LinkType> {
         R: Try<Output = ()>;
 
     fn update_by(&mut self, query: impl ToQuery<T>, replacement: impl ToQuery<T>) -> Result<T> {
-        let r#continue = self.constants().r#continue;
+        let _continue = self.constants().r#continue;
         let mut result = default();
-        self.update_by_with(query, replacement, |before, after| {
+        self.update_by_with(query, replacement, |_before, after| {
             result = after.index;
             Flow::Continue
         })
@@ -123,7 +122,7 @@ pub trait Doublets<T: LinkType> {
         index: T,
         source: T,
         target: T,
-        mut handler: F,
+        handler: F,
     ) -> Result<R, LinksError<T>>
     where
         F: FnMut(Link<T>, Link<T>) -> R,
@@ -146,16 +145,16 @@ pub trait Doublets<T: LinkType> {
         R: Try<Output = ()>;
 
     fn delete_by(&mut self, query: impl ToQuery<T>) -> Result<T> {
-        let r#continue = self.constants().r#continue;
+        let _continue = self.constants().r#continue;
         let mut result = default();
-        self.delete_by_with(query, |before, after| {
+        self.delete_by_with(query, |_before, after| {
             result = after.index;
             Flow::Continue
         })
         .map(|_| result)
     }
 
-    fn delete_with<F, R>(&mut self, index: T, mut handler: F) -> Result<R, LinksError<T>>
+    fn delete_with<F, R>(&mut self, index: T, handler: F) -> Result<R, LinksError<T>>
     where
         F: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>,
@@ -202,7 +201,7 @@ pub trait Doublets<T: LinkType> {
     fn delete_query_with<F, R>(
         &mut self,
         query: impl ToQuery<T>,
-        mut handler: F,
+        handler: F,
     ) -> Result<(), LinksError<T>>
     where
         F: FnMut(Link<T>, Link<T>) -> R,
@@ -225,7 +224,7 @@ pub trait Doublets<T: LinkType> {
         Ok(())
     }
 
-    fn delete_usages_with<F, R>(&mut self, index: T, mut handler: F) -> Result<(), LinksError<T>>
+    fn delete_usages_with<F, R>(&mut self, index: T, handler: F) -> Result<(), LinksError<T>>
     where
         F: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>,
@@ -256,7 +255,7 @@ pub trait Doublets<T: LinkType> {
     }
 
     fn delete_usages(&mut self, index: T) -> Result<(), LinksError<T>> {
-        self.delete_usages_with(index, IGNORE)
+        self.delete_usages_with(index, ignore)
     }
 
     fn create_point(&mut self) -> Result<T> {
@@ -273,7 +272,7 @@ pub trait Doublets<T: LinkType> {
         &mut self,
         source: T,
         target: T,
-        mut handler: F,
+        handler: F,
     ) -> Result<Flow, LinksError<T>>
     where
         F: FnMut(Link<T>, Link<T>) -> R,
@@ -323,7 +322,7 @@ pub trait Doublets<T: LinkType> {
 
     fn single(&self, query: impl ToQuery<T>) -> Option<Link<T>> {
         let query = query.to_query();
-        let constants = self.constants();
+        let _constants = self.constants();
 
         let mut result = None;
         let mut marker = false;
@@ -411,7 +410,7 @@ pub trait Doublets<T: LinkType> {
         self.count_usages(link).map_or(false, |link| link != zero())
     }
 
-    fn rebase_with<F, R>(&mut self, old: T, new: T, mut handler: F) -> Result<(), LinksError<T>>
+    fn rebase_with<F, R>(&mut self, old: T, new: T, handler: F) -> Result<(), LinksError<T>>
     where
         F: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>,

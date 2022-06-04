@@ -8,7 +8,7 @@ use crate::mem::splited::generic::external_recursion_less_base::{
 };
 use crate::mem::splited::{DataPart, IndexPart};
 use crate::mem::united::UpdatePointersSplit;
-use crate::mem::UpdatePointers;
+
 use crate::Link;
 use data::LinksConstants;
 use methods::RecursionlessSizeBalancedTreeMethods;

@@ -1,13 +1,8 @@
-use num_traits::ToPrimitive;
-use std::ops::ControlFlow;
-
 use crate::tests::make_links;
 use crate::tests::make_mem;
-use crate::{Doublets, Link, LinksError};
-use data::query;
-use data::{AddrToRaw, Hybrid, Links, LinksConstants, Query, RawToAddr};
-use mem::GlobalMem;
-use num::ToSigned;
+use crate::{Doublets, Link};
+
+use data::{AddrToRaw, LinksConstants, Query, RawToAddr};
 
 #[test]
 fn create() {
@@ -40,14 +35,14 @@ fn each_eq_count() {
 
     for _ in 0..10 {
         let new = links.create_point().unwrap();
-        links.create_and_update(new, root).unwrap();
+        links.create_link(new, root).unwrap();
     }
 
     let any = links.constants().any;
     let query = [any, any, root];
 
     let mut count = 0;
-    links.each_by([any, any, root], |link| {
+    links.each_by([any, any, root], |_link| {
         count += 1;
         links.constants().r#continue
     });
@@ -65,7 +60,7 @@ fn rebase() {
 
     for _ in 0..10 {
         let new = links.create_point().unwrap();
-        links.create_and_update(new, root).unwrap();
+        links.create_link(new, root).unwrap();
     }
 
     let before = links.count_by(Query::new(&[any, any, root][..]));
@@ -87,8 +82,8 @@ fn delete_all_usages() {
     let a = links.create_point().unwrap();
     let b = links.create_point().unwrap();
 
-    links.create_and_update(a, root).unwrap();
-    links.create_and_update(b, root).unwrap();
+    links.v(a, root).unwrap();
+    links.create_link(b, root).unwrap();
 
     assert_eq!(links.count(), 5);
 

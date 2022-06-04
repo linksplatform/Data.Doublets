@@ -28,9 +28,9 @@ log = { version = "0.4.14", features = ["release_max_level_info", "max_level_inf
 env_logger = "0.9.0"
 num-traits = "^0.2.14"
 
-data = { package = "platform-data", version = "0.1.0-alpha.0"}
+data = { package = "platform-data", version = "0.1.0-alpha.0" }
 num = { package = "platform-num", version = "0.1.0-alpha.0" }
-mem = { package = "platform-mem", version = "0.1.0-alpha.5"}
+mem = { package = "platform-mem", version = "0.1.0-alpha.5" }
 methods = { package = "platform-treesmethods", version = "0.1.0-alpha.0" }
 
 [features]

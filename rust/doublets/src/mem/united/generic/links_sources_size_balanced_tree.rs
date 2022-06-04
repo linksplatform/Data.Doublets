@@ -1,4 +1,3 @@
-use std::borrow::BorrowMut;
 use std::ops::Try;
 
 use num_traits::{one, zero};

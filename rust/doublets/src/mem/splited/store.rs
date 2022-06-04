@@ -1,10 +1,8 @@
-use std::borrow::BorrowMut;
+use std::cmp::Ordering;
 use std::default::default;
 use std::error::Error;
-use std::mem::{align_of, size_of};
-use std::ops::{Index, Try};
-use std::ptr::{addr_of, NonNull};
-use std::slice::from_raw_parts_mut;
+use std::mem::size_of;
+use std::ops::Try;
 
 use num_traits::{one, zero};
 
@@ -16,8 +14,8 @@ use crate::mem::splited::{DataPart, IndexPart};
 use crate::mem::united::UpdatePointersSplit;
 use crate::mem::{ILinksListMethods, ILinksTreeMethods, LinksHeader, UpdatePointers};
 use crate::{Doublets, Link, LinksError};
+use data::LinksConstants;
 use data::{Flow, Links, ReadHandler, ToQuery, WriteHandler};
-use data::{LinksConstants, Query};
 use mem::RawMem;
 use methods::RelativeCircularDoublyLinkedList;
 use num::LinkType;
@@ -283,7 +281,7 @@ impl<
         Link::new(index, raw.source, raw.target)
     }
 
-    fn try_each_by_core<F, R>(&self, mut handler: &mut F, restrictions: impl ToQuery<T>) -> R
+    fn try_each_by_core<F, R>(&self, handler: &mut F, restrictions: impl ToQuery<T>) -> R
     where
         F: FnMut(Link<T>) -> R,
         R: Try<Output = ()>,
@@ -301,7 +299,7 @@ impl<
 
         let constants = self.constants.clone();
         let any = constants.any;
-        let r#continue = constants.r#continue;
+        let _continue = constants.r#continue;
         let index = restriction[constants.index_part.as_()];
         if restriction.len() == 1 {
             return if index == any {
@@ -322,20 +320,16 @@ impl<
                     self.try_each_by_core(handler, [index, value, any])?;
                     self.try_each_by_core(handler, [index, any, value])
                 }
-            } else {
-                if let Some(link) = self.get_link(index) {
-                    if value == any {
-                        handler(link)
-                    } else {
-                        if (link.source, link.target) == (value, value) {
-                            handler(link)
-                        } else {
-                            R::from_output(())
-                        }
-                    }
+            } else if let Some(link) = self.get_link(index) {
+                if value == any {
+                    handler(link)
+                } else if (link.source, link.target) == (value, value) {
+                    handler(link)
                 } else {
                     R::from_output(())
                 }
+            } else {
+                R::from_output(())
             };
         }
         //
@@ -363,7 +357,7 @@ impl<
                         }
                     }
                 } else {
-                    let mut link = if let Some(_) = &constants.external_range {
+                    let link = if let Some(_) = &constants.external_range {
                         if constants.is_external(source) && constants.is_external(target) {
                             self.external_sources.search(source, target)
                         } else if constants.is_external(source) {
@@ -374,18 +368,7 @@ impl<
                             } else {
                                 self.internal_sources.search(source, target)
                             }
-                        } else {
-                            if Self::USE_LIST
-                                || self.internal_sources.count_usages(source)
-                                    > self.internal_targets.count_usages(target)
-                            {
-                                self.internal_targets.search(source, target)
-                            } else {
-                                self.internal_sources.search(source, target)
-                            }
-                        }
-                    } else {
-                        if Self::USE_LIST
+                        } else if Self::USE_LIST
                             || self.internal_sources.count_usages(source)
                                 > self.internal_targets.count_usages(target)
                         {
@@ -393,6 +376,13 @@ impl<
                         } else {
                             self.internal_sources.search(source, target)
                         }
+                    } else if Self::USE_LIST
+                        || self.internal_sources.count_usages(source)
+                            > self.internal_targets.count_usages(target)
+                    {
+                        self.internal_targets.search(source, target)
+                    } else {
+                        self.internal_sources.search(source, target)
                     };
                     return if link == constants.null {
                         R::from_output(())
@@ -401,36 +391,28 @@ impl<
                         handler(link)
                     };
                 }
-            } else {
-                if let Some(link) = self.get_link(index) {
-                    if (source, target) == (any, any) {
-                        handler(unsafe { self.get_link_unchecked(index) })
+            } else if let Some(link) = self.get_link(index) {
+                if (source, target) == (any, any) {
+                    handler(unsafe { self.get_link_unchecked(index) })
+                } else if source != any && target != any {
+                    if (link.source, link.target) == (source, target) {
+                        handler(link)
                     } else {
-                        if source != any && target != any {
-                            if (link.source, link.target) == (source, target) {
-                                handler(link)
-                            } else {
-                                R::from_output(())
-                            }
-                        } else {
-                            if source != any {
-                                if (link.source, link.target) == (source, source) {
-                                    handler(link)
-                                } else {
-                                    R::from_output(())
-                                }
-                            } else {
-                                if (link.source, link.target) == (target, target) {
-                                    handler(link)
-                                } else {
-                                    R::from_output(())
-                                }
-                            }
-                        }
+                        R::from_output(())
                     }
+                } else if source != any {
+                    if (link.source, link.target) == (source, source) {
+                        handler(link)
+                    } else {
+                        R::from_output(())
+                    }
+                } else if (link.source, link.target) == (target, target) {
+                    handler(link)
                 } else {
                     R::from_output(())
                 }
+            } else {
+                R::from_output(())
             };
         }
         todo!()
@@ -465,12 +447,10 @@ impl<
         if query.len() == 1 {
             return if index == any {
                 self.total()
+            } else if self.exists(index) {
+                one()
             } else {
-                if self.exists(index) {
-                    one()
-                } else {
-                    zero()
-                }
+                zero()
             };
         }
 
@@ -482,27 +462,23 @@ impl<
                 } else if constants.is_external(value) {
                     self.external_sources.count_usages(value)
                         + self.external_targets.count_usages(value)
+                } else if Self::USE_LIST {
+                    self.sources_list.count_usages(value)
+                        + self.internal_targets.count_usages(value)
                 } else {
-                    if Self::USE_LIST {
-                        self.sources_list.count_usages(value)
-                            + self.internal_targets.count_usages(value)
-                    } else {
-                        self.internal_sources.count_usages(value)
-                            + self.internal_targets.count_usages(value)
-                    }
+                    self.internal_sources.count_usages(value)
+                        + self.internal_targets.count_usages(value)
                 }
+            } else if !self.exists(index) {
+                zero()
+            } else if value == any {
+                one()
             } else {
-                if !self.exists(index) {
-                    zero()
-                } else if value == any {
+                let stored = self.get_data_part(index);
+                if (stored.source, stored.target) == (value, value) {
                     one()
                 } else {
-                    let stored = self.get_data_part(index);
-                    if (stored.source, stored.target) == (value, value) {
-                        one()
-                    } else {
-                        zero()
-                    }
+                    zero()
                 }
             };
         }
@@ -529,7 +505,7 @@ impl<
                         self.internal_sources.count_usages(source)
                     }
                 } else {
-                    let mut link = if let Some(_) = &constants.external_range {
+                    let link = if let Some(_) = &constants.external_range {
                         if constants.is_external(source) && constants.is_external(target) {
                             self.external_sources.search(source, target)
                         } else if constants.is_external(source) {
@@ -540,18 +516,7 @@ impl<
                             } else {
                                 self.internal_sources.search(source, target)
                             }
-                        } else {
-                            if Self::USE_LIST
-                                || self.internal_sources.count_usages(source)
-                                    > self.internal_targets.count_usages(target)
-                            {
-                                self.internal_targets.search(source, target)
-                            } else {
-                                self.internal_sources.search(source, target)
-                            }
-                        }
-                    } else {
-                        if Self::USE_LIST
+                        } else if Self::USE_LIST
                             || self.internal_sources.count_usages(source)
                                 > self.internal_targets.count_usages(target)
                         {
@@ -559,6 +524,13 @@ impl<
                         } else {
                             self.internal_sources.search(source, target)
                         }
+                    } else if Self::USE_LIST
+                        || self.internal_sources.count_usages(source)
+                            > self.internal_targets.count_usages(target)
+                    {
+                        self.internal_targets.search(source, target)
+                    } else {
+                        self.internal_sources.search(source, target)
                     };
                     return if link == constants.null {
                         zero()
@@ -566,34 +538,28 @@ impl<
                         one()
                     };
                 }
+            } else if !self.exists(index) {
+                zero()
+            } else if (source, target) == (any, any) {
+                one()
             } else {
-                if !self.exists(index) {
-                    zero()
-                } else if (source, target) == (any, any) {
+                let link = unsafe { self.get_link_unchecked(index) };
+                if source != any && target != any {
+                    if (link.source, link.target) == (source, target) {
+                        one()
+                    } else {
+                        zero()
+                    }
+                } else if source != any {
+                    if (link.source, link.target) == (source, source) {
+                        one()
+                    } else {
+                        zero()
+                    }
+                } else if (link.source, link.target) == (target, target) {
                     one()
                 } else {
-                    let link = unsafe { self.get_link_unchecked(index) };
-                    if source != any && target != any {
-                        if (link.source, link.target) == (source, target) {
-                            one()
-                        } else {
-                            zero()
-                        }
-                    } else {
-                        if source != any {
-                            if (link.source, link.target) == (source, source) {
-                                one()
-                            } else {
-                                zero()
-                            }
-                        } else {
-                            if (link.source, link.target) == (target, target) {
-                                one()
-                            } else {
-                                zero()
-                            }
-                        }
-                    }
+                    zero()
                 }
             };
         }
@@ -603,7 +569,7 @@ impl<
 
     fn create_by_with<F, R>(
         &mut self,
-        query: impl ToQuery<T>,
+        _query: impl ToQuery<T>,
         mut handler: F,
     ) -> Result<R, LinksError<T>>
     where
@@ -686,13 +652,11 @@ impl<
             if constants.is_external(source) {
                 let temp = &mut self.mut_header().root_as_source as *mut T;
                 self.external_sources.detach(unsafe { &mut *temp }, index)
+            } else if Self::USE_LIST {
+                self.sources_list.detach(source, index);
             } else {
-                if Self::USE_LIST {
-                    self.sources_list.detach(source, index);
-                } else {
-                    let temp = &mut self.mut_index_part(source).root_as_source as *mut T;
-                    self.internal_sources.detach(unsafe { &mut *temp }, index);
-                }
+                let temp = &mut self.mut_index_part(source).root_as_source as *mut T;
+                self.internal_sources.detach(unsafe { &mut *temp }, index);
             }
         }
 
@@ -720,13 +684,11 @@ impl<
             if constants.is_external(source) {
                 let temp = &mut self.mut_header().root_as_source as *mut T;
                 self.external_sources.attach(unsafe { &mut *temp }, index)
+            } else if Self::USE_LIST {
+                self.sources_list.attach_as_last(source, index);
             } else {
-                if Self::USE_LIST {
-                    self.sources_list.attach_as_last(source, index);
-                } else {
-                    let temp = &mut self.mut_index_part(source).root_as_source as *mut T;
-                    self.internal_sources.attach(unsafe { &mut *temp }, index);
-                }
+                let temp = &mut self.mut_index_part(source).root_as_source as *mut T;
+                self.internal_sources.attach(unsafe { &mut *temp }, index);
             }
         }
 
@@ -770,36 +732,36 @@ impl<
         // TODO: move to `delete_core`
         let header = self.get_header();
         let link = index;
-        if link < header.allocated {
-            self.unused.attach_as_first(link)
-        } else if link == header.allocated {
-            self.data_mem
-                .occupy(self.data_mem.occupied() - Self::DATA_SIZE)?;
-            self.index_mem
-                .occupy(self.index_mem.occupied() - Self::INDEX_SIZE)?;
 
-            let allocated = self.get_header().allocated;
-            let header = self.mut_header();
-            header.allocated = allocated - one();
+        match link.cmp(&header.allocated) {
+            Ordering::Less => self.unused.attach_as_first(link),
+            Ordering::Greater => unreachable!(),
+            Ordering::Equal => {
+                self.data_mem
+                    .occupy(self.data_mem.occupied() - Self::DATA_SIZE)?;
+                self.index_mem
+                    .occupy(self.index_mem.occupied() - Self::INDEX_SIZE)?;
 
-            loop {
                 let allocated = self.get_header().allocated;
-                if !(allocated > zero() && self.is_unused(allocated)) {
-                    break;
+                let header = self.mut_header();
+                header.allocated = allocated - one();
+
+                loop {
+                    let allocated = self.get_header().allocated;
+                    if !(allocated > zero() && self.is_unused(allocated)) {
+                        break;
+                    }
+                    self.unused.detach(allocated);
+                    self.mut_header().allocated = allocated - one();
+                    // TODO: create extension `update_used`
+
+                    let used_mem = self.data_mem.occupied();
+                    self.data_mem.occupy(used_mem - Self::DATA_SIZE)?;
+
+                    let used_mem = self.index_mem.occupied();
+                    self.index_mem.occupy(used_mem - Self::INDEX_SIZE)?;
                 }
-                self.unused.detach(allocated);
-                self.mut_header().allocated = allocated - one();
-                // TODO: create extension `update_used`
-
-                let used_mem = self.data_mem.occupied();
-                self.data_mem.occupy(used_mem - Self::DATA_SIZE)?;
-
-                let used_mem = self.index_mem.occupied();
-                self.index_mem.occupy(used_mem - Self::INDEX_SIZE)?;
             }
-        } else {
-            // must be unreachable
-            panic!("unexpected link index")
         }
         Ok(handler(Link::new(index, source, target), Link::nothing()))
     }

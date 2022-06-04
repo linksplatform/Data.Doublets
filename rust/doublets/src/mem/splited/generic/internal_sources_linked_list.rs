@@ -1,12 +1,11 @@
 use crate::Link;
 use data::LinksConstants;
-use std::marker::PhantomData;
+
 use std::ops::Try;
 
-use crate::mem::ilinks_list_methods::ILinksListMethods;
 use crate::mem::links_header::LinksHeader;
 use crate::mem::splited::{DataPart, IndexPart};
-use crate::mem::united::generic::UpdatePointers;
+
 use crate::mem::united::UpdatePointersSplit;
 use methods::{
     DoublyLinkedListBase, RelativeCircularDoublyLinkedList, RelativeDoublyLinkedListBase,
@@ -114,7 +113,7 @@ impl<T: LinkType> RelativeDoublyLinkedListBase<T> for InternalSourcesLinkedList<
         self.get_mut_index_part(head).root_as_source = element
     }
 
-    fn set_last(&mut self, head: T, element: T) {
+    fn set_last(&mut self, _head: T, _element: T) {
         // todo!("empty")
         // let first = self.get_index_part(head).root_as_source;
         // if first.is_zero() {
