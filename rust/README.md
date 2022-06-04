@@ -11,7 +11,7 @@ Make sure you activated the full features of the tokio crate on Cargo.toml:
 
 ```toml
 [dependencies]
-doublets = { version = "0.1.0-alpha.17", features = ["full"] }
+doublets = { version = "0.1.0-alpha.19", features = ["full"] }
 ```
 
 ```rust
