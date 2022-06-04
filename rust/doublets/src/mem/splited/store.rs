@@ -60,9 +60,9 @@ impl<
 {
     const USE_LIST: bool = false;
     const SIZE_STEP: usize = 1024_usize.pow(2) * 64;
-    const HEADER_SIZE: usize = std::mem::size_of::<LinksHeader<T>>();
-    const DATA_SIZE: usize = std::mem::size_of::<DataPart<T>>();
-    const INDEX_SIZE: usize = std::mem::size_of::<IndexPart<T>>();
+    const HEADER_SIZE: usize = size_of::<LinksHeader<T>>();
+    const DATA_SIZE: usize = size_of::<DataPart<T>>();
+    const INDEX_SIZE: usize = size_of::<IndexPart<T>>();
 
     // TODO: create Options
     pub fn with_constants(
