@@ -42,7 +42,7 @@ fn random_creations_and_deletions() {
 
 #[test]
 fn billion_points_file_mapped() {
-    std::fs::remove_file("mem_bpfm");
+    std::fs::remove_file("mem_bpfm").ok();
 
     let mem = TempFileMem::new().unwrap();
     let mut links = Store::<usize, _>::new(mem).unwrap();

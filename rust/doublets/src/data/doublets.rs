@@ -15,7 +15,7 @@ use ControlFlow::{Break, Continue};
 
 pub type Result<T, E = LinksError<T>> = std::result::Result<T, E>;
 
-fn IGNORE<T: LinkType>(_: Link<T>, _: Link<T>) -> Result<(), ()> {
+fn ignore<T: LinkType>(_: Link<T>, _: Link<T>) -> Result<(), ()> {
     Err(())
 }
 
@@ -255,7 +255,7 @@ pub trait Doublets<T: LinkType> {
     }
 
     fn delete_usages(&mut self, index: T) -> Result<(), LinksError<T>> {
-        self.delete_usages_with(index, IGNORE)
+        self.delete_usages_with(index, ignore)
     }
 
     fn create_point(&mut self) -> Result<T> {

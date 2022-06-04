@@ -49,14 +49,14 @@ fn u128_raw_numbers() {
     let adr = to_adr.convert(raw);
     assert!(constants.is_internal(adr));
 
-    let source = to_raw.convert(228_1337_1754_177013_666_777_u128);
+    let source = to_raw.convert(22_813_371_754_177_013_666_777_u128);
     let target = to_raw.convert(10_1011_0011_0111_0101_u128);
-    let address = links.create_and_update(source, target).unwrap();
+    let address = links.create_link(source, target).unwrap();
 
     let link = links.get_link(address).unwrap();
     assert_eq!(
         to_adr.convert(link.source),
-        228_1337_1754_177013_666_777_u128
+        22_813_371_754_177_013_666_777_u128
     );
     assert_eq!(to_adr.convert(link.target), 10_1011_0011_0111_0101_u128);
 }
