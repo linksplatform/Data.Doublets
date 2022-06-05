@@ -51,7 +51,7 @@ impl<T: LinkType> InternalSourcesLinkedList<T> {
         unsafe { &*((self.data as *const DataPart<T>).add(link.as_())) }
     }
 
-    fn get_mut_data_part(&self, link: T) -> &mut DataPart<T> {
+    fn get_mut_data_part(&mut self, link: T) -> &mut DataPart<T> {
         unsafe { &mut *((self.data as *mut DataPart<T>).add(link.as_())) }
     }
 
@@ -59,7 +59,7 @@ impl<T: LinkType> InternalSourcesLinkedList<T> {
         unsafe { &*((self.indexes as *const IndexPart<T>).add(link.as_())) }
     }
 
-    fn get_mut_index_part(&self, link: T) -> &mut IndexPart<T> {
+    fn get_mut_index_part(&mut self, link: T) -> &mut IndexPart<T> {
         unsafe { &mut *((self.indexes as *mut IndexPart<T>).add(link.as_())) }
     }
 

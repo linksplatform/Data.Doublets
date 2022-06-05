@@ -1,6 +1,6 @@
 [package]
 name = "doublets"
-version = "0.1.0-alpha.18"
+version = "0.1.0-alpha.19"
 edition = "2021"
 authors = [
     "uselessgoddess",
