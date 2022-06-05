@@ -7,7 +7,6 @@ namespace Platform::Data::Doublets
         using base = Platform::Data::LinksOptions<TLinkAddress, VConstants, TLink, TReadHandler, TWriteHandler>;
         using base::LinkAddressType;
         using base::Constants;
-        using Platform::Data::LinksConstants;
         using base::LinkType;
         using base::WriteHandlerType;
         using base::ReadHandlerType;
