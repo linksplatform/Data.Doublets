@@ -1,6 +1,6 @@
 ﻿namespace Platform::Data::Doublets::Memory::Split::Generic
 {
-    using namespace Platform::Collections::Methods::Lists;
+ Platform::Collections::Methods::Lists;
     template<typename TLinksOptions>
     class InternalLinksSourcesLinkedListMethods : public RelativeCircularDoublyLinkedListMethods<InternalLinksSourcesLinkedListMethods<TLinksOptions>, typename TLinksOptions::LinkAddressType>
     {

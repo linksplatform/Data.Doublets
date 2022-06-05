@@ -1,7 +1,7 @@
 namespace Platform::Data::Doublets::Memory::Split::Generic
 {
-    using namespace Platform::Interfaces;
-    using namespace Platform::Data;
+ Platform::Interfaces;
+ Platform::Data;
     template<
         typename TSelf,
         typename TLinksOptions,

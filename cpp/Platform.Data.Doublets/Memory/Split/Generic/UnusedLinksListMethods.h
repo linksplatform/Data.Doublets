@@ -1,6 +1,6 @@
 ﻿namespace Platform::Data::Doublets::Memory::Split::Generic
 {
-    using namespace Platform::Collections::Methods::Lists;
+ Platform::Collections::Methods::Lists;
     template<typename TLinksOptions>
     class UnusedLinksListMethods : public  AbsoluteCircularDoublyLinkedListMethods<UnusedLinksListMethods<TLinksOptions>, typename TLinksOptions::LinkAddressType> /*, ILinksListMethods<typename TLinksOptions::LinkAddressType> */
     {
