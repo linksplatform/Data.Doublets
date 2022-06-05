@@ -5,10 +5,10 @@
     class InternalLinksSourcesLinkedListMethods : public RelativeCircularDoublyLinkedListMethods<InternalLinksSourcesLinkedListMethods<TLinksOptions>, typename TLinksOptions::LinkAddressType>
     {
     public: using LinksOptionsType = TLinksOptions;
-                using LinkAddressType = LinksOptionsType::LinkAddressType;
-        using LinkType = LinksOptionsType::LinkType;
-        using WriteHandlerType = LinksOptionsType::WriteHandlerType;
-        using ReadHandlerType = LinksOptionsType::ReadHandlerType;
+                using LinkAddressType = typename LinksOptionsType::LinkAddressType;
+        using LinkType = typename LinksOptionsType::LinkType;
+        using WriteHandlerType = typename LinksOptionsType::WriteHandlerType;
+        using ReadHandlerType = typename LinksOptionsType::ReadHandlerType;
         public: static constexpr auto Constants = LinksOptionsType::Constants;
         private:
         std::byte* _linksDataParts;

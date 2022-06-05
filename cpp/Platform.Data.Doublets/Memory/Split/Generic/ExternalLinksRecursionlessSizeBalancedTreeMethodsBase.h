@@ -6,10 +6,10 @@
     {
     public: using LinksOptionsType = TLinksOptions;
     public: static constexpr auto Constants = LinksOptionsType::Constants;
-    public:         using LinkAddressType = LinksOptionsType::LinkAddressType;
-        using LinkType = LinksOptionsType::LinkType;
-        using WriteHandlerType = LinksOptionsType::WriteHandlerType;
-        using ReadHandlerType = LinksOptionsType::ReadHandlerType;
+    public:         using LinkAddressType = typename LinksOptionsType::LinkAddressType;
+        using LinkType = typename LinksOptionsType::LinkType;
+        using WriteHandlerType = typename LinksOptionsType::WriteHandlerType;
+        using ReadHandlerType = typename LinksOptionsType::ReadHandlerType;
         public: static constexpr LinkAddressType Break = Constants.Break;
         public: static constexpr LinkAddressType Continue = Constants.Continue;
         public: std::byte* LinksDataParts;
