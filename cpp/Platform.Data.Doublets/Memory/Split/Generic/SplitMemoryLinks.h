@@ -1,7 +1,5 @@
 namespace Platform::Data::Doublets::Memory::Split::Generic
 {
- Platform::Interfaces;
- Platform::Memory;
     template<
         typename TLinksOptions,
         typename TMemory = FileMappedResizableDirectMemory,

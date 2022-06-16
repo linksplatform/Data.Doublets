@@ -1,7 +1,5 @@
 namespace Platform::Data::Doublets::Memory::Split::Generic
 {
- Platform::Interfaces;
- Platform::Data;
     template<
         typename TSelf,
         typename TLinksOptions,
@@ -546,7 +544,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     return LinkAddressType{0};
                 }
             }
-            throw NotSupportedException();
+            throw Platform::Exceptions::NotSupportedException();
         }
 
 
@@ -742,7 +740,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     return $continue;
                 }
             }
-            throw NotSupportedException();
+            throw Platform::Exceptions::NotSupportedException();
         }
 
 
@@ -836,7 +834,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 auto maximumPossibleInnerReference = Constants.InternalReferencesRange.Maximum;
                 if (this->GetHeaderReference().AllocatedLinks > maximumPossibleInnerReference)
                 {
-                    throw LinksLimitReachedException();
+                    throw Platform::Exceptions::LinksLimitReachedException();
                 }
                 if (this->GetHeaderReference().AllocatedLinks >= (this->GetHeaderReference().ReservedLinks - 1))
                 {

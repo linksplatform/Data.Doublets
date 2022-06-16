@@ -1,8 +1,7 @@
 ﻿namespace Platform::Data::Doublets::Memory::Split::Generic
 {
- Platform::Collections::Methods::Lists;
     template<typename TLinksOptions>
-    class UnusedLinksListMethods : public  AbsoluteCircularDoublyLinkedListMethods<UnusedLinksListMethods<TLinksOptions>, typename TLinksOptions::LinkAddressType> /*, ILinksListMethods<typename TLinksOptions::LinkAddressType> */
+    class UnusedLinksListMethods : public  Platform::Collections::Methods::Lists::AbsoluteCircularDoublyLinkedListMethods<UnusedLinksListMethods<TLinksOptions>, typename TLinksOptions::LinkAddressType> /*, ILinksListMethods<typename TLinksOptions::LinkAddressType> */
     {
     public:
         using LinksOptionsType = TLinksOptions;
@@ -10,7 +9,7 @@
         using LinkType = typename LinksOptionsType::LinkType;
         using WriteHandlerType = typename LinksOptionsType::WriteHandlerType;
         using ReadHandlerType = typename LinksOptionsType::ReadHandlerType;
-        using base = AbsoluteCircularDoublyLinkedListMethods<UnusedLinksListMethods<TLinksOptions>, typename TLinksOptions::LinkAddressType>;
+        using base = Platform::Collections::Methods::Lists::AbsoluteCircularDoublyLinkedListMethods<UnusedLinksListMethods<TLinksOptions>, typename TLinksOptions::LinkAddressType>;
     public: static constexpr auto Constants = LinksOptionsType::Constants;
         private: std::byte* _storage;
         private: std::byte* _header;
