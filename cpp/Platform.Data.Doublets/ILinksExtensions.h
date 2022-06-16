@@ -352,7 +352,7 @@ namespace Platform::Data::Doublets
             using namespace Platform::Exceptions;
             if (storage.Exists(source, target))
             {
-                throw LinkWithSameValueAlreadyExistsException();
+                throw Platform::Exceptions::LinkWithSameValueAlreadyExistsException();
             }
         }
 
