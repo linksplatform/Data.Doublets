@@ -2,7 +2,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
 {
     template<
         typename TLinksOptions,
-        typename TMemory = FileMappedResizableDirectMemory,
+        typename TMemory = Platform::Memory::FileMappedResizableDirectMemory,
         typename TInternalSourcesTreeMethods = InternalLinksSourcesSizeBalancedTreeMethods<TLinksOptions>,
         typename TInternalLinksSourcesLinkedListMethods = InternalLinksSourcesLinkedListMethods<TLinksOptions>,
         typename TInternalTargetsTreeMethods = InternalLinksTargetsSizeBalancedTreeMethods<TLinksOptions>,
