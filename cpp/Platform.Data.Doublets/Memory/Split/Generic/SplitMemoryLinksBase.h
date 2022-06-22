@@ -1,7 +1,5 @@
 namespace Platform::Data::Doublets::Memory::Split::Generic
 {
-    using namespace Platform::Interfaces;
-    using namespace Platform::Data;
     template<
         typename TSelf,
         typename TLinksOptions,
@@ -17,10 +15,10 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
     {
     public:
         using LinksOptionsType = TLinksOptions;
-        using LinkAddressType = LinksOptionsType::LinkAddressType;
-        using LinkType = LinksOptionsType::LinkType;
-        using WriteHandlerType = LinksOptionsType::WriteHandlerType;
-        using ReadHandlerType = LinksOptionsType::ReadHandlerType;
+        using LinkAddressType = typename LinksOptionsType::LinkAddressType;
+        using LinkType = typename LinksOptionsType::LinkType;
+        using WriteHandlerType = typename LinksOptionsType::WriteHandlerType;
+        using ReadHandlerType = typename LinksOptionsType::ReadHandlerType;
         static constexpr LinksConstants<LinkAddressType> Constants = LinksOptionsType::Constants;
         static constexpr bool UseLinkedList = false;
     public:
@@ -546,7 +544,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     return LinkAddressType{0};
                 }
             }
-            throw NotSupportedException();
+            throw Platform::Exceptions::NotSupportedException();
         }
 
 
@@ -742,7 +740,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     return $continue;
                 }
             }
-            throw NotSupportedException();
+            throw Platform::Exceptions::NotSupportedException();
         }
 
 
@@ -836,7 +834,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 auto maximumPossibleInnerReference = Constants.InternalReferencesRange.Maximum;
                 if (this->GetHeaderReference().AllocatedLinks > maximumPossibleInnerReference)
                 {
-                    throw LinksLimitReachedException();
+                    throw Platform::Exceptions::LinksLimitReachedException();
                 }
                 if (this->GetHeaderReference().AllocatedLinks >= (this->GetHeaderReference().ReservedLinks - 1))
                 {

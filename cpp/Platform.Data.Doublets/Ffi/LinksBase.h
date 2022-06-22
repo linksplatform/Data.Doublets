@@ -182,10 +182,10 @@ namespace Platform::Data::Doublets::Ffi
 
     public:
         using LinksOptionsType = TLinkOptions;
-        using LinkAddressType = LinksOptionsType::LinkAddressType;
-        using LinkType = LinksOptionsType::LinkType;
-        using WriteHandlerType = LinksOptionsType::WriteHandlerType;
-        using ReadHandlerType = LinksOptionsType::ReadHandlerType;
+        using LinkAddressType = typename LinksOptionsType::LinkAddressType;
+        using LinkType = typename LinksOptionsType::LinkType;
+        using WriteHandlerType = typename LinksOptionsType::WriteHandlerType;
+        using ReadHandlerType = typename LinksOptionsType::ReadHandlerType;
         static constexpr LinksConstants<LinkAddressType> Constants = LinksOptionsType::Constants;
 
         LinksBase(std::string_view path)

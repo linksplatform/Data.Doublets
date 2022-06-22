@@ -5,10 +5,10 @@
     {
         using base = ExternalLinksRecursionlessSizeBalancedTreeMethodsBase<ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods<TLinksOptions>, TLinksOptions>;
     public: using LinksOptionsType = TLinksOptions;
-    public:         using LinkAddressType = LinksOptionsType::LinkAddressType;
-        using LinkType = LinksOptionsType::LinkType;
-        using WriteHandlerType = LinksOptionsType::WriteHandlerType;
-        using ReadHandlerType = LinksOptionsType::ReadHandlerType;
+    public:         using LinkAddressType = typename LinksOptionsType::LinkAddressType;
+        using LinkType = typename LinksOptionsType::LinkType;
+        using WriteHandlerType = typename LinksOptionsType::WriteHandlerType;
+        using ReadHandlerType = typename LinksOptionsType::ReadHandlerType;
     public: static constexpr auto Constants = LinksOptionsType::Constants;
     public: ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods(std::byte* linksDataParts, std::byte* linksIndexParts, std::byte* header) : base(linksDataParts, linksIndexParts, header) { }
 

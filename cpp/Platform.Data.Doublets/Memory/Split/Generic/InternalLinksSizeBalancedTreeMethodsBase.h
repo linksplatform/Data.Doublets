@@ -1,14 +1,14 @@
 ﻿namespace Platform::Data::Doublets::Memory::Split::Generic
 {
     template<typename TSelf, typename TLinksOptions>
-    class InternalLinksSizeBalancedTreeMethodsBase : public SizeBalancedTreeMethods<TSelf, typename TLinksOptions::LinkAddressType> /* public ILinksTreeMethods<TLinksOptions>, */
+    class InternalLinksSizeBalancedTreeMethodsBase : public Platform::Collections::Methods::Trees::SizeBalancedTreeMethods<TSelf, typename TLinksOptions::LinkAddressType> /* public ILinksTreeMethods<TLinksOptions>, */
     {
         using LinksOptionsType = TLinksOptions;
     public: static constexpr auto Constants = LinksOptionsType::Constants;
-        using LinkAddressType = LinksOptionsType::LinkAddressType;
-        using LinkType = LinksOptionsType::LinkType;
-        using WriteHandlerType = LinksOptionsType::WriteHandlerType;
-        using ReadHandlerType = LinksOptionsType::ReadHandlerType;
+        using LinkAddressType = typename LinksOptionsType::LinkAddressType;
+        using LinkType = typename LinksOptionsType::LinkType;
+        using WriteHandlerType = typename LinksOptionsType::WriteHandlerType;
+        using ReadHandlerType = typename LinksOptionsType::ReadHandlerType;
         public: static constexpr LinkAddressType Break = Constants.Break;
         public: static constexpr LinkAddressType Continue = Constants.Continue;
         public: std::byte* LinksDataParts;
