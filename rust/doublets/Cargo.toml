@@ -1,6 +1,6 @@
 [package]
 name = "doublets"
-version = "0.1.0-alpha.20"
+version = "0.1.0-beta.1"
 edition = "2021"
 authors = [
     "uselessgoddess",
@@ -37,7 +37,11 @@ methods = { package = "platform-treesmethods", version = "0.1.0-alpha.0" }
 mem = []
 num = []
 data = []
-full = ["mem", "num", "data"]
+# todo: may be internal_platform
+platform = ["mem", "num", "data"]
+
+default = ["platform"]
+full = ["platform"]
 
 [dev-dependencies]
 criterion = "0.3"
