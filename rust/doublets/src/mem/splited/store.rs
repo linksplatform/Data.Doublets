@@ -392,21 +392,25 @@ impl<
                 }
             } else if let Some(link) = self.get_link(index) {
                 if (source, target) == (any, any) {
-                    handler(unsafe { self.get_link_unchecked(index) })
+                    handler(link)
                 } else if source != any && target != any {
                     if (link.source, link.target) == (source, target) {
                         handler(link)
                     } else {
                         R::from_output(())
                     }
-                } else if source != any {
-                    if (link.source, link.target) == (source, source) {
+                } else if source == any {
+                    if link.target == target {
                         handler(link)
                     } else {
                         R::from_output(())
                     }
-                } else if (link.source, link.target) == (target, target) {
-                    handler(link)
+                } else if target == any {
+                    if link.source == source {
+                        handler(link)
+                    } else {
+                        R::from_output(())
+                    }
                 } else {
                     R::from_output(())
                 }
@@ -576,14 +580,18 @@ impl<
                     } else {
                         zero()
                     }
-                } else if source != any {
-                    if (link.source, link.target) == (source, source) {
+                } else if source == any {
+                    if link.target == target {
                         one()
                     } else {
                         zero()
                     }
-                } else if (link.source, link.target) == (target, target) {
-                    one()
+                } else if target == any {
+                    if link.source == source {
+                        one()
+                    } else {
+                        zero()
+                    }
                 } else {
                     zero()
                 }

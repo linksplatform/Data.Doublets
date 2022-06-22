@@ -233,7 +233,7 @@ impl<
                 }
             } else if let Some(link) = self.get_link(index) {
                 if value == any || link.source == value || link.target == value {
-                    return handler(link);
+                    handler(link)
                 } else {
                     R::from_output(())
                 }
@@ -246,8 +246,8 @@ impl<
             let source = restriction[constants.source_part.as_()];
             let target = restriction[constants.target_part.as_()];
 
-            if index == any {
-                return if (source, target) == (any, any) {
+            return if index == any {
+                if (source, target) == (any, any) {
                     self.each_core(handler, [])
                 } else if source == any {
                     self.targets.each_usages(target, handler)
@@ -260,36 +260,34 @@ impl<
                     } else {
                         R::from_output(())
                     }
-                };
-            } else {
-                let link = match self.get_link(index) {
-                    Some(link) => link,
-                    None => return R::from_output(()),
-                };
-                if (target, source) == (any, any) {
-                    return handler(link); // TODO: add (x * *) search test
                 }
-                if target != any && source != any {
-                    return if (source, target) == (link.source, link.target) {
+            } else if let Some(link) = self.get_link(index) {
+                if (target, source) == (any, any) {
+                    handler(link) // TODO: add (x * *) search test
+                } else if target != any && source != any {
+                    if (source, target) == (link.source, link.target) {
                         handler(link)
                     } else {
                         R::from_output(())
-                    };
-                }
-
-                let mut value = default();
-                if source == any {
-                    value = target;
-                }
-                if target == any {
-                    value = source;
-                }
-                return if (link.source == value) || (link.target == value) {
-                    handler(link)
+                    }
+                } else if source == any {
+                    if link.target == target {
+                        handler(link)
+                    } else {
+                        R::from_output(())
+                    }
+                } else if target == any {
+                    if link.source == source {
+                        handler(link)
+                    } else {
+                        R::from_output(())
+                    }
                 } else {
                     R::from_output(())
-                };
-            }
+                }
+            } else {
+                R::from_output(())
+            };
         }
         todo!()
     }
@@ -375,31 +373,30 @@ impl<
                         one()
                     }
                 }
+            } else if !self.exists(index) {
+                zero()
+            } else if (source, target) == (any, any) {
+                one()
             } else {
-                let link = match self.get_link(index) {
-                    Some(link) => link,
-                    None => return zero(),
-                };
-                if (target, source) == (any, any) {
-                    return self.get_total();
-                }
-                if target != any && source != any {
-                    return if (source, target) == (link.source, link.target) {
+                let link = unsafe { self.get_link_unchecked(index) };
+                if source != any && target != any {
+                    if (link.source, link.target) == (source, target) {
                         one()
                     } else {
                         zero()
-                    };
-                }
-
-                let mut value = default();
-                if source == any {
-                    value = target;
-                }
-                if target == any {
-                    value = source;
-                }
-                if (link.source == value) || (link.target == value) {
-                    one()
+                    }
+                } else if source == any {
+                    if link.target == target {
+                        one()
+                    } else {
+                        zero()
+                    }
+                } else if target == any {
+                    if link.source == source {
+                        one()
+                    } else {
+                        zero()
+                    }
                 } else {
                     zero()
                 }
