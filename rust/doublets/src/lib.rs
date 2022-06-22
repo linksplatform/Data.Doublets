@@ -29,7 +29,6 @@ pub mod data;
 pub mod mem;
 pub mod num;
 pub mod test_extensions;
-pub mod tests;
 pub use crate::mem::splited;
 pub use crate::mem::united;
 

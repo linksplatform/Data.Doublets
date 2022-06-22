@@ -1,8 +1,11 @@
 use std::cmp::Ordering;
 use std::default::default;
 use std::error::Error;
+use std::iter::{Enumerate, Zip};
 use std::mem::size_of;
 use std::ops::Try;
+use std::ptr::NonNull;
+use std::slice;
 
 use num_traits::{one, zero};
 
@@ -412,6 +415,33 @@ impl<
             };
         }
         todo!()
+    }
+
+    pub fn iter<'a>(&'a self) -> Iter<'a, T> {
+        unsafe {
+            let data = self.data_mem.ptr();
+            let data: &[DataPart<T>] = slice::from_raw_parts(data.as_ptr().cast(), data.len());
+            // todo: it is safe? yeah
+            let data = &data[1..=self.count().as_()];
+            Iter(data.into_iter().enumerate())
+        }
+    }
+}
+
+type Inner<'a, T> = Enumerate<slice::Iter<'a, DataPart<T>>>;
+pub struct Iter<'a, T: LinkType>(pub(crate) Inner<'a, T>);
+
+impl<'a, T: LinkType> Iterator for Iter<'a, T> {
+    type Item = Link<T>;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        self.0.next().map(|(count, data)| {
+            Link::new(T::from_usize(count + 1).unwrap(), data.source, data.target)
+        })
+    }
+
+    fn size_hint(&self) -> (usize, Option<usize>) {
+        self.0.size_hint()
     }
 }
 
