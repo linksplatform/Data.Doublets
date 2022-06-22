@@ -1,6 +1,7 @@
 use doublets::data::LinksError;
 use doublets::{splited, Doublets, Link};
 use mem::GlobalMem;
+use std::collections::HashSet;
 
 #[test]
 fn split_iter() -> Result<(), LinksError<usize>> {
@@ -11,8 +12,29 @@ fn split_iter() -> Result<(), LinksError<usize>> {
     store.create_link(a, b)?;
 
     assert_eq!(
-        store.iter().collect::<Vec<_>>(),
+        store.iter().collect::<HashSet<_>>(),
         vec![Link::new(1, 1, 1), Link::new(2, 2, 2), Link::new(3, 1, 2),]
+            .into_iter()
+            .collect()
+    );
+
+    Ok(())
+}
+
+#[test]
+fn split_each_iter() -> Result<(), LinksError<usize>> {
+    let mut store = splited::Store::<usize, _, _>::new(GlobalMem::new()?, GlobalMem::new()?)?;
+
+    store.create_link(1, 1)?;
+    store.create_link(2, 1)?;
+    store.create_link(3, 1)?;
+
+    let any = store.constants().any;
+    assert_eq!(
+        store.each_iter([any, any, 1]).collect::<HashSet<_>>(),
+        vec![Link::new(1, 1, 1), Link::new(2, 2, 1), Link::new(3, 3, 1),]
+            .into_iter()
+            .collect()
     );
 
     Ok(())

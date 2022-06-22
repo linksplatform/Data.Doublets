@@ -17,8 +17,9 @@ use crate::mem::splited::{DataPart, IndexPart};
 use crate::mem::united::UpdatePointersSplit;
 use crate::mem::{ILinksListMethods, ILinksTreeMethods, LinksHeader, UpdatePointers};
 use crate::{Doublets, Link, LinksError};
-use data::LinksConstants;
+use data::Flow::Continue;
 use data::{Flow, Links, ReadHandler, ToQuery, WriteHandler};
+use data::{LinksConstants, Query};
 use mem::RawMem;
 use methods::RelativeCircularDoublyLinkedList;
 use num::LinkType;
@@ -421,7 +422,7 @@ impl<
         todo!()
     }
 
-    pub fn iter<'a>(&'a self) -> Iter<'a, T> {
+    pub fn iter(&self) -> Iter<T> {
         unsafe {
             let data = self.data_mem.ptr();
             let data: &[DataPart<T>] = slice::from_raw_parts(data.as_ptr().cast(), data.len());
@@ -429,6 +430,18 @@ impl<
             let data = &data[1..=self.count().as_()];
             Iter(data.into_iter().enumerate())
         }
+    }
+
+    pub fn each_iter(&self, query: impl ToQuery<T>) -> impl Iterator<Item = Link<T>> {
+        let count = self.count_by(query.to_query());
+        let mut vec = Vec::with_capacity(count.as_());
+
+        self.try_each_by(query, |link| {
+            vec.push(link);
+            Continue
+        });
+
+        vec.into_iter()
     }
 }
 

@@ -5,14 +5,7 @@ A library that represents database engine that uses doublets.
 
 ## Example
 
-A basic hello world in doublets
-
-Make sure you activated the full features of the tokio crate on Cargo.toml:
-
-```toml
-[dependencies]
-doublets = { version = "0.1.0-alpha.19", features = ["full"] }
-```
+A basic CRUD in doublets
 
 ```rust
 use doublets::data::Flow::Continue;
