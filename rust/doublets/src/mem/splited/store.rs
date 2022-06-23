@@ -23,6 +23,7 @@ use data::{LinksConstants, Query};
 use mem::RawMem;
 use methods::RelativeCircularDoublyLinkedList;
 use num::LinkType;
+use smallvec::SmallVec;
 
 pub struct Store<
     T: LinkType,
@@ -434,7 +435,9 @@ impl<
 
     pub fn each_iter(&self, query: impl ToQuery<T>) -> impl Iterator<Item = Link<T>> {
         let count = self.count_by(query.to_query());
-        let mut vec = Vec::with_capacity(count.as_());
+        // todo: wait const generics feature
+        //  64 / (8 * 3) = 2
+        let mut vec = SmallVec::<[_; 2]>::with_capacity(count.as_());
 
         self.try_each_by(query, |link| {
             vec.push(link);

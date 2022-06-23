@@ -1,6 +1,6 @@
 [package]
 name = "doublets"
-version = "0.1.0-beta.2"
+version = "0.1.0-beta.3"
 edition = "2021"
 authors = [
     "uselessgoddess",
@@ -21,12 +21,11 @@ Modular framework to automation by automation
 """
 
 [dependencies]
+rand = "0.8"
 thiserror = "1.0.30"
-rand = "0.8.0"
-bumpalo = { version = "3.8.0", features = ["allocator_api"] }
-log = { version = "0.4.14", features = ["release_max_level_info", "max_level_info"] }
-env_logger = "0.9.0"
 num-traits = "^0.2.14"
+
+smallvec = { version = "1.8", features = ["const_generics"] }
 
 data = { package = "platform-data", version = "0.1.0-alpha.0" }
 num = { package = "platform-num", version = "0.1.0-alpha.0" }
