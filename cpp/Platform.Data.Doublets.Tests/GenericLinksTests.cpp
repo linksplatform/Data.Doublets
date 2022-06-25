@@ -1,14 +1,22 @@
 ﻿namespace Platform::Data::Doublets::Tests
 {
+    template<typename TStorage>
+    static void UsingStorage(auto&& action)
+    {
+      using namespace Platform::Memory;
+      using namespace Platform::Data::Doublets::Memory::Split::Generic;
+      TStorage storage{ HeapResizableDirectMemory{ }, HeapResizableDirectMemory{ } };
+      action(storage);
+    }
+
    template <typename TLinkAddress>
-    static void Using(auto&& action)
+    static void UsingStorageWithExternalReferences(auto&& action)
     {
         using namespace Platform::Memory;
         using namespace Platform::Data::Doublets::Memory::United::Generic;
         using namespace Platform::Data::Doublets::Memory::United;
-        using namespace Platform::Collections;
-        UnitedMemoryLinks<LinksOptions<TLinkAddress>, HeapResizableDirectMemory> storage {HeapResizableDirectMemory{}};
-        action(storage);
+        using StorageType = UnitedMemoryLinks<LinksOptions<TLinkAddress>, HeapResizableDirectMemory>;
+        UsingStorage<StorageType>(action);
     }
 
     template <typename TLinkAddress>
@@ -17,28 +25,33 @@
       using namespace Platform::Memory;
       using namespace Platform::Data::Doublets::Memory::United::Generic;
       using namespace Platform::Data::Doublets::Decorators;
-      HeapResizableDirectMemory dataMemory { };
-      HeapResizableDirectMemory indexMemory { };
       using StorageType = UnitedMemoryLinks<LinksOptions<TLinkAddress>, HeapResizableDirectMemory>;
       using DecoratedStorageType = LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<StorageType>;
-      DecoratedStorageType storage{ std::move(dataMemory), std::move(indexMemory) };
-      action(storage);
+      UsingStorage<DecoratedStorageType>(action);
     }
 
     TEST(GenericLinksTests, CrudTest)
     {
-        Using<std::uint8_t>([] (auto&& storage) { TestCrudOperations(storage); });
-        Using<std::uint16_t>([] (auto&& storage) { TestCrudOperations(storage); });
-        Using<std::uint32_t>([] (auto&& storage) { TestCrudOperations(storage); });
-        Using<std::uint64_t>([] (auto&& storage) { TestCrudOperations(storage); });
+      UsingStorageWithExternalReferences<std::uint8_t>(
+          [](auto &&storage) { TestCrudOperations(storage); });
+      UsingStorageWithExternalReferences<std::uint16_t>(
+          [](auto &&storage) { TestCrudOperations(storage); });
+        UsingStorageWithExternalReferences<std::uint32_t>(
+            [](auto &&storage) { TestCrudOperations(storage); });
+        UsingStorageWithExternalReferences<std::uint64_t>(
+            [](auto &&storage) { TestCrudOperations(storage); });
     }
 
     TEST(GenericLinksTests, RawNumbersCrudTest)
     {
-        Using<std::uint8_t>([] (auto&& storage) { TestRawNumbersCrudOperations(storage); });
-        Using<std::uint16_t>([] (auto&& storage) { TestRawNumbersCrudOperations(storage); });
-        Using<std::uint32_t>([] (auto&& storage) { TestRawNumbersCrudOperations(storage); });
-        Using<std::uint64_t>([] (auto&& storage) { TestRawNumbersCrudOperations(storage); });
+      UsingStorageWithExternalReferences<std::uint8_t>(
+          [](auto &&storage) { TestRawNumbersCrudOperations(storage); });
+      UsingStorageWithExternalReferences<std::uint16_t>(
+          [](auto &&storage) { TestRawNumbersCrudOperations(storage); });
+        UsingStorageWithExternalReferences<std::uint32_t>(
+            [](auto &&storage) { TestRawNumbersCrudOperations(storage); });
+        UsingStorageWithExternalReferences<std::uint64_t>(
+            [](auto &&storage) { TestRawNumbersCrudOperations(storage); });
     }
 
     TEST(GenericLinksTests, MultipleRandomCreationsAndDeletionsTest)
