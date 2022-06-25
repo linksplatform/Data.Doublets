@@ -11,6 +11,20 @@
         action(storage);
     }
 
+    template <typename TLinkAddress>
+    static void UsingDecoratedWithAutomaticUniquenessAndUsagesResolution(auto&& action)
+    {
+      using namespace Platform::Memory;
+      using namespace Platform::Data::Doublets::Memory::United::Generic;
+      using namespace Platform::Data::Doublets::Decorators;
+      HeapResizableDirectMemory dataMemory { };
+      HeapResizableDirectMemory indexMemory { };
+      using StorageType = UnitedMemoryLinks<LinksOptions<TLinkAddress>, HeapResizableDirectMemory>;
+      using DecoratedStorageType = LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<StorageType>;
+      DecoratedStorageType storage{ std::move(dataMemory), std::move(indexMemory) };
+      action(storage);
+    }
+
     TEST(GenericLinksTests, CrudTest)
     {
         Using<std::uint8_t>([] (auto&& storage) { TestCrudOperations(storage); });
@@ -29,17 +43,9 @@
 
     TEST(GenericLinksTests, MultipleRandomCreationsAndDeletionsTest)
     {
-        using namespace Platform::Memory;
-        using namespace Platform::Data::Doublets::Memory::United::Generic;
-        using namespace Platform::Collections;
-        using namespace Platform::Data::Doublets;
-        LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<UnitedMemoryLinks<LinksOptions<std::uint8_t>, HeapResizableDirectMemory>> UInt8TDecoratedStorage{HeapResizableDirectMemory{}};
-        TestMultipleRandomCreationsAndDeletions(UInt8TDecoratedStorage, 16);
-        LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<UnitedMemoryLinks<LinksOptions<std::uint16_t>, HeapResizableDirectMemory>> UInt16TDecoratedStorage{HeapResizableDirectMemory{}};
-        TestMultipleRandomCreationsAndDeletions(UInt16TDecoratedStorage, 100);
-        LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<UnitedMemoryLinks<LinksOptions<std::uint32_t>, HeapResizableDirectMemory>> UInt32TDecoratedStorage{HeapResizableDirectMemory{}};
-        TestMultipleRandomCreationsAndDeletions(UInt32TDecoratedStorage, 100);
-        LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<UnitedMemoryLinks<LinksOptions<std::uint64_t>, HeapResizableDirectMemory>> UInt64TDecoratedStorage{HeapResizableDirectMemory{}};
-        TestMultipleRandomCreationsAndDeletions(UInt64TDecoratedStorage, 100);
+        UsingDecoratedWithAutomaticUniquenessAndUsagesResolution<std::uint8_t>([] (auto&& storage) { return  TestMultipleRandomCreationsAndDeletions(storage,16); });
+        UsingDecoratedWithAutomaticUniquenessAndUsagesResolution<std::uint16_t>([] (auto&& storage) { return  TestMultipleRandomCreationsAndDeletions(storage,100); });
+        UsingDecoratedWithAutomaticUniquenessAndUsagesResolution<std::uint32_t>([] (auto&& storage) { return  TestMultipleRandomCreationsAndDeletions(storage,100); });
+        UsingDecoratedWithAutomaticUniquenessAndUsagesResolution<std::uint64_t>([] (auto&& storage) { return  TestMultipleRandomCreationsAndDeletions(storage,100); });
     }
 }
