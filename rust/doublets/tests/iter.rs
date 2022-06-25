@@ -22,6 +22,26 @@ fn split_iter() -> Result<(), LinksError<usize>> {
 }
 
 #[test]
+fn split_iter_bug() -> Result<(), LinksError<usize>> {
+    let mut store = splited::Store::<usize, _, _>::new(GlobalMem::new()?, GlobalMem::new()?)?;
+
+    let a = store.create_point()?;
+    let b = store.create_point()?;
+    let c = store.create_link(a, b)?;
+    store.delete(b)?;
+    store.update(c, b, b)?;
+
+    assert_eq!(
+        store.iter().collect::<HashSet<_>>(),
+        vec![Link::new(1, 1, 1), Link::new(3, 2, 2),]
+            .into_iter()
+            .collect()
+    );
+
+    Ok(())
+}
+
+#[test]
 fn split_each_iter() -> Result<(), LinksError<usize>> {
     let mut store = splited::Store::<usize, _, _>::new(GlobalMem::new()?, GlobalMem::new()?)?;
 

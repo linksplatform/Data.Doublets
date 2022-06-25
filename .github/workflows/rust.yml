@@ -77,3 +77,30 @@ jobs:
       - name: Run valgrind
         run: valgrind --error-exitcode=1 --leak-check=full --show-leak-kinds=all ./target/debug/test-mem
         working-directory: rust
+
+# Not my code
+  publish_rust_to_nuget:
+    runs-on: ubuntu-latest
+    needs: [ pass ]
+    if: github.event_name == 'push'
+    steps:
+      - uses: actions/checkout@v2
+      - name: Push
+        run: |
+          cd rust/ffi/nuget
+          mkdir runtimes && cd runtimes
+          wget https://github.com/linksplatform/Data.Doublets/raw/binaries/windows-x64/native/Platform.Doublets.dll
+          wget https://github.com/linksplatform/Data.Doublets/raw/binaries/macos-x64/native/libPlatform.Doublets.dylib
+          wget https://github.com/linksplatform/Data.Doublets/raw/binaries/linux-x64/native/libPlatform.Doublets.so
+          ls
+          cd ..
+          cd ../../../
+          export REPOSITORY_NAME=$(basename ${{ github.repository }})
+          wget "https://gist.githubusercontent.com/uselessgoddess/54e286dbda22935313615d65723e7670/raw/e98fe0073bf87f296786b543b8051d78f3144924/push-cpp-nuget.sh"
+          CPP_PACKAGE_NUSPEC_PATH="rust/ffi/nuget/Platform.Data.Doublets.FFI.nuspec"
+          echo "$CPP_PACKAGE_NUSPEC_PATH"
+          echo "$CPP_PACKAGE_NUSPEC_PATH" > CPP_PACKAGE_NUSPEC_PATH.txt
+          CPP_PACKAGE_VERSION="0.0.1"
+          echo "$CPP_PACKAGE_VERSION"
+          echo "$CPP_PACKAGE_VERSION" > CPP_PACKAGE_VERSION.txt
+          bash ./push-cpp-nuget.sh

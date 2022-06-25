@@ -16,7 +16,7 @@ use crate::mem::splited::generic::{
 use crate::mem::splited::{DataPart, IndexPart};
 use crate::mem::united::UpdatePointersSplit;
 use crate::mem::{ILinksListMethods, ILinksTreeMethods, LinksHeader, UpdatePointers};
-use crate::{Doublets, Link, LinksError};
+use crate::{generator, Doublets, Link, LinksError};
 use data::Flow::Continue;
 use data::{Flow, Links, ReadHandler, ToQuery, WriteHandler};
 use data::{LinksConstants, Query};
@@ -423,13 +423,13 @@ impl<
         todo!()
     }
 
-    pub fn iter(&self) -> Iter<T> {
-        unsafe {
-            let data = self.data_mem.ptr();
-            let data: &[DataPart<T>] = slice::from_raw_parts(data.as_ptr().cast(), data.len());
-            // todo: it is safe? yeah
-            let data = &data[1..=self.count().as_()];
-            Iter(data.into_iter().enumerate())
+    pub fn iter<'a>(&'a self) -> impl Iterator<Item = Link<T>> + 'a {
+        generator! {
+            for index in one()..=self.get_header().allocated {
+                if let Some(link) = self.get_link(index) {
+                    yield link;
+                }
+            }
         }
     }
 
