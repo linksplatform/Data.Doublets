@@ -2,10 +2,10 @@
 #include <Platform.Data.Doublets.h>
 #include "ILinksTestExtensions.h"
 
-#include "GenericLinksTests.cpp"
-#include "DynamicPolymorphismGenericLinksTests.cpp"
-#include "LinksConstantsTests.cpp"
-#include "ResizableDirectMemoryLinksTests.cpp"
-#include "SplitMemoryGenericLinksTests.cpp"
-#include "DynamicPolymorphismSplitMemoryGenericLinksTests.cpp"
+#include "Static/GenericLinksTests.cpp"
+#include "Dynamic/DynamicPolymorphismGenericLinksTests.cpp"
+#include "Static/LinksConstantsTests.cpp"
+#include "Static/ResizableDirectMemoryLinksTests.cpp"
+#include "Static/SplitMemoryGenericLinksTests.cpp"
+#include "Dynamic/DynamicPolymorphismSplitMemoryGenericLinksTests.cpp"
 
