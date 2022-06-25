@@ -21,7 +21,7 @@
 #include "Doublet.h"
 #include "Link.h"
 #include "LinksOptions.h"
-//#include "ILinks.h"
+#include "ILinks.h"
 
 #include "Memory/LinksHeader.h"
 #include "Memory/IndexTreeType.h"
@@ -66,6 +66,5 @@
 #include "Decorators/LinksCascadeUsagesResolver.h"
 #include "Decorators/NonNullContentsLinkDeletionResolver.h"
 #include "Decorators/Decorators.h"
-//#include "Decorators/LinksCascadeUniquenessAndUsagesResolverBase.h"
 
 #endif
