@@ -1,14 +1,21 @@
 ﻿namespace Platform::Data::Doublets::Tests
 {
+    template<typename TStorage>
+    static void UsingStorage(auto&& action)
+    {
+      using namespace Platform::Memory;
+      using namespace Platform::Data::Doublets::Memory::Split::Generic;
+      TStorage storage{ HeapResizableDirectMemory{ }, HeapResizableDirectMemory{ } };
+      action(storage);
+    }
+
     template <typename TLinkAddress>
-    static void Using(auto&& action)
+    static void UsingStorageWithExternalReferences(auto&& action)
     {
         using namespace Platform::Memory;
         using namespace Platform::Data::Doublets::Memory::Split::Generic;
-        HeapResizableDirectMemory dataMemory { };
-        HeapResizableDirectMemory indexMemory { };
-        SplitMemoryLinks<LinksOptions<TLinkAddress, LinksConstants<TLinkAddress>{false}>, HeapResizableDirectMemory> storage{ std::move(dataMemory), std::move(indexMemory) };
-        action(storage);
+        using StorageType = SplitMemoryLinks<LinksOptions<TLinkAddress, LinksConstants<TLinkAddress>{false}>, HeapResizableDirectMemory>;
+        UsingStorage<StorageType>(action);
     }
 
     template <typename TLinkAddress>
@@ -16,10 +23,8 @@
     {
         using namespace Platform::Memory;
         using namespace Platform::Data::Doublets::Memory::Split::Generic;
-        HeapResizableDirectMemory dataMemory { };
-        HeapResizableDirectMemory indexMemory { };
-        SplitMemoryLinks<LinksOptions<TLinkAddress>, HeapResizableDirectMemory> storage{ std::move(dataMemory), std::move(indexMemory) };
-        action(storage);
+        using StorageType = SplitMemoryLinks<LinksOptions<TLinkAddress>, HeapResizableDirectMemory>;
+        UsingStorage<StorageType>(action);
     }
     
     template <typename TLinkAddress>
@@ -28,20 +33,21 @@
         using namespace Platform::Memory;
         using namespace Platform::Data::Doublets::Memory::Split::Generic;
         using namespace Platform::Data::Doublets::Decorators;
-        HeapResizableDirectMemory dataMemory { };
-        HeapResizableDirectMemory indexMemory { };
         using StorageType = SplitMemoryLinks<LinksOptions<TLinkAddress>, HeapResizableDirectMemory>;
         using DecoratedStorageType = LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<StorageType>;
-        DecoratedStorageType storage{ std::move(dataMemory), std::move(indexMemory) };
-        action(storage);
+        UsingStorage<DecoratedStorageType>(action);
     }
 
     TEST(SplitMemoryGenericLinksTests, CrudTest)
     {
-        Using<std::uint8_t>([] (auto&& storage) { return TestCrudOperations(storage); });
-        Using<std::uint16_t>([] (auto&& storage) { return TestCrudOperations(storage); });
-        Using<std::uint32_t>([] (auto&& storage) { return TestCrudOperations(storage); });
-        Using<std::uint64_t>([] (auto&& storage) { return TestCrudOperations(storage); });
+      UsingStorageWithExternalReferences<std::uint8_t>(
+          [](auto &&storage) { return TestCrudOperations(storage); });
+      UsingStorageWithExternalReferences<std::uint16_t>(
+          [](auto &&storage) { return TestCrudOperations(storage); });
+        UsingStorageWithExternalReferences<std::uint32_t>(
+            [](auto &&storage) { return TestCrudOperations(storage); });
+        UsingStorageWithExternalReferences<std::uint64_t>(
+            [](auto &&storage) { return TestCrudOperations(storage); });
     }
 
     TEST(SplitMemoryGenericLinksTests, RawNumbersCrudTest)
