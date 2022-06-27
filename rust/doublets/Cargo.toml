@@ -1,6 +1,6 @@
 [package]
 name = "doublets"
-version = "0.1.0-beta.3"
+version = "0.1.0-beta.4"
 edition = "2021"
 authors = [
     "uselessgoddess",
@@ -46,5 +46,5 @@ full = ["platform"]
 criterion = "0.3"
 
 [[bench]]
-name = "benchmark"
+name = "iter"
 harness = false

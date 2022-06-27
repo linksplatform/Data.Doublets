@@ -21,7 +21,8 @@
 #![feature(slice_ptr_len)]
 #![feature(nonnull_slice_from_raw_parts)]
 #![feature(layout_for_ptr)]
-#![feature(generic_const_exprs)]
+#![feature(generator_trait)]
+#![feature(generators)]
 
 pub mod data;
 pub mod mem;
