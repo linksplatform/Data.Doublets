@@ -27,10 +27,10 @@ num-traits = "^0.2.14"
 
 smallvec = { version = "1.8", features = ["const_generics"] }
 
-data = { package = "platform-data", version = "0.1.0-alpha.0" }
-num = { package = "platform-num", version = "0.1.0-alpha.0" }
-mem = { package = "platform-mem", version = "0.1.0-alpha.5" }
-methods = { package = "platform-treesmethods", version = "0.1.0-alpha.0" }
+data = { package = "platform-data", version = "0.1.0-alpha.1" }
+num = { package = "platform-num", version = "0.1.0-alpha.1" }
+mem = { package = "platform-mem", version = "0.1.0-beta.1" }
+methods = { package = "platform-treesmethods", version = "0.1.0-alpha.2" }
 
 [features]
 mem = []

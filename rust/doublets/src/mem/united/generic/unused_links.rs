@@ -5,9 +5,9 @@ use crate::mem::links_header::LinksHeader;
 use crate::mem::united::generic::UpdatePointers;
 use crate::mem::united::raw_link::RawLink;
 use crate::mem::united::NewList;
-use methods::AbsoluteCircularDoublyLinkedList;
-use methods::AbsoluteDoublyLinkedListBase;
-use methods::DoublyLinkedListBase;
+use methods::AbsoluteCircularLinkedList;
+use methods::AbsoluteLinkedList;
+use methods::LinkedList;
 use num::LinkType;
 
 pub struct UnusedLinks<T: LinkType> {
@@ -51,7 +51,7 @@ impl<T: LinkType> NewList<T> for UnusedLinks<T> {
     }
 }
 
-impl<T: LinkType> AbsoluteDoublyLinkedListBase<T> for UnusedLinks<T> {
+impl<T: LinkType> AbsoluteLinkedList<T> for UnusedLinks<T> {
     fn get_first(&self) -> T {
         self.get_header().first_free
     }
@@ -77,7 +77,7 @@ impl<T: LinkType> AbsoluteDoublyLinkedListBase<T> for UnusedLinks<T> {
     }
 }
 
-impl<T: LinkType> DoublyLinkedListBase<T> for UnusedLinks<T> {
+impl<T: LinkType> LinkedList<T> for UnusedLinks<T> {
     fn get_previous(&self, element: T) -> T {
         self.get_link(element).source
     }
@@ -95,7 +95,7 @@ impl<T: LinkType> DoublyLinkedListBase<T> for UnusedLinks<T> {
     }
 }
 
-impl<T: LinkType> AbsoluteCircularDoublyLinkedList<T> for UnusedLinks<T> {}
+impl<T: LinkType> AbsoluteCircularLinkedList<T> for UnusedLinks<T> {}
 
 impl<T: LinkType> UpdatePointers for UnusedLinks<T> {
     fn update_pointers(&mut self, links: *mut u8, header: *mut u8) {
@@ -106,10 +106,10 @@ impl<T: LinkType> UpdatePointers for UnusedLinks<T> {
 
 impl<T: LinkType> ILinksListMethods<T> for UnusedLinks<T> {
     fn detach(&mut self, link: T) {
-        AbsoluteCircularDoublyLinkedList::detach(self, link)
+        AbsoluteCircularLinkedList::detach(self, link)
     }
 
     fn attach_as_first(&mut self, link: T) {
-        AbsoluteCircularDoublyLinkedList::attach_as_first(self, link)
+        AbsoluteCircularLinkedList::attach_as_first(self, link)
     }
 }

@@ -6,7 +6,7 @@ use crate::mem::links_header::LinksHeader;
 use crate::mem::united::raw_link::RawLink;
 use crate::Link;
 use data::LinksConstants;
-use methods::RecursionlessSizeBalancedTreeMethods;
+use methods::NoRecurSzbTree;
 use num::LinkType;
 
 // TODO: why is there so much duplication in OOP!!! FIXME
@@ -32,7 +32,7 @@ impl<T: LinkType> LinksRecursionlessSizeBalancedTreeBase<T> {
 }
 
 pub trait LinkRecursionlessSizeBalancedTreeBaseAbstract<T: LinkType>:
-    RecursionlessSizeBalancedTreeMethods<T> + ILinksTreeMethods<T>
+    NoRecurSzbTree<T> + ILinksTreeMethods<T>
 {
     fn get_header(&self) -> &LinksHeader<T>;
 

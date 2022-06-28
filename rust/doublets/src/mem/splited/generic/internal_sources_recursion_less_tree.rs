@@ -1,5 +1,8 @@
 use num_traits::zero;
+use std::cell::RefCell;
 use std::ops::Try;
+use std::ptr::NonNull;
+use std::rc::Rc;
 
 use crate::mem::ilinks_tree_methods::ILinksTreeMethods;
 
@@ -11,8 +14,8 @@ use crate::mem::united::UpdatePointersSplit;
 
 use crate::Link;
 use data::LinksConstants;
-use methods::RecursionlessSizeBalancedTreeMethods;
-use methods::SizeBalancedTreeBase;
+use methods::NoRecurSzbTree;
+use methods::SzbTree;
 use num::LinkType;
 
 pub struct InternalSourcesRecursionlessTree<T: LinkType> {
@@ -22,17 +25,16 @@ pub struct InternalSourcesRecursionlessTree<T: LinkType> {
 impl<T: LinkType> InternalSourcesRecursionlessTree<T> {
     pub fn new(
         constants: LinksConstants<T>,
-        data: *mut u8,
-        indexes: *mut u8,
-        header: *mut u8,
+        data: NonNull<[DataPart<T>]>,
+        indexes: NonNull<[IndexPart<T>]>,
     ) -> Self {
         Self {
-            base: InternalRecursionlessSizeBalancedTreeBase::new(constants, data, indexes, header),
+            base: InternalRecursionlessSizeBalancedTreeBase::new(constants, data, indexes),
         }
     }
 }
 
-impl<T: LinkType> SizeBalancedTreeBase<T> for InternalSourcesRecursionlessTree<T> {
+impl<T: LinkType> SzbTree<T> for InternalSourcesRecursionlessTree<T> {
     fn get_left_reference(&self, node: T) -> *const T {
         &self.get_index_part(node).left_as_source as *const _
     }
@@ -89,7 +91,7 @@ impl<T: LinkType> SizeBalancedTreeBase<T> for InternalSourcesRecursionlessTree<T
     }
 }
 
-impl<T: LinkType> RecursionlessSizeBalancedTreeMethods<T> for InternalSourcesRecursionlessTree<T> {}
+impl<T: LinkType> NoRecurSzbTree<T> for InternalSourcesRecursionlessTree<T> {}
 
 fn each_usages_core<T: LinkType, R: Try<Output = ()>, H: FnMut(Link<T>) -> R>(
     _self: &InternalSourcesRecursionlessTree<T>,
@@ -125,19 +127,18 @@ impl<T: LinkType> ILinksTreeMethods<T> for InternalSourcesRecursionlessTree<T> {
     }
 
     fn detach(&mut self, root: &mut T, index: T) {
-        unsafe { RecursionlessSizeBalancedTreeMethods::detach(self, root as *mut _, index) }
+        unsafe { NoRecurSzbTree::detach(self, root as *mut _, index) }
     }
 
     fn attach(&mut self, root: &mut T, index: T) {
-        unsafe { RecursionlessSizeBalancedTreeMethods::attach(self, root as *mut _, index) }
+        unsafe { NoRecurSzbTree::attach(self, root as *mut _, index) }
     }
 }
 
-impl<T: LinkType> UpdatePointersSplit for InternalSourcesRecursionlessTree<T> {
-    fn update_pointers(&mut self, data: *mut u8, indexes: *mut u8, header: *mut u8) {
-        self.base.data = data;
+impl<T: LinkType> UpdatePointersSplit<T> for InternalSourcesRecursionlessTree<T> {
+    fn update_pointers(&mut self, data: NonNull<[DataPart<T>]>, indexes: NonNull<[IndexPart<T>]>) {
         self.base.indexes = indexes;
-        self.base.header = header;
+        self.base.data = data;
     }
 }
 
@@ -145,19 +146,19 @@ impl<T: LinkType> InternalRecursionlessSizeBalancedTreeBaseAbstract<T>
     for InternalSourcesRecursionlessTree<T>
 {
     fn get_index_part(&self, link: T) -> &IndexPart<T> {
-        unsafe { &*((self.base.indexes as *mut IndexPart<T>).add(link.as_())) }
+        unsafe { &self.base.indexes.as_ref()[link.as_()] }
     }
 
     fn get_mut_index_part(&mut self, link: T) -> &mut IndexPart<T> {
-        unsafe { &mut *((self.base.indexes as *mut IndexPart<T>).add(link.as_())) }
+        unsafe { &mut self.base.indexes.as_mut()[link.as_()] }
     }
 
     fn get_data_part(&self, link: T) -> &DataPart<T> {
-        unsafe { &*((self.base.data as *mut DataPart<T>).add(link.as_())) }
+        unsafe { &self.base.data.as_ref()[link.as_()] }
     }
 
     fn get_mut_data_part(&mut self, link: T) -> &mut DataPart<T> {
-        unsafe { &mut *((self.base.data as *mut DataPart<T>).add(link.as_())) }
+        unsafe { &mut self.base.data.as_mut()[link.as_()] }
     }
 
     fn get_tree_root(&self, link: T) -> T {

@@ -11,8 +11,8 @@ use crate::mem::united::raw_link::RawLink;
 use crate::mem::united::NewTree;
 use crate::Link;
 use data::LinksConstants;
-use methods::RecursionlessSizeBalancedTreeMethods;
-use methods::SizeBalancedTreeBase;
+use methods::NoRecurSzbTree;
+use methods::SzbTree;
 use num::LinkType;
 
 pub struct LinksSourcesRecursionlessSizeBalancedTree<T: LinkType> {
@@ -33,7 +33,7 @@ impl<T: LinkType> NewTree<T> for LinksSourcesRecursionlessSizeBalancedTree<T> {
     }
 }
 
-impl<T: LinkType> SizeBalancedTreeBase<T> for LinksSourcesRecursionlessSizeBalancedTree<T> {
+impl<T: LinkType> SzbTree<T> for LinksSourcesRecursionlessSizeBalancedTree<T> {
     fn get_left_reference(&self, node: T) -> *const T {
         &self.get_link(node).left_as_source as *const _
     }
@@ -104,10 +104,7 @@ impl<T: LinkType> SizeBalancedTreeBase<T> for LinksSourcesRecursionlessSizeBalan
     }
 }
 
-impl<T: LinkType> RecursionlessSizeBalancedTreeMethods<T>
-    for LinksSourcesRecursionlessSizeBalancedTree<T>
-{
-}
+impl<T: LinkType> NoRecurSzbTree<T> for LinksSourcesRecursionlessSizeBalancedTree<T> {}
 
 fn each_usages_core<T: LinkType, R: Try<Output = ()>, H: FnMut(Link<T>) -> R>(
     _self: &LinksSourcesRecursionlessSizeBalancedTree<T>,
@@ -191,11 +188,11 @@ impl<T: LinkType> ILinksTreeMethods<T> for LinksSourcesRecursionlessSizeBalanced
     }
 
     fn detach(&mut self, root: &mut T, index: T) {
-        unsafe { RecursionlessSizeBalancedTreeMethods::detach(self, root as *mut _, index) }
+        unsafe { NoRecurSzbTree::detach(self, root as *mut _, index) }
     }
 
     fn attach(&mut self, root: &mut T, index: T) {
-        unsafe { RecursionlessSizeBalancedTreeMethods::attach(self, root as *mut _, index) }
+        unsafe { NoRecurSzbTree::attach(self, root as *mut _, index) }
     }
 }
 
@@ -210,11 +207,11 @@ impl<T: LinkType> LinkRecursionlessSizeBalancedTreeBaseAbstract<T>
     for LinksSourcesRecursionlessSizeBalancedTree<T>
 {
     fn get_header(&self) -> &LinksHeader<T> {
-        unsafe { &*(self.base.header as *const LinksHeader<T>) }
+        unsafe { transmute(&self.base.indexes.as_ref()[0]) }
     }
 
     fn get_mut_header(&mut self) -> &mut LinksHeader<T> {
-        unsafe { &mut *(self.base.header as *mut LinksHeader<T>) }
+        unsafe { transmute(&mut self.base.indexes.as_mut()[0]) }
     }
 
     fn get_link(&self, link: T) -> &RawLink<T> {

@@ -91,11 +91,11 @@ impl<T: LinkType> SizeBalancedTreeMethods<T> for LinksTargetsSizeBalancedTree<T>
 
 impl<T: LinkType> LinksSizeBalancedTreeBaseAbstract<T> for LinksTargetsSizeBalancedTree<T> {
     fn get_header(&self) -> &LinksHeader<T> {
-        unsafe { &*(self.base.header as *const LinksHeader<T>) }
+        unsafe { transmute(&self.base.indexes.as_ref()[0]) }
     }
 
     fn get_mut_header(&mut self) -> &mut LinksHeader<T> {
-        unsafe { &mut *(self.base.header as *mut LinksHeader<T>) }
+        unsafe { transmute(&mut self.base.indexes.as_mut()[0]) }
     }
 
     fn get_link(&self, link: T) -> &RawLink<T> {

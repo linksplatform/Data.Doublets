@@ -5,7 +5,7 @@ use std::collections::HashSet;
 
 #[test]
 fn split_iter() -> Result<(), LinksError<usize>> {
-    let mut store = splited::Store::<usize, _, _>::new(GlobalMem::new()?, GlobalMem::new()?)?;
+    let mut store = splited::Store::<usize, _, _>::new(GlobalMem::new(), GlobalMem::new())?;
 
     let a = store.create_point()?;
     let b = store.create_point()?;
@@ -23,7 +23,7 @@ fn split_iter() -> Result<(), LinksError<usize>> {
 
 #[test]
 fn split_iter_bug() -> Result<(), LinksError<usize>> {
-    let mut store = splited::Store::<usize, _, _>::new(GlobalMem::new()?, GlobalMem::new()?)?;
+    let mut store = splited::Store::<usize, _, _>::new(GlobalMem::new(), GlobalMem::new())?;
 
     let a = store.create_point()?;
     let b = store.create_point()?;
@@ -43,7 +43,7 @@ fn split_iter_bug() -> Result<(), LinksError<usize>> {
 
 #[test]
 fn split_each_iter() -> Result<(), LinksError<usize>> {
-    let mut store = splited::Store::<usize, _, _>::new(GlobalMem::new()?, GlobalMem::new()?)?;
+    let mut store = splited::Store::<usize, _, _>::new(GlobalMem::new(), GlobalMem::new())?;
 
     store.create_link(1, 1)?;
     store.create_link(2, 1)?;
@@ -56,6 +56,9 @@ fn split_each_iter() -> Result<(), LinksError<usize>> {
             .into_iter()
             .collect()
     );
+
+    //let lock = store.iter();
+    //store.create();
 
     Ok(())
 }
