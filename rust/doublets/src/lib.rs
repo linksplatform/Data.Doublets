@@ -29,8 +29,7 @@ pub mod data;
 pub mod mem;
 pub mod num;
 pub mod test_extensions;
-pub use crate::mem::splited;
-//pub use crate::mem::united;
+pub use crate::mem::{splited, united};
 
 pub(crate) use crate::data::LinksError;
 pub use crate::data::{Doublet, Doublets, Handler, Link, StoppedHandler};

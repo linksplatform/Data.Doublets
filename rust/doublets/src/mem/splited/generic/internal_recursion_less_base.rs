@@ -1,12 +1,12 @@
 use num_traits::zero;
-use std::cell::RefCell;
-use std::ptr::NonNull;
-use std::rc::Rc;
+use std::{cell::RefCell, ptr::NonNull, rc::Rc};
 
-use crate::mem::ilinks_tree_methods::ILinksTreeMethods;
+use crate::mem::links_traits::LinksTree;
 
-use crate::mem::splited::{DataPart, IndexPart};
-use crate::Link;
+use crate::{
+    mem::splited::{DataPart, IndexPart},
+    Link,
+};
 use data::LinksConstants;
 use methods::NoRecurSzbTree;
 use num::LinkType;
@@ -35,7 +35,7 @@ impl<T: LinkType> InternalRecursionlessSizeBalancedTreeBase<T> {
 }
 
 pub trait InternalRecursionlessSizeBalancedTreeBaseAbstract<T: LinkType>:
-    NoRecurSzbTree<T> + ILinksTreeMethods<T>
+    NoRecurSzbTree<T> + LinksTree<T>
 {
     fn get_index_part(&self, link: T) -> &IndexPart<T>;
 

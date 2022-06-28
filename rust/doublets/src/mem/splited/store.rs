@@ -1,26 +1,32 @@
-use std::alloc::Layout;
-use std::cmp::Ordering;
-use std::default::default;
-use std::error::Error;
-use std::iter::{Enumerate, Zip};
-use std::mem::{align_of, size_of, transmute};
-use std::ops::Try;
-use std::ptr::{null_mut, NonNull};
-use std::slice;
+use std::{
+    alloc::Layout,
+    cmp::Ordering,
+    default::default,
+    error::Error,
+    iter::{Enumerate, Zip},
+    mem::{align_of, size_of, transmute},
+    ops::Try,
+    ptr::{null_mut, NonNull},
+    slice,
+};
 
 use num_traits::{one, zero};
 
-use crate::mem::splited::generic::{
-    ExternalSourcesRecursionlessTree, ExternalTargetsRecursionlessTree, InternalSourcesLinkedList,
-    InternalSourcesRecursionlessTree, InternalTargetsRecursionlessTree, UnusedLinks,
+use crate::{
+    generator,
+    mem::{
+        splited::{
+            DataPart, ExternalSourcesRecursionlessTree, ExternalTargetsRecursionlessTree,
+            IndexPart, InternalSourcesLinkedList, InternalSourcesRecursionlessTree,
+            InternalTargetsRecursionlessTree, UnusedLinks,
+        },
+        LinksHeader, LinksTree, SplitList, SplitTree, SplitUpdateMem,
+    },
+    Doublets, Link, LinksError,
 };
-use crate::mem::splited::{DataPart, IndexPart};
-use crate::mem::united::UpdatePointersSplit;
-use crate::mem::{ILinksListMethods, ILinksTreeMethods, LinksHeader, UpdatePointers};
-use crate::{generator, Doublets, Link, LinksError};
-use data::Flow::Continue;
-use data::{Flow, Links, ReadHandler, ToQuery, WriteHandler};
-use data::{LinksConstants, Query};
+use data::{
+    Flow, Flow::Continue, Links, LinksConstants, Query, ReadHandler, ToQuery, WriteHandler,
+};
 use mem::{RawMem, DEFAULT_PAGE_SIZE};
 use methods::RelativeCircularLinkedList;
 use num::LinkType;
@@ -30,11 +36,11 @@ pub struct Store<
     T: LinkType,
     MD: RawMem<DataPart<T>>,
     MI: RawMem<IndexPart<T>>,
-    IS: ILinksTreeMethods<T> + UpdatePointersSplit<T> = InternalSourcesRecursionlessTree<T>,
-    ES: ILinksTreeMethods<T> + UpdatePointersSplit<T> = ExternalSourcesRecursionlessTree<T>,
-    IT: ILinksTreeMethods<T> + UpdatePointersSplit<T> = InternalTargetsRecursionlessTree<T>,
-    ET: ILinksTreeMethods<T> + UpdatePointersSplit<T> = ExternalTargetsRecursionlessTree<T>,
-    UL: ILinksListMethods<T> + UpdatePointers = UnusedLinks<T>,
+    IS: SplitTree<T> = InternalSourcesRecursionlessTree<T>,
+    ES: SplitTree<T> = ExternalSourcesRecursionlessTree<T>,
+    IT: SplitTree<T> = InternalTargetsRecursionlessTree<T>,
+    ET: SplitTree<T> = ExternalTargetsRecursionlessTree<T>,
+    UL: SplitList<T> = UnusedLinks<T>,
 > {
     data_mem: MD,
     index_mem: MI,
@@ -57,15 +63,15 @@ pub struct Store<
 }
 
 impl<
-        T: LinkType,
-        MD: RawMem<DataPart<T>>,
-        MI: RawMem<IndexPart<T>>,
-        IS: ILinksTreeMethods<T> + UpdatePointersSplit<T>,
-        ES: ILinksTreeMethods<T> + UpdatePointersSplit<T>,
-        IT: ILinksTreeMethods<T> + UpdatePointersSplit<T>,
-        ET: ILinksTreeMethods<T> + UpdatePointersSplit<T>,
-        UL: ILinksListMethods<T> + UpdatePointers,
-    > Store<T, MD, MI, IS, ES, IT, ET, UL>
+    T: LinkType,
+    MD: RawMem<DataPart<T>>,
+    MI: RawMem<IndexPart<T>>,
+    IS: SplitTree<T>,
+    ES: SplitTree<T>,
+    IT: SplitTree<T>,
+    ET: SplitTree<T>,
+    UL: SplitList<T>,
+> Store<T, MD, MI, IS, ES, IT, ET, UL>
 {
     const USE_LIST: bool = false;
     const SIZE_STEP: usize = 2_usize.pow(16);
@@ -94,7 +100,7 @@ impl<
 
         let sources_list =
             InternalSourcesLinkedList::new(constants.clone(), dangling_data, dangling_index);
-        let unused = UnusedLinks::new(null_mut(), null_mut());
+        let unused = UnusedLinks::new(dangling_data, dangling_index);
 
         let mut new = Store {
             data_mem,
@@ -124,12 +130,6 @@ impl<
         if index < ptr.len() {
             // SAFETY: `ptr` is non-dangling slice
             Some(unsafe {
-                #[cfg(debug_assertions)]
-                {
-                    //let slice = ptr.as_uninit_slice();
-                    //slice[index].
-                }
-
                 let slice = ptr.as_mut();
                 &mut slice[index]
             })
@@ -184,17 +184,16 @@ impl<
             .expect("Index part should be in index memory")
     }
 
-    fn update_pointers(&mut self, data: NonNull<[DataPart<T>]>, index: NonNull<[IndexPart<T>]>) {
+    fn update_mem(&mut self, data: NonNull<[DataPart<T>]>, index: NonNull<[IndexPart<T>]>) {
         self.data_ptr = data;
         self.index_ptr = index;
 
-        self.internal_sources.update_pointers(data, index);
-        self.external_sources.update_pointers(data, index);
-        self.internal_targets.update_pointers(data, index);
-        self.external_targets.update_pointers(data, index);
-        self.sources_list.update_pointers(data, index);
-        self.unused
-            .update_pointers(data.as_mut_ptr().cast(), index.as_mut_ptr().cast());
+        self.internal_sources.update_mem(data, index);
+        self.external_sources.update_mem(data, index);
+        self.internal_targets.update_mem(data, index);
+        self.external_targets.update_mem(data, index);
+        self.sources_list.update_mem(data, index);
+        self.unused.update_mem(data, index);
     }
 
     fn align(mut to_align: usize, target: usize) -> usize {
@@ -208,11 +207,11 @@ impl<
     }
 
     fn init(&mut self) -> Result<(), LinksError<T>> {
-        let data = NonNull::from(self.data_mem.alloc(10)?);
-        let index = NonNull::from(self.index_mem.alloc(10)?);
-        self.update_pointers(data, index);
+        let data = NonNull::from(self.data_mem.alloc(DEFAULT_PAGE_SIZE)?);
+        let index = NonNull::from(self.index_mem.alloc(DEFAULT_PAGE_SIZE)?);
+        self.update_mem(data, index);
 
-        let header = *self.get_header();
+        let header = self.get_header().clone();
         let allocated = header.allocated.as_();
 
         let mut data_capacity = allocated * Self::DATA_SIZE;
@@ -230,16 +229,13 @@ impl<
 
         let data = NonNull::from(self.data_mem.alloc(data_capacity)?);
         let index = NonNull::from(self.index_mem.alloc(index_capacity)?);
-        self.update_pointers(data, index);
+        self.update_mem(data, index);
 
         let allocated = header.allocated.as_();
-        self.data_mem
-            .occupy(allocated * Self::DATA_SIZE + Self::DATA_SIZE)?;
-        self.index_mem
-            .occupy(allocated * Self::INDEX_SIZE + Self::INDEX_SIZE)?;
+        self.data_mem.occupy(allocated + 1)?;
+        self.index_mem.occupy(allocated + 1)?;
 
-        self.mut_header().reserved =
-            T::from((self.data_mem.allocated() - Self::DATA_SIZE) / Self::DATA_SIZE).unwrap();
+        self.mut_header().reserved = T::from(self.data_mem.allocated() - 1).unwrap();
         Ok(())
     }
 
@@ -445,33 +441,16 @@ impl<
     }
 }
 
-type Inner<'a, T> = Enumerate<slice::Iter<'a, DataPart<T>>>;
-pub struct Iter<'a, T: LinkType>(pub(crate) Inner<'a, T>);
-
-impl<'a, T: LinkType> Iterator for Iter<'a, T> {
-    type Item = Link<T>;
-
-    fn next(&mut self) -> Option<Self::Item> {
-        self.0.next().map(|(count, data)| {
-            Link::new(T::from_usize(count + 1).unwrap(), data.source, data.target)
-        })
-    }
-
-    fn size_hint(&self) -> (usize, Option<usize>) {
-        self.0.size_hint()
-    }
-}
-
 impl<
-        T: LinkType,
-        MD: RawMem<DataPart<T>>,
-        MI: RawMem<IndexPart<T>>,
-        IS: ILinksTreeMethods<T> + UpdatePointersSplit<T>,
-        ES: ILinksTreeMethods<T> + UpdatePointersSplit<T>,
-        IT: ILinksTreeMethods<T> + UpdatePointersSplit<T>,
-        ET: ILinksTreeMethods<T> + UpdatePointersSplit<T>,
-        UL: ILinksListMethods<T> + UpdatePointers,
-    > Doublets<T> for Store<T, MD, MI, IS, ES, IT, ET, UL>
+    T: LinkType,
+    MD: RawMem<DataPart<T>>,
+    MI: RawMem<IndexPart<T>>,
+    IS: SplitTree<T>,
+    ES: SplitTree<T>,
+    IT: SplitTree<T>,
+    ET: SplitTree<T>,
+    UL: SplitList<T>,
+> Doublets<T> for Store<T, MD, MI, IS, ES, IT, ET, UL>
 {
     fn constants(&self) -> LinksConstants<T> {
         self.constants.clone()
@@ -594,17 +573,9 @@ impl<
                         zero()
                     }
                 } else if source == any {
-                    if link.target == target {
-                        one()
-                    } else {
-                        zero()
-                    }
+                    if link.target == target { one() } else { zero() }
                 } else if target == any {
-                    if link.source == source {
-                        one()
-                    } else {
-                        zero()
-                    }
+                    if link.source == source { one() } else { zero() }
                 } else {
                     zero()
                 }
@@ -642,7 +613,7 @@ impl<
                     self.index_mem
                         .alloc(self.index_mem.allocated() + self.index_step)?,
                 );
-                self.update_pointers(data, index);
+                self.update_mem(data, index);
                 // let reserved = self.data_mem.allocated();
                 let reserved = self.index_mem.allocated();
                 let header = self.mut_header();
@@ -829,15 +800,15 @@ impl<
 }
 
 impl<
-        T: LinkType,
-        MD: RawMem<DataPart<T>>,
-        MI: RawMem<IndexPart<T>>,
-        IS: ILinksTreeMethods<T> + UpdatePointersSplit<T>,
-        ES: ILinksTreeMethods<T> + UpdatePointersSplit<T>,
-        IT: ILinksTreeMethods<T> + UpdatePointersSplit<T>,
-        ET: ILinksTreeMethods<T> + UpdatePointersSplit<T>,
-        UL: ILinksListMethods<T> + UpdatePointers,
-    > Links<T> for Store<T, MD, MI, IS, ES, IT, ET, UL>
+    T: LinkType,
+    MD: RawMem<DataPart<T>>,
+    MI: RawMem<IndexPart<T>>,
+    IS: SplitTree<T>,
+    ES: SplitTree<T>,
+    IT: SplitTree<T>,
+    ET: SplitTree<T>,
+    UL: SplitList<T>,
+> Links<T> for Store<T, MD, MI, IS, ES, IT, ET, UL>
 {
     fn constants_links(&self) -> LinksConstants<T> {
         self.constants()
@@ -883,27 +854,27 @@ impl<
 }
 
 unsafe impl<
-        T: LinkType,
-        MD: RawMem<DataPart<T>>,
-        MI: RawMem<IndexPart<T>>,
-        IS: ILinksTreeMethods<T> + UpdatePointersSplit<T>,
-        ES: ILinksTreeMethods<T> + UpdatePointersSplit<T>,
-        IT: ILinksTreeMethods<T> + UpdatePointersSplit<T>,
-        ET: ILinksTreeMethods<T> + UpdatePointersSplit<T>,
-        UL: ILinksListMethods<T> + UpdatePointers,
-    > Sync for Store<T, MD, MI, IS, ES, IT, ET, UL>
+    T: LinkType,
+    MD: RawMem<DataPart<T>>,
+    MI: RawMem<IndexPart<T>>,
+    IS: SplitTree<T>,
+    ES: SplitTree<T>,
+    IT: SplitTree<T>,
+    ET: SplitTree<T>,
+    UL: SplitList<T>,
+> Sync for Store<T, MD, MI, IS, ES, IT, ET, UL>
 {
 }
 
 unsafe impl<
-        T: LinkType,
-        MD: RawMem<DataPart<T>>,
-        MI: RawMem<IndexPart<T>>,
-        IS: ILinksTreeMethods<T> + UpdatePointersSplit<T>,
-        ES: ILinksTreeMethods<T> + UpdatePointersSplit<T>,
-        IT: ILinksTreeMethods<T> + UpdatePointersSplit<T>,
-        ET: ILinksTreeMethods<T> + UpdatePointersSplit<T>,
-        UL: ILinksListMethods<T> + UpdatePointers,
-    > Send for Store<T, MD, MI, IS, ES, IT, ET, UL>
+    T: LinkType,
+    MD: RawMem<DataPart<T>>,
+    MI: RawMem<IndexPart<T>>,
+    IS: SplitTree<T>,
+    ES: SplitTree<T>,
+    IT: SplitTree<T>,
+    ET: SplitTree<T>,
+    UL: SplitList<T>,
+> Send for Store<T, MD, MI, IS, ES, IT, ET, UL>
 {
 }

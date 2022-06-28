@@ -1,19 +1,22 @@
 use num_traits::zero;
-use std::ops::Try;
-use std::ptr::NonNull;
+use std::{ops::Try, ptr::NonNull};
 
-use crate::mem::ilinks_tree_methods::ILinksTreeMethods;
+use crate::mem::links_traits::LinksTree;
 
-use crate::mem::splited::generic::internal_recursion_less_base::{
-    InternalRecursionlessSizeBalancedTreeBase, InternalRecursionlessSizeBalancedTreeBaseAbstract,
+use crate::mem::splited::{
+    generic::internal_recursion_less_base::{
+        InternalRecursionlessSizeBalancedTreeBase,
+        InternalRecursionlessSizeBalancedTreeBaseAbstract,
+    },
+    DataPart, IndexPart,
 };
-use crate::mem::splited::{DataPart, IndexPart};
-use crate::mem::united::UpdatePointersSplit;
 
-use crate::Link;
+use crate::{
+    mem::{SplitTree, SplitUpdateMem},
+    Link,
+};
 use data::LinksConstants;
-use methods::NoRecurSzbTree;
-use methods::SzbTree;
+use methods::{NoRecurSzbTree, SzbTree};
 use num::LinkType;
 
 pub struct InternalTargetsRecursionlessTree<T: LinkType> {
@@ -113,7 +116,7 @@ fn each_usages_core<T: LinkType, R: Try<Output = ()>, H: FnMut(Link<T>) -> R>(
     R::from_output(())
 }
 
-impl<T: LinkType> ILinksTreeMethods<T> for InternalTargetsRecursionlessTree<T> {
+impl<T: LinkType> LinksTree<T> for InternalTargetsRecursionlessTree<T> {
     fn count_usages(&self, link: T) -> T {
         self.count_usages_core(link)
     }
@@ -139,12 +142,14 @@ impl<T: LinkType> ILinksTreeMethods<T> for InternalTargetsRecursionlessTree<T> {
     }
 }
 
-impl<T: LinkType> UpdatePointersSplit<T> for InternalTargetsRecursionlessTree<T> {
-    fn update_pointers(&mut self, data: NonNull<[DataPart<T>]>, indexes: NonNull<[IndexPart<T>]>) {
+impl<T: LinkType> SplitUpdateMem<T> for InternalTargetsRecursionlessTree<T> {
+    fn update_mem(&mut self, data: NonNull<[DataPart<T>]>, indexes: NonNull<[IndexPart<T>]>) {
         self.base.indexes = indexes;
         self.base.data = data;
     }
 }
+
+impl<T: LinkType> SplitTree<T> for InternalTargetsRecursionlessTree<T> {}
 
 impl<T: LinkType> InternalRecursionlessSizeBalancedTreeBaseAbstract<T>
     for InternalTargetsRecursionlessTree<T>

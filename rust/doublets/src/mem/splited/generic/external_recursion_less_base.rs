@@ -1,7 +1,11 @@
-use crate::mem::ilinks_tree_methods::ILinksTreeMethods;
-use crate::mem::links_header::LinksHeader;
-use crate::mem::splited::{DataPart, IndexPart};
-use crate::Link;
+use crate::{
+    mem::{
+        links_header::LinksHeader,
+        links_traits::LinksTree,
+        splited::{DataPart, IndexPart},
+    },
+    Link,
+};
 use data::LinksConstants;
 use methods::NoRecurSzbTree;
 use num::LinkType;
@@ -31,7 +35,7 @@ impl<T: LinkType> ExternalRecursionlessSizeBalancedTreeBase<T> {
 }
 
 pub trait ExternalRecursionlessSizeBalancedTreeBaseAbstract<T: LinkType>:
-    NoRecurSzbTree<T> + ILinksTreeMethods<T>
+    NoRecurSzbTree<T> + LinksTree<T>
 {
     fn get_header(&self) -> &LinksHeader<T>;
 

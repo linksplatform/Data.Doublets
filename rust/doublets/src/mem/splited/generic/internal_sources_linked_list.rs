@@ -2,13 +2,15 @@ use crate::Link;
 use data::LinksConstants;
 use std::mem::transmute;
 
-use std::ops::Try;
-use std::ptr::NonNull;
+use std::{ops::Try, ptr::NonNull};
 
-use crate::mem::links_header::LinksHeader;
-use crate::mem::splited::{DataPart, IndexPart};
+use crate::mem::{
+    links_header::LinksHeader,
+    splited::{DataPart, IndexPart},
+    SplitTree, SplitUpdateMem,
+};
 
-use crate::mem::united::UpdatePointersSplit;
+use crate::mem::links_traits::SplitList;
 use methods::{LinkedList, RelativeCircularLinkedList, RelativeLinkedList};
 use num::LinkType;
 
@@ -142,8 +144,8 @@ impl<T: LinkType> LinkedList<T> for InternalSourcesLinkedList<T> {
 
 impl<T: LinkType> RelativeCircularLinkedList<T> for InternalSourcesLinkedList<T> {}
 
-impl<T: LinkType> UpdatePointersSplit<T> for InternalSourcesLinkedList<T> {
-    fn update_pointers(&mut self, data: NonNull<[DataPart<T>]>, indexes: NonNull<[IndexPart<T>]>) {
+impl<T: LinkType> SplitUpdateMem<T> for InternalSourcesLinkedList<T> {
+    fn update_mem(&mut self, data: NonNull<[DataPart<T>]>, indexes: NonNull<[IndexPart<T>]>) {
         self.data = data;
         self.indexes = indexes;
     }

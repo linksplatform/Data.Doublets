@@ -1,20 +1,22 @@
 use num_traits::{one, zero};
-use std::mem::transmute;
-use std::ops::Try;
-use std::ptr::NonNull;
+use std::{mem::transmute, ops::Try, ptr::NonNull};
 
-use crate::mem::ilinks_tree_methods::ILinksTreeMethods;
-use crate::mem::links_header::LinksHeader;
-use crate::mem::splited::generic::external_recursion_less_base::{
-    ExternalRecursionlessSizeBalancedTreeBase, ExternalRecursionlessSizeBalancedTreeBaseAbstract,
+use crate::mem::{
+    links_header::LinksHeader,
+    links_traits::LinksTree,
+    splited::{
+        generic::external_recursion_less_base::{
+            ExternalRecursionlessSizeBalancedTreeBase,
+            ExternalRecursionlessSizeBalancedTreeBaseAbstract,
+        },
+        DataPart, IndexPart,
+    },
+    SplitTree,
 };
-use crate::mem::splited::{DataPart, IndexPart};
-use crate::mem::united::UpdatePointersSplit;
 
-use crate::Link;
+use crate::{mem::SplitUpdateMem, Link};
 use data::LinksConstants;
-use methods::NoRecurSzbTree;
-use methods::SzbTree;
+use methods::{NoRecurSzbTree, SzbTree};
 use num::LinkType;
 
 pub struct ExternalTargetsRecursionlessTree<T: LinkType> {
@@ -128,7 +130,7 @@ fn each_usages_core<T: LinkType, R: Try<Output = ()>, H: FnMut(Link<T>) -> R>(
     R::from_output(())
 }
 
-impl<T: LinkType> ILinksTreeMethods<T> for ExternalTargetsRecursionlessTree<T> {
+impl<T: LinkType> LinksTree<T> for ExternalTargetsRecursionlessTree<T> {
     fn count_usages(&self, link: T) -> T {
         let mut root = self.get_tree_root();
         let total = self.get_size(root);
@@ -195,12 +197,14 @@ impl<T: LinkType> ILinksTreeMethods<T> for ExternalTargetsRecursionlessTree<T> {
     }
 }
 
-impl<T: LinkType> UpdatePointersSplit<T> for ExternalTargetsRecursionlessTree<T> {
-    fn update_pointers(&mut self, data: NonNull<[DataPart<T>]>, indexes: NonNull<[IndexPart<T>]>) {
+impl<T: LinkType> SplitUpdateMem<T> for ExternalTargetsRecursionlessTree<T> {
+    fn update_mem(&mut self, data: NonNull<[DataPart<T>]>, indexes: NonNull<[IndexPart<T>]>) {
         self.base.indexes = indexes;
         self.base.data = data;
     }
 }
+
+impl<T: LinkType> SplitTree<T> for ExternalTargetsRecursionlessTree<T> {}
 
 impl<T: LinkType> ExternalRecursionlessSizeBalancedTreeBaseAbstract<T>
     for ExternalTargetsRecursionlessTree<T>

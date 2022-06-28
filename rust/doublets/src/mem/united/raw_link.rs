@@ -1,6 +1,6 @@
 use num::LinkType;
 
-#[derive(PartialEq, Eq, Hash, Clone, Debug, Copy)]
+#[derive(Debug, Default, PartialEq, Eq, Hash, Clone, Copy)]
 pub struct RawLink<T: LinkType> {
     pub source: T,
     pub target: T,

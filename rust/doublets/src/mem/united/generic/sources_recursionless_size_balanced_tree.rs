@@ -1,18 +1,22 @@
 use num_traits::{one, zero};
-use std::ops::Try;
+use std::{mem::transmute, ops::Try, ptr::NonNull};
 
-use crate::mem::ilinks_tree_methods::ILinksTreeMethods;
-use crate::mem::links_header::LinksHeader;
-use crate::mem::united::generic::links_recursionless_size_balanced_tree_base::{
-    LinkRecursionlessSizeBalancedTreeBaseAbstract, LinksRecursionlessSizeBalancedTreeBase,
+use crate::{
+    mem::{
+        links_header::LinksHeader,
+        united::{
+            generic::{
+                LinkRecursionlessSizeBalancedTreeBaseAbstract,
+                LinksRecursionlessSizeBalancedTreeBase,
+            },
+            raw_link::RawLink,
+        },
+        LinksTree, UnitTree, UnitUpdateMem,
+    },
+    Link,
 };
-use crate::mem::united::generic::UpdatePointers;
-use crate::mem::united::raw_link::RawLink;
-use crate::mem::united::NewTree;
-use crate::Link;
 use data::LinksConstants;
-use methods::NoRecurSzbTree;
-use methods::SzbTree;
+use methods::{NoRecurSzbTree, SzbTree};
 use num::LinkType;
 
 pub struct LinksSourcesRecursionlessSizeBalancedTree<T: LinkType> {
@@ -20,16 +24,10 @@ pub struct LinksSourcesRecursionlessSizeBalancedTree<T: LinkType> {
 }
 
 impl<T: LinkType> LinksSourcesRecursionlessSizeBalancedTree<T> {
-    pub fn new(constants: LinksConstants<T>, links: *mut u8, header: *mut u8) -> Self {
+    pub fn new(constants: LinksConstants<T>, mem: NonNull<[RawLink<T>]>) -> Self {
         Self {
-            base: LinksRecursionlessSizeBalancedTreeBase::new(constants, links, header),
+            base: LinksRecursionlessSizeBalancedTreeBase::new(constants, mem),
         }
-    }
-}
-
-impl<T: LinkType> NewTree<T> for LinksSourcesRecursionlessSizeBalancedTree<T> {
-    fn new(constants: LinksConstants<T>, links: *mut u8, header: *mut u8) -> Self {
-        LinksSourcesRecursionlessSizeBalancedTree::new(constants, links, header)
     }
 }
 
@@ -129,7 +127,7 @@ fn each_usages_core<T: LinkType, R: Try<Output = ()>, H: FnMut(Link<T>) -> R>(
     R::from_output(())
 }
 
-impl<T: LinkType> ILinksTreeMethods<T> for LinksSourcesRecursionlessSizeBalancedTree<T> {
+impl<T: LinkType> LinksTree<T> for LinksSourcesRecursionlessSizeBalancedTree<T> {
     fn count_usages(&self, link: T) -> T {
         let mut root = self.get_tree_root();
         let total = self.get_size(root);
@@ -196,10 +194,9 @@ impl<T: LinkType> ILinksTreeMethods<T> for LinksSourcesRecursionlessSizeBalanced
     }
 }
 
-impl<T: LinkType> UpdatePointers for LinksSourcesRecursionlessSizeBalancedTree<T> {
-    fn update_pointers(&mut self, links: *mut u8, header: *mut u8) {
-        self.base.links = links;
-        self.base.header = header;
+impl<T: LinkType> UnitUpdateMem<T> for LinksSourcesRecursionlessSizeBalancedTree<T> {
+    fn update_mem(&mut self, mem: NonNull<[RawLink<T>]>) {
+        self.base.mem = mem;
     }
 }
 
@@ -207,19 +204,19 @@ impl<T: LinkType> LinkRecursionlessSizeBalancedTreeBaseAbstract<T>
     for LinksSourcesRecursionlessSizeBalancedTree<T>
 {
     fn get_header(&self) -> &LinksHeader<T> {
-        unsafe { transmute(&self.base.indexes.as_ref()[0]) }
+        unsafe { transmute(&self.base.mem.as_ref()[0]) }
     }
 
     fn get_mut_header(&mut self) -> &mut LinksHeader<T> {
-        unsafe { transmute(&mut self.base.indexes.as_mut()[0]) }
+        unsafe { transmute(&mut self.base.mem.as_mut()[0]) }
     }
 
     fn get_link(&self, link: T) -> &RawLink<T> {
-        unsafe { &*((self.base.links as *const RawLink<T>).add(link.as_())) }
+        unsafe { &self.base.mem.as_ref()[link.as_()] }
     }
 
     fn get_mut_link(&mut self, link: T) -> &mut RawLink<T> {
-        unsafe { &mut *(self.base.links as *mut RawLink<T>).add(link.as_()) }
+        unsafe { &mut self.base.mem.as_mut()[link.as_()] }
     }
 
     fn get_tree_root(&self) -> T {
@@ -252,3 +249,5 @@ impl<T: LinkType> LinkRecursionlessSizeBalancedTreeBaseAbstract<T>
             || (first_source == second_source && first_target > second_target)
     }
 }
+
+impl<T: LinkType> UnitTree<T> for LinksSourcesRecursionlessSizeBalancedTree<T> {}

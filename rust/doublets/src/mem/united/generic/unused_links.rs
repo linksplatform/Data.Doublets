@@ -1,53 +1,38 @@
-use std::marker::PhantomData;
+use std::{marker::PhantomData, mem::transmute, ptr::NonNull};
 
-use crate::mem::ilinks_list_methods::ILinksListMethods;
-use crate::mem::links_header::LinksHeader;
-use crate::mem::united::generic::UpdatePointers;
-use crate::mem::united::raw_link::RawLink;
-use crate::mem::united::NewList;
-use methods::AbsoluteCircularLinkedList;
-use methods::AbsoluteLinkedList;
-use methods::LinkedList;
+use crate::{
+    mem::{
+        links_header::LinksHeader, links_traits::UnitList, united::raw_link::RawLink, LinksList,
+        UnitUpdateMem,
+    },
+    splited::DataPart,
+};
+use methods::{AbsoluteCircularLinkedList, AbsoluteLinkedList, LinkedList};
 use num::LinkType;
 
 pub struct UnusedLinks<T: LinkType> {
-    links: *mut u8,
-    header: *mut u8,
-
-    _phantom: PhantomData<T>,
+    mem: NonNull<[RawLink<T>]>,
 }
 
 impl<T: LinkType> UnusedLinks<T> {
-    pub fn new(links: *mut u8, header: *mut u8) -> Self {
-        assert!(!links.is_null()); // TODO: messages
-        assert!(!header.is_null()); // TODO: messages
-        Self {
-            links,
-            header,
-            _phantom: Default::default(),
-        }
+    pub fn new(mem: NonNull<[RawLink<T>]>) -> Self {
+        Self { mem }
     }
 
     fn get_header(&self) -> &LinksHeader<T> {
-        unsafe { &*(self.header as *const LinksHeader<T>) }
+        unsafe { transmute(&self.mem.as_ref()[0]) }
     }
 
     fn get_mut_header(&mut self) -> &mut LinksHeader<T> {
-        unsafe { &mut *(self.header as *mut LinksHeader<T>) }
+        unsafe { transmute(&mut self.mem.as_mut()[0]) }
     }
 
     fn get_link(&self, link: T) -> &RawLink<T> {
-        unsafe { &*((self.links as *const RawLink<T>).add(link.as_())) }
+        unsafe { &self.mem.as_ref()[link.as_()] }
     }
 
     fn get_mut_link(&mut self, link: T) -> &mut RawLink<T> {
-        unsafe { &mut *((self.links as *mut RawLink<T>).add(link.as_())) }
-    }
-}
-
-impl<T: LinkType> NewList<T> for UnusedLinks<T> {
-    fn new(links: *mut u8, header: *mut u8) -> Self {
-        UnusedLinks::new(links, header)
+        unsafe { &mut self.mem.as_mut()[link.as_()] }
     }
 }
 
@@ -97,14 +82,7 @@ impl<T: LinkType> LinkedList<T> for UnusedLinks<T> {
 
 impl<T: LinkType> AbsoluteCircularLinkedList<T> for UnusedLinks<T> {}
 
-impl<T: LinkType> UpdatePointers for UnusedLinks<T> {
-    fn update_pointers(&mut self, links: *mut u8, header: *mut u8) {
-        self.links = links;
-        self.header = header;
-    }
-}
-
-impl<T: LinkType> ILinksListMethods<T> for UnusedLinks<T> {
+impl<T: LinkType> LinksList<T> for UnusedLinks<T> {
     fn detach(&mut self, link: T) {
         AbsoluteCircularLinkedList::detach(self, link)
     }
@@ -113,3 +91,11 @@ impl<T: LinkType> ILinksListMethods<T> for UnusedLinks<T> {
         AbsoluteCircularLinkedList::attach_as_first(self, link)
     }
 }
+
+impl<T: LinkType> UnitUpdateMem<T> for UnusedLinks<T> {
+    fn update_mem(&mut self, mem: NonNull<[RawLink<T>]>) {
+        self.mem = mem;
+    }
+}
+
+impl<T: LinkType> UnitList<T> for UnusedLinks<T> {}

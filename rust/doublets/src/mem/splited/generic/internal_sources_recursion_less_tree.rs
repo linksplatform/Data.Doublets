@@ -1,21 +1,22 @@
 use num_traits::zero;
-use std::cell::RefCell;
-use std::ops::Try;
-use std::ptr::NonNull;
-use std::rc::Rc;
+use std::{cell::RefCell, ops::Try, ptr::NonNull, rc::Rc};
 
-use crate::mem::ilinks_tree_methods::ILinksTreeMethods;
+use crate::mem::links_traits::LinksTree;
 
-use crate::mem::splited::generic::internal_recursion_less_base::{
-    InternalRecursionlessSizeBalancedTreeBase, InternalRecursionlessSizeBalancedTreeBaseAbstract,
+use crate::mem::{
+    splited::{
+        generic::internal_recursion_less_base::{
+            InternalRecursionlessSizeBalancedTreeBase,
+            InternalRecursionlessSizeBalancedTreeBaseAbstract,
+        },
+        DataPart, IndexPart,
+    },
+    SplitUpdateMem,
 };
-use crate::mem::splited::{DataPart, IndexPart};
-use crate::mem::united::UpdatePointersSplit;
 
-use crate::Link;
+use crate::{mem::SplitTree, Link};
 use data::LinksConstants;
-use methods::NoRecurSzbTree;
-use methods::SzbTree;
+use methods::{NoRecurSzbTree, SzbTree};
 use num::LinkType;
 
 pub struct InternalSourcesRecursionlessTree<T: LinkType> {
@@ -109,7 +110,7 @@ fn each_usages_core<T: LinkType, R: Try<Output = ()>, H: FnMut(Link<T>) -> R>(
     R::from_output(())
 }
 
-impl<T: LinkType> ILinksTreeMethods<T> for InternalSourcesRecursionlessTree<T> {
+impl<T: LinkType> LinksTree<T> for InternalSourcesRecursionlessTree<T> {
     fn count_usages(&self, link: T) -> T {
         self.count_usages_core(link)
     }
@@ -135,12 +136,14 @@ impl<T: LinkType> ILinksTreeMethods<T> for InternalSourcesRecursionlessTree<T> {
     }
 }
 
-impl<T: LinkType> UpdatePointersSplit<T> for InternalSourcesRecursionlessTree<T> {
-    fn update_pointers(&mut self, data: NonNull<[DataPart<T>]>, indexes: NonNull<[IndexPart<T>]>) {
-        self.base.indexes = indexes;
+impl<T: LinkType> SplitUpdateMem<T> for InternalSourcesRecursionlessTree<T> {
+    fn update_mem(&mut self, data: NonNull<[DataPart<T>]>, index: NonNull<[IndexPart<T>]>) {
         self.base.data = data;
+        self.base.indexes = index;
     }
 }
+
+impl<T: LinkType> SplitTree<T> for InternalSourcesRecursionlessTree<T> {}
 
 impl<T: LinkType> InternalRecursionlessSizeBalancedTreeBaseAbstract<T>
     for InternalSourcesRecursionlessTree<T>
