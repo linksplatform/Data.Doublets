@@ -5,12 +5,12 @@ use std::mem::transmute;
 use std::{ops::Try, ptr::NonNull};
 
 use crate::mem::{
-    links_header::LinksHeader,
-    splited::{DataPart, IndexPart},
+    header::LinksHeader,
+    split::{DataPart, IndexPart},
     SplitTree, SplitUpdateMem,
 };
 
-use crate::mem::links_traits::SplitList;
+use crate::mem::traits::SplitList;
 use methods::{LinkedList, RelativeCircularLinkedList, RelativeLinkedList};
 use num::LinkType;
 

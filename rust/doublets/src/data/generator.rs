@@ -79,8 +79,10 @@ impl<G: Generator> Iterator for Pin<&mut GenIter<G>> {
 /// ```
 /// #![feature(generators, generator_trait)]
 ///
+/// use doublets::generator;
+///
+/// let x = 10;
 /// let mut iter = generator! {
-///     let x = 10;
 ///     let r = &x;
 ///
 ///     for i in 0..5u32 {

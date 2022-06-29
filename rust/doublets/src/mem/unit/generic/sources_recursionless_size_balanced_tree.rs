@@ -3,13 +3,13 @@ use std::{mem::transmute, ops::Try, ptr::NonNull};
 
 use crate::{
     mem::{
-        links_header::LinksHeader,
-        united::{
+        header::LinksHeader,
+        unit::{
             generic::{
                 LinkRecursionlessSizeBalancedTreeBaseAbstract,
                 LinksRecursionlessSizeBalancedTreeBase,
             },
-            raw_link::RawLink,
+            raw_link::LinkPart,
         },
         LinksTree, UnitTree, UnitUpdateMem,
     },
@@ -19,57 +19,57 @@ use data::LinksConstants;
 use methods::{NoRecurSzbTree, SzbTree};
 use num::LinkType;
 
-pub struct LinksTargetsRecursionlessSizeBalancedTree<T: LinkType> {
+pub struct LinksSourcesRecursionlessSizeBalancedTree<T: LinkType> {
     base: LinksRecursionlessSizeBalancedTreeBase<T>,
 }
 
-impl<T: LinkType> LinksTargetsRecursionlessSizeBalancedTree<T> {
-    pub fn new(constants: LinksConstants<T>, mem: NonNull<[RawLink<T>]>) -> Self {
+impl<T: LinkType> LinksSourcesRecursionlessSizeBalancedTree<T> {
+    pub fn new(constants: LinksConstants<T>, mem: NonNull<[LinkPart<T>]>) -> Self {
         Self {
             base: LinksRecursionlessSizeBalancedTreeBase::new(constants, mem),
         }
     }
 }
 
-impl<T: LinkType> SzbTree<T> for LinksTargetsRecursionlessSizeBalancedTree<T> {
+impl<T: LinkType> SzbTree<T> for LinksSourcesRecursionlessSizeBalancedTree<T> {
     fn get_left_reference(&self, node: T) -> *const T {
-        &self.get_link(node).left_as_target as *const _
+        &self.get_link(node).left_as_source as *const _
     }
 
     fn get_right_reference(&self, node: T) -> *const T {
-        &self.get_link(node).right_as_target as *const _
+        &self.get_link(node).right_as_source as *const _
     }
 
     fn get_mut_left_reference(&mut self, node: T) -> *mut T {
-        &mut self.get_mut_link(node).left_as_target as *mut _
+        &mut self.get_mut_link(node).left_as_source as *mut _
     }
 
     fn get_mut_right_reference(&mut self, node: T) -> *mut T {
-        &mut self.get_mut_link(node).right_as_target as *mut _
+        &mut self.get_mut_link(node).right_as_source as *mut _
     }
 
     fn get_left(&self, node: T) -> T {
-        self.get_link(node).left_as_target
+        self.get_link(node).left_as_source
     }
 
     fn get_right(&self, node: T) -> T {
-        self.get_link(node).right_as_target
+        self.get_link(node).right_as_source
     }
 
     fn get_size(&self, node: T) -> T {
-        self.get_link(node).size_as_target
+        self.get_link(node).size_as_source
     }
 
     fn set_left(&mut self, node: T, left: T) {
-        self.get_mut_link(node).left_as_target = left
+        self.get_mut_link(node).left_as_source = left
     }
 
     fn set_right(&mut self, node: T, right: T) {
-        self.get_mut_link(node).right_as_target = right
+        self.get_mut_link(node).right_as_source = right
     }
 
     fn set_size(&mut self, node: T, size: T) {
-        self.get_mut_link(node).size_as_target = size
+        self.get_mut_link(node).size_as_source = size
     }
 
     fn first_is_to_the_left_of_second(&self, first: T, second: T) -> bool {
@@ -96,16 +96,16 @@ impl<T: LinkType> SzbTree<T> for LinksTargetsRecursionlessSizeBalancedTree<T> {
 
     fn clear_node(&mut self, node: T) {
         let link = self.get_mut_link(node);
-        link.left_as_target = zero();
-        link.right_as_target = zero();
-        link.size_as_target = zero();
+        link.left_as_source = zero();
+        link.right_as_source = zero();
+        link.size_as_source = zero();
     }
 }
 
-impl<T: LinkType> NoRecurSzbTree<T> for LinksTargetsRecursionlessSizeBalancedTree<T> {}
+impl<T: LinkType> NoRecurSzbTree<T> for LinksSourcesRecursionlessSizeBalancedTree<T> {}
 
 fn each_usages_core<T: LinkType, R: Try<Output = ()>, H: FnMut(Link<T>) -> R>(
-    _self: &LinksTargetsRecursionlessSizeBalancedTree<T>,
+    _self: &LinksSourcesRecursionlessSizeBalancedTree<T>,
     base: T,
     link: T,
     handler: &mut H,
@@ -127,7 +127,7 @@ fn each_usages_core<T: LinkType, R: Try<Output = ()>, H: FnMut(Link<T>) -> R>(
     R::from_output(())
 }
 
-impl<T: LinkType> LinksTree<T> for LinksTargetsRecursionlessSizeBalancedTree<T> {
+impl<T: LinkType> LinksTree<T> for LinksSourcesRecursionlessSizeBalancedTree<T> {
     fn count_usages(&self, link: T) -> T {
         let mut root = self.get_tree_root();
         let total = self.get_size(root);
@@ -194,14 +194,14 @@ impl<T: LinkType> LinksTree<T> for LinksTargetsRecursionlessSizeBalancedTree<T> 
     }
 }
 
-impl<T: LinkType> UnitUpdateMem<T> for LinksTargetsRecursionlessSizeBalancedTree<T> {
-    fn update_mem(&mut self, mem: NonNull<[RawLink<T>]>) {
+impl<T: LinkType> UnitUpdateMem<T> for LinksSourcesRecursionlessSizeBalancedTree<T> {
+    fn update_mem(&mut self, mem: NonNull<[LinkPart<T>]>) {
         self.base.mem = mem;
     }
 }
 
 impl<T: LinkType> LinkRecursionlessSizeBalancedTreeBaseAbstract<T>
-    for LinksTargetsRecursionlessSizeBalancedTree<T>
+    for LinksSourcesRecursionlessSizeBalancedTree<T>
 {
     fn get_header(&self) -> &LinksHeader<T> {
         unsafe { transmute(&self.base.mem.as_ref()[0]) }
@@ -211,20 +211,20 @@ impl<T: LinkType> LinkRecursionlessSizeBalancedTreeBaseAbstract<T>
         unsafe { transmute(&mut self.base.mem.as_mut()[0]) }
     }
 
-    fn get_link(&self, link: T) -> &RawLink<T> {
+    fn get_link(&self, link: T) -> &LinkPart<T> {
         unsafe { &self.base.mem.as_ref()[link.as_()] }
     }
 
-    fn get_mut_link(&mut self, link: T) -> &mut RawLink<T> {
+    fn get_mut_link(&mut self, link: T) -> &mut LinkPart<T> {
         unsafe { &mut self.base.mem.as_mut()[link.as_()] }
     }
 
     fn get_tree_root(&self) -> T {
-        self.get_header().root_as_target
+        self.get_header().root_as_source
     }
 
     fn get_base_part(&self, link: T) -> T {
-        self.get_link(link).target
+        self.get_link(link).source
     }
 
     fn first_is_to_the_left_of_second_4(
@@ -234,8 +234,8 @@ impl<T: LinkType> LinkRecursionlessSizeBalancedTreeBaseAbstract<T>
         second_source: T,
         second_target: T,
     ) -> bool {
-        first_target < second_target
-            || (first_target == second_target && first_source < second_source)
+        (first_source < second_source)
+            || (first_source == second_source && first_target < second_target)
     }
 
     fn first_is_to_the_right_of_second_4(
@@ -245,9 +245,9 @@ impl<T: LinkType> LinkRecursionlessSizeBalancedTreeBaseAbstract<T>
         second_source: T,
         second_target: T,
     ) -> bool {
-        first_target > second_target
-            || (first_target == second_target && first_source > second_source)
+        (first_source > second_source)
+            || (first_source == second_source && first_target > second_target)
     }
 }
 
-impl<T: LinkType> UnitTree<T> for LinksTargetsRecursionlessSizeBalancedTree<T> {}
+impl<T: LinkType> UnitTree<T> for LinksSourcesRecursionlessSizeBalancedTree<T> {}

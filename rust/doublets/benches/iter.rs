@@ -1,6 +1,6 @@
 use criterion::{black_box, criterion_group, criterion_main, Criterion};
 use data::Flow::Continue;
-use doublets::{splited::Store, Doublets};
+use doublets::{split::Store, Doublets};
 use mem::GlobalMem;
 
 fn each_iter_searching(c: &mut Criterion) {

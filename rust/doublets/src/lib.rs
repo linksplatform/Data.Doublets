@@ -29,9 +29,9 @@ pub mod data;
 pub mod mem;
 pub mod num;
 pub mod test_extensions;
-pub use crate::mem::{splited, united};
+pub use self::mem::{parts, split, unit};
 
-pub(crate) use crate::data::LinksError;
-pub use crate::data::{Doublet, Doublets, Handler, Link, StoppedHandler};
+pub(crate) use self::data::LinksError;
+pub use self::data::{Doublet, Doublets, Handler, Link, StoppedHandler};
 
 pub type Error<T> = LinksError<T>;

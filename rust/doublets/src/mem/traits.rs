@@ -1,6 +1,6 @@
 use crate::{
-    mem::united::RawLink,
-    splited::{DataPart, IndexPart},
+    mem::unit::LinkPart,
+    split::{DataPart, IndexPart},
     Link,
 };
 use num::LinkType;
@@ -19,7 +19,7 @@ pub trait LinksTree<T: LinkType> {
 }
 
 pub trait UnitUpdateMem<T: LinkType> {
-    fn update_mem(&mut self, mem: NonNull<[RawLink<T>]>);
+    fn update_mem(&mut self, mem: NonNull<[LinkPart<T>]>);
 }
 
 pub trait UnitTree<T: LinkType>: LinksTree<T> + UnitUpdateMem<T> {}

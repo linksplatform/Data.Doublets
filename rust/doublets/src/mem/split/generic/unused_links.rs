@@ -2,37 +2,38 @@ use std::{marker::PhantomData, mem::transmute, ptr::NonNull};
 
 use crate::{
     mem::{
-        links_header::LinksHeader, links_traits::UnitList, united::raw_link::RawLink, LinksList,
-        UnitUpdateMem,
+        header::LinksHeader, split::DataPart, traits::SplitList, unit::LinkPart, LinksList,
+        SplitUpdateMem, UnitUpdateMem,
     },
-    splited::DataPart,
+    split::IndexPart,
 };
 use methods::{AbsoluteCircularLinkedList, AbsoluteLinkedList, LinkedList};
 use num::LinkType;
 
 pub struct UnusedLinks<T: LinkType> {
-    mem: NonNull<[RawLink<T>]>,
+    links: NonNull<[DataPart<T>]>,
+    header: NonNull<[IndexPart<T>]>,
 }
 
 impl<T: LinkType> UnusedLinks<T> {
-    pub fn new(mem: NonNull<[RawLink<T>]>) -> Self {
-        Self { mem }
+    pub fn new(links: NonNull<[DataPart<T>]>, header: NonNull<[IndexPart<T>]>) -> Self {
+        Self { links, header }
     }
 
     fn get_header(&self) -> &LinksHeader<T> {
-        unsafe { transmute(&self.mem.as_ref()[0]) }
+        unsafe { transmute(&self.header.as_ref()[0]) }
     }
 
     fn get_mut_header(&mut self) -> &mut LinksHeader<T> {
-        unsafe { transmute(&mut self.mem.as_mut()[0]) }
+        unsafe { transmute(&mut self.header.as_mut()[0]) }
     }
 
-    fn get_link(&self, link: T) -> &RawLink<T> {
-        unsafe { &self.mem.as_ref()[link.as_()] }
+    fn get_link(&self, link: T) -> &DataPart<T> {
+        unsafe { &self.links.as_ref()[link.as_()] }
     }
 
-    fn get_mut_link(&mut self, link: T) -> &mut RawLink<T> {
-        unsafe { &mut self.mem.as_mut()[link.as_()] }
+    fn get_mut_link(&mut self, link: T) -> &mut DataPart<T> {
+        unsafe { &mut self.links.as_mut()[link.as_()] }
     }
 }
 
@@ -82,6 +83,13 @@ impl<T: LinkType> LinkedList<T> for UnusedLinks<T> {
 
 impl<T: LinkType> AbsoluteCircularLinkedList<T> for UnusedLinks<T> {}
 
+impl<T: LinkType> SplitUpdateMem<T> for UnusedLinks<T> {
+    fn update_mem(&mut self, data: NonNull<[DataPart<T>]>, index: NonNull<[IndexPart<T>]>) {
+        self.links = data;
+        self.header = index;
+    }
+}
+
 impl<T: LinkType> LinksList<T> for UnusedLinks<T> {
     fn detach(&mut self, link: T) {
         AbsoluteCircularLinkedList::detach(self, link)
@@ -92,10 +100,4 @@ impl<T: LinkType> LinksList<T> for UnusedLinks<T> {
     }
 }
 
-impl<T: LinkType> UnitUpdateMem<T> for UnusedLinks<T> {
-    fn update_mem(&mut self, mem: NonNull<[RawLink<T>]>) {
-        self.mem = mem;
-    }
-}
-
-impl<T: LinkType> UnitList<T> for UnusedLinks<T> {}
+impl<T: LinkType> SplitList<T> for UnusedLinks<T> {}

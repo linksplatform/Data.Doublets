@@ -1,10 +1,10 @@
-use doublets::{data::LinksError, splited, united, Doublets, Link};
+use doublets::{data::LinksError, split, unit, Doublets, Link};
 use mem::GlobalMem;
 use std::collections::HashSet;
 
 #[test]
 fn unit_iter() -> Result<(), LinksError<usize>> {
-    let mut store = united::Store::<usize, _>::new(GlobalMem::new())?;
+    let mut store = unit::Store::<usize, _>::new(GlobalMem::new())?;
 
     let a = store.create_point()?;
     let b = store.create_point()?;
@@ -22,7 +22,7 @@ fn unit_iter() -> Result<(), LinksError<usize>> {
 
 #[test]
 fn unit_iter_bug() -> Result<(), LinksError<usize>> {
-    let mut store = united::Store::<usize, _>::new(GlobalMem::new())?;
+    let mut store = unit::Store::<usize, _>::new(GlobalMem::new())?;
 
     let a = store.create_point()?;
     let b = store.create_point()?;
@@ -42,7 +42,7 @@ fn unit_iter_bug() -> Result<(), LinksError<usize>> {
 
 #[test]
 fn unit_each_iter() -> Result<(), LinksError<usize>> {
-    let mut store = united::Store::<usize, _>::new(GlobalMem::new())?;
+    let mut store = unit::Store::<usize, _>::new(GlobalMem::new())?;
 
     store.create_link(1, 1)?;
     store.create_link(2, 1)?;
@@ -61,7 +61,7 @@ fn unit_each_iter() -> Result<(), LinksError<usize>> {
 
 #[test]
 fn split_iter() -> Result<(), LinksError<usize>> {
-    let mut store = splited::Store::<usize, _, _>::new(GlobalMem::new(), GlobalMem::new())?;
+    let mut store = split::Store::<usize, _, _>::new(GlobalMem::new(), GlobalMem::new())?;
 
     let a = store.create_point()?;
     let b = store.create_point()?;
@@ -79,7 +79,7 @@ fn split_iter() -> Result<(), LinksError<usize>> {
 
 #[test]
 fn split_iter_bug() -> Result<(), LinksError<usize>> {
-    let mut store = splited::Store::<usize, _, _>::new(GlobalMem::new(), GlobalMem::new())?;
+    let mut store = split::Store::<usize, _, _>::new(GlobalMem::new(), GlobalMem::new())?;
 
     let a = store.create_point()?;
     let b = store.create_point()?;
@@ -99,7 +99,7 @@ fn split_iter_bug() -> Result<(), LinksError<usize>> {
 
 #[test]
 fn split_each_iter() -> Result<(), LinksError<usize>> {
-    let mut store = splited::Store::<usize, _, _>::new(GlobalMem::new(), GlobalMem::new())?;
+    let mut store = split::Store::<usize, _, _>::new(GlobalMem::new(), GlobalMem::new())?;
 
     store.create_link(1, 1)?;
     store.create_link(2, 1)?;

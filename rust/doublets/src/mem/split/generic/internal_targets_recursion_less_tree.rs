@@ -1,9 +1,9 @@
 use num_traits::zero;
 use std::{ops::Try, ptr::NonNull};
 
-use crate::mem::links_traits::LinksTree;
+use crate::mem::traits::LinksTree;
 
-use crate::mem::splited::{
+use crate::mem::split::{
     generic::internal_recursion_less_base::{
         InternalRecursionlessSizeBalancedTreeBase,
         InternalRecursionlessSizeBalancedTreeBaseAbstract,

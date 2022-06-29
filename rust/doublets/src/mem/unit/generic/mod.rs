@@ -1,7 +1,7 @@
 use data::LinksConstants;
 use std::{cell::RefCell, ptr::NonNull, rc::Rc};
 
-use crate::splited::{DataPart, IndexPart};
+use crate::split::{DataPart, IndexPart};
 pub use links_recursionless_size_balanced_tree_base::{
     LinkRecursionlessSizeBalancedTreeBaseAbstract, LinksRecursionlessSizeBalancedTreeBase,
 };

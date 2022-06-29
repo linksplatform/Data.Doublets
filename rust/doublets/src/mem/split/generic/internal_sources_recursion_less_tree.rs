@@ -1,10 +1,10 @@
 use num_traits::zero;
 use std::{cell::RefCell, ops::Try, ptr::NonNull, rc::Rc};
 
-use crate::mem::links_traits::LinksTree;
+use crate::mem::traits::LinksTree;
 
 use crate::mem::{
-    splited::{
+    split::{
         generic::internal_recursion_less_base::{
             InternalRecursionlessSizeBalancedTreeBase,
             InternalRecursionlessSizeBalancedTreeBaseAbstract,

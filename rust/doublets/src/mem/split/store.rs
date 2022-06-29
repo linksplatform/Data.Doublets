@@ -15,7 +15,7 @@ use num_traits::{one, zero};
 use crate::{
     generator,
     mem::{
-        splited::{
+        split::{
             DataPart, ExternalSourcesRecursionlessTree, ExternalTargetsRecursionlessTree,
             IndexPart, InternalSourcesLinkedList, InternalSourcesRecursionlessTree,
             InternalTargetsRecursionlessTree, UnusedLinks,

@@ -2,15 +2,15 @@ use num_traits::{one, zero};
 use std::{mem::transmute, ops::Try, ptr::NonNull};
 
 use crate::mem::{
-    links_header::LinksHeader,
-    links_traits::LinksTree,
-    splited::{
+    header::LinksHeader,
+    split::{
         generic::external_recursion_less_base::{
             ExternalRecursionlessSizeBalancedTreeBase,
             ExternalRecursionlessSizeBalancedTreeBaseAbstract,
         },
         DataPart, IndexPart,
     },
+    traits::LinksTree,
 };
 
 use crate::{

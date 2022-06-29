@@ -1,5 +1,5 @@
-use doublets::test_extensions::ILinksTestExtensions;
-//use doublets::{mem::united::Store, Doublets};
+use doublets::test_extensions::DoubletsTestExt;
+//use doublets::{mem::unit::Store, Doublets};
 use mem::GlobalMem;
 use std::error::Error;
 
