@@ -1,9 +1,9 @@
-use std::{marker::PhantomData, mem::transmute, ptr::NonNull};
+use std::{mem::transmute, ptr::NonNull};
 
 use crate::{
     mem::{
-        header::LinksHeader, split::DataPart, traits::SplitList, unit::LinkPart, LinksList,
-        SplitUpdateMem, UnitUpdateMem,
+        header::LinksHeader, split::DataPart, traits::SplitList, LinksList,
+        SplitUpdateMem,
     },
     split::IndexPart,
 };

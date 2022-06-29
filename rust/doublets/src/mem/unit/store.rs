@@ -1,5 +1,4 @@
 use crate::{
-    generator,
     mem::{
         header::LinksHeader,
         traits::UnitList,
@@ -12,13 +11,12 @@ use crate::{
     Doublets, Link, LinksError,
 };
 use data::{Flow, Flow::Continue, Links, LinksConstants, ReadHandler, ToQuery, WriteHandler};
-use mem::{RawMem, DEFAULT_PAGE_SIZE};
+use mem::{RawMem};
 use num::LinkType;
 use num_traits::{one, zero};
 use smallvec::SmallVec;
 use std::{
     cmp::Ordering,
-    default::default,
     error::Error,
     mem::{size_of, transmute},
     ops::{ControlFlow, Try},

@@ -6,11 +6,10 @@ use std::{ops::Try, ptr::NonNull};
 
 use crate::mem::{
     header::LinksHeader,
-    split::{DataPart, IndexPart},
-    SplitTree, SplitUpdateMem,
+    split::{DataPart, IndexPart}, SplitUpdateMem,
 };
 
-use crate::mem::traits::SplitList;
+
 use methods::{LinkedList, RelativeCircularLinkedList, RelativeLinkedList};
 use num::LinkType;
 

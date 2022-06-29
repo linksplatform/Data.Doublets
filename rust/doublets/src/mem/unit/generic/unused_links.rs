@@ -1,10 +1,9 @@
-use std::{marker::PhantomData, mem::transmute, ptr::NonNull};
+use std::{mem::transmute, ptr::NonNull};
 
 use crate::{
     mem::{
         header::LinksHeader, traits::UnitList, unit::raw_link::LinkPart, LinksList, UnitUpdateMem,
     },
-    split::DataPart,
 };
 use methods::{AbsoluteCircularLinkedList, AbsoluteLinkedList, LinkedList};
 use num::LinkType;

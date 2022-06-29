@@ -1,13 +1,10 @@
 use std::{
-    alloc::Layout,
     cmp::Ordering,
     default::default,
     error::Error,
-    iter::{Enumerate, Zip},
-    mem::{align_of, size_of, transmute},
+    mem::{size_of, transmute},
     ops::Try,
-    ptr::{null_mut, NonNull},
-    slice,
+    ptr::{NonNull},
 };
 
 use num_traits::{one, zero};
@@ -25,7 +22,7 @@ use crate::{
     Doublets, Link, LinksError,
 };
 use data::{
-    Flow, Flow::Continue, Links, LinksConstants, Query, ReadHandler, ToQuery, WriteHandler,
+    Flow, Flow::Continue, Links, LinksConstants, ReadHandler, ToQuery, WriteHandler,
 };
 use mem::{RawMem, DEFAULT_PAGE_SIZE};
 use methods::RelativeCircularLinkedList;

@@ -1,6 +1,6 @@
-use doublets::test_extensions::DoubletsTestExt;
+
 //use doublets::{mem::unit::Store, Doublets};
-use mem::GlobalMem;
+
 use std::error::Error;
 
 fn main() -> Result<(), Box<dyn Error>> {
