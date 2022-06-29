@@ -4,7 +4,7 @@ use std::{
     error::Error,
     mem::{size_of, transmute},
     ops::Try,
-    ptr::{NonNull},
+    ptr::NonNull,
 };
 
 use num_traits::{one, zero};
@@ -21,9 +21,7 @@ use crate::{
     },
     Doublets, Link, LinksError,
 };
-use data::{
-    Flow, Flow::Continue, Links, LinksConstants, ReadHandler, ToQuery, WriteHandler,
-};
+use data::{Flow, Flow::Continue, Links, LinksConstants, ReadHandler, ToQuery, WriteHandler};
 use mem::{RawMem, DEFAULT_PAGE_SIZE};
 use methods::RelativeCircularLinkedList;
 use num::LinkType;
@@ -72,9 +70,6 @@ impl<
 {
     const USE_LIST: bool = false;
     const SIZE_STEP: usize = 2_usize.pow(16);
-    const HEADER_SIZE: usize = size_of::<LinksHeader<T>>();
-    const DATA_SIZE: usize = size_of::<DataPart<T>>();
-    const INDEX_SIZE: usize = size_of::<IndexPart<T>>();
 
     // TODO: create Options
     pub fn with_constants(
@@ -211,13 +206,11 @@ impl<
         let header = self.get_header().clone();
         let allocated = header.allocated.as_();
 
-        let mut data_capacity = allocated * Self::DATA_SIZE;
-        data_capacity = data_capacity.max(self.data_mem.occupied());
+        let mut data_capacity = allocated;
         data_capacity = data_capacity.max(self.data_mem.allocated());
         data_capacity = data_capacity.max(self.data_step);
 
-        let mut index_capacity = allocated * Self::INDEX_SIZE;
-        index_capacity = index_capacity.max(self.index_mem.occupied());
+        let mut index_capacity = allocated;
         index_capacity = index_capacity.max(self.index_mem.allocated());
         index_capacity = index_capacity.max(self.index_step);
 
@@ -601,7 +594,7 @@ impl<
             }
 
             // TODO: if header.allocated >= header.reserved - one() {
-            if self.index_mem.allocated() < self.index_mem.occupied() + Self::INDEX_SIZE {
+            if self.index_mem.allocated() < self.index_mem.occupied() + 1 {
                 let data = NonNull::from(
                     self.data_mem
                         .alloc(self.data_mem.allocated() + self.data_step)?,
@@ -615,15 +608,13 @@ impl<
                 let reserved = self.index_mem.allocated();
                 let header = self.mut_header();
                 // header.reserved = T::from_usize(reserved / Self::DATA_SIZE).unwrap()
-                header.reserved = T::from_usize(reserved / Self::INDEX_SIZE).unwrap()
+                header.reserved = T::from_usize(reserved).unwrap()
             }
             let header = self.mut_header();
             header.allocated = header.allocated + one();
             free = header.allocated;
-            self.data_mem
-                .occupy(self.data_mem.occupied() + Self::DATA_SIZE)?;
-            self.index_mem
-                .occupy(self.index_mem.occupied() + Self::INDEX_SIZE)?;
+            self.data_mem.occupy(self.data_mem.occupied() + 1)?;
+            self.index_mem.occupy(self.index_mem.occupied() + 1)?;
         } else {
             self.unused.detach(free)
         }
@@ -756,10 +747,8 @@ impl<
             Ordering::Less => self.unused.attach_as_first(link),
             Ordering::Greater => unreachable!(),
             Ordering::Equal => {
-                self.data_mem
-                    .occupy(self.data_mem.occupied() - Self::DATA_SIZE)?;
-                self.index_mem
-                    .occupy(self.index_mem.occupied() - Self::INDEX_SIZE)?;
+                self.data_mem.occupy(self.data_mem.occupied() - 1)?;
+                self.index_mem.occupy(self.index_mem.occupied() - 1)?;
 
                 let allocated = self.get_header().allocated;
                 let header = self.mut_header();
@@ -775,10 +764,10 @@ impl<
                     // TODO: create extension `update_used`
 
                     let used_mem = self.data_mem.occupied();
-                    self.data_mem.occupy(used_mem - Self::DATA_SIZE)?;
+                    self.data_mem.occupy(used_mem - 1)?;
 
                     let used_mem = self.index_mem.occupied();
-                    self.index_mem.occupy(used_mem - Self::INDEX_SIZE)?;
+                    self.index_mem.occupy(used_mem - 1)?;
                 }
             }
         }

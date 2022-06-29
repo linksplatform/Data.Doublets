@@ -11,11 +11,13 @@ use crate::{
     Doublets, Link, LinksError,
 };
 use data::{Flow, Flow::Continue, Links, LinksConstants, ReadHandler, ToQuery, WriteHandler};
-use mem::{RawMem};
+use leak_slice::LeakSliceExt;
+use mem::{RawMem, DEFAULT_PAGE_SIZE};
 use num::LinkType;
 use num_traits::{one, zero};
 use smallvec::SmallVec;
 use std::{
+    cmp,
     cmp::Ordering,
     error::Error,
     mem::{size_of, transmute},
@@ -43,10 +45,7 @@ pub struct Store<
 impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: UnitList<T>>
     Store<T, M, TS, TT, TU>
 {
-    pub const LINK_SIZE: usize = size_of::<LinkPart<T>>();
-    pub const HEADER_SIZE: usize = size_of::<LinksHeader<T>>();
-    pub const MAGIC_CONSTANT: usize = 2_usize.pow(16);
-    pub const DEFAULT_LINKS_SIZE_STEP: usize = Self::MAGIC_CONSTANT;
+    pub const SIZE_STEP: usize = 2_usize.pow(16);
 
     pub fn new(mem: M) -> Result<Store<T, M>, LinksError<T>> {
         Self::with_constants(mem, LinksConstants::new())
@@ -71,22 +70,27 @@ impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: 
         > {
             mem,
             mem_ptr: dangling_mem,
-            reserve_step: Self::DEFAULT_LINKS_SIZE_STEP,
+            reserve_step: Self::SIZE_STEP,
             constants,
             sources,
             targets,
             unused,
         };
 
+        // SAFETY: Without this, the code will become unsafe
         new.init()?;
         Ok(new)
     }
 
     fn init(&mut self) -> Result<(), LinksError<T>> {
-        let mem = NonNull::from(self.mem.alloc(self.reserve_step)?);
+        let mem = NonNull::from(self.mem.alloc(DEFAULT_PAGE_SIZE)?);
         self.update_mem(mem);
 
         let header = self.get_header().clone();
+        let capacity = cmp::max(self.reserve_step, header.allocated.as_());
+        let mem = self.mem.alloc(capacity)?.leak();
+        self.update_mem(mem);
+
         self.mem.occupy(header.allocated.as_() + 1)?;
 
         let reserved = self.mem.allocated();
@@ -113,7 +117,6 @@ impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: 
     }
 
     fn get_header(&self) -> &LinksHeader<T> {
-        // SAFETY: `LinksHeader` and `IndexPart` layout are valid types
         // SAFETY: `LinksHeader` and `IndexPart` layout are equivalent
         unsafe {
             Self::get_from_mem(self.mem_ptr, 0)
@@ -123,7 +126,6 @@ impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: 
     }
 
     fn mut_header(&mut self) -> &mut LinksHeader<T> {
-        // SAFETY: `LinksHeader` and `IndexPart` layout are valid types
         // SAFETY: `LinksHeader` and `IndexPart` layout are equivalent
         unsafe {
             Self::mut_from_mem(self.mem_ptr, 0)
@@ -162,8 +164,7 @@ impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: 
     fn exists(&self, link: T) -> bool {
         let constants = self.constants();
         let header = self.get_header();
-
-        // TODO: use `Range::contains`
+        
         link >= *constants.internal_range.start()
             && link <= header.allocated
             && !self.is_unused(link)
@@ -189,10 +190,8 @@ impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: 
         R: Try<Output = ()>,
     {
         let restriction = restriction.to_query();
-
         let constants = self.constants();
-        let _break = constants.r#break;
-
+        
         if restriction.len() == 0 {
             for index in T::one()..self.get_header().allocated + one() {
                 if let Some(link) = self.get_link(index) {
@@ -201,8 +200,7 @@ impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: 
             }
             return R::from_output(());
         }
-
-        let _continue = constants.r#continue;
+        
         let any = constants.any;
         let index = restriction[constants.index_part.as_()];
 
@@ -433,16 +431,19 @@ impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: 
             }
 
             if header.allocated >= header.reserved - one() {
-                let mem = NonNull::from(self.mem.alloc(self.mem.allocated() + self.reserve_step)?);
+                let mem = self
+                    .mem
+                    .alloc(self.mem.allocated() + self.reserve_step)?
+                    .leak();
                 self.update_mem(mem);
                 let reserved = self.mem.allocated();
                 let header = self.mut_header();
-                header.reserved = T::from_usize(reserved / Self::LINK_SIZE).unwrap()
+                header.reserved = T::from_usize(reserved).unwrap()
             }
             let header = self.mut_header();
             header.allocated = header.allocated + one();
             free = header.allocated;
-            self.mem.occupy(self.mem.occupied() + Self::LINK_SIZE)?;
+            self.mem.occupy(self.mem.occupied() + 1)?;
         } else {
             self.unused.detach(free)
         }
@@ -549,7 +550,7 @@ impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: 
             Ordering::Less => self.unused.attach_as_first(link),
             Ordering::Greater => unreachable!(),
             Ordering::Equal => {
-                self.mem.occupy(self.mem.occupied() - Self::LINK_SIZE)?;
+                self.mem.occupy(self.mem.occupied() - 1)?;
 
                 let allocated = self.get_header().allocated;
                 let header = self.mut_header();
@@ -563,7 +564,7 @@ impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: 
                     self.unused.detach(allocated);
                     self.mut_header().allocated = allocated - one();
                     let used_mem = self.mem.occupied();
-                    self.mem.occupy(used_mem - Self::LINK_SIZE)?;
+                    self.mem.occupy(used_mem - 1)?;
                 }
             }
         }
@@ -575,6 +576,7 @@ impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: 
         if self.constants.is_external(index) {
             Some(Link::point(index))
         } else if self.exists(index) {
+            // SAFETY: links is exists
             Some(unsafe { self.get_link_unchecked(index) })
         } else {
             None
