@@ -2,15 +2,19 @@
 #![feature(box_syntax)]
 #![feature(try_trait_v2)]
 
-use std::error::Error;
-use std::ffi::CStr;
-use std::fs::File;
-use std::ops::RangeInclusive;
-use std::ops::Try;
-use std::ptr::{drop_in_place, null_mut};
+use std::{
+    error::Error,
+    ffi::CStr,
+    fs::File,
+    ops::{RangeInclusive, Try},
+    ptr::{drop_in_place, null_mut},
+};
 
-use data::{LinksConstants, Query, query};
-use data::Flow::{Break, Continue};
+use data::{
+    query,
+    Flow::{Break, Continue},
+    LinksConstants, Query,
+};
 use libc::{c_char, c_void};
 use log::{error, warn};
 use num::LinkType;
@@ -51,7 +55,7 @@ fn unnul_or_error<'a, Ptr, R>(ptr: *mut Ptr) -> &'a mut R {
 }
 
 // TODO: remove ::mem:: in doublets crate
-type UnitedLinks<T> = doublets::mem::united::Store<T, mem::FileMappedMem>;
+type UnitedLinks<T> = doublets::mem::unit::Store<T, mem::FileMappedMem>;
 
 type WrappedLinks<T> = env_decorators::env_type!("JS_LETS_GO", "<T, *>", UnitedLinks<T>);
 
@@ -150,24 +154,24 @@ impl<T: LinkType> From<DLink<T>> for Link<T> {
 }
 
 #[ffi::specialize_for(
-types = "u8",
-types = "u16",
-types = "u32",
-types = "u64",
-convention = "csharp",
-name = "*Links_New"
+    types = "u8",
+    types = "u16",
+    types = "u32",
+    types = "u64",
+    convention = "csharp",
+    name = "*Links_New"
 )]
 fn new_united_links<T: LinkType>(path: *const c_char) -> *mut c_void {
     new_with_constants_united_links::<T>(path, LinksConstants::external().into())
 }
 
 #[ffi::specialize_for(
-types = "u8",
-types = "u16",
-types = "u32",
-types = "u64",
-convention = "csharp",
-name = "*Links_NewWithConstants"
+    types = "u8",
+    types = "u16",
+    types = "u32",
+    types = "u64",
+    convention = "csharp",
+    name = "*Links_NewWithConstants"
 )]
 fn new_with_constants_united_links<T: LinkType>(
     path: *const c_char,
@@ -191,12 +195,12 @@ fn new_with_constants_united_links<T: LinkType>(
 }
 
 #[ffi::specialize_for(
-types = "u8",
-types = "u16",
-types = "u32",
-types = "u64",
-convention = "csharp",
-name = "*Links_Drop"
+    types = "u8",
+    types = "u16",
+    types = "u32",
+    types = "u64",
+    convention = "csharp",
+    name = "*Links_Drop"
 )]
 unsafe fn drop_united_links<T: LinkType>(this: *mut c_void) {
     let links: &mut WrappedLinks<T> = unnul_or_error(this);
@@ -206,12 +210,12 @@ unsafe fn drop_united_links<T: LinkType>(this: *mut c_void) {
 }
 
 #[ffi::specialize_for(
-types = "u8",
-types = "u16",
-types = "u32",
-types = "u64",
-convention = "csharp",
-name = "*Links_GetConstants"
+    types = "u8",
+    types = "u16",
+    types = "u32",
+    types = "u64",
+    convention = "csharp",
+    name = "*Links_GetConstants"
 )]
 unsafe fn get_constants_united_links<T: LinkType>(this: *mut c_void) -> Constants<T> {
     let links: &mut WrappedLinks<T> = unnul_or_error(this);
@@ -219,12 +223,12 @@ unsafe fn get_constants_united_links<T: LinkType>(this: *mut c_void) -> Constant
 }
 
 #[ffi::specialize_for(
-types = "u8",
-types = "u16",
-types = "u32",
-types = "u64",
-convention = "csharp",
-name = "*Links_Create"
+    types = "u8",
+    types = "u16",
+    types = "u32",
+    types = "u64",
+    convention = "csharp",
+    name = "*Links_Create"
 )]
 fn create_united<T: LinkType>(
     this: *mut c_void,
@@ -259,54 +263,40 @@ fn create_united<T: LinkType>(
 }
 
 #[ffi::specialize_for(
-types = "u8",
-types = "u16",
-types = "u32",
-types = "u64",
-convention = "csharp",
-name = "*Links_SmartCreate"
+    types = "u8",
+    types = "u16",
+    types = "u32",
+    types = "u64",
+    convention = "csharp",
+    name = "*Links_SmartCreate"
 )]
-fn smart_create_united<T: LinkType>(
-    this: *mut c_void
-) -> T {
+fn smart_create_united<T: LinkType>(this: *mut c_void) -> T {
     let links: &mut WrappedLinks<T> = unnul_or_error(this);
     let result = links.create();
-    result_into_log(
-        result,
-        links.constants().error,
-    )
+    result_into_log(result, links.constants().error)
 }
 
-
 #[ffi::specialize_for(
-types = "u8",
-types = "u16",
-types = "u32",
-types = "u64",
-convention = "csharp",
-name = "*Links_SmartUpdate"
+    types = "u8",
+    types = "u16",
+    types = "u32",
+    types = "u64",
+    convention = "csharp",
+    name = "*Links_SmartUpdate"
 )]
-fn smart_update_united<T: LinkType>(
-    this: *mut c_void,
-    index: T,
-    source: T,
-    target: T,
-) -> T {
+fn smart_update_united<T: LinkType>(this: *mut c_void, index: T, source: T, target: T) -> T {
     let links: &mut WrappedLinks<T> = unnul_or_error(this);
     let result = links.update(index, source, target);
-    result_into_log(
-        result,
-        links.constants().error,
-    )
+    result_into_log(result, links.constants().error)
 }
 
 #[ffi::specialize_for(
-types = "u8",
-types = "u16",
-types = "u32",
-types = "u64",
-convention = "csharp",
-name = "*Links_Each"
+    types = "u8",
+    types = "u16",
+    types = "u32",
+    types = "u64",
+    convention = "csharp",
+    name = "*Links_Each"
 )]
 fn each_united<T: LinkType>(
     this: *mut c_void,
@@ -321,12 +311,12 @@ fn each_united<T: LinkType>(
 }
 
 #[ffi::specialize_for(
-types = "u8",
-types = "u16",
-types = "u32",
-types = "u64",
-convention = "csharp",
-name = "*Links_Count"
+    types = "u8",
+    types = "u16",
+    types = "u32",
+    types = "u64",
+    convention = "csharp",
+    name = "*Links_Count"
 )]
 unsafe fn count_united<T: LinkType>(this: *mut c_void, query: *const T, len: usize) -> T {
     let links: &mut WrappedLinks<T> = unnul_or_error(this);
@@ -335,12 +325,12 @@ unsafe fn count_united<T: LinkType>(this: *mut c_void, query: *const T, len: usi
 }
 
 #[ffi::specialize_for(
-types = "u8",
-types = "u16",
-types = "u32",
-types = "u64",
-convention = "csharp",
-name = "*Links_Update"
+    types = "u8",
+    types = "u16",
+    types = "u32",
+    types = "u64",
+    convention = "csharp",
+    name = "*Links_Update"
 )]
 unsafe fn update_united<T: LinkType>(
     this: *mut c_void,
@@ -378,12 +368,12 @@ unsafe fn update_united<T: LinkType>(
 }
 
 #[ffi::specialize_for(
-types = "u8",
-types = "u16",
-types = "u32",
-types = "u64",
-convention = "csharp",
-name = "*Links_Delete"
+    types = "u8",
+    types = "u16",
+    types = "u32",
+    types = "u64",
+    convention = "csharp",
+    name = "*Links_Delete"
 )]
 unsafe fn delete_united<T: LinkType>(
     this: *mut c_void,

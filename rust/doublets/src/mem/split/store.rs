@@ -1,42 +1,47 @@
-use std::cmp::Ordering;
-use std::default::default;
-use std::error::Error;
-use std::iter::{Enumerate, Zip};
-use std::mem::size_of;
-use std::ops::Try;
-use std::ptr::NonNull;
-use std::slice;
+use std::{
+    cmp::Ordering,
+    default::default,
+    error::Error,
+    mem::{size_of, transmute},
+    ops::Try,
+    ptr::NonNull,
+};
 
 use num_traits::{one, zero};
 
-use crate::mem::splited::generic::{
-    ExternalSourcesRecursionlessTree, ExternalTargetsRecursionlessTree, InternalSourcesLinkedList,
-    InternalSourcesRecursionlessTree, InternalTargetsRecursionlessTree, UnusedLinks,
+use crate::{
+    mem::{
+        split::{
+            DataPart, ExternalSourcesRecursionlessTree, ExternalTargetsRecursionlessTree,
+            IndexPart, InternalSourcesLinkedList, InternalSourcesRecursionlessTree,
+            InternalTargetsRecursionlessTree, UnusedLinks,
+        },
+        LinksHeader, LinksTree, SplitList, SplitTree, SplitUpdateMem,
+    },
+    Doublets, Link, LinksError,
 };
-use crate::mem::splited::{DataPart, IndexPart};
-use crate::mem::united::UpdatePointersSplit;
-use crate::mem::{ILinksListMethods, ILinksTreeMethods, LinksHeader, UpdatePointers};
-use crate::{generator, Doublets, Link, LinksError};
-use data::Flow::Continue;
-use data::{Flow, Links, ReadHandler, ToQuery, WriteHandler};
-use data::{LinksConstants, Query};
-use mem::RawMem;
-use methods::RelativeCircularDoublyLinkedList;
+use data::{Flow, Flow::Continue, Links, LinksConstants, ReadHandler, ToQuery, WriteHandler};
+use mem::{RawMem, DEFAULT_PAGE_SIZE};
+use methods::RelativeCircularLinkedList;
 use num::LinkType;
 use smallvec::SmallVec;
+use yield_iter::generator;
 
 pub struct Store<
     T: LinkType,
-    MD: RawMem,
-    MI: RawMem,
-    IS: ILinksTreeMethods<T> + UpdatePointersSplit = InternalSourcesRecursionlessTree<T>,
-    ES: ILinksTreeMethods<T> + UpdatePointersSplit = ExternalSourcesRecursionlessTree<T>,
-    IT: ILinksTreeMethods<T> + UpdatePointersSplit = InternalTargetsRecursionlessTree<T>,
-    ET: ILinksTreeMethods<T> + UpdatePointersSplit = ExternalTargetsRecursionlessTree<T>,
-    UL: ILinksListMethods<T> + UpdatePointers = UnusedLinks<T>,
+    MD: RawMem<DataPart<T>>,
+    MI: RawMem<IndexPart<T>>,
+    IS: SplitTree<T> = InternalSourcesRecursionlessTree<T>,
+    ES: SplitTree<T> = ExternalSourcesRecursionlessTree<T>,
+    IT: SplitTree<T> = InternalTargetsRecursionlessTree<T>,
+    ET: SplitTree<T> = ExternalTargetsRecursionlessTree<T>,
+    UL: SplitList<T> = UnusedLinks<T>,
 > {
     data_mem: MD,
     index_mem: MI,
+
+    data_ptr: NonNull<[DataPart<T>]>,
+    index_ptr: NonNull<[IndexPart<T>]>,
 
     data_step: usize,
     index_step: usize,
@@ -53,21 +58,18 @@ pub struct Store<
 }
 
 impl<
-        T: LinkType,
-        MD: RawMem,
-        MI: RawMem,
-        IS: ILinksTreeMethods<T> + UpdatePointersSplit,
-        ES: ILinksTreeMethods<T> + UpdatePointersSplit,
-        IT: ILinksTreeMethods<T> + UpdatePointersSplit,
-        ET: ILinksTreeMethods<T> + UpdatePointersSplit,
-        UL: ILinksListMethods<T> + UpdatePointers,
-    > Store<T, MD, MI, IS, ES, IT, ET, UL>
+    T: LinkType,
+    MD: RawMem<DataPart<T>>,
+    MI: RawMem<IndexPart<T>>,
+    IS: SplitTree<T>,
+    ES: SplitTree<T>,
+    IT: SplitTree<T>,
+    ET: SplitTree<T>,
+    UL: SplitList<T>,
+> Store<T, MD, MI, IS, ES, IT, ET, UL>
 {
     const USE_LIST: bool = false;
-    const SIZE_STEP: usize = 1024_usize.pow(2) * 64;
-    const HEADER_SIZE: usize = size_of::<LinksHeader<T>>();
-    const DATA_SIZE: usize = size_of::<DataPart<T>>();
-    const INDEX_SIZE: usize = size_of::<IndexPart<T>>();
+    const SIZE_STEP: usize = 2_usize.pow(16);
 
     // TODO: create Options
     pub fn with_constants(
@@ -75,49 +77,30 @@ impl<
         index_mem: MI,
         constants: LinksConstants<T>,
     ) -> Result<Store<T, MD, MI>, LinksError<T>> {
-        let data = data_mem.ptr();
-        let index = index_mem.ptr();
-        let header = index_mem.ptr();
+        let dangling_data = NonNull::slice_from_raw_parts(NonNull::dangling(), 0);
+        let dangling_index = NonNull::slice_from_raw_parts(NonNull::dangling(), 0);
 
-        let internal_sources = InternalSourcesRecursionlessTree::new(
-            constants.clone(),
-            data.as_mut_ptr(),
-            index.as_mut_ptr(),
-            header.as_mut_ptr(),
-        );
-        let external_sources = ExternalSourcesRecursionlessTree::new(
-            constants.clone(),
-            data.as_mut_ptr(),
-            index.as_mut_ptr(),
-            header.as_mut_ptr(),
-        );
+        let internal_sources =
+            InternalSourcesRecursionlessTree::new(constants.clone(), dangling_data, dangling_index);
+        let external_sources =
+            ExternalSourcesRecursionlessTree::new(constants.clone(), dangling_data, dangling_index);
 
-        let internal_targets = InternalTargetsRecursionlessTree::new(
-            constants.clone(),
-            data.as_mut_ptr(),
-            index.as_mut_ptr(),
-            header.as_mut_ptr(),
-        );
-        let external_targets = ExternalTargetsRecursionlessTree::new(
-            constants.clone(),
-            data.as_mut_ptr(),
-            index.as_mut_ptr(),
-            header.as_mut_ptr(),
-        );
+        let internal_targets =
+            InternalTargetsRecursionlessTree::new(constants.clone(), dangling_data, dangling_index);
+        let external_targets =
+            ExternalTargetsRecursionlessTree::new(constants.clone(), dangling_data, dangling_index);
 
-        let sources_list = InternalSourcesLinkedList::new(
-            constants.clone(),
-            data.as_mut_ptr(),
-            index.as_mut_ptr(),
-            header.as_mut_ptr(),
-        );
-        let unused = UnusedLinks::new(data.as_mut_ptr(), index.as_mut_ptr());
+        let sources_list =
+            InternalSourcesLinkedList::new(constants.clone(), dangling_data, dangling_index);
+        let unused = UnusedLinks::new(dangling_data, dangling_index);
 
         let mut new = Store {
             data_mem,
             index_mem,
+            data_ptr: dangling_data,
+            index_ptr: dangling_index,
             data_step: Self::SIZE_STEP,
-            index_step: Self::SIZE_STEP * 4,
+            index_step: Self::SIZE_STEP,
             constants,
             internal_sources,
             external_sources,
@@ -126,8 +109,9 @@ impl<
             sources_list,
             unused,
         };
-
-        new.init()?;
+        
+        // SAFETY: Without this, the code will become unsafe
+        unsafe { new.init()?; }
         Ok(new)
     }
 
@@ -135,16 +119,11 @@ impl<
         Self::with_constants(data_mem, index_mem, default())
     }
 
-    fn mut_from_mem<Output: Sized, Memory: RawMem>(
-        mem: &Memory,
-        index: usize,
-    ) -> Option<&mut Output> {
-        let mut ptr = mem.ptr();
-        let sizeof = size_of::<Output>();
-        if index * sizeof < ptr.len() {
+    fn mut_from_mem<'a, U>(mut ptr: NonNull<[U]>, index: usize) -> Option<&'a mut U> {
+        if index < ptr.len() {
+            // SAFETY: `ptr` is non-dangling slice
             Some(unsafe {
                 let slice = ptr.as_mut();
-                let (_, slice, _) = slice.align_to_mut();
                 &mut slice[index]
             })
         } else {
@@ -152,51 +131,60 @@ impl<
         }
     }
 
-    fn get_from_mem<Output: Sized, M: RawMem>(mem: &M, index: usize) -> Option<&Output> {
-        Self::mut_from_mem(mem, index).map(|v| &*v)
+    fn get_from_mem<'a, U>(ptr: NonNull<[U]>, index: usize) -> Option<&'a U> {
+        Self::mut_from_mem(ptr, index).map(|v| &*v)
     }
 
     fn get_header(&self) -> &LinksHeader<T> {
-        Self::get_from_mem(&self.index_mem, 0).expect("Header should be in index memory")
+        // SAFETY: `LinksHeader` and `IndexPart` layout are equivalent
+        unsafe {
+            Self::get_from_mem(self.index_ptr, 0)
+                .map(|x| transmute(x))
+                .expect("Header should be in index memory")
+        }
     }
 
     fn mut_header(&mut self) -> &mut LinksHeader<T> {
-        Self::mut_from_mem(&self.index_mem, 0).expect("Header should be in index memory")
+        // SAFETY: `LinksHeader` and `IndexPart` layout are equivalent
+        unsafe {
+            Self::mut_from_mem(self.index_ptr, 0)
+                .map(|x| transmute(x))
+                .expect("Header should be in index memory")
+        }
     }
 
     fn get_data_part(&self, index: T) -> &DataPart<T> {
-        Self::get_from_mem(&self.data_mem, index.as_()).expect("Data part should be in data memory")
+        Self::get_from_mem(self.data_ptr, index.as_()).expect("Data part should be in data memory")
     }
 
     unsafe fn get_data_unchecked(&self, index: T) -> &DataPart<T> {
-        Self::get_from_mem(&self.data_mem, index.as_()).unwrap_unchecked()
+        Self::get_from_mem(self.data_ptr, index.as_()).unwrap_unchecked()
     }
 
     fn mut_data_part(&mut self, index: T) -> &mut DataPart<T> {
-        Self::mut_from_mem(&self.data_mem, index.as_()).expect("Data part should be in data memory")
+        Self::mut_from_mem(self.data_ptr, index.as_()).expect("Data part should be in data memory")
     }
 
     fn get_index_part(&self, index: T) -> &IndexPart<T> {
-        Self::get_from_mem(&self.index_mem, index.as_())
+        Self::get_from_mem(self.index_ptr, index.as_())
             .expect("Index part should be in index memory")
     }
 
     fn mut_index_part(&mut self, index: T) -> &mut IndexPart<T> {
-        Self::mut_from_mem(&self.index_mem, index.as_())
+        Self::mut_from_mem(self.index_ptr, index.as_())
             .expect("Index part should be in index memory")
     }
 
-    fn update_pointers(&mut self) {
-        let data = self.data_mem.ptr().as_mut_ptr();
-        let index = self.index_mem.ptr().as_mut_ptr();
-        let header = self.index_mem.ptr().as_mut_ptr();
+    fn update_mem(&mut self, data: NonNull<[DataPart<T>]>, index: NonNull<[IndexPart<T>]>) {
+        self.data_ptr = data;
+        self.index_ptr = index;
 
-        self.internal_sources.update_pointers(data, index, header);
-        self.external_sources.update_pointers(data, index, header);
-        self.internal_targets.update_pointers(data, index, header);
-        self.external_targets.update_pointers(data, index, header);
-        self.sources_list.update_pointers(data, index, header);
-        self.unused.update_pointers(data, index);
+        self.internal_sources.update_mem(data, index);
+        self.external_sources.update_mem(data, index);
+        self.internal_targets.update_mem(data, index);
+        self.external_targets.update_mem(data, index);
+        self.sources_list.update_mem(data, index);
+        self.unused.update_mem(data, index);
     }
 
     fn align(mut to_align: usize, target: usize) -> usize {
@@ -209,40 +197,34 @@ impl<
         to_align
     }
 
-    fn init(&mut self) -> Result<(), LinksError<T>> {
-        if self.index_mem.allocated() < Self::HEADER_SIZE {
-            self.index_mem.alloc(Self::HEADER_SIZE)?;
-        }
-        self.update_pointers();
+    unsafe fn init(&mut self) -> Result<(), LinksError<T>> {
+        let data = NonNull::from(self.data_mem.alloc(DEFAULT_PAGE_SIZE)?);
+        let index = NonNull::from(self.index_mem.alloc(DEFAULT_PAGE_SIZE)?);
+        self.update_mem(data, index);
 
-        let header = *self.get_header();
+        let header = self.get_header().clone();
         let allocated = header.allocated.as_();
 
-        let mut data_capacity = allocated * Self::DATA_SIZE;
-        data_capacity = data_capacity.max(self.data_mem.occupied());
+        let mut data_capacity = allocated;
         data_capacity = data_capacity.max(self.data_mem.allocated());
         data_capacity = data_capacity.max(self.data_step);
 
-        let mut index_capacity = allocated * Self::INDEX_SIZE;
-        index_capacity = index_capacity.max(self.index_mem.occupied());
+        let mut index_capacity = allocated;
         index_capacity = index_capacity.max(self.index_mem.allocated());
         index_capacity = index_capacity.max(self.index_step);
 
         data_capacity = Self::align(data_capacity, self.data_step);
         index_capacity = Self::align(index_capacity, self.index_step);
 
-        self.data_mem.alloc(data_capacity)?;
-        self.index_mem.alloc(index_capacity)?;
-        self.update_pointers();
+        let data = NonNull::from(self.data_mem.alloc(data_capacity)?);
+        let index = NonNull::from(self.index_mem.alloc(index_capacity)?);
+        self.update_mem(data, index);
 
         let allocated = header.allocated.as_();
-        self.data_mem
-            .occupy(allocated * Self::DATA_SIZE + Self::DATA_SIZE)?;
-        self.index_mem
-            .occupy(allocated * Self::INDEX_SIZE + Self::INDEX_SIZE)?;
+        self.data_mem.occupy(allocated + 1)?;
+        self.index_mem.occupy(allocated + 1)?;
 
-        self.mut_header().reserved =
-            T::from((self.data_mem.allocated() - Self::DATA_SIZE) / Self::DATA_SIZE).unwrap();
+        self.mut_header().reserved = T::from(self.data_mem.allocated() - 1).unwrap();
         Ok(())
     }
 
@@ -448,33 +430,16 @@ impl<
     }
 }
 
-type Inner<'a, T> = Enumerate<slice::Iter<'a, DataPart<T>>>;
-pub struct Iter<'a, T: LinkType>(pub(crate) Inner<'a, T>);
-
-impl<'a, T: LinkType> Iterator for Iter<'a, T> {
-    type Item = Link<T>;
-
-    fn next(&mut self) -> Option<Self::Item> {
-        self.0.next().map(|(count, data)| {
-            Link::new(T::from_usize(count + 1).unwrap(), data.source, data.target)
-        })
-    }
-
-    fn size_hint(&self) -> (usize, Option<usize>) {
-        self.0.size_hint()
-    }
-}
-
 impl<
-        T: LinkType,
-        MD: RawMem,
-        MI: RawMem,
-        IS: ILinksTreeMethods<T> + UpdatePointersSplit,
-        ES: ILinksTreeMethods<T> + UpdatePointersSplit,
-        IT: ILinksTreeMethods<T> + UpdatePointersSplit,
-        ET: ILinksTreeMethods<T> + UpdatePointersSplit,
-        UL: ILinksListMethods<T> + UpdatePointers,
-    > Doublets<T> for Store<T, MD, MI, IS, ES, IT, ET, UL>
+    T: LinkType,
+    MD: RawMem<DataPart<T>>,
+    MI: RawMem<IndexPart<T>>,
+    IS: SplitTree<T>,
+    ES: SplitTree<T>,
+    IT: SplitTree<T>,
+    ET: SplitTree<T>,
+    UL: SplitList<T>,
+> Doublets<T> for Store<T, MD, MI, IS, ES, IT, ET, UL>
 {
     fn constants(&self) -> LinksConstants<T> {
         self.constants.clone()
@@ -597,17 +562,9 @@ impl<
                         zero()
                     }
                 } else if source == any {
-                    if link.target == target {
-                        one()
-                    } else {
-                        zero()
-                    }
+                    if link.target == target { one() } else { zero() }
                 } else if target == any {
-                    if link.source == source {
-                        one()
-                    } else {
-                        zero()
-                    }
+                    if link.source == source { one() } else { zero() }
                 } else {
                     zero()
                 }
@@ -636,25 +593,27 @@ impl<
             }
 
             // TODO: if header.allocated >= header.reserved - one() {
-            if self.index_mem.allocated() < self.index_mem.occupied() + Self::INDEX_SIZE {
-                self.data_mem
-                    .alloc(self.data_mem.allocated() + self.data_step)?;
-                self.index_mem
-                    .alloc(self.index_mem.allocated() + self.index_step)?;
-                self.update_pointers();
+            if self.index_mem.allocated() < self.index_mem.occupied() + 1 {
+                let data = NonNull::from(
+                    self.data_mem
+                        .alloc(self.data_mem.allocated() + self.data_step)?,
+                );
+                let index = NonNull::from(
+                    self.index_mem
+                        .alloc(self.index_mem.allocated() + self.index_step)?,
+                );
+                self.update_mem(data, index);
                 // let reserved = self.data_mem.allocated();
                 let reserved = self.index_mem.allocated();
                 let header = self.mut_header();
                 // header.reserved = T::from_usize(reserved / Self::DATA_SIZE).unwrap()
-                header.reserved = T::from_usize(reserved / Self::INDEX_SIZE).unwrap()
+                header.reserved = T::from_usize(reserved).unwrap()
             }
             let header = self.mut_header();
             header.allocated = header.allocated + one();
             free = header.allocated;
-            self.data_mem
-                .occupy(self.data_mem.occupied() + Self::DATA_SIZE)?;
-            self.index_mem
-                .occupy(self.index_mem.occupied() + Self::INDEX_SIZE)?;
+            self.data_mem.occupy(self.data_mem.occupied() + 1)?;
+            self.index_mem.occupy(self.index_mem.occupied() + 1)?;
         } else {
             self.unused.detach(free)
         }
@@ -787,10 +746,8 @@ impl<
             Ordering::Less => self.unused.attach_as_first(link),
             Ordering::Greater => unreachable!(),
             Ordering::Equal => {
-                self.data_mem
-                    .occupy(self.data_mem.occupied() - Self::DATA_SIZE)?;
-                self.index_mem
-                    .occupy(self.index_mem.occupied() - Self::INDEX_SIZE)?;
+                self.data_mem.occupy(self.data_mem.occupied() - 1)?;
+                self.index_mem.occupy(self.index_mem.occupied() - 1)?;
 
                 let allocated = self.get_header().allocated;
                 let header = self.mut_header();
@@ -806,10 +763,10 @@ impl<
                     // TODO: create extension `update_used`
 
                     let used_mem = self.data_mem.occupied();
-                    self.data_mem.occupy(used_mem - Self::DATA_SIZE)?;
+                    self.data_mem.occupy(used_mem - 1)?;
 
                     let used_mem = self.index_mem.occupied();
-                    self.index_mem.occupy(used_mem - Self::INDEX_SIZE)?;
+                    self.index_mem.occupy(used_mem - 1)?;
                 }
             }
         }
@@ -828,15 +785,15 @@ impl<
 }
 
 impl<
-        T: LinkType,
-        MD: RawMem,
-        MI: RawMem,
-        IS: ILinksTreeMethods<T> + UpdatePointersSplit,
-        ES: ILinksTreeMethods<T> + UpdatePointersSplit,
-        IT: ILinksTreeMethods<T> + UpdatePointersSplit,
-        ET: ILinksTreeMethods<T> + UpdatePointersSplit,
-        UL: ILinksListMethods<T> + UpdatePointers,
-    > Links<T> for Store<T, MD, MI, IS, ES, IT, ET, UL>
+    T: LinkType,
+    MD: RawMem<DataPart<T>>,
+    MI: RawMem<IndexPart<T>>,
+    IS: SplitTree<T>,
+    ES: SplitTree<T>,
+    IT: SplitTree<T>,
+    ET: SplitTree<T>,
+    UL: SplitList<T>,
+> Links<T> for Store<T, MD, MI, IS, ES, IT, ET, UL>
 {
     fn constants_links(&self) -> LinksConstants<T> {
         self.constants()
@@ -882,27 +839,27 @@ impl<
 }
 
 unsafe impl<
-        T: LinkType,
-        MD: RawMem,
-        MI: RawMem,
-        IS: ILinksTreeMethods<T> + UpdatePointersSplit,
-        ES: ILinksTreeMethods<T> + UpdatePointersSplit,
-        IT: ILinksTreeMethods<T> + UpdatePointersSplit,
-        ET: ILinksTreeMethods<T> + UpdatePointersSplit,
-        UL: ILinksListMethods<T> + UpdatePointers,
-    > Sync for Store<T, MD, MI, IS, ES, IT, ET, UL>
+    T: LinkType,
+    MD: RawMem<DataPart<T>>,
+    MI: RawMem<IndexPart<T>>,
+    IS: SplitTree<T>,
+    ES: SplitTree<T>,
+    IT: SplitTree<T>,
+    ET: SplitTree<T>,
+    UL: SplitList<T>,
+> Sync for Store<T, MD, MI, IS, ES, IT, ET, UL>
 {
 }
 
 unsafe impl<
-        T: LinkType,
-        MD: RawMem,
-        MI: RawMem,
-        IS: ILinksTreeMethods<T> + UpdatePointersSplit,
-        ES: ILinksTreeMethods<T> + UpdatePointersSplit,
-        IT: ILinksTreeMethods<T> + UpdatePointersSplit,
-        ET: ILinksTreeMethods<T> + UpdatePointersSplit,
-        UL: ILinksListMethods<T> + UpdatePointers,
-    > Send for Store<T, MD, MI, IS, ES, IT, ET, UL>
+    T: LinkType,
+    MD: RawMem<DataPart<T>>,
+    MI: RawMem<IndexPart<T>>,
+    IS: SplitTree<T>,
+    ES: SplitTree<T>,
+    IT: SplitTree<T>,
+    ET: SplitTree<T>,
+    UL: SplitList<T>,
+> Send for Store<T, MD, MI, IS, ES, IT, ET, UL>
 {
 }

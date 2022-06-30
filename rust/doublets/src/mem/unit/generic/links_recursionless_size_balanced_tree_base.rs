@@ -1,18 +1,16 @@
-use std::default::default;
-use std::marker::PhantomData;
+use std::{default::default, marker::PhantomData, ptr::NonNull};
 
-use crate::mem::ilinks_tree_methods::ILinksTreeMethods;
-use crate::mem::links_header::LinksHeader;
-use crate::mem::united::raw_link::RawLink;
-use crate::Link;
+use crate::{
+    mem::{header::LinksHeader, unit::raw_link::LinkPart, LinksTree},
+    Link,
+};
 use data::LinksConstants;
-use methods::RecursionlessSizeBalancedTreeMethods;
+use methods::NoRecurSzbTree;
 use num::LinkType;
 
 // TODO: why is there so much duplication in OOP!!! FIXME
 pub struct LinksRecursionlessSizeBalancedTreeBase<T: LinkType> {
-    pub links: *mut u8,
-    pub header: *mut u8,
+    pub mem: NonNull<[LinkPart<T>]>,
     pub r#break: T,
     pub r#continue: T,
 
@@ -20,10 +18,9 @@ pub struct LinksRecursionlessSizeBalancedTreeBase<T: LinkType> {
 }
 
 impl<T: LinkType> LinksRecursionlessSizeBalancedTreeBase<T> {
-    pub fn new(constants: LinksConstants<T>, links: *mut u8, header: *mut u8) -> Self {
+    pub fn new(constants: LinksConstants<T>, mem: NonNull<[LinkPart<T>]>) -> Self {
         Self {
-            links,
-            header,
+            mem,
             r#break: constants.r#break,
             r#continue: constants.r#continue,
             _phantom: default(),
@@ -32,15 +29,15 @@ impl<T: LinkType> LinksRecursionlessSizeBalancedTreeBase<T> {
 }
 
 pub trait LinkRecursionlessSizeBalancedTreeBaseAbstract<T: LinkType>:
-    RecursionlessSizeBalancedTreeMethods<T> + ILinksTreeMethods<T>
+    NoRecurSzbTree<T> + LinksTree<T>
 {
     fn get_header(&self) -> &LinksHeader<T>;
 
     fn get_mut_header(&mut self) -> &mut LinksHeader<T>;
 
-    fn get_link(&self, link: T) -> &RawLink<T>;
+    fn get_link(&self, link: T) -> &LinkPart<T>;
 
-    fn get_mut_link(&mut self, link: T) -> &mut RawLink<T>;
+    fn get_mut_link(&mut self, link: T) -> &mut LinkPart<T>;
 
     fn get_tree_root(&self) -> T;
 

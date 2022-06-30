@@ -1,18 +1,22 @@
 use num_traits::zero;
-use std::ops::Try;
+use std::{ops::Try, ptr::NonNull};
 
-use crate::mem::ilinks_tree_methods::ILinksTreeMethods;
+use crate::mem::traits::LinksTree;
 
-use crate::mem::splited::generic::internal_recursion_less_base::{
-    InternalRecursionlessSizeBalancedTreeBase, InternalRecursionlessSizeBalancedTreeBaseAbstract,
+use crate::mem::split::{
+    generic::internal_recursion_less_base::{
+        InternalRecursionlessSizeBalancedTreeBase,
+        InternalRecursionlessSizeBalancedTreeBaseAbstract,
+    },
+    DataPart, IndexPart,
 };
-use crate::mem::splited::{DataPart, IndexPart};
-use crate::mem::united::UpdatePointersSplit;
 
-use crate::Link;
+use crate::{
+    mem::{SplitTree, SplitUpdateMem},
+    Link,
+};
 use data::LinksConstants;
-use methods::RecursionlessSizeBalancedTreeMethods;
-use methods::SizeBalancedTreeBase;
+use methods::{NoRecurSzbTree, SzbTree};
 use num::LinkType;
 
 pub struct InternalTargetsRecursionlessTree<T: LinkType> {
@@ -22,17 +26,16 @@ pub struct InternalTargetsRecursionlessTree<T: LinkType> {
 impl<T: LinkType> InternalTargetsRecursionlessTree<T> {
     pub fn new(
         constants: LinksConstants<T>,
-        data: *mut u8,
-        indexes: *mut u8,
-        header: *mut u8,
+        data: NonNull<[DataPart<T>]>,
+        indexes: NonNull<[IndexPart<T>]>,
     ) -> Self {
         Self {
-            base: InternalRecursionlessSizeBalancedTreeBase::new(constants, data, indexes, header),
+            base: InternalRecursionlessSizeBalancedTreeBase::new(constants, data, indexes),
         }
     }
 }
 
-impl<T: LinkType> SizeBalancedTreeBase<T> for InternalTargetsRecursionlessTree<T> {
+impl<T: LinkType> SzbTree<T> for InternalTargetsRecursionlessTree<T> {
     fn get_left_reference(&self, node: T) -> *const T {
         &self.get_index_part(node).left_as_target as *const _
     }
@@ -89,7 +92,7 @@ impl<T: LinkType> SizeBalancedTreeBase<T> for InternalTargetsRecursionlessTree<T
     }
 }
 
-impl<T: LinkType> RecursionlessSizeBalancedTreeMethods<T> for InternalTargetsRecursionlessTree<T> {}
+impl<T: LinkType> NoRecurSzbTree<T> for InternalTargetsRecursionlessTree<T> {}
 
 fn each_usages_core<T: LinkType, R: Try<Output = ()>, H: FnMut(Link<T>) -> R>(
     _self: &InternalTargetsRecursionlessTree<T>,
@@ -113,7 +116,7 @@ fn each_usages_core<T: LinkType, R: Try<Output = ()>, H: FnMut(Link<T>) -> R>(
     R::from_output(())
 }
 
-impl<T: LinkType> ILinksTreeMethods<T> for InternalTargetsRecursionlessTree<T> {
+impl<T: LinkType> LinksTree<T> for InternalTargetsRecursionlessTree<T> {
     fn count_usages(&self, link: T) -> T {
         self.count_usages_core(link)
     }
@@ -131,39 +134,40 @@ impl<T: LinkType> ILinksTreeMethods<T> for InternalTargetsRecursionlessTree<T> {
     }
 
     fn detach(&mut self, root: &mut T, index: T) {
-        unsafe { RecursionlessSizeBalancedTreeMethods::detach(self, root as *mut _, index) }
+        unsafe { NoRecurSzbTree::detach(self, root as *mut _, index) }
     }
 
     fn attach(&mut self, root: &mut T, index: T) {
-        unsafe { RecursionlessSizeBalancedTreeMethods::attach(self, root as *mut _, index) }
+        unsafe { NoRecurSzbTree::attach(self, root as *mut _, index) }
     }
 }
 
-impl<T: LinkType> UpdatePointersSplit for InternalTargetsRecursionlessTree<T> {
-    fn update_pointers(&mut self, data: *mut u8, indexes: *mut u8, header: *mut u8) {
-        self.base.data = data;
+impl<T: LinkType> SplitUpdateMem<T> for InternalTargetsRecursionlessTree<T> {
+    fn update_mem(&mut self, data: NonNull<[DataPart<T>]>, indexes: NonNull<[IndexPart<T>]>) {
         self.base.indexes = indexes;
-        self.base.header = header;
+        self.base.data = data;
     }
 }
+
+impl<T: LinkType> SplitTree<T> for InternalTargetsRecursionlessTree<T> {}
 
 impl<T: LinkType> InternalRecursionlessSizeBalancedTreeBaseAbstract<T>
     for InternalTargetsRecursionlessTree<T>
 {
     fn get_index_part(&self, link: T) -> &IndexPart<T> {
-        unsafe { &*((self.base.indexes as *mut IndexPart<T>).add(link.as_())) }
+        unsafe { &self.base.indexes.as_ref()[link.as_()] }
     }
 
     fn get_mut_index_part(&mut self, link: T) -> &mut IndexPart<T> {
-        unsafe { &mut *((self.base.indexes as *mut IndexPart<T>).add(link.as_())) }
+        unsafe { &mut self.base.indexes.as_mut()[link.as_()] }
     }
 
     fn get_data_part(&self, link: T) -> &DataPart<T> {
-        unsafe { &*((self.base.data as *mut DataPart<T>).add(link.as_())) }
+        unsafe { &self.base.data.as_ref()[link.as_()] }
     }
 
     fn get_mut_data_part(&mut self, link: T) -> &mut DataPart<T> {
-        unsafe { &mut *((self.base.data as *mut DataPart<T>).add(link.as_())) }
+        unsafe { &mut self.base.data.as_mut()[link.as_()] }
     }
 
     fn get_tree_root(&self, link: T) -> T {

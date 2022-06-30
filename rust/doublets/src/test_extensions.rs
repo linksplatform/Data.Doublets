@@ -7,7 +7,7 @@ use crate::Link;
 use data::Hybrid;
 use num::LinkType;
 
-pub trait ILinksTestExtensions<T: LinkType>: Doublets<T> {
+pub trait DoubletsTestExt<T: LinkType>: Doublets<T> {
     fn test_crud(&mut self) {
         let constants = self.constants();
 
@@ -158,4 +158,4 @@ pub trait ILinksTestExtensions<T: LinkType>: Doublets<T> {
     }
 }
 
-impl<T: LinkType, All: Doublets<T>> ILinksTestExtensions<T> for All {}
+impl<T: LinkType, All: Doublets<T>> DoubletsTestExt<T> for All {}

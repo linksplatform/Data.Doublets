@@ -1,21 +1,21 @@
 use crate::Link;
 use data::LinksConstants;
+use std::mem::transmute;
 
-use std::ops::Try;
+use std::{ops::Try, ptr::NonNull};
 
-use crate::mem::links_header::LinksHeader;
-use crate::mem::splited::{DataPart, IndexPart};
-
-use crate::mem::united::UpdatePointersSplit;
-use methods::{
-    DoublyLinkedListBase, RelativeCircularDoublyLinkedList, RelativeDoublyLinkedListBase,
+use crate::mem::{
+    header::LinksHeader,
+    split::{DataPart, IndexPart}, SplitUpdateMem,
 };
+
+
+use methods::{LinkedList, RelativeCircularLinkedList, RelativeLinkedList};
 use num::LinkType;
 
 pub struct InternalSourcesLinkedList<T: LinkType> {
-    data: *mut u8,
-    indexes: *mut u8,
-    header: *mut u8,
+    data: NonNull<[DataPart<T>]>,
+    indexes: NonNull<[IndexPart<T>]>,
     r#continue: T,
     r#break: T,
 }
@@ -23,44 +23,39 @@ pub struct InternalSourcesLinkedList<T: LinkType> {
 impl<T: LinkType> InternalSourcesLinkedList<T> {
     pub fn new(
         constants: LinksConstants<T>,
-        data: *mut u8,
-        indexes: *mut u8,
-        header: *mut u8,
+        data: NonNull<[DataPart<T>]>,
+        indexes: NonNull<[IndexPart<T>]>,
     ) -> Self {
-        assert!(!data.is_null()); // TODO: messages
-        assert!(!indexes.is_null()); // TODO: messages
-        assert!(!header.is_null()); // TODO: messages
         Self {
             data,
             indexes,
-            header,
             r#continue: constants.r#continue,
             r#break: constants.r#break,
         }
     }
 
     fn get_header(&self) -> &LinksHeader<T> {
-        unsafe { &*(self.header as *const LinksHeader<T>) }
+        unsafe { transmute(&self.indexes.as_ref()[0]) }
     }
 
     fn get_mut_header(&mut self) -> &mut LinksHeader<T> {
-        unsafe { &mut *(self.header as *mut LinksHeader<T>) }
+        unsafe { transmute(&mut self.indexes.as_mut()[0]) }
     }
 
     fn get_data_part(&self, link: T) -> &DataPart<T> {
-        unsafe { &*((self.data as *const DataPart<T>).add(link.as_())) }
+        unsafe { &self.data.as_ref()[link.as_()] }
     }
 
     fn get_mut_data_part(&mut self, link: T) -> &mut DataPart<T> {
-        unsafe { &mut *((self.data as *mut DataPart<T>).add(link.as_())) }
+        unsafe { &mut self.data.as_mut()[link.as_()] }
     }
 
     fn get_index_part(&self, link: T) -> &IndexPart<T> {
-        unsafe { &*((self.indexes as *const IndexPart<T>).add(link.as_())) }
+        unsafe { &self.indexes.as_ref()[link.as_()] }
     }
 
     fn get_mut_index_part(&mut self, link: T) -> &mut IndexPart<T> {
-        unsafe { &mut *((self.indexes as *mut IndexPart<T>).add(link.as_())) }
+        unsafe { &mut self.indexes.as_mut()[link.as_()] }
     }
 
     fn get_link_value(&self, link: T) -> Link<T> {
@@ -91,7 +86,7 @@ impl<T: LinkType> InternalSourcesLinkedList<T> {
     }
 }
 
-impl<T: LinkType> RelativeDoublyLinkedListBase<T> for InternalSourcesLinkedList<T> {
+impl<T: LinkType> RelativeLinkedList<T> for InternalSourcesLinkedList<T> {
     fn get_first(&self, head: T) -> T {
         self.get_index_part(head).root_as_source
     }
@@ -128,7 +123,7 @@ impl<T: LinkType> RelativeDoublyLinkedListBase<T> for InternalSourcesLinkedList<
     }
 }
 
-impl<T: LinkType> DoublyLinkedListBase<T> for InternalSourcesLinkedList<T> {
+impl<T: LinkType> LinkedList<T> for InternalSourcesLinkedList<T> {
     fn get_previous(&self, element: T) -> T {
         self.get_index_part(element).left_as_source
     }
@@ -146,12 +141,11 @@ impl<T: LinkType> DoublyLinkedListBase<T> for InternalSourcesLinkedList<T> {
     }
 }
 
-impl<T: LinkType> RelativeCircularDoublyLinkedList<T> for InternalSourcesLinkedList<T> {}
+impl<T: LinkType> RelativeCircularLinkedList<T> for InternalSourcesLinkedList<T> {}
 
-impl<T: LinkType> UpdatePointersSplit for InternalSourcesLinkedList<T> {
-    fn update_pointers(&mut self, data: *mut u8, indexes: *mut u8, header: *mut u8) {
+impl<T: LinkType> SplitUpdateMem<T> for InternalSourcesLinkedList<T> {
+    fn update_mem(&mut self, data: NonNull<[DataPart<T>]>, indexes: NonNull<[IndexPart<T>]>) {
         self.data = data;
         self.indexes = indexes;
-        self.header = header;
     }
 }

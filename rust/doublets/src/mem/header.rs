@@ -1,6 +1,6 @@
 use num::LinkType;
 
-#[derive(PartialEq, Eq, Hash, Clone, Debug, Copy)]
+#[derive(Debug, Default, Clone, Eq, PartialEq)]
 pub struct LinksHeader<T: LinkType> {
     pub allocated: T,
     pub reserved: T,

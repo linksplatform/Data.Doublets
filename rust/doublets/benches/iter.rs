@@ -1,12 +1,10 @@
 use criterion::{black_box, criterion_group, criterion_main, Criterion};
 use data::Flow::Continue;
-use doublets::splited::Store;
-use doublets::Doublets;
+use doublets::{split::Store, Doublets};
 use mem::GlobalMem;
 
 fn each_iter_searching(c: &mut Criterion) {
-    let mut store =
-        Store::<usize, _, _>::new(GlobalMem::new().unwrap(), GlobalMem::new().unwrap()).unwrap();
+    let mut store = Store::<usize, _, _>::new(GlobalMem::new(), GlobalMem::new()).unwrap();
     let any = store.constants().any;
 
     store.create_link(1, 1).unwrap();
@@ -24,9 +22,8 @@ fn each_iter_searching(c: &mut Criterion) {
 }
 
 fn iter(c: &mut Criterion) {
-    let mut store =
-        Store::<usize, _, _>::new(GlobalMem::new().unwrap(), GlobalMem::new().unwrap()).unwrap();
-    let any = store.constants().any;
+    let mut store = Store::<usize, _, _>::new(GlobalMem::new(), GlobalMem::new()).unwrap();
+    let _any = store.constants().any;
 
     for _ in 0..1_000_000 {
         store.create_point().unwrap();

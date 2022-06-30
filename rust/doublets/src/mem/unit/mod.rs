@@ -1,5 +1,5 @@
 pub use generic::*;
-pub use raw_link::RawLink;
+pub use raw_link::LinkPart;
 pub use store::Store;
 
 pub(crate) mod generic;

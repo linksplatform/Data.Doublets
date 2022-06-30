@@ -1,18 +1,20 @@
 use num_traits::zero;
+use std::{ptr::NonNull};
 
-use crate::mem::ilinks_tree_methods::ILinksTreeMethods;
+use crate::mem::traits::LinksTree;
 
-use crate::mem::splited::{DataPart, IndexPart};
-use crate::Link;
+use crate::{
+    mem::split::{DataPart, IndexPart},
+    Link,
+};
 use data::LinksConstants;
-use methods::RecursionlessSizeBalancedTreeMethods;
+use methods::NoRecurSzbTree;
 use num::LinkType;
 
 // TODO: why is there so much duplication in OOP!!! FIXME
 pub struct InternalRecursionlessSizeBalancedTreeBase<T: LinkType> {
-    pub data: *mut u8,
-    pub indexes: *mut u8,
-    pub header: *mut u8,
+    pub data: NonNull<[DataPart<T>]>,
+    pub indexes: NonNull<[IndexPart<T>]>,
     pub r#break: T,
     pub r#continue: T,
 }
@@ -20,14 +22,12 @@ pub struct InternalRecursionlessSizeBalancedTreeBase<T: LinkType> {
 impl<T: LinkType> InternalRecursionlessSizeBalancedTreeBase<T> {
     pub fn new(
         constants: LinksConstants<T>,
-        data: *mut u8,
-        indexes: *mut u8,
-        header: *mut u8,
+        data: NonNull<[DataPart<T>]>,
+        indexes: NonNull<[IndexPart<T>]>,
     ) -> Self {
         Self {
             data,
             indexes,
-            header,
             r#break: constants.r#break,
             r#continue: constants.r#continue,
         }
@@ -35,7 +35,7 @@ impl<T: LinkType> InternalRecursionlessSizeBalancedTreeBase<T> {
 }
 
 pub trait InternalRecursionlessSizeBalancedTreeBaseAbstract<T: LinkType>:
-    RecursionlessSizeBalancedTreeMethods<T> + ILinksTreeMethods<T>
+    NoRecurSzbTree<T> + LinksTree<T>
 {
     fn get_index_part(&self, link: T) -> &IndexPart<T>;
 

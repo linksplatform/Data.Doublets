@@ -1,13 +1,18 @@
-pub use ilinks_list_methods::ILinksListMethods;
-pub use ilinks_tree_methods::ILinksTreeMethods;
-pub use links_header::LinksHeader;
-pub use united::UpdatePointers;
-
-mod ilinks_list_methods;
-mod ilinks_tree_methods;
-mod links_header;
-pub mod splited;
-pub mod united;
+pub use header::LinksHeader;
+pub use traits::{
+    LinksList, LinksTree, SplitList, SplitTree, SplitUpdateMem, UnitTree, UnitUpdateMem,
+};
+mod header;
+pub mod split;
+mod traits;
+pub mod unit;
 
 #[cfg(feature = "mem")]
 pub use mem::*;
+
+pub mod parts {
+    pub use super::{
+        split::{DataPart, IndexPart},
+        unit::LinkPart,
+    };
+}

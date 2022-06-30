@@ -23,15 +23,15 @@
 #![feature(layout_for_ptr)]
 #![feature(generator_trait)]
 #![feature(generators)]
+#![feature(ptr_as_uninit)]
 
 pub mod data;
 pub mod mem;
 pub mod num;
 pub mod test_extensions;
-pub use crate::mem::splited;
-pub use crate::mem::united;
+pub use self::mem::{parts, split, unit};
 
-pub(crate) use crate::data::LinksError;
-pub use crate::data::{Doublet, Doublets, Handler, Link, StoppedHandler};
+pub(crate) use self::data::LinksError;
+pub use self::data::{Doublet, Doublets, Handler, Link, StoppedHandler};
 
 pub type Error<T> = LinksError<T>;

@@ -1,52 +1,52 @@
-use crate::mem::links_header::LinksHeader;
-use crate::mem::united::LinksTargetsRecursionlessSizeBalancedTree;
-use crate::mem::united::RawLink;
-use crate::mem::united::UnusedLinks;
-use crate::mem::united::{LinksSourcesRecursionlessSizeBalancedTree, NewList, NewTree};
-use crate::mem::ILinksTreeMethods;
-use crate::mem::{ILinksListMethods, UpdatePointers};
-use crate::Link;
-use crate::{Doublets, LinksError};
-use data::LinksConstants;
-use data::ToQuery;
-use data::{Flow, Links, ReadHandler, WriteHandler};
-use mem::RawMem;
+use crate::{
+    mem::{
+        header::LinksHeader,
+        traits::UnitList,
+        unit::{
+            LinkPart, LinksSourcesRecursionlessSizeBalancedTree,
+            LinksTargetsRecursionlessSizeBalancedTree, UnusedLinks,
+        },
+        UnitTree,
+    },
+    Doublets, Link, LinksError,
+};
+use data::{Flow, Flow::Continue, Links, LinksConstants, ReadHandler, ToQuery, WriteHandler};
+use leak_slice::LeakSliceExt;
+use mem::{RawMem, DEFAULT_PAGE_SIZE};
 use num::LinkType;
 use num_traits::{one, zero};
-use std::cmp::Ordering;
-use std::default::default;
-use std::error::Error;
-use std::mem::size_of;
-use std::ops::{ControlFlow, Try};
+use smallvec::SmallVec;
+use std::{
+    cmp,
+    cmp::Ordering,
+    error::Error,
+    mem::{size_of, transmute},
+    ops::{ControlFlow, Try},
+    ptr::NonNull,
+};
+use yield_iter::generator;
 
 pub struct Store<
     T: LinkType,
-    M: RawMem,
-    TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers = LinksSourcesRecursionlessSizeBalancedTree<T>,
-    TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers = LinksTargetsRecursionlessSizeBalancedTree<T>,
-    TU: ILinksListMethods<T> + NewList<T> + UpdatePointers = UnusedLinks<T>,
+    M: RawMem<LinkPart<T>>,
+    TS: UnitTree<T> = LinksSourcesRecursionlessSizeBalancedTree<T>,
+    TT: UnitTree<T> = LinksTargetsRecursionlessSizeBalancedTree<T>,
+    TU: UnitList<T> = UnusedLinks<T>,
 > {
-    pub mem: M,
-    pub reserve_step: usize,
-    pub constants: LinksConstants<T>,
+    mem: M,
+    mem_ptr: NonNull<[LinkPart<T>]>,
+    reserve_step: usize,
+    constants: LinksConstants<T>,
 
-    pub sources: TS,
-    pub targets: TT,
-    pub unused: TU,
+    sources: TS,
+    targets: TT,
+    unused: TU,
 }
 
-impl<
-        T: LinkType,
-        M: RawMem,
-        TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
-    > Store<T, M, TS, TT, TU>
+impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: UnitList<T>>
+    Store<T, M, TS, TT, TU>
 {
-    pub const LINK_SIZE: usize = size_of::<RawLink<T>>();
-    pub const HEADER_SIZE: usize = size_of::<LinksHeader<T>>();
-    pub const MAGIC_CONSTANT: usize = 1024 * 1024;
-    pub const DEFAULT_LINKS_SIZE_STEP: usize = Self::LINK_SIZE * Self::MAGIC_CONSTANT;
+    pub const SIZE_STEP: usize = 2_usize.pow(16);
 
     pub fn new(mem: M) -> Result<Store<T, M>, LinksError<T>> {
         Self::with_constants(mem, LinksConstants::new())
@@ -56,13 +56,12 @@ impl<
         mem: M,
         constants: LinksConstants<T>,
     ) -> Result<Store<T, M>, LinksError<T>> {
-        let links = mem.ptr().as_mut_ptr();
-        let header = links;
+        let dangling_mem = NonNull::slice_from_raw_parts(NonNull::dangling(), 0);
         let sources =
-            LinksSourcesRecursionlessSizeBalancedTree::new(constants.clone(), links, header);
+            LinksSourcesRecursionlessSizeBalancedTree::new(constants.clone(), dangling_mem);
         let targets =
-            LinksTargetsRecursionlessSizeBalancedTree::new(constants.clone(), links, header);
-        let unused = UnusedLinks::new(links, header);
+            LinksTargetsRecursionlessSizeBalancedTree::new(constants.clone(), dangling_mem);
+        let unused = UnusedLinks::new(dangling_mem);
         let mut new = Store::<
             T,
             M,
@@ -71,50 +70,44 @@ impl<
             UnusedLinks<T>,
         > {
             mem,
-            reserve_step: Self::DEFAULT_LINKS_SIZE_STEP,
+            mem_ptr: dangling_mem,
+            reserve_step: Self::SIZE_STEP,
             constants,
             sources,
             targets,
             unused,
         };
 
-        new.init()?;
+        // SAFETY: Without this, the code will become unsafe
+        unsafe {
+            new.init()?;
+        }
         Ok(new)
     }
 
-    fn init(&mut self) -> Result<(), LinksError<T>> {
-        if self.mem.allocated() < self.reserve_step {
-            self.mem.alloc(self.reserve_step)?;
-        }
-        self.update_pointers();
+    unsafe fn init(&mut self) -> Result<(), LinksError<T>> {
+        let mem = NonNull::from(self.mem.alloc(DEFAULT_PAGE_SIZE)?);
+        self.update_mem(mem);
 
-        let header = *self.get_header();
-        self.mem
-            .occupy(Self::HEADER_SIZE + header.allocated.as_() * Self::LINK_SIZE)?;
+        let header = self.get_header().clone();
+        let capacity = cmp::max(self.reserve_step, header.allocated.as_());
+        let mem = self.mem.alloc(capacity)?.leak();
+        self.update_mem(mem);
 
-        let reserved = if let Some(min) =
-            (self.constants.internal_range.end().as_() + 1).checked_mul(Self::LINK_SIZE)
-        {
-            self.mem.allocated().min(min)
-        } else {
-            self.mem.allocated()
-        };
+        self.mem.occupy(header.allocated.as_() + 1)?;
+
+        let reserved = self.mem.allocated();
 
         let header = self.mut_header();
-        header.reserved = T::from_usize((reserved - Self::HEADER_SIZE) / Self::LINK_SIZE).unwrap();
+        header.reserved = T::from_usize(reserved - 1).unwrap();
         Ok(())
     }
 
-    fn mut_from_mem<Output: Sized, Memory: RawMem>(
-        mem: &Memory,
-        index: usize,
-    ) -> Option<&mut Output> {
-        let mut ptr = mem.ptr();
-        let sizeof = size_of::<Output>();
-        if index * sizeof < ptr.len() {
+    fn mut_from_mem<'a, U>(mut ptr: NonNull<[U]>, index: usize) -> Option<&'a mut U> {
+        if index < ptr.len() {
+            // SAFETY: `ptr` is non-dangling slice
             Some(unsafe {
                 let slice = ptr.as_mut();
-                let (_, slice, _) = slice.align_to_mut();
                 &mut slice[index]
             })
         } else {
@@ -122,28 +115,38 @@ impl<
         }
     }
 
-    fn get_from_mem<Output: Sized, Memory: RawMem>(mem: &Memory, index: usize) -> Option<&Output> {
+    fn get_from_mem<'a, U>(mem: NonNull<[U]>, index: usize) -> Option<&'a U> {
         Self::mut_from_mem(mem, index).map(|v| &*v)
     }
 
     fn get_header(&self) -> &LinksHeader<T> {
-        Self::get_from_mem(&self.mem, 0).expect("Header should be in index memory")
+        // SAFETY: `LinksHeader` and `IndexPart` layout are equivalent
+        unsafe {
+            Self::get_from_mem(self.mem_ptr, 0)
+                .map(|x| transmute(x))
+                .expect("Header should be in index memory")
+        }
     }
 
     fn mut_header(&mut self) -> &mut LinksHeader<T> {
-        Self::mut_from_mem(&self.mem, 0).expect("Header should be in index memory")
+        // SAFETY: `LinksHeader` and `IndexPart` layout are equivalent
+        unsafe {
+            Self::mut_from_mem(self.mem_ptr, 0)
+                .map(|x| transmute(x))
+                .expect("Header should be in index memory")
+        }
     }
 
-    fn get_raw_link(&self, index: T) -> &RawLink<T> {
-        Self::get_from_mem(&self.mem, index.as_()).expect("Data part should be in data memory")
+    fn get_link_part(&self, index: T) -> &LinkPart<T> {
+        Self::get_from_mem(self.mem_ptr, index.as_()).expect("Data part should be in data memory")
     }
 
-    unsafe fn get_raw_link_unchecked(&self, index: T) -> &RawLink<T> {
-        Self::get_from_mem(&self.mem, index.as_()).unwrap_unchecked()
+    unsafe fn get_link_part_unchecked(&self, index: T) -> &LinkPart<T> {
+        Self::get_from_mem(self.mem_ptr, index.as_()).unwrap_unchecked()
     }
 
-    fn mut_raw_link(&mut self, index: T) -> &mut RawLink<T> {
-        Self::mut_from_mem(&self.mem, index.as_()).expect("Data part should be in data memory")
+    fn mut_link_part(&mut self, index: T) -> &mut LinkPart<T> {
+        Self::mut_from_mem(self.mem_ptr, index.as_()).expect("Data part should be in data memory")
     }
 
     fn get_total(&self) -> T {
@@ -154,7 +157,7 @@ impl<
     fn is_unused(&self, link: T) -> bool {
         let header = self.get_header();
         if link <= header.allocated && header.first_free != link {
-            let link = unsafe { self.get_raw_link_unchecked(link) };
+            let link = unsafe { self.get_link_part_unchecked(link) };
             link.size_as_source == zero() && link.source != zero()
         } else {
             true
@@ -165,23 +168,22 @@ impl<
         let constants = self.constants();
         let header = self.get_header();
 
-        // TODO: use `Range::contains`
         link >= *constants.internal_range.start()
             && link <= header.allocated
             && !self.is_unused(link)
     }
 
-    fn update_pointers(&mut self) {
-        let ptr = self.mem.ptr().as_mut_ptr();
-        self.targets.update_pointers(ptr, ptr);
-        self.sources.update_pointers(ptr, ptr);
-        self.unused.update_pointers(ptr, ptr);
+    fn update_mem(&mut self, mem: NonNull<[LinkPart<T>]>) {
+        self.mem_ptr = mem;
+        self.targets.update_mem(mem);
+        self.sources.update_mem(mem);
+        self.unused.update_mem(mem);
     }
 
     unsafe fn get_link_unchecked(&self, index: T) -> Link<T> {
         debug_assert!(self.exists(index));
 
-        let raw = self.get_raw_link_unchecked(index);
+        let raw = self.get_link_part_unchecked(index);
         Link::new(index, raw.source, raw.target)
     }
 
@@ -191,9 +193,7 @@ impl<
         R: Try<Output = ()>,
     {
         let restriction = restriction.to_query();
-
         let constants = self.constants();
-        let _break = constants.r#break;
 
         if restriction.len() == 0 {
             for index in T::one()..self.get_header().allocated + one() {
@@ -204,7 +204,6 @@ impl<
             return R::from_output(());
         }
 
-        let _continue = constants.r#continue;
         let any = constants.any;
         let index = restriction[constants.index_part.as_()];
 
@@ -291,15 +290,34 @@ impl<
         }
         todo!()
     }
+
+    pub fn iter<'a>(&'a self) -> impl Iterator<Item = Link<T>> + 'a {
+        generator! {
+            for index in one()..=self.get_header().allocated {
+                if let Some(link) = self.get_link(index) {
+                    yield link;
+                }
+            }
+        }
+    }
+
+    pub fn each_iter(&self, query: impl ToQuery<T>) -> impl Iterator<Item = Link<T>> {
+        let count = self.count_by(query.to_query());
+        // todo: wait const generics feature
+        //  64 / (8 * 3) = 2
+        let mut vec = SmallVec::<[_; 2]>::with_capacity(count.as_());
+
+        self.try_each_by(query, |link| {
+            vec.push(link);
+            Continue
+        });
+
+        vec.into_iter()
+    }
 }
 
-impl<
-        T: LinkType,
-        M: RawMem,
-        TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
-    > Doublets<T> for Store<T, M, TS, TT, TU>
+impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: UnitList<T>>
+    Doublets<T> for Store<T, M, TS, TT, TU>
 {
     fn constants(&self) -> LinksConstants<T> {
         self.constants.clone()
@@ -386,17 +404,9 @@ impl<
                         zero()
                     }
                 } else if source == any {
-                    if link.target == target {
-                        one()
-                    } else {
-                        zero()
-                    }
+                    if link.target == target { one() } else { zero() }
                 } else if target == any {
-                    if link.source == source {
-                        one()
-                    } else {
-                        zero()
-                    }
+                    if link.source == source { one() } else { zero() }
                 } else {
                     zero()
                 }
@@ -424,16 +434,19 @@ impl<
             }
 
             if header.allocated >= header.reserved - one() {
-                self.mem.alloc(self.mem.allocated() + self.reserve_step)?;
-                self.update_pointers();
+                let mem = self
+                    .mem
+                    .alloc(self.mem.allocated() + self.reserve_step)?
+                    .leak();
+                self.update_mem(mem);
                 let reserved = self.mem.allocated();
                 let header = self.mut_header();
-                header.reserved = T::from_usize(reserved / Self::LINK_SIZE).unwrap()
+                header.reserved = T::from_usize(reserved).unwrap()
             }
             let header = self.mut_header();
             header.allocated = header.allocated + one();
             free = header.allocated;
-            self.mem.occupy(self.mem.occupied() + Self::LINK_SIZE)?;
+            self.mem.occupy(self.mem.occupied() + 1)?;
         } else {
             self.unused.detach(free)
         }
@@ -473,19 +486,19 @@ impl<
         let constants = self.constants();
         let null = constants.null;
 
-        let link = *self.mut_raw_link(index);
+        let link = self.get_link_part(index).clone();
         if link.source != null {
             let temp = &mut self.mut_header().root_as_source as *mut T;
             unsafe { self.sources.detach(&mut *temp, index) };
         }
 
-        let link = *self.mut_raw_link(index);
+        let link = self.get_link_part(index).clone();
         if link.target != null {
             let temp = &mut self.mut_header().root_as_target as *mut T;
             unsafe { self.targets.detach(&mut *temp, index) };
         }
 
-        let link = self.mut_raw_link(index);
+        let link = self.mut_link_part(index);
         if link.source != source {
             link.source = source;
         }
@@ -493,13 +506,13 @@ impl<
             link.target = target;
         }
 
-        let link = *self.mut_raw_link(index);
+        let link = self.mut_link_part(index).clone();
         if link.source != null {
             let temp = &mut self.mut_header().root_as_source as *mut T;
             unsafe { self.sources.attach(&mut *temp, index) };
         }
 
-        let link = *self.mut_raw_link(index);
+        let link = self.mut_link_part(index).clone();
         if link.target != null {
             let temp = &mut self.mut_header().root_as_target as *mut T;
             unsafe { self.targets.attach(&mut *temp, index) };
@@ -540,7 +553,7 @@ impl<
             Ordering::Less => self.unused.attach_as_first(link),
             Ordering::Greater => unreachable!(),
             Ordering::Equal => {
-                self.mem.occupy(self.mem.occupied() - Self::LINK_SIZE)?;
+                self.mem.occupy(self.mem.occupied() - 1)?;
 
                 let allocated = self.get_header().allocated;
                 let header = self.mut_header();
@@ -554,7 +567,7 @@ impl<
                     self.unused.detach(allocated);
                     self.mut_header().allocated = allocated - one();
                     let used_mem = self.mem.occupied();
-                    self.mem.occupy(used_mem - Self::LINK_SIZE)?;
+                    self.mem.occupy(used_mem - 1)?;
                 }
             }
         }
@@ -566,6 +579,7 @@ impl<
         if self.constants.is_external(index) {
             Some(Link::point(index))
         } else if self.exists(index) {
+            // SAFETY: links is exists
             Some(unsafe { self.get_link_unchecked(index) })
         } else {
             None
@@ -573,13 +587,8 @@ impl<
     }
 }
 
-impl<
-        T: LinkType,
-        M: RawMem,
-        TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
-    > Links<T> for Store<T, M, TS, TT, TU>
+impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: UnitList<T>>
+    Links<T> for Store<T, M, TS, TT, TU>
 {
     fn constants_links(&self) -> LinksConstants<T> {
         self.constants()
@@ -624,22 +633,12 @@ impl<
     }
 }
 
-unsafe impl<
-        T: LinkType,
-        M: RawMem,
-        TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
-    > Sync for Store<T, M, TS, TT, TU>
+unsafe impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: UnitList<T>>
+    Sync for Store<T, M, TS, TT, TU>
 {
 }
 
-unsafe impl<
-        T: LinkType,
-        M: RawMem,
-        TS: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TT: ILinksTreeMethods<T> + NewTree<T> + UpdatePointers,
-        TU: ILinksListMethods<T> + NewList<T> + UpdatePointers,
-    > Send for Store<T, M, TS, TT, TU>
+unsafe impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: UnitList<T>>
+    Send for Store<T, M, TS, TT, TU>
 {
 }
