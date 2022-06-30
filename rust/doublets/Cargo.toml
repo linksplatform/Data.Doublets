@@ -1,6 +1,6 @@
 [package]
 name = "doublets"
-version = "0.1.0-beta.7"
+version = "0.1.0-beta.8"
 edition = "2021"
 authors = [
     "uselessgoddess",
@@ -24,7 +24,8 @@ Modular framework to automation by automation
 rand = "0.8"
 thiserror = "1.0.30"
 num-traits = "^0.2.14"
-leak_slice = "0.1"
+leak_slice = "0.2"
+yield-iter = "0.1.0"
 smallvec = { version = "1.8", features = ["const_generics"] }
 
 data = { package = "platform-data", version = "0.1.0-alpha.1" }

@@ -24,6 +24,7 @@ use std::{
     ops::{ControlFlow, Try},
     ptr::NonNull,
 };
+use yield_iter::generator;
 
 pub struct Store<
     T: LinkType,
@@ -78,11 +79,13 @@ impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: 
         };
 
         // SAFETY: Without this, the code will become unsafe
-        new.init()?;
+        unsafe {
+            new.init()?;
+        }
         Ok(new)
     }
 
-    fn init(&mut self) -> Result<(), LinksError<T>> {
+    unsafe fn init(&mut self) -> Result<(), LinksError<T>> {
         let mem = NonNull::from(self.mem.alloc(DEFAULT_PAGE_SIZE)?);
         self.update_mem(mem);
 
@@ -164,7 +167,7 @@ impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: 
     fn exists(&self, link: T) -> bool {
         let constants = self.constants();
         let header = self.get_header();
-        
+
         link >= *constants.internal_range.start()
             && link <= header.allocated
             && !self.is_unused(link)
@@ -191,7 +194,7 @@ impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: 
     {
         let restriction = restriction.to_query();
         let constants = self.constants();
-        
+
         if restriction.len() == 0 {
             for index in T::one()..self.get_header().allocated + one() {
                 if let Some(link) = self.get_link(index) {
@@ -200,7 +203,7 @@ impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: 
             }
             return R::from_output(());
         }
-        
+
         let any = constants.any;
         let index = restriction[constants.index_part.as_()];
 
@@ -289,7 +292,7 @@ impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: 
     }
 
     pub fn iter<'a>(&'a self) -> impl Iterator<Item = Link<T>> + 'a {
-        crate::generator! {
+        generator! {
             for index in one()..=self.get_header().allocated {
                 if let Some(link) = self.get_link(index) {
                     yield link;

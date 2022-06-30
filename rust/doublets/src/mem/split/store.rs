@@ -10,7 +10,6 @@ use std::{
 use num_traits::{one, zero};
 
 use crate::{
-    generator,
     mem::{
         split::{
             DataPart, ExternalSourcesRecursionlessTree, ExternalTargetsRecursionlessTree,
@@ -26,6 +25,7 @@ use mem::{RawMem, DEFAULT_PAGE_SIZE};
 use methods::RelativeCircularLinkedList;
 use num::LinkType;
 use smallvec::SmallVec;
+use yield_iter::generator;
 
 pub struct Store<
     T: LinkType,
@@ -109,8 +109,9 @@ impl<
             sources_list,
             unused,
         };
-
-        new.init()?;
+        
+        // SAFETY: Without this, the code will become unsafe
+        unsafe { new.init()?; }
         Ok(new)
     }
 
@@ -135,7 +136,6 @@ impl<
     }
 
     fn get_header(&self) -> &LinksHeader<T> {
-        // SAFETY: `LinksHeader` and `IndexPart` layout are valid types
         // SAFETY: `LinksHeader` and `IndexPart` layout are equivalent
         unsafe {
             Self::get_from_mem(self.index_ptr, 0)
@@ -145,7 +145,6 @@ impl<
     }
 
     fn mut_header(&mut self) -> &mut LinksHeader<T> {
-        // SAFETY: `LinksHeader` and `IndexPart` layout are valid types
         // SAFETY: `LinksHeader` and `IndexPart` layout are equivalent
         unsafe {
             Self::mut_from_mem(self.index_ptr, 0)
@@ -198,7 +197,7 @@ impl<
         to_align
     }
 
-    fn init(&mut self) -> Result<(), LinksError<T>> {
+    unsafe fn init(&mut self) -> Result<(), LinksError<T>> {
         let data = NonNull::from(self.data_mem.alloc(DEFAULT_PAGE_SIZE)?);
         let index = NonNull::from(self.index_mem.alloc(DEFAULT_PAGE_SIZE)?);
         self.update_mem(data, index);
