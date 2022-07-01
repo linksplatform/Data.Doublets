@@ -452,9 +452,3 @@ pub trait Doublets<T: LinkType> {
         }
     }
 }
-
-// TODO: Remove it
-#[deprecated(note = "use `ILinks`")]
-pub trait ILinksExtensions<T: LinkType>: Doublets<T> {}
-
-impl<T: LinkType, All: Doublets<T>> ILinksExtensions<T> for All {}

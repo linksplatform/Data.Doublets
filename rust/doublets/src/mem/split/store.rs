@@ -786,64 +786,6 @@ impl<
     }
 }
 
-impl<
-    T: LinkType,
-    MD: RawMem<DataPart<T>>,
-    MI: RawMem<IndexPart<T>>,
-    IS: SplitTree<T>,
-    ES: SplitTree<T>,
-    IT: SplitTree<T>,
-    ET: SplitTree<T>,
-    UL: SplitList<T>,
-> Links<T> for Store<T, MD, MI, IS, ES, IT, ET, UL>
-{
-    fn constants_links(&self) -> LinksConstants<T> {
-        self.constants()
-    }
-
-    fn count_links(&self, query: &[T]) -> T {
-        self.count_by(query)
-    }
-
-    fn create_links(
-        &mut self,
-        query: &[T],
-        handler: WriteHandler<T>,
-    ) -> Result<Flow, Box<dyn Error>> {
-        self.create_by_with(query, |before, after| {
-            handler(before.as_slice(), after.as_slice())
-        })
-        .map_err(|err| err.into())
-    }
-
-    fn each_links(&self, query: &[T], handler: ReadHandler<T>) -> Result<Flow, Box<dyn Error>> {
-        Ok(self.each_by(query, |link| handler(link.as_slice())))
-    }
-
-    fn update_links(
-        &mut self,
-        query: &[T],
-        change: &[T],
-        handler: WriteHandler<T>,
-    ) -> Result<Flow, Box<dyn Error>> {
-        self.update_by_with(query, change, |before, after| {
-            handler(before.as_slice(), after.as_slice())
-        })
-        .map_err(|err| err.into())
-    }
-
-    fn delete_links(
-        &mut self,
-        query: &[T],
-        handler: WriteHandler<T>,
-    ) -> Result<Flow, Box<dyn Error>> {
-        self.delete_by_with(query, |before, after| {
-            handler(before.as_slice(), after.as_slice())
-        })
-        .map_err(|err| err.into())
-    }
-}
-
 unsafe impl<
     T: LinkType,
     MD: RawMem<DataPart<T>>,
