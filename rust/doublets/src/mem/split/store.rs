@@ -69,7 +69,7 @@ impl<
 > Store<T, MD, MI, IS, ES, IT, ET, UL>
 {
     const USE_LIST: bool = false;
-    const SIZE_STEP: usize = 2_usize.pow(16);
+    const SIZE_STEP: usize = 2_usize.pow(20);
 
     // TODO: create Options
     pub fn with_constants(

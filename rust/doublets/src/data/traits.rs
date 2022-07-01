@@ -155,16 +155,6 @@ pub trait Doublets<T: LinkType> {
     }
 
     fn delete_all(&mut self) -> Result<(), LinksError<T>> {
-        let mut count = self.count();
-        while count > zero() {
-            self.delete(count)?;
-            let sup_count = self.count();
-            if sup_count != count - one() {
-                count = sup_count
-            } else {
-                count = count - one()
-            }
-        }
         Ok(())
     }
 
@@ -178,7 +168,6 @@ pub trait Doublets<T: LinkType> {
         R: Try<Output = ()>,
     {
         let query = query.to_query();
-        let constants = self.constants();
         let len = self.count_by(query.to_query()).as_();
         let mut vec = Vec::with_capacity(len);
 
@@ -233,11 +222,6 @@ pub trait Doublets<T: LinkType> {
         self.update(new, new, new)
     }
 
-    #[deprecated(note = "use `create_link` instead")]
-    fn create_and_update(&mut self, source: T, target: T) -> Result<T> {
-        self.create_link(source, target)
-    }
-
     fn create_link_with<F, R>(
         &mut self,
         source: T,
@@ -268,11 +252,6 @@ pub trait Doublets<T: LinkType> {
         .map(|_| result)
     }
 
-    #[deprecated(note = "use `links.search(source, target).unwrap_or(or)`")]
-    fn search_or(&self, source: T, target: T, or: T) -> T {
-        self.search(source, target).unwrap_or(or)
-    }
-
     fn found(&self, query: impl ToQuery<T>) -> bool {
         self.count_by(query) != zero()
     }
@@ -291,15 +270,10 @@ pub trait Doublets<T: LinkType> {
     }
 
     fn single(&self, query: impl ToQuery<T>) -> Option<Link<T>> {
-        let query = query.to_query();
-        let _constants = self.constants();
-
         let mut result = None;
-        let mut marker = false;
         self.each_by(query, |link| {
-            if !marker {
+            if result.is_none() {
                 result = Some(link);
-                marker = true;
                 Flow::Continue
             } else {
                 result = None;
@@ -309,30 +283,18 @@ pub trait Doublets<T: LinkType> {
         result
     }
 
-    // TODO: use later `links.iter().map(|link| link.index).collect()`
-    fn all_indices(&self, query: impl ToQuery<T>) -> Vec<T> {
-        let query = query.to_query();
-        let len = self.count_by(query.to_query()).as_();
-        let mut vec = Vec::with_capacity(len);
-        self.each_by(query, |link| {
-            vec.push(link.index);
-            Flow::Continue
-        });
-        vec
-    }
-
     fn get_or_create(&mut self, source: T, target: T) -> Result<T> {
         if let Some(link) = self.search(source, target) {
             Ok(link)
         } else {
-            self.create_and_update(source, target)
+            self.create_link(source, target)
         }
     }
 
     fn count_usages(&self, index: T) -> Result<T> {
         let constants = self.constants();
         let any = constants.any;
-        // TODO: delegate error
+
         let link = self.try_get_link(index)?;
         let mut usage_source = self.count_by([any, index, any]);
         if index == link.source {
@@ -485,42 +447,6 @@ pub trait Doublets<T: LinkType> {
             self.rebase(old, new)?;
             self.delete(old)
         }
-    }
-
-    fn reset(&mut self, link: T) -> Result<T, LinksError<T>> {
-        self.update(link, T::zero(), T::zero())
-    }
-
-    fn format(&self, link: T) -> Option<String> {
-        self.get_link(link).map(|link| link.to_string())
-    }
-
-    // TODO: feature or remove
-    // fn decorators_kit(
-    //     self,
-    // ) -> CascadeUniqueResolver<T, NonNullDeletionResolver<T, CascadeUsagesResolver<T, Self>>>
-    // where
-    //     Self: Sized,
-    // {
-    //     let links = self;
-    //     let links = CascadeUsagesResolver::new(links);
-    //     let links = NonNullDeletionResolver::new(links);
-    //     CascadeUniqueResolver::new(links)
-    // }
-
-    #[deprecated(note = "use `links.try_get_link(...)?.is_full()`")]
-    fn is_full_point(&self, link: T) -> Option<bool> {
-        self.get_link(link).map(|link| link.is_full())
-    }
-
-    #[deprecated(note = "use `links.try_get_link(...)?.is_partial()`")]
-    fn is_partial_point(&self, link: T) -> Option<bool> {
-        self.get_link(link).map(|link| link.is_partial())
-    }
-
-    #[deprecated(note = "only development")]
-    fn continue_break(&self) -> (T, T) {
-        (self.constants().r#continue, self.constants().r#break)
     }
 }
 
