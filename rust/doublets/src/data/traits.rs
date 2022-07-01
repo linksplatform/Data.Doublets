@@ -155,6 +155,12 @@ pub trait Doublets<T: LinkType> {
     }
 
     fn delete_all(&mut self) -> Result<(), LinksError<T>> {
+        // delete all links while self.count() != zero()
+        let mut count = self.count();
+        while count != zero() {
+            self.delete(count)?;
+            count = self.count();
+        }
         Ok(())
     }
 

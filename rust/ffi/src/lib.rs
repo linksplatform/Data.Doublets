@@ -2,6 +2,7 @@
 #![feature(box_syntax)]
 #![feature(try_trait_v2)]
 
+use data::Flow;
 use std::{
     error::Error,
     ffi::CStr,
@@ -10,16 +11,18 @@ use std::{
     ptr::{drop_in_place, null_mut},
 };
 
-use data::{
-    query,
-    Flow::{Break, Continue},
-    LinksConstants, Query,
+use doublets::{
+    data::{
+        query,
+        Flow::{Break, Continue},
+        LinksConstants, Query,
+    },
+    num::LinkType,
 };
 use libc::{c_char, c_void};
 use log::{error, warn};
-use num::LinkType;
 
-use doublets::Doublets;
+use doublets::{mem, parts, unit, Doublets};
 use ffi_attributes as ffi;
 
 fn result_into_log<R, E: std::fmt::Display>(result: Result<R, E>, default: R) -> R {
@@ -55,9 +58,10 @@ fn unnul_or_error<'a, Ptr, R>(ptr: *mut Ptr) -> &'a mut R {
 }
 
 // TODO: remove ::mem:: in doublets crate
-type UnitedLinks<T> = doublets::mem::unit::Store<T, mem::FileMappedMem>;
+type UnitedLinks<T> = unit::Store<T, mem::FileMappedMem<parts::LinkPart<T>>>;
 
-type WrappedLinks<T> = env_decorators::env_type!("JS_LETS_GO", "<T, *>", UnitedLinks<T>);
+// type WrappedLinks<T> = env_decorators::env_type!("JS_LETS_GO", "<T, *>", UnitedLinks<T>);
+type WrappedLinks<T> = UnitedLinks<T>;
 
 type EachCallback<T> = extern "C" fn(Link<T>) -> T;
 
@@ -289,7 +293,7 @@ fn smart_update_united<T: LinkType>(this: *mut c_void, index: T, source: T, targ
     let result = links.update(index, source, target);
     result_into_log(result, links.constants().error)
 }
-
+/*
 #[ffi::specialize_for(
     types = "u8",
     types = "u16",
@@ -297,7 +301,7 @@ fn smart_update_united<T: LinkType>(this: *mut c_void, index: T, source: T, targ
     types = "u64",
     convention = "csharp",
     name = "*Links_Each"
-)]
+)]*/
 fn each_united<T: LinkType>(
     this: *mut c_void,
     query: *const T,
@@ -307,7 +311,19 @@ fn each_united<T: LinkType>(
     let links: &mut WrappedLinks<T> = unnul_or_error(this);
     let query = query_from_raw(query, len);
     let handler = move |link: DLink<_>| callback(link.into());
-    links.each_by(query, handler)
+    let r#continue = links.constants().r#continue;
+    let r#break = links.constants().r#break;
+    let result = links.each_by(query, move |link| {
+        if handler(link) == r#continue {
+            Continue
+        } else {
+            Break
+        }
+    });
+    match result {
+        Continue => r#continue,
+        Break => r#break,
+    }
 }
 
 #[ffi::specialize_for(
@@ -437,11 +453,11 @@ pub extern "C" fn setup_shared_logger(logger: SharedLogger) {
         .with_max_level(tracing::Level::TRACE)
         .finish();
     if let Err(err) = tracing::subscriber::set_global_default(subscriber) {
-        log::warn!("subscriber error: {}", err)
+        warn!("subscriber error: {}", err)
     }
 
     if let Err(err) = log::set_boxed_logger(Box::new(logger)) {
-        log::warn!("{}", err)
+        warn!("{}", err)
     }
 }
 
@@ -456,14 +472,10 @@ mod tests {
 
     use super::*;
 
-    fn init_log() {
-        let logger = build_shared_logger();
-        setup_shared_logger(logger);
-    }
-
     #[test]
     fn error_log() {
-        init_log();
+        let logger = build_shared_logger();
+        setup_shared_logger(logger);
         trace!("trace");
         debug!("debug");
         info!("info");
