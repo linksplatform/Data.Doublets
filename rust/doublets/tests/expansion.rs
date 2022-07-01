@@ -5,11 +5,11 @@ use mem::GlobalMem;
 fn unit_million() -> Result<(), LinksError<usize>> {
     let mut store = unit::Store::<usize, _>::new(GlobalMem::new())?;
 
-    for _ in 0..10_000_000 {
+    for _ in 0..1_000_000 {
         store.create().unwrap();
     }
 
-    assert_eq!(store.count(), 10_000_000);
+    assert_eq!(store.count(), 1_000_000);
 
     Ok(())
 }
@@ -18,11 +18,11 @@ fn unit_million() -> Result<(), LinksError<usize>> {
 fn split_million() -> Result<(), LinksError<usize>> {
     let mut store = split::Store::<usize, _, _>::new(GlobalMem::new(), GlobalMem::new())?;
 
-    for _ in 0..10_000_000 {
+    for _ in 0..1_000_000 {
         store.create().unwrap();
     }
 
-    assert_eq!(store.count(), 10_000_000);
+    assert_eq!(store.count(), 1_000_000);
 
     Ok(())
 }

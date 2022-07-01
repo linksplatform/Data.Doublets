@@ -8,9 +8,6 @@ use data::{Flow, LinksConstants, ToQuery};
 use num::LinkType;
 use num_traits::{one, zero};
 
-use std::error::Error;
-use ControlFlow::{Break, Continue};
-
 pub type Result<T, E = LinksError<T>> = std::result::Result<T, E>;
 
 fn ignore<T: LinkType>(_: Link<T>, _: Link<T>) -> Result<(), ()> {
