@@ -603,12 +603,14 @@ impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: 
         query: &[T],
         handler: WriteHandler<T>,
     ) -> Result<Flow, Box<dyn Error>> {
-        self.create_by_with(query, |before, after| handler(&before[..], &after[..]))
-            .map_err(|err| err.into())
+        self.create_by_with(query, |before, after| {
+            handler(before.as_slice(), after.as_slice())
+        })
+        .map_err(|err| err.into())
     }
 
     fn each_links(&self, query: &[T], handler: ReadHandler<T>) -> Result<Flow, Box<dyn Error>> {
-        Ok(self.each_by(query, |link| handler(&link[..])))
+        Ok(self.each_by(query, |link| handler(link.as_slice())))
     }
 
     fn update_links(
@@ -618,7 +620,7 @@ impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: 
         handler: WriteHandler<T>,
     ) -> Result<Flow, Box<dyn Error>> {
         self.update_by_with(query, change, |before, after| {
-            handler(&before[..], &after[..])
+            handler(before.as_slice(), after.as_slice())
         })
         .map_err(|err| err.into())
     }
@@ -628,8 +630,10 @@ impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: 
         query: &[T],
         handler: WriteHandler<T>,
     ) -> Result<Flow, Box<dyn Error>> {
-        self.delete_by_with(query, |before, after| handler(&before[..], &after[..]))
-            .map_err(|err| err.into())
+        self.delete_by_with(query, |before, after| {
+            handler(before.as_slice(), after.as_slice())
+        })
+        .map_err(|err| err.into())
     }
 }
 
