@@ -1,11 +1,9 @@
-use std::borrow::BorrowMut;
-use std::default::default;
-use std::marker::PhantomData;
-use std::ops::Try;
+use std::{borrow::BorrowMut, default::default, marker::PhantomData, ops::Try};
 
-use doublets::data::LinksConstants;
-use doublets::data::ToQuery;
-use doublets::num::LinkType;
+use doublets::{
+    data::{LinksConstants, ToQuery},
+    num::LinkType,
+};
 
 use doublets::{Doublet, Doublets, Error, Link};
 
@@ -41,18 +39,18 @@ impl<T: LinkType, L: Doublets<T>> Doublets<T> for UniqueValidator<T, L> {
         self.links.create_by_with(query, handler)
     }
 
-    fn try_each_by<F, R>(&self, restrictions: impl ToQuery<T>, handler: F) -> R
+    fn each_by<F, R>(&self, restrictions: impl ToQuery<T>, handler: F) -> R
     where
         F: FnMut(Link<T>) -> R,
         R: Try<Output = ()>,
     {
-        self.links.try_each_by(restrictions, handler)
+        self.links.each_by(restrictions, handler)
     }
 
     fn update_by_with<F, R>(
         &mut self,
         query: impl ToQuery<T>,
-        replacement: impl ToQuery<T>,
+        change: impl ToQuery<T>,
         handler: F,
     ) -> Result<R, Error<T>>
     where
@@ -61,14 +59,11 @@ impl<T: LinkType, L: Doublets<T>> Doublets<T> for UniqueValidator<T, L> {
     {
         let links = self.links.borrow_mut();
         let any = links.constants().any;
-        let replacement = replacement.to_query();
-        if links.found([any, replacement[1], replacement[2]]) {
-            Err(Error::AlreadyExists(Doublet::new(
-                replacement[1],
-                replacement[2],
-            )))
+        let change = change.to_query();
+        if links.found([any, change[1], change[2]]) {
+            Err(Error::AlreadyExists(Doublet::new(change[1], change[2])))
         } else {
-            links.update_by_with(query, replacement, handler)
+            links.update_by_with(query, change, handler)
         }
     }
 

@@ -1,53 +1,52 @@
 use crate::Link;
 use data::Flow;
 use num::LinkType;
-use std::marker::PhantomData;
-use std::ops::Try;
+use std::{marker::PhantomData, ops::Try};
 
 pub trait Handler<T: LinkType, R: Try<Output = ()>> = FnMut(Link<T>, Link<T>) -> R;
 
-pub struct StoppedHandler<T, F, R>
+pub struct FuseHandler<T, H, R>
 where
     T: LinkType,
-    F: FnMut(Link<T>, Link<T>) -> R,
+    H: Handler<T, R>,
     R: Try<Output = ()>,
 {
-    handler: F,
-    handle: bool,
+    handler: H,
+    done: bool,
     _marker1: PhantomData<R>,
     _marker2: PhantomData<T>,
 }
 
-impl<T, F, R> StoppedHandler<T, F, R>
+impl<T, F, R> FuseHandler<T, F, R>
 where
     T: LinkType,
     F: FnMut(Link<T>, Link<T>) -> R,
     R: Try<Output = ()>,
 {
     pub fn new(handler: F) -> Self {
-        StoppedHandler {
+        FuseHandler {
             handler,
-            handle: true,
+            done: false,
             _marker1: PhantomData,
             _marker2: PhantomData,
         }
     }
 }
 
-impl<T, F, R> From<F> for StoppedHandler<T, F, R>
+impl<T, H, R> From<H> for FuseHandler<T, H, R>
 where
     T: LinkType,
-    F: FnMut(Link<T>, Link<T>) -> R,
+    H: Handler<T, R>,
     R: Try<Output = ()>,
 {
-    fn from(handler: F) -> Self {
+    fn from(handler: H) -> Self {
         Self::new(handler)
     }
 }
 
-impl<T, F, R> FnOnce<(Link<T>, Link<T>)> for StoppedHandler<T, F, R>
+impl<T, H, R> FnOnce<(Link<T>, Link<T>)> for FuseHandler<T, H, R>
 where
-    F: FnMut(Link<T>, Link<T>) -> R,
+    H: FnMut(Link<T>, Link<T>) -> R,
     R: Try<Output = ()>,
     T: LinkType,
 {
@@ -58,17 +57,17 @@ where
     }
 }
 
-impl<T, F, R> FnMut<(Link<T>, Link<T>)> for StoppedHandler<T, F, R>
+impl<T, H, R> FnMut<(Link<T>, Link<T>)> for FuseHandler<T, H, R>
 where
     T: LinkType,
-    F: FnMut(Link<T>, Link<T>) -> R,
+    H: Handler<T, R>,
     R: Try<Output = ()>,
 {
     extern "rust-call" fn call_mut(&mut self, args: (Link<T>, Link<T>)) -> Self::Output {
-        if self.handle {
-            let result: R = self.handler.call_mut(args);
+        if !self.done {
+            let result = self.handler.call_mut(args);
             if result.branch().is_break() {
-                self.handle = false;
+                self.done = false;
                 Flow::Break
             } else {
                 Flow::Continue

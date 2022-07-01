@@ -32,6 +32,6 @@ pub mod test_extensions;
 pub use self::mem::{parts, split, unit};
 
 pub(crate) use self::data::LinksError;
-pub use self::data::{Doublet, Doublets, Handler, Link, StoppedHandler};
+pub use self::data::{Doublet, Doublets, FuseHandler, Handler, Link};
 
 pub type Error<T> = LinksError<T>;

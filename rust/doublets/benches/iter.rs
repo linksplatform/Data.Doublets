@@ -3,24 +3,6 @@ use data::Flow::Continue;
 use doublets::{split::Store, Doublets};
 use mem::GlobalMem;
 
-fn each_iter_searching(c: &mut Criterion) {
-    let mut store = Store::<usize, _, _>::new(GlobalMem::new(), GlobalMem::new()).unwrap();
-    let any = store.constants().any;
-
-    store.create_link(1, 1).unwrap();
-
-    c.bench_function("each_iter", |b| {
-        b.iter(|| {
-            store.each_iter([any, 1, 1]);
-        });
-    });
-    c.bench_function("each", |b| {
-        b.iter(|| {
-            store.search(1, 1);
-        });
-    });
-}
-
 fn iter(c: &mut Criterion) {
     let mut store = Store::<usize, _, _>::new(GlobalMem::new(), GlobalMem::new()).unwrap();
     let _any = store.constants().any;
@@ -42,7 +24,7 @@ fn iter(c: &mut Criterion) {
     });
     c.bench_function("each", |b| {
         b.iter(|| {
-            store.try_each(|link| {
+            store.each(|link| {
                 black_box(link);
                 Continue
             });
@@ -51,7 +33,7 @@ fn iter(c: &mut Criterion) {
     c.bench_function("each_with_vec", |b| {
         b.iter(|| {
             let mut vec = Vec::with_capacity(store.count());
-            store.try_each(|link| {
+            store.each(|link| {
                 vec.push(black_box(link));
                 Continue
             });
@@ -60,5 +42,5 @@ fn iter(c: &mut Criterion) {
     });
 }
 
-criterion_group!(benches, each_iter_searching, iter);
+criterion_group!(benches, iter);
 criterion_main!(benches);

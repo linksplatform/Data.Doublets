@@ -41,25 +41,25 @@ impl<T: LinkType, L: Doublets<T>> Doublets<T> for NonNullDeletionResolver<T, L> 
         self.links.create_by_with(query, handler)
     }
 
-    fn try_each_by<F, R>(&self, restrictions: impl ToQuery<T>, handler: F) -> R
+    fn each_by<F, R>(&self, restrictions: impl ToQuery<T>, handler: F) -> R
     where
         F: FnMut(Link<T>) -> R,
         R: Try<Output = ()>,
     {
-        self.links.try_each_by(restrictions, handler)
+        self.links.each_by(restrictions, handler)
     }
 
     fn update_by_with<F, R>(
         &mut self,
         query: impl ToQuery<T>,
-        replacement: impl ToQuery<T>,
+        change: impl ToQuery<T>,
         handler: F,
     ) -> Result<R, Error<T>>
     where
         F: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>,
     {
-        self.links.update_by_with(query, replacement, handler)
+        self.links.update_by_with(query, change, handler)
     }
 
     fn delete_by_with<F, R>(
