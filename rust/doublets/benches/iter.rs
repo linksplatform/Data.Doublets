@@ -42,7 +42,7 @@ fn iter(c: &mut Criterion) {
     });
     c.bench_function("each", |b| {
         b.iter(|| {
-            store.try_each(|link| {
+            store.each(|link| {
                 black_box(link);
                 Continue
             });
@@ -51,7 +51,7 @@ fn iter(c: &mut Criterion) {
     c.bench_function("each_with_vec", |b| {
         b.iter(|| {
             let mut vec = Vec::with_capacity(store.count());
-            store.try_each(|link| {
+            store.each(|link| {
                 vec.push(black_box(link));
                 Continue
             });

@@ -1,10 +1,9 @@
 use num_traits::{one, zero};
 use rand::Rng;
 
-use crate::Doublets;
-use crate::Link;
+use crate::{Doublets, Link};
 
-use data::Hybrid;
+use data::{Flow, Hybrid};
 use num::LinkType;
 
 pub trait DoubletsTestExt<T: LinkType>: Doublets<T> {
@@ -83,19 +82,18 @@ pub trait DoubletsTestExt<T: LinkType>: Doublets<T> {
         assert_eq!(link.target, address2);
 
         let any = constants.any;
-        let r#break = constants.r#break;
 
         let mut result = None;
         links.each_by([any, h106.as_value(), h108.as_value()], |link| {
             result = Some(link.index);
-            r#break
+            Flow::Break
         });
         assert_eq!(result, Some(address1));
 
         let mut result = None;
         links.each_by([any, h106.absolute(), h107.absolute()], |link| {
             result = Some(link.index);
-            r#break
+            Flow::Break
         }); // TODO: !!!
         assert_eq!(result, None);
 
@@ -113,7 +111,7 @@ pub trait DoubletsTestExt<T: LinkType>: Doublets<T> {
         let mut result = None;
         links.each(|link| {
             result = Some(link.index);
-            r#continue
+            Flow::Continue
         });
         assert_eq!(result, Some(address2));
     }

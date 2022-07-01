@@ -109,9 +109,11 @@ impl<
             sources_list,
             unused,
         };
-        
+
         // SAFETY: Without this, the code will become unsafe
-        unsafe { new.init()?; }
+        unsafe {
+            new.init()?;
+        }
         Ok(new)
     }
 
@@ -421,7 +423,7 @@ impl<
         //  64 / (8 * 3) = 2
         let mut vec = SmallVec::<[_; 2]>::with_capacity(count.as_());
 
-        self.try_each_by(query, |link| {
+        self.each_by(query, |link| {
             vec.push(link);
             Continue
         });
@@ -623,7 +625,7 @@ impl<
         ))
     }
 
-    fn try_each_by<F, R>(&self, restrictions: impl ToQuery<T>, mut handler: F) -> R
+    fn each_by<F, R>(&self, restrictions: impl ToQuery<T>, mut handler: F) -> R
     where
         F: FnMut(Link<T>) -> R,
         R: Try<Output = ()>,
@@ -634,7 +636,7 @@ impl<
     fn update_by_with<F, R>(
         &mut self,
         query: impl ToQuery<T>,
-        replacement: impl ToQuery<T>,
+        change: impl ToQuery<T>,
         mut handler: F,
     ) -> Result<R, LinksError<T>>
     where
@@ -642,11 +644,11 @@ impl<
         R: Try<Output = ()>,
     {
         let query = query.to_query();
-        let replacement = replacement.to_query();
+        let change = change.to_query();
 
         let index = query[0];
-        let new_source = replacement[1];
-        let new_target = replacement[2];
+        let new_source = change[1];
+        let new_target = change[2];
 
         let constants = self.constants();
         let null = constants.null;
@@ -813,16 +815,16 @@ impl<
     }
 
     fn each_links(&self, query: &[T], handler: ReadHandler<T>) -> Result<Flow, Box<dyn Error>> {
-        Ok(self.try_each_by(query, |link| handler(&link[..])))
+        Ok(self.each_by(query, |link| handler(&link[..])))
     }
 
     fn update_links(
         &mut self,
         query: &[T],
-        replacement: &[T],
+        change: &[T],
         handler: WriteHandler<T>,
     ) -> Result<Flow, Box<dyn Error>> {
-        self.update_by_with(query, replacement, |before, after| {
+        self.update_by_with(query, change, |before, after| {
             handler(&before[..], &after[..])
         })
         .map_err(|err| err.into())

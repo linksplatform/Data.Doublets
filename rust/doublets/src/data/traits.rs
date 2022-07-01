@@ -1,12 +1,10 @@
-use std::default::default;
-use std::ops::{ControlFlow, Try};
+use std::{
+    default::default,
+    ops::{ControlFlow, Try},
+};
 
-use crate::Link;
-use crate::LinksError;
-use crate::StoppedHandler;
-use data::Flow;
-use data::LinksConstants;
-use data::ToQuery;
+use crate::{FuseHandler, Handler, Link, LinksError};
+use data::{Flow, LinksConstants, ToQuery};
 use num::LinkType;
 use num_traits::{one, zero};
 
@@ -58,59 +56,32 @@ pub trait Doublets<T: LinkType> {
         self.create_by([])
     }
 
-    fn try_each_by<F, R>(&self, restrictions: impl ToQuery<T>, handler: F) -> R
+    fn each_by<F, R>(&self, restrictions: impl ToQuery<T>, handler: F) -> R
     where
         F: FnMut(Link<T>) -> R,
         R: Try<Output = ()>;
 
-    fn try_each<F, R>(&self, handler: F) -> R
+    fn each<F, R>(&self, handler: F) -> R
     where
         F: FnMut(Link<T>) -> R,
         R: Try<Output = ()>,
     {
-        self.try_each_by([], handler)
-    }
-
-    fn each_by<H>(&self, restrictions: impl ToQuery<T>, mut handler: H) -> T
-    where
-        H: FnMut(Link<T>) -> T,
-    {
-        let result = self.try_each_by(restrictions, |link| {
-            let result = handler(link);
-            if result == self.constants().r#continue {
-                Continue(())
-            } else {
-                Break(result)
-            }
-        });
-
-        match result {
-            Continue(_) => self.constants().r#continue,
-            Break(result) => result,
-        }
-    }
-
-    fn each<H>(&self, handler: H) -> T
-    where
-        H: FnMut(Link<T>) -> T,
-    {
         self.each_by([], handler)
     }
 
-    fn update_by_with<F, R>(
+    fn update_by_with<H, R>(
         &mut self,
         query: impl ToQuery<T>,
-        replacement: impl ToQuery<T>,
-        handler: F,
+        change: impl ToQuery<T>,
+        handler: H,
     ) -> Result<R, LinksError<T>>
     where
-        F: FnMut(Link<T>, Link<T>) -> R,
+        H: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>;
 
-    fn update_by(&mut self, query: impl ToQuery<T>, replacement: impl ToQuery<T>) -> Result<T> {
-        let _continue = self.constants().r#continue;
+    fn update_by(&mut self, query: impl ToQuery<T>, change: impl ToQuery<T>) -> Result<T> {
         let mut result = default();
-        self.update_by_with(query, replacement, |_before, after| {
+        self.update_by_with(query, change, |_, after| {
             result = after.index;
             Flow::Continue
         })
@@ -145,7 +116,6 @@ pub trait Doublets<T: LinkType> {
         R: Try<Output = ()>;
 
     fn delete_by(&mut self, query: impl ToQuery<T>) -> Result<T> {
-        let _continue = self.constants().r#continue;
         let mut result = default();
         self.delete_by_with(query, |_before, after| {
             result = after.index;
@@ -178,7 +148,7 @@ pub trait Doublets<T: LinkType> {
             let mut slice = None;
             self.each_by([index], |link| {
                 slice = Some(link);
-                constants.r#break
+                Flow::Continue
             });
             slice
         }
@@ -214,10 +184,10 @@ pub trait Doublets<T: LinkType> {
 
         self.each_by(query, |link| {
             vec.push(link.index);
-            constants.r#continue
+            Flow::Continue
         });
 
-        let mut handler = StoppedHandler::new(handler);
+        let mut handler = FuseHandler::new(handler);
         for index in vec.into_iter().rev() {
             self.delete_with(index, &mut handler)?;
         }
@@ -233,21 +203,21 @@ pub trait Doublets<T: LinkType> {
         let mut to_delete = Vec::with_capacity(
             self.count_by([any, index, any]).as_() + self.count_by([any, any, index]).as_(),
         );
-        self.try_each_by([any, index, any], |link| {
+        self.each_by([any, index, any], |link| {
             if link.index != index {
                 to_delete.push(link.index);
             }
             Flow::Continue
         });
 
-        self.try_each_by([any, any, index], |link| {
+        self.each_by([any, any, index], |link| {
             if link.index != index {
                 to_delete.push(link.index);
             }
             Flow::Continue
         });
 
-        let mut handler = StoppedHandler::new(handler);
+        let mut handler = FuseHandler::new(handler);
         for index in to_delete.into_iter().rev() {
             self.delete_with(index, &mut handler)?;
         }
@@ -279,7 +249,7 @@ pub trait Doublets<T: LinkType> {
         R: Try<Output = ()>,
     {
         let mut new = default();
-        let mut handler = StoppedHandler::new(handler);
+        let mut handler = FuseHandler::new(handler);
         self.create_with(|before, after| {
             new = after.index;
             handler(before, after);
@@ -309,7 +279,7 @@ pub trait Doublets<T: LinkType> {
 
     fn find(&self, query: impl ToQuery<T>) -> Option<T> {
         let mut result = None;
-        self.try_each_by(query, |link| {
+        self.each_by(query, |link| {
             result = Some(link.index);
             Flow::Break
         });
@@ -326,7 +296,7 @@ pub trait Doublets<T: LinkType> {
 
         let mut result = None;
         let mut marker = false;
-        self.try_each_by(query, |link| {
+        self.each_by(query, |link| {
             if !marker {
                 result = Some(link);
                 marker = true;
@@ -346,7 +316,7 @@ pub trait Doublets<T: LinkType> {
         let mut vec = Vec::with_capacity(len);
         self.each_by(query, |link| {
             vec.push(link.index);
-            self.constants().r#continue
+            Flow::Continue
         });
         vec
     }
@@ -381,14 +351,14 @@ pub trait Doublets<T: LinkType> {
         let any = self.constants().any;
         let mut usages = Vec::with_capacity(self.count_usages(index)?.as_());
 
-        self.try_each_by([any, index, any], |link| {
+        self.each_by([any, index, any], |link| {
             if link.index != index {
                 usages.push(link.index);
             }
             Flow::Continue
         });
 
-        self.try_each_by([any, any, index], |link| {
+        self.each_by([any, any, index], |link| {
             if link.index != index {
                 usages.push(link.index);
             }
@@ -431,10 +401,10 @@ pub trait Doublets<T: LinkType> {
             return Ok(());
         }
 
-        let mut handler = StoppedHandler::new(handler);
+        let mut handler = FuseHandler::new(handler);
 
         let mut usages = Vec::with_capacity(sources_count);
-        self.try_each_by(as_source, |link| {
+        self.each_by(as_source, |link| {
             usages.push(link);
             Flow::Continue
         });
@@ -446,7 +416,7 @@ pub trait Doublets<T: LinkType> {
         }
 
         let mut usages = Vec::with_capacity(sources_count);
-        self.try_each_by(as_target, |link| {
+        self.each_by(as_target, |link| {
             usages.push(link);
             Flow::Continue
         });
@@ -483,7 +453,7 @@ pub trait Doublets<T: LinkType> {
         let mut usages = Vec::with_capacity(sources_count);
         self.each_by([any, old, any], |link| {
             usages.push(link.index);
-            constants.r#continue
+            Flow::Continue
         });
 
         for index in usages {
@@ -496,7 +466,7 @@ pub trait Doublets<T: LinkType> {
         let mut usages = Vec::with_capacity(sources_count);
         self.each_by([any, any, old], |link| {
             usages.push(link.index);
-            constants.r#continue
+            Flow::Continue
         });
 
         for index in usages {

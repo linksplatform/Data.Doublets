@@ -1,13 +1,11 @@
-use std::default::default;
-use std::marker::PhantomData;
-use std::ops::Try;
+use std::{default::default, marker::PhantomData, ops::Try};
 
-use doublets::data::LinksConstants;
-use doublets::data::ToQuery;
-use doublets::num::LinkType;
+use doublets::{
+    data::{LinksConstants, ToQuery},
+    num::LinkType,
+};
 
-use doublets::Error;
-use doublets::{Doublets, Link};
+use doublets::{Doublets, Error, Link};
 
 pub struct CascadeUsagesResolver<T: LinkType, L: Doublets<T>> {
     links: L,
@@ -41,25 +39,25 @@ impl<T: LinkType, L: Doublets<T>> Doublets<T> for CascadeUsagesResolver<T, L> {
         self.links.create_by_with(query, handler)
     }
 
-    fn try_each_by<F, R>(&self, restrictions: impl ToQuery<T>, handler: F) -> R
+    fn each_by<F, R>(&self, restrictions: impl ToQuery<T>, handler: F) -> R
     where
         F: FnMut(Link<T>) -> R,
         R: Try<Output = ()>,
     {
-        self.links.try_each_by(restrictions, handler)
+        self.links.each_by(restrictions, handler)
     }
 
     fn update_by_with<F, R>(
         &mut self,
         query: impl ToQuery<T>,
-        replacement: impl ToQuery<T>,
+        change: impl ToQuery<T>,
         handler: F,
     ) -> Result<R, Error<T>>
     where
         F: FnMut(Link<T>, Link<T>) -> R,
         R: Try<Output = ()>,
     {
-        self.links.update_by_with(query, replacement, handler)
+        self.links.update_by_with(query, change, handler)
     }
 
     fn delete_by_with<F, R>(
