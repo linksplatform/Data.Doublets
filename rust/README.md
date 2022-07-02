@@ -1,4 +1,5 @@
 # Doublets
+
 A library that represents database engine that uses doublets.
 
 ## [Overview](https://github.com/linksplatform)
@@ -8,12 +9,14 @@ A library that represents database engine that uses doublets.
 A basic CRUD in doublets
 
 ```rust
-use doublets::data::Flow::Continue;
-use doublets::mem::FileMappedMem;
-use doublets::{united, Doublets};
+use doublets::{
+    data::Flow::Continue,
+    mem::FileMappedMem,
+    unit, Doublets, Error
+};
 use std::fs::File;
 
-fn main() -> Result<(), Box<dyn std::error::Error>> {
+fn main() -> Result<(), Error<usize>> {
     // create or open read/write file
     let file = File::options()
         .create(true)
@@ -24,7 +27,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mem = FileMappedMem::new(file)?;
     let mut links = united::Store::<usize, _>::new(mem)?;
 
-    // Creation of the doublet in tiny style
+    // Creation of the empty doublet in tiny style
     let mut point = links.create()?;
 
     // Update of the doublet in handler style
@@ -36,17 +39,17 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         Continue
     })?;
 
-    println!("The number of links in the data store is {}", links.count());
-    println!("Data store contents:");
-
-    links.try_each(|link| {
-        println!("{}", link);
+    // print all links from store
+    links.each(|link| {
+        println!("{link}");
         Continue
     });
 
     // The link deletion in full style:
+    // `any` constant denotes any link
     let any = links.constants().any;
     // query in [index source target] style
+    // delete all links with index = point
     links.delete_by_with([point, any, any], |before, _| {
         println!("Goodbye {}", before);
         Continue
