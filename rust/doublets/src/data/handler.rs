@@ -3,7 +3,19 @@ use data::Flow;
 use num::LinkType;
 use std::{marker::PhantomData, ops::Try};
 
-pub trait Handler<T: LinkType, R: Try<Output = ()>> = FnMut(Link<T>, Link<T>) -> R;
+pub trait Handler<T, R>: FnMut(Link<T>, Link<T>) -> R
+where
+    T: LinkType,
+    R: Try<Output = ()>,
+{
+}
+impl<T, R, All> Handler<T, R> for All
+where
+    T: LinkType,
+    R: Try<Output = ()>,
+    All: FnMut(Link<T>, Link<T>) -> R,
+{
+}
 
 pub struct FuseHandler<T, H, R>
 where
