@@ -149,6 +149,50 @@ impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: 
         Self::mut_from_mem(self.mem_ptr, index.as_()).expect("Data part should be in data memory")
     }
 
+    unsafe fn mut_source_root(&mut self) -> *mut T {
+        &mut self.mut_header().root_as_source
+    }
+
+    unsafe fn mut_target_root(&mut self) -> *mut T {
+        &mut self.mut_header().root_as_target
+    }
+
+    unsafe fn detach_source_unchecked(&mut self, root: *mut T, index: T) {
+        self.sources.detach(&mut *root, index)
+    }
+
+    unsafe fn detach_target_unchecked(&mut self, root: *mut T, index: T) {
+        self.targets.detach(&mut *root, index)
+    }
+
+    unsafe fn attach_source_unchecked(&mut self, root: *mut T, index: T) {
+        self.sources.attach(&mut *root, index)
+    }
+
+    unsafe fn attach_target_unchecked(&mut self, root: *mut T, index: T) {
+        self.targets.attach(&mut *root, index)
+    }
+
+    unsafe fn detach_source(&mut self, index: T) {
+        let root = self.mut_source_root();
+        self.detach_source_unchecked(root, index);
+    }
+
+    unsafe fn detach_target(&mut self, index: T) {
+        let root = self.mut_target_root();
+        self.detach_target_unchecked(root, index);
+    }
+
+    unsafe fn attach_source(&mut self, index: T) {
+        let root = self.mut_source_root();
+        self.attach_source_unchecked(root, index);
+    }
+
+    unsafe fn attach_target(&mut self, index: T) {
+        let root = self.mut_target_root();
+        self.attach_target_unchecked(root, index);
+    }
+
     fn get_total(&self) -> T {
         let header = self.get_header();
         header.allocated - header.free
@@ -483,39 +527,39 @@ impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: 
         let old_source = source;
         let old_target = target;
 
-        let constants = self.constants();
-        let null = constants.null;
+        let link = self.try_get_link(index)?;
 
-        let link = self.get_link_part(index).clone();
-        if link.source != null {
-            let temp = &mut self.mut_header().root_as_source as *mut T;
-            unsafe { self.sources.detach(&mut *temp, index) };
+        if link.source != zero() {
+            // SAFETY: Here index detach from sources
+            // by default source is zero
+            unsafe {
+                self.detach_source(index);
+            }
+        }
+        if link.target != zero() {
+            // SAFETY: Here index detach from targets
+            // by default target is zero
+            unsafe {
+                self.detach_target(index);
+            }
         }
 
-        let link = self.get_link_part(index).clone();
-        if link.target != null {
-            let temp = &mut self.mut_header().root_as_target as *mut T;
-            unsafe { self.targets.detach(&mut *temp, index) };
-        }
+        let place = self.mut_link_part(index);
+        place.source = source;
+        place.target = target;
+        let place = place.clone();
 
-        let link = self.mut_link_part(index);
-        if link.source != source {
-            link.source = source;
+        if place.source != zero() {
+            // SAFETY: Here index attach to sources
+            unsafe {
+                self.attach_source(index);
+            }
         }
-        if link.target != target {
-            link.target = target;
-        }
-
-        let link = self.mut_link_part(index).clone();
-        if link.source != null {
-            let temp = &mut self.mut_header().root_as_source as *mut T;
-            unsafe { self.sources.attach(&mut *temp, index) };
-        }
-
-        let link = self.mut_link_part(index).clone();
-        if link.target != null {
-            let temp = &mut self.mut_header().root_as_target as *mut T;
-            unsafe { self.targets.attach(&mut *temp, index) };
+        if place.target != zero() {
+            // SAFETY: Here index attach to targets
+            unsafe {
+                self.attach_target(index);
+            }
         }
 
         Ok(handler(

@@ -259,10 +259,10 @@ pub trait Doublets<T: LinkType> {
         self.count_by(query) != zero()
     }
 
-    fn find(&self, query: impl ToQuery<T>) -> Option<T> {
+    fn find(&self, query: impl ToQuery<T>) -> Option<Link<T>> {
         let mut result = None;
         self.each_by(query, |link| {
-            result = Some(link.index);
+            result = Some(link);
             Flow::Break
         });
         result
@@ -270,6 +270,7 @@ pub trait Doublets<T: LinkType> {
 
     fn search(&self, source: T, target: T) -> Option<T> {
         self.find([self.constants().any, source, target])
+            .map(|link| link.index)
     }
 
     fn single(&self, query: impl ToQuery<T>) -> Option<Link<T>> {
