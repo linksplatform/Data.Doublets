@@ -10,7 +10,7 @@ use crate::{
     },
     Doublets, Link, LinksError,
 };
-use data::{Flow, Flow::Continue, Links, LinksConstants, ReadHandler, ToQuery, WriteHandler};
+use data::{Flow::Continue, LinksConstants, ToQuery};
 use leak_slice::LeakSliceExt;
 use mem::{RawMem, DEFAULT_PAGE_SIZE};
 use num::LinkType;
@@ -20,8 +20,8 @@ use std::{
     cmp,
     cmp::Ordering,
     error::Error,
-    mem::{size_of, transmute},
-    ops::{ControlFlow, Try},
+    mem::{transmute},
+    ops::{Try},
     ptr::NonNull,
 };
 use yield_iter::generator;

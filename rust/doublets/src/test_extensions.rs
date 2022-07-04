@@ -107,7 +107,7 @@ pub trait DoubletsTestExt<T: LinkType>: Doublets<T> {
 
         assert_eq!(links.count(), T::from(2).unwrap());
 
-        let r#continue = links.constants().r#continue;
+        let _continue = links.constants().r#continue;
         let mut result = None;
         links.each(|link| {
             result = Some(link.index);

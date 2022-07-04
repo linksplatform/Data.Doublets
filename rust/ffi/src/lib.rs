@@ -2,7 +2,6 @@
 #![feature(box_syntax)]
 #![feature(try_trait_v2)]
 
-use data::Flow;
 use std::{
     error::Error,
     ffi::CStr,
@@ -468,12 +467,11 @@ pub extern "C" fn init_fmt_logger() {
 }
 
 mod tests {
-    use log::{debug, info, trace};
-
-    use super::*;
-
     #[test]
     fn error_log() {
+        use crate::{build_shared_logger, setup_shared_logger};
+        use log::{debug, error, info, trace, warn};
+
         let logger = build_shared_logger();
         setup_shared_logger(logger);
         trace!("trace");

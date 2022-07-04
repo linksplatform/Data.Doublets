@@ -21,8 +21,7 @@ impl Parse for EnvInput {
 pub fn env_value(item: TokenStream) -> TokenStream {
     let EnvInput { env, expr } = syn::parse_macro_input!(item as EnvInput);
     let mut expr = quote! { #expr };
-    std::env::var(env)
-        .unwrap_or(String::new())
+    std::env::var(env).unwrap_or_default()
         .split_whitespace()
         .rev()
         .for_each(|name| {
@@ -59,12 +58,11 @@ impl Parse for EnvType {
 pub fn env_type(item: TokenStream) -> TokenStream {
     let EnvType { env, pat, default } = syn::parse_macro_input!(item as EnvType);
     let mut ty = quote! { #default };
-    std::env::var(env)
-        .unwrap_or(String::new())
+    std::env::var(env).unwrap_or_default()
         .split_whitespace()
         .rev()
         .for_each(|name| {
-            let new_pat = pat.replace("*", &ty.to_string());
+            let new_pat = pat.replace('*', &ty.to_string());
             println!("{}", new_pat);
             let pat_ty: proc_macro2::TokenStream = new_pat.parse().unwrap();
             let ty_name: proc_macro2::TokenStream = name.parse().unwrap();

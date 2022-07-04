@@ -1,21 +1,20 @@
 #![feature(box_syntax)]
 
 use proc_macro::TokenStream;
-use std::collections::HashMap;
-use std::ops::{Add, Deref};
-use std::str::FromStr;
 
-use darling::{Error, FromMeta};
+
+
+
+use darling::{FromMeta};
 use quote::{quote, ToTokens};
-use serde::Deserialize;
-use serde::Serialize;
+
+
 use syn::parse::Parser;
 use syn::punctuated::Punctuated;
-use syn::spanned::Spanned;
+
 use syn::{
-    parse_macro_input, parse_str, AttributeArgs, Block, Expr, FnArg, GenericArgument, GenericParam,
-    Ident, ItemFn, Lit, Meta, NestedMeta, Pat, PathArguments, ReturnType, Type, TypeParam, TypePtr,
-    TypeTuple,
+    parse_macro_input, AttributeArgs, FnArg, GenericArgument, GenericParam,
+    Ident, ItemFn, PathArguments, ReturnType, Type,
 };
 
 fn csharp_convention(s: String) -> String {
@@ -107,7 +106,7 @@ pub fn specialize_for(args: TokenStream, input: TokenStream) -> TokenStream {
     };
     //println!("{:?}", args.types);
 
-    let mut inputs = input.sig.inputs;
+    let inputs = input.sig.inputs;
     let generic_name = {
         let mut generics_names: Vec<_> = input
             .sig
@@ -139,7 +138,7 @@ pub fn specialize_for(args: TokenStream, input: TokenStream) -> TokenStream {
         let ty_tt: proc_macro2::TokenStream = ty.parse().unwrap();
         let fn_pat: proc_macro2::TokenStream = fn_pat
             .replace(
-                "*",
+                '*',
                 match &args.convention {
                     Conventions::csharp => csharp_convention(ty.clone()),
                     _ => {
@@ -169,7 +168,7 @@ pub fn specialize_for(args: TokenStream, input: TokenStream) -> TokenStream {
             }
         });
 
-        let generic_name: proc_macro2::TokenStream = generic_name.parse().unwrap();
+        let _generic_name: proc_macro2::TokenStream = generic_name.parse().unwrap();
         let input_args: Vec<_> = inputs
             .iter()
             .map(|arg| match arg {

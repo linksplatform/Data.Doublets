@@ -2,7 +2,7 @@ use std::{
     cmp::Ordering,
     default::default,
     error::Error,
-    mem::{size_of, transmute},
+    mem::{transmute},
     ops::Try,
     ptr::NonNull,
 };
@@ -20,7 +20,7 @@ use crate::{
     },
     Doublets, Link, LinksError,
 };
-use data::{Flow, Flow::Continue, Links, LinksConstants, ReadHandler, ToQuery, WriteHandler};
+use data::{Flow::Continue, LinksConstants, ToQuery};
 use mem::{RawMem, DEFAULT_PAGE_SIZE};
 use methods::RelativeCircularLinkedList;
 use num::LinkType;

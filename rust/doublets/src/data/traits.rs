@@ -1,9 +1,9 @@
 use std::{
     default::default,
-    ops::{ControlFlow, Try},
+    ops::{Try},
 };
 
-use crate::{FuseHandler, Handler, Link, LinksError};
+use crate::{FuseHandler, Link, LinksError};
 use data::{Flow, LinksConstants, ToQuery};
 use num::LinkType;
 use num_traits::{one, zero};
