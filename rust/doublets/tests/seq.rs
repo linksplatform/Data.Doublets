@@ -8,7 +8,7 @@ use doublets::{
     unit, Doublets, Error as LinksError, Link,
 };
 use num_traits::zero;
-use std::error::Error;
+use std::{error::Error, mem::transmute};
 
 fn write_seq<T: LinkType>(store: &mut impl Doublets<T>, seq: &[T]) -> Result<T, LinksError<T>> {
     let mut aliases = vec![store.create()?];

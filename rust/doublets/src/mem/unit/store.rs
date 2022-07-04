@@ -201,6 +201,7 @@ impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: 
     fn is_unused(&self, link: T) -> bool {
         let header = self.get_header();
         if link <= header.allocated && header.first_free != link {
+            // SAFETY: link part memory is allocated
             let link = unsafe { self.get_link_part_unchecked(link) };
             link.size_as_source == zero() && link.source != zero()
         } else {
@@ -240,7 +241,7 @@ impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: 
         let constants = self.constants();
 
         if restriction.len() == 0 {
-            for index in T::one()..self.get_header().allocated + one() {
+            for index in T::one()..=self.get_header().allocated {
                 if let Some(link) = self.get_link(index) {
                     handler(link)?;
                 }
@@ -267,12 +268,8 @@ impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: 
                 if value == any {
                     self.each_core(handler, [])
                 } else {
-                    match self.each_core(handler, [index, value, any]).branch() {
-                        ControlFlow::Continue(_output) => {
-                            self.each_core(handler, [index, value, any])
-                        }
-                        ControlFlow::Break(residual) => R::from_residual(residual),
-                    }
+                    self.each_core(handler, [index, value, any])?;
+                    self.each_core(handler, [index, any, value])
                 }
             } else if let Some(link) = self.get_link(index) {
                 if value == any || link.source == value || link.target == value {
@@ -578,24 +575,14 @@ impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: 
         R: Try<Output = ()>,
     {
         let query = query.to_query();
-
         let index = query[0];
-        // TODO: use method style - remove .get_link
-        let (source, target) = if let Some(link) = self.get_link(index) {
-            (link.source, link.target)
-        } else {
-            return Err(LinksError::NotExists(index));
-        };
-        if (source, target) != (zero(), zero()) {
-            self.update(index, zero(), zero())?;
-        }
+
+        let link = self.try_get_link(index)?;
+        self.update(index, zero(), zero())?;
 
         let header = self.get_header();
-        let link = index;
-
-        match link.cmp(&header.allocated) {
-            Ordering::Less => self.unused.attach_as_first(link),
-            Ordering::Greater => unreachable!(),
+        match index.cmp(&header.allocated) {
+            Ordering::Less => self.unused.attach_as_first(index),
             Ordering::Equal => {
                 self.mem.occupy(self.mem.occupied() - 1)?;
 
@@ -614,15 +601,14 @@ impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: 
                     self.mem.occupy(used_mem - 1)?;
                 }
             }
+            _ => unreachable!(),
         }
 
-        Ok(handler(Link::new(index, source, target), Link::nothing()))
+        Ok(handler(link, Link::nothing()))
     }
 
     fn get_link(&self, index: T) -> Option<Link<T>> {
-        if self.constants.is_external(index) {
-            Some(Link::point(index))
-        } else if self.exists(index) {
+        if self.exists(index) {
             // SAFETY: links is exists
             Some(unsafe { self.get_link_unchecked(index) })
         } else {
@@ -631,11 +617,13 @@ impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: 
     }
 }
 
+// SAFETY: No read operations result in a write
 unsafe impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: UnitList<T>>
     Sync for Store<T, M, TS, TT, TU>
 {
 }
 
+// SAFETY: All data is moved together with the `Store`
 unsafe impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: UnitList<T>>
     Send for Store<T, M, TS, TT, TU>
 {
