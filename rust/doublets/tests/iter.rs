@@ -1,9 +1,9 @@
-use doublets::{data::LinksError, split, unit, Doublets, Link};
+use doublets::{split, unit, Doublets, Error, Link};
 use mem::GlobalMem;
 use std::collections::HashSet;
 
 #[test]
-fn unit_iter() -> Result<(), LinksError<usize>> {
+fn unit_iter() -> Result<(), Error<usize>> {
     let mut store = unit::Store::<usize, _>::new(GlobalMem::new())?;
 
     let a = store.create_point()?;
@@ -21,7 +21,7 @@ fn unit_iter() -> Result<(), LinksError<usize>> {
 }
 
 #[test]
-fn unit_iter_bug() -> Result<(), LinksError<usize>> {
+fn unit_iter_bug() -> Result<(), Error<usize>> {
     let mut store = unit::Store::<usize, _>::new(GlobalMem::new())?;
 
     let a = store.create_point()?;
@@ -41,7 +41,7 @@ fn unit_iter_bug() -> Result<(), LinksError<usize>> {
 }
 
 #[test]
-fn unit_each_iter() -> Result<(), LinksError<usize>> {
+fn unit_each_iter() -> Result<(), Error<usize>> {
     let mut store = unit::Store::<usize, _>::new(GlobalMem::new())?;
 
     store.create_link(1, 1)?;
@@ -60,7 +60,7 @@ fn unit_each_iter() -> Result<(), LinksError<usize>> {
 }
 
 #[test]
-fn split_iter() -> Result<(), LinksError<usize>> {
+fn split_iter() -> Result<(), Error<usize>> {
     let mut store = split::Store::<usize, _, _>::new(GlobalMem::new(), GlobalMem::new())?;
 
     let a = store.create_point()?;
@@ -78,7 +78,7 @@ fn split_iter() -> Result<(), LinksError<usize>> {
 }
 
 #[test]
-fn split_iter_bug() -> Result<(), LinksError<usize>> {
+fn split_iter_bug() -> Result<(), Error<usize>> {
     let mut store = split::Store::<usize, _, _>::new(GlobalMem::new(), GlobalMem::new())?;
 
     let a = store.create_point()?;
@@ -98,7 +98,7 @@ fn split_iter_bug() -> Result<(), LinksError<usize>> {
 }
 
 #[test]
-fn split_each_iter() -> Result<(), LinksError<usize>> {
+fn split_each_iter() -> Result<(), Error<usize>> {
     let mut store = split::Store::<usize, _, _>::new(GlobalMem::new(), GlobalMem::new())?;
 
     store.create_link(1, 1)?;

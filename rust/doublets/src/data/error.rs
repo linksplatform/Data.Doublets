@@ -1,11 +1,9 @@
 use crate::{Doublet, Link};
 use num::LinkType;
+use std::{error::Error as StdError, io};
 
-use std::io;
-use thiserror::Error;
-
-#[derive(Error, Debug)]
-pub enum LinksError<T: LinkType> {
+#[derive(thiserror::Error, Debug)]
+pub enum Error<T: LinkType> {
     #[error("link {0} does not exist.")]
     NotExists(T),
 
@@ -24,4 +22,7 @@ pub enum LinksError<T: LinkType> {
         #[backtrace]
         io::Error,
     ),
+
+    #[error("other internal error: `{0}`")]
+    Other(#[from] Box<dyn StdError>),
 }
