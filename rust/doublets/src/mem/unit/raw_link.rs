@@ -1,6 +1,7 @@
 use num::LinkType;
 
 #[derive(Debug, Default, PartialEq, Eq, Hash, Clone)]
+#[repr(C)]
 pub struct LinkPart<T: LinkType> {
     pub(crate) source: T,
     pub(crate) target: T,

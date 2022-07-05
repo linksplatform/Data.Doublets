@@ -1,6 +1,7 @@
 use num::LinkType;
 
 #[derive(Debug, Default, Eq, PartialEq, Hash, Clone)]
+#[repr(C)]
 pub struct IndexPart<T: LinkType> {
     pub(crate) root_as_source: T,
     pub(crate) left_as_source: T,
