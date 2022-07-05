@@ -16,14 +16,7 @@ use mem::{RawMem, DEFAULT_PAGE_SIZE};
 use num::LinkType;
 use num_traits::{one, zero};
 use smallvec::SmallVec;
-use std::{
-    cmp,
-    cmp::Ordering,
-    error::Error,
-    mem::{transmute},
-    ops::{Try},
-    ptr::NonNull,
-};
+use std::{cmp, cmp::Ordering, error::Error, mem::transmute, ops::Try, ptr::NonNull};
 use yield_iter::generator;
 
 pub struct Store<

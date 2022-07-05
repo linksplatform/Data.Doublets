@@ -1,10 +1,7 @@
 use std::{mem::transmute, ptr::NonNull};
 
 use crate::{
-    mem::{
-        header::LinksHeader, split::DataPart, traits::SplitList, LinksList,
-        SplitUpdateMem,
-    },
+    mem::{header::LinksHeader, split::DataPart, traits::SplitList, LinksList, SplitUpdateMem},
     split::IndexPart,
 };
 use methods::{AbsoluteCircularLinkedList, AbsoluteLinkedList, LinkedList};
