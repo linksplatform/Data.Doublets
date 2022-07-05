@@ -196,6 +196,9 @@ impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: 
         if link <= header.allocated && header.first_free != link {
             // SAFETY: link part memory is allocated
             let link = unsafe { self.get_link_part_unchecked(link) };
+            // If the link is unused (that is, it was created but deleted),
+            // its search tree size is 0,
+            // its source and target will be used to build a LinkedList from similar links
             link.size_as_source == zero() && link.source != zero()
         } else {
             true
