@@ -238,7 +238,7 @@ impl<T: LinkType> ExternalRecursionlessSizeBalancedTreeBaseAbstract<T>
     }
 
     fn get_base_part(&self, link: T) -> T {
-        self.get_data_part(link).source
+        self.get_data_part(link).target
     }
 
     fn first_is_to_the_left_of_second_4(

@@ -1,11 +1,4 @@
-use std::{
-    cmp::Ordering,
-    default::default,
-    error::Error,
-    mem::{transmute},
-    ops::Try,
-    ptr::NonNull,
-};
+use std::{cmp::Ordering, default::default, error::Error, mem::transmute, ops::Try, ptr::NonNull};
 
 use num_traits::{one, zero};
 
@@ -49,9 +42,9 @@ pub struct Store<
     constants: LinksConstants<T>,
 
     internal_sources: IS,
-    external_sources: ES,
+    pub external_sources: ES,
     internal_targets: IT,
-    external_targets: ET,
+    pub external_targets: ET,
 
     sources_list: InternalSourcesLinkedList<T>,
     unused: UL,
@@ -155,7 +148,7 @@ impl<
         }
     }
 
-    fn get_data_part(&self, index: T) -> &DataPart<T> {
+    pub fn get_data_part(&self, index: T) -> &DataPart<T> {
         Self::get_from_mem(self.data_ptr, index.as_()).expect("Data part should be in data memory")
     }
 
@@ -167,7 +160,7 @@ impl<
         Self::mut_from_mem(self.data_ptr, index.as_()).expect("Data part should be in data memory")
     }
 
-    fn get_index_part(&self, index: T) -> &IndexPart<T> {
+    pub fn get_index_part(&self, index: T) -> &IndexPart<T> {
         Self::get_from_mem(self.index_ptr, index.as_())
             .expect("Index part should be in index memory")
     }
@@ -175,6 +168,94 @@ impl<
     fn mut_index_part(&mut self, index: T) -> &mut IndexPart<T> {
         Self::mut_from_mem(self.index_ptr, index.as_())
             .expect("Index part should be in index memory")
+    }
+
+    unsafe fn mut_source_header_root(&mut self) -> *mut T {
+        &mut self.mut_header().root_as_source
+    }
+
+    unsafe fn mut_target_header_root(&mut self) -> *mut T {
+        &mut self.mut_header().root_as_target
+    }
+
+    unsafe fn mut_source_root(&mut self, link: T) -> *mut T {
+        &mut self.mut_index_part(link).root_as_source
+    }
+
+    unsafe fn mut_target_root(&mut self, link: T) -> *mut T {
+        &mut self.mut_index_part(link).root_as_target
+    }
+
+    unsafe fn detach_internal_source_unchecked(&mut self, root: *mut T, index: T) {
+        self.internal_sources.detach(&mut *root, index)
+    }
+
+    unsafe fn detach_internal_target_unchecked(&mut self, root: *mut T, index: T) {
+        self.internal_targets.detach(&mut *root, index)
+    }
+
+    unsafe fn attach_internal_source_unchecked(&mut self, root: *mut T, index: T) {
+        self.internal_sources.attach(&mut *root, index)
+    }
+
+    unsafe fn attach_internal_target_unchecked(&mut self, root: *mut T, index: T) {
+        self.internal_targets.attach(&mut *root, index)
+    }
+
+    unsafe fn detach_external_source_unchecked(&mut self, root: *mut T, index: T) {
+        self.external_sources.detach(&mut *root, index)
+    }
+
+    unsafe fn detach_external_target_unchecked(&mut self, root: *mut T, index: T) {
+        self.external_targets.detach(&mut *root, index)
+    }
+
+    unsafe fn attach_external_source_unchecked(&mut self, root: *mut T, index: T) {
+        self.external_sources.attach(&mut *root, index)
+    }
+
+    unsafe fn attach_external_target_unchecked(&mut self, root: *mut T, index: T) {
+        self.external_targets.attach(&mut *root, index)
+    }
+
+    unsafe fn detach_internal_source(&mut self, root: T, index: T) {
+        let root = self.mut_source_root(root);
+        self.detach_internal_source_unchecked(root, index);
+    }
+
+    unsafe fn detach_internal_target(&mut self, root: T, index: T) {
+        let root = self.mut_target_root(root);
+        self.detach_internal_target_unchecked(root, index);
+    }
+
+    unsafe fn attach_internal_source(&mut self, root: T, index: T) {
+        let root = self.mut_source_root(root);
+        self.attach_internal_source_unchecked(root, index);
+    }
+
+    unsafe fn attach_internal_target(&mut self, root: T, index: T) {
+        let root = self.mut_target_root(root);
+        self.attach_internal_target_unchecked(root, index);
+    }
+
+    unsafe fn detach_external_source(&mut self, index: T) {
+        let root = self.mut_source_header_root();
+        self.detach_external_source_unchecked(root, index);
+    }
+
+    unsafe fn detach_external_target(&mut self, index: T) {
+        let root = self.mut_target_header_root();
+        self.detach_external_target_unchecked(root, index);
+    }
+
+    unsafe fn attach_external_source(&mut self, index: T) {
+        let root = self.mut_source_header_root();
+        self.attach_external_source_unchecked(root, index);
+    }
+
+    unsafe fn attach_external_target(&mut self, index: T) {
+        let root = self.mut_target_header_root();
+        self.attach_external_target_unchecked(root, index);
     }
 
     fn update_mem(&mut self, data: NonNull<[DataPart<T>]>, index: NonNull<[IndexPart<T>]>) {
@@ -235,7 +316,7 @@ impl<
         header.allocated - header.free
     }
 
-    pub(crate) fn is_unused(&self, link: T) -> bool {
+    pub fn is_unused(&self, link: T) -> bool {
         let header = self.get_header();
         if link <= header.allocated && header.first_free != link {
             // TODO: May be this check is not needed
@@ -247,8 +328,10 @@ impl<
         }
     }
 
-    pub(crate) fn is_virtual(&self, link: T) -> bool {
-        link > self.get_header().allocated && !self.constants.is_external(link)
+    //fn is_non_
+
+    pub fn is_virtual(&self, link: T) -> bool {
+        self.is_unused(link)
     }
 
     pub fn exists(&self, link: T) -> bool {
@@ -301,7 +384,7 @@ impl<
         }
         //
         if restriction.len() == 2 {
-            let value = restriction[1]; // TODO: Hmm... `const` position?
+            let value = restriction[1];
             return if index == any {
                 if value == any {
                     self.try_each_by_core(handler, [])
@@ -323,18 +406,20 @@ impl<
         if restriction.len() == 3 {
             let source = restriction[constants.source_part.as_()];
             let target = restriction[constants.target_part.as_()];
-            //
+            let is_virtual_source = self.is_virtual(source);
+            let is_virtual_target = self.is_virtual(target);
+
             return if index == any {
                 if (source, target) == (any, any) {
                     self.try_each_by_core(handler, [])
                 } else if source == any {
-                    if constants.is_external(target) {
+                    if is_virtual_target {
                         self.external_targets.each_usages(target, handler)
                     } else {
                         self.internal_targets.each_usages(target, handler)
                     }
                 } else if target == any {
-                    if constants.is_external(source) {
+                    if is_virtual_source {
                         self.external_sources.each_usages(source, handler)
                     } else if Self::USE_LIST {
                         self.sources_list.each_usages(source, handler)
@@ -342,12 +427,12 @@ impl<
                         self.internal_sources.each_usages(source, handler)
                     }
                 } else {
-                    let link = if constants.external_range.is_some() {
-                        if constants.is_external(source) && constants.is_external(target) {
+                    let link = if true {
+                        if is_virtual_source && is_virtual_target {
                             self.external_sources.search(source, target)
-                        } else if constants.is_external(source) {
+                        } else if is_virtual_source {
                             self.internal_targets.search(source, target)
-                        } else if constants.is_external(target) {
+                        } else if is_virtual_target {
                             if Self::USE_LIST {
                                 self.external_sources.search(source, target)
                             } else {
@@ -372,7 +457,8 @@ impl<
                     return if link == constants.null {
                         R::from_output(())
                     } else {
-                        let link = self.get_link(link).unwrap();
+                        // SAFETY: link 100% exists
+                        let link = unsafe { self.get_link(link).unwrap_unchecked() };
                         handler(link)
                     };
                 }
@@ -468,11 +554,13 @@ impl<
         }
 
         if query.len() == 2 {
-            let value = query[1]; // TODO: Hmm... `const` position?
+            let value = query[1];
+            let is_virtual_val = self.is_virtual(value);
+
             return if index == any {
                 if value == any {
                     self.total()
-                } else if constants.is_external(value) {
+                } else if is_virtual_val {
                     self.external_sources.count_usages(value)
                         + self.external_targets.count_usages(value)
                 } else if Self::USE_LIST {
@@ -500,16 +588,19 @@ impl<
             let source = query[constants.source_part.as_()];
             let target = query[constants.target_part.as_()];
 
+            let is_virtual_source = self.is_virtual(source);
+            let is_virtual_target = self.is_virtual(target);
+
             return if index == any {
                 if (source, target) == (any, any) {
                     self.total()
                 } else if source == any {
-                    if constants.is_external(target) {
+                    if is_virtual_target {
                         self.external_targets.count_usages(target)
                     } else {
                         self.internal_targets.count_usages(target)
                     }
-                } else if constants.is_external(source) {
+                } else if is_virtual_source {
                     self.external_sources.count_usages(source)
                 } else if target == any {
                     if Self::USE_LIST {
@@ -518,12 +609,12 @@ impl<
                         self.internal_sources.count_usages(source)
                     }
                 } else {
-                    let link = if constants.external_range.is_some() {
-                        if constants.is_external(source) && constants.is_external(target) {
+                    let link = if true {
+                        if is_virtual_source && is_virtual_target {
                             self.external_sources.search(source, target)
-                        } else if constants.is_external(source) {
+                        } else if is_virtual_source {
                             self.internal_targets.search(source, target)
-                        } else if constants.is_external(target) {
+                        } else if is_virtual_target {
                             if Self::USE_LIST {
                                 self.external_sources.search(source, target)
                             } else {
@@ -619,6 +710,29 @@ impl<
         } else {
             self.unused.detach(free)
         }
+
+        let any = constants.any;
+        for link in self
+            .each_iter([any, free, any])
+            .filter(|link| link.index != free)
+        {
+            unsafe {
+                self.detach_external_source(link.index);
+                self.attach_internal_source(free, link.index);
+            }
+        }
+
+        for link in self
+            .each_iter([any, any, free])
+            .filter(|link| link.index != free)
+            .filter(|link| !link.is_full())
+        {
+            unsafe {
+                self.detach_external_target(link.index);
+                self.attach_internal_target(free, link.index);
+            }
+        }
+
         Ok(handler(
             Link::nothing(),
             Link::new(free, T::zero(), T::zero()),
@@ -650,73 +764,66 @@ impl<
         let new_source = change[1];
         let new_target = change[2];
 
-        let constants = self.constants();
-        let null = constants.null;
+        let link = self.try_get_link(index)?;
 
-        let link = self.get_data_part(index);
-        let source = link.source;
-        let target = link.target;
-        let old_source = source;
-        let old_target = target;
-
-        if source != null {
-            if constants.is_external(source) {
-                let temp = &mut self.mut_header().root_as_source as *mut T;
-                self.external_sources.detach(unsafe { &mut *temp }, index)
-            } else if Self::USE_LIST {
-                self.sources_list.detach(source, index);
-            } else {
-                let temp = &mut self.mut_index_part(source).root_as_source as *mut T;
-                self.internal_sources.detach(unsafe { &mut *temp }, index);
+        if link.source != zero() {
+            // SAFETY: Here index attach to source
+            unsafe {
+                if self.is_virtual(link.source) {
+                    self.detach_external_source(index);
+                } else if Self::USE_LIST {
+                    // self.sources_list.attach_as_last(source, index);
+                    todo!()
+                } else {
+                    self.detach_internal_source(link.source, index);
+                }
             }
         }
 
-        if target != null {
-            if constants.is_external(target) {
-                let temp = &mut self.mut_header().root_as_target as *mut T;
-                self.external_targets.detach(unsafe { &mut *temp }, index)
-            } else {
-                let temp = &mut self.mut_index_part(target).root_as_target as *mut T;
-                self.internal_targets.detach(unsafe { &mut *temp }, index);
+        if link.target != zero() {
+            // SAFETY: Here index attach to target
+            unsafe {
+                if self.is_virtual(link.target) {
+                    self.detach_external_target(index);
+                } else {
+                    self.detach_internal_target(link.target, index);
+                }
             }
         }
 
-        let link = self.mut_data_part(index);
-        if link.source != new_source {
-            link.source = new_source;
-        }
-        if link.target != new_target {
-            link.target = new_target;
-        }
-        let source = link.source;
-        let target = link.target;
+        let virtual_source = self.is_virtual(new_source);
+        let virtual_target = self.is_virtual(new_target);
+        let place = self.mut_data_part(index);
+        place.source = new_source;
+        place.target = new_target;
+        let place = place.clone();
 
-        if source != null {
-            if constants.is_external(source) {
-                let temp = &mut self.mut_header().root_as_source as *mut T;
-                self.external_sources.attach(unsafe { &mut *temp }, index)
-            } else if Self::USE_LIST {
-                self.sources_list.attach_as_last(source, index);
-            } else {
-                let temp = &mut self.mut_index_part(source).root_as_source as *mut T;
-                self.internal_sources.attach(unsafe { &mut *temp }, index);
+        if place.source != zero() {
+            // SAFETY: Here index attach to source
+            unsafe {
+                if virtual_source {
+                    self.attach_external_source(index);
+                } else if Self::USE_LIST {
+                    // self.sources_list.attach_as_last(source, index);
+                    todo!()
+                } else {
+                    self.attach_internal_source(place.source, index);
+                }
             }
         }
 
-        if target != null {
-            if constants.is_external(target) {
-                let temp = &mut self.mut_header().root_as_target as *mut T;
-                self.external_targets.attach(unsafe { &mut *temp }, index)
-            } else {
-                let temp = &mut self.mut_index_part(target).root_as_target as *mut T;
-                self.internal_targets.attach(unsafe { &mut *(temp) }, index);
+        if place.target != zero() {
+            // SAFETY: Here index attach to target
+            unsafe {
+                if virtual_target {
+                    self.attach_external_target(index);
+                } else {
+                    self.attach_internal_target(place.target, index);
+                }
             }
         }
 
-        Ok(handler(
-            Link::new(index, old_source, old_target),
-            Link::new(index, source, target),
-        ))
+        Ok(handler(link, Link::new(index, place.source, place.target)))
     }
 
     fn delete_by_with<F, R>(
@@ -731,21 +838,37 @@ impl<
         let query = query.to_query();
 
         let index = query[0];
-        let (source, target) = if let Some(link) = self.get_link(index) {
-            (link.source, link.target)
-        } else {
-            return Err(LinksError::NotExists(index));
-        };
-        if (source, target) != (zero(), zero()) {
-            self.update(index, zero(), zero())?;
+        let link = self.try_get_link(index)?;
+
+        let any = self.constants.any;
+        for link in self
+            .each_iter([any, index, any])
+            .filter(|link| link.index != index)
+        {
+            unsafe {
+                self.detach_internal_source(index, link.index);
+                self.attach_external_source(link.index);
+            }
         }
+
+        for link in self
+            .each_iter([any, any, index])
+            .filter(|link| link.index != index)
+            .filter(|link| !link.is_full())
+        {
+            unsafe {
+                self.detach_internal_target(index, link.index);
+                self.attach_external_target(link.index);
+            }
+        }
+
+        self.update(index, zero(), zero())?;
 
         // TODO: move to `delete_core`
         let header = self.get_header();
-        let link = index;
 
-        match link.cmp(&header.allocated) {
-            Ordering::Less => self.unused.attach_as_first(link),
+        match index.cmp(&header.allocated) {
+            Ordering::Less => self.unused.attach_as_first(index),
             Ordering::Greater => unreachable!(),
             Ordering::Equal => {
                 self.data_mem.occupy(self.data_mem.occupied() - 1)?;
@@ -772,13 +895,14 @@ impl<
                 }
             }
         }
-        Ok(handler(Link::new(index, source, target), Link::nothing()))
+        Ok(handler(
+            Link::new(index, link.source, link.target),
+            Link::nothing(),
+        ))
     }
 
     fn get_link(&self, index: T) -> Option<Link<T>> {
-        if self.constants.is_external(index) {
-            Some(Link::point(index))
-        } else if self.exists(index) {
+        if self.exists(index) {
             Some(unsafe { self.get_link_unchecked(index) })
         } else {
             None

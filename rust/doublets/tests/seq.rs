@@ -3,12 +3,12 @@ use doublets::{
         Flow::{Break, Continue},
         ToQuery,
     },
-    mem::GlobalMem,
+    mem::{GlobalMem, LinksTree},
     num::LinkType,
-    unit, Doublets, Error as LinksError, Link,
+    split, unit, Doublets, Error as LinksError, Link,
 };
 use num_traits::zero;
-use std::{error::Error};
+use std::{error::Error, time::Instant};
 
 fn write_seq<T: LinkType>(store: &mut impl Doublets<T>, seq: &[T]) -> Result<T, LinksError<T>> {
     let mut aliases = vec![store.create()?];
@@ -57,21 +57,76 @@ fn read_seq<T: LinkType>(store: &impl Doublets<T>, root: T) -> Result<Vec<T>, Li
     Ok(seq)
 }
 
+const TEXT: &str = r#"
+    Bei Nacht im Dorf der Wächter rief:
+    Elfe!
+    Ein ganz kleines Elfchen im Walde schlief,
+    Wohl um die Elfe;
+    Und meint, es rief ihm aus dem Thal
+    Bei seinem Namen die Nachtigall,
+    Oder Silpelit[8] hätt' ihn gerufen.
+    Reibt sich der Elf' die Augen aus,
+    Begibt sich vor sein Schneckenhaus
+    Und ist als wie ein trunken Mann,
+    Sein Schläflein war nicht voll gethan,
+    Und humpelt also tippe tapp
+    Durch's Haselholz in's Thal hinab,
+    Schlupft an der Weinbergmauer hin,
+    Daran viel Feuerwürmchen glühn:
+    "Was sind das helle Fensterlein?
+    Da drin wird eine Hochzeit seyn;
+    Die Kleinen sitzen beim Mahle,
+    Und treiben's in dem Saale.
+    Da guck' ich wohl ein wenig 'nein!"
+    — Pfui, stößt den Kopf an harten Stein!
+    Elfe, gelt, du hast genug?
+    Gukuk! Gukuk!
+"#;
+
+fn str_as_vec(str: &str) -> Vec<usize> {
+    str.chars().map(|c| c as usize).collect()
+}
+
+const N: usize = 10000;
+
 #[test]
 fn seq() -> Result<(), Box<dyn Error>> {
-    let mut store = unit::Store::<usize, _>::new(GlobalMem::new())?;
+    let mut store = split::Store::<usize, _, _>::new(GlobalMem::new(), GlobalMem::new())?;
 
-    // Simulate non-empty storage
-    store.create_point()?;
-    store.create_point()?;
-    store.create_point()?;
-    store.create_point()?;
-    store.create_point()?;
+    let seq = str_as_vec(TEXT);
+    let instant = Instant::now();
 
-    let root = write_seq(&mut store, &[1, 2, 3, 4])?;
+    let sequences: Vec<_> = (0..N)
+        .map(|_| write_seq(&mut store, seq.as_slice()).unwrap())
+        .collect();
 
-    let seq = read_seq(&store, root)?;
-    println!("{seq:?}");
+    for seq in sequences {
+        read_seq(&store, seq).unwrap();
+    }
+
+    println!("{:?}", instant.elapsed());
+
+    Ok(())
+}
+
+#[test]
+fn bug() -> Result<(), Box<dyn Error>> {
+    let mut store = split::Store::<usize, _, _>::new(GlobalMem::new(), GlobalMem::new())?;
+
+    let a = store.create_point()?;
+    let b = store.create_point()?;
+    let c = store.create_link(a, b)?;
+
+    let d = store.create_link(1, 10)?;
+    let d = store.create_link(10, 1)?;
+
+    store.delete(a)?;
+
+    let any = store.constants().any;
+
+    for link in store.each_iter([any, any, 1]) {
+        println!("{:?}", link);
+    }
 
     Ok(())
 }
