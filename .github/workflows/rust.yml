@@ -47,7 +47,7 @@ jobs:
         run: rustup default nightly
 
       - name: test doublets
-        run: cargo +nightly test --lib
+        run: cargo +nightly test --release
         working-directory: rust
 
   valgrind:
