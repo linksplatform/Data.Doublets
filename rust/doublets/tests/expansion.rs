@@ -36,7 +36,7 @@ fn unit_million_points() -> Result<(), Error<usize>> {
 
     let instant = Instant::now();
     for _ in 0..MILLION {
-        store.create().unwrap();
+        store.create_point().unwrap();
     }
     println!("{:?}", instant.elapsed());
 
@@ -51,7 +51,7 @@ fn split_million_points() -> Result<(), Error<usize>> {
 
     let instant = Instant::now();
     for _ in 0..MILLION {
-        store.create().unwrap();
+        store.create_point().unwrap();
     }
     println!("{:?}", instant.elapsed());
 
