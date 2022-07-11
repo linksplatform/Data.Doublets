@@ -512,6 +512,54 @@ impl<
 
         vec.into_iter()
     }
+
+    fn resolve_danglind_internal(&mut self, index: T) {
+        let any = self.constants.any;
+        for link in self
+            .each_iter([any, index, any])
+            .filter(|link| link.index != index)
+        {
+            unsafe {
+                self.detach_internal_source(index, link.index);
+                self.attach_external_source(link.index);
+            }
+        }
+
+        for link in self
+            .each_iter([any, any, index])
+            .filter(|link| link.index != index)
+            .filter(|link| !link.is_full())
+        {
+            unsafe {
+                self.detach_internal_target(index, link.index);
+                self.attach_external_target(link.index);
+            }
+        }
+    }
+
+    fn resolve_danglind_external(&mut self, free: T) {
+        let any = self.constants().any;
+        for link in self
+            .each_iter([any, free, any])
+            .filter(|link| link.index != free)
+        {
+            unsafe {
+                self.detach_external_source(link.index);
+                self.attach_internal_source(free, link.index);
+            }
+        }
+
+        for link in self
+            .each_iter([any, any, free])
+            .filter(|link| link.index != free)
+            .filter(|link| !link.is_full())
+        {
+            unsafe {
+                self.detach_external_target(link.index);
+                self.attach_internal_target(free, link.index);
+            }
+        }
+    }
 }
 
 impl<
@@ -701,27 +749,7 @@ impl<
             self.unused.detach(free)
         }
 
-        let any = constants.any;
-        for link in self
-            .each_iter([any, free, any])
-            .filter(|link| link.index != free)
-        {
-            unsafe {
-                self.detach_external_source(link.index);
-                self.attach_internal_source(free, link.index);
-            }
-        }
-
-        for link in self
-            .each_iter([any, any, free])
-            .filter(|link| link.index != free)
-            .filter(|link| !link.is_full())
-        {
-            unsafe {
-                self.detach_external_target(link.index);
-                self.attach_internal_target(free, link.index);
-            }
-        }
+        self.resolve_danglind_external(free);
 
         Ok(handler(
             Link::nothing(),
@@ -813,27 +841,7 @@ impl<
         let index = query[0];
         let link = self.try_get_link(index)?;
 
-        let any = self.constants.any;
-        for link in self
-            .each_iter([any, index, any])
-            .filter(|link| link.index != index)
-        {
-            unsafe {
-                self.detach_internal_source(index, link.index);
-                self.attach_external_source(link.index);
-            }
-        }
-
-        for link in self
-            .each_iter([any, any, index])
-            .filter(|link| link.index != index)
-            .filter(|link| !link.is_full())
-        {
-            unsafe {
-                self.detach_internal_target(index, link.index);
-                self.attach_external_target(link.index);
-            }
-        }
+        self.resolve_danglind_internal(index);
 
         self.update(index, zero(), zero())?;
 
