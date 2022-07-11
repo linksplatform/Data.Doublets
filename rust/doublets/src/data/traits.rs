@@ -14,7 +14,7 @@ pub type ReadHandler<'a, T> = &'a mut dyn FnMut(Link<T>) -> Flow;
 
 pub type WriteHandler<'a, T> = &'a mut dyn FnMut(Link<T>, Link<T>) -> Flow;
 
-pub trait Links<T: LinkType> {
+pub trait Links<T: LinkType>: Send + Sync {
     fn constants(&self) -> &LinksConstants<T>;
 
     fn count_links(&self, query: &[T]) -> T;
