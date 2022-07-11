@@ -17,8 +17,6 @@ use data::{Flow, Flow::Continue, LinksConstants, ToQuery};
 use mem::{RawMem, DEFAULT_PAGE_SIZE};
 use methods::RelativeCircularLinkedList;
 use num::LinkType;
-use smallvec::SmallVec;
-use yield_iter::generator;
 
 pub struct Store<
     T: LinkType,
@@ -487,30 +485,6 @@ impl<
             };
         }
         todo!()
-    }
-
-    pub fn iter<'a>(&'a self) -> impl Iterator<Item = Link<T>> + 'a {
-        generator! {
-            for index in one()..=self.get_header().allocated {
-                if let Some(link) = self.get_link(index) {
-                    yield link;
-                }
-            }
-        }
-    }
-
-    pub fn each_iter(&self, query: impl ToQuery<T>) -> impl Iterator<Item = Link<T>> {
-        let count = self.count_by(query.to_query());
-        // todo: wait const generics feature
-        //  64 / (8 * 3) = 2
-        let mut vec = SmallVec::<[_; 2]>::with_capacity(count.as_());
-
-        self.each_by(query, |link| {
-            vec.push(link);
-            Continue
-        });
-
-        vec.into_iter()
     }
 
     fn resolve_danglind_internal(&mut self, index: T) {

@@ -15,9 +15,7 @@ use leak_slice::LeakSliceExt;
 use mem::{RawMem, DEFAULT_PAGE_SIZE};
 use num::LinkType;
 use num_traits::{one, zero};
-use smallvec::SmallVec;
 use std::{cmp, cmp::Ordering, error::Error, mem::transmute, ptr::NonNull};
-use yield_iter::generator;
 
 pub struct Store<
     T: LinkType,
@@ -321,30 +319,6 @@ impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: 
             };
         }
         todo!()
-    }
-
-    pub fn iter<'a>(&'a self) -> impl Iterator<Item = Link<T>> + 'a {
-        generator! {
-            for index in one()..=self.get_header().allocated {
-                if let Some(link) = self.get_link(index) {
-                    yield link;
-                }
-            }
-        }
-    }
-
-    pub fn each_iter(&self, query: impl ToQuery<T>) -> impl Iterator<Item = Link<T>> {
-        let count = self.count_by(query.to_query());
-        // todo: wait const generics feature
-        //  64 / (8 * 3) = 2
-        let mut vec = SmallVec::<[_; 2]>::with_capacity(count.as_());
-
-        self.each_by(query, |link| {
-            vec.push(link);
-            Continue
-        });
-
-        vec.into_iter()
     }
 }
 

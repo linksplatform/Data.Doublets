@@ -5,6 +5,7 @@
 #![feature(default_free_fn)]
 #![feature(unboxed_closures)]
 #![feature(nonnull_slice_from_raw_parts)]
+#![feature(associated_type_defaults)]
 
 pub mod data;
 pub mod mem;

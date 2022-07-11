@@ -1,5 +1,7 @@
+use cfg_if::cfg_if;
 use std::{
     default::default,
+    mem::size_of,
     ops::{ControlFlow, Try},
 };
 
@@ -39,6 +41,29 @@ pub trait Links<T: LinkType>: Send + Sync {
         query: &[T],
         handler: WriteHandler<T>,
     ) -> Result<Flow, LinksError<T>>;
+
+    fn iter_links(&self) -> Box<dyn Iterator<Item = Link<T>>> {
+        self.each_iter_links(&[])
+    }
+
+    fn each_iter_links(&self, query: &[T]) -> Box<dyn Iterator<Item = Link<T>>> {
+        let capacity = self.count_links(query).as_();
+
+        cfg_if! {
+            if #[cfg(feature = "smallvec-optimization")] {
+                let mut vec = smallvec::SmallVec::<[_; 2]>::with_capacity(capacity);
+            } else {
+                let mut vec = Vec::with_capacity(capacity);
+            }
+        }
+
+        self.each_links(query, &mut |link| {
+            vec.push(link);
+            Flow::Continue
+        });
+
+        Box::new(vec.into_iter())
+    }
 }
 
 pub trait Doublets<T: LinkType>: Links<T> {
@@ -137,6 +162,17 @@ pub trait Doublets<T: LinkType>: Links<T> {
         Self: Sized,
     {
         self.each_by([], handler)
+    }
+
+    fn iter(&self) -> Box<dyn Iterator<Item = Link<T>>> {
+        self.iter_links()
+    }
+
+    fn each_iter(&self, query: impl ToQuery<T>) -> Box<dyn Iterator<Item = Link<T>>>
+    where
+        Self: Sized,
+    {
+        self.each_iter_links(&query.to_query()[..])
     }
 
     fn update_by_with<H, R>(
@@ -632,7 +668,7 @@ pub trait Doublets<T: LinkType>: Links<T> {
     }
 }
 
-impl<T: LinkType> Links<T> for Box<dyn Doublets<T>> {
+impl<T: LinkType, All: Doublets<T> + ?Sized> Links<T> for Box<All> {
     fn constants(&self) -> &LinksConstants<T> {
         (**self).constants()
     }
@@ -671,4 +707,4 @@ impl<T: LinkType> Links<T> for Box<dyn Doublets<T>> {
     }
 }
 
-impl<T: LinkType> Doublets<T> for Box<dyn Doublets<T>> {}
+impl<T: LinkType, All: Doublets<T> + ?Sized> Doublets<T> for Box<All> {}

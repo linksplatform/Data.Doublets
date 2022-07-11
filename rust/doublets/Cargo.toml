@@ -25,13 +25,16 @@ rand = "0.8"
 thiserror = "1.0.30"
 num-traits = "^0.2.14"
 leak_slice = "0.2"
-yield-iter = "0.1.0"
-smallvec = { version = "1.8", features = ["const_generics"] }
+cfg-if = "1.0.0"
 
+# platform
 data = { package = "platform-data", version = "0.1.0-beta.1" }
 num = { package = "platform-num", version = "0.1.0-alpha.1" }
 mem = { package = "platform-mem", version = "0.1.0-beta.1" }
 methods = { package = "platform-treesmethods", version = "0.1.0-alpha.2" }
+
+# optional
+smallvec = { version = "1.8", features = ["const_generics"], optional = true }
 
 [features]
 mem = []
@@ -39,6 +42,8 @@ num = []
 data = []
 # todo: may be internal_platform
 platform = ["mem", "num", "data"]
+
+smallvec-optimization = ["smallvec"]
 
 default = ["platform"]
 full = ["platform"]
