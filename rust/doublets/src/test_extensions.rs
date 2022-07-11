@@ -6,7 +6,7 @@ use crate::{Doublets, Link};
 use data::{Flow, Hybrid};
 use num::LinkType;
 
-pub trait DoubletsTestExt<T: LinkType>: Doublets<T> {
+pub trait DoubletsTestExt<T: LinkType>: Doublets<T> + Sized {
     fn test_crud(&mut self) {
         let constants = self.constants().clone();
 
