@@ -1,6 +1,6 @@
 use criterion::{black_box, criterion_group, criterion_main, Criterion};
 use data::Flow::Continue;
-use doublets::{split::Store, Doublets};
+use doublets::{split::Store, Doublets, Links};
 use mem::GlobalMem;
 
 fn iter(c: &mut Criterion) {

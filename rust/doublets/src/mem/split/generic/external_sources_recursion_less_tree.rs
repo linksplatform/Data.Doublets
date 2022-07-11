@@ -1,5 +1,5 @@
 use num_traits::{one, zero};
-use std::{mem::transmute, ops::Try, ptr::NonNull};
+use std::{mem::transmute, ptr::NonNull};
 
 use crate::mem::{
     header::LinksHeader,

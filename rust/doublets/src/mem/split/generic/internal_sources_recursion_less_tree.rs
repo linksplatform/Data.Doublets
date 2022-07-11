@@ -1,5 +1,5 @@
 use num_traits::zero;
-use std::{ops::Try, ptr::NonNull};
+use std::ptr::NonNull;
 
 use crate::mem::traits::LinksTree;
 

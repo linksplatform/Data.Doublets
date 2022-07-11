@@ -1,13 +1,11 @@
-use std::default::default;
-use std::marker::PhantomData;
-use std::ops::Try;
+use std::{default::default, marker::PhantomData, ops::Try};
 
-use doublets::data::LinksConstants;
-use doublets::data::ToQuery;
-use doublets::num::LinkType;
+use doublets::{
+    data::{LinksConstants, ToQuery},
+    num::LinkType,
+};
 
-use doublets::Error;
-use doublets::{Doublets, Link};
+use doublets::{Doublets, Error, Link};
 
 pub struct NonNullDeletionResolver<T: LinkType, L: Doublets<T>> {
     links: L,

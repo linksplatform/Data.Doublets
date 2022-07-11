@@ -1,9 +1,7 @@
 use std::{mem::transmute, ptr::NonNull};
 
-use crate::{
-    mem::{
-        header::LinksHeader, traits::UnitList, unit::raw_link::LinkPart, LinksList, UnitUpdateMem,
-    },
+use crate::mem::{
+    header::LinksHeader, traits::UnitList, unit::raw_link::LinkPart, LinksList, UnitUpdateMem,
 };
 use methods::{AbsoluteCircularLinkedList, AbsoluteLinkedList, LinkedList};
 use num::LinkType;

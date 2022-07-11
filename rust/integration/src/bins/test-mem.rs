@@ -1,4 +1,3 @@
-
 //use doublets::{mem::unit::Store, Doublets};
 
 use std::error::Error;

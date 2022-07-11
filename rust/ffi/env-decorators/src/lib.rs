@@ -1,7 +1,9 @@
 use proc_macro::TokenStream;
 use quote::quote;
-use syn::parse::{Parse, ParseStream};
-use syn::{Expr, LitStr, Token, Type};
+use syn::{
+    parse::{Parse, ParseStream},
+    Expr, LitStr, Token, Type,
+};
 
 struct EnvInput {
     env: String,
@@ -21,7 +23,8 @@ impl Parse for EnvInput {
 pub fn env_value(item: TokenStream) -> TokenStream {
     let EnvInput { env, expr } = syn::parse_macro_input!(item as EnvInput);
     let mut expr = quote! { #expr };
-    std::env::var(env).unwrap_or_default()
+    std::env::var(env)
+        .unwrap_or_default()
         .split_whitespace()
         .rev()
         .for_each(|name| {
@@ -58,7 +61,8 @@ impl Parse for EnvType {
 pub fn env_type(item: TokenStream) -> TokenStream {
     let EnvType { env, pat, default } = syn::parse_macro_input!(item as EnvType);
     let mut ty = quote! { #default };
-    std::env::var(env).unwrap_or_default()
+    std::env::var(env)
+        .unwrap_or_default()
         .split_whitespace()
         .rev()
         .for_each(|name| {

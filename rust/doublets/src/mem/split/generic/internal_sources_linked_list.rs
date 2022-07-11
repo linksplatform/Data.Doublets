@@ -2,7 +2,7 @@ use crate::Link;
 use data::{Flow, LinksConstants};
 use std::mem::transmute;
 
-use std::{ops::Try, ptr::NonNull};
+use std::ptr::NonNull;
 
 use crate::mem::{
     header::LinksHeader,

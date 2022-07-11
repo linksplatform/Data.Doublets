@@ -3,9 +3,9 @@ use doublets::{
         Flow::{Break, Continue},
         ToQuery,
     },
-    mem::{GlobalMem, LinksTree},
+    mem::GlobalMem,
     num::LinkType,
-    split, unit, Doublets, Error as LinksError, Link, Links,
+    split, Doublets, Error as LinksError, Link, Links,
 };
 use num_traits::zero;
 use std::{error::Error, time::Instant};
@@ -115,10 +115,10 @@ fn bug() -> Result<(), Box<dyn Error>> {
 
     let a = store.create_point()?;
     let b = store.create_point()?;
-    let c = store.create_link(a, b)?;
+    let _c = store.create_link(a, b)?;
 
-    let d = store.create_link(1, 10)?;
-    let d = store.create_link(10, 1)?;
+    let _d = store.create_link(1, 10)?;
+    let _d = store.create_link(10, 1)?;
 
     store.delete(a)?;
 

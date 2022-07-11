@@ -2,19 +2,14 @@
 
 use proc_macro::TokenStream;
 
-
-
-
-use darling::{FromMeta};
+use darling::FromMeta;
 use quote::{quote, ToTokens};
 
-
-use syn::parse::Parser;
-use syn::punctuated::Punctuated;
+use syn::{parse::Parser, punctuated::Punctuated};
 
 use syn::{
-    parse_macro_input, AttributeArgs, FnArg, GenericArgument, GenericParam,
-    Ident, ItemFn, PathArguments, ReturnType, Type,
+    parse_macro_input, AttributeArgs, FnArg, GenericArgument, GenericParam, Ident, ItemFn,
+    PathArguments, ReturnType, Type,
 };
 
 fn csharp_convention(s: String) -> String {

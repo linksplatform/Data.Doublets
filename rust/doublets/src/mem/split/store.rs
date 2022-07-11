@@ -1,4 +1,4 @@
-use std::{cmp::Ordering, default::default, error::Error, mem::transmute, ops::Try, ptr::NonNull};
+use std::{cmp::Ordering, default::default, error::Error, mem::transmute, ptr::NonNull};
 
 use num_traits::{one, zero};
 
@@ -530,7 +530,7 @@ impl<
     }
 
     fn count_links(&self, query: &[T]) -> T {
-        if query.len() == 0 {
+        if query.is_empty() {
             return self.total();
         }
 
@@ -663,7 +663,7 @@ impl<
 
     fn create_links(
         &mut self,
-        query: &[T],
+        _query: &[T],
         handler: WriteHandler<T>,
     ) -> Result<Flow, LinksError<T>> {
         let constants = self.constants().clone();

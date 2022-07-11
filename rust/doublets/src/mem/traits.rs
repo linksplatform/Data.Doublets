@@ -5,7 +5,7 @@ use crate::{
 };
 use data::Flow;
 use num::LinkType;
-use std::{ops::Try, ptr::NonNull};
+use std::ptr::NonNull;
 
 pub trait LinksTree<T: LinkType> {
     fn count_usages(&self, root: T) -> T;

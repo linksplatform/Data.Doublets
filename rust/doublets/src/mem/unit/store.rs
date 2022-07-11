@@ -16,7 +16,7 @@ use mem::{RawMem, DEFAULT_PAGE_SIZE};
 use num::LinkType;
 use num_traits::{one, zero};
 use smallvec::SmallVec;
-use std::{cmp, cmp::Ordering, error::Error, mem::transmute, ops::Try, ptr::NonNull};
+use std::{cmp, cmp::Ordering, error::Error, mem::transmute, ptr::NonNull};
 use yield_iter::generator;
 
 pub struct Store<
@@ -231,7 +231,7 @@ impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: 
     fn each_core(&self, handler: ReadHandler<T>, query: &[T]) -> Flow {
         let constants = self.constants();
 
-        if query.len() == 0 {
+        if query.is_empty() {
             for index in T::one()..=self.get_header().allocated {
                 if let Some(link) = self.get_link(index) {
                     handler(link)?;
@@ -356,7 +356,7 @@ impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: 
     }
 
     fn count_links(&self, query: &[T]) -> T {
-        if query.len() == 0 {
+        if query.is_empty() {
             return self.get_total();
         };
 
@@ -447,7 +447,7 @@ impl<T: LinkType, M: RawMem<LinkPart<T>>, TS: UnitTree<T>, TT: UnitTree<T>, TU: 
 
     fn create_links(
         &mut self,
-        query: &[T],
+        _query: &[T],
         handler: WriteHandler<T>,
     ) -> Result<Flow, LinksError<T>> {
         let constants = self.constants();
