@@ -11,9 +11,9 @@ use crate::{
         },
         LinksHeader, LinksTree, SplitList, SplitTree, SplitUpdateMem,
     },
-    Doublets, Link, LinksError,
+    Doublets, Link, Links, LinksError, ReadHandler, WriteHandler,
 };
-use data::{Flow::Continue, LinksConstants, ToQuery};
+use data::{Flow, Flow::Continue, LinksConstants, ToQuery};
 use mem::{RawMem, DEFAULT_PAGE_SIZE};
 use methods::RelativeCircularLinkedList;
 use num::LinkType;
@@ -353,65 +353,61 @@ impl<
         Link::new(index, raw.source, raw.target)
     }
 
-    fn try_each_by_core<F, R>(&self, handler: &mut F, restrictions: impl ToQuery<T>) -> R
-    where
-        F: FnMut(Link<T>) -> R,
-        R: Try<Output = ()>,
-    {
-        let restriction = restrictions.to_query();
+    fn try_each_by_core(&self, handler: ReadHandler<T>, query: &[T]) -> Flow {
+        let query = query.to_query();
 
-        if restriction.len() == 0 {
+        if query.len() == 0 {
             for index in one()..=self.get_header().allocated {
                 if let Some(link) = self.get_link(index) {
                     handler(link)?;
                 }
             }
-            return R::from_output(());
+            return Flow::Continue;
         }
 
         let constants = self.constants.clone();
         let any = constants.any;
         let _continue = constants.r#continue;
-        let index = restriction[constants.index_part.as_()];
-        if restriction.len() == 1 {
+        let index = query[constants.index_part.as_()];
+        if query.len() == 1 {
             return if index == any {
-                self.try_each_by_core(handler, [])
+                self.try_each_by_core(handler, &[])
             } else if let Some(link) = self.get_link(index) {
                 handler(link)
             } else {
-                R::from_output(())
+                Flow::Continue
             };
         }
         //
-        if restriction.len() == 2 {
-            let value = restriction[1];
+        if query.len() == 2 {
+            let value = query[1];
             return if index == any {
                 if value == any {
-                    self.try_each_by_core(handler, [])
+                    self.try_each_by_core(handler, &[])
                 } else {
-                    self.try_each_by_core(handler, [index, value, any])?;
-                    self.try_each_by_core(handler, [index, any, value])
+                    self.try_each_by_core(handler, &[index, value, any])?;
+                    self.try_each_by_core(handler, &[index, any, value])
                 }
             } else if let Some(link) = self.get_link(index) {
                 if value == any || link.source == value || link.target == value {
                     handler(link)
                 } else {
-                    R::from_output(())
+                    Flow::Continue
                 }
             } else {
-                R::from_output(())
+                Flow::Continue
             };
         }
         //
-        if restriction.len() == 3 {
-            let source = restriction[constants.source_part.as_()];
-            let target = restriction[constants.target_part.as_()];
+        if query.len() == 3 {
+            let source = query[constants.source_part.as_()];
+            let target = query[constants.target_part.as_()];
             let is_virtual_source = self.is_virtual(source);
             let is_virtual_target = self.is_virtual(target);
 
             return if index == any {
                 if (source, target) == (any, any) {
-                    self.try_each_by_core(handler, [])
+                    self.try_each_by_core(handler, &[])
                 } else if source == any {
                     if is_virtual_target {
                         self.external_targets.each_usages(target, handler)
@@ -455,7 +451,7 @@ impl<
                         self.internal_sources.search(source, target)
                     };
                     return if link == constants.null {
-                        R::from_output(())
+                        Flow::Continue
                     } else {
                         // SAFETY: link 100% exists
                         let link = unsafe { self.get_link(link).unwrap_unchecked() };
@@ -469,25 +465,25 @@ impl<
                     if (link.source, link.target) == (source, target) {
                         handler(link)
                     } else {
-                        R::from_output(())
+                        Flow::Continue
                     }
                 } else if source == any {
                     if link.target == target {
                         handler(link)
                     } else {
-                        R::from_output(())
+                        Flow::Continue
                     }
                 } else if target == any {
                     if link.source == source {
                         handler(link)
                     } else {
-                        R::from_output(())
+                        Flow::Continue
                     }
                 } else {
-                    R::from_output(())
+                    Flow::Continue
                 }
             } else {
-                R::from_output(())
+                Flow::Continue
             };
         }
         todo!()
@@ -527,15 +523,13 @@ impl<
     IT: SplitTree<T>,
     ET: SplitTree<T>,
     UL: SplitList<T>,
-> Doublets<T> for Store<T, MD, MI, IS, ES, IT, ET, UL>
+> Links<T> for Store<T, MD, MI, IS, ES, IT, ET, UL>
 {
-    fn constants(&self) -> LinksConstants<T> {
-        self.constants.clone()
+    fn constants(&self) -> &LinksConstants<T> {
+        &self.constants
     }
 
-    fn count_by(&self, query: impl ToQuery<T>) -> T {
-        let query = query.to_query();
-
+    fn count_links(&self, query: &[T]) -> T {
         if query.len() == 0 {
             return self.total();
         }
@@ -667,16 +661,12 @@ impl<
         todo!()
     }
 
-    fn create_by_with<F, R>(
+    fn create_links(
         &mut self,
-        _query: impl ToQuery<T>,
-        mut handler: F,
-    ) -> Result<R, LinksError<T>>
-    where
-        F: FnMut(Link<T>, Link<T>) -> R,
-        R: Try<Output = ()>,
-    {
-        let constants = self.constants();
+        query: &[T],
+        handler: WriteHandler<T>,
+    ) -> Result<Flow, LinksError<T>> {
+        let constants = self.constants().clone();
         let header = self.get_header();
         let mut free = header.first_free;
         if free == constants.null {
@@ -739,27 +729,16 @@ impl<
         ))
     }
 
-    fn each_by<F, R>(&self, restrictions: impl ToQuery<T>, mut handler: F) -> R
-    where
-        F: FnMut(Link<T>) -> R,
-        R: Try<Output = ()>,
-    {
-        self.try_each_by_core(&mut handler, restrictions.to_query())
+    fn each_links(&self, query: &[T], handler: ReadHandler<T>) -> Flow {
+        self.try_each_by_core(handler, query)
     }
 
-    fn update_by_with<F, R>(
+    fn update_links(
         &mut self,
-        query: impl ToQuery<T>,
-        change: impl ToQuery<T>,
-        mut handler: F,
-    ) -> Result<R, LinksError<T>>
-    where
-        F: FnMut(Link<T>, Link<T>) -> R,
-        R: Try<Output = ()>,
-    {
-        let query = query.to_query();
-        let change = change.to_query();
-
+        query: &[T],
+        change: &[T],
+        handler: WriteHandler<T>,
+    ) -> Result<Flow, LinksError<T>> {
         let index = query[0];
         let new_source = change[1];
         let new_target = change[2];
@@ -826,17 +805,11 @@ impl<
         Ok(handler(link, Link::new(index, place.source, place.target)))
     }
 
-    fn delete_by_with<F, R>(
+    fn delete_links(
         &mut self,
-        query: impl ToQuery<T>,
-        mut handler: F,
-    ) -> Result<R, LinksError<T>>
-    where
-        F: FnMut(Link<T>, Link<T>) -> R,
-        R: Try<Output = ()>,
-    {
-        let query = query.to_query();
-
+        query: &[T],
+        handler: WriteHandler<T>,
+    ) -> Result<Flow, LinksError<T>> {
         let index = query[0];
         let link = self.try_get_link(index)?;
 
@@ -900,7 +873,19 @@ impl<
             Link::nothing(),
         ))
     }
+}
 
+impl<
+    T: LinkType,
+    MD: RawMem<DataPart<T>>,
+    MI: RawMem<IndexPart<T>>,
+    IS: SplitTree<T>,
+    ES: SplitTree<T>,
+    IT: SplitTree<T>,
+    ET: SplitTree<T>,
+    UL: SplitList<T>,
+> Doublets<T> for Store<T, MD, MI, IS, ES, IT, ET, UL>
+{
     fn get_link(&self, index: T) -> Option<Link<T>> {
         if self.exists(index) {
             Some(unsafe { self.get_link_unchecked(index) })

@@ -17,6 +17,7 @@ use doublets::{
         LinksConstants, Query,
     },
     num::LinkType,
+    Links,
 };
 use libc::{c_char, c_void};
 use log::{error, warn};
@@ -222,7 +223,7 @@ unsafe fn drop_united_links<T: LinkType>(this: *mut c_void) {
 )]
 unsafe fn get_constants_united_links<T: LinkType>(this: *mut c_void) -> Constants<T> {
     let links: &mut WrappedLinks<T> = unnul_or_error(this);
-    links.constants().into()
+    links.constants().clone().into()
 }
 
 #[ffi::specialize_for(

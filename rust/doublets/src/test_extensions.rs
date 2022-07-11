@@ -8,7 +8,7 @@ use num::LinkType;
 
 pub trait DoubletsTestExt<T: LinkType>: Doublets<T> {
     fn test_crud(&mut self) {
-        let constants = self.constants();
+        let constants = self.constants().clone();
 
         assert_eq!(self.count(), zero());
 
@@ -44,7 +44,7 @@ pub trait DoubletsTestExt<T: LinkType>: Doublets<T> {
     fn test_raw_numbers_crud(&mut self) {
         let links = self;
 
-        let constants = links.constants();
+        let constants = links.constants().clone();
 
         let n106 = T::from(106_usize);
         let n107 = T::from(char::from_u32(107).unwrap() as usize);

@@ -3,6 +3,7 @@ use crate::{
     split::{DataPart, IndexPart},
     Link,
 };
+use data::Flow;
 use num::LinkType;
 use std::{ops::Try, ptr::NonNull};
 
@@ -11,7 +12,7 @@ pub trait LinksTree<T: LinkType> {
 
     fn search(&self, source: T, target: T) -> T;
 
-    fn each_usages<H: FnMut(Link<T>) -> R, R: Try<Output = ()>>(&self, root: T, handler: H) -> R;
+    fn each_usages<H: FnMut(Link<T>) -> Flow + ?Sized>(&self, root: T, handler: &mut H) -> Flow;
 
     fn detach(&mut self, root: &mut T, index: T);
 

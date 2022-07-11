@@ -35,6 +35,17 @@ impl<T: LinkType> Link<T> {
         Self::new(val, val, val)
     }
 
+    pub fn from_slice(slice: &[T]) -> Link<T> {
+        assert!(slice.len() >= 3);
+
+        Self::from_slice_unchecked(slice)
+    }
+
+    pub fn from_slice_unchecked(slice: &[T]) -> Link<T> {
+        let (index, source, target) = (slice[0], slice[1], slice[2]);
+        Self::new(index, source, target)
+    }
+
     pub fn is_null(&self) -> bool {
         *self == Self::point(zero())
     }

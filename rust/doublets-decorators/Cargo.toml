@@ -15,6 +15,6 @@ Decorators for doublets
 
 [dependencies]
 num-traits = "0.2.14"
-doublets = { path = "../doublets", package = "doublets", version = "0.1.0-alpha.17", features = ["full"] }
+doublets = { package = "doublets", version = "0.1.0-alpha.17", features = ["full"] }
 data = { package = "platform-data", version = "0.1.0-alpha.0" }
 num = { package = "platform-num", version = "0.1.0-alpha.0" }

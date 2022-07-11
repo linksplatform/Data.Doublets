@@ -1,6 +1,6 @@
 use std::{
     default::default,
-    ops::{Try},
+    ops::{ControlFlow, Try},
 };
 
 use crate::{FuseHandler, Link, LinksError};
@@ -10,14 +10,62 @@ use num_traits::{one, zero};
 
 pub type Result<T, E = LinksError<T>> = std::result::Result<T, E>;
 
-fn ignore<T: LinkType>(_: Link<T>, _: Link<T>) -> Result<(), ()> {
-    Err(())
+pub type ReadHandler<'a, T> = &'a mut dyn FnMut(Link<T>) -> Flow;
+
+pub type WriteHandler<'a, T> = &'a mut dyn FnMut(Link<T>, Link<T>) -> Flow;
+
+pub trait Links<T: LinkType> {
+    fn constants(&self) -> &LinksConstants<T>;
+
+    fn count_links(&self, query: &[T]) -> T;
+
+    fn create_links(
+        &mut self,
+        query: &[T],
+        handler: WriteHandler<T>,
+    ) -> Result<Flow, LinksError<T>>;
+
+    fn each_links(&self, query: &[T], handler: ReadHandler<T>) -> Flow;
+
+    fn update_links(
+        &mut self,
+        query: &[T],
+        change: &[T],
+        handler: WriteHandler<T>,
+    ) -> Result<Flow, LinksError<T>>;
+
+    fn delete_links(
+        &mut self,
+        query: &[T],
+        handler: WriteHandler<T>,
+    ) -> Result<Flow, LinksError<T>>;
 }
 
-pub trait Doublets<T: LinkType> {
-    fn constants(&self) -> LinksConstants<T>;
+macro_rules! operation_impl {
+    ($op:ident, query, $($args:expr),+ $(,)?) => {
+        let mut output = Flow::Continue;
+        let query = query.to_query();
 
-    fn count_by(&self, query: impl ToQuery<T>) -> T;
+        self.$op(&query[..], &mut |before, after| {
+            let before = Link::from_slice_unchecked(before);
+            let after = Link::from_slice_unchecked(after);
+
+            match handler(before, after).branch() {
+                ControlFlow::Continue(_) => Flow::Continue,
+                ControlFlow::Break(residual) => {
+                    output = R::from_output(residual);
+                    Flow::Break
+                }
+            }
+        })
+        .map(|| output)
+    };
+}
+
+pub trait Doublets<T: LinkType>: Links<T> {
+    fn count_by(&self, query: impl ToQuery<T>) -> T {
+        self.count_links(&query.to_query()[..])
+    }
 
     fn count(&self) -> T {
         self.count_by([])
@@ -26,11 +74,27 @@ pub trait Doublets<T: LinkType> {
     fn create_by_with<F, R>(
         &mut self,
         query: impl ToQuery<T>,
-        handler: F,
+        mut handler: F,
     ) -> Result<R, LinksError<T>>
     where
         F: FnMut(Link<T>, Link<T>) -> R,
-        R: Try<Output = ()>;
+        R: Try<Output = ()>,
+    {
+        let mut output = R::from_output(());
+        let query = query.to_query();
+
+        self.create_links(
+            &query[..],
+            &mut |before, after| match handler(before, after).branch() {
+                ControlFlow::Continue(_) => Flow::Continue,
+                ControlFlow::Break(residual) => {
+                    output = R::from_residual(residual);
+                    Flow::Break
+                }
+            },
+        )
+        .map(|_| output)
+    }
 
     fn create_by(&mut self, query: impl ToQuery<T>) -> Result<T, LinksError<T>> {
         let mut index = default();
@@ -53,10 +117,24 @@ pub trait Doublets<T: LinkType> {
         self.create_by([])
     }
 
-    fn each_by<F, R>(&self, restrictions: impl ToQuery<T>, handler: F) -> R
+    fn each_by<F, R>(&self, query: impl ToQuery<T>, mut handler: F) -> R
     where
         F: FnMut(Link<T>) -> R,
-        R: Try<Output = ()>;
+        R: Try<Output = ()>,
+    {
+        let mut output = R::from_output(());
+        let query = query.to_query();
+
+        self.each_links(&query[..], &mut |link| match handler(link).branch() {
+            ControlFlow::Continue(_) => Flow::Continue,
+            ControlFlow::Break(residual) => {
+                output = R::from_residual(residual);
+                Flow::Break
+            }
+        });
+
+        output
+    }
 
     fn each<F, R>(&self, handler: F) -> R
     where
@@ -70,11 +148,29 @@ pub trait Doublets<T: LinkType> {
         &mut self,
         query: impl ToQuery<T>,
         change: impl ToQuery<T>,
-        handler: H,
+        mut handler: H,
     ) -> Result<R, LinksError<T>>
     where
         H: FnMut(Link<T>, Link<T>) -> R,
-        R: Try<Output = ()>;
+        R: Try<Output = ()>,
+    {
+        let mut output = R::from_output(());
+        let query = query.to_query();
+        let change = change.to_query();
+
+        self.update_links(
+            &query[..],
+            &change[..],
+            &mut |before, after| match handler(before, after).branch() {
+                ControlFlow::Continue(_) => Flow::Continue,
+                ControlFlow::Break(residual) => {
+                    output = R::from_residual(residual);
+                    Flow::Break
+                }
+            },
+        )
+        .map(|_| output)
+    }
 
     fn update_by(&mut self, query: impl ToQuery<T>, change: impl ToQuery<T>) -> Result<T> {
         let mut result = default();
@@ -106,11 +202,27 @@ pub trait Doublets<T: LinkType> {
     fn delete_by_with<F, R>(
         &mut self,
         query: impl ToQuery<T>,
-        handler: F,
+        mut handler: F,
     ) -> Result<R, LinksError<T>>
     where
         F: FnMut(Link<T>, Link<T>) -> R,
-        R: Try<Output = ()>;
+        R: Try<Output = ()>,
+    {
+        let mut output = R::from_output(());
+        let query = query.to_query();
+
+        self.delete_links(
+            &query[..],
+            &mut |before, after| match handler(before, after).branch() {
+                ControlFlow::Continue(_) => Flow::Continue,
+                ControlFlow::Break(residual) => {
+                    output = R::from_residual(residual);
+                    Flow::Break
+                }
+            },
+        )
+        .map(|_| output)
+    }
 
     fn delete_by(&mut self, query: impl ToQuery<T>) -> Result<T> {
         let mut result = default();
@@ -217,7 +329,7 @@ pub trait Doublets<T: LinkType> {
     }
 
     fn delete_usages(&mut self, index: T) -> Result<(), LinksError<T>> {
-        self.delete_usages_with(index, ignore)
+        self.delete_usages_with(index, |_, _| Flow::Continue)
     }
 
     fn create_point(&mut self) -> Result<T> {

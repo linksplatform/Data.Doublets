@@ -1,4 +1,4 @@
-use doublets::{split, unit, Doublets, Error, Link};
+use doublets::{split, unit, Doublets, Error, Link, Links};
 use mem::GlobalMem;
 use std::collections::HashSet;
 

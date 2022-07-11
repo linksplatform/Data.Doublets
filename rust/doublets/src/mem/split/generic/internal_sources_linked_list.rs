@@ -1,14 +1,14 @@
 use crate::Link;
-use data::LinksConstants;
+use data::{Flow, LinksConstants};
 use std::mem::transmute;
 
 use std::{ops::Try, ptr::NonNull};
 
 use crate::mem::{
     header::LinksHeader,
-    split::{DataPart, IndexPart}, SplitUpdateMem,
+    split::{DataPart, IndexPart},
+    SplitUpdateMem,
 };
-
 
 use methods::{LinkedList, RelativeCircularLinkedList, RelativeLinkedList};
 use num::LinkType;
@@ -67,11 +67,11 @@ impl<T: LinkType> InternalSourcesLinkedList<T> {
         self.get_size(head)
     }
 
-    pub fn each_usages<R: Try<Output = ()>, H: FnMut(Link<T>) -> R>(
+    pub fn each_usages<H: FnMut(Link<T>) -> Flow + ?Sized>(
         &self,
         source: T,
         handler: &mut H,
-    ) -> R {
+    ) -> Flow {
         let mut current = self.get_first(source);
         let first = current;
 
@@ -79,10 +79,10 @@ impl<T: LinkType> InternalSourcesLinkedList<T> {
             handler(self.get_link_value(current))?;
             current = self.get_next(current);
             if current == first {
-                return R::from_output(());
+                return Flow::Continue;
             }
         }
-        R::from_output(())
+        Flow::Continue
     }
 }
 

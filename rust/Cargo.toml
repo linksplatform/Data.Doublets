@@ -8,3 +8,6 @@ members = [
     # internal
     "integration"
 ]
+exclude = [
+    "profiling"
+]

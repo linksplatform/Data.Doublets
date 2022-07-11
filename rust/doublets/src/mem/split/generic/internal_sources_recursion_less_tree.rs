@@ -15,7 +15,7 @@ use crate::mem::{
 };
 
 use crate::{mem::SplitTree, Link};
-use data::LinksConstants;
+use data::{Flow, LinksConstants};
 use methods::{NoRecurSzbTree, SzbTree};
 use num::LinkType;
 
@@ -94,20 +94,20 @@ impl<T: LinkType> SzbTree<T> for InternalSourcesRecursionlessTree<T> {
 
 impl<T: LinkType> NoRecurSzbTree<T> for InternalSourcesRecursionlessTree<T> {}
 
-fn each_usages_core<T: LinkType, R: Try<Output = ()>, H: FnMut(Link<T>) -> R>(
+fn each_usages_core<T: LinkType, H: FnMut(Link<T>) -> Flow + ?Sized>(
     _self: &InternalSourcesRecursionlessTree<T>,
     base: T,
     link: T,
     handler: &mut H,
-) -> R {
+) -> Flow {
     if link == zero() {
-        return R::from_output(());
+        return Flow::Continue;
     }
 
     each_usages_core(_self, base, _self.get_left_or_default(link), handler)?;
     handler(_self.get_link_value(link))?;
     each_usages_core(_self, base, _self.get_right_or_default(link), handler)?;
-    R::from_output(())
+    Flow::Continue
 }
 
 impl<T: LinkType> LinksTree<T> for InternalSourcesRecursionlessTree<T> {
@@ -119,12 +119,8 @@ impl<T: LinkType> LinksTree<T> for InternalSourcesRecursionlessTree<T> {
         self.search_core(self.get_tree_root(source), target)
     }
 
-    fn each_usages<H: FnMut(Link<T>) -> R, R: Try<Output = ()>>(
-        &self,
-        root: T,
-        mut handler: H,
-    ) -> R {
-        each_usages_core(self, root, self.get_tree_root(root), &mut handler)
+    fn each_usages<H: FnMut(Link<T>) -> Flow + ?Sized>(&self, root: T, handler: &mut H) -> Flow {
+        each_usages_core(self, root, self.get_tree_root(root), handler)
     }
 
     fn detach(&mut self, root: &mut T, index: T) {

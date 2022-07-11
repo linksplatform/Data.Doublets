@@ -5,7 +5,7 @@ use doublets::{
     },
     mem::{GlobalMem, LinksTree},
     num::LinkType,
-    split, unit, Doublets, Error as LinksError, Link,
+    split, unit, Doublets, Error as LinksError, Link, Links,
 };
 use num_traits::zero;
 use std::{error::Error, time::Instant};
