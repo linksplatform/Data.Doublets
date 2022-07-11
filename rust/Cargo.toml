@@ -3,11 +3,10 @@
 members = [
     "ffi",
     "doublets",
-    "doublets-decorators",
 
     # internal
     "integration"
 ]
 exclude = [
-    "profiling"
+    "doublets-decorators",
 ]
