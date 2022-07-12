@@ -1,6 +1,6 @@
 [package]
 name = "doublets"
-version = "0.1.0-beta.12"
+version = "0.1.0-beta.13"
 edition = "2021"
 authors = [
     "uselessgoddess",
@@ -46,7 +46,7 @@ platform = ["mem", "num", "data"]
 smallvec-optimization = ["smallvec"]
 
 default = ["platform"]
-full = ["platform"]
+full = ["platform", "smallvec-optimization"]
 
 [dev-dependencies]
 criterion = "0.3"
