@@ -24,5 +24,16 @@ pub enum Error<T: LinkType> {
     ),
 
     #[error("other internal error: `{0}`")]
-    Other(#[from] Box<dyn StdError>),
+    Other(#[from] Box<dyn StdError + Sync + Send>),
+}
+
+#[allow(dead_code)]
+mod assertions {
+    const fn assert<T>()
+    where
+        T: Sync + Send + 'static,
+    {
+    }
+
+    const ASSERT: () = assert::<super::Error<usize>>();
 }
