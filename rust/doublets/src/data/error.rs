@@ -27,13 +27,4 @@ pub enum Error<T: LinkType> {
     Other(#[from] Box<dyn StdError + Sync + Send>),
 }
 
-#[allow(dead_code)]
-mod assertions {
-    const fn assert<T>()
-    where
-        T: Sync + Send + 'static,
-    {
-    }
-
-    const ASSERT: () = assert::<super::Error<usize>>();
-}
+static_assertions::assert_impl_all!(Error<usize>: Send, Sync);

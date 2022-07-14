@@ -25,7 +25,8 @@ rand = "0.8"
 thiserror = "1.0.30"
 num-traits = "^0.2.14"
 leak_slice = "0.2"
-cfg-if = "1.0.0"
+cfg-if = "1.0"
+static_assertions = "1.1"
 
 # platform
 data = { package = "platform-data", version = "0.1.0-beta.1" }
