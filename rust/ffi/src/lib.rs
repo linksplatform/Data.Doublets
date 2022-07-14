@@ -2,10 +2,13 @@
 #![feature(box_syntax)]
 #![feature(try_trait_v2)]
 
+use data::ToQuery;
 use std::{
     error::Error,
     ffi::CStr,
+    fmt::Display,
     fs::File,
+    mem,
     ops::{RangeInclusive, Try},
     ptr::{drop_in_place, null_mut},
 };
@@ -16,59 +19,61 @@ use doublets::{
         Flow::{Break, Continue},
         LinksConstants, Query,
     },
+    mem::FileMappedMem,
     num::LinkType,
-    Links,
+    Link, Links,
 };
-use libc::{c_char, c_void};
+use libc::c_char;
 use log::{error, warn};
 
-use doublets::{mem, parts, unit, Doublets};
+#[allow(non_camel_case_types)]
+type c_void = core::ffi::c_void;
+
+use doublets::{parts, unit, Doublets};
 use ffi_attributes as ffi;
 
-fn result_into_log<R, E: std::fmt::Display>(result: Result<R, E>, default: R) -> R {
-    match result {
-        Ok(r) => r,
-        Err(e) => {
-            error!("{}", e);
-            default
-        }
-    }
+fn result_into_log<R, E: Display>(result: Result<R, E>, default: R) -> R {
+    result.unwrap_or_else(|e| {
+        error!("{e}");
+        default
+    })
 }
 
-fn query_from_raw<T: LinkType>(query: *const T, len: usize) -> Query<'static, T> {
+unsafe fn query_from_raw<'a, T: LinkType>(query: *const T, len: usize) -> Query<'a, T> {
+    // it not require `#[cfg(debug_assertions)]`,
+    // because it is used in debug log mode only (llvm optimization:))
     if query.is_null() && len != 0 {
-        warn!("If `query` is null then `len` must be 0");
+        warn!("if `query` is null then `len` must be 0");
     }
 
     if query.is_null() {
         query![]
     } else {
-        Query::new(unsafe { std::slice::from_raw_parts(query, len) })
+        std::slice::from_raw_parts(query, len).to_query()
     }
 }
 
-fn unnul_or_error<'a, Ptr, R>(ptr: *mut Ptr) -> &'a mut R {
+unsafe fn unnull_or_error<'a, P, R>(ptr: *mut P) -> &'a mut R {
     if ptr.is_null() {
         // todo: use std::Backtrace or crates/tracing
         error!("Null pointer");
         panic!("Null pointer");
     } else {
-        unsafe { &mut *(ptr as *mut R) }
+        &mut *(ptr as *mut _)
     }
 }
 
 // TODO: remove ::mem:: in doublets crate
-type UnitedLinks<T> = unit::Store<T, mem::FileMappedMem<parts::LinkPart<T>>>;
+type UnitedLinks<T> = unit::Store<T, FileMappedMem<parts::LinkPart<T>>>;
 
-// type WrappedLinks<T> = env_decorators::env_type!("JS_LETS_GO", "<T, *>", UnitedLinks<T>);
-type WrappedLinks<T> = UnitedLinks<T>;
+type WrappedLinks<T> = Box<dyn Doublets<T>>;
 
 type EachCallback<T> = extern "C" fn(Link<T>) -> T;
 
-type CUDCallback<T> = extern "C" fn(before: Link<T>, after: Link<T>) -> T;
+type CUDCallback<T> = extern "C" fn(Link<T>, Link<T>) -> T;
 
-#[repr(C)]
 #[derive(Eq, PartialEq)]
+#[repr(C)]
 pub struct Range<T: LinkType>(pub T, pub T);
 
 #[repr(C)]
@@ -112,6 +117,7 @@ impl<T: LinkType> From<LinksConstants<T>> for Constants<T> {
     }
 }
 
+#[allow(clippy::from_over_into)]
 impl<T: LinkType> Into<LinksConstants<T>> for Constants<T> {
     fn into(self) -> LinksConstants<T> {
         LinksConstants {
@@ -138,25 +144,6 @@ impl<T: LinkType> Into<LinksConstants<T>> for Constants<T> {
     }
 }
 
-type DLink<T> = doublets::Link<T>;
-
-#[repr(C)]
-pub struct Link<T: LinkType> {
-    index: T,
-    source: T,
-    target: T,
-}
-
-impl<T: LinkType> From<DLink<T>> for Link<T> {
-    fn from(link: DLink<T>) -> Self {
-        Link {
-            index: link.index,
-            source: link.source,
-            target: link.target,
-        }
-    }
-}
-
 #[ffi::specialize_for(
     types = "u8",
     types = "u16",
@@ -165,7 +152,7 @@ impl<T: LinkType> From<DLink<T>> for Link<T> {
     convention = "csharp",
     name = "*Links_New"
 )]
-fn new_united_links<T: LinkType>(path: *const c_char) -> *mut c_void {
+unsafe fn new_united_links<T: LinkType>(path: *const c_char) -> *mut c_void {
     new_with_constants_united_links::<T>(path, LinksConstants::external().into())
 }
 
@@ -177,23 +164,23 @@ fn new_united_links<T: LinkType>(path: *const c_char) -> *mut c_void {
     convention = "csharp",
     name = "*Links_NewWithConstants"
 )]
-fn new_with_constants_united_links<T: LinkType>(
+unsafe fn new_with_constants_united_links<T: LinkType>(
     path: *const c_char,
     constants: Constants<T>,
 ) -> *mut c_void {
     let result: Result<_, Box<dyn Error>> = try {
-        let path = unsafe { CStr::from_ptr(path) }.to_str()?;
+        let path = CStr::from_ptr(path).to_str()?;
         let file = File::options()
             .create(true)
             .read(true)
             .write(true)
             .open(path)?;
-        let mem = mem::FileMappedMem::new(file)?;
-        let links = box env_decorators::env_value!(
-            "JS_LETS_GO",
-            UnitedLinks::<T>::with_constants(mem, constants.into())?
-        );
-        Box::into_raw(links) as *mut c_void
+        let mem = FileMappedMem::new(file)?;
+        let mut links: Box<dyn Doublets<T>> =
+            box UnitedLinks::<T>::with_constants(mem, constants.into())?;
+        let ptr = links.as_mut() as *mut _ as *mut c_void;
+        mem::forget(links);
+        ptr
     };
     result_into_log(result, null_mut())
 }
@@ -207,10 +194,8 @@ fn new_with_constants_united_links<T: LinkType>(
     name = "*Links_Drop"
 )]
 unsafe fn drop_united_links<T: LinkType>(this: *mut c_void) {
-    let links: &mut WrappedLinks<T> = unnul_or_error(this);
-    unsafe {
-        drop_in_place(links);
-    }
+    let links: &mut WrappedLinks<T> = unnull_or_error(this);
+    drop_in_place(links);
 }
 
 #[ffi::specialize_for(
@@ -222,7 +207,7 @@ unsafe fn drop_united_links<T: LinkType>(this: *mut c_void) {
     name = "*Links_GetConstants"
 )]
 unsafe fn get_constants_united_links<T: LinkType>(this: *mut c_void) -> Constants<T> {
-    let links: &mut WrappedLinks<T> = unnul_or_error(this);
+    let links: &mut WrappedLinks<T> = unnull_or_error(this);
     links.constants().clone().into()
 }
 
@@ -234,19 +219,19 @@ unsafe fn get_constants_united_links<T: LinkType>(this: *mut c_void) -> Constant
     convention = "csharp",
     name = "*Links_Create"
 )]
-fn create_united<T: LinkType>(
+unsafe fn create_united<T: LinkType>(
     this: *mut c_void,
     query: *const T,
     len: usize,
     callback: CUDCallback<T>,
 ) -> T {
-    let links: &mut WrappedLinks<T> = unnul_or_error(this);
+    let links: &mut WrappedLinks<T> = unnull_or_error(this);
     let continue_ = links.constants().r#continue;
     let break_ = links.constants().r#break;
     let result = {
         let query = query_from_raw(query, len);
-        let handler = |before: DLink<_>, after: DLink<_>| {
-            if callback(before.into(), after.into()) == continue_ {
+        let handler = |before: Link<_>, after: Link<_>| {
+            if callback(before, after) == continue_ {
                 Break
             } else {
                 Continue
@@ -274,8 +259,8 @@ fn create_united<T: LinkType>(
     convention = "csharp",
     name = "*Links_SmartCreate"
 )]
-fn smart_create_united<T: LinkType>(this: *mut c_void) -> T {
-    let links: &mut WrappedLinks<T> = unnul_or_error(this);
+unsafe fn smart_create_united<T: LinkType>(this: *mut c_void) -> T {
+    let links: &mut WrappedLinks<T> = unnull_or_error(this);
     let result = links.create();
     result_into_log(result, links.constants().error)
 }
@@ -288,12 +273,12 @@ fn smart_create_united<T: LinkType>(this: *mut c_void) -> T {
     convention = "csharp",
     name = "*Links_SmartUpdate"
 )]
-fn smart_update_united<T: LinkType>(this: *mut c_void, index: T, source: T, target: T) -> T {
-    let links: &mut WrappedLinks<T> = unnul_or_error(this);
+unsafe fn smart_update_united<T: LinkType>(this: *mut c_void, index: T, source: T, target: T) -> T {
+    let links: &mut WrappedLinks<T> = unnull_or_error(this);
     let result = links.update(index, source, target);
     result_into_log(result, links.constants().error)
 }
-/*
+
 #[ffi::specialize_for(
     types = "u8",
     types = "u16",
@@ -301,20 +286,19 @@ fn smart_update_united<T: LinkType>(this: *mut c_void, index: T, source: T, targ
     types = "u64",
     convention = "csharp",
     name = "*Links_Each"
-)]*/
-fn each_united<T: LinkType>(
+)]
+unsafe fn each_united<T: LinkType>(
     this: *mut c_void,
     query: *const T,
     len: usize,
     callback: EachCallback<T>,
 ) -> T {
-    let links: &mut WrappedLinks<T> = unnul_or_error(this);
+    let links: &mut WrappedLinks<T> = unnull_or_error(this);
     let query = query_from_raw(query, len);
-    let handler = move |link: DLink<_>| callback(link.into());
     let r#continue = links.constants().r#continue;
     let r#break = links.constants().r#break;
     let result = links.each_by(query, move |link| {
-        if handler(link) == r#continue {
+        if callback(link) == r#continue {
             Continue
         } else {
             Break
@@ -335,7 +319,7 @@ fn each_united<T: LinkType>(
     name = "*Links_Count"
 )]
 unsafe fn count_united<T: LinkType>(this: *mut c_void, query: *const T, len: usize) -> T {
-    let links: &mut WrappedLinks<T> = unnul_or_error(this);
+    let links: &mut WrappedLinks<T> = unnull_or_error(this);
     let query = query_from_raw(query, len);
     links.count_by(query)
 }
@@ -358,12 +342,12 @@ unsafe fn update_united<T: LinkType>(
 ) -> T {
     let restrictions = query_from_raw(restrictions, len_r);
     let substitutuion = query_from_raw(substitutuion, len_s);
-    let links: &mut WrappedLinks<T> = unnul_or_error(this);
+    let links: &mut WrappedLinks<T> = unnull_or_error(this);
     let continue_ = links.constants().r#continue;
     let break_ = links.constants().r#break;
     let result = {
-        let handler = move |before: DLink<T>, after: DLink<T>| {
-            if callback(before.into(), after.into()) == continue_ {
+        let handler = move |before: Link<T>, after: Link<T>| {
+            if callback(before, after) == continue_ {
                 Continue
             } else {
                 Break
@@ -398,12 +382,12 @@ unsafe fn delete_united<T: LinkType>(
     callback: CUDCallback<T>,
 ) -> T {
     let query = query_from_raw(query, len);
-    let links: &mut WrappedLinks<T> = unnul_or_error(this);
+    let links: &mut WrappedLinks<T> = unnull_or_error(this);
     let continue_ = links.constants().r#continue;
     let break_ = links.constants().r#break;
     let result = {
-        let handler = move |before: DLink<_>, after: DLink<_>| {
-            if callback(before.into(), after.into()) == break_ {
+        let handler = move |before: Link<_>, after: Link<_>| {
+            if callback(before, after) == break_ {
                 Break
             } else {
                 Continue
