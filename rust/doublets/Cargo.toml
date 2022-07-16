@@ -1,6 +1,6 @@
 [package]
 name = "doublets"
-version = "0.1.0-beta.14"
+version = "0.1.0-pre+beta.15"
 edition = "2021"
 authors = [
     "uselessgoddess",
@@ -31,7 +31,7 @@ static_assertions = "1.1"
 # platform
 data = { package = "platform-data", version = "0.1.0-beta.1" }
 num = { package = "platform-num", version = "0.1.0-alpha.1" }
-mem = { package = "platform-mem", version = "0.1.0-beta.1" }
+mem = { package = "platform-mem", version = "0.1.0-pre+beta.2" }
 methods = { package = "platform-treesmethods", version = "0.1.0-alpha.2" }
 
 # optional
