@@ -13,8 +13,7 @@
     <PackageTags>LinksPlatform;Data.Doublets;ILinks;UInt64Links;ResizableDirectMemoryLinks;UInt64ResizableDirectMemoryLinks</PackageTags>
     <PackageIconUrl>https://raw.githubusercontent.com/linksplatform/Documentation/18469f4d033ee9a5b7b84caab9c585acab2ac519/doc/Avatar-rainbow-icon-64x64.png</PackageIconUrl>
     <PackageProjectUrl>https://linksplatform.github.io/Data.Doublets</PackageProjectUrl>
-    <PackageLicenseExpression>LGPL-3.0-only</PackageLicenseExpression>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>Unlicensed</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>git://github.com/linksplatform/Data.Doublets</RepositoryUrl>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
