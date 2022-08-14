@@ -16,7 +16,14 @@
         using namespace Platform::Data::Doublets::Memory::United::Generic;
         using namespace Platform::Data::Doublets::Memory::United;
         using LinksOptionsType = LinksOptions<TLinkAddress>;
-        using StorageType = UnitedMemoryLinks<LinksOptionsType, HeapResizableDirectMemory, LinksSourcesSizeBalancedTreeMethods<LinksOptionsType>, LinksTargetsSizeBalancedTreeMethods<LinksOptionsType>, UnusedLinksListMethods<TLinkAddress>, Doublets::ILinks<LinksOptionsType>>;
+        using StorageType = UnitedMemoryLinks<
+            LinksOptionsType,
+            HeapResizableDirectMemory,
+            LinksSourcesSizeBalancedTreeMethods<LinksOptionsType>,
+            LinksTargetsSizeBalancedTreeMethods<LinksOptionsType>,
+            UnusedLinksListMethods<TLinkAddress>,
+            Doublets::ILinks<LinksOptionsType>
+        >;
         UsingStorage<StorageType>(action);
     }
 
