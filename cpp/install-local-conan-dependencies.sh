@@ -11,9 +11,9 @@ conan create platform.collections.methods/all platform.collections.methods/0.1.0
 conan create platform.converters/all platform.converters/0.1.0@ -pr=linksplatform
 conan create platform.threading/all platform.threading/0.1.0@ -pr=linksplatform
 conan create platform.memory/all platform.memory/0.1.0@ -pr=linksplatform
+conan create platform.setters/all platform.setters/0.0.1@ -pr=linksplatform
 conan create platform.data/all platform.data/0.1.0@ -pr=linksplatform
 conan create platform.delegates/all platform.delegates/0.1.3@ -pr=linksplatform
-conan create platform.setters/all platform.setters/0.0.1@ -pr=linksplatform
 conan create platform.equality/all platform.equality/0.0.1@ -pr=linksplatform
 conan create platform.exceptions/all platform.exceptions/0.2.0@ -pr=linksplatform
 conan create platform.hashing/all platform.hashing/0.2.0@ -pr=linksplatform
