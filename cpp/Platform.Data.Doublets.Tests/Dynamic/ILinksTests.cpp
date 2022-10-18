@@ -1,4 +1,4 @@
-namespace Platform::Data::Doublets::Tests
+namespace Platform::Data::Doublets::Tests::Dynamic::ILinksTests
 {
   template<typaneme TLinkAddress>
   static void FunctionWithILinksParameter(Doublets::ILinks<TLinkAddress>)

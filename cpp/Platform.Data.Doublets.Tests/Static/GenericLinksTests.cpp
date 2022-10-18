@@ -1,4 +1,4 @@
-﻿namespace Platform::Data::Doublets::Tests
+﻿namespace Platform::Data::Doublets::Tests::Static::GenericLinksTests
 {
     template<typename TStorage>
     static void UsingStorage(auto&& action)
