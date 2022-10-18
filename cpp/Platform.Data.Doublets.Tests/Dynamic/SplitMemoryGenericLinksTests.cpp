@@ -12,6 +12,8 @@
     template <typename TLinkAddress>
     static void UsingStorageWithExternalReference(auto&& action)
     {
+      using namespace Platform::Memory;
+      using namespace Platform::Data::Doublets::Memory::Split::Generic;
       using LinksOptionsType = LinksOptions<TLinkAddress>;
       using StorageType = SplitMemoryLinks<LinksOptionsType, HeapResizableDirectMemory, InternalLinksSourcesSizeBalancedTreeMethods<TLinksOptions>, InternalLinksSourcesLinkedListMethods<TLinksOptions>, InternalLinksTargetsSizeBalancedTreeMethods<TLinksOptions>, ExternalLinksSourcesSizeBalancedTreeMethods<TLinksOptions>, ExternalLinksTargetsSizeBalancedTreeMethods<TLinksOptions>, UnusedLinksListMethods<TLinksOptions>, Doublets::ILinks<LinksOptionsType>>;
       UsingStorage<StorageType>(action)
@@ -20,6 +22,8 @@
     template <typename TLinkAddress>
     static void UsingStorageWithoutExternalReferences(auto&& action)
     {
+      using namespace Platform::Memory;
+      using namespace Platform::Data::Doublets::Memory::Split::Generic;
       using LinksOptionsType = LinksOptions<TLinkAddress, LinksConstants{false}>;
       using StorageType = SplitMemoryLinks<LinksOptionsType, HeapResizableDirectMemory, InternalLinksSourcesSizeBalancedTreeMethods<TLinksOptions>, InternalLinksSourcesLinkedListMethods<TLinksOptions>, InternalLinksTargetsSizeBalancedTreeMethods<TLinksOptions>, ExternalLinksSourcesSizeBalancedTreeMethods<TLinksOptions>, ExternalLinksTargetsSizeBalancedTreeMethods<TLinksOptions>, UnusedLinksListMethods<TLinksOptions>, Doublets::ILinks<LinksOptionsType>>;
       UsingStorage<StorageType>(action);
