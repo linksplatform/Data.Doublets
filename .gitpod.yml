@@ -1,1 +1,6 @@
 image: gitpod/workspace-dotnet
+
+tasks:
+  - name: Setup & Test
+    init: cpp/setup-gitpod.sh
+    command: cpp/run_tests.sh
