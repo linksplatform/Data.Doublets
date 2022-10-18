@@ -16,7 +16,7 @@
       using namespace Platform::Data::Doublets::Memory::Split::Generic;
       using LinksOptionsType = LinksOptions<TLinkAddress>;
       using StorageType = SplitMemoryLinks<LinksOptionsType, HeapResizableDirectMemory, InternalLinksSourcesSizeBalancedTreeMethods<LinksOptionsType>, InternalLinksSourcesLinkedListMethods<LinksOptionsType>, InternalLinksTargetsSizeBalancedTreeMethods<LinksOptionsType>, ExternalLinksSourcesSizeBalancedTreeMethods<LinksOptionsType>, ExternalLinksTargetsSizeBalancedTreeMethods<LinksOptionsType>, UnusedLinksListMethods<LinksOptionsType>, Doublets::ILinks<LinksOptionsType>>;
-      UsingStorage<StorageType>(action)
+      UsingStorage<StorageType>(action);
     }
 
     template <typename TLinkAddress>
