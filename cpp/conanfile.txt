@@ -1,6 +1,7 @@
 [requires]
 gtest/cci.20210126
 benchmark/1.6.0
+platform.exceptions/0.3.0
 platform.collections.methods/0.1.0
 platform.collections/0.1.0
 platform.threading/0.1.0
