@@ -340,7 +340,7 @@
         // NOTE: The following .NET attribute has no direct equivalent in C++:
         // ORIGINAL LINE: [MethodImpl(MethodImplOptions.AggressiveInlining)] public LinkAddressType Update(IList<LinkAddressType> restriction, IList<LinkAddressType> substitution)
     public:
-        LinkAddressType Update(const  LinkType& restriction, const LinkType& substitution, const WriteHandlerType& handler)
+        LinkAddressType Update(const LinkType& restriction, const LinkType& substitution, const WriteHandlerType& handler)
         {
             auto null = Constants.Null;
             auto linkIndex = restriction[Constants.IndexPart];
@@ -381,7 +381,7 @@
 
         // TODO: Возможно нужно будет заполнение нулями, если внешнее API ими не заполняет пространство
     public:
-        LinkAddressType Create(auto&& restriction, const WriteHandlerType& handler)
+        LinkAddressType Create(const LinkType& restriction, const WriteHandlerType& handler)
         {
             auto& header = this->GetHeaderReference();
             auto freeLink = header.FirstFreeLink;
