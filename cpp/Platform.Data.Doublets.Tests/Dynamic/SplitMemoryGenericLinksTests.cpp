@@ -15,7 +15,7 @@
       using namespace Platform::Memory;
       using namespace Platform::Data::Doublets::Memory::Split::Generic;
       using LinksOptionsType = LinksOptions<TLinkAddress>;
-      using StorageType = SplitMemoryLinks<LinksOptionsType, HeapResizableDirectMemory, InternalLinksSourcesSizeBalancedTreeMethods<TLinksOptions>, InternalLinksSourcesLinkedListMethods<TLinksOptions>, InternalLinksTargetsSizeBalancedTreeMethods<TLinksOptions>, ExternalLinksSourcesSizeBalancedTreeMethods<TLinksOptions>, ExternalLinksTargetsSizeBalancedTreeMethods<TLinksOptions>, UnusedLinksListMethods<TLinksOptions>, Doublets::ILinks<LinksOptionsType>>;
+      using StorageType = SplitMemoryLinks<LinksOptionsType, HeapResizableDirectMemory, InternalLinksSourcesSizeBalancedTreeMethods<LinksOptionsType>, InternalLinksSourcesLinkedListMethods<LinksOptionsType>, InternalLinksTargetsSizeBalancedTreeMethods<LinksOptionsType>, ExternalLinksSourcesSizeBalancedTreeMethods<LinksOptionsType>, ExternalLinksTargetsSizeBalancedTreeMethods<LinksOptionsType>, UnusedLinksListMethods<LinksOptionsType>, Doublets::ILinks<LinksOptionsType>>;
       UsingStorage<StorageType>(action)
     }
 
@@ -25,7 +25,7 @@
       using namespace Platform::Memory;
       using namespace Platform::Data::Doublets::Memory::Split::Generic;
       using LinksOptionsType = LinksOptions<TLinkAddress, LinksConstants{false}>;
-      using StorageType = SplitMemoryLinks<LinksOptionsType, HeapResizableDirectMemory, InternalLinksSourcesSizeBalancedTreeMethods<TLinksOptions>, InternalLinksSourcesLinkedListMethods<TLinksOptions>, InternalLinksTargetsSizeBalancedTreeMethods<TLinksOptions>, ExternalLinksSourcesSizeBalancedTreeMethods<TLinksOptions>, ExternalLinksTargetsSizeBalancedTreeMethods<TLinksOptions>, UnusedLinksListMethods<TLinksOptions>, Doublets::ILinks<LinksOptionsType>>;
+      using StorageType = SplitMemoryLinks<LinksOptionsType, HeapResizableDirectMemory, InternalLinksSourcesSizeBalancedTreeMethods<LinksOptionsType>, InternalLinksSourcesLinkedListMethods<LinksOptionsType>, InternalLinksTargetsSizeBalancedTreeMethods<LinksOptionsType>, ExternalLinksSourcesSizeBalancedTreeMethods<LinksOptionsType>, ExternalLinksTargetsSizeBalancedTreeMethods<LinksOptionsType>, UnusedLinksListMethods<LinksOptionsType>, Doublets::ILinks<LinksOptionsType>>;
       UsingStorage<StorageType>(action);
     }
 
@@ -36,7 +36,7 @@
         using namespace Platform::Data::Doublets::Memory::Split::Generic;
         using namespace Platform::Data::Doublets::Decorators;
         using LinksOptionsType = LinksOptions<TLinkAddress>;
-        using StorageType = SplitMemoryLinks<LinksOptionsType, HeapResizableDirectMemory, InternalLinksSourcesSizeBalancedTreeMethods<TLinksOptions>, InternalLinksSourcesLinkedListMethods<TLinksOptions>, InternalLinksTargetsSizeBalancedTreeMethods<TLinksOptions>, ExternalLinksSourcesSizeBalancedTreeMethods<TLinksOptions>, ExternalLinksTargetsSizeBalancedTreeMethods<TLinksOptions>, UnusedLinksListMethods<TLinksOptions>, Doublets::ILinks<LinksOptionsType>>;
+        using StorageType = SplitMemoryLinks<LinksOptionsType, HeapResizableDirectMemory, InternalLinksSourcesSizeBalancedTreeMethods<LinksOptionsType>, InternalLinksSourcesLinkedListMethods<LinksOptionsType>, InternalLinksTargetsSizeBalancedTreeMethods<LinksOptionsType>, ExternalLinksSourcesSizeBalancedTreeMethods<LinksOptionsType>, ExternalLinksTargetsSizeBalancedTreeMethods<LinksOptionsType>, UnusedLinksListMethods<LinksOptionsType>, Doublets::ILinks<LinksOptionsType>>;
         using DecoratedStorageType = LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<StorageType>;
         UsingStorage<DecoratedStorageType>(action)
     }
