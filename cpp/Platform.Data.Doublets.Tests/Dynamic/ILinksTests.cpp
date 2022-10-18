@@ -1,7 +1,7 @@
 namespace Platform::Data::Doublets::Tests::Dynamic::ILinksTests
 {
-  template<typename TLinkAddress>
-  static void FunctionWithILinksParameter(Doublets::ILinks<TLinkAddress>)
+  template<typename TLinksOptions>
+  static void FunctionWithILinksParameter(Doublets::ILinks<TLinksOptions>)
   {
 
   }
@@ -14,6 +14,6 @@ namespace Platform::Data::Doublets::Tests::Dynamic::ILinksTests
     using LinksOptionsType = LinksOptions<TLinkAddress>;
     using StorageType = UnitedMemoryLinks<LinksOptionsType, HeapResizableDirectMemory, LinksSourcesSizeBalancedTreeMethods<LinksOptionsType>, LinksTargetsSizeBalancedTreeMethods<LinksOptionsType>, UnusedLinksListMethods<TLinkAddress>, Doublets::ILinks<LinksOptionsType>>;
     StorageType storage { HeapResizableDirectMemory{}};
-    FunctionWithILinksParameter(storage);
+    FunctionWithILinksParameter<LinksOptionsType>(storage);
   }
 }
