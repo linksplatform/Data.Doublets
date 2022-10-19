@@ -5,7 +5,7 @@
     {
       using namespace Platform::Memory;
       using namespace Platform::Data::Doublets::Memory::Split::Generic;
-      TStorage storage{ HeapResizableDirectMemory{ }, HeapResizableDirectMemory{ } };
+      TStorage storage{ HeapResizableDirectMemory{ } };
       ILinks<typename TStorage::LinkAddressType> dynamicPolymorphStorage = static_cast<ILinks<typename TStorage::LinkAddressType>>(storage);
       action(dynamicPolymorphStorage);
     }
