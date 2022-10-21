@@ -1,6 +1,6 @@
 ﻿namespace Platform::Data::Doublets::Memory::United::Generic
 {
-    template<typename TLinkAddress, LinksConstants<TLinkAddress> VConstants>
+    template<std::integral TLinkAddress, LinksConstants<TLinkAddress> VConstants>
     class LinksRecursionlessSizeBalancedTreeMethodsBase : public RecursionlessSizeBalancedTreeMethods<TLinkAddress>, ILinksTreeMethods<TLinkAddress>
     {
         public: static constexpr Constants = VConstants;

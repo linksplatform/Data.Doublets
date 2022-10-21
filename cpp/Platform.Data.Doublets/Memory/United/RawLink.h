@@ -1,6 +1,6 @@
 ﻿namespace Platform::Data::Doublets::Memory::United
 {
-    template<typename TLinkAddress>
+    template<std::integral TLinkAddress>
     struct RawLink
     {
         TLinkAddress Source;
@@ -24,7 +24,7 @@
 }
 
 
-template<typename TLinkAddress>
+template<std::integral TLinkAddress>
 struct std::hash<Platform::Data::Doublets::Memory::United::RawLink<TLinkAddress>>
 {
     using Self = Platform::Data::Doublets::Memory::United::RawLink<TLinkAddress>;

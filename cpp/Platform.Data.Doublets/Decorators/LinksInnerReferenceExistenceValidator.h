@@ -1,7 +1,7 @@
 ﻿namespace Platform::Data::Doublets::Decorators
 {
     template <typename ...> class LinksInnerReferenceExistenceValidator;
-    template <typename TLinkAddress> class LinksInnerReferenceExistenceValidator<TLinkAddress> : public DecoratorBase<TFacade, TDecorated>
+    template <std::integral TLinkAddress> class LinksInnerReferenceExistenceValidator<TLinkAddress> : public DecoratorBase<TFacade, TDecorated>
     {
         public: LinksInnerReferenceExistenceValidator(ILinks<TLinkAddress> &storage) : DecoratorBase(storage) { }
 

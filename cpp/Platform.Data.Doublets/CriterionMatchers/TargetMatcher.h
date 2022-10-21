@@ -1,7 +1,7 @@
 ﻿namespace Platform::Data::Doublets::CriterionMatchers
 {
     template <typename ...> class TargetMatcher;
-    template <typename TLinkAddress> class TargetMatcher<TLinkAddress> : public LinksOperatorBase<TLinkAddress>, ICriterionMatcher<TLinkAddress>
+    template <std::integral TLinkAddress> class TargetMatcher<TLinkAddress> : public LinksOperatorBase<TLinkAddress>, ICriterionMatcher<TLinkAddress>
     {
         private: TLinkAddress _targetToMatch = 0;
 

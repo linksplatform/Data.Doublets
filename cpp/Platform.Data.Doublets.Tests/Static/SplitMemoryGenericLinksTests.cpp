@@ -9,8 +9,8 @@
       action(storage);
     }
 
-    template <typename TLinkAddress>
-    static void UsingStorageWithExternalReferences(auto&& action)
+    template <std::integral TLinkAddress>
+    static void UsingStorageWithoutExternalReferences(auto&& action)
     {
         using namespace Platform::Memory;
         using namespace Platform::Data::Doublets::Memory::Split::Generic;
@@ -18,8 +18,8 @@
         UsingStorage<StorageType>(action);
     }
 
-    template <typename TLinkAddress>
-    static void UsingWithExternalReferences(auto&& action)
+    template <std::integral TLinkAddress>
+    static void UsingStorageWithExternalReferences(auto&& action)
     {
         using namespace Platform::Memory;
         using namespace Platform::Data::Doublets::Memory::Split::Generic;
@@ -27,7 +27,7 @@
         UsingStorage<StorageType>(action);
     }
     
-    template <typename TLinkAddress>
+    template <std::integral TLinkAddress>
     static void UsingDecoratedWithAutomaticUniquenessAndUsagesResolution(auto&& action)
     {
         using namespace Platform::Memory;
@@ -40,22 +40,29 @@
 
     TEST(SplitMemoryGenericLinksTests, CrudTest)
     {
-      UsingStorageWithExternalReferences<std::uint8_t>(
+      UsingStorageWithoutExternalReferences<std::uint8_t>(
           [](auto &&storage) { return TestCrudOperations(storage); });
-      UsingStorageWithExternalReferences<std::uint16_t>(
+      UsingStorageWithoutExternalReferences<std::uint16_t>(
           [](auto &&storage) { return TestCrudOperations(storage); });
-        UsingStorageWithExternalReferences<std::uint32_t>(
-            [](auto &&storage) { return TestCrudOperations(storage); });
-        UsingStorageWithExternalReferences<std::uint64_t>(
+      UsingStorageWithoutExternalReferences<std::uint32_t>(
+          [](auto &&storage) { return TestCrudOperations(storage); });
+      UsingStorageWithoutExternalReferences<std::uint64_t>(
             [](auto &&storage) { return TestCrudOperations(storage); });
     }
 
     TEST(SplitMemoryGenericLinksTests, RawNumbersCrudTest)
     {
-        UsingWithExternalReferences<std::uint8_t>([] (auto&& storage) { return TestRawNumbersCrudOperations(storage); });
-        UsingWithExternalReferences<std::uint16_t>([] (auto&& storage) { return TestRawNumbersCrudOperations(storage); });
-        UsingWithExternalReferences<std::uint32_t>([] (auto&& storage) { return TestRawNumbersCrudOperations(storage); });
-        UsingWithExternalReferences<std::uint64_t>([] (auto&& storage) { return TestRawNumbersCrudOperations(storage); });
+      UsingStorageWithExternalReferences<std::uint8_t>(
+          [](auto &&storage) { return TestRawNumbersCrudOperations(storage); });
+        UsingStorageWithExternalReferences<std::uint16_t>([](auto &&storage) {
+          return TestRawNumbersCrudOperations(storage);
+        });
+        UsingStorageWithExternalReferences<std::uint32_t>([](auto &&storage) {
+          return TestRawNumbersCrudOperations(storage);
+        });
+        UsingStorageWithExternalReferences<std::uint64_t>([](auto &&storage) {
+          return TestRawNumbersCrudOperations(storage);
+        });
     }
 
     TEST(SplitMemoryGenericLinksTests, MultipleRandomCreationsAndDeletionsTest)

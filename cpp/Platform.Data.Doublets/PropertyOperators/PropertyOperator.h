@@ -1,7 +1,7 @@
 ﻿namespace Platform::Data::Doublets::PropertyOperators
 {
     template <typename ...> class PropertyOperator;
-    template <typename TLinkAddress> class PropertyOperator<TLinkAddress> : public LinksOperatorBase<TLinkAddress>, IProperty<TLinkAddress, TLinkAddress>
+    template <std::integral TLinkAddress> class PropertyOperator<TLinkAddress> : public LinksOperatorBase<TLinkAddress>, IProperty<TLinkAddress, TLinkAddress>
     {
         private: TLinkAddress _propertyMarker = 0;
         private: TLinkAddress _propertyValueMarker = 0;

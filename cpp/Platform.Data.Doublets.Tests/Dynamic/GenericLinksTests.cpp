@@ -10,7 +10,7 @@
       action(dynamicPolymorphStorage);
     }
 
-   template <typename TLinkAddress>
+   template <std::integral TLinkAddress>
     static void UsingStorageWithExternalReferences(auto&& action)
     {
         using namespace Platform::Memory;
@@ -28,7 +28,7 @@
         UsingStorage<StorageType>(action);
     }
 
-    template <typename TLinkAddress>
+    template <std::integral TLinkAddress>
     static void UsingDecoratedWithAutomaticUniquenessAndUsagesResolution(auto&& action)
     {
       using namespace Platform::Memory;

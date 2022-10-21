@@ -1,7 +1,7 @@
 ﻿namespace Platform::Data::Doublets::Decorators
 {
     template <typename ...> class LinksDisposableDecoratorBase;
-    template <typename TLinkAddress> class LinksDisposableDecoratorBase<TLinkAddress> : public DecoratorBase<TFacade, TDecorated>, ILinks<TLinkAddress>, System::IDisposable
+    template <std::integral TLinkAddress> class LinksDisposableDecoratorBase<TLinkAddress> : public DecoratorBase<TFacade, TDecorated>, ILinks<TLinkAddress>, System::IDisposable
     {
         class DisposableWithMultipleCallsAllowed : public Disposable
         {

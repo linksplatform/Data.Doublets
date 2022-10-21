@@ -144,7 +144,7 @@
     Link(Range) -> Link<std::ranges::range_value_t<Range>>;
 }
 
-template<typename TLinkAddress>
+template<std::integral TLinkAddress>
 struct std::hash<Platform::Data::Doublets::Link<TLinkAddress>>
 {
     using Self = Platform::Data::Doublets::Link<TLinkAddress>;

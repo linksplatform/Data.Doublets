@@ -1,6 +1,6 @@
 ﻿namespace Platform::Data::Doublets::Memory
 {
-    template<typename TLinkAddress>
+    template<std::integral TLinkAddress>
     struct LinksHeader
     {
         TLinkAddress AllocatedLinks;
@@ -23,7 +23,7 @@
     };
 }
 
-template<typename TLinkAddress>
+template<std::integral TLinkAddress>
 struct std::hash<Platform::Data::Doublets::Memory::LinksHeader<TLinkAddress>>
 {
     using Self = Platform::Data::Doublets::Memory::LinksHeader<TLinkAddress>;

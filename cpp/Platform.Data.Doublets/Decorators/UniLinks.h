@@ -1,7 +1,7 @@
 ﻿namespace Platform::Data::Doublets::Decorators
 {
     template <typename ...> class UniLinks;
-    template <typename TLinkAddress> class UniLinks<TLinkAddress> : public DecoratorBase<TFacade, TDecorated>, IUniLinks<TLinkAddress>
+    template <std::integral TLinkAddress> class UniLinks<TLinkAddress> : public DecoratorBase<TFacade, TDecorated>, IUniLinks<TLinkAddress>
     {
         public: UniLinks(ILinks<TLinkAddress> &storage) : base(storage) { }
 

@@ -3,7 +3,7 @@
     template <typename ...>
     struct RawLinkIndexPart;
 
-    template <typename TLinkAddress>
+    template <std::integral TLinkAddress>
     struct RawLinkIndexPart<TLinkAddress>
     {
         public: inline static const std::uint64_t SizeInBytes = sizeof(RawLinkIndexPart<TLinkAddress>);
@@ -38,7 +38,7 @@
 
 namespace std
 {
-    template<typename TLinkAddress>
+    template<std::integral TLinkAddress>
     struct hash<Platform::Data::Doublets::Memory::Split::RawLinkIndexPart<TLinkAddress>>
     {
         std::size_t operator()(const Platform::Data::Doublets::Memory::Split::RawLinkIndexPart<TLinkAddress>& obj) const

@@ -6,5 +6,5 @@
 #include "ResizableDirectMemoryLinksTests.cpp"
 #include "Static/GenericLinksTests.cpp"
 #include "Static/SplitMemoryGenericLinksTests.cpp"
-#include "Dynamic/GenericLinksTests.cpp"
-#include "Dynamic/SplitMemoryGenericLinksTests.cpp"
+//#include "Dynamic/GenericLinksTests.cpp"
+//#include "Dynamic/SplitMemoryGenericLinksTests.cpp"

@@ -1,7 +1,7 @@
 ﻿namespace Platform::Data::Doublets::Decorators
 {
     template <typename ...> class LinksUniquenessValidator;
-    template <typename TLinkAddress> class LinksUniquenessValidator<TLinkAddress> : public DecoratorBase<TFacade, TDecorated>
+    template <std::integral TLinkAddress> class LinksUniquenessValidator<TLinkAddress> : public DecoratorBase<TFacade, TDecorated>
     {
         public: LinksUniquenessValidator(ILinks<TLinkAddress> &storage) : DecoratorBase(storage) { }
 

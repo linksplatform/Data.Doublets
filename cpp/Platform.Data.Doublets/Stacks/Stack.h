@@ -1,7 +1,7 @@
 ﻿namespace Platform::Data::Doublets::Stacks
 {
     template <typename ...> class Stack;
-    template <typename TLinkAddress> class Stack<TLinkAddress> : public LinksOperatorBase<TLinkAddress>, IStack<TLinkAddress>
+    template <std::integral TLinkAddress> class Stack<TLinkAddress> : public LinksOperatorBase<TLinkAddress>, IStack<TLinkAddress>
     {
         private: TLinkAddress _stack = 0;
 

@@ -1,7 +1,7 @@
 ﻿namespace Platform::Data::Doublets::Decorators
 {
     template <typename ...> class LinksUsagesValidator;
-    template <typename TLinkAddress> class LinksUsagesValidator<TLinkAddress> : public DecoratorBase<TFacade, TDecorated>
+    template <std::integral TLinkAddress> class LinksUsagesValidator<TLinkAddress> : public DecoratorBase<TFacade, TDecorated>
     {
         public: LinksUsagesValidator(ILinks<TLinkAddress> &storage) : DecoratorBase(storage) { }
 

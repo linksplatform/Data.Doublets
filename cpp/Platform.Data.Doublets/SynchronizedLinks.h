@@ -1,7 +1,7 @@
 ﻿namespace Platform::Data::Doublets
 {
     template <typename ...> class SynchronizedLinks;
-    template <typename TLinkAddress> class SynchronizedLinks<TLinkAddress> : public ISynchronizedLinks<TLinkAddress>
+    template <std::integral TLinkAddress> class SynchronizedLinks<TLinkAddress> : public ISynchronizedLinks<TLinkAddress>
     {
         public: const LinksConstants<TLinkAddress> Constants;
 

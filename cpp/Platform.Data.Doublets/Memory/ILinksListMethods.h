@@ -1,6 +1,6 @@
 ﻿namespace Platform::Data::Doublets::Memory
 {
-    template<typename TLinkAddress>
+    template<std::integral TLinkAddress>
     struct ILinksListMethods
     {
         void Detach(TLinkAddress freeLink)

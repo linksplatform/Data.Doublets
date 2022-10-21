@@ -1,7 +1,7 @@
 ﻿namespace Platform::Data::Doublets::PropertyOperators
 {
     template <typename ...> class PropertiesOperator;
-    template <typename TLinkAddress> class PropertiesOperator<TLinkAddress> : public LinksOperatorBase<TLinkAddress>, IProperties<TLinkAddress, TLinkAddress, TLinkAddress>
+    template <std::integral TLinkAddress> class PropertiesOperator<TLinkAddress> : public LinksOperatorBase<TLinkAddress>, IProperties<TLinkAddress, TLinkAddress, TLinkAddress>
     {
         public: PropertiesOperator(ILinks<TLinkAddress> &storage) : base(storage) { }
 

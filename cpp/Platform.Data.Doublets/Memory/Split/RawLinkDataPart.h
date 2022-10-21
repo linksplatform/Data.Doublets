@@ -1,7 +1,7 @@
 ﻿namespace Platform::Data::Doublets::Memory::Split
 {
     template <typename ...> struct RawLinkDataPart;
-    template <typename TLinkAddress> struct RawLinkDataPart<TLinkAddress>
+    template <std::integral TLinkAddress> struct RawLinkDataPart<TLinkAddress>
     {
     public:
         constexpr static std::size_t SizeInBytes = sizeof(RawLinkDataPart<TLinkAddress>);
@@ -34,7 +34,7 @@
 
 namespace std
 {
-    template <typename TLinkAddress>
+    template <std::integral TLinkAddress>
     struct hash<Platform::Data::Doublets::Memory::Split::RawLinkDataPart<TLinkAddress>>
     {
         std::size_t operator()(const Platform::Data::Doublets::Memory::Split::RawLinkDataPart<TLinkAddress> &obj) const
