@@ -33,7 +33,7 @@
         using namespace Platform::Memory;
         using namespace Platform::Data::Doublets::Memory::Split::Generic;
         using namespace Platform::Data::Doublets::Decorators;
-        using StorageType = SplitMemoryLinks<LinksOptions<TLinkAddress>, HeapResizableDirectMemory>;
+        using StorageType = SplitMemoryLinks<LinksOptions<TLinkAddress, LinksConstants<TLinkAddress>{false}>, HeapResizableDirectMemory>;
         using DecoratedStorageType = LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<StorageType>;
         UsingStorage<DecoratedStorageType>(action);
     }
