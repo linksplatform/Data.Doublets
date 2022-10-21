@@ -8,7 +8,7 @@
           public ILinksListMethods<typename TLinksOptions::LinkAddressType>
     {
         using base = AbsoluteCircularDoublyLinkedListMethods<UnusedLinksListMethods<TLinksOptions>, typename TLinksOptions::LinkAddressType>;
-        using LinksOptionsType = TLinkOptions;
+        using LinksOptionsType = TLinksOptions;
         using LinkAddressType = typename LinksOptionsType::LinkAddressType;
 
         private: std::byte* _links;
