@@ -23,14 +23,16 @@ target_link_libraries(${PROJECT_NAME}.Library INTERFACE CONAN_PKG::platform.thre
 target_link_libraries(${PROJECT_NAME}.Library INTERFACE CONAN_PKG::mio)
 target_link_libraries(${PROJECT_NAME}.Library INTERFACE CONAN_PKG::platform.memory)
 target_link_libraries(${PROJECT_NAME}.Library INTERFACE CONAN_PKG::platform.exceptions)
-target_link_libraries(${PROJECT_NAME}.Library INTERFACE CONAN_PKG::platform.data)
+#target_link_libraries(${PROJECT_NAME}.Library INTERFACE CONAN_PKG::platform.data)
+target_include_directories(${PROJECT_NAME}.Library INTERFACE /home/freephoenix888/Programming/LinksPlatform/Data/cpp/Platform.Data)
 target_link_libraries(${PROJECT_NAME}.Library INTERFACE CONAN_PKG::platform.setters)
 target_link_libraries(${PROJECT_NAME}.Library INTERFACE CONAN_PKG::platform.ranges)
 target_link_libraries(${PROJECT_NAME}.Library INTERFACE CONAN_PKG::platform.interfaces)
 
 target_link_directories(${PROJECT_NAME}.Library INTERFACE ${CMAKE_CURRENT_LIST_DIR})
-target_link_libraries(${PROJECT_NAME}.Library INTERFACE doublets_ffi)
+#target_link_libraries(${PROJECT_NAME}.Library INTERFACE doublets_ffi)
 target_link_libraries(${PROJECT_NAME}.Library INTERFACE ${CMAKE_DL_LIBS})
+
 
 target_compile_options(${PROJECT_NAME}.Library INTERFACE ${LINKS_PLATFORM_EXTRA_FLAGS})
 
