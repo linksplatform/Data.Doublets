@@ -27,6 +27,7 @@
         {
             if (oldLinkAddress != newLinkAddress && Exists(this->decorated(), oldLinkAddress))
             {
+                this->facade().EnsureNoUsages(LinkType{oldLinkAddress}, handler);
                 this->facade().Delete(LinkType{oldLinkAddress}, handler);
             }
             return Constants.Continue;
