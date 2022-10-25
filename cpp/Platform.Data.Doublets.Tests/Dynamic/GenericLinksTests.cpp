@@ -6,7 +6,7 @@ static void UsingStorage(auto&& action)
 {
   using namespace Platform::Memory;
   TStorage storage{ HeapResizableDirectMemory{ } };
-  ILinks<typename TStorage::LinksOptionsType>& upcastedStorage = storage;
+  Platform::Data::ILinks<typename TStorage::LinksOptionsType>& upcastedStorage = storage;
   action(storage);
 }
 
@@ -20,7 +20,7 @@ static void UsingStorageWithExternalReferences(auto&& action)
                                         LinksSourcesSizeBalancedTreeMethods<LinksOptionsType>,
                                         LinksTargetsSizeBalancedTreeMethods<LinksOptionsType>,
                                         UnusedLinksListMethods<LinksOptionsType>,
-                                        ILinks<LinksOptionsType>>;
+                                        Platform::Data::ILinks<LinksOptionsType>>;
   StorageType storage{ HeapResizableDirectMemory{ } };
   UsingStorage<StorageType>(action);
 }
@@ -36,7 +36,7 @@ static void UsingDecoratedWithAutomaticUniquenessAndUsagesResolution(auto&& acti
                                         LinksSourcesSizeBalancedTreeMethods<LinksOptionsType>,
                                         LinksTargetsSizeBalancedTreeMethods<LinksOptionsType>,
                                         UnusedLinksListMethods<LinksOptionsType>,
-                                        ILinks<LinksOptionsType>>;
+                                        Platform::Data::ILinks<LinksOptionsType>>;
   using DecoratedStorageType = LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<StorageType>;
   DecoratedStorageType storage { HeapResizableDirectMemory{ } };
   UsingStorage<DecoratedStorageType>(action);
