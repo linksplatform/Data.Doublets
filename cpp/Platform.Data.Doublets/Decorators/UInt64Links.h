@@ -4,7 +4,7 @@
     {
         public: UInt64Links(ILinks<std::uint64_t> &storage) : base(storage) { }
 
-        public: std::uint64_t Create(IList<std::uint64_t> &restriction) { return this->decorated().CreatePoint(); }
+        public: std::uint64_t Create(IList<std::uint64_t> &restriction) { return this->decorated().TDecorated::CreatePoint(); }
 
         public: std::uint64_t Update(IList<std::uint64_t> &restriction, IList<std::uint64_t> &substitution)
         {
@@ -34,7 +34,7 @@
             }
             else
             {
-                return this->facade().MergeAndDelete(updatedLink, existedLink);
+                return this->facade().TFacade::MergeAndDelete(updatedLink, existedLink);
             }
         }
 
@@ -42,7 +42,7 @@
         {
             auto linkIndex = restriction[_constants.IndexPart];
             storage.EnforceResetValues(linkIndex);
-            this->facade().DeleteAllUsages(linkIndex);
+            this->facade().TFacade::DeleteAllUsages(linkIndex);
             storage.Delete(linkIndex);
         }
     };

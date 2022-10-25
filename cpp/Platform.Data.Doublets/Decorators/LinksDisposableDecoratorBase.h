@@ -25,7 +25,7 @@
         {
             if (!wasDisposed)
             {
-                this->decorated().DisposeIfPossible();
+                this->decorated().TDecorated::DisposeIfPossible();
             }
         }
     };

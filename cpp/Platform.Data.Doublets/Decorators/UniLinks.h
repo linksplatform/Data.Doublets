@@ -43,12 +43,12 @@
                 auto after = (IList<TLinkAddress>)substitution.ToArray();
                 if (after[0] == 0)
                 {
-                    auto newLink = this->decorated().Create();
+                    auto newLink = this->decorated().TDecorated::Create();
                     after[0] = newLink;
                 }
                 if (substitution.Count() == 1)
                 {
-                    after = this->decorated().GetLink(substitution[0]);
+                    after = this->decorated().TDecorated::GetLink(substitution[0]);
                 }
                 else if (substitution.Count() == 3)
                 {
@@ -68,14 +68,14 @@
                 if (patternOrCondition.Count() == 1)
                 {
                     auto linkToDelete = patternOrCondition[0];
-                    auto before = this->decorated().GetLink(linkToDelete);
+                    auto before = this->decorated().TDecorated::GetLink(linkToDelete);
                     if (matchHandler != nullptr && this->matchHandler(before) == constants.Break)
                     {
                         return constants.Break;
                     }
                     auto after = Array.Empty<TLinkAddress>();
-                    this->decorated().Update(linkToDelete, constants.Null, constants.Null);
-                    this->decorated().Delete(linkToDelete);
+                    this->decorated().TDecorated::Update(linkToDelete, constants.Null, constants.Null);
+                    this->decorated().TDecorated::Delete(linkToDelete);
                     if (matchHandler != nullptr)
                     {
                         return this->substitutionHandler(before, after);
@@ -92,7 +92,7 @@
                 if (patternOrCondition.Count() == 1)
                 {
                     auto linkToUpdate = patternOrCondition[0];
-                    auto before = this->decorated().GetLink(linkToUpdate);
+                    auto before = this->decorated().TDecorated::GetLink(linkToUpdate);
                     if (matchHandler != nullptr && this->matchHandler(before) == constants.Break)
                     {
                         return constants.Break;
@@ -106,9 +106,9 @@
                     {
                         if (!substitution[0] == linkToUpdate)
                         {
-                            after = this->decorated().GetLink(substitution[0]);
-                            this->decorated().Update(linkToUpdate, constants.Null, constants.Null);
-                            this->decorated().Delete(linkToUpdate);
+                            after = this->decorated().TDecorated::GetLink(substitution[0]);
+                            this->decorated().TDecorated::Update(linkToUpdate, constants.Null, constants.Null);
+                            this->decorated().TDecorated::Delete(linkToUpdate);
                         }
                     }
                     else if (substitution.Count() == 3)

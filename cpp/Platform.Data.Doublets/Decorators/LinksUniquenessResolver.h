@@ -18,7 +18,7 @@
             auto newLinkAddress = SearchOrDefault(this->decorated(), substitution[Constants.SourcePart], substitution[Constants.TargetPart]);
             if (newLinkAddress == LinkAddressType{})
             {
-                return this->decorated().Update(restriction, substitution, handler);
+                return this->decorated().TDecorated::Update(restriction, substitution, handler);
             }
             return this->ResolveAddressChangeConflict(restriction[Constants.IndexPart], newLinkAddress, handler);
         }

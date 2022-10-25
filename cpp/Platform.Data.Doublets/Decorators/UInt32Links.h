@@ -8,7 +8,7 @@ namespace Platform::Data::Doublets::Decorators
     {
         public: UInt32Links(ILinks<TLinkAddress> &storage) : base(storage) { }
 
-        public: TLinkAddress Create(const  LinkType& restriction) { return this->decorated().CreatePoint(); }
+        public: TLinkAddress Create(const  LinkType& restriction) { return this->decorated().TDecorated::CreatePoint(); }
 
         public: TLinkAddress Update(const  LinkType& restriction, const LinkType& substitution)
         {
@@ -38,7 +38,7 @@ namespace Platform::Data::Doublets::Decorators
             }
             else
             {
-                return this->facade().MergeAndDelete(updatedLink, existedLink);
+                return this->facade().TFacade::MergeAndDelete(updatedLink, existedLink);
             }
         }
 
@@ -46,7 +46,7 @@ namespace Platform::Data::Doublets::Decorators
         {
             auto linkIndex = restriction[_constants.IndexPart];
             storage.EnforceResetValues(linkIndex);
-            this->facade().DeleteAllUsages(linkIndex);
+            this->facade().TFacade::DeleteAllUsages(linkIndex);
             storage.Delete(linkIndex);
         }
     };
