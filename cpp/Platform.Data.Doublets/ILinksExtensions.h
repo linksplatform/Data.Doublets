@@ -524,7 +524,11 @@ namespace Platform::Data::Doublets
         template<typename TStorage>
         static typename TStorage::LinkAddressType Update(TStorage& storage, typename TStorage::LinkAddressType linkAddress, typename TStorage::LinkAddressType newSource, typename TStorage::LinkAddressType newTarget, const typename TStorage::WriteHandlerType& handler)
         {
+          if constexpr (std::is_abstract<TStorage>::value) {
+            return storage.Update(typename TStorage::LinkType{linkAddress}, typename TStorage::LinkType{linkAddress, newSource, newTarget}, handler);
+          } else {
             return storage.TStorage::Update(typename TStorage::LinkType{linkAddress}, typename TStorage::LinkType{linkAddress, newSource, newTarget}, handler);
+          }
         }
 
         template<typename TStorage>
