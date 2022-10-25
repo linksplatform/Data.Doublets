@@ -3,12 +3,13 @@
     template <typename TFacade, typename TDecorated>
     struct LinksUniquenessResolver : DecoratorBase<TFacade, TDecorated>
     {
-        using base = DecoratorBase<TFacade, TDecorated>;
-        using LinkAddressType = base::LinkAddressType;
-        using LinkType = base::LinkType;
-        using WriteHandlerType = base::WriteHandlerType;
-        using ReadHandlerType = base::ReadHandlerType;
-    public: using base::Constants;
+    public:
+      using base = DecoratorBase<TFacade, TDecorated>;
+      using typename base::LinkAddressType;
+      using typename base::LinkType;
+      using typename base::WriteHandlerType;
+      using typename base::ReadHandlerType;
+      using base::Constants;
     public:
         USE_ALL_BASE_CONSTRUCTORS(LinksUniquenessResolver, base);
 

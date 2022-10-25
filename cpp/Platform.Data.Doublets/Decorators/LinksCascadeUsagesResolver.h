@@ -3,12 +3,13 @@
     template <typename TFacade, typename TDecorated>
     struct LinksCascadeUsagesResolver : DecoratorBase<TFacade, TDecorated>
     {
+    public:
         using base = DecoratorBase<TFacade, TDecorated>;
         using typename base::LinkAddressType;
         using typename base::LinkType;
         using typename base::WriteHandlerType;
         using typename base::ReadHandlerType;
-    public: using base::Constants;
+        using base::Constants;
     public:
         USE_ALL_BASE_CONSTRUCTORS(LinksCascadeUsagesResolver, base);
 
