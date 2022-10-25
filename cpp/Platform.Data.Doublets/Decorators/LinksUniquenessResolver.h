@@ -1,6 +1,5 @@
 ﻿namespace Platform::Data::Doublets::Decorators
 {
-    using namespace Platform::Interfaces;
     template <typename TFacade, typename TDecorated>
     struct LinksUniquenessResolver : DecoratorBase<TFacade, TDecorated>
     {

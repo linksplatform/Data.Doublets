@@ -1,7 +1,5 @@
 namespace Platform::Data::Doublets::Tests
 {
-    using namespace Platform::Data;
-    using namespace Platform::Data::Doublets;
     class CrudOperationsTester
     {
     public:

@@ -1,6 +1,5 @@
 ﻿namespace Platform::Data::Doublets::Memory::United::Generic
 {
-    using namespace Platform::Collections::Methods;
 
     template<typename Self, typename TLinksOptions>
     struct LinksSizeBalancedTreeMethodsBase

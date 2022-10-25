@@ -1,6 +1,5 @@
 ﻿namespace Platform::Data::Doublets::Memory::United::Generic
 {
-    using namespace Platform::Memory;
 
     template<
         typename TLinksOptions = Platform::Data::Doublets::LinksOptions<>,

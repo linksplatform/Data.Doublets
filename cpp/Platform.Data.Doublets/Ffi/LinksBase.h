@@ -1,7 +1,5 @@
 namespace Platform::Data::Doublets::Ffi
 {
-    using namespace Platform::Interfaces;
-    using namespace Platform::Ranges;
 
     template<typename Signature>
     thread_local std::function<Signature> GLOBAL_FUNCTION = nullptr;

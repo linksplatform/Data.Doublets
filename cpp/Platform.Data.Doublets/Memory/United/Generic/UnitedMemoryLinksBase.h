@@ -1,8 +1,5 @@
 ﻿namespace Platform::Data::Doublets::Memory::United::Generic
 {
-    using namespace Platform::Interfaces;
-    using namespace Platform::Memory;
-    using namespace Platform::Exceptions;
 
     template<
         typename TSelf,
