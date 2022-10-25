@@ -3,10 +3,10 @@
 
     template<typename TLinksOptions>
     class UnusedLinksListMethods
-        : public AbsoluteCircularDoublyLinkedListMethods<UnusedLinksListMethods<TLinksOptions>, typename TLinksOptions::LinkAddressType>,
+    : public Platform::Collections::Methods::Lists::AbsoluteCircularDoublyLinkedListMethods<UnusedLinksListMethods<TLinksOptions>, typename TLinksOptions::LinkAddressType>,
           public ILinksListMethods<typename TLinksOptions::LinkAddressType>
     {
-        using base = AbsoluteCircularDoublyLinkedListMethods<UnusedLinksListMethods<TLinksOptions>, typename TLinksOptions::LinkAddressType>;
+        using base = Platform::Collections::Methods::Lists::AbsoluteCircularDoublyLinkedListMethods<UnusedLinksListMethods<TLinksOptions>, typename TLinksOptions::LinkAddressType>;
         using LinksOptionsType = TLinksOptions;
         using LinkAddressType = typename LinksOptionsType::LinkAddressType;
 

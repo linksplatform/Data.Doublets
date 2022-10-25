@@ -3,7 +3,7 @@
 
     template<
         typename TLinksOptions = Platform::Data::Doublets::LinksOptions<>,
-        typename TMemory = FileMappedResizableDirectMemory,
+        typename TMemory = Platform::Memory::FileMappedResizableDirectMemory,
         typename TSourceTreeMethods = LinksSourcesSizeBalancedTreeMethods<TLinksOptions>,
         typename TTargetTreeMethods = LinksTargetsSizeBalancedTreeMethods<TLinksOptions>,
         typename TUnusedLinks = UnusedLinksListMethods<TLinksOptions>,
