@@ -17,6 +17,7 @@ list(APPEND LINKS_PLATFORM_EXTRA_FLAGS ${CONAN_USER_PLATFORM.HASHING_suggested_f
 
 add_library(${PROJECT_NAME}.Library INTERFACE)
 target_include_directories(${PROJECT_NAME}.Library INTERFACE ${PROJECT_NAME})
+target_include_directories(${PROJECT_NAME}.Library INTERFACE /home/freephoenix888/Programming/LinksPlatform/Interfaces/cpp/Platform.Interfaces)
 target_link_libraries(${PROJECT_NAME}.Library INTERFACE CONAN_PKG::platform.collections.methods)
 target_link_libraries(${PROJECT_NAME}.Library INTERFACE CONAN_PKG::platform.collections)
 target_link_libraries(${PROJECT_NAME}.Library INTERFACE CONAN_PKG::platform.threading)
