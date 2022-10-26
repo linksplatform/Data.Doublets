@@ -11,7 +11,7 @@ static void UsingStorage(auto&& action)
 }
 
 template<std::integral TLinkAddress>
-static void UsingStorageWithExternalReferences(auto&& action)
+static void UsingStorageWithExternalReferencesWithSizeBalancedTrees(auto&& action)
 {
   using namespace Platform::Memory;
   using namespace Platform::Data::Doublets::Memory::United::Generic;
@@ -26,7 +26,7 @@ static void UsingStorageWithExternalReferences(auto&& action)
 }
 
 template <std::integral TLinkAddress>
-static void UsingDecoratedWithAutomaticUniquenessAndUsagesResolution(auto&& action)
+static void UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithSizeBalancedTrees(auto&& action)
 {
   using namespace Platform::Memory;
   using namespace Platform::Data::Doublets::Memory::United::Generic;
@@ -42,35 +42,35 @@ static void UsingDecoratedWithAutomaticUniquenessAndUsagesResolution(auto&& acti
   UsingStorage<DecoratedStorageType>(action);
 }
 
-TEST(GenericLinksTests, CrudTest)
+TEST(GenericLinksTests, CrudTestWithSizeBalancedTrees)
 {
-  UsingStorageWithExternalReferences<std::uint8_t>(
+  UsingStorageWithExternalReferencesWithSizeBalancedTrees<std::uint8_t>(
       [](auto &&storage) { TestCrudOperations(storage); });
-  UsingStorageWithExternalReferences<std::uint16_t>(
+  UsingStorageWithExternalReferencesWithSizeBalancedTrees<std::uint16_t>(
       [](auto &&storage) { TestCrudOperations(storage); });
-  UsingStorageWithExternalReferences<std::uint32_t>(
+  UsingStorageWithExternalReferencesWithSizeBalancedTrees<std::uint32_t>(
       [](auto &&storage) { TestCrudOperations(storage); });
-  UsingStorageWithExternalReferences<std::uint64_t>(
+  UsingStorageWithExternalReferencesWithSizeBalancedTrees<std::uint64_t>(
       [](auto &&storage) { TestCrudOperations(storage); });
 }
 
-TEST(GenericLinksTests, RawNumbersCrudTest)
+TEST(GenericLinksTests, RawNumbersCrudTestWithSizeBalancedTrees)
 {
-  UsingStorageWithExternalReferences<std::uint8_t>(
+  UsingStorageWithExternalReferencesWithSizeBalancedTrees<std::uint8_t>(
       [](auto &&storage) { TestRawNumbersCrudOperations(storage); });
-  UsingStorageWithExternalReferences<std::uint16_t>(
+  UsingStorageWithExternalReferencesWithSizeBalancedTrees<std::uint16_t>(
       [](auto &&storage) { TestRawNumbersCrudOperations(storage); });
-  UsingStorageWithExternalReferences<std::uint32_t>(
+  UsingStorageWithExternalReferencesWithSizeBalancedTrees<std::uint32_t>(
       [](auto &&storage) { TestRawNumbersCrudOperations(storage); });
-  UsingStorageWithExternalReferences<std::uint64_t>(
+  UsingStorageWithExternalReferencesWithSizeBalancedTrees<std::uint64_t>(
       [](auto &&storage) { TestRawNumbersCrudOperations(storage); });
 }
 
-TEST(GenericLinksTests, MultipleRandomCreationsAndDeletionsTest)
+TEST(GenericLinksTests, MultipleRandomCreationsAndDeletionsTestWithSizeBalancedTrees)
 {
-  UsingDecoratedWithAutomaticUniquenessAndUsagesResolution<std::uint8_t>([] (auto&& storage) { return  TestMultipleRandomCreationsAndDeletions(storage,16); });
-  UsingDecoratedWithAutomaticUniquenessAndUsagesResolution<std::uint16_t>([] (auto&& storage) { return  TestMultipleRandomCreationsAndDeletions(storage,100); });
-  UsingDecoratedWithAutomaticUniquenessAndUsagesResolution<std::uint32_t>([] (auto&& storage) { return  TestMultipleRandomCreationsAndDeletions(storage,100); });
-  UsingDecoratedWithAutomaticUniquenessAndUsagesResolution<std::uint64_t>([] (auto&& storage) { return  TestMultipleRandomCreationsAndDeletions(storage,100); });
+  UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithSizeBalancedTrees<std::uint8_t>([] (auto&& storage) { return  TestMultipleRandomCreationsAndDeletions(storage,16); });
+  UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithSizeBalancedTrees<std::uint16_t>([] (auto&& storage) { return  TestMultipleRandomCreationsAndDeletions(storage,100); });
+  UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithSizeBalancedTrees<std::uint32_t>([] (auto&& storage) { return  TestMultipleRandomCreationsAndDeletions(storage,100); });
+  UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithSizeBalancedTrees<std::uint64_t>([] (auto&& storage) { return  TestMultipleRandomCreationsAndDeletions(storage,100); });
 }
 }
