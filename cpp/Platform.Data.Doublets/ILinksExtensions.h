@@ -91,7 +91,7 @@ namespace Platform::Data::Doublets
             {
                 auto link = i + 1;
                 {
-                    storage.Update(link, 0, 0);
+                    DIRECT_METHOD_CALL(TStorage, storage, Update,link, 0, 0);
                     Delete(storage, link);
                     ++deleted;
                 }
@@ -129,7 +129,7 @@ namespace Platform::Data::Doublets
         auto $break {constants.Break};
         typename TStorage::LinkAddressType firstLink = 0;
         Expects(constants.Null != firstLink);
-        storage.Each(std::vector{storage.Constants.Any, storage.Constants.Any, storage.Constants.Any}, [&firstLink, $break](const typename TStorage::LinkType& link){
+        DIRECT_METHOD_CALL(TStorage, storage, Each,std::vector{storage.Constants.Any, storage.Constants.Any, storage.Constants.Any}, [&firstLink, $break](const typename TStorage::LinkType& link){
             firstLink = link[0];
             return $break;
                                                                                                 });
@@ -156,7 +156,7 @@ namespace Platform::Data::Doublets
                 return constants.Break;
             }
         }};
-        storage.Each(query, linkHandler);
+        DIRECT_METHOD_CALL(TStorage, storage, Each,query, linkHandler);
         return result;
     }
 
@@ -245,7 +245,7 @@ namespace Platform::Data::Doublets
         using namespace Platform::Collections;
         auto $continue {storage.Constants.Continue};
         std::vector<typename TStorage::LinkType> allLinks {};
-        storage.Each(restriction, [&allLinks, $continue](const typename TStorage::LinkType& link){
+        DIRECT_METHOD_CALL(TStorage, storage, Each,restriction, [&allLinks, $continue](const typename TStorage::LinkType& link){
             allLinks.push_back(link);
             return $continue;
         });
@@ -265,7 +265,7 @@ namespace Platform::Data::Doublets
             std::vector<typename TStorage::LinkType> allIndices {};
             auto usages = std::vector<typename TStorage::LinkType>();
             auto $continue = storage.Constants.Continue;
-            storage.Each(restriction, [&allIndices, $continue](const typename TStorage::LinkType& link){
+            DIRECT_METHOD_CALL(TStorage, storage, Each,restriction, [&allIndices, $continue](const typename TStorage::LinkType& link){
                 allIndices.push_back(link);
                 return $continue;
             });
@@ -288,7 +288,7 @@ namespace Platform::Data::Doublets
         template<typename TStorage>
         static bool Exists(TStorage& storage, typename TStorage::LinkAddressType source, typename TStorage::LinkAddressType target)
         {
-            return storage.Count(typename TStorage::LinkType{storage.Constants.Any, source, target}) > 0;
+            return DIRECT_METHOD_CALL(TStorage, storage, Count,typename TStorage::LinkType{storage.Constants.Any, source, target}) > 0;
         }
 
 
@@ -418,12 +418,12 @@ namespace Platform::Data::Doublets
         {
             constexpr auto constants = storage.Constants;
             auto values = GetLink(storage, linkAddress);
-            auto usagesAsSource = storage.Count(typename TStorage::LinkType{constants.Any, storage, linkAddress, constants.Any});
+            auto usagesAsSource = DIRECT_METHOD_CALL(TStorage, storage, Count,typename TStorage::LinkType{constants.Any, storage, linkAddress, constants.Any});
             if (linkAddress == GetSource(storage, values))
             {
                 --usagesAsSource;
             }
-            auto usagesAsTarget = storage.Count(typename TStorage::LinkType{constants.Any, storage, constants.Any, linkAddress});
+            auto usagesAsTarget = DIRECT_METHOD_CALL(TStorage, storage, Count,typename TStorage::LinkType{constants.Any, storage, constants.Any, linkAddress});
             if (linkAddress == GetTarget(storage, values))
             {
                 --usagesAsTarget;
@@ -440,7 +440,7 @@ namespace Platform::Data::Doublets
             constexpr auto constants = storage.Constants;
             auto _break = constants.Break;
             typename TStorage::LinkAddressType searchedLinkAddress {};
-            storage.Each(std::vector{storage.Constants.Any, source, target}, [&searchedLinkAddress, _break] (const typename TStorage::LinkType& link) {
+            DIRECT_METHOD_CALL(TStorage, storage, Each,std::vector{storage.Constants.Any, source, target}, [&searchedLinkAddress, _break] (const typename TStorage::LinkType& link) {
                 searchedLinkAddress = link[0];
                 return _break;
             });
@@ -463,8 +463,8 @@ namespace Platform::Data::Doublets
                 linkAddress = after[0];
                 return handlerState.Handle(before, after);
             };
-            handlerState.Apply(storage.Create(typename TStorage::LinkType{}, HandlerWrapper));
-            return handlerState.Apply(storage.Update(linkAddress, linkAddress, linkAddress, HandlerWrapper));
+            handlerState.Apply(DIRECT_METHOD_CALL(TStorage, storage, Create,typename TStorage::LinkType{}, HandlerWrapper));
+            return handlerState.Apply(DIRECT_METHOD_CALL(TStorage, storage, Update,linkAddress, linkAddress, linkAddress, HandlerWrapper));
         }
 
         template<typename TStorage>
@@ -484,7 +484,7 @@ namespace Platform::Data::Doublets
             constexpr auto constants = storage.Constants;
             typename TStorage::LinkAddressType createdLinkAddress;
             WriteHandlerState<TStorage> handlerState {constants.Continue, constants.Break, handler};
-            handlerState.Apply(storage.Create(typename TStorage::LinkType{}, [&createdLinkAddress, &handlerState](const typename TStorage::LinkType& before, const typename TStorage::LinkType& after){
+            handlerState.Apply(DIRECT_METHOD_CALL(TStorage, storage, Create,typename TStorage::LinkType{}, [&createdLinkAddress, &handlerState](const typename TStorage::LinkType& before, const typename TStorage::LinkType& after){
                 createdLinkAddress = after[0];
                 return handlerState.Handle(before, after);
             }));
@@ -496,7 +496,7 @@ namespace Platform::Data::Doublets
         {
             auto $continue {storage.Constants.Continue};
             typename TStorage::LinkAddressType updatedLinkAddress;
-            storage.Update(restriction, substitution, [&updatedLinkAddress, $continue] (const typename TStorage::LinkType& before, const typename TStorage::LinkType& after) {
+            DIRECT_METHOD_CALL(TStorage, storage, Update,restriction, substitution, [&updatedLinkAddress, $continue] (const typename TStorage::LinkType& before, const typename TStorage::LinkType& after) {
                 updatedLinkAddress = after[0];
                 return $continue;
             });
@@ -524,11 +524,13 @@ namespace Platform::Data::Doublets
         template<typename TStorage>
         static typename TStorage::LinkAddressType Update(TStorage& storage, typename TStorage::LinkAddressType linkAddress, typename TStorage::LinkAddressType newSource, typename TStorage::LinkAddressType newTarget, const typename TStorage::WriteHandlerType& handler)
         {
-          if constexpr (std::is_abstract<TStorage>::value) {
-            return storage.Update(typename TStorage::LinkType{linkAddress}, typename TStorage::LinkType{linkAddress, newSource, newTarget}, handler);
-          } else {
-            return storage.TStorage::Update(typename TStorage::LinkType{linkAddress}, typename TStorage::LinkType{linkAddress, newSource, newTarget}, handler);
-          }
+          return DIRECT_METHOD_CALL(TStorage, storage, Update, typename TStorage::LinkType{linkAddress}, typename TStorage::LinkType{linkAddress, newSource, newTarget}, handler);
+//          return std::is_abstract<TStorage>::value ? DIRECT_METHOD_CALL(TStorage, storage, Update,typename TStorage::LinkType{linkAddress}, typename TStorage::LinkType{linkAddress, newSource, newTarget}, handler) : storage.TStorage::Update(typename TStorage::LinkType{linkAddress}, typename TStorage::LinkType{linkAddress, newSource, newTarget}, handler);
+//          if constexpr (std::is_abstract<TStorage>::value) {
+//            return DIRECT_METHOD_CALL(TStorage, storage, Update,typename TStorage::LinkType{linkAddress}, typename TStorage::LinkType{linkAddress, newSource, newTarget}, handler);
+//          } else {
+//            return storage.TStorage::Update(typename TStorage::LinkType{linkAddress}, typename TStorage::LinkType{linkAddress, newSource, newTarget}, handler);
+//          }
         }
 
         template<typename TStorage>
@@ -649,11 +651,11 @@ namespace Platform::Data::Doublets
         auto usagesAsSourceQuery = typename TStorage::LinkType{any, linkIndex, any};
         auto usagesAsTargetQuery = typename TStorage::LinkType{any, any, linkIndex};
         auto usages = std::vector<typename TStorage::LinkType>();
-        storage.Each(usagesAsSourceQuery, [&usages, $continue](const typename TStorage::LinkType& link) {
+        DIRECT_METHOD_CALL(TStorage, storage, Each,usagesAsSourceQuery, [&usages, $continue](const typename TStorage::LinkType& link) {
             usages.push_back(link);
             return $continue;
         });
-        storage.Each(usagesAsTargetQuery, [&usages, $continue](auto&& link) {
+        DIRECT_METHOD_CALL(TStorage, storage, Each,usagesAsTargetQuery, [&usages, $continue](auto&& link) {
             usages.push_back(link);
             return $continue;
         });
@@ -665,7 +667,7 @@ namespace Platform::Data::Doublets
             {
                 continue;
             }
-            auto result = storage.Delete(usage, handlerState.Handler);
+            auto result = DIRECT_METHOD_CALL(TStorage, storage, Delete,usage, handlerState.Handler);
             handlerState.Apply(result);
         }
         return handlerState.Result;
@@ -681,9 +683,9 @@ namespace Platform::Data::Doublets
 //    template<typename TStorage>
 //    auto DeleteByQuery(TStorage& storage,  CArray<typename TStorage::LinkAddressType> auto&& query)
 //    {
-//        auto count = storage.Count(query);
+//        auto count = DIRECT_METHOD_CALL(TStorage, storage, Count,query);
 //        auto toDelete = typename TStorage::LinkType(count);
-//        storage.Each([&](auto link) {
+//        DIRECT_METHOD_CALL(TStorage, storage, Each,[&](auto link) {
 //            toDelete.push_back(link[0]);
 //            return storage.Constants.Continue;
 //        }, query);
@@ -699,7 +701,7 @@ namespace Platform::Data::Doublets
     {
         for (auto count = Count(storage); count != 0; count = Count(storage))
         {
-            storage.Delete(count);
+            DIRECT_METHOD_CALL(TStorage, storage, Delete,count);
         }
     }
 
@@ -766,7 +768,7 @@ namespace Platform::Data::Doublets
                 }
                 typename TStorage::LinkType restriction {GetIndex(storage, usageAsSource)};
                 typename TStorage::LinkType substitution = (newLinkIndex, GetTarget(storage, usageAsSource));
-                handlerState.Apply(storage.Update(restriction, substitution, handlerState.Handler));
+                handlerState.Apply(DIRECT_METHOD_CALL(TStorage, storage, Update,restriction, substitution, handlerState.Handler));
             }
             auto usagesAsTarget = All(storage, typename TStorage::LinkType(constants.Any, constants.Any, oldLinkIndex));
             for (auto i { 0 }; i < std::ranges::size(usagesAsTarget); ++i)
@@ -777,7 +779,7 @@ namespace Platform::Data::Doublets
                     continue;
                 }
                 auto substitution = typename TStorage::LinkType(GetTarget(storage, usageAsTarget), newLinkIndex);
-                handlerState.Apply(storage.Update(usageAsTarget, substitution, handlerState.Handler));
+                handlerState.Apply(DIRECT_METHOD_CALL(TStorage, storage, Update,usageAsTarget, substitution, handlerState.Handler));
             }
             return handlerState.Result;
         }
@@ -847,7 +849,7 @@ namespace Platform::Data::Doublets
     static void DeleteByQuery(TStorage& storage, typename TStorage::LinkType query)
     {
         typename TStorage::LinkType queryResult;
-        storage.Each(query, [&](typename TStorage::LinkType vec) -> typename TStorage::LinkAddressType{
+        DIRECT_METHOD_CALL(TStorage, storage, Each,query, [&](typename TStorage::LinkType vec) -> typename TStorage::LinkAddressType{
             return storage.Constants.Continue;
         });
 
