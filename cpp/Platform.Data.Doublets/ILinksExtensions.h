@@ -129,7 +129,7 @@ namespace Platform::Data::Doublets
         auto $break {constants.Break};
         typename TStorage::LinkAddressType firstLink = 0;
         Expects(constants.Null != firstLink);
-        DIRECT_METHOD_CALL(TStorage, storage, Each,std::vector{storage.Constants.Any, storage.Constants.Any, storage.Constants.Any}, [&firstLink, $break](const typename TStorage::LinkType& link){
+        DIRECT_METHOD_CALL(TStorage, storage, Each,typename TStorage::LinkType{storage.Constants.Any, storage.Constants.Any, storage.Constants.Any}, [&firstLink, $break](const typename TStorage::LinkType& link){
             firstLink = link[0];
             return $break;
                                                                                                 });
@@ -440,7 +440,7 @@ namespace Platform::Data::Doublets
             constexpr auto constants = storage.Constants;
             auto _break = constants.Break;
             typename TStorage::LinkAddressType searchedLinkAddress {};
-            DIRECT_METHOD_CALL(TStorage, storage, Each,std::vector{storage.Constants.Any, source, target}, [&searchedLinkAddress, _break] (const typename TStorage::LinkType& link) {
+            DIRECT_METHOD_CALL(TStorage, storage, Each,typename TStorage::LinkType{storage.Constants.Any, source, target}, [&searchedLinkAddress, _break] (const typename TStorage::LinkType& link) {
                 searchedLinkAddress = link[0];
                 return _break;
             });
