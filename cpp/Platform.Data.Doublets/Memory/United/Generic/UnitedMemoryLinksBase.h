@@ -335,7 +335,7 @@
         // / TODO: Возможно можно перемещать значения, если указан индекс, но значение существует в другом месте (но не в менеджере памяти, а в логике Links)
         // / </remarks>
         // NOTE: The following .NET attribute has no direct equivalent in C++:
-        // ORIGINAL LINE: [MethodImpl(MethodImplOptions.AggressiveInlining)] public LinkAddressType Update(IList<LinkAddressType> restriction, IList<LinkAddressType> substitution)
+        // ORIGINAL LINE: [MethodImpl(MethodImplOptions.AggressiveInlining)] public LinkAddressType Update(LinkType restriction, LinkType substitution)
     public:
         LinkAddressType Update(const LinkType& restriction, const LinkType& substitution, const WriteHandlerType& handler)
         {

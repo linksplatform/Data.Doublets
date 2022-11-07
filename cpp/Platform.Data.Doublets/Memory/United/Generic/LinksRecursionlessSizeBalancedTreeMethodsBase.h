@@ -1,11 +1,22 @@
 ﻿namespace Platform::Data::Doublets::Memory::United::Generic
 {
-    template<std::integral TLinkAddress, LinksConstants<TLinkAddress> VConstants>
-    class LinksRecursionlessSizeBalancedTreeMethodsBase : public RecursionlessSizeBalancedTreeMethods<TLinkAddress>, ILinksTreeMethods<TLinkAddress>
+template<typename Self, typename TLinksOptions>
+    struct LinksRecursionlessSizeBalancedTreeMethodsBase : public Platform::Collections::Methods::Trees::RecursionlessSizeBalancedTreeMethods<Self, typename TLinksOptions::LinkAddressType>/*, ILinksTreeMethods<LinkAddressType>*/
     {
+      using LinksOptionsType = TLinksOptions;
+      using LinkAddressType = typename LinksOptionsType::LinkAddressType;
+      using LinkType = typename LinksOptionsType::LinkType;
+      using ReadHandlerType = typename LinksOptionsType::ReadHandlerType;
+      static constexpr LinksConstants<LinkAddressType> Constants = LinksOptionsType::Constants;
+
+
+    public: using methods = Platform::Collections::Methods::Trees::RecursionlessSizeBalancedTreeMethods<Self, LinkAddressType>;
+
+    public: std::byte* const Links;
+    public: std::byte* const Header;
         public: static constexpr Constants = VConstants;
-        public: static constexpr TLinkAddress Break = Constants.Break;
-        public: static constexpr TLinkAddress Continue = Constants.Continue;
+        public: static constexpr LinkAddressType Break = Constants.Break;
+        public: static constexpr LinkAddressType Continue = Constants.Continue;
         public: std::byte* Storage;
         public: std::byte* Header;
 
@@ -15,22 +26,22 @@
             Header = header;
         }
 
-        public: TLinkAddress GetTreeRoot()
+        public: LinkAddressType GetTreeRoot()
                 {
                     return thls->object()->GetTreeRoot();
                 };
 
-        public: TLinkAddress GetBasePartValue(TLinkAddress link)
+        public: LinkAddressType GetBasePartValue(LinkAddressType link)
                 {
                     return thls->object()->GetBasePartValue(link);
                 };
 
-        public: bool FirstIsToTheRightOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget)
+        public: bool FirstIsToTheRightOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource, LinkAddressType rootTarget)
                 {
                     return thls->object()->FirstIsToTheRightOfSecond(source, target, rootSource, rootTarget);
                 };
 
-        public: bool FirstIsToTheLeftOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget)
+        public: bool FirstIsToTheLeftOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource, LinkAddressType rootTarget)
                 {
                     return thls->object()->FirstIsToTheLeftOfSecond(source, target, rootSource, rootTarget);
                 };
@@ -45,21 +56,21 @@
                 return Link{linkIndex, link.Source, link.Target};
             }
 
-        public: bool FirstIsToTheLeftOfSecond(TLinkAddress first, TLinkAddress second)
+        public: bool FirstIsToTheLeftOfSecond(LinkAddressType first, LinkAddressType second)
         {
             auto& firstLink = this->GetLinkReference(first);
             auto& secondLink = this->GetLinkReference(second);
             return this->FirstIsToTheLeftOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
         }
 
-        public: bool FirstIsToTheRightOfSecond(TLinkAddress first, TLinkAddress second)
+        public: bool FirstIsToTheRightOfSecond(LinkAddressType first, LinkAddressType second)
         {
             auto& firstLink = this->GetLinkReference(first);
             auto& secondLink = this->GetLinkReference(second);
             return this->FirstIsToTheRightOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
         }
 
-        public: TLinkAddress this[TLinkAddress index]
+        public: auto operator[](std::size_t index)
         {
             auto root = GetTreeRoot();
             if (index >= GetSize(root))
@@ -85,7 +96,7 @@
             return 0;
         }
 
-        public: TLinkAddress Search(TLinkAddress source, TLinkAddress target)
+        public: LinkAddressType Search(LinkAddressType source, LinkAddressType target)
         {
             auto root = this->GetTreeRoot();
             while (root != 0)
@@ -109,7 +120,7 @@
             return 0;
         }
 
-        public: TLinkAddress CountUsages(TLinkAddress link)
+        public: LinkAddressType CountUsages(LinkAddressType link)
         {
             auto root = this->GetTreeRoot();
             auto total = this->GetSize(root);
@@ -145,9 +156,9 @@
             return (total - totalRightIgnore) - totalLeftIgnore;
         }
 
-        public: TLinkAddress EachUsage(TLinkAddress base, Func<IList<TLinkAddress>, TLinkAddress> handler) { return this->EachUsageCore(base, this->GetTreeRoot(), handler); }
+        public: LinkAddressType EachUsage(LinkAddressType base, Func<LinkType, LinkAddressType> handler) { return this->EachUsageCore(base, this->GetTreeRoot(), handler); }
 
-        private: TLinkAddress EachUsageCore(TLinkAddress base, TLinkAddress link, Func<IList<TLinkAddress>, TLinkAddress> handler)
+        private: LinkAddressType EachUsageCore(LinkAddressType base, LinkAddressType link, Func<LinkType, LinkAddressType> handler)
         {
             auto continue = Continue;
             if (link == 0)

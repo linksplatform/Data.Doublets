@@ -1,23 +1,23 @@
-﻿
-
-using static System::Runtime::CompilerServices::Unsafe;
-
-namespace Platform::Data::Doublets::Memory::United::Generic
+﻿namespace Platform::Data::Doublets::Memory::United::Generic
 {
-    public unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : public SizedAndThreadedAVLBalancedTreeMethods<TLinkAddress>, ILinksTreeMethods<TLinkAddress>
+template<typename Self, typename TLinksOptions>
+class LinksAvlBalancedTreeMethodsBase : public Platform::Collections::Methods::Trees::SizedAndThreadedAVLBalancedTreeMethods<Self, typename TLinksOptions::LinkAddressType>/*, ILinksTreeMethods<TLinksOptions>*/
     {
-        private: static UncheckedConverter<TLinkAddress, std::uint64_t> _addressToInt64Converter = UncheckedConverter<TLinkAddress, std::uint64_t>.Default;
-        private: static UncheckedConverter<TLinkAddress, std::int32_t> _addressToInt32Converter = UncheckedConverter<TLinkAddress, std::int32_t>.Default;
-        private: static UncheckedConverter<bool, TLinkAddress> _boolToAddressConverter = UncheckedConverter<bool, TLinkAddress>.Default;
-        private: static UncheckedConverter<TLinkAddress, bool> _addressToBoolConverter = UncheckedConverter<TLinkAddress, bool>.Default;
-        private: static UncheckedConverter<std::int32_t, TLinkAddress> _int32ToAddressConverter = UncheckedConverter<std::int32_t, TLinkAddress>.Default;
+  using LinksOptionsType = TLinksOptions;
+  using LinkAddressType = typename LinksOptionsType::LinkAddressType;
+  using LinkType = typename LinksOptionsType::LinkType;
+  using ReadHandlerType = typename LinksOptionsType::ReadHandlerType;
+  static constexpr LinksConstants<LinkAddressType> Constants = LinksOptionsType::Constants;
 
-        public: static constexpr TLinkAddress Break = 0;
-        public: static constexpr TLinkAddress Continue = 0;
+
+public: using methods = Platform::Collections::Methods::Trees::SizedAndThreadedAVLBalancedTreeMethods<Self, LinkAddressType>;
+
+        public: static constexpr LinkAddressType Break = 0;
+        public: static constexpr LinkAddressType Continue = 0;
         public: std::byte* Links;
         public: std::byte* Header;
 
-        public: LinksAvlBalancedTreeMethodsBase(LinksConstants<TLinkAddress> constants, std::byte* storage, std::byte* header)
+        public: LinksAvlBalancedTreeMethodsBase(LinksConstants<LinkAddressType> constants, std::byte* storage, std::byte* header)
         {
             Links = storage;
             Header = header;
@@ -25,115 +25,115 @@ namespace Platform::Data::Doublets::Memory::United::Generic
             Continue = constants.Continue;
         }
 
-        public: TLinkAddress GetTreeRoot()
+        public: LinkAddressType GetTreeRoot()
                 {
                     return this->object().GetTreeRoot();
                 };
 
-        public: TLinkAddress GetBasePartValue(TLinkAddress link)
+        public: LinkAddressType GetBasePartValue(LinkAddressType link)
                 {
                     return this->object().GetBasePartValue(link);
                 };
 
-        public: bool FirstIsToTheRightOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget)
+        public: bool FirstIsToTheRightOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource, LinkAddressType rootTarget)
                 {
                     return this->object().FirstIsToTheRightOfSecond(source, target, rootSource, rootTarget);
                 };
 
-        public: bool FirstIsToTheLeftOfSecond(TLinkAddress source, TLinkAddress target, TLinkAddress rootSource, TLinkAddress rootTarget)
+        public: bool FirstIsToTheLeftOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource, LinkAddressType rootTarget)
                 {
                     return this->object().FirstIsToTheLeftOfSecond(source, target, rootSource, rootTarget);
                 };
 
         public: auto&& GetHeaderReference() const
         {
-            return *reinterpret_cast<LinksHeader<LinkAddressType>*>(_header);
+            return *reinterpret_cast<LinksHeader<LinkAddressType>*>(Header);
         }
 
-        public: RawLink<TLinkAddress>& GetLinkReference(TLinkAddress link) { *reinterpret_cast<RawLink<TLinkAddress>*>(Links + (RawLink<TLinkAddress>::SizeInBytes * (link))); }
+        public: RawLink<LinkAddressType>& GetLinkReference(LinkAddressType link) { *reinterpret_cast<RawLink<LinkAddressType>*>(Links + (RawLink<LinkAddressType>::SizeInBytes * (link))); }
 
-        public: IList<TLinkAddress> GetLinkValues(TLinkAddress linkIndex)
+        public: LinkType GetLinkValues(LinkAddressType linkIndex)
         {
             auto& link = GetLinkReference(linkIndex);
-            return Link<TLinkAddress>(linkIndex, link.Source, link.Target);
+            return Link<LinkAddressType>(linkIndex, link.Source, link.Target);
         }
 
-        public: bool FirstIsToTheLeftOfSecond(TLinkAddress first, TLinkAddress second)
+        public: bool FirstIsToTheLeftOfSecond(LinkAddressType first, LinkAddressType second)
         {
             auto& firstLink = this->GetLinkReference(first);
             auto& secondLink = this->GetLinkReference(second);
             return this->FirstIsToTheLeftOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
         }
 
-        public: bool FirstIsToTheRightOfSecond(TLinkAddress first, TLinkAddress second)
+        public: bool FirstIsToTheRightOfSecond(LinkAddressType first, LinkAddressType second)
         {
             auto& firstLink = this->GetLinkReference(first);
             auto& secondLink = this->GetLinkReference(second);
             return this->FirstIsToTheRightOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
         }
 
-        public: TLinkAddress GetSizeValue(TLinkAddress value) { return Bit<TLinkAddress>.PartialRead(value, 5, -5); }
+      public: LinkAddressType GetSizeValue(LinkAddressType value) { return Bit<LinkAddressType>.PartialRead(value, 5, -5); }
 
-        public: void SetSizeValue(TLinkAddress* storedValue, TLinkAddress size) { return storedValue = Bit<TLinkAddress>.PartialWrite(storedValue, size, 5, -5); }
+        public: void SetSizeValue(LinkAddressType* storedValue, LinkAddressType size) { return storedValue = Bit<LinkAddressType>.PartialWrite(storedValue, size, 5, -5); }
 
-        public: bool GetLeftIsChildValue(TLinkAddress value)
+        public: bool GetLeftIsChildValue(LinkAddressType value)
         {
             {
-                return _addressToBoolConverter.Convert(Bit<TLinkAddress>.PartialRead(value, 4, 1));
+                return _addressToBoolConverter.Convert(Bit<LinkAddressType>.PartialRead(value, 4, 1));
             }
         }
 
-        public: void SetLeftIsChildValue(TLinkAddress* storedValue, bool value)
+        public: void SetLeftIsChildValue(LinkAddressType* storedValue, bool value)
         {
             {
                 auto previousValue = *storedValue;
-                auto modified = Bit<TLinkAddress>.PartialWrite(previousValue, _boolToAddressConverter.Convert(value), 4, 1);
+                auto modified = Bit<LinkAddressType>.PartialWrite(previousValue, _boolToAddressConverter.Convert(value), 4, 1);
                 *storedValue = modified;
             }
         }
 
-        public: bool GetRightIsChildValue(TLinkAddress value)
+        public: bool GetRightIsChildValue(LinkAddressType value)
         {
             {
-                return _addressToBoolConverter.Convert(Bit<TLinkAddress>.PartialRead(value, 3, 1));
+                return _addressToBoolConverter.Convert(Bit<LinkAddressType>.PartialRead(value, 3, 1));
             }
         }
 
-        public: void SetRightIsChildValue(TLinkAddress* storedValue, bool value)
+        public: void SetRightIsChildValue(LinkAddressType* storedValue, bool value)
         {
             {
                 auto previousValue = *storedValue;
-                auto modified = Bit<TLinkAddress>.PartialWrite(previousValue, _boolToAddressConverter.Convert(value), 3, 1);
+                auto modified = Bit<LinkAddressType>.PartialWrite(previousValue, _boolToAddressConverter.Convert(value), 3, 1);
                 *storedValue = modified;
             }
         }
 
-        public: bool IsChild(TLinkAddress parent, TLinkAddress possibleChild)
+        public: bool IsChild(LinkAddressType parent, LinkAddressType possibleChild)
         {
             auto parentSize = this->GetSize(parent);
             auto childSize = this->GetSizeOrZero(possibleChild);
             return childSize > 0 && (childSize <= parentSize);
         }
 
-        public: std::uint8_t GetBalanceValue(TLinkAddress storedValue)
+        public: std::uint8_t GetBalanceValue(LinkAddressType storedValue)
         {
             {
-                auto value = _addressToInt32Converter.Convert(Bit<TLinkAddress>.PartialRead(storedValue, 0, 3));
+                auto value = _addressToInt32Converter.Convert(Bit<LinkAddressType>.PartialRead(storedValue, 0, 3));
                 value |= 0xF8 * ((value & 4) >> 2);
                 return (std::uint8_t)value;
             }
         }
 
-        public: void SetBalanceValue(TLinkAddress* storedValue, std::uint8_t value)
+        public: void SetBalanceValue(LinkAddressType* storedValue, std::uint8_t value)
         {
             {
                 auto packagedValue = _int32ToAddressConverter.Convert((std::uint8_t)value >> 5 & 4 | value & 3);
-                auto modified = Bit<TLinkAddress>.PartialWrite(*storedValue, packagedValue, 0, 3);
+                auto modified = Bit<LinkAddressType>.PartialWrite(*storedValue, packagedValue, 0, 3);
                 *storedValue = modified;
             }
         }
 
-        public: TLinkAddress this[TLinkAddress index]
+        public: auto operator[](std::size_t index)
         {
                 auto root = GetTreeRoot();
                 if (index >= GetSize(root))
@@ -160,7 +160,7 @@ namespace Platform::Data::Doublets::Memory::United::Generic
 
         }
 
-        public: TLinkAddress Search(TLinkAddress source, TLinkAddress target)
+        public: LinkAddressType Search(LinkAddressType source, LinkAddressType target)
         {
             auto root = this->GetTreeRoot();
             while (root != 0)
@@ -184,7 +184,7 @@ namespace Platform::Data::Doublets::Memory::United::Generic
             return 0;
         }
 
-        public: TLinkAddress CountUsages(TLinkAddress link)
+        public: LinkAddressType CountUsages(LinkAddressType link)
         {
             auto root = this->GetTreeRoot();
             auto total = this->GetSize(root);
@@ -221,14 +221,14 @@ namespace Platform::Data::Doublets::Memory::United::Generic
             return this->Subtract(this->Subtract(total, totalRightIgnore), totalLeftIgnore);
         }
 
-        public: TLinkAddress EachUsage(TLinkAddress link, Func<IList<TLinkAddress>, TLinkAddress> handler)
+      public: LinkAddressType EachUsage(LinkAddressType link, std::function<LinkAddressType(LinkType)> handler)
         {
             auto root = this->GetTreeRoot();
             if (root == 0)
             {
                 return Continue;
             }
-            TLinkAddress first = 0, current = root;
+            LinkAddressType first = 0, current = root;
             while (current != 0)
             {
                 auto base = this->GetBasePartValue(current);

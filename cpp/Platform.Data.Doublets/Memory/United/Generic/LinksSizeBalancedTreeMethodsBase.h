@@ -4,9 +4,8 @@
     template<typename Self, typename TLinksOptions>
     struct LinksSizeBalancedTreeMethodsBase
         :
-          //public Trees::SizeBalancedTreeMethods<Self, LinkAddressType>,
-    public Platform::Collections::Methods::Trees::RecursionlessSizeBalancedTreeMethods<Self, typename TLinksOptions::LinkAddressType>
-          /* public ILinksTreeMethods<TLinksOptions>, */
+    public Platform::Collections::Methods::Trees::SizeBalancedTreeMethods<Self, typename TLinksOptions::LinkAddressType>
+          /*, public ILinksTreeMethods<TLinksOptions>, */
     {
         using LinksOptionsType = TLinksOptions;
         using LinkAddressType = typename LinksOptionsType::LinkAddressType;
@@ -15,7 +14,7 @@
         static constexpr LinksConstants<LinkAddressType> Constants = LinksOptionsType::Constants;
 
 
-        public: using methods = Platform::Collections::Methods::Trees::RecursionlessSizeBalancedTreeMethods<Self, LinkAddressType>;
+        public: using methods = Platform::Collections::Methods::Trees::SizeBalancedTreeMethods<Self, LinkAddressType>;
 
         public: std::byte* const Links;
         public: std::byte* const Header;
