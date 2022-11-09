@@ -50,7 +50,7 @@ public: using methods = Platform::Collections::Methods::Trees::SizedAndThreadedA
             return *reinterpret_cast<LinksHeader<LinkAddressType>*>(Header);
         }
 
-        public: RawLink<LinkAddressType>& GetLinkReference(LinkAddressType link) { *reinterpret_cast<RawLink<LinkAddressType>*>(Links + (RawLink<LinkAddressType>::SizeInBytes * (link))); }
+        public: auto& GetLinkReference(LinkAddressType linkAddress) { return *(reinterpret_cast<RawLink<LinkAddressType>*>(Links) + linkAddress); }
 
         public: LinkType GetLinkValues(LinkAddressType linkIndex)
         {
@@ -72,14 +72,14 @@ public: using methods = Platform::Collections::Methods::Trees::SizedAndThreadedA
             return this->FirstIsToTheRightOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
         }
 
-      public: LinkAddressType GetSizeValue(LinkAddressType value) { return Platform::Numbers::Bit<LinkAddressType>.PartialRead(value, 5, -5); }
+      public: LinkAddressType GetSizeValue(LinkAddressType value) { return Platform::Numbers::Bit::PartialRead<LinkAddressType>(value, 5, -5); }
 
-        public: void SetSizeValue(LinkAddressType* storedValue, LinkAddressType size) { return storedValue = Platform::Numbers::Bit<LinkAddressType>.PartialWrite(storedValue, size, 5, -5); }
+        public: void SetSizeValue(LinkAddressType* storedValue, LinkAddressType size) { return storedValue = Platform::Numbers::Bit::PartialWrite<LinkAddressType>(storedValue, size, 5, -5); }
 
         public: bool GetLeftIsChildValue(LinkAddressType value)
         {
             {
-                return _addressToBoolConverter.Convert(Platform::Numbers::Bit<LinkAddressType>.PartialRead(value, 4, 1));
+                return (bool)Platform::Numbers::Bit::PartialRead<LinkAddressType>(value, 4, 1);
             }
         }
 
@@ -87,7 +87,7 @@ public: using methods = Platform::Collections::Methods::Trees::SizedAndThreadedA
         {
             {
                 auto previousValue = *storedValue;
-                auto modified = Platform::Numbers::Bit<LinkAddressType>.PartialWrite(previousValue, _boolToAddressConverter.Convert(value), 4, 1);
+                auto modified = Platform::Numbers::Bit::PartialWrite<LinkAddressType>(previousValue, (bool)value, 4, 1);
                 *storedValue = modified;
             }
         }
@@ -95,7 +95,7 @@ public: using methods = Platform::Collections::Methods::Trees::SizedAndThreadedA
         public: bool GetRightIsChildValue(LinkAddressType value)
         {
             {
-                return _addressToBoolConverter.Convert(Platform::Numbers::Bit<LinkAddressType>.PartialRead(value, 3, 1));
+                return (bool)Platform::Numbers::Bit::PartialRead<LinkAddressType>(value, 3, 1);
             }
         }
 
@@ -103,7 +103,7 @@ public: using methods = Platform::Collections::Methods::Trees::SizedAndThreadedA
         {
             {
                 auto previousValue = *storedValue;
-                auto modified = Platform::Numbers::Bit<LinkAddressType>.PartialWrite(previousValue, _boolToAddressConverter.Convert(value), 3, 1);
+                auto modified = Platform::Numbers::Bit::PartialWrite<LinkAddressType>(previousValue, (bool)value, 3, 1);
                 *storedValue = modified;
             }
         }
@@ -118,7 +118,7 @@ public: using methods = Platform::Collections::Methods::Trees::SizedAndThreadedA
         public: std::uint8_t GetBalanceValue(LinkAddressType storedValue)
         {
             {
-                auto value = _addressToInt32Converter.Convert(Platform::Numbers::Bit<LinkAddressType>.PartialRead(storedValue, 0, 3));
+                auto value = (std::uint32_t)Platform::Numbers::Bit::PartialRead<LinkAddressType>(storedValue, 0, 3);
                 value |= 0xF8 * ((value & 4) >> 2);
                 return (std::uint8_t)value;
             }
@@ -127,8 +127,8 @@ public: using methods = Platform::Collections::Methods::Trees::SizedAndThreadedA
         public: void SetBalanceValue(LinkAddressType* storedValue, std::uint8_t value)
         {
             {
-                auto packagedValue = _int32ToAddressConverter.Convert((std::uint8_t)value >> 5 & 4 | value & 3);
-                auto modified = Platform::Numbers::Bit<LinkAddressType>.PartialWrite(*storedValue, packagedValue, 0, 3);
+                auto packagedValue = (std::uint32_t)((std::uint8_t)value >> 5 & 4 | value & 3);
+                auto modified = Platform::Numbers::Bit::PartialWrite<LinkAddressType>(*storedValue, packagedValue, 0, 3);
                 *storedValue = modified;
             }
         }
