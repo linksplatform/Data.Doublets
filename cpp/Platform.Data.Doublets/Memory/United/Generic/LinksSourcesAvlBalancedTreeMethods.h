@@ -1,46 +1,51 @@
 ﻿namespace Platform::Data::Doublets::Memory::United::Generic
 {
-    public unsafe class LinksSourcesAvlBalancedTreeMethods<TLinkAddress> : public LinksAvlBalancedTreeMethodsBase<TLinkAddress>
+    template<typename TLinksOptions>
+    struct LinksSourcesAvlBalancedTreeMethods : public LinksAvlBalancedTreeMethodsBase<LinksSourcesAvlBalancedTreeMethods<TLinksOptions>, TLinksOptions>
     {
-        public: LinksSourcesAvlBalancedTreeMethods(LinksConstants<TLinkAddress> constants, std::byte* storage, std::byte* header) : base(constants, storage, header) { }
+        using base = LinksAvlBalancedTreeMethodsBase<LinksSourcesAvlBalancedTreeMethods<TLinksOptions>, TLinksOptions>;
+        using typename base::LinkAddressType;
+        using typename base::LinkType;
+        using typename base::ReadHandlerType;
+        public: LinksSourcesAvlBalancedTreeMethods(LinksConstants<LinkAddressType> constants, std::byte* storage, std::byte* header) : base(constants, storage, header) { }
 
-        public: TLinkAddress* GetLeftReference(TLinkAddress node) { return &GetLinkReference(node)->LeftAsSource; }
+        public: LinkAddressType* GetLeftReference(LinkAddressType node) { return &GetLinkReference(node)->LeftAsSource; }
 
-        public: TLinkAddress* GetRightReference(TLinkAddress node) { return &GetLinkReference(node)->RightAsSource; }
+        public: LinkAddressType* GetRightReference(LinkAddressType node) { return &GetLinkReference(node)->RightAsSource; }
 
-        public: TLinkAddress GetLeft(TLinkAddress node) { return this->GetLinkReference(node).LeftAsSource; }
+        public: LinkAddressType GetLeft(LinkAddressType node) { return this->GetLinkReference(node).LeftAsSource; }
 
-        public: TLinkAddress GetRight(TLinkAddress node) { return this->GetLinkReference(node).RightAsSource; }
+        public: LinkAddressType GetRight(LinkAddressType node) { return this->GetLinkReference(node).RightAsSource; }
 
-        public: void SetLeft(TLinkAddress node, TLinkAddress left) { this->GetLinkReference(node).LeftAsSource = left; }
+        public: void SetLeft(LinkAddressType node, LinkAddressType left) { this->GetLinkReference(node).LeftAsSource = left; }
 
-        public: void SetRight(TLinkAddress node, TLinkAddress right) { this->GetLinkReference(node).RightAsSource = right; }
+        public: void SetRight(LinkAddressType node, LinkAddressType right) { this->GetLinkReference(node).RightAsSource = right; }
 
-        public: TLinkAddress GetSize(TLinkAddress node) { return this->GetSizeValue(this->GetLinkReference(node).SizeAsSource); }
+        public: LinkAddressType GetSize(LinkAddressType node) { return this->GetSizeValue(this->GetLinkReference(node).SizeAsSource); }
 
-        public: void SetSize(TLinkAddress node, TLinkAddress size) { this->SetSizeValue(this->GetLinkReference(node).SizeAsSource, size); }
+        public: void SetSize(LinkAddressType node, LinkAddressType size) { this->SetSizeValue(this->GetLinkReference(node).SizeAsSource, size); }
 
-        public: bool GetLeftIsChild(TLinkAddress node) { return this->GetLeftIsChildValue(this->GetLinkReference(node).SizeAsSource); }
+        public: bool GetLeftIsChild(LinkAddressType node) { return this->GetLeftIsChildValue(this->GetLinkReference(node).SizeAsSource); }
 
-        public: void SetLeftIsChild(TLinkAddress node, bool value) { this->SetLeftIsChildValue(this->GetLinkReference(node).SizeAsSource, value); }
+        public: void SetLeftIsChild(LinkAddressType node, bool value) { this->SetLeftIsChildValue(this->GetLinkReference(node).SizeAsSource, value); }
 
-        public: bool GetRightIsChild(TLinkAddress node) { return this->GetRightIsChildValue(this->GetLinkReference(node).SizeAsSource); }
+        public: bool GetRightIsChild(LinkAddressType node) { return this->GetRightIsChildValue(this->GetLinkReference(node).SizeAsSource); }
 
-        public: void SetRightIsChild(TLinkAddress node, bool value) { this->SetRightIsChildValue(this->GetLinkReference(node).SizeAsSource, value); }
+        public: void SetRightIsChild(LinkAddressType node, bool value) { this->SetRightIsChildValue(this->GetLinkReference(node).SizeAsSource, value); }
 
-        public: std::uint8_t GetBalance(TLinkAddress node) { return this->GetBalanceValue(this->GetLinkReference(node).SizeAsSource); }
+        public: std::uint8_t GetBalance(LinkAddressType node) { return this->GetBalanceValue(this->GetLinkReference(node).SizeAsSource); }
 
-        public: void SetBalance(TLinkAddress node, std::uint8_t value) { this->SetBalanceValue(this->GetLinkReference(node).SizeAsSource, value); }
+        public: void SetBalance(LinkAddressType node, std::uint8_t value) { this->SetBalanceValue(this->GetLinkReference(node).SizeAsSource, value); }
 
-        public: TLinkAddress GetTreeRoot() { return GetHeaderReference().RootAsSource; }
+        public: LinkAddressType GetTreeRoot() { return this->GetHeaderReference().RootAsSource; }
 
-        public: TLinkAddress GetBasePartValue(TLinkAddress link) { return this->GetLinkReference(link).Source; }
+        public: LinkAddressType GetBasePartValue(LinkAddressType link) { return this->GetLinkReference(link).Source; }
 
-        public: bool FirstIsToTheLeftOfSecond(TLinkAddress firstSource, TLinkAddress firstTarget, TLinkAddress secondSource, TLinkAddress secondTarget) { return (firstSource < secondSource) || (firstSource == secondSource && (firstTarget < secondTarget)); }
+        public: bool FirstIsToTheLeftOfSecond(LinkAddressType firstSource, LinkAddressType firstTarget, LinkAddressType secondSource, LinkAddressType secondTarget) { return (firstSource < secondSource) || (firstSource == secondSource && (firstTarget < secondTarget)); }
 
-        public: bool FirstIsToTheRightOfSecond(TLinkAddress firstSource, TLinkAddress firstTarget, TLinkAddress secondSource, TLinkAddress secondTarget) { return firstSource > secondSource || (firstSource == secondSource && firstTarget > secondTarget); }
+        public: bool FirstIsToTheRightOfSecond(LinkAddressType firstSource, LinkAddressType firstTarget, LinkAddressType secondSource, LinkAddressType secondTarget) { return firstSource > secondSource || (firstSource == secondSource && firstTarget > secondTarget); }
 
-        public: void ClearNode(TLinkAddress node)
+        public: void ClearNode(LinkAddressType node)
         {
             auto& link = this->GetLinkReference(node);
             link.LeftAsSource = 0;

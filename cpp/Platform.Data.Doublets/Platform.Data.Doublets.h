@@ -17,6 +17,7 @@
 #include <Platform.Memory.h>
 #include <Platform.Data.h>
 #include <Platform.Interfaces.h>
+#include <Platform.Numbers.h>
 
 #include "Doublet.h"
 #include "Link.h"
@@ -34,6 +35,9 @@
 #include "Memory/United/Generic/LinksSizeBalancedTreeMethodsBase.h"
 #include "Memory/United/Generic/LinksTargetsSizeBalancedTreeMethods.h"
 #include "Memory/United/Generic/LinksSourcesSizeBalancedTreeMethods.h"
+#include "Memory/United/Generic/LinksAvlBalancedTreeMethodsBase.h"
+#include "Memory/United/Generic/LinksTargetsAvlBalancedTreeMethods.h"
+#include "Memory/United/Generic/LinksSourcesAvlBalancedTreeMethods.h"
 #include "Memory/United/Generic/UnitedMemoryLinksBase.h"
 #include "Memory/United/Generic/UnitedMemoryLinks.h"
 //#include "Ffi/LinksBase.h"

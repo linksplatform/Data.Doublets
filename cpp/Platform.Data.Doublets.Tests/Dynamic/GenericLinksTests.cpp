@@ -25,6 +25,21 @@ static void UsingStorageWithExternalReferencesWithSizeBalancedTrees(auto&& actio
   UsingStorage<StorageType>(action);
 }
 
+template<std::integral TLinkAddress>
+static void UsingStorageWithExternalReferencesWithAVLTrees(auto&& action)
+{
+  using namespace Platform::Memory;
+  using namespace Platform::Data::Doublets::Memory::United::Generic;
+  using LinksOptionsType = LinksOptions<TLinkAddress>;
+  using StorageType = UnitedMemoryLinks<LinksOptionsType, HeapResizableDirectMemory,
+                                        LinksSourcesAvlBalancedTreeMethods<LinksOptionsType>,
+                                        LinksTargetsAvlBalancedTreeMethods<LinksOptionsType>,
+                                        UnusedLinksListMethods<LinksOptionsType>,
+                                        Platform::Data::ILinks<LinksOptionsType>>;
+  StorageType storage{ HeapResizableDirectMemory{ } };
+  UsingStorage<StorageType>(action);
+}
+
 template <std::integral TLinkAddress>
 static void UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithSizeBalancedTrees(auto&& action)
 {
