@@ -17,13 +17,7 @@ public: using methods = Platform::Collections::Methods::Trees::SizedAndThreadedA
         public: std::byte* Links;
         public: std::byte* Header;
 
-        public: LinksAvlBalancedTreeMethodsBase(LinksConstants<LinkAddressType> constants, std::byte* storage, std::byte* header)
-        {
-            Links = storage;
-            Header = header;
-            Break = constants.Break;
-            Continue = constants.Continue;
-        }
+        public: LinksAvlBalancedTreeMethodsBase(std::byte* storage, std::byte* header) : Links(storage), Header(header) {}
 
         public: LinkAddressType GetTreeRoot()
                 {
@@ -154,7 +148,7 @@ public: using methods = Platform::Collections::Methods::Trees::SizedAndThreadedA
                         return root;
                     }
                     root = GetRightOrDefault(root);
-                    index = Subtract(index, (leftSize + 1));
+                    index = index - (leftSize + 1);
                 }
                 return 0;
 
@@ -218,7 +212,7 @@ public: using methods = Platform::Collections::Methods::Trees::SizedAndThreadedA
                     root = this->GetRightOrDefault(root);
                 }
             }
-            return this->Subtract(this->Subtract(total, totalRightIgnore), totalLeftIgnore);
+            return (total - totalRightIgnore) - totalLeftIgnore;
         }
 
       public: LinkAddressType EachUsage(LinkAddressType link, std::function<LinkAddressType(LinkType)> handler)

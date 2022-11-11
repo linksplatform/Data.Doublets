@@ -7,7 +7,7 @@
         using typename base::LinkAddressType;
         using typename base::LinkType;
         using typename base::ReadHandlerType;
-        public: LinksTargetsAvlBalancedTreeMethods(LinksConstants<LinkAddressType> constants, std::byte* storage, std::byte* header) : base(constants, storage, header) { }
+        public: LinksTargetsAvlBalancedTreeMethods(std::byte* storage, std::byte* header) : base(storage, header) { }
 
         public: LinkAddressType* GetLeftReference(LinkAddressType node) { return &this->GetLinkReference(node).LeftAsTarget; }
 
@@ -24,6 +24,30 @@
         public: LinkAddressType GetSize(LinkAddressType node) { return this->GetLinkReference(node).SizeAsTarget; }
 
         public: void SetSize(LinkAddressType node, LinkAddressType size) { this->GetLinkReference(node).SizeAsTarget = size; }
+
+        public: bool GetLeftIsChild(LinkAddressType node) {
+            return this->GetLeftIsChildValue(this->GetLinkReference(node).SizeAsTarget);
+        }
+
+        public: void SetLeftIsChild(LinkAddressType node, bool value) {
+            this->SetLeftIsChildValue(&this->GetLinkReference(node).SizeAsTarget, value);
+        }
+
+        public: bool GetRightIsChild(LinkAddressType node) {
+            return this->GetRightIsChildValue(this->GetLinkReference(node).SizeAsTarget);
+        }
+
+        public: void SetRightIsChild(LinkAddressType node, bool value) {
+            this->SetRightIsChildValue(&this->GetLinkReference(node).SizeAsSource, value);
+        }
+
+        public: int8_t GetBalance(LinkAddressType node) { 
+            return this->GetBalanceValue(this->GetLinkReference(node).SizeAsSource);
+        }
+
+        public: void SetBalance(LinkAddressType node, int8_t value) {
+            this->SetBalanceValue(&this->GetLinkReference(node).SizeAsSource, value);
+        }
 
         public: LinkAddressType GetTreeRoot() { return this->GetHeaderReference().RootAsTarget; }
 
