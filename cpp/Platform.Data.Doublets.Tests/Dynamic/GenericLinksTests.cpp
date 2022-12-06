@@ -91,12 +91,11 @@ TEST(GenericLinksTests, MultipleRandomCreationsAndDeletionsTestWithSizeBalancedT
 
 TEST(GenericLinksTests, CrudTestWithAVLTrees)
 {
-  std::cout << "First test" << std::endl;
-  UsingStorageWithExternalReferencesWithAVLTrees<std::uint8_t>(
+  /*UsingStorageWithExternalReferencesWithAVLTrees<std::uint8_t>(
       [](auto &&storage) { TestCrudOperations(storage); });
-  std::cout << "Second test" << std::endl;
   UsingStorageWithExternalReferencesWithAVLTrees<std::uint16_t>(
       [](auto &&storage) { TestCrudOperations(storage); });
+  */
   UsingStorageWithExternalReferencesWithAVLTrees<std::uint32_t>(
       [](auto &&storage) { TestCrudOperations(storage); });
   UsingStorageWithExternalReferencesWithAVLTrees<std::uint64_t>(
@@ -105,10 +104,11 @@ TEST(GenericLinksTests, CrudTestWithAVLTrees)
 
 TEST(GenericLinksTests, RawNumbersCrudTestWithAVLTrees)
 {
-  UsingStorageWithExternalReferencesWithAVLTrees<std::uint8_t>(
+  /*UsingStorageWithExternalReferencesWithAVLTrees<std::uint8_t>(
       [](auto &&storage) { TestRawNumbersCrudOperations(storage); });
   UsingStorageWithExternalReferencesWithAVLTrees<std::uint16_t>(
       [](auto &&storage) { TestRawNumbersCrudOperations(storage); });
+  */
   UsingStorageWithExternalReferencesWithAVLTrees<std::uint32_t>(
       [](auto &&storage) { TestRawNumbersCrudOperations(storage); });
   UsingStorageWithExternalReferencesWithAVLTrees<std::uint64_t>(
