@@ -4,7 +4,7 @@
     <Description>LinksPlatform's Platform.Data.Doublets Class Library</Description>
     <Copyright>konard, FreePhoenix888</Copyright>
     <AssemblyTitle>Platform.Data.Doublets</AssemblyTitle>
-    <VersionPrefix>0.14.0</VersionPrefix>
+    <VersionPrefix>0.15.0</VersionPrefix>
     <Authors>konard, FreePhoenix888</Authors>
     <TargetFramework>net7</TargetFramework>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -13,7 +13,7 @@
     <PackageTags>LinksPlatform;Data.Doublets;ILinks;UInt64Links;ResizableDirectMemoryLinks;UInt64ResizableDirectMemoryLinks</PackageTags>
     <PackageIconUrl>https://raw.githubusercontent.com/linksplatform/Documentation/18469f4d033ee9a5b7b84caab9c585acab2ac519/doc/Avatar-rainbow-icon-64x64.png</PackageIconUrl>
     <PackageProjectUrl>https://linksplatform.github.io/Data.Doublets</PackageProjectUrl>
-    <PackageLicenseExpression>Unlicensed</PackageLicenseExpression>
+    <PackageLicenseExpression>Unlicense</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>git://github.com/linksplatform/Data.Doublets</RepositoryUrl>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
@@ -24,27 +24,29 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <LangVersion>latest</LangVersion>
-    <PackageReleaseNotes>FFI namespace renamed to Ffi.
-Platform.Data.Doublets.FFI dependency is updated from 0.9.0 to 0.10.0.</PackageReleaseNotes>
+    <PackageReleaseNotes>Target frameworks are changed to net7.
+License is changed to Unlicense.
+Platform.Data dependency is updated from 0.11.4 to 0.12.0.
+Platform.Random dependency is updated from 0.2.0 to 0.3.0.
+Platform.Timestamps dependency is updated from 0.2.1 to 0.3.0.
+Platform.Collections.Methods dependency is updated from 0.5.2 to 0.6.0.
+Platform.Singletons dependency is updated from 0.2.2 to 0.3.0.
+Platform.Memory dependency is updated from 0.3.2 to 0.4.0.</PackageReleaseNotes>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
-  <ItemGroup Condition="$(TargetFramework.StartsWith('net4')) AND '$(MSBuildRuntimeType)' == 'Core' AND '$(OS)' != 'Windows_NT'">
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="All" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Platform.Data" Version="0.11.4" />
-<!--    <PackageReference Include="Platform.Data.Doublets.FFI" Version="0.9.0" />-->
-    <PackageReference Include="Platform.Random" Version="0.2.0" />
-    <PackageReference Include="Platform.Timestamps" Version="0.2.1" />
-    <PackageReference Include="Platform.Collections.Methods" Version="0.5.2" />
-    <PackageReference Include="Platform.Singletons" Version="0.2.2" />
-    <PackageReference Include="Platform.Memory" Version="0.3.2" />
+    <PackageReference Include="Platform.Data" Version="0.12.0" />
+    <PackageReference Include="Platform.Data.Doublets.FFI" Version="0.9.0" />
+    <PackageReference Include="Platform.Random" Version="0.3.0" />
+    <PackageReference Include="Platform.Timestamps" Version="0.3.0" />
+    <PackageReference Include="Platform.Collections.Methods" Version="0.6.0" />
+    <PackageReference Include="Platform.Singletons" Version="0.3.0" />
+    <PackageReference Include="Platform.Memory" Version="0.4.0" />
   </ItemGroup>
 
 </Project>
