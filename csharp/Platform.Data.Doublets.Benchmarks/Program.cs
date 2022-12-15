@@ -8,7 +8,7 @@ namespace Platform.Data.Doublets.Benchmarks
         {
             BenchmarkRunner.Run<CountBenchmarks>();
             BenchmarkRunner.Run<LinkStructBenchmarks>();
-            BenchmarkRunner.Run<MemoryBenchmarks>();
+            // BenchmarkRunner.Run<MemoryBenchmarks>();
         }
     }
 }

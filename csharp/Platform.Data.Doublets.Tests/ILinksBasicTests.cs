@@ -30,6 +30,7 @@ namespace Platform.Data.Doublets.Tests
             Assert.Equal(3U, links.Count());
         }
 
+        /*
         [Fact]
         public static void FfiDeleteAllUsages()
         {
@@ -50,5 +51,6 @@ namespace Platform.Data.Doublets.Tests
 
             Assert.Equal(3U, links.Count());
         }
+    */
     }
 }

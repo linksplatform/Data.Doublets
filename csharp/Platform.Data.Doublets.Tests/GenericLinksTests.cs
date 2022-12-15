@@ -46,9 +46,11 @@ namespace Platform.Data.Doublets.Tests
                 action(decoratedStorage);
             }
 
+            /*
             File.Delete("db.links");
             using var ffiLinks = new Ffi.Links<TLinkAddress>("db.links");
             action(ffiLinks);
+        */
         }
     }
 }

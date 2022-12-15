@@ -1,3 +1,4 @@
+/*
 using System.IO;
 using BenchmarkDotNet.Attributes;
 using Platform.Data.Doublets.Memory.Split.Generic;
@@ -70,3 +71,4 @@ namespace Platform.Data.Doublets.Benchmarks
         }
     }
 }
+*/

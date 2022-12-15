@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6</TargetFramework>
+    <TargetFramework>net7</TargetFramework>
     <IsPackable>false</IsPackable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Platform.Data.Doublets.Tests\Platform.Data.Doublets.Tests.csproj" />
+    <ProjectReference Include="..\Platform.Data.Doublets\Platform.Data.Doublets.csproj" />
   </ItemGroup>
 
 </Project>
