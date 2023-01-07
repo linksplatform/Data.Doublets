@@ -176,7 +176,7 @@ public abstract unsafe class LinksSizeBalancedTreeMethodsBase<TLinkAddress> : Si
             }
             else
             {
-                totalRightIgnore = Add(first: totalRightIgnore, second: GetRightSize(node: root) + TLinkAddress.One);
+                totalRightIgnore = (totalRightIgnore + GetRightSize(node: root) + TLinkAddress.One);
                 root = GetLeftOrDefault(node: root);
             }
         }
@@ -191,7 +191,7 @@ public abstract unsafe class LinksSizeBalancedTreeMethodsBase<TLinkAddress> : Si
             }
             else
             {
-                totalLeftIgnore = Add(first: totalLeftIgnore, second: GetLeftSize(node: root) + TLinkAddress.One);
+                totalLeftIgnore = (totalLeftIgnore + GetLeftSize(node: root) + TLinkAddress.One);
                 root = GetRightOrDefault(node: root);
             }
         }

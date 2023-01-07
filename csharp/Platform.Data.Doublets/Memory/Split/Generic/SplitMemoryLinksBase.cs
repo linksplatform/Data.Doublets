@@ -273,13 +273,13 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
                 var externalReferencesRange = constants.ExternalReferencesRange;
                 if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: value))
                 {
-                    return Add(first: ExternalSourcesTreeMethods.CountUsages(root: value), second: ExternalTargetsTreeMethods.CountUsages(root: value));
+                    return (ExternalSourcesTreeMethods.CountUsages(root: value) + ExternalTargetsTreeMethods.CountUsages(root: value));
                 }
                 if (_useLinkedList)
                 {
-                    return Add(first: InternalSourcesListMethods.CountUsages(head: value), second: InternalTargetsTreeMethods.CountUsages(root: value));
+                    return (InternalSourcesListMethods.CountUsages(head: value) + InternalTargetsTreeMethods.CountUsages(root: value));
                 }
-                return Add(first: InternalSourcesTreeMethods.CountUsages(root: value), second: InternalTargetsTreeMethods.CountUsages(root: value));
+                return (InternalSourcesTreeMethods.CountUsages(root: value) + InternalTargetsTreeMethods.CountUsages(root: value));
             }
             if (!Exists(link: index))
             {
