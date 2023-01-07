@@ -200,7 +200,7 @@ public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : Siz
                 root = GetRightOrDefault(node: root);
             }
         }
-        return (Subtract(first: total) - (totalRightIgnore), second: totalLeftIgnore);
+        return total - totalRightIgnore- totalLeftIgnore;
     }
 
     /// <summary>

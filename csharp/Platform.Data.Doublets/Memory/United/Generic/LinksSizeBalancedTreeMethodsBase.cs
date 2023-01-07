@@ -195,7 +195,7 @@ public abstract unsafe class LinksSizeBalancedTreeMethodsBase<TLinkAddress> : Si
                 root = GetRightOrDefault(node: root);
             }
         }
-        return (Subtract(first: total) - (totalRightIgnore), second: totalLeftIgnore);
+        return total - totalRightIgnore - totalLeftIgnore;
     }
 
     /// <summary>
