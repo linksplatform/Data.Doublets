@@ -119,7 +119,7 @@ public struct RawLinkIndexPart<TLinkAddress> : IEquatable<RawLinkIndexPart<TLink
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     public bool Equals(RawLinkIndexPart<TLinkAddress> other)
     {
-        return _equalityComparer.Equals(x: RootAsSource, y: other.RootAsSource) && _equalityComparer.Equals(x: LeftAsSource, y: other.LeftAsSource) && _equalityComparer.Equals(x: RightAsSource, y: other.RightAsSource) && _equalityComparer.Equals(x: SizeAsSource, y: other.SizeAsSource) && _equalityComparer.Equals(x: RootAsTarget, y: other.RootAsTarget) && _equalityComparer.Equals(x: LeftAsTarget, y: other.LeftAsTarget) && _equalityComparer.Equals(x: RightAsTarget, y: other.RightAsTarget) && _equalityComparer.Equals(x: SizeAsTarget, y: other.SizeAsTarget);
+        return RootAsSource ==  other.RootAsSource && LeftAsSource ==  other.LeftAsSource && RightAsSource ==  other.RightAsSource && SizeAsSource ==  other.SizeAsSource && RootAsTarget ==  other.RootAsTarget && LeftAsTarget ==  other.LeftAsTarget && RightAsTarget ==  other.RightAsTarget && SizeAsTarget ==  other.SizeAsTarget;
     }
 
     /// <summary>

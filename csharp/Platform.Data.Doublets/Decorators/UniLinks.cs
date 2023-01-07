@@ -277,12 +277,12 @@ internal class UniLinks<TLinkAddress> : LinksDecoratorBase<TLinkAddress>, IUniLi
         {
             var before = Array.Empty<TLinkAddress>();
             // Что должно означать False здесь? Остановиться (перестать идти) или пропустить (пройти мимо) или пустить (взять)?
-            if (matchHandler != null && _equalityComparer.Equals(x: matchHandler(link: before), y: constants.Break))
+            if (matchHandler != null && matchHandler(link: before) ==  constants.Break)
             {
                 return constants.Break;
             }
             var after = (IList<TLinkAddress>?)substitution.ToArray();
-            if (_equalityComparer.Equals(x: after[index: 0], y: default))
+            if (after[index: 0] ==  default)
             {
                 var newLink = _links.Create();
                 after[index: 0] = newLink;
@@ -307,7 +307,7 @@ internal class UniLinks<TLinkAddress> : LinksDecoratorBase<TLinkAddress>, IUniLi
             {
                 var linkToDelete = patternOrCondition[index: 0];
                 var before = _links.GetLink(link: linkToDelete);
-                if (matchHandler != null && _equalityComparer.Equals(x: matchHandler(link: before), y: constants.Break))
+                if (matchHandler != null && matchHandler(link: before) ==  constants.Break)
                 {
                     return constants.Break;
                 }
@@ -323,12 +323,12 @@ internal class UniLinks<TLinkAddress> : LinksDecoratorBase<TLinkAddress>, IUniLi
         {
             var linkToUpdate = patternOrCondition[index: 0];
             var before = _links.GetLink(link: linkToUpdate);
-            if (matchHandler != null && _equalityComparer.Equals(x: matchHandler(link: before), y: constants.Break))
+            if (matchHandler != null && matchHandler(link: before) ==  constants.Break)
             {
                 return constants.Break;
             }
             var after = (IList<TLinkAddress>?)substitution.ToArray(); //-V3125
-            if (_equalityComparer.Equals(x: after[index: 0], y: default))
+            if (after[index: 0] ==  default)
             {
                 after[index: 0] = linkToUpdate;
             }

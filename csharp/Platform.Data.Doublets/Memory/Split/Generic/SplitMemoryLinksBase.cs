@@ -1027,7 +1027,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     protected virtual bool AreEqual(TLinkAddress first, TLinkAddress second)
     {
-        return _equalityComparer.Equals(x: first, y: second);
+        return first ==  second;
     }
 
     /// <summary>

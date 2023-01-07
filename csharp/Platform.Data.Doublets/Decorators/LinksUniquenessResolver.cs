@@ -54,7 +54,7 @@ public class LinksUniquenessResolver<TLinkAddress> : LinksDecoratorBase<TLinkAdd
         var constants = _constants;
         var links = _links;
         var newLinkAddress = links.SearchOrDefault(source: links.GetSource(link: substitution), target: links.GetTarget(link: substitution));
-        if (_equalityComparer.Equals(x: newLinkAddress, y: default))
+        if (newLinkAddress ==  default)
         {
             return links.Update(restriction: restriction, substitution: substitution, handler: handler);
         }

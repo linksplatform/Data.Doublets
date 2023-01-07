@@ -56,6 +56,6 @@ public class TargetMatcher<TLinkAddress> : LinksOperatorBase<TLinkAddress>, ICri
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     public bool IsMatched(TLinkAddress link)
     {
-        return _equalityComparer.Equals(x: _links.GetTarget(link: link), y: _targetToMatch);
+        return _links.GetTarget(link: link) ==  _targetToMatch;
     }
 }
