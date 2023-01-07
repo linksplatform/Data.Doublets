@@ -369,7 +369,7 @@ public abstract unsafe class InternalLinksRecursionlessSizeBalancedTreeMethodsBa
             {
                 root = GetLeftOrDefault(node: root);
             }
-            else if (GreaterThan(first: key, second: rootKey)) // node.Key > root.Key
+            else if (key > rootKey) // node.Key > root.Key
             {
                 root = GetRightOrDefault(node: root);
             }

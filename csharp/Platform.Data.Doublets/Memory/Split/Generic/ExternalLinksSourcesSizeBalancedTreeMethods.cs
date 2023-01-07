@@ -296,7 +296,7 @@ public unsafe class ExternalLinksSourcesSizeBalancedTreeMethods<TLinkAddress> : 
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     protected override bool FirstIsToTheRightOfSecond(TLinkAddress firstSource, TLinkAddress firstTarget, TLinkAddress secondSource, TLinkAddress secondTarget)
     {
-        return GreaterThan(first: firstSource, second: secondSource) || ((firstSource == secondSource) && GreaterThan(first: firstTarget, second: secondTarget));
+        return firstSource > secondSource || ((firstSource == secondSource) && firstTarget > secondTarget);
     }
 
     /// <summary>
