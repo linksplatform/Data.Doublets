@@ -72,8 +72,8 @@ namespace Platform.Data.Doublets.Tests
         {
             var constants = links.Constants;
             var equalityComparer = EqualityComparer<T>.Default;
-            var zero = default(T);
-            var one = ++zero;
+            var zero = T.Zero;
+            var one = T.One;
 
             // Create Link
             EnsureTrue(equalityComparer.Equals(links.Count(), zero));
