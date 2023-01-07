@@ -168,7 +168,6 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void DeleteAll<TLinkAddress>(this ILinks<TLinkAddress> links)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
-            var equalityComparer = EqualityComparer<TLinkAddress>.Default;
             var comparer = Comparer<TLinkAddress>.Default;
             for (var i = links.Count(); comparer.Compare(i, default) > 0; i = --i)
             {
@@ -210,7 +209,6 @@ namespace Platform.Data.Doublets
         public static TLinkAddress First<TLinkAddress>(this ILinks<TLinkAddress> links)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
             TLinkAddress firstLink = default;
-            var equalityComparer = EqualityComparer<TLinkAddress>.Default;
             if (equalityComparer.Equals(links.Count(), default))
             {
                 throw new InvalidOperationException("В хранилище нет связей.");
@@ -294,7 +292,6 @@ namespace Platform.Data.Doublets
             {
                 return false;
             }
-            var equalityComparer = EqualityComparer<TLinkAddress>.Default;
             var constants = links.Constants;
             for (var i = 1; i < path.Length; i++)
             {
@@ -634,7 +631,6 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureLinkIsAnyOrExists<TLinkAddress>(this ILinks<TLinkAddress> links, IList<TLinkAddress>? restriction)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
-            var equalityComparer = EqualityComparer<TLinkAddress>.Default;
             var any = links.Constants.Any;
             for (var i = 0; i < restriction.Count; i++)
             {
@@ -674,7 +670,6 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureLinkIsAnyOrExists<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link, string argumentName)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
-            var equalityComparer = EqualityComparer<TLinkAddress>.Default;
             if (!equalityComparer.Equals(link, links.Constants.Any) && !links.Exists(link))
             {
                 throw new ArgumentLinkDoesNotExistsException<TLinkAddress>(link, argumentName);
@@ -710,7 +705,6 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureLinkIsItselfOrExists<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link, string argumentName)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
-            var equalityComparer = EqualityComparer<TLinkAddress>.Default;
             if (!equalityComparer.Equals(link, links.Constants.Itself) && !links.Exists(link))
             {
                 throw new ArgumentLinkDoesNotExistsException<TLinkAddress>(link, argumentName);
@@ -757,7 +751,6 @@ namespace Platform.Data.Doublets
                 var max = nonExistentAddresses.Max();
                 max = uInt64ToAddressConverter.Convert(System.Math.Min(addressToUInt64Converter.Convert(max), addressToUInt64Converter.Convert(links.Constants.InternalReferencesRange.Maximum)));
                 var createdLinks = new List<TLinkAddress>();
-                var equalityComparer = EqualityComparer<TLinkAddress>.Default;
                 TLinkAddress createdLink = creator();
                 while (!equalityComparer.Equals(createdLink, max))
                 {
@@ -782,7 +775,6 @@ namespace Platform.Data.Doublets
             var constants = links.Constants;
             var values = links.GetLink(link);
             TLinkAddress usagesAsSource = links.Count(new Link<TLinkAddress>(constants.Any, link, constants.Any));
-            var equalityComparer = EqualityComparer<TLinkAddress>.Default;
             if (equalityComparer.Equals(links.GetSource(values), link))
             {
                 --usagesAsSource;
@@ -805,7 +797,6 @@ namespace Platform.Data.Doublets
         {
             var constants = links.Constants;
             var values = links.GetLink(link);
-            var equalityComparer = EqualityComparer<TLinkAddress>.Default;
             return equalityComparer.Equals(links.GetSource(values), source) && equalityComparer.Equals(links.GetTarget(values), target);
         }
 
@@ -953,7 +944,6 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IList<TLinkAddress>? ResolveConstantAsSelfReference<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress constant, IList<TLinkAddress>? restriction, IList<TLinkAddress>? substitution)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
-            var equalityComparer = EqualityComparer<TLinkAddress>.Default;
             var constants = links.Constants;
             var restrictionIndex = links.GetIndex(restriction);
             var substitutionIndex = links.GetIndex(substitution);
@@ -1007,7 +997,6 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress UpdateOrCreateOrGet<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress source, TLinkAddress target, TLinkAddress newSource, TLinkAddress newTarget, WriteHandler<TLinkAddress>? handler)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
-            var equalityComparer = EqualityComparer<TLinkAddress>.Default;
             var link = links.SearchOrDefault(source, target);
             if (equalityComparer.Equals(link, default))
             {
@@ -1057,7 +1046,6 @@ namespace Platform.Data.Doublets
         {
             var constants = links.Constants;
             var any = constants.Any;
-            var equalityComparer = EqualityComparer<TLinkAddress>.Default;
             var usagesAsSourceQuery = new Link<TLinkAddress>(any, linkIndex, any);
             var usagesAsTargetQuery = new Link<TLinkAddress>(any, any, linkIndex);
             var usages = new List<IList<TLinkAddress>?>();
@@ -1133,7 +1121,6 @@ namespace Platform.Data.Doublets
         public static bool AreValuesReset<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress linkIndex)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
             var nullConstant = links.Constants.Null;
-            var equalityComparer = EqualityComparer<TLinkAddress>.Default;
             var link = links.GetLink(linkIndex);
             for (int i = 1; i < link.Count; i++)
             {
@@ -1214,7 +1201,6 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress MergeUsages<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress oldLinkIndex, TLinkAddress newLinkIndex, WriteHandler<TLinkAddress>? handler)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
-            var equalityComparer = EqualityComparer<TLinkAddress>.Default;
             if (equalityComparer.Equals(oldLinkIndex, newLinkIndex))
             {
                 return newLinkIndex;
@@ -1250,7 +1236,6 @@ namespace Platform.Data.Doublets
 
         public static TLinkAddress MergeAndDelete<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress oldLinkIndex, TLinkAddress newLinkIndex)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
-            var equalityComparer = EqualityComparer<TLinkAddress>.Default;
             if (!equalityComparer.Equals(oldLinkIndex, newLinkIndex))
             {
                 links.MergeUsages(oldLinkIndex, newLinkIndex);
@@ -1265,7 +1250,6 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress MergeAndDelete<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress oldLinkIndex, TLinkAddress newLinkIndex, WriteHandler<TLinkAddress>? handler)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
-            var equalityComparer = EqualityComparer<TLinkAddress>.Default;
             var constants = links.Constants;
             WriteHandlerState<TLinkAddress> handlerState = new(constants.Continue, constants.Break, handler);
             if (!equalityComparer.Equals(oldLinkIndex, newLinkIndex))

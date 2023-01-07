@@ -71,7 +71,6 @@ namespace Platform.Data.Doublets.Tests
         public static void TestCRUDOperations<T>(this ILinks<T> links) where T: IUnsignedNumber<T>
         {
             var constants = links.Constants;
-            var equalityComparer = EqualityComparer<T>.Default;
             var zero = T.Zero;
             var one = T.One;
 
@@ -132,7 +131,6 @@ namespace Platform.Data.Doublets.Tests
         {
             // Constants
             var constants = links.Constants;
-            var equalityComparer = EqualityComparer<T>.Default;
             var zero = default(T);
             var one = ++zero;
             var two = ++one;
@@ -208,7 +206,6 @@ namespace Platform.Data.Doublets.Tests
         /// </param>
         public static void TestMultipleRandomCreationsAndDeletions<TLink>(this ILinks<TLink> links, int maximumOperationsPerCycle) where TLink : IUnsignedNumber<TLink>
         {
-            EqualityComparer<TLink> equalityComparer = EqualityComparer<TLink>.Default;
             var comparer = Comparer<TLink>.Default;
             var addressToUInt64Converter = CheckedConverter<TLink, ulong>.Default;
             for (var N = 1; N < maximumOperationsPerCycle; N++)

@@ -16,7 +16,6 @@ namespace Platform.Data.Doublets.Decorators;
 /// <seealso cref="LinksDecoratorBase{TLinkAddress}" />
 public class LinksItselfConstantToSelfReferenceResolver<TLinkAddress> : LinksDecoratorBase<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>
 {
-    private static readonly EqualityComparer<TLinkAddress> _equalityComparer = EqualityComparer<TLinkAddress>.Default;
 
     /// <summary>
     ///     <para>

@@ -17,7 +17,6 @@ namespace Platform.Data.Doublets.PropertyOperators
     /// <seealso cref="IProperties{TLinkAddress, TLinkAddress, TLinkAddress}"/>
     public class PropertiesOperator<TLinkAddress> : LinksOperatorBase<TLinkAddress>, IProperties<TLinkAddress, TLinkAddress, TLinkAddress>  where TLinkAddress : IUnsignedNumber<TLinkAddress>
     {
-        private static readonly EqualityComparer<TLinkAddress> _equalityComparer = EqualityComparer<TLinkAddress>.Default;
 
         /// <summary>
         /// <para>

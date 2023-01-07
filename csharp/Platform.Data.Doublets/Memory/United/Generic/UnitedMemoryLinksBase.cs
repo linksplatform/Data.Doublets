@@ -24,7 +24,6 @@ namespace Platform.Data.Doublets.Memory.United.Generic
     /// <seealso cref="ILinks{TLinkAddress}"/>
     public abstract class UnitedMemoryLinksBase<TLinkAddress> : DisposableBase, ILinks<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
     {
-        private static readonly EqualityComparer<TLinkAddress> _equalityComparer = EqualityComparer<TLinkAddress>.Default;
         private static readonly Comparer<TLinkAddress> _comparer = Comparer<TLinkAddress>.Default;
         private static readonly UncheckedConverter<TLinkAddress, long> _addressToInt64Converter = UncheckedConverter<TLinkAddress, long>.Default;
         private static readonly UncheckedConverter<long, TLinkAddress> _int64ToAddressConverter = UncheckedConverter<long, TLinkAddress>.Default;

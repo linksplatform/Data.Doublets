@@ -18,7 +18,6 @@ namespace Platform.Data.Doublets.Stacks
     /// <seealso cref="IStack{TLinkAddress}"/>
     public class Stack<TLinkAddress> : LinksOperatorBase<TLinkAddress>, IStack<TLinkAddress>  where TLinkAddress : IUnsignedNumber<TLinkAddress>
     {
-        private static readonly EqualityComparer<TLinkAddress> _equalityComparer = EqualityComparer<TLinkAddress>.Default;
         private readonly TLinkAddress _stack;
 
         /// <summary>

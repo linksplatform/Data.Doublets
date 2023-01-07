@@ -17,7 +17,6 @@ namespace Platform.Data.Doublets.CriterionMatchers;
 /// <seealso cref="ICriterionMatcher{TLinkAddress}" />
 public class TargetMatcher<TLinkAddress> : LinksOperatorBase<TLinkAddress>, ICriterionMatcher<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>
 {
-    private static readonly EqualityComparer<TLinkAddress> _equalityComparer = EqualityComparer<TLinkAddress>.Default;
     private readonly TLinkAddress _targetToMatch;
 
     /// <summary>

@@ -16,7 +16,6 @@ namespace Platform.Data.Doublets.Memory.Split;
 /// </summary>
 public struct RawLinkIndexPart<TLinkAddress> : IEquatable<RawLinkIndexPart<TLinkAddress>> where TLinkAddress : IUnsignedNumber<TLinkAddress>
 {
-    private static readonly EqualityComparer<TLinkAddress> _equalityComparer = EqualityComparer<TLinkAddress>.Default;
 
     /// <summary>
     ///     <para>

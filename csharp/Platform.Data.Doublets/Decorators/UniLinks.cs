@@ -19,7 +19,6 @@ namespace Platform.Data.Doublets.Decorators;
 /// </remarks>
 internal class UniLinks<TLinkAddress> : LinksDecoratorBase<TLinkAddress>, IUniLinks<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>
 {
-    private static readonly EqualityComparer<TLinkAddress> _equalityComparer = EqualityComparer<TLinkAddress>.Default;
 
     /// <summary>
     ///     <para>
