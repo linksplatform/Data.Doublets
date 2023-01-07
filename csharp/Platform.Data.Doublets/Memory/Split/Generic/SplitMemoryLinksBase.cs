@@ -709,7 +709,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
             {
                 throw new LinksLimitReachedException<TLinkAddress>(limit: maximumPossibleInnerReference);
             }
-            if (GreaterOrEqualThan(first: header.AllocatedLinks, second: header.ReservedLinks - TLinkAddress.One))
+            if ((header.AllocatedLinks >= header.ReservedLinks - TLinkAddress.One))
             {
                 _dataMemory.ReservedCapacity += _dataMemoryReservationStepInBytes;
                 _indexMemory.ReservedCapacity += _indexMemoryReservationStepInBytes;

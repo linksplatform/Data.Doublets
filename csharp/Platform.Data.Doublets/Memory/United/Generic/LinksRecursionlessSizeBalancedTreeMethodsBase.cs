@@ -185,7 +185,7 @@ public abstract unsafe class LinksRecursionlessSizeBalancedTreeMethodsBase<TLink
         while (root != TLinkAddress.Zero)
         {
             var @base = GetBasePartValue(link: root);
-            if (GreaterOrEqualThan(first: @base, second: link))
+            if ((@base >= link))
             {
                 root = GetLeftOrDefault(node: root);
             }

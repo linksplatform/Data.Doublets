@@ -190,7 +190,7 @@ public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : Siz
         while (root != TLinkAddress.Zero)
         {
             var @base = GetBasePartValue(link: root);
-            if (GreaterOrEqualThan(first: @base, second: link))
+            if ((@base >= link))
             {
                 root = GetLeftOrDefault(node: root);
             }
@@ -233,7 +233,7 @@ public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : Siz
         while (current != TLinkAddress.Zero)
         {
             var @base = GetBasePartValue(link: current);
-            if (GreaterOrEqualThan(first: @base, second: link))
+            if ((@base >= link))
             {
                 if (AreEqual(first: @base, second: link))
                 {
