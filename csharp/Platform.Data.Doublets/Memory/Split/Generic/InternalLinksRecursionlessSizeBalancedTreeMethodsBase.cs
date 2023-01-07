@@ -121,7 +121,7 @@ public abstract unsafe class InternalLinksRecursionlessSizeBalancedTreeMethodsBa
                     return root;
                 }
                 root = GetRightOrDefault(node: root);
-                index = Subtract(first: index, second: leftSize + TLinkAddress.One);
+                index = (index) - (leftSize + TLinkAddress.One);
             }
             return Zero; // TODO: Impossible situation exception (only if tree structure broken)
         }
