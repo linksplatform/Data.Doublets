@@ -391,15 +391,15 @@ public abstract unsafe class InternalLinksRecursionlessSizeBalancedTreeMethodsBa
             return @continue;
         }
         var @break = Break;
-        if (AreEqual(first: EachUsageCore(@base: @base, link: GetLeftOrDefault(node: link), handler: handler), second: @break))
+        if ((EachUsageCore(@base: @base, link: GetLeftOrDefault(node: link), handler: handler) == @break))
         {
             return @break;
         }
-        if (AreEqual(first: handler(link: GetLinkValues(linkIndex: link)), second: @break))
+        if ((handler(link: GetLinkValues(linkIndex: link)) == @break))
         {
             return @break;
         }
-        if (AreEqual(first: EachUsageCore(@base: @base, link: GetRightOrDefault(node: link), handler: handler), second: @break))
+        if ((EachUsageCore(@base: @base, link: GetRightOrDefault(node: link), handler: handler) == @break))
         {
             return @break;
         }
