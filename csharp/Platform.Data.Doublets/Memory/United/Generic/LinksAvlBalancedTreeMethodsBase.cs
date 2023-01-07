@@ -100,7 +100,7 @@ public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : Siz
             {
                 return Zero;
             }
-            while (!EqualToZero(value: root))
+            while (root != TLinkAddress.Zero)
             {
                 var left = GetLeftOrDefault(node: root);
                 var leftSize = GetSizeOrZero(node: left);
@@ -130,7 +130,7 @@ public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : Siz
     public TLinkAddress Search(TLinkAddress source, TLinkAddress target)
     {
         var root = GetTreeRoot();
-        while (!EqualToZero(value: root))
+        while (root != TLinkAddress.Zero)
         {
             ref var rootLink = ref GetLinkReference(link: root);
             var rootSource = rootLink.Source;
@@ -172,7 +172,7 @@ public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : Siz
         var root = GetTreeRoot();
         var total = GetSize(node: root);
         var totalRightIgnore = Zero;
-        while (!EqualToZero(value: root))
+        while (root != TLinkAddress.Zero)
         {
             var @base = GetBasePartValue(link: root);
             if (LessOrEqualThan(first: @base, second: link))
@@ -187,7 +187,7 @@ public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : Siz
         }
         root = GetTreeRoot();
         var totalLeftIgnore = Zero;
-        while (!EqualToZero(value: root))
+        while (root != TLinkAddress.Zero)
         {
             var @base = GetBasePartValue(link: root);
             if (GreaterOrEqualThan(first: @base, second: link))
@@ -230,7 +230,7 @@ public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : Siz
             return Continue;
         }
         TLinkAddress first = Zero, current = root;
-        while (!EqualToZero(value: current))
+        while (current != TLinkAddress.Zero)
         {
             var @base = GetBasePartValue(link: current);
             if (GreaterOrEqualThan(first: @base, second: link))
@@ -246,7 +246,7 @@ public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : Siz
                 current = GetRightOrDefault(node: current);
             }
         }
-        if (!EqualToZero(value: first))
+        if (first != TLinkAddress.Zero)
         {
             current = first;
             while (true)

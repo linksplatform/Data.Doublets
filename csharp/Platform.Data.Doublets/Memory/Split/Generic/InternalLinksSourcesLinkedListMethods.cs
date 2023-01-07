@@ -383,7 +383,7 @@ public unsafe class InternalLinksSourcesLinkedListMethods<TLinkAddress> : Relati
         var @break = Break;
         var current = GetFirst(head: source);
         var first = current;
-        while (!EqualToZero(value: current))
+        while (current != TLinkAddress.Zero)
         {
             if (AreEqual(first: handler(link: GetLinkValues(linkIndex: current)), second: @break))
             {

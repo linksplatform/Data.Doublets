@@ -107,7 +107,7 @@ public abstract unsafe class InternalLinksRecursionlessSizeBalancedTreeMethodsBa
             {
                 return Zero;
             }
-            while (!EqualToZero(value: root))
+            while (root != TLinkAddress.Zero)
             {
                 var left = GetLeftOrDefault(node: root);
                 var leftSize = GetSizeOrZero(node: left);
@@ -362,7 +362,7 @@ public abstract unsafe class InternalLinksRecursionlessSizeBalancedTreeMethodsBa
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     protected TLinkAddress SearchCore(TLinkAddress root, TLinkAddress key)
     {
-        while (!EqualToZero(value: root))
+        while (root != TLinkAddress.Zero)
         {
             var rootKey = GetKeyPartValue(link: root);
             if (LessThan(first: key, second: rootKey)) // node.Key < root.Key

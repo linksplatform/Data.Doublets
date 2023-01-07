@@ -107,7 +107,7 @@ public abstract unsafe class ExternalLinksRecursionlessSizeBalancedTreeMethodsBa
             {
                 return Zero;
             }
-            while (!EqualToZero(value: root))
+            while (root != TLinkAddress.Zero)
             {
                 var left = GetLeftOrDefault(node: root);
                 var leftSize = GetSizeOrZero(node: left);
@@ -137,7 +137,7 @@ public abstract unsafe class ExternalLinksRecursionlessSizeBalancedTreeMethodsBa
     public TLinkAddress Search(TLinkAddress source, TLinkAddress target)
     {
         var root = GetTreeRoot();
-        while (!EqualToZero(value: root))
+        while (root != TLinkAddress.Zero)
         {
             ref var rootLink = ref GetLinkDataPartReference(link: root);
             var rootSource = rootLink.Source;
@@ -179,7 +179,7 @@ public abstract unsafe class ExternalLinksRecursionlessSizeBalancedTreeMethodsBa
         var root = GetTreeRoot();
         var total = GetSize(node: root);
         var totalRightIgnore = Zero;
-        while (!EqualToZero(value: root))
+        while (root != TLinkAddress.Zero)
         {
             var @base = GetBasePartValue(link: root);
             if (LessOrEqualThan(first: @base, second: link))
@@ -194,7 +194,7 @@ public abstract unsafe class ExternalLinksRecursionlessSizeBalancedTreeMethodsBa
         }
         root = GetTreeRoot();
         var totalLeftIgnore = Zero;
-        while (!EqualToZero(value: root))
+        while (root != TLinkAddress.Zero)
         {
             var @base = GetBasePartValue(link: root);
             if (GreaterOrEqualThan(first: @base, second: link))
