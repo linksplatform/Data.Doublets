@@ -4,7 +4,7 @@
         <Description>LinksPlatform's Platform.Data.Doublets Class Library</Description>
         <Copyright>konard, FreePhoenix888</Copyright>
         <AssemblyTitle>Platform.Data.Doublets</AssemblyTitle>
-        <VersionPrefix>0.15.0</VersionPrefix>
+        <VersionPrefix>0.16.0</VersionPrefix>
         <Authors>konard, FreePhoenix888</Authors>
         <TargetFramework>net7</TargetFramework>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -25,7 +25,7 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <LangVersion>latest</LangVersion>
         <PackageReleaseNotes>Platform.Collections.Methods dependency is updated to 0.7.1.
-        </PackageReleaseNotes>
+Generic math is used therefore generic constraints are changed.</PackageReleaseNotes>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
