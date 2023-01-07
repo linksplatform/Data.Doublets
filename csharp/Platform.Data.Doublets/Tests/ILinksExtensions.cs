@@ -145,15 +145,15 @@ namespace Platform.Data.Doublets.Tests
             var linkAddress1 = links.Create();
             links.Update(linkAddress1, h106E, h108E);
             var link1 = new Link<T>(links.GetLink(linkAddress1));
-            EnsureTrue(link1.Source ==  h106E);
-            EnsureTrue(link1.Target ==  h108E);
+            EnsureTrue(link1.Source ==  h106E.Value);
+            EnsureTrue(link1.Target ==  h108E.Value);
 
             // Create Link (Internal -> External)
             var linkAddress2 = links.Create();
             links.Update(linkAddress2, linkAddress1, h108E);
             var link2 = new Link<T>(links.GetLink(linkAddress2));
             EnsureTrue(link2.Source ==  linkAddress1);
-            EnsureTrue(link2.Target ==  h108E);
+            EnsureTrue(link2.Target ==  h108E.Value);
 
             // Create Link (Internal -> Internal)
             var linkAddress3 = links.Create();
