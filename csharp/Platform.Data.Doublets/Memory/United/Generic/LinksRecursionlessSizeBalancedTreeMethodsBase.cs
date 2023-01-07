@@ -437,7 +437,7 @@ public abstract unsafe class LinksRecursionlessSizeBalancedTreeMethodsBase<TLink
                 return @break;
             }
         }
-        else if (LessThan(first: linkBasePart, second: @base))
+        else if ((linkBasePart < @base))
         {
             if ((EachUsageCore(@base: @base, link: GetRightOrDefault(node: link), handler: handler) == @break))
             {

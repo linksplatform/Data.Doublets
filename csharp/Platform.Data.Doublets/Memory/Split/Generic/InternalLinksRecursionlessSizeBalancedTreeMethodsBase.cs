@@ -293,7 +293,7 @@ public abstract unsafe class InternalLinksRecursionlessSizeBalancedTreeMethodsBa
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     protected override bool FirstIsToTheLeftOfSecond(TLinkAddress first, TLinkAddress second)
     {
-        return LessThan(first: GetKeyPartValue(link: first), second: GetKeyPartValue(link: second));
+        return (GetKeyPartValue(link: first) < GetKeyPartValue(link: second));
     }
 
     /// <summary>

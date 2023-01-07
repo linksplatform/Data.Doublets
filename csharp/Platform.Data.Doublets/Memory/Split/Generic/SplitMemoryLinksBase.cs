@@ -740,7 +740,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
         ref var header = ref GetHeaderReference();
         var link = restriction[index: Constants.IndexPart];
         var before = GetLinkStruct(linkIndex: link);
-        if (LessThan(first: link, second: header.AllocatedLinks))
+        if ((link < header.AllocatedLinks))
         {
             UnusedLinksListMethods.AttachAsFirst(link: link);
         }
