@@ -208,7 +208,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
         get
         {
             ref var header = ref GetHeaderReference();
-            return (header.AllocatedLinks) - (header.FreeLinks))
+            return Subtract(first: header.AllocatedLinks, second: header.FreeLinks);
         }
     }
 

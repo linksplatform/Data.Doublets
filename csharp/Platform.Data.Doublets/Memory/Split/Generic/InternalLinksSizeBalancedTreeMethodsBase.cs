@@ -121,7 +121,7 @@ public abstract unsafe class InternalLinksSizeBalancedTreeMethodsBase<TLinkAddre
                     return root;
                 }
                 root = GetRightOrDefault(node: root);
-                index = (index) - (leftSize + TLinkAddress.One))
+                index = Subtract(first: index, second: leftSize + TLinkAddress.One);
             }
             return Zero; // TODO: Impossible situation exception (only if tree structure broken)
         }

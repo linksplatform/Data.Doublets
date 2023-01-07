@@ -121,7 +121,7 @@ public abstract unsafe class ExternalLinksRecursionlessSizeBalancedTreeMethodsBa
                     return root;
                 }
                 root = GetRightOrDefault(node: root);
-                index = (index) - (leftSize + TLinkAddress.One))
+                index = Subtract(first: index, second: leftSize + TLinkAddress.One);
             }
             return Zero; // TODO: Impossible situation exception (only if tree structure broken)
         }
@@ -207,7 +207,7 @@ public abstract unsafe class ExternalLinksRecursionlessSizeBalancedTreeMethodsBa
                 root = GetRightOrDefault(node: root);
             }
         }
-        return (Subtract(first: total) - (totalRightIgnore), second: totalLeftIgnore))
+        return Subtract(first: Subtract(first: total, second: totalRightIgnore), second: totalLeftIgnore);
     }
 
     /// <summary>
