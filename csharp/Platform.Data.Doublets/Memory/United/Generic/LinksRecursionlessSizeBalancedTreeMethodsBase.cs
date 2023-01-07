@@ -424,7 +424,7 @@ public abstract unsafe class LinksRecursionlessSizeBalancedTreeMethodsBase<TLink
     private TLinkAddress EachUsageCore(TLinkAddress @base, TLinkAddress link, ReadHandler<TLinkAddress>? handler)
     {
         var @continue = Continue;
-        if (EqualToZero(value: link))
+        if (link == TLinkAddress.Zero)
         {
             return @continue;
         }

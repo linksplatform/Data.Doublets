@@ -142,7 +142,7 @@ public unsafe class InternalLinksSourcesLinkedListMethods<TLinkAddress> : Relati
     protected override TLinkAddress GetLast(TLinkAddress head)
     {
         var first = GetLinkIndexPartReference(link: head).RootAsSource;
-        if (EqualToZero(value: first))
+        if (first == TLinkAddress.Zero)
         {
             return first;
         }

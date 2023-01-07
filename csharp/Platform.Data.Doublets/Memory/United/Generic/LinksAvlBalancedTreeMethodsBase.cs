@@ -225,7 +225,7 @@ public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : Siz
     public TLinkAddress EachUsage(TLinkAddress link, ReadHandler<TLinkAddress>? handler)
     {
         var root = GetTreeRoot();
-        if (EqualToZero(value: root))
+        if (root == TLinkAddress.Zero)
         {
             return Continue;
         }
@@ -256,7 +256,7 @@ public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : Siz
                     return Break;
                 }
                 current = GetNext(node: current);
-                if (EqualToZero(value: current) || !AreEqual(first: GetBasePartValue(link: current), second: link))
+                if (current == TLinkAddress.Zero || !AreEqual(first: GetBasePartValue(link: current), second: link))
                 {
                     break;
                 }
