@@ -34,17 +34,17 @@ namespace Platform.Data.Doublets.Tests
             throw new ArgumentException("EnsureTrue Failed. The value is not a true. " + messageBuilder());
         }
 
-        private static void EnsureEqual<T>(T expected, T actual)
+        private static void EnsureEqual<T>(T expected, T actual)  where T : IUnsignedNumber<T>
         {
             EnsureEqual(expected, actual, default);
         }
 
-        private static void EnsureEqual<T>(T expected, T actual, string message)
+        private static void EnsureEqual<T>(T expected, T actual, string message) where T : IUnsignedNumber<T>
         {
             EnsureEqual(expected, actual, message, EqualityComparer<T>.Default);
         }
 
-        private static void EnsureEqual<T>(T expected, T actual, string message, IEqualityComparer<T> equalityComparer)
+        private static void EnsureEqual<T>(T expected, T actual, string message, IEqualityComparer<T> equalityComparer) where T : IUnsignedNumber<T>
         {
             if (expected ==  actual)
             {
@@ -127,7 +127,7 @@ namespace Platform.Data.Doublets.Tests
         /// <para>The links.</para>
         /// <para></para>
         /// </param>
-        public static void TestRawNumbersCRUDOperations<T>(this ILinks<T> links) where T: IUnsignedNumber<T>
+        public static void TestRawNumbersCRUDOperations<T>(this ILinks<T> links) where T : IUnsignedNumber<T>
         {
             // Constants
             var constants = links.Constants;
@@ -137,9 +137,9 @@ namespace Platform.Data.Doublets.Tests
             var h106E = new Hybrid<T>(106L, isExternal: true);
             var h107E = new Hybrid<T>(-char.ConvertFromUtf32(107)[0]);
             var h108E = new Hybrid<T>(-108L);
-            EnsureEqual(106L, h106E.AbsoluteValue);
-            EnsureEqual(107L, h107E.AbsoluteValue);
-            EnsureEqual(108L, h108E.AbsoluteValue);
+            EnsureEqual(T.CreateTruncating(106L) , T.CreateTruncating(h106E.AbsoluteValue) );
+            EnsureEqual(T.CreateTruncating(107L), T.CreateTruncating(h107E.AbsoluteValue));
+            EnsureEqual(T.CreateTruncating(108L), T.CreateTruncating(h108E.AbsoluteValue));
 
             // Create Link (External -> External)
             var linkAddress1 = links.Create();
