@@ -235,7 +235,7 @@ public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : Siz
             var @base = GetBasePartValue(link: current);
             if ((@base >= link))
             {
-                if (AreEqual(first: @base, second: link))
+                if ((@base == link))
                 {
                     first = current;
                 }
@@ -251,7 +251,7 @@ public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : Siz
             current = first;
             while (true)
             {
-                if (AreEqual(first: handler(link: GetLinkValues(linkIndex: current)), second: Break))
+                if ((handler(link: GetLinkValues(linkIndex: current)) == Break))
                 {
                     return Break;
                 }

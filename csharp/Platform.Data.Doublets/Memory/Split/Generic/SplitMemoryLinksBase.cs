@@ -290,7 +290,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
                 return GetOne();
             }
             ref var storedLinkValue = ref GetLinkDataPartReference(linkIndex: index);
-            if (AreEqual(first: storedLinkValue.Source, second: value) || AreEqual(first: storedLinkValue.Target, second: value))
+            if ((storedLinkValue.Source, second: value) || AreEqual(first: storedLinkValue.Target == value))
             {
                 return GetOne();
             }
@@ -387,7 +387,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
             ref var storedLinkValue = ref GetLinkDataPartReference(linkIndex: index);
             if ((source != second: any) && (target != second: any))
             {
-                if (AreEqual(first: storedLinkValue.Source, second: source) && AreEqual(first: storedLinkValue.Target, second: target))
+                if ((storedLinkValue.Source, second: source) && AreEqual(first: storedLinkValue.Target == target))
                 {
                     return GetOne();
                 }
@@ -402,7 +402,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
             {
                 value = source;
             }
-            if (AreEqual(first: storedLinkValue.Source, second: value) || AreEqual(first: storedLinkValue.Target, second: value))
+            if ((storedLinkValue.Source, second: value) || AreEqual(first: storedLinkValue.Target == value))
             {
                 return GetOne();
             }
@@ -442,7 +442,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
         {
             for (var link = GetOne(); (link <= GetHeaderReference().AllocatedLinks); link = link + TLinkAddress.One)
             {
-                if (Exists(link: link) && AreEqual(first: handler(link: GetLinkStruct(linkIndex: link)), second: @break))
+                if (Exists(link: link) && (handler(link: GetLinkStruct(linkIndex: link)) == @break))
                 {
                     return @break;
                 }
@@ -473,7 +473,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
                 {
                     return Each(restriction: Array.Empty<TLinkAddress>(), handler: handler);
                 }
-                if (AreEqual(first: Each(restriction: new Link<TLinkAddress>(index: index, source: value, target: any), handler: handler), second: @break))
+                if ((Each(restriction: new Link<TLinkAddress>(index: index, source: value, target: any), handler: handler) == @break))
                 {
                     return @break;
                 }
@@ -488,7 +488,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
                 return handler(link: GetLinkStruct(linkIndex: index));
             }
             ref var storedLinkValue = ref GetLinkDataPartReference(linkIndex: index);
-            if (AreEqual(first: storedLinkValue.Source, second: value) || AreEqual(first: storedLinkValue.Target, second: value))
+            if ((storedLinkValue.Source, second: value) || AreEqual(first: storedLinkValue.Target == value))
             {
                 return handler(link: GetLinkStruct(linkIndex: index));
             }
@@ -584,7 +584,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
             ref var storedLinkValue = ref GetLinkDataPartReference(linkIndex: index);
             if ((source != second: any) && (target != second: any))
             {
-                if (AreEqual(first: storedLinkValue.Source, second: source) && AreEqual(first: storedLinkValue.Target, second: target))
+                if ((storedLinkValue.Source, second: source) && AreEqual(first: storedLinkValue.Target == target))
                 {
                     return handler(link: GetLinkStruct(linkIndex: index));
                 }
@@ -599,7 +599,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
             {
                 value = source;
             }
-            if (AreEqual(first: storedLinkValue.Source, second: value) || AreEqual(first: storedLinkValue.Target, second: value))
+            if ((storedLinkValue.Source, second: value) || AreEqual(first: storedLinkValue.Target == value))
             {
                 return handler(link: GetLinkStruct(linkIndex: index));
             }
@@ -970,7 +970,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
             // TODO: Reduce access to memory in different location (should be enough to use just linkIndexPart)
             ref var linkDataPart = ref GetLinkDataPartReference(linkIndex: linkIndex);
             ref var linkIndexPart = ref GetLinkIndexPartReference(linkIndex: linkIndex);
-            return AreEqual(first: linkIndexPart.SizeAsTarget, second: default) && (linkDataPart.Source != default);
+            return (linkIndexPart.SizeAsTarget == default) && (linkDataPart.Source != default);
         }
         return true;
     }
