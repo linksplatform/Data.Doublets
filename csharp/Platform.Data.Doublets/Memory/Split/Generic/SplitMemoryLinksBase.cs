@@ -709,7 +709,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
             {
                 throw new LinksLimitReachedException<TLinkAddress>(limit: maximumPossibleInnerReference);
             }
-            if (GreaterOrEqualThan(first: header.AllocatedLinks, second: Decrement(link: header.ReservedLinks)))
+            if (GreaterOrEqualThan(first: header.AllocatedLinks, second: header.ReservedLinks - TLinkAddress.One))
             {
                 _dataMemory.ReservedCapacity += _dataMemoryReservationStepInBytes;
                 _indexMemory.ReservedCapacity += _indexMemoryReservationStepInBytes;
@@ -746,7 +746,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
         }
         else if (AreEqual(first: link, second: header.AllocatedLinks))
         {
-            header.AllocatedLinks = Decrement(link: header.AllocatedLinks);
+            header.AllocatedLinks = header.AllocatedLinks - TLinkAddress.One;
             _dataMemory.UsedCapacity -= LinkDataPartSizeInBytes;
             _indexMemory.UsedCapacity -= LinkIndexPartSizeInBytes;
             // Убираем все связи, находящиеся в списке свободных в конце файла, до тех пор, пока не дойдём до первой существующей связи
@@ -754,7 +754,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
             while (GreaterThan(first: header.AllocatedLinks, second: GetZero()) && IsUnusedLink(linkIndex: header.AllocatedLinks))
             {
                 UnusedLinksListMethods.Detach(freeLink: header.AllocatedLinks);
-                header.AllocatedLinks = Decrement(link: header.AllocatedLinks);
+                header.AllocatedLinks = header.AllocatedLinks - TLinkAddress.One;
                 _dataMemory.UsedCapacity -= LinkDataPartSizeInBytes;
                 _indexMemory.UsedCapacity -= LinkIndexPartSizeInBytes;
             }

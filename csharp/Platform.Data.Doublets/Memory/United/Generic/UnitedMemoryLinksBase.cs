@@ -524,7 +524,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                 {
                     throw new LinksLimitReachedException<TLinkAddress>(maximumPossibleInnerReference);
                 }
-                if (GreaterOrEqualThan(header.AllocatedLinks, Decrement(header.ReservedLinks)))
+                if (GreaterOrEqualThan(header.AllocatedLinks, header.ReservedLinks - TLinkAddress.One))
                 {
                     _memory.ReservedCapacity += _memoryReservationStep;
                     SetPointers(_memory);
@@ -561,14 +561,14 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             }
             else if (AreEqual(link, header.AllocatedLinks))
             {
-                header.AllocatedLinks = Decrement(header.AllocatedLinks);
+                header.AllocatedLinks = header.AllocatedLinks - TLinkAddress.One;
                 _memory.UsedCapacity -= LinkSizeInBytes;
                 // Убираем все связи, находящиеся в списке свободных в конце файла, до тех пор, пока не дойдём до первой существующей связи
                 // Позволяет оптимизировать количество выделенных связей (AllocatedLinks)
                 while (GreaterThan(header.AllocatedLinks, GetZero()) && IsUnusedLink(header.AllocatedLinks))
                 {
                     UnusedLinksListMethods.Detach(header.AllocatedLinks);
-                    header.AllocatedLinks = Decrement(header.AllocatedLinks);
+                    header.AllocatedLinks = header.AllocatedLinks - TLinkAddress.One;
                     _memory.UsedCapacity -= LinkSizeInBytes;
                 }
                 return handler != null ? handler(before, null) : Constants.Continue;
