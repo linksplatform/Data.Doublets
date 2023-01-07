@@ -375,9 +375,9 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         protected override void ClearNode(TLinkAddress node)
         {
             ref var link = ref GetLinkReference(node);
-            link.LeftAsSource = Zero;
-            link.RightAsSource = Zero;
-            link.SizeAsSource = Zero;
+            link.LeftAsSource = TLinkAddress.Zero;
+            link.RightAsSource = TLinkAddress.Zero;
+            link.SizeAsSource = TLinkAddress.Zero;
         }
     }
 }

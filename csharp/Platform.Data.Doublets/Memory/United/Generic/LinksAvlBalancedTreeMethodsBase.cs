@@ -98,7 +98,7 @@ public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : Siz
             var root = GetTreeRoot();
             if (GreaterOrEqualThan(first: index, second: GetSize(node: root)))
             {
-                return Zero;
+                return TLinkAddress.Zero;
             }
             while (root != TLinkAddress.Zero)
             {
@@ -116,7 +116,7 @@ public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : Siz
                 root = GetRightOrDefault(node: root);
                 index = (index) - (leftSize + TLinkAddress.One);
             }
-            return Zero; // TODO: Impossible situation exception (only if tree structure broken)
+            return TLinkAddress.Zero; // TODO: Impossible situation exception (only if tree structure broken)
         }
     }
 
@@ -148,7 +148,7 @@ public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : Siz
                 return root;
             }
         }
-        return Zero;
+        return TLinkAddress.Zero;
     }
 
     // TODO: Return indices range instead of references count
@@ -171,7 +171,7 @@ public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : Siz
     {
         var root = GetTreeRoot();
         var total = GetSize(node: root);
-        var totalRightIgnore = Zero;
+        var totalRightIgnore = TLinkAddress.Zero;
         while (root != TLinkAddress.Zero)
         {
             var @base = GetBasePartValue(link: root);
@@ -186,7 +186,7 @@ public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : Siz
             }
         }
         root = GetTreeRoot();
-        var totalLeftIgnore = Zero;
+        var totalLeftIgnore = TLinkAddress.Zero;
         while (root != TLinkAddress.Zero)
         {
             var @base = GetBasePartValue(link: root);
@@ -229,7 +229,7 @@ public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : Siz
         {
             return Continue;
         }
-        TLinkAddress first = Zero, current = root;
+        TLinkAddress first = TLinkAddress.Zero, current = root;
         while (current != TLinkAddress.Zero)
         {
             var @base = GetBasePartValue(link: current);

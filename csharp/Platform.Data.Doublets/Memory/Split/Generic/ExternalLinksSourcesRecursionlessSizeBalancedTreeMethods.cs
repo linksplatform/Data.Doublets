@@ -313,8 +313,8 @@ public unsafe class ExternalLinksSourcesRecursionlessSizeBalancedTreeMethods<TLi
     protected override void ClearNode(TLinkAddress node)
     {
         ref var link = ref GetLinkIndexPartReference(link: node);
-        link.LeftAsSource = Zero;
-        link.RightAsSource = Zero;
-        link.SizeAsSource = Zero;
+        link.LeftAsSource = TLinkAddress.Zero;
+        link.RightAsSource = TLinkAddress.Zero;
+        link.SizeAsSource = TLinkAddress.Zero;
     }
 }

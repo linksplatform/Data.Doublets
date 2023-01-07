@@ -105,7 +105,7 @@ public abstract unsafe class InternalLinksSizeBalancedTreeMethodsBase<TLinkAddre
             var root = GetTreeRoot(link: link);
             if (GreaterOrEqualThan(first: index, second: GetSize(node: root)))
             {
-                return Zero;
+                return TLinkAddress.Zero;
             }
             while (root != TLinkAddress.Zero)
             {
@@ -123,7 +123,7 @@ public abstract unsafe class InternalLinksSizeBalancedTreeMethodsBase<TLinkAddre
                 root = GetRightOrDefault(node: root);
                 index = (index) - (leftSize + TLinkAddress.One);
             }
-            return Zero; // TODO: Impossible situation exception (only if tree structure broken)
+            return TLinkAddress.Zero; // TODO: Impossible situation exception (only if tree structure broken)
         }
     }
 
@@ -378,7 +378,7 @@ public abstract unsafe class InternalLinksSizeBalancedTreeMethodsBase<TLinkAddre
                 return root;
             }
         }
-        return Zero;
+        return TLinkAddress.Zero;
     }
 
     // TODO: 1. Move target, handler to separate object. 2. Use stack or walker 3. Use low-level MSIL stack.

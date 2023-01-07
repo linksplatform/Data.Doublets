@@ -93,7 +93,7 @@ public abstract unsafe class LinksSizeBalancedTreeMethodsBase<TLinkAddress> : Si
             var root = GetTreeRoot();
             if (GreaterOrEqualThan(first: index, second: GetSize(node: root)))
             {
-                return Zero;
+                return TLinkAddress.Zero;
             }
             while (root != TLinkAddress.Zero)
             {
@@ -111,7 +111,7 @@ public abstract unsafe class LinksSizeBalancedTreeMethodsBase<TLinkAddress> : Si
                 root = GetRightOrDefault(node: root);
                 index = (index) - (leftSize + TLinkAddress.One);
             }
-            return Zero; // TODO: Impossible situation exception (only if tree structure broken)
+            return TLinkAddress.Zero; // TODO: Impossible situation exception (only if tree structure broken)
         }
     }
 
@@ -143,7 +143,7 @@ public abstract unsafe class LinksSizeBalancedTreeMethodsBase<TLinkAddress> : Si
                 return root;
             }
         }
-        return Zero;
+        return TLinkAddress.Zero;
     }
 
     // TODO: Return indices range instead of references count
@@ -166,7 +166,7 @@ public abstract unsafe class LinksSizeBalancedTreeMethodsBase<TLinkAddress> : Si
     {
         var root = GetTreeRoot();
         var total = GetSize(node: root);
-        var totalRightIgnore = Zero;
+        var totalRightIgnore = TLinkAddress.Zero;
         while (root != TLinkAddress.Zero)
         {
             var @base = GetBasePartValue(link: root);
@@ -181,7 +181,7 @@ public abstract unsafe class LinksSizeBalancedTreeMethodsBase<TLinkAddress> : Si
             }
         }
         root = GetTreeRoot();
-        var totalLeftIgnore = Zero;
+        var totalLeftIgnore = TLinkAddress.Zero;
         while (root != TLinkAddress.Zero)
         {
             var @base = GetBasePartValue(link: root);

@@ -273,9 +273,9 @@ public unsafe class InternalLinksTargetsRecursionlessSizeBalancedTreeMethods<TLi
     protected override void ClearNode(TLinkAddress node)
     {
         ref var link = ref GetLinkIndexPartReference(link: node);
-        link.LeftAsTarget = Zero;
-        link.RightAsTarget = Zero;
-        link.SizeAsTarget = Zero;
+        link.LeftAsTarget = TLinkAddress.Zero;
+        link.RightAsTarget = TLinkAddress.Zero;
+        link.SizeAsTarget = TLinkAddress.Zero;
     }
 
     /// <summary>
