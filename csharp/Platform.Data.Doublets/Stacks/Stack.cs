@@ -80,7 +80,7 @@ namespace Platform.Data.Doublets.Stacks
         public TLinkAddress Pop()
         {
             var element = Peek();
-            if (!_equalityComparer.Equals(element, _stack))
+            if (element !=  _stack)
             {
                 var top = GetTop();
                 var previousTop = _links.GetSource(top);

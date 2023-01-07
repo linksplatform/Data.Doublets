@@ -222,7 +222,7 @@ namespace Platform.Data.Doublets.Tests
                         var source = createdAddresses[random.Next(linksAddressRange.Minimum, linksAddressRange.Maximum)];
                         var target = createdAddresses[random.Next(linksAddressRange.Minimum, linksAddressRange.Maximum)]; //-V3086
                         var resultLink = links.SearchOrDefault(source, target);
-                        if (!equalityComparer.Equals(resultLink, default))
+                        if (resultLink !=  default)
                         {
                             continue;
                         }
