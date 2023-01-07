@@ -908,23 +908,6 @@ namespace Platform.Data.Doublets.Memory.United.Generic
 
         /// <summary>
         /// <para>
-        /// Increments the link.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="link">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The link</para>
-        /// <para></para>
-        /// </returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual TLinkAddress Increment(TLinkAddress link) => ++link;
-
-        /// <summary>
-        /// <para>
         /// Decrements the link.
         /// </para>
         /// <para></para>
