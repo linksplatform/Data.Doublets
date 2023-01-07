@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -9,7 +10,7 @@ namespace Platform.Data.Doublets
     /// TODO: Может стоит попробовать ref во всех методах (IRefEqualityComparer)
     /// 2x faster with comparer 
     /// </remarks>
-    public class DoubletComparer<T> : IEqualityComparer<Doublet<T>>
+    public class DoubletComparer<T> : IEqualityComparer<Doublet<T>> where T : IUnsignedNumber<T>
     {
         /// <summary>
         /// <para>

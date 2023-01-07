@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -15,7 +16,7 @@ namespace Platform.Data.Doublets
     /// <para>.</para>
     /// <para>.</para>
     /// </typeparam>
-    public struct Doublet<T> : IEquatable<Doublet<T>>
+    public struct Doublet<T> : IEquatable<Doublet<T>> where T : IUnsignedNumber<T>
     {
 
         /// <summury>
