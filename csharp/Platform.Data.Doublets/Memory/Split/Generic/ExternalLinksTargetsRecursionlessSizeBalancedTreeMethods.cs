@@ -264,7 +264,7 @@ public unsafe class ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods<TLi
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     protected override bool FirstIsToTheLeftOfSecond(TLinkAddress firstSource, TLinkAddress firstTarget, TLinkAddress secondSource, TLinkAddress secondTarget)
     {
-        return LessThan(first: firstTarget, second: secondTarget) || ((firstTarget == secondTarget) && LessThan(first: firstSource, second: secondSource));
+        return firstTarget < secondTarget || ((firstTarget == secondTarget) && firstSource < secondSource);
     }
 
     /// <summary>

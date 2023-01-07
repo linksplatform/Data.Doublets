@@ -111,7 +111,7 @@ public abstract unsafe class ExternalLinksRecursionlessSizeBalancedTreeMethodsBa
             {
                 var left = GetLeftOrDefault(node: root);
                 var leftSize = GetSizeOrZero(node: left);
-                if (LessThan(first: index, second: leftSize))
+                if (index < leftSize)
                 {
                     root = left;
                     continue;

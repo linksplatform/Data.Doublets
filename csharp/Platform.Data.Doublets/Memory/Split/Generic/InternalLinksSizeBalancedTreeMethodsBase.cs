@@ -111,7 +111,7 @@ public abstract unsafe class InternalLinksSizeBalancedTreeMethodsBase<TLinkAddre
             {
                 var left = GetLeftOrDefault(node: root);
                 var leftSize = GetSizeOrZero(node: left);
-                if (LessThan(first: index, second: leftSize))
+                if (index < leftSize)
                 {
                     root = left;
                     continue;
@@ -365,7 +365,7 @@ public abstract unsafe class InternalLinksSizeBalancedTreeMethodsBase<TLinkAddre
         while (root != TLinkAddress.Zero)
         {
             var rootKey = GetKeyPartValue(link: root);
-            if (LessThan(first: key, second: rootKey)) // node.Key < root.Key
+            if (key < rootKey) // node.Key < root.Key
             {
                 root = GetLeftOrDefault(node: root);
             }
