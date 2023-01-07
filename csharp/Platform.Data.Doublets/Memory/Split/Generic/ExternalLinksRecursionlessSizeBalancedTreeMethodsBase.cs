@@ -182,7 +182,7 @@ public abstract unsafe class ExternalLinksRecursionlessSizeBalancedTreeMethodsBa
         while (root != TLinkAddress.Zero)
         {
             var @base = GetBasePartValue(link: root);
-            if (LessOrEqualThan(first: @base, second: link))
+            if ((@base <= link))
             {
                 root = GetRightOrDefault(node: root);
             }
