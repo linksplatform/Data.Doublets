@@ -291,7 +291,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                         return GetOne();
                     }
                     ref var storedLinkValue = ref GetLinkReference(index);
-                    if (!AreEqual(source, any) && !AreEqual(target, any))
+                    if (source != any && target != any)
                     {
                         if (AreEqual(storedLinkValue.Source, source) && AreEqual(storedLinkValue.Target, target))
                         {
@@ -440,7 +440,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                         return handler(GetLinkStruct(index));
                     }
                     ref var storedLinkValue = ref GetLinkReference(index);
-                    if (!AreEqual(source, any) && !AreEqual(target, any))
+                    if (source != any && target != any)
                     {
                         if (AreEqual(storedLinkValue.Source, source) &&
                             AreEqual(storedLinkValue.Target, target))
