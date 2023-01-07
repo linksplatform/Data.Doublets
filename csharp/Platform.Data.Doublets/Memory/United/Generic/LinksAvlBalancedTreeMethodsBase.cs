@@ -617,7 +617,7 @@ public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : Siz
     {
         var parentSize = GetSize(node: parent);
         var childSize = GetSizeOrZero(node: possibleChild);
-        return GreaterThanZero(value: childSize) && (childSize <= parentSize);
+        return (childSize > TLinkAddress.Zero) && (childSize <= parentSize);
     }
 
     /// <summary>
