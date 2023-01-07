@@ -91,7 +91,7 @@ public abstract unsafe class LinksSizeBalancedTreeMethodsBase<TLinkAddress> : Si
         get
         {
             var root = GetTreeRoot();
-            if (GreaterOrEqualThan(first: index, second: GetSize(node: root)))
+            if ((index >= GetSize(node: root)))
             {
                 return TLinkAddress.Zero;
             }

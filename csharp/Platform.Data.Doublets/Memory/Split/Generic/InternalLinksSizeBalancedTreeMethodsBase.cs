@@ -103,7 +103,7 @@ public abstract unsafe class InternalLinksSizeBalancedTreeMethodsBase<TLinkAddre
         get
         {
             var root = GetTreeRoot(link: link);
-            if (GreaterOrEqualThan(first: index, second: GetSize(node: root)))
+            if ((index >= GetSize(node: root)))
             {
                 return TLinkAddress.Zero;
             }

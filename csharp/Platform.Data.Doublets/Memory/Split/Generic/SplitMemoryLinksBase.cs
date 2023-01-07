@@ -945,7 +945,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     protected virtual bool Exists(TLinkAddress link)
     {
-        return GreaterOrEqualThan(first: link, second: Constants.InternalReferencesRange.Minimum) && LessOrEqualThan(first: link, second: GetHeaderReference().AllocatedLinks) && !IsUnusedLink(linkIndex: link);
+        return (link >= Constants.InternalReferencesRange.Minimum) && LessOrEqualThan(first: link, second: GetHeaderReference().AllocatedLinks) && !IsUnusedLink(linkIndex: link);
     }
 
     /// <summary>
