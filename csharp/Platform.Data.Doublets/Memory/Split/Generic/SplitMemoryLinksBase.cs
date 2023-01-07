@@ -385,7 +385,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
                 return GetOne();
             }
             ref var storedLinkValue = ref GetLinkDataPartReference(linkIndex: index);
-            if (!AreEqual(first: source, second: any) && !AreEqual(first: target, second: any))
+            if ((source != second: any) && (target != second: any))
             {
                 if (AreEqual(first: storedLinkValue.Source, second: source) && AreEqual(first: storedLinkValue.Target, second: target))
                 {
@@ -582,7 +582,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
                 return handler(link: GetLinkStruct(linkIndex: index));
             }
             ref var storedLinkValue = ref GetLinkDataPartReference(linkIndex: index);
-            if (!AreEqual(first: source, second: any) && !AreEqual(first: target, second: any))
+            if ((source != second: any) && (target != second: any))
             {
                 if (AreEqual(first: storedLinkValue.Source, second: source) && AreEqual(first: storedLinkValue.Target, second: target))
                 {
@@ -627,7 +627,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
         ref var rootAsSource = ref header.RootAsSource;
         ref var rootAsTarget = ref header.RootAsTarget;
         // Будет корректно работать только в том случае, если пространство выделенной связи предварительно заполнено нулями
-        if (!AreEqual(first: source, second: @null))
+        if ((source != second: @null))
         {
             if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: source))
             {
@@ -645,7 +645,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
                 }
             }
         }
-        if (!AreEqual(first: target, second: @null))
+        if ((target != second: @null))
         {
             if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: target))
             {
@@ -658,7 +658,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
         }
         source = link.Source = this.GetSource(link: substitution);
         target = link.Target = this.GetTarget(link: substitution);
-        if (!AreEqual(first: source, second: @null))
+        if ((source != second: @null))
         {
             if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: source))
             {
@@ -676,7 +676,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
                 }
             }
         }
-        if (!AreEqual(first: target, second: @null))
+        if ((target != second: @null))
         {
             if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: target))
             {
@@ -698,7 +698,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
     {
         ref var header = ref GetHeaderReference();
         var freeLink = header.FirstFreeLink;
-        if (!AreEqual(first: freeLink, second: Constants.Null))
+        if ((freeLink != second: Constants.Null))
         {
             UnusedLinksListMethods.Detach(freeLink: freeLink);
         }
