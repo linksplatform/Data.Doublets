@@ -207,7 +207,7 @@ public abstract unsafe class ExternalLinksRecursionlessSizeBalancedTreeMethodsBa
                 root = GetRightOrDefault(node: root);
             }
         }
-        return (Subtract(first: total) - (totalRightIgnore), second: totalLeftIgnore);
+        return (total - totalRightIgnore - totalLeftIgnore);
     }
 
     /// <summary>
