@@ -12,7 +12,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic;
 ///     <para></para>
 /// </summary>
 /// <seealso cref="InternalLinksSizeBalancedTreeMethodsBase{TLinkAddress}" />
-public unsafe class InternalLinksSourcesSizeBalancedTreeMethods<TLinkAddress> : InternalLinksSizeBalancedTreeMethodsBase<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>
+public unsafe class InternalLinksSourcesSizeBalancedTreeMethods<TLinkAddress> : InternalLinksSizeBalancedTreeMethodsBase<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
 {
     /// <summary>
     ///     <para>

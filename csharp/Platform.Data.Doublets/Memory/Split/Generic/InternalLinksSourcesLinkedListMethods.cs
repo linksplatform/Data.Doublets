@@ -17,7 +17,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic;
 ///     <para></para>
 /// </summary>
 /// <seealso cref="RelativeCircularDoublyLinkedListMethods{TLinkAddress}" />
-public unsafe class InternalLinksSourcesLinkedListMethods<TLinkAddress> : RelativeCircularDoublyLinkedListMethods<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>
+public unsafe class InternalLinksSourcesLinkedListMethods<TLinkAddress> : RelativeCircularDoublyLinkedListMethods<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
 {
     private static readonly UncheckedConverter<TLinkAddress, long> _addressToInt64Converter = UncheckedConverter<TLinkAddress, long>.Default;
     private readonly byte* _linksDataParts;

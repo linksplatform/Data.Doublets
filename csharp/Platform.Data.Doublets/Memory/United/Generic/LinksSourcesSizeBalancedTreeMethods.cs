@@ -12,7 +12,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
     /// <para></para>
     /// </summary>
     /// <seealso cref="LinksSizeBalancedTreeMethodsBase{TLinkAddress}"/>
-    public unsafe class LinksSourcesSizeBalancedTreeMethods<TLinkAddress> : LinksSizeBalancedTreeMethodsBase<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>
+    public unsafe class LinksSourcesSizeBalancedTreeMethods<TLinkAddress> : LinksSizeBalancedTreeMethodsBase<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
     {
         /// <summary>
         /// <para>

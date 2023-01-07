@@ -20,7 +20,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic;
 /// </summary>
 /// <seealso cref="SizedAndThreadedAVLBalancedTreeMethods{TLinkAddress}" />
 /// <seealso cref="ILinksTreeMethods{TLinkAddress}" />
-public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : SizedAndThreadedAVLBalancedTreeMethods<TLinkAddress>, ILinksTreeMethods<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress> , IShiftOperators<TLinkAddress,int,TLinkAddress>, IBitwiseOperators<TLinkAddress,TLinkAddress,TLinkAddress>, IMinMaxValue<TLinkAddress>
+public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : SizedAndThreadedAVLBalancedTreeMethods<TLinkAddress>, ILinksTreeMethods<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress> , IShiftOperators<TLinkAddress,int,TLinkAddress>, IBitwiseOperators<TLinkAddress,TLinkAddress,TLinkAddress>, IMinMaxValue<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
 {
     private static readonly UncheckedConverter<TLinkAddress, long> _addressToInt64Converter = UncheckedConverter<TLinkAddress, long>.Default;
     private static readonly UncheckedConverter<TLinkAddress, int> _addressToInt32Converter = UncheckedConverter<TLinkAddress, int>.Default;

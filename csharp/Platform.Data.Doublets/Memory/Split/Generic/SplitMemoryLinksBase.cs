@@ -21,7 +21,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic;
 /// </summary>
 /// <seealso cref="DisposableBase" />
 /// <seealso cref="ILinks{TLinkAddress}" />
-public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILinks<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>
+public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILinks<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
 {
     private static readonly EqualityComparer<TLinkAddress> _equalityComparer = EqualityComparer<TLinkAddress>.Default;
     private static readonly Comparer<TLinkAddress> _comparer = Comparer<TLinkAddress>.Default;

@@ -19,7 +19,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic;
 /// </summary>
 /// <seealso cref="RecursionlessSizeBalancedTreeMethods{TLinkAddress}" />
 /// <seealso cref="ILinksTreeMethods{TLinkAddress}" />
-public abstract unsafe class LinksRecursionlessSizeBalancedTreeMethodsBase<TLinkAddress> : RecursionlessSizeBalancedTreeMethods<TLinkAddress>, ILinksTreeMethods<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>
+public abstract unsafe class LinksRecursionlessSizeBalancedTreeMethodsBase<TLinkAddress> : RecursionlessSizeBalancedTreeMethods<TLinkAddress>, ILinksTreeMethods<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
 {
     private static readonly UncheckedConverter<TLinkAddress, long> _addressToInt64Converter = UncheckedConverter<TLinkAddress, long>.Default;
 

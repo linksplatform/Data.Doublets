@@ -16,7 +16,7 @@ namespace Platform.Data.Doublets.Memory.Split.Generic;
 ///     <para></para>
 /// </summary>
 /// <seealso cref="SplitMemoryLinksBase{TLinkAddress}" />
-public unsafe class SplitMemoryLinks<TLinkAddress> : SplitMemoryLinksBase<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>
+public unsafe class SplitMemoryLinks<TLinkAddress> : SplitMemoryLinksBase<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
 {
     private readonly Func<ILinksTreeMethods<TLinkAddress>> _createExternalSourceTreeMethods;
     private readonly Func<ILinksTreeMethods<TLinkAddress>> _createExternalTargetTreeMethods;
