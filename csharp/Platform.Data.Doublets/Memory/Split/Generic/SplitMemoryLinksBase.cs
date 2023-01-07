@@ -353,7 +353,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
                     }
                     else
                     {
-                        if (_useLinkedList || GreaterThan(first: InternalSourcesTreeMethods.CountUsages(root: source), second: InternalTargetsTreeMethods.CountUsages(root: target)))
+                        if (_useLinkedList || (InternalSourcesTreeMethods.CountUsages(root: source) > InternalTargetsTreeMethods.CountUsages(root: target)))
                         {
                             link = InternalTargetsTreeMethods.Search(source: source, target: target);
                         }
@@ -365,7 +365,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
                 }
                 else
                 {
-                    if (_useLinkedList || GreaterThan(first: InternalSourcesTreeMethods.CountUsages(root: source), second: InternalTargetsTreeMethods.CountUsages(root: target)))
+                    if (_useLinkedList || (InternalSourcesTreeMethods.CountUsages(root: source) > InternalTargetsTreeMethods.CountUsages(root: target)))
                     {
                         link = InternalTargetsTreeMethods.Search(source: source, target: target);
                     }
@@ -550,7 +550,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
                     }
                     else
                     {
-                        if (_useLinkedList || GreaterThan(first: InternalSourcesTreeMethods.CountUsages(root: source), second: InternalTargetsTreeMethods.CountUsages(root: target)))
+                        if (_useLinkedList || (InternalSourcesTreeMethods.CountUsages(root: source) > InternalTargetsTreeMethods.CountUsages(root: target)))
                         {
                             link = InternalTargetsTreeMethods.Search(source: source, target: target);
                         }
@@ -562,7 +562,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
                 }
                 else
                 {
-                    if (_useLinkedList || GreaterThan(first: InternalSourcesTreeMethods.CountUsages(root: source), second: InternalTargetsTreeMethods.CountUsages(root: target)))
+                    if (_useLinkedList || (InternalSourcesTreeMethods.CountUsages(root: source) > InternalTargetsTreeMethods.CountUsages(root: target)))
                     {
                         link = InternalTargetsTreeMethods.Search(source: source, target: target);
                     }
@@ -705,7 +705,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
         else
         {
             var maximumPossibleInnerReference = Constants.InternalReferencesRange.Maximum;
-            if (GreaterThan(first: header.AllocatedLinks, second: maximumPossibleInnerReference))
+            if ((header.AllocatedLinks > maximumPossibleInnerReference))
             {
                 throw new LinksLimitReachedException<TLinkAddress>(limit: maximumPossibleInnerReference);
             }
@@ -751,7 +751,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
             _indexMemory.UsedCapacity -= LinkIndexPartSizeInBytes;
             // Убираем все связи, находящиеся в списке свободных в конце файла, до тех пор, пока не дойдём до первой существующей связи
             // Позволяет оптимизировать количество выделенных связей (AllocatedLinks)
-            while (GreaterThan(first: header.AllocatedLinks, second: GetZero()) && IsUnusedLink(linkIndex: header.AllocatedLinks))
+            while ((header.AllocatedLinks > GetZero()) && IsUnusedLink(linkIndex: header.AllocatedLinks))
             {
                 UnusedLinksListMethods.Detach(freeLink: header.AllocatedLinks);
                 header.AllocatedLinks = header.AllocatedLinks - TLinkAddress.One;

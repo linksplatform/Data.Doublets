@@ -430,7 +430,7 @@ public abstract unsafe class LinksSizeBalancedTreeMethodsBase<TLinkAddress> : Si
         }
         var linkBasePart = GetBasePartValue(link: link);
         var @break = Break;
-        if (GreaterThan(first: linkBasePart, second: @base))
+        if ((linkBasePart > @base))
         {
             if ((EachUsageCore(@base: @base, link: GetLeftOrDefault(node: link), handler: handler) == @break))
             {
