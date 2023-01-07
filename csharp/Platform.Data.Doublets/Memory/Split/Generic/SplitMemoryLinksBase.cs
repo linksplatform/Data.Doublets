@@ -965,12 +965,12 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     protected virtual bool IsUnusedLink(TLinkAddress linkIndex)
     {
-        if (!AreEqual(first: GetHeaderReference().FirstFreeLink, second: linkIndex)) // May be this check is not needed
+        if ((GetHeaderReference().FirstFreeLink != linkIndex)) // May be this check is not needed
         {
             // TODO: Reduce access to memory in different location (should be enough to use just linkIndexPart)
             ref var linkDataPart = ref GetLinkDataPartReference(linkIndex: linkIndex);
             ref var linkIndexPart = ref GetLinkIndexPartReference(linkIndex: linkIndex);
-            return AreEqual(first: linkIndexPart.SizeAsTarget, second: default) && !AreEqual(first: linkDataPart.Source, second: default);
+            return AreEqual(first: linkIndexPart.SizeAsTarget, second: default) && (linkDataPart.Source != default);
         }
         return true;
     }
