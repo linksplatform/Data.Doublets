@@ -116,7 +116,7 @@ public abstract unsafe class ExternalLinksRecursionlessSizeBalancedTreeMethodsBa
                     root = left;
                     continue;
                 }
-                if ((index == second: leftSize))
+                if ((index == leftSize))
                 {
                     return root;
                 }

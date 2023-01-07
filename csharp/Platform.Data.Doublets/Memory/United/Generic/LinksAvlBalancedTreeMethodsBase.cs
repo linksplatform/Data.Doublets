@@ -109,7 +109,7 @@ public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : Siz
                     root = left;
                     continue;
                 }
-                if ((index == second: leftSize))
+                if ((index == leftSize))
                 {
                     return root;
                 }
