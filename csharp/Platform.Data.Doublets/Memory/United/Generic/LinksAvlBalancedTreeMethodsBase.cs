@@ -256,7 +256,7 @@ public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : Siz
                     return Break;
                 }
                 current = GetNext(node: current);
-                if (current == TLinkAddress.Zero || (GetBasePartValue(link: current) != link))
+                if (current == TLinkAddress.Zero || !AreEqual(first: GetBasePartValue(link: current), second: link))
                 {
                     break;
                 }
