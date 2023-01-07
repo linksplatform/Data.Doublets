@@ -210,9 +210,9 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool IsNull() => _equalityComparer.Equals(Index, _constants.Null)
-                             && _equalityComparer.Equals(Source, _constants.Null)
-                             && _equalityComparer.Equals(Target, _constants.Null);
+        public bool IsNull() => Index ==  _constants.Null
+                             && Source ==  _constants.Null
+                             && Target ==  _constants.Null;
 
         /// <summary>
         /// <para>
@@ -246,9 +246,9 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool Equals(Link<TLinkAddress> other) => _equalityComparer.Equals(Index, other.Index)
-                                              && _equalityComparer.Equals(Source, other.Source)
-                                              && _equalityComparer.Equals(Target, other.Target);
+        public bool Equals(Link<TLinkAddress> other) => Index ==  other.Index
+                                              && Source ==  other.Source
+                                              && Target ==  other.Target;
 
         /// <summary>
         /// <para>
@@ -313,7 +313,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override string ToString()  { return _equalityComparer.Equals(Index, _constants.Null) ? ToString(Source, Target) : ToString(Index, Source, Target);}
+        public override string ToString()  { return Index ==  _constants.Null ? ToString(Source, Target) : ToString(Index, Source, Target);}
 
         #region IList
 
@@ -507,15 +507,15 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public int IndexOf(TLinkAddress item)
         {
-            if (_equalityComparer.Equals(Index, item))
+            if (Index ==  item)
             {
                 return _constants.IndexPart;
             }
-            if (_equalityComparer.Equals(Source, item))
+            if (Source ==  item)
             {
                 return _constants.SourcePart;
             }
-            if (_equalityComparer.Equals(Target, item))
+            if (Target ==  item)
             {
                 return _constants.TargetPart;
             }

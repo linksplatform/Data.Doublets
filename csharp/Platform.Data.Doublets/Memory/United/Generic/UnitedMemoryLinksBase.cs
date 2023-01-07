@@ -743,7 +743,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual bool AreEqual(TLinkAddress first, TLinkAddress second) => _equalityComparer.Equals(first, second);
+        protected virtual bool AreEqual(TLinkAddress first, TLinkAddress second) => first ==  second;
 
         /// <summary>
         /// <para>

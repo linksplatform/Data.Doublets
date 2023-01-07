@@ -209,7 +209,7 @@ namespace Platform.Data.Doublets
         public static TLinkAddress First<TLinkAddress>(this ILinks<TLinkAddress> links)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
             TLinkAddress firstLink = default;
-            if (equalityComparer.Equals(links.Count(), default))
+            if (links.Count() ==  default)
             {
                 throw new InvalidOperationException("В хранилище нет связей.");
             }
@@ -218,7 +218,7 @@ namespace Platform.Data.Doublets
                 firstLink = link[links.Constants.IndexPart];
                 return links.Constants.Break;
             });
-            if (equalityComparer.Equals(firstLink, default))
+            if (firstLink ==  default)
             {
                 throw new InvalidOperationException("В процессе поиска по хранилищу не было найдено связей.");
             }
@@ -299,7 +299,7 @@ namespace Platform.Data.Doublets
                 var values = links.GetLink(current);
                 var source = links.GetSource(values);
                 var target = links.GetTarget(values);
-                if (equalityComparer.Equals(source, target) && equalityComparer.Equals(source, next))
+                if (source ==  target && source ==  next)
                 {
                     //throw new InvalidOperationException(string.Format("Невозможно выбрать путь, так как и Source и Target совпадают с элементом пути {0}.", next));
                     return false;
@@ -775,12 +775,12 @@ namespace Platform.Data.Doublets
             var constants = links.Constants;
             var values = links.GetLink(link);
             TLinkAddress usagesAsSource = links.Count(new Link<TLinkAddress>(constants.Any, link, constants.Any));
-            if (equalityComparer.Equals(links.GetSource(values), link))
+            if (links.GetSource(values) ==  link)
             {
                 --usagesAsSource;
             }
             TLinkAddress usagesAsTarget = links.Count(new Link<TLinkAddress>(constants.Any, constants.Any, link));
-            if (equalityComparer.Equals(links.GetTarget(values), link))
+            if (links.GetTarget(values) ==  link)
             {
                 --usagesAsTarget;
             }
@@ -797,7 +797,7 @@ namespace Platform.Data.Doublets
         {
             var constants = links.Constants;
             var values = links.GetLink(link);
-            return equalityComparer.Equals(links.GetSource(values), source) && equalityComparer.Equals(links.GetTarget(values), target);
+            return links.GetSource(values) ==  source && links.GetTarget(values) ==  target;
         }
 
         /// <summary>
@@ -947,14 +947,14 @@ namespace Platform.Data.Doublets
             var constants = links.Constants;
             var restrictionIndex = links.GetIndex(restriction);
             var substitutionIndex = links.GetIndex(substitution);
-            if (equalityComparer.Equals(substitutionIndex, default))
+            if (substitutionIndex ==  default)
             {
                 substitutionIndex = restrictionIndex;
             }
             var source = links.GetSource(substitution);
             var target = links.GetTarget(substitution);
-            source = equalityComparer.Equals(source, constant) ? substitutionIndex : source;
-            target = equalityComparer.Equals(target, constant) ? substitutionIndex : target;
+            source = source ==  constant ? substitutionIndex : source;
+            target = target ==  constant ? substitutionIndex : target;
             return new Link<TLinkAddress>(substitutionIndex, source, target);
         }
 
@@ -998,11 +998,11 @@ namespace Platform.Data.Doublets
         public static TLinkAddress UpdateOrCreateOrGet<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress source, TLinkAddress target, TLinkAddress newSource, TLinkAddress newTarget, WriteHandler<TLinkAddress>? handler)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
             var link = links.SearchOrDefault(source, target);
-            if (equalityComparer.Equals(link, default))
+            if (link ==  default)
             {
                 return links.CreateAndUpdate(newSource, newTarget, handler);
             }
-            if (equalityComparer.Equals(newSource, source) && equalityComparer.Equals(newTarget, target))
+            if (newSource ==  source && newTarget ==  target)
             {
                 var linkStruct = new Link<TLinkAddress>(link, source, target); 
                 return link;
@@ -1055,7 +1055,7 @@ namespace Platform.Data.Doublets
             WriteHandlerState<TLinkAddress> handlerState = new(constants.Continue, constants.Break, handler);
             foreach (var usage in usages)
             {
-                if (equalityComparer.Equals(links.GetIndex(usage), linkIndex) || !links.Exists(links.GetIndex(usage)))
+                if (links.GetIndex(usage) ==  linkIndex || !links.Exists(links.GetIndex(usage)))
                 {
                     continue;
                 }
@@ -1201,7 +1201,7 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress MergeUsages<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress oldLinkIndex, TLinkAddress newLinkIndex, WriteHandler<TLinkAddress>? handler)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
-            if (equalityComparer.Equals(oldLinkIndex, newLinkIndex))
+            if (oldLinkIndex ==  newLinkIndex)
             {
                 return newLinkIndex;
             }
@@ -1211,7 +1211,7 @@ namespace Platform.Data.Doublets
             for (var i = 0; i < usagesAsSource.Count; i++)
             {
                 var usageAsSource = usagesAsSource[i];
-                if (equalityComparer.Equals(links.GetIndex(usageAsSource), oldLinkIndex))
+                if (links.GetIndex(usageAsSource) ==  oldLinkIndex)
                 {
                     continue;
                 }
@@ -1223,7 +1223,7 @@ namespace Platform.Data.Doublets
             for (var i = 0; i < usagesAsTarget.Count; i++)
             {
                 var usageAsTarget = usagesAsTarget[i];
-                if (equalityComparer.Equals(links.GetIndex(usageAsTarget), oldLinkIndex))
+                if (links.GetIndex(usageAsTarget) ==  oldLinkIndex)
                 {
                     continue;
                 }

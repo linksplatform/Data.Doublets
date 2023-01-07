@@ -89,7 +89,7 @@ namespace Platform.Data.Doublets
         /// <para>.</para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool Equals(Doublet<T> other)  { return _equalityComparer.Equals(Source, other.Source) && _equalityComparer.Equals(Target, other.Target);}
+        public bool Equals(Doublet<T> other)  { return Source ==  other.Source && Target ==  other.Target;}
 
         /// <summury>
         /// <para>.</para>

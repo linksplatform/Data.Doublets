@@ -29,7 +29,7 @@ namespace Platform.Data.Doublets.Stacks
         public bool IsEmpty
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get => _equalityComparer.Equals(Peek(), _stack);
+            get => Peek() ==  _stack;
         }
 
         /// <summary>

@@ -54,7 +54,7 @@ namespace Platform.Data.Doublets.PropertyOperators
         {
             var links = _links;
             var objectProperty = links.SearchOrDefault(@object, property);
-            if (_equalityComparer.Equals(objectProperty, default))
+            if (objectProperty ==  default)
             {
                 return default;
             }

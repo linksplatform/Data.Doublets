@@ -69,7 +69,7 @@ namespace Platform.Data.Doublets.PropertyOperators
         private TLinkAddress GetContainer(TLinkAddress property)
         {
             var valueContainer = default(TLinkAddress);
-            if (_equalityComparer.Equals(property, default))
+            if (property ==  default)
             {
                 return valueContainer;
             }
@@ -83,7 +83,7 @@ namespace Platform.Data.Doublets.PropertyOperators
             {
                 var candidateTarget = links.GetTarget(candidate);
                 var valueTarget = links.GetTarget(candidateTarget);
-                if (_equalityComparer.Equals(valueTarget, _propertyValueMarker))
+                if (valueTarget ==  _propertyValueMarker)
                 {
                     valueContainer = links.GetIndex(candidate);
                     return breakConstant;
@@ -93,7 +93,7 @@ namespace Platform.Data.Doublets.PropertyOperators
             return valueContainer;
         }
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private TLinkAddress GetValue(TLinkAddress container)  { return _equalityComparer.Equals(container, default) ? default : _links.GetTarget(container);}
+        private TLinkAddress GetValue(TLinkAddress container)  { return container ==  default ? default : _links.GetTarget(container);}
 
         /// <summary>
         /// <para>
@@ -115,7 +115,7 @@ namespace Platform.Data.Doublets.PropertyOperators
             var links = _links;
             var property = links.GetOrCreate(link, _propertyMarker);
             var container = GetContainer(property);
-            if (_equalityComparer.Equals(container, default))
+            if (container ==  default)
             {
                 links.GetOrCreate(property, value);
             }

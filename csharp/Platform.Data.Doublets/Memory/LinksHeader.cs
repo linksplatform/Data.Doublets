@@ -115,14 +115,14 @@ namespace Platform.Data.Doublets.Memory
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Equals(LinksHeader<TLinkAddress> other)
-            => _equalityComparer.Equals(AllocatedLinks, other.AllocatedLinks)
-            && _equalityComparer.Equals(ReservedLinks, other.ReservedLinks)
-            && _equalityComparer.Equals(FreeLinks, other.FreeLinks)
-            && _equalityComparer.Equals(FirstFreeLink, other.FirstFreeLink)
-            && _equalityComparer.Equals(RootAsSource, other.RootAsSource)
-            && _equalityComparer.Equals(RootAsTarget, other.RootAsTarget)
-            && _equalityComparer.Equals(LastFreeLink, other.LastFreeLink)
-            && _equalityComparer.Equals(Reserved8, other.Reserved8);
+            => AllocatedLinks ==  other.AllocatedLinks
+            && ReservedLinks ==  other.ReservedLinks
+            && FreeLinks ==  other.FreeLinks
+            && FirstFreeLink ==  other.FirstFreeLink
+            && RootAsSource ==  other.RootAsSource
+            && RootAsTarget ==  other.RootAsTarget
+            && LastFreeLink ==  other.LastFreeLink
+            && Reserved8 ==  other.Reserved8;
 
         /// <summary>
         /// <para>

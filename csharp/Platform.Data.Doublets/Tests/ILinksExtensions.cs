@@ -46,7 +46,7 @@ namespace Platform.Data.Doublets.Tests
 
         private static void EnsureEqual<T>(T expected, T actual, string message, IEqualityComparer<T> equalityComparer)
         {
-            if (equalityComparer.Equals(expected, actual))
+            if (expected ==  actual)
             {
                 return;
             }
@@ -75,42 +75,42 @@ namespace Platform.Data.Doublets.Tests
             var one = T.One;
 
             // Create Link
-            EnsureTrue(equalityComparer.Equals(links.Count(), zero));
+            EnsureTrue(links.Count() ==  zero);
             var setter = new Setter<T, T>(constants.Continue, constants.Break, constants.Null);
             links.Each(setter.SetFirstFromNonNullListAndReturnTrue, constants.Any, constants.Any, constants.Any);
-            EnsureTrue(equalityComparer.Equals(setter.Result, constants.Null));
+            EnsureTrue(setter.Result ==  constants.Null);
             var linkAddress = links.Create();
             var link = new Link<T>(links.GetLink(linkAddress));
             EnsureTrue(link.Count == 3);
-            EnsureTrue(equalityComparer.Equals(link.Index, linkAddress));
-            EnsureTrue(equalityComparer.Equals(link.Source, constants.Null));
-            EnsureTrue(equalityComparer.Equals(link.Target, constants.Null));
-            EnsureTrue(equalityComparer.Equals(links.Count(), one));
+            EnsureTrue(link.Index ==  linkAddress);
+            EnsureTrue(link.Source ==  constants.Null);
+            EnsureTrue(link.Target ==  constants.Null);
+            EnsureTrue(links.Count() ==  one);
 
             // Get first link
             setter = new Setter<T, T>(constants.Continue, constants.Break, constants.Null);
             links.Each(setter.SetFirstFromNonNullListAndReturnTrue, constants.Any, constants.Any, constants.Any);
-            EnsureTrue(equalityComparer.Equals(setter.Result, linkAddress));
+            EnsureTrue(setter.Result ==  linkAddress);
 
             // Update link to reference itself
             links.Update(linkAddress, linkAddress, linkAddress);
             link = new Link<T>(links.GetLink(linkAddress));
-            EnsureTrue(equalityComparer.Equals(link.Source, linkAddress));
-            EnsureTrue(equalityComparer.Equals(link.Target, linkAddress));
+            EnsureTrue(link.Source ==  linkAddress);
+            EnsureTrue(link.Target ==  linkAddress);
 
             // Update link to reference null (prepare for delete)
             var updated = links.Update(linkAddress, constants.Null, constants.Null);
-            EnsureTrue(equalityComparer.Equals(updated, linkAddress));
+            EnsureTrue(updated ==  linkAddress);
             link = new Link<T>(links.GetLink(linkAddress));
-            EnsureTrue(equalityComparer.Equals(link.Source, constants.Null));
-            EnsureTrue(equalityComparer.Equals(link.Target, constants.Null));
+            EnsureTrue(link.Source ==  constants.Null);
+            EnsureTrue(link.Target ==  constants.Null);
 
             // Delete link
             links.Delete(linkAddress);
-            EnsureTrue(equalityComparer.Equals(links.Count(), zero));
+            EnsureTrue(links.Count() ==  zero);
             setter = new Setter<T, T>(constants.Continue, constants.Break, constants.Null);
             links.Each(setter.SetFirstFromNonNullListAndReturnTrue, constants.Any, constants.Any, constants.Any);
-            EnsureTrue(equalityComparer.Equals(setter.Result, constants.Null));
+            EnsureTrue(setter.Result ==  constants.Null);
         }
 
         /// <summary>
@@ -145,44 +145,44 @@ namespace Platform.Data.Doublets.Tests
             var linkAddress1 = links.Create();
             links.Update(linkAddress1, h106E, h108E);
             var link1 = new Link<T>(links.GetLink(linkAddress1));
-            EnsureTrue(equalityComparer.Equals(link1.Source, h106E));
-            EnsureTrue(equalityComparer.Equals(link1.Target, h108E));
+            EnsureTrue(link1.Source ==  h106E);
+            EnsureTrue(link1.Target ==  h108E);
 
             // Create Link (Internal -> External)
             var linkAddress2 = links.Create();
             links.Update(linkAddress2, linkAddress1, h108E);
             var link2 = new Link<T>(links.GetLink(linkAddress2));
-            EnsureTrue(equalityComparer.Equals(link2.Source, linkAddress1));
-            EnsureTrue(equalityComparer.Equals(link2.Target, h108E));
+            EnsureTrue(link2.Source ==  linkAddress1);
+            EnsureTrue(link2.Target ==  h108E);
 
             // Create Link (Internal -> Internal)
             var linkAddress3 = links.Create();
             links.Update(linkAddress3, linkAddress1, linkAddress2);
             var link3 = new Link<T>(links.GetLink(linkAddress3));
-            EnsureTrue(equalityComparer.Equals(link3.Source, linkAddress1));
-            EnsureTrue(equalityComparer.Equals(link3.Target, linkAddress2));
+            EnsureTrue(link3.Source ==  linkAddress1);
+            EnsureTrue(link3.Target ==  linkAddress2);
 
             // Search for created link
             var setter1 = new Setter<T, T>(constants.Continue, constants.Break, constants.Null);
             links.Each(setter1.SetFirstAndReturnFalse, constants.Any, h106E, h108E);
-            EnsureTrue(equalityComparer.Equals(setter1.Result, linkAddress1));
+            EnsureTrue(setter1.Result ==  linkAddress1);
 
             // Search for nonexistent link
             var setter2 = new Setter<T, T>(constants.Continue, constants.Break, constants.Null);
             links.Each(setter2.SetFirstAndReturnFalse, constants.Any, h106E, h107E);
-            EnsureTrue(equalityComparer.Equals(setter2.Result, constants.Null));
+            EnsureTrue(setter2.Result ==  constants.Null);
 
             // Update link to reference null (prepare for delete)
             var updated = links.Update(linkAddress3, constants.Null, constants.Null);
-            EnsureTrue(equalityComparer.Equals(updated, linkAddress3));
+            EnsureTrue(updated ==  linkAddress3);
             link3 = new Link<T>(links.GetLink(linkAddress3));
-            EnsureTrue(equalityComparer.Equals(link3.Source, constants.Null));
-            EnsureTrue(equalityComparer.Equals(link3.Target, constants.Null));
+            EnsureTrue(link3.Source ==  constants.Null);
+            EnsureTrue(link3.Target ==  constants.Null);
 
             // Delete link
             links.Delete(linkAddress3);
-            EnsureTrue(equalityComparer.Equals(links.Count(), two));
-            var isLinkAddress2Found = links.All().Any(link => equalityComparer.Equals(link![constants.IndexPart], linkAddress2));
+            EnsureTrue(links.Count() ==  two);
+            var isLinkAddress2Found = links.All().Any(link => link![constants.IndexPart] ==  linkAddress2);
             EnsureTrue(isLinkAddress2Found);
         }
 

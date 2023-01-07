@@ -115,14 +115,14 @@ namespace Platform.Data.Doublets.Memory.United
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Equals(RawLink<TLinkAddress> other)
-            => _equalityComparer.Equals(Source, other.Source)
-            && _equalityComparer.Equals(Target, other.Target)
-            && _equalityComparer.Equals(LeftAsSource, other.LeftAsSource)
-            && _equalityComparer.Equals(RightAsSource, other.RightAsSource)
-            && _equalityComparer.Equals(SizeAsSource, other.SizeAsSource)
-            && _equalityComparer.Equals(LeftAsTarget, other.LeftAsTarget)
-            && _equalityComparer.Equals(RightAsTarget, other.RightAsTarget)
-            && _equalityComparer.Equals(SizeAsTarget, other.SizeAsTarget);
+            => Source ==  other.Source
+            && Target ==  other.Target
+            && LeftAsSource ==  other.LeftAsSource
+            && RightAsSource ==  other.RightAsSource
+            && SizeAsSource ==  other.SizeAsSource
+            && LeftAsTarget ==  other.LeftAsTarget
+            && RightAsTarget ==  other.RightAsTarget
+            && SizeAsTarget ==  other.SizeAsTarget;
 
         /// <summary>
         /// <para>
