@@ -906,23 +906,6 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual TLinkAddress Subtract(TLinkAddress first, TLinkAddress second) => first - second;
 
-        /// <summary>
-        /// <para>
-        /// Decrements the link.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="link">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The link</para>
-        /// <para></para>
-        /// </returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual TLinkAddress Decrement(TLinkAddress link) => --link;
-
         #region Disposable
 
         /// <summary>

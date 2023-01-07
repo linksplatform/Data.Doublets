@@ -1215,26 +1215,6 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
         return first - second;
     }
 
-    /// <summary>
-    ///     <para>
-    ///         Decrements the link.
-    ///     </para>
-    ///     <para></para>
-    /// </summary>
-    /// <param name="link">
-    ///     <para>The link.</para>
-    ///     <para></para>
-    /// </param>
-    /// <returns>
-    ///     <para>The link</para>
-    ///     <para></para>
-    /// </returns>
-    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
-    protected virtual TLinkAddress Decrement(TLinkAddress link)
-    {
-        return --link;
-    }
-
     #region Disposable
 
     /// <summary>
