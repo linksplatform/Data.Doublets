@@ -1,3 +1,4 @@
+using System.Numerics;
 using System.Runtime.CompilerServices;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -11,7 +12,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
     /// <para></para>
     /// </summary>
     /// <seealso cref="LinksAvlBalancedTreeMethodsBase{TLinkAddress}"/>
-    public unsafe class LinksSourcesAvlBalancedTreeMethods<TLinkAddress> : LinksAvlBalancedTreeMethodsBase<TLinkAddress>
+    public unsafe class LinksSourcesAvlBalancedTreeMethods<TLinkAddress> : LinksAvlBalancedTreeMethodsBase<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress> , IShiftOperators<TLinkAddress,int,TLinkAddress>, IBitwiseOperators<TLinkAddress,TLinkAddress,TLinkAddress>, IMinMaxValue<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
     {
         /// <summary>
         /// <para>
@@ -329,7 +330,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override bool FirstIsToTheLeftOfSecond(TLinkAddress firstSource, TLinkAddress firstTarget, TLinkAddress secondSource, TLinkAddress secondTarget) => LessThan(firstSource, secondSource) || (AreEqual(firstSource, secondSource) && LessThan(firstTarget, secondTarget));
+        protected override bool FirstIsToTheLeftOfSecond(TLinkAddress firstSource, TLinkAddress firstTarget, TLinkAddress secondSource, TLinkAddress secondTarget) => firstSource < secondSource || (firstSource == secondSource && firstTarget < secondTarget);
 
         /// <summary>
         /// <para>
@@ -358,7 +359,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override bool FirstIsToTheRightOfSecond(TLinkAddress firstSource, TLinkAddress firstTarget, TLinkAddress secondSource, TLinkAddress secondTarget) => GreaterThan(firstSource, secondSource) || (AreEqual(firstSource, secondSource) && GreaterThan(firstTarget, secondTarget));
+        protected override bool FirstIsToTheRightOfSecond(TLinkAddress firstSource, TLinkAddress firstTarget, TLinkAddress secondSource, TLinkAddress secondTarget) => firstSource > secondSource || (firstSource == secondSource && firstTarget > secondTarget);
 
         /// <summary>
         /// <para>
@@ -374,9 +375,9 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         protected override void ClearNode(TLinkAddress node)
         {
             ref var link = ref GetLinkReference(node);
-            link.LeftAsSource = Zero;
-            link.RightAsSource = Zero;
-            link.SizeAsSource = Zero;
+            link.LeftAsSource = TLinkAddress.Zero;
+            link.RightAsSource = TLinkAddress.Zero;
+            link.SizeAsSource = TLinkAddress.Zero;
         }
     }
 }

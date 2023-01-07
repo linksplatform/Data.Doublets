@@ -1,3 +1,4 @@
+using System.Numerics;
 using System.Runtime.CompilerServices;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -31,7 +32,10 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsFullPoint<TLinkAddress>(this Link<TLinkAddress> link) => Point<TLinkAddress>.IsFullPoint(link);
+        public static bool IsFullPoint<TLinkAddress>(this Link<TLinkAddress> link) where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            return Point<TLinkAddress>.IsFullPoint(link);
+        }
 
         /// <summary>
         /// <para>
@@ -52,6 +56,9 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsPartialPoint<TLinkAddress>(this Link<TLinkAddress> link) => Point<TLinkAddress>.IsPartialPoint(link);
+        public static bool IsPartialPoint<TLinkAddress>(this Link<TLinkAddress> link) where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            return Point<TLinkAddress>.IsPartialPoint(link);
+        }
     }
 }

@@ -4,7 +4,7 @@ using Platform.Memory;
 using Platform.Data.Doublets.Decorators;
 using Platform.Reflection;
 using Platform.Data.Doublets.Memory.United.Generic;
-using Platform.Data.Doublets.Memory.United.Specific;
+using TLinkAddress = System.UInt64;
 
 namespace Platform.Data.Doublets.Tests
 {
@@ -27,9 +27,9 @@ namespace Platform.Data.Doublets.Tests
             using (var scope = new Scope())
             {
                 scope.Include<TemporaryFileMappedResizableDirectMemory>();
-                scope.Include<UInt64UnitedMemoryLinks>();
-                var instance = scope.Use<ILinks<ulong>>();
-                Assert.IsType<UInt64UnitedMemoryLinks>(instance);
+                scope.Include<UnitedMemoryLinks<TLinkAddress>>();
+                var instance = scope.Use<ILinks<TLinkAddress>>();
+                Assert.IsType<UnitedMemoryLinks<TLinkAddress>>(instance);
             }
         }
 
@@ -38,18 +38,18 @@ namespace Platform.Data.Doublets.Tests
         {
             using (var scope = new Scope(autoInclude: true, autoExplore: true))
             {
-                var instance = scope.Use<UInt64Links>();
-                Assert.IsType<UInt64Links>(instance);
+                var instance = scope.Use<CombinedDecorator<TLinkAddress>>();
+                Assert.IsType<TLinkAddress>(instance);
             }
         }
 
         [Fact]
         public static void TypeParametersTest()
         {
-            using (var scope = new Scope<Types<HeapResizableDirectMemory, UnitedMemoryLinks<ulong>>>())
+            using (var scope = new Scope<Types<HeapResizableDirectMemory, UnitedMemoryLinks<TLinkAddress>>>())
             {
-                var links = scope.Use<ILinks<ulong>>();
-                Assert.IsType<UnitedMemoryLinks<ulong>>(links);
+                var links = scope.Use<ILinks<TLinkAddress>>();
+                Assert.IsType<UnitedMemoryLinks<TLinkAddress>>(links);
             }
         }
     }

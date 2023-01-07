@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using Platform.Disposables;
 using Platform.Singletons;
@@ -21,14 +22,13 @@ namespace Platform.Data.Doublets.Memory.United.Generic
     /// </summary>
     /// <seealso cref="DisposableBase"/>
     /// <seealso cref="ILinks{TLinkAddress}"/>
-    public abstract class UnitedMemoryLinksBase<TLinkAddress> : DisposableBase, ILinks<TLinkAddress>
+    public abstract class UnitedMemoryLinksBase<TLinkAddress> : DisposableBase, ILinks<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
     {
-        private static readonly EqualityComparer<TLinkAddress> _equalityComparer = EqualityComparer<TLinkAddress>.Default;
         private static readonly Comparer<TLinkAddress> _comparer = Comparer<TLinkAddress>.Default;
         private static readonly UncheckedConverter<TLinkAddress, long> _addressToInt64Converter = UncheckedConverter<TLinkAddress, long>.Default;
         private static readonly UncheckedConverter<long, TLinkAddress> _int64ToAddressConverter = UncheckedConverter<long, TLinkAddress>.Default;
         private static readonly TLinkAddress _zero = default;
-        private static readonly TLinkAddress _one = Arithmetic.Increment(_zero);
+        private static readonly TLinkAddress _one = ++_zero;
 
         /// <summary>Возвращает размер одной связи в байтах.</summary>
         /// <remarks>
@@ -219,7 +219,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             var index = this.GetIndex(restriction);
             if (restriction.Count == 1)
             {
-                if (AreEqual(index, any))
+                if (index == any)
                 {
                     return Total;
                 }
@@ -228,9 +228,9 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             if (restriction.Count == 2)
             {
                 var value = restriction[1];
-                if (AreEqual(index, any))
+                if (index == any)
                 {
-                    if (AreEqual(value, any))
+                    if (value == any)
                     {
                         return Total; // Any - как отсутствие ограничения
                     }
@@ -242,7 +242,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                     {
                         return GetZero();
                     }
-                    if (AreEqual(value, any))
+                    if (value == any)
                     {
                         return GetOne();
                     }
@@ -258,17 +258,17 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             {
                 var source = this.GetSource(restriction);
                 var target = this.GetTarget(restriction);
-                if (AreEqual(index, any))
+                if (index == any)
                 {
-                    if (AreEqual(source, any) && AreEqual(target, any))
+                    if (source == any && target == any)
                     {
                         return Total;
                     }
-                    else if (AreEqual(source, any))
+                    else if (source == any)
                     {
                         return TargetsTreeMethods.CountUsages(target);
                     }
-                    else if (AreEqual(target, any))
+                    else if (target == any)
                     {
                         return SourcesTreeMethods.CountUsages(source);
                     }
@@ -285,12 +285,12 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                     {
                         return GetZero();
                     }
-                    if (AreEqual(source, any) && AreEqual(target, any))
+                    if (source == any && target == any)
                     {
                         return GetOne();
                     }
                     ref var storedLinkValue = ref GetLinkReference(index);
-                    if (!AreEqual(source, any) && !AreEqual(target, any))
+                    if (source != any && target != any)
                     {
                         if (AreEqual(storedLinkValue.Source, source) && AreEqual(storedLinkValue.Target, target))
                         {
@@ -299,11 +299,11 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                         return GetZero();
                     }
                     var value = default(TLinkAddress);
-                    if (AreEqual(source, any))
+                    if (source == any)
                     {
                         value = target;
                     }
-                    if (AreEqual(target, any))
+                    if (target == any)
                     {
                         value = source;
                     }
@@ -346,7 +346,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             var @break = constants.Break;
             if (restriction.Count == 0)
             {
-                for (var link = GetOne(); LessOrEqualThan(link, GetHeaderReference().AllocatedLinks); link = Increment(link))
+                for (var link = GetOne(); LessOrEqualThan(link, GetHeaderReference().AllocatedLinks); link = link + TLinkAddress.One)
                 {
                     if (Exists(link) && AreEqual(handler(GetLinkStruct(link)), @break))
                     {
@@ -360,7 +360,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             var index = this.GetIndex(restriction);
             if (restriction.Count == 1)
             {
-                if (AreEqual(index, any))
+                if (index == any)
                 {
                     return Each(Array.Empty<TLinkAddress>(), handler);
                 }
@@ -373,9 +373,9 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             if (restriction.Count == 2)
             {
                 var value = restriction[1];
-                if (AreEqual(index, any))
+                if (index == any)
                 {
-                    if (AreEqual(value, any))
+                    if (value == any)
                     {
                         return Each(Array.Empty<TLinkAddress>(), handler);
                     }
@@ -391,7 +391,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                     {
                         return @continue;
                     }
-                    if (AreEqual(value, any))
+                    if (value == any)
                     {
                         return handler(GetLinkStruct(index));
                     }
@@ -408,17 +408,17 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             {
                 var source = this.GetSource(restriction);
                 var target = this.GetTarget(restriction);
-                if (AreEqual(index, any))
+                if (index == any)
                 {
-                    if (AreEqual(source, any) && AreEqual(target, any))
+                    if (source == any && target == any)
                     {
                         return Each(Array.Empty<TLinkAddress>(), handler);
                     }
-                    else if (AreEqual(source, any))
+                    else if (source == any)
                     {
                         return TargetsTreeMethods.EachUsage(target, handler);
                     }
-                    else if (AreEqual(target, any))
+                    else if (target == any)
                     {
                         return SourcesTreeMethods.EachUsage(source, handler);
                     }
@@ -434,12 +434,12 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                     {
                         return @continue;
                     }
-                    if (AreEqual(source, any) && AreEqual(target, any))
+                    if (source == any && target == any)
                     {
                         return handler(GetLinkStruct(index));
                     }
                     ref var storedLinkValue = ref GetLinkReference(index);
-                    if (!AreEqual(source, any) && !AreEqual(target, any))
+                    if (source != any && target != any)
                     {
                         if (AreEqual(storedLinkValue.Source, source) &&
                             AreEqual(storedLinkValue.Target, target))
@@ -449,11 +449,11 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                         return @continue;
                     }
                     var value = default(TLinkAddress);
-                    if (AreEqual(source, any))
+                    if (source == any)
                     {
                         value = target;
                     }
-                    if (AreEqual(target, any))
+                    if (target == any)
                     {
                         value = source;
                     }
@@ -523,14 +523,14 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                 {
                     throw new LinksLimitReachedException<TLinkAddress>(maximumPossibleInnerReference);
                 }
-                if (GreaterOrEqualThan(header.AllocatedLinks, Decrement(header.ReservedLinks)))
+                if (GreaterOrEqualThan(header.AllocatedLinks, header.ReservedLinks - TLinkAddress.One))
                 {
                     _memory.ReservedCapacity += _memoryReservationStep;
                     SetPointers(_memory);
                     header = ref GetHeaderReference();
                     header.ReservedLinks = ConvertToAddress(_memory.ReservedCapacity / LinkSizeInBytes);
                 }
-                freeLink = header.AllocatedLinks = Increment(header.AllocatedLinks);
+                freeLink = header.AllocatedLinks = header.AllocatedLinks + TLinkAddress.One;
                 _memory.UsedCapacity += LinkSizeInBytes;
             }
             return handler != null ? handler(null, new Link<TLinkAddress>(freeLink, Constants.Null, Constants.Null)) : Constants.Continue;
@@ -560,14 +560,14 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             }
             else if (AreEqual(link, header.AllocatedLinks))
             {
-                header.AllocatedLinks = Decrement(header.AllocatedLinks);
+                header.AllocatedLinks = header.AllocatedLinks - TLinkAddress.One;
                 _memory.UsedCapacity -= LinkSizeInBytes;
                 // Убираем все связи, находящиеся в списке свободных в конце файла, до тех пор, пока не дойдём до первой существующей связи
                 // Позволяет оптимизировать количество выделенных связей (AllocatedLinks)
                 while (GreaterThan(header.AllocatedLinks, GetZero()) && IsUnusedLink(header.AllocatedLinks))
                 {
                     UnusedLinksListMethods.Detach(header.AllocatedLinks);
-                    header.AllocatedLinks = Decrement(header.AllocatedLinks);
+                    header.AllocatedLinks = header.AllocatedLinks - TLinkAddress.One;
                     _memory.UsedCapacity -= LinkSizeInBytes;
                 }
                 return handler != null ? handler(before, null) : Constants.Continue;
@@ -743,7 +743,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual bool AreEqual(TLinkAddress first, TLinkAddress second) => _equalityComparer.Equals(first, second);
+        protected virtual bool AreEqual(TLinkAddress first, TLinkAddress second) => first ==  second;
 
         /// <summary>
         /// <para>
@@ -882,7 +882,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual TLinkAddress Add(TLinkAddress first, TLinkAddress second) => Arithmetic<TLinkAddress>.Add(first, second);
+        protected virtual TLinkAddress Add(TLinkAddress first, TLinkAddress second) => first + second;
 
         /// <summary>
         /// <para>
@@ -903,41 +903,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual TLinkAddress Subtract(TLinkAddress first, TLinkAddress second) => Arithmetic<TLinkAddress>.Subtract(first, second);
-
-        /// <summary>
-        /// <para>
-        /// Increments the link.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="link">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The link</para>
-        /// <para></para>
-        /// </returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual TLinkAddress Increment(TLinkAddress link) => Arithmetic<TLinkAddress>.Increment(link);
-
-        /// <summary>
-        /// <para>
-        /// Decrements the link.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="link">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The link</para>
-        /// <para></para>
-        /// </returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual TLinkAddress Decrement(TLinkAddress link) => Arithmetic<TLinkAddress>.Decrement(link);
+        protected virtual TLinkAddress Subtract(TLinkAddress first, TLinkAddress second) => first - second;
 
         #region Disposable
 

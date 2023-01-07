@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using Platform.Interfaces;
 
@@ -14,9 +15,8 @@ namespace Platform.Data.Doublets.PropertyOperators
     /// </summary>
     /// <seealso cref="LinksOperatorBase{TLinkAddress}"/>
     /// <seealso cref="IProperties{TLinkAddress, TLinkAddress, TLinkAddress}"/>
-    public class PropertiesOperator<TLinkAddress> : LinksOperatorBase<TLinkAddress>, IProperties<TLinkAddress, TLinkAddress, TLinkAddress> 
+    public class PropertiesOperator<TLinkAddress> : LinksOperatorBase<TLinkAddress>, IProperties<TLinkAddress, TLinkAddress, TLinkAddress>  where TLinkAddress : IUnsignedNumber<TLinkAddress>
     {
-        private static readonly EqualityComparer<TLinkAddress> _equalityComparer = EqualityComparer<TLinkAddress>.Default;
 
         /// <summary>
         /// <para>
@@ -54,7 +54,7 @@ namespace Platform.Data.Doublets.PropertyOperators
         {
             var links = _links;
             var objectProperty = links.SearchOrDefault(@object, property);
-            if (_equalityComparer.Equals(objectProperty, default))
+            if (objectProperty ==  default)
             {
                 return default;
             }

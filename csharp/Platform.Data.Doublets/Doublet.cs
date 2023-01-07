@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -15,9 +16,8 @@ namespace Platform.Data.Doublets
     /// <para>.</para>
     /// <para>.</para>
     /// </typeparam>
-    public struct Doublet<T> : IEquatable<Doublet<T>>
+    public struct Doublet<T> : IEquatable<Doublet<T>> where T : IUnsignedNumber<T>
     {
-        private static readonly EqualityComparer<T> _equalityComparer = EqualityComparer<T>.Default;
 
         /// <summury>
         /// <para>.</para>
@@ -71,7 +71,7 @@ namespace Platform.Data.Doublets
         /// <para>.</para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override string ToString() => $"{Source}->{Target}";
+        public override string ToString()  { return $"{Source}->{Target}";}
 
         /// <summury>
         /// <para>.</para>
@@ -90,7 +90,7 @@ namespace Platform.Data.Doublets
         /// <para>.</para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool Equals(Doublet<T> other) => _equalityComparer.Equals(Source, other.Source) && _equalityComparer.Equals(Target, other.Target);
+        public bool Equals(Doublet<T> other)  { return Source ==  other.Source && Target ==  other.Target;}
 
         /// <summury>
         /// <para>.</para>
@@ -109,7 +109,7 @@ namespace Platform.Data.Doublets
         /// <para>.</para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override bool Equals(object obj) => obj is Doublet<T> doublet ? base.Equals(doublet) : false;
+        public override bool Equals(object obj)  { return obj is Doublet<T> doublet ? base.Equals(doublet) : false;}
 
         /// <summury>
         /// <para>.</para>
@@ -120,7 +120,7 @@ namespace Platform.Data.Doublets
         /// <para>.</para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override int GetHashCode() => (Source, Target).GetHashCode();
+        public override int GetHashCode()  { return  (Source, Target).GetHashCode();}
 
         /// <summury>
         /// <para>.</para>
@@ -139,7 +139,7 @@ namespace Platform.Data.Doublets
         /// <para>.</para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool operator ==(Doublet<T> left, Doublet<T> right) => left.Equals(right);
+        public static bool operator ==(Doublet<T> left, Doublet<T> right)  { return  left.Equals(right);}
 
         /// <summury>
         /// <para>.</para>
@@ -158,6 +158,6 @@ namespace Platform.Data.Doublets
         /// <para>.</para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool operator !=(Doublet<T> left, Doublet<T> right) => !(left == right);
+        public static bool operator !=(Doublet<T> left, Doublet<T> right)  { return !(left == right);}
     }
 }

@@ -2,7 +2,7 @@ using System.IO;
 using Xunit;
 using Platform.Singletons;
 using Platform.Memory;
-using Platform.Data.Doublets.Memory.United.Specific;
+using Platform.Data.Doublets.Memory.United.Generic;
 
 namespace Platform.Data.Doublets.Tests
 {
@@ -14,9 +14,12 @@ namespace Platform.Data.Doublets.Tests
         public static void BasicFileMappedMemoryTest()
         {
             var tempFilename = Path.GetTempFileName();
-            using (var memoryAdapter = new UInt64UnitedMemoryLinks(tempFilename))
+            using (var memoryAdapter = new TemporaryFileMappedResizableDirectMemory())
             {
-                memoryAdapter.TestBasicMemoryOperations();
+                using (var unitedMemoryLinksStorage = new UnitedMemoryLinks<ulong>(memoryAdapter))
+                {
+                    unitedMemoryLinksStorage.TestBasicMemoryOperations();
+                }
             }
             File.Delete(tempFilename);
         }
@@ -24,8 +27,8 @@ namespace Platform.Data.Doublets.Tests
         [Fact]
         public static void BasicHeapMemoryTest()
         {
-            using (var memory = new HeapResizableDirectMemory(UInt64UnitedMemoryLinks.DefaultLinksSizeStep))
-            using (var memoryAdapter = new UInt64UnitedMemoryLinks(memory, UInt64UnitedMemoryLinks.DefaultLinksSizeStep))
+            using (var memory = new HeapResizableDirectMemory(UnitedMemoryLinks<ulong>.DefaultLinksSizeStep))
+            using (var memoryAdapter = new UnitedMemoryLinks<ulong>(memory, UnitedMemoryLinks<ulong>.DefaultLinksSizeStep))
             {
                 memoryAdapter.TestBasicMemoryOperations();
             }
@@ -39,8 +42,8 @@ namespace Platform.Data.Doublets.Tests
         [Fact]
         public static void NonexistentReferencesHeapMemoryTest()
         {
-            using (var memory = new HeapResizableDirectMemory(UInt64UnitedMemoryLinks.DefaultLinksSizeStep))
-            using (var memoryAdapter = new UInt64UnitedMemoryLinks(memory, UInt64UnitedMemoryLinks.DefaultLinksSizeStep))
+            using (var memory = new HeapResizableDirectMemory(UnitedMemoryLinks<ulong>.DefaultLinksSizeStep))
+            using (var memoryAdapter = new UnitedMemoryLinks<ulong>(memory, UnitedMemoryLinks<ulong>.DefaultLinksSizeStep))
             {
                 memoryAdapter.TestNonexistentReferences();
             }

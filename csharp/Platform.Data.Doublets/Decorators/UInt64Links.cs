@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Net.Security;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using Platform.Delegates;
 using TLinkAddress = System.UInt64;
@@ -27,7 +28,7 @@ namespace Platform.Data.Doublets.Decorators
     /// 
     /// Решить отключать ли проверки при компиляции под Release. Т.е. исключения будут выбрасываться только при #if DEBUG
     /// </remarks>
-    public class UInt64Links : LinksDisposableDecoratorBase<TLinkAddress>
+    public class CombinedDecorator<TLinkAddress> : LinksDisposableDecoratorBase<TLinkAddress> where TLinkAddress:IUnsignedNumber<TLinkAddress>
     {
         /// <summary>
         /// <para>
@@ -40,7 +41,7 @@ namespace Platform.Data.Doublets.Decorators
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public UInt64Links(ILinks<TLinkAddress> links) : base(links) { }
+        public CombinedDecorator(ILinks<TLinkAddress> links) : base(links) { }
 
         /// <summary>
         /// <para>

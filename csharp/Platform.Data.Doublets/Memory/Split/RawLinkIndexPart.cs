@@ -1,146 +1,152 @@
-using Platform.Unsafe;
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Runtime.CompilerServices;
+using Platform.Unsafe;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-namespace Platform.Data.Doublets.Memory.Split
+namespace Platform.Data.Doublets.Memory.Split;
+
+/// <summary>
+///     <para>
+///         The raw link index part.
+///     </para>
+///     <para></para>
+/// </summary>
+public struct RawLinkIndexPart<TLinkAddress> : IEquatable<RawLinkIndexPart<TLinkAddress>> where TLinkAddress : IUnsignedNumber<TLinkAddress>
 {
+
     /// <summary>
-    /// <para>
-    /// The raw link index part.
-    /// </para>
-    /// <para></para>
+    ///     <para>
+    ///         The size.
+    ///     </para>
+    ///     <para></para>
     /// </summary>
-    public struct RawLinkIndexPart<TLinkAddress> : IEquatable<RawLinkIndexPart<TLinkAddress>>
+    public static readonly long SizeInBytes = Structure<RawLinkIndexPart<TLinkAddress>>.Size;
+    
+    /// <summary>
+    ///     <para>
+    ///         The root as source.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    public TLinkAddress RootAsSource;
+    /// <summary>
+    ///     <para>
+    ///         The left as source.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    public TLinkAddress LeftAsSource;
+    /// <summary>
+    ///     <para>
+    ///         The right as source.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    public TLinkAddress RightAsSource;
+    /// <summary>
+    ///     <para>
+    ///         The size as source.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    public TLinkAddress SizeAsSource;
+    /// <summary>
+    ///     <para>
+    ///         The root as target.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    public TLinkAddress RootAsTarget;
+    /// <summary>
+    ///     <para>
+    ///         The left as target.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    public TLinkAddress LeftAsTarget;
+    /// <summary>
+    ///     <para>
+    ///         The right as target.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    public TLinkAddress RightAsTarget;
+    /// <summary>
+    ///     <para>
+    ///         The size as target.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    public TLinkAddress SizeAsTarget;
+
+    /// <summary>
+    ///     <para>
+    ///         Determines whether this instance equals.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    /// <param name="obj">
+    ///     <para>The obj.</para>
+    ///     <para></para>
+    /// </param>
+    /// <returns>
+    ///     <para>The bool</para>
+    ///     <para></para>
+    /// </returns>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    public override bool Equals(object obj)
     {
-        private static readonly EqualityComparer<TLinkAddress> _equalityComparer = EqualityComparer<TLinkAddress>.Default;
+        return obj is RawLinkIndexPart<TLinkAddress> link ? Equals(other: link) : false;
+    }
 
-        /// <summary>
-        /// <para>
-        /// The size.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        public static readonly long SizeInBytes = Structure<RawLinkIndexPart<TLinkAddress>>.Size;
+    /// <summary>
+    ///     <para>
+    ///         Determines whether this instance equals.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    /// <param name="other">
+    ///     <para>The other.</para>
+    ///     <para></para>
+    /// </param>
+    /// <returns>
+    ///     <para>The bool</para>
+    ///     <para></para>
+    /// </returns>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    public bool Equals(RawLinkIndexPart<TLinkAddress> other)
+    {
+        return RootAsSource ==  other.RootAsSource && LeftAsSource ==  other.LeftAsSource && RightAsSource ==  other.RightAsSource && SizeAsSource ==  other.SizeAsSource && RootAsTarget ==  other.RootAsTarget && LeftAsTarget ==  other.LeftAsTarget && RightAsTarget ==  other.RightAsTarget && SizeAsTarget ==  other.SizeAsTarget;
+    }
 
-        /// <summary>
-        /// <para>
-        /// The root as source.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        public TLinkAddress RootAsSource;
-        /// <summary>
-        /// <para>
-        /// The left as source.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        public TLinkAddress LeftAsSource;
-        /// <summary>
-        /// <para>
-        /// The right as source.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        public TLinkAddress RightAsSource;
-        /// <summary>
-        /// <para>
-        /// The size as source.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        public TLinkAddress SizeAsSource;
-        /// <summary>
-        /// <para>
-        /// The root as target.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        public TLinkAddress RootAsTarget;
-        /// <summary>
-        /// <para>
-        /// The left as target.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        public TLinkAddress LeftAsTarget;
-        /// <summary>
-        /// <para>
-        /// The right as target.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        public TLinkAddress RightAsTarget;
-        /// <summary>
-        /// <para>
-        /// The size as target.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        public TLinkAddress SizeAsTarget;
+    /// <summary>
+    ///     <para>
+    ///         Gets the hash code.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    /// <returns>
+    ///     <para>The int</para>
+    ///     <para></para>
+    /// </returns>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    public override int GetHashCode()
+    {
+        return (RootAsSource, LeftAsSource, RightAsSource, SizeAsSource, RootAsTarget, LeftAsTarget, RightAsTarget, SizeAsTarget).GetHashCode();
+    }
 
-        /// <summary>
-        /// <para>
-        /// Determines whether this instance equals.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="obj">
-        /// <para>The obj.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The bool</para>
-        /// <para></para>
-        /// </returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override bool Equals(object obj) => obj is RawLinkIndexPart<TLinkAddress> link ? Equals(link) : false;
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    public static bool operator ==(RawLinkIndexPart<TLinkAddress> left, RawLinkIndexPart<TLinkAddress> right)
+    {
+        return left.Equals(other: right);
+    }
 
-        /// <summary>
-        /// <para>
-        /// Determines whether this instance equals.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="other">
-        /// <para>The other.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The bool</para>
-        /// <para></para>
-        /// </returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool Equals(RawLinkIndexPart<TLinkAddress> other)
-            => _equalityComparer.Equals(RootAsSource, other.RootAsSource)
-            && _equalityComparer.Equals(LeftAsSource, other.LeftAsSource)
-            && _equalityComparer.Equals(RightAsSource, other.RightAsSource)
-            && _equalityComparer.Equals(SizeAsSource, other.SizeAsSource)
-            && _equalityComparer.Equals(RootAsTarget, other.RootAsTarget)
-            && _equalityComparer.Equals(LeftAsTarget, other.LeftAsTarget)
-            && _equalityComparer.Equals(RightAsTarget, other.RightAsTarget)
-            && _equalityComparer.Equals(SizeAsTarget, other.SizeAsTarget);
-
-        /// <summary>
-        /// <para>
-        /// Gets the hash code.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <returns>
-        /// <para>The int</para>
-        /// <para></para>
-        /// </returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override int GetHashCode() => (RootAsSource, LeftAsSource, RightAsSource, SizeAsSource, RootAsTarget, LeftAsTarget, RightAsTarget, SizeAsTarget).GetHashCode();
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool operator ==(RawLinkIndexPart<TLinkAddress> left, RawLinkIndexPart<TLinkAddress> right) => left.Equals(right);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool operator !=(RawLinkIndexPart<TLinkAddress> left, RawLinkIndexPart<TLinkAddress> right) => !(left == right);
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    public static bool operator !=(RawLinkIndexPart<TLinkAddress> left, RawLinkIndexPart<TLinkAddress> right)
+    {
+        return !(left == right);
     }
 }
