@@ -464,29 +464,29 @@ public abstract unsafe class ExternalLinksSizeBalancedTreeMethodsBase<TLinkAddre
         var @break = Break;
         if ((linkBasePart > @base))
         {
-            if ((EachUsageCore(@base: @base, link: GetLeftOrDefault(node: link), handler: handler) == @break))
+            if (AreEqual(first: EachUsageCore(@base: @base, link: GetLeftOrDefault(node: link), handler: handler), second: @break))
             {
                 return @break;
             }
         }
         else if ((linkBasePart < @base))
         {
-            if ((EachUsageCore(@base: @base, link: GetRightOrDefault(node: link), handler: handler) == @break))
+            if (AreEqual(first: EachUsageCore(@base: @base, link: GetRightOrDefault(node: link), handler: handler), second: @break))
             {
                 return @break;
             }
         }
         else //if (linkBasePart == @base)
         {
-            if ((handler(link: GetLinkValues(linkIndex: link)) == @break))
+            if (AreEqual(first: handler(link: GetLinkValues(linkIndex: link)), second: @break))
             {
                 return @break;
             }
-            if ((EachUsageCore(@base: @base, link: GetLeftOrDefault(node: link), handler: handler) == @break))
+            if (AreEqual(first: EachUsageCore(@base: @base, link: GetLeftOrDefault(node: link), handler: handler), second: @break))
             {
                 return @break;
             }
-            if ((EachUsageCore(@base: @base, link: GetRightOrDefault(node: link), handler: handler) == @break))
+            if (AreEqual(first: EachUsageCore(@base: @base, link: GetRightOrDefault(node: link), handler: handler), second: @break))
             {
                 return @break;
             }
