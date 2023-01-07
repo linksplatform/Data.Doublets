@@ -440,7 +440,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
         var @break = constants.Break;
         if (restriction.Count == 0)
         {
-            for (var link = GetOne(); LessOrEqualThan(first: link, second: GetHeaderReference().AllocatedLinks); link = Increment(link: link))
+            for (var link = GetOne(); LessOrEqualThan(first: link, second: GetHeaderReference().AllocatedLinks); link = link + TLinkAddress.One)
             {
                 if (Exists(link: link) && AreEqual(first: handler(link: GetLinkStruct(linkIndex: link)), second: @break))
                 {
@@ -717,7 +717,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
                 header = ref GetHeaderReference();
                 header.ReservedLinks = ConvertToAddress(value: _dataMemory.ReservedCapacity / LinkDataPartSizeInBytes);
             }
-            freeLink = header.AllocatedLinks = Increment(link: header.AllocatedLinks);
+            freeLink = header.AllocatedLinks = header.AllocatedLinks + TLinkAddress.One;
             _dataMemory.UsedCapacity += LinkDataPartSizeInBytes;
             _indexMemory.UsedCapacity += LinkIndexPartSizeInBytes;
         }

@@ -109,7 +109,7 @@ public abstract unsafe class LinksSizeBalancedTreeMethodsBase<TLinkAddress> : Si
                     return root;
                 }
                 root = GetRightOrDefault(node: root);
-                index = Subtract(first: index, second: Increment(value: leftSize));
+                index = Subtract(first: index, second: leftSize + TLinkAddress.One);
             }
             return Zero; // TODO: Impossible situation exception (only if tree structure broken)
         }
@@ -176,7 +176,7 @@ public abstract unsafe class LinksSizeBalancedTreeMethodsBase<TLinkAddress> : Si
             }
             else
             {
-                totalRightIgnore = Add(first: totalRightIgnore, second: Increment(value: GetRightSize(node: root)));
+                totalRightIgnore = Add(first: totalRightIgnore, second: GetRightSize(node: root) + TLinkAddress.One);
                 root = GetLeftOrDefault(node: root);
             }
         }
@@ -191,7 +191,7 @@ public abstract unsafe class LinksSizeBalancedTreeMethodsBase<TLinkAddress> : Si
             }
             else
             {
-                totalLeftIgnore = Add(first: totalLeftIgnore, second: Increment(value: GetLeftSize(node: root)));
+                totalLeftIgnore = Add(first: totalLeftIgnore, second: GetLeftSize(node: root) + TLinkAddress.One);
                 root = GetRightOrDefault(node: root);
             }
         }

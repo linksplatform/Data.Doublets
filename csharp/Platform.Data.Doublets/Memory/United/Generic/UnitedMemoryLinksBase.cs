@@ -347,7 +347,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             var @break = constants.Break;
             if (restriction.Count == 0)
             {
-                for (var link = GetOne(); LessOrEqualThan(link, GetHeaderReference().AllocatedLinks); link = Increment(link))
+                for (var link = GetOne(); LessOrEqualThan(link, GetHeaderReference().AllocatedLinks); link = link + TLinkAddress.One)
                 {
                     if (Exists(link) && AreEqual(handler(GetLinkStruct(link)), @break))
                     {
@@ -531,7 +531,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                     header = ref GetHeaderReference();
                     header.ReservedLinks = ConvertToAddress(_memory.ReservedCapacity / LinkSizeInBytes);
                 }
-                freeLink = header.AllocatedLinks = Increment(header.AllocatedLinks);
+                freeLink = header.AllocatedLinks = header.AllocatedLinks + TLinkAddress.One;
                 _memory.UsedCapacity += LinkSizeInBytes;
             }
             return handler != null ? handler(null, new Link<TLinkAddress>(freeLink, Constants.Null, Constants.Null)) : Constants.Continue;
