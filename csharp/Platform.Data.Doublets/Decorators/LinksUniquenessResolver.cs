@@ -82,7 +82,7 @@ public class LinksUniquenessResolver<TLinkAddress> : LinksDecoratorBase<TLinkAdd
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     protected virtual TLinkAddress ResolveAddressChangeConflict(TLinkAddress oldLinkAddress, TLinkAddress newLinkAddress, WriteHandler<TLinkAddress>? handler)
     {
-        if (!_equalityComparer.Equals(x: oldLinkAddress, y: newLinkAddress) && _links.Exists(link: oldLinkAddress))
+        if (oldLinkAddress !=  newLinkAddress && _links.Exists(link: oldLinkAddress))
         {
             return _facade.Delete(linkToDelete: oldLinkAddress, handler: handler);
         }

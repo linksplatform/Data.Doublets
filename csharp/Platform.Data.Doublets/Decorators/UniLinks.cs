@@ -334,7 +334,7 @@ internal class UniLinks<TLinkAddress> : LinksDecoratorBase<TLinkAddress>, IUniLi
             }
             if (substitution.Count == 1)
             {
-                if (!_equalityComparer.Equals(x: substitution[index: 0], y: linkToUpdate))
+                if (substitution[index: 0] !=  linkToUpdate)
                 {
                     after = _links.GetLink(link: substitution[index: 0]);
                     _links.Update(link: linkToUpdate, newSource: constants.Null, newTarget: constants.Null);

@@ -53,7 +53,7 @@ public class LinksItselfConstantToSelfReferenceResolver<TLinkAddress> : LinksDec
     {
         var constants = _constants;
         var itselfConstant = constants.Itself;
-        if (!_equalityComparer.Equals(x: constants.Any, y: itselfConstant) && restriction.Contains(item: itselfConstant))
+        if (constants.Any !=  itselfConstant && restriction.Contains(item: itselfConstant))
         {
             // Itself constant is not supported for Each method right now, skipping execution
             return constants.Continue;
