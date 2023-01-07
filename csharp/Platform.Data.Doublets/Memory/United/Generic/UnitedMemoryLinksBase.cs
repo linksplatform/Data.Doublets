@@ -220,7 +220,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             var index = this.GetIndex(restriction);
             if (restriction.Count == 1)
             {
-                if (AreEqual(index, any))
+                if (index == any)
                 {
                     return Total;
                 }
@@ -229,9 +229,9 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             if (restriction.Count == 2)
             {
                 var value = restriction[1];
-                if (AreEqual(index, any))
+                if (index == any)
                 {
-                    if (AreEqual(value, any))
+                    if (value == any)
                     {
                         return Total; // Any - как отсутствие ограничения
                     }
@@ -243,7 +243,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                     {
                         return GetZero();
                     }
-                    if (AreEqual(value, any))
+                    if (value == any)
                     {
                         return GetOne();
                     }
@@ -259,17 +259,17 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             {
                 var source = this.GetSource(restriction);
                 var target = this.GetTarget(restriction);
-                if (AreEqual(index, any))
+                if (index == any)
                 {
-                    if (AreEqual(source, any) && AreEqual(target, any))
+                    if (source == any && target == any)
                     {
                         return Total;
                     }
-                    else if (AreEqual(source, any))
+                    else if (source == any)
                     {
                         return TargetsTreeMethods.CountUsages(target);
                     }
-                    else if (AreEqual(target, any))
+                    else if (target == any)
                     {
                         return SourcesTreeMethods.CountUsages(source);
                     }
@@ -286,7 +286,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                     {
                         return GetZero();
                     }
-                    if (AreEqual(source, any) && AreEqual(target, any))
+                    if (source == any && target == any)
                     {
                         return GetOne();
                     }
@@ -300,11 +300,11 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                         return GetZero();
                     }
                     var value = default(TLinkAddress);
-                    if (AreEqual(source, any))
+                    if (source == any)
                     {
                         value = target;
                     }
-                    if (AreEqual(target, any))
+                    if (target == any)
                     {
                         value = source;
                     }
@@ -361,7 +361,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             var index = this.GetIndex(restriction);
             if (restriction.Count == 1)
             {
-                if (AreEqual(index, any))
+                if (index == any)
                 {
                     return Each(Array.Empty<TLinkAddress>(), handler);
                 }
@@ -374,9 +374,9 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             if (restriction.Count == 2)
             {
                 var value = restriction[1];
-                if (AreEqual(index, any))
+                if (index == any)
                 {
-                    if (AreEqual(value, any))
+                    if (value == any)
                     {
                         return Each(Array.Empty<TLinkAddress>(), handler);
                     }
@@ -392,7 +392,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                     {
                         return @continue;
                     }
-                    if (AreEqual(value, any))
+                    if (value == any)
                     {
                         return handler(GetLinkStruct(index));
                     }
@@ -409,17 +409,17 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             {
                 var source = this.GetSource(restriction);
                 var target = this.GetTarget(restriction);
-                if (AreEqual(index, any))
+                if (index == any)
                 {
-                    if (AreEqual(source, any) && AreEqual(target, any))
+                    if (source == any && target == any)
                     {
                         return Each(Array.Empty<TLinkAddress>(), handler);
                     }
-                    else if (AreEqual(source, any))
+                    else if (source == any)
                     {
                         return TargetsTreeMethods.EachUsage(target, handler);
                     }
-                    else if (AreEqual(target, any))
+                    else if (target == any)
                     {
                         return SourcesTreeMethods.EachUsage(source, handler);
                     }
@@ -435,7 +435,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                     {
                         return @continue;
                     }
-                    if (AreEqual(source, any) && AreEqual(target, any))
+                    if (source == any && target == any)
                     {
                         return handler(GetLinkStruct(index));
                     }
@@ -450,11 +450,11 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                         return @continue;
                     }
                     var value = default(TLinkAddress);
-                    if (AreEqual(source, any))
+                    if (source == any)
                     {
                         value = target;
                     }
-                    if (AreEqual(target, any))
+                    if (target == any)
                     {
                         value = source;
                     }

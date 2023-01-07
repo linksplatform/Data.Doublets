@@ -228,7 +228,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override bool FirstIsToTheLeftOfSecond(TLinkAddress firstSource, TLinkAddress firstTarget, TLinkAddress secondSource, TLinkAddress secondTarget) => firstTarget < secondTarget || (AreEqual(firstTarget, secondTarget) && firstSource < secondSource);
+        protected override bool FirstIsToTheLeftOfSecond(TLinkAddress firstSource, TLinkAddress firstTarget, TLinkAddress secondSource, TLinkAddress secondTarget) => firstTarget < secondTarget || (firstTarget == secondTarget && firstSource < secondSource);
 
         /// <summary>
         /// <para>
@@ -257,7 +257,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override bool FirstIsToTheRightOfSecond(TLinkAddress firstSource, TLinkAddress firstTarget, TLinkAddress secondSource, TLinkAddress secondTarget) => firstTarget > secondTarget || (AreEqual(firstTarget, secondTarget) && firstSource > secondSource);
+        protected override bool FirstIsToTheRightOfSecond(TLinkAddress firstSource, TLinkAddress firstTarget, TLinkAddress secondSource, TLinkAddress secondTarget) => firstTarget > secondTarget || (firstTarget == secondTarget && firstSource > secondSource);
 
         /// <summary>
         /// <para>
