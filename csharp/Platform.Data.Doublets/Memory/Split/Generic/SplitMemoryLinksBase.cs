@@ -255,7 +255,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
         var index = this.GetIndex(link: restriction);
         if (restriction.Count == 1)
         {
-            if (AreEqual(first: index, second: any))
+            if ((index == second: any))
             {
                 return Total;
             }
@@ -264,9 +264,9 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
         if (restriction.Count == 2)
         {
             var value = restriction[index: 1];
-            if (AreEqual(first: index, second: any))
+            if ((index == second: any))
             {
-                if (AreEqual(first: value, second: any))
+                if ((value == second: any))
                 {
                     return Total; // Any - как отсутствие ограничения
                 }
@@ -285,7 +285,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
             {
                 return GetZero();
             }
-            if (AreEqual(first: value, second: any))
+            if ((value == second: any))
             {
                 return GetOne();
             }
@@ -301,13 +301,13 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
             var externalReferencesRange = constants.ExternalReferencesRange;
             var source = this.GetSource(link: restriction);
             var target = this.GetTarget(link: restriction);
-            if (AreEqual(first: index, second: any))
+            if ((index == second: any))
             {
-                if (AreEqual(first: source, second: any) && AreEqual(first: target, second: any))
+                if ((source == second: any) && (target == second: any))
                 {
                     return Total;
                 }
-                if (AreEqual(first: source, second: any))
+                if ((source == second: any))
                 {
                     if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: target))
                     {
@@ -315,7 +315,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
                     }
                     return InternalTargetsTreeMethods.CountUsages(root: target);
                 }
-                if (AreEqual(first: target, second: any))
+                if ((target == second: any))
                 {
                     if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: source))
                     {
@@ -374,13 +374,13 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
                         link = InternalSourcesTreeMethods.Search(source: source, target: target);
                     }
                 }
-                return AreEqual(first: link, second: constants.Null) ? GetZero() : GetOne();
+                return (link == second: constants.Null) ? GetZero() : GetOne();
             }
             if (!Exists(link: index))
             {
                 return GetZero();
             }
-            if (AreEqual(first: source, second: any) && AreEqual(first: target, second: any))
+            if ((source == second: any) && (target == second: any))
             {
                 return GetOne();
             }
@@ -394,11 +394,11 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
                 return GetZero();
             }
             var value = default(TLinkAddress);
-            if (AreEqual(first: source, second: any))
+            if ((source == second: any))
             {
                 value = target;
             }
-            if (AreEqual(first: target, second: any))
+            if ((target == second: any))
             {
                 value = source;
             }
@@ -454,7 +454,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
         var index = this.GetIndex(link: restriction);
         if (restriction.Count == 1)
         {
-            if (AreEqual(first: index, second: any))
+            if ((index == second: any))
             {
                 return Each(restriction: Array.Empty<TLinkAddress>(), handler: handler);
             }
@@ -467,9 +467,9 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
         if (restriction.Count == 2)
         {
             var value = restriction[index: 1];
-            if (AreEqual(first: index, second: any))
+            if ((index == second: any))
             {
-                if (AreEqual(first: value, second: any))
+                if ((value == second: any))
                 {
                     return Each(restriction: Array.Empty<TLinkAddress>(), handler: handler);
                 }
@@ -483,7 +483,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
             {
                 return @continue;
             }
-            if (AreEqual(first: value, second: any))
+            if ((value == second: any))
             {
                 return handler(link: GetLinkStruct(linkIndex: index));
             }
@@ -499,13 +499,13 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
             var externalReferencesRange = constants.ExternalReferencesRange;
             var source = this.GetSource(link: restriction);
             var target = this.GetTarget(link: restriction);
-            if (AreEqual(first: index, second: any))
+            if ((index == second: any))
             {
-                if (AreEqual(first: source, second: any) && AreEqual(first: target, second: any))
+                if ((source == second: any) && (target == second: any))
                 {
                     return Each(restriction: Array.Empty<TLinkAddress>(), handler: handler);
                 }
-                if (AreEqual(first: source, second: any))
+                if ((source == second: any))
                 {
                     if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: target))
                     {
@@ -513,7 +513,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
                     }
                     return InternalTargetsTreeMethods.EachUsage(root: target, handler: handler);
                 }
-                if (AreEqual(first: target, second: any))
+                if ((target == second: any))
                 {
                     if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: source))
                     {
@@ -571,13 +571,13 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
                         link = InternalSourcesTreeMethods.Search(source: source, target: target);
                     }
                 }
-                return AreEqual(first: link, second: constants.Null) ? @continue : handler(link: GetLinkStruct(linkIndex: link));
+                return (link == second: constants.Null) ? @continue : handler(link: GetLinkStruct(linkIndex: link));
             }
             if (!Exists(link: index))
             {
                 return @continue;
             }
-            if (AreEqual(first: source, second: any) && AreEqual(first: target, second: any))
+            if ((source == second: any) && (target == second: any))
             {
                 return handler(link: GetLinkStruct(linkIndex: index));
             }
@@ -591,11 +591,11 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
                 return @continue;
             }
             var value = default(TLinkAddress);
-            if (AreEqual(first: source, second: any))
+            if ((source == second: any))
             {
                 value = target;
             }
-            if (AreEqual(first: target, second: any))
+            if ((target == second: any))
             {
                 value = source;
             }
@@ -744,7 +744,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
         {
             UnusedLinksListMethods.AttachAsFirst(link: link);
         }
-        else if (AreEqual(first: link, second: header.AllocatedLinks))
+        else if ((link == second: header.AllocatedLinks))
         {
             header.AllocatedLinks = header.AllocatedLinks - TLinkAddress.One;
             _dataMemory.UsedCapacity -= LinkDataPartSizeInBytes;

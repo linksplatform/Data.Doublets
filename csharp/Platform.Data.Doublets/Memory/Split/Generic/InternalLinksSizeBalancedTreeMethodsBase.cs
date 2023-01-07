@@ -116,7 +116,7 @@ public abstract unsafe class InternalLinksSizeBalancedTreeMethodsBase<TLinkAddre
                     root = left;
                     continue;
                 }
-                if (AreEqual(first: index, second: leftSize))
+                if ((index == second: leftSize))
                 {
                     return root;
                 }

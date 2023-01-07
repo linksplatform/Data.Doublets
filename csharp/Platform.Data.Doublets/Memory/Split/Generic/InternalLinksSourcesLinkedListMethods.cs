@@ -390,7 +390,7 @@ public unsafe class InternalLinksSourcesLinkedListMethods<TLinkAddress> : Relati
                 return @break;
             }
             current = GetNext(element: current);
-            if (AreEqual(first: current, second: first))
+            if ((current == second: first))
             {
                 return @continue;
             }

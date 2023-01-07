@@ -104,7 +104,7 @@ public abstract unsafe class LinksRecursionlessSizeBalancedTreeMethodsBase<TLink
                     root = left;
                     continue;
                 }
-                if (AreEqual(first: index, second: leftSize))
+                if ((index == second: leftSize))
                 {
                     return root;
                 }

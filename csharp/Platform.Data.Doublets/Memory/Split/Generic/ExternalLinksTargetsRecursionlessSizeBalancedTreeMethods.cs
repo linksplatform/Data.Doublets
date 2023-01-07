@@ -264,7 +264,7 @@ public unsafe class ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods<TLi
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     protected override bool FirstIsToTheLeftOfSecond(TLinkAddress firstSource, TLinkAddress firstTarget, TLinkAddress secondSource, TLinkAddress secondTarget)
     {
-        return LessThan(first: firstTarget, second: secondTarget) || (AreEqual(first: firstTarget, second: secondTarget) && LessThan(first: firstSource, second: secondSource));
+        return LessThan(first: firstTarget, second: secondTarget) || ((firstTarget == second: secondTarget) && LessThan(first: firstSource, second: secondSource));
     }
 
     /// <summary>
@@ -296,7 +296,7 @@ public unsafe class ExternalLinksTargetsRecursionlessSizeBalancedTreeMethods<TLi
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     protected override bool FirstIsToTheRightOfSecond(TLinkAddress firstSource, TLinkAddress firstTarget, TLinkAddress secondSource, TLinkAddress secondTarget)
     {
-        return GreaterThan(first: firstTarget, second: secondTarget) || (AreEqual(first: firstTarget, second: secondTarget) && GreaterThan(first: firstSource, second: secondSource));
+        return GreaterThan(first: firstTarget, second: secondTarget) || ((firstTarget == second: secondTarget) && GreaterThan(first: firstSource, second: secondSource));
     }
 
     /// <summary>
