@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using Platform.Disposables;
 using Platform.Singletons;
@@ -21,14 +22,14 @@ namespace Platform.Data.Doublets.Memory.United.Generic
     /// </summary>
     /// <seealso cref="DisposableBase"/>
     /// <seealso cref="ILinks{TLinkAddress}"/>
-    public abstract class UnitedMemoryLinksBase<TLinkAddress> : DisposableBase, ILinks<TLinkAddress>
+    public abstract class UnitedMemoryLinksBase<TLinkAddress> : DisposableBase, ILinks<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>
     {
         private static readonly EqualityComparer<TLinkAddress> _equalityComparer = EqualityComparer<TLinkAddress>.Default;
         private static readonly Comparer<TLinkAddress> _comparer = Comparer<TLinkAddress>.Default;
         private static readonly UncheckedConverter<TLinkAddress, long> _addressToInt64Converter = UncheckedConverter<TLinkAddress, long>.Default;
         private static readonly UncheckedConverter<long, TLinkAddress> _int64ToAddressConverter = UncheckedConverter<long, TLinkAddress>.Default;
         private static readonly TLinkAddress _zero = default;
-        private static readonly TLinkAddress _one = Arithmetic.Increment(_zero);
+        private static readonly TLinkAddress _one = ++_zero;
 
         /// <summary>Возвращает размер одной связи в байтах.</summary>
         /// <remarks>
@@ -882,7 +883,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual TLinkAddress Add(TLinkAddress first, TLinkAddress second) => Arithmetic<TLinkAddress>.Add(first, second);
+        protected virtual TLinkAddress Add(TLinkAddress first, TLinkAddress second) => first + second;
 
         /// <summary>
         /// <para>
@@ -903,7 +904,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual TLinkAddress Subtract(TLinkAddress first, TLinkAddress second) => Arithmetic<TLinkAddress>.Subtract(first, second);
+        protected virtual TLinkAddress Subtract(TLinkAddress first, TLinkAddress second) => first - second;
 
         /// <summary>
         /// <para>
@@ -920,7 +921,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual TLinkAddress Increment(TLinkAddress link) => Arithmetic<TLinkAddress>.Increment(link);
+        protected virtual TLinkAddress Increment(TLinkAddress link) => ++link;
 
         /// <summary>
         /// <para>
@@ -937,7 +938,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual TLinkAddress Decrement(TLinkAddress link) => Arithmetic<TLinkAddress>.Decrement(link);
+        protected virtual TLinkAddress Decrement(TLinkAddress link) => --link;
 
         #region Disposable
 

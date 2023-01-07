@@ -1,1306 +1,1298 @@
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Runtime.CompilerServices;
-using Platform.Disposables;
-using Platform.Singletons;
 using Platform.Converters;
-using Platform.Numbers;
-using Platform.Memory;
 using Platform.Data.Exceptions;
 using Platform.Delegates;
+using Platform.Disposables;
+using Platform.Memory;
+using Platform.Singletons;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-namespace Platform.Data.Doublets.Memory.Split.Generic
+namespace Platform.Data.Doublets.Memory.Split.Generic;
+
+/// <summary>
+///     <para>
+///         Represents the split memory links base.
+///     </para>
+///     <para></para>
+/// </summary>
+/// <seealso cref="DisposableBase" />
+/// <seealso cref="ILinks{TLinkAddress}" />
+public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILinks<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>
 {
+    private static readonly EqualityComparer<TLinkAddress> _equalityComparer = EqualityComparer<TLinkAddress>.Default;
+    private static readonly Comparer<TLinkAddress> _comparer = Comparer<TLinkAddress>.Default;
+    private static readonly UncheckedConverter<TLinkAddress, long> _addressToInt64Converter = UncheckedConverter<TLinkAddress, long>.Default;
+    private static readonly UncheckedConverter<long, TLinkAddress> _int64ToAddressConverter = UncheckedConverter<long, TLinkAddress>.Default;
+    private static readonly TLinkAddress _zero;
+    private static readonly TLinkAddress _one = ++_zero;
+
+    /// <summary>Возвращает размер одной связи в байтах.</summary>
+    /// <remarks>
+    ///     Используется только во вне класса, не рекомедуется использовать внутри.
+    ///     Так как во вне не обязательно будет доступен unsafe С#.
+    /// </remarks>
+    public static readonly long LinkDataPartSizeInBytes = RawLinkDataPart<TLinkAddress>.SizeInBytes;
+
     /// <summary>
-    /// <para>
-    /// Represents the split memory links base.
-    /// </para>
-    /// <para></para>
+    ///     <para>
+    ///         The size in bytes.
+    ///     </para>
+    ///     <para></para>
     /// </summary>
-    /// <seealso cref="DisposableBase"/>
-    /// <seealso cref="ILinks{TLinkAddress}"/>
-    public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILinks<TLinkAddress> 
+    public static readonly long LinkIndexPartSizeInBytes = RawLinkIndexPart<TLinkAddress>.SizeInBytes;
+
+    /// <summary>
+    ///     <para>
+    ///         The size in bytes.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    public static readonly long LinkHeaderSizeInBytes = LinksHeader<TLinkAddress>.SizeInBytes;
+
+    /// <summary>
+    ///     <para>
+    ///         The default links size step.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    public static readonly long DefaultLinksSizeStep = 1 * 1024 * 1024;
+
+    /// <summary>
+    ///     <para>
+    ///         The data memory.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    protected readonly IResizableDirectMemory _dataMemory;
+    /// <summary>
+    ///     <para>
+    ///         The data memory reservation step in bytes.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    protected readonly long _dataMemoryReservationStepInBytes;
+    /// <summary>
+    ///     <para>
+    ///         The index memory.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    protected readonly IResizableDirectMemory _indexMemory;
+    /// <summary>
+    ///     <para>
+    ///         The index memory reservation step in bytes.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    protected readonly long _indexMemoryReservationStepInBytes;
+    /// <summary>
+    ///     <para>
+    ///         The use linked list.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    protected readonly bool _useLinkedList;
+    /// <summary>
+    ///     <para>
+    ///         The external sources tree methods.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    protected ILinksTreeMethods<TLinkAddress> ExternalSourcesTreeMethods;
+    /// <summary>
+    ///     <para>
+    ///         The external targets tree methods.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    protected ILinksTreeMethods<TLinkAddress> ExternalTargetsTreeMethods;
+
+    /// <summary>
+    ///     <para>
+    ///         The internal sources list methods.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    protected InternalLinksSourcesLinkedListMethods<TLinkAddress> InternalSourcesListMethods;
+    /// <summary>
+    ///     <para>
+    ///         The internal sources tree methods.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    protected ILinksTreeMethods<TLinkAddress> InternalSourcesTreeMethods;
+    /// <summary>
+    ///     <para>
+    ///         The internal targets tree methods.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    protected ILinksTreeMethods<TLinkAddress> InternalTargetsTreeMethods;
+    // TODO: Возможно чтобы гарантированно проверять на то, является ли связь удалённой, нужно использовать не список а дерево, так как так можно быстрее проверить на наличие связи внутри
+    /// <summary>
+    ///     <para>
+    ///         The unused links list methods.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    protected ILinksListMethods<TLinkAddress> UnusedLinksListMethods;
+
+    /// <summary>
+    ///     <para>
+    ///         Initializes a new <see cref="SplitMemoryLinksBase" /> instance.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    /// <param name="dataMemory">
+    ///     <para>A data memory.</para>
+    ///     <para></para>
+    /// </param>
+    /// <param name="indexMemory">
+    ///     <para>A index memory.</para>
+    ///     <para></para>
+    /// </param>
+    /// <param name="memoryReservationStep">
+    ///     <para>A memory reservation step.</para>
+    ///     <para></para>
+    /// </param>
+    /// <param name="constants">
+    ///     <para>A constants.</para>
+    ///     <para></para>
+    /// </param>
+    /// <param name="useLinkedList">
+    ///     <para>A use linked list.</para>
+    ///     <para></para>
+    /// </param>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    protected SplitMemoryLinksBase(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep, LinksConstants<TLinkAddress> constants, bool useLinkedList)
     {
-        private static readonly EqualityComparer<TLinkAddress> _equalityComparer = EqualityComparer<TLinkAddress>.Default;
-        private static readonly Comparer<TLinkAddress> _comparer = Comparer<TLinkAddress>.Default;
-        private static readonly UncheckedConverter<TLinkAddress, long> _addressToInt64Converter = UncheckedConverter<TLinkAddress, long>.Default;
-        private static readonly UncheckedConverter<long, TLinkAddress> _int64ToAddressConverter = UncheckedConverter<long, TLinkAddress>.Default;
-        private static readonly TLinkAddress _zero = default;
-        private static readonly TLinkAddress _one = Arithmetic.Increment(_zero);
+        _dataMemory = dataMemory;
+        _indexMemory = indexMemory;
+        _dataMemoryReservationStepInBytes = memoryReservationStep * LinkDataPartSizeInBytes;
+        _indexMemoryReservationStepInBytes = memoryReservationStep * LinkIndexPartSizeInBytes;
+        _useLinkedList = useLinkedList;
+        Constants = constants;
+    }
 
-        /// <summary>Возвращает размер одной связи в байтах.</summary>
-        /// <remarks>
-        /// Используется только во вне класса, не рекомедуется использовать внутри.
-        /// Так как во вне не обязательно будет доступен unsafe С#.
-        /// </remarks>
-        public static readonly long LinkDataPartSizeInBytes = RawLinkDataPart<TLinkAddress>.SizeInBytes;
+    /// <summary>
+    ///     <para>
+    ///         Initializes a new <see cref="SplitMemoryLinksBase" /> instance.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    /// <param name="dataMemory">
+    ///     <para>A data memory.</para>
+    ///     <para></para>
+    /// </param>
+    /// <param name="indexMemory">
+    ///     <para>A index memory.</para>
+    ///     <para></para>
+    /// </param>
+    /// <param name="memoryReservationStep">
+    ///     <para>A memory reservation step.</para>
+    ///     <para></para>
+    /// </param>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    protected SplitMemoryLinksBase(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep) : this(dataMemory: dataMemory, indexMemory: indexMemory, memoryReservationStep: memoryReservationStep, constants: Default<LinksConstants<TLinkAddress>>.Instance, useLinkedList: true) { }
 
-        /// <summary>
-        /// <para>
-        /// The size in bytes.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        public static readonly long LinkIndexPartSizeInBytes = RawLinkIndexPart<TLinkAddress>.SizeInBytes;
-
-        /// <summary>
-        /// <para>
-        /// The size in bytes.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        public static readonly long LinkHeaderSizeInBytes = LinksHeader<TLinkAddress>.SizeInBytes;
-
-        /// <summary>
-        /// <para>
-        /// The default links size step.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        public static readonly long DefaultLinksSizeStep = 1 * 1024 * 1024;
-
-        /// <summary>
-        /// <para>
-        /// The data memory.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        protected readonly IResizableDirectMemory _dataMemory;
-        /// <summary>
-        /// <para>
-        /// The index memory.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        protected readonly IResizableDirectMemory _indexMemory;
-        /// <summary>
-        /// <para>
-        /// The use linked list.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        protected readonly bool _useLinkedList;
-        /// <summary>
-        /// <para>
-        /// The data memory reservation step in bytes.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        protected readonly long _dataMemoryReservationStepInBytes;
-        /// <summary>
-        /// <para>
-        /// The index memory reservation step in bytes.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        protected readonly long _indexMemoryReservationStepInBytes;
-
-        /// <summary>
-        /// <para>
-        /// The internal sources list methods.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        protected InternalLinksSourcesLinkedListMethods<TLinkAddress> InternalSourcesListMethods;
-        /// <summary>
-        /// <para>
-        /// The internal sources tree methods.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        protected ILinksTreeMethods<TLinkAddress> InternalSourcesTreeMethods;
-        /// <summary>
-        /// <para>
-        /// The external sources tree methods.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        protected ILinksTreeMethods<TLinkAddress> ExternalSourcesTreeMethods;
-        /// <summary>
-        /// <para>
-        /// The internal targets tree methods.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        protected ILinksTreeMethods<TLinkAddress> InternalTargetsTreeMethods;
-        /// <summary>
-        /// <para>
-        /// The external targets tree methods.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        protected ILinksTreeMethods<TLinkAddress> ExternalTargetsTreeMethods;
-        // TODO: Возможно чтобы гарантированно проверять на то, является ли связь удалённой, нужно использовать не список а дерево, так как так можно быстрее проверить на наличие связи внутри
-        /// <summary>
-        /// <para>
-        /// The unused links list methods.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        protected ILinksListMethods<TLinkAddress> UnusedLinksListMethods;
-
-        /// <summary>
-        /// Возвращает общее число связей находящихся в хранилище.
-        /// </summary>
-        protected virtual TLinkAddress Total
+    /// <summary>
+    ///     Возвращает общее число связей находящихся в хранилище.
+    /// </summary>
+    protected virtual TLinkAddress Total
+    {
+        [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+        get
         {
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get
-            {
-                ref var header = ref GetHeaderReference();
-                return Subtract(header.AllocatedLinks, header.FreeLinks);
-            }
-        }
-
-        /// <summary>
-        /// <para>
-        /// Gets the constants value.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        public virtual LinksConstants<TLinkAddress> Constants
-        {
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get;
-        }
-
-        /// <summary>
-        /// <para>
-        /// Initializes a new <see cref="SplitMemoryLinksBase"/> instance.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="dataMemory">
-        /// <para>A data memory.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="indexMemory">
-        /// <para>A index memory.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="memoryReservationStep">
-        /// <para>A memory reservation step.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="constants">
-        /// <para>A constants.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="useLinkedList">
-        /// <para>A use linked list.</para>
-        /// <para></para>
-        /// </param>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected SplitMemoryLinksBase(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep, LinksConstants<TLinkAddress> constants, bool useLinkedList)
-        {
-            _dataMemory = dataMemory;
-            _indexMemory = indexMemory;
-            _dataMemoryReservationStepInBytes = memoryReservationStep * LinkDataPartSizeInBytes;
-            _indexMemoryReservationStepInBytes = memoryReservationStep * LinkIndexPartSizeInBytes;
-            _useLinkedList = useLinkedList;
-            Constants = constants;
-        }
-
-        /// <summary>
-        /// <para>
-        /// Initializes a new <see cref="SplitMemoryLinksBase"/> instance.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="dataMemory">
-        /// <para>A data memory.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="indexMemory">
-        /// <para>A index memory.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="memoryReservationStep">
-        /// <para>A memory reservation step.</para>
-        /// <para></para>
-        /// </param>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected SplitMemoryLinksBase(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep) : this(dataMemory, indexMemory, memoryReservationStep, Default<LinksConstants<TLinkAddress>>.Instance, useLinkedList: true) { }
-
-        /// <summary>
-        /// <para>
-        /// Inits the data memory.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="dataMemory">
-        /// <para>The data memory.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="indexMemory">
-        /// <para>The index memory.</para>
-        /// <para></para>
-        /// </param>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual void Init(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory)
-        {
-            // Read allocated links from header
-            if (indexMemory.ReservedCapacity < LinkHeaderSizeInBytes)
-            {
-                indexMemory.ReservedCapacity = LinkHeaderSizeInBytes;
-            }
-            SetPointers(dataMemory, indexMemory);
             ref var header = ref GetHeaderReference();
-            var allocatedLinks = ConvertToInt64(header.AllocatedLinks);
-            // Adjust reserved capacity
-            var minimumDataReservedCapacity = allocatedLinks * LinkDataPartSizeInBytes;
-            if (minimumDataReservedCapacity < dataMemory.UsedCapacity)
-            {
-                minimumDataReservedCapacity = dataMemory.UsedCapacity;
-            }
-            if (minimumDataReservedCapacity < _dataMemoryReservationStepInBytes)
-            {
-                minimumDataReservedCapacity = _dataMemoryReservationStepInBytes;
-            }
-            var minimumIndexReservedCapacity = allocatedLinks * LinkDataPartSizeInBytes;
-            if (minimumIndexReservedCapacity < indexMemory.UsedCapacity)
-            {
-                minimumIndexReservedCapacity = indexMemory.UsedCapacity;
-            }
-            if (minimumIndexReservedCapacity < _indexMemoryReservationStepInBytes)
-            {
-                minimumIndexReservedCapacity = _indexMemoryReservationStepInBytes;
-            }
-            // Check for alignment
-            if (minimumDataReservedCapacity % _dataMemoryReservationStepInBytes > 0)
-            {
-                minimumDataReservedCapacity = ((minimumDataReservedCapacity / _dataMemoryReservationStepInBytes) * _dataMemoryReservationStepInBytes) + _dataMemoryReservationStepInBytes;
-            }
-            if (minimumIndexReservedCapacity % _indexMemoryReservationStepInBytes > 0)
-            {
-                minimumIndexReservedCapacity = ((minimumIndexReservedCapacity / _indexMemoryReservationStepInBytes) * _indexMemoryReservationStepInBytes) + _indexMemoryReservationStepInBytes;
-            }
-            if (dataMemory.ReservedCapacity != minimumDataReservedCapacity)
-            {
-                dataMemory.ReservedCapacity = minimumDataReservedCapacity;
-            }
-            if (indexMemory.ReservedCapacity != minimumIndexReservedCapacity)
-            {
-                indexMemory.ReservedCapacity = minimumIndexReservedCapacity;
-            }
-            SetPointers(dataMemory, indexMemory);
-            header = ref GetHeaderReference();
-            // Ensure correctness _memory.UsedCapacity over _header->AllocatedLinks
-            // Гарантия корректности _memory.UsedCapacity относительно _header->AllocatedLinks
-            dataMemory.UsedCapacity = (ConvertToInt64(header.AllocatedLinks) * LinkDataPartSizeInBytes) + LinkDataPartSizeInBytes; // First link is read only zero link.
-            indexMemory.UsedCapacity = (ConvertToInt64(header.AllocatedLinks) * LinkIndexPartSizeInBytes) + LinkHeaderSizeInBytes;
-            // Ensure correctness _memory.ReservedLinks over _header->ReservedCapacity
-            // Гарантия корректности _header->ReservedLinks относительно _memory.ReservedCapacity
-            header.ReservedLinks = ConvertToAddress((dataMemory.ReservedCapacity - LinkDataPartSizeInBytes) / LinkDataPartSizeInBytes);
+            return Subtract(first: header.AllocatedLinks, second: header.FreeLinks);
         }
+    }
 
-        /// <summary>
-        /// <para>
-        /// Counts the substitution.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="restriction">
-        /// <para>The substitution.</para>
-        /// <para></para>
-        /// </param>
-        /// <exception cref="NotSupportedException">
-        /// <para>Другие размеры и способы ограничений не поддерживаются.</para>
-        /// <para></para>
-        /// </exception>
-        /// <returns>
-        /// <para>The link</para>
-        /// <para></para>
-        /// </returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLinkAddress Count(IList<TLinkAddress>? restriction)
+    /// <summary>
+    ///     <para>
+    ///         Gets the constants value.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    public virtual LinksConstants<TLinkAddress> Constants
+    {
+        [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+        get;
+    }
+
+    /// <summary>
+    ///     <para>
+    ///         Counts the substitution.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    /// <param name="restriction">
+    ///     <para>The substitution.</para>
+    ///     <para></para>
+    /// </param>
+    /// <exception cref="NotSupportedException">
+    ///     <para>Другие размеры и способы ограничений не поддерживаются.</para>
+    ///     <para></para>
+    /// </exception>
+    /// <returns>
+    ///     <para>The link</para>
+    ///     <para></para>
+    /// </returns>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    public virtual TLinkAddress Count(IList<TLinkAddress>? restriction)
+    {
+        // Если нет ограничений, тогда возвращаем общее число связей находящихся в хранилище.
+        if (restriction.Count == 0)
         {
-            // Если нет ограничений, тогда возвращаем общее число связей находящихся в хранилище.
-            if (restriction.Count == 0)
+            return Total;
+        }
+        var constants = Constants;
+        var any = constants.Any;
+        var index = this.GetIndex(link: restriction);
+        if (restriction.Count == 1)
+        {
+            if (AreEqual(first: index, second: any))
             {
                 return Total;
             }
-            var constants = Constants;
-            var any = constants.Any;
-            var index = this.GetIndex(restriction);
-            if (restriction.Count == 1)
+            return Exists(link: index) ? GetOne() : GetZero();
+        }
+        if (restriction.Count == 2)
+        {
+            var value = restriction[index: 1];
+            if (AreEqual(first: index, second: any))
             {
-                if (AreEqual(index, any))
+                if (AreEqual(first: value, second: any))
+                {
+                    return Total; // Any - как отсутствие ограничения
+                }
+                var externalReferencesRange = constants.ExternalReferencesRange;
+                if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: value))
+                {
+                    return Add(first: ExternalSourcesTreeMethods.CountUsages(root: value), second: ExternalTargetsTreeMethods.CountUsages(root: value));
+                }
+                if (_useLinkedList)
+                {
+                    return Add(first: InternalSourcesListMethods.CountUsages(head: value), second: InternalTargetsTreeMethods.CountUsages(root: value));
+                }
+                return Add(first: InternalSourcesTreeMethods.CountUsages(root: value), second: InternalTargetsTreeMethods.CountUsages(root: value));
+            }
+            if (!Exists(link: index))
+            {
+                return GetZero();
+            }
+            if (AreEqual(first: value, second: any))
+            {
+                return GetOne();
+            }
+            ref var storedLinkValue = ref GetLinkDataPartReference(linkIndex: index);
+            if (AreEqual(first: storedLinkValue.Source, second: value) || AreEqual(first: storedLinkValue.Target, second: value))
+            {
+                return GetOne();
+            }
+            return GetZero();
+        }
+        if (restriction.Count == 3)
+        {
+            var externalReferencesRange = constants.ExternalReferencesRange;
+            var source = this.GetSource(link: restriction);
+            var target = this.GetTarget(link: restriction);
+            if (AreEqual(first: index, second: any))
+            {
+                if (AreEqual(first: source, second: any) && AreEqual(first: target, second: any))
                 {
                     return Total;
                 }
-                return Exists(index) ? GetOne() : GetZero();
-            }
-            if (restriction.Count == 2)
-            {
-                var value = restriction[1];
-                if (AreEqual(index, any))
+                if (AreEqual(first: source, second: any))
                 {
-                    if (AreEqual(value, any))
+                    if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: target))
                     {
-                        return Total; // Any - как отсутствие ограничения
+                        return ExternalTargetsTreeMethods.CountUsages(root: target);
                     }
-                    var externalReferencesRange = constants.ExternalReferencesRange;
-                    if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value))
+                    return InternalTargetsTreeMethods.CountUsages(root: target);
+                }
+                if (AreEqual(first: target, second: any))
+                {
+                    if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: source))
                     {
-                        return Add(ExternalSourcesTreeMethods.CountUsages(value), ExternalTargetsTreeMethods.CountUsages(value));
+                        return ExternalSourcesTreeMethods.CountUsages(root: source);
                     }
-                    else
+                    if (_useLinkedList)
+                    {
+                        return InternalSourcesListMethods.CountUsages(head: source);
+                    }
+                    return InternalSourcesTreeMethods.CountUsages(root: source);
+                }
+                //if(source != Any && target != Any)
+                // Эквивалент Exists(source, target) => Count(Any, source, target) > 0
+                TLinkAddress link;
+                if (externalReferencesRange.HasValue)
+                {
+                    if (externalReferencesRange.Value.Contains(value: source) && externalReferencesRange.Value.Contains(value: target))
+                    {
+                        link = ExternalSourcesTreeMethods.Search(source: source, target: target);
+                    }
+                    else if (externalReferencesRange.Value.Contains(value: source))
+                    {
+                        link = InternalTargetsTreeMethods.Search(source: source, target: target);
+                    }
+                    else if (externalReferencesRange.Value.Contains(value: target))
                     {
                         if (_useLinkedList)
                         {
-                            return Add(InternalSourcesListMethods.CountUsages(value), InternalTargetsTreeMethods.CountUsages(value));
+                            link = ExternalSourcesTreeMethods.Search(source: source, target: target);
                         }
                         else
                         {
-                            return Add(InternalSourcesTreeMethods.CountUsages(value), InternalTargetsTreeMethods.CountUsages(value));
+                            link = InternalSourcesTreeMethods.Search(source: source, target: target);
+                        }
+                    }
+                    else
+                    {
+                        if (_useLinkedList || GreaterThan(first: InternalSourcesTreeMethods.CountUsages(root: source), second: InternalTargetsTreeMethods.CountUsages(root: target)))
+                        {
+                            link = InternalTargetsTreeMethods.Search(source: source, target: target);
+                        }
+                        else
+                        {
+                            link = InternalSourcesTreeMethods.Search(source: source, target: target);
                         }
                     }
                 }
                 else
                 {
-                    if (!Exists(index))
+                    if (_useLinkedList || GreaterThan(first: InternalSourcesTreeMethods.CountUsages(root: source), second: InternalTargetsTreeMethods.CountUsages(root: target)))
                     {
-                        return GetZero();
+                        link = InternalTargetsTreeMethods.Search(source: source, target: target);
                     }
-                    if (AreEqual(value, any))
+                    else
                     {
-                        return GetOne();
+                        link = InternalSourcesTreeMethods.Search(source: source, target: target);
                     }
-                    ref var storedLinkValue = ref GetLinkDataPartReference(index);
-                    if (AreEqual(storedLinkValue.Source, value) || AreEqual(storedLinkValue.Target, value))
-                    {
-                        return GetOne();
-                    }
-                    return GetZero();
                 }
+                return AreEqual(first: link, second: constants.Null) ? GetZero() : GetOne();
             }
-            if (restriction.Count == 3)
+            if (!Exists(link: index))
             {
-                var externalReferencesRange = constants.ExternalReferencesRange;
-                var source = this.GetSource(restriction);
-                var target = this.GetTarget(restriction);
-                if (AreEqual(index, any))
-                {
-                    if (AreEqual(source, any) && AreEqual(target, any))
-                    {
-                        return Total;
-                    }
-                    else if (AreEqual(source, any))
-                    {
-                        if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(target))
-                        {
-                            return ExternalTargetsTreeMethods.CountUsages(target);
-                        }
-                        else
-                        {
-                            return InternalTargetsTreeMethods.CountUsages(target);
-                        }
-                    }
-                    else if (AreEqual(target, any))
-                    {
-                        if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(source))
-                        {
-                            return ExternalSourcesTreeMethods.CountUsages(source);
-                        }
-                        else
-                        {
-                            if (_useLinkedList)
-                            {
-                                return InternalSourcesListMethods.CountUsages(source);
-                            }
-                            else
-                            {
-                                return InternalSourcesTreeMethods.CountUsages(source);
-                            }
-                        }
-                    }
-                    else //if(source != Any && target != Any)
-                    {
-                        // Эквивалент Exists(source, target) => Count(Any, source, target) > 0
-                        TLinkAddress link;
-                        if (externalReferencesRange.HasValue)
-                        {
-                            if (externalReferencesRange.Value.Contains(source) && externalReferencesRange.Value.Contains(target))
-                            {
-                                link = ExternalSourcesTreeMethods.Search(source, target);
-                            }
-                            else if (externalReferencesRange.Value.Contains(source))
-                            {
-                                link = InternalTargetsTreeMethods.Search(source, target);
-                            }
-                            else if (externalReferencesRange.Value.Contains(target))
-                            {
-                                if (_useLinkedList)
-                                {
-                                    link = ExternalSourcesTreeMethods.Search(source, target);
-                                }
-                                else
-                                {
-                                    link = InternalSourcesTreeMethods.Search(source, target);
-                                }
-                            }
-                            else
-                            {
-                                if (_useLinkedList || GreaterThan(InternalSourcesTreeMethods.CountUsages(source), InternalTargetsTreeMethods.CountUsages(target)))
-                                {
-                                    link = InternalTargetsTreeMethods.Search(source, target);
-                                }
-                                else
-                                {
-                                    link = InternalSourcesTreeMethods.Search(source, target);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            if (_useLinkedList || GreaterThan(InternalSourcesTreeMethods.CountUsages(source), InternalTargetsTreeMethods.CountUsages(target)))
-                            {
-                                link = InternalTargetsTreeMethods.Search(source, target);
-                            }
-                            else
-                            {
-                                link = InternalSourcesTreeMethods.Search(source, target);
-                            }
-                        }
-                        return AreEqual(link, constants.Null) ? GetZero() : GetOne();
-                    }
-                }
-                else
-                {
-                    if (!Exists(index))
-                    {
-                        return GetZero();
-                    }
-                    if (AreEqual(source, any) && AreEqual(target, any))
-                    {
-                        return GetOne();
-                    }
-                    ref var storedLinkValue = ref GetLinkDataPartReference(index);
-                    if (!AreEqual(source, any) && !AreEqual(target, any))
-                    {
-                        if (AreEqual(storedLinkValue.Source, source) && AreEqual(storedLinkValue.Target, target))
-                        {
-                            return GetOne();
-                        }
-                        return GetZero();
-                    }
-                    var value = default(TLinkAddress);
-                    if (AreEqual(source, any))
-                    {
-                        value = target;
-                    }
-                    if (AreEqual(target, any))
-                    {
-                        value = source;
-                    }
-                    if (AreEqual(storedLinkValue.Source, value) || AreEqual(storedLinkValue.Target, value))
-                    {
-                        return GetOne();
-                    }
-                    return GetZero();
-                }
+                return GetZero();
             }
-            throw new NotSupportedException("Другие размеры и способы ограничений не поддерживаются.");
+            if (AreEqual(first: source, second: any) && AreEqual(first: target, second: any))
+            {
+                return GetOne();
+            }
+            ref var storedLinkValue = ref GetLinkDataPartReference(linkIndex: index);
+            if (!AreEqual(first: source, second: any) && !AreEqual(first: target, second: any))
+            {
+                if (AreEqual(first: storedLinkValue.Source, second: source) && AreEqual(first: storedLinkValue.Target, second: target))
+                {
+                    return GetOne();
+                }
+                return GetZero();
+            }
+            var value = default(TLinkAddress);
+            if (AreEqual(first: source, second: any))
+            {
+                value = target;
+            }
+            if (AreEqual(first: target, second: any))
+            {
+                value = source;
+            }
+            if (AreEqual(first: storedLinkValue.Source, second: value) || AreEqual(first: storedLinkValue.Target, second: value))
+            {
+                return GetOne();
+            }
+            return GetZero();
         }
+        throw new NotSupportedException(message: "Другие размеры и способы ограничений не поддерживаются.");
+    }
 
-        /// <summary>
-        /// <para>
-        /// Eaches the handler.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="handler">
-        /// <para>The handler.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="restriction">
-        /// <para>The substitution.</para>
-        /// <para></para>
-        /// </param>
-        /// <exception cref="NotSupportedException">
-        /// <para>Другие размеры и способы ограничений не поддерживаются.</para>
-        /// <para></para>
-        /// </exception>
-        /// <returns>
-        /// <para>The link</para>
-        /// <para></para>
-        /// </returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLinkAddress Each(IList<TLinkAddress>? restriction, ReadHandler<TLinkAddress>? handler)
+    /// <summary>
+    ///     <para>
+    ///         Eaches the handler.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    /// <param name="handler">
+    ///     <para>The handler.</para>
+    ///     <para></para>
+    /// </param>
+    /// <param name="restriction">
+    ///     <para>The substitution.</para>
+    ///     <para></para>
+    /// </param>
+    /// <exception cref="NotSupportedException">
+    ///     <para>Другие размеры и способы ограничений не поддерживаются.</para>
+    ///     <para></para>
+    /// </exception>
+    /// <returns>
+    ///     <para>The link</para>
+    ///     <para></para>
+    /// </returns>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    public virtual TLinkAddress Each(IList<TLinkAddress>? restriction, ReadHandler<TLinkAddress>? handler)
+    {
+        var constants = Constants;
+        var @break = constants.Break;
+        if (restriction.Count == 0)
         {
-            var constants = Constants;
-            var @break = constants.Break;
-            if (restriction.Count == 0)
+            for (var link = GetOne(); LessOrEqualThan(first: link, second: GetHeaderReference().AllocatedLinks); link = Increment(link: link))
             {
-                for (var link = GetOne(); LessOrEqualThan(link, GetHeaderReference().AllocatedLinks); link = Increment(link))
+                if (Exists(link: link) && AreEqual(first: handler(link: GetLinkStruct(linkIndex: link)), second: @break))
                 {
-                    if (Exists(link) && AreEqual(handler(GetLinkStruct(link)), @break))
-                    {
-                        return @break;
-                    }
-                }
-                return @break;
-            }
-            var @continue = constants.Continue;
-            var any = constants.Any;
-            var index = this.GetIndex(restriction);
-            if (restriction.Count == 1)
-            {
-                if (AreEqual(index, any))
-                {
-                    return Each(Array.Empty<TLinkAddress>(), handler);
-                }
-                if (!Exists(index))
-                {
-                    return @continue;
-                }
-                return handler(GetLinkStruct(index));
-            }
-            if (restriction.Count == 2)
-            {
-                var value = restriction[1];
-                if (AreEqual(index, any))
-                {
-                    if (AreEqual(value, any))
-                    {
-                        return Each(Array.Empty<TLinkAddress>(), handler);
-                    }
-                    if (AreEqual(Each(new Link<TLinkAddress>(index, value, any), handler), @break))
-                    {
-                        return @break;
-                    }
-                    return Each(new Link<TLinkAddress>(index, any, value), handler);
-                }
-                else
-                {
-                    if (!Exists(index))
-                    {
-                        return @continue;
-                    }
-                    if (AreEqual(value, any))
-                    {
-                        return handler(GetLinkStruct(index));
-                    }
-                    ref var storedLinkValue = ref GetLinkDataPartReference(index);
-                    if (AreEqual(storedLinkValue.Source, value) ||
-                        AreEqual(storedLinkValue.Target, value))
-                    {
-                        return handler(GetLinkStruct(index));
-                    }
-                    return @continue;
+                    return @break;
                 }
             }
-            if (restriction.Count == 3)
-            {
-                var externalReferencesRange = constants.ExternalReferencesRange;
-                var source = this.GetSource(restriction);
-                var target = this.GetTarget(restriction);
-                if (AreEqual(index, any))
-                {
-                    if (AreEqual(source, any) && AreEqual(target, any))
-                    {
-                        return Each(Array.Empty<TLinkAddress>(), handler);
-                    }
-                    else if (AreEqual(source, any))
-                    {
-                        if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(target))
-                        {
-                            return ExternalTargetsTreeMethods.EachUsage(target, handler);
-                        }
-                        else
-                        {
-                            return InternalTargetsTreeMethods.EachUsage(target, handler);
-                        }
-                    }
-                    else if (AreEqual(target, any))
-                    {
-                        if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(source))
-                        {
-                            return ExternalSourcesTreeMethods.EachUsage(source, handler);
-                        }
-                        else
-                        {
-                            if (_useLinkedList)
-                            {
-                                return InternalSourcesListMethods.EachUsage(source, handler);
-                            }
-                            else
-                            {
-                                return InternalSourcesTreeMethods.EachUsage(source, handler);
-                            }
-                        }
-                    }
-                    else //if(source != Any && target != Any)
-                    {
-                        TLinkAddress link;
-                        if (externalReferencesRange.HasValue)
-                        {
-                            if (externalReferencesRange.Value.Contains(source) && externalReferencesRange.Value.Contains(target))
-                            {
-                                link = ExternalSourcesTreeMethods.Search(source, target);
-                            }
-                            else if (externalReferencesRange.Value.Contains(source))
-                            {
-                                link = InternalTargetsTreeMethods.Search(source, target);
-                            }
-                            else if (externalReferencesRange.Value.Contains(target))
-                            {
-                                if (_useLinkedList)
-                                {
-                                    link = ExternalSourcesTreeMethods.Search(source, target);
-                                }
-                                else
-                                {
-                                    link = InternalSourcesTreeMethods.Search(source, target);
-                                }
-                            }
-                            else
-                            {
-                                if (_useLinkedList || GreaterThan(InternalSourcesTreeMethods.CountUsages(source), InternalTargetsTreeMethods.CountUsages(target)))
-                                {
-                                    link = InternalTargetsTreeMethods.Search(source, target);
-                                }
-                                else
-                                {
-                                    link = InternalSourcesTreeMethods.Search(source, target);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            if (_useLinkedList || GreaterThan(InternalSourcesTreeMethods.CountUsages(source), InternalTargetsTreeMethods.CountUsages(target)))
-                            {
-                                link = InternalTargetsTreeMethods.Search(source, target);
-                            }
-                            else
-                            {
-                                link = InternalSourcesTreeMethods.Search(source, target);
-                            }
-                        }
-                        return AreEqual(link, constants.Null) ? @continue : handler(GetLinkStruct(link));
-                    }
-                }
-                else
-                {
-                    if (!Exists(index))
-                    {
-                        return @continue;
-                    }
-                    if (AreEqual(source, any) && AreEqual(target, any))
-                    {
-                        return handler(GetLinkStruct(index));
-                    }
-                    ref var storedLinkValue = ref GetLinkDataPartReference(index);
-                    if (!AreEqual(source, any) && !AreEqual(target, any))
-                    {
-                        if (AreEqual(storedLinkValue.Source, source) &&
-                            AreEqual(storedLinkValue.Target, target))
-                        {
-                            return handler(GetLinkStruct(index));
-                        }
-                        return @continue;
-                    }
-                    var value = default(TLinkAddress);
-                    if (AreEqual(source, any))
-                    {
-                        value = target;
-                    }
-                    if (AreEqual(target, any))
-                    {
-                        value = source;
-                    }
-                    if (AreEqual(storedLinkValue.Source, value) ||
-                        AreEqual(storedLinkValue.Target, value))
-                    {
-                        return handler(GetLinkStruct(index));
-                    }
-                    return @continue;
-                }
-            }
-            throw new NotSupportedException("Другие размеры и способы ограничений не поддерживаются.");
+            return @break;
         }
-
-        /// <remarks>
-        /// TODO: Возможно можно перемещать значения, если указан индекс, но значение существует в другом месте (но не в менеджере памяти, а в логике Links)
-        /// </remarks>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLinkAddress Update(IList<TLinkAddress>? restriction, IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler)
+        var @continue = constants.Continue;
+        var any = constants.Any;
+        var index = this.GetIndex(link: restriction);
+        if (restriction.Count == 1)
         {
-            var constants = Constants;
-            var @null = constants.Null;
+            if (AreEqual(first: index, second: any))
+            {
+                return Each(restriction: Array.Empty<TLinkAddress>(), handler: handler);
+            }
+            if (!Exists(link: index))
+            {
+                return @continue;
+            }
+            return handler(link: GetLinkStruct(linkIndex: index));
+        }
+        if (restriction.Count == 2)
+        {
+            var value = restriction[index: 1];
+            if (AreEqual(first: index, second: any))
+            {
+                if (AreEqual(first: value, second: any))
+                {
+                    return Each(restriction: Array.Empty<TLinkAddress>(), handler: handler);
+                }
+                if (AreEqual(first: Each(restriction: new Link<TLinkAddress>(index: index, source: value, target: any), handler: handler), second: @break))
+                {
+                    return @break;
+                }
+                return Each(restriction: new Link<TLinkAddress>(index: index, source: any, target: value), handler: handler);
+            }
+            if (!Exists(link: index))
+            {
+                return @continue;
+            }
+            if (AreEqual(first: value, second: any))
+            {
+                return handler(link: GetLinkStruct(linkIndex: index));
+            }
+            ref var storedLinkValue = ref GetLinkDataPartReference(linkIndex: index);
+            if (AreEqual(first: storedLinkValue.Source, second: value) || AreEqual(first: storedLinkValue.Target, second: value))
+            {
+                return handler(link: GetLinkStruct(linkIndex: index));
+            }
+            return @continue;
+        }
+        if (restriction.Count == 3)
+        {
             var externalReferencesRange = constants.ExternalReferencesRange;
-            var linkIndex = this.GetIndex(restriction);
-            var before = GetLinkStruct(linkIndex);
-            ref var link = ref GetLinkDataPartReference(linkIndex);
-            var source = link.Source;
-            var target = link.Target;
-            ref var header = ref GetHeaderReference();
-            ref var rootAsSource = ref header.RootAsSource;
-            ref var rootAsTarget = ref header.RootAsTarget;
-            // Будет корректно работать только в том случае, если пространство выделенной связи предварительно заполнено нулями
-            if (!AreEqual(source, @null))
+            var source = this.GetSource(link: restriction);
+            var target = this.GetTarget(link: restriction);
+            if (AreEqual(first: index, second: any))
             {
-                if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(source))
+                if (AreEqual(first: source, second: any) && AreEqual(first: target, second: any))
                 {
-                    ExternalSourcesTreeMethods.Detach(ref rootAsSource, linkIndex);
+                    return Each(restriction: Array.Empty<TLinkAddress>(), handler: handler);
                 }
-                else
+                if (AreEqual(first: source, second: any))
                 {
+                    if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: target))
+                    {
+                        return ExternalTargetsTreeMethods.EachUsage(root: target, handler: handler);
+                    }
+                    return InternalTargetsTreeMethods.EachUsage(root: target, handler: handler);
+                }
+                if (AreEqual(first: target, second: any))
+                {
+                    if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: source))
+                    {
+                        return ExternalSourcesTreeMethods.EachUsage(root: source, handler: handler);
+                    }
                     if (_useLinkedList)
                     {
-                        InternalSourcesListMethods.Detach(source, linkIndex);
+                        return InternalSourcesListMethods.EachUsage(source: source, handler: handler);
+                    }
+                    return InternalSourcesTreeMethods.EachUsage(root: source, handler: handler);
+                }
+                //if(source != Any && target != Any)
+                TLinkAddress link;
+                if (externalReferencesRange.HasValue)
+                {
+                    if (externalReferencesRange.Value.Contains(value: source) && externalReferencesRange.Value.Contains(value: target))
+                    {
+                        link = ExternalSourcesTreeMethods.Search(source: source, target: target);
+                    }
+                    else if (externalReferencesRange.Value.Contains(value: source))
+                    {
+                        link = InternalTargetsTreeMethods.Search(source: source, target: target);
+                    }
+                    else if (externalReferencesRange.Value.Contains(value: target))
+                    {
+                        if (_useLinkedList)
+                        {
+                            link = ExternalSourcesTreeMethods.Search(source: source, target: target);
+                        }
+                        else
+                        {
+                            link = InternalSourcesTreeMethods.Search(source: source, target: target);
+                        }
                     }
                     else
                     {
-                        InternalSourcesTreeMethods.Detach(ref GetLinkIndexPartReference(source).RootAsSource, linkIndex);
+                        if (_useLinkedList || GreaterThan(first: InternalSourcesTreeMethods.CountUsages(root: source), second: InternalTargetsTreeMethods.CountUsages(root: target)))
+                        {
+                            link = InternalTargetsTreeMethods.Search(source: source, target: target);
+                        }
+                        else
+                        {
+                            link = InternalSourcesTreeMethods.Search(source: source, target: target);
+                        }
                     }
                 }
-            }
-            if (!AreEqual(target, @null))
-            {
-                if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(target))
-                {
-                    ExternalTargetsTreeMethods.Detach(ref rootAsTarget, linkIndex);
-                }
                 else
                 {
-                    InternalTargetsTreeMethods.Detach(ref GetLinkIndexPartReference(target).RootAsTarget, linkIndex);
-                }
-            }
-            source = link.Source = this.GetSource(substitution);
-            target = link.Target = this.GetTarget(substitution);
-            if (!AreEqual(source, @null))
-            {
-                if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(source))
-                {
-                    ExternalSourcesTreeMethods.Attach(ref rootAsSource, linkIndex);
-                }
-                else
-                {
-                    if (_useLinkedList)
+                    if (_useLinkedList || GreaterThan(first: InternalSourcesTreeMethods.CountUsages(root: source), second: InternalTargetsTreeMethods.CountUsages(root: target)))
                     {
-                        InternalSourcesListMethods.AttachAsLast(source, linkIndex);
+                        link = InternalTargetsTreeMethods.Search(source: source, target: target);
                     }
                     else
                     {
-                        InternalSourcesTreeMethods.Attach(ref GetLinkIndexPartReference(source).RootAsSource, linkIndex);
+                        link = InternalSourcesTreeMethods.Search(source: source, target: target);
                     }
                 }
+                return AreEqual(first: link, second: constants.Null) ? @continue : handler(link: GetLinkStruct(linkIndex: link));
             }
-            if (!AreEqual(target, @null))
+            if (!Exists(link: index))
             {
-                if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(target))
-                {
-                    ExternalTargetsTreeMethods.Attach(ref rootAsTarget, linkIndex);
-                }
-                else
-                {
-                    InternalTargetsTreeMethods.Attach(ref GetLinkIndexPartReference(target).RootAsTarget, linkIndex);
-                }
+                return @continue;
             }
-            return handler != null ? handler(before, new Link<TLinkAddress>(linkIndex, source, target)) : Constants.Continue;
+            if (AreEqual(first: source, second: any) && AreEqual(first: target, second: any))
+            {
+                return handler(link: GetLinkStruct(linkIndex: index));
+            }
+            ref var storedLinkValue = ref GetLinkDataPartReference(linkIndex: index);
+            if (!AreEqual(first: source, second: any) && !AreEqual(first: target, second: any))
+            {
+                if (AreEqual(first: storedLinkValue.Source, second: source) && AreEqual(first: storedLinkValue.Target, second: target))
+                {
+                    return handler(link: GetLinkStruct(linkIndex: index));
+                }
+                return @continue;
+            }
+            var value = default(TLinkAddress);
+            if (AreEqual(first: source, second: any))
+            {
+                value = target;
+            }
+            if (AreEqual(first: target, second: any))
+            {
+                value = source;
+            }
+            if (AreEqual(first: storedLinkValue.Source, second: value) || AreEqual(first: storedLinkValue.Target, second: value))
+            {
+                return handler(link: GetLinkStruct(linkIndex: index));
+            }
+            return @continue;
         }
+        throw new NotSupportedException(message: "Другие размеры и способы ограничений не поддерживаются.");
+    }
 
-        /// <remarks>
-        /// TODO: Возможно нужно будет заполнение нулями, если внешнее API ими не заполняет пространство
-        /// </remarks>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLinkAddress Create(IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler)
+    /// <remarks>
+    ///     TODO: Возможно можно перемещать значения, если указан индекс, но значение существует в другом месте (но не в
+    ///     менеджере памяти, а в логике Links)
+    /// </remarks>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    public virtual TLinkAddress Update(IList<TLinkAddress>? restriction, IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler)
+    {
+        var constants = Constants;
+        var @null = constants.Null;
+        var externalReferencesRange = constants.ExternalReferencesRange;
+        var linkIndex = this.GetIndex(link: restriction);
+        var before = GetLinkStruct(linkIndex: linkIndex);
+        ref var link = ref GetLinkDataPartReference(linkIndex: linkIndex);
+        var source = link.Source;
+        var target = link.Target;
+        ref var header = ref GetHeaderReference();
+        ref var rootAsSource = ref header.RootAsSource;
+        ref var rootAsTarget = ref header.RootAsTarget;
+        // Будет корректно работать только в том случае, если пространство выделенной связи предварительно заполнено нулями
+        if (!AreEqual(first: source, second: @null))
         {
-            ref var header = ref GetHeaderReference();
-            var freeLink = header.FirstFreeLink;
-            if (!AreEqual(freeLink, Constants.Null))
+            if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: source))
             {
-                UnusedLinksListMethods.Detach(freeLink);
+                ExternalSourcesTreeMethods.Detach(root: ref rootAsSource, linkIndex: linkIndex);
             }
             else
             {
-                var maximumPossibleInnerReference = Constants.InternalReferencesRange.Maximum;
-                if (GreaterThan(header.AllocatedLinks, maximumPossibleInnerReference))
+                if (_useLinkedList)
                 {
-                    throw new LinksLimitReachedException<TLinkAddress>(maximumPossibleInnerReference);
+                    InternalSourcesListMethods.Detach(headElement: source, element: linkIndex);
                 }
-                if (GreaterOrEqualThan(header.AllocatedLinks, Decrement(header.ReservedLinks)))
+                else
                 {
-                    _dataMemory.ReservedCapacity += _dataMemoryReservationStepInBytes;
-                    _indexMemory.ReservedCapacity += _indexMemoryReservationStepInBytes;
-                    SetPointers(_dataMemory, _indexMemory);
-                    header = ref GetHeaderReference();
-                    header.ReservedLinks = ConvertToAddress(_dataMemory.ReservedCapacity / LinkDataPartSizeInBytes);
+                    InternalSourcesTreeMethods.Detach(root: ref GetLinkIndexPartReference(linkIndex: source).RootAsSource, linkIndex: linkIndex);
                 }
-                freeLink = header.AllocatedLinks = Increment(header.AllocatedLinks);
-                _dataMemory.UsedCapacity += LinkDataPartSizeInBytes;
-                _indexMemory.UsedCapacity += LinkIndexPartSizeInBytes;
             }
-            return handler != null ? handler(null, GetLinkStruct(freeLink)) : Constants.Continue;
         }
-
-        /// <summary>
-        /// <para>
-        /// Deletes the substitution.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="restriction">
-        /// <para>The substitution.</para>
-        /// <para></para>
-        /// </param>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public virtual TLinkAddress Delete(IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? handler)
+        if (!AreEqual(first: target, second: @null))
         {
-            ref var header = ref GetHeaderReference();
-            var link = restriction[Constants.IndexPart];
-            var before = GetLinkStruct(link);
-            if (LessThan(link, header.AllocatedLinks))
+            if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: target))
             {
-                UnusedLinksListMethods.AttachAsFirst(link);
+                ExternalTargetsTreeMethods.Detach(root: ref rootAsTarget, linkIndex: linkIndex);
             }
-            else if (AreEqual(link, header.AllocatedLinks))
+            else
             {
-                header.AllocatedLinks = Decrement(header.AllocatedLinks);
+                InternalTargetsTreeMethods.Detach(root: ref GetLinkIndexPartReference(linkIndex: target).RootAsTarget, linkIndex: linkIndex);
+            }
+        }
+        source = link.Source = this.GetSource(link: substitution);
+        target = link.Target = this.GetTarget(link: substitution);
+        if (!AreEqual(first: source, second: @null))
+        {
+            if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: source))
+            {
+                ExternalSourcesTreeMethods.Attach(root: ref rootAsSource, linkIndex: linkIndex);
+            }
+            else
+            {
+                if (_useLinkedList)
+                {
+                    InternalSourcesListMethods.AttachAsLast(headElement: source, element: linkIndex);
+                }
+                else
+                {
+                    InternalSourcesTreeMethods.Attach(root: ref GetLinkIndexPartReference(linkIndex: source).RootAsSource, linkIndex: linkIndex);
+                }
+            }
+        }
+        if (!AreEqual(first: target, second: @null))
+        {
+            if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: target))
+            {
+                ExternalTargetsTreeMethods.Attach(root: ref rootAsTarget, linkIndex: linkIndex);
+            }
+            else
+            {
+                InternalTargetsTreeMethods.Attach(root: ref GetLinkIndexPartReference(linkIndex: target).RootAsTarget, linkIndex: linkIndex);
+            }
+        }
+        return handler != null ? handler(before: before, after: new Link<TLinkAddress>(index: linkIndex, source: source, target: target)) : Constants.Continue;
+    }
+
+    /// <remarks>
+    ///     TODO: Возможно нужно будет заполнение нулями, если внешнее API ими не заполняет пространство
+    /// </remarks>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    public virtual TLinkAddress Create(IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler)
+    {
+        ref var header = ref GetHeaderReference();
+        var freeLink = header.FirstFreeLink;
+        if (!AreEqual(first: freeLink, second: Constants.Null))
+        {
+            UnusedLinksListMethods.Detach(freeLink: freeLink);
+        }
+        else
+        {
+            var maximumPossibleInnerReference = Constants.InternalReferencesRange.Maximum;
+            if (GreaterThan(first: header.AllocatedLinks, second: maximumPossibleInnerReference))
+            {
+                throw new LinksLimitReachedException<TLinkAddress>(limit: maximumPossibleInnerReference);
+            }
+            if (GreaterOrEqualThan(first: header.AllocatedLinks, second: Decrement(link: header.ReservedLinks)))
+            {
+                _dataMemory.ReservedCapacity += _dataMemoryReservationStepInBytes;
+                _indexMemory.ReservedCapacity += _indexMemoryReservationStepInBytes;
+                SetPointers(dataMemory: _dataMemory, indexMemory: _indexMemory);
+                header = ref GetHeaderReference();
+                header.ReservedLinks = ConvertToAddress(value: _dataMemory.ReservedCapacity / LinkDataPartSizeInBytes);
+            }
+            freeLink = header.AllocatedLinks = Increment(link: header.AllocatedLinks);
+            _dataMemory.UsedCapacity += LinkDataPartSizeInBytes;
+            _indexMemory.UsedCapacity += LinkIndexPartSizeInBytes;
+        }
+        return handler != null ? handler(before: null, after: GetLinkStruct(linkIndex: freeLink)) : Constants.Continue;
+    }
+
+    /// <summary>
+    ///     <para>
+    ///         Deletes the substitution.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    /// <param name="restriction">
+    ///     <para>The substitution.</para>
+    ///     <para></para>
+    /// </param>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    public virtual TLinkAddress Delete(IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? handler)
+    {
+        ref var header = ref GetHeaderReference();
+        var link = restriction[index: Constants.IndexPart];
+        var before = GetLinkStruct(linkIndex: link);
+        if (LessThan(first: link, second: header.AllocatedLinks))
+        {
+            UnusedLinksListMethods.AttachAsFirst(link: link);
+        }
+        else if (AreEqual(first: link, second: header.AllocatedLinks))
+        {
+            header.AllocatedLinks = Decrement(link: header.AllocatedLinks);
+            _dataMemory.UsedCapacity -= LinkDataPartSizeInBytes;
+            _indexMemory.UsedCapacity -= LinkIndexPartSizeInBytes;
+            // Убираем все связи, находящиеся в списке свободных в конце файла, до тех пор, пока не дойдём до первой существующей связи
+            // Позволяет оптимизировать количество выделенных связей (AllocatedLinks)
+            while (GreaterThan(first: header.AllocatedLinks, second: GetZero()) && IsUnusedLink(linkIndex: header.AllocatedLinks))
+            {
+                UnusedLinksListMethods.Detach(freeLink: header.AllocatedLinks);
+                header.AllocatedLinks = Decrement(link: header.AllocatedLinks);
                 _dataMemory.UsedCapacity -= LinkDataPartSizeInBytes;
                 _indexMemory.UsedCapacity -= LinkIndexPartSizeInBytes;
-                // Убираем все связи, находящиеся в списке свободных в конце файла, до тех пор, пока не дойдём до первой существующей связи
-                // Позволяет оптимизировать количество выделенных связей (AllocatedLinks)
-                while (GreaterThan(header.AllocatedLinks, GetZero()) && IsUnusedLink(header.AllocatedLinks))
-                {
-                    UnusedLinksListMethods.Detach(header.AllocatedLinks);
-                    header.AllocatedLinks = Decrement(header.AllocatedLinks);
-                    _dataMemory.UsedCapacity -= LinkDataPartSizeInBytes;
-                    _indexMemory.UsedCapacity -= LinkIndexPartSizeInBytes;
-                }
-            }
-            return handler != null ? handler(before, null) : Constants.Continue;
-        }
-
-        /// <summary>
-        /// <para>
-        /// Gets the link struct using the specified link index.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="linkIndex">
-        /// <para>The link index.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>A list of t link</para>
-        /// <para></para>
-        /// </returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public IList<TLinkAddress>? GetLinkStruct(TLinkAddress linkIndex)
-        {
-            ref var link = ref GetLinkDataPartReference(linkIndex);
-            return new Link<TLinkAddress>(linkIndex, link.Source, link.Target);
-        }
-
-        /// <remarks>
-        /// TODO: Возможно это должно быть событием, вызываемым из IMemory, в том случае, если адрес реально поменялся
-        ///
-        /// Указатель this.links может быть в том же месте, 
-        /// так как 0-я связь не используется и имеет такой же размер как Header,
-        /// поэтому header размещается в том же месте, что и 0-я связь
-        /// </remarks>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected abstract void SetPointers(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory);
-
-        /// <summary>
-        /// <para>
-        /// Resets the pointers.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual void ResetPointers()
-        {
-            InternalSourcesListMethods = null;
-            InternalSourcesTreeMethods = null;
-            ExternalSourcesTreeMethods = null;
-            InternalTargetsTreeMethods = null;
-            ExternalTargetsTreeMethods = null;
-            UnusedLinksListMethods = null;
-        }
-
-        /// <summary>
-        /// <para>
-        /// Gets the header reference.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <returns>
-        /// <para>A ref links header of t link</para>
-        /// <para></para>
-        /// </returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected abstract ref LinksHeader<TLinkAddress> GetHeaderReference();
-
-        /// <summary>
-        /// <para>
-        /// Gets the link data part reference using the specified link index.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="linkIndex">
-        /// <para>The link index.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>A ref raw link data part of t link</para>
-        /// <para></para>
-        /// </returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected abstract ref RawLinkDataPart<TLinkAddress> GetLinkDataPartReference(TLinkAddress linkIndex);
-
-        /// <summary>
-        /// <para>
-        /// Gets the link index part reference using the specified link index.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="linkIndex">
-        /// <para>The link index.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>A ref raw link index part of t link</para>
-        /// <para></para>
-        /// </returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected abstract ref RawLinkIndexPart<TLinkAddress> GetLinkIndexPartReference(TLinkAddress linkIndex);
-
-        /// <summary>
-        /// <para>
-        /// Determines whether this instance exists.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="link">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The bool</para>
-        /// <para></para>
-        /// </returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual bool Exists(TLinkAddress link)
-            => GreaterOrEqualThan(link, Constants.InternalReferencesRange.Minimum)
-            && LessOrEqualThan(link, GetHeaderReference().AllocatedLinks)
-            && !IsUnusedLink(link);
-
-        /// <summary>
-        /// <para>
-        /// Determines whether this instance is unused link.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="linkIndex">
-        /// <para>The link index.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The bool</para>
-        /// <para></para>
-        /// </returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual bool IsUnusedLink(TLinkAddress linkIndex)
-        {
-            if (!AreEqual(GetHeaderReference().FirstFreeLink, linkIndex)) // May be this check is not needed
-            {
-                // TODO: Reduce access to memory in different location (should be enough to use just linkIndexPart)
-                ref var linkDataPart = ref GetLinkDataPartReference(linkIndex);
-                ref var linkIndexPart = ref GetLinkIndexPartReference(linkIndex);
-                return AreEqual(linkIndexPart.SizeAsTarget, default) && !AreEqual(linkDataPart.Source, default);
-            }
-            else
-            {
-                return true;
             }
         }
-
-        /// <summary>
-        /// <para>
-        /// Gets the one.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <returns>
-        /// <para>The link</para>
-        /// <para></para>
-        /// </returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual TLinkAddress GetOne() => _one;
-
-        /// <summary>
-        /// <para>
-        /// Gets the zero.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <returns>
-        /// <para>The link</para>
-        /// <para></para>
-        /// </returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual TLinkAddress GetZero() => default;
-
-        /// <summary>
-        /// <para>
-        /// Determines whether this instance are equal.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="first">
-        /// <para>The first.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="second">
-        /// <para>The second.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The bool</para>
-        /// <para></para>
-        /// </returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual bool AreEqual(TLinkAddress first, TLinkAddress second) => _equalityComparer.Equals(first, second);
-
-        /// <summary>
-        /// <para>
-        /// Determines whether this instance less than.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="first">
-        /// <para>The first.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="second">
-        /// <para>The second.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The bool</para>
-        /// <para></para>
-        /// </returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual bool LessThan(TLinkAddress first, TLinkAddress second) => _comparer.Compare(first, second) < 0;
-
-        /// <summary>
-        /// <para>
-        /// Determines whether this instance less or equal than.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="first">
-        /// <para>The first.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="second">
-        /// <para>The second.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The bool</para>
-        /// <para></para>
-        /// </returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual bool LessOrEqualThan(TLinkAddress first, TLinkAddress second) => _comparer.Compare(first, second) <= 0;
-
-        /// <summary>
-        /// <para>
-        /// Determines whether this instance greater than.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="first">
-        /// <para>The first.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="second">
-        /// <para>The second.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The bool</para>
-        /// <para></para>
-        /// </returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual bool GreaterThan(TLinkAddress first, TLinkAddress second) => _comparer.Compare(first, second) > 0;
-
-        /// <summary>
-        /// <para>
-        /// Determines whether this instance greater or equal than.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="first">
-        /// <para>The first.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="second">
-        /// <para>The second.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The bool</para>
-        /// <para></para>
-        /// </returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual bool GreaterOrEqualThan(TLinkAddress first, TLinkAddress second) => _comparer.Compare(first, second) >= 0;
-
-        /// <summary>
-        /// <para>
-        /// Converts the to int 64 using the specified value.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="value">
-        /// <para>The value.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The long</para>
-        /// <para></para>
-        /// </returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual long ConvertToInt64(TLinkAddress value) => _addressToInt64Converter.Convert(value);
-
-        /// <summary>
-        /// <para>
-        /// Converts the to address using the specified value.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="value">
-        /// <para>The value.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The link</para>
-        /// <para></para>
-        /// </returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual TLinkAddress ConvertToAddress(long value) => _int64ToAddressConverter.Convert(value);
-
-        /// <summary>
-        /// <para>
-        /// Adds the first.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="first">
-        /// <para>The first.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="second">
-        /// <para>The second.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The link</para>
-        /// <para></para>
-        /// </returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual TLinkAddress Add(TLinkAddress first, TLinkAddress second) => Arithmetic<TLinkAddress>.Add(first, second);
-
-        /// <summary>
-        /// <para>
-        /// Subtracts the first.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="first">
-        /// <para>The first.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="second">
-        /// <para>The second.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The link</para>
-        /// <para></para>
-        /// </returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual TLinkAddress Subtract(TLinkAddress first, TLinkAddress second) => Arithmetic<TLinkAddress>.Subtract(first, second);
-
-        /// <summary>
-        /// <para>
-        /// Increments the link.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="link">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The link</para>
-        /// <para></para>
-        /// </returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual TLinkAddress Increment(TLinkAddress link) => Arithmetic<TLinkAddress>.Increment(link);
-
-        /// <summary>
-        /// <para>
-        /// Decrements the link.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="link">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The link</para>
-        /// <para></para>
-        /// </returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual TLinkAddress Decrement(TLinkAddress link) => Arithmetic<TLinkAddress>.Decrement(link);
-
-        #region Disposable
-
-        /// <summary>
-        /// <para>
-        /// Gets the allow multiple dispose calls value.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        protected override bool AllowMultipleDisposeCalls
-        {
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get => true;
-        }
-
-        /// <summary>
-        /// <para>
-        /// Disposes the manual.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="manual">
-        /// <para>The manual.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="wasDisposed">
-        /// <para>The was disposed.</para>
-        /// <para></para>
-        /// </param>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void Dispose(bool manual, bool wasDisposed)
-        {
-            if (!wasDisposed)
-            {
-                ResetPointers();
-                _dataMemory.DisposeIfPossible();
-                _indexMemory.DisposeIfPossible();
-            }
-        }
-
-        #endregion
+        return handler != null ? handler(before: before, after: null) : Constants.Continue;
     }
+
+    /// <summary>
+    ///     <para>
+    ///         Inits the data memory.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    /// <param name="dataMemory">
+    ///     <para>The data memory.</para>
+    ///     <para></para>
+    /// </param>
+    /// <param name="indexMemory">
+    ///     <para>The index memory.</para>
+    ///     <para></para>
+    /// </param>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    protected virtual void Init(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory)
+    {
+        // Read allocated links from header
+        if (indexMemory.ReservedCapacity < LinkHeaderSizeInBytes)
+        {
+            indexMemory.ReservedCapacity = LinkHeaderSizeInBytes;
+        }
+        SetPointers(dataMemory: dataMemory, indexMemory: indexMemory);
+        ref var header = ref GetHeaderReference();
+        var allocatedLinks = ConvertToInt64(value: header.AllocatedLinks);
+        // Adjust reserved capacity
+        var minimumDataReservedCapacity = allocatedLinks * LinkDataPartSizeInBytes;
+        if (minimumDataReservedCapacity < dataMemory.UsedCapacity)
+        {
+            minimumDataReservedCapacity = dataMemory.UsedCapacity;
+        }
+        if (minimumDataReservedCapacity < _dataMemoryReservationStepInBytes)
+        {
+            minimumDataReservedCapacity = _dataMemoryReservationStepInBytes;
+        }
+        var minimumIndexReservedCapacity = allocatedLinks * LinkDataPartSizeInBytes;
+        if (minimumIndexReservedCapacity < indexMemory.UsedCapacity)
+        {
+            minimumIndexReservedCapacity = indexMemory.UsedCapacity;
+        }
+        if (minimumIndexReservedCapacity < _indexMemoryReservationStepInBytes)
+        {
+            minimumIndexReservedCapacity = _indexMemoryReservationStepInBytes;
+        }
+        // Check for alignment
+        if (minimumDataReservedCapacity % _dataMemoryReservationStepInBytes > 0)
+        {
+            minimumDataReservedCapacity = minimumDataReservedCapacity / _dataMemoryReservationStepInBytes * _dataMemoryReservationStepInBytes + _dataMemoryReservationStepInBytes;
+        }
+        if (minimumIndexReservedCapacity % _indexMemoryReservationStepInBytes > 0)
+        {
+            minimumIndexReservedCapacity = minimumIndexReservedCapacity / _indexMemoryReservationStepInBytes * _indexMemoryReservationStepInBytes + _indexMemoryReservationStepInBytes;
+        }
+        if (dataMemory.ReservedCapacity != minimumDataReservedCapacity)
+        {
+            dataMemory.ReservedCapacity = minimumDataReservedCapacity;
+        }
+        if (indexMemory.ReservedCapacity != minimumIndexReservedCapacity)
+        {
+            indexMemory.ReservedCapacity = minimumIndexReservedCapacity;
+        }
+        SetPointers(dataMemory: dataMemory, indexMemory: indexMemory);
+        header = ref GetHeaderReference();
+        // Ensure correctness _memory.UsedCapacity over _header->AllocatedLinks
+        // Гарантия корректности _memory.UsedCapacity относительно _header->AllocatedLinks
+        dataMemory.UsedCapacity = ConvertToInt64(value: header.AllocatedLinks) * LinkDataPartSizeInBytes + LinkDataPartSizeInBytes; // First link is read only zero link.
+        indexMemory.UsedCapacity = ConvertToInt64(value: header.AllocatedLinks) * LinkIndexPartSizeInBytes + LinkHeaderSizeInBytes;
+        // Ensure correctness _memory.ReservedLinks over _header->ReservedCapacity
+        // Гарантия корректности _header->ReservedLinks относительно _memory.ReservedCapacity
+        header.ReservedLinks = ConvertToAddress(value: (dataMemory.ReservedCapacity - LinkDataPartSizeInBytes) / LinkDataPartSizeInBytes);
+    }
+
+    /// <summary>
+    ///     <para>
+    ///         Gets the link struct using the specified link index.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    /// <param name="linkIndex">
+    ///     <para>The link index.</para>
+    ///     <para></para>
+    /// </param>
+    /// <returns>
+    ///     <para>A list of t link</para>
+    ///     <para></para>
+    /// </returns>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    public IList<TLinkAddress>? GetLinkStruct(TLinkAddress linkIndex)
+    {
+        ref var link = ref GetLinkDataPartReference(linkIndex: linkIndex);
+        return new Link<TLinkAddress>(index: linkIndex, source: link.Source, target: link.Target);
+    }
+
+    /// <remarks>
+    ///     TODO: Возможно это должно быть событием, вызываемым из IMemory, в том случае, если адрес реально поменялся
+    ///     Указатель this.links может быть в том же месте,
+    ///     так как 0-я связь не используется и имеет такой же размер как Header,
+    ///     поэтому header размещается в том же месте, что и 0-я связь
+    /// </remarks>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    protected abstract void SetPointers(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory);
+
+    /// <summary>
+    ///     <para>
+    ///         Resets the pointers.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    protected virtual void ResetPointers()
+    {
+        InternalSourcesListMethods = null;
+        InternalSourcesTreeMethods = null;
+        ExternalSourcesTreeMethods = null;
+        InternalTargetsTreeMethods = null;
+        ExternalTargetsTreeMethods = null;
+        UnusedLinksListMethods = null;
+    }
+
+    /// <summary>
+    ///     <para>
+    ///         Gets the header reference.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    /// <returns>
+    ///     <para>A ref links header of t link</para>
+    ///     <para></para>
+    /// </returns>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    protected abstract ref LinksHeader<TLinkAddress> GetHeaderReference();
+
+    /// <summary>
+    ///     <para>
+    ///         Gets the link data part reference using the specified link index.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    /// <param name="linkIndex">
+    ///     <para>The link index.</para>
+    ///     <para></para>
+    /// </param>
+    /// <returns>
+    ///     <para>A ref raw link data part of t link</para>
+    ///     <para></para>
+    /// </returns>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    protected abstract ref RawLinkDataPart<TLinkAddress> GetLinkDataPartReference(TLinkAddress linkIndex);
+
+    /// <summary>
+    ///     <para>
+    ///         Gets the link index part reference using the specified link index.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    /// <param name="linkIndex">
+    ///     <para>The link index.</para>
+    ///     <para></para>
+    /// </param>
+    /// <returns>
+    ///     <para>A ref raw link index part of t link</para>
+    ///     <para></para>
+    /// </returns>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    protected abstract ref RawLinkIndexPart<TLinkAddress> GetLinkIndexPartReference(TLinkAddress linkIndex);
+
+    /// <summary>
+    ///     <para>
+    ///         Determines whether this instance exists.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    /// <param name="link">
+    ///     <para>The link.</para>
+    ///     <para></para>
+    /// </param>
+    /// <returns>
+    ///     <para>The bool</para>
+    ///     <para></para>
+    /// </returns>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    protected virtual bool Exists(TLinkAddress link)
+    {
+        return GreaterOrEqualThan(first: link, second: Constants.InternalReferencesRange.Minimum) && LessOrEqualThan(first: link, second: GetHeaderReference().AllocatedLinks) && !IsUnusedLink(linkIndex: link);
+    }
+
+    /// <summary>
+    ///     <para>
+    ///         Determines whether this instance is unused link.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    /// <param name="linkIndex">
+    ///     <para>The link index.</para>
+    ///     <para></para>
+    /// </param>
+    /// <returns>
+    ///     <para>The bool</para>
+    ///     <para></para>
+    /// </returns>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    protected virtual bool IsUnusedLink(TLinkAddress linkIndex)
+    {
+        if (!AreEqual(first: GetHeaderReference().FirstFreeLink, second: linkIndex)) // May be this check is not needed
+        {
+            // TODO: Reduce access to memory in different location (should be enough to use just linkIndexPart)
+            ref var linkDataPart = ref GetLinkDataPartReference(linkIndex: linkIndex);
+            ref var linkIndexPart = ref GetLinkIndexPartReference(linkIndex: linkIndex);
+            return AreEqual(first: linkIndexPart.SizeAsTarget, second: default) && !AreEqual(first: linkDataPart.Source, second: default);
+        }
+        return true;
+    }
+
+    /// <summary>
+    ///     <para>
+    ///         Gets the one.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    /// <returns>
+    ///     <para>The link</para>
+    ///     <para></para>
+    /// </returns>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    protected virtual TLinkAddress GetOne()
+    {
+        return _one;
+    }
+
+    /// <summary>
+    ///     <para>
+    ///         Gets the zero.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    /// <returns>
+    ///     <para>The link</para>
+    ///     <para></para>
+    /// </returns>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    protected virtual TLinkAddress GetZero()
+    {
+        return default;
+    }
+
+    /// <summary>
+    ///     <para>
+    ///         Determines whether this instance are equal.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    /// <param name="first">
+    ///     <para>The first.</para>
+    ///     <para></para>
+    /// </param>
+    /// <param name="second">
+    ///     <para>The second.</para>
+    ///     <para></para>
+    /// </param>
+    /// <returns>
+    ///     <para>The bool</para>
+    ///     <para></para>
+    /// </returns>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    protected virtual bool AreEqual(TLinkAddress first, TLinkAddress second)
+    {
+        return _equalityComparer.Equals(x: first, y: second);
+    }
+
+    /// <summary>
+    ///     <para>
+    ///         Determines whether this instance less than.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    /// <param name="first">
+    ///     <para>The first.</para>
+    ///     <para></para>
+    /// </param>
+    /// <param name="second">
+    ///     <para>The second.</para>
+    ///     <para></para>
+    /// </param>
+    /// <returns>
+    ///     <para>The bool</para>
+    ///     <para></para>
+    /// </returns>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    protected virtual bool LessThan(TLinkAddress first, TLinkAddress second)
+    {
+        return _comparer.Compare(x: first, y: second) < 0;
+    }
+
+    /// <summary>
+    ///     <para>
+    ///         Determines whether this instance less or equal than.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    /// <param name="first">
+    ///     <para>The first.</para>
+    ///     <para></para>
+    /// </param>
+    /// <param name="second">
+    ///     <para>The second.</para>
+    ///     <para></para>
+    /// </param>
+    /// <returns>
+    ///     <para>The bool</para>
+    ///     <para></para>
+    /// </returns>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    protected virtual bool LessOrEqualThan(TLinkAddress first, TLinkAddress second)
+    {
+        return _comparer.Compare(x: first, y: second) <= 0;
+    }
+
+    /// <summary>
+    ///     <para>
+    ///         Determines whether this instance greater than.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    /// <param name="first">
+    ///     <para>The first.</para>
+    ///     <para></para>
+    /// </param>
+    /// <param name="second">
+    ///     <para>The second.</para>
+    ///     <para></para>
+    /// </param>
+    /// <returns>
+    ///     <para>The bool</para>
+    ///     <para></para>
+    /// </returns>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    protected virtual bool GreaterThan(TLinkAddress first, TLinkAddress second)
+    {
+        return _comparer.Compare(x: first, y: second) > 0;
+    }
+
+    /// <summary>
+    ///     <para>
+    ///         Determines whether this instance greater or equal than.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    /// <param name="first">
+    ///     <para>The first.</para>
+    ///     <para></para>
+    /// </param>
+    /// <param name="second">
+    ///     <para>The second.</para>
+    ///     <para></para>
+    /// </param>
+    /// <returns>
+    ///     <para>The bool</para>
+    ///     <para></para>
+    /// </returns>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    protected virtual bool GreaterOrEqualThan(TLinkAddress first, TLinkAddress second)
+    {
+        return _comparer.Compare(x: first, y: second) >= 0;
+    }
+
+    /// <summary>
+    ///     <para>
+    ///         Converts the to int 64 using the specified value.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    /// <param name="value">
+    ///     <para>The value.</para>
+    ///     <para></para>
+    /// </param>
+    /// <returns>
+    ///     <para>The long</para>
+    ///     <para></para>
+    /// </returns>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    protected virtual long ConvertToInt64(TLinkAddress value)
+    {
+        return _addressToInt64Converter.Convert(source: value);
+    }
+
+    /// <summary>
+    ///     <para>
+    ///         Converts the to address using the specified value.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    /// <param name="value">
+    ///     <para>The value.</para>
+    ///     <para></para>
+    /// </param>
+    /// <returns>
+    ///     <para>The link</para>
+    ///     <para></para>
+    /// </returns>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    protected virtual TLinkAddress ConvertToAddress(long value)
+    {
+        return _int64ToAddressConverter.Convert(source: value);
+    }
+
+    /// <summary>
+    ///     <para>
+    ///         Adds the first.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    /// <param name="first">
+    ///     <para>The first.</para>
+    ///     <para></para>
+    /// </param>
+    /// <param name="second">
+    ///     <para>The second.</para>
+    ///     <para></para>
+    /// </param>
+    /// <returns>
+    ///     <para>The link</para>
+    ///     <para></para>
+    /// </returns>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    protected virtual TLinkAddress Add(TLinkAddress first, TLinkAddress second)
+    {
+        return first + second;
+    }
+
+    /// <summary>
+    ///     <para>
+    ///         Subtracts the first.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    /// <param name="first">
+    ///     <para>The first.</para>
+    ///     <para></para>
+    /// </param>
+    /// <param name="second">
+    ///     <para>The second.</para>
+    ///     <para></para>
+    /// </param>
+    /// <returns>
+    ///     <para>The link</para>
+    ///     <para></para>
+    /// </returns>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    protected virtual TLinkAddress Subtract(TLinkAddress first, TLinkAddress second)
+    {
+        return first - second;
+    }
+
+    /// <summary>
+    ///     <para>
+    ///         Increments the link.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    /// <param name="link">
+    ///     <para>The link.</para>
+    ///     <para></para>
+    /// </param>
+    /// <returns>
+    ///     <para>The link</para>
+    ///     <para></para>
+    /// </returns>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    protected virtual TLinkAddress Increment(TLinkAddress link)
+    {
+        return ++link;
+    }
+
+    /// <summary>
+    ///     <para>
+    ///         Decrements the link.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    /// <param name="link">
+    ///     <para>The link.</para>
+    ///     <para></para>
+    /// </param>
+    /// <returns>
+    ///     <para>The link</para>
+    ///     <para></para>
+    /// </returns>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    protected virtual TLinkAddress Decrement(TLinkAddress link)
+    {
+        return --link;
+    }
+
+    #region Disposable
+
+    /// <summary>
+    ///     <para>
+    ///         Gets the allow multiple dispose calls value.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    protected override bool AllowMultipleDisposeCalls
+    {
+        [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+        get => true;
+    }
+
+    /// <summary>
+    ///     <para>
+    ///         Disposes the manual.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    /// <param name="manual">
+    ///     <para>The manual.</para>
+    ///     <para></para>
+    /// </param>
+    /// <param name="wasDisposed">
+    ///     <para>The was disposed.</para>
+    ///     <para></para>
+    /// </param>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    protected override void Dispose(bool manual, bool wasDisposed)
+    {
+        if (!wasDisposed)
+        {
+            ResetPointers();
+            _dataMemory.DisposeIfPossible();
+            _indexMemory.DisposeIfPossible();
+        }
+    }
+
+    #endregion
 }

@@ -174,7 +174,7 @@ namespace Platform.Data.Doublets.Ffi
         public static extern ulong UInt64Links_Delete(void* self, ulong* restriction, nuint len, DeleteCallback_UInt64 callback);
     }
 
-    public class Links<TLinkAddress> : DisposableBase, ILinks<TLinkAddress> 
+    public class Links<TLinkAddress> : DisposableBase, ILinks<TLinkAddress>  where TLinkAddress : IUnsignedNumber<TLinkAddress>
     {
         private static readonly UncheckedConverter<byte, TLinkAddress> from_u8 = UncheckedConverter<byte, TLinkAddress>.Default;
         private static readonly UncheckedConverter<ushort, TLinkAddress> from_u16 = UncheckedConverter<ushort, TLinkAddress>.Default;
@@ -563,3 +563,5 @@ namespace Platform.Data.Doublets.Ffi
     }
 }
 */
+
+

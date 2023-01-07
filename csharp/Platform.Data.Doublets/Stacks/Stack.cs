@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using Platform.Collections.Stacks;
 
@@ -15,7 +16,7 @@ namespace Platform.Data.Doublets.Stacks
     /// </summary>
     /// <seealso cref="LinksOperatorBase{TLinkAddress}"/>
     /// <seealso cref="IStack{TLinkAddress}"/>
-    public class Stack<TLinkAddress> : LinksOperatorBase<TLinkAddress>, IStack<TLinkAddress> 
+    public class Stack<TLinkAddress> : LinksOperatorBase<TLinkAddress>, IStack<TLinkAddress>  where TLinkAddress : IUnsignedNumber<TLinkAddress>
     {
         private static readonly EqualityComparer<TLinkAddress> _equalityComparer = EqualityComparer<TLinkAddress>.Default;
         private readonly TLinkAddress _stack;
@@ -47,11 +48,11 @@ namespace Platform.Data.Doublets.Stacks
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public Stack(ILinks<TLinkAddress> links, TLinkAddress stack) : base(links) => _stack = stack;
+        public Stack(ILinks<TLinkAddress> links, TLinkAddress stack) : base(links)  { _stack = stack;}
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private TLinkAddress GetStackMarker() => _links.GetSource(_stack);
+        private TLinkAddress GetStackMarker()  { return _links.GetSource(_stack);}
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private TLinkAddress GetTop() => _links.GetTarget(_stack);
+        private TLinkAddress GetTop()  { return _links.GetTarget(_stack);}
 
         /// <summary>
         /// <para>
@@ -64,7 +65,7 @@ namespace Platform.Data.Doublets.Stacks
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLinkAddress Peek() => _links.GetTarget(GetTop());
+        public TLinkAddress Peek()  { return _links.GetTarget(GetTop());}
 
         /// <summary>
         /// <para>
@@ -101,6 +102,6 @@ namespace Platform.Data.Doublets.Stacks
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Push(TLinkAddress element) => _links.Update(_stack, GetStackMarker(), _links.GetOrCreate(GetTop(), element));
+        public void Push(TLinkAddress element)  { _links.Update(_stack, GetStackMarker(), _links.GetOrCreate(GetTop(), element));}
     }
 }

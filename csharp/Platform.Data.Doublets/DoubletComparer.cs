@@ -38,7 +38,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool Equals(Doublet<T> x, Doublet<T> y) => x.Equals(y);
+        public bool Equals(Doublet<T> x, Doublet<T> y)  { return x.Equals(y);}
 
         /// <summary>
         /// <para>
@@ -55,6 +55,6 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public int GetHashCode(Doublet<T> obj) => obj.GetHashCode();
+        public int GetHashCode(Doublet<T> obj)  { return obj.GetHashCode();}
     }
 }

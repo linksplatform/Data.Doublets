@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using Platform.Unsafe;
 
@@ -13,7 +14,7 @@ namespace Platform.Data.Doublets.Memory
     /// </para>
     /// <para></para>
     /// </summary>
-    public struct LinksHeader<TLinkAddress> : IEquatable<LinksHeader<TLinkAddress>>
+    public struct LinksHeader<TLinkAddress> : IEquatable<LinksHeader<TLinkAddress>> where TLinkAddress : IUnsignedNumber<TLinkAddress>
     {
         private static readonly EqualityComparer<TLinkAddress> _equalityComparer = EqualityComparer<TLinkAddress>.Default;
 
@@ -97,7 +98,7 @@ namespace Platform.Data.Doublets.Memory
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override bool Equals(object obj) => obj is LinksHeader<TLinkAddress> linksHeader ? Equals(linksHeader) : false;
+        public override bool Equals(object obj)  { return obj is LinksHeader<TLinkAddress> linksHeader ? Equals(linksHeader) : false;}
 
         /// <summary>
         /// <para>
@@ -135,12 +136,12 @@ namespace Platform.Data.Doublets.Memory
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override int GetHashCode() => (AllocatedLinks, ReservedLinks, FreeLinks, FirstFreeLink, RootAsSource, RootAsTarget, LastFreeLink, Reserved8).GetHashCode();
+        public override int GetHashCode()  { return (AllocatedLinks, ReservedLinks, FreeLinks, FirstFreeLink, RootAsSource, RootAsTarget, LastFreeLink, Reserved8).GetHashCode();}
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool operator ==(LinksHeader<TLinkAddress> left, LinksHeader<TLinkAddress> right) => left.Equals(right);
+        public static bool operator ==(LinksHeader<TLinkAddress> left, LinksHeader<TLinkAddress> right)  { return left.Equals(right);}
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool operator !=(LinksHeader<TLinkAddress> left, LinksHeader<TLinkAddress> right) => !(left == right);
+        public static bool operator !=(LinksHeader<TLinkAddress> left, LinksHeader<TLinkAddress> right)  { return !(left == right);}
     }
 }

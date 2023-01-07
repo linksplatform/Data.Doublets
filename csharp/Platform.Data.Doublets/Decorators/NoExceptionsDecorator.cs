@@ -1,19 +1,20 @@
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using Platform.Delegates;
 using Platform.Exceptions;
 
 namespace Platform.Data.Doublets.Decorators;
 
-public class NoExceptionsDecorator<TLinkAddress> : LinksDecoratorBase<TLinkAddress>
+public class NoExceptionsDecorator<TLinkAddress> : LinksDecoratorBase<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>
 {
-    public NoExceptionsDecorator(ILinks<TLinkAddress> storage) : base(storage) { }
+    public NoExceptionsDecorator(ILinks<TLinkAddress> storage) : base(links: storage) { }
 
     public override TLinkAddress Count(IList<TLinkAddress>? restriction)
     {
         try
         {
-            return base.Count(restriction);
+            return base.Count(restriction: restriction);
         }
         catch (Exception exception)
         {
@@ -26,7 +27,7 @@ public class NoExceptionsDecorator<TLinkAddress> : LinksDecoratorBase<TLinkAddre
     {
         try
         {
-            return base.Each(restriction, handler);
+            return base.Each(restriction: restriction, handler: handler);
         }
         catch (Exception exception)
         {
@@ -39,7 +40,7 @@ public class NoExceptionsDecorator<TLinkAddress> : LinksDecoratorBase<TLinkAddre
     {
         try
         {
-            return base.Create(substitution, handler);
+            return base.Create(substitution: substitution, handler: handler);
         }
         catch (Exception exception)
         {
@@ -52,7 +53,7 @@ public class NoExceptionsDecorator<TLinkAddress> : LinksDecoratorBase<TLinkAddre
     {
         try
         {
-            return base.Update(restriction, substitution, handler);
+            return base.Update(restriction: restriction, substitution: substitution, handler: handler);
         }
         catch (Exception exception)
         {
@@ -65,7 +66,7 @@ public class NoExceptionsDecorator<TLinkAddress> : LinksDecoratorBase<TLinkAddre
     {
         try
         {
-            return base.Delete(restriction, handler);
+            return base.Delete(restriction: restriction, handler: handler);
         }
         catch (Exception exception)
         {
@@ -74,3 +75,4 @@ public class NoExceptionsDecorator<TLinkAddress> : LinksDecoratorBase<TLinkAddre
         }
     }
 }
+

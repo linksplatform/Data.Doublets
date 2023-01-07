@@ -1,3 +1,4 @@
+using System.Numerics;
 using System.Runtime.CompilerServices;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -11,7 +12,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
     /// <para></para>
     /// </summary>
     /// <seealso cref="LinksAvlBalancedTreeMethodsBase{TLinkAddress}"/>
-    public unsafe class LinksSourcesAvlBalancedTreeMethods<TLinkAddress> : LinksAvlBalancedTreeMethodsBase<TLinkAddress>
+    public unsafe class LinksSourcesAvlBalancedTreeMethods<TLinkAddress> : LinksAvlBalancedTreeMethodsBase<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress> , IShiftOperators<TLinkAddress,int,TLinkAddress>, IBitwiseOperators<TLinkAddress,TLinkAddress,TLinkAddress>, IMinMaxValue<TLinkAddress>
     {
         /// <summary>
         /// <para>

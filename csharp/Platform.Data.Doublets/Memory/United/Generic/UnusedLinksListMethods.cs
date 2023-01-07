@@ -1,3 +1,4 @@
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using Platform.Collections.Methods.Lists;
 using Platform.Converters;
@@ -15,7 +16,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
     /// </summary>
     /// <seealso cref="AbsoluteCircularDoublyLinkedListMethods{TLinkAddress}"/>
     /// <seealso cref="ILinksListMethods{TLinkAddress}"/>
-    public unsafe class UnusedLinksListMethods<TLinkAddress> : AbsoluteCircularDoublyLinkedListMethods<TLinkAddress>, ILinksListMethods<TLinkAddress>
+    public unsafe class UnusedLinksListMethods<TLinkAddress> : AbsoluteCircularDoublyLinkedListMethods<TLinkAddress>, ILinksListMethods<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>
     {
         private static readonly UncheckedConverter<TLinkAddress, long> _addressToInt64Converter = UncheckedConverter<TLinkAddress, long>.Default;
         private readonly byte* _links;

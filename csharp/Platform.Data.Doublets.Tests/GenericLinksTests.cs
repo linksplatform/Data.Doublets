@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Numerics;
 using Platform.Data.Doublets.Decorators;
 using Xunit;
 
@@ -37,7 +38,7 @@ namespace Platform.Data.Doublets.Tests
             Using<uint>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
             Using<ulong>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
         }
-        private static void Using<TLinkAddress>(Action<ILinks<TLinkAddress>> action) 
+        private static void Using<TLinkAddress>(Action<ILinks<TLinkAddress>> action) where TLinkAddress : IUnsignedNumber<TLinkAddress> , IShiftOperators<TLinkAddress,int,TLinkAddress>, IBitwiseOperators<TLinkAddress,TLinkAddress,TLinkAddress>, IMinMaxValue<TLinkAddress>
         {
             var unitedMemoryLinks = new UnitedMemoryLinks<TLinkAddress>(new HeapResizableDirectMemory());
             using (var logFile = File.Open("linksLogger.txt", FileMode.Create, FileAccess.Write))

@@ -5,6 +5,7 @@ using Platform.Singletons;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -14,7 +15,7 @@ namespace Platform.Data.Doublets
     /// <summary>
     /// Структура описывающая уникальную связь.
     /// </summary>
-    public struct Link<TLinkAddress> : IEquatable<Link<TLinkAddress>>, IReadOnlyList<TLinkAddress>, IList<TLinkAddress>
+    public struct Link<TLinkAddress> : IEquatable<Link<TLinkAddress>>, IReadOnlyList<TLinkAddress>, IList<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>
     {
         /// <summary>
         /// <para>
@@ -60,7 +61,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public Link(params TLinkAddress[] values) => SetValues(values, out Index, out Source, out Target);
+        public Link(params TLinkAddress[] values)  { SetValues(values, out Index, out Source, out Target);}
 
         /// <summary>
         /// <para>
@@ -73,7 +74,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public Link(IList<TLinkAddress>? values) => SetValues(values, out Index, out Source, out Target);
+        public Link(IList<TLinkAddress>? values)  { SetValues(values, out Index, out Source, out Target);}
 
         /// <summary>
         /// <para>
@@ -117,7 +118,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public Link(ref Link<TLinkAddress> other) => SetValues(ref other, out Index, out Source, out Target);
+        public Link(ref Link<TLinkAddress> other)  { SetValues(ref other, out Index, out Source, out Target);}
 
         /// <summary>
         /// <para>
@@ -197,7 +198,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override int GetHashCode() => (Index, Source, Target).GetHashCode();
+        public override int GetHashCode()  { return (Index, Source, Target).GetHashCode();}
 
         /// <summary>
         /// <para>
@@ -229,7 +230,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override bool Equals(object other) => other is Link<TLinkAddress> && Equals((Link<TLinkAddress>)other);
+        public override bool Equals(object other)  { return other is Link<TLinkAddress> && Equals((Link<TLinkAddress>)other);}
 
         /// <summary>
         /// <para>
@@ -273,7 +274,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static string ToString(TLinkAddress index, TLinkAddress source, TLinkAddress target) => $"({index}: {source}->{target})";
+        public static string ToString(TLinkAddress index, TLinkAddress source, TLinkAddress target)  { return $"({index}: {source}->{target})";}
 
         /// <summary>
         /// <para>
@@ -294,13 +295,13 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static string ToString(TLinkAddress source, TLinkAddress target) => $"({source}->{target})";
+        public static string ToString(TLinkAddress source, TLinkAddress target)  { return $"({source}->{target})";}
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static implicit operator TLinkAddress[](Link<TLinkAddress> link) => link.ToArray();
+        public static implicit operator TLinkAddress[](Link<TLinkAddress> link)  { return link.ToArray();}
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static implicit operator Link<TLinkAddress>(TLinkAddress[] linkArray) => new Link<TLinkAddress>(linkArray);
+        public static implicit operator Link<TLinkAddress>(TLinkAddress[] linkArray)  { return new Link<TLinkAddress>(linkArray);}
 
         /// <summary>
         /// <para>
@@ -313,7 +314,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override string ToString() => _equalityComparer.Equals(Index, _constants.Null) ? ToString(Source, Target) : ToString(Index, Source, Target);
+        public override string ToString()  { return _equalityComparer.Equals(Index, _constants.Null) ? ToString(Source, Target) : ToString(Index, Source, Target);}
 
         #region IList
 
@@ -413,7 +414,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Add(TLinkAddress item) => throw new NotSupportedException();
+        public void Add(TLinkAddress item)  { throw new NotSupportedException();}
 
         /// <summary>
         /// <para>
@@ -422,7 +423,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Clear() => throw new NotSupportedException();
+        public void Clear()  { throw new NotSupportedException();}
 
         /// <summary>
         /// <para>
@@ -439,7 +440,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool Contains(TLinkAddress item) => IndexOf(item) >= 0;
+        public bool Contains(TLinkAddress item)  { return IndexOf(item) >= 0;}
 
         /// <summary>
         /// <para>
@@ -488,7 +489,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool Remove(TLinkAddress item) => Throw.A.NotSupportedExceptionAndReturn<bool>();
+        public bool Remove(TLinkAddress item)  { return Throw.A.NotSupportedExceptionAndReturn<bool>();}
 
         /// <summary>
         /// <para>
@@ -537,7 +538,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Insert(int index, TLinkAddress item) => throw new NotSupportedException();
+        public void Insert(int index, TLinkAddress item)  { throw new NotSupportedException();}
 
         /// <summary>
         /// <para>
@@ -550,13 +551,13 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void RemoveAt(int index) => throw new NotSupportedException();
+        public void RemoveAt(int index)  { throw new NotSupportedException();}
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool operator ==(Link<TLinkAddress> left, Link<TLinkAddress> right) => left.Equals(right);
+        public static bool operator ==(Link<TLinkAddress> left, Link<TLinkAddress> right)  { return left.Equals(right);}
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool operator !=(Link<TLinkAddress> left, Link<TLinkAddress> right) => !(left == right);
+        public static bool operator !=(Link<TLinkAddress> left, Link<TLinkAddress> right)  { return !(left == right);}
 
         #endregion
     }
