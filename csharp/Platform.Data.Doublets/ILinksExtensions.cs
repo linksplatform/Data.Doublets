@@ -108,20 +108,20 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void RunRandomDeletions<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress amountOfDeletions)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        public static void RunRandomDeletions<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress amountOfDeletions)  where TLinkAddress : IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
         {
             var random = RandomHelpers.Default;
-            var linksCount = addressToUInt64Converter.Convert(links.Count());
-            var min = amountOfDeletions > linksCount ? 0UL : linksCount - amountOfDeletions;
-            for (var i = 0UL; i < amountOfDeletions; i++)
+            var linksCount = links.Count();
+            var min = amountOfDeletions > linksCount ? TLinkAddress.Zero : linksCount - amountOfDeletions;
+            for (var i = TLinkAddress.Zero; i < amountOfDeletions; i++)
             {
-                linksCount = addressToUInt64Converter.Convert(links.Count());
+                linksCount = links.Count();
                 if (linksCount <= min)
                 {
                     break;
                 }
                 var linksAddressRange = new Range<TLinkAddress>(min, linksCount);
-                var link = uInt64ToAddressConverter.Convert(random.NextUInt64(linksAddressRange));
+                var link = (random.NextUInt64(linksAddressRange);
                 links.Delete(link);
             }
         }
