@@ -46,14 +46,14 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void RunRandomCreations<TLinkAddress>(this ILinks<TLinkAddress> links, ulong amountOfCreations)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        public static void RunRandomCreations<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress amountOfCreations)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
             var random = RandomHelpers.Default;
-            var addressToUInt64Converter = UncheckedConverter<TLinkAddress, ulong>.Default;
-            var uInt64ToAddressConverter = UncheckedConverter<ulong, TLinkAddress>.Default;
+            var addressToUInt64Converter = UncheckedConverter<TLinkAddress, TLinkAddress>.Default;
+            var uInt64ToAddressConverter = UncheckedConverter<TLinkAddress, TLinkAddress>.Default;
             for (var i = 0UL; i < amountOfCreations; i++)
             {
-                var linksAddressRange = new Range<ulong>(0, addressToUInt64Converter.Convert(links.Count()));
+                var linksAddressRange = new Range<TLinkAddress>(0, addressToUInt64Converter.Convert(links.Count()));
                 var source = uInt64ToAddressConverter.Convert(random.NextUInt64(linksAddressRange));
                 var target = uInt64ToAddressConverter.Convert(random.NextUInt64(linksAddressRange));
                 links.GetOrCreate(source, target);
@@ -79,14 +79,14 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void RunRandomSearches<TLinkAddress>(this ILinks<TLinkAddress> links, ulong amountOfSearches)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        public static void RunRandomSearches<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress amountOfSearches)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
             var random = RandomHelpers.Default;
-            var addressToUInt64Converter = UncheckedConverter<TLinkAddress, ulong>.Default;
-            var uInt64ToAddressConverter = UncheckedConverter<ulong, TLinkAddress>.Default;
+            var addressToUInt64Converter = UncheckedConverter<TLinkAddress, TLinkAddress>.Default;
+            var uInt64ToAddressConverter = UncheckedConverter<TLinkAddress, TLinkAddress>.Default;
             for (var i = 0UL; i < amountOfSearches; i++)
             {
-                var linksAddressRange = new Range<ulong>(0, addressToUInt64Converter.Convert(links.Count()));
+                var linksAddressRange = new Range<TLinkAddress>(0, addressToUInt64Converter.Convert(links.Count()));
                 var source = uInt64ToAddressConverter.Convert(random.NextUInt64(linksAddressRange));
                 var target = uInt64ToAddressConverter.Convert(random.NextUInt64(linksAddressRange));
                 links.SearchOrDefault(source, target);
@@ -112,11 +112,11 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void RunRandomDeletions<TLinkAddress>(this ILinks<TLinkAddress> links, ulong amountOfDeletions)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        public static void RunRandomDeletions<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress amountOfDeletions)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
             var random = RandomHelpers.Default;
-            var addressToUInt64Converter = UncheckedConverter<TLinkAddress, ulong>.Default;
-            var uInt64ToAddressConverter = UncheckedConverter<ulong, TLinkAddress>.Default;
+            var addressToUInt64Converter = UncheckedConverter<TLinkAddress, TLinkAddress>.Default;
+            var uInt64ToAddressConverter = UncheckedConverter<TLinkAddress, TLinkAddress>.Default;
             var linksCount = addressToUInt64Converter.Convert(links.Count());
             var min = amountOfDeletions > linksCount ? 0UL : linksCount - amountOfDeletions;
             for (var i = 0UL; i < amountOfDeletions; i++)
@@ -126,7 +126,7 @@ namespace Platform.Data.Doublets
                 {
                     break;
                 }
-                var linksAddressRange = new Range<ulong>(min, linksCount);
+                var linksAddressRange = new Range<TLinkAddress>(min, linksCount);
                 var link = uInt64ToAddressConverter.Convert(random.NextUInt64(linksAddressRange));
                 links.Delete(link);
             }
@@ -365,7 +365,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TLinkAddress GetSquareMatrixSequenceElementByIndex<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress root, ulong size, ulong index)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        public static TLinkAddress GetSquareMatrixSequenceElementByIndex<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress root, TLinkAddress size, TLinkAddress index)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
             var constants = links.Constants;
             var source = constants.SourcePart;
@@ -744,8 +744,8 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureCreated<TLinkAddress>(this ILinks<TLinkAddress> links, Func<TLinkAddress> creator, params TLinkAddress[] addresses)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
-            var addressToUInt64Converter = CheckedConverter<TLinkAddress, ulong>.Default;
-            var uInt64ToAddressConverter = CheckedConverter<ulong, TLinkAddress>.Default;
+            var addressToUInt64Converter = CheckedConverter<TLinkAddress, TLinkAddress>.Default;
+            var uInt64ToAddressConverter = CheckedConverter<TLinkAddress, TLinkAddress>.Default;
             var nonExistentAddresses = new HashSet<TLinkAddress>(addresses.Where(x => !links.Exists(x)));
             if (nonExistentAddresses.Count > 0)
             {
@@ -1361,7 +1361,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool AnyLinkIsAny<TLinkAddress>(this ILinks<ulong> links, params ulong[] sequence) where TLinkAddress: IUnsignedNumber<TLinkAddress>
+        public static bool AnyLinkIsAny<TLinkAddress>(this ILinks<TLinkAddress> links, params TLinkAddress[] sequence) where TLinkAddress: IUnsignedNumber<TLinkAddress>
         {
             if (sequence == null)
             {
@@ -1409,10 +1409,10 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static string FormatStructure<TLinkAddress>(this ILinks<ulong> links, ulong linkIndex, Func<Link<ulong>, bool> isElement, bool renderIndex = false, bool renderDebug = false) where TLinkAddress: IUnsignedNumber<TLinkAddress>
+        public static string FormatStructure<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress linkIndex, Func<Link<TLinkAddress>, bool> isElement, bool renderIndex = false, bool renderDebug = false) where TLinkAddress: IUnsignedNumber<TLinkAddress>
         {
             var sb = new StringBuilder();
-            var visited = new HashSet<ulong>();
+            var visited = new HashSet<TLinkAddress>();
             links.AppendStructure<TLinkAddress>(sb, visited, linkIndex, isElement, (innerSb, link) => innerSb.Append(link.Index), renderIndex, renderDebug);
             return sb.ToString();
         }
@@ -1452,10 +1452,10 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static string FormatStructure<TLinkAddress>(this ILinks<ulong> links, ulong linkIndex, Func<Link<ulong>, bool> isElement, Action<StringBuilder, Link<ulong>> appendElement, bool renderIndex = false, bool renderDebug = false) where TLinkAddress: IUnsignedNumber<TLinkAddress>
+        public static string FormatStructure<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress linkIndex, Func<Link<TLinkAddress>, bool> isElement, Action<StringBuilder, Link<TLinkAddress>> appendElement, bool renderIndex = false, bool renderDebug = false) where TLinkAddress: IUnsignedNumber<TLinkAddress>
         {
             var sb = new StringBuilder();
-            var visited = new HashSet<ulong>();
+            var visited = new HashSet<TLinkAddress>();
             links.AppendStructure<TLinkAddress>(sb, visited, linkIndex, isElement, appendElement, renderIndex, renderDebug);
             return sb.ToString();
         }
@@ -1503,7 +1503,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void AppendStructure<TLinkAddress>(this ILinks<ulong> links, StringBuilder sb, HashSet<ulong> visited, ulong linkIndex, Func<Link<ulong>, bool> isElement, Action<StringBuilder, Link<ulong>> appendElement, bool renderIndex = false, bool renderDebug = false) where TLinkAddress: IUnsignedNumber<TLinkAddress>
+        public static void AppendStructure<TLinkAddress>(this ILinks<TLinkAddress> links, StringBuilder sb, HashSet<TLinkAddress> visited, TLinkAddress linkIndex, Func<Link<TLinkAddress>, bool> isElement, Action<StringBuilder, Link<TLinkAddress>> appendElement, bool renderIndex = false, bool renderDebug = false) where TLinkAddress: IUnsignedNumber<TLinkAddress>
         {
             if (sb == null)
             {
@@ -1518,7 +1518,7 @@ namespace Platform.Data.Doublets
                 if (visited.Add(linkIndex))
                 {
                     sb.Append('(');
-                    var link = new Link<ulong>(links.GetLink(linkIndex));
+                    var link = new Link<TLinkAddress>(links.GetLink(linkIndex));
                     if (renderIndex)
                     {
                         sb.Append(link.Index);
@@ -1530,7 +1530,7 @@ namespace Platform.Data.Doublets
                     }
                     else
                     {
-                        var source = new Link<ulong>(links.GetLink(link.Source));
+                        var source = new Link<TLinkAddress>(links.GetLink(link.Source));
                         if (isElement(source))
                         {
                             appendElement(sb, source);
@@ -1547,7 +1547,7 @@ namespace Platform.Data.Doublets
                     }
                     else
                     {
-                        var target = new Link<ulong>(links.GetLink(link.Target));
+                        var target = new Link<TLinkAddress>(links.GetLink(link.Target));
                         if (isElement(target))
                         {
                             appendElement(sb, target);
