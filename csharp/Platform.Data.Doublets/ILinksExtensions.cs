@@ -49,8 +49,6 @@ namespace Platform.Data.Doublets
         public static void RunRandomCreations<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress amountOfCreations)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
             var random = RandomHelpers.Default;
-            var addressToUInt64Converter = UncheckedConverter<TLinkAddress, TLinkAddress>.Default;
-            var uInt64ToAddressConverter = UncheckedConverter<TLinkAddress, TLinkAddress>.Default;
             for (var i = 0UL; i < amountOfCreations; i++)
             {
                 var linksAddressRange = new Range<TLinkAddress>(0, addressToUInt64Converter.Convert(links.Count()));
@@ -82,8 +80,6 @@ namespace Platform.Data.Doublets
         public static void RunRandomSearches<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress amountOfSearches)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
             var random = RandomHelpers.Default;
-            var addressToUInt64Converter = UncheckedConverter<TLinkAddress, TLinkAddress>.Default;
-            var uInt64ToAddressConverter = UncheckedConverter<TLinkAddress, TLinkAddress>.Default;
             for (var i = 0UL; i < amountOfSearches; i++)
             {
                 var linksAddressRange = new Range<TLinkAddress>(0, addressToUInt64Converter.Convert(links.Count()));
@@ -115,8 +111,6 @@ namespace Platform.Data.Doublets
         public static void RunRandomDeletions<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress amountOfDeletions)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
             var random = RandomHelpers.Default;
-            var addressToUInt64Converter = UncheckedConverter<TLinkAddress, TLinkAddress>.Default;
-            var uInt64ToAddressConverter = UncheckedConverter<TLinkAddress, TLinkAddress>.Default;
             var linksCount = addressToUInt64Converter.Convert(links.Count());
             var min = amountOfDeletions > linksCount ? 0UL : linksCount - amountOfDeletions;
             for (var i = 0UL; i < amountOfDeletions; i++)

@@ -24,8 +24,6 @@ namespace Platform.Data.Doublets.Memory.Split.Generic;
 public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILinks<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
 {
     private static readonly Comparer<TLinkAddress> _comparer = Comparer<TLinkAddress>.Default;
-    private static readonly UncheckedConverter<TLinkAddress, long> _addressToInt64Converter = UncheckedConverter<TLinkAddress, long>.Default;
-    private static readonly UncheckedConverter<long, TLinkAddress> _int64ToAddressConverter = UncheckedConverter<long, TLinkAddress>.Default;
     private static readonly TLinkAddress _zero;
     private static readonly TLinkAddress _one = ++_zero;
 

@@ -18,7 +18,6 @@ namespace Platform.Data.Doublets.Memory.United.Generic
     /// <seealso cref="ILinksListMethods{TLinkAddress}"/>
     public unsafe class UnusedLinksListMethods<TLinkAddress> : AbsoluteCircularDoublyLinkedListMethods<TLinkAddress>, ILinksListMethods<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
     {
-        private static readonly UncheckedConverter<TLinkAddress, long> _addressToInt64Converter = UncheckedConverter<TLinkAddress, long>.Default;
         private readonly byte* _links;
         private readonly byte* _header;
 

@@ -303,8 +303,6 @@ namespace Platform.Data.Doublets.Tests
         public static void RunRandomCreations<TLink>(this ILinks<TLink> links, ulong amountOfCreations) where TLink : IUnsignedNumber<TLink>
         {
             var random = RandomHelpers.Default;
-            var addressToUInt64Converter = UncheckedConverter<TLink, ulong>.Default;
-            var uInt64ToAddressConverter = UncheckedConverter<ulong, TLink>.Default;
             for (var i = 0UL; i < amountOfCreations; i++)
             {
                 var linksAddressRange = new Range<ulong>(0, addressToUInt64Converter.Convert(links.Count()));
@@ -336,8 +334,6 @@ namespace Platform.Data.Doublets.Tests
         public static void RunRandomSearches<TLink>(this ILinks<TLink> links, ulong amountOfSearches) where TLink : IUnsignedNumber<TLink>
         {
             var random = RandomHelpers.Default;
-            var addressToUInt64Converter = UncheckedConverter<TLink, ulong>.Default;
-            var uInt64ToAddressConverter = UncheckedConverter<ulong, TLink>.Default;
             for (var i = 0UL; i < amountOfSearches; i++)
             {
                 var linksAddressRange = new Range<ulong>(0, addressToUInt64Converter.Convert(links.Count()));
@@ -369,8 +365,6 @@ namespace Platform.Data.Doublets.Tests
         public static void RunRandomDeletions<TLink>(this ILinks<TLink> links, ulong amountOfDeletions) where TLink : IUnsignedNumber<TLink>
         {
             var random = RandomHelpers.Default;
-            var addressToUInt64Converter = UncheckedConverter<TLink, ulong>.Default;
-            var uInt64ToAddressConverter = UncheckedConverter<ulong, TLink>.Default;
             var linksCount = addressToUInt64Converter.Convert(links.Count());
             var min = amountOfDeletions > linksCount ? 0UL : linksCount - amountOfDeletions;
             for (var i = 0UL; i < amountOfDeletions; i++)

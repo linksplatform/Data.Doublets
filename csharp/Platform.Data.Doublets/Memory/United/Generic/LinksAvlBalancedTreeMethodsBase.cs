@@ -22,11 +22,6 @@ namespace Platform.Data.Doublets.Memory.United.Generic;
 /// <seealso cref="ILinksTreeMethods{TLinkAddress}" />
 public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : SizedAndThreadedAVLBalancedTreeMethods<TLinkAddress>, ILinksTreeMethods<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress> , IShiftOperators<TLinkAddress,int,TLinkAddress>, IBitwiseOperators<TLinkAddress,TLinkAddress,TLinkAddress>, IMinMaxValue<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
 {
-    private static readonly UncheckedConverter<TLinkAddress, long> _addressToInt64Converter = UncheckedConverter<TLinkAddress, long>.Default;
-    private static readonly UncheckedConverter<TLinkAddress, int> _addressToInt32Converter = UncheckedConverter<TLinkAddress, int>.Default;
-    private static readonly UncheckedConverter<bool, TLinkAddress> _boolToAddressConverter = UncheckedConverter<bool, TLinkAddress>.Default;
-    private static readonly UncheckedConverter<TLinkAddress, bool> _addressToBoolConverter = UncheckedConverter<TLinkAddress, bool>.Default;
-    private static readonly UncheckedConverter<int, TLinkAddress> _int32ToAddressConverter = UncheckedConverter<int, TLinkAddress>.Default;
 
     /// <summary>
     ///     <para>

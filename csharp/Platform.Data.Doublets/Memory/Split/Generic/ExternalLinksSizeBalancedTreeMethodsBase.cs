@@ -21,7 +21,6 @@ namespace Platform.Data.Doublets.Memory.Split.Generic;
 /// <seealso cref="ILinksTreeMethods{TLinkAddress}" />
 public abstract unsafe class ExternalLinksSizeBalancedTreeMethodsBase<TLinkAddress> : SizeBalancedTreeMethods<TLinkAddress>, ILinksTreeMethods<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
 {
-    private static readonly UncheckedConverter<TLinkAddress, long> _addressToInt64Converter = UncheckedConverter<TLinkAddress, long>.Default;
 
     /// <summary>
     ///     <para>

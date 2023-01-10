@@ -176,11 +176,6 @@ namespace Platform.Data.Doublets.Ffi
 
     public class Links<TLinkAddress> : DisposableBase, ILinks<TLinkAddress>  where TLinkAddress : IUnsignedNumber<TLinkAddress>
     {
-        private static readonly UncheckedConverter<byte, TLinkAddress> from_u8 = UncheckedConverter<byte, TLinkAddress>.Default;
-        private static readonly UncheckedConverter<ushort, TLinkAddress> from_u16 = UncheckedConverter<ushort, TLinkAddress>.Default;
-        private static readonly UncheckedConverter<uint, TLinkAddress> from_u32 = UncheckedConverter<uint, TLinkAddress>.Default;
-        private static readonly UncheckedConverter<ulong, TLinkAddress> from_u64 = UncheckedConverter<ulong, TLinkAddress>.Default;
-        private static readonly UncheckedConverter<TLinkAddress, ulong> from_t = UncheckedConverter<TLinkAddress, ulong>.Default;
 
         public LinksConstants<TLinkAddress> Constants { get; }
 
