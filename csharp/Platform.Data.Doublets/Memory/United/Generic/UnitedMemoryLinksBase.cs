@@ -842,7 +842,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual long ConvertToInt64(TLinkAddress value) => _addressToInt64Converter.Convert(value);
+        protected virtual long long.CreateTruncating(TLinkAddress value) => _addressToInt64Converter.Convert(value);
 
         /// <summary>
         /// <para>

@@ -783,7 +783,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
         }
         SetPointers(dataMemory: dataMemory, indexMemory: indexMemory);
         ref var header = ref GetHeaderReference();
-        var allocatedLinks = ConvertToInt64(value: header.AllocatedLinks);
+        var allocatedLinks = long.CreateTruncating(value: header.AllocatedLinks);
         // Adjust reserved capacity
         var minimumDataReservedCapacity = allocatedLinks * LinkDataPartSizeInBytes;
         if (minimumDataReservedCapacity < dataMemory.UsedCapacity)

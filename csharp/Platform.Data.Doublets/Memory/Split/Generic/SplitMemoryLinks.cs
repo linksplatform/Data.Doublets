@@ -238,7 +238,7 @@ public unsafe class SplitMemoryLinks<TLinkAddress> : SplitMemoryLinksBase<TLinkA
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     protected override ref RawLinkDataPart<TLinkAddress> GetLinkDataPartReference(TLinkAddress linkIndex)
     {
-        return ref AsRef<RawLinkDataPart<TLinkAddress>>(source: _linksDataParts + LinkDataPartSizeInBytes * ConvertToInt64(value: linkIndex));
+        return ref AsRef<RawLinkDataPart<TLinkAddress>>(source: _linksDataParts + LinkDataPartSizeInBytes * long.CreateTruncating(value: linkIndex));
     }
 
     /// <summary>
@@ -258,6 +258,6 @@ public unsafe class SplitMemoryLinks<TLinkAddress> : SplitMemoryLinksBase<TLinkA
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     protected override ref RawLinkIndexPart<TLinkAddress> GetLinkIndexPartReference(TLinkAddress linkIndex)
     {
-        return ref AsRef<RawLinkIndexPart<TLinkAddress>>(source: _linksIndexParts + LinkIndexPartSizeInBytes * ConvertToInt64(value: linkIndex));
+        return ref AsRef<RawLinkIndexPart<TLinkAddress>>(source: _linksIndexParts + LinkIndexPartSizeInBytes * long.CreateTruncating(value: linkIndex));
     }
 }

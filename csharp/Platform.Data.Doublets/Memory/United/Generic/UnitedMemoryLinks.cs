@@ -174,6 +174,6 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override ref RawLink<TLinkAddress> GetLinkReference(TLinkAddress linkIndex) => ref AsRef<RawLink<TLinkAddress>>(_links + (LinkSizeInBytes * ConvertToInt64(linkIndex)));
+        protected override ref RawLink<TLinkAddress> GetLinkReference(TLinkAddress linkIndex) => ref AsRef<RawLink<TLinkAddress>>(_links + (LinkSizeInBytes * long.CreateTruncating(linkIndex)));
     }
 }
