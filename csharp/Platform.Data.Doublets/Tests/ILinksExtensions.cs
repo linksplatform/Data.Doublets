@@ -8,6 +8,7 @@ using System.Linq;
 using System.Numerics;
 using Platform.Numbers;
 using Platform.Setters;
+using Range = System.Range;
 
 namespace Platform.Data.Doublets.Tests
 {
@@ -305,9 +306,9 @@ namespace Platform.Data.Doublets.Tests
             var random = RandomHelpers.Default;
             for (var i = 0UL; i < amountOfCreations; i++)
             {
-                var linksAddressRange = new Range<ulong>(0, addressToUInt64Converter.Convert(links.Count()));
-                var source = uInt64ToAddressConverter.Convert(random.NextUInt64(linksAddressRange));
-                var target = uInt64ToAddressConverter.Convert(random.NextUInt64(linksAddressRange));
+                var linksAddressRange = new Range<ulong>(ulong.CreateTruncating(TLink.Zero), ulong.CreateTruncating(links.Count()));
+                var source = TLink.CreateTruncating(random.NextUInt64(linksAddressRange));
+                var target = TLink.CreateTruncating(random.NextUInt64(linksAddressRange));
                 links.GetOrCreate(source, target);
             }
         }
@@ -336,9 +337,9 @@ namespace Platform.Data.Doublets.Tests
             var random = RandomHelpers.Default;
             for (var i = 0UL; i < amountOfSearches; i++)
             {
-                var linksAddressRange = new Range<ulong>(0, addressToUInt64Converter.Convert(links.Count()));
-                var source = uInt64ToAddressConverter.Convert(random.NextUInt64(linksAddressRange));
-                var target = uInt64ToAddressConverter.Convert(random.NextUInt64(linksAddressRange));
+                var linksAddressRange = new Range<ulong>(ulong.CreateTruncating(TLink.Zero), ulong.CreateTruncating(links.Count()));
+                var source = TLink.CreateTruncating(random.NextUInt64(linksAddressRange));
+                var target = TLink.CreateTruncating(random.NextUInt64(linksAddressRange));
                 links.SearchOrDefault(source, target);
             }
         }
@@ -362,20 +363,20 @@ namespace Platform.Data.Doublets.Tests
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void RunRandomDeletions<TLink>(this ILinks<TLink> links, ulong amountOfDeletions) where TLink : IUnsignedNumber<TLink>
+        public static void RunRandomDeletions<TLink>(this ILinks<TLink> links, TLink amountOfDeletions) where TLink : IUnsignedNumber<TLink>, IComparisonOperators<TLink, TLink, bool>
         {
             var random = RandomHelpers.Default;
-            var linksCount = addressToUInt64Converter.Convert(links.Count());
-            var min = amountOfDeletions > linksCount ? 0UL : linksCount - amountOfDeletions;
-            for (var i = 0UL; i < amountOfDeletions; i++)
+            var linksCount = links.Count();
+            var min = amountOfDeletions > linksCount ? TLink.Zero : linksCount - amountOfDeletions;
+            for (var i = TLink.Zero; i < amountOfDeletions; i++)
             {
-                linksCount = addressToUInt64Converter.Convert(links.Count());
+                linksCount = links.Count();
                 if (linksCount <= min)
                 {
                     break;
                 }
-                var linksAddressRange = new Range<ulong>(min, linksCount);
-                var link = uInt64ToAddressConverter.Convert(random.NextUInt64(linksAddressRange));
+                var linksAddressRange = new Range<ulong>(ulong.CreateTruncating(min), ulong.CreateTruncating(linksCount));
+                var link = TLink.CreateTruncating(random.NextUInt64(linksAddressRange));
                 links.Delete(link);
             }
         }

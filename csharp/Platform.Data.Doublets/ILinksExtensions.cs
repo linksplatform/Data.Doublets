@@ -46,14 +46,14 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void RunRandomCreations<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress amountOfCreations)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        public static void RunRandomCreations<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress amountOfCreations)  where TLinkAddress : IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
         {
             var random = RandomHelpers.Default;
-            for (var i = 0UL; i < amountOfCreations; i++)
+            for (var i = TLinkAddress.Zero; i < amountOfCreations; i++)
             {
-                var linksAddressRange = new Range<TLinkAddress>(0, addressToUInt64Converter.Convert(links.Count()));
-                var source = uInt64ToAddressConverter.Convert(random.NextUInt64(linksAddressRange));
-                var target = uInt64ToAddressConverter.Convert(random.NextUInt64(linksAddressRange));
+                var linksAddressRange = new Range<ulong>(ulong.CreateTruncating(TLinkAddress.Zero), ulong.CreateTruncating(links.Count()));
+                var source = TLinkAddress.CreateTruncating(random.NextUInt64(linksAddressRange));
+                var target = TLinkAddress.CreateTruncating(random.NextUInt64(linksAddressRange));
                 links.GetOrCreate(source, target);
             }
         }
@@ -77,14 +77,14 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void RunRandomSearches<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress amountOfSearches)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        public static void RunRandomSearches<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress amountOfSearches)  where TLinkAddress : IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
         {
             var random = RandomHelpers.Default;
-            for (var i = 0UL; i < amountOfSearches; i++)
+            for (var i = TLinkAddress.Zero; i < amountOfSearches; i++)
             {
-                var linksAddressRange = new Range<TLinkAddress>(0, addressToUInt64Converter.Convert(links.Count()));
-                var source = uInt64ToAddressConverter.Convert(random.NextUInt64(linksAddressRange));
-                var target = uInt64ToAddressConverter.Convert(random.NextUInt64(linksAddressRange));
+                var linksAddressRange = new Range<ulong>(ulong.CreateTruncating(TLinkAddress.Zero), ulong.CreateTruncating(links.Count()));
+                var source = TLinkAddress.CreateTruncating(random.NextUInt64(linksAddressRange));
+                var target = TLinkAddress.CreateTruncating(random.NextUInt64(linksAddressRange));
                 links.SearchOrDefault(source, target);
             }
         }
@@ -120,9 +120,9 @@ namespace Platform.Data.Doublets
                 {
                     break;
                 }
-                var linksAddressRange = new Range<TLinkAddress>(min, linksCount);
-                var link = (random.NextUInt64(linksAddressRange);
-                links.Delete(link);
+                var linksAddressRange = new Range<ulong>(ulong.CreateTruncating(min), ulong.CreateTruncating(linksCount));
+                var link = (random.NextUInt64(linksAddressRange));
+                links.Delete<TLinkAddress>(TLinkAddress.CreateTruncating(link));
             }
         }
 
@@ -359,7 +359,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TLinkAddress GetSquareMatrixSequenceElementByIndex<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress root, TLinkAddress size, TLinkAddress index)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        public static TLinkAddress GetSquareMatrixSequenceElementByIndex<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress root, TLinkAddress size, TLinkAddress index)  where TLinkAddress : IUnsignedNumber<TLinkAddress>, IBitwiseOperators<TLinkAddress, TLinkAddress, TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
         {
             var constants = links.Constants;
             var source = constants.SourcePart;
@@ -368,8 +368,8 @@ namespace Platform.Data.Doublets
             {
                 throw new ArgumentOutOfRangeException(nameof(size), "Sequences with sizes other than powers of two are not supported.");
             }
-            var path = new BitArray(BitConverter.GetBytes(index));
-            var length = Bit.GetLowestPosition(size);
+            var path = new BitArray(BitConverter.GetBytes(ulong.CreateTruncating(index)));
+            var length = Bit.GetLowestPosition(ulong.CreateTruncating(size));
             links.EnsureLinkExists(root, "root");
             var currentLink = root;
             for (var i = length - 1; i >= 0; i--)
@@ -744,7 +744,7 @@ namespace Platform.Data.Doublets
             if (nonExistentAddresses.Count > 0)
             {
                 var max = nonExistentAddresses.Max();
-                max = uInt64ToAddressConverter.Convert(System.Math.Min(addressToUInt64Converter.Convert(max), addressToUInt64Converter.Convert(links.Constants.InternalReferencesRange.Maximum)));
+                max = uInt64ToAddressConverter.Convert(TLinkAddress.CreateTruncating(System.Math.Min(ulong.CreateTruncating(max), ulong.CreateTruncating(links.Constants.InternalReferencesRange.Maximum))));
                 var createdLinks = new List<TLinkAddress>();
                 TLinkAddress createdLink = creator();
                 while (createdLink !=  max)
