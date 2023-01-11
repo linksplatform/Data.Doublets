@@ -846,23 +846,6 @@ namespace Platform.Data.Doublets.Memory.United.Generic
 
         /// <summary>
         /// <para>
-        /// Converts the to address using the specified value.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="value">
-        /// <para>The value.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The link</para>
-        /// <para></para>
-        /// </returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual TLinkAddress TLinkAddress.CreateTruncating(long value) => _int64ToAddressConverter.Convert(value);
-
-        /// <summary>
-        /// <para>
         /// Adds the first.
         /// </para>
         /// <para></para>
