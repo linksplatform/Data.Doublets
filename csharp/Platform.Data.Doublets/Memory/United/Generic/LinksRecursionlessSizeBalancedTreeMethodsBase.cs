@@ -342,7 +342,7 @@ public abstract unsafe class LinksRecursionlessSizeBalancedTreeMethodsBase<TLink
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     protected virtual ref RawLink<TLinkAddress> GetLinkReference(TLinkAddress link)
     {
-        return ref AsRef<RawLink<TLinkAddress>>(source: Links + RawLink<TLinkAddress>.SizeInBytes * long.CreateTruncating(source: link));;
+        return ref AsRef<RawLink<TLinkAddress>>(source: Links + RawLink<TLinkAddress>.SizeInBytes * long.CreateTruncating(link));
     }
 
     /// <summary>
