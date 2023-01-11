@@ -24,8 +24,7 @@
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <LangVersion>latest</LangVersion>
-        <PackageReleaseNotes>Platform.Collections.Methods dependency is updated to 0.7.1.
-Generic math is used therefore generic constraints are changed.</PackageReleaseNotes>
+        <PackageReleaseNotes>Platform.Data dependency is updated to 0.16.1.</PackageReleaseNotes>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
@@ -34,7 +33,7 @@ Generic math is used therefore generic constraints are changed.</PackageReleaseN
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Platform.Data" Version="0.16.0" />
+        <PackageReference Include="Platform.Data" Version="0.16.1" />
         <PackageReference Include="Platform.Data.Doublets.FFI" Version="0.9.0" />
         <PackageReference Include="Platform.Random" Version="0.3.0" />
         <PackageReference Include="Platform.Timestamps" Version="0.3.0" />
