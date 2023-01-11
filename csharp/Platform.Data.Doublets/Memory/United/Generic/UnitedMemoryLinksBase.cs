@@ -181,7 +181,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             SetPointers(memory);
             ref var header = ref GetHeaderReference();
             // Гарантия корректности _memory.UsedCapacity относительно _header->AllocatedLinks
-            memory.UsedCapacity = (ConvertToInt64(header.AllocatedLinks) * LinkSizeInBytes) + LinkHeaderSizeInBytes;
+            memory.UsedCapacity = (long.CreateTruncating(header.AllocatedLinks) * LinkSizeInBytes) + LinkHeaderSizeInBytes;
             // Гарантия корректности _header->ReservedLinks относительно _memory.ReservedCapacity
             header.ReservedLinks = TLinkAddress.CreateTruncating((memory.ReservedCapacity - LinkHeaderSizeInBytes) / LinkSizeInBytes);
         }
@@ -826,23 +826,6 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual bool GreaterOrEqualThan(TLinkAddress first, TLinkAddress second) => _comparer.Compare(first, second) >= 0;
-
-        /// <summary>
-        /// <para>
-        /// Converts the to int 64 using the specified value.
-        /// </para>
-        /// <para></para>
-        /// </summary>
-        /// <param name="value">
-        /// <para>The value.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The long</para>
-        /// <para></para>
-        /// </returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual long long.CreateTruncating(TLinkAddress value) => _addressToInt64Converter.Convert(value);
 
         /// <summary>
         /// <para>

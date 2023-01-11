@@ -70,7 +70,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual ref RawLink<TLinkAddress> GetLinkReference(TLinkAddress link) => ref AsRef<RawLink<TLinkAddress>>(_links + (RawLink<TLinkAddress>.SizeInBytes * _addressToInt64Converter.Convert(link)));
+        protected virtual ref RawLink<TLinkAddress> GetLinkReference(TLinkAddress link) => ref AsRef<RawLink<TLinkAddress>>(_links + (RawLink<TLinkAddress>.SizeInBytes * long.CreateTruncating(link)));;
 
         /// <summary>
         /// <para>

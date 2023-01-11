@@ -1141,7 +1141,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     protected virtual long ConvertToInt64(TLinkAddress value)
     {
-        return _addressToInt64Converter.Convert(source: value);
+        return long.CreateTruncating(source: value);;
     }
 
     /// <summary>
