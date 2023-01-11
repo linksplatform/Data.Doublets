@@ -712,7 +712,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
                 _indexMemory.ReservedCapacity += _indexMemoryReservationStepInBytes;
                 SetPointers(dataMemory: _dataMemory, indexMemory: _indexMemory);
                 header = ref GetHeaderReference();
-                header.ReservedLinks = ConvertToAddress(value: _dataMemory.ReservedCapacity / LinkDataPartSizeInBytes);
+                header.ReservedLinks = TLinkAddress.CreateTruncating(value: _dataMemory.ReservedCapacity / LinkDataPartSizeInBytes);
             }
             freeLink = header.AllocatedLinks = header.AllocatedLinks + TLinkAddress.One;
             _dataMemory.UsedCapacity += LinkDataPartSizeInBytes;
@@ -828,7 +828,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
         indexMemory.UsedCapacity = ConvertToInt64(value: header.AllocatedLinks) * LinkIndexPartSizeInBytes + LinkHeaderSizeInBytes;
         // Ensure correctness _memory.ReservedLinks over _header->ReservedCapacity
         // Гарантия корректности _header->ReservedLinks относительно _memory.ReservedCapacity
-        header.ReservedLinks = ConvertToAddress(value: (dataMemory.ReservedCapacity - LinkDataPartSizeInBytes) / LinkDataPartSizeInBytes);
+        header.ReservedLinks = TLinkAddress.CreateTruncating(value: (dataMemory.ReservedCapacity - LinkDataPartSizeInBytes) / LinkDataPartSizeInBytes);
     }
 
     /// <summary>

@@ -183,7 +183,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             // Гарантия корректности _memory.UsedCapacity относительно _header->AllocatedLinks
             memory.UsedCapacity = (ConvertToInt64(header.AllocatedLinks) * LinkSizeInBytes) + LinkHeaderSizeInBytes;
             // Гарантия корректности _header->ReservedLinks относительно _memory.ReservedCapacity
-            header.ReservedLinks = ConvertToAddress((memory.ReservedCapacity - LinkHeaderSizeInBytes) / LinkSizeInBytes);
+            header.ReservedLinks = TLinkAddress.CreateTruncating((memory.ReservedCapacity - LinkHeaderSizeInBytes) / LinkSizeInBytes);
         }
 
         /// <summary>
@@ -526,7 +526,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                     _memory.ReservedCapacity += _memoryReservationStep;
                     SetPointers(_memory);
                     header = ref GetHeaderReference();
-                    header.ReservedLinks = ConvertToAddress(_memory.ReservedCapacity / LinkSizeInBytes);
+                    header.ReservedLinks = TLinkAddress.CreateTruncating(_memory.ReservedCapacity / LinkSizeInBytes);
                 }
                 freeLink = header.AllocatedLinks = header.AllocatedLinks + TLinkAddress.One;
                 _memory.UsedCapacity += LinkSizeInBytes;
@@ -859,7 +859,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual TLinkAddress ConvertToAddress(long value) => _int64ToAddressConverter.Convert(value);
+        protected virtual TLinkAddress TLinkAddress.CreateTruncating(long value) => _int64ToAddressConverter.Convert(value);
 
         /// <summary>
         /// <para>
