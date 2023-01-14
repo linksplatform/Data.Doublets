@@ -248,7 +248,7 @@ public abstract unsafe class InternalLinksSizeBalancedTreeMethodsBase<TLinkAddre
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     protected virtual ref RawLinkDataPart<TLinkAddress> GetLinkDataPartReference(TLinkAddress link)
     {
-        return ref AsRef<RawLinkDataPart<TLinkAddress>>(source: LinksDataParts + RawLinkDataPart<TLinkAddress>.SizeInBytes * long.CreateTruncating(source: link));;
+        return ref AsRef<RawLinkDataPart<TLinkAddress>>(source: LinksDataParts + RawLinkDataPart<TLinkAddress>.SizeInBytes * long.CreateTruncating(link));
     }
 
     /// <summary>
@@ -268,7 +268,7 @@ public abstract unsafe class InternalLinksSizeBalancedTreeMethodsBase<TLinkAddre
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     protected virtual ref RawLinkIndexPart<TLinkAddress> GetLinkIndexPartReference(TLinkAddress link)
     {
-        return ref AsRef<RawLinkIndexPart<TLinkAddress>>(source: LinksIndexParts + RawLinkIndexPart<TLinkAddress>.SizeInBytes * long.CreateTruncating(source: link));;
+        return ref AsRef<RawLinkIndexPart<TLinkAddress>>(source: LinksIndexParts + RawLinkIndexPart<TLinkAddress>.SizeInBytes * long.CreateTruncating(link));
     }
 
     /// <summary>

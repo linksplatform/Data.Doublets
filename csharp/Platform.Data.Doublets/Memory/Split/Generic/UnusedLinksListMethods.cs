@@ -75,7 +75,7 @@ public unsafe class UnusedLinksListMethods<TLinkAddress> : AbsoluteCircularDoubl
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     protected virtual ref RawLinkDataPart<TLinkAddress> GetLinkDataPartReference(TLinkAddress link)
     {
-        return ref AsRef<RawLinkDataPart<TLinkAddress>>(source: _links + RawLinkDataPart<TLinkAddress>.SizeInBytes * long.CreateTruncating(source: link));;
+        return ref AsRef<RawLinkDataPart<TLinkAddress>>(source: _links + RawLinkDataPart<TLinkAddress>.SizeInBytes * long.CreateTruncating(link));
     }
 
     /// <summary>

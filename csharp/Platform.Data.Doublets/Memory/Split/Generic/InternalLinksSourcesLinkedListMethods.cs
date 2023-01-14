@@ -80,7 +80,7 @@ public unsafe class InternalLinksSourcesLinkedListMethods<TLinkAddress> : Relati
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     protected virtual ref RawLinkDataPart<TLinkAddress> GetLinkDataPartReference(TLinkAddress link)
     {
-        return ref AsRef<RawLinkDataPart<TLinkAddress>>(source: _linksDataParts + RawLinkDataPart<TLinkAddress>.SizeInBytes * long.CreateTruncating(source: link));;
+        return ref AsRef<RawLinkDataPart<TLinkAddress>>(source: _linksDataParts + RawLinkDataPart<TLinkAddress>.SizeInBytes * long.CreateTruncating(link));
     }
 
     /// <summary>
@@ -100,7 +100,7 @@ public unsafe class InternalLinksSourcesLinkedListMethods<TLinkAddress> : Relati
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     protected virtual ref RawLinkIndexPart<TLinkAddress> GetLinkIndexPartReference(TLinkAddress link)
     {
-        return ref AsRef<RawLinkIndexPart<TLinkAddress>>(source: _linksIndexParts + RawLinkIndexPart<TLinkAddress>.SizeInBytes * long.CreateTruncating(source: link));;
+        return ref AsRef<RawLinkIndexPart<TLinkAddress>>(source: _linksIndexParts + RawLinkIndexPart<TLinkAddress>.SizeInBytes * long.CreateTruncating(link));
     }
 
     /// <summary>
