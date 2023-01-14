@@ -51,6 +51,9 @@ public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : Siz
     ///     <para></para>
     /// </summary>
     protected readonly byte* Links;
+    
+    private static readonly UncheckedConverter<TLinkAddress, bool> _addressToBoolConverter = UncheckedConverter<TLinkAddress, bool>.Default;
+    private static readonly UncheckedConverter<bool, TLinkAddress> _boolToAddressConverter = UncheckedConverter<bool, TLinkAddress>.Default;
 
     /// <summary>
     ///     <para>
@@ -634,7 +637,7 @@ public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : Siz
     {
         unchecked
         {
-            var value = _addressToInt32Converter.Convert(source: Bit<TLinkAddress>.PartialRead(target: storedValue, shift: 0, limit: 3));
+            var value = int.CreateTruncating(Bit<TLinkAddress>.PartialRead(target: storedValue, shift: 0, limit: 3));
             value |= 0xF8 * ((value & 4) >> 2); // if negative, then continue ones to the end of sbyte
             return (sbyte)value;
         }
@@ -659,7 +662,7 @@ public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : Siz
     {
         unchecked
         {
-            var packagedValue = _int32ToAddressConverter.Convert(source: (((byte)value >> 5) & 4) | (value & 3));
+            var packagedValue = TLinkAddress.CreateTruncating((((byte)value >> 5) & 4) | (value & 3));
             var modified = Bit<TLinkAddress>.PartialWrite(target: storedValue, source: packagedValue, shift: 0, limit: 3);
             storedValue = modified;
         }
