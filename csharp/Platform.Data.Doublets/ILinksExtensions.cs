@@ -1586,9 +1586,9 @@ namespace Platform.Data.Doublets
         }
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void ClearGarbage<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link, Func<TLinkAddress, bool> getIsGarbage) where  TLinkAddress : struct, IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool> 
+        public static void ClearGarbage<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link, Func<TLinkAddress, bool> isGarbage) where  TLinkAddress : struct, IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool> 
         {
-            if (getIsGarbage(link))
+            if (isGarbage(link))
             {
                 var contents = new Link<TLinkAddress>(links.GetLink(link));
                 links.Delete(link);
