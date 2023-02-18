@@ -16,6 +16,23 @@ public class GarbageCollectionTests
         LinksMemory = new HeapResizableDirectMemory();
         Links = new UnitedMemoryLinks<TLinkAddress>(LinksMemory);
     }
+    
+    [Fact]
+    public void ClearGarbagePartialPointDependency()
+    {
+        TLinkAddress link = Links.GetOrCreate(TLinkAddress.CreateTruncating(1), TLinkAddress.CreateTruncating(2));
+        Links.ClearGarbage(link);
+        Assert.True(Links.Exists(link));
+    }
+    
+    [Fact]
+    public void ClearGarbageFullPointDependency()
+    {
+        TLinkAddress link = Links.GetOrCreate(TLinkAddress.CreateTruncating(1), TLinkAddress.CreateTruncating(1));
+        Links.ClearGarbage(link);
+        Assert.True(Links.Exists(link));
+    }
+    
     [Fact]
     public void ClearGarbageWithInDependency()
     {
