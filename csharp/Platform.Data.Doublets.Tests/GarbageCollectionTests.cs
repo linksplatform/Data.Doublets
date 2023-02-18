@@ -17,14 +17,28 @@ public class GarbageCollectionTests
         Links = new UnitedMemoryLinks<TLinkAddress>(LinksMemory);
     }
     [Fact]
-    public void Test()
+    public void ClearGarbageWithInDependency()
     {
-        TLinkAddress link1 = Links.GetOrCreate(TLinkAddress.CreateTruncating(1), TLinkAddress.CreateTruncating(1));
-        TLinkAddress link2 = Links.GetOrCreate(TLinkAddress.CreateTruncating(1), TLinkAddress.CreateTruncating(1));
-        TLinkAddress dependantOfLink1 = Links.GetOrCreate(TLinkAddress.CreateTruncating(1), TLinkAddress.CreateTruncating(1));
-        Links.ClearGarbage(link1);
-        Links.ClearGarbage(link2);
-        Assert.True(Links.Exists(link1));
-        Assert.False(Links.Exists(link1));
+        TLinkAddress link = Links.GetOrCreate(TLinkAddress.CreateTruncating(1), TLinkAddress.CreateTruncating(1));
+        TLinkAddress dependant = Links.GetOrCreate(TLinkAddress.CreateTruncating(2), link);
+        Links.ClearGarbage(link);
+        Assert.True(Links.Exists(link));
+    }
+    
+    [Fact]
+    public void ClearGarbageWithOutDependency()
+    {
+        TLinkAddress link = Links.GetOrCreate(TLinkAddress.CreateTruncating(1), TLinkAddress.CreateTruncating(1));
+        TLinkAddress dependant = Links.GetOrCreate(link, TLinkAddress.CreateTruncating(2));
+        Links.ClearGarbage(link);
+        Assert.True(Links.Exists(link));
+    }
+    
+    [Fact]
+    public void ClearGarbageWithoutDependency()
+    {
+        TLinkAddress link = Links.GetOrCreate(TLinkAddress.CreateTruncating(1), TLinkAddress.CreateTruncating(1));
+        Links.ClearGarbage(link);
+        Assert.False(Links.Exists(link));
     }
 }
