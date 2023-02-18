@@ -1591,6 +1591,7 @@ namespace Platform.Data.Doublets
             if (isGarbage(link))
             {
                 var contents = new Link<TLinkAddress>(links.GetLink(link));
+                links.ResetValues(link);
                 links.Delete(link);
                 links.ClearGarbage(contents.Source);
                 links.ClearGarbage(contents.Target);
