@@ -1593,8 +1593,8 @@ namespace Platform.Data.Doublets
                 var contents = new Link<TLinkAddress>(links.GetLink(link));
                 links.ResetValues(link);
                 links.Delete(link);
-                links.ClearGarbage(contents.Source);
-                links.ClearGarbage(contents.Target);
+                links.ClearGarbage(contents.Source, isGarbage);
+                links.ClearGarbage(contents.Target, isGarbage);
             }
         }
 
