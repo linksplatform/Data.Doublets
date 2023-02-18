@@ -58,4 +58,25 @@ public class GarbageCollectionTests
         Links.ClearGarbage(link);
         Assert.False(Links.Exists(link));
     }
+
+    [Fact]
+    public void ComplexgarbageCollectionTest()
+    {
+        /*
+           (1: 1 1)
+           (2: 2 2)
+           (3: 1 2)
+           (4: 3 2)
+         */
+        TLinkAddress link1 = Links.GetOrCreate(TLinkAddress.CreateTruncating(1), TLinkAddress.CreateTruncating(1));
+        TLinkAddress link2 = Links.GetOrCreate(TLinkAddress.CreateTruncating(2), TLinkAddress.CreateTruncating(2));
+        TLinkAddress link3 = Links.GetOrCreate(link1, link2);
+        TLinkAddress link4 = Links.GetOrCreate(link3, link2);
+        Links.ClearGarbage(link4);
+        Assert.False(Links.Exists(link4));
+        Assert.False(Links.Exists(link3));
+        Assert.True(Links.Exists(link2));
+        Assert.True(Links.Exists(link1));
+        
+    }
 }
