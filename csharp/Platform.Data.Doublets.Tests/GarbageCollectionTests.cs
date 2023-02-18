@@ -20,7 +20,7 @@ public class GarbageCollectionTests
     [Fact]
     public void ClearGarbagePartialPointDependency()
     {
-        TLinkAddress link = Links.GetOrCreate(TLinkAddress.CreateTruncating(1), TLinkAddress.CreateTruncating(2));
+        TLinkAddress link = Links.CreatePoint();
         Links.ClearGarbage(link);
         Assert.True(Links.Exists(link));
     }
@@ -28,7 +28,7 @@ public class GarbageCollectionTests
     [Fact]
     public void ClearGarbageFullPointDependency()
     {
-        TLinkAddress link = Links.GetOrCreate(TLinkAddress.CreateTruncating(1), TLinkAddress.CreateTruncating(1));
+        TLinkAddress link = Links.CreatePoint();
         Links.ClearGarbage(link);
         Assert.True(Links.Exists(link));
     }
@@ -36,27 +36,33 @@ public class GarbageCollectionTests
     [Fact]
     public void ClearGarbageWithInDependency()
     {
-        TLinkAddress link = Links.GetOrCreate(TLinkAddress.CreateTruncating(2), TLinkAddress.CreateTruncating(3));
+        TLinkAddress link = Links.CreatePoint();
         TLinkAddress dependant = Links.GetOrCreate(TLinkAddress.CreateTruncating(10), link);
         Links.ClearGarbage(link);
         Assert.True(Links.Exists(link));
+        Assert.True(Links.Exists(dependant));
     }
     
     [Fact]
     public void ClearGarbageWithOutDependency()
     {
-        TLinkAddress link = Links.GetOrCreate(TLinkAddress.CreateTruncating(2), TLinkAddress.CreateTruncating(3));
+        TLinkAddress link = Links.CreatePoint();
         TLinkAddress dependant = Links.GetOrCreate(link, TLinkAddress.CreateTruncating(10));
         Links.ClearGarbage(link);
         Assert.True(Links.Exists(link));
+        Assert.True(Links.Exists(dependant));
     }
     
     [Fact]
     public void ClearGarbageWithoutDependency()
     {
-        TLinkAddress link = Links.GetOrCreate(TLinkAddress.CreateTruncating(2), TLinkAddress.CreateTruncating(3));
-        Links.ClearGarbage(link);
-        Assert.False(Links.Exists(link));
+        TLinkAddress link1 = Links.CreatePoint();
+        TLinkAddress link2 = Links.CreatePoint();
+        TLinkAddress link3 = Links.GetOrCreate(link1, link2);
+        Links.ClearGarbage(link3);
+        Assert.False(Links.Exists(link3));
+        Assert.True(Links.Exists(link2));
+        Assert.True(Links.Exists(link1));
     }
 
     [Fact]
@@ -68,8 +74,8 @@ public class GarbageCollectionTests
            (3: 1 2)
            (4: 3 2)
          */
-        TLinkAddress link1 = Links.GetOrCreate(TLinkAddress.CreateTruncating(1), TLinkAddress.CreateTruncating(1));
-        TLinkAddress link2 = Links.GetOrCreate(TLinkAddress.CreateTruncating(2), TLinkAddress.CreateTruncating(2));
+        TLinkAddress link1 = Links.CreatePoint();
+        TLinkAddress link2 = Links.CreatePoint();
         TLinkAddress link3 = Links.GetOrCreate(link1, link2);
         TLinkAddress link4 = Links.GetOrCreate(link3, link2);
         Links.ClearGarbage(link4);
