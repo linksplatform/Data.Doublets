@@ -19,8 +19,8 @@ public class GarbageCollectionTests
     [Fact]
     public void ClearGarbageWithInDependency()
     {
-        TLinkAddress link = Links.GetOrCreate(TLinkAddress.CreateTruncating(1), TLinkAddress.CreateTruncating(1));
-        TLinkAddress dependant = Links.GetOrCreate(TLinkAddress.CreateTruncating(2), link);
+        TLinkAddress link = Links.GetOrCreate(TLinkAddress.CreateTruncating(2), TLinkAddress.CreateTruncating(3));
+        TLinkAddress dependant = Links.GetOrCreate(TLinkAddress.CreateTruncating(10), link);
         Links.ClearGarbage(link);
         Assert.True(Links.Exists(link));
     }
@@ -28,8 +28,8 @@ public class GarbageCollectionTests
     [Fact]
     public void ClearGarbageWithOutDependency()
     {
-        TLinkAddress link = Links.GetOrCreate(TLinkAddress.CreateTruncating(1), TLinkAddress.CreateTruncating(1));
-        TLinkAddress dependant = Links.GetOrCreate(link, TLinkAddress.CreateTruncating(2));
+        TLinkAddress link = Links.GetOrCreate(TLinkAddress.CreateTruncating(2), TLinkAddress.CreateTruncating(3));
+        TLinkAddress dependant = Links.GetOrCreate(link, TLinkAddress.CreateTruncating(10));
         Links.ClearGarbage(link);
         Assert.True(Links.Exists(link));
     }
@@ -37,7 +37,7 @@ public class GarbageCollectionTests
     [Fact]
     public void ClearGarbageWithoutDependency()
     {
-        TLinkAddress link = Links.GetOrCreate(TLinkAddress.CreateTruncating(1), TLinkAddress.CreateTruncating(1));
+        TLinkAddress link = Links.GetOrCreate(TLinkAddress.CreateTruncating(2), TLinkAddress.CreateTruncating(3));
         Links.ClearGarbage(link);
         Assert.False(Links.Exists(link));
     }
