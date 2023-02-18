@@ -1576,7 +1576,7 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsGarbage<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link) where  TLinkAddress : struct, IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool> 
         {
-            return !links.IsPartialPoint(link) && links.Count(links.Constants.Any, link) == TLinkAddress.Zero && links.Count(links.Constants.Any, links.Constants.Any, link) == TLinkAddress.Zero;
+            return !links.IsPartialPoint(link) && links.Count(links.Constants.Any, link, links.Constants.Any) == TLinkAddress.Zero && links.Count(links.Constants.Any, links.Constants.Any, link) == TLinkAddress.Zero;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
