@@ -1572,5 +1572,32 @@ namespace Platform.Data.Doublets
             }
         }
 
+        #region Garbage Collection
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsGarbage<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link) where  TLinkAddress : struct, IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool> 
+        {
+            return !links.IsPartialPoint(link) && links.Count(links.Constants.Any, link, links.Constants.Any) == TLinkAddress.Zero && links.Count(links.Constants.Any, links.Constants.Any, link) == TLinkAddress.Zero;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void ClearGarbage<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link) where TLinkAddress : struct, IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
+        {
+            ClearGarbage(links, link, links.IsGarbage);
+        }
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void ClearGarbage<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link, Func<TLinkAddress, bool> isGarbage) where  TLinkAddress : struct, IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool> 
+        {
+            if (isGarbage(link))
+            {
+                var contents = new Link<TLinkAddress>(links.GetLink(link));
+                links.ResetValues(link);
+                links.Delete(link);
+                links.ClearGarbage(contents.Source, isGarbage);
+                links.ClearGarbage(contents.Target, isGarbage);
+            }
+        }
+
+        #endregion
     }
 }
