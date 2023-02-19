@@ -4,7 +4,7 @@
         <Description>LinksPlatform's Platform.Data.Doublets Class Library</Description>
         <Copyright>konard, FreePhoenix888</Copyright>
         <AssemblyTitle>Platform.Data.Doublets</AssemblyTitle>
-        <VersionPrefix>0.17.0</VersionPrefix>
+        <VersionPrefix>0.17.1</VersionPrefix>
         <Authors>konard, FreePhoenix888</Authors>
         <TargetFramework>net7</TargetFramework>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -24,10 +24,7 @@
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <LangVersion>latest</LangVersion>
-        <PackageReleaseNotes>Platform.Memory dependency is updated to 0.4.1.
-Platform.Collections.Methods dependency is updated to 0.7.2.
-Platform.Data dependency is updated to 0.16.1.
-Generic math is used therefore generic constraints are added and redundant methods and classes are removed.</PackageReleaseNotes>
+        <PackageReleaseNotes>Garbage collection extension for ILinks interface are added.</PackageReleaseNotes>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
