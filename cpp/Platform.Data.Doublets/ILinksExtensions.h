@@ -110,19 +110,6 @@ namespace Platform::Data::Doublets
     }
 
     template<typename TStorage>
-    static void DeleteAll(TStorage& storage)
-    {
-        for (auto i { Count(storage) }; i > storage.Constants.Null; --i)
-        {
-            Delete(storage, i);
-            if (i - 1 != Count(storage))
-            {
-                i = Count(storage);
-            }
-        }
-    }
-
-    template<typename TStorage>
     static typename TStorage::LinkAddressType First(const TStorage& storage)
     {
         constexpr auto constants = storage.Constants;
@@ -699,9 +686,13 @@ namespace Platform::Data::Doublets
     template<typename TStorage>
     auto DeleteAll(TStorage& storage)
     {
+        auto handler = [](typename TStorage::LinkType before, typename TStorage::LinkType substitution) {
+            return typename TStorage::LinkAddressType {};
+        };
+        auto any = storage.Constants.Any;
         for (auto count = Count(storage); count != 0; count = Count(storage))
         {
-            DIRECT_METHOD_CALL(TStorage, storage, Delete,count);
+            DIRECT_METHOD_CALL(TStorage, storage, Delete, {count, any, any}, handler);
         }
     }
 
