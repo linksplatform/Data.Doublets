@@ -690,7 +690,7 @@ namespace Platform::Data::Doublets
             return typename TStorage::LinkAddressType {};
         };
         auto any = storage.Constants.Any;
-        for (auto count = Count(storage); count != 0; count = Count(storage))
+        for (auto count = Count(storage); count != storage.Constants.Null; count = Count(storage))
         {
             DIRECT_METHOD_CALL(TStorage, storage, Delete, {count, any, any}, handler);
         }
