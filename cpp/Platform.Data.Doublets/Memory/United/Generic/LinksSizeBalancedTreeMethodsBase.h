@@ -58,7 +58,7 @@
         auto operator[](std::size_t index)
         {
             auto root = GetTreeRoot();
-            if (index >= GetSize(root))
+            if (index >= this->object.GetSize(root))
             {
                 return 0;
             }
@@ -108,7 +108,7 @@
         public: LinkAddressType CountUsages(LinkAddressType linkAddress)
         {
             auto root = this->GetTreeRoot();
-            auto total = this->GetSize(root);
+            auto total = this->object().GetSize(root);
             auto totalRightIgnore = 0;
             while (root != 0)
             {
