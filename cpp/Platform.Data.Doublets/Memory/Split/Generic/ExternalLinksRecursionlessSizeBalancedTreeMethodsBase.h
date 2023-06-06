@@ -74,7 +74,7 @@
         public: LinkAddressType operator[](LinkAddressType index)
         {
                 auto root = GetTreeRoot();
-                if (index >= GetSize(root))
+                if (index >= this->object().GetSize(root))
                 {
                     return 0;
                 }
@@ -124,7 +124,7 @@
         public: LinkAddressType CountUsages(LinkAddressType link)
         {
             auto root = this->GetTreeRoot();
-            auto total = this->GetSize(root);
+            auto total = this->object().GetSize(root);
             auto totalRightIgnore = 0;
             while (root != 0)
             {
