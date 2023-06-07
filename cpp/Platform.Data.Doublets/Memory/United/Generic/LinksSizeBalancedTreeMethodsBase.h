@@ -2,11 +2,7 @@
 {
 
     template<typename Self, typename TLinksOptions>
-    struct LinksSizeBalancedTreeMethodsBase
-        :
-          //public Trees::SizeBalancedTreeMethods<Self, LinkAddressType>,
-    public Platform::Collections::Methods::Trees::RecursionlessSizeBalancedTreeMethods<Self, typename TLinksOptions::LinkAddressType>
-          /* public ILinksTreeMethods<TLinksOptions>, */
+    struct LinksSizeBalancedTreeMethodsBase : public Platform::Collections::Methods::Trees::SizeBalancedTreeMethods<Self, typename TLinksOptions::LinkAddressType>
     {
         using LinksOptionsType = TLinksOptions;
         using LinkAddressType = typename LinksOptionsType::LinkAddressType;
@@ -15,21 +11,13 @@
         static constexpr LinksConstants<LinkAddressType> Constants = LinksOptionsType::Constants;
 
 
-        public: using methods = Platform::Collections::Methods::Trees::RecursionlessSizeBalancedTreeMethods<Self, LinkAddressType>;
+        public: using methods = Platform::Collections::Methods::Trees::SizeBalancedTreeMethods<Self, LinkAddressType>;
 
         public: std::byte* const Links;
         public: std::byte* const Header;
 
         public: LinksSizeBalancedTreeMethodsBase(std::byte* storage, std::byte* header)
             : Links(storage), Header(header) {}
-
-        public: LinkAddressType GetTreeRoot() { return this->object().GetTreeRoot(); }
-
-        public: LinkAddressType GetBasePartValue(LinkAddressType linkAddress) { return this->object().GetBasePartValue(linkAddress); }
-
-        public: bool FirstIsToTheRightOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource, LinkAddressType rootTarget) { return this->object().FirstIsToTheRightOfSecond(source, target, rootSource, rootTarget); }
-
-        public: bool FirstIsToTheLeftOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource, LinkAddressType rootTarget) { return this->object().FirstIsToTheLeftOfSecond(source, target, rootSource, rootTarget); }
 
         public: auto& GetHeaderReference() { return *reinterpret_cast<LinksHeader<LinkAddressType>*>(Header); }
 
@@ -45,20 +33,20 @@
         {
             auto& firstLink = this->GetLinkReference(first);
             auto& secondLink = this->GetLinkReference(second);
-            return this->FirstIsToTheLeftOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
+            return this->object().FirstIsToTheLeftOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
         }
 
         public: bool FirstIsToTheRightOfSecond(LinkAddressType first, LinkAddressType second)
         {
             auto& firstLink = this->GetLinkReference(first);
             auto& secondLink = this->GetLinkReference(second);
-            return this->FirstIsToTheRightOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
+            return this->object().FirstIsToTheRightOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
         }
 
         auto operator[](std::size_t index)
         {
-            auto root = GetTreeRoot();
-            if (index >= this->object.GetSize(root))
+            auto root = this->object().GetTreeRoot();
+            if (index >= this->object().GetSize(root))
             {
                 return 0;
             }
@@ -83,17 +71,17 @@
 
         public: LinkAddressType Search(LinkAddressType source, LinkAddressType target)
         {
-            auto root = this->GetTreeRoot();
+            auto root = this->object().GetTreeRoot();
             while (root != 0)
             {
                 auto& rootLink = this->GetLinkReference(root);
                 auto rootSource = rootLink.Source;
                 auto rootTarget = rootLink.Target;
-                if (this->FirstIsToTheLeftOfSecond(source, target, rootSource, rootTarget))
+                if (this->object().FirstIsToTheLeftOfSecond(source, target, rootSource, rootTarget))
                 {
                     root = this->GetLeftOrDefault(root);
                 }
-                else if (this->FirstIsToTheRightOfSecond(source, target, rootSource, rootTarget))
+                else if (this->object().FirstIsToTheRightOfSecond(source, target, rootSource, rootTarget))
                 {
                     root = this->GetRightOrDefault(root);
                 }
@@ -107,12 +95,12 @@
 
         public: LinkAddressType CountUsages(LinkAddressType linkAddress)
         {
-            auto root = this->GetTreeRoot();
+            auto root = this->object().GetTreeRoot();
             auto total = this->object().GetSize(root);
             auto totalRightIgnore = 0;
             while (root != 0)
             {
-                auto base = this->GetBasePartValue(root);
+                auto base = this->object().GetBasePartValue(root);
                 if (base <= linkAddress)
                 {
                     root = this->GetRightOrDefault(root);
@@ -123,11 +111,11 @@
                     root = this->GetLeftOrDefault(root);
                 }
             }
-            root = this->GetTreeRoot();
+            root = this->object().GetTreeRoot();
             auto totalLeftIgnore = 0;
             while (root != 0)
             {
-                auto base = this->GetBasePartValue(root);
+                auto base = this->object().GetBasePartValue(root);
                 if (base >= linkAddress)
                 {
                     root = this->GetLeftOrDefault(root);
@@ -141,7 +129,7 @@
             return total - totalRightIgnore - totalLeftIgnore;
         }
 
-        public: LinkAddressType EachUsage(LinkAddressType base, const ReadHandlerType& handler) { return this->EachUsageCore(base, this->GetTreeRoot(), handler); }
+        public: LinkAddressType EachUsage(LinkAddressType base, const ReadHandlerType& handler) { return this->EachUsageCore(base, this->object().GetTreeRoot(), handler); }
 
         private: LinkAddressType EachUsageCore(LinkAddressType base, LinkAddressType linkAddress, const ReadHandlerType& handler)
         {
@@ -150,7 +138,7 @@
             {
                 return $continue;
             }
-            auto linkBasePart = this->GetBasePartValue(linkAddress);
+            auto linkBasePart = this->object().GetBasePartValue(linkAddress);
             auto $break = Constants.Break;
             if (linkBasePart > (base))
             {
