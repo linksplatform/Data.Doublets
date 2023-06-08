@@ -8,7 +8,7 @@ pip install conan==1.53
 
 conan profile new linksplatform --detect
 conan profile update settings.compiler=gcc linksplatform
-conan profile update settings.compiler.version=12 linksplatform
+conan profile update settings.compiler.version=11 linksplatform
 conan profile update settings.compiler.libcxx=libstdc++11 linksplatform
 conan profile show linksplatform
 
