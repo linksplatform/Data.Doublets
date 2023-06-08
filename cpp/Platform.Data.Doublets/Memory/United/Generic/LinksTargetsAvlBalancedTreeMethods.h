@@ -24,9 +24,9 @@
 
         public: void SetRight(LinkAddressType node, LinkAddressType right) { this->GetLinkReference(node).RightAsTarget = right; }
 
-        public: LinkAddressType GetSize(LinkAddressType node) { return this->GetSizeValue(this->GetLinkReference(node).SizeAsSource); }
+        public: LinkAddressType GetSize(LinkAddressType node) { return this->GetSizeValue(this->GetLinkReference(node).SizeAsTarget); }
 
-        public: void SetSize(LinkAddressType node, LinkAddressType size) { this->SetSizeValue(&this->GetLinkReference(node).SizeAsSource, size); }
+        public: void SetSize(LinkAddressType node, LinkAddressType size) { this->SetSizeValue(&this->GetLinkReference(node).SizeAsTarget, size); }
 
         public: bool GetLeftIsChild(LinkAddressType node) {
             return this->GetLeftIsChildValue(this->GetLinkReference(node).SizeAsTarget);
@@ -41,15 +41,15 @@
         }
 
         public: void SetRightIsChild(LinkAddressType node, bool value) {
-            this->SetRightIsChildValue(&this->GetLinkReference(node).SizeAsSource, value);
+            this->SetRightIsChildValue(&this->GetLinkReference(node).SizeAsTarget, value);
         }
 
         public: int8_t GetBalance(LinkAddressType node) { 
-            return this->GetBalanceValue(this->GetLinkReference(node).SizeAsSource);
+            return this->GetBalanceValue(this->GetLinkReference(node).SizeAsTarget);
         }
 
         public: void SetBalance(LinkAddressType node, int8_t value) {
-            this->SetBalanceValue(&this->GetLinkReference(node).SizeAsSource, value);
+            this->SetBalanceValue(&this->GetLinkReference(node).SizeAsTarget, value);
         }
 
         public: LinkAddressType GetTreeRoot() { return this->GetHeaderReference().RootAsTarget; }
