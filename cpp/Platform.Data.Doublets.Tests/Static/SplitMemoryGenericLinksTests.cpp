@@ -73,7 +73,7 @@
         UsingStorage<DecoratedStorageType>(action);
     }
 
-    TEST(SplitMemoryGenericLinksTests, CrudTestWithSizeBalancedTrees)
+    TEST(StaticSplitMemoryGenericLinksTests, CrudTestWithSizeBalancedTrees)
     {
         UsingStorageWithoutExternalReferencesWithSizeBalancedTrees<std::uint8_t>(
             [](auto &&storage) { return TestCrudOperations(storage); });
@@ -85,7 +85,7 @@
             [](auto &&storage) { return TestCrudOperations(storage); });
     }
 
-    TEST(SplitMemoryGenericLinksTests, RawNumbersCrudTestWithSizeBalancedTrees)
+    TEST(StaticSplitMemoryGenericLinksTests, RawNumbersCrudTestWithSizeBalancedTrees)
     {
         UsingStorageWithExternalReferencesWithSizeBalancedTrees<std::uint8_t>([](auto &&storage) { 
             return TestRawNumbersCrudOperations(storage); 
@@ -101,7 +101,7 @@
         });
     }
 
-    TEST(SplitMemoryGenericLinksTests, MultipleRandomCreationsAndDeletionsTestWithSizeBalancedTrees)
+    TEST(StaticSplitMemoryGenericLinksTests, MultipleRandomCreationsAndDeletionsTestWithSizeBalancedTrees)
     {
         UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithSizeBalancedTrees<std::uint8_t>([] (auto&& storage) { return  TestMultipleRandomCreationsAndDeletions(storage,16); });
         UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithSizeBalancedTrees<std::uint16_t>([] (auto&& storage) { return  TestMultipleRandomCreationsAndDeletions(storage,100); });
@@ -109,7 +109,7 @@
         UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithSizeBalancedTrees<std::uint64_t>([] (auto&& storage) { return  TestMultipleRandomCreationsAndDeletions(storage,100); });
     }
 
-    TEST(SplitMemoryGenericLinksTests, CrudTestWithRecursionlessSizeBalancedTrees)
+    TEST(StaticSplitMemoryGenericLinksTests, CrudTestWithRecursionlessSizeBalancedTrees)
     {
         UsingStorageWithoutExternalReferencesWithRecursionlessSizeBalancedTrees<std::uint8_t>(
             [](auto &&storage) { return TestCrudOperations(storage); });
@@ -121,7 +121,7 @@
             [](auto &&storage) { return TestCrudOperations(storage); });
     }
 
-    TEST(SplitMemoryGenericLinksTests, RawNumbersCrudTestWithRecursionlessSizeBalancedTrees)
+    TEST(StaticSplitMemoryGenericLinksTests, RawNumbersCrudTestWithRecursionlessSizeBalancedTrees)
     {
         UsingStorageWithExternalReferencesWithRecursionlessSizeBalancedTrees<std::uint8_t>([](auto &&storage) { 
             return TestRawNumbersCrudOperations(storage); 
@@ -137,7 +137,7 @@
         });
     }
 
-    TEST(SplitMemoryGenericLinksTests, MultipleRandomCreationsAndDeletionsTestWithRecursionlessSizeBalancedTrees)
+    TEST(StaticSplitMemoryGenericLinksTests, MultipleRandomCreationsAndDeletionsTestWithRecursionlessSizeBalancedTrees)
     {
         UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithRecursionlessSizeBalancedTrees<std::uint8_t>([] (auto&& storage) { return  TestMultipleRandomCreationsAndDeletions(storage,16); });
         UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithRecursionlessSizeBalancedTrees<std::uint16_t>([] (auto&& storage) { return  TestMultipleRandomCreationsAndDeletions(storage,100); });

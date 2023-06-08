@@ -105,7 +105,7 @@
         UsingStorage<DecoratedStorageType>(action);
     }
 
-    TEST(GenericLinksTests, CrudTestWithSizeBalancedTrees)
+    TEST(DynamicGenericLinksTests, CrudTestWithSizeBalancedTrees)
     {
         UsingStorageWithExternalReferencesWithSizeBalancedTrees<std::uint8_t>(
             [](auto &&storage) { TestCrudOperations(storage); });
@@ -117,7 +117,7 @@
             [](auto &&storage) { TestCrudOperations(storage); });
     }
 
-    TEST(GenericLinksTests, RawNumbersCrudTestWithSizeBalancedTrees)
+    TEST(DynamicGenericLinksTests, RawNumbersCrudTestWithSizeBalancedTrees)
     {
         UsingStorageWithExternalReferencesWithSizeBalancedTrees<std::uint8_t>(
             [](auto &&storage) { TestRawNumbersCrudOperations(storage); });
@@ -129,7 +129,7 @@
             [](auto &&storage) { TestRawNumbersCrudOperations(storage); });
     }
 
-    TEST(GenericLinksTests, MultipleRandomCreationsAndDeletionsTestWithSizeBalancedTrees)
+    TEST(DynamicGenericLinksTests, MultipleRandomCreationsAndDeletionsTestWithSizeBalancedTrees)
     {
         UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithSizeBalancedTrees<std::uint8_t>([] (auto&& storage) { return  TestMultipleRandomCreationsAndDeletions(storage,16); });
         UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithSizeBalancedTrees<std::uint16_t>([] (auto&& storage) { return  TestMultipleRandomCreationsAndDeletions(storage,100); });
@@ -137,7 +137,7 @@
         UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithSizeBalancedTrees<std::uint64_t>([] (auto&& storage) { return  TestMultipleRandomCreationsAndDeletions(storage,100); });
     }
 
-    TEST(GenericLinksTests, CrudTestWithRecursionlessSizeBalancedTrees)
+    TEST(DynamicGenericLinksTests, CrudTestWithRecursionlessSizeBalancedTrees)
     {
         UsingStorageWithExternalReferencesWithRecursionlessSizeBalancedTrees<std::uint8_t>(
             [](auto &&storage) { TestCrudOperations(storage); });
@@ -149,7 +149,7 @@
             [](auto &&storage) { TestCrudOperations(storage); });
     }
 
-    TEST(GenericLinksTests, RawNumbersCrudTestWithRecursionlessSizeBalancedTrees)
+    TEST(DynamicGenericLinksTests, RawNumbersCrudTestWithRecursionlessSizeBalancedTrees)
     {
         UsingStorageWithExternalReferencesWithRecursionlessSizeBalancedTrees<std::uint8_t>(
             [](auto &&storage) { TestRawNumbersCrudOperations(storage); });
@@ -161,7 +161,7 @@
             [](auto &&storage) { TestRawNumbersCrudOperations(storage); });
     }
 
-    TEST(GenericLinksTests, MultipleRandomCreationsAndDeletionsTestWithRecursionlessSizeBalancedTrees)
+    TEST(DynamicGenericLinksTests, MultipleRandomCreationsAndDeletionsTestWithRecursionlessSizeBalancedTrees)
     {
         UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithRecursionlessSizeBalancedTrees<std::uint8_t>([] (auto&& storage) { return  TestMultipleRandomCreationsAndDeletions(storage,16); });
         UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithRecursionlessSizeBalancedTrees<std::uint16_t>([] (auto&& storage) { return  TestMultipleRandomCreationsAndDeletions(storage,100); });
@@ -169,7 +169,7 @@
         UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithRecursionlessSizeBalancedTrees<std::uint64_t>([] (auto&& storage) { return  TestMultipleRandomCreationsAndDeletions(storage,100); });
     }
     
-    TEST(GenericLinksTests, CrudTestWithAvlTrees)
+    TEST(DynamicGenericLinksTests, CrudTestWithAvlTrees)
     {
         UsingStorageWithExternalReferencesWithAvlTrees<std::uint8_t>(
             [](auto &&storage) { TestCrudOperations(storage); });
@@ -181,7 +181,7 @@
             [](auto &&storage) { TestCrudOperations(storage); });
     }
 
-    TEST(GenericLinksTests, RawNumbersCrudTestWithAvlTrees)
+    TEST(DynamicGenericLinksTests, RawNumbersCrudTestWithAvlTrees)
     {
         UsingStorageWithExternalReferencesWithAvlTrees<std::uint8_t>(
             [](auto &&storage) { TestRawNumbersCrudOperations(storage); });
@@ -193,7 +193,7 @@
             [](auto &&storage) { TestRawNumbersCrudOperations(storage); });
     }
 
-    TEST(GenericLinksTests, MultipleRandomCreationsAndDeletionsTestWithAvlBalancedTrees)
+    TEST(DynamicGenericLinksTests, MultipleRandomCreationsAndDeletionsTestWithAvlBalancedTrees)
     {
         UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithAvlTrees<std::uint8_t>([] (auto&& storage) { return  TestMultipleRandomCreationsAndDeletions(storage,16); });
         UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithAvlTrees<std::uint16_t>([] (auto&& storage) { return  TestMultipleRandomCreationsAndDeletions(storage,100); });
