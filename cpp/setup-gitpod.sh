@@ -32,3 +32,11 @@ conan create platform.delegates/all platform.delegates/0.1.3@ -pr=linksplatform
 conan create platform.equality/all platform.equality/0.0.1@ -pr=linksplatform
 conan create platform.exceptions/all platform.exceptions/0.3.0@ -pr=linksplatform
 conan create platform.hashing/all platform.hashing/0.2.0@ -pr=linksplatform
+
+mkdir ~/Code
+mkdir ~/Code/LinksPlatform
+git clone https://github.com/linksplatform/Interfaces.git ~/Code/LinksPlatform
+git clone https://github.com/linksplatform/Collections.Methods.git ~/Code/LinksPlatform
+git clone https://github.com/linksplatform/Collections.git ~/Code/LinksPlatform
+git clone https://github.com/linksplatform/Numbers.git ~/Code/LinksPlatform
+git clone https://github.com/linksplatform/Data.git ~/Code/LinksPlatform
