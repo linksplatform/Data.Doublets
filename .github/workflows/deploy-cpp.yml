@@ -1,0 +1,16 @@
+name: Deploy new cpp version
+
+on:
+  push:
+    branches: main 
+    paths:
+      - 'cpp/**/*.nuspec'
+  workflow_dispatch:
+
+jobs:
+  main:
+    uses: linksplatform/Workflows/.github/workflows/deploy-cpp.yml@main
+    with:
+      recipe_folder: "platform.delegates"
+    secrets:
+        NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}

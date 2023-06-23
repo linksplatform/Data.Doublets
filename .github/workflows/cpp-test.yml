@@ -1,0 +1,25 @@
+name: Test cpp
+
+on:
+  push:
+    branches:
+      - 'main'
+    paths:
+      - 'cpp/**.h'
+      - 'cpp/**.cpp'
+      - 'cpp/CMakeLists.txt'
+      - 'cpp/conanfile.txt'
+  pull_request:
+    types:
+      - edited
+    branches:
+      - 'main'
+    paths:
+      - 'cpp/**.h'
+      - 'cpp/**.cpp'
+      - 'cpp/CMakeLists.txt'
+      - 'cpp/conanfile.txt'
+      
+jobs:
+  main:
+    uses: linksplatform/Workflows/.github/workflows/cpp-test.yml@main
