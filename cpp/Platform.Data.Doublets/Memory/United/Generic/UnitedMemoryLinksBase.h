@@ -417,20 +417,19 @@
             if (linkAddress < header.AllocatedLinks)
             {
                 _UnusedLinksListMethods->AttachAsFirst(linkAddress);
+                return handler ? handler(before, LinkType{}) : Constants.Continue;
             }
             else if ((linkAddress == header.AllocatedLinks))
             {
-                auto allLinksBeforeDecrementAllocatedLinks = All(*this);
                 --header.AllocatedLinks;
                 _memory.UsedCapacity(_memory.UsedCapacity() - LinkSizeInBytes);
                 while ((header.AllocatedLinks > LinkAddressType {}) && IsUnusedLink(header.AllocatedLinks))
                 {
-                    auto allLinksBeforeDetachAllocatedLinks = All(*this);
                     _UnusedLinksListMethods->Detach(header.AllocatedLinks);
                     --header.AllocatedLinks;
                     _memory.UsedCapacity(_memory.UsedCapacity() - LinkSizeInBytes);
-                    auto allLinksBeforeAfterAllocatedLinks = All(*this);
                 }
+                return handler ? handler(before, LinkType{}) : Constants.Continue;
             }
             return handler(before, LinkType{});
         }
