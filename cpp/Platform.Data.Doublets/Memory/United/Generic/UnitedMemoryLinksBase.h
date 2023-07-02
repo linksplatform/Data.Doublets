@@ -431,7 +431,7 @@
                 }
                 return handler ? handler(before, LinkType{}) : Constants.Continue;
             }
-            return handler(before, LinkType{});
+            return Constants.Continue;
         }
 
         LinkType GetLinkStruct(LinkAddressType linkIndex) const
