@@ -859,6 +859,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             if (linkAddress < this->GetHeaderReference().AllocatedLinks)
             {
                 UnusedLinksListMethods->AttachAsFirst(linkAddress);
+                return handler ? handler(before, LinkType{}) : Constants.Continue;
             }
             else if (linkAddress == this->GetHeaderReference().AllocatedLinks)
             {
@@ -874,8 +875,9 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     _dataMemory.UsedCapacity(_dataMemory.UsedCapacity() - LinkDataPartSizeInBytes);
                     _indexMemory.UsedCapacity(_indexMemory.UsedCapacity() - LinkIndexPartSizeInBytes);
                 }
+                return handler ? handler(before, LinkType{}) : Constants.Continue;
             }
-            return handler ? handler(before, LinkType{}) : Constants.Continue;
+            return Constants.Continue;
         }
 
     public:
