@@ -13,7 +13,6 @@
 #include <Platform.Exceptions.h>
 #include <Platform.Collections.Methods.h>
 #include <Platform.Collections.h>
-#include <Platform.Threading.h>
 #include <Platform.Memory.h>
 #include <Platform.Data.h>
 #include <Platform.Interfaces.h>
