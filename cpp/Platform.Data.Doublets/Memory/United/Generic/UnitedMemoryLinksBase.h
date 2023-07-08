@@ -414,10 +414,11 @@
             auto& header = this->GetHeaderReference();
             auto linkAddress = restriction[Constants.IndexPart];
             auto before = GetLinkStruct(linkAddress);
+            auto null = Constants.Null;
             if (linkAddress < header.AllocatedLinks)
             {
                 _UnusedLinksListMethods->AttachAsFirst(linkAddress);
-                return handler ? handler(before, LinkType{}) : Constants.Continue;
+                return handler ? handler(before, LinkType{null, null, null}) : Constants.Continue;
             }
             else if ((linkAddress == header.AllocatedLinks))
             {
@@ -429,7 +430,7 @@
                     --header.AllocatedLinks;
                     _memory.UsedCapacity(_memory.UsedCapacity() - LinkSizeInBytes);
                 }
-                return handler ? handler(before, LinkType{}) : Constants.Continue;
+                return handler ? handler(before, LinkType{null, null, null}) : Constants.Continue;
             }
             return Constants.Continue;
         }
