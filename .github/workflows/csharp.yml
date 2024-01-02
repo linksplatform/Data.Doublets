@@ -87,7 +87,7 @@ jobs:
        fetch-depth: 0
     - name: Get changed files using defaults
       id: changed-files
-      uses: tj-actions/changed-files@v21
+      uses: tj-actions/changed-files@v41
     - name: Set output isCsFilesChanged
       id: setIsCsFilesChangedOutput
       run: |
