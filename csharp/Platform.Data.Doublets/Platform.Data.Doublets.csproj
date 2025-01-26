@@ -25,7 +25,8 @@
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <LangVersion>latest</LangVersion>
-        <PackageReleaseNotes>Platform.Collections.Methods dependency is updated to 0.7.3.</PackageReleaseNotes>
+        <PackageReleaseNotes>Update to use only .NET 8.
+README.md is added to NuGet.</PackageReleaseNotes>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
