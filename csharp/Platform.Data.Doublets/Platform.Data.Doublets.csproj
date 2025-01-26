@@ -6,7 +6,7 @@
         <AssemblyTitle>Platform.Data.Doublets</AssemblyTitle>
         <VersionPrefix>0.17.2</VersionPrefix>
         <Authors>konard, FreePhoenix888</Authors>
-        <TargetFramework>net7</TargetFramework>
+        <TargetFramework>net8</TargetFramework>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <AssemblyName>Platform.Data.Doublets</AssemblyName>
         <PackageId>Platform.Data.Doublets</PackageId>
