@@ -11,6 +11,7 @@
         <AssemblyName>Platform.Data.Doublets</AssemblyName>
         <PackageId>Platform.Data.Doublets</PackageId>
         <PackageTags>LinksPlatform;Data.Doublets;ILinks;UInt64Links;ResizableDirectMemoryLinks;UInt64ResizableDirectMemoryLinks</PackageTags>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageIconUrl>https://raw.githubusercontent.com/linksplatform/Documentation/18469f4d033ee9a5b7b84caab9c585acab2ac519/doc/Avatar-rainbow-icon-64x64.png</PackageIconUrl>
         <PackageProjectUrl>https://linksplatform.github.io/Data.Doublets</PackageProjectUrl>
         <PackageLicenseExpression>Unlicense</PackageLicenseExpression>
@@ -40,6 +41,10 @@
         <PackageReference Include="Platform.Collections.Methods" Version="0.7.3" />
         <PackageReference Include="Platform.Singletons" Version="0.3.0" />
         <PackageReference Include="Platform.Memory" Version="0.4.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="..\..\README.md" Pack="true" PackagePath="\"/>
     </ItemGroup>
 
 </Project>
