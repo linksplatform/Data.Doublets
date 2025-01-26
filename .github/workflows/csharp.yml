@@ -26,19 +26,39 @@ jobs:
         run: |
           dotnet test -c Release -f net8
   pushNuGetPackageToGitHubPackageRegistry:
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
+    needs: test 
+    runs-on: ubuntu-latest 
+    steps: 
+      - uses: actions/checkout@v4 
+        with: 
+          submodules: true 
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
         with:
-          submodules: true
-      - uses: nuget/setup-nuget@v1
-      - name: Publish NuGet package to GitHub Package Registry
+          dotnet-version: '8.0.x' # Specify your required .NET version
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+      - name: Pack
+        run: dotnet pack --configuration Release --no-restore --output ./nupkgs
+      - name: Add GitHub Package Registry as NuGet Source
         run: |
-          dotnet build -c Release
-          dotnet pack -c Release
-          nuget source Add -Name "GitHub" -Source "https://nuget.pkg.github.com/linksplatform/index.json" -UserName linksplatform -Password ${{ secrets.GITHUB_TOKEN }}
-          nuget push **/*.nupkg -Source "GitHub" -SkipDuplicate
+          dotnet nuget add source "https://nuget.pkg.github.com/linksplatform/index.json" \
+            --name "GitHub" \
+            --username "linksplatform" \
+            --password "${{ secrets.GITHUB_TOKEN }}" \
+            --store-password-in-clear-text
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push NuGet Package to GitHub Package Registry 
+        run: |
+          dotnet nuget push ./nupkgs/*.nupkg \
+            --source "GitHub" \
+            --api-key "${{ secrets.GITHUB_TOKEN }}" \
+            --skip-duplicate
+        env:
+          NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   pusnToNuget:
     runs-on: ubuntu-latest
     needs: test
