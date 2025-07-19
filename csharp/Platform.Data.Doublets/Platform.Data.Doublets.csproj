@@ -25,8 +25,7 @@
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <LangVersion>latest</LangVersion>
-        <PackageReleaseNotes>Update to use only .NET 8.
-README.md is added to NuGet.</PackageReleaseNotes>
+        <PackageReleaseNotes>Update target framework from net7 to net8.</PackageReleaseNotes>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
