@@ -423,7 +423,7 @@
             {
                 --header.AllocatedLinks;
                 _memory.UsedCapacity(_memory.UsedCapacity() - LinkSizeInBytes);
-                while ((header.AllocatedLinks > LinkAddressType {}) && IsUnusedLink(header.AllocatedLinks))
+                while ((header.AllocatedLinks > LinkAddressType {}) && IsDeleted(header.AllocatedLinks))
                 {
                     _UnusedLinksListMethods->Detach(header.AllocatedLinks);
                     --header.AllocatedLinks;
@@ -461,10 +461,10 @@
             {
                 return false;
             }
-            return (linkAddress >= Constants.InternalReferencesRange.Minimum) && (linkAddress <= this->GetHeaderReference().AllocatedLinks) && !IsUnusedLink(linkAddress);
+            return (linkAddress >= Constants.InternalReferencesRange.Minimum) && (linkAddress <= this->GetHeaderReference().AllocatedLinks) && !IsDeleted(linkAddress);
         }
 
-        bool IsUnusedLink(LinkAddressType linkIndex) const
+        bool IsDeleted(LinkAddressType linkIndex) const
         {
             if (GetHeaderReference().FirstFreeLink != linkIndex)// May be this check is not needed
             {
