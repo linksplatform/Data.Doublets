@@ -57,3 +57,22 @@ if(${LINKS_PLATFORM_BENCHMARKS})
     target_link_libraries(${PROJECT_NAME}.Benchmarks PRIVATE benchmark::benchmark)
     target_link_libraries(${PROJECT_NAME}.Benchmarks PRIVATE ${PROJECT_NAME}.Library)
 endif()
+
+# Install targets for Conan packaging
+install(TARGETS ${PROJECT_NAME}.Library
+    EXPORT ${PROJECT_NAME}Targets
+    INCLUDES DESTINATION include
+)
+
+# Install headers
+install(DIRECTORY ${PROJECT_NAME}/
+    DESTINATION include/${PROJECT_NAME}
+    FILES_MATCHING PATTERN "*.h"
+)
+
+# Install export
+install(EXPORT ${PROJECT_NAME}Targets
+    FILE ${PROJECT_NAME}Targets.cmake
+    NAMESPACE ${PROJECT_NAME}::
+    DESTINATION lib/cmake/${PROJECT_NAME}
+)
