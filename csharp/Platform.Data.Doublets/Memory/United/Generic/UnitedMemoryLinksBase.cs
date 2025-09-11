@@ -672,6 +672,12 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para>
         /// Determines whether this instance is unused link.
         /// </para>
+        /// <para>
+        /// This method works correctly because when a link is deleted, it is not indexed using trees 
+        /// (hence SizeAsSource = 0), but it has Source field used as Previous element and Target field 
+        /// used as Next element in the doubly-linked list of free links. This dual usage of the same 
+        /// memory structure allows efficient free link management without additional storage overhead.
+        /// </para>
         /// <para></para>
         /// </summary>
         /// <param name="linkIndex">
@@ -682,12 +688,23 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para>The bool</para>
         /// <para></para>
         /// </returns>
+        /// <remarks>
+        /// <para>
+        /// The condition (SizeAsSource == 0 AND Source != 0) identifies unused links because:
+        /// - SizeAsSource is set to default (0) when the link is removed from tree indexing
+        /// - Source remains non-zero as it serves as the "Previous" pointer in the free links list
+        /// - This pattern is unique to deleted links since active links either have SizeAsSource > 0 
+        ///   (when indexed in trees) or Source == 0 (when not used as source in any connections)
+        /// </para>
+        /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual bool IsUnusedLink(TLinkAddress linkIndex)
         {
             if (!AreEqual(GetHeaderReference().FirstFreeLink, linkIndex)) // May be this check is not needed
             {
                 ref var link = ref GetLinkReference(linkIndex);
+                // Check if link is in free list: SizeAsSource is reset to 0 when removed from indexing,
+                // but Source is non-zero as it serves as Previous pointer in the free links doubly-linked list
                 return AreEqual(link.SizeAsSource, default) && !AreEqual(link.Source, default);
             }
             else
