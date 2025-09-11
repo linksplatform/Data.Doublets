@@ -11,6 +11,6 @@ jobs:
   main:
     uses: linksplatform/Workflows/.github/workflows/deploy-cpp.yml@main
     with:
-      recipe_folder: "platform.delegates"
+      recipe_folder: "platform.data.doublets"
     secrets:
         NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
