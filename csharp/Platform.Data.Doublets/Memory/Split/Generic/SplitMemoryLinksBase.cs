@@ -223,141 +223,81 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
 
     /// <summary>
     ///     <para>
-    ///         Counts the substitution.
+    ///         Counts the substitution for a 3-element query (index, source, target).
     ///     </para>
     ///     <para></para>
     /// </summary>
-    /// <param name="restriction">
-    ///     <para>The substitution.</para>
+    /// <param name="index">
+    ///     <para>The link index.</para>
     ///     <para></para>
     /// </param>
-    /// <exception cref="NotSupportedException">
-    ///     <para>Другие размеры и способы ограничений не поддерживаются.</para>
+    /// <param name="source">
+    ///     <para>The source.</para>
     ///     <para></para>
-    /// </exception>
+    /// </param>
+    /// <param name="target">
+    ///     <para>The target.</para>
+    ///     <para></para>
+    /// </param>
     /// <returns>
-    ///     <para>The link</para>
+    ///     <para>The count.</para>
     ///     <para></para>
     /// </returns>
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
-    public virtual TLinkAddress Count(IList<TLinkAddress>? restriction)
+    protected virtual TLinkAddress CountBase(TLinkAddress index, TLinkAddress source, TLinkAddress target)
     {
-        // Если нет ограничений, тогда возвращаем общее число связей находящихся в хранилище.
-        if (restriction.Count == 0)
-        {
-            return Total;
-        }
         var constants = Constants;
         var any = constants.Any;
-        var index = this.GetIndex(link: restriction);
-        if (restriction.Count == 1)
+        var externalReferencesRange = constants.ExternalReferencesRange;
+        
+        if ((index == any))
         {
-            if ((index == any))
+            if ((source == any) && (target == any))
             {
                 return Total;
             }
-            return Exists(link: index) ? GetOne() : GetZero();
-        }
-        if (restriction.Count == 2)
-        {
-            var value = restriction[index: 1];
-            if ((index == any))
+            if ((source == any))
             {
-                if ((value == any))
+                if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: target))
                 {
-                    return Total; // Any - как отсутствие ограничения
+                    return ExternalTargetsTreeMethods.CountUsages(root: target);
                 }
-                var externalReferencesRange = constants.ExternalReferencesRange;
-                if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: value))
+                return InternalTargetsTreeMethods.CountUsages(root: target);
+            }
+            if ((target == any))
+            {
+                if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: source))
                 {
-                    return (ExternalSourcesTreeMethods.CountUsages(root: value) + ExternalTargetsTreeMethods.CountUsages(root: value));
+                    return ExternalSourcesTreeMethods.CountUsages(root: source);
                 }
                 if (_useLinkedList)
                 {
-                    return (InternalSourcesListMethods.CountUsages(head: value) + InternalTargetsTreeMethods.CountUsages(root: value));
+                    return InternalSourcesListMethods.CountUsages(head: source);
                 }
-                return (InternalSourcesTreeMethods.CountUsages(root: value) + InternalTargetsTreeMethods.CountUsages(root: value));
+                return InternalSourcesTreeMethods.CountUsages(root: source);
             }
-            if (!Exists(link: index))
+            //if(source != Any && target != Any)
+            // Эквивалент Exists(source, target) => Count(Any, source, target) > 0
+            TLinkAddress link;
+            if (externalReferencesRange.HasValue)
             {
-                return GetZero();
-            }
-            if ((value == any))
-            {
-                return GetOne();
-            }
-            ref var storedLinkValue = ref GetLinkDataPartReference(linkIndex: index);
-            if ((storedLinkValue.Source == value) || (storedLinkValue.Target == value))
-            {
-                return GetOne();
-            }
-            return GetZero();
-        }
-        if (restriction.Count == 3)
-        {
-            var externalReferencesRange = constants.ExternalReferencesRange;
-            var source = this.GetSource(link: restriction);
-            var target = this.GetTarget(link: restriction);
-            if ((index == any))
-            {
-                if ((source == any) && (target == any))
+                if (externalReferencesRange.Value.Contains(value: source) && externalReferencesRange.Value.Contains(value: target))
                 {
-                    return Total;
+                    link = ExternalSourcesTreeMethods.Search(source: source, target: target);
                 }
-                if ((source == any))
+                else if (externalReferencesRange.Value.Contains(value: source))
                 {
-                    if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: target))
-                    {
-                        return ExternalTargetsTreeMethods.CountUsages(root: target);
-                    }
-                    return InternalTargetsTreeMethods.CountUsages(root: target);
+                    link = InternalTargetsTreeMethods.Search(source: source, target: target);
                 }
-                if ((target == any))
+                else if (externalReferencesRange.Value.Contains(value: target))
                 {
-                    if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: source))
-                    {
-                        return ExternalSourcesTreeMethods.CountUsages(root: source);
-                    }
                     if (_useLinkedList)
-                    {
-                        return InternalSourcesListMethods.CountUsages(head: source);
-                    }
-                    return InternalSourcesTreeMethods.CountUsages(root: source);
-                }
-                //if(source != Any && target != Any)
-                // Эквивалент Exists(source, target) => Count(Any, source, target) > 0
-                TLinkAddress link;
-                if (externalReferencesRange.HasValue)
-                {
-                    if (externalReferencesRange.Value.Contains(value: source) && externalReferencesRange.Value.Contains(value: target))
                     {
                         link = ExternalSourcesTreeMethods.Search(source: source, target: target);
                     }
-                    else if (externalReferencesRange.Value.Contains(value: source))
-                    {
-                        link = InternalTargetsTreeMethods.Search(source: source, target: target);
-                    }
-                    else if (externalReferencesRange.Value.Contains(value: target))
-                    {
-                        if (_useLinkedList)
-                        {
-                            link = ExternalSourcesTreeMethods.Search(source: source, target: target);
-                        }
-                        else
-                        {
-                            link = InternalSourcesTreeMethods.Search(source: source, target: target);
-                        }
-                    }
                     else
                     {
-                        if (_useLinkedList || (InternalSourcesTreeMethods.CountUsages(root: source) > InternalTargetsTreeMethods.CountUsages(root: target)))
-                        {
-                            link = InternalTargetsTreeMethods.Search(source: source, target: target);
-                        }
-                        else
-                        {
-                            link = InternalSourcesTreeMethods.Search(source: source, target: target);
-                        }
+                        link = InternalSourcesTreeMethods.Search(source: source, target: target);
                     }
                 }
                 else
@@ -371,63 +311,303 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
                         link = InternalSourcesTreeMethods.Search(source: source, target: target);
                     }
                 }
-                return (link == constants.Null) ? GetZero() : GetOne();
             }
-            if (!Exists(link: index))
+            else
             {
-                return GetZero();
-            }
-            if ((source == any) && (target == any))
-            {
-                return GetOne();
-            }
-            ref var storedLinkValue = ref GetLinkDataPartReference(linkIndex: index);
-            if ((source != any) && (target != any))
-            {
-                if ((storedLinkValue.Source == source) && (storedLinkValue.Target == target))
+                if (_useLinkedList || (InternalSourcesTreeMethods.CountUsages(root: source) > InternalTargetsTreeMethods.CountUsages(root: target)))
                 {
-                    return GetOne();
+                    link = InternalTargetsTreeMethods.Search(source: source, target: target);
                 }
-                return GetZero();
+                else
+                {
+                    link = InternalSourcesTreeMethods.Search(source: source, target: target);
+                }
             }
-            var value = default(TLinkAddress);
-            if ((source == any))
-            {
-                value = target;
-            }
-            if ((target == any))
-            {
-                value = source;
-            }
-            if ((storedLinkValue.Source == value) || (storedLinkValue.Target == value))
+            return (link == constants.Null) ? GetZero() : GetOne();
+        }
+        if (!Exists(link: index))
+        {
+            return GetZero();
+        }
+        if ((source == any) && (target == any))
+        {
+            return GetOne();
+        }
+        ref var storedLinkValue = ref GetLinkDataPartReference(linkIndex: index);
+        if ((source != any) && (target != any))
+        {
+            if ((storedLinkValue.Source == source) && (storedLinkValue.Target == target))
             {
                 return GetOne();
             }
             return GetZero();
         }
-        throw new NotSupportedException(message: "Другие размеры и способы ограничений не поддерживаются.");
+        var value = default(TLinkAddress);
+        if ((source == any))
+        {
+            value = target;
+        }
+        if ((target == any))
+        {
+            value = source;
+        }
+        if ((storedLinkValue.Source == value) || (storedLinkValue.Target == value))
+        {
+            return GetOne();
+        }
+        return GetZero();
     }
 
     /// <summary>
     ///     <para>
-    ///         Eaches the handler.
+    ///         Counts the substitution with extended logic for different query sizes.
     ///     </para>
     ///     <para></para>
     /// </summary>
+    /// <param name="restriction">
+    ///     <para>The restriction.</para>
+    ///     <para></para>
+    /// </param>
+    /// <returns>
+    ///     <para>The count.</para>
+    ///     <para></para>
+    /// </returns>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    public virtual TLinkAddress Count(IList<TLinkAddress>? restriction)
+    {
+        var constants = Constants;
+        var any = constants.Any;
+        
+        switch (restriction.Count)
+        {
+            case 0:
+                return CountBase(any, any, any);
+                
+            case 1:
+            {
+                var index = this.GetIndex(link: restriction);
+                if ((index == any))
+                {
+                    return Total;
+                }
+                return Exists(link: index) ? GetOne() : GetZero();
+            }
+            
+            case 2:
+            {
+                var index = this.GetIndex(link: restriction);
+                var value = restriction[index: 1];
+                if ((index == any))
+                {
+                    if ((value == any))
+                    {
+                        return Total; // Any - как отсутствие ограничения
+                    }
+                    var externalReferencesRange = constants.ExternalReferencesRange;
+                    if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: value))
+                    {
+                        return (ExternalSourcesTreeMethods.CountUsages(root: value) + ExternalTargetsTreeMethods.CountUsages(root: value));
+                    }
+                    if (_useLinkedList)
+                    {
+                        return (InternalSourcesListMethods.CountUsages(head: value) + InternalTargetsTreeMethods.CountUsages(root: value));
+                    }
+                    return (InternalSourcesTreeMethods.CountUsages(root: value) + InternalTargetsTreeMethods.CountUsages(root: value));
+                }
+                if (!Exists(link: index))
+                {
+                    return GetZero();
+                }
+                if ((value == any))
+                {
+                    return GetOne();
+                }
+                ref var storedLinkValue = ref GetLinkDataPartReference(linkIndex: index);
+                if ((storedLinkValue.Source == value) || (storedLinkValue.Target == value))
+                {
+                    return GetOne();
+                }
+                return GetZero();
+            }
+            
+            case 3:
+            {
+                var index = this.GetIndex(link: restriction);
+                var source = this.GetSource(link: restriction);
+                var target = this.GetTarget(link: restriction);
+                return CountBase(index, source, target);
+            }
+            
+            default:
+                throw new NotSupportedException(message: "Другие размеры и способы ограничений не поддерживаются.");
+        }
+    }
+
+    /// <summary>
+    ///     <para>
+    ///         Executes handler for each link matching a 3-element query (index, source, target).
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    /// <param name="index">
+    ///     <para>The link index.</para>
+    ///     <para></para>
+    /// </param>
+    /// <param name="source">
+    ///     <para>The source.</para>
+    ///     <para></para>
+    /// </param>
+    /// <param name="target">
+    ///     <para>The target.</para>
+    ///     <para></para>
+    /// </param>
     /// <param name="handler">
     ///     <para>The handler.</para>
     ///     <para></para>
     /// </param>
+    /// <returns>
+    ///     <para>The result.</para>
+    ///     <para></para>
+    /// </returns>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    protected virtual TLinkAddress EachBase(TLinkAddress index, TLinkAddress source, TLinkAddress target, ReadHandler<TLinkAddress>? handler)
+    {
+        var constants = Constants;
+        var @continue = constants.Continue;
+        var any = constants.Any;
+        var externalReferencesRange = constants.ExternalReferencesRange;
+        
+        if ((index == any))
+        {
+            if ((source == any) && (target == any))
+            {
+                // Handle all links case directly to avoid recursion
+                for (var currentLink = GetOne(); (currentLink <= GetHeaderReference().AllocatedLinks); currentLink = currentLink + TLinkAddress.One)
+                {
+                    if (Exists(link: currentLink) && (handler(link: GetLinkStruct(linkIndex: currentLink)) == constants.Break))
+                    {
+                        return constants.Break;
+                    }
+                }
+                return constants.Break;
+            }
+            if ((source == any))
+            {
+                if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: target))
+                {
+                    return ExternalTargetsTreeMethods.EachUsage(root: target, handler: handler);
+                }
+                return InternalTargetsTreeMethods.EachUsage(root: target, handler: handler);
+            }
+            if ((target == any))
+            {
+                if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: source))
+                {
+                    return ExternalSourcesTreeMethods.EachUsage(root: source, handler: handler);
+                }
+                if (_useLinkedList)
+                {
+                    return InternalSourcesListMethods.EachUsage(source: source, handler: handler);
+                }
+                return InternalSourcesTreeMethods.EachUsage(root: source, handler: handler);
+            }
+            //if(source != Any && target != Any)
+            TLinkAddress link;
+            if (externalReferencesRange.HasValue)
+            {
+                if (externalReferencesRange.Value.Contains(value: source) && externalReferencesRange.Value.Contains(value: target))
+                {
+                    link = ExternalSourcesTreeMethods.Search(source: source, target: target);
+                }
+                else if (externalReferencesRange.Value.Contains(value: source))
+                {
+                    link = InternalTargetsTreeMethods.Search(source: source, target: target);
+                }
+                else if (externalReferencesRange.Value.Contains(value: target))
+                {
+                    if (_useLinkedList)
+                    {
+                        link = ExternalSourcesTreeMethods.Search(source: source, target: target);
+                    }
+                    else
+                    {
+                        link = InternalSourcesTreeMethods.Search(source: source, target: target);
+                    }
+                }
+                else
+                {
+                    if (_useLinkedList || (InternalSourcesTreeMethods.CountUsages(root: source) > InternalTargetsTreeMethods.CountUsages(root: target)))
+                    {
+                        link = InternalTargetsTreeMethods.Search(source: source, target: target);
+                    }
+                    else
+                    {
+                        link = InternalSourcesTreeMethods.Search(source: source, target: target);
+                    }
+                }
+            }
+            else
+            {
+                if (_useLinkedList || (InternalSourcesTreeMethods.CountUsages(root: source) > InternalTargetsTreeMethods.CountUsages(root: target)))
+                {
+                    link = InternalTargetsTreeMethods.Search(source: source, target: target);
+                }
+                else
+                {
+                    link = InternalSourcesTreeMethods.Search(source: source, target: target);
+                }
+            }
+            return (link == constants.Null) ? @continue : handler(link: GetLinkStruct(linkIndex: link));
+        }
+        if (!Exists(link: index))
+        {
+            return @continue;
+        }
+        if ((source == any) && (target == any))
+        {
+            return handler(link: GetLinkStruct(linkIndex: index));
+        }
+        ref var storedLinkValue = ref GetLinkDataPartReference(linkIndex: index);
+        if ((source != any) && (target != any))
+        {
+            if ((storedLinkValue.Source == source) && (storedLinkValue.Target == target))
+            {
+                return handler(link: GetLinkStruct(linkIndex: index));
+            }
+            return @continue;
+        }
+        var value = default(TLinkAddress);
+        if ((source == any))
+        {
+            value = target;
+        }
+        if ((target == any))
+        {
+            value = source;
+        }
+        if ((storedLinkValue.Source == value) || (storedLinkValue.Target == value))
+        {
+            return handler(link: GetLinkStruct(linkIndex: index));
+        }
+        return @continue;
+    }
+
+    /// <summary>
+    ///     <para>
+    ///         Eaches the handler with extended logic for different query sizes.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
     /// <param name="restriction">
-    ///     <para>The substitution.</para>
+    ///     <para>The restriction.</para>
     ///     <para></para>
     /// </param>
-    /// <exception cref="NotSupportedException">
-    ///     <para>Другие размеры и способы ограничений не поддерживаются.</para>
+    /// <param name="handler">
+    ///     <para>The handler.</para>
     ///     <para></para>
-    /// </exception>
+    /// </param>
     /// <returns>
-    ///     <para>The link</para>
+    ///     <para>The result.</para>
     ///     <para></para>
     /// </returns>
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
@@ -435,174 +615,71 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
     {
         var constants = Constants;
         var @break = constants.Break;
-        if (restriction.Count == 0)
-        {
-            for (var link = GetOne(); (link <= GetHeaderReference().AllocatedLinks); link = link + TLinkAddress.One)
-            {
-                if (Exists(link: link) && (handler(link: GetLinkStruct(linkIndex: link)) == @break))
-                {
-                    return @break;
-                }
-            }
-            return @break;
-        }
         var @continue = constants.Continue;
         var any = constants.Any;
-        var index = this.GetIndex(link: restriction);
-        if (restriction.Count == 1)
+        
+        switch (restriction.Count)
         {
-            if ((index == any))
+            case 0:
+                return EachBase(any, any, any, handler);
+                
+            case 1:
             {
-                return Each(restriction: Array.Empty<TLinkAddress>(), handler: handler);
+                var index = this.GetIndex(link: restriction);
+                if ((index == any))
+                {
+                    return Each(restriction: Array.Empty<TLinkAddress>(), handler: handler);
+                }
+                if (!Exists(link: index))
+                {
+                    return @continue;
+                }
+                return handler(link: GetLinkStruct(linkIndex: index));
             }
-            if (!Exists(link: index))
+            
+            case 2:
             {
-                return @continue;
-            }
-            return handler(link: GetLinkStruct(linkIndex: index));
-        }
-        if (restriction.Count == 2)
-        {
-            var value = restriction[index: 1];
-            if ((index == any))
-            {
+                var index = this.GetIndex(link: restriction);
+                var value = restriction[index: 1];
+                if ((index == any))
+                {
+                    if ((value == any))
+                    {
+                        return Each(restriction: Array.Empty<TLinkAddress>(), handler: handler);
+                    }
+                    if ((Each(restriction: new Link<TLinkAddress>(index: index, source: value, target: any), handler: handler) == @break))
+                    {
+                        return @break;
+                    }
+                    return Each(restriction: new Link<TLinkAddress>(index: index, source: any, target: value), handler: handler);
+                }
+                if (!Exists(link: index))
+                {
+                    return @continue;
+                }
                 if ((value == any))
                 {
-                    return Each(restriction: Array.Empty<TLinkAddress>(), handler: handler);
+                    return handler(link: GetLinkStruct(linkIndex: index));
                 }
-                if ((Each(restriction: new Link<TLinkAddress>(index: index, source: value, target: any), handler: handler) == @break))
-                {
-                    return @break;
-                }
-                return Each(restriction: new Link<TLinkAddress>(index: index, source: any, target: value), handler: handler);
-            }
-            if (!Exists(link: index))
-            {
-                return @continue;
-            }
-            if ((value == any))
-            {
-                return handler(link: GetLinkStruct(linkIndex: index));
-            }
-            ref var storedLinkValue = ref GetLinkDataPartReference(linkIndex: index);
-            if ((storedLinkValue.Source == value) || (storedLinkValue.Target == value))
-            {
-                return handler(link: GetLinkStruct(linkIndex: index));
-            }
-            return @continue;
-        }
-        if (restriction.Count == 3)
-        {
-            var externalReferencesRange = constants.ExternalReferencesRange;
-            var source = this.GetSource(link: restriction);
-            var target = this.GetTarget(link: restriction);
-            if ((index == any))
-            {
-                if ((source == any) && (target == any))
-                {
-                    return Each(restriction: Array.Empty<TLinkAddress>(), handler: handler);
-                }
-                if ((source == any))
-                {
-                    if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: target))
-                    {
-                        return ExternalTargetsTreeMethods.EachUsage(root: target, handler: handler);
-                    }
-                    return InternalTargetsTreeMethods.EachUsage(root: target, handler: handler);
-                }
-                if ((target == any))
-                {
-                    if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(value: source))
-                    {
-                        return ExternalSourcesTreeMethods.EachUsage(root: source, handler: handler);
-                    }
-                    if (_useLinkedList)
-                    {
-                        return InternalSourcesListMethods.EachUsage(source: source, handler: handler);
-                    }
-                    return InternalSourcesTreeMethods.EachUsage(root: source, handler: handler);
-                }
-                //if(source != Any && target != Any)
-                TLinkAddress link;
-                if (externalReferencesRange.HasValue)
-                {
-                    if (externalReferencesRange.Value.Contains(value: source) && externalReferencesRange.Value.Contains(value: target))
-                    {
-                        link = ExternalSourcesTreeMethods.Search(source: source, target: target);
-                    }
-                    else if (externalReferencesRange.Value.Contains(value: source))
-                    {
-                        link = InternalTargetsTreeMethods.Search(source: source, target: target);
-                    }
-                    else if (externalReferencesRange.Value.Contains(value: target))
-                    {
-                        if (_useLinkedList)
-                        {
-                            link = ExternalSourcesTreeMethods.Search(source: source, target: target);
-                        }
-                        else
-                        {
-                            link = InternalSourcesTreeMethods.Search(source: source, target: target);
-                        }
-                    }
-                    else
-                    {
-                        if (_useLinkedList || (InternalSourcesTreeMethods.CountUsages(root: source) > InternalTargetsTreeMethods.CountUsages(root: target)))
-                        {
-                            link = InternalTargetsTreeMethods.Search(source: source, target: target);
-                        }
-                        else
-                        {
-                            link = InternalSourcesTreeMethods.Search(source: source, target: target);
-                        }
-                    }
-                }
-                else
-                {
-                    if (_useLinkedList || (InternalSourcesTreeMethods.CountUsages(root: source) > InternalTargetsTreeMethods.CountUsages(root: target)))
-                    {
-                        link = InternalTargetsTreeMethods.Search(source: source, target: target);
-                    }
-                    else
-                    {
-                        link = InternalSourcesTreeMethods.Search(source: source, target: target);
-                    }
-                }
-                return (link == constants.Null) ? @continue : handler(link: GetLinkStruct(linkIndex: link));
-            }
-            if (!Exists(link: index))
-            {
-                return @continue;
-            }
-            if ((source == any) && (target == any))
-            {
-                return handler(link: GetLinkStruct(linkIndex: index));
-            }
-            ref var storedLinkValue = ref GetLinkDataPartReference(linkIndex: index);
-            if ((source != any) && (target != any))
-            {
-                if ((storedLinkValue.Source == source) && (storedLinkValue.Target == target))
+                ref var storedLinkValue = ref GetLinkDataPartReference(linkIndex: index);
+                if ((storedLinkValue.Source == value) || (storedLinkValue.Target == value))
                 {
                     return handler(link: GetLinkStruct(linkIndex: index));
                 }
                 return @continue;
             }
-            var value = default(TLinkAddress);
-            if ((source == any))
+            
+            case 3:
             {
-                value = target;
+                var index = this.GetIndex(link: restriction);
+                var source = this.GetSource(link: restriction);
+                var target = this.GetTarget(link: restriction);
+                return EachBase(index, source, target, handler);
             }
-            if ((target == any))
-            {
-                value = source;
-            }
-            if ((storedLinkValue.Source == value) || (storedLinkValue.Target == value))
-            {
-                return handler(link: GetLinkStruct(linkIndex: index));
-            }
-            return @continue;
+            
+            default:
+                throw new NotSupportedException(message: "Другие размеры и способы ограничений не поддерживаются.");
         }
-        throw new NotSupportedException(message: "Другие размеры и способы ограничений не поддерживаются.");
     }
 
     /// <remarks>
