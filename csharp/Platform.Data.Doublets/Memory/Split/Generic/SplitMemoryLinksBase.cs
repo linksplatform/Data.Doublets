@@ -748,7 +748,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
             _indexMemory.UsedCapacity -= LinkIndexPartSizeInBytes;
             // Убираем все связи, находящиеся в списке свободных в конце файла, до тех пор, пока не дойдём до первой существующей связи
             // Позволяет оптимизировать количество выделенных связей (AllocatedLinks)
-            while ((header.AllocatedLinks > GetZero()) && IsUnusedLink(linkIndex: header.AllocatedLinks))
+            while ((header.AllocatedLinks > GetZero()) && IsDeleted(linkIndex: header.AllocatedLinks))
             {
                 UnusedLinksListMethods.Detach(freeLink: header.AllocatedLinks);
                 header.AllocatedLinks = header.AllocatedLinks - TLinkAddress.One;
@@ -942,12 +942,12 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     protected virtual bool Exists(TLinkAddress link)
     {
-        return (link >= Constants.InternalReferencesRange.Minimum) && (link <= GetHeaderReference().AllocatedLinks) && !IsUnusedLink(linkIndex: link);
+        return (link >= Constants.InternalReferencesRange.Minimum) && (link <= GetHeaderReference().AllocatedLinks) && !IsDeleted(linkIndex: link);
     }
 
     /// <summary>
     ///     <para>
-    ///         Determines whether this instance is unused link.
+    ///         Determines whether this instance is deleted.
     ///     </para>
     ///     <para></para>
     /// </summary>
@@ -960,7 +960,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
     ///     <para></para>
     /// </returns>
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
-    protected virtual bool IsUnusedLink(TLinkAddress linkIndex)
+    protected virtual bool IsDeleted(TLinkAddress linkIndex)
     {
         if ((GetHeaderReference().FirstFreeLink != linkIndex)) // May be this check is not needed
         {

@@ -868,7 +868,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 _indexMemory.UsedCapacity(_indexMemory.UsedCapacity() - LinkIndexPartSizeInBytes);
                 // Убираем все связи, находящиеся в списке свободных в конце файла, до тех пор, пока не дойдём до первой существующей связи
                 // Позволяет оптимизировать количество выделенных связей (AllocatedLinks)
-                while ((this->GetHeaderReference().AllocatedLinks > LinkAddressType{0}) && this->IsUnusedLink(this->GetHeaderReference().AllocatedLinks))
+                while ((this->GetHeaderReference().AllocatedLinks > LinkAddressType{0}) && this->IsDeleted(this->GetHeaderReference().AllocatedLinks))
                 {
                     UnusedLinksListMethods->Detach(this->GetHeaderReference().AllocatedLinks);
                     --this->GetHeaderReference().AllocatedLinks;
@@ -881,7 +881,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         }
 
     public:
-        bool IsUnusedLink(LinkAddressType linkIndex) const
+        bool IsDeleted(LinkAddressType linkIndex) const
         {
             if (GetHeaderReference().FirstFreeLink != linkIndex) // May be this check is not needed
             {
@@ -900,7 +900,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         {
             return (linkAddress >= Constants.InternalReferencesRange.Minimum)
                 && (linkAddress <= this->GetHeaderReference().AllocatedLinks)
-                && !IsUnusedLink(linkAddress);
+                && !IsDeleted(linkAddress);
         }
 
     public:

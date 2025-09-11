@@ -562,7 +562,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                 _memory.UsedCapacity -= LinkSizeInBytes;
                 // Убираем все связи, находящиеся в списке свободных в конце файла, до тех пор, пока не дойдём до первой существующей связи
                 // Позволяет оптимизировать количество выделенных связей (AllocatedLinks)
-                while (GreaterThan(header.AllocatedLinks, GetZero()) && IsUnusedLink(header.AllocatedLinks))
+                while (GreaterThan(header.AllocatedLinks, GetZero()) && IsDeleted(header.AllocatedLinks))
                 {
                     UnusedLinksListMethods.Detach(header.AllocatedLinks);
                     header.AllocatedLinks = header.AllocatedLinks - TLinkAddress.One;
@@ -666,11 +666,11 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         protected virtual bool Exists(TLinkAddress link)
             => GreaterOrEqualThan(link, Constants.InternalReferencesRange.Minimum)
             && LessOrEqualThan(link, GetHeaderReference().AllocatedLinks)
-            && !IsUnusedLink(link);
+            && !IsDeleted(link);
 
         /// <summary>
         /// <para>
-        /// Determines whether this instance is unused link.
+        /// Determines whether this instance is deleted.
         /// </para>
         /// <para></para>
         /// </summary>
@@ -683,7 +683,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual bool IsUnusedLink(TLinkAddress linkIndex)
+        protected virtual bool IsDeleted(TLinkAddress linkIndex)
         {
             if (!AreEqual(GetHeaderReference().FirstFreeLink, linkIndex)) // May be this check is not needed
             {
