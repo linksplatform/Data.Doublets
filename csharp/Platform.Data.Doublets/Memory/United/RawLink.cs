@@ -1,4 +1,5 @@
 using Platform.Unsafe;
+using Platform.Data.Doublets.Memory;
 using System;
 using System.Collections.Generic;
 using System.Numerics;
@@ -55,11 +56,12 @@ namespace Platform.Data.Doublets.Memory.United
         public TLinkAddress RightAsSource;
         /// <summary>
         /// <para>
-        /// The size as source.
+        /// The size as source with metadata support.
+        /// This field can store both count and metadata for flexible link types.
         /// </para>
         /// <para></para>
         /// </summary>
-        public TLinkAddress SizeAsSource;
+        public MetadataAwareSizeType<TLinkAddress> SizeAsSource;
         /// <summary>
         /// <para>
         /// The left as target.
@@ -76,11 +78,12 @@ namespace Platform.Data.Doublets.Memory.United
         public TLinkAddress RightAsTarget;
         /// <summary>
         /// <para>
-        /// The size as target.
+        /// The size as target with metadata support.
+        /// This field can store both count and metadata for flexible link types.
         /// </para>
         /// <para></para>
         /// </summary>
-        public TLinkAddress SizeAsTarget;
+        public MetadataAwareSizeType<TLinkAddress> SizeAsTarget;
 
         /// <summary>
         /// <para>

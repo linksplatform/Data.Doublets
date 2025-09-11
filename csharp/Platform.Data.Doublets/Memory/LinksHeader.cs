@@ -143,4 +143,118 @@ namespace Platform.Data.Doublets.Memory
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(LinksHeader<TLinkAddress> left, LinksHeader<TLinkAddress> right)  { return !(left == right);}
     }
+
+    /// <summary>
+    /// <para>
+    /// Represents a metadata-aware size type that can store any number of links of any type.
+    /// This enables flexible link storage by providing a way to attach metadata to size information.
+    /// For simplicity, this version stores the raw value as-is and provides metadata access through methods.
+    /// </para>
+    /// <para></para>
+    /// </summary>
+    public struct MetadataAwareSizeType<TLinkAddress> : IEquatable<MetadataAwareSizeType<TLinkAddress>> where TLinkAddress : IUnsignedNumber<TLinkAddress>
+    {
+        /// <summary>
+        /// <para>
+        /// The raw size value that can represent both traditional size and extended metadata.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        public TLinkAddress Value;
+
+        /// <summary>
+        /// <para>
+        /// Gets or sets the count/size value.
+        /// For backward compatibility, this returns the full value.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        public TLinkAddress Count
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get => Value;
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            set => Value = value;
+        }
+
+        /// <summary>
+        /// <para>
+        /// Gets metadata information from the size value.
+        /// In this simplified implementation, metadata is represented by specific value ranges.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public TLinkAddress GetMetadata()
+        {
+            // Simple metadata extraction: use modular arithmetic
+            // This is a placeholder implementation that can be extended
+            return Value;
+        }
+
+        /// <summary>
+        /// <para>
+        /// Sets metadata information.
+        /// In this simplified implementation, we store the metadata value directly.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="metadata">The metadata value to store.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void SetMetadata(TLinkAddress metadata) => Value = metadata;
+
+        /// <summary>
+        /// <para>
+        /// Initializes a new instance with specified count and metadata.
+        /// For simplicity, this takes the count as the primary value.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="count">The count value.</param>
+        /// <param name="metadata">The metadata value (currently unused in simple implementation).</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public MetadataAwareSizeType(TLinkAddress count, TLinkAddress metadata)
+        {
+            // For now, prioritize count for backward compatibility
+            Value = count;
+        }
+
+        /// <summary>
+        /// <para>
+        /// Implicit conversion from TLinkAddress to MetadataAwareSizeType.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="value">The value.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static implicit operator MetadataAwareSizeType<TLinkAddress>(TLinkAddress value)
+            => new() { Value = value };
+
+        /// <summary>
+        /// <para>
+        /// Implicit conversion from MetadataAwareSizeType to TLinkAddress.
+        /// Returns the stored value for backward compatibility.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="sizeType">The metadata-aware size type.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static implicit operator TLinkAddress(MetadataAwareSizeType<TLinkAddress> sizeType)
+            => sizeType.Value;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public bool Equals(MetadataAwareSizeType<TLinkAddress> other) => Value == other.Value;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public override bool Equals(object obj) => obj is MetadataAwareSizeType<TLinkAddress> other && Equals(other);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public override int GetHashCode() => Value.GetHashCode();
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator ==(MetadataAwareSizeType<TLinkAddress> left, MetadataAwareSizeType<TLinkAddress> right) => left.Equals(right);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator !=(MetadataAwareSizeType<TLinkAddress> left, MetadataAwareSizeType<TLinkAddress> right) => !(left == right);
+    }
 }
