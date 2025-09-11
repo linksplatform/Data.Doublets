@@ -390,18 +390,19 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
                 }
                 return GetZero();
             }
-            var value = default(TLinkAddress);
             if ((source == any))
             {
-                value = target;
+                if ((storedLinkValue.Target == target))
+                {
+                    return GetOne();
+                }
             }
             if ((target == any))
             {
-                value = source;
-            }
-            if ((storedLinkValue.Source == value) || (storedLinkValue.Target == value))
-            {
-                return GetOne();
+                if ((storedLinkValue.Source == source))
+                {
+                    return GetOne();
+                }
             }
             return GetZero();
         }

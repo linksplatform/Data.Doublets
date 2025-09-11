@@ -315,18 +315,19 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                         }
                         return LinkAddressType{0};
                     }
-                    auto value = LinkAddressType{};
                     if ((source == any))
                     {
-                        value = target;
+                        if ((storedLinkValue.Target == target))
+                        {
+                            return LinkAddressType{1};
+                        }
                     }
                     if ((target == any))
                     {
-                        value = source;
-                    }
-                    if ((storedLinkValue.Source == value) || (storedLinkValue.Target == value))
-                    {
-                        return LinkAddressType{1};
+                        if ((storedLinkValue.Source == source))
+                        {
+                            return LinkAddressType{1};
+                        }
                     }
                     return LinkAddressType{0};
                 }
@@ -528,18 +529,19 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                         }
                         return LinkAddressType{0};
                     }
-                    auto value = LinkAddressType{0};
                     if ((source == any))
                     {
-                        value = target;
+                        if ((storedLinkValue.Target == target))
+                        {
+                            return LinkAddressType{1};
+                        }
                     }
                     if ((target == any))
                     {
-                        value = source;
-                    }
-                    if ((storedLinkValue.Source == value) || (storedLinkValue.Target == value))
-                    {
-                        return LinkAddressType{1};
+                        if ((storedLinkValue.Source == source))
+                        {
+                            return LinkAddressType{1};
+                        }
                     }
                     return LinkAddressType{0};
                 }
@@ -724,18 +726,19 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                         }
                         return $continue;
                     }
-                    auto value = LinkAddressType{0};
                     if (source == any)
                     {
-                        value = target;
+                        if ((storedLinkValue.Target == target))
+                        {
+                            return handler(GetLinkStruct(index));
+                        }
                     }
                     if (target == any)
                     {
-                        value = source;
-                    }
-                    if ((storedLinkValue.Source == value) || (storedLinkValue.Target == value))
-                    {
-                        return handler(GetLinkStruct(index));
+                        if ((storedLinkValue.Source == source))
+                        {
+                            return handler(GetLinkStruct(index));
+                        }
                     }
                     return $continue;
                 }
