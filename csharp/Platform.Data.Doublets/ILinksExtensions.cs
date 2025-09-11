@@ -154,23 +154,34 @@ namespace Platform.Data.Doublets
             return links.Delete(new LinkAddress<TLinkAddress>(linkToDelete), handler);
         }
 
+        /// <summary>
+        /// <para>
+        /// Deletes all links in the storage using efficient handler-based approach.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="TLinkAddress">
+        /// <para>The link address type.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links storage.</para>
+        /// <para></para>
+        /// </param>
         /// <remarks>
-        /// TODO: Возможно есть очень простой способ это сделать.
-        /// (Например просто удалить файл, или изменить его размер таким образом,
-        /// чтобы удалился весь контент)
-        /// Например через _header->AllocatedLinks в ResizableDirectMemoryLinks
+        /// This implementation uses ILinks extension from Data package with handler pattern
+        /// for more efficient deletion of all links. Based on C++ template implementation.
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void DeleteAll<TLinkAddress>(this ILinks<TLinkAddress> links)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
-            var comparer = Comparer<TLinkAddress>.Default;
-            for (var i = links.Count(); comparer.Compare(i, default) > 0; i = --i)
+            WriteHandler<TLinkAddress> handler = (before, after) => links.Constants.Null;
+            var constants = links.Constants;
+            var any = constants.Any;
+            
+            for (var count = links.Count(); count != constants.Null; count = links.Count())
             {
-                links.Delete(i);
-                if (links.Count() !=  --i)
-                {
-                    i = links.Count();
-                }
+                links.Delete(new Link<TLinkAddress>(count, any, any), handler);
             }
         }
 
