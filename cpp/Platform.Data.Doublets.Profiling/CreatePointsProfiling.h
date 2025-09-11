@@ -1,31 +1,32 @@
 namespace Platform::Data::Doublets::Profiling
 {
-    using TLinkAddress = std::uint64_t;
+using TLinkAddress = std::uint64_t;
 
-    constexpr std::size_t pointsNumberToCreate = 1000000;
+constexpr std::size_t pointsNumberToCreate = 1000000;
 
-    void CreatePoints()
+void CreatePoints()
+{
+    using namespace Platform;
+    using namespace Platform::Memory;
+    using namespace Platform::Data;
+    using namespace Platform::Data::Doublets;
+    using namespace Platform::Data::Doublets::Memory::United::Generic;
+    std::string tempFilePath{std::tmpnam(nullptr)};
+    Expects(!Collections::IsWhiteSpace(tempFilePath));
+    try
     {
-        using namespace Platform;
-        using namespace Platform::Memory;
-        using namespace Platform::Data;
-        using namespace Platform::Data::Doublets;
-        using namespace Platform::Data::Doublets::Memory::United::Generic;
-        std::string tempFilePath { std::tmpnam(nullptr) };
-        Expects(!Collections::IsWhiteSpace(tempFilePath));
-        try
+        UnitedMemoryLinks<LinksOptions<>, FileMappedResizableDirectMemory> storage{
+            FileMappedResizableDirectMemory{tempFilePath}};
+        for (std::size_t i = 0; i < pointsNumberToCreate; ++i)
         {
-            UnitedMemoryLinks<LinksOptions<>, FileMappedResizableDirectMemory> storage{FileMappedResizableDirectMemory{tempFilePath}};
-            for (std::size_t i = 0; i < pointsNumberToCreate; ++i)
-            {
-                CreatePoint(storage);
-            }
+            CreatePoint(storage);
         }
-        catch (...)
-        {
-            std::remove(tempFilePath.c_str());
-            throw;
-        }
-        std::remove(tempFilePath.c_str());
     }
+    catch (...)
+    {
+        std::remove(tempFilePath.c_str());
+        throw;
+    }
+    std::remove(tempFilePath.c_str());
 }
+} // namespace Platform::Data::Doublets::Profiling

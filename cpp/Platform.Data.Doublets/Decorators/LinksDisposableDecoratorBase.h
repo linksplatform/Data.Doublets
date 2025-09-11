@@ -1,32 +1,40 @@
 ﻿namespace Platform::Data::Doublets::Decorators
 {
-    template <typename ...> class LinksDisposableDecoratorBase;
-    template <std::integral TLinkAddress> class LinksDisposableDecoratorBase<TLinkAddress> : public DecoratorBase<TFacade, TDecorated>, ILinks<TLinkAddress>, System::IDisposable
+template <typename...>
+class LinksDisposableDecoratorBase;
+template <std::integral TLinkAddress>
+class LinksDisposableDecoratorBase<TLinkAddress>
+    : public DecoratorBase<TFacade, TDecorated>, ILinks<TLinkAddress>, System::IDisposable
+{
+    class DisposableWithMultipleCallsAllowed : public Disposable
     {
-        class DisposableWithMultipleCallsAllowed : public Disposable
+    public:
+        DisposableWithMultipleCallsAllowed(std::function<Disposal> disposal) : base(disposal) {}
+
+    public:
+        bool AllowMultipleDisposeCalls { get = > true; }
+    }
+
+    public : DisposableWithMultipleCallsAllowed Disposable = 0;
+
+public:
+    LinksDisposableDecoratorBase(ILinks<TLinkAddress>& storage) : base(storage)
+    {
+        return Disposable = DisposableWithMultipleCallsAllowed(Dispose);
+    }
+
+    ~LinksDisposableDecoratorBase() { Disposable.Destruct(); }
+
+public:
+    void Dispose() { Disposable.Dispose(); }
+
+public:
+    virtual void Dispose(bool manual, bool wasDisposed)
+    {
+        if (!wasDisposed)
         {
-            public: DisposableWithMultipleCallsAllowed(std::function<Disposal> disposal) : base(disposal) { }
-
-            public: bool AllowMultipleDisposeCalls
-            {
-                get => true;
-            }
+            this->decorated().TDecorated::DisposeIfPossible();
         }
-
-        public: DisposableWithMultipleCallsAllowed Disposable = 0;
-
-        public: LinksDisposableDecoratorBase(ILinks<TLinkAddress> &storage) : base(storage) { return Disposable = DisposableWithMultipleCallsAllowed(Dispose); }
-
-        ~LinksDisposableDecoratorBase() { Disposable.Destruct(); }
-
-        public: void Dispose() { Disposable.Dispose(); }
-
-        public: virtual void Dispose(bool manual, bool wasDisposed)
-        {
-            if (!wasDisposed)
-            {
-                this->decorated().TDecorated::DisposeIfPossible();
-            }
-        }
-    };
-}
+    }
+};
+} // namespace Platform::Data::Doublets::Decorators
