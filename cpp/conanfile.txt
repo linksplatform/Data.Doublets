@@ -10,6 +10,7 @@ platform.random/0.2.0
 platform.interfaces/0.3.41
 platform.ranges/0.2.0
 platform.numbers/0.1.0
+platform.setters/0.1.0
 mio/cci.20201220
 
 [generators]
