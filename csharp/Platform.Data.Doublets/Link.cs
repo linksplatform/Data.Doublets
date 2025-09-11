@@ -315,6 +315,19 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override string ToString()  { return Index ==  _constants.Null ? ToString(Source, Target) : ToString(Index, Source, Target);}
 
+        /// <summary>
+        /// <para>
+        /// Returns the string using association operator syntax.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <returns>
+        /// <para>The string in association format: source(target)</para>
+        /// <para></para>
+        /// </returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public string ToAssociationString()  { return $"{Source}({Target})";}
+
         #region IList
 
         /// <summary>
