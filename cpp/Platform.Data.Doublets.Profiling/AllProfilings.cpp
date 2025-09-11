@@ -7,4 +7,3 @@ int main()
     using namespace Platform::Data::Doublets::Profiling;
     CreatePoints();
 }
-

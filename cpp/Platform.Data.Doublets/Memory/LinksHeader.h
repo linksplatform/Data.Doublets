@@ -1,29 +1,29 @@
 ﻿namespace Platform::Data::Doublets::Memory
 {
-    template<std::integral TLinkAddress>
-    struct LinksHeader
-    {
-        TLinkAddress AllocatedLinks;
+template <std::integral TLinkAddress>
+struct LinksHeader
+{
+    TLinkAddress AllocatedLinks;
 
-        TLinkAddress ReservedLinks;
+    TLinkAddress ReservedLinks;
 
-        TLinkAddress FreeLinks;
+    TLinkAddress FreeLinks;
 
-        TLinkAddress FirstFreeLink;
+    TLinkAddress FirstFreeLink;
 
-        TLinkAddress RootAsSource;
+    TLinkAddress RootAsSource;
 
-        TLinkAddress RootAsTarget;
+    TLinkAddress RootAsTarget;
 
-        TLinkAddress LastFreeLink;
+    TLinkAddress LastFreeLink;
 
-        TLinkAddress Reserved8;
+    TLinkAddress Reserved8;
 
-        constexpr bool operator==(const LinksHeader&) const noexcept = default;
-    };
-}
+    constexpr bool operator==(const LinksHeader&) const noexcept = default;
+};
+} // namespace Platform::Data::Doublets::Memory
 
-template<std::integral TLinkAddress>
+template <std::integral TLinkAddress>
 struct std::hash<Platform::Data::Doublets::Memory::LinksHeader<TLinkAddress>>
 {
     using Self = Platform::Data::Doublets::Memory::LinksHeader<TLinkAddress>;
@@ -31,15 +31,7 @@ struct std::hash<Platform::Data::Doublets::Memory::LinksHeader<TLinkAddress>>
     auto operator()(const Self& self) const noexcept
     {
         using Platform::Hashing::Hash;
-        return Hash(
-            self.AllocatedLinks,
-            self.ReservedLinks,
-            self.FreeLinks,
-            self.FirstFreeLink,
-            self.RootAsSource,
-            self.RootAsTarget,
-            self.LastFreeLink,
-            self.Reserved8
-        );
+        return Hash(self.AllocatedLinks, self.ReservedLinks, self.FreeLinks, self.FirstFreeLink, self.RootAsSource,
+                    self.RootAsTarget, self.LastFreeLink, self.Reserved8);
     }
 };
