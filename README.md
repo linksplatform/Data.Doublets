@@ -1,81 +1,63 @@
 [![Gitpod](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/linksplatform/Data.Doublets)
 
+# [Data.Doublets](https://github.com/linksplatform/Data.Doublets)
+
+LinksPlatform's Platform.Data.Doublets library - a high-performance data structure for storing and manipulating relationships between objects.
+
+## Multi-Language Support
+
+This library is implemented in multiple programming languages:
+
+### [C#](./csharp) 
 [![NuGet Version and Downloads count](https://img.shields.io/nuget/v/Platform.Data.Doublets?label=nuget&style=flat)](https://www.nuget.org/packages/Platform.Data.Doublets)
 [![Actions Status](https://github.com/linksplatform/Data.Doublets/workflows/csharp/badge.svg)](https://github.com/linksplatform/Data.Doublets/actions?workflow=csharp)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d92f59d08c604e95ba2469ee8e9d88c1)](https://app.codacy.com/gh/linksplatform/Data.Doublets?utm_source=github.com&utm_medium=referral&utm_content=linksplatform/Data.Doublets&utm_campaign=Badge_Grade_Settings)
-[![CodeFactor](https://www.codefactor.io/repository/github/linksplatform/data.doublets/badge/master)](https://www.codefactor.io/repository/github/linksplatform/data.doublets/overview/master)
 
-# [Data.Doublets](https://github.com/linksplatform/Data.Doublets) ([русская версия](README.ru.md))
-LinksPlatform's Platform.Data.Doublets Class Library.
+- Full-featured implementation with NuGet package
+- Complete documentation and examples
+- [Read C# README](./csharp/README.md)
 
-Namespace: [Platform.Data.Doublets](https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.html)
+### [C++](./cpp)
+- Native C++ implementation for high performance
+- CMake build system support
+- Conan package management
 
-Forked from: [Konard/LinksPlatform/Platform/Platform.Data.Doublets](https://github.com/Konard/LinksPlatform/tree/b0844d778ced60b22435e57342393031b26a2822/Platform/Platform.Data.Doublets)
+### [C](./c)
+- Foreign Function Interface (FFI) header
+- Interoperability with C applications
 
-NuGet package: [Platform.Data.Doublets](https://www.nuget.org/packages/Platform.Data.Doublets)
+### [Rust](./rust)
+- Memory-safe implementation
+- Performance-focused design
 
-## [Example](https://github.com/linksplatform/Examples.Doublets.CRUD.DotNet) | [Run .NET fiddle](https://dotnetfiddle.net/Y7Zvt0)
-```C#
-using System;
-using Platform.Data;
-using Platform.Data.Doublets;
-using Platform.Data.Doublets.Memory.United.Generic;
+## What are Doublets?
 
-// A doublet links store is mapped to "db.links" file:
-using var links = new UnitedMemoryLinks<uint>("db.links");
+Doublets are a fundamental data structure that represents relationships as directed links between objects. Each doublet link connects a source to a target, enabling the creation of complex graph structures and knowledge representations.
 
-// A creation of the doublet link: 
-var link = links.Create();
+## Key Features
 
-// The link is updated to reference itself twice (as a source and a target):
-link = links.Update(link, newSource: link, newTarget: link);
+- **High Performance**: Optimized for speed and memory efficiency
+- **Multi-Language**: Consistent API across different programming languages  
+- **Graph Storage**: Efficient storage and traversal of graph structures
+- **Memory Management**: Automatic memory handling and optimization
+- **Cross-Platform**: Works on multiple operating systems
 
-// Read operations:
-Console.WriteLine($"The number of links in the data store is {links.Count()}.");
-Console.WriteLine("Data store contents:");
-var any = links.Constants.Any; // Means any link address or no restriction on link address
-// Arguments of the query are interpreted as restrictions
-var query = new Link<uint>(index: any, source: any, target: any);
-links.Each((link) => {
-    Console.WriteLine(links.Format(link));
-    return links.Constants.Continue;
-}, query);
+## Getting Started
 
-// The link's content reset:
-link = links.Update(link, newSource: default, newTarget: default);
+Choose your preferred programming language:
+- **C#**: See [csharp/README.md](./csharp/README.md) for installation and usage
+- **C++**: Check the [cpp directory](./cpp) for build instructions
+- **Rust**: Explore the [rust directory](./rust) for Rust-specific implementation
 
-// The link deletion:
-links.Delete(link);
-```
+## Documentation
 
-## [SQLite vs Doublets](https://github.com/linksplatform/Comparisons.SQLiteVSDoublets)
-
-[![Image with result of performance comparison between SQLite and Doublets.](https://raw.githubusercontent.com/linksplatform/Documentation/master/doc/Examples/sqlite_vs_doublets_performance.png "Result of performance comparison between SQLite and Doublets")](https://github.com/linksplatform/Comparisons.SQLiteVSDoublets)
-
-## [Documentation](https://linksplatform.github.io/Data.Doublets)
-*   Interface [ILinks\<TLink, TConstants\>](https://linksplatform.github.io/Data/csharp/api/Platform.Data.ILinks-2.html).
-*   Interface [ILinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.ILinks-1.html).
-*   Class [UnitedMemoryLinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinks-1.html).
-
-[PDF file](https://linksplatform.github.io/Data.Doublets/csharp/Platform.Data.Doublets.pdf) with code for e-readers.
-
-## Dependency graph [C#]
-[![C# dependency graph SVG image](https://raw.github.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.svg?sanitize=true)](https://raw.githubusercontent.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.svg?sanitize=true)
-
-## Dependency graph [C++]
-[![C++ dependency graph SVG image](https://raw.github.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.cpp.svg?sanitize=true)](https://raw.githubusercontent.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.cpp.svg?sanitize=true)
-
-## Depend on
-*   [Platform.Random](https://github.com/linksplatform/Random)
-*   [Platform.Timestamps](https://github.com/linksplatform/Timestamps)
-*   [Platform.Incrementers](https://github.com/linksplatform/Incrementers)
-*   [Platform.Collections.Methods](https://github.com/linksplatform/Collections.Methods)
-*   [Platform.Singletons](https://github.com/linksplatform/Singletons)
-*   [Platform.Memory](https://github.com/linksplatform/Memory)
-*   [Platform.Data](https://github.com/linksplatform/Data)
+- [C# API Documentation](https://linksplatform.github.io/Data.Doublets)
+- [Examples Repository](https://github.com/linksplatform/Examples.Doublets.CRUD.DotNet)
+- [Performance Comparisons](https://github.com/linksplatform/Comparisons.SQLiteVSDoublets)
 
 ## Support
 
-Ask questions at [stackoverflow.com/tags/links-platform](https://stackoverflow.com/tags/links-platform) (or with tag `links-platform`) to get our free support.
+Ask questions at [stackoverflow.com/tags/links-platform](https://stackoverflow.com/tags/links-platform) or get real-time support on [our official Discord server](https://discord.gg/eEXJyjWv5e).
 
-You can also get real-time support on [our official Discord server](https://discord.gg/eEXJyjWv5e).
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
