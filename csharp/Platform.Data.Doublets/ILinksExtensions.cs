@@ -174,6 +174,29 @@ namespace Platform.Data.Doublets
             }
         }
 
+        /// <remarks>
+        /// TODO: Возможно есть очень простой способ это сделать.
+        /// (Например просто удалить файл, или изменить его размер таким образом,
+        /// чтобы удалился весь контент)
+        /// Например через _header->AllocatedLinks в ResizableDirectMemoryLinks
+        /// </remarks>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static TLinkAddress DeleteAll<TLinkAddress>(this ILinks<TLinkAddress> links, WriteHandler<TLinkAddress>? handler)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            var constants = links.Constants;
+            WriteHandlerState<TLinkAddress> handlerState = new(constants.Continue, constants.Break, handler);
+            var comparer = Comparer<TLinkAddress>.Default;
+            for (var i = links.Count(); comparer.Compare(i, default) > 0; i = --i)
+            {
+                handlerState.Apply(links.Delete(i, handlerState.Handler));
+                if (links.Count() !=  --i)
+                {
+                    i = links.Count();
+                }
+            }
+            return handlerState.Result;
+        }
+
         /// <summary>
         /// <para>
         /// Firsts the links.
@@ -971,6 +994,25 @@ namespace Platform.Data.Doublets
             return link;
         }
 
+        /// <summary>
+        /// Создаёт связь (если она не существовала), либо возвращает индекс существующей связи с указанными Source (началом) и Target (концом).
+        /// </summary>
+        /// <param name="links">Хранилище связей.</param>
+        /// <param name="source">Индекс связи, которая является началом на создаваемой связи.</param>
+        /// <param name="target">Индекс связи, которая является концом для создаваемой связи.</param>
+        /// <param name="handler">Обработчик события.</param>
+        /// <returns>Индекс связи, с указанным Source (началом) и Target (концом)</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static TLinkAddress GetOrCreate<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress source, TLinkAddress target, WriteHandler<TLinkAddress>? handler)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            var link = links.SearchOrDefault(source, target);
+            if (EqualityComparer<TLinkAddress>.Default.Equals(link, default))
+            {
+                link = links.CreateAndUpdate(source, target, handler);
+            }
+            return link;
+        }
+
         public static TLinkAddress UpdateOrCreateOrGet<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress source, TLinkAddress target, TLinkAddress newSource, TLinkAddress newTarget)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
             var constants = links.Constants;
@@ -1021,6 +1063,23 @@ namespace Platform.Data.Doublets
             return default;
         }
 
+        /// <summary>Удаляет связь с указанными началом (Source) и концом (Target).</summary>
+        /// <param name="links">Хранилище связей.</param>
+        /// <param name="source">Индекс связи, которая является началом удаляемой связи.</param>
+        /// <param name="target">Индекс связи, которая является концом удаляемой связи.</param>
+        /// <param name="handler">Обработчик события.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static TLinkAddress DeleteIfExists<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress source, TLinkAddress target, WriteHandler<TLinkAddress>? handler)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            var link = links.SearchOrDefault(source, target);
+            if (!EqualityComparer<TLinkAddress>.Default.Equals(link, default))
+            {
+                links.Delete(link, handler);
+                return link;
+            }
+            return default;
+        }
+
         /// <summary>Удаляет несколько связей.</summary>
         /// <param name="links">Хранилище связей.</param>
         /// <param name="deletedLinks">Список адресов связей к удалению.</param>
@@ -1031,6 +1090,22 @@ namespace Platform.Data.Doublets
             {
                 links.Delete(deletedLinks[i]);
             }
+        }
+
+        /// <summary>Удаляет несколько связей.</summary>
+        /// <param name="links">Хранилище связей.</param>
+        /// <param name="deletedLinks">Список адресов связей к удалению.</param>
+        /// <param name="handler">Обработчик события.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static TLinkAddress DeleteMany<TLinkAddress>(this ILinks<TLinkAddress> links, IList<TLinkAddress>? deletedLinks, WriteHandler<TLinkAddress>? handler)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            var constants = links.Constants;
+            WriteHandlerState<TLinkAddress> handlerState = new(constants.Continue, constants.Break, handler);
+            for (int i = 0; i < deletedLinks.Count; i++)
+            {
+                handlerState.Apply(links.Delete(deletedLinks[i], handlerState.Handler));
+            }
+            return handlerState.Result;
         }
 
         public static void DeleteAllUsages<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress linkIndex)  where TLinkAddress : IUnsignedNumber<TLinkAddress>{links.DeleteAllUsages(linkIndex, null);}
@@ -1087,6 +1162,43 @@ namespace Platform.Data.Doublets
             {
                 links.Delete(link);
             }
+        }
+
+        /// <summary>
+        /// <para>
+        /// Deletes the by query using the specified links.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="TLinkAddress">
+        /// <para>The link.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="query">
+        /// <para>The query.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="handler">
+        /// <para>The handler.</para>
+        /// <para></para>
+        /// </param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static TLinkAddress DeleteByQuery<TLinkAddress>(this ILinks<TLinkAddress> links, Link<TLinkAddress> query, WriteHandler<TLinkAddress>? handler)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            var constants = links.Constants;
+            WriteHandlerState<TLinkAddress> handlerState = new(constants.Continue, constants.Break, handler);
+            var queryResult = new List<TLinkAddress>();
+            var queryResultFiller = new ListFiller<TLinkAddress, TLinkAddress>(queryResult, constants.Continue);
+            links.Each(queryResultFiller.AddFirstAndReturnConstant, query);
+            foreach (var link in queryResult)
+            {
+                handlerState.Apply(links.Delete(link, handlerState.Handler));
+            }
+            return handlerState.Result;
         }
 
         // TODO: Move to Platform.Data
