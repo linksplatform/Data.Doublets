@@ -342,6 +342,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         {
             var constants = Constants;
             var @break = constants.Break;
+            var @continue = constants.Continue;
             if (restriction.Count == 0)
             {
                 for (var link = GetOne(); LessOrEqualThan(link, GetHeaderReference().AllocatedLinks); link = link + TLinkAddress.One)
@@ -351,9 +352,8 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                         return @break;
                     }
                 }
-                return @break;
+                return @continue;
             }
-            var @continue = constants.Continue;
             var any = constants.Any;
             var index = this.GetIndex(restriction);
             if (restriction.Count == 1)

@@ -380,5 +380,43 @@ namespace Platform.Data.Doublets.Tests
                 links.Delete(link);
             }
         }
+
+        /// <summary>
+        /// <para>
+        /// Tests that the Each method returns Continue when performing a full scan without interruption.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="T">
+        /// <para>The link address type.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links.</para>
+        /// <para></para>
+        /// </param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void TestFullScanReturnsContinue<T>(this ILinks<T> links) where T : IUnsignedNumber<T>, IComparisonOperators<T, T, bool>
+        {
+            var constants = links.Constants;
+            
+            // Create some test links
+            var link1 = links.Create();
+            var link2 = links.Create();
+            var link3 = links.CreateAndUpdate(link1, link2);
+            
+            // Test full scan returns Continue when not interrupted
+            var result = links.Each(foundLink => constants.Continue);
+            EnsureEqual(constants.Continue, result, "Full scan should return Continue when not interrupted by handler");
+            
+            // Test partial scan returns Break when interrupted 
+            var visitCount = T.Zero;
+            result = links.Each(foundLink =>
+            {
+                visitCount++;
+                return visitCount >= T.One ? constants.Break : constants.Continue;
+            });
+            EnsureEqual(constants.Break, result, "Scan should return Break when interrupted by handler");
+        }
     }
 }
