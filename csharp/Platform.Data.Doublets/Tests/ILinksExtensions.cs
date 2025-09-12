@@ -165,12 +165,12 @@ namespace Platform.Data.Doublets.Tests
 
             // Search for created link
             var setter1 = new Setter<T, T>(constants.Continue, constants.Break, constants.Null);
-            links.Each(setter1.SetFirstAndReturnFalse, constants.Any, h106E, h108E);
+            links.Each(setter1.SetFirstFromNonNullListAndReturnTrue, constants.Any, h106E, h108E);
             EnsureTrue(setter1.Result ==  linkAddress1);
 
             // Search for nonexistent link
             var setter2 = new Setter<T, T>(constants.Continue, constants.Break, constants.Null);
-            links.Each(setter2.SetFirstAndReturnFalse, constants.Any, h106E, h107E);
+            links.Each(setter2.SetFirstFromNonNullListAndReturnTrue, constants.Any, h106E, h107E);
             EnsureTrue(setter2.Result ==  constants.Null);
 
             // Update link to reference null (prepare for delete)
