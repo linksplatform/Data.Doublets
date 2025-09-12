@@ -154,6 +154,30 @@ namespace Platform.Data.Doublets
             return links.Delete(new LinkAddress<TLinkAddress>(linkToDelete), handler);
         }
 
+        /// <summary>
+        /// <para>
+        /// Deletes the links.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="TLinkAddress">
+        /// <para>The link.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="linkToDelete">
+        /// <para>The link to delete.</para>
+        /// <para></para>
+        /// </param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static TLinkAddress Delete<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress linkToDelete)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            return links.Delete(linkToDelete, null);
+        }
+
         /// <remarks>
         /// TODO: Возможно есть очень простой способ это сделать.
         /// (Например просто удалить файл, или изменить его размер таким образом,
@@ -163,13 +187,22 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void DeleteAll<TLinkAddress>(this ILinks<TLinkAddress> links)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
-            var comparer = Comparer<TLinkAddress>.Default;
-            for (var i = links.Count(); comparer.Compare(i, default) > 0; i = --i)
+            // Check if the implementation has overridden DeleteAll method
+            if (links is Decorators.LinksDecoratorBase<TLinkAddress> decorator)
             {
-                links.Delete(i);
-                if (links.Count() !=  --i)
+                decorator.DeleteAll();
+            }
+            else
+            {
+                // Default implementation
+                var comparer = Comparer<TLinkAddress>.Default;
+                for (var i = links.Count(); comparer.Compare(i, default) > 0; i = --i)
                 {
-                    i = links.Count();
+                    links.Delete(i);
+                    if (links.Count() !=  --i)
+                    {
+                        i = links.Count();
+                    }
                 }
             }
         }

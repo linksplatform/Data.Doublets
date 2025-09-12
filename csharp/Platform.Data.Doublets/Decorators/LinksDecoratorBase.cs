@@ -186,4 +186,26 @@ public abstract class LinksDecoratorBase<TLinkAddress> : LinksOperatorBase<TLink
     {
         return _links.Delete(restriction: restriction, handler: handler);
     }
+
+    /// <summary>
+    ///     <para>
+    ///         Deletes all links. Can be overridden for more efficient implementations.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    public virtual void DeleteAll()
+    {
+        // Default implementation - same as the current extension method
+        var comparer = Comparer<TLinkAddress>.Default;
+        for (var i = Count(null); comparer.Compare(i, default) > 0; i = --i)
+        {
+            // Delete individual links using the base Delete method to avoid recursion
+            Delete(new List<TLinkAddress> { i }, null);
+            if (Count(null) != --i)
+            {
+                i = Count(null);
+            }
+        }
+    }
 }
