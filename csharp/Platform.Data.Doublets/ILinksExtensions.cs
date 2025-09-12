@@ -861,6 +861,26 @@ namespace Platform.Data.Doublets
             return handlerState.Result;
         }
 
+        public static TLinkAddress CreateAndUpdate<TLinkAddress>(this ILinks<TLinkAddress> links, params TLinkAddress[] restriction)  where TLinkAddress : IUnsignedNumber<TLinkAddress>{return links.CreateAndUpdate((IList<TLinkAddress>)restriction);}
+
+        public static TLinkAddress CreateAndUpdate<TLinkAddress>(this ILinks<TLinkAddress> links, IList<TLinkAddress>? restriction)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            return restriction.Count switch
+            {
+                2 => links.CreateAndUpdate(restriction[0], restriction[1]),
+                _ => throw new ArgumentException($"Invalid number of restrictions: {restriction.Count}. CreateAndUpdate with IList expects exactly 2 elements (source, target).")
+            };
+        }
+
+        public static TLinkAddress CreateAndUpdate<TLinkAddress>(this ILinks<TLinkAddress> links, IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? handler)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            return restriction.Count switch
+            {
+                2 => links.CreateAndUpdate(restriction[0], restriction[1], handler),
+                _ => throw new ArgumentException($"Invalid number of restrictions: {restriction.Count}. CreateAndUpdate with IList expects exactly 2 elements (source, target).")
+            };
+        }
+
         /// <summary>
         /// Обновляет связь с указанными началом (Source) и концом (Target)
         /// на связь с указанными началом (NewSource) и концом (NewTarget).
