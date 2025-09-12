@@ -35,6 +35,13 @@ namespace Platform.Data.Doublets.Tests
             Using<uint>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
             Using<ulong>(links => links.DecorateWithAutomaticUniquenessAndUsagesResolution().TestMultipleRandomCreationsAndDeletions(100));
         }
+
+        [Fact]
+        public static void FullScanReturnsContinueTest()
+        {
+            Using<uint>(links => links.TestFullScanReturnsContinue());
+            Using<ulong>(links => links.TestFullScanReturnsContinue());
+        }
         private static void Using<TLinkAddress> (Action<ILinks<TLinkAddress>> action) where TLinkAddress : IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
         {
             using (var dataMemory = new HeapResizableDirectMemory())

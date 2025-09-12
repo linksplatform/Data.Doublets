@@ -435,6 +435,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
     {
         var constants = Constants;
         var @break = constants.Break;
+        var @continue = constants.Continue;
         if (restriction.Count == 0)
         {
             for (var link = GetOne(); (link <= GetHeaderReference().AllocatedLinks); link = link + TLinkAddress.One)
@@ -444,9 +445,8 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
                     return @break;
                 }
             }
-            return @break;
+            return @continue;
         }
-        var @continue = constants.Continue;
         var any = constants.Any;
         var index = this.GetIndex(link: restriction);
         if (restriction.Count == 1)
