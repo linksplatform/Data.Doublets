@@ -390,18 +390,42 @@ public abstract unsafe class InternalLinksRecursionlessSizeBalancedTreeMethodsBa
             return @continue;
         }
         var @break = Break;
-        if ((EachUsageCore(@base: @base, link: GetLeftOrDefault(node: link), handler: handler) == @break))
+        var leftResult = EachUsageCore(@base: @base, link: GetLeftOrDefault(node: link), handler: handler);
+        if (leftResult == @break)
         {
             return @break;
         }
-        if ((handler(link: GetLinkValues(linkIndex: link)) == @break))
+        // Handle jump from left subtree
+        if (leftResult != @continue && leftResult > @break)
+        {
+            // Jump position returned, need to implement position-based jumping for tree traversal
+            // For now, treat as break to maintain current behavior
+            return leftResult;
+        }
+        
+        var handlerResult = handler(link: GetLinkValues(linkIndex: link));
+        if (handlerResult == @break)
         {
             return @break;
         }
-        if ((EachUsageCore(@base: @base, link: GetRightOrDefault(node: link), handler: handler) == @break))
+        // Handle jump from current node handler
+        if (handlerResult != @continue && handlerResult > @break)
+        {
+            // Return jump position for parent to handle
+            return handlerResult;
+        }
+        
+        var rightResult = EachUsageCore(@base: @base, link: GetRightOrDefault(node: link), handler: handler);
+        if (rightResult == @break)
         {
             return @break;
         }
+        // Handle jump from right subtree
+        if (rightResult != @continue && rightResult > @break)
+        {
+            return rightResult;
+        }
+        
         return @continue;
     }
 

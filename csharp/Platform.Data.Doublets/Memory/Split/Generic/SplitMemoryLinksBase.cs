@@ -435,18 +435,60 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
     {
         var constants = Constants;
         var @break = constants.Break;
+        var @continue = constants.Continue;
         if (restriction.Count == 0)
         {
+            var position = TLinkAddress.Zero;
+            var allLinks = new List<TLinkAddress>();
+            
+            // First, collect all valid links to support position-based jumping
             for (var link = GetOne(); (link <= GetHeaderReference().AllocatedLinks); link = link + TLinkAddress.One)
             {
-                if (Exists(link: link) && (handler(link: GetLinkStruct(linkIndex: link)) == @break))
+                if (Exists(link: link))
+                {
+                    allLinks.Add(link);
+                }
+            }
+            
+            // Now iterate with jump support
+            var currentIndex = 0;
+            while (currentIndex < allLinks.Count)
+            {
+                var currentLink = allLinks[currentIndex];
+                var result = handler(link: GetLinkStruct(linkIndex: currentLink));
+                
+                if (result == @break)
                 {
                     return @break;
                 }
+                
+                if (result != @continue)
+                {
+                    // Handle jump: if result > break, treat it as jump position
+                    if (result > @break)
+                    {
+                        var jumpPositionValue = ulong.CreateTruncating(result);
+                        var jumpIndex = (int)jumpPositionValue;
+                        
+                        // Jump to the specified position if valid
+                        if (jumpIndex >= 0 && jumpIndex < allLinks.Count)
+                        {
+                            currentIndex = jumpIndex;
+                            continue; // Jump to the new position
+                        }
+                        else
+                        {
+                            // Invalid jump position, treat as break
+                            return @break;
+                        }
+                    }
+                }
+                
+                currentIndex++;
             }
-            return @break;
+            
+            return @continue;
         }
-        var @continue = constants.Continue;
         var any = constants.Any;
         var index = this.GetIndex(link: restriction);
         if (restriction.Count == 1)
