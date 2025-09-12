@@ -1599,5 +1599,108 @@ namespace Platform.Data.Doublets
         }
 
         #endregion
+
+        #region Link-returning extensions
+
+        /// <summary>
+        /// Выполняет поиск связи с указанными Source (началом) и Target (концом) и возвращает полную структуру Link.
+        /// </summary>
+        /// <param name="links">Хранилище связей.</param>
+        /// <param name="source">Индекс связи, которая является началом для искомой связи.</param>
+        /// <param name="target">Индекс связи, которая является концом для искомой связи.</param>
+        /// <returns>Полная структура Link с указанными Source (началом) и Target (концом), или Link.Null если не найдена.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Link<TLinkAddress> SearchOrDefaultAsLink<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress source, TLinkAddress target)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            var address = links.SearchOrDefault(source, target);
+            if (EqualityComparer<TLinkAddress>.Default.Equals(address, default))
+            {
+                return Link<TLinkAddress>.Null;
+            }
+            return new Link<TLinkAddress>(links.GetLink(address));
+        }
+
+        /// <summary>
+        /// Создаёт связь (если она не существовала), либо возвращает полную структуру Link существующей связи с указанными Source (началом) и Target (концом).
+        /// </summary>
+        /// <param name="links">Хранилище связей.</param>
+        /// <param name="source">Индекс связи, которая является началом на создаваемой связи.</param>
+        /// <param name="target">Индекс связи, которая является концом для создаваемой связи.</param>
+        /// <returns>Полная структура Link с указанным Source (началом) и Target (концом)</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Link<TLinkAddress> GetOrCreateAsLink<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress source, TLinkAddress target)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            var address = links.GetOrCreate(source, target);
+            return new Link<TLinkAddress>(links.GetLink(address));
+        }
+
+        /// <summary>
+        /// Создаёт новую связь и обновляет её содержимое, возвращая полную структуру Link.
+        /// </summary>
+        /// <param name="links">Хранилище связей.</param>
+        /// <param name="source">Индекс связи, которая является началом для создаваемой связи.</param>
+        /// <param name="target">Индекс связи, которая является концом для создаваемой связи.</param>
+        /// <returns>Полная структура Link созданной связи</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Link<TLinkAddress> CreateAndUpdateAsLink<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress source, TLinkAddress target)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            var address = links.CreateAndUpdate(source, target);
+            return new Link<TLinkAddress>(links.GetLink(address));
+        }
+
+        /// <summary>
+        /// Создаёт новую точку (связь, ссылающуюся саму на себя) и возвращает полную структуру Link.
+        /// </summary>
+        /// <param name="links">Хранилище связей.</param>
+        /// <returns>Полная структура Link созданной точки</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Link<TLinkAddress> CreatePointAsLink<TLinkAddress>(this ILinks<TLinkAddress> links)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            var address = links.CreatePoint();
+            return new Link<TLinkAddress>(links.GetLink(address));
+        }
+
+        /// <summary>
+        /// Обновляет связь с указанными началом (Source) и концом (Target) на связь с указанными началом (NewSource) и концом (NewTarget), возвращая полную структуру Link.
+        /// </summary>
+        /// <param name="links">Хранилище связей.</param>
+        /// <param name="link">Индекс обновляемой связи.</param>
+        /// <param name="newSource">Индекс связи, которая является началом связи, на которую выполняется обновление.</param>
+        /// <param name="newTarget">Индекс связи, которая является концом связи, на которую выполняется обновление.</param>
+        /// <returns>Полная структура Link обновлённой связи</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Link<TLinkAddress> UpdateAsLink<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link, TLinkAddress newSource, TLinkAddress newTarget)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            var address = links.Update(link, newSource, newTarget);
+            return new Link<TLinkAddress>(links.GetLink(address));
+        }
+
+        /// <summary>
+        /// Обновляет связь согласно ограничениям, возвращая полную структуру Link.
+        /// </summary>
+        /// <param name="links">Хранилище связей.</param>
+        /// <param name="restriction">Ограничения на содержимое связей.</param>
+        /// <returns>Полная структура Link обновлённой связи</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Link<TLinkAddress> UpdateAsLink<TLinkAddress>(this ILinks<TLinkAddress> links, IList<TLinkAddress>? restriction)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            var address = links.Update(restriction);
+            return new Link<TLinkAddress>(links.GetLink(address));
+        }
+
+        /// <summary>
+        /// Возвращает полную структуру Link первой связи в хранилище.
+        /// </summary>
+        /// <param name="links">Хранилище связей.</param>
+        /// <returns>Полная структура Link первой связи</returns>
+        /// <exception cref="InvalidOperationException">В хранилище нет связей.</exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Link<TLinkAddress> FirstAsLink<TLinkAddress>(this ILinks<TLinkAddress> links)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            var address = links.First();
+            return new Link<TLinkAddress>(links.GetLink(address));
+        }
+
+        #endregion
     }
 }
