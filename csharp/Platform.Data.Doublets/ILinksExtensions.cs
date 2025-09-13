@@ -1599,5 +1599,169 @@ namespace Platform.Data.Doublets
         }
 
         #endregion
+
+        #region InvertedEach
+        
+        /// <summary>
+        /// <para>
+        /// Inverted Each operation - returns all links except those matching the specified restriction.
+        /// </para>
+        /// <para>
+        /// (* *) - returns nothing (everything except everything is nothing)
+        /// (* y) - returns all links except those with target y
+        /// (x *) - returns all links except those with source x  
+        /// (x y) - returns all links except the specific link (x y)
+        /// </para>
+        /// </summary>
+        /// <typeparam name="TLinkAddress">
+        /// <para>The link address type.</para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links storage.</para>
+        /// </param>
+        /// <param name="handler">
+        /// <para>The handler to process each link.</para>
+        /// </param>
+        /// <param name="restriction">
+        /// <para>The restriction pattern to exclude from results.</para>
+        /// </param>
+        /// <returns>
+        /// <para>The result of the handler operations.</para>
+        /// </returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static TLinkAddress InvertedEach<TLinkAddress>(this ILinks<TLinkAddress> links, ReadHandler<TLinkAddress>? handler, params TLinkAddress[] restriction) where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            var constants = links.Constants;
+            var any = constants.Any;
+            var @continue = constants.Continue;
+            var @break = constants.Break;
+
+            // Handle different restriction patterns
+            if (restriction == null || restriction.Length == 0)
+            {
+                // No restriction means exclude nothing, so return all links
+                return links.Each(handler);
+            }
+
+            // Normalize restriction to 3 elements (index, source, target)
+            var normalizedRestriction = new TLinkAddress[3];
+            if (restriction.Length == 1)
+            {
+                // Single parameter could be index
+                normalizedRestriction[0] = restriction[0];
+                normalizedRestriction[1] = any;
+                normalizedRestriction[2] = any;
+            }
+            else if (restriction.Length == 2)
+            {
+                // Two parameters: source, target
+                normalizedRestriction[0] = any;
+                normalizedRestriction[1] = restriction[0];
+                normalizedRestriction[2] = restriction[1];
+            }
+            else if (restriction.Length >= 3)
+            {
+                // Three or more parameters: index, source, target
+                normalizedRestriction[0] = restriction[0];
+                normalizedRestriction[1] = restriction[1];
+                normalizedRestriction[2] = restriction[2];
+            }
+
+            var index = normalizedRestriction[0];
+            var source = normalizedRestriction[1];
+            var target = normalizedRestriction[2];
+
+            // Special case: (* *) - everything except everything is nothing
+            if ((index == any || EqualityComparer<TLinkAddress>.Default.Equals(index, default)) && 
+                source == any && target == any)
+            {
+                return @continue; // Return nothing
+            }
+
+            // Create a wrapper handler that filters out matching links
+            TLinkAddress FilteringHandler(IList<TLinkAddress>? link)
+            {
+                if (link == null)
+                {
+                    return handler != null ? handler(link) : @continue;
+                }
+
+                var linkIndex = links.GetIndex(link);
+                var linkSource = links.GetSource(link);
+                var linkTarget = links.GetTarget(link);
+
+                // Check if this link matches the exclusion pattern
+                bool matches = true;
+
+                // Check index match (if specified and not Any)
+                if (index != any && !EqualityComparer<TLinkAddress>.Default.Equals(index, default))
+                {
+                    matches &= EqualityComparer<TLinkAddress>.Default.Equals(linkIndex, index);
+                }
+
+                // Check source match (if specified and not Any)
+                if (source != any)
+                {
+                    matches &= EqualityComparer<TLinkAddress>.Default.Equals(linkSource, source);
+                }
+
+                // Check target match (if specified and not Any)  
+                if (target != any)
+                {
+                    matches &= EqualityComparer<TLinkAddress>.Default.Equals(linkTarget, target);
+                }
+
+                // If it matches the exclusion pattern, skip it
+                if (matches)
+                {
+                    return @continue;
+                }
+
+                // Otherwise, process it with the original handler
+                return handler != null ? handler(link) : @continue;
+            }
+
+            // Call Each with all links and let the filtering handler do the work
+            return links.Each(FilteringHandler);
+        }
+
+        /// <summary>
+        /// <para>
+        /// Inverted Each operation overload with IList restriction.
+        /// </para>
+        /// </summary>
+        /// <typeparam name="TLinkAddress">
+        /// <para>The link address type.</para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links storage.</para>
+        /// </param>
+        /// <param name="restriction">
+        /// <para>The restriction pattern to exclude from results.</para>
+        /// </param>
+        /// <param name="handler">
+        /// <para>The handler to process each link.</para>
+        /// </param>
+        /// <returns>
+        /// <para>The result of the handler operations.</para>
+        /// </returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static TLinkAddress InvertedEach<TLinkAddress>(this ILinks<TLinkAddress> links, IList<TLinkAddress>? restriction, ReadHandler<TLinkAddress>? handler) where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            if (restriction == null)
+            {
+                return links.InvertedEach(handler);
+            }
+
+            var restrictionArray = new TLinkAddress[restriction.Count];
+            for (int i = 0; i < restriction.Count; i++)
+            {
+                restrictionArray[i] = restriction[i];
+            }
+
+            return links.InvertedEach(handler, restrictionArray);
+        }
+
+        #endregion
     }
 }
