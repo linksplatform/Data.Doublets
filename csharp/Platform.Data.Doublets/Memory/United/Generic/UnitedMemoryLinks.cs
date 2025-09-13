@@ -37,12 +37,38 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         public UnitedMemoryLinks(string address) : this(address, DefaultLinksSizeStep) { }
 
         /// <summary>
+        /// <para>
+        /// Initializes a new <see cref="UnitedMemoryLinks"/> instance.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="address">
+        /// <para>A address.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="enableAutomaticGapsFilling">
+        /// <para>Enables automatic gaps filling feature. Set to false for databases that do not delete data to improve performance.</para>
+        /// <para></para>
+        /// </param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public UnitedMemoryLinks(string address, bool enableAutomaticGapsFilling) : this(address, DefaultLinksSizeStep, enableAutomaticGapsFilling) { }
+
+        /// <summary>
         /// Создаёт экземпляр базы данных Links в файле по указанному адресу, с указанным минимальным шагом расширения базы данных.
         /// </summary>
         /// <param name="address">Полный пусть к файлу базы данных.</param>
         /// <param name="memoryReservationStep">Минимальный шаг расширения базы данных в байтах.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public UnitedMemoryLinks(string address, long memoryReservationStep) : this(new FileMappedResizableDirectMemory(address, memoryReservationStep), memoryReservationStep) { }
+
+        /// <summary>
+        /// Создаёт экземпляр базы данных Links в файле по указанному адресу, с указанным минимальным шагом расширения базы данных.
+        /// </summary>
+        /// <param name="address">Полный пусть к файлу базы данных.</param>
+        /// <param name="memoryReservationStep">Минимальный шаг расширения базы данных в байтах.</param>
+        /// <param name="enableAutomaticGapsFilling">Включает функцию автоматического заполнения пробелов. Установите false для баз данных, которые не удаляют данные, чтобы повысить производительность.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public UnitedMemoryLinks(string address, long memoryReservationStep, bool enableAutomaticGapsFilling) : this(new FileMappedResizableDirectMemory(address, memoryReservationStep), memoryReservationStep, enableAutomaticGapsFilling) { }
 
         /// <summary>
         /// <para>
@@ -56,6 +82,23 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public UnitedMemoryLinks(IResizableDirectMemory memory) : this(memory, DefaultLinksSizeStep) { }
+
+        /// <summary>
+        /// <para>
+        /// Initializes a new <see cref="UnitedMemoryLinks"/> instance.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="memory">
+        /// <para>A memory.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="enableAutomaticGapsFilling">
+        /// <para>Enables automatic gaps filling feature. Set to false for databases that do not delete data to improve performance.</para>
+        /// <para></para>
+        /// </param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public UnitedMemoryLinks(IResizableDirectMemory memory, bool enableAutomaticGapsFilling) : this(memory, DefaultLinksSizeStep, enableAutomaticGapsFilling) { }
 
         /// <summary>
         /// <para>
@@ -88,6 +131,27 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para>A memory reservation step.</para>
         /// <para></para>
         /// </param>
+        /// <param name="enableAutomaticGapsFilling">
+        /// <para>Enables automatic gaps filling feature. Set to false for databases that do not delete data to improve performance.</para>
+        /// <para></para>
+        /// </param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public UnitedMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep, bool enableAutomaticGapsFilling) : this(memory, memoryReservationStep, Default<LinksConstants<TLinkAddress>>.Instance, IndexTreeType.Default, enableAutomaticGapsFilling) { }
+
+        /// <summary>
+        /// <para>
+        /// Initializes a new <see cref="UnitedMemoryLinks"/> instance.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="memory">
+        /// <para>A memory.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="memoryReservationStep">
+        /// <para>A memory reservation step.</para>
+        /// <para></para>
+        /// </param>
         /// <param name="constants">
         /// <para>A constants.</para>
         /// <para></para>
@@ -97,7 +161,36 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public UnitedMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep, LinksConstants<TLinkAddress> constants, IndexTreeType indexTreeType) : base(memory, memoryReservationStep, constants)
+        public UnitedMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep, LinksConstants<TLinkAddress> constants, IndexTreeType indexTreeType) : this(memory, memoryReservationStep, constants, indexTreeType, true) { }
+
+        /// <summary>
+        /// <para>
+        /// Initializes a new <see cref="UnitedMemoryLinks"/> instance.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="memory">
+        /// <para>A memory.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="memoryReservationStep">
+        /// <para>A memory reservation step.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="constants">
+        /// <para>A constants.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="indexTreeType">
+        /// <para>A index tree type.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="enableAutomaticGapsFilling">
+        /// <para>Enables automatic gaps filling feature. Set to false for databases that do not delete data to improve performance.</para>
+        /// <para></para>
+        /// </param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public UnitedMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep, LinksConstants<TLinkAddress> constants, IndexTreeType indexTreeType, bool enableAutomaticGapsFilling) : base(memory, memoryReservationStep, constants, enableAutomaticGapsFilling)
         {
             if (indexTreeType == IndexTreeType.SizedAndThreadedAVLBalancedTree)
             {

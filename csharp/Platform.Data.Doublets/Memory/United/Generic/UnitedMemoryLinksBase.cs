@@ -88,6 +88,16 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </summary>
         protected ILinksListMethods<TLinkAddress> UnusedLinksListMethods;
+        
+        /// <summary>
+        /// <para>
+        /// Indicates whether automatic gaps filling feature is enabled.
+        /// For databases that do not delete data (all changes archived),
+        /// this can be set to false to skip runtime existence checks.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        protected readonly bool _enableAutomaticGapsFilling;
 
         /// <summary>
         /// Возвращает общее число связей находящихся в хранилище.
@@ -133,11 +143,37 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected UnitedMemoryLinksBase(IResizableDirectMemory memory, long memoryReservationStep, LinksConstants<TLinkAddress> constants)
+        protected UnitedMemoryLinksBase(IResizableDirectMemory memory, long memoryReservationStep, LinksConstants<TLinkAddress> constants) : this(memory, memoryReservationStep, constants, true) { }
+
+        /// <summary>
+        /// <para>
+        /// Initializes a new <see cref="UnitedMemoryLinksBase"/> instance.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="memory">
+        /// <para>A memory.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="memoryReservationStep">
+        /// <para>A memory reservation step.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="constants">
+        /// <para>A constants.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="enableAutomaticGapsFilling">
+        /// <para>Enables automatic gaps filling feature. Set to false for databases that do not delete data to improve performance.</para>
+        /// <para></para>
+        /// </param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected UnitedMemoryLinksBase(IResizableDirectMemory memory, long memoryReservationStep, LinksConstants<TLinkAddress> constants, bool enableAutomaticGapsFilling)
         {
             _memory = memory;
             _memoryReservationStep = memoryReservationStep;
             Constants = constants;
+            _enableAutomaticGapsFilling = enableAutomaticGapsFilling;
         }
 
         /// <summary>
@@ -346,7 +382,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             {
                 for (var link = GetOne(); LessOrEqualThan(link, GetHeaderReference().AllocatedLinks); link = link + TLinkAddress.One)
                 {
-                    if (Exists(link) && AreEqual(handler(GetLinkStruct(link)), @break))
+                    if ((!_enableAutomaticGapsFilling || Exists(link)) && AreEqual(handler(GetLinkStruct(link)), @break))
                     {
                         return @break;
                     }
@@ -362,7 +398,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                 {
                     return Each(Array.Empty<TLinkAddress>(), handler);
                 }
-                if (!Exists(index))
+                if (_enableAutomaticGapsFilling && !Exists(index))
                 {
                     return @continue;
                 }
@@ -385,7 +421,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                 }
                 else
                 {
-                    if (!Exists(index))
+                    if (_enableAutomaticGapsFilling && !Exists(index))
                     {
                         return @continue;
                     }
@@ -428,7 +464,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                 }
                 else
                 {
-                    if (!Exists(index))
+                    if (_enableAutomaticGapsFilling && !Exists(index))
                     {
                         return @continue;
                     }
