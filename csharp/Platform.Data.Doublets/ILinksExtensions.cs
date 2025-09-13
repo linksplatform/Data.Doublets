@@ -1599,5 +1599,29 @@ namespace Platform.Data.Doublets
         }
 
         #endregion
+
+        /// <summary>
+        /// <para>
+        /// Decorates the links with read-write validation to prevent write operations during read operations.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="TLinkAddress">
+        /// <para>The link address type.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links to decorate.</para>
+        /// <para></para>
+        /// </param>
+        /// <returns>
+        /// <para>The decorated links with read-write validation.</para>
+        /// <para></para>
+        /// </returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static ILinks<TLinkAddress> WithReadWriteValidation<TLinkAddress>(this ILinks<TLinkAddress> links) where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            return new ReadWriteValidationDecorator<TLinkAddress>(links);
+        }
     }
 }
