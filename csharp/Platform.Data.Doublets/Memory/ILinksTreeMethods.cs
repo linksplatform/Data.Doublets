@@ -76,6 +76,28 @@ namespace Platform.Data.Doublets.Memory
 
         /// <summary>
         /// <para>
+        /// Eaches the usage from the middle using the specified root.
+        /// Starts from root, then proceeds with left and right subtrees level by level for faster access to initial links.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="root">
+        /// <para>The root.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="handler">
+        /// <para>The handler.</para>
+        /// <para></para>
+        /// </param>
+        /// <returns>
+        /// <para>The link</para>
+        /// <para></para>
+        /// </returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        TLinkAddress EachUsageFromMiddle(TLinkAddress root, ReadHandler<TLinkAddress>? handler);
+
+        /// <summary>
+        /// <para>
         /// Detaches the root.
         /// </para>
         /// <para></para>
