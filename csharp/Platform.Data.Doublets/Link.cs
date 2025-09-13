@@ -302,6 +302,12 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static implicit operator Link<TLinkAddress>(TLinkAddress[] linkArray)  { return new Link<TLinkAddress>(linkArray);}
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static implicit operator (TLinkAddress, TLinkAddress, TLinkAddress)(Link<TLinkAddress> link)  { return (link.Index, link.Source, link.Target);}
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static implicit operator Link<TLinkAddress>((TLinkAddress, TLinkAddress, TLinkAddress) tuple)  { return new Link<TLinkAddress>(tuple.Item1, tuple.Item2, tuple.Item3);}
+
         /// <summary>
         /// <para>
         /// Returns the string.
