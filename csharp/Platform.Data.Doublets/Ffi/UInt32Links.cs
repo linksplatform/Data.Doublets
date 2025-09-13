@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Platform.Converters;
 using Platform.Delegates;
@@ -17,6 +18,25 @@ namespace Platform.Data.Doublets.Ffi
 
         private readonly unsafe void* _ptr;
 
+        /// <summary>
+        ///     <para>
+        ///         Ensures that this instance has not been disposed.
+        ///     </para>
+        ///     <para></para>
+        /// </summary>
+        /// <exception cref="ObjectDisposedException">
+        ///     <para>Thrown when this instance has been disposed.</para>
+        ///     <para></para>
+        /// </exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected virtual void EnsureNotDisposed()
+        {
+            if (IsDisposed)
+            {
+                throw new ObjectDisposedException(GetType().Name, "Cannot access a disposed Links instance. The database connection has been closed and is no longer available for operations.");
+            }
+        }
+
         public UInt32Links(string path)
         {
             unsafe
@@ -30,6 +50,7 @@ namespace Platform.Data.Doublets.Ffi
 
         public TLinkAddress Count(IList<TLinkAddress>? restriction)
         {
+            EnsureNotDisposed();
             unsafe
             {
                 var array = stackalloc uint[restriction.Count];
@@ -43,6 +64,7 @@ namespace Platform.Data.Doublets.Ffi
 
         public TLinkAddress Each(IList<TLinkAddress>? restriction, ReadHandler<TLinkAddress>? handler)
         {
+            EnsureNotDisposed();
             unsafe
             {
                 Methods.EachCallback_UInt32 callback = (link) => handler != null ? handler(new Link<TLinkAddress>(link.Index, link.Source, link.Target)) : Constants.Continue;
@@ -57,6 +79,7 @@ namespace Platform.Data.Doublets.Ffi
 
         public TLinkAddress Create(IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler)
         {
+            EnsureNotDisposed();
             unsafe
             {
                 Methods.CreateCallback_UInt32 callback = (before, after) => handler != null ? handler(new Link<TLinkAddress>(before.Index, before.Source, before.Target), new Link<TLinkAddress>(after.Index, after.Source, after.Target)) : Constants.Continue;
@@ -69,6 +92,7 @@ namespace Platform.Data.Doublets.Ffi
 
         public TLinkAddress Update(IList<TLinkAddress>? restriction, IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler)
         {
+            EnsureNotDisposed();
             unsafe
             {
                 var restrictionArray = stackalloc uint[restriction.Count];
@@ -88,6 +112,7 @@ namespace Platform.Data.Doublets.Ffi
 
         public TLinkAddress Delete(IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? handler)
         {
+            EnsureNotDisposed();
             unsafe
             {
                 var restrictionArray = stackalloc uint[restriction.Count];

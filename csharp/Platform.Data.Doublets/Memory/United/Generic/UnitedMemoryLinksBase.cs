@@ -115,6 +115,25 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         }
 
         /// <summary>
+        ///     <para>
+        ///         Ensures that this instance has not been disposed.
+        ///     </para>
+        ///     <para></para>
+        /// </summary>
+        /// <exception cref="ObjectDisposedException">
+        ///     <para>Thrown when this instance has been disposed.</para>
+        ///     <para></para>
+        /// </exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected virtual void EnsureNotDisposed()
+        {
+            if (IsDisposed)
+            {
+                throw new ObjectDisposedException(GetType().Name, "Cannot access a disposed Links instance. The database connection has been closed and is no longer available for operations.");
+            }
+        }
+
+        /// <summary>
         /// <para>
         /// Initializes a new <see cref="UnitedMemoryLinksBase"/> instance.
         /// </para>
@@ -207,6 +226,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public virtual TLinkAddress Count(IList<TLinkAddress>? restriction)
         {
+            EnsureNotDisposed();
             // Если нет ограничений, тогда возвращаем общее число связей находящихся в хранилище.
             if (restriction.Count == 0)
             {
@@ -340,6 +360,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public virtual TLinkAddress Each(IList<TLinkAddress>? restriction, ReadHandler<TLinkAddress>? handler)
         {
+            EnsureNotDisposed();
             var constants = Constants;
             var @break = constants.Break;
             if (restriction.Count == 0)
@@ -472,6 +493,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public virtual TLinkAddress Update(IList<TLinkAddress>? restriction, IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler)
         {
+            EnsureNotDisposed();
             var constants = Constants;
             var @null = constants.Null;
             var linkIndex = this.GetIndex(restriction);
@@ -508,6 +530,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public virtual TLinkAddress Create(IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler)
         {
+            EnsureNotDisposed();
             ref var header = ref GetHeaderReference();
             var freeLink = header.FirstFreeLink;
             if (!AreEqual(freeLink, Constants.Null))
@@ -547,6 +570,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public virtual TLinkAddress Delete(IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? handler)
         {
+            EnsureNotDisposed();
             ref var header = ref GetHeaderReference();
             var link = restriction[Constants.IndexPart];
             var before = GetLinkStruct(link);
