@@ -22,7 +22,8 @@ namespace Platform.Data.Doublets.Memory.United.Generic
     /// </summary>
     /// <seealso cref="DisposableBase"/>
     /// <seealso cref="ILinks{TLinkAddress}"/>
-    public abstract class UnitedMemoryLinksBase<TLinkAddress> : DisposableBase, ILinks<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
+    /// <seealso cref="ILinksIndexRebuildable{TLinkAddress}"/>
+    public abstract class UnitedMemoryLinksBase<TLinkAddress> : DisposableBase, ILinks<TLinkAddress>, ILinksIndexRebuildable<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
     {
         private static readonly Comparer<TLinkAddress> _comparer = Comparer<TLinkAddress>.Default;
         private static readonly TLinkAddress _zero = default;
@@ -904,6 +905,38 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             {
                 ResetPointers();
                 _memory.DisposeIfPossible();
+            }
+        }
+
+        #endregion
+
+        #region ILinksIndexRebuildable
+
+        /// <summary>
+        /// <para>
+        /// Rebuilds all indexes by dropping and recreating them.
+        /// This is useful for data recovery after invalid links have been removed.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public virtual void RebuildIndexes()
+        {
+            ref var header = ref GetHeaderReference();
+            
+            // Clear existing tree roots
+            header.RootAsSource = Constants.Null;
+            header.RootAsTarget = Constants.Null;
+            
+            // Re-attach all existing valid links to rebuild the indexes
+            for (var linkIndex = Constants.InternalReferencesRange.Minimum; linkIndex <= header.AllocatedLinks; linkIndex = linkIndex + _one)
+            {
+                if (Exists(linkIndex))
+                {
+                    ref var link = ref GetLinkReference(linkIndex);
+                    SourcesTreeMethods.Attach(ref header.RootAsSource, linkIndex);
+                    TargetsTreeMethods.Attach(ref header.RootAsTarget, linkIndex);
+                }
             }
         }
 

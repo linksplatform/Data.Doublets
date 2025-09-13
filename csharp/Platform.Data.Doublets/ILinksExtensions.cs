@@ -1598,6 +1598,105 @@ namespace Platform.Data.Doublets
             }
         }
 
+        /// <summary>
+        /// <para>
+        /// Determines whether the specified link exists.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="TLinkAddress">
+        /// <para>The type of link address.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links storage.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="link">
+        /// <para>The link to check.</para>
+        /// <para></para>
+        /// </param>
+        /// <returns>
+        /// <para>True if the link exists, otherwise false.</para>
+        /// <para></para>
+        /// </returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool Exists<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link) where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            return Comparer<TLinkAddress>.Default.Compare(links.Count(link), TLinkAddress.Zero) > 0;
+        }
+
         #endregion
+
+        #region Recovery
+
+        /// <summary>
+        /// <para>
+        /// Performs automatic data recovery by removing links with non-existent references
+        /// and rebuilding the indexes. Link can exist if its references exist.
+        /// All indexes are dropped and recreated.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="TLinkAddress">
+        /// <para>The type of link address.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links storage.</para>
+        /// <para></para>
+        /// </param>
+        /// <returns>
+        /// <para>The number of invalid links that were removed.</para>
+        /// <para></para>
+        /// </returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static TLinkAddress RecoverData<TLinkAddress>(this ILinks<TLinkAddress> links) where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            var removedCount = TLinkAddress.Zero;
+            var constants = links.Constants;
+            var invalidLinks = new List<TLinkAddress>();
+            
+            // Phase 1: Identify invalid links (links with non-existent source or target references)
+            links.Each(new Link<TLinkAddress>(constants.Any, constants.Any, constants.Any), (link) =>
+            {
+                var linkIndex = link[constants.IndexPart];
+                var source = link[constants.SourcePart];
+                var target = link[constants.TargetPart];
+                
+                // Check if source reference exists (if it's an internal reference)
+                var sourceIsInvalid = constants.IsInternalReference(source) && !links.Exists(source);
+                // Check if target reference exists (if it's an internal reference)  
+                var targetIsInvalid = constants.IsInternalReference(target) && !links.Exists(target);
+                
+                if (sourceIsInvalid || targetIsInvalid)
+                {
+                    invalidLinks.Add(linkIndex);
+                }
+                
+                return constants.Continue;
+            });
+            
+            // Phase 2: Remove invalid links
+            foreach (var invalidLink in invalidLinks)
+            {
+                if (links.Exists(invalidLink)) // Double-check link still exists before deletion
+                {
+                    links.Delete(new[] { invalidLink });
+                    removedCount++;
+                }
+            }
+            
+            // Phase 3: Rebuild indexes (if the implementation supports it)
+            if (links is ILinksIndexRebuildable<TLinkAddress> rebuildableLinks)
+            {
+                rebuildableLinks.RebuildIndexes();
+            }
+            
+            return removedCount;
+        }
+
+        #endregion
+
     }
 }
