@@ -67,6 +67,9 @@
 
 #include "ILinksExtensions.h"
 
+#include "Decorators/LinksDecoratorBase.h"
+#include "Decorators/LoggingDecorator.h"
+#include "Decorators/NoExceptionsDecorator.h"
 #include "Decorators/LinksUniquenessResolver.h"
 #include "Decorators/LinksCascadeUniquenessAndUsagesResolver.h"
 #include "Decorators/LinksCascadeUsagesResolver.h"
