@@ -380,5 +380,57 @@ namespace Platform.Data.Doublets.Tests
                 links.Delete(link);
             }
         }
+
+        /// <summary>
+        /// <para>
+        /// Tests the single parameter setter overloads.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="T">
+        /// <para>The link address type.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links.</para>
+        /// <para></para>
+        /// </param>
+        public static void TestSingleParameterSetterOverloads<T>(this ILinks<T> links) where T : IUnsignedNumber<T>
+        {
+            var constants = links.Constants;
+            var linkAddress = links.Create();
+            links.Update(linkAddress, linkAddress, linkAddress);
+
+            // Test SearchOrDefault with single parameter
+            var result1 = links.SearchOrDefault(linkAddress, linkAddress, constants.Break);
+            EnsureTrue(result1 == linkAddress);
+
+            // Test CreatePoint with single parameter
+            var point = links.CreatePoint(constants.Break);
+            EnsureTrue(point != constants.Null);
+
+            // Test CreateAndUpdate with single parameter
+            var created = links.CreateAndUpdate(linkAddress, linkAddress, constants.Break);
+            EnsureTrue(created != constants.Null);
+
+            // Test Update with single parameter
+            var updated = links.Update(new T[] { linkAddress, linkAddress, linkAddress }, constants.Break);
+            EnsureTrue(updated != constants.Null);
+
+            // Test UpdateOrCreateOrGet with single parameter
+            var updatedOrCreated = links.UpdateOrCreateOrGet(linkAddress, linkAddress, linkAddress, linkAddress, constants.Break);
+            EnsureTrue(updatedOrCreated != constants.Null);
+
+            // Clean up
+            links.Delete(linkAddress);
+            if (point != constants.Null)
+                links.Delete(point);
+            if (created != constants.Null)
+                links.Delete(created);
+            if (updated != constants.Null)
+                links.Delete(updated);
+            if (updatedOrCreated != constants.Null)
+                links.Delete(updatedOrCreated);
+        }
     }
 }
