@@ -379,6 +379,64 @@ namespace Platform.Data.Doublets
             return currentLink;
         }
 
+        /// <summary>
+        /// Gets the element by bit-by-bit addressing in a binary tree sequence without size limitations.
+        /// </summary>
+        /// <param name="links">The links storage.</param>
+        /// <param name="root">The root link.</param>
+        /// <param name="index">The index using bit-by-bit addressing where:
+        /// 0 = source, 1 = target, 2 = source.source, 3 = source.target, 
+        /// 4 = target.source, 5 = target.target, 6 = source.source.source, etc.</param>
+        /// <returns>The link at the specified bit-by-bit address.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static TLinkAddress GetBitByBitSequenceElementByIndex<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress root, TLinkAddress index) 
+            where TLinkAddress : IUnsignedNumber<TLinkAddress>, IBitwiseOperators<TLinkAddress, TLinkAddress, TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>, IShiftOperators<TLinkAddress, int, TLinkAddress>
+        {
+            var constants = links.Constants;
+            var source = constants.SourcePart;
+            var target = constants.TargetPart;
+            var zero = TLinkAddress.Zero;
+            var one = TLinkAddress.One;
+            var two = one + one;
+
+            links.EnsureLinkExists(root, "root");
+
+            // Handle direct source/target access
+            if (index == zero)
+                return links.GetLink(root)[source];
+            if (index == one)
+                return links.GetLink(root)[target];
+
+            // Calculate depth and path for index >= 2
+            var depth = 1;
+            var levelStart = zero;
+            var levelSize = two;
+            var indexValue = index;
+
+            // Find which level this index belongs to
+            while (indexValue >= levelStart + levelSize)
+            {
+                levelStart += levelSize;
+                levelSize = levelSize << 1; // levelSize *= 2
+                depth++;
+            }
+
+            // Calculate the path within the level
+            var offsetInLevel = indexValue - levelStart;
+
+            // Navigate through the tree following the bit pattern
+            var currentLink = root;
+            for (var i = depth - 1; i >= 0; i--)
+            {
+                // Extract bit at position i (MSB first)
+                var bitMask = one << i;
+                var bit = (offsetInLevel & bitMask) != zero;
+                currentLink = links.GetLink(currentLink)[bit ? target : source];
+            }
+
+            return currentLink;
+        }
+
         #endregion
 
         /// <summary>
