@@ -27,11 +27,25 @@ namespace Platform.Data.Doublets.Memory
 
         /// <summary>
         /// <para>
+        /// The file format version.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        public TLinkAddress FormatVersion;
+        /// <summary>
+        /// <para>
         /// The allocated links.
         /// </para>
         /// <para></para>
         /// </summary>
         public TLinkAddress AllocatedLinks;
+        /// <summary>
+        /// <para>
+        /// The committed links counter for multi-threaded operations.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        public TLinkAddress CommittedLinks;
         /// <summary>
         /// <para>
         /// The reserved links.
@@ -115,7 +129,9 @@ namespace Platform.Data.Doublets.Memory
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Equals(LinksHeader<TLinkAddress> other)
-            => AllocatedLinks ==  other.AllocatedLinks
+            => FormatVersion ==  other.FormatVersion
+            && AllocatedLinks ==  other.AllocatedLinks
+            && CommittedLinks ==  other.CommittedLinks
             && ReservedLinks ==  other.ReservedLinks
             && FreeLinks ==  other.FreeLinks
             && FirstFreeLink ==  other.FirstFreeLink
@@ -135,7 +151,7 @@ namespace Platform.Data.Doublets.Memory
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override int GetHashCode()  { return (AllocatedLinks, ReservedLinks, FreeLinks, FirstFreeLink, RootAsSource, RootAsTarget, LastFreeLink, Reserved8).GetHashCode();}
+        public override int GetHashCode()  { return (FormatVersion, AllocatedLinks, CommittedLinks, ReservedLinks, FreeLinks, FirstFreeLink, RootAsSource, RootAsTarget, LastFreeLink, Reserved8).GetHashCode();}
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(LinksHeader<TLinkAddress> left, LinksHeader<TLinkAddress> right)  { return left.Equals(right);}
