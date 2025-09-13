@@ -223,6 +223,25 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
 
     /// <summary>
     ///     <para>
+    ///         Ensures that this instance has not been disposed.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    /// <exception cref="ObjectDisposedException">
+    ///     <para>Thrown when this instance has been disposed.</para>
+    ///     <para></para>
+    /// </exception>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    protected virtual void EnsureNotDisposed()
+    {
+        if (IsDisposed)
+        {
+            throw new ObjectDisposedException(GetType().Name, "Cannot access a disposed Links instance. The database connection has been closed and is no longer available for operations.");
+        }
+    }
+
+    /// <summary>
+    ///     <para>
     ///         Counts the substitution.
     ///     </para>
     ///     <para></para>
@@ -242,6 +261,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     public virtual TLinkAddress Count(IList<TLinkAddress>? restriction)
     {
+        EnsureNotDisposed();
         // Если нет ограничений, тогда возвращаем общее число связей находящихся в хранилище.
         if (restriction.Count == 0)
         {
@@ -433,6 +453,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     public virtual TLinkAddress Each(IList<TLinkAddress>? restriction, ReadHandler<TLinkAddress>? handler)
     {
+        EnsureNotDisposed();
         var constants = Constants;
         var @break = constants.Break;
         if (restriction.Count == 0)
@@ -612,6 +633,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     public virtual TLinkAddress Update(IList<TLinkAddress>? restriction, IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler)
     {
+        EnsureNotDisposed();
         var constants = Constants;
         var @null = constants.Null;
         var externalReferencesRange = constants.ExternalReferencesRange;
@@ -693,6 +715,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     public virtual TLinkAddress Create(IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler)
     {
+        EnsureNotDisposed();
         ref var header = ref GetHeaderReference();
         var freeLink = header.FirstFreeLink;
         if ((freeLink != Constants.Null))
@@ -734,6 +757,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     public virtual TLinkAddress Delete(IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? handler)
     {
+        EnsureNotDisposed();
         ref var header = ref GetHeaderReference();
         var link = restriction[index: Constants.IndexPart];
         var before = GetLinkStruct(linkIndex: link);

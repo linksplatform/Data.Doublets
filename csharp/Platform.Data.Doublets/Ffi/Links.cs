@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Platform.Converters;
 using Platform.Delegates;
@@ -181,6 +182,25 @@ namespace Platform.Data.Doublets.Ffi
 
         private readonly unsafe void* _ptr;
 
+        /// <summary>
+        ///     <para>
+        ///         Ensures that this instance has not been disposed.
+        ///     </para>
+        ///     <para></para>
+        /// </summary>
+        /// <exception cref="ObjectDisposedException">
+        ///     <para>Thrown when this instance has been disposed.</para>
+        ///     <para></para>
+        /// </exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        protected virtual void EnsureNotDisposed()
+        {
+            if (IsDisposed)
+            {
+                throw new ObjectDisposedException(GetType().Name, "Cannot access a disposed Links instance. The database connection has been closed and is no longer available for operations.");
+            }
+        }
+
         public Links(string path)
         {
             TLinkAddress t = default;
@@ -202,6 +222,7 @@ namespace Platform.Data.Doublets.Ffi
 
         public TLinkAddress Count(IList<TLinkAddress>? restriction)
         {
+            EnsureNotDisposed();
             var restrictionLength = restriction?.Count ?? 0;
             unsafe
             {
@@ -260,6 +281,7 @@ namespace Platform.Data.Doublets.Ffi
 
         public TLinkAddress Each(IList<TLinkAddress>? restriction, ReadHandler<TLinkAddress>? handler)
         {
+            EnsureNotDisposed();
             var restrictionLength = restriction?.Count ?? 0;
             unsafe
             {
@@ -322,6 +344,7 @@ namespace Platform.Data.Doublets.Ffi
 
         public TLinkAddress Create(IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler)
         {
+            EnsureNotDisposed();
             var substitutionLength = substitution?.Count ?? 0;
             unsafe
             {
@@ -384,6 +407,7 @@ namespace Platform.Data.Doublets.Ffi
 
         public TLinkAddress Update(IList<TLinkAddress>? restriction, IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler)
         {
+            EnsureNotDisposed();
             var restrictionLength = restriction?.Count ?? 0;
             var substitutionLength = substitution?.Count ?? 0;
             unsafe
@@ -469,6 +493,7 @@ namespace Platform.Data.Doublets.Ffi
 
         public TLinkAddress Delete(IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? handler)
         {
+            EnsureNotDisposed();
             var restrictionLength = restriction?.Count ?? 0;
             unsafe
             {
