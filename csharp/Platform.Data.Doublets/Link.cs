@@ -48,6 +48,14 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </summary>
         public readonly TLinkAddress Target;
+        
+        /// <summary>
+        /// <para>
+        /// The links container storage reference for object-like interface operations.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        private readonly ILinks<TLinkAddress>? _links;
 
         /// <summary>
         /// <para>
@@ -60,7 +68,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public Link(params TLinkAddress[] values)  { SetValues(values, out Index, out Source, out Target);}
+        public Link(params TLinkAddress[] values)  { SetValues(values, out Index, out Source, out Target); _links = null; }
 
         /// <summary>
         /// <para>
@@ -73,7 +81,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public Link(IList<TLinkAddress>? values)  { SetValues(values, out Index, out Source, out Target);}
+        public Link(IList<TLinkAddress>? values)  { SetValues(values, out Index, out Source, out Target); _links = null; }
 
         /// <summary>
         /// <para>
@@ -95,10 +103,12 @@ namespace Platform.Data.Doublets
             if (other is Link<TLinkAddress> otherLink)
             {
                 SetValues(ref otherLink, out Index, out Source, out Target);
+                _links = otherLink._links;
             }
             else if(other is IList<TLinkAddress> otherList)
             {
                 SetValues(otherList, out Index, out Source, out Target);
+                _links = null;
             }
             else
             {
@@ -117,7 +127,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public Link(ref Link<TLinkAddress> other)  { SetValues(ref other, out Index, out Source, out Target);}
+        public Link(ref Link<TLinkAddress> other)  { SetValues(ref other, out Index, out Source, out Target); _links = other._links; }
 
         /// <summary>
         /// <para>
@@ -143,6 +153,59 @@ namespace Platform.Data.Doublets
             Index = index;
             Source = source;
             Target = target;
+            _links = null;
+        }
+
+        /// <summary>
+        /// <para>
+        /// Initializes a new <see cref="Link"/> instance with a reference to the links container.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="links">
+        /// <para>The links container storage.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="index">
+        /// <para>A index.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="source">
+        /// <para>A source.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="target">
+        /// <para>A target.</para>
+        /// <para></para>
+        /// </param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Link(ILinks<TLinkAddress> links, TLinkAddress index, TLinkAddress source, TLinkAddress target)
+        {
+            _links = links;
+            Index = index;
+            Source = source;
+            Target = target;
+        }
+
+        /// <summary>
+        /// <para>
+        /// Initializes a new <see cref="Link"/> instance with a reference to the links container using link data.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="links">
+        /// <para>The links container storage.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="linkData">
+        /// <para>The link data.</para>
+        /// <para></para>
+        /// </param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Link(ILinks<TLinkAddress> links, IList<TLinkAddress>? linkData)
+        {
+            _links = links;
+            SetValues(linkData, out Index, out Source, out Target);
         }
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static void SetValues(ref Link<TLinkAddress> other, out TLinkAddress index, out TLinkAddress source, out TLinkAddress target)
@@ -314,6 +377,147 @@ namespace Platform.Data.Doublets
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override string ToString()  { return Index ==  _constants.Null ? ToString(Source, Target) : ToString(Index, Source, Target);}
+
+        #region Object-like Interface
+
+        /// <summary>
+        /// <para>
+        /// Gets the links container storage reference.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        public ILinks<TLinkAddress>? Links
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get => _links;
+        }
+
+        /// <summary>
+        /// <para>
+        /// Updates this link's source and target using the links container.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="newSource">
+        /// <para>The new source.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="newTarget">
+        /// <para>The new target.</para>
+        /// <para></para>
+        /// </param>
+        /// <returns>
+        /// <para>The updated link address.</para>
+        /// <para></para>
+        /// </returns>
+        /// <exception cref="InvalidOperationException">
+        /// <para>Thrown when links container is not available.</para>
+        /// <para></para>
+        /// </exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public TLinkAddress Update(TLinkAddress newSource, TLinkAddress newTarget)
+        {
+            if (_links == null)
+            {
+                throw new InvalidOperationException("Links container is not available for this link instance.");
+            }
+            return _links.Update(Index, newSource, newTarget);
+        }
+
+        /// <summary>
+        /// <para>
+        /// Updates this link using the links container.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="substitution">
+        /// <para>The substitution values.</para>
+        /// <para></para>
+        /// </param>
+        /// <returns>
+        /// <para>The updated link address.</para>
+        /// <para></para>
+        /// </returns>
+        /// <exception cref="InvalidOperationException">
+        /// <para>Thrown when links container is not available.</para>
+        /// <para></para>
+        /// </exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public TLinkAddress Update(IList<TLinkAddress>? substitution)
+        {
+            if (_links == null)
+            {
+                throw new InvalidOperationException("Links container is not available for this link instance.");
+            }
+            return _links.Update(new TLinkAddress[] { Index }, substitution);
+        }
+
+        /// <summary>
+        /// <para>
+        /// Deletes this link using the links container.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <returns>
+        /// <para>The deleted link address.</para>
+        /// <para></para>
+        /// </returns>
+        /// <exception cref="InvalidOperationException">
+        /// <para>Thrown when links container is not available.</para>
+        /// <para></para>
+        /// </exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public TLinkAddress Delete()
+        {
+            if (_links == null)
+            {
+                throw new InvalidOperationException("Links container is not available for this link instance.");
+            }
+            return _links.Delete(Index);
+        }
+
+        /// <summary>
+        /// <para>
+        /// Gets a refreshed version of this link from the links container.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <returns>
+        /// <para>The refreshed link.</para>
+        /// <para></para>
+        /// </returns>
+        /// <exception cref="InvalidOperationException">
+        /// <para>Thrown when links container is not available.</para>
+        /// <para></para>
+        /// </exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Link<TLinkAddress> Refresh()
+        {
+            if (_links == null)
+            {
+                throw new InvalidOperationException("Links container is not available for this link instance.");
+            }
+            var linkData = _links.GetLink(Index);
+            return new Link<TLinkAddress>(_links, linkData);
+        }
+
+        /// <summary>
+        /// <para>
+        /// Determines whether the links container is available for object-like operations.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <returns>
+        /// <para>True if links container is available, false otherwise.</para>
+        /// <para></para>
+        /// </returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public bool HasLinksContainer()
+        {
+            return _links != null;
+        }
+
+        #endregion
 
         #region IList
 
