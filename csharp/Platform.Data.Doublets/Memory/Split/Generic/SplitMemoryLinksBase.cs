@@ -60,6 +60,14 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
 
     /// <summary>
     ///     <para>
+    ///         The current file format version for split memory implementation.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    public static readonly TLinkAddress CurrentFormatVersion = TLinkAddress.One;
+
+    /// <summary>
+    ///     <para>
     ///         The data memory.
     ///     </para>
     ///     <para></para>
@@ -829,6 +837,16 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
         // Ensure correctness _memory.ReservedLinks over _header->ReservedCapacity
         // Гарантия корректности _header->ReservedLinks относительно _memory.ReservedCapacity
         header.ReservedLinks = TLinkAddress.CreateTruncating(value: (dataMemory.ReservedCapacity - LinkDataPartSizeInBytes) / LinkDataPartSizeInBytes);
+        // Initialize essential header fields for split memory recovery
+        // Инициализация ключевых полей заголовка для восстановления split memory
+        if (header.FormatVersion == default)
+        {
+            header.FormatVersion = CurrentFormatVersion; // Set current format version
+        }
+        if (header.CommittedLinks == default)
+        {
+            header.CommittedLinks = header.AllocatedLinks; // Initialize committed links to current allocated
+        }
     }
 
     /// <summary>
