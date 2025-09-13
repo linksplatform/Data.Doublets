@@ -8,7 +8,6 @@ using Platform.Delegates;
 using Platform.Numbers;
 using static System.Runtime.CompilerServices.Unsafe;
 
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
 namespace Platform.Data.Doublets.Memory.United.Generic;
 

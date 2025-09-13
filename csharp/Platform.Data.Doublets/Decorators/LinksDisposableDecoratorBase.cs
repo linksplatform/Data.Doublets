@@ -3,7 +3,6 @@ using System.Runtime.CompilerServices;
 using Platform.Disposables;
 using IDisposable = System.IDisposable;
 
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 #pragma warning disable CA1063 // Implement IDisposable Correctly
 
 namespace Platform.Data.Doublets.Decorators;
