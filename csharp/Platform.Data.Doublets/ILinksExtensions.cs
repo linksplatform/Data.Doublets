@@ -811,10 +811,25 @@ namespace Platform.Data.Doublets
             return setter.Result;
         }
 
+        public static TLinkAddress SearchOrDefault<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress source, TLinkAddress target, TLinkAddress breakValue)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            var contants = links.Constants;
+            var setter = new Setter<TLinkAddress, TLinkAddress>(default);
+            links.Each(setter.SetFirstAndReturnFalse, breakValue, source, target);
+            return setter.Result;
+        }
+
         public static TLinkAddress CreatePoint<TLinkAddress>(this ILinks<TLinkAddress> links)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
             var constants = links.Constants;
             var setter = new Setter<TLinkAddress, TLinkAddress>(constants.Continue, constants.Break);
+            links.CreatePoint(setter.SetFirstFromNonNullSecondListAndReturnTrue);
+            return setter.Result;
+        }
+
+        public static TLinkAddress CreatePoint<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress breakValue)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            var setter = new Setter<TLinkAddress, TLinkAddress>(default);
             links.CreatePoint(setter.SetFirstFromNonNullSecondListAndReturnTrue);
             return setter.Result;
         }
@@ -840,6 +855,13 @@ namespace Platform.Data.Doublets
         {
             var constants = links.Constants;
             var setter = new Setter<TLinkAddress, TLinkAddress>(constants.Continue, constants.Break);
+            links.CreateAndUpdate(source, target, setter.SetFirstFromNonNullSecondListAndReturnTrue);
+            return setter.Result;
+        }
+
+        public static TLinkAddress CreateAndUpdate<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress source, TLinkAddress target, TLinkAddress breakValue)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            var setter = new Setter<TLinkAddress, TLinkAddress>(default);
             links.CreateAndUpdate(source, target, setter.SetFirstFromNonNullSecondListAndReturnTrue);
             return setter.Result;
         }
@@ -881,6 +903,13 @@ namespace Platform.Data.Doublets
         {
             var constants = links.Constants;
             var setter = new Setter<TLinkAddress, TLinkAddress>(constants.Continue, constants.Break);
+            links.Update(restriction, setter.SetFirstFromNonNullSecondListAndReturnTrue);
+            return setter.Result;
+        }
+
+        public static TLinkAddress Update<TLinkAddress>(this ILinks<TLinkAddress> links, IList<TLinkAddress>? restriction, TLinkAddress breakValue)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            var setter = new Setter<TLinkAddress, TLinkAddress>(default);
             links.Update(restriction, setter.SetFirstFromNonNullSecondListAndReturnTrue);
             return setter.Result;
         }
@@ -975,6 +1004,13 @@ namespace Platform.Data.Doublets
         {
             var constants = links.Constants;
             var setter = new Setter<TLinkAddress, TLinkAddress>(constants.Continue, constants.Break);
+            links.UpdateOrCreateOrGet(source, target, newSource, newTarget, setter.SetFirstFromNonNullSecondListAndReturnTrue);
+            return setter.Result;
+        }
+
+        public static TLinkAddress UpdateOrCreateOrGet<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress source, TLinkAddress target, TLinkAddress newSource, TLinkAddress newTarget, TLinkAddress breakValue)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            var setter = new Setter<TLinkAddress, TLinkAddress>(default);
             links.UpdateOrCreateOrGet(source, target, newSource, newTarget, setter.SetFirstFromNonNullSecondListAndReturnTrue);
             return setter.Result;
         }
