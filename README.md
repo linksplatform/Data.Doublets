@@ -79,3 +79,7 @@ links.Delete(link);
 Ask questions at [stackoverflow.com/tags/links-platform](https://stackoverflow.com/tags/links-platform) (or with tag `links-platform`) to get our free support.
 
 You can also get real-time support on [our official Discord server](https://discord.gg/eEXJyjWv5e).
+
+## Rewards
+
+We offer rewards for open source projects that adopt Doublets! See our [Rewards Program](REWARDS.md) for details on how to earn **5555 RUB** for being our first big open source user.
