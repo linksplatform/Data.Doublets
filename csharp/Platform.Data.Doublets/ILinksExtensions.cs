@@ -1531,7 +1531,7 @@ namespace Platform.Data.Doublets
                         }
                         else
                         {
-                            links.AppendStructure<TLinkAddress>(sb, visited, source.Index, isElement, appendElement, renderIndex);
+                            links.AppendStructure<TLinkAddress>(sb, visited, source.Index, isElement, appendElement, renderIndex, renderDebug);
                         }
                     }
                     sb.Append(' ');
@@ -1548,7 +1548,7 @@ namespace Platform.Data.Doublets
                         }
                         else
                         {
-                            links.AppendStructure<TLinkAddress>(sb, visited, target.Index, isElement, appendElement, renderIndex);
+                            links.AppendStructure<TLinkAddress>(sb, visited, target.Index, isElement, appendElement, renderIndex, renderDebug);
                         }
                     }
                     sb.Append(')');
