@@ -51,9 +51,10 @@ namespace Platform.Data.Doublets
             var random = RandomHelpers.Default;
             for (var i = TLinkAddress.Zero; i < amountOfCreations; i++)
             {
-                var linksAddressRange = new Range<ulong>(ulong.CreateTruncating(TLinkAddress.Zero), ulong.CreateTruncating(links.Count()));
-                var source = TLinkAddress.CreateTruncating(random.NextUInt64(linksAddressRange));
-                var target = TLinkAddress.CreateTruncating(random.NextUInt64(linksAddressRange));
+                var count = links.Count();
+                var countInt = int.CreateTruncating(count);
+                var source = countInt > 0 ? TLinkAddress.CreateTruncating(random.Next(0, countInt)) : TLinkAddress.Zero;
+                var target = countInt > 0 ? TLinkAddress.CreateTruncating(random.Next(0, countInt)) : TLinkAddress.Zero;
                 links.GetOrCreate(source, target);
             }
         }
@@ -82,9 +83,10 @@ namespace Platform.Data.Doublets
             var random = RandomHelpers.Default;
             for (var i = TLinkAddress.Zero; i < amountOfSearches; i++)
             {
-                var linksAddressRange = new Range<ulong>(ulong.CreateTruncating(TLinkAddress.Zero), ulong.CreateTruncating(links.Count()));
-                var source = TLinkAddress.CreateTruncating(random.NextUInt64(linksAddressRange));
-                var target = TLinkAddress.CreateTruncating(random.NextUInt64(linksAddressRange));
+                var count = links.Count();
+                var countInt = int.CreateTruncating(count);
+                var source = countInt > 0 ? TLinkAddress.CreateTruncating(random.Next(0, countInt)) : TLinkAddress.Zero;
+                var target = countInt > 0 ? TLinkAddress.CreateTruncating(random.Next(0, countInt)) : TLinkAddress.Zero;
                 links.SearchOrDefault(source, target);
             }
         }
@@ -120,9 +122,10 @@ namespace Platform.Data.Doublets
                 {
                     break;
                 }
-                var linksAddressRange = new Range<ulong>(ulong.CreateTruncating(min), ulong.CreateTruncating(linksCount));
-                var link = (random.NextUInt64(linksAddressRange));
-                links.Delete<TLinkAddress>(TLinkAddress.CreateTruncating(link));
+                var minInt = int.CreateTruncating(min);
+                var linksCountInt = int.CreateTruncating(linksCount);
+                var link = linksCountInt > minInt ? TLinkAddress.CreateTruncating(random.Next(minInt, linksCountInt)) : min;
+                links.Delete<TLinkAddress>(link);
             }
         }
 
@@ -368,7 +371,8 @@ namespace Platform.Data.Doublets
             {
                 throw new ArgumentOutOfRangeException(nameof(size), "Sequences with sizes other than powers of two are not supported.");
             }
-            var path = new BitArray(BitConverter.GetBytes(ulong.CreateTruncating(index)));
+            var indexBytes = BitConverter.GetBytes(ulong.CreateTruncating(index));
+            var path = new BitArray(indexBytes);
             var length = Bit.GetLowestPosition(ulong.CreateTruncating(size));
             links.EnsureLinkExists(root, "root");
             var currentLink = root;
@@ -728,23 +732,22 @@ namespace Platform.Data.Doublets
 
         /// <param name="links">Хранилище связей.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void EnsureCreated<TLinkAddress>(this ILinks<TLinkAddress> links, params TLinkAddress[] addresses)  where TLinkAddress : IUnsignedNumber<TLinkAddress>{links.EnsureCreated(links.Create, addresses);}
+        public static void EnsureCreated<TLinkAddress>(this ILinks<TLinkAddress> links, params TLinkAddress[] addresses)  where TLinkAddress : IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>{links.EnsureCreated(links.Create, addresses);}
 
         /// <param name="links">Хранилище связей.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void EnsurePointsCreated<TLinkAddress>(this ILinks<TLinkAddress> links, params TLinkAddress[] addresses)  where TLinkAddress : IUnsignedNumber<TLinkAddress>{links.EnsureCreated(links.CreatePoint, addresses);}
+        public static void EnsurePointsCreated<TLinkAddress>(this ILinks<TLinkAddress> links, params TLinkAddress[] addresses)  where TLinkAddress : IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>{links.EnsureCreated(links.CreatePoint, addresses);}
 
         /// <param name="links">Хранилище связей.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void EnsureCreated<TLinkAddress>(this ILinks<TLinkAddress> links, Func<TLinkAddress> creator, params TLinkAddress[] addresses)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        public static void EnsureCreated<TLinkAddress>(this ILinks<TLinkAddress> links, Func<TLinkAddress> creator, params TLinkAddress[] addresses)  where TLinkAddress : IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
         {
-            var addressToUInt64Converter = CheckedConverter<TLinkAddress, TLinkAddress>.Default;
-            var uInt64ToAddressConverter = CheckedConverter<TLinkAddress, TLinkAddress>.Default;
             var nonExistentAddresses = new HashSet<TLinkAddress>(addresses.Where(x => !links.Exists(x)));
             if (nonExistentAddresses.Count > 0)
             {
                 var max = nonExistentAddresses.Max();
-                max = uInt64ToAddressConverter.Convert(TLinkAddress.CreateTruncating(System.Math.Min(ulong.CreateTruncating(max), ulong.CreateTruncating(links.Constants.InternalReferencesRange.Maximum))));
+                var internalMax = links.Constants.InternalReferencesRange.Maximum;
+                max = max < internalMax ? max : internalMax;
                 var createdLinks = new List<TLinkAddress>();
                 TLinkAddress createdLink = creator();
                 while (createdLink !=  max)
