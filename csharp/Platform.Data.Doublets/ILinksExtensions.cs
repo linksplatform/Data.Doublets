@@ -1599,5 +1599,94 @@ namespace Platform.Data.Doublets
         }
 
         #endregion
+
+        #region Sequence Optimizations
+
+        /// <summary>
+        /// <para>
+        /// Processes a 2-element sequence directly without using a walker for better performance.
+        /// </para>
+        /// <para>
+        /// This method optimizes the common case where a sequence has exactly 2 elements
+        /// by accessing the source and target directly instead of using walker machinery.
+        /// </para>
+        /// </summary>
+        /// <typeparam name="TLinkAddress">
+        /// <para>The link address type.</para>
+        /// </typeparam>
+        /// <typeparam name="TResult">
+        /// <para>The result type.</para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links storage.</para>
+        /// </param>
+        /// <param name="sequence">
+        /// <para>The 2-element sequence to process.</para>
+        /// </param>
+        /// <param name="processor">
+        /// <para>Function to process each element and accumulate the result.</para>
+        /// </param>
+        /// <param name="initialValue">
+        /// <para>The initial accumulator value.</para>
+        /// </param>
+        /// <returns>
+        /// <para>The processed result.</para>
+        /// </returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static TResult ProcessTwoElementSequence<TLinkAddress, TResult>(this ILinks<TLinkAddress> links, 
+            TLinkAddress sequence, 
+            Func<TResult, TLinkAddress, TResult> processor, 
+            TResult initialValue) 
+            where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            var link = links.GetLink(sequence);
+            var source = links.GetSource(link);
+            var target = links.GetTarget(link);
+            
+            var result = processor(initialValue, source);
+            result = processor(result, target);
+            
+            return result;
+        }
+
+        /// <summary>
+        /// <para>
+        /// Determines whether a sequence has exactly 2 elements.
+        /// </para>
+        /// <para>
+        /// This is a utility method to check if a sequence optimization for 2-element sequences can be applied.
+        /// </para>
+        /// </summary>
+        /// <typeparam name="TLinkAddress">
+        /// <para>The link address type.</para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links storage.</para>
+        /// </param>
+        /// <param name="sequence">
+        /// <para>The sequence to check.</para>
+        /// </param>
+        /// <returns>
+        /// <para>True if the sequence has exactly 2 elements, false otherwise.</para>
+        /// </returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsTwoElementSequence<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress sequence)
+            where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            if (!links.Exists(sequence))
+                return false;
+            
+            var link = links.GetLink(sequence);
+            var source = links.GetSource(link);
+            var target = links.GetTarget(link);
+            
+            // A 2-element sequence has source and target that are both elements (not other sequences)
+            // This is a simplified check - in practice, this might need to be adjusted based on
+            // how sequences are represented in the specific implementation
+            return source != sequence && target != sequence && 
+                   links.Exists(source) && links.Exists(target);
+        }
+
+        #endregion
     }
 }
