@@ -14,38 +14,44 @@ Forked from: [Konard/LinksPlatform/Platform/Platform.Data.Doublets](https://gith
 
 NuGet package: [Platform.Data.Doublets](https://www.nuget.org/packages/Platform.Data.Doublets)
 
-## [Example](https://github.com/linksplatform/Examples.Doublets.CRUD.DotNet) | [Run .NET fiddle](https://dotnetfiddle.net/Y7Zvt0)
+## [Example](https://github.com/linksplatform/Examples.Doublets.CRUD) | [Run .NET fiddle](https://dotnetfiddle.net/Y7Zvt0)
 ```C#
 using System;
 using Platform.Data;
 using Platform.Data.Doublets;
 using Platform.Data.Doublets.Memory.United.Generic;
 
-// A doublet links store is mapped to "db.links" file:
-using var links = new UnitedMemoryLinks<uint>("db.links");
+class Program
+{
+    static void Main(string[] args)
+    {
+        // A doublet links store is mapped to the "db.links" file:
+        using var links = new UnitedMemoryLinks<uint>("db.links");
 
-// A creation of the doublet link: 
-var link = links.Create();
+        // Creating a doublet link: 
+        var link = links.Create();
 
-// The link is updated to reference itself twice (as a source and a target):
-link = links.Update(link, newSource: link, newTarget: link);
+        // The link is updated to reference itself twice (as a source and as a target):
+        link = links.Update(link, newSource: link, newTarget: link);
 
-// Read operations:
-Console.WriteLine($"The number of links in the data store is {links.Count()}.");
-Console.WriteLine("Data store contents:");
-var any = links.Constants.Any; // Means any link address or no restriction on link address
-// Arguments of the query are interpreted as restrictions
-var query = new Link<uint>(index: any, source: any, target: any);
-links.Each((link) => {
-    Console.WriteLine(links.Format(link));
-    return links.Constants.Continue;
-}, query);
+        // Read operations:
+        Console.WriteLine($"The number of links in the data store is {links.Count()}.");
+        Console.WriteLine("Data store contents:");
+        
+        var any = links.Constants.Any; 
+        var query = new Link<uint>(index: any, source: any, target: any);
+        links.Each((link) => {
+            Console.WriteLine(links.Format(link));
+            return links.Constants.Continue;
+        }, query);
 
-// The link's content reset:
-link = links.Update(link, newSource: default, newTarget: default);
+        // Cleaning (resetting) the contents of the link:
+        link = links.Update(link, newSource: default, newTarget: default);
 
-// The link deletion:
-links.Delete(link);
+        // Removing the link
+        links.Delete(link);
+    }
+}
 ```
 
 ## [SQLite vs Doublets](https://github.com/linksplatform/Comparisons.SQLiteVSDoublets)
