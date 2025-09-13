@@ -14,7 +14,6 @@ using Platform.Delegates;
 using Platform.Exceptions;
 using TLinkAddress = System.UInt64;
 
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
 namespace Platform.Data.Doublets
 {
