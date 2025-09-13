@@ -1403,11 +1403,11 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static string FormatStructure<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress linkIndex, Func<Link<TLinkAddress>, bool> isElement, bool renderIndex = false, bool renderDebug = false) where TLinkAddress: IUnsignedNumber<TLinkAddress>
+        public static string FormatStructure<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress linkIndex, Func<Link<TLinkAddress>, bool>? isElement = null, bool renderIndex = false, bool renderDebug = false) where TLinkAddress: IUnsignedNumber<TLinkAddress>
         {
             var sb = new StringBuilder();
             var visited = new HashSet<TLinkAddress>();
-            links.AppendStructure<TLinkAddress>(sb, visited, linkIndex, isElement, (innerSb, link) => innerSb.Append(link.Index), renderIndex, renderDebug);
+            links.AppendStructure<TLinkAddress>(sb, visited, linkIndex, isElement ?? (link => false), (innerSb, link) => innerSb.Append(link.Index), renderIndex, renderDebug);
             return sb.ToString();
         }
 
