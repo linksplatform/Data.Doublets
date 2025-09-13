@@ -21,7 +21,8 @@ namespace Platform.Data.Doublets.Memory.Split.Generic;
 /// </summary>
 /// <seealso cref="DisposableBase" />
 /// <seealso cref="ILinks{TLinkAddress}" />
-public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILinks<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
+/// <seealso cref="ILinksIndexRebuildable{TLinkAddress}" />
+public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILinks<TLinkAddress>, ILinksIndexRebuildable<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
 {
     private static readonly Comparer<TLinkAddress> _comparer = Comparer<TLinkAddress>.Default;
     private static readonly TLinkAddress _zero;
@@ -1248,6 +1249,75 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
             ResetPointers();
             _dataMemory.DisposeIfPossible();
             _indexMemory.DisposeIfPossible();
+        }
+    }
+
+    #endregion
+
+    #region ILinksIndexRebuildable
+
+    /// <summary>
+    ///     <para>
+    ///         Rebuilds all indexes by dropping and recreating them.
+    ///         This is useful for data recovery after invalid links have been removed.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+    public virtual void RebuildIndexes()
+    {
+        ref var header = ref GetHeaderReference();
+        
+        // Clear existing tree roots
+        header.RootAsSource = Constants.Null;
+        header.RootAsTarget = Constants.Null;
+        
+        // Re-attach all existing valid links to rebuild the indexes
+        ref var rootAsSource = ref header.RootAsSource;
+        ref var rootAsTarget = ref header.RootAsTarget;
+        var externalReferencesRange = Constants.ExternalReferencesRange;
+        
+        for (var linkIndex = Constants.InternalReferencesRange.Minimum; linkIndex <= header.AllocatedLinks; linkIndex = linkIndex + _one)
+        {
+            if (Exists(linkIndex))
+            {
+                var linkData = GetLinkDataPartReference(linkIndex);
+                var source = linkData.Source;
+                var target = linkData.Target;
+                
+                // Re-attach source indexes
+                if (source != Constants.Null)
+                {
+                    if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(source))
+                    {
+                        ExternalSourcesTreeMethods.Attach(ref rootAsSource, linkIndex);
+                    }
+                    else
+                    {
+                        if (_useLinkedList)
+                        {
+                            InternalSourcesListMethods.AttachAsLast(source, linkIndex);
+                        }
+                        else
+                        {
+                            InternalSourcesTreeMethods.Attach(ref GetLinkIndexPartReference(source).RootAsSource, linkIndex);
+                        }
+                    }
+                }
+                
+                // Re-attach target indexes
+                if (target != Constants.Null)
+                {
+                    if (externalReferencesRange.HasValue && externalReferencesRange.Value.Contains(target))
+                    {
+                        ExternalTargetsTreeMethods.Attach(ref rootAsTarget, linkIndex);
+                    }
+                    else
+                    {
+                        InternalTargetsTreeMethods.Attach(ref GetLinkIndexPartReference(target).RootAsTarget, linkIndex);
+                    }
+                }
+            }
         }
     }
 
