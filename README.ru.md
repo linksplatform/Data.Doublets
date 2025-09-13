@@ -71,3 +71,23 @@ links.Delete(link);
 *   [Platform.Singletons](https://github.com/linksplatform/Singletons)
 *   [Platform.Memory](https://github.com/linksplatform/Memory)
 *   [Platform.Data](https://github.com/linksplatform/Data)
+
+## Программа вознаграждений 🎁
+
+Мы предлагаем вознаграждения для проектов с открытым исходным кодом, которые используют Data.Doublets! Каждый подходящий проект получает **55 RUB** (или эквивалент).
+
+### Критерии соответствия
+- ✅ GPL-совместимая лицензия
+- ✅ Опубликован на GitHub
+- ✅ Более 5 звёзд ⭐
+- ✅ Репозиторий создан до 2021-10-15 📅
+- ✅ Проект должен быть полезным и уникальным
+- ✅ Использует [Data.Doublets](https://github.com/linksplatform/Data.Doublets) в основной ветке
+
+### Реферальная программа
+Если кто-то вас рекомендовал, укажите его имя пользователя GitHub при подаче заявки - он также получит 55 RUB!
+
+### Как подать заявку
+[🎯 Подать заявку на вознаграждение](https://github.com/linksplatform/Data.Doublets/issues/new?assignees=&labels=reward-request&template=reward-request.yml&title=%5BReward+Request%5D+) используя наш шаблон issue.
+
+*Играйте честно и следуйте всем требованиям. Мы тщательно проверяем каждую заявку.*

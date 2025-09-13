@@ -74,6 +74,26 @@ links.Delete(link);
 *   [Platform.Memory](https://github.com/linksplatform/Memory)
 *   [Platform.Data](https://github.com/linksplatform/Data)
 
+## Reward Program 🎁
+
+We offer rewards to open-source projects that use Data.Doublets! Each qualifying project receives **55 RUB** (or equivalent).
+
+### Eligibility Criteria
+- ✅ GPL-compatible license
+- ✅ Published on GitHub
+- ✅ More than 5 stars ⭐
+- ✅ Repository created before 2021-10-15 📅
+- ✅ Project must be useful and unique
+- ✅ Uses [Data.Doublets](https://github.com/linksplatform/Data.Doublets) in default branch
+
+### Referral Program
+If someone recommended you, mention their GitHub username when submitting your request - they'll also receive 55 RUB! 
+
+### How to Apply
+[🎯 Submit a reward request](https://github.com/linksplatform/Data.Doublets/issues/new?assignees=&labels=reward-request&template=reward-request.yml&title=%5BReward+Request%5D+) using our issue template.
+
+*Play fair and follow all requirements. We review each submission carefully.*
+
 ## Support
 
 Ask questions at [stackoverflow.com/tags/links-platform](https://stackoverflow.com/tags/links-platform) (or with tag `links-platform`) to get our free support.
