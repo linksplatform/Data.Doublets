@@ -971,6 +971,19 @@ namespace Platform.Data.Doublets
             return link;
         }
 
+        /// <summary>
+        /// Создаёт связь (если она не существовала), либо возвращает содержимое существующей связи с указанными Source (началом) и Target (концом).
+        /// </summary>
+        /// <param name="links">Хранилище связей.</param>
+        /// <param name="source">Индекс связи, которая является началом на создаваемой связи.</param>
+        /// <param name="target">Индекс связи, которая является концом для создаваемой связи.</param>
+        /// <returns>Содержимое связи, с указанным Source (началом) и Target (концом)</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static IList<TLinkAddress>? GetOrCreateLink<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress source, TLinkAddress target)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            return links.GetLink(links.GetOrCreate(source, target));
+        }
+
         public static TLinkAddress UpdateOrCreateOrGet<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress source, TLinkAddress target, TLinkAddress newSource, TLinkAddress newTarget)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
             var constants = links.Constants;
