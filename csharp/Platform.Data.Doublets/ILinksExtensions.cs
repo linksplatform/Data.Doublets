@@ -1284,7 +1284,7 @@ namespace Platform.Data.Doublets
 
         /// <summary>
         /// <para>
-        /// Formats the links.
+        /// Formats the links deeply.
         /// </para>
         /// <para></para>
         /// </summary>
@@ -1305,7 +1305,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static string Format<TLinkAddress>(this ILinks<TLinkAddress> links, IList<TLinkAddress>? link)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        public static string DeepFormat<TLinkAddress>(this ILinks<TLinkAddress> links, IList<TLinkAddress>? link)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
             var constants = links.Constants;
             return $"({links.GetIndex(link)}: {links.GetSource(link)} {links.GetTarget(link)})";
@@ -1313,7 +1313,7 @@ namespace Platform.Data.Doublets
 
         /// <summary>
         /// <para>
-        /// Formats the links.
+        /// Formats the links deeply.
         /// </para>
         /// <para></para>
         /// </summary>
@@ -1334,7 +1334,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static string Format<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link)  where TLinkAddress : IUnsignedNumber<TLinkAddress>{return links.Format(links.GetLink(link));}
+        public static string DeepFormat<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link)  where TLinkAddress : IUnsignedNumber<TLinkAddress>{return links.DeepFormat(links.GetLink(link));}
         
         /// <summary>
         /// <para>
