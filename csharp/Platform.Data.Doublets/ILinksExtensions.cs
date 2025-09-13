@@ -971,38 +971,38 @@ namespace Platform.Data.Doublets
             return link;
         }
 
-        public static TLinkAddress UpdateOrCreateOrGet<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress source, TLinkAddress target, TLinkAddress newSource, TLinkAddress newTarget)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        public static TLinkAddress UpdateOrCreateOrGet<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress sourceSelector, TLinkAddress targetSelector, TLinkAddress source, TLinkAddress target)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
             var constants = links.Constants;
             var setter = new Setter<TLinkAddress, TLinkAddress>(constants.Continue, constants.Break);
-            links.UpdateOrCreateOrGet(source, target, newSource, newTarget, setter.SetFirstFromNonNullSecondListAndReturnTrue);
+            links.UpdateOrCreateOrGet(sourceSelector, targetSelector, source, target, setter.SetFirstFromNonNullSecondListAndReturnTrue);
             return setter.Result;
         }
 
         /// <summary>
-        /// Обновляет связь с указанными началом (Source) и концом (Target)
-        /// на связь с указанными началом (NewSource) и концом (NewTarget).
+        /// Обновляет связь с указанными началом (SourceSelector) и концом (TargetSelector)
+        /// на связь с указанными началом (Source) и концом (Target).
         /// </summary>
         /// <param name="links">Хранилище связей.</param>
-        /// <param name="source">Индекс связи, которая является началом обновляемой связи.</param>
-        /// <param name="target">Индекс связи, которая является концом обновляемой связи.</param>
-        /// <param name="newSource">Индекс связи, которая является началом связи, на которую выполняется обновление.</param>
-        /// <param name="newTarget">Индекс связи, которая является концом связи, на которую выполняется обновление.</param>
+        /// <param name="sourceSelector">Индекс связи, которая является началом обновляемой связи.</param>
+        /// <param name="targetSelector">Индекс связи, которая является концом обновляемой связи.</param>
+        /// <param name="source">Индекс связи, которая является началом связи, на которую выполняется обновление.</param>
+        /// <param name="target">Индекс связи, которая является концом связи, на которую выполняется обновление.</param>
         /// <returns>Индекс обновлённой связи.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TLinkAddress UpdateOrCreateOrGet<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress source, TLinkAddress target, TLinkAddress newSource, TLinkAddress newTarget, WriteHandler<TLinkAddress>? handler)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        public static TLinkAddress UpdateOrCreateOrGet<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress sourceSelector, TLinkAddress targetSelector, TLinkAddress source, TLinkAddress target, WriteHandler<TLinkAddress>? handler)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
-            var link = links.SearchOrDefault(source, target);
+            var link = links.SearchOrDefault(sourceSelector, targetSelector);
             if (link ==  default)
             {
-                return links.CreateAndUpdate(newSource, newTarget, handler);
+                return links.CreateAndUpdate(source, target, handler);
             }
-            if (newSource ==  source && newTarget ==  target)
+            if (source ==  sourceSelector && target ==  targetSelector)
             {
-                var linkStruct = new Link<TLinkAddress>(link, source, target); 
+                var linkStruct = new Link<TLinkAddress>(link, sourceSelector, targetSelector); 
                 return link;
             }
-            return links.Update(link, newSource, newTarget, handler);
+            return links.Update(link, source, target, handler);
         }
 
         /// <summary>Удаляет связь с указанными началом (Source) и концом (Target).</summary>
