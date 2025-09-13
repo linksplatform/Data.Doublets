@@ -1,0 +1,114 @@
+name: Open Source Project Reward Request
+description: Request a reward for your open-source project that uses Doublets
+title: "[Reward Request] "
+labels: ["reward-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Open Source Project Reward Program
+        
+        Each open-source project that uses Doublets can receive 55 RUB (or equivalent) from us.
+        
+        **Referral Program**: If someone recommended you, that user will also receive 55 RUB.
+
+  - type: input
+    id: project_name
+    attributes:
+      label: Project Name
+      description: The name of your open-source project
+      placeholder: "My Awesome Project"
+    validations:
+      required: true
+
+  - type: input
+    id: github_repo
+    attributes:
+      label: GitHub Repository URL
+      description: The URL of your project's GitHub repository
+      placeholder: "https://github.com/username/project-name"
+    validations:
+      required: true
+
+  - type: input
+    id: license
+    attributes:
+      label: Project License
+      description: Your project's license (must be GPL-compatible)
+      placeholder: "MIT, GPL-3.0, Apache-2.0, etc."
+    validations:
+      required: true
+
+  - type: input
+    id: stars_count
+    attributes:
+      label: Current Star Count
+      description: Number of stars your repository currently has (must be > 5)
+      placeholder: "12"
+    validations:
+      required: true
+
+  - type: input
+    id: creation_date
+    attributes:
+      label: Repository Creation Date
+      description: When was your repository created? (must be before 2021-10-15)
+      placeholder: "2020-05-15"
+    validations:
+      required: true
+
+  - type: textarea
+    id: doublets_usage
+    attributes:
+      label: How does your project use Doublets?
+      description: Describe how your project uses Data.Doublets in its default branch
+      placeholder: "My project uses Doublets for..."
+    validations:
+      required: true
+
+  - type: input
+    id: doublets_evidence
+    attributes:
+      label: Link to Doublets Usage
+      description: Provide a direct link to where Doublets is used in your default branch
+      placeholder: "https://github.com/username/project-name/blob/main/src/file.cs#L25"
+    validations:
+      required: true
+
+  - type: input
+    id: referrer
+    attributes:
+      label: Referrer (Optional)
+      description: GitHub username of the person who recommended you (for referral program)
+      placeholder: "@username"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: I confirm that:
+      options:
+        - label: My project license is GPL-compatible
+          required: true
+        - label: My project is published on GitHub
+          required: true
+        - label: My repository has more than 5 stars
+          required: true
+        - label: My repository was created before 2021-10-15
+          required: true
+        - label: My project does something useful and is unique (no duplicates)
+          required: true
+        - label: My project uses Doublets in its default branch
+          required: true
+        - label: I am playing fair and following all requirements
+          required: true
+
+  - type: textarea
+    id: additional_info
+    attributes:
+      label: Additional Information
+      description: Any additional information about your project
+      placeholder: "Optional: describe your project's purpose, uniqueness, etc."
+    validations:
+      required: false

@@ -1,0 +1,132 @@
+name: Validate Reward Request
+
+on:
+  issues:
+    types: [opened, edited]
+
+jobs:
+  validate-reward-request:
+    if: contains(github.event.issue.labels.*.name, 'reward-request')
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Add validation comment
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const issue = context.payload.issue;
+          const body = issue.body || '';
+          
+          // Extract information from the issue body
+          const getField = (fieldName) => {
+            const regex = new RegExp(`### ${fieldName}\\s*\\n\\s*([^\\n]+)`);
+            const match = body.match(regex);
+            return match ? match[1].trim() : '';
+          };
+          
+          const projectName = getField('Project Name');
+          const repoUrl = getField('GitHub Repository URL');
+          const license = getField('Project License');
+          const starsCount = getField('Current Star Count');
+          const creationDate = getField('Repository Creation Date');
+          const doubletsUsage = getField('How does your project use Doublets\\?');
+          const evidenceLink = getField('Link to Doublets Usage');
+          const referrer = getField('Referrer \\(Optional\\)');
+          
+          let validationResults = [];
+          let isValid = true;
+          
+          // Basic field validation
+          if (!projectName) {
+            validationResults.push('❌ Project Name is missing');
+            isValid = false;
+          } else {
+            validationResults.push('✅ Project Name provided');
+          }
+          
+          if (!repoUrl || !repoUrl.includes('github.com')) {
+            validationResults.push('❌ Valid GitHub repository URL is missing');
+            isValid = false;
+          } else {
+            validationResults.push('✅ GitHub repository URL provided');
+          }
+          
+          if (!license) {
+            validationResults.push('❌ Project License is missing');
+            isValid = false;
+          } else {
+            validationResults.push('✅ Project License provided');
+          }
+          
+          const stars = parseInt(starsCount);
+          if (!stars || stars <= 5) {
+            validationResults.push('❌ Repository must have more than 5 stars');
+            isValid = false;
+          } else {
+            validationResults.push(`✅ Repository has ${stars} stars (>5 required)`);
+          }
+          
+          if (creationDate) {
+            const createdDate = new Date(creationDate);
+            const cutoffDate = new Date('2021-10-15');
+            if (createdDate >= cutoffDate) {
+              validationResults.push('❌ Repository must be created before 2021-10-15');
+              isValid = false;
+            } else {
+              validationResults.push('✅ Repository created before deadline');
+            }
+          } else {
+            validationResults.push('❌ Repository creation date is missing');
+            isValid = false;
+          }
+          
+          if (!doubletsUsage) {
+            validationResults.push('❌ Description of Doublets usage is missing');
+            isValid = false;
+          } else {
+            validationResults.push('✅ Doublets usage description provided');
+          }
+          
+          if (!evidenceLink || !evidenceLink.includes('github.com')) {
+            validationResults.push('❌ Valid evidence link to Doublets usage is missing');
+            isValid = false;
+          } else {
+            validationResults.push('✅ Evidence link provided');
+          }
+          
+          if (referrer && referrer.trim()) {
+            validationResults.push(`✅ Referrer mentioned: ${referrer} (eligible for referral reward)`);
+          }
+          
+          // Create validation comment
+          const validationComment = `## 🤖 Automatic Validation Results
+          
+          ${validationResults.join('\n')}
+          
+          ### Status: ${isValid ? '✅ **PASSED** - Ready for manual review' : '❌ **FAILED** - Please fix the issues above'}
+          
+          ${isValid ? 
+            '**Next Steps:** This request has passed automatic validation and is now ready for manual review by the maintainers. They will verify:\n- GPL license compatibility\n- Project uniqueness and usefulness\n- Actual Doublets implementation in the code\n- Repository metrics accuracy' : 
+            '**Action Required:** Please edit your issue to fix the validation errors above and ensure all required information is provided correctly.'
+          }
+          
+          ---
+          *This is an automated validation. Manual review by maintainers is still required.*`;
+          
+          // Add appropriate labels
+          const labelsToAdd = isValid ? ['validated', 'needs-review'] : ['needs-fixes'];
+          
+          await github.rest.issues.addLabels({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: issue.number,
+            labels: labelsToAdd
+          });
+          
+          // Post validation comment
+          await github.rest.issues.createComment({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: issue.number,
+            body: validationComment
+          });
