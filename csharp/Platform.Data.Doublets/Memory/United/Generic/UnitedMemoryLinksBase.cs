@@ -317,17 +317,21 @@ namespace Platform.Data.Doublets.Memory.United.Generic
 
         /// <summary>
         /// <para>
-        /// Eaches the handler.
+        /// Executes handler for each link matching the specified restriction.
         /// </para>
-        /// <para></para>
+        /// <para>
+        /// NOTE (Issue #173): When Constants.Null (value 0) is passed in restriction parameters,
+        /// it is treated as a literal link index (0), not as a wildcard. 
+        /// Use Constants.Any for wildcard/unspecified behavior.
+        /// </para>
         /// </summary>
         /// <param name="handler">
-        /// <para>The handler.</para>
+        /// <para>The handler function to execute for each matching link.</para>
         /// <para></para>
         /// </param>
         /// <param name="restriction">
-        /// <para>The substitution.</para>
-        /// <para></para>
+        /// <para>The restriction criteria. Use Constants.Any for wildcard, specific values for exact matches.</para>
+        /// <para>Constants.Null will match link at index 0 if it exists.</para>
         /// </param>
         /// <exception cref="NotSupportedException">
         /// <para>Другие размеры и способы ограничений не поддерживаются.</para>
