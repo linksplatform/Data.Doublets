@@ -15,36 +15,25 @@ using Platform.Data.Exceptions;
 using Platform.Data.Doublets.Decorators;
 using Platform.Delegates;
 
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+// XML documentation has been added for all public members
 
 namespace Platform.Data.Doublets
 {
     /// <summary>
-    /// <para>
-    /// Represents the links extensions.
-    /// </para>
-    /// <para></para>
+    /// Provides extension methods for the <see cref="ILinks{TLinkAddress}"/> interface,
+    /// offering additional functionality for link operations, querying, validation,
+    /// and data manipulation in doublets data structures.
     /// </summary>
     public static class ILinksExtensions
     {
         /// <summary>
-        /// <para>
-        /// Runs the random creations using the specified links.
-        /// </para>
-        /// <para></para>
+        /// Performs a specified number of random link creation operations on the links storage.
+        /// This method creates links with randomly selected source and target addresses
+        /// from the existing links in the storage.
         /// </summary>
-        /// <typeparam name="TLinkAddress">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </typeparam>
-        /// <param name="links">
-        /// <para>The links.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="amountOfCreations">
-        /// <para>The amount of creations.</para>
-        /// <para></para>
-        /// </param>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to operate on.</param>
+        /// <param name="amountOfCreations">The number of random links to create.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void RunRandomCreations<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress amountOfCreations)  where TLinkAddress : IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
         {
@@ -59,23 +48,13 @@ namespace Platform.Data.Doublets
         }
 
         /// <summary>
-        /// <para>
-        /// Runs the random searches using the specified links.
-        /// </para>
-        /// <para></para>
+        /// Performs a specified number of random search operations on the links storage.
+        /// This method searches for links with randomly selected source and target addresses
+        /// from the existing links in the storage.
         /// </summary>
-        /// <typeparam name="TLinkAddress">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </typeparam>
-        /// <param name="links">
-        /// <para>The links.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="amountOfSearches">
-        /// <para>The amount of searches.</para>
-        /// <para></para>
-        /// </param>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to operate on.</param>
+        /// <param name="amountOfSearches">The number of random searches to perform.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void RunRandomSearches<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress amountOfSearches)  where TLinkAddress : IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
         {
@@ -90,23 +69,13 @@ namespace Platform.Data.Doublets
         }
 
         /// <summary>
-        /// <para>
-        /// Runs the random deletions using the specified links.
-        /// </para>
-        /// <para></para>
+        /// Performs a specified number of random link deletion operations on the links storage.
+        /// This method selects and deletes random links from the storage, ensuring that
+        /// the total number of links doesn't fall below a calculated minimum.
         /// </summary>
-        /// <typeparam name="TLinkAddress">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </typeparam>
-        /// <param name="links">
-        /// <para>The links.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="amountOfDeletions">
-        /// <para>The amount of deletions.</para>
-        /// <para></para>
-        /// </param>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to operate on.</param>
+        /// <param name="amountOfDeletions">The number of random links to delete.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void RunRandomDeletions<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress amountOfDeletions)  where TLinkAddress : IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
         {
@@ -127,23 +96,14 @@ namespace Platform.Data.Doublets
         }
 
         /// <summary>
-        /// <para>
-        /// Deletes the links.
-        /// </para>
-        /// <para></para>
+        /// Deletes a specific link from the storage, ensuring its values are reset
+        /// before deletion if the link exists.
         /// </summary>
-        /// <typeparam name="TLinkAddress">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </typeparam>
-        /// <param name="links">
-        /// <para>The links.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="linkToDelete">
-        /// <para>The link to delete.</para>
-        /// <para></para>
-        /// </param>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to operate on.</param>
+        /// <param name="linkToDelete">The address of the link to delete.</param>
+        /// <param name="handler">Optional write handler for the operation.</param>
+        /// <returns>The result of the delete operation.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress Delete<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress linkToDelete, WriteHandler<TLinkAddress>? handler)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
@@ -154,11 +114,16 @@ namespace Platform.Data.Doublets
             return links.Delete(new LinkAddress<TLinkAddress>(linkToDelete), handler);
         }
 
+        /// <summary>
+        /// Deletes all links from the storage by iterating through all links
+        /// and deleting them one by one in descending order.
+        /// </summary>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to clear.</param>
         /// <remarks>
-        /// TODO: Возможно есть очень простой способ это сделать.
-        /// (Например просто удалить файл, или изменить его размер таким образом,
-        /// чтобы удалился весь контент)
-        /// Например через _header->AllocatedLinks в ResizableDirectMemoryLinks
+        /// TODO: There might be a simpler way to do this
+        /// (e.g., just delete the file or resize it to remove all content)
+        /// For example, through _header->AllocatedLinks in ResizableDirectMemoryLinks
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void DeleteAll<TLinkAddress>(this ILinks<TLinkAddress> links)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
@@ -175,31 +140,17 @@ namespace Platform.Data.Doublets
         }
 
         /// <summary>
-        /// <para>
-        /// Firsts the links.
-        /// </para>
-        /// <para></para>
+        /// Gets the address of the first link found in the storage.
         /// </summary>
-        /// <typeparam name="TLinkAddress">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </typeparam>
-        /// <param name="links">
-        /// <para>The links.</para>
-        /// <para></para>
-        /// </param>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to search in.</param>
+        /// <returns>The address of the first link found.</returns>
         /// <exception cref="InvalidOperationException">
-        /// <para>В процессе поиска по хранилищу не было найдено связей.</para>
-        /// <para></para>
+        /// Thrown when the storage contains no links.
         /// </exception>
         /// <exception cref="InvalidOperationException">
-        /// <para>В хранилище нет связей.</para>
-        /// <para></para>
+        /// Thrown when no links were found during the search process.
         /// </exception>
-        /// <returns>
-        /// <para>The first link.</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress First<TLinkAddress>(this ILinks<TLinkAddress> links)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
@@ -221,27 +172,13 @@ namespace Platform.Data.Doublets
         }
 
         /// <summary>
-        /// <para>
-        /// Singles the or default using the specified links.
-        /// </para>
-        /// <para></para>
+        /// Returns a single link that matches the specified query, or null if no link is found
+        /// or if multiple links match the query.
         /// </summary>
-        /// <typeparam name="TLinkAddress">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </typeparam>
-        /// <param name="links">
-        /// <para>The links.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="query">
-        /// <para>The query.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The result.</para>
-        /// <para></para>
-        /// </returns>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to search in.</param>
+        /// <param name="query">The query criteria for finding the link.</param>
+        /// <returns>The single matching link, or null if zero or multiple links match.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IList<TLinkAddress>? SingleOrDefault<TLinkAddress>(this ILinks<TLinkAddress> links, IList<TLinkAddress>? query)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
@@ -271,12 +208,20 @@ namespace Platform.Data.Doublets
 
         #region Paths
 
+        /// <summary>
+        /// Checks whether a specific path exists in the links structure by following
+        /// the connections from one link to another through source and target relationships.
+        /// </summary>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to search in.</param>
+        /// <param name="path">An array of link addresses representing the path to check.</param>
+        /// <returns>True if the path exists, false otherwise.</returns>
         /// <remarks>
-        /// TODO: Как так? Как то что ниже может быть корректно?
-        /// Скорее всего практически не применимо
-        /// Предполагалось, что можно было конвертировать формируемый в проходе через SequenceWalker 
-        /// Stack в конкретный путь из Source, Target до связи, но это не всегда так.
-        /// TODO: Возможно нужен метод, который именно выбрасывает исключения (EnsurePathExists)
+        /// TODO: How can what's below be correct? It's probably practically not applicable.
+        /// It was supposed that it would be possible to convert the Stack formed during
+        /// SequenceWalker traversal into a specific path from Source, Target to the link,
+        /// but this is not always the case.
+        /// TODO: Perhaps we need a method that specifically throws exceptions (EnsurePathExists)
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool CheckPathExistance<TLinkAddress>(this ILinks<TLinkAddress> links, params TLinkAddress[] path)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
@@ -309,8 +254,17 @@ namespace Platform.Data.Doublets
             return true;
         }
 
+        /// <summary>
+        /// Navigates through the links structure starting from a root link and following
+        /// a path defined by integer keys, where each key represents an index into the link's components.
+        /// </summary>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to navigate through.</param>
+        /// <param name="root">The starting link address.</param>
+        /// <param name="path">An array of integer indices defining the navigation path.</param>
+        /// <returns>The final link address reached by following the path.</returns>
         /// <remarks>
-        /// Может потребовать дополнительного стека для PathElement's при использовании SequenceWalker.
+        /// May require an additional stack for PathElement's when using SequenceWalker.
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress GetByKeys<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress root, params int[] path)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
@@ -325,39 +279,18 @@ namespace Platform.Data.Doublets
         }
 
         /// <summary>
-        /// <para>
-        /// Gets the square matrix sequence element by index using the specified links.
-        /// </para>
-        /// <para></para>
+        /// Retrieves an element from a square matrix sequence stored as links
+        /// by following a binary path determined by the element's index.
         /// </summary>
-        /// <typeparam name="TLinkAddress">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </typeparam>
-        /// <param name="links">
-        /// <para>The links.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="root">
-        /// <para>The root.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="size">
-        /// <para>The size.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="index">
-        /// <para>The index.</para>
-        /// <para></para>
-        /// </param>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage containing the sequence.</param>
+        /// <param name="root">The root link of the sequence.</param>
+        /// <param name="size">The size of the sequence (must be a power of 2).</param>
+        /// <param name="index">The index of the element to retrieve.</param>
+        /// <returns>The link address of the element at the specified index.</returns>
         /// <exception cref="ArgumentOutOfRangeException">
-        /// <para>Sequences with sizes other than powers of two are not supported.</para>
-        /// <para></para>
+        /// Thrown when the size is not a power of two.
         /// </exception>
-        /// <returns>
-        /// <para>The current link.</para>
-        /// <para></para>
-        /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress GetSquareMatrixSequenceElementByIndex<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress root, TLinkAddress size, TLinkAddress index)  where TLinkAddress : IUnsignedNumber<TLinkAddress>, IBitwiseOperators<TLinkAddress, TLinkAddress, TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
         {
@@ -382,72 +315,62 @@ namespace Platform.Data.Doublets
         #endregion
 
         /// <summary>
-        /// Возвращает индекс указанной связи.
+        /// Returns the index (address) of the specified link.
         /// </summary>
-        /// <param name="links">Хранилище связей.</param>
-        /// <param name="link">Связь представленная списком, состоящим из её адреса и содержимого.</param>
-        /// <returns>Индекс начальной связи для указанной связи.</returns>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage.</param>
+        /// <param name="link">The link represented as a list containing its address and contents.</param>
+        /// <returns>The index of the specified link.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress GetIndex<TLinkAddress>(this ILinks<TLinkAddress> links, IList<TLinkAddress>? link)  where TLinkAddress : IUnsignedNumber<TLinkAddress>{return link[links.Constants.IndexPart];}
 
         /// <summary>
-        /// Возвращает индекс начальной (Source) связи для указанной связи.
+        /// Returns the source address of the specified link.
         /// </summary>
-        /// <param name="links">Хранилище связей.</param>
-        /// <param name="link">Индекс связи.</param>
-        /// <returns>Индекс начальной связи для указанной связи.</returns>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage.</param>
+        /// <param name="link">The address of the link.</param>
+        /// <returns>The source address of the specified link.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress GetSource<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link)  where TLinkAddress : IUnsignedNumber<TLinkAddress>{return links.GetLink(link)[links.Constants.SourcePart];}
 
         /// <summary>
-        /// Возвращает индекс начальной (Source) связи для указанной связи.
+        /// Returns the source address of the specified link.
         /// </summary>
-        /// <param name="links">Хранилище связей.</param>
-        /// <param name="link">Связь представленная списком, состоящим из её адреса и содержимого.</param>
-        /// <returns>Индекс начальной связи для указанной связи.</returns>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage.</param>
+        /// <param name="link">The link represented as a list containing its address and contents.</param>
+        /// <returns>The source address of the specified link.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress GetSource<TLinkAddress>(this ILinks<TLinkAddress> links, IList<TLinkAddress>? link)  where TLinkAddress : IUnsignedNumber<TLinkAddress>{return link[links.Constants.SourcePart];}
 
         /// <summary>
-        /// Возвращает индекс конечной (Target) связи для указанной связи.
+        /// Returns the target address of the specified link.
         /// </summary>
-        /// <param name="links">Хранилище связей.</param>
-        /// <param name="link">Индекс связи.</param>
-        /// <returns>Индекс конечной связи для указанной связи.</returns>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage.</param>
+        /// <param name="link">The address of the link.</param>
+        /// <returns>The target address of the specified link.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress GetTarget<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link)  where TLinkAddress : IUnsignedNumber<TLinkAddress>{return links.GetLink(link)[links.Constants.TargetPart];}
 
         /// <summary>
-        /// Возвращает индекс конечной (Target) связи для указанной связи.
+        /// Returns the target address of the specified link.
         /// </summary>
-        /// <param name="links">Хранилище связей.</param>
-        /// <param name="link">Связь представленная списком, состоящим из её адреса и содержимого.</param>
-        /// <returns>Индекс конечной связи для указанной связи.</returns>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage.</param>
+        /// <param name="link">The link represented as a list containing its address and contents.</param>
+        /// <returns>The target address of the specified link.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress GetTarget<TLinkAddress>(this ILinks<TLinkAddress> links, IList<TLinkAddress>? link)  where TLinkAddress : IUnsignedNumber<TLinkAddress>{return link[links.Constants.TargetPart];}
 
         /// <summary>
-        /// <para>
-        /// Alls the links.
-        /// </para>
-        /// <para></para>
+        /// Retrieves all links that match the specified restriction criteria.
         /// </summary>
-        /// <typeparam name="TLinkAddress">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </typeparam>
-        /// <param name="links">
-        /// <para>The links.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="restriction">
-        /// <para>The restriction.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>A list of i list t link</para>
-        /// <para></para>
-        /// </returns>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to search in.</param>
+        /// <param name="restriction">The search criteria for filtering links.</param>
+        /// <returns>A list of all links matching the restriction criteria.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IList<IList<TLinkAddress>?> All<TLinkAddress>(this ILinks<TLinkAddress> links, params TLinkAddress[] restriction)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
@@ -458,27 +381,12 @@ namespace Platform.Data.Doublets
         }
 
         /// <summary>
-        /// <para>
-        /// Alls the indices using the specified links.
-        /// </para>
-        /// <para></para>
+        /// Retrieves the addresses of all links that match the specified restriction criteria.
         /// </summary>
-        /// <typeparam name="TLinkAddress">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </typeparam>
-        /// <param name="links">
-        /// <para>The links.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="restriction">
-        /// <para>The restriction.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>A list of t link</para>
-        /// <para></para>
-        /// </returns>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to search in.</param>
+        /// <param name="restriction">The search criteria for filtering links.</param>
+        /// <returns>A list of addresses of all links matching the restriction criteria.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IList<TLinkAddress>? AllIndices<TLinkAddress>(this ILinks<TLinkAddress> links, params TLinkAddress[] restriction)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
@@ -489,12 +397,13 @@ namespace Platform.Data.Doublets
         }
 
         /// <summary>
-        /// Возвращает значение, определяющее существует ли связь с указанными началом и концом в хранилище связей.
+        /// Determines whether a link with the specified source and target exists in the links storage.
         /// </summary>
-        /// <param name="links">Хранилище связей.</param>
-        /// <param name="source">Начало связи.</param>
-        /// <param name="target">Конец связи.</param>
-        /// <returns>Значение, определяющее существует ли связь.</returns>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to search in.</param>
+        /// <param name="source">The source address of the link.</param>
+        /// <param name="target">The target address of the link.</param>
+        /// <returns>True if a link with the specified source and target exists, false otherwise.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool Exists<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress source, TLinkAddress target)  where TLinkAddress : IUnsignedNumber<TLinkAddress>{return Comparer<TLinkAddress>.Default.Compare(links.Count(links.Constants.Any, source, target), default) > 0;}
 
@@ -502,26 +411,14 @@ namespace Platform.Data.Doublets
         // TODO: May be move to EnsureExtensions or make it both there and here
 
         /// <summary>
-        /// <para>
-        /// Ensures the link exists using the specified links.
-        /// </para>
-        /// <para></para>
+        /// Validates that all links in the specified collection exist in the storage.
+        /// Throws an exception if any link doesn't exist.
         /// </summary>
-        /// <typeparam name="TLinkAddress">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </typeparam>
-        /// <param name="links">
-        /// <para>The links.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="restriction">
-        /// <para>The restriction.</para>
-        /// <para></para>
-        /// </param>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to validate against.</param>
+        /// <param name="restriction">The collection of link addresses to validate.</param>
         /// <exception cref="ArgumentLinkDoesNotExistsException{TLinkAddress}">
-        /// <para>sequence[{i}]</para>
-        /// <para></para>
+        /// Thrown when a link in the collection doesn't exist.
         /// </exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureLinkExists<TLinkAddress>(this ILinks<TLinkAddress> links, IList<TLinkAddress>? restriction)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
@@ -536,30 +433,15 @@ namespace Platform.Data.Doublets
         }
 
         /// <summary>
-        /// <para>
-        /// Ensures the inner reference exists using the specified links.
-        /// </para>
-        /// <para></para>
+        /// Validates that an internal reference exists in the storage if it's an internal reference.
+        /// External references are not validated.
         /// </summary>
-        /// <typeparam name="TLinkAddress">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </typeparam>
-        /// <param name="links">
-        /// <para>The links.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="reference">
-        /// <para>The reference.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="argumentName">
-        /// <para>The argument name.</para>
-        /// <para></para>
-        /// </param>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to validate against.</param>
+        /// <param name="reference">The reference address to validate.</param>
+        /// <param name="argumentName">The name of the argument for error reporting.</param>
         /// <exception cref="ArgumentLinkDoesNotExistsException{TLinkAddress}">
-        /// <para></para>
-        /// <para></para>
+        /// Thrown when an internal reference doesn't exist in the storage.
         /// </exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureInnerReferenceExists<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress reference, string argumentName)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
@@ -571,27 +453,13 @@ namespace Platform.Data.Doublets
         }
 
         /// <summary>
-        /// <para>
-        /// Ensures the inner reference exists using the specified links.
-        /// </para>
-        /// <para></para>
+        /// Validates that all internal references in the specified collection exist in the storage.
+        /// External references are not validated.
         /// </summary>
-        /// <typeparam name="TLinkAddress">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </typeparam>
-        /// <param name="links">
-        /// <para>The links.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="restriction">
-        /// <para>The restriction.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="argumentName">
-        /// <para>The argument name.</para>
-        /// <para></para>
-        /// </param>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to validate against.</param>
+        /// <param name="restriction">The collection of reference addresses to validate.</param>
+        /// <param name="argumentName">The name of the argument for error reporting.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureInnerReferenceExists<TLinkAddress>(this ILinks<TLinkAddress> links, IList<TLinkAddress>? restriction, string argumentName)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
@@ -602,26 +470,13 @@ namespace Platform.Data.Doublets
         }
 
         /// <summary>
-        /// <para>
-        /// Ensures the link is any or exists using the specified links.
-        /// </para>
-        /// <para></para>
+        /// Validates that each link in the collection either represents "Any" or exists in the storage.
         /// </summary>
-        /// <typeparam name="TLinkAddress">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </typeparam>
-        /// <param name="links">
-        /// <para>The links.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="restriction">
-        /// <para>The restriction.</para>
-        /// <para></para>
-        /// </param>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to validate against.</param>
+        /// <param name="restriction">The collection of link addresses to validate.</param>
         /// <exception cref="ArgumentLinkDoesNotExistsException{TLinkAddress}">
-        /// <para>sequence[{i}]</para>
-        /// <para></para>
+        /// Thrown when a link is not "Any" and doesn't exist in the storage.
         /// </exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureLinkIsAnyOrExists<TLinkAddress>(this ILinks<TLinkAddress> links, IList<TLinkAddress>? restriction)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
@@ -637,30 +492,14 @@ namespace Platform.Data.Doublets
         }
 
         /// <summary>
-        /// <para>
-        /// Ensures the link is any or exists using the specified links.
-        /// </para>
-        /// <para></para>
+        /// Validates that a link either represents "Any" or exists in the storage.
         /// </summary>
-        /// <typeparam name="TLinkAddress">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </typeparam>
-        /// <param name="links">
-        /// <para>The links.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="link">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="argumentName">
-        /// <para>The argument name.</para>
-        /// <para></para>
-        /// </param>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to validate against.</param>
+        /// <param name="link">The link address to validate.</param>
+        /// <param name="argumentName">The name of the argument for error reporting.</param>
         /// <exception cref="ArgumentLinkDoesNotExistsException{TLinkAddress}">
-        /// <para></para>
-        /// <para></para>
+        /// Thrown when the link is not "Any" and doesn't exist in the storage.
         /// </exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureLinkIsAnyOrExists<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link, string argumentName)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
@@ -672,30 +511,14 @@ namespace Platform.Data.Doublets
         }
 
         /// <summary>
-        /// <para>
-        /// Ensures the link is itself or exists using the specified links.
-        /// </para>
-        /// <para></para>
+        /// Validates that a link either represents "Itself" or exists in the storage.
         /// </summary>
-        /// <typeparam name="TLinkAddress">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </typeparam>
-        /// <param name="links">
-        /// <para>The links.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="link">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="argumentName">
-        /// <para>The argument name.</para>
-        /// <para></para>
-        /// </param>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to validate against.</param>
+        /// <param name="link">The link address to validate.</param>
+        /// <param name="argumentName">The name of the argument for error reporting.</param>
         /// <exception cref="ArgumentLinkDoesNotExistsException{TLinkAddress}">
-        /// <para></para>
-        /// <para></para>
+        /// Thrown when the link is not "Itself" and doesn't exist in the storage.
         /// </exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureLinkIsItselfOrExists<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link, string argumentName)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
@@ -706,7 +529,16 @@ namespace Platform.Data.Doublets
             }
         }
 
-        /// <param name="links">Хранилище связей.</param>
+        /// <summary>
+        /// Validates that a link with the specified source and target does not exist in the storage.
+        /// </summary>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to validate against.</param>
+        /// <param name="source">The source address of the link.</param>
+        /// <param name="target">The target address of the link.</param>
+        /// <exception cref="LinkWithSameValueAlreadyExistsException">
+        /// Thrown when a link with the same source and target already exists.
+        /// </exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureDoesNotExists<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress source, TLinkAddress target)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
@@ -716,7 +548,15 @@ namespace Platform.Data.Doublets
             }
         }
 
-        /// <param name="links">Хранилище связей.</param>
+        /// <summary>
+        /// Validates that the specified link has no usages (references) from other links.
+        /// </summary>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to validate against.</param>
+        /// <param name="link">The link address to check for usages.</param>
+        /// <exception cref="ArgumentLinkHasDependenciesException{TLinkAddress}">
+        /// Thrown when the link has dependencies (usages by other links).
+        /// </exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureNoUsages<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
@@ -726,15 +566,31 @@ namespace Platform.Data.Doublets
             }
         }
 
-        /// <param name="links">Хранилище связей.</param>
+        /// <summary>
+        /// Ensures that links with the specified addresses exist in the storage, creating them if necessary.
+        /// </summary>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to operate on.</param>
+        /// <param name="addresses">The addresses of links to ensure exist.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureCreated<TLinkAddress>(this ILinks<TLinkAddress> links, params TLinkAddress[] addresses)  where TLinkAddress : IUnsignedNumber<TLinkAddress>{links.EnsureCreated(links.Create, addresses);}
 
-        /// <param name="links">Хранилище связей.</param>
+        /// <summary>
+        /// Ensures that point links (self-referencing links) with the specified addresses exist in the storage, creating them if necessary.
+        /// </summary>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to operate on.</param>
+        /// <param name="addresses">The addresses of point links to ensure exist.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsurePointsCreated<TLinkAddress>(this ILinks<TLinkAddress> links, params TLinkAddress[] addresses)  where TLinkAddress : IUnsignedNumber<TLinkAddress>{links.EnsureCreated(links.CreatePoint, addresses);}
 
-        /// <param name="links">Хранилище связей.</param>
+        /// <summary>
+        /// Ensures that links with the specified addresses exist in the storage, using a custom creator function if necessary.
+        /// </summary>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to operate on.</param>
+        /// <param name="creator">The function used to create new links.</param>
+        /// <param name="addresses">The addresses of links to ensure exist.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void EnsureCreated<TLinkAddress>(this ILinks<TLinkAddress> links, Func<TLinkAddress> creator, params TLinkAddress[] addresses)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
@@ -763,7 +619,13 @@ namespace Platform.Data.Doublets
 
         #endregion
 
-        /// <param name="links">Хранилище связей.</param>
+        /// <summary>
+        /// Counts the number of times the specified link is used as a source or target by other links.
+        /// </summary>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to search in.</param>
+        /// <param name="link">The link address to count usages for.</param>
+        /// <returns>The total number of usages of the specified link.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress CountUsages<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
@@ -782,11 +644,25 @@ namespace Platform.Data.Doublets
             return usagesAsSource + usagesAsTarget;
         }
 
-        /// <param name="links">Хранилище связей.</param>
+        /// <summary>
+        /// Determines whether the specified link is used as a source or target by any other links.
+        /// </summary>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to search in.</param>
+        /// <param name="link">The link address to check for usages.</param>
+        /// <returns>True if the link has usages, false otherwise.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool HasUsages<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link)  where TLinkAddress : IUnsignedNumber<TLinkAddress>{return Comparer<TLinkAddress>.Default.Compare(links.CountUsages(link), default) > 0;}
 
-        /// <param name="links">Хранилище связей.</param>
+        /// <summary>
+        /// Determines whether the specified link has the given source and target addresses.
+        /// </summary>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage containing the link.</param>
+        /// <param name="link">The address of the link to check.</param>
+        /// <param name="source">The expected source address.</param>
+        /// <param name="target">The expected target address.</param>
+        /// <returns>True if the link has the specified source and target, false otherwise.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool Equals<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link, TLinkAddress source, TLinkAddress target)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
@@ -796,12 +672,13 @@ namespace Platform.Data.Doublets
         }
 
         /// <summary>
-        /// Выполняет поиск связи с указанными Source (началом) и Target (концом).
+        /// Searches for a link with the specified source and target addresses.
         /// </summary>
-        /// <param name="links">Хранилище связей.</param>
-        /// <param name="source">Индекс связи, которая является началом для искомой связи.</param>
-        /// <param name="target">Индекс связи, которая является концом для искомой связи.</param>
-        /// <returns>Индекс искомой связи с указанными Source (началом) и Target (концом).</returns>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to search in.</param>
+        /// <param name="source">The source address of the link to find.</param>
+        /// <param name="target">The target address of the link to find.</param>
+        /// <returns>The address of the found link, or default if no link is found.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress SearchOrDefault<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress source, TLinkAddress target)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
@@ -811,6 +688,12 @@ namespace Platform.Data.Doublets
             return setter.Result;
         }
 
+        /// <summary>
+        /// Creates a point link (a link that points to itself) in the storage.
+        /// </summary>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to create the point in.</param>
+        /// <returns>The address of the created point link.</returns>
         public static TLinkAddress CreatePoint<TLinkAddress>(this ILinks<TLinkAddress> links)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
             var constants = links.Constants;
@@ -819,7 +702,13 @@ namespace Platform.Data.Doublets
             return setter.Result;
         }
 
-        /// <param name="links">Хранилище связей.</param>
+        /// <summary>
+        /// Creates a point link (a link that points to itself) in the storage with a custom write handler.
+        /// </summary>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to create the point in.</param>
+        /// <param name="handler">Optional write handler for the operation.</param>
+        /// <returns>The address of the created point link.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress CreatePoint<TLinkAddress>(this ILinks<TLinkAddress> links, WriteHandler<TLinkAddress>? handler)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
@@ -836,6 +725,14 @@ namespace Platform.Data.Doublets
             return handlerState.Result;
         }
 
+        /// <summary>
+        /// Creates a new link and immediately updates it with the specified source and target addresses.
+        /// </summary>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to operate on.</param>
+        /// <param name="source">The source address for the new link.</param>
+        /// <param name="target">The target address for the new link.</param>
+        /// <returns>The address of the created and updated link.</returns>
         public static TLinkAddress CreateAndUpdate<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress source, TLinkAddress target)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
             var constants = links.Constants;
@@ -845,7 +742,16 @@ namespace Platform.Data.Doublets
         }
 
 
-        /// <param name="links">Хранилище связей.</param>
+        /// <summary>
+        /// Creates a new link and immediately updates it with the specified source and target addresses,
+        /// using a custom write handler.
+        /// </summary>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to operate on.</param>
+        /// <param name="source">The source address for the new link.</param>
+        /// <param name="target">The target address for the new link.</param>
+        /// <param name="handler">Optional write handler for the operation.</param>
+        /// <returns>The address of the created and updated link.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress CreateAndUpdate<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress source, TLinkAddress target, WriteHandler<TLinkAddress>? handler)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
@@ -862,21 +768,43 @@ namespace Platform.Data.Doublets
         }
 
         /// <summary>
-        /// Обновляет связь с указанными началом (Source) и концом (Target)
-        /// на связь с указанными началом (NewSource) и концом (NewTarget).
+        /// Updates the specified link with new source and target addresses.
         /// </summary>
-        /// <param name="links">Хранилище связей.</param>
-        /// <param name="link">Индекс обновляемой связи.</param>
-        /// <param name="newSource">Индекс связи, которая является началом связи, на которую выполняется обновление.</param>
-        /// <param name="newTarget">Индекс связи, которая является концом связи, на которую выполняется обновление.</param>
-        /// <returns>Индекс обновлённой связи.</returns>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to operate on.</param>
+        /// <param name="link">The address of the link to update.</param>
+        /// <param name="newSource">The new source address for the link.</param>
+        /// <param name="newTarget">The new target address for the link.</param>
+        /// <returns>The address of the updated link.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress Update<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link, TLinkAddress newSource, TLinkAddress newTarget)  where TLinkAddress : IUnsignedNumber<TLinkAddress>{return links.Update(new LinkAddress<TLinkAddress>(link), new Link<TLinkAddress>(link, newSource, newTarget));}
 
+        /// <summary>
+        /// Updates links based on the provided restriction parameters.
+        /// </summary>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to operate on.</param>
+        /// <param name="restriction">The restriction parameters for the update operation.</param>
+        /// <returns>The result of the update operation.</returns>
         public static TLinkAddress Update<TLinkAddress>(this ILinks<TLinkAddress> links, params TLinkAddress[] restriction)  where TLinkAddress : IUnsignedNumber<TLinkAddress>{return links.Update((IList<TLinkAddress>)restriction);}
 
+        /// <summary>
+        /// Updates links based on the provided restriction parameters with a custom write handler.
+        /// </summary>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to operate on.</param>
+        /// <param name="handler">Optional write handler for the operation.</param>
+        /// <param name="restriction">The restriction parameters for the update operation.</param>
+        /// <returns>The result of the update operation.</returns>
         public static TLinkAddress Update<TLinkAddress>(this ILinks<TLinkAddress> links, WriteHandler<TLinkAddress>? handler, params TLinkAddress[] restriction)  where TLinkAddress : IUnsignedNumber<TLinkAddress>{return links.Update(restriction, handler);}
 
+        /// <summary>
+        /// Updates links based on the provided restriction list.
+        /// </summary>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to operate on.</param>
+        /// <param name="restriction">The restriction list for the update operation.</param>
+        /// <returns>The result of the update operation.</returns>
         public static TLinkAddress Update<TLinkAddress>(this ILinks<TLinkAddress> links, IList<TLinkAddress>? restriction)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
             var constants = links.Constants;
@@ -887,12 +815,14 @@ namespace Platform.Data.Doublets
 
 
         /// <summary>
-        /// Обновляет связь с указанными началом (Source) и концом (Target)
-        /// на связь с указанными началом (NewSource) и концом (NewTarget).
+        /// Updates links based on the provided restrictions with a custom write handler.
+        /// The behavior depends on the number of elements in the restriction list.
         /// </summary>
-        /// <param name="links">Хранилище связей.</param>
-        /// <param name="restriction">Ограничения на содержимое связей. Каждое ограничение может иметь значения: Constants.Null - 0-я связь, обозначающая ссылку на пустоту, Itself - требование установить ссылку на себя, 1..∞ конкретный адрес другой связи.</param>
-        /// <returns>Индекс обновлённой связи.</returns>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to operate on.</param>
+        /// <param name="restriction">Restrictions on link content. Each restriction can have values: Constants.Null - the 0th link denoting a reference to void, Itself - requirement to set a reference to itself, 1..∞ specific address of another link.</param>
+        /// <param name="handler">Optional write handler for the operation.</param>
+        /// <returns>The address of the updated link.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress Update<TLinkAddress>(this ILinks<TLinkAddress> links, IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? handler)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
@@ -904,38 +834,28 @@ namespace Platform.Data.Doublets
             };
         }
 
+        /// <summary>
+        /// Updates the specified link with new source and target addresses, using a custom write handler.
+        /// </summary>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to operate on.</param>
+        /// <param name="link">The address of the link to update.</param>
+        /// <param name="newSource">The new source address for the link.</param>
+        /// <param name="newTarget">The new target address for the link.</param>
+        /// <param name="handler">Optional write handler for the operation.</param>
+        /// <returns>The address of the updated link.</returns>
         public static TLinkAddress Update<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link, TLinkAddress newSource, TLinkAddress newTarget, WriteHandler<TLinkAddress>? handler)  where TLinkAddress : IUnsignedNumber<TLinkAddress>{return links.Update(new LinkAddress<TLinkAddress>(link), new Link<TLinkAddress>(link, newSource, newTarget), handler);}
 
         /// <summary>
-        /// <para>
-        /// Resolves the constant as self reference using the specified links.
-        /// </para>
-        /// <para></para>
+        /// Resolves a constant as a self-reference by replacing occurrences of the constant
+        /// in the substitution with the link's own address.
         /// </summary>
-        /// <typeparam name="TLinkAddress">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </typeparam>
-        /// <param name="links">
-        /// <para>The links.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="constant">
-        /// <para>The constant.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="restriction">
-        /// <para>The restriction.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="substitution">
-        /// <para>The substitution.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>A list of t link</para>
-        /// <para></para>
-        /// </returns>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to operate on.</param>
+        /// <param name="constant">The constant value to replace with self-reference.</param>
+        /// <param name="restriction">The original restriction criteria.</param>
+        /// <param name="substitution">The substitution link to process.</param>
+        /// <returns>A new link with the constant replaced by self-reference.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IList<TLinkAddress>? ResolveConstantAsSelfReference<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress constant, IList<TLinkAddress>? restriction, IList<TLinkAddress>? substitution)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
@@ -954,12 +874,14 @@ namespace Platform.Data.Doublets
         }
 
         /// <summary>
-        /// Создаёт связь (если она не существовала), либо возвращает индекс существующей связи с указанными Source (началом) и Target (концом).
+        /// Creates a link with the specified source and target if it doesn't exist,
+        /// or returns the address of the existing link.
         /// </summary>
-        /// <param name="links">Хранилище связей.</param>
-        /// <param name="source">Индекс связи, которая является началом на создаваемой связи.</param>
-        /// <param name="target">Индекс связи, которая является концом для создаваемой связи.</param>
-        /// <returns>Индекс связи, с указанным Source (началом) и Target (концом)</returns>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to operate on.</param>
+        /// <param name="source">The source address for the link.</param>
+        /// <param name="target">The target address for the link.</param>
+        /// <returns>The address of the existing or newly created link.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress GetOrCreate<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress source, TLinkAddress target)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
@@ -971,6 +893,16 @@ namespace Platform.Data.Doublets
             return link;
         }
 
+        /// <summary>
+        /// Updates an existing link, creates a new one, or gets an existing link based on the provided parameters.
+        /// </summary>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to operate on.</param>
+        /// <param name="source">The source address to search for.</param>
+        /// <param name="target">The target address to search for.</param>
+        /// <param name="newSource">The new source address for the link.</param>
+        /// <param name="newTarget">The new target address for the link.</param>
+        /// <returns>The address of the updated, created, or existing link.</returns>
         public static TLinkAddress UpdateOrCreateOrGet<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress source, TLinkAddress target, TLinkAddress newSource, TLinkAddress newTarget)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
             var constants = links.Constants;
@@ -980,15 +912,17 @@ namespace Platform.Data.Doublets
         }
 
         /// <summary>
-        /// Обновляет связь с указанными началом (Source) и концом (Target)
-        /// на связь с указанными началом (NewSource) и концом (NewTarget).
+        /// Updates an existing link with the specified source and target, creates a new link if it doesn't exist,
+        /// or returns the existing link if the new values match the current ones.
         /// </summary>
-        /// <param name="links">Хранилище связей.</param>
-        /// <param name="source">Индекс связи, которая является началом обновляемой связи.</param>
-        /// <param name="target">Индекс связи, которая является концом обновляемой связи.</param>
-        /// <param name="newSource">Индекс связи, которая является началом связи, на которую выполняется обновление.</param>
-        /// <param name="newTarget">Индекс связи, которая является концом связи, на которую выполняется обновление.</param>
-        /// <returns>Индекс обновлённой связи.</returns>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to operate on.</param>
+        /// <param name="source">The source address of the link to find.</param>
+        /// <param name="target">The target address of the link to find.</param>
+        /// <param name="newSource">The new source address for the link.</param>
+        /// <param name="newTarget">The new target address for the link.</param>
+        /// <param name="handler">Optional write handler for the operation.</param>
+        /// <returns>The address of the updated, created, or existing link.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress UpdateOrCreateOrGet<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress source, TLinkAddress target, TLinkAddress newSource, TLinkAddress newTarget, WriteHandler<TLinkAddress>? handler)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
@@ -1005,10 +939,14 @@ namespace Platform.Data.Doublets
             return links.Update(link, newSource, newTarget, handler);
         }
 
-        /// <summary>Удаляет связь с указанными началом (Source) и концом (Target).</summary>
-        /// <param name="links">Хранилище связей.</param>
-        /// <param name="source">Индекс связи, которая является началом удаляемой связи.</param>
-        /// <param name="target">Индекс связи, которая является концом удаляемой связи.</param>
+        /// <summary>
+        /// Deletes a link with the specified source and target addresses if it exists.
+        /// </summary>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to operate on.</param>
+        /// <param name="source">The source address of the link to delete.</param>
+        /// <param name="target">The target address of the link to delete.</param>
+        /// <returns>The address of the deleted link, or default if no link was found.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress DeleteIfExists<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress source, TLinkAddress target)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
@@ -1021,9 +959,12 @@ namespace Platform.Data.Doublets
             return default;
         }
 
-        /// <summary>Удаляет несколько связей.</summary>
-        /// <param name="links">Хранилище связей.</param>
-        /// <param name="deletedLinks">Список адресов связей к удалению.</param>
+        /// <summary>
+        /// Deletes multiple links specified in the provided list.
+        /// </summary>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to operate on.</param>
+        /// <param name="deletedLinks">The list of link addresses to delete.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void DeleteMany<TLinkAddress>(this ILinks<TLinkAddress> links, IList<TLinkAddress>? deletedLinks)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
@@ -1033,9 +974,25 @@ namespace Platform.Data.Doublets
             }
         }
 
+        /// <summary>
+        /// Deletes all links that use the specified link as a source or target.
+        /// </summary>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to operate on.</param>
+        /// <param name="linkIndex">The address of the link whose usages should be deleted.</param>
         public static void DeleteAllUsages<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress linkIndex)  where TLinkAddress : IUnsignedNumber<TLinkAddress>{links.DeleteAllUsages(linkIndex, null);}
 
-        /// <remarks>Before execution of this method ensure that deleted link is detached (all values - source and target are reset to null) or it might enter into infinite recursion.</remarks>
+        /// <summary>
+        /// Deletes all links that use the specified link as a source or target, with a custom write handler.
+        /// </summary>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to operate on.</param>
+        /// <param name="linkIndex">The address of the link whose usages should be deleted.</param>
+        /// <param name="handler">Optional write handler for the operation.</param>
+        /// <returns>The result of the delete operation.</returns>
+        /// <remarks>
+        /// Before execution of this method ensure that deleted link is detached (all values - source and target are reset to null) or it might enter into infinite recursion.
+        /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress DeleteAllUsages<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress linkIndex, WriteHandler<TLinkAddress>? handler)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
@@ -1060,23 +1017,11 @@ namespace Platform.Data.Doublets
         }
 
         /// <summary>
-        /// <para>
-        /// Deletes the by query using the specified links.
-        /// </para>
-        /// <para></para>
+        /// Deletes all links that match the specified query criteria.
         /// </summary>
-        /// <typeparam name="TLinkAddress">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </typeparam>
-        /// <param name="links">
-        /// <para>The links.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="query">
-        /// <para>The query.</para>
-        /// <para></para>
-        /// </param>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to operate on.</param>
+        /// <param name="query">The query criteria to match links for deletion.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void DeleteByQuery<TLinkAddress>(this ILinks<TLinkAddress> links, Link<TLinkAddress> query)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
@@ -1091,27 +1036,12 @@ namespace Platform.Data.Doublets
 
         // TODO: Move to Platform.Data
         /// <summary>
-        /// <para>
-        /// Determines whether are values reset.
-        /// </para>
-        /// <para></para>
+        /// Determines whether all values (source and target) of the specified link are reset to null.
         /// </summary>
-        /// <typeparam name="TLinkAddress">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </typeparam>
-        /// <param name="links">
-        /// <para>The links.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="linkIndex">
-        /// <para>The link index.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The bool</para>
-        /// <para></para>
-        /// </returns>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to check in.</param>
+        /// <param name="linkIndex">The address of the link to check.</param>
+        /// <returns>True if all values are reset to null, false otherwise.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool AreValuesReset<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress linkIndex)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
@@ -1127,27 +1057,25 @@ namespace Platform.Data.Doublets
             return true;
         }
 
+        /// <summary>
+        /// Resets all values (source and target) of the specified link to null.
+        /// </summary>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to operate on.</param>
+        /// <param name="linkIndex">The address of the link to reset.</param>
         public static void ResetValues<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress linkIndex)  where TLinkAddress : IUnsignedNumber<TLinkAddress>{links.ResetValues(linkIndex, null);}
 
-        // TODO: Create a universal version of this method in Platform.Data (with using of for loop)
         /// <summary>
-        /// <para>
-        /// Resets the values using the specified links.
-        /// </para>
-        /// <para></para>
+        /// Resets all values (source and target) of the specified link to null with a custom write handler.
         /// </summary>
-        /// <typeparam name="TLinkAddress">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </typeparam>
-        /// <param name="links">
-        /// <para>The links.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="linkIndex">
-        /// <para>The link index.</para>
-        /// <para></para>
-        /// </param>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to operate on.</param>
+        /// <param name="linkIndex">The address of the link to reset.</param>
+        /// <param name="handler">Optional write handler for the operation.</param>
+        /// <returns>The result of the reset operation.</returns>
+        /// <remarks>
+        /// TODO: Create a universal version of this method in Platform.Data (with using of for loop)
+        /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress ResetValues<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress linkIndex, WriteHandler<TLinkAddress>? handler)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
@@ -1156,28 +1084,28 @@ namespace Platform.Data.Doublets
             return links.Update(updateRequest, handler);
         }
 
+        /// <summary>
+        /// Ensures that all values (source and target) of the specified link are reset to null,
+        /// performing the reset only if they are not already reset.
+        /// </summary>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to operate on.</param>
+        /// <param name="linkIndex">The address of the link to check and potentially reset.</param>
         public static void EnforceResetValues<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress linkIndex)  where TLinkAddress : IUnsignedNumber<TLinkAddress>{links.EnforceResetValues(linkIndex, null);}
 
 
-        // TODO: Create a universal version of this method in Platform.Data (with using of for loop)
         /// <summary>
-        /// <para>
-        /// Enforces the reset values using the specified links.
-        /// </para>
-        /// <para></para>
+        /// Ensures that all values (source and target) of the specified link are reset to null,
+        /// performing the reset only if they are not already reset, with a custom write handler.
         /// </summary>
-        /// <typeparam name="TLinkAddress">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </typeparam>
-        /// <param name="links">
-        /// <para>The links.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="linkIndex">
-        /// <para>The link index.</para>
-        /// <para></para>
-        /// </param>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to operate on.</param>
+        /// <param name="linkIndex">The address of the link to check and potentially reset.</param>
+        /// <param name="handler">Optional write handler for the operation.</param>
+        /// <returns>The result of the reset operation, or Continue if no reset was needed.</returns>
+        /// <remarks>
+        /// TODO: Create a universal version of this method in Platform.Data (with using of for loop)
+        /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress EnforceResetValues<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress linkIndex, WriteHandler<TLinkAddress>? handler)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
@@ -1188,11 +1116,25 @@ namespace Platform.Data.Doublets
             return links.Constants.Continue;
         }
 
+        /// <summary>
+        /// Merges all usages of an old link to point to a new link instead.
+        /// </summary>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to operate on.</param>
+        /// <param name="oldLinkIndex">The address of the old link whose usages should be transferred.</param>
+        /// <param name="newLinkIndex">The address of the new link that should receive the usages.</param>
         public static void MergeUsages<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress oldLinkIndex, TLinkAddress newLinkIndex)  where TLinkAddress : IUnsignedNumber<TLinkAddress>{links.MergeUsages(oldLinkIndex, newLinkIndex, null);}
 
         /// <summary>
-        /// Merging two usages graphs, all children of old link moved to be children of new link or deleted.
+        /// Merges two usage graphs by moving all children of the old link to become children of the new link.
+        /// All links that reference the old link will be updated to reference the new link instead.
         /// </summary>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to operate on.</param>
+        /// <param name="oldLinkIndex">The address of the old link whose usages should be transferred.</param>
+        /// <param name="newLinkIndex">The address of the new link that should receive the usages.</param>
+        /// <param name="handler">Optional write handler for the operation.</param>
+        /// <returns>The result of the merge operation.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress MergeUsages<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress oldLinkIndex, TLinkAddress newLinkIndex, WriteHandler<TLinkAddress>? handler)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
@@ -1229,6 +1171,14 @@ namespace Platform.Data.Doublets
             return handlerState.Result;
         }
 
+        /// <summary>
+        /// Merges the usages of an old link to a new link and then deletes the old link.
+        /// </summary>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to operate on.</param>
+        /// <param name="oldLinkIndex">The address of the old link to merge and delete.</param>
+        /// <param name="newLinkIndex">The address of the new link to receive the usages.</param>
+        /// <returns>The address of the new link.</returns>
         public static TLinkAddress MergeAndDelete<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress oldLinkIndex, TLinkAddress newLinkIndex)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
             if (oldLinkIndex !=  newLinkIndex)
@@ -1240,8 +1190,15 @@ namespace Platform.Data.Doublets
         }
 
         /// <summary>
-        /// Replace one link with another (replaced link is deleted, children are updated or deleted).
+        /// Replaces one link with another by merging usages and then deleting the old link.
+        /// The replaced link is deleted, and its children are updated to reference the new link or deleted.
         /// </summary>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to operate on.</param>
+        /// <param name="oldLinkIndex">The address of the old link to merge and delete.</param>
+        /// <param name="newLinkIndex">The address of the new link to receive the usages.</param>
+        /// <param name="handler">Optional write handler for the operation.</param>
+        /// <returns>The result of the merge and delete operation.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress MergeAndDelete<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress oldLinkIndex, TLinkAddress newLinkIndex, WriteHandler<TLinkAddress>? handler)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
@@ -1283,27 +1240,12 @@ namespace Platform.Data.Doublets
         }
 
         /// <summary>
-        /// <para>
-        /// Formats the links.
-        /// </para>
-        /// <para></para>
+        /// Formats a link as a string representation showing its index, source, and target.
         /// </summary>
-        /// <typeparam name="TLinkAddress">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </typeparam>
-        /// <param name="links">
-        /// <para>The links.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="link">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The string</para>
-        /// <para></para>
-        /// </returns>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage containing the link.</param>
+        /// <param name="link">The link to format, represented as a list.</param>
+        /// <returns>A string representation of the link in the format "(index: source target)".</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string Format<TLinkAddress>(this ILinks<TLinkAddress> links, IList<TLinkAddress>? link)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
@@ -1312,48 +1254,22 @@ namespace Platform.Data.Doublets
         }
 
         /// <summary>
-        /// <para>
-        /// Formats the links.
-        /// </para>
-        /// <para></para>
+        /// Formats a link as a string representation showing its index, source, and target.
         /// </summary>
-        /// <typeparam name="TLinkAddress">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </typeparam>
-        /// <param name="links">
-        /// <para>The links.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="link">
-        /// <para>The link.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The string</para>
-        /// <para></para>
-        /// </returns>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage containing the link.</param>
+        /// <param name="link">The address of the link to format.</param>
+        /// <returns>A string representation of the link in the format "(index: source target)".</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string Format<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link)  where TLinkAddress : IUnsignedNumber<TLinkAddress>{return links.Format(links.GetLink(link));}
         
         /// <summary>
-        /// <para>
-        /// Determines whether any link is any.
-        /// </para>
-        /// <para></para>
+        /// Determines whether any link in the specified sequence has the "Any" constant value.
         /// </summary>
-        /// <param name="links">
-        /// <para>The links.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="sequence">
-        /// <para>The sequence.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The bool</para>
-        /// <para></para>
-        /// </returns>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to check against.</param>
+        /// <param name="sequence">The sequence of link addresses to check.</param>
+        /// <returns>True if any link in the sequence equals the "Any" constant, false otherwise.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool AnyLinkIsAny<TLinkAddress>(this ILinks<TLinkAddress> links, params TLinkAddress[] sequence) where TLinkAddress: IUnsignedNumber<TLinkAddress>
         {
@@ -1373,35 +1289,16 @@ namespace Platform.Data.Doublets
         }
 
         /// <summary>
-        /// <para>
-        /// Formats the structure using the specified links.
-        /// </para>
-        /// <para></para>
+        /// Formats the structure of a link as a nested string representation, recursively showing
+        /// the relationships between links while avoiding infinite loops.
         /// </summary>
-        /// <param name="links">
-        /// <para>The links.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="linkIndex">
-        /// <para>The link index.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="isElement">
-        /// <para>The is element.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="renderIndex">
-        /// <para>The render index.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="renderDebug">
-        /// <para>The render debug.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The string</para>
-        /// <para></para>
-        /// </returns>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage containing the structure.</param>
+        /// <param name="linkIndex">The address of the root link to format.</param>
+        /// <param name="isElement">A function to determine if a link should be treated as an element (terminal node).</param>
+        /// <param name="renderIndex">Whether to include link indices in the output.</param>
+        /// <param name="renderDebug">Whether to include debug information for visited/non-existent links.</param>
+        /// <returns>A string representation of the link structure.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string FormatStructure<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress linkIndex, Func<Link<TLinkAddress>, bool> isElement, bool renderIndex = false, bool renderDebug = false) where TLinkAddress: IUnsignedNumber<TLinkAddress>
         {
@@ -1412,39 +1309,17 @@ namespace Platform.Data.Doublets
         }
 
         /// <summary>
-        /// <para>
-        /// Formats the structure using the specified links.
-        /// </para>
-        /// <para></para>
+        /// Formats the structure of a link as a nested string representation with custom element formatting,
+        /// recursively showing the relationships between links while avoiding infinite loops.
         /// </summary>
-        /// <param name="links">
-        /// <para>The links.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="linkIndex">
-        /// <para>The link index.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="isElement">
-        /// <para>The is element.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="appendElement">
-        /// <para>The append element.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="renderIndex">
-        /// <para>The render index.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="renderDebug">
-        /// <para>The render debug.</para>
-        /// <para></para>
-        /// </param>
-        /// <returns>
-        /// <para>The string</para>
-        /// <para></para>
-        /// </returns>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage containing the structure.</param>
+        /// <param name="linkIndex">The address of the root link to format.</param>
+        /// <param name="isElement">A function to determine if a link should be treated as an element (terminal node).</param>
+        /// <param name="appendElement">A custom action to format element links.</param>
+        /// <param name="renderIndex">Whether to include link indices in the output.</param>
+        /// <param name="renderDebug">Whether to include debug information for visited/non-existent links.</param>
+        /// <returns>A string representation of the link structure.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string FormatStructure<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress linkIndex, Func<Link<TLinkAddress>, bool> isElement, Action<StringBuilder, Link<TLinkAddress>> appendElement, bool renderIndex = false, bool renderDebug = false) where TLinkAddress: IUnsignedNumber<TLinkAddress>
         {
@@ -1455,47 +1330,19 @@ namespace Platform.Data.Doublets
         }
 
         /// <summary>
-        /// <para>
-        /// Appends the structure using the specified links.
-        /// </para>
-        /// <para></para>
+        /// Recursively appends the structure of a link to a StringBuilder, tracking visited links
+        /// to avoid infinite loops and providing detailed formatting options.
         /// </summary>
-        /// <param name="links">
-        /// <para>The links.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="sb">
-        /// <para>The sb.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="visited">
-        /// <para>The visited.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="linkIndex">
-        /// <para>The link index.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="isElement">
-        /// <para>The is element.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="appendElement">
-        /// <para>The append element.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="renderIndex">
-        /// <para>The render index.</para>
-        /// <para></para>
-        /// </param>
-        /// <param name="renderDebug">
-        /// <para>The render debug.</para>
-        /// <para></para>
-        /// </param>
-        /// <exception cref="ArgumentNullException">
-        /// <para></para>
-        /// <para></para>
-        /// </exception>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage containing the structure.</param>
+        /// <param name="sb">The StringBuilder to append the structure to.</param>
+        /// <param name="visited">A set of visited link addresses to prevent infinite recursion.</param>
+        /// <param name="linkIndex">The address of the link to process.</param>
+        /// <param name="isElement">A function to determine if a link should be treated as an element (terminal node).</param>
+        /// <param name="appendElement">A custom action to format element links.</param>
+        /// <param name="renderIndex">Whether to include link indices in the output.</param>
+        /// <param name="renderDebug">Whether to include debug information for visited/non-existent links.</param>
+        /// <exception cref="ArgumentNullException">Thrown when sb is null.</exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void AppendStructure<TLinkAddress>(this ILinks<TLinkAddress> links, StringBuilder sb, HashSet<TLinkAddress> visited, TLinkAddress linkIndex, Func<Link<TLinkAddress>, bool> isElement, Action<StringBuilder, Link<TLinkAddress>> appendElement, bool renderIndex = false, bool renderDebug = false) where TLinkAddress: IUnsignedNumber<TLinkAddress>
         {
@@ -1573,18 +1420,41 @@ namespace Platform.Data.Doublets
         }
 
         #region Garbage Collection
+
+        /// <summary>
+        /// Determines whether the specified link is considered garbage (has no incoming or outgoing references
+        /// and is not a partial point).
+        /// </summary>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to check in.</param>
+        /// <param name="link">The address of the link to check.</param>
+        /// <returns>True if the link is garbage and can be safely deleted, false otherwise.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsGarbage<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link) where  TLinkAddress : struct, IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool> 
         {
             return !links.IsPartialPoint(link) && links.Count(links.Constants.Any, link, links.Constants.Any) == TLinkAddress.Zero && links.Count(links.Constants.Any, links.Constants.Any, link) == TLinkAddress.Zero;
         }
 
+        /// <summary>
+        /// Clears garbage links starting from the specified link using the default garbage detection logic.
+        /// </summary>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to operate on.</param>
+        /// <param name="link">The address of the link to start garbage collection from.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void ClearGarbage<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link) where TLinkAddress : struct, IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
         {
             ClearGarbage(links, link, links.IsGarbage);
         }
         
+        /// <summary>
+        /// Clears garbage links starting from the specified link using a custom garbage detection function.
+        /// This method recursively processes the source and target of deleted links.
+        /// </summary>
+        /// <typeparam name="TLinkAddress">The type of link addresses.</typeparam>
+        /// <param name="links">The links storage to operate on.</param>
+        /// <param name="link">The address of the link to start garbage collection from.</param>
+        /// <param name="isGarbage">A function to determine if a link should be considered garbage.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void ClearGarbage<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link, Func<TLinkAddress, bool> isGarbage) where  TLinkAddress : struct, IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool> 
         {
