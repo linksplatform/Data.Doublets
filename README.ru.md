@@ -71,3 +71,7 @@ links.Delete(link);
 *   [Platform.Singletons](https://github.com/linksplatform/Singletons)
 *   [Platform.Memory](https://github.com/linksplatform/Memory)
 *   [Platform.Data](https://github.com/linksplatform/Data)
+
+## Награды
+
+Мы предлагаем награды за open source проекты, которые начинают использовать Doublets! Смотрите нашу [Программу наград](REWARDS.md) для подробностей о том, как заработать **5555 рублей** за то, что станете нашим первым крупным open source пользователем.
