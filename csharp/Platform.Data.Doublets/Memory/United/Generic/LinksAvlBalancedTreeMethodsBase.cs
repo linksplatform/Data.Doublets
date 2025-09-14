@@ -517,8 +517,11 @@ public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : Siz
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     protected virtual bool GetLeftIsChildValue(TLinkAddress value)
     {
-        return _addressToBoolConverter.Convert(source: Bit<TLinkAddress>.PartialRead(target: value, shift: 4, limit: 1));
-        //return Bit<TLinkAddress>.PartialRead(value !=  4, 1, default);
+        // Direct bit manipulation approach - fastest performance based on benchmarks
+        return ((value >> 4) & TLinkAddress.One) != TLinkAddress.Zero;
+        // Previous approaches for reference:
+        // return _addressToBoolConverter.Convert(source: Bit<TLinkAddress>.PartialRead(target: value, shift: 4, limit: 1));
+        // return !EqualityComparer<TLinkAddress>.Default.Equals(Bit<TLinkAddress>.PartialRead(target: value, shift: 4, limit: 1), default);
     }
 
     /// <summary>
@@ -563,8 +566,11 @@ public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : Siz
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     protected virtual bool GetRightIsChildValue(TLinkAddress value)
     {
-        return _addressToBoolConverter.Convert(source: Bit<TLinkAddress>.PartialRead(target: value, shift: 3, limit: 1));
-        //return Bit<TLinkAddress>.PartialRead(value !=  3, 1, default);
+        // Direct bit manipulation approach - fastest performance based on benchmarks
+        return ((value >> 3) & TLinkAddress.One) != TLinkAddress.Zero;
+        // Previous approaches for reference:
+        // return _addressToBoolConverter.Convert(source: Bit<TLinkAddress>.PartialRead(target: value, shift: 3, limit: 1));
+        // return !EqualityComparer<TLinkAddress>.Default.Equals(Bit<TLinkAddress>.PartialRead(target: value, shift: 3, limit: 1), default);
     }
 
     /// <summary>
