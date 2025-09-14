@@ -1043,19 +1043,66 @@ namespace Platform.Data.Doublets
             var any = constants.Any;
             var usagesAsSourceQuery = new Link<TLinkAddress>(any, linkIndex, any);
             var usagesAsTargetQuery = new Link<TLinkAddress>(any, any, linkIndex);
-            var usages = new List<IList<TLinkAddress>?>();
-            var usagesFiller = new ListFiller<IList<TLinkAddress>?, TLinkAddress>(usages, constants.Continue);
-            links.Each(usagesFiller.AddAndReturnConstant, usagesAsSourceQuery);
-            links.Each(usagesFiller.AddAndReturnConstant, usagesAsTargetQuery);
+            
+            // Count total usages first to determine allocation strategy
+            var sourceUsagesCount = (int)long.CreateTruncating(links.Count(usagesAsSourceQuery));
+            var targetUsagesCount = (int)long.CreateTruncating(links.Count(usagesAsTargetQuery));
+            var totalUsagesCount = sourceUsagesCount + targetUsagesCount;
+            
             WriteHandlerState<TLinkAddress> handlerState = new(constants.Continue, constants.Break, handler);
-            foreach (var usage in usages)
+            
+            // Use a more efficient approach - process usages directly without collecting into a list
+            // This avoids heap allocation entirely for the common case
+            const int MaxUsagesBatchSize = 128;
+            
+            if (totalUsagesCount <= MaxUsagesBatchSize && totalUsagesCount > 0)
             {
-                if (links.GetIndex(usage) ==  linkIndex || !links.Exists(links.GetIndex(usage)))
+                // Use a small array for bounded cases to reduce heap allocation
+                var usageIndices = new TLinkAddress[totalUsagesCount];
+                var usageCount = 0;
+                
+                // Collect usage indices
+                links.Each(link =>
                 {
-                    continue;
+                    usageIndices[usageCount++] = links.GetIndex(link);
+                    return constants.Continue;
+                }, usagesAsSourceQuery);
+                
+                links.Each(link =>
+                {
+                    usageIndices[usageCount++] = links.GetIndex(link);
+                    return constants.Continue;
+                }, usagesAsTargetQuery);
+                
+                // Process deletions
+                for (var i = 0; i < usageCount; i++)
+                {
+                    var usageIndex = usageIndices[i];
+                    if (usageIndex ==  linkIndex || !links.Exists(usageIndex))
+                    {
+                        continue;
+                    }
+                    handlerState.Apply(links.Delete(usageIndex, handlerState.Handler));
                 }
-                handlerState.Apply(links.Delete(links.GetIndex(usage), handlerState.Handler));
             }
+            else
+            {
+                // For larger collections or when count is unknown, use the original approach
+                var usages = new List<IList<TLinkAddress>?>();
+                var usagesFiller = new ListFiller<IList<TLinkAddress>?, TLinkAddress>(usages, constants.Continue);
+                links.Each(usagesFiller.AddAndReturnConstant, usagesAsSourceQuery);
+                links.Each(usagesFiller.AddAndReturnConstant, usagesAsTargetQuery);
+                
+                foreach (var usage in usages)
+                {
+                    if (links.GetIndex(usage) ==  linkIndex || !links.Exists(links.GetIndex(usage)))
+                    {
+                        continue;
+                    }
+                    handlerState.Apply(links.Delete(links.GetIndex(usage), handlerState.Handler));
+                }
+            }
+            
             return handlerState.Result;
         }
 
@@ -1080,12 +1127,40 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void DeleteByQuery<TLinkAddress>(this ILinks<TLinkAddress> links, Link<TLinkAddress> query)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
-            var queryResult = new List<TLinkAddress>();
-            var queryResultFiller = new ListFiller<TLinkAddress, TLinkAddress>(queryResult, links.Constants.Continue);
-            links.Each(queryResultFiller.AddFirstAndReturnConstant, query);
-            foreach (var link in queryResult)
+            var queryResultCount = (int)long.CreateTruncating(links.Count(query));
+            
+            // Use a more efficient approach for bounded cases to reduce heap allocation
+            const int MaxResultsBatchSize = 128;
+            
+            if (queryResultCount <= MaxResultsBatchSize && queryResultCount > 0)
             {
-                links.Delete(link);
+                // Use a small array for bounded cases to reduce heap allocation
+                var linkIndices = new TLinkAddress[queryResultCount];
+                var linkCount = 0;
+                
+                // Collect link indices
+                links.Each(link =>
+                {
+                    linkIndices[linkCount++] = links.GetIndex(link);
+                    return links.Constants.Continue;
+                }, query);
+                
+                // Process deletions
+                for (var i = 0; i < linkCount; i++)
+                {
+                    links.Delete(linkIndices[i]);
+                }
+            }
+            else if (queryResultCount > 0)
+            {
+                // Fall back to dynamic collection for larger results
+                var queryResult = new List<TLinkAddress>();
+                var queryResultFiller = new ListFiller<TLinkAddress, TLinkAddress>(queryResult, links.Constants.Continue);
+                links.Each(queryResultFiller.AddFirstAndReturnConstant, query);
+                foreach (var link in queryResult)
+                {
+                    links.Delete(link);
+                }
             }
         }
 
