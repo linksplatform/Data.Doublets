@@ -79,7 +79,7 @@ public unsafe class SplitMemoryLinks<TLinkAddress> : SplitMemoryLinksBase<TLinkA
     ///     <para></para>
     /// </param>
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
-    public SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep) : this(dataMemory: dataMemory, indexMemory: indexMemory, memoryReservationStep: memoryReservationStep, constants: Default<LinksConstants<TLinkAddress>>.Instance, indexTreeType: IndexTreeType.Default, useLinkedList: true) { }
+    public SplitMemoryLinks(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep) : this(dataMemory: dataMemory, indexMemory: indexMemory, memoryReservationStep: memoryReservationStep, constants: new LinksConstants<TLinkAddress>(enableExternalReferencesSupport: true), indexTreeType: IndexTreeType.Default, useLinkedList: true) { }
 
     /// <summary>
     ///     <para>

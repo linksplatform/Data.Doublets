@@ -8,7 +8,7 @@ namespace Platform.Data.Doublets.Tests
 {
     public static class ResizableDirectMemoryLinksTests
     {
-        private static readonly LinksConstants<ulong> _constants = Default<LinksConstants<ulong>>.Instance;
+        private static readonly LinksConstants<ulong> _constants = new LinksConstants<ulong>(enableExternalReferencesSupport: true);
 
         [Fact]
         public static void BasicFileMappedMemoryTest()
