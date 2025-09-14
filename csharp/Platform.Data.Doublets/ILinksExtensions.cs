@@ -1599,5 +1599,54 @@ namespace Platform.Data.Doublets
         }
 
         #endregion
+        
+        /// <summary>
+        /// <para>
+        /// Prints the contents of the links database using the specified message handler.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="TLinkAddress">
+        /// <para>The type of link address.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="messageHandler">
+        /// <para>The message handler for outputting formatted messages.</para>
+        /// <para></para>
+        /// </param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void PrintContents<TLinkAddress>(this ILinks<TLinkAddress> links, Action<string> messageHandler) where TLinkAddress : IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
+        {
+            var count = links.Count();
+            if (count == TLinkAddress.Zero)
+            {
+                messageHandler("Database is empty.");
+            }
+            else
+            {
+                messageHandler("Contents:");
+                var linksTotalLength = count.ToString().Length;
+                var printFormatBase = new string('0', linksTotalLength);
+                var printFormat = $"\t[{{0:{printFormatBase}}}]: {{1:{printFormatBase}}} -> {{2:{printFormatBase}}}";
+                
+                // Iterate through all existing links
+                var allLinks = links.All();
+                for (var i = 0; i < allLinks.Count; i++)
+                {
+                    var link = allLinks[i];
+                    if (link != null)
+                    {
+                        var linkIndex = links.GetIndex(link);
+                        var source = links.GetSource(link);
+                        var target = links.GetTarget(link);
+                        messageHandler(string.Format(printFormat, linkIndex, source, target));
+                    }
+                }
+            }
+        }
     }
 }
