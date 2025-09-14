@@ -4,7 +4,7 @@
         <Description>LinksPlatform's Platform.Data.Doublets Class Library</Description>
         <Copyright>konard, FreePhoenix888</Copyright>
         <AssemblyTitle>Platform.Data.Doublets</AssemblyTitle>
-        <VersionPrefix>0.18.1</VersionPrefix>
+        <VersionPrefix>0.19.0</VersionPrefix>
         <Authors>konard, FreePhoenix888</Authors>
         <TargetFramework>net8</TargetFramework>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -25,7 +25,7 @@
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <LangVersion>latest</LangVersion>
-        <PackageReleaseNotes>Update target framework from net7 to net8.</PackageReleaseNotes>
+        <PackageReleaseNotes>Add cached sequence walker/reader functionality. Caches relationship between subsequence elements arrays and their addresses for significant performance improvements in sequence reading operations. Includes both in-memory and file-based caching with automatic invalidation.</PackageReleaseNotes>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
