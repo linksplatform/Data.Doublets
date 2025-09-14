@@ -194,7 +194,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
     ///     <para></para>
     /// </param>
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
-    protected SplitMemoryLinksBase(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep) : this(dataMemory: dataMemory, indexMemory: indexMemory, memoryReservationStep: memoryReservationStep, constants: Default<LinksConstants<TLinkAddress>>.Instance, useLinkedList: true) { }
+    protected SplitMemoryLinksBase(IResizableDirectMemory dataMemory, IResizableDirectMemory indexMemory, long memoryReservationStep) : this(dataMemory: dataMemory, indexMemory: indexMemory, memoryReservationStep: memoryReservationStep, constants: new LinksConstants<TLinkAddress>(enableExternalReferencesSupport: true), useLinkedList: true) { }
 
     /// <summary>
     ///     Возвращает общее число связей находящихся в хранилище.

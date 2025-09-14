@@ -24,7 +24,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </summary>
         public static readonly Link<TLinkAddress> Null = new Link<TLinkAddress>();
-        private static readonly LinksConstants<TLinkAddress> _constants = Default<LinksConstants<TLinkAddress>>.Instance;
+        private static readonly LinksConstants<TLinkAddress> _constants = new LinksConstants<TLinkAddress>(enableExternalReferencesSupport: true);
         private const int Length = 3;
 
         /// <summary>

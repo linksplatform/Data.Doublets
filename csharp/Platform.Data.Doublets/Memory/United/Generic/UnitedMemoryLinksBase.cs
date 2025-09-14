@@ -155,7 +155,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected UnitedMemoryLinksBase(IResizableDirectMemory memory, long memoryReservationStep) : this(memory, memoryReservationStep, Default<LinksConstants<TLinkAddress>>.Instance) { }
+        protected UnitedMemoryLinksBase(IResizableDirectMemory memory, long memoryReservationStep) : this(memory, memoryReservationStep, new LinksConstants<TLinkAddress>(enableExternalReferencesSupport: true)) { }
 
         /// <summary>
         /// <para>
