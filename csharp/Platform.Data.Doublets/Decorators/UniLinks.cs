@@ -377,6 +377,25 @@ internal class UniLinks<TLinkAddress> : LinksDecoratorBase<TLinkAddress>, IUniLi
         return changes;
     }
 
+    /// <summary>
+    ///     <para>
+    ///         Gets the count of links matching the specified restrictions.
+    ///     </para>
+    ///     <para></para>
+    /// </summary>
+    /// <param name="restrictions">
+    ///     <para>The restrictions to apply when counting links.</para>
+    ///     <para></para>
+    /// </param>
+    /// <returns>
+    ///     <para>The count of matching links.</para>
+    ///     <para></para>
+    /// </returns>
+    public override TLinkAddress Count(IList<TLinkAddress>? restrictions)
+    {
+        return _links.Count(restrictions);
+    }
+
     private TLinkAddress AlwaysContinue(IList<TLinkAddress>? linkToMatch)
     {
         return _constants.Continue;
