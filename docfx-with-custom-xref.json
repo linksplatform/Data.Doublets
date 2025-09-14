@@ -1,0 +1,57 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": [ "**/*.sln" ],
+          "exclude": [ "**/bin/**", "**/obj/**" ],
+          "src": ""
+        }
+      ],
+      "dest": "obj/api",
+      "filter": "filter.yml",
+      "properties": { "TargetFramework": "netstandard2.0" }
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [ "**/*.yml" ],
+        "src": "obj/api",
+        "dest": "api"
+      },
+      {
+        "files": [ "*.md", "toc.yml" ]
+      }
+    ],
+    "globalMetadata": {
+      "_appTitle": "LinksPlatform's Platform.$REPOSITORY_NAME Library",
+      "_enableSearch": true,
+      "_gitContribute": {
+        "branch": "master"
+      },
+      "_gitUrlPattern": "github"
+    },
+    "markdownEngineName": "markdig",
+    "dest": "_site",
+    "xref": [
+      "https://linksplatform.github.io/Data/xrefmap.yml",
+      "https://linksplatform.github.io/Collections/xrefmap.yml",
+      "https://linksplatform.github.io/Memory/xrefmap.yml",
+      "https://linksplatform.github.io/Random/xrefmap.yml",
+      "https://linksplatform.github.io/Timestamps/xrefmap.yml",
+      "https://linksplatform.github.io/Singletons/xrefmap.yml",
+      "https://linksplatform.github.io/Ranges/xrefmap.yml",
+      "https://linksplatform.github.io/Numbers/xrefmap.yml",
+      "https://linksplatform.github.io/Converters/xrefmap.yml",
+      "https://linksplatform.github.io/Delegates/xrefmap.yml",
+      "https://linksplatform.github.io/Interfaces/xrefmap.yml",
+      "https://linksplatform.github.io/Exceptions/xrefmap.yml",
+      "https://linksplatform.github.io/Setters/xrefmap.yml"
+    ],
+    "xrefService": [
+      "https://linksplatform.github.io/xref/{uid}.json",
+      "https://xref.docs.microsoft.com/query?uid={uid}"
+    ]
+  }
+}
