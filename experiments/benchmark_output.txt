@@ -1,0 +1,13 @@
+/home/hive/.nuget/packages/microsoft.build.tasks.git/1.1.1/build/Microsoft.Build.Tasks.Git.targets(25,5): warning : Could not find file '/tmp/gh-issue-solver-1757812111506/rust/.git'. The source code won't be available via Source Link. [/tmp/gh-issue-solver-1757812111506/csharp/Platform.Data.Doublets/Platform.Data.Doublets.csproj]
+=== Conditional vs Unconditional Reset Micro-Benchmark ===
+Testing with 1000 links, 10000 iterations each
+
+Scenario 1: Links with values (need to be reset)
+Unhandled exception. System.InvalidOperationException: Duplicate link found in the tree.
+   at Platform.Collections.Methods.Trees.SizeBalancedTreeMethods`1.DetachCore(TElement& root, TElement nodeToDetach)
+   at Platform.Collections.Methods.Trees.SizeBalancedTreeMethods`1.DetachCore(TElement& root, TElement nodeToDetach)
+   at Platform.Data.Doublets.Memory.United.Generic.LinksSizeBalancedTreeMethodsBase`1.Platform.Data.Doublets.Memory.ILinksTreeMethods<TLinkAddress>.Detach(TLinkAddress& root, TLinkAddress linkIndex)
+   at Platform.Data.Doublets.ILinksExtensions.Update[TLinkAddress](ILinks`1 links, TLinkAddress link, TLinkAddress newSource, TLinkAddress newTarget, WriteHandler`1 handler) in /tmp/gh-issue-solver-1757812111506/csharp/Platform.Data.Doublets/ILinksExtensions.cs:line 907
+   at Platform.Data.Doublets.ILinksExtensions.EnforceResetValues[TLinkAddress](ILinks`1 links, TLinkAddress linkIndex) in /tmp/gh-issue-solver-1757812111506/csharp/Platform.Data.Doublets/ILinksExtensions.cs:line 1159
+   at Platform.Data.Doublets.Experiments.MicroBenchmark.TestScenario(Boolean needsReset) in /tmp/gh-issue-solver-1757812111506/experiments/MicroBenchmark.cs:line 63
+   at Platform.Data.Doublets.Experiments.MicroBenchmark.Main(String[] args) in /tmp/gh-issue-solver-1757812111506/experiments/MicroBenchmark.cs:line 24

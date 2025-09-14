@@ -1,0 +1,1 @@
+/home/hive/.nuget/packages/microsoft.build.tasks.git/1.1.1/build/Microsoft.Build.Tasks.Git.targets(25,5): warning : Could not find file '/tmp/gh-issue-solver-1757812111506/rust/.git'. The source code won't be available via Source Link. [/tmp/gh-issue-solver-1757812111506/csharp/Platform.Data.Doublets/Platform.Data.Doublets.csproj]
