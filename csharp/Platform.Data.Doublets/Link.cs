@@ -15,7 +15,7 @@ namespace Platform.Data.Doublets
     /// <summary>
     /// Структура описывающая уникальную связь.
     /// </summary>
-    public struct Link<TLinkAddress> : IEquatable<Link<TLinkAddress>>, IReadOnlyList<TLinkAddress>, IList<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>
+    public struct Link<TLinkAddress> : IEquatable<Link<TLinkAddress>>, IReadOnlyList<TLinkAddress>, IList<TLinkAddress>, ILinkTree<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>
     {
         /// <summary>
         /// <para>
@@ -96,6 +96,12 @@ namespace Platform.Data.Doublets
             {
                 SetValues(ref otherLink, out Index, out Source, out Target);
             }
+            else if(other is ILinkTree<TLinkAddress> otherTree)
+            {
+                Index = otherTree.Index;
+                Source = otherTree.Source;
+                Target = otherTree.Target;
+            }
             else if(other is IList<TLinkAddress> otherList)
             {
                 SetValues(otherList, out Index, out Source, out Target);
@@ -143,6 +149,33 @@ namespace Platform.Data.Doublets
             Index = index;
             Source = source;
             Target = target;
+        }
+
+        /// <summary>
+        /// <para>
+        /// Initializes a new <see cref="Link"/> instance from a tree structure.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <param name="tree">
+        /// <para>A tree structure.</para>
+        /// <para></para>
+        /// </param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Link(ILinkTree<TLinkAddress>? tree)
+        {
+            if (tree == null)
+            {
+                Index = default;
+                Source = default;
+                Target = default;
+            }
+            else
+            {
+                Index = tree.Index;
+                Source = tree.Source;
+                Target = tree.Target;
+            }
         }
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static void SetValues(ref Link<TLinkAddress> other, out TLinkAddress index, out TLinkAddress source, out TLinkAddress target)
@@ -557,6 +590,69 @@ namespace Platform.Data.Doublets
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(Link<TLinkAddress> left, Link<TLinkAddress> right)  { return !(left == right);}
+
+        #endregion
+
+        #region ILinkTree
+
+        /// <summary>
+        /// Gets the index (identifier) of this link.
+        /// </summary>
+        TLinkAddress ILinkTree<TLinkAddress>.Index => Index;
+
+        /// <summary>
+        /// Gets the source of this link.
+        /// </summary>
+        TLinkAddress ILinkTree<TLinkAddress>.Source => Source;
+
+        /// <summary>
+        /// Gets the target of this link.
+        /// </summary>
+        TLinkAddress ILinkTree<TLinkAddress>.Target => Target;
+
+        /// <summary>
+        /// Gets the parent link in the tree structure (always null for Link struct).
+        /// </summary>
+        public ILinkTree<TLinkAddress>? Parent => null;
+
+        /// <summary>
+        /// Gets the children of this link in the tree structure (always empty for Link struct).
+        /// </summary>
+        public IEnumerable<ILinkTree<TLinkAddress>> Children => System.Linq.Enumerable.Empty<ILinkTree<TLinkAddress>>();
+
+        /// <summary>
+        /// Gets the number of children in this tree node (always 0 for Link struct).
+        /// </summary>
+        public int ChildrenCount => 0;
+
+        /// <summary>
+        /// Gets the child at the specified index (always returns null for Link struct).
+        /// </summary>
+        /// <param name="index">The zero-based index of the child.</param>
+        /// <returns>Always null for Link struct.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public ILinkTree<TLinkAddress>? GetChild(int index) => null;
+
+        /// <summary>
+        /// Gets the source as a tree node, if it represents a link (returns null for primitive values).
+        /// </summary>
+        /// <returns>Null, indicating source is a primitive value.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public ILinkTree<TLinkAddress>? GetSourceAsTree() => null;
+
+        /// <summary>
+        /// Gets the target as a tree node, if it represents a link (returns null for primitive values).
+        /// </summary>
+        /// <returns>Null, indicating target is a primitive value.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public ILinkTree<TLinkAddress>? GetTargetAsTree() => null;
+
+        /// <summary>
+        /// Converts this tree structure to a flat array representation for compatibility.
+        /// </summary>
+        /// <returns>An array containing [Index, Source, Target].</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public TLinkAddress[] ToArray() => new[] { Index, Source, Target };
 
         #endregion
     }
