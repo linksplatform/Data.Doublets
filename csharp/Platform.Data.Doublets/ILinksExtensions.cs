@@ -1599,5 +1599,125 @@ namespace Platform.Data.Doublets
         }
 
         #endregion
+
+        #region Tree-Compatible Extensions
+
+        /// <summary>
+        /// Gets a single link matching the tree query, or null if none or multiple links exist.
+        /// </summary>
+        /// <param name="links">The links storage.</param>
+        /// <param name="query">The tree query to search for.</param>
+        /// <returns>A single matching link as a tree, or null.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static ILinkTree<TLinkAddress>? SingleOrDefaultTree<TLinkAddress>(this ILinks<TLinkAddress> links, ILinkTree<TLinkAddress>? query) where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            // Convert tree query to list format for compatibility with existing infrastructure
+            var listQuery = query?.ToArray();
+            var result = links.SingleOrDefault(listQuery);
+            return result != null ? new LinkTree<TLinkAddress>(result) : null;
+        }
+
+        /// <summary>
+        /// Gets the index (identifier) of a tree-structured link.
+        /// </summary>
+        /// <param name="links">The links storage.</param>
+        /// <param name="tree">The tree-structured link.</param>
+        /// <returns>The index of the link.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static TLinkAddress GetTreeIndex<TLinkAddress>(this ILinks<TLinkAddress> links, ILinkTree<TLinkAddress>? tree) where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            return tree != null ? tree.Index : links.Constants.Null;
+        }
+
+        /// <summary>
+        /// Gets the source of a tree-structured link.
+        /// </summary>
+        /// <param name="links">The links storage.</param>
+        /// <param name="tree">The tree-structured link.</param>
+        /// <returns>The source of the link.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static TLinkAddress GetTreeSource<TLinkAddress>(this ILinks<TLinkAddress> links, ILinkTree<TLinkAddress>? tree) where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            return tree != null ? tree.Source : links.Constants.Null;
+        }
+
+        /// <summary>
+        /// Gets the target of a tree-structured link.
+        /// </summary>
+        /// <param name="links">The links storage.</param>
+        /// <param name="tree">The tree-structured link.</param>
+        /// <returns>The target of the link.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static TLinkAddress GetTreeTarget<TLinkAddress>(this ILinks<TLinkAddress> links, ILinkTree<TLinkAddress>? tree) where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            return tree != null ? tree.Target : links.Constants.Null;
+        }
+
+        /// <summary>
+        /// Gets all links matching the tree query.
+        /// </summary>
+        /// <param name="links">The links storage.</param>
+        /// <param name="restriction">The tree-based restriction to search for.</param>
+        /// <returns>All matching links as trees.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static IList<ILinkTree<TLinkAddress>?> AllTrees<TLinkAddress>(this ILinks<TLinkAddress> links, ILinkTree<TLinkAddress>? restriction) where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            var listRestriction = restriction?.ToArray();
+            var results = links.All(listRestriction);
+            return results.Select(list => list != null ? (ILinkTree<TLinkAddress>?)new LinkTree<TLinkAddress>(list) : null).ToList();
+        }
+
+        /// <summary>
+        /// Ensures a link exists based on tree structure restriction.
+        /// </summary>
+        /// <param name="links">The links storage.</param>
+        /// <param name="restriction">The tree-structured restriction.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void EnsureTreeLinkExists<TLinkAddress>(this ILinks<TLinkAddress> links, ILinkTree<TLinkAddress>? restriction) where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            var listRestriction = restriction?.ToArray();
+            links.EnsureLinkExists(listRestriction);
+        }
+
+        /// <summary>
+        /// Formats a tree-structured link for display.
+        /// </summary>
+        /// <param name="links">The links storage.</param>
+        /// <param name="tree">The tree-structured link.</param>
+        /// <returns>A formatted string representation of the link.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static string FormatTree<TLinkAddress>(this ILinks<TLinkAddress> links, ILinkTree<TLinkAddress>? tree) where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            if (tree == null) return "null";
+            var listRepresentation = tree.ToArray();
+            return links.Format(listRepresentation);
+        }
+
+        /// <summary>
+        /// Converts a list-based link to tree structure.
+        /// </summary>
+        /// <param name="links">The links storage.</param>
+        /// <param name="list">The list-based link.</param>
+        /// <returns>The tree-structured representation.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static ILinkTree<TLinkAddress>? AsTree<TLinkAddress>(this ILinks<TLinkAddress> links, IList<TLinkAddress>? list) where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            return list != null ? new LinkTree<TLinkAddress>(list) : null;
+        }
+
+        /// <summary>
+        /// Converts a tree-structured link to list format for backward compatibility.
+        /// </summary>
+        /// <param name="links">The links storage.</param>
+        /// <param name="tree">The tree-structured link.</param>
+        /// <returns>The list representation.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static IList<TLinkAddress>? AsList<TLinkAddress>(this ILinks<TLinkAddress> links, ILinkTree<TLinkAddress>? tree) where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            return tree?.ToArray();
+        }
+
+        #endregion
+
     }
 }
