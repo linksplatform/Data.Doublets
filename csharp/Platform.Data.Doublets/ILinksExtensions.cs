@@ -13,6 +13,7 @@ using Platform.Converters;
 using Platform.Numbers;
 using Platform.Data.Exceptions;
 using Platform.Data.Doublets.Decorators;
+using Platform.Data.Doublets.CriterionMatchers;
 using Platform.Delegates;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -769,13 +770,15 @@ namespace Platform.Data.Doublets
         {
             var constants = links.Constants;
             var values = links.GetLink(link);
+            var sourceMatcher = new SourceMatcher<TLinkAddress>(links, link);
+            var targetMatcher = new TargetMatcher<TLinkAddress>(links, link);
             TLinkAddress usagesAsSource = links.Count(new Link<TLinkAddress>(constants.Any, link, constants.Any));
-            if (links.GetSource(values) ==  link)
+            if (sourceMatcher.IsMatched(link))
             {
                 --usagesAsSource;
             }
             TLinkAddress usagesAsTarget = links.Count(new Link<TLinkAddress>(constants.Any, constants.Any, link));
-            if (links.GetTarget(values) ==  link)
+            if (targetMatcher.IsMatched(link))
             {
                 --usagesAsTarget;
             }
@@ -792,7 +795,9 @@ namespace Platform.Data.Doublets
         {
             var constants = links.Constants;
             var values = links.GetLink(link);
-            return links.GetSource(values) ==  source && links.GetTarget(values) ==  target;
+            var sourceMatcher = new SourceMatcher<TLinkAddress>(links, source);
+            var targetMatcher = new TargetMatcher<TLinkAddress>(links, target);
+            return sourceMatcher.IsMatched(link) && targetMatcher.IsMatched(link);
         }
 
         /// <summary>
