@@ -164,13 +164,9 @@ namespace Platform.Data.Doublets
         public static void DeleteAll<TLinkAddress>(this ILinks<TLinkAddress> links)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
             var comparer = Comparer<TLinkAddress>.Default;
-            for (var i = links.Count(); comparer.Compare(i, default) > 0; i = --i)
+            for (var i = links.Count(); comparer.Compare(i, default) > 0; i = links.Count())
             {
                 links.Delete(i);
-                if (links.Count() !=  --i)
-                {
-                    i = links.Count();
-                }
             }
         }
 
