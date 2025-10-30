@@ -603,6 +603,75 @@ namespace Platform.Data.Doublets
 
         /// <summary>
         /// <para>
+        /// Ensures the reference exists or is external using the specified links.
+        /// Validates that internal references exist in the store, while allowing external references (binary data) without validation.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="TLinkAddress">
+        /// <para>The link.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="reference">
+        /// <para>The reference.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="argumentName">
+        /// <para>The argument name.</para>
+        /// <para></para>
+        /// </param>
+        /// <exception cref="ArgumentLinkDoesNotExistsException{TLinkAddress}">
+        /// <para></para>
+        /// <para></para>
+        /// </exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void EnsureReferenceExistsOrExternal<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress reference, string argumentName)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            if (links.Constants.IsInternalReference(reference) && !links.Exists(reference))
+            {
+                throw new ArgumentLinkDoesNotExistsException<TLinkAddress>(reference, argumentName);
+            }
+            // External references are allowed without existence validation (they represent binary data)
+        }
+
+        /// <summary>
+        /// <para>
+        /// Ensures the references exist or are external using the specified links.
+        /// Validates that internal references exist in the store, while allowing external references (binary data) without validation.
+        /// </para>
+        /// <para></para>
+        /// </summary>
+        /// <typeparam name="TLinkAddress">
+        /// <para>The link.</para>
+        /// <para></para>
+        /// </typeparam>
+        /// <param name="links">
+        /// <para>The links.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="restriction">
+        /// <para>The restriction.</para>
+        /// <para></para>
+        /// </param>
+        /// <param name="argumentName">
+        /// <para>The argument name.</para>
+        /// <para></para>
+        /// </param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void EnsureReferenceExistsOrExternal<TLinkAddress>(this ILinks<TLinkAddress> links, IList<TLinkAddress>? restriction, string argumentName)  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+        {
+            for (int i = 0; i < restriction.Count; i++)
+            {
+                links.EnsureReferenceExistsOrExternal(restriction[i], argumentName);
+            }
+        }
+
+        /// <summary>
+        /// <para>
         /// Ensures the link is any or exists using the specified links.
         /// </para>
         /// <para></para>
