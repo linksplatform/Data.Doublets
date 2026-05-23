@@ -16,161 +16,174 @@
 | **Bitmap (1 bit per cell)** | Predictable space, easy "find N contiguous". | Linear scan; extra header bytes; not aligned to existing on-disk format. | Rejected — adds a parallel index. |
 | **Buddy allocator** | Fast power-of-two ranges. | Internal fragmentation for non-power-of-two requests; requires careful split/coalesce. | Rejected — violates "no fragmentation". |
 | **Segregated free lists by size** | Best-fit in O(1) when a size class exists. | Many overflow size classes for `ulong` ranges; tricky coalescing. | Rejected — over-engineered. |
-| **Sorted-by-address doubly-linked list of free ranges, best-fit** | Trivial coalescing; small constant factor; **stored inside the cells themselves**. | `O(F)` search where F is the number of free ranges. | **Chosen**. |
+| **Address-sorted doubly-linked list of free ranges, best-fit** | Trivial coalescing; small constant factor; **stored inside the cells themselves**. | `O(F)` search where F is the number of free ranges. | **Chosen**. |
 
 The chosen allocator is a [boundary-tag](https://en.wikipedia.org/wiki/Boundary_tag)
 free-list allocator, simplified by the fact that cell sizes are uniform: there is no
 need to keep a "size" word at every allocation boundary, only at the head of free
 runs.
 
+## Two markers, no ambiguity
+
+The implementation uses **two distinct sentinels** stamped into `Source` to
+discriminate the three flavours of cell that can appear in the allocated range:
+
+| Cell flavour | `Source` value |
+| --- | --- |
+| Regular doublet | A link index (`≤ InternalReferencesRange.Maximum`) or `Null` |
+| Raw binary blob head | `RawMarker` = `LinksConstants.Itself` |
+| Multi-cell free range head | `FreeRangeMarker` = `LinksConstants.Error` |
+
+Both sentinels live above `InternalReferencesRange.Maximum` (they are housekeeping
+slots `LinksConstants<T>` already reserves), so they cannot be confused with valid
+link indices. Using two distinct sentinels removes the need for any high-bit
+discriminator on `Target`, and keeps the descriptor easy to read in a debugger.
+
 ## Free-range descriptors
 
-Each free range of length `≥ 2` is described by the **first** cell of the range. We
-reuse the bits as follows:
+Each free range of length `≥ 2` is described by the **first** cell of the range.
+Continuation cells are zeroed. The head cell's fields are used as follows:
 
 | Field | Free-range usage |
 | --- | --- |
-| `Source` | `RawMarker` (sentinel — see below) |
+| `Source` | `FreeRangeMarker` |
 | `Target` | `Length` of the run in cells, including this header cell. |
-| `LeftAsSource` | `Previous` pointer in the size-sorted doubly-linked free-range list. |
-| `RightAsSource` | `Next` pointer in the size-sorted doubly-linked free-range list. |
-| `SizeAsSource` | `Previous` pointer in the address-sorted list. |
-| `LeftAsTarget` | `Next` pointer in the address-sorted list. |
-| `RightAsTarget` | reserved (`0`). |
-| `SizeAsTarget` | reserved (`0`). |
+| `LeftAsSource` | `Previous` pointer in the address-sorted free-range list (`0` if none). |
+| `RightAsSource` | `Next` pointer in the address-sorted free-range list (`0` if none). |
+| `SizeAsSource` … `SizeAsTarget` | reserved (`0`). |
 
-> Why two linked lists?
-> * The **address-sorted** list lets us coalesce with O(1) work — the predecessor and
->   successor of a freed range are the address-list neighbours.
-> * The **size-sorted** list lets best-fit lookup return early — we walk the list from
->   the smallest range upwards and pick the first one that fits, then re-link the
->   leftover (if any) back into the free-list.
+A single address-sorted list is sufficient: best-fit search walks the list once
+in `O(F)` time. A second size-sorted list was considered but ultimately rejected
+because (a) `F` stays small in practice thanks to eager coalescing and (b) the
+additional bookkeeping doubles the maintenance cost of every insert/detach without
+materially improving the common case.
 
-The size-sorted list head is stored in `LinksHeader.Reserved8`
-(renamed to `FreeRangesHead` via the alias in `LinksRangedHeader`); the address-sorted
-list head and the **count of free ranges** are stored in unused tail words of the
-header that are currently zero-valued in `UnitedMemoryLinks` databases. To stay
-binary-compatible we **do not** widen the on-disk header: the address-sorted list head
-is simply rebuilt from the address-list pointers stored inside each free range cell at
-open time, and there is no count cached.
-
-This is functionally equivalent to the classic GNU `malloc` implementation's
-[`free_list`](https://sourceware.org/glibc/wiki/MallocInternals#Free_chunks) when bins
-are uniform.
+The list head is stored in `LinksHeader.Reserved8`, which was previously unused.
+No on-disk header layout change is required: databases produced by
+`UnitedMemoryLinks` have `Reserved8 = 0`, which `UnitedRangedMemoryLinks` reads
+as "no free ranges" — so old files open cleanly.
 
 ## Binary blob layout
 
-A binary blob occupies one **header cell** followed by `ceil(length / 8) - 1` payload
+A binary blob occupies one **header cell** followed by zero or more continuation
 cells. The header cell holds:
 
 | Field | Binary-blob usage |
 | --- | --- |
-| `Source` | `RawMarker` (sentinel). |
-| `Target` | `Length` of the blob in `TLinkAddress` words **including** the header cell's payload words. |
-| `LeftAsSource` … `SizeAsTarget` | continuation of the blob's payload. |
+| `Source` | `RawMarker` |
+| `Target` | `Length` of the blob in **bytes**. Must be a multiple of `sizeof(TLinkAddress)`. |
+| `LeftAsSource` … `SizeAsTarget` | First six `TLinkAddress` words of payload (treated as opaque bytes). |
 
-So a 7-word blob fits into a single cell: `Source` holds the marker, `Target` holds the
-length `7`, and the remaining 6 fields (`LeftAsSource`, …, `SizeAsTarget`) hold the
-six payload words. A 15-word blob spans two cells: 6 payload words in the header cell
-and up to 8 payload words in the following cell. Generally,
+Each continuation cell carries eight more `TLinkAddress` words of payload (no
+continuation marker, no length — the head cell's `Target` drives iteration). So
+a blob of `B` bytes occupies:
 
 ```
-cells = max(1, ceil((length - 6) / 8) + 1)   // length measured in TLinkAddress words
-                                              // 6 = words available in the header cell after Source+Target
+cells = 1                         if B ≤ 6 * sizeof(TLinkAddress)
+cells = 1 + ceil((B - 6 * sizeof(TLinkAddress)) / (8 * sizeof(TLinkAddress)))   otherwise
 ```
 
 The encoding is unambiguous because:
 
-* `Source == RawMarker` is never produced by `Create` (which initialises `Source` and
-  `Target` to `Null` and only ever stores values inside `InternalReferencesRange`).
-* The marker is **never** stored in a payload word interior to the blob, because
-  consumers read raw bytes — they only look at words `[2..]` of the header cell and
-  `[0..]` of the following cells.
-
-`RawMarker` is `Constants.Continue + 1`. The references range stops at
-`Continue` (since `LinksConstants` reserves the topmost values as housekeeping); the
-words just past it are otherwise unused and far above `InternalReferencesRange.Maximum`,
-which is the protected zone for "values that look like link indices".
+* `Source == RawMarker` is never produced by `Create` (which initialises `Source`
+  and `Target` to `Null` and only ever stores values inside the references range).
+* The marker is **never** sampled in a continuation cell — iteration of a blob
+  starts at the head cell, picks up the length, and consumes the right number of
+  bytes from contiguous addresses without re-examining `Source` of any inner cell.
+* Intermediate cell indices inside a blob are **not** valid link handles. This is
+  a deliberate trade-off: it removes the need to scan from address `1` to detect
+  whether a given index belongs to a blob's interior.
 
 ## Range allocation algorithm
 
 ```
 AllocateRange(length):
     assert length >= 1
+    range = freeRanges.FindBestFit(length)          // address-sorted scan
+    if range != null:
+        if range.Length == length:
+            freeRanges.Detach(range)
+            return range.Start
+        if range.Length == length + 1:              // 1-cell remainder can't be a range
+            freeRanges.Detach(range)
+            unusedLinks.AttachAsFirst(range.Start + length)
+            return range.Start
+        return freeRanges.CarveFromFront(range, length)
     if length == 1:
-        return UnusedLinksListMethods.Detach() ?? AppendOneCell()
-    range = FindSmallestFreeRange(length)  // walks size-sorted list
-    if range == NULL:
-        return GrowAtTail(length)          // R7 fallback
-    if range.Length == length:
-        UnlinkFreeRange(range)
-        return range.Start
-    Carve(range, length)                   // shrink free-range head in place
-    return range.Start
+        free = unusedLinks.TryDetachFirst()          // recycle a single-cell hole
+        if free != null:
+            return free
+    return BumpAllocatedLinks(length)                // tail growth, last resort
 ```
 
-`GrowAtTail` bumps `AllocatedLinks` by `length` and grows the backing memory if the
-reserved capacity is exceeded, exactly like `Create` does today but in one shot.
+`BumpAllocatedLinks` increments `AllocatedLinks` by `length`, growing the backing
+memory if the reserved capacity is exceeded — exactly like base `Create` does,
+but in one shot.
+
+`Create(...)` itself overrides base behaviour just enough to prefer a carve from
+the smallest free range whose length is `≥ 3` when the per-cell unused list is
+empty (a 2-cell range can't be carved by 1 because the leftover would be smaller
+than the minimum free-range size; in that case we fall through to base `Create`,
+which will grow at the tail).
 
 ## Range deallocation
 
 ```
 DeallocateRange(start, length):
-    Coalesce with predecessor (if predecessor.End == start)
-    Coalesce with successor   (if start + length == successor.Start)
-    Insert resulting range into free-range lists
-    If start + length == AllocatedLinks + 1, trim the tail and try again
+    if start + length - 1 == AllocatedLinks:        // tail fast path
+        ClearCells(start, length)
+        AllocatedLinks -= length
+        TrimTail()
+        return
+    if length == 1:                                 // single-cell hole
+        ClearCells(start, 1)
+        unusedLinks.AttachAsFirst(start)
+        return
+    freeRanges.Insert(start, length)                // coalesces with neighbours
+    TrimTail()
 ```
 
-The "trim the tail" step is what gives the allocator its asymptotic optimality: long
-sequences of allocate/free at the end of the file leave the database the same size as
-if the operations had never happened.
+`Insert` coalesces with the predecessor (if it ends exactly at `start`) and the
+successor (if it begins exactly at `start + length`); it can swallow zero, one,
+or two neighbours per call. `TrimTail` then walks the high-water mark down past
+any trailing single-cell unused links and trailing free ranges — the asymptotic
+optimality guarantee that makes long alloc/free sequences leave the database the
+same size as if they had never happened.
 
 ## Marking & interaction with `Each` / `Count`
 
-When the storage iterates over allocated cells, it tests each cell against the marker
-to determine whether to skip it:
+`UnitedRangedMemoryLinks` overrides `Each(...)` and `Count(...)` for the
+unrestricted case. Both walk allocated addresses from `1` to `AllocatedLinks`
+and skip a cell entirely when its `Source` matches either marker, advancing past
+all of its continuation cells in one step. The restricted overloads delegate to
+the base implementation, which already walks tree indexes that only contain real
+doublet references.
 
-```csharp
-bool IsBlobHeader(ref RawLink<TLinkAddress> cell)
-    => AreEqual(cell.Source, _rawMarker);
-
-bool IsFreeRangeHeader(ref RawLink<TLinkAddress> cell)
-    => AreEqual(cell.Source, _rawMarker) && BlobLengthIsFreeMarker(cell.Target);
-```
-
-Because `RawMarker` doubles for both "binary blob" and "free range header", we need a
-way to discriminate the two. We use the convention that:
-
-* a **blob** stores its true length in `Target`,
-* a **free range** stores `Length` in `Target` but additionally stores the address-list
-  prev/next in `SizeAsSource`/`LeftAsTarget`, which are zero in a blob's continuation
-  cells but the blob _header_ can also have non-zero values there as payload. To
-  remove the ambiguity, we add a second discriminator: free-range descriptors set the
-  high bit of `Target` to one (since blob lengths cover at most a fraction of the
-  available `TLinkAddress` range). On read we strip the high bit before reporting the
-  length.
+`Create`/`Delete` keep their existing semantics for callers: a fresh `Create()`
+returns a freshly-initialised single-cell address, and `Delete(link)` puts a
+mid-range cell back on the per-cell unused list or trims the tail when removing
+the highest cell.
 
 ## On-disk compatibility
 
-* `LinksRangedHeader<TLinkAddress>` has the **same byte layout** as `LinksHeader` —
-  fields are reused via an `Explicit` layout with `FreeRangesHead` overlaying the
-  existing `Reserved8` slot.
+* No header byte layout change. The free-range list head reuses `Reserved8`,
+  which previous releases of `UnitedMemoryLinks` left at zero.
 * Databases produced by `UnitedMemoryLinks` open cleanly in
-  `UnitedRangedMemoryLinks`: at open time the free-range list head is read; if it is
-  zero the storage is treated as having no free ranges (so existing databases work
-  immediately, with the existing per-cell unused list still serving single-cell
-  allocations).
-* Databases produced by `UnitedRangedMemoryLinks` that contain only doublets — i.e. no
-  blobs and no multi-cell free ranges — round-trip back through `UnitedMemoryLinks`
-  bit-for-bit.
+  `UnitedRangedMemoryLinks`: `Reserved8 == 0` means "no free ranges yet", and
+  the per-cell unused list keeps working for single-cell allocations.
+* Databases produced by `UnitedRangedMemoryLinks` that contain no blobs and no
+  multi-cell free ranges round-trip back through `UnitedMemoryLinks` bit-for-bit.
+* Databases that **do** contain blobs or multi-cell free ranges are intentionally
+  not backwards-compatible with old readers — the issue body does not require
+  cross-version compatibility, and the new file flag in `LinksHeader.Reserved8`
+  makes it cheap to add a version check later.
 
 ## Invariants
 
 1. **No internal fragmentation** — every link cell is either part of an allocated
-   doublet, part of an allocated blob, part of a free range, or on the single-cell
-   unused list. The union of all four sets is exactly `[1, AllocatedLinks]`.
-2. **No external fragmentation buildup** — coalescing happens on every deallocation;
-   appending at the tail is the only way to grow.
-3. **`AllocatedLinks` is tight** — after every deallocation, the high-water mark is the
-   address of the highest still-in-use cell, never more.
+   doublet, part of an allocated blob, part of a multi-cell free range, or on the
+   single-cell unused list. The union of all four sets is exactly `[1, AllocatedLinks]`.
+2. **No external fragmentation buildup** — coalescing happens on every
+   `DeallocateRange`; appending at the tail is the only way to grow.
+3. **`AllocatedLinks` is tight** — after every deallocation, the high-water mark
+   is the address of the highest still-in-use cell, never more.

@@ -4,39 +4,41 @@ The plan below maps each requirement to a concrete change and lists the order of
 implementation. Every checkbox corresponds to one logical commit; the commits land on
 branch `issue-512-557a0a3ca78d` (PR #513).
 
-## Step 1 — Header & constants scaffolding (`R5`, `R10`)
+## Step 1 — Constants scaffolding (`R5`, `R10`)
 
-* Add `csharp/Platform.Data.Doublets/Memory/UnitedRanged/LinksRangedHeader.cs` — a
-  byte-compatible alias of `LinksHeader` with a typed `FreeRangesHead` slot that
-  overlays the existing `Reserved8` word.
 * Add `csharp/Platform.Data.Doublets/Memory/UnitedRanged/UnitedRangedLinksConstants.cs`
-  — `LinksConstants<TLinkAddress>` subclass that exposes a `RawMarker` constant.
+  — `LinksConstants<TLinkAddress>` subclass that exposes `RawMarker` (reuses
+  `Itself`) and `FreeRangeMarker` (reuses `Error`).
+* No `LinksHeader` layout change is needed: the free-range list head reuses the
+  existing `Reserved8` word, which previous releases left at zero.
 
 ## Step 2 — Range allocator (`R3`, `R7`, `R8`)
 
 * Add `csharp/Platform.Data.Doublets/Memory/UnitedRanged/Generic/RangedFreeListMethods.cs`
-  — the in-cell, address-and-size-sorted doubly-linked free-range allocator.
-* The allocator exposes:
-  * `Allocate(length) → start`
-  * `Deallocate(start, length)`
-  * `AlreadyFreeRange(start) → bool`
+  — an address-sorted, doubly-linked free-range allocator stored in-cell. The
+  allocator exposes `FindBestFit(length)`, `Insert(start, length)` (with
+  predecessor/successor coalescing), `Detach(start)`, `CarveFromFront`,
+  `CarveFromBack`, and `TryDetachTail`.
 
 ## Step 3 — Raw binary blobs (`R5`, `R6`, `R9`)
 
 * Add `csharp/Platform.Data.Doublets/Memory/UnitedRanged/Generic/RawBinaryMethods.cs`
-  — encodes/decodes blobs over the allocator. Exposes
-  `AllocateRawBinary(byteLength)`, `WriteRawBinary(start, span)`,
-  `ReadRawBinary(start, span)`, `IsRawBinary(start)`, `GetRawBinaryLengthInBytes(start)`,
-  `DeallocateRawBinary(start)`.
+  — encodes/decodes blobs over the allocator. Exposes `Write(start, payload)`,
+  `Read(start, destination)`, `ComputeCellsForBlob(byteLength)`,
+  `IsRawBinary(address)`, `GetLengthInBytes(address)`, `GetCellCount(address)`,
+  and `Clear(start)`.
 
 ## Step 4 — `UnitedRangedMemoryLinks` (`R1`, `R2`)
 
-* Add `csharp/Platform.Data.Doublets/Memory/UnitedRanged/Generic/UnitedRangedMemoryLinksBase.cs`
-  — subclass of `UnitedMemoryLinksBase` that overrides `Create`, `Delete`, `Each`,
-  `Count`, `Exists`, `IsUnusedLink` so that blob and free-range cells are correctly
-  ignored.
 * Add `csharp/Platform.Data.Doublets/Memory/UnitedRanged/Generic/UnitedRangedMemoryLinks.cs`
-  — concrete class mirroring the constructor surface of `UnitedMemoryLinks`.
+  — a single concrete class that inherits directly from `UnitedMemoryLinks`,
+  mirrors its five constructors, overrides `SetPointers`/`ResetPointers` to wire
+  up the new helpers, and overrides `Create`/`Delete`/`Each`/`Count` so that blob
+  and free-range cells are correctly ignored. Exposes the new public API:
+  `AllocateRange`, `DeallocateRange`, `AllocateRawBinary`, `WriteRawBinary`,
+  `ReadRawBinary`, `DeallocateRawBinary`, `IsRawBinary`,
+  `GetRawBinaryLengthInBytes`. A separate `UnitedRangedMemoryLinksBase` was
+  considered but proved unnecessary — direct inheritance is sufficient.
 
 ## Step 5 — Tests (`R2`, `R3`, `R4`, `R5`, `R6`, `R7`, `R8`, `R9`)
 
