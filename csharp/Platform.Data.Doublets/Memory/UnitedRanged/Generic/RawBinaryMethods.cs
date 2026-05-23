@@ -30,12 +30,12 @@ namespace Platform.Data.Doublets.Memory.UnitedRanged.Generic
     /// </summary>
     public unsafe class RawBinaryMethods<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>
     {
-        public static readonly long WordSizeInBytes = System.Runtime.CompilerServices.Unsafe.SizeOf<TLinkAddress>();
-        public static readonly long CellSizeInBytes = RawLink<TLinkAddress>.SizeInBytes;
-        public static readonly long WordsPerCell = CellSizeInBytes / WordSizeInBytes;
-        public static readonly long HeaderWordsReserved = 2;
-        public static readonly long PayloadBytesInHeaderCell = (WordsPerCell - HeaderWordsReserved) * WordSizeInBytes;
-        public static readonly long PayloadBytesInContinuationCell = CellSizeInBytes;
+        private static readonly long WordSizeInBytes = System.Runtime.CompilerServices.Unsafe.SizeOf<TLinkAddress>();
+        private static readonly long CellSizeInBytes = RawLink<TLinkAddress>.SizeInBytes;
+        private static readonly long WordsPerCell = CellSizeInBytes / WordSizeInBytes;
+        private const long HeaderWordsReserved = 2;
+        private static readonly long PayloadBytesInHeaderCell = (WordsPerCell - HeaderWordsReserved) * WordSizeInBytes;
+        private static readonly long PayloadBytesInContinuationCell = CellSizeInBytes;
 
         private readonly byte* _links;
         private readonly TLinkAddress _rawMarker;

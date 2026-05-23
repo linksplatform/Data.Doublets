@@ -78,7 +78,7 @@ Each continuation cell carries eight more `TLinkAddress` words of payload (no
 continuation marker, no length — the head cell's `Target` drives iteration). So
 a blob of `B` bytes occupies:
 
-```
+```text
 cells = 1                         if B ≤ 6 * sizeof(TLinkAddress)
 cells = 1 + ceil((B - 6 * sizeof(TLinkAddress)) / (8 * sizeof(TLinkAddress)))   otherwise
 ```

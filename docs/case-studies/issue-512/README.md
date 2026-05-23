@@ -1,6 +1,6 @@
 # Case Study: Issue #512 — `UnitedRangedMemoryLinks` with Ranges for Binary Data
 
-> Source issue: https://github.com/linksplatform/Data.Doublets/issues/512
+> Source issue: <https://github.com/linksplatform/Data.Doublets/issues/512>
 >
 > Author: @konard
 >

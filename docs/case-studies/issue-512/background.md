@@ -9,7 +9,7 @@ state of the repository at the time of writing.
 A united-memory database is a single mapped file that begins with a `LinksHeader` and
 then continues with a sequence of equally sized `RawLink` cells:
 
-```
+```text
 +-------------------+-------------------+-------------------+-----+
 |     Header        |   Cell #1         |   Cell #2         |  …  |
 | (LinkSizeInBytes) | (LinkSizeInBytes) | (LinkSizeInBytes) |     |

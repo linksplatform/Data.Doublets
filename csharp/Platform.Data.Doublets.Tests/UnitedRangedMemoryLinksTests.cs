@@ -29,9 +29,9 @@ namespace Platform.Data.Doublets.Tests
         {
             using var memory = new HeapResizableDirectMemory(UnitedMemoryLinks<ulong>.DefaultLinksSizeStep);
             using var links = new UnitedRangedMemoryLinks<ulong>(memory, UnitedMemoryLinks<ulong>.DefaultLinksSizeStep);
-            var a = links.Create();
+            links.Create();
             var b = links.Create();
-            var c = links.Create();
+            links.Create();
             Assert.Equal(3UL, links.Count());
             links.Delete(b);
             Assert.Equal(2UL, links.Count());

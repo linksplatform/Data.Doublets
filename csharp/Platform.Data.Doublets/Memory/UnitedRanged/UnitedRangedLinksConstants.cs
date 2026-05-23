@@ -49,7 +49,7 @@ namespace Platform.Data.Doublets.Memory.UnitedRanged
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public UnitedRangedLinksConstants() : base()
+        public UnitedRangedLinksConstants()
         {
             RawMarker = Itself;
             FreeRangeMarker = Error;
