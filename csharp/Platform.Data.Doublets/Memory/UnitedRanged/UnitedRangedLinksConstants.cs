@@ -10,10 +10,10 @@ namespace Platform.Data.Doublets.Memory.UnitedRanged
     /// <para>
     /// Extension of <see cref="LinksConstants{TLinkAddress}"/> used by
     /// <see cref="Generic.UnitedRangedMemoryLinks{TLinkAddress}"/>. Exposes two
-    /// additional sentinel values stored inside <see cref="RawLink{TLinkAddress}.Source"/>:
+    /// additional sentinel values stored inside the <c>Source</c> word:
     /// </para>
     /// <list type="bullet">
-    /// <item><see cref="RawMarker"/> tags the first cell of a raw binary blob.</item>
+    /// <item><see cref="RawLinkSequenceMarker"/> tags the first cell of a raw link sequence.</item>
     /// <item><see cref="FreeRangeMarker"/> tags the first cell of a multi-cell free range.</item>
     /// </list>
     /// <para>
@@ -25,20 +25,20 @@ namespace Platform.Data.Doublets.Memory.UnitedRanged
     public class UnitedRangedLinksConstants<TLinkAddress> : LinksConstants<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>
     {
         /// <summary>
-        /// Sentinel stored in <see cref="RawLink{TLinkAddress}.Source"/> to designate that a
-        /// cell is the first cell of a raw binary blob. Reuses the
+        /// Sentinel stored in the <c>Source</c> word to designate that a cell is the
+        /// first cell of a raw link sequence. Reuses the
         /// <see cref="LinksConstants{TLinkAddress}.Itself"/> slot — a housekeeping value
         /// that is never persisted as a link reference.
         /// </summary>
-        public TLinkAddress RawMarker
+        public TLinkAddress RawLinkSequenceMarker
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get;
         }
 
         /// <summary>
-        /// Sentinel stored in <see cref="RawLink{TLinkAddress}.Source"/> to designate that a
-        /// cell is the first cell of a multi-cell free range. Reuses the
+        /// Sentinel stored in the <c>Source</c> word to designate that a cell is the
+        /// first cell of a multi-cell free range. Reuses the
         /// <see cref="LinksConstants{TLinkAddress}.Error"/> slot — a housekeeping value
         /// that is never persisted as a link reference.
         /// </summary>
@@ -51,28 +51,28 @@ namespace Platform.Data.Doublets.Memory.UnitedRanged
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public UnitedRangedLinksConstants()
         {
-            RawMarker = Itself;
+            RawLinkSequenceMarker = Itself;
             FreeRangeMarker = Error;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public UnitedRangedLinksConstants(bool enableExternalReferencesSupport) : base(enableExternalReferencesSupport)
         {
-            RawMarker = Itself;
+            RawLinkSequenceMarker = Itself;
             FreeRangeMarker = Error;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public UnitedRangedLinksConstants(Range<TLinkAddress> possibleInternalReferencesRange) : base(possibleInternalReferencesRange)
         {
-            RawMarker = Itself;
+            RawLinkSequenceMarker = Itself;
             FreeRangeMarker = Error;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public UnitedRangedLinksConstants(Range<TLinkAddress> possibleInternalReferencesRange, Range<TLinkAddress>? possibleExternalReferencesRange) : base(possibleInternalReferencesRange, possibleExternalReferencesRange)
         {
-            RawMarker = Itself;
+            RawLinkSequenceMarker = Itself;
             FreeRangeMarker = Error;
         }
     }

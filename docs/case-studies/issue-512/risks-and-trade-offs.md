@@ -10,13 +10,14 @@
   still well within the 8-word cell, but means the "smallest free range we can
   describe" is one full cell. Free runs of length 1 are punted to the existing
   single-cell unused list, which is unchanged.
-* **Marker collisions** — `RawMarker` is chosen above `InternalReferencesRange.Maximum`
-  so it cannot be confused with a valid link index. Older `LinksConstants` instances
-  that ship without the new constant simply do not see the marker at all, so an old
-  reader of a new file would (a) think a blob cell is a regular link and (b) attempt
-  to walk the source tree from it. Cross-version compatibility is explicitly **not**
-  a goal of this PR (the issue body says nothing about it), and the new file flag in
-  `LinksRangedHeader` makes it cheap to add a version check later.
+* **Marker collisions** — `RawLinkSequenceMarker` is chosen above
+  `InternalReferencesRange.Maximum` so it cannot be confused with a valid link index.
+  Older `LinksConstants` instances that ship without the new constant simply do not
+  see the marker at all, so an old reader of a new file would (a) think a raw link
+  sequence head is a regular link and (b) attempt to walk the source tree from it.
+  Cross-version compatibility is explicitly **not** a goal of this PR (the issue body
+  says nothing about it), and the reused `Reserved8` word makes it cheap to add a
+  version check later.
 
 ## Risks that the design _eliminates_
 
@@ -40,4 +41,5 @@
   `SplitMemoryLinks`.
 * Add a CLI utility (`platform-doublets defrag`) that walks the free list and
   rebuilds it from scratch, useful after offline upgrades.
-* Add a "raw blob" cursor type to the public API that exposes the blob as a `Span<byte>`.
+* Add a raw-link-sequence cursor type to the public API that exposes the payload as a
+  `Span<byte>`.

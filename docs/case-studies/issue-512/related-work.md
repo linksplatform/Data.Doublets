@@ -22,9 +22,9 @@ and what we are deliberately not borrowing.
 
 * **Lua 5.4 strings** — small strings are stored inline; long strings are referenced
   by pointer with a tag bit. The "marker word at the head of a record" idea is the
-  same as our `RawMarker` (and analogous to Lua's `LUA_TLNGSTR` tag).
+  same as our `RawLinkSequenceMarker` (and analogous to Lua's `LUA_TLNGSTR` tag).
 * **SQLite "frequent" records** — SQLite reuses the first byte of a record as a type
-  tag. Our `Source == RawMarker` convention is conceptually identical.
+  tag. Our `Source == RawLinkSequenceMarker` convention is conceptually identical.
 
 ## Allocators inside persistent stores
 
@@ -54,7 +54,7 @@ Search queries used during the design phase (kept here for traceability):
 
 * "boundary tag allocator linked list free range coalesce"
 * "uniform cell allocator fragmentation"
-* "tagged pointer marker first cell binary blob in memory store"
+* "tagged pointer marker first cell raw sequence in memory store"
 * "linksplatform doublets storage layout"
 * "LMDB freelist coalesce"
 

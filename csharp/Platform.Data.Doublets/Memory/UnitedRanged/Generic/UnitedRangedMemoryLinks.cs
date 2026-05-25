@@ -18,16 +18,17 @@ namespace Platform.Data.Doublets.Memory.UnitedRanged.Generic
     /// <para>
     /// A drop-in substitute for <see cref="UnitedMemoryLinks{TLinkAddress}"/> that
     /// additionally tracks unused space as a list of <em>ranges</em> of cells (not
-    /// only one-cell at a time) and supports raw binary payloads stored inside the
-    /// same address space.
+    /// only one-cell at a time) and supports raw link sequences stored inside the
+    /// same address space. Raw link sequences can be used as byte payloads for raw
+    /// data, binary files, and similar use cases.
     /// </para>
     /// <para>
     /// Single-cell <see cref="Create"/>/<see cref="Delete"/> semantics are unchanged
     /// for callers, but the implementation will prefer to fill an existing free
     /// range before extending the underlying memory. <see cref="AllocateRange"/> /
     /// <see cref="DeallocateRange"/> expose contiguous multi-cell allocations
-    /// (best-fit + coalescing). <see cref="AllocateRawBinary"/> stores a blob whose
-    /// payload reuses the tree-index fields of the spanned cells as opaque bytes.
+    /// (best-fit + coalescing). Convenience operations for raw link sequence payloads
+    /// are provided as extension methods over this range allocator.
     /// </para>
     /// </summary>
     public unsafe class UnitedRangedMemoryLinks<TLinkAddress> : UnitedMemoryLinks<TLinkAddress>
@@ -35,7 +36,20 @@ namespace Platform.Data.Doublets.Memory.UnitedRanged.Generic
     {
         private byte* _rangedLinks;
         private RangedFreeListMethods<TLinkAddress>? _freeRanges;
-        private RawBinaryMethods<TLinkAddress>? _rawBinary;
+        private RawLinkSequenceMethods<TLinkAddress>? _rawLinkSequences;
+        private bool _includeRawLinkSequences = true;
+
+        /// <summary>
+        /// Controls whether raw link sequence heads are returned by <see cref="Each"/>
+        /// and included by <see cref="Count"/>. Continuation cells are never returned.
+        /// </summary>
+        public bool IncludeRawLinkSequences
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get => _includeRawLinkSequences;
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            set => _includeRawLinkSequences = value;
+        }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public UnitedRangedMemoryLinks(string address) : this(address, DefaultLinksSizeStep) { }
@@ -44,15 +58,31 @@ namespace Platform.Data.Doublets.Memory.UnitedRanged.Generic
         public UnitedRangedMemoryLinks(string address, long memoryReservationStep) : this(new FileMappedResizableDirectMemory(address, memoryReservationStep), memoryReservationStep) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public UnitedRangedMemoryLinks(string address, bool includeRawLinkSequences) : this(address, DefaultLinksSizeStep, includeRawLinkSequences) { }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public UnitedRangedMemoryLinks(string address, long memoryReservationStep, bool includeRawLinkSequences) : this(new FileMappedResizableDirectMemory(address, memoryReservationStep), memoryReservationStep, includeRawLinkSequences) { }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public UnitedRangedMemoryLinks(IResizableDirectMemory memory) : this(memory, DefaultLinksSizeStep) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public UnitedRangedMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep) : this(memory, memoryReservationStep, Default<UnitedRangedLinksConstants<TLinkAddress>>.Instance, IndexTreeType.Default) { }
+        public UnitedRangedMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep) : this(memory, memoryReservationStep, Default<UnitedRangedLinksConstants<TLinkAddress>>.Instance, IndexTreeType.Default, includeRawLinkSequences: true) { }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public UnitedRangedMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep, bool includeRawLinkSequences) : this(memory, memoryReservationStep, Default<UnitedRangedLinksConstants<TLinkAddress>>.Instance, IndexTreeType.Default, includeRawLinkSequences) { }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public UnitedRangedMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep, UnitedRangedLinksConstants<TLinkAddress> constants, IndexTreeType indexTreeType)
+            : this(memory, memoryReservationStep, constants, indexTreeType, includeRawLinkSequences: true)
+        {
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public UnitedRangedMemoryLinks(IResizableDirectMemory memory, long memoryReservationStep, UnitedRangedLinksConstants<TLinkAddress> constants, IndexTreeType indexTreeType, bool includeRawLinkSequences)
             : base(memory, memoryReservationStep, constants, indexTreeType)
         {
+            IncludeRawLinkSequences = includeRawLinkSequences;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -62,7 +92,7 @@ namespace Platform.Data.Doublets.Memory.UnitedRanged.Generic
             _rangedLinks = (byte*)memory.Pointer;
             var rangedConstants = (UnitedRangedLinksConstants<TLinkAddress>)Constants;
             _freeRanges = new RangedFreeListMethods<TLinkAddress>(_rangedLinks, _rangedLinks, rangedConstants.FreeRangeMarker);
-            _rawBinary = new RawBinaryMethods<TLinkAddress>(_rangedLinks, rangedConstants.RawMarker);
+            _rawLinkSequences = new RawLinkSequenceMethods<TLinkAddress>(_rangedLinks, rangedConstants.RawLinkSequenceMarker);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -71,7 +101,7 @@ namespace Platform.Data.Doublets.Memory.UnitedRanged.Generic
             base.ResetPointers();
             _rangedLinks = null;
             _freeRanges = null;
-            _rawBinary = null;
+            _rawLinkSequences = null;
         }
 
         // -------------------------------------------------------------------------
@@ -79,52 +109,126 @@ namespace Platform.Data.Doublets.Memory.UnitedRanged.Generic
         // -------------------------------------------------------------------------
 
         /// <summary>
-        /// Returns the number of regular doublets (excludes single-cell unused
-        /// links, multi-cell free ranges and raw binary blobs).
+        /// Returns the number of visible records. Free ranges and raw link sequence
+        /// continuation cells are always hidden; raw link sequence heads are included
+        /// when <see cref="IncludeRawLinkSequences"/> is enabled.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override TLinkAddress Count(IList<TLinkAddress>? restriction)
         {
-            if (restriction!.Count == 0)
+            restriction ??= Array.Empty<TLinkAddress>();
+            if (restriction.Count > 3)
             {
-                return CountRegularLinks();
+                throw new NotSupportedException("Другие размеры и способы ограничений не поддерживаются.");
             }
-            return base.Count(restriction);
+            var constants = Constants;
+            var any = constants.Any;
+            var count = default(TLinkAddress);
+            if (restriction.Count == 2 && restriction[constants.IndexPart] == any)
+            {
+                var value = restriction[1];
+                if (value == any)
+                {
+                    return CountVisibleLinks();
+                }
+                ForEachVisibleLink(link =>
+                {
+                    if (link.Source == value)
+                    {
+                        count = count + TLinkAddress.One;
+                    }
+                    if (link.Target == value)
+                    {
+                        count = count + TLinkAddress.One;
+                    }
+                    return constants.Continue;
+                });
+                return count;
+            }
+            ForEachVisibleLink(link =>
+            {
+                if (MatchesRestriction(link, restriction))
+                {
+                    count = count + TLinkAddress.One;
+                }
+                return constants.Continue;
+            });
+            return count;
         }
 
         /// <summary>
-        /// Iterates over regular doublets only; skips free-range and raw-binary
-        /// cells entirely.
+        /// Iterates over visible records. Free ranges and raw link sequence
+        /// continuation cells are always hidden; raw link sequence heads are included
+        /// when <see cref="IncludeRawLinkSequences"/> is enabled.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override TLinkAddress Each(IList<TLinkAddress>? restriction, ReadHandler<TLinkAddress>? handler)
         {
-            if (restriction!.Count == 0)
+            restriction ??= Array.Empty<TLinkAddress>();
+            if (restriction.Count > 3)
             {
-                var @break = Constants.Break;
-                var allocated = GetHeaderReference().AllocatedLinks;
-                var link = TLinkAddress.One;
-                while (link <= allocated)
+                throw new NotSupportedException("Другие размеры и способы ограничений не поддерживаются.");
+            }
+            var constants = Constants;
+            var @break = constants.Break;
+            var @continue = constants.Continue;
+            var any = constants.Any;
+            if (restriction.Count == 2 && restriction[constants.IndexPart] == any)
+            {
+                var value = restriction[1];
+                if (value == any)
                 {
-                    if (_freeRanges!.IsFreeRangeHead(link))
+                    return EachMatchingLink(handler, link => true, returnBreakOnCompletion: true);
+                }
+                if (ForEachVisibleLink(link =>
+                {
+                    if (link.Source != value)
                     {
-                        link = link + _freeRanges.GetLength(link);
-                        continue;
+                        return @continue;
                     }
-                    if (_rawBinary!.IsRawBinary(link))
-                    {
-                        link = link + TLinkAddress.CreateTruncating(_rawBinary.GetCellCount(link));
-                        continue;
-                    }
-                    if (Exists(link) && handler!(GetLinkStruct(link)) == @break)
+                    if (handler != null && handler(link) == @break)
                     {
                         return @break;
                     }
-                    link = link + TLinkAddress.One;
+                    return @continue;
+                }) == @break)
+                {
+                    return @break;
                 }
-                return @break;
+                return ForEachVisibleLink(link =>
+                {
+                    if (link.Target != value)
+                    {
+                        return @continue;
+                    }
+                    if (handler != null && handler(link) == @break)
+                    {
+                        return @break;
+                    }
+                    return @continue;
+                });
             }
-            return base.Each(restriction, handler);
+            return EachMatchingLink(handler, link => MatchesRestriction(link, restriction), IsWholeStoreScan(restriction));
+
+            TLinkAddress EachMatchingLink(ReadHandler<TLinkAddress>? visibleHandler, Func<Link<TLinkAddress>, bool> predicate, bool returnBreakOnCompletion)
+            {
+                if (ForEachVisibleLink(link =>
+                {
+                    if (!predicate(link))
+                    {
+                        return @continue;
+                    }
+                    if (visibleHandler != null && visibleHandler(link) == @break)
+                    {
+                        return @break;
+                    }
+                    return @continue;
+                }) == @break || returnBreakOnCompletion)
+                {
+                    return @break;
+                }
+                return @continue;
+            }
         }
 
         /// <summary>
@@ -157,8 +261,8 @@ namespace Platform.Data.Doublets.Memory.UnitedRanged.Generic
         /// Deletes a single doublet. Behaviour matches the base class for
         /// non-tail links; for tail links the trimming loop additionally retires
         /// trailing single-cell unused links and trailing free ranges, but never
-        /// confuses a free-range head or a blob head with a single-cell unused
-        /// link.
+        /// confuses a free-range head or a raw link sequence head with a
+        /// single-cell unused link.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override TLinkAddress Delete(IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? handler)
@@ -166,6 +270,16 @@ namespace Platform.Data.Doublets.Memory.UnitedRanged.Generic
             ref var header = ref GetHeaderReference();
             var link = restriction![Constants.IndexPart];
             var before = GetLinkStruct(link);
+            if (_rawLinkSequences!.IsRawLinkSequence(link))
+            {
+                var cells = _rawLinkSequences.GetCellCount(link);
+                DeallocateRange(link, TLinkAddress.CreateTruncating(cells));
+                return handler != null ? handler(before, null) : Constants.Continue;
+            }
+            if (_freeRanges!.IsFreeRangeHead(link))
+            {
+                return Constants.Continue;
+            }
             if (link < header.AllocatedLinks)
             {
                 UnusedLinksListMethods.AttachAsFirst(link);
@@ -181,15 +295,36 @@ namespace Platform.Data.Doublets.Memory.UnitedRanged.Generic
             return Constants.Continue;
         }
 
+        /// <summary>
+        /// Protects ranged metadata cells from being treated as normal doublets by
+        /// generic update helpers. Reset updates are accepted as no-ops so the
+        /// existing delete extension can still deallocate a raw link sequence through
+        /// the universal <see cref="ILinks{TLinkAddress}"/> surface.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public override TLinkAddress Update(IList<TLinkAddress>? restriction, IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler)
+        {
+            var link = restriction![Constants.IndexPart];
+            if (_rawLinkSequences!.IsRawLinkSequence(link) || _freeRanges!.IsFreeRangeHead(link))
+            {
+                if (IsResetSubstitution(substitution))
+                {
+                    return Constants.Continue;
+                }
+                throw new InvalidOperationException("Ranged metadata cells cannot be updated as regular doublets.");
+            }
+            return base.Update(restriction, substitution, handler);
+        }
+
         // -------------------------------------------------------------------------
-        // Public range / raw-binary API
+        // Public range API
         // -------------------------------------------------------------------------
 
         /// <summary>
         /// Allocates <paramref name="length"/> contiguous cells and returns the
         /// address of the first cell. The cells are uninitialised — the caller
         /// is expected to immediately write a meaningful payload (or pass the
-        /// result to <see cref="WriteRawBinary"/>).
+        /// result to a raw link sequence extension method).
         /// </summary>
         public TLinkAddress AllocateRange(TLinkAddress length)
         {
@@ -236,8 +371,9 @@ namespace Platform.Data.Doublets.Memory.UnitedRanged.Generic
         /// <summary>
         /// Returns a multi-cell range to the allocator. <paramref name="start"/>
         /// must be the first cell previously returned by
-        /// <see cref="AllocateRange"/> (or the head of a blob being released),
-        /// and <paramref name="length"/> must match the original allocation.
+        /// <see cref="AllocateRange"/> (or the head of a raw link sequence being
+        /// released), and <paramref name="length"/> must match the original
+        /// allocation.
         /// </summary>
         public void DeallocateRange(TLinkAddress start, TLinkAddress length)
         {
@@ -266,64 +402,6 @@ namespace Platform.Data.Doublets.Memory.UnitedRanged.Generic
             _freeRanges!.Insert(start, length);
             TrimTail();
         }
-
-        /// <summary>
-        /// Allocates space for a raw binary blob of <paramref name="byteLength"/>
-        /// bytes and returns the head cell address. <paramref name="byteLength"/>
-        /// must be a non-negative multiple of <c>sizeof(TLinkAddress)</c>.
-        /// The blob is left uninitialised until <see cref="WriteRawBinary"/> is
-        /// called.
-        /// </summary>
-        public TLinkAddress AllocateRawBinary(long byteLength)
-        {
-            var cells = RawBinaryMethods<TLinkAddress>.ComputeCellsForBlob(byteLength);
-            var start = AllocateRange(TLinkAddress.CreateTruncating(cells));
-            // Clear so that IsRawBinary / IsFreeRangeHead probes on uninitialised
-            // cells behave predictably until the payload is actually written.
-            ClearCells(start, TLinkAddress.CreateTruncating(cells));
-            // Stamp the descriptor (Source = RawMarker, Target = byteLength).
-            _rawBinary!.Write(start, ReadOnlySpan<byte>.Empty);
-            // Write() with an empty payload sets the descriptor's Target to 0, so
-            // overwrite it now that we know the real length.
-            var rangedConstants = (UnitedRangedLinksConstants<TLinkAddress>)Constants;
-            ref var head = ref AsRef<RawLink<TLinkAddress>>(_rangedLinks + (RawLink<TLinkAddress>.SizeInBytes * long.CreateTruncating(start)));
-            head.Source = rangedConstants.RawMarker;
-            head.Target = TLinkAddress.CreateTruncating(byteLength);
-            return start;
-        }
-
-        /// <summary>
-        /// Writes <paramref name="payload"/> into the blob whose head is at
-        /// <paramref name="start"/>. The blob must have been allocated with
-        /// <see cref="AllocateRawBinary"/> using the same byte length.
-        /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void WriteRawBinary(TLinkAddress start, ReadOnlySpan<byte> payload) => _rawBinary!.Write(start, payload);
-
-        /// <summary>
-        /// Copies the payload of the blob at <paramref name="start"/> into
-        /// <paramref name="destination"/>.
-        /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void ReadRawBinary(TLinkAddress start, Span<byte> destination) => _rawBinary!.Read(start, destination);
-
-        /// <summary>
-        /// Releases the storage of the blob at <paramref name="start"/>.
-        /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void DeallocateRawBinary(TLinkAddress start)
-        {
-            var cells = _rawBinary!.GetCellCount(start);
-            DeallocateRange(start, TLinkAddress.CreateTruncating(cells));
-        }
-
-        /// <summary>True if the cell at <paramref name="address"/> is a raw binary head.</summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool IsRawBinary(TLinkAddress address) => _rawBinary!.IsRawBinary(address);
-
-        /// <summary>Returns the byte length of the blob at <paramref name="address"/>.</summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public long GetRawBinaryLengthInBytes(TLinkAddress address) => _rawBinary!.GetLengthInBytes(address);
 
         // -------------------------------------------------------------------------
         // Internals
@@ -397,7 +475,7 @@ namespace Platform.Data.Doublets.Memory.UnitedRanged.Generic
                 return false;
             }
             var rangedConstants = (UnitedRangedLinksConstants<TLinkAddress>)Constants;
-            if (cell.Source == rangedConstants.FreeRangeMarker || cell.Source == rangedConstants.RawMarker)
+            if (cell.Source == rangedConstants.FreeRangeMarker || cell.Source == rangedConstants.RawLinkSequenceMarker)
             {
                 return false;
             }
@@ -405,7 +483,7 @@ namespace Platform.Data.Doublets.Memory.UnitedRanged.Generic
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private void ClearCells(TLinkAddress start, TLinkAddress length)
+        internal void ClearCells(TLinkAddress start, TLinkAddress length)
         {
             var startLong = long.CreateTruncating(start);
             var lengthLong = long.CreateTruncating(length);
@@ -413,10 +491,28 @@ namespace Platform.Data.Doublets.Memory.UnitedRanged.Generic
             new Span<byte>(ptr, checked((int)(lengthLong * RawLink<TLinkAddress>.SizeInBytes))).Clear();
         }
 
+        internal RawLinkSequenceMethods<TLinkAddress> RawLinkSequences
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get => _rawLinkSequences!;
+        }
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private TLinkAddress CountRegularLinks()
+        private TLinkAddress CountVisibleLinks()
         {
             var count = default(TLinkAddress);
+            ForEachVisibleLink(_ =>
+            {
+                count = count + TLinkAddress.One;
+                return Constants.Continue;
+            });
+            return count;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private TLinkAddress ForEachVisibleLink(Func<Link<TLinkAddress>, TLinkAddress> action)
+        {
+            var @break = Constants.Break;
             var allocated = GetHeaderReference().AllocatedLinks;
             var link = TLinkAddress.One;
             while (link <= allocated)
@@ -426,18 +522,73 @@ namespace Platform.Data.Doublets.Memory.UnitedRanged.Generic
                     link = link + _freeRanges.GetLength(link);
                     continue;
                 }
-                if (_rawBinary!.IsRawBinary(link))
+                if (_rawLinkSequences!.IsRawLinkSequence(link))
                 {
-                    link = link + TLinkAddress.CreateTruncating(_rawBinary.GetCellCount(link));
+                    if (IncludeRawLinkSequences && action(new Link<TLinkAddress>(link, GetLinkReference(link).Source, GetLinkReference(link).Target)) == @break)
+                    {
+                        return @break;
+                    }
+                    link = link + TLinkAddress.CreateTruncating(_rawLinkSequences.GetCellCount(link));
                     continue;
                 }
                 if (Exists(link))
                 {
-                    count = count + TLinkAddress.One;
+                    if (action(new Link<TLinkAddress>(link, GetLinkReference(link).Source, GetLinkReference(link).Target)) == @break)
+                    {
+                        return @break;
+                    }
                 }
                 link = link + TLinkAddress.One;
             }
-            return count;
+            return Constants.Continue;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private bool MatchesRestriction(Link<TLinkAddress> link, IList<TLinkAddress> restriction)
+        {
+            var constants = Constants;
+            var any = constants.Any;
+            return restriction.Count switch
+            {
+                0 => true,
+                1 => restriction[constants.IndexPart] == any || link.Index == restriction[constants.IndexPart],
+                2 => MatchesIndex(link, restriction[constants.IndexPart], any)
+                    && (restriction[1] == any || link.Source == restriction[1] || link.Target == restriction[1]),
+                3 => MatchesIndex(link, restriction[constants.IndexPart], any)
+                    && (restriction[constants.SourcePart] == any || link.Source == restriction[constants.SourcePart])
+                    && (restriction[constants.TargetPart] == any || link.Target == restriction[constants.TargetPart]),
+                _ => false
+            };
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static bool MatchesIndex(Link<TLinkAddress> link, TLinkAddress index, TLinkAddress any) => index == any || link.Index == index;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private bool IsWholeStoreScan(IList<TLinkAddress> restriction)
+        {
+            var constants = Constants;
+            var any = constants.Any;
+            return restriction.Count switch
+            {
+                0 => true,
+                1 => restriction[constants.IndexPart] == any,
+                2 => restriction[constants.IndexPart] == any && restriction[1] == any,
+                3 => restriction[constants.IndexPart] == any
+                    && restriction[constants.SourcePart] == any
+                    && restriction[constants.TargetPart] == any,
+                _ => false
+            };
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private bool IsResetSubstitution(IList<TLinkAddress>? substitution)
+        {
+            if (substitution == null || substitution.Count < 3)
+            {
+                return false;
+            }
+            return substitution[Constants.SourcePart] == Constants.Null && substitution[Constants.TargetPart] == Constants.Null;
         }
     }
 }

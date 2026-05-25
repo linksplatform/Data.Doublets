@@ -5,7 +5,8 @@
 * Allocate / deallocate contiguous **ranges of link cells** (`R3`, `R4`).
 * No fragmentation — never split unless inevitable, coalesce on free (`R7`).
 * "Prefer empty space" — best-fit, growth at tail only as a last resort (`R8`).
-* Embed raw **binary blobs** in the same address space (`R5`, `R6`, `R9`).
+* Embed raw **link sequences** in the same address space (`R5`, `R6`, `R9`). These
+  sequences can store raw data blobs, binary files, or other aligned byte payloads.
 * Stay drop-in compatible with `UnitedMemoryLinks` and `ILinks<>` (`R2`, `R10`).
 
 ## Design alternatives considered
@@ -31,7 +32,7 @@ discriminate the three flavours of cell that can appear in the allocated range:
 | Cell flavour | `Source` value |
 | --- | --- |
 | Regular doublet | A link index (`≤ InternalReferencesRange.Maximum`) or `Null` |
-| Raw binary blob head | `RawMarker` = `LinksConstants.Itself` |
+| Raw link sequence head | `RawLinkSequenceMarker` = `LinksConstants.Itself` |
 | Multi-cell free range head | `FreeRangeMarker` = `LinksConstants.Error` |
 
 Both sentinels live above `InternalReferencesRange.Maximum` (they are housekeeping
@@ -63,20 +64,20 @@ No on-disk header layout change is required: databases produced by
 `UnitedMemoryLinks` have `Reserved8 = 0`, which `UnitedRangedMemoryLinks` reads
 as "no free ranges" — so old files open cleanly.
 
-## Binary blob layout
+## Raw link sequence layout
 
-A binary blob occupies one **header cell** followed by zero or more continuation
+A raw link sequence occupies one **header cell** followed by zero or more continuation
 cells. The header cell holds:
 
-| Field | Binary-blob usage |
+| Field | Raw-link-sequence usage |
 | --- | --- |
-| `Source` | `RawMarker` |
-| `Target` | `Length` of the blob in **bytes**. Must be a multiple of `sizeof(TLinkAddress)`. |
+| `Source` | `RawLinkSequenceMarker` |
+| `Target` | `Length` of the payload in **bytes**. Must be a multiple of `sizeof(TLinkAddress)`. |
 | `LeftAsSource` … `SizeAsTarget` | First six `TLinkAddress` words of payload (treated as opaque bytes). |
 
 Each continuation cell carries eight more `TLinkAddress` words of payload (no
 continuation marker, no length — the head cell's `Target` drives iteration). So
-a blob of `B` bytes occupies:
+a sequence of `B` bytes occupies:
 
 ```text
 cells = 1                         if B ≤ 6 * sizeof(TLinkAddress)
@@ -85,14 +86,15 @@ cells = 1 + ceil((B - 6 * sizeof(TLinkAddress)) / (8 * sizeof(TLinkAddress)))   
 
 The encoding is unambiguous because:
 
-* `Source == RawMarker` is never produced by `Create` (which initialises `Source`
-  and `Target` to `Null` and only ever stores values inside the references range).
-* The marker is **never** sampled in a continuation cell — iteration of a blob
+* `Source == RawLinkSequenceMarker` is never produced by `Create` (which initialises
+  `Source` and `Target` to `Null` and only ever stores values inside the references
+  range).
+* The marker is **never** sampled in a continuation cell — iteration of a sequence
   starts at the head cell, picks up the length, and consumes the right number of
   bytes from contiguous addresses without re-examining `Source` of any inner cell.
-* Intermediate cell indices inside a blob are **not** valid link handles. This is
+* Intermediate cell indices inside a sequence are **not** valid link handles. This is
   a deliberate trade-off: it removes the need to scan from address `1` to detect
-  whether a given index belongs to a blob's interior.
+  whether a given index belongs to a sequence's interior.
 
 ## Range allocation algorithm
 
@@ -152,12 +154,16 @@ same size as if they had never happened.
 
 ## Marking & interaction with `Each` / `Count`
 
-`UnitedRangedMemoryLinks` overrides `Each(...)` and `Count(...)` for the
-unrestricted case. Both walk allocated addresses from `1` to `AllocatedLinks`
-and skip a cell entirely when its `Source` matches either marker, advancing past
-all of its continuation cells in one step. The restricted overloads delegate to
-the base implementation, which already walks tree indexes that only contain real
-doublet references.
+`UnitedRangedMemoryLinks` overrides `Each(...)` and `Count(...)` for all supported
+restriction shapes. Both walk allocated addresses from `1` to `AllocatedLinks`.
+Free-range heads are always hidden. Raw link sequence continuation cells are always
+hidden. Raw link sequence heads are visible by default, and can be hidden by setting
+`IncludeRawLinkSequences = false`.
+
+Restricted `Each`/`Count` calls also use the ranged scan instead of the base
+source/target trees, because raw link sequence heads are not inserted into those
+trees. This keeps universal `ILinks<>` queries able to discover sequence heads by
+index, by `Source == RawLinkSequenceMarker`, or by the byte length stored in `Target`.
 
 `Create`/`Delete` keep their existing semantics for callers: a fresh `Create()`
 returns a freshly-initialised single-cell address, and `Delete(link)` puts a
@@ -171,18 +177,19 @@ the highest cell.
 * Databases produced by `UnitedMemoryLinks` open cleanly in
   `UnitedRangedMemoryLinks`: `Reserved8 == 0` means "no free ranges yet", and
   the per-cell unused list keeps working for single-cell allocations.
-* Databases produced by `UnitedRangedMemoryLinks` that contain no blobs and no
+* Databases produced by `UnitedRangedMemoryLinks` that contain no raw link sequences and no
   multi-cell free ranges round-trip back through `UnitedMemoryLinks` bit-for-bit.
-* Databases that **do** contain blobs or multi-cell free ranges are intentionally
+* Databases that **do** contain raw link sequences or multi-cell free ranges are intentionally
   not backwards-compatible with old readers — the issue body does not require
-  cross-version compatibility, and the new file flag in `LinksHeader.Reserved8`
-  makes it cheap to add a version check later.
+  cross-version compatibility, and the reused `LinksHeader.Reserved8` word makes it
+  cheap to add a version check later.
 
 ## Invariants
 
 1. **No internal fragmentation** — every link cell is either part of an allocated
-   doublet, part of an allocated blob, part of a multi-cell free range, or on the
-   single-cell unused list. The union of all four sets is exactly `[1, AllocatedLinks]`.
+   doublet, part of an allocated raw link sequence, part of a multi-cell free range,
+   or on the single-cell unused list. The union of all four sets is exactly
+   `[1, AllocatedLinks]`.
 2. **No external fragmentation buildup** — coalescing happens on every
    `DeallocateRange`; appending at the tail is the only way to grow.
 3. **`AllocatedLinks` is tight** — after every deallocation, the high-water mark

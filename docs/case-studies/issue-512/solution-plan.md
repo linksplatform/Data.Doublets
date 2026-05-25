@@ -7,8 +7,8 @@ branch `issue-512-557a0a3ca78d` (PR #513).
 ## Step 1 — Constants scaffolding (`R5`, `R10`)
 
 * Add `csharp/Platform.Data.Doublets/Memory/UnitedRanged/UnitedRangedLinksConstants.cs`
-  — `LinksConstants<TLinkAddress>` subclass that exposes `RawMarker` (reuses
-  `Itself`) and `FreeRangeMarker` (reuses `Error`).
+  — `LinksConstants<TLinkAddress>` subclass that exposes `RawLinkSequenceMarker`
+  (reuses `Itself`) and `FreeRangeMarker` (reuses `Error`).
 * No `LinksHeader` layout change is needed: the free-range list head reuses the
   existing `Reserved8` word, which previous releases left at zero.
 
@@ -20,24 +20,30 @@ branch `issue-512-557a0a3ca78d` (PR #513).
   predecessor/successor coalescing), `Detach(start)`, `CarveFromFront`,
   `CarveFromBack`, and `TryDetachTail`.
 
-## Step 3 — Raw binary blobs (`R5`, `R6`, `R9`)
+## Step 3 — Raw link sequences (`R5`, `R6`, `R9`)
 
-* Add `csharp/Platform.Data.Doublets/Memory/UnitedRanged/Generic/RawBinaryMethods.cs`
-  — encodes/decodes blobs over the allocator. Exposes `Write(start, payload)`,
-  `Read(start, destination)`, `ComputeCellsForBlob(byteLength)`,
-  `IsRawBinary(address)`, `GetLengthInBytes(address)`, `GetCellCount(address)`,
-  and `Clear(start)`.
+* Add `csharp/Platform.Data.Doublets/Memory/UnitedRanged/Generic/RawLinkSequenceMethods.cs`
+  — encodes/decodes raw link sequences over the allocator. Exposes
+  `Write(start, payload)`, `Read(start, destination)`,
+  `ComputeCellsForPayload(byteLength)`, `IsRawLinkSequence(address)`,
+  `GetLengthInBytes(address)`, and `GetCellCount(address)`.
+* Add extension methods over `UnitedRangedMemoryLinks<TLinkAddress>` for the
+  non-essential convenience API: `AllocateRawLinkSequence`,
+  `WriteRawLinkSequence`, `ReadRawLinkSequence`, `DeallocateRawLinkSequence`,
+  `IsRawLinkSequence`, `GetRawLinkSequenceLengthInBytes`, and
+  `GetRawLinkSequenceCellCount`.
+* Add an `ILinks<>` extension that identifies raw link sequence heads returned by
+  `Each`, so callers can inspect sequence heads through the universal interface.
 
 ## Step 4 — `UnitedRangedMemoryLinks` (`R1`, `R2`)
 
 * Add `csharp/Platform.Data.Doublets/Memory/UnitedRanged/Generic/UnitedRangedMemoryLinks.cs`
   — a single concrete class that inherits directly from `UnitedMemoryLinks`,
   mirrors its five constructors, overrides `SetPointers`/`ResetPointers` to wire
-  up the new helpers, and overrides `Create`/`Delete`/`Each`/`Count` so that blob
-  and free-range cells are correctly ignored. Exposes the new public API:
-  `AllocateRange`, `DeallocateRange`, `AllocateRawBinary`, `WriteRawBinary`,
-  `ReadRawBinary`, `DeallocateRawBinary`, `IsRawBinary`,
-  `GetRawBinaryLengthInBytes`. A separate `UnitedRangedMemoryLinksBase` was
+  up the new helpers, and overrides `Create`/`Delete`/`Update`/`Each`/`Count` so that
+  raw link sequences and free-range cells are correctly handled. Exposes the
+  implementation-level range API `AllocateRange` / `DeallocateRange` and the
+  `IncludeRawLinkSequences` configuration. A separate `UnitedRangedMemoryLinksBase` was
   considered but proved unnecessary — direct inheritance is sufficient.
 
 ## Step 5 — Tests (`R2`, `R3`, `R4`, `R5`, `R6`, `R7`, `R8`, `R9`)
@@ -50,10 +56,16 @@ branch `issue-512-557a0a3ca78d` (PR #513).
   * `AllocateRange_PrefersExistingFreeRange`.
   * `DeallocateRange_CoalescesNeighbours`.
   * `DeallocateRange_TrimsTail`.
-  * `RawBinary_Roundtrip_SingleCell`.
-  * `RawBinary_Roundtrip_MultiCell`.
-  * `RawBinary_DoesNotAppearInEach`.
-  * `Each_SkipsFreeRangesAndBlobs`.
+  * `AllocateRange_OneCellRemainderFeedsSingleCellFreeList`.
+  * `RawLinkSequence_Roundtrip_SingleCell`.
+  * `RawLinkSequence_Roundtrip_MultiCell`.
+  * `RawLinkSequence_ZeroLength_RoundtripAndUsesOneCell`.
+  * `RawLinkSequence_LengthMustBeWordAligned`.
+  * `RawLinkSequence_AppearsInEachByDefault`.
+  * `RawLinkSequence_CanBeExcludedFromEachByConfiguration`.
+  * `RawLinkSequence_CanBeReturnedByEachRestriction`.
+  * `Delete_DeallocatesRawLinkSequenceThroughUniversalInterface`.
+  * `Each_SkipsFreeRangesAndIncludesConfiguredRawLinkSequences`.
   * `NoFragmentation_ChaosTest` — deterministic random allocations/deallocations.
 
 ## Step 6 — Documentation (`R11`)

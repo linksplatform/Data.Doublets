@@ -82,28 +82,28 @@ link.SizeAsSource == default && link.Source != default
 
 1. **Cell #0 is the header.** The reserved word `Reserved8` is _the_ obvious place to
    store an extra root pointer — for the free-range list — without breaking any code
-   that does not look at it. The header will be repurposed as
-   `LinksRangedHeader<TLinkAddress>` (a `LayoutKind.Explicit` struct with the same
-   fields plus a typed alias for `Reserved8`) so the binary representation stays
-   identical to `LinksHeader`. This means a database written by `UnitedMemoryLinks` can
-   be opened by `UnitedRangedMemoryLinks` and vice-versa, as long as no binary blobs
-   are present.
+   that does not look at it. The implementation keeps using `LinksHeader<TLinkAddress>`
+   directly and treats `Reserved8` as the free-range list head, so the binary
+   representation stays identical. This means a database written by
+   `UnitedMemoryLinks` can be opened by `UnitedRangedMemoryLinks` and vice-versa, as
+   long as no raw link sequences are present.
 
 2. **A free single cell remains a free single cell.** The original unused-links list is
    _preserved_; the new "free range" list only tracks runs of two or more contiguous
    free cells. When a range deallocation produces a run of length 1, it is pushed back
    onto the original unused-links list.
 
-3. **Source-or-Target equal to `RawMarker`** marks a binary blob. The marker value is
-   chosen so that:
+3. **`Source == RawLinkSequenceMarker`** marks the head of a raw link sequence. The
+   marker value is chosen so that:
    * it is outside `InternalReferencesRange` (so it cannot accidentally appear as a
      valid link reference);
-   * it is _stable_ across versions of `LinksConstants` — we anchor it to one position
-     above the existing `Error` constant inside the reserved tail of the references
-     range, which `LinksConstants` already keeps for housekeeping (`Continue`, `Break`,
+   * it is _stable_ across versions of `LinksConstants` — it reuses the existing
+     `Itself` housekeeping constant inside the reserved tail of the references range,
+     which `LinksConstants` already keeps for control values (`Continue`, `Break`,
      `Skip`, `Any`, `Itself`, `Error`).
 
 4. **Tree methods are unchanged.** The new class only intercepts `Create`, `Update`,
-   `Delete`, `Each` and `Count` to (a) skip cells that belong to a binary blob and
-   (b) ignore the free-range descriptor cells. All the tree methods receive the same
-   pointers as before and operate without modification.
+   `Delete`, `Each` and `Count` to (a) treat raw link sequences as ranged metadata and
+   optionally expose their head cells through `Each`/`Count`, and (b) ignore the
+   free-range descriptor cells. All the tree methods receive the same pointers as
+   before and operate without modification.

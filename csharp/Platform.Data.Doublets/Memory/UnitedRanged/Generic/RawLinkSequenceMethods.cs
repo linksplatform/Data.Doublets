@@ -9,26 +9,11 @@ using static System.Runtime.CompilerServices.Unsafe;
 namespace Platform.Data.Doublets.Memory.UnitedRanged.Generic
 {
     /// <summary>
-    /// <para>
-    /// Encodes and decodes raw binary blobs that live inside the link cell address
-    /// space. A blob spans one or more consecutive cells.
-    /// </para>
-    /// <para>
-    /// The first cell stores a small descriptor:
-    /// </para>
-    /// <list type="bullet">
-    /// <item><c>Source</c> = <c>RawMarker</c></item>
-    /// <item><c>Target</c> = blob length in bytes (must be a multiple of
-    /// <c>sizeof(TLinkAddress)</c>)</item>
-    /// </list>
-    /// <para>
-    /// The remaining six <c>TLinkAddress</c> words of the header cell carry the first
-    /// chunk of payload. Each subsequent cell stores eight more words of payload. There
-    /// are no continuation markers; iteration is driven by the head cell's
-    /// <c>Target</c>, and intermediate cell indices are not valid link handles.
-    /// </para>
+    /// Encodes and decodes raw link sequences that live inside the link cell address
+    /// space. A sequence can be used as an opaque byte payload, but its storage remains
+    /// a contiguous range of regular <see cref="RawLink{TLinkAddress}"/> cells.
     /// </summary>
-    public unsafe class RawBinaryMethods<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>
+    public unsafe class RawLinkSequenceMethods<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>
     {
         private const long HeaderWordsReserved = 2;
         private static readonly long WordSizeInBytes = System.Runtime.CompilerServices.Unsafe.SizeOf<TLinkAddress>();
@@ -37,97 +22,108 @@ namespace Platform.Data.Doublets.Memory.UnitedRanged.Generic
         private static readonly long PayloadBytesInContinuationCell = RawLink<TLinkAddress>.SizeInBytes;
 
         private readonly byte* _links;
-        private readonly TLinkAddress _rawMarker;
+        private readonly TLinkAddress _sequenceMarker;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public RawBinaryMethods(byte* links, TLinkAddress rawMarker)
+        public RawLinkSequenceMethods(byte* links, TLinkAddress sequenceMarker)
         {
             _links = links;
-            _rawMarker = rawMarker;
+            _sequenceMarker = sequenceMarker;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private ref RawLink<TLinkAddress> GetLinkReference(TLinkAddress address) => ref AsRef<RawLink<TLinkAddress>>(_links + CellSizeInBytes * long.CreateTruncating(address));
 
         /// <summary>
-        /// Number of cells required to hold a blob of <paramref name="byteLength"/>
-        /// bytes. <paramref name="byteLength"/> must be a non-negative multiple of
-        /// <see cref="WordSizeInBytes"/>.
+        /// Number of cells required to hold <paramref name="payloadLengthInBytes"/>
+        /// bytes. The length must be a non-negative multiple of
+        /// <c>sizeof(TLinkAddress)</c>.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static long ComputeCellsForBlob(long byteLength)
+        public static long ComputeCellsForPayload(long payloadLengthInBytes)
         {
-            if (byteLength < 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(byteLength));
-            }
-            if ((byteLength % WordSizeInBytes) != 0)
-            {
-                throw new ArgumentException("Blob length must be a multiple of sizeof(TLinkAddress).", nameof(byteLength));
-            }
-            if (byteLength <= PayloadBytesInHeaderCell)
+            ValidatePayloadLength(payloadLengthInBytes, nameof(payloadLengthInBytes));
+            if (payloadLengthInBytes <= PayloadBytesInHeaderCell)
             {
                 return 1;
             }
-            var overflow = byteLength - PayloadBytesInHeaderCell;
+            var overflow = payloadLengthInBytes - PayloadBytesInHeaderCell;
             return 1 + (overflow + PayloadBytesInContinuationCell - 1) / PayloadBytesInContinuationCell;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void ValidatePayloadLength(long payloadLengthInBytes, string argumentName)
+        {
+            if (payloadLengthInBytes < 0)
+            {
+                throw new ArgumentOutOfRangeException(argumentName);
+            }
+            if ((payloadLengthInBytes % WordSizeInBytes) != 0)
+            {
+                throw new ArgumentException("Raw link sequence length must be a multiple of sizeof(TLinkAddress).", argumentName);
+            }
         }
 
         /// <summary>
         /// Returns true if the cell at <paramref name="address"/> is the head of a raw
-        /// binary blob.
+        /// link sequence.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool IsRawBinary(TLinkAddress address)
+        public bool IsRawLinkSequence(TLinkAddress address)
         {
             if (address == default)
             {
                 return false;
             }
-            return GetLinkReference(address).Source == _rawMarker;
+            return GetLinkReference(address).Source == _sequenceMarker;
         }
 
         /// <summary>
-        /// Returns the blob's length in bytes (the value stored in the head cell's
-        /// <c>Target</c> field).
+        /// Returns the sequence's payload length in bytes.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public long GetLengthInBytes(TLinkAddress address) => long.CreateTruncating(GetLinkReference(address).Target);
 
         /// <summary>
-        /// Returns the number of cells the blob at <paramref name="address"/> occupies.
+        /// Returns the number of cells the sequence at <paramref name="address"/> occupies.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public long GetCellCount(TLinkAddress address) => ComputeCellsForBlob(GetLengthInBytes(address));
+        public long GetCellCount(TLinkAddress address) => ComputeCellsForPayload(GetLengthInBytes(address));
 
         /// <summary>
-        /// Writes the blob descriptor and payload into a previously-allocated range
-        /// starting at <paramref name="start"/>. The destination range must be large
-        /// enough to fit <c>ComputeCellsForBlob(payload.Length)</c> cells.
+        /// Writes only the marker and length descriptor into the sequence head.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void WriteDescriptor(TLinkAddress start, long payloadLengthInBytes)
+        {
+            ValidatePayloadLength(payloadLengthInBytes, nameof(payloadLengthInBytes));
+            ref var head = ref GetLinkReference(start);
+            head.Source = _sequenceMarker;
+            head.Target = TLinkAddress.CreateTruncating(payloadLengthInBytes);
+        }
+
+        /// <summary>
+        /// Writes the descriptor and payload into a previously allocated range starting
+        /// at <paramref name="start"/>.
         /// </summary>
         public void Write(TLinkAddress start, ReadOnlySpan<byte> payload)
         {
-            if ((payload.Length % WordSizeInBytes) != 0)
-            {
-                throw new ArgumentException("Blob length must be a multiple of sizeof(TLinkAddress).", nameof(payload));
-            }
+            ValidatePayloadLength(payload.Length, nameof(payload));
             ref var head = ref GetLinkReference(start);
-            head.Source = _rawMarker;
+            head.Source = _sequenceMarker;
             head.Target = TLinkAddress.CreateTruncating(payload.Length);
 
-            // Copy first chunk into the header cell, after the 2 reserved descriptor words.
             var headPtr = (byte*)AsPointer(ref head) + (HeaderWordsReserved * WordSizeInBytes);
             var firstChunk = (int)Math.Min(payload.Length, PayloadBytesInHeaderCell);
             if (firstChunk > 0)
             {
                 payload.Slice(0, firstChunk).CopyTo(new Span<byte>(headPtr, firstChunk));
             }
-            // Zero the unused tail of the header cell's payload area.
             if (firstChunk < PayloadBytesInHeaderCell)
             {
                 new Span<byte>(headPtr + firstChunk, (int)(PayloadBytesInHeaderCell - firstChunk)).Clear();
             }
-            // Copy remaining chunks into continuation cells.
+
             var remaining = payload.Length - firstChunk;
             var offset = firstChunk;
             var continuationIndex = long.CreateTruncating(start) + 1;
@@ -147,9 +143,8 @@ namespace Platform.Data.Doublets.Memory.UnitedRanged.Generic
         }
 
         /// <summary>
-        /// Reads the payload of the blob at <paramref name="start"/> into
-        /// <paramref name="destination"/>. <paramref name="destination"/> must be at
-        /// least as long as the blob.
+        /// Reads the payload of the sequence at <paramref name="start"/> into
+        /// <paramref name="destination"/>.
         /// </summary>
         public void Read(TLinkAddress start, Span<byte> destination)
         {
@@ -177,18 +172,6 @@ namespace Platform.Data.Doublets.Memory.UnitedRanged.Generic
                 remaining -= chunk;
                 continuationIndex++;
             }
-        }
-
-        /// <summary>
-        /// Zeroes the entire blob range so that it looks like a fresh, uninitialised
-        /// span of cells ready to be returned to the allocator.
-        /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Clear(TLinkAddress start)
-        {
-            var cells = GetCellCount(start);
-            var dst = _links + CellSizeInBytes * long.CreateTruncating(start);
-            new Span<byte>(dst, checked((int)(cells * CellSizeInBytes))).Clear();
         }
     }
 }

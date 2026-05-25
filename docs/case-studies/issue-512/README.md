@@ -1,4 +1,4 @@
-# Case Study: Issue #512 — `UnitedRangedMemoryLinks` with Ranges for Binary Data
+# Case Study: Issue #512 — `UnitedRangedMemoryLinks` with Link Ranges
 
 > Source issue: <https://github.com/linksplatform/Data.Doublets/issues/512>
 >
@@ -9,7 +9,7 @@
 This directory collects the analysis, design exploration and implementation plan for the new `UnitedRangedMemoryLinks` doublets storage variant. The goal is twofold:
 
 1. Provide an _evolution_ of `UnitedMemoryLinks` that allocates and reclaims **contiguous ranges of links** instead of single links, while preserving the no-fragmentation, uniform-cell invariant that makes united storage so attractive.
-2. Allow **raw binary blobs** to live inside the same address space as ordinary doublets, by reusing the underlying link cell as a payload cell, gated by a dedicated marker stored in `LinksConstants`.
+2. Allow **raw link sequences** to live inside the same address space as ordinary doublets, by reusing the underlying link cells as payload cells. Those sequences can store raw data blobs, binary files, or any other byte payload whose length is aligned to `TLinkAddress`.
 
 The files in this directory are:
 
@@ -27,7 +27,8 @@ The files in this directory are:
 Each cell of the storage still occupies one `RawLink<TLinkAddress>` slot (8 × `TLinkAddress`), so the file format remains uniform and free of internal fragmentation. The improvements are:
 
 * A **range allocator** that tracks free regions as a sorted-by-address, length-keyed doubly-linked list of `RawLink` cells (the same cells reused as range descriptors). Adjacent free regions are eagerly coalesced on deallocation, so the only way fragmentation can grow is when an allocation is _larger than every free region_, in which case the storage is simply extended at the tail.
-* A new **`RawMarker`** constant in `LinksConstants` — used as the `Source` field of the first cell of a binary blob — that designates the cell sequence as a binary payload rather than a doublet. The second field (`Target`) records the length of the blob in `TLinkAddress` units, from which the number of consumed link cells is derived.
-* A new **`UnitedRangedMemoryLinks<TLinkAddress>`** class drop-in compatible with `ILinks<TLinkAddress>` (so the existing tests pass with it as a substitute for `UnitedMemoryLinks`) plus two new public operations: `AllocateRange(length)` / `DeallocateRange(start)` and `AllocateRawBinary(byteLength)` / `WriteRawBinary` / `ReadRawBinary`.
+* A new **`RawLinkSequenceMarker`** constant in `UnitedRangedLinksConstants` — used as the `Source` field of the first cell of a raw link sequence. The second field (`Target`) records the payload length in bytes, from which the number of consumed link cells is derived.
+* A new **`UnitedRangedMemoryLinks<TLinkAddress>`** class drop-in compatible with `ILinks<TLinkAddress>` (so the existing tests pass with it as a substitute for `UnitedMemoryLinks`) with range allocation in the implementation and raw-link-sequence convenience operations in extensions.
+* `Each` and `Count` include raw link sequence heads by default, while continuation cells and free ranges stay hidden. The `IncludeRawLinkSequences` configuration can exclude sequence heads when a caller wants ordinary doublets only.
 
 For the full rationale, see [`design.md`](./design.md).

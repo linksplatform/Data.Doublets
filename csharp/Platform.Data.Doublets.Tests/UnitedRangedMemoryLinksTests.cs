@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Xunit;
 using Platform.Memory;
 using Platform.Data.Doublets.Memory.United.Generic;
+using Platform.Data.Doublets.Memory.UnitedRanged;
 using Platform.Data.Doublets.Memory.UnitedRanged.Generic;
 
 namespace Platform.Data.Doublets.Tests
@@ -101,6 +102,26 @@ namespace Platform.Data.Doublets.Tests
             links.DeallocateRange(a, 4UL);
         }
 
+        [Fact]
+        public static void AllocateRange_OneCellRemainderFeedsSingleCellFreeList()
+        {
+            using var memory = new HeapResizableDirectMemory(UnitedMemoryLinks<ulong>.DefaultLinksSizeStep);
+            using var links = new UnitedRangedMemoryLinks<ulong>(memory, UnitedMemoryLinks<ulong>.DefaultLinksSizeStep);
+            var range = links.AllocateRange(4UL); // 1..4
+            var tail = links.AllocateRange(2UL);  // 5..6, keeps the free range away from tail trimming.
+
+            links.DeallocateRange(range, 4UL);
+            var reused = links.AllocateRange(3UL);
+            var singleCell = links.Create();
+
+            Assert.Equal(range, reused);
+            Assert.Equal(range + 3UL, singleCell);
+
+            links.Delete(singleCell);
+            links.DeallocateRange(reused, 3UL);
+            links.DeallocateRange(tail, 2UL);
+        }
+
         // -----------------------------------------------------------------
         // R7, R8 — coalescing and no-fragmentation
         // -----------------------------------------------------------------
@@ -149,11 +170,11 @@ namespace Platform.Data.Doublets.Tests
         }
 
         // -----------------------------------------------------------------
-        // R5, R6, R9 — raw binary blobs
+        // R5, R6, R9 — raw link sequences
         // -----------------------------------------------------------------
 
         [Fact]
-        public static void RawBinary_Roundtrip_SingleCell()
+        public static void RawLinkSequence_Roundtrip_SingleCell()
         {
             using var memory = new HeapResizableDirectMemory(UnitedMemoryLinks<ulong>.DefaultLinksSizeStep);
             using var links = new UnitedRangedMemoryLinks<ulong>(memory, UnitedMemoryLinks<ulong>.DefaultLinksSizeStep);
@@ -163,19 +184,19 @@ namespace Platform.Data.Doublets.Tests
             {
                 payload[i] = (byte)(i + 1);
             }
-            var blob = links.AllocateRawBinary(payload.Length);
-            links.WriteRawBinary(blob, payload);
-            Assert.True(links.IsRawBinary(blob));
-            Assert.Equal(48L, links.GetRawBinaryLengthInBytes(blob));
+            var sequence = links.AllocateRawLinkSequence(payload.Length);
+            links.WriteRawLinkSequence(sequence, payload);
+            Assert.True(links.IsRawLinkSequence(sequence));
+            Assert.Equal(48L, links.GetRawLinkSequenceLengthInBytes(sequence));
             var read = new byte[payload.Length];
-            links.ReadRawBinary(blob, read);
+            links.ReadRawLinkSequence(sequence, read);
             Assert.Equal(payload, read);
-            links.DeallocateRawBinary(blob);
-            Assert.False(links.IsRawBinary(blob));
+            links.DeallocateRawLinkSequence(sequence);
+            Assert.False(links.IsRawLinkSequence(sequence));
         }
 
         [Fact]
-        public static void RawBinary_Roundtrip_MultiCell()
+        public static void RawLinkSequence_Roundtrip_MultiCell()
         {
             using var memory = new HeapResizableDirectMemory(UnitedMemoryLinks<ulong>.DefaultLinksSizeStep);
             using var links = new UnitedRangedMemoryLinks<ulong>(memory, UnitedMemoryLinks<ulong>.DefaultLinksSizeStep);
@@ -185,50 +206,150 @@ namespace Platform.Data.Doublets.Tests
             {
                 payload[i] = (byte)((i * 7 + 3) & 0xFF);
             }
-            var blob = links.AllocateRawBinary(payload.Length);
-            links.WriteRawBinary(blob, payload);
-            Assert.True(links.IsRawBinary(blob));
-            Assert.Equal((long)payload.Length, links.GetRawBinaryLengthInBytes(blob));
+            var sequence = links.AllocateRawLinkSequence(payload.Length);
+            links.WriteRawLinkSequence(sequence, payload);
+            Assert.True(links.IsRawLinkSequence(sequence));
+            Assert.Equal((long)payload.Length, links.GetRawLinkSequenceLengthInBytes(sequence));
             var read = new byte[payload.Length];
-            links.ReadRawBinary(blob, read);
+            links.ReadRawLinkSequence(sequence, read);
             Assert.Equal(payload, read);
-            links.DeallocateRawBinary(blob);
+            links.DeallocateRawLinkSequence(sequence);
         }
 
         [Fact]
-        public static void RawBinary_DoesNotAppearInEach()
+        public static void RawLinkSequence_ZeroLength_RoundtripAndUsesOneCell()
+        {
+            using var memory = new HeapResizableDirectMemory(UnitedMemoryLinks<ulong>.DefaultLinksSizeStep);
+            using var links = new UnitedRangedMemoryLinks<ulong>(memory, UnitedMemoryLinks<ulong>.DefaultLinksSizeStep);
+
+            var sequence = links.AllocateRawLinkSequence(0);
+
+            Assert.True(links.IsRawLinkSequence(sequence));
+            Assert.Equal(0L, links.GetRawLinkSequenceLengthInBytes(sequence));
+            links.ReadRawLinkSequence(sequence, Array.Empty<byte>());
+            links.DeallocateRawLinkSequence(sequence);
+            var reused = links.AllocateRange(1UL);
+            Assert.Equal(sequence, reused);
+            links.DeallocateRange(reused, 1UL);
+        }
+
+        [Fact]
+        public static void RawLinkSequence_LengthMustBeWordAligned()
+        {
+            using var memory = new HeapResizableDirectMemory(UnitedMemoryLinks<ulong>.DefaultLinksSizeStep);
+            using var links = new UnitedRangedMemoryLinks<ulong>(memory, UnitedMemoryLinks<ulong>.DefaultLinksSizeStep);
+
+            Assert.Throws<ArgumentException>(() => links.AllocateRawLinkSequence(1));
+
+            var sequence = links.AllocateRawLinkSequence(8);
+            Assert.Throws<ArgumentException>(() => links.WriteRawLinkSequence(sequence, new byte[1]));
+            links.DeallocateRawLinkSequence(sequence);
+        }
+
+        [Fact]
+        public static void RawLinkSequence_AppearsInEachByDefault()
         {
             using var memory = new HeapResizableDirectMemory(UnitedMemoryLinks<ulong>.DefaultLinksSizeStep);
             using var links = new UnitedRangedMemoryLinks<ulong>(memory, UnitedMemoryLinks<ulong>.DefaultLinksSizeStep);
             var a = links.Create();
-            var blob = links.AllocateRawBinary(48);
+            var sequence = links.AllocateRawLinkSequence(48);
             var b = links.Create();
-            Assert.True(links.IsRawBinary(blob));
+            Assert.True(links.IsRawLinkSequence(sequence));
             var seen = new List<ulong>();
             links.Each(link =>
             {
                 seen.Add(links.GetIndex(link));
                 return links.Constants.Continue;
             });
-            // The blob head is in the allocated range but must not appear in Each().
-            Assert.DoesNotContain(blob, seen);
+            Assert.Contains(sequence, seen);
             Assert.Contains(a, seen);
             Assert.Contains(b, seen);
-            Assert.Equal(2, seen.Count);
+            Assert.Equal(3, seen.Count);
+            Assert.Equal(3UL, links.Count());
+            Assert.Equal(1UL, links.Count(new[] { sequence }));
+            Assert.Equal(3UL, links.Count(new Link<ulong>(links.Constants.Any, links.Constants.Any, links.Constants.Any)));
             // Cleanup.
-            links.DeallocateRawBinary(blob);
+            links.DeallocateRawLinkSequence(sequence);
             links.Delete(a);
             links.Delete(b);
         }
 
         [Fact]
-        public static void Each_SkipsFreeRangesAndBlobs()
+        public static void RawLinkSequence_CanBeExcludedFromEachByConfiguration()
+        {
+            using var memory = new HeapResizableDirectMemory(UnitedMemoryLinks<ulong>.DefaultLinksSizeStep);
+            using var links = new UnitedRangedMemoryLinks<ulong>(memory, UnitedMemoryLinks<ulong>.DefaultLinksSizeStep, includeRawLinkSequences: false);
+            var a = links.Create();
+            var sequence = links.AllocateRawLinkSequence(48);
+            var b = links.Create();
+            var seen = new List<ulong>();
+
+            links.Each(link =>
+            {
+                seen.Add(links.GetIndex(link));
+                return links.Constants.Continue;
+            });
+
+            Assert.DoesNotContain(sequence, seen);
+            Assert.Contains(a, seen);
+            Assert.Contains(b, seen);
+            Assert.Equal(2, seen.Count);
+            Assert.Equal(2UL, links.Count());
+            Assert.Equal(0UL, links.Count(new[] { sequence }));
+
+            links.DeallocateRawLinkSequence(sequence);
+            links.Delete(a);
+            links.Delete(b);
+        }
+
+        [Fact]
+        public static void RawLinkSequence_CanBeReturnedByEachRestriction()
+        {
+            using var memory = new HeapResizableDirectMemory(UnitedMemoryLinks<ulong>.DefaultLinksSizeStep);
+            using var links = new UnitedRangedMemoryLinks<ulong>(memory, UnitedMemoryLinks<ulong>.DefaultLinksSizeStep);
+            var constants = (UnitedRangedLinksConstants<ulong>)links.Constants;
+            var sequence = links.AllocateRawLinkSequence(48);
+            IList<ulong>? found = null;
+
+            links.Each(new Link<ulong>(links.Constants.Any, constants.RawLinkSequenceMarker, links.Constants.Any), link =>
+            {
+                found = link;
+                return links.Constants.Break;
+            });
+
+            Assert.NotNull(found);
+            Assert.True(links.IsRawLinkSequence(found));
+            Assert.Equal(sequence, links.GetIndex(found));
+            Assert.Equal(constants.RawLinkSequenceMarker, links.GetSource(found));
+            Assert.Equal(48UL, links.GetTarget(found));
+            Assert.Equal(1UL, links.Count(new Link<ulong>(links.Constants.Any, constants.RawLinkSequenceMarker, links.Constants.Any)));
+            Assert.Equal(1UL, links.Count(new[] { links.Constants.Any, constants.RawLinkSequenceMarker }));
+
+            links.DeallocateRawLinkSequence(sequence);
+        }
+
+        [Fact]
+        public static void Delete_DeallocatesRawLinkSequenceThroughUniversalInterface()
+        {
+            using var memory = new HeapResizableDirectMemory(UnitedMemoryLinks<ulong>.DefaultLinksSizeStep);
+            using var links = new UnitedRangedMemoryLinks<ulong>(memory, UnitedMemoryLinks<ulong>.DefaultLinksSizeStep);
+            var sequence = links.AllocateRawLinkSequence(432);
+
+            links.Delete(sequence);
+            var reused = links.AllocateRange(7UL);
+
+            Assert.Equal(sequence, reused);
+            links.DeallocateRange(reused, 7UL);
+        }
+
+        [Fact]
+        public static void Each_SkipsFreeRangesAndIncludesConfiguredRawLinkSequences()
         {
             using var memory = new HeapResizableDirectMemory(UnitedMemoryLinks<ulong>.DefaultLinksSizeStep);
             using var links = new UnitedRangedMemoryLinks<ulong>(memory, UnitedMemoryLinks<ulong>.DefaultLinksSizeStep);
             var a = links.Create();
             var range = links.AllocateRange(4UL);
-            var blob = links.AllocateRawBinary(48);
+            var sequence = links.AllocateRawLinkSequence(48);
             var b = links.Create();
             // The mid-allocated range must not be visible to Each — register it as a free range.
             links.DeallocateRange(range, 4UL);
@@ -238,10 +359,11 @@ namespace Platform.Data.Doublets.Tests
                 ids.Add(links.GetIndex(link));
                 return links.Constants.Continue;
             });
-            Assert.Equal(new[] { a, b }, ids);
-            Assert.Equal(2UL, links.Count());
+            Assert.Equal(new[] { a, sequence, b }, ids);
+            Assert.Equal(3UL, links.Count());
+            Assert.Equal(0UL, links.Count(new[] { range }));
             // Cleanup.
-            links.DeallocateRawBinary(blob);
+            links.DeallocateRawLinkSequence(sequence);
             links.Delete(a);
             links.Delete(b);
         }
