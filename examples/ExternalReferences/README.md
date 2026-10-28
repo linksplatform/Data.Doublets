@@ -1,3 +1,7 @@
+---
+title: Finding a link with an external target
+---
+
 Run the reproduction for [issue #522](https://github.com/linksplatform/Data.Doublets/issues/522)
 against the library in this checkout:
 
