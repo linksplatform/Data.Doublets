@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -60,6 +61,8 @@ namespace Platform.Data.Doublets.Tests
                 case "SearchOrDefault":
                     Assert.Equal(link, links.SearchOrDefault(source, target));
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(operation), operation, "Unknown query operation.");
             }
         }
 

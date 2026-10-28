@@ -1,5 +1,3 @@
-# Finding a link with an external target
-
 Run the reproduction for [issue #522](https://github.com/linksplatform/Data.Doublets/issues/522)
 against the library in this checkout:
 
@@ -15,8 +13,10 @@ It creates point 1, then link 2 with source 1 and external target
 Both stores must print:
 
 ```text
-united: created 2 = (1, 18446744073709551596); Each -> [2], Count -> 1, SearchOrDefault -> 2
-split: created 2 = (1, 18446744073709551596); Each -> [2], Count -> 1, SearchOrDefault -> 2
+united: created 2 = (1, 18446744073709551596)
+  Each -> [2], Count -> 1, SearchOrDefault -> 2
+split: created 2 = (1, 18446744073709551596)
+  Each -> [2], Count -> 1, SearchOrDefault -> 2
 ```
 
 Before the fix, split printed `Each -> [], Count -> 0, SearchOrDefault -> 0`,
