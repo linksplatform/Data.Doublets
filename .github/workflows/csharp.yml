@@ -5,6 +5,13 @@ on:
     branches: main 
     paths:
       - 'csharp/**'
+      - 'examples/ExternalReferences/**'
+      - '.github/workflows/csharp.yml'
+  pull_request:
+    branches: main
+    paths:
+      - 'csharp/**'
+      - 'examples/ExternalReferences/**'
       - '.github/workflows/csharp.yml'
 env:
   NUGETTOKEN: ${{ secrets.NUGET_TOKEN }}
@@ -18,14 +25,20 @@ defaults:
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
         with:
-          submodules: true
+          dotnet-version: '8.0.x'
       - name: Test
         run: |
-          dotnet test -c Release -f net8
+          dotnet test -c Release -f net8 --blame-hang-timeout 3m
+      - name: Run external references example
+        run: dotnet run --project ../examples/ExternalReferences -c Release
   pushNuGetPackageToGitHubPackageRegistry:
+    if: github.event_name == 'push'
     needs: test 
     runs-on: ubuntu-latest 
     steps: 
@@ -33,7 +46,7 @@ jobs:
         with: 
           submodules: true 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x' # Specify your required .NET version
       - name: Restore dependencies
@@ -60,10 +73,11 @@ jobs:
         env:
           NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   pusnToNuget:
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     needs: test
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v4
       with:
         submodules: true
     - name: Read project information
@@ -77,10 +91,11 @@ jobs:
         wget "$SCRIPTS_BASE_URL/push-csharp-nuget.sh"
         bash ./push-csharp-nuget.sh
   publiseRelease:
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     needs: test
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
         with:
           submodules: true
       - name: Read project information
@@ -97,12 +112,13 @@ jobs:
           wget "$SCRIPTS_BASE_URL/publish-csharp-release.sh"
           bash ./publish-csharp-release.sh
   findChangedCsFiles:
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     needs: test
     outputs:
       isCsFilesChanged: ${{ steps.setIsCsFilesChangedOutput.outputs.isCsFilesChanged }}
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
        fetch-depth: 0
     - name: Get changed files using defaults
@@ -120,14 +136,14 @@ jobs:
             isCsFilesChanged='true'
           fi
         done
-        echo "::set-output name=isCsFilesChanged::${isCsFilesChanged}"
+        echo "isCsFilesChanged=${isCsFilesChanged}" >> "$GITHUB_OUTPUT"
         echo "isCsFilesChanged: ${isCsFilesChanged}"
   generatePdfWithCode:
     runs-on: ubuntu-latest
     needs: [findChangedCsFiles]
     if: ${{ needs.findChangedCsFiles.outputs.isCsFilesChanged == 'true' }}
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v4
       with:
         submodules: true
     - name: Generate PDF with code
@@ -142,7 +158,7 @@ jobs:
     needs: [findChangedCsFiles]
     if: ${{ needs.findChangedCsFiles.outputs.isCsFilesChanged == 'true' }}
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v4
       with:
         submodules: true
     - name: Publish documentation to gh-pages branch

@@ -341,7 +341,8 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
                     {
                         if (_useLinkedList)
                         {
-                            link = ExternalSourcesTreeMethods.Search(source: source, target: target);
+                            // The internal source has a list; the external target has a searchable tree.
+                            link = ExternalTargetsTreeMethods.Search(source: source, target: target);
                         }
                         else
                         {
@@ -538,7 +539,8 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
                     {
                         if (_useLinkedList)
                         {
-                            link = ExternalSourcesTreeMethods.Search(source: source, target: target);
+                            // The internal source has a list; the external target has a searchable tree.
+                            link = ExternalTargetsTreeMethods.Search(source: source, target: target);
                         }
                         else
                         {
