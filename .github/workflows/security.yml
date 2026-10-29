@@ -24,7 +24,7 @@ jobs:
         language: [csharp, c-cpp, actions]
         include:
           - language: csharp
-            build-mode: none
+            build-mode: manual
           - language: c-cpp
             build-mode: manual
           - language: actions
@@ -41,6 +41,13 @@ jobs:
           languages: ${{ matrix.language }}
           build-mode: ${{ matrix.build-mode }}
           queries: security-extended,security-and-quality
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
+        if: matrix.language == 'csharp'
+        with:
+          global-json-file: global.json
+      - name: Trace every C# project with its actual references and entry point
+        if: matrix.language == 'csharp'
+        run: bash scripts/build-codeql-csharp.sh
       - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
         if: matrix.language == 'c-cpp'
         with:
