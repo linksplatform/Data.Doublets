@@ -158,13 +158,18 @@ called an ownership failure. Real publication enforces original package/owner
 permissions. HTTP error bodies are retained with bounded reads and sanitized,
 flattened diagnostics; credentials, raw headers and exception argv stay out of logs.</p>
 <p>The <code>publish</code> job downloads tested artifacts, obtains a fresh key and checks
-GitHub write permission before preparing/committing release metadata. C# uses that
-login; C++ logs in again immediately before publication, even when C# fails and
-C++ can independently repair its publication. Missing configuration also permits
-fallback here. Metadata failure prevents either package push. NuGet temporary
-keys last one hour and the publishing job is bounded to 40 minutes. Never move
-keys into artifacts, persistent secrets or cross-job outputs. Shell tracing around
-credentials remains forbidden.</p>
+GitHub repository access before preparing/committing release metadata. The
+read-only repository API's user-role <code>permissions.push</code> field cannot prove an
+Actions installation token's endpoint permissions. Write permission remains
+explicitly unverified until the actual metadata, mirror and release operations
+succeed; none may ignore failures. HTTP failures preserve bounded sanitized
+diagnostics. The job still requires <code>contents: write</code> and <code>packages: write</code>.
+C# uses that login; C++ logs in again immediately before publication, even when
+C# fails and C++ can independently repair its publication. Missing configuration
+also permits fallback here. Metadata failure prevents either package push.
+NuGet temporary keys last one hour and the publishing job is bounded to 40
+minutes. Never move keys into artifacts, persistent secrets or cross-job
+outputs. Shell tracing around credentials remains forbidden.</p>
 <p>A real NuGet push rejection with HTTP <strong>401/403</strong> can retry <strong>once</strong> with the
 provided token. First inspect the anonymous exact-version download: an already
 public version is reported, a 404 permits retry of the same artifact, and an
@@ -212,6 +217,7 @@ Existing publication regressions cover bounded indexing and release repair.</p>
 <li><a href="https://github.com/NuGet/login/blob/8d196754b4036150537f80ac539e15c2f1028841/src/index.ts">Reviewed NuGet/login v1.2.0 source</a></li>
 <li><a href="https://github.com/NuGet/NuGetGallery/blob/c25bab040e19d24593fc0c298a0cedb51bf57dcb/src/NuGetGallery/Controllers/ApiController.cs#L352">NuGet direct verification and scope evaluation</a></li>
 <li><a href="https://github.com/NuGet/NuGetGallery/blob/c25bab040e19d24593fc0c298a0cedb51bf57dcb/src/NuGetGallery.Services/Authentication/CredentialBuilder.cs#L79">Derived verification-key scope construction</a></li>
+<li><a href="https://docs.github.com/en/rest/repos/repos#get-a-repository">GitHub repository read API and its token requirements</a></li>
 </ul>
 
 </article>
