@@ -26,7 +26,7 @@ class TrustedPreflightTests(unittest.TestCase):
     def test_missing_username_never_uses_a_stored_key(self):
         with patch.object(release, 'request') as request:
             with self.assertRaisesRegex(RuntimeError, 'preflight'):
-                self.preflight({'NUGET_TOKEN': 'legacy-secret'})
+                self.preflight({'NUGET_TOKEN': 'legacy-secret'})  # nosec B105 - Mocked credential, never sent to NuGet.
             request.assert_not_called()
 
     def test_username_alone_does_not_prove_oidc_exchange(self):
@@ -49,14 +49,14 @@ class TrustedPreflightTests(unittest.TestCase):
 
     def test_report_with_credentials_does_not_claim_verified_authentication(self):
         with patch.object(release, 'request') as request:
-            output = self.preflight({'NUGET_USER': 'profile-name', 'NUGET_TOKEN': 'private'}, mode='report')
+            output = self.preflight({'NUGET_USER': 'profile-name', 'NUGET_TOKEN': 'private'}, mode='report')  # nosec B105 - Mocked credential.
             request.assert_not_called()
         self.assertIn('unverified in report mode', output)
         self.assertNotIn('exchange succeeded', output)
 
     def test_exchange_failure_command_names_policy_repairs_without_a_key(self):
-        import subprocess
-        result = subprocess.run([sys.executable, str(ROOT / 'scripts/release.py'), 'auth-error'], capture_output=True, text=True, check=False)
+        import subprocess  # nosec B404 - Exercise the repository's CLI error contract.
+        result = subprocess.run([sys.executable, str(ROOT / 'scripts/release.py'), 'auth-error'], capture_output=True, text=True, check=False)  # nosec B603 - Fixed arguments to the local repository script.
         self.assertNotEqual(result.returncode, 0)
         for guidance in ('username', 'workflow/environment', 'inactive policy', 'ownership/scope', 'ci.yml'):
             self.assertIn(guidance, result.stderr)
@@ -85,7 +85,7 @@ class TrustedPreflightTests(unittest.TestCase):
 
     def test_existing_package_checks_both_scopes_after_exchange(self):
         with patch.object(release, 'verify_nuget', return_value=None) as verify:
-            output = self.preflight({'NUGET_USER': 'profile-name', 'NUGET_TOKEN': 'temporary-private'})
+            output = self.preflight({'NUGET_USER': 'profile-name', 'NUGET_TOKEN': 'temporary-private'})  # nosec B105 - Mocked credential.
         self.assertEqual({call.args[1]['id'] for call in verify.call_args_list}, {'Platform.Data.Doublets', 'Platform.Data.Doublets.TemplateLibrary'})
         self.assertIn('exchange succeeded', output)
         self.assertNotIn('temporary-private', output)

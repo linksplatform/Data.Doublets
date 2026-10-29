@@ -1,3 +1,14 @@
+<!-- markdownlint-configure-file
+{
+  "MD043": {
+    "headings": [
+      "# NuGet trusted publishing",
+      "*"
+    ]
+  }
+}
+-->
+
 # NuGet trusted publishing
 
 Both `Platform.Data.Doublets` (C#) and

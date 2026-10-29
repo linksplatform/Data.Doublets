@@ -1,3 +1,17 @@
+<!-- markdownlint-configure-file
+{
+  "MD043": {
+    "headings": [
+      "# Issue 535 work plan",
+      "*"
+    ]
+  },
+  "MD013": {
+    "tables": false
+  }
+}
+-->
+
 # Issue 535 work plan
 
 Objective: implement and verify all Data.Doublets trusted-publishing requirements
@@ -77,3 +91,10 @@ in PR 536; leave external acceptance criteria explicitly unfinished until verifi
   runner. Native formatting passed. Logs remain in local ignored `ci-logs/`.
 - No formal child issues are registered under #535 (`sub_issues` API returns []).
   All three linked upstream issue bodies and their comments were read.
+- Current-SHA CI logs and Codacy API responses are saved in `ci-logs/`.
+  Codacy on `30f0228` reported 22 new findings: dummy test credentials,
+  subprocess calls, and Markdown headings/table width. These now follow the
+  repository's scoped Bandit annotations and per-file Markdown configuration.
+  Its potential complexity finding in `release.py:89` is addressed by extracting
+  NuGet/GitHub verification helpers. All 64 pipeline regressions pass after the
+  refactor; no new Bandit findings remain locally, and Markdown checks pass.

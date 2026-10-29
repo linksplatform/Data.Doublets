@@ -86,7 +86,24 @@ def verify_nuget(key, package):
     return None
 
 
-def preflight(mode, languages, credentials_only=False):
+def verify_github(mode):
+    github_token = os.environ.get("GH_TOKEN", "")
+    if not github_token:
+        return "GH_TOKEN is missing; release jobs need contents: write and packages: write."
+    if mode != "release":
+        return None
+    repository = os.environ.get("GITHUB_REPOSITORY", "linksplatform/Data.Doublets")
+    status, body = request(f"https://api.github.com/repos/{repository}", headers={"Authorization": f"Bearer {github_token}", "Accept": "application/vnd.github+json"})
+    try:
+        can_push = status == 200 and json.loads(body).get("permissions", {}).get("push")
+    except (ValueError, TypeError, AttributeError):
+        can_push = False
+    if not can_push:
+        return "Workflow token cannot write releases; grant contents: write and packages: write on the release job."
+    return None
+
+
+def verify_nuget_auth(mode, languages):
     errors = []
     try:
         check_auth_config()
@@ -101,20 +118,15 @@ def preflight(mode, languages, credentials_only=False):
             error = verify_nuget(token, info(language))
             if error:
                 errors.append(error)
-    github_token = os.environ.get("GH_TOKEN", "")
-    if credentials_only:
-        github_token = "preflight-read-only"
-    if not github_token:
-        errors.append("GH_TOKEN is missing; release jobs need contents: write and packages: write.")
-    elif mode == "release" and not credentials_only:
-        repository = os.environ.get("GITHUB_REPOSITORY", "linksplatform/Data.Doublets")
-        status, body = request(f"https://api.github.com/repos/{repository}", headers={"Authorization": f"Bearer {github_token}", "Accept": "application/vnd.github+json"})
-        try:
-            can_push = status == 200 and json.loads(body).get("permissions", {}).get("push")
-        except (ValueError, TypeError, AttributeError):
-            can_push = False
-        if not can_push:
-            errors.append("Workflow token cannot write releases; grant contents: write and packages: write on the release job.")
+    return errors
+
+
+def preflight(mode, languages, credentials_only=False):
+    errors = verify_nuget_auth(mode, languages)
+    if not credentials_only:
+        error = verify_github(mode)
+        if error:
+            errors.append(error)
     for error in errors:
         print(f"::{'error' if mode == 'release' else 'notice'}::{error}")
     if errors and mode == "release":
