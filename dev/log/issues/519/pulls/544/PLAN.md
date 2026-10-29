@@ -1,3 +1,11 @@
+<!-- markdownlint-configure-file
+{
+  "MD043": {
+    "headings": ["# Issue 519 work plan", "*"]
+  }
+}
+-->
+
 # Issue 519 work plan
 
 Objective: implement and verify all issue 519 requirements in PR 544 on
@@ -24,10 +32,10 @@ Objective: implement and verify all issue 519 requirements in PR 544 on
 Finalization gates after the evidence commit (record their outcomes against the
 final head in the live PR description):
 
-- [ ] Push only the prepared branch. Merge current main if necessary.
-- [ ] Update PR title/description with reproduction, tests, Rust audit evidence,
+- [x] Push only the prepared branch. Merge current main if necessary.
+- [x] Update PR title/description with reproduction, tests, Rust audit evidence,
   requirement mapping and a positive `Fixes #519` closing reference.
-- [ ] Review the complete PR diff and ensure no unrelated feature was removed.
+- [x] Review the complete PR diff and ensure no unrelated feature was removed.
 - [ ] Verify fresh CI runs against the final commit and timestamps. Download any
   nonpassing run logs to ci-logs/, read errors with line numbers, fix and recheck.
 - [ ] Refresh issue/PR comments and reviews, verify clean git status and mark

@@ -1,4 +1,15 @@
-While auditing parity for https://github.com/linksplatform/Data.Doublets/issues/519,
+<!-- markdownlint-configure-file
+{
+  "MD043": {
+    "headings": ["# Rust logging decorator loses callback Break", "*"]
+  }
+}
+-->
+
+# Rust logging decorator loses callback Break
+
+While auditing parity for
+[Data.Doublets issue 519](https://github.com/linksplatform/Data.Doublets/issues/519),
 I reproduced a related callback-control issue on current doublets-rs main
 `645dd2b8e5c9bff1e38335da42e3c008b5d2769e` (doublets 0.15.0, stable rustc 1.99.0).
 
@@ -39,7 +50,7 @@ primitive return value. Keeping logging of completed mutations need not discard
 callback control returned to the caller.
 
 A bounded, pinned standalone reproduction and four-stack positive audit are
-retained in https://github.com/linksplatform/Data.Doublets/pull/544 under
+retained in [PR 544](https://github.com/linksplatform/Data.Doublets/pull/544) under
 `experiments/issue-519`. Run `cargo run --manifest-path
 experiments/issue-519/Cargo.toml -j 1 -- --logging-break` to reproduce the assertion
 failure; the default invocation verifies the original address/control scenarios.

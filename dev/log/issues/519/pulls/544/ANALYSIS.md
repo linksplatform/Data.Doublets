@@ -1,3 +1,11 @@
+<!-- markdownlint-configure-file
+{
+  "MD043": {
+    "headings": ["# Issue 519 implementation and requirement inventory", "*"]
+  }
+}
+-->
+
 # Issue 519 implementation and requirement inventory
 
 Scope: [issue 519](https://github.com/linksplatform/Data.Doublets/issues/519), its
@@ -6,16 +14,34 @@ single comment requesting a Rust audit/report, and
 No required sub-issues were listed. Conversation comments, inline review comments
 and submitted reviews were empty at the initial and implementation reviews.
 
-| Requirement | Implementation | Verification |
-| --- | --- | --- |
-| CreateAndUpdate returns the existing live address on decorated stores | LinksUniquenessResolver reports the survivor after reset/deletion notifications | CreationReturnsLiveAddresses: united/split, raw/unique/automatic, byte/ushort/uint/ulong |
-| UpdateOrCreateOrGet missing-pair fallback returns the surviving address | Same resolver notification reaches the common setter | CreationReturnsLiveAddresses exercises the exact two-point reproduction |
-| Preserve ordinary store behavior | Raw stores still create duplicate pairs at addresses 3 and 4; no mandatory existence policy is added | Raw cases plus all existing update/deletion contract tests |
-| Keep handler Break state through update | CreateAndUpdate routes the update callback through HandleNullable so callback state is recorded even if a primitive/decorator returns Continue | BreakSuppressesLaterCallbacksButCompletesCreation and ContinueAfterUpdate spy |
-| Cover all helper branches | Unchanged UpdateOrCreateOrGet pair now notifies its handler; direct unchanged uniqueness updates also report a result | UpdateOrCreateOrGetReturnsAddressForEveryBranch; direct-update assertions in MergeReportsSurvivorAfterDeletionCallbacks |
-| Preserve usage redirection during uniqueness cleanup | MergeUsages builds full index/source/target substitutions, preserving the other endpoint | MergePreservesBothEndpointsOfEveryUsage and merge callback tests on both backends |
-| Double-check Rust and report analogous defects | Pinned standalone audit of current doublets-rs main; logging-control defect reported upstream | experiments/issue-519, rust-audit.log and rust-logging-break.log; doublets-rs issue 86 |
-| Prepare automatic release | Independent C# patch changeset, no manual package version edit | versions.py validate |
+- **Return the live address from CreateAndUpdate on decorated stores.**
+  LinksUniquenessResolver reports the survivor after reset/deletion notifications.
+  CreationReturnsLiveAddresses verifies united/split, raw/unique/automatic stores
+  and byte/ushort/uint/ulong addresses.
+- **Return the survivor from the UpdateOrCreateOrGet missing-pair fallback.**
+  The same resolver notification reaches the common setter.
+  CreationReturnsLiveAddresses exercises the exact two-point reproduction.
+- **Preserve ordinary store behavior.** Raw stores still create duplicate pairs
+  at addresses 3 and 4; no mandatory existence policy is added. Raw cases and all
+  existing update/deletion contract tests verify this behavior.
+- **Keep handler Break state through update.** CreateAndUpdate routes the update
+  callback through HandleNullable, recording callback state even if an inner
+  layer returns Continue. BreakSuppressesLaterCallbacksButCompletesCreation and
+  the ContinueAfterUpdate spy verify propagation.
+- **Cover all helper branches.** Unchanged UpdateOrCreateOrGet pairs now notify
+  their handler; direct unchanged uniqueness updates also report a result.
+  UpdateOrCreateOrGetReturnsAddressForEveryBranch and direct-update assertions
+  in MergeReportsSurvivorAfterDeletionCallbacks verify those paths.
+- **Preserve usage redirection during uniqueness cleanup.** MergeUsages builds
+  full index/source/target substitutions, preserving the other endpoint.
+  MergePreservesBothEndpointsOfEveryUsage and merge callback tests verify this
+  behavior on both backends.
+- **Double-check Rust and report analogous defects.** A pinned standalone audit
+  checks current doublets-rs main; the logging-control defect is reported as
+  doublets-rs issue 86. Evidence: experiments/issue-519, rust-audit.log and
+  rust-logging-break.log.
+- **Prepare automatic release.** An independent C# patch changeset avoids a
+  manual package version edit. Verification: versions.py validate.
 
 ## Root causes and choices
 
@@ -57,7 +83,8 @@ merge, unchanged-update and Break checks.
 A separate optional probe demonstrates that Rust create_link_with loses Break
 when LoggingDecorator wraps the store. Logging calls Fuse::call but discards its
 flow; create_link_with returns only update_links' Continue. This is reported at
-https://github.com/linksplatform/doublets-rs/issues/86, with a minimal reproduction.
+[doublets-rs issue 86](https://github.com/linksplatform/doublets-rs/issues/86),
+with a minimal reproduction.
 The issue comment requests checking and reporting Rust, so the upstream report
 fulfills that criterion; it does not require implementing the foreign fix here.
 
@@ -99,3 +126,10 @@ generation inputs are unaffected. Repeated checks all pass: **105 pipeline
 regressions**, **323 C# tests**, formatting, examples, packaging and isolated
 consumer, shell lint, repository/version policy and documentation links. Their
 logs use the `*-after-main.log` suffix.
+
+The first hosted Codacy analysis on `7097b6cc4` reported 29 Markdown findings:
+20 long table rows, three bare URLs, one missing title and five required-heading
+configuration findings. The notes now use wrapped lists, linked URLs and explicit
+per-file heading declarations, following the existing issue 538 evidence policy.
+The original public API response is retained in `ci-logs/codacy-544-issues.json`.
+No code-analysis rule was disabled.

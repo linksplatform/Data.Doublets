@@ -1,3 +1,11 @@
+<!-- markdownlint-configure-file
+{
+  "MD043": {
+    "headings": ["# Issue 519 / PR 544 evidence", "*"]
+  }
+}
+-->
+
 # Issue 519 / PR 544 evidence
 
 The implementation is in [PR 544](https://github.com/linksplatform/Data.Doublets/pull/544).

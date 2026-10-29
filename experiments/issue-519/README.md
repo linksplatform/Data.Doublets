@@ -1,3 +1,11 @@
+<!-- markdownlint-configure-file
+{
+  "MD043": {
+    "headings": ["# Issue 519 Rust parity audit", "*"]
+  }
+}
+-->
+
 # Issue 519 Rust parity audit
 
 The C# regression suite is `UniquenessResultTests`. This standalone Rust program
