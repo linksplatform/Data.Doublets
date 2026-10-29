@@ -55,12 +55,12 @@ job expectations. Work only on issue-538-06fae78405da; preserve forward history.
   hosted CI handles builds that exceed this container's 2.92 GiB shared limit.
 - [x] Commit atomic steps after local checks, push only prepared branch; update
   PR title/body with reproduction, tests, requirements/evidence and Fixes #538.
-- [ ] Inspect every PR diff for regressions and scope; merge latest main into branch
+- [x] Inspect every PR diff for regressions and scope; merge latest main into branch
   if needed, check clean status; download/analyze all failing current-SHA CI logs.
-- [ ] Verify full PR CI: both C# OS legs, GCC/Clang/sanitizers, discovered native
+- [x] Verify full PR CI: both C# OS legs, GCC/Clang/sanitizers, discovered native
   tests, coverage, benchmark smoke, static analysis, FFI, packages/consumers, API
   docs/PDF/DocFX/Doxygen, quality, links, all security and required aggregate.
-- [ ] Mark PR 539 ready with gh pr ready after implementation/validation.
+- [x] Mark PR 539 ready with gh pr ready after implementation/validation.
 - [ ] Updated main run and publication acceptance: use existing matching-SHA run,
   otherwise dispatch official ci.yml on main; never rerun obsolete code or duplicate
   a run. Diagnose downstream failures; settings-only repairs rerun affected jobs.
@@ -115,3 +115,9 @@ job expectations. Work only on issue-538-06fae78405da; preserve forward history.
 - Issue 538 remains open. PR 539 is already merged; GitHub cannot add another
   correction to that merge. Any additional main code correction requires a
   follow-up PR, which conflicts with the requested single-PR constraint.
+- Branch run 40886193744 exposed five history-scan false positives introduced
+  by the first successful documentation deployment. All five are public
+  JavaScript source-map identifiers at one exact historical fingerprint;
+  experiments/issue-538/source-map-findings.md records evidence/reproduction.
+  The exception covers only that commit/path/rule/line, with full-history
+  scanning retained. This correction is also pending main integration.
