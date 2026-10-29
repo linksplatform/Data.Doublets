@@ -8,4 +8,4 @@
         RecursionlessSizeBalancedTree,
         SizedAndThreadedAVLBalancedTree
     };
-}
+} // namespace Platform::Data::Doublets::Memory

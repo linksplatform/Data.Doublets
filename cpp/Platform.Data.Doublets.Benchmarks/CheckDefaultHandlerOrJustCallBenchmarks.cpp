@@ -1,11 +1,11 @@
 namespace Platform::Data::Doublets::Benchmarks
 {
     using TLinkAddress = std::uint64_t;
-    constexpr auto DefaultHandler = [](TLinkAddress source, TLinkAddress target){return 1;};
+    constexpr auto DefaultHandler = [](TLinkAddress, TLinkAddress) { return 1; };
 
     TLinkAddress CheckDefaultHandlerAndCallHandler(TLinkAddress source, TLinkAddress target, auto&& handler)
     {
-        if(DefaultHandler == handler)
+        if (DefaultHandler == handler)
         {
             return 1;
         }
@@ -22,44 +22,47 @@ namespace Platform::Data::Doublets::Benchmarks
 
     static void BM_CheckDefaultHandlerAndSumWithoutOptimization(benchmark::State& state)
     {
-        for(auto _ : state)
+        for (auto _ : state)
         {
-            for(auto i = 0; i < state.range(0); ++i)
+            for (auto i = 0; i < state.range(0); ++i)
             {
-                benchmark::DoNotOptimize(CheckDefaultHandlerAndCallHandler(TLinkAddress{10}, TLinkAddress{10}, [](TLinkAddress source, TLinkAddress target ){return 1;}));
+                benchmark::DoNotOptimize(CheckDefaultHandlerAndCallHandler(
+                    TLinkAddress{10}, TLinkAddress{10}, [](TLinkAddress, TLinkAddress) { return 1; }));
             }
         }
     }
 
     static void BM_JustCallHandlerWithoutOptimization(benchmark::State& state)
     {
-        for(auto _ : state)
+        for (auto _ : state)
         {
-            for(auto i = 0; i < state.range(0); ++i)
+            for (auto i = 0; i < state.range(0); ++i)
             {
-                benchmark::DoNotOptimize(CallHandler(TLinkAddress{10}, TLinkAddress{10}, [](TLinkAddress source, TLinkAddress target ){return 1;}));
+                benchmark::DoNotOptimize(
+                    CallHandler(TLinkAddress{10}, TLinkAddress{10}, [](TLinkAddress, TLinkAddress) { return 1; }));
             }
         }
     }
 
     static void BM_CheckDefaultHandlerAndSum(benchmark::State& state)
     {
-        for(auto _ : state)
+        for (auto _ : state)
         {
-            for(auto i = 0; i < state.range(0); ++i)
+            for (auto i = 0; i < state.range(0); ++i)
             {
-                CheckDefaultHandlerAndCallHandler(TLinkAddress{10}, TLinkAddress{10}, [](TLinkAddress source, TLinkAddress target ){return 1;});
+                CheckDefaultHandlerAndCallHandler(TLinkAddress{10}, TLinkAddress{10},
+                                                  [](TLinkAddress, TLinkAddress) { return 1; });
             }
         }
     }
 
     static void BM_JustCallHandler(benchmark::State& state)
     {
-        for(auto _ : state)
+        for (auto _ : state)
         {
-            for(auto i = 0; i < state.range(0); ++i)
+            for (auto i = 0; i < state.range(0); ++i)
             {
-                CallHandler(TLinkAddress{10}, TLinkAddress{10}, [](TLinkAddress source, TLinkAddress target ){return 1;});
+                CallHandler(TLinkAddress{10}, TLinkAddress{10}, [](TLinkAddress, TLinkAddress) { return 1; });
             }
         }
     }
@@ -69,4 +72,4 @@ namespace Platform::Data::Doublets::Benchmarks
     BENCHMARK(BM_CheckDefaultHandlerAndSum)->Arg(1000000);
     BENCHMARK(BM_JustCallHandler)->Arg(1000000);
 
-}
+} // namespace Platform::Data::Doublets::Benchmarks

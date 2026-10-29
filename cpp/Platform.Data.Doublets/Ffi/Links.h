@@ -1,10 +1,10 @@
 namespace Platform::Data::Doublets::Ffi
 {
-    template<typename TLinkOptions, typename ...TBase>
+    template <typename TLinkOptions, typename... TBase>
     class Links : public LinksBase<Links<TLinkOptions, TBase...>, TLinkOptions, TBase...>
     {
-        public:
+      public:
         using base = LinksBase<Links<TLinkOptions, TBase...>, TLinkOptions, TBase...>;
         using base::base;
-    }; 
-}
+    };
+} // namespace Platform::Data::Doublets::Ffi

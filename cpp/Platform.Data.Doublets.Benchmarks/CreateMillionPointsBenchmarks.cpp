@@ -1,3 +1,4 @@
+#include "../Tools/TemporaryDirectory.h"
 namespace Platform::Data::Doublets::Benchmarks
 {
     using TLinkAddress = std::uint64_t;
@@ -8,12 +9,13 @@ namespace Platform::Data::Doublets::Benchmarks
     //     using namespace Platform::Data::Doublets::Ffi;
     //     for (auto _ : state)
     //     {
-    //         std::string memoryFilePath{ std::tmpnam(nullptr) };
+    //         Tools::TemporaryDirectory temporary;
+    //         std::string memoryFilePath = temporary.File("data.links");
     //         Expects(!Collections::IsWhiteSpace(memoryFilePath));
     //         try
     //         {
     //             Links<LinksOptions<TLinkAddress>> ffiStorage{memoryFilePath};
-    //             for (std::size_t i = 0; i < state.range(0); ++i)
+    //             for (std::int64_t i = 0; i < state.range(0); ++i)
     //             {
     //                 CreatePoint(ffiStorage);
     //             }
@@ -33,12 +35,14 @@ namespace Platform::Data::Doublets::Benchmarks
         using namespace Platform::Data::Doublets::Memory::United::Generic;
         for (auto _ : state)
         {
-            std::string memoryFilePath{ std::tmpnam(nullptr) };
+            Tools::TemporaryDirectory temporary;
+            std::string memoryFilePath = temporary.File("data.links");
             Expects(!Collections::IsWhiteSpace(memoryFilePath));
             try
             {
-                UnitedMemoryLinks<LinksOptions<TLinkAddress>, FileMappedResizableDirectMemory> storage{FileMappedResizableDirectMemory{memoryFilePath}};
-                for (std::size_t i = 0; i < state.range(0); ++i)
+                UnitedMemoryLinks<LinksOptions<TLinkAddress>, FileMappedResizableDirectMemory> storage{
+                    FileMappedResizableDirectMemory{memoryFilePath}};
+                for (std::int64_t i = 0; i < state.range(0); ++i)
                 {
                     CreatePoint(storage);
                 }
@@ -58,13 +62,16 @@ namespace Platform::Data::Doublets::Benchmarks
         using namespace Platform::Data::Doublets::Memory::Split::Generic;
         for (auto _ : state)
         {
-            std::string dataMemoryFilePath{ std::tmpnam(nullptr) };
-            std::string indexMemoryFilePath{ std::tmpnam(nullptr) };
+            Tools::TemporaryDirectory temporary;
+            std::string dataMemoryFilePath = temporary.File("data.links");
+            std::string indexMemoryFilePath = temporary.File("index.links");
             Expects(!Collections::IsWhiteSpace(dataMemoryFilePath));
             try
             {
-                SplitMemoryLinks<LinksOptions<TLinkAddress>, FileMappedResizableDirectMemory> storage{FileMappedResizableDirectMemory{dataMemoryFilePath}, FileMappedResizableDirectMemory{indexMemoryFilePath}};
-                for (std::size_t i = 0; i < state.range(0); ++i)
+                SplitMemoryLinks<LinksOptions<TLinkAddress>, FileMappedResizableDirectMemory> storage{
+                    FileMappedResizableDirectMemory{dataMemoryFilePath},
+                    FileMappedResizableDirectMemory{indexMemoryFilePath}};
+                for (std::int64_t i = 0; i < state.range(0); ++i)
                 {
                     CreatePoint(storage);
                 }
@@ -78,7 +85,7 @@ namespace Platform::Data::Doublets::Benchmarks
         }
     }
 
-    //BENCHMARK(BM_CreateMillionPointsFfi)->Arg(1000000);
+    // BENCHMARK(BM_CreateMillionPointsFfi)->Arg(1000000);
     BENCHMARK(BM_CreateMillionPointsUnitedMemory)->Arg(1000000);
     BENCHMARK(BM_CreateMillionPointsSplitMemory)->Arg(1000000);
-}
+} // namespace Platform::Data::Doublets::Benchmarks

@@ -1,8 +1,10 @@
 ﻿namespace Platform::Data::Doublets::Memory::United::Generic
 {
 
-    template<typename Self, typename TLinksOptions>
-    struct LinksRecursionlessSizeBalancedTreeMethodsBase : public Platform::Collections::Methods::Trees::RecursionlessSizeBalancedTreeMethods<Self, typename TLinksOptions::LinkAddressType>
+    template <typename Self, typename TLinksOptions>
+    struct LinksRecursionlessSizeBalancedTreeMethodsBase
+        : public Platform::Collections::Methods::Trees::RecursionlessSizeBalancedTreeMethods<
+              Self, typename TLinksOptions::LinkAddressType>
     {
         using LinksOptionsType = TLinksOptions;
         using LinkAddressType = typename LinksOptionsType::LinkAddressType;
@@ -10,45 +12,83 @@
         using ReadHandlerType = typename LinksOptionsType::ReadHandlerType;
         static constexpr LinksConstants<LinkAddressType> Constants = LinksOptionsType::Constants;
 
+      public:
+        using methods =
+            Platform::Collections::Methods::Trees::RecursionlessSizeBalancedTreeMethods<Self, LinkAddressType>;
 
-        public: using methods = Platform::Collections::Methods::Trees::RecursionlessSizeBalancedTreeMethods<Self, LinkAddressType>;
+      public:
+        std::byte* const Links;
 
-        public: std::byte* const Links;
-        public: std::byte* const Header;
+      public:
+        std::byte* const Header;
 
-        public: LinksRecursionlessSizeBalancedTreeMethodsBase(std::byte* storage, std::byte* header)
-            : Links(storage), Header(header) {}
+      public:
+        LinksRecursionlessSizeBalancedTreeMethodsBase(std::byte* storage, std::byte* header)
+            : Links(storage), Header(header)
+        {
+        }
 
-        public: LinkAddressType GetTreeRoot() { return this->object().GetTreeRoot(); }
+      public:
+        LinkAddressType GetTreeRoot()
+        {
+            return this->object().GetTreeRoot();
+        }
 
-        public: LinkAddressType GetBasePartValue(LinkAddressType linkAddress) { return this->object().GetBasePartValue(linkAddress); }
+      public:
+        LinkAddressType GetBasePartValue(LinkAddressType linkAddress)
+        {
+            return this->object().GetBasePartValue(linkAddress);
+        }
 
-        public: bool FirstIsToTheRightOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource, LinkAddressType rootTarget) { return this->object().FirstIsToTheRightOfSecond(source, target, rootSource, rootTarget); }
+      public:
+        bool FirstIsToTheRightOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource,
+                                       LinkAddressType rootTarget)
+        {
+            return this->object().FirstIsToTheRightOfSecond(source, target, rootSource, rootTarget);
+        }
 
-        public: bool FirstIsToTheLeftOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource, LinkAddressType rootTarget) { return this->object().FirstIsToTheLeftOfSecond(source, target, rootSource, rootTarget); }
+      public:
+        bool FirstIsToTheLeftOfSecond(LinkAddressType source, LinkAddressType target, LinkAddressType rootSource,
+                                      LinkAddressType rootTarget)
+        {
+            return this->object().FirstIsToTheLeftOfSecond(source, target, rootSource, rootTarget);
+        }
 
-        public: auto& GetHeaderReference() { return *reinterpret_cast<LinksHeader<LinkAddressType>*>(Header); }
+      public:
+        auto& GetHeaderReference()
+        {
+            return *reinterpret_cast<LinksHeader<LinkAddressType>*>(Header);
+        }
 
-        public: auto& GetLinkReference(LinkAddressType linkAddress) { return *(reinterpret_cast<RawLink<LinkAddressType>*>(Links) + linkAddress); }
+      public:
+        auto& GetLinkReference(LinkAddressType linkAddress)
+        {
+            return *(reinterpret_cast<RawLink<LinkAddressType>*>(Links) + linkAddress);
+        }
 
-        public: LinkType GetLinkValues(LinkAddressType linkIndex)
+      public:
+        LinkType GetLinkValues(LinkAddressType linkIndex)
         {
             auto& link = GetLinkReference(linkIndex);
             return LinkType{linkIndex, link.Source, link.Target};
         }
 
-        public: bool FirstIsToTheLeftOfSecond(LinkAddressType first, LinkAddressType second)
+      public:
+        bool FirstIsToTheLeftOfSecond(LinkAddressType first, LinkAddressType second)
         {
             auto& firstLink = this->GetLinkReference(first);
             auto& secondLink = this->GetLinkReference(second);
-            return this->FirstIsToTheLeftOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
+            return this->FirstIsToTheLeftOfSecond(firstLink.Source, firstLink.Target, secondLink.Source,
+                                                  secondLink.Target);
         }
 
-        public: bool FirstIsToTheRightOfSecond(LinkAddressType first, LinkAddressType second)
+      public:
+        bool FirstIsToTheRightOfSecond(LinkAddressType first, LinkAddressType second)
         {
             auto& firstLink = this->GetLinkReference(first);
             auto& secondLink = this->GetLinkReference(second);
-            return this->FirstIsToTheRightOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
+            return this->FirstIsToTheRightOfSecond(firstLink.Source, firstLink.Target, secondLink.Source,
+                                                   secondLink.Target);
         }
 
         auto operator[](std::size_t index)
@@ -77,7 +117,8 @@
             return 0;
         }
 
-        public: LinkAddressType Search(LinkAddressType source, LinkAddressType target)
+      public:
+        LinkAddressType Search(LinkAddressType source, LinkAddressType target)
         {
             auto root = this->GetTreeRoot();
             while (root != 0)
@@ -101,7 +142,8 @@
             return 0;
         }
 
-        public: LinkAddressType CountUsages(LinkAddressType linkAddress)
+      public:
+        LinkAddressType CountUsages(LinkAddressType linkAddress)
         {
             auto root = this->GetTreeRoot();
             auto total = this->object().GetSize(root);
@@ -137,9 +179,14 @@
             return total - totalRightIgnore - totalLeftIgnore;
         }
 
-        public: LinkAddressType EachUsage(LinkAddressType base, const ReadHandlerType& handler) { return this->EachUsageCore(base, this->GetTreeRoot(), handler); }
+      public:
+        LinkAddressType EachUsage(LinkAddressType base, const ReadHandlerType& handler)
+        {
+            return this->EachUsageCore(base, this->GetTreeRoot(), handler);
+        }
 
-        private: LinkAddressType EachUsageCore(LinkAddressType base, LinkAddressType linkAddress, const ReadHandlerType& handler)
+      private:
+        LinkAddressType EachUsageCore(LinkAddressType base, LinkAddressType linkAddress, const ReadHandlerType& handler)
         {
             auto $continue = Constants.Continue;
             auto $break = Constants.Break;
@@ -182,4 +229,4 @@
             return $continue;
         }
     };
-}
+} // namespace Platform::Data::Doublets::Memory::United::Generic

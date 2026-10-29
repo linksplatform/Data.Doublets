@@ -1,17 +1,11 @@
 ﻿namespace Platform::Data::Doublets::Memory::United::Generic
 {
 
-    template<
-        typename TSelf,
-        typename TLinkOptions,
-        typename TMemory,
-        typename TSourceTreeMethods,
-        typename TTargetTreeMethods,
-        typename TUnusedLinks,
-        typename... TBase>
+    template <typename TSelf, typename TLinkOptions, typename TMemory, typename TSourceTreeMethods,
+              typename TTargetTreeMethods, typename TUnusedLinks, typename... TBase>
     struct UnitedMemoryLinksBase : public Interfaces::Polymorph<TSelf, TBase...>
     {
-    public:
+      public:
         using LinksOptionsType = TLinkOptions;
         using LinkAddressType = typename LinksOptionsType::LinkAddressType;
         using LinkType = typename LinksOptionsType::LinkType;
@@ -19,20 +13,20 @@
         using ReadHandlerType = typename LinksOptionsType::ReadHandlerType;
         static constexpr LinksConstants<LinkAddressType> Constants = LinksOptionsType::Constants;
 
-    public:
+      public:
         static constexpr std::size_t LinkSizeInBytes = sizeof(RawLink<LinkAddressType>);
 
         static constexpr std::size_t LinkHeaderSizeInBytes = sizeof(LinksHeader<LinkAddressType>);
 
         static constexpr std::size_t DefaultLinksSizeStep = LinkSizeInBytes * 1024 * 1024;
 
-    public:
+      public:
         TMemory _memory;
 
-    private:
+      private:
         std::byte* _header;
 
-    private:
+      private:
         std::byte* _links;
 
         const std::size_t _memoryReservationStep;
@@ -69,15 +63,12 @@
             return header.AllocatedLinks - header.FreeLinks;
         }
 
-    public:
-    public:
-        UnitedMemoryLinksBase(TMemory&& memory) : UnitedMemoryLinksBase(std::move(memory), DefaultLinksSizeStep)
-        {
+      public:
+      public:
+        UnitedMemoryLinksBase(TMemory&& memory) : UnitedMemoryLinksBase(std::move(memory), DefaultLinksSizeStep) {}
 
-        }
-
-        UnitedMemoryLinksBase(TMemory&& memory, std::uint64_t memoryReservationStep) :
-            _memory(std::move(memory)), _memoryReservationStep(memoryReservationStep)
+        UnitedMemoryLinksBase(TMemory&& memory, std::uint64_t memoryReservationStep)
+            : _memory(std::move(memory)), _memoryReservationStep(memoryReservationStep)
         {
             Init(_memory, memoryReservationStep);
         }
@@ -96,8 +87,8 @@
             header.ReservedLinks = (memory.ReservedCapacity() - LinkHeaderSizeInBytes) / LinkSizeInBytes;
         }
 
-    public:
-        LinkAddressType Count(const  LinkType& restriction) const
+      public:
+        LinkAddressType Count(const LinkType& restriction) const
         {
             if (std::ranges::size(restriction) == 0)
             {
@@ -111,7 +102,7 @@
                 {
                     return GetTotal();
                 }
-                return Exists(index) ? LinkAddressType {1} : LinkAddressType {};
+                return Exists(index) ? LinkAddressType{1} : LinkAddressType{};
             }
             if (std::ranges::size(restriction) == 2)
             {
@@ -120,7 +111,7 @@
                 {
                     if (value == any)
                     {
-                        return GetTotal();// Any - как отсутствие ограничения
+                        return GetTotal(); // Any - как отсутствие ограничения
                     }
                     return _SourcesTreeMethods->CountUsages(value) + _TargetsTreeMethods->CountUsages(value);
                 }
@@ -128,18 +119,18 @@
                 {
                     if (!Exists(index))
                     {
-                        return LinkAddressType {};
+                        return LinkAddressType{};
                     }
                     if (value == any)
                     {
-                        return LinkAddressType {1};
+                        return LinkAddressType{1};
                     }
                     auto& storedLinkValue = GetLinkReference(index);
                     if (storedLinkValue.Source == value || storedLinkValue.Target == value)
                     {
-                        return LinkAddressType {1};
+                        return LinkAddressType{1};
                     }
-                    return LinkAddressType {};
+                    return LinkAddressType{};
                 }
             }
             if (std::ranges::size(restriction) == 3)
@@ -160,30 +151,30 @@
                     {
                         return _SourcesTreeMethods->CountUsages(source);
                     }
-                    else// if(source != Any && target != Any)
+                    else // if(source != Any && target != Any)
                     {
                         auto link = _SourcesTreeMethods->Search(source, target);
-                        return link == Constants.Null ? LinkAddressType {} : LinkAddressType {1};
+                        return link == Constants.Null ? LinkAddressType{} : LinkAddressType{1};
                     }
                 }
                 else
                 {
                     if (!Exists(index))
                     {
-                        return LinkAddressType {};
+                        return LinkAddressType{};
                     }
                     if (source == any && target == any)
                     {
-                        return LinkAddressType {1};
+                        return LinkAddressType{1};
                     }
                     auto& storedLinkValue = GetLinkReference(index);
-                    if (!source == any && !target == any)
+                    if (source != any && target != any)
                     {
                         if ((storedLinkValue.Source == source) && (storedLinkValue.Target == target))
                         {
-                            return LinkAddressType {1};
+                            return LinkAddressType{1};
                         }
-                        return LinkAddressType {};
+                        return LinkAddressType{};
                     }
                     auto value = LinkAddressType();
                     if (source == any)
@@ -196,21 +187,22 @@
                     }
                     if ((storedLinkValue.Source == value) || (storedLinkValue.Target == value))
                     {
-                        return LinkAddressType {1};
+                        return LinkAddressType{1};
                     }
-                    return LinkAddressType {};
+                    return LinkAddressType{};
                 }
             }
             throw std::logic_error("Not supported exception.");
         }
 
-    public: LinkAddressType Each(const  LinkType& restriction, const ReadHandlerType& handler) const
+      public:
+        LinkAddressType Each(const LinkType& restriction, const ReadHandlerType& handler) const
         {
-            auto $continue {Constants.Continue};
+            auto $continue{Constants.Continue};
             auto $break = Constants.Break;
             if (std::ranges::size(restriction) == 0)
             {
-                for (auto link = LinkAddressType {1}; link <= this->GetHeaderReference().AllocatedLinks; ++link)
+                for (auto link = LinkAddressType{1}; link <= this->GetHeaderReference().AllocatedLinks; ++link)
                 {
                     if (Exists(link) && (handler(GetLinkStruct(link)) == $break))
                     {
@@ -285,7 +277,7 @@
                     {
                         return _SourcesTreeMethods->EachUsage(source, handler);
                     }
-                    else// if(source != Any && target != Any)
+                    else // if(source != Any && target != Any)
                     {
                         auto link = _SourcesTreeMethods->Search(source, target);
                         return (link == Constants.Null) ? _continue : handler(GetLinkStruct(link));
@@ -332,19 +324,20 @@
         }
 
         // / <remarks>
-        // / TODO: Возможно можно перемещать значения, если указан индекс, но значение существует в другом месте (но не в менеджере памяти, а в логике Links)
-        // / </remarks>
-        // NOTE: The following .NET attribute has no direct equivalent in C++:
-        // ORIGINAL LINE: [MethodImpl(MethodImplOptions.AggressiveInlining)] public LinkAddressType Update(IList<LinkAddressType> restriction, IList<LinkAddressType> substitution)
-    public:
-        LinkAddressType Update(const LinkType& restriction, const LinkType& substitution, const WriteHandlerType& handler)
+        // / TODO: Возможно можно перемещать значения, если указан индекс, но значение существует в другом месте (но не
+        // в менеджере памяти, а в логике Links) / </remarks> NOTE: The following .NET attribute has no direct
+        // equivalent in C++: ORIGINAL LINE: [MethodImpl(MethodImplOptions.AggressiveInlining)] public LinkAddressType
+        // Update(IList<LinkAddressType> restriction, IList<LinkAddressType> substitution)
+      public:
+        LinkAddressType Update(const LinkType& restriction, const LinkType& substitution,
+                               const WriteHandlerType& handler)
         {
             auto null = Constants.Null;
             auto linkIndex = restriction[Constants.IndexPart];
             // TODO: 'ref locals' are not converted by C# to C++ Converter:
             // ORIGINAL LINE: ref var link = ref GetLinkReference(linkIndex);
             auto& link = GetLinkReference(linkIndex);
-            LinkType before {linkIndex, link.Source, link.Target};
+            LinkType before{linkIndex, link.Source, link.Target};
             // TODO: 'ref locals' are not converted by C# to C++ Converter:
             // ORIGINAL LINE: ref var header = ref GetHeaderReference();
             auto& header = this->GetHeaderReference();
@@ -354,7 +347,8 @@
             // TODO: 'ref locals' are not converted by C# to C++ Converter:
             // ORIGINAL LINE: ref var firstAsTarget = ref header.RootAsTarget;
             auto& firstAsTarget = header.RootAsTarget;
-            // Будет корректно работать только в том случае, если пространство выделенной связи предварительно заполнено нулями
+            // Будет корректно работать только в том случае, если пространство выделенной связи предварительно заполнено
+            // нулями
             if (link.Source != null)
             {
                 _SourcesTreeMethods->Detach(firstAsSource, linkIndex);
@@ -377,8 +371,8 @@
         }
 
         // TODO: Возможно нужно будет заполнение нулями, если внешнее API ими не заполняет пространство
-    public:
-        LinkAddressType Create(const LinkType& restriction, const WriteHandlerType& handler)
+      public:
+        LinkAddressType Create(const LinkType&, const WriteHandlerType& handler)
         {
             auto& header = this->GetHeaderReference();
             auto freeLink = header.FirstFreeLink;
@@ -392,7 +386,8 @@
                 if (header.AllocatedLinks > maximumPossibleInnerReference)
                 {
                     // TODO: !!!!!
-                    // throw std::make_shared<LinksLimitReachedException<LinkAddressType>>(maximumPossibleInnerReference);
+                    // throw
+                    // std::make_shared<LinksLimitReachedException<LinkAddressType>>(maximumPossibleInnerReference);
                 }
                 if (header.AllocatedLinks >= (header.ReservedLinks - 1))
                 {
@@ -408,8 +403,8 @@
             return handler(LinkType{0, 0, 0}, LinkType{freeLink, 0, 0});
         }
 
-    public:
-        LinkAddressType Delete(const  LinkType& restriction, const WriteHandlerType& handler)
+      public:
+        LinkAddressType Delete(const LinkType& restriction, const WriteHandlerType& handler)
         {
             auto& header = this->GetHeaderReference();
             auto linkAddress = restriction[Constants.IndexPart];
@@ -423,7 +418,7 @@
             {
                 --header.AllocatedLinks;
                 _memory.UsedCapacity(_memory.UsedCapacity() - LinkSizeInBytes);
-                while ((header.AllocatedLinks > LinkAddressType {}) && IsUnusedLink(header.AllocatedLinks))
+                while ((header.AllocatedLinks > LinkAddressType{}) && IsUnusedLink(header.AllocatedLinks))
                 {
                     _UnusedLinksListMethods->Detach(header.AllocatedLinks);
                     --header.AllocatedLinks;
@@ -445,7 +440,7 @@
         // Указатель this.storage может быть в том же месте,
         // так как 0-я связь не используется и имеет такой же размер как Header,
         // поэтому header размещается в том же месте, что и 0-я связь
-    public:
+      public:
         void SetPointers(TMemory& memory)
         {
             _links = static_cast<std::byte*>(memory.Pointer());
@@ -461,15 +456,16 @@
             {
                 return false;
             }
-            return (linkAddress >= Constants.InternalReferencesRange.Minimum) && (linkAddress <= this->GetHeaderReference().AllocatedLinks) && !IsUnusedLink(linkAddress);
+            return (linkAddress >= Constants.InternalReferencesRange.Minimum) &&
+                   (linkAddress <= this->GetHeaderReference().AllocatedLinks) && !IsUnusedLink(linkAddress);
         }
 
         bool IsUnusedLink(LinkAddressType linkIndex) const
         {
-            if (GetHeaderReference().FirstFreeLink != linkIndex)// May be this check is not needed
+            if (GetHeaderReference().FirstFreeLink != linkIndex) // May be this check is not needed
             {
                 auto& link = GetLinkReference(linkIndex);
-                return (link.SizeAsSource == LinkAddressType {}) && (link.Source != LinkAddressType {});
+                return (link.SizeAsSource == LinkAddressType{}) && (link.Source != LinkAddressType{});
             }
             else
             {
@@ -477,4 +473,4 @@
             }
         }
     };
-}// namespace Platform::Data::Doublets::Memory::United::Generic
+} // namespace Platform::Data::Doublets::Memory::United::Generic

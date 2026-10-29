@@ -1,7 +1,9 @@
 ﻿namespace Platform::Data::Doublets::Memory::United::Generic
 {
-template<typename Self, typename TLinksOptions>
-struct LinksAvlBalancedTreeMethodsBase : public Platform::Collections::Methods::Trees::SizedAndThreadedAVLBalancedTreeMethods<Self, typename TLinksOptions::LinkAddressType>/*, ILinksTreeMethods<TLinksOptions>*/
+    template <typename Self, typename TLinksOptions>
+    struct LinksAvlBalancedTreeMethodsBase
+        : public Platform::Collections::Methods::Trees::SizedAndThreadedAVLBalancedTreeMethods<
+              Self, typename TLinksOptions::LinkAddressType> /*, ILinksTreeMethods<TLinksOptions>*/
     {
         using LinksOptionsType = TLinksOptions;
         using LinkAddressType = typename LinksOptionsType::LinkAddressType;
@@ -9,15 +11,27 @@ struct LinksAvlBalancedTreeMethodsBase : public Platform::Collections::Methods::
         using ReadHandlerType = typename LinksOptionsType::ReadHandlerType;
         static constexpr LinksConstants<LinkAddressType> Constants = LinksOptionsType::Constants;
 
-        public: static constexpr auto $break = Constants.Break;
-        public: static constexpr auto $continue = Constants.Continue;
-        public: using methods = Platform::Collections::Methods::Trees::SizedAndThreadedAVLBalancedTreeMethods<Self, LinkAddressType>;
-        public: std::byte* const Links;
-        public: std::byte* const Header;
+      public:
+        static constexpr auto $break = Constants.Break;
 
-        public: LinksAvlBalancedTreeMethodsBase(std::byte* storage, std::byte* header) : Links(storage), Header(header) {}
+      public:
+        static constexpr auto $continue = Constants.Continue;
 
-        public: auto operator[](std::size_t index)
+      public:
+        using methods =
+            Platform::Collections::Methods::Trees::SizedAndThreadedAVLBalancedTreeMethods<Self, LinkAddressType>;
+
+      public:
+        std::byte* const Links;
+
+      public:
+        std::byte* const Header;
+
+      public:
+        LinksAvlBalancedTreeMethodsBase(std::byte* storage, std::byte* header) : Links(storage), Header(header) {}
+
+      public:
+        auto operator[](std::size_t index)
         {
             auto root = this->object().GetTreeRoot();
             if (index >= GetSize(root))
@@ -43,7 +57,8 @@ struct LinksAvlBalancedTreeMethodsBase : public Platform::Collections::Methods::
             return 0;
         }
 
-        public: LinkAddressType Search(LinkAddressType source, LinkAddressType target)
+      public:
+        LinkAddressType Search(LinkAddressType source, LinkAddressType target)
         {
             auto root = this->object().GetTreeRoot();
             while (root != 0)
@@ -67,7 +82,8 @@ struct LinksAvlBalancedTreeMethodsBase : public Platform::Collections::Methods::
             return 0;
         }
 
-        public: LinkAddressType CountUsages(LinkAddressType link)
+      public:
+        LinkAddressType CountUsages(LinkAddressType link)
         {
             auto root = this->object().GetTreeRoot();
             auto total = this->object().GetSize(root);
@@ -104,7 +120,8 @@ struct LinksAvlBalancedTreeMethodsBase : public Platform::Collections::Methods::
             return (total - totalRightIgnore) - totalLeftIgnore;
         }
 
-        public: LinkAddressType EachUsage(LinkAddressType link, std::function<LinkAddressType(LinkType)> handler)
+      public:
+        LinkAddressType EachUsage(LinkAddressType link, std::function<LinkAddressType(LinkType)> handler)
         {
             auto root = this->object().GetTreeRoot();
             if (root == 0)
@@ -147,77 +164,103 @@ struct LinksAvlBalancedTreeMethodsBase : public Platform::Collections::Methods::
             return $continue;
         }
 
-        public: auto& GetHeaderReference() const
+      public:
+        auto& GetHeaderReference() const
         {
             return *reinterpret_cast<LinksHeader<LinkAddressType>*>(Header);
         }
 
-        public: auto& GetLinkReference(LinkAddressType linkAddress) { return *(reinterpret_cast<RawLink<LinkAddressType>*>(Links) + linkAddress); }
+      public:
+        auto& GetLinkReference(LinkAddressType linkAddress)
+        {
+            return *(reinterpret_cast<RawLink<LinkAddressType>*>(Links) + linkAddress);
+        }
 
-        public: LinkType GetLinkValues(LinkAddressType linkIndex)
+      public:
+        LinkType GetLinkValues(LinkAddressType linkIndex)
         {
             auto& link = GetLinkReference(linkIndex);
             return LinkType{linkIndex, link.Source, link.Target};
         }
 
-        public: bool FirstIsToTheLeftOfSecond(LinkAddressType first, LinkAddressType second)
+      public:
+        bool FirstIsToTheLeftOfSecond(LinkAddressType first, LinkAddressType second)
         {
             auto& firstLink = this->GetLinkReference(first);
             auto& secondLink = this->GetLinkReference(second);
-            return this->object().FirstIsToTheLeftOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
+            return this->object().FirstIsToTheLeftOfSecond(firstLink.Source, firstLink.Target, secondLink.Source,
+                                                           secondLink.Target);
         }
 
-        public: bool FirstIsToTheRightOfSecond(LinkAddressType first, LinkAddressType second)
+      public:
+        bool FirstIsToTheRightOfSecond(LinkAddressType first, LinkAddressType second)
         {
             auto& firstLink = this->GetLinkReference(first);
             auto& secondLink = this->GetLinkReference(second);
-            return this->object().FirstIsToTheRightOfSecond(firstLink.Source, firstLink.Target, secondLink.Source, secondLink.Target);
+            return this->object().FirstIsToTheRightOfSecond(firstLink.Source, firstLink.Target, secondLink.Source,
+                                                            secondLink.Target);
         }
 
-      public: LinkAddressType GetSizeValue(LinkAddressType value) { return Platform::Numbers::Bit::PartialRead<LinkAddressType>(value, 5, -5); }
+      public:
+        LinkAddressType GetSizeValue(LinkAddressType value)
+        {
+            return Platform::Numbers::Bit::PartialRead<LinkAddressType>(value, 5, -5);
+        }
 
-        public: void SetSizeValue(LinkAddressType* storedValue, LinkAddressType size) { *storedValue = Platform::Numbers::Bit::PartialWrite<LinkAddressType>(*storedValue, size, 5, -5); }
+      public:
+        void SetSizeValue(LinkAddressType* storedValue, LinkAddressType size)
+        {
+            *storedValue = Platform::Numbers::Bit::PartialWrite<LinkAddressType>(*storedValue, size, 5, -5);
+        }
 
-        public: bool GetLeftIsChildValue(LinkAddressType value)
+      public:
+        bool GetLeftIsChildValue(LinkAddressType value)
         {
             {
                 return (bool)Platform::Numbers::Bit::PartialRead<LinkAddressType>(value, 4, 1);
             }
         }
 
-        public: void SetLeftIsChildValue(LinkAddressType* storedValue, bool value)
+      public:
+        void SetLeftIsChildValue(LinkAddressType* storedValue, bool value)
         {
             {
                 auto previousValue = *storedValue;
-                auto modified = Platform::Numbers::Bit::PartialWrite<LinkAddressType>(previousValue, (LinkAddressType)value, 4, 1);
+                auto modified =
+                    Platform::Numbers::Bit::PartialWrite<LinkAddressType>(previousValue, (LinkAddressType)value, 4, 1);
                 *storedValue = modified;
             }
         }
 
-        public: bool GetRightIsChildValue(LinkAddressType value)
+      public:
+        bool GetRightIsChildValue(LinkAddressType value)
         {
             {
                 return (bool)Platform::Numbers::Bit::PartialRead<LinkAddressType>(value, 3, 1);
             }
         }
 
-        public: void SetRightIsChildValue(LinkAddressType* storedValue, bool value)
+      public:
+        void SetRightIsChildValue(LinkAddressType* storedValue, bool value)
         {
             {
                 auto previousValue = *storedValue;
-                auto modified = Platform::Numbers::Bit::PartialWrite<LinkAddressType>(previousValue, (LinkAddressType)value, 3, 1);
+                auto modified =
+                    Platform::Numbers::Bit::PartialWrite<LinkAddressType>(previousValue, (LinkAddressType)value, 3, 1);
                 *storedValue = modified;
             }
         }
 
-        public: bool IsChild(LinkAddressType parent, LinkAddressType possibleChild)
+      public:
+        bool IsChild(LinkAddressType parent, LinkAddressType possibleChild)
         {
             auto parentSize = this->GetSize(parent);
             auto childSize = this->GetSizeOrZero(possibleChild);
             return childSize > 0 && (childSize <= parentSize);
         }
 
-        public: std::int8_t GetBalanceValue(LinkAddressType storedValue)
+      public:
+        std::int8_t GetBalanceValue(LinkAddressType storedValue)
         {
             {
                 auto value = (std::int32_t)Platform::Numbers::Bit::PartialRead<LinkAddressType>(storedValue, 0, 3);
@@ -226,14 +269,15 @@ struct LinksAvlBalancedTreeMethodsBase : public Platform::Collections::Methods::
             }
         }
 
-        public: void SetBalanceValue(LinkAddressType* storedValue, std::int8_t value)
+      public:
+        void SetBalanceValue(LinkAddressType* storedValue, std::int8_t value)
         {
             {
                 auto packagedValue = (LinkAddressType)((((std::uint8_t)value >> 5) & 4) | (value & 3));
-                auto modified = Platform::Numbers::Bit::PartialWrite<LinkAddressType>(*storedValue, packagedValue, 0, 3);
+                auto modified =
+                    Platform::Numbers::Bit::PartialWrite<LinkAddressType>(*storedValue, packagedValue, 0, 3);
                 *storedValue = modified;
             }
         }
-
     };
-}
+} // namespace Platform::Data::Doublets::Memory::United::Generic

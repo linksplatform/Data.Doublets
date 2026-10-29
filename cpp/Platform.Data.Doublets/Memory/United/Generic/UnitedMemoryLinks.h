@@ -1,40 +1,40 @@
 ﻿namespace Platform::Data::Doublets::Memory::United::Generic
 {
 
-    template<
-        typename TLinksOptions = Platform::Data::Doublets::LinksOptions<>,
-        typename TMemory = Platform::Memory::FileMappedResizableDirectMemory,
-        typename TSourceTreeMethods = LinksSourcesSizeBalancedTreeMethods<TLinksOptions>,
-        typename TTargetTreeMethods = LinksTargetsSizeBalancedTreeMethods<TLinksOptions>,
-        typename TUnusedLinks = UnusedLinksListMethods<TLinksOptions>,
-        typename ...TBase>
-    struct UnitedMemoryLinks : public UnitedMemoryLinksBase<UnitedMemoryLinks<TLinksOptions, TMemory, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks, TBase...>, TLinksOptions, TMemory, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks, TBase...>, public std::enable_shared_from_this<UnitedMemoryLinks<TLinksOptions>>
+    template <typename TLinksOptions = Platform::Data::Doublets::LinksOptions<>,
+              typename TMemory = Platform::Memory::FileMappedResizableDirectMemory,
+              typename TSourceTreeMethods = LinksSourcesSizeBalancedTreeMethods<TLinksOptions>,
+              typename TTargetTreeMethods = LinksTargetsSizeBalancedTreeMethods<TLinksOptions>,
+              typename TUnusedLinks = UnusedLinksListMethods<TLinksOptions>, typename... TBase>
+    struct UnitedMemoryLinks
+        : public UnitedMemoryLinksBase<
+              UnitedMemoryLinks<TLinksOptions, TMemory, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks, TBase...>,
+              TLinksOptions, TMemory, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks, TBase...>,
+          public std::enable_shared_from_this<UnitedMemoryLinks<TLinksOptions>>
     {
-        using base = UnitedMemoryLinksBase<UnitedMemoryLinks<TLinksOptions, TMemory, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks, TBase...>, TLinksOptions, TMemory, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks, TBase...>;
+        using base = UnitedMemoryLinksBase<
+            UnitedMemoryLinks<TLinksOptions, TMemory, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks, TBase...>,
+            TLinksOptions, TMemory, TSourceTreeMethods, TTargetTreeMethods, TUnusedLinks, TBase...>;
 
         using LinkAddressType = base::LinkAddressType;
         using LinkType = base::LinkType;
         using WriteHandlerType = base::WriteHandlerType;
         using ReadHandlerType = base::ReadHandlerType;
-//        using base::Constants;
+        //        using base::Constants;
 
-    public:
+      public:
         using base::DefaultLinksSizeStep;
 
-    public:
+      public:
         using base::GetLinkStruct;
 
-    public:
+      public:
         using base::Constants;
-
-
 
         // private: using base::_memory;
 
         // TODO: implicit constructor for Constants
-    public:
+      public:
         using base::base;
-
-
     };
-}// namespace Platform::Data::Doublets::Memory::United::Generic
+} // namespace Platform::Data::Doublets::Memory::United::Generic
