@@ -688,7 +688,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
         else
         {
             var maximumPossibleInnerReference = Constants.InternalReferencesRange.Maximum;
-            if ((header.AllocatedLinks > maximumPossibleInnerReference))
+            if ((header.AllocatedLinks >= maximumPossibleInnerReference))
             {
                 throw new LinksLimitReachedException<TLinkAddress>(limit: maximumPossibleInnerReference);
             }

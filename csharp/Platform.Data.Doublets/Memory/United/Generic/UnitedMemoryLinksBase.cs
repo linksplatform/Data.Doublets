@@ -528,7 +528,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             else
             {
                 var maximumPossibleInnerReference = Constants.InternalReferencesRange.Maximum;
-                if (GreaterThan(header.AllocatedLinks, maximumPossibleInnerReference))
+                if (GreaterOrEqualThan(header.AllocatedLinks, maximumPossibleInnerReference))
                 {
                     throw new LinksLimitReachedException<TLinkAddress>(maximumPossibleInnerReference);
                 }

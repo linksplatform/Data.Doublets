@@ -49,12 +49,12 @@ namespace Platform::Data::Doublets::Memory::United::Generic
 
         const RawLink<LinkAddressType>& GetLinkReference(LinkAddressType linkIndex) const
         {
-            return *(reinterpret_cast<RawLink<LinkAddressType>*>(_links) + linkIndex);
+            return reinterpret_cast<const RawLink<LinkAddressType>*>(_links)[linkIndex];
         }
 
         RawLink<LinkAddressType>& GetLinkReference(LinkAddressType linkIndex)
         {
-            return *(reinterpret_cast<RawLink<LinkAddressType>*>(_links) + linkIndex);
+            return reinterpret_cast<RawLink<LinkAddressType>*>(_links)[linkIndex];
         }
 
         LinkAddressType GetTotal() const
@@ -90,6 +90,8 @@ namespace Platform::Data::Doublets::Memory::United::Generic
       public:
         LinkAddressType Count(const LinkType& restriction) const
         {
+            // Restriction length determines which parts of a stored link are constrained.
+            // An empty restriction counts live records, excluding entries on the free list.
             if (std::ranges::size(restriction) == 0)
             {
                 return GetTotal();
@@ -106,6 +108,7 @@ namespace Platform::Data::Doublets::Memory::United::Generic
             }
             if (std::ranges::size(restriction) == 2)
             {
+                // A two-part query matches the value in either the source or target index.
                 auto value = restriction[1];
                 if (index == any)
                 {
@@ -135,6 +138,7 @@ namespace Platform::Data::Doublets::Memory::United::Generic
             }
             if (std::ranges::size(restriction) == 3)
             {
+                // Wildcards select the relevant usage index; two concrete values use a pair lookup.
                 auto source = restriction[Constants.SourcePart];
                 auto target = restriction[Constants.TargetPart];
                 if (index == any)
@@ -159,6 +163,7 @@ namespace Platform::Data::Doublets::Memory::United::Generic
                 }
                 else
                 {
+                    // A concrete address must exist before its stored values can be compared.
                     if (!Exists(index))
                     {
                         return LinkAddressType{};
@@ -383,11 +388,9 @@ namespace Platform::Data::Doublets::Memory::United::Generic
             else
             {
                 auto maximumPossibleInnerReference = Constants.InternalReferencesRange.Maximum;
-                if (header->AllocatedLinks > maximumPossibleInnerReference)
+                if (header->AllocatedLinks >= maximumPossibleInnerReference)
                 {
-                    // TODO: !!!!!
-                    // throw
-                    // std::make_shared<LinksLimitReachedException<LinkAddressType>>(maximumPossibleInnerReference);
+                    throw Platform::Exceptions::LinksLimitReachedException();
                 }
                 if (header->AllocatedLinks >= (header->ReservedLinks - 1))
                 {

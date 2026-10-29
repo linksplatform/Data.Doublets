@@ -43,4 +43,44 @@ namespace Platform::Data::Doublets::Tests
         EXPECT_TRUE(Exists(storage, second));
         EXPECT_EQ(1, Count(storage));
     }
+
+    TEST(ExtensionTests, AllVariadicArgumentsRestrictTheResult)
+    {
+        ExtensionStorage storage{Platform::Memory::HeapResizableDirectMemory{}};
+        auto first = Create(storage);
+        auto second = Create(storage);
+        auto selected = All(storage, second);
+        ASSERT_EQ(1, selected.size());
+        EXPECT_EQ(second, selected.front()[0]);
+        EXPECT_TRUE(Exists(storage, first));
+    }
+
+    template <typename TStorage>
+    void CheckAddressLimit(TStorage& storage)
+    {
+        auto maximum = storage.Constants.InternalReferencesRange.Maximum;
+        for (unsigned int address = 1; address <= maximum; ++address)
+            EXPECT_EQ(address, Create(storage));
+        EXPECT_THROW(Create(storage), std::logic_error);
+        EXPECT_EQ(maximum, Count(storage));
+        Delete(storage, 1);
+        EXPECT_EQ(1, Create(storage));
+        EXPECT_THROW(Create(storage), std::logic_error);
+    }
+
+    TEST(ExtensionTests, UnitedRejectsExhaustedAddressesButReusesFreeLinks)
+    {
+        Memory::United::Generic::UnitedMemoryLinks<LinksOptions<std::uint8_t>,
+                                                   Platform::Memory::HeapResizableDirectMemory>
+            storage{Platform::Memory::HeapResizableDirectMemory{}};
+        CheckAddressLimit(storage);
+    }
+
+    TEST(ExtensionTests, SplitRejectsExhaustedAddressesButReusesFreeLinks)
+    {
+        Memory::Split::Generic::SplitMemoryLinks<LinksOptions<std::uint8_t>,
+                                                 Platform::Memory::HeapResizableDirectMemory>
+            storage{Platform::Memory::HeapResizableDirectMemory{}, Platform::Memory::HeapResizableDirectMemory{}};
+        CheckAddressLimit(storage);
+    }
 } // namespace Platform::Data::Doublets::Tests

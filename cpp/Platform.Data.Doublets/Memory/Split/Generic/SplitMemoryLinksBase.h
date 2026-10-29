@@ -155,6 +155,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
 
         LinkAddressType Count(const LinkType& restriction) const
         {
+            // Query length selects the constrained parts: total, address, one value, or a pair.
+            // The total excludes reusable records recorded in the free-list header.
             if (std::ranges::size(restriction) == 0)
             {
                 return this->Total();
@@ -171,6 +173,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             }
             if (std::ranges::size(restriction) == 2)
             {
+                // A value-only query can use either the internal or external usage indexes.
                 auto value = restriction[1];
                 if (index == any)
                 {
@@ -218,6 +221,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             }
             if (std::ranges::size(restriction) == 3)
             {
+                // Source and target wildcards determine which usage tree can answer the query.
+                // Concrete source/target values require an exact pair search.
                 auto externalReferencesRange = Constants.ExternalReferencesRange;
                 auto source = GetSource(*this, restriction);
                 auto target = GetTarget(*this, restriction);
@@ -571,12 +576,15 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
 
         LinkAddressType Each(const LinkType& restriction, const ReadHandlerType& handler) const
         {
+            // Enumerate only live records and propagate the callback's request to stop.
+            // Query shape determines whether to scan addresses or traverse a usage index.
             using namespace Platform::Exceptions;
             auto constants = Constants;
             auto $break = constants.Break;
             auto length = std::ranges::size(restriction);
             if (length == 0)
             {
+                // An unrestricted scan skips the zero record and entries on the free list.
                 for (auto linkAddress = LinkAddressType{1}; (linkAddress <= this->GetHeaderReference().AllocatedLinks);
                      ++linkAddress)
                 {
@@ -604,6 +612,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             }
             if (length == 2)
             {
+                // The value may be internal or external, which selects the matching index family.
                 auto value = restriction[1];
                 if (index == any)
                 {
@@ -637,6 +646,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             }
             if (length == 3)
             {
+                // Wildcards choose source/target traversal; concrete values use the pair lookup.
+                // A specified address is checked directly instead of enumerating unrelated links.
                 auto externalReferencesRange = constants.ExternalReferencesRange;
                 auto source = GetSource(*this, restriction);
                 auto target = GetTarget(*this, restriction);
@@ -856,7 +867,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             else
             {
                 auto maximumPossibleInnerReference = Constants.InternalReferencesRange.Maximum;
-                if (this->GetHeaderReference().AllocatedLinks > maximumPossibleInnerReference)
+                if (this->GetHeaderReference().AllocatedLinks >= maximumPossibleInnerReference)
                 {
                     throw Platform::Exceptions::LinksLimitReachedException();
                 }

@@ -252,7 +252,7 @@ namespace Platform::Data::Doublets
                     std::convertible_to<typename TStorage::LinkAddressType> auto... restrictionPack)
     {
         typename TStorage::LinkType restriction{static_cast<typename TStorage::LinkAddressType>(restrictionPack)...};
-        return All(storage, typename TStorage::LinkType{});
+        return All(storage, restriction);
     }
 
     template <typename TStorage>
@@ -780,8 +780,7 @@ namespace Platform::Data::Doublets
     {
         auto nullConstant = storage.Constants.Null;
         auto link = GetLink(storage, linkIndex);
-        for (typename TStorage::LinkAddressType i = typename TStorage::LinkAddressType{1}; i < std::ranges::size(link);
-             ++i)
+        for (std::size_t i = 1; i < std::ranges::size(link); ++i)
         {
             if (nullConstant != link[i])
             {
