@@ -1,8 +1,8 @@
-# Missing-link deletion investigation
+---
+title: Missing-link deletion investigation
+---
 
 These finite probes support [Data.Doublets issue #518](https://github.com/linksplatform/Data.Doublets/issues/518).
-
-## C# regression and allocation tracing
 
 Run from the repository root with .NET 8:
 
@@ -34,9 +34,7 @@ unchecked memory. Expected result: 40 failing missing-delete cases and four
 passing valid-delete controls. Rebuild after running this script to restore the
 fixed binaries.
 
-## Rust comparison
-
-Copy `missing_delete.rs` into a doublets-rs checkout as
+To compare with Rust, copy `missing_delete.rs` into a doublets-rs checkout as
 `doublets/tests/issue_518_missing_delete.rs`, then run in that checkout:
 
 ```sh

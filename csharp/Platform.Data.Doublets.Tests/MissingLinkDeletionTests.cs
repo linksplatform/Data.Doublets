@@ -15,11 +15,17 @@ namespace Platform.Data.Doublets.Tests
         public static IEnumerable<object[]> MissingDeleteCases()
         {
             foreach (var split in new[] { false, true })
-            foreach (var decorated in new[] { false, true })
-            foreach (var direct in new[] { false, true })
-            foreach (var scenario in new[] { "never-created", "deleted-middle", "deleted-last", "empty", "null-address", "out-of-range" })
             {
-                yield return new object[] { split, decorated, direct, scenario };
+                foreach (var decorated in new[] { false, true })
+                {
+                    foreach (var direct in new[] { false, true })
+                    {
+                        foreach (var scenario in new[] { "never-created", "deleted-middle", "deleted-last", "empty", "null-address", "out-of-range" })
+                        {
+                            yield return new object[] { split, decorated, direct, scenario };
+                        }
+                    }
+                }
             }
         }
 
@@ -46,6 +52,8 @@ namespace Platform.Data.Doublets.Tests
                 var next = last + T.One;
                 switch (scenario)
                 {
+                    case "never-created":
+                        break;
                     case "deleted-middle":
                         ResetAndDelete(links, middle);
                         missing = next = middle;
@@ -66,6 +74,8 @@ namespace Platform.Data.Doublets.Tests
                     case "out-of-range":
                         missing = T.MaxValue;
                         break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(scenario), scenario, "Unknown deletion scenario.");
                 }
 
                 Assert.False(links.Exists(missing));
