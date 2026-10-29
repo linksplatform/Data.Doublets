@@ -157,12 +157,20 @@ def verify_github(mode):
         return None
     repository = os.environ.get("GITHUB_REPOSITORY", "linksplatform/Data.Doublets")
     status, body = request(f"https://api.github.com/repos/{repository}", headers={"Authorization": f"Bearer {github_token}", "Accept": "application/vnd.github+json"})
+    if status != 200:
+        return f"GitHub repository access probe failed (HTTP {status or 'unreachable'}): {diagnostic(body, github_token)}"
     try:
-        can_push = status == 200 and json.loads(body).get("permissions", {}).get("push")
+        accessible = json.loads(body).get("full_name", "").lower() == repository.lower()
     except (ValueError, TypeError, AttributeError):
-        can_push = False
-    if not can_push:
-        return "Workflow token cannot write releases; grant contents: write and packages: write on the release job."
+        accessible = False
+    if not accessible:
+        return "GitHub repository access probe returned a malformed or unexpected repository response."
+    # Repository/user role metadata does not prove an installation token's
+    # endpoint permissions. In the live failure, this gate rejected a token
+    # that subsequently pushed gh-pages successfully. Enforce writes through
+    # the existing metadata, mirror and release operations, without ignoring any.
+    print("::notice::GitHub repository access succeeded; release/package write permissions remain unverified by this read-only probe. "
+          "Actual metadata, mirror and release writes must succeed; configure contents: write and packages: write on the publishing job.")
     return None
 
 
