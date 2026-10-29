@@ -93,13 +93,19 @@
 +#endif
 --- cpp/Platform.Data.Doublets.Benchmarks/AllBenchmarks.cpp
 +++ cpp/Platform.Data.Doublets.Benchmarks/AllBenchmarks.cpp
-@@ -1,5 +1,5 @@
+@@ -1,5 +1,11 @@
  #include <benchmark/benchmark.h>
++#include <tuple>
  #include <Platform.Data.Doublets.h>
 -#include "CreateMillionPointsBenchmarks.cpp"
 -#include "CheckDefaultHandlerOrJustCallBenchmarks.cpp"
 +#include "CreateMillionPointsBenchmarks.h"
 +#include "CheckDefaultHandlerOrJustCallBenchmarks.h"
++namespace
++{
++    const auto benchmarks = std::tuple{Platform::Data::Doublets::Benchmarks::RegisterCreateMillionPointsBenchmarks(),
++                                       Platform::Data::Doublets::Benchmarks::RegisterHandlerBenchmarks()};
++}
  BENCHMARK_MAIN();
 --- cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.cpp
 +++ cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.h
@@ -112,13 +118,11 @@
      TLinkAddress CheckDefaultHandlerAndCallHandler(TLinkAddress source, TLinkAddress target, auto&& handler)
      {
          if (DefaultHandler == handler)
-@@ -19,45 +19,44 @@
-     }
-     static void BM_CheckDefaultHandlerAndSumWithoutOptimization(benchmark::State& state)
+@@ -21,10 +21,11 @@
      {
--        for (auto _ : state)
-+        for ([[maybe_unused]] auto _ : state)
+         for (auto _ : state)
          {
++            (void)_;
              for (auto i = 0; i < state.range(0); ++i)
              {
                  benchmark::DoNotOptimize(CheckDefaultHandlerAndCallHandler(
@@ -127,11 +131,11 @@
              }
          }
      }
-     static void BM_JustCallHandlerWithoutOptimization(benchmark::State& state)
+@@ -32,10 +33,11 @@
      {
--        for (auto _ : state)
-+        for ([[maybe_unused]] auto _ : state)
+         for (auto _ : state)
          {
++            (void)_;
              for (auto i = 0; i < state.range(0); ++i)
              {
 -                benchmark::DoNotOptimize(CallHandler(TLinkAddress{10}, TLinkAddress{10},
@@ -141,11 +145,11 @@
              }
          }
      }
-     static void BM_CheckDefaultHandlerAndSum(benchmark::State& state)
+@@ -43,10 +45,11 @@
      {
--        for (auto _ : state)
-+        for ([[maybe_unused]] auto _ : state)
+         for (auto _ : state)
          {
++            (void)_;
              for (auto i = 0; i < state.range(0); ++i)
              {
                  CheckDefaultHandlerAndCallHandler(TLinkAddress{10}, TLinkAddress{10},
@@ -154,11 +158,11 @@
              }
          }
      }
-     static void BM_JustCallHandler(benchmark::State& state)
+@@ -54,15 +57,22 @@
      {
--        for (auto _ : state)
-+        for ([[maybe_unused]] auto _ : state)
+         for (auto _ : state)
          {
++            (void)_;
              for (auto i = 0; i < state.range(0); ++i)
              {
 -                CallHandler(TLinkAddress{10}, TLinkAddress{10},
@@ -167,6 +171,22 @@
              }
          }
      }
+-    BENCHMARK(BM_CheckDefaultHandlerAndSumWithoutOptimization)->Arg(1000000);
+-    BENCHMARK(BM_JustCallHandlerWithoutOptimization)->Arg(1000000);
+-    BENCHMARK(BM_CheckDefaultHandlerAndSum)->Arg(1000000);
+-    BENCHMARK(BM_JustCallHandler)->Arg(1000000);
++    auto RegisterHandlerBenchmarks()
++    {
++        return std::tuple{
++            benchmark::RegisterBenchmark("BM_CheckDefaultHandlerAndSumWithoutOptimization",
++                                         BM_CheckDefaultHandlerAndSumWithoutOptimization)
++                ->Arg(1000000),
++            benchmark::RegisterBenchmark("BM_JustCallHandlerWithoutOptimization", BM_JustCallHandlerWithoutOptimization)
++                ->Arg(1000000),
++            benchmark::RegisterBenchmark("BM_CheckDefaultHandlerAndSum", BM_CheckDefaultHandlerAndSum)->Arg(1000000),
++            benchmark::RegisterBenchmark("BM_JustCallHandler", BM_JustCallHandler)->Arg(1000000)};
++    }
+ } // namespace Platform::Data::Doublets::Benchmarks
 --- cpp/Platform.Data.Doublets.Benchmarks/CreateMillionPointsBenchmarks.cpp
 +++ cpp/Platform.Data.Doublets.Benchmarks/CreateMillionPointsBenchmarks.h
 @@ -1,3 +1,4 @@
@@ -174,14 +194,12 @@
  namespace Platform::Data::Doublets::Benchmarks
  {
      using TLinkAddress = std::uint64_t;
-@@ -5,15 +6,16 @@
-     {
-         using namespace Platform::Memory;
+@@ -7,13 +8,15 @@
          using namespace Platform::Data::Doublets::Memory::United::Generic;
--        for (auto _ : state)
-+        for ([[maybe_unused]] auto _ : state)
+         for (auto _ : state)
          {
 -            std::string memoryFilePath{std::tmpnam(nullptr)};
++            (void)_;
 +            Tools::TemporaryDirectory temporary;
 +            std::string memoryFilePath = temporary.File("data.links");
              Expects(!Collections::IsWhiteSpace(memoryFilePath));
@@ -194,15 +212,13 @@
                  {
                      CreatePoint(storage);
                  }
-@@ -30,17 +32,18 @@
-     {
-         using namespace Platform::Memory;
+@@ -32,15 +35,17 @@
          using namespace Platform::Data::Doublets::Memory::Split::Generic;
--        for (auto _ : state)
-+        for ([[maybe_unused]] auto _ : state)
+         for (auto _ : state)
          {
 -            std::string dataMemoryFilePath{std::tmpnam(nullptr)};
 -            std::string indexMemoryFilePath{std::tmpnam(nullptr)};
++            (void)_;
 +            Tools::TemporaryDirectory temporary;
 +            std::string dataMemoryFilePath = temporary.File("data.links");
 +            std::string indexMemoryFilePath = temporary.File("index.links");
@@ -217,6 +233,21 @@
                  {
                      CreatePoint(storage);
                  }
+@@ -53,6 +58,12 @@
+             std::remove(dataMemoryFilePath.c_str());
+         }
+     }
+-    BENCHMARK(BM_CreateMillionPointsUnitedMemory)->Arg(1000000);
+-    BENCHMARK(BM_CreateMillionPointsSplitMemory)->Arg(1000000);
++    auto RegisterCreateMillionPointsBenchmarks()
++    {
++        return std::tuple{
++            benchmark::RegisterBenchmark("BM_CreateMillionPointsUnitedMemory", BM_CreateMillionPointsUnitedMemory)
++                ->Arg(1000000),
++            benchmark::RegisterBenchmark("BM_CreateMillionPointsSplitMemory", BM_CreateMillionPointsSplitMemory)
++                ->Arg(1000000)};
++    }
+ } // namespace Platform::Data::Doublets::Benchmarks
 --- cpp/Platform.Data.Doublets.Profiling/CreatePointsProfiling.h
 +++ cpp/Platform.Data.Doublets.Profiling/CreatePointsProfiling.h
 @@ -1,3 +1,4 @@
@@ -265,9 +296,57 @@
          action(storage);
      }
      template <std::integral TLinkAddress>
+@@ -19,7 +20,6 @@
+                               LinksSourcesSizeBalancedTreeMethods<LinksOptionsType>,
+                               LinksTargetsSizeBalancedTreeMethods<LinksOptionsType>,
+                               UnusedLinksListMethods<LinksOptionsType>, Platform::Data::ILinks<LinksOptionsType>>;
+-        StorageType storage{HeapResizableDirectMemory{}};
+         UsingStorage<StorageType>(action);
+     }
+     template <std::integral TLinkAddress>
+@@ -35,7 +35,6 @@
+                               LinksTargetsSizeBalancedTreeMethods<LinksOptionsType>,
+                               UnusedLinksListMethods<LinksOptionsType>, Platform::Data::ILinks<LinksOptionsType>>;
+         using DecoratedStorageType = LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<StorageType>;
+-        DecoratedStorageType storage{HeapResizableDirectMemory{}};
+         UsingStorage<DecoratedStorageType>(action);
+     }
+     template <std::integral TLinkAddress>
+@@ -49,7 +48,6 @@
+                               LinksSourcesRecursionlessSizeBalancedTreeMethods<LinksOptionsType>,
+                               LinksTargetsRecursionlessSizeBalancedTreeMethods<LinksOptionsType>,
+                               UnusedLinksListMethods<LinksOptionsType>, Platform::Data::ILinks<LinksOptionsType>>;
+-        StorageType storage{HeapResizableDirectMemory{}};
+         UsingStorage<StorageType>(action);
+     }
+     template <std::integral TLinkAddress>
+@@ -66,7 +64,6 @@
+                               LinksTargetsRecursionlessSizeBalancedTreeMethods<LinksOptionsType>,
+                               UnusedLinksListMethods<LinksOptionsType>, Platform::Data::ILinks<LinksOptionsType>>;
+         using DecoratedStorageType = LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<StorageType>;
+-        DecoratedStorageType storage{HeapResizableDirectMemory{}};
+         UsingStorage<DecoratedStorageType>(action);
+     }
+     template <std::integral TLinkAddress>
+@@ -80,7 +77,6 @@
+                               LinksSourcesAvlBalancedTreeMethods<LinksOptionsType>,
+                               LinksTargetsAvlBalancedTreeMethods<LinksOptionsType>,
+                               UnusedLinksListMethods<LinksOptionsType>, Platform::Data::ILinks<LinksOptionsType>>;
+-        StorageType storage{HeapResizableDirectMemory{}};
+         UsingStorage<StorageType>(action);
+     }
+     template <std::integral TLinkAddress>
+@@ -96,7 +92,6 @@
+                               LinksTargetsAvlBalancedTreeMethods<LinksOptionsType>,
+                               UnusedLinksListMethods<LinksOptionsType>, Platform::Data::ILinks<LinksOptionsType>>;
+         using DecoratedStorageType = LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<StorageType>;
+-        DecoratedStorageType storage{HeapResizableDirectMemory{}};
+         UsingStorage<DecoratedStorageType>(action);
+     }
+     TEST(DynamicGenericLinksTests, CrudTestWithSizeBalancedTrees)
 --- cpp/Platform.Data.Doublets.Tests/ExtensionTests.h
 +++ cpp/Platform.Data.Doublets.Tests/ExtensionTests.h
-@@ -0,0 +1,43 @@
+@@ -0,0 +1,79 @@
 +namespace Platform::Data::Doublets::Tests
 +{
 +    using ExtensionStorage = Memory::United::Generic::UnitedMemoryLinks<LinksOptions<std::uint64_t>,
@@ -309,6 +388,42 @@
 +        EXPECT_FALSE(Exists(storage, first));
 +        EXPECT_TRUE(Exists(storage, second));
 +        EXPECT_EQ(1, Count(storage));
++    }
++    TEST(ExtensionTests, AllVariadicArgumentsRestrictTheResult)
++    {
++        ExtensionStorage storage{Platform::Memory::HeapResizableDirectMemory{}};
++        auto first = Create(storage);
++        auto second = Create(storage);
++        auto selected = All(storage, second);
++        ASSERT_EQ(1, selected.size());
++        EXPECT_EQ(second, selected.front()[0]);
++        EXPECT_TRUE(Exists(storage, first));
++    }
++    template <typename TStorage>
++    void CheckAddressLimit(TStorage& storage)
++    {
++        auto maximum = storage.Constants.InternalReferencesRange.Maximum;
++        for (unsigned int address = 1; address <= maximum; ++address)
++            EXPECT_EQ(address, Create(storage));
++        EXPECT_THROW(Create(storage), std::logic_error);
++        EXPECT_EQ(maximum, Count(storage));
++        Delete(storage, 1);
++        EXPECT_EQ(1, Create(storage));
++        EXPECT_THROW(Create(storage), std::logic_error);
++    }
++    TEST(ExtensionTests, UnitedRejectsExhaustedAddressesButReusesFreeLinks)
++    {
++        Memory::United::Generic::UnitedMemoryLinks<LinksOptions<std::uint8_t>,
++                                                   Platform::Memory::HeapResizableDirectMemory>
++            storage{Platform::Memory::HeapResizableDirectMemory{}};
++        CheckAddressLimit(storage);
++    }
++    TEST(ExtensionTests, SplitRejectsExhaustedAddressesButReusesFreeLinks)
++    {
++        Memory::Split::Generic::SplitMemoryLinks<LinksOptions<std::uint8_t>,
++                                                 Platform::Memory::HeapResizableDirectMemory>
++            storage{Platform::Memory::HeapResizableDirectMemory{}, Platform::Memory::HeapResizableDirectMemory{}};
++        CheckAddressLimit(storage);
 +    }
 +} // namespace Platform::Data::Doublets::Tests
 --- cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h
@@ -389,7 +504,7 @@
          using namespace Platform::Ranges;
 --- cpp/Platform.Data.Doublets.Tests/OwnershipTests.h
 +++ cpp/Platform.Data.Doublets.Tests/OwnershipTests.h
-@@ -0,0 +1,68 @@
+@@ -0,0 +1,86 @@
 +namespace Platform::Data::Doublets::Tests
 +{
 +    template <typename T>
@@ -456,6 +571,24 @@
 +        EXPECT_EQ(0, ExternalSources::Instances);
 +        EXPECT_EQ(0, ExternalTargets::Instances);
 +        EXPECT_EQ(0, Unused::Instances);
++    }
++    TEST(OwnershipTests, SplitGrowthRespectsBothBufferCapacities)
++    {
++        using Storage = Memory::Split::Generic::SplitMemoryLinks<LinksOptions<std::uint64_t>,
++                                                                 Platform::Memory::HeapResizableDirectMemory>;
++        const std::pair<std::uint64_t, std::uint64_t> reservations[] = {{4096, 4096}, {8192, 4096}, {4096, 8192}};
++        for (auto capacities : reservations)
++        {
++            Storage storage{Platform::Memory::HeapResizableDirectMemory{capacities.first},
++                            Platform::Memory::HeapResizableDirectMemory{capacities.second}, 4};
++            for (int i = 0; i < 128; ++i)
++            {
++                Create(storage);
++                EXPECT_LE(storage._dataMemory.UsedCapacity(), storage._dataMemory.ReservedCapacity());
++                EXPECT_LE(storage._indexMemory.UsedCapacity(), storage._indexMemory.ReservedCapacity());
++            }
++            EXPECT_EQ(128, Count(storage));
++        }
 +    }
 +} // namespace Platform::Data::Doublets::Tests
 --- cpp/Platform.Data.Doublets.Tests/ResizableDirectMemoryLinksTests.cpp
@@ -581,6 +714,15 @@
          for (typename TStorage::LinkAddressType i{1}; i < std::ranges::size(path); ++i)
          {
              auto next = path[i];
+@@ -237,7 +237,7 @@
+                     std::convertible_to<typename TStorage::LinkAddressType> auto... restrictionPack)
+     {
+         typename TStorage::LinkType restriction{static_cast<typename TStorage::LinkAddressType>(restrictionPack)...};
+-        return All(storage, typename TStorage::LinkType{});
++        return All(storage, restriction);
+     }
+     template <typename TStorage>
+     static typename TStorage::LinkAddressType AllIndices(TStorage& storage,
 @@ -348,55 +348,64 @@
          }
      }
@@ -823,7 +965,17 @@
              return typename TStorage::LinkAddressType{};
          };
          auto any = storage.Constants.Any;
-@@ -757,7 +766,7 @@
+@@ -708,8 +717,7 @@
+     {
+         auto nullConstant = storage.Constants.Null;
+         auto link = GetLink(storage, linkIndex);
+-        for (typename TStorage::LinkAddressType i = typename TStorage::LinkAddressType{1}; i < std::ranges::size(link);
+-             ++i)
++        for (std::size_t i = 1; i < std::ranges::size(link); ++i)
+         {
+             if (nullConstant != link[i])
+             {
+@@ -757,7 +765,7 @@
          {
              return newLinkIndex;
          }
@@ -832,7 +984,7 @@
          auto usagesAsSource = All(storage, typename TStorage::LinkType(constants.Any, oldLinkIndex, constants.Any));
          WriteHandlerState<TStorage> handlerState{constants.Continue, constants.Break, handler};
          for (auto i{0}; i < std::ranges::size(usagesAsSource); ++i)
-@@ -810,7 +819,7 @@
+@@ -810,7 +818,7 @@
                                                               typename TStorage::LinkAddressType newLinkIndex,
                                                               const typename TStorage::WriteHandlerType& handler)
      {
@@ -841,7 +993,7 @@
          WriteHandlerState<TStorage> handlerState{constants.Continue, constants.Break, handler};
          if (newLinkIndex != oldLinkIndex)
          {
-@@ -822,7 +831,7 @@
+@@ -822,7 +830,7 @@
      template <typename TStorage>
      static std::string Format(TStorage& storage, const typename TStorage::LinkType& link)
      {
@@ -850,7 +1002,7 @@
          return std::string{}
              .append("(")
              .append(std::to_string(GetIndex(storage, link)))
-@@ -850,8 +859,10 @@
+@@ -850,8 +858,10 @@
      {
          typename TStorage::LinkType queryResult;
          DIRECT_METHOD_CALL(TStorage, storage, Each, query,
@@ -885,6 +1037,60 @@
        private:
          static constexpr LinksConstants<TLinkAddress> _constants{};
        private:
+@@ -94,33 +101,37 @@
+         auto&& operator[](std::size_t index) const
+         {
+             using namespace Platform::Ranges;
+-            switch (index)
+-            {
+-            case _constants.IndexPart:
++            if (index == _constants.IndexPart)
++            {
+                 return Index;
+-            case _constants.SourcePart:
++            }
++            if (index == _constants.SourcePart)
++            {
+                 return Source;
+-            case _constants.TargetPart:
++            }
++            if (index == _constants.TargetPart)
++            {
+                 return Target;
+-            default:
+-                throw std::out_of_range("Link index out of range");
+-            }
++            }
++            throw std::out_of_range("Link index out of range");
+         }
+       public:
+         auto&& operator[](std::size_t index)
+         {
+             using namespace Platform::Ranges;
+-            switch (index)
+-            {
+-            case _constants.IndexPart:
++            if (index == _constants.IndexPart)
++            {
+                 return Index;
+-            case _constants.SourcePart:
++            }
++            if (index == _constants.SourcePart)
++            {
+                 return Source;
+-            case _constants.TargetPart:
++            }
++            if (index == _constants.TargetPart)
++            {
+                 return Target;
+-            default:
+-                throw std::out_of_range("Link index out of range");
+-            }
++            }
++            throw std::out_of_range("Link index out of range");
+         }
+       public:
+         std::size_t size() const noexcept
 --- cpp/Platform.Data.Doublets/LinksOptions.h
 +++ cpp/Platform.Data.Doublets/LinksOptions.h
 @@ -9,9 +9,9 @@
@@ -933,7 +1139,25 @@
          std::byte* _header;
          std::byte* _linksDataParts;
          std::byte* _linksIndexParts;
-@@ -116,11 +116,11 @@
+@@ -86,7 +86,7 @@
+             }
+             SetPointers(dataMemory, indexMemory);
+             auto allocatedLinks{this->GetHeaderReference().AllocatedLinks};
+-            auto minimumDataReservedCapacity = allocatedLinks * LinkDataPartSizeInBytes;
++            auto minimumDataReservedCapacity = (allocatedLinks + 1) * LinkDataPartSizeInBytes;
+             if (minimumDataReservedCapacity < dataMemory.UsedCapacity())
+             {
+                 minimumDataReservedCapacity = dataMemory.UsedCapacity();
+@@ -95,7 +95,7 @@
+             {
+                 minimumDataReservedCapacity = _dataMemoryReservationStepInBytes;
+             }
+-            auto minimumIndexReservedCapacity = allocatedLinks * LinkDataPartSizeInBytes;
++            auto minimumIndexReservedCapacity = allocatedLinks * LinkIndexPartSizeInBytes + LinkHeaderSizeInBytes;
+             if (minimumIndexReservedCapacity < indexMemory.UsedCapacity())
+             {
+                 minimumIndexReservedCapacity = indexMemory.UsedCapacity();
+@@ -116,22 +116,22 @@
                                                  _indexMemoryReservationStepInBytes) +
                                                 _indexMemoryReservationStepInBytes;
              }
@@ -947,6 +1171,19 @@
              {
                  indexMemory.ReservedCapacity(minimumIndexReservedCapacity);
              }
+             SetPointers(dataMemory, indexMemory);
+-            this->GetHeaderReference() = this->GetHeaderReference();
+             dataMemory.UsedCapacity((this->GetHeaderReference().AllocatedLinks * LinkDataPartSizeInBytes) +
+                                     LinkDataPartSizeInBytes);
+             indexMemory.UsedCapacity((this->GetHeaderReference().AllocatedLinks * LinkIndexPartSizeInBytes) +
+                                      LinkHeaderSizeInBytes);
+             this->GetHeaderReference().ReservedLinks =
+-                (dataMemory.ReservedCapacity() - LinkDataPartSizeInBytes) / LinkDataPartSizeInBytes;
++                std::min((dataMemory.ReservedCapacity() - LinkDataPartSizeInBytes) / LinkDataPartSizeInBytes,
++                         (indexMemory.ReservedCapacity() - LinkHeaderSizeInBytes) / LinkIndexPartSizeInBytes);
+         }
+         LinkAddressType Count(const LinkType& restriction) const
+         {
 @@ -207,7 +207,7 @@
                      {
                          return this->Total();
@@ -1121,14 +1358,62 @@
          {
              using namespace Platform::Exceptions;
              auto freeLink = this->GetHeaderReference().FirstFreeLink;
-@@ -831,7 +835,6 @@
+@@ -822,17 +826,18 @@
+             else
+             {
+                 auto maximumPossibleInnerReference = Constants.InternalReferencesRange.Maximum;
+-                if (this->GetHeaderReference().AllocatedLinks > maximumPossibleInnerReference)
++                if (this->GetHeaderReference().AllocatedLinks >= maximumPossibleInnerReference)
+                 {
+                     throw Platform::Exceptions::LinksLimitReachedException();
+                 }
+-                if (this->GetHeaderReference().AllocatedLinks >= (this->GetHeaderReference().ReservedLinks - 1))
++                if (this->GetHeaderReference().AllocatedLinks >= this->GetHeaderReference().ReservedLinks)
+                 {
                      _dataMemory.ReservedCapacity(_dataMemory.ReservedCapacity() + _dataMemoryReservationStepInBytes);
                      _indexMemory.ReservedCapacity(_indexMemory.ReservedCapacity() + _indexMemoryReservationStepInBytes);
                      SetPointers(_dataMemory, _indexMemory);
 -                    this->GetHeaderReference() = this->GetHeaderReference();
-                     this->GetHeaderReference().ReservedLinks = _dataMemory.ReservedCapacity() / LinkDataPartSizeInBytes;
+-                    this->GetHeaderReference().ReservedLinks = _dataMemory.ReservedCapacity() / LinkDataPartSizeInBytes;
++                    this->GetHeaderReference().ReservedLinks =
++                        std::min((_dataMemory.ReservedCapacity() - LinkDataPartSizeInBytes) / LinkDataPartSizeInBytes,
++                                 (_indexMemory.ReservedCapacity() - LinkHeaderSizeInBytes) / LinkIndexPartSizeInBytes);
                  }
                  freeLink = ++this->GetHeaderReference().AllocatedLinks;
+                 _dataMemory.UsedCapacity(_dataMemory.UsedCapacity() + LinkDataPartSizeInBytes);
+--- cpp/Platform.Data.Doublets/Memory/United/Generic/LinksAvlBalancedTreeMethodsBase.h
++++ cpp/Platform.Data.Doublets/Memory/United/Generic/LinksAvlBalancedTreeMethodsBase.h
+@@ -160,7 +160,7 @@
+       public:
+         auto& GetLinkReference(LinkAddressType linkAddress)
+         {
+-            return *(reinterpret_cast<RawLink<LinkAddressType>*>(Links) + linkAddress);
++            return reinterpret_cast<RawLink<LinkAddressType>*>(Links)[linkAddress];
+         }
+       public:
+         LinkType GetLinkValues(LinkAddressType linkIndex)
+--- cpp/Platform.Data.Doublets/Memory/United/Generic/LinksRecursionlessSizeBalancedTreeMethodsBase.h
++++ cpp/Platform.Data.Doublets/Memory/United/Generic/LinksRecursionlessSizeBalancedTreeMethodsBase.h
+@@ -52,7 +52,7 @@
+       public:
+         auto& GetLinkReference(LinkAddressType linkAddress)
+         {
+-            return *(reinterpret_cast<RawLink<LinkAddressType>*>(Links) + linkAddress);
++            return reinterpret_cast<RawLink<LinkAddressType>*>(Links)[linkAddress];
+         }
+       public:
+         LinkType GetLinkValues(LinkAddressType linkIndex)
+--- cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSizeBalancedTreeMethodsBase.h
++++ cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSizeBalancedTreeMethodsBase.h
+@@ -26,7 +26,7 @@
+       public:
+         auto& GetLinkReference(LinkAddressType linkAddress)
+         {
+-            return *(reinterpret_cast<RawLink<LinkAddressType>*>(Links) + linkAddress);
++            return reinterpret_cast<RawLink<LinkAddressType>*>(Links)[linkAddress];
+         }
+       public:
+         LinkType GetLinkValues(LinkAddressType linkIndex)
 --- cpp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinksBase.h
 +++ cpp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinksBase.h
 @@ -22,9 +22,9 @@
@@ -1144,6 +1429,20 @@
          LinksHeader<LinkAddressType>& GetHeaderReference()
          {
              return *reinterpret_cast<LinksHeader<LinkAddressType>*>(_header);
+@@ -35,11 +35,11 @@
+         }
+         const RawLink<LinkAddressType>& GetLinkReference(LinkAddressType linkIndex) const
+         {
+-            return *(reinterpret_cast<RawLink<LinkAddressType>*>(_links) + linkIndex);
++            return reinterpret_cast<const RawLink<LinkAddressType>*>(_links)[linkIndex];
+         }
+         RawLink<LinkAddressType>& GetLinkReference(LinkAddressType linkIndex)
+         {
+-            return *(reinterpret_cast<RawLink<LinkAddressType>*>(_links) + linkIndex);
++            return reinterpret_cast<RawLink<LinkAddressType>*>(_links)[linkIndex];
+         }
+         LinkAddressType GetTotal() const
+         {
 @@ -146,7 +146,7 @@
                          return LinkAddressType{1};
                      }
@@ -1168,7 +1467,7 @@
              if (freeLink != Constants.Null)
              {
                  _UnusedLinksListMethods->Detach(freeLink);
-@@ -340,18 +340,18 @@
+@@ -340,18 +340,19 @@
              else
              {
                  auto maximumPossibleInnerReference = Constants.InternalReferencesRange.Maximum;
@@ -1176,8 +1475,9 @@
 -                {
 -                }
 -                if (header.AllocatedLinks >= (header.ReservedLinks - 1))
-+                if (header->AllocatedLinks > maximumPossibleInnerReference)
++                if (header->AllocatedLinks >= maximumPossibleInnerReference)
 +                {
++                    throw Platform::Exceptions::LinksLimitReachedException();
 +                }
 +                if (header->AllocatedLinks >= (header->ReservedLinks - 1))
                  {
@@ -1196,7 +1496,7 @@
                  _memory.UsedCapacity(_memory.UsedCapacity() + LinkSizeInBytes);
              }
              return handler(LinkType{0, 0, 0}, LinkType{freeLink, 0, 0});
-@@ -367,7 +367,7 @@
+@@ -367,7 +368,7 @@
                  _UnusedLinksListMethods->AttachAsFirst(linkAddress);
                  return handler ? handler(before, LinkType{}) : Constants.Continue;
              }
@@ -1205,7 +1505,7 @@
              {
                  --header.AllocatedLinks;
                  _memory.UsedCapacity(_memory.UsedCapacity() - LinkSizeInBytes);
-@@ -391,9 +391,9 @@
+@@ -391,9 +392,9 @@
          {
              _links = static_cast<std::byte*>(memory.Pointer());
              _header = _links;
@@ -1218,6 +1518,17 @@
          }
          bool Exists(LinkAddressType linkAddress) const
          {
+--- cpp/Platform.Data.Doublets/Memory/United/Generic/UnusedLinksListMethods.h
++++ cpp/Platform.Data.Doublets/Memory/United/Generic/UnusedLinksListMethods.h
+@@ -24,7 +24,7 @@
+       public:
+         auto& GetLinkReference(LinkAddressType linkIndex)
+         {
+-            return *(reinterpret_cast<RawLink<LinkAddressType>*>(_links) + linkIndex);
++            return reinterpret_cast<RawLink<LinkAddressType>*>(_links)[linkIndex];
+         }
+       public:
+         LinkAddressType GetFirst()
 --- cpp/Platform.Data.Doublets/Platform.Data.Doublets.h
 +++ cpp/Platform.Data.Doublets/Platform.Data.Doublets.h
 @@ -6,6 +6,7 @@
@@ -1356,6 +1667,41 @@
      }
      [Benchmark]
      public IList<IList<TLinkAddress>?> Array()
+--- csharp/Platform.Data.Doublets.Tests/AddressLimitTests.cs
++++ csharp/Platform.Data.Doublets.Tests/AddressLimitTests.cs
+@@ -0,0 +1,32 @@
++using System;
++using Platform.Data.Doublets.Memory;
++using Platform.Data.Doublets.Memory.Split.Generic;
++using Platform.Data.Doublets.Memory.United.Generic;
++using Platform.Data.Exceptions;
++using Platform.Memory;
++using Xunit;
++namespace Platform.Data.Doublets.Tests;
++public class AddressLimitTests
++{
++    [Theory]
++    [InlineData(false)]
++    [InlineData(true)]
++    public void ExhaustedAddressesAreRejectedButFreedLinksCanBeReused(bool split)
++    {
++        using var data = new HeapResizableDirectMemory();
++        using var index = new HeapResizableDirectMemory();
++        var constants = new LinksConstants<ulong>((1, 9), (0, 0));
++        using var disposable = split ? (IDisposable) new SplitMemoryLinks<ulong>(data, index, 4096, constants)
++                                     : new UnitedMemoryLinks<ulong>(data, 4096, constants, IndexTreeType.Default);
++        var links = (ILinks<ulong>)disposable;
++        var maximum = constants.InternalReferencesRange.Maximum;
++        Assert.InRange(maximum, 1UL, 9UL);
++        for (ulong address = 1; address <= maximum; address++)
++            Assert.Equal(address, links.Create());
++        Assert.Throws<LinksLimitReachedException<ulong>>(() => links.Create());
++        Assert.Equal(maximum, links.Count());
++        links.Delete(1UL);
++        Assert.Equal(1UL, links.Create());
++        Assert.Throws<LinksLimitReachedException<ulong>>(() => links.Create());
++    }
++}
 --- csharp/Platform.Data.Doublets.Tests/ConstructorSafetyTests.cs
 +++ csharp/Platform.Data.Doublets.Tests/ConstructorSafetyTests.cs
 @@ -0,0 +1,59 @@
@@ -1452,11 +1798,11 @@
 +    [Fact]
 +    public void ExplicitTransactionDisposalReportsFailureToPersistCommitState()
 +    {
-+        var directory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
++        var directory = Path.Join(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
 +        Directory.CreateDirectory(directory);
 +        try
 +        {
-+            var logPath = Path.Combine(directory, "transactions.log");
++            var logPath = Path.Join(directory, "transactions.log");
 +            using var memory = new HeapResizableDirectMemory();
 +            using var store = new UnitedMemoryLinks<ulong>(memory);
 +            var owner = new DisposalProbe(store);
@@ -1664,6 +2010,33 @@
          }
      }
      [Fact]
+--- csharp/Platform.Data.Doublets.Tests/SplitGrowthTests.cs
++++ csharp/Platform.Data.Doublets.Tests/SplitGrowthTests.cs
+@@ -0,0 +1,24 @@
++using Platform.Data.Doublets.Memory.Split.Generic;
++using Platform.Memory;
++using Xunit;
++namespace Platform.Data.Doublets.Tests;
++public class SplitGrowthTests
++{
++    [Theory]
++    [InlineData(4096, 4096)]
++    [InlineData(8192, 4096)]
++    [InlineData(4096, 8192)]
++    public void GrowthRespectsTheCapacityOfBothBuffers(long dataCapacity, long indexCapacity)
++    {
++        using var data = new HeapResizableDirectMemory(dataCapacity);
++        using var index = new HeapResizableDirectMemory(indexCapacity);
++        using var links = new SplitMemoryLinks<ulong>(data, index, 4);
++        for (ulong address = 1; address <= 128; address++)
++        {
++            Assert.Equal(address, links.Create());
++            Assert.InRange(data.UsedCapacity, 0, data.ReservedCapacity);
++            Assert.InRange(index.UsedCapacity, 0, index.ReservedCapacity);
++        }
++        Assert.Equal(128UL, links.Count());
++    }
++}
 --- csharp/Platform.Data.Doublets/Decorators/LinksDecoratorBase.cs
 +++ csharp/Platform.Data.Doublets/Decorators/LinksDecoratorBase.cs
 @@ -13,6 +13,7 @@
@@ -1980,7 +2353,7 @@
      public override int GetHashCode()
 --- csharp/Platform.Data.Doublets/ILinksExtensions.Validation.cs
 +++ csharp/Platform.Data.Doublets/ILinksExtensions.Validation.cs
-@@ -0,0 +1,153 @@
+@@ -0,0 +1,152 @@
 +using System;
 +using System.Collections;
 +using System.Collections.Generic;
@@ -2125,10 +2498,9 @@
 +            }
 +            remaining.Remove(address);
 +        }
-+        foreach (var address in created)
++        foreach (var address in created.Where(address => !requested.Contains(address)))
 +        {
-+            if (!requested.Contains(address))
-+                links.Delete(address, null);
++            links.Delete(address, null);
 +        }
 +    }
 +#endregion
@@ -3173,7 +3545,7 @@
              }
          }
          return handler != null ? handler(before: before, after: new Link<TLinkAddress>(index: linkIndex, source: source,
-@@ -503,7 +489,7 @@
+@@ -503,23 +489,24 @@
          var freeLink = header.FirstFreeLink;
          if ((freeLink != Constants.Null))
          {
@@ -3182,7 +3554,28 @@
          }
          else
          {
-@@ -530,12 +516,13 @@
+             var maximumPossibleInnerReference = Constants.InternalReferencesRange.Maximum;
+-            if ((header.AllocatedLinks > maximumPossibleInnerReference))
++            if ((header.AllocatedLinks >= maximumPossibleInnerReference))
+             {
+                 throw new LinksLimitReachedException<TLinkAddress>(limit: maximumPossibleInnerReference);
+             }
+-            if ((header.AllocatedLinks >= header.ReservedLinks - TLinkAddress.One))
++            if (header.AllocatedLinks >= header.ReservedLinks)
+             {
+                 _dataMemory.ReservedCapacity += _dataMemoryReservationStepInBytes;
+                 _indexMemory.ReservedCapacity += _indexMemoryReservationStepInBytes;
+                 SetPointers(dataMemory: _dataMemory, indexMemory: _indexMemory);
+                 header = ref GetHeaderReference();
+-                header.ReservedLinks =
+-                    TLinkAddress.CreateTruncating(value: _dataMemory.ReservedCapacity / LinkDataPartSizeInBytes);
++                header.ReservedLinks = TLinkAddress.CreateTruncating(value: Math.Min(
++                    (_dataMemory.ReservedCapacity - LinkDataPartSizeInBytes) / LinkDataPartSizeInBytes,
++                    (_indexMemory.ReservedCapacity - LinkHeaderSizeInBytes) / LinkIndexPartSizeInBytes));
+             }
+             freeLink = header.AllocatedLinks = header.AllocatedLinks + TLinkAddress.One;
+             _dataMemory.UsedCapacity += LinkDataPartSizeInBytes;
+@@ -530,12 +517,13 @@
      [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
      public virtual TLinkAddress Delete(IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? handler)
      {
@@ -3197,7 +3590,7 @@
          }
          else if ((link == header.AllocatedLinks))
          {
-@@ -544,7 +531,7 @@
+@@ -544,7 +532,7 @@
              _indexMemory.UsedCapacity -= LinkIndexPartSizeInBytes;
              while ((header.AllocatedLinks > GetZero()) && IsUnusedLink(linkIndex: header.AllocatedLinks))
              {
@@ -3206,7 +3599,7 @@
                  header.AllocatedLinks = header.AllocatedLinks - TLinkAddress.One;
                  _dataMemory.UsedCapacity -= LinkDataPartSizeInBytes;
                  _indexMemory.UsedCapacity -= LinkIndexPartSizeInBytes;
-@@ -553,14 +540,20 @@
+@@ -553,16 +541,22 @@
          return handler != null ? handler(before: before, after: null) : Constants.Continue;
      }
      [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
@@ -3228,9 +3621,21 @@
 +        ref var header =
 +            ref System.Runtime.CompilerServices.Unsafe.AsRef<LinksHeader<TLinkAddress>>((void *)indexMemory.Pointer);
          var allocatedLinks = long.CreateTruncating(value: header.AllocatedLinks);
-         var minimumDataReservedCapacity = allocatedLinks * LinkDataPartSizeInBytes;
+-        var minimumDataReservedCapacity = allocatedLinks * LinkDataPartSizeInBytes;
++        var minimumDataReservedCapacity = (allocatedLinks + 1) * LinkDataPartSizeInBytes;
          if (minimumDataReservedCapacity < dataMemory.UsedCapacity)
-@@ -592,16 +585,17 @@
+         {
+             minimumDataReservedCapacity = dataMemory.UsedCapacity;
+@@ -571,7 +565,7 @@
+         {
+             minimumDataReservedCapacity = _dataMemoryReservationStepInBytes;
+         }
+-        var minimumIndexReservedCapacity = allocatedLinks * LinkDataPartSizeInBytes;
++        var minimumIndexReservedCapacity = allocatedLinks * LinkIndexPartSizeInBytes + LinkHeaderSizeInBytes;
+         if (minimumIndexReservedCapacity < indexMemory.UsedCapacity)
+         {
+             minimumIndexReservedCapacity = indexMemory.UsedCapacity;
+@@ -592,25 +586,27 @@
                  minimumIndexReservedCapacity / _indexMemoryReservationStepInBytes * _indexMemoryReservationStepInBytes +
                  _indexMemoryReservationStepInBytes;
          }
@@ -3252,16 +3657,21 @@
          dataMemory.UsedCapacity =
              ConvertToInt64(value: header.AllocatedLinks) * LinkDataPartSizeInBytes + LinkDataPartSizeInBytes;
          indexMemory.UsedCapacity =
-@@ -610,7 +604,7 @@
-             value: (dataMemory.ReservedCapacity - LinkDataPartSizeInBytes) / LinkDataPartSizeInBytes);
-     }
-     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
+             ConvertToInt64(value: header.AllocatedLinks) * LinkIndexPartSizeInBytes + LinkHeaderSizeInBytes;
+         header.ReservedLinks = TLinkAddress.CreateTruncating(
+-            value: (dataMemory.ReservedCapacity - LinkDataPartSizeInBytes) / LinkDataPartSizeInBytes);
+-    }
+-    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
 -    public IList<TLinkAddress>? GetLinkStruct(TLinkAddress linkIndex)
++            value: Math.Min((dataMemory.ReservedCapacity - LinkDataPartSizeInBytes) / LinkDataPartSizeInBytes,
++                            (indexMemory.ReservedCapacity - LinkHeaderSizeInBytes) / LinkIndexPartSizeInBytes));
++    }
++    [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
 +    public IList<TLinkAddress> GetLinkStruct(TLinkAddress linkIndex)
      {
          ref var link = ref GetLinkDataPartReference(linkIndex: linkIndex);
          return new Link<TLinkAddress>(index: linkIndex, source: link.Source, target: link.Target);
-@@ -620,7 +614,7 @@
+@@ -620,7 +616,7 @@
      [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
      protected virtual void ResetPointers()
      {
@@ -3270,7 +3680,7 @@
          InternalSourcesTreeMethods = null;
          ExternalSourcesTreeMethods = null;
          InternalTargetsTreeMethods = null;
-@@ -646,7 +640,7 @@
+@@ -646,7 +642,7 @@
          {
              ref var linkDataPart = ref GetLinkDataPartReference(linkIndex: linkIndex);
              ref var linkIndexPart = ref GetLinkIndexPartReference(linkIndex: linkIndex);
@@ -3279,7 +3689,7 @@
          }
          return true;
      }
-@@ -658,7 +652,7 @@
+@@ -658,7 +654,7 @@
      [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
      protected virtual TLinkAddress GetZero()
      {
@@ -3574,7 +3984,7 @@
          }
          return handler != null ? handler(before, GetLinkStruct(linkIndex)) : Constants.Continue;
      }
-@@ -339,7 +352,7 @@
+@@ -339,12 +352,12 @@
          var freeLink = header.FirstFreeLink;
          if (!AreEqual(freeLink, Constants.Null))
          {
@@ -3583,6 +3993,12 @@
          }
          else
          {
+             var maximumPossibleInnerReference = Constants.InternalReferencesRange.Maximum;
+-            if (GreaterThan(header.AllocatedLinks, maximumPossibleInnerReference))
++            if (GreaterOrEqualThan(header.AllocatedLinks, maximumPossibleInnerReference))
+             {
+                 throw new LinksLimitReachedException<TLinkAddress>(maximumPossibleInnerReference);
+             }
 @@ -364,12 +377,13 @@
      [MethodImpl(MethodImplOptions.AggressiveInlining)]
      public virtual TLinkAddress Delete(IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? handler)

@@ -1,0 +1,489 @@
+﻿2026-10-29T08:10:51.3020762Z Current runner version: '2.338.0'
+2026-10-29T08:10:51.3043686Z ##[group]Runner Image Provisioner
+2026-10-29T08:10:51.3044341Z Hosted Compute Agent
+2026-10-29T08:10:51.3044823Z Version: 20261021.618
+2026-10-29T08:10:51.3045298Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+2026-10-29T08:10:51.3046083Z Build Date: 2026-10-21T00:45:21Z
+2026-10-29T08:10:51.3046561Z Worker ID: {50a9b434-f0cc-40a7-8e22-38a19fad7401}
+2026-10-29T08:10:51.3047037Z Region: westus3
+2026-10-29T08:10:51.3047448Z Cloud: Azure
+2026-10-29T08:10:51.3047792Z ##[endgroup]
+2026-10-29T08:10:51.3048740Z ##[group]Operating System
+2026-10-29T08:10:51.3049176Z Microsoft Windows Server 2025
+2026-10-29T08:10:51.3049547Z 10.0.26100
+2026-10-29T08:10:51.3049873Z Datacenter
+2026-10-29T08:10:51.3050195Z ##[endgroup]
+2026-10-29T08:10:51.3050524Z ##[group]Runner Image
+2026-10-29T08:10:51.3050972Z Image: windows-2025-vs2026
+2026-10-29T08:10:51.3051335Z Version: 20261021.278.1
+2026-10-29T08:10:51.3052620Z Included Software: https://github.com/actions/runner-images/blob/win25-vs2026/20261021.278/images/windows/Windows2025-VS2026-Readme.md
+2026-10-29T08:10:51.3053886Z Image Release: https://github.com/actions/runner-images/releases/tag/win25-vs2026%2F20261021.278
+2026-10-29T08:10:51.3054764Z ##[endgroup]
+2026-10-29T08:10:51.3055901Z ##[group]GITHUB_TOKEN Permissions
+2026-10-29T08:10:51.3057443Z Contents: read
+2026-10-29T08:10:51.3057868Z Metadata: read
+2026-10-29T08:10:51.3058298Z ##[endgroup]
+2026-10-29T08:10:51.3060041Z Secret source: Actions
+2026-10-29T08:10:51.3060774Z Cache mode: write
+2026-10-29T08:10:51.3061329Z Prepare workflow directory
+2026-10-29T08:10:51.3403983Z Prepare all required actions
+2026-10-29T08:10:51.3450713Z Getting action download info
+2026-10-29T08:10:51.6621455Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+2026-10-29T08:10:51.7940267Z Download action repository 'actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1' (SHA:26b0ec14cb23fa6904739307f278c14f94c95bf1)
+2026-10-29T08:10:52.4010576Z Download action repository 'actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9' (SHA:cf430e030ddbb5b0abf93d22962f4752f3646cd9)
+2026-10-29T08:10:52.6141521Z Complete job name: csharp (windows-2025)
+2026-10-29T08:10:52.7683294Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+2026-10-29T08:10:52.7684162Z with:
+2026-10-29T08:10:52.7684395Z   fetch-depth: 0
+2026-10-29T08:10:52.7684641Z   persist-credentials: false
+2026-10-29T08:10:52.7684931Z   repository: linksplatform/Data.Doublets
+2026-10-29T08:10:52.7687135Z   token: ***
+2026-10-29T08:10:52.7687360Z   ssh-strict: true
+2026-10-29T08:10:52.7687595Z   ssh-user: git
+2026-10-29T08:10:52.7687813Z   clean: true
+2026-10-29T08:10:52.7688051Z   sparse-checkout-cone-mode: true
+2026-10-29T08:10:52.7688327Z   fetch-tags: false
+2026-10-29T08:10:52.7688561Z   show-progress: true
+2026-10-29T08:10:52.7688807Z   lfs: false
+2026-10-29T08:10:52.7689055Z   submodules: false
+2026-10-29T08:10:52.7689293Z   set-safe-directory: true
+2026-10-29T08:10:52.7689565Z   allow-unsafe-pr-checkout: false
+2026-10-29T08:10:52.7690033Z ##[endgroup]
+2026-10-29T08:10:52.8894616Z Syncing repository: linksplatform/Data.Doublets
+2026-10-29T08:10:52.8895982Z ##[group]Getting Git version info
+2026-10-29T08:10:52.8896409Z Working directory is 'D:\a\Data.Doublets\Data.Doublets'
+2026-10-29T08:10:52.9420467Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-10-29T08:10:53.2776327Z git version 2.56.0.windows.2
+2026-10-29T08:10:53.2829876Z ##[endgroup]
+2026-10-29T08:10:53.2841032Z Temporarily overriding HOME='D:\a\_temp\fd63fcf9-8ece-47a4-910d-0c6db9f424b8' before making global git config changes
+2026-10-29T08:10:53.2842993Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-29T08:10:53.2847480Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\Data.Doublets\Data.Doublets
+2026-10-29T08:10:53.3475972Z Deleting the contents of 'D:\a\Data.Doublets\Data.Doublets'
+2026-10-29T08:10:53.3480253Z ##[group]Determining repository object format
+2026-10-29T08:10:53.3482792Z ##[endgroup]
+2026-10-29T08:10:53.3484592Z ##[group]Initializing the repository
+2026-10-29T08:10:53.3489214Z [command]"C:\Program Files\Git\bin\git.exe" init D:\a\Data.Doublets\Data.Doublets
+2026-10-29T08:10:53.4396209Z Initialized empty Git repository in D:/a/Data.Doublets/Data.Doublets/.git/
+2026-10-29T08:10:53.4435901Z [command]"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/linksplatform/Data.Doublets
+2026-10-29T08:10:53.5049911Z ##[endgroup]
+2026-10-29T08:10:53.5051327Z ##[group]Disabling automatic garbage collection
+2026-10-29T08:10:53.5056464Z [command]"C:\Program Files\Git\bin\git.exe" config --local gc.auto 0
+2026-10-29T08:10:53.5361575Z ##[endgroup]
+2026-10-29T08:10:53.5362793Z ##[group]Setting up auth
+2026-10-29T08:10:53.5365423Z Removing SSH command configuration
+2026-10-29T08:10:53.5377882Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-29T08:10:53.5657426Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-29T08:10:55.0772875Z Removing HTTP extra header
+2026-10-29T08:10:55.0784499Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-29T08:10:55.1097390Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-29T08:10:55.5430691Z Removing includeIf entries pointing to credentials config files
+2026-10-29T08:10:55.5437811Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-29T08:10:55.5739797Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-29T08:10:56.0394573Z [command]"C:\Program Files\Git\bin\git.exe" config --file D:\a\_temp\git-credentials-6800c7c0-3282-48a6-9557-226663754d55.config http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+2026-10-29T08:10:56.0702585Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:D:/a/Data.Doublets/Data.Doublets/.git.path D:\a\_temp\git-credentials-6800c7c0-3282-48a6-9557-226663754d55.config
+2026-10-29T08:10:56.1066440Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:D:/a/Data.Doublets/Data.Doublets/.git/worktrees/*.path D:\a\_temp\git-credentials-6800c7c0-3282-48a6-9557-226663754d55.config
+2026-10-29T08:10:56.1405866Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-6800c7c0-3282-48a6-9557-226663754d55.config
+2026-10-29T08:10:56.1709750Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-6800c7c0-3282-48a6-9557-226663754d55.config
+2026-10-29T08:10:56.2016064Z ##[endgroup]
+2026-10-29T08:10:56.2016562Z ##[group]Fetching the repository
+2026-10-29T08:10:56.2025925Z [command]"C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/* +be9012c1fac32e9e609b0dc61b92a8e5f8c5dab1:refs/remotes/pull/526/merge
+2026-10-29T08:11:08.7006764Z From https://github.com/linksplatform/Data.Doublets
+2026-10-29T08:11:08.7007465Z  * [new branch]          (storage)_rust_write.sequences           -> origin/(storage)_rust_write.sequences
+2026-10-29T08:11:08.7007989Z  * [new branch]          1000203-v2                               -> origin/1000203-v2
+2026-10-29T08:11:08.7009315Z  * [new branch]          100203                                   -> origin/100203
+2026-10-29T08:11:08.7009858Z  * [new branch]          Sequence.Experiments_fix                 -> origin/Sequence.Experiments_fix
+2026-10-29T08:11:08.7010469Z  * [new branch]          async-main                               -> origin/async-main
+2026-10-29T08:11:08.7010902Z  * [new branch]          beta.6                                   -> origin/beta.6
+2026-10-29T08:11:08.7011374Z  * [new branch]          binaries                                 -> origin/binaries
+2026-10-29T08:11:08.7011859Z  * [new branch]          c/feature/add_ffi_links                  -> origin/c/feature/add_ffi_links
+2026-10-29T08:11:08.7012375Z  * [new branch]          constexpr-issue-348                      -> origin/constexpr-issue-348
+2026-10-29T08:11:08.7012959Z  * [new branch]          cpp/feature/add_clinks_concept           -> origin/cpp/feature/add_clinks_concept
+2026-10-29T08:11:08.7013904Z  * [new branch]          cpp/feature/add_handlers_to_united_memory_links -> origin/cpp/feature/add_handlers_to_united_memory_links
+2026-10-29T08:11:08.7014843Z  * [new branch]          cpp/feature/add_static_and_optional_dynamic_polymorphism_for_united_memory_links -> origin/cpp/feature/add_static_and_optional_dynamic_polymorphism_for_united_memory_links
+2026-10-29T08:11:08.7015546Z  * [new branch]          cpp/feature/add_tbase_parameter_and_do_not_inherit_ilinks_in_united_memory_links -> origin/cpp/feature/add_tbase_parameter_and_do_not_inherit_ilinks_in_united_memory_links
+2026-10-29T08:11:08.7016095Z  * [new branch]          cpp/feature/add_wrapper_around_rust_ffi  -> origin/cpp/feature/add_wrapper_around_rust_ffi
+2026-10-29T08:11:08.7016539Z  * [new branch]          cpp/feature/translate_all_trees          -> origin/cpp/feature/translate_all_trees
+2026-10-29T08:11:08.7017029Z  * [new branch]          cpp/feature/translate_ilinks_extensions  -> origin/cpp/feature/translate_ilinks_extensions
+2026-10-29T08:11:08.7017468Z  * [new branch]          cpp/feature/translate_split_memory_links -> origin/cpp/feature/translate_split_memory_links
+2026-10-29T08:11:08.7017958Z  * [new branch]          cpp/feature/translate_tests              -> origin/cpp/feature/translate_tests
+2026-10-29T08:11:08.7018984Z  * [new branch]          cpp/feature/translate_united_memory_links -> origin/cpp/feature/translate_united_memory_links
+2026-10-29T08:11:08.7019433Z  * [new branch]          cpp/feature/use_united_memory_links_in_tests -> origin/cpp/feature/use_united_memory_links_in_tests
+2026-10-29T08:11:08.7019945Z  * [new branch]          cpp/release/0.0.1                        -> origin/cpp/release/0.0.1
+2026-10-29T08:11:08.7020262Z  * [new branch]          cppwrite                                 -> origin/cppwrite
+2026-10-29T08:11:08.7020616Z  * [new branch]          cs/feature/add_no_exceptions_decorator   -> origin/cs/feature/add_no_exceptions_decorator
+2026-10-29T08:11:08.7021119Z  * [new branch]          csharp/feature/add_manual_garbage_collection -> origin/csharp/feature/add_manual_garbage_collection
+2026-10-29T08:11:08.7021676Z  * [new branch]          csharp/feature/use_generic_math          -> origin/csharp/feature/use_generic_math
+2026-10-29T08:11:08.7022158Z  * [new branch]          daulet_trees                             -> origin/daulet_trees
+2026-10-29T08:11:08.7022917Z  * [new branch]          dependabot/add-v2-config-file            -> origin/dependabot/add-v2-config-file
+2026-10-29T08:11:08.7023759Z  * [new branch]          dependabot/github_actions/dot-github/workflows/tj-actions/changed-files-41 -> origin/dependabot/github_actions/dot-github/workflows/tj-actions/changed-files-41
+2026-10-29T08:11:08.7024550Z  * [new branch]          feature/add_logging_decorator            -> origin/feature/add_logging_decorator
+2026-10-29T08:11:08.7025254Z  * [new branch]          feature/add_update_or_create_or_get_overload_with_index -> origin/feature/add_update_or_create_or_get_overload_with_index
+2026-10-29T08:11:08.7026171Z  * [new branch]          feature/ilinks/delete/change_return_value -> origin/feature/ilinks/delete/change_return_value
+2026-10-29T08:11:08.7026947Z  * [new branch]          feature_move_testextensions_to_tests.ilinksextensions-v2 -> origin/feature_move_testextensions_to_tests.ilinksextensions-v2
+2026-10-29T08:11:08.7027812Z  * [new branch]          feature_move_testextensions_to_tests/ilinksextensions -> origin/feature_move_testextensions_to_tests/ilinksextensions
+2026-10-29T08:11:08.7028516Z  * [new branch]          fix_deleteall                            -> origin/fix_deleteall
+2026-10-29T08:11:08.7028985Z  * [new branch]          gh-pages                                 -> origin/gh-pages
+2026-10-29T08:11:08.7029441Z  * [new branch]          ilinks_bug                               -> origin/ilinks_bug
+2026-10-29T08:11:08.7089055Z  * [new branch]          issue-10-dc9e2253                        -> origin/issue-10-dc9e2253
+2026-10-29T08:11:08.7090000Z  * [new branch]          issue-100-2f9bb17f                       -> origin/issue-100-2f9bb17f
+2026-10-29T08:11:08.7090483Z  * [new branch]          issue-122-372622af                       -> origin/issue-122-372622af
+2026-10-29T08:11:08.7090754Z  * [new branch]          issue-122-e05a5713                       -> origin/issue-122-e05a5713
+2026-10-29T08:11:08.7091100Z  * [new branch]          issue-123-90f092d3                       -> origin/issue-123-90f092d3
+2026-10-29T08:11:08.7091531Z  * [new branch]          issue-125-7f224c52                       -> origin/issue-125-7f224c52
+2026-10-29T08:11:08.7091946Z  * [new branch]          issue-131-173bd186                       -> origin/issue-131-173bd186
+2026-10-29T08:11:08.7092301Z  * [new branch]          issue-132-b9a43709                       -> origin/issue-132-b9a43709
+2026-10-29T08:11:08.7092712Z  * [new branch]          issue-14-65c21b2c                        -> origin/issue-14-65c21b2c
+2026-10-29T08:11:08.7093126Z  * [new branch]          issue-145-e1924d96                       -> origin/issue-145-e1924d96
+2026-10-29T08:11:08.7093543Z  * [new branch]          issue-150-8aba0d16                       -> origin/issue-150-8aba0d16
+2026-10-29T08:11:08.7094094Z  * [new branch]          issue-152-380a75dd                       -> origin/issue-152-380a75dd
+2026-10-29T08:11:08.7094366Z  * [new branch]          issue-153-a5aacf2d                       -> origin/issue-153-a5aacf2d
+2026-10-29T08:11:08.7094627Z  * [new branch]          issue-155-6f3abe86                       -> origin/issue-155-6f3abe86
+2026-10-29T08:11:08.7094884Z  * [new branch]          issue-157-f18f507d                       -> origin/issue-157-f18f507d
+2026-10-29T08:11:08.7095140Z  * [new branch]          issue-158-d4b2d751                       -> origin/issue-158-d4b2d751
+2026-10-29T08:11:08.7095478Z  * [new branch]          issue-159-4c473b2f                       -> origin/issue-159-4c473b2f
+2026-10-29T08:11:08.7095880Z  * [new branch]          issue-166-5f7770d0                       -> origin/issue-166-5f7770d0
+2026-10-29T08:11:08.7096287Z  * [new branch]          issue-167-6697c32c                       -> origin/issue-167-6697c32c
+2026-10-29T08:11:08.7096692Z  * [new branch]          issue-172-3a6bb3a5                       -> origin/issue-172-3a6bb3a5
+2026-10-29T08:11:08.7097096Z  * [new branch]          issue-173-52414a06                       -> origin/issue-173-52414a06
+2026-10-29T08:11:08.7097549Z  * [new branch]          issue-174-38feee43                       -> origin/issue-174-38feee43
+2026-10-29T08:11:08.7098007Z  * [new branch]          issue-179-c20097fb                       -> origin/issue-179-c20097fb
+2026-10-29T08:11:08.7098437Z  * [new branch]          issue-180-4c858df1                       -> origin/issue-180-4c858df1
+2026-10-29T08:11:08.7098840Z  * [new branch]          issue-182-68621777                       -> origin/issue-182-68621777
+2026-10-29T08:11:08.7099238Z  * [new branch]          issue-183-65fb60df                       -> origin/issue-183-65fb60df
+2026-10-29T08:11:08.7099865Z  * [new branch]          issue-184-50380e1c                       -> origin/issue-184-50380e1c
+2026-10-29T08:11:08.7100278Z  * [new branch]          issue-185-8b06ec42                       -> origin/issue-185-8b06ec42
+2026-10-29T08:11:08.7100760Z  * [new branch]          issue-191-d711698e                       -> origin/issue-191-d711698e
+2026-10-29T08:11:08.7101189Z  * [new branch]          issue-192-f5bd0637                       -> origin/issue-192-f5bd0637
+2026-10-29T08:11:08.7101608Z  * [new branch]          issue-195-87e1a7d9                       -> origin/issue-195-87e1a7d9
+2026-10-29T08:11:08.7102012Z  * [new branch]          issue-197-9699ae6f                       -> origin/issue-197-9699ae6f
+2026-10-29T08:11:08.7102401Z  * [new branch]          issue-201-23d35853                       -> origin/issue-201-23d35853
+2026-10-29T08:11:08.7103134Z  * [new branch]          issue-202-f9973a4e                       -> origin/issue-202-f9973a4e
+2026-10-29T08:11:08.7103828Z  * [new branch]          issue-204-ee98b556                       -> origin/issue-204-ee98b556
+2026-10-29T08:11:08.7104470Z  * [new branch]          issue-205-6c1a8373                       -> origin/issue-205-6c1a8373
+2026-10-29T08:11:08.7104980Z  * [new branch]          issue-206-cfb6909c                       -> origin/issue-206-cfb6909c
+2026-10-29T08:11:08.7106239Z  * [new branch]          issue-207-68d68fb5                       -> origin/issue-207-68d68fb5
+2026-10-29T08:11:08.7106659Z  * [new branch]          issue-208-33ea9e2e                       -> origin/issue-208-33ea9e2e
+2026-10-29T08:11:08.7108593Z  * [new branch]          issue-209-37cc5160                       -> origin/issue-209-37cc5160
+2026-10-29T08:11:08.7110003Z  * [new branch]          issue-210-b20f751b                       -> origin/issue-210-b20f751b
+2026-10-29T08:11:08.7112015Z  * [new branch]          issue-212-fb245296                       -> origin/issue-212-fb245296
+2026-10-29T08:11:08.7115184Z  * [new branch]          issue-213-00756f69                       -> origin/issue-213-00756f69
+2026-10-29T08:11:08.7115854Z  * [new branch]          issue-216-5c9f8771                       -> origin/issue-216-5c9f8771
+2026-10-29T08:11:08.7117681Z  * [new branch]          issue-217-c738a90c                       -> origin/issue-217-c738a90c
+2026-10-29T08:11:08.7119149Z  * [new branch]          issue-218-b64a64c5                       -> origin/issue-218-b64a64c5
+2026-10-29T08:11:08.7119439Z  * [new branch]          issue-230-559672a0                       -> origin/issue-230-559672a0
+2026-10-29T08:11:08.7119698Z  * [new branch]          issue-237-3d81523b                       -> origin/issue-237-3d81523b
+2026-10-29T08:11:08.7119964Z  * [new branch]          issue-238-4d05c862                       -> origin/issue-238-4d05c862
+2026-10-29T08:11:08.7120223Z  * [new branch]          issue-239-fbcda755                       -> origin/issue-239-fbcda755
+2026-10-29T08:11:08.7120485Z  * [new branch]          issue-240-a4e43a46                       -> origin/issue-240-a4e43a46
+2026-10-29T08:11:08.7120762Z  * [new branch]          issue-241-b58c00a6                       -> origin/issue-241-b58c00a6
+2026-10-29T08:11:08.7121515Z  * [new branch]          issue-242-bcb83cac                       -> origin/issue-242-bcb83cac
+2026-10-29T08:11:08.7122528Z  * [new branch]          issue-243-74d0a614                       -> origin/issue-243-74d0a614
+2026-10-29T08:11:08.7123279Z  * [new branch]          issue-245-55a50dd3                       -> origin/issue-245-55a50dd3
+2026-10-29T08:11:08.7123739Z  * [new branch]          issue-249-f1500da9                       -> origin/issue-249-f1500da9
+2026-10-29T08:11:08.7124181Z  * [new branch]          issue-250-42c9d850                       -> origin/issue-250-42c9d850
+2026-10-29T08:11:08.7124627Z  * [new branch]          issue-254-e7a5d9f7                       -> origin/issue-254-e7a5d9f7
+2026-10-29T08:11:08.7124945Z  * [new branch]          issue-258-c8b7530f                       -> origin/issue-258-c8b7530f
+2026-10-29T08:11:08.7126021Z  * [new branch]          issue-263-0617cbc6                       -> origin/issue-263-0617cbc6
+2026-10-29T08:11:08.7126485Z  * [new branch]          issue-264-48a30829                       -> origin/issue-264-48a30829
+2026-10-29T08:11:08.7126948Z  * [new branch]          issue-269-5c78f79f                       -> origin/issue-269-5c78f79f
+2026-10-29T08:11:08.7127387Z  * [new branch]          issue-28-86d6809c                        -> origin/issue-28-86d6809c
+2026-10-29T08:11:08.7127826Z  * [new branch]          issue-287-43a044c6                       -> origin/issue-287-43a044c6
+2026-10-29T08:11:08.7128146Z  * [new branch]          issue-288-7363fdd4                       -> origin/issue-288-7363fdd4
+2026-10-29T08:11:08.7128411Z  * [new branch]          issue-289-a32521da                       -> origin/issue-289-a32521da
+2026-10-29T08:11:08.7128672Z  * [new branch]          issue-290-46a8add1                       -> origin/issue-290-46a8add1
+2026-10-29T08:11:08.7128944Z  * [new branch]          issue-295-51e2cc11                       -> origin/issue-295-51e2cc11
+2026-10-29T08:11:08.7129207Z  * [new branch]          issue-309-7c8629c7                       -> origin/issue-309-7c8629c7
+2026-10-29T08:11:08.7129478Z  * [new branch]          issue-310-5de3d1dc                       -> origin/issue-310-5de3d1dc
+2026-10-29T08:11:08.7129745Z  * [new branch]          issue-319-1f8bc024                       -> origin/issue-319-1f8bc024
+2026-10-29T08:11:08.7130004Z  * [new branch]          issue-323-9f4031b8                       -> origin/issue-323-9f4031b8
+2026-10-29T08:11:08.7130402Z  * [new branch]          issue-324-55e5be19                       -> origin/issue-324-55e5be19
+2026-10-29T08:11:08.7130668Z  * [new branch]          issue-331-f53fc679                       -> origin/issue-331-f53fc679
+2026-10-29T08:11:08.7130936Z  * [new branch]          issue-332-7a6ff77a                       -> origin/issue-332-7a6ff77a
+2026-10-29T08:11:08.7131202Z  * [new branch]          issue-334-b21a4d38                       -> origin/issue-334-b21a4d38
+2026-10-29T08:11:08.7131464Z  * [new branch]          issue-338-627b1af9                       -> origin/issue-338-627b1af9
+2026-10-29T08:11:08.7132087Z  * [new branch]          issue-346-2629ee00                       -> origin/issue-346-2629ee00
+2026-10-29T08:11:08.7132352Z  * [new branch]          issue-347-bc055938                       -> origin/issue-347-bc055938
+2026-10-29T08:11:08.7132619Z  * [new branch]          issue-349-847bd9da                       -> origin/issue-349-847bd9da
+2026-10-29T08:11:08.7132881Z  * [new branch]          issue-350-31002bc3                       -> origin/issue-350-31002bc3
+2026-10-29T08:11:08.7133142Z  * [new branch]          issue-354-69429f3d                       -> origin/issue-354-69429f3d
+2026-10-29T08:11:08.7133407Z  * [new branch]          issue-354-90a219e1                       -> origin/issue-354-90a219e1
+2026-10-29T08:11:08.7133670Z  * [new branch]          issue-354-a5f63605                       -> origin/issue-354-a5f63605
+2026-10-29T08:11:08.7133937Z  * [new branch]          issue-355-16463e62                       -> origin/issue-355-16463e62
+2026-10-29T08:11:08.7134196Z  * [new branch]          issue-356-08228300                       -> origin/issue-356-08228300
+2026-10-29T08:11:08.7134451Z  * [new branch]          issue-359-e5a050cc                       -> origin/issue-359-e5a050cc
+2026-10-29T08:11:08.7134711Z  * [new branch]          issue-360-0e8cd1e0                       -> origin/issue-360-0e8cd1e0
+2026-10-29T08:11:08.7134975Z  * [new branch]          issue-361-575582dd                       -> origin/issue-361-575582dd
+2026-10-29T08:11:08.7135229Z  * [new branch]          issue-372-aea7e0f1                       -> origin/issue-372-aea7e0f1
+2026-10-29T08:11:08.7135490Z  * [new branch]          issue-375-e585215d                       -> origin/issue-375-e585215d
+2026-10-29T08:11:08.7135847Z  * [new branch]          issue-382-6eb8af26                       -> origin/issue-382-6eb8af26
+2026-10-29T08:11:08.7136317Z  * [new branch]          issue-383-81b4bf92                       -> origin/issue-383-81b4bf92
+2026-10-29T08:11:08.7136582Z  * [new branch]          issue-384-58b26c76                       -> origin/issue-384-58b26c76
+2026-10-29T08:11:08.7136842Z  * [new branch]          issue-386-3e27d460                       -> origin/issue-386-3e27d460
+2026-10-29T08:11:08.7137103Z  * [new branch]          issue-389-a58bf26c                       -> origin/issue-389-a58bf26c
+2026-10-29T08:11:08.7137360Z  * [new branch]          issue-390-5e4626de                       -> origin/issue-390-5e4626de
+2026-10-29T08:11:08.7137618Z  * [new branch]          issue-394-309114ec                       -> origin/issue-394-309114ec
+2026-10-29T08:11:08.7137877Z  * [new branch]          issue-395-10b110d3                       -> origin/issue-395-10b110d3
+2026-10-29T08:11:08.7138134Z  * [new branch]          issue-396-244bd1fe                       -> origin/issue-396-244bd1fe
+2026-10-29T08:11:08.7138393Z  * [new branch]          issue-398-451b7b82                       -> origin/issue-398-451b7b82
+2026-10-29T08:11:08.7138653Z  * [new branch]          issue-40-e633e9f6                        -> origin/issue-40-e633e9f6
+2026-10-29T08:11:08.7138922Z  * [new branch]          issue-508-5a1549d7                       -> origin/issue-508-5a1549d7
+2026-10-29T08:11:08.7139198Z  * [new branch]          issue-512-557a0a3ca78d                   -> origin/issue-512-557a0a3ca78d
+2026-10-29T08:11:08.7139484Z  * [new branch]          issue-518-e28aadb8d563                   -> origin/issue-518-e28aadb8d563
+2026-10-29T08:11:08.7139756Z  * [new branch]          issue-52-3f2f1389                        -> origin/issue-52-3f2f1389
+2026-10-29T08:11:08.7140030Z  * [new branch]          issue-521-1ac9a60c43a0                   -> origin/issue-521-1ac9a60c43a0
+2026-10-29T08:11:08.7140308Z  * [new branch]          issue-522-2819acda0f21                   -> origin/issue-522-2819acda0f21
+2026-10-29T08:11:08.7140584Z  * [new branch]          issue-524-b1512fd1c7a8                   -> origin/issue-524-b1512fd1c7a8
+2026-10-29T08:11:08.7140854Z  * [new branch]          issue-6-2f2360da                         -> origin/issue-6-2f2360da
+2026-10-29T08:11:08.7141182Z  * [new branch]          issue-62-a49bc29e                        -> origin/issue-62-a49bc29e
+2026-10-29T08:11:08.7141443Z  * [new branch]          issue-68-4e596e00                        -> origin/issue-68-4e596e00
+2026-10-29T08:11:08.7141699Z  * [new branch]          issue-85-856b1b45                        -> origin/issue-85-856b1b45
+2026-10-29T08:11:08.7141953Z  * [new branch]          issue-86-6c31fd91                        -> origin/issue-86-6c31fd91
+2026-10-29T08:11:08.7142206Z  * [new branch]          issue-89-a56a0167                        -> origin/issue-89-a56a0167
+2026-10-29T08:11:08.7142457Z  * [new branch]          issue-90-5c6486ed                        -> origin/issue-90-5c6486ed
+2026-10-29T08:11:08.7142717Z  * [new branch]          issue-96-7c16f737                        -> origin/issue-96-7c16f737
+2026-10-29T08:11:08.7142966Z  * [new branch]          issue-97-8b13f48a                        -> origin/issue-97-8b13f48a
+2026-10-29T08:11:08.7143221Z  * [new branch]          issue-98-61dd56ef                        -> origin/issue-98-61dd56ef
+2026-10-29T08:11:08.7143468Z  * [new branch]          lazy-fixes                               -> origin/lazy-fixes
+2026-10-29T08:11:08.7143694Z  * [new branch]          main                                     -> origin/main
+2026-10-29T08:11:08.7143914Z  * [new branch]          master                                   -> origin/master
+2026-10-29T08:11:08.7144150Z  * [new branch]          move_sequences                           -> origin/move_sequences
+2026-10-29T08:11:08.7144426Z  * [new branch]          nassipkali-patch-1                       -> origin/nassipkali-patch-1
+2026-10-29T08:11:08.7144702Z  * [new branch]          nassipkali-patch-2                       -> origin/nassipkali-patch-2
+2026-10-29T08:11:08.7145042Z  * [new branch]          nassipkali-patch-3                       -> origin/nassipkali-patch-3
+2026-10-29T08:11:08.7145314Z  * [new branch]          nassipkali-patch-4                       -> origin/nassipkali-patch-4
+2026-10-29T08:11:08.7145580Z  * [new branch]          nassipkali-patch-5                       -> origin/nassipkali-patch-5
+2026-10-29T08:11:08.7145843Z  * [new branch]          nassipkali-patch-6                       -> origin/nassipkali-patch-6
+2026-10-29T08:11:08.7146107Z  * [new branch]          nassipkali-patch-7                       -> origin/nassipkali-patch-7
+2026-10-29T08:11:08.7146376Z  * [new branch]          nassipkali-patch-8                       -> origin/nassipkali-patch-8
+2026-10-29T08:11:08.7146640Z  * [new branch]          nassipkali-patch-9                       -> origin/nassipkali-patch-9
+2026-10-29T08:11:08.7146888Z  * [new branch]          origin-ffi                               -> origin/origin-ffi
+2026-10-29T08:11:08.7147140Z  * [new branch]          rational_numbers                         -> origin/rational_numbers
+2026-10-29T08:11:08.7147402Z  * [new branch]          revert-259-master                        -> origin/revert-259-master
+2026-10-29T08:11:08.7147653Z  * [new branch]          rust-ci                                  -> origin/rust-ci
+2026-10-29T08:11:08.7147888Z  * [new branch]          rust.criterion                           -> origin/rust.criterion
+2026-10-29T08:11:08.7148140Z  * [new branch]          rust.with_query                          -> origin/rust.with_query
+2026-10-29T08:11:08.7148392Z  * [new branch]          rust.with_result                         -> origin/rust.with_result
+2026-10-29T08:11:08.7148647Z  * [new branch]          rust_write.unwrap                        -> origin/rust_write.unwrap
+2026-10-29T08:11:08.7148977Z  * [new branch]          rust_write.unwrap.optimized.wasm         -> origin/rust_write.unwrap.optimized.wasm
+2026-10-29T08:11:08.7149302Z  * [new branch]          rust_write.unwrap_unchecked              -> origin/rust_write.unwrap_unchecked
+2026-10-29T08:11:08.7149600Z  * [new branch]          split-data-n-doublets                    -> origin/split-data-n-doublets
+2026-10-29T08:11:08.7149909Z  * [new branch]          tests                                    -> origin/tests
+2026-10-29T08:11:08.7150149Z  * [new branch]          update_package                           -> origin/update_package
+2026-10-29T08:11:08.7150496Z  * [new tag]             0.0.1                                    -> 0.0.1
+2026-10-29T08:11:08.7150688Z  * [new tag]             0.1.0                                    -> 0.1.0
+2026-10-29T08:11:08.7150874Z  * [new tag]             0.1.1                                    -> 0.1.1
+2026-10-29T08:11:08.7151063Z  * [new tag]             0.10.0                                   -> 0.10.0
+2026-10-29T08:11:08.7151250Z  * [new tag]             0.10.1                                   -> 0.10.1
+2026-10-29T08:11:08.7151440Z  * [new tag]             0.11.0                                   -> 0.11.0
+2026-10-29T08:11:08.7151631Z  * [new tag]             0.11.1                                   -> 0.11.1
+2026-10-29T08:11:08.7151819Z  * [new tag]             0.12.0                                   -> 0.12.0
+2026-10-29T08:11:08.7152001Z  * [new tag]             0.13.0                                   -> 0.13.0
+2026-10-29T08:11:08.7152182Z  * [new tag]             0.13.1                                   -> 0.13.1
+2026-10-29T08:11:08.7152365Z  * [new tag]             0.13.2                                   -> 0.13.2
+2026-10-29T08:11:08.7152546Z  * [new tag]             0.2.0                                    -> 0.2.0
+2026-10-29T08:11:08.7152726Z  * [new tag]             0.2.1                                    -> 0.2.1
+2026-10-29T08:11:08.7152906Z  * [new tag]             0.3.0                                    -> 0.3.0
+2026-10-29T08:11:08.7153084Z  * [new tag]             0.4.0                                    -> 0.4.0
+2026-10-29T08:11:08.7153327Z  * [new tag]             0.5.0                                    -> 0.5.0
+2026-10-29T08:11:08.7153505Z  * [new tag]             0.6.0                                    -> 0.6.0
+2026-10-29T08:11:08.7153688Z  * [new tag]             0.6.1                                    -> 0.6.1
+2026-10-29T08:11:08.7153871Z  * [new tag]             0.6.10                                   -> 0.6.10
+2026-10-29T08:11:08.7154056Z  * [new tag]             0.6.11                                   -> 0.6.11
+2026-10-29T08:11:08.7154240Z  * [new tag]             0.6.2                                    -> 0.6.2
+2026-10-29T08:11:08.7154422Z  * [new tag]             0.6.3                                    -> 0.6.3
+2026-10-29T08:11:08.7154604Z  * [new tag]             0.6.4                                    -> 0.6.4
+2026-10-29T08:11:08.7154790Z  * [new tag]             0.6.5                                    -> 0.6.5
+2026-10-29T08:11:08.7154968Z  * [new tag]             0.6.6                                    -> 0.6.6
+2026-10-29T08:11:08.7155151Z  * [new tag]             0.6.7                                    -> 0.6.7
+2026-10-29T08:11:08.7155335Z  * [new tag]             0.6.8                                    -> 0.6.8
+2026-10-29T08:11:08.7155515Z  * [new tag]             0.6.9                                    -> 0.6.9
+2026-10-29T08:11:08.7155694Z  * [new tag]             0.7.0                                    -> 0.7.0
+2026-10-29T08:11:08.7155943Z  * [new tag]             0.8.0                                    -> 0.8.0
+2026-10-29T08:11:08.7156162Z  * [new tag]             0.9.0                                    -> 0.9.0
+2026-10-29T08:11:08.7156361Z  * [new tag]             cpp_0.1.0                                -> cpp_0.1.0
+2026-10-29T08:11:08.7156574Z  * [new tag]             csharp_0.15.0                            -> csharp_0.15.0
+2026-10-29T08:11:08.7156786Z  * [new tag]             csharp_0.16.0                            -> csharp_0.16.0
+2026-10-29T08:11:08.7157001Z  * [new tag]             csharp_0.17.0                            -> csharp_0.17.0
+2026-10-29T08:11:08.7157209Z  * [new tag]             csharp_0.17.1                            -> csharp_0.17.1
+2026-10-29T08:11:08.7157476Z  * [new tag]             csharp_0.17.2                            -> csharp_0.17.2
+2026-10-29T08:11:08.7157686Z  * [new tag]             csharp_0.18.1                            -> csharp_0.18.1
+2026-10-29T08:11:08.7157900Z  * [new tag]             csharp_0.18.2                            -> csharp_0.18.2
+2026-10-29T08:11:08.7158185Z  * [new tag]             csharp_0.18.3                            -> csharp_0.18.3
+2026-10-29T08:11:08.7158419Z  * [new ref]             be9012c1fac32e9e609b0dc61b92a8e5f8c5dab1 -> pull/526/merge
+2026-10-29T08:11:08.7159219Z ##[endgroup]
+2026-10-29T08:11:08.7159405Z ##[group]Determining the checkout info
+2026-10-29T08:11:08.7159630Z ##[endgroup]
+2026-10-29T08:11:08.7159790Z [command]"C:\Program Files\Git\bin\git.exe" sparse-checkout disable
+2026-10-29T08:11:08.7481733Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all extensions.worktreeConfig
+2026-10-29T08:11:08.7823472Z ##[group]Checking out the ref
+2026-10-29T08:11:08.7830401Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force refs/remotes/pull/526/merge
+2026-10-29T08:11:09.1870890Z Note: switching to 'refs/remotes/pull/526/merge'.
+2026-10-29T08:11:09.1871110Z 
+2026-10-29T08:11:09.1871313Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-29T08:11:09.1871669Z changes and commit them, and you can discard any commits you make in this
+2026-10-29T08:11:09.1871912Z state without impacting any branches by switching back to a branch.
+2026-10-29T08:11:09.1872054Z 
+2026-10-29T08:11:09.1872149Z If you want to create a new branch to retain commits you create, you may
+2026-10-29T08:11:09.1872379Z do so (now or later) by using -c with the switch command. Example:
+2026-10-29T08:11:09.1872506Z 
+2026-10-29T08:11:09.1873353Z   git switch -c <new-branch-name>
+2026-10-29T08:11:09.1873456Z 
+2026-10-29T08:11:09.1873549Z Or undo this operation with:
+2026-10-29T08:11:09.1873670Z 
+2026-10-29T08:11:09.1873718Z   git switch -
+2026-10-29T08:11:09.1873781Z 
+2026-10-29T08:11:09.1873895Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-29T08:11:09.1874050Z 
+2026-10-29T08:11:09.1874264Z HEAD is now at be9012c1f Merge 3e61f330dcade7dc2871e31d4cc91b03aa3416aa into 799502ce9275edc80d9fbc1953ff8892fe0eca19
+2026-10-29T08:11:09.2012458Z ##[endgroup]
+2026-10-29T08:11:09.2403235Z [command]"C:\Program Files\Git\bin\git.exe" log -1 --format=%H
+2026-10-29T08:11:09.2715082Z be9012c1fac32e9e609b0dc61b92a8e5f8c5dab1
+2026-10-29T08:11:09.2750945Z ##[group]Removing auth
+2026-10-29T08:11:09.2751214Z Removing SSH command configuration
+2026-10-29T08:11:09.2757709Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-29T08:11:09.3068559Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-29T08:11:09.7660226Z Removing HTTP extra header
+2026-10-29T08:11:09.7670720Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-29T08:11:09.7982071Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-29T08:11:10.2241035Z Removing includeIf entries pointing to credentials config files
+2026-10-29T08:11:10.2246885Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-29T08:11:10.2532303Z includeif.gitdir:D:/a/Data.Doublets/Data.Doublets/.git.path
+2026-10-29T08:11:10.2533170Z includeif.gitdir:D:/a/Data.Doublets/Data.Doublets/.git/worktrees/*.path
+2026-10-29T08:11:10.2533541Z includeif.gitdir:/github/workspace/.git.path
+2026-10-29T08:11:10.2534063Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-29T08:11:10.2575150Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:D:/a/Data.Doublets/Data.Doublets/.git.path
+2026-10-29T08:11:10.2840294Z D:\a\_temp\git-credentials-6800c7c0-3282-48a6-9557-226663754d55.config
+2026-10-29T08:11:10.2887524Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:D:/a/Data.Doublets/Data.Doublets/.git.path D\:\\a\\_temp\\git\-credentials\-6800c7c0\-3282\-48a6\-9557\-226663754d55\.config
+2026-10-29T08:11:10.3185549Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:D:/a/Data.Doublets/Data.Doublets/.git/worktrees/*.path
+2026-10-29T08:11:10.3472524Z D:\a\_temp\git-credentials-6800c7c0-3282-48a6-9557-226663754d55.config
+2026-10-29T08:11:10.3504118Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:D:/a/Data.Doublets/Data.Doublets/.git/worktrees/*.path D\:\\a\\_temp\\git\-credentials\-6800c7c0\-3282\-48a6\-9557\-226663754d55\.config
+2026-10-29T08:11:10.3808260Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-10-29T08:11:10.4061685Z /github/runner_temp/git-credentials-6800c7c0-3282-48a6-9557-226663754d55.config
+2026-10-29T08:11:10.4094858Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-6800c7c0\-3282\-48a6\-9557\-226663754d55\.config
+2026-10-29T08:11:10.4397155Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-29T08:11:10.4643070Z /github/runner_temp/git-credentials-6800c7c0-3282-48a6-9557-226663754d55.config
+2026-10-29T08:11:10.4672792Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-6800c7c0\-3282\-48a6\-9557\-226663754d55\.config
+2026-10-29T08:11:10.4983985Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-29T08:11:10.9564562Z Removing credentials config 'D:\a\_temp\git-credentials-6800c7c0-3282-48a6-9557-226663754d55.config'
+2026-10-29T08:11:10.9574961Z ##[endgroup]
+2026-10-29T08:11:10.9898429Z ##[group]Run bash scripts/prepare-checkout.sh
+2026-10-29T08:11:10.9898723Z [36;1mbash scripts/prepare-checkout.sh[0m
+2026-10-29T08:11:11.0656213Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+2026-10-29T08:11:11.0656432Z ##[endgroup]
+2026-10-29T08:11:11.9652830Z Already up to date.
+2026-10-29T08:11:13.1137559Z csharp: 0.18.3 -> 0.18.4 (patch)
+2026-10-29T08:11:13.1137770Z cpp: 0.1.0 -> 0.1.1 (patch)
+2026-10-29T08:11:13.2324607Z ##[group]Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+2026-10-29T08:11:13.2324850Z with:
+2026-10-29T08:11:13.2324985Z   global-json-file: global.json
+2026-10-29T08:11:13.2325112Z   cache: false
+2026-10-29T08:11:13.2325214Z ##[endgroup]
+2026-10-29T08:11:13.3955822Z [command]"C:\Program Files\PowerShell\7\pwsh.exe" -NoLogo -Sta -NoProfile -NonInteractive -ExecutionPolicy Unrestricted -Command & 'D:\a\_actions\actions\setup-dotnet\26b0ec14cb23fa6904739307f278c14f94c95bf1\externals\install-dotnet.ps1' -SkipNonVersionedFiles -Runtime dotnet -Channel LTS
+2026-10-29T08:11:14.9226339Z dotnet-install: Downloaded file https://builds.dotnet.microsoft.com/dotnet/Runtime/10.0.14/dotnet-runtime-10.0.14-win-x64.zip size is 36971047 bytes.
+2026-10-29T08:11:14.9232186Z dotnet-install: Either downloaded or local package size can not be measured. One of them may be corrupted.
+2026-10-29T08:11:14.9253610Z dotnet-install: Extracting the archive.
+2026-10-29T08:11:15.5886566Z dotnet-install: Note that the script does not ensure your Windows version is supported during the installation.
+2026-10-29T08:11:15.5887929Z dotnet-install: To check the list of supported versions, go to https://learn.microsoft.com/dotnet/core/install/windows#supported-versions
+2026-10-29T08:11:15.5891284Z dotnet-install: Installed version is 10.0.14
+2026-10-29T08:11:15.5893842Z dotnet-install: Installation finished
+2026-10-29T08:11:15.6938654Z [command]"C:\Program Files\PowerShell\7\pwsh.exe" -NoLogo -Sta -NoProfile -NonInteractive -ExecutionPolicy Unrestricted -Command & 'D:\a\_actions\actions\setup-dotnet\26b0ec14cb23fa6904739307f278c14f94c95bf1\externals\install-dotnet.ps1' -SkipNonVersionedFiles -Channel 8.0.4xx
+2026-10-29T08:11:23.9208617Z dotnet-install: Downloaded file https://builds.dotnet.microsoft.com/dotnet/Sdk/8.0.427/dotnet-sdk-8.0.427-win-x64.zip size is 285280040 bytes.
+2026-10-29T08:11:23.9211751Z dotnet-install: Either downloaded or local package size can not be measured. One of them may be corrupted.
+2026-10-29T08:11:23.9233976Z dotnet-install: Extracting the archive.
+2026-10-29T08:11:39.6171427Z dotnet-install: Note that the script does not ensure your Windows version is supported during the installation.
+2026-10-29T08:11:39.6172808Z dotnet-install: To check the list of supported versions, go to https://learn.microsoft.com/dotnet/core/install/windows#supported-versions
+2026-10-29T08:11:39.6175516Z dotnet-install: Installed version is 8.0.427
+2026-10-29T08:11:39.6178414Z dotnet-install: Installation finished
+2026-10-29T08:11:39.6811841Z ##[group]Run bash scripts/check-csharp.sh
+2026-10-29T08:11:39.6812964Z [36;1mbash scripts/check-csharp.sh[0m
+2026-10-29T08:11:39.6851286Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+2026-10-29T08:11:39.6851507Z env:
+2026-10-29T08:11:39.6851625Z   DOTNET_ROOT: C:\Program Files\dotnet
+2026-10-29T08:11:39.6851776Z ##[endgroup]
+2026-10-29T08:11:40.8449533Z   Determining projects to restore...
+2026-10-29T08:12:02.6187710Z   Restored D:\a\Data.Doublets\Data.Doublets\csharp\Platform.Data.Doublets.Tests\Platform.Data.Doublets.Tests.csproj (in 21.52 sec).
+2026-10-29T08:12:02.6188677Z   Restored D:\a\Data.Doublets\Data.Doublets\csharp\Platform.Data.Doublets\Platform.Data.Doublets.csproj (in 21.52 sec).
+2026-10-29T08:12:05.9555140Z   Restored D:\a\Data.Doublets\Data.Doublets\csharp\Platform.Data.Doublets.Benchmarks\Platform.Data.Doublets.Benchmarks.csproj (in 24.86 sec).
+2026-10-29T08:12:11.2910223Z   Platform.Data.Doublets -> D:\a\Data.Doublets\Data.Doublets\csharp\Platform.Data.Doublets\bin\Release\net8.0\Platform.Data.Doublets.dll
+2026-10-29T08:12:11.8417970Z   Platform.Data.Doublets.Tests -> D:\a\Data.Doublets\Data.Doublets\csharp\Platform.Data.Doublets.Tests\bin\Release\net8.0\Platform.Data.Doublets.Tests.dll
+2026-10-29T08:12:13.0665139Z   Platform.Data.Doublets.Benchmarks -> D:\a\Data.Doublets\Data.Doublets\csharp\Platform.Data.Doublets.Benchmarks\bin\Release\net8.0\Platform.Data.Doublets.Benchmarks.dll
+2026-10-29T08:12:13.0748129Z 
+2026-10-29T08:12:13.0754121Z Build succeeded.
+2026-10-29T08:12:13.0758075Z     0 Warning(s)
+2026-10-29T08:12:13.0758240Z     0 Error(s)
+2026-10-29T08:12:13.0761930Z 
+2026-10-29T08:12:13.0762984Z Time Elapsed 00:00:06.88
+2026-10-29T08:12:17.1476538Z Test run for D:\a\Data.Doublets\Data.Doublets\csharp\Platform.Data.Doublets.Tests\bin\Release\net8.0\Platform.Data.Doublets.Tests.dll (.NETCoreApp,Version=v8.0)
+2026-10-29T08:12:17.2055998Z VSTest version 17.11.1 (x64)
+2026-10-29T08:12:17.2076225Z 
+2026-10-29T08:12:17.2733129Z Starting test execution, please wait...
+2026-10-29T08:12:17.2969660Z A total of 1 test files matched the specified pattern.
+2026-10-29T08:12:18.9026471Z Data collector 'Blame' message: All tests finished running, Sequence file will not be generated.
+2026-10-29T08:12:18.9709552Z Results File: D:\a\Data.Doublets\Data.Doublets\artifacts\test-results\runneradmin_runnervmdaln5_2026-10-29_08_12_18.trx
+2026-10-29T08:12:18.9712598Z 
+2026-10-29T08:12:18.9741450Z Passed!  - Failed:     0, Passed:    82, Skipped:     0, Total:    82, Duration: 490 ms - Platform.Data.Doublets.Tests.dll (net8.0)
+2026-10-29T08:12:19.1575392Z 
+2026-10-29T08:12:19.1578567Z Attachments:
+2026-10-29T08:12:19.1579976Z   D:\a\Data.Doublets\Data.Doublets\artifacts\test-results\3c12c740-fa3c-4a54-ab03-f6d53a052660\coverage.cobertura.xml
+2026-10-29T08:12:21.3754689Z united: created 2 = (1, 18446744073709551596)
+2026-10-29T08:12:21.3770270Z   Each -> [2], Count -> 1, SearchOrDefault -> 2
+2026-10-29T08:12:21.3847364Z split: created 2 = (1, 18446744073709551596)
+2026-10-29T08:12:21.3847672Z   Each -> [2], Count -> 1, SearchOrDefault -> 2
+2026-10-29T08:12:22.1739878Z   Successfully created package 'D:\a\Data.Doublets\Data.Doublets\artifacts\packages\Platform.Data.Doublets.0.18.4.nupkg'.
+2026-10-29T08:12:22.1772184Z   Successfully created package 'D:\a\Data.Doublets\Data.Doublets\artifacts\packages\Platform.Data.Doublets.0.18.4.snupkg'.
+2026-10-29T08:12:32.5821668Z   Determining projects to restore...
+2026-10-29T08:12:51.7552316Z   Restored C:\Users\runneradmin\AppData\Local\Temp\tmps0g_2j06\Consumer.csproj (in 13.16 sec).
+2026-10-29T08:13:02.4090774Z Validated packaged consumer of Platform.Data.Doublets 0.18.4
+2026-10-29T08:13:02.4497221Z ##[group]Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+2026-10-29T08:13:02.4497479Z with:
+2026-10-29T08:13:02.4497596Z   name: csharp-windows-2025
+2026-10-29T08:13:02.4497757Z   path: artifacts/packages/*
+artifacts/test-results/*
+
+2026-10-29T08:13:02.4497929Z   if-no-files-found: error
+2026-10-29T08:13:02.4498064Z   retention-days: 14
+2026-10-29T08:13:02.4498180Z   compression-level: 6
+2026-10-29T08:13:02.4498295Z   overwrite: false
+2026-10-29T08:13:02.4498410Z   include-hidden-files: false
+2026-10-29T08:13:02.4498538Z   archive: true
+2026-10-29T08:13:02.4498643Z env:
+2026-10-29T08:13:02.4498752Z   DOTNET_ROOT: C:\Program Files\dotnet
+2026-10-29T08:13:02.4498887Z ##[endgroup]
+2026-10-29T08:13:02.5904581Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-10-29T08:13:02.5906185Z The least common ancestor is D:\a\Data.Doublets\Data.Doublets\artifacts. This will be the root directory of the artifact
+2026-10-29T08:13:02.5906768Z With the provided path, there will be 5 files uploaded
+2026-10-29T08:13:02.5910161Z Artifact name is valid!
+2026-10-29T08:13:02.5910544Z Root directory input is valid!
+2026-10-29T08:13:02.9379852Z Uploading artifact: csharp-windows-2025.zip
+2026-10-29T08:13:02.9485320Z Beginning upload of artifact content to blob storage
+2026-10-29T08:13:03.4151879Z Uploaded bytes 199405
+2026-10-29T08:13:03.4724689Z Finished uploading artifact content to blob storage!
+2026-10-29T08:13:03.4725466Z SHA256 digest of uploaded artifact is 82221248a60d2c2309ad187974ca0de86f91737d4d32322fb81bb9ecd29be53b
+2026-10-29T08:13:03.4725919Z Finalizing artifact upload
+2026-10-29T08:13:04.0795112Z Artifact csharp-windows-2025 successfully finalized. Artifact ID 12881943782
+2026-10-29T08:13:04.0795555Z Artifact csharp-windows-2025 has been successfully uploaded! Final size is 199405 bytes. Artifact ID is 12881943782
+2026-10-29T08:13:04.0801565Z Artifact download URL: https://github.com/linksplatform/Data.Doublets/actions/runs/40840157071/artifacts/12881943782
+2026-10-29T08:13:04.1123209Z Post job cleanup.
+2026-10-29T08:13:04.2467637Z Post job cleanup.
+2026-10-29T08:13:04.3797142Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-10-29T08:13:04.4126791Z git version 2.56.0.windows.2
+2026-10-29T08:13:04.4185197Z Temporarily overriding HOME='D:\a\_temp\f75048e8-e9e5-46f0-92de-b7942473f52f' before making global git config changes
+2026-10-29T08:13:04.4186016Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-29T08:13:04.4192758Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\Data.Doublets\Data.Doublets
+2026-10-29T08:13:04.4459134Z Removing SSH command configuration
+2026-10-29T08:13:04.4474586Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-29T08:13:04.4816491Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-29T08:13:04.9358534Z Removing HTTP extra header
+2026-10-29T08:13:04.9375191Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-29T08:13:04.9630131Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-29T08:13:05.4234272Z Removing includeIf entries pointing to credentials config files
+2026-10-29T08:13:05.4287523Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-29T08:13:05.4579489Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-29T08:13:05.8825643Z Cleaning up orphan processes
+2026-10-29T08:13:05.9175289Z Terminate orphan process: pid (7672) (dotnet)
+2026-10-29T08:13:05.9274714Z Terminate orphan process: pid (8012) (dotnet)
+2026-10-29T08:13:05.9313091Z Terminate orphan process: pid (9120) (conhost)
+2026-10-29T08:13:05.9430235Z Terminate orphan process: pid (10060) (dotnet)
+2026-10-29T08:13:05.9546973Z Terminate orphan process: pid (2492) (conhost)
+2026-10-29T08:13:05.9780426Z Terminate orphan process: pid (1728) (VBCSCompiler)
+2026-10-29T08:13:05.9830701Z Terminate orphan process: pid (7012) (conhost)

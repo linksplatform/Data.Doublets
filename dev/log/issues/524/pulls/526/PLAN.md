@@ -29,14 +29,13 @@ criteria explicit, preserve history, and do not merge the PR.
 - [ ] Verify clean working tree, all acceptance criteria and latest CI, then mark
   PR ready and native goal complete only if no required work remains.
 
-Fifth CI passed 80 C# cases on both platforms and 43 native cases across GCC,
-Clang and ASan/UBSan, then exposed GCC consumer output isolation and 39 native
-CodeQL findings. All locations are inventoried and repaired, including two real
-logic bugs reproduced by new tests. Locally all 82 C# cases, 46 native tests and
-44 pipeline regressions pass. Six benchmark registrations are preserved, and
-both CodeQL false-positive families are reported upstream with reduced examples.
-Full native formatting/clang-tidy/Cppcheck and the rebuilt package consumer
-also pass. Fresh all-green CI, complete artifact/warning audit and PR readiness
-remain pending. All eight earlier automated inline review
-comments are implemented; no required child issue or human feedback is pending.
-Latest main is already an ancestor.
+Sixth CI passes 82 C# cases on both platforms, all 46 native cases across GCC,
+Clang and ASan/UBSan, all installed consumers, 44 pipeline regressions, both API
+documentation trees and the PDF, links and audit. C#/Actions SARIF is empty;
+native SARIF clears 38/39 findings and retains one false positive on the used
+empty parameter pack. Its zero/nonempty overload workaround passes the full
+46-case native suite locally and is reported upstream as github/codeql#22931.
+No finding is waived. Full native static/package checks, fresh all-green CI,
+final evidence/review/feedback and PR readiness remain pending. The complete
+sixth logs, three SARIF reports and 1,097 verified artifact files are preserved.
+No required child issue or human feedback is pending; latest main is included.

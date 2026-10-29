@@ -23,7 +23,7 @@ PR 525, which is included without discarding its query-handling changes.
 | R2 | Compare the full C# template file tree, including every workflow and helper | All 81 files at `4cc372ebf2075a0c948b46881143f7d66f0f0e7e` archived and individually mapped in `research/TEMPLATE-COMPARISON.md` |
 | R3 | Compare the full C/C++ template file tree | All 216 files at `7ac75134c697e9468f1242c20f1d229594decbc3` archived and individually mapped; same report, SHA256/size manifest |
 | R4 | Apply all relevant best practices from the linked guide | Seventeen-principle mapping below; executable checks and regressions, not merely recommendations |
-| R5 | Report shared defects to the templates and related projects | Twelve reproducible upstream reports, complete bodies/URLs in `upstream/`; Conan issue creation is disabled and the workaround is implemented locally |
+| R5 | Report shared defects to the templates and related projects | Thirteen reproducible upstream reports, complete bodies/URLs in `upstream/`; Conan issue creation is disabled and the workaround is implemented locally |
 | R6 | Download logs/data into the requested folder; reconstruct the timeline and diagnose actual causes | This folder contains raw API responses, complete workflow logs, source archives, online primary sources and bounded local experiment logs |
 | R7 | Propose solutions and plans per requirement; research existing components | Root-cause table, completed implementation sequence, component evaluation below; keep existing .NET/GTest/Conan/DocFX frameworks |
 | R8 | Reproduce bugs before changing production code | Baseline failures in `local/*before.log`, helper tests under `experiments/`, language regression tests and C++ compilation reproductions |
@@ -222,6 +222,9 @@ Each report contains a reproduction, workaround and code-level suggestion.
 - https://github.com/linksplatform/Memory/issues/92
 - https://github.com/linksplatform/Memory/issues/93
 - https://github.com/pytorch/cpuinfo/issues/450
+- https://github.com/github/codeql/issues/22928
+- https://github.com/github/codeql/issues/22929
+- https://github.com/github/codeql/issues/22931
 
 Conan Center has issues disabled (`upstream/conan-issues-disabled.json`); proposed
 report is retained as `upstream/conan-recipes.md`. This does not block the fix:
@@ -229,7 +232,7 @@ the necessary bounded recipe changes are applied before building here.
 
 ## Verification and external-state limits
 
-Local verification includes **80 C# tests, 43 native CTest cases and 44 pipeline
+Local verification includes **82 C# tests, 46 native CTest cases and 44 pipeline
 regressions**, real installed-package consumers, both native translation units
 under strict analysis, both C FFI language modes, native ZIP/NuGet byte-content
 validation, bounded benchmark smoke, both API documentation trees and PDF, and
@@ -490,7 +493,7 @@ byte-verified files, archived with SHA256/size manifest in `ci-artifacts/fifth*`
 | comparison-with-wider-type | 1 | A record-field loop uses an address-width counter against size_t; use size_t |
 | suspicious-pointer-scaling | 6 | Intentional record indexing casts std::byte storage before arithmetic; query exempts char/void but omits std::byte. Use equivalent array subscripting throughout |
 | unused-local-variable | 12 | Six annotated benchmark loop tokens ignored by the query; explicitly consume them. Six test helpers construct an unused duplicate store; remove only the duplicate, retaining UsingStorage's actual store |
-| unused-static-variable | 7 | One real variadic All restriction is discarded; pass it to the collection overload. Six benchmark registration bindings are falsely flagged despite standard annotation and initializer side effects; retain handles through the supported registration API |
+| unused-static-variable | 7 | Six benchmark registration bindings and one abbreviated parameter pack are falsely flagged. Retain registration handles through the supported API and separate empty/nonempty overloads. Inspection additionally finds the real discarded All restriction, which is fixed and reproduced independently |
 | empty-if | 1 | United native allocation silently ignores exhaustion; throw the existing limit exception |
 | commented-out-code | 8 | Remove only inactive commented declarations/algorithms from five headers |
 | integer-used-for-enum | 1 | The public size_t field-index API is indexed, rather than an enum domain; explicit index comparisons preserve reference semantics and range errors |
@@ -511,7 +514,7 @@ with no skips. The full C# locked build/format/example/package/installed consume
 check passes (`local/csharp-sixth.log`). Native builds use one Clang worker and
 -O0 -g0; the full changed-source build peaks at **956,120 KiB RSS**. All six
 benchmark registrations have identical names/arguments before and after.
-An initial smoke command used the newer benchmark seconds suffix; pinned 1.8.0
+An initial smoke command used the newer benchmark seconds suffix; pinned 1.6.0
 requires a bare numeric duration, matching the existing CI command. The bounded
 smoke and rejection of unknown arguments pass after correcting that invocation.
 
@@ -543,3 +546,46 @@ repository source or staged changes; the evidence-directory scan passes without
 an exemption. The authoritative full-history scan remains required after the
 new commits. No generated source map, raw unredacted scanner report, or new
 allowlist is added to the repository.
+
+### Sixth CI and the remaining parameter-pack extraction finding
+
+[Run 40840157071](https://github.com/linksplatform/Data.Doublets/actions/runs/40840157071)
+at **3e61f330d**, created **08:09:41 UTC**, finishes with every runtime/build,
+compiler/static-analysis, sanitizer, consumer, documentation, link and audit job
+passing. Both C# TRX reports contain **82 executed / 82 passed / zero skipped**.
+All three native configurations pass **46 tests** and the real installed NuGet
+consumer (GCC consumer line 2104, ASan consumer line 2107 of their downloaded job
+logs). Quality executes all **44** pipeline regressions. Documentation validates
+**538 HTML pages and a 277-page source PDF**. The complete compiler/runtime/
+action-warning audit contains **zero** diagnostics, not just zero annotations.
+
+Native CodeQL clears **38 of 39** findings; its sole remaining result is
+`cpp/unused-static-variable` on the **restrictionPack function parameter**,
+`ILinksExtensions.h:252`, despite its braced-initializer expansion being used
+(`ci-logs/sixth-native-codeql.log:3847`). This is separate from the actual ignored
+restriction bug, whose reproducing regression now passes. Complete SARIF and
+all 1,097 downloaded artifact files are byte-verified in `ci-artifacts/sixth*`;
+`github/codeql-native-sixth-findings.json` records the exact remaining result.
+The findings gate and required job correctly remain red.
+
+The function is instantiated with both an empty and a nonempty pack. An empty
+instantiation has no expanded argument accesses; the query/extractor appears to
+retain an unread static placeholder. That explanation is an inference from
+source and SARIF, pending extractor-fact inspection upstream. The repair adds
+an explicit zero-argument overload and an explicitly declared, nonempty,
+convertible variadic overload, preserving existing zero-, scalar- and
+collection-argument calls. The full 46-test native suite passes after this
+change at **955,860 KiB peak build RSS** (`local/native-seventh-build.log`,
+`local/native-seventh-tests.log`). Full fresh CodeQL verification is still
+required; the result is not waived or suppressed.
+
+[github/codeql#22931](https://github.com/github/codeql/issues/22931) records the
+observed real-build result, a reduced example, strict GCC/Clang executions,
+workaround and suggested extractor/query regression. The reduced standalone
+example has not been analyzed locally with CodeQL. Benchmark documentation is
+also corrected to the actual pinned **1.6.0** dependency (`cpp/conanfile.txt`);
+its exact guide is archived alongside the previously consulted 1.8.0 guide.
+`experiments/archive_ci_artifacts.py` retains the reusable archive/hash verifier;
+its real artifact smoke verifies every downloaded file after writing the archive.
+The complete branch workflow inventory and every available completed branch log
+are collected, including the earlier auto-merge and standalone security/link runs.
