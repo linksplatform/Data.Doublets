@@ -14,9 +14,25 @@ def categories(paths):
         result["docs"] |= path.endswith(".md") or path.startswith("docs/")
         if path.endswith(".md"):
             continue
-        result["csharp"] |= path.startswith(("csharp/", "examples/ExternalReferences/", "examples/Deletion/", "examples/Update/")) or path in ("global.json", "Directory.Build.props")
-        result["cpp"] |= path.startswith(("cpp/", "c/")) or path in ("examples/CppMemoryLinks.cpp", ".clang-format", ".clang-tidy")
-        result["pipeline"] |= path.startswith((".github/", "scripts/", ".config/")) or path in (".gitpod.yml", "publish-bin.sh", "docfx.json", ".editorconfig", ".gitattributes", ".lycheeignore", ".gitleaksignore", ".pre-commit-config.yaml")
+        result["csharp"] |= path.startswith(
+            ("csharp/", "examples/ExternalReferences/", "examples/Deletion/", "examples/Update/")
+        ) or path in ("global.json", "Directory.Build.props")
+        result["cpp"] |= path.startswith(("cpp/", "c/")) or path in (
+            "examples/CppMemoryLinks.cpp",
+            ".clang-format",
+            ".clang-tidy",
+        )
+        result["pipeline"] |= path.startswith((".github/", "scripts/", ".config/")) or path in (
+            ".gitpod.yml",
+            "publish-bin.sh",
+            "docfx.json",
+            ".editorconfig",
+            ".gitattributes",
+            ".lycheeignore",
+            ".gitleaksignore",
+            ".pre-commit-config.yaml",
+            "pyproject.toml",
+        )
     return result
 
 
@@ -33,13 +49,20 @@ def changed_paths(event, event_name):
         return git("ls-files", "-z").decode().strip("\0").split("\0")
     # Checkout fetches full history, and a missing base is an error, never an
     # empty diff that silently skips checks. --no-renames includes both paths.
-    return git("diff", "--no-renames", "--name-only", "-z", base, "HEAD").decode().strip("\0").split("\0")
+    return (
+        git("diff", "--no-renames", "--name-only", "-z", base, "HEAD")
+        .decode()
+        .strip("\0")
+        .split("\0")
+    )
 
 
 if __name__ == "__main__":
     event_file = os.environ.get("GITHUB_EVENT_PATH")
     event = json.loads(Path(event_file).read_text()) if event_file else {}
-    result = categories(changed_paths(event, os.environ.get("GITHUB_EVENT_NAME", "workflow_dispatch")))
+    result = categories(
+        changed_paths(event, os.environ.get("GITHUB_EVENT_NAME", "workflow_dispatch"))
+    )
     output = "".join(f"{key}={str(value).lower()}\n" for key, value in result.items())
     print(output, end="")
     if os.environ.get("GITHUB_OUTPUT"):

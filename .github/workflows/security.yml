@@ -6,6 +6,10 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+env:
+  GIT_CONFIG_COUNT: '1'
+  GIT_CONFIG_KEY_0: init.defaultBranch
+  GIT_CONFIG_VALUE_0: main
 jobs:
   codeql:
     name: codeql
@@ -21,13 +25,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [csharp, c-cpp, actions]
+        language: [csharp, c-cpp, python, actions]
         include:
           - language: csharp
             build-mode: manual
           - language: c-cpp
             build-mode: manual
           - language: actions
+            build-mode: none
+          - language: python
             build-mode: none
     concurrency:
       group: security-codeql-${{ matrix.language }}-${{ github.ref }}
@@ -95,3 +101,17 @@ jobs:
           python3 scripts/check_audit.py nuget-audit.json
       - name: Scan repository history for credentials
         run: bash scripts/check-secrets.sh
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
+        with:
+          python-version: '3.12'
+      - name: Audit Python helper dependencies, including transitive packages
+        run: |
+          python3 -m pip install -r scripts/requirements-audit.txt
+          python3 -m pip_audit -r scripts/requirements-ci.txt -r scripts/requirements-quality.txt -r scripts/requirements-audit.txt --format json --output python-audit.json
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        if: always()
+        with:
+          name: dependency-audits
+          path: '*-audit.json'
+          if-no-files-found: error
+          retention-days: 14
