@@ -15,6 +15,19 @@ def modern_metadata(source):
     return re.sub(r'^[ \t]*self\.cpp_info(?:\.components\[[^\n]+?\])?\.(?:names|filenames)\[[^\n]+(?:\n|$)', '', source, flags=re.MULTILINE)
 
 
+def package_id_metadata(source, name):
+    if name == 'cpuinfo':
+        # Date-based upstream versions are not semantic versions. Consumers must
+        # include the complete version in their ABI identity, including when the
+        # relationship between the two package types is not known.
+        source, count = re.subn(r'(class \w+\(ConanFile\):\n)',
+                                r'\1    package_id_non_embed_mode = "full_mode"\n    package_id_unknown_mode = "full_mode"\n',
+                                source, count=1)
+        if count != 1:
+            raise ValueError('Review the pinned cpuinfo recipe structure')
+    return source
+
+
 def dependency_source_compatibility(self):
     from pathlib import Path
     import re
@@ -108,6 +121,7 @@ def patch(directory):
         recipe = directory / 'recipes' / name / 'all/conanfile.py'
         source = subprocess.check_output(['git', '-C', str(directory), 'show', 'HEAD:' + recipe.relative_to(directory).as_posix()]).decode()
         source = modern_metadata(source)
+        source = package_id_metadata(source, name)
         source, count = re.subn(r'(        get\(self, \*\*self\.conan_data\["sources"\]\[self\.version\],[^)]*strip_root=True\))', r'\1\n        dependency_source_compatibility(self)', source, count=1)
         if count != 1:
             raise ValueError(f'Review the pinned dependency source method: {name}')

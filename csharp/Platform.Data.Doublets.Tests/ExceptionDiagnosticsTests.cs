@@ -31,11 +31,11 @@ public class ExceptionDiagnosticsTests
     [Fact]
     public void ExplicitTransactionDisposalReportsFailureToPersistCommitState()
     {
-        var directory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
+        var directory = Path.Join(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(directory);
         try
         {
-            var logPath = Path.Combine(directory, "transactions.log");
+            var logPath = Path.Join(directory, "transactions.log");
             using var memory = new HeapResizableDirectMemory();
             using var store = new UnitedMemoryLinks<ulong>(memory);
             var owner = new DisposalProbe(store);

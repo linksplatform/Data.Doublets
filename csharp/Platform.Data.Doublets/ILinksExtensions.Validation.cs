@@ -299,9 +299,9 @@ namespace Platform.Data.Doublets
                 }
                 remaining.Remove(address);
             }
-            foreach (var address in created)
+            foreach (var address in created.Where(address => !requested.Contains(address)))
             {
-                if (!requested.Contains(address)) links.Delete(address, null);
+                links.Delete(address, null);
             }
         }
 

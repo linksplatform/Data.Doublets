@@ -1,5 +1,6 @@
 """Regressions for upstream recipe diagnostics that escaped the original CI."""
 from pathlib import Path
+import os
 import shutil
 import subprocess
 import sys
@@ -9,10 +10,27 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
-from patch_conan_recipes import modern_metadata, dependency_source_compatibility
+from patch_conan_recipes import modern_metadata, dependency_source_compatibility, package_id_metadata
 
 
 class CompatibilityTests(unittest.TestCase):
+    @unittest.skipUnless(shutil.which('conan'), 'Conan is required')
+    def test_date_version_exports_strictly_from_an_empty_cache(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            recipe = root / 'conanfile.py'
+            source = 'from conan import ConanFile\nclass CpuinfoConan(ConanFile):\n    name = "cpuinfo"\n'
+            recipe.write_text(source)
+            command = ['conan', 'export', str(recipe), '--version=cci.20220228',
+                       '-cc=core:warnings_as_errors=["*"]']
+            environment = {**os.environ, 'CONAN_HOME': str(root / 'cache')}
+            before = subprocess.run(command, env=environment, capture_output=True, text=True)
+            self.assertNotEqual(before.returncode, 0)
+            self.assertIn('alphanumeric major', before.stderr)
+            recipe.write_text(package_id_metadata(source, 'cpuinfo'))
+            after = subprocess.run(command, env=environment, capture_output=True, text=True)
+            self.assertEqual(after.returncode, 0, after.stderr)
+
     @unittest.skipUnless(shutil.which('cc'), 'A POSIX C compiler is required')
     def test_clog_short_writes_and_interruption_preserve_the_whole_message(self):
         with tempfile.TemporaryDirectory() as directory:
