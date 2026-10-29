@@ -4,7 +4,7 @@
         <Description>LinksPlatform's Platform.Data.Doublets Class Library</Description>
         <Copyright>konard, FreePhoenix888</Copyright>
         <AssemblyTitle>Platform.Data.Doublets</AssemblyTitle>
-        <VersionPrefix>0.18.3</VersionPrefix>
+        <VersionPrefix>0.18.4</VersionPrefix>
         <Authors>konard, FreePhoenix888</Authors>
         <TargetFramework>net8</TargetFramework>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -25,7 +25,7 @@
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <LangVersion>latest</LangVersion>
-        <PackageReleaseNotes>Treat null Count and Each restrictions as unrestricted queries in united and split memory stores, and use English messages for unsupported restriction sizes.</PackageReleaseNotes>
+        <PackageReleaseNotes>Reject deletion of missing links with ArgumentLinkDoesNotExistsException in united and split memory stores, including automatic uniqueness and usages resolution, without changing the store or invoking write handlers.</PackageReleaseNotes>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
