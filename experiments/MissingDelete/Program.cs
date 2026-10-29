@@ -1,6 +1,7 @@
 using System.Numerics;
 using Platform.Data;
 using Platform.Data.Doublets;
+using Platform.Data.Doublets.Decorators;
 using Platform.Data.Doublets.Memory.United.Generic;
 using Platform.Data.Exceptions;
 using Platform.Memory;
@@ -20,6 +21,7 @@ static void Trace<T>()
     {
         Console.WriteLine($"{typeof(T).Name}, rejected deletes: {rejectMissing}");
         using var links = new TracedUnited<T>();
+        ILinks<T> deletion = rejectMissing ? new LinksInnerReferenceExistenceValidator<T>(links) : links;
         links.CreatePoint();
         var middle = links.CreatePoint();
         links.CreatePoint();
@@ -31,7 +33,7 @@ static void Trace<T>()
         {
             for (var attempt = 0; attempt < 2; attempt++)
             {
-                try { links.Delete(new[] { middle }, null); }
+                try { deletion.Delete(new[] { middle }, null); }
                 catch (ArgumentLinkDoesNotExistsException<T> error) { Console.WriteLine(error.Message); }
                 links.Dump("rejected missing delete");
             }

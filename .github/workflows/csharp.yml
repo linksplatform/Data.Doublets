@@ -6,12 +6,14 @@ on:
     paths:
       - 'csharp/**'
       - 'examples/ExternalReferences/**'
+      - 'examples/Deletion/**'
       - '.github/workflows/csharp.yml'
   pull_request:
     branches: main
     paths:
       - 'csharp/**'
       - 'examples/ExternalReferences/**'
+      - 'examples/Deletion/**'
       - '.github/workflows/csharp.yml'
 env:
   NUGETTOKEN: ${{ secrets.NUGET_TOKEN }}
@@ -37,6 +39,8 @@ jobs:
           dotnet test -c Release -f net8 --blame-hang-timeout 3m
       - name: Run external references example
         run: dotnet run --project ../examples/ExternalReferences -c Release
+      - name: Run deletion examples
+        run: dotnet run --project ../examples/Deletion -c Release
   pushNuGetPackageToGitHubPackageRegistry:
     if: github.event_name == 'push'
     needs: test 

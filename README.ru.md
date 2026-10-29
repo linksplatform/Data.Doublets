@@ -71,3 +71,10 @@ links.Delete(link);
 *   [Platform.Singletons](https://github.com/linksplatform/Singletons)
 *   [Platform.Memory](https://github.com/linksplatform/Memory)
 *   [Platform.Data](https://github.com/linksplatform/Data)
+
+## Контракты удаления и принципы проектирования
+
+Проверки и обработка удаления выбираются вызывающим кодом или декораторами.
+См. [рецепты C#](docs/deletion-csharp.md), [рецепты Rust](docs/deletion-rust.md),
+[общие принципы](docs/design.md) и [исполняемые примеры](examples/Deletion)
+(документация на английском языке).
