@@ -45,6 +45,13 @@ edit package versions. CI validates the actual merge with current `main`, applie
 the largest requested bump per language, and tests the resulting packages in
 isolated consumers. Documentation and investigation-only changes need no bump.
 
+The native ZIP packer serializes the C++ nuspec directly. Retain its SPDX
+`license` expression, the matching `https://licenses.nuget.org/` compatibility
+`licenseUrl` required by NuGet.org, and the bundled `LICENSE`. The native
+package smoke check validates these fields inside the generated nupkg before
+restoring and compiling its isolated consumer. A registry HTTP 400 metadata
+rejection is a package defect and must not trigger an authentication fallback.
+
 Pull requests build packages and documentation without publishing credentials.
 After merge, the credentials job exchanges GitHub OIDC through the official,
 SHA-pinned `NuGet/login` action before expensive builds. Configure the actual NuGet
@@ -71,7 +78,11 @@ rejection fails once with instructions, and never triggers a forced push. Every
 published package comes from successful validation, and an existing version can
 be retried to repair missing release assets. Registry indexing is checked
 anonymously for up to fifteen minutes. GitHub Packages mirror failures remain
-visible while public release assets can still be repaired.
+visible while public release assets can still be repaired. Reruns preserve
+nonempty assets of an existing public release: rebuilding an unchanged version
+can produce different bytes from the immutable published package. Only missing
+or empty public assets are uploaded; draft assets can be replaced before
+promotion. Native ZIP attachments belong only to the matching C++ release.
 
 If publication reports `GH006` or `GH013`, a repository administrator must allow
 the release actor to update `main` under the existing branch policy (or provision

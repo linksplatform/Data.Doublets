@@ -6,13 +6,32 @@ from pathlib import Path
 import shlex
 import subprocess
 import tempfile
+import urllib.parse
 import xml.etree.ElementTree as ET
 import zipfile
-from release import ROOT, info
+from release import NAMESPACE, ROOT, info
 
 
 def run(*args, cwd):
     subprocess.run(args, cwd=cwd, check=True)
+
+
+def validate_native_metadata(contents, package_id):
+    manifest = ET.fromstring(contents.read(f"{package_id}.nuspec"))  # nosec B314 - Locally generated package metadata, not untrusted XML.
+    license_element = manifest.find("n:metadata/n:license", NAMESPACE)
+    if (
+        license_element is None
+        or license_element.get("type") != "expression"
+        or not license_element.text
+    ):
+        raise ValueError("Native package must retain its SPDX license expression")
+    # NuGet.org enforces this compatibility URL even though licenseUrl is
+    # deprecated. Our ZIP packer does not get NuGet pack's normalization.
+    expected_url = "https://licenses.nuget.org/" + urllib.parse.quote(license_element.text, safe="")
+    if manifest.findtext("n:metadata/n:licenseUrl", namespaces=NAMESPACE) != expected_url:
+        raise ValueError("Native package licenseUrl must match its SPDX license expression")
+    if contents.read("LICENSE") != (ROOT / "LICENSE").read_bytes():
+        raise ValueError("Native package must retain the bundled license file")
 
 
 def compile_native_consumer(installed, consumer, build_dir):
@@ -85,7 +104,7 @@ def smoke(language, build_dir=None):
                 )
             assert "images/icon.png" in names
             assert f"build/native/{package['id']}.targets" in names
-            ET.fromstring(contents.read(f"{package['id']}.nuspec"))
+            validate_native_metadata(contents, package["id"])
     if language == "cpp":
         with zipfile.ZipFile(feed / f"platform.data.doublets_{package['version']}.zip") as contents:
             for header in headers:
