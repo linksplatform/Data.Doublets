@@ -138,7 +138,7 @@ class PublicationTests(unittest.TestCase):
             self.assertIn('503', release.verify_nuget('never-print-me', {'id': 'Example'}))
 
     def test_malformed_github_permission_response_fails_cleanly(self):
-        with patch.dict(os.environ, {'NUGET_TOKEN': 'never-print-me', 'GH_TOKEN': 'also-private'}), patch.object(release, 'verify_nuget', return_value=None), patch.object(release, 'request', return_value=(200, b'not json')):
+        with patch.dict(os.environ, {'NUGET_USER': 'profile-name', 'NUGET_TOKEN': 'never-print-me', 'GH_TOKEN': 'also-private'}), patch.object(release, 'verify_nuget', return_value=None), patch.object(release, 'request', return_value=(200, b'not json')):  # nosec B105 - Mocked credentials, never sent to either service.
             with patch('sys.stdout', new_callable=io.StringIO), self.assertRaisesRegex(RuntimeError, 'preflight'):
                 release.preflight('release', ['csharp'])
 
