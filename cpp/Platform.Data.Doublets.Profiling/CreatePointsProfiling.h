@@ -1,3 +1,4 @@
+#include "../Tools/TemporaryDirectory.h"
 namespace Platform::Data::Doublets::Profiling
 {
     using TLinkAddress = std::uint64_t;
@@ -11,11 +12,13 @@ namespace Platform::Data::Doublets::Profiling
         using namespace Platform::Data;
         using namespace Platform::Data::Doublets;
         using namespace Platform::Data::Doublets::Memory::United::Generic;
-        std::string tempFilePath { std::tmpnam(nullptr) };
+        Tools::TemporaryDirectory temporary;
+        std::string tempFilePath = temporary.File("data.links");
         Expects(!Collections::IsWhiteSpace(tempFilePath));
         try
         {
-            UnitedMemoryLinks<LinksOptions<>, FileMappedResizableDirectMemory> storage{FileMappedResizableDirectMemory{tempFilePath}};
+            UnitedMemoryLinks<LinksOptions<>, FileMappedResizableDirectMemory> storage{
+                FileMappedResizableDirectMemory{tempFilePath}};
             for (std::size_t i = 0; i < pointsNumberToCreate; ++i)
             {
                 CreatePoint(storage);
@@ -28,4 +31,4 @@ namespace Platform::Data::Doublets::Profiling
         }
         std::remove(tempFilePath.c_str());
     }
-}
+} // namespace Platform::Data::Doublets::Profiling

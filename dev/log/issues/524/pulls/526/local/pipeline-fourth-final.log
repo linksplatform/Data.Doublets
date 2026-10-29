@@ -1,0 +1,27 @@
+........................Validated 2 HTML pages, local links and source PDF
+::notice::credentials skipped: event/change prerequisites did not require this job
+::notice::csharp skipped: event/change prerequisites did not require this job
+::notice::publish skipped: event/change prerequisites did not require this job
+Waiting for public NuGet indexing (1/3, HTTP 404)
+Waiting for public NuGet indexing (2/3, HTTP 404)
+.............From /tmp/tmp71tyxnyl/remote
+ * branch            main       -> FETCH_HEAD
+   ec42bb5..2ca0dcf  main       -> origin/main
+......
+----------------------------------------------------------------------
+Ran 43 tests in 7.633s
+
+OK
+csharp: 1.2.3 -> 1.3.0 (minor)
+cpp: 1.2.3 -> 1.3.0 (minor)
+To /tmp/tmp71tyxnyl/remote.git
+ ! [rejected]        HEAD -> main (fetch first)
+error: failed to push some refs to '/tmp/tmp71tyxnyl/remote.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+Identical release metadata already landed; repairing its publication
+CodeQL: 1 complete report(s), no findings

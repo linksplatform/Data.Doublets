@@ -1,0 +1,102 @@
+[1/2] Processing file /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/AllBenchmarks.cpp.
+5 warnings and 4 errors generated.
+Error while processing /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/AllBenchmarks.cpp.
+[2/2] Processing file /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/AllTests.cpp.
+12 warnings and 24 errors generated.
+Error while processing /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/AllTests.cpp.
+error: too many errors emitted, stopping now [clang-diagnostic-error]
+/home/box/.conan2/p/b/platff90410c64197e/p/include/ILinksExtensions.h:21:34: error: no member named 'Constants' in 'Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<>>>' [clang-diagnostic-error]
+   21 |         auto $continue { storage.Constants.Continue };
+      |                          ~~~~~~~ ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ResizableDirectMemoryLinksTests.cpp:43:26: note: in instantiation of function template specialization 'Platform::Data::Create<Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<>>>>' requested here
+   43 |         auto linkAddress{Create(storage)};
+      |                          ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ResizableDirectMemoryLinksTests.cpp:76:9: note: in instantiation of function template specialization 'Platform::Data::Doublets::Tests::TestBasicMemoryOperations<Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<>>>>' requested here
+   76 |         TestBasicMemoryOperations(storage);
+      |         ^
+/home/box/.conan2/p/b/platff90410c64197e/p/include/ILinksExtensions.h:23:17: error: no member named 'Create' in 'Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<>>>' [clang-diagnostic-error]
+   23 |         storage.Create(substitution, [&createdLinkAddress, $continue] (const typename TStorage::LinkType& before, const typename TStorage::LinkType& after)
+      |         ~~~~~~~ ^
+/home/box/.conan2/p/b/platff90410c64197e/p/include/ILinksExtensions.h:60:32: error: no member named 'Constants' in 'Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<>>>' [clang-diagnostic-error]
+   60 |         auto $continue{storage.Constants.Continue};
+      |                        ~~~~~~~ ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ResizableDirectMemoryLinksTests.cpp:44:9: note: in instantiation of function template specialization 'Platform::Data::Delete<Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<>>>>' requested here
+   44 |         Delete(storage, linkAddress);
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ResizableDirectMemoryLinksTests.cpp:76:9: note: in instantiation of function template specialization 'Platform::Data::Doublets::Tests::TestBasicMemoryOperations<Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<>>>>' requested here
+   76 |         TestBasicMemoryOperations(storage);
+      |         ^
+/home/box/.conan2/p/b/platff90410c64197e/p/include/ILinksExtensions.h:62:17: error: no member named 'Delete' in 'Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<>>>' [clang-diagnostic-error]
+   62 |         storage.Delete(typename TStorage::LinkType{linkAddress}, [&deletedLinkAddress, $continue] (const typename TStorage::LinkType& before, const typename TStorage::LinkType& after)
+      |         ~~~~~~~ ^
+/home/box/.conan2/p/b/platff90410c64197e/p/include/ILinksExtensions.h:75:24: error: no member named 'Count' in 'Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<>>>' [clang-diagnostic-error]
+   75 |         return storage.Count(restriction);
+      |                ~~~~~~~ ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ResizableDirectMemoryLinksTests.cpp:36:22: note: in instantiation of function template specialization 'Platform::Data::Count<Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<>>>, unsigned long>' requested here
+   36 |         Expects(0 == Count(storage, std::numeric_limits<TLinkAddress>::max()));
+      |                      ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ResizableDirectMemoryLinksTests.cpp:87:9: note: in instantiation of function template specialization 'Platform::Data::Doublets::Tests::TestNonexistentReferences<Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<>>>>' requested here
+   87 |         TestNonexistentReferences(storage);
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ResizableDirectMemoryLinksTests.cpp:23:44: error: no member named 'Constants' in 'Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<>>>' [clang-diagnostic-error]
+   23 |         constexpr auto constants = storage.Constants;
+      |                                    ~~~~~~~ ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ResizableDirectMemoryLinksTests.cpp:87:9: note: in instantiation of function template specialization 'Platform::Data::Doublets::Tests::TestNonexistentReferences<Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<>>>>' requested here
+   87 |         TestNonexistentReferences(storage);
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ResizableDirectMemoryLinksTests.cpp:25:28: error: no matching function for call to 'Create' [clang-diagnostic-error]
+   25 |         auto linkAddress = Create(storage);
+      |                            ^~~~~~
+/home/box/.conan2/p/b/platff90410c64197e/p/include/ILinksExtensions.h:18:47: note: candidate template ignored: substitution failure [with TStorage = Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<>>>, substitutionPack:auto = <>]
+   18 |     static typename TStorage::LinkAddressType Create(TStorage& storage, std::convertible_to<typename TStorage::LinkAddressType> auto ...substitutionPack)
+      |                                               ^
+/home/box/.conan2/p/b/platff90410c64197e/p/include/ILinksExtensions.h:5:47: note: candidate function template not viable: requires 2 arguments, but 1 was provided
+    5 |     static typename TStorage::LinkAddressType Create(TStorage& storage, const typename TStorage::LinkType& substitution)
+      |                                               ^      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ResizableDirectMemoryLinksTests.cpp:29:17: error: no member named 'Each' in 'Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<>>>' [clang-diagnostic-error]
+   29 |         storage.Each(typename TStorage::LinkType{constants.Any, std::numeric_limits<TLinkAddress>::max(),
+      |         ~~~~~~~ ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/LinksOptions.h:13:21: error: dependent using declaration resolved to type without 'typename' [clang-diagnostic-error]
+   13 |         using base::LinkAddressType;
+      |                     ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinksBase.h:10:42: note: in instantiation of template class 'Platform::Data::Doublets::LinksOptions<>' requested here
+   10 |         using LinkAddressType = typename LinksOptionsType::LinkAddressType;
+      |                                          ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinks.h:10:18: note: in instantiation of template class 'Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinksBase<Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<>, Platform::Memory::FileMappedResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<>>>, Platform::Data::Doublets::LinksOptions<>, Platform::Memory::FileMappedResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<>>>' requested here
+   10 |         : public UnitedMemoryLinksBase<
+      |                  ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CreateMillionPointsBenchmarks.cpp:43:96: note: in instantiation of template class 'Platform::Data::Doublets::Memory::United::Generic::UnitedMemoryLinks<Platform::Data::Doublets::LinksOptions<>, Platform::Memory::FileMappedResizableDirectMemory, Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<Platform::Data::Doublets::LinksOptions<>>, Platform::Data::Doublets::Memory::United::Generic::UnusedLinksListMethods<Platform::Data::Doublets::LinksOptions<>>>' requested here
+   43 |                 UnitedMemoryLinks<LinksOptions<TLinkAddress>, FileMappedResizableDirectMemory> storage{
+      |                                                                                                ^
+/home/box/.conan2/p/b/platff90410c64197e/p/include/LinksOptions.h:7:15: note: target of using declaration
+    7 |         using LinkAddressType = TLinkAddress;
+      |               ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/LinksOptions.h:14:21: error: dependent using declaration resolved to type without 'typename' [clang-diagnostic-error]
+   14 |         using base::LinkType;
+      |                     ^
+/home/box/.conan2/p/b/platff90410c64197e/p/include/LinksOptions.h:8:15: note: target of using declaration
+    8 |         using LinkType = TLink;
+      |               ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/LinksOptions.h:15:21: error: dependent using declaration resolved to type without 'typename' [clang-diagnostic-error]
+   15 |         using base::ReadHandlerType;
+      |                     ^
+/home/box/.conan2/p/b/platff90410c64197e/p/include/LinksOptions.h:9:15: note: target of using declaration
+    9 |         using ReadHandlerType = TReadHandler;
+      |               ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/LinksOptions.h:16:21: error: dependent using declaration resolved to type without 'typename' [clang-diagnostic-error]
+   16 |         using base::WriteHandlerType;
+      |                     ^
+/home/box/.conan2/p/b/platff90410c64197e/p/include/LinksOptions.h:10:15: note: target of using declaration
+   10 |         using WriteHandlerType = TWriteHandler;
+      |               ^
+Traceback (most recent call last):
+  File "/tmp/gh-issue-solver-1793248170197/scripts/check-cpp.py", line 29, in <module>
+    run('clang-tidy-18', '-p', str(args.build_dir.resolve()), '--quiet', *units)
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/gh-issue-solver-1793248170197/scripts/check-cpp.py", line 11, in run
+    subprocess.run(args, cwd=ROOT, check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/box/.pyenv/versions/3.15.0/lib/python3.15/subprocess.py", line 692, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '('clang-tidy-18', '-p', '/tmp/issue-524-cpp-baseline', '--quiet', '/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/AllBenchmarks.cpp', '/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/AllTests.cpp')' returned non-zero exit status 1.

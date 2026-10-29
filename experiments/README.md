@@ -44,8 +44,9 @@ To reproduce the unwanted compulsory checks from the previous PR head:
 python3 experiments/reproduce_deletion_contract.py /path/to/dotnet
 ```
 
-The script temporarily substitutes three implementations from `136ada5ad` and
-restores source files in `finally`. Run with no concurrent builds/source edits.
+The script reinstates the three mandatory checks from `136ada5ad` in current
+source and restores every file in `finally`. This preserves later nullable API
+repairs. Run with no concurrent builds/source edits.
 Expected result: three failing contract tests. Only valid live/reset addresses
 are deleted; the probe never deliberately corrupts raw memory. Rebuild afterward
 to restore current binaries. The old baseline runner that deliberately submitted

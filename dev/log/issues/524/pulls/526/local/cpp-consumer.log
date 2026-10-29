@@ -1,0 +1,17 @@
+  Determining projects to restore...
+/tmp/tmpw606_6y4/Consumer.csproj : error NU1202: Package Platform.Data.Doublets.TemplateLibrary 0.1.1 is not compatible with net8.0 (.NETCoreApp,Version=v8.0). Package Platform.Data.Doublets.TemplateLibrary 0.1.1 does not support any target frameworks.
+  Failed to restore /tmp/tmpw606_6y4/Consumer.csproj (in 605 ms).
+Traceback (most recent call last):
+  File "/tmp/gh-issue-solver-1793248170197/scripts/smoke_packages.py", line 59, in <module>
+    smoke(parser.parse_args().language)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/gh-issue-solver-1793248170197/scripts/smoke_packages.py", line 47, in smoke
+    run('dotnet', 'restore', '--configfile', str(consumer / 'NuGet.Config'), '--packages', str(consumer / 'packages'), cwd=consumer)
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/gh-issue-solver-1793248170197/scripts/smoke_packages.py", line 13, in run
+    subprocess.run(args, cwd=cwd, check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/box/.pyenv/versions/3.15.0/lib/python3.15/subprocess.py", line 692, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '('dotnet', 'restore', '--configfile', '/tmp/tmpw606_6y4/NuGet.Config', '--packages', '/tmp/tmpw606_6y4/packages')' returned non-zero exit status 1.

@@ -2,11 +2,17 @@
 {
     class UInt64Links : public LinksDisposableDecoratorBase<std::uint64_t>
     {
-        public: UInt64Links(ILinks<std::uint64_t> &storage) : base(storage) { }
+      public:
+        UInt64Links(ILinks<std::uint64_t>& storage) : base(storage) {}
 
-        public: std::uint64_t Create(IList<std::uint64_t> &restriction) { return this->decorated().TDecorated::CreatePoint(); }
+      public:
+        std::uint64_t Create(IList<std::uint64_t>& restriction)
+        {
+            return this->decorated().TDecorated::CreatePoint();
+        }
 
-        public: std::uint64_t Update(IList<std::uint64_t> &restriction, IList<std::uint64_t> &substitution)
+      public:
+        std::uint64_t Update(IList<std::uint64_t>& restriction, IList<std::uint64_t>& substitution)
         {
             auto constants = _constants;
             auto indexPartConstant = constants.IndexPart;
@@ -28,7 +34,7 @@
                 if (before[sourcePartConstant] != newSource || before[targetPartConstant] != newTarget)
                 {
                     storage.Update(updatedLink, newSource == itselfConstant ? updatedLink : newSource,
-                                              newTarget == itselfConstant ? updatedLink : newTarget);
+                                   newTarget == itselfConstant ? updatedLink : newTarget);
                 }
                 return updatedLink;
             }
@@ -38,7 +44,8 @@
             }
         }
 
-        public: void Delete(IList<std::uint64_t> &restriction)
+      public:
+        void Delete(IList<std::uint64_t>& restriction)
         {
             auto linkIndex = restriction[_constants.IndexPart];
             storage.EnforceResetValues(linkIndex);
@@ -46,4 +53,4 @@
             storage.Delete(linkIndex);
         }
     };
-}
+} // namespace Platform::Data::Doublets::Decorators

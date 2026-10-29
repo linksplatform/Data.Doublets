@@ -1,0 +1,224 @@
+required	Set up job	﻿2026-10-29T08:39:27.9678378Z Current runner version: '2.338.0'
+required	Set up job	2026-10-29T08:39:27.9703897Z ##[group]Runner Image Provisioner
+required	Set up job	2026-10-29T08:39:27.9705014Z Hosted Compute Agent
+required	Set up job	2026-10-29T08:39:27.9706037Z Version: 20261021.618
+required	Set up job	2026-10-29T08:39:27.9706762Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+required	Set up job	2026-10-29T08:39:27.9707506Z Build Date: 2026-10-21T00:45:21Z
+required	Set up job	2026-10-29T08:39:27.9708410Z Worker ID: {af4e560c-dd83-4fc5-b829-b8b96846af9e}
+required	Set up job	2026-10-29T08:39:27.9709160Z Region: westus2
+required	Set up job	2026-10-29T08:39:27.9709785Z Cloud: Azure
+required	Set up job	2026-10-29T08:39:27.9710375Z ##[endgroup]
+required	Set up job	2026-10-29T08:39:27.9711895Z ##[group]Operating System
+required	Set up job	2026-10-29T08:39:27.9712688Z Ubuntu
+required	Set up job	2026-10-29T08:39:27.9713279Z 24.04.5
+required	Set up job	2026-10-29T08:39:27.9713860Z LTS
+required	Set up job	2026-10-29T08:39:27.9714424Z ##[endgroup]
+required	Set up job	2026-10-29T08:39:27.9715002Z ##[group]Runner Image
+required	Set up job	2026-10-29T08:39:27.9716055Z Image: ubuntu-24.04
+required	Set up job	2026-10-29T08:39:27.9716677Z Version: 20261025.353.1
+required	Set up job	2026-10-29T08:39:27.9717733Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261025.353/images/ubuntu/Ubuntu2404-Readme.md
+required	Set up job	2026-10-29T08:39:27.9719644Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261025.353
+required	Set up job	2026-10-29T08:39:27.9720726Z ##[endgroup]
+required	Set up job	2026-10-29T08:39:27.9721876Z ##[group]GITHUB_TOKEN Permissions
+required	Set up job	2026-10-29T08:39:27.9724057Z Contents: read
+required	Set up job	2026-10-29T08:39:27.9724716Z Metadata: read
+required	Set up job	2026-10-29T08:39:27.9725409Z ##[endgroup]
+required	Set up job	2026-10-29T08:39:27.9728078Z Secret source: Actions
+required	Set up job	2026-10-29T08:39:27.9729081Z Cache mode: write
+required	Set up job	2026-10-29T08:39:27.9730258Z Prepare workflow directory
+required	Set up job	2026-10-29T08:39:28.0071421Z Prepare all required actions
+required	Set up job	2026-10-29T08:39:28.0143046Z Getting action download info
+required	Set up job	2026-10-29T08:39:28.3874049Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+required	Set up job	2026-10-29T08:39:28.6281301Z Complete job name: required
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-10-29T08:39:28.7149955Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:28.7151075Z with:
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:28.7151584Z   persist-credentials: false
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:28.7152165Z   repository: linksplatform/Data.Doublets
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:28.7156479Z   token: ***
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:28.7156950Z   ssh-strict: true
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:28.7157414Z   ssh-user: git
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:28.7157874Z   clean: true
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:28.7158350Z   sparse-checkout-cone-mode: true
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:28.7158903Z   fetch-depth: 1
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:28.7159381Z   fetch-tags: false
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:28.7159849Z   show-progress: true
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:28.7160314Z   lfs: false
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:28.7160758Z   submodules: false
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:28.7161237Z   set-safe-directory: true
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:28.7161772Z   allow-unsafe-pr-checkout: false
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:28.7162714Z ##[endgroup]
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0322393Z Syncing repository: linksplatform/Data.Doublets
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0324706Z ##[group]Getting Git version info
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0326396Z Working directory is '/home/runner/work/Data.Doublets/Data.Doublets'
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0328351Z [command]/usr/bin/git version
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0418625Z git version 2.56.0
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0443213Z ##[endgroup]
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0458342Z Temporarily overriding HOME='/home/runner/work/_temp/9960621a-ba28-43b8-89ba-f06db968d3c6' before making global git config changes
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0461115Z Adding repository directory to the temporary git global config as a safe directory
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0464794Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Data.Doublets/Data.Doublets
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0523689Z Deleting the contents of '/home/runner/work/Data.Doublets/Data.Doublets'
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0528880Z ##[group]Determining repository object format
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0530904Z ##[endgroup]
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0532468Z ##[group]Initializing the repository
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0536217Z [command]/usr/bin/git init /home/runner/work/Data.Doublets/Data.Doublets
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0676200Z hint: Using 'master' as the name for the initial branch. This default branch name
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0679566Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0700179Z hint: to use in all of your new repositories, which will suppress this warning,
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0710082Z hint: call:
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0711148Z hint:
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0712404Z hint: 	git config --global init.defaultBranch <name>
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0714133Z hint:
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0715932Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0718789Z hint: 'development'. The just-created branch can be renamed via this command:
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0720897Z hint:
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0722546Z hint: 	git branch -m <name>
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0723938Z hint:
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0726345Z hint: Disable this message with "git config set advice.defaultBranchName false"
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0729170Z Initialized empty Git repository in /home/runner/work/Data.Doublets/Data.Doublets/.git/
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0733171Z [command]/usr/bin/git remote add origin https://github.com/linksplatform/Data.Doublets
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0770559Z ##[endgroup]
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0772193Z ##[group]Disabling automatic garbage collection
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0778100Z [command]/usr/bin/git config --local gc.auto 0
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0829148Z ##[endgroup]
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0830891Z ##[group]Setting up auth
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0832172Z Removing SSH command configuration
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0837307Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.0899965Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.1305239Z Removing HTTP extra header
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.1314926Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.1375423Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.1618444Z Removing includeIf entries pointing to credentials config files
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.1624643Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.1671847Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.1920910Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-0b4294aa-c6cf-4bbb-bcff-84d2eced096c.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.1969624Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path /home/runner/work/_temp/git-credentials-0b4294aa-c6cf-4bbb-bcff-84d2eced096c.config
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.2011884Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-0b4294aa-c6cf-4bbb-bcff-84d2eced096c.config
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.2060061Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-0b4294aa-c6cf-4bbb-bcff-84d2eced096c.config
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.2102996Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-0b4294aa-c6cf-4bbb-bcff-84d2eced096c.config
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.2143940Z ##[endgroup]
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.2144776Z ##[group]Fetching the repository
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:29.2150635Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +fd79f966aab84e0cc30e3b8f0fd40e9fcb9e3f7c:refs/remotes/pull/526/merge
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:32.9473587Z From https://github.com/linksplatform/Data.Doublets
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:32.9476726Z  * [new ref]         fd79f966aab84e0cc30e3b8f0fd40e9fcb9e3f7c -> pull/526/merge
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:32.9482506Z ##[endgroup]
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:32.9484487Z ##[group]Determining the checkout info
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:32.9486933Z ##[endgroup]
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:32.9488573Z [command]/usr/bin/git sparse-checkout disable
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:32.9553348Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:32.9598005Z ##[group]Checking out the ref
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:32.9602097Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/526/merge
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.2826462Z Note: switching to 'refs/remotes/pull/526/merge'.
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.2827314Z 
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.2827786Z You are in 'detached HEAD' state. You can look around, make experimental
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.2828545Z changes and commit them, and you can discard any commits you make in this
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.2829209Z state without impacting any branches by switching back to a branch.
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.2829654Z 
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.2829954Z If you want to create a new branch to retain commits you create, you may
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.2830586Z do so (now or later) by using -c with the switch command. Example:
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.2830934Z 
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.2831099Z   git switch -c <new-branch-name>
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.2831338Z 
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.2831512Z Or undo this operation with:
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.2831785Z 
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.2831919Z   git switch -
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.2832116Z 
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.2832484Z Turn off this advice by setting config variable advice.detachedHead to false
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.2832919Z 
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.2833384Z HEAD is now at fd79f96 Merge 5cf40c5a338a38978221aab65a8e017005c95303 into 799502ce9275edc80d9fbc1953ff8892fe0eca19
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.2876608Z ##[endgroup]
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.2936106Z [command]/usr/bin/git log -1 --format=%H
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.2973769Z fd79f966aab84e0cc30e3b8f0fd40e9fcb9e3f7c
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.2983924Z ##[group]Removing auth
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.2984569Z Removing SSH command configuration
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.2988976Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.3033585Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.3279207Z Removing HTTP extra header
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.3283646Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.3329815Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.3572084Z Removing includeIf entries pointing to credentials config files
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.3575814Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.3614471Z includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.3615736Z includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.3616828Z includeif.gitdir:/github/workspace/.git.path
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.3617676Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.3625027Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.3660597Z /home/runner/work/_temp/git-credentials-0b4294aa-c6cf-4bbb-bcff-84d2eced096c.config
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.3673190Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-0b4294aa\-c6cf\-4bbb\-bcff\-84d2eced096c\.config
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.3730240Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.3764949Z /home/runner/work/_temp/git-credentials-0b4294aa-c6cf-4bbb-bcff-84d2eced096c.config
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.3774427Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-0b4294aa\-c6cf\-4bbb\-bcff\-84d2eced096c\.config
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.3820797Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.3856410Z /github/runner_temp/git-credentials-0b4294aa-c6cf-4bbb-bcff-84d2eced096c.config
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.3864465Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-0b4294aa\-c6cf\-4bbb\-bcff\-84d2eced096c\.config
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.3912496Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.3949277Z /github/runner_temp/git-credentials-0b4294aa-c6cf-4bbb-bcff-84d2eced096c.config
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.3958131Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-0b4294aa\-c6cf\-4bbb\-bcff\-84d2eced096c\.config
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.4005202Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.4249519Z Removing credentials config '/home/runner/work/_temp/git-credentials-0b4294aa-c6cf-4bbb-bcff-84d2eced096c.config'
+required	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.4258674Z ##[endgroup]
+required	Require every applicable validation	﻿2026-10-29T08:39:33.4508544Z ##[group]Run python3 scripts/check_required.py
+required	Require every applicable validation	2026-10-29T08:39:33.4509102Z ^[[36;1mpython3 scripts/check_required.py^[[0m
+required	Require every applicable validation	2026-10-29T08:39:33.4532448Z shell: /usr/bin/bash -e {0}
+required	Require every applicable validation	2026-10-29T08:39:33.4532811Z env:
+required	Require every applicable validation	2026-10-29T08:39:33.4534520Z   RESULTS: {
+required	Require every applicable validation	  "changes": {
+required	Require every applicable validation	    "result": "success",
+required	Require every applicable validation	    "outputs": {
+required	Require every applicable validation	      "pipeline": "true",
+required	Require every applicable validation	      "csharp": "true",
+required	Require every applicable validation	      "cpp": "true",
+required	Require every applicable validation	      "docs": "true"
+required	Require every applicable validation	    }
+required	Require every applicable validation	  },
+required	Require every applicable validation	  "credentials": {
+required	Require every applicable validation	    "result": "skipped",
+required	Require every applicable validation	    "outputs": {}
+required	Require every applicable validation	  },
+required	Require every applicable validation	  "quality": {
+required	Require every applicable validation	    "result": "success",
+required	Require every applicable validation	    "outputs": {}
+required	Require every applicable validation	  },
+required	Require every applicable validation	  "csharp": {
+required	Require every applicable validation	    "result": "success",
+required	Require every applicable validation	    "outputs": {}
+required	Require every applicable validation	  },
+required	Require every applicable validation	  "cpp": {
+required	Require every applicable validation	    "result": "success",
+required	Require every applicable validation	    "outputs": {}
+required	Require every applicable validation	  },
+required	Require every applicable validation	  "docs": {
+required	Require every applicable validation	    "result": "success",
+required	Require every applicable validation	    "outputs": {}
+required	Require every applicable validation	  },
+required	Require every applicable validation	  "security": {
+required	Require every applicable validation	    "result": "success",
+required	Require every applicable validation	    "outputs": {}
+required	Require every applicable validation	  },
+required	Require every applicable validation	  "links": {
+required	Require every applicable validation	    "result": "success",
+required	Require every applicable validation	    "outputs": {}
+required	Require every applicable validation	  },
+required	Require every applicable validation	  "publish": {
+required	Require every applicable validation	    "result": "skipped",
+required	Require every applicable validation	    "outputs": {}
+required	Require every applicable validation	  }
+required	Require every applicable validation	}
+required	Require every applicable validation	2026-10-29T08:39:33.4536778Z ##[endgroup]
+required	Require every applicable validation	2026-10-29T08:39:33.4813988Z ##[notice]credentials skipped: event/change prerequisites did not require this job
+required	Require every applicable validation	2026-10-29T08:39:33.4823228Z ##[notice]publish skipped: event/change prerequisites did not require this job
+required	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-10-29T08:39:33.5125634Z Post job cleanup.
+required	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.6011709Z [command]/usr/bin/git version
+required	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.6090667Z git version 2.56.0
+required	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.6130744Z Temporarily overriding HOME='/home/runner/work/_temp/be9c9504-f56d-4482-878c-e297ba402944' before making global git config changes
+required	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.6132455Z Adding repository directory to the temporary git global config as a safe directory
+required	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.6137319Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Data.Doublets/Data.Doublets
+required	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.6175291Z Removing SSH command configuration
+required	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.6182981Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+required	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.6227436Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+required	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.6518593Z Removing HTTP extra header
+required	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.6519706Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+required	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.6577901Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+required	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.6835285Z Removing includeIf entries pointing to credentials config files
+required	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.6844264Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+required	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:39:33.6909923Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+required	Complete job	﻿2026-10-29T08:39:33.7350380Z Cleaning up orphan processes

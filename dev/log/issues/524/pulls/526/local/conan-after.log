@@ -1,0 +1,126 @@
+
+======== Input profiles ========
+Profile host:
+[settings]
+arch=x86_64
+build_type=Release
+compiler=gcc
+compiler.cppstd=20
+compiler.libcxx=libstdc++11
+compiler.version=13
+os=Linux
+[conf]
+tools.build:jobs=1
+
+Profile build:
+[settings]
+arch=x86_64
+build_type=Release
+compiler=gcc
+compiler.cppstd=gnu17
+compiler.libcxx=libstdc++11
+compiler.version=13
+os=Linux
+
+
+======== Computing dependency graph ========
+Graph root
+    conanfile.txt: /tmp/gh-issue-solver-1793248170197/cpp/conanfile.txt
+Requirements
+    benchmark/1.6.0#bebc87ccfd6ac636b37048d615611816 - Cache
+    cpuinfo/cci.20220228#ee5ca74cd65e1285571407d9c62c5813 - Cache
+    gtest/cci.20210126#7b8ec8c988c27b7f0769ca720054ad9f - Cache
+    mio/cci.20201220#35d8e4791152cb59bb37212cd9c295d2 - Cache
+    ms-gsl/4.0.0#057429d7a351a5819da5ddd19ee33665 - Cache
+    platform.collections/0.2.1#ea88a41822eaa516544b25dad23c7760 - Cache
+    platform.collections.methods/0.3.0#e50ef014765f813a7d5e881cf3a40edc - Cache
+    platform.converters/0.2.0#c229fd811b2b43401b41f37e469e20c8 - Cache
+    platform.data/0.1.1#b1ea97dca48ff9f2862affd4418e84cf - Cache
+    platform.delegates/0.3.7#6bff48bf7fad23bf5834d960ea3361fd - Cache
+    platform.equality/0.0.1#1133b5ef42098d44245438c0f9b15eab - Cache
+    platform.exceptions/0.3.2#75ed9001c7236fb176fc9e58ee249709 - Cache
+    platform.hashing/0.5.6#b2aee2296ea691fdbb3e8b125404d82c - Cache
+    platform.interfaces/0.3.41#861aaf44f8cc181950b4d2a104d9af28 - Cache
+    platform.memory/0.1.0#fcbfd8c518daa53d5e85e2bf209c01d4 - Cache
+    platform.numbers/0.1.0#00f80d6a5e08e83d9f113c4166692c84 - Cache
+    platform.random/0.2.0#9d9633138ba8560b17603a140cce8e1e - Cache
+    platform.ranges/0.2.0#750be649ab10a7d0bc56ff390f36dbe6 - Cache
+    platform.setters/0.1.0#6d644cd1968d4288bbb8405e0840b94a - Cache
+
+======== Computing necessary packages ========
+Requirements
+    benchmark/1.6.0#bebc87ccfd6ac636b37048d615611816:45c50a2141506585e351c9cec87e3f8b70ab72aa#59c77e4431089d3826bf1ccb1e0a58d1 - Cache
+    cpuinfo/cci.20220228#ee5ca74cd65e1285571407d9c62c5813:4d9e6a210329116850cff601cc4db23e561d9a71#41f3dadb01ba572607ec2e59b1449651 - Cache
+    gtest/cci.20210126#7b8ec8c988c27b7f0769ca720054ad9f:06a92a51322e4faf123a2081a93157f0a1ea76a6#f9d1395be49775cc4abb1d1971ad1788 - Cache
+    mio/cci.20201220#35d8e4791152cb59bb37212cd9c295d2:da39a3ee5e6b4b0d3255bfef95601890afd80709#1db8db72c0b6f33280a30253cc7c2f27 - Cache
+    ms-gsl/4.0.0#057429d7a351a5819da5ddd19ee33665:da39a3ee5e6b4b0d3255bfef95601890afd80709#b598077be9be7a01e859da8eca72dee0 - Cache
+    platform.collections.methods/0.3.0#e50ef014765f813a7d5e881cf3a40edc:da39a3ee5e6b4b0d3255bfef95601890afd80709#805323c60df80a61563931fcfb9b5823 - Cache
+    platform.collections/0.2.1#ea88a41822eaa516544b25dad23c7760:da39a3ee5e6b4b0d3255bfef95601890afd80709#45e0a5351397729f623902347fdf0072 - Cache
+    platform.converters/0.2.0#c229fd811b2b43401b41f37e469e20c8:da39a3ee5e6b4b0d3255bfef95601890afd80709#adf5a6a6a0d890617af517db1cc3bbc5 - Cache
+    platform.data/0.1.1#b1ea97dca48ff9f2862affd4418e84cf:da39a3ee5e6b4b0d3255bfef95601890afd80709#87a5cf2bd775a1d3bee84e29442dde3c - Cache
+    platform.delegates/0.3.7#6bff48bf7fad23bf5834d960ea3361fd:da39a3ee5e6b4b0d3255bfef95601890afd80709#e51ebaea1ce5334ac62fb7ecaaf705bf - Cache
+    platform.equality/0.0.1#1133b5ef42098d44245438c0f9b15eab:da39a3ee5e6b4b0d3255bfef95601890afd80709#3a5ac2fd4b138217270bcbfc0d560603 - Cache
+    platform.exceptions/0.3.2#75ed9001c7236fb176fc9e58ee249709:da39a3ee5e6b4b0d3255bfef95601890afd80709#95f257de01c9f578ae93a77a93a5950e - Cache
+    platform.hashing/0.5.6#b2aee2296ea691fdbb3e8b125404d82c:da39a3ee5e6b4b0d3255bfef95601890afd80709#cad25de63db99f0664d07541fdc6fa6f - Cache
+    platform.interfaces/0.3.41#861aaf44f8cc181950b4d2a104d9af28:da39a3ee5e6b4b0d3255bfef95601890afd80709#89402c1ce8c65d2b3bff73d1fad91950 - Cache
+    platform.memory/0.1.0#fcbfd8c518daa53d5e85e2bf209c01d4:da39a3ee5e6b4b0d3255bfef95601890afd80709#0f418078999bb7c9503574df92c00d54 - Cache
+    platform.numbers/0.1.0#00f80d6a5e08e83d9f113c4166692c84:da39a3ee5e6b4b0d3255bfef95601890afd80709#010b41966b0ff8d92bea24d7491eee11 - Cache
+    platform.random/0.2.0#9d9633138ba8560b17603a140cce8e1e:da39a3ee5e6b4b0d3255bfef95601890afd80709#7368fa153a09f12eddea710548981718 - Cache
+    platform.ranges/0.2.0#750be649ab10a7d0bc56ff390f36dbe6:da39a3ee5e6b4b0d3255bfef95601890afd80709#81a558cde0554f2a22f31692b29c9020 - Cache
+    platform.setters/0.1.0#6d644cd1968d4288bbb8405e0840b94a:da39a3ee5e6b4b0d3255bfef95601890afd80709#93ba0987edf1adbbf9b7b8b979f9a2e2 - Cache
+
+======== Installing packages ========
+benchmark/1.6.0: Already installed! (1 of 19)
+cpuinfo/cci.20220228: Already installed! (2 of 19)
+gtest/cci.20210126: Already installed! (3 of 19)
+mio/cci.20201220: Already installed! (4 of 19)
+ms-gsl/4.0.0: Already installed! (5 of 19)
+platform.converters/0.2.0: Already installed! (6 of 19)
+platform.delegates/0.3.7: Already installed! (7 of 19)
+platform.equality/0.0.1: Already installed! (8 of 19)
+platform.interfaces/0.3.41: Already installed! (9 of 19)
+platform.numbers/0.1.0: Already installed! (10 of 19)
+platform.collections.methods/0.3.0: Already installed! (11 of 19)
+platform.exceptions/0.3.2: Already installed! (12 of 19)
+platform.hashing/0.5.6: Already installed! (13 of 19)
+platform.hashing/0.5.6: WARN: platform.hashing needs to have `-march=ARCH` added to CPPFLAGS/CXXFLAGS. A suggestion is available in dependencies[platform.hashing].conf_info.get("user.platform_hashing:suggested_flags")
+platform.setters/0.1.0: Already installed! (14 of 19)
+platform.ranges/0.2.0: Already installed! (15 of 19)
+platform.data/0.1.1: Already installed! (16 of 19)
+platform.random/0.2.0: Already installed! (17 of 19)
+platform.collections/0.2.1: Already installed! (18 of 19)
+platform.memory/0.1.0: Already installed! (19 of 19)
+WARN: deprecated: Usage of deprecated Conan 1.X features that will be removed in Conan 2.X:
+WARN: deprecated:     'cpp_info.names' used in: platform.converters/0.2.0, ms-gsl/4.0.0, platform.collections/0.2.1, platform.data/0.1.1, platform.equality/0.0.1, platform.exceptions/0.3.2, platform.ranges/0.2.0, gtest/cci.20210126, platform.random/0.2.0, platform.collections.methods/0.3.0, platform.setters/0.1.0, platform.interfaces/0.3.41, platform.memory/0.1.0, platform.delegates/0.3.7, platform.numbers/0.1.0
+
+======== Finalizing install (deploy, generators) ========
+>>> Generate step for conanfile.txt
+Generators folder: /tmp/issue-524-cpp-baseline
+Generator 'CMakeDeps' calling 'generate()'
+CMakeDeps necessary find_package() and targets for your CMakeLists.txt
+    find_package(GTest)
+    find_package(benchmark)
+    find_package(Platform.Collections.Methods)
+    find_package(Platform.Memory)
+    find_package(Platform.Collections)
+    find_package(Platform.Data)
+    find_package(Platform.Random)
+    find_package(Platform.Interfaces)
+    find_package(Platform.Ranges)
+    find_package(Platform.Exceptions)
+    find_package(Platform.Numbers)
+    find_package(mio)
+    find_package(Microsoft.GSL)
+    target_link_libraries(... gtest::gtest benchmark::benchmark_main Platform.Collections.Methods::Platform.Collections.Methods Platform.Memory::Platform.Memory Platform.Collections::Platform.Collections Platform.Data::Platform.Data Platform.Random::Platform.Random Platform.Interfaces::Platform.Interfaces Platform.Ranges::Platform.Ranges Platform.Exceptions::Platform.Exceptions Platform.Numbers::Platform.Numbers mio::mio Microsoft.GSL::GSL)
+Generator 'CMakeToolchain' calling 'generate()'
+CMakeToolchain generated: conan_toolchain.cmake
+CMakeToolchain: Preset 'conan-release' added to CMakePresets.json.
+    (cmake>=3.23) cmake --preset conan-release
+    (cmake<3.23) cmake <path> -G "Unix Makefiles"
+                 -DCMAKE_TOOLCHAIN_FILE=<output_folder>/conan_toolchain.cmake 
+                 -DCMAKE_POLICY_DEFAULT_CMP0091=NEW -DCMAKE_BUILD_TYPE=Release
+CMakeToolchain generated: /tmp/issue-524-cpp-baseline/CMakePresets.json
+CMakeToolchain generated: /tmp/gh-issue-solver-1793248170197/cpp/CMakeUserPresets.json
+Generating aggregated env files
+Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+Install finished successfully

@@ -19,7 +19,7 @@ public class LinksInnerReferenceExistenceValidator<TLinkAddress> : LinksDecorato
 {
     /// <summary>
     ///     <para>
-    ///         Initializes a new <see cref="LinksInnerReferenceExistenceValidator" /> instance.
+    ///         Initializes a new <see cref="LinksInnerReferenceExistenceValidator{TLinkAddress}" /> instance.
     ///     </para>
     ///     <para></para>
     /// </summary>
@@ -56,6 +56,7 @@ public class LinksInnerReferenceExistenceValidator<TLinkAddress> : LinksDecorato
         return links.Each(restriction: restriction, handler: handler);
     }
 
+    /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
     /// <summary>
     ///     <para>
     ///         Updates the restriction.
@@ -84,6 +85,7 @@ public class LinksInnerReferenceExistenceValidator<TLinkAddress> : LinksDecorato
         return links.Update(restriction: restriction, substitution: substitution, handler: handler);
     }
 
+    /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
     /// <summary>
     ///     <para>
     ///         Deletes the restriction.

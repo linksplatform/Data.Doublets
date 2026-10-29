@@ -28,11 +28,11 @@ namespace Platform.Data.Doublets.Decorators
     /// 
     /// Решить отключать ли проверки при компиляции под Release. Т.е. исключения будут выбрасываться только при #if DEBUG
     /// </remarks>
-    public class CombinedDecorator<TLinkAddress> : LinksDisposableDecoratorBase<TLinkAddress> where TLinkAddress:IUnsignedNumber<TLinkAddress>
+    public class CombinedDecorator<TLinkAddress> : LinksDisposableDecoratorBase<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>
     {
         /// <summary>
         /// <para>
-        /// Initializes a new <see cref="UInt64Links"/> instance.
+        /// Initializes a new <see cref="CombinedDecorator{TLinkAddress}"/> instance.
         /// </para>
         /// <para></para>
         /// </summary>
@@ -43,6 +43,7 @@ namespace Platform.Data.Doublets.Decorators
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public CombinedDecorator(ILinks<TLinkAddress> links) : base(links) { }
 
+        /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
         /// <summary>
         /// <para>
         /// Creates the substitution.
@@ -60,6 +61,7 @@ namespace Platform.Data.Doublets.Decorators
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override TLinkAddress Create(IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler) => _links.CreatePoint(handler);
 
+        /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
         /// <summary>
         /// <para>
         /// Updates the substitution.
@@ -81,6 +83,8 @@ namespace Platform.Data.Doublets.Decorators
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override TLinkAddress Update(IList<TLinkAddress>? restriction, IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler)
         {
+            System.ArgumentNullException.ThrowIfNull(restriction);
+            System.ArgumentNullException.ThrowIfNull(substitution);
             var constants = _constants;
             var indexPartConstant = constants.IndexPart;
             var sourcePartConstant = constants.SourcePart;
@@ -98,7 +102,7 @@ namespace Platform.Data.Doublets.Decorators
             }
             if (existedLink == nullConstant)
             {
-                var before = links.GetLink(updatedLink);
+                var before = links.GetRequiredLink(updatedLink);
                 if (before[sourcePartConstant] != newSource || before[targetPartConstant] != newTarget)
                 {
                     var source = newSource == itselfConstant ? updatedLink : newSource;
@@ -113,6 +117,7 @@ namespace Platform.Data.Doublets.Decorators
             }
         }
 
+        /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
         /// <summary>
         /// <para>
         /// Deletes the substitution.

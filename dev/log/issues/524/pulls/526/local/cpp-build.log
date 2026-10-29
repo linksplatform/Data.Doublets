@@ -1,0 +1,9 @@
+[ 50%] Building CXX object CMakeFiles/Platform.Data.Doublets.Tests.dir/Platform.Data.Doublets.Tests/AllTests.cpp.o
+[100%] Linking CXX executable bin/Platform.Data.Doublets.Tests
+/usr/bin/ld: CMakeFiles/Platform.Data.Doublets.Tests.dir/Platform.Data.Doublets.Tests/AllTests.cpp.o: in function `Platform::Data::Doublets::Tests::ResizableDirectMemoryLinksTests_BasicFileMappedMemoryTest_Test::TestBody()':
+AllTests.cpp:(.text+0x143ca): warning: the use of `tmpnam' is dangerous, better use `mkstemp'
+[100%] Built target Platform.Data.Doublets.Tests
+
+real	1m16.784s
+user	1m8.974s
+sys	0m7.120s

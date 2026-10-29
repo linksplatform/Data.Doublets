@@ -29,7 +29,7 @@ public abstract class LinksDisposableDecoratorBase<TLinkAddress> : LinksDecorato
 
     /// <summary>
     ///     <para>
-    ///         Initializes a new <see cref="LinksDisposableDecoratorBase" /> instance.
+    ///         Initializes a new <see cref="LinksDisposableDecoratorBase{TLinkAddress}" /> instance.
     ///     </para>
     ///     <para></para>
     /// </summary>
@@ -40,7 +40,7 @@ public abstract class LinksDisposableDecoratorBase<TLinkAddress> : LinksDecorato
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     protected LinksDisposableDecoratorBase(ILinks<TLinkAddress> links) : base(links: links)
     {
-        Disposable = new DisposableWithMultipleCallsAllowed(disposal: Dispose);
+        Disposable = new DisposableWithMultipleCallsAllowed(disposal: (manual, wasDisposed) => Dispose(manual, wasDisposed));
     }
 
     /// <summary>

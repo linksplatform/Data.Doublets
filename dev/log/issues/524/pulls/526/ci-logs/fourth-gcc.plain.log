@@ -1,0 +1,1930 @@
+﻿2026-10-29T07:19:57.5013876Z Current runner version: '2.338.0'
+2026-10-29T07:19:57.5034839Z ##[group]Runner Image Provisioner
+2026-10-29T07:19:57.5035752Z Hosted Compute Agent
+2026-10-29T07:19:57.5036184Z Version: 20261021.618
+2026-10-29T07:19:57.5036622Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+2026-10-29T07:19:57.5037129Z Build Date: 2026-10-21T00:45:21Z
+2026-10-29T07:19:57.5037608Z Worker ID: {d93831a9-58ed-414f-b9f5-0df5952e4c6f}
+2026-10-29T07:19:57.5038108Z Region: centralus
+2026-10-29T07:19:57.5038537Z Cloud: Azure
+2026-10-29T07:19:57.5038914Z ##[endgroup]
+2026-10-29T07:19:57.5039911Z ##[group]Operating System
+2026-10-29T07:19:57.5040559Z Ubuntu
+2026-10-29T07:19:57.5040957Z 24.04.5
+2026-10-29T07:19:57.5041334Z LTS
+2026-10-29T07:19:57.5041689Z ##[endgroup]
+2026-10-29T07:19:57.5042096Z ##[group]Runner Image
+2026-10-29T07:19:57.5042570Z Image: ubuntu-24.04
+2026-10-29T07:19:57.5042960Z Version: 20261025.353.1
+2026-10-29T07:19:57.5043886Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261025.353/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-29T07:19:57.5044940Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261025.353
+2026-10-29T07:19:57.5045584Z ##[endgroup]
+2026-10-29T07:19:57.5046386Z ##[group]GITHUB_TOKEN Permissions
+2026-10-29T07:19:57.5048298Z Contents: read
+2026-10-29T07:19:57.5048754Z Metadata: read
+2026-10-29T07:19:57.5049130Z ##[endgroup]
+2026-10-29T07:19:57.5050931Z Secret source: Actions
+2026-10-29T07:19:57.5051611Z Cache mode: write
+2026-10-29T07:19:57.5052387Z Prepare workflow directory
+2026-10-29T07:19:57.5302721Z Prepare all required actions
+2026-10-29T07:19:57.5353973Z Getting action download info
+2026-10-29T07:19:57.8109591Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+2026-10-29T07:19:57.9292181Z Download action repository 'actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1' (SHA:26b0ec14cb23fa6904739307f278c14f94c95bf1)
+2026-10-29T07:19:58.4731859Z Download action repository 'actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0' (SHA:6d4fd22b20465ccc0f7354476588e8df7c9ca0e0)
+2026-10-29T07:19:59.1189855Z Download action repository 'actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9' (SHA:cf430e030ddbb5b0abf93d22962f4752f3646cd9)
+2026-10-29T07:19:59.3437548Z Complete job name: cpp (gcc)
+2026-10-29T07:19:59.4306948Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+2026-10-29T07:19:59.4308314Z with:
+2026-10-29T07:19:59.4309040Z   fetch-depth: 0
+2026-10-29T07:19:59.4309846Z   persist-credentials: false
+2026-10-29T07:19:59.4310979Z   repository: linksplatform/Data.Doublets
+2026-10-29T07:19:59.4316556Z   token: ***
+2026-10-29T07:19:59.4317267Z   ssh-strict: true
+2026-10-29T07:19:59.4317998Z   ssh-user: git
+2026-10-29T07:19:59.4318690Z   clean: true
+2026-10-29T07:19:59.4319427Z   sparse-checkout-cone-mode: true
+2026-10-29T07:19:59.4320529Z   fetch-tags: false
+2026-10-29T07:19:59.4321265Z   show-progress: true
+2026-10-29T07:19:59.4322103Z   lfs: false
+2026-10-29T07:19:59.4322769Z   submodules: false
+2026-10-29T07:19:59.4323506Z   set-safe-directory: true
+2026-10-29T07:19:59.4324316Z   allow-unsafe-pr-checkout: false
+2026-10-29T07:19:59.4325348Z ##[endgroup]
+2026-10-29T07:19:59.7008887Z Syncing repository: linksplatform/Data.Doublets
+2026-10-29T07:19:59.7012735Z ##[group]Getting Git version info
+2026-10-29T07:19:59.7014114Z Working directory is '/home/runner/work/Data.Doublets/Data.Doublets'
+2026-10-29T07:19:59.7016699Z [command]/usr/bin/git version
+2026-10-29T07:19:59.7067737Z git version 2.56.0
+2026-10-29T07:19:59.7084370Z ##[endgroup]
+2026-10-29T07:19:59.7094378Z Temporarily overriding HOME='/home/runner/work/_temp/b6179eb2-407a-4688-a6f5-430ca76d412b' before making global git config changes
+2026-10-29T07:19:59.7097811Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-29T07:19:59.7101120Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Data.Doublets/Data.Doublets
+2026-10-29T07:19:59.7139176Z Deleting the contents of '/home/runner/work/Data.Doublets/Data.Doublets'
+2026-10-29T07:19:59.7142943Z ##[group]Determining repository object format
+2026-10-29T07:19:59.7144901Z ##[endgroup]
+2026-10-29T07:19:59.7146328Z ##[group]Initializing the repository
+2026-10-29T07:19:59.7148249Z [command]/usr/bin/git init /home/runner/work/Data.Doublets/Data.Doublets
+2026-10-29T07:19:59.7243156Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-29T07:19:59.7245304Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-29T07:19:59.7247537Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-29T07:19:59.7249177Z hint: call:
+2026-10-29T07:19:59.7250211Z hint:
+2026-10-29T07:19:59.7251573Z hint: 	git config --global init.defaultBranch <name>
+2026-10-29T07:19:59.7253005Z hint:
+2026-10-29T07:19:59.7254368Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-29T07:19:59.7256019Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-29T07:19:59.7257353Z hint:
+2026-10-29T07:19:59.7258181Z hint: 	git branch -m <name>
+2026-10-29T07:19:59.7259119Z hint:
+2026-10-29T07:19:59.7261477Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-29T07:19:59.7265746Z Initialized empty Git repository in /home/runner/work/Data.Doublets/Data.Doublets/.git/
+2026-10-29T07:19:59.7270477Z [command]/usr/bin/git remote add origin https://github.com/linksplatform/Data.Doublets
+2026-10-29T07:19:59.7314461Z ##[endgroup]
+2026-10-29T07:19:59.7316768Z ##[group]Disabling automatic garbage collection
+2026-10-29T07:19:59.7326048Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-29T07:19:59.7372630Z ##[endgroup]
+2026-10-29T07:19:59.7374073Z ##[group]Setting up auth
+2026-10-29T07:19:59.7375034Z Removing SSH command configuration
+2026-10-29T07:19:59.7376327Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-29T07:19:59.7404445Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-29T07:19:59.7698146Z Removing HTTP extra header
+2026-10-29T07:19:59.7703193Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-29T07:19:59.7746061Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-29T07:19:59.7922582Z Removing includeIf entries pointing to credentials config files
+2026-10-29T07:19:59.7928818Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-29T07:19:59.7962990Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-29T07:19:59.8133715Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-ec1aea6e-c121-4641-9b58-a772b8ad769f.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-29T07:19:59.8168528Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path /home/runner/work/_temp/git-credentials-ec1aea6e-c121-4641-9b58-a772b8ad769f.config
+2026-10-29T07:19:59.8196432Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-ec1aea6e-c121-4641-9b58-a772b8ad769f.config
+2026-10-29T07:19:59.8225382Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-ec1aea6e-c121-4641-9b58-a772b8ad769f.config
+2026-10-29T07:19:59.8255346Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-ec1aea6e-c121-4641-9b58-a772b8ad769f.config
+2026-10-29T07:19:59.8281206Z ##[endgroup]
+2026-10-29T07:19:59.8283193Z ##[group]Fetching the repository
+2026-10-29T07:19:59.8288791Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/* +0ff92b1f61ba3670c047785161244de0fbc9ddd1:refs/remotes/pull/526/merge
+2026-10-29T07:20:08.3187112Z From https://github.com/linksplatform/Data.Doublets
+2026-10-29T07:20:08.3188525Z  * [new branch]          (storage)_rust_write.sequences           -> origin/(storage)_rust_write.sequences
+2026-10-29T07:20:08.3189067Z  * [new branch]          1000203-v2                               -> origin/1000203-v2
+2026-10-29T07:20:08.3189513Z  * [new branch]          100203                                   -> origin/100203
+2026-10-29T07:20:08.3190025Z  * [new branch]          Sequence.Experiments_fix                 -> origin/Sequence.Experiments_fix
+2026-10-29T07:20:08.3190807Z  * [new branch]          async-main                               -> origin/async-main
+2026-10-29T07:20:08.3191394Z  * [new branch]          beta.6                                   -> origin/beta.6
+2026-10-29T07:20:08.3192000Z  * [new branch]          binaries                                 -> origin/binaries
+2026-10-29T07:20:08.3192666Z  * [new branch]          c/feature/add_ffi_links                  -> origin/c/feature/add_ffi_links
+2026-10-29T07:20:08.3193379Z  * [new branch]          constexpr-issue-348                      -> origin/constexpr-issue-348
+2026-10-29T07:20:08.3194101Z  * [new branch]          cpp/feature/add_clinks_concept           -> origin/cpp/feature/add_clinks_concept
+2026-10-29T07:20:08.3194923Z  * [new branch]          cpp/feature/add_handlers_to_united_memory_links -> origin/cpp/feature/add_handlers_to_united_memory_links
+2026-10-29T07:20:08.3195726Z  * [new branch]          cpp/feature/add_static_and_optional_dynamic_polymorphism_for_united_memory_links -> origin/cpp/feature/add_static_and_optional_dynamic_polymorphism_for_united_memory_links
+2026-10-29T07:20:08.3196731Z  * [new branch]          cpp/feature/add_tbase_parameter_and_do_not_inherit_ilinks_in_united_memory_links -> origin/cpp/feature/add_tbase_parameter_and_do_not_inherit_ilinks_in_united_memory_links
+2026-10-29T07:20:08.3197984Z  * [new branch]          cpp/feature/add_wrapper_around_rust_ffi  -> origin/cpp/feature/add_wrapper_around_rust_ffi
+2026-10-29T07:20:08.3198692Z  * [new branch]          cpp/feature/translate_all_trees          -> origin/cpp/feature/translate_all_trees
+2026-10-29T07:20:08.3199502Z  * [new branch]          cpp/feature/translate_ilinks_extensions  -> origin/cpp/feature/translate_ilinks_extensions
+2026-10-29T07:20:08.3200092Z  * [new branch]          cpp/feature/translate_split_memory_links -> origin/cpp/feature/translate_split_memory_links
+2026-10-29T07:20:08.3200866Z  * [new branch]          cpp/feature/translate_tests              -> origin/cpp/feature/translate_tests
+2026-10-29T07:20:08.3201453Z  * [new branch]          cpp/feature/translate_united_memory_links -> origin/cpp/feature/translate_united_memory_links
+2026-10-29T07:20:08.3202067Z  * [new branch]          cpp/feature/use_united_memory_links_in_tests -> origin/cpp/feature/use_united_memory_links_in_tests
+2026-10-29T07:20:08.3202621Z  * [new branch]          cpp/release/0.0.1                        -> origin/cpp/release/0.0.1
+2026-10-29T07:20:08.3203083Z  * [new branch]          cppwrite                                 -> origin/cppwrite
+2026-10-29T07:20:08.3203621Z  * [new branch]          cs/feature/add_no_exceptions_decorator   -> origin/cs/feature/add_no_exceptions_decorator
+2026-10-29T07:20:08.3204216Z  * [new branch]          csharp/feature/add_manual_garbage_collection -> origin/csharp/feature/add_manual_garbage_collection
+2026-10-29T07:20:08.3204796Z  * [new branch]          csharp/feature/use_generic_math          -> origin/csharp/feature/use_generic_math
+2026-10-29T07:20:08.3205285Z  * [new branch]          daulet_trees                             -> origin/daulet_trees
+2026-10-29T07:20:08.3205877Z  * [new branch]          dependabot/add-v2-config-file            -> origin/dependabot/add-v2-config-file
+2026-10-29T07:20:08.3206701Z  * [new branch]          dependabot/github_actions/dot-github/workflows/tj-actions/changed-files-41 -> origin/dependabot/github_actions/dot-github/workflows/tj-actions/changed-files-41
+2026-10-29T07:20:08.3207562Z  * [new branch]          feature/add_logging_decorator            -> origin/feature/add_logging_decorator
+2026-10-29T07:20:08.3208676Z  * [new branch]          feature/add_update_or_create_or_get_overload_with_index -> origin/feature/add_update_or_create_or_get_overload_with_index
+2026-10-29T07:20:08.3209382Z  * [new branch]          feature/ilinks/delete/change_return_value -> origin/feature/ilinks/delete/change_return_value
+2026-10-29T07:20:08.3210052Z  * [new branch]          feature_move_testextensions_to_tests.ilinksextensions-v2 -> origin/feature_move_testextensions_to_tests.ilinksextensions-v2
+2026-10-29T07:20:08.3211244Z  * [new branch]          feature_move_testextensions_to_tests/ilinksextensions -> origin/feature_move_testextensions_to_tests/ilinksextensions
+2026-10-29T07:20:08.3211855Z  * [new branch]          fix_deleteall                            -> origin/fix_deleteall
+2026-10-29T07:20:08.3212361Z  * [new branch]          gh-pages                                 -> origin/gh-pages
+2026-10-29T07:20:08.3212782Z  * [new branch]          ilinks_bug                               -> origin/ilinks_bug
+2026-10-29T07:20:08.3213228Z  * [new branch]          issue-10-dc9e2253                        -> origin/issue-10-dc9e2253
+2026-10-29T07:20:08.3213752Z  * [new branch]          issue-100-2f9bb17f                       -> origin/issue-100-2f9bb17f
+2026-10-29T07:20:08.3214225Z  * [new branch]          issue-122-372622af                       -> origin/issue-122-372622af
+2026-10-29T07:20:08.3214701Z  * [new branch]          issue-122-e05a5713                       -> origin/issue-122-e05a5713
+2026-10-29T07:20:08.3215187Z  * [new branch]          issue-123-90f092d3                       -> origin/issue-123-90f092d3
+2026-10-29T07:20:08.3215676Z  * [new branch]          issue-125-7f224c52                       -> origin/issue-125-7f224c52
+2026-10-29T07:20:08.3216193Z  * [new branch]          issue-131-173bd186                       -> origin/issue-131-173bd186
+2026-10-29T07:20:08.3216956Z  * [new branch]          issue-132-b9a43709                       -> origin/issue-132-b9a43709
+2026-10-29T07:20:08.3217584Z  * [new branch]          issue-14-65c21b2c                        -> origin/issue-14-65c21b2c
+2026-10-29T07:20:08.3218073Z  * [new branch]          issue-145-e1924d96                       -> origin/issue-145-e1924d96
+2026-10-29T07:20:08.3218563Z  * [new branch]          issue-150-8aba0d16                       -> origin/issue-150-8aba0d16
+2026-10-29T07:20:08.3219096Z  * [new branch]          issue-152-380a75dd                       -> origin/issue-152-380a75dd
+2026-10-29T07:20:08.3219629Z  * [new branch]          issue-153-a5aacf2d                       -> origin/issue-153-a5aacf2d
+2026-10-29T07:20:08.3220134Z  * [new branch]          issue-155-6f3abe86                       -> origin/issue-155-6f3abe86
+2026-10-29T07:20:08.3220767Z  * [new branch]          issue-157-f18f507d                       -> origin/issue-157-f18f507d
+2026-10-29T07:20:08.3221274Z  * [new branch]          issue-158-d4b2d751                       -> origin/issue-158-d4b2d751
+2026-10-29T07:20:08.3221765Z  * [new branch]          issue-159-4c473b2f                       -> origin/issue-159-4c473b2f
+2026-10-29T07:20:08.3222246Z  * [new branch]          issue-166-5f7770d0                       -> origin/issue-166-5f7770d0
+2026-10-29T07:20:08.3222756Z  * [new branch]          issue-167-6697c32c                       -> origin/issue-167-6697c32c
+2026-10-29T07:20:08.3223239Z  * [new branch]          issue-172-3a6bb3a5                       -> origin/issue-172-3a6bb3a5
+2026-10-29T07:20:08.3223735Z  * [new branch]          issue-173-52414a06                       -> origin/issue-173-52414a06
+2026-10-29T07:20:08.3224335Z  * [new branch]          issue-174-38feee43                       -> origin/issue-174-38feee43
+2026-10-29T07:20:08.3224812Z  * [new branch]          issue-179-c20097fb                       -> origin/issue-179-c20097fb
+2026-10-29T07:20:08.3225288Z  * [new branch]          issue-180-4c858df1                       -> origin/issue-180-4c858df1
+2026-10-29T07:20:08.3225840Z  * [new branch]          issue-182-68621777                       -> origin/issue-182-68621777
+2026-10-29T07:20:08.3226323Z  * [new branch]          issue-183-65fb60df                       -> origin/issue-183-65fb60df
+2026-10-29T07:20:08.3226819Z  * [new branch]          issue-184-50380e1c                       -> origin/issue-184-50380e1c
+2026-10-29T07:20:08.3227295Z  * [new branch]          issue-185-8b06ec42                       -> origin/issue-185-8b06ec42
+2026-10-29T07:20:08.3227769Z  * [new branch]          issue-191-d711698e                       -> origin/issue-191-d711698e
+2026-10-29T07:20:08.3228280Z  * [new branch]          issue-192-f5bd0637                       -> origin/issue-192-f5bd0637
+2026-10-29T07:20:08.3228772Z  * [new branch]          issue-195-87e1a7d9                       -> origin/issue-195-87e1a7d9
+2026-10-29T07:20:08.3229300Z  * [new branch]          issue-197-9699ae6f                       -> origin/issue-197-9699ae6f
+2026-10-29T07:20:08.3229778Z  * [new branch]          issue-201-23d35853                       -> origin/issue-201-23d35853
+2026-10-29T07:20:08.3230252Z  * [new branch]          issue-202-f9973a4e                       -> origin/issue-202-f9973a4e
+2026-10-29T07:20:08.3230888Z  * [new branch]          issue-204-ee98b556                       -> origin/issue-204-ee98b556
+2026-10-29T07:20:08.3231374Z  * [new branch]          issue-205-6c1a8373                       -> origin/issue-205-6c1a8373
+2026-10-29T07:20:08.3231861Z  * [new branch]          issue-206-cfb6909c                       -> origin/issue-206-cfb6909c
+2026-10-29T07:20:08.3232378Z  * [new branch]          issue-207-68d68fb5                       -> origin/issue-207-68d68fb5
+2026-10-29T07:20:08.3232827Z  * [new branch]          issue-208-33ea9e2e                       -> origin/issue-208-33ea9e2e
+2026-10-29T07:20:08.3233437Z  * [new branch]          issue-209-37cc5160                       -> origin/issue-209-37cc5160
+2026-10-29T07:20:08.3233985Z  * [new branch]          issue-210-b20f751b                       -> origin/issue-210-b20f751b
+2026-10-29T07:20:08.3234473Z  * [new branch]          issue-212-fb245296                       -> origin/issue-212-fb245296
+2026-10-29T07:20:08.3234957Z  * [new branch]          issue-213-00756f69                       -> origin/issue-213-00756f69
+2026-10-29T07:20:08.3235525Z  * [new branch]          issue-216-5c9f8771                       -> origin/issue-216-5c9f8771
+2026-10-29T07:20:08.3236072Z  * [new branch]          issue-217-c738a90c                       -> origin/issue-217-c738a90c
+2026-10-29T07:20:08.3236534Z  * [new branch]          issue-218-b64a64c5                       -> origin/issue-218-b64a64c5
+2026-10-29T07:20:08.3237020Z  * [new branch]          issue-230-559672a0                       -> origin/issue-230-559672a0
+2026-10-29T07:20:08.3237493Z  * [new branch]          issue-237-3d81523b                       -> origin/issue-237-3d81523b
+2026-10-29T07:20:08.3237963Z  * [new branch]          issue-238-4d05c862                       -> origin/issue-238-4d05c862
+2026-10-29T07:20:08.3238481Z  * [new branch]          issue-239-fbcda755                       -> origin/issue-239-fbcda755
+2026-10-29T07:20:08.3238981Z  * [new branch]          issue-240-a4e43a46                       -> origin/issue-240-a4e43a46
+2026-10-29T07:20:08.3239446Z  * [new branch]          issue-241-b58c00a6                       -> origin/issue-241-b58c00a6
+2026-10-29T07:20:08.3239912Z  * [new branch]          issue-242-bcb83cac                       -> origin/issue-242-bcb83cac
+2026-10-29T07:20:08.3240452Z  * [new branch]          issue-243-74d0a614                       -> origin/issue-243-74d0a614
+2026-10-29T07:20:08.3241013Z  * [new branch]          issue-245-55a50dd3                       -> origin/issue-245-55a50dd3
+2026-10-29T07:20:08.3241475Z  * [new branch]          issue-249-f1500da9                       -> origin/issue-249-f1500da9
+2026-10-29T07:20:08.3241964Z  * [new branch]          issue-250-42c9d850                       -> origin/issue-250-42c9d850
+2026-10-29T07:20:08.3242428Z  * [new branch]          issue-254-e7a5d9f7                       -> origin/issue-254-e7a5d9f7
+2026-10-29T07:20:08.3242909Z  * [new branch]          issue-258-c8b7530f                       -> origin/issue-258-c8b7530f
+2026-10-29T07:20:08.3243378Z  * [new branch]          issue-263-0617cbc6                       -> origin/issue-263-0617cbc6
+2026-10-29T07:20:08.3243861Z  * [new branch]          issue-264-48a30829                       -> origin/issue-264-48a30829
+2026-10-29T07:20:08.3244352Z  * [new branch]          issue-269-5c78f79f                       -> origin/issue-269-5c78f79f
+2026-10-29T07:20:08.3244820Z  * [new branch]          issue-28-86d6809c                        -> origin/issue-28-86d6809c
+2026-10-29T07:20:08.3245290Z  * [new branch]          issue-287-43a044c6                       -> origin/issue-287-43a044c6
+2026-10-29T07:20:08.3245766Z  * [new branch]          issue-288-7363fdd4                       -> origin/issue-288-7363fdd4
+2026-10-29T07:20:08.3246219Z  * [new branch]          issue-289-a32521da                       -> origin/issue-289-a32521da
+2026-10-29T07:20:08.3246663Z  * [new branch]          issue-290-46a8add1                       -> origin/issue-290-46a8add1
+2026-10-29T07:20:08.3247142Z  * [new branch]          issue-295-51e2cc11                       -> origin/issue-295-51e2cc11
+2026-10-29T07:20:08.3247645Z  * [new branch]          issue-309-7c8629c7                       -> origin/issue-309-7c8629c7
+2026-10-29T07:20:08.3248116Z  * [new branch]          issue-310-5de3d1dc                       -> origin/issue-310-5de3d1dc
+2026-10-29T07:20:08.3248572Z  * [new branch]          issue-319-1f8bc024                       -> origin/issue-319-1f8bc024
+2026-10-29T07:20:08.3249023Z  * [new branch]          issue-323-9f4031b8                       -> origin/issue-323-9f4031b8
+2026-10-29T07:20:08.3249520Z  * [new branch]          issue-324-55e5be19                       -> origin/issue-324-55e5be19
+2026-10-29T07:20:08.3250064Z  * [new branch]          issue-331-f53fc679                       -> origin/issue-331-f53fc679
+2026-10-29T07:20:08.3250672Z  * [new branch]          issue-332-7a6ff77a                       -> origin/issue-332-7a6ff77a
+2026-10-29T07:20:08.3251136Z  * [new branch]          issue-334-b21a4d38                       -> origin/issue-334-b21a4d38
+2026-10-29T07:20:08.3251590Z  * [new branch]          issue-338-627b1af9                       -> origin/issue-338-627b1af9
+2026-10-29T07:20:08.3252074Z  * [new branch]          issue-346-2629ee00                       -> origin/issue-346-2629ee00
+2026-10-29T07:20:08.3252559Z  * [new branch]          issue-347-bc055938                       -> origin/issue-347-bc055938
+2026-10-29T07:20:08.3253029Z  * [new branch]          issue-349-847bd9da                       -> origin/issue-349-847bd9da
+2026-10-29T07:20:08.3253495Z  * [new branch]          issue-350-31002bc3                       -> origin/issue-350-31002bc3
+2026-10-29T07:20:08.3254150Z  * [new branch]          issue-354-69429f3d                       -> origin/issue-354-69429f3d
+2026-10-29T07:20:08.3254796Z  * [new branch]          issue-354-90a219e1                       -> origin/issue-354-90a219e1
+2026-10-29T07:20:08.3255441Z  * [new branch]          issue-354-a5f63605                       -> origin/issue-354-a5f63605
+2026-10-29T07:20:08.3256070Z  * [new branch]          issue-355-16463e62                       -> origin/issue-355-16463e62
+2026-10-29T07:20:08.3256661Z  * [new branch]          issue-356-08228300                       -> origin/issue-356-08228300
+2026-10-29T07:20:08.3257151Z  * [new branch]          issue-359-e5a050cc                       -> origin/issue-359-e5a050cc
+2026-10-29T07:20:08.3257779Z  * [new branch]          issue-360-0e8cd1e0                       -> origin/issue-360-0e8cd1e0
+2026-10-29T07:20:08.3258278Z  * [new branch]          issue-361-575582dd                       -> origin/issue-361-575582dd
+2026-10-29T07:20:08.3258920Z  * [new branch]          issue-372-aea7e0f1                       -> origin/issue-372-aea7e0f1
+2026-10-29T07:20:08.3259451Z  * [new branch]          issue-375-e585215d                       -> origin/issue-375-e585215d
+2026-10-29T07:20:08.3260067Z  * [new branch]          issue-382-6eb8af26                       -> origin/issue-382-6eb8af26
+2026-10-29T07:20:08.3260978Z  * [new branch]          issue-383-81b4bf92                       -> origin/issue-383-81b4bf92
+2026-10-29T07:20:08.3261667Z  * [new branch]          issue-384-58b26c76                       -> origin/issue-384-58b26c76
+2026-10-29T07:20:08.3262356Z  * [new branch]          issue-386-3e27d460                       -> origin/issue-386-3e27d460
+2026-10-29T07:20:08.3262933Z  * [new branch]          issue-389-a58bf26c                       -> origin/issue-389-a58bf26c
+2026-10-29T07:20:08.3263420Z  * [new branch]          issue-390-5e4626de                       -> origin/issue-390-5e4626de
+2026-10-29T07:20:08.3263913Z  * [new branch]          issue-394-309114ec                       -> origin/issue-394-309114ec
+2026-10-29T07:20:08.3264405Z  * [new branch]          issue-395-10b110d3                       -> origin/issue-395-10b110d3
+2026-10-29T07:20:08.3264866Z  * [new branch]          issue-396-244bd1fe                       -> origin/issue-396-244bd1fe
+2026-10-29T07:20:08.3265395Z  * [new branch]          issue-398-451b7b82                       -> origin/issue-398-451b7b82
+2026-10-29T07:20:08.3265876Z  * [new branch]          issue-40-e633e9f6                        -> origin/issue-40-e633e9f6
+2026-10-29T07:20:08.3266365Z  * [new branch]          issue-508-5a1549d7                       -> origin/issue-508-5a1549d7
+2026-10-29T07:20:08.3266871Z  * [new branch]          issue-512-557a0a3ca78d                   -> origin/issue-512-557a0a3ca78d
+2026-10-29T07:20:08.3267572Z  * [new branch]          issue-518-e28aadb8d563                   -> origin/issue-518-e28aadb8d563
+2026-10-29T07:20:08.3268179Z  * [new branch]          issue-52-3f2f1389                        -> origin/issue-52-3f2f1389
+2026-10-29T07:20:08.3268858Z  * [new branch]          issue-521-1ac9a60c43a0                   -> origin/issue-521-1ac9a60c43a0
+2026-10-29T07:20:08.3269382Z  * [new branch]          issue-522-2819acda0f21                   -> origin/issue-522-2819acda0f21
+2026-10-29T07:20:08.3269989Z  * [new branch]          issue-524-b1512fd1c7a8                   -> origin/issue-524-b1512fd1c7a8
+2026-10-29T07:20:08.3270643Z  * [new branch]          issue-6-2f2360da                         -> origin/issue-6-2f2360da
+2026-10-29T07:20:08.3271153Z  * [new branch]          issue-62-a49bc29e                        -> origin/issue-62-a49bc29e
+2026-10-29T07:20:08.3271661Z  * [new branch]          issue-68-4e596e00                        -> origin/issue-68-4e596e00
+2026-10-29T07:20:08.3272130Z  * [new branch]          issue-85-856b1b45                        -> origin/issue-85-856b1b45
+2026-10-29T07:20:08.3272653Z  * [new branch]          issue-86-6c31fd91                        -> origin/issue-86-6c31fd91
+2026-10-29T07:20:08.3273116Z  * [new branch]          issue-89-a56a0167                        -> origin/issue-89-a56a0167
+2026-10-29T07:20:08.3273610Z  * [new branch]          issue-90-5c6486ed                        -> origin/issue-90-5c6486ed
+2026-10-29T07:20:08.3274081Z  * [new branch]          issue-96-7c16f737                        -> origin/issue-96-7c16f737
+2026-10-29T07:20:08.3274553Z  * [new branch]          issue-97-8b13f48a                        -> origin/issue-97-8b13f48a
+2026-10-29T07:20:08.3275096Z  * [new branch]          issue-98-61dd56ef                        -> origin/issue-98-61dd56ef
+2026-10-29T07:20:08.3275621Z  * [new branch]          lazy-fixes                               -> origin/lazy-fixes
+2026-10-29T07:20:08.3276163Z  * [new branch]          main                                     -> origin/main
+2026-10-29T07:20:08.3276582Z  * [new branch]          master                                   -> origin/master
+2026-10-29T07:20:08.3277047Z  * [new branch]          move_sequences                           -> origin/move_sequences
+2026-10-29T07:20:08.3277549Z  * [new branch]          nassipkali-patch-1                       -> origin/nassipkali-patch-1
+2026-10-29T07:20:08.3278049Z  * [new branch]          nassipkali-patch-2                       -> origin/nassipkali-patch-2
+2026-10-29T07:20:08.3278552Z  * [new branch]          nassipkali-patch-3                       -> origin/nassipkali-patch-3
+2026-10-29T07:20:08.3279058Z  * [new branch]          nassipkali-patch-4                       -> origin/nassipkali-patch-4
+2026-10-29T07:20:08.3279557Z  * [new branch]          nassipkali-patch-5                       -> origin/nassipkali-patch-5
+2026-10-29T07:20:08.3280044Z  * [new branch]          nassipkali-patch-6                       -> origin/nassipkali-patch-6
+2026-10-29T07:20:08.3280681Z  * [new branch]          nassipkali-patch-7                       -> origin/nassipkali-patch-7
+2026-10-29T07:20:08.3281182Z  * [new branch]          nassipkali-patch-8                       -> origin/nassipkali-patch-8
+2026-10-29T07:20:08.3281678Z  * [new branch]          nassipkali-patch-9                       -> origin/nassipkali-patch-9
+2026-10-29T07:20:08.3282190Z  * [new branch]          origin-ffi                               -> origin/origin-ffi
+2026-10-29T07:20:08.3282656Z  * [new branch]          rational_numbers                         -> origin/rational_numbers
+2026-10-29T07:20:08.3283126Z  * [new branch]          revert-259-master                        -> origin/revert-259-master
+2026-10-29T07:20:08.3283574Z  * [new branch]          rust-ci                                  -> origin/rust-ci
+2026-10-29T07:20:08.3284004Z  * [new branch]          rust.criterion                           -> origin/rust.criterion
+2026-10-29T07:20:08.3284467Z  * [new branch]          rust.with_query                          -> origin/rust.with_query
+2026-10-29T07:20:08.3284945Z  * [new branch]          rust.with_result                         -> origin/rust.with_result
+2026-10-29T07:20:08.3285496Z  * [new branch]          rust_write.unwrap                        -> origin/rust_write.unwrap
+2026-10-29T07:20:08.3286073Z  * [new branch]          rust_write.unwrap.optimized.wasm         -> origin/rust_write.unwrap.optimized.wasm
+2026-10-29T07:20:08.3286702Z  * [new branch]          rust_write.unwrap_unchecked              -> origin/rust_write.unwrap_unchecked
+2026-10-29T07:20:08.3287243Z  * [new branch]          split-data-n-doublets                    -> origin/split-data-n-doublets
+2026-10-29T07:20:08.3287838Z  * [new branch]          tests                                    -> origin/tests
+2026-10-29T07:20:08.3288454Z  * [new branch]          update_package                           -> origin/update_package
+2026-10-29T07:20:08.3288991Z  * [new tag]             0.0.1                                    -> 0.0.1
+2026-10-29T07:20:08.3289517Z  * [new tag]             0.1.0                                    -> 0.1.0
+2026-10-29T07:20:08.3289951Z  * [new tag]             0.1.1                                    -> 0.1.1
+2026-10-29T07:20:08.3290586Z  * [new tag]             0.10.0                                   -> 0.10.0
+2026-10-29T07:20:08.3291057Z  * [new tag]             0.10.1                                   -> 0.10.1
+2026-10-29T07:20:08.3291561Z  * [new tag]             0.11.0                                   -> 0.11.0
+2026-10-29T07:20:08.3291997Z  * [new tag]             0.11.1                                   -> 0.11.1
+2026-10-29T07:20:08.3292530Z  * [new tag]             0.12.0                                   -> 0.12.0
+2026-10-29T07:20:08.3293084Z  * [new tag]             0.13.0                                   -> 0.13.0
+2026-10-29T07:20:08.3293665Z  * [new tag]             0.13.1                                   -> 0.13.1
+2026-10-29T07:20:08.3294315Z  * [new tag]             0.13.2                                   -> 0.13.2
+2026-10-29T07:20:08.3294810Z  * [new tag]             0.2.0                                    -> 0.2.0
+2026-10-29T07:20:08.3295298Z  * [new tag]             0.2.1                                    -> 0.2.1
+2026-10-29T07:20:08.3295784Z  * [new tag]             0.3.0                                    -> 0.3.0
+2026-10-29T07:20:08.3296158Z  * [new tag]             0.4.0                                    -> 0.4.0
+2026-10-29T07:20:08.3296557Z  * [new tag]             0.5.0                                    -> 0.5.0
+2026-10-29T07:20:08.3296948Z  * [new tag]             0.6.0                                    -> 0.6.0
+2026-10-29T07:20:08.3297305Z  * [new tag]             0.6.1                                    -> 0.6.1
+2026-10-29T07:20:08.3297681Z  * [new tag]             0.6.10                                   -> 0.6.10
+2026-10-29T07:20:08.3298047Z  * [new tag]             0.6.11                                   -> 0.6.11
+2026-10-29T07:20:08.3298398Z  * [new tag]             0.6.2                                    -> 0.6.2
+2026-10-29T07:20:08.3298967Z  * [new tag]             0.6.3                                    -> 0.6.3
+2026-10-29T07:20:08.3299540Z  * [new tag]             0.6.4                                    -> 0.6.4
+2026-10-29T07:20:08.3299953Z  * [new tag]             0.6.5                                    -> 0.6.5
+2026-10-29T07:20:08.3300467Z  * [new tag]             0.6.6                                    -> 0.6.6
+2026-10-29T07:20:08.3300842Z  * [new tag]             0.6.7                                    -> 0.6.7
+2026-10-29T07:20:08.3301253Z  * [new tag]             0.6.8                                    -> 0.6.8
+2026-10-29T07:20:08.3301612Z  * [new tag]             0.6.9                                    -> 0.6.9
+2026-10-29T07:20:08.3301972Z  * [new tag]             0.7.0                                    -> 0.7.0
+2026-10-29T07:20:08.3302379Z  * [new tag]             0.8.0                                    -> 0.8.0
+2026-10-29T07:20:08.3302777Z  * [new tag]             0.9.0                                    -> 0.9.0
+2026-10-29T07:20:08.3303206Z  * [new tag]             cpp_0.1.0                                -> cpp_0.1.0
+2026-10-29T07:20:08.3303684Z  * [new tag]             csharp_0.15.0                            -> csharp_0.15.0
+2026-10-29T07:20:08.3304094Z  * [new tag]             csharp_0.16.0                            -> csharp_0.16.0
+2026-10-29T07:20:08.3304513Z  * [new tag]             csharp_0.17.0                            -> csharp_0.17.0
+2026-10-29T07:20:08.3304920Z  * [new tag]             csharp_0.17.1                            -> csharp_0.17.1
+2026-10-29T07:20:08.3305439Z  * [new tag]             csharp_0.17.2                            -> csharp_0.17.2
+2026-10-29T07:20:08.3305882Z  * [new tag]             csharp_0.18.1                            -> csharp_0.18.1
+2026-10-29T07:20:08.3306418Z  * [new tag]             csharp_0.18.2                            -> csharp_0.18.2
+2026-10-29T07:20:08.3306901Z  * [new tag]             csharp_0.18.3                            -> csharp_0.18.3
+2026-10-29T07:20:08.3307434Z  * [new ref]             0ff92b1f61ba3670c047785161244de0fbc9ddd1 -> pull/526/merge
+2026-10-29T07:20:08.3309207Z ##[endgroup]
+2026-10-29T07:20:08.3309754Z ##[group]Determining the checkout info
+2026-10-29T07:20:08.3310455Z ##[endgroup]
+2026-10-29T07:20:08.3310809Z [command]/usr/bin/git sparse-checkout disable
+2026-10-29T07:20:08.3311654Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-29T07:20:08.3312578Z ##[group]Checking out the ref
+2026-10-29T07:20:08.3312966Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/526/merge
+2026-10-29T07:20:08.4598226Z Note: switching to 'refs/remotes/pull/526/merge'.
+2026-10-29T07:20:08.4598663Z 
+2026-10-29T07:20:08.4598888Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-29T07:20:08.4599511Z changes and commit them, and you can discard any commits you make in this
+2026-10-29T07:20:08.4600775Z state without impacting any branches by switching back to a branch.
+2026-10-29T07:20:08.4601094Z 
+2026-10-29T07:20:08.4601369Z If you want to create a new branch to retain commits you create, you may
+2026-10-29T07:20:08.4602013Z do so (now or later) by using -c with the switch command. Example:
+2026-10-29T07:20:08.4602375Z 
+2026-10-29T07:20:08.4602537Z   git switch -c <new-branch-name>
+2026-10-29T07:20:08.4602828Z 
+2026-10-29T07:20:08.4603064Z Or undo this operation with:
+2026-10-29T07:20:08.4603328Z 
+2026-10-29T07:20:08.4603476Z   git switch -
+2026-10-29T07:20:08.4603668Z 
+2026-10-29T07:20:08.4603949Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-29T07:20:08.4604267Z 
+2026-10-29T07:20:08.4604695Z HEAD is now at 0ff92b1f6 Merge feb4dd0dfaba8c6efe4ce49d9c56eab2cff58577 into 799502ce9275edc80d9fbc1953ff8892fe0eca19
+2026-10-29T07:20:08.4615535Z ##[endgroup]
+2026-10-29T07:20:08.4654841Z [command]/usr/bin/git log -1 --format=%H
+2026-10-29T07:20:08.4676225Z 0ff92b1f61ba3670c047785161244de0fbc9ddd1
+2026-10-29T07:20:08.4683563Z ##[group]Removing auth
+2026-10-29T07:20:08.4684610Z Removing SSH command configuration
+2026-10-29T07:20:08.4687669Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-29T07:20:08.4711531Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-29T07:20:08.4868201Z Removing HTTP extra header
+2026-10-29T07:20:08.4870141Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-29T07:20:08.4893782Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-29T07:20:08.5044107Z Removing includeIf entries pointing to credentials config files
+2026-10-29T07:20:08.5046135Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-29T07:20:08.5067934Z includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path
+2026-10-29T07:20:08.5069046Z includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path
+2026-10-29T07:20:08.5069709Z includeif.gitdir:/github/workspace/.git.path
+2026-10-29T07:20:08.5070134Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-29T07:20:08.5075502Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path
+2026-10-29T07:20:08.5093135Z /home/runner/work/_temp/git-credentials-ec1aea6e-c121-4641-9b58-a772b8ad769f.config
+2026-10-29T07:20:08.5101911Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-ec1aea6e\-c121\-4641\-9b58\-a772b8ad769f\.config
+2026-10-29T07:20:08.5133042Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path
+2026-10-29T07:20:08.5155825Z /home/runner/work/_temp/git-credentials-ec1aea6e-c121-4641-9b58-a772b8ad769f.config
+2026-10-29T07:20:08.5162252Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-ec1aea6e\-c121\-4641\-9b58\-a772b8ad769f\.config
+2026-10-29T07:20:08.5189347Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-10-29T07:20:08.5206776Z /github/runner_temp/git-credentials-ec1aea6e-c121-4641-9b58-a772b8ad769f.config
+2026-10-29T07:20:08.5212304Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-ec1aea6e\-c121\-4641\-9b58\-a772b8ad769f\.config
+2026-10-29T07:20:08.5246624Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-29T07:20:08.5265665Z /github/runner_temp/git-credentials-ec1aea6e-c121-4641-9b58-a772b8ad769f.config
+2026-10-29T07:20:08.5271580Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-ec1aea6e\-c121\-4641\-9b58\-a772b8ad769f\.config
+2026-10-29T07:20:08.5422208Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-29T07:20:08.5574722Z Removing credentials config '/home/runner/work/_temp/git-credentials-ec1aea6e-c121-4641-9b58-a772b8ad769f.config'
+2026-10-29T07:20:08.5584042Z ##[endgroup]
+2026-10-29T07:20:08.5751250Z ##[group]Run bash scripts/prepare-checkout.sh
+2026-10-29T07:20:08.5751708Z [36;1mbash scripts/prepare-checkout.sh[0m
+2026-10-29T07:20:08.5766265Z shell: /usr/bin/bash -e {0}
+2026-10-29T07:20:08.5766608Z ##[endgroup]
+2026-10-29T07:20:08.8414991Z Already up to date.
+2026-10-29T07:20:08.8673731Z csharp: 0.18.3 -> 0.18.4 (patch)
+2026-10-29T07:20:08.8674028Z cpp: 0.1.0 -> 0.1.1 (patch)
+2026-10-29T07:20:08.8792285Z ##[group]Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+2026-10-29T07:20:08.8792658Z with:
+2026-10-29T07:20:08.8792910Z   global-json-file: global.json
+2026-10-29T07:20:08.8793192Z   cache: false
+2026-10-29T07:20:08.8793444Z ##[endgroup]
+2026-10-29T07:20:08.9840456Z [command]/home/runner/work/_actions/actions/setup-dotnet/26b0ec14cb23fa6904739307f278c14f94c95bf1/externals/install-dotnet.sh --skip-non-versioned-files --runtime dotnet --channel LTS
+2026-10-29T07:20:09.3411748Z dotnet-install: .NET Core Runtime with version '10.0.14' is already installed.
+2026-10-29T07:20:09.3432703Z [command]/home/runner/work/_actions/actions/setup-dotnet/26b0ec14cb23fa6904739307f278c14f94c95bf1/externals/install-dotnet.sh --skip-non-versioned-files --channel 8.0.4xx
+2026-10-29T07:20:09.6714109Z dotnet-install: .NET Core SDK with version '8.0.427' is already installed.
+2026-10-29T07:20:09.6888402Z ##[group]Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+2026-10-29T07:20:09.6888779Z with:
+2026-10-29T07:20:09.6889002Z   python-version: 3.12
+2026-10-29T07:20:09.6889218Z   check-latest: false
+2026-10-29T07:20:09.6891211Z   token: ***
+2026-10-29T07:20:09.6891517Z   mirror: https://raw.githubusercontent.com/actions/python-versions/main
+2026-10-29T07:20:09.6891875Z   update-environment: true
+2026-10-29T07:20:09.6892116Z   allow-prereleases: false
+2026-10-29T07:20:09.6892333Z   freethreaded: false
+2026-10-29T07:20:09.6892595Z env:
+2026-10-29T07:20:09.6892805Z   DOTNET_ROOT: /usr/share/dotnet
+2026-10-29T07:20:09.6893039Z ##[endgroup]
+2026-10-29T07:20:09.7788288Z ##[group]Installed versions
+2026-10-29T07:20:09.7849718Z Successfully set up CPython (3.12.15)
+2026-10-29T07:20:09.7851059Z ##[endgroup]
+2026-10-29T07:20:09.7943766Z ##[group]Run if [[ "$COMPILER" == clang* ]]; then
+2026-10-29T07:20:09.7944136Z [36;1mif [[ "$COMPILER" == clang* ]]; then[0m
+2026-10-29T07:20:09.7944465Z [36;1m  {[0m
+2026-10-29T07:20:09.7944686Z [36;1m    echo 'CC=clang'[0m
+2026-10-29T07:20:09.7944940Z [36;1m    echo 'CXX=clang++'[0m
+2026-10-29T07:20:09.7945187Z [36;1m  } >> "$GITHUB_ENV"[0m
+2026-10-29T07:20:09.7945471Z [36;1m  if [[ "$COMPILER" == clang-sanitized ]]; then[0m
+2026-10-29T07:20:09.7945765Z [36;1m    {[0m
+2026-10-29T07:20:09.7946101Z [36;1m      echo 'CXXFLAGS=-march=x86-64-v2 -fsanitize=address,undefined -fno-omit-frame-pointer'[0m
+2026-10-29T07:20:09.7946549Z [36;1m      echo 'ASAN_OPTIONS=detect_leaks=1:halt_on_error=1'[0m
+2026-10-29T07:20:09.7946917Z [36;1m      echo 'UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1'[0m
+2026-10-29T07:20:09.7947232Z [36;1m    } >> "$GITHUB_ENV"[0m
+2026-10-29T07:20:09.7947479Z [36;1m  fi[0m
+2026-10-29T07:20:09.7947669Z [36;1melse[0m
+2026-10-29T07:20:09.7947973Z [36;1m  {[0m
+2026-10-29T07:20:09.7948171Z [36;1m    echo 'CC=gcc'[0m
+2026-10-29T07:20:09.7948423Z [36;1m    echo 'CXX=g++'[0m
+2026-10-29T07:20:09.7948862Z [36;1m    echo 'CPP_COVERAGE=ON'[0m
+2026-10-29T07:20:09.7949114Z [36;1m  } >> "$GITHUB_ENV"[0m
+2026-10-29T07:20:09.7949347Z [36;1mfi[0m
+2026-10-29T07:20:09.7968425Z shell: /usr/bin/bash -e {0}
+2026-10-29T07:20:09.7968719Z env:
+2026-10-29T07:20:09.7968954Z   DOTNET_ROOT: /usr/share/dotnet
+2026-10-29T07:20:09.7969266Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-29T07:20:09.7969636Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-29T07:20:09.7970025Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-29T07:20:09.7970533Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-29T07:20:09.7970869Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-29T07:20:09.7971235Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-29T07:20:09.7971560Z   COMPILER: gcc
+2026-10-29T07:20:09.7971799Z ##[endgroup]
+2026-10-29T07:20:09.8053574Z ##[group]Run bash cpp/setup.sh
+2026-10-29T07:20:09.8053900Z [36;1mbash cpp/setup.sh[0m
+2026-10-29T07:20:09.8064501Z shell: /usr/bin/bash -e {0}
+2026-10-29T07:20:09.8064752Z env:
+2026-10-29T07:20:09.8065045Z   DOTNET_ROOT: /usr/share/dotnet
+2026-10-29T07:20:09.8065371Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-29T07:20:09.8065743Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-29T07:20:09.8066115Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-29T07:20:09.8066447Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-29T07:20:09.8066821Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-29T07:20:09.8067221Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-29T07:20:09.8067517Z   CC: gcc
+2026-10-29T07:20:09.8067727Z   CXX: g++
+2026-10-29T07:20:09.8067932Z   CPP_COVERAGE: ON
+2026-10-29T07:20:09.8068160Z ##[endgroup]
+2026-10-29T07:20:10.5146548Z Collecting conan==2.33.0 (from -r /home/runner/work/Data.Doublets/Data.Doublets/cpp/../scripts/requirements-ci.txt (line 2))
+2026-10-29T07:20:10.5980217Z   Downloading conan-2.33.0-py3-none-any.whl.metadata (8.9 kB)
+2026-10-29T07:20:10.6304141Z Collecting fpdf2==2.8.7 (from -r /home/runner/work/Data.Doublets/Data.Doublets/cpp/../scripts/requirements-ci.txt (line 3))
+2026-10-29T07:20:10.6464819Z   Downloading fpdf2-2.8.7-py3-none-any.whl.metadata (81 kB)
+2026-10-29T07:20:10.7123975Z Collecting PyYAML==6.0.3 (from -r /home/runner/work/Data.Doublets/Data.Doublets/cpp/../scripts/requirements-ci.txt (line 4))
+2026-10-29T07:20:10.7279732Z   Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+2026-10-29T07:20:10.7741818Z Collecting gcovr==8.7 (from -r /home/runner/work/Data.Doublets/Data.Doublets/cpp/../scripts/requirements-ci.txt (line 5))
+2026-10-29T07:20:10.7903545Z   Downloading gcovr-8.7-py3-none-any.whl.metadata (12 kB)
+2026-10-29T07:20:10.8191365Z Collecting requests<3.0.0,>=2.25 (from conan==2.33.0->-r /home/runner/work/Data.Doublets/Data.Doublets/cpp/../scripts/requirements-ci.txt (line 2))
+2026-10-29T07:20:10.8343882Z   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+2026-10-29T07:20:10.8594080Z Collecting urllib3<3.0,>=1.26.6 (from conan==2.33.0->-r /home/runner/work/Data.Doublets/Data.Doublets/cpp/../scripts/requirements-ci.txt (line 2))
+2026-10-29T07:20:10.8747185Z   Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+2026-10-29T07:20:10.8995197Z Collecting colorama<0.5.0,>=0.4.3 (from conan==2.33.0->-r /home/runner/work/Data.Doublets/Data.Doublets/cpp/../scripts/requirements-ci.txt (line 2))
+2026-10-29T07:20:10.9149622Z   Downloading colorama-0.4.6-py2.py3-none-any.whl.metadata (17 kB)
+2026-10-29T07:20:10.9333724Z Collecting patch-ng<1.20,>=1.18.0 (from conan==2.33.0->-r /home/runner/work/Data.Doublets/Data.Doublets/cpp/../scripts/requirements-ci.txt (line 2))
+2026-10-29T07:20:10.9484084Z   Downloading patch_ng-1.19.1-py3-none-any.whl.metadata (3.2 kB)
+2026-10-29T07:20:10.9663487Z Collecting fasteners>=0.15 (from conan==2.33.0->-r /home/runner/work/Data.Doublets/Data.Doublets/cpp/../scripts/requirements-ci.txt (line 2))
+2026-10-29T07:20:10.9815356Z   Downloading fasteners-0.20-py3-none-any.whl.metadata (4.8 kB)
+2026-10-29T07:20:11.0075349Z Collecting distro<2.0.0,>=1.4.0 (from conan==2.33.0->-r /home/runner/work/Data.Doublets/Data.Doublets/cpp/../scripts/requirements-ci.txt (line 2))
+2026-10-29T07:20:11.0226592Z   Downloading distro-1.9.0-py3-none-any.whl.metadata (6.8 kB)
+2026-10-29T07:20:11.0444459Z Collecting Jinja2<4.0.0,>=3.0 (from conan==2.33.0->-r /home/runner/work/Data.Doublets/Data.Doublets/cpp/../scripts/requirements-ci.txt (line 2))
+2026-10-29T07:20:11.0594184Z   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+2026-10-29T07:20:11.0909808Z Collecting python-dateutil<3,>=2.8.0 (from conan==2.33.0->-r /home/runner/work/Data.Doublets/Data.Doublets/cpp/../scripts/requirements-ci.txt (line 2))
+2026-10-29T07:20:11.1059201Z   Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+2026-10-29T07:20:11.1236880Z Collecting truststore<1.0,>=0.8 (from conan==2.33.0->-r /home/runner/work/Data.Doublets/Data.Doublets/cpp/../scripts/requirements-ci.txt (line 2))
+2026-10-29T07:20:11.1387459Z   Downloading truststore-0.10.5-py3-none-any.whl.metadata (4.5 kB)
+2026-10-29T07:20:11.1562783Z Collecting defusedxml (from fpdf2==2.8.7->-r /home/runner/work/Data.Doublets/Data.Doublets/cpp/../scripts/requirements-ci.txt (line 3))
+2026-10-29T07:20:11.1713533Z   Downloading defusedxml-0.7.1-py2.py3-none-any.whl.metadata (32 kB)
+2026-10-29T07:20:11.3236719Z Collecting Pillow!=9.2.*,>=8.3.2 (from fpdf2==2.8.7->-r /home/runner/work/Data.Doublets/Data.Doublets/cpp/../scripts/requirements-ci.txt (line 3))
+2026-10-29T07:20:11.3393651Z   Downloading pillow-13.0.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.1 kB)
+2026-10-29T07:20:11.4647682Z Collecting fonttools>=4.34.0 (from fpdf2==2.8.7->-r /home/runner/work/Data.Doublets/Data.Doublets/cpp/../scripts/requirements-ci.txt (line 3))
+2026-10-29T07:20:11.4804234Z   Downloading fonttools-4.68.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (139 kB)
+2026-10-29T07:20:11.5235017Z Collecting colorlog (from gcovr==8.7->-r /home/runner/work/Data.Doublets/Data.Doublets/cpp/../scripts/requirements-ci.txt (line 5))
+2026-10-29T07:20:11.5385871Z   Downloading colorlog-6.12.0-py3-none-any.whl.metadata (11 kB)
+2026-10-29T07:20:11.7199300Z Collecting lxml (from gcovr==8.7->-r /home/runner/work/Data.Doublets/Data.Doublets/cpp/../scripts/requirements-ci.txt (line 5))
+2026-10-29T07:20:11.7355208Z   Downloading lxml-6.1.3-cp312-cp312-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl.metadata (3.3 kB)
+2026-10-29T07:20:11.7571693Z Collecting pygments>=2.13.0 (from gcovr==8.7->-r /home/runner/work/Data.Doublets/Data.Doublets/cpp/../scripts/requirements-ci.txt (line 5))
+2026-10-29T07:20:11.7721444Z   Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+2026-10-29T07:20:11.8192724Z Collecting MarkupSafe>=2.0 (from Jinja2<4.0.0,>=3.0->conan==2.33.0->-r /home/runner/work/Data.Doublets/Data.Doublets/cpp/../scripts/requirements-ci.txt (line 2))
+2026-10-29T07:20:11.8345069Z   Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+2026-10-29T07:20:11.8538214Z Collecting six>=1.5 (from python-dateutil<3,>=2.8.0->conan==2.33.0->-r /home/runner/work/Data.Doublets/Data.Doublets/cpp/../scripts/requirements-ci.txt (line 2))
+2026-10-29T07:20:11.8687429Z   Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+2026-10-29T07:20:11.9802686Z Collecting charset_normalizer<4,>=2 (from requests<3.0.0,>=2.25->conan==2.33.0->-r /home/runner/work/Data.Doublets/Data.Doublets/cpp/../scripts/requirements-ci.txt (line 2))
+2026-10-29T07:20:11.9958301Z   Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (46 kB)
+2026-10-29T07:20:12.0170950Z Collecting idna<4,>=2.5 (from requests<3.0.0,>=2.25->conan==2.33.0->-r /home/runner/work/Data.Doublets/Data.Doublets/cpp/../scripts/requirements-ci.txt (line 2))
+2026-10-29T07:20:12.0321032Z   Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+2026-10-29T07:20:12.0538928Z Collecting certifi>=2023.5.7 (from requests<3.0.0,>=2.25->conan==2.33.0->-r /home/runner/work/Data.Doublets/Data.Doublets/cpp/../scripts/requirements-ci.txt (line 2))
+2026-10-29T07:20:12.0699807Z   Downloading certifi-2026.10.23-py3-none-any.whl.metadata (2.5 kB)
+2026-10-29T07:20:12.0923030Z Downloading conan-2.33.0-py3-none-any.whl (748 kB)
+2026-10-29T07:20:12.1219873Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 748.2/748.2 kB 24.6 MB/s  0:00:00
+2026-10-29T07:20:12.1370431Z Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+2026-10-29T07:20:12.1501358Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 807.9/807.9 kB 50.8 MB/s  0:00:00
+2026-10-29T07:20:12.1651065Z Downloading fpdf2-2.8.7-py3-none-any.whl (327 kB)
+2026-10-29T07:20:12.1857910Z Downloading gcovr-8.7-py3-none-any.whl (862 kB)
+2026-10-29T07:20:12.1983530Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 862.8/862.8 kB 58.9 MB/s  0:00:00
+2026-10-29T07:20:12.2134447Z Downloading colorama-0.4.6-py2.py3-none-any.whl (25 kB)
+2026-10-29T07:20:12.2304198Z Downloading distro-1.9.0-py3-none-any.whl (20 kB)
+2026-10-29T07:20:12.2476499Z Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+2026-10-29T07:20:12.2657616Z Downloading patch_ng-1.19.1-py3-none-any.whl (17 kB)
+2026-10-29T07:20:12.2825308Z Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+2026-10-29T07:20:12.3011743Z Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+2026-10-29T07:20:12.3189000Z Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (257 kB)
+2026-10-29T07:20:12.3374917Z Downloading idna-3.20-py3-none-any.whl (69 kB)
+2026-10-29T07:20:12.3551721Z Downloading truststore-0.10.5-py3-none-any.whl (19 kB)
+2026-10-29T07:20:12.3723766Z Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+2026-10-29T07:20:12.3904178Z Downloading certifi-2026.10.23-py3-none-any.whl (135 kB)
+2026-10-29T07:20:12.4100691Z Downloading fasteners-0.20-py3-none-any.whl (18 kB)
+2026-10-29T07:20:12.4487495Z Downloading fonttools-4.68.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (5.4 MB)
+2026-10-29T07:20:12.5094433Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.4/5.4 MB 88.4 MB/s  0:00:00
+2026-10-29T07:20:12.5251396Z Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+2026-10-29T07:20:12.5427330Z Downloading pillow-13.0.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (7.1 MB)
+2026-10-29T07:20:12.5950795Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.1/7.1 MB 137.3 MB/s  0:00:00
+2026-10-29T07:20:12.6104537Z Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+2026-10-29T07:20:12.6222799Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 100.4 MB/s  0:00:00
+2026-10-29T07:20:12.6377633Z Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+2026-10-29T07:20:12.6554188Z Downloading colorlog-6.12.0-py3-none-any.whl (12 kB)
+2026-10-29T07:20:12.6900484Z Downloading defusedxml-0.7.1-py2.py3-none-any.whl (25 kB)
+2026-10-29T07:20:12.7077638Z Downloading lxml-6.1.3-cp312-cp312-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl (5.2 MB)
+2026-10-29T07:20:12.7503584Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.2/5.2 MB 123.6 MB/s  0:00:00
+2026-10-29T07:20:12.8782800Z Installing collected packages: urllib3, truststore, six, PyYAML, pygments, Pillow, patch-ng, MarkupSafe, lxml, idna, fonttools, fasteners, distro, defusedxml, colorlog, colorama, charset_normalizer, certifi, requests, python-dateutil, Jinja2, fpdf2, gcovr, conan
+2026-10-29T07:20:15.2538672Z 
+2026-10-29T07:20:15.2556528Z Successfully installed Jinja2-3.1.6 MarkupSafe-3.0.4 Pillow-13.0.0 PyYAML-6.0.3 certifi-2026.10.23 charset_normalizer-3.5.2 colorama-0.4.6 colorlog-6.12.0 conan-2.33.0 defusedxml-0.7.1 distro-1.9.0 fasteners-0.20 fonttools-4.68.0 fpdf2-2.8.7 gcovr-8.7 idna-3.20 lxml-6.1.3 patch-ng-1.19.1 pygments-2.21.0 python-dateutil-2.9.0.post0 requests-2.34.2 six-1.17.0 truststore-0.10.5 urllib3-2.8.0
+2026-10-29T07:20:15.6687053Z [settings]
+2026-10-29T07:20:15.6687528Z os=Linux
+2026-10-29T07:20:15.6687838Z arch=x86_64
+2026-10-29T07:20:15.6688061Z compiler=gcc
+2026-10-29T07:20:15.6688393Z compiler.version=13
+2026-10-29T07:20:15.6688657Z compiler.libcxx=libstdc++11
+2026-10-29T07:20:15.6688961Z compiler.cppstd=20
+2026-10-29T07:20:15.6689228Z build_type=Release
+2026-10-29T07:20:15.6689341Z 
+2026-10-29T07:20:15.6783981Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-29T07:20:15.6784749Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-29T07:20:15.6785276Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-29T07:20:15.6785648Z hint: call:
+2026-10-29T07:20:15.6786329Z hint:
+2026-10-29T07:20:15.6786728Z hint: 	git config --global init.defaultBranch <name>
+2026-10-29T07:20:15.6787058Z hint:
+2026-10-29T07:20:15.6787394Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-29T07:20:15.6787940Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-29T07:20:15.6788347Z hint:
+2026-10-29T07:20:15.6788656Z hint: 	git branch -m <name>
+2026-10-29T07:20:15.6788935Z hint:
+2026-10-29T07:20:15.6789315Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-29T07:20:15.6789944Z Initialized empty Git repository in /home/runner/work/Data.Doublets/Data.Doublets/cpp/build/recipes/.git/
+2026-10-29T07:20:17.6997141Z From https://github.com/linksplatform/conan-center-index
+2026-10-29T07:20:17.6997834Z  * branch              435ad91f44d2fd40c4e4be366163f97333013d65 -> FETCH_HEAD
+2026-10-29T07:20:18.1576807Z HEAD is now at 435ad91f Merge pull request #34 from nassipkali/master
+2026-10-29T07:20:18.3757901Z 
+2026-10-29T07:20:18.3758818Z ======== Exporting recipe to the cache ========
+2026-10-29T07:20:18.5188225Z platform-interfaces/0.3.41 export
+2026-10-29T07:20:18.5189549Z Exporting package recipe: /home/runner/work/Data.Doublets/Data.Doublets/cpp/build/recipes/recipes/platform.interfaces/all/conanfile.py
+2026-10-29T07:20:18.5191089Z platform-interfaces/0.3.41: exports: File 'conandata.yml' found. Exporting it...
+2026-10-29T07:20:18.5199168Z Copied 1 '.py' file: conanfile.py
+2026-10-29T07:20:18.5199641Z Copied 1 '.yml' file: conandata.yml
+2026-10-29T07:20:18.5282313Z Exported to cache folder: /home/runner/.conan2/p/platf07908f02326eb/e
+2026-10-29T07:20:18.5283173Z Exported: platform-interfaces/0.3.41#2749e377587371071b89193878f3ad93 (2026-10-29 07:20:18 UTC)
+2026-10-29T07:20:18.7178494Z 
+2026-10-29T07:20:18.7179016Z ======== Exporting recipe to the cache ========
+2026-10-29T07:20:18.7199116Z platform-delegates/0.3.7 export
+2026-10-29T07:20:18.7202682Z Exporting package recipe: /home/runner/work/Data.Doublets/Data.Doublets/cpp/build/recipes/recipes/platform.delegates/all/conanfile.py
+2026-10-29T07:20:18.7204395Z platform-delegates/0.3.7: exports: File 'conandata.yml' found. Exporting it...
+2026-10-29T07:20:18.7208525Z Copied 1 '.py' file: conanfile.py
+2026-10-29T07:20:18.7208990Z Copied 1 '.yml' file: conandata.yml
+2026-10-29T07:20:18.7224288Z Exported to cache folder: /home/runner/.conan2/p/platff04892e2dfb10/e
+2026-10-29T07:20:18.7224967Z Exported: platform-delegates/0.3.7#fa6d4052c342718034aaa3fefe278fd0 (2026-10-29 07:20:18 UTC)
+2026-10-29T07:20:18.9083610Z 
+2026-10-29T07:20:18.9084306Z ======== Exporting recipe to the cache ========
+2026-10-29T07:20:18.9111775Z platform-exceptions/0.3.2 export
+2026-10-29T07:20:18.9113347Z Exporting package recipe: /home/runner/work/Data.Doublets/Data.Doublets/cpp/build/recipes/recipes/platform.exceptions/all/conanfile.py
+2026-10-29T07:20:18.9114257Z platform-exceptions/0.3.2: exports: File 'conandata.yml' found. Exporting it...
+2026-10-29T07:20:18.9119400Z Copied 1 '.py' file: conanfile.py
+2026-10-29T07:20:18.9119746Z Copied 1 '.yml' file: conandata.yml
+2026-10-29T07:20:18.9143456Z Exported to cache folder: /home/runner/.conan2/p/platfee8cb09287d88/e
+2026-10-29T07:20:18.9144229Z Exported: platform-exceptions/0.3.2#f85774f1881822f0ffd9f7095bd3085a (2026-10-29 07:20:18 UTC)
+2026-10-29T07:20:19.1044592Z 
+2026-10-29T07:20:19.1045418Z ======== Exporting recipe to the cache ========
+2026-10-29T07:20:19.1063369Z platform-converters/0.2.0 export
+2026-10-29T07:20:19.1064955Z Exporting package recipe: /home/runner/work/Data.Doublets/Data.Doublets/cpp/build/recipes/recipes/platform.converters/all/conanfile.py
+2026-10-29T07:20:19.1066019Z platform-converters/0.2.0: exports: File 'conandata.yml' found. Exporting it...
+2026-10-29T07:20:19.1072244Z Copied 1 '.py' file: conanfile.py
+2026-10-29T07:20:19.1072688Z Copied 1 '.yml' file: conandata.yml
+2026-10-29T07:20:19.1093771Z Exported to cache folder: /home/runner/.conan2/p/platf07f1970403490/e
+2026-10-29T07:20:19.1095028Z Exported: platform-converters/0.2.0#e5210600d15a224117023e6b4fb0c1be (2026-10-29 07:20:19 UTC)
+2026-10-29T07:20:19.2994363Z 
+2026-10-29T07:20:19.2995253Z ======== Exporting recipe to the cache ========
+2026-10-29T07:20:19.3012035Z platform-hashing/0.5.6 export
+2026-10-29T07:20:19.3013403Z Exporting package recipe: /home/runner/work/Data.Doublets/Data.Doublets/cpp/build/recipes/recipes/platform.hashing/all/conanfile.py
+2026-10-29T07:20:19.3014375Z platform-hashing/0.5.6: exports: File 'conandata.yml' found. Exporting it...
+2026-10-29T07:20:19.3020108Z Copied 1 '.py' file: conanfile.py
+2026-10-29T07:20:19.3020795Z Copied 1 '.yml' file: conandata.yml
+2026-10-29T07:20:19.3041968Z Exported to cache folder: /home/runner/.conan2/p/platf4427f72b19be9/e
+2026-10-29T07:20:19.3042716Z Exported: platform-hashing/0.5.6#8f26cd9a683ad74a06b02ea3ffb00f29 (2026-10-29 07:20:19 UTC)
+2026-10-29T07:20:19.4902520Z 
+2026-10-29T07:20:19.4903626Z ======== Exporting recipe to the cache ========
+2026-10-29T07:20:19.4921772Z platform-ranges/0.2.0 export
+2026-10-29T07:20:19.4923031Z Exporting package recipe: /home/runner/work/Data.Doublets/Data.Doublets/cpp/build/recipes/recipes/platform.ranges/all/conanfile.py
+2026-10-29T07:20:19.4924020Z platform-ranges/0.2.0: exports: File 'conandata.yml' found. Exporting it...
+2026-10-29T07:20:19.4929690Z Copied 1 '.py' file: conanfile.py
+2026-10-29T07:20:19.4930445Z Copied 1 '.yml' file: conandata.yml
+2026-10-29T07:20:19.4949598Z Exported to cache folder: /home/runner/.conan2/p/platf2e261b468060d/e
+2026-10-29T07:20:19.4950443Z Exported: platform-ranges/0.2.0#f74638320e5bd4f2efd11a9e10091288 (2026-10-29 07:20:19 UTC)
+2026-10-29T07:20:19.6810583Z 
+2026-10-29T07:20:19.6811774Z ======== Exporting recipe to the cache ========
+2026-10-29T07:20:19.6829009Z platform-random/0.2.0 export
+2026-10-29T07:20:19.6831300Z Exporting package recipe: /home/runner/work/Data.Doublets/Data.Doublets/cpp/build/recipes/recipes/platform.random/all/conanfile.py
+2026-10-29T07:20:19.6832257Z platform-random/0.2.0: exports: File 'conandata.yml' found. Exporting it...
+2026-10-29T07:20:19.6837104Z Copied 1 '.py' file: conanfile.py
+2026-10-29T07:20:19.6837403Z Copied 1 '.yml' file: conandata.yml
+2026-10-29T07:20:19.6856181Z Exported to cache folder: /home/runner/.conan2/p/platf49909db6bc31d/e
+2026-10-29T07:20:19.6856764Z Exported: platform-random/0.2.0#596375061030beacc935a1ac82ef6e46 (2026-10-29 07:20:19 UTC)
+2026-10-29T07:20:19.8717555Z 
+2026-10-29T07:20:19.8718230Z ======== Exporting recipe to the cache ========
+2026-10-29T07:20:19.8737342Z platform-equality/0.0.1 export
+2026-10-29T07:20:19.8739028Z Exporting package recipe: /home/runner/work/Data.Doublets/Data.Doublets/cpp/build/recipes/recipes/platform.equality/all/conanfile.py
+2026-10-29T07:20:19.8740014Z platform-equality/0.0.1: exports: File 'conandata.yml' found. Exporting it...
+2026-10-29T07:20:19.8746409Z Copied 1 '.py' file: conanfile.py
+2026-10-29T07:20:19.8746939Z Copied 1 '.yml' file: conandata.yml
+2026-10-29T07:20:19.8767703Z Exported to cache folder: /home/runner/.conan2/p/platfbf8c1581d4676/e
+2026-10-29T07:20:19.8768559Z Exported: platform-equality/0.0.1#4c269c237c780cf97734b306fef30799 (2026-10-29 07:20:19 UTC)
+2026-10-29T07:20:20.0647151Z 
+2026-10-29T07:20:20.0647930Z ======== Exporting recipe to the cache ========
+2026-10-29T07:20:20.0666641Z platform-collections/0.2.1 export
+2026-10-29T07:20:20.0667914Z Exporting package recipe: /home/runner/work/Data.Doublets/Data.Doublets/cpp/build/recipes/recipes/platform.collections/all/conanfile.py
+2026-10-29T07:20:20.0669093Z platform-collections/0.2.1: exports: File 'conandata.yml' found. Exporting it...
+2026-10-29T07:20:20.0675230Z Copied 1 '.py' file: conanfile.py
+2026-10-29T07:20:20.0675635Z Copied 1 '.yml' file: conandata.yml
+2026-10-29T07:20:20.0693200Z Exported to cache folder: /home/runner/.conan2/p/platf4b6acddddf01c/e
+2026-10-29T07:20:20.0694102Z Exported: platform-collections/0.2.1#8c17106bf6ed80ece6f3d377f4989a60 (2026-10-29 07:20:20 UTC)
+2026-10-29T07:20:20.2578411Z 
+2026-10-29T07:20:20.2579666Z ======== Exporting recipe to the cache ========
+2026-10-29T07:20:20.2596915Z platform-setters/0.1.0 export
+2026-10-29T07:20:20.2598581Z Exporting package recipe: /home/runner/work/Data.Doublets/Data.Doublets/cpp/build/recipes/recipes/platform.setters/all/conanfile.py
+2026-10-29T07:20:20.2599361Z platform-setters/0.1.0: exports: File 'conandata.yml' found. Exporting it...
+2026-10-29T07:20:20.2604457Z Copied 1 '.py' file: conanfile.py
+2026-10-29T07:20:20.2604730Z Copied 1 '.yml' file: conandata.yml
+2026-10-29T07:20:20.2628247Z Exported to cache folder: /home/runner/.conan2/p/platfea0cb3e0e6873/e
+2026-10-29T07:20:20.2628844Z Exported: platform-setters/0.1.0#0b7fdbec025f7e225a919bacf70f9c3a (2026-10-29 07:20:20 UTC)
+2026-10-29T07:20:20.4510022Z 
+2026-10-29T07:20:20.4510911Z ======== Exporting recipe to the cache ========
+2026-10-29T07:20:20.4528680Z platform-data/0.1.1 export
+2026-10-29T07:20:20.4530615Z Exporting package recipe: /home/runner/work/Data.Doublets/Data.Doublets/cpp/build/recipes/recipes/platform.data/all/conanfile.py
+2026-10-29T07:20:20.4531546Z platform-data/0.1.1: exports: File 'conandata.yml' found. Exporting it...
+2026-10-29T07:20:20.4536604Z Copied 1 '.py' file: conanfile.py
+2026-10-29T07:20:20.4536949Z Copied 1 '.yml' file: conandata.yml
+2026-10-29T07:20:20.4555984Z Exported to cache folder: /home/runner/.conan2/p/platf6097b0a9e7303/e
+2026-10-29T07:20:20.4556600Z Exported: platform-data/0.1.1#049284bd2691fcdd21308ff118193883 (2026-10-29 07:20:20 UTC)
+2026-10-29T07:20:20.6453296Z 
+2026-10-29T07:20:20.6454152Z ======== Exporting recipe to the cache ========
+2026-10-29T07:20:20.6471367Z platform-numbers/0.1.0 export
+2026-10-29T07:20:20.6474462Z Exporting package recipe: /home/runner/work/Data.Doublets/Data.Doublets/cpp/build/recipes/recipes/platform.numbers/all/conanfile.py
+2026-10-29T07:20:20.6475514Z platform-numbers/0.1.0: exports: File 'conandata.yml' found. Exporting it...
+2026-10-29T07:20:20.6480804Z Copied 1 '.py' file: conanfile.py
+2026-10-29T07:20:20.6481327Z Copied 1 '.yml' file: conandata.yml
+2026-10-29T07:20:20.6506158Z Exported to cache folder: /home/runner/.conan2/p/platf4e4a40c6d8bf5/e
+2026-10-29T07:20:20.6506997Z Exported: platform-numbers/0.1.0#8d5c367883c12491634bda6b216fdcd7 (2026-10-29 07:20:20 UTC)
+2026-10-29T07:20:20.8385351Z 
+2026-10-29T07:20:20.8386231Z ======== Exporting recipe to the cache ========
+2026-10-29T07:20:20.8406014Z platform-memory/0.1.0 export
+2026-10-29T07:20:20.8407248Z Exporting package recipe: /home/runner/work/Data.Doublets/Data.Doublets/cpp/build/recipes/recipes/platform.memory/all/conanfile.py
+2026-10-29T07:20:20.8408405Z platform-memory/0.1.0: exports: File 'conandata.yml' found. Exporting it...
+2026-10-29T07:20:20.8414566Z Copied 1 '.py' file: conanfile.py
+2026-10-29T07:20:20.8415064Z Copied 1 '.yml' file: conandata.yml
+2026-10-29T07:20:20.8433071Z Exported to cache folder: /home/runner/.conan2/p/platf232aaabe3d0da/e
+2026-10-29T07:20:20.8433593Z Exported: platform-memory/0.1.0#8dd4e948ae9e107523a3807afeb9f1aa (2026-10-29 07:20:20 UTC)
+2026-10-29T07:20:21.0317323Z 
+2026-10-29T07:20:21.0317638Z ======== Exporting recipe to the cache ========
+2026-10-29T07:20:21.0336092Z platform-collections-methods/0.3.0 export
+2026-10-29T07:20:21.0337976Z Exporting package recipe: /home/runner/work/Data.Doublets/Data.Doublets/cpp/build/recipes/recipes/platform.collections.methods/all/conanfile.py
+2026-10-29T07:20:21.0338902Z platform-collections-methods/0.3.0: exports: File 'conandata.yml' found. Exporting it...
+2026-10-29T07:20:21.0344250Z Copied 1 '.py' file: conanfile.py
+2026-10-29T07:20:21.0344631Z Copied 1 '.yml' file: conandata.yml
+2026-10-29T07:20:21.0365224Z Exported to cache folder: /home/runner/.conan2/p/platfaa5f0f1339589/e
+2026-10-29T07:20:21.0365732Z Exported: platform-collections-methods/0.3.0#7bf9addb258962e4c904ace39794c202 (2026-10-29 07:20:21 UTC)
+2026-10-29T07:20:21.2382482Z 
+2026-10-29T07:20:21.2383329Z ======== Exporting recipe to the cache ========
+2026-10-29T07:20:21.2417089Z benchmark/1.6.0 export
+2026-10-29T07:20:21.2419708Z Exporting package recipe: /home/runner/work/Data.Doublets/Data.Doublets/cpp/build/recipes/recipes/benchmark/all/conanfile.py
+2026-10-29T07:20:21.2420679Z benchmark/1.6.0: exports: File 'conandata.yml' found. Exporting it...
+2026-10-29T07:20:21.2427402Z Copied 1 '.py' file: conanfile.py
+2026-10-29T07:20:21.2427896Z Copied 1 '.yml' file: conandata.yml
+2026-10-29T07:20:21.2455321Z Exported to cache folder: /home/runner/.conan2/p/benchf5952774a4603/e
+2026-10-29T07:20:21.2456113Z Exported: benchmark/1.6.0#9d553897e35ae1c32a87e0b5a70c6563 (2026-10-29 07:20:21 UTC)
+2026-10-29T07:20:21.4616690Z 
+2026-10-29T07:20:21.4619842Z ======== Exporting recipe to the cache ========
+2026-10-29T07:20:21.4642928Z cpuinfo/cci.20220228 export
+2026-10-29T07:20:21.4644867Z Exporting package recipe: /home/runner/work/Data.Doublets/Data.Doublets/cpp/build/recipes/recipes/cpuinfo/all/conanfile.py
+2026-10-29T07:20:21.4645977Z cpuinfo/cci.20220228: exports: File 'conandata.yml' found. Exporting it...
+2026-10-29T07:20:21.4652377Z Copied 1 '.py' file: conanfile.py
+2026-10-29T07:20:21.4652858Z Copied 1 '.yml' file: conandata.yml
+2026-10-29T07:20:21.4674460Z Exported to cache folder: /home/runner/.conan2/p/cpuin2c6684b8fd980/e
+2026-10-29T07:20:21.4675133Z Exported: cpuinfo/cci.20220228#4720655746a750c454ca046065334ded (2026-10-29 07:20:21 UTC)
+2026-10-29T07:20:21.6775533Z 
+2026-10-29T07:20:21.6776222Z ======== Exporting recipe to the cache ========
+2026-10-29T07:20:21.6814866Z gtest/1.13.0 export
+2026-10-29T07:20:21.6816797Z Exporting package recipe: /home/runner/work/Data.Doublets/Data.Doublets/cpp/build/recipes/recipes/gtest/all/conanfile.py
+2026-10-29T07:20:21.6817812Z gtest/1.13.0: exports: File 'conandata.yml' found. Exporting it...
+2026-10-29T07:20:21.6822315Z gtest/1.13.0: Calling export_sources()
+2026-10-29T07:20:21.6825266Z Copied 1 '.py' file: conanfile.py
+2026-10-29T07:20:21.6825639Z Copied 1 '.yml' file: conandata.yml
+2026-10-29T07:20:21.6844123Z Exported to cache folder: /home/runner/.conan2/p/gtest88486e1cfb53c/e
+2026-10-29T07:20:21.6844831Z Exported: gtest/1.13.0#7be70f54d7d7a61bbfd1d3c16c7e6d10 (2026-10-29 07:20:21 UTC)
+2026-10-29T07:20:21.8927125Z 
+2026-10-29T07:20:21.8928032Z ======== Exporting recipe to the cache ========
+2026-10-29T07:20:21.8955483Z ms-gsl/4.0.0 export
+2026-10-29T07:20:21.8956845Z Exporting package recipe: /home/runner/work/Data.Doublets/Data.Doublets/cpp/build/recipes/recipes/ms-gsl/all/conanfile.py
+2026-10-29T07:20:21.8957780Z ms-gsl/4.0.0: exports: File 'conandata.yml' found. Exporting it...
+2026-10-29T07:20:21.8964495Z Copied 1 '.py' file: conanfile.py
+2026-10-29T07:20:21.8964974Z Copied 1 '.yml' file: conandata.yml
+2026-10-29T07:20:21.8985626Z Exported to cache folder: /home/runner/.conan2/p/ms-gsff8651ea93050/e
+2026-10-29T07:20:21.8986468Z Exported: ms-gsl/4.0.0#14d2ec35229ee060bb38ba7f18b0bce8 (2026-10-29 07:20:21 UTC)
+2026-10-29T07:20:21.9383436Z ##[group]Run bash cpp/run_tests.sh
+2026-10-29T07:20:21.9383780Z [36;1mbash cpp/run_tests.sh[0m
+2026-10-29T07:20:21.9395548Z shell: /usr/bin/bash -e {0}
+2026-10-29T07:20:21.9395832Z env:
+2026-10-29T07:20:21.9396057Z   DOTNET_ROOT: /usr/share/dotnet
+2026-10-29T07:20:21.9396383Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-29T07:20:21.9396974Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-29T07:20:21.9397356Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-29T07:20:21.9397690Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-29T07:20:21.9398005Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-29T07:20:21.9398380Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-29T07:20:21.9398696Z   CC: gcc
+2026-10-29T07:20:21.9398909Z   CXX: g++
+2026-10-29T07:20:21.9399111Z   CPP_COVERAGE: ON
+2026-10-29T07:20:21.9399371Z   CMAKE_BUILD_PARALLEL_LEVEL: 1
+2026-10-29T07:20:21.9399731Z ##[endgroup]
+2026-10-29T07:20:22.1360822Z 
+2026-10-29T07:20:22.1361206Z ======== Input profiles ========
+2026-10-29T07:20:22.1361632Z Profile host:
+2026-10-29T07:20:22.1362057Z [settings]
+2026-10-29T07:20:22.1362320Z arch=x86_64
+2026-10-29T07:20:22.1362592Z build_type=Release
+2026-10-29T07:20:22.1362844Z compiler=gcc
+2026-10-29T07:20:22.1363147Z compiler.cppstd=20
+2026-10-29T07:20:22.1363427Z compiler.libcxx=libstdc++11
+2026-10-29T07:20:22.1363708Z compiler.version=13
+2026-10-29T07:20:22.1363933Z os=Linux
+2026-10-29T07:20:22.1364178Z [conf]
+2026-10-29T07:20:22.1364432Z tools.build:jobs=1
+2026-10-29T07:20:22.1364574Z 
+2026-10-29T07:20:22.1364739Z Profile build:
+2026-10-29T07:20:22.1365018Z [settings]
+2026-10-29T07:20:22.1365227Z arch=x86_64
+2026-10-29T07:20:22.1365487Z build_type=Release
+2026-10-29T07:20:22.1365744Z compiler=gcc
+2026-10-29T07:20:22.1365986Z compiler.cppstd=20
+2026-10-29T07:20:22.1366257Z compiler.libcxx=libstdc++11
+2026-10-29T07:20:22.1366580Z compiler.version=13
+2026-10-29T07:20:22.1366847Z os=Linux
+2026-10-29T07:20:22.1367087Z [conf]
+2026-10-29T07:20:22.1367226Z 
+2026-10-29T07:20:22.1367230Z 
+2026-10-29T07:20:22.1368386Z 
+2026-10-29T07:20:22.1368589Z ======== Computing dependency graph ========
+2026-10-29T07:20:22.1711490Z mio/cci.20201220: Not found in local cache, looking in remotes...
+2026-10-29T07:20:22.1712111Z mio/cci.20201220: Checking remote: conancenter
+2026-10-29T07:20:22.1712606Z Connecting to remote 'conancenter' anonymously
+2026-10-29T07:20:22.5771284Z mio/cci.20201220: Downloaded recipe revision 35d8e4791152cb59bb37212cd9c295d2
+2026-10-29T07:20:22.5865691Z Graph root
+2026-10-29T07:20:22.5866504Z     conanfile.txt: /home/runner/work/Data.Doublets/Data.Doublets/cpp/conanfile.txt
+2026-10-29T07:20:22.5867234Z Requirements
+2026-10-29T07:20:22.5867705Z     benchmark/1.6.0#9d553897e35ae1c32a87e0b5a70c6563 - Cache
+2026-10-29T07:20:22.5868340Z     cpuinfo/cci.20220228#4720655746a750c454ca046065334ded - Cache
+2026-10-29T07:20:22.5869070Z     gtest/1.13.0#7be70f54d7d7a61bbfd1d3c16c7e6d10 - Cache
+2026-10-29T07:20:22.5869790Z     mio/cci.20201220#35d8e4791152cb59bb37212cd9c295d2 - Downloaded (conancenter)
+2026-10-29T07:20:22.5870726Z     ms-gsl/4.0.0#14d2ec35229ee060bb38ba7f18b0bce8 - Cache
+2026-10-29T07:20:22.5871383Z     platform-collections/0.2.1#8c17106bf6ed80ece6f3d377f4989a60 - Cache
+2026-10-29T07:20:22.5872173Z     platform-collections-methods/0.3.0#7bf9addb258962e4c904ace39794c202 - Cache
+2026-10-29T07:20:22.5872963Z     platform-converters/0.2.0#e5210600d15a224117023e6b4fb0c1be - Cache
+2026-10-29T07:20:22.5873610Z     platform-data/0.1.1#049284bd2691fcdd21308ff118193883 - Cache
+2026-10-29T07:20:22.5874306Z     platform-delegates/0.3.7#fa6d4052c342718034aaa3fefe278fd0 - Cache
+2026-10-29T07:20:22.5875042Z     platform-equality/0.0.1#4c269c237c780cf97734b306fef30799 - Cache
+2026-10-29T07:20:22.5875733Z     platform-exceptions/0.3.2#f85774f1881822f0ffd9f7095bd3085a - Cache
+2026-10-29T07:20:22.5876442Z     platform-hashing/0.5.6#8f26cd9a683ad74a06b02ea3ffb00f29 - Cache
+2026-10-29T07:20:22.5877728Z     platform-interfaces/0.3.41#2749e377587371071b89193878f3ad93 - Cache
+2026-10-29T07:20:22.5878409Z     platform-memory/0.1.0#8dd4e948ae9e107523a3807afeb9f1aa - Cache
+2026-10-29T07:20:22.5879059Z     platform-numbers/0.1.0#8d5c367883c12491634bda6b216fdcd7 - Cache
+2026-10-29T07:20:22.5879735Z     platform-random/0.2.0#596375061030beacc935a1ac82ef6e46 - Cache
+2026-10-29T07:20:22.5880802Z     platform-ranges/0.2.0#f74638320e5bd4f2efd11a9e10091288 - Cache
+2026-10-29T07:20:22.5881432Z     platform-setters/0.1.0#0b7fdbec025f7e225a919bacf70f9c3a - Cache
+2026-10-29T07:20:22.5881789Z 
+2026-10-29T07:20:22.5882055Z ======== Computing necessary packages ========
+2026-10-29T07:20:22.6674851Z benchmark/1.6.0: Main binary package '45c50a2141506585e351c9cec87e3f8b70ab72aa' missing
+2026-10-29T07:20:22.6675575Z benchmark/1.6.0: Checking 11 compatible configurations
+2026-10-29T07:20:22.6686385Z benchmark/1.6.0: Compatible configurations not found in cache, checking servers
+2026-10-29T07:20:22.6687259Z benchmark/1.6.0: '396778f25612eb418cd254436f333ce1de325f38': compiler.cppstd=98
+2026-10-29T07:20:22.7351429Z benchmark/1.6.0: '0669a1d96ca425e7f1ac6aad8b6d886ccca71fe9': compiler.cppstd=gnu98
+2026-10-29T07:20:22.8059079Z benchmark/1.6.0: '96571bf223fbb91a14b9d75c5756c2a659fcc2c0': compiler.cppstd=11
+2026-10-29T07:20:22.8748246Z benchmark/1.6.0: '04b7d225ed63b98a50e693de049f6de5312d777b': compiler.cppstd=gnu11
+2026-10-29T07:20:22.9417945Z benchmark/1.6.0: '8bdf5596f6daa6d6f1a9eb2d2a541f1781c40732': compiler.cppstd=14
+2026-10-29T07:20:23.0102412Z benchmark/1.6.0: '04436a3b503be17cd49f82f39e498b747176a423': compiler.cppstd=gnu14
+2026-10-29T07:20:23.0809366Z benchmark/1.6.0: '4065082e92457688ab1008ba403b52b1187f3b40': compiler.cppstd=17
+2026-10-29T07:20:23.1504800Z benchmark/1.6.0: 'b9f787d17ef5bad341b94a8396aebe379bf83c14': compiler.cppstd=gnu17
+2026-10-29T07:20:23.2203135Z benchmark/1.6.0: 'fc3b38979256844893a2b7416e54cf928e18da36': compiler.cppstd=gnu20
+2026-10-29T07:20:23.2862349Z benchmark/1.6.0: '0e7b467cdbe153a1949db45ae7a6fb63af70a06a': compiler.cppstd=23
+2026-10-29T07:20:23.3569668Z benchmark/1.6.0: '3e5df485b809ea575b139d44f9549049a0e7ce34': compiler.cppstd=gnu23
+2026-10-29T07:20:23.4250080Z benchmark/1.6.0: No compatible configuration found
+2026-10-29T07:20:23.5722705Z gtest/1.13.0: Main binary package 'c961d8c62795395aeeebf1696bec18f00505c7ea' missing
+2026-10-29T07:20:23.5731329Z gtest/1.13.0: Checking 7 compatible configurations
+2026-10-29T07:20:23.5732022Z gtest/1.13.0: Compatible configurations not found in cache, checking servers
+2026-10-29T07:20:23.5732830Z gtest/1.13.0: 'd56bf9b1d660cb9a6a18c7edbc4276d7b0a244be': compiler.cppstd=14
+2026-10-29T07:20:23.6420490Z gtest/1.13.0: 'a0d6dc4bd200bce9ae2b814b25d425cceffab18d': compiler.cppstd=gnu14
+2026-10-29T07:20:23.7090054Z gtest/1.13.0: '83c66d14c1b97b2b1aa0c61b24e4dc3b190936bc': compiler.cppstd=17
+2026-10-29T07:20:23.7769609Z gtest/1.13.0: '491e8e8000359765aeb0e42ebedcd23dc1e390f7': compiler.cppstd=gnu17
+2026-10-29T07:20:23.8450959Z gtest/1.13.0: 'd24ab310896ac4890e5fb6d2b38bc7a96e5cd693': compiler.cppstd=gnu20
+2026-10-29T07:20:23.9138958Z gtest/1.13.0: 'f575dce8ea239b77e26d5bbadf382b0058126487': compiler.cppstd=23
+2026-10-29T07:20:23.9792814Z gtest/1.13.0: '66a10fc3df599f53822c398d62ea148715d6589a': compiler.cppstd=gnu23
+2026-10-29T07:20:24.0463918Z gtest/1.13.0: No compatible configuration found
+2026-10-29T07:20:25.0625303Z 
+2026-10-29T07:20:25.0627023Z A new experimental approach for binary compatibility detection is available.
+2026-10-29T07:20:25.0627941Z     Enable it by setting the core.graph:compatibility_mode=optimized conf
+2026-10-29T07:20:25.0628689Z     and get improved performance when querying multiple compatible binaries in remotes.
+2026-10-29T07:20:25.0629193Z 
+2026-10-29T07:20:25.0629312Z Requirements
+2026-10-29T07:20:25.0629970Z     benchmark/1.6.0#9d553897e35ae1c32a87e0b5a70c6563:45c50a2141506585e351c9cec87e3f8b70ab72aa - Build
+2026-10-29T07:20:25.0631527Z     cpuinfo/cci.20220228#4720655746a750c454ca046065334ded:4d9e6a210329116850cff601cc4db23e561d9a71 - Build
+2026-10-29T07:20:25.0632474Z     gtest/1.13.0#7be70f54d7d7a61bbfd1d3c16c7e6d10:c961d8c62795395aeeebf1696bec18f00505c7ea - Build
+2026-10-29T07:20:25.0633611Z     mio/cci.20201220#35d8e4791152cb59bb37212cd9c295d2:da39a3ee5e6b4b0d3255bfef95601890afd80709#1db8db72c0b6f33280a30253cc7c2f27 - Download (conancenter)
+2026-10-29T07:20:25.0634932Z     ms-gsl/4.0.0#14d2ec35229ee060bb38ba7f18b0bce8:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+2026-10-29T07:20:25.0640783Z     platform-collections-methods/0.3.0#7bf9addb258962e4c904ace39794c202:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+2026-10-29T07:20:25.0641845Z     platform-collections/0.2.1#8c17106bf6ed80ece6f3d377f4989a60:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+2026-10-29T07:20:25.0642670Z     platform-converters/0.2.0#e5210600d15a224117023e6b4fb0c1be:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+2026-10-29T07:20:25.0643314Z     platform-data/0.1.1#049284bd2691fcdd21308ff118193883:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+2026-10-29T07:20:25.0643997Z     platform-delegates/0.3.7#fa6d4052c342718034aaa3fefe278fd0:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+2026-10-29T07:20:25.0644866Z     platform-equality/0.0.1#4c269c237c780cf97734b306fef30799:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+2026-10-29T07:20:25.0645847Z     platform-exceptions/0.3.2#f85774f1881822f0ffd9f7095bd3085a:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+2026-10-29T07:20:25.0646788Z     platform-hashing/0.5.6#8f26cd9a683ad74a06b02ea3ffb00f29:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+2026-10-29T07:20:25.0647740Z     platform-interfaces/0.3.41#2749e377587371071b89193878f3ad93:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+2026-10-29T07:20:25.0648696Z     platform-memory/0.1.0#8dd4e948ae9e107523a3807afeb9f1aa:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+2026-10-29T07:20:25.0649601Z     platform-numbers/0.1.0#8d5c367883c12491634bda6b216fdcd7:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+2026-10-29T07:20:25.0650710Z     platform-random/0.2.0#596375061030beacc935a1ac82ef6e46:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+2026-10-29T07:20:25.0651738Z     platform-ranges/0.2.0#f74638320e5bd4f2efd11a9e10091288:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+2026-10-29T07:20:25.0652655Z     platform-setters/0.1.0#0b7fdbec025f7e225a919bacf70f9c3a:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+2026-10-29T07:20:25.0653172Z 
+2026-10-29T07:20:25.0653402Z ======== Installing packages ========
+2026-10-29T07:20:25.0653669Z 
+2026-10-29T07:20:25.0653865Z -------- Downloading 1 package --------
+2026-10-29T07:20:25.0654448Z Downloading binary packages in 1 parallel threads
+2026-10-29T07:20:25.0755643Z mio/cci.20201220: Retrieving package da39a3ee5e6b4b0d3255bfef95601890afd80709 from remote 'conancenter'
+2026-10-29T07:20:25.3958451Z mio/cci.20201220: Package installed da39a3ee5e6b4b0d3255bfef95601890afd80709
+2026-10-29T07:20:25.3959001Z mio/cci.20201220: Downloaded package revision 1db8db72c0b6f33280a30253cc7c2f27
+2026-10-29T07:20:25.3966666Z 
+2026-10-29T07:20:25.3967473Z -------- Installing package benchmark/1.6.0 (1 of 19) --------
+2026-10-29T07:20:25.3968110Z Building from source benchmark/1.6.0:45c50a2141506585e351c9cec87e3f8b70ab72aa
+2026-10-29T07:20:25.3969068Z benchmark/1.6.0: settings: os=Linux arch=x86_64 compiler=gcc compiler.cppstd=20 compiler.libcxx=libstdc++11 compiler.version=13 build_type=Release
+2026-10-29T07:20:25.3969924Z benchmark/1.6.0: options: enable_exceptions=True enable_libpfm=False enable_lto=False fPIC=True shared=False
+2026-10-29T07:20:25.3970657Z >>> Source step
+2026-10-29T07:20:25.3975324Z Getting sources for benchmark/1.6.0
+2026-10-29T07:20:25.3975939Z Calling source() in /home/runner/.conan2/p/benchf5952774a4603/s/src
+2026-10-29T07:20:25.9571358Z Sources correctly downloaded from https://github.com/google/benchmark/archive/v1.6.0.tar.gz
+2026-10-29T07:20:25.9571908Z Uncompressing v1.6.0.tar.gz to .
+2026-10-29T07:20:25.9712181Z Copying sources to build folder
+2026-10-29T07:20:25.9767079Z Sources in /home/runner/.conan2/p/b/bench6a9a062784c71/b/src
+2026-10-29T07:20:25.9767542Z >>> Generate step for benchmark/1.6.0
+2026-10-29T07:20:25.9767951Z Generators folder: /home/runner/.conan2/p/b/bench6a9a062784c71/b/build/Release/generators
+2026-10-29T07:20:25.9768364Z Calling generate() method in recipe
+2026-10-29T07:20:26.0036769Z CMakeToolchain generated: conan_toolchain.cmake
+2026-10-29T07:20:26.0042391Z CMakeToolchain generated: /home/runner/.conan2/p/b/bench6a9a062784c71/b/build/Release/generators/CMakePresets.json
+2026-10-29T07:20:26.0043127Z CMakeToolchain generated: /home/runner/.conan2/p/b/bench6a9a062784c71/b/src/CMakeUserPresets.json
+2026-10-29T07:20:26.0045601Z Generating aggregated env files
+2026-10-29T07:20:26.0046031Z Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+2026-10-29T07:20:26.0046585Z Building your package in /home/runner/.conan2/p/b/bench6a9a062784c71/b
+2026-10-29T07:20:26.0046978Z >>> Build step for benchmark/1.6.0
+2026-10-29T07:20:26.0047347Z benchmark/1.6.0: Calling build()
+2026-10-29T07:20:26.0047802Z benchmark/1.6.0: Running CMake.configure()
+2026-10-29T07:20:26.0048791Z benchmark/1.6.0: RUN: cmake -G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE="generators/conan_toolchain.cmake" -DCMAKE_INSTALL_PREFIX="/home/runner/.conan2/p/b/bench6a9a062784c71/p" -DCMAKE_POLICY_DEFAULT_CMP0091="NEW" -DCMAKE_BUILD_TYPE="Release" "/home/runner/.conan2/p/b/bench6a9a062784c71/b/src"
+2026-10-29T07:20:26.8101433Z -- Using Conan toolchain: /home/runner/.conan2/p/b/bench6a9a062784c71/b/build/Release/generators/conan_toolchain.cmake
+2026-10-29T07:20:26.8102317Z -- Conan toolchain: Setting CMAKE_POSITION_INDEPENDENT_CODE=ON (options.fPIC)
+2026-10-29T07:20:26.8102740Z -- Conan toolchain: Defining architecture flag: -m64
+2026-10-29T07:20:26.8103101Z -- Conan toolchain: C++ Standard 20 with extensions OFF
+2026-10-29T07:20:26.8143928Z -- Conan toolchain: Setting BUILD_SHARED_LIBS = OFF
+2026-10-29T07:20:27.0870683Z -- The CXX compiler identification is GNU 13.3.0
+2026-10-29T07:20:27.2132120Z -- Detecting CXX compiler ABI info
+2026-10-29T07:20:27.4620836Z -- Detecting CXX compiler ABI info - done
+2026-10-29T07:20:27.4733014Z -- Check for working CXX compiler: /usr/bin/g++ - skipped
+2026-10-29T07:20:27.4797691Z -- Detecting CXX compile features
+2026-10-29T07:20:27.4804927Z -- Detecting CXX compile features - done
+2026-10-29T07:20:27.4972956Z -- Failed to find LLVM FileCheck
+2026-10-29T07:20:27.5337141Z -- Found Git: /usr/bin/git (found version "2.56.0")
+2026-10-29T07:20:27.5371913Z -- git version: v0.0.0 normalized to 0.0.0
+2026-10-29T07:20:27.5372310Z -- Version: 1.6.0
+2026-10-29T07:20:27.5522485Z -- Performing Test HAVE_CXX_FLAG_STD_CXX11
+2026-10-29T07:20:27.5976150Z -- Performing Test HAVE_CXX_FLAG_STD_CXX11 - Success
+2026-10-29T07:20:27.5981556Z -- Performing Test HAVE_CXX_FLAG_WALL
+2026-10-29T07:20:27.6535615Z -- Performing Test HAVE_CXX_FLAG_WALL - Success
+2026-10-29T07:20:27.6540759Z -- Performing Test HAVE_CXX_FLAG_WEXTRA
+2026-10-29T07:20:27.6969569Z -- Performing Test HAVE_CXX_FLAG_WEXTRA - Success
+2026-10-29T07:20:27.6975420Z -- Performing Test HAVE_CXX_FLAG_WSHADOW
+2026-10-29T07:20:27.7402380Z -- Performing Test HAVE_CXX_FLAG_WSHADOW - Success
+2026-10-29T07:20:27.7407471Z -- Performing Test HAVE_CXX_FLAG_WERROR
+2026-10-29T07:20:27.7843514Z -- Performing Test HAVE_CXX_FLAG_WERROR - Success
+2026-10-29T07:20:27.7853153Z -- Performing Test HAVE_CXX_FLAG_WSUGGEST_OVERRIDE
+2026-10-29T07:20:27.8295818Z -- Performing Test HAVE_CXX_FLAG_WSUGGEST_OVERRIDE - Success
+2026-10-29T07:20:27.8300942Z -- Performing Test HAVE_CXX_FLAG_PEDANTIC
+2026-10-29T07:20:27.8734134Z -- Performing Test HAVE_CXX_FLAG_PEDANTIC - Success
+2026-10-29T07:20:27.8739102Z -- Performing Test HAVE_CXX_FLAG_PEDANTIC_ERRORS
+2026-10-29T07:20:27.9176908Z -- Performing Test HAVE_CXX_FLAG_PEDANTIC_ERRORS - Success
+2026-10-29T07:20:27.9182045Z -- Performing Test HAVE_CXX_FLAG_WSHORTEN_64_TO_32
+2026-10-29T07:20:27.9478201Z -- Performing Test HAVE_CXX_FLAG_WSHORTEN_64_TO_32 - Failed
+2026-10-29T07:20:27.9483692Z -- Performing Test HAVE_CXX_FLAG_FSTRICT_ALIASING
+2026-10-29T07:20:27.9941935Z -- Performing Test HAVE_CXX_FLAG_FSTRICT_ALIASING - Success
+2026-10-29T07:20:27.9947751Z -- Performing Test HAVE_CXX_FLAG_WNO_DEPRECATED_DECLARATIONS
+2026-10-29T07:20:28.0403939Z -- Performing Test HAVE_CXX_FLAG_WNO_DEPRECATED_DECLARATIONS - Success
+2026-10-29T07:20:28.0409227Z -- Performing Test HAVE_CXX_FLAG_WNO_DEPRECATED
+2026-10-29T07:20:28.0862839Z -- Performing Test HAVE_CXX_FLAG_WNO_DEPRECATED - Success
+2026-10-29T07:20:28.0871864Z -- Performing Test HAVE_CXX_FLAG_WSTRICT_ALIASING
+2026-10-29T07:20:28.1333004Z -- Performing Test HAVE_CXX_FLAG_WSTRICT_ALIASING - Success
+2026-10-29T07:20:28.1337876Z -- Performing Test HAVE_CXX_FLAG_WD654
+2026-10-29T07:20:28.1501408Z -- Performing Test HAVE_CXX_FLAG_WD654 - Failed
+2026-10-29T07:20:28.1506139Z -- Performing Test HAVE_CXX_FLAG_WTHREAD_SAFETY
+2026-10-29T07:20:28.1762663Z -- Performing Test HAVE_CXX_FLAG_WTHREAD_SAFETY - Failed
+2026-10-29T07:20:28.1767740Z -- Performing Test HAVE_CXX_FLAG_COVERAGE
+2026-10-29T07:20:28.2654595Z -- Performing Test HAVE_CXX_FLAG_COVERAGE - Success
+2026-10-29T07:20:28.2655283Z -- Performing Test HAVE_STD_REGEX
+2026-10-29T07:20:28.2655574Z -- Performing Test HAVE_STD_REGEX
+2026-10-29T07:20:30.5047757Z -- Performing Test HAVE_STD_REGEX -- success
+2026-10-29T07:20:30.5048176Z -- Performing Test HAVE_GNU_POSIX_REGEX
+2026-10-29T07:20:30.5048508Z -- Performing Test HAVE_GNU_POSIX_REGEX
+2026-10-29T07:20:30.5245257Z -- Performing Test HAVE_GNU_POSIX_REGEX -- failed to compile
+2026-10-29T07:20:30.5245710Z -- Performing Test HAVE_POSIX_REGEX
+2026-10-29T07:20:30.5246087Z -- Performing Test HAVE_POSIX_REGEX
+2026-10-29T07:20:30.7408499Z -- Performing Test HAVE_POSIX_REGEX -- success
+2026-10-29T07:20:30.7409082Z -- Performing Test HAVE_STEADY_CLOCK
+2026-10-29T07:20:30.7409437Z -- Performing Test HAVE_STEADY_CLOCK
+2026-10-29T07:20:31.5475053Z -- Performing Test HAVE_STEADY_CLOCK -- success
+2026-10-29T07:20:31.5635107Z -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+2026-10-29T07:20:31.6143838Z -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+2026-10-29T07:20:31.6150696Z -- Found Threads: TRUE
+2026-10-29T07:20:31.6858149Z -- Configuring done (5.0s)
+2026-10-29T07:20:31.7267211Z -- Generating done (0.0s)
+2026-10-29T07:20:31.7268944Z -- Build files have been written to: /home/runner/.conan2/p/b/bench6a9a062784c71/b/build/Release
+2026-10-29T07:20:31.7333357Z 
+2026-10-29T07:20:31.7334087Z benchmark/1.6.0: Running CMake.build()
+2026-10-29T07:20:31.7335855Z benchmark/1.6.0: RUN: cmake --build "/home/runner/.conan2/p/b/bench6a9a062784c71/b/build/Release" -- -j1
+2026-10-29T07:20:31.7466360Z [  4%] Building CXX object src/CMakeFiles/benchmark.dir/benchmark.cc.o
+2026-10-29T07:20:34.7678023Z [  9%] Building CXX object src/CMakeFiles/benchmark.dir/benchmark_api_internal.cc.o
+2026-10-29T07:20:35.3384405Z [ 13%] Building CXX object src/CMakeFiles/benchmark.dir/benchmark_name.cc.o
+2026-10-29T07:20:35.7351828Z [ 18%] Building CXX object src/CMakeFiles/benchmark.dir/benchmark_register.cc.o
+2026-10-29T07:20:39.7739460Z [ 22%] Building CXX object src/CMakeFiles/benchmark.dir/benchmark_runner.cc.o
+2026-10-29T07:20:41.5640026Z [ 27%] Building CXX object src/CMakeFiles/benchmark.dir/colorprint.cc.o
+2026-10-29T07:20:42.0309536Z [ 31%] Building CXX object src/CMakeFiles/benchmark.dir/commandlineflags.cc.o
+2026-10-29T07:20:42.8220887Z [ 36%] Building CXX object src/CMakeFiles/benchmark.dir/complexity.cc.o
+2026-10-29T07:20:43.6913742Z [ 40%] Building CXX object src/CMakeFiles/benchmark.dir/console_reporter.cc.o
+2026-10-29T07:20:44.6220783Z [ 45%] Building CXX object src/CMakeFiles/benchmark.dir/counter.cc.o
+2026-10-29T07:20:45.0029793Z [ 50%] Building CXX object src/CMakeFiles/benchmark.dir/csv_reporter.cc.o
+2026-10-29T07:20:45.9315543Z [ 54%] Building CXX object src/CMakeFiles/benchmark.dir/json_reporter.cc.o
+2026-10-29T07:20:47.0591719Z [ 59%] Building CXX object src/CMakeFiles/benchmark.dir/perf_counters.cc.o
+2026-10-29T07:20:47.4924940Z [ 63%] Building CXX object src/CMakeFiles/benchmark.dir/reporter.cc.o
+2026-10-29T07:20:48.2871302Z [ 68%] Building CXX object src/CMakeFiles/benchmark.dir/sleep.cc.o
+2026-10-29T07:20:48.6860877Z [ 72%] Building CXX object src/CMakeFiles/benchmark.dir/statistics.cc.o
+2026-10-29T07:20:49.8652629Z [ 77%] Building CXX object src/CMakeFiles/benchmark.dir/string_util.cc.o
+2026-10-29T07:20:50.5589808Z [ 81%] Building CXX object src/CMakeFiles/benchmark.dir/sysinfo.cc.o
+2026-10-29T07:20:51.5553456Z [ 86%] Building CXX object src/CMakeFiles/benchmark.dir/timers.cc.o
+2026-10-29T07:20:52.3691955Z [ 90%] Linking CXX static library libbenchmark.a
+2026-10-29T07:20:53.1647350Z [ 90%] Built target benchmark
+2026-10-29T07:20:53.1702131Z [ 95%] Building CXX object src/CMakeFiles/benchmark_main.dir/benchmark_main.cc.o
+2026-10-29T07:20:53.4697231Z [100%] Linking CXX static library libbenchmark_main.a
+2026-10-29T07:20:53.5491416Z [100%] Built target benchmark_main
+2026-10-29T07:20:53.5571742Z 
+2026-10-29T07:20:53.5572309Z benchmark/1.6.0: Package '45c50a2141506585e351c9cec87e3f8b70ab72aa' built
+2026-10-29T07:20:53.5572930Z benchmark/1.6.0: Build folder /home/runner/.conan2/p/b/bench6a9a062784c71/b/build/Release
+2026-10-29T07:20:53.5576641Z >>> Package step for benchmark/1.6.0:45c50a2141506585e351c9cec87e3f8b70ab72aa
+2026-10-29T07:20:53.5577209Z Packaging in folder /home/runner/.conan2/p/b/bench6a9a062784c71/p
+2026-10-29T07:20:53.5577597Z Calling package()
+2026-10-29T07:20:53.5585897Z Running CMake.install()
+2026-10-29T07:20:53.5586746Z RUN: cmake --install "/home/runner/.conan2/p/b/bench6a9a062784c71/b/build/Release" --prefix "/home/runner/.conan2/p/b/bench6a9a062784c71/p"
+2026-10-29T07:20:53.5608492Z -- Install configuration: "Release"
+2026-10-29T07:20:53.5745732Z -- Installing: /home/runner/.conan2/p/b/bench6a9a062784c71/p/lib/libbenchmark.a
+2026-10-29T07:20:53.5753340Z -- Installing: /home/runner/.conan2/p/b/bench6a9a062784c71/p/lib/libbenchmark_main.a
+2026-10-29T07:20:53.5754025Z -- Installing: /home/runner/.conan2/p/b/bench6a9a062784c71/p/include/benchmark
+2026-10-29T07:20:53.5754752Z -- Installing: /home/runner/.conan2/p/b/bench6a9a062784c71/p/include/benchmark/benchmark.h
+2026-10-29T07:20:53.5755887Z -- Installing: /home/runner/.conan2/p/b/bench6a9a062784c71/p/lib/cmake/benchmark/benchmarkConfig.cmake
+2026-10-29T07:20:53.5756745Z -- Installing: /home/runner/.conan2/p/b/bench6a9a062784c71/p/lib/cmake/benchmark/benchmarkConfigVersion.cmake
+2026-10-29T07:20:53.5757615Z -- Installing: /home/runner/.conan2/p/b/bench6a9a062784c71/p/lib/pkgconfig/benchmark.pc
+2026-10-29T07:20:53.5758393Z -- Installing: /home/runner/.conan2/p/b/bench6a9a062784c71/p/lib/cmake/benchmark/benchmarkTargets.cmake
+2026-10-29T07:20:53.5759202Z -- Installing: /home/runner/.conan2/p/b/bench6a9a062784c71/p/lib/cmake/benchmark/benchmarkTargets-release.cmake
+2026-10-29T07:20:53.5760009Z -- Installing: /home/runner/.conan2/p/b/bench6a9a062784c71/p/share/doc/benchmark
+2026-10-29T07:20:53.5760886Z -- Installing: /home/runner/.conan2/p/b/bench6a9a062784c71/p/share/doc/benchmark/perf_counters.md
+2026-10-29T07:20:53.5761742Z -- Installing: /home/runner/.conan2/p/b/bench6a9a062784c71/p/share/doc/benchmark/user_guide.md
+2026-10-29T07:20:53.5762498Z -- Installing: /home/runner/.conan2/p/b/bench6a9a062784c71/p/share/doc/benchmark/dependencies.md
+2026-10-29T07:20:53.5763358Z -- Installing: /home/runner/.conan2/p/b/bench6a9a062784c71/p/share/doc/benchmark/platform_specific_build_instructions.md
+2026-10-29T07:20:53.5764239Z -- Installing: /home/runner/.conan2/p/b/bench6a9a062784c71/p/share/doc/benchmark/_config.yml
+2026-10-29T07:20:53.5765014Z -- Installing: /home/runner/.conan2/p/b/bench6a9a062784c71/p/share/doc/benchmark/releasing.md
+2026-10-29T07:20:53.5765758Z -- Installing: /home/runner/.conan2/p/b/bench6a9a062784c71/p/share/doc/benchmark/AssemblyTests.md
+2026-10-29T07:20:53.5766520Z -- Installing: /home/runner/.conan2/p/b/bench6a9a062784c71/p/share/doc/benchmark/tools.md
+2026-10-29T07:20:53.5767118Z -- Installing: /home/runner/.conan2/p/b/bench6a9a062784c71/p/share/doc/benchmark/index.md
+2026-10-29T07:20:53.5768056Z -- Installing: /home/runner/.conan2/p/b/bench6a9a062784c71/p/share/doc/benchmark/random_interleaving.md
+2026-10-29T07:20:53.5771949Z 
+2026-10-29T07:20:53.5795216Z package(): Packaged 1 '.h' file: benchmark.h
+2026-10-29T07:20:53.5795740Z package(): Packaged 2 '.a' files: libbenchmark_main.a, libbenchmark.a
+2026-10-29T07:20:53.5796187Z package(): Packaged 1 file: LICENSE
+2026-10-29T07:20:53.5796512Z Created package revision 23b348c47254aadc95da0f17f4678f0c
+2026-10-29T07:20:53.5797046Z Package '45c50a2141506585e351c9cec87e3f8b70ab72aa' created
+2026-10-29T07:20:53.5797610Z Full package reference: benchmark/1.6.0#9d553897e35ae1c32a87e0b5a70c6563:45c50a2141506585e351c9cec87e3f8b70ab72aa#23b348c47254aadc95da0f17f4678f0c
+2026-10-29T07:20:53.6151097Z Package folder /home/runner/.conan2/p/b/bench6a9a062784c71/p
+2026-10-29T07:20:53.6152601Z 
+2026-10-29T07:20:53.6152988Z -------- Installing package cpuinfo/cci.20220228 (2 of 19) --------
+2026-10-29T07:20:53.6153685Z Building from source cpuinfo/cci.20220228:4d9e6a210329116850cff601cc4db23e561d9a71
+2026-10-29T07:20:53.6154299Z cpuinfo/cci.20220228: settings: os=Linux arch=x86_64 compiler=gcc compiler.version=13 build_type=Release
+2026-10-29T07:20:53.6154830Z cpuinfo/cci.20220228: options: fPIC=True log_level=default shared=False
+2026-10-29T07:20:53.6155217Z >>> Source step
+2026-10-29T07:20:53.6158074Z Getting sources for cpuinfo/cci.20220228
+2026-10-29T07:20:53.6158546Z Calling source() in /home/runner/.conan2/p/cpuin2c6684b8fd980/s/src
+2026-10-29T07:20:54.2347596Z Sources correctly downloaded from https://github.com/pytorch/cpuinfo/archive/6288930068efc8dff4f3c0b95f062fc5ddceba04.tar.gz
+2026-10-29T07:20:54.2348601Z Uncompressing 6288930068efc8dff4f3c0b95f062fc5ddceba04.tar.gz to .
+2026-10-29T07:20:54.3629469Z Copying sources to build folder
+2026-10-29T07:20:54.3867415Z Sources in /home/runner/.conan2/p/b/cpuin5b1a361567e61/b/src
+2026-10-29T07:20:54.3868004Z >>> Generate step for cpuinfo/cci.20220228
+2026-10-29T07:20:54.3868666Z Generators folder: /home/runner/.conan2/p/b/cpuin5b1a361567e61/b/build/Release/generators
+2026-10-29T07:20:54.3869160Z Calling generate() method in recipe
+2026-10-29T07:20:54.4102003Z CMakeToolchain generated: conan_toolchain.cmake
+2026-10-29T07:20:54.4105275Z CMakeToolchain generated: /home/runner/.conan2/p/b/cpuin5b1a361567e61/b/build/Release/generators/CMakePresets.json
+2026-10-29T07:20:54.4106078Z CMakeToolchain generated: /home/runner/.conan2/p/b/cpuin5b1a361567e61/b/src/CMakeUserPresets.json
+2026-10-29T07:20:54.4109559Z Generating aggregated env files
+2026-10-29T07:20:54.4109997Z Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+2026-10-29T07:20:54.4110625Z Building your package in /home/runner/.conan2/p/b/cpuin5b1a361567e61/b
+2026-10-29T07:20:54.4111057Z >>> Build step for cpuinfo/cci.20220228
+2026-10-29T07:20:54.4111373Z cpuinfo/cci.20220228: Calling build()
+2026-10-29T07:20:54.4113419Z cpuinfo/cci.20220228: Running CMake.configure()
+2026-10-29T07:20:54.4115982Z cpuinfo/cci.20220228: RUN: cmake -G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE="generators/conan_toolchain.cmake" -DCMAKE_INSTALL_PREFIX="/home/runner/.conan2/p/b/cpuin5b1a361567e61/p" -DCPUINFO_LIBRARY_TYPE="default" -DCPUINFO_RUNTIME_TYPE="default" -DCPUINFO_LOG_LEVEL="default" -DCLOG_RUNTIME_TYPE="default" -DCMAKE_POLICY_DEFAULT_CMP0091="NEW" -DCMAKE_BUILD_TYPE="Release" "/home/runner/.conan2/p/b/cpuin5b1a361567e61/b/src"
+2026-10-29T07:20:54.4167654Z -- Using Conan toolchain: /home/runner/.conan2/p/b/cpuin5b1a361567e61/b/build/Release/generators/conan_toolchain.cmake
+2026-10-29T07:20:54.4168498Z -- Conan toolchain: Setting CMAKE_POSITION_INDEPENDENT_CODE=ON (options.fPIC)
+2026-10-29T07:20:54.4169143Z -- Conan toolchain: Defining architecture flag: -m64
+2026-10-29T07:20:54.4169602Z -- Conan toolchain: Setting BUILD_SHARED_LIBS = OFF
+2026-10-29T07:20:54.5384522Z -- The C compiler identification is GNU 13.3.0
+2026-10-29T07:20:54.5818414Z -- The CXX compiler identification is GNU 13.3.0
+2026-10-29T07:20:54.6016844Z -- Detecting C compiler ABI info
+2026-10-29T07:20:54.6562314Z -- Detecting C compiler ABI info - done
+2026-10-29T07:20:54.6671583Z -- Check for working C compiler: /usr/bin/gcc - skipped
+2026-10-29T07:20:54.6672939Z -- Detecting C compile features
+2026-10-29T07:20:54.6675985Z -- Detecting C compile features - done
+2026-10-29T07:20:54.6790592Z -- Detecting CXX compiler ABI info
+2026-10-29T07:20:54.7222151Z -- Detecting CXX compiler ABI info - done
+2026-10-29T07:20:54.7333017Z -- Check for working CXX compiler: /usr/bin/g++ - skipped
+2026-10-29T07:20:54.7334949Z -- Detecting CXX compile features
+2026-10-29T07:20:54.7339240Z -- Detecting CXX compile features - done
+2026-10-29T07:20:54.7502161Z -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+2026-10-29T07:20:54.7973776Z -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+2026-10-29T07:20:54.7979737Z -- Found Threads: TRUE
+2026-10-29T07:20:54.8008009Z -- Configuring done (0.4s)
+2026-10-29T07:20:54.8067232Z -- Generating done (0.0s)
+2026-10-29T07:20:54.8069213Z -- Build files have been written to: /home/runner/.conan2/p/b/cpuin5b1a361567e61/b/build/Release
+2026-10-29T07:20:54.8094872Z 
+2026-10-29T07:20:54.8095277Z cpuinfo/cci.20220228: Running CMake.build()
+2026-10-29T07:20:54.8097612Z cpuinfo/cci.20220228: RUN: cmake --build "/home/runner/.conan2/p/b/cpuin5b1a361567e61/b/build/Release" -- -j1
+2026-10-29T07:20:54.8211780Z [  2%] Building C object deps/clog/CMakeFiles/clog.dir/src/clog.c.o
+2026-10-29T07:20:54.9044691Z [  4%] Linking C static library libclog.a
+2026-10-29T07:20:54.9747544Z [  4%] Built target clog
+2026-10-29T07:20:54.9803092Z [  7%] Building C object CMakeFiles/cpuinfo.dir/src/init.c.o
+2026-10-29T07:20:55.0006094Z [  9%] Building C object CMakeFiles/cpuinfo.dir/src/api.c.o
+2026-10-29T07:20:55.0670665Z [ 11%] Building C object CMakeFiles/cpuinfo.dir/src/cache.c.o
+2026-10-29T07:20:55.0821049Z [ 14%] Building C object CMakeFiles/cpuinfo.dir/src/x86/init.c.o
+2026-10-29T07:20:55.1127389Z [ 16%] Building C object CMakeFiles/cpuinfo.dir/src/x86/info.c.o
+2026-10-29T07:20:55.1270674Z [ 19%] Building C object CMakeFiles/cpuinfo.dir/src/x86/vendor.c.o
+2026-10-29T07:20:55.1422928Z [ 21%] Building C object CMakeFiles/cpuinfo.dir/src/x86/uarch.c.o
+2026-10-29T07:20:55.1654809Z [ 23%] Building C object CMakeFiles/cpuinfo.dir/src/x86/name.c.o
+2026-10-29T07:20:55.2338104Z [ 26%] Building C object CMakeFiles/cpuinfo.dir/src/x86/topology.c.o
+2026-10-29T07:20:55.2612190Z [ 28%] Building C object CMakeFiles/cpuinfo.dir/src/x86/isa.c.o
+2026-10-29T07:20:55.3090095Z [ 30%] Building C object CMakeFiles/cpuinfo.dir/src/x86/cache/init.c.o
+2026-10-29T07:20:55.3396222Z [ 33%] Building C object CMakeFiles/cpuinfo.dir/src/x86/cache/descriptor.c.o
+2026-10-29T07:20:55.3786625Z [ 35%] Building C object CMakeFiles/cpuinfo.dir/src/x86/cache/deterministic.c.o
+2026-10-29T07:20:55.4136132Z [ 38%] Building C object CMakeFiles/cpuinfo.dir/src/x86/linux/init.c.o
+2026-10-29T07:20:55.5207150Z [ 40%] Building C object CMakeFiles/cpuinfo.dir/src/x86/linux/cpuinfo.c.o
+2026-10-29T07:20:55.5537468Z [ 42%] Building C object CMakeFiles/cpuinfo.dir/src/linux/smallfile.c.o
+2026-10-29T07:20:55.5897489Z [ 45%] Building C object CMakeFiles/cpuinfo.dir/src/linux/multiline.c.o
+2026-10-29T07:20:55.6229270Z [ 47%] Building C object CMakeFiles/cpuinfo.dir/src/linux/cpulist.c.o
+2026-10-29T07:20:55.6700931Z [ 50%] Building C object CMakeFiles/cpuinfo.dir/src/linux/processors.c.o
+2026-10-29T07:20:55.7247946Z [ 52%] Linking C static library libcpuinfo.a
+2026-10-29T07:20:55.7995523Z [ 52%] Built target cpuinfo
+2026-10-29T07:20:55.8052871Z [ 54%] Building C object CMakeFiles/cpuinfo_internals.dir/src/init.c.o
+2026-10-29T07:20:55.8257246Z [ 57%] Building C object CMakeFiles/cpuinfo_internals.dir/src/api.c.o
+2026-10-29T07:20:55.8873753Z [ 59%] Building C object CMakeFiles/cpuinfo_internals.dir/src/cache.c.o
+2026-10-29T07:20:55.9024806Z [ 61%] Building C object CMakeFiles/cpuinfo_internals.dir/src/x86/init.c.o
+2026-10-29T07:20:55.9436771Z [ 64%] Building C object CMakeFiles/cpuinfo_internals.dir/src/x86/info.c.o
+2026-10-29T07:20:55.9597981Z [ 66%] Building C object CMakeFiles/cpuinfo_internals.dir/src/x86/vendor.c.o
+2026-10-29T07:20:55.9758070Z [ 69%] Building C object CMakeFiles/cpuinfo_internals.dir/src/x86/uarch.c.o
+2026-10-29T07:20:55.9998060Z [ 71%] Building C object CMakeFiles/cpuinfo_internals.dir/src/x86/name.c.o
+2026-10-29T07:20:56.0707581Z [ 73%] Building C object CMakeFiles/cpuinfo_internals.dir/src/x86/topology.c.o
+2026-10-29T07:20:56.0980001Z [ 76%] Building C object CMakeFiles/cpuinfo_internals.dir/src/x86/isa.c.o
+2026-10-29T07:20:56.1462950Z [ 78%] Building C object CMakeFiles/cpuinfo_internals.dir/src/x86/cache/init.c.o
+2026-10-29T07:20:56.1823100Z [ 80%] Building C object CMakeFiles/cpuinfo_internals.dir/src/x86/cache/descriptor.c.o
+2026-10-29T07:20:56.2231792Z [ 83%] Building C object CMakeFiles/cpuinfo_internals.dir/src/x86/cache/deterministic.c.o
+2026-10-29T07:20:56.2591649Z [ 85%] Building C object CMakeFiles/cpuinfo_internals.dir/src/x86/linux/init.c.o
+2026-10-29T07:20:56.3626164Z [ 88%] Building C object CMakeFiles/cpuinfo_internals.dir/src/x86/linux/cpuinfo.c.o
+2026-10-29T07:20:56.3969412Z [ 90%] Building C object CMakeFiles/cpuinfo_internals.dir/src/linux/smallfile.c.o
+2026-10-29T07:20:56.4277283Z [ 92%] Building C object CMakeFiles/cpuinfo_internals.dir/src/linux/multiline.c.o
+2026-10-29T07:20:56.4615812Z [ 95%] Building C object CMakeFiles/cpuinfo_internals.dir/src/linux/cpulist.c.o
+2026-10-29T07:20:56.5095875Z [ 97%] Building C object CMakeFiles/cpuinfo_internals.dir/src/linux/processors.c.o
+2026-10-29T07:20:56.5627616Z [100%] Linking C static library libcpuinfo_internals.a
+2026-10-29T07:20:56.6382583Z [100%] Built target cpuinfo_internals
+2026-10-29T07:20:56.6833561Z 
+2026-10-29T07:20:56.6834841Z cpuinfo/cci.20220228: Package '4d9e6a210329116850cff601cc4db23e561d9a71' built
+2026-10-29T07:20:56.6835662Z cpuinfo/cci.20220228: Build folder /home/runner/.conan2/p/b/cpuin5b1a361567e61/b/build/Release
+2026-10-29T07:20:56.6837058Z >>> Package step for cpuinfo/cci.20220228:4d9e6a210329116850cff601cc4db23e561d9a71
+2026-10-29T07:20:56.6837803Z Packaging in folder /home/runner/.conan2/p/b/cpuin5b1a361567e61/p
+2026-10-29T07:20:56.6838360Z Calling package()
+2026-10-29T07:20:56.6858892Z Running CMake.install()
+2026-10-29T07:20:56.6859731Z RUN: cmake --install "/home/runner/.conan2/p/b/cpuin5b1a361567e61/b/build/Release" --prefix "/home/runner/.conan2/p/b/cpuin5b1a361567e61/p"
+2026-10-29T07:20:56.6884356Z -- Install configuration: "Release"
+2026-10-29T07:20:56.6885424Z -- Installing: /home/runner/.conan2/p/b/cpuin5b1a361567e61/p/lib/libcpuinfo.a
+2026-10-29T07:20:56.6886882Z -- Installing: /home/runner/.conan2/p/b/cpuin5b1a361567e61/p/include/cpuinfo.h
+2026-10-29T07:20:56.6887939Z -- Installing: /home/runner/.conan2/p/b/cpuin5b1a361567e61/p/lib/pkgconfig/libcpuinfo.pc
+2026-10-29T07:20:56.6889325Z -- Installing: /home/runner/.conan2/p/b/cpuin5b1a361567e61/p/lib/libclog.a
+2026-10-29T07:20:56.6890062Z -- Installing: /home/runner/.conan2/p/b/cpuin5b1a361567e61/p/include/clog.h
+2026-10-29T07:20:56.6895889Z 
+2026-10-29T07:20:56.6903789Z package(): Packaged 2 '.h' files: cpuinfo.h, clog.h
+2026-10-29T07:20:56.6904276Z package(): Packaged 2 '.a' files: libcpuinfo.a, libclog.a
+2026-10-29T07:20:56.6904752Z package(): Packaged 1 file: LICENSE
+2026-10-29T07:20:56.6905110Z Created package revision 9e8f8521bf0eb0828441f374b74b0701
+2026-10-29T07:20:56.6905641Z Package '4d9e6a210329116850cff601cc4db23e561d9a71' created
+2026-10-29T07:20:56.6906299Z Full package reference: cpuinfo/cci.20220228#4720655746a750c454ca046065334ded:4d9e6a210329116850cff601cc4db23e561d9a71#9e8f8521bf0eb0828441f374b74b0701
+2026-10-29T07:20:56.6963706Z Package folder /home/runner/.conan2/p/b/cpuin5b1a361567e61/p
+2026-10-29T07:20:56.6965148Z 
+2026-10-29T07:20:56.6965440Z -------- Installing package gtest/1.13.0 (3 of 19) --------
+2026-10-29T07:20:56.6965912Z Building from source gtest/1.13.0:c961d8c62795395aeeebf1696bec18f00505c7ea
+2026-10-29T07:20:56.6967530Z gtest/1.13.0: settings: os=Linux arch=x86_64 compiler=gcc compiler.cppstd=20 compiler.libcxx=libstdc++11 compiler.version=13 build_type=Release
+2026-10-29T07:20:56.6968322Z gtest/1.13.0: options: build_gmock=True disable_pthreads=False fPIC=True hide_symbols=False shared=False
+2026-10-29T07:20:56.6968927Z >>> Source step
+2026-10-29T07:20:56.6971233Z Getting sources for gtest/1.13.0
+2026-10-29T07:20:56.6971769Z Calling source() in /home/runner/.conan2/p/gtest88486e1cfb53c/s/src
+2026-10-29T07:20:56.9154881Z Sources correctly downloaded from https://github.com/google/googletest/archive/refs/tags/v1.13.0.tar.gz
+2026-10-29T07:20:56.9156053Z Uncompressing v1.13.0.tar.gz to .
+2026-10-29T07:20:56.9552171Z Copying sources to build folder
+2026-10-29T07:20:56.9668667Z Sources in /home/runner/.conan2/p/b/gtest7d426523b1e2f/b/src
+2026-10-29T07:20:56.9669530Z >>> Generate step for gtest/1.13.0
+2026-10-29T07:20:56.9670168Z Generators folder: /home/runner/.conan2/p/b/gtest7d426523b1e2f/b/build/Release/generators
+2026-10-29T07:20:56.9670990Z Calling generate() method in recipe
+2026-10-29T07:20:56.9956776Z CMakeToolchain generated: conan_toolchain.cmake
+2026-10-29T07:20:56.9960045Z CMakeToolchain generated: /home/runner/.conan2/p/b/gtest7d426523b1e2f/b/build/Release/generators/CMakePresets.json
+2026-10-29T07:20:56.9961577Z CMakeToolchain generated: /home/runner/.conan2/p/b/gtest7d426523b1e2f/b/src/CMakeUserPresets.json
+2026-10-29T07:20:56.9965493Z Generating aggregated env files
+2026-10-29T07:20:56.9966036Z Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+2026-10-29T07:20:56.9966837Z Building your package in /home/runner/.conan2/p/b/gtest7d426523b1e2f/b
+2026-10-29T07:20:56.9967415Z >>> Build step for gtest/1.13.0
+2026-10-29T07:20:56.9967868Z gtest/1.13.0: Calling build()
+2026-10-29T07:20:56.9969490Z gtest/1.13.0: Running CMake.configure()
+2026-10-29T07:20:56.9971868Z gtest/1.13.0: RUN: cmake -G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE="generators/conan_toolchain.cmake" -DCMAKE_INSTALL_PREFIX="/home/runner/.conan2/p/b/gtest7d426523b1e2f/p" -DCMAKE_POLICY_DEFAULT_CMP0091="NEW" -DCMAKE_BUILD_TYPE="Release" "/home/runner/.conan2/p/b/gtest7d426523b1e2f/b/src"
+2026-10-29T07:20:57.0023547Z -- Using Conan toolchain: /home/runner/.conan2/p/b/gtest7d426523b1e2f/b/build/Release/generators/conan_toolchain.cmake
+2026-10-29T07:20:57.0024626Z -- Conan toolchain: Setting CMAKE_POSITION_INDEPENDENT_CODE=ON (options.fPIC)
+2026-10-29T07:20:57.0025390Z -- Conan toolchain: Defining architecture flag: -m64
+2026-10-29T07:20:57.0025918Z -- Conan toolchain: C++ Standard 20 with extensions OFF
+2026-10-29T07:20:57.0026487Z -- Conan toolchain: Setting BUILD_SHARED_LIBS = OFF
+2026-10-29T07:20:57.0348839Z -- The C compiler identification is GNU 13.3.0
+2026-10-29T07:20:57.0727623Z -- The CXX compiler identification is GNU 13.3.0
+2026-10-29T07:20:57.0782299Z -- Detecting C compiler ABI info
+2026-10-29T07:20:57.1164634Z -- Detecting C compiler ABI info - done
+2026-10-29T07:20:57.1288957Z -- Check for working C compiler: /usr/bin/gcc - skipped
+2026-10-29T07:20:57.1291341Z -- Detecting C compile features
+2026-10-29T07:20:57.1294864Z -- Detecting C compile features - done
+2026-10-29T07:20:57.1375205Z -- Detecting CXX compiler ABI info
+2026-10-29T07:20:57.1882513Z -- Detecting CXX compiler ABI info - done
+2026-10-29T07:20:57.2010050Z -- Check for working CXX compiler: /usr/bin/g++ - skipped
+2026-10-29T07:20:57.2012554Z -- Detecting CXX compile features
+2026-10-29T07:20:57.2017565Z -- Detecting CXX compile features - done
+2026-10-29T07:20:57.3597927Z -- Found Python: /opt/hostedtoolcache/Python/3.12.15/x64/bin/python3.12 (found version "3.12.15") found components: Interpreter
+2026-10-29T07:20:57.3628981Z -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+2026-10-29T07:20:57.4085607Z -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+2026-10-29T07:20:57.4093223Z -- Found Threads: TRUE
+2026-10-29T07:20:57.4157915Z -- Configuring done (0.4s)
+2026-10-29T07:20:57.4214224Z -- Generating done (0.0s)
+2026-10-29T07:20:57.4216549Z -- Build files have been written to: /home/runner/.conan2/p/b/gtest7d426523b1e2f/b/build/Release
+2026-10-29T07:20:57.4263711Z 
+2026-10-29T07:20:57.4264197Z gtest/1.13.0: Running CMake.build()
+2026-10-29T07:20:57.4266702Z gtest/1.13.0: RUN: cmake --build "/home/runner/.conan2/p/b/gtest7d426523b1e2f/b/build/Release" -- -j1
+2026-10-29T07:20:57.4391752Z [ 12%] Building CXX object googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o
+2026-10-29T07:21:03.9492756Z [ 25%] Linking CXX static library ../lib/libgtest.a
+2026-10-29T07:21:04.0269308Z [ 25%] Built target gtest
+2026-10-29T07:21:04.0323110Z [ 37%] Building CXX object googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o
+2026-10-29T07:21:06.4324196Z [ 50%] Linking CXX static library ../lib/libgmock.a
+2026-10-29T07:21:06.5052412Z [ 50%] Built target gmock
+2026-10-29T07:21:06.5105978Z [ 62%] Building CXX object googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o
+2026-10-29T07:21:07.4028771Z [ 75%] Linking CXX static library ../lib/libgmock_main.a
+2026-10-29T07:21:07.4800026Z [ 75%] Built target gmock_main
+2026-10-29T07:21:07.4861539Z [ 87%] Building CXX object googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o
+2026-10-29T07:21:08.1590138Z [100%] Linking CXX static library ../lib/libgtest_main.a
+2026-10-29T07:21:08.2321465Z [100%] Built target gtest_main
+2026-10-29T07:21:08.2367370Z 
+2026-10-29T07:21:08.2368146Z gtest/1.13.0: Package 'c961d8c62795395aeeebf1696bec18f00505c7ea' built
+2026-10-29T07:21:08.2368789Z gtest/1.13.0: Build folder /home/runner/.conan2/p/b/gtest7d426523b1e2f/b/build/Release
+2026-10-29T07:21:08.2381163Z >>> Package step for gtest/1.13.0:c961d8c62795395aeeebf1696bec18f00505c7ea
+2026-10-29T07:21:08.2381826Z Packaging in folder /home/runner/.conan2/p/b/gtest7d426523b1e2f/p
+2026-10-29T07:21:08.2382337Z Calling package()
+2026-10-29T07:21:08.2382991Z Running CMake.install()
+2026-10-29T07:21:08.2384128Z RUN: cmake --install "/home/runner/.conan2/p/b/gtest7d426523b1e2f/b/build/Release" --prefix "/home/runner/.conan2/p/b/gtest7d426523b1e2f/p"
+2026-10-29T07:21:08.2407351Z -- Install configuration: "Release"
+2026-10-29T07:21:08.2408685Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include
+2026-10-29T07:21:08.2409546Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gmock
+2026-10-29T07:21:08.2410224Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gmock/gmock-actions.h
+2026-10-29T07:21:08.2412332Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gmock/gmock-more-matchers.h
+2026-10-29T07:21:08.2413158Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gmock/gmock-cardinalities.h
+2026-10-29T07:21:08.2413887Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gmock/internal
+2026-10-29T07:21:08.2414674Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gmock/internal/custom
+2026-10-29T07:21:08.2415510Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gmock/internal/custom/gmock-generated-actions.h
+2026-10-29T07:21:08.2416386Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gmock/internal/custom/gmock-port.h
+2026-10-29T07:21:08.2417277Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gmock/internal/custom/README.md
+2026-10-29T07:21:08.2418112Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gmock/internal/custom/gmock-matchers.h
+2026-10-29T07:21:08.2418992Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gmock/internal/gmock-pp.h
+2026-10-29T07:21:08.2419795Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gmock/internal/gmock-port.h
+2026-10-29T07:21:08.2420795Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gmock/internal/gmock-internal-utils.h
+2026-10-29T07:21:08.2421647Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gmock/gmock-more-actions.h
+2026-10-29T07:21:08.2422392Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gmock/gmock-spec-builders.h
+2026-10-29T07:21:08.2423115Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gmock/gmock.h
+2026-10-29T07:21:08.2423830Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gmock/gmock-function-mocker.h
+2026-10-29T07:21:08.2424816Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gmock/gmock-matchers.h
+2026-10-29T07:21:08.2425588Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gmock/gmock-nice-strict.h
+2026-10-29T07:21:08.2426239Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/lib/libgmock.a
+2026-10-29T07:21:08.2426948Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/lib/libgmock_main.a
+2026-10-29T07:21:08.2427719Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/lib/pkgconfig/gmock.pc
+2026-10-29T07:21:08.2428500Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/lib/pkgconfig/gmock_main.pc
+2026-10-29T07:21:08.2431716Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/lib/cmake/GTest/GTestTargets.cmake
+2026-10-29T07:21:08.2432540Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/lib/cmake/GTest/GTestTargets-release.cmake
+2026-10-29T07:21:08.2433440Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/lib/cmake/GTest/GTestConfigVersion.cmake
+2026-10-29T07:21:08.2434211Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/lib/cmake/GTest/GTestConfig.cmake
+2026-10-29T07:21:08.2434941Z -- Up-to-date: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include
+2026-10-29T07:21:08.2435598Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gtest
+2026-10-29T07:21:08.2436282Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gtest/gtest-matchers.h
+2026-10-29T07:21:08.2437069Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gtest/gtest-param-test.h
+2026-10-29T07:21:08.2437744Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gtest/gtest.h
+2026-10-29T07:21:08.2438482Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gtest/gtest-death-test.h
+2026-10-29T07:21:08.2439217Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gtest/gtest-message.h
+2026-10-29T07:21:08.2439935Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gtest/internal
+2026-10-29T07:21:08.2440905Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gtest/internal/gtest-param-util.h
+2026-10-29T07:21:08.2441681Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gtest/internal/custom
+2026-10-29T07:21:08.2442492Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gtest/internal/custom/gtest.h
+2026-10-29T07:21:08.2443326Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gtest/internal/custom/gtest-port.h
+2026-10-29T07:21:08.2444189Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gtest/internal/custom/gtest-printers.h
+2026-10-29T07:21:08.2445070Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gtest/internal/custom/README.md
+2026-10-29T07:21:08.2445940Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gtest/internal/gtest-death-test-internal.h
+2026-10-29T07:21:08.2446822Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gtest/internal/gtest-filepath.h
+2026-10-29T07:21:08.2447642Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gtest/internal/gtest-string.h
+2026-10-29T07:21:08.2448404Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gtest/internal/gtest-port.h
+2026-10-29T07:21:08.2449292Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gtest/internal/gtest-port-arch.h
+2026-10-29T07:21:08.2450143Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gtest/internal/gtest-type-util.h
+2026-10-29T07:21:08.2451110Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gtest/internal/gtest-internal.h
+2026-10-29T07:21:08.2451807Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gtest/gtest-spi.h
+2026-10-29T07:21:08.2452496Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gtest/gtest-printers.h
+2026-10-29T07:21:08.2453281Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gtest/gtest_pred_impl.h
+2026-10-29T07:21:08.2454191Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gtest/gtest_prod.h
+2026-10-29T07:21:08.2455095Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gtest/gtest-assertion-result.h
+2026-10-29T07:21:08.2455847Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gtest/gtest-typed-test.h
+2026-10-29T07:21:08.2461395Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/include/gtest/gtest-test-part.h
+2026-10-29T07:21:08.2466372Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/lib/libgtest.a
+2026-10-29T07:21:08.2466928Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/lib/libgtest_main.a
+2026-10-29T07:21:08.2467574Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/lib/pkgconfig/gtest.pc
+2026-10-29T07:21:08.2468151Z -- Installing: /home/runner/.conan2/p/b/gtest7d426523b1e2f/p/lib/pkgconfig/gtest_main.pc
+2026-10-29T07:21:08.2468478Z 
+2026-10-29T07:21:08.2513114Z package(): Packaged 38 '.h' files
+2026-10-29T07:21:08.2513683Z package(): Packaged 2 '.md' files: README.md, README.md
+2026-10-29T07:21:08.2514122Z package(): Packaged 4 '.a' files: libgmock_main.a, libgtest_main.a, libgtest.a, libgmock.a
+2026-10-29T07:21:08.2514522Z package(): Packaged 1 file: LICENSE
+2026-10-29T07:21:08.2514858Z Created package revision 74e4052716c66d55e20ed5060b1773b4
+2026-10-29T07:21:08.2515238Z Package 'c961d8c62795395aeeebf1696bec18f00505c7ea' created
+2026-10-29T07:21:08.2515818Z Full package reference: gtest/1.13.0#7be70f54d7d7a61bbfd1d3c16c7e6d10:c961d8c62795395aeeebf1696bec18f00505c7ea#74e4052716c66d55e20ed5060b1773b4
+2026-10-29T07:21:08.2568863Z Package folder /home/runner/.conan2/p/b/gtest7d426523b1e2f/p
+2026-10-29T07:21:08.2574928Z 
+2026-10-29T07:21:08.2575563Z -------- Installing package ms-gsl/4.0.0 (5 of 19) --------
+2026-10-29T07:21:08.2576079Z Building from source ms-gsl/4.0.0:da39a3ee5e6b4b0d3255bfef95601890afd80709
+2026-10-29T07:21:08.2576418Z >>> Source step
+2026-10-29T07:21:08.2578387Z Getting sources for ms-gsl/4.0.0
+2026-10-29T07:21:08.2578903Z Calling source() in /home/runner/.conan2/p/ms-gsff8651ea93050/s/src
+2026-10-29T07:21:08.4689710Z Sources correctly downloaded from https://github.com/microsoft/GSL/archive/v4.0.0.tar.gz
+2026-10-29T07:21:08.4742775Z Uncompressing v4.0.0.tar.gz to /home/runner/.conan2/p/ms-gsff8651ea93050/s/src
+2026-10-29T07:21:08.4743470Z Sources in /home/runner/.conan2/p/ms-gsff8651ea93050/s/src
+2026-10-29T07:21:08.4744180Z >>> Generate step for ms-gsl/4.0.0
+2026-10-29T07:21:08.4744759Z Generators folder: /home/runner/.conan2/p/b/ms-gs63ab2d6447f75/b/build-release/conan
+2026-10-29T07:21:08.4745380Z Calling generate() method in recipe
+2026-10-29T07:21:08.4747551Z Generating aggregated env files
+2026-10-29T07:21:08.4748028Z Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+2026-10-29T07:21:08.4748701Z Building your package in /home/runner/.conan2/p/b/ms-gs63ab2d6447f75/b
+2026-10-29T07:21:08.4749230Z >>> Build step for ms-gsl/4.0.0
+2026-10-29T07:21:08.4749672Z ms-gsl/4.0.0: Calling build()
+2026-10-29T07:21:08.4750194Z ms-gsl/4.0.0: Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' built
+2026-10-29T07:21:08.4751111Z ms-gsl/4.0.0: Build folder /home/runner/.conan2/p/b/ms-gs63ab2d6447f75/b/build-release
+2026-10-29T07:21:08.4751836Z >>> Package step for ms-gsl/4.0.0:da39a3ee5e6b4b0d3255bfef95601890afd80709
+2026-10-29T07:21:08.4752455Z Packaging in folder /home/runner/.conan2/p/b/ms-gs63ab2d6447f75/p
+2026-10-29T07:21:08.4752964Z Calling package()
+2026-10-29T07:21:08.4768885Z package(): Packaged 1 '.txt' file: CMakeLists.txt
+2026-10-29T07:21:08.4769340Z package(): Packaged 16 files
+2026-10-29T07:21:08.4769835Z Created package revision b598077be9be7a01e859da8eca72dee0
+2026-10-29T07:21:08.4770469Z Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' created
+2026-10-29T07:21:08.4771234Z Full package reference: ms-gsl/4.0.0#14d2ec35229ee060bb38ba7f18b0bce8:da39a3ee5e6b4b0d3255bfef95601890afd80709#b598077be9be7a01e859da8eca72dee0
+2026-10-29T07:21:08.4791351Z Package folder /home/runner/.conan2/p/b/ms-gs63ab2d6447f75/p
+2026-10-29T07:21:08.4792065Z 
+2026-10-29T07:21:08.4792392Z -------- Installing package platform-converters/0.2.0 (6 of 19) --------
+2026-10-29T07:21:08.4793177Z Building from source platform-converters/0.2.0:da39a3ee5e6b4b0d3255bfef95601890afd80709
+2026-10-29T07:21:08.4793826Z >>> Source step
+2026-10-29T07:21:08.4797573Z Getting sources for platform-converters/0.2.0
+2026-10-29T07:21:08.4798113Z Calling source() in /home/runner/.conan2/p/platf07f1970403490/s/src
+2026-10-29T07:21:08.6913153Z Sources correctly downloaded from https://github.com/linksplatform/Converters/releases/download/cpp_0.2.0/platform.converters_0.2.0.zip
+2026-10-29T07:21:08.6913787Z Uncompressing platform.converters_0.2.0.zip to .
+2026-10-29T07:21:08.6918218Z Unzipping 22.2KB
+2026-10-29T07:21:08.6926819Z 
+2026-10-29T07:21:08.6930223Z Sources in /home/runner/.conan2/p/platf07f1970403490/s/src
+2026-10-29T07:21:08.6930852Z >>> Generate step for platform-converters/0.2.0
+2026-10-29T07:21:08.6931372Z Generators folder: /home/runner/.conan2/p/b/platf2b419c24e7bfd/b/build/conan
+2026-10-29T07:21:08.6936116Z Generating aggregated env files
+2026-10-29T07:21:08.6936987Z Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+2026-10-29T07:21:08.6937587Z Building your package in /home/runner/.conan2/p/b/platf2b419c24e7bfd/b
+2026-10-29T07:21:08.6938156Z >>> Build step for platform-converters/0.2.0
+2026-10-29T07:21:08.6941319Z platform-converters/0.2.0: Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' built
+2026-10-29T07:21:08.6954660Z platform-converters/0.2.0: Build folder /home/runner/.conan2/p/b/platf2b419c24e7bfd/b/build
+2026-10-29T07:21:08.6955303Z >>> Package step for platform-converters/0.2.0:da39a3ee5e6b4b0d3255bfef95601890afd80709
+2026-10-29T07:21:08.6955748Z Packaging in folder /home/runner/.conan2/p/b/platf2b419c24e7bfd/p
+2026-10-29T07:21:08.6956168Z Calling package()
+2026-10-29T07:21:08.6956598Z package(): Packaged 12 '.h' files
+2026-10-29T07:21:08.6956960Z Created package revision adf5a6a6a0d890617af517db1cc3bbc5
+2026-10-29T07:21:08.6957347Z Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' created
+2026-10-29T07:21:08.6958055Z Full package reference: platform-converters/0.2.0#e5210600d15a224117023e6b4fb0c1be:da39a3ee5e6b4b0d3255bfef95601890afd80709#adf5a6a6a0d890617af517db1cc3bbc5
+2026-10-29T07:21:08.6969174Z Package folder /home/runner/.conan2/p/b/platf2b419c24e7bfd/p
+2026-10-29T07:21:08.6969854Z 
+2026-10-29T07:21:08.6970189Z -------- Installing package platform-delegates/0.3.7 (7 of 19) --------
+2026-10-29T07:21:08.6970980Z Building from source platform-delegates/0.3.7:da39a3ee5e6b4b0d3255bfef95601890afd80709
+2026-10-29T07:21:08.6971510Z >>> Source step
+2026-10-29T07:21:08.6975049Z Getting sources for platform-delegates/0.3.7
+2026-10-29T07:21:08.6975567Z Calling source() in /home/runner/.conan2/p/platff04892e2dfb10/s/src
+2026-10-29T07:21:08.9649837Z Sources correctly downloaded from https://github.com/linksplatform/Delegates/archive/refs/tags/cpp_0.3.7.zip
+2026-10-29T07:21:08.9650805Z Uncompressing cpp_0.3.7.zip to .
+2026-10-29T07:21:08.9651935Z Unzipping 84.7KB
+2026-10-29T07:21:08.9667313Z 
+2026-10-29T07:21:08.9671226Z Sources in /home/runner/.conan2/p/platff04892e2dfb10/s/src
+2026-10-29T07:21:08.9672202Z >>> Generate step for platform-delegates/0.3.7
+2026-10-29T07:21:08.9672966Z Generators folder: /home/runner/.conan2/p/b/platfe6adea288d284/b/build/conan
+2026-10-29T07:21:08.9676694Z Generating aggregated env files
+2026-10-29T07:21:08.9677268Z Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+2026-10-29T07:21:08.9677924Z Building your package in /home/runner/.conan2/p/b/platfe6adea288d284/b
+2026-10-29T07:21:08.9678445Z >>> Build step for platform-delegates/0.3.7
+2026-10-29T07:21:08.9679089Z platform-delegates/0.3.7: Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' built
+2026-10-29T07:21:08.9679886Z platform-delegates/0.3.7: Build folder /home/runner/.conan2/p/b/platfe6adea288d284/b/build
+2026-10-29T07:21:08.9680852Z >>> Package step for platform-delegates/0.3.7:da39a3ee5e6b4b0d3255bfef95601890afd80709
+2026-10-29T07:21:08.9681733Z Packaging in folder /home/runner/.conan2/p/b/platfe6adea288d284/p
+2026-10-29T07:21:08.9682247Z Calling package()
+2026-10-29T07:21:08.9688709Z package(): Packaged 3 '.h' files: Platform.Delegates.Delegate.h, Platform.Delegates.h, Platform.Delegates.MulticastDelegate.h
+2026-10-29T07:21:08.9689370Z package(): Packaged 1 file: LICENSE
+2026-10-29T07:21:08.9690057Z Created package revision e51ebaea1ce5334ac62fb7ecaaf705bf
+2026-10-29T07:21:08.9690668Z Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' created
+2026-10-29T07:21:08.9691493Z Full package reference: platform-delegates/0.3.7#fa6d4052c342718034aaa3fefe278fd0:da39a3ee5e6b4b0d3255bfef95601890afd80709#e51ebaea1ce5334ac62fb7ecaaf705bf
+2026-10-29T07:21:08.9708121Z Package folder /home/runner/.conan2/p/b/platfe6adea288d284/p
+2026-10-29T07:21:08.9708623Z 
+2026-10-29T07:21:08.9708904Z -------- Installing package platform-equality/0.0.1 (8 of 19) --------
+2026-10-29T07:21:08.9709636Z Building from source platform-equality/0.0.1:da39a3ee5e6b4b0d3255bfef95601890afd80709
+2026-10-29T07:21:08.9710173Z >>> Source step
+2026-10-29T07:21:08.9713896Z Getting sources for platform-equality/0.0.1
+2026-10-29T07:21:08.9714594Z Calling source() in /home/runner/.conan2/p/platfbf8c1581d4676/s/src
+2026-10-29T07:21:09.2236255Z Sources correctly downloaded from https://github.com/linksplatform/Equality/archive/refs/tags/0.0.1.zip
+2026-10-29T07:21:09.2236910Z Uncompressing 0.0.1.zip to .
+2026-10-29T07:21:09.2237427Z Unzipping 32.7KB
+2026-10-29T07:21:09.2247479Z 
+2026-10-29T07:21:09.2251497Z Sources in /home/runner/.conan2/p/platfbf8c1581d4676/s/src
+2026-10-29T07:21:09.2252045Z >>> Generate step for platform-equality/0.0.1
+2026-10-29T07:21:09.2252848Z Generators folder: /home/runner/.conan2/p/b/platf050353225892d/b/build-release/conan
+2026-10-29T07:21:09.2256360Z Generating aggregated env files
+2026-10-29T07:21:09.2256926Z Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+2026-10-29T07:21:09.2257583Z Building your package in /home/runner/.conan2/p/b/platf050353225892d/b
+2026-10-29T07:21:09.2258083Z >>> Build step for platform-equality/0.0.1
+2026-10-29T07:21:09.2258688Z platform-equality/0.0.1: Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' built
+2026-10-29T07:21:09.2259480Z platform-equality/0.0.1: Build folder /home/runner/.conan2/p/b/platf050353225892d/b/build-release
+2026-10-29T07:21:09.2260259Z >>> Package step for platform-equality/0.0.1:da39a3ee5e6b4b0d3255bfef95601890afd80709
+2026-10-29T07:21:09.2261216Z Packaging in folder /home/runner/.conan2/p/b/platf050353225892d/p
+2026-10-29T07:21:09.2261704Z Calling package()
+2026-10-29T07:21:09.2268579Z package(): Packaged 4 '.h' files: Platform.Equality.h, Platform.Equality.Range.h, Platform.Equality.Any.h, Platform.Equality.EqualityComparerFunctionType.h
+2026-10-29T07:21:09.2269317Z package(): Packaged 1 file: LICENSE
+2026-10-29T07:21:09.2269838Z Created package revision 3a5ac2fd4b138217270bcbfc0d560603
+2026-10-29T07:21:09.2270459Z Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' created
+2026-10-29T07:21:09.2271680Z Full package reference: platform-equality/0.0.1#4c269c237c780cf97734b306fef30799:da39a3ee5e6b4b0d3255bfef95601890afd80709#3a5ac2fd4b138217270bcbfc0d560603
+2026-10-29T07:21:09.2290062Z Package folder /home/runner/.conan2/p/b/platf050353225892d/p
+2026-10-29T07:21:09.2290908Z 
+2026-10-29T07:21:09.2291235Z -------- Installing package platform-interfaces/0.3.41 (9 of 19) --------
+2026-10-29T07:21:09.2292033Z Building from source platform-interfaces/0.3.41:da39a3ee5e6b4b0d3255bfef95601890afd80709
+2026-10-29T07:21:09.2292541Z >>> Source step
+2026-10-29T07:21:09.2296065Z Getting sources for platform-interfaces/0.3.41
+2026-10-29T07:21:09.2301510Z Calling source() in /home/runner/.conan2/p/platf07908f02326eb/s/src
+2026-10-29T07:21:09.4795494Z Sources correctly downloaded from https://github.com/linksplatform/Interfaces/releases/download/cpp_0.3.41/platform.interfaces_0.3.41.zip
+2026-10-29T07:21:09.4796395Z Uncompressing platform.interfaces_0.3.41.zip to .
+2026-10-29T07:21:09.4797127Z Unzipping 34.2KB
+2026-10-29T07:21:09.4812075Z 
+2026-10-29T07:21:09.6389392Z Sources correctly downloaded from https://raw.githubusercontent.com/linksplatform/Interfaces/cpp_0.3.41/LICENSE
+2026-10-29T07:21:09.6391996Z Sources in /home/runner/.conan2/p/platf07908f02326eb/s/src
+2026-10-29T07:21:09.6392527Z >>> Generate step for platform-interfaces/0.3.41
+2026-10-29T07:21:09.6393251Z Generators folder: /home/runner/.conan2/p/b/platf45ee5e1154740/b/build-release/conan
+2026-10-29T07:21:09.6395966Z Generating aggregated env files
+2026-10-29T07:21:09.6396468Z Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+2026-10-29T07:21:09.6397030Z Building your package in /home/runner/.conan2/p/b/platf45ee5e1154740/b
+2026-10-29T07:21:09.6397564Z >>> Build step for platform-interfaces/0.3.41
+2026-10-29T07:21:09.6398110Z platform-interfaces/0.3.41: Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' built
+2026-10-29T07:21:09.6398662Z platform-interfaces/0.3.41: Build folder /home/runner/.conan2/p/b/platf45ee5e1154740/b/build-release
+2026-10-29T07:21:09.6399196Z >>> Package step for platform-interfaces/0.3.41:da39a3ee5e6b4b0d3255bfef95601890afd80709
+2026-10-29T07:21:09.6399693Z Packaging in folder /home/runner/.conan2/p/b/platf45ee5e1154740/p
+2026-10-29T07:21:09.6400025Z Calling package()
+2026-10-29T07:21:09.6421188Z package(): Packaged 34 '.h' files
+2026-10-29T07:21:09.6421538Z package(): Packaged 1 file: LICENSE
+2026-10-29T07:21:09.6421927Z Created package revision 89402c1ce8c65d2b3bff73d1fad91950
+2026-10-29T07:21:09.6422306Z Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' created
+2026-10-29T07:21:09.6422916Z Full package reference: platform-interfaces/0.3.41#2749e377587371071b89193878f3ad93:da39a3ee5e6b4b0d3255bfef95601890afd80709#89402c1ce8c65d2b3bff73d1fad91950
+2026-10-29T07:21:09.6438556Z Package folder /home/runner/.conan2/p/b/platf45ee5e1154740/p
+2026-10-29T07:21:09.6439126Z 
+2026-10-29T07:21:09.6439403Z -------- Installing package platform-numbers/0.1.0 (10 of 19) --------
+2026-10-29T07:21:09.6440106Z Building from source platform-numbers/0.1.0:da39a3ee5e6b4b0d3255bfef95601890afd80709
+2026-10-29T07:21:09.6440667Z >>> Source step
+2026-10-29T07:21:09.6443960Z Getting sources for platform-numbers/0.1.0
+2026-10-29T07:21:09.6444432Z Calling source() in /home/runner/.conan2/p/platf4e4a40c6d8bf5/s/src
+2026-10-29T07:21:09.8309129Z Sources correctly downloaded from https://github.com/linksplatform/Numbers/releases/download/cpp_0.1.0/platform.numbers_0.1.0.zip
+2026-10-29T07:21:09.8310917Z Uncompressing platform.numbers_0.1.0.zip to .
+2026-10-29T07:21:09.8311306Z Unzipping 19.7KB
+2026-10-29T07:21:09.8316130Z 
+2026-10-29T07:21:09.8320516Z Sources in /home/runner/.conan2/p/platf4e4a40c6d8bf5/s/src
+2026-10-29T07:21:09.8320965Z >>> Generate step for platform-numbers/0.1.0
+2026-10-29T07:21:09.8321387Z Generators folder: /home/runner/.conan2/p/b/platfa4ac70bc1f651/b/build-release/conan
+2026-10-29T07:21:09.8325804Z Generating aggregated env files
+2026-10-29T07:21:09.8326282Z Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+2026-10-29T07:21:09.8326850Z Building your package in /home/runner/.conan2/p/b/platfa4ac70bc1f651/b
+2026-10-29T07:21:09.8327306Z >>> Build step for platform-numbers/0.1.0
+2026-10-29T07:21:09.8327722Z platform-numbers/0.1.0: Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' built
+2026-10-29T07:21:09.8328294Z platform-numbers/0.1.0: Build folder /home/runner/.conan2/p/b/platfa4ac70bc1f651/b/build-release
+2026-10-29T07:21:09.8328828Z >>> Package step for platform-numbers/0.1.0:da39a3ee5e6b4b0d3255bfef95601890afd80709
+2026-10-29T07:21:09.8329342Z Packaging in folder /home/runner/.conan2/p/b/platfa4ac70bc1f651/p
+2026-10-29T07:21:09.8329723Z Calling package()
+2026-10-29T07:21:09.8338887Z package(): Packaged 10 '.h' files
+2026-10-29T07:21:09.8339306Z Created package revision 010b41966b0ff8d92bea24d7491eee11
+2026-10-29T07:21:09.8339780Z Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' created
+2026-10-29T07:21:09.8340905Z Full package reference: platform-numbers/0.1.0#8d5c367883c12491634bda6b216fdcd7:da39a3ee5e6b4b0d3255bfef95601890afd80709#010b41966b0ff8d92bea24d7491eee11
+2026-10-29T07:21:09.8357072Z Package folder /home/runner/.conan2/p/b/platfa4ac70bc1f651/p
+2026-10-29T07:21:09.8358289Z 
+2026-10-29T07:21:09.8358616Z -------- Installing package platform-collections-methods/0.3.0 (11 of 19) --------
+2026-10-29T07:21:09.8359324Z Building from source platform-collections-methods/0.3.0:da39a3ee5e6b4b0d3255bfef95601890afd80709
+2026-10-29T07:21:09.8359932Z >>> Source step
+2026-10-29T07:21:09.8363624Z Getting sources for platform-collections-methods/0.3.0
+2026-10-29T07:21:09.8364119Z Calling source() in /home/runner/.conan2/p/platfaa5f0f1339589/s/src
+2026-10-29T07:21:10.0256460Z Sources correctly downloaded from https://github.com/linksplatform/Collections.Methods/releases/download/cpp_0.3.0/platform.collections.methods_0.3.0.zip
+2026-10-29T07:21:10.0257493Z Uncompressing platform.collections.methods_0.3.0.zip to .
+2026-10-29T07:21:10.0257871Z Unzipping 73.4KB
+2026-10-29T07:21:10.0266363Z 
+2026-10-29T07:21:10.0269924Z Sources in /home/runner/.conan2/p/platfaa5f0f1339589/s/src
+2026-10-29T07:21:10.0270519Z >>> Generate step for platform-collections-methods/0.3.0
+2026-10-29T07:21:10.0270953Z Generators folder: /home/runner/.conan2/p/b/platf5395b6c0df462/b/build-release/conan
+2026-10-29T07:21:10.0274831Z Generating aggregated env files
+2026-10-29T07:21:10.0275210Z Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+2026-10-29T07:21:10.0275727Z Building your package in /home/runner/.conan2/p/b/platf5395b6c0df462/b
+2026-10-29T07:21:10.0276167Z >>> Build step for platform-collections-methods/0.3.0
+2026-10-29T07:21:10.0276702Z platform-collections-methods/0.3.0: Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' built
+2026-10-29T07:21:10.0277316Z platform-collections-methods/0.3.0: Build folder /home/runner/.conan2/p/b/platf5395b6c0df462/b/build-release
+2026-10-29T07:21:10.0277913Z >>> Package step for platform-collections-methods/0.3.0:da39a3ee5e6b4b0d3255bfef95601890afd80709
+2026-10-29T07:21:10.0278398Z Packaging in folder /home/runner/.conan2/p/b/platf5395b6c0df462/p
+2026-10-29T07:21:10.0278732Z Calling package()
+2026-10-29T07:21:10.0289348Z package(): Packaged 13 '.h' files
+2026-10-29T07:21:10.0289821Z Created package revision 805323c60df80a61563931fcfb9b5823
+2026-10-29T07:21:10.0290178Z Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' created
+2026-10-29T07:21:10.0290936Z Full package reference: platform-collections-methods/0.3.0#7bf9addb258962e4c904ace39794c202:da39a3ee5e6b4b0d3255bfef95601890afd80709#805323c60df80a61563931fcfb9b5823
+2026-10-29T07:21:10.0342925Z Package folder /home/runner/.conan2/p/b/platf5395b6c0df462/p
+2026-10-29T07:21:10.0343732Z 
+2026-10-29T07:21:10.0344102Z -------- Installing package platform-exceptions/0.3.2 (12 of 19) --------
+2026-10-29T07:21:10.0344632Z Building from source platform-exceptions/0.3.2:da39a3ee5e6b4b0d3255bfef95601890afd80709
+2026-10-29T07:21:10.0344994Z >>> Source step
+2026-10-29T07:21:10.0348108Z Getting sources for platform-exceptions/0.3.2
+2026-10-29T07:21:10.0348622Z Calling source() in /home/runner/.conan2/p/platfee8cb09287d88/s/src
+2026-10-29T07:21:10.2121461Z Sources correctly downloaded from https://github.com/linksplatform/Exceptions/releases/download/cpp_0.3.2/platform.exceptions_0.3.2.zip
+2026-10-29T07:21:10.2122707Z Uncompressing platform.exceptions_0.3.2.zip to .
+2026-10-29T07:21:10.2123189Z Unzipping 18.3KB
+2026-10-29T07:21:10.2130074Z 
+2026-10-29T07:21:10.2134722Z Sources in /home/runner/.conan2/p/platfee8cb09287d88/s/src
+2026-10-29T07:21:10.2135375Z >>> Generate step for platform-exceptions/0.3.2
+2026-10-29T07:21:10.2136021Z Generators folder: /home/runner/.conan2/p/b/platf9eab9462e3feb/b/build-release/conan
+2026-10-29T07:21:10.2140862Z Generating aggregated env files
+2026-10-29T07:21:10.2141495Z Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+2026-10-29T07:21:10.2142184Z Building your package in /home/runner/.conan2/p/b/platf9eab9462e3feb/b
+2026-10-29T07:21:10.2142820Z >>> Build step for platform-exceptions/0.3.2
+2026-10-29T07:21:10.2143683Z platform-exceptions/0.3.2: Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' built
+2026-10-29T07:21:10.2144628Z platform-exceptions/0.3.2: Build folder /home/runner/.conan2/p/b/platf9eab9462e3feb/b/build-release
+2026-10-29T07:21:10.2145497Z >>> Package step for platform-exceptions/0.3.2:da39a3ee5e6b4b0d3255bfef95601890afd80709
+2026-10-29T07:21:10.2146371Z Packaging in folder /home/runner/.conan2/p/b/platf9eab9462e3feb/p
+2026-10-29T07:21:10.2146978Z Calling package()
+2026-10-29T07:21:10.2155758Z package(): Packaged 10 '.h' files
+2026-10-29T07:21:10.2156332Z Created package revision 95f257de01c9f578ae93a77a93a5950e
+2026-10-29T07:21:10.2156998Z Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' created
+2026-10-29T07:21:10.2157796Z Full package reference: platform-exceptions/0.3.2#f85774f1881822f0ffd9f7095bd3085a:da39a3ee5e6b4b0d3255bfef95601890afd80709#95f257de01c9f578ae93a77a93a5950e
+2026-10-29T07:21:10.2175402Z Package folder /home/runner/.conan2/p/b/platf9eab9462e3feb/p
+2026-10-29T07:21:10.2175925Z 
+2026-10-29T07:21:10.2176286Z -------- Installing package platform-hashing/0.5.6 (13 of 19) --------
+2026-10-29T07:21:10.2177073Z Building from source platform-hashing/0.5.6:da39a3ee5e6b4b0d3255bfef95601890afd80709
+2026-10-29T07:21:10.2177723Z >>> Source step
+2026-10-29T07:21:10.2181223Z Getting sources for platform-hashing/0.5.6
+2026-10-29T07:21:10.2181953Z Calling source() in /home/runner/.conan2/p/platf4427f72b19be9/s
+2026-10-29T07:21:10.4093094Z Sources correctly downloaded from https://github.com/linksplatform/Hashing/releases/download/cpp_0.5.6/platform.hashing_0.5.6.zip
+2026-10-29T07:21:10.4094342Z Uncompressing platform.hashing_0.5.6.zip to .
+2026-10-29T07:21:10.4094845Z Unzipping 377.2KB, this can take a while
+2026-10-29T07:21:10.4112146Z 
+2026-10-29T07:21:10.4116347Z Sources in /home/runner/.conan2/p/platf4427f72b19be9/s
+2026-10-29T07:21:10.4117024Z >>> Generate step for platform-hashing/0.5.6
+2026-10-29T07:21:10.4117532Z Generators folder: /home/runner/.conan2/p/b/platf18881c3278b77/b
+2026-10-29T07:21:10.4121887Z Generating aggregated env files
+2026-10-29T07:21:10.4122419Z Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+2026-10-29T07:21:10.4123003Z Building your package in /home/runner/.conan2/p/b/platf18881c3278b77/b
+2026-10-29T07:21:10.4123581Z >>> Build step for platform-hashing/0.5.6
+2026-10-29T07:21:10.4124104Z platform-hashing/0.5.6: Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' built
+2026-10-29T07:21:10.4124879Z platform-hashing/0.5.6: Build folder /home/runner/.conan2/p/b/platf18881c3278b77/b
+2026-10-29T07:21:10.4125570Z >>> Package step for platform-hashing/0.5.6:da39a3ee5e6b4b0d3255bfef95601890afd80709
+2026-10-29T07:21:10.4126113Z Packaging in folder /home/runner/.conan2/p/b/platf18881c3278b77/p
+2026-10-29T07:21:10.4126642Z Calling package()
+2026-10-29T07:21:10.4141225Z package(): Packaged 10 '.h' files
+2026-10-29T07:21:10.4141854Z Created package revision a6036d56e42b1b976b5769d839b117e0
+2026-10-29T07:21:10.4142306Z Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' created
+2026-10-29T07:21:10.4143002Z Full package reference: platform-hashing/0.5.6#8f26cd9a683ad74a06b02ea3ffb00f29:da39a3ee5e6b4b0d3255bfef95601890afd80709#a6036d56e42b1b976b5769d839b117e0
+2026-10-29T07:21:10.4159858Z Package folder /home/runner/.conan2/p/b/platf18881c3278b77/p
+2026-10-29T07:21:10.4161234Z 
+2026-10-29T07:21:10.4161657Z -------- Installing package platform-setters/0.1.0 (14 of 19) --------
+2026-10-29T07:21:10.4162437Z Building from source platform-setters/0.1.0:da39a3ee5e6b4b0d3255bfef95601890afd80709
+2026-10-29T07:21:10.4162982Z >>> Source step
+2026-10-29T07:21:10.4166133Z Getting sources for platform-setters/0.1.0
+2026-10-29T07:21:10.4166762Z Calling source() in /home/runner/.conan2/p/platfea0cb3e0e6873/s/src
+2026-10-29T07:21:10.6043962Z Sources correctly downloaded from https://github.com/linksplatform/Setters/releases/download/cpp_0.1.0/platform.setters_0.1.0.zip
+2026-10-29T07:21:10.6044777Z Uncompressing platform.setters_0.1.0.zip to .
+2026-10-29T07:21:10.6045424Z Unzipping 3.9KB
+2026-10-29T07:21:10.6047738Z 
+2026-10-29T07:21:10.6052537Z Sources in /home/runner/.conan2/p/platfea0cb3e0e6873/s/src
+2026-10-29T07:21:10.6053046Z >>> Generate step for platform-setters/0.1.0
+2026-10-29T07:21:10.6053746Z Generators folder: /home/runner/.conan2/p/b/platfd14d26aa9ed87/b/build-release/conan
+2026-10-29T07:21:10.6057692Z Generating aggregated env files
+2026-10-29T07:21:10.6058405Z Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+2026-10-29T07:21:10.6059026Z Building your package in /home/runner/.conan2/p/b/platfd14d26aa9ed87/b
+2026-10-29T07:21:10.6059566Z >>> Build step for platform-setters/0.1.0
+2026-10-29T07:21:10.6060167Z platform-setters/0.1.0: Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' built
+2026-10-29T07:21:10.6061089Z platform-setters/0.1.0: Build folder /home/runner/.conan2/p/b/platfd14d26aa9ed87/b/build-release
+2026-10-29T07:21:10.6070678Z >>> Package step for platform-setters/0.1.0:da39a3ee5e6b4b0d3255bfef95601890afd80709
+2026-10-29T07:21:10.6071590Z Packaging in folder /home/runner/.conan2/p/b/platfd14d26aa9ed87/p
+2026-10-29T07:21:10.6071917Z Calling package()
+2026-10-29T07:21:10.6072461Z package(): Packaged 4 '.h' files: Setter[TResult].h, Setter[TResult, TDecision].h, SetterBase.h, Platform.Setters.h
+2026-10-29T07:21:10.6072987Z Created package revision 93ba0987edf1adbbf9b7b8b979f9a2e2
+2026-10-29T07:21:10.6073371Z Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' created
+2026-10-29T07:21:10.6074002Z Full package reference: platform-setters/0.1.0#0b7fdbec025f7e225a919bacf70f9c3a:da39a3ee5e6b4b0d3255bfef95601890afd80709#93ba0987edf1adbbf9b7b8b979f9a2e2
+2026-10-29T07:21:10.6086463Z Package folder /home/runner/.conan2/p/b/platfd14d26aa9ed87/p
+2026-10-29T07:21:10.6087082Z 
+2026-10-29T07:21:10.6087355Z -------- Installing package platform-ranges/0.2.0 (15 of 19) --------
+2026-10-29T07:21:10.6088050Z Building from source platform-ranges/0.2.0:da39a3ee5e6b4b0d3255bfef95601890afd80709
+2026-10-29T07:21:10.6088535Z >>> Source step
+2026-10-29T07:21:10.6092306Z Getting sources for platform-ranges/0.2.0
+2026-10-29T07:21:10.6092780Z Calling source() in /home/runner/.conan2/p/platf2e261b468060d/s/src
+2026-10-29T07:21:10.7976949Z Sources correctly downloaded from https://github.com/linksplatform/Ranges/releases/download/cpp_0.2.0/platform.ranges_0.2.0.zip
+2026-10-29T07:21:10.7977727Z Uncompressing platform.ranges_0.2.0.zip to .
+2026-10-29T07:21:10.7978371Z Unzipping 24.0KB
+2026-10-29T07:21:10.7982036Z 
+2026-10-29T07:21:10.7985931Z Sources in /home/runner/.conan2/p/platf2e261b468060d/s/src
+2026-10-29T07:21:10.7986394Z >>> Generate step for platform-ranges/0.2.0
+2026-10-29T07:21:10.7987007Z Generators folder: /home/runner/.conan2/p/b/platf4b1715df63102/b/build-release/conan
+2026-10-29T07:21:10.7992257Z Generating aggregated env files
+2026-10-29T07:21:10.7992757Z Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+2026-10-29T07:21:10.7993267Z Building your package in /home/runner/.conan2/p/b/platf4b1715df63102/b
+2026-10-29T07:21:10.7993698Z >>> Build step for platform-ranges/0.2.0
+2026-10-29T07:21:10.7994287Z platform-ranges/0.2.0: Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' built
+2026-10-29T07:21:10.7994926Z platform-ranges/0.2.0: Build folder /home/runner/.conan2/p/b/platf4b1715df63102/b/build-release
+2026-10-29T07:21:10.7995568Z >>> Package step for platform-ranges/0.2.0:da39a3ee5e6b4b0d3255bfef95601890afd80709
+2026-10-29T07:21:10.7996152Z Packaging in folder /home/runner/.conan2/p/b/platf4b1715df63102/p
+2026-10-29T07:21:10.7996540Z Calling package()
+2026-10-29T07:21:10.8000827Z package(): Packaged 5 '.h' files
+2026-10-29T07:21:10.8001227Z Created package revision 81a558cde0554f2a22f31692b29c9020
+2026-10-29T07:21:10.8001693Z Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' created
+2026-10-29T07:21:10.8002494Z Full package reference: platform-ranges/0.2.0#f74638320e5bd4f2efd11a9e10091288:da39a3ee5e6b4b0d3255bfef95601890afd80709#81a558cde0554f2a22f31692b29c9020
+2026-10-29T07:21:10.8027841Z Package folder /home/runner/.conan2/p/b/platf4b1715df63102/p
+2026-10-29T07:21:10.8028437Z 
+2026-10-29T07:21:10.8028982Z -------- Installing package platform-data/0.1.1 (16 of 19) --------
+2026-10-29T07:21:10.8029556Z Building from source platform-data/0.1.1:da39a3ee5e6b4b0d3255bfef95601890afd80709
+2026-10-29T07:21:10.8030048Z >>> Source step
+2026-10-29T07:21:10.8033357Z Getting sources for platform-data/0.1.1
+2026-10-29T07:21:10.8033989Z Calling source() in /home/runner/.conan2/p/platf6097b0a9e7303/s/src
+2026-10-29T07:21:11.0010846Z Sources correctly downloaded from https://github.com/linksplatform/Data/releases/download/cpp_0.1.1/platform.data_0.1.1.zip
+2026-10-29T07:21:11.0011527Z Uncompressing platform.data_0.1.1.zip to .
+2026-10-29T07:21:11.0012180Z Unzipping 37.0KB
+2026-10-29T07:21:11.0023901Z 
+2026-10-29T07:21:11.0060425Z Sources in /home/runner/.conan2/p/platf6097b0a9e7303/s/src
+2026-10-29T07:21:11.0060873Z >>> Generate step for platform-data/0.1.1
+2026-10-29T07:21:11.0061374Z Generators folder: /home/runner/.conan2/p/b/platff3eeea5fafdf9/b/build-release/conan
+2026-10-29T07:21:11.0066302Z Generating aggregated env files
+2026-10-29T07:21:11.0066876Z Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+2026-10-29T07:21:11.0067435Z Building your package in /home/runner/.conan2/p/b/platff3eeea5fafdf9/b
+2026-10-29T07:21:11.0067806Z >>> Build step for platform-data/0.1.1
+2026-10-29T07:21:11.0068389Z platform-data/0.1.1: Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' built
+2026-10-29T07:21:11.0068924Z platform-data/0.1.1: Build folder /home/runner/.conan2/p/b/platff3eeea5fafdf9/b/build-release
+2026-10-29T07:21:11.0069395Z >>> Package step for platform-data/0.1.1:da39a3ee5e6b4b0d3255bfef95601890afd80709
+2026-10-29T07:21:11.0069872Z Packaging in folder /home/runner/.conan2/p/b/platff3eeea5fafdf9/p
+2026-10-29T07:21:11.0070234Z Calling package()
+2026-10-29T07:21:11.0086958Z package(): Packaged 24 '.h' files
+2026-10-29T07:21:11.0087345Z Created package revision 0241816b818ea9c75939d2925cf838f8
+2026-10-29T07:21:11.0087750Z Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' created
+2026-10-29T07:21:11.0088382Z Full package reference: platform-data/0.1.1#049284bd2691fcdd21308ff118193883:da39a3ee5e6b4b0d3255bfef95601890afd80709#0241816b818ea9c75939d2925cf838f8
+2026-10-29T07:21:11.0107454Z Package folder /home/runner/.conan2/p/b/platff3eeea5fafdf9/p
+2026-10-29T07:21:11.0108105Z 
+2026-10-29T07:21:11.0108433Z -------- Installing package platform-random/0.2.0 (17 of 19) --------
+2026-10-29T07:21:11.0109001Z Building from source platform-random/0.2.0:da39a3ee5e6b4b0d3255bfef95601890afd80709
+2026-10-29T07:21:11.0109360Z >>> Source step
+2026-10-29T07:21:11.0112815Z Getting sources for platform-random/0.2.0
+2026-10-29T07:21:11.0113262Z Calling source() in /home/runner/.conan2/p/platf49909db6bc31d/s/src
+2026-10-29T07:21:11.1908682Z Sources correctly downloaded from https://github.com/linksplatform/Random/releases/download/cpp_0.2.0/platform.random_0.2.0.zip
+2026-10-29T07:21:11.1909398Z Uncompressing platform.random_0.2.0.zip to .
+2026-10-29T07:21:11.1909711Z Unzipping 2.1KB
+2026-10-29T07:21:11.1909899Z 
+2026-10-29T07:21:11.1914420Z Sources in /home/runner/.conan2/p/platf49909db6bc31d/s/src
+2026-10-29T07:21:11.1914857Z >>> Generate step for platform-random/0.2.0
+2026-10-29T07:21:11.1915391Z Generators folder: /home/runner/.conan2/p/b/platf3882e002c4df6/b/build-release/conan
+2026-10-29T07:21:11.1920612Z Generating aggregated env files
+2026-10-29T07:21:11.1921069Z Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+2026-10-29T07:21:11.1921725Z Building your package in /home/runner/.conan2/p/b/platf3882e002c4df6/b
+2026-10-29T07:21:11.1922176Z >>> Build step for platform-random/0.2.0
+2026-10-29T07:21:11.1922682Z platform-random/0.2.0: Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' built
+2026-10-29T07:21:11.1923364Z platform-random/0.2.0: Build folder /home/runner/.conan2/p/b/platf3882e002c4df6/b/build-release
+2026-10-29T07:21:11.1923985Z >>> Package step for platform-random/0.2.0:da39a3ee5e6b4b0d3255bfef95601890afd80709
+2026-10-29T07:21:11.1924444Z Packaging in folder /home/runner/.conan2/p/b/platf3882e002c4df6/p
+2026-10-29T07:21:11.1925037Z Calling package()
+2026-10-29T07:21:11.1928068Z package(): Packaged 3 '.h' files: RandomExtensions.h, Platform.Random.h, RandomHelpers.h
+2026-10-29T07:21:11.1928671Z Created package revision 7368fa153a09f12eddea710548981718
+2026-10-29T07:21:11.1929136Z Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' created
+2026-10-29T07:21:11.1930026Z Full package reference: platform-random/0.2.0#596375061030beacc935a1ac82ef6e46:da39a3ee5e6b4b0d3255bfef95601890afd80709#7368fa153a09f12eddea710548981718
+2026-10-29T07:21:11.1946521Z Package folder /home/runner/.conan2/p/b/platf3882e002c4df6/p
+2026-10-29T07:21:11.1947596Z 
+2026-10-29T07:21:11.1948094Z -------- Installing package platform-collections/0.2.1 (18 of 19) --------
+2026-10-29T07:21:11.1948731Z Building from source platform-collections/0.2.1:da39a3ee5e6b4b0d3255bfef95601890afd80709
+2026-10-29T07:21:11.1949210Z >>> Source step
+2026-10-29T07:21:11.1952454Z Getting sources for platform-collections/0.2.1
+2026-10-29T07:21:11.1952981Z Calling source() in /home/runner/.conan2/p/platf4b6acddddf01c/s/src
+2026-10-29T07:21:11.3994955Z Sources correctly downloaded from https://github.com/linksplatform/Collections/releases/download/cpp_0.2.1/platform.collections_0.2.1.zip
+2026-10-29T07:21:11.3995714Z Uncompressing platform.collections_0.2.1.zip to .
+2026-10-29T07:21:11.3996143Z Unzipping 35.9KB
+2026-10-29T07:21:11.4012221Z 
+2026-10-29T07:21:11.4015724Z Sources in /home/runner/.conan2/p/platf4b6acddddf01c/s/src
+2026-10-29T07:21:11.4016422Z >>> Generate step for platform-collections/0.2.1
+2026-10-29T07:21:11.4016970Z Generators folder: /home/runner/.conan2/p/b/platfd3cdae3152199/b/build-release/conan
+2026-10-29T07:21:11.4023742Z Generating aggregated env files
+2026-10-29T07:21:11.4024461Z Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+2026-10-29T07:21:11.4025348Z Building your package in /home/runner/.conan2/p/b/platfd3cdae3152199/b
+2026-10-29T07:21:11.4025892Z >>> Build step for platform-collections/0.2.1
+2026-10-29T07:21:11.4031442Z platform-collections/0.2.1: Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' built
+2026-10-29T07:21:11.4033506Z platform-collections/0.2.1: Build folder /home/runner/.conan2/p/b/platfd3cdae3152199/b/build-release
+2026-10-29T07:21:11.4034220Z >>> Package step for platform-collections/0.2.1:da39a3ee5e6b4b0d3255bfef95601890afd80709
+2026-10-29T07:21:11.4034921Z Packaging in folder /home/runner/.conan2/p/b/platfd3cdae3152199/p
+2026-10-29T07:21:11.4035244Z Calling package()
+2026-10-29T07:21:11.4052844Z package(): Packaged 35 '.h' files
+2026-10-29T07:21:11.4053311Z Created package revision 45e0a5351397729f623902347fdf0072
+2026-10-29T07:21:11.4053780Z Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' created
+2026-10-29T07:21:11.4054567Z Full package reference: platform-collections/0.2.1#8c17106bf6ed80ece6f3d377f4989a60:da39a3ee5e6b4b0d3255bfef95601890afd80709#45e0a5351397729f623902347fdf0072
+2026-10-29T07:21:11.4073231Z Package folder /home/runner/.conan2/p/b/platfd3cdae3152199/p
+2026-10-29T07:21:11.4073838Z 
+2026-10-29T07:21:11.4074177Z -------- Installing package platform-memory/0.1.0 (19 of 19) --------
+2026-10-29T07:21:11.4074803Z Building from source platform-memory/0.1.0:da39a3ee5e6b4b0d3255bfef95601890afd80709
+2026-10-29T07:21:11.4075263Z >>> Source step
+2026-10-29T07:21:11.4078864Z Getting sources for platform-memory/0.1.0
+2026-10-29T07:21:11.4079262Z Calling source() in /home/runner/.conan2/p/platf232aaabe3d0da/s/src
+2026-10-29T07:21:11.6290979Z Sources correctly downloaded from https://github.com/linksplatform/Memory/releases/download/cpp_0.1.0/platform.memory_0.1.0.zip
+2026-10-29T07:21:11.6291912Z Uncompressing platform.memory_0.1.0.zip to .
+2026-10-29T07:21:11.6292528Z Unzipping 27.6KB
+2026-10-29T07:21:11.6303337Z 
+2026-10-29T07:21:11.6312648Z Sources in /home/runner/.conan2/p/platf232aaabe3d0da/s/src
+2026-10-29T07:21:11.6313554Z >>> Generate step for platform-memory/0.1.0
+2026-10-29T07:21:11.6314083Z Generators folder: /home/runner/.conan2/p/b/platf92a5ce199ffff/b/build-release/conan
+2026-10-29T07:21:11.6321547Z Generating aggregated env files
+2026-10-29T07:21:11.6322086Z Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+2026-10-29T07:21:11.6322631Z Building your package in /home/runner/.conan2/p/b/platf92a5ce199ffff/b
+2026-10-29T07:21:11.6323050Z >>> Build step for platform-memory/0.1.0
+2026-10-29T07:21:11.6331150Z platform-memory/0.1.0: Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' built
+2026-10-29T07:21:11.6341651Z platform-memory/0.1.0: Build folder /home/runner/.conan2/p/b/platf92a5ce199ffff/b/build-release
+2026-10-29T07:21:11.6342518Z >>> Package step for platform-memory/0.1.0:da39a3ee5e6b4b0d3255bfef95601890afd80709
+2026-10-29T07:21:11.6343205Z Packaging in folder /home/runner/.conan2/p/b/platf92a5ce199ffff/p
+2026-10-29T07:21:11.6343722Z Calling package()
+2026-10-29T07:21:11.6344258Z package(): Packaged 12 '.h' files
+2026-10-29T07:21:11.6344805Z package(): Packaged 1 '.hpp' file: memory_mapped_file.hpp
+2026-10-29T07:21:11.6345388Z package(): Packaged 1 '.cpp' file: memory_mapped_file.cpp
+2026-10-29T07:21:11.6345779Z Created package revision 8b2048ec0988e4a6096a572799df9a5c
+2026-10-29T07:21:11.6346301Z Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' created
+2026-10-29T07:21:11.6347014Z Full package reference: platform-memory/0.1.0#8dd4e948ae9e107523a3807afeb9f1aa:da39a3ee5e6b4b0d3255bfef95601890afd80709#8b2048ec0988e4a6096a572799df9a5c
+2026-10-29T07:21:11.6363526Z Package folder /home/runner/.conan2/p/b/platf92a5ce199ffff/p
+2026-10-29T07:21:11.6365390Z 
+2026-10-29T07:21:11.6365694Z ======== Finalizing install (deploy, generators) ========
+2026-10-29T07:21:11.6367132Z >>> Generate step for conanfile.txt
+2026-10-29T07:21:11.6367778Z Generators folder: /home/runner/work/Data.Doublets/Data.Doublets/cpp/build
+2026-10-29T07:21:11.6384000Z Generator 'CMakeDeps' calling 'generate()'
+2026-10-29T07:21:11.6982491Z CMakeDeps necessary find_package() and targets for your CMakeLists.txt
+2026-10-29T07:21:11.6982976Z     find_package(GTest)
+2026-10-29T07:21:11.6983386Z     find_package(benchmark)
+2026-10-29T07:21:11.6983763Z     find_package(Platform.Collections.Methods)
+2026-10-29T07:21:11.6984121Z     find_package(Platform.Memory)
+2026-10-29T07:21:11.6984459Z     find_package(Platform.Collections)
+2026-10-29T07:21:11.6984811Z     find_package(Platform.Data)
+2026-10-29T07:21:11.6985142Z     find_package(Platform.Random)
+2026-10-29T07:21:11.6985481Z     find_package(Platform.Interfaces)
+2026-10-29T07:21:11.6985794Z     find_package(Platform.Ranges)
+2026-10-29T07:21:11.6986125Z     find_package(Platform.Exceptions)
+2026-10-29T07:21:11.6986433Z     find_package(Platform.Numbers)
+2026-10-29T07:21:11.6986730Z     find_package(mio)
+2026-10-29T07:21:11.6987037Z     find_package(Microsoft.GSL)
+2026-10-29T07:21:11.6988720Z     target_link_libraries(... gtest::gtest benchmark::benchmark_main Platform.Collections.Methods::Platform.Collections.Methods Platform.Memory::Platform.Memory Platform.Collections::Platform.Collections Platform.Data::Platform.Data Platform.Random::Platform.Random Platform.Interfaces::Platform.Interfaces Platform.Ranges::Platform.Ranges Platform.Exceptions::Platform.Exceptions Platform.Numbers::Platform.Numbers mio::mio Microsoft.GSL::GSL)
+2026-10-29T07:21:11.7012729Z Generator 'CMakeToolchain' calling 'generate()'
+2026-10-29T07:21:11.7281043Z CMakeToolchain generated: conan_toolchain.cmake
+2026-10-29T07:21:11.7287573Z CMakeToolchain: Preset 'conan-release' added to CMakePresets.json.
+2026-10-29T07:21:11.7288280Z     (cmake>=3.23) cmake --preset conan-release
+2026-10-29T07:21:11.7288778Z     (cmake<3.23) cmake <path> -G "Unix Makefiles"
+2026-10-29T07:21:11.7289433Z                  -DCMAKE_TOOLCHAIN_FILE=<output_folder>/conan_toolchain.cmake 
+2026-10-29T07:21:11.7290144Z                  -DCMAKE_POLICY_DEFAULT_CMP0091=NEW -DCMAKE_BUILD_TYPE=Release
+2026-10-29T07:21:11.7291155Z CMakeToolchain generated: /home/runner/work/Data.Doublets/Data.Doublets/cpp/build/CMakePresets.json
+2026-10-29T07:21:11.7292239Z CMakeToolchain generated: /home/runner/work/Data.Doublets/Data.Doublets/cpp/CMakeUserPresets.json
+2026-10-29T07:21:11.7299070Z Generating aggregated env files
+2026-10-29T07:21:11.7299732Z Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+2026-10-29T07:21:11.7300241Z Install finished successfully
+2026-10-29T07:21:11.7915929Z -- Using Conan toolchain: /home/runner/work/Data.Doublets/Data.Doublets/cpp/build/conan_toolchain.cmake
+2026-10-29T07:21:11.7916960Z -- Conan toolchain: Defining architecture flag: -m64
+2026-10-29T07:21:11.7917340Z -- Conan toolchain: C++ Standard 20 with extensions OFF
+2026-10-29T07:21:11.8306360Z -- The CXX compiler identification is GNU 13.3.0
+2026-10-29T07:21:11.8365194Z -- Detecting CXX compiler ABI info
+2026-10-29T07:21:11.8831681Z -- Detecting CXX compiler ABI info - done
+2026-10-29T07:21:11.8945649Z -- Check for working CXX compiler: /usr/bin/g++ - skipped
+2026-10-29T07:21:11.8947102Z -- Detecting CXX compile features
+2026-10-29T07:21:11.8951730Z -- Detecting CXX compile features - done
+2026-10-29T07:21:11.9011153Z -- Conan: Target declared 'Platform.Interfaces::Platform.Interfaces'
+2026-10-29T07:21:11.9021248Z -- Conan: Target declared 'Platform.Collections.Methods::Platform.Collections.Methods'
+2026-10-29T07:21:11.9029939Z -- Conan: Target declared 'Platform.Collections::Platform.Collections'
+2026-10-29T07:21:11.9037995Z -- Conan: Target declared 'Platform.Equality::Platform.Equality'
+2026-10-29T07:21:11.9046178Z -- Conan: Target declared 'Platform.Random::Platform.Random'
+2026-10-29T07:21:11.9054910Z -- Conan: Target declared 'Platform.Ranges::Platform.Ranges'
+2026-10-29T07:21:11.9064193Z -- Conan: Target declared 'Platform.Exceptions::Platform.Exceptions'
+2026-10-29T07:21:11.9072141Z -- Conan: Target declared 'Platform.Delegates::Platform.Delegates'
+2026-10-29T07:21:11.9080945Z -- Conan: Target declared 'Platform.Converters::Platform.Converters'
+2026-10-29T07:21:11.9089663Z -- Conan: Target declared 'Platform.Hashing::Platform.Hashing'
+2026-10-29T07:21:11.9097752Z -- Conan: Target declared 'cpuinfo::cpuinfo'
+2026-10-29T07:21:11.9110463Z -- Conan: Target declared 'Microsoft.GSL::GSL'
+2026-10-29T07:21:11.9118210Z -- Conan: Target declared 'Platform.Numbers::Platform.Numbers'
+2026-10-29T07:21:11.9126156Z -- Conan: Target declared 'Platform.Memory::Platform.Memory'
+2026-10-29T07:21:11.9134852Z -- Conan: Component target declared 'mio::mio-headers'
+2026-10-29T07:21:11.9135172Z -- Conan: Target declared 'mio::mio'
+2026-10-29T07:21:11.9150142Z -- Conan: Target declared 'Platform.Data::Platform.Data'
+2026-10-29T07:21:11.9158399Z -- Conan: Target declared 'Platform.Setters::Platform.Setters'
+2026-10-29T07:21:11.9194340Z -- Conan: Component target declared 'GTest::gtest'
+2026-10-29T07:21:11.9194881Z -- Conan: Component target declared 'GTest::gtest_main'
+2026-10-29T07:21:11.9195370Z -- Conan: Component target declared 'GTest::gmock'
+2026-10-29T07:21:11.9195748Z -- Conan: Component target declared 'GTest::gmock_main'
+2026-10-29T07:21:11.9196073Z -- Conan: Target declared 'gtest::gtest'
+2026-10-29T07:21:11.9679943Z -- Conan: Component target declared 'benchmark::benchmark'
+2026-10-29T07:21:11.9680923Z -- Conan: Component target declared 'benchmark::benchmark_main'
+2026-10-29T07:21:11.9689633Z -- Configuring done (0.2s)
+2026-10-29T07:21:11.9737643Z -- Generating done (0.0s)
+2026-10-29T07:21:11.9739570Z -- Build files have been written to: /home/runner/work/Data.Doublets/Data.Doublets/cpp/build
+2026-10-29T07:21:11.9881652Z [ 25%] Building CXX object CMakeFiles/Platform.Data.Doublets.Tests.dir/Platform.Data.Doublets.Tests/AllTests.cpp.o
+2026-10-29T07:21:53.8551520Z [ 50%] Linking CXX executable bin/Platform.Data.Doublets.Tests
+2026-10-29T07:21:54.4827034Z [ 50%] Built target Platform.Data.Doublets.Tests
+2026-10-29T07:21:54.4879100Z [ 75%] Building CXX object CMakeFiles/Platform.Data.Doublets.Benchmarks.dir/Platform.Data.Doublets.Benchmarks/AllBenchmarks.cpp.o
+2026-10-29T07:21:57.9844013Z [100%] Linking CXX executable bin/Platform.Data.Doublets.Benchmarks
+2026-10-29T07:21:58.0915393Z [100%] Built target Platform.Data.Doublets.Benchmarks
+2026-10-29T07:21:58.8272668Z Internal ctest changing into directory: /home/runner/work/Data.Doublets/Data.Doublets/cpp/build
+2026-10-29T07:21:58.8913969Z Test project /home/runner/work/Data.Doublets/Data.Doublets/cpp/build
+2026-10-29T07:21:58.9362223Z       Start  1: ExtensionTests.EnsureCreatedPreservesOnlyRequestedNewAddresses
+2026-10-29T07:21:59.1013575Z  1/42 Test  #1: ExtensionTests.EnsureCreatedPreservesOnlyRequestedNewAddresses ..................................................   Passed    0.16 sec
+2026-10-29T07:21:59.1079681Z       Start  2: ExtensionTests.EnsurePointsCreatedMakesSelfReferences
+2026-10-29T07:21:59.2529602Z  2/42 Test  #2: ExtensionTests.EnsurePointsCreatedMakesSelfReferences ...........................................................   Passed    0.14 sec
+2026-10-29T07:21:59.2530619Z       Start  3: ExtensionTests.DeleteByQueryRemovesOnlyMatches
+2026-10-29T07:21:59.4143981Z  3/42 Test  #3: ExtensionTests.DeleteByQueryRemovesOnlyMatches ..................................................................   Passed    0.16 sec
+2026-10-29T07:21:59.4145272Z       Start  4: OwnershipTests.UnitedHelpersAreReleasedOnGrowthAndDestruction
+2026-10-29T07:21:59.4229828Z  4/42 Test  #4: OwnershipTests.UnitedHelpersAreReleasedOnGrowthAndDestruction ...................................................   Passed    0.01 sec
+2026-10-29T07:21:59.4230914Z       Start  5: OwnershipTests.SplitHelpersAreReleasedOnGrowthAndDestruction
+2026-10-29T07:21:59.4318045Z  5/42 Test  #5: OwnershipTests.SplitHelpersAreReleasedOnGrowthAndDestruction ....................................................***Failed    0.01 sec
+2026-10-29T07:21:59.4318961Z Running main() from /home/runner/.conan2/p/b/gtest7d426523b1e2f/b/src/googletest/src/gtest_main.cc
+2026-10-29T07:21:59.4319761Z Note: Google Test filter = OwnershipTests.SplitHelpersAreReleasedOnGrowthAndDestruction
+2026-10-29T07:21:59.4320256Z [==========] Running 1 test from 1 test suite.
+2026-10-29T07:21:59.4320816Z [----------] Global test environment set-up.
+2026-10-29T07:21:59.4321124Z [----------] 1 test from OwnershipTests
+2026-10-29T07:21:59.4321514Z [ RUN      ] OwnershipTests.SplitHelpersAreReleasedOnGrowthAndDestruction
+2026-10-29T07:21:59.4321905Z unknown file: Failure
+2026-10-29T07:21:59.4322391Z C++ exception with description "Value [4160] of argument [] is out of range: Argument value [4160] is out of range [0..4096].." thrown in the test body.
+2026-10-29T07:21:59.4323173Z [  FAILED  ] OwnershipTests.SplitHelpersAreReleasedOnGrowthAndDestruction (0 ms)
+2026-10-29T07:21:59.4323816Z [----------] 1 test from OwnershipTests (0 ms total)
+2026-10-29T07:21:59.4324101Z 
+2026-10-29T07:21:59.4324307Z [----------] Global test environment tear-down
+2026-10-29T07:21:59.4324704Z [==========] 1 test from 1 test suite ran. (0 ms total)
+2026-10-29T07:21:59.4324988Z [  PASSED  ] 0 tests.
+2026-10-29T07:21:59.4325221Z [  FAILED  ] 1 test, listed below:
+2026-10-29T07:21:59.4325602Z [  FAILED  ] OwnershipTests.SplitHelpersAreReleasedOnGrowthAndDestruction
+2026-10-29T07:21:59.4325861Z 
+2026-10-29T07:21:59.4325940Z  1 FAILED TEST
+2026-10-29T07:21:59.4326081Z 
+2026-10-29T07:21:59.4326266Z       Start  6: LinksConstantsTests.NullLinkIsAConstantExpression
+2026-10-29T07:21:59.4397885Z  6/42 Test  #6: LinksConstantsTests.NullLinkIsAConstantExpression ...............................................................   Passed    0.01 sec
+2026-10-29T07:21:59.4398622Z       Start  7: LinksConstantsTests.ExternalReferencesTest
+2026-10-29T07:21:59.4476734Z  7/42 Test  #7: LinksConstantsTests.ExternalReferencesTest ......................................................................   Passed    0.01 sec
+2026-10-29T07:21:59.4477581Z       Start  8: ResizableDirectMemoryLinksTests.CountRequiresBothSpecifiedPartsToMatch
+2026-10-29T07:21:59.5959209Z  8/42 Test  #8: ResizableDirectMemoryLinksTests.CountRequiresBothSpecifiedPartsToMatch ..........................................   Passed    0.15 sec
+2026-10-29T07:21:59.5960652Z       Start  9: ResizableDirectMemoryLinksTests.BasicFileMappedMemoryTest
+2026-10-29T07:21:59.6068808Z  9/42 Test  #9: ResizableDirectMemoryLinksTests.BasicFileMappedMemoryTest .......................................................   Passed    0.01 sec
+2026-10-29T07:21:59.6069684Z       Start 10: ResizableDirectMemoryLinksTests.BasicHeapMemoryTest
+2026-10-29T07:21:59.9193106Z 10/42 Test #10: ResizableDirectMemoryLinksTests.BasicHeapMemoryTest .............................................................   Passed    0.31 sec
+2026-10-29T07:21:59.9194396Z       Start 11: ResizableDirectMemoryLinksTests.NonexistentReferencesHeapMemoryTest
+2026-10-29T07:22:00.2181406Z 11/42 Test #11: ResizableDirectMemoryLinksTests.NonexistentReferencesHeapMemoryTest .............................................   Passed    0.30 sec
+2026-10-29T07:22:00.2182337Z       Start 12: StaticGenericLinksTests.CrudTestWithSizeBalancedTrees
+2026-10-29T07:22:00.5117145Z 12/42 Test #12: StaticGenericLinksTests.CrudTestWithSizeBalancedTrees ...........................................................   Passed    0.29 sec
+2026-10-29T07:22:00.5118403Z       Start 13: StaticGenericLinksTests.RawNumbersCrudTestWithSizeBalancedTrees
+2026-10-29T07:22:00.8033180Z 13/42 Test #13: StaticGenericLinksTests.RawNumbersCrudTestWithSizeBalancedTrees .................................................   Passed    0.29 sec
+2026-10-29T07:22:00.8034413Z       Start 14: StaticGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithSizeBalancedTrees
+2026-10-29T07:22:01.3678233Z 14/42 Test #14: StaticGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithSizeBalancedTrees ............................   Passed    0.56 sec
+2026-10-29T07:22:01.3679300Z       Start 15: StaticGenericLinksTests.CrudTestWithRecursionlessSizeBalancedTrees
+2026-10-29T07:22:01.6628513Z 15/42 Test #15: StaticGenericLinksTests.CrudTestWithRecursionlessSizeBalancedTrees ..............................................   Passed    0.29 sec
+2026-10-29T07:22:01.6630975Z       Start 16: StaticGenericLinksTests.RawNumbersCrudTestWithRecursionlessSizeBalancedTrees
+2026-10-29T07:22:01.9630170Z 16/42 Test #16: StaticGenericLinksTests.RawNumbersCrudTestWithRecursionlessSizeBalancedTrees ....................................   Passed    0.30 sec
+2026-10-29T07:22:01.9631411Z       Start 17: StaticGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithRecursionlessSizeBalancedTrees
+2026-10-29T07:22:02.5618767Z 17/42 Test #17: StaticGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithRecursionlessSizeBalancedTrees ...............   Passed    0.60 sec
+2026-10-29T07:22:02.5619807Z       Start 18: StaticGenericLinksTests.CrudTestWithAvlBalancedTrees
+2026-10-29T07:22:02.8563959Z 18/42 Test #18: StaticGenericLinksTests.CrudTestWithAvlBalancedTrees ............................................................   Passed    0.29 sec
+2026-10-29T07:22:02.8564784Z       Start 19: StaticGenericLinksTests.RawNumbersCrudTestWithAvlBalancedTrees
+2026-10-29T07:22:03.1517837Z 19/42 Test #19: StaticGenericLinksTests.RawNumbersCrudTestWithAvlBalancedTrees ..................................................   Passed    0.30 sec
+2026-10-29T07:22:03.1519300Z       Start 20: StaticGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithAvlBalancedTrees
+2026-10-29T07:22:03.7589376Z 20/42 Test #20: StaticGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithAvlBalancedTrees .............................   Passed    0.61 sec
+2026-10-29T07:22:03.7590538Z       Start 21: StaticSplitMemoryGenericLinksTests.CrudTestWithSizeBalancedTrees
+2026-10-29T07:22:04.0854274Z 21/42 Test #21: StaticSplitMemoryGenericLinksTests.CrudTestWithSizeBalancedTrees ................................................   Passed    0.33 sec
+2026-10-29T07:22:04.0855396Z       Start 22: StaticSplitMemoryGenericLinksTests.RawNumbersCrudTestWithSizeBalancedTrees
+2026-10-29T07:22:04.4532193Z 22/42 Test #22: StaticSplitMemoryGenericLinksTests.RawNumbersCrudTestWithSizeBalancedTrees ......................................   Passed    0.37 sec
+2026-10-29T07:22:04.4533563Z       Start 23: StaticSplitMemoryGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithSizeBalancedTrees
+2026-10-29T07:22:05.0934042Z 23/42 Test #23: StaticSplitMemoryGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithSizeBalancedTrees .................   Passed    0.64 sec
+2026-10-29T07:22:05.0935278Z       Start 24: StaticSplitMemoryGenericLinksTests.CrudTestWithRecursionlessSizeBalancedTrees
+2026-10-29T07:22:05.4228663Z 24/42 Test #24: StaticSplitMemoryGenericLinksTests.CrudTestWithRecursionlessSizeBalancedTrees ...................................   Passed    0.33 sec
+2026-10-29T07:22:05.4230442Z       Start 25: StaticSplitMemoryGenericLinksTests.RawNumbersCrudTestWithRecursionlessSizeBalancedTrees
+2026-10-29T07:22:05.7882466Z 25/42 Test #25: StaticSplitMemoryGenericLinksTests.RawNumbersCrudTestWithRecursionlessSizeBalancedTrees .........................   Passed    0.36 sec
+2026-10-29T07:22:05.7883694Z       Start 26: StaticSplitMemoryGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithRecursionlessSizeBalancedTrees
+2026-10-29T07:22:06.4269620Z 26/42 Test #26: StaticSplitMemoryGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithRecursionlessSizeBalancedTrees ....   Passed    0.64 sec
+2026-10-29T07:22:06.4270961Z       Start 27: TemporaryDirectoryTests.OwnsDistinctDirectoryAndCleansItUp
+2026-10-29T07:22:06.4410088Z 27/42 Test #27: TemporaryDirectoryTests.OwnsDistinctDirectoryAndCleansItUp ......................................................   Passed    0.01 sec
+2026-10-29T07:22:06.4411333Z       Start 28: DynamicGenericLinksTests.CrudTestWithSizeBalancedTrees
+2026-10-29T07:22:07.0043761Z 28/42 Test #28: DynamicGenericLinksTests.CrudTestWithSizeBalancedTrees ..........................................................   Passed    0.56 sec
+2026-10-29T07:22:07.0044632Z       Start 29: DynamicGenericLinksTests.RawNumbersCrudTestWithSizeBalancedTrees
+2026-10-29T07:22:07.5821235Z 29/42 Test #29: DynamicGenericLinksTests.RawNumbersCrudTestWithSizeBalancedTrees ................................................   Passed    0.58 sec
+2026-10-29T07:22:07.5822708Z       Start 30: DynamicGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithSizeBalancedTrees
+2026-10-29T07:22:08.4085737Z 30/42 Test #30: DynamicGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithSizeBalancedTrees ...........................   Passed    0.83 sec
+2026-10-29T07:22:08.4086618Z       Start 31: DynamicGenericLinksTests.CrudTestWithRecursionlessSizeBalancedTrees
+2026-10-29T07:22:08.9357589Z 31/42 Test #31: DynamicGenericLinksTests.CrudTestWithRecursionlessSizeBalancedTrees .............................................   Passed    0.53 sec
+2026-10-29T07:22:08.9358573Z       Start 32: DynamicGenericLinksTests.RawNumbersCrudTestWithRecursionlessSizeBalancedTrees
+2026-10-29T07:22:09.5060523Z 32/42 Test #32: DynamicGenericLinksTests.RawNumbersCrudTestWithRecursionlessSizeBalancedTrees ...................................   Passed    0.57 sec
+2026-10-29T07:22:09.5061583Z       Start 33: DynamicGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithRecursionlessSizeBalancedTrees
+2026-10-29T07:22:10.3767549Z 33/42 Test #33: DynamicGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithRecursionlessSizeBalancedTrees ..............   Passed    0.87 sec
+2026-10-29T07:22:10.3768391Z       Start 34: DynamicGenericLinksTests.CrudTestWithAvlTrees
+2026-10-29T07:22:10.9608900Z 34/42 Test #34: DynamicGenericLinksTests.CrudTestWithAvlTrees ...................................................................   Passed    0.58 sec
+2026-10-29T07:22:10.9609789Z       Start 35: DynamicGenericLinksTests.RawNumbersCrudTestWithAvlTrees
+2026-10-29T07:22:11.5412087Z 35/42 Test #35: DynamicGenericLinksTests.RawNumbersCrudTestWithAvlTrees .........................................................   Passed    0.58 sec
+2026-10-29T07:22:11.5413176Z       Start 36: DynamicGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithAvlBalancedTrees
+2026-10-29T07:22:12.3841163Z 36/42 Test #36: DynamicGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithAvlBalancedTrees ............................   Passed    0.84 sec
+2026-10-29T07:22:12.3843010Z       Start 37: DynamicSplitMemoryGenericLinksTests.CrudTestWithSizeBalancedTrees
+2026-10-29T07:22:12.7837023Z 37/42 Test #37: DynamicSplitMemoryGenericLinksTests.CrudTestWithSizeBalancedTrees ...............................................   Passed    0.40 sec
+2026-10-29T07:22:12.7838119Z       Start 38: DynamicSplitMemoryGenericLinksTests.RawNumbersCrudTestWithSizeBalancedTrees
+2026-10-29T07:22:13.1149028Z 38/42 Test #38: DynamicSplitMemoryGenericLinksTests.RawNumbersCrudTestWithSizeBalancedTrees .....................................   Passed    0.33 sec
+2026-10-29T07:22:13.1150211Z       Start 39: DynamicSplitMemoryGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithSizeBalancedTrees
+2026-10-29T07:22:13.7599423Z 39/42 Test #39: DynamicSplitMemoryGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithSizeBalancedTrees ................   Passed    0.64 sec
+2026-10-29T07:22:13.7600749Z       Start 40: DynamicSplitMemoryGenericLinksTests.CrudTestWithRecursionlessSizeBalancedTrees
+2026-10-29T07:22:14.0915560Z 40/42 Test #40: DynamicSplitMemoryGenericLinksTests.CrudTestWithRecursionlessSizeBalancedTrees ..................................   Passed    0.33 sec
+2026-10-29T07:22:14.0916657Z       Start 41: DynamicSplitMemoryGenericLinksTests.RawNumbersCrudTestWithRecursionlessSizeBalancedTrees
+2026-10-29T07:22:14.4389259Z 41/42 Test #41: DynamicSplitMemoryGenericLinksTests.RawNumbersCrudTestWithRecursionlessSizeBalancedTrees ........................   Passed    0.35 sec
+2026-10-29T07:22:14.4390849Z       Start 42: DynamicSplitMemoryGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithRecursionlessSizeBalancedTrees
+2026-10-29T07:22:15.0681138Z 42/42 Test #42: DynamicSplitMemoryGenericLinksTests.MultipleRandomCreationsAndDeletionsTestWithRecursionlessSizeBalancedTrees ...   Passed    0.63 sec
+2026-10-29T07:22:15.0683349Z 
+2026-10-29T07:22:15.0683699Z 98% tests passed, 1 tests failed out of 42
+2026-10-29T07:22:15.0683903Z 
+2026-10-29T07:22:15.0684048Z Total Test time (real) =  16.18 sec
+2026-10-29T07:22:15.0684223Z 
+2026-10-29T07:22:15.0684387Z The following tests FAILED:
+2026-10-29T07:22:15.0686839Z 	  5 - OwnershipTests.SplitHelpersAreReleasedOnGrowthAndDestruction (Failed)
+2026-10-29T07:22:15.0687527Z Errors while running CTest
+2026-10-29T07:22:15.2362772Z ##[error]Process completed with exit code 8.
+2026-10-29T07:22:15.2450903Z ##[group]Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+2026-10-29T07:22:15.2451228Z with:
+2026-10-29T07:22:15.2451387Z   name: cpp-gcc
+2026-10-29T07:22:15.2451681Z   path: artifacts/packages/*
+cpp/build/Testing/Temporary/LastTest.log
+artifacts/test-results/*
+
+2026-10-29T07:22:15.2452022Z   if-no-files-found: error
+2026-10-29T07:22:15.2452204Z   retention-days: 14
+2026-10-29T07:22:15.2452375Z   compression-level: 6
+2026-10-29T07:22:15.2452542Z   overwrite: false
+2026-10-29T07:22:15.2452714Z   include-hidden-files: false
+2026-10-29T07:22:15.2452894Z   archive: true
+2026-10-29T07:22:15.2453037Z env:
+2026-10-29T07:22:15.2453188Z   DOTNET_ROOT: /usr/share/dotnet
+2026-10-29T07:22:15.2453424Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-29T07:22:15.2453725Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-29T07:22:15.2454022Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-29T07:22:15.2454329Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-29T07:22:15.2454618Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-29T07:22:15.2454891Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-29T07:22:15.2455119Z   CC: gcc
+2026-10-29T07:22:15.2455255Z   CXX: g++
+2026-10-29T07:22:15.2455395Z   CPP_COVERAGE: ON
+2026-10-29T07:22:15.2455547Z ##[endgroup]
+2026-10-29T07:22:15.3568170Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-10-29T07:22:15.3569949Z The least common ancestor is /home/runner/work/Data.Doublets/Data.Doublets. This will be the root directory of the artifact
+2026-10-29T07:22:15.3570800Z With the provided path, there will be 1 file uploaded
+2026-10-29T07:22:15.3572611Z Artifact name is valid!
+2026-10-29T07:22:15.3573302Z Root directory input is valid!
+2026-10-29T07:22:15.6941414Z Uploading artifact: cpp-gcc.zip
+2026-10-29T07:22:15.6968219Z Beginning upload of artifact content to blob storage
+2026-10-29T07:22:15.9116350Z Uploaded bytes 3770
+2026-10-29T07:22:15.9628337Z Finished uploading artifact content to blob storage!
+2026-10-29T07:22:15.9628891Z SHA256 digest of uploaded artifact is d9ac10b1a540da4465756dff01fa70751af65cbb635fd81cc3bb913184078c9a
+2026-10-29T07:22:15.9629428Z Finalizing artifact upload
+2026-10-29T07:22:16.6418675Z Artifact cpp-gcc successfully finalized. Artifact ID 12880346563
+2026-10-29T07:22:16.6419416Z Artifact cpp-gcc has been successfully uploaded! Final size is 3770 bytes. Artifact ID is 12880346563
+2026-10-29T07:22:16.6423339Z Artifact download URL: https://github.com/linksplatform/Data.Doublets/actions/runs/40834656679/artifacts/12880346563
+2026-10-29T07:22:16.6604171Z Post job cleanup.
+2026-10-29T07:22:16.7338471Z [command]/usr/bin/git version
+2026-10-29T07:22:16.7368176Z git version 2.56.0
+2026-10-29T07:22:16.7395570Z Temporarily overriding HOME='/home/runner/work/_temp/62b053de-2b9d-446c-86fa-32d49a1b45c0' before making global git config changes
+2026-10-29T07:22:16.7396587Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-29T07:22:16.7399529Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Data.Doublets/Data.Doublets
+2026-10-29T07:22:16.7426438Z Removing SSH command configuration
+2026-10-29T07:22:16.7431354Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-29T07:22:16.7457406Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-29T07:22:16.7629523Z Removing HTTP extra header
+2026-10-29T07:22:16.7633716Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-29T07:22:16.7666982Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-29T07:22:16.7829711Z Removing includeIf entries pointing to credentials config files
+2026-10-29T07:22:16.7835850Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-29T07:22:16.7893758Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-29T07:22:16.8208018Z Cleaning up orphan processes

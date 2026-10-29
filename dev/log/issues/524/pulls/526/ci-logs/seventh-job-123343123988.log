@@ -1,0 +1,432 @@
+security / audit	UNKNOWN STEP	﻿2026-10-29T08:32:21.0378883Z Current runner version: '2.338.0'
+security / audit	UNKNOWN STEP	2026-10-29T08:32:21.0404310Z ##[group]Runner Image Provisioner
+security / audit	UNKNOWN STEP	2026-10-29T08:32:21.0405288Z Hosted Compute Agent
+security / audit	UNKNOWN STEP	2026-10-29T08:32:21.0405907Z Version: 20261021.618
+security / audit	UNKNOWN STEP	2026-10-29T08:32:21.0406532Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+security / audit	UNKNOWN STEP	2026-10-29T08:32:21.0407344Z Build Date: 2026-10-21T00:45:21Z
+security / audit	UNKNOWN STEP	2026-10-29T08:32:21.0408122Z Worker ID: {5d9eb3a2-db9a-4630-b014-83eabb91b873}
+security / audit	UNKNOWN STEP	2026-10-29T08:32:21.0408885Z Region: westus2
+security / audit	UNKNOWN STEP	2026-10-29T08:32:21.0409448Z Cloud: Azure
+security / audit	UNKNOWN STEP	2026-10-29T08:32:21.0410244Z ##[endgroup]
+security / audit	UNKNOWN STEP	2026-10-29T08:32:21.0411870Z ##[group]Operating System
+security / audit	UNKNOWN STEP	2026-10-29T08:32:21.0412569Z Ubuntu
+security / audit	UNKNOWN STEP	2026-10-29T08:32:21.0413170Z 24.04.5
+security / audit	UNKNOWN STEP	2026-10-29T08:32:21.0413717Z LTS
+security / audit	UNKNOWN STEP	2026-10-29T08:32:21.0414235Z ##[endgroup]
+security / audit	UNKNOWN STEP	2026-10-29T08:32:21.0414841Z ##[group]Runner Image
+security / audit	UNKNOWN STEP	2026-10-29T08:32:21.0415528Z Image: ubuntu-24.04
+security / audit	UNKNOWN STEP	2026-10-29T08:32:21.0416132Z Version: 20261025.353.1
+security / audit	UNKNOWN STEP	2026-10-29T08:32:21.0417414Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261025.353/images/ubuntu/Ubuntu2404-Readme.md
+security / audit	UNKNOWN STEP	2026-10-29T08:32:21.0419059Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261025.353
+security / audit	UNKNOWN STEP	2026-10-29T08:32:21.0420329Z ##[endgroup]
+security / audit	UNKNOWN STEP	2026-10-29T08:32:21.0421501Z ##[group]GITHUB_TOKEN Permissions
+security / audit	UNKNOWN STEP	2026-10-29T08:32:21.0423424Z Contents: read
+security / audit	UNKNOWN STEP	2026-10-29T08:32:21.0424188Z Metadata: read
+security / audit	UNKNOWN STEP	2026-10-29T08:32:21.0424838Z ##[endgroup]
+security / audit	UNKNOWN STEP	2026-10-29T08:32:21.0427122Z Secret source: Actions
+security / audit	UNKNOWN STEP	2026-10-29T08:32:21.0428234Z Cache mode: write
+security / audit	UNKNOWN STEP	2026-10-29T08:32:21.0428990Z Prepare workflow directory
+security / audit	UNKNOWN STEP	2026-10-29T08:32:21.0774040Z Prepare all required actions
+security / audit	UNKNOWN STEP	2026-10-29T08:32:21.0823893Z Getting action download info
+security / audit	UNKNOWN STEP	2026-10-29T08:32:21.4929979Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+security / audit	UNKNOWN STEP	2026-10-29T08:32:21.6519898Z Download action repository 'actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1' (SHA:26b0ec14cb23fa6904739307f278c14f94c95bf1)
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.0053646Z Uses: linksplatform/Data.Doublets/.github/workflows/security.yml@refs/pull/526/merge (fd79f966aab84e0cc30e3b8f0fd40e9fcb9e3f7c)
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.0058395Z Complete job name: security / audit
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.0951886Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.0952966Z with:
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.0953408Z   fetch-depth: 0
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.0953933Z   persist-credentials: false
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.0954548Z   repository: linksplatform/Data.Doublets
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.0958456Z   token: ***
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.0958955Z   ssh-strict: true
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.0959449Z   ssh-user: git
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.0960125Z   clean: true
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.0960581Z   sparse-checkout-cone-mode: true
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.0961105Z   fetch-tags: false
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.0961557Z   show-progress: true
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.0962008Z   lfs: false
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.0962427Z   submodules: false
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.0962892Z   set-safe-directory: true
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.0963392Z   allow-unsafe-pr-checkout: false
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.0964200Z ##[endgroup]
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.3688622Z Syncing repository: linksplatform/Data.Doublets
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.3691341Z ##[group]Getting Git version info
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.3692176Z Working directory is '/home/runner/work/Data.Doublets/Data.Doublets'
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.3693496Z [command]/usr/bin/git version
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.3755148Z git version 2.56.0
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.3781797Z ##[endgroup]
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.3792578Z Temporarily overriding HOME='/home/runner/work/_temp/21b1d0f3-248b-42c8-b833-5a6bcdea7f42' before making global git config changes
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.3800859Z Adding repository directory to the temporary git global config as a safe directory
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.3810594Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Data.Doublets/Data.Doublets
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.3860303Z Deleting the contents of '/home/runner/work/Data.Doublets/Data.Doublets'
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.3864809Z ##[group]Determining repository object format
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.3867547Z ##[endgroup]
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.3869069Z ##[group]Initializing the repository
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.3873351Z [command]/usr/bin/git init /home/runner/work/Data.Doublets/Data.Doublets
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.3991196Z hint: Using 'master' as the name for the initial branch. This default branch name
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.3992772Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.3993930Z hint: to use in all of your new repositories, which will suppress this warning,
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.3994733Z hint: call:
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.3995175Z hint:
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.3995818Z hint: 	git config --global init.defaultBranch <name>
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.3996522Z hint:
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.3997128Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.3998225Z hint: 'development'. The just-created branch can be renamed via this command:
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.3999029Z hint:
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.3999986Z hint: 	git branch -m <name>
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.4001072Z hint:
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.4002290Z hint: Disable this message with "git config set advice.defaultBranchName false"
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.4004512Z Initialized empty Git repository in /home/runner/work/Data.Doublets/Data.Doublets/.git/
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.4015137Z [command]/usr/bin/git remote add origin https://github.com/linksplatform/Data.Doublets
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.4068566Z ##[endgroup]
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.4070077Z ##[group]Disabling automatic garbage collection
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.4072427Z [command]/usr/bin/git config --local gc.auto 0
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.4110836Z ##[endgroup]
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.4112129Z ##[group]Setting up auth
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.4113151Z Removing SSH command configuration
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.4116933Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.4159041Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.4587468Z Removing HTTP extra header
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.4611850Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.4651753Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.4901595Z Removing includeIf entries pointing to credentials config files
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.4907420Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.4956033Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.5210785Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-20ddea84-1eb5-4dba-8075-2aaa67a55987.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.5262369Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path /home/runner/work/_temp/git-credentials-20ddea84-1eb5-4dba-8075-2aaa67a55987.config
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.5306517Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-20ddea84-1eb5-4dba-8075-2aaa67a55987.config
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.5351980Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-20ddea84-1eb5-4dba-8075-2aaa67a55987.config
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.5396492Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-20ddea84-1eb5-4dba-8075-2aaa67a55987.config
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.5439442Z ##[endgroup]
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.5440697Z ##[group]Fetching the repository
+security / audit	UNKNOWN STEP	2026-10-29T08:32:22.5447356Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/* +fd79f966aab84e0cc30e3b8f0fd40e9fcb9e3f7c:refs/remotes/pull/526/merge
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6816775Z From https://github.com/linksplatform/Data.Doublets
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6818142Z  * [new branch]          (storage)_rust_write.sequences           -> origin/(storage)_rust_write.sequences
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6819328Z  * [new branch]          1000203-v2                               -> origin/1000203-v2
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6820475Z  * [new branch]          100203                                   -> origin/100203
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6821521Z  * [new branch]          Sequence.Experiments_fix                 -> origin/Sequence.Experiments_fix
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6822581Z  * [new branch]          async-main                               -> origin/async-main
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6823447Z  * [new branch]          beta.6                                   -> origin/beta.6
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6824143Z  * [new branch]          binaries                                 -> origin/binaries
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6824809Z  * [new branch]          c/feature/add_ffi_links                  -> origin/c/feature/add_ffi_links
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6825564Z  * [new branch]          constexpr-issue-348                      -> origin/constexpr-issue-348
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6826308Z  * [new branch]          cpp/feature/add_clinks_concept           -> origin/cpp/feature/add_clinks_concept
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6827234Z  * [new branch]          cpp/feature/add_handlers_to_united_memory_links -> origin/cpp/feature/add_handlers_to_united_memory_links
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6828900Z  * [new branch]          cpp/feature/add_static_and_optional_dynamic_polymorphism_for_united_memory_links -> origin/cpp/feature/add_static_and_optional_dynamic_polymorphism_for_united_memory_links
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6831338Z  * [new branch]          cpp/feature/add_tbase_parameter_and_do_not_inherit_ilinks_in_united_memory_links -> origin/cpp/feature/add_tbase_parameter_and_do_not_inherit_ilinks_in_united_memory_links
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6833259Z  * [new branch]          cpp/feature/add_wrapper_around_rust_ffi  -> origin/cpp/feature/add_wrapper_around_rust_ffi
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6834163Z  * [new branch]          cpp/feature/translate_all_trees          -> origin/cpp/feature/translate_all_trees
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6834941Z  * [new branch]          cpp/feature/translate_ilinks_extensions  -> origin/cpp/feature/translate_ilinks_extensions
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6836046Z  * [new branch]          cpp/feature/translate_split_memory_links -> origin/cpp/feature/translate_split_memory_links
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6837556Z  * [new branch]          cpp/feature/translate_tests              -> origin/cpp/feature/translate_tests
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6838935Z  * [new branch]          cpp/feature/translate_united_memory_links -> origin/cpp/feature/translate_united_memory_links
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6840595Z  * [new branch]          cpp/feature/use_united_memory_links_in_tests -> origin/cpp/feature/use_united_memory_links_in_tests
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6841866Z  * [new branch]          cpp/release/0.0.1                        -> origin/cpp/release/0.0.1
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6842818Z  * [new branch]          cppwrite                                 -> origin/cppwrite
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6843942Z  * [new branch]          cs/feature/add_no_exceptions_decorator   -> origin/cs/feature/add_no_exceptions_decorator
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6845373Z  * [new branch]          csharp/feature/add_manual_garbage_collection -> origin/csharp/feature/add_manual_garbage_collection
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6846736Z  * [new branch]          csharp/feature/use_generic_math          -> origin/csharp/feature/use_generic_math
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6847837Z  * [new branch]          daulet_trees                             -> origin/daulet_trees
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6848944Z  * [new branch]          dependabot/add-v2-config-file            -> origin/dependabot/add-v2-config-file
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6851388Z  * [new branch]          dependabot/github_actions/dot-github/workflows/tj-actions/changed-files-41 -> origin/dependabot/github_actions/dot-github/workflows/tj-actions/changed-files-41
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6853256Z  * [new branch]          feature/add_logging_decorator            -> origin/feature/add_logging_decorator
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6855006Z  * [new branch]          feature/add_update_or_create_or_get_overload_with_index -> origin/feature/add_update_or_create_or_get_overload_with_index
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6856133Z  * [new branch]          feature/ilinks/delete/change_return_value -> origin/feature/ilinks/delete/change_return_value
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6857062Z  * [new branch]          feature_move_testextensions_to_tests.ilinksextensions-v2 -> origin/feature_move_testextensions_to_tests.ilinksextensions-v2
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6858074Z  * [new branch]          feature_move_testextensions_to_tests/ilinksextensions -> origin/feature_move_testextensions_to_tests/ilinksextensions
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6858853Z  * [new branch]          fix_deleteall                            -> origin/fix_deleteall
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6859410Z  * [new branch]          gh-pages                                 -> origin/gh-pages
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6860298Z  * [new branch]          ilinks_bug                               -> origin/ilinks_bug
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6860935Z  * [new branch]          issue-10-dc9e2253                        -> origin/issue-10-dc9e2253
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6861569Z  * [new branch]          issue-100-2f9bb17f                       -> origin/issue-100-2f9bb17f
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6862183Z  * [new branch]          issue-122-372622af                       -> origin/issue-122-372622af
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6862790Z  * [new branch]          issue-122-e05a5713                       -> origin/issue-122-e05a5713
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6863406Z  * [new branch]          issue-123-90f092d3                       -> origin/issue-123-90f092d3
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6864010Z  * [new branch]          issue-125-7f224c52                       -> origin/issue-125-7f224c52
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6864631Z  * [new branch]          issue-131-173bd186                       -> origin/issue-131-173bd186
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6865455Z  * [new branch]          issue-132-b9a43709                       -> origin/issue-132-b9a43709
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6866080Z  * [new branch]          issue-14-65c21b2c                        -> origin/issue-14-65c21b2c
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6866679Z  * [new branch]          issue-145-e1924d96                       -> origin/issue-145-e1924d96
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6867285Z  * [new branch]          issue-150-8aba0d16                       -> origin/issue-150-8aba0d16
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6868230Z  * [new branch]          issue-152-380a75dd                       -> origin/issue-152-380a75dd
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6869351Z  * [new branch]          issue-153-a5aacf2d                       -> origin/issue-153-a5aacf2d
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6870589Z  * [new branch]          issue-155-6f3abe86                       -> origin/issue-155-6f3abe86
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6871255Z  * [new branch]          issue-157-f18f507d                       -> origin/issue-157-f18f507d
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6871871Z  * [new branch]          issue-158-d4b2d751                       -> origin/issue-158-d4b2d751
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6872484Z  * [new branch]          issue-159-4c473b2f                       -> origin/issue-159-4c473b2f
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6873081Z  * [new branch]          issue-166-5f7770d0                       -> origin/issue-166-5f7770d0
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6873689Z  * [new branch]          issue-167-6697c32c                       -> origin/issue-167-6697c32c
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6874292Z  * [new branch]          issue-172-3a6bb3a5                       -> origin/issue-172-3a6bb3a5
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6874892Z  * [new branch]          issue-173-52414a06                       -> origin/issue-173-52414a06
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6875492Z  * [new branch]          issue-174-38feee43                       -> origin/issue-174-38feee43
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6876284Z  * [new branch]          issue-179-c20097fb                       -> origin/issue-179-c20097fb
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6876893Z  * [new branch]          issue-180-4c858df1                       -> origin/issue-180-4c858df1
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6877491Z  * [new branch]          issue-182-68621777                       -> origin/issue-182-68621777
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6878095Z  * [new branch]          issue-183-65fb60df                       -> origin/issue-183-65fb60df
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6878695Z  * [new branch]          issue-184-50380e1c                       -> origin/issue-184-50380e1c
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6879295Z  * [new branch]          issue-185-8b06ec42                       -> origin/issue-185-8b06ec42
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6880270Z  * [new branch]          issue-191-d711698e                       -> origin/issue-191-d711698e
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6880890Z  * [new branch]          issue-192-f5bd0637                       -> origin/issue-192-f5bd0637
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6881499Z  * [new branch]          issue-195-87e1a7d9                       -> origin/issue-195-87e1a7d9
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6882122Z  * [new branch]          issue-197-9699ae6f                       -> origin/issue-197-9699ae6f
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6882942Z  * [new branch]          issue-201-23d35853                       -> origin/issue-201-23d35853
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6883546Z  * [new branch]          issue-202-f9973a4e                       -> origin/issue-202-f9973a4e
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6884148Z  * [new branch]          issue-204-ee98b556                       -> origin/issue-204-ee98b556
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6884752Z  * [new branch]          issue-205-6c1a8373                       -> origin/issue-205-6c1a8373
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6885461Z  * [new branch]          issue-206-cfb6909c                       -> origin/issue-206-cfb6909c
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6886074Z  * [new branch]          issue-207-68d68fb5                       -> origin/issue-207-68d68fb5
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6886678Z  * [new branch]          issue-208-33ea9e2e                       -> origin/issue-208-33ea9e2e
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6887371Z  * [new branch]          issue-209-37cc5160                       -> origin/issue-209-37cc5160
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6888140Z  * [new branch]          issue-210-b20f751b                       -> origin/issue-210-b20f751b
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6888760Z  * [new branch]          issue-212-fb245296                       -> origin/issue-212-fb245296
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6889358Z  * [new branch]          issue-213-00756f69                       -> origin/issue-213-00756f69
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6890287Z  * [new branch]          issue-216-5c9f8771                       -> origin/issue-216-5c9f8771
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6890912Z  * [new branch]          issue-217-c738a90c                       -> origin/issue-217-c738a90c
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6891510Z  * [new branch]          issue-218-b64a64c5                       -> origin/issue-218-b64a64c5
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6892231Z  * [new branch]          issue-230-559672a0                       -> origin/issue-230-559672a0
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6892940Z  * [new branch]          issue-237-3d81523b                       -> origin/issue-237-3d81523b
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6893543Z  * [new branch]          issue-238-4d05c862                       -> origin/issue-238-4d05c862
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6894133Z  * [new branch]          issue-239-fbcda755                       -> origin/issue-239-fbcda755
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6894725Z  * [new branch]          issue-240-a4e43a46                       -> origin/issue-240-a4e43a46
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6895311Z  * [new branch]          issue-241-b58c00a6                       -> origin/issue-241-b58c00a6
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6895895Z  * [new branch]          issue-242-bcb83cac                       -> origin/issue-242-bcb83cac
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6896480Z  * [new branch]          issue-243-74d0a614                       -> origin/issue-243-74d0a614
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6897069Z  * [new branch]          issue-245-55a50dd3                       -> origin/issue-245-55a50dd3
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6897927Z  * [new branch]          issue-249-f1500da9                       -> origin/issue-249-f1500da9
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6898521Z  * [new branch]          issue-250-42c9d850                       -> origin/issue-250-42c9d850
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6899191Z  * [new branch]          issue-254-e7a5d9f7                       -> origin/issue-254-e7a5d9f7
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6900054Z  * [new branch]          issue-258-c8b7530f                       -> origin/issue-258-c8b7530f
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6900744Z  * [new branch]          issue-263-0617cbc6                       -> origin/issue-263-0617cbc6
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6901329Z  * [new branch]          issue-264-48a30829                       -> origin/issue-264-48a30829
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6902462Z  * [new branch]          issue-269-5c78f79f                       -> origin/issue-269-5c78f79f
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6903684Z  * [new branch]          issue-28-86d6809c                        -> origin/issue-28-86d6809c
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6904882Z  * [new branch]          issue-287-43a044c6                       -> origin/issue-287-43a044c6
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6906181Z  * [new branch]          issue-288-7363fdd4                       -> origin/issue-288-7363fdd4
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6907276Z  * [new branch]          issue-289-a32521da                       -> origin/issue-289-a32521da
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6908348Z  * [new branch]          issue-290-46a8add1                       -> origin/issue-290-46a8add1
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6909818Z  * [new branch]          issue-295-51e2cc11                       -> origin/issue-295-51e2cc11
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6911152Z  * [new branch]          issue-309-7c8629c7                       -> origin/issue-309-7c8629c7
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6912437Z  * [new branch]          issue-310-5de3d1dc                       -> origin/issue-310-5de3d1dc
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6913728Z  * [new branch]          issue-319-1f8bc024                       -> origin/issue-319-1f8bc024
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6914865Z  * [new branch]          issue-323-9f4031b8                       -> origin/issue-323-9f4031b8
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6915968Z  * [new branch]          issue-324-55e5be19                       -> origin/issue-324-55e5be19
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6917230Z  * [new branch]          issue-331-f53fc679                       -> origin/issue-331-f53fc679
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6918292Z  * [new branch]          issue-332-7a6ff77a                       -> origin/issue-332-7a6ff77a
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6919347Z  * [new branch]          issue-334-b21a4d38                       -> origin/issue-334-b21a4d38
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6920642Z  * [new branch]          issue-338-627b1af9                       -> origin/issue-338-627b1af9
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6921689Z  * [new branch]          issue-346-2629ee00                       -> origin/issue-346-2629ee00
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6922735Z  * [new branch]          issue-347-bc055938                       -> origin/issue-347-bc055938
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6923789Z  * [new branch]          issue-349-847bd9da                       -> origin/issue-349-847bd9da
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6924841Z  * [new branch]          issue-350-31002bc3                       -> origin/issue-350-31002bc3
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6925883Z  * [new branch]          issue-354-69429f3d                       -> origin/issue-354-69429f3d
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6926949Z  * [new branch]          issue-354-90a219e1                       -> origin/issue-354-90a219e1
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6928049Z  * [new branch]          issue-354-a5f63605                       -> origin/issue-354-a5f63605
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6929351Z  * [new branch]          issue-355-16463e62                       -> origin/issue-355-16463e62
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6930552Z  * [new branch]          issue-356-08228300                       -> origin/issue-356-08228300
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6931191Z  * [new branch]          issue-359-e5a050cc                       -> origin/issue-359-e5a050cc
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6931808Z  * [new branch]          issue-360-0e8cd1e0                       -> origin/issue-360-0e8cd1e0
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6932602Z  * [new branch]          issue-361-575582dd                       -> origin/issue-361-575582dd
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6933211Z  * [new branch]          issue-372-aea7e0f1                       -> origin/issue-372-aea7e0f1
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6933814Z  * [new branch]          issue-375-e585215d                       -> origin/issue-375-e585215d
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6934411Z  * [new branch]          issue-382-6eb8af26                       -> origin/issue-382-6eb8af26
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6934999Z  * [new branch]          issue-383-81b4bf92                       -> origin/issue-383-81b4bf92
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6935585Z  * [new branch]          issue-384-58b26c76                       -> origin/issue-384-58b26c76
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6936167Z  * [new branch]          issue-386-3e27d460                       -> origin/issue-386-3e27d460
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6936753Z  * [new branch]          issue-389-a58bf26c                       -> origin/issue-389-a58bf26c
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6937341Z  * [new branch]          issue-390-5e4626de                       -> origin/issue-390-5e4626de
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6937951Z  * [new branch]          issue-394-309114ec                       -> origin/issue-394-309114ec
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6938539Z  * [new branch]          issue-395-10b110d3                       -> origin/issue-395-10b110d3
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6939136Z  * [new branch]          issue-396-244bd1fe                       -> origin/issue-396-244bd1fe
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6940077Z  * [new branch]          issue-398-451b7b82                       -> origin/issue-398-451b7b82
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6940701Z  * [new branch]          issue-40-e633e9f6                        -> origin/issue-40-e633e9f6
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6941359Z  * [new branch]          issue-508-5a1549d7                       -> origin/issue-508-5a1549d7
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6942492Z  * [new branch]          issue-512-557a0a3ca78d                   -> origin/issue-512-557a0a3ca78d
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6943770Z  * [new branch]          issue-518-e28aadb8d563                   -> origin/issue-518-e28aadb8d563
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6944462Z  * [new branch]          issue-52-3f2f1389                        -> origin/issue-52-3f2f1389
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6945278Z  * [new branch]          issue-521-1ac9a60c43a0                   -> origin/issue-521-1ac9a60c43a0
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6945928Z  * [new branch]          issue-522-2819acda0f21                   -> origin/issue-522-2819acda0f21
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6946557Z  * [new branch]          issue-524-b1512fd1c7a8                   -> origin/issue-524-b1512fd1c7a8
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6947170Z  * [new branch]          issue-6-2f2360da                         -> origin/issue-6-2f2360da
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6947770Z  * [new branch]          issue-62-a49bc29e                        -> origin/issue-62-a49bc29e
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6948358Z  * [new branch]          issue-68-4e596e00                        -> origin/issue-68-4e596e00
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6948941Z  * [new branch]          issue-85-856b1b45                        -> origin/issue-85-856b1b45
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6949802Z  * [new branch]          issue-86-6c31fd91                        -> origin/issue-86-6c31fd91
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6950440Z  * [new branch]          issue-89-a56a0167                        -> origin/issue-89-a56a0167
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6951030Z  * [new branch]          issue-90-5c6486ed                        -> origin/issue-90-5c6486ed
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6951616Z  * [new branch]          issue-96-7c16f737                        -> origin/issue-96-7c16f737
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6952198Z  * [new branch]          issue-97-8b13f48a                        -> origin/issue-97-8b13f48a
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6952925Z  * [new branch]          issue-98-61dd56ef                        -> origin/issue-98-61dd56ef
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6953596Z  * [new branch]          lazy-fixes                               -> origin/lazy-fixes
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6954119Z  * [new branch]          main                                     -> origin/main
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6954618Z  * [new branch]          master                                   -> origin/master
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6955662Z  * [new branch]          move_sequences                           -> origin/move_sequences
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6956979Z  * [new branch]          nassipkali-patch-1                       -> origin/nassipkali-patch-1
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6958335Z  * [new branch]          nassipkali-patch-2                       -> origin/nassipkali-patch-2
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6959903Z  * [new branch]          nassipkali-patch-3                       -> origin/nassipkali-patch-3
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6961271Z  * [new branch]          nassipkali-patch-4                       -> origin/nassipkali-patch-4
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6962517Z  * [new branch]          nassipkali-patch-5                       -> origin/nassipkali-patch-5
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6963741Z  * [new branch]          nassipkali-patch-6                       -> origin/nassipkali-patch-6
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6965068Z  * [new branch]          nassipkali-patch-7                       -> origin/nassipkali-patch-7
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6966433Z  * [new branch]          nassipkali-patch-8                       -> origin/nassipkali-patch-8
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6967895Z  * [new branch]          nassipkali-patch-9                       -> origin/nassipkali-patch-9
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6969081Z  * [new branch]          origin-ffi                               -> origin/origin-ffi
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6970353Z  * [new branch]          rational_numbers                         -> origin/rational_numbers
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6971428Z  * [new branch]          revert-259-master                        -> origin/revert-259-master
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6972374Z  * [new branch]          rust-ci                                  -> origin/rust-ci
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6973316Z  * [new branch]          rust.criterion                           -> origin/rust.criterion
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6974329Z  * [new branch]          rust.with_query                          -> origin/rust.with_query
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6975370Z  * [new branch]          rust.with_result                         -> origin/rust.with_result
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6976616Z  * [new branch]          rust_write.unwrap                        -> origin/rust_write.unwrap
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6977823Z  * [new branch]          rust_write.unwrap.optimized.wasm         -> origin/rust_write.unwrap.optimized.wasm
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6979095Z  * [new branch]          rust_write.unwrap_unchecked              -> origin/rust_write.unwrap_unchecked
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6980489Z  * [new branch]          split-data-n-doublets                    -> origin/split-data-n-doublets
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6981492Z  * [new branch]          tests                                    -> origin/tests
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6982436Z  * [new branch]          update_package                           -> origin/update_package
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6983592Z  * [new tag]             0.0.1                                    -> 0.0.1
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6984245Z  * [new tag]             0.1.0                                    -> 0.1.0
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6984725Z  * [new tag]             0.1.1                                    -> 0.1.1
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6985185Z  * [new tag]             0.10.0                                   -> 0.10.0
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6985626Z  * [new tag]             0.10.1                                   -> 0.10.1
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6986060Z  * [new tag]             0.11.0                                   -> 0.11.0
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6986493Z  * [new tag]             0.11.1                                   -> 0.11.1
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6986917Z  * [new tag]             0.12.0                                   -> 0.12.0
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6987349Z  * [new tag]             0.13.0                                   -> 0.13.0
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6987771Z  * [new tag]             0.13.1                                   -> 0.13.1
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6988193Z  * [new tag]             0.13.2                                   -> 0.13.2
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6988636Z  * [new tag]             0.2.0                                    -> 0.2.0
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6989252Z  * [new tag]             0.2.1                                    -> 0.2.1
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6990033Z  * [new tag]             0.3.0                                    -> 0.3.0
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6990482Z  * [new tag]             0.4.0                                    -> 0.4.0
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6990912Z  * [new tag]             0.5.0                                    -> 0.5.0
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6991339Z  * [new tag]             0.6.0                                    -> 0.6.0
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6991758Z  * [new tag]             0.6.1                                    -> 0.6.1
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6992187Z  * [new tag]             0.6.10                                   -> 0.6.10
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6992617Z  * [new tag]             0.6.11                                   -> 0.6.11
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6993048Z  * [new tag]             0.6.2                                    -> 0.6.2
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6993478Z  * [new tag]             0.6.3                                    -> 0.6.3
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6993915Z  * [new tag]             0.6.4                                    -> 0.6.4
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6994340Z  * [new tag]             0.6.5                                    -> 0.6.5
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6994759Z  * [new tag]             0.6.6                                    -> 0.6.6
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6995175Z  * [new tag]             0.6.7                                    -> 0.6.7
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6995787Z  * [new tag]             0.6.8                                    -> 0.6.8
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6996568Z  * [new tag]             0.6.9                                    -> 0.6.9
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6997408Z  * [new tag]             0.7.0                                    -> 0.7.0
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6998243Z  * [new tag]             0.8.0                                    -> 0.8.0
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6998863Z  * [new tag]             0.9.0                                    -> 0.9.0
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.6999361Z  * [new tag]             cpp_0.1.0                                -> cpp_0.1.0
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.7000336Z  * [new tag]             csharp_0.15.0                            -> csharp_0.15.0
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.7000848Z  * [new tag]             csharp_0.16.0                            -> csharp_0.16.0
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.7001350Z  * [new tag]             csharp_0.17.0                            -> csharp_0.17.0
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.7001844Z  * [new tag]             csharp_0.17.1                            -> csharp_0.17.1
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.7002339Z  * [new tag]             csharp_0.17.2                            -> csharp_0.17.2
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.7002833Z  * [new tag]             csharp_0.18.1                            -> csharp_0.18.1
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.7003319Z  * [new tag]             csharp_0.18.2                            -> csharp_0.18.2
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.7003815Z  * [new tag]             csharp_0.18.3                            -> csharp_0.18.3
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.7004342Z  * [new ref]             fd79f966aab84e0cc30e3b8f0fd40e9fcb9e3f7c -> pull/526/merge
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.7005754Z ##[endgroup]
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.7006220Z ##[group]Determining the checkout info
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.7006696Z ##[endgroup]
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.7006988Z [command]/usr/bin/git sparse-checkout disable
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.7008105Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.7009443Z ##[group]Checking out the ref
+security / audit	UNKNOWN STEP	2026-10-29T08:32:32.7010179Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/526/merge
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.0363861Z Note: switching to 'refs/remotes/pull/526/merge'.
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.0364493Z 
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.0364916Z You are in 'detached HEAD' state. You can look around, make experimental
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.0365833Z changes and commit them, and you can discard any commits you make in this
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.0366704Z state without impacting any branches by switching back to a branch.
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.0367224Z 
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.0367857Z If you want to create a new branch to retain commits you create, you may
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.0368619Z do so (now or later) by using -c with the switch command. Example:
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.0369049Z 
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.0369227Z   git switch -c <new-branch-name>
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.0369778Z 
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.0369971Z Or undo this operation with:
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.0370251Z 
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.0370408Z   git switch -
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.0370618Z 
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.0371096Z Turn off this advice by setting config variable advice.detachedHead to false
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.0371713Z 
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.0372342Z HEAD is now at fd79f966a Merge 5cf40c5a338a38978221aab65a8e017005c95303 into 799502ce9275edc80d9fbc1953ff8892fe0eca19
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.0419820Z ##[endgroup]
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.0488550Z [command]/usr/bin/git log -1 --format=%H
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.0526238Z fd79f966aab84e0cc30e3b8f0fd40e9fcb9e3f7c
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.0544008Z ##[group]Removing auth
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.0550416Z Removing SSH command configuration
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.0551469Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.0595409Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.0868536Z Removing HTTP extra header
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.0869443Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.0918751Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.1165052Z Removing includeIf entries pointing to credentials config files
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.1169059Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.1213924Z includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.1215569Z includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.1216573Z includeif.gitdir:/github/workspace/.git.path
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.1217447Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.1227076Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.1267781Z /home/runner/work/_temp/git-credentials-20ddea84-1eb5-4dba-8075-2aaa67a55987.config
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.1282946Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-20ddea84\-1eb5\-4dba\-8075\-2aaa67a55987\.config
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.1357805Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.1402983Z /home/runner/work/_temp/git-credentials-20ddea84-1eb5-4dba-8075-2aaa67a55987.config
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.1412473Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-20ddea84\-1eb5\-4dba\-8075\-2aaa67a55987\.config
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.1458908Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.1497962Z /github/runner_temp/git-credentials-20ddea84-1eb5-4dba-8075-2aaa67a55987.config
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.1506156Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-20ddea84\-1eb5\-4dba\-8075\-2aaa67a55987\.config
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.1556175Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.1593573Z /github/runner_temp/git-credentials-20ddea84-1eb5-4dba-8075-2aaa67a55987.config
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.1600735Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-20ddea84\-1eb5\-4dba\-8075\-2aaa67a55987\.config
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.1646219Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.1890659Z Removing credentials config '/home/runner/work/_temp/git-credentials-20ddea84-1eb5-4dba-8075-2aaa67a55987.config'
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.1899248Z ##[endgroup]
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.2132104Z ##[group]Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.2132530Z with:
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.2132743Z   global-json-file: global.json
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.2133012Z   cache: false
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.2133217Z ##[endgroup]
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.3639184Z [command]/home/runner/work/_actions/actions/setup-dotnet/26b0ec14cb23fa6904739307f278c14f94c95bf1/externals/install-dotnet.sh --skip-non-versioned-files --runtime dotnet --channel LTS
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.8194504Z dotnet-install: .NET Core Runtime with version '10.0.14' is already installed.
+security / audit	UNKNOWN STEP	2026-10-29T08:32:33.8224118Z [command]/home/runner/work/_actions/actions/setup-dotnet/26b0ec14cb23fa6904739307f278c14f94c95bf1/externals/install-dotnet.sh --skip-non-versioned-files --channel 8.0.4xx
+security / audit	UNKNOWN STEP	2026-10-29T08:32:34.1711413Z dotnet-install: .NET Core SDK with version '8.0.427' is already installed.
+security / audit	UNKNOWN STEP	2026-10-29T08:32:34.1891336Z ##[group]Run dotnet restore csharp/Platform.Data.Doublets.sln --locked-mode -warnaserror -p:NuGetAuditMode=all
+security / audit	UNKNOWN STEP	2026-10-29T08:32:34.1892250Z ^[[36;1mdotnet restore csharp/Platform.Data.Doublets.sln --locked-mode -warnaserror -p:NuGetAuditMode=all^[[0m
+security / audit	UNKNOWN STEP	2026-10-29T08:32:34.1893093Z ^[[36;1mdotnet list csharp/Platform.Data.Doublets.sln package --vulnerable --include-transitive --format json > nuget-audit.json^[[0m
+security / audit	UNKNOWN STEP	2026-10-29T08:32:34.1893758Z ^[[36;1mpython3 scripts/check_audit.py nuget-audit.json^[[0m
+security / audit	UNKNOWN STEP	2026-10-29T08:32:34.1919435Z shell: /usr/bin/bash -e {0}
+security / audit	UNKNOWN STEP	2026-10-29T08:32:34.1920059Z env:
+security / audit	UNKNOWN STEP	2026-10-29T08:32:34.1920277Z   DOTNET_ROOT: /usr/share/dotnet
+security / audit	UNKNOWN STEP	2026-10-29T08:32:34.1920539Z ##[endgroup]
+security / audit	UNKNOWN STEP	2026-10-29T08:32:42.5510137Z   Determining projects to restore...
+security / audit	UNKNOWN STEP	2026-10-29T08:32:47.5074173Z   Restored /home/runner/work/Data.Doublets/Data.Doublets/csharp/Platform.Data.Doublets.Tests/Platform.Data.Doublets.Tests.csproj (in 3.41 sec).
+security / audit	UNKNOWN STEP	2026-10-29T08:32:47.5093911Z   Restored /home/runner/work/Data.Doublets/Data.Doublets/csharp/Platform.Data.Doublets/Platform.Data.Doublets.csproj (in 3.32 sec).
+security / audit	UNKNOWN STEP	2026-10-29T08:32:47.5097269Z   Restored /home/runner/work/Data.Doublets/Data.Doublets/csharp/Platform.Data.Doublets.Benchmarks/Platform.Data.Doublets.Benchmarks.csproj (in 3.32 sec).
+security / audit	UNKNOWN STEP	2026-10-29T08:32:50.7372698Z NuGet audit completed without vulnerabilities
+security / audit	UNKNOWN STEP	2026-10-29T08:32:50.7450504Z ##[group]Run bash scripts/check-secrets.sh
+security / audit	UNKNOWN STEP	2026-10-29T08:32:50.7450903Z ^[[36;1mbash scripts/check-secrets.sh^[[0m
+security / audit	UNKNOWN STEP	2026-10-29T08:32:50.7471755Z shell: /usr/bin/bash -e {0}
+security / audit	UNKNOWN STEP	2026-10-29T08:32:50.7472017Z env:
+security / audit	UNKNOWN STEP	2026-10-29T08:32:50.7472222Z   DOTNET_ROOT: /usr/share/dotnet
+security / audit	UNKNOWN STEP	2026-10-29T08:32:50.7472489Z ##[endgroup]
+security / audit	UNKNOWN STEP	2026-10-29T08:32:50.8878753Z /tmp/tmp.7egCqDGVXH/gitleaks.tar.gz: OK
+security / audit	UNKNOWN STEP	2026-10-29T08:33:24.3503066Z ^[[90m8:33AM^[[0m ^[[32mINF^[[0m ^[[1m3273 commits scanned.^[[0m
+security / audit	UNKNOWN STEP	2026-10-29T08:33:24.3504341Z ^[[90m8:33AM^[[0m ^[[32mINF^[[0m ^[[1mscanned ~325301407 bytes (325.30 MB) in 33s^[[0m
+security / audit	UNKNOWN STEP	2026-10-29T08:33:24.3520521Z ^[[90m8:33AM^[[0m ^[[32mINF^[[0m ^[[1mno leaks found^[[0m
+security / audit	UNKNOWN STEP	2026-10-29T08:33:24.3802907Z Post job cleanup.
+security / audit	UNKNOWN STEP	2026-10-29T08:33:24.5213537Z Post job cleanup.
+security / audit	UNKNOWN STEP	2026-10-29T08:33:24.6164431Z [command]/usr/bin/git version
+security / audit	UNKNOWN STEP	2026-10-29T08:33:24.6212714Z git version 2.56.0
+security / audit	UNKNOWN STEP	2026-10-29T08:33:24.6250718Z Temporarily overriding HOME='/home/runner/work/_temp/b51de69c-f30f-4705-b71a-f88df70c05ec' before making global git config changes
+security / audit	UNKNOWN STEP	2026-10-29T08:33:24.6252215Z Adding repository directory to the temporary git global config as a safe directory
+security / audit	UNKNOWN STEP	2026-10-29T08:33:24.6260107Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Data.Doublets/Data.Doublets
+security / audit	UNKNOWN STEP	2026-10-29T08:33:24.6291505Z Removing SSH command configuration
+security / audit	UNKNOWN STEP	2026-10-29T08:33:24.6299033Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+security / audit	UNKNOWN STEP	2026-10-29T08:33:24.6338329Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+security / audit	UNKNOWN STEP	2026-10-29T08:33:24.6636112Z Removing HTTP extra header
+security / audit	UNKNOWN STEP	2026-10-29T08:33:24.6643693Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+security / audit	UNKNOWN STEP	2026-10-29T08:33:24.6741950Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+security / audit	UNKNOWN STEP	2026-10-29T08:33:24.7061039Z Removing includeIf entries pointing to credentials config files
+security / audit	UNKNOWN STEP	2026-10-29T08:33:24.7103595Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+security / audit	UNKNOWN STEP	2026-10-29T08:33:24.7164740Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+security / audit	UNKNOWN STEP	2026-10-29T08:33:24.7625641Z Cleaning up orphan processes
+security / audit	UNKNOWN STEP	2026-10-29T08:33:24.7924023Z Terminate orphan process: pid (2864) (dotnet)
+security / audit	UNKNOWN STEP	2026-10-29T08:33:24.7946764Z Terminate orphan process: pid (2865) (dotnet)

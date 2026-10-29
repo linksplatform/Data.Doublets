@@ -1,12 +1,12 @@
 [![Версия NuGet пакета и количество загрузок](https://img.shields.io/nuget/v/Platform.Data.Doublets?label=nuget&style=flat)](https://www.nuget.org/packages/Platform.Data.Doublets)
-[![Состояние сборки](https://github.com/linksplatform/Data.Doublets/workflows/CD/badge.svg)](https://github.com/linksplatform/Data.Doublets/actions?workflow=CD)
-[![Codacy](https://api.codacy.com/project/badge/Grade/83c66adb68f44a018c795bc7dc7d6f49)](https://app.codacy.com/app/drakonard/Data.Doublets?utm_source=github.com&utm_medium=referral&utm_content=linksplatform/Data.Doublets&utm_campaign=Badge_Grade_Dashboard)
-[![CodeFactor](https://www.codefactor.io/repository/github/linksplatform/data.doublets/badge/master)](https://www.codefactor.io/repository/github/linksplatform/data.doublets/overview/master)
+[![Состояние сборки](https://github.com/linksplatform/Data.Doublets/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/linksplatform/Data.Doublets/actions/workflows/ci.yml)
+[![Codacy](https://api.codacy.com/project/badge/Grade/d92f59d08c604e95ba2469ee8e9d88c1)](https://app.codacy.com/app/drakonard/Data.Doublets?utm_source=github.com&utm_medium=referral&utm_content=linksplatform/Data.Doublets&utm_campaign=Badge_Grade_Dashboard)
+[![CodeFactor](https://www.codefactor.io/repository/github/linksplatform/data.doublets/badge/main)](https://www.codefactor.io/repository/github/linksplatform/data.doublets/overview/main)
 
 # [Data.Doublets](https://github.com/linksplatform/Data.Doublets) ([english version](README.md))
 Библиотека классов ПлатформыСвязей Platform.Data.Doublets.
 
-Пространство имён: [Platform.Data.Doublets](https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.html)
+Пространство имён: [Platform.Data.Doublets](https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.html)
 
 Ответвление от: [Konard/LinksPlatform/Platform/Platform.Data.Doublets](https://github.com/Konard/LinksPlatform/tree/b0844d778ced60b22435e57342393031b26a2822/Platform/Platform.Data.Doublets)
 
@@ -51,11 +51,11 @@ links.Delete(link);
 [![Изображение с результатом сравнения производительности SQLite и Дуплетов.](https://raw.githubusercontent.com/linksplatform/Documentation/master/doc/Examples/sqlite_vs_doublets_performance.png "Результат сравнения производительности SQLite и Дуплетов")](https://github.com/linksplatform/Comparisons.SQLiteVSDoublets)
 
 ## [Документация](https://linksplatform.github.io/Data.Doublets)
-*   Интерфейс [ILinks\<TLink, TConstants\>](https://linksplatform.github.io/Data/csharp/api/Platform.Data.ILinks-2.html).
+*   Интерфейс [ILinks\<TLink, TConstants\>](https://github.com/linksplatform/Data/blob/main/csharp/Platform.Data/ILinks.cs).
 *   Интерфейс [ILinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.ILinks-1.html).
 *   Класс [UnitedMemoryLinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinks-1.html).
 
-[PDF файл](https://linksplatform.github.io/Data.Doublets/Platform.Data.Doublets.pdf) с кодом для электронных книг.
+[PDF файл](https://linksplatform.github.io/Data.Doublets/csharp/Platform.Data.Doublets.pdf) с кодом для электронных книг.
 
 ## Граф зависимостей [C#]
 [![SVG изображение графа зависимостей C#](https://raw.github.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.svg?sanitize=true)](https://raw.githubusercontent.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.svg?sanitize=true)
@@ -75,6 +75,6 @@ links.Delete(link);
 ## Контракты удаления и принципы проектирования
 
 Проверки и обработка удаления выбираются вызывающим кодом или декораторами.
-См. [рецепты C#](docs/deletion-csharp.md), [рецепты Rust](docs/deletion-rust.md),
-[общие принципы](docs/design.md) и [исполняемые примеры](examples/Deletion)
+См. [рецепты C#](https://linksplatform.github.io/Data.Doublets/csharp/deletion-csharp.html), [рецепты Rust](https://linksplatform.github.io/Data.Doublets/csharp/deletion-rust.html),
+[общие принципы](https://linksplatform.github.io/Data.Doublets/csharp/design.html) и [исполняемые примеры](https://linksplatform.github.io/Data.Doublets/csharp/examples/Deletion/README.html)
 (документация на английском языке).

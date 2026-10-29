@@ -1,0 +1,53 @@
+warning[dependabot-cooldown]: insufficient cooldown in Dependabot updates
+ --> .github/dependabot.yml:3:5
+  |
+3 |   - package-ecosystem: nuget
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^ insufficient implicit default-days (less than 7)
+  |
+  = note: audit confidence → High
+  = note: this finding has an auto-fix
+  = help: audit documentation → https://docs.zizmor.sh/audits/#dependabot-cooldown
+
+warning[dependabot-cooldown]: insufficient cooldown in Dependabot updates
+  --> .github/dependabot.yml:12:5
+   |
+12 |   - package-ecosystem: github-actions
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ insufficient implicit default-days (less than 7)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#dependabot-cooldown
+
+warning[dependabot-cooldown]: insufficient cooldown in Dependabot updates
+  --> .github/dependabot.yml:16:5
+   |
+16 |   - package-ecosystem: pip
+   |     ^^^^^^^^^^^^^^^^^^^^^^ insufficient implicit default-days (less than 7)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#dependabot-cooldown
+
+warning[dependabot-cooldown]: insufficient cooldown in Dependabot updates
+  --> .github/dependabot.yml:20:5
+   |
+20 |   - package-ecosystem: gitsubmodule
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ insufficient implicit default-days (less than 7)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#dependabot-cooldown
+
+error[bot-conditions]: spoofable bot actor check
+ --> .github/workflows/AutoMerge.yml:9:9
+  |
+8 |   auto-merge:
+  |   ---------- this job
+9 |     if: github.actor_id == '49699333' && github.event.pull_request.user.id == 49699333
+  |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ actor context may be spoofable
+  |
+  = note: audit confidence → Medium
+  = note: this finding has an auto-fix
+  = help: audit documentation → https://docs.zizmor.sh/audits/#bot-conditions
+
+28 findings (1 ignored, 22 suppressed, 5 safe fixes): 0 informational, 0 low, 4 medium, 1 high

@@ -1,9 +1,9 @@
 [![Gitpod](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/linksplatform/Data.Doublets)
 
 [![NuGet Version and Downloads count](https://img.shields.io/nuget/v/Platform.Data.Doublets?label=nuget&style=flat)](https://www.nuget.org/packages/Platform.Data.Doublets)
-[![Actions Status](https://github.com/linksplatform/Data.Doublets/workflows/csharp/badge.svg)](https://github.com/linksplatform/Data.Doublets/actions?workflow=csharp)
+[![Actions Status](https://github.com/linksplatform/Data.Doublets/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/linksplatform/Data.Doublets/actions/workflows/ci.yml)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/d92f59d08c604e95ba2469ee8e9d88c1)](https://app.codacy.com/gh/linksplatform/Data.Doublets?utm_source=github.com&utm_medium=referral&utm_content=linksplatform/Data.Doublets&utm_campaign=Badge_Grade_Settings)
-[![CodeFactor](https://www.codefactor.io/repository/github/linksplatform/data.doublets/badge/master)](https://www.codefactor.io/repository/github/linksplatform/data.doublets/overview/master)
+[![CodeFactor](https://www.codefactor.io/repository/github/linksplatform/data.doublets/badge/main)](https://www.codefactor.io/repository/github/linksplatform/data.doublets/overview/main)
 
 # [Data.Doublets](https://github.com/linksplatform/Data.Doublets) ([русская версия](README.ru.md))
 LinksPlatform's Platform.Data.Doublets Class Library.
@@ -57,13 +57,13 @@ links.Delete(link);
 Choose validation and resolution per call or through optional decorators. Raw
 C# deletion requires a live link, reset endpoints and caller-managed usages.
 
-* [C# deletion recipes and overload contracts](docs/deletion-csharp.md)
-* [Rust deletion recipes and current implementation limits](docs/deletion-rust.md)
-* [Shared vision and design guidelines](docs/design.md)
-* [Runnable deletion examples](examples/Deletion) and [architecture audit](docs/deletion-audit.md)
+* [C# deletion recipes and overload contracts](https://linksplatform.github.io/Data.Doublets/csharp/deletion-csharp.html)
+* [Rust deletion recipes and current implementation limits](https://linksplatform.github.io/Data.Doublets/csharp/deletion-rust.html)
+* [Shared vision and design guidelines](https://linksplatform.github.io/Data.Doublets/csharp/design.html)
+* [Runnable deletion examples](https://linksplatform.github.io/Data.Doublets/csharp/examples/Deletion/README.html) and [architecture audit](https://linksplatform.github.io/Data.Doublets/csharp/deletion-audit.html)
 
 ## [Documentation](https://linksplatform.github.io/Data.Doublets)
-*   Interface [ILinks\<TLink, TConstants\>](https://linksplatform.github.io/Data/csharp/api/Platform.Data.ILinks-2.html).
+*   Interface [ILinks\<TLink, TConstants\>](https://github.com/linksplatform/Data/blob/main/csharp/Platform.Data/ILinks.cs).
 *   Interface [ILinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.ILinks-1.html).
 *   Class [UnitedMemoryLinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinks-1.html).
 

@@ -38,7 +38,7 @@ public unsafe class InternalLinksSourcesLinkedListMethods<TLinkAddress> : Relati
 
     /// <summary>
     ///     <para>
-    ///         Initializes a new <see cref="InternalLinksSourcesLinkedListMethods" /> instance.
+    ///         Initializes a new <see cref="InternalLinksSourcesLinkedListMethods{TLinkAddress}" /> instance.
     ///     </para>
     ///     <para></para>
     /// </summary>
@@ -384,7 +384,7 @@ public unsafe class InternalLinksSourcesLinkedListMethods<TLinkAddress> : Relati
         var first = current;
         while (current != TLinkAddress.Zero)
         {
-            if ((handler(link: GetLinkValues(linkIndex: current)) == @break))
+            if (((handler == null ? Continue : handler(link: GetLinkValues(linkIndex: current))) == @break))
             {
                 return @break;
             }

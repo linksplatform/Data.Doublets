@@ -33,13 +33,13 @@ namespace Platform.Data.Doublets.Tests
             }
         }
 
-        [Fact(Skip = "Would be fixed later.")]
+        [Fact]
         public static void FullAutoResolutionTest()
         {
             using (var scope = new Scope(autoInclude: true, autoExplore: true))
             {
                 var instance = scope.Use<CombinedDecorator<TLinkAddress>>();
-                Assert.IsType<TLinkAddress>(instance);
+                Assert.IsType<CombinedDecorator<TLinkAddress>>(instance);
             }
         }
 

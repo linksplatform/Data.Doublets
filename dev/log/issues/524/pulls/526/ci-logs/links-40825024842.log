@@ -1,0 +1,443 @@
+links	Set up job	﻿2026-10-29T05:43:29.6035476Z Current runner version: '2.338.0'
+links	Set up job	2026-10-29T05:43:29.6061964Z ##[group]Runner Image Provisioner
+links	Set up job	2026-10-29T05:43:29.6062798Z Hosted Compute Agent
+links	Set up job	2026-10-29T05:43:29.6063263Z Version: 20261021.618
+links	Set up job	2026-10-29T05:43:29.6063753Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+links	Set up job	2026-10-29T05:43:29.6064340Z Build Date: 2026-10-21T00:45:21Z
+links	Set up job	2026-10-29T05:43:29.6064890Z Worker ID: {bf548809-10b5-43fd-af88-7a04e1f9cc78}
+links	Set up job	2026-10-29T05:43:29.6065496Z Region: centralus
+links	Set up job	2026-10-29T05:43:29.6065928Z Cloud: Azure
+links	Set up job	2026-10-29T05:43:29.6066401Z ##[endgroup]
+links	Set up job	2026-10-29T05:43:29.6067747Z ##[group]Operating System
+links	Set up job	2026-10-29T05:43:29.6068258Z Ubuntu
+links	Set up job	2026-10-29T05:43:29.6068675Z 24.04.5
+links	Set up job	2026-10-29T05:43:29.6069105Z LTS
+links	Set up job	2026-10-29T05:43:29.6069507Z ##[endgroup]
+links	Set up job	2026-10-29T05:43:29.6069985Z ##[group]Runner Image
+links	Set up job	2026-10-29T05:43:29.6070452Z Image: ubuntu-24.04
+links	Set up job	2026-10-29T05:43:29.6070932Z Version: 20261025.353.1
+links	Set up job	2026-10-29T05:43:29.6071776Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261025.353/images/ubuntu/Ubuntu2404-Readme.md
+links	Set up job	2026-10-29T05:43:29.6073105Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261025.353
+links	Set up job	2026-10-29T05:43:29.6073886Z ##[endgroup]
+links	Set up job	2026-10-29T05:43:29.6074832Z ##[group]GITHUB_TOKEN Permissions
+links	Set up job	2026-10-29T05:43:29.6076691Z Contents: read
+links	Set up job	2026-10-29T05:43:29.6077143Z Metadata: read
+links	Set up job	2026-10-29T05:43:29.6077881Z ##[endgroup]
+links	Set up job	2026-10-29T05:43:29.6079580Z Secret source: Actions
+links	Set up job	2026-10-29T05:43:29.6080378Z Cache mode: write
+links	Set up job	2026-10-29T05:43:29.6080903Z Prepare workflow directory
+links	Set up job	2026-10-29T05:43:29.6359482Z Prepare all required actions
+links	Set up job	2026-10-29T05:43:29.6400255Z Getting action download info
+links	Set up job	2026-10-29T05:43:29.8954192Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+links	Set up job	2026-10-29T05:43:30.0105089Z Download action repository 'lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8' (SHA:e7477775783ea5526144ba13e8db5eec57747ce8)
+links	Set up job	2026-10-29T05:43:30.2817103Z Download action repository 'actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9' (SHA:cf430e030ddbb5b0abf93d22962f4752f3646cd9)
+links	Set up job	2026-10-29T05:43:30.4856437Z Complete job name: links
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-10-29T05:43:30.5534281Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.5535164Z with:
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.5535593Z   persist-credentials: false
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.5536079Z   repository: linksplatform/Data.Doublets
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.5539589Z   token: ***
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.5540062Z   ssh-strict: true
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.5540469Z   ssh-user: git
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.5540862Z   clean: true
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.5541273Z   sparse-checkout-cone-mode: true
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.5541749Z   fetch-depth: 1
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.5542154Z   fetch-tags: false
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.5542537Z   show-progress: true
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.5542971Z   lfs: false
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.5543349Z   submodules: false
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.5544078Z   set-safe-directory: true
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.5544628Z   allow-unsafe-pr-checkout: false
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.5545297Z ##[endgroup]
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8126841Z Syncing repository: linksplatform/Data.Doublets
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8129381Z ##[group]Getting Git version info
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8130560Z Working directory is '/home/runner/work/Data.Doublets/Data.Doublets'
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8131583Z [command]/usr/bin/git version
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8186816Z git version 2.56.0
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8203993Z ##[endgroup]
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8213748Z Temporarily overriding HOME='/home/runner/work/_temp/84242991-3ed4-4566-afb6-47d2b0620cff' before making global git config changes
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8215684Z Adding repository directory to the temporary git global config as a safe directory
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8218216Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Data.Doublets/Data.Doublets
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8261196Z Deleting the contents of '/home/runner/work/Data.Doublets/Data.Doublets'
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8263881Z ##[group]Determining repository object format
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8265469Z ##[endgroup]
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8266483Z ##[group]Initializing the repository
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8268679Z [command]/usr/bin/git init /home/runner/work/Data.Doublets/Data.Doublets
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8472689Z hint: Using 'master' as the name for the initial branch. This default branch name
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8474059Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8475255Z hint: to use in all of your new repositories, which will suppress this warning,
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8476640Z hint: call:
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8477163Z hint:
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8478119Z hint: 	git config --global init.defaultBranch <name>
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8478937Z hint:
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8479750Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8480876Z hint: 'development'. The just-created branch can be renamed via this command:
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8481716Z hint:
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8482273Z hint: 	git branch -m <name>
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8482971Z hint:
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8483882Z hint: Disable this message with "git config set advice.defaultBranchName false"
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8485139Z Initialized empty Git repository in /home/runner/work/Data.Doublets/Data.Doublets/.git/
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8491623Z [command]/usr/bin/git remote add origin https://github.com/linksplatform/Data.Doublets
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8542374Z ##[endgroup]
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8543654Z ##[group]Disabling automatic garbage collection
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8544906Z [command]/usr/bin/git config --local gc.auto 0
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8573009Z ##[endgroup]
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8575439Z ##[group]Setting up auth
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8576713Z Removing SSH command configuration
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8590351Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8642838Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8973007Z Removing HTTP extra header
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.8978704Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.9009637Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.9170788Z Removing includeIf entries pointing to credentials config files
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.9176036Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.9203647Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.9367712Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-86458ada-a044-4a0a-971c-e61e2b117837.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.9399899Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path /home/runner/work/_temp/git-credentials-86458ada-a044-4a0a-971c-e61e2b117837.config
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.9427228Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-86458ada-a044-4a0a-971c-e61e2b117837.config
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.9455926Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-86458ada-a044-4a0a-971c-e61e2b117837.config
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.9483288Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-86458ada-a044-4a0a-971c-e61e2b117837.config
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.9511127Z ##[endgroup]
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.9511857Z ##[group]Fetching the repository
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:30.9518209Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +791075681eec3f0eabc8dfc8a24f07059159a0c2:refs/remotes/pull/526/merge
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.4946894Z From https://github.com/linksplatform/Data.Doublets
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.4948992Z  * [new ref]         791075681eec3f0eabc8dfc8a24f07059159a0c2 -> pull/526/merge
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.4952111Z ##[endgroup]
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.4953147Z ##[group]Determining the checkout info
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.4980505Z ##[endgroup]
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.4989011Z [command]/usr/bin/git sparse-checkout disable
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5016356Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5050148Z ##[group]Checking out the ref
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5055168Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/526/merge
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5230260Z Note: switching to 'refs/remotes/pull/526/merge'.
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5231399Z 
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5231986Z You are in 'detached HEAD' state. You can look around, make experimental
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5233560Z changes and commit them, and you can discard any commits you make in this
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5235016Z state without impacting any branches by switching back to a branch.
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5235863Z 
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5236591Z If you want to create a new branch to retain commits you create, you may
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5238287Z do so (now or later) by using -c with the switch command. Example:
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5239196Z 
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5239562Z   git switch -c <new-branch-name>
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5240144Z 
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5240447Z Or undo this operation with:
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5240949Z 
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5241291Z   git switch -
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5241661Z 
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5242304Z Turn off this advice by setting config variable advice.detachedHead to false
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5243234Z 
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5244332Z HEAD is now at 7910756 Merge 1d1c66df1f3e3f20bebaef5886a68d4e14d69998 into 799502ce9275edc80d9fbc1953ff8892fe0eca19
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5255727Z ##[endgroup]
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5294284Z [command]/usr/bin/git log -1 --format=%H
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5317731Z 791075681eec3f0eabc8dfc8a24f07059159a0c2
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5325468Z ##[group]Removing auth
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5326752Z Removing SSH command configuration
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5329167Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5358231Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5526870Z Removing HTTP extra header
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5529762Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5557903Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5715133Z Removing includeIf entries pointing to credentials config files
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5718145Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5740785Z includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5743682Z includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5746255Z includeif.gitdir:/github/workspace/.git.path
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5748433Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5753242Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5769620Z /home/runner/work/_temp/git-credentials-86458ada-a044-4a0a-971c-e61e2b117837.config
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5777521Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-86458ada\-a044\-4a0a\-971c\-e61e2b117837\.config
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5813980Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5834095Z /home/runner/work/_temp/git-credentials-86458ada-a044-4a0a-971c-e61e2b117837.config
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5841352Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-86458ada\-a044\-4a0a\-971c\-e61e2b117837\.config
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5872842Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5892171Z /github/runner_temp/git-credentials-86458ada-a044-4a0a-971c-e61e2b117837.config
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5900111Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-86458ada\-a044\-4a0a\-971c\-e61e2b117837\.config
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5931578Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5951307Z /github/runner_temp/git-credentials-86458ada-a044-4a0a-971c-e61e2b117837.config
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5959201Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-86458ada\-a044\-4a0a\-971c\-e61e2b117837\.config
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.5988504Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.6152897Z Removing credentials config '/home/runner/work/_temp/git-credentials-86458ada-a044-4a0a-971c-e61e2b117837.config'
+links	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:31.6158056Z ##[endgroup]
+links	Check maintained Markdown links	﻿2026-10-29T05:43:31.6597277Z ##[group]Run lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8
+links	Check maintained Markdown links	2026-10-29T05:43:31.6598788Z with:
+links	Check maintained Markdown links	2026-10-29T05:43:31.6599496Z   lycheeVersion: v0.23.0
+links	Check maintained Markdown links	2026-10-29T05:43:31.6600783Z   args: --verbose --no-progress --max-concurrency 4 --max-retries 3 --timeout 30 './*.md'
+links	Check maintained Markdown links	2026-10-29T05:43:31.6602117Z   fail: false
+links	Check maintained Markdown links	2026-10-29T05:43:31.6602813Z   output: lychee/out.md
+links	Check maintained Markdown links	2026-10-29T05:43:31.6603571Z   jobSummary: true
+links	Check maintained Markdown links	2026-10-29T05:43:31.6604284Z   debug: false
+links	Check maintained Markdown links	2026-10-29T05:43:31.6605005Z   failIfEmpty: true
+links	Check maintained Markdown links	2026-10-29T05:43:31.6605741Z   format: markdown
+links	Check maintained Markdown links	2026-10-29T05:43:31.6606452Z   checkbox: true
+links	Check maintained Markdown links	2026-10-29T05:43:31.6613383Z   token: ***
+links	Check maintained Markdown links	2026-10-29T05:43:31.6614114Z   workingDirectory: .
+links	Check maintained Markdown links	2026-10-29T05:43:31.6614913Z env:
+links	Check maintained Markdown links	2026-10-29T05:43:31.6621152Z   GITHUB_TOKEN: ***
+links	Check maintained Markdown links	2026-10-29T05:43:31.6621914Z ##[endgroup]
+links	Check maintained Markdown links	2026-10-29T05:43:31.6683635Z ##[start-action display=Set up environment;id=lychee.__run]
+links	Check maintained Markdown links	2026-10-29T05:43:31.6748627Z ##[group]Run # Install into $RUNNER_TEMP (not $HOME) so the install path is stable
+links	Check maintained Markdown links	2026-10-29T05:43:31.6750668Z ^[[36;1m# Install into $RUNNER_TEMP (not $HOME) so the install path is stable^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6752313Z ^[[36;1m# across composite steps. On some runners $HOME is overridden per step^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6753934Z ^[[36;1m# (e.g. actions/checkout temporarily sets it), which made the PATH^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6755412Z ^[[36;1m# entry from one step and the install in another step diverge.^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6756745Z ^[[36;1mecho "$RUNNER_TEMP/lychee/bin" >> "$GITHUB_PATH"^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6758068Z ^[[36;1mmkdir -p "$RUNNER_TEMP/lychee/bin"^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6776134Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+links	Check maintained Markdown links	2026-10-29T05:43:31.6777284Z env:
+links	Check maintained Markdown links	2026-10-29T05:43:31.6784009Z   GITHUB_TOKEN: ***
+links	Check maintained Markdown links	2026-10-29T05:43:31.6784795Z ##[endgroup]
+links	Check maintained Markdown links	2026-10-29T05:43:31.6874981Z ##[end-action id=lychee.__run;outcome=success;conclusion=success;duration_ms=18]
+links	Check maintained Markdown links	2026-10-29T05:43:31.6882417Z ##[start-action display=Download and extract lychee in temp directory;id=lychee.lychee-setup]
+links	Check maintained Markdown links	2026-10-29T05:43:31.6926644Z ##[group]Run # Create a temporary directory for downloads and extraction
+links	Check maintained Markdown links	2026-10-29T05:43:31.6928615Z ^[[36;1m# Create a temporary directory for downloads and extraction^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6929951Z ^[[36;1mTEMP_DIR="${RUNNER_TEMP}/lychee-download"^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6931105Z ^[[36;1mrm -rf "${TEMP_DIR}" && mkdir -p "${TEMP_DIR}"^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6932453Z ^[[36;1mcd "${TEMP_DIR}"^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6933324Z ^[[36;1m^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6934073Z ^[[36;1mARCH=$(uname -m)^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6935131Z ^[[36;1m# Determine filename and download URL based on version^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6936408Z ^[[36;1mif [[ "${LYCHEE_VERSION}" =~ ^v0\.0|^v0\.1[0-5]\. ]]; then^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6937989Z ^[[36;1m  FILENAME="lychee-${LYCHEE_VERSION}-${ARCH}-unknown-linux-gnu.tar.gz"^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6939950Z ^[[36;1m  DOWNLOAD_URL="https://github.com/lycheeverse/lychee/releases/download/${LYCHEE_VERSION}/${FILENAME}"^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6941514Z ^[[36;1melse^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6942439Z ^[[36;1m  FILENAME="lychee-${ARCH}-unknown-linux-gnu.tar.gz"^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6943688Z ^[[36;1m  if [[ "${LYCHEE_VERSION}" == 'nightly' ]]; then^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6945233Z ^[[36;1m    DOWNLOAD_URL="https://github.com/lycheeverse/lychee/releases/download/nightly/${FILENAME}"^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6946858Z ^[[36;1m  elif [[ "${LYCHEE_VERSION}" == 'latest' ]]; then^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6948618Z ^[[36;1m    DOWNLOAD_URL="https://github.com/lycheeverse/lychee/releases/latest/download/${FILENAME}"^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6950087Z ^[[36;1m  else^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6951543Z ^[[36;1m    DOWNLOAD_URL="https://github.com/lycheeverse/lychee/releases/download/lychee-${LYCHEE_VERSION}/${FILENAME}"^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6953218Z ^[[36;1m  fi^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6953977Z ^[[36;1mfi^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6954688Z ^[[36;1m^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6955569Z ^[[36;1mecho "Downloading from: ${DOWNLOAD_URL}"^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6956688Z ^[[36;1mcurl -sfLO "${DOWNLOAD_URL}"^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6957960Z ^[[36;1m^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6958749Z ^[[36;1mecho "Extracting ${FILENAME}"^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6959731Z ^[[36;1mtar -xvzf "${FILENAME}"^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6960645Z ^[[36;1mrm -rv "${FILENAME}"^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6961503Z ^[[36;1m^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6962497Z ^[[36;1m# Detect if lychee binary is in a subfolder within the tar.gz^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6963819Z ^[[36;1mif ! [[ -f "${TEMP_DIR}/lychee" ]]; then^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6965102Z ^[[36;1m  TEMP_DIR="$(echo "${TEMP_DIR}"/lychee-*)"  # need `echo` to evaluate glob^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6966326Z ^[[36;1mfi^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6967230Z ^[[36;1mif ! [[ -f "${TEMP_DIR}/lychee" ]]; then^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6968841Z ^[[36;1m  echo "Cannot find lychee binary in $TEMP_DIR. Did the archive structure change?" >&2^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6970247Z ^[[36;1m  exit 1^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6970996Z ^[[36;1mfi^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6971678Z ^[[36;1m^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6972534Z ^[[36;1m# Output temp directory for use in later steps^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6973739Z ^[[36;1mecho "temp_dir=${TEMP_DIR}" >> $GITHUB_OUTPUT^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:31.6989116Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+links	Check maintained Markdown links	2026-10-29T05:43:31.6990232Z env:
+links	Check maintained Markdown links	2026-10-29T05:43:31.6996564Z   GITHUB_TOKEN: ***
+links	Check maintained Markdown links	2026-10-29T05:43:31.6997465Z   LYCHEE_VERSION: v0.23.0
+links	Check maintained Markdown links	2026-10-29T05:43:31.6998316Z ##[endgroup]
+links	Check maintained Markdown links	2026-10-29T05:43:31.7069812Z Downloading from: https://github.com/lycheeverse/lychee/releases/download/lychee-v0.23.0/lychee-x86_64-unknown-linux-gnu.tar.gz
+links	Check maintained Markdown links	2026-10-29T05:43:32.0531074Z Extracting lychee-x86_64-unknown-linux-gnu.tar.gz
+links	Check maintained Markdown links	2026-10-29T05:43:32.0556729Z lychee
+links	Check maintained Markdown links	2026-10-29T05:43:32.1799543Z docs/
+links	Check maintained Markdown links	2026-10-29T05:43:32.1800335Z docs/README.md
+links	Check maintained Markdown links	2026-10-29T05:43:32.1801120Z docs/TROUBLESHOOTING.md
+links	Check maintained Markdown links	2026-10-29T05:43:32.1801673Z docs/lychee.1
+links	Check maintained Markdown links	2026-10-29T05:43:32.1802256Z docs/PRE_COMMIT.md
+links	Check maintained Markdown links	2026-10-29T05:43:32.1825056Z removed 'lychee-x86_64-unknown-linux-gnu.tar.gz'
+links	Check maintained Markdown links	2026-10-29T05:43:32.1855383Z ##[end-action id=lychee.lychee-setup;outcome=success;conclusion=success;duration_ms=497]
+links	Check maintained Markdown links	2026-10-29T05:43:32.1862483Z ##[start-action display=Install lychee;id=lychee.__run_2]
+links	Check maintained Markdown links	2026-10-29T05:43:32.1915461Z ##[group]Run # Install lychee from the temporary directory
+links	Check maintained Markdown links	2026-10-29T05:43:32.1916078Z ^[[36;1m# Install lychee from the temporary directory^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:32.1916742Z ^[[36;1minstall -t "$RUNNER_TEMP/lychee/bin" -D "/home/runner/work/_temp/lychee-download/lychee"^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:32.1929905Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+links	Check maintained Markdown links	2026-10-29T05:43:32.1930459Z env:
+links	Check maintained Markdown links	2026-10-29T05:43:32.1932928Z   GITHUB_TOKEN: ***
+links	Check maintained Markdown links	2026-10-29T05:43:32.1933368Z ##[endgroup]
+links	Check maintained Markdown links	2026-10-29T05:43:32.2054101Z ##[end-action id=lychee.__run_2;outcome=success;conclusion=success;duration_ms=19]
+links	Check maintained Markdown links	2026-10-29T05:43:32.2063906Z ##[start-action display=Run Lychee;id=lychee.run-lychee]
+links	Check maintained Markdown links	2026-10-29T05:43:32.2096562Z ##[group]Run /home/runner/work/_actions/lycheeverse/lychee-action/e7477775783ea5526144ba13e8db5eec57747ce8/entrypoint.sh
+links	Check maintained Markdown links	2026-10-29T05:43:32.2097783Z ^[[36;1m/home/runner/work/_actions/lycheeverse/lychee-action/e7477775783ea5526144ba13e8db5eec57747ce8/entrypoint.sh^[[0m
+links	Check maintained Markdown links	2026-10-29T05:43:32.2110257Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+links	Check maintained Markdown links	2026-10-29T05:43:32.2110756Z env:
+links	Check maintained Markdown links	2026-10-29T05:43:32.2113040Z   GITHUB_TOKEN: ***
+links	Check maintained Markdown links	2026-10-29T05:43:32.2115191Z   INPUT_TOKEN: ***
+links	Check maintained Markdown links	2026-10-29T05:43:32.2115732Z   INPUT_ARGS: --verbose --no-progress --max-concurrency 4 --max-retries 3 --timeout 30 './*.md'
+links	Check maintained Markdown links	2026-10-29T05:43:32.2116302Z   INPUT_DEBUG: false
+links	Check maintained Markdown links	2026-10-29T05:43:32.2116692Z   INPUT_FAIL: false
+links	Check maintained Markdown links	2026-10-29T05:43:32.2117086Z   INPUT_FAILIFEMPTY: true
+links	Check maintained Markdown links	2026-10-29T05:43:32.2117697Z   INPUT_FORMAT: markdown
+links	Check maintained Markdown links	2026-10-29T05:43:32.2118123Z   INPUT_JOBSUMMARY: true
+links	Check maintained Markdown links	2026-10-29T05:43:32.2118589Z   INPUT_CHECKBOX: true
+links	Check maintained Markdown links	2026-10-29T05:43:32.2119092Z   INPUT_OUTPUT: lychee/out.md
+links	Check maintained Markdown links	2026-10-29T05:43:32.2119714Z   SUMMARY_URL: https://github.com/linksplatform/Data.Doublets/actions/runs/40825024842#summary-123285981758
+links	Check maintained Markdown links	2026-10-29T05:43:32.2120473Z ##[endgroup]
+links	Check maintained Markdown links	2026-10-29T05:43:32.6211967Z [404] https://linksplatform.github.io/Data/csharp/api/Platform.Data.ILinks-2.html | Rejected status code: 404 Not Found (configurable with "accept" option)
+links	Check maintained Markdown links	2026-10-29T05:43:33.2616895Z [404] https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinks-1.html | Rejected status code: 404 Not Found (configurable with "accept" option)
+links	Check maintained Markdown links	2026-10-29T05:43:33.5372670Z [200] https://linksplatform.github.io/Data.Doublets | Redirect: Followed 1 redirect resolving to the final status of: OK. Redirects: https://linksplatform.github.io/Data.Doublets --[301]--> https://linksplatform.github.io/Data.Doublets/
+links	Check maintained Markdown links	2026-10-29T05:43:33.7159354Z [200] https://raw.github.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.svg?sanitize=true | Redirect: Followed 1 redirect resolving to the final status of: OK. Redirects: https://raw.github.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.svg?sanitize=true --[301]--> https://raw.githubusercontent.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.svg?sanitize=true
+links	Check maintained Markdown links	2026-10-29T05:43:33.9389562Z [404] https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.ILinks-1.html | Rejected status code: 404 Not Found (configurable with "accept" option)
+links	Check maintained Markdown links	2026-10-29T05:43:34.3113145Z [200] https://raw.github.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.cpp.svg?sanitize=true | Redirect: Followed 1 redirect resolving to the final status of: OK. Redirects: https://raw.github.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.cpp.svg?sanitize=true --[301]--> https://raw.githubusercontent.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.cpp.svg?sanitize=true
+links	Check maintained Markdown links	2026-10-29T05:43:34.5519190Z [200] https://discord.gg/eEXJyjWv5e | Redirect: Followed 1 redirect resolving to the final status of: OK. Redirects: https://discord.gg/eEXJyjWv5e --[301]--> https://discord.com/invite/eEXJyjWv5e
+links	Check maintained Markdown links	2026-10-29T05:43:34.6212447Z [404] https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.html | Rejected status code: 404 Not Found (configurable with "accept" option)
+links	Check maintained Markdown links	2026-10-29T05:43:35.2047988Z [404] https://linksplatform.github.io/Data/csharp/api/Platform.Data.ILinks-2.html | Error (cached)
+links	Check maintained Markdown links	2026-10-29T05:43:35.2770466Z [404] https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.ILinks-1.html | Error (cached)
+links	Check maintained Markdown links	2026-10-29T05:43:35.3260128Z [404] https://linksplatform.github.io/Data.Doublets/Platform.Data.Doublets.pdf | Rejected status code: 404 Not Found (configurable with "accept" option)
+links	Check maintained Markdown links	2026-10-29T05:43:35.3794007Z [404] https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.html | Rejected status code: 404 Not Found (configurable with "accept" option)
+links	Check maintained Markdown links	2026-10-29T05:43:35.5406132Z [200] https://github.com/linksplatform/Examples.Doublets.CRUD.DotNet | Redirect: Followed 2 redirects resolving to the final status of: OK. Redirects: https://github.com/linksplatform/Examples.Doublets.CRUD.DotNet --[301]--> https://github.com/linksplatform/Examples.Doublets.CRUD --[301]--> https://github.com/linksplatform/Examples.Doublets.CRUD
+links	Check maintained Markdown links	2026-10-29T05:43:35.5408660Z [200] https://github.com/linksplatform/Examples.Doublets.CRUD.DotNet | Redirect: Followed 2 redirects resolving to the final status of: OK. Redirects: https://github.com/linksplatform/Examples.Doublets.CRUD.DotNet --[301]--> https://github.com/linksplatform/Examples.Doublets.CRUD --[301]--> https://github.com/linksplatform/Examples.Doublets.CRUD
+links	Check maintained Markdown links	2026-10-29T05:43:35.6751517Z [404] https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinks-1.html | Error (cached)
+links	Check maintained Markdown links	2026-10-29T05:43:35.8299048Z [404] https://api.codacy.com/project/badge/Grade/83c66adb68f44a018c795bc7dc7d6f49 | Rejected status code: 404 Not Found (configurable with "accept" option)
+links	Check maintained Markdown links	2026-10-29T05:43:35.8995739Z [404] https://github.com/linksplatform/Data.Doublets/workflows/CD/badge.svg | Rejected status code: 404 Not Found (configurable with "accept" option)
+links	Check maintained Markdown links	2026-10-29T05:43:35.9967921Z # Summary
+links	Check maintained Markdown links	2026-10-29T05:43:35.9968214Z 
+links	Check maintained Markdown links	2026-10-29T05:43:35.9968456Z | Status         | Count |
+links	Check maintained Markdown links	2026-10-29T05:43:35.9968913Z |----------------|-------|
+links	Check maintained Markdown links	2026-10-29T05:43:35.9969582Z | 🔍 Total       | 68    |
+links	Check maintained Markdown links	2026-10-29T05:43:35.9969962Z | ✅ Successful  | 51    |
+links	Check maintained Markdown links	2026-10-29T05:43:35.9970393Z | ⏳ Timeouts    | 0     |
+links	Check maintained Markdown links	2026-10-29T05:43:35.9970765Z | 🔀 Redirected  | 6     |
+links	Check maintained Markdown links	2026-10-29T05:43:35.9971440Z | 👻 Excluded    | 0     |
+links	Check maintained Markdown links	2026-10-29T05:43:35.9971827Z | ❓ Unknown     | 0     |
+links	Check maintained Markdown links	2026-10-29T05:43:35.9972190Z | 🚫 Errors      | 11    |
+links	Check maintained Markdown links	2026-10-29T05:43:35.9972569Z | ⛔ Unsupported | 0     |
+links	Check maintained Markdown links	2026-10-29T05:43:35.9972811Z 
+links	Check maintained Markdown links	2026-10-29T05:43:35.9972963Z ## Errors per input
+links	Check maintained Markdown links	2026-10-29T05:43:35.9973178Z 
+links	Check maintained Markdown links	2026-10-29T05:43:35.9973339Z ### Errors in README.md
+links	Check maintained Markdown links	2026-10-29T05:43:35.9973566Z 
+links	Check maintained Markdown links	2026-10-29T05:43:35.9974253Z * [404] <https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.html> | Rejected status code: 404 Not Found (configurable with "accept" option)
+links	Check maintained Markdown links	2026-10-29T05:43:35.9975715Z * [404] <https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.ILinks-1.html> | Rejected status code: 404 Not Found (configurable with "accept" option)
+links	Check maintained Markdown links	2026-10-29T05:43:35.9977224Z * [404] <https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinks-1.html> | Rejected status code: 404 Not Found (configurable with "accept" option)
+links	Check maintained Markdown links	2026-10-29T05:43:35.9978907Z * [404] <https://linksplatform.github.io/Data/csharp/api/Platform.Data.ILinks-2.html> | Rejected status code: 404 Not Found (configurable with "accept" option)
+links	Check maintained Markdown links	2026-10-29T05:43:35.9979536Z 
+links	Check maintained Markdown links	2026-10-29T05:43:35.9979714Z ### Errors in README.ru.md
+links	Check maintained Markdown links	2026-10-29T05:43:35.9979952Z 
+links	Check maintained Markdown links	2026-10-29T05:43:35.9980408Z * [404] <https://api.codacy.com/project/badge/Grade/83c66adb68f44a018c795bc7dc7d6f49> | Rejected status code: 404 Not Found (configurable with "accept" option)
+links	Check maintained Markdown links	2026-10-29T05:43:35.9981461Z * [404] <https://github.com/linksplatform/Data.Doublets/workflows/CD/badge.svg> | Rejected status code: 404 Not Found (configurable with "accept" option)
+links	Check maintained Markdown links	2026-10-29T05:43:35.9982805Z * [404] <https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.html> | Rejected status code: 404 Not Found (configurable with "accept" option)
+links	Check maintained Markdown links	2026-10-29T05:43:35.9983864Z * [404] <https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.ILinks-1.html> | Error (cached)
+links	Check maintained Markdown links	2026-10-29T05:43:35.9984751Z * [404] <https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinks-1.html> | Error (cached)
+links	Check maintained Markdown links	2026-10-29T05:43:35.9985704Z * [404] <https://linksplatform.github.io/Data.Doublets/Platform.Data.Doublets.pdf> | Rejected status code: 404 Not Found (configurable with "accept" option)
+links	Check maintained Markdown links	2026-10-29T05:43:35.9986762Z * [404] <https://linksplatform.github.io/Data/csharp/api/Platform.Data.ILinks-2.html> | Error (cached)
+links	Check maintained Markdown links	2026-10-29T05:43:35.9987186Z 
+links	Check maintained Markdown links	2026-10-29T05:43:35.9987549Z ## Redirects per input
+links	Check maintained Markdown links	2026-10-29T05:43:35.9987718Z 
+links	Check maintained Markdown links	2026-10-29T05:43:35.9987930Z ### Redirects in README.md
+links	Check maintained Markdown links	2026-10-29T05:43:35.9988163Z 
+links	Check maintained Markdown links	2026-10-29T05:43:35.9988752Z * [200] <https://discord.gg/eEXJyjWv5e> | Redirect: Followed 1 redirect resolving to the final status of: OK. Redirects: https://discord.gg/eEXJyjWv5e --[301]--> https://discord.com/invite/eEXJyjWv5e
+links	Check maintained Markdown links	2026-10-29T05:43:35.9990489Z * [200] <https://github.com/linksplatform/Examples.Doublets.CRUD.DotNet> | Redirect: Followed 2 redirects resolving to the final status of: OK. Redirects: https://github.com/linksplatform/Examples.Doublets.CRUD.DotNet --[301]--> https://github.com/linksplatform/Examples.Doublets.CRUD --[301]--> https://github.com/linksplatform/Examples.Doublets.CRUD
+links	Check maintained Markdown links	2026-10-29T05:43:35.9992273Z * [200] <https://linksplatform.github.io/Data.Doublets> | Redirect: Followed 1 redirect resolving to the final status of: OK. Redirects: https://linksplatform.github.io/Data.Doublets --[301]--> https://linksplatform.github.io/Data.Doublets/
+links	Check maintained Markdown links	2026-10-29T05:43:35.9994282Z * [200] <https://raw.github.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.cpp.svg?sanitize=true> | Redirect: Followed 1 redirect resolving to the final status of: OK. Redirects: https://raw.github.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.cpp.svg?sanitize=true --[301]--> https://raw.githubusercontent.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.cpp.svg?sanitize=true
+links	Check maintained Markdown links	2026-10-29T05:43:35.9996710Z * [200] <https://raw.github.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.svg?sanitize=true> | Redirect: Followed 1 redirect resolving to the final status of: OK. Redirects: https://raw.github.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.svg?sanitize=true --[301]--> https://raw.githubusercontent.com/linksplatform/Documentation/master/doc/Dependencies/Platform.Data.Doublets.svg?sanitize=true
+links	Check maintained Markdown links	2026-10-29T05:43:35.9998097Z 
+links	Check maintained Markdown links	2026-10-29T05:43:35.9998260Z ### Redirects in README.ru.md
+links	Check maintained Markdown links	2026-10-29T05:43:35.9998429Z 
+links	Check maintained Markdown links	2026-10-29T05:43:35.9999308Z * [200] <https://github.com/linksplatform/Examples.Doublets.CRUD.DotNet> | Redirect: Followed 2 redirects resolving to the final status of: OK. Redirects: https://github.com/linksplatform/Examples.Doublets.CRUD.DotNet --[301]--> https://github.com/linksplatform/Examples.Doublets.CRUD --[301]--> https://github.com/linksplatform/Examples.Doublets.CRUD
+links	Check maintained Markdown links	2026-10-29T05:43:36.0000535Z 
+links	Check maintained Markdown links	2026-10-29T05:43:36.0000543Z 
+links	Check maintained Markdown links	2026-10-29T05:43:36.0017241Z ##[notice]Summary report available at: https://github.com/linksplatform/Data.Doublets/actions/runs/40825024842#summary-123285981758
+links	Check maintained Markdown links	2026-10-29T05:43:36.0045446Z ##[end-action id=lychee.run-lychee;outcome=success;conclusion=success;duration_ms=3798]
+links	Recheck unanswered requests with bounded backoff	﻿2026-10-29T05:43:36.0149486Z ##[group]Run python3 scripts/recheck_broken_links.py
+links	Recheck unanswered requests with bounded backoff	2026-10-29T05:43:36.0149879Z ^[[36;1mpython3 scripts/recheck_broken_links.py^[[0m
+links	Recheck unanswered requests with bounded backoff	2026-10-29T05:43:36.0163695Z shell: /usr/bin/bash -e {0}
+links	Recheck unanswered requests with bounded backoff	2026-10-29T05:43:36.0164285Z ##[endgroup]
+links	Recheck unanswered requests with bounded backoff	2026-10-29T05:43:36.0698943Z Re-check: 17 lychee failure(s), 17 answered and final, 0 never got an answer
+links	Recheck unanswered requests with bounded backoff	2026-10-29T05:43:36.0700041Z Re-check: nothing to re-ask.
+links	Suggest archived replacements	﻿2026-10-29T05:43:36.0859274Z ##[group]Run python3 scripts/check_web_archive.py
+links	Suggest archived replacements	2026-10-29T05:43:36.0859736Z ^[[36;1mpython3 scripts/check_web_archive.py^[[0m
+links	Suggest archived replacements	2026-10-29T05:43:36.0873852Z shell: /usr/bin/bash -e {0}
+links	Suggest archived replacements	2026-10-29T05:43:36.0874244Z ##[endgroup]
+links	Suggest archived replacements	2026-10-29T05:43:44.5010547Z === Web Archive Fallback Check ===
+links	Suggest archived replacements	2026-10-29T05:43:44.5011371Z Reading lychee output from: lychee/out.md
+links	Suggest archived replacements	2026-10-29T05:43:44.5012181Z Found 8 broken URL(s). Checking Web Archive...
+links	Suggest archived replacements	2026-10-29T05:43:44.5013202Z Checking: https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.html
+links	Suggest archived replacements	2026-10-29T05:43:44.5014879Z   Archived on 2020-11-03: https://web.archive.org/web/20201103153714/https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.html
+links	Suggest archived replacements	2026-10-29T05:43:44.5019635Z ##[notice]Broken link detected: https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.html
+links	Suggest archived replacements	2026-10-29T05:43:44.5021352Z A Web Archive snapshot from 2020-11-03 is available.
+links	Suggest archived replacements	2026-10-29T05:43:44.5021877Z Suggested fix: replace the broken link with the archived version:
+links	Suggest archived replacements	2026-10-29T05:43:44.5022861Z   https://web.archive.org/web/20201103153714/https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.html
+links	Suggest archived replacements	2026-10-29T05:43:44.5023739Z Checking: https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.ILinks-1.html
+links	Suggest archived replacements	2026-10-29T05:43:44.5024686Z   Archived on 2020-11-03: https://web.archive.org/web/20201103153714/https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.ILinks-1.html
+links	Suggest archived replacements	2026-10-29T05:43:44.5026763Z ##[notice]Broken link detected: https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.ILinks-1.html
+links	Suggest archived replacements	2026-10-29T05:43:44.5028282Z A Web Archive snapshot from 2020-11-03 is available.
+links	Suggest archived replacements	2026-10-29T05:43:44.5028812Z Suggested fix: replace the broken link with the archived version:
+links	Suggest archived replacements	2026-10-29T05:43:44.5029542Z   https://web.archive.org/web/20201103153714/https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.ILinks-1.html
+links	Suggest archived replacements	2026-10-29T05:43:44.5030645Z Checking: https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinks-1.html
+links	Suggest archived replacements	2026-10-29T05:43:44.5032080Z   Archived on 2020-11-03: https://web.archive.org/web/20201103153714/https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinks-1.html
+links	Suggest archived replacements	2026-10-29T05:43:44.5034483Z ##[notice]Broken link detected: https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinks-1.html
+links	Suggest archived replacements	2026-10-29T05:43:44.5036164Z A Web Archive snapshot from 2020-11-03 is available.
+links	Suggest archived replacements	2026-10-29T05:43:44.5036815Z Suggested fix: replace the broken link with the archived version:
+links	Suggest archived replacements	2026-10-29T05:43:44.5037967Z   https://web.archive.org/web/20201103153714/https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinks-1.html
+links	Suggest archived replacements	2026-10-29T05:43:44.5039286Z Checking: https://linksplatform.github.io/Data/csharp/api/Platform.Data.ILinks-2.html
+links	Suggest archived replacements	2026-10-29T05:43:44.5040276Z   Archived on 2021-02-04: https://web.archive.org/web/20210204224449/https://linksplatform.github.io/Data/csharp/api/Platform.Data.ILinks-2.html
+links	Suggest archived replacements	2026-10-29T05:43:44.5042520Z ##[notice]Broken link detected: https://linksplatform.github.io/Data/csharp/api/Platform.Data.ILinks-2.html
+links	Suggest archived replacements	2026-10-29T05:43:44.5044089Z A Web Archive snapshot from 2021-02-04 is available.
+links	Suggest archived replacements	2026-10-29T05:43:44.5044686Z Suggested fix: replace the broken link with the archived version:
+links	Suggest archived replacements	2026-10-29T05:43:44.5045547Z   https://web.archive.org/web/20210204224449/https://linksplatform.github.io/Data/csharp/api/Platform.Data.ILinks-2.html
+links	Suggest archived replacements	2026-10-29T05:43:44.5046893Z Checking: https://api.codacy.com/project/badge/Grade/83c66adb68f44a018c795bc7dc7d6f49
+links	Suggest archived replacements	2026-10-29T05:43:44.5048521Z   Not found in Web Archive
+links	Suggest archived replacements	2026-10-29T05:43:44.5053030Z ##[error]Broken link detected: https://api.codacy.com/project/badge/Grade/83c66adb68f44a018c795bc7dc7d6f49
+links	Suggest archived replacements	2026-10-29T05:43:44.5055136Z No archived version was found in the Wayback Machine.
+links	Suggest archived replacements	2026-10-29T05:43:44.5056079Z Find an updated URL, remove the link, or add it to .lycheeignore if it is a known false positive.
+links	Suggest archived replacements	2026-10-29T05:43:44.5057148Z Checking: https://github.com/linksplatform/Data.Doublets/workflows/CD/badge.svg
+links	Suggest archived replacements	2026-10-29T05:43:44.5058337Z   Archived on 2020-11-03: https://web.archive.org/web/20201103153715/https://github.com/linksplatform/Data.Doublets/workflows/CD/badge.svg
+links	Suggest archived replacements	2026-10-29T05:43:44.5060357Z ##[notice]Broken link detected: https://github.com/linksplatform/Data.Doublets/workflows/CD/badge.svg
+links	Suggest archived replacements	2026-10-29T05:43:44.5061848Z A Web Archive snapshot from 2020-11-03 is available.
+links	Suggest archived replacements	2026-10-29T05:43:44.5062421Z Suggested fix: replace the broken link with the archived version:
+links	Suggest archived replacements	2026-10-29T05:43:44.5063235Z   https://web.archive.org/web/20201103153715/https://github.com/linksplatform/Data.Doublets/workflows/CD/badge.svg
+links	Suggest archived replacements	2026-10-29T05:43:44.5064143Z Checking: https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.html
+links	Suggest archived replacements	2026-10-29T05:43:44.5064835Z   Not found in Web Archive
+links	Suggest archived replacements	2026-10-29T05:43:44.5066546Z ##[error]Broken link detected: https://linksplatform.github.io/Data.Doublets/api/Platform.Data.Doublets.html
+links	Suggest archived replacements	2026-10-29T05:43:44.5068304Z No archived version was found in the Wayback Machine.
+links	Suggest archived replacements	2026-10-29T05:43:44.5068943Z Find an updated URL, remove the link, or add it to .lycheeignore if it is a known false positive.
+links	Suggest archived replacements	2026-10-29T05:43:44.5069999Z Checking: https://linksplatform.github.io/Data.Doublets/Platform.Data.Doublets.pdf
+links	Suggest archived replacements	2026-10-29T05:43:44.5070671Z   Not found in Web Archive
+links	Suggest archived replacements	2026-10-29T05:43:44.5072675Z ##[error]Broken link detected: https://linksplatform.github.io/Data.Doublets/Platform.Data.Doublets.pdf
+links	Suggest archived replacements	2026-10-29T05:43:44.5074222Z No archived version was found in the Wayback Machine.
+links	Suggest archived replacements	2026-10-29T05:43:44.5074879Z Find an updated URL, remove the link, or add it to .lycheeignore if it is a known false positive.
+links	Suggest archived replacements	2026-10-29T05:43:44.5075469Z all_archived=false
+links	Suggest archived replacements	2026-10-29T05:43:44.5075884Z Action required: fix or remove the broken links listed above.
+links	Suggest archived replacements	2026-10-29T05:43:44.5149082Z ##[error]Process completed with exit code 1.
+links	Require valid live links	﻿2026-10-29T05:43:44.5198106Z ##[group]Run echo '::error::Broken live links remain. Review lychee/out.md and replace each link; archive availability does not make a broken link valid.'
+links	Require valid live links	2026-10-29T05:43:44.5198927Z ^[[36;1mecho '::error::Broken live links remain. Review lychee/out.md and replace each link; archive availability does not make a broken link valid.'^[[0m
+links	Require valid live links	2026-10-29T05:43:44.5199504Z ^[[36;1mexit 1^[[0m
+links	Require valid live links	2026-10-29T05:43:44.5211401Z shell: /usr/bin/bash -e {0}
+links	Require valid live links	2026-10-29T05:43:44.5211701Z ##[endgroup]
+links	Require valid live links	2026-10-29T05:43:44.5243786Z ##[error]Broken live links remain. Review lychee/out.md and replace each link; archive availability does not make a broken link valid.
+links	Require valid live links	2026-10-29T05:43:44.5245792Z ##[error]Process completed with exit code 1.
+links	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	﻿2026-10-29T05:43:44.5309490Z ##[group]Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+links	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T05:43:44.5309913Z with:
+links	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T05:43:44.5310151Z   name: link-report
+links	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T05:43:44.5310737Z   path: lychee
+links	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T05:43:44.5311070Z   if-no-files-found: error
+links	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T05:43:44.5311360Z   compression-level: 6
+links	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T05:43:44.5311663Z   overwrite: false
+links	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T05:43:44.5311916Z   include-hidden-files: false
+links	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T05:43:44.5312178Z   archive: true
+links	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T05:43:44.5312456Z ##[endgroup]
+links	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T05:43:44.6550435Z With the provided path, there will be 1 file uploaded
+links	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T05:43:44.6551514Z Artifact name is valid!
+links	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T05:43:44.6551847Z Root directory input is valid!
+links	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T05:43:44.9652250Z Uploading artifact: link-report.zip
+links	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T05:43:44.9683903Z Beginning upload of artifact content to blob storage
+links	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T05:43:45.1871541Z Uploaded bytes 929
+links	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T05:43:45.2381560Z Finished uploading artifact content to blob storage!
+links	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T05:43:45.2383590Z SHA256 digest of uploaded artifact is a88c44f5359d492e1eaabc4e7d00a8bcb25010bd7430b832255e41dfe718e910
+links	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T05:43:45.2384645Z Finalizing artifact upload
+links	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T05:43:45.8506920Z Artifact link-report successfully finalized. Artifact ID 12876052275
+links	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T05:43:45.8508139Z Artifact link-report has been successfully uploaded! Final size is 929 bytes. Artifact ID is 12876052275
+links	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T05:43:45.8510722Z Artifact download URL: https://github.com/linksplatform/Data.Doublets/actions/runs/40825024842/artifacts/12876052275
+links	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-10-29T05:43:45.8679466Z Post job cleanup.
+links	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:45.9419752Z [command]/usr/bin/git version
+links	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:45.9439886Z git version 2.56.0
+links	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:45.9469129Z Temporarily overriding HOME='/home/runner/work/_temp/8a97b36d-606c-44fa-903f-153ae645439b' before making global git config changes
+links	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:45.9470285Z Adding repository directory to the temporary git global config as a safe directory
+links	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:45.9472303Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Data.Doublets/Data.Doublets
+links	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:45.9502865Z Removing SSH command configuration
+links	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:45.9508397Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+links	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:45.9536996Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+links	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:45.9715034Z Removing HTTP extra header
+links	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:45.9719993Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+links	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:45.9747157Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+links	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:45.9931503Z Removing includeIf entries pointing to credentials config files
+links	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:45.9938938Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+links	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T05:43:45.9962693Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+links	Complete job	﻿2026-10-29T05:43:46.0320202Z Cleaning up orphan processes

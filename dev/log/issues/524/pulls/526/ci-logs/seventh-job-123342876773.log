@@ -1,0 +1,698 @@
+quality	Set up job	﻿2026-10-29T08:31:42.4183126Z Current runner version: '2.338.0'
+quality	Set up job	2026-10-29T08:31:42.4212861Z ##[group]Runner Image Provisioner
+quality	Set up job	2026-10-29T08:31:42.4214200Z Hosted Compute Agent
+quality	Set up job	2026-10-29T08:31:42.4214955Z Version: 20261021.618
+quality	Set up job	2026-10-29T08:31:42.4215610Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+quality	Set up job	2026-10-29T08:31:42.4216416Z Build Date: 2026-10-21T00:45:21Z
+quality	Set up job	2026-10-29T08:31:42.4217135Z Worker ID: {fd6c2e49-4ce9-4d6f-b4b9-b3e4d5e09e43}
+quality	Set up job	2026-10-29T08:31:42.4217902Z Region: eastus2
+quality	Set up job	2026-10-29T08:31:42.4218560Z Cloud: Azure
+quality	Set up job	2026-10-29T08:31:42.4219120Z ##[endgroup]
+quality	Set up job	2026-10-29T08:31:42.4220712Z ##[group]Operating System
+quality	Set up job	2026-10-29T08:31:42.4221402Z Ubuntu
+quality	Set up job	2026-10-29T08:31:42.4221985Z 24.04.5
+quality	Set up job	2026-10-29T08:31:42.4222567Z LTS
+quality	Set up job	2026-10-29T08:31:42.4223253Z ##[endgroup]
+quality	Set up job	2026-10-29T08:31:42.4224463Z ##[group]Runner Image
+quality	Set up job	2026-10-29T08:31:42.4225619Z Image: ubuntu-24.04
+quality	Set up job	2026-10-29T08:31:42.4226577Z Version: 20261025.353.1
+quality	Set up job	2026-10-29T08:31:42.4228456Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261025.353/images/ubuntu/Ubuntu2404-Readme.md
+quality	Set up job	2026-10-29T08:31:42.4230213Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261025.353
+quality	Set up job	2026-10-29T08:31:42.4231289Z ##[endgroup]
+quality	Set up job	2026-10-29T08:31:42.4232473Z ##[group]GITHUB_TOKEN Permissions
+quality	Set up job	2026-10-29T08:31:42.4235079Z Contents: read
+quality	Set up job	2026-10-29T08:31:42.4235725Z Metadata: read
+quality	Set up job	2026-10-29T08:31:42.4236464Z ##[endgroup]
+quality	Set up job	2026-10-29T08:31:42.4238751Z Secret source: Actions
+quality	Set up job	2026-10-29T08:31:42.4239801Z Cache mode: write
+quality	Set up job	2026-10-29T08:31:42.4240602Z Prepare workflow directory
+quality	Set up job	2026-10-29T08:31:42.4590960Z Prepare all required actions
+quality	Set up job	2026-10-29T08:31:42.4640492Z Getting action download info
+quality	Set up job	2026-10-29T08:31:42.7232137Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+quality	Set up job	2026-10-29T08:31:42.8386590Z Download action repository 'zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482' (SHA:cc914d7f3750a2d13d75c7f184a1060aa0e9d482)
+quality	Set up job	2026-10-29T08:31:43.0488888Z Getting action download info
+quality	Set up job	2026-10-29T08:31:43.1244349Z Download action repository 'github/codeql-action@cdf488f595d80d6e07e03d4674febd5ab45fa938' (SHA:cdf488f595d80d6e07e03d4674febd5ab45fa938)
+quality	Set up job	2026-10-29T08:31:43.4180635Z Complete job name: quality
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-10-29T08:31:43.5277956Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.5279832Z with:
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.5280649Z   fetch-depth: 0
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.5281573Z   persist-credentials: false
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.5282668Z   repository: linksplatform/Data.Doublets
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.5291580Z   token: ***
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.5292459Z   ssh-strict: true
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.5293348Z   ssh-user: git
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.5294349Z   clean: true
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.5295255Z   sparse-checkout-cone-mode: true
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.5296328Z   fetch-tags: false
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.5297231Z   show-progress: true
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.5298134Z   lfs: false
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.5298992Z   submodules: false
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.5299927Z   set-safe-directory: true
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.5300981Z   allow-unsafe-pr-checkout: false
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.5302311Z ##[endgroup]
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8391937Z Syncing repository: linksplatform/Data.Doublets
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8394014Z ##[group]Getting Git version info
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8394922Z Working directory is '/home/runner/work/Data.Doublets/Data.Doublets'
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8396117Z [command]/usr/bin/git version
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8492594Z git version 2.56.0
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8623115Z ##[endgroup]
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8636834Z Temporarily overriding HOME='/home/runner/work/_temp/a6281cfc-3c1d-4d39-9e34-003d445df790' before making global git config changes
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8638694Z Adding repository directory to the temporary git global config as a safe directory
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8640358Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Data.Doublets/Data.Doublets
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8647230Z Deleting the contents of '/home/runner/work/Data.Doublets/Data.Doublets'
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8649167Z ##[group]Determining repository object format
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8650154Z ##[endgroup]
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8651040Z ##[group]Initializing the repository
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8651897Z [command]/usr/bin/git init /home/runner/work/Data.Doublets/Data.Doublets
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8767432Z hint: Using 'master' as the name for the initial branch. This default branch name
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8768654Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8769382Z hint: to use in all of your new repositories, which will suppress this warning,
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8769912Z hint: call:
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8770200Z hint:
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8770632Z hint: 	git config --global init.defaultBranch <name>
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8771086Z hint:
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8771512Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8772212Z hint: 'development'. The just-created branch can be renamed via this command:
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8772812Z hint:
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8773124Z hint: 	git branch -m <name>
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8773745Z hint:
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8774287Z hint: Disable this message with "git config set advice.defaultBranchName false"
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8779767Z Initialized empty Git repository in /home/runner/work/Data.Doublets/Data.Doublets/.git/
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8793326Z [command]/usr/bin/git remote add origin https://github.com/linksplatform/Data.Doublets
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8846880Z ##[endgroup]
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8847771Z ##[group]Disabling automatic garbage collection
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8850101Z [command]/usr/bin/git config --local gc.auto 0
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8890726Z ##[endgroup]
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8891631Z ##[group]Setting up auth
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8892426Z Removing SSH command configuration
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8898252Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.8940656Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.9375268Z Removing HTTP extra header
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.9376574Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.9419373Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.9667809Z Removing includeIf entries pointing to credentials config files
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.9674964Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.9722522Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:43.9976420Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-fa773c09-1cf3-4279-bab0-0d7511470764.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:44.0029111Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path /home/runner/work/_temp/git-credentials-fa773c09-1cf3-4279-bab0-0d7511470764.config
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:44.0073073Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-fa773c09-1cf3-4279-bab0-0d7511470764.config
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:44.0119581Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-fa773c09-1cf3-4279-bab0-0d7511470764.config
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:44.0165143Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-fa773c09-1cf3-4279-bab0-0d7511470764.config
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:44.0206871Z ##[endgroup]
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:44.0207762Z ##[group]Fetching the repository
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:44.0213958Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/* +fd79f966aab84e0cc30e3b8f0fd40e9fcb9e3f7c:refs/remotes/pull/526/merge
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0237526Z From https://github.com/linksplatform/Data.Doublets
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0238875Z  * [new branch]          (storage)_rust_write.sequences           -> origin/(storage)_rust_write.sequences
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0239985Z  * [new branch]          1000203-v2                               -> origin/1000203-v2
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0240908Z  * [new branch]          100203                                   -> origin/100203
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0241912Z  * [new branch]          Sequence.Experiments_fix                 -> origin/Sequence.Experiments_fix
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0243001Z  * [new branch]          async-main                               -> origin/async-main
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0244194Z  * [new branch]          beta.6                                   -> origin/beta.6
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0245130Z  * [new branch]          binaries                                 -> origin/binaries
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0246184Z  * [new branch]          c/feature/add_ffi_links                  -> origin/c/feature/add_ffi_links
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0247329Z  * [new branch]          constexpr-issue-348                      -> origin/constexpr-issue-348
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0248507Z  * [new branch]          cpp/feature/add_clinks_concept           -> origin/cpp/feature/add_clinks_concept
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0250098Z  * [new branch]          cpp/feature/add_handlers_to_united_memory_links -> origin/cpp/feature/add_handlers_to_united_memory_links
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0252478Z  * [new branch]          cpp/feature/add_static_and_optional_dynamic_polymorphism_for_united_memory_links -> origin/cpp/feature/add_static_and_optional_dynamic_polymorphism_for_united_memory_links
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0255360Z  * [new branch]          cpp/feature/add_tbase_parameter_and_do_not_inherit_ilinks_in_united_memory_links -> origin/cpp/feature/add_tbase_parameter_and_do_not_inherit_ilinks_in_united_memory_links
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0257448Z  * [new branch]          cpp/feature/add_wrapper_around_rust_ffi  -> origin/cpp/feature/add_wrapper_around_rust_ffi
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0259246Z  * [new branch]          cpp/feature/translate_all_trees          -> origin/cpp/feature/translate_all_trees
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0260556Z  * [new branch]          cpp/feature/translate_ilinks_extensions  -> origin/cpp/feature/translate_ilinks_extensions
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0262148Z  * [new branch]          cpp/feature/translate_split_memory_links -> origin/cpp/feature/translate_split_memory_links
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0263120Z  * [new branch]          cpp/feature/translate_tests              -> origin/cpp/feature/translate_tests
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0264308Z  * [new branch]          cpp/feature/translate_united_memory_links -> origin/cpp/feature/translate_united_memory_links
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0265183Z  * [new branch]          cpp/feature/use_united_memory_links_in_tests -> origin/cpp/feature/use_united_memory_links_in_tests
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0265912Z  * [new branch]          cpp/release/0.0.1                        -> origin/cpp/release/0.0.1
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0266492Z  * [new branch]          cppwrite                                 -> origin/cppwrite
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0267160Z  * [new branch]          cs/feature/add_no_exceptions_decorator   -> origin/cs/feature/add_no_exceptions_decorator
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0267994Z  * [new branch]          csharp/feature/add_manual_garbage_collection -> origin/csharp/feature/add_manual_garbage_collection
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0268790Z  * [new branch]          csharp/feature/use_generic_math          -> origin/csharp/feature/use_generic_math
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0269440Z  * [new branch]          daulet_trees                             -> origin/daulet_trees
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0270100Z  * [new branch]          dependabot/add-v2-config-file            -> origin/dependabot/add-v2-config-file
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0271530Z  * [new branch]          dependabot/github_actions/dot-github/workflows/tj-actions/changed-files-41 -> origin/dependabot/github_actions/dot-github/workflows/tj-actions/changed-files-41
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0272759Z  * [new branch]          feature/add_logging_decorator            -> origin/feature/add_logging_decorator
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0273974Z  * [new branch]          feature/add_update_or_create_or_get_overload_with_index -> origin/feature/add_update_or_create_or_get_overload_with_index
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0274902Z  * [new branch]          feature/ilinks/delete/change_return_value -> origin/feature/ilinks/delete/change_return_value
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0275842Z  * [new branch]          feature_move_testextensions_to_tests.ilinksextensions-v2 -> origin/feature_move_testextensions_to_tests.ilinksextensions-v2
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0276914Z  * [new branch]          feature_move_testextensions_to_tests/ilinksextensions -> origin/feature_move_testextensions_to_tests/ilinksextensions
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0277958Z  * [new branch]          fix_deleteall                            -> origin/fix_deleteall
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0278551Z  * [new branch]          gh-pages                                 -> origin/gh-pages
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0279123Z  * [new branch]          ilinks_bug                               -> origin/ilinks_bug
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0279717Z  * [new branch]          issue-10-dc9e2253                        -> origin/issue-10-dc9e2253
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0280367Z  * [new branch]          issue-100-2f9bb17f                       -> origin/issue-100-2f9bb17f
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0280999Z  * [new branch]          issue-122-372622af                       -> origin/issue-122-372622af
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0281616Z  * [new branch]          issue-122-e05a5713                       -> origin/issue-122-e05a5713
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0282243Z  * [new branch]          issue-123-90f092d3                       -> origin/issue-123-90f092d3
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0282863Z  * [new branch]          issue-125-7f224c52                       -> origin/issue-125-7f224c52
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0283719Z  * [new branch]          issue-131-173bd186                       -> origin/issue-131-173bd186
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0284458Z  * [new branch]          issue-132-b9a43709                       -> origin/issue-132-b9a43709
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0285288Z  * [new branch]          issue-14-65c21b2c                        -> origin/issue-14-65c21b2c
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0285909Z  * [new branch]          issue-145-e1924d96                       -> origin/issue-145-e1924d96
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0286524Z  * [new branch]          issue-150-8aba0d16                       -> origin/issue-150-8aba0d16
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0287167Z  * [new branch]          issue-152-380a75dd                       -> origin/issue-152-380a75dd
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0287780Z  * [new branch]          issue-153-a5aacf2d                       -> origin/issue-153-a5aacf2d
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0288400Z  * [new branch]          issue-155-6f3abe86                       -> origin/issue-155-6f3abe86
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0289026Z  * [new branch]          issue-157-f18f507d                       -> origin/issue-157-f18f507d
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0289640Z  * [new branch]          issue-158-d4b2d751                       -> origin/issue-158-d4b2d751
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0290258Z  * [new branch]          issue-159-4c473b2f                       -> origin/issue-159-4c473b2f
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0290872Z  * [new branch]          issue-166-5f7770d0                       -> origin/issue-166-5f7770d0
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0291491Z  * [new branch]          issue-167-6697c32c                       -> origin/issue-167-6697c32c
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0292102Z  * [new branch]          issue-172-3a6bb3a5                       -> origin/issue-172-3a6bb3a5
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0292712Z  * [new branch]          issue-173-52414a06                       -> origin/issue-173-52414a06
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0293322Z  * [new branch]          issue-174-38feee43                       -> origin/issue-174-38feee43
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0294396Z  * [new branch]          issue-179-c20097fb                       -> origin/issue-179-c20097fb
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0295024Z  * [new branch]          issue-180-4c858df1                       -> origin/issue-180-4c858df1
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0295645Z  * [new branch]          issue-182-68621777                       -> origin/issue-182-68621777
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0296271Z  * [new branch]          issue-183-65fb60df                       -> origin/issue-183-65fb60df
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0296887Z  * [new branch]          issue-184-50380e1c                       -> origin/issue-184-50380e1c
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0297497Z  * [new branch]          issue-185-8b06ec42                       -> origin/issue-185-8b06ec42
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0298109Z  * [new branch]          issue-191-d711698e                       -> origin/issue-191-d711698e
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0298724Z  * [new branch]          issue-192-f5bd0637                       -> origin/issue-192-f5bd0637
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0299351Z  * [new branch]          issue-195-87e1a7d9                       -> origin/issue-195-87e1a7d9
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0299959Z  * [new branch]          issue-197-9699ae6f                       -> origin/issue-197-9699ae6f
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0300584Z  * [new branch]          issue-201-23d35853                       -> origin/issue-201-23d35853
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0301199Z  * [new branch]          issue-202-f9973a4e                       -> origin/issue-202-f9973a4e
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0301821Z  * [new branch]          issue-204-ee98b556                       -> origin/issue-204-ee98b556
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0302434Z  * [new branch]          issue-205-6c1a8373                       -> origin/issue-205-6c1a8373
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0303054Z  * [new branch]          issue-206-cfb6909c                       -> origin/issue-206-cfb6909c
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0303986Z  * [new branch]          issue-207-68d68fb5                       -> origin/issue-207-68d68fb5
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0304624Z  * [new branch]          issue-208-33ea9e2e                       -> origin/issue-208-33ea9e2e
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0305240Z  * [new branch]          issue-209-37cc5160                       -> origin/issue-209-37cc5160
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0305849Z  * [new branch]          issue-210-b20f751b                       -> origin/issue-210-b20f751b
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0306625Z  * [new branch]          issue-212-fb245296                       -> origin/issue-212-fb245296
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0307246Z  * [new branch]          issue-213-00756f69                       -> origin/issue-213-00756f69
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0308083Z  * [new branch]          issue-216-5c9f8771                       -> origin/issue-216-5c9f8771
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0308703Z  * [new branch]          issue-217-c738a90c                       -> origin/issue-217-c738a90c
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0309306Z  * [new branch]          issue-218-b64a64c5                       -> origin/issue-218-b64a64c5
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0309916Z  * [new branch]          issue-230-559672a0                       -> origin/issue-230-559672a0
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0310521Z  * [new branch]          issue-237-3d81523b                       -> origin/issue-237-3d81523b
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0311244Z  * [new branch]          issue-238-4d05c862                       -> origin/issue-238-4d05c862
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0311855Z  * [new branch]          issue-239-fbcda755                       -> origin/issue-239-fbcda755
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0312458Z  * [new branch]          issue-240-a4e43a46                       -> origin/issue-240-a4e43a46
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0313057Z  * [new branch]          issue-241-b58c00a6                       -> origin/issue-241-b58c00a6
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0314109Z  * [new branch]          issue-242-bcb83cac                       -> origin/issue-242-bcb83cac
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0314755Z  * [new branch]          issue-243-74d0a614                       -> origin/issue-243-74d0a614
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0315363Z  * [new branch]          issue-245-55a50dd3                       -> origin/issue-245-55a50dd3
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0316147Z  * [new branch]          issue-249-f1500da9                       -> origin/issue-249-f1500da9
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0316856Z  * [new branch]          issue-250-42c9d850                       -> origin/issue-250-42c9d850
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0317786Z  * [new branch]          issue-254-e7a5d9f7                       -> origin/issue-254-e7a5d9f7
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0318400Z  * [new branch]          issue-258-c8b7530f                       -> origin/issue-258-c8b7530f
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0319004Z  * [new branch]          issue-263-0617cbc6                       -> origin/issue-263-0617cbc6
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0319623Z  * [new branch]          issue-264-48a30829                       -> origin/issue-264-48a30829
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0320223Z  * [new branch]          issue-269-5c78f79f                       -> origin/issue-269-5c78f79f
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0320826Z  * [new branch]          issue-28-86d6809c                        -> origin/issue-28-86d6809c
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0321695Z  * [new branch]          issue-287-43a044c6                       -> origin/issue-287-43a044c6
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0322439Z  * [new branch]          issue-288-7363fdd4                       -> origin/issue-288-7363fdd4
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0324551Z  * [new branch]          issue-289-a32521da                       -> origin/issue-289-a32521da
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0325437Z  * [new branch]          issue-290-46a8add1                       -> origin/issue-290-46a8add1
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0326063Z  * [new branch]          issue-295-51e2cc11                       -> origin/issue-295-51e2cc11
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0326666Z  * [new branch]          issue-309-7c8629c7                       -> origin/issue-309-7c8629c7
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0327269Z  * [new branch]          issue-310-5de3d1dc                       -> origin/issue-310-5de3d1dc
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0327886Z  * [new branch]          issue-319-1f8bc024                       -> origin/issue-319-1f8bc024
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0328509Z  * [new branch]          issue-323-9f4031b8                       -> origin/issue-323-9f4031b8
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0329124Z  * [new branch]          issue-324-55e5be19                       -> origin/issue-324-55e5be19
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0329989Z  * [new branch]          issue-331-f53fc679                       -> origin/issue-331-f53fc679
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0331019Z  * [new branch]          issue-332-7a6ff77a                       -> origin/issue-332-7a6ff77a
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0331650Z  * [new branch]          issue-334-b21a4d38                       -> origin/issue-334-b21a4d38
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0332267Z  * [new branch]          issue-338-627b1af9                       -> origin/issue-338-627b1af9
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0332868Z  * [new branch]          issue-346-2629ee00                       -> origin/issue-346-2629ee00
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0333790Z  * [new branch]          issue-347-bc055938                       -> origin/issue-347-bc055938
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0334581Z  * [new branch]          issue-349-847bd9da                       -> origin/issue-349-847bd9da
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0335397Z  * [new branch]          issue-350-31002bc3                       -> origin/issue-350-31002bc3
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0336362Z  * [new branch]          issue-354-69429f3d                       -> origin/issue-354-69429f3d
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0337013Z  * [new branch]          issue-354-90a219e1                       -> origin/issue-354-90a219e1
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0337755Z  * [new branch]          issue-354-a5f63605                       -> origin/issue-354-a5f63605
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0338405Z  * [new branch]          issue-355-16463e62                       -> origin/issue-355-16463e62
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0339044Z  * [new branch]          issue-356-08228300                       -> origin/issue-356-08228300
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0339651Z  * [new branch]          issue-359-e5a050cc                       -> origin/issue-359-e5a050cc
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0340267Z  * [new branch]          issue-360-0e8cd1e0                       -> origin/issue-360-0e8cd1e0
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0341075Z  * [new branch]          issue-361-575582dd                       -> origin/issue-361-575582dd
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0341680Z  * [new branch]          issue-372-aea7e0f1                       -> origin/issue-372-aea7e0f1
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0342292Z  * [new branch]          issue-375-e585215d                       -> origin/issue-375-e585215d
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0342892Z  * [new branch]          issue-382-6eb8af26                       -> origin/issue-382-6eb8af26
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0343776Z  * [new branch]          issue-383-81b4bf92                       -> origin/issue-383-81b4bf92
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0344410Z  * [new branch]          issue-384-58b26c76                       -> origin/issue-384-58b26c76
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0345018Z  * [new branch]          issue-386-3e27d460                       -> origin/issue-386-3e27d460
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0345619Z  * [new branch]          issue-389-a58bf26c                       -> origin/issue-389-a58bf26c
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0346233Z  * [new branch]          issue-390-5e4626de                       -> origin/issue-390-5e4626de
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0346838Z  * [new branch]          issue-394-309114ec                       -> origin/issue-394-309114ec
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0347445Z  * [new branch]          issue-395-10b110d3                       -> origin/issue-395-10b110d3
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0348051Z  * [new branch]          issue-396-244bd1fe                       -> origin/issue-396-244bd1fe
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0348657Z  * [new branch]          issue-398-451b7b82                       -> origin/issue-398-451b7b82
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0349263Z  * [new branch]          issue-40-e633e9f6                        -> origin/issue-40-e633e9f6
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0349869Z  * [new branch]          issue-508-5a1549d7                       -> origin/issue-508-5a1549d7
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0350665Z  * [new branch]          issue-512-557a0a3ca78d                   -> origin/issue-512-557a0a3ca78d
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0351378Z  * [new branch]          issue-518-e28aadb8d563                   -> origin/issue-518-e28aadb8d563
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0352013Z  * [new branch]          issue-52-3f2f1389                        -> origin/issue-52-3f2f1389
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0352657Z  * [new branch]          issue-521-1ac9a60c43a0                   -> origin/issue-521-1ac9a60c43a0
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0353725Z  * [new branch]          issue-522-2819acda0f21                   -> origin/issue-522-2819acda0f21
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0354414Z  * [new branch]          issue-524-b1512fd1c7a8                   -> origin/issue-524-b1512fd1c7a8
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0355037Z  * [new branch]          issue-6-2f2360da                         -> origin/issue-6-2f2360da
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0355641Z  * [new branch]          issue-62-a49bc29e                        -> origin/issue-62-a49bc29e
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0356243Z  * [new branch]          issue-68-4e596e00                        -> origin/issue-68-4e596e00
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0356842Z  * [new branch]          issue-85-856b1b45                        -> origin/issue-85-856b1b45
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0357470Z  * [new branch]          issue-86-6c31fd91                        -> origin/issue-86-6c31fd91
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0358081Z  * [new branch]          issue-89-a56a0167                        -> origin/issue-89-a56a0167
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0358694Z  * [new branch]          issue-90-5c6486ed                        -> origin/issue-90-5c6486ed
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0359292Z  * [new branch]          issue-96-7c16f737                        -> origin/issue-96-7c16f737
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0359892Z  * [new branch]          issue-97-8b13f48a                        -> origin/issue-97-8b13f48a
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0360491Z  * [new branch]          issue-98-61dd56ef                        -> origin/issue-98-61dd56ef
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0361070Z  * [new branch]          lazy-fixes                               -> origin/lazy-fixes
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0361605Z  * [new branch]          main                                     -> origin/main
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0362270Z  * [new branch]          master                                   -> origin/master
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0362826Z  * [new branch]          move_sequences                           -> origin/move_sequences
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0363664Z  * [new branch]          nassipkali-patch-1                       -> origin/nassipkali-patch-1
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0364399Z  * [new branch]          nassipkali-patch-2                       -> origin/nassipkali-patch-2
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0365053Z  * [new branch]          nassipkali-patch-3                       -> origin/nassipkali-patch-3
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0365689Z  * [new branch]          nassipkali-patch-4                       -> origin/nassipkali-patch-4
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0366329Z  * [new branch]          nassipkali-patch-5                       -> origin/nassipkali-patch-5
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0366954Z  * [new branch]          nassipkali-patch-6                       -> origin/nassipkali-patch-6
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0367591Z  * [new branch]          nassipkali-patch-7                       -> origin/nassipkali-patch-7
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0368213Z  * [new branch]          nassipkali-patch-8                       -> origin/nassipkali-patch-8
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0368826Z  * [new branch]          nassipkali-patch-9                       -> origin/nassipkali-patch-9
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0369414Z  * [new branch]          origin-ffi                               -> origin/origin-ffi
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0369988Z  * [new branch]          rational_numbers                         -> origin/rational_numbers
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0370593Z  * [new branch]          revert-259-master                        -> origin/revert-259-master
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0371162Z  * [new branch]          rust-ci                                  -> origin/rust-ci
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0371730Z  * [new branch]          rust.criterion                           -> origin/rust.criterion
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0372314Z  * [new branch]          rust.with_query                          -> origin/rust.with_query
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0372907Z  * [new branch]          rust.with_result                         -> origin/rust.with_result
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0373738Z  * [new branch]          rust_write.unwrap                        -> origin/rust_write.unwrap
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0374656Z  * [new branch]          rust_write.unwrap.optimized.wasm         -> origin/rust_write.unwrap.optimized.wasm
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0375391Z  * [new branch]          rust_write.unwrap_unchecked              -> origin/rust_write.unwrap_unchecked
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0376077Z  * [new branch]          split-data-n-doublets                    -> origin/split-data-n-doublets
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0376673Z  * [new branch]          tests                                    -> origin/tests
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0377255Z  * [new branch]          update_package                           -> origin/update_package
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0377775Z  * [new tag]             0.0.1                                    -> 0.0.1
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0378371Z  * [new tag]             0.1.0                                    -> 0.1.0
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0379093Z  * [new tag]             0.1.1                                    -> 0.1.1
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0379559Z  * [new tag]             0.10.0                                   -> 0.10.0
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0380028Z  * [new tag]             0.10.1                                   -> 0.10.1
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0380477Z  * [new tag]             0.11.0                                   -> 0.11.0
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0380930Z  * [new tag]             0.11.1                                   -> 0.11.1
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0381399Z  * [new tag]             0.12.0                                   -> 0.12.0
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0381839Z  * [new tag]             0.13.0                                   -> 0.13.0
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0382307Z  * [new tag]             0.13.1                                   -> 0.13.1
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0382741Z  * [new tag]             0.13.2                                   -> 0.13.2
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0383822Z  * [new tag]             0.2.0                                    -> 0.2.0
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0384503Z  * [new tag]             0.2.1                                    -> 0.2.1
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0384989Z  * [new tag]             0.3.0                                    -> 0.3.0
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0385475Z  * [new tag]             0.4.0                                    -> 0.4.0
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0385943Z  * [new tag]             0.5.0                                    -> 0.5.0
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0386411Z  * [new tag]             0.6.0                                    -> 0.6.0
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0386886Z  * [new tag]             0.6.1                                    -> 0.6.1
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0387345Z  * [new tag]             0.6.10                                   -> 0.6.10
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0387826Z  * [new tag]             0.6.11                                   -> 0.6.11
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0388395Z  * [new tag]             0.6.2                                    -> 0.6.2
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0389029Z  * [new tag]             0.6.3                                    -> 0.6.3
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0389737Z  * [new tag]             0.6.4                                    -> 0.6.4
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0390385Z  * [new tag]             0.6.5                                    -> 0.6.5
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0390896Z  * [new tag]             0.6.6                                    -> 0.6.6
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0391419Z  * [new tag]             0.6.7                                    -> 0.6.7
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0391900Z  * [new tag]             0.6.8                                    -> 0.6.8
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0392383Z  * [new tag]             0.6.9                                    -> 0.6.9
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0392819Z  * [new tag]             0.7.0                                    -> 0.7.0
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0393259Z  * [new tag]             0.8.0                                    -> 0.8.0
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0394010Z  * [new tag]             0.9.0                                    -> 0.9.0
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0394498Z  * [new tag]             cpp_0.1.0                                -> cpp_0.1.0
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0394994Z  * [new tag]             csharp_0.15.0                            -> csharp_0.15.0
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0395695Z  * [new tag]             csharp_0.16.0                            -> csharp_0.16.0
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0396202Z  * [new tag]             csharp_0.17.0                            -> csharp_0.17.0
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0396695Z  * [new tag]             csharp_0.17.1                            -> csharp_0.17.1
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0397194Z  * [new tag]             csharp_0.17.2                            -> csharp_0.17.2
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0397686Z  * [new tag]             csharp_0.18.1                            -> csharp_0.18.1
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0398179Z  * [new tag]             csharp_0.18.2                            -> csharp_0.18.2
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0398687Z  * [new tag]             csharp_0.18.3                            -> csharp_0.18.3
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0399249Z  * [new ref]             fd79f966aab84e0cc30e3b8f0fd40e9fcb9e3f7c -> pull/526/merge
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0400891Z ##[endgroup]
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0401358Z ##[group]Determining the checkout info
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0401880Z ##[endgroup]
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0402186Z [command]/usr/bin/git sparse-checkout disable
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0403000Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0404503Z ##[group]Checking out the ref
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.0404989Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/526/merge
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.3773988Z Note: switching to 'refs/remotes/pull/526/merge'.
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.3774614Z 
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.3774994Z You are in 'detached HEAD' state. You can look around, make experimental
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.3775919Z changes and commit them, and you can discard any commits you make in this
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.3776808Z state without impacting any branches by switching back to a branch.
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.3777691Z 
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.3778041Z If you want to create a new branch to retain commits you create, you may
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.3778859Z do so (now or later) by using -c with the switch command. Example:
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.3779376Z 
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.3779577Z   git switch -c <new-branch-name>
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.3779896Z 
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.3780087Z Or undo this operation with:
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.3780420Z 
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.3780583Z   git switch -
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.3780814Z 
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.3781213Z Turn off this advice by setting config variable advice.detachedHead to false
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.3781802Z 
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.3782438Z HEAD is now at fd79f966a Merge 5cf40c5a338a38978221aab65a8e017005c95303 into 799502ce9275edc80d9fbc1953ff8892fe0eca19
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.3827177Z ##[endgroup]
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.3896956Z [command]/usr/bin/git log -1 --format=%H
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.3944039Z fd79f966aab84e0cc30e3b8f0fd40e9fcb9e3f7c
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.3958056Z ##[group]Removing auth
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.3958940Z Removing SSH command configuration
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.3961366Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.4011645Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.4278143Z Removing HTTP extra header
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.4282952Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.4330932Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.4582625Z Removing includeIf entries pointing to credentials config files
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.4587213Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.4628945Z includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.4629875Z includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.4630716Z includeif.gitdir:/github/workspace/.git.path
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.4631099Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.4640566Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.4677730Z /home/runner/work/_temp/git-credentials-fa773c09-1cf3-4279-bab0-0d7511470764.config
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.4692064Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-fa773c09\-1cf3\-4279\-bab0\-0d7511470764\.config
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.4749693Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.4785440Z /home/runner/work/_temp/git-credentials-fa773c09-1cf3-4279-bab0-0d7511470764.config
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.4795132Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-fa773c09\-1cf3\-4279\-bab0\-0d7511470764\.config
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.4847836Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.4883783Z /github/runner_temp/git-credentials-fa773c09-1cf3-4279-bab0-0d7511470764.config
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.4891996Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-fa773c09\-1cf3\-4279\-bab0\-0d7511470764\.config
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.4943326Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.4979837Z /github/runner_temp/git-credentials-fa773c09-1cf3-4279-bab0-0d7511470764.config
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.4989070Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-fa773c09\-1cf3\-4279\-bab0\-0d7511470764\.config
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.5035593Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.5285832Z Removing credentials config '/home/runner/work/_temp/git-credentials-fa773c09-1cf3-4279-bab0-0d7511470764.config'
+quality	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:31:54.5295209Z ##[endgroup]
+quality	Validate current merge with main	﻿2026-10-29T08:31:54.5541619Z ##[group]Run bash scripts/fresh-merge.sh
+quality	Validate current merge with main	2026-10-29T08:31:54.5542051Z ^[[36;1mbash scripts/fresh-merge.sh^[[0m
+quality	Validate current merge with main	2026-10-29T08:31:54.5567277Z shell: /usr/bin/bash -e {0}
+quality	Validate current merge with main	2026-10-29T08:31:54.5567578Z env:
+quality	Validate current merge with main	2026-10-29T08:31:54.5567787Z   BASE_REF: main
+quality	Validate current merge with main	2026-10-29T08:31:54.5568014Z ##[endgroup]
+quality	Validate current merge with main	2026-10-29T08:31:54.7231810Z Already up to date.
+quality	Check workflow syntax and shell commands	﻿2026-10-29T08:31:54.7285013Z ##[group]Run python3 -m pip install -r scripts/requirements-quality.txt
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:54.7285652Z ^[[36;1mpython3 -m pip install -r scripts/requirements-quality.txt^[[0m
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:54.7286077Z ^[[36;1mmkdir -p /tmp/actionlint-bin^[[0m
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:54.7287069Z ^[[36;1mdocker run --rm --entrypoint cat rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667 /usr/local/bin/actionlint > /tmp/actionlint-bin/actionlint^[[0m
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:54.7287920Z ^[[36;1mchmod +x /tmp/actionlint-bin/actionlint^[[0m
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:54.7288386Z ^[[36;1mACTIONLINT=/tmp/actionlint-bin/actionlint python3 scripts/check-workflows.py^[[0m
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:54.7309579Z shell: /usr/bin/bash -e {0}
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:54.7309848Z ##[endgroup]
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:55.9041988Z Defaulting to user installation because normal site-packages is not writeable
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:56.7080707Z Collecting PyYAML==6.0.3 (from -r scripts/requirements-quality.txt (line 1))
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:56.7510267Z   Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:56.8046472Z Collecting conan==2.33.0 (from -r scripts/requirements-quality.txt (line 2))
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:56.8123553Z   Downloading conan-2.33.0-py3-none-any.whl.metadata (8.9 kB)
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:56.8377373Z Requirement already satisfied: requests<3.0.0,>=2.25 in /usr/lib/python3/dist-packages (from conan==2.33.0->-r scripts/requirements-quality.txt (line 2)) (2.31.0)
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:56.8389763Z Requirement already satisfied: urllib3<3.0,>=1.26.6 in /usr/lib/python3/dist-packages (from conan==2.33.0->-r scripts/requirements-quality.txt (line 2)) (2.0.7)
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:56.8403103Z Requirement already satisfied: colorama<0.5.0,>=0.4.3 in /usr/lib/python3/dist-packages (from conan==2.33.0->-r scripts/requirements-quality.txt (line 2)) (0.4.6)
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:56.8582641Z Collecting patch-ng<1.20,>=1.18.0 (from conan==2.33.0->-r scripts/requirements-quality.txt (line 2))
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:56.8651975Z   Downloading patch_ng-1.19.1-py3-none-any.whl.metadata (3.2 kB)
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:56.8942268Z Collecting fasteners>=0.15 (from conan==2.33.0->-r scripts/requirements-quality.txt (line 2))
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:56.9020347Z   Downloading fasteners-0.20-py3-none-any.whl.metadata (4.8 kB)
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:56.9087193Z Requirement already satisfied: distro<2.0.0,>=1.4.0 in /usr/lib/python3/dist-packages (from conan==2.33.0->-r scripts/requirements-quality.txt (line 2)) (1.9.0)
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:56.9102797Z Requirement already satisfied: Jinja2<4.0.0,>=3.0 in /usr/lib/python3/dist-packages (from conan==2.33.0->-r scripts/requirements-quality.txt (line 2)) (3.1.2)
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:56.9114560Z Requirement already satisfied: python-dateutil<3,>=2.8.0 in /usr/lib/python3/dist-packages (from conan==2.33.0->-r scripts/requirements-quality.txt (line 2)) (2.8.2)
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:56.9313404Z Collecting truststore<1.0,>=0.8 (from conan==2.33.0->-r scripts/requirements-quality.txt (line 2))
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:56.9382100Z   Downloading truststore-0.10.5-py3-none-any.whl.metadata (4.5 kB)
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:56.9687896Z Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:57.0038186Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 807.9/807.9 kB 24.7 MB/s eta 0:00:00
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:57.0119739Z Downloading conan-2.33.0-py3-none-any.whl (748 kB)
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:57.0341491Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 748.2/748.2 kB 36.7 MB/s eta 0:00:00
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:57.0412703Z Downloading fasteners-0.20-py3-none-any.whl (18 kB)
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:57.0502928Z Downloading patch_ng-1.19.1-py3-none-any.whl (17 kB)
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:57.0590209Z Downloading truststore-0.10.5-py3-none-any.whl (19 kB)
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:57.3361066Z Installing collected packages: truststore, PyYAML, patch-ng, fasteners, conan
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:57.9058031Z Successfully installed PyYAML-6.0.3 conan-2.33.0 fasteners-0.20 patch-ng-1.19.1 truststore-0.10.5
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:58.0660319Z Unable to find image 'rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667' locally
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:58.2714912Z docker.io/rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667: Pulling from rhysd/actionlint
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:58.3602299Z 589002ba0eae: Pulling fs layer
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:58.3604449Z c09af8888d6a: Pulling fs layer
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:58.3608124Z 4ccd7d76ca98: Pulling fs layer
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:58.3609178Z b6b4b7b0e257: Pulling fs layer
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:58.3610996Z b6b4b7b0e257: Waiting
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:58.4372330Z c09af8888d6a: Verifying Checksum
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:58.4373731Z c09af8888d6a: Download complete
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:58.4463386Z 589002ba0eae: Verifying Checksum
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:58.4464616Z 589002ba0eae: Download complete
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:58.4494544Z 4ccd7d76ca98: Verifying Checksum
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:58.4495068Z 4ccd7d76ca98: Download complete
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:58.5660456Z b6b4b7b0e257: Verifying Checksum
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:58.5661050Z b6b4b7b0e257: Download complete
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:58.5686735Z 589002ba0eae: Pull complete
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:58.8208378Z c09af8888d6a: Pull complete
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:58.8990350Z 4ccd7d76ca98: Pull complete
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:59.4687306Z b6b4b7b0e257: Pull complete
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:59.4728635Z Digest: sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+quality	Check workflow syntax and shell commands	2026-10-29T08:31:59.4734085Z Status: Downloaded newer image for rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	﻿2026-10-29T08:32:00.4557743Z ##[group]Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.4558211Z with:
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.4558413Z   version: v1.29.0
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.4558654Z   advanced-security: false
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.4558892Z   annotations: true
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.4559108Z   min-confidence: medium
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.4559329Z   inputs: .
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.4559522Z   collect: default
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.4559730Z   online-audits: true
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.4559965Z   persona: regular
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.4562245Z   token: ***
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.4562450Z   color: true
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.4562661Z   fail-on-no-inputs: true
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.4562902Z ##[endgroup]
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.4625830Z ##[start-action display=Run zizmor;id=__zizmorcore_zizmor-action.run-zizmor]
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.4655136Z ##[group]Run "${GITHUB_ACTION_PATH}/action.sh"
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.4655510Z ^[[36;1m"${GITHUB_ACTION_PATH}/action.sh"^[[0m
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.4676565Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.4676980Z env:
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.4677179Z   GHA_ZIZMOR_INPUTS: .
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.4677417Z   GHA_ZIZMOR_COLLECT: default
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.4677667Z   GHA_ZIZMOR_ONLINE_AUDITS: true
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.4677917Z   GHA_ZIZMOR_PERSONA: regular
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.4678159Z   GHA_ZIZMOR_MIN_SEVERITY: 
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.4678406Z   GHA_ZIZMOR_MIN_CONFIDENCE: medium
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.4678665Z   GHA_ZIZMOR_VERSION: v1.29.0
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.4681233Z   GHA_ZIZMOR_TOKEN: ***
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.4681496Z   GHA_ZIZMOR_ADVANCED_SECURITY: false
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.4681772Z   GHA_ZIZMOR_COLOR: true
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.4682007Z   GHA_ZIZMOR_ANNOTATIONS: true
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.4682249Z   GHA_ZIZMOR_CONFIG: 
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.4682479Z   GHA_ZIZMOR_FAIL_ON_NO_INPUTS: true
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.4682748Z ##[endgroup]
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.4762060Z ##[group]Pulling zizmor image
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.6420143Z ghcr.io/zizmorcore/zizmor@sha256:863026d54f91271b10b60b67ad8054cb37120167e162482597db102b3026a284: Pulling from zizmorcore/zizmor
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.7197069Z a66283bef834: Pulling fs layer
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.7197894Z f1dc41da0ac6: Pulling fs layer
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.7198539Z 2e3139e176fe: Pulling fs layer
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.7198922Z c920184a3208: Pulling fs layer
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.7199218Z 9201e51fe8c1: Pulling fs layer
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.7199473Z 69cbafd2417b: Pulling fs layer
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.7199720Z 7fc117d2446a: Pulling fs layer
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.7199993Z 8d99fd8fea9c: Pulling fs layer
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.7200233Z 5f460b97a17e: Pulling fs layer
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.7200474Z cdea145aa115: Pulling fs layer
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.7200718Z b92857818105: Pulling fs layer
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.7200970Z c621f68b4dc2: Pulling fs layer
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.7201220Z 4f4fb700ef54: Pulling fs layer
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.7201454Z 9201e51fe8c1: Waiting
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.7201671Z 69cbafd2417b: Waiting
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.7201888Z 7fc117d2446a: Waiting
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.7202098Z 8d99fd8fea9c: Waiting
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.7202318Z 5f460b97a17e: Waiting
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.7202522Z cdea145aa115: Waiting
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.7202722Z b92857818105: Waiting
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.7202921Z c621f68b4dc2: Waiting
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.7203129Z 4f4fb700ef54: Waiting
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.7203331Z c920184a3208: Waiting
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.8483270Z 2e3139e176fe: Verifying Checksum
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.8484063Z 2e3139e176fe: Download complete
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.8617270Z f1dc41da0ac6: Verifying Checksum
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.8617803Z f1dc41da0ac6: Download complete
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.9137581Z a66283bef834: Download complete
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.9492711Z 9201e51fe8c1: Verifying Checksum
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.9493287Z 9201e51fe8c1: Download complete
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.9509771Z c920184a3208: Verifying Checksum
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.9510246Z c920184a3208: Download complete
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:00.9626025Z a66283bef834: Pull complete
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:01.0244013Z 8d99fd8fea9c: Verifying Checksum
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:01.0246366Z 8d99fd8fea9c: Download complete
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:01.0262051Z 7fc117d2446a: Verifying Checksum
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:01.0262961Z 7fc117d2446a: Download complete
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:01.0292793Z f1dc41da0ac6: Pull complete
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:01.0324252Z 69cbafd2417b: Verifying Checksum
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:01.0324990Z 69cbafd2417b: Download complete
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:01.0536740Z 2e3139e176fe: Pull complete
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:01.0728280Z c920184a3208: Pull complete
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:01.0957368Z 5f460b97a17e: Download complete
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:01.0967131Z 9201e51fe8c1: Pull complete
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:01.0982506Z cdea145aa115: Download complete
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:01.1091296Z b92857818105: Verifying Checksum
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:01.1091931Z b92857818105: Download complete
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:01.1111393Z 69cbafd2417b: Pull complete
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:01.1281574Z 7fc117d2446a: Pull complete
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:01.1405026Z 8d99fd8fea9c: Pull complete
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:01.1652276Z 5f460b97a17e: Pull complete
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:01.1716416Z 4f4fb700ef54: Verifying Checksum
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:01.1717654Z 4f4fb700ef54: Download complete
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:01.1830736Z cdea145aa115: Pull complete
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:01.2296806Z c621f68b4dc2: Verifying Checksum
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:01.2297410Z c621f68b4dc2: Download complete
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:01.2633900Z b92857818105: Pull complete
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:01.4049772Z c621f68b4dc2: Pull complete
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:01.4148850Z 4f4fb700ef54: Pull complete
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:01.4191719Z Digest: sha256:863026d54f91271b10b60b67ad8054cb37120167e162482597db102b3026a284
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:01.4198647Z Status: Downloaded newer image for ghcr.io/zizmorcore/zizmor@sha256:863026d54f91271b10b60b67ad8054cb37120167e162482597db102b3026a284
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:01.4206491Z ghcr.io/zizmorcore/zizmor:1.29.0@sha256:863026d54f91271b10b60b67ad8054cb37120167e162482597db102b3026a284
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:01.4226289Z ##[endgroup]
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:01.5550323Z ^[[32m INFO^[[0m ^[[2mzizmor^[[0m^[[2m:^[[0m 🌈 zizmor v1.29.0
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:01.6139995Z ^[[32m INFO^[[0m ^[[1maudit^[[0m^[[2m:^[[0m ^[[2mzizmor^[[0m^[[2m:^[[0m 🌈 completed ./.github/dependabot.yml
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:01.8720822Z ^[[32m INFO^[[0m ^[[1maudit^[[0m^[[2m:^[[0m ^[[2mzizmor^[[0m^[[2m:^[[0m 🌈 completed ./.github/workflows/AutoMerge.yml
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:02.5142945Z ^[[32m INFO^[[0m ^[[1maudit^[[0m^[[2m:^[[0m ^[[2mzizmor^[[0m^[[2m:^[[0m 🌈 completed ./.github/workflows/ci.yml
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:02.6704892Z ^[[32m INFO^[[0m ^[[1maudit^[[0m^[[2m:^[[0m ^[[2mzizmor^[[0m^[[2m:^[[0m 🌈 completed ./.github/workflows/links.yml
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:02.9019574Z ^[[32m INFO^[[0m ^[[1maudit^[[0m^[[2m:^[[0m ^[[2mzizmor^[[0m^[[2m:^[[0m 🌈 completed ./.github/workflows/security.yml
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:02.9020749Z ^[[32m INFO^[[0m ^[[1maudit^[[0m^[[2m:^[[0m ^[[2mzizmor^[[0m^[[2m:^[[0m 🌈 completed ./.pre-commit-config.yaml
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:02.9857954Z ##[end-action id=__zizmorcore_zizmor-action.run-zizmor;outcome=success;conclusion=success;duration_ms=2523]
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:02.9864517Z ##[start-action display=Upload SARIF file to GitHub Advanced Security;id=__zizmorcore_zizmor-action.__github_codeql-action]
+quality	Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	2026-10-29T08:32:02.9871588Z ##[end-action id=__zizmorcore_zizmor-action.__github_codeql-action;outcome=skipped;conclusion=skipped;duration_ms=0]
+quality	Run pipeline regression tests	﻿2026-10-29T08:32:02.9931145Z ##[group]Run python3 -m unittest discover -s experiments -p 'test_*.py' -v
+quality	Run pipeline regression tests	2026-10-29T08:32:02.9931739Z ^[[36;1mpython3 -m unittest discover -s experiments -p 'test_*.py' -v^[[0m
+quality	Run pipeline regression tests	2026-10-29T08:32:02.9952293Z shell: /usr/bin/bash -e {0}
+quality	Run pipeline regression tests	2026-10-29T08:32:02.9952581Z ##[endgroup]
+quality	Run pipeline regression tests	2026-10-29T08:32:03.1458736Z test_failed_build_cannot_be_hidden_by_stale_passing_binary (test_ci_regressions.CppRunnerTests.test_failed_build_cannot_be_hidden_by_stale_passing_binary) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:03.2171959Z test_missing_release_credentials_fail_with_actionable_message (test_ci_regressions.PipelineHelpersTests.test_missing_release_credentials_fail_with_actionable_message) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:03.2824551Z test_release_credentials_are_not_required_on_pull_requests (test_ci_regressions.PipelineHelpersTests.test_release_credentials_are_not_required_on_pull_requests) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:03.6476227Z test_clog_short_writes_and_interruption_preserve_the_whole_message (test_conan_compatibility.CompatibilityTests.test_clog_short_writes_and_interruption_preserve_the_whole_message) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:03.6490309Z test_cmake_minimum_repair_preserves_newer_requirements (test_conan_compatibility.CompatibilityTests.test_cmake_minimum_repair_preserves_newer_requirements) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:03.6497069Z test_cmake_version_range_preserves_its_upper_policy_version (test_conan_compatibility.CompatibilityTests.test_cmake_version_range_preserves_its_upper_policy_version) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:04.2316295Z test_date_version_exports_strictly_from_an_empty_cache (test_conan_compatibility.CompatibilityTests.test_date_version_exports_strictly_from_an_empty_cache) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:04.2318652Z test_legacy_metadata_without_final_newline_is_removed (test_conan_compatibility.CompatibilityTests.test_legacy_metadata_without_final_newline_is_removed) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:04.2320616Z test_modern_targets_are_preserved (test_conan_compatibility.CompatibilityTests.test_modern_targets_are_preserved) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:04.2328951Z test_unexpected_clog_source_fails_closed (test_conan_compatibility.CompatibilityTests.test_unexpected_clog_source_fails_closed) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:05.2326591Z test_concurrent_deployment_reapplies_only_our_pages (test_docs_publish.DocsPublishTests.test_concurrent_deployment_reapplies_only_our_pages) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:05.3376826Z test_first_deployment_creates_missing_branch_and_is_idempotent (test_docs_publish.DocsPublishTests.test_first_deployment_creates_missing_branch_and_is_idempotent) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:05.5042380Z test_repeated_deployment_preserves_other_language_docs (test_docs_publish.DocsPublishTests.test_repeated_deployment_preserves_other_language_docs) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:06.1632089Z test_standalone_c_and_cpp (test_ffi_header.FfiHeaderTests.test_standalone_c_and_cpp) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:06.1652666Z test_existing_future_page_passes_without_network (test_generated_docs.GeneratedDocsTests.test_existing_future_page_passes_without_network) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:06.1667995Z test_removed_deployment_page_fails_even_if_still_live (test_generated_docs.GeneratedDocsTests.test_removed_deployment_page_fails_even_if_still_live) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:06.1674705Z test_connection_reset_gets_a_delayed_retry (test_link_retries.LinkRetryTests.test_connection_reset_gets_a_delayed_retry) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:06.1685124Z test_missing_report_never_claims_archive_success (test_link_retries.LinkRetryTests.test_missing_report_never_claims_archive_success) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:06.1687307Z test_permanent_404_is_not_retried (test_link_retries.LinkRetryTests.test_permanent_404_is_not_retried) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:06.3770352Z test_cmake_link_dependencies_do_not_escape_the_isolated_consumer (test_package_consumer.NativeConsumerTests.test_cmake_link_dependencies_do_not_escape_the_isolated_consumer) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:06.3772363Z test_applicable_skipped_validation_fails (test_pipeline_policies.GateTests.test_applicable_skipped_validation_fails) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:06.3773219Z test_cancelled_tests_never_pass (test_pipeline_policies.GateTests.test_cancelled_tests_never_pass) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:06.3774925Z test_main_requires_credentials_and_publication (test_pipeline_policies.GateTests.test_main_requires_credentials_and_publication) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:06.3775935Z test_pull_requests_allow_skipped_publication (test_pipeline_policies.GateTests.test_pull_requests_allow_skipped_publication) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:06.3776961Z test_security_and_links_cannot_silently_skip (test_pipeline_policies.GateTests.test_security_and_links_cannot_silently_skip) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:06.3781640Z Validated 2 HTML pages, local links and source PDF
+quality	Run pipeline regression tests	2026-10-29T08:32:06.3810267Z ##[notice]credentials skipped: event/change prerequisites did not require this job
+quality	Run pipeline regression tests	2026-10-29T08:32:06.3821679Z ##[notice]csharp skipped: event/change prerequisites did not require this job
+quality	Run pipeline regression tests	2026-10-29T08:32:06.3824681Z ##[notice]publish skipped: event/change prerequisites did not require this job
+quality	Run pipeline regression tests	2026-10-29T08:32:06.3826295Z Waiting for public NuGet indexing (1/3, HTTP 404)
+quality	Run pipeline regression tests	2026-10-29T08:32:06.3827613Z test_indexing_retry_is_bounded_and_anonymous (test_pipeline_policies.PublicationTests.test_indexing_retry_is_bounded_and_anonymous) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:06.3829657Z test_malformed_github_permission_response_fails_cleanly (test_pipeline_policies.PublicationTests.test_malformed_github_permission_response_fails_cleanly) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:06.3831122Z Waiting for public NuGet indexing (2/3, HTTP 404)
+quality	Run pipeline regression tests	2026-10-29T08:32:06.3841580Z test_mirror_failure_does_not_prevent_release_asset_repair (test_pipeline_policies.PublicationTests.test_mirror_failure_does_not_prevent_release_asset_repair) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:06.3843790Z test_unknown_nuget_response_fails_closed (test_pipeline_policies.PublicationTests.test_unknown_nuget_response_fails_closed) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:06.3857602Z test_unknown_release_lookup_cannot_publish (test_pipeline_policies.PublicationTests.test_unknown_release_lookup_cannot_publish) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:06.3860273Z test_deleted_files_are_included_from_the_actual_push_base (test_pipeline_policies.RoutingTests.test_deleted_files_are_included_from_the_actual_push_base) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:06.3862413Z test_evidence_and_experiments_do_not_trigger_releases (test_pipeline_policies.RoutingTests.test_evidence_and_experiments_do_not_trigger_releases) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:06.3864976Z test_native_configuration_runs_native_validation (test_pipeline_policies.RoutingTests.test_native_configuration_runs_native_validation) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:06.3867159Z test_native_package_example_runs_its_compiler_and_package_validation (test_pipeline_policies.RoutingTests.test_native_package_example_runs_its_compiler_and_package_validation) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:06.3869299Z test_pull_request_base_is_not_last_commit (test_pipeline_policies.RoutingTests.test_pull_request_base_is_not_last_commit) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:06.3899998Z test_prepare_is_idempotent_and_uses_largest_bump (test_pipeline_policies.VersionTests.test_prepare_is_idempotent_and_uses_largest_bump) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:06.4002995Z test_release_cannot_commit_pre_staged_source (test_pipeline_policies.VersionTests.test_release_cannot_commit_pre_staged_source) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:06.4128830Z test_queue_policy (test_pipeline_policies.WorkflowSchemaTests.test_queue_policy) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:06.5233978Z test_identical_remote_release_is_repaired_without_a_second_bump (test_release_race.ReleaseRaceTests.test_identical_remote_release_is_repaired_without_a_second_bump) ... From /tmp/tmp4uthasw5/remote
+quality	Run pipeline regression tests	2026-10-29T08:32:06.5235517Z  * branch            main       -> FETCH_HEAD
+quality	Run pipeline regression tests	2026-10-29T08:32:06.5235906Z    3c3a6d1..5db0109  main       -> origin/main
+quality	Run pipeline regression tests	2026-10-29T08:32:06.5401596Z ok
+quality	Run pipeline regression tests	2026-10-29T08:32:06.5412780Z test_analysis_failure_and_diagnostics_fail (test_sarif_gate.SarifGateTests.test_analysis_failure_and_diagnostics_fail) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:06.5416990Z test_clean_complete_report_passes (test_sarif_gate.SarifGateTests.test_clean_complete_report_passes) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:06.5421564Z test_incomplete_report_fails (test_sarif_gate.SarifGateTests.test_incomplete_report_fails) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:06.5425401Z test_missing_report_fails (test_sarif_gate.SarifGateTests.test_missing_report_fails) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:06.5437026Z test_notes_warnings_and_errors_fail_even_after_successful_analysis (test_sarif_gate.SarifGateTests.test_notes_warnings_and_errors_fail_even_after_successful_analysis) ... ok
+quality	Run pipeline regression tests	2026-10-29T08:32:06.5438366Z 
+quality	Run pipeline regression tests	2026-10-29T08:32:06.5438645Z ----------------------------------------------------------------------
+quality	Run pipeline regression tests	2026-10-29T08:32:06.5439299Z Ran 44 tests in 3.411s
+quality	Run pipeline regression tests	2026-10-29T08:32:06.5439551Z 
+quality	Run pipeline regression tests	2026-10-29T08:32:06.5439685Z OK
+quality	Run pipeline regression tests	2026-10-29T08:32:06.5440019Z csharp: 1.2.3 -> 1.3.0 (minor)
+quality	Run pipeline regression tests	2026-10-29T08:32:06.5440453Z cpp: 1.2.3 -> 1.3.0 (minor)
+quality	Run pipeline regression tests	2026-10-29T08:32:06.5440887Z To /tmp/tmp4uthasw5/remote.git
+quality	Run pipeline regression tests	2026-10-29T08:32:06.5441388Z  ! [rejected]        HEAD -> main (fetch first)
+quality	Run pipeline regression tests	2026-10-29T08:32:06.5442074Z error: failed to push some refs to '/tmp/tmp4uthasw5/remote.git'
+quality	Run pipeline regression tests	2026-10-29T08:32:06.5442965Z hint: Updates were rejected because the remote contains work that you do not
+quality	Run pipeline regression tests	2026-10-29T08:32:06.5443967Z hint: have locally. This is usually caused by another repository pushing to
+quality	Run pipeline regression tests	2026-10-29T08:32:06.5444559Z hint: the same ref. If you want to integrate the remote changes, use
+quality	Run pipeline regression tests	2026-10-29T08:32:06.5445033Z hint: 'git pull' before pushing again.
+quality	Run pipeline regression tests	2026-10-29T08:32:06.5445496Z hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+quality	Run pipeline regression tests	2026-10-29T08:32:06.5445865Z 
+quality	Run pipeline regression tests	2026-10-29T08:32:06.5446092Z Identical release metadata already landed; repairing its publication
+quality	Run pipeline regression tests	2026-10-29T08:32:06.5446575Z CodeQL: 1 complete report(s), no findings
+quality	Install native formatting tool	﻿2026-10-29T08:32:06.5680794Z ##[group]Run sudo apt-get update &
+quality	Install native formatting tool	2026-10-29T08:32:06.5681183Z ^[[36;1msudo apt-get update &^[[0m
+quality	Install native formatting tool	2026-10-29T08:32:06.5681451Z ^[[36;1mwait $!^[[0m
+quality	Install native formatting tool	2026-10-29T08:32:06.5681721Z ^[[36;1msudo apt-get install -y clang-format-18 &^[[0m
+quality	Install native formatting tool	2026-10-29T08:32:06.5682045Z ^[[36;1mwait $!^[[0m
+quality	Install native formatting tool	2026-10-29T08:32:06.5701767Z shell: /usr/bin/bash -e {0}
+quality	Install native formatting tool	2026-10-29T08:32:06.5702038Z ##[endgroup]
+quality	Install native formatting tool	2026-10-29T08:32:06.6485225Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+quality	Install native formatting tool	2026-10-29T08:32:06.6826257Z Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
+quality	Install native formatting tool	2026-10-29T08:32:06.6834921Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+quality	Install native formatting tool	2026-10-29T08:32:06.6862021Z Get:6 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
+quality	Install native formatting tool	2026-10-29T08:32:06.6897876Z Get:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+quality	Install native formatting tool	2026-10-29T08:32:06.6907524Z Get:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+quality	Install native formatting tool	2026-10-29T08:32:06.8194903Z Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [669 kB]
+quality	Install native formatting tool	2026-10-29T08:32:06.8412578Z Get:8 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [605 kB]
+quality	Install native formatting tool	2026-10-29T08:32:06.8805160Z Get:9 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1406 kB]
+quality	Install native formatting tool	2026-10-29T08:32:06.8875072Z Get:10 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [310 kB]
+quality	Install native formatting tool	2026-10-29T08:32:06.8925467Z Get:11 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1707 kB]
+quality	Install native formatting tool	2026-10-29T08:32:06.8982562Z Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [343 kB]
+quality	Install native formatting tool	2026-10-29T08:32:06.9021589Z Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1809 kB]
+quality	Install native formatting tool	2026-10-29T08:32:06.9098032Z Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [411 kB]
+quality	Install native formatting tool	2026-10-29T08:32:06.9123395Z Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse Translation-en [14.3 kB]
+quality	Install native formatting tool	2026-10-29T08:32:07.0127995Z Get:16 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [1146 kB]
+quality	Install native formatting tool	2026-10-29T08:32:07.0189735Z Get:17 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [231 kB]
+quality	Install native formatting tool	2026-10-29T08:32:07.0205505Z Get:18 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1223 kB]
+quality	Install native formatting tool	2026-10-29T08:32:07.0679527Z Get:19 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Translation-en [246 kB]
+quality	Install native formatting tool	2026-10-29T08:32:10.1436362Z Fetched 10.5 MB in 1s (9606 kB/s)
+quality	Install native formatting tool	2026-10-29T08:32:11.2187588Z Reading package lists...
+quality	Install native formatting tool	2026-10-29T08:32:11.2581674Z Reading package lists...
+quality	Install native formatting tool	2026-10-29T08:32:11.4808506Z Building dependency tree...
+quality	Install native formatting tool	2026-10-29T08:32:11.4816498Z Reading state information...
+quality	Install native formatting tool	2026-10-29T08:32:11.6587294Z clang-format-18 is already the newest version (1:18.1.3-1ubuntu1).
+quality	Install native formatting tool	2026-10-29T08:32:11.6588178Z 0 upgraded, 0 newly installed, 0 to remove and 5 not upgraded.
+quality	Check native formatting	﻿2026-10-29T08:32:11.6660086Z ##[group]Run python3 scripts/check-cpp.py
+quality	Check native formatting	2026-10-29T08:32:11.6660480Z ^[[36;1mpython3 scripts/check-cpp.py^[[0m
+quality	Check native formatting	2026-10-29T08:32:11.6680174Z shell: /usr/bin/bash -e {0}
+quality	Check native formatting	2026-10-29T08:32:11.6680437Z ##[endgroup]
+quality	Validate changesets and prohibit manual version edits	﻿2026-10-29T08:32:14.2464885Z ##[group]Run python3 scripts/versions.py validate
+quality	Validate changesets and prohibit manual version edits	2026-10-29T08:32:14.2465318Z ^[[36;1mpython3 scripts/versions.py validate^[[0m
+quality	Validate changesets and prohibit manual version edits	2026-10-29T08:32:14.2485471Z shell: /usr/bin/bash -e {0}
+quality	Validate changesets and prohibit manual version edits	2026-10-29T08:32:14.2485737Z ##[endgroup]
+quality	Validate changesets and prohibit manual version edits	2026-10-29T08:32:14.2974423Z Changesets and automatic version policy passed
+quality	Validate repository configuration	﻿2026-10-29T08:32:14.3099043Z ##[group]Run python3 scripts/check_repository.py
+quality	Validate repository configuration	2026-10-29T08:32:14.3099501Z ^[[36;1mpython3 scripts/check_repository.py^[[0m
+quality	Validate repository configuration	2026-10-29T08:32:14.3119259Z shell: /usr/bin/bash -e {0}
+quality	Validate repository configuration	2026-10-29T08:32:14.3119538Z ##[endgroup]
+quality	Validate repository configuration	2026-10-29T08:32:14.4220306Z Repository configuration, source sizes, scripts and action pins passed
+quality	Explain publishing requirements on pull requests	﻿2026-10-29T08:32:14.4328819Z ##[group]Run python3 scripts/release.py preflight --mode report
+quality	Explain publishing requirements on pull requests	2026-10-29T08:32:14.4329340Z ^[[36;1mpython3 scripts/release.py preflight --mode report^[[0m
+quality	Explain publishing requirements on pull requests	2026-10-29T08:32:14.4349599Z shell: /usr/bin/bash -e {0}
+quality	Explain publishing requirements on pull requests	2026-10-29T08:32:14.4349878Z ##[endgroup]
+quality	Explain publishing requirements on pull requests	2026-10-29T08:32:14.5009862Z ##[notice]NUGET_TOKEN is missing. Rotate the NUGET_TOKEN repository secret with a valid NuGet push key scoped to both Platform.Data.Doublets packages, or configure NuGet trusted publishing.
+quality	Explain publishing requirements on pull requests	2026-10-29T08:32:14.5012874Z ##[notice]GH_TOKEN is missing; release jobs need contents: write and packages: write.
+quality	Explain publishing requirements on pull requests	2026-10-29T08:32:14.5108906Z PR validation continues without publishing credentials
+quality	Post Run zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482	﻿2026-10-29T08:32:14.5232594Z Post job cleanup.
+quality	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-10-29T08:32:14.5332541Z Post job cleanup.
+quality	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:14.6271542Z [command]/usr/bin/git version
+quality	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:14.6324858Z git version 2.56.0
+quality	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:14.6398328Z Temporarily overriding HOME='/home/runner/work/_temp/f924656e-0a7f-4f6f-984f-3a0f4eec8688' before making global git config changes
+quality	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:14.6399656Z Adding repository directory to the temporary git global config as a safe directory
+quality	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:14.6403962Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Data.Doublets/Data.Doublets
+quality	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:14.6452832Z Removing SSH command configuration
+quality	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:14.6463836Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+quality	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:14.6520203Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+quality	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:14.6816341Z Removing HTTP extra header
+quality	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:14.6824766Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+quality	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:14.6887325Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+quality	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:14.7205888Z Removing includeIf entries pointing to credentials config files
+quality	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:14.7213772Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+quality	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:14.7279056Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+quality	Complete job	﻿2026-10-29T08:32:14.7710285Z Cleaning up orphan processes

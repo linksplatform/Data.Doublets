@@ -1,0 +1,83 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": [
+            "csharp/Platform.Data.Doublets/Platform.Data.Doublets.csproj"
+          ]
+        }
+      ],
+      "dest": "docs/api",
+      "properties": {
+        "TargetFramework": "net8.0"
+      }
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [
+          "*.md",
+          "toc.yml",
+          "api/**.yml"
+        ],
+        "src": "docs"
+      },
+      {
+        "files": [
+          "README.md",
+          "README.ru.md"
+        ],
+        "dest": "."
+      },
+      {
+        "files": [
+          "README.md"
+        ],
+        "src": "examples/Deletion",
+        "dest": "examples/Deletion"
+      },
+      {
+        "files": [
+          "README.md"
+        ],
+        "src": "experiments",
+        "dest": "experiments"
+      }
+    ],
+    "dest": "_site/csharp",
+    "template": [
+      "default",
+      "modern"
+    ],
+    "globalMetadata": {
+      "_appTitle": "Platform.Data.Doublets",
+      "_enableSearch": true
+    },
+    "resource": [
+      {
+        "files": [
+          "Platform.Data.Doublets.pdf"
+        ],
+        "src": "_site/csharp"
+      },
+      {
+        "files": [
+          "Program.cs"
+        ],
+        "src": "examples/Deletion",
+        "dest": "examples/Deletion"
+      },
+      {
+        "files": [
+          "reproduce_deletion_contract.py",
+          "deletion_policies.rs",
+          "missing_delete.rs"
+        ],
+        "src": "experiments",
+        "dest": "experiments"
+      }
+    ]
+  }
+}

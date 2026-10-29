@@ -1,0 +1,55 @@
+name: Links
+on:
+  workflow_call:
+  schedule:
+    - cron: '30 6 * * 1'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  links:
+    name: links
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    concurrency:
+      group: links-${{ github.ref }}
+      cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Check maintained Markdown links
+        id: lychee
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          lycheeVersion: v0.23.0
+          args: >-
+            --verbose --no-progress --max-concurrency 4 --max-retries 3 --timeout 30
+            './*.md'
+          fail: false
+          output: lychee/out.md
+          jobSummary: true
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: Recheck unanswered requests with bounded backoff
+        if: steps.lychee.outputs.exit_code != 0
+        id: recheck
+        run: python3 scripts/recheck_broken_links.py
+      - name: Suggest archived replacements
+        if: >-
+          !cancelled() && steps.lychee.outputs.exit_code != 0 &&
+          steps.recheck.outputs.all_recovered != 'true'
+        run: python3 scripts/check_web_archive.py
+      - name: Require valid live links
+        if: >-
+          !cancelled() && steps.lychee.outputs.exit_code != 0 &&
+          steps.recheck.outputs.all_recovered != 'true'
+        run: |
+          echo '::error::Broken live links remain. Review lychee/out.md and replace each link; archive availability does not make a broken link valid.'
+          exit 1
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        if: always()
+        with:
+          name: link-report
+          path: lychee
+          if-no-files-found: error

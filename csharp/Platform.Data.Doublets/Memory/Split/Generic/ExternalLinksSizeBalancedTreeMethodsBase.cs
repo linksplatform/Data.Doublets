@@ -60,7 +60,7 @@ public abstract unsafe class ExternalLinksSizeBalancedTreeMethodsBase<TLinkAddre
 
     /// <summary>
     ///     <para>
-    ///         Initializes a new <see cref="ExternalLinksSizeBalancedTreeMethodsBase" /> instance.
+    ///         Initializes a new <see cref="ExternalLinksSizeBalancedTreeMethodsBase{TLinkAddress}" /> instance.
     ///     </para>
     ///     <para></para>
     /// </summary>
@@ -208,14 +208,13 @@ public abstract unsafe class ExternalLinksSizeBalancedTreeMethodsBase<TLinkAddre
         }
         return total - totalRightIgnore - totalLeftIgnore;
     }
-
     /// <summary>
     ///     <para>
     ///         Eaches the usage using the specified base.
     ///     </para>
     ///     <para></para>
     /// </summary>
-    /// <param name="@base">
+    /// <param name="base">
     ///     <para>The base.</para>
     ///     <para></para>
     /// </param>
@@ -477,7 +476,7 @@ public abstract unsafe class ExternalLinksSizeBalancedTreeMethodsBase<TLinkAddre
         }
         else //if (linkBasePart == @base)
         {
-            if ((handler(link: GetLinkValues(linkIndex: link)) == @break))
+            if (((handler == null ? Continue : handler(link: GetLinkValues(linkIndex: link))) == @break))
             {
                 return @break;
             }

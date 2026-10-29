@@ -21,7 +21,7 @@ public class TargetMatcher<TLinkAddress> : LinksOperatorBase<TLinkAddress>, ICri
 
     /// <summary>
     ///     <para>
-    ///         Initializes a new <see cref="TargetMatcher" /> instance.
+    ///         Initializes a new <see cref="TargetMatcher{TLinkAddress}" /> instance.
     ///     </para>
     ///     <para></para>
     /// </summary>
@@ -56,6 +56,6 @@ public class TargetMatcher<TLinkAddress> : LinksOperatorBase<TLinkAddress>, ICri
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     public bool IsMatched(TLinkAddress link)
     {
-        return _links.GetTarget(link: link) ==  _targetToMatch;
+        return _links.GetTarget(link: link) == _targetToMatch;
     }
 }

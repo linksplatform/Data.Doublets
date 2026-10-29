@@ -1,0 +1,7 @@
+error: unexpected argument '--online' found
+
+  tip: a similar argument exists: '--offline'
+
+Usage: zizmor --offline <INPUT>...
+
+For more information, try '--help'.

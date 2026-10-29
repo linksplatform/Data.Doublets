@@ -17,7 +17,8 @@
 Scope: all issue #518 and PR #527 comments/reviews, all open and closed issue
 listings in both repositories, and the C#/Rust mutation paths, helpers,
 decorator bases, existence, reset, usages, uniqueness, suppression and builder
-implementations. C# base: `799502ce9` (`main`); previous PR head: `136ada5ad`.
+implementations. Initial C# base: `799502ce9`; merged main: `c083793a`.
+Previous PR head: `136ada5ad`.
 Rust main: `31b38458efbd277b399e46b22474b85a85bda24b` (0.13.0).
 No required sub-issues were listed. Other design findings are explicitly separate
 work per the [review](https://github.com/linksplatform/Data.Doublets/pull/527#issuecomment-6492081425).

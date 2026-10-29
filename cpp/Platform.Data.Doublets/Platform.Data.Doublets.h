@@ -7,9 +7,9 @@
 #include <ostream>
 #include <new>
 #include <map>
+#include <memory>
 #include <ranges>
 #include <unordered_set>
-
 #include <Platform.Exceptions.h>
 #include <Platform.Collections.Methods.h>
 #include <Platform.Collections.h>
@@ -17,23 +17,20 @@
 #include <Platform.Data.h>
 #include <Platform.Interfaces.h>
 #include <Platform.Numbers.h>
-
 #include "Doublet.h"
 #include "Link.h"
 #include "LinksOptions.h"
 #include "ILinks.h"
-
 #include "Memory/LinksHeader.h"
 #include "Memory/IndexTreeType.h"
 #include "Memory/ILinksListMethods.h"
 #include "Memory/ILinksTreeMethods.h"
-
 #include "Memory/United/RawLink.h"
 #include "Memory/United/Generic/UnusedLinksListMethods.h"
-
 #include "Memory/United/Generic/LinksSizeBalancedTreeMethodsBase.h"
 #include "Memory/United/Generic/LinksTargetsSizeBalancedTreeMethods.h"
 #include "Memory/United/Generic/LinksSourcesSizeBalancedTreeMethods.h"
+
 #include "Memory/United/Generic/LinksRecursionlessSizeBalancedTreeMethodsBase.h"
 #include "Memory/United/Generic/LinksTargetsRecursionlessSizeBalancedTreeMethods.h"
 #include "Memory/United/Generic/LinksSourcesRecursionlessSizeBalancedTreeMethods.h"
@@ -42,9 +39,8 @@
 #include "Memory/United/Generic/LinksAvlBalancedTreeMethodsBase.h"
 #include "Memory/United/Generic/LinksTargetsAvlBalancedTreeMethods.h"
 #include "Memory/United/Generic/LinksSourcesAvlBalancedTreeMethods.h"
-//#include "Ffi/LinksBase.h"
-//#include "Ffi/Links.h"
-
+// #include "Ffi/LinksBase.h"
+// #include "Ffi/Links.h"
 
 #include "Memory/Split/RawLinkDataPart.h"
 #include "Memory/Split/RawLinkIndexPart.h"
@@ -64,9 +60,7 @@
 #include "Memory/Split/Generic/UnusedLinksListMethods.h"
 #include "Memory/Split/Generic/SplitMemoryLinksBase.h"
 #include "Memory/Split/Generic/SplitMemoryLinks.h"
-
 #include "ILinksExtensions.h"
-
 #include "Decorators/LinksUniquenessResolver.h"
 #include "Decorators/LinksCascadeUniquenessAndUsagesResolver.h"
 #include "Decorators/LinksCascadeUsagesResolver.h"

@@ -20,7 +20,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic;
 /// </summary>
 /// <seealso cref="SizedAndThreadedAVLBalancedTreeMethods{TLinkAddress}" />
 /// <seealso cref="ILinksTreeMethods{TLinkAddress}" />
-public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : SizedAndThreadedAVLBalancedTreeMethods<TLinkAddress>, ILinksTreeMethods<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress> , IShiftOperators<TLinkAddress,int,TLinkAddress>, IBitwiseOperators<TLinkAddress,TLinkAddress,TLinkAddress>, IMinMaxValue<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
+public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : SizedAndThreadedAVLBalancedTreeMethods<TLinkAddress>, ILinksTreeMethods<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>, IShiftOperators<TLinkAddress, int, TLinkAddress>, IBitwiseOperators<TLinkAddress, TLinkAddress, TLinkAddress>, IMinMaxValue<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
 {
 
     /// <summary>
@@ -51,13 +51,13 @@ public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : Siz
     ///     <para></para>
     /// </summary>
     protected readonly byte* Links;
-    
+
     private static readonly UncheckedConverter<TLinkAddress, bool> _addressToBoolConverter = UncheckedConverter<TLinkAddress, bool>.Default;
     private static readonly UncheckedConverter<bool, TLinkAddress> _boolToAddressConverter = UncheckedConverter<bool, TLinkAddress>.Default;
 
     /// <summary>
     ///     <para>
-    ///         Initializes a new <see cref="LinksAvlBalancedTreeMethodsBase" /> instance.
+    ///         Initializes a new <see cref="LinksAvlBalancedTreeMethodsBase{TLinkAddress}" /> instance.
     ///     </para>
     ///     <para></para>
     /// </summary>
@@ -198,7 +198,7 @@ public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : Siz
                 root = GetRightOrDefault(node: root);
             }
         }
-        return total - totalRightIgnore- totalLeftIgnore;
+        return total - totalRightIgnore - totalLeftIgnore;
     }
 
     /// <summary>
@@ -249,7 +249,7 @@ public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : Siz
             current = first;
             while (true)
             {
-                if ((handler(link: GetLinkValues(linkIndex: current)) == Break))
+                if (((handler == null ? Continue : handler(link: GetLinkValues(linkIndex: current))) == Break))
                 {
                     return Break;
                 }
@@ -475,7 +475,7 @@ public abstract unsafe class LinksAvlBalancedTreeMethodsBase<TLinkAddress> : Siz
     ///     <para></para>
     /// </returns>
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
-    protected virtual TLinkAddress GetSizeValue(TLinkAddress value) 
+    protected virtual TLinkAddress GetSizeValue(TLinkAddress value)
     {
         return Bit<TLinkAddress>.PartialRead(target: value, shift: 5, limit: -5);
     }

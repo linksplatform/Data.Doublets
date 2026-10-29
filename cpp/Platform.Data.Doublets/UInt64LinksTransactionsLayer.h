@@ -4,14 +4,24 @@
     {
         struct Transition : public IEquatable<Transition>
         {
-            public: inline static const std::uint64_t Size = Structure<Transition>.Size;
+          public:
+            inline static const std::uint64_t Size = Structure<Transition>.Size;
 
-            public: std::uint64_t TransactionId = 0;
-            public: Link<std::uint64_t> Before;
-            public: Link<std::uint64_t> After;
-            public: Timestamp Timestamp = 0;
+          public:
+            std::uint64_t TransactionId = 0;
 
-            public: Transition(UniqueTimestampFactory uniqueTimestampFactory, std::uint64_t transactionId, Link<std::uint64_t> before, Link<std::uint64_t> after)
+          public:
+            Link<std::uint64_t> Before;
+
+          public:
+            Link<std::uint64_t> After;
+
+          public:
+            Timestamp Timestamp = 0;
+
+          public:
+            Transition(UniqueTimestampFactory uniqueTimestampFactory, std::uint64_t transactionId,
+                       Link<std::uint64_t> before, Link<std::uint64_t> after)
             {
                 TransactionId = transactionId;
                 Before = before;
@@ -19,25 +29,63 @@
                 Timestamp = uniqueTimestampFactory.Create();
             }
 
-            public: Transition(UniqueTimestampFactory uniqueTimestampFactory, std::uint64_t transactionId, Link<std::uint64_t> before) : this(uniqueTimestampFactory, transactionId, before, 0) { }
+          public:
+            Transition(UniqueTimestampFactory uniqueTimestampFactory, std::uint64_t transactionId,
+                       Link<std::uint64_t> before)
+                : this(uniqueTimestampFactory, transactionId, before, 0)
+            {
+            }
 
-            public: Transition(UniqueTimestampFactory uniqueTimestampFactory, std::uint64_t transactionId) : this(uniqueTimestampFactory, transactionId, 0, 0) { }
+          public:
+            Transition(UniqueTimestampFactory uniqueTimestampFactory, std::uint64_t transactionId)
+                : this(uniqueTimestampFactory, transactionId, 0, 0)
+            {
+            }
 
-            public: std::string ToString() { return std::string("").append(Platform::Converters::To<std::string>(Timestamp)).append(1, ' ').append(Platform::Converters::To<std::string>(TransactionId)).append(": ").append(Platform::Converters::To<std::string>(Before)).append(" => ").append(Platform::Converters::To<std::string>(After)).append(""); }
+          public:
+            std::string ToString()
+            {
+                return std::string("")
+                    .append(Platform::Converters::To<std::string>(Timestamp))
+                    .append(1, ' ')
+                    .append(Platform::Converters::To<std::string>(TransactionId))
+                    .append(": ")
+                    .append(Platform::Converters::To<std::string>(Before))
+                    .append(" => ")
+                    .append(Platform::Converters::To<std::string>(After))
+                    .append("");
+            }
 
-            public: std::int32_t GetHashCode() { return Platform::Hashing::Hash(TransactionId, Before, After, Timestamp); }
+          public:
+            std::int32_t GetHashCode()
+            {
+                return Platform::Hashing::Hash(TransactionId, Before, After, Timestamp);
+            }
 
-            public: bool operator ==(const Transition &other) const { return TransactionId == other.TransactionId && Before == other.Before && After == other.After && Timestamp == other.Timestamp; }
+          public:
+            bool operator==(const Transition& other) const
+            {
+                return TransactionId == other.TransactionId && Before == other.Before && After == other.After &&
+                       Timestamp == other.Timestamp;
+            }
         }
 
         class Transaction : public DisposableBase
         {
-            private: Queue<Transition> _transitions;
-            private: UInt64LinksTransactionsLayer _layer = 0;
-            public: inline bool IsCommitted;
-            public: inline bool IsReverted;
+          private:
+            Queue<Transition> _transitions;
 
-            public: Transaction(UInt64LinksTransactionsLayer layer)
+          private:
+            UInt64LinksTransactionsLayer _layer = 0;
+
+          public:
+            inline bool IsCommitted;
+
+          public:
+            inline bool IsReverted;
+
+          public:
+            Transaction(UInt64LinksTransactionsLayer layer)
             {
                 _layer = layer;
                 if (_layer._currentTransactionId != 0)
@@ -50,7 +98,8 @@
                 this->SetCurrentTransaction(layer, this);
             }
 
-            public: void Commit()
+          public:
+            void Commit()
             {
                 this->EnsureTransactionAllowsWriteOperations(this);
                 while (_transitions.Count() > 0)
@@ -62,7 +111,8 @@
                 IsCommitted = true;
             }
 
-            private: void Revert()
+          private:
+            void Revert()
             {
                 this->EnsureTransactionAllowsWriteOperations(this);
                 auto transitionsToRevert = Transition[_transitions.Count()];
@@ -74,14 +124,16 @@
                 IsReverted = true;
             }
 
-            public: static void SetCurrentTransaction(UInt64LinksTransactionsLayer layer, Transaction transaction)
+          public:
+            static void SetCurrentTransaction(UInt64LinksTransactionsLayer layer, Transaction transaction)
             {
                 layer._currentTransactionId = layer._lastCommitedTransactionId + 1;
                 layer._currentTransactionTransitions = transaction._transitions;
                 layer._currentTransaction = transaction;
             }
 
-            public: static void EnsureTransactionAllowsWriteOperations(Transaction transaction)
+          public:
+            static void EnsureTransactionAllowsWriteOperations(Transaction transaction)
             {
                 if (transaction.IsReverted)
                 {
@@ -93,7 +145,8 @@
                 }
             }
 
-            public: void Dispose(bool manual, bool wasDisposed)
+          public:
+            void Dispose(bool manual, bool wasDisposed)
             {
                 if (!wasDisposed && _layer != nullptr && !_layer.Disposable.IsDisposed)
                 {
@@ -106,21 +159,40 @@
             }
         }
 
-        public: inline static const TimeSpan DefaultPushDelay = TimeSpan.FromSeconds(0.1);
+        public : inline static const TimeSpan DefaultPushDelay = TimeSpan.FromSeconds(0.1);
 
-        private: std::string _logAddress = 0;
-        private: FileStream _log = 0;
-        private: Queue<Transition> _transitions;
-        private: UniqueTimestampFactory _uniqueTimestampFactory = 0;
-        private: Task _transitionsPusher = 0;
-        private: Transition _lastCommitedTransition = 0;
-        private: std::uint64_t _currentTransactionId = 0;
-        private: Queue<Transition> _currentTransactionTransitions;
-        private: Transaction _currentTransaction = 0;
-        private: std::uint64_t _lastCommitedTransactionId = 0;
+      private:
+        std::string _logAddress = 0;
 
-        public: UInt64LinksTransactionsLayer(ILinks<std::uint64_t> &storage, std::string logAddress)
-            : base(storage)
+      private:
+        FileStream _log = 0;
+
+      private:
+        Queue<Transition> _transitions;
+
+      private:
+        UniqueTimestampFactory _uniqueTimestampFactory = 0;
+
+      private:
+        Task _transitionsPusher = 0;
+
+      private:
+        Transition _lastCommitedTransition = 0;
+
+      private:
+        std::uint64_t _currentTransactionId = 0;
+
+      private:
+        Queue<Transition> _currentTransactionTransitions;
+
+      private:
+        Transaction _currentTransaction = 0;
+
+      private:
+        std::uint64_t _lastCommitedTransactionId = 0;
+
+      public:
+        UInt64LinksTransactionsLayer(ILinks<std::uint64_t>& storage, std::string logAddress) : base(storage)
         {
             if (std::string.IsNullOrWhiteSpace(logAddress))
             {
@@ -139,7 +211,7 @@
             }
             _lastCommitedTransition = lastCommitedTransition;
             auto allTransitions = FileHelpers.ReadAll<Transition>(logAddress);
-            _lastCommitedTransactionId = allTransitions.Length > 0 ? allTransitions.Max(x => x.TransactionId) : 0;
+            _lastCommitedTransactionId = allTransitions.Length > 0 ? allTransitions.Max(x = > x.TransactionId) : 0;
             _uniqueTimestampFactory = this->UniqueTimestampFactory();
             _logAddress = logAddress;
             _log = FileHelpers.Append(logAddress);
@@ -148,9 +220,14 @@
             _transitionsPusher.Start();
         }
 
-        public: IList<std::uint64_t> GetLinkValue(std::uint64_t link) { return _links.GetLink(link); }
+      public:
+        IList<std::uint64_t> GetLinkValue(std::uint64_t link)
+        {
+            return _links.GetLink(link);
+        }
 
-        public: std::uint64_t Create(IList<std::uint64_t> &restriction)
+      public:
+        std::uint64_t Create(IList<std::uint64_t>& restriction)
         {
             auto createdLinkIndex = _links.Create();
             auto createdLink = Link<std::uint64_t>(_links.GetLink(createdLinkIndex));
@@ -158,17 +235,20 @@
             return createdLinkIndex;
         }
 
-        public: std::uint64_t Update(IList<std::uint64_t> &restriction, IList<std::uint64_t> &substitution)
+      public:
+        std::uint64_t Update(IList<std::uint64_t>& restriction, IList<std::uint64_t>& substitution)
         {
             auto linkIndex = restriction[_constants.IndexPart];
             auto beforeLink = Link<std::uint64_t>(_links.GetLink(linkIndex));
             linkIndex = _links.Update(restriction, substitution);
             auto afterLink = Link<std::uint64_t>(_links.GetLink(linkIndex));
-            this->CommitTransition(this->Transition(_uniqueTimestampFactory, _currentTransactionId, beforeLink, afterLink));
+            this->CommitTransition(
+                this->Transition(_uniqueTimestampFactory, _currentTransactionId, beforeLink, afterLink));
             return linkIndex;
         }
 
-        public: void Delete(IList<std::uint64_t> &restriction)
+      public:
+        void Delete(IList<std::uint64_t>& restriction)
         {
             auto link = restriction[_constants.IndexPart];
             auto deletedLink = Link<std::uint64_t>(_links.GetLink(link));
@@ -176,9 +256,14 @@
             this->CommitTransition(this->Transition(_uniqueTimestampFactory, _currentTransactionId, deletedLink, 0));
         }
 
-        private: Queue<Transition> GetCurrentTransitions() { return _currentTransactionTransitions ?? _transitions; }
+      private:
+        Queue<Transition> GetCurrentTransitions()
+        {
+            return _currentTransactionTransitions ? ? _transitions;
+        }
 
-        private: void CommitTransition(Transition transition)
+      private:
+        void CommitTransition(Transition transition)
         {
             if (_currentTransaction != nullptr)
             {
@@ -188,7 +273,8 @@
             transitions.Enqueue(transition);
         }
 
-        private: void RevertTransition(Transition transition)
+      private:
+        void RevertTransition(Transition transition)
         {
             if (transition.After.IsNull())
             {
@@ -200,18 +286,20 @@
             }
             else
             {
-                _links.Update(new[] { transition.After.Index, transition.Before.Source, transition.Before.Target });
+                _links.Update(new[]{transition.After.Index, transition.Before.Source, transition.Before.Target});
             }
         }
 
-        private: void ResetCurrentTransation()
+      private:
+        void ResetCurrentTransation()
         {
             _currentTransactionId = 0;
             _currentTransactionTransitions = {};
             _currentTransaction = {};
         }
 
-        private: void PushTransitions()
+      private:
+        void PushTransitions()
         {
             if (_log == nullptr || _transitions == nullptr)
             {
@@ -226,7 +314,8 @@
             }
         }
 
-        private: void TransitionsPusher()
+      private:
+        void TransitionsPusher()
         {
             while (!Disposable.IsDisposed && _transitionsPusher != nullptr)
             {
@@ -235,9 +324,14 @@
             }
         }
 
-        public: Transaction BeginTransaction() { return this->Transaction(this); }
+      public:
+        Transaction BeginTransaction()
+        {
+            return this->Transaction(this);
+        }
 
-        private: void DisposeTransitions()
+      private:
+        void DisposeTransitions()
         {
             try
             {
@@ -260,7 +354,8 @@
             }
         }
 
-        public: void Dispose(bool manual, bool wasDisposed)
+      public:
+        void Dispose(bool manual, bool wasDisposed)
         {
             if (!wasDisposed)
             {
@@ -269,4 +364,4 @@
             base.Dispose(manual, wasDisposed);
         }
     };
-}
+} // namespace Platform::Data::Doublets

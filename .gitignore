@@ -23,6 +23,7 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
+!dev/log/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
@@ -56,6 +57,15 @@ BenchmarkDotNet.Artifacts/
 project.lock.json
 project.fragment.lock.json
 artifacts/
+
+# Reproducible CI build and tool output
+cpp/build*/
+cpp/conan-center-index/
+cpp/CMakeUserPresets.json
+__pycache__/
+_site/
+docs/api/
+.venv/
 **/Properties/launchSettings.json
 
 # StyleCop

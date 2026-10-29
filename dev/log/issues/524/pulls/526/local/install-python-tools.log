@@ -1,0 +1,84 @@
+Collecting conan==2.33.0
+  Downloading conan-2.33.0-py3-none-any.whl.metadata (8.9 kB)
+Collecting zizmor==1.29.0
+  Downloading zizmor-1.29.0-py3-none-manylinux_2_28_x86_64.whl.metadata (4.7 kB)
+Collecting pyyaml
+  Downloading pyyaml-6.0.3.tar.gz (130 kB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting fpdf2==2.8.7
+  Downloading fpdf2-2.8.7-py3-none-any.whl.metadata (81 kB)
+Collecting requests<3.0.0,>=2.25 (from conan==2.33.0)
+  Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+Collecting urllib3<3.0,>=1.26.6 (from conan==2.33.0)
+  Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+Collecting colorama<0.5.0,>=0.4.3 (from conan==2.33.0)
+  Downloading colorama-0.4.6-py2.py3-none-any.whl.metadata (17 kB)
+Collecting patch-ng<1.20,>=1.18.0 (from conan==2.33.0)
+  Downloading patch_ng-1.19.1-py3-none-any.whl.metadata (3.2 kB)
+Collecting fasteners>=0.15 (from conan==2.33.0)
+  Downloading fasteners-0.20-py3-none-any.whl.metadata (4.8 kB)
+Collecting distro<2.0.0,>=1.4.0 (from conan==2.33.0)
+  Downloading distro-1.9.0-py3-none-any.whl.metadata (6.8 kB)
+Collecting Jinja2<4.0.0,>=3.0 (from conan==2.33.0)
+  Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Collecting python-dateutil<3,>=2.8.0 (from conan==2.33.0)
+  Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+Collecting truststore<1.0,>=0.8 (from conan==2.33.0)
+  Downloading truststore-0.10.5-py3-none-any.whl.metadata (4.5 kB)
+Collecting defusedxml (from fpdf2==2.8.7)
+  Downloading defusedxml-0.7.1-py2.py3-none-any.whl.metadata (32 kB)
+Collecting Pillow!=9.2.*,>=8.3.2 (from fpdf2==2.8.7)
+  Downloading pillow-13.0.0-cp315-cp315-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.1 kB)
+Collecting fonttools>=4.34.0 (from fpdf2==2.8.7)
+  Downloading fonttools-4.68.0-cp315-cp315-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (139 kB)
+Collecting MarkupSafe>=2.0 (from Jinja2<4.0.0,>=3.0->conan==2.33.0)
+  Downloading markupsafe-3.0.4-cp315-cp315-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+Collecting six>=1.5 (from python-dateutil<3,>=2.8.0->conan==2.33.0)
+  Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+Collecting charset_normalizer<4,>=2 (from requests<3.0.0,>=2.25->conan==2.33.0)
+  Downloading charset_normalizer-3.5.2-cp315-cp315-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (46 kB)
+Collecting idna<4,>=2.5 (from requests<3.0.0,>=2.25->conan==2.33.0)
+  Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+Collecting certifi>=2023.5.7 (from requests<3.0.0,>=2.25->conan==2.33.0)
+  Downloading certifi-2026.10.23-py3-none-any.whl.metadata (2.5 kB)
+Downloading conan-2.33.0-py3-none-any.whl (748 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 748.2/748.2 kB 12.2 MB/s  0:00:00
+Downloading zizmor-1.29.0-py3-none-manylinux_2_28_x86_64.whl (9.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.4/9.4 MB 28.0 MB/s  0:00:00
+Downloading fpdf2-2.8.7-py3-none-any.whl (327 kB)
+Downloading colorama-0.4.6-py2.py3-none-any.whl (25 kB)
+Downloading distro-1.9.0-py3-none-any.whl (20 kB)
+Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+Downloading patch_ng-1.19.1-py3-none-any.whl (17 kB)
+Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+Downloading charset_normalizer-3.5.2-cp315-cp315-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (257 kB)
+Downloading idna-3.20-py3-none-any.whl (69 kB)
+Downloading truststore-0.10.5-py3-none-any.whl (19 kB)
+Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+Downloading certifi-2026.10.23-py3-none-any.whl (135 kB)
+Downloading fasteners-0.20-py3-none-any.whl (18 kB)
+Downloading fonttools-4.68.0-cp315-cp315-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (5.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.4/5.4 MB 32.6 MB/s  0:00:00
+Downloading markupsafe-3.0.4-cp315-cp315-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (23 kB)
+Downloading pillow-13.0.0-cp315-cp315-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (7.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.2/7.2 MB 18.2 MB/s  0:00:00
+Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+Downloading defusedxml-0.7.1-py2.py3-none-any.whl (25 kB)
+Building wheels for collected packages: pyyaml
+  Building wheel for pyyaml (pyproject.toml): started
+  Building wheel for pyyaml (pyproject.toml): finished with status 'done'
+  Created wheel for pyyaml: filename=pyyaml-6.0.3-cp315-cp315-linux_x86_64.whl size=654060 sha256=486fc3251fcbf054a35e8c1500e526a59163000960030c1807895b0871f60e54
+  Stored in directory: /home/box/.cache/pip/wheels/39/c5/03/188d3f8dc792f835b1e767b5e6e0fec41846dc06f6dd368652
+Successfully built pyyaml
+Installing collected packages: zizmor, urllib3, truststore, six, pyyaml, Pillow, patch-ng, MarkupSafe, idna, fonttools, fasteners, distro, defusedxml, colorama, charset_normalizer, certifi, requests, python-dateutil, Jinja2, fpdf2, conan
+
+Successfully installed Jinja2-3.1.6 MarkupSafe-3.0.4 Pillow-13.0.0 certifi-2026.10.23 charset_normalizer-3.5.2 colorama-0.4.6 conan-2.33.0 defusedxml-0.7.1 distro-1.9.0 fasteners-0.20 fonttools-4.68.0 fpdf2-2.8.7 idna-3.20 patch-ng-1.19.1 python-dateutil-2.9.0.post0 pyyaml-6.0.3 requests-2.34.2 six-1.17.0 truststore-0.10.5 urllib3-2.8.0 zizmor-1.29.0
+
+[notice] A new release of pip is available: 26.2.1 -> 26.2.2
+[notice] To update, run: /tmp/issue-524-tools/venv/bin/python3 -m pip install --upgrade pip

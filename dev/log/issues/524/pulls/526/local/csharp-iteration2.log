@@ -1,0 +1,43 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+/tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Decorators/LinksDecoratorBase.cs(139,22): warning CS1572: XML comment has a param tag for 'restriction', but there is no parameter by that name [/tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Platform.Data.Doublets.csproj]
+/tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Decorators/UInt64Links.cs(35,42): warning CS1574: XML comment has cref attribute 'UInt64Links' that could not be resolved [/tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Platform.Data.Doublets.csproj]
+/tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.cs(219,22): warning CS1572: XML comment has a param tag for '@base', but there is no parameter by that name [/tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Platform.Data.Doublets.csproj]
+/tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.cs(219,22): warning CS1572: XML comment has a param tag for '@base', but there is no parameter by that name [/tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Platform.Data.Doublets.csproj]
+/tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksRecursionlessSizeBalancedTreeMethodsBase.cs(166,22): warning CS1572: XML comment has a param tag for '@base', but there is no parameter by that name [/tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Platform.Data.Doublets.csproj]
+/tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSizeBalancedTreeMethodsBase.cs(166,22): warning CS1572: XML comment has a param tag for '@base', but there is no parameter by that name [/tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Platform.Data.Doublets.csproj]
+/tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Memory/United/Generic/LinksRecursionlessSizeBalancedTreeMethodsBase.cs(207,22): warning CS1572: XML comment has a param tag for '@base', but there is no parameter by that name [/tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Platform.Data.Doublets.csproj]
+/tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Memory/United/Generic/LinksSizeBalancedTreeMethodsBase.cs(207,22): warning CS1572: XML comment has a param tag for '@base', but there is no parameter by that name [/tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Platform.Data.Doublets.csproj]
+/tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/PropertyOperators/PropertiesOperator.cs(41,26): warning CS1572: XML comment has a param tag for '@object', but there is no parameter by that name [/tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Platform.Data.Doublets.csproj]
+/tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/PropertyOperators/PropertiesOperator.cs(80,26): warning CS1572: XML comment has a param tag for '@object', but there is no parameter by that name [/tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Platform.Data.Doublets.csproj]
+  Platform.Data.Doublets -> /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/bin/Release/net8/Platform.Data.Doublets.dll
+  Platform.Data.Doublets.Tests -> /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets.Tests/bin/Release/net8/Platform.Data.Doublets.Tests.dll
+Test run for /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets.Tests/bin/Release/net8/Platform.Data.Doublets.Tests.dll (.NETCoreApp,Version=v8.0)
+VSTest version 17.11.1 (x64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:00:02.41]     Platform.Data.Doublets.Tests.ScopeTests.FullAutoResolutionTest [SKIP]
+  Skipped Platform.Data.Doublets.Tests.ScopeTests.FullAutoResolutionTest [1 ms]
+[xUnit.net 00:00:02.75]     Platform.Data.Doublets.Tests.NullableContractTests.OptionalRestrictionsAndReadHandlersAreSupported(split: False) [FAIL]
+[xUnit.net 00:00:02.86]     Platform.Data.Doublets.Tests.NullableContractTests.OptionalRestrictionsAndReadHandlersAreSupported(split: True) [FAIL]
+  Failed Platform.Data.Doublets.Tests.NullableContractTests.OptionalRestrictionsAndReadHandlersAreSupported(split: False) [1 s]
+  Error Message:
+   Assert.Equal() Failure
+Expected: 18446744073709551615
+Actual:   18446744073709551614
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.NullableContractTests.OptionalRestrictionsAndReadHandlersAreSupported(Boolean split) in /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets.Tests/NullableContractTests.cs:line 23
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+  Failed Platform.Data.Doublets.Tests.NullableContractTests.OptionalRestrictionsAndReadHandlersAreSupported(split: True) [226 ms]
+  Error Message:
+   Assert.Equal() Failure
+Expected: 18446744073709551615
+Actual:   18446744073709551614
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.NullableContractTests.OptionalRestrictionsAndReadHandlersAreSupported(Boolean split) in /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets.Tests/NullableContractTests.cs:line 23
+   at InvokeStub_NullableContractTests.OptionalRestrictionsAndReadHandlersAreSupported(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+
+Failed!  - Failed:     2, Passed:    40, Skipped:     1, Total:    43, Duration: 3 s - Platform.Data.Doublets.Tests.dll (net8.0)

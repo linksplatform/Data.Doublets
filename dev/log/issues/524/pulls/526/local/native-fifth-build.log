@@ -1,0 +1,21 @@
+[ 25%] Building CXX object CMakeFiles/Platform.Data.Doublets.Tests.dir/Platform.Data.Doublets.Tests/AllTests.cpp.o
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/AllTests.cpp:5:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/OwnershipTests.h:79:73: error: non-constant-expression cannot be narrowed from type 'int' to 'capacity_t' (aka 'unsigned long') in initializer list [-Wc++11-narrowing]
+   79 |             Storage storage{Platform::Memory::HeapResizableDirectMemory{capacities.first},
+      |                                                                         ^~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/OwnershipTests.h:79:73: note: insert an explicit cast to silence this issue
+   79 |             Storage storage{Platform::Memory::HeapResizableDirectMemory{capacities.first},
+      |                                                                         ^~~~~~~~~~~~~~~~
+      |                                                                         static_cast<capacity_t>( )
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/OwnershipTests.h:80:73: error: non-constant-expression cannot be narrowed from type 'int' to 'capacity_t' (aka 'unsigned long') in initializer list [-Wc++11-narrowing]
+   80 |                             Platform::Memory::HeapResizableDirectMemory{capacities.second}, 4};
+      |                                                                         ^~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/OwnershipTests.h:80:73: note: insert an explicit cast to silence this issue
+   80 |                             Platform::Memory::HeapResizableDirectMemory{capacities.second}, 4};
+      |                                                                         ^~~~~~~~~~~~~~~~~
+      |                                                                         static_cast<capacity_t>( )
+2 errors generated.
+gmake[2]: *** [CMakeFiles/Platform.Data.Doublets.Tests.dir/build.make:76: CMakeFiles/Platform.Data.Doublets.Tests.dir/Platform.Data.Doublets.Tests/AllTests.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:85: CMakeFiles/Platform.Data.Doublets.Tests.dir/all] Error 2
+gmake: *** [Makefile:101: all] Error 2
+Child peak RSS: 756908 KiB

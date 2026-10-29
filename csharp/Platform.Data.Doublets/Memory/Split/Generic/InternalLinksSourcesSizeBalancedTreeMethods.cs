@@ -16,7 +16,7 @@ public unsafe class InternalLinksSourcesSizeBalancedTreeMethods<TLinkAddress> : 
 {
     /// <summary>
     ///     <para>
-    ///         Initializes a new <see cref="InternalLinksSourcesSizeBalancedTreeMethods" /> instance.
+    ///         Initializes a new <see cref="InternalLinksSourcesSizeBalancedTreeMethods{TLinkAddress}" /> instance.
     ///     </para>
     ///     <para></para>
     /// </summary>

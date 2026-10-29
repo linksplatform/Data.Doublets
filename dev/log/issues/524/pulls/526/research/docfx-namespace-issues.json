@@ -1,0 +1,68 @@
+{"html_url":"https://github.com/dotnet/docfx/pull/11163","number":11163,"title":"fix: resolve local namespace links through xrefs"}
+{"html_url":"https://github.com/dotnet/docfx/pull/11090","number":11090,"title":"Qualify UIDs by assembly to disambiguate shared namespaces"}
+{"html_url":"https://github.com/dotnet/docfx/issues/11060","number":11060,"title":"[Bug] Orphaned Namespace Links"}
+{"html_url":"https://github.com/dotnet/docfx/pull/11012","number":11012,"title":"Remove links to non-existent pages for parent namespaces"}
+{"html_url":"https://github.com/dotnet/docfx/issues/10698","number":10698,"title":"[Bug] Cross reference to System.Threading.Tasks namespace links to System namespace"}
+{"html_url":"https://github.com/dotnet/docfx/issues/10588","number":10588,"title":"[Bug] Namespace links created for non-existing parent namespaces"}
+{"html_url":"https://github.com/dotnet/docfx/issues/10424","number":10424,"title":"[Bug] NamespaceLayout behavior change"}
+{"html_url":"https://github.com/dotnet/docfx/pull/10023","number":10023,"title":"fix: `docfx metadata` command throw `ArgumentException` when referencing empty namespace by doc comment"}
+{"html_url":"https://github.com/dotnet/docfx/issues/9978","number":9978,"title":"[Bug] Ignoring global namespace prevents metadata to generate api folder"}
+{"html_url":"https://github.com/dotnet/docfx/pull/9971","number":9971,"title":"chore: Fix wrong namespaces"}
+{"html_url":"https://github.com/dotnet/docfx/issues/9899","number":9899,"title":"[Bug] Removing a namespace generates a bug"}
+{"html_url":"https://github.com/dotnet/docfx/pull/9650","number":9650,"title":"fix: ApiPage is not generated when multiple namespaces defined across projects"}
+{"html_url":"https://github.com/dotnet/docfx/pull/9647","number":9647,"title":"fix: ApiPage is not generated when multiple namespaces defined across projects"}
+{"html_url":"https://github.com/dotnet/docfx/issues/9458","number":9458,"title":"[Bug] globalNamespaceID specified, but not generated in the toc data of _site/api/index.html"}
+{"html_url":"https://github.com/dotnet/docfx/issues/9404","number":9404,"title":"API Filtering Yml Cannot Include Specific Namespace"}
+{"html_url":"https://github.com/dotnet/docfx/pull/9372","number":9372,"title":"fix: some API page child namespaces 404"}
+{"html_url":"https://github.com/dotnet/docfx/issues/9303","number":9303,"title":"[Bug] globalNamespaceID and filter yml filter all API in a project regardless of namespace"}
+{"html_url":"https://github.com/dotnet/docfx/pull/9235","number":9235,"title":"feat: markdown support namespaces and separated member pages"}
+{"html_url":"https://github.com/dotnet/docfx/issues/8966","number":8966,"title":"[Bug] Duplicate namespaces "}
+{"html_url":"https://github.com/dotnet/docfx/issues/8826","number":8826,"title":"[Bug] cs files without namespaces do not get turned into API docs"}
+{"html_url":"https://github.com/dotnet/docfx/pull/8739","number":8739,"title":"fix: In page Namespaces keyword disappear"}
+{"html_url":"https://github.com/dotnet/docfx/pull/8738","number":8738,"title":"fix: nested namespace apply template error"}
+{"html_url":"https://github.com/dotnet/docfx/issues/8660","number":8660,"title":"[Bug] Additional namespace spec.csharp/spec.vb introduced in release 2.61.0"}
+{"html_url":"https://github.com/dotnet/docfx/issues/8544","number":8544,"title":"[Bug] Four separate errors and two warnings to do with: \"namespaceLayout\": \"nested\" in version  v2.63.0 and v2.63.1"}
+{"html_url":"https://github.com/dotnet/docfx/issues/8540","number":8540,"title":"[Bug] ApplyTemplatePreprocessorError when \"namespaceLayout\" set to \"nested\""}
+{"html_url":"https://github.com/dotnet/docfx/issues/8506","number":8506,"title":"[Feature Request] Rename a Namespace to another Namespace"}
+{"html_url":"https://github.com/dotnet/docfx/issues/8427","number":8427,"title":"[Bug] Custom namespace filter rules not working anymore"}
+{"html_url":"https://github.com/dotnet/docfx/pull/8424","number":8424,"title":"Fix/empty namespace in nested style"}
+{"html_url":"https://github.com/dotnet/docfx/issues/8402","number":8402,"title":"[Bug] Inheritance relation beyond namespaces/assemblies is not properly treated"}
+{"html_url":"https://github.com/dotnet/docfx/issues/7774","number":7774,"title":"Seemed file-scoped namespace not supported?"}
+{"html_url":"https://github.com/dotnet/docfx/pull/7729","number":7729,"title":"Use file-scoped namespace and implicit usings"}
+{"html_url":"https://github.com/dotnet/docfx/issues/7725","number":7725,"title":"Links for classes in other namespaces aren't automatically generated"}
+{"html_url":"https://github.com/dotnet/docfx/issues/7649","number":7649,"title":"Change namespaces order in API reference documentation"}
+{"html_url":"https://github.com/dotnet/docfx/issues/6951","number":6951,"title":"Table of Content Misses a Namespace for Internal Classes"}
+{"html_url":"https://github.com/dotnet/docfx/issues/6852","number":6852,"title":"metadata filename clash between namespace and class name - macOS and docker containers with mounted volumes on Windows or macOS hosts."}
+{"html_url":"https://github.com/dotnet/docfx/issues/6743","number":6743,"title":"Question: Using other types then \"Namespace\", \"Class\", \"Interface\", ..."}
+{"html_url":"https://github.com/dotnet/docfx/issues/6709","number":6709,"title":"Links to namespaces not generated - this worked in prior versions"}
+{"html_url":"https://github.com/dotnet/docfx/issues/6191","number":6191,"title":"[Question] Any convention to API-document a namespace?"}
+{"html_url":"https://github.com/dotnet/docfx/issues/5501","number":5501,"title":"DocFX fails for class files without a defined namespace"}
+{"html_url":"https://github.com/dotnet/docfx/pull/4482","number":4482,"title":"fix NRE when ContainingNamespace is null"}
+{"html_url":"https://github.com/dotnet/docfx/pull/4292","number":4292,"title":"Add namespace to CommitsTimeItem"}
+{"html_url":"https://github.com/dotnet/docfx/issues/2653","number":2653,"title":"[statictoc] table of content cuts the namespace and doesn't wrap the text"}
+{"html_url":"https://github.com/dotnet/docfx/issues/2620","number":2620,"title":"Single-letter namespace aliases cause resolution failures"}
+{"html_url":"https://github.com/dotnet/docfx/issues/2507","number":2507,"title":"yml uid missing BCL namespace"}
+{"html_url":"https://github.com/dotnet/docfx/issues/2483","number":2483,"title":"ignore namespaces that do not get the application and also ignore classes that do not contain the summary"}
+{"html_url":"https://github.com/dotnet/docfx/pull/2365","number":2365,"title":"Update namespace of markdig engine"}
+{"html_url":"https://github.com/dotnet/docfx/issues/2340","number":2340,"title":"With statictoc, namespaces run off TOC area and cannot be read"}
+{"html_url":"https://github.com/dotnet/docfx/issues/2041","number":2041,"title":"Is there any way to make the API docs TOC so that it can list Projects and then Namespaces? (i.e. multi level)"}
+{"html_url":"https://github.com/dotnet/docfx/issues/1844","number":1844,"title":"inheritance not processed properly across namespaces"}
+{"html_url":"https://github.com/dotnet/docfx/pull/1660","number":1660,"title":"remove backward compatibility namespaceExpanded"}
+{"html_url":"https://github.com/dotnet/docfx/pull/1647","number":1647,"title":"add dependnecy type children: if class overwrite updates, namespace page should be rebuilt"}
+{"html_url":"https://github.com/dotnet/docfx/pull/1530","number":1530,"title":"break namespace and word in toc"}
+{"html_url":"https://github.com/dotnet/docfx/pull/1525","number":1525,"title":"Support a named global namespace"}
+{"html_url":"https://github.com/dotnet/docfx/issues/1519","number":1519,"title":"DocFX currently only supports generating metadata with namespace defined"}
+{"html_url":"https://github.com/dotnet/docfx/issues/1222","number":1222,"title":"API Documentation namespaces get cut off on smaller screen"}
+{"html_url":"https://github.com/dotnet/docfx/issues/1046","number":1046,"title":"Namespace before listing all the contained classes."}
+{"html_url":"https://github.com/dotnet/docfx/issues/952","number":952,"title":"Support Sandcastle's behavior to recognize triple-slash on namespace"}
+{"html_url":"https://github.com/dotnet/docfx/issues/729","number":729,"title":"Namespace conflict"}
+{"html_url":"https://github.com/dotnet/docfx/pull/633","number":633,"title":"when event type isn't defined in a namespace, resolving its parent might throw null reference exception"}
+{"html_url":"https://github.com/dotnet/docfx/pull/457","number":457,"title":"improve warning message about global namespace class"}
+{"html_url":"https://github.com/dotnet/docfx/pull/443","number":443,"title":"improve class link text in namespace"}
+{"html_url":"https://github.com/dotnet/docfx/issues/417","number":417,"title":"DocFX currently only supports generating metadata with namespace defined"}
+{"html_url":"https://github.com/dotnet/docfx/pull/402","number":402,"title":"Adding class syntax to the class template page as well as appearing on the namespace page"}
+{"html_url":"https://github.com/dotnet/docfx/pull/372","number":372,"title":"extensionmethod: fix the way to get all namespace members"}
+{"html_url":"https://github.com/dotnet/docfx/issues/274","number":274,"title":"Support for nested namespaces"}
+{"html_url":"https://github.com/dotnet/docfx/pull/267","number":267,"title":"Sometimes symbol.ContainingNamespace is null and result in a ExtractMetadataException"}
+{"html_url":"https://github.com/dotnet/docfx/issues/165","number":165,"title":"Hard-to-diagnose \"No metadata is generated\" error when code has no namespace"}
+{"html_url":"https://github.com/dotnet/docfx/issues/153","number":153,"title":"Invalid View Source link generated for namespaces"}

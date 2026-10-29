@@ -1,0 +1,30 @@
+{
+  "actions/checkout": {
+    "tag": "v7",
+    "sha": "3d3c42e5aac5ba805825da76410c181273ba90b1"
+  },
+  "actions/setup-dotnet": {
+    "tag": "v5",
+    "sha": "26b0ec14cb23fa6904739307f278c14f94c95bf1"
+  },
+  "actions/setup-python": {
+    "tag": "v7",
+    "sha": "6d4fd22b20465ccc0f7354476588e8df7c9ca0e0"
+  },
+  "actions/upload-artifact": {
+    "tag": "v7",
+    "sha": "cf430e030ddbb5b0abf93d22962f4752f3646cd9"
+  },
+  "actions/download-artifact": {
+    "tag": "v8",
+    "sha": "9000827ccba6bdab643e8b6fd33ac0654aef8333"
+  },
+  "zizmorcore/zizmor-action": {
+    "tag": "v0.6.4",
+    "sha": "cc914d7f3750a2d13d75c7f184a1060aa0e9d482"
+  },
+  "dependabot/fetch-metadata": {
+    "tag": "v3",
+    "sha": "25dd0e34f4fe68f24cc83900b1fe3fe149efef98"
+  }
+}

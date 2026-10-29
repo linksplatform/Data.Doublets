@@ -1,0 +1,45 @@
+Loading project /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Platform.Data.Doublets.csproj
+  Determining projects to restore...
+  Restored /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Platform.Data.Doublets.csproj (in 534 ms).
+error: /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/CriterionMatchers/TargetMatcher.cs(4,16): error CS0234: The type or namespace name 'Interfaces' does not exist in the namespace 'Platform' (are you missing an assembly reference?)
+error: /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Decorators/LinksCascadeUniquenessAndUsagesResolver.cs(3,16): error CS0234: The type or namespace name 'Delegates' does not exist in the namespace 'Platform' (are you missing an assembly reference?)
+error: /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Decorators/LinksCascadeUsagesResolver.cs(4,16): error CS0234: The type or namespace name 'Delegates' does not exist in the namespace 'Platform' (are you missing an assembly reference?)
+error: /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Decorators/LinksDecoratorBase.cs(4,16): error CS0234: The type or namespace name 'Delegates' does not exist in the namespace 'Platform' (are you missing an assembly reference?)
+error: /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Decorators/LinksDisposableDecoratorBase.cs(3,16): error CS0234: The type or namespace name 'Disposables' does not exist in the namespace 'Platform' (are you missing an assembly reference?)
+error: /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Decorators/LinksInnerReferenceExistenceValidator.cs(4,16): error CS0234: The type or namespace name 'Delegates' does not exist in the namespace 'Platform' (are you missing an assembly reference?)
+error: /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Decorators/LinksItselfConstantToSelfReferenceResolver.cs(4,16): error CS0234: The type or namespace name 'Delegates' does not exist in the namespace 'Platform' (are you missing an assembly reference?)
+error: /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Decorators/LinksNonExistentDependenciesCreator.cs(4,16): error CS0234: The type or namespace name 'Delegates' does not exist in the namespace 'Platform' (are you missing an assembly reference?)
+error: /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Decorators/LinksNullConstantToSelfReferenceResolver.cs(4,16): error CS0234: The type or namespace name 'Delegates' does not exist in the namespace 'Platform' (are you missing an assembly reference?)
+error: /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Decorators/LinksUniquenessResolver.cs(4,16): error CS0234: The type or namespace name 'Delegates' does not exist in the namespace 'Platform' (are you missing an assembly reference?)
+error: /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Decorators/LinksUniquenessValidator.cs(4,16): error CS0234: The type or namespace name 'Delegates' does not exist in the namespace 'Platform' (are you missing an assembly reference?)
+error: /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Decorators/LinksUsagesValidator.cs(4,16): error CS0234: The type or namespace name 'Delegates' does not exist in the namespace 'Platform' (are you missing an assembly reference?)
+error: /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Decorators/LoggingDecorator.cs(4,16): error CS0234: The type or namespace name 'Delegates' does not exist in the namespace 'Platform' (are you missing an assembly reference?)
+error: /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Decorators/NoExceptionsDecorator.cs(4,16): error CS0234: The type or namespace name 'Delegates' does not exist in the namespace 'Platform' (are you missing an assembly reference?)
+error: /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Decorators/NoExceptionsDecorator.cs(5,16): error CS0234: The type or namespace name 'Exceptions' does not exist in the namespace 'Platform' (are you missing an assembly reference?)
+error: /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Decorators/NonNullContentsLinkDeletionResolver.cs(4,16): error CS0234: The type or namespace name 'Delegates' does not exist in the namespace 'Platform' (are you missing an assembly reference?)
+error: /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Decorators/UInt64Links.cs(5,16): error CS0234: The type or namespace name 'Delegates' does not exist in the namespace 'Platform' (are you missing an assembly reference?)
+error: /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Decorators/UniLinks.cs(4,16): error CS0234: The type or namespace name 'Collections' does not exist in the namespace 'Platform' (are you missing an assembly reference?)
+error: /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Decorators/UniLinks.cs(5,16): error CS0234: The type or namespace name 'Collections' does not exist in the namespace 'Platform' (are you missing an assembly reference?)
+error: /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/Decorators/UniLinks.cs(6,21): error CS0234: The type or namespace name 'Universal' does not exist in the namespace 'Platform.Data' (are you missing an assembly reference?)
+Creating output...
+warning: No .NET API detected for .
+Searching built-in plugins in directory /home/box/.nuget/packages/docfx/2.78.5/tools/net8.0/any/...
+Post processor ExtractSearchIndex loaded.
+7 plug-in(s) loaded.
+ExtractSearchIndex: UseMetadata = False, UseMetadataTitle = True
+Building 1 file(s) in TocDocumentProcessor(BuildTocDocument)...
+Building 2 file(s) in ConceptualDocumentProcessor(BuildConceptualDocument=>ValidateConceptualDocumentMetadata)...
+/tmp/gh-issue-solver-1793248170197/docs/toc.yml: error InvalidTocInclude: Referenced TOC file /tmp/gh-issue-solver-1793248170197/docs/api/toc.yml does not exist.
+/tmp/gh-issue-solver-1793248170197/README.md(8,1): warning InvalidFileLink: Invalid file link:(~/README.ru.md).
+/tmp/gh-issue-solver-1793248170197/docs/index.md(5,1): warning InvalidFileLink: Invalid file link:(~/docs/api/Platform.Data.Doublets.yml).
+/tmp/gh-issue-solver-1793248170197/docs/index.md(7,1): warning InvalidFileLink: Invalid file link:(~/docs/Platform.Data.Doublets.pdf).
+Applying templates to 3 model(s)...
+XRef map exported.
+Extracting index data from 2 html files
+
+
+Build failed.
+
+    4 warning(s)
+    21 error(s)
+

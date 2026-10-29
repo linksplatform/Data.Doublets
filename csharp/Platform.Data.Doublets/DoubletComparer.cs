@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 
 namespace Platform.Data.Doublets
 {
+    /// <summary>Compares doublets by their source and target.</summary>
     /// <remarks>
     /// TODO: Может стоит попробовать ref во всех методах (IRefEqualityComparer)
     /// 2x faster with comparer 
@@ -39,7 +40,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool Equals(Doublet<T> x, Doublet<T> y)  { return x.Equals(y);}
+        public bool Equals(Doublet<T> x, Doublet<T> y) { return x.Equals(y); }
 
         /// <summary>
         /// <para>
@@ -56,6 +57,6 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public int GetHashCode(Doublet<T> obj)  { return obj.GetHashCode();}
+        public int GetHashCode(Doublet<T> obj) { return obj.GetHashCode(); }
     }
 }

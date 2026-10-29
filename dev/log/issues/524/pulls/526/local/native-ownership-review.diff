@@ -1,0 +1,232 @@
+diff --git a/cpp/Platform.Data.Doublets/ILinksExtensions.h b/cpp/Platform.Data.Doublets/ILinksExtensions.h
+index 0761d1ca5..436724167 100644
+--- a/cpp/Platform.Data.Doublets/ILinksExtensions.h
++++ b/cpp/Platform.Data.Doublets/ILinksExtensions.h
+@@ -198,30 +198,6 @@ namespace Platform::Data::Doublets
+         return currentLink;
+     }
+ 
+-    //    template<typename TStorage>
+-    //    static typename TStorage::LinkAddressType GetSquareMatrixSequenceElementByIndex(TStorage& storage, typename
+-    //    TStorage::LinkAddressType root, std::uint64_t size, std::uint64_t index)
+-    //    {
+-    //        using namespace Platform::Numbers;
+-    //        constexpr auto constants = std::remove_cvref_t<decltype(storage)>::Constants;
+-    //        auto source = constants.SourcePart;
+-    //        auto target = constants.TargetPart;
+-    //        if (!Numbers::Math::IsPowerOfTwo(size))
+-    //        {
+-    //            throw std::invalid_argument("size", "Sequences with sizes other than powers of two are not
+-    //            supported.");
+-    //        }
+-    //        auto path = BitArray(BitConverter.GetBytes(index));
+-    //        auto length = Bit.GetLowestPosition(size);
+-    //        storage.EnsureLinkExists(root, "root");
+-    //        auto currentLink = root;
+-    //        for (auto i { length - 1 }; i >= 0; i--)
+-    //        {
+-    //            currentLink = GetLink(storage, currentLink)[path[i] ? target : source];
+-    //        }
+-    //        return currentLink;
+-    //    }
+-
+     template <typename TStorage>
+     static auto GetIndex(const TStorage& storage, const typename TStorage::LinkType& link)
+     {
+@@ -428,6 +404,9 @@ namespace Platform::Data::Doublets
+         {
+             if (!requested.contains(address))
+             {
++                Platform::Data::Update(
++                    storage, typename TStorage::LinkType{address},
++                    typename TStorage::LinkType{address, storage.Constants.Null, storage.Constants.Null});
+                 Platform::Data::Delete(storage, address);
+             }
+         }
+@@ -447,7 +426,8 @@ namespace Platform::Data::Doublets
+     {
+         EnsureCreated(storage, std::function<typename TStorage::LinkAddressType()>{[&storage] {
+                           auto point = Platform::Data::Create(storage);
+-                          return Update(storage, point, point, point);
++                          return Platform::Data::Update(storage, typename TStorage::LinkType{point},
++                                                        typename TStorage::LinkType{point, point, point});
+                       }},
+                       addresses);
+     }
+@@ -782,23 +762,6 @@ namespace Platform::Data::Doublets
+         DeleteAllUsages(storage, linkIndex, nullptr);
+     }
+ 
+-    // Do not translate this
+-    //    template<typename TStorage>
+-    //    auto DeleteByQuery(TStorage& storage,  CArray<typename TStorage::LinkAddressType> auto&& query)
+-    //    {
+-    //        auto count = DIRECT_METHOD_CALL(TStorage, storage, Count,query);
+-    //        auto toDelete = typename TStorage::LinkType(count);
+-    //        DIRECT_METHOD_CALL(TStorage, storage, Each,[&](auto link) {
+-    //            toDelete.push_back(link[0]);
+-    //            return storage.Constants.Continue;
+-    //        }, query);
+-    //
+-    //        for (auto link : toDelete | std::views::reverse)
+-    //        {
+-    //            Delete(storage, link);
+-    //        }
+-    //    }
+-
+     template <typename TStorage>
+     auto DeleteAll(TStorage& storage)
+     {
+diff --git a/cpp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.h b/cpp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.h
+index 776493ef1..545c9d0d3 100644
+--- a/cpp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.h
++++ b/cpp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.h
+@@ -20,12 +20,12 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
+         TMemory _indexMemory;
+         std::uint64_t _dataMemoryReservationStepInBytes;
+         std::uint64_t _indexMemoryReservationStepInBytes;
+-        TInternalSourcesTreeMethods* InternalSourcesTreeMethods;
+-        TInternalLinksSourcesLinkedListMethods* InternalSourcesListMethods;
+-        TInternalTargetsTreeMethods* InternalTargetsTreeMethods;
+-        TExternalSourcesTreeMethods* ExternalSourcesTreeMethods;
+-        TExternalTargetsTreeMethods* ExternalTargetsTreeMethods;
+-        TUnusedLinksListMethods* UnusedLinksListMethods;
++        std::unique_ptr<TInternalSourcesTreeMethods> InternalSourcesTreeMethods;
++        std::unique_ptr<TInternalLinksSourcesLinkedListMethods> InternalSourcesListMethods;
++        std::unique_ptr<TInternalTargetsTreeMethods> InternalTargetsTreeMethods;
++        std::unique_ptr<TExternalSourcesTreeMethods> ExternalSourcesTreeMethods;
++        std::unique_ptr<TExternalTargetsTreeMethods> ExternalTargetsTreeMethods;
++        std::unique_ptr<TUnusedLinksListMethods> UnusedLinksListMethods;
+         std::byte* _header;
+         std::byte* _linksDataParts;
+         std::byte* _linksIndexParts;
+@@ -133,11 +133,11 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
+                                                 _indexMemoryReservationStepInBytes) +
+                                                _indexMemoryReservationStepInBytes;
+             }
+-            if (dataMemory.ReservedCapacity() != minimumDataReservedCapacity)
++            if (dataMemory.ReservedCapacity() < minimumDataReservedCapacity)
+             {
+                 dataMemory.ReservedCapacity(minimumDataReservedCapacity);
+             }
+-            if (indexMemory.ReservedCapacity() != minimumIndexReservedCapacity)
++            if (indexMemory.ReservedCapacity() < minimumIndexReservedCapacity)
+             {
+                 indexMemory.ReservedCapacity(minimumIndexReservedCapacity);
+             }
+@@ -354,19 +354,21 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
+             _header = _linksIndexParts;
+             if (UseLinkedList)
+             {
+-                //                InternalSourcesTreeMethods = new
+-                //                TInternalLinksSourcesLinkedTreeMethods(_linksDataParts, _linksIndexParts);
++                InternalSourcesListMethods =
++                    std::make_unique<TInternalLinksSourcesLinkedListMethods>(_linksDataParts, _linksIndexParts);
+             }
+             else
+             {
+                 InternalSourcesTreeMethods =
+-                    new TInternalSourcesTreeMethods(_linksDataParts, _linksIndexParts, _header);
+-            }
+-            InternalTargetsTreeMethods = new TInternalTargetsTreeMethods(_linksDataParts, _linksIndexParts, _header);
+-            ExternalTargetsTreeMethods = new TExternalTargetsTreeMethods(_linksDataParts, _linksIndexParts, _header);
+-            ExternalSourcesTreeMethods = new TExternalSourcesTreeMethods(_linksDataParts, _linksIndexParts, _header);
+-            ExternalTargetsTreeMethods = new TExternalTargetsTreeMethods(_linksDataParts, _linksIndexParts, _header);
+-            UnusedLinksListMethods = new TUnusedLinksListMethods(_linksDataParts, _header);
++                    std::make_unique<TInternalSourcesTreeMethods>(_linksDataParts, _linksIndexParts, _header);
++            }
++            InternalTargetsTreeMethods =
++                std::make_unique<TInternalTargetsTreeMethods>(_linksDataParts, _linksIndexParts, _header);
++            ExternalSourcesTreeMethods =
++                std::make_unique<TExternalSourcesTreeMethods>(_linksDataParts, _linksIndexParts, _header);
++            ExternalTargetsTreeMethods =
++                std::make_unique<TExternalTargetsTreeMethods>(_linksDataParts, _linksIndexParts, _header);
++            UnusedLinksListMethods = std::make_unique<TUnusedLinksListMethods>(_linksDataParts, _header);
+         }
+ 
+         LinkAddressType Count(const LinkType& restriction)
+@@ -863,7 +865,6 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
+                     _dataMemory.ReservedCapacity(_dataMemory.ReservedCapacity() + _dataMemoryReservationStepInBytes);
+                     _indexMemory.ReservedCapacity(_indexMemory.ReservedCapacity() + _indexMemoryReservationStepInBytes);
+                     SetPointers(_dataMemory, _indexMemory);
+-                    this->GetHeaderReference() = this->GetHeaderReference();
+                     this->GetHeaderReference().ReservedLinks = _dataMemory.ReservedCapacity() / LinkDataPartSizeInBytes;
+                 }
+                 freeLink = ++this->GetHeaderReference().AllocatedLinks;
+diff --git a/cpp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinksBase.h b/cpp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinksBase.h
+index 3aca3e17e..8c843d384 100644
+--- a/cpp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinksBase.h
++++ b/cpp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinksBase.h
+@@ -1,4 +1,4 @@
+-﻿namespace Platform::Data::Doublets::Memory::United::Generic
++namespace Platform::Data::Doublets::Memory::United::Generic
+ {
+ 
+     template <typename TSelf, typename TLinkOptions, typename TMemory, typename TSourceTreeMethods,
+@@ -31,11 +31,11 @@
+ 
+         const std::size_t _memoryReservationStep;
+ 
+-        TTargetTreeMethods* _TargetsTreeMethods;
++        std::unique_ptr<TTargetTreeMethods> _TargetsTreeMethods;
+ 
+-        TSourceTreeMethods* _SourcesTreeMethods;
++        std::unique_ptr<TSourceTreeMethods> _SourcesTreeMethods;
+ 
+-        TUnusedLinks* _UnusedLinksListMethods;
++        std::unique_ptr<TUnusedLinks> _UnusedLinksListMethods;
+ 
+         LinksHeader<LinkAddressType>& GetHeaderReference()
+         {
+@@ -374,8 +374,8 @@
+       public:
+         LinkAddressType Create(const LinkType&, const WriteHandlerType& handler)
+         {
+-            auto& header = this->GetHeaderReference();
+-            auto freeLink = header.FirstFreeLink;
++            auto* header = &this->GetHeaderReference();
++            auto freeLink = header->FirstFreeLink;
+             if (freeLink != Constants.Null)
+             {
+                 _UnusedLinksListMethods->Detach(freeLink);
+@@ -383,21 +383,21 @@
+             else
+             {
+                 auto maximumPossibleInnerReference = Constants.InternalReferencesRange.Maximum;
+-                if (header.AllocatedLinks > maximumPossibleInnerReference)
++                if (header->AllocatedLinks > maximumPossibleInnerReference)
+                 {
+                     // TODO: !!!!!
+                     // throw
+                     // std::make_shared<LinksLimitReachedException<LinkAddressType>>(maximumPossibleInnerReference);
+                 }
+-                if (header.AllocatedLinks >= (header.ReservedLinks - 1))
++                if (header->AllocatedLinks >= (header->ReservedLinks - 1))
+                 {
+                     _memory.ReservedCapacity(_memory.ReservedCapacity() + _memoryReservationStep);
+                     SetPointers(_memory);
+-                    header = this->GetHeaderReference();
+-                    header.ReservedLinks = _memory.ReservedCapacity() / LinkSizeInBytes;
++                    header = &this->GetHeaderReference();
++                    header->ReservedLinks = _memory.ReservedCapacity() / LinkSizeInBytes;
+                 }
+-                ++header.AllocatedLinks;
+-                freeLink = header.AllocatedLinks;
++                ++header->AllocatedLinks;
++                freeLink = header->AllocatedLinks;
+                 _memory.UsedCapacity(_memory.UsedCapacity() + LinkSizeInBytes);
+             }
+             return handler(LinkType{0, 0, 0}, LinkType{freeLink, 0, 0});
+@@ -445,9 +445,9 @@
+         {
+             _links = static_cast<std::byte*>(memory.Pointer());
+             _header = _links;
+-            _SourcesTreeMethods = new TSourceTreeMethods(_links, _header);
+-            _TargetsTreeMethods = new TTargetTreeMethods(_links, _header);
+-            _UnusedLinksListMethods = new TUnusedLinks(_links, _header);
++            _SourcesTreeMethods = std::make_unique<TSourceTreeMethods>(_links, _header);
++            _TargetsTreeMethods = std::make_unique<TTargetTreeMethods>(_links, _header);
++            _UnusedLinksListMethods = std::make_unique<TUnusedLinks>(_links, _header);
+         }
+ 
+         bool Exists(LinkAddressType linkAddress) const

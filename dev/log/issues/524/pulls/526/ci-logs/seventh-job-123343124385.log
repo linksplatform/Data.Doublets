@@ -1,0 +1,489 @@
+csharp (windows-2025)	Set up job	﻿2026-10-29T08:32:20.0570977Z Current runner version: '2.338.0'
+csharp (windows-2025)	Set up job	2026-10-29T08:32:20.0630752Z ##[group]Runner Image Provisioner
+csharp (windows-2025)	Set up job	2026-10-29T08:32:20.0631619Z Hosted Compute Agent
+csharp (windows-2025)	Set up job	2026-10-29T08:32:20.0632161Z Version: 20261021.618
+csharp (windows-2025)	Set up job	2026-10-29T08:32:20.0632824Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+csharp (windows-2025)	Set up job	2026-10-29T08:32:20.0633528Z Build Date: 2026-10-21T00:45:21Z
+csharp (windows-2025)	Set up job	2026-10-29T08:32:20.0634181Z Worker ID: {1a19022a-1d50-48c3-8ded-8caff5997acc}
+csharp (windows-2025)	Set up job	2026-10-29T08:32:20.0634955Z Region: eastus
+csharp (windows-2025)	Set up job	2026-10-29T08:32:20.0635461Z Cloud: Azure
+csharp (windows-2025)	Set up job	2026-10-29T08:32:20.0636005Z ##[endgroup]
+csharp (windows-2025)	Set up job	2026-10-29T08:32:20.0638575Z ##[group]Operating System
+csharp (windows-2025)	Set up job	2026-10-29T08:32:20.0639377Z Microsoft Windows Server 2025
+csharp (windows-2025)	Set up job	2026-10-29T08:32:20.0640068Z 10.0.26100
+csharp (windows-2025)	Set up job	2026-10-29T08:32:20.0640602Z Datacenter
+csharp (windows-2025)	Set up job	2026-10-29T08:32:20.0641143Z ##[endgroup]
+csharp (windows-2025)	Set up job	2026-10-29T08:32:20.0641689Z ##[group]Runner Image
+csharp (windows-2025)	Set up job	2026-10-29T08:32:20.0642344Z Image: windows-2025-vs2026
+csharp (windows-2025)	Set up job	2026-10-29T08:32:20.0643007Z Version: 20261021.278.1
+csharp (windows-2025)	Set up job	2026-10-29T08:32:20.0644214Z Included Software: https://github.com/actions/runner-images/blob/win25-vs2026/20261021.278/images/windows/Windows2025-VS2026-Readme.md
+csharp (windows-2025)	Set up job	2026-10-29T08:32:20.0646435Z Image Release: https://github.com/actions/runner-images/releases/tag/win25-vs2026%2F20261021.278
+csharp (windows-2025)	Set up job	2026-10-29T08:32:20.0647404Z ##[endgroup]
+csharp (windows-2025)	Set up job	2026-10-29T08:32:20.0648509Z ##[group]GITHUB_TOKEN Permissions
+csharp (windows-2025)	Set up job	2026-10-29T08:32:20.0650766Z Contents: read
+csharp (windows-2025)	Set up job	2026-10-29T08:32:20.0651479Z Metadata: read
+csharp (windows-2025)	Set up job	2026-10-29T08:32:20.0652016Z ##[endgroup]
+csharp (windows-2025)	Set up job	2026-10-29T08:32:20.0654076Z Secret source: Actions
+csharp (windows-2025)	Set up job	2026-10-29T08:32:20.0655217Z Cache mode: write
+csharp (windows-2025)	Set up job	2026-10-29T08:32:20.0656379Z Prepare workflow directory
+csharp (windows-2025)	Set up job	2026-10-29T08:32:20.1082956Z Prepare all required actions
+csharp (windows-2025)	Set up job	2026-10-29T08:32:20.1154809Z Getting action download info
+csharp (windows-2025)	Set up job	2026-10-29T08:32:20.2853165Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+csharp (windows-2025)	Set up job	2026-10-29T08:32:20.4234711Z Download action repository 'actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1' (SHA:26b0ec14cb23fa6904739307f278c14f94c95bf1)
+csharp (windows-2025)	Set up job	2026-10-29T08:32:20.6857048Z Download action repository 'actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9' (SHA:cf430e030ddbb5b0abf93d22962f4752f3646cd9)
+csharp (windows-2025)	Set up job	2026-10-29T08:32:20.9081671Z Complete job name: csharp (windows-2025)
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-10-29T08:32:21.0572231Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.0573585Z with:
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.0574045Z   fetch-depth: 0
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.0574525Z   persist-credentials: false
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.0575145Z   repository: linksplatform/Data.Doublets
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.0579593Z   token: ***
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.0580037Z   ssh-strict: true
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.0580484Z   ssh-user: git
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.0580905Z   clean: true
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.0581352Z   sparse-checkout-cone-mode: true
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.0581900Z   fetch-tags: false
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.0582399Z   show-progress: true
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.0582858Z   lfs: false
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.0583307Z   submodules: false
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.0583792Z   set-safe-directory: true
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.0584318Z   allow-unsafe-pr-checkout: false
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.0585172Z ##[endgroup]
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.2425021Z Syncing repository: linksplatform/Data.Doublets
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.2427656Z ##[group]Getting Git version info
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.2428775Z Working directory is 'D:\a\Data.Doublets\Data.Doublets'
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.3313782Z [command]"C:\Program Files\Git\bin\git.exe" version
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.7077294Z git version 2.56.0.windows.2
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.7131287Z ##[endgroup]
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.7148411Z Temporarily overriding HOME='D:\a\_temp\e6c0ba39-bca2-4c9d-87ee-9696615ba4b4' before making global git config changes
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.7150080Z Adding repository directory to the temporary git global config as a safe directory
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.7158029Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\Data.Doublets\Data.Doublets
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.7863726Z Deleting the contents of 'D:\a\Data.Doublets\Data.Doublets'
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.7868685Z ##[group]Determining repository object format
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.7870427Z ##[endgroup]
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.7871847Z ##[group]Initializing the repository
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.7879944Z [command]"C:\Program Files\Git\bin\git.exe" init D:\a\Data.Doublets\Data.Doublets
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.8860512Z Initialized empty Git repository in D:/a/Data.Doublets/Data.Doublets/.git/
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.8903418Z [command]"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/linksplatform/Data.Doublets
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.9552562Z ##[endgroup]
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.9554114Z ##[group]Disabling automatic garbage collection
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.9561525Z [command]"C:\Program Files\Git\bin\git.exe" config --local gc.auto 0
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.9927852Z ##[endgroup]
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.9930007Z ##[group]Setting up auth
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.9931901Z Removing SSH command configuration
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:21.9939968Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:22.0309530Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:23.5777549Z Removing HTTP extra header
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:23.5789232Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:23.6154196Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:24.2271991Z Removing includeIf entries pointing to credentials config files
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:24.2282009Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:24.2658635Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:24.8348894Z [command]"C:\Program Files\Git\bin\git.exe" config --file D:\a\_temp\git-credentials-a41f5099-e978-411e-a6be-919b171709e5.config http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:24.8732776Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:D:/a/Data.Doublets/Data.Doublets/.git.path D:\a\_temp\git-credentials-a41f5099-e978-411e-a6be-919b171709e5.config
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:24.9115985Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:D:/a/Data.Doublets/Data.Doublets/.git/worktrees/*.path D:\a\_temp\git-credentials-a41f5099-e978-411e-a6be-919b171709e5.config
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:24.9595305Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-a41f5099-e978-411e-a6be-919b171709e5.config
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:24.9966417Z [command]"C:\Program Files\Git\bin\git.exe" config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-a41f5099-e978-411e-a6be-919b171709e5.config
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:25.0364190Z ##[endgroup]
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:25.0365019Z ##[group]Fetching the repository
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:25.0367061Z [command]"C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/* +fd79f966aab84e0cc30e3b8f0fd40e9fcb9e3f7c:refs/remotes/pull/526/merge
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8402164Z From https://github.com/linksplatform/Data.Doublets
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8404971Z  * [new branch]          (storage)_rust_write.sequences           -> origin/(storage)_rust_write.sequences
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8406387Z  * [new branch]          1000203-v2                               -> origin/1000203-v2
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8408981Z  * [new branch]          100203                                   -> origin/100203
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8410309Z  * [new branch]          Sequence.Experiments_fix                 -> origin/Sequence.Experiments_fix
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8411650Z  * [new branch]          async-main                               -> origin/async-main
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8412738Z  * [new branch]          beta.6                                   -> origin/beta.6
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8413680Z  * [new branch]          binaries                                 -> origin/binaries
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8414774Z  * [new branch]          c/feature/add_ffi_links                  -> origin/c/feature/add_ffi_links
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8415925Z  * [new branch]          constexpr-issue-348                      -> origin/constexpr-issue-348
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8416990Z  * [new branch]          cpp/feature/add_clinks_concept           -> origin/cpp/feature/add_clinks_concept
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8417879Z  * [new branch]          cpp/feature/add_handlers_to_united_memory_links -> origin/cpp/feature/add_handlers_to_united_memory_links
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8419108Z  * [new branch]          cpp/feature/add_static_and_optional_dynamic_polymorphism_for_united_memory_links -> origin/cpp/feature/add_static_and_optional_dynamic_polymorphism_for_united_memory_links
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8420992Z  * [new branch]          cpp/feature/add_tbase_parameter_and_do_not_inherit_ilinks_in_united_memory_links -> origin/cpp/feature/add_tbase_parameter_and_do_not_inherit_ilinks_in_united_memory_links
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8422236Z  * [new branch]          cpp/feature/add_wrapper_around_rust_ffi  -> origin/cpp/feature/add_wrapper_around_rust_ffi
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8423517Z  * [new branch]          cpp/feature/translate_all_trees          -> origin/cpp/feature/translate_all_trees
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8424972Z  * [new branch]          cpp/feature/translate_ilinks_extensions  -> origin/cpp/feature/translate_ilinks_extensions
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8426389Z  * [new branch]          cpp/feature/translate_split_memory_links -> origin/cpp/feature/translate_split_memory_links
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8427736Z  * [new branch]          cpp/feature/translate_tests              -> origin/cpp/feature/translate_tests
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8429028Z  * [new branch]          cpp/feature/translate_united_memory_links -> origin/cpp/feature/translate_united_memory_links
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8522604Z  * [new branch]          cpp/feature/use_united_memory_links_in_tests -> origin/cpp/feature/use_united_memory_links_in_tests
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8523767Z  * [new branch]          cpp/release/0.0.1                        -> origin/cpp/release/0.0.1
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8524603Z  * [new branch]          cppwrite                                 -> origin/cppwrite
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8525664Z  * [new branch]          cs/feature/add_no_exceptions_decorator   -> origin/cs/feature/add_no_exceptions_decorator
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8526980Z  * [new branch]          csharp/feature/add_manual_garbage_collection -> origin/csharp/feature/add_manual_garbage_collection
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8527948Z  * [new branch]          csharp/feature/use_generic_math          -> origin/csharp/feature/use_generic_math
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8528515Z  * [new branch]          daulet_trees                             -> origin/daulet_trees
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8529223Z  * [new branch]          dependabot/add-v2-config-file            -> origin/dependabot/add-v2-config-file
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8531245Z  * [new branch]          dependabot/github_actions/dot-github/workflows/tj-actions/changed-files-41 -> origin/dependabot/github_actions/dot-github/workflows/tj-actions/changed-files-41
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8532667Z  * [new branch]          feature/add_logging_decorator            -> origin/feature/add_logging_decorator
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8533454Z  * [new branch]          feature/add_update_or_create_or_get_overload_with_index -> origin/feature/add_update_or_create_or_get_overload_with_index
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8534622Z  * [new branch]          feature/ilinks/delete/change_return_value -> origin/feature/ilinks/delete/change_return_value
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8535491Z  * [new branch]          feature_move_testextensions_to_tests.ilinksextensions-v2 -> origin/feature_move_testextensions_to_tests.ilinksextensions-v2
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8536452Z  * [new branch]          feature_move_testextensions_to_tests/ilinksextensions -> origin/feature_move_testextensions_to_tests/ilinksextensions
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8537181Z  * [new branch]          fix_deleteall                            -> origin/fix_deleteall
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8537656Z  * [new branch]          gh-pages                                 -> origin/gh-pages
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8538162Z  * [new branch]          ilinks_bug                               -> origin/ilinks_bug
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8538658Z  * [new branch]          issue-10-dc9e2253                        -> origin/issue-10-dc9e2253
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8539176Z  * [new branch]          issue-100-2f9bb17f                       -> origin/issue-100-2f9bb17f
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8539705Z  * [new branch]          issue-122-372622af                       -> origin/issue-122-372622af
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8540203Z  * [new branch]          issue-122-e05a5713                       -> origin/issue-122-e05a5713
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8540706Z  * [new branch]          issue-123-90f092d3                       -> origin/issue-123-90f092d3
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8541191Z  * [new branch]          issue-125-7f224c52                       -> origin/issue-125-7f224c52
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8541678Z  * [new branch]          issue-131-173bd186                       -> origin/issue-131-173bd186
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8542165Z  * [new branch]          issue-132-b9a43709                       -> origin/issue-132-b9a43709
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8542662Z  * [new branch]          issue-14-65c21b2c                        -> origin/issue-14-65c21b2c
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8543148Z  * [new branch]          issue-145-e1924d96                       -> origin/issue-145-e1924d96
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8543642Z  * [new branch]          issue-150-8aba0d16                       -> origin/issue-150-8aba0d16
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8544146Z  * [new branch]          issue-152-380a75dd                       -> origin/issue-152-380a75dd
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8544831Z  * [new branch]          issue-153-a5aacf2d                       -> origin/issue-153-a5aacf2d
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8545322Z  * [new branch]          issue-155-6f3abe86                       -> origin/issue-155-6f3abe86
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8545816Z  * [new branch]          issue-157-f18f507d                       -> origin/issue-157-f18f507d
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8546304Z  * [new branch]          issue-158-d4b2d751                       -> origin/issue-158-d4b2d751
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8546789Z  * [new branch]          issue-159-4c473b2f                       -> origin/issue-159-4c473b2f
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8547274Z  * [new branch]          issue-166-5f7770d0                       -> origin/issue-166-5f7770d0
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8547773Z  * [new branch]          issue-167-6697c32c                       -> origin/issue-167-6697c32c
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8548261Z  * [new branch]          issue-172-3a6bb3a5                       -> origin/issue-172-3a6bb3a5
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8548750Z  * [new branch]          issue-173-52414a06                       -> origin/issue-173-52414a06
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8549248Z  * [new branch]          issue-174-38feee43                       -> origin/issue-174-38feee43
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8549739Z  * [new branch]          issue-179-c20097fb                       -> origin/issue-179-c20097fb
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8550231Z  * [new branch]          issue-180-4c858df1                       -> origin/issue-180-4c858df1
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8550792Z  * [new branch]          issue-182-68621777                       -> origin/issue-182-68621777
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8552023Z  * [new branch]          issue-183-65fb60df                       -> origin/issue-183-65fb60df
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8553301Z  * [new branch]          issue-184-50380e1c                       -> origin/issue-184-50380e1c
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8554218Z  * [new branch]          issue-185-8b06ec42                       -> origin/issue-185-8b06ec42
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8555097Z  * [new branch]          issue-191-d711698e                       -> origin/issue-191-d711698e
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8556079Z  * [new branch]          issue-192-f5bd0637                       -> origin/issue-192-f5bd0637
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8557003Z  * [new branch]          issue-195-87e1a7d9                       -> origin/issue-195-87e1a7d9
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8557911Z  * [new branch]          issue-197-9699ae6f                       -> origin/issue-197-9699ae6f
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8558789Z  * [new branch]          issue-201-23d35853                       -> origin/issue-201-23d35853
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8559543Z  * [new branch]          issue-202-f9973a4e                       -> origin/issue-202-f9973a4e
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8560082Z  * [new branch]          issue-204-ee98b556                       -> origin/issue-204-ee98b556
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8560603Z  * [new branch]          issue-205-6c1a8373                       -> origin/issue-205-6c1a8373
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8561106Z  * [new branch]          issue-206-cfb6909c                       -> origin/issue-206-cfb6909c
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8561612Z  * [new branch]          issue-207-68d68fb5                       -> origin/issue-207-68d68fb5
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8562110Z  * [new branch]          issue-208-33ea9e2e                       -> origin/issue-208-33ea9e2e
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8562600Z  * [new branch]          issue-209-37cc5160                       -> origin/issue-209-37cc5160
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8563087Z  * [new branch]          issue-210-b20f751b                       -> origin/issue-210-b20f751b
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8563577Z  * [new branch]          issue-212-fb245296                       -> origin/issue-212-fb245296
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8564061Z  * [new branch]          issue-213-00756f69                       -> origin/issue-213-00756f69
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8564557Z  * [new branch]          issue-216-5c9f8771                       -> origin/issue-216-5c9f8771
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8565046Z  * [new branch]          issue-217-c738a90c                       -> origin/issue-217-c738a90c
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8565749Z  * [new branch]          issue-218-b64a64c5                       -> origin/issue-218-b64a64c5
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8566241Z  * [new branch]          issue-230-559672a0                       -> origin/issue-230-559672a0
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8566726Z  * [new branch]          issue-237-3d81523b                       -> origin/issue-237-3d81523b
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8567213Z  * [new branch]          issue-238-4d05c862                       -> origin/issue-238-4d05c862
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8567704Z  * [new branch]          issue-239-fbcda755                       -> origin/issue-239-fbcda755
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8568193Z  * [new branch]          issue-240-a4e43a46                       -> origin/issue-240-a4e43a46
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8568688Z  * [new branch]          issue-241-b58c00a6                       -> origin/issue-241-b58c00a6
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8569222Z  * [new branch]          issue-242-bcb83cac                       -> origin/issue-242-bcb83cac
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8569719Z  * [new branch]          issue-243-74d0a614                       -> origin/issue-243-74d0a614
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8570206Z  * [new branch]          issue-245-55a50dd3                       -> origin/issue-245-55a50dd3
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8570708Z  * [new branch]          issue-249-f1500da9                       -> origin/issue-249-f1500da9
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8571686Z  * [new branch]          issue-250-42c9d850                       -> origin/issue-250-42c9d850
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8572211Z  * [new branch]          issue-254-e7a5d9f7                       -> origin/issue-254-e7a5d9f7
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8572701Z  * [new branch]          issue-258-c8b7530f                       -> origin/issue-258-c8b7530f
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8573992Z  * [new branch]          issue-263-0617cbc6                       -> origin/issue-263-0617cbc6
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8574505Z  * [new branch]          issue-264-48a30829                       -> origin/issue-264-48a30829
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8574994Z  * [new branch]          issue-269-5c78f79f                       -> origin/issue-269-5c78f79f
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8575490Z  * [new branch]          issue-28-86d6809c                        -> origin/issue-28-86d6809c
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8575982Z  * [new branch]          issue-287-43a044c6                       -> origin/issue-287-43a044c6
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8576468Z  * [new branch]          issue-288-7363fdd4                       -> origin/issue-288-7363fdd4
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8576951Z  * [new branch]          issue-289-a32521da                       -> origin/issue-289-a32521da
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8577440Z  * [new branch]          issue-290-46a8add1                       -> origin/issue-290-46a8add1
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8577938Z  * [new branch]          issue-295-51e2cc11                       -> origin/issue-295-51e2cc11
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8578422Z  * [new branch]          issue-309-7c8629c7                       -> origin/issue-309-7c8629c7
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8578908Z  * [new branch]          issue-310-5de3d1dc                       -> origin/issue-310-5de3d1dc
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8579394Z  * [new branch]          issue-319-1f8bc024                       -> origin/issue-319-1f8bc024
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8579878Z  * [new branch]          issue-323-9f4031b8                       -> origin/issue-323-9f4031b8
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8580361Z  * [new branch]          issue-324-55e5be19                       -> origin/issue-324-55e5be19
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8580849Z  * [new branch]          issue-331-f53fc679                       -> origin/issue-331-f53fc679
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8581340Z  * [new branch]          issue-332-7a6ff77a                       -> origin/issue-332-7a6ff77a
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8581828Z  * [new branch]          issue-334-b21a4d38                       -> origin/issue-334-b21a4d38
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8582312Z  * [new branch]          issue-338-627b1af9                       -> origin/issue-338-627b1af9
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8582789Z  * [new branch]          issue-346-2629ee00                       -> origin/issue-346-2629ee00
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8583804Z  * [new branch]          issue-347-bc055938                       -> origin/issue-347-bc055938
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8584315Z  * [new branch]          issue-349-847bd9da                       -> origin/issue-349-847bd9da
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8584804Z  * [new branch]          issue-350-31002bc3                       -> origin/issue-350-31002bc3
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8585293Z  * [new branch]          issue-354-69429f3d                       -> origin/issue-354-69429f3d
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8585778Z  * [new branch]          issue-354-90a219e1                       -> origin/issue-354-90a219e1
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8586261Z  * [new branch]          issue-354-a5f63605                       -> origin/issue-354-a5f63605
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8586753Z  * [new branch]          issue-355-16463e62                       -> origin/issue-355-16463e62
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8587231Z  * [new branch]          issue-356-08228300                       -> origin/issue-356-08228300
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8587723Z  * [new branch]          issue-359-e5a050cc                       -> origin/issue-359-e5a050cc
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8588207Z  * [new branch]          issue-360-0e8cd1e0                       -> origin/issue-360-0e8cd1e0
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8588693Z  * [new branch]          issue-361-575582dd                       -> origin/issue-361-575582dd
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8589886Z  * [new branch]          issue-372-aea7e0f1                       -> origin/issue-372-aea7e0f1
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8590577Z  * [new branch]          issue-375-e585215d                       -> origin/issue-375-e585215d
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8591078Z  * [new branch]          issue-382-6eb8af26                       -> origin/issue-382-6eb8af26
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8591755Z  * [new branch]          issue-383-81b4bf92                       -> origin/issue-383-81b4bf92
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8592241Z  * [new branch]          issue-384-58b26c76                       -> origin/issue-384-58b26c76
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8592727Z  * [new branch]          issue-386-3e27d460                       -> origin/issue-386-3e27d460
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8593219Z  * [new branch]          issue-389-a58bf26c                       -> origin/issue-389-a58bf26c
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8593697Z  * [new branch]          issue-390-5e4626de                       -> origin/issue-390-5e4626de
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8594554Z  * [new branch]          issue-394-309114ec                       -> origin/issue-394-309114ec
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8595063Z  * [new branch]          issue-395-10b110d3                       -> origin/issue-395-10b110d3
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8595542Z  * [new branch]          issue-396-244bd1fe                       -> origin/issue-396-244bd1fe
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8596034Z  * [new branch]          issue-398-451b7b82                       -> origin/issue-398-451b7b82
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8596526Z  * [new branch]          issue-40-e633e9f6                        -> origin/issue-40-e633e9f6
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8597027Z  * [new branch]          issue-508-5a1549d7                       -> origin/issue-508-5a1549d7
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8597553Z  * [new branch]          issue-512-557a0a3ca78d                   -> origin/issue-512-557a0a3ca78d
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8598102Z  * [new branch]          issue-518-e28aadb8d563                   -> origin/issue-518-e28aadb8d563
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8598625Z  * [new branch]          issue-52-3f2f1389                        -> origin/issue-52-3f2f1389
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8599323Z  * [new branch]          issue-521-1ac9a60c43a0                   -> origin/issue-521-1ac9a60c43a0
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8599856Z  * [new branch]          issue-522-2819acda0f21                   -> origin/issue-522-2819acda0f21
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8600385Z  * [new branch]          issue-524-b1512fd1c7a8                   -> origin/issue-524-b1512fd1c7a8
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8600898Z  * [new branch]          issue-6-2f2360da                         -> origin/issue-6-2f2360da
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8601385Z  * [new branch]          issue-62-a49bc29e                        -> origin/issue-62-a49bc29e
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8602029Z  * [new branch]          issue-68-4e596e00                        -> origin/issue-68-4e596e00
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8602505Z  * [new branch]          issue-85-856b1b45                        -> origin/issue-85-856b1b45
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8602981Z  * [new branch]          issue-86-6c31fd91                        -> origin/issue-86-6c31fd91
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8603456Z  * [new branch]          issue-89-a56a0167                        -> origin/issue-89-a56a0167
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8604167Z  * [new branch]          issue-90-5c6486ed                        -> origin/issue-90-5c6486ed
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8604682Z  * [new branch]          issue-96-7c16f737                        -> origin/issue-96-7c16f737
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8605160Z  * [new branch]          issue-97-8b13f48a                        -> origin/issue-97-8b13f48a
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8605837Z  * [new branch]          issue-98-61dd56ef                        -> origin/issue-98-61dd56ef
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8606321Z  * [new branch]          lazy-fixes                               -> origin/lazy-fixes
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8606745Z  * [new branch]          main                                     -> origin/main
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8607145Z  * [new branch]          master                                   -> origin/master
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8607583Z  * [new branch]          move_sequences                           -> origin/move_sequences
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8608107Z  * [new branch]          nassipkali-patch-1                       -> origin/nassipkali-patch-1
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8608629Z  * [new branch]          nassipkali-patch-2                       -> origin/nassipkali-patch-2
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8609301Z  * [new branch]          nassipkali-patch-3                       -> origin/nassipkali-patch-3
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8609818Z  * [new branch]          nassipkali-patch-4                       -> origin/nassipkali-patch-4
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8610328Z  * [new branch]          nassipkali-patch-5                       -> origin/nassipkali-patch-5
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8610827Z  * [new branch]          nassipkali-patch-6                       -> origin/nassipkali-patch-6
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8611330Z  * [new branch]          nassipkali-patch-7                       -> origin/nassipkali-patch-7
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8611836Z  * [new branch]          nassipkali-patch-8                       -> origin/nassipkali-patch-8
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8612340Z  * [new branch]          nassipkali-patch-9                       -> origin/nassipkali-patch-9
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8612813Z  * [new branch]          origin-ffi                               -> origin/origin-ffi
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8613282Z  * [new branch]          rational_numbers                         -> origin/rational_numbers
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8613770Z  * [new branch]          revert-259-master                        -> origin/revert-259-master
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8614221Z  * [new branch]          rust-ci                                  -> origin/rust-ci
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8615050Z  * [new branch]          rust.criterion                           -> origin/rust.criterion
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8615543Z  * [new branch]          rust.with_query                          -> origin/rust.with_query
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8616235Z  * [new branch]          rust.with_result                         -> origin/rust.with_result
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8617165Z  * [new branch]          rust_write.unwrap                        -> origin/rust_write.unwrap
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8618259Z  * [new branch]          rust_write.unwrap.optimized.wasm         -> origin/rust_write.unwrap.optimized.wasm
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8619428Z  * [new branch]          rust_write.unwrap_unchecked              -> origin/rust_write.unwrap_unchecked
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8620438Z  * [new branch]          split-data-n-doublets                    -> origin/split-data-n-doublets
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8621311Z  * [new branch]          tests                                    -> origin/tests
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8622345Z  * [new branch]          update_package                           -> origin/update_package
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8623100Z  * [new tag]             0.0.1                                    -> 0.0.1
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8623755Z  * [new tag]             0.1.0                                    -> 0.1.0
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8624383Z  * [new tag]             0.1.1                                    -> 0.1.1
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8625033Z  * [new tag]             0.10.0                                   -> 0.10.0
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8625660Z  * [new tag]             0.10.1                                   -> 0.10.1
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8626345Z  * [new tag]             0.11.0                                   -> 0.11.0
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8626977Z  * [new tag]             0.11.1                                   -> 0.11.1
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8627587Z  * [new tag]             0.12.0                                   -> 0.12.0
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8628194Z  * [new tag]             0.13.0                                   -> 0.13.0
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8628792Z  * [new tag]             0.13.1                                   -> 0.13.1
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8629386Z  * [new tag]             0.13.2                                   -> 0.13.2
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8629981Z  * [new tag]             0.2.0                                    -> 0.2.0
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8630599Z  * [new tag]             0.2.1                                    -> 0.2.1
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8631217Z  * [new tag]             0.3.0                                    -> 0.3.0
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8631561Z  * [new tag]             0.4.0                                    -> 0.4.0
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8632128Z  * [new tag]             0.5.0                                    -> 0.5.0
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8632468Z  * [new tag]             0.6.0                                    -> 0.6.0
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8632794Z  * [new tag]             0.6.1                                    -> 0.6.1
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8633141Z  * [new tag]             0.6.10                                   -> 0.6.10
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8633480Z  * [new tag]             0.6.11                                   -> 0.6.11
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8633813Z  * [new tag]             0.6.2                                    -> 0.6.2
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8634138Z  * [new tag]             0.6.3                                    -> 0.6.3
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8634816Z  * [new tag]             0.6.4                                    -> 0.6.4
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8635236Z  * [new tag]             0.6.5                                    -> 0.6.5
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8635569Z  * [new tag]             0.6.6                                    -> 0.6.6
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8635906Z  * [new tag]             0.6.7                                    -> 0.6.7
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8636235Z  * [new tag]             0.6.8                                    -> 0.6.8
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8636559Z  * [new tag]             0.6.9                                    -> 0.6.9
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8636894Z  * [new tag]             0.7.0                                    -> 0.7.0
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8637221Z  * [new tag]             0.8.0                                    -> 0.8.0
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8637554Z  * [new tag]             0.9.0                                    -> 0.9.0
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8637918Z  * [new tag]             cpp_0.1.0                                -> cpp_0.1.0
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8638312Z  * [new tag]             csharp_0.15.0                            -> csharp_0.15.0
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8638712Z  * [new tag]             csharp_0.16.0                            -> csharp_0.16.0
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8639110Z  * [new tag]             csharp_0.17.0                            -> csharp_0.17.0
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8639496Z  * [new tag]             csharp_0.17.1                            -> csharp_0.17.1
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8639881Z  * [new tag]             csharp_0.17.2                            -> csharp_0.17.2
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8640428Z  * [new tag]             csharp_0.18.1                            -> csharp_0.18.1
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8640834Z  * [new tag]             csharp_0.18.2                            -> csharp_0.18.2
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8641229Z  * [new tag]             csharp_0.18.3                            -> csharp_0.18.3
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8641659Z  * [new ref]             fd79f966aab84e0cc30e3b8f0fd40e9fcb9e3f7c -> pull/526/merge
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8642734Z ##[endgroup]
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8643051Z ##[group]Determining the checkout info
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8643443Z ##[endgroup]
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.8643712Z [command]"C:\Program Files\Git\bin\git.exe" sparse-checkout disable
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.9041626Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all extensions.worktreeConfig
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.9421541Z ##[group]Checking out the ref
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:35.9431378Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force refs/remotes/pull/526/merge
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:36.5896983Z Note: switching to 'refs/remotes/pull/526/merge'.
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:36.5897677Z 
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:36.5898398Z You are in 'detached HEAD' state. You can look around, make experimental
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:36.5899054Z changes and commit them, and you can discard any commits you make in this
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:36.5899527Z state without impacting any branches by switching back to a branch.
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:36.5899879Z 
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:36.5900211Z If you want to create a new branch to retain commits you create, you may
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:36.5900688Z do so (now or later) by using -c with the switch command. Example:
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:36.5900946Z 
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:36.5901977Z   git switch -c <new-branch-name>
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:36.5902159Z 
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:36.5902258Z Or undo this operation with:
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:36.5902406Z 
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:36.5902485Z   git switch -
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:36.5902598Z 
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:36.5902852Z Turn off this advice by setting config variable advice.detachedHead to false
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:36.5903384Z 
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:36.5903792Z HEAD is now at fd79f966a Merge 5cf40c5a338a38978221aab65a8e017005c95303 into 799502ce9275edc80d9fbc1953ff8892fe0eca19
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:36.6117215Z ##[endgroup]
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:36.6603790Z [command]"C:\Program Files\Git\bin\git.exe" log -1 --format=%H
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:36.6965071Z fd79f966aab84e0cc30e3b8f0fd40e9fcb9e3f7c
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:36.7011102Z ##[group]Removing auth
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:36.7011574Z Removing SSH command configuration
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:36.7020503Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:36.7415244Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:37.3326168Z Removing HTTP extra header
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:37.3346195Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:37.3748494Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:37.9396790Z Removing includeIf entries pointing to credentials config files
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:37.9406687Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:37.9742953Z includeif.gitdir:D:/a/Data.Doublets/Data.Doublets/.git.path
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:37.9744468Z includeif.gitdir:D:/a/Data.Doublets/Data.Doublets/.git/worktrees/*.path
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:37.9745318Z includeif.gitdir:/github/workspace/.git.path
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:37.9746052Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:37.9792703Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:D:/a/Data.Doublets/Data.Doublets/.git.path
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:38.0128662Z D:\a\_temp\git-credentials-a41f5099-e978-411e-a6be-919b171709e5.config
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:38.0172008Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:D:/a/Data.Doublets/Data.Doublets/.git.path D\:\\a\\_temp\\git\-credentials\-a41f5099\-e978\-411e\-a6be\-919b171709e5\.config
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:38.0549077Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:D:/a/Data.Doublets/Data.Doublets/.git/worktrees/*.path
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:38.0890694Z D:\a\_temp\git-credentials-a41f5099-e978-411e-a6be-919b171709e5.config
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:38.0932993Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:D:/a/Data.Doublets/Data.Doublets/.git/worktrees/*.path D\:\\a\\_temp\\git\-credentials\-a41f5099\-e978\-411e\-a6be\-919b171709e5\.config
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:38.1327486Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:/github/workspace/.git.path
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:38.1659698Z /github/runner_temp/git-credentials-a41f5099-e978-411e-a6be-919b171709e5.config
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:38.1704089Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-a41f5099\-e978\-411e\-a6be\-919b171709e5\.config
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:38.2093412Z [command]"C:\Program Files\Git\bin\git.exe" config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:38.2426302Z /github/runner_temp/git-credentials-a41f5099-e978-411e-a6be-919b171709e5.config
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:38.2473334Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-a41f5099\-e978\-411e\-a6be\-919b171709e5\.config
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:38.2861024Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:38.8565639Z Removing credentials config 'D:\a\_temp\git-credentials-a41f5099-e978-411e-a6be-919b171709e5.config'
+csharp (windows-2025)	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:32:38.8578083Z ##[endgroup]
+csharp (windows-2025)	Prepare current merge and automatic release versions	﻿2026-10-29T08:32:38.8962217Z ##[group]Run bash scripts/prepare-checkout.sh
+csharp (windows-2025)	Prepare current merge and automatic release versions	2026-10-29T08:32:38.8962669Z ^[[36;1mbash scripts/prepare-checkout.sh^[[0m
+csharp (windows-2025)	Prepare current merge and automatic release versions	2026-10-29T08:32:38.9889860Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+csharp (windows-2025)	Prepare current merge and automatic release versions	2026-10-29T08:32:38.9890415Z ##[endgroup]
+csharp (windows-2025)	Prepare current merge and automatic release versions	2026-10-29T08:32:39.8893036Z Already up to date.
+csharp (windows-2025)	Prepare current merge and automatic release versions	2026-10-29T08:32:41.0324484Z csharp: 0.18.3 -> 0.18.4 (patch)
+csharp (windows-2025)	Prepare current merge and automatic release versions	2026-10-29T08:32:41.0324875Z cpp: 0.1.0 -> 0.1.1 (patch)
+csharp (windows-2025)	Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1	﻿2026-10-29T08:32:41.1920431Z ##[group]Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+csharp (windows-2025)	Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1	2026-10-29T08:32:41.1921132Z with:
+csharp (windows-2025)	Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1	2026-10-29T08:32:41.1921352Z   global-json-file: global.json
+csharp (windows-2025)	Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1	2026-10-29T08:32:41.1921589Z   cache: false
+csharp (windows-2025)	Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1	2026-10-29T08:32:41.1921766Z ##[endgroup]
+csharp (windows-2025)	Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1	2026-10-29T08:32:41.4573490Z [command]"C:\Program Files\PowerShell\7\pwsh.exe" -NoLogo -Sta -NoProfile -NonInteractive -ExecutionPolicy Unrestricted -Command & 'D:\a\_actions\actions\setup-dotnet\26b0ec14cb23fa6904739307f278c14f94c95bf1\externals\install-dotnet.ps1' -SkipNonVersionedFiles -Runtime dotnet -Channel LTS
+csharp (windows-2025)	Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1	2026-10-29T08:32:43.1895449Z dotnet-install: Downloaded file https://builds.dotnet.microsoft.com/dotnet/Runtime/10.0.14/dotnet-runtime-10.0.14-win-x64.zip size is 36971047 bytes.
+csharp (windows-2025)	Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1	2026-10-29T08:32:43.1901289Z dotnet-install: Either downloaded or local package size can not be measured. One of them may be corrupted.
+csharp (windows-2025)	Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1	2026-10-29T08:32:43.1931071Z dotnet-install: Extracting the archive.
+csharp (windows-2025)	Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1	2026-10-29T08:32:44.1039001Z dotnet-install: Note that the script does not ensure your Windows version is supported during the installation.
+csharp (windows-2025)	Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1	2026-10-29T08:32:44.1046643Z dotnet-install: To check the list of supported versions, go to https://learn.microsoft.com/dotnet/core/install/windows#supported-versions
+csharp (windows-2025)	Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1	2026-10-29T08:32:44.1053362Z dotnet-install: Installed version is 10.0.14
+csharp (windows-2025)	Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1	2026-10-29T08:32:44.1059569Z dotnet-install: Installation finished
+csharp (windows-2025)	Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1	2026-10-29T08:32:44.2627222Z [command]"C:\Program Files\PowerShell\7\pwsh.exe" -NoLogo -Sta -NoProfile -NonInteractive -ExecutionPolicy Unrestricted -Command & 'D:\a\_actions\actions\setup-dotnet\26b0ec14cb23fa6904739307f278c14f94c95bf1\externals\install-dotnet.ps1' -SkipNonVersionedFiles -Channel 8.0.4xx
+csharp (windows-2025)	Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1	2026-10-29T08:32:50.3139500Z dotnet-install: Downloaded file https://builds.dotnet.microsoft.com/dotnet/Sdk/8.0.427/dotnet-sdk-8.0.427-win-x64.zip size is 285280040 bytes.
+csharp (windows-2025)	Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1	2026-10-29T08:32:50.3147884Z dotnet-install: Either downloaded or local package size can not be measured. One of them may be corrupted.
+csharp (windows-2025)	Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1	2026-10-29T08:32:50.3178343Z dotnet-install: Extracting the archive.
+csharp (windows-2025)	Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1	2026-10-29T08:33:09.4627841Z dotnet-install: Note that the script does not ensure your Windows version is supported during the installation.
+csharp (windows-2025)	Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1	2026-10-29T08:33:09.4632898Z dotnet-install: To check the list of supported versions, go to https://learn.microsoft.com/dotnet/core/install/windows#supported-versions
+csharp (windows-2025)	Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1	2026-10-29T08:33:09.4639585Z dotnet-install: Installed version is 8.0.427
+csharp (windows-2025)	Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1	2026-10-29T08:33:09.4646513Z dotnet-install: Installation finished
+csharp (windows-2025)	Restore, build, test, package and consume	﻿2026-10-29T08:33:09.5383304Z ##[group]Run bash scripts/check-csharp.sh
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:09.5383949Z ^[[36;1mbash scripts/check-csharp.sh^[[0m
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:09.5410197Z shell: C:\Program Files\Git\bin\bash.EXE --noprofile --norc -e -o pipefail {0}
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:09.5410872Z env:
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:09.5411169Z   DOTNET_ROOT: C:\Program Files\dotnet
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:09.5411594Z ##[endgroup]
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:11.2549338Z   Determining projects to restore...
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:33.1689315Z   Restored D:\a\Data.Doublets\Data.Doublets\csharp\Platform.Data.Doublets.Tests\Platform.Data.Doublets.Tests.csproj (in 21.57 sec).
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:33.1691183Z   Restored D:\a\Data.Doublets\Data.Doublets\csharp\Platform.Data.Doublets\Platform.Data.Doublets.csproj (in 21.57 sec).
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:35.5214072Z   Restored D:\a\Data.Doublets\Data.Doublets\csharp\Platform.Data.Doublets.Benchmarks\Platform.Data.Doublets.Benchmarks.csproj (in 23.94 sec).
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:43.3420680Z   Platform.Data.Doublets -> D:\a\Data.Doublets\Data.Doublets\csharp\Platform.Data.Doublets\bin\Release\net8.0\Platform.Data.Doublets.dll
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:44.4102382Z   Platform.Data.Doublets.Tests -> D:\a\Data.Doublets\Data.Doublets\csharp\Platform.Data.Doublets.Tests\bin\Release\net8.0\Platform.Data.Doublets.Tests.dll
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:45.0780359Z   Platform.Data.Doublets.Benchmarks -> D:\a\Data.Doublets\Data.Doublets\csharp\Platform.Data.Doublets.Benchmarks\bin\Release\net8.0\Platform.Data.Doublets.Benchmarks.dll
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:45.0878543Z 
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:45.0884854Z Build succeeded.
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:45.0885987Z     0 Warning(s)
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:45.0886278Z     0 Error(s)
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:45.0891895Z 
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:45.0892188Z Time Elapsed 00:00:09.27
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:51.8999762Z Test run for D:\a\Data.Doublets\Data.Doublets\csharp\Platform.Data.Doublets.Tests\bin\Release\net8.0\Platform.Data.Doublets.Tests.dll (.NETCoreApp,Version=v8.0)
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:51.9811204Z VSTest version 17.11.1 (x64)
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:51.9842172Z 
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:52.0832474Z Starting test execution, please wait...
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:52.1144741Z A total of 1 test files matched the specified pattern.
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:54.7668401Z Data collector 'Blame' message: All tests finished running, Sequence file will not be generated.
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:54.8421552Z Results File: D:\a\Data.Doublets\Data.Doublets\artifacts\test-results\runneradmin_runnervmdaln5_2026-10-29_08_33_53.trx
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:54.8424403Z 
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:54.8466673Z Passed!  - Failed:     0, Passed:    82, Skipped:     0, Total:    82, Duration: 901 ms - Platform.Data.Doublets.Tests.dll (net8.0)
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:55.0983073Z 
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:55.0989169Z Attachments:
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:55.0992290Z   D:\a\Data.Doublets\Data.Doublets\artifacts\test-results\ec9e3eee-45b4-44da-aee2-eeac8dd9da3e\coverage.cobertura.xml
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:58.2436694Z united: created 2 = (1, 18446744073709551596)
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:58.2457125Z   Each -> [2], Count -> 1, SearchOrDefault -> 2
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:58.2591916Z split: created 2 = (1, 18446744073709551596)
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:58.2592724Z   Each -> [2], Count -> 1, SearchOrDefault -> 2
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:59.4629172Z   Successfully created package 'D:\a\Data.Doublets\Data.Doublets\artifacts\packages\Platform.Data.Doublets.0.18.4.nupkg'.
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:33:59.4687916Z   Successfully created package 'D:\a\Data.Doublets\Data.Doublets\artifacts\packages\Platform.Data.Doublets.0.18.4.snupkg'.
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:34:04.5072170Z   Determining projects to restore...
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:34:14.6120211Z   Restored C:\Users\runneradmin\AppData\Local\Temp\tmp3t_ihrxq\Consumer.csproj (in 9.28 sec).
+csharp (windows-2025)	Restore, build, test, package and consume	2026-10-29T08:34:30.1350147Z Validated packaged consumer of Platform.Data.Doublets 0.18.4
+csharp (windows-2025)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	﻿2026-10-29T08:34:30.1837857Z ##[group]Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+csharp (windows-2025)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:34:30.1838427Z with:
+csharp (windows-2025)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:34:30.1838629Z   name: csharp-windows-2025
+csharp (windows-2025)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:34:30.1838927Z   path: artifacts/packages/*
+csharp (windows-2025)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	artifacts/test-results/*
+csharp (windows-2025)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	
+csharp (windows-2025)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:34:30.1839242Z   if-no-files-found: error
+csharp (windows-2025)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:34:30.1839458Z   retention-days: 14
+csharp (windows-2025)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:34:30.1840071Z   compression-level: 6
+csharp (windows-2025)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:34:30.1840282Z   overwrite: false
+csharp (windows-2025)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:34:30.1840480Z   include-hidden-files: false
+csharp (windows-2025)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:34:30.1840698Z   archive: true
+csharp (windows-2025)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:34:30.1840861Z env:
+csharp (windows-2025)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:34:30.1841041Z   DOTNET_ROOT: C:\Program Files\dotnet
+csharp (windows-2025)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:34:30.1841284Z ##[endgroup]
+csharp (windows-2025)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:34:30.3744452Z Multiple search paths detected. Calculating the least common ancestor of all paths
+csharp (windows-2025)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:34:30.3747753Z The least common ancestor is D:\a\Data.Doublets\Data.Doublets\artifacts. This will be the root directory of the artifact
+csharp (windows-2025)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:34:30.3748429Z With the provided path, there will be 5 files uploaded
+csharp (windows-2025)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:34:30.3753259Z Artifact name is valid!
+csharp (windows-2025)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:34:30.3754623Z Root directory input is valid!
+csharp (windows-2025)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:34:30.5806119Z Uploading artifact: csharp-windows-2025.zip
+csharp (windows-2025)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:34:30.5849638Z Beginning upload of artifact content to blob storage
+csharp (windows-2025)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:34:30.6962607Z Uploaded bytes 199617
+csharp (windows-2025)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:34:30.7112963Z Finished uploading artifact content to blob storage!
+csharp (windows-2025)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:34:30.7114821Z SHA256 digest of uploaded artifact is ec734a392ce9ed00918923ec2066f0f85840ef6061f52737d6f28732c7ae1d56
+csharp (windows-2025)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:34:30.7115856Z Finalizing artifact upload
+csharp (windows-2025)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:34:31.1778665Z Artifact csharp-windows-2025 successfully finalized. Artifact ID 12883417568
+csharp (windows-2025)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:34:31.1779587Z Artifact csharp-windows-2025 has been successfully uploaded! Final size is 199617 bytes. Artifact ID is 12883417568
+csharp (windows-2025)	Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9	2026-10-29T08:34:31.1786437Z Artifact download URL: https://github.com/linksplatform/Data.Doublets/actions/runs/40842727244/artifacts/12883417568
+csharp (windows-2025)	Post Run actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1	﻿2026-10-29T08:34:31.2120709Z Post job cleanup.
+csharp (windows-2025)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-10-29T08:34:31.3896915Z Post job cleanup.
+csharp (windows-2025)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:34:31.6238811Z [command]"C:\Program Files\Git\bin\git.exe" version
+csharp (windows-2025)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:34:31.6608994Z git version 2.56.0.windows.2
+csharp (windows-2025)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:34:31.6690616Z Temporarily overriding HOME='D:\a\_temp\ecf88a4a-77ad-48be-98a8-cf35d6c38f76' before making global git config changes
+csharp (windows-2025)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:34:31.6702782Z Adding repository directory to the temporary git global config as a safe directory
+csharp (windows-2025)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:34:31.6703662Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\Data.Doublets\Data.Doublets
+csharp (windows-2025)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:34:31.7088954Z Removing SSH command configuration
+csharp (windows-2025)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:34:31.7101840Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+csharp (windows-2025)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:34:31.7488196Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+csharp (windows-2025)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:34:32.3815328Z Removing HTTP extra header
+csharp (windows-2025)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:34:32.3825575Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+csharp (windows-2025)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:34:32.4207861Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+csharp (windows-2025)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:34:32.9714210Z Removing includeIf entries pointing to credentials config files
+csharp (windows-2025)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:34:32.9725935Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+csharp (windows-2025)	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-10-29T08:34:33.0104222Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+csharp (windows-2025)	Complete job	﻿2026-10-29T08:34:33.6078937Z Cleaning up orphan processes
+csharp (windows-2025)	Complete job	2026-10-29T08:34:33.6645772Z Terminate orphan process: pid (8556) (dotnet)
+csharp (windows-2025)	Complete job	2026-10-29T08:34:33.6824258Z Terminate orphan process: pid (1648) (dotnet)
+csharp (windows-2025)	Complete job	2026-10-29T08:34:33.6886446Z Terminate orphan process: pid (2968) (conhost)
+csharp (windows-2025)	Complete job	2026-10-29T08:34:33.7074664Z Terminate orphan process: pid (8892) (dotnet)
+csharp (windows-2025)	Complete job	2026-10-29T08:34:33.7328016Z Terminate orphan process: pid (1460) (conhost)
+csharp (windows-2025)	Complete job	2026-10-29T08:34:33.7434857Z Terminate orphan process: pid (2008) (VBCSCompiler)
+csharp (windows-2025)	Complete job	2026-10-29T08:34:33.7512732Z Terminate orphan process: pid (2228) (conhost)
