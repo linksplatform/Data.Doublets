@@ -57,10 +57,10 @@ links.Delete(link);
 Choose validation and resolution per call or through optional decorators. Raw
 C# deletion requires a live link, reset endpoints and caller-managed usages.
 
-- [C# deletion recipes and overload contracts](docs/deletion-csharp.md)
-- [Rust deletion recipes and current implementation limits](docs/deletion-rust.md)
-- [Shared vision and design guidelines](docs/design.md)
-- [Runnable deletion examples](examples/Deletion) and [architecture audit](docs/deletion-audit.md)
+* [C# deletion recipes and overload contracts](docs/deletion-csharp.md)
+* [Rust deletion recipes and current implementation limits](docs/deletion-rust.md)
+* [Shared vision and design guidelines](docs/design.md)
+* [Runnable deletion examples](examples/Deletion) and [architecture audit](docs/deletion-audit.md)
 
 ## [Documentation](https://linksplatform.github.io/Data.Doublets)
 *   Interface [ILinks\<TLink, TConstants\>](https://linksplatform.github.io/Data/csharp/api/Platform.Data.ILinks-2.html).
