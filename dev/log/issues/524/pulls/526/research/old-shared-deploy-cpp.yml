@@ -1,0 +1,154 @@
+name: Deploy new cpp version
+
+on:
+  workflow_call:
+    inputs:
+      recipe_folder:
+        required: true
+        type: string
+    secrets:
+      nuget_token:
+        required: true
+
+
+defaults:
+  run:
+    working-directory: cpp
+
+jobs:
+  test:
+    uses: linksplatform/Workflows/.github/workflows/cpp-test.yml@main
+  get_package_info:
+    uses: linksplatform/Workflows/.github/workflows/get-cpp-package-info.yml@main
+  pushToNuget:
+    runs-on: ubuntu-latest
+    needs: [test, get_package_info]
+    env:
+      NUSPEC_PATH: $(echo ${{needs.get_package_info.outputs.nuspec_path}} | sed 's~^cpp/~~')
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          submodules: true
+      - name: Push to nuget
+        run: |
+          sudo apt-get install nuget
+          echo "needs.get_package_info.outputs.nuspec_path: ${{needs.get_package_info.outputs.nuspec_path}}"
+          echo "env.NUSPEC_PATH: ${{env.NUSPEC_PATH}}"
+          echo "needs.get_package_info.outputs.name: ${{needs.get_package_info.outputs.name}}"
+          echo "needs.get_package_info.outputs.version: ${{needs.get_package_info.outputs.version}}"
+          nuspec_direction=$(dirname ${{env.NUSPEC_PATH}})
+          echo "nuspec_direction: ${nuspec_direction}"
+
+          # Ensure NuGet package does not exist
+          NuGetPackageUrl="https://globalcdn.nuget.org/packages/Platform.${{github.event.repository.name}}.TemplateLibrary.${{needs.get_package_info.outputs.version}}.nupkg"
+          NuGetPackageUrl=$(echo "$NuGetPackageUrl" | tr '[:upper:]' '[:lower:]')
+          NuGetPageStatus="$(curl -Is "$NuGetPackageUrl" | head -1)"
+          StatusContents=( $NuGetPageStatus )
+          if [ "${StatusContents[1]}" == "200" ]; then
+            echo "NuGet with current version is already pushed."
+            exit 0
+          fi
+
+          # Download icon.png for the package
+          wget -O "$nuspec_direction/icon.png" https://raw.githubusercontent.com/linksplatform/Documentation/18469f4d033ee9a5b7b84caab9c585acab2ac519/doc/Avatar-rainbow-icon-64x64.png
+
+          # Download TemplateLibrary.targets for the package
+          wget -O "$nuspec_direction/Platform.${{github.event.repository.name}}.TemplateLibrary.targets" https://raw.githubusercontent.com/linksplatform/Files/ed0dc702f52d56d80ea2f19c93df5cf2fdcbccbf/TemplateLibrary.targets
+
+          # Update .nuspec file
+          IFS=$'\n' #Set Separator.
+          files=$(find $nuspec_direction | grep "\.h" | grep -v "bin" | grep -v "obj" | cut -c $(( $(echo $nuspec_direction | wc -m) + 1))-)
+          filename="${{env.NUSPEC_PATH}}"
+          file=($(cat $filename)) #Read file by line in array
+          unset file[-1] #Remove last element in array.
+          file+=("  <files>")
+          file+=("    <file src=\"icon.png\" target=\"images/icon.png\" />")
+          file+=("    <file src=\"Platform.${{github.event.repository.name}}.TemplateLibrary.targets\" target=\"build\native\Platform.${{github.event.repository.name}}.TemplateLibrary.targets\" />")
+          for FILE in $files #Get all files on directory.
+          do
+            file+=("    <file src=\"$FILE\" target=\"lib\\native\\include\\$FILE\" />") #Append new files to array.
+          done
+          file+=("  </files>") #Append end for tag files.
+          file+=("</package>") #Append end for tag package.
+          printf '%s\n' "${file[@]}" > "$filename" #Write array by line to .nuspec file.
+
+          # Pack NuGet package by .nuspec file
+          nuget pack "${{env.NUSPEC_PATH}}"
+
+          # Push NuGet package
+          nuget push ./**/*.nupkg -NoSymbols -Source https://api.nuget.org/v3/index.json -ApiKey "${{secrets.nuget_token}}" 
+  get_conan_package_info:
+    uses: linksplatform/Workflows/.github/workflows/get-cpp-conan-package-info.yml@main
+  publishRelease:
+    runs-on: ubuntu-latest
+    needs: [test, get_package_info, get_conan_package_info]
+    env:
+      artifact_file_name: '${{needs.get_conan_package_info.outputs.name}}_${{needs.get_package_info.outputs.version}}.zip'
+      tag: "cpp_${{needs.get_package_info.outputs.version}}"
+    outputs:
+      artifact_url: 'https://github.com/linksplatform/${{github.event.repository.name}}/releases/${{env.tag}}/download/${{env.artifact_file_name}}'
+      artifact_sha256: 'https://github.com/linksplatform/${{github.event.repository.name}}/releases/${{env.tag}}/download/${{env.artifact_file_name}}'
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          submodules: true
+      - name: Zip conan package
+        id: zip_conan_package
+        run: | 
+          zip -r "${{env.artifact_file_name}}" "${{ format('Platform.{0}', github.event.repository.name) }}"
+          artifact_sha256=$(sha256sum "${{env.artifact_file_name}}" | cut -d " " -f 1)
+          echo "artifact_sha256=${artifact_sha256}" >> $GITHUB_OUTPUT
+      - name: Create Release
+        id: create_release
+        uses: ncipollo/release-action@v1.11.2
+        with:
+          tag: "${{env.tag}}"
+          name: "[C++] ${{needs.get_package_info.outputs.version}}"
+          body: >
+            https://www.nuget.org/packages/Platform.${{github.event.repository.name}}.TemplateLibrary/${{needs.get_package_info.outputs.version}}
+            
+            
+            ${{needs.get_package_info.outputs.release_notes}}
+          artifactErrorsFailBuild: true
+          artifacts: "cpp/${{env.artifact_file_name}}"
+#   update_conan_recipe_and_create_pull_request:
+#     name: Update conan recipe and create pull request
+#     needs: [publishRelease, get_package_info, get_conan_package_info]   
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v2
+#         with:
+#           submodules: true
+#       - name: Setup Rust
+#         uses: actions-rs/toolchain@v1
+#         with:
+#           profile: minimal
+#           toolchain: ${{env.toolchain}}
+#           components: rustfmt, clippy
+#           default: true
+#       - name: Build benchmark
+#         uses: actions-rs/cargo@v1
+#         with:
+#           command: build
+#           args: --release --all-features
+#       - name: Run benchmark
+#         uses: actions-rs/cargo@v1
+#         with:
+#           command: bench
+#           args: --all-features
+#     run: |
+#       cargo run ...
+#       --github-authentication-token="" 
+#       --new-version="" 
+#       --recipe-name="" 
+#       --source-repo-owner-login="" 
+#       --source-repo-name="" 
+#       --source-repo-branch-name="" 
+#       --destination-repo-owner-login="" 
+#       --destination-repo-name="" 
+#       --destination-repo-branch-name="" 
+#       --lib-zip-url="" 
+#       --sha256hash="" 
+#       --dependencies="" 
+#       --previous-version=""

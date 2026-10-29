@@ -1,0 +1,62 @@
+Get:1 https://cli.github.com/packages stable InRelease [3917 B]
+Get:2 https://download.docker.com/linux/ubuntu noble InRelease [48.5 kB]
+Get:3 https://cloud.r-project.org/bin/linux/ubuntu noble-cran40/ InRelease [3631 B]
+Get:4 https://dl.google.com/linux/chrome-stable/deb stable InRelease [2548 B]
+Get:5 https://packages.microsoft.com/repos/edge stable InRelease [3590 B]
+Get:6 http://archive.ubuntu.com/ubuntu noble InRelease [256 kB]
+Get:7 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+Get:8 https://cli.github.com/packages stable/main amd64 Packages [357 B]
+Get:9 https://packages.microsoft.com/repos/edge-stable stable InRelease [3590 B]
+Get:10 https://cloud.r-project.org/bin/linux/ubuntu noble-cran40/ Packages [75.7 kB]
+Get:11 https://dl.google.com/linux/chrome-stable/deb stable/main amd64 Packages [1408 B]
+Get:12 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+Get:13 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+Get:14 https://download.docker.com/linux/ubuntu noble/stable amd64 Packages [87.2 kB]
+Get:15 https://packages.microsoft.com/repos/edge stable/main amd64 Packages [61.6 kB]
+Get:16 https://packages.microsoft.com/repos/edge-stable stable/main amd64 Packages [61.6 kB]
+Get:17 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [2122 kB]
+Get:18 http://archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [117 kB]
+Get:19 http://archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
+Get:20 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [1412 kB]
+Get:21 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1550 kB]
+Get:22 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [55.6 kB]
+Get:23 http://archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [331 kB]
+Get:24 http://archive.ubuntu.com/ubuntu noble/main amd64 Packages [1808 kB]
+Get:25 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [2172 kB]
+Get:26 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1740 kB]
+Get:27 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [61.7 kB]
+Get:28 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [2235 kB]
+Get:29 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [36.0 kB]
+Get:30 http://archive.ubuntu.com/ubuntu noble-backports/main amd64 Packages [49.0 kB]
+Get:31 http://archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Packages [669 B]
+Fetched 34.0 MB in 6s (6075 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  fonts-dejavu-mono
+The following NEW packages will be installed:
+  fonts-dejavu-core fonts-dejavu-mono shellcheck
+0 upgraded, 3 newly installed, 0 to remove and 45 not upgraded.
+Need to get 4183 kB of archives.
+After this operation, 23.1 MB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu noble/main amd64 fonts-dejavu-mono all 2.37-8 [502 kB]
+Get:2 http://archive.ubuntu.com/ubuntu noble/main amd64 fonts-dejavu-core all 2.37-8 [835 kB]
+Get:3 http://archive.ubuntu.com/ubuntu noble/universe amd64 shellcheck amd64 0.9.0-1 [2845 kB]
+debconf: delaying package configuration, since apt-utils is not installed
+Fetched 4183 kB in 0s (10.7 MB/s)
+Selecting previously unselected package fonts-dejavu-mono.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 57790 files and directories currently installed.)
+Preparing to unpack .../fonts-dejavu-mono_2.37-8_all.deb ...
+Unpacking fonts-dejavu-mono (2.37-8) ...
+Selecting previously unselected package fonts-dejavu-core.
+Preparing to unpack .../fonts-dejavu-core_2.37-8_all.deb ...
+Unpacking fonts-dejavu-core (2.37-8) ...
+Selecting previously unselected package shellcheck.
+Preparing to unpack .../shellcheck_0.9.0-1_amd64.deb ...
+Unpacking shellcheck (0.9.0-1) ...
+Setting up shellcheck (0.9.0-1) ...
+Setting up fonts-dejavu-mono (2.37-8) ...
+Setting up fonts-dejavu-core (2.37-8) ...
+Processing triggers for fontconfig (2.15.0-1.1ubuntu2) ...
