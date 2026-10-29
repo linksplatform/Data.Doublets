@@ -1,0 +1,2726 @@
+diff --git a/.github/workflows/ci.yml b/.github/workflows/ci.yml
+index 70718db06..408daa0e6 100644
+--- a/.github/workflows/ci.yml
++++ b/.github/workflows/ci.yml
+@@ -7,6 +7,10 @@ on:
+   workflow_dispatch:
+ permissions:
+   contents: read
++env:
++  GIT_CONFIG_COUNT: '1'
++  GIT_CONFIG_KEY_0: init.defaultBranch
++  GIT_CONFIG_VALUE_0: main
+ jobs:
+   changes:
+     name: changes
+@@ -47,19 +51,39 @@ jobs:
+         run: bash scripts/fresh-merge.sh
+       - name: Check workflow syntax and shell commands
+         run: |
++          python3 -m pip install -r scripts/requirements-ci.txt
+           python3 -m pip install -r scripts/requirements-quality.txt
+-          mkdir -p /tmp/actionlint-bin
+-          docker run --rm --entrypoint cat rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667 /usr/local/bin/actionlint > /tmp/actionlint-bin/actionlint
+-          chmod +x /tmp/actionlint-bin/actionlint
+-          ACTIONLINT=/tmp/actionlint-bin/actionlint python3 scripts/check-workflows.py
++          python3 scripts/check-workflows.py --container
++          git ls-files -z '*.sh' ':(exclude)dev/log/**' | xargs -0 shellcheck
+       - uses: zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482 # v0.6.4
+         with:
+           version: v1.29.0
+           advanced-security: false
+           annotations: true
+           min-confidence: medium
+-      - name: Run pipeline regression tests
+-        run: python3 -m unittest discover -s experiments -p 'test_*.py' -v
++      - name: Check Python helpers and run pipeline regression tests
++        run: bash scripts/check-python.sh
++      - name: Prepare artifact transfer fixture
++        run: |
++          mkdir -p "$RUNNER_TEMP/transfer-source/nested"
++          printf 'artifact integrity round trip\n' > "$RUNNER_TEMP/transfer-source/nested/check.txt"
++      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
++        with:
++          name: artifact-transfer-check
++          path: ${{ runner.temp }}/transfer-source
++          if-no-files-found: error
++          retention-days: 1
++      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
++        env:
++          NODE_OPTIONS: --throw-deprecation
++        with:
++          name: artifact-transfer-check
++          path: ${{ runner.temp }}/transfer-download
++          skip-decompress: true # Keep digest verification; avoid deprecated unzip-stream.
++      - name: Verify artifact transfer and extraction
++        run: |
++          python3 scripts/extract_artifact.py "$RUNNER_TEMP/transfer-download" "$RUNNER_TEMP/transfer-result"
++          diff -r "$RUNNER_TEMP/transfer-source" "$RUNNER_TEMP/transfer-result"
+       - name: Install native formatting tool
+         run: |
+           sudo apt-get update &
+@@ -332,12 +356,20 @@ jobs:
+         if: needs.csharp.result == 'success'
+         with:
+           name: csharp-ubuntu-24.04
+-          path: artifacts
++          path: ${{ runner.temp }}/csharp-artifact
++          skip-decompress: true
++      - name: Extract validated C# artifact
++        if: needs.csharp.result == 'success'
++        run: python3 scripts/extract_artifact.py "$RUNNER_TEMP/csharp-artifact" artifacts
+       - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+         if: needs.cpp.result == 'success'
+         with:
+           name: cpp-gcc
+-          path: .
++          path: ${{ runner.temp }}/cpp-artifact
++          skip-decompress: true
++      - name: Extract validated C++ artifact
++        if: needs.cpp.result == 'success'
++        run: python3 scripts/extract_artifact.py "$RUNNER_TEMP/cpp-artifact" .
+       - name: Check trusted publishing configuration
+         id: nuget-config
+         continue-on-error: true # Only the OIDC attempt may fail before controlled fallback.
+@@ -403,7 +435,11 @@ jobs:
+         if: ${{ !cancelled() && needs.docs.result == 'success' }}
+         with:
+           name: documentation
+-          path: _site
++          path: ${{ runner.temp }}/docs-artifact
++          skip-decompress: true
++      - name: Extract validated documentation artifact
++        if: ${{ !cancelled() && needs.docs.result == 'success' }}
++        run: python3 scripts/extract_artifact.py "$RUNNER_TEMP/docs-artifact" _site
+       - name: Publish documentation and source PDF
+         if: ${{ !cancelled() && needs.docs.result == 'success' }}
+         env:
+diff --git a/.github/workflows/links.yml b/.github/workflows/links.yml
+index 7f2507488..b9eedbb4c 100644
+--- a/.github/workflows/links.yml
++++ b/.github/workflows/links.yml
+@@ -6,6 +6,10 @@ on:
+   workflow_dispatch:
+ permissions:
+   contents: read
++env:
++  GIT_CONFIG_COUNT: '1'
++  GIT_CONFIG_KEY_0: init.defaultBranch
++  GIT_CONFIG_VALUE_0: main
+ jobs:
+   links:
+     name: links
+diff --git a/.github/workflows/security.yml b/.github/workflows/security.yml
+index aa3b510d6..00b6fef91 100644
+--- a/.github/workflows/security.yml
++++ b/.github/workflows/security.yml
+@@ -6,6 +6,10 @@ on:
+   workflow_dispatch:
+ permissions:
+   contents: read
++env:
++  GIT_CONFIG_COUNT: '1'
++  GIT_CONFIG_KEY_0: init.defaultBranch
++  GIT_CONFIG_VALUE_0: main
+ jobs:
+   codeql:
+     name: codeql
+@@ -21,7 +25,7 @@ jobs:
+     strategy:
+       fail-fast: false
+       matrix:
+-        language: [csharp, c-cpp, actions]
++        language: [csharp, c-cpp, python, actions]
+         include:
+           - language: csharp
+             build-mode: manual
+@@ -29,6 +33,8 @@ jobs:
+             build-mode: manual
+           - language: actions
+             build-mode: none
++          - language: python
++            build-mode: none
+     concurrency:
+       group: security-codeql-${{ matrix.language }}-${{ github.ref }}
+       cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+@@ -95,3 +101,17 @@ jobs:
+           python3 scripts/check_audit.py nuget-audit.json
+       - name: Scan repository history for credentials
+         run: bash scripts/check-secrets.sh
++      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
++        with:
++          python-version: '3.12'
++      - name: Audit Python helper dependencies, including transitive packages
++        run: |
++          python3 -m pip install -r scripts/requirements-audit.txt
++          python3 -m pip_audit -r scripts/requirements-ci.txt -r scripts/requirements-quality.txt -r scripts/requirements-audit.txt --format json --output python-audit.json
++      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
++        if: always()
++        with:
++          name: dependency-audits
++          path: '*-audit.json'
++          if-no-files-found: error
++          retention-days: 14
+diff --git a/.gitkeep b/.gitkeep
+deleted file mode 100644
+index aba3de2f5..000000000
+--- a/.gitkeep
++++ /dev/null
+@@ -1 +0,0 @@
+-# .gitkeep file auto-generated at 2026-10-29T13:12:03.434Z for PR creation at branch issue-538-06fae78405da for issue https://github.com/linksplatform/Data.Doublets/issues/538
+\ No newline at end of file
+diff --git a/.pre-commit-config.yaml b/.pre-commit-config.yaml
+index b44dfe90f..555952edd 100644
+--- a/.pre-commit-config.yaml
++++ b/.pre-commit-config.yaml
+@@ -11,6 +11,12 @@ repos:
+         entry: python3 -m unittest discover -s experiments -p 'test_*.py'
+         language: system
+         pass_filenames: false
++      - id: python-quality
++        name: Python lint, formatting and types
++        entry: bash -c 'ruff check scripts && ruff format --check scripts && mypy scripts'
++        language: system
++        pass_filenames: false
++        files: ^(scripts/.*\.py|pyproject\.toml)$
+       - id: native-format
+         name: native formatting
+         entry: python3 scripts/check-cpp.py
+diff --git a/CONTRIBUTING.md b/CONTRIBUTING.md
+index d577b9aa1..52384a5b3 100644
+--- a/CONTRIBUTING.md
++++ b/CONTRIBUTING.md
+@@ -8,9 +8,10 @@ ShellCheck. Install Python tools with
+ Run these checks before pushing:
+ 
+ ```sh
+-python3 -m unittest discover -s experiments -p 'test_*.py' -v
++bash scripts/check-python.sh
+ python3 scripts/check_repository.py
+-python3 scripts/check-workflows.py
++python3 scripts/check-workflows.py --container
++git ls-files -z '*.sh' ':(exclude)dev/log/**' | xargs -0 shellcheck
+ bash scripts/check-csharp.sh
+ bash cpp/setup.sh
+ bash cpp/run_tests.sh
+@@ -19,8 +20,12 @@ python3 scripts/check-cpp.py --build-dir cpp/build
+ bash scripts/check-secrets.sh
+ ```
+ 
+-The workflow linter needs actionlint 1.7.12 and ShellCheck on PATH. CI obtains
+-its pinned actionlint binary from the official container. Install pre-commit
++The workflow linter runs the digest-pinned actionlint container, including
++ShellCheck and Pyflakes. Native execution requires all three tools on PATH and
++fails if an embedded-code checker is missing. Archived upstream scripts under
++`dev/log/` are frozen evidence, excluded from the standalone ShellCheck pass.
++Python helpers under `scripts/` must pass Ruff lint/format and mypy; historical
++experiment scripts remain runnable regression evidence. Install pre-commit
+ and run `pre-commit install` to enable the local formatting, regression, size,
+ and credential checks. All compiler and analyzer warnings fail validation.
+ Tests have bounded timeouts; native builds use one worker by default. The GCC
+@@ -68,6 +73,18 @@ be retried to repair missing release assets. Registry indexing is checked
+ anonymously for up to fifteen minutes. GitHub Packages mirror failures remain
+ visible while public release assets can still be repaired.
+ 
++If publication reports `GH006` or `GH013`, a repository administrator must allow
++the release actor to update `main` under the existing branch policy (or provision
++a specifically authorized release GitHub App and its token). A workflow's
++`contents: write` does not override branch protection. Keep required reviews for
++ordinary changes; do not disable protection, force-push, or introduce automatic
++release pull requests to bypass the rejection. See the evidence and unresolved
++release criterion in `dev/log/issues/541/pulls/542/ANALYSIS.md`.
++
++Artifact downloads retain SHA-256 verification and use `skip-decompress: true`
++with `scripts/extract_artifact.py` to avoid the action's deprecated Buffer-based
++ZIP extractor. A real upload/download round trip runs on every pull request.
++
+ ## Documentation
+ 
+ ```sh
+@@ -97,11 +114,16 @@ hyphens; public CMake targets and headers retain their original names.
+ Upstream reports and
+ reproduction evidence are under `dev/log/issues/524/pulls/526/upstream/`.
+ 
+-The scheduled security workflow audits transitive NuGet dependencies, runs
++The scheduled security workflow audits transitive NuGet and Python dependencies, runs
+ full-repository CodeQL with a fatal gate on every SARIF finding, and scans
+ complete Git history for credentials. `.gitleaksignore` contains
+ one exact historical fingerprint: the removed key was independently verified
+ revoked (HTTP 401). It does not exempt current files or future credentials.
++Install `scripts/requirements-audit.txt` and run
++`python3 -m pip_audit -r scripts/requirements-ci.txt -r scripts/requirements-quality.txt -r scripts/requirements-audit.txt`
++to reproduce the Python audit. Audit JSON and CodeQL SARIF are retained in CI.
++CodeQL covers C#, C++, Python and Actions; empty results count as success only
++when the report includes a successful analysis invocation.
+ 
+ Native temporary files live in atomically created private directories. Optional
+ Rust FFI development remains in the `rust` submodule and is separate from the
+diff --git a/experiments/reproduce_artifact_buffer.mjs b/experiments/reproduce_artifact_buffer.mjs
+new file mode 100644
+index 000000000..3883a2390
+--- /dev/null
++++ b/experiments/reproduce_artifact_buffer.mjs
+@@ -0,0 +1,18 @@
++// Exercise the exact vendored matcher that download-artifact uses to extract ZIPs.
++// Usage: node --trace-deprecation experiments/reproduce_artifact_buffer.mjs /path/to/download-artifact
++// No tokens, network access, or unbounded input are required.
++import { readFileSync } from 'node:fs';
++import { resolve } from 'node:path';
++import { Transform } from 'node:stream';
++import util from 'node:util';
++import vm from 'node:vm';
++
++const source = readFileSync(resolve(process.argv[2], 'dist/index.js'), 'utf8');
++const start = source.indexOf('function MatcherStream(');
++const end = source.indexOf('module.exports = MatcherStream;', start);
++if (start < 0 || end < 0) throw new Error('Vendored matcher not found');
++const module = { exports: {} };
++vm.runInNewContext(source.slice(start, end) + '\nmodule.exports = MatcherStream;',
++  { module, Buffer, Transform, util }, { filename: 'download-artifact/vendored-matcher.js' });
++new module.exports('PK').end(Buffer.from('PK'));
++console.log('Completed the 2-byte ZIP-signature probe');
+diff --git a/experiments/test_issue_541.py b/experiments/test_issue_541.py
+new file mode 100644
+index 000000000..b43886fa2
+--- /dev/null
++++ b/experiments/test_issue_541.py
+@@ -0,0 +1,164 @@
++"""Minimal regressions for incomplete scans and unverified release writes."""
++
++import contextlib
++import importlib.util
++import io
++import json
++import os
++from pathlib import Path
++import subprocess
++import sys
++import tempfile
++import unittest
++from unittest.mock import patch
++import stat
++import re
++from zipfile import ZipFile, ZipInfo
++import yaml
++
++ROOT = Path(__file__).resolve().parents[1]
++sys.path.insert(0, str(ROOT / 'scripts'))
++import check_sarif
++import versions
++import changes
++from extract_artifact import extract
++
++
++class ArtifactTests(unittest.TestCase):
++    def test_raw_zip_without_extension_preserves_package_and_nested_files(self):
++        with tempfile.TemporaryDirectory() as directory:
++            root = Path(directory)
++            source = root / 'download'
++            source.mkdir()
++            with ZipFile(source / 'artifact', 'w') as archive:
++                archive.writestr('packages/library.nupkg', b'PK\x00\xff')
++                archive.writestr('test-results/result.trx', '<TestRun />')
++            extract(source, root / 'output')
++            self.assertEqual((root / 'output/packages/library.nupkg').read_bytes(), b'PK\x00\xff')
++            self.assertEqual((root / 'output/test-results/result.trx').read_text(), '<TestRun />')
++
++    def test_rejects_traversal_absolute_paths_and_symlinks_before_writing(self):
++        for name in ('../escape', '/escape', 'C:/escape', 'dir\\escape', 'link'):
++            with self.subTest(name=name), tempfile.TemporaryDirectory() as directory:
++                root = Path(directory)
++                source = root / 'download'
++                source.mkdir()
++                with ZipFile(source / 'artifact', 'w') as archive:
++                    archive.writestr('valid', 'must not be partially written')
++                    entry = ZipInfo(name)
++                    if name == 'link':
++                        entry.external_attr = (stat.S_IFLNK | 0o777) << 16
++                    archive.writestr(entry, '../outside')
++                with self.assertRaisesRegex(ValueError, 'Unsafe'):
++                    extract(source, root / 'output')
++                self.assertFalse((root / 'output').exists())
++
++    def test_existing_symlink_cannot_redirect_extraction(self):
++        with tempfile.TemporaryDirectory() as directory:
++            root = Path(directory)
++            source = root / 'download'
++            source.mkdir()
++            (root / 'output').mkdir()
++            (root / 'outside').mkdir()
++            (root / 'output/link').symlink_to(root / 'outside', target_is_directory=True)
++            with ZipFile(source / 'artifact', 'w') as archive:
++                archive.writestr('link/escape', 'unsafe')
++            with self.assertRaisesRegex(ValueError, 'Unsafe'):
++                extract(source, root / 'output')
++
++    def test_ambiguous_download_fails(self):
++        with tempfile.TemporaryDirectory() as directory:
++            root = Path(directory)
++            for count in range(3):
++                if count:
++                    (root / str(count)).touch()
++                if count != 1:
++                    with self.assertRaisesRegex(ValueError, 'exactly one'):
++                        extract(root, root / 'output')
++
++
++class PythonRoutingTests(unittest.TestCase):
++    def test_python_tool_configuration_runs_pipeline_validation(self):
++        self.assertTrue(changes.categories(['pyproject.toml'])['pipeline'])
++
++
++class PreCommitTests(unittest.TestCase):
++    def test_existing_source_files_reach_their_formatting_hooks(self):
++        config = yaml.safe_load((ROOT / '.pre-commit-config.yaml').read_text())
++        hooks = {hook['id']: hook for hook in config['repos'][0]['hooks']}
++        for hook, paths in {
++            'native-format': ['cpp/Platform.Data.Doublets/Doublets.h', 'c/ffi.h', 'examples/CppMemoryLinks.cpp'],
++            'csharp-format': ['csharp/Platform.Data.Doublets/Link.cs'],
++            'python-quality': ['scripts/release.py', 'pyproject.toml'],
++        }.items():
++            for path in paths:
++                with self.subTest(hook=hook, path=path):
++                    self.assertIsNotNone(re.search(hooks[hook]['files'], path))
++
++
++class IncompleteSarifTests(unittest.TestCase):
++    def test_missing_or_unknown_invocation_is_not_success(self):
++        for invocations in (None, [], [{}], [{'executionSuccessful': None}]):
++            with self.subTest(invocations=invocations), tempfile.TemporaryDirectory() as directory:
++                run = {'tool': {'driver': {'name': 'CodeQL'}}, 'results': []}
++                if invocations is not None:
++                    run['invocations'] = invocations
++                Path(directory, 'report.sarif').write_text(json.dumps({'version': '2.1.0', 'runs': [run]}))
++                with self.assertRaisesRegex(ValueError, 'Incomplete|failed'):
++                    check_sarif.check(directory)
++
++    def test_malformed_collections_are_not_clean_reports(self):
++        for results in ({}, '', None):
++            with self.subTest(results=results), tempfile.TemporaryDirectory() as directory:
++                run = {'tool': {'driver': {'name': 'CodeQL'}}, 'results': results,
++                       'invocations': [{'executionSuccessful': True}]}
++                Path(directory, 'report.sarif').write_text(json.dumps({'version': '2.1.0', 'runs': [run]}))
++                with self.assertRaisesRegex(ValueError, 'Incomplete'):
++                    check_sarif.check(directory)
++
++
++class WorkflowToolTests(unittest.TestCase):
++    def test_linter_cannot_silently_skip_embedded_shell_checks(self):
++        spec = importlib.util.spec_from_file_location('workflow_checker_541', ROOT / 'scripts/check-workflows.py')
++        checker = importlib.util.module_from_spec(spec)
++        spec.loader.exec_module(checker)
++        with patch.object(checker, 'which', return_value=None):
++            with self.assertRaisesRegex(RuntimeError, 'shellcheck'):
++                checker.check_tools()
++
++
++class ProtectedReleaseTests(unittest.TestCase):
++    def test_rule_rejection_fails_once_without_rebase_or_force(self):
++        with tempfile.TemporaryDirectory() as directory:
++            root = Path(directory)
++            remote = root / 'remote.git'
++            work = root / 'work'
++            subprocess.run(['git', 'init', '--bare', '-q', str(remote)], check=True)
++            subprocess.run(['git', 'clone', '-q', str(remote), str(work)], check=True, capture_output=True)
++            def git(*args):
++                return subprocess.check_output(['git', '-C', str(work), *args], text=True, stderr=subprocess.STDOUT).strip()
++            git('checkout', '-b', 'main')
++            git('config', 'user.name', 'Test')
++            git('config', 'user.email', 'test@example.invalid')
++            project = work / versions.FILES['csharp']
++            project.parent.mkdir(parents=True)
++            project.write_text('<VersionPrefix>1.0.0</VersionPrefix>')
++            git('add', '.')
++            git('commit', '-m', 'Validated source')
++            git('push', '-u', 'origin', 'main')
++            original = git('rev-parse', 'HEAD')
++            hook = remote / 'hooks/pre-receive'
++            hook.write_text('#!/bin/sh\ncat >/dev/null\necho attempt >>"' + str(root / 'attempts') + '"\necho "error: GH006: Protected branch update failed" >&2\nexit 1\n')
++            hook.chmod(0o755)
++            project.write_text('<VersionPrefix>1.0.1</VersionPrefix>')
++            with patch.object(versions, 'ROOT', work), contextlib.redirect_stdout(io.StringIO()) as output:
++                with self.assertRaisesRegex(RuntimeError, 'Repository rules'):
++                    versions.commit()
++            self.assertEqual((root / 'attempts').read_text().splitlines(), ['attempt'])
++            self.assertEqual(git('rev-parse', 'origin/main'), original)
++            self.assertIn('GH006', output.getvalue())
++            self.assertNotEqual(git('rev-parse', 'HEAD'), original)
++
++
++if __name__ == '__main__':
++    unittest.main()
+diff --git a/experiments/test_sarif_gate.py b/experiments/test_sarif_gate.py
+index 40352b47a..bc07edd3f 100644
+--- a/experiments/test_sarif_gate.py
++++ b/experiments/test_sarif_gate.py
+@@ -14,7 +14,7 @@ class SarifGateTests(unittest.TestCase):
+     def setUp(self):
+         self.directory = tempfile.TemporaryDirectory()
+         self.addCleanup(self.directory.cleanup)
+-        self.run = {'tool': {'driver': {'name': 'CodeQL'}}, 'results': []}
++        self.run = {'tool': {'driver': {'name': 'CodeQL'}}, 'results': [], 'invocations': [{'executionSuccessful': True}]}
+ 
+     def write(self):
+         Path(self.directory.name, 'report.sarif').write_text(json.dumps({'version': '2.1.0', 'runs': [self.run]}))
+diff --git a/pyproject.toml b/pyproject.toml
+new file mode 100644
+index 000000000..f8f78d4f2
+--- /dev/null
++++ b/pyproject.toml
+@@ -0,0 +1,12 @@
++[tool.ruff]
++target-version = "py312"
++line-length = 100
++
++[tool.ruff.lint]
++select = ["E4", "E7", "E9", "F", "B"]
++
++[tool.mypy]
++python_version = "3.12"
++check_untyped_defs = true
++warn_unused_ignores = true
++warn_redundant_casts = true
+diff --git a/scripts/changes.py b/scripts/changes.py
+index d8247c1b2..8b6239725 100644
+--- a/scripts/changes.py
++++ b/scripts/changes.py
+@@ -14,9 +14,25 @@ def categories(paths):
+         result["docs"] |= path.endswith(".md") or path.startswith("docs/")
+         if path.endswith(".md"):
+             continue
+-        result["csharp"] |= path.startswith(("csharp/", "examples/ExternalReferences/", "examples/Deletion/", "examples/Update/")) or path in ("global.json", "Directory.Build.props")
+-        result["cpp"] |= path.startswith(("cpp/", "c/")) or path in ("examples/CppMemoryLinks.cpp", ".clang-format", ".clang-tidy")
+-        result["pipeline"] |= path.startswith((".github/", "scripts/", ".config/")) or path in (".gitpod.yml", "publish-bin.sh", "docfx.json", ".editorconfig", ".gitattributes", ".lycheeignore", ".gitleaksignore", ".pre-commit-config.yaml")
++        result["csharp"] |= path.startswith(
++            ("csharp/", "examples/ExternalReferences/", "examples/Deletion/", "examples/Update/")
++        ) or path in ("global.json", "Directory.Build.props")
++        result["cpp"] |= path.startswith(("cpp/", "c/")) or path in (
++            "examples/CppMemoryLinks.cpp",
++            ".clang-format",
++            ".clang-tidy",
++        )
++        result["pipeline"] |= path.startswith((".github/", "scripts/", ".config/")) or path in (
++            ".gitpod.yml",
++            "publish-bin.sh",
++            "docfx.json",
++            ".editorconfig",
++            ".gitattributes",
++            ".lycheeignore",
++            ".gitleaksignore",
++            ".pre-commit-config.yaml",
++            "pyproject.toml",
++        )
+     return result
+ 
+ 
+@@ -33,13 +49,20 @@ def changed_paths(event, event_name):
+         return git("ls-files", "-z").decode().strip("\0").split("\0")
+     # Checkout fetches full history, and a missing base is an error, never an
+     # empty diff that silently skips checks. --no-renames includes both paths.
+-    return git("diff", "--no-renames", "--name-only", "-z", base, "HEAD").decode().strip("\0").split("\0")
++    return (
++        git("diff", "--no-renames", "--name-only", "-z", base, "HEAD")
++        .decode()
++        .strip("\0")
++        .split("\0")
++    )
+ 
+ 
+ if __name__ == "__main__":
+     event_file = os.environ.get("GITHUB_EVENT_PATH")
+     event = json.loads(Path(event_file).read_text()) if event_file else {}
+-    result = categories(changed_paths(event, os.environ.get("GITHUB_EVENT_NAME", "workflow_dispatch")))
++    result = categories(
++        changed_paths(event, os.environ.get("GITHUB_EVENT_NAME", "workflow_dispatch"))
++    )
+     output = "".join(f"{key}={str(value).lower()}\n" for key, value in result.items())
+     print(output, end="")
+     if os.environ.get("GITHUB_OUTPUT"):
+diff --git a/scripts/check-cpp.py b/scripts/check-cpp.py
+index 875a877c5..e7912a9b8 100644
+--- a/scripts/check-cpp.py
++++ b/scripts/check-cpp.py
+@@ -1,4 +1,5 @@
+ """Native checks adapted from the C++ template's scripts/lint_cpp.py."""
++
+ import argparse
+ import json
+ from pathlib import Path
+@@ -12,19 +13,51 @@ def run(*args):
+ 
+ 
+ def sources():
+-    names = subprocess.check_output(['git', 'ls-files', '--cached', '--others', '--exclude-standard', '-z', 'cpp', 'c', 'examples'], cwd=ROOT).decode().split('\0')
+-    return [name for name in names if name and Path(name).suffix in ('.c', '.h', '.cpp', '.hpp') and (ROOT / name).is_file()]
++    names = (
++        subprocess.check_output(
++            [
++                "git",
++                "ls-files",
++                "--cached",
++                "--others",
++                "--exclude-standard",
++                "-z",
++                "cpp",
++                "c",
++                "examples",
++            ],
++            cwd=ROOT,
++        )
++        .decode()
++        .split("\0")
++    )
++    return [
++        name
++        for name in names
++        if name and Path(name).suffix in (".c", ".h", ".cpp", ".hpp") and (ROOT / name).is_file()
++    ]
+ 
+ 
+-if __name__ == '__main__':
++if __name__ == "__main__":
+     parser = argparse.ArgumentParser(description=__doc__)
+-    parser.add_argument('--build-dir', type=Path)
++    parser.add_argument("--build-dir", type=Path)
+     args = parser.parse_args()
+-    run('clang-format-18', '--dry-run', '--Werror', *sources())
++    run("clang-format-18", "--dry-run", "--Werror", *sources())
+     if args.build_dir:
+-        database = args.build_dir.resolve() / 'compile_commands.json'
+-        units = sorted({entry['file'] for entry in json.loads(database.read_text())})
++        database = args.build_dir.resolve() / "compile_commands.json"
++        units = sorted({entry["file"] for entry in json.loads(database.read_text())})
+         if not units:
+-            raise SystemExit('No native translation units found for static analysis')
+-        run('clang-tidy-18', '-p', str(args.build_dir.resolve()), '--quiet', *units)
+-        run('cppcheck', '--library=googletest', '--enable=warning,performance,portability', '--error-exitcode=1', '--inline-suppr', '--std=c++20', '--check-level=exhaustive', '--suppress=missingIncludeSystem', '--quiet', '--project=' + str(database))
++            raise SystemExit("No native translation units found for static analysis")
++        run("clang-tidy-18", "-p", str(args.build_dir.resolve()), "--quiet", *units)
++        run(
++            "cppcheck",
++            "--library=googletest",
++            "--enable=warning,performance,portability",
++            "--error-exitcode=1",
++            "--inline-suppr",
++            "--std=c++20",
++            "--check-level=exhaustive",
++            "--suppress=missingIncludeSystem",
++            "--quiet",
++            "--project=" + str(database),
++        )
+diff --git a/scripts/check-python.sh b/scripts/check-python.sh
+new file mode 100644
+index 000000000..5bff5889f
+--- /dev/null
++++ b/scripts/check-python.sh
+@@ -0,0 +1,9 @@
++#!/usr/bin/env bash
++set -euo pipefail
++if [[ ${CI_VERBOSE:-0} == 1 ]]; then set -x; fi
++repo_root=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
++cd "$repo_root"
++ruff check scripts
++ruff format --check scripts
++mypy scripts
++python3 -m unittest discover -s experiments -p 'test_*.py' -v
+diff --git a/scripts/check-workflows.py b/scripts/check-workflows.py
+index 831fed7c7..5957cc938 100644
+--- a/scripts/check-workflows.py
++++ b/scripts/check-workflows.py
+@@ -4,25 +4,60 @@
+ Validate that field here and exclude only that exact obsolete-schema diagnostic.
+ Every other syntax, expression and embedded-shell diagnostic remains fatal.
+ """
++
++import argparse
+ import os
+ from pathlib import Path
++from shutil import which
+ import subprocess
+ import yaml
+ 
++IMAGE = "rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667"
++
++
++def check_tools():
++    for tool in ("shellcheck", "pyflakes"):
++        if which(tool) is None:
++            raise RuntimeError(
++                f"{tool} is required: actionlint otherwise silently skips embedded code checks. Use --container or install the documented tools."
++            )
++
+ 
+ def validate_queue(workflow):
+-    scopes = [workflow, *workflow.get('jobs', {}).values()]
++    scopes = [workflow, *workflow.get("jobs", {}).values()]
+     for scope in scopes:
+-        concurrency = scope.get('concurrency', {})
+-        if not isinstance(concurrency, dict) or 'queue' not in concurrency:
++        concurrency = scope.get("concurrency", {})
++        if not isinstance(concurrency, dict) or "queue" not in concurrency:
+             continue
+-        if concurrency['queue'] not in ('single', 'max'):
+-            raise ValueError('concurrency.queue must be single or max')
+-        if concurrency['queue'] == 'max' and concurrency.get('cancel-in-progress', False) is not False:
+-            raise ValueError('queue: max requires cancel-in-progress: false')
++        if concurrency["queue"] not in ("single", "max"):
++            raise ValueError("concurrency.queue must be single or max")
++        if (
++            concurrency["queue"] == "max"
++            and concurrency.get("cancel-in-progress", False) is not False
++        ):
++            raise ValueError("queue: max requires cancel-in-progress: false")
+ 
+ 
+-if __name__ == '__main__':
+-    for path in Path('.github/workflows').glob('*.yml'):
++if __name__ == "__main__":
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument(
++        "--container", action="store_true", help="Use the pinned image with ShellCheck and Pyflakes"
++    )
++    args = parser.parse_args()
++    for path in Path(".github/workflows").glob("*.yml"):
+         validate_queue(yaml.safe_load(path.read_text()))
+-    subprocess.run([os.environ.get('ACTIONLINT', 'actionlint'), '-color', '-ignore', '^unexpected key "queue" for "concurrency" section\\.', *map(str, Path('.github/workflows').glob('*.yml'))], check=True)
++    if args.container:
++        command = ["docker", "run", "--rm", "-v", f"{Path.cwd()}:/work", "-w", "/work", IMAGE]
++    else:
++        check_tools()
++        command = [os.environ.get("ACTIONLINT", "actionlint")]
++    subprocess.run(
++        [
++            *command,
++            "-color",
++            "-ignore",
++            '^unexpected key "queue" for "concurrency" section\\.',
++            *map(str, Path(".github/workflows").glob("*.yml")),
++        ],
++        check=True,
++    )
+diff --git a/scripts/check_audit.py b/scripts/check_audit.py
+index dc2cd83b8..77e938a2c 100644
+--- a/scripts/check_audit.py
++++ b/scripts/check_audit.py
+@@ -1,19 +1,24 @@
+ """Fail NuGet audit on any vulnerability or an incomplete audit response."""
++
+ import json
+ from pathlib import Path
+ import sys
+ 
+ report = json.loads(Path(sys.argv[1]).read_text())
+-assert report.get('version') == 1 and report.get('projects'), 'NuGet audit response is incomplete'
++assert report.get("version") == 1 and report.get("projects"), "NuGet audit response is incomplete"
+ errors = []
+-for project in report['projects']:
++for project in report["projects"]:
+     # With --vulnerable, a clean project is represented by its path only.
+     # Restore has already completed with NuGetAuditMode=all and -warnaserror.
+-    assert project.get('path'), 'NuGet audit project path is missing'
+-    for framework in project.get('frameworks', []):
+-        for package in framework.get('topLevelPackages', []) + framework.get('transitivePackages', []):
+-            for vulnerability in package.get('vulnerabilities', []):
+-                errors.append(f"{project['path']}: {package['id']} {package['resolvedVersion']} {vulnerability['severity']} {vulnerability['advisoryurl']}")
+-assert not report.get('problems'), 'NuGet audit reported errors: ' + str(report.get('problems'))
+-assert not errors, '\n'.join(errors)
+-print('NuGet audit completed without vulnerabilities')
++    assert project.get("path"), "NuGet audit project path is missing"
++    for framework in project.get("frameworks", []):
++        for package in framework.get("topLevelPackages", []) + framework.get(
++            "transitivePackages", []
++        ):
++            for vulnerability in package.get("vulnerabilities", []):
++                errors.append(
++                    f"{project['path']}: {package['id']} {package['resolvedVersion']} {vulnerability['severity']} {vulnerability['advisoryurl']}"
++                )
++assert not report.get("problems"), "NuGet audit reported errors: " + str(report.get("problems"))
++assert not errors, "\n".join(errors)
++print("NuGet audit completed without vulnerabilities")
+diff --git a/scripts/check_docs.py b/scripts/check_docs.py
+index 45a993339..697bcfaae 100644
+--- a/scripts/check_docs.py
++++ b/scripts/check_docs.py
+@@ -1,10 +1,12 @@
+ """Check generated documentation, local links, and the source PDF before upload."""
++
+ from html.parser import HTMLParser
+ from pathlib import Path
+ import re
+ from urllib.parse import unquote, urlsplit
+ 
+-ROOT = Path('_site')
++ROOT = Path("_site")
++
+ 
+ class Links(HTMLParser):
+     def __init__(self):
+@@ -12,44 +14,46 @@ def __init__(self):
+         self.links = []
+ 
+     def handle_starttag(self, tag, attrs):
+-        self.links.extend(value for key, value in attrs if key in ('href', 'src') and value)
++        self.links.extend(value for key, value in attrs if key in ("href", "src") and value)
+ 
+ 
+ def main():
+-    pages = list(ROOT.rglob('*.html'))
+-    assert pages, 'DocFX did not generate HTML'
+-    assert (ROOT / 'csharp/api/Platform.Data.Doublets.html').is_file(), 'API reference is missing'
+-    assert (ROOT / 'cpp/index.html').is_file(), 'C++ API reference is missing'
+-    pdf = ROOT / 'csharp/Platform.Data.Doublets.pdf'
+-    assert pdf.read_bytes().startswith(b'%PDF-'), 'Source PDF is missing or invalid'
++    pages = list(ROOT.rglob("*.html"))
++    assert pages, "DocFX did not generate HTML"
++    assert (ROOT / "csharp/api/Platform.Data.Doublets.html").is_file(), "API reference is missing"
++    assert (ROOT / "cpp/index.html").is_file(), "C++ API reference is missing"
++    pdf = ROOT / "csharp/Platform.Data.Doublets.pdf"
++    assert pdf.read_bytes().startswith(b"%PDF-"), "Source PDF is missing or invalid"
+     errors = []
+     for page in pages:
+         parser = Links()
+-        parser.feed(page.read_text(encoding='utf-8'))
++        parser.feed(page.read_text(encoding="utf-8"))
+         for link in parser.links:
+             url = urlsplit(link)
+             if url.scheme or url.netloc or not url.path:
+                 continue
+-            if url.path.startswith('/Data.Doublets/'):
+-                target = ROOT / unquote(url.path.removeprefix('/Data.Doublets/'))
+-            elif url.path.startswith('/'):
+-                errors.append(f'{page}: unsupported root link {link}')
++            if url.path.startswith("/Data.Doublets/"):
++                target = ROOT / unquote(url.path.removeprefix("/Data.Doublets/"))
++            elif url.path.startswith("/"):
++                errors.append(f"{page}: unsupported root link {link}")
+                 continue
+             else:
+                 target = page.parent / unquote(url.path)
+             if not target.exists():
+-                errors.append(f'{page}: missing {link}')
++                errors.append(f"{page}: missing {link}")
+     # Validate our deployment URLs against what this PR will actually publish.
+     # Checking the old live deployment would reject newly fixed pages before
+     # they can be deployed, and miss a removed page that still exists online.
+-    for markdown in Path('.').glob('*.md'):
+-        for link in re.findall(r'https://linksplatform\.github\.io/Data\.Doublets/[^\s)>]+', markdown.read_text()):
+-            target = ROOT / unquote(urlsplit(link).path.removeprefix('/Data.Doublets/'))
++    for markdown in Path(".").glob("*.md"):
++        for link in re.findall(
++            r"https://linksplatform\.github\.io/Data\.Doublets/[^\s)>]+", markdown.read_text()
++        ):
++            target = ROOT / unquote(urlsplit(link).path.removeprefix("/Data.Doublets/"))
+             if not target.exists():
+-                errors.append(f'{markdown}: generated deployment target missing: {link}')
+-    assert not errors, '\n'.join(errors)
+-    print(f'Validated {len(pages)} HTML pages, local links and source PDF')
++                errors.append(f"{markdown}: generated deployment target missing: {link}")
++    assert not errors, "\n".join(errors)
++    print(f"Validated {len(pages)} HTML pages, local links and source PDF")
+ 
+ 
+-if __name__ == '__main__':
++if __name__ == "__main__":
+     main()
+diff --git a/scripts/check_repository.py b/scripts/check_repository.py
+index 037083f20..adf565799 100644
+--- a/scripts/check_repository.py
++++ b/scripts/check_repository.py
+@@ -1,4 +1,5 @@
+ """Fast CI checks also run by the local pre-commit hook."""
++
+ import ast
+ import json
+ from pathlib import Path
+@@ -13,69 +14,115 @@
+ def trusted_publishing_errors(workflow):
+     """Keep publishing credentials confined to trusted jobs and step outputs."""
+     errors = []
+-    for name, job in workflow.get('jobs', {}).items():
+-        login_steps = {step['id'] for step in job.get('steps', []) if step.get('uses', '').startswith('NuGet/login@') and step.get('id')}
+-        if name in ('credentials', 'publish'):
+-            if job.get('permissions', {}).get('id-token') != 'write' or not login_steps:
+-                errors.append(f'{name}: actual NuGet/login exchange and id-token: write are required')
+-            condition = job.get('if', '')
+-            if "github.ref == 'refs/heads/main'" not in condition or "github.event_name != 'pull_request'" not in condition:
+-                errors.append(f'{name}: OIDC must be restricted to trusted main execution')
+-        elif job.get('permissions', {}).get('id-token'):
+-            errors.append(f'{name}: NuGet OIDC permissions belong only in credentials/publish')
+-        if 'NUGET_API_KEY' in json.dumps(job.get('outputs', {})):
+-            errors.append(f'{name}: temporary NuGet keys must not cross job boundaries')
+-        if job.get('continue-on-error'):
+-            errors.append(f'{name}: authentication fallback must not ignore a job failure')
+-        for step in job.get('steps', []):
+-            if step.get('uses', '').startswith('NuGet/login@') and step.get('with', {}).get('user') != '${{ vars.NUGET_USER }}':
+-                errors.append(f'{name}: login must use the configured NuGet profile vars.NUGET_USER')
+-            token = step.get('env', {}).get('NUGET_TOKEN')
+-            if token is not None and token not in {f'${{{{ steps.{login}.outputs.NUGET_API_KEY }}}}' for login in login_steps}:
+-                errors.append(f'{name}: NUGET_TOKEN must come from this job\'s NuGet/login output')
+-            fallback = step.get('env', {}).get('NUGET_FALLBACK_TOKEN')
+-            if fallback is not None and (name not in ('credentials', 'publish') or fallback != '${{ secrets.NUGET_TOKEN }}' or token is None):
+-                errors.append(f'{name}: provided fallback is confined to explicit release authentication selection')
++    for name, job in workflow.get("jobs", {}).items():
++        login_steps = {
++            step["id"]
++            for step in job.get("steps", [])
++            if step.get("uses", "").startswith("NuGet/login@") and step.get("id")
++        }
++        if name in ("credentials", "publish"):
++            if job.get("permissions", {}).get("id-token") != "write" or not login_steps:
++                errors.append(
++                    f"{name}: actual NuGet/login exchange and id-token: write are required"
++                )
++            condition = job.get("if", "")
++            if (
++                "github.ref == 'refs/heads/main'" not in condition
++                or "github.event_name != 'pull_request'" not in condition
++            ):
++                errors.append(f"{name}: OIDC must be restricted to trusted main execution")
++        elif job.get("permissions", {}).get("id-token"):
++            errors.append(f"{name}: NuGet OIDC permissions belong only in credentials/publish")
++        if "NUGET_API_KEY" in json.dumps(job.get("outputs", {})):
++            errors.append(f"{name}: temporary NuGet keys must not cross job boundaries")
++        if job.get("continue-on-error"):
++            errors.append(f"{name}: authentication fallback must not ignore a job failure")
++        for step in job.get("steps", []):
++            if (
++                step.get("uses", "").startswith("NuGet/login@")
++                and step.get("with", {}).get("user") != "${{ vars.NUGET_USER }}"
++            ):
++                errors.append(
++                    f"{name}: login must use the configured NuGet profile vars.NUGET_USER"
++                )
++            token = step.get("env", {}).get("NUGET_TOKEN")
++            if token is not None and token not in {
++                f"${{{{ steps.{login}.outputs.NUGET_API_KEY }}}}" for login in login_steps
++            }:
++                errors.append(f"{name}: NUGET_TOKEN must come from this job's NuGet/login output")
++            fallback = step.get("env", {}).get("NUGET_FALLBACK_TOKEN")
++            if fallback is not None and (
++                name not in ("credentials", "publish")
++                or fallback != "${{ secrets.NUGET_TOKEN }}"
++                or token is None
++            ):
++                errors.append(
++                    f"{name}: provided fallback is confined to explicit release authentication selection"
++                )
+             if token is not None:
+-                if fallback is None or step.get('env', {}).get('NUGET_LOGIN_OUTCOME') not in {f'${{{{ steps.{login}.outcome }}}}' for login in login_steps}:
+-                    errors.append(f'{name}: release caller needs explicit login outcome and provided fallback')
+-            if step.get('continue-on-error') and not (step.get('uses', '').startswith('NuGet/login@') or step.get('run') == 'python3 scripts/release.py check-auth-config'):
+-                errors.append(f'{name}: only the trusted-publishing attempt may tolerate failure')
++                if fallback is None or step.get("env", {}).get("NUGET_LOGIN_OUTCOME") not in {
++                    f"${{{{ steps.{login}.outcome }}}}" for login in login_steps
++                }:
++                    errors.append(
++                        f"{name}: release caller needs explicit login outcome and provided fallback"
++                    )
++            if step.get("continue-on-error") and not (
++                step.get("uses", "").startswith("NuGet/login@")
++                or step.get("run") == "python3 scripts/release.py check-auth-config"
++            ):
++                errors.append(f"{name}: only the trusted-publishing attempt may tolerate failure")
+     return errors
+ 
+ 
+ def main():
+     errors = []
+-    paths = subprocess.check_output(['git', 'ls-files', '-z'], cwd=ROOT).decode().split('\0')
++    paths = subprocess.check_output(["git", "ls-files", "-z"], cwd=ROOT).decode().split("\0")
+     # Include new scripts in local validation before their first commit.
+-    paths += [str(p.relative_to(ROOT)) for folder in ('scripts', '.github', 'csharp', 'cpp') for p in (ROOT / folder).rglob('*') if p.is_file() and not any(x in p.parts for x in ('bin', 'obj', 'build')) and p.suffix in ('.py', '.sh', '.yml')]
++    paths += [
++        str(p.relative_to(ROOT))
++        for folder in ("scripts", ".github", "csharp", "cpp")
++        for p in (ROOT / folder).rglob("*")
++        if p.is_file()
++        and not any(x in p.parts for x in ("bin", "obj", "build"))
++        and p.suffix in (".py", ".sh", ".yml")
++    ]
+     for name in sorted(set(paths)):
+         path = ROOT / name
+-        if not path.is_file() or name.startswith(('dev/log/', 'experiments/')):
++        if not path.is_file() or name.startswith(("dev/log/", "experiments/")):
+             continue
+-        if path.suffix not in ('.py', '.sh', '.cs', '.h', '.cpp', '.yml', '.json', '.csproj', '.nuspec'):
++        if path.suffix not in (
++            ".py",
++            ".sh",
++            ".cs",
++            ".h",
++            ".cpp",
++            ".yml",
++            ".json",
++            ".csproj",
++            ".nuspec",
++        ):
+             continue
+-        source = path.read_text(encoding='utf-8-sig')
++        source = path.read_text(encoding="utf-8-sig")
+         if len(source.splitlines()) > 1500:
+-            errors.append(f'{name}: exceeds 1500 lines; split this source file')
+-        if path.suffix == '.py':
++            errors.append(f"{name}: exceeds 1500 lines; split this source file")
++        if path.suffix == ".py":
+             ast.parse(source, filename=name)
+-        elif path.suffix == '.json':
++        elif path.suffix == ".json":
+             json.loads(source)
+-        elif path.suffix in ('.csproj', '.nuspec'):
++        elif path.suffix in (".csproj", ".nuspec"):
+             ET.fromstring(source)
+-        elif path.suffix == '.sh':
+-            subprocess.run(['bash', '-n', str(path)], check=True)
+-        if name.startswith('.github/workflows/'):
+-            for action in re.findall(r'uses:\s*([^\s#]+)', source):
+-                if not action.startswith('./') and not re.fullmatch(r'[^@]+@[0-9a-f]{40}', action):
+-                    errors.append(f'{name}: action must be pinned to reviewed commit: {action}')
+-            if name == '.github/workflows/ci.yml':
++        elif path.suffix == ".sh":
++            subprocess.run(["bash", "-n", str(path)], check=True)
++        if name.startswith(".github/workflows/"):
++            for action in re.findall(r"uses:\s*([^\s#]+)", source):
++                if not action.startswith("./") and not re.fullmatch(r"[^@]+@[0-9a-f]{40}", action):
++                    errors.append(f"{name}: action must be pinned to reviewed commit: {action}")
++            if name == ".github/workflows/ci.yml":
+                 errors.extend(trusted_publishing_errors(yaml.safe_load(source)))
+     if errors:
+-        raise SystemExit('\n'.join(errors))
+-    print('Repository configuration, source sizes, scripts and action pins passed')
++        raise SystemExit("\n".join(errors))
++    print("Repository configuration, source sizes, scripts and action pins passed")
+ 
+ 
+-if __name__ == '__main__':
++if __name__ == "__main__":
+     main()
+diff --git a/scripts/check_required.py b/scripts/check_required.py
+index 0d0ce9194..3691cfd65 100644
+--- a/scripts/check_required.py
++++ b/scripts/check_required.py
+@@ -1,32 +1,38 @@
+ """Prevent skipped jobs from turning missing validation into a green check."""
++
+ import json
+ import os
+ 
+ 
+ def validate(jobs, main=False):
+-    failed = [name for name, job in jobs.items() if job['result'] not in ('success', 'skipped')]
++    failed = [name for name, job in jobs.items() if job["result"] not in ("success", "skipped")]
+     if failed:
+-        raise ValueError('Validation did not pass: ' + ', '.join(failed))
+-    expected = {'changes', 'quality', 'security', 'links'}
+-    outputs = jobs['changes']['outputs']
+-    pipeline = outputs.get('pipeline') == 'true'
+-    for language in ('csharp', 'cpp'):
+-        if pipeline or outputs.get(language) == 'true':
++        raise ValueError("Validation did not pass: " + ", ".join(failed))
++    expected = {"changes", "quality", "security", "links"}
++    outputs = jobs["changes"]["outputs"]
++    pipeline = outputs.get("pipeline") == "true"
++    for language in ("csharp", "cpp"):
++        if pipeline or outputs.get(language) == "true":
+             expected.add(language)
+-    if pipeline or outputs.get('csharp') == 'true' or outputs.get('cpp') == 'true' or outputs.get('docs') == 'true':
+-        expected.add('docs')
++    if (
++        pipeline
++        or outputs.get("csharp") == "true"
++        or outputs.get("cpp") == "true"
++        or outputs.get("docs") == "true"
++    ):
++        expected.add("docs")
+     if main:
+-        if pipeline or outputs.get('csharp') == 'true' or outputs.get('cpp') == 'true':
+-            expected.add('credentials')
+-        if expected.intersection({'csharp', 'cpp', 'docs'}):
+-            expected.add('publish')
+-    missing = sorted(name for name in expected if jobs[name]['result'] != 'success')
++        if pipeline or outputs.get("csharp") == "true" or outputs.get("cpp") == "true":
++            expected.add("credentials")
++        if expected.intersection({"csharp", "cpp", "docs"}):
++            expected.add("publish")
++    missing = sorted(name for name in expected if jobs[name]["result"] != "success")
+     if missing:
+-        raise ValueError('Required validation was skipped: ' + ', '.join(missing))
++        raise ValueError("Required validation was skipped: " + ", ".join(missing))
+     for name, job in jobs.items():
+-        if job['result'] == 'skipped':
+-            print(f'::notice::{name} skipped: event/change prerequisites did not require this job')
++        if job["result"] == "skipped":
++            print(f"::notice::{name} skipped: event/change prerequisites did not require this job")
+ 
+ 
+-if __name__ == '__main__':
+-    validate(json.loads(os.environ['RESULTS']), os.environ.get('GITHUB_REF') == 'refs/heads/main')
++if __name__ == "__main__":
++    validate(json.loads(os.environ["RESULTS"]), os.environ.get("GITHUB_REF") == "refs/heads/main")
+diff --git a/scripts/check_sarif.py b/scripts/check_sarif.py
+index 16f13132f..a21b97b83 100644
+--- a/scripts/check_sarif.py
++++ b/scripts/check_sarif.py
+@@ -1,38 +1,59 @@
+ """Reject incomplete CodeQL reports and every reported finding, including notes."""
++
+ import json
+ from pathlib import Path
+ import sys
+ 
+ 
+ def check(directory):
+-    reports = sorted(Path(directory).rglob('*.sarif'))
++    reports = sorted(Path(directory).rglob("*.sarif"))
+     if not reports:
+-        raise ValueError('CodeQL did not produce a SARIF report')
++        raise ValueError("CodeQL did not produce a SARIF report")
+     findings = []
+     for path in reports:
+         report = json.loads(path.read_text())
+-        if report.get('version') != '2.1.0' or not report.get('runs'):
+-            raise ValueError(f'Incomplete SARIF report: {path}')
+-        for run in report['runs']:
+-            if not run.get('tool', {}).get('driver', {}).get('name') or 'results' not in run:
+-                raise ValueError(f'Incomplete SARIF run: {path}')
+-            for invocation in run.get('invocations', []):
+-                if invocation.get('executionSuccessful') is False:
+-                    raise ValueError(f'CodeQL analysis failed: {path}')
+-                if any(item.get('level') in ('error', 'warning') for item in invocation.get('toolExecutionNotifications', [])):
+-                    raise ValueError(f'CodeQL analysis reported a diagnostic: {path}')
+-            for result in run['results']:
+-                locations = result.get('locations', [])
+-                location = locations[0].get('physicalLocation', {}) if locations else {}
+-                uri = location.get('artifactLocation', {}).get('uri', str(path))
+-                line = location.get('region', {}).get('startLine', 1)
+-                findings.append(f"{uri}:{line}: {result.get('ruleId', 'unknown')}: {result.get('message', {}).get('text', 'CodeQL finding')}")
++        if (
++            not isinstance(report, dict)
++            or report.get("version") != "2.1.0"
++            or not isinstance(report.get("runs"), list)
++            or not report["runs"]
++        ):
++            raise ValueError(f"Incomplete SARIF report: {path}")
++        for run in report["runs"]:
++            if (
++                not isinstance(run, dict)
++                or not run.get("tool", {}).get("driver", {}).get("name")
++                or not isinstance(run.get("results"), list)
++            ):
++                raise ValueError(f"Incomplete SARIF run: {path}")
++            invocations = run.get("invocations")
++            if not isinstance(invocations, list) or not invocations:
++                raise ValueError(f"Incomplete SARIF invocation: {path}")
++            for invocation in invocations:
++                if (
++                    not isinstance(invocation, dict)
++                    or invocation.get("executionSuccessful") is not True
++                ):
++                    raise ValueError(f"CodeQL analysis failed: {path}")
++                if any(
++                    item.get("level") in ("error", "warning")
++                    for item in invocation.get("toolExecutionNotifications", [])
++                ):
++                    raise ValueError(f"CodeQL analysis reported a diagnostic: {path}")
++            for result in run["results"]:
++                locations = result.get("locations", [])
++                location = locations[0].get("physicalLocation", {}) if locations else {}
++                uri = location.get("artifactLocation", {}).get("uri", str(path))
++                line = location.get("region", {}).get("startLine", 1)
++                findings.append(
++                    f"{uri}:{line}: {result.get('ruleId', 'unknown')}: {result.get('message', {}).get('text', 'CodeQL finding')}"
++                )
+     if findings:
+-        raise ValueError('\n'.join(findings))
+-    print(f'CodeQL: {len(reports)} complete report(s), no findings')
++        raise ValueError("\n".join(findings))
++    print(f"CodeQL: {len(reports)} complete report(s), no findings")
+ 
+ 
+-if __name__ == '__main__':
++if __name__ == "__main__":
+     try:
+         check(sys.argv[1])
+     except (ValueError, KeyError, TypeError) as error:
+diff --git a/scripts/check_web_archive.py b/scripts/check_web_archive.py
+index 753b47357..6e230ed35 100755
+--- a/scripts/check_web_archive.py
++++ b/scripts/check_web_archive.py
+@@ -26,9 +26,7 @@
+     r"\[(?:4\d\d|5\d\d|ERROR|TIMEOUT|UNKNOWN)\]\s+" r"(https?://[^\s)]+)",
+     re.IGNORECASE,
+ )
+-BULLET_URL_PATTERN = re.compile(
+-    r"^\s*(?:\*|-)\s+.*?(https?://[^\s|)>\]]+)", re.MULTILINE
+-)
++BULLET_URL_PATTERN = re.compile(r"^\s*(?:\*|-)\s+.*?(https?://[^\s|)>\]]+)", re.MULTILINE)
+ 
+ 
+ @dataclass(frozen=True)
+@@ -68,9 +66,7 @@ def split_recovered_urls(
+     link; keeping it in this report would send a healthy URL to the Wayback
+     Machine and fail the job on it.
+     """
+-    recovered_set = {
+-        line.strip() for line in (recovered_text or "").splitlines() if line.strip()
+-    }
++    recovered_set = {line.strip() for line in (recovered_text or "").splitlines() if line.strip()}
+     remaining = [url for url in urls if url not in recovered_set]
+     recovered = [url for url in urls if url in recovered_set]
+     return remaining, recovered
+@@ -167,9 +163,7 @@ def main() -> int:
+ 
+     broken_urls = extract_broken_urls(output_path.read_text(encoding="utf-8"))
+     recovered_file = Path(os.environ.get("RECOVERED_URLS", "lychee/recovered.txt"))
+-    recovered_text = (
+-        recovered_file.read_text(encoding="utf-8") if recovered_file.exists() else ""
+-    )
++    recovered_text = recovered_file.read_text(encoding="utf-8") if recovered_file.exists() else ""
+     broken_urls, rechecked_healthy = split_recovered_urls(broken_urls, recovered_text)
+     for url in rechecked_healthy:
+         print(f"  {url} never answered lychee but answers the re-check -- not broken")
+diff --git a/scripts/conan_profile.py b/scripts/conan_profile.py
+index fe168723d..f18ca3920 100644
+--- a/scripts/conan_profile.py
++++ b/scripts/conan_profile.py
+@@ -3,6 +3,7 @@
+ Unlike `conan profile detect`, this does not guess the compiler or ABI. Set CXX
+ and CC to select the toolchain, or CPP_CONAN_PROFILE to use a reviewed profile.
+ """
++
+ import os
+ from pathlib import Path
+ import platform
+@@ -11,33 +12,49 @@
+ 
+ 
+ def profile():
+-    cxx = shlex.split(os.environ.get('CXX', 'c++'))
+-    definitions = subprocess.check_output([*cxx, '-dM', '-E', '-x', 'c++', '-'], input=b'').decode()
+-    macros = dict(line.removeprefix('#define ').split(' ', 1) for line in definitions.splitlines() if line.startswith('#define ') and ' ' in line.removeprefix('#define '))
++    cxx = shlex.split(os.environ.get("CXX", "c++"))
++    definitions = subprocess.check_output([*cxx, "-dM", "-E", "-x", "c++", "-"], input=b"").decode()
++    macros = dict(
++        line.removeprefix("#define ").split(" ", 1)
++        for line in definitions.splitlines()
++        if line.startswith("#define ") and " " in line.removeprefix("#define ")
++    )
+     system = platform.system()
+-    if '__clang__' in macros:
+-        compiler = 'apple-clang' if system == 'Darwin' else 'clang'
+-        version = macros['__clang_major__']
+-    elif '__GNUC__' in macros:
+-        compiler, version = 'gcc', macros['__GNUC__']
++    if "__clang__" in macros:
++        compiler = "apple-clang" if system == "Darwin" else "clang"
++        version = macros["__clang_major__"]
++    elif "__GNUC__" in macros:
++        compiler, version = "gcc", macros["__GNUC__"]
+     else:
+-        raise ValueError('Set CPP_CONAN_PROFILE for this unsupported compiler')
+-    architectures = {'x86_64': 'x86_64', 'amd64': 'x86_64', 'aarch64': 'armv8', 'arm64': 'armv8'}
++        raise ValueError("Set CPP_CONAN_PROFILE for this unsupported compiler")
++    architectures = {"x86_64": "x86_64", "amd64": "x86_64", "aarch64": "armv8", "arm64": "armv8"}
+     arch = architectures.get(platform.machine().lower())
+-    if system not in ('Linux', 'Darwin') or arch is None:
+-        raise ValueError('Set CPP_CONAN_PROFILE for this unsupported native platform')
+-    return '\n'.join(('[settings]', f'os={"Macos" if system == "Darwin" else system}', f'arch={arch}', f'compiler={compiler}', f'compiler.version={version}', f'compiler.libcxx={"libc++" if system == "Darwin" else "libstdc++11"}', 'compiler.cppstd=20', 'build_type=Release', ''))
++    if system not in ("Linux", "Darwin") or arch is None:
++        raise ValueError("Set CPP_CONAN_PROFILE for this unsupported native platform")
++    return "\n".join(
++        (
++            "[settings]",
++            f"os={'Macos' if system == 'Darwin' else system}",
++            f"arch={arch}",
++            f"compiler={compiler}",
++            f"compiler.version={version}",
++            f"compiler.libcxx={'libc++' if system == 'Darwin' else 'libstdc++11'}",
++            "compiler.cppstd=20",
++            "build_type=Release",
++            "",
++        )
++    )
+ 
+ 
+-if __name__ == '__main__':
+-    custom = os.environ.get('CPP_CONAN_PROFILE')
++if __name__ == "__main__":
++    custom = os.environ.get("CPP_CONAN_PROFILE")
+     if custom:
+         if not Path(custom).is_file():
+-            raise ValueError('CPP_CONAN_PROFILE must name an existing reviewed profile')
+-        print(f'Using explicit Conan profile: {custom}')
++            raise ValueError("CPP_CONAN_PROFILE must name an existing reviewed profile")
++        print(f"Using explicit Conan profile: {custom}")
+     else:
+-        home = Path(subprocess.check_output(['conan', 'config', 'home']).decode().strip())
+-        destination = home / 'profiles/default'
++        home = Path(subprocess.check_output(["conan", "config", "home"]).decode().strip())
++        destination = home / "profiles/default"
+         destination.parent.mkdir(parents=True, exist_ok=True)
+         text = profile()
+         destination.write_text(text)
+diff --git a/scripts/extract_artifact.py b/scripts/extract_artifact.py
+new file mode 100644
+index 000000000..284ae6cd7
+--- /dev/null
++++ b/scripts/extract_artifact.py
+@@ -0,0 +1,40 @@
++"""Extract one integrity-checked raw download-artifact ZIP without unzip-stream.
++
++Use download-artifact's skip-decompress input; its digest check stays enabled.
++Reject ambiguous downloads, traversal and symlinks before writing any files.
++"""
++
++import argparse
++from pathlib import Path, PurePosixPath
++import stat
++from zipfile import ZipFile
++
++
++def extract(source: Path, destination: Path):
++    files = list(source.iterdir())
++    if len(files) != 1 or not files[0].is_file() or files[0].is_symlink():
++        raise ValueError("Expected exactly one downloaded artifact ZIP")
++    destination = destination.resolve()
++    with ZipFile(files[0]) as archive:
++        for entry in archive.infolist():
++            path = PurePosixPath(entry.filename)
++            if (
++                not entry.filename
++                or "\\" in entry.filename
++                or path.is_absolute()
++                or ".." in path.parts
++                or any(":" in part for part in path.parts)
++                or stat.S_ISLNK(entry.external_attr >> 16)
++                or not (destination / entry.filename).resolve().is_relative_to(destination)
++            ):
++                raise ValueError(f"Unsafe artifact member: {entry.filename!r}")
++        archive.extractall(destination)
++        print(f"Extracted {len(archive.infolist())} artifact member(s) to {destination}")
++
++
++if __name__ == "__main__":
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("source", type=Path)
++    parser.add_argument("destination", type=Path)
++    args = parser.parse_args()
++    extract(args.source, args.destination)
+diff --git a/scripts/patch_conan_recipes.py b/scripts/patch_conan_recipes.py
+index 3fa4bef69..ddb2a9510 100644
+--- a/scripts/patch_conan_recipes.py
++++ b/scripts/patch_conan_recipes.py
+@@ -3,6 +3,7 @@
+ Header-only dependencies must propagate their headers and link requirements.
+ This workaround is kept explicit until the upstream recipes fix their metadata.
+ """
++
+ from pathlib import Path
+ import re
+ import sys
+@@ -12,58 +13,86 @@
+ 
+ def modern_metadata(source):
+     # The final assignment in several pinned recipes has no trailing newline.
+-    return re.sub(r'^[ \t]*self\.cpp_info(?:\.components\[[^\n]+?\])?\.(?:names|filenames)\[[^\n]+(?:\n|$)', '', source, flags=re.MULTILINE)
++    return re.sub(
++        r"^[ \t]*self\.cpp_info(?:\.components\[[^\n]+?\])?\.(?:names|filenames)\[[^\n]+(?:\n|$)",
++        "",
++        source,
++        flags=re.MULTILINE,
++    )
+ 
+ 
+ def package_id_metadata(source, name):
+-    if name == 'cpuinfo':
++    if name == "cpuinfo":
+         # Date-based upstream versions are not semantic versions. Consumers must
+         # include the complete version in their ABI identity, including when the
+         # relationship between the two package types is not known.
+-        source, count = re.subn(r'(class \w+\(ConanFile\):\n)',
+-                                r'\1    package_id_non_embed_mode = "full_mode"\n    package_id_unknown_mode = "full_mode"\n',
+-                                source, count=1)
++        source, count = re.subn(
++            r"(class \w+\(ConanFile\):\n)",
++            r'\1    package_id_non_embed_mode = "full_mode"\n    package_id_unknown_mode = "full_mode"\n',
++            source,
++            count=1,
++        )
+         if count != 1:
+-            raise ValueError('Review the pinned cpuinfo recipe structure')
++            raise ValueError("Review the pinned cpuinfo recipe structure")
+     return source
+ 
+ 
+ def dependency_source_compatibility(self):
+     from pathlib import Path
+     import re
++
+     root = Path(self.source_folder)
+     # These dependencies predate CMake's removal of compatibility below 3.10.
+-    for path in root.rglob('CMakeLists.txt'):
++    for path in root.rglob("CMakeLists.txt"):
+         source = path.read_text()
++
+         def minimum(match):
+-            version = tuple(int(part) for part in match.group(2).split('.'))
+-            return match.group(1) + ('3.13' if version < (3, 13) else match.group(2))
+-        path.write_text(re.sub(r'(cmake_minimum_required\s*\(\s*VERSION\s+)([0-9]+(?:\.[0-9]+)*)', minimum, source, flags=re.IGNORECASE))
+-    if self.name == 'gtest':
+-        path = root / 'googletest/include/gtest/gtest-printers.h'
++            version = tuple(int(part) for part in match.group(2).split("."))
++            return match.group(1) + ("3.13" if version < (3, 13) else match.group(2))
++
++        path.write_text(
++            re.sub(
++                r"(cmake_minimum_required\s*\(\s*VERSION\s+)([0-9]+(?:\.[0-9]+)*)",
++                minimum,
++                source,
++                flags=re.IGNORECASE,
++            )
++        )
++    if self.name == "gtest":
++        path = root / "googletest/include/gtest/gtest-printers.h"
+         source = path.read_text()
+-        for operator, scale in (('*', 'mulfor6'), ('/', 'divfor6')):
+-            old = f'static_cast<int32_t>(val {operator} {scale} + 0.5)'
++        for operator, scale in (("*", "mulfor6"), ("/", "divfor6")):
++            old = f"static_cast<int32_t>(val {operator} {scale} + 0.5)"
+             if source.count(old) != 1:
+-                raise ValueError('Review the pinned GTest precision conversion')
+-            source = source.replace(old, f'static_cast<FloatType>({old})')
++                raise ValueError("Review the pinned GTest precision conversion")
++            source = source.replace(old, f"static_cast<FloatType>({old})")
+         path.write_text(source)
+-    if self.name == 'benchmark':
+-        path = root / 'src/CMakeLists.txt'
++    if self.name == "benchmark":
++        path = root / "src/CMakeLists.txt"
+         source = path.read_text()
+-        old = 'target_link_libraries(benchmark  ${BENCHMARK_CXX_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})'
++        old = (
++            "target_link_libraries(benchmark  ${BENCHMARK_CXX_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})"
++        )
+         if source.count(old) != 1:
+-            raise ValueError('Review the upstream benchmark thread target')
+-        source = source.replace(old, 'target_link_libraries(benchmark ${BENCHMARK_CXX_LIBRARIES} Threads::Threads)')
+-        source, count = re.subn(r'if\(NOT CMAKE_THREAD_LIBS_INIT[^\n]+\n.*?\nendif\(\)', '', source, count=1, flags=re.DOTALL)
++            raise ValueError("Review the upstream benchmark thread target")
++        source = source.replace(
++            old, "target_link_libraries(benchmark ${BENCHMARK_CXX_LIBRARIES} Threads::Threads)"
++        )
++        source, count = re.subn(
++            r"if\(NOT CMAKE_THREAD_LIBS_INIT[^\n]+\n.*?\nendif\(\)",
++            "",
++            source,
++            count=1,
++            flags=re.DOTALL,
++        )
+         if count != 1:
+-            raise ValueError('Review the obsolete benchmark pthread workaround')
++            raise ValueError("Review the obsolete benchmark pthread workaround")
+         path.write_text(source)
+-    if self.name == 'cpuinfo':
+-        path = root / 'deps/clog/src/clog.c'
++    if self.name == "cpuinfo":
++        path = root / "deps/clog/src/clog.c"
+         source = path.read_text()
+         # Consume short writes, retry EINTR, and stop on a closed/broken sink.
+-        helper = '''
++        helper = """
+ #if !defined(_WIN32) && !defined(__hexagon__)
+ #include <errno.h>
+ static void clog_write_all(int fd, const char* bytes, size_t size) {
+@@ -76,35 +105,59 @@ def minimum(match):
+     }
+ }
+ #endif
+-'''
+-        source, count = re.subn(r'\bwrite\((STD(?:ERR|OUT)_FILENO),', r'clog_write_all(\1,', source)
++"""
++        source, count = re.subn(r"\bwrite\((STD(?:ERR|OUT)_FILENO),", r"clog_write_all(\1,", source)
+         if count != 5:
+-            raise ValueError('Review the five upstream clog write calls')
+-        path.write_text(source.replace('#include <clog.h>', '#include <clog.h>\n' + helper))
++            raise ValueError("Review the five upstream clog write calls")
++        path.write_text(source.replace("#include <clog.h>", "#include <clog.h>\n" + helper))
+ 
+ 
+ def patch(directory):
+-    for recipe in sorted(directory.glob('recipes/platform.*/all/conanfile.py')):
+-        source = subprocess.check_output(['git', '-C', str(directory), 'show', 'HEAD:' + recipe.relative_to(directory).as_posix()]).decode()
+-        source, count = re.subn(r'(class \w+\(ConanFile\):\n)', r'\1    package_type = "header-library"\n', source, count=1)
++    for recipe in sorted(directory.glob("recipes/platform.*/all/conanfile.py")):
++        source = subprocess.check_output(
++            [
++                "git",
++                "-C",
++                str(directory),
++                "show",
++                "HEAD:" + recipe.relative_to(directory).as_posix(),
++            ]
++        ).decode()
++        source, count = re.subn(
++            r"(class \w+\(ConanFile\):\n)",
++            r'\1    package_type = "header-library"\n',
++            source,
++            count=1,
++        )
+         if count != 1:
+-            raise ValueError(f'Unexpected recipe structure: {recipe}')
++            raise ValueError(f"Unexpected recipe structure: {recipe}")
+         source = modern_metadata(source)
+         # Internal Conan aliases follow Conan 2 naming guidance. CMake targets,
+         # public namespaces, headers and NuGet identities stay unchanged.
+-        source = re.sub(r'([\"\x27])platform\.([a-z.]+)(?=/|[\"\x27])', lambda match: match[1] + 'platform-' + match[2].replace('.', '-'), source)
+-        if recipe.parts[-3] == 'platform.data':
+-            source = source.replace('import os\n', 'import os\nfrom pathlib import Path\n')
++        source = re.sub(
++            r"([\"\x27])platform\.([a-z.]+)(?=/|[\"\x27])",
++            lambda match: match[1] + "platform-" + match[2].replace(".", "-"),
++            source,
++        )
++        if recipe.parts[-3] == "platform.data":
++            source = source.replace("import os\n", "import os\nfrom pathlib import Path\n")
+             marker = '        get(self, **self.conan_data["sources"][self.version]["source"], strip_root=True)'
+             if marker not in source:
+-                raise ValueError('Unexpected platform.data source method')
+-            source = source.replace(marker, marker + '\n        for header in Path(self.source_folder).rglob("*.h"):\n            text = header.read_text(encoding="utf-8-sig")\n            header.write_text(text.replace("constexpr auto constants = storage.Constants;", "constexpr auto constants = TStorage::Constants;"))')
+-        if recipe.parts[-3] == 'platform.memory':
+-            source = source.replace('import os\n', 'import os\nfrom pathlib import Path\n')
++                raise ValueError("Unexpected platform.data source method")
++            source = source.replace(
++                marker,
++                marker
++                + '\n        for header in Path(self.source_folder).rglob("*.h"):\n            text = header.read_text(encoding="utf-8-sig")\n            header.write_text(text.replace("constexpr auto constants = storage.Constants;", "constexpr auto constants = TStorage::Constants;"))',
++            )
++        if recipe.parts[-3] == "platform.memory":
++            source = source.replace("import os\n", "import os\nfrom pathlib import Path\n")
+             marker = '        get(self, **self.conan_data["sources"][self.version]["source"], strip_root=True)'
+             if source.count(marker) != 1:
+-                raise ValueError('Unexpected platform.memory source method')
+-            source = source.replace(marker, marker + '''
++                raise ValueError("Unexpected platform.memory source method")
++            source = source.replace(
++                marker,
++                marker
++                + """
+         headers = list(Path(self.source_folder).rglob("HeapResizableDirectMemory.h"))
+         if len(headers) != 1:
+             raise ValueError("Expected one upstream heap memory header")
+@@ -113,20 +166,35 @@ def patch(directory):
+         old = "delete static_cast<std::byte*>(Pointer());"
+         if text.count(old) != 1:
+             raise ValueError("Upstream heap destructor changed; review the allocator workaround")
+-        header.write_text(text.replace(old, "std::free(Pointer());"))''')
++        header.write_text(text.replace(old, "std::free(Pointer());"))""",
++            )
+         recipe.write_text(source)
+     import inspect
++
+     compatibility = textwrap.dedent(inspect.getsource(dependency_source_compatibility))
+-    for name in ('benchmark', 'cpuinfo', 'gtest', 'ms-gsl'):
+-        recipe = directory / 'recipes' / name / 'all/conanfile.py'
+-        source = subprocess.check_output(['git', '-C', str(directory), 'show', 'HEAD:' + recipe.relative_to(directory).as_posix()]).decode()
++    for name in ("benchmark", "cpuinfo", "gtest", "ms-gsl"):
++        recipe = directory / "recipes" / name / "all/conanfile.py"
++        source = subprocess.check_output(
++            [
++                "git",
++                "-C",
++                str(directory),
++                "show",
++                "HEAD:" + recipe.relative_to(directory).as_posix(),
++            ]
++        ).decode()
+         source = modern_metadata(source)
+         source = package_id_metadata(source, name)
+-        source, count = re.subn(r'(        get\(self, \*\*self\.conan_data\["sources"\]\[self\.version\],[^)]*strip_root=True\))', r'\1\n        dependency_source_compatibility(self)', source, count=1)
++        source, count = re.subn(
++            r'(        get\(self, \*\*self\.conan_data\["sources"\]\[self\.version\],[^)]*strip_root=True\))',
++            r"\1\n        dependency_source_compatibility(self)",
++            source,
++            count=1,
++        )
+         if count != 1:
+-            raise ValueError(f'Review the pinned dependency source method: {name}')
+-        recipe.write_text(source + '\n\n' + compatibility)
++            raise ValueError(f"Review the pinned dependency source method: {name}")
++        recipe.write_text(source + "\n\n" + compatibility)
+ 
+ 
+-if __name__ == '__main__':
++if __name__ == "__main__":
+     patch(Path(sys.argv[1]))
+diff --git a/scripts/recheck_broken_links.py b/scripts/recheck_broken_links.py
+index 364614230..33b54fa1d 100755
+--- a/scripts/recheck_broken_links.py
++++ b/scripts/recheck_broken_links.py
+@@ -123,9 +123,7 @@ def parse_accept_ranges(spec: str) -> Callable[[int], bool]:
+             continue
+         range_match = re.fullmatch(r"(\d+)\.\.=(\d+)", trimmed)
+         if range_match:
+-            accepted.update(
+-                range(int(range_match.group(1)), int(range_match.group(2)) + 1)
+-            )
++            accepted.update(range(int(range_match.group(1)), int(range_match.group(2)) + 1))
+         elif re.fullmatch(r"\d{3}", trimmed):
+             accepted.add(int(trimmed))
+     return lambda status: status in accepted
+@@ -152,9 +150,7 @@ def default_fetch(url: str, user_agent: str) -> int:
+     HTTPError carrying the code, which is a host's answer, not a transport
+     failure. Transport failures (reset, timeout, DNS) raise.
+     """
+-    request = urllib.request.Request(
+-        url, method="HEAD", headers={"User-Agent": user_agent}
+-    )
++    request = urllib.request.Request(url, method="HEAD", headers={"User-Agent": user_agent})
+     try:
+         with urllib.request.urlopen(  # noqa: S310 - URL comes from the lychee report
+             request, timeout=REQUEST_TIMEOUT_SECONDS
+@@ -209,19 +205,14 @@ def recheck_unanswered(
+                 recovered.append(url)
+             else:
+                 rejected.append(
+-                    StillBroken(
+-                        url, status, f"answered {status}, which lychee does not accept"
+-                    )
++                    StillBroken(url, status, f"answered {status}, which lychee does not accept")
+                 )
+         pending = still_pending
+ 
+     return RecheckResult(
+         recovered=recovered,
+         still_broken=rejected
+-        + [
+-            StillBroken(url, None, "no answer within the re-check budget")
+-            for url in pending
+-        ],
++        + [StillBroken(url, None, "no answer within the re-check budget") for url in pending],
+     )
+ 
+ 
+@@ -237,22 +228,18 @@ def main() -> int:
+     """Re-ask every unanswered URL in the configured lychee report."""
+     lychee_output = Path(os.environ.get("LYCHEE_OUTPUT", "lychee/out.md"))
+     recovered_output = Path(os.environ.get("RECOVERED_OUTPUT", "lychee/recovered.txt"))
+-    accept, user_agent = extract_lychee_request_options(
+-        WORKFLOW_PATH.read_text(encoding="utf-8")
+-    )
++    accept, user_agent = extract_lychee_request_options(WORKFLOW_PATH.read_text(encoding="utf-8"))
+     failures = parse_lychee_failures(lychee_output.read_text(encoding="utf-8"))
+ 
+     final = [
+         failure
+         for failure in failures
+-        if failure.answered
+-        or not failure.url.lower().startswith(("http://", "https://"))
++        if failure.answered or not failure.url.lower().startswith(("http://", "https://"))
+     ]
+     unanswered = [
+         failure.url
+         for failure in failures
+-        if not failure.answered
+-        and failure.url.lower().startswith(("http://", "https://"))
++        if not failure.answered and failure.url.lower().startswith(("http://", "https://"))
+     ]
+     print(
+         f"Re-check: {len(failures)} lychee failure(s), {len(final)} answered and "
+@@ -266,23 +253,16 @@ def main() -> int:
+         unanswered,
+         accept=accept,
+         user_agent=user_agent,
+-        budget_seconds=float(
+-            os.environ.get("RECHECK_BUDGET_SECONDS", BUDGET_SECONDS_DEFAULT)
+-        ),
+-        initial_wait_ms=float(
+-            os.environ.get("RECHECK_WAIT_MS", INITIAL_WAIT_MS_DEFAULT)
+-        ),
++        budget_seconds=float(os.environ.get("RECHECK_BUDGET_SECONDS", BUDGET_SECONDS_DEFAULT)),
++        initial_wait_ms=float(os.environ.get("RECHECK_WAIT_MS", INITIAL_WAIT_MS_DEFAULT)),
+     )
+ 
+     for url in result.recovered:
+         print(
+-            f"::notice::{url} never answered lychee but answers {accept} now "
+-            "-- not a broken link"
++            f"::notice::{url} never answered lychee but answers {accept} now -- not a broken link"
+         )
+     if result.recovered:
+-        recovered_output.write_text(
+-            "\n".join(result.recovered) + "\n", encoding="utf-8"
+-        )
++        recovered_output.write_text("\n".join(result.recovered) + "\n", encoding="utf-8")
+     print(
+         f"Re-check finished: {len(result.recovered)} recovered, "
+         f"{len(result.still_broken)} still without an answer"
+diff --git a/scripts/release.py b/scripts/release.py
+index ba7ce1cab..dd974df4c 100644
+--- a/scripts/release.py
++++ b/scripts/release.py
+@@ -37,15 +37,24 @@
+ def check_auth_config():
+     user = os.environ.get("NUGET_USER", "")
+     if not re.fullmatch(r"[A-Za-z0-9_.-]+", user):
+-        raise RuntimeError("NUGET_USER must be the actual NuGet policy creator's profile name. " + HINT)
++        raise RuntimeError(
++            "NUGET_USER must be the actual NuGet policy creator's profile name. " + HINT
++        )
+ 
+ 
+ def info(language):
+     if language == "csharp":
+         tree = ET.parse(PROJECT)
+-        return {"id": tree.findtext(".//PackageId"), "version": tree.findtext(".//VersionPrefix"), "notes": tree.findtext(".//PackageReleaseNotes")}
++        return {
++            "id": tree.findtext(".//PackageId"),
++            "version": tree.findtext(".//VersionPrefix"),
++            "notes": tree.findtext(".//PackageReleaseNotes"),
++        }
+     tree = ET.parse(NUSPEC)
+-    return {key: tree.findtext(f".//n:{tag}", namespaces=NAMESPACE) for key, tag in [("id", "id"), ("version", "version"), ("notes", "releaseNotes")]}
++    return {
++        key: tree.findtext(f".//n:{tag}", namespaces=NAMESPACE)
++        for key, tag in [("id", "id"), ("version", "version"), ("notes", "releaseNotes")]
++    }
+ 
+ 
+ def request(url, *, method="GET", headers=None):
+@@ -54,7 +63,9 @@ class NoRedirect(urllib.request.HTTPRedirectHandler):
+         def redirect_request(self, req, fp, code, msg, hdrs, newurl):
+             return None
+ 
+-    req = urllib.request.Request(url, headers=headers or {}, method=method, data=b"" if method == "POST" else None)
++    req = urllib.request.Request(
++        url, headers=headers or {}, method=method, data=b"" if method == "POST" else None
++    )
+     try:
+         with urllib.request.build_opener(NoRedirect).open(req, timeout=30) as response:
+             return response.status, response.read()
+@@ -67,85 +78,121 @@ def redirect_request(self, req, fp, code, msg, hdrs, newurl):
+ 
+ def diagnostic(body, *credentials):
+     """Bound and flatten untrusted text before emitting any workflow annotation."""
+-    value = body.decode('utf-8', errors='replace') if isinstance(body, bytes) else str(body)
+-    secrets = [*credentials, *(os.environ.get(name, '') for name in
+-               ('NUGET_TOKEN', 'NUGET_FALLBACK_TOKEN', 'GH_TOKEN', 'ACTIONS_ID_TOKEN_REQUEST_TOKEN'))]
++    value = body.decode("utf-8", errors="replace") if isinstance(body, bytes) else str(body)
++    secrets = [
++        *credentials,
++        *(
++            os.environ.get(name, "")
++            for name in (
++                "NUGET_TOKEN",
++                "NUGET_FALLBACK_TOKEN",
++                "GH_TOKEN",
++                "ACTIONS_ID_TOKEN_REQUEST_TOKEN",
++            )
++        ),
++    ]
+     for secret in sorted(set(secrets), key=len, reverse=True):
+         if secret:
+-            for form in (secret, urllib.parse.quote(secret, safe='')):
+-                value = value.replace(form, '[REDACTED]')
+-    return ' '.join(value.split())[:1024]
++            for form in (secret, urllib.parse.quote(secret, safe="")):
++                value = value.replace(form, "[REDACTED]")
++    return " ".join(value.split())[:1024]
+ 
+ 
+ def authenticate_fallback(token, package):
+     # This endpoint authenticates push credentials, including first publication.
+     # It REPLACES the package subject: the returned key is never a scope proof.
+-    package_id = urllib.parse.quote(package['id'], safe='')
+-    version = urllib.parse.quote(package['version'], safe='')
+-    status, body = request(f'https://www.nuget.org/api/v2/package/create-verification-key/{package_id}/{version}',
+-                           method='POST', headers={'X-NuGet-ApiKey': token})
++    package_id = urllib.parse.quote(package["id"], safe="")
++    version = urllib.parse.quote(package["version"], safe="")
++    status, body = request(
++        f"https://www.nuget.org/api/v2/package/create-verification-key/{package_id}/{version}",
++        method="POST",
++        headers={"X-NuGet-ApiKey": token},
++    )
+     if status != 200:
+         if status in (401, 403):
+-            category = 'authentication/authorization rejected'
++            category = "authentication/authorization rejected"
+         elif status in (0, 408, 429) or status >= 500:
+-            category = 'authentication probe transport/transient failure'
++            category = "authentication probe transport/transient failure"
+         else:
+-            category = 'authentication probe failed/unsupported (not package-scope evidence)'
+-        raise RuntimeError(f'{category}: HTTP {status or "unreachable"}; {diagnostic(body, token)}')
++            category = "authentication probe failed/unsupported (not package-scope evidence)"
++        raise RuntimeError(f"{category}: HTTP {status or 'unreachable'}; {diagnostic(body, token)}")
+     try:
+-        key = json.loads(body)['Key']
++        key = json.loads(body)["Key"]
+         if not isinstance(key, str) or not key:
+-            raise ValueError('Missing authentication result')
++            raise ValueError("Missing authentication result")
+     except (ValueError, KeyError, TypeError):
+-        raise RuntimeError('authentication probe returned a malformed response') from None
+-    print('Provided key authenticated for push actions; package scope remains unverified. '
+-          'The derived verification key is discarded and cannot prove the original package subject.')
++        raise RuntimeError("authentication probe returned a malformed response") from None
++    print(
++        "Provided key authenticated for push actions; package scope remains unverified. "
++        "The derived verification key is discarded and cannot prove the original package subject."
++    )
+ 
+ 
+ def fallback_auth(reason, languages, package=None):
+-    token = os.environ.get('NUGET_FALLBACK_TOKEN', '')
++    token = os.environ.get("NUGET_FALLBACK_TOKEN", "")
+     if not token:
+-        print(f'auth=none; {reason}; token-fallback=missing')
+-        raise RuntimeError(f'{reason}; provided token fallback is missing. {HINT}')
++        print(f"auth=none; {reason}; token-fallback=missing")
++        raise RuntimeError(f"{reason}; provided token fallback is missing. {HINT}")
+     try:
+         authenticate_fallback(token, package or info(languages[0]))
+     except RuntimeError as error:
+-        print(f'auth=none; {reason}; token-fallback=failed')
+-        raise RuntimeError(f'{reason}; provided token fallback failed: {diagnostic(error, token)}') from None
+-    print(f'auth=token-fallback; {reason}')
+-    return 'token-fallback', token
++        print(f"auth=none; {reason}; token-fallback=failed")
++        raise RuntimeError(
++            f"{reason}; provided token fallback failed: {diagnostic(error, token)}"
++        ) from None
++    print(f"auth=token-fallback; {reason}")
++    return "token-fallback", token
+ 
+ 
+ def select_nuget_auth(languages):
+-    token = os.environ.get('NUGET_TOKEN', '')
++    token = os.environ.get("NUGET_TOKEN", "")
+     try:
+         check_auth_config()
+     except RuntimeError:
+-        return fallback_auth('trusted publishing failed/unavailable; failed-step=configuration (NUGET_USER profile)', languages)
+-    outcome = os.environ.get('NUGET_LOGIN_OUTCOME', '')
+-    if token and outcome == 'success':
+-        print('auth=trusted-publishing; NuGet/login exchange succeeded; stored fallback was not tested')
+-        return 'trusted-publishing', token
+-    return fallback_auth('trusted publishing failed/unavailable; failed-step=NuGet/login (exchange failed or key output missing)', languages)
++        return fallback_auth(
++            "trusted publishing failed/unavailable; failed-step=configuration (NUGET_USER profile)",
++            languages,
++        )
++    outcome = os.environ.get("NUGET_LOGIN_OUTCOME", "")
++    if token and outcome == "success":
++        print(
++            "auth=trusted-publishing; NuGet/login exchange succeeded; stored fallback was not tested"
++        )
++        return "trusted-publishing", token
++    return fallback_auth(
++        "trusted publishing failed/unavailable; failed-step=NuGet/login (exchange failed or key output missing)",
++        languages,
++    )
+ 
+ 
+ def verify_nuget(key, package):
+     # VerifyPackageKey evaluates PackageVerify user policies before owner/scope.
+     # Push-only OIDC keys can get HTTP 400 even after successful authentication.
+     # No supported non-upload proof of the original package subject is available.
+-    status, body = request(f"https://api.nuget.org/v3-flatcontainer/{package['id'].lower()}/index.json")
++    status, body = request(
++        f"https://api.nuget.org/v3-flatcontainer/{package['id'].lower()}/index.json"
++    )
+     if status == 404:
+-        print(f"::notice::NuGet package scope for {package['id']} is unverified: no public version exists; the first push must enforce ownership and scope.")
++        print(
++            f"::notice::NuGet package scope for {package['id']} is unverified: no public version exists; the first push must enforce ownership and scope."
++        )
+         return None
+     if status != 200:
+         return f"NuGet public package index returned HTTP {status or 'unreachable'}; scope is unverified. {diagnostic(body, key)}"
+     try:
+         versions = json.loads(body)["versions"]
+-        if not isinstance(versions, list) or not versions or not isinstance(versions[-1], str) or not re.fullmatch(r"[0-9A-Za-z.+-]+", versions[-1]):
++        if (
++            not isinstance(versions, list)
++            or not versions
++            or not isinstance(versions[-1], str)
++            or not re.fullmatch(r"[0-9A-Za-z.+-]+", versions[-1])
++        ):
+             raise ValueError("No versions")
+     except (ValueError, KeyError, TypeError):
+         return "NuGet package index is malformed; refusing to assume publish permissions."
+-    print(f"::notice::NuGet package scope for {package['id']} is unverified/unsupported by non-upload probes for push-only keys; actual publication must enforce ownership and package authorization.")
++    print(
++        f"::notice::NuGet package scope for {package['id']} is unverified/unsupported by non-upload probes for push-only keys; actual publication must enforce ownership and package authorization."
++    )
+     return None
+ 
+ 
+@@ -156,7 +203,13 @@ def verify_github(mode):
+     if mode != "release":
+         return None
+     repository = os.environ.get("GITHUB_REPOSITORY", "linksplatform/Data.Doublets")
+-    status, body = request(f"https://api.github.com/repos/{repository}", headers={"Authorization": f"Bearer {github_token}", "Accept": "application/vnd.github+json"})
++    status, body = request(
++        f"https://api.github.com/repos/{repository}",
++        headers={
++            "Authorization": f"Bearer {github_token}",
++            "Accept": "application/vnd.github+json",
++        },
++    )
+     if status != 200:
+         return f"GitHub repository access probe failed (HTTP {status or 'unreachable'}): {diagnostic(body, github_token)}"
+     try:
+@@ -164,23 +217,27 @@ def verify_github(mode):
+     except (ValueError, TypeError, AttributeError):
+         accessible = False
+     if not accessible:
+-        return "GitHub repository access probe returned a malformed or unexpected repository response."
++        return (
++            "GitHub repository access probe returned a malformed or unexpected repository response."
++        )
+     # Repository/user role metadata does not prove an installation token's
+     # endpoint permissions. In the live failure, this gate rejected a token
+     # that subsequently pushed gh-pages successfully. Enforce writes through
+     # the existing metadata, mirror and release operations, without ignoring any.
+-    print("::notice::GitHub repository access succeeded; release/package write permissions remain unverified by this read-only probe. "
+-          "Actual metadata, mirror and release writes must succeed; configure contents: write and packages: write on the publishing job.")
++    print(
++        "::notice::GitHub repository access succeeded; release/package write permissions remain unverified by this read-only probe. "
++        "Actual metadata, mirror and release writes must succeed; configure contents: write and packages: write on the publishing job."
++    )
+     return None
+ 
+ 
+ def verify_nuget_auth(mode, languages):
+-    if mode != 'release':
+-        return ['NuGet trusted publishing and package scope are unverified in report mode. ' + HINT]
++    if mode != "release":
++        return ["NuGet trusted publishing and package scope are unverified in report mode. " + HINT]
+     try:
+         _, token = select_nuget_auth(languages)
+-    except RuntimeError as error:
+-        return [str(error)]
++    except RuntimeError as auth_error:
++        return [str(auth_error)]
+     errors = []
+     for language in languages:
+         error = verify_nuget(token, info(language))
+@@ -200,9 +257,13 @@ def preflight(mode, languages, credentials_only=False):
+     if errors and mode == "release":
+         raise RuntimeError("Release preflight failed; no packages or tags were published.")
+     if mode != "release":
+-        print("PR validation continues without publishing credentials; OIDC exchange and package scope are unverified in report mode")
++        print(
++            "PR validation continues without publishing credentials; OIDC exchange and package scope are unverified in report mode"
++        )
+     else:
+-        print("Release preflight passed; publication and public downloads remain unverified until publish succeeds")
++        print(
++            "Release preflight passed; publication and public downloads remain unverified until publish succeeds"
++        )
+ 
+ 
+ def pack_cpp(output):
+@@ -216,16 +277,37 @@ def pack_cpp(output):
+     target = output / f"{package['id']}.{package['version']}.nupkg"
+     with zipfile.ZipFile(target, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+         archive.writestr(f"{package['id']}.nuspec", metadata)
+-        archive.writestr("[Content_Types].xml", '<?xml version="1.0"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="nuspec" ContentType="application/octet"/><Default Extension="h" ContentType="text/plain"/><Default Extension="png" ContentType="image/png"/><Default Extension="targets" ContentType="application/xml"/></Types>')
+-        archive.writestr("_rels/.rels", f'<?xml version="1.0"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Type="http://schemas.microsoft.com/packaging/2010/07/manifest" Target="/{package["id"]}.nuspec" Id="manifest"/></Relationships>')
++        archive.writestr(
++            "[Content_Types].xml",
++            '<?xml version="1.0"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="nuspec" ContentType="application/octet"/><Default Extension="h" ContentType="text/plain"/><Default Extension="png" ContentType="image/png"/><Default Extension="targets" ContentType="application/xml"/></Types>',
++        )
++        archive.writestr(
++            "_rels/.rels",
++            f'<?xml version="1.0"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Type="http://schemas.microsoft.com/packaging/2010/07/manifest" Target="/{package["id"]}.nuspec" Id="manifest"/></Relationships>',
++        )
+         for header in headers:
+-            archive.write(header, "lib/native/include/" + header.relative_to(ROOT / "cpp/Platform.Data.Doublets").as_posix())
++            archive.write(
++                header,
++                "lib/native/include/"
++                + header.relative_to(ROOT / "cpp/Platform.Data.Doublets").as_posix(),
++            )
+         archive.write(ROOT / "assets/icon.png", "images/icon.png")
+         archive.write(ROOT / "LICENSE", "LICENSE")
+-        archive.writestr(f"build/native/{package['id']}.targets", '<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"><ItemDefinitionGroup><ClCompile><AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)..\\..\\lib\\native\\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories></ClCompile></ItemDefinitionGroup></Project>')
+-    with zipfile.ZipFile(output / f"platform.data.doublets_{package['version']}.zip", "w", compression=zipfile.ZIP_DEFLATED) as archive:
++        archive.writestr(
++            f"build/native/{package['id']}.targets",
++            '<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"><ItemDefinitionGroup><ClCompile><AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)..\\..\\lib\\native\\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories></ClCompile></ItemDefinitionGroup></Project>',
++        )
++    with zipfile.ZipFile(
++        output / f"platform.data.doublets_{package['version']}.zip",
++        "w",
++        compression=zipfile.ZIP_DEFLATED,
++    ) as archive:
+         for header in headers:
+-            archive.write(header, "Platform.Data.Doublets/" + header.relative_to(ROOT / "cpp/Platform.Data.Doublets").as_posix())
++            archive.write(
++                header,
++                "Platform.Data.Doublets/"
++                + header.relative_to(ROOT / "cpp/Platform.Data.Doublets").as_posix(),
++            )
+         archive.write(ROOT / "LICENSE", "Platform.Data.Doublets/LICENSE")
+     print(f"Packed {len(headers)} headers into {target}")
+ 
+@@ -239,60 +321,88 @@ def wait_for_package(package, attempts=46, interval=20):
+             print(f"Anonymous NuGet download verified for {package['id']} {package['version']}")
+             return
+         if status not in (0, 404, 429, 500, 502, 503, 504):
+-            raise RuntimeError(f"Anonymous NuGet download returned HTTP {status}; verification failed")
++            raise RuntimeError(
++                f"Anonymous NuGet download returned HTTP {status}; verification failed"
++            )
+         if attempt + 1 < attempts:
+-            print(f"Waiting for public NuGet indexing ({attempt + 1}/{attempts}, HTTP {status})", flush=True)
++            print(
++                f"Waiting for public NuGet indexing ({attempt + 1}/{attempts}, HTTP {status})",
++                flush=True,
++            )
+             time.sleep(interval)
+-    raise RuntimeError("NuGet package was not publicly downloadable within 15 minutes; rerun publication to repair without changing the version")
++    raise RuntimeError(
++        "NuGet package was not publicly downloadable within 15 minutes; rerun publication to repair without changing the version"
++    )
+ 
+ 
+ def run_nuget_push(artifact, source, token):
+     """Capture client diagnostics without printing argv or unbounded secret output."""
+-    command = ['dotnet', 'nuget', 'push', str(artifact), '--source', source,
+-               '--api-key', token, '--skip-duplicate']
+-    if source.startswith('https://nuget.pkg.github.com/'):
+-        command.append('--no-symbols')
++    command = [
++        "dotnet",
++        "nuget",
++        "push",
++        str(artifact),
++        "--source",
++        source,
++        "--api-key",
++        token,
++        "--skip-duplicate",
++    ]
++    if source.startswith("https://nuget.pkg.github.com/"):
++        command.append("--no-symbols")
+     # File-backed output also bounds memory for a verbose registry/client failure.
+     with tempfile.TemporaryFile() as log:
+         result = subprocess.run(command, stdout=log, stderr=log, check=False)  # nosec B603 - Fixed dotnet command, argument list, no shell.
+         log.seek(0, 2)
+         log.seek(max(0, log.tell() - 16384))
+-        output = log.read().decode('utf-8', errors='replace')
++        output = log.read().decode("utf-8", errors="replace")
+     return result.returncode, output
+ 
+ 
+ def push_nuget(artifact, package, method, token):
+-    source = 'https://api.nuget.org/v3/index.json'
++    source = "https://api.nuget.org/v3/index.json"
+     code, output = run_nuget_push(artifact, source, token)
+     if not code:
+-        print(f'NuGet publication auth={method}; {diagnostic(output, token)}')
++        print(f"NuGet publication auth={method}; {diagnostic(output, token)}")
+         return
+     # Only an actual HTTP authentication/authorization rejection permits retry.
+-    rejection = re.search(r'(?:HTTP\s+|status code(?: does not indicate success)?:\s*)(401|403)\b', output, re.I)
+-    category = 'authentication/authorization rejection' if rejection else 'publication/client/transport failure (no credential retry)'
+-    outcome = f'{method} push failed (exit {code}; {category}): {diagnostic(output, token)}'
+-    if method != 'trusted-publishing' or not rejection:
++    rejection = re.search(
++        r"(?:HTTP\s+|status code(?: does not indicate success)?:\s*)(401|403)\b", output, re.I
++    )
++    category = (
++        "authentication/authorization rejection"
++        if rejection
++        else "publication/client/transport failure (no credential retry)"
++    )
++    outcome = f"{method} push failed (exit {code}; {category}): {diagnostic(output, token)}"
++    if method != "trusted-publishing" or not rejection:
+         raise RuntimeError(outcome)
+-    print(f'::warning::{outcome}; checking the exact version before token fallback')
++    print(f"::warning::{outcome}; checking the exact version before token fallback")
+     # A combined package/symbol push may have partially succeeded. Check the exact
+     # public version before a duplicate-safe retry, without rebuilding or bumping.
+     url = f"https://api.nuget.org/v3-flatcontainer/{package['id'].lower()}/{package['version']}/{package['id'].lower()}.{package['version']}.nupkg"
+     status, body = request(url)
+-    if status == 200 and body.startswith(b'PK'):
+-        print('Exact NuGet version is already public; retry only to repair with --skip-duplicate')
++    if status == 200 and body.startswith(b"PK"):
++        print("Exact NuGet version is already public; retry only to repair with --skip-duplicate")
+     elif status == 404:
+-        print('Exact NuGet version is not public yet; retry uses the same validated artifact/version')
++        print(
++            "Exact NuGet version is not public yet; retry uses the same validated artifact/version"
++        )
+     else:
+-        raise RuntimeError(f'{outcome}; exact-version lookup indeterminate (HTTP {status}); no authentication retry')
+-    reason = f'trusted publishing failed; failed-step=publication; HTTP {rejection[1]}'
++        raise RuntimeError(
++            f"{outcome}; exact-version lookup indeterminate (HTTP {status}); no authentication retry"
++        )
++    reason = f"trusted publishing failed; failed-step=publication; HTTP {rejection[1]}"
+     try:
+         _, fallback = fallback_auth(reason, [], package)
+     except RuntimeError as error:
+-        raise RuntimeError(f'{outcome}; {error}') from None
++        raise RuntimeError(f"{outcome}; {error}") from None
+     code, output = run_nuget_push(artifact, source, fallback)
+     if code:
+-        raise RuntimeError(f'{outcome}; token-fallback push failed (exit {code}): {diagnostic(output, token, fallback)}')
+-    print(f'NuGet publication auth=token-fallback; {reason}; {diagnostic(output, token, fallback)}')
++        raise RuntimeError(
++            f"{outcome}; token-fallback push failed (exit {code}): {diagnostic(output, token, fallback)}"
++        )
++    print(f"NuGet publication auth=token-fallback; {reason}; {diagnostic(output, token, fallback)}")
+ 
+ 
+ def publish(language, output):
+@@ -305,7 +415,9 @@ def publish(language, output):
+     release_url = f"https://api.github.com/repos/{repository}/releases/tags/{tag}"
+     status, _ = request(release_url, headers={"Authorization": "Bearer " + os.environ["GH_TOKEN"]})
+     if status not in (200, 404):
+-        raise RuntimeError(f"Release lookup returned HTTP {status}; refusing to treat an unknown result as absent")
++        raise RuntimeError(
++            f"Release lookup returned HTTP {status}; refusing to treat an unknown result as absent"
++        )
+     failures = []
+     method, token = select_nuget_auth([language])
+     # Each destination can be repaired independently on a rerun. A failed mirror
+@@ -313,36 +425,67 @@ def publish(language, output):
+     artifact = output / f"{package['id']}.{package['version']}.nupkg"
+     nuget_verified = False
+     try:
+-        push_nuget(artifact, {**package, 'language': language}, method, token)
++        push_nuget(artifact, {**package, "language": language}, method, token)
+         wait_for_package(package)
+         nuget_verified = True
+     except RuntimeError as error:
+         failures.append(str(error))
+-    source = 'https://nuget.pkg.github.com/linksplatform/index.json'
+-    code, body = run_nuget_push(artifact, source, os.environ['GH_TOKEN'])
++    source = "https://nuget.pkg.github.com/linksplatform/index.json"
++    code, body = run_nuget_push(artifact, source, os.environ["GH_TOKEN"])
+     if code:
+-        failures.append(f'Package push to {source} failed (exit {code}): {diagnostic(body)}')
++        failures.append(f"Package push to {source} failed (exit {code}): {diagnostic(body)}")
+     else:
+-        print('GitHub Packages mirror push succeeded')
++        print("GitHub Packages mirror push succeeded")
+     notes = output / "release-notes.md"
+-    notes.write_text(f"https://www.nuget.org/packages/{package['id']}/{package['version']}\n\n{package['notes']}\n", encoding="utf-8")
++    notes.write_text(
++        f"https://www.nuget.org/packages/{package['id']}/{package['version']}\n\n{package['notes']}\n",
++        encoding="utf-8",
++    )
+     if status == 404:
+         target = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
+-        subprocess.run(["gh", "release", "create", tag, "--repo", repository, "--target", target, "--title", f"[{'C#' if language == 'csharp' else 'C++'}] {package['version']}", "--notes-file", str(notes), "--draft"], check=True)
++        subprocess.run(
++            [
++                "gh",
++                "release",
++                "create",
++                tag,
++                "--repo",
++                repository,
++                "--target",
++                target,
++                "--title",
++                f"[{'C#' if language == 'csharp' else 'C++'}] {package['version']}",
++                "--notes-file",
++                str(notes),
++                "--draft",
++            ],
++            check=True,
++        )
+     attachments = artifacts + sorted(output.glob("*.zip"))
+-    subprocess.run(["gh", "release", "upload", tag, "--repo", repository, "--clobber", *map(str, attachments)], check=True)
++    subprocess.run(
++        ["gh", "release", "upload", tag, "--repo", repository, "--clobber", *map(str, attachments)],
++        check=True,
++    )
+     if nuget_verified:
+-        subprocess.run(["gh", "release", "edit", tag, "--repo", repository, "--draft=false"], check=True)
++        subprocess.run(
++            ["gh", "release", "edit", tag, "--repo", repository, "--draft=false"], check=True
++        )
+     # Authentication is deliberately omitted to check the reader's actual view.
+     status, body = request(release_url)
+     try:
+         public = json.loads(body)
+-        actual = {asset['name']: asset['size'] for asset in public['assets']}
+-        verified = status == 200 and not public['draft'] and all(actual.get(path.name) == path.stat().st_size for path in attachments)
++        actual = {asset["name"]: asset["size"] for asset in public["assets"]}
++        verified = (
++            status == 200
++            and not public["draft"]
++            and all(actual.get(path.name) == path.stat().st_size for path in attachments)
++        )
+     except (ValueError, KeyError, TypeError):
+         verified = False
+     if not verified:
+-        failures.append("Public GitHub release is missing or has incomplete assets; rerun publication to repair it")
++        failures.append(
++            "Public GitHub release is missing or has incomplete assets; rerun publication to repair it"
++        )
+     if failures:
+         raise RuntimeError("; ".join(failures))
+     print(f"Published and verified {tag} and all {len(attachments)} release assets")
+@@ -350,7 +493,9 @@ def publish(language, output):
+ 
+ if __name__ == "__main__":
+     parser = argparse.ArgumentParser(description=__doc__)
+-    parser.add_argument("command", choices=["check-auth-config", "auth-error", "preflight", "pack-cpp", "publish"])
++    parser.add_argument(
++        "command", choices=["check-auth-config", "auth-error", "preflight", "pack-cpp", "publish"]
++    )
+     parser.add_argument("--credentials-only", action="store_true")
+     parser.add_argument("--mode", choices=["report", "release"], default="report")
+     parser.add_argument("--language", choices=["csharp", "cpp"])
+@@ -360,14 +505,24 @@ def publish(language, output):
+         if args.command == "check-auth-config":
+             check_auth_config()
+         elif args.command == "auth-error":
+-            raise RuntimeError("NuGet/login OIDC exchange failed: check username, workflow/environment match, inactive policy and package ownership/scope. " + HINT)
++            raise RuntimeError(
++                "NuGet/login OIDC exchange failed: check username, workflow/environment match, inactive policy and package ownership/scope. "
++                + HINT
++            )
+         elif args.command == "preflight":
+-            preflight(args.mode, [args.language] if args.language else ["csharp", "cpp"], args.credentials_only)
++            preflight(
++                args.mode,
++                [args.language] if args.language else ["csharp", "cpp"],
++                args.credentials_only,
++            )
+         elif args.command == "pack-cpp":
+             pack_cpp(args.output)
+         else:
+             publish(args.language or "csharp", args.output)
+     except (RuntimeError, subprocess.CalledProcessError) as error:
+         # CalledProcessError includes secret argv; only show the exit code.
+-        print(f"::error::{error if isinstance(error, RuntimeError) else 'Release command failed (exit ' + str(error.returncode) + ')'}", file=sys.stderr)
++        print(
++            f"::error::{error if isinstance(error, RuntimeError) else 'Release command failed (exit ' + str(error.returncode) + ')'}",
++            file=sys.stderr,
++        )
+         sys.exit(1)
+diff --git a/scripts/requirements-audit.txt b/scripts/requirements-audit.txt
+new file mode 100644
+index 000000000..8b5378466
+--- /dev/null
++++ b/scripts/requirements-audit.txt
+@@ -0,0 +1 @@
++pip-audit==2.9.0
+diff --git a/scripts/requirements-ci.txt b/scripts/requirements-ci.txt
+index 2c43a7c12..f6efe8635 100644
+--- a/scripts/requirements-ci.txt
++++ b/scripts/requirements-ci.txt
+@@ -1,5 +1,5 @@
+ # CI and local validation use the same versions.
+ conan==2.33.0
+-fpdf2==2.8.7
++fpdf2==2.8.8
+ PyYAML==6.0.3
+ gcovr==8.7
+diff --git a/scripts/requirements-quality.txt b/scripts/requirements-quality.txt
+index 7c60dd384..06217d4e6 100644
+--- a/scripts/requirements-quality.txt
++++ b/scripts/requirements-quality.txt
+@@ -1,2 +1,6 @@
+ PyYAML==6.0.3
+ conan==2.33.0
++ruff==0.14.3
++mypy==1.18.2
++types-PyYAML==6.0.12.20250915
++pyflakes==3.4.0
+diff --git a/scripts/smoke_packages.py b/scripts/smoke_packages.py
+index b94f7c96a..a063786e6 100644
+--- a/scripts/smoke_packages.py
++++ b/scripts/smoke_packages.py
+@@ -1,7 +1,7 @@
+ """Restore packaged artifacts in isolated consumers; never test project references."""
++
+ import argparse
+ import json
+-import os
+ from pathlib import Path
+ import shlex
+ import subprocess
+@@ -16,91 +16,129 @@ def run(*args, cwd):
+ 
+ 
+ def compile_native_consumer(installed, consumer, build_dir):
+-    database = json.loads((build_dir / 'compile_commands.json').read_text())
++    database = json.loads((build_dir / "compile_commands.json").read_text())
+     if not database:
+-        raise ValueError('A real native compilation database is required for the package consumer')
++        raise ValueError("A real native compilation database is required for the package consumer")
+     entry = database[0]
+-    original = shlex.split(entry['command'])
++    original = shlex.split(entry["command"])
+     command = [original[0]]
+     replaced = False
+     index = 1
+     while index < len(original):
+         argument = original[index]
+-        if argument == '-o':
++        if argument == "-o":
+             index += 2
+             continue
+-        if argument not in ('-c', entry['file']):
+-            source_include = str(ROOT / 'cpp/Platform.Data.Doublets')
++        if argument not in ("-c", entry["file"]):
++            source_include = str(ROOT / "cpp/Platform.Data.Doublets")
+             if source_include in argument:
+-                argument = argument.replace(source_include, str(installed / 'lib/native/include'))
++                argument = argument.replace(source_include, str(installed / "lib/native/include"))
+                 replaced = True
+             command.append(argument)
+         index += 1
+     if not replaced:
+-        raise ValueError('Cannot isolate the native package from source-tree headers')
+-    linker = shlex.split((build_dir / 'CMakeFiles/Platform.Data.Doublets.Tests.dir/link.txt').read_text())
++        raise ValueError("Cannot isolate the native package from source-tree headers")
++    linker = shlex.split(
++        (build_dir / "CMakeFiles/Platform.Data.Doublets.Tests.dir/link.txt").read_text()
++    )
+     # CMake's dependency output belongs to the original build directory. Reusing
+     # it from the isolated consumer fails when that relative directory is absent.
+-    libraries = [arg for arg in linker if (arg.endswith(('.a', '.so')) or arg.startswith(('-l', '-L', '-Wl,'))) and 'gtest' not in arg and not arg.startswith('-Wl,--dependency-file=')]
+-    binary = consumer / 'native-consumer'
+-    command += [str(ROOT / 'examples/CppMemoryLinks.cpp'), *libraries, '-o', str(binary)]
++    libraries = [
++        arg
++        for arg in linker
++        if (arg.endswith((".a", ".so")) or arg.startswith(("-l", "-L", "-Wl,")))
++        and "gtest" not in arg
++        and not arg.startswith("-Wl,--dependency-file=")
++    ]
++    binary = consumer / "native-consumer"
++    command += [str(ROOT / "examples/CppMemoryLinks.cpp"), *libraries, "-o", str(binary)]
+     run(*command, cwd=consumer)
+     run(str(binary), cwd=consumer)
+ 
+ 
+ def smoke(language, build_dir=None):
+     package = info(language)
+-    feed = ROOT / 'artifacts/packages'
++    feed = ROOT / "artifacts/packages"
+     archive = feed / f"{package['id']}.{package['version']}.nupkg"
+     with zipfile.ZipFile(archive) as contents:
+         names = contents.namelist()
+-        if language == 'csharp':
+-            assert any(n.startswith('lib/net8') and n.endswith('.dll') for n in names)
+-            assert any(n.startswith('lib/net8') and n.endswith('.xml') for n in names)
+-            assert 'README.md' in names and 'icon.png' in names
++        if language == "csharp":
++            assert any(n.startswith("lib/net8") and n.endswith(".dll") for n in names)
++            assert any(n.startswith("lib/net8") and n.endswith(".xml") for n in names)
++            assert "README.md" in names and "icon.png" in names
+         else:
+-            headers = list((ROOT / 'cpp/Platform.Data.Doublets').rglob('*.h'))
+-            expected = {'lib/native/include/' + h.relative_to(ROOT / 'cpp/Platform.Data.Doublets').as_posix() for h in headers}
+-            assert expected <= set(names), 'Native headers are missing from package'
++            headers = list((ROOT / "cpp/Platform.Data.Doublets").rglob("*.h"))
++            expected = {
++                "lib/native/include/"
++                + h.relative_to(ROOT / "cpp/Platform.Data.Doublets").as_posix()
++                for h in headers
++            }
++            assert expected <= set(names), "Native headers are missing from package"
+             for header in headers:
+-                name = 'lib/native/include/' + header.relative_to(ROOT / 'cpp/Platform.Data.Doublets').as_posix()
+-                assert contents.read(name) == header.read_bytes(), f'Packaged header differs: {header}'
+-            assert 'images/icon.png' in names
++                name = (
++                    "lib/native/include/"
++                    + header.relative_to(ROOT / "cpp/Platform.Data.Doublets").as_posix()
++                )
++                assert contents.read(name) == header.read_bytes(), (
++                    f"Packaged header differs: {header}"
++                )
++            assert "images/icon.png" in names
+             assert f"build/native/{package['id']}.targets" in names
+             ET.fromstring(contents.read(f"{package['id']}.nuspec"))
+-    if language == 'cpp':
++    if language == "cpp":
+         with zipfile.ZipFile(feed / f"platform.data.doublets_{package['version']}.zip") as contents:
+             for header in headers:
+-                name = 'Platform.Data.Doublets/' + header.relative_to(ROOT / 'cpp/Platform.Data.Doublets').as_posix()
+-                assert contents.read(name) == header.read_bytes(), f'ZIP header differs: {header}'
+-            assert contents.read('Platform.Data.Doublets/LICENSE') == (ROOT / 'LICENSE').read_bytes()
++                name = (
++                    "Platform.Data.Doublets/"
++                    + header.relative_to(ROOT / "cpp/Platform.Data.Doublets").as_posix()
++                )
++                assert contents.read(name) == header.read_bytes(), f"ZIP header differs: {header}"
++            assert (
++                contents.read("Platform.Data.Doublets/LICENSE") == (ROOT / "LICENSE").read_bytes()
++            )
+     with tempfile.TemporaryDirectory() as temporary:
+         consumer = Path(temporary)
+         # A separate packages folder prevents a cached published package from
+         # hiding a missing or invalid local artifact with the same version.
+-        config = ET.Element('configuration')
+-        sources = ET.SubElement(config, 'packageSources')
+-        ET.SubElement(sources, 'clear')
+-        ET.SubElement(sources, 'add', key='tested-artifacts', value=str(feed))
+-        ET.SubElement(sources, 'add', key='nuget.org', value='https://api.nuget.org/v3/index.json')
+-        ET.ElementTree(config).write(consumer / 'NuGet.Config')
+-        properties = '<TargetFramework>net8.0</TargetFramework><OutputType>Exe</OutputType>' if language == 'csharp' else '<TargetFramework>native</TargetFramework><TargetFrameworkIdentifier>native</TargetFrameworkIdentifier><TargetFrameworkVersion>v0.0</TargetFrameworkVersion>'
+-        (consumer / 'Consumer.csproj').write_text(f'<Project Sdk="Microsoft.NET.Sdk"><PropertyGroup>{properties}</PropertyGroup><ItemGroup><PackageReference Include="{package["id"]}" Version="{package["version"]}" /></ItemGroup></Project>')
+-        if language == 'csharp':
+-            (consumer / 'Program.cs').write_text('using Platform.Data.Doublets; using Platform.Data.Doublets.Memory.United.Generic; using Platform.Memory; using var memory = new HeapResizableDirectMemory(); using var links = new UnitedMemoryLinks<ulong>(memory); links.Create(null, null); if (links.Count(null) != 1UL) throw new System.Exception("Package consumer failed");')
+-        run('dotnet', 'restore', '--configfile', str(consumer / 'NuGet.Config'), '--packages', str(consumer / 'packages'), cwd=consumer)
+-        if language == 'csharp':
+-            run('dotnet', 'run', '-c', 'Release', '--no-restore', cwd=consumer)
++        config = ET.Element("configuration")
++        sources = ET.SubElement(config, "packageSources")
++        ET.SubElement(sources, "clear")
++        ET.SubElement(sources, "add", key="tested-artifacts", value=str(feed))
++        ET.SubElement(sources, "add", key="nuget.org", value="https://api.nuget.org/v3/index.json")
++        ET.ElementTree(config).write(consumer / "NuGet.Config")
++        properties = (
++            "<TargetFramework>net8.0</TargetFramework><OutputType>Exe</OutputType>"
++            if language == "csharp"
++            else "<TargetFramework>native</TargetFramework><TargetFrameworkIdentifier>native</TargetFrameworkIdentifier><TargetFrameworkVersion>v0.0</TargetFrameworkVersion>"
++        )
++        (consumer / "Consumer.csproj").write_text(
++            f'<Project Sdk="Microsoft.NET.Sdk"><PropertyGroup>{properties}</PropertyGroup><ItemGroup><PackageReference Include="{package["id"]}" Version="{package["version"]}" /></ItemGroup></Project>'
++        )
++        if language == "csharp":
++            (consumer / "Program.cs").write_text(
++                'using Platform.Data.Doublets; using Platform.Data.Doublets.Memory.United.Generic; using Platform.Memory; using var memory = new HeapResizableDirectMemory(); using var links = new UnitedMemoryLinks<ulong>(memory); links.Create(null, null); if (links.Count(null) != 1UL) throw new System.Exception("Package consumer failed");'
++            )
++        run(
++            "dotnet",
++            "restore",
++            "--configfile",
++            str(consumer / "NuGet.Config"),
++            "--packages",
++            str(consumer / "packages"),
++            cwd=consumer,
++        )
++        if language == "csharp":
++            run("dotnet", "run", "-c", "Release", "--no-restore", cwd=consumer)
+         else:
+-            installed = consumer / 'packages' / package['id'].lower() / package['version']
+-            assert (installed / 'lib/native/include/Platform.Data.Doublets.h').is_file()
+-            compile_native_consumer(installed, consumer, build_dir or ROOT / 'cpp/build')
++            installed = consumer / "packages" / package["id"].lower() / package["version"]
++            assert (installed / "lib/native/include/Platform.Data.Doublets.h").is_file()
++            compile_native_consumer(installed, consumer, build_dir or ROOT / "cpp/build")
+     print(f"Validated packaged consumer of {package['id']} {package['version']}")
+ 
+ 
+-if __name__ == '__main__':
++if __name__ == "__main__":
+     parser = argparse.ArgumentParser(description=__doc__)
+-    parser.add_argument('language', choices=['csharp', 'cpp'])
+-    parser.add_argument('--build-dir', type=Path)
++    parser.add_argument("language", choices=["csharp", "cpp"])
++    parser.add_argument("--build-dir", type=Path)
+     args = parser.parse_args()
+     smoke(args.language, args.build_dir)
+diff --git a/scripts/source_pdf.py b/scripts/source_pdf.py
+index 025b554c2..1e6010fbf 100644
+--- a/scripts/source_pdf.py
++++ b/scripts/source_pdf.py
+@@ -6,6 +6,7 @@
+ 
+ def build_pdf(root, destination, font):
+     from fpdf import FPDF
++    from fpdf.enums import WrapMode
+ 
+     pdf = FPDF()
+     pdf.set_auto_page_break(auto=True, margin=10)
+@@ -16,9 +17,18 @@ def build_pdf(root, destination, font):
+         if {"bin", "obj"}.intersection(source.parts):
+             continue
+         pdf.add_page()
+-        pdf.multi_cell(w=0, h=4, text=source.relative_to(root).as_posix(), new_x="LMARGIN", new_y="NEXT")
++        pdf.multi_cell(
++            w=0, h=4, text=source.relative_to(root).as_posix(), new_x="LMARGIN", new_y="NEXT"
++        )
+         for line in source.read_text(encoding="utf-8-sig").splitlines():
+-            pdf.multi_cell(w=0, h=3, text=line.expandtabs(4) or " ", wrapmode="CHAR", new_x="LMARGIN", new_y="NEXT")
++            pdf.multi_cell(
++                w=0,
++                h=3,
++                text=line.expandtabs(4) or " ",
++                wrapmode=WrapMode.CHAR,
++                new_x="LMARGIN",
++                new_y="NEXT",
++            )
+     destination.parent.mkdir(parents=True, exist_ok=True)
+     pdf.output(str(destination))
+     if destination.stat().st_size < 100:
+@@ -28,7 +38,11 @@ def build_pdf(root, destination, font):
+ 
+ if __name__ == "__main__":
+     parser = argparse.ArgumentParser(description=__doc__)
+-    parser.add_argument("--output", type=Path, default=Path("_site/csharp/Platform.Data.Doublets.pdf"))
+-    parser.add_argument("--font", type=Path, default=Path("/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf"))
++    parser.add_argument(
++        "--output", type=Path, default=Path("_site/csharp/Platform.Data.Doublets.pdf")
++    )
++    parser.add_argument(
++        "--font", type=Path, default=Path("/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf")
++    )
+     args = parser.parse_args()
+     build_pdf(Path(__file__).resolve().parents[1], args.output, args.font)
+diff --git a/scripts/versions.py b/scripts/versions.py
+index e054c4ed3..ce5e1414a 100644
+--- a/scripts/versions.py
++++ b/scripts/versions.py
+@@ -3,6 +3,7 @@
+ Inspired by the C#/C++ pipeline templates' changeset and guarded-push scripts.
+ Only release metadata may be committed; a changed release base requires new CI.
+ """
++
+ import argparse
+ import json
+ import os
+@@ -12,143 +13,170 @@
+ 
+ ROOT = Path(__file__).resolve().parents[1]
+ FILES = {
+-    'csharp': 'csharp/Platform.Data.Doublets/Platform.Data.Doublets.csproj',
+-    'cpp': 'cpp/Platform.Data.Doublets/Platform.Data.Doublets.TemplateLibrary.nuspec',
++    "csharp": "csharp/Platform.Data.Doublets/Platform.Data.Doublets.csproj",
++    "cpp": "cpp/Platform.Data.Doublets/Platform.Data.Doublets.TemplateLibrary.nuspec",
+ }
+-PATTERNS = {'csharp': r'(?<=<VersionPrefix>)[^<]+', 'cpp': r'(?<=<version>)[^<]+'}
+-RANK = {'patch': 0, 'minor': 1, 'major': 2}
++PATTERNS = {"csharp": r"(?<=<VersionPrefix>)[^<]+", "cpp": r"(?<=<version>)[^<]+"}
++RANK = {"patch": 0, "minor": 1, "major": 2}
+ 
+ 
+ def git(*args, **kwargs):
+-    return subprocess.check_output(['git', *args], cwd=ROOT, text=True, **kwargs).strip()
++    return subprocess.check_output(["git", *args], cwd=ROOT, text=True, **kwargs).strip()
+ 
+ 
+ def read_version(language, text):
+     match = re.search(PATTERNS[language], text)
+-    if not match or not re.fullmatch(r'\d+\.\d+\.\d+', match[0]):
+-        raise ValueError(f'Invalid {language} version')
++    if not match or not re.fullmatch(r"\d+\.\d+\.\d+", match[0]):
++        raise ValueError(f"Invalid {language} version")
+     return match[0]
+ 
+ 
+ def bump(version, kind):
+-    numbers = list(map(int, version.split('.')))
+-    index = {'major': 0, 'minor': 1, 'patch': 2}[kind]
++    numbers = list(map(int, version.split(".")))
++    index = {"major": 0, "minor": 1, "patch": 2}[kind]
+     numbers[index] += 1
+-    numbers[index + 1:] = [0] * (2 - index)
+-    return '.'.join(map(str, numbers))
++    numbers[index + 1 :] = [0] * (2 - index)
++    return ".".join(map(str, numbers))
+ 
+ 
+ def fragments():
+     entries = []
+-    for path in sorted((ROOT / 'changes').glob('*.json')):
+-        data = json.loads(path.read_text(encoding='utf-8'))
+-        if not data.get('summary', '').strip() or not data.get('releases'):
+-            raise ValueError(f'{path}: summary and releases are required')
+-        if any(language not in FILES or kind not in RANK for language, kind in data['releases'].items()):
+-            raise ValueError(f'{path}: invalid language or semantic version bump')
++    for path in sorted((ROOT / "changes").glob("*.json")):
++        data = json.loads(path.read_text(encoding="utf-8"))
++        if not data.get("summary", "").strip() or not data.get("releases"):
++            raise ValueError(f"{path}: summary and releases are required")
++        if any(
++            language not in FILES or kind not in RANK for language, kind in data["releases"].items()
++        ):
++            raise ValueError(f"{path}: invalid language or semantic version bump")
+         entries.append((path, data))
+     return entries
+ 
+ 
+ def validate(base):
+     from changes import categories
+-    paths = git('diff', '--no-renames', '--name-only', base, 'HEAD').splitlines()
++
++    paths = git("diff", "--no-renames", "--name-only", base, "HEAD").splitlines()
+     changed = categories(paths)
+     entries = fragments()
+     for language, filename in FILES.items():
+-        current = (ROOT / filename).read_text(encoding='utf-8')
+-        previous = git('show', f'{base}:{filename}')
++        current = (ROOT / filename).read_text(encoding="utf-8")
++        previous = git("show", f"{base}:{filename}")
+         if read_version(language, current) != read_version(language, previous):
+-            raise ValueError(f'{filename}: add a changes/*.json fragment instead of manually changing the version')
+-        if changed[language] and not any(language in data['releases'] for _, data in entries):
+-            raise ValueError(f'{language} changes require a changes/*.json release fragment')
+-    print('Changesets and automatic version policy passed')
++            raise ValueError(
++                f"{filename}: add a changes/*.json fragment instead of manually changing the version"
++            )
++        if changed[language] and not any(language in data["releases"] for _, data in entries):
++            raise ValueError(f"{language} changes require a changes/*.json release fragment")
++    print("Changesets and automatic version policy passed")
+ 
+ 
+ def prepare():
+     entries = fragments()
+     notes = []
+     for language, filename in FILES.items():
+-        applicable = [data for _, data in entries if language in data['releases']]
++        applicable = [data for _, data in entries if language in data["releases"]]
+         if not applicable:
+             continue
+         path = ROOT / filename
+-        source = path.read_text(encoding='utf-8')
++        source = path.read_text(encoding="utf-8")
+         old = read_version(language, source)
+-        kind = max((data['releases'][language] for data in applicable), key=RANK.get)
++        kind = max((data["releases"][language] for data in applicable), key=RANK.__getitem__)
+         version = bump(old, kind)
+-        path.write_text(re.sub(PATTERNS[language], version, source), encoding='utf-8')
+-        if language == 'cpp':
+-            cmake = ROOT / 'cpp/CMakeLists.txt'
+-            cmake.write_text(re.sub(r'(?<=project\(Platform.Data.Doublets VERSION )[\d.]+', version, cmake.read_text()), encoding='utf-8')
+-        notes.append(f'## {language} {version}\n\n' + '\n'.join('- ' + data['summary'] for data in applicable) + '\n\n')
+-        print(f'{language}: {old} -> {version} ({kind})')
++        path.write_text(re.sub(PATTERNS[language], version, source), encoding="utf-8")
++        if language == "cpp":
++            cmake = ROOT / "cpp/CMakeLists.txt"
++            cmake.write_text(
++                re.sub(
++                    r"(?<=project\(Platform.Data.Doublets VERSION )[\d.]+",
++                    version,
++                    cmake.read_text(),
++                ),
++                encoding="utf-8",
++            )
++        notes.append(
++            f"## {language} {version}\n\n"
++            + "\n".join("- " + data["summary"] for data in applicable)
++            + "\n\n"
++        )
++        print(f"{language}: {old} -> {version} ({kind})")
+     if notes:
+-        changelog = ROOT / 'CHANGELOG.md'
+-        previous = changelog.read_text(encoding='utf-8') if changelog.exists() else ''
+-        changelog.write_text(''.join(notes) + previous, encoding='utf-8')
++        changelog = ROOT / "CHANGELOG.md"
++        previous = changelog.read_text(encoding="utf-8") if changelog.exists() else ""
++        changelog.write_text("".join(notes) + previous, encoding="utf-8")
+         for path, _ in entries:
+             path.unlink()
+ 
+ 
+ def commit():
+-    allowed = set(FILES.values()) | {'cpp/CMakeLists.txt', 'CHANGELOG.md'}
+-    dirty = git('diff', '--name-only').splitlines() + git('diff', '--cached', '--name-only').splitlines()
++    allowed = set(FILES.values()) | {"cpp/CMakeLists.txt", "CHANGELOG.md"}
++    dirty = (
++        git("diff", "--name-only").splitlines()
++        + git("diff", "--cached", "--name-only").splitlines()
++    )
+     # Include an untracked first changelog, but never arbitrary generated files.
+-    if (ROOT / 'CHANGELOG.md').exists():
+-        dirty.append('CHANGELOG.md')
+-    if any(path not in allowed and not re.fullmatch(r'changes/[^/]+\.json', path) for path in dirty):
+-        raise ValueError('Refusing to commit files outside the release metadata allowlist')
++    if (ROOT / "CHANGELOG.md").exists():
++        dirty.append("CHANGELOG.md")
++    if any(
++        path not in allowed and not re.fullmatch(r"changes/[^/]+\.json", path) for path in dirty
++    ):
++        raise ValueError("Refusing to commit files outside the release metadata allowlist")
+     if not dirty:
+-        print('No version changes; repairing publication of the existing version')
++        print("No version changes; repairing publication of the existing version")
+         return
+-    git('config', 'user.name', 'github-actions[bot]')
+-    git('config', 'user.email', '41898282+github-actions[bot]@users.noreply.github.com')
+-    git('add', '--', *sorted(set(dirty)))
+-    if not git('diff', '--cached', '--name-only'):
++    git("config", "user.name", "github-actions[bot]")
++    git("config", "user.email", "41898282+github-actions[bot]@users.noreply.github.com")
++    git("add", "--", *sorted(set(dirty)))
++    if not git("diff", "--cached", "--name-only"):
+         return
+-    git('commit', '-m', 'Release package versions from changesets')
++    git("commit", "-m", "Release package versions from changesets")
+     # A failed mirror/publish can be resumed without bumping again. Never push
+     # a source tree different from the validated tree or overwrite another run.
+     for attempt in range(1, 4):
+-        result = subprocess.run(['git', 'push', 'origin', 'HEAD:main'], cwd=ROOT, text=True, capture_output=True)
++        result = subprocess.run(
++            ["git", "push", "origin", "HEAD:main"], cwd=ROOT, text=True, capture_output=True
++        )
+         if result.returncode == 0:
+-            os.environ['GITHUB_SHA'] = git('rev-parse', 'HEAD')
+-            print('Release metadata push confirmed')
++            os.environ["GITHUB_SHA"] = git("rev-parse", "HEAD")
++            print("Release metadata push confirmed")
+             return
+         output = result.stdout + result.stderr
+         print(output)
+-        if re.search(r'GH006|GH013|rule violations|protected branch', output, re.I):
+-            raise RuntimeError('Repository rules reject the release commit. Allow github-actions to push release metadata; do not force-push.')
+-        if attempt == 3 or not re.search(r'non-fast-forward|fetch first', output):
+-            raise RuntimeError('Release metadata push failed; no packages were published')
+-        git('fetch', 'origin', 'main')
+-        if not git('diff', '--name-only', 'HEAD', 'origin/main'):
++        if re.search(r"GH006|GH013|rule violations|protected branch", output, re.I):
++            raise RuntimeError(
++                "Repository rules reject the release commit. Allow github-actions to push release metadata; do not force-push."
++            )
++        if attempt == 3 or not re.search(r"non-fast-forward|fetch first", output):
++            raise RuntimeError("Release metadata push failed; no packages were published")
++        git("fetch", "origin", "main")
++        if not git("diff", "--name-only", "HEAD", "origin/main"):
+             # A queued writer or a rerun may have landed the identical release.
+             # Use its confirmed commit for tags, without consuming a second bump.
+-            git('reset', '--hard', 'origin/main')
+-            print('Identical release metadata already landed; repairing its publication')
++            git("reset", "--hard", "origin/main")
++            print("Identical release metadata already landed; repairing its publication")
+             return
+         # Re-read the state after a race. Only rebase over metadata-only updates
+         # that leave these planned versions free and the source tree unchanged.
+-        changed = git('diff', '--name-only', 'HEAD^', 'origin/main').splitlines()
++        changed = git("diff", "--name-only", "HEAD^", "origin/main").splitlines()
+         if changed:
+-            raise RuntimeError('main advanced after validation; rerun CI on the current merge before publishing')
+-        git('rebase', 'origin/main')
+-        print(f'Retrying metadata push after a non-fast-forward race ({attempt}/3)')
++            raise RuntimeError(
++                "main advanced after validation; rerun CI on the current merge before publishing"
++            )
++        git("rebase", "origin/main")
++        print(f"Retrying metadata push after a non-fast-forward race ({attempt}/3)")
+ 
+ 
+-if __name__ == '__main__':
++if __name__ == "__main__":
+     parser = argparse.ArgumentParser(description=__doc__)
+-    parser.add_argument('command', choices=['validate', 'prepare', 'commit'])
+-    parser.add_argument('--base', default='origin/main')
++    parser.add_argument("command", choices=["validate", "prepare", "commit"])
++    parser.add_argument("--base", default="origin/main")
+     args = parser.parse_args()
+     try:
+-        if args.command == 'validate':
++        if args.command == "validate":
+             validate(args.base)
+-        elif args.command == 'prepare':
++        elif args.command == "prepare":
+             prepare()
+         else:
+             commit()
+     except (ValueError, RuntimeError, subprocess.CalledProcessError) as error:
+-        raise SystemExit(f'::error::{error}') from error
++        raise SystemExit(f"::error::{error}") from error

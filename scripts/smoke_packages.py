@@ -57,6 +57,7 @@ def compile_native_consumer(installed, consumer, build_dir):
 
 
 def smoke(language, build_dir=None):
+    headers: list[Path] = []
     package = info(language)
     feed = ROOT / "artifacts/packages"
     archive = feed / f"{package['id']}.{package['version']}.nupkg"

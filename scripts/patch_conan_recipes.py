@@ -5,13 +5,14 @@ This workaround is kept explicit until the upstream recipes fix their metadata.
 """
 
 from pathlib import Path
-import re
 import sys
 import subprocess
 import textwrap
 
 
 def modern_metadata(source):
+    import re
+
     # The final assignment in several pinned recipes has no trailing newline.
     return re.sub(
         r"^[ \t]*self\.cpp_info(?:\.components\[[^\n]+?\])?\.(?:names|filenames)\[[^\n]+(?:\n|$)",
@@ -22,6 +23,8 @@ def modern_metadata(source):
 
 
 def package_id_metadata(source, name):
+    import re
+
     if name == "cpuinfo":
         # Date-based upstream versions are not semantic versions. Consumers must
         # include the complete version in their ABI identity, including when the
@@ -113,6 +116,8 @@ static void clog_write_all(int fd, const char* bytes, size_t size) {
 
 
 def patch(directory):
+    import re
+
     for recipe in sorted(directory.glob("recipes/platform.*/all/conanfile.py")):
         source = subprocess.check_output(
             [

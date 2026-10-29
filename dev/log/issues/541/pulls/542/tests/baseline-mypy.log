@@ -1,0 +1,4 @@
+scripts/versions.py:78: error: Argument "key" to "max" has incompatible type overloaded function; expected "Callable[[Any], SupportsDunderLT[Any] | SupportsDunderGT[Any]]"  [arg-type]
+scripts/release.py:186: error: Assignment to variable "error" outside except: block  [misc]
+scripts/source_pdf.py:21: error: Argument "wrapmode" to "multi_cell" of "FPDF" has incompatible type "str"; expected "WrapMode"  [arg-type]
+Found 3 errors in 3 files (checked 16 source files)

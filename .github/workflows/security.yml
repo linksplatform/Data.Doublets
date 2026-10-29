@@ -46,6 +46,7 @@ jobs:
         with:
           languages: ${{ matrix.language }}
           build-mode: ${{ matrix.build-mode }}
+          config-file: ${{ matrix.language == 'python' && '.github/codeql/python.yml' || '' }}
           queries: security-extended,security-and-quality
       - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
         if: matrix.language == 'csharp'

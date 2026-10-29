@@ -116,14 +116,16 @@ reproduction evidence are under `dev/log/issues/524/pulls/526/upstream/`.
 
 The scheduled security workflow audits transitive NuGet and Python dependencies, runs
 full-repository CodeQL with a fatal gate on every SARIF finding, and scans
-complete Git history for credentials. `.gitleaksignore` contains
-one exact historical fingerprint: the removed key was independently verified
-revoked (HTTP 401). It does not exempt current files or future credentials.
+complete Git history for credentials. `.gitleaksignore` contains exact historical
+fingerprints for a removed key independently verified revoked (HTTP 401) and
+public DocFX source-map identifiers independently reproduced as false positives.
+It does not exempt current files or future credentials.
 Install `scripts/requirements-audit.txt` and run
 `python3 -m pip_audit -r scripts/requirements-ci.txt -r scripts/requirements-quality.txt -r scripts/requirements-audit.txt`
 to reproduce the Python audit. Audit JSON and CodeQL SARIF are retained in CI.
 CodeQL covers C#, C++, Python and Actions; empty results count as success only
-when the report includes a successful analysis invocation.
+when the report includes a successful analysis invocation. Python extraction
+excludes immutable `dev/log/` research snapshots and includes helpers and experiments.
 
 Native temporary files live in atomically created private directories. Optional
 Rust FFI development remains in the `rust` submodule and is separate from the
