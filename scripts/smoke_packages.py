@@ -39,7 +39,9 @@ def compile_native_consumer(installed, consumer, build_dir):
     if not replaced:
         raise ValueError('Cannot isolate the native package from source-tree headers')
     linker = shlex.split((build_dir / 'CMakeFiles/Platform.Data.Doublets.Tests.dir/link.txt').read_text())
-    libraries = [arg for arg in linker if (arg.endswith(('.a', '.so')) or arg.startswith(('-l', '-L', '-Wl,'))) and 'gtest' not in arg]
+    # CMake's dependency output belongs to the original build directory. Reusing
+    # it from the isolated consumer fails when that relative directory is absent.
+    libraries = [arg for arg in linker if (arg.endswith(('.a', '.so')) or arg.startswith(('-l', '-L', '-Wl,'))) and 'gtest' not in arg and not arg.startswith('-Wl,--dependency-file=')]
     binary = consumer / 'native-consumer'
     command += [str(ROOT / 'examples/CppMemoryLinks.cpp'), *libraries, '-o', str(binary)]
     run(*command, cwd=consumer)
