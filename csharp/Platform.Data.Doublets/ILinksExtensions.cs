@@ -601,6 +601,11 @@ namespace Platform.Data.Doublets
 
 
         /// <summary>Creates a link with the specified source, target and callback.</summary>
+        /// <remarks>
+        /// Returns callback control (Continue or Break). Break suppresses later callbacks;
+        /// creation and uniqueness cleanup still complete. Without a handler parameter,
+        /// the overload returns the final surviving address instead.
+        /// </remarks>
         /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
         /// <param name="source">The source.</param>
         /// <param name="target">The target.</param>
@@ -616,7 +621,8 @@ namespace Platform.Data.Doublets
                 createdLink = links.GetIndex(after);
                 return handlerState.HandleNullable(before, after); ;
             }));
-            handlerState.Apply(links.Update(createdLink, source, target, handler));
+            handlerState.Apply(links.Update(createdLink, source, target,
+                (before, after) => handlerState.HandleNullable(before, after)));
             return handlerState.Result;
         }
 
@@ -755,7 +761,7 @@ namespace Platform.Data.Doublets
         /// <param name="target">Индекс связи, которая является концом обновляемой связи.</param>
         /// <param name="newSource">Индекс связи, которая является началом связи, на которую выполняется обновление.</param>
         /// <param name="newTarget">Индекс связи, которая является концом связи, на которую выполняется обновление.</param>
-        /// <returns>Индекс обновлённой связи.</returns>
+        /// <returns>Callback control (Continue or Break), including when the pair is unchanged.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress UpdateOrCreateOrGet<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress source, TLinkAddress target, TLinkAddress newSource, TLinkAddress newTarget, WriteHandler<TLinkAddress>? handler) where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {
@@ -766,7 +772,8 @@ namespace Platform.Data.Doublets
             }
             if (newSource == source && newTarget == target)
             {
-                return link;
+                var existing = links.GetLink(link);
+                return handler is null ? links.Constants.Continue : handler(existing, existing);
             }
             return links.Update(link, newSource, newTarget, handler);
         }
@@ -986,7 +993,7 @@ namespace Platform.Data.Doublets
                     continue;
                 }
                 var restriction = new LinkAddress<TLinkAddress>(links.GetIndex(usageAsSource));
-                var substitution = new Link<TLinkAddress>(newLinkIndex, links.GetTarget(usageAsSource));
+                var substitution = new Link<TLinkAddress>(links.GetIndex(usageAsSource), newLinkIndex, links.GetTarget(usageAsSource));
                 handlerState.Apply(links.Update(restriction, substitution, handlerState.Handler));
             }
             var usagesAsTarget = links.All(new Link<TLinkAddress>(constants.Any, constants.Any, oldLinkIndex));
@@ -998,7 +1005,7 @@ namespace Platform.Data.Doublets
                     continue;
                 }
                 var restriction = links.GetRequiredLink(links.GetIndex(usageAsTarget));
-                var substitution = new Link<TLinkAddress>(links.GetTarget(usageAsTarget), newLinkIndex);
+                var substitution = new Link<TLinkAddress>(links.GetIndex(usageAsTarget), links.GetSource(usageAsTarget), newLinkIndex);
                 handlerState.Apply(links.Update(restriction, substitution, handlerState.Handler));
             }
             return handlerState.Result;

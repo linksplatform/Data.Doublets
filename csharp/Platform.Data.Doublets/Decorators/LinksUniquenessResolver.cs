@@ -77,16 +77,31 @@ public class LinksUniquenessResolver<TLinkAddress> : LinksDecoratorBase<TLinkAdd
     ///     <para></para>
     /// </param>
     /// <returns>
-    ///     <para>The new link address.</para>
+    ///     <para>Callback control (Continue or Break).</para>
     ///     <para></para>
     /// </returns>
+    /// <remarks>
+    /// Cleanup is followed by a survivor-to-survivor notification that identifies
+    /// the resolved link, including unchanged pairs. Break suppresses later
+    /// notifications while cleanup completes.
+    /// </remarks>
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     protected virtual TLinkAddress ResolveAddressChangeConflict(TLinkAddress oldLinkAddress, TLinkAddress newLinkAddress, WriteHandler<TLinkAddress>? handler)
     {
+        var constants = _links.Constants;
+        WriteHandlerState<TLinkAddress> handlerState = new(constants.Continue, constants.Break, handler);
         if (oldLinkAddress != newLinkAddress && _links.Exists(link: oldLinkAddress))
         {
-            return _facade.Delete(linkToDelete: oldLinkAddress, handler: handler);
+            handlerState.Apply(_facade.Delete(linkToDelete: oldLinkAddress, handler: handlerState.Handler));
         }
-        return _links.Constants.Continue;
+        // Report the resolved result last: reset/deletion callbacks describe the
+        // redundant link and must not become the result of address-returning APIs.
+        // This also supplies a result when the requested pair is already at old.
+        if (handlerState.Handler is { } resolvedHandler)
+        {
+            var survivor = _links.GetLink(newLinkAddress);
+            handlerState.Apply(resolvedHandler(survivor, survivor));
+        }
+        return handlerState.Result;
     }
 }
