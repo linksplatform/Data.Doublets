@@ -71,13 +71,17 @@ namespace Platform.Data.Doublets.Tests
             public bool Deleted { get; private set; }
             public ResetLinkStub(ILinks<uint> links) : base(links) { }
             public override uint Count(IList<uint>? restriction)
-                => throw new InvalidOperationException("Reset resolution must not impose existence validation.");
+                => throw new InvalidOperationException($"Unexpected validation with {restriction?.Count} restriction parts.");
             public override uint Each(IList<uint>? restriction, ReadHandler<uint>? handler)
-                => handler!(new[] { 1u, 0u, 0u });
+            {
+                Assert.Equal(1u, Assert.Single(restriction!));
+                return handler!(new[] { 1u, 0u, 0u });
+            }
             public override uint Delete(IList<uint>? restriction, WriteHandler<uint>? handler)
             {
+                Assert.Equal(1u, Assert.Single(restriction!));
                 Deleted = true;
-                return Constants.Continue;
+                return handler?.Invoke(new[] { 1u, 0u, 0u }, null) ?? Constants.Continue;
             }
         }
     }

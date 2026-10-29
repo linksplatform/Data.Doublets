@@ -1,3 +1,17 @@
+<!-- markdownlint-configure-file
+{
+  "MD043": {
+    "headings": [
+      "# Choosing a deletion contract in Rust",
+      "*"
+    ]
+  },
+  "MD013": {
+    "tables": false
+  }
+}
+-->
+
 # Choosing a deletion contract in Rust
 
 This Rust guide and the [shared design guidelines](design.md) live in the same

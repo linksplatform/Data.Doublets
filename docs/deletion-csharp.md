@@ -1,10 +1,24 @@
+<!-- markdownlint-configure-file
+{
+  "MD043": {
+    "headings": [
+      "# C# deletion contracts",
+      "*"
+    ]
+  },
+  "MD013": {
+    "tables": false
+  }
+}
+-->
+
 # C# deletion contracts
 
 The [design guidelines](design.md) keep storage and application policies separate.
 Both `UnitedMemoryLinks<T>` and `SplitMemoryLinks<T>` expose unchecked deletion.
 Choose a check per call or an outer decorator when addresses may be missing.
-The [runnable example](../examples/Deletion/Program.cs) checks the principal recipes below
-with both heap-backed stores:
+The [runnable example](../examples/Deletion/Program.cs) checks the principal
+recipes below with both heap-backed stores:
 
 ```sh
 dotnet run --project examples/Deletion -c Release

@@ -22,7 +22,10 @@ foreach (var split in new[] { false, true })
         raw.EnsureLinkExists(id, nameof(id));
         raw.Delete(id, null); // This overload resets endpoints before deleting.
         ExpectMissing(() => raw.EnsureLinkExists(id, nameof(id)));
-        if (raw.Exists(id)) raw.Delete(id, null); // Explicit address-based no-op.
+        if (raw.Exists(id))
+        {
+            raw.Delete(id, null); // Explicit address-based no-op.
+        }
         Check(raw.Count() == 0, "per-call policies");
     });
     Run(split, raw =>
@@ -66,13 +69,16 @@ foreach (var split in new[] { false, true })
         var first = links.CreatePoint();
         var second = links.CreatePoint();
         var usage = links.CreateAndUpdate(first, second);
+        var rejected = false;
         try
         {
             links.Delete(first);
-            throw new InvalidOperationException("Expected usage rejection.");
         }
-        catch (ArgumentLinkHasDependenciesException<uint>) { }
-        Check(links.Exists(first) && links.Exists(usage), "reject incoming usages");
+        catch (ArgumentLinkHasDependenciesException<uint>)
+        {
+            rejected = true;
+        }
+        Check(rejected && links.Exists(first) && links.Exists(usage), "reject incoming usages");
         links.Delete(usage);
         links.Delete(first);
         Check(!links.Exists(first) && links.Exists(second), "delete after usage removal");
@@ -93,7 +99,10 @@ foreach (var split in new[] { false, true })
             addresses.Add(link![0]);
             return links.Constants.Continue;
         });
-        foreach (var address in addresses) links.Delete(address);
+        foreach (var address in addresses)
+        {
+            links.Delete(address);
+        }
         Check(links.Count() == 0, "bulk deletion through a selected policy");
     });
     Console.WriteLine($"{(split ? "Split" : "United")}: all deletion examples passed.");
@@ -110,7 +119,10 @@ static void Run(bool split, Action<ILinks<uint>> action)
 
 static void Check(bool condition, string operation)
 {
-    if (!condition) throw new InvalidOperationException($"Failed: {operation}");
+    if (!condition)
+    {
+        throw new InvalidOperationException($"Failed: {operation}");
+    }
 }
 
 static void ExpectMissing(Action action)

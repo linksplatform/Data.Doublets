@@ -1,6 +1,15 @@
----
-title: Deletion contract investigation
----
+<!-- markdownlint-configure-file
+{
+  "MD043": {
+    "headings": [
+      "# Deletion contract investigation",
+      "*"
+    ]
+  }
+}
+-->
+
+# Deletion contract investigation
 
 These finite probes support [issue #518](https://github.com/linksplatform/Data.Doublets/issues/518)
 and the [architecture review](https://github.com/linksplatform/Data.Doublets/pull/527#issuecomment-6492081425).
@@ -11,7 +20,7 @@ Run from this repository root with .NET 8:
 
 ```sh
 dotnet test csharp/Platform.Data.Doublets.Tests -c Release \
-  --filter 'FullyQualifiedName~MissingLinkDeletionTests|FullyQualifiedName~DeletionContractTests' \
+  --filter 'FullyQualifiedName~Deletion' \
   --blame-hang-timeout 3m -m:1 -p:UseSharedCompilation=false
 dotnet run --project examples/Deletion -c Release
 dotnet run --project experiments/MissingDelete -c Release

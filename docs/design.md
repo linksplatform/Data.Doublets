@@ -1,3 +1,17 @@
+<!-- markdownlint-configure-file
+{
+  "MD043": {
+    "headings": [
+      "# Design: storage mechanisms and optional policies",
+      "*"
+    ]
+  },
+  "MD013": {
+    "tables": false
+  }
+}
+-->
+
 # Design: storage mechanisms and optional policies
 
 These guidelines apply to the C# and Rust implementations of Doublets. They

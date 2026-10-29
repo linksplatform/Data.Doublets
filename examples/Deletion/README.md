@@ -1,3 +1,14 @@
+<!-- markdownlint-configure-file
+{
+  "MD043": {
+    "headings": [
+      "# Deletion choices",
+      "*"
+    ]
+  }
+}
+-->
+
 # Deletion choices
 
 Run `dotnet run --project examples/Deletion -c Release` with .NET 8.

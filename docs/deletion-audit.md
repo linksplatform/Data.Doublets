@@ -1,3 +1,17 @@
+<!-- markdownlint-configure-file
+{
+  "MD043": {
+    "headings": [
+      "# Deletion and policy audit for issue 518",
+      "*"
+    ]
+  },
+  "MD013": {
+    "tables": false
+  }
+}
+-->
+
 # Deletion and policy audit for issue 518
 
 Scope: all issue #518 and PR #527 comments/reviews, all open and closed issue
