@@ -102,7 +102,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             }
             SetPointers(dataMemory, indexMemory);
             auto allocatedLinks{this->GetHeaderReference().AllocatedLinks};
-            auto minimumDataReservedCapacity = allocatedLinks * LinkDataPartSizeInBytes;
+            auto minimumDataReservedCapacity = (allocatedLinks + 1) * LinkDataPartSizeInBytes;
             if (minimumDataReservedCapacity < dataMemory.UsedCapacity())
             {
                 minimumDataReservedCapacity = dataMemory.UsedCapacity();
@@ -111,7 +111,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             {
                 minimumDataReservedCapacity = _dataMemoryReservationStepInBytes;
             }
-            auto minimumIndexReservedCapacity = allocatedLinks * LinkDataPartSizeInBytes;
+            auto minimumIndexReservedCapacity = allocatedLinks * LinkIndexPartSizeInBytes + LinkHeaderSizeInBytes;
             if (minimumIndexReservedCapacity < indexMemory.UsedCapacity())
             {
                 minimumIndexReservedCapacity = indexMemory.UsedCapacity();
@@ -142,7 +142,6 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 indexMemory.ReservedCapacity(minimumIndexReservedCapacity);
             }
             SetPointers(dataMemory, indexMemory);
-            this->GetHeaderReference() = this->GetHeaderReference();
             // Ensure correctness _memory.UsedCapacity over _header->AllocatedLinks
             dataMemory.UsedCapacity((this->GetHeaderReference().AllocatedLinks * LinkDataPartSizeInBytes) +
                                     LinkDataPartSizeInBytes); // First link is read only zero link.
@@ -150,7 +149,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                                      LinkHeaderSizeInBytes);
             // Ensure correctness _memory.ReservedLinks over _header->ReservedCapacity
             this->GetHeaderReference().ReservedLinks =
-                (dataMemory.ReservedCapacity() - LinkDataPartSizeInBytes) / LinkDataPartSizeInBytes;
+                std::min((dataMemory.ReservedCapacity() - LinkDataPartSizeInBytes) / LinkDataPartSizeInBytes,
+                         (indexMemory.ReservedCapacity() - LinkHeaderSizeInBytes) / LinkIndexPartSizeInBytes);
         }
 
         LinkAddressType Count(const LinkType& restriction) const
@@ -860,12 +860,14 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 {
                     throw Platform::Exceptions::LinksLimitReachedException();
                 }
-                if (this->GetHeaderReference().AllocatedLinks >= (this->GetHeaderReference().ReservedLinks - 1))
+                if (this->GetHeaderReference().AllocatedLinks >= this->GetHeaderReference().ReservedLinks)
                 {
                     _dataMemory.ReservedCapacity(_dataMemory.ReservedCapacity() + _dataMemoryReservationStepInBytes);
                     _indexMemory.ReservedCapacity(_indexMemory.ReservedCapacity() + _indexMemoryReservationStepInBytes);
                     SetPointers(_dataMemory, _indexMemory);
-                    this->GetHeaderReference().ReservedLinks = _dataMemory.ReservedCapacity() / LinkDataPartSizeInBytes;
+                    this->GetHeaderReference().ReservedLinks =
+                        std::min((_dataMemory.ReservedCapacity() - LinkDataPartSizeInBytes) / LinkDataPartSizeInBytes,
+                                 (_indexMemory.ReservedCapacity() - LinkHeaderSizeInBytes) / LinkIndexPartSizeInBytes);
                 }
                 freeLink = ++this->GetHeaderReference().AllocatedLinks;
                 _dataMemory.UsedCapacity(_dataMemory.UsedCapacity() + LinkDataPartSizeInBytes);

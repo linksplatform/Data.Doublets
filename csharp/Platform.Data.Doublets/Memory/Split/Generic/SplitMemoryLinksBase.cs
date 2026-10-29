@@ -692,13 +692,15 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
             {
                 throw new LinksLimitReachedException<TLinkAddress>(limit: maximumPossibleInnerReference);
             }
-            if ((header.AllocatedLinks >= header.ReservedLinks - TLinkAddress.One))
+            if (header.AllocatedLinks >= header.ReservedLinks)
             {
                 _dataMemory.ReservedCapacity += _dataMemoryReservationStepInBytes;
                 _indexMemory.ReservedCapacity += _indexMemoryReservationStepInBytes;
                 SetPointers(dataMemory: _dataMemory, indexMemory: _indexMemory);
                 header = ref GetHeaderReference();
-                header.ReservedLinks = TLinkAddress.CreateTruncating(value: _dataMemory.ReservedCapacity / LinkDataPartSizeInBytes);
+                header.ReservedLinks = TLinkAddress.CreateTruncating(value: Math.Min(
+                    (_dataMemory.ReservedCapacity - LinkDataPartSizeInBytes) / LinkDataPartSizeInBytes,
+                    (_indexMemory.ReservedCapacity - LinkHeaderSizeInBytes) / LinkIndexPartSizeInBytes));
             }
             freeLink = header.AllocatedLinks = header.AllocatedLinks + TLinkAddress.One;
             _dataMemory.UsedCapacity += LinkDataPartSizeInBytes;
@@ -777,7 +779,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
         ref var header = ref System.Runtime.CompilerServices.Unsafe.AsRef<LinksHeader<TLinkAddress>>((void*)indexMemory.Pointer);
         var allocatedLinks = long.CreateTruncating(value: header.AllocatedLinks);
         // Adjust reserved capacity
-        var minimumDataReservedCapacity = allocatedLinks * LinkDataPartSizeInBytes;
+        var minimumDataReservedCapacity = (allocatedLinks + 1) * LinkDataPartSizeInBytes;
         if (minimumDataReservedCapacity < dataMemory.UsedCapacity)
         {
             minimumDataReservedCapacity = dataMemory.UsedCapacity;
@@ -786,7 +788,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
         {
             minimumDataReservedCapacity = _dataMemoryReservationStepInBytes;
         }
-        var minimumIndexReservedCapacity = allocatedLinks * LinkDataPartSizeInBytes;
+        var minimumIndexReservedCapacity = allocatedLinks * LinkIndexPartSizeInBytes + LinkHeaderSizeInBytes;
         if (minimumIndexReservedCapacity < indexMemory.UsedCapacity)
         {
             minimumIndexReservedCapacity = indexMemory.UsedCapacity;
@@ -820,7 +822,9 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
         indexMemory.UsedCapacity = ConvertToInt64(value: header.AllocatedLinks) * LinkIndexPartSizeInBytes + LinkHeaderSizeInBytes;
         // Ensure correctness _memory.ReservedLinks over _header->ReservedCapacity
         // Гарантия корректности _header->ReservedLinks относительно _memory.ReservedCapacity
-        header.ReservedLinks = TLinkAddress.CreateTruncating(value: (dataMemory.ReservedCapacity - LinkDataPartSizeInBytes) / LinkDataPartSizeInBytes);
+        header.ReservedLinks = TLinkAddress.CreateTruncating(value: Math.Min(
+            (dataMemory.ReservedCapacity - LinkDataPartSizeInBytes) / LinkDataPartSizeInBytes,
+            (indexMemory.ReservedCapacity - LinkHeaderSizeInBytes) / LinkIndexPartSizeInBytes));
     }
 
     /// <summary>
