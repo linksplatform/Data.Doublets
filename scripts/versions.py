@@ -123,6 +123,12 @@ def commit():
         if attempt == 3 or not re.search(r'non-fast-forward|fetch first', output):
             raise RuntimeError('Release metadata push failed; no packages were published')
         git('fetch', 'origin', 'main')
+        if not git('diff', '--name-only', 'HEAD', 'origin/main'):
+            # A queued writer or a rerun may have landed the identical release.
+            # Use its confirmed commit for tags, without consuming a second bump.
+            git('reset', '--hard', 'origin/main')
+            print('Identical release metadata already landed; repairing its publication')
+            return
         # Re-read the state after a race. Only rebase over metadata-only updates
         # that leave these planned versions free and the source tree unchanged.
         changed = git('diff', '--name-only', 'HEAD^', 'origin/main').splitlines()

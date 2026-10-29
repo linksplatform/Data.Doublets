@@ -1,9 +1,6 @@
 name: Links
 on:
-  pull_request:
-    branches: [main]
-  push:
-    branches: [main]
+  workflow_call:
   schedule:
     - cron: '30 6 * * 1'
   workflow_dispatch:

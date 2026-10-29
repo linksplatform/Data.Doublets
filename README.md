@@ -53,7 +53,7 @@ links.Delete(link);
 [![Image with result of performance comparison between SQLite and Doublets.](https://raw.githubusercontent.com/linksplatform/Documentation/master/doc/Examples/sqlite_vs_doublets_performance.png "Result of performance comparison between SQLite and Doublets")](https://github.com/linksplatform/Comparisons.SQLiteVSDoublets)
 
 ## [Documentation](https://linksplatform.github.io/Data.Doublets)
-*   Interface [ILinks\<TLink, TConstants\>](https://linksplatform.github.io/Data/csharp/api/Platform.Data.ILinks-2.html).
+*   Interface [ILinks\<TLink, TConstants\>](https://github.com/linksplatform/Data/blob/main/csharp/Platform.Data/ILinks.cs).
 *   Interface [ILinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.ILinks-1.html).
 *   Class [UnitedMemoryLinks\<TLink\>](https://linksplatform.github.io/Data.Doublets/csharp/api/Platform.Data.Doublets.Memory.United.Generic.UnitedMemoryLinks-1.html).
 

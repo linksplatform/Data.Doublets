@@ -71,6 +71,17 @@ jobs:
       - name: Explain publishing requirements on pull requests
         if: github.event_name == 'pull_request'
         run: python3 scripts/release.py preflight --mode report
+  security:
+    needs: quality
+    if: "!cancelled() && needs.quality.result == 'success'"
+    permissions:
+      contents: read
+      security-events: write
+    uses: ./.github/workflows/security.yml
+  links:
+    needs: quality
+    if: "!cancelled() && needs.quality.result == 'success'"
+    uses: ./.github/workflows/links.yml
   credentials:
     if: >-
       github.ref == 'refs/heads/main' && github.event_name != 'pull_request' &&
@@ -172,6 +183,7 @@ jobs:
             {
               echo 'CC=gcc'
               echo 'CXX=g++'
+              echo 'CPP_COVERAGE=ON'
             } >> "$GITHUB_ENV"
           fi
       - name: Install pinned dependencies
@@ -180,6 +192,11 @@ jobs:
         env:
           CMAKE_BUILD_PARALLEL_LEVEL: '1'
         run: bash cpp/run_tests.sh
+      - name: Collect native coverage
+        if: matrix.compiler == 'gcc'
+        run: |
+          mkdir -p artifacts/test-results
+          gcovr --root cpp --filter "$PWD/cpp/Platform.Data.Doublets/" --object-directory cpp/build --print-summary --fail-under-line 1 --xml artifacts/test-results/cpp-coverage.xml --html-details artifacts/test-results/cpp-coverage.html
       - name: Compile benchmarks and run a bounded smoke test
         env:
           CMAKE_BUILD_PARALLEL_LEVEL: '1'
@@ -207,6 +224,7 @@ jobs:
           path: |
             artifacts/packages/*
             cpp/build/Testing/Temporary/LastTest.log
+            artifacts/test-results/*
           if-no-files-found: error
           retention-days: 14
   docs:
@@ -257,7 +275,7 @@ jobs:
       needs.quality.result == 'success' &&
       !contains(needs.*.result, 'failure') && !contains(needs.*.result, 'cancelled') &&
       (needs.csharp.result == 'success' || needs.cpp.result == 'success' || needs.docs.result == 'success')
-    needs: [credentials, quality, csharp, cpp, docs]
+    needs: [credentials, quality, csharp, cpp, docs, security, links]
     runs-on: ubuntu-24.04
     timeout-minutes: 40
     permissions:
@@ -321,7 +339,7 @@ jobs:
         run: bash scripts/publish-docs.sh
   required:
     if: always()
-    needs: [changes, credentials, quality, csharp, cpp, docs, publish]
+    needs: [changes, credentials, quality, csharp, cpp, docs, security, links, publish]
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:

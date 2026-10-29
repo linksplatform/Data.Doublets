@@ -45,9 +45,11 @@ class RoutingTests(unittest.TestCase):
 
 class GateTests(unittest.TestCase):
     def jobs(self):
-        result = {name: {'result': 'skipped'} for name in ('changes', 'quality', 'credentials', 'csharp', 'cpp', 'docs', 'publish')}
+        result = {name: {'result': 'skipped'} for name in ('changes', 'quality', 'credentials', 'csharp', 'cpp', 'docs', 'publish', 'security', 'links')}
         result['changes'] = {'result': 'success', 'outputs': {'cpp': 'true'}}
         result['quality']['result'] = 'success'
+        result['security']['result'] = 'success'
+        result['links']['result'] = 'success'
         return result
 
     def test_applicable_skipped_validation_fails(self):
@@ -66,6 +68,15 @@ class GateTests(unittest.TestCase):
         jobs['docs']['result'] = 'success'
         with self.assertRaisesRegex(ValueError, 'credentials.*publish'):
             check_required.validate(jobs, main=True)
+
+    def test_security_and_links_cannot_silently_skip(self):
+        for name in ('security', 'links'):
+            jobs = self.jobs()
+            jobs['cpp']['result'] = 'success'
+            jobs['docs']['result'] = 'success'
+            jobs[name]['result'] = 'skipped'
+            with self.assertRaisesRegex(ValueError, name):
+                check_required.validate(jobs)
 
     def test_cancelled_tests_never_pass(self):
         jobs = self.jobs()

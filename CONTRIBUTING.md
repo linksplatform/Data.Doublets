@@ -22,7 +22,8 @@ The workflow linter needs actionlint 1.7.12 and ShellCheck on PATH. CI obtains
 its pinned actionlint binary from the official container. Install pre-commit
 and run `pre-commit install` to enable the local formatting, regression, size,
 and credential checks. All compiler and analyzer warnings fail validation.
-Tests have bounded timeouts; native builds use one worker by default.
+Tests have bounded timeouts; native builds use one worker by default. The GCC
+CI job records gcovr line/branch coverage and fails if instrumentation is missing.
 `CI_VERBOSE=1` enables build tracing. Never enable shell tracing around tokens.
 
 ## Versions and releases
@@ -67,7 +68,9 @@ python3 scripts/check_docs.py
 
 Install Doxygen and DejaVu fonts for these commands. The documentation artifact
 contains both language APIs and the Unicode C# source PDF. CI checks generated
-local links and maintained root Markdown links; broken external links remain
+local links and maps this repository's deployment URLs to generated files, so
+new documentation can pass before publication. It also checks maintained root
+Markdown links; broken external links remain
 failures even when an archive copy exists.
 
 ## Dependency and security maintenance
