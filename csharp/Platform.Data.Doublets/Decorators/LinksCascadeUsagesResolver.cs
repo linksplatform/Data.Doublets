@@ -15,7 +15,7 @@ public class LinksCascadeUsagesResolver<TLinkAddress> : LinksDecoratorBase<TLink
 {
     /// <summary>
     ///     <para>
-    ///         Initializes a new <see cref="LinksCascadeUsagesResolver" /> instance.
+    ///         Initializes a new <see cref="LinksCascadeUsagesResolver{TLinkAddress}" /> instance.
     ///     </para>
     ///     <para></para>
     /// </summary>
@@ -26,6 +26,7 @@ public class LinksCascadeUsagesResolver<TLinkAddress> : LinksDecoratorBase<TLink
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     public LinksCascadeUsagesResolver(ILinks<TLinkAddress> links) : base(links: links) { }
 
+    /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
     /// <summary>
     ///     <para>
     ///         Deletes the restriction.

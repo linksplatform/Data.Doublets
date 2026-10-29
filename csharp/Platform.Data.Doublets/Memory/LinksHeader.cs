@@ -97,7 +97,7 @@ namespace Platform.Data.Doublets.Memory
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override bool Equals(object obj)  { return obj is LinksHeader<TLinkAddress> linksHeader ? Equals(linksHeader) : false;}
+        public override bool Equals(object? obj) { return obj is LinksHeader<TLinkAddress> linksHeader ? Equals(linksHeader) : false; }
 
         /// <summary>
         /// <para>
@@ -115,14 +115,14 @@ namespace Platform.Data.Doublets.Memory
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Equals(LinksHeader<TLinkAddress> other)
-            => AllocatedLinks ==  other.AllocatedLinks
-            && ReservedLinks ==  other.ReservedLinks
-            && FreeLinks ==  other.FreeLinks
-            && FirstFreeLink ==  other.FirstFreeLink
-            && RootAsSource ==  other.RootAsSource
-            && RootAsTarget ==  other.RootAsTarget
-            && LastFreeLink ==  other.LastFreeLink
-            && Reserved8 ==  other.Reserved8;
+            => AllocatedLinks == other.AllocatedLinks
+            && ReservedLinks == other.ReservedLinks
+            && FreeLinks == other.FreeLinks
+            && FirstFreeLink == other.FirstFreeLink
+            && RootAsSource == other.RootAsSource
+            && RootAsTarget == other.RootAsTarget
+            && LastFreeLink == other.LastFreeLink
+            && Reserved8 == other.Reserved8;
 
         /// <summary>
         /// <para>
@@ -135,12 +135,12 @@ namespace Platform.Data.Doublets.Memory
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override int GetHashCode()  { return (AllocatedLinks, ReservedLinks, FreeLinks, FirstFreeLink, RootAsSource, RootAsTarget, LastFreeLink, Reserved8).GetHashCode();}
+        public override int GetHashCode() { return (AllocatedLinks, ReservedLinks, FreeLinks, FirstFreeLink, RootAsSource, RootAsTarget, LastFreeLink, Reserved8).GetHashCode(); }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool operator ==(LinksHeader<TLinkAddress> left, LinksHeader<TLinkAddress> right)  { return left.Equals(right);}
+        public static bool operator ==(LinksHeader<TLinkAddress> left, LinksHeader<TLinkAddress> right) { return left.Equals(right); }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool operator !=(LinksHeader<TLinkAddress> left, LinksHeader<TLinkAddress> right)  { return !(left == right);}
+        public static bool operator !=(LinksHeader<TLinkAddress> left, LinksHeader<TLinkAddress> right) { return !(left == right); }
     }
 }

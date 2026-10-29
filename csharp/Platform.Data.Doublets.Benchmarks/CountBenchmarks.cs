@@ -15,10 +15,11 @@ namespace Platform.Data.Doublets.Benchmarks
     [MemoryDiagnoser]
     public class CountBenchmarks
     {
-        private static ILinks<TLinkAddress> _links;
+        private static ILinks<TLinkAddress>? _storage;
+        private static ILinks<TLinkAddress> _links => _storage ?? throw new System.InvalidOperationException("Run GlobalSetup before a benchmark.");
         private static TLinkAddress _any;
         private static CheckedConverter<TLinkAddress, long> _addressToInt64Converter = CheckedConverter<TLinkAddress, long>.Default;
-        private static HeapResizableDirectMemory _dataMemory;
+        private static HeapResizableDirectMemory? _dataMemory;
 
         [Params(10, 100, 1000, 10000, 100000)]
         public static ulong N;
@@ -27,7 +28,7 @@ namespace Platform.Data.Doublets.Benchmarks
         public static void Setup()
         {
             _dataMemory = new HeapResizableDirectMemory();
-            _links = new UnitedMemoryLinks<TLinkAddress>(_dataMemory).DecorateWithAutomaticUniquenessAndUsagesResolution();
+            _storage = new UnitedMemoryLinks<TLinkAddress>(_dataMemory).DecorateWithAutomaticUniquenessAndUsagesResolution();
             _any = _links.Constants.Any;
             var firstLink = _links.CreatePoint();
             for (ulong i = 0; i < N; i++)
@@ -43,9 +44,12 @@ namespace Platform.Data.Doublets.Benchmarks
         }
 
         [GlobalCleanup]
-        public static void Cleanup() 
+        public static void Cleanup()
         {
-            _dataMemory.Dispose();
+            (_storage as System.IDisposable)?.Dispose();
+            _storage = null;
+            _dataMemory?.Dispose();
+            _dataMemory = null;
         }
 
         [Benchmark]

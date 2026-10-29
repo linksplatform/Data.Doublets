@@ -16,7 +16,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
     /// <para></para>
     /// </summary>
     /// <seealso cref="UnitedMemoryLinksBase{TLinkAddress}"/>
-    public unsafe class UnitedMemoryLinks<TLinkAddress> : UnitedMemoryLinksBase<TLinkAddress>  where TLinkAddress : IUnsignedNumber<TLinkAddress> , IShiftOperators<TLinkAddress,int,TLinkAddress>, IBitwiseOperators<TLinkAddress,TLinkAddress,TLinkAddress>, IMinMaxValue<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
+    public unsafe class UnitedMemoryLinks<TLinkAddress> : UnitedMemoryLinksBase<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>, IShiftOperators<TLinkAddress, int, TLinkAddress>, IBitwiseOperators<TLinkAddress, TLinkAddress, TLinkAddress>, IMinMaxValue<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
     {
         private readonly Func<ILinksTreeMethods<TLinkAddress>> _createSourceTreeMethods;
         private readonly Func<ILinksTreeMethods<TLinkAddress>> _createTargetTreeMethods;
@@ -25,7 +25,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
 
         /// <summary>
         /// <para>
-        /// Initializes a new <see cref="UnitedMemoryLinks"/> instance.
+        /// Initializes a new <see cref="UnitedMemoryLinks{TLinkAddress}"/> instance.
         /// </para>
         /// <para></para>
         /// </summary>
@@ -46,7 +46,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
 
         /// <summary>
         /// <para>
-        /// Initializes a new <see cref="UnitedMemoryLinks"/> instance.
+        /// Initializes a new <see cref="UnitedMemoryLinks{TLinkAddress}"/> instance.
         /// </para>
         /// <para></para>
         /// </summary>
@@ -59,7 +59,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
 
         /// <summary>
         /// <para>
-        /// Initializes a new <see cref="UnitedMemoryLinks"/> instance.
+        /// Initializes a new <see cref="UnitedMemoryLinks{TLinkAddress}"/> instance.
         /// </para>
         /// <para></para>
         /// </summary>
@@ -76,7 +76,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
 
         /// <summary>
         /// <para>
-        /// Initializes a new <see cref="UnitedMemoryLinks"/> instance.
+        /// Initializes a new <see cref="UnitedMemoryLinks{TLinkAddress}"/> instance.
         /// </para>
         /// <para></para>
         /// </summary>

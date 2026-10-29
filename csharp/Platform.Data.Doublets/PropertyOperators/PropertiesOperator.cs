@@ -15,12 +15,12 @@ namespace Platform.Data.Doublets.PropertyOperators
     /// </summary>
     /// <seealso cref="LinksOperatorBase{TLinkAddress}"/>
     /// <seealso cref="IProperties{TLinkAddress, TLinkAddress, TLinkAddress}"/>
-    public class PropertiesOperator<TLinkAddress> : LinksOperatorBase<TLinkAddress>, IProperties<TLinkAddress, TLinkAddress, TLinkAddress>  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+    public class PropertiesOperator<TLinkAddress> : LinksOperatorBase<TLinkAddress>, IProperties<TLinkAddress, TLinkAddress, TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>
     {
 
         /// <summary>
         /// <para>
-        /// Initializes a new <see cref="PropertiesOperator"/> instance.
+        /// Initializes a new <see cref="PropertiesOperator{TLinkAddress}"/> instance.
         /// </para>
         /// <para></para>
         /// </summary>
@@ -30,14 +30,13 @@ namespace Platform.Data.Doublets.PropertyOperators
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public PropertiesOperator(ILinks<TLinkAddress> links) : base(links) { }
-
         /// <summary>
         /// <para>
         /// Gets the value using the specified object.
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="@object">
+        /// <param name="object">
         /// <para>The object.</para>
         /// <para></para>
         /// </param>
@@ -54,9 +53,9 @@ namespace Platform.Data.Doublets.PropertyOperators
         {
             var links = _links;
             var objectProperty = links.SearchOrDefault(@object, property);
-            if (objectProperty ==  default)
+            if (objectProperty == TLinkAddress.Zero)
             {
-                return default;
+                return TLinkAddress.Zero;
             }
             var constants = links.Constants;
             var any = constants.Any;
@@ -64,18 +63,17 @@ namespace Platform.Data.Doublets.PropertyOperators
             var valueLink = links.SingleOrDefault(query);
             if (valueLink == null)
             {
-                return default;
+                return TLinkAddress.Zero;
             }
             return links.GetTarget(links.GetIndex(valueLink));
         }
-
         /// <summary>
         /// <para>
         /// Sets the value using the specified object.
         /// </para>
         /// <para></para>
         /// </summary>
-        /// <param name="@object">
+        /// <param name="object">
         /// <para>The object.</para>
         /// <para></para>
         /// </param>

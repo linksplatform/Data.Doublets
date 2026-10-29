@@ -28,7 +28,7 @@ public unsafe class SplitMemoryLinks<TLinkAddress> : SplitMemoryLinksBase<TLinkA
 
     /// <summary>
     ///     <para>
-    ///         Initializes a new <see cref="SplitMemoryLinks" /> instance.
+    ///         Initializes a new <see cref="SplitMemoryLinks{TLinkAddress}" /> instance.
     ///     </para>
     ///     <para></para>
     /// </summary>
@@ -45,7 +45,7 @@ public unsafe class SplitMemoryLinks<TLinkAddress> : SplitMemoryLinksBase<TLinkA
 
     /// <summary>
     ///     <para>
-    ///         Initializes a new <see cref="SplitMemoryLinks" /> instance.
+    ///         Initializes a new <see cref="SplitMemoryLinks{TLinkAddress}" /> instance.
     ///     </para>
     ///     <para></para>
     /// </summary>
@@ -62,7 +62,7 @@ public unsafe class SplitMemoryLinks<TLinkAddress> : SplitMemoryLinksBase<TLinkA
 
     /// <summary>
     ///     <para>
-    ///         Initializes a new <see cref="SplitMemoryLinks" /> instance.
+    ///         Initializes a new <see cref="SplitMemoryLinks{TLinkAddress}" /> instance.
     ///     </para>
     ///     <para></para>
     /// </summary>
@@ -83,7 +83,7 @@ public unsafe class SplitMemoryLinks<TLinkAddress> : SplitMemoryLinksBase<TLinkA
 
     /// <summary>
     ///     <para>
-    ///         Initializes a new <see cref="SplitMemoryLinks" /> instance.
+    ///         Initializes a new <see cref="SplitMemoryLinks{TLinkAddress}" /> instance.
     ///     </para>
     ///     <para></para>
     /// </summary>
@@ -108,7 +108,7 @@ public unsafe class SplitMemoryLinks<TLinkAddress> : SplitMemoryLinksBase<TLinkA
 
     /// <summary>
     ///     <para>
-    ///         Initializes a new <see cref="SplitMemoryLinks" /> instance.
+    ///         Initializes a new <see cref="SplitMemoryLinks{TLinkAddress}" /> instance.
     ///     </para>
     ///     <para></para>
     /// </summary>

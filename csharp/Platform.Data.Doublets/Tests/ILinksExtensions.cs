@@ -25,33 +25,33 @@ namespace Platform.Data.Doublets.Tests
             EnsureTrue(boolean, default);
         }
 
-        private static void EnsureTrue(bool boolean, string message)
+        private static void EnsureTrue(bool boolean, string? message)
         {
             if (boolean)
             {
                 return;
             }
-            string messageBuilder() => message;
+            string? messageBuilder() => message;
             throw new ArgumentException("EnsureTrue Failed. The value is not a true. " + messageBuilder());
         }
 
-        private static void EnsureEqual<T>(T expected, T actual)  where T : IUnsignedNumber<T>
+        private static void EnsureEqual<T>(T expected, T actual) where T : IUnsignedNumber<T>
         {
             EnsureEqual(expected, actual, default);
         }
 
-        private static void EnsureEqual<T>(T expected, T actual, string message) where T : IUnsignedNumber<T>
+        private static void EnsureEqual<T>(T expected, T actual, string? message) where T : IUnsignedNumber<T>
         {
             EnsureEqual(expected, actual, message, EqualityComparer<T>.Default);
         }
 
-        private static void EnsureEqual<T>(T expected, T actual, string message, IEqualityComparer<T> equalityComparer) where T : IUnsignedNumber<T>
+        private static void EnsureEqual<T>(T expected, T actual, string? message, IEqualityComparer<T> equalityComparer) where T : IUnsignedNumber<T>
         {
-            if (expected ==  actual)
+            if (expected == actual)
             {
                 return;
             }
-            string messageBuilder() => message;
+            string? messageBuilder() => message;
             throw new ArgumentException("EnsureEqual Failed. The values are not equal. " + messageBuilder());
         }
 
@@ -69,49 +69,49 @@ namespace Platform.Data.Doublets.Tests
         /// <para>The links.</para>
         /// <para></para>
         /// </param>
-        public static void TestCRUDOperations<T>(this ILinks<T> links) where T: IUnsignedNumber<T>
+        public static void TestCRUDOperations<T>(this ILinks<T> links) where T : IUnsignedNumber<T>
         {
             var constants = links.Constants;
             var zero = T.Zero;
             var one = T.One;
 
             // Create Link
-            EnsureTrue(links.Count() ==  zero);
+            EnsureTrue(links.Count() == zero);
             var setter = new Setter<T, T>(constants.Continue, constants.Break, constants.Null);
             links.Each(setter.SetFirstFromNonNullListAndReturnTrue, constants.Any, constants.Any, constants.Any);
-            EnsureTrue(setter.Result ==  constants.Null);
+            EnsureTrue(setter.Result == constants.Null);
             var linkAddress = links.Create();
-            var link = new Link<T>(links.GetLink(linkAddress));
+            var link = new Link<T>(links.GetRequiredLink(linkAddress));
             EnsureTrue(link.Count == 3);
-            EnsureTrue(link.Index ==  linkAddress);
-            EnsureTrue(link.Source ==  constants.Null);
-            EnsureTrue(link.Target ==  constants.Null);
-            EnsureTrue(links.Count() ==  one);
+            EnsureTrue(link.Index == linkAddress);
+            EnsureTrue(link.Source == constants.Null);
+            EnsureTrue(link.Target == constants.Null);
+            EnsureTrue(links.Count() == one);
 
             // Get first link
             setter = new Setter<T, T>(constants.Continue, constants.Break, constants.Null);
             links.Each(setter.SetFirstFromNonNullListAndReturnTrue, constants.Any, constants.Any, constants.Any);
-            EnsureTrue(setter.Result ==  linkAddress);
+            EnsureTrue(setter.Result == linkAddress);
 
             // Update link to reference itself
             links.Update(linkAddress, linkAddress, linkAddress);
-            link = new Link<T>(links.GetLink(linkAddress));
-            EnsureTrue(link.Source ==  linkAddress);
-            EnsureTrue(link.Target ==  linkAddress);
+            link = new Link<T>(links.GetRequiredLink(linkAddress));
+            EnsureTrue(link.Source == linkAddress);
+            EnsureTrue(link.Target == linkAddress);
 
             // Update link to reference null (prepare for delete)
             var updated = links.Update(linkAddress, constants.Null, constants.Null);
-            EnsureTrue(updated ==  linkAddress);
-            link = new Link<T>(links.GetLink(linkAddress));
-            EnsureTrue(link.Source ==  constants.Null);
-            EnsureTrue(link.Target ==  constants.Null);
+            EnsureTrue(updated == linkAddress);
+            link = new Link<T>(links.GetRequiredLink(linkAddress));
+            EnsureTrue(link.Source == constants.Null);
+            EnsureTrue(link.Target == constants.Null);
 
             // Delete link
             links.Delete(linkAddress);
-            EnsureTrue(links.Count() ==  zero);
+            EnsureTrue(links.Count() == zero);
             setter = new Setter<T, T>(constants.Continue, constants.Break, constants.Null);
             links.Each(setter.SetFirstFromNonNullListAndReturnTrue, constants.Any, constants.Any, constants.Any);
-            EnsureTrue(setter.Result ==  constants.Null);
+            EnsureTrue(setter.Result == constants.Null);
         }
 
         /// <summary>
@@ -132,58 +132,58 @@ namespace Platform.Data.Doublets.Tests
         {
             // Constants
             var constants = links.Constants;
-            var zero = default(T);
-            var one = ++zero;
+            var zero = T.Zero;
+            var one = T.One;
             var two = ++one;
             var h106E = new Hybrid<T>(106L, isExternal: true);
             var h107E = new Hybrid<T>(-char.ConvertFromUtf32(107)[0]);
             var h108E = new Hybrid<T>(-108L);
-            EnsureEqual(T.CreateTruncating(106L) , T.CreateTruncating(h106E.AbsoluteValue) );
+            EnsureEqual(T.CreateTruncating(106L), T.CreateTruncating(h106E.AbsoluteValue));
             EnsureEqual(T.CreateTruncating(107L), T.CreateTruncating(h107E.AbsoluteValue));
             EnsureEqual(T.CreateTruncating(108L), T.CreateTruncating(h108E.AbsoluteValue));
 
             // Create Link (External -> External)
             var linkAddress1 = links.Create();
             links.Update(linkAddress1, h106E, h108E);
-            var link1 = new Link<T>(links.GetLink(linkAddress1));
-            EnsureTrue(link1.Source ==  h106E.Value);
-            EnsureTrue(link1.Target ==  h108E.Value);
+            var link1 = new Link<T>(links.GetRequiredLink(linkAddress1));
+            EnsureTrue(link1.Source == h106E.Value);
+            EnsureTrue(link1.Target == h108E.Value);
 
             // Create Link (Internal -> External)
             var linkAddress2 = links.Create();
             links.Update(linkAddress2, linkAddress1, h108E);
-            var link2 = new Link<T>(links.GetLink(linkAddress2));
-            EnsureTrue(link2.Source ==  linkAddress1);
-            EnsureTrue(link2.Target ==  h108E.Value);
+            var link2 = new Link<T>(links.GetRequiredLink(linkAddress2));
+            EnsureTrue(link2.Source == linkAddress1);
+            EnsureTrue(link2.Target == h108E.Value);
 
             // Create Link (Internal -> Internal)
             var linkAddress3 = links.Create();
             links.Update(linkAddress3, linkAddress1, linkAddress2);
-            var link3 = new Link<T>(links.GetLink(linkAddress3));
-            EnsureTrue(link3.Source ==  linkAddress1);
-            EnsureTrue(link3.Target ==  linkAddress2);
+            var link3 = new Link<T>(links.GetRequiredLink(linkAddress3));
+            EnsureTrue(link3.Source == linkAddress1);
+            EnsureTrue(link3.Target == linkAddress2);
 
             // Search for created link
             var setter1 = new Setter<T, T>(constants.Continue, constants.Break, constants.Null);
             links.Each(setter1.SetFirstAndReturnFalse, constants.Any, h106E, h108E);
-            EnsureTrue(setter1.Result ==  linkAddress1);
+            EnsureTrue(setter1.Result == linkAddress1);
 
             // Search for nonexistent link
             var setter2 = new Setter<T, T>(constants.Continue, constants.Break, constants.Null);
             links.Each(setter2.SetFirstAndReturnFalse, constants.Any, h106E, h107E);
-            EnsureTrue(setter2.Result ==  constants.Null);
+            EnsureTrue(setter2.Result == constants.Null);
 
             // Update link to reference null (prepare for delete)
             var updated = links.Update(linkAddress3, constants.Null, constants.Null);
-            EnsureTrue(updated ==  linkAddress3);
-            link3 = new Link<T>(links.GetLink(linkAddress3));
-            EnsureTrue(link3.Source ==  constants.Null);
-            EnsureTrue(link3.Target ==  constants.Null);
+            EnsureTrue(updated == linkAddress3);
+            link3 = new Link<T>(links.GetRequiredLink(linkAddress3));
+            EnsureTrue(link3.Source == constants.Null);
+            EnsureTrue(link3.Target == constants.Null);
 
             // Delete link
             links.Delete(linkAddress3);
-            EnsureTrue(links.Count() ==  two);
-            var isLinkAddress2Found = links.All().Any(link => link![constants.IndexPart] ==  linkAddress2);
+            EnsureTrue(links.Count() == two);
+            var isLinkAddress2Found = links.All().Any(link => link![constants.IndexPart] == linkAddress2);
             EnsureTrue(isLinkAddress2Found);
         }
 
@@ -223,7 +223,7 @@ namespace Platform.Data.Doublets.Tests
                         var source = createdAddresses[random.Next(linksAddressRange.Minimum, linksAddressRange.Maximum)];
                         var target = createdAddresses[random.Next(linksAddressRange.Minimum, linksAddressRange.Maximum)]; //-V3086
                         var resultLink = links.SearchOrDefault(source, target);
-                        if (resultLink !=  default)
+                        if (resultLink != default)
                         {
                             continue;
                         }

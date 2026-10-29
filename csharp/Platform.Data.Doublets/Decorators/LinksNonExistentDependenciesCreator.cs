@@ -18,7 +18,7 @@ public class LinksNonExistentDependenciesCreator<TLinkAddress> : LinksDecoratorB
 {
     /// <summary>
     ///     <para>
-    ///         Initializes a new <see cref="LinksNonExistentDependenciesCreator" /> instance.
+    ///         Initializes a new <see cref="LinksNonExistentDependenciesCreator{TLinkAddress}" /> instance.
     ///     </para>
     ///     <para></para>
     /// </summary>
@@ -29,6 +29,7 @@ public class LinksNonExistentDependenciesCreator<TLinkAddress> : LinksDecoratorB
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     public LinksNonExistentDependenciesCreator(ILinks<TLinkAddress> links) : base(links: links) { }
 
+    /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
     /// <summary>
     ///     <para>
     ///         Updates the restriction.

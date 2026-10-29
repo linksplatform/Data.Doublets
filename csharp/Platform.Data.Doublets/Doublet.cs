@@ -23,30 +23,18 @@ namespace Platform.Data.Doublets
         /// <para>.</para>
         /// <para>.</para>
         /// </summury>
-        /// <typeparam name="T">
-        /// <para>.</para>
-        /// <para>.</para>
-        /// </typeparam>
         public readonly T Source;
 
         /// <summury>
         /// <para>.</para>
         /// <para>.</para>
         /// </summury>
-        /// <typeparam name="T">
-        /// <para>.</para>
-        /// <para>.</para>
-        /// </typeparam>
         public readonly T Target;
 
         /// <summury>
         /// <para>.</para>
         /// <para>.</para>
         /// </summury>
-        /// <typeparam name="T">
-        /// <para>.</para>
-        /// <para>.</para>
-        /// </typeparam>
         /// <param name="source">
         /// <para>.</para>
         /// <para>.</para>
@@ -71,7 +59,7 @@ namespace Platform.Data.Doublets
         /// <para>.</para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override string ToString()  { return $"{Source}->{Target}";}
+        public override string ToString() { return $"{Source}->{Target}"; }
 
         /// <summury>
         /// <para>.</para>
@@ -90,7 +78,7 @@ namespace Platform.Data.Doublets
         /// <para>.</para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool Equals(Doublet<T> other)  { return Source ==  other.Source && Target ==  other.Target;}
+        public bool Equals(Doublet<T> other) { return Source == other.Source && Target == other.Target; }
 
         /// <summury>
         /// <para>.</para>
@@ -109,7 +97,7 @@ namespace Platform.Data.Doublets
         /// <para>.</para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override bool Equals(object obj)  { return obj is Doublet<T> doublet ? base.Equals(doublet) : false;}
+        public override bool Equals(object? obj) { return obj is Doublet<T> doublet ? base.Equals(doublet) : false; }
 
         /// <summury>
         /// <para>.</para>
@@ -120,7 +108,7 @@ namespace Platform.Data.Doublets
         /// <para>.</para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override int GetHashCode()  { return  (Source, Target).GetHashCode();}
+        public override int GetHashCode() { return (Source, Target).GetHashCode(); }
 
         /// <summury>
         /// <para>.</para>
@@ -139,7 +127,7 @@ namespace Platform.Data.Doublets
         /// <para>.</para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool operator ==(Doublet<T> left, Doublet<T> right)  { return  left.Equals(right);}
+        public static bool operator ==(Doublet<T> left, Doublet<T> right) { return left.Equals(right); }
 
         /// <summury>
         /// <para>.</para>
@@ -158,6 +146,6 @@ namespace Platform.Data.Doublets
         /// <para>.</para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool operator !=(Doublet<T> left, Doublet<T> right)  { return !(left == right);}
+        public static bool operator !=(Doublet<T> left, Doublet<T> right) { return !(left == right); }
     }
 }

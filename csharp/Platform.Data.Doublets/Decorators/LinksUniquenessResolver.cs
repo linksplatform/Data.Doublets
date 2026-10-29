@@ -19,7 +19,7 @@ public class LinksUniquenessResolver<TLinkAddress> : LinksDecoratorBase<TLinkAdd
 
     /// <summary>
     ///     <para>
-    ///         Initializes a new <see cref="LinksUniquenessResolver" /> instance.
+    ///         Initializes a new <see cref="LinksUniquenessResolver{TLinkAddress}" /> instance.
     ///     </para>
     ///     <para></para>
     /// </summary>
@@ -30,6 +30,7 @@ public class LinksUniquenessResolver<TLinkAddress> : LinksDecoratorBase<TLinkAdd
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     public LinksUniquenessResolver(ILinks<TLinkAddress> links) : base(links: links) { }
 
+    /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
     /// <summary>
     ///     <para>
     ///         Updates the restriction.
@@ -54,13 +55,14 @@ public class LinksUniquenessResolver<TLinkAddress> : LinksDecoratorBase<TLinkAdd
         var constants = _constants;
         var links = _links;
         var newLinkAddress = links.SearchOrDefault(source: links.GetSource(link: substitution), target: links.GetTarget(link: substitution));
-        if (newLinkAddress ==  default)
+        if (newLinkAddress == default)
         {
             return links.Update(restriction: restriction, substitution: substitution, handler: handler);
         }
         return ResolveAddressChangeConflict(oldLinkAddress: links.GetIndex(link: restriction), newLinkAddress: newLinkAddress, handler: handler);
     }
 
+    /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
     /// <summary>
     ///     <para>
     ///         Resolves the address change conflict using the specified old link address.
@@ -82,7 +84,7 @@ public class LinksUniquenessResolver<TLinkAddress> : LinksDecoratorBase<TLinkAdd
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     protected virtual TLinkAddress ResolveAddressChangeConflict(TLinkAddress oldLinkAddress, TLinkAddress newLinkAddress, WriteHandler<TLinkAddress>? handler)
     {
-        if (oldLinkAddress !=  newLinkAddress && _links.Exists(link: oldLinkAddress))
+        if (oldLinkAddress != newLinkAddress && _links.Exists(link: oldLinkAddress))
         {
             return _facade.Delete(linkToDelete: oldLinkAddress, handler: handler);
         }

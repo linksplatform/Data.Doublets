@@ -17,7 +17,7 @@ public class LinksCascadeUniquenessAndUsagesResolver<TLinkAddress> : LinksUnique
 {
     /// <summary>
     ///     <para>
-    ///         Initializes a new <see cref="LinksCascadeUniquenessAndUsagesResolver" /> instance.
+    ///         Initializes a new <see cref="LinksCascadeUniquenessAndUsagesResolver{TLinkAddress}" /> instance.
     ///     </para>
     ///     <para></para>
     /// </summary>
@@ -28,6 +28,7 @@ public class LinksCascadeUniquenessAndUsagesResolver<TLinkAddress> : LinksUnique
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     public LinksCascadeUniquenessAndUsagesResolver(ILinks<TLinkAddress> links) : base(links: links) { }
 
+    /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
     /// <summary>
     ///     <para>
     ///         Resolves the address change conflict using the specified old link address.

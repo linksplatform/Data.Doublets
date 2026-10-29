@@ -22,7 +22,7 @@ internal class UniLinks<TLinkAddress> : LinksDecoratorBase<TLinkAddress>, IUniLi
 
     /// <summary>
     ///     <para>
-    ///         Initializes a new <see cref="UniLinks" /> instance.
+    ///         Initializes a new <see cref="UniLinks{TLinkAddress}" /> instance.
     ///     </para>
     ///     <para></para>
     /// </summary>
@@ -70,7 +70,7 @@ internal class UniLinks<TLinkAddress> : LinksDecoratorBase<TLinkAddress>, IUniLi
         ////    // Есть причина делать проход (чтение)
         ////    if (matchedHandler != null)
         ////    {
-        ////        if (!substitution.IsNullOrEmpty())
+        ////        if (!(substitution is not { Count: > 0 }))
         ////        {
         ////            // restriction => { 0, 0, 0 } | { 0 } // Create
         ////            // substitution => { itself, 0, 0 } | { itself, itself, itself } // Create / Update
@@ -155,7 +155,7 @@ internal class UniLinks<TLinkAddress> : LinksDecoratorBase<TLinkAddress>, IUniLi
         //    substitution[Constants.IndexPart] = Memory.AllocateLink();
         //    Memory.SetLinkValue(substitution);
         //}
-        //else if (substitution.IsNullOrEmpty()) // Delete
+        //else if ((substitution is not { Count: > 0 })) // Delete
         //{
         //    Memory.FreeLink(restriction[Constants.IndexPart]);
         //}
@@ -264,32 +264,33 @@ internal class UniLinks<TLinkAddress> : LinksDecoratorBase<TLinkAddress>, IUniLi
     public TLinkAddress Trigger(IList<TLinkAddress>? patternOrCondition, ReadHandler<TLinkAddress>? matchHandler, IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? substitutionHandler)
     {
         var constants = _constants;
-        if (patternOrCondition.IsNullOrEmpty() && substitution.IsNullOrEmpty())
+        if ((patternOrCondition is not { Count: > 0 }) && (substitution is not { Count: > 0 }))
         {
             return constants.Continue;
         }
-        if (patternOrCondition.EqualTo(right: substitution)) // Should be Each here TODO: Check if it is a correct condition
+        if (patternOrCondition != null && substitution != null && patternOrCondition.EqualTo(right: substitution)) // Should be Each here TODO: Check if it is a correct condition
         {
             // Or it only applies to trigger without matchHandler.
             throw new NotImplementedException();
         }
-        if (!substitution.IsNullOrEmpty()) // Creation
+        if (patternOrCondition is not { Count: > 0 }) // Creation
         {
+            ArgumentNullException.ThrowIfNull(substitution);
             var before = Array.Empty<TLinkAddress>();
             // Что должно означать False здесь? Остановиться (перестать идти) или пропустить (пройти мимо) или пустить (взять)?
-            if (matchHandler != null && matchHandler(link: before) ==  constants.Break)
+            if (matchHandler != null && matchHandler(link: before) == constants.Break)
             {
                 return constants.Break;
             }
-            var after = (IList<TLinkAddress>?)substitution.ToArray();
-            if (after[index: 0] ==  default)
+            var after = (IList<TLinkAddress>)substitution.ToArray();
+            if (after[index: 0] == default)
             {
                 var newLink = _links.Create();
                 after[index: 0] = newLink;
             }
             if (substitution.Count == 1)
             {
-                after = _links.GetLink(link: substitution[index: 0]);
+                after = _links.GetRequiredLink(link: substitution[index: 0]);
             }
             else if (substitution.Count == 3)
             {
@@ -299,57 +300,60 @@ internal class UniLinks<TLinkAddress> : LinksDecoratorBase<TLinkAddress>, IUniLi
             {
                 throw new NotSupportedException();
             }
-            return matchHandler != null ? substitutionHandler(before: before, after: after) : constants.Continue;
+            return substitutionHandler != null ? substitutionHandler(before: before, after: after) : constants.Continue;
         }
-        if (!patternOrCondition.IsNullOrEmpty()) // Deletion
+        if (substitution is not { Count: > 0 }) // Deletion
         {
+            ArgumentNullException.ThrowIfNull(patternOrCondition);
             if (patternOrCondition.Count == 1)
             {
                 var linkToDelete = patternOrCondition[index: 0];
-                var before = _links.GetLink(link: linkToDelete);
-                if (matchHandler != null && matchHandler(link: before) ==  constants.Break)
+                var before = _links.GetRequiredLink(link: linkToDelete);
+                if (matchHandler != null && matchHandler(link: before) == constants.Break)
                 {
                     return constants.Break;
                 }
                 var after = Array.Empty<TLinkAddress>();
                 _links.Update(link: linkToDelete, newSource: constants.Null, newTarget: constants.Null);
                 _links.Delete(linkToDelete: linkToDelete);
-                return matchHandler != null ? substitutionHandler(before: before, after: after) : constants.Continue;
+                return substitutionHandler != null ? substitutionHandler(before: before, after: after) : constants.Continue;
             }
             throw new NotSupportedException();
         }
         // Replace / Update
+        ArgumentNullException.ThrowIfNull(patternOrCondition);
+        ArgumentNullException.ThrowIfNull(substitution);
         if (patternOrCondition.Count == 1) //-V3125
         {
             var linkToUpdate = patternOrCondition[index: 0];
-            var before = _links.GetLink(link: linkToUpdate);
-            if (matchHandler != null && matchHandler(link: before) ==  constants.Break)
+            var before = _links.GetRequiredLink(link: linkToUpdate);
+            if (matchHandler != null && matchHandler(link: before) == constants.Break)
             {
                 return constants.Break;
             }
-            var after = (IList<TLinkAddress>?)substitution.ToArray(); //-V3125
-            if (after[index: 0] ==  default)
+            var after = (IList<TLinkAddress>)substitution.ToArray(); //-V3125
+            if (after[index: 0] == default)
             {
                 after[index: 0] = linkToUpdate;
             }
             if (substitution.Count == 1)
             {
-                if (substitution[index: 0] !=  linkToUpdate)
+                if (substitution[index: 0] != linkToUpdate)
                 {
-                    after = _links.GetLink(link: substitution[index: 0]);
+                    after = _links.GetRequiredLink(link: substitution[index: 0]);
                     _links.Update(link: linkToUpdate, newSource: constants.Null, newTarget: constants.Null);
                     _links.Delete(linkToDelete: linkToUpdate);
                 }
             }
             else if (substitution.Count == 3)
             {
-                //Links.Update(after);
+                _links.Update(link: linkToUpdate, newSource: after[constants.SourcePart], newTarget: after[constants.TargetPart]);
             }
             else
             {
                 throw new NotSupportedException();
             }
-            return matchHandler != null ? substitutionHandler(before: before, after: after) : constants.Continue;
+            return substitutionHandler != null ? substitutionHandler(before: before, after: after) : constants.Continue;
         }
         throw new NotSupportedException();
     }

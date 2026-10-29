@@ -11,7 +11,7 @@ namespace Platform.Data.Doublets
     /// </para>
     /// <para></para> 
     /// </summary>
-    /// <seealso cref="ILinks{TLinkAddress, LinksConstants{TLinkAddress}}"/>
+    /// <seealso cref="Platform.Data.ILinks{TLinkAddress, TConstants}"/>
     public interface ILinks<TLinkAddress> : ILinks<TLinkAddress, LinksConstants<TLinkAddress>> where TLinkAddress : IUnsignedNumber<TLinkAddress>
     {
     }

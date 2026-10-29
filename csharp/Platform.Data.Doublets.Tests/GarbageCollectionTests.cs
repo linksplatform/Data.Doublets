@@ -9,14 +9,14 @@ public class GarbageCollectionTests
 {
     public IResizableDirectMemory LinksMemory;
     public ILinks<TLinkAddress> Links;
-    
-    
+
+
     public GarbageCollectionTests()
     {
         LinksMemory = new HeapResizableDirectMemory();
         Links = new UnitedMemoryLinks<TLinkAddress>(LinksMemory);
     }
-    
+
     [Fact]
     public void ClearGarbagePartialPointDependency()
     {
@@ -24,7 +24,7 @@ public class GarbageCollectionTests
         Links.ClearGarbage(link);
         Assert.True(Links.Exists(link));
     }
-    
+
     [Fact]
     public void ClearGarbageFullPointDependency()
     {
@@ -32,7 +32,7 @@ public class GarbageCollectionTests
         Links.ClearGarbage(link);
         Assert.True(Links.Exists(link));
     }
-    
+
     [Fact]
     public void ClearGarbageWithInDependency()
     {
@@ -42,7 +42,7 @@ public class GarbageCollectionTests
         Assert.True(Links.Exists(link));
         Assert.True(Links.Exists(dependant));
     }
-    
+
     [Fact]
     public void ClearGarbageWithOutDependency()
     {
@@ -52,7 +52,7 @@ public class GarbageCollectionTests
         Assert.True(Links.Exists(link));
         Assert.True(Links.Exists(dependant));
     }
-    
+
     [Fact]
     public void ClearGarbageWithoutDependency()
     {
@@ -83,6 +83,6 @@ public class GarbageCollectionTests
         Assert.False(Links.Exists(link3));
         Assert.True(Links.Exists(link2));
         Assert.True(Links.Exists(link1));
-        
+
     }
 }

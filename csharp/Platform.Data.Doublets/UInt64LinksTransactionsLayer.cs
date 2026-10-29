@@ -161,7 +161,7 @@ namespace Platform.Data.Doublets
                 Timestamp = uniqueTimestampFactory.Create();
             }
 
-            public Transition(UniqueTimestampFactory uniqueTimestampFactory, TLinkAddress transactionId, IList<TLinkAddress> before, IList<TLinkAddress> after) : this(uniqueTimestampFactory, transactionId, new Link<TLinkAddress>(before), new Link<TLinkAddress>(after)) { }
+            public Transition(UniqueTimestampFactory uniqueTimestampFactory, TLinkAddress transactionId, IList<TLinkAddress>? before, IList<TLinkAddress>? after) : this(uniqueTimestampFactory, transactionId, new Link<TLinkAddress>(before), new Link<TLinkAddress>(after)) { }
 
             /// <summary>
             /// <para>
@@ -229,7 +229,7 @@ namespace Platform.Data.Doublets
             /// <para></para>
             /// </returns>
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public override bool Equals(object obj) => obj is Transition transition ? Equals(transition) : false;
+            public override bool Equals(object? obj) => obj is Transition transition ? Equals(transition) : false;
 
             /// <summary>
             /// <para>
@@ -467,11 +467,11 @@ namespace Platform.Data.Doublets
         private readonly FileStream _log;
         private readonly Queue<Transition> _transitions;
         private readonly UniqueTimestampFactory _uniqueTimestampFactory;
-        private Task _transitionsPusher;
+        private Task? _transitionsPusher;
         private Transition _lastCommitedTransition;
         private TLinkAddress _currentTransactionId;
-        private Queue<Transition> _currentTransactionTransitions;
-        private Transaction _currentTransaction;
+        private Queue<Transition>? _currentTransactionTransitions;
+        private Transaction? _currentTransaction;
         private TLinkAddress _lastCommitedTransactionId;
 
         /// <summary>
@@ -546,8 +546,9 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public IList<TLinkAddress> GetLinkValue(TLinkAddress link) => _links.GetLink(link);
+        public IList<TLinkAddress> GetLinkValue(TLinkAddress link) => _links.GetRequiredLink(link);
 
+        /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
         /// <summary>
         /// <para>
         /// Creates the substitution.
@@ -572,6 +573,7 @@ namespace Platform.Data.Doublets
             });
         }
 
+        /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
         /// <summary>
         /// <para>
         /// Updates the substitution.
@@ -601,6 +603,7 @@ namespace Platform.Data.Doublets
             );
         }
 
+        /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
         /// <summary>
         /// <para>
         /// Deletes the substitution.

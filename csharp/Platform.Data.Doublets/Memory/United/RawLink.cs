@@ -23,7 +23,7 @@ namespace Platform.Data.Doublets.Memory.United
         /// </para>
         /// <para></para>
         /// </summary>
-        public static readonly long SizeInBytes = Structure<RawLink<TLinkAddress>>.Size; 
+        public static readonly long SizeInBytes = Structure<RawLink<TLinkAddress>>.Size;
 
         /// <summary>
         /// <para>
@@ -97,7 +97,7 @@ namespace Platform.Data.Doublets.Memory.United
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override bool Equals(object obj)  { return obj is RawLink<TLinkAddress> link ? Equals(link) : false;}
+        public override bool Equals(object? obj) { return obj is RawLink<TLinkAddress> link ? Equals(link) : false; }
 
         /// <summary>
         /// <para>
@@ -115,14 +115,14 @@ namespace Platform.Data.Doublets.Memory.United
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Equals(RawLink<TLinkAddress> other)
-            => Source ==  other.Source
-            && Target ==  other.Target
-            && LeftAsSource ==  other.LeftAsSource
-            && RightAsSource ==  other.RightAsSource
-            && SizeAsSource ==  other.SizeAsSource
-            && LeftAsTarget ==  other.LeftAsTarget
-            && RightAsTarget ==  other.RightAsTarget
-            && SizeAsTarget ==  other.SizeAsTarget;
+            => Source == other.Source
+            && Target == other.Target
+            && LeftAsSource == other.LeftAsSource
+            && RightAsSource == other.RightAsSource
+            && SizeAsSource == other.SizeAsSource
+            && LeftAsTarget == other.LeftAsTarget
+            && RightAsTarget == other.RightAsTarget
+            && SizeAsTarget == other.SizeAsTarget;
 
         /// <summary>
         /// <para>
@@ -135,12 +135,12 @@ namespace Platform.Data.Doublets.Memory.United
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override int GetHashCode()  { return (Source, Target, LeftAsSource, RightAsSource, SizeAsSource, LeftAsTarget, RightAsTarget, SizeAsTarget).GetHashCode();}
+        public override int GetHashCode() { return (Source, Target, LeftAsSource, RightAsSource, SizeAsSource, LeftAsTarget, RightAsTarget, SizeAsTarget).GetHashCode(); }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool operator ==(RawLink<TLinkAddress> left, RawLink<TLinkAddress> right)  { return left.Equals(right);}
+        public static bool operator ==(RawLink<TLinkAddress> left, RawLink<TLinkAddress> right) { return left.Equals(right); }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool operator !=(RawLink<TLinkAddress> left, RawLink<TLinkAddress> right)  { return !(left == right);}
+        public static bool operator !=(RawLink<TLinkAddress> left, RawLink<TLinkAddress> right) { return !(left == right); }
     }
 }

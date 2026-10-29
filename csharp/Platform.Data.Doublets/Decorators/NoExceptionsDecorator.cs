@@ -6,10 +6,13 @@ using Platform.Exceptions;
 
 namespace Platform.Data.Doublets.Decorators;
 
+/// <summary>Returns the error constant when an operation throws.</summary>
 public class NoExceptionsDecorator<TLinkAddress> : LinksDecoratorBase<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>
 {
+    /// <summary>Initializes the decorator with its underlying links.</summary>
     public NoExceptionsDecorator(ILinks<TLinkAddress> storage) : base(links: storage) { }
 
+    /// <inheritdoc/>
     public override TLinkAddress Count(IList<TLinkAddress>? restriction)
     {
         try
@@ -23,6 +26,7 @@ public class NoExceptionsDecorator<TLinkAddress> : LinksDecoratorBase<TLinkAddre
         }
     }
 
+    /// <inheritdoc/>
     public override TLinkAddress Each(IList<TLinkAddress>? restriction, ReadHandler<TLinkAddress>? handler)
     {
         try
@@ -36,6 +40,7 @@ public class NoExceptionsDecorator<TLinkAddress> : LinksDecoratorBase<TLinkAddre
         }
     }
 
+    /// <inheritdoc/>
     public override TLinkAddress Create(IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler)
     {
         try
@@ -49,6 +54,7 @@ public class NoExceptionsDecorator<TLinkAddress> : LinksDecoratorBase<TLinkAddre
         }
     }
 
+    /// <inheritdoc/>
     public override TLinkAddress Update(IList<TLinkAddress>? restriction, IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler)
     {
         try
@@ -62,6 +68,7 @@ public class NoExceptionsDecorator<TLinkAddress> : LinksDecoratorBase<TLinkAddre
         }
     }
 
+    /// <inheritdoc/>
     public override TLinkAddress Delete(IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? handler)
     {
         try

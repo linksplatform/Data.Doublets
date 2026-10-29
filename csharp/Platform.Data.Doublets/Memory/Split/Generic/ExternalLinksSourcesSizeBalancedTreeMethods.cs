@@ -16,7 +16,7 @@ public unsafe class ExternalLinksSourcesSizeBalancedTreeMethods<TLinkAddress> : 
 {
     /// <summary>
     ///     <para>
-    ///         Initializes a new <see cref="ExternalLinksSourcesSizeBalancedTreeMethods" /> instance.
+    ///         Initializes a new <see cref="ExternalLinksSourcesSizeBalancedTreeMethods{TLinkAddress}" /> instance.
     ///     </para>
     ///     <para></para>
     /// </summary>

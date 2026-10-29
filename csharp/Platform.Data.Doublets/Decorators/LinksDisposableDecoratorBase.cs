@@ -29,7 +29,7 @@ public abstract class LinksDisposableDecoratorBase<TLinkAddress> : LinksDecorato
 
     /// <summary>
     ///     <para>
-    ///         Initializes a new <see cref="LinksDisposableDecoratorBase" /> instance.
+    ///         Initializes a new <see cref="LinksDisposableDecoratorBase{TLinkAddress}" /> instance.
     ///     </para>
     ///     <para></para>
     /// </summary>

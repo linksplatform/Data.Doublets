@@ -15,7 +15,7 @@ namespace Platform.Data.Doublets
     /// TODO: Try to unfold code of each method using IL generation for performance improvements.
     /// TODO: Or even to unfold multiple layers of implementations.
     /// </remarks>
-    public class SynchronizedLinks<TLinkAddress> : ISynchronizedLinks<TLinkAddress>  where TLinkAddress : IUnsignedNumber<TLinkAddress>
+    public class SynchronizedLinks<TLinkAddress> : ISynchronizedLinks<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>
     {
         /// <summary>
         /// <para>
@@ -67,7 +67,7 @@ namespace Platform.Data.Doublets
 
         /// <summary>
         /// <para>
-        /// Initializes a new <see cref="SynchronizedLinks"/> instance.
+        /// Initializes a new <see cref="SynchronizedLinks{TLinkAddress}"/> instance.
         /// </para>
         /// <para></para>
         /// </summary>
@@ -80,7 +80,7 @@ namespace Platform.Data.Doublets
 
         /// <summary>
         /// <para>
-        /// Initializes a new <see cref="SynchronizedLinks"/> instance.
+        /// Initializes a new <see cref="SynchronizedLinks{TLinkAddress}"/> instance.
         /// </para>
         /// <para></para>
         /// </summary>
@@ -116,7 +116,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLinkAddress Count(IList<TLinkAddress>? restriction)  { return SyncRoot.DoRead(restriction, Unsync.Count);}
+        public TLinkAddress Count(IList<TLinkAddress>? restriction) { return SyncRoot.DoRead(restriction, Unsync.Count); }
 
         /// <summary>
         /// <para>
@@ -137,8 +137,9 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLinkAddress Each(IList<TLinkAddress>? restriction, ReadHandler<TLinkAddress>? handler)  { return SyncRoot.DoRead(restriction, handler, Unsync.Each);}
+        public TLinkAddress Each(IList<TLinkAddress>? restriction, ReadHandler<TLinkAddress>? handler) { return SyncRoot.DoRead(restriction, handler, Unsync.Each); }
 
+        /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
         /// <summary>
         /// <para>
         /// Creates the substitution.
@@ -154,8 +155,9 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLinkAddress Create(IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler)  { return SyncRoot.DoWrite(substitution, handler, Unsync.Create);}
+        public TLinkAddress Create(IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler) { return SyncRoot.DoWrite(substitution, handler, Unsync.Create); }
 
+        /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
         /// <summary>
         /// <para>
         /// Updates the substitution.
@@ -175,8 +177,9 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLinkAddress Update(IList<TLinkAddress>? restriction, IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler)  { return SyncRoot.DoWrite(restriction, substitution, handler, Unsync.Update);}
+        public TLinkAddress Update(IList<TLinkAddress>? restriction, IList<TLinkAddress>? substitution, WriteHandler<TLinkAddress>? handler) { return SyncRoot.DoWrite(restriction, substitution, handler, Unsync.Update); }
 
+        /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
         /// <summary>
         /// <para>
         /// Deletes the substitution.
@@ -188,7 +191,7 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TLinkAddress Delete(IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? handler)  { return SyncRoot.DoWrite(restriction, handler, Unsync.Delete);}
+        public TLinkAddress Delete(IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? handler) { return SyncRoot.DoWrite(restriction, handler, Unsync.Delete); }
 
         //public T Trigger(IList<T> restriction, Func<IList<T>, IList<T>, T> matchedHandler, IList<T> substitution, Func<IList<T>, IList<T>, T> substitutedHandler)
         //{
