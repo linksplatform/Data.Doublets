@@ -147,7 +147,16 @@ class PushRetryTests(unittest.TestCase):
         self.assertIn('auth=trusted-publishing', output)
 
     def test_validation_transport_and_unrelated_errors_cannot_switch_credentials(self):
-        for message in ('HTTP 400 Bad Request', 'HTTP 500 Internal Server Error', 'HTTP 429 Too Many Requests', 'connection timed out', 'invalid package', 'warning: package has 403 types'):
+        for message in (
+            'HTTP 400 Bad Request',
+            'error: Response status code does not indicate success: 400 '
+            '(To provide a better experience for older clients when a license '
+            'expression is specified, <licenseUrl> must be set to '
+            "'https://licenses.nuget.org/LGPL-3.0-only'. "
+            'https://aka.ms/invalidNuGetLicenseUrl).',
+            'HTTP 500 Internal Server Error', 'HTTP 429 Too Many Requests',
+            'connection timed out', 'invalid package', 'warning: package has 403 types',
+        ):
             with self.subTest(message=message), patch.object(release, 'authenticate_fallback') as fallback:
                 with self.assertRaises(RuntimeError):
                     self.push([(1, message)])
