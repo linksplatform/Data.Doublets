@@ -2,7 +2,8 @@
 import json
 import os
 from pathlib import Path
-import subprocess
+# This local regression intentionally executes fixed git/bash test commands.
+import subprocess  # nosec B404
 import tempfile
 import unittest
 
@@ -31,7 +32,7 @@ class CodeqlCsharpTests(unittest.TestCase):
         self.assertLess(steps.index(build), steps.index(analyze))
 
     def test_every_tracked_project_is_rebuilt_separately_for_the_tracer(self):
-        projects = subprocess.check_output(['git', 'ls-files', '-z', '*.csproj'], cwd=ROOT).decode().strip('\0').split('\0')
+        projects = subprocess.check_output(['git', 'ls-files', '-z', '*.csproj'], cwd=ROOT).decode().strip('\0').split('\0')  # nosec B603
         with tempfile.TemporaryDirectory() as directory:
             folder = Path(directory)
             log = folder / 'builds.jsonl'
@@ -39,7 +40,8 @@ class CodeqlCsharpTests(unittest.TestCase):
             dotnet.write_text('#!/usr/bin/env python3\nimport json, os, sys\nwith open(os.environ["CODEQL_TEST_LOG"], "a") as log:\n    log.write(json.dumps(sys.argv[1:]) + "\\n")\n')
             dotnet.chmod(0o755)
             environment = dict(os.environ, PATH=f'{folder}{os.pathsep}{os.environ["PATH"]}', CODEQL_TEST_LOG=str(log))
-            subprocess.run(['bash', str(ROOT / 'scripts/build-codeql-csharp.sh')], cwd=folder, env=environment, check=True)
+            # Fixed script and arguments; the only PATH override is our own test double.
+            subprocess.run(['bash', str(ROOT / 'scripts/build-codeql-csharp.sh')], cwd=folder, env=environment, check=True)  # nosec B603
             builds = [json.loads(line) for line in log.read_text().splitlines()]
         self.assertEqual(sorted(build[1] for build in builds), sorted(projects))
         for build in builds:
