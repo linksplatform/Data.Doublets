@@ -2,3 +2,7 @@
 # Evidence: dev/log/issues/524/pulls/526/security/historical-credential.json
 # Exact historic finding only; current and future credentials still fail scans.
 bf135cd605a52a68226de6a2a8260168ad586df6:publish-docs.sh:generic-api-key:16
+# Five public DocFX source-map identifiers, not credentials. Exact historic
+# commit/file/rule/line only; future source maps and real credentials still fail.
+# Evidence and reproduction: experiments/issue-538/source-map-findings.md
+a558df87521024c50433f8300ec63659ed6f0880:csharp/public/chunk-HKAKSKF2.min.js.map:generic-api-key:6
