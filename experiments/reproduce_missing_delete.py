@@ -1,11 +1,9 @@
-"""
-Run the regression tests against the original C# deletion implementations.
+"""Reproduce missing-link deletion failures in the original implementation."""
 
-Usage: python experiments/reproduce_missing_delete.py /path/to/dotnet
-Temporarily substitutes the original implementation, restores every file in finally,
-and excludes extreme addresses because the original code reads unchecked memory.
-Run from the repository root with no concurrent builds or source edits.
-"""
+# Usage: python experiments/reproduce_missing_delete.py /path/to/dotnet
+# Temporarily substitutes the original implementation, restores every file in finally,
+# and excludes extreme addresses because the original code reads unchecked memory.
+# Run from the repository root with no concurrent builds or source edits.
 
 from pathlib import Path
 from shutil import which
