@@ -10,6 +10,7 @@ from pathlib import Path
 import re
 import subprocess
 import sys
+import tempfile
 import time
 import urllib.error
 import urllib.parse
@@ -28,7 +29,8 @@ HINT = (
     "with no environment, owned by the NuGet account/organization owning both "
     "Platform.Data.Doublets and Platform.Data.Doublets.TemplateLibrary, and package push/version scope "
     "covering those IDs. Grant id-token: write to the login job. "
-    "See docs/trusted-publishing.md; stored API keys are never selected as a fallback."
+    "See docs/trusted-publishing.md. Only after trusted publishing fails, the provided "
+    "NUGET_TOKEN secret may be used as fallback; never rotate or delete it automatically."
 )
 
 
@@ -57,32 +59,93 @@ def request(url, *, method="GET", headers=None):
         with urllib.request.build_opener(NoRedirect).open(req, timeout=30) as response:
             return response.status, response.read()
     except urllib.error.HTTPError as error:
-        return error.code, b""
+        # Preserve a bounded server explanation, never headers or exception text.
+        return error.code, error.read(8192)
     except (OSError, urllib.error.URLError):
         return 0, b""
 
 
+def diagnostic(body, *credentials):
+    """Bound and flatten untrusted text before emitting any workflow annotation."""
+    value = body.decode('utf-8', errors='replace') if isinstance(body, bytes) else str(body)
+    secrets = [*credentials, *(os.environ.get(name, '') for name in
+               ('NUGET_TOKEN', 'NUGET_FALLBACK_TOKEN', 'GH_TOKEN', 'ACTIONS_ID_TOKEN_REQUEST_TOKEN'))]
+    for secret in sorted(set(secrets), key=len, reverse=True):
+        if secret:
+            for form in (secret, urllib.parse.quote(secret, safe='')):
+                value = value.replace(form, '[REDACTED]')
+    return ' '.join(value.split())[:1024]
+
+
+def authenticate_fallback(token, package):
+    # This endpoint authenticates push credentials, including first publication.
+    # It REPLACES the package subject: the returned key is never a scope proof.
+    package_id = urllib.parse.quote(package['id'], safe='')
+    version = urllib.parse.quote(package['version'], safe='')
+    status, body = request(f'https://www.nuget.org/api/v2/package/create-verification-key/{package_id}/{version}',
+                           method='POST', headers={'X-NuGet-ApiKey': token})
+    if status != 200:
+        if status in (401, 403):
+            category = 'authentication/authorization rejected'
+        elif status in (0, 408, 429) or status >= 500:
+            category = 'authentication probe transport/transient failure'
+        else:
+            category = 'authentication probe failed/unsupported (not package-scope evidence)'
+        raise RuntimeError(f'{category}: HTTP {status or "unreachable"}; {diagnostic(body, token)}')
+    try:
+        key = json.loads(body)['Key']
+        if not isinstance(key, str) or not key:
+            raise ValueError('Missing authentication result')
+    except (ValueError, KeyError, TypeError):
+        raise RuntimeError('authentication probe returned a malformed response') from None
+    print('Provided key authenticated for push actions; package scope remains unverified. '
+          'The derived verification key is discarded and cannot prove the original package subject.')
+
+
+def fallback_auth(reason, languages, package=None):
+    token = os.environ.get('NUGET_FALLBACK_TOKEN', '')
+    if not token:
+        print(f'auth=none; {reason}; token-fallback=missing')
+        raise RuntimeError(f'{reason}; provided token fallback is missing. {HINT}')
+    try:
+        authenticate_fallback(token, package or info(languages[0]))
+    except RuntimeError as error:
+        print(f'auth=none; {reason}; token-fallback=failed')
+        raise RuntimeError(f'{reason}; provided token fallback failed: {diagnostic(error, token)}') from None
+    print(f'auth=token-fallback; {reason}')
+    return 'token-fallback', token
+
+
+def select_nuget_auth(languages):
+    token = os.environ.get('NUGET_TOKEN', '')
+    try:
+        check_auth_config()
+    except RuntimeError:
+        return fallback_auth('trusted publishing failed/unavailable; failed-step=configuration (NUGET_USER profile)', languages)
+    outcome = os.environ.get('NUGET_LOGIN_OUTCOME', '')
+    if token and outcome == 'success':
+        print('auth=trusted-publishing; NuGet/login exchange succeeded; stored fallback was not tested')
+        return 'trusted-publishing', token
+    return fallback_auth('trusted publishing failed/unavailable; failed-step=NuGet/login (exchange failed or key output missing)', languages)
+
+
 def verify_nuget(key, package):
-    package_id = urllib.parse.quote(package["id"], safe="")
-    # Verify the original temporary key, preserving its actual owner/glob/actions.
-    # Deriving a symbol verification key can broaden its package selection and
-    # is unnecessary: NuGet's VerifyPackageKey accepts push credentials directly.
+    # VerifyPackageKey evaluates PackageVerify user policies before owner/scope.
+    # Push-only OIDC keys can get HTTP 400 even after successful authentication.
+    # No supported non-upload proof of the original package subject is available.
     status, body = request(f"https://api.nuget.org/v3-flatcontainer/{package['id'].lower()}/index.json")
     if status == 404:
         print(f"::notice::NuGet package scope for {package['id']} is unverified: no public version exists; the first push must enforce ownership and scope.")
         return None
     if status != 200:
-        return f"Cannot verify NuGet package scope: package index returned HTTP {status or 'unreachable'}."
+        return f"NuGet public package index returned HTTP {status or 'unreachable'}; scope is unverified. {diagnostic(body, key)}"
     try:
         versions = json.loads(body)["versions"]
         if not isinstance(versions, list) or not versions or not isinstance(versions[-1], str) or not re.fullmatch(r"[0-9A-Za-z.+-]+", versions[-1]):
             raise ValueError("No versions")
     except (ValueError, KeyError, TypeError):
         return "NuGet package index is malformed; refusing to assume publish permissions."
-    status, _ = request(f"https://www.nuget.org/api/v2/verifykey/{package_id}/{versions[-1]}", headers={"X-NuGet-ApiKey": key})
-    if status != 200:
-        return f"NuGet owner/package scope verification for {package['id']} returned HTTP {status or 'unreachable'}. {HINT}"
-    print(f"NuGet owner/package scope verified for {package['id']} against an existing version; the release push must still succeed.")
+    print(f"::notice::NuGet package scope for {package['id']} is unverified/unsupported by non-upload probes for push-only keys; actual publication must enforce ownership and package authorization.")
     return None
 
 
@@ -104,20 +167,17 @@ def verify_github(mode):
 
 
 def verify_nuget_auth(mode, languages):
-    errors = []
+    if mode != 'release':
+        return ['NuGet trusted publishing and package scope are unverified in report mode. ' + HINT]
     try:
-        check_auth_config()
+        _, token = select_nuget_auth(languages)
     except RuntimeError as error:
-        errors.append(str(error))
-    token = os.environ.get("NUGET_TOKEN", "")
-    if not token:
-        errors.append("NuGet/login OIDC exchange has not supplied an ephemeral NUGET_TOKEN. " + HINT)
-    elif mode == "release" and not errors:
-        print("NuGet/login exchange succeeded; checking package scopes with its temporary credential")
-        for language in languages:
-            error = verify_nuget(token, info(language))
-            if error:
-                errors.append(error)
+        return [str(error)]
+    errors = []
+    for language in languages:
+        error = verify_nuget(token, info(language))
+        if error:
+            errors.append(error)
     return errors
 
 
@@ -178,6 +238,55 @@ def wait_for_package(package, attempts=46, interval=20):
     raise RuntimeError("NuGet package was not publicly downloadable within 15 minutes; rerun publication to repair without changing the version")
 
 
+def run_nuget_push(artifact, source, token):
+    """Capture client diagnostics without printing argv or unbounded secret output."""
+    command = ['dotnet', 'nuget', 'push', str(artifact), '--source', source,
+               '--api-key', token, '--skip-duplicate']
+    if source.startswith('https://nuget.pkg.github.com/'):
+        command.append('--no-symbols')
+    # File-backed output also bounds memory for a verbose registry/client failure.
+    with tempfile.TemporaryFile() as log:
+        result = subprocess.run(command, stdout=log, stderr=log, check=False)  # nosec B603 - Fixed dotnet command, argument list, no shell.
+        log.seek(0, 2)
+        log.seek(max(0, log.tell() - 16384))
+        output = log.read().decode('utf-8', errors='replace')
+    return result.returncode, output
+
+
+def push_nuget(artifact, package, method, token):
+    source = 'https://api.nuget.org/v3/index.json'
+    code, output = run_nuget_push(artifact, source, token)
+    if not code:
+        print(f'NuGet publication auth={method}; {diagnostic(output, token)}')
+        return
+    # Only an actual HTTP authentication/authorization rejection permits retry.
+    rejection = re.search(r'(?:HTTP\s+|status code(?: does not indicate success)?:\s*)(401|403)\b', output, re.I)
+    category = 'authentication/authorization rejection' if rejection else 'publication/client/transport failure (no credential retry)'
+    outcome = f'{method} push failed (exit {code}; {category}): {diagnostic(output, token)}'
+    if method != 'trusted-publishing' or not rejection:
+        raise RuntimeError(outcome)
+    print(f'::warning::{outcome}; checking the exact version before token fallback')
+    # A combined package/symbol push may have partially succeeded. Check the exact
+    # public version before a duplicate-safe retry, without rebuilding or bumping.
+    url = f"https://api.nuget.org/v3-flatcontainer/{package['id'].lower()}/{package['version']}/{package['id'].lower()}.{package['version']}.nupkg"
+    status, body = request(url)
+    if status == 200 and body.startswith(b'PK'):
+        print('Exact NuGet version is already public; retry only to repair with --skip-duplicate')
+    elif status == 404:
+        print('Exact NuGet version is not public yet; retry uses the same validated artifact/version')
+    else:
+        raise RuntimeError(f'{outcome}; exact-version lookup indeterminate (HTTP {status}); no authentication retry')
+    reason = f'trusted publishing failed; failed-step=publication; HTTP {rejection[1]}'
+    try:
+        _, fallback = fallback_auth(reason, [], package)
+    except RuntimeError as error:
+        raise RuntimeError(f'{outcome}; {error}') from None
+    code, output = run_nuget_push(artifact, source, fallback)
+    if code:
+        raise RuntimeError(f'{outcome}; token-fallback push failed (exit {code}): {diagnostic(output, token, fallback)}')
+    print(f'NuGet publication auth=token-fallback; {reason}; {diagnostic(output, token, fallback)}')
+
+
 def publish(language, output):
     package = info(language)
     artifacts = sorted(output.glob(f"{package['id']}.{package['version']}.*nupkg"))
@@ -190,20 +299,23 @@ def publish(language, output):
     if status not in (200, 404):
         raise RuntimeError(f"Release lookup returned HTTP {status}; refusing to treat an unknown result as absent")
     failures = []
+    method, token = select_nuget_auth([language])
     # Each destination can be repaired independently on a rerun. A failed mirror
     # must never delete, hide, or prevent repairing a successful public release.
-    for source, token in [("https://api.nuget.org/v3/index.json", os.environ["NUGET_TOKEN"]), ("https://nuget.pkg.github.com/linksplatform/index.json", os.environ["GH_TOKEN"])]:
-        command = ["dotnet", "nuget", "push", str(output / f"{package['id']}.{package['version']}.nupkg"), "--source", source, "--api-key", token, "--skip-duplicate"]
-        if source.startswith("https://nuget.pkg.github.com/"):
-            command.append("--no-symbols")  # GitHub Packages has no symbols server.
-        result = subprocess.run(command, check=False)
-        if result.returncode:
-            failures.append(f"Package push to {source} failed (exit {result.returncode})")
-        elif source.startswith("https://api.nuget.org/"):
-            try:
-                wait_for_package(package)
-            except RuntimeError as error:
-                failures.append(str(error))
+    artifact = output / f"{package['id']}.{package['version']}.nupkg"
+    nuget_verified = False
+    try:
+        push_nuget(artifact, {**package, 'language': language}, method, token)
+        wait_for_package(package)
+        nuget_verified = True
+    except RuntimeError as error:
+        failures.append(str(error))
+    source = 'https://nuget.pkg.github.com/linksplatform/index.json'
+    code, body = run_nuget_push(artifact, source, os.environ['GH_TOKEN'])
+    if code:
+        failures.append(f'Package push to {source} failed (exit {code}): {diagnostic(body)}')
+    else:
+        print('GitHub Packages mirror push succeeded')
     notes = output / "release-notes.md"
     notes.write_text(f"https://www.nuget.org/packages/{package['id']}/{package['version']}\n\n{package['notes']}\n", encoding="utf-8")
     if status == 404:
@@ -211,7 +323,8 @@ def publish(language, output):
         subprocess.run(["gh", "release", "create", tag, "--repo", repository, "--target", target, "--title", f"[{'C#' if language == 'csharp' else 'C++'}] {package['version']}", "--notes-file", str(notes), "--draft"], check=True)
     attachments = artifacts + sorted(output.glob("*.zip"))
     subprocess.run(["gh", "release", "upload", tag, "--repo", repository, "--clobber", *map(str, attachments)], check=True)
-    subprocess.run(["gh", "release", "edit", tag, "--repo", repository, "--draft=false"], check=True)
+    if nuget_verified:
+        subprocess.run(["gh", "release", "edit", tag, "--repo", repository, "--draft=false"], check=True)
     # Authentication is deliberately omitted to check the reader's actual view.
     status, body = request(release_url)
     try:

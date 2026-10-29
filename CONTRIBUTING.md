@@ -45,7 +45,8 @@ After merge, the credentials job exchanges GitHub OIDC through the official,
 SHA-pinned `NuGet/login` action before expensive builds. Configure the actual NuGet
 policy creator's profile in the non-secret `NUGET_USER` Actions variable, and an
 active publishing policy covering both package IDs. Missing configuration or a
-rejected policy fails main with setup guidance. There is no stored-key fallback.
+rejected policy reports trusted-publishing unavailability and can use only the
+provided `secrets.NUGET_TOKEN` fallback. A working OIDC path never tests that token.
 Pull requests need no publishing credentials. Follow the
 [trusted publishing setup and recovery guide](docs/trusted-publishing.md).
 
@@ -53,8 +54,11 @@ The publishing job authenticates again before committing version metadata. Its
 40-minute limit is below NuGet's one-hour key lifetime, and C++ obtains another
 fresh key immediately before its push. Keys stay in step outputs/environment
 within their own job; never put them in secrets, artifacts, cross-job outputs or
-diagnostic logs. Package scope is checked using the original temporary key;
-successful exchange alone is not proof of permission to publish both packages.
+diagnostic logs. Package scope is reported as
+unverified where push-only credentials cannot prove it without uploading. Actual
+pushes and public downloads enforce publication success. Only HTTP 401/403 push
+rejections can retry once with the provided fallback and identical artifacts and
+versions; unrelated failures remain fatal. Retain the configured fallback secret.
 
 Writers share one noncancellable queue. Only generated release metadata may be
 committed directly to main. Repository rules must permit that bot commit; a rule

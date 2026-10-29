@@ -13,9 +13,6 @@ ROOT = Path(__file__).resolve().parents[1]
 def trusted_publishing_errors(workflow):
     """Keep publishing credentials confined to trusted jobs and step outputs."""
     errors = []
-    source = json.dumps(workflow)
-    if re.search(r"secrets\s*(?:\.\s*NUGET_(?:TOKEN|API_KEY)|\[\s*['\"]NUGET_(?:TOKEN|API_KEY))", source):
-        errors.append('NuGet trusted publishing must not fall back to a stored API key')
     for name, job in workflow.get('jobs', {}).items():
         login_steps = {step['id'] for step in job.get('steps', []) if step.get('uses', '').startswith('NuGet/login@') and step.get('id')}
         if name in ('credentials', 'publish'):
@@ -28,12 +25,22 @@ def trusted_publishing_errors(workflow):
             errors.append(f'{name}: NuGet OIDC permissions belong only in credentials/publish')
         if 'NUGET_API_KEY' in json.dumps(job.get('outputs', {})):
             errors.append(f'{name}: temporary NuGet keys must not cross job boundaries')
+        if job.get('continue-on-error'):
+            errors.append(f'{name}: authentication fallback must not ignore a job failure')
         for step in job.get('steps', []):
             if step.get('uses', '').startswith('NuGet/login@') and step.get('with', {}).get('user') != '${{ vars.NUGET_USER }}':
                 errors.append(f'{name}: login must use the configured NuGet profile vars.NUGET_USER')
             token = step.get('env', {}).get('NUGET_TOKEN')
             if token is not None and token not in {f'${{{{ steps.{login}.outputs.NUGET_API_KEY }}}}' for login in login_steps}:
                 errors.append(f'{name}: NUGET_TOKEN must come from this job\'s NuGet/login output')
+            fallback = step.get('env', {}).get('NUGET_FALLBACK_TOKEN')
+            if fallback is not None and (name not in ('credentials', 'publish') or fallback != '${{ secrets.NUGET_TOKEN }}' or token is None):
+                errors.append(f'{name}: provided fallback is confined to explicit release authentication selection')
+            if token is not None:
+                if fallback is None or step.get('env', {}).get('NUGET_LOGIN_OUTCOME') not in {f'${{{{ steps.{login}.outcome }}}}' for login in login_steps}:
+                    errors.append(f'{name}: release caller needs explicit login outcome and provided fallback')
+            if step.get('continue-on-error') and not (step.get('uses', '').startswith('NuGet/login@') or step.get('run') == 'python3 scripts/release.py check-auth-config'):
+                errors.append(f'{name}: only the trusted-publishing attempt may tolerate failure')
     return errors
 
 

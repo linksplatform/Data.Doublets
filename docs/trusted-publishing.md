@@ -13,7 +13,8 @@
 
 Both `Platform.Data.Doublets` (C#) and
 `Platform.Data.Doublets.TemplateLibrary` (C++) publish through GitHub Actions OIDC.
-No stored NuGet API key is selected, including when configuration is incomplete.
+Trusted publishing is always attempted first. The existing provided
+`secrets.NUGET_TOKEN` is considered only when that path is unavailable or fails.
 PR validation, including fork PRs, builds and consumes local packages without
 publishing credentials. Only non-PR execution on `refs/heads/main` can authenticate.
 
@@ -59,34 +60,56 @@ The related template migration is
 
 ## What the gate verifies
 
-The `credentials` job checks username configuration and runs `NuGet/login` with
-job-level `id-token: write`. A username by itself never passes authentication.
-A rejected exchange stops before C#/C++/documentation builds and reports the
-username, workflow/environment, policy activation, owner and scope to check.
-There is no credential passed from this job to another job.
+The `credentials` job checks the configured profile and tries the SHA-pinned
+`NuGet/login` with job-level `id-token: write`. Missing/invalid profiles are
+reported as trusted-publishing unavailability; failed configuration or exchange
+can consider the provided fallback. A username alone never proves authentication.
+Only those OIDC attempt steps tolerate failure; the final preflight is mandatory.
+No credential passes from this job to any other job.
 
-`preflight` receives `NUGET_TOKEN` **only** from that job's successful login output.
-It anonymously reads each package's public version index and sends the original
-temporary key to NuGet's `/api/v2/verifykey/{id}/{version}` endpoint. This endpoint
-accepts push credentials and checks package ownership and the credential's scope.
-It does not create a derived symbol-verification key, whose owner/package scope
-can differ from the original credential. HTTP errors and malformed responses
-fail closed; a 403 is not silently ignored as an OIDC compatibility exception.
+Every release caller passes the temporary `NUGET_TOKEN`, `NUGET_LOGIN_OUTCOME`
+and the separate `NUGET_FALLBACK_TOKEN` to an explicit selector. Logs identify
+`auth=trusted-publishing|token-fallback|none`, the failed step and a sanitized
+reason. A successful exchange selects only the temporary key, even when an expired
+fallback exists. Never select credentials with an empty-output expression.
 
-An absent package index is reported as **scope unverified**: the first push must
-enforce ownership and scope. Successful verification against an existing version
-does not prove that a future package will pass every NuGet validation. Success
-still requires the push, anonymous exact-version download and public assets.
+The former `/api/v2/verifykey/{id}/{version}` probe is incompatible with push-only
+credentials under Gallery's `RequirePackageVerifyScopePolicy`: HTTP 400 can occur
+before owner/package scope evaluation. The baseline discarded the response body,
+so its precise live rejection remains unconfirmed. All preflights now report
+package scope as **unverified/unsupported** instead of calling this symbols
+verification endpoint. Anonymous indexes must still be well formed/reachable;
+first publication explicitly reports that no public version exists. An index is
+not authentication or authorization evidence.
 
-The `publish` job downloads tested artifacts, performs its own login and verifies
-both scopes and GitHub write permission before preparing/committing release
-metadata. C# consumes that fresh key; C++ logs in again immediately before its
-push, even if C# failed and C++ can independently repair its publication. Metadata
-failure prevents either package push. NuGet temporary keys last one hour; the
-entire publishing job is limited to 40 minutes, leaving at least 20 minutes even
-for the first credential. Increasing that job limit requires revisiting refresh
-timing. The official action masks OIDC/API tokens; shell tracing around tokens is
-forbidden even when `CI_VERBOSE=1`.
+For a provided fallback, the push-compatible
+`POST /api/v2/package/create-verification-key/{id}/{version}` authenticates the
+original key for push actions, even before first publication. Its returned key is
+discarded: Gallery replaces the subject with the requested ID, so this is **never
+package-scope proof**, and no derived key is sent to `verifykey`. A malformed,
+unsupported or unavailable authentication response fails explicitly without being
+called an ownership failure. Real publication enforces original package/owner
+permissions. HTTP error bodies are retained with bounded reads and sanitized,
+flattened diagnostics; credentials, raw headers and exception argv stay out of logs.
+
+The `publish` job downloads tested artifacts, obtains a fresh key and checks
+GitHub write permission before preparing/committing release metadata. C# uses that
+login; C++ logs in again immediately before publication, even when C# fails and
+C++ can independently repair its publication. Missing configuration also permits
+fallback here. Metadata failure prevents either package push. NuGet temporary
+keys last one hour and the publishing job is bounded to 40 minutes. Never move
+keys into artifacts, persistent secrets or cross-job outputs. Shell tracing around
+credentials remains forbidden.
+
+A real NuGet push rejection with HTTP **401/403** can retry **once** with the
+provided token. First inspect the anonymous exact-version download: an already
+public version is reported, a 404 permits retry of the same artifact, and an
+indeterminate result stops the retry. `--skip-duplicate` repairs partial
+package/symbol publication without rebuilding or changing versions. Authentication
+and both failed push outcomes remain visible. HTTP 400 package validation,
+transport/5xx failures, incompatible verification and build/test/doc defects
+cannot switch credentials. If both authentication methods fail, publication fails.
+Public download, mirror and release-asset failures also remain fatal.
 
 ## Run and recover
 
@@ -110,18 +133,22 @@ minutes. Mirror failures remain failures while public GitHub assets can still be
 repaired. Do not claim release success from exchange success, username presence,
 an upstream issue, a package listing or a requested workflow dispatch.
 
-Only after verified OIDC publication, audit other consumers of obsolete
-`NUGET_TOKEN`/`NUGET_API_KEY` secrets and remove unused secrets through the
-management tools. Check organization-wide consumers before deleting a shared
-secret; this migration never deletes one as a side effect of a PR test.
+Retain the intentionally configured fallback after OIDC succeeds. Never delete
+it automatically, mint a replacement long-lived token, widen package permissions
+or weaken NuGet policy settings to make a release pass. The verified policy uses
+owner `LinksPlatform`, creator `konard`, owner/repository IDs `15116341`/`199508305`,
+workflow `ci.yml`, no environment and exactly the two package IDs with push-only
+new-version permission. Preserve this setup and `NUGET_USER=konard`.
 
 ## Regression checks and references
 
 Run `python3 -m unittest discover -s experiments -p 'test_*.py' -v`,
 `python3 scripts/check_repository.py` and `python3 scripts/check-workflows.py`.
-`experiments/test_trusted_publishing.py` covers configuration failures, absent
-exchange output, original-key scope checks, HTTP rejection, malformed indexes,
-first-publication limits, fresh keys, metadata ordering and PR credential isolation.
+`experiments/test_trusted_publishing.py` and `experiments/test_nuget_fallback.py`
+cover the live 400-after-exchange regression at all preflight callers, the
+authentication decision table, original/derived scope limits, HTTP diagnostics,
+first publication, expired keys and refresh, same-artifact retry, metadata ordering
+and credential-free PR validation.
 Existing publication regressions cover bounded indexing and release repair.
 
 - [Official NuGet trusted publishing setup and key lifetime](https://learn.microsoft.com/en-us/nuget/nuget-org/trusted-publishing)
