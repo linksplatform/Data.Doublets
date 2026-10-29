@@ -8,9 +8,10 @@ ShellCheck. Install Python tools with
 Run these checks before pushing:
 
 ```sh
-python3 -m unittest discover -s experiments -p 'test_*.py' -v
+bash scripts/check-python.sh
 python3 scripts/check_repository.py
-python3 scripts/check-workflows.py
+python3 scripts/check-workflows.py --container
+git ls-files -z '*.sh' ':(exclude)dev/log/**' | xargs -0 shellcheck
 bash scripts/check-csharp.sh
 bash cpp/setup.sh
 bash cpp/run_tests.sh
@@ -19,8 +20,12 @@ python3 scripts/check-cpp.py --build-dir cpp/build
 bash scripts/check-secrets.sh
 ```
 
-The workflow linter needs actionlint 1.7.12 and ShellCheck on PATH. CI obtains
-its pinned actionlint binary from the official container. Install pre-commit
+The workflow linter runs the digest-pinned actionlint container, including
+ShellCheck and Pyflakes. Native execution requires all three tools on PATH and
+fails if an embedded-code checker is missing. Archived upstream scripts under
+`dev/log/` are frozen evidence, excluded from the standalone ShellCheck pass.
+Python helpers under `scripts/` must pass Ruff lint/format and mypy; historical
+experiment scripts remain runnable regression evidence. Install pre-commit
 and run `pre-commit install` to enable the local formatting, regression, size,
 and credential checks. All compiler and analyzer warnings fail validation.
 Tests have bounded timeouts; native builds use one worker by default. The GCC
@@ -68,6 +73,18 @@ be retried to repair missing release assets. Registry indexing is checked
 anonymously for up to fifteen minutes. GitHub Packages mirror failures remain
 visible while public release assets can still be repaired.
 
+If publication reports `GH006` or `GH013`, a repository administrator must allow
+the release actor to update `main` under the existing branch policy (or provision
+a specifically authorized release GitHub App and its token). A workflow's
+`contents: write` does not override branch protection. Keep required reviews for
+ordinary changes; do not disable protection, force-push, or introduce automatic
+release pull requests to bypass the rejection. See the evidence and unresolved
+release criterion in `dev/log/issues/541/pulls/542/ANALYSIS.md`.
+
+Artifact downloads retain SHA-256 verification and use `skip-decompress: true`
+with `scripts/extract_artifact.py` to avoid the action's deprecated Buffer-based
+ZIP extractor. A real upload/download round trip runs on every pull request.
+
 ## Documentation
 
 ```sh
@@ -97,11 +114,18 @@ hyphens; public CMake targets and headers retain their original names.
 Upstream reports and
 reproduction evidence are under `dev/log/issues/524/pulls/526/upstream/`.
 
-The scheduled security workflow audits transitive NuGet dependencies, runs
+The scheduled security workflow audits transitive NuGet and Python dependencies, runs
 full-repository CodeQL with a fatal gate on every SARIF finding, and scans
-complete Git history for credentials. `.gitleaksignore` contains
-one exact historical fingerprint: the removed key was independently verified
-revoked (HTTP 401). It does not exempt current files or future credentials.
+complete Git history for credentials. `.gitleaksignore` contains exact historical
+fingerprints for a removed key independently verified revoked (HTTP 401) and
+public DocFX source-map identifiers independently reproduced as false positives.
+It does not exempt current files or future credentials.
+Install `scripts/requirements-audit.txt` and run
+`python3 -m pip_audit -r scripts/requirements-ci.txt -r scripts/requirements-quality.txt -r scripts/requirements-audit.txt`
+to reproduce the Python audit. Audit JSON and CodeQL SARIF are retained in CI.
+CodeQL covers C#, C++, Python and Actions; empty results count as success only
+when the report includes a successful analysis invocation. Python extraction
+excludes immutable `dev/log/` research snapshots and includes helpers and experiments.
 
 Native temporary files live in atomically created private directories. Optional
 Rust FFI development remains in the `rust` submodule and is separate from the

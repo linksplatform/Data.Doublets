@@ -26,9 +26,7 @@ STATUS_URL_PATTERN = re.compile(
     r"\[(?:4\d\d|5\d\d|ERROR|TIMEOUT|UNKNOWN)\]\s+" r"(https?://[^\s)]+)",
     re.IGNORECASE,
 )
-BULLET_URL_PATTERN = re.compile(
-    r"^\s*(?:\*|-)\s+.*?(https?://[^\s|)>\]]+)", re.MULTILINE
-)
+BULLET_URL_PATTERN = re.compile(r"^\s*(?:\*|-)\s+.*?(https?://[^\s|)>\]]+)", re.MULTILINE)
 
 
 @dataclass(frozen=True)
@@ -68,9 +66,7 @@ def split_recovered_urls(
     link; keeping it in this report would send a healthy URL to the Wayback
     Machine and fail the job on it.
     """
-    recovered_set = {
-        line.strip() for line in (recovered_text or "").splitlines() if line.strip()
-    }
+    recovered_set = {line.strip() for line in (recovered_text or "").splitlines() if line.strip()}
     remaining = [url for url in urls if url not in recovered_set]
     recovered = [url for url in urls if url in recovered_set]
     return remaining, recovered
@@ -167,9 +163,7 @@ def main() -> int:
 
     broken_urls = extract_broken_urls(output_path.read_text(encoding="utf-8"))
     recovered_file = Path(os.environ.get("RECOVERED_URLS", "lychee/recovered.txt"))
-    recovered_text = (
-        recovered_file.read_text(encoding="utf-8") if recovered_file.exists() else ""
-    )
+    recovered_text = recovered_file.read_text(encoding="utf-8") if recovered_file.exists() else ""
     broken_urls, rechecked_healthy = split_recovered_urls(broken_urls, recovered_text)
     for url in rechecked_healthy:
         print(f"  {url} never answered lychee but answers the re-check -- not broken")

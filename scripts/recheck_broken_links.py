@@ -123,9 +123,7 @@ def parse_accept_ranges(spec: str) -> Callable[[int], bool]:
             continue
         range_match = re.fullmatch(r"(\d+)\.\.=(\d+)", trimmed)
         if range_match:
-            accepted.update(
-                range(int(range_match.group(1)), int(range_match.group(2)) + 1)
-            )
+            accepted.update(range(int(range_match.group(1)), int(range_match.group(2)) + 1))
         elif re.fullmatch(r"\d{3}", trimmed):
             accepted.add(int(trimmed))
     return lambda status: status in accepted
@@ -152,9 +150,7 @@ def default_fetch(url: str, user_agent: str) -> int:
     HTTPError carrying the code, which is a host's answer, not a transport
     failure. Transport failures (reset, timeout, DNS) raise.
     """
-    request = urllib.request.Request(
-        url, method="HEAD", headers={"User-Agent": user_agent}
-    )
+    request = urllib.request.Request(url, method="HEAD", headers={"User-Agent": user_agent})
     try:
         with urllib.request.urlopen(  # noqa: S310 - URL comes from the lychee report
             request, timeout=REQUEST_TIMEOUT_SECONDS
@@ -209,19 +205,14 @@ def recheck_unanswered(
                 recovered.append(url)
             else:
                 rejected.append(
-                    StillBroken(
-                        url, status, f"answered {status}, which lychee does not accept"
-                    )
+                    StillBroken(url, status, f"answered {status}, which lychee does not accept")
                 )
         pending = still_pending
 
     return RecheckResult(
         recovered=recovered,
         still_broken=rejected
-        + [
-            StillBroken(url, None, "no answer within the re-check budget")
-            for url in pending
-        ],
+        + [StillBroken(url, None, "no answer within the re-check budget") for url in pending],
     )
 
 
@@ -237,22 +228,18 @@ def main() -> int:
     """Re-ask every unanswered URL in the configured lychee report."""
     lychee_output = Path(os.environ.get("LYCHEE_OUTPUT", "lychee/out.md"))
     recovered_output = Path(os.environ.get("RECOVERED_OUTPUT", "lychee/recovered.txt"))
-    accept, user_agent = extract_lychee_request_options(
-        WORKFLOW_PATH.read_text(encoding="utf-8")
-    )
+    accept, user_agent = extract_lychee_request_options(WORKFLOW_PATH.read_text(encoding="utf-8"))
     failures = parse_lychee_failures(lychee_output.read_text(encoding="utf-8"))
 
     final = [
         failure
         for failure in failures
-        if failure.answered
-        or not failure.url.lower().startswith(("http://", "https://"))
+        if failure.answered or not failure.url.lower().startswith(("http://", "https://"))
     ]
     unanswered = [
         failure.url
         for failure in failures
-        if not failure.answered
-        and failure.url.lower().startswith(("http://", "https://"))
+        if not failure.answered and failure.url.lower().startswith(("http://", "https://"))
     ]
     print(
         f"Re-check: {len(failures)} lychee failure(s), {len(final)} answered and "
@@ -266,23 +253,16 @@ def main() -> int:
         unanswered,
         accept=accept,
         user_agent=user_agent,
-        budget_seconds=float(
-            os.environ.get("RECHECK_BUDGET_SECONDS", BUDGET_SECONDS_DEFAULT)
-        ),
-        initial_wait_ms=float(
-            os.environ.get("RECHECK_WAIT_MS", INITIAL_WAIT_MS_DEFAULT)
-        ),
+        budget_seconds=float(os.environ.get("RECHECK_BUDGET_SECONDS", BUDGET_SECONDS_DEFAULT)),
+        initial_wait_ms=float(os.environ.get("RECHECK_WAIT_MS", INITIAL_WAIT_MS_DEFAULT)),
     )
 
     for url in result.recovered:
         print(
-            f"::notice::{url} never answered lychee but answers {accept} now "
-            "-- not a broken link"
+            f"::notice::{url} never answered lychee but answers {accept} now -- not a broken link"
         )
     if result.recovered:
-        recovered_output.write_text(
-            "\n".join(result.recovered) + "\n", encoding="utf-8"
-        )
+        recovered_output.write_text("\n".join(result.recovered) + "\n", encoding="utf-8")
     print(
         f"Re-check finished: {len(result.recovered)} recovered, "
         f"{len(result.still_broken)} still without an answer"

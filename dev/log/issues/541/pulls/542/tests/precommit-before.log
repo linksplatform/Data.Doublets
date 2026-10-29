@@ -1,0 +1,6 @@
+test_existing_source_files_reach_their_formatting_hooks (experiments.test_issue_541.PreCommitTests.test_existing_source_files_reach_their_formatting_hooks) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.006s
+
+OK

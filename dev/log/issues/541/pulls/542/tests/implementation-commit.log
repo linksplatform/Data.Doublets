@@ -1,0 +1,9 @@
+[issue-541-ef4751af423d 1de337ed5] Close CI validation gaps and verify raw artifact extraction
+ 31 files changed, 1290 insertions(+), 488 deletions(-)
+ delete mode 100644 .gitkeep
+ create mode 100644 experiments/reproduce_artifact_buffer.mjs
+ create mode 100644 experiments/test_issue_541.py
+ create mode 100644 pyproject.toml
+ create mode 100644 scripts/check-python.sh
+ create mode 100644 scripts/extract_artifact.py
+ create mode 100644 scripts/requirements-audit.txt

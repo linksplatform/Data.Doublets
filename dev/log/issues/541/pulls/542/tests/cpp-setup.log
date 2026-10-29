@@ -1,0 +1,210 @@
+Requirement already satisfied: conan==2.33.0 in /tmp/issue-541-py312/lib/python3.12/site-packages (from -r /tmp/gh-issue-solver-1793297431979/cpp/../scripts/requirements-ci.txt (line 2)) (2.33.0)
+Requirement already satisfied: fpdf2==2.8.8 in /tmp/issue-541-py312/lib/python3.12/site-packages (from -r /tmp/gh-issue-solver-1793297431979/cpp/../scripts/requirements-ci.txt (line 3)) (2.8.8)
+Requirement already satisfied: PyYAML==6.0.3 in /tmp/issue-541-py312/lib/python3.12/site-packages (from -r /tmp/gh-issue-solver-1793297431979/cpp/../scripts/requirements-ci.txt (line 4)) (6.0.3)
+Requirement already satisfied: gcovr==8.7 in /tmp/issue-541-py312/lib/python3.12/site-packages (from -r /tmp/gh-issue-solver-1793297431979/cpp/../scripts/requirements-ci.txt (line 5)) (8.7)
+Requirement already satisfied: requests<3.0.0,>=2.25 in /tmp/issue-541-py312/lib/python3.12/site-packages (from conan==2.33.0->-r /tmp/gh-issue-solver-1793297431979/cpp/../scripts/requirements-ci.txt (line 2)) (2.34.2)
+Requirement already satisfied: urllib3<3.0,>=1.26.6 in /tmp/issue-541-py312/lib/python3.12/site-packages (from conan==2.33.0->-r /tmp/gh-issue-solver-1793297431979/cpp/../scripts/requirements-ci.txt (line 2)) (2.8.0)
+Requirement already satisfied: colorama<0.5.0,>=0.4.3 in /tmp/issue-541-py312/lib/python3.12/site-packages (from conan==2.33.0->-r /tmp/gh-issue-solver-1793297431979/cpp/../scripts/requirements-ci.txt (line 2)) (0.4.6)
+Requirement already satisfied: patch-ng<1.20,>=1.18.0 in /tmp/issue-541-py312/lib/python3.12/site-packages (from conan==2.33.0->-r /tmp/gh-issue-solver-1793297431979/cpp/../scripts/requirements-ci.txt (line 2)) (1.19.1)
+Requirement already satisfied: fasteners>=0.15 in /tmp/issue-541-py312/lib/python3.12/site-packages (from conan==2.33.0->-r /tmp/gh-issue-solver-1793297431979/cpp/../scripts/requirements-ci.txt (line 2)) (0.20)
+Requirement already satisfied: distro<2.0.0,>=1.4.0 in /tmp/issue-541-py312/lib/python3.12/site-packages (from conan==2.33.0->-r /tmp/gh-issue-solver-1793297431979/cpp/../scripts/requirements-ci.txt (line 2)) (1.9.0)
+Requirement already satisfied: Jinja2<4.0.0,>=3.0 in /tmp/issue-541-py312/lib/python3.12/site-packages (from conan==2.33.0->-r /tmp/gh-issue-solver-1793297431979/cpp/../scripts/requirements-ci.txt (line 2)) (3.1.6)
+Requirement already satisfied: python-dateutil<3,>=2.8.0 in /tmp/issue-541-py312/lib/python3.12/site-packages (from conan==2.33.0->-r /tmp/gh-issue-solver-1793297431979/cpp/../scripts/requirements-ci.txt (line 2)) (2.9.0.post0)
+Requirement already satisfied: truststore<1.0,>=0.8 in /tmp/issue-541-py312/lib/python3.12/site-packages (from conan==2.33.0->-r /tmp/gh-issue-solver-1793297431979/cpp/../scripts/requirements-ci.txt (line 2)) (0.10.5)
+Requirement already satisfied: defusedxml in /tmp/issue-541-py312/lib/python3.12/site-packages (from fpdf2==2.8.8->-r /tmp/gh-issue-solver-1793297431979/cpp/../scripts/requirements-ci.txt (line 3)) (0.7.1)
+Requirement already satisfied: Pillow!=9.2.*,>=8.3.2 in /tmp/issue-541-py312/lib/python3.12/site-packages (from fpdf2==2.8.8->-r /tmp/gh-issue-solver-1793297431979/cpp/../scripts/requirements-ci.txt (line 3)) (13.0.0)
+Requirement already satisfied: fonttools>=4.34.0 in /tmp/issue-541-py312/lib/python3.12/site-packages (from fpdf2==2.8.8->-r /tmp/gh-issue-solver-1793297431979/cpp/../scripts/requirements-ci.txt (line 3)) (4.68.0)
+Requirement already satisfied: colorlog in /tmp/issue-541-py312/lib/python3.12/site-packages (from gcovr==8.7->-r /tmp/gh-issue-solver-1793297431979/cpp/../scripts/requirements-ci.txt (line 5)) (6.12.0)
+Requirement already satisfied: lxml in /tmp/issue-541-py312/lib/python3.12/site-packages (from gcovr==8.7->-r /tmp/gh-issue-solver-1793297431979/cpp/../scripts/requirements-ci.txt (line 5)) (6.1.3)
+Requirement already satisfied: pygments>=2.13.0 in /tmp/issue-541-py312/lib/python3.12/site-packages (from gcovr==8.7->-r /tmp/gh-issue-solver-1793297431979/cpp/../scripts/requirements-ci.txt (line 5)) (2.21.0)
+Requirement already satisfied: MarkupSafe>=2.0 in /tmp/issue-541-py312/lib/python3.12/site-packages (from Jinja2<4.0.0,>=3.0->conan==2.33.0->-r /tmp/gh-issue-solver-1793297431979/cpp/../scripts/requirements-ci.txt (line 2)) (3.0.4)
+Requirement already satisfied: six>=1.5 in /tmp/issue-541-py312/lib/python3.12/site-packages (from python-dateutil<3,>=2.8.0->conan==2.33.0->-r /tmp/gh-issue-solver-1793297431979/cpp/../scripts/requirements-ci.txt (line 2)) (1.17.0)
+Requirement already satisfied: charset_normalizer<4,>=2 in /tmp/issue-541-py312/lib/python3.12/site-packages (from requests<3.0.0,>=2.25->conan==2.33.0->-r /tmp/gh-issue-solver-1793297431979/cpp/../scripts/requirements-ci.txt (line 2)) (3.5.2)
+Requirement already satisfied: idna<4,>=2.5 in /tmp/issue-541-py312/lib/python3.12/site-packages (from requests<3.0.0,>=2.25->conan==2.33.0->-r /tmp/gh-issue-solver-1793297431979/cpp/../scripts/requirements-ci.txt (line 2)) (3.20)
+Requirement already satisfied: certifi>=2023.5.7 in /tmp/issue-541-py312/lib/python3.12/site-packages (from requests<3.0.0,>=2.25->conan==2.33.0->-r /tmp/gh-issue-solver-1793297431979/cpp/../scripts/requirements-ci.txt (line 2)) (2026.10.23)
+[settings]
+os=Linux
+arch=x86_64
+compiler=gcc
+compiler.version=13
+compiler.libcxx=libstdc++11
+compiler.cppstd=20
+build_type=Release
+
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint: 
+hint: 	git config --global init.defaultBranch <name>
+hint: 
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint: 
+hint: 	git branch -m <name>
+Initialized empty Git repository in /tmp/gh-issue-solver-1793297431979/cpp/build/recipes/.git/
+From https://github.com/linksplatform/conan-center-index
+ * branch              435ad91f44d2fd40c4e4be366163f97333013d65 -> FETCH_HEAD
+HEAD is now at 435ad91f Merge pull request #34 from nassipkali/master
+
+======== Exporting recipe to the cache ========
+platform-interfaces/0.3.41 export
+Exporting package recipe: /tmp/gh-issue-solver-1793297431979/cpp/build/recipes/recipes/platform.interfaces/all/conanfile.py
+platform-interfaces/0.3.41: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platf07908f02326eb/e
+Exported: platform-interfaces/0.3.41#2749e377587371071b89193878f3ad93 (2026-10-29 18:25:18 UTC)
+
+======== Exporting recipe to the cache ========
+platform-delegates/0.3.7 export
+Exporting package recipe: /tmp/gh-issue-solver-1793297431979/cpp/build/recipes/recipes/platform.delegates/all/conanfile.py
+platform-delegates/0.3.7: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platff04892e2dfb10/e
+Exported: platform-delegates/0.3.7#fa6d4052c342718034aaa3fefe278fd0 (2026-10-29 18:25:19 UTC)
+
+======== Exporting recipe to the cache ========
+platform-exceptions/0.3.2 export
+Exporting package recipe: /tmp/gh-issue-solver-1793297431979/cpp/build/recipes/recipes/platform.exceptions/all/conanfile.py
+platform-exceptions/0.3.2: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platfee8cb09287d88/e
+Exported: platform-exceptions/0.3.2#f85774f1881822f0ffd9f7095bd3085a (2026-10-29 18:25:19 UTC)
+
+======== Exporting recipe to the cache ========
+platform-converters/0.2.0 export
+Exporting package recipe: /tmp/gh-issue-solver-1793297431979/cpp/build/recipes/recipes/platform.converters/all/conanfile.py
+platform-converters/0.2.0: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platf07f1970403490/e
+Exported: platform-converters/0.2.0#e5210600d15a224117023e6b4fb0c1be (2026-10-29 18:25:20 UTC)
+
+======== Exporting recipe to the cache ========
+platform-hashing/0.5.6 export
+Exporting package recipe: /tmp/gh-issue-solver-1793297431979/cpp/build/recipes/recipes/platform.hashing/all/conanfile.py
+platform-hashing/0.5.6: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platf4427f72b19be9/e
+Exported: platform-hashing/0.5.6#8f26cd9a683ad74a06b02ea3ffb00f29 (2026-10-29 18:25:20 UTC)
+
+======== Exporting recipe to the cache ========
+platform-ranges/0.2.0 export
+Exporting package recipe: /tmp/gh-issue-solver-1793297431979/cpp/build/recipes/recipes/platform.ranges/all/conanfile.py
+platform-ranges/0.2.0: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platf2e261b468060d/e
+Exported: platform-ranges/0.2.0#f74638320e5bd4f2efd11a9e10091288 (2026-10-29 18:25:21 UTC)
+
+======== Exporting recipe to the cache ========
+platform-random/0.2.0 export
+Exporting package recipe: /tmp/gh-issue-solver-1793297431979/cpp/build/recipes/recipes/platform.random/all/conanfile.py
+platform-random/0.2.0: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platf49909db6bc31d/e
+Exported: platform-random/0.2.0#596375061030beacc935a1ac82ef6e46 (2026-10-29 18:25:22 UTC)
+
+======== Exporting recipe to the cache ========
+platform-equality/0.0.1 export
+Exporting package recipe: /tmp/gh-issue-solver-1793297431979/cpp/build/recipes/recipes/platform.equality/all/conanfile.py
+platform-equality/0.0.1: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platfbf8c1581d4676/e
+Exported: platform-equality/0.0.1#4c269c237c780cf97734b306fef30799 (2026-10-29 18:25:22 UTC)
+
+======== Exporting recipe to the cache ========
+platform-collections/0.2.1 export
+Exporting package recipe: /tmp/gh-issue-solver-1793297431979/cpp/build/recipes/recipes/platform.collections/all/conanfile.py
+platform-collections/0.2.1: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platf4b6acddddf01c/e
+Exported: platform-collections/0.2.1#8c17106bf6ed80ece6f3d377f4989a60 (2026-10-29 18:25:23 UTC)
+
+======== Exporting recipe to the cache ========
+platform-setters/0.1.0 export
+Exporting package recipe: /tmp/gh-issue-solver-1793297431979/cpp/build/recipes/recipes/platform.setters/all/conanfile.py
+platform-setters/0.1.0: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platfea0cb3e0e6873/e
+Exported: platform-setters/0.1.0#0b7fdbec025f7e225a919bacf70f9c3a (2026-10-29 18:25:23 UTC)
+
+======== Exporting recipe to the cache ========
+platform-data/0.1.1 export
+Exporting package recipe: /tmp/gh-issue-solver-1793297431979/cpp/build/recipes/recipes/platform.data/all/conanfile.py
+platform-data/0.1.1: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platf6097b0a9e7303/e
+Exported: platform-data/0.1.1#049284bd2691fcdd21308ff118193883 (2026-10-29 18:25:24 UTC)
+
+======== Exporting recipe to the cache ========
+platform-numbers/0.1.0 export
+Exporting package recipe: /tmp/gh-issue-solver-1793297431979/cpp/build/recipes/recipes/platform.numbers/all/conanfile.py
+platform-numbers/0.1.0: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platf4e4a40c6d8bf5/e
+Exported: platform-numbers/0.1.0#8d5c367883c12491634bda6b216fdcd7 (2026-10-29 18:25:24 UTC)
+
+======== Exporting recipe to the cache ========
+platform-memory/0.1.0 export
+Exporting package recipe: /tmp/gh-issue-solver-1793297431979/cpp/build/recipes/recipes/platform.memory/all/conanfile.py
+platform-memory/0.1.0: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platf232aaabe3d0da/e
+Exported: platform-memory/0.1.0#8dd4e948ae9e107523a3807afeb9f1aa (2026-10-29 18:25:25 UTC)
+
+======== Exporting recipe to the cache ========
+platform-collections-methods/0.3.0 export
+Exporting package recipe: /tmp/gh-issue-solver-1793297431979/cpp/build/recipes/recipes/platform.collections.methods/all/conanfile.py
+platform-collections-methods/0.3.0: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platfaa5f0f1339589/e
+Exported: platform-collections-methods/0.3.0#7bf9addb258962e4c904ace39794c202 (2026-10-29 18:25:25 UTC)
+
+======== Exporting recipe to the cache ========
+benchmark/1.6.0 export
+Exporting package recipe: /tmp/gh-issue-solver-1793297431979/cpp/build/recipes/recipes/benchmark/all/conanfile.py
+benchmark/1.6.0: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/benchdb066eb3ab633/e
+Exported: benchmark/1.6.0#cf8a91c3cadcd79de5acb4c28b7fc642 (2026-10-29 18:25:26 UTC)
+
+======== Exporting recipe to the cache ========
+cpuinfo/cci.20220228 export
+Exporting package recipe: /tmp/gh-issue-solver-1793297431979/cpp/build/recipes/recipes/cpuinfo/all/conanfile.py
+cpuinfo/cci.20220228: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/cpuinfaa92a8c19c7d/e
+Exported: cpuinfo/cci.20220228#3ff3fc81cbd5eecdf212dbc8868ec621 (2026-10-29 18:25:27 UTC)
+
+======== Exporting recipe to the cache ========
+gtest/1.13.0 export
+Exporting package recipe: /tmp/gh-issue-solver-1793297431979/cpp/build/recipes/recipes/gtest/all/conanfile.py
+gtest/1.13.0: exports: File 'conandata.yml' found. Exporting it...
+gtest/1.13.0: Calling export_sources()
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/gtest3b22dc45ce3e4/e
+Exported: gtest/1.13.0#4c577fdfa801eab853721ffe1fc30348 (2026-10-29 18:25:27 UTC)
+
+======== Exporting recipe to the cache ========
+ms-gsl/4.0.0 export
+Exporting package recipe: /tmp/gh-issue-solver-1793297431979/cpp/build/recipes/recipes/ms-gsl/all/conanfile.py
+ms-gsl/4.0.0: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/ms-gs894620ed71f0a/e
+Exported: ms-gsl/4.0.0#0abc4521c5ad2fe035f53054cd73b4ad (2026-10-29 18:25:28 UTC)

@@ -14,7 +14,7 @@ class SarifGateTests(unittest.TestCase):
     def setUp(self):
         self.directory = tempfile.TemporaryDirectory()
         self.addCleanup(self.directory.cleanup)
-        self.run = {'tool': {'driver': {'name': 'CodeQL'}}, 'results': []}
+        self.run = {'tool': {'driver': {'name': 'CodeQL'}}, 'results': [], 'invocations': [{'executionSuccessful': True}]}
 
     def write(self):
         Path(self.directory.name, 'report.sarif').write_text(json.dumps({'version': '2.1.0', 'runs': [self.run]}))

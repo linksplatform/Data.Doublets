@@ -11,6 +11,12 @@ repos:
         entry: python3 -m unittest discover -s experiments -p 'test_*.py'
         language: system
         pass_filenames: false
+      - id: python-quality
+        name: Python lint, formatting and types
+        entry: bash -c 'ruff check scripts && ruff format --check scripts && mypy scripts'
+        language: system
+        pass_filenames: false
+        files: ^(scripts/.*\.py|pyproject\.toml)$
       - id: native-format
         name: native formatting
         entry: python3 scripts/check-cpp.py

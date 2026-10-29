@@ -76,7 +76,7 @@ s=s[:start]+'''  publish:
 s=s.replace("    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'", "    if: >-\n      github.ref == 'refs/heads/main' && github.event_name != 'pull_request' &&\n      (needs.changes.outputs.csharp == 'true' || needs.changes.outputs.cpp == 'true' || needs.changes.outputs.pipeline == 'true')")
 # A skipped credential probe on PRs/docs-only changes is expected; failures block builds.
 for job in ('csharp','cpp','docs'):
- a=s.index('  '+job+':\n');b=s.find('\n  ',a+3)
+ a=s.index('  '+job+':\n')
  # Find the next top-level job, rather than a nested key.
  import re
  match=re.search(r'\n  [a-z][a-z-]*:\n',s[a+3:]);b=a+3+match.start() if match else len(s)

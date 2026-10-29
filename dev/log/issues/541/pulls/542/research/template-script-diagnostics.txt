@@ -1,0 +1,470 @@
+/tmp/issue-541-templates/rust/scripts/check-dependency-graph.sh:29:enabled=false
+/tmp/issue-541-templates/rust/scripts/check-dependency-graph.sh:38:    if [ "$required" = --require ]; then echo "::error::$message"; exit 1; fi
+/tmp/issue-541-templates/rust/scripts/check-dependency-graph.sh:39:    echo "::warning::$message Skipping Dependency Review for this pull request.";;
+/tmp/issue-541-templates/rust/scripts/check-dependency-graph.sh:42:    if [ "$required" = --require ]; then echo "::error::$message"; exit 1; fi
+/tmp/issue-541-templates/rust/scripts/check-dependency-graph.sh:43:    echo "::warning::$message Skipping Dependency Review for this pull request.";;
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:2://! Check source and documentation files for maximum and warning line-count
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:3://! thresholds. Exits with error code 1 if any files exceed the hard limit
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:28:/// The warning and hard limits for a file, keyed by extension. Matched the
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:54:        return false;
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:75:    warnings: Vec<Finding>,
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:108:        warnings: Vec::new(),
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:138:                    LineStatus::Warning => result.warnings.push(finding),
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:142:            Err(error) => {
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:143:                eprintln!("Warning: Could not read {}: {error}", path.display());
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:167:fn warning_annotation(finding: &Finding) -> String {
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:175:        "::warning file={}::{}",
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:183:/// Returns `None` when no list is configured, which means every warning is
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:203:/// same warning on every run. The hard limit stays repository-wide.
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:209:fn print_warnings(warnings: &[Finding], changed: Option<&BTreeSet<String>>) {
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:210:    if warnings.is_empty() {
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:214:    for warning in warnings {
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:215:        let (warn, max) = limits_for(&warning.file);
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:216:        if should_annotate(warning, changed) {
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:217:            println!("{}", warning_annotation(warning));
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:220:            "WARNING: {} has {} lines (approaching limit of {max}, warning threshold: {warn})",
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:221:            warning.file, warning.lines
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:227:    for warning in warnings {
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:228:        let (_, max) = limits_for(&warning.file);
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:229:        println!("  {} (limit {max})", warning.file);
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:254:        "\nChecking source files for maximum {MAX_LINES} lines (warning above {WARN_LINES}) and \
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:255:         documentation for maximum {MAX_DOC_LINES} lines (warning above {WARN_DOC_LINES})...\n"
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:263:    print_warnings(&result.warnings, changed.as_ref());
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:300:    fn classifies_warning_band_without_blocking() {
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:379:            result.warnings.is_empty(),
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:380:            "no fixture file crosses a warning threshold"
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:385:    fn check_directory_reports_warning_and_violation_separately() {
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:396:            result.warnings,
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:412:    fn only_changed_files_in_the_warning_band_are_annotated() {
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:424:            .warnings
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:439:        // Both warning-band files remain in the baseline report.
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:440:        assert_eq!(result.warnings.len(), 2);
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:444:    fn missing_changed_file_list_annotates_every_warning() {
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:480:    fn warning_annotation_uses_github_actions_format() {
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:487:            warning_annotation(&finding),
+/tmp/issue-541-templates/rust/scripts/check-file-size.rs:488:            "::warning file=src/near_limit.rs::File has 901 lines (approaching limit of 1000). Consider extracting code to keep at or below 900 lines and prevent concurrent PR merge limit violations."
+/tmp/issue-541-templates/rust/scripts/run-with-budget-warning.sh:83:have_ps=false
+/tmp/issue-541-templates/rust/scripts/run-with-budget-warning.sh:120:  echo "::error title=${label} left processes running::${label} could not be terminated. Still running: $(echo "$survivors" | tr '\n' ';')"
+/tmp/issue-541-templates/rust/scripts/run-with-budget-warning.sh:133:  echo "::error title=${label} exceeded its execution budget::${label} ran for ${measured}s against its ${budget_seconds}s budget (detected at ${poll_seconds}s poll granularity) and was terminated. Command: $*"
+/tmp/issue-541-templates/rust/scripts/run-with-budget-warning.sh:141:SECONDS=0; warned=false
+/tmp/issue-541-templates/rust/scripts/run-with-budget-warning.sh:143:  if [ "$warned" = false ] && [ "$SECONDS" -ge "$warn_seconds" ]; then
+/tmp/issue-541-templates/rust/scripts/run-with-budget-warning.sh:145:    echo "::warning title=${label} is approaching its execution budget::${label} has run for ${SECONDS}s of its ${budget_seconds}s budget."
+/tmp/issue-541-templates/rust/scripts/check-version-modification.rs:31:        Err(error) => Err(format!(
+/tmp/issue-541-templates/rust/scripts/check-version-modification.rs:33:            command, args, error
+/tmp/issue-541-templates/rust/scripts/check-version-modification.rs:44:        Err(first_error) => {
+/tmp/issue-541-templates/rust/scripts/check-version-modification.rs:45:            eprintln!("Initial comparison failed ({first_error}); fetching explicit base ref.");
+/tmp/issue-541-templates/rust/scripts/check-version-modification.rs:76:    let rust_root = rust_paths::repository_relative_root(&rust_paths::get_rust_root(None, false)?)?;
+/tmp/issue-541-templates/rust/scripts/check-version-modification.rs:118:    if let Err(error) = check_versions() {
+/tmp/issue-541-templates/rust/scripts/check-version-modification.rs:119:        eprintln!("::error::{error}");
+/tmp/issue-541-templates/rust/scripts/check-version-modification.rs:138:    fn workspace_versions_are_compared_and_invalid_toml_is_an_error() {
+/tmp/issue-541-templates/python/scripts/version_and_commit.py:31:    """Run a command and handle errors."""
+/tmp/issue-541-templates/python/scripts/version_and_commit.py:80:    except tomllib.TOMLDecodeError as error:
+/tmp/issue-541-templates/python/scripts/version_and_commit.py:81:        raise ValueError(f"pyproject.toml is not valid TOML: {error}") from error
+/tmp/issue-541-templates/python/scripts/version_and_commit.py:107:# with a misleading "conflict" error, so the failure is classified first.
+/tmp/issue-541-templates/python/scripts/version_and_commit.py:162:        push_error = f"{completed.stdout}{completed.stderr}".strip()
+/tmp/issue-541-templates/python/scripts/version_and_commit.py:163:        failure = classify_push_failure(push_error)
+/tmp/issue-541-templates/python/scripts/version_and_commit.py:167:                f"::error title=Push declined by repository rules::The push to "
+/tmp/issue-541-templates/python/scripts/version_and_commit.py:173:                f"bot may push.\n--- git output ---\n{push_error}",
+/tmp/issue-541-templates/python/scripts/version_and_commit.py:179:            print(f"Error pushing: {push_error}", file=sys.stderr)
+/tmp/issue-541-templates/python/scripts/version_and_commit.py:184:                f"Error pushing after {max_attempts} attempts: {push_error}",
+/tmp/issue-541-templates/python/scripts/version_and_commit.py:196:            rebase_error = f"{rebase.stdout}{rebase.stderr}".strip()
+/tmp/issue-541-templates/python/scripts/version_and_commit.py:197:            print(f"Error during pull --rebase: {rebase_error}", file=sys.stderr)
+/tmp/issue-541-templates/python/scripts/version_and_commit.py:247:        except ValueError as error:
+/tmp/issue-541-templates/python/scripts/version_and_commit.py:248:            print(f"Could not parse remote pyproject.toml: {error}")
+/tmp/issue-541-templates/python/scripts/version_and_commit.py:308:            set_github_output("version_committed", "false")
+/tmp/issue-541-templates/python/scripts/version_and_commit.py:372:            set_github_output("version_committed", "false")
+/tmp/issue-541-templates/rust/scripts/changelog-files.rs:15:/// failures are errors, including a regular file in place of the directory.
+/tmp/issue-541-templates/rust/scripts/changelog-files.rs:19:        Err(error) if error.kind() == io::ErrorKind::NotFound => return Ok(Vec::new()),
+/tmp/issue-541-templates/rust/scripts/changelog-files.rs:20:        Err(error) => return Err(path_error("read fragment directory", directory, error)),
+/tmp/issue-541-templates/rust/scripts/changelog-files.rs:25:            .map_err(|error| path_error("read fragment directory entry", directory, error))?
+/tmp/issue-541-templates/rust/scripts/changelog-files.rs:37:/// Add operation and path context while preserving the I/O error kind.
+/tmp/issue-541-templates/rust/scripts/changelog-files.rs:38:pub fn path_error(operation: &str, path: &Path, error: io::Error) -> io::Error {
+/tmp/issue-541-templates/rust/scripts/changelog-files.rs:40:        error.kind(),
+/tmp/issue-541-templates/rust/scripts/changelog-files.rs:41:        format!("Failed to {operation} '{}': {error}", path.display()),
+/tmp/issue-541-templates/rust/scripts/changelog-files.rs:45:/// Read a release file without dropping I/O errors or their path context.
+/tmp/issue-541-templates/rust/scripts/changelog-files.rs:47:    fs::read_to_string(path).map_err(|error| path_error("read file", path, error))
+/tmp/issue-541-templates/rust/scripts/changelog-files.rs:62:        let error = list_fragments(&root).unwrap_err();
+/tmp/issue-541-templates/rust/scripts/changelog-files.rs:64:        assert!(error.to_string().contains(&root.display().to_string()));
+/tmp/issue-541-templates/rust/scripts/check-cargo-lock.rs:116:        _ => false,
+/tmp/issue-541-templates/rust/scripts/check-cargo-lock.rs:269:            println!("::error file={}::{message}", cargo_lock.display());
+/tmp/issue-541-templates/rust/scripts/check-cargo-lock.rs:279:            println!("::error file={}::{message}", cargo_lock.display());
+/tmp/issue-541-templates/rust/scripts/check-cargo-lock.rs:326:        let result = check_cargo_lock_requirement(true, &cargo_lock, false);
+/tmp/issue-541-templates/rust/scripts/check-cargo-lock.rs:347:        let result = check_cargo_lock_requirement(false, &repo.join("Cargo.lock"), false);
+/tmp/issue-541-templates/rust/scripts/check-cargo-lock.rs:378:        let error =
+/tmp/issue-541-templates/rust/scripts/check-cargo-lock.rs:380:        assert!(error.contains("Cargo metadata did not include package manifest"));
+/tmp/issue-541-templates/rust/scripts/crates-publish-preflight.test.mjs:19:      return { status: 400, json: async () => ({ errors: [{ detail: 'invalid tarball length' }] }) };
+/tmp/issue-541-templates/rust/scripts/crates-publish-preflight.test.mjs:34:for (const errors of [[{ detail: 'invalid metadata length' }],
+/tmp/issue-541-templates/rust/scripts/crates-publish-preflight.test.mjs:37:  test(`an unrelated HTTP 400 is unverified: ${JSON.stringify(errors)}`, async () => {
+/tmp/issue-541-templates/rust/scripts/crates-publish-preflight.test.mjs:39:      fetchImpl: async () => ({ status: 400, json: async () => ({ errors }) }) });
+/tmp/issue-541-templates/rust/scripts/crates-publish-preflight.test.mjs:44:test('network and malformed JSON errors stay unknown without leaking secrets', async () => {
+/tmp/issue-541-templates/rust/scripts/check-release-needed.rs:111:            false
+/tmp/issue-541-templates/rust/scripts/check-release-needed.rs:113:        Err(ureq::Error::Status(404, _)) => false,
+/tmp/issue-541-templates/rust/scripts/check-release-needed.rs:116:            false
+/tmp/issue-541-templates/rust/scripts/check-release-needed.rs:139:        return false;
+/tmp/issue-541-templates/rust/scripts/check-release-needed.rs:152:        Err(ureq::Error::Status(404, _)) => false,
+/tmp/issue-541-templates/rust/scripts/check-release-needed.rs:155:            false
+/tmp/issue-541-templates/rust/scripts/check-release-needed.rs:179:        Err(ureq::Error::Status(404, _)) => false,
+/tmp/issue-541-templates/rust/scripts/check-release-needed.rs:182:            false
+/tmp/issue-541-templates/rust/scripts/check-release-needed.rs:285:        .unwrap_or(false);
+/tmp/issue-541-templates/rust/scripts/check-release-needed.rs:318:            .unwrap_or(false);
+/tmp/issue-541-templates/rust/scripts/check-release-needed.rs:324:                false
+/tmp/issue-541-templates/rust/scripts/check-release-needed.rs:329:            if crate_published { "true" } else { "false" },
+/tmp/issue-541-templates/rust/scripts/check-release-needed.rs:333:            if dockerhub_required { "true" } else { "false" },
+/tmp/issue-541-templates/rust/scripts/check-release-needed.rs:337:            if dockerhub_published { "true" } else { "false" },
+/tmp/issue-541-templates/rust/scripts/check-release-needed.rs:344:                "false"
+/tmp/issue-541-templates/rust/scripts/check-release-needed.rs:375:            set_output("should_release", "false")?;
+/tmp/issue-541-templates/rust/scripts/check-release-needed.rs:387:        set_output("skip_bump", "false")?;
+/tmp/issue-541-templates/rust/scripts/recheck-broken-links.mjs:7: * (lycheeverse/lychee#2297: the error is classified by its phase, and the
+/tmp/issue-541-templates/rust/scripts/recheck-broken-links.mjs:8: * connect phase is answered `false`), so a healthy URL that answers a RST —
+/tmp/issue-541-templates/rust/scripts/recheck-broken-links.mjs:29: *     Consumers must test `!= 'true'`, never `== 'false'`: a
+/tmp/issue-541-templates/rust/scripts/recheck-broken-links.mjs:59: * final; 429 and 5xx remain retryable. Other errors received no HTTP answer.
+/tmp/issue-541-templates/rust/scripts/recheck-broken-links.mjs:327:  main().catch((error) => {
+/tmp/issue-541-templates/rust/scripts/recheck-broken-links.mjs:328:    console.error(`Re-check crashed (treating as no recovery): ${error}`);
+/tmp/issue-541-templates/rust/scripts/check-required-docs.sh:96:    echo "::error title=Documentation validation failed::${failure}"
+/tmp/issue-541-templates/rust/scripts/detect-code-changes.rs:179:    match rust_paths::get_rust_root(None, false) {
+/tmp/issue-541-templates/rust/scripts/detect-code-changes.rs:292:    set_output("rs-changed", if rs_changed { "true" } else { "false" })?;
+/tmp/issue-541-templates/rust/scripts/detect-code-changes.rs:298:    set_output("toml-changed", if toml_changed { "true" } else { "false" })?;
+/tmp/issue-541-templates/rust/scripts/detect-code-changes.rs:306:        if workflow_changed { "true" } else { "false" },
+/tmp/issue-541-templates/rust/scripts/detect-code-changes.rs:313:    set_output("docs-changed", if docs_changed { "true" } else { "false" })?;
+/tmp/issue-541-templates/rust/scripts/detect-code-changes.rs:331:        if code_changed { "true" } else { "false" },
+/tmp/issue-541-templates/rust/scripts/detect-code-changes.rs:359:            .unwrap_or_else(|error| panic!("failed to run git {args:?}: {error}"));
+/tmp/issue-541-templates/rust/scripts/crates-publish-preflight.mjs:4:// reaching exactly that error proves token scope without publishing a version.
+/tmp/issue-541-templates/rust/scripts/crates-publish-preflight.mjs:31:      if (result.errors?.length === 1 && result.errors[0].detail === 'invalid tarball length') {
+/tmp/issue-541-templates/rust/scripts/crates-publish-preflight.mjs:40:    // Remote bodies/errors may echo secrets. Log only our own fixed messages.
+/tmp/issue-541-templates/rust/scripts/desktop-release-resolve.sh:18:    SHOULD_BUILD=false
+/tmp/issue-541-templates/rust/scripts/desktop-release-resolve.sh:37:  SHOULD_BUILD=false
+/tmp/issue-541-templates/rust/scripts/desktop-release-resolve.sh:47:    SHOULD_BUILD=false
+/tmp/issue-541-templates/rust/scripts/github-output.rs:33:        .map_err(|error| output_error(path, key, error))?;
+/tmp/issue-541-templates/rust/scripts/github-output.rs:34:    write_record(&mut file, key, value).map_err(|error| output_error(path, key, error))
+/tmp/issue-541-templates/rust/scripts/github-output.rs:41:fn output_error(path: &Path, key: &str, error: io::Error) -> io::Error {
+/tmp/issue-541-templates/rust/scripts/github-output.rs:43:        error.kind(),
+/tmp/issue-541-templates/rust/scripts/github-output.rs:45:            "Could not write output '{key}' to GITHUB_OUTPUT '{}': {error}",
+/tmp/issue-541-templates/rust/scripts/github-output.rs:89:        let error = write_output_to(Some(&path), "version", "1.0.0").unwrap_err();
+/tmp/issue-541-templates/rust/scripts/github-output.rs:90:        let message = error.to_string();
+/tmp/issue-541-templates/rust/scripts/github-output.rs:97:    fn empty_configured_path_is_an_error() {
+/tmp/issue-541-templates/rust/scripts/github-output.rs:120:        let error = write_record(&mut FailingWriter, "version", "1.0.0").unwrap_err();
+/tmp/issue-541-templates/rust/scripts/github-output.rs:121:        assert_eq!(error.kind(), io::ErrorKind::WriteZero);
+/tmp/issue-541-templates/rust/scripts/github-output.rs:122:        assert!(error.to_string().contains("fixture disk full"));
+/tmp/issue-541-templates/python/scripts/run-with-budget-warning.sh:3:# Usage: run-with-budget-warning.sh <budget-seconds> <label> <command> [args...]
+/tmp/issue-541-templates/python/scripts/run-with-budget-warning.sh:7:#   BUDGET_ENFORCE             false warns without terminating (true)
+/tmp/issue-541-templates/python/scripts/run-with-budget-warning.sh:12:#   CI_VERBOSE                 true enables progress and signal tracing (false)
+/tmp/issue-541-templates/python/scripts/run-with-budget-warning.sh:46:verbose="${CI_VERBOSE:-${BUDGET_VERBOSE:-false}}"
+/tmp/issue-541-templates/python/scripts/run-with-budget-warning.sh:132:have_ps=false
+/tmp/issue-541-templates/python/scripts/run-with-budget-warning.sh:212:  echo "::error title=${label} left processes running::${label} could not be terminated. Still running: $(echo "$survivors" | tr '\n' ';')" >&2
+/tmp/issue-541-templates/python/scripts/run-with-budget-warning.sh:218:  echo "::error title=${label} exceeded its execution budget::Termination was requested after ${SECONDS}s, its full ${budget_seconds}s execution budget. The budget expires before \`timeout-minutes\` so this reports as a failure instead of a cancelled job." >&2
+/tmp/issue-541-templates/python/scripts/run-with-budget-warning.sh:226:  survivors=false
+/tmp/issue-541-templates/python/scripts/run-with-budget-warning.sh:241:warned=false
+/tmp/issue-541-templates/python/scripts/run-with-budget-warning.sh:245:  if [ "$warned" = false ] && [ "$SECONDS" -ge "$threshold" ]; then
+/tmp/issue-541-templates/python/scripts/run-with-budget-warning.sh:247:    echo "::warning title=${label} is approaching its timeout::The command is still running after ${SECONDS}s (${warn_ratio}% of its ${budget_seconds}s execution budget)." >&2
+/tmp/issue-541-templates/python/scripts/check_file_size.py:4:Exits with error code 1 if any files exceed the limit.
+/tmp/issue-541-templates/python/scripts/check_file_size.py:42:    WARNING = "warning"
+/tmp/issue-541-templates/python/scripts/check_file_size.py:48:    """A file-size warning or violation."""
+/tmp/issue-541-templates/python/scripts/check_file_size.py:58:    """Collected warnings and violations from a file-size check."""
+/tmp/issue-541-templates/python/scripts/check_file_size.py:60:    warnings: list[Finding]
+/tmp/issue-541-templates/python/scripts/check_file_size.py:133:    """Check size-tracked files under a directory for warning and hard limits.
+/tmp/issue-541-templates/python/scripts/check_file_size.py:139:        Collected warnings and violations
+/tmp/issue-541-templates/python/scripts/check_file_size.py:142:    warnings = []
+/tmp/issue-541-templates/python/scripts/check_file_size.py:161:            warnings.append(finding)
+/tmp/issue-541-templates/python/scripts/check_file_size.py:163:    return CheckResult(warnings=warnings, violations=violations)
+/tmp/issue-541-templates/python/scripts/check_file_size.py:182:def warning_annotation(finding: Finding) -> str:
+/tmp/issue-541-templates/python/scripts/check_file_size.py:183:    """Build a GitHub Actions warning annotation for a near-limit file."""
+/tmp/issue-541-templates/python/scripts/check_file_size.py:191:        f"::warning file={escape_annotation_property(finding.file.as_posix())}::"
+/tmp/issue-541-templates/python/scripts/check_file_size.py:196:def print_warnings(warnings: list[Finding]) -> None:
+/tmp/issue-541-templates/python/scripts/check_file_size.py:197:    """Print non-failing file-size warnings."""
+/tmp/issue-541-templates/python/scripts/check_file_size.py:198:    if not warnings:
+/tmp/issue-541-templates/python/scripts/check_file_size.py:201:    for warning in warnings:
+/tmp/issue-541-templates/python/scripts/check_file_size.py:202:        print(warning_annotation(warning))
+/tmp/issue-541-templates/python/scripts/check_file_size.py:204:            f"WARNING: {warning.file} has {warning.lines} lines "
+/tmp/issue-541-templates/python/scripts/check_file_size.py:205:            f"(approaching limit of {warning.max_lines}, "
+/tmp/issue-541-templates/python/scripts/check_file_size.py:206:            f"warning threshold: {warning.warn_lines})"
+/tmp/issue-541-templates/python/scripts/check_file_size.py:211:    for warning in warnings:
+/tmp/issue-541-templates/python/scripts/check_file_size.py:212:        print(f"  {warning.file}")
+/tmp/issue-541-templates/python/scripts/check_file_size.py:238:        f"(warning above {WARN_LINES}) and {MAX_DOC_LINES} lines for markdown "
+/tmp/issue-541-templates/python/scripts/check_file_size.py:239:        f"(warning above {WARN_DOC_LINES})...\n"
+/tmp/issue-541-templates/python/scripts/check_file_size.py:243:    print_warnings(result.warnings)
+/tmp/issue-541-templates/python/scripts/smoke_test_published_package.py:128:    fallback_name = distribution_name.replace("-", "_").replace(".", "_")
+/tmp/issue-541-templates/python/scripts/smoke_test_published_package.py:129:    if fallback_name.isidentifier():
+/tmp/issue-541-templates/python/scripts/smoke_test_published_package.py:130:        return [fallback_name]
+/tmp/issue-541-templates/python/scripts/smoke_test_published_package.py:400:    except (OSError, SmokeTestError, subprocess.CalledProcessError) as error:
+/tmp/issue-541-templates/python/scripts/smoke_test_published_package.py:401:        print(f"Published package smoke test failed: {error}", file=sys.stderr)
+/tmp/issue-541-templates/python/scripts/read-job-cancel-in-progress.sh:22:    if value in {"true", "false"}:
+/tmp/issue-541-templates/python/scripts/read-job-cancel-in-progress.sh:32:        return "false"
+/tmp/issue-541-templates/python/scripts/read-job-cancel-in-progress.sh:47:    return "false"
+/tmp/issue-541-templates/python/scripts/read-job-cancel-in-progress.sh:57:except OSError as error:
+/tmp/issue-541-templates/python/scripts/read-job-cancel-in-progress.sh:58:    print(f"read-job-cancel-in-progress: {error}", file=sys.stderr)
+/tmp/issue-541-templates/python/scripts/read-job-cancel-in-progress.sh:59:    raise SystemExit(1) from error
+/tmp/issue-541-templates/python/scripts/publish_to_pypi.py:26:    """Run a command and handle errors."""
+/tmp/issue-541-templates/rust/scripts/create-changelog-fragment.rs:80:        .map_err(|error| format!("could not generate a stop-commands token: {error}"))?;
+/tmp/issue-541-templates/rust/scripts/create-changelog-fragment.rs:147:    if let Err(error) = print_fragment_content(&fragment_content) {
+/tmp/issue-541-templates/rust/scripts/create-changelog-fragment.rs:148:        eprintln!("Error printing fragment safely: {error}");
+/tmp/issue-541-templates/python/scripts/check_web_archive.py:101:    except (OSError, TimeoutError, ValueError, json.JSONDecodeError) as error:
+/tmp/issue-541-templates/python/scripts/check_web_archive.py:102:        print(f"  Failed to check Wayback Machine for {url}: {error}")
+/tmp/issue-541-templates/python/scripts/check_web_archive.py:136:    """Emit an actionable GitHub error for an unrecoverable broken link."""
+/tmp/issue-541-templates/python/scripts/check_web_archive.py:139:        "::error title=Broken link - No Web Archive fallback::"
+/tmp/issue-541-templates/python/scripts/check_web_archive.py:143:        "if it is a known false positive."
+/tmp/issue-541-templates/python/scripts/check_web_archive.py:185:    set_output("all_archived", "true" if all_archived else "false")
+/tmp/issue-541-templates/python/scripts/detect_code_changes.py:109:    # For push events or fallback
+/tmp/issue-541-templates/python/scripts/detect_code_changes.py:194:        set_output(name, "true" if value else "false")
+/tmp/issue-541-templates/python/scripts/simulate-fresh-merge.sh:44:# merge simulation is the false negative the check exists to prevent.
+/tmp/issue-541-templates/python/scripts/simulate-fresh-merge.sh:55:      echo "::warning::git fetch of origin/${BASE_REF} failed (attempt ${attempt} of ${FRESH_MERGE_FETCH_ATTEMPTS}); retrying in $(( FRESH_MERGE_RETRY_DELAY_SECONDS * attempt ))s..."
+/tmp/issue-541-templates/python/scripts/simulate-fresh-merge.sh:59:  echo "::error::Could not fetch origin/${BASE_REF} after ${FRESH_MERGE_FETCH_ATTEMPTS} attempts. The merge simulation needs the current base tip: without it no check runs at all. Check connectivity to the remote and that the base branch '${BASE_REF}' still exists there." >&2
+/tmp/issue-541-templates/python/scripts/simulate-fresh-merge.sh:75:  echo "::error::Merge conflict detected with latest $BASE_REF" >&2
+/tmp/issue-541-templates/python/scripts/create_github_release.py:60:    """Run a command and handle errors."""
+/tmp/issue-541-templates/python/scripts/create_github_release.py:88:    # generic fallback and older changelogs use an unbracketed heading.
+/tmp/issue-541-templates/python/scripts/create_github_release.py:139:    return encoded[:max_bytes].decode(ENCODING, errors="ignore")
+/tmp/issue-541-templates/python/scripts/create_github_release.py:221:        cmd.append("--draft=false")
+/tmp/issue-541-templates/rust/scripts/publish-crate.rs:87:    /// rather than a hard error.
+/tmp/issue-541-templates/rust/scripts/publish-crate.rs:176:        println!("::warning::Neither CARGO_REGISTRY_TOKEN nor CARGO_TOKEN is set, attempting publish without explicit token");
+/tmp/issue-541-templates/rust/scripts/publish-crate.rs:231:                eprintln!("Original cargo publish error:");
+/tmp/issue-541-templates/rust/scripts/publish-crate.rs:300:        let body = "error: crate version 0.1.0 is already uploaded";
+/tmp/issue-541-templates/rust/scripts/publish-crate.rs:308:error: failed to publish my-crate v0.42.0 to registry at https://crates.io
+/tmp/issue-541-templates/rust/scripts/publish-crate.rs:311:  the remote server responded with an error (status 429 Too Many Requests): \
+/tmp/issue-541-templates/rust/scripts/publish-crate.rs:326:        let body = "error: failed to publish: please provide a non-empty token";
+/tmp/issue-541-templates/rust/scripts/publish-crate.rs:333:        let body = "error: some brand new failure mode nobody has seen before";
+/tmp/issue-541-templates/rust/scripts/publish-crate.rs:349:        // failure must remain a hard, non-zero error.
+/tmp/issue-541-templates/python/scripts/preflight-credentials.sh:84:# only the first error; never print the raw response or any minted token.
+/tmp/issue-541-templates/python/scripts/preflight-credentials.sh:85:pypi_error() {
+/tmp/issue-541-templates/python/scripts/preflight-credentials.sh:91:    error = json.loads(os.environ['PYPI_ERROR_BODY'])['errors'][0]
+/tmp/issue-541-templates/python/scripts/preflight-credentials.sh:92:    code = error['code']
+/tmp/issue-541-templates/python/scripts/preflight-credentials.sh:94:        raise ValueError('invalid error code')
+/tmp/issue-541-templates/python/scripts/preflight-credentials.sh:97:        description = error.get('description', '')
+/tmp/issue-541-templates/python/scripts/preflight-credentials.sh:195:      details="$(pypi_error "${response%"${NEWLINE}"*}")"
+/tmp/issue-541-templates/python/scripts/preflight-credentials.sh:319:    emit_annotations error "$failures"
+/tmp/issue-541-templates/python/scripts/preflight-credentials.sh:321:    printf '::error::release-preflight: refusing to release with %d refused credential(s)\n' "$n_fail"
+/tmp/issue-541-templates/python/scripts/preflight-credentials.sh:324:  emit_annotations warning "$failures"
+/tmp/issue-541-templates/python/scripts/preflight-credentials.sh:335:    emit_annotations warning "$unknowns"
+/tmp/issue-541-templates/python/scripts/preflight-credentials.sh:336:    append_summary unverified
+/tmp/issue-541-templates/python/scripts/preflight-credentials.sh:337:    printf '::error::release-preflight: verified nothing (%d unknown) -- refusing to release on an unproven credential set\n' "$n_unknown"
+/tmp/issue-541-templates/python/scripts/preflight-credentials.sh:340:  emit_annotations warning "$unknowns"
+/tmp/issue-541-templates/python/scripts/preflight-credentials.sh:341:  append_summary unverified
+/tmp/issue-541-templates/rust/scripts/wait-for-crate.rs:10://! limited, with the JSON API as a fallback. A probe that fails for a reason
+/tmp/issue-541-templates/rust/scripts/wait-for-crate.rs:136:                return false;
+/tmp/issue-541-templates/rust/scripts/wait-for-crate.rs:290:    let mut saw_definitive_answer = false;
+/tmp/issue-541-templates/rust/scripts/wait-for-crate.rs:491:    /// The false negative from issue #143: the failure message must not claim
+/tmp/issue-541-templates/python/scripts/check_release.py:19:from urllib.error import HTTPError, URLError
+/tmp/issue-541-templates/python/scripts/check_release.py:64:    except HTTPError as error:
+/tmp/issue-541-templates/python/scripts/check_release.py:65:        error.close()
+/tmp/issue-541-templates/python/scripts/check_release.py:66:        return error.code, {}
+/tmp/issue-541-templates/python/scripts/check_release.py:67:    except (OSError, URLError, ValueError) as error:
+/tmp/issue-541-templates/python/scripts/check_release.py:68:        message = f"Could not read {url}: {error}"
+/tmp/issue-541-templates/python/scripts/check_release.py:69:        raise ReleaseError(message) from error
+/tmp/issue-541-templates/python/scripts/check_release.py:146:    """Poll the version endpoint within a finite budget, retrying transient errors."""
+/tmp/issue-541-templates/python/scripts/check_release.py:156:    last_error = "version not visible"
+/tmp/issue-541-templates/python/scripts/check_release.py:162:        except ReleaseError as error:
+/tmp/issue-541-templates/python/scripts/check_release.py:163:            last_error = str(error)
+/tmp/issue-541-templates/python/scripts/check_release.py:168:            last_error = f"HTTP {status}"
+/tmp/issue-541-templates/python/scripts/check_release.py:170:                message = f"PyPI visibility check failed: {last_error}"
+/tmp/issue-541-templates/python/scripts/check_release.py:174:                f"PyPI not ready: {last_error}; {max(0, deadline - time.monotonic()):g}s remaining"
+/tmp/issue-541-templates/python/scripts/check_release.py:181:        f"on PyPI within {timeout_seconds:g}s ({last_error}). Rerun the release; "
+/tmp/issue-541-templates/python/scripts/check_release.py:220:    except (ReleaseError, OSError, ValueError, KeyError) as error:
+/tmp/issue-541-templates/python/scripts/check_release.py:221:        print(f"::error::{error}", file=sys.stderr)
+/tmp/issue-541-templates/python/scripts/check-required-docs.sh:96:    echo "::error title=Documentation validation failed::${failure}"
+/tmp/issue-541-templates/python/scripts/check-dependency-graph.sh:4:# Only a plain 403 proves disabled: retry rate limits, server/network errors,
+/tmp/issue-541-templates/python/scripts/check-dependency-graph.sh:38:  disabled) enabled=false ;;
+/tmp/issue-541-templates/python/scripts/check-dependency-graph.sh:52:  echo "::warning::$message Skipping dependency review for this pull request."
+/tmp/issue-541-templates/python/scripts/check-dependency-graph.sh:54:  echo "::error::$message"
+/tmp/issue-541-templates/rust/scripts/test-scripts.sh:17:# warnings introduced by the test harness surface here rather than in CI.
+/tmp/issue-541-templates/rust/scripts/test-scripts.sh:18:export RUSTFLAGS="${RUSTFLAGS:--Dwarnings}"
+/tmp/issue-541-templates/python/scripts/recheck_broken_links.py:4:429 and 5xx responses (including cached errors) are retried with exponential
+/tmp/issue-541-templates/python/scripts/recheck_broken_links.py:28:import urllib.error
+/tmp/issue-541-templates/python/scripts/recheck_broken_links.py:64:        """Transport errors and 429/5xx answers can be retried."""
+/tmp/issue-541-templates/python/scripts/recheck_broken_links.py:86:    """Parse status-coded and transport errors, including cached failures."""
+/tmp/issue-541-templates/python/scripts/recheck_broken_links.py:144:    """429 and server errors mean try again, rather than a final rejection."""
+/tmp/issue-541-templates/python/scripts/recheck_broken_links.py:194:    except urllib.error.HTTPError as error:
+/tmp/issue-541-templates/python/scripts/recheck_broken_links.py:195:        status = error.code
+/tmp/issue-541-templates/python/scripts/recheck_broken_links.py:196:        error.close()
+/tmp/issue-541-templates/python/scripts/recheck_broken_links.py:211:        except urllib.error.HTTPError as error:
+/tmp/issue-541-templates/python/scripts/recheck_broken_links.py:212:            error.close()
+/tmp/issue-541-templates/python/scripts/recheck_broken_links.py:214:            pass  # A failed fallback never proves the original URL healthy.
+/tmp/issue-541-templates/python/scripts/recheck_broken_links.py:381:    except Exception as error:  # noqa: BLE001 - no crash may raise the gate
+/tmp/issue-541-templates/python/scripts/recheck_broken_links.py:382:        print(f"Re-check crashed (treating as no recovery): {error}")
+/tmp/issue-541-templates/python/scripts/validate_changeset.py:15:use a full-history checkout in CI. No network fetch or fallback diff is attempted.
+/tmp/issue-541-templates/python/scripts/validate_changeset.py:183:        print("::error::No new changelog fragment found for source changes.")
+/tmp/issue-541-templates/python/scripts/validate_changeset.py:194:        is_valid, error = validate_content(PurePosixPath(fragment).name, content)
+/tmp/issue-541-templates/python/scripts/validate_changeset.py:198:            print(f"  [FAIL] {error}")
+/tmp/issue-541-templates/python/scripts/validate_changeset.py:229:    except (OSError, UnicodeError, ValueError, subprocess.CalledProcessError) as error:
+/tmp/issue-541-templates/python/scripts/validate_changeset.py:231:            error.stderr.strip()
+/tmp/issue-541-templates/python/scripts/validate_changeset.py:232:            if isinstance(error, subprocess.CalledProcessError)
+/tmp/issue-541-templates/python/scripts/validate_changeset.py:233:            else str(error)
+/tmp/issue-541-templates/python/scripts/validate_changeset.py:235:        print(f"Cannot validate changelog: {detail or error}", file=sys.stderr)
+/tmp/issue-541-templates/python/scripts/read_manifest.py:61:    except (OSError, tomllib.TOMLDecodeError, KeyError, ValueError) as error:
+/tmp/issue-541-templates/python/scripts/read_manifest.py:62:        print(f"Error: {error}", file=sys.stderr)
+/tmp/issue-541-templates/python/scripts/check-pipeline-status.sh:72:  echo "::error title=Pipeline failed::Failed jobs: $(printf '%s\n' "$failed_jobs" | join_names)"
+/tmp/issue-541-templates/python/scripts/check-pipeline-status.sh:81:  superseded=false
+/tmp/issue-541-templates/python/scripts/check-pipeline-status.sh:109:        false) reason="effective cancel-in-progress is false" ;;
+/tmp/issue-541-templates/python/scripts/check-pipeline-status.sh:122:  echo "::warning title=Cancelled jobs in a superseded run::${joined}. This run is no longer the head of ${HEAD_REF} and these jobs cancel in progress."
+/tmp/issue-541-templates/python/scripts/check-pipeline-status.sh:130:  echo "::error title=Pipeline has cancelled jobs::${joined}. No supersede accounts for these cancellations (see the reasons above)."
+/tmp/issue-541-templates/rust/scripts/smoke-test-published-crate.rs:338:publish = false
+/tmp/issue-541-templates/rust/scripts/smoke-test-published-crate.rs:463:        eprintln!("::error::Published crate smoke test failed: {e}");
+/tmp/issue-541-templates/rust/scripts/version-and-commit.rs:114:        .unwrap_or(false)
+/tmp/issue-541-templates/rust/scripts/version-and-commit.rs:120:/// with a misleading "conflict" error, so the failure is classified first.
+/tmp/issue-541-templates/rust/scripts/version-and-commit.rs:143:    /// Anything else: report the real error instead of masking it.
+/tmp/issue-541-templates/rust/scripts/version-and-commit.rs:218:        return Ok(false);
+/tmp/issue-541-templates/rust/scripts/version-and-commit.rs:237:        return Ok(false);
+/tmp/issue-541-templates/rust/scripts/version-and-commit.rs:244:        return Ok(false);
+/tmp/issue-541-templates/rust/scripts/version-and-commit.rs:322:        .unwrap_or_else(|error| panic!("{error}"));
+/tmp/issue-541-templates/rust/scripts/version-and-commit.rs:329:        .map(|file| changelog_files::read_file(file).unwrap_or_else(|error| panic!("{error}")))
+/tmp/issue-541-templates/rust/scripts/version-and-commit.rs:350:        .unwrap_or_else(|error| panic!("{error}"));
+/tmp/issue-541-templates/rust/scripts/version-and-commit.rs:378:        .unwrap_or_else(|error| panic!("{error}"))
+/tmp/issue-541-templates/rust/scripts/version-and-commit.rs:420:        .map_err(|error| format!("CHANGELOG verification failed: {error}"))?
+/tmp/issue-541-templates/rust/scripts/version-and-commit.rs:519:            eprintln!("::error::{e}");
+/tmp/issue-541-templates/rust/scripts/version-and-commit.rs:576:            eprintln!("::error::{e}");
+/tmp/issue-541-templates/rust/scripts/version-and-commit.rs:663:        eprintln!("::error title=Release write verification failed::{}", e);
+/tmp/issue-541-templates/rust/scripts/version-and-commit.rs:668:        eprintln!("::error::{e}");
+/tmp/issue-541-templates/rust/scripts/version-and-commit.rs:692:        eprintln!("::error::{e}");
+/tmp/issue-541-templates/rust/scripts/version-and-commit.rs:699:        set_output("version_committed", "false")?;
+/tmp/issue-541-templates/rust/scripts/version-and-commit.rs:734:            Err(push_error) => match classify_push_failure(&push_error) {
+/tmp/issue-541-templates/rust/scripts/version-and-commit.rs:737:                        "::error title=Push declined by repository rules::The push to branch '{}' was declined by a repository rule (a GH006/GH013-class rejection, e.g. 'changes must be made through a pull request' or a protected-branch ruleset). Rebasing and retrying cannot change repository policy: release this change through a pull request, or adjust the ruleset so the release bot may push.\n--- git output ---\n{}",
+/tmp/issue-541-templates/rust/scripts/version-and-commit.rs:738:                        current_branch, push_error
+/tmp/issue-541-templates/rust/scripts/version-and-commit.rs:743:                    eprintln!("Error pushing: {}", push_error);
+/tmp/issue-541-templates/rust/scripts/version-and-commit.rs:762:                            max_push_attempts, push_error
+/tmp/issue-541-templates/rust/scripts/check-crate-size.rs:5://! with an HTTP 413 error. This guard runs `cargo package` to build the archive
+/tmp/issue-541-templates/rust/scripts/check-crate-size.rs:7://! release pipeline surfaces a clear, actionable error instead of a late 413.
+/tmp/issue-541-templates/rust/scripts/check-crate-size.rs:88:                "::warning::cargo package failed on attempt {attempt}/{max_attempts}; retrying"
+/tmp/issue-541-templates/rust/scripts/check-crate-size.rs:94:    Ok(false)
+/tmp/issue-541-templates/rust/scripts/check-crate-size.rs:178:            eprintln!("::error::Failed to execute cargo package: {e}");
+/tmp/issue-541-templates/rust/scripts/check-crate-size.rs:183:        eprintln!("::error::cargo package failed; cannot determine crate archive size");
+/tmp/issue-541-templates/rust/scripts/check-crate-size.rs:189:            "::error::Could not find generated archive {name}-{version}.crate in target/package"
+/tmp/issue-541-templates/rust/scripts/check-crate-size.rs:197:            eprintln!("::error::Could not read size of {}: {e}", archive.display());
+/tmp/issue-541-templates/rust/scripts/check-crate-size.rs:217:            println!("::error::{message}");
+/tmp/issue-541-templates/rust/scripts/check-crate-size.rs:229:            println!("::warning::{message}");
+/tmp/issue-541-templates/rust/scripts/check-crate-size.rs:298:                Ok(false)
+/tmp/issue-541-templates/rust/scripts/read-job-cancel-in-progress.sh:3:# Values are true, false, none, missing, or unknown. Expressions outside the
+/tmp/issue-541-templates/rust/scripts/read-job-cancel-in-progress.sh:29:    return raw if raw in ("true", "false") else "unknown"
+/tmp/issue-541-templates/rust/scripts/read-job-cancel-in-progress.sh:32:    if rest and not rest.startswith("#"): return "false"
+/tmp/issue-541-templates/rust/scripts/read-job-cancel-in-progress.sh:39:    return "false" if value is None else normalise(value)
+/tmp/issue-541-templates/rust/scripts/recheck-broken-links.test.mjs:2:// Machine fallback that honours it.
+/tmp/issue-541-templates/rust/scripts/recheck-broken-links.test.mjs:42:  let called = false;
+/tmp/issue-541-templates/rust/scripts/recheck-broken-links.test.mjs:69:      '- [UNKNOWN] <https://example.com/dark> | Unknown error',
+/tmp/issue-541-templates/rust/scripts/recheck-broken-links.test.mjs:96:        'error:',
+/tmp/issue-541-templates/rust/scripts/recheck-broken-links.test.mjs:140:    assert.equal(accepted(104), false);
+/tmp/issue-541-templates/rust/scripts/recheck-broken-links.test.mjs:141:    assert.equal(accepted(404), false);
+/tmp/issue-541-templates/rust/scripts/recheck-broken-links.test.mjs:379:      assert.equal(existsSync(outputPath), false);
+/tmp/issue-541-templates/rust/scripts/recheck-broken-links.test.mjs:419:  it('keeps the gate closed when a recovered transport error accompanies a final 404', async () => {
+/tmp/issue-541-templates/rust/scripts/recheck-broken-links.test.mjs:446:        false,
+/tmp/issue-541-templates/rust/scripts/recheck-broken-links.test.mjs:471:describe('web archive fallback honouring the re-check', () => {
+/tmp/issue-541-templates/rust/scripts/check-web-archive.mjs:28: *        error that has no http(s) URL to look up (missing local file, ...)
+/tmp/issue-541-templates/rust/scripts/check-web-archive.mjs:59: * @returns {string} The errors section, or the whole document when there is none
+/tmp/issue-541-templates/rust/scripts/check-web-archive.mjs:74:      break; // a sibling or parent heading ends the errors section
+/tmp/issue-541-templates/rust/scripts/check-web-archive.mjs:174:      return { available: false, archiveUrl: null, timestamp: null };
+/tmp/issue-541-templates/rust/scripts/check-web-archive.mjs:189:    return { available: false, archiveUrl: null, timestamp: null };
+/tmp/issue-541-templates/rust/scripts/check-web-archive.mjs:190:  } catch (error) {
+/tmp/issue-541-templates/rust/scripts/check-web-archive.mjs:192:      `  Failed to check Wayback Machine for ${url}: ${error.message}`
+/tmp/issue-541-templates/rust/scripts/check-web-archive.mjs:194:    return { available: false, archiveUrl: null, timestamp: null };
+/tmp/issue-541-templates/rust/scripts/check-web-archive.mjs:216: * Report lychee errors that have no http(s) URL to look up in the Wayback
+/tmp/issue-541-templates/rust/scripts/check-web-archive.mjs:232:      '::error title=Broken link - not recoverable from the Web Archive::' +
+/tmp/issue-541-templates/rust/scripts/check-web-archive.mjs:235:        'so the Wayback Machine cannot provide a fallback.\n' +
+/tmp/issue-541-templates/rust/scripts/check-web-archive.mjs:274: * Report broken links that have no Wayback Machine snapshot as errors
+/tmp/issue-541-templates/rust/scripts/check-web-archive.mjs:290:  // Print GitHub Actions annotations as errors (one per link)
+/tmp/issue-541-templates/rust/scripts/check-web-archive.mjs:293:      `::error title=Broken link - No Web Archive fallback::` +
+/tmp/issue-541-templates/rust/scripts/check-web-archive.mjs:299:        `  3. Add the URL to .lycheeignore if it is a known false positive (e.g. localhost, example.com).`
+/tmp/issue-541-templates/rust/scripts/check-web-archive.mjs:341:    setOutput('all_archived', clean ? 'true' : 'false');
+/tmp/issue-541-templates/rust/scripts/check-web-archive.mjs:376:  setOutput('all_archived', allArchived ? 'true' : 'false');
+/tmp/issue-541-templates/rust/scripts/check-web-archive.mjs:399:  main().catch((error) => {
+/tmp/issue-541-templates/rust/scripts/check-web-archive.mjs:400:    console.error('Unexpected error:', error);
+/tmp/issue-541-templates/rust/scripts/simulate-fresh-merge.sh:54:      echo "::warning::git fetch of origin/${BASE_REF} failed (attempt ${attempt} of ${FRESH_MERGE_FETCH_ATTEMPTS}); retrying in $(( FRESH_MERGE_RETRY_DELAY_SECONDS * attempt ))s..."
+/tmp/issue-541-templates/rust/scripts/simulate-fresh-merge.sh:58:  echo "::error::Could not fetch origin/${BASE_REF} after ${FRESH_MERGE_FETCH_ATTEMPTS} attempts. The merge simulation needs the current base tip: without it no check runs at all. Check connectivity to the remote and that the base branch '${BASE_REF}' still exists there." >&2
+/tmp/issue-541-templates/rust/scripts/simulate-fresh-merge.sh:81:  echo "::error::Textual merge conflict with origin/${BASE_REF}. Merge the base branch into this pull request and resolve the conflicts."
+/tmp/issue-541-templates/rust/scripts/simulate-fresh-merge.sh:90:bash scripts/check-cargo-warnings.sh
+/tmp/issue-541-templates/rust/scripts/simulate-fresh-merge.sh:102:  echo "::error::Checks failed on the simulated merge with origin/${BASE_REF} even though they pass on the pull request head. This is a semantic merge conflict."
+/tmp/issue-541-templates/rust/scripts/collect-changelog.rs:28:use changelog_files::{list_fragments, path_error, read_file};
+/tmp/issue-541-templates/rust/scripts/collect-changelog.rs:157:            .map_err(|error| path_error("write changelog", Path::new(changelog_file), error))?;
+/tmp/issue-541-templates/rust/scripts/collect-changelog.rs:168:            .map_err(|error| path_error("write changelog", Path::new(changelog_file), error))?;
+/tmp/issue-541-templates/rust/scripts/collect-changelog.rs:177:        fs::remove_file(path).map_err(|error| path_error("remove fragment", path, error))?;
+/tmp/issue-541-templates/rust/scripts/collect-changelog.rs:224:        let error = result.expect_err("fragment deletion must fail");
+/tmp/issue-541-templates/rust/scripts/collect-changelog.rs:225:        assert!(error.to_string().contains("fragment.md"));
+/tmp/issue-541-templates/rust/scripts/create-github-release.rs:185:fn is_existing_release_error(combined: &str) -> bool {
+/tmp/issue-541-templates/rust/scripts/create-github-release.rs:186:    let Some(error) = parse_first_json_object(combined) else {
+/tmp/issue-541-templates/rust/scripts/create-github-release.rs:187:        return false;
+/tmp/issue-541-templates/rust/scripts/create-github-release.rs:189:    let Some(errors) = error.get("errors").and_then(serde_json::Value::as_array) else {
+/tmp/issue-541-templates/rust/scripts/create-github-release.rs:190:        return false;
+/tmp/issue-541-templates/rust/scripts/create-github-release.rs:193:    !errors.is_empty()
+/tmp/issue-541-templates/rust/scripts/create-github-release.rs:194:        && errors.iter().all(|error| {
+/tmp/issue-541-templates/rust/scripts/create-github-release.rs:195:            error.get("resource").and_then(serde_json::Value::as_str) == Some("Release")
+/tmp/issue-541-templates/rust/scripts/create-github-release.rs:196:                && error.get("code").and_then(serde_json::Value::as_str) == Some("already_exists")
+/tmp/issue-541-templates/rust/scripts/create-github-release.rs:197:                && error.get("field").and_then(serde_json::Value::as_str) == Some("tag_name")
+/tmp/issue-541-templates/rust/scripts/create-github-release.rs:383:        if is_existing_release_error(&combined) {
+/tmp/issue-541-templates/rust/scripts/create-github-release.rs:412:            build_release_name("web-search", "Rust", "rust_v0.2.1", false, None),
+/tmp/issue-541-templates/rust/scripts/create-github-release.rs:436:            build_release_name("web-search", "Rust", "0.2.1", false, Some("stable")),
+/tmp/issue-541-templates/rust/scripts/create-github-release.rs:508:{"message":"Validation Failed","errors":[{"resource":"Release","code":"already_exists","field":"tag_name"}]}"#;
+/tmp/issue-541-templates/rust/scripts/create-github-release.rs:510:        assert!(is_existing_release_error(output));
+/tmp/issue-541-templates/rust/scripts/create-github-release.rs:516:{"message":"Validation Failed","errors":[{"resource":"Release","code":"custom","field":"body"}]}"#;
+/tmp/issue-541-templates/rust/scripts/create-github-release.rs:518:        assert!(!is_existing_release_error(output));
+/tmp/issue-541-templates/rust/scripts/create-github-release.rs:524:{"message":"Validation Failed","errors":[{"resource":"Release","code":"already_exists","field":"tag_name"},{"resource":"Release","code":"custom","field":"body"}]}"#;
+/tmp/issue-541-templates/rust/scripts/create-github-release.rs:526:        assert!(!is_existing_release_error(output));
+/tmp/issue-541-templates/rust/scripts/check-workflow-tools.rs:76:    let mut in_jobs = false;
+/tmp/issue-541-templates/rust/scripts/check-workflow-tools.rs:283:        let workflow = "jobs:\n  audit:\n    steps:\n      - uses: taiki-e/install-action@e67fa11c4b9316fa714ddf0abed07a0c3143b95b\n        with:\n          tool: cargo-llvm-cov, cargo-audit@0.22.2\n      - run: ./scripts/install-rust-script.sh\n      - run: cargo audit --deny warnings\n      - run: rust-script scripts/check.rs\n  other:\n    steps:\n      - uses: taiki-e/install-action@e67fa11c4b9316fa714ddf0abed07a0c3143b95b\n        with:\n          tool: cargo-audit-extra\n      - run: cargo audit\n";
+/tmp/issue-541-templates/rust/scripts/get-bump-type.rs:163:        if fragment_count > 0 { "true" } else { "false" },
+/tmp/issue-541-templates/rust/scripts/check-web-archive.test.mjs:4:// Issue #136: lychee errors that are not http(s) URLs (missing local files,
+/tmp/issue-541-templates/rust/scripts/check-web-archive.test.mjs:7:// which lychee had reported real errors.
+/tmp/issue-541-templates/rust/scripts/check-web-archive.test.mjs:23:test('the errors section stops at the next top-level heading', () => {
+/tmp/issue-541-templates/rust/scripts/check-web-archive.test.mjs:28:    'the redirects section must not leak into the errors section'
+/tmp/issue-541-templates/rust/scripts/check-web-archive.test.mjs:46:test('every http error is extracted exactly once', () => {
+/tmp/issue-541-templates/rust/scripts/check-web-archive.test.mjs:53:test('errors that the Wayback Machine cannot answer are still reported', () => {
+/tmp/issue-541-templates/rust/scripts/check-web-archive.test.mjs:57:    'error:',
+/tmp/issue-541-templates/rust/scripts/check-web-archive.test.mjs:61:test('the parsed error count matches the count lychee reports', () => {
+/tmp/issue-541-templates/rust/scripts/check-web-archive.test.mjs:67:test('a report whose only errors are non-HTTP is not "all archived"', () => {
+/tmp/issue-541-templates/rust/scripts/rust-paths.rs:258:        if !has_package_section(&member_content) || is_publish_false(&member_content) {
+/tmp/issue-541-templates/rust/scripts/rust-paths.rs:291:fn is_publish_false(content: &str) -> bool {
+/tmp/issue-541-templates/rust/scripts/rust-paths.rs:292:    Regex::new(r"(?m)^publish\s*=\s*false\s*$")
+/tmp/issue-541-templates/rust/scripts/check-changelog-fragment.rs:43:        Err(error) => Err(format!(
+/tmp/issue-541-templates/rust/scripts/check-changelog-fragment.rs:45:            command, args, error
+/tmp/issue-541-templates/rust/scripts/check-changelog-fragment.rs:94:        Err(first_error) => {
+/tmp/issue-541-templates/rust/scripts/check-changelog-fragment.rs:96:                "Initial diff failed ({first_error}); fetching the explicit base ref and retrying."
+/tmp/issue-541-templates/rust/scripts/check-changelog-fragment.rs:98:            fetch_base(&base_ref).map_err(|fetch_error| {
+/tmp/issue-541-templates/rust/scripts/check-changelog-fragment.rs:99:                format!("could not prepare base after diff failure ({first_error}); {fetch_error}")
+/tmp/issue-541-templates/rust/scripts/check-changelog-fragment.rs:164:        rust_paths::repository_relative_root(&get_rust_root()).unwrap_or_else(|error| {
+/tmp/issue-541-templates/rust/scripts/check-changelog-fragment.rs:165:            eprintln!("::error::{error}");
+/tmp/issue-541-templates/rust/scripts/check-changelog-fragment.rs:175:    let changed_files = match get_changed_files(false) {
+/tmp/issue-541-templates/rust/scripts/check-changelog-fragment.rs:177:        Err(error) => {
+/tmp/issue-541-templates/rust/scripts/check-changelog-fragment.rs:178:            eprintln!("::error::Could not determine the PR's changed files: {error}");
+/tmp/issue-541-templates/rust/scripts/check-changelog-fragment.rs:210:    let added_files = get_changed_files(true).unwrap_or_else(|error| {
+/tmp/issue-541-templates/rust/scripts/check-changelog-fragment.rs:211:        eprintln!("::error::Could not determine added fragments: {error}");
+/tmp/issue-541-templates/rust/scripts/check-changelog-fragment.rs:230:        eprintln!("::error::No changelog fragment found in this PR. Please add a changelog entry in changelog.d/");
+/tmp/issue-541-templates/rust/scripts/check-changelog-fragment.rs:259:        let error = exec(
+/tmp/issue-541-templates/rust/scripts/check-changelog-fragment.rs:263:        .expect_err("an invalid revision must remain an error");
+/tmp/issue-541-templates/rust/scripts/check-changelog-fragment.rs:264:        assert!(error.contains("exited with"));
+/tmp/issue-541-templates/rust/scripts/check-pipeline-status.sh:80:      false) printf '%s\toverrun\tit sets cancel-in-progress: false, so a supersede queues instead of cancelling it\n' "$name" ;;
+/tmp/issue-541-templates/rust/scripts/check-pipeline-status.sh:96:  echo "::error title=Pipeline failed::Failing jobs: ${failed}"; status=1
+/tmp/issue-541-templates/rust/scripts/check-pipeline-status.sh:108:    echo "::warning title=Cancelled jobs in a superseded run::${superseded_jobs}. These jobs set cancel-in-progress: true, so their cancellation is explained."
+/tmp/issue-541-templates/rust/scripts/check-pipeline-status.sh:111:    echo "::error title=Pipeline has cancelled jobs::${overrun_jobs}. No supersede accounts for these cancellations; inspect each for 'has exceeded the maximum execution time'."
+/tmp/issue-541-templates/rust/scripts/preflight-credentials.sh:219:    emit_annotations error "$failures"
+/tmp/issue-541-templates/rust/scripts/preflight-credentials.sh:221:    printf '::error::release-preflight: refusing to release with %d refused credential(s)\n' "$n_fail"
+/tmp/issue-541-templates/rust/scripts/preflight-credentials.sh:224:  emit_annotations warning "$failures"
+/tmp/issue-541-templates/rust/scripts/preflight-credentials.sh:234:    emit_annotations warning "$unknowns"
+/tmp/issue-541-templates/rust/scripts/preflight-credentials.sh:235:    append_summary unverified
+/tmp/issue-541-templates/rust/scripts/preflight-credentials.sh:236:    printf '::error::release-preflight: unverified credential set (%d unknown) -- refusing to release on an unproven credential set\n' "$n_unknown"
+/tmp/issue-541-templates/rust/scripts/preflight-credentials.sh:239:  emit_annotations warning "$unknowns"
+/tmp/issue-541-templates/rust/scripts/preflight-credentials.sh:240:  append_summary unverified
+/tmp/issue-541-templates/rust/scripts/preflight-credentials.sh:241:  printf 'Report mode: some credentials remain unverified -- advisory only.\n'
+/tmp/issue-541-templates/rust/scripts/version-and-commit/crates-io.rs:11:        Err(_) => false,
+/tmp/issue-541-templates/rust/scripts/fixtures/lychee-report.md:22:* [ERROR] <error:> (at 10:49) | Cannot resolve root-relative link '/favicon.svg': To resolve root-relative links in local files, provide a root dir
+/tmp/issue-541-templates/rust/scripts/version-and-commit/tests.rs:67:fn cargo_lock_update_returns_false_when_lock_file_is_absent() {
+/tmp/issue-541-templates/rust/scripts/version-and-commit/tests.rs:76:fn cargo_lock_update_returns_false_when_package_entry_is_absent() {
+/tmp/issue-541-templates/rust/scripts/version-and-commit/tests.rs:197:        "unexpected rebase error: {buggy_err}"
+/tmp/issue-541-templates/rust/scripts/version-and-commit/tests.rs:237:        "error: GH013: Repository rule violations found for refs/heads/main.\n",
+/tmp/issue-541-templates/rust/scripts/version-and-commit/tests.rs:246:    let lowercase_rules = "remote: error: push declined due to repository rule violations";
+/tmp/issue-541-templates/rust/scripts/version-and-commit/tests.rs:259:        "error: failed to push some refs to 'github.com:org/repo.git'\n",
+/tmp/issue-541-templates/rust/scripts/version-and-commit/tests.rs:267:    for real_error in [
+/tmp/issue-541-templates/rust/scripts/version-and-commit/tests.rs:273:            classify_push_failure(&format!("Command `git` failed.\nstderr: {real_error}")),
+/tmp/issue-541-templates/rust/scripts/version-and-commit/tests.rs:275:            "{real_error} must surface as a real error, not trigger a rebase"
+/tmp/issue-541-templates/rust/scripts/version-and-commit/tests.rs:312:        .unwrap_or_else(|error| panic!("consistent write should verify: {error}"));
+/tmp/issue-541-templates/rust/scripts/version-and-commit/tests.rs:324:    verify_release_write(&changelog, &dir, &lock, "crate", "0.2.0", false)
+/tmp/issue-541-templates/rust/scripts/version-and-commit/tests.rs:325:        .unwrap_or_else(|error| panic!("fragment-free release should verify: {error}"));
+/tmp/issue-541-templates/rust/scripts/version-and-commit/tests.rs:328:    let error = verify_release_write(&changelog, &dir, &lock, "crate", "0.2.0", true).unwrap_err();
+/tmp/issue-541-templates/rust/scripts/version-and-commit/tests.rs:330:        error.contains("0.2.0"),
+/tmp/issue-541-templates/rust/scripts/version-and-commit/tests.rs:331:        "the failure must name the missing version entry, got: {error}"
+/tmp/issue-541-templates/rust/scripts/version-and-commit/tests.rs:347:    let error = verify_release_write(&changelog, &dir, &lock, "crate", "0.2.0", true).unwrap_err();
+/tmp/issue-541-templates/rust/scripts/version-and-commit/tests.rs:349:        error.contains("20260909_unconsumed.md"),
+/tmp/issue-541-templates/rust/scripts/version-and-commit/tests.rs:350:        "the failure must name the leaked fragment, got: {error}"
+/tmp/issue-541-templates/rust/scripts/version-and-commit/tests.rs:377:fn counting_and_verification_reject_fragment_directory_read_errors() {
+/tmp/issue-541-templates/rust/scripts/version-and-commit/tests.rs:382:    let error = verify_release_write(&changelog, &dir, &lock, "crate", "1.0.0", false).unwrap_err();
+/tmp/issue-541-templates/rust/scripts/version-and-commit/tests.rs:383:    assert!(error.contains("changelog.d"));
+/tmp/issue-541-templates/rust/scripts/version-and-commit/tests.rs:399:    let error = verify_release_write(&changelog, &dir, &lock, "crate", "0.2.0", true).unwrap_err();
+/tmp/issue-541-templates/rust/scripts/version-and-commit/tests.rs:401:        error.contains("Cargo.lock verification failed") && error.contains("0.1.9"),
+/tmp/issue-541-templates/rust/scripts/version-and-commit/tests.rs:402:        "the failure must show the disagreement, got: {error}"
+/tmp/issue-541-templates/rust/scripts/check-cargo-warnings.sh:2:# RUSTFLAGS=-Dwarnings covers rustc, but Cargo's manifest warnings still exit 0.
+/tmp/issue-541-templates/rust/scripts/check-cargo-warnings.sh:3:# Preserve the complete output and the original failure status, and deny warnings.
+/tmp/issue-541-templates/rust/scripts/check-cargo-warnings.sh:6:log_file="${CARGO_WARNING_LOG:-$(mktemp "${TMPDIR:-/tmp}/cargo-warnings.XXXXXX")}"
+/tmp/issue-541-templates/rust/scripts/check-cargo-warnings.sh:8:if grep -E '^warning(:|\[)' "$log_file"; then
+/tmp/issue-541-templates/rust/scripts/check-cargo-warnings.sh:9:  echo "::error::Cargo reported warnings; full output: $log_file" >&2

@@ -1,0 +1,104 @@
+test_malformed_collections_are_not_clean_reports (test_issue_541.IncompleteSarifTests.test_malformed_collections_are_not_clean_reports) ... 
+  test_malformed_collections_are_not_clean_reports (test_issue_541.IncompleteSarifTests.test_malformed_collections_are_not_clean_reports) (results={}) ... FAIL
+  test_malformed_collections_are_not_clean_reports (test_issue_541.IncompleteSarifTests.test_malformed_collections_are_not_clean_reports) (results='') ... FAIL
+  test_malformed_collections_are_not_clean_reports (test_issue_541.IncompleteSarifTests.test_malformed_collections_are_not_clean_reports) (results=None) ... ERROR
+test_missing_or_unknown_invocation_is_not_success (test_issue_541.IncompleteSarifTests.test_missing_or_unknown_invocation_is_not_success) ... 
+  test_missing_or_unknown_invocation_is_not_success (test_issue_541.IncompleteSarifTests.test_missing_or_unknown_invocation_is_not_success) (invocations=None) ... FAIL
+  test_missing_or_unknown_invocation_is_not_success (test_issue_541.IncompleteSarifTests.test_missing_or_unknown_invocation_is_not_success) (invocations=[]) ... FAIL
+  test_missing_or_unknown_invocation_is_not_success (test_issue_541.IncompleteSarifTests.test_missing_or_unknown_invocation_is_not_success) (invocations=[{}]) ... FAIL
+  test_missing_or_unknown_invocation_is_not_success (test_issue_541.IncompleteSarifTests.test_missing_or_unknown_invocation_is_not_success) (invocations=[{'executionSuccessful': None}]) ... FAIL
+test_rule_rejection_fails_once_without_rebase_or_force (test_issue_541.ProtectedReleaseTests.test_rule_rejection_fails_once_without_rebase_or_force) ... ok
+test_linter_cannot_silently_skip_embedded_shell_checks (test_issue_541.WorkflowToolTests.test_linter_cannot_silently_skip_embedded_shell_checks) ... ERROR
+
+======================================================================
+ERROR: test_malformed_collections_are_not_clean_reports (test_issue_541.IncompleteSarifTests.test_malformed_collections_are_not_clean_reports) (results=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/gh-issue-solver-1793297431979/experiments/test_issue_541.py", line 39, in test_malformed_collections_are_not_clean_reports
+    check_sarif.check(directory)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/tmp/gh-issue-solver-1793297431979/scripts/check_sarif.py", line 24, in check
+    for result in run['results']:
+                  ~~~^^^^^^^^^^^
+TypeError: 'NoneType' object is not iterable
+
+======================================================================
+ERROR: test_linter_cannot_silently_skip_embedded_shell_checks (test_issue_541.WorkflowToolTests.test_linter_cannot_silently_skip_embedded_shell_checks)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/gh-issue-solver-1793297431979/experiments/test_issue_541.py", line 47, in test_linter_cannot_silently_skip_embedded_shell_checks
+    with patch.object(checker, 'which', return_value=None):
+         ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/box/.pyenv/versions/3.15.0/lib/python3.15/unittest/mock.py", line 1510, in __enter__
+    original, local = self.get_original()
+                      ~~~~~~~~~~~~~~~~~^^
+  File "/home/box/.pyenv/versions/3.15.0/lib/python3.15/unittest/mock.py", line 1480, in get_original
+    raise AttributeError(
+        "%s does not have the attribute %r" % (target, name)
+    )
+AttributeError: <module 'workflow_checker_541' from '/tmp/gh-issue-solver-1793297431979/scripts/check-workflows.py'> does not have the attribute 'which'
+
+======================================================================
+FAIL: test_malformed_collections_are_not_clean_reports (test_issue_541.IncompleteSarifTests.test_malformed_collections_are_not_clean_reports) (results={})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/gh-issue-solver-1793297431979/experiments/test_issue_541.py", line 38, in test_malformed_collections_are_not_clean_reports
+    with self.assertRaisesRegex(ValueError, 'Incomplete'):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_malformed_collections_are_not_clean_reports (test_issue_541.IncompleteSarifTests.test_malformed_collections_are_not_clean_reports) (results='')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/gh-issue-solver-1793297431979/experiments/test_issue_541.py", line 38, in test_malformed_collections_are_not_clean_reports
+    with self.assertRaisesRegex(ValueError, 'Incomplete'):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_or_unknown_invocation_is_not_success (test_issue_541.IncompleteSarifTests.test_missing_or_unknown_invocation_is_not_success) (invocations=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/gh-issue-solver-1793297431979/experiments/test_issue_541.py", line 29, in test_missing_or_unknown_invocation_is_not_success
+    with self.assertRaisesRegex(ValueError, 'Incomplete|failed'):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_or_unknown_invocation_is_not_success (test_issue_541.IncompleteSarifTests.test_missing_or_unknown_invocation_is_not_success) (invocations=[])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/gh-issue-solver-1793297431979/experiments/test_issue_541.py", line 29, in test_missing_or_unknown_invocation_is_not_success
+    with self.assertRaisesRegex(ValueError, 'Incomplete|failed'):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_or_unknown_invocation_is_not_success (test_issue_541.IncompleteSarifTests.test_missing_or_unknown_invocation_is_not_success) (invocations=[{}])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/gh-issue-solver-1793297431979/experiments/test_issue_541.py", line 29, in test_missing_or_unknown_invocation_is_not_success
+    with self.assertRaisesRegex(ValueError, 'Incomplete|failed'):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_or_unknown_invocation_is_not_success (test_issue_541.IncompleteSarifTests.test_missing_or_unknown_invocation_is_not_success) (invocations=[{'executionSuccessful': None}])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/gh-issue-solver-1793297431979/experiments/test_issue_541.py", line 29, in test_missing_or_unknown_invocation_is_not_success
+    with self.assertRaisesRegex(ValueError, 'Incomplete|failed'):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.431s
+
+FAILED (failures=6, errors=2)
+CodeQL: 1 complete report(s), no findings
+CodeQL: 1 complete report(s), no findings
+CodeQL: 1 complete report(s), no findings
+CodeQL: 1 complete report(s), no findings
+CodeQL: 1 complete report(s), no findings
+CodeQL: 1 complete report(s), no findings
