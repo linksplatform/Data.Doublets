@@ -93,10 +93,15 @@ permissions. HTTP error bodies are retained with bounded reads and sanitized,
 flattened diagnostics; credentials, raw headers and exception argv stay out of logs.
 
 The `publish` job downloads tested artifacts, obtains a fresh key and checks
-GitHub write permission before preparing/committing release metadata. C# uses that
-login; C++ logs in again immediately before publication, even when C# fails and
-C++ can independently repair its publication. Missing configuration also permits
-fallback here. Metadata failure prevents either package push. NuGet temporary
+GitHub repository access before preparing/committing release metadata. The
+read-only repository API's user-role `permissions.push` field cannot prove an
+Actions installation token's endpoint permissions. Write permission remains
+explicitly unverified until the actual metadata, mirror and release operations
+succeed; none may ignore failures. HTTP failures preserve bounded sanitized
+diagnostics. The job still requires `contents: write` and `packages: write`.
+C# uses that login; C++ logs in again immediately before publication, even when
+C# fails and C++ can independently repair its publication. Missing configuration
+also permits fallback here. Metadata failure prevents either package push. NuGet temporary
 keys last one hour and the publishing job is bounded to 40 minutes. Never move
 keys into artifacts, persistent secrets or cross-job outputs. Shell tracing around
 credentials remains forbidden.
@@ -155,3 +160,4 @@ Existing publication regressions cover bounded indexing and release repair.
 - [Reviewed NuGet/login v1.2.0 source](https://github.com/NuGet/login/blob/8d196754b4036150537f80ac539e15c2f1028841/src/index.ts)
 - [NuGet direct verification and scope evaluation](https://github.com/NuGet/NuGetGallery/blob/c25bab040e19d24593fc0c298a0cedb51bf57dcb/src/NuGetGallery/Controllers/ApiController.cs#L352)
 - [Derived verification-key scope construction](https://github.com/NuGet/NuGetGallery/blob/c25bab040e19d24593fc0c298a0cedb51bf57dcb/src/NuGetGallery.Services/Authentication/CredentialBuilder.cs#L79)
+- [GitHub repository read API and its token requirements](https://docs.github.com/en/rest/repos/repos#get-a-repository)

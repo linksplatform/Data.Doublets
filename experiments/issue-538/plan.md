@@ -94,3 +94,24 @@ job expectations. Work only on issue-538-06fae78405da; preserve forward history.
   explicit subprocess review and Markdown format. Preserved its API response in
   ci-logs/codacy-539.json; fixed unused import/style and documented narrowly scoped
   fixture/argument-list exceptions without disabling any repository checks.
+
+## Main follow-through
+
+- PR CI 40881933352 passed every applicable job, including required. PR 539 was
+  marked ready and merged at d56984a3f0021ab332b5ae5d05ae3aa47512c92c.
+- Main run 40883578849 passed credentials, both C# legs, all native legs, docs,
+  quality, links and every security analysis. Publishing failed before metadata
+  and package pushes at the existing GitHub repository-role permission check.
+  Log ci-logs/main-publish-123485886053.log lines 451–468 preserves exchange
+  success and the rejected write preflight; lines 1547–1548 prove the very same
+  job token subsequently pushed gh-pages successfully. The original probe did
+  not log HTTP status or body, so its exact response is unavailable.
+- Added reproductions for optional/false/true repository-role fields and fatal
+  HTTP/malformed responses before the correction. Repository readability must
+  not be called proof of installation-token write permissions. Actual metadata,
+  mirror and release operations remain strict, as do required-job expectations.
+- Documentation deployed at gh-pages a558df87521024c50433f8300ec63659ed6f0880;
+  Pages reports the build successful. Package publication is still pending.
+- Issue 538 remains open. PR 539 is already merged; GitHub cannot add another
+  correction to that merge. Any additional main code correction requires a
+  follow-up PR, which conflicts with the requested single-PR constraint.
