@@ -108,21 +108,24 @@ jobs:
         with:
           persist-credentials: false
       - name: Check trusted publishing configuration
+        id: nuget-config
+        continue-on-error: true # Only the OIDC attempt may fail before controlled fallback.
         env:
           NUGET_USER: ${{ vars.NUGET_USER }}
         run: python3 scripts/release.py check-auth-config
       - name: Exchange OIDC before building
+        if: steps.nuget-config.outcome == 'success'
+        continue-on-error: true # The next preflight explicitly selects/validates fallback.
         id: nuget-login
         uses: NuGet/login@8d196754b4036150537f80ac539e15c2f1028841 # v1.2.0
         with:
           user: ${{ vars.NUGET_USER }}
-      - name: Explain rejected trusted publishing policy
-        if: ${{ !cancelled() && steps.nuget-login.outcome == 'failure' }}
-        run: python3 scripts/release.py auth-error
       - name: Check NuGet authentication before building
         env:
           NUGET_USER: ${{ vars.NUGET_USER }}
           NUGET_TOKEN: ${{ steps.nuget-login.outputs.NUGET_API_KEY }}
+          NUGET_LOGIN_OUTCOME: ${{ steps.nuget-login.outcome }}
+          NUGET_FALLBACK_TOKEN: ${{ secrets.NUGET_TOKEN }}
           GH_TOKEN: ${{ github.token }}
         run: python3 scripts/release.py preflight --mode release --credentials-only
   csharp:
@@ -336,24 +339,26 @@ jobs:
           name: cpp-gcc
           path: .
       - name: Check trusted publishing configuration
+        id: nuget-config
+        continue-on-error: true # Only the OIDC attempt may fail before controlled fallback.
         if: needs.csharp.result == 'success' || needs.cpp.result == 'success'
         env:
           NUGET_USER: ${{ vars.NUGET_USER }}
         run: python3 scripts/release.py check-auth-config
       - name: Obtain fresh NuGet key before release metadata and publication
-        if: needs.csharp.result == 'success' || needs.cpp.result == 'success'
+        if: (needs.csharp.result == 'success' || needs.cpp.result == 'success') && steps.nuget-config.outcome == 'success'
+        continue-on-error: true # Bounded OIDC attempt; the preflight remains mandatory.
         id: nuget-login
         uses: NuGet/login@8d196754b4036150537f80ac539e15c2f1028841 # v1.2.0
         with:
           user: ${{ vars.NUGET_USER }}
-      - name: Explain rejected trusted publishing policy
-        if: ${{ !cancelled() && steps.nuget-login.outcome == 'failure' }}
-        run: python3 scripts/release.py auth-error
-      - name: Verify both package scopes before committing release metadata
+      - name: Check authentication and report scope limits before release metadata
         if: needs.csharp.result == 'success' || needs.cpp.result == 'success'
         env:
           NUGET_USER: ${{ vars.NUGET_USER }}
           NUGET_TOKEN: ${{ steps.nuget-login.outputs.NUGET_API_KEY }}
+          NUGET_LOGIN_OUTCOME: ${{ steps.nuget-login.outcome }}
+          NUGET_FALLBACK_TOKEN: ${{ secrets.NUGET_TOKEN }}
           GH_TOKEN: ${{ github.token }}
         run: python3 scripts/release.py preflight --mode release
       - name: Prepare and commit only validated release metadata
@@ -370,24 +375,26 @@ jobs:
         env:
           NUGET_USER: ${{ vars.NUGET_USER }}
           NUGET_TOKEN: ${{ steps.nuget-login.outputs.NUGET_API_KEY }}
+          NUGET_LOGIN_OUTCOME: ${{ steps.nuget-login.outcome }}
+          NUGET_FALLBACK_TOKEN: ${{ secrets.NUGET_TOKEN }}
           GH_TOKEN: ${{ github.token }}
         run: |
           python3 scripts/release.py preflight --mode release --language csharp
           python3 scripts/release.py publish --language csharp
       - name: Refresh NuGet key immediately before C++ publication
-        if: ${{ !cancelled() && needs.cpp.result == 'success' && steps.metadata.outcome == 'success' }}
+        if: ${{ !cancelled() && needs.cpp.result == 'success' && steps.metadata.outcome == 'success' && steps.nuget-config.outcome == 'success' }}
+        continue-on-error: true # Publication explicitly selects and validates any fallback.
         id: nuget-cpp
         uses: NuGet/login@8d196754b4036150537f80ac539e15c2f1028841 # v1.2.0
         with:
           user: ${{ vars.NUGET_USER }}
-      - name: Explain rejected C++ publishing policy
-        if: ${{ !cancelled() && steps.nuget-cpp.outcome == 'failure' }}
-        run: python3 scripts/release.py auth-error
       - name: Publish validated C++ artifacts
-        if: ${{ !cancelled() && steps.nuget-cpp.outcome == 'success' }}
+        if: ${{ !cancelled() && needs.cpp.result == 'success' && steps.metadata.outcome == 'success' }}
         env:
           NUGET_USER: ${{ vars.NUGET_USER }}
           NUGET_TOKEN: ${{ steps.nuget-cpp.outputs.NUGET_API_KEY }}
+          NUGET_LOGIN_OUTCOME: ${{ steps.nuget-cpp.outcome }}
+          NUGET_FALLBACK_TOKEN: ${{ secrets.NUGET_TOKEN }}
           GH_TOKEN: ${{ github.token }}
         run: |
           python3 scripts/release.py preflight --mode release --language cpp

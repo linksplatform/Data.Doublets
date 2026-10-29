@@ -61,20 +61,21 @@ class TrustedPreflightTests(unittest.TestCase):
         for guidance in ('username', 'workflow/environment', 'inactive policy', 'ownership/scope', 'ci.yml'):
             self.assertIn(guidance, result.stderr)
 
-    def test_oidc_scope_check_uses_original_key_not_legacy_symbol_key(self):
-        responses = [(200, json.dumps({'versions': ['1.0.0']}).encode()), (200, b'')]
-        with patch.object(release, 'request', side_effect=responses) as request:
-            self.assertIsNone(release.verify_nuget('temporary-private', {'id': 'Example'}))
-        self.assertIn('/verifykey/Example/1.0.0', request.call_args.args[0])
-        self.assertEqual(request.call_args.kwargs['headers']['X-NuGet-ApiKey'], 'temporary-private')
-        self.assertTrue(all('create-verification-key' not in call.args[0] for call in request.call_args_list))
+    def test_push_keys_do_not_use_policy_incompatible_verification(self):
+        with patch.object(release, 'request', return_value=(200, b'{"versions":["1.0.0"]}')) as request:
+            with contextlib.redirect_stdout(io.StringIO()) as output:
+                self.assertIsNone(release.verify_nuget('temporary-private', {'id': 'Example'}))
+        self.assertEqual(request.call_count, 1)
+        self.assertIn('unverified/unsupported', output.getvalue())
+        self.assertNotIn('X-NuGet-ApiKey', str(request.call_args))
 
-    def test_rejected_scope_is_not_ignored_as_oidc_incompatibility(self):
-        for status in (401, 403, 500):
-            with self.subTest(status=status), patch.object(release, 'request', side_effect=[(200, b'{"versions":["1.0.0"]}'), (status, b'')]):
+    def test_index_errors_are_not_misclassified_as_scope_rejections(self):
+        for status in (400, 401, 403, 500):
+            with self.subTest(status=status), patch.object(release, 'request', return_value=(status, b'server explanation')):
                 error = release.verify_nuget('temporary-private', {'id': 'Example'})
                 self.assertIn(str(status), error)
-                self.assertIn('owner', error)
+                self.assertIn('public package index', error)
+                self.assertIn('server explanation', error)
                 self.assertNotIn('temporary-private', error)
 
     def test_first_publication_reports_scope_unverified(self):
@@ -85,7 +86,7 @@ class TrustedPreflightTests(unittest.TestCase):
 
     def test_existing_package_checks_both_scopes_after_exchange(self):
         with patch.object(release, 'verify_nuget', return_value=None) as verify:
-            output = self.preflight({'NUGET_USER': 'profile-name', 'NUGET_TOKEN': 'temporary-private'})  # nosec B105 - Mocked credential.
+            output = self.preflight({'NUGET_USER': 'profile-name', 'NUGET_TOKEN': 'temporary-private', 'NUGET_LOGIN_OUTCOME': 'success'})  # nosec B105 - Mocked credential.
         self.assertEqual({call.args[1]['id'] for call in verify.call_args_list}, {'Platform.Data.Doublets', 'Platform.Data.Doublets.TemplateLibrary'})
         self.assertIn('exchange succeeded', output)
         self.assertNotIn('temporary-private', output)
@@ -136,14 +137,17 @@ class TrustedWorkflowTests(unittest.TestCase):
         self.assertEqual(self.jobs['publish']['permissions']['contents'], 'write')
         self.assertEqual(self.jobs['publish']['permissions']['packages'], 'write')
 
-    def test_rejected_exchange_has_policy_guidance_in_each_job(self):
+    def test_rejected_exchange_reaches_controlled_fallback_in_each_job(self):
         for name in ('credentials', 'publish'):
             steps = self.jobs[name]['steps']
             for login in [step for step in steps if step.get('uses', '').startswith('NuGet/login@')]:
-                self.assertTrue(any(f"steps.{login['id']}.outcome == 'failure'" in step.get('if', '') and 'auth-error' in step.get('run', '') for step in steps))
+                self.assertTrue(login.get('continue-on-error'))
+                selectors = [step for step in steps if step.get('env', {}).get('NUGET_LOGIN_OUTCOME') == f"${{{{ steps.{login['id']}.outcome }}}}"]
+                self.assertTrue(selectors)
+                self.assertTrue(all(step['env']['NUGET_FALLBACK_TOKEN'] == '${{ secrets.NUGET_TOKEN }}' for step in selectors))
 
-    def test_no_legacy_fallback_and_no_ephemeral_key_in_artifacts(self):
-        self.assertNotIn('secrets.NUGET_TOKEN', self.source)
+    def test_explicit_provided_fallback_and_no_ephemeral_key_in_artifacts(self):
+        self.assertIn('NUGET_FALLBACK_TOKEN: ${{ secrets.NUGET_TOKEN }}', self.source)
         self.assertNotIn('secrets.NUGET_API_KEY', self.source)
         for job in self.jobs.values():
             self.assertNotIn('NUGET_API_KEY', json.dumps(job.get('outputs', {})))
