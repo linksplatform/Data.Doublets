@@ -1,0 +1,47 @@
+  Platform.Data.Doublets -> /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets/bin/Release/net8.0/Platform.Data.Doublets.dll
+  Platform.Data.Doublets.Tests -> /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets.Tests/bin/Release/net8.0/Platform.Data.Doublets.Tests.dll
+Test run for /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets.Tests/bin/Release/net8.0/Platform.Data.Doublets.Tests.dll (.NETCoreApp,Version=v8.0)
+VSTest version 17.11.1 (x64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.5+1b188a7b0a (64-bit .NET 8.0.33)
+[xUnit.net 00:00:00.13]   Discovering: Platform.Data.Doublets.Tests
+[xUnit.net 00:00:00.26]   Discovered:  Platform.Data.Doublets.Tests
+[xUnit.net 00:00:00.31]   Starting:    Platform.Data.Doublets.Tests
+[xUnit.net 00:00:00.43]     Platform.Data.Doublets.Tests.AddressLimitTests.ExhaustedAddressesAreRejectedButFreedLinksCanBeReused(split: False) [FAIL]
+[xUnit.net 00:00:00.43]       Assert.Throws() Failure: No exception was thrown
+[xUnit.net 00:00:00.43]       Expected: typeof(Platform.Data.Exceptions.LinksLimitReachedException<ulong>)
+[xUnit.net 00:00:00.43]       Stack Trace:
+[xUnit.net 00:00:00.43]         /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets.Tests/AddressLimitTests.cs(29,0): at Platform.Data.Doublets.Tests.AddressLimitTests.ExhaustedAddressesAreRejectedButFreedLinksCanBeReused(Boolean split)
+[xUnit.net 00:00:00.43]            at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+[xUnit.net 00:00:00.43]            at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+[xUnit.net 00:00:00.45]     Platform.Data.Doublets.Tests.AddressLimitTests.ExhaustedAddressesAreRejectedButFreedLinksCanBeReused(split: True) [FAIL]
+[xUnit.net 00:00:00.45]       Assert.Throws() Failure: No exception was thrown
+[xUnit.net 00:00:00.45]       Expected: typeof(Platform.Data.Exceptions.LinksLimitReachedException<ulong>)
+[xUnit.net 00:00:00.45]       Stack Trace:
+[xUnit.net 00:00:00.45]         /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets.Tests/AddressLimitTests.cs(29,0): at Platform.Data.Doublets.Tests.AddressLimitTests.ExhaustedAddressesAreRejectedButFreedLinksCanBeReused(Boolean split)
+[xUnit.net 00:00:00.45]            at InvokeStub_AddressLimitTests.ExhaustedAddressesAreRejectedButFreedLinksCanBeReused(Object, Span`1)
+[xUnit.net 00:00:00.45]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+[xUnit.net 00:00:00.46]   Finished:    Platform.Data.Doublets.Tests
+  Failed Platform.Data.Doublets.Tests.AddressLimitTests.ExhaustedAddressesAreRejectedButFreedLinksCanBeReused(split: False) [53 ms]
+  Error Message:
+   Assert.Throws() Failure: No exception was thrown
+Expected: typeof(Platform.Data.Exceptions.LinksLimitReachedException<ulong>)
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.AddressLimitTests.ExhaustedAddressesAreRejectedButFreedLinksCanBeReused(Boolean split) in /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets.Tests/AddressLimitTests.cs:line 29
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+  Failed Platform.Data.Doublets.Tests.AddressLimitTests.ExhaustedAddressesAreRejectedButFreedLinksCanBeReused(split: True) [11 ms]
+  Error Message:
+   Assert.Throws() Failure: No exception was thrown
+Expected: typeof(Platform.Data.Exceptions.LinksLimitReachedException<ulong>)
+  Stack Trace:
+     at Platform.Data.Doublets.Tests.AddressLimitTests.ExhaustedAddressesAreRejectedButFreedLinksCanBeReused(Boolean split) in /tmp/gh-issue-solver-1793248170197/csharp/Platform.Data.Doublets.Tests/AddressLimitTests.cs:line 29
+   at InvokeStub_AddressLimitTests.ExhaustedAddressesAreRejectedButFreedLinksCanBeReused(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+
+Test Run Failed.
+Total tests: 2
+     Failed: 2
+ Total time: 1.4806 Seconds

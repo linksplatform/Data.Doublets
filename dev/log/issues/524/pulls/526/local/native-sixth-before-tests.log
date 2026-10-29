@@ -1,0 +1,48 @@
+Running main() from /home/box/.conan2/p/b/gtest3b348dd479d64/b/src/googletest/src/gtest_main.cc
+Note: Google Test filter = ExtensionTests.AllVariadicArgumentsRestrictTheResult:ExtensionTests.*RejectsExhaustedAddressesButReusesFreeLinks
+[==========] Running 3 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 3 tests from ExtensionTests
+[ RUN      ] ExtensionTests.AllVariadicArgumentsRestrictTheResult
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ExtensionTests.h:53: Failure
+Expected equality of these values:
+  1
+  selected.size()
+    Which is: 2
+[  FAILED  ] ExtensionTests.AllVariadicArgumentsRestrictTheResult (372 ms)
+[ RUN      ] ExtensionTests.UnitedRejectsExhaustedAddressesButReusesFreeLinks
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ExtensionTests.h:64: Failure
+Expected: Create(storage) throws an exception of type std::logic_error.
+  Actual: it throws nothing.
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ExtensionTests.h:65: Failure
+Expected equality of these values:
+  maximum
+    Which is: 'y' (121, 0x79)
+  Count(storage)
+    Which is: 'z' (122, 0x7A)
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ExtensionTests.h:68: Failure
+Expected: Create(storage) throws an exception of type std::logic_error.
+  Actual: it throws nothing.
+[  FAILED  ] ExtensionTests.UnitedRejectsExhaustedAddressesButReusesFreeLinks (41 ms)
+[ RUN      ] ExtensionTests.SplitRejectsExhaustedAddressesButReusesFreeLinks
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ExtensionTests.h:64: Failure
+Expected: Create(storage) throws an exception of type std::logic_error.
+  Actual: it throws nothing.
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ExtensionTests.h:65: Failure
+Expected equality of these values:
+  maximum
+    Which is: 'y' (121, 0x79)
+  Count(storage)
+    Which is: 'z' (122, 0x7A)
+[  FAILED  ] ExtensionTests.SplitRejectsExhaustedAddressesButReusesFreeLinks (49 ms)
+[----------] 3 tests from ExtensionTests (462 ms total)
+
+[----------] Global test environment tear-down
+[==========] 3 tests from 1 test suite ran. (463 ms total)
+[  PASSED  ] 0 tests.
+[  FAILED  ] 3 tests, listed below:
+[  FAILED  ] ExtensionTests.AllVariadicArgumentsRestrictTheResult
+[  FAILED  ] ExtensionTests.UnitedRejectsExhaustedAddressesButReusesFreeLinks
+[  FAILED  ] ExtensionTests.SplitRejectsExhaustedAddressesButReusesFreeLinks
+
+ 3 FAILED TESTS
