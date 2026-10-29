@@ -168,7 +168,7 @@ class PublicationTests(unittest.TestCase):
             def run(command, **kwargs):
                 return Mock(returncode=1 if 'https://nuget.pkg.github.com/linksplatform/index.json' in command else 0)
             draft = json.dumps({'draft': True, 'assets': []}).encode()
-            with patch.object(release, 'info', return_value={'id': 'Example', 'version': '1.0.0', 'notes': ''}), patch.object(release, 'request', side_effect=[(200, draft), (200, public)]), patch.dict(os.environ, {'GH_TOKEN': 'private', 'NUGET_USER': 'profile-name', 'NUGET_LOGIN_OUTCOME': 'success', 'NUGET_TOKEN': 'private'}), patch.object(release, 'wait_for_package'), patch.object(release.subprocess, 'run', side_effect=run) as commands:
+            with patch.object(release, 'info', return_value={'id': 'Example', 'version': '1.0.0', 'notes': ''}), patch.object(release, 'request', side_effect=[(200, draft), (200, public)]), patch.dict(os.environ, {'GH_TOKEN': 'private', 'NUGET_USER': 'profile-name', 'NUGET_LOGIN_OUTCOME': 'success', 'NUGET_TOKEN': 'private'}), patch.object(release, 'wait_for_package'), patch.object(release.subprocess, 'run', side_effect=run) as commands:  # nosec B105 - Mock credentials; all network calls are patched.
                 with self.assertRaisesRegex(RuntimeError, 'Package push'):
                     release.publish('cpp', output)
                 self.assertTrue(any(c.args[0][:3] == ['gh', 'release', 'upload'] for c in commands.call_args_list))

@@ -17,7 +17,7 @@ class ReleasePreservationTests(unittest.TestCase):
         with (
             patch.object(release, 'info', return_value={'id': 'Example', 'version': '1.0.0', 'notes': ''}),
             patch.object(release, 'request', side_effect=[(200, before), (200, after)]),
-            patch.dict(os.environ, {'GH_TOKEN': 'fixture'}),
+            patch.dict(os.environ, {'GH_TOKEN': 'fixture'}),  # nosec B105 - Mock credentials; all network calls are patched.
             patch.object(release, 'select_nuget_auth', return_value=('trusted-publishing', 'fixture')),
             patch.object(release, 'push_nuget') as push,
             patch.object(release, 'wait_for_package') as wait,
@@ -87,7 +87,7 @@ class ReleasePreservationTests(unittest.TestCase):
                     self.subTest(body=body),
                     patch.object(release, 'info', return_value={'id': 'Example', 'version': '1.0.0'}),
                     patch.object(release, 'request', return_value=(200, body)),
-                    patch.dict(os.environ, {'GH_TOKEN': 'fixture'}),
+                    patch.dict(os.environ, {'GH_TOKEN': 'fixture'}),  # nosec B105 - Mock credentials; all network calls are patched.
                     patch.object(release, 'select_nuget_auth') as authenticate,
                     patch.object(release.subprocess, 'run') as commands,
                 ):
