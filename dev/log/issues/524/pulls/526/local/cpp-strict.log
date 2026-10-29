@@ -1,0 +1,1502 @@
+-- Using Conan toolchain: /tmp/issue-524-cpp-baseline/conan_toolchain.cmake
+-- Conan toolchain: Defining architecture flag: -m64
+-- Conan toolchain: C++ Standard 20 with extensions OFF
+-- Conan: Target declared 'Platform.Interfaces::Platform.Interfaces'
+-- Conan: Target declared 'Platform.Collections.Methods::Platform.Collections.Methods'
+-- Conan: Target declared 'Platform.Collections::Platform.Collections'
+-- Conan: Target declared 'Platform.Equality::Platform.Equality'
+-- Conan: Target declared 'Platform.Random::Platform.Random'
+-- Conan: Target declared 'Platform.Ranges::Platform.Ranges'
+-- Conan: Target declared 'Platform.Exceptions::Platform.Exceptions'
+-- Conan: Target declared 'Platform.Delegates::Platform.Delegates'
+-- Conan: Target declared 'Platform.Converters::Platform.Converters'
+-- Conan: Target declared 'Platform.Hashing::Platform.Hashing'
+-- Conan: Component target declared 'clog'
+-- Conan: Component target declared 'cpuinfo::cpuinfo'
+-- Conan: Component target declared 'Microsoft.GSL::GSL'
+-- Conan: Target declared 'Platform.Numbers::Platform.Numbers'
+-- Conan: Target declared 'Platform.Memory::Platform.Memory'
+-- Conan: Component target declared 'mio::mio-headers'
+-- Conan: Target declared 'mio::mio'
+-- Conan: Target declared 'Platform.Data::Platform.Data'
+-- Conan: Target declared 'Platform.Setters::Platform.Setters'
+-- Conan: Component target declared 'GTest::gtest'
+-- Conan: Component target declared 'GTest::gtest_main'
+-- Conan: Component target declared 'GTest::gmock'
+-- Conan: Component target declared 'GTest::gmock_main'
+-- Conan: Target declared 'gtest::gtest'
+-- Conan: Component target declared 'benchmark::benchmark'
+-- Conan: Component target declared 'benchmark::benchmark_main'
+-- Configuring done (0.2s)
+-- Generating done (0.0s)
+-- Build files have been written to: /tmp/issue-524-cpp-baseline
+[ 25%] Building CXX object CMakeFiles/Platform.Data.Doublets.Tests.dir/Platform.Data.Doublets.Tests/AllTests.cpp.o
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/AllTests.cpp:1:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp: In function ‘void Platform::Data::Doublets::Tests::Dynamic::GenericLinksTests::UsingStorage(auto:1&&)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:6:35: error: ‘Memory’ is not a namespace-name
+    6 |         using namespace Platform::Memory;
+      |                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:7:26: error: ‘HeapResizableDirectMemory’ was not declared in this scope
+    7 |         TStorage storage{HeapResizableDirectMemory{}};
+      |                          ^~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:7:51: error: expected ‘}’ before ‘{’ token
+    7 |         TStorage storage{HeapResizableDirectMemory{}};
+      |                         ~                         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:7:51: error: expected ‘,’ or ‘;’ before ‘{’ token
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp: At global scope:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:8:25: error: ‘ILinks’ in namespace ‘Platform::Data’ does not name a template type
+    8 |         Platform::Data::ILinks<typename TStorage::LinksOptionsType>& upcastedStorage = storage;
+      |                         ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:9:15: error: expected constructor, destructor, or type conversion before ‘(’ token
+    9 |         action(storage);
+      |               ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:12:15: error: ‘std::integral’ has not been declared
+   12 |     template <std::integral TLinkAddress>
+      |               ^~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp: In function ‘void UsingStorageWithExternalReferencesWithSizeBalancedTrees(auto:2&&)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:15:35: error: ‘Memory’ is not a namespace-name
+   15 |         using namespace Platform::Memory;
+      |                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:16:51: error: ‘Platform::Data::Doublets::Memory’ has not been declared
+   16 |         using namespace Platform::Data::Doublets::Memory::United::Generic;
+      |                                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:16:67: error: ‘Generic’ is not a namespace-name
+   16 |         using namespace Platform::Data::Doublets::Memory::United::Generic;
+      |                                                                   ^~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:17:47: error: ‘TLinkAddress’ was not declared in this scope
+   17 |         using LinksOptionsType = LinksOptions<TLinkAddress>;
+      |                                               ^~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:17:34: error: ‘LinksOptions’ does not name a type
+   17 |         using LinksOptionsType = LinksOptions<TLinkAddress>;
+      |                                  ^~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:19:31: error: ‘LinksOptionsType’ was not declared in this scope
+   19 |             UnitedMemoryLinks<LinksOptionsType, HeapResizableDirectMemory,
+      |                               ^~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:19:49: error: ‘HeapResizableDirectMemory’ was not declared in this scope
+   19 |             UnitedMemoryLinks<LinksOptionsType, HeapResizableDirectMemory,
+      |                                                 ^~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:20:31: error: ‘LinksSourcesSizeBalancedTreeMethods’ was not declared in this scope
+   20 |                               LinksSourcesSizeBalancedTreeMethods<LinksOptionsType>,
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:19:13: error: ‘UnitedMemoryLinks’ does not name a type
+   19 |             UnitedMemoryLinks<LinksOptionsType, HeapResizableDirectMemory,
+      |             ^~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:23:9: error: ‘StorageType’ was not declared in this scope
+   23 |         StorageType storage{HeapResizableDirectMemory{}};
+      |         ^~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp: At global scope:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:27:15: error: ‘std::integral’ has not been declared
+   27 |     template <std::integral TLinkAddress>
+      |               ^~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp: In function ‘void UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithSizeBalancedTrees(auto:3&&)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:30:35: error: ‘Memory’ is not a namespace-name
+   30 |         using namespace Platform::Memory;
+      |                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:31:51: error: ‘Platform::Data::Doublets::Memory’ has not been declared
+   31 |         using namespace Platform::Data::Doublets::Memory::United::Generic;
+      |                                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:31:67: error: ‘Generic’ is not a namespace-name
+   31 |         using namespace Platform::Data::Doublets::Memory::United::Generic;
+      |                                                                   ^~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:32:51: error: ‘Decorators’ is not a namespace-name
+   32 |         using namespace Platform::Data::Doublets::Decorators;
+      |                                                   ^~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:33:47: error: ‘TLinkAddress’ was not declared in this scope
+   33 |         using LinksOptionsType = LinksOptions<TLinkAddress>;
+      |                                               ^~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:33:34: error: ‘LinksOptions’ does not name a type
+   33 |         using LinksOptionsType = LinksOptions<TLinkAddress>;
+      |                                  ^~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:35:31: error: ‘LinksOptionsType’ was not declared in this scope
+   35 |             UnitedMemoryLinks<LinksOptionsType, HeapResizableDirectMemory,
+      |                               ^~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:35:49: error: ‘HeapResizableDirectMemory’ was not declared in this scope
+   35 |             UnitedMemoryLinks<LinksOptionsType, HeapResizableDirectMemory,
+      |                                                 ^~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:36:31: error: ‘LinksSourcesSizeBalancedTreeMethods’ was not declared in this scope
+   36 |                               LinksSourcesSizeBalancedTreeMethods<LinksOptionsType>,
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:35:13: error: ‘UnitedMemoryLinks’ does not name a type
+   35 |             UnitedMemoryLinks<LinksOptionsType, HeapResizableDirectMemory,
+      |             ^~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:39:95: error: ‘StorageType’ was not declared in this scope
+   39 |         using DecoratedStorageType = LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<StorageType>;
+      |                                                                                               ^~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:39:38: error: ‘LinksDecoratedWithAutomaticUniquenessAndUsagesResolution’ does not name a type
+   39 |         using DecoratedStorageType = LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<StorageType>;
+      |                                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:40:9: error: ‘DecoratedStorageType’ was not declared in this scope
+   40 |         DecoratedStorageType storage{HeapResizableDirectMemory{}};
+      |         ^~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp: At global scope:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:44:15: error: ‘std::integral’ has not been declared
+   44 |     template <std::integral TLinkAddress>
+      |               ^~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp: In function ‘void UsingStorageWithExternalReferencesWithRecursionlessSizeBalancedTrees(auto:4&&)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:47:35: error: ‘Memory’ is not a namespace-name
+   47 |         using namespace Platform::Memory;
+      |                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:48:51: error: ‘Platform::Data::Doublets::Memory’ has not been declared
+   48 |         using namespace Platform::Data::Doublets::Memory::United::Generic;
+      |                                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:48:67: error: ‘Generic’ is not a namespace-name
+   48 |         using namespace Platform::Data::Doublets::Memory::United::Generic;
+      |                                                                   ^~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:49:47: error: ‘TLinkAddress’ was not declared in this scope
+   49 |         using LinksOptionsType = LinksOptions<TLinkAddress>;
+      |                                               ^~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:49:34: error: ‘LinksOptions’ does not name a type
+   49 |         using LinksOptionsType = LinksOptions<TLinkAddress>;
+      |                                  ^~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:51:31: error: ‘LinksOptionsType’ was not declared in this scope
+   51 |             UnitedMemoryLinks<LinksOptionsType, HeapResizableDirectMemory,
+      |                               ^~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:51:49: error: ‘HeapResizableDirectMemory’ was not declared in this scope
+   51 |             UnitedMemoryLinks<LinksOptionsType, HeapResizableDirectMemory,
+      |                                                 ^~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:52:31: error: ‘LinksSourcesRecursionlessSizeBalancedTreeMethods’ was not declared in this scope
+   52 |                               LinksSourcesRecursionlessSizeBalancedTreeMethods<LinksOptionsType>,
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:51:13: error: ‘UnitedMemoryLinks’ does not name a type
+   51 |             UnitedMemoryLinks<LinksOptionsType, HeapResizableDirectMemory,
+      |             ^~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:55:9: error: ‘StorageType’ was not declared in this scope
+   55 |         StorageType storage{HeapResizableDirectMemory{}};
+      |         ^~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp: At global scope:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:59:15: error: ‘std::integral’ has not been declared
+   59 |     template <std::integral TLinkAddress>
+      |               ^~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp: In function ‘void UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithRecursionlessSizeBalancedTrees(auto:5&&)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:63:35: error: ‘Memory’ is not a namespace-name
+   63 |         using namespace Platform::Memory;
+      |                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:64:51: error: ‘Platform::Data::Doublets::Memory’ has not been declared
+   64 |         using namespace Platform::Data::Doublets::Memory::United::Generic;
+      |                                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:64:67: error: ‘Generic’ is not a namespace-name
+   64 |         using namespace Platform::Data::Doublets::Memory::United::Generic;
+      |                                                                   ^~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:65:51: error: ‘Decorators’ is not a namespace-name
+   65 |         using namespace Platform::Data::Doublets::Decorators;
+      |                                                   ^~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:66:47: error: ‘TLinkAddress’ was not declared in this scope
+   66 |         using LinksOptionsType = LinksOptions<TLinkAddress>;
+      |                                               ^~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:66:34: error: ‘LinksOptions’ does not name a type
+   66 |         using LinksOptionsType = LinksOptions<TLinkAddress>;
+      |                                  ^~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:68:31: error: ‘LinksOptionsType’ was not declared in this scope
+   68 |             UnitedMemoryLinks<LinksOptionsType, HeapResizableDirectMemory,
+      |                               ^~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:68:49: error: ‘HeapResizableDirectMemory’ was not declared in this scope
+   68 |             UnitedMemoryLinks<LinksOptionsType, HeapResizableDirectMemory,
+      |                                                 ^~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:69:31: error: ‘LinksSourcesRecursionlessSizeBalancedTreeMethods’ was not declared in this scope
+   69 |                               LinksSourcesRecursionlessSizeBalancedTreeMethods<LinksOptionsType>,
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:68:13: error: ‘UnitedMemoryLinks’ does not name a type
+   68 |             UnitedMemoryLinks<LinksOptionsType, HeapResizableDirectMemory,
+      |             ^~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:72:95: error: ‘StorageType’ was not declared in this scope
+   72 |         using DecoratedStorageType = LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<StorageType>;
+      |                                                                                               ^~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:72:38: error: ‘LinksDecoratedWithAutomaticUniquenessAndUsagesResolution’ does not name a type
+   72 |         using DecoratedStorageType = LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<StorageType>;
+      |                                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:73:9: error: ‘DecoratedStorageType’ was not declared in this scope
+   73 |         DecoratedStorageType storage{HeapResizableDirectMemory{}};
+      |         ^~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp: At global scope:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:77:15: error: ‘std::integral’ has not been declared
+   77 |     template <std::integral TLinkAddress>
+      |               ^~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp: In function ‘void UsingStorageWithExternalReferencesWithAvlTrees(auto:6&&)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:80:35: error: ‘Memory’ is not a namespace-name
+   80 |         using namespace Platform::Memory;
+      |                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:81:51: error: ‘Platform::Data::Doublets::Memory’ has not been declared
+   81 |         using namespace Platform::Data::Doublets::Memory::United::Generic;
+      |                                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:81:67: error: ‘Generic’ is not a namespace-name
+   81 |         using namespace Platform::Data::Doublets::Memory::United::Generic;
+      |                                                                   ^~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:82:47: error: ‘TLinkAddress’ was not declared in this scope
+   82 |         using LinksOptionsType = LinksOptions<TLinkAddress>;
+      |                                               ^~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:82:34: error: ‘LinksOptions’ does not name a type
+   82 |         using LinksOptionsType = LinksOptions<TLinkAddress>;
+      |                                  ^~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:84:31: error: ‘LinksOptionsType’ was not declared in this scope
+   84 |             UnitedMemoryLinks<LinksOptionsType, HeapResizableDirectMemory,
+      |                               ^~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:84:49: error: ‘HeapResizableDirectMemory’ was not declared in this scope
+   84 |             UnitedMemoryLinks<LinksOptionsType, HeapResizableDirectMemory,
+      |                                                 ^~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:85:31: error: ‘LinksSourcesAvlBalancedTreeMethods’ was not declared in this scope
+   85 |                               LinksSourcesAvlBalancedTreeMethods<LinksOptionsType>,
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:84:13: error: ‘UnitedMemoryLinks’ does not name a type
+   84 |             UnitedMemoryLinks<LinksOptionsType, HeapResizableDirectMemory,
+      |             ^~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:88:9: error: ‘StorageType’ was not declared in this scope
+   88 |         StorageType storage{HeapResizableDirectMemory{}};
+      |         ^~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp: At global scope:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:92:15: error: ‘std::integral’ has not been declared
+   92 |     template <std::integral TLinkAddress>
+      |               ^~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp: In function ‘void UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithAvlTrees(auto:7&&)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:95:35: error: ‘Memory’ is not a namespace-name
+   95 |         using namespace Platform::Memory;
+      |                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:96:51: error: ‘Platform::Data::Doublets::Memory’ has not been declared
+   96 |         using namespace Platform::Data::Doublets::Memory::United::Generic;
+      |                                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:96:67: error: ‘Generic’ is not a namespace-name
+   96 |         using namespace Platform::Data::Doublets::Memory::United::Generic;
+      |                                                                   ^~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:97:51: error: ‘Decorators’ is not a namespace-name
+   97 |         using namespace Platform::Data::Doublets::Decorators;
+      |                                                   ^~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:98:47: error: ‘TLinkAddress’ was not declared in this scope
+   98 |         using LinksOptionsType = LinksOptions<TLinkAddress>;
+      |                                               ^~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:98:34: error: ‘LinksOptions’ does not name a type
+   98 |         using LinksOptionsType = LinksOptions<TLinkAddress>;
+      |                                  ^~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:100:31: error: ‘LinksOptionsType’ was not declared in this scope
+  100 |             UnitedMemoryLinks<LinksOptionsType, HeapResizableDirectMemory,
+      |                               ^~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:100:49: error: ‘HeapResizableDirectMemory’ was not declared in this scope
+  100 |             UnitedMemoryLinks<LinksOptionsType, HeapResizableDirectMemory,
+      |                                                 ^~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:101:31: error: ‘LinksSourcesAvlBalancedTreeMethods’ was not declared in this scope
+  101 |                               LinksSourcesAvlBalancedTreeMethods<LinksOptionsType>,
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:100:13: error: ‘UnitedMemoryLinks’ does not name a type
+  100 |             UnitedMemoryLinks<LinksOptionsType, HeapResizableDirectMemory,
+      |             ^~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:104:95: error: ‘StorageType’ was not declared in this scope
+  104 |         using DecoratedStorageType = LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<StorageType>;
+      |                                                                                               ^~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:104:38: error: ‘LinksDecoratedWithAutomaticUniquenessAndUsagesResolution’ does not name a type
+  104 |         using DecoratedStorageType = LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<StorageType>;
+      |                                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:105:9: error: ‘DecoratedStorageType’ was not declared in this scope
+  105 |         DecoratedStorageType storage{HeapResizableDirectMemory{}};
+      |         ^~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp: At global scope:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:109:9: error: expected constructor, destructor, or type conversion before ‘(’ token
+  109 |     TEST(DynamicGenericLinksTests, CrudTestWithSizeBalancedTrees)
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:121:9: error: expected constructor, destructor, or type conversion before ‘(’ token
+  121 |     TEST(DynamicGenericLinksTests, RawNumbersCrudTestWithSizeBalancedTrees)
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:133:9: error: expected constructor, destructor, or type conversion before ‘(’ token
+  133 |     TEST(DynamicGenericLinksTests, MultipleRandomCreationsAndDeletionsTestWithSizeBalancedTrees)
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:145:9: error: expected constructor, destructor, or type conversion before ‘(’ token
+  145 |     TEST(DynamicGenericLinksTests, CrudTestWithRecursionlessSizeBalancedTrees)
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:157:9: error: expected constructor, destructor, or type conversion before ‘(’ token
+  157 |     TEST(DynamicGenericLinksTests, RawNumbersCrudTestWithRecursionlessSizeBalancedTrees)
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:169:9: error: expected constructor, destructor, or type conversion before ‘(’ token
+  169 |     TEST(DynamicGenericLinksTests, MultipleRandomCreationsAndDeletionsTestWithRecursionlessSizeBalancedTrees)
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:181:9: error: expected constructor, destructor, or type conversion before ‘(’ token
+  181 |     TEST(DynamicGenericLinksTests, CrudTestWithAvlTrees)
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:193:9: error: expected constructor, destructor, or type conversion before ‘(’ token
+  193 |     TEST(DynamicGenericLinksTests, RawNumbersCrudTestWithAvlTrees)
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:205:9: error: expected constructor, destructor, or type conversion before ‘(’ token
+  205 |     TEST(DynamicGenericLinksTests, MultipleRandomCreationsAndDeletionsTestWithAvlBalancedTrees)
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:216:1: error: expected declaration before ‘}’ token
+  216 | } // namespace Platform::Data::Doublets::Tests::Dynamic::GenericLinksTests
+      | ^
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/AllTests.cpp:2:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp: In function ‘void Platform::Data::Doublets::Tests::Dynamic::SplitMemoryGenericLinksTests::UsingStorage(auto:8&&)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:6:35: error: ‘Memory’ is not a namespace-name
+    6 |         using namespace Platform::Memory;
+      |                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:7:51: error: ‘Platform::Data::Doublets::Memory’ has not been declared
+    7 |         using namespace Platform::Data::Doublets::Memory::Split::Generic;
+      |                                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:7:66: error: ‘Generic’ is not a namespace-name
+    7 |         using namespace Platform::Data::Doublets::Memory::Split::Generic;
+      |                                                                  ^~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:8:26: error: ‘HeapResizableDirectMemory’ was not declared in this scope
+    8 |         TStorage storage{HeapResizableDirectMemory{}, HeapResizableDirectMemory{}};
+      |                          ^~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:8:51: error: expected ‘}’ before ‘{’ token
+    8 |         TStorage storage{HeapResizableDirectMemory{}, HeapResizableDirectMemory{}};
+      |                         ~                         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:8:51: error: expected ‘,’ or ‘;’ before ‘{’ token
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:8:53: error: expected primary-expression before ‘,’ token
+    8 |         TStorage storage{HeapResizableDirectMemory{}, HeapResizableDirectMemory{}};
+      |                                                     ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp: At global scope:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:9:15: error: ‘ILinks’ in namespace ‘Platform::Data’ does not name a template type
+    9 |         Data::ILinks<typename TStorage::LinksOptionsType>& dynamicStorage = storage;
+      |               ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:10:15: error: expected constructor, destructor, or type conversion before ‘(’ token
+   10 |         action(dynamicStorage);
+      |               ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:14:15: error: ‘std::integral’ has not been declared
+   14 |     template <std::integral TLinkAddress>
+      |               ^~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp: In function ‘void UsingStorageWithoutExternalReferencesWithSizeBalancedTrees(auto:9&&)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:17:35: error: ‘Memory’ is not a namespace-name
+   17 |         using namespace Platform::Memory;
+      |                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:18:51: error: ‘Platform::Data::Doublets::Memory’ has not been declared
+   18 |         using namespace Platform::Data::Doublets::Memory::Split::Generic;
+      |                                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:18:66: error: ‘Generic’ is not a namespace-name
+   18 |         using namespace Platform::Data::Doublets::Memory::Split::Generic;
+      |                                                                  ^~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:19:47: error: ‘TLinkAddress’ was not declared in this scope
+   19 |         using LinksOptionsType = LinksOptions<TLinkAddress, LinksConstants<TLinkAddress>{false}>;
+      |                                               ^~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:19:61: error: ‘LinksConstants’ was not declared in this scope
+   19 |         using LinksOptionsType = LinksOptions<TLinkAddress, LinksConstants<TLinkAddress>{false}>;
+      |                                                             ^~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:19:34: error: ‘LinksOptions’ does not name a type
+   19 |         using LinksOptionsType = LinksOptions<TLinkAddress, LinksConstants<TLinkAddress>{false}>;
+      |                                  ^~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:19:96: error: expected primary-expression before ‘>’ token
+   19 |         using LinksOptionsType = LinksOptions<TLinkAddress, LinksConstants<TLinkAddress>{false}>;
+      |                                                                                                ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:19:97: error: expected primary-expression before ‘;’ token
+   19 |         using LinksOptionsType = LinksOptions<TLinkAddress, LinksConstants<TLinkAddress>{false}>;
+      |                                                                                                 ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:21:30: error: ‘LinksOptionsType’ was not declared in this scope
+   21 |             SplitMemoryLinks<LinksOptionsType, HeapResizableDirectMemory,
+      |                              ^~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:21:48: error: ‘HeapResizableDirectMemory’ was not declared in this scope
+   21 |             SplitMemoryLinks<LinksOptionsType, HeapResizableDirectMemory,
+      |                                                ^~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:22:30: error: ‘InternalLinksSourcesSizeBalancedTreeMethods’ was not declared in this scope
+   22 |                              InternalLinksSourcesSizeBalancedTreeMethods<LinksOptionsType>,
+      |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:21:13: error: ‘SplitMemoryLinks’ does not name a type
+   21 |             SplitMemoryLinks<LinksOptionsType, HeapResizableDirectMemory,
+      |             ^~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:28:22: error: ‘StorageType’ was not declared in this scope
+   28 |         UsingStorage<StorageType>(action);
+      |                      ^~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp: At global scope:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:31:15: error: ‘std::integral’ has not been declared
+   31 |     template <std::integral TLinkAddress>
+      |               ^~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:32:17: error: redefinition of ‘template<<declaration error>, class auto:10> void UsingStorageWithExternalReferencesWithSizeBalancedTrees(auto:10&&)’
+   32 |     static void UsingStorageWithExternalReferencesWithSizeBalancedTrees(auto&& action)
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:13:17: note: ‘template<<declaration error>, class auto:2> void UsingStorageWithExternalReferencesWithSizeBalancedTrees(auto:2&&)’ previously declared here
+   13 |     static void UsingStorageWithExternalReferencesWithSizeBalancedTrees(auto&& action)
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:48:15: error: ‘std::integral’ has not been declared
+   48 |     template <std::integral TLinkAddress>
+      |               ^~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:49:17: error: redefinition of ‘template<<declaration error>, class auto:11> void UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithSizeBalancedTrees(auto:11&&)’
+   49 |     static void UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithSizeBalancedTrees(auto&& action)
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:28:17: note: ‘template<<declaration error>, class auto:3> void UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithSizeBalancedTrees(auto:3&&)’ previously declared here
+   28 |     static void UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithSizeBalancedTrees(auto&& action)
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:67:15: error: ‘std::integral’ has not been declared
+   67 |     template <std::integral TLinkAddress>
+      |               ^~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp: In function ‘void UsingStorageWithoutExternalReferencesWithRecursionlessSizeBalancedTrees(auto:12&&)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:70:35: error: ‘Memory’ is not a namespace-name
+   70 |         using namespace Platform::Memory;
+      |                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:71:51: error: ‘Platform::Data::Doublets::Memory’ has not been declared
+   71 |         using namespace Platform::Data::Doublets::Memory::Split::Generic;
+      |                                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:71:66: error: ‘Generic’ is not a namespace-name
+   71 |         using namespace Platform::Data::Doublets::Memory::Split::Generic;
+      |                                                                  ^~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:72:47: error: ‘TLinkAddress’ was not declared in this scope
+   72 |         using LinksOptionsType = LinksOptions<TLinkAddress, LinksConstants<TLinkAddress>{false}>;
+      |                                               ^~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:72:61: error: ‘LinksConstants’ was not declared in this scope
+   72 |         using LinksOptionsType = LinksOptions<TLinkAddress, LinksConstants<TLinkAddress>{false}>;
+      |                                                             ^~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:72:34: error: ‘LinksOptions’ does not name a type
+   72 |         using LinksOptionsType = LinksOptions<TLinkAddress, LinksConstants<TLinkAddress>{false}>;
+      |                                  ^~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:72:96: error: expected primary-expression before ‘>’ token
+   72 |         using LinksOptionsType = LinksOptions<TLinkAddress, LinksConstants<TLinkAddress>{false}>;
+      |                                                                                                ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:72:97: error: expected primary-expression before ‘;’ token
+   72 |         using LinksOptionsType = LinksOptions<TLinkAddress, LinksConstants<TLinkAddress>{false}>;
+      |                                                                                                 ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:74:30: error: ‘LinksOptionsType’ was not declared in this scope
+   74 |             SplitMemoryLinks<LinksOptionsType, HeapResizableDirectMemory,
+      |                              ^~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:74:48: error: ‘HeapResizableDirectMemory’ was not declared in this scope
+   74 |             SplitMemoryLinks<LinksOptionsType, HeapResizableDirectMemory,
+      |                                                ^~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:75:30: error: ‘InternalLinksSourcesRecursionlessSizeBalancedTreeMethods’ was not declared in this scope
+   75 |                              InternalLinksSourcesRecursionlessSizeBalancedTreeMethods<LinksOptionsType>,
+      |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:74:13: error: ‘SplitMemoryLinks’ does not name a type
+   74 |             SplitMemoryLinks<LinksOptionsType, HeapResizableDirectMemory,
+      |             ^~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:81:22: error: ‘StorageType’ was not declared in this scope
+   81 |         UsingStorage<StorageType>(action);
+      |                      ^~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp: At global scope:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:84:15: error: ‘std::integral’ has not been declared
+   84 |     template <std::integral TLinkAddress>
+      |               ^~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:85:17: error: redefinition of ‘template<<declaration error>, class auto:13> void UsingStorageWithExternalReferencesWithRecursionlessSizeBalancedTrees(auto:13&&)’
+   85 |     static void UsingStorageWithExternalReferencesWithRecursionlessSizeBalancedTrees(auto&& action)
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:45:17: note: ‘template<<declaration error>, class auto:4> void UsingStorageWithExternalReferencesWithRecursionlessSizeBalancedTrees(auto:4&&)’ previously declared here
+   45 |     static void UsingStorageWithExternalReferencesWithRecursionlessSizeBalancedTrees(auto&& action)
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:101:15: error: ‘std::integral’ has not been declared
+  101 |     template <std::integral TLinkAddress>
+      |               ^~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:102:17: error: redefinition of ‘template<<declaration error>, class auto:14> void UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithRecursionlessSizeBalancedTrees(auto:14&&)’
+  102 |     static void UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithRecursionlessSizeBalancedTrees(
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/GenericLinksTests.cpp:60:17: note: ‘template<<declaration error>, class auto:5> void UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithRecursionlessSizeBalancedTrees(auto:5&&)’ previously declared here
+   60 |     static void UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithRecursionlessSizeBalancedTrees(
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:121:9: error: expected constructor, destructor, or type conversion before ‘(’ token
+  121 |     TEST(DynamicSplitMemoryGenericLinksTests, CrudTestWithSizeBalancedTrees)
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:133:9: error: expected constructor, destructor, or type conversion before ‘(’ token
+  133 |     TEST(DynamicSplitMemoryGenericLinksTests, RawNumbersCrudTestWithSizeBalancedTrees)
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:145:9: error: expected constructor, destructor, or type conversion before ‘(’ token
+  145 |     TEST(DynamicSplitMemoryGenericLinksTests, MultipleRandomCreationsAndDeletionsTestWithSizeBalancedTrees)
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:157:9: error: expected constructor, destructor, or type conversion before ‘(’ token
+  157 |     TEST(DynamicSplitMemoryGenericLinksTests, CrudTestWithRecursionlessSizeBalancedTrees)
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:169:9: error: expected constructor, destructor, or type conversion before ‘(’ token
+  169 |     TEST(DynamicSplitMemoryGenericLinksTests, RawNumbersCrudTestWithRecursionlessSizeBalancedTrees)
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:181:9: error: expected constructor, destructor, or type conversion before ‘(’ token
+  181 |     TEST(DynamicSplitMemoryGenericLinksTests, MultipleRandomCreationsAndDeletionsTestWithRecursionlessSizeBalancedTrees)
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:192:1: error: expected declaration before ‘}’ token
+  192 | } // namespace Platform::Data::Doublets::Tests::Dynamic::SplitMemoryGenericLinksTests
+      | ^
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/AllTests.cpp:3:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h: In static member function ‘static typename TStorage::LinkAddressType Platform::Data::Doublets::Tests::CrudOperationsTester::TestCreate(TStorage&)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:9:39: error: ‘Interfaces’ is not a namespace-name
+    9 |             using namespace Platform::Interfaces;
+      |                                       ^~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:12:13: error: ‘Link’ was not declared in this scope
+   12 |             Link<typename TStorage::LinkAddressType> linkStruct;
+      |             ^~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:12:52: error: expected ‘(’ before ‘>’ token
+   12 |             Link<typename TStorage::LinkAddressType> linkStruct;
+      |                                                    ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:12:54: error: ‘linkStruct’ was not declared in this scope
+   12 |             Link<typename TStorage::LinkAddressType> linkStruct;
+      |                                                      ^~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h: In lambda function:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:15:30: error: ‘linkStruct’ is not captured
+   15 |                              linkStruct = Link(link);
+      |                              ^~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:14:49: note: the lambda has no capture-default
+   14 |                          [&linkStruct, _continue](const typename TStorage::LinkType& link) {
+      |                                                 ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:12:54: note: ‘<typeprefixerror>linkStruct’ declared here
+   12 |             Link<typename TStorage::LinkAddressType> linkStruct;
+      |                                                      ^~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:15:43: error: ‘Link’ is not captured
+   15 |                              linkStruct = Link(link);
+      |                                           ^~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:14:49: note: the lambda has no capture-default
+   14 |                          [&linkStruct, _continue](const typename TStorage::LinkType& link) {
+      |                                                 ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:12:13: note: ‘<typeprefixerror>Link’ declared here
+   12 |             Link<typename TStorage::LinkAddressType> linkStruct;
+      |             ^~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h: In static member function ‘static typename TStorage::LinkAddressType Platform::Data::Doublets::Tests::CrudOperationsTester::TestCreate(TStorage&)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:21:13: error: there are no arguments to ‘Expects’ that depend on a template parameter, so a declaration of ‘Expects’ must be available [-fpermissive]
+   21 |             Expects(3 == linkStruct.size());
+      |             ^~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:21:13: note: (if you use ‘-fpermissive’, G++ will accept your code, but allowing the use of an undeclared name is deprecated)
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h: In static member function ‘static typename TStorage::LinkAddressType Platform::Data::Doublets::Tests::CrudOperationsTester::GetFirstLink(TStorage&, typename TStorage::LinkAddressType)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:33:39: error: ‘Interfaces’ is not a namespace-name
+   33 |             using namespace Platform::Interfaces;
+      |                                       ^~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h: In static member function ‘static typename TStorage::LinkAddressType Platform::Data::Doublets::Tests::CrudOperationsTester::TestUpdateLinkToReferenceItself(TStorage&, typename TStorage::LinkAddressType)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:52:13: error: ‘Link’ was not declared in this scope
+   52 |             Link link{GetLink(storage, updatedLinkAddress)};
+      |             ^~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:53:21: error: ‘link’ was not declared in this scope
+   53 |             Expects(link.Index == link.Source);
+      |                     ^~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:53:13: error: there are no arguments to ‘Expects’ that depend on a template parameter, so a declaration of ‘Expects’ must be available [-fpermissive]
+   53 |             Expects(link.Index == link.Source);
+      |             ^~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:54:13: error: there are no arguments to ‘Expects’ that depend on a template parameter, so a declaration of ‘Expects’ must be available [-fpermissive]
+   54 |             Expects(link.Index == link.Target);
+      |             ^~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h: In static member function ‘static typename TStorage::LinkAddressType Platform::Data::Doublets::Tests::CrudOperationsTester::TestUpdateLinkToReferenceNull(TStorage&, typename TStorage::LinkAddressType)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:64:13: error: ‘Link’ was not declared in this scope
+   64 |             Link linkStruct{GetLink(storage, updatedLinkAddress)};
+      |             ^~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:65:39: error: ‘linkStruct’ was not declared in this scope
+   65 |             Expects(constants.Null == linkStruct.Source);
+      |                                       ^~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h: In static member function ‘static void Platform::Data::Doublets::Tests::CrudOperationsTester::TestDelete(TStorage&, typename TStorage::LinkAddressType)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:73:39: error: ‘Interfaces’ is not a namespace-name
+   73 |             using namespace Platform::Interfaces;
+      |                                       ^~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:77:13: error: ‘Link’ was not declared in this scope
+   77 |             Link linkStruct{GetLink(storage, updatedLinkAddress)};
+      |             ^~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:78:19: error: ‘Delete’ is not a member of ‘Platform::Data’
+   78 |             Data::Delete(storage, linkAddress);
+      |                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h: In function ‘void Platform::Data::Doublets::Tests::TestCrudOperations(TStorage&)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:94:38: error: ‘Count’ is not a member of ‘Platform::Data’
+   94 |         Expects(0 == Platform::Data::Count(storage));
+      |                                      ^~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:94:9: error: there are no arguments to ‘Expects’ that depend on a template parameter, so a declaration of ‘Expects’ must be available [-fpermissive]
+   94 |         Expects(0 == Platform::Data::Count(storage));
+      |         ^~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h: In function ‘void Platform::Data::Doublets::Tests::TestRawNumbersCrudOperations(TStorage&)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:114:9: error: ‘Hybrid’ was not declared in this scope
+  114 |         Hybrid<typename TStorage::LinkAddressType> h106E{106, true};
+      |         ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:114:50: error: expected ‘(’ before ‘>’ token
+  114 |         Hybrid<typename TStorage::LinkAddressType> h106E{106, true};
+      |                                                  ^
+      |                                                  (
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:114:52: error: ‘h106E’ was not declared in this scope
+  114 |         Hybrid<typename TStorage::LinkAddressType> h106E{106, true};
+      |                                                    ^~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:115:50: error: expected ‘(’ before ‘>’ token
+  115 |         Hybrid<typename TStorage::LinkAddressType> h107E{107, true};
+      |                                                  ^
+      |                                                  (
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:115:52: error: ‘h107E’ was not declared in this scope
+  115 |         Hybrid<typename TStorage::LinkAddressType> h107E{107, true};
+      |                                                    ^~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:116:50: error: expected ‘(’ before ‘>’ token
+  116 |         Hybrid<typename TStorage::LinkAddressType> h108E{108, true};
+      |                                                  ^
+      |                                                  (
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:116:52: error: ‘h108E’ was not declared in this scope
+  116 |         Hybrid<typename TStorage::LinkAddressType> h108E{108, true};
+      |                                                    ^~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:117:9: error: there are no arguments to ‘Expects’ that depend on a template parameter, so a declaration of ‘Expects’ must be available [-fpermissive]
+  117 |         Expects(106L == h106E.AbsoluteValue());
+      |         ^~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:118:9: error: there are no arguments to ‘Expects’ that depend on a template parameter, so a declaration of ‘Expects’ must be available [-fpermissive]
+  118 |         Expects(107L == h107E.AbsoluteValue());
+      |         ^~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:119:9: error: there are no arguments to ‘Expects’ that depend on a template parameter, so a declaration of ‘Expects’ must be available [-fpermissive]
+  119 |         Expects(108L == h108E.AbsoluteValue());
+      |         ^~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:123:9: error: ‘Link’ was not declared in this scope
+  123 |         Link<typename TStorage::LinkAddressType> link1{GetLink(storage, linkAddress1)};
+      |         ^~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:123:48: error: expected ‘(’ before ‘>’ token
+  123 |         Link<typename TStorage::LinkAddressType> link1{GetLink(storage, linkAddress1)};
+      |                                                ^
+      |                                                (
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:123:50: error: ‘link1’ was not declared in this scope
+  123 |         Link<typename TStorage::LinkAddressType> link1{GetLink(storage, linkAddress1)};
+      |                                                  ^~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:124:9: error: there are no arguments to ‘Expects’ that depend on a template parameter, so a declaration of ‘Expects’ must be available [-fpermissive]
+  124 |         Expects(h106E.Value == link1.Source);
+      |         ^~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:125:9: error: there are no arguments to ‘Expects’ that depend on a template parameter, so a declaration of ‘Expects’ must be available [-fpermissive]
+  125 |         Expects(h108E.Value == link1.Target);
+      |         ^~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:129:48: error: expected ‘(’ before ‘>’ token
+  129 |         Link<typename TStorage::LinkAddressType> link2{GetLink(storage, linkAddress2)};
+      |                                                ^
+      |                                                (
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:129:50: error: ‘link2’ was not declared in this scope
+  129 |         Link<typename TStorage::LinkAddressType> link2{GetLink(storage, linkAddress2)};
+      |                                                  ^~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:131:9: error: there are no arguments to ‘Expects’ that depend on a template parameter, so a declaration of ‘Expects’ must be available [-fpermissive]
+  131 |         Expects(h108E.Value == link2.Target);
+      |         ^~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:135:48: error: expected ‘(’ before ‘>’ token
+  135 |         Link<typename TStorage::LinkAddressType> link3{GetLink(storage, linkAddress3)};
+      |                                                ^
+      |                                                (
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:135:50: error: ‘link3’ was not declared in this scope
+  135 |         Link<typename TStorage::LinkAddressType> link3{GetLink(storage, linkAddress3)};
+      |                                                  ^~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:162:15: error: ‘Delete’ is not a member of ‘Platform::Data’
+  162 |         Data::Delete(storage, linkAddress3);
+      |               ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h: In function ‘void Platform::Data::Doublets::Tests::TestMultipleRandomCreationsAndDeletions(TStorage&, int)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:189:35: error: ‘Random’ is not a namespace-name
+  189 |         using namespace Platform::Random;
+      |                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:193:18: error: ‘srand’ is not a member of ‘std’
+  193 |             std::srand(N);
+      |                  ^~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:194:31: error: ‘RandomHelpers’ has not been declared
+  194 |             auto& randomGen64{RandomHelpers::Default};
+      |                               ^~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:200:34: error: ‘Random’ has not been declared
+  200 |                 auto createPoint{Random::NextBoolean(randomGen64)};
+      |                                  ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:203:21: error: ‘Ranges’ has not been declared
+  203 |                     Ranges::Range<typename TStorage::LinkAddressType> linksAddressRange{1, linksCount};
+      |                     ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:203:69: error: expected ‘(’ before ‘>’ token
+  203 |                     Ranges::Range<typename TStorage::LinkAddressType> linksAddressRange{1, linksCount};
+      |                                                                     ^
+      |                                                                     (
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:203:71: error: ‘linksAddressRange’ was not declared in this scope
+  203 |                     Ranges::Range<typename TStorage::LinkAddressType> linksAddressRange{1, linksCount};
+      |                                                                       ^~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:204:33: error: ‘Random’ has not been declared
+  204 |                     auto source{Random::NextUInt64(randomGen64, linksAddressRange)};
+      |                                 ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:205:33: error: ‘Random’ has not been declared
+  205 |                     auto target{Random::NextUInt64(randomGen64, linksAddressRange)}; //-V3086
+      |                                 ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:219:18: error: ‘vector’ is not a member of ‘std’
+  219 |             std::vector<typename TStorage::LinkType> allLinks{All(storage)};
+      |                  ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:1:1: note: ‘std::vector’ is defined in header ‘<vector>’; did you forget to ‘#include <vector>’?
+  +++ |+#include <vector>
+    1 | namespace Platform::Data::Doublets::Tests
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:219:52: error: expected ‘(’ before ‘>’ token
+  219 |             std::vector<typename TStorage::LinkType> allLinks{All(storage)};
+      |                                                    ^
+      |                                                    (
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:219:54: error: ‘allLinks’ was not declared in this scope
+  219 |             std::vector<typename TStorage::LinkType> allLinks{All(storage)};
+      |                                                      ^~~~~~~~
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/AllTests.cpp:4:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/LinksConstantsTests.cpp: At global scope:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/LinksConstantsTests.cpp:3:31: error: ‘uint64_t’ in namespace ‘std’ does not name a type
+    3 |     using TLinkAddress = std::uint64_t;
+      |                               ^~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/LinksConstantsTests.cpp:4:9: error: expected constructor, destructor, or type conversion before ‘(’ token
+    4 |     TEST(LinksConstantsTests, ExternalReferencesTest)
+      |         ^
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/AllTests.cpp:5:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ResizableDirectMemoryLinksTests.cpp: In function ‘void Platform::Data::Doublets::Tests::TestNonexistentReferences(TStorage&)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ResizableDirectMemoryLinksTests.cpp:9:35: error: ‘Interfaces’ is not a namespace-name
+    9 |         using namespace Platform::Interfaces;
+      |                                   ^~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ResizableDirectMemoryLinksTests.cpp: At global scope:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ResizableDirectMemoryLinksTests.cpp:34:9: error: expected constructor, destructor, or type conversion before ‘(’ token
+   34 |     TEST(ResizableDirectMemoryLinksTests, BasicFileMappedMemoryTest)
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ResizableDirectMemoryLinksTests.cpp:55:9: error: expected constructor, destructor, or type conversion before ‘(’ token
+   55 |     TEST(ResizableDirectMemoryLinksTests, BasicHeapMemoryTest)
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ResizableDirectMemoryLinksTests.cpp:66:9: error: expected constructor, destructor, or type conversion before ‘(’ token
+   66 |     TEST(ResizableDirectMemoryLinksTests, NonexistentReferencesHeapMemoryTest)
+      |         ^
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/AllTests.cpp:6:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp: In function ‘void Platform::Data::Doublets::Tests::Static::GenericLinksTests::UsingStorage(auto:30&&)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:7:35: error: ‘Memory’ is not a namespace-name
+    7 |         using namespace Platform::Memory;
+      |                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:8:26: error: ‘HeapResizableDirectMemory’ was not declared in this scope
+    8 |         TStorage storage{HeapResizableDirectMemory{}};
+      |                          ^~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:8:51: error: expected ‘}’ before ‘{’ token
+    8 |         TStorage storage{HeapResizableDirectMemory{}};
+      |                         ~                         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:8:51: error: expected ‘,’ or ‘;’ before ‘{’ token
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp: At global scope:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:9:15: error: expected constructor, destructor, or type conversion before ‘(’ token
+    9 |         action(storage);
+      |               ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp: In function ‘void UsingStorageWithExternalReferencesWithSizeBalancedTrees(auto:31&&)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:15:35: error: ‘Memory’ is not a namespace-name
+   15 |         using namespace Platform::Memory;
+      |                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:16:51: error: ‘Platform::Data::Doublets::Memory’ has not been declared
+   16 |         using namespace Platform::Data::Doublets::Memory::United::Generic;
+      |                                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:16:67: error: ‘Generic’ is not a namespace-name
+   16 |         using namespace Platform::Data::Doublets::Memory::United::Generic;
+      |                                                                   ^~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:17:34: error: ‘LinksOptions’ does not name a type
+   17 |         using LinksOptionsType = LinksOptions<TLinkAddress>;
+      |                                  ^~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:19:13: error: ‘LinksOptionsType’ was not declared in this scope
+   19 |             LinksOptionsType, HeapResizableDirectMemory, LinksSourcesSizeBalancedTreeMethods<LinksOptionsType>,
+      |             ^~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:19:31: error: ‘HeapResizableDirectMemory’ was not declared in this scope
+   19 |             LinksOptionsType, HeapResizableDirectMemory, LinksSourcesSizeBalancedTreeMethods<LinksOptionsType>,
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:19:58: error: ‘LinksSourcesSizeBalancedTreeMethods’ was not declared in this scope
+   19 |             LinksOptionsType, HeapResizableDirectMemory, LinksSourcesSizeBalancedTreeMethods<LinksOptionsType>,
+      |                                                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:18:29: error: ‘UnitedMemoryLinks’ does not name a type
+   18 |         using StorageType = UnitedMemoryLinks<
+      |                             ^~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:21:22: error: ‘StorageType’ was not declared in this scope
+   21 |         UsingStorage<StorageType>(action);
+      |                      ^~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp: In function ‘void UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithSizeBalancedTrees(auto:32&&)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:27:35: error: ‘Memory’ is not a namespace-name
+   27 |         using namespace Platform::Memory;
+      |                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:28:51: error: ‘Platform::Data::Doublets::Memory’ has not been declared
+   28 |         using namespace Platform::Data::Doublets::Memory::United::Generic;
+      |                                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:28:67: error: ‘Generic’ is not a namespace-name
+   28 |         using namespace Platform::Data::Doublets::Memory::United::Generic;
+      |                                                                   ^~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:29:51: error: ‘Decorators’ is not a namespace-name
+   29 |         using namespace Platform::Data::Doublets::Decorators;
+      |                                                   ^~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:30:34: error: ‘LinksOptions’ does not name a type
+   30 |         using LinksOptionsType = LinksOptions<TLinkAddress>;
+      |                                  ^~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:32:13: error: ‘LinksOptionsType’ was not declared in this scope
+   32 |             LinksOptionsType, HeapResizableDirectMemory, LinksSourcesSizeBalancedTreeMethods<LinksOptionsType>,
+      |             ^~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:32:31: error: ‘HeapResizableDirectMemory’ was not declared in this scope
+   32 |             LinksOptionsType, HeapResizableDirectMemory, LinksSourcesSizeBalancedTreeMethods<LinksOptionsType>,
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:32:58: error: ‘LinksSourcesSizeBalancedTreeMethods’ was not declared in this scope
+   32 |             LinksOptionsType, HeapResizableDirectMemory, LinksSourcesSizeBalancedTreeMethods<LinksOptionsType>,
+      |                                                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:31:29: error: ‘UnitedMemoryLinks’ does not name a type
+   31 |         using StorageType = UnitedMemoryLinks<
+      |                             ^~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:34:95: error: ‘StorageType’ was not declared in this scope
+   34 |         using DecoratedStorageType = LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<StorageType>;
+      |                                                                                               ^~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:34:38: error: ‘LinksDecoratedWithAutomaticUniquenessAndUsagesResolution’ does not name a type
+   34 |         using DecoratedStorageType = LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<StorageType>;
+      |                                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:35:22: error: ‘DecoratedStorageType’ was not declared in this scope
+   35 |         UsingStorage<DecoratedStorageType>(action);
+      |                      ^~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp: In function ‘void UsingStorageWithExternalReferencesWithRecursionlessSizeBalancedTrees(auto:33&&)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:41:35: error: ‘Memory’ is not a namespace-name
+   41 |         using namespace Platform::Memory;
+      |                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:42:51: error: ‘Platform::Data::Doublets::Memory’ has not been declared
+   42 |         using namespace Platform::Data::Doublets::Memory::United::Generic;
+      |                                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:42:67: error: ‘Generic’ is not a namespace-name
+   42 |         using namespace Platform::Data::Doublets::Memory::United::Generic;
+      |                                                                   ^~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:43:34: error: ‘LinksOptions’ does not name a type
+   43 |         using LinksOptionsType = LinksOptions<TLinkAddress>;
+      |                                  ^~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:44:47: error: ‘LinksOptionsType’ was not declared in this scope
+   44 |         using StorageType = UnitedMemoryLinks<LinksOptionsType, HeapResizableDirectMemory,
+      |                                               ^~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:44:65: error: ‘HeapResizableDirectMemory’ was not declared in this scope
+   44 |         using StorageType = UnitedMemoryLinks<LinksOptionsType, HeapResizableDirectMemory,
+      |                                                                 ^~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:45:47: error: ‘LinksSourcesRecursionlessSizeBalancedTreeMethods’ was not declared in this scope
+   45 |                                               LinksSourcesRecursionlessSizeBalancedTreeMethods<LinksOptionsType>,
+      |                                               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:44:29: error: ‘UnitedMemoryLinks’ does not name a type
+   44 |         using StorageType = UnitedMemoryLinks<LinksOptionsType, HeapResizableDirectMemory,
+      |                             ^~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:48:22: error: ‘StorageType’ was not declared in this scope
+   48 |         UsingStorage<StorageType>(action);
+      |                      ^~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp: In function ‘void UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithRecursionlessSizeBalancedTrees(auto:34&&)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:55:35: error: ‘Memory’ is not a namespace-name
+   55 |         using namespace Platform::Memory;
+      |                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:56:51: error: ‘Platform::Data::Doublets::Memory’ has not been declared
+   56 |         using namespace Platform::Data::Doublets::Memory::United::Generic;
+      |                                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:56:67: error: ‘Generic’ is not a namespace-name
+   56 |         using namespace Platform::Data::Doublets::Memory::United::Generic;
+      |                                                                   ^~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:57:51: error: ‘Decorators’ is not a namespace-name
+   57 |         using namespace Platform::Data::Doublets::Decorators;
+      |                                                   ^~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:58:34: error: ‘LinksOptions’ does not name a type
+   58 |         using LinksOptionsType = LinksOptions<TLinkAddress>;
+      |                                  ^~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:59:47: error: ‘LinksOptionsType’ was not declared in this scope
+   59 |         using StorageType = UnitedMemoryLinks<LinksOptionsType, HeapResizableDirectMemory,
+      |                                               ^~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:59:65: error: ‘HeapResizableDirectMemory’ was not declared in this scope
+   59 |         using StorageType = UnitedMemoryLinks<LinksOptionsType, HeapResizableDirectMemory,
+      |                                                                 ^~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:60:47: error: ‘LinksSourcesRecursionlessSizeBalancedTreeMethods’ was not declared in this scope
+   60 |                                               LinksSourcesRecursionlessSizeBalancedTreeMethods<LinksOptionsType>,
+      |                                               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:59:29: error: ‘UnitedMemoryLinks’ does not name a type
+   59 |         using StorageType = UnitedMemoryLinks<LinksOptionsType, HeapResizableDirectMemory,
+      |                             ^~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:63:95: error: ‘StorageType’ was not declared in this scope
+   63 |         using DecoratedStorageType = LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<StorageType>;
+      |                                                                                               ^~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:63:38: error: ‘LinksDecoratedWithAutomaticUniquenessAndUsagesResolution’ does not name a type
+   63 |         using DecoratedStorageType = LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<StorageType>;
+      |                                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:64:22: error: ‘DecoratedStorageType’ was not declared in this scope
+   64 |         UsingStorage<DecoratedStorageType>(action);
+      |                      ^~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp: In function ‘void UsingStorageWithExternalReferencesWithAvlBalancedTrees(auto:35&&)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:70:35: error: ‘Memory’ is not a namespace-name
+   70 |         using namespace Platform::Memory;
+      |                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:71:51: error: ‘Platform::Data::Doublets::Memory’ has not been declared
+   71 |         using namespace Platform::Data::Doublets::Memory::United::Generic;
+      |                                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:71:67: error: ‘Generic’ is not a namespace-name
+   71 |         using namespace Platform::Data::Doublets::Memory::United::Generic;
+      |                                                                   ^~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:72:34: error: ‘LinksOptions’ does not name a type
+   72 |         using LinksOptionsType = LinksOptions<TLinkAddress>;
+      |                                  ^~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:74:13: error: ‘LinksOptionsType’ was not declared in this scope
+   74 |             LinksOptionsType, HeapResizableDirectMemory, LinksSourcesAvlBalancedTreeMethods<LinksOptionsType>,
+      |             ^~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:74:31: error: ‘HeapResizableDirectMemory’ was not declared in this scope
+   74 |             LinksOptionsType, HeapResizableDirectMemory, LinksSourcesAvlBalancedTreeMethods<LinksOptionsType>,
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:74:58: error: ‘LinksSourcesAvlBalancedTreeMethods’ was not declared in this scope
+   74 |             LinksOptionsType, HeapResizableDirectMemory, LinksSourcesAvlBalancedTreeMethods<LinksOptionsType>,
+      |                                                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:73:29: error: ‘UnitedMemoryLinks’ does not name a type
+   73 |         using StorageType = UnitedMemoryLinks<
+      |                             ^~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:76:22: error: ‘StorageType’ was not declared in this scope
+   76 |         UsingStorage<StorageType>(action);
+      |                      ^~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp: In function ‘void UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithAvlBalancedTrees(auto:36&&)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:82:35: error: ‘Memory’ is not a namespace-name
+   82 |         using namespace Platform::Memory;
+      |                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:83:51: error: ‘Platform::Data::Doublets::Memory’ has not been declared
+   83 |         using namespace Platform::Data::Doublets::Memory::United::Generic;
+      |                                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:83:67: error: ‘Generic’ is not a namespace-name
+   83 |         using namespace Platform::Data::Doublets::Memory::United::Generic;
+      |                                                                   ^~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:84:51: error: ‘Decorators’ is not a namespace-name
+   84 |         using namespace Platform::Data::Doublets::Decorators;
+      |                                                   ^~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:85:34: error: ‘LinksOptions’ does not name a type
+   85 |         using LinksOptionsType = LinksOptions<TLinkAddress>;
+      |                                  ^~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:87:13: error: ‘LinksOptionsType’ was not declared in this scope
+   87 |             LinksOptionsType, HeapResizableDirectMemory, LinksSourcesAvlBalancedTreeMethods<LinksOptionsType>,
+      |             ^~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:87:31: error: ‘HeapResizableDirectMemory’ was not declared in this scope
+   87 |             LinksOptionsType, HeapResizableDirectMemory, LinksSourcesAvlBalancedTreeMethods<LinksOptionsType>,
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:87:58: error: ‘LinksSourcesAvlBalancedTreeMethods’ was not declared in this scope
+   87 |             LinksOptionsType, HeapResizableDirectMemory, LinksSourcesAvlBalancedTreeMethods<LinksOptionsType>,
+      |                                                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:86:29: error: ‘UnitedMemoryLinks’ does not name a type
+   86 |         using StorageType = UnitedMemoryLinks<
+      |                             ^~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:89:95: error: ‘StorageType’ was not declared in this scope
+   89 |         using DecoratedStorageType = LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<StorageType>;
+      |                                                                                               ^~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:89:38: error: ‘LinksDecoratedWithAutomaticUniquenessAndUsagesResolution’ does not name a type
+   89 |         using DecoratedStorageType = LinksDecoratedWithAutomaticUniquenessAndUsagesResolution<StorageType>;
+      |                                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:90:22: error: ‘DecoratedStorageType’ was not declared in this scope
+   90 |         UsingStorage<DecoratedStorageType>(action);
+      |                      ^~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp: At global scope:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:93:9: error: expected constructor, destructor, or type conversion before ‘(’ token
+   93 |     TEST(StaticGenericLinksTests, CrudTestWithSizeBalancedTrees)
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:105:9: error: expected constructor, destructor, or type conversion before ‘(’ token
+  105 |     TEST(StaticGenericLinksTests, RawNumbersCrudTestWithSizeBalancedTrees)
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:117:9: error: expected constructor, destructor, or type conversion before ‘(’ token
+  117 |     TEST(StaticGenericLinksTests, MultipleRandomCreationsAndDeletionsTestWithSizeBalancedTrees)
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:129:9: error: expected constructor, destructor, or type conversion before ‘(’ token
+  129 |     TEST(StaticGenericLinksTests, CrudTestWithRecursionlessSizeBalancedTrees)
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:141:9: error: expected constructor, destructor, or type conversion before ‘(’ token
+  141 |     TEST(StaticGenericLinksTests, RawNumbersCrudTestWithRecursionlessSizeBalancedTrees)
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:153:9: error: expected constructor, destructor, or type conversion before ‘(’ token
+  153 |     TEST(StaticGenericLinksTests, MultipleRandomCreationsAndDeletionsTestWithRecursionlessSizeBalancedTrees)
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:165:9: error: expected constructor, destructor, or type conversion before ‘(’ token
+  165 |     TEST(StaticGenericLinksTests, CrudTestWithAvlBalancedTrees)
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:177:9: error: expected constructor, destructor, or type conversion before ‘(’ token
+  177 |     TEST(StaticGenericLinksTests, RawNumbersCrudTestWithAvlBalancedTrees)
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:189:9: error: expected constructor, destructor, or type conversion before ‘(’ token
+  189 |     TEST(StaticGenericLinksTests, MultipleRandomCreationsAndDeletionsTestWithAvlBalancedTrees)
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:200:1: error: expected declaration before ‘}’ token
+  200 | } // namespace Platform::Data::Doublets::Tests::Static::GenericLinksTests
+      | ^
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/AllTests.cpp:7:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp: In function ‘void Platform::Data::Doublets::Tests::Static::SplitMemoryGenericLinksTests::UsingStorage(auto:37&&)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:6:35: error: ‘Memory’ is not a namespace-name
+    6 |         using namespace Platform::Memory;
+      |                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:7:51: error: ‘Platform::Data::Doublets::Memory’ has not been declared
+    7 |         using namespace Platform::Data::Doublets::Memory::Split::Generic;
+      |                                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:7:66: error: ‘Generic’ is not a namespace-name
+    7 |         using namespace Platform::Data::Doublets::Memory::Split::Generic;
+      |                                                                  ^~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:8:26: error: ‘HeapResizableDirectMemory’ was not declared in this scope
+    8 |         TStorage storage{HeapResizableDirectMemory{}, HeapResizableDirectMemory{}};
+      |                          ^~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:8:51: error: expected ‘}’ before ‘{’ token
+    8 |         TStorage storage{HeapResizableDirectMemory{}, HeapResizableDirectMemory{}};
+      |                         ~                         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:8:51: error: expected ‘,’ or ‘;’ before ‘{’ token
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:8:53: error: expected primary-expression before ‘,’ token
+    8 |         TStorage storage{HeapResizableDirectMemory{}, HeapResizableDirectMemory{}};
+      |                                                     ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp: At global scope:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:9:15: error: expected constructor, destructor, or type conversion before ‘(’ token
+    9 |         action(storage);
+      |               ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp: In function ‘void UsingStorageWithoutExternalReferencesWithSizeBalancedTrees(auto:38&&)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:15:35: error: ‘Memory’ is not a namespace-name
+   15 |         using namespace Platform::Memory;
+      |                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:16:51: error: ‘Platform::Data::Doublets::Memory’ has not been declared
+   16 |         using namespace Platform::Data::Doublets::Memory::Split::Generic;
+      |                                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:16:66: error: ‘Generic’ is not a namespace-name
+   16 |         using namespace Platform::Data::Doublets::Memory::Split::Generic;
+      |                                                                  ^~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:17:61: error: ‘LinksConstants’ was not declared in this scope
+   17 |         using LinksOptionsType = LinksOptions<TLinkAddress, LinksConstants<TLinkAddress>{false}>;
+      |                                                             ^~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:17:34: error: ‘LinksOptions’ does not name a type
+   17 |         using LinksOptionsType = LinksOptions<TLinkAddress, LinksConstants<TLinkAddress>{false}>;
+      |                                  ^~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:17:96: error: expected primary-expression before ‘>’ token
+   17 |         using LinksOptionsType = LinksOptions<TLinkAddress, LinksConstants<TLinkAddress>{false}>;
+      |                                                                                                ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:17:97: error: expected primary-expression before ‘;’ token
+   17 |         using LinksOptionsType = LinksOptions<TLinkAddress, LinksConstants<TLinkAddress>{false}>;
+      |                                                                                                 ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:19:13: error: ‘LinksOptionsType’ was not declared in this scope
+   19 |             LinksOptionsType, HeapResizableDirectMemory, InternalLinksSourcesSizeBalancedTreeMethods<LinksOptionsType>,
+      |             ^~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:19:31: error: ‘HeapResizableDirectMemory’ was not declared in this scope
+   19 |             LinksOptionsType, HeapResizableDirectMemory, InternalLinksSourcesSizeBalancedTreeMethods<LinksOptionsType>,
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:19:58: error: ‘InternalLinksSourcesSizeBalancedTreeMethods’ was not declared in this scope
+   19 |             LinksOptionsType, HeapResizableDirectMemory, InternalLinksSourcesSizeBalancedTreeMethods<LinksOptionsType>,
+      |                                                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:18:29: error: ‘SplitMemoryLinks’ does not name a type
+   18 |         using StorageType = SplitMemoryLinks<
+      |                             ^~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:24:22: error: ‘StorageType’ was not declared in this scope
+   24 |         UsingStorage<StorageType>(action);
+      |                      ^~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp: At global scope:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:28:17: error: redefinition of ‘template<class TLinkAddress, class auto:39>  requires  integral<TLinkAddress> void UsingStorageWithExternalReferencesWithSizeBalancedTrees(auto:39&&)’
+   28 |     static void UsingStorageWithExternalReferencesWithSizeBalancedTrees(auto&& action)
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:13:17: note: ‘template<class TLinkAddress, class auto:31>  requires  integral<TLinkAddress> void UsingStorageWithExternalReferencesWithSizeBalancedTrees(auto:31&&)’ previously declared here
+   13 |     static void UsingStorageWithExternalReferencesWithSizeBalancedTrees(auto&& action)
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:43:17: error: redefinition of ‘template<class TLinkAddress, class auto:40>  requires  integral<TLinkAddress> void UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithSizeBalancedTrees(auto:40&&)’
+   43 |     static void UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithSizeBalancedTrees(auto&& action)
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:25:17: note: ‘template<class TLinkAddress, class auto:32>  requires  integral<TLinkAddress> void UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithSizeBalancedTrees(auto:32&&)’ previously declared here
+   25 |     static void UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithSizeBalancedTrees(auto&& action)
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp: In function ‘void UsingStorageWithoutExternalReferencesWithRecursionlessSizeBalancedTrees(auto:41&&)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:62:35: error: ‘Memory’ is not a namespace-name
+   62 |         using namespace Platform::Memory;
+      |                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:63:51: error: ‘Platform::Data::Doublets::Memory’ has not been declared
+   63 |         using namespace Platform::Data::Doublets::Memory::Split::Generic;
+      |                                                   ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:63:66: error: ‘Generic’ is not a namespace-name
+   63 |         using namespace Platform::Data::Doublets::Memory::Split::Generic;
+      |                                                                  ^~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:64:61: error: ‘LinksConstants’ was not declared in this scope
+   64 |         using LinksOptionsType = LinksOptions<TLinkAddress, LinksConstants<TLinkAddress>{false}>;
+      |                                                             ^~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:64:34: error: ‘LinksOptions’ does not name a type
+   64 |         using LinksOptionsType = LinksOptions<TLinkAddress, LinksConstants<TLinkAddress>{false}>;
+      |                                  ^~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:64:96: error: expected primary-expression before ‘>’ token
+   64 |         using LinksOptionsType = LinksOptions<TLinkAddress, LinksConstants<TLinkAddress>{false}>;
+      |                                                                                                ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:64:97: error: expected primary-expression before ‘;’ token
+   64 |         using LinksOptionsType = LinksOptions<TLinkAddress, LinksConstants<TLinkAddress>{false}>;
+      |                                                                                                 ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:65:46: error: ‘LinksOptionsType’ was not declared in this scope
+   65 |         using StorageType = SplitMemoryLinks<LinksOptionsType, HeapResizableDirectMemory,
+      |                                              ^~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:65:64: error: ‘HeapResizableDirectMemory’ was not declared in this scope
+   65 |         using StorageType = SplitMemoryLinks<LinksOptionsType, HeapResizableDirectMemory,
+      |                                                                ^~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:66:46: error: ‘InternalLinksSourcesRecursionlessSizeBalancedTreeMethods’ was not declared in this scope
+   66 |                                              InternalLinksSourcesRecursionlessSizeBalancedTreeMethods<LinksOptionsType>,
+      |                                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:65:29: error: ‘SplitMemoryLinks’ does not name a type
+   65 |         using StorageType = SplitMemoryLinks<LinksOptionsType, HeapResizableDirectMemory,
+      |                             ^~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:72:22: error: ‘StorageType’ was not declared in this scope
+   72 |         UsingStorage<StorageType>(action);
+      |                      ^~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp: At global scope:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:76:17: error: redefinition of ‘template<class TLinkAddress, class auto:42>  requires  integral<TLinkAddress> void UsingStorageWithExternalReferencesWithRecursionlessSizeBalancedTrees(auto:42&&)’
+   76 |     static void UsingStorageWithExternalReferencesWithRecursionlessSizeBalancedTrees(auto&& action)
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:39:17: note: ‘template<class TLinkAddress, class auto:33>  requires  integral<TLinkAddress> void UsingStorageWithExternalReferencesWithRecursionlessSizeBalancedTrees(auto:33&&)’ previously declared here
+   39 |     static void UsingStorageWithExternalReferencesWithRecursionlessSizeBalancedTrees(auto&& action)
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:92:17: error: redefinition of ‘template<class TLinkAddress, class auto:43>  requires  integral<TLinkAddress> void UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithRecursionlessSizeBalancedTrees(auto:43&&)’
+   92 |     static void UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithRecursionlessSizeBalancedTrees(
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/GenericLinksTests.cpp:52:17: note: ‘template<class TLinkAddress, class auto:34>  requires  integral<TLinkAddress> void UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithRecursionlessSizeBalancedTrees(auto:34&&)’ previously declared here
+   52 |     static void UsingDecoratedWithAutomaticUniquenessAndUsagesResolutionWithRecursionlessSizeBalancedTrees(
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:110:9: error: expected constructor, destructor, or type conversion before ‘(’ token
+  110 |     TEST(StaticSplitMemoryGenericLinksTests, CrudTestWithSizeBalancedTrees)
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:122:9: error: expected constructor, destructor, or type conversion before ‘(’ token
+  122 |     TEST(StaticSplitMemoryGenericLinksTests, RawNumbersCrudTestWithSizeBalancedTrees)
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:134:9: error: expected constructor, destructor, or type conversion before ‘(’ token
+  134 |     TEST(StaticSplitMemoryGenericLinksTests, MultipleRandomCreationsAndDeletionsTestWithSizeBalancedTrees)
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:146:9: error: expected constructor, destructor, or type conversion before ‘(’ token
+  146 |     TEST(StaticSplitMemoryGenericLinksTests, CrudTestWithRecursionlessSizeBalancedTrees)
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:158:9: error: expected constructor, destructor, or type conversion before ‘(’ token
+  158 |     TEST(StaticSplitMemoryGenericLinksTests, RawNumbersCrudTestWithRecursionlessSizeBalancedTrees)
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:170:9: error: expected constructor, destructor, or type conversion before ‘(’ token
+  170 |     TEST(StaticSplitMemoryGenericLinksTests, MultipleRandomCreationsAndDeletionsTestWithRecursionlessSizeBalancedTrees)
+      |         ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/Static/SplitMemoryGenericLinksTests.cpp:181:1: error: expected declaration before ‘}’ token
+  181 | } // namespace Platform::Data::Doublets::Tests::Static::SplitMemoryGenericLinksTests
+      | ^
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/AllTests.cpp:8:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/TemporaryDirectoryTests.cpp:7:9: error: expected constructor, destructor, or type conversion before ‘(’ token
+    7 |     TEST(TemporaryDirectoryTests, OwnsDistinctDirectoryAndCleansItUp)
+      |         ^
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Platform.Data.Doublets.h:4,
+                 from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/AllTests.cpp:9:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Doublet.h: In member function ‘Platform::Data::Doublets::Doublet<T>::operator std::string() const’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Doublet.h:20:35: error: ‘Platform::Converters’ has not been declared
+   20 |                 .append(Platform::Converters::To<std::string>(Source))
+      |                                   ^~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Doublet.h:20:61: error: expected primary-expression before ‘>’ token
+   20 |                 .append(Platform::Converters::To<std::string>(Source))
+      |                                                             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Doublet.h:22:35: error: ‘Platform::Converters’ has not been declared
+   22 |                 .append(Platform::Converters::To<std::string>(Target));
+      |                                   ^~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Doublet.h:22:61: error: expected primary-expression before ‘>’ token
+   22 |                 .append(Platform::Converters::To<std::string>(Target));
+      |                                                             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Doublet.h: In member function ‘std::size_t std::hash<Platform::Data::Doublets::Doublet<T> >::operator()(const Platform::Data::Doublets::Doublet<T>&) const’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Doublet.h:44:26: error: ‘Platform::Hashing’ has not been declared
+   44 |         return Platform::Hashing::Hash(self.Source, self.Target);
+      |                          ^~~~~~~
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Platform.Data.Doublets.h:6:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h: At global scope:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:12:26: error: ‘LinksConstants’ does not name a type
+   12 |         static constexpr LinksConstants<TLinkAddress> _constants{};
+      |                          ^~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:18:30: error: ‘_constants’ was not declared in this scope
+   18 |         TLinkAddress Index = _constants.Null;
+      |                              ^~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:21:31: error: ‘_constants’ was not declared in this scope
+   21 |         TLinkAddress Source = _constants.Null;
+      |                               ^~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:24:31: error: ‘_constants’ was not declared in this scope
+   24 |         TLinkAddress Target = _constants.Null;
+      |                               ^~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h: In constructor ‘Platform::Data::Doublets::Link<TLinkAddress>::Link(auto:44 ...)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:60:25: error: ‘_constants’ was not declared in this scope
+   60 |                 Index = _constants.Null;
+      |                         ^~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:67:26: error: ‘_constants’ was not declared in this scope
+   67 |                 Source = _constants.Null;
+      |                          ^~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:74:26: error: ‘_constants’ was not declared in this scope
+   74 |                 Target = _constants.Null;
+      |                          ^~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h: In constructor ‘Platform::Data::Doublets::Link<TLinkAddress>::Link(auto:45&&)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:91:64: error: ‘std::views’ has not been declared
+   91 |             for (std::size_t i = 0; auto&& item : range | std::views::take(3))
+      |                                                                ^~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h: In member function ‘bool Platform::Data::Doublets::Link<TLinkAddress>::IsNull() const’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:106:35: error: ‘_constants’ was not declared in this scope
+  106 |             constexpr auto null = _constants.Null;
+      |                                   ^~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h: In member function ‘auto&& Platform::Data::Doublets::Link<TLinkAddress>::operator[](std::size_t) const’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:113:39: error: ‘Ranges’ is not a namespace-name
+  113 |             using namespace Platform::Ranges; // TODO: EnsureExtensions
+      |                                       ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:116:18: error: ‘_constants’ was not declared in this scope
+  116 |             case _constants.IndexPart:
+      |                  ^~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h: In member function ‘auto&& Platform::Data::Doublets::Link<TLinkAddress>::operator[](std::size_t)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:130:39: error: ‘Ranges’ is not a namespace-name
+  130 |             using namespace Platform::Ranges; // TODO: EnsureExtensions
+      |                                       ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:133:18: error: ‘_constants’ was not declared in this scope
+  133 |             case _constants.IndexPart:
+      |                  ^~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h: In member function ‘Platform::Data::Doublets::Link<TLinkAddress>::operator std::string() const’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:172:29: error: ‘_constants’ was not declared in this scope
+  172 |             return Index == _constants.Null ? ToString(Source, Target) : ToString(Index, Source, Target);
+      |                             ^~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h: In static member function ‘static std::string Platform::Data::Doublets::Link<TLinkAddress>::ToString(TLinkAddress, TLinkAddress, TLinkAddress)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:185:35: error: ‘Platform::Converters’ has not been declared
+  185 |                 .append(Platform::Converters::To<std::string>(index))
+      |                                   ^~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:185:61: error: expected primary-expression before ‘>’ token
+  185 |                 .append(Platform::Converters::To<std::string>(index))
+      |                                                             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:187:35: error: ‘Platform::Converters’ has not been declared
+  187 |                 .append(Platform::Converters::To<std::string>(source))
+      |                                   ^~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:187:61: error: expected primary-expression before ‘>’ token
+  187 |                 .append(Platform::Converters::To<std::string>(source))
+      |                                                             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:189:35: error: ‘Platform::Converters’ has not been declared
+  189 |                 .append(Platform::Converters::To<std::string>(target))
+      |                                   ^~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:189:61: error: expected primary-expression before ‘>’ token
+  189 |                 .append(Platform::Converters::To<std::string>(target))
+      |                                                             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h: In static member function ‘static std::string Platform::Data::Doublets::Link<TLinkAddress>::ToString(TLinkAddress, TLinkAddress)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:197:35: error: ‘Platform::Converters’ has not been declared
+  197 |                 .append(Platform::Converters::To<std::string>(source))
+      |                                   ^~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:197:61: error: expected primary-expression before ‘>’ token
+  197 |                 .append(Platform::Converters::To<std::string>(source))
+      |                                                             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:199:35: error: ‘Platform::Converters’ has not been declared
+  199 |                 .append(Platform::Converters::To<std::string>(target))
+      |                                   ^~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:199:61: error: expected primary-expression before ‘>’ token
+  199 |                 .append(Platform::Converters::To<std::string>(target))
+      |                                                             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h: In member function ‘std::size_t std::hash<Platform::Data::Doublets::Link<TLinkAddress> >::operator()(const Self&) const’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Link.h:217:26: error: ‘Platform::Hashing’ has not been declared
+  217 |         return Platform::Hashing::Hash(self.Index, self.Source, self.Target);
+      |                          ^~~~~~~
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Platform.Data.Doublets.h:7:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/LinksOptions.h: At global scope:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/LinksOptions.h:5:15: error: ‘LinksConstants’ has not been declared
+    5 |               LinksConstants<TLinkAddress> VConstants = LinksConstants<TLinkAddress>{true},
+      |               ^~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/LinksOptions.h:5:29: error: expected ‘>’ before ‘<’ token
+    5 |               LinksConstants<TLinkAddress> VConstants = LinksConstants<TLinkAddress>{true},
+      |                             ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/LinksOptions.h:5:85: error: expected unqualified-id before ‘{’ token
+    5 |               LinksConstants<TLinkAddress> VConstants = LinksConstants<TLinkAddress>{true},
+      |                                                                                     ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/LinksOptions.h:5:91: error: expected unqualified-id before ‘,’ token
+    5 |               LinksConstants<TLinkAddress> VConstants = LinksConstants<TLinkAddress>{true},
+      |                                                                                           ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/LinksOptions.h:6:15: error: expected unqualified-id before ‘typename’
+    6 |               typename TLink = std::vector<TLinkAddress>,
+      |               ^~~~~~~~
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Platform.Data.Doublets.h:11:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/LinksHeader.h: In member function ‘auto std::hash<Platform::Data::Doublets::Memory::LinksHeader<TLinkAddress> >::operator()(const Self&) const’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/LinksHeader.h:33:25: error: ‘Platform::Hashing’ has not been declared
+   33 |         using Platform::Hashing::Hash;
+      |                         ^~~~~~~
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Platform.Data.Doublets.h:12:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksAvlBalancedTreeMethodsBase.h: At global scope:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksAvlBalancedTreeMethodsBase.h:5:28: error: ‘Platform::Collections’ has not been declared
+    5 |         : public Platform::Collections::Methods::Trees::SizedAndThreadedAVLBalancedTreeMethods<
+      |                            ^~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksAvlBalancedTreeMethodsBase.h:5:57: error: expected ‘{’ before ‘SizedAndThreadedAVLBalancedTreeMethods’
+    5 |         : public Platform::Collections::Methods::Trees::SizedAndThreadedAVLBalancedTreeMethods<
+      |                                                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Platform.Data.Doublets.h:13:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksRecursionlessSizeBalancedTreeMethodsBase.h:6:28: error: ‘Platform::Collections’ has not been declared
+    6 |         : public Platform::Collections::Methods::Trees::RecursionlessSizeBalancedTreeMethods<
+      |                            ^~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksRecursionlessSizeBalancedTreeMethodsBase.h:6:57: error: expected ‘{’ before ‘RecursionlessSizeBalancedTreeMethods’
+    6 |         : public Platform::Collections::Methods::Trees::RecursionlessSizeBalancedTreeMethods<
+      |                                                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Platform.Data.Doublets.h:14:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSizeBalancedTreeMethodsBase.h:5:28: error: ‘Platform::Collections’ has not been declared
+    5 |         : public Platform::Collections::Methods::Trees::SizeBalancedTreeMethods<Self,
+      |                            ^~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSizeBalancedTreeMethodsBase.h:5:57: error: expected ‘{’ before ‘SizeBalancedTreeMethods’
+    5 |         : public Platform::Collections::Methods::Trees::SizeBalancedTreeMethods<Self,
+      |                                                         ^~~~~~~~~~~~~~~~~~~~~~~
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Platform.Data.Doublets.h:15:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesAvlBalancedTreeMethods.h:163:68: error: ‘function’ in namespace ‘std’ does not name a template type
+  163 |         LinkAddressType EachUsage(LinkAddressType root, const std::function<LinkAddressType(const LinkType&)>& handler)
+      |                                                                    ^~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesAvlBalancedTreeMethods.h:1:1: note: ‘std::function’ is defined in header ‘<functional>’; did you forget to ‘#include <functional>’?
+  +++ |+#include <functional>
+    1 | namespace Platform::Data::Doublets::Memory::United::Generic
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesAvlBalancedTreeMethods.h:163:76: error: expected ‘,’ or ‘...’ before ‘<’ token
+  163 |         LinkAddressType EachUsage(LinkAddressType root, const std::function<LinkAddressType(const LinkType&)>& handler)
+      |                                                                            ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesAvlBalancedTreeMethods.h: In member function ‘typename Platform::Data::Doublets::Memory::United::Generic::LinksSourcesAvlBalancedTreeMethods<TLinksOptions>::base::LinkAddressType Platform::Data::Doublets::Memory::United::Generic::LinksSourcesAvlBalancedTreeMethods<TLinksOptions>::EachUsage(typename base::LinkAddressType, int)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesAvlBalancedTreeMethods.h:165:42: error: ‘handler’ was not declared in this scope
+  165 |             return base::EachUsage(root, handler);
+      |                                          ^~~~~~~
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Platform.Data.Doublets.h:16:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesRecursionlessSizeBalancedTreeMethods.h: At global scope:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesRecursionlessSizeBalancedTreeMethods.h:131:68: error: ‘function’ in namespace ‘std’ does not name a template type
+  131 |         LinkAddressType EachUsage(LinkAddressType root, const std::function<LinkAddressType(const LinkType&)>& handler)
+      |                                                                    ^~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesRecursionlessSizeBalancedTreeMethods.h:1:1: note: ‘std::function’ is defined in header ‘<functional>’; did you forget to ‘#include <functional>’?
+  +++ |+#include <functional>
+    1 | namespace Platform::Data::Doublets::Memory::United::Generic
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesRecursionlessSizeBalancedTreeMethods.h:131:76: error: expected ‘,’ or ‘...’ before ‘<’ token
+  131 |         LinkAddressType EachUsage(LinkAddressType root, const std::function<LinkAddressType(const LinkType&)>& handler)
+      |                                                                            ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesRecursionlessSizeBalancedTreeMethods.h: In member function ‘typename Platform::Data::Doublets::Memory::United::Generic::LinksSourcesRecursionlessSizeBalancedTreeMethods<TLinksOptions>::base::LinkAddressType Platform::Data::Doublets::Memory::United::Generic::LinksSourcesRecursionlessSizeBalancedTreeMethods<TLinksOptions>::EachUsage(typename base::LinkAddressType, int)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesRecursionlessSizeBalancedTreeMethods.h:133:42: error: ‘handler’ was not declared in this scope
+  133 |             return base::EachUsage(root, handler);
+      |                                          ^~~~~~~
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Platform.Data.Doublets.h:17:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesSizeBalancedTreeMethods.h: At global scope:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesSizeBalancedTreeMethods.h:128:68: error: ‘function’ in namespace ‘std’ does not name a template type
+  128 |         LinkAddressType EachUsage(LinkAddressType root, const std::function<LinkAddressType(const LinkType&)>& handler)
+      |                                                                    ^~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesSizeBalancedTreeMethods.h:1:1: note: ‘std::function’ is defined in header ‘<functional>’; did you forget to ‘#include <functional>’?
+  +++ |+#include <functional>
+    1 | namespace Platform::Data::Doublets::Memory::United::Generic
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesSizeBalancedTreeMethods.h:128:76: error: expected ‘,’ or ‘...’ before ‘<’ token
+  128 |         LinkAddressType EachUsage(LinkAddressType root, const std::function<LinkAddressType(const LinkType&)>& handler)
+      |                                                                            ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesSizeBalancedTreeMethods.h: In member function ‘typename Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<TLinksOptions>::base::LinkAddressType Platform::Data::Doublets::Memory::United::Generic::LinksSourcesSizeBalancedTreeMethods<TLinksOptions>::EachUsage(typename base::LinkAddressType, int)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksSourcesSizeBalancedTreeMethods.h:130:42: error: ‘handler’ was not declared in this scope
+  130 |             return base::EachUsage(root, handler);
+      |                                          ^~~~~~~
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Platform.Data.Doublets.h:18:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsAvlBalancedTreeMethods.h: At global scope:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsAvlBalancedTreeMethods.h:163:68: error: ‘function’ in namespace ‘std’ does not name a template type
+  163 |         LinkAddressType EachUsage(LinkAddressType root, const std::function<LinkAddressType(const LinkType&)>& handler)
+      |                                                                    ^~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsAvlBalancedTreeMethods.h:1:1: note: ‘std::function’ is defined in header ‘<functional>’; did you forget to ‘#include <functional>’?
+  +++ |+#include <functional>
+    1 | namespace Platform::Data::Doublets::Memory::United::Generic
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsAvlBalancedTreeMethods.h:163:76: error: expected ‘,’ or ‘...’ before ‘<’ token
+  163 |         LinkAddressType EachUsage(LinkAddressType root, const std::function<LinkAddressType(const LinkType&)>& handler)
+      |                                                                            ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsAvlBalancedTreeMethods.h: In member function ‘typename Platform::Data::Doublets::Memory::United::Generic::LinksTargetsAvlBalancedTreeMethods<TLinksOptions>::base::LinkAddressType Platform::Data::Doublets::Memory::United::Generic::LinksTargetsAvlBalancedTreeMethods<TLinksOptions>::EachUsage(typename base::LinkAddressType, int)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsAvlBalancedTreeMethods.h:165:42: error: ‘handler’ was not declared in this scope
+  165 |             return base::EachUsage(root, handler);
+      |                                          ^~~~~~~
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Platform.Data.Doublets.h:19:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsRecursionlessSizeBalancedTreeMethods.h: At global scope:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsRecursionlessSizeBalancedTreeMethods.h:131:68: error: ‘function’ in namespace ‘std’ does not name a template type
+  131 |         LinkAddressType EachUsage(LinkAddressType root, const std::function<LinkAddressType(const LinkType&)>& handler)
+      |                                                                    ^~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsRecursionlessSizeBalancedTreeMethods.h:1:1: note: ‘std::function’ is defined in header ‘<functional>’; did you forget to ‘#include <functional>’?
+  +++ |+#include <functional>
+    1 | namespace Platform::Data::Doublets::Memory::United::Generic
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsRecursionlessSizeBalancedTreeMethods.h:131:76: error: expected ‘,’ or ‘...’ before ‘<’ token
+  131 |         LinkAddressType EachUsage(LinkAddressType root, const std::function<LinkAddressType(const LinkType&)>& handler)
+      |                                                                            ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsRecursionlessSizeBalancedTreeMethods.h: In member function ‘typename Platform::Data::Doublets::Memory::United::Generic::LinksTargetsRecursionlessSizeBalancedTreeMethods<TLinksOptions>::base::LinkAddressType Platform::Data::Doublets::Memory::United::Generic::LinksTargetsRecursionlessSizeBalancedTreeMethods<TLinksOptions>::EachUsage(typename base::LinkAddressType, int)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsRecursionlessSizeBalancedTreeMethods.h:133:42: error: ‘handler’ was not declared in this scope
+  133 |             return base::EachUsage(root, handler);
+      |                                          ^~~~~~~
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Platform.Data.Doublets.h:20:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsSizeBalancedTreeMethods.h: At global scope:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsSizeBalancedTreeMethods.h:128:68: error: ‘function’ in namespace ‘std’ does not name a template type
+  128 |         LinkAddressType EachUsage(LinkAddressType root, const std::function<LinkAddressType(const LinkType&)>& handler)
+      |                                                                    ^~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsSizeBalancedTreeMethods.h:1:1: note: ‘std::function’ is defined in header ‘<functional>’; did you forget to ‘#include <functional>’?
+  +++ |+#include <functional>
+    1 | namespace Platform::Data::Doublets::Memory::United::Generic
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsSizeBalancedTreeMethods.h:128:76: error: expected ‘,’ or ‘...’ before ‘<’ token
+  128 |         LinkAddressType EachUsage(LinkAddressType root, const std::function<LinkAddressType(const LinkType&)>& handler)
+      |                                                                            ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsSizeBalancedTreeMethods.h: In member function ‘typename Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<TLinksOptions>::base::LinkAddressType Platform::Data::Doublets::Memory::United::Generic::LinksTargetsSizeBalancedTreeMethods<TLinksOptions>::EachUsage(typename base::LinkAddressType, int)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/LinksTargetsSizeBalancedTreeMethods.h:130:42: error: ‘handler’ was not declared in this scope
+  130 |             return base::EachUsage(root, handler);
+      |                                          ^~~~~~~
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Platform.Data.Doublets.h:21:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinks.h: At global scope:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinks.h:4:66: error: ‘LinksOptions’ in namespace ‘Platform::Data::Doublets’ does not name a template type
+    4 |     template <typename TLinksOptions = Platform::Data::Doublets::LinksOptions<>,
+      |                                                                  ^~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinks.h:4:78: error: expected ‘>’ before ‘<’ token
+    4 |     template <typename TLinksOptions = Platform::Data::Doublets::LinksOptions<>,
+      |                                                                              ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinks.h:10:39: error: expected template-name before ‘<’ token
+   10 |         : public UnitedMemoryLinksBase<
+      |                                       ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinks.h:10:39: error: expected ‘{’ before ‘<’ token
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Platform.Data.Doublets.h:22:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinksBase.h:6:43: error: ‘Interfaces’ has not been declared
+    6 |     struct UnitedMemoryLinksBase : public Interfaces::Polymorph<TSelf, TBase...>
+      |                                           ^~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinksBase.h:6:55: error: expected ‘{’ before ‘Polymorph’
+    6 |     struct UnitedMemoryLinksBase : public Interfaces::Polymorph<TSelf, TBase...>
+      |                                                       ^~~~~~~~~
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Platform.Data.Doublets.h:23:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/UnusedLinksListMethods.h:6:28: error: ‘Platform::Collections’ has not been declared
+    6 |         : public Platform::Collections::Methods::Lists::AbsoluteCircularDoublyLinkedListMethods<
+      |                            ^~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/Generic/UnusedLinksListMethods.h:6:57: error: expected ‘{’ before ‘AbsoluteCircularDoublyLinkedListMethods’
+    6 |         : public Platform::Collections::Methods::Lists::AbsoluteCircularDoublyLinkedListMethods<
+      |                                                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Platform.Data.Doublets.h:24:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/RawLink.h: In member function ‘auto std::hash<Platform::Data::Doublets::Memory::United::RawLink<TLinkAddress> >::operator()(const Self&) const’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/United/RawLink.h:33:25: error: ‘Platform::Hashing’ has not been declared
+   33 |         using Platform::Hashing::Hash;
+      |                         ^~~~~~~
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Platform.Data.Doublets.h:44:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Decorators/Decorators.h: At global scope:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Decorators/Decorators.h:2:43: error: ‘Decorators’ is not a namespace-name
+    2 | using namespace Platform::Data::Doublets::Decorators;
+      |                                           ^~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Decorators/Decorators.h:7:56: error: ‘LinksCascadeUniquenessAndUsagesResolver’ was not declared in this scope
+    7 |         Platform::Interfaces::Decorated<TLinksStorage, LinksCascadeUniquenessAndUsagesResolver,
+      |                                                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Decorators/Decorators.h:8:41: error: ‘NonNullContentsLinkDeletionResolver’ was not declared in this scope
+    8 |                                         NonNullContentsLinkDeletionResolver, LinksCascadeUsagesResolver>;
+      |                                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Decorators/Decorators.h:8:78: error: ‘LinksCascadeUsagesResolver’ was not declared in this scope
+    8 |                                         NonNullContentsLinkDeletionResolver, LinksCascadeUsagesResolver>;
+      |                                                                              ^~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Decorators/Decorators.h:8:104: error: template argument 2 is invalid
+    8 |                                         NonNullContentsLinkDeletionResolver, LinksCascadeUsagesResolver>;
+      |                                                                                                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Decorators/Decorators.h:8:104: error: template argument 3 is invalid
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Decorators/Decorators.h:8:104: error: template argument 4 is invalid
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Decorators/Decorators.h:7:31: error: ‘<expression error>’ in namespace ‘Platform::Interfaces’ does not name a type
+    7 |         Platform::Interfaces::Decorated<TLinksStorage, LinksCascadeUniquenessAndUsagesResolver,
+      |                               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    8 |                                         NonNullContentsLinkDeletionResolver, LinksCascadeUsagesResolver>;
+      |                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Platform.Data.Doublets.h:45:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Decorators/LinksCascadeUniquenessAndUsagesResolver.h:4:84: error: expected template-name before ‘<’ token
+    4 |     struct LinksCascadeUniquenessAndUsagesResolver : public LinksUniquenessResolver<TFacade, TDecorated>
+      |                                                                                    ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Decorators/LinksCascadeUniquenessAndUsagesResolver.h:4:84: error: expected ‘{’ before ‘<’ token
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Platform.Data.Doublets.h:50:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.h:78:9: error: ‘RawLinkDataPart’ does not name a type
+   78 |         RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link)
+      |         ^~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksRecursionlessSizeBalancedTreeMethodsBase.h:85:9: error: ‘RawLinkIndexPart’ does not name a type
+   85 |         RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType link)
+      |         ^~~~~~~~~~~~~~~~
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Platform.Data.Doublets.h:51:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.h:64:15: error: ‘RawLinkDataPart’ does not name a type
+   64 |         const RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link) const
+      |               ^~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.h:71:9: error: ‘RawLinkDataPart’ does not name a type
+   71 |         RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link)
+      |         ^~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.h:78:15: error: ‘RawLinkIndexPart’ does not name a type
+   78 |         const RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType link) const
+      |               ^~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/ExternalLinksSizeBalancedTreeMethodsBase.h:85:9: error: ‘RawLinkIndexPart’ does not name a type
+   85 |         RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType link)
+      |         ^~~~~~~~~~~~~~~~
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Platform.Data.Doublets.h:56:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksRecursionlessSizeBalancedTreeMethodsBase.h:61:9: error: ‘RawLinkDataPart’ does not name a type
+   61 |         RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link)
+      |         ^~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksRecursionlessSizeBalancedTreeMethodsBase.h:68:9: error: ‘RawLinkIndexPart’ does not name a type
+   68 |         RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType link)
+      |         ^~~~~~~~~~~~~~~~
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Platform.Data.Doublets.h:57:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSizeBalancedTreeMethodsBase.h:60:15: error: ‘RawLinkDataPart’ does not name a type
+   60 |         const RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link) const
+      |               ^~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSizeBalancedTreeMethodsBase.h:67:9: error: ‘RawLinkDataPart’ does not name a type
+   67 |         RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link)
+      |         ^~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSizeBalancedTreeMethodsBase.h:74:15: error: ‘RawLinkIndexPart’ does not name a type
+   74 |         const RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType link) const
+      |               ^~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSizeBalancedTreeMethodsBase.h:81:9: error: ‘RawLinkIndexPart’ does not name a type
+   81 |         RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType link)
+      |         ^~~~~~~~~~~~~~~~
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Platform.Data.Doublets.h:58:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSourcesLinkedListMethods.h:34:15: error: ‘RawLinkDataPart’ does not name a type
+   34 |         const RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link) const
+      |               ^~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSourcesLinkedListMethods.h:41:9: error: ‘RawLinkDataPart’ does not name a type
+   41 |         RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link)
+      |         ^~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSourcesLinkedListMethods.h:48:15: error: ‘RawLinkIndexPart’ does not name a type
+   48 |         const RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType link) const
+      |               ^~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/InternalLinksSourcesLinkedListMethods.h:55:9: error: ‘RawLinkIndexPart’ does not name a type
+   55 |         RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType link)
+      |         ^~~~~~~~~~~~~~~~
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Platform.Data.Doublets.h:63:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinks.h:9:50: error: ‘UnusedLinksListMethods’ does not name a type; did you mean ‘ILinksListMethods’?
+    9 |               typename TUnusedLinksListMethods = UnusedLinksListMethods<TLinksOptions>, typename... TBase>
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+      |                                                  ILinksListMethods
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinks.h:9:72: error: expected ‘>’ before ‘<’ token
+    9 |               typename TUnusedLinksListMethods = UnusedLinksListMethods<TLinksOptions>, typename... TBase>
+      |                                                                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinks.h:11:38: error: expected template-name before ‘<’ token
+   11 |         : public SplitMemoryLinksBase<SplitMemoryLinks<TLinksOptions, TMemory, TInternalSourcesTreeMethods,
+      |                                      ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinks.h:11:38: error: expected ‘{’ before ‘<’ token
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Platform.Data.Doublets.h:64:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.h:34:15: error: ‘RawLinkDataPart’ does not name a type
+   34 |         const RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType linkIndex) const
+      |               ^~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.h:40:9: error: ‘RawLinkDataPart’ does not name a type
+   40 |         RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType linkIndex)
+      |         ^~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.h:46:15: error: ‘RawLinkIndexPart’ does not name a type
+   46 |         const RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType linkIndex) const
+      |               ^~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.h:52:9: error: ‘RawLinkIndexPart’ does not name a type
+   52 |         RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType linkIndex)
+      |         ^~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.h:75:71: error: ‘RawLinkDataPart’ was not declared in this scope
+   75 |         static constexpr std::size_t LinkDataPartSizeInBytes = sizeof(RawLinkDataPart<LinkAddressType>);
+      |                                                                       ^~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.h:75:102: error: expected primary-expression before ‘>’ token
+   75 |         static constexpr std::size_t LinkDataPartSizeInBytes = sizeof(RawLinkDataPart<LinkAddressType>);
+      |                                                                                                      ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.h:75:103: error: expected primary-expression before ‘)’ token
+   75 |         static constexpr std::size_t LinkDataPartSizeInBytes = sizeof(RawLinkDataPart<LinkAddressType>);
+      |                                                                                                       ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.h:77:72: error: ‘RawLinkIndexPart’ was not declared in this scope
+   77 |         static constexpr std::size_t LinkIndexPartSizeInBytes = sizeof(RawLinkIndexPart<LinkAddressType>);
+      |                                                                        ^~~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.h:77:104: error: expected primary-expression before ‘>’ token
+   77 |         static constexpr std::size_t LinkIndexPartSizeInBytes = sizeof(RawLinkIndexPart<LinkAddressType>);
+      |                                                                                                        ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.h:77:105: error: expected primary-expression before ‘)’ token
+   77 |         static constexpr std::size_t LinkIndexPartSizeInBytes = sizeof(RawLinkIndexPart<LinkAddressType>);
+      |                                                                                                         ^
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Platform.Data.Doublets.h:65:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/UnusedLinksListMethods.h:47:15: error: ‘RawLinkDataPart’ does not name a type
+   47 |         const RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link) const
+      |               ^~~~~~~~~~~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/UnusedLinksListMethods.h:54:9: error: ‘RawLinkDataPart’ does not name a type
+   54 |         RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType link)
+      |         ^~~~~~~~~~~~~~~
+gmake[2]: *** [CMakeFiles/Platform.Data.Doublets.Tests.dir/build.make:76: CMakeFiles/Platform.Data.Doublets.Tests.dir/Platform.Data.Doublets.Tests/AllTests.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:85: CMakeFiles/Platform.Data.Doublets.Tests.dir/all] Error 2
+gmake: *** [Makefile:101: all] Error 2

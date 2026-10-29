@@ -1,19 +1,12 @@
 namespace Platform::Data::Doublets::Memory::Split::Generic
 {
-    template<
-        typename TSelf,
-        typename TLinksOptions,
-        typename TMemory,
-        typename TInternalSourcesTreeMethods,
-        typename TInternalLinksSourcesLinkedListMethods,
-        typename TInternalTargetsTreeMethods,
-        typename TExternalSourcesTreeMethods,
-        typename TExternalTargetsTreeMethods,
-        typename TUnusedLinksListMethods,
-        typename... TBase>
+    template <typename TSelf, typename TLinksOptions, typename TMemory, typename TInternalSourcesTreeMethods,
+              typename TInternalLinksSourcesLinkedListMethods, typename TInternalTargetsTreeMethods,
+              typename TExternalSourcesTreeMethods, typename TExternalTargetsTreeMethods,
+              typename TUnusedLinksListMethods, typename... TBase>
     struct SplitMemoryLinksBase : public Interfaces::Polymorph<TSelf, TBase...>
     {
-    public:
+      public:
         using LinksOptionsType = TLinksOptions;
         using LinkAddressType = typename LinksOptionsType::LinkAddressType;
         using LinkType = typename LinksOptionsType::LinkType;
@@ -21,44 +14,48 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
         using ReadHandlerType = typename LinksOptionsType::ReadHandlerType;
         static constexpr LinksConstants<LinkAddressType> Constants = LinksOptionsType::Constants;
         static constexpr bool UseLinkedList = false;
-    public:
+
+      public:
         TMemory _dataMemory;
         TMemory _indexMemory;
         std::uint64_t _dataMemoryReservationStepInBytes;
         std::uint64_t _indexMemoryReservationStepInBytes;
-        TInternalSourcesTreeMethods* InternalSourcesTreeMethods;
-        TInternalLinksSourcesLinkedListMethods* InternalSourcesListMethods;
-        TInternalTargetsTreeMethods* InternalTargetsTreeMethods;
-        TExternalSourcesTreeMethods* ExternalSourcesTreeMethods;
-        TExternalTargetsTreeMethods* ExternalTargetsTreeMethods;
-        TUnusedLinksListMethods* UnusedLinksListMethods;
+        std::unique_ptr<TInternalSourcesTreeMethods> InternalSourcesTreeMethods;
+        std::unique_ptr<TInternalLinksSourcesLinkedListMethods> InternalSourcesListMethods;
+        std::unique_ptr<TInternalTargetsTreeMethods> InternalTargetsTreeMethods;
+        std::unique_ptr<TExternalSourcesTreeMethods> ExternalSourcesTreeMethods;
+        std::unique_ptr<TExternalTargetsTreeMethods> ExternalTargetsTreeMethods;
+        std::unique_ptr<TUnusedLinksListMethods> UnusedLinksListMethods;
         std::byte* _header;
         std::byte* _linksDataParts;
         std::byte* _linksIndexParts;
 
-    public:
+      public:
         const RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType linkIndex) const
         {
-            return *(reinterpret_cast<RawLinkDataPart<LinkAddressType>*>(_linksDataParts + (LinkDataPartSizeInBytes * linkIndex)));
+            return *(reinterpret_cast<RawLinkDataPart<LinkAddressType>*>(_linksDataParts +
+                                                                         (LinkDataPartSizeInBytes * linkIndex)));
         }
 
         RawLinkDataPart<LinkAddressType>& GetLinkDataPartReference(LinkAddressType linkIndex)
         {
-            return *(reinterpret_cast<RawLinkDataPart<LinkAddressType>*>(_linksDataParts + (LinkDataPartSizeInBytes * linkIndex)));
+            return *(reinterpret_cast<RawLinkDataPart<LinkAddressType>*>(_linksDataParts +
+                                                                         (LinkDataPartSizeInBytes * linkIndex)));
         }
 
         const RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType linkIndex) const
         {
-            return *(reinterpret_cast<RawLinkIndexPart<LinkAddressType>*>(_linksIndexParts + (LinkIndexPartSizeInBytes * linkIndex)));
+            return *(reinterpret_cast<RawLinkIndexPart<LinkAddressType>*>(_linksIndexParts +
+                                                                          (LinkIndexPartSizeInBytes * linkIndex)));
         }
 
         RawLinkIndexPart<LinkAddressType>& GetLinkIndexPartReference(LinkAddressType linkIndex)
         {
-            return *(reinterpret_cast<RawLinkIndexPart<LinkAddressType>*>(_linksIndexParts + (LinkIndexPartSizeInBytes * linkIndex)));
+            return *(reinterpret_cast<RawLinkIndexPart<LinkAddressType>*>(_linksIndexParts +
+                                                                          (LinkIndexPartSizeInBytes * linkIndex)));
         }
 
-    public:
-
+      public:
         const LinksHeader<LinkAddressType>& GetHeaderReference() const
         {
             return *reinterpret_cast<LinksHeader<LinkAddressType>*>(_header);
@@ -74,7 +71,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             return this->GetHeaderReference().AllocatedLinks - this->GetHeaderReference().FreeLinks;
         }
 
-    public:
+      public:
         static constexpr std::size_t LinkDataPartSizeInBytes = sizeof(RawLinkDataPart<LinkAddressType>);
 
         static constexpr std::size_t LinkIndexPartSizeInBytes = sizeof(RawLinkIndexPart<LinkAddressType>);
@@ -83,11 +80,15 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
 
         static constexpr std::size_t DefaultLinksSizeStep = 1 * 1024 * 1024;
 
-        SplitMemoryLinksBase(TMemory&& dataMemory, TMemory&& indexMemory) : SplitMemoryLinksBase(std::move(dataMemory), std::move(indexMemory), DefaultLinksSizeStep)
+        SplitMemoryLinksBase(TMemory&& dataMemory, TMemory&& indexMemory)
+            : SplitMemoryLinksBase(std::move(dataMemory), std::move(indexMemory), DefaultLinksSizeStep)
         {
         }
 
-        SplitMemoryLinksBase(TMemory&& dataMemory, TMemory&& indexMemory, std::uint64_t memoryReservationStep) : _dataMemory{ std::move(dataMemory) }, _indexMemory{ std::move(indexMemory) }, _dataMemoryReservationStepInBytes{ memoryReservationStep * LinkDataPartSizeInBytes }, _indexMemoryReservationStepInBytes{ memoryReservationStep * LinkIndexPartSizeInBytes }
+        SplitMemoryLinksBase(TMemory&& dataMemory, TMemory&& indexMemory, std::uint64_t memoryReservationStep)
+            : _dataMemory{std::move(dataMemory)}, _indexMemory{std::move(indexMemory)},
+              _dataMemoryReservationStepInBytes{memoryReservationStep * LinkDataPartSizeInBytes},
+              _indexMemoryReservationStepInBytes{memoryReservationStep * LinkIndexPartSizeInBytes}
         {
 
             Init(_dataMemory, _indexMemory);
@@ -95,13 +96,13 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
 
         void Init(TMemory& dataMemory, TMemory& indexMemory)
         {
-            if(indexMemory.ReservedCapacity() < LinkHeaderSizeInBytes)
+            if (indexMemory.ReservedCapacity() < LinkHeaderSizeInBytes)
             {
                 indexMemory.ReservedCapacity(LinkHeaderSizeInBytes);
             }
             SetPointers(dataMemory, indexMemory);
-            auto allocatedLinks { this->GetHeaderReference().AllocatedLinks };
-            auto minimumDataReservedCapacity = allocatedLinks * LinkDataPartSizeInBytes;
+            auto allocatedLinks{this->GetHeaderReference().AllocatedLinks};
+            auto minimumDataReservedCapacity = (allocatedLinks + 1) * LinkDataPartSizeInBytes;
             if (minimumDataReservedCapacity < dataMemory.UsedCapacity())
             {
                 minimumDataReservedCapacity = dataMemory.UsedCapacity();
@@ -110,7 +111,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             {
                 minimumDataReservedCapacity = _dataMemoryReservationStepInBytes;
             }
-            auto minimumIndexReservedCapacity = allocatedLinks * LinkDataPartSizeInBytes;
+            auto minimumIndexReservedCapacity = allocatedLinks * LinkIndexPartSizeInBytes + LinkHeaderSizeInBytes;
             if (minimumIndexReservedCapacity < indexMemory.UsedCapacity())
             {
                 minimumIndexReservedCapacity = indexMemory.UsedCapacity();
@@ -122,31 +123,40 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             // Check for alignment
             if (minimumDataReservedCapacity % _dataMemoryReservationStepInBytes > 0)
             {
-                minimumDataReservedCapacity = ((minimumDataReservedCapacity / _dataMemoryReservationStepInBytes) * _dataMemoryReservationStepInBytes) + _dataMemoryReservationStepInBytes;
+                minimumDataReservedCapacity = ((minimumDataReservedCapacity / _dataMemoryReservationStepInBytes) *
+                                               _dataMemoryReservationStepInBytes) +
+                                              _dataMemoryReservationStepInBytes;
             }
             if (minimumIndexReservedCapacity % _indexMemoryReservationStepInBytes > 0)
             {
-                minimumIndexReservedCapacity = ((minimumIndexReservedCapacity / _indexMemoryReservationStepInBytes) * _indexMemoryReservationStepInBytes) + _indexMemoryReservationStepInBytes;
+                minimumIndexReservedCapacity = ((minimumIndexReservedCapacity / _indexMemoryReservationStepInBytes) *
+                                                _indexMemoryReservationStepInBytes) +
+                                               _indexMemoryReservationStepInBytes;
             }
-            if (dataMemory.ReservedCapacity() != minimumDataReservedCapacity)
+            if (dataMemory.ReservedCapacity() < minimumDataReservedCapacity)
             {
                 dataMemory.ReservedCapacity(minimumDataReservedCapacity);
             }
-            if (indexMemory.ReservedCapacity() != minimumIndexReservedCapacity)
+            if (indexMemory.ReservedCapacity() < minimumIndexReservedCapacity)
             {
                 indexMemory.ReservedCapacity(minimumIndexReservedCapacity);
             }
             SetPointers(dataMemory, indexMemory);
-            this->GetHeaderReference() = this->GetHeaderReference();
             // Ensure correctness _memory.UsedCapacity over _header->AllocatedLinks
-            dataMemory.UsedCapacity((this->GetHeaderReference().AllocatedLinks * LinkDataPartSizeInBytes) + LinkDataPartSizeInBytes); // First link is read only zero link.
-            indexMemory.UsedCapacity((this->GetHeaderReference().AllocatedLinks * LinkIndexPartSizeInBytes) + LinkHeaderSizeInBytes);
+            dataMemory.UsedCapacity((this->GetHeaderReference().AllocatedLinks * LinkDataPartSizeInBytes) +
+                                    LinkDataPartSizeInBytes); // First link is read only zero link.
+            indexMemory.UsedCapacity((this->GetHeaderReference().AllocatedLinks * LinkIndexPartSizeInBytes) +
+                                     LinkHeaderSizeInBytes);
             // Ensure correctness _memory.ReservedLinks over _header->ReservedCapacity
-            this->GetHeaderReference().ReservedLinks = (dataMemory.ReservedCapacity() - LinkDataPartSizeInBytes) / LinkDataPartSizeInBytes;
+            this->GetHeaderReference().ReservedLinks =
+                std::min((dataMemory.ReservedCapacity() - LinkDataPartSizeInBytes) / LinkDataPartSizeInBytes,
+                         (indexMemory.ReservedCapacity() - LinkHeaderSizeInBytes) / LinkIndexPartSizeInBytes);
         }
 
         LinkAddressType Count(const LinkType& restriction) const
         {
+            // Query length selects the constrained parts: total, address, one value, or a pair.
+            // The total excludes reusable records recorded in the free-list header.
             if (std::ranges::size(restriction) == 0)
             {
                 return this->Total();
@@ -163,6 +173,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             }
             if (std::ranges::size(restriction) == 2)
             {
+                // A value-only query can use either the internal or external usage indexes.
                 auto value = restriction[1];
                 if (index == any)
                 {
@@ -173,17 +184,20 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     auto externalReferencesRange = Constants.ExternalReferencesRange;
                     if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(value))
                     {
-                        return ExternalSourcesTreeMethods->CountUsages(value) + ExternalTargetsTreeMethods->CountUsages(value);
+                        return ExternalSourcesTreeMethods->CountUsages(value) +
+                               ExternalTargetsTreeMethods->CountUsages(value);
                     }
                     else
                     {
                         if (UseLinkedList)
                         {
-                            return InternalSourcesListMethods->CountUsages(value) + InternalTargetsTreeMethods->CountUsages(value);
+                            return InternalSourcesListMethods->CountUsages(value) +
+                                   InternalTargetsTreeMethods->CountUsages(value);
                         }
                         else
                         {
-                            return InternalSourcesTreeMethods->CountUsages(value) + InternalTargetsTreeMethods->CountUsages(value);
+                            return InternalSourcesTreeMethods->CountUsages(value) +
+                                   InternalTargetsTreeMethods->CountUsages(value);
                         }
                     }
                 }
@@ -207,6 +221,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             }
             if (std::ranges::size(restriction) == 3)
             {
+                // Source and target wildcards determine which usage tree can answer the query.
+                // Concrete source/target values require an exact pair search.
                 auto externalReferencesRange = Constants.ExternalReferencesRange;
                 auto source = GetSource(*this, restriction);
                 auto target = GetTarget(*this, restriction);
@@ -216,7 +232,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     {
                         return this->Total();
                     }
-                    else if ((source == any))
+                    else if (source == any)
                     {
                         if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(target))
                         {
@@ -227,7 +243,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                             return InternalTargetsTreeMethods->CountUsages(target);
                         }
                     }
-                    else if ((target == any))
+                    else if (target == any)
                     {
                         if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(source))
                         {
@@ -245,7 +261,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                             }
                         }
                     }
-                    else //if(source != Any && target != Any)
+                    else // if(source != Any && target != Any)
                     {
                         // Эквивалент Exists(source, target) => Count(Any, source, target) > 0
                         LinkAddressType linkAddress;
@@ -272,7 +288,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                             }
                             else
                             {
-                                if (UseLinkedList || InternalSourcesTreeMethods->CountUsages(source) > InternalTargetsTreeMethods->CountUsages(target))
+                                if (UseLinkedList || InternalSourcesTreeMethods->CountUsages(source) >
+                                                         InternalTargetsTreeMethods->CountUsages(target))
                                 {
                                     linkAddress = InternalTargetsTreeMethods->Search(source, target);
                                 }
@@ -284,7 +301,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                         }
                         else
                         {
-                            if (UseLinkedList || InternalSourcesTreeMethods->CountUsages(source) > InternalTargetsTreeMethods->CountUsages(target))
+                            if (UseLinkedList || InternalSourcesTreeMethods->CountUsages(source) >
+                                                     InternalTargetsTreeMethods->CountUsages(target))
                             {
                                 linkAddress = InternalTargetsTreeMethods->Search(source, target);
                             }
@@ -316,11 +334,11 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                         return LinkAddressType{0};
                     }
                     auto value = LinkAddressType{};
-                    if ((source == any))
+                    if (source == any)
                     {
                         value = target;
                     }
-                    if ((target == any))
+                    if (target == any)
                     {
                         value = source;
                     }
@@ -333,7 +351,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             }
             throw Platform::Exceptions::NotSupportedException();
         }
-//
+        //
         void SetPointers(TMemory& dataMemory, TMemory& indexMemory)
         {
             _linksDataParts = static_cast<std::byte*>(dataMemory.Pointer());
@@ -341,17 +359,21 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             _header = _linksIndexParts;
             if (UseLinkedList)
             {
-                //                InternalSourcesTreeMethods = new TInternalLinksSourcesLinkedTreeMethods(_linksDataParts, _linksIndexParts);
+                InternalSourcesListMethods =
+                    std::make_unique<TInternalLinksSourcesLinkedListMethods>(_linksDataParts, _linksIndexParts);
             }
             else
             {
-                InternalSourcesTreeMethods = new TInternalSourcesTreeMethods(_linksDataParts, _linksIndexParts, _header);
+                InternalSourcesTreeMethods =
+                    std::make_unique<TInternalSourcesTreeMethods>(_linksDataParts, _linksIndexParts, _header);
             }
-            InternalTargetsTreeMethods = new TInternalTargetsTreeMethods(_linksDataParts, _linksIndexParts, _header);
-            ExternalTargetsTreeMethods = new TExternalTargetsTreeMethods(_linksDataParts, _linksIndexParts, _header);
-            ExternalSourcesTreeMethods = new TExternalSourcesTreeMethods(_linksDataParts, _linksIndexParts, _header);
-            ExternalTargetsTreeMethods = new TExternalTargetsTreeMethods(_linksDataParts, _linksIndexParts, _header);
-            UnusedLinksListMethods = new TUnusedLinksListMethods(_linksDataParts, _header);
+            InternalTargetsTreeMethods =
+                std::make_unique<TInternalTargetsTreeMethods>(_linksDataParts, _linksIndexParts, _header);
+            ExternalSourcesTreeMethods =
+                std::make_unique<TExternalSourcesTreeMethods>(_linksDataParts, _linksIndexParts, _header);
+            ExternalTargetsTreeMethods =
+                std::make_unique<TExternalTargetsTreeMethods>(_linksDataParts, _linksIndexParts, _header);
+            UnusedLinksListMethods = std::make_unique<TUnusedLinksListMethods>(_linksDataParts, _header);
         }
 
         LinkAddressType Count(const LinkType& restriction)
@@ -377,26 +399,29 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             if (length == 2)
             {
                 auto value = restriction[1];
-                if ((index == any))
+                if (index == any)
                 {
-                    if ((value == any))
+                    if (value == any)
                     {
                         return Total(); // Any - как отсутствие ограничения
                     }
                     auto externalReferencesRange = constants.ExternalReferencesRange;
                     if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(value))
                     {
-                        return (ExternalSourcesTreeMethods->CountUsages(value) + ExternalTargetsTreeMethods->CountUsages(value));
+                        return (ExternalSourcesTreeMethods->CountUsages(value) +
+                                ExternalTargetsTreeMethods->CountUsages(value));
                     }
                     else
                     {
                         if (UseLinkedList)
                         {
-                            return (InternalSourcesListMethods->CountUsages(value) + InternalTargetsTreeMethods->CountUsages(value));
+                            return (InternalSourcesListMethods->CountUsages(value) +
+                                    InternalTargetsTreeMethods->CountUsages(value));
                         }
                         else
                         {
-                            return (InternalSourcesTreeMethods->CountUsages(value) + InternalTargetsTreeMethods->CountUsages(value));
+                            return (InternalSourcesTreeMethods->CountUsages(value) +
+                                    InternalTargetsTreeMethods->CountUsages(value));
                         }
                     }
                 }
@@ -406,7 +431,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     {
                         return LinkAddressType{0};
                     }
-                    if ((value == any))
+                    if (value == any)
                     {
                         return LinkAddressType{1};
                     }
@@ -423,13 +448,13 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 auto externalReferencesRange = constants.ExternalReferencesRange;
                 auto source = GetSource(*this, restriction);
                 auto target = GetTarget(*this, restriction);
-                if ((index == any))
+                if (index == any)
                 {
                     if ((source == any) && (target == any))
                     {
                         return Total();
                     }
-                    else if ((source == any))
+                    else if (source == any)
                     {
                         if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(target))
                         {
@@ -440,7 +465,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                             return InternalTargetsTreeMethods->CountUsages(target);
                         }
                     }
-                    else if ((target == any))
+                    else if (target == any)
                     {
                         if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(source))
                         {
@@ -458,7 +483,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                             }
                         }
                     }
-                    else //if(source != Any && target != Any)
+                    else // if(source != Any && target != Any)
                     {
                         // Эквивалент Exists(source, target) => Count(Any, source, target) > 0
                         LinkAddressType linkAddress;
@@ -485,7 +510,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                             }
                             else
                             {
-                                if (UseLinkedList || (InternalSourcesTreeMethods->CountUsages(source) > InternalTargetsTreeMethods->CountUsages(target)))
+                                if (UseLinkedList || (InternalSourcesTreeMethods->CountUsages(source) >
+                                                      InternalTargetsTreeMethods->CountUsages(target)))
                                 {
                                     linkAddress = InternalTargetsTreeMethods->Search(source, target);
                                 }
@@ -497,7 +523,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                         }
                         else
                         {
-                            if (UseLinkedList || (InternalSourcesTreeMethods->CountUsages(source) > InternalTargetsTreeMethods->CountUsages(target)))
+                            if (UseLinkedList || (InternalSourcesTreeMethods->CountUsages(source) >
+                                                  InternalTargetsTreeMethods->CountUsages(target)))
                             {
                                 linkAddress = InternalTargetsTreeMethods->Search(source, target);
                             }
@@ -529,11 +556,11 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                         return LinkAddressType{0};
                     }
                     auto value = LinkAddressType{0};
-                    if ((source == any))
+                    if (source == any)
                     {
                         value = target;
                     }
-                    if ((target == any))
+                    if (target == any)
                     {
                         value = source;
                     }
@@ -547,16 +574,19 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             throw Platform::Exceptions::NotSupportedException();
         }
 
-
-         LinkAddressType Each(const LinkType& restriction, const ReadHandlerType& handler) const
+        LinkAddressType Each(const LinkType& restriction, const ReadHandlerType& handler) const
         {
+            // Enumerate only live records and propagate the callback's request to stop.
+            // Query shape determines whether to scan addresses or traverse a usage index.
             using namespace Platform::Exceptions;
             auto constants = Constants;
             auto $break = constants.Break;
             auto length = std::ranges::size(restriction);
             if (length == 0)
             {
-                for (auto linkAddress = LinkAddressType{1}; (linkAddress <= this->GetHeaderReference().AllocatedLinks); ++linkAddress)
+                // An unrestricted scan skips the zero record and entries on the free list.
+                for (auto linkAddress = LinkAddressType{1}; (linkAddress <= this->GetHeaderReference().AllocatedLinks);
+                     ++linkAddress)
                 {
                     if (Exists(linkAddress) && (handler(GetLinkStruct(linkAddress)) == $break))
                     {
@@ -570,7 +600,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             auto index = GetIndex(*this, restriction);
             if (length == 1)
             {
-                if ((index == any))
+                if (index == any)
                 {
                     return Each(LinkType{}, handler);
                 }
@@ -582,6 +612,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             }
             if (length == 2)
             {
+                // The value may be internal or external, which selects the matching index family.
                 auto value = restriction[1];
                 if (index == any)
                 {
@@ -601,13 +632,12 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     {
                         return $continue;
                     }
-                    if ((value == any))
+                    if (value == any)
                     {
                         return handler(GetLinkStruct(index));
                     }
                     auto& storedLinkValue = GetLinkDataPartReference(index);
-                    if ((storedLinkValue.Source == value) ||
-                        (storedLinkValue.Target == value))
+                    if ((storedLinkValue.Source == value) || (storedLinkValue.Target == value))
                     {
                         return handler(GetLinkStruct(index));
                     }
@@ -616,16 +646,18 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             }
             if (length == 3)
             {
+                // Wildcards choose source/target traversal; concrete values use the pair lookup.
+                // A specified address is checked directly instead of enumerating unrelated links.
                 auto externalReferencesRange = constants.ExternalReferencesRange;
                 auto source = GetSource(*this, restriction);
                 auto target = GetTarget(*this, restriction);
-                if ((index == any))
+                if (index == any)
                 {
                     if ((source == any) && (target == any))
                     {
                         return Each(LinkType{}, handler);
                     }
-                    else if ((source == any))
+                    else if (source == any)
                     {
                         if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(target))
                         {
@@ -636,7 +668,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                             return InternalTargetsTreeMethods->EachUsage(target, handler);
                         }
                     }
-                    else if ((target == any))
+                    else if (target == any)
                     {
                         if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(source))
                         {
@@ -654,7 +686,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                             }
                         }
                     }
-                    else //if(source != Any && target != Any)
+                    else // if(source != Any && target != Any)
                     {
                         LinkAddressType linkAddress;
                         if (Constants.IsExternalReferencesRangeEnabled)
@@ -680,7 +712,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                             }
                             else
                             {
-                                if (UseLinkedList || (InternalSourcesTreeMethods->CountUsages(source) == InternalTargetsTreeMethods->CountUsages(target)))
+                                if (UseLinkedList || (InternalSourcesTreeMethods->CountUsages(source) ==
+                                                      InternalTargetsTreeMethods->CountUsages(target)))
                                 {
                                     linkAddress = InternalTargetsTreeMethods->Search(source, target);
                                 }
@@ -692,7 +725,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                         }
                         else
                         {
-                            if (UseLinkedList || (InternalSourcesTreeMethods->CountUsages(source) > InternalTargetsTreeMethods->CountUsages(target)))
+                            if (UseLinkedList || (InternalSourcesTreeMethods->CountUsages(source) >
+                                                  InternalTargetsTreeMethods->CountUsages(target)))
                             {
                                 linkAddress = InternalTargetsTreeMethods->Search(source, target);
                             }
@@ -717,8 +751,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     auto& storedLinkValue = GetLinkDataPartReference(index);
                     if ((source != any) && (target != any))
                     {
-                        if ((storedLinkValue.Source == source) &&
-                            (storedLinkValue.Target == target))
+                        if ((storedLinkValue.Source == source) && (storedLinkValue.Target == target))
                         {
                             return handler(GetLinkStruct(index));
                         }
@@ -743,8 +776,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             throw Platform::Exceptions::NotSupportedException();
         }
 
-
-         LinkAddressType Update(const LinkType& restriction, const LinkType& substitution, const WriteHandlerType& handler)
+        LinkAddressType Update(const LinkType& restriction, const LinkType& substitution,
+                               const WriteHandlerType& handler)
         {
             auto constants = Constants;
             auto $null = constants.Null;
@@ -756,7 +789,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             auto target = link.Target;
             auto& rootAsSource = this->GetHeaderReference().RootAsSource;
             auto& rootAsTarget = this->GetHeaderReference().RootAsTarget;
-            // Будет корректно работать только в том случае, если пространство выделенной связи предварительно заполнено нулями
+            // Будет корректно работать только в том случае, если пространство выделенной связи предварительно заполнено
+            // нулями
             if (source != $null)
             {
                 if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(source))
@@ -771,7 +805,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     }
                     else
                     {
-                        InternalSourcesTreeMethods->Detach(&(GetLinkIndexPartReference(source).RootAsSource), linkIndex);
+                        InternalSourcesTreeMethods->Detach(&(GetLinkIndexPartReference(source).RootAsSource),
+                                                           linkIndex);
                     }
                 }
             }
@@ -802,7 +837,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     }
                     else
                     {
-                        InternalSourcesTreeMethods->Attach(&(GetLinkIndexPartReference(source).RootAsSource), linkIndex);
+                        InternalSourcesTreeMethods->Attach(&(GetLinkIndexPartReference(source).RootAsSource),
+                                                           linkIndex);
                     }
                 }
             }
@@ -820,8 +856,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             return handler ? handler(before, LinkType{linkIndex, source, target}) : Constants.Continue;
         }
 
-
-         LinkAddressType Create(const LinkType& substitution, const WriteHandlerType& handler)
+        LinkAddressType Create(const LinkType&, const WriteHandlerType& handler)
         {
             using namespace Platform::Exceptions;
             auto freeLink = this->GetHeaderReference().FirstFreeLink;
@@ -832,17 +867,18 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             else
             {
                 auto maximumPossibleInnerReference = Constants.InternalReferencesRange.Maximum;
-                if (this->GetHeaderReference().AllocatedLinks > maximumPossibleInnerReference)
+                if (this->GetHeaderReference().AllocatedLinks >= maximumPossibleInnerReference)
                 {
                     throw Platform::Exceptions::LinksLimitReachedException();
                 }
-                if (this->GetHeaderReference().AllocatedLinks >= (this->GetHeaderReference().ReservedLinks - 1))
+                if (this->GetHeaderReference().AllocatedLinks >= this->GetHeaderReference().ReservedLinks)
                 {
-                    _dataMemory.ReservedCapacity( _dataMemory.ReservedCapacity() + _dataMemoryReservationStepInBytes);
+                    _dataMemory.ReservedCapacity(_dataMemory.ReservedCapacity() + _dataMemoryReservationStepInBytes);
                     _indexMemory.ReservedCapacity(_indexMemory.ReservedCapacity() + _indexMemoryReservationStepInBytes);
                     SetPointers(_dataMemory, _indexMemory);
-                    this->GetHeaderReference() = this->GetHeaderReference();
-                    this->GetHeaderReference().ReservedLinks = _dataMemory.ReservedCapacity() / LinkDataPartSizeInBytes;
+                    this->GetHeaderReference().ReservedLinks =
+                        std::min((_dataMemory.ReservedCapacity() - LinkDataPartSizeInBytes) / LinkDataPartSizeInBytes,
+                                 (_indexMemory.ReservedCapacity() - LinkHeaderSizeInBytes) / LinkIndexPartSizeInBytes);
                 }
                 freeLink = ++this->GetHeaderReference().AllocatedLinks;
                 _dataMemory.UsedCapacity(_dataMemory.UsedCapacity() + LinkDataPartSizeInBytes);
@@ -850,7 +886,6 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             }
             return handler ? handler(LinkType{}, GetLinkStruct(freeLink)) : Constants.Continue;
         }
-
 
         LinkAddressType Delete(const LinkType& restriction, const WriteHandlerType& handler)
         {
@@ -866,9 +901,10 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 --this->GetHeaderReference().AllocatedLinks;
                 _dataMemory.UsedCapacity(_dataMemory.UsedCapacity() - LinkDataPartSizeInBytes);
                 _indexMemory.UsedCapacity(_indexMemory.UsedCapacity() - LinkIndexPartSizeInBytes);
-                // Убираем все связи, находящиеся в списке свободных в конце файла, до тех пор, пока не дойдём до первой существующей связи
-                // Позволяет оптимизировать количество выделенных связей (AllocatedLinks)
-                while ((this->GetHeaderReference().AllocatedLinks > LinkAddressType{0}) && this->IsUnusedLink(this->GetHeaderReference().AllocatedLinks))
+                // Убираем все связи, находящиеся в списке свободных в конце файла, до тех пор, пока не дойдём до первой
+                // существующей связи Позволяет оптимизировать количество выделенных связей (AllocatedLinks)
+                while ((this->GetHeaderReference().AllocatedLinks > LinkAddressType{0}) &&
+                       this->IsUnusedLink(this->GetHeaderReference().AllocatedLinks))
                 {
                     UnusedLinksListMethods->Detach(this->GetHeaderReference().AllocatedLinks);
                     --this->GetHeaderReference().AllocatedLinks;
@@ -880,7 +916,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             return Constants.Continue;
         }
 
-    public:
+      public:
         bool IsUnusedLink(LinkAddressType linkIndex) const
         {
             if (GetHeaderReference().FirstFreeLink != linkIndex) // May be this check is not needed
@@ -888,7 +924,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 // TODO: Reduce access to memory in different location (should be enough to use just linkIndexPart)
                 const auto& linkDataPart = this->GetLinkDataPartReference(linkIndex);
                 const auto& linkIndexPart = this->GetLinkIndexPartReference(linkIndex);
-                return (linkIndexPart.SizeAsTarget == LinkAddressType{0}) && (linkDataPart.Source != LinkAddressType{0});
+                return (linkIndexPart.SizeAsTarget == LinkAddressType{0}) &&
+                       (linkDataPart.Source != LinkAddressType{0});
             }
             else
             {
@@ -898,17 +935,15 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
 
         bool Exists(LinkAddressType linkAddress) const
         {
-            return (linkAddress >= Constants.InternalReferencesRange.Minimum)
-                && (linkAddress <= this->GetHeaderReference().AllocatedLinks)
-                && !IsUnusedLink(linkAddress);
+            return (linkAddress >= Constants.InternalReferencesRange.Minimum) &&
+                   (linkAddress <= this->GetHeaderReference().AllocatedLinks) && !IsUnusedLink(linkAddress);
         }
 
-    public:
+      public:
         LinkType GetLinkStruct(LinkAddressType linkIndex) const
         {
             const auto& link = this->GetLinkDataPartReference(linkIndex);
             return LinkType{linkIndex, link.Source, link.Target};
         }
-
     };
-}
+} // namespace Platform::Data::Doublets::Memory::Split::Generic

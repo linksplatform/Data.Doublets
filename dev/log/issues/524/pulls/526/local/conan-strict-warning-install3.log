@@ -1,0 +1,683 @@
+
+======== Input profiles ========
+Profile host:
+[settings]
+arch=x86_64
+build_type=Release
+compiler=clang
+compiler.cppstd=20
+compiler.libcxx=libstdc++11
+compiler.version=18
+os=Linux
+[conf]
+tools.build:jobs=1
+
+Profile build:
+[settings]
+arch=x86_64
+build_type=Release
+compiler=clang
+compiler.cppstd=20
+compiler.libcxx=libstdc++11
+compiler.version=18
+os=Linux
+[conf]
+
+
+
+======== Computing dependency graph ========
+Graph root
+    conanfile.txt: /tmp/gh-issue-solver-1793248170197/cpp/conanfile.txt
+Requirements
+    benchmark/1.6.0#c7ef1499d3f4d019801919985986b77d - Cache
+    cpuinfo/cci.20220228#afc5a0dba98c55fc65c379dc6f8bab8d - Cache
+    gtest/1.13.0#7be70f54d7d7a61bbfd1d3c16c7e6d10 - Cache
+    mio/cci.20201220#35d8e4791152cb59bb37212cd9c295d2 - Cache
+    ms-gsl/4.0.0#14d2ec35229ee060bb38ba7f18b0bce8 - Cache
+    platform-collections/0.2.1#8c17106bf6ed80ece6f3d377f4989a60 - Cache
+    platform-collections-methods/0.3.0#7bf9addb258962e4c904ace39794c202 - Cache
+    platform-converters/0.2.0#e5210600d15a224117023e6b4fb0c1be - Cache
+    platform-data/0.1.1#049284bd2691fcdd21308ff118193883 - Cache
+    platform-delegates/0.3.7#fa6d4052c342718034aaa3fefe278fd0 - Cache
+    platform-equality/0.0.1#4c269c237c780cf97734b306fef30799 - Cache
+    platform-exceptions/0.3.2#f85774f1881822f0ffd9f7095bd3085a - Cache
+    platform-hashing/0.5.6#8f26cd9a683ad74a06b02ea3ffb00f29 - Cache
+    platform-interfaces/0.3.41#2749e377587371071b89193878f3ad93 - Cache
+    platform-memory/0.1.0#8dd4e948ae9e107523a3807afeb9f1aa - Cache
+    platform-numbers/0.1.0#8d5c367883c12491634bda6b216fdcd7 - Cache
+    platform-random/0.2.0#596375061030beacc935a1ac82ef6e46 - Cache
+    platform-ranges/0.2.0#f74638320e5bd4f2efd11a9e10091288 - Cache
+    platform-setters/0.1.0#0b7fdbec025f7e225a919bacf70f9c3a - Cache
+
+======== Computing necessary packages ========
+Connecting to remote 'conancenter' anonymously
+gtest/1.13.0: Main binary package '0db212d974001fea6d4cbfc38a924c8507a1ebf1' missing
+gtest/1.13.0: Checking 9 compatible configurations
+gtest/1.13.0: Compatible configurations not found in cache, checking servers
+gtest/1.13.0: '973dea59857112fe53f927b5e7c02fa90e0be813': compiler.cppstd=14
+gtest/1.13.0: 'a75c99aecd95159e50e92b7dd7f49e71e53e23b4': compiler.cppstd=gnu14
+gtest/1.13.0: 'b8f1665ba85cc7f44736f786f93f1547820c7f8d': compiler.cppstd=17
+gtest/1.13.0: 'f98129c41612fea1af6e7e8ed6d6ff5813801223': compiler.cppstd=gnu17
+gtest/1.13.0: '973bc5cd4ef8c075dff8991d3d6bc9b49f6d0d40': compiler.cppstd=gnu20
+gtest/1.13.0: '43457eb4c42acc090261e5eab1e961990110eec3': compiler.cppstd=23
+gtest/1.13.0: '1d5ad8b4824e84fb689a7f2949470c04461f7c55': compiler.cppstd=gnu23
+gtest/1.13.0: '7a6080c6a794c1a95f9877a266c135b74c04ab3d': compiler.cppstd=26
+gtest/1.13.0: 'fbf847b78737513f503b9e641492a536dec3d19a': compiler.cppstd=gnu26
+gtest/1.13.0: No compatible configuration found
+
+A new experimental approach for binary compatibility detection is available.
+    Enable it by setting the core.graph:compatibility_mode=optimized conf
+    and get improved performance when querying multiple compatible binaries in remotes.
+
+Requirements
+    benchmark/1.6.0#c7ef1499d3f4d019801919985986b77d:a0fb75ef1205fcacf49a75759b4f1b5e7ad13d02#dbe04899f216c3887b751e65c9283b90 - Cache
+    cpuinfo/cci.20220228#afc5a0dba98c55fc65c379dc6f8bab8d:63a3cfd01316a2d9e6776545d468239013f85ddd#bbf2cf97cbc44b6d413287ab9a640735 - Cache
+    gtest/1.13.0#7be70f54d7d7a61bbfd1d3c16c7e6d10:0db212d974001fea6d4cbfc38a924c8507a1ebf1 - Build
+    mio/cci.20201220#35d8e4791152cb59bb37212cd9c295d2:da39a3ee5e6b4b0d3255bfef95601890afd80709#1db8db72c0b6f33280a30253cc7c2f27 - Cache
+    ms-gsl/4.0.0#14d2ec35229ee060bb38ba7f18b0bce8:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+    platform-collections-methods/0.3.0#7bf9addb258962e4c904ace39794c202:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+    platform-collections/0.2.1#8c17106bf6ed80ece6f3d377f4989a60:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+    platform-converters/0.2.0#e5210600d15a224117023e6b4fb0c1be:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+    platform-data/0.1.1#049284bd2691fcdd21308ff118193883:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+    platform-delegates/0.3.7#fa6d4052c342718034aaa3fefe278fd0:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+    platform-equality/0.0.1#4c269c237c780cf97734b306fef30799:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+    platform-exceptions/0.3.2#f85774f1881822f0ffd9f7095bd3085a:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+    platform-hashing/0.5.6#8f26cd9a683ad74a06b02ea3ffb00f29:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+    platform-interfaces/0.3.41#2749e377587371071b89193878f3ad93:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+    platform-memory/0.1.0#8dd4e948ae9e107523a3807afeb9f1aa:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+    platform-numbers/0.1.0#8d5c367883c12491634bda6b216fdcd7:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+    platform-random/0.2.0#596375061030beacc935a1ac82ef6e46:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+    platform-ranges/0.2.0#f74638320e5bd4f2efd11a9e10091288:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+    platform-setters/0.1.0#0b7fdbec025f7e225a919bacf70f9c3a:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+
+======== Installing packages ========
+benchmark/1.6.0: Already installed! (1 of 19)
+cpuinfo/cci.20220228: Already installed! (2 of 19)
+
+-------- Installing package gtest/1.13.0 (3 of 19) --------
+Building from source gtest/1.13.0:0db212d974001fea6d4cbfc38a924c8507a1ebf1
+gtest/1.13.0: settings: os=Linux arch=x86_64 compiler=clang compiler.cppstd=20 compiler.libcxx=libstdc++11 compiler.version=18 build_type=Release
+gtest/1.13.0: options: build_gmock=True disable_pthreads=False fPIC=True hide_symbols=False shared=False
+>>> Source step
+Getting sources for gtest/1.13.0
+Calling source() in /home/box/.conan2/p/gtest88486e1cfb53c/s/src
+Sources correctly downloaded from https://github.com/google/googletest/archive/refs/tags/v1.13.0.tar.gz
+Uncompressing v1.13.0.tar.gz to .
+Copying sources to build folder
+Sources in /home/box/.conan2/p/b/gtest3b348dd479d64/b/src
+>>> Generate step for gtest/1.13.0
+Generators folder: /home/box/.conan2/p/b/gtest3b348dd479d64/b/build/Release/generators
+Calling generate() method in recipe
+CMakeToolchain generated: conan_toolchain.cmake
+CMakeToolchain generated: /home/box/.conan2/p/b/gtest3b348dd479d64/b/build/Release/generators/CMakePresets.json
+CMakeToolchain generated: /home/box/.conan2/p/b/gtest3b348dd479d64/b/src/CMakeUserPresets.json
+Generating aggregated env files
+Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+Building your package in /home/box/.conan2/p/b/gtest3b348dd479d64/b
+>>> Build step for gtest/1.13.0
+gtest/1.13.0: Calling build()
+gtest/1.13.0: Running CMake.configure()
+gtest/1.13.0: RUN: cmake -G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE="generators/conan_toolchain.cmake" -DCMAKE_INSTALL_PREFIX="/home/box/.conan2/p/b/gtest3b348dd479d64/p" -DCMAKE_POLICY_DEFAULT_CMP0091="NEW" -DCMAKE_BUILD_TYPE="Release" "/home/box/.conan2/p/b/gtest3b348dd479d64/b/src"
+-- Using Conan toolchain: /home/box/.conan2/p/b/gtest3b348dd479d64/b/build/Release/generators/conan_toolchain.cmake
+-- Conan toolchain: Setting CMAKE_POSITION_INDEPENDENT_CODE=ON (options.fPIC)
+-- Conan toolchain: Defining architecture flag: -m64
+-- Conan toolchain: Defining libcxx as C++ flags: -stdlib=libstdc++
+-- Conan toolchain: C++ Standard 20 with extensions OFF
+-- Conan toolchain: Setting BUILD_SHARED_LIBS = OFF
+-- The C compiler identification is Clang 18.1.3
+-- The CXX compiler identification is Clang 18.1.3
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/clang-18 - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/clang++-18 - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found Python: /tmp/issue-524-tools/venv/bin/python3 (found version "3.15.0") found components: Interpreter 
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Configuring done (2.6s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/box/.conan2/p/b/gtest3b348dd479d64/b/build/Release
+
+gtest/1.13.0: Running CMake.build()
+gtest/1.13.0: RUN: cmake --build "/home/box/.conan2/p/b/gtest3b348dd479d64/b/build/Release" -- -j1
+[ 12%] Building CXX object googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o
+[ 25%] Linking CXX static library ../lib/libgtest.a
+[ 25%] Built target gtest
+[ 37%] Building CXX object googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o
+[ 50%] Linking CXX static library ../lib/libgmock.a
+[ 50%] Built target gmock
+[ 62%] Building CXX object googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o
+[ 75%] Linking CXX static library ../lib/libgmock_main.a
+[ 75%] Built target gmock_main
+[ 87%] Building CXX object googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o
+[100%] Linking CXX static library ../lib/libgtest_main.a
+[100%] Built target gtest_main
+
+gtest/1.13.0: Package '0db212d974001fea6d4cbfc38a924c8507a1ebf1' built
+gtest/1.13.0: Build folder /home/box/.conan2/p/b/gtest3b348dd479d64/b/build/Release
+>>> Package step for gtest/1.13.0:0db212d974001fea6d4cbfc38a924c8507a1ebf1
+Packaging in folder /home/box/.conan2/p/b/gtest3b348dd479d64/p
+Calling package()
+Running CMake.install()
+RUN: cmake --install "/home/box/.conan2/p/b/gtest3b348dd479d64/b/build/Release" --prefix "/home/box/.conan2/p/b/gtest3b348dd479d64/p"
+-- Install configuration: "Release"
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gmock
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gmock/gmock-more-matchers.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gmock/gmock-nice-strict.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gmock/internal
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gmock/internal/gmock-port.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gmock/internal/custom
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gmock/internal/custom/gmock-port.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gmock/internal/custom/README.md
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gmock/internal/custom/gmock-generated-actions.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gmock/internal/custom/gmock-matchers.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gmock/internal/gmock-pp.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gmock/internal/gmock-internal-utils.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gmock/gmock-function-mocker.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gmock/gmock-matchers.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gmock/gmock.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gmock/gmock-cardinalities.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gmock/gmock-more-actions.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gmock/gmock-spec-builders.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gmock/gmock-actions.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/lib/libgmock.a
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/lib/libgmock_main.a
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/lib/pkgconfig/gmock.pc
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/lib/pkgconfig/gmock_main.pc
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/lib/cmake/GTest/GTestTargets.cmake
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/lib/cmake/GTest/GTestTargets-release.cmake
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/lib/cmake/GTest/GTestConfigVersion.cmake
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/lib/cmake/GTest/GTestConfig.cmake
+-- Up-to-date: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/gtest-message.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/gtest-death-test.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/gtest_pred_impl.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/gtest-spi.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/gtest-param-test.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/gtest-test-part.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/gtest-assertion-result.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/internal
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/internal/custom
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/internal/custom/README.md
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/internal/custom/gtest.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/internal/custom/gtest-printers.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/internal/custom/gtest-port.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/internal/gtest-type-util.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/internal/gtest-param-util.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/internal/gtest-string.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/internal/gtest-internal.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/internal/gtest-death-test-internal.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/internal/gtest-port.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/internal/gtest-filepath.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/internal/gtest-port-arch.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/gtest.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/gtest-printers.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/gtest-matchers.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/gtest-typed-test.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/gtest_prod.h
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/lib/libgtest.a
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/lib/libgtest_main.a
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/lib/pkgconfig/gtest.pc
+-- Installing: /home/box/.conan2/p/b/gtest3b348dd479d64/p/lib/pkgconfig/gtest_main.pc
+
+package(): Packaged 4 '.a' files: libgmock.a, libgtest_main.a, libgmock_main.a, libgtest.a
+package(): Packaged 1 file: LICENSE
+package(): Packaged 38 '.h' files
+package(): Packaged 2 '.md' files: README.md, README.md
+Created package revision 62dafb692383d93988e7215cd56361a3
+Package '0db212d974001fea6d4cbfc38a924c8507a1ebf1' created
+Full package reference: gtest/1.13.0#7be70f54d7d7a61bbfd1d3c16c7e6d10:0db212d974001fea6d4cbfc38a924c8507a1ebf1#62dafb692383d93988e7215cd56361a3
+Package folder /home/box/.conan2/p/b/gtest3b348dd479d64/p
+mio/cci.20201220: Already installed! (4 of 19)
+
+-------- Installing package ms-gsl/4.0.0 (5 of 19) --------
+Building from source ms-gsl/4.0.0:da39a3ee5e6b4b0d3255bfef95601890afd80709
+>>> Source step
+Getting sources for ms-gsl/4.0.0
+Calling source() in /home/box/.conan2/p/ms-gsff8651ea93050/s/src
+Sources correctly downloaded from https://github.com/microsoft/GSL/archive/v4.0.0.tar.gz
+Uncompressing v4.0.0.tar.gz to /home/box/.conan2/p/ms-gsff8651ea93050/s/src
+Sources in /home/box/.conan2/p/ms-gsff8651ea93050/s/src
+>>> Generate step for ms-gsl/4.0.0
+Generators folder: /home/box/.conan2/p/b/ms-gsdcf995bb34284/b/build-release/conan
+Calling generate() method in recipe
+Generating aggregated env files
+Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+Building your package in /home/box/.conan2/p/b/ms-gsdcf995bb34284/b
+>>> Build step for ms-gsl/4.0.0
+ms-gsl/4.0.0: Calling build()
+ms-gsl/4.0.0: Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' built
+ms-gsl/4.0.0: Build folder /home/box/.conan2/p/b/ms-gsdcf995bb34284/b/build-release
+>>> Package step for ms-gsl/4.0.0:da39a3ee5e6b4b0d3255bfef95601890afd80709
+Packaging in folder /home/box/.conan2/p/b/ms-gsdcf995bb34284/p
+Calling package()
+package(): Packaged 16 files
+package(): Packaged 1 '.txt' file: CMakeLists.txt
+Created package revision b598077be9be7a01e859da8eca72dee0
+Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' created
+Full package reference: ms-gsl/4.0.0#14d2ec35229ee060bb38ba7f18b0bce8:da39a3ee5e6b4b0d3255bfef95601890afd80709#b598077be9be7a01e859da8eca72dee0
+Package folder /home/box/.conan2/p/b/ms-gsdcf995bb34284/p
+
+-------- Installing package platform-converters/0.2.0 (6 of 19) --------
+Building from source platform-converters/0.2.0:da39a3ee5e6b4b0d3255bfef95601890afd80709
+>>> Source step
+Getting sources for platform-converters/0.2.0
+Calling source() in /home/box/.conan2/p/platf07f1970403490/s/src
+Sources correctly downloaded from https://github.com/linksplatform/Converters/releases/download/cpp_0.2.0/platform.converters_0.2.0.zip
+Uncompressing platform.converters_0.2.0.zip to .
+Unzipping 22.2KB
+
+Sources in /home/box/.conan2/p/platf07f1970403490/s/src
+>>> Generate step for platform-converters/0.2.0
+Generators folder: /home/box/.conan2/p/b/platf67112e318ae0f/b/build/conan
+Generating aggregated env files
+Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+Building your package in /home/box/.conan2/p/b/platf67112e318ae0f/b
+>>> Build step for platform-converters/0.2.0
+platform-converters/0.2.0: Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' built
+platform-converters/0.2.0: Build folder /home/box/.conan2/p/b/platf67112e318ae0f/b/build
+>>> Package step for platform-converters/0.2.0:da39a3ee5e6b4b0d3255bfef95601890afd80709
+Packaging in folder /home/box/.conan2/p/b/platf67112e318ae0f/p
+Calling package()
+package(): Packaged 12 '.h' files
+Created package revision adf5a6a6a0d890617af517db1cc3bbc5
+Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' created
+Full package reference: platform-converters/0.2.0#e5210600d15a224117023e6b4fb0c1be:da39a3ee5e6b4b0d3255bfef95601890afd80709#adf5a6a6a0d890617af517db1cc3bbc5
+Package folder /home/box/.conan2/p/b/platf67112e318ae0f/p
+
+-------- Installing package platform-delegates/0.3.7 (7 of 19) --------
+Building from source platform-delegates/0.3.7:da39a3ee5e6b4b0d3255bfef95601890afd80709
+>>> Source step
+Getting sources for platform-delegates/0.3.7
+Calling source() in /home/box/.conan2/p/platff04892e2dfb10/s/src
+Sources correctly downloaded from https://github.com/linksplatform/Delegates/archive/refs/tags/cpp_0.3.7.zip
+Uncompressing cpp_0.3.7.zip to .
+Unzipping 84.7KB
+
+Sources in /home/box/.conan2/p/platff04892e2dfb10/s/src
+>>> Generate step for platform-delegates/0.3.7
+Generators folder: /home/box/.conan2/p/b/platfc1802a6248f3b/b/build/conan
+Generating aggregated env files
+Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+Building your package in /home/box/.conan2/p/b/platfc1802a6248f3b/b
+>>> Build step for platform-delegates/0.3.7
+platform-delegates/0.3.7: Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' built
+platform-delegates/0.3.7: Build folder /home/box/.conan2/p/b/platfc1802a6248f3b/b/build
+>>> Package step for platform-delegates/0.3.7:da39a3ee5e6b4b0d3255bfef95601890afd80709
+Packaging in folder /home/box/.conan2/p/b/platfc1802a6248f3b/p
+Calling package()
+package(): Packaged 1 file: LICENSE
+package(): Packaged 3 '.h' files: Platform.Delegates.h, Platform.Delegates.Delegate.h, Platform.Delegates.MulticastDelegate.h
+Created package revision e51ebaea1ce5334ac62fb7ecaaf705bf
+Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' created
+Full package reference: platform-delegates/0.3.7#fa6d4052c342718034aaa3fefe278fd0:da39a3ee5e6b4b0d3255bfef95601890afd80709#e51ebaea1ce5334ac62fb7ecaaf705bf
+Package folder /home/box/.conan2/p/b/platfc1802a6248f3b/p
+
+-------- Installing package platform-equality/0.0.1 (8 of 19) --------
+Building from source platform-equality/0.0.1:da39a3ee5e6b4b0d3255bfef95601890afd80709
+>>> Source step
+Getting sources for platform-equality/0.0.1
+Calling source() in /home/box/.conan2/p/platfbf8c1581d4676/s/src
+Sources correctly downloaded from https://github.com/linksplatform/Equality/archive/refs/tags/0.0.1.zip
+Uncompressing 0.0.1.zip to .
+Unzipping 32.7KB
+
+Sources in /home/box/.conan2/p/platfbf8c1581d4676/s/src
+>>> Generate step for platform-equality/0.0.1
+Generators folder: /home/box/.conan2/p/b/platf85ccb58d873eb/b/build-release/conan
+Generating aggregated env files
+Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+Building your package in /home/box/.conan2/p/b/platf85ccb58d873eb/b
+>>> Build step for platform-equality/0.0.1
+platform-equality/0.0.1: Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' built
+platform-equality/0.0.1: Build folder /home/box/.conan2/p/b/platf85ccb58d873eb/b/build-release
+>>> Package step for platform-equality/0.0.1:da39a3ee5e6b4b0d3255bfef95601890afd80709
+Packaging in folder /home/box/.conan2/p/b/platf85ccb58d873eb/p
+Calling package()
+package(): Packaged 1 file: LICENSE
+package(): Packaged 4 '.h' files: Platform.Equality.EqualityComparerFunctionType.h, Platform.Equality.Range.h, Platform.Equality.Any.h, Platform.Equality.h
+Created package revision 3a5ac2fd4b138217270bcbfc0d560603
+Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' created
+Full package reference: platform-equality/0.0.1#4c269c237c780cf97734b306fef30799:da39a3ee5e6b4b0d3255bfef95601890afd80709#3a5ac2fd4b138217270bcbfc0d560603
+Package folder /home/box/.conan2/p/b/platf85ccb58d873eb/p
+
+-------- Installing package platform-interfaces/0.3.41 (9 of 19) --------
+Building from source platform-interfaces/0.3.41:da39a3ee5e6b4b0d3255bfef95601890afd80709
+>>> Source step
+Getting sources for platform-interfaces/0.3.41
+Calling source() in /home/box/.conan2/p/platf07908f02326eb/s/src
+Sources correctly downloaded from https://github.com/linksplatform/Interfaces/releases/download/cpp_0.3.41/platform.interfaces_0.3.41.zip
+Uncompressing platform.interfaces_0.3.41.zip to .
+Unzipping 34.2KB
+
+Sources correctly downloaded from https://raw.githubusercontent.com/linksplatform/Interfaces/cpp_0.3.41/LICENSE
+Sources in /home/box/.conan2/p/platf07908f02326eb/s/src
+>>> Generate step for platform-interfaces/0.3.41
+Generators folder: /home/box/.conan2/p/b/platf5c92267c270db/b/build-release/conan
+Generating aggregated env files
+Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+Building your package in /home/box/.conan2/p/b/platf5c92267c270db/b
+>>> Build step for platform-interfaces/0.3.41
+platform-interfaces/0.3.41: Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' built
+platform-interfaces/0.3.41: Build folder /home/box/.conan2/p/b/platf5c92267c270db/b/build-release
+>>> Package step for platform-interfaces/0.3.41:da39a3ee5e6b4b0d3255bfef95601890afd80709
+Packaging in folder /home/box/.conan2/p/b/platf5c92267c270db/p
+Calling package()
+package(): Packaged 1 file: LICENSE
+package(): Packaged 34 '.h' files
+Created package revision 89402c1ce8c65d2b3bff73d1fad91950
+Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' created
+Full package reference: platform-interfaces/0.3.41#2749e377587371071b89193878f3ad93:da39a3ee5e6b4b0d3255bfef95601890afd80709#89402c1ce8c65d2b3bff73d1fad91950
+Package folder /home/box/.conan2/p/b/platf5c92267c270db/p
+
+-------- Installing package platform-numbers/0.1.0 (10 of 19) --------
+Building from source platform-numbers/0.1.0:da39a3ee5e6b4b0d3255bfef95601890afd80709
+>>> Source step
+Getting sources for platform-numbers/0.1.0
+Calling source() in /home/box/.conan2/p/platf4e4a40c6d8bf5/s/src
+Sources correctly downloaded from https://github.com/linksplatform/Numbers/releases/download/cpp_0.1.0/platform.numbers_0.1.0.zip
+Uncompressing platform.numbers_0.1.0.zip to .
+Unzipping 19.7KB
+
+Sources in /home/box/.conan2/p/platf4e4a40c6d8bf5/s/src
+>>> Generate step for platform-numbers/0.1.0
+Generators folder: /home/box/.conan2/p/b/platf0350c3cc94ea3/b/build-release/conan
+Generating aggregated env files
+Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+Building your package in /home/box/.conan2/p/b/platf0350c3cc94ea3/b
+>>> Build step for platform-numbers/0.1.0
+platform-numbers/0.1.0: Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' built
+platform-numbers/0.1.0: Build folder /home/box/.conan2/p/b/platf0350c3cc94ea3/b/build-release
+>>> Package step for platform-numbers/0.1.0:da39a3ee5e6b4b0d3255bfef95601890afd80709
+Packaging in folder /home/box/.conan2/p/b/platf0350c3cc94ea3/p
+Calling package()
+package(): Packaged 10 '.h' files
+Created package revision 010b41966b0ff8d92bea24d7491eee11
+Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' created
+Full package reference: platform-numbers/0.1.0#8d5c367883c12491634bda6b216fdcd7:da39a3ee5e6b4b0d3255bfef95601890afd80709#010b41966b0ff8d92bea24d7491eee11
+Package folder /home/box/.conan2/p/b/platf0350c3cc94ea3/p
+
+-------- Installing package platform-collections-methods/0.3.0 (11 of 19) --------
+Building from source platform-collections-methods/0.3.0:da39a3ee5e6b4b0d3255bfef95601890afd80709
+>>> Source step
+Getting sources for platform-collections-methods/0.3.0
+Calling source() in /home/box/.conan2/p/platfaa5f0f1339589/s/src
+Sources correctly downloaded from https://github.com/linksplatform/Collections.Methods/releases/download/cpp_0.3.0/platform.collections.methods_0.3.0.zip
+Uncompressing platform.collections.methods_0.3.0.zip to .
+Unzipping 73.4KB
+
+Sources in /home/box/.conan2/p/platfaa5f0f1339589/s/src
+>>> Generate step for platform-collections-methods/0.3.0
+Generators folder: /home/box/.conan2/p/b/platf7c5b56dc4c25a/b/build-release/conan
+Generating aggregated env files
+Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+Building your package in /home/box/.conan2/p/b/platf7c5b56dc4c25a/b
+>>> Build step for platform-collections-methods/0.3.0
+platform-collections-methods/0.3.0: Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' built
+platform-collections-methods/0.3.0: Build folder /home/box/.conan2/p/b/platf7c5b56dc4c25a/b/build-release
+>>> Package step for platform-collections-methods/0.3.0:da39a3ee5e6b4b0d3255bfef95601890afd80709
+Packaging in folder /home/box/.conan2/p/b/platf7c5b56dc4c25a/p
+Calling package()
+package(): Packaged 13 '.h' files
+Created package revision 805323c60df80a61563931fcfb9b5823
+Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' created
+Full package reference: platform-collections-methods/0.3.0#7bf9addb258962e4c904ace39794c202:da39a3ee5e6b4b0d3255bfef95601890afd80709#805323c60df80a61563931fcfb9b5823
+Package folder /home/box/.conan2/p/b/platf7c5b56dc4c25a/p
+
+-------- Installing package platform-exceptions/0.3.2 (12 of 19) --------
+Building from source platform-exceptions/0.3.2:da39a3ee5e6b4b0d3255bfef95601890afd80709
+>>> Source step
+Getting sources for platform-exceptions/0.3.2
+Calling source() in /home/box/.conan2/p/platfee8cb09287d88/s/src
+Sources correctly downloaded from https://github.com/linksplatform/Exceptions/releases/download/cpp_0.3.2/platform.exceptions_0.3.2.zip
+Uncompressing platform.exceptions_0.3.2.zip to .
+Unzipping 18.3KB
+
+Sources in /home/box/.conan2/p/platfee8cb09287d88/s/src
+>>> Generate step for platform-exceptions/0.3.2
+Generators folder: /home/box/.conan2/p/b/platf3282ce4437d67/b/build-release/conan
+Generating aggregated env files
+Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+Building your package in /home/box/.conan2/p/b/platf3282ce4437d67/b
+>>> Build step for platform-exceptions/0.3.2
+platform-exceptions/0.3.2: Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' built
+platform-exceptions/0.3.2: Build folder /home/box/.conan2/p/b/platf3282ce4437d67/b/build-release
+>>> Package step for platform-exceptions/0.3.2:da39a3ee5e6b4b0d3255bfef95601890afd80709
+Packaging in folder /home/box/.conan2/p/b/platf3282ce4437d67/p
+Calling package()
+package(): Packaged 10 '.h' files
+Created package revision 95f257de01c9f578ae93a77a93a5950e
+Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' created
+Full package reference: platform-exceptions/0.3.2#f85774f1881822f0ffd9f7095bd3085a:da39a3ee5e6b4b0d3255bfef95601890afd80709#95f257de01c9f578ae93a77a93a5950e
+Package folder /home/box/.conan2/p/b/platf3282ce4437d67/p
+
+-------- Installing package platform-hashing/0.5.6 (13 of 19) --------
+Building from source platform-hashing/0.5.6:da39a3ee5e6b4b0d3255bfef95601890afd80709
+>>> Source step
+Getting sources for platform-hashing/0.5.6
+Calling source() in /home/box/.conan2/p/platf4427f72b19be9/s
+Sources correctly downloaded from https://github.com/linksplatform/Hashing/releases/download/cpp_0.5.6/platform.hashing_0.5.6.zip
+Uncompressing platform.hashing_0.5.6.zip to .
+Unzipping 377.2KB, this can take a while
+
+Sources in /home/box/.conan2/p/platf4427f72b19be9/s
+>>> Generate step for platform-hashing/0.5.6
+Generators folder: /home/box/.conan2/p/b/platf7088a3104c9a3/b
+Generating aggregated env files
+Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+Building your package in /home/box/.conan2/p/b/platf7088a3104c9a3/b
+>>> Build step for platform-hashing/0.5.6
+platform-hashing/0.5.6: Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' built
+platform-hashing/0.5.6: Build folder /home/box/.conan2/p/b/platf7088a3104c9a3/b
+>>> Package step for platform-hashing/0.5.6:da39a3ee5e6b4b0d3255bfef95601890afd80709
+Packaging in folder /home/box/.conan2/p/b/platf7088a3104c9a3/p
+Calling package()
+package(): Packaged 10 '.h' files
+Created package revision a6036d56e42b1b976b5769d839b117e0
+Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' created
+Full package reference: platform-hashing/0.5.6#8f26cd9a683ad74a06b02ea3ffb00f29:da39a3ee5e6b4b0d3255bfef95601890afd80709#a6036d56e42b1b976b5769d839b117e0
+Package folder /home/box/.conan2/p/b/platf7088a3104c9a3/p
+
+-------- Installing package platform-setters/0.1.0 (14 of 19) --------
+Building from source platform-setters/0.1.0:da39a3ee5e6b4b0d3255bfef95601890afd80709
+>>> Source step
+Getting sources for platform-setters/0.1.0
+Calling source() in /home/box/.conan2/p/platfea0cb3e0e6873/s/src
+Sources correctly downloaded from https://github.com/linksplatform/Setters/releases/download/cpp_0.1.0/platform.setters_0.1.0.zip
+Uncompressing platform.setters_0.1.0.zip to .
+Unzipping 3.9KB
+
+Sources in /home/box/.conan2/p/platfea0cb3e0e6873/s/src
+>>> Generate step for platform-setters/0.1.0
+Generators folder: /home/box/.conan2/p/b/platf90bf3152679bf/b/build-release/conan
+Generating aggregated env files
+Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+Building your package in /home/box/.conan2/p/b/platf90bf3152679bf/b
+>>> Build step for platform-setters/0.1.0
+platform-setters/0.1.0: Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' built
+platform-setters/0.1.0: Build folder /home/box/.conan2/p/b/platf90bf3152679bf/b/build-release
+>>> Package step for platform-setters/0.1.0:da39a3ee5e6b4b0d3255bfef95601890afd80709
+Packaging in folder /home/box/.conan2/p/b/platf90bf3152679bf/p
+Calling package()
+package(): Packaged 4 '.h' files: Setter[TResult].h, Setter[TResult, TDecision].h, Platform.Setters.h, SetterBase.h
+Created package revision 93ba0987edf1adbbf9b7b8b979f9a2e2
+Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' created
+Full package reference: platform-setters/0.1.0#0b7fdbec025f7e225a919bacf70f9c3a:da39a3ee5e6b4b0d3255bfef95601890afd80709#93ba0987edf1adbbf9b7b8b979f9a2e2
+Package folder /home/box/.conan2/p/b/platf90bf3152679bf/p
+
+-------- Installing package platform-ranges/0.2.0 (15 of 19) --------
+Building from source platform-ranges/0.2.0:da39a3ee5e6b4b0d3255bfef95601890afd80709
+>>> Source step
+Getting sources for platform-ranges/0.2.0
+Calling source() in /home/box/.conan2/p/platf2e261b468060d/s/src
+Sources correctly downloaded from https://github.com/linksplatform/Ranges/releases/download/cpp_0.2.0/platform.ranges_0.2.0.zip
+Uncompressing platform.ranges_0.2.0.zip to .
+Unzipping 24.0KB
+
+Sources in /home/box/.conan2/p/platf2e261b468060d/s/src
+>>> Generate step for platform-ranges/0.2.0
+Generators folder: /home/box/.conan2/p/b/platf5a3d7215ad2da/b/build-release/conan
+Generating aggregated env files
+Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+Building your package in /home/box/.conan2/p/b/platf5a3d7215ad2da/b
+>>> Build step for platform-ranges/0.2.0
+platform-ranges/0.2.0: Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' built
+platform-ranges/0.2.0: Build folder /home/box/.conan2/p/b/platf5a3d7215ad2da/b/build-release
+>>> Package step for platform-ranges/0.2.0:da39a3ee5e6b4b0d3255bfef95601890afd80709
+Packaging in folder /home/box/.conan2/p/b/platf5a3d7215ad2da/p
+Calling package()
+package(): Packaged 5 '.h' files
+Created package revision 81a558cde0554f2a22f31692b29c9020
+Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' created
+Full package reference: platform-ranges/0.2.0#f74638320e5bd4f2efd11a9e10091288:da39a3ee5e6b4b0d3255bfef95601890afd80709#81a558cde0554f2a22f31692b29c9020
+Package folder /home/box/.conan2/p/b/platf5a3d7215ad2da/p
+
+-------- Installing package platform-data/0.1.1 (16 of 19) --------
+Building from source platform-data/0.1.1:da39a3ee5e6b4b0d3255bfef95601890afd80709
+>>> Source step
+Getting sources for platform-data/0.1.1
+Calling source() in /home/box/.conan2/p/platf6097b0a9e7303/s/src
+Sources correctly downloaded from https://github.com/linksplatform/Data/releases/download/cpp_0.1.1/platform.data_0.1.1.zip
+Uncompressing platform.data_0.1.1.zip to .
+Unzipping 37.0KB
+
+Sources in /home/box/.conan2/p/platf6097b0a9e7303/s/src
+>>> Generate step for platform-data/0.1.1
+Generators folder: /home/box/.conan2/p/b/platf68a8b174540fb/b/build-release/conan
+Generating aggregated env files
+Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+Building your package in /home/box/.conan2/p/b/platf68a8b174540fb/b
+>>> Build step for platform-data/0.1.1
+platform-data/0.1.1: Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' built
+platform-data/0.1.1: Build folder /home/box/.conan2/p/b/platf68a8b174540fb/b/build-release
+>>> Package step for platform-data/0.1.1:da39a3ee5e6b4b0d3255bfef95601890afd80709
+Packaging in folder /home/box/.conan2/p/b/platf68a8b174540fb/p
+Calling package()
+package(): Packaged 24 '.h' files
+Created package revision 0241816b818ea9c75939d2925cf838f8
+Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' created
+Full package reference: platform-data/0.1.1#049284bd2691fcdd21308ff118193883:da39a3ee5e6b4b0d3255bfef95601890afd80709#0241816b818ea9c75939d2925cf838f8
+Package folder /home/box/.conan2/p/b/platf68a8b174540fb/p
+
+-------- Installing package platform-random/0.2.0 (17 of 19) --------
+Building from source platform-random/0.2.0:da39a3ee5e6b4b0d3255bfef95601890afd80709
+>>> Source step
+Getting sources for platform-random/0.2.0
+Calling source() in /home/box/.conan2/p/platf49909db6bc31d/s/src
+Sources correctly downloaded from https://github.com/linksplatform/Random/releases/download/cpp_0.2.0/platform.random_0.2.0.zip
+Uncompressing platform.random_0.2.0.zip to .
+Unzipping 2.1KB
+
+Sources in /home/box/.conan2/p/platf49909db6bc31d/s/src
+>>> Generate step for platform-random/0.2.0
+Generators folder: /home/box/.conan2/p/b/platf0447fee2a0e53/b/build-release/conan
+Generating aggregated env files
+Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+Building your package in /home/box/.conan2/p/b/platf0447fee2a0e53/b
+>>> Build step for platform-random/0.2.0
+platform-random/0.2.0: Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' built
+platform-random/0.2.0: Build folder /home/box/.conan2/p/b/platf0447fee2a0e53/b/build-release
+>>> Package step for platform-random/0.2.0:da39a3ee5e6b4b0d3255bfef95601890afd80709
+Packaging in folder /home/box/.conan2/p/b/platf0447fee2a0e53/p
+Calling package()
+package(): Packaged 3 '.h' files: RandomExtensions.h, RandomHelpers.h, Platform.Random.h
+Created package revision 7368fa153a09f12eddea710548981718
+Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' created
+Full package reference: platform-random/0.2.0#596375061030beacc935a1ac82ef6e46:da39a3ee5e6b4b0d3255bfef95601890afd80709#7368fa153a09f12eddea710548981718
+Package folder /home/box/.conan2/p/b/platf0447fee2a0e53/p
+
+-------- Installing package platform-collections/0.2.1 (18 of 19) --------
+Building from source platform-collections/0.2.1:da39a3ee5e6b4b0d3255bfef95601890afd80709
+>>> Source step
+Getting sources for platform-collections/0.2.1
+Calling source() in /home/box/.conan2/p/platf4b6acddddf01c/s/src
+Sources correctly downloaded from https://github.com/linksplatform/Collections/releases/download/cpp_0.2.1/platform.collections_0.2.1.zip
+Uncompressing platform.collections_0.2.1.zip to .
+Unzipping 35.9KB
+
+Sources in /home/box/.conan2/p/platf4b6acddddf01c/s/src
+>>> Generate step for platform-collections/0.2.1
+Generators folder: /home/box/.conan2/p/b/platf6c07640643b28/b/build-release/conan
+Generating aggregated env files
+Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+Building your package in /home/box/.conan2/p/b/platf6c07640643b28/b
+>>> Build step for platform-collections/0.2.1
+platform-collections/0.2.1: Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' built
+platform-collections/0.2.1: Build folder /home/box/.conan2/p/b/platf6c07640643b28/b/build-release
+>>> Package step for platform-collections/0.2.1:da39a3ee5e6b4b0d3255bfef95601890afd80709
+Packaging in folder /home/box/.conan2/p/b/platf6c07640643b28/p
+Calling package()
+package(): Packaged 35 '.h' files
+Created package revision 45e0a5351397729f623902347fdf0072
+Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' created
+Full package reference: platform-collections/0.2.1#8c17106bf6ed80ece6f3d377f4989a60:da39a3ee5e6b4b0d3255bfef95601890afd80709#45e0a5351397729f623902347fdf0072
+Package folder /home/box/.conan2/p/b/platf6c07640643b28/p
+
+-------- Installing package platform-memory/0.1.0 (19 of 19) --------
+Building from source platform-memory/0.1.0:da39a3ee5e6b4b0d3255bfef95601890afd80709
+>>> Source step
+Getting sources for platform-memory/0.1.0
+Calling source() in /home/box/.conan2/p/platf232aaabe3d0da/s/src
+Sources correctly downloaded from https://github.com/linksplatform/Memory/releases/download/cpp_0.1.0/platform.memory_0.1.0.zip
+Uncompressing platform.memory_0.1.0.zip to .
+Unzipping 27.6KB
+
+Sources in /home/box/.conan2/p/platf232aaabe3d0da/s/src
+>>> Generate step for platform-memory/0.1.0
+Generators folder: /home/box/.conan2/p/b/platf0ddce44954497/b/build-release/conan
+Generating aggregated env files
+Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+Building your package in /home/box/.conan2/p/b/platf0ddce44954497/b
+>>> Build step for platform-memory/0.1.0
+platform-memory/0.1.0: Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' built
+platform-memory/0.1.0: Build folder /home/box/.conan2/p/b/platf0ddce44954497/b/build-release
+>>> Package step for platform-memory/0.1.0:da39a3ee5e6b4b0d3255bfef95601890afd80709
+Packaging in folder /home/box/.conan2/p/b/platf0ddce44954497/p
+Calling package()
+package(): Packaged 12 '.h' files
+package(): Packaged 1 '.hpp' file: memory_mapped_file.hpp
+package(): Packaged 1 '.cpp' file: memory_mapped_file.cpp
+Created package revision 8b2048ec0988e4a6096a572799df9a5c
+Package 'da39a3ee5e6b4b0d3255bfef95601890afd80709' created
+Full package reference: platform-memory/0.1.0#8dd4e948ae9e107523a3807afeb9f1aa:da39a3ee5e6b4b0d3255bfef95601890afd80709#8b2048ec0988e4a6096a572799df9a5c
+Package folder /home/box/.conan2/p/b/platf0ddce44954497/p
+
+======== Finalizing install (deploy, generators) ========
+>>> Generate step for conanfile.txt
+Generators folder: /tmp/issue-524-cpp-clang
+Generator 'CMakeDeps' calling 'generate()'
+CMakeDeps necessary find_package() and targets for your CMakeLists.txt
+    find_package(GTest)
+    find_package(benchmark)
+    find_package(Platform.Collections.Methods)
+    find_package(Platform.Memory)
+    find_package(Platform.Collections)
+    find_package(Platform.Data)
+    find_package(Platform.Random)
+    find_package(Platform.Interfaces)
+    find_package(Platform.Ranges)
+    find_package(Platform.Exceptions)
+    find_package(Platform.Numbers)
+    find_package(mio)
+    find_package(Microsoft.GSL)
+    target_link_libraries(... gtest::gtest benchmark::benchmark_main Platform.Collections.Methods::Platform.Collections.Methods Platform.Memory::Platform.Memory Platform.Collections::Platform.Collections Platform.Data::Platform.Data Platform.Random::Platform.Random Platform.Interfaces::Platform.Interfaces Platform.Ranges::Platform.Ranges Platform.Exceptions::Platform.Exceptions Platform.Numbers::Platform.Numbers mio::mio Microsoft.GSL::GSL)
+Generator 'CMakeToolchain' calling 'generate()'
+CMakeToolchain generated: conan_toolchain.cmake
+CMakeToolchain: Preset 'conan-release' added to CMakePresets.json.
+    (cmake>=3.23) cmake --preset conan-release
+    (cmake<3.23) cmake <path> -G "Unix Makefiles"
+                 -DCMAKE_TOOLCHAIN_FILE=<output_folder>/conan_toolchain.cmake 
+                 -DCMAKE_POLICY_DEFAULT_CMP0091=NEW -DCMAKE_BUILD_TYPE=Release
+CMakeToolchain generated: /tmp/issue-524-cpp-clang/CMakePresets.json
+CMakeToolchain generated: /tmp/gh-issue-solver-1793248170197/cpp/CMakeUserPresets.json
+Generating aggregated env files
+Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+Install finished successfully

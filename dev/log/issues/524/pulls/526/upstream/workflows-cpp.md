@@ -1,0 +1,7 @@
+The reusable `.github/workflows/cpp-test.yml` can pass while every C++ test would fail: it configures and builds a test executable but never runs it. Found in https://github.com/linksplatform/Data.Doublets/issues/524; the exact shared workflow snapshot is archived in https://github.com/linksplatform/Data.Doublets/pull/526 under dev/log/issues/524/pulls/526/research/old-shared-cpp-test.yml.
+
+Minimal reproduction: use the reusable workflow with a CMake/GTest project containing `TEST(Reproduction, MustFail) { FAIL() << "not executed"; }`. The executable compiles and the workflow reports success, because its last command is `cmake --build .`. Running the executable or CTest fails as expected.
+
+Workaround: replace the call downstream with fail-fast configure/build/CTest commands, `enable_testing()` and `gtest_discover_tests`, followed by `ctest --output-on-failure --no-tests=error`. Keep contracts enabled for Release tests and apply finite test/job timeouts. Data.Doublets PR #526 verifies 36 discovered tests, rather than treating successful compilation as test success.
+
+Suggested fix: run CTest explicitly in the shared workflow, reject zero discovered tests, preserve test logs as artifacts even on failure, pin actions and dependency tooling, and add an integration fixture whose intentional failing test proves the workflow fails. Avoid altering a Conan profile by deleting an arbitrary line; declare the intended C++ standard/compiler settings explicitly.

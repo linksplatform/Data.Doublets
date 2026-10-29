@@ -1,0 +1,1515 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Clang-Tidy Checks" href="checks/list.html" /><link rel="prev" title="Extra Clang Tools 24.0.0git (In-Progress) Release Notes" href="../ReleaseNotes.html" />
+
+    <!-- Generated with Sphinx 7.2.6 and Furo 2024.01.29 -->
+        <title>Clang-Tidy - Extra Clang Tools</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=1d1f8562" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../_static/llvm-sphinx/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../_static/clang-tools-extra-styles.css?v=e8cefff8" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f0f0f0;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">Extra Clang Tools</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">Extra Clang Tools</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="../ReleaseNotes.html">Extra Clang Tools 24.0.0git (In-Progress) Release Notes</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">Clang-Tidy</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Clang-Tidy</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="checks/list.html">List of Clang-Tidy Checks</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of List of Clang-Tidy Checks</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="checks/abseil/cleanup-ctad.html">abseil-cleanup-ctad</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/abseil/duration-addition.html">abseil-duration-addition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/abseil/duration-comparison.html">abseil-duration-comparison</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/abseil/duration-conversion-cast.html">abseil-duration-conversion-cast</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/abseil/duration-division.html">abseil-duration-division</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/abseil/duration-factory-float.html">abseil-duration-factory-float</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/abseil/duration-factory-scale.html">abseil-duration-factory-scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/abseil/duration-subtraction.html">abseil-duration-subtraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/abseil/duration-unnecessary-conversion.html">abseil-duration-unnecessary-conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/abseil/faster-strsplit-delimiter.html">abseil-faster-strsplit-delimiter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/abseil/no-internal-dependencies.html">abseil-no-internal-dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/abseil/no-namespace.html">abseil-no-namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/abseil/redundant-strcat-calls.html">abseil-redundant-strcat-calls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/abseil/str-cat-append.html">abseil-str-cat-append</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/abseil/string-find-startswith.html">abseil-string-find-startswith</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/abseil/string-find-str-contains.html">abseil-string-find-str-contains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/abseil/time-comparison.html">abseil-time-comparison</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/abseil/time-subtraction.html">abseil-time-subtraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/abseil/unchecked-statusor-access.html">abseil-unchecked-statusor-access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/abseil/upgrade-duration-conversions.html">abseil-upgrade-duration-conversions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/altera/id-dependent-backward-branch.html">altera-id-dependent-backward-branch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/altera/kernel-name-restriction.html">altera-kernel-name-restriction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/altera/single-work-item-barrier.html">altera-single-work-item-barrier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/altera/struct-pack-align.html">altera-struct-pack-align</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/altera/unroll-loops.html">altera-unroll-loops</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/android/cloexec-accept.html">android-cloexec-accept</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/android/cloexec-accept4.html">android-cloexec-accept4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/android/cloexec-creat.html">android-cloexec-creat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/android/cloexec-dup.html">android-cloexec-dup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/android/cloexec-epoll-create.html">android-cloexec-epoll-create</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/android/cloexec-epoll-create1.html">android-cloexec-epoll-create1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/android/cloexec-fopen.html">android-cloexec-fopen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/android/cloexec-inotify-init.html">android-cloexec-inotify-init</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/android/cloexec-inotify-init1.html">android-cloexec-inotify-init1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/android/cloexec-memfd-create.html">android-cloexec-memfd-create</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/android/cloexec-open.html">android-cloexec-open</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/android/cloexec-pipe.html">android-cloexec-pipe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/android/cloexec-pipe2.html">android-cloexec-pipe2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/android/cloexec-socket.html">android-cloexec-socket</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/android/comparison-in-temp-failure-retry.html">android-comparison-in-temp-failure-retry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/boost/use-ranges.html">boost-use-ranges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/boost/use-to-string.html">boost-use-to-string</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/argument-comment.html">bugprone-argument-comment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/assert-side-effect.html">bugprone-assert-side-effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/assignment-in-if-condition.html">bugprone-assignment-in-if-condition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/assignment-in-selection-statement.html">bugprone-assignment-in-selection-statement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/assignment-in-selection-statement.html#examples">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/bad-signal-to-kill-thread.html">bugprone-bad-signal-to-kill-thread</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/bitwise-pointer-cast.html">bugprone-bitwise-pointer-cast</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/bool-pointer-implicit-conversion.html">bugprone-bool-pointer-implicit-conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/branch-clone.html">bugprone-branch-clone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/capturing-this-in-member-variable.html">bugprone-capturing-this-in-member-variable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/casting-through-void.html">bugprone-casting-through-void</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/chained-comparison.html">bugprone-chained-comparison</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/command-processor.html">bugprone-command-processor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/compare-pointer-to-member-virtual-function.html">bugprone-compare-pointer-to-member-virtual-function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/copy-constructor-init.html">bugprone-copy-constructor-init</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/copy-constructor-mutates-argument.html">bugprone-copy-constructor-mutates-argument</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/crtp-constructor-accessibility.html">bugprone-crtp-constructor-accessibility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/dangling-handle.html">bugprone-dangling-handle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/default-operator-new-on-overaligned-type.html">bugprone-default-operator-new-on-overaligned-type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/derived-method-shadowing-base-method.html">bugprone-derived-method-shadowing-base-method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/dynamic-static-initializers.html">bugprone-dynamic-static-initializers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/easily-swappable-parameters.html">bugprone-easily-swappable-parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/empty-catch.html">bugprone-empty-catch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/exception-copy-constructor-throws.html">bugprone-exception-copy-constructor-throws</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/exception-escape.html">bugprone-exception-escape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/float-loop-counter.html">bugprone-float-loop-counter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/fold-init-type.html">bugprone-fold-init-type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/forward-declaration-namespace.html">bugprone-forward-declaration-namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/forwarding-reference-overload.html">bugprone-forwarding-reference-overload</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/implicit-widening-of-multiplication-result.html">bugprone-implicit-widening-of-multiplication-result</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/inaccurate-erase.html">bugprone-inaccurate-erase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/inc-dec-in-conditions.html">bugprone-inc-dec-in-conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/incorrect-enable-if.html">bugprone-incorrect-enable-if</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/incorrect-enable-shared-from-this.html">bugprone-incorrect-enable-shared-from-this</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/incorrect-roundings.html">bugprone-incorrect-roundings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/infinite-loop.html">bugprone-infinite-loop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/integer-division.html">bugprone-integer-division</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/invalid-enum-default-initialization.html">bugprone-invalid-enum-default-initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/lambda-function-name.html">bugprone-lambda-function-name</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/macro-parentheses.html">bugprone-macro-parentheses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/macro-repeated-side-effects.html">bugprone-macro-repeated-side-effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/misleading-setter-of-reference.html">bugprone-misleading-setter-of-reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/misplaced-operator-in-strlen-in-alloc.html">bugprone-misplaced-operator-in-strlen-in-alloc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/misplaced-pointer-arithmetic-in-alloc.html">bugprone-misplaced-pointer-arithmetic-in-alloc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/misplaced-widening-cast.html">bugprone-misplaced-widening-cast</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/missing-end-comparison.html">bugprone-missing-end-comparison</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/move-forwarding-reference.html">bugprone-move-forwarding-reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/multi-level-implicit-pointer-conversion.html">bugprone-multi-level-implicit-pointer-conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/multiple-new-in-one-expression.html">bugprone-multiple-new-in-one-expression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/multiple-statement-macro.html">bugprone-multiple-statement-macro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/narrowing-conversions.html">bugprone-narrowing-conversions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/no-escape.html">bugprone-no-escape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/non-zero-enum-to-bool-conversion.html">bugprone-non-zero-enum-to-bool-conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/nondeterministic-pointer-iteration-order.html">bugprone-nondeterministic-pointer-iteration-order</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/not-null-terminated-result.html">bugprone-not-null-terminated-result</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/optional-value-conversion.html">bugprone-optional-value-conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/parent-virtual-call.html">bugprone-parent-virtual-call</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/pointer-arithmetic-on-polymorphic-object.html">bugprone-pointer-arithmetic-on-polymorphic-object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/posix-return.html">bugprone-posix-return</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/random-generator-seed.html">bugprone-random-generator-seed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/raw-memory-call-on-non-trivial-type.html">bugprone-raw-memory-call-on-non-trivial-type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/redundant-branch-condition.html">bugprone-redundant-branch-condition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/reserved-identifier.html">bugprone-reserved-identifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/return-const-ref-from-parameter.html">bugprone-return-const-ref-from-parameter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/shared-ptr-array-mismatch.html">bugprone-shared-ptr-array-mismatch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/signal-handler.html">bugprone-signal-handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/signed-bitwise.html">bugprone-signed-bitwise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/signed-char-misuse.html">bugprone-signed-char-misuse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/sizeof-container.html">bugprone-sizeof-container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/sizeof-expression.html">bugprone-sizeof-expression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/spuriously-wake-up-functions.html">bugprone-spuriously-wake-up-functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/standalone-empty.html">bugprone-standalone-empty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/std-exception-baseclass.html">bugprone-std-exception-baseclass</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/std-namespace-modification.html">bugprone-std-namespace-modification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/string-constructor.html">bugprone-string-constructor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/string-integer-assignment.html">bugprone-string-integer-assignment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/string-literal-with-embedded-nul.html">bugprone-string-literal-with-embedded-nul</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/stringview-nullptr.html">bugprone-stringview-nullptr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/suspicious-enum-usage.html">bugprone-suspicious-enum-usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/suspicious-include.html">bugprone-suspicious-include</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/suspicious-memory-comparison.html">bugprone-suspicious-memory-comparison</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/suspicious-memset-usage.html">bugprone-suspicious-memset-usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/suspicious-missing-comma.html">bugprone-suspicious-missing-comma</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/suspicious-realloc-usage.html">bugprone-suspicious-realloc-usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/suspicious-semicolon.html">bugprone-suspicious-semicolon</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/suspicious-string-compare.html">bugprone-suspicious-string-compare</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/suspicious-stringview-data-usage.html">bugprone-suspicious-stringview-data-usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/swapped-arguments.html">bugprone-swapped-arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/switch-missing-default-case.html">bugprone-switch-missing-default-case</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/tagged-union-member-count.html">bugprone-tagged-union-member-count</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/terminating-continue.html">bugprone-terminating-continue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/throw-keyword-missing.html">bugprone-throw-keyword-missing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/throwing-static-initialization.html">bugprone-throwing-static-initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/too-small-loop-variable.html">bugprone-too-small-loop-variable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/unchecked-optional-access.html">bugprone-unchecked-optional-access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/unchecked-string-to-number-conversion.html">bugprone-unchecked-string-to-number-conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/undefined-memory-manipulation.html">bugprone-undefined-memory-manipulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/undelegated-constructor.html">bugprone-undelegated-constructor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/unhandled-code-paths.html">bugprone-unhandled-code-paths</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/unhandled-exception-at-new.html">bugprone-unhandled-exception-at-new</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/unhandled-self-assignment.html">bugprone-unhandled-self-assignment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/unintended-char-ostream-output.html">bugprone-unintended-char-ostream-output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/unique-ptr-array-mismatch.html">bugprone-unique-ptr-array-mismatch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/unsafe-functions.html">bugprone-unsafe-functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/unsafe-to-allow-exceptions.html">bugprone-unsafe-to-allow-exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/unused-local-non-trivial-variable.html">bugprone-unused-local-non-trivial-variable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/unused-raii.html">bugprone-unused-raii</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/unused-return-value.html">bugprone-unused-return-value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/use-after-move.html">bugprone-use-after-move</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/bugprone/virtual-near-miss.html">bugprone-virtual-near-miss</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/arr39-c.html">cert-arr39-c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/con36-c.html">cert-con36-c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/con54-cpp.html">cert-con54-cpp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/ctr56-cpp.html">cert-ctr56-cpp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/dcl03-c.html">cert-dcl03-c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/dcl16-c.html">cert-dcl16-c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/dcl37-c.html">cert-dcl37-c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/dcl50-cpp.html">cert-dcl50-cpp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/dcl51-cpp.html">cert-dcl51-cpp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/dcl54-cpp.html">cert-dcl54-cpp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/dcl58-cpp.html">cert-dcl58-cpp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/dcl59-cpp.html">cert-dcl59-cpp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/env33-c.html">cert-env33-c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/err09-cpp.html">cert-err09-cpp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/err33-c.html">cert-err33-c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/err34-c.html">cert-err34-c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/err52-cpp.html">cert-err52-cpp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/err58-cpp.html">cert-err58-cpp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/err60-cpp.html">cert-err60-cpp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/err61-cpp.html">cert-err61-cpp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/exp42-c.html">cert-exp42-c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/exp45-c.html">cert-exp45-c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/fio38-c.html">cert-fio38-c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/flp30-c.html">cert-flp30-c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/flp37-c.html">cert-flp37-c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/int09-c.html">cert-int09-c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/mem57-cpp.html">cert-mem57-cpp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/msc24-c.html">cert-msc24-c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/msc30-c.html">cert-msc30-c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/msc32-c.html">cert-msc32-c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/msc33-c.html">cert-msc33-c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/msc50-cpp.html">cert-msc50-cpp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/msc51-cpp.html">cert-msc51-cpp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/msc54-cpp.html">cert-msc54-cpp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/oop11-cpp.html">cert-oop11-cpp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/oop54-cpp.html">cert-oop54-cpp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/oop57-cpp.html">cert-oop57-cpp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/oop58-cpp.html">cert-oop58-cpp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/pos44-c.html">cert-pos44-c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/pos47-c.html">cert-pos47-c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/sig30-c.html">cert-sig30-c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cert/str34-c.html">cert-str34-c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/core.BitwiseShift.html">clang-analyzer-core.BitwiseShift</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/core.CallAndMessage.html">clang-analyzer-core.CallAndMessage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/core.DivideZero.html">clang-analyzer-core.DivideZero</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/core.NonNullParamChecker.html">clang-analyzer-core.NonNullParamChecker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/core.NullDereference.html">clang-analyzer-core.NullDereference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/core.NullPointerArithm.html">clang-analyzer-core.NullPointerArithm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/core.StackAddressEscape.html">clang-analyzer-core.StackAddressEscape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/core.UndefinedBinaryOperatorResult.html">clang-analyzer-core.UndefinedBinaryOperatorResult</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/core.VLASize.html">clang-analyzer-core.VLASize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/core.uninitialized.ArraySubscript.html">clang-analyzer-core.uninitialized.ArraySubscript</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/core.uninitialized.Assign.html">clang-analyzer-core.uninitialized.Assign</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/core.uninitialized.Branch.html">clang-analyzer-core.uninitialized.Branch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/core.uninitialized.CapturedBlockVariable.html">clang-analyzer-core.uninitialized.CapturedBlockVariable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/core.uninitialized.NewArraySize.html">clang-analyzer-core.uninitialized.NewArraySize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/core.uninitialized.UndefReturn.html">clang-analyzer-core.uninitialized.UndefReturn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/cplusplus.ArrayDelete.html">clang-analyzer-cplusplus.ArrayDelete</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/cplusplus.InnerPointer.html">clang-analyzer-cplusplus.InnerPointer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/cplusplus.Move.html">clang-analyzer-cplusplus.Move</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/cplusplus.NewDelete.html">clang-analyzer-cplusplus.NewDelete</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/cplusplus.NewDeleteLeaks.html">clang-analyzer-cplusplus.NewDeleteLeaks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/cplusplus.PlacementNew.html">clang-analyzer-cplusplus.PlacementNew</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/cplusplus.PureVirtualCall.html">clang-analyzer-cplusplus.PureVirtualCall</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/cplusplus.SelfAssignment.html">clang-analyzer-cplusplus.SelfAssignment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/cplusplus.StringChecker.html">clang-analyzer-cplusplus.StringChecker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/deadcode.DeadStores.html">clang-analyzer-deadcode.DeadStores</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/fuchsia.HandleChecker.html">clang-analyzer-fuchsia.HandleChecker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/nullability.NullPassedToNonnull.html">clang-analyzer-nullability.NullPassedToNonnull</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/nullability.NullReturnedFromNonnull.html">clang-analyzer-nullability.NullReturnedFromNonnull</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/nullability.NullableDereferenced.html">clang-analyzer-nullability.NullableDereferenced</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/nullability.NullablePassedToNonnull.html">clang-analyzer-nullability.NullablePassedToNonnull</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/nullability.NullableReturnedFromNonnull.html">clang-analyzer-nullability.NullableReturnedFromNonnull</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/optin.core.EnumCastOutOfRange.html">clang-analyzer-optin.core.EnumCastOutOfRange</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/optin.core.FixedAddressDereference.html">clang-analyzer-optin.core.FixedAddressDereference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/optin.core.UnconditionalVAArg.html">clang-analyzer-optin.core.UnconditionalVAArg</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/optin.cplusplus.UninitializedObject.html">clang-analyzer-optin.cplusplus.UninitializedObject</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/optin.cplusplus.VirtualCall.html">clang-analyzer-optin.cplusplus.VirtualCall</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/optin.mpi.MPI-Checker.html">clang-analyzer-optin.mpi.MPI-Checker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/optin.osx.OSObjectCStyleCast.html">clang-analyzer-optin.osx.OSObjectCStyleCast</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/optin.osx.cocoa.localizability.EmptyLocalizationContextChecker.html">clang-analyzer-optin.osx.cocoa.localizability.EmptyLocalizationContextChecker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/optin.osx.cocoa.localizability.NonLocalizedStringChecker.html">clang-analyzer-optin.osx.cocoa.localizability.NonLocalizedStringChecker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/optin.performance.GCDAntipattern.html">clang-analyzer-optin.performance.GCDAntipattern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/optin.performance.Padding.html">clang-analyzer-optin.performance.Padding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/optin.portability.UnixAPI.html">clang-analyzer-optin.portability.UnixAPI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/optin.taint.GenericTaint.html">clang-analyzer-optin.taint.GenericTaint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/optin.taint.TaintedAlloc.html">clang-analyzer-optin.taint.TaintedAlloc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/optin.taint.TaintedDiv.html">clang-analyzer-optin.taint.TaintedDiv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/osx.API.html">clang-analyzer-osx.API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/osx.MIG.html">clang-analyzer-osx.MIG</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/osx.NumberObjectConversion.html">clang-analyzer-osx.NumberObjectConversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/osx.OSObjectRetainCount.html">clang-analyzer-osx.OSObjectRetainCount</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/osx.ObjCProperty.html">clang-analyzer-osx.ObjCProperty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/osx.SecKeychainAPI.html">clang-analyzer-osx.SecKeychainAPI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/osx.cocoa.AtSync.html">clang-analyzer-osx.cocoa.AtSync</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/osx.cocoa.AutoreleaseWrite.html">clang-analyzer-osx.cocoa.AutoreleaseWrite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/osx.cocoa.ClassRelease.html">clang-analyzer-osx.cocoa.ClassRelease</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/osx.cocoa.Dealloc.html">clang-analyzer-osx.cocoa.Dealloc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/osx.cocoa.IncompatibleMethodTypes.html">clang-analyzer-osx.cocoa.IncompatibleMethodTypes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/osx.cocoa.Loops.html">clang-analyzer-osx.cocoa.Loops</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/osx.cocoa.MissingSuperCall.html">clang-analyzer-osx.cocoa.MissingSuperCall</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/osx.cocoa.NSAutoreleasePool.html">clang-analyzer-osx.cocoa.NSAutoreleasePool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/osx.cocoa.NSError.html">clang-analyzer-osx.cocoa.NSError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/osx.cocoa.NilArg.html">clang-analyzer-osx.cocoa.NilArg</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/osx.cocoa.NonNilReturnValue.html">clang-analyzer-osx.cocoa.NonNilReturnValue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/osx.cocoa.ObjCGenerics.html">clang-analyzer-osx.cocoa.ObjCGenerics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/osx.cocoa.RetainCount.html">clang-analyzer-osx.cocoa.RetainCount</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/osx.cocoa.RunLoopAutoreleaseLeak.html">clang-analyzer-osx.cocoa.RunLoopAutoreleaseLeak</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/osx.cocoa.SelfInit.html">clang-analyzer-osx.cocoa.SelfInit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/osx.cocoa.SuperDealloc.html">clang-analyzer-osx.cocoa.SuperDealloc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/osx.cocoa.UnusedIvars.html">clang-analyzer-osx.cocoa.UnusedIvars</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/osx.cocoa.VariadicMethodTypes.html">clang-analyzer-osx.cocoa.VariadicMethodTypes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/osx.coreFoundation.CFError.html">clang-analyzer-osx.coreFoundation.CFError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/osx.coreFoundation.CFNumber.html">clang-analyzer-osx.coreFoundation.CFNumber</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/osx.coreFoundation.CFRetainRelease.html">clang-analyzer-osx.coreFoundation.CFRetainRelease</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/osx.coreFoundation.containers.OutOfBounds.html">clang-analyzer-osx.coreFoundation.containers.OutOfBounds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/osx.coreFoundation.containers.PointerSizedValues.html">clang-analyzer-osx.coreFoundation.containers.PointerSizedValues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/security.ArrayBound.html">clang-analyzer-security.ArrayBound</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/security.FloatLoopCounter.html">clang-analyzer-security.FloatLoopCounter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/security.MmapWriteExec.html">clang-analyzer-security.MmapWriteExec</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/security.PointerSub.html">clang-analyzer-security.PointerSub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/security.PutenvStackArray.html">clang-analyzer-security.PutenvStackArray</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/security.SetgidSetuidOrder.html">clang-analyzer-security.SetgidSetuidOrder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/security.VAList.html">clang-analyzer-security.VAList</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/security.cert.env.InvalidPtr.html">clang-analyzer-security.cert.env.InvalidPtr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/security.insecureAPI.DeprecatedOrUnsafeBufferHandling.html">clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/security.insecureAPI.UncheckedReturn.html">clang-analyzer-security.insecureAPI.UncheckedReturn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/security.insecureAPI.bcmp.html">clang-analyzer-security.insecureAPI.bcmp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/security.insecureAPI.bcopy.html">clang-analyzer-security.insecureAPI.bcopy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/security.insecureAPI.bzero.html">clang-analyzer-security.insecureAPI.bzero</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/security.insecureAPI.decodeValueOfObjCType.html">clang-analyzer-security.insecureAPI.decodeValueOfObjCType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/security.insecureAPI.getpw.html">clang-analyzer-security.insecureAPI.getpw</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/security.insecureAPI.gets.html">clang-analyzer-security.insecureAPI.gets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/security.insecureAPI.mkstemp.html">clang-analyzer-security.insecureAPI.mkstemp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/security.insecureAPI.mktemp.html">clang-analyzer-security.insecureAPI.mktemp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/security.insecureAPI.rand.html">clang-analyzer-security.insecureAPI.rand</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/security.insecureAPI.strcpy.html">clang-analyzer-security.insecureAPI.strcpy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/security.insecureAPI.vfork.html">clang-analyzer-security.insecureAPI.vfork</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/unix.API.html">clang-analyzer-unix.API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/unix.BlockInCriticalSection.html">clang-analyzer-unix.BlockInCriticalSection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/unix.Chroot.html">clang-analyzer-unix.Chroot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/unix.Errno.html">clang-analyzer-unix.Errno</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/unix.Malloc.html">clang-analyzer-unix.Malloc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/unix.MallocSizeof.html">clang-analyzer-unix.MallocSizeof</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/unix.MismatchedDeallocator.html">clang-analyzer-unix.MismatchedDeallocator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/unix.StdCLibraryFunctions.html">clang-analyzer-unix.StdCLibraryFunctions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/unix.Stream.html">clang-analyzer-unix.Stream</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/unix.Vfork.html">clang-analyzer-unix.Vfork</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/unix.cstring.BadSizeArg.html">clang-analyzer-unix.cstring.BadSizeArg</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/unix.cstring.NotNullTerminated.html">clang-analyzer-unix.cstring.NotNullTerminated</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/unix.cstring.NullArg.html">clang-analyzer-unix.cstring.NullArg</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/unix.cstring.UninitializedRead.html">clang-analyzer-unix.cstring.UninitializedRead</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/webkit.NoUncountedMemberChecker.html">clang-analyzer-webkit.NoUncountedMemberChecker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/webkit.RefCntblBaseVirtualDtor.html">clang-analyzer-webkit.RefCntblBaseVirtualDtor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/clang-analyzer/webkit.UncountedLambdaCapturesChecker.html">clang-analyzer-webkit.UncountedLambdaCapturesChecker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/concurrency/mt-unsafe.html">concurrency-mt-unsafe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/concurrency/thread-canceltype-asynchronous.html">concurrency-thread-canceltype-asynchronous</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/avoid-c-arrays.html">cppcoreguidelines-avoid-c-arrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/avoid-capturing-lambda-coroutines.html">cppcoreguidelines-avoid-capturing-lambda-coroutines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/avoid-const-or-ref-data-members.html">cppcoreguidelines-avoid-const-or-ref-data-members</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/avoid-do-while.html">cppcoreguidelines-avoid-do-while</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/avoid-goto.html">cppcoreguidelines-avoid-goto</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/avoid-magic-numbers.html">cppcoreguidelines-avoid-magic-numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/avoid-non-const-global-variables.html">cppcoreguidelines-avoid-non-const-global-variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/avoid-reference-coroutine-parameters.html">cppcoreguidelines-avoid-reference-coroutine-parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/c-copy-assignment-signature.html">cppcoreguidelines-c-copy-assignment-signature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/explicit-constructor.html">cppcoreguidelines-explicit-constructor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/explicit-virtual-functions.html">cppcoreguidelines-explicit-virtual-functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/init-variables.html">cppcoreguidelines-init-variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/interfaces-global-init.html">cppcoreguidelines-interfaces-global-init</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/macro-to-enum.html">cppcoreguidelines-macro-to-enum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/macro-usage.html">cppcoreguidelines-macro-usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/misleading-capture-default-by-value.html">cppcoreguidelines-misleading-capture-default-by-value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/missing-std-forward.html">cppcoreguidelines-missing-std-forward</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/narrowing-conversions.html">cppcoreguidelines-narrowing-conversions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/no-malloc.html">cppcoreguidelines-no-malloc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/no-suspend-with-lock.html">cppcoreguidelines-no-suspend-with-lock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/noexcept-destructor.html">cppcoreguidelines-noexcept-destructor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/noexcept-move-operations.html">cppcoreguidelines-noexcept-move-operations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/noexcept-swap.html">cppcoreguidelines-noexcept-swap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/non-private-member-variables-in-classes.html">cppcoreguidelines-non-private-member-variables-in-classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/owning-memory.html">cppcoreguidelines-owning-memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/prefer-member-initializer.html">cppcoreguidelines-prefer-member-initializer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/pro-bounds-array-to-pointer-decay.html">cppcoreguidelines-pro-bounds-array-to-pointer-decay</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/pro-bounds-avoid-unchecked-container-access.html">cppcoreguidelines-pro-bounds-avoid-unchecked-container-access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/pro-bounds-constant-array-index.html">cppcoreguidelines-pro-bounds-constant-array-index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/pro-bounds-pointer-arithmetic.html">cppcoreguidelines-pro-bounds-pointer-arithmetic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/pro-type-const-cast.html">cppcoreguidelines-pro-type-const-cast</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/pro-type-cstyle-cast.html">cppcoreguidelines-pro-type-cstyle-cast</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/pro-type-member-init.html">cppcoreguidelines-pro-type-member-init</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/pro-type-reinterpret-cast.html">cppcoreguidelines-pro-type-reinterpret-cast</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/pro-type-static-cast-downcast.html">cppcoreguidelines-pro-type-static-cast-downcast</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/pro-type-union-access.html">cppcoreguidelines-pro-type-union-access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/pro-type-vararg.html">cppcoreguidelines-pro-type-vararg</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/rvalue-reference-param-not-moved.html">cppcoreguidelines-rvalue-reference-param-not-moved</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/slicing.html">cppcoreguidelines-slicing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/special-member-functions.html">cppcoreguidelines-special-member-functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/use-default-member-init.html">cppcoreguidelines-use-default-member-init</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/use-enum-class.html">cppcoreguidelines-use-enum-class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/cppcoreguidelines/virtual-class-destructor.html">cppcoreguidelines-virtual-class-destructor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/darwin/avoid-spinlock.html">darwin-avoid-spinlock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/darwin/dispatch-once-nonstatic.html">darwin-dispatch-once-nonstatic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/fuchsia/default-arguments-calls.html">fuchsia-default-arguments-calls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/fuchsia/default-arguments-declarations.html">fuchsia-default-arguments-declarations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/fuchsia/header-anon-namespaces.html">fuchsia-header-anon-namespaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/fuchsia/multiple-inheritance.html">fuchsia-multiple-inheritance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/fuchsia/overloaded-operator.html">fuchsia-overloaded-operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/fuchsia/statically-constructed-objects.html">fuchsia-statically-constructed-objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/fuchsia/temporary-objects.html">fuchsia-temporary-objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/fuchsia/trailing-return.html">fuchsia-trailing-return</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/fuchsia/virtual-inheritance.html">fuchsia-virtual-inheritance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/google/build-explicit-make-pair.html">google-build-explicit-make-pair</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/google/build-namespaces.html">google-build-namespaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/google/build-using-namespace.html">google-build-using-namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/google/default-arguments.html">google-default-arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/google/explicit-constructor.html">google-explicit-constructor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/google/global-names-in-headers.html">google-global-names-in-headers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/google/objc-avoid-nsobject-new.html">google-objc-avoid-nsobject-new</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/google/objc-avoid-throwing-exception.html">google-objc-avoid-throwing-exception</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/google/objc-function-naming.html">google-objc-function-naming</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/google/objc-global-variable-declaration.html">google-objc-global-variable-declaration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/google/readability-avoid-underscore-in-googletest-name.html">google-readability-avoid-underscore-in-googletest-name</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/google/readability-braces-around-statements.html">google-readability-braces-around-statements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/google/readability-casting.html">google-readability-casting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/google/readability-function-size.html">google-readability-function-size</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/google/readability-namespace-comments.html">google-readability-namespace-comments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/google/readability-todo.html">google-readability-todo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/google/runtime-float.html">google-runtime-float</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/google/runtime-int.html">google-runtime-int</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/google/runtime-operator.html">google-runtime-operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/google/upgrade-googletest-case.html">google-upgrade-googletest-case</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/linuxkernel/must-check-errs.html">linuxkernel-must-check-errs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/llvm/else-after-return.html">llvm-else-after-return</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/llvm/formatv-string.html">llvm-formatv-string</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/llvm/header-guard.html">llvm-header-guard</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/llvm/include-order.html">llvm-include-order</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/llvm/invalid-regex-pattern.html">clang-tidy - llvm-invalid-regex-pattern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/llvm/namespace-comment.html">llvm-namespace-comment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/llvm/prefer-isa-or-dyn-cast-in-conditionals.html">llvm-prefer-isa-or-dyn-cast-in-conditionals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/llvm/prefer-register-over-unsigned.html">llvm-prefer-register-over-unsigned</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/llvm/prefer-static-over-anonymous-namespace.html">llvm-prefer-static-over-anonymous-namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/llvm/qualified-auto.html">llvm-qualified-auto</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/llvm/redundant-casting.html">llvm-redundant-casting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/llvm/twine-local.html">llvm-twine-local</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/llvm/type-switch-case-types.html">llvm-type-switch-case-types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/llvm/use-new-mlir-op-builder.html">llvm-mlir-op-builder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/llvm/use-ranges.html">llvm-use-ranges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/llvm/use-vector-utils.html">llvm-use-vector-utils</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/llvmlibc/callee-namespace.html">llvmlibc-callee-namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/llvmlibc/implementation-in-namespace.html">llvmlibc-implementation-in-namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/llvmlibc/inline-function-decl.html">llvmlibc-inline-function-decl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/llvmlibc/restrict-system-libc-headers.html">llvmlibc-restrict-system-libc-headers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/misc/anonymous-namespace-in-header.html">misc-anonymous-namespace-in-header</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/misc/confusable-identifiers.html">misc-confusable-identifiers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/misc/const-correctness.html">misc-const-correctness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/misc/coroutine-hostile-raii.html">misc-coroutine-hostile-raii</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/misc/definitions-in-headers.html">misc-definitions-in-headers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/misc/explicit-constructor.html">misc-explicit-constructor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/misc/header-include-cycle.html">misc-header-include-cycle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/misc/include-cleaner.html">misc-include-cleaner</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/misc/misleading-bidirectional.html">misc-misleading-bidirectional</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/misc/misleading-identifier.html">misc-misleading-identifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/misc/misplaced-const.html">misc-misplaced-const</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/misc/multiple-inheritance.html">misc-multiple-inheritance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/misc/new-delete-overloads.html">misc-new-delete-overloads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/misc/no-recursion.html">misc-no-recursion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/misc/non-copyable-objects.html">misc-non-copyable-objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/misc/non-private-member-variables-in-classes.html">misc-non-private-member-variables-in-classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/misc/override-with-different-visibility.html">misc-override-with-different-visibility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/misc/predictable-rand.html">misc-predictable-rand</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/misc/redundant-expression.html">misc-redundant-expression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/misc/static-assert.html">misc-static-assert</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/misc/static-initialization-cycle.html">misc-static-initialization-cycle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/misc/throw-by-value-catch-by-reference.html">misc-throw-by-value-catch-by-reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/misc/unconventional-assign-operator.html">misc-unconventional-assign-operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/misc/uniqueptr-reset-release.html">misc-uniqueptr-reset-release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/misc/unused-alias-decls.html">misc-unused-alias-decls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/misc/unused-parameters.html">misc-unused-parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/misc/unused-using-decls.html">misc-unused-using-decls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/misc/use-anonymous-namespace.html">misc-use-anonymous-namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/misc/use-internal-linkage.html">misc-use-internal-linkage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/avoid-bind.html">modernize-avoid-bind</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/avoid-c-arrays.html">modernize-avoid-c-arrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/avoid-c-style-cast.html">modernize-avoid-c-style-cast</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/avoid-setjmp-longjmp.html">modernize-avoid-setjmp-longjmp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/avoid-variadic-functions.html">modernize-avoid-variadic-functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/concat-nested-namespaces.html">modernize-concat-nested-namespaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/deprecated-headers.html">modernize-deprecated-headers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/deprecated-ios-base-aliases.html">modernize-deprecated-ios-base-aliases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/loop-convert.html">modernize-loop-convert</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/macro-to-enum.html">modernize-macro-to-enum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/make-shared.html">modernize-make-shared</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/make-unique.html">modernize-make-unique</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/min-max-use-initializer-list.html">modernize-min-max-use-initializer-list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/min-max-use-initializer-list.html#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/min-max-use-initializer-list.html#options">Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/pass-by-value.html">modernize-pass-by-value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/raw-string-literal.html">modernize-raw-string-literal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/redundant-void-arg.html">modernize-redundant-void-arg</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/replace-auto-ptr.html">modernize-replace-auto-ptr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/replace-disallow-copy-and-assign-macro.html">modernize-replace-disallow-copy-and-assign-macro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/replace-random-shuffle.html">modernize-replace-random-shuffle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/return-braced-init-list.html">modernize-return-braced-init-list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/shrink-to-fit.html">modernize-shrink-to-fit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/type-traits.html">modernize-type-traits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/unary-static-assert.html">modernize-unary-static-assert</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/use-auto.html">modernize-use-auto</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/use-bool-literals.html">modernize-use-bool-literals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/use-constraints.html">modernize-use-constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/use-default.html">modernize-use-default</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/use-default-member-init.html">modernize-use-default-member-init</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/use-designated-initializers.html">modernize-use-designated-initializers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/use-emplace.html">modernize-use-emplace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/use-equals-default.html">modernize-use-equals-default</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/use-equals-delete.html">modernize-use-equals-delete</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/use-if-consteval.html">modernize-use-if-consteval</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/use-integer-sign-comparison.html">modernize-use-integer-sign-comparison</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/use-nodiscard.html">modernize-use-nodiscard</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/use-noexcept.html">modernize-use-noexcept</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/use-nullptr.html">modernize-use-nullptr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/use-override.html">modernize-use-override</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/use-ranges.html">modernize-use-ranges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/use-scoped-lock.html">modernize-use-scoped-lock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/use-starts-ends-with.html">modernize-use-starts-ends-with</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/use-std-bit.html">modernize-use-std-bit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/use-std-format.html">modernize-use-std-format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/use-std-numbers.html">modernize-use-std-numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/use-std-print.html">modernize-use-std-print</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/use-string-view.html">modernize-use-string-view</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/use-structured-binding.html">modernize-use-structured-binding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/use-to-underlying.html">modernize-use-to-underlying</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/use-trailing-return-type.html">modernize-use-trailing-return-type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/use-transparent-functors.html">modernize-use-transparent-functors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/use-uncaught-exceptions.html">modernize-use-uncaught-exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/modernize/use-using.html">modernize-use-using</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/mpi/buffer-deref.html">mpi-buffer-deref</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/mpi/type-mismatch.html">mpi-type-mismatch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/objc/assert-equals.html">objc-assert-equals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/objc/avoid-nserror-init.html">objc-avoid-nserror-init</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/objc/dealloc-in-category.html">objc-dealloc-in-category</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/objc/forbidden-subclassing.html">objc-forbidden-subclassing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/objc/missing-hash.html">objc-missing-hash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/objc/nsdate-formatter.html">objc-nsdate-formatter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/objc/nsinvocation-argument-lifetime.html">objc-nsinvocation-argument-lifetime</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/objc/property-declaration.html">objc-property-declaration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/objc/super-self.html">objc-super-self</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/openmp/exception-escape.html">openmp-exception-escape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/openmp/use-default-none.html">openmp-use-default-none</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/performance/avoid-endl.html">performance-avoid-endl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/performance/enum-size.html">performance-enum-size</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/performance/expensive-value-or.html">performance-expensive-value-or</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/performance/faster-string-find.html">performance-faster-string-find</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/performance/for-range-copy.html">performance-for-range-copy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/performance/implicit-cast-in-loop.html">performance-implicit-cast-in-loop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/performance/implicit-conversion-in-loop.html">performance-implicit-conversion-in-loop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/performance/inefficient-algorithm.html">performance-inefficient-algorithm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/performance/inefficient-string-concatenation.html">performance-inefficient-string-concatenation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/performance/inefficient-vector-operation.html">performance-inefficient-vector-operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/performance/move-const-arg.html">performance-move-const-arg</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/performance/move-constructor-init.html">performance-move-constructor-init</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/performance/no-automatic-move.html">performance-no-automatic-move</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/performance/no-int-to-ptr.html">performance-no-int-to-ptr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/performance/noexcept-destructor.html">performance-noexcept-destructor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/performance/noexcept-move-constructor.html">performance-noexcept-move-constructor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/performance/noexcept-swap.html">performance-noexcept-swap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/performance/prefer-single-char-overloads.html">performance-prefer-single-char-overloads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/performance/string-view-conversions.html">performance-string-view-conversions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/performance/trivially-destructible.html">performance-trivially-destructible</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/performance/type-promotion-in-math-fn.html">performance-type-promotion-in-math-fn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/performance/unnecessary-copy-initialization.html">performance-unnecessary-copy-initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/performance/unnecessary-value-param.html">performance-unnecessary-value-param</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/performance/use-std-move.html">performance-use-std-move</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/portability/avoid-pragma-comment.html">portability-avoid-pragma-comment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/portability/avoid-pragma-once.html">portability-avoid-pragma-once</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/portability/no-assembler.html">portability-no-assembler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/portability/restrict-system-includes.html">portability-restrict-system-includes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/portability/simd-intrinsics.html">portability-simd-intrinsics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/portability/std-allocator-const.html">portability-std-allocator-const</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/portability/template-virtual-member-function.html">portability-template-virtual-member-function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/ambiguous-smartptr-reset-call.html">readability-ambiguous-smartptr-reset-call</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/avoid-const-params-in-decls.html">readability-avoid-const-params-in-decls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/avoid-nested-conditional-operator.html">readability-avoid-nested-conditional-operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/avoid-return-with-void-value.html">readability-avoid-return-with-void-value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/avoid-unconditional-preprocessor-if.html">readability-avoid-unconditional-preprocessor-if</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/braces-around-statements.html">readability-braces-around-statements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/const-return-type.html">readability-const-return-type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/container-contains.html">readability-container-contains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/container-data-pointer.html">readability-container-data-pointer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/container-size-empty.html">readability-container-size-empty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/convert-member-functions-to-static.html">readability-convert-member-functions-to-static</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/delete-null-pointer.html">readability-delete-null-pointer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/duplicate-include.html">readability-duplicate-include</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/else-after-return.html">readability-else-after-return</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/enum-initial-value.html">readability-enum-initial-value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/function-cognitive-complexity.html">readability-function-cognitive-complexity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/function-size.html">readability-function-size</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/identifier-length.html">readability-identifier-length</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/identifier-naming.html">readability-identifier-naming</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/implicit-bool-cast.html">readability-implicit-bool-cast</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/implicit-bool-conversion.html">readability-implicit-bool-conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/inconsistent-declaration-parameter-name.html">readability-inconsistent-declaration-parameter-name</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/inconsistent-ifelse-braces.html">readability-inconsistent-ifelse-braces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/isolate-declaration.html">readability-isolate-declaration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/magic-numbers.html">readability-magic-numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/make-member-function-const.html">readability-make-member-function-const</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/math-missing-parentheses.html">readability-math-missing-parentheses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/misleading-indentation.html">readability-misleading-indentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/misplaced-array-index.html">readability-misplaced-array-index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/named-parameter.html">readability-named-parameter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/non-const-parameter.html">readability-non-const-parameter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/operators-representation.html">readability-operators-representation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/qualified-auto.html">readability-qualified-auto</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/redundant-access-specifiers.html">readability-redundant-access-specifiers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/redundant-casting.html">readability-redundant-casting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/redundant-control-flow.html">readability-redundant-control-flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/redundant-declaration.html">readability-redundant-declaration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/redundant-function-ptr-dereference.html">readability-redundant-function-ptr-dereference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/redundant-inline-specifier.html">readability-redundant-inline-specifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/redundant-lambda-parameter-list.html">readability-redundant-lambda-parameter-list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/redundant-member-init.html">readability-redundant-member-init</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/redundant-nested-if.html">readability-redundant-nested-if</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/redundant-parentheses.html">readability-redundant-parentheses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/redundant-preprocessor.html">readability-redundant-preprocessor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/redundant-qualified-alias.html">readability-redundant-qualified-alias</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/redundant-smartptr-get.html">readability-redundant-smartptr-get</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/redundant-string-cstr.html">readability-redundant-string-cstr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/redundant-string-init.html">readability-redundant-string-init</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/redundant-typename.html">readability-redundant-typename</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/redundant-zero-initializer.html">readability-redundant-zero-initializer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/reference-to-constructed-temporary.html">readability-reference-to-constructed-temporary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/simplify-boolean-expr.html">readability-simplify-boolean-expr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/simplify-subscript-expr.html">readability-simplify-subscript-expr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/static-accessed-through-instance.html">readability-static-accessed-through-instance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/static-definition-in-anonymous-namespace.html">readability-static-definition-in-anonymous-namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/string-compare.html">readability-string-compare</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/suspicious-call-argument.html">readability-suspicious-call-argument</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/trailing-comma.html">readability-trailing-comma</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/trivial-switch.html">readability-trivial-switch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/uniqueptr-delete-release.html">readability-uniqueptr-delete-release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/uppercase-literal-suffix.html">readability-uppercase-literal-suffix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/use-anyofallof.html">readability-use-anyofallof</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/use-concise-preprocessor-directives.html">readability-use-concise-preprocessor-directives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checks/readability/use-std-min-max.html">readability-use-std-min-max</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="QueryBasedCustomChecks.html">Query Based Custom Clang-Tidy Checks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Integrations.html">Clang-tidy IDE/Editor Integrations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Contributing.html">Getting Involved</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ExternalClang-TidyExamples.html">External Clang-Tidy Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../clang-include-fixer.html">Clang-Include-Fixer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clang-change-namespace.html">Clang-Change-Namespace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clang-reorder-fields.html">Clang-Reorder-Fields</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../modularize.html">Modularize User’s Manual</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Modularize User’s Manual</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ModularizeUsage.html">Modularize Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../pp-trace.html">pp-trace User’s Manual</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://clangd.llvm.org/">clangd</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clang-doc.html">Clang-Doc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Maintainers.html">Clang Tools Extra Maintainers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Maintainers.html#active-maintainers">Active Maintainers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Maintainers.html#inactive-maintainers">Inactive Maintainers</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="edit-this-page">
+  <a class="muted-link" href="https://github.com/llvm/llvm-project/edit/main/clang-tools-extra/docs/clang-tidy/index.rst" title="Edit this page">
+    <svg aria-hidden="true" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
+      <line x1="13.5" y1="6.5" x2="17.5" y2="10.5" />
+    </svg>
+    <span class="visually-hidden">Edit this page</span>
+  </a>
+</div><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="clang-tidy">
+<h1>Clang-Tidy<a class="headerlink" href="#clang-tidy" title="Link to this heading">#</a></h1>
+<p>See also:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="checks/list.html">List of Clang-Tidy Checks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="QueryBasedCustomChecks.html">Query Based Custom Clang-Tidy Checks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Integrations.html">Clang-tidy IDE/Editor Integrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Contributing.html">Getting Involved</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ExternalClang-TidyExamples.html">External Clang-Tidy Examples</a></li>
+</ul>
+</div>
+<p><strong class="program">clang-tidy</strong> is a clang-based C++ “linter” tool. Its purpose is to
+provide an extensible framework for diagnosing and fixing typical programming
+errors, like style violations, interface misuse, or bugs that can be deduced
+via static analysis. <strong class="program">clang-tidy</strong> is modular and provides a
+convenient interface for writing new checks.</p>
+<section id="using-clang-tidy">
+<h2>Using Clang-Tidy<a class="headerlink" href="#using-clang-tidy" title="Link to this heading">#</a></h2>
+<p><strong class="program">clang-tidy</strong> is a <a class="reference external" href="https://clang.llvm.org/docs/LibTooling.html">LibTooling</a>-based tool, and it’s easier to work
+with if you set up a compile command database for your project (for an example
+of how to do this, see <a class="reference external" href="https://clang.llvm.org/docs/HowToSetupToolingForLLVM.html">How To Setup Tooling For LLVM</a>). You can also specify
+compilation options on the command line after <code class="docutils literal notranslate"><span class="pre">--</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>clang-tidy<span class="w"> </span>test.cpp<span class="w"> </span>--<span class="w"> </span>-Imy_project/include<span class="w"> </span>-DMY_DEFINES<span class="w"> </span>...
+</pre></div>
+</div>
+<p>If there are too many options or source files to specify on the command line,
+you can store them in a parameter file, and use <strong class="program">clang-tidy</strong> with that
+parameters file:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>clang-tidy<span class="w"> </span>@parameters_file
+</pre></div>
+</div>
+<p><strong class="program">clang-tidy</strong> has its own checks and can also run Clang Static Analyzer
+checks. Each check has a name and the checks to run can be chosen using the
+<code class="docutils literal notranslate"><span class="pre">-checks=</span></code> option, which specifies a comma-separated list of positive and
+negative (prefixed with <code class="docutils literal notranslate"><span class="pre">-</span></code>) globs. Positive globs add subsets of checks, and
+negative globs remove them. For example,</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>clang-tidy<span class="w"> </span>test.cpp<span class="w"> </span>-checks<span class="o">=</span>-*,clang-analyzer-*,-clang-analyzer-cplusplus*
+</pre></div>
+</div>
+<p>will disable all default checks (<code class="docutils literal notranslate"><span class="pre">-*</span></code>) and enable all <code class="docutils literal notranslate"><span class="pre">clang-analyzer-*</span></code>
+checks except for <code class="docutils literal notranslate"><span class="pre">clang-analyzer-cplusplus*</span></code> ones.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">-list-checks</span></code> option lists all the enabled checks. When used without
+<code class="docutils literal notranslate"><span class="pre">-checks=</span></code>, it shows checks enabled by default. Use <code class="docutils literal notranslate"><span class="pre">-checks=*</span></code> to see all
+available checks or with any other value of <code class="docutils literal notranslate"><span class="pre">-checks=</span></code> to see which checks
+are enabled by this value.</p>
+<p id="checks-groups-table">There are currently the following groups of checks:</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name prefix</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">abseil-</span></code></p></td>
+<td><p>Checks related to Abseil library.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">altera-</span></code></p></td>
+<td><p>Checks related to OpenCL programming for FPGAs.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">android-</span></code></p></td>
+<td><p>Checks related to Android.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">boost-</span></code></p></td>
+<td><p>Checks related to Boost library.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">bugprone-</span></code></p></td>
+<td><p>Checks that target bug-prone code constructs.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">cert-</span></code></p></td>
+<td><p>Checks related to CERT Secure Coding Guidelines.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">clang-analyzer-</span></code></p></td>
+<td><p>Clang Static Analyzer checks.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">concurrency-</span></code></p></td>
+<td><p>Checks related to concurrent programming (including
+threads, fibers, coroutines, etc.).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cppcoreguidelines-</span></code></p></td>
+<td><p>Checks related to C++ Core Guidelines.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">darwin-</span></code></p></td>
+<td><p>Checks related to Darwin coding conventions.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fuchsia-</span></code></p></td>
+<td><p>Checks related to Fuchsia coding conventions.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">google-</span></code></p></td>
+<td><p>Checks related to Google coding conventions.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">linuxkernel-</span></code></p></td>
+<td><p>Checks related to the Linux Kernel coding conventions.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">llvm-</span></code></p></td>
+<td><p>Checks related to the LLVM coding conventions.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">llvmlibc-</span></code></p></td>
+<td><p>Checks related to the LLVM-libc coding standards.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">misc-</span></code></p></td>
+<td><p>Checks that we didn’t have a better category for.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">modernize-</span></code></p></td>
+<td><p>Checks that advocate usage of modern (currently
+“modern” means “C++11”) language constructs.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mpi-</span></code></p></td>
+<td><p>Checks related to MPI (Message Passing Interface).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">objc-</span></code></p></td>
+<td><p>Checks related to Objective-C coding conventions.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">openmp-</span></code></p></td>
+<td><p>Checks related to OpenMP API.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">performance-</span></code></p></td>
+<td><p>Checks that target performance-related issues.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">portability-</span></code></p></td>
+<td><p>Checks that target portability-related issues that
+don’t relate to any particular coding style.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">readability-</span></code></p></td>
+<td><p>Checks that target readability-related issues that
+don’t relate to any particular coding style.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Clang diagnostics are treated in a similar way as check diagnostics. Clang
+diagnostics are displayed by <strong class="program">clang-tidy</strong> and can be filtered out
+using the <code class="docutils literal notranslate"><span class="pre">-checks=</span></code> option. However, the <code class="docutils literal notranslate"><span class="pre">-checks=</span></code> option does not
+affect compilation arguments, so it cannot turn on Clang warnings which are
+not already turned on in the build configuration. The <code class="docutils literal notranslate"><span class="pre">-warnings-as-errors=</span></code>
+option upgrades any warnings emitted under the <code class="docutils literal notranslate"><span class="pre">-checks=</span></code> flag to errors (but
+it does not enable any checks itself).</p>
+<p>Clang diagnostics have check names starting with <code class="docutils literal notranslate"><span class="pre">clang-diagnostic-</span></code>.
+Diagnostics which have a corresponding warning option, are named
+<code class="docutils literal notranslate"><span class="pre">clang-diagnostic-&lt;warning-option&gt;</span></code>, e.g. Clang warning controlled by
+<code class="docutils literal notranslate"><span class="pre">-Wliteral-conversion</span></code> will be reported with check name
+<code class="docutils literal notranslate"><span class="pre">clang-diagnostic-literal-conversion</span></code>.</p>
+<p>Clang compiler errors (such as syntax errors, semantic errors, or other
+failures that prevent Clang from compiling the code) are reported with the
+check name <code class="docutils literal notranslate"><span class="pre">clang-diagnostic-error</span></code>. These represent fundamental compilation
+failures that must be fixed before <strong class="program">clang-tidy</strong> can perform its
+analysis. Unlike other diagnostics, <code class="docutils literal notranslate"><span class="pre">clang-diagnostic-error</span></code> cannot be
+disabled, as <strong class="program">clang-tidy</strong> requires valid code to function.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">-fix</span></code> flag instructs <strong class="program">clang-tidy</strong> to fix found errors if
+supported by corresponding checks.</p>
+<p>An overview of all the command-line options:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>clang-tidy<span class="w"> </span>--help
+<span class="go">USAGE: clang-tidy [options] &lt;source0&gt; [... &lt;sourceN&gt;]</span>
+
+<span class="go">OPTIONS:</span>
+
+<span class="go">Generic Options:</span>
+
+<span class="go">  --help                           - Display available options (--help-hidden for more)</span>
+<span class="go">  --help-list                      - Display list of available options (--help-list-hidden for more)</span>
+<span class="go">  --version                        - Display the version of this program</span>
+
+<span class="go">clang-tidy options:</span>
+
+<span class="go">  --allow-no-checks                - Allow empty enabled checks. This suppresses</span>
+<span class="go">                                     the &quot;no checks enabled&quot; error when disabling</span>
+<span class="go">                                     all of the checks.</span>
+<span class="go">  --checks=&lt;string&gt;                - Comma-separated list of globs with optional &#39;-&#39;</span>
+<span class="go">                                     prefix. Globs are processed in order of</span>
+<span class="go">                                     appearance in the list. Globs without &#39;-&#39;</span>
+<span class="go">                                     prefix add checks with matching names to the</span>
+<span class="go">                                     set, globs with the &#39;-&#39; prefix remove checks</span>
+<span class="go">                                     with matching names from the set of enabled</span>
+<span class="go">                                     checks. This option&#39;s value is appended to the</span>
+<span class="go">                                     value of the &#39;Checks&#39; option in .clang-tidy</span>
+<span class="go">                                     file, if any.</span>
+<span class="go">  --config=&lt;string&gt;                - Specifies a configuration in YAML/JSON format:</span>
+<span class="go">                                       -config=&quot;{Checks: &#39;*&#39;,</span>
+<span class="go">                                                 CheckOptions: {x: y}}&quot;</span>
+<span class="go">                                     When the value is empty, clang-tidy will</span>
+<span class="go">                                     attempt to find a file named .clang-tidy for</span>
+<span class="go">                                     each source file in its parent directories.</span>
+<span class="go">  --config-file=&lt;string&gt;           - Specify the path of .clang-tidy or custom config file:</span>
+<span class="go">                                      e.g. --config-file=/some/path/myTidyConfigFile</span>
+<span class="go">                                     This option internally works exactly the same way as</span>
+<span class="go">                                      --config option after reading specified config file.</span>
+<span class="go">                                     Use either --config-file or --config, not both.</span>
+<span class="go">  --dump-config                    - Dumps configuration in the YAML format to</span>
+<span class="go">                                     stdout. This option can be used along with a</span>
+<span class="go">                                     file name (and &#39;--&#39; if the file is outside of a</span>
+<span class="go">                                     project with configured compilation database).</span>
+<span class="go">                                     The configuration used for this file will be</span>
+<span class="go">                                     printed.</span>
+<span class="go">                                     Use along with -checks=* to include</span>
+<span class="go">                                     configuration of all checks.</span>
+<span class="go">  --enable-check-profile           - Enable per-check timing profiles, and print a</span>
+<span class="go">                                     report to stderr.</span>
+<span class="go">  --enable-module-headers-parsing  - Enables preprocessor-level module header parsing</span>
+<span class="go">                                     for C++20 and above, empowering specific checks</span>
+<span class="go">                                     to detect macro definitions within modules. This</span>
+<span class="go">                                     feature may cause performance and parsing issues</span>
+<span class="go">                                     and is therefore considered experimental.</span>
+<span class="go">  --exclude-header-filter=&lt;string&gt; - Regular expression matching the names of the</span>
+<span class="go">                                     headers to exclude diagnostics from. Diagnostics</span>
+<span class="go">                                     from the main file of each translation unit are</span>
+<span class="go">                                     always displayed.</span>
+<span class="go">                                     Must be used together with --header-filter.</span>
+<span class="go">                                     Can be used together with -line-filter.</span>
+<span class="go">                                     This option overrides the &#39;ExcludeHeaderFilterRegex&#39;</span>
+<span class="go">                                     option in .clang-tidy file, if any.</span>
+<span class="go">  --experimental-custom-checks     - Enable experimental clang-query based</span>
+<span class="go">                                     custom checks.</span>
+<span class="go">                                     see https://clang.llvm.org/extra/clang-tidy/QueryBasedCustomChecks.html.</span>
+<span class="go">  --explain-config                 - For each enabled check explains, where it is</span>
+<span class="go">                                     enabled, i.e. in clang-tidy binary, command</span>
+<span class="go">                                     line or a specific configuration file.</span>
+<span class="go">  --export-fixes=&lt;filename&gt;        - YAML file to store suggested fixes in. The</span>
+<span class="go">                                     stored fixes can be applied to the input source</span>
+<span class="go">                                     code with clang-apply-replacements.</span>
+<span class="go">  --extra-arg=&lt;string&gt;             - Additional argument to append to the compiler command line</span>
+<span class="go">  --extra-arg-before=&lt;string&gt;      - Additional argument to prepend to the compiler command line</span>
+<span class="go">  --fix                            - Apply suggested fixes. Without -fix-errors</span>
+<span class="go">                                     clang-tidy will bail out if any compilation</span>
+<span class="go">                                     errors were found.</span>
+<span class="go">  --fix-errors                     - Apply suggested fixes even if compilation</span>
+<span class="go">                                     errors were found. If compiler errors have</span>
+<span class="go">                                     attached fix-its, clang-tidy will apply them as</span>
+<span class="go">                                     well.</span>
+<span class="go">  --fix-notes                      - If a warning has no fix, but a single fix can</span>
+<span class="go">                                     be found through an associated diagnostic note,</span>
+<span class="go">                                     apply the fix.</span>
+<span class="go">                                     Specifying this flag will implicitly enable the</span>
+<span class="go">                                     &#39;--fix&#39; flag.</span>
+<span class="go">  --format-style=&lt;string&gt;          - Style for formatting code around applied fixes:</span>
+<span class="go">                                       - &#39;none&#39; (default) turns off formatting</span>
+<span class="go">                                       - &#39;file&#39; (literally &#39;file&#39;, not a placeholder)</span>
+<span class="go">                                         uses .clang-format file in the closest parent</span>
+<span class="go">                                         directory</span>
+<span class="go">                                       - &#39;{ &lt;json&gt; }&#39; specifies options inline, e.g.</span>
+<span class="go">                                         -format-style=&#39;{BasedOnStyle: llvm, IndentWidth: 8}&#39;</span>
+<span class="go">                                       - &#39;llvm&#39;, &#39;google&#39;, &#39;webkit&#39;, &#39;mozilla&#39;</span>
+<span class="go">                                     See clang-format documentation for the up-to-date</span>
+<span class="go">                                     information about formatting styles and options.</span>
+<span class="go">                                     This option overrides the &#39;FormatStyle` option in</span>
+<span class="go">                                     .clang-tidy file, if any.</span>
+<span class="go">  --header-filter=&lt;string&gt;         - Regular expression matching the names of the</span>
+<span class="go">                                     headers to output diagnostics from. The default</span>
+<span class="go">                                     value is &#39;.*&#39;, i.e. diagnostics from all non-system</span>
+<span class="go">                                     headers are displayed by default. Diagnostics</span>
+<span class="go">                                     from the main file of each translation unit are</span>
+<span class="go">                                     always displayed.</span>
+<span class="go">                                     Can be used together with -line-filter.</span>
+<span class="go">                                     This option overrides the &#39;HeaderFilterRegex&#39;</span>
+<span class="go">                                     option in .clang-tidy file, if any.</span>
+<span class="go">  --line-filter=&lt;string&gt;           - List of files and line ranges to output diagnostics from.</span>
+<span class="go">                                     The range is inclusive on both ends. Can be used together</span>
+<span class="go">                                     with -header-filter. The format of the list is a JSON</span>
+<span class="go">                                     array of objects. For example:</span>
+
+<span class="go">                                       [</span>
+<span class="go">                                         {&quot;name&quot;:&quot;file1.cpp&quot;,&quot;lines&quot;:[[1,3],[5,7]]},</span>
+<span class="go">                                         {&quot;name&quot;:&quot;file2.h&quot;}</span>
+<span class="go">                                       ]</span>
+
+<span class="go">                                     This will output diagnostics from &#39;file1.cpp&#39; only for</span>
+<span class="go">                                     the line ranges [1,3] and [5,7], as well as all from the</span>
+<span class="go">                                     entire &#39;file2.h&#39;.</span>
+<span class="go">  --list-checks                    - List all enabled checks and exit. Use with</span>
+<span class="go">                                     -checks=* to list all available checks.</span>
+<span class="go">  --load=&lt;pluginfilename&gt;          - Load the specified plugin</span>
+<span class="go">  -p &lt;string&gt;                      - Build path</span>
+<span class="go">  --quiet                          - Run clang-tidy in quiet mode. This suppresses</span>
+<span class="go">                                     printing statistics about ignored warnings and</span>
+<span class="go">                                     warnings treated as errors if the respective</span>
+<span class="go">                                     options are specified.</span>
+<span class="go">  --removed-arg=&lt;string&gt;           - List of arguments to remove from the command</span>
+<span class="go">                                     line sent to the compiler. Please note that</span>
+<span class="go">                                     removing arguments might change the semantic</span>
+<span class="go">                                     of the analyzed code, possibly leading to</span>
+<span class="go">                                     compiler errors, false positives or</span>
+<span class="go">                                     false negatives. This option is applied</span>
+<span class="go">                                     before --extra-arg and --extra-arg-before</span>
+<span class="go">  --store-check-profile=&lt;prefix&gt;   - By default reports are printed in tabulated</span>
+<span class="go">                                     format to stderr. When this option is passed,</span>
+<span class="go">                                     these per-TU profiles are instead stored as JSON.</span>
+<span class="go">  --system-headers                 - Display the errors from system headers.</span>
+<span class="go">                                     This option overrides the &#39;SystemHeaders&#39; option</span>
+<span class="go">                                     in .clang-tidy file, if any.</span>
+<span class="go">  --use-color                      - Use colors in diagnostics. If not set, colors</span>
+<span class="go">                                     will be used if the terminal connected to</span>
+<span class="go">                                     standard output supports colors.</span>
+<span class="go">                                     This option overrides the &#39;UseColor&#39; option in</span>
+<span class="go">                                     .clang-tidy file, if any.</span>
+<span class="go">  --verify-config                  - Check the config files to ensure each check and</span>
+<span class="go">                                     option is recognized without running any checks.</span>
+<span class="go">  --vfsoverlay=&lt;filename&gt;          - Overlay the virtual filesystem described by file</span>
+<span class="go">                                     over the real file system.</span>
+<span class="go">  --warnings-as-errors=&lt;string&gt;    - Upgrades warnings to errors. Same format as</span>
+<span class="go">                                     &#39;-checks&#39;.</span>
+<span class="go">                                     This option&#39;s value is appended to the value of</span>
+<span class="go">                                     the &#39;WarningsAsErrors&#39; option in .clang-tidy</span>
+<span class="go">                                     file, if any.</span>
+
+<span class="go">-p &lt;build-path&gt; is used to read a compile command database.</span>
+
+<span class="go">  For example, it can be a CMake build directory in which a file named</span>
+<span class="go">  compile_commands.json exists (use -DCMAKE_EXPORT_COMPILE_COMMANDS=ON</span>
+<span class="go">  CMake option to get this output). When no build path is specified,</span>
+<span class="go">  a search for compile_commands.json will be attempted through all</span>
+<span class="go">  parent paths of the first input file . See:</span>
+<span class="go">  https://clang.llvm.org/docs/HowToSetupToolingForLLVM.html for an</span>
+<span class="go">  example of setting up Clang Tooling on a source tree.</span>
+
+<span class="go">&lt;source0&gt; ... specify the paths of source files. These paths are</span>
+<span class="go">  looked up in the compile command database. If the path of a file is</span>
+<span class="go">  absolute, it needs to point into CMake&#39;s source tree. If the path is</span>
+<span class="go">  relative, the current working directory needs to be in the CMake</span>
+<span class="go">  source tree and the file must be in a subdirectory of the current</span>
+<span class="go">  working directory. &quot;./&quot; prefixes in the relative files will be</span>
+<span class="go">  automatically removed, but the rest of a relative path must be a</span>
+<span class="go">  suffix of a path in the compile command database.</span>
+
+<span class="go">Parameters files:</span>
+<span class="go">  A large number of options or source files can be passed as parameter files</span>
+<span class="go">  by use &#39;@parameter-file&#39; in the command line.</span>
+
+<span class="go">Configuration files:</span>
+<span class="go">  clang-tidy attempts to read configuration for each source file from a</span>
+<span class="go">  .clang-tidy file located in the closest parent directory of the source</span>
+<span class="go">  file. The .clang-tidy file is specified in YAML format. If any configuration</span>
+<span class="go">  options have a corresponding command-line option, command-line option takes</span>
+<span class="go">  precedence.</span>
+
+<span class="go">  The following configuration options may be used in a .clang-tidy file:</span>
+
+<span class="go">  CheckOptions                 - List of key-value pairs defining check-specific</span>
+<span class="go">                                 options. Example:</span>
+<span class="go">                                   CheckOptions:</span>
+<span class="go">                                     some-check.SomeOption: &#39;some value&#39;</span>
+<span class="go">  Checks                       - Same as &#39;--checks&#39;. Additionally, the list of</span>
+<span class="go">                                 globs can be specified as a list instead of a</span>
+<span class="go">                                 string.</span>
+<span class="go">  CustomChecks                 - Array of user defined checks based on</span>
+<span class="go">                                 Clang-Query syntax.</span>
+<span class="go">  ExcludeHeaderFilterRegex     - Same as &#39;--exclude-header-filter&#39;.</span>
+<span class="go">  ExtraArgs                    - Same as &#39;--extra-arg&#39;.</span>
+<span class="go">  ExtraArgsBefore              - Same as &#39;--extra-arg-before&#39;.</span>
+<span class="go">  FormatStyle                  - Same as &#39;--format-style&#39;.</span>
+<span class="go">  HeaderFileExtensions         - File extensions to consider to determine if a</span>
+<span class="go">                                 given diagnostic is located in a header file.</span>
+<span class="go">  HeaderFilterRegex            - Same as &#39;--header-filter&#39;.</span>
+<span class="go">  ImplementationFileExtensions - File extensions to consider to determine if a</span>
+<span class="go">                                 given diagnostic is located in an</span>
+<span class="go">                                 implementation file.</span>
+<span class="go">  InheritParentConfig          - If this option is true in a config file, the</span>
+<span class="go">                                 configuration file in the parent directory</span>
+<span class="go">                                 (if any exists) will be taken and the current</span>
+<span class="go">                                 config file will be applied on top of the</span>
+<span class="go">                                 parent one.</span>
+<span class="go">  RemovedArgs                  - Same as &#39;--removed-arg&#39;.</span>
+<span class="go">  SystemHeaders                - Same as &#39;--system-headers&#39;.</span>
+<span class="go">  UseColor                     - Same as &#39;--use-color&#39;.</span>
+<span class="go">  User                         - Specifies the name or e-mail of the user</span>
+<span class="go">                                 running clang-tidy. This option is used, for</span>
+<span class="go">                                 example, to place the correct user name in</span>
+<span class="go">                                 TODO() comments in the relevant check.</span>
+<span class="go">  WarningsAsErrors             - Same as &#39;--warnings-as-errors&#39;.</span>
+
+<span class="go">  The effective configuration can be inspected using --dump-config:</span>
+
+<span class="gp">    $ </span>clang-tidy<span class="w"> </span>--dump-config
+<span class="go">    ---</span>
+<span class="go">    Checks:                       &#39;-*,some-check&#39;</span>
+<span class="go">    WarningsAsErrors:             &#39;&#39;</span>
+<span class="go">    HeaderFileExtensions:         [&#39;&#39;, &#39;h&#39;,&#39;hh&#39;,&#39;hpp&#39;,&#39;hxx&#39;]</span>
+<span class="go">    ImplementationFileExtensions: [&#39;c&#39;,&#39;cc&#39;,&#39;cpp&#39;,&#39;cxx&#39;]</span>
+<span class="go">    HeaderFilterRegex:            &#39;.*&#39;</span>
+<span class="go">    FormatStyle:                  none</span>
+<span class="go">    InheritParentConfig:          true</span>
+<span class="go">    User:                         user</span>
+<span class="go">    CheckOptions:</span>
+<span class="go">      some-check.SomeOption: &#39;some value&#39;</span>
+<span class="go">    ...</span>
+</pre></div>
+</div>
+<section id="running-clang-tidy-on-cuda-files">
+<h3>Running Clang-Tidy on CUDA Files<a class="headerlink" href="#running-clang-tidy-on-cuda-files" title="Link to this heading">#</a></h3>
+<p><strong class="program">clang-tidy</strong> supports analyzing CUDA source files. To ensure correct
+header resolution, it is important to specify the CUDA toolkit path using
+<code class="docutils literal notranslate"><span class="pre">--cuda-path</span></code>. For more details on how Clang handles CUDA, see
+<a class="reference external" href="https://llvm.org/docs/CompileCudaWithLLVM.html">Compiling CUDA with Clang</a>.</p>
+<p>If you are using a GCC + NVCC build setup, the compiler command database will
+contain NVCC-specific flags that <strong class="program">clang-tidy</strong> does not understand.</p>
+<p>In this case, you should use the <code class="docutils literal notranslate"><span class="pre">RemovedArgs</span></code> configuration option (or
+<code class="docutils literal notranslate"><span class="pre">--removed-arg</span></code> command-line option) to remove these flags, and
+<code class="docutils literal notranslate"><span class="pre">ExtraArgs</span></code> (or <code class="docutils literal notranslate"><span class="pre">--extra-arg</span></code>) to provide the <code class="docutils literal notranslate"><span class="pre">--cuda-path</span></code>.</p>
+<p>For example, to remove the NVCC-specific <code class="docutils literal notranslate"><span class="pre">-gencode</span></code> flag and provide the
+CUDA path:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>clang-tidy<span class="w"> </span>source.cu<span class="w"> </span>--removed-arg<span class="o">=</span><span class="s2">&quot;-gencode&quot;</span><span class="w"> </span>--removed-arg<span class="o">=</span><span class="s2">&quot;arch=..&quot;</span><span class="w"> </span>--extra-arg<span class="o">=</span><span class="s2">&quot;--cuda-path=/path/to/cuda&quot;</span>
+</pre></div>
+</div>
+<p>By default, <strong class="program">clang-tidy</strong> will analyze both host and device code.
+To restrict the analysis to a specific side and specifically choose device
+compilation flags, use the <code class="docutils literal notranslate"><span class="pre">--extra-arg</span></code> flag to pass the arguments.</p>
+<p>For example, to perform device analysis only, use
+the <code class="docutils literal notranslate"><span class="pre">--cuda-device-only</span></code> flag:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>clang-tidy<span class="w"> </span>source.cu<span class="w"> </span>--extra-arg<span class="o">=</span><span class="s2">&quot;--cuda-device-only&quot;</span><span class="w"> </span>--extra-arg<span class="o">=</span><span class="s2">&quot;--cuda-path=/path/to/cuda&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="clang-tidy-automation">
+<h2>Clang-Tidy Automation<a class="headerlink" href="#clang-tidy-automation" title="Link to this heading">#</a></h2>
+<p><strong class="program">clang-tidy</strong> can analyze multiple source files by specifying them on
+the command line. For larger projects, automation scripts provide additional
+functionality like parallel execution and integration with version control
+systems.</p>
+<section id="running-clang-tidy-in-parallel">
+<h3>Running Clang-Tidy in Parallel<a class="headerlink" href="#running-clang-tidy-in-parallel" title="Link to this heading">#</a></h3>
+<p><strong class="program">clang-tidy</strong> can process multiple files sequentially, but for projects
+with many source files, the <strong class="program">run-clang-tidy.py</strong> script provides
+parallel execution to significantly reduce analysis time. This script is
+included with clang-tidy and runs <strong class="program">clang-tidy</strong> over all files in a
+compilation database or a specified path concurrently.</p>
+<p>The script requires a compilation database (<code class="docutils literal notranslate"><span class="pre">compile_commands.json</span></code>) which
+can be generated by build systems like CMake (using
+<code class="docutils literal notranslate"><span class="pre">-DCMAKE_EXPORT_COMPILE_COMMANDS=ON</span></code>) or by tools like <a class="reference external" href="https://github.com/rizsotto/Bear">Bear</a>.</p>
+<p>The script supports most of the same options as <strong class="program">clang-tidy</strong> itself,
+including <code class="docutils literal notranslate"><span class="pre">-checks=</span></code>, <code class="docutils literal notranslate"><span class="pre">-fix</span></code>, <code class="docutils literal notranslate"><span class="pre">-header-filter=</span></code>, and configuration
+options. Run <code class="docutils literal notranslate"><span class="pre">run-clang-tidy.py</span> <span class="pre">--help</span></code> for a complete list of available
+options.</p>
+<p>Example invocations:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Run<span class="w"> </span>clang-tidy<span class="w"> </span>on<span class="w"> </span>all<span class="w"> </span>files<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>compilation<span class="w"> </span>database<span class="w"> </span><span class="k">in</span><span class="w"> </span>parallel
+<span class="gp">$ </span>run-clang-tidy.py<span class="w"> </span>-p<span class="o">=</span>build/
+
+<span class="gp"># </span>Run<span class="w"> </span>with<span class="w"> </span>specific<span class="w"> </span>checks<span class="w"> </span>and<span class="w"> </span>apply<span class="w"> </span>fixes
+<span class="gp">$ </span>run-clang-tidy.py<span class="w"> </span>-p<span class="o">=</span>build/<span class="w"> </span>-fix<span class="w"> </span>-checks<span class="o">=</span>-*,readability-*
+
+<span class="gp"># </span>Run<span class="w"> </span>on<span class="w"> </span>specific<span class="w"> </span>files/directories<span class="w"> </span>with<span class="w"> </span>header<span class="w"> </span>filtering
+<span class="gp">$ </span>run-clang-tidy.py<span class="w"> </span>-p<span class="o">=</span>build/<span class="w"> </span>-header-filter<span class="o">=</span>src/<span class="w"> </span>src/
+
+<span class="gp"># </span>Run<span class="w"> </span>with<span class="w"> </span>parallel<span class="w"> </span>execution<span class="w"> </span><span class="o">(</span>uses<span class="w"> </span>all<span class="w"> </span>CPU<span class="w"> </span>cores<span class="w"> </span>by<span class="w"> </span>default<span class="o">)</span>
+<span class="gp">$ </span>run-clang-tidy.py<span class="w"> </span>-p<span class="o">=</span>build/<span class="w"> </span>-j<span class="w"> </span><span class="m">4</span>
+</pre></div>
+</div>
+</section>
+<section id="running-clang-tidy-on-diff">
+<h3>Running Clang-Tidy on Diff<a class="headerlink" href="#running-clang-tidy-on-diff" title="Link to this heading">#</a></h3>
+<p>The <strong class="program">clang-tidy-diff.py</strong> script allows you to run
+<strong class="program">clang-tidy</strong> on the lines that have been modified in your working
+directory or in a specific diff. Importantly, <strong class="program">clang-tidy-diff.py</strong> only reports
+diagnostics for changed lines; <strong class="program">clang-tidy</strong> still analyzes the entire
+file and filters out unchanged lines after analysis, so this does not improve
+performance. This is particularly useful for code reviews and continuous
+integration, as it focuses analysis on the changed code rather than the entire
+codebase.</p>
+<p>The script can work with various diff sources:</p>
+<ul class="simple">
+<li><p>Git working directory changes</p></li>
+<li><p>Output from <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span></code></p></li>
+<li><p>Output from <code class="docutils literal notranslate"><span class="pre">svn</span> <span class="pre">diff</span></code></p></li>
+<li><p>Patch files</p></li>
+</ul>
+<p>Example invocations:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Run<span class="w"> </span>clang-tidy<span class="w"> </span>on<span class="w"> </span>all<span class="w"> </span>changes<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>working<span class="w"> </span>directory
+<span class="gp">$ </span>git<span class="w"> </span>diff<span class="w"> </span>-U0<span class="w"> </span>--no-color<span class="w"> </span>HEAD^<span class="w"> </span><span class="p">|</span><span class="w"> </span>clang-tidy-diff.py<span class="w"> </span>-p1
+
+<span class="gp"># </span>Run<span class="w"> </span>with<span class="w"> </span>specific<span class="w"> </span>checks<span class="w"> </span>and<span class="w"> </span>apply<span class="w"> </span>fixes
+<span class="gp">$ </span>git<span class="w"> </span>diff<span class="w"> </span>-U0<span class="w"> </span>--no-color<span class="w"> </span>HEAD^<span class="w"> </span><span class="p">|</span><span class="w"> </span>clang-tidy-diff.py<span class="w"> </span>-p1<span class="w"> </span>-fix<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-checks<span class="o">=</span>-*,readability-*
+
+<span class="gp"># </span>Run<span class="w"> </span>on<span class="w"> </span>staged<span class="w"> </span>changes
+<span class="gp">$ </span>git<span class="w"> </span>diff<span class="w"> </span>-U0<span class="w"> </span>--no-color<span class="w"> </span>--cached<span class="w"> </span><span class="p">|</span><span class="w"> </span>clang-tidy-diff.py<span class="w"> </span>-p1
+
+<span class="gp"># </span>Run<span class="w"> </span>on<span class="w"> </span>changes<span class="w"> </span>between<span class="w"> </span>two<span class="w"> </span>commits
+<span class="gp">$ </span>git<span class="w"> </span>diff<span class="w"> </span>-U0<span class="w"> </span>--no-color<span class="w"> </span>HEAD~2<span class="w"> </span>HEAD<span class="w"> </span><span class="p">|</span><span class="w"> </span>clang-tidy-diff.py<span class="w"> </span>-p1
+
+<span class="gp"># </span>Run<span class="w"> </span>on<span class="w"> </span>a<span class="w"> </span>patch<span class="w"> </span>file
+<span class="gp">$ </span>clang-tidy-diff.py<span class="w"> </span>-p1<span class="w"> </span>&lt;<span class="w"> </span>changes.patch
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">-p1</span></code> option tells the script to strip one level of path prefix from
+the diff, which is typically needed for Git diffs. The script supports most of
+the same options as <strong class="program">clang-tidy</strong> itself, including <code class="docutils literal notranslate"><span class="pre">-checks=</span></code>,
+<code class="docutils literal notranslate"><span class="pre">-fix</span></code>, <code class="docutils literal notranslate"><span class="pre">-header-filter=</span></code>, and configuration options.</p>
+<p>While <strong class="program">clang-tidy-diff.py</strong> is useful for focusing on recent changes,
+relying solely on it may lead to incomplete analysis. Since the script only
+reports warnings from the modified lines, it may miss issues that are caused
+by the changes but manifest elsewhere in the code. For example, changes that
+only add lines to a function may cause it to violate size limits (e.g.,
+<a class="reference external" href="checks/readability/function-size.html">readability-function-size</a>), but the
+diagnostic will be reported at the function declaration, which may not be in
+the diff and thus filtered out. Modifications to header files may also affect
+many implementation files, but only warnings in the modified header lines will
+be reported.</p>
+<p>For comprehensive analysis, especially before merging significant changes,
+consider running <strong class="program">clang-tidy</strong> on the entire affected files or the
+whole project using <strong class="program">run-clang-tidy.py</strong>.</p>
+</section>
+</section>
+<section id="suppressing-undesired-diagnostics">
+<span id="clang-tidy-nolint"></span><h2>Suppressing Undesired Diagnostics<a class="headerlink" href="#suppressing-undesired-diagnostics" title="Link to this heading">#</a></h2>
+<p><strong class="program">clang-tidy</strong> diagnostics are intended to call out code that does not
+adhere to a coding standard, or is otherwise problematic in some way. However,
+if the code is known to be correct, it may be useful to silence the warning.
+Some clang-tidy checks provide a check-specific way to silence the diagnostics,
+e.g. <a class="reference external" href="checks/bugprone/use-after-move.html">bugprone-use-after-move</a> can be
+silenced by re-initializing the variable after it has been moved out,
+<a class="reference external" href="checks/bugprone/string-integer-assignment.html">bugprone-string-integer-assignment</a> can be suppressed by
+explicitly casting the integer to <code class="docutils literal notranslate"><span class="pre">char</span></code>,
+<a class="reference external" href="checks/readability/implicit-bool-conversion.html">readability-implicit-bool-conversion</a> can also be suppressed by
+using explicit casts, etc.</p>
+<p>If a specific suppression mechanism is not available for a certain warning, or
+its use is not desired for some reason, <strong class="program">clang-tidy</strong> has a generic
+mechanism to suppress diagnostics using <code class="docutils literal notranslate"><span class="pre">NOLINT</span></code>, <code class="docutils literal notranslate"><span class="pre">NOLINTNEXTLINE</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">NOLINTBEGIN</span></code> … <code class="docutils literal notranslate"><span class="pre">NOLINTEND</span></code> comments.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">NOLINT</span></code> comment instructs <strong class="program">clang-tidy</strong> to ignore warnings on
+the <em>same line</em> (it doesn’t apply to a function, a block of code or any other
+language construct; it applies to the line of code it is on). If introducing
+the comment on the same line would change the formatting in an undesired way,
+the <code class="docutils literal notranslate"><span class="pre">NOLINTNEXTLINE</span></code> comment allows suppressing clang-tidy warnings on the
+<em>next line</em>. The <code class="docutils literal notranslate"><span class="pre">NOLINTBEGIN</span></code> and <code class="docutils literal notranslate"><span class="pre">NOLINTEND</span></code> comments allow suppressing
+clang-tidy warnings on <em>multiple lines</em> (affecting all lines between the two
+comments).</p>
+<p>All comments can be followed by an optional list of check names in parentheses
+(see below for the formal syntax). The list of check names supports globbing,
+with the same format and semantics as for enabling checks. Note: negative globs
+are ignored here, as they would effectively re-activate the warning.</p>
+<p>For example:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Foo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Suppress all the diagnostics for the line</span>
+<span class="w">  </span><span class="n">Foo</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">param</span><span class="p">);</span><span class="w"> </span><span class="c1">// NOLINT</span>
+
+<span class="w">  </span><span class="c1">// Consider explaining the motivation to suppress the warning</span>
+<span class="w">  </span><span class="n">Foo</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="n">param</span><span class="p">);</span><span class="w"> </span><span class="c1">// NOLINT: Allow implicit conversion from `char`, because &lt;some valid reason&gt;</span>
+
+<span class="w">  </span><span class="c1">// Silence only the specified checks for the line</span>
+<span class="w">  </span><span class="n">Foo</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">param</span><span class="p">);</span><span class="w"> </span><span class="c1">// NOLINT(google-explicit-constructor, google-runtime-int)</span>
+
+<span class="w">  </span><span class="c1">// Silence all checks from the `google` module</span>
+<span class="w">  </span><span class="n">Foo</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">param</span><span class="p">);</span><span class="w"> </span><span class="c1">// NOLINT(google*)</span>
+
+<span class="w">  </span><span class="c1">// Silence all checks ending with `-avoid-c-arrays`</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">array</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span><span class="w"> </span><span class="c1">// NOLINT(*-avoid-c-arrays)</span>
+
+<span class="w">  </span><span class="c1">// Silence only the specified diagnostics for the next line</span>
+<span class="w">  </span><span class="c1">// NOLINTNEXTLINE(google-explicit-constructor, google-runtime-int)</span>
+<span class="w">  </span><span class="n">Foo</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">param</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// Silence all checks from the `google` module for the next line</span>
+<span class="w">  </span><span class="c1">// NOLINTNEXTLINE(google*)</span>
+<span class="w">  </span><span class="n">Foo</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">param</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// Silence all checks ending with `-avoid-c-arrays` for the next line</span>
+<span class="w">  </span><span class="c1">// NOLINTNEXTLINE(*-avoid-c-arrays)</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">array</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+
+<span class="w">  </span><span class="c1">// Silence only the specified checks for all lines between the BEGIN and END</span>
+<span class="w">  </span><span class="c1">// NOLINTBEGIN(google-explicit-constructor, google-runtime-int)</span>
+<span class="w">  </span><span class="n">Foo</span><span class="p">(</span><span class="kt">short</span><span class="w"> </span><span class="n">param</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Foo</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">param</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// NOLINTEND(google-explicit-constructor, google-runtime-int)</span>
+
+<span class="w">  </span><span class="c1">// Silence all checks from the `google` module for all lines between the BEGIN and END</span>
+<span class="w">  </span><span class="c1">// NOLINTBEGIN(google*)</span>
+<span class="w">  </span><span class="n">Foo</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">param</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// NOLINTEND(google*)</span>
+
+<span class="w">  </span><span class="c1">// Silence all checks ending with `-avoid-c-arrays` for all lines between the BEGIN and END</span>
+<span class="w">  </span><span class="c1">// NOLINTBEGIN(*-avoid-c-arrays)</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">array</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+<span class="w">  </span><span class="c1">// NOLINTEND(*-avoid-c-arrays)</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>The formal syntax of <code class="docutils literal notranslate"><span class="pre">NOLINT</span></code>, <code class="docutils literal notranslate"><span class="pre">NOLINTNEXTLINE</span></code>, and <code class="docutils literal notranslate"><span class="pre">NOLINTBEGIN</span></code> …
+<code class="docutils literal notranslate"><span class="pre">NOLINTEND</span></code> is the following:</p>
+<pre class="literal-block">lint-comment:
+  lint-command
+  lint-command lint-args
+
+lint-args:
+  <strong>(</strong> check-name-list <strong>)</strong>
+
+check-name-list:
+  <em>check-name</em>
+  check-name-list <strong>,</strong> <em>check-name</em>
+
+lint-command:
+  <strong>NOLINT</strong>
+  <strong>NOLINTNEXTLINE</strong>
+  <strong>NOLINTBEGIN</strong>
+  <strong>NOLINTEND</strong></pre>
+<p>Note that whitespaces between
+<code class="docutils literal notranslate"><span class="pre">NOLINT</span></code>/<code class="docutils literal notranslate"><span class="pre">NOLINTNEXTLINE</span></code>/<code class="docutils literal notranslate"><span class="pre">NOLINTBEGIN</span></code>/<code class="docutils literal notranslate"><span class="pre">NOLINTEND</span></code> and the opening
+parenthesis are not allowed (in this case the comment will be treated just as
+<code class="docutils literal notranslate"><span class="pre">NOLINT</span></code>/<code class="docutils literal notranslate"><span class="pre">NOLINTNEXTLINE</span></code>/<code class="docutils literal notranslate"><span class="pre">NOLINTBEGIN</span></code>/<code class="docutils literal notranslate"><span class="pre">NOLINTEND</span></code>), whereas in the
+check names list (inside the parentheses), whitespaces can be used and will be
+ignored.</p>
+<p>All <code class="docutils literal notranslate"><span class="pre">NOLINTBEGIN</span></code> comments must be paired by an equal number of <code class="docutils literal notranslate"><span class="pre">NOLINTEND</span></code>
+comments. Moreover, a pair of comments must have matching arguments – for
+example, <code class="docutils literal notranslate"><span class="pre">NOLINTBEGIN(check-name)</span></code> can be paired with
+<code class="docutils literal notranslate"><span class="pre">NOLINTEND(check-name)</span></code> but not with <code class="docutils literal notranslate"><span class="pre">NOLINTEND</span></code> <cite>(zero arguments)</cite>.
+<strong class="program">clang-tidy</strong> will generate a <code class="docutils literal notranslate"><span class="pre">clang-tidy-nolint</span></code> error diagnostic if
+any <code class="docutils literal notranslate"><span class="pre">NOLINTBEGIN</span></code>/<code class="docutils literal notranslate"><span class="pre">NOLINTEND</span></code> comment violates these requirements.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="checks/list.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Clang-Tidy Checks</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="../ReleaseNotes.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Extra Clang Tools 24.0.0git (In-Progress) Release Notes</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2007-2026, The Clang Team
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Clang-Tidy</a><ul>
+<li><a class="reference internal" href="#using-clang-tidy">Using Clang-Tidy</a><ul>
+<li><a class="reference internal" href="#running-clang-tidy-on-cuda-files">Running Clang-Tidy on CUDA Files</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#clang-tidy-automation">Clang-Tidy Automation</a><ul>
+<li><a class="reference internal" href="#running-clang-tidy-in-parallel">Running Clang-Tidy in Parallel</a></li>
+<li><a class="reference internal" href="#running-clang-tidy-on-diff">Running Clang-Tidy on Diff</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#suppressing-undesired-diagnostics">Suppressing Undesired Diagnostics</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=74fd0b75"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../_static/llvm-sphinx/copybutton.js"></script>
+    </body>
+</html>

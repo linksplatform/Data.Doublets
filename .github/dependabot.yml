@@ -1,7 +1,31 @@
 version: 2
 updates:
-- package-ecosystem: nuget
-  directory: "/"
-  schedule:
-    interval: daily
-  open-pull-requests-limit: 10
+  - package-ecosystem: nuget
+    directories:
+      - /csharp/Platform.Data.Doublets
+      - /csharp/Platform.Data.Doublets.Tests
+      - /csharp/Platform.Data.Doublets.Benchmarks
+      - /examples/ExternalReferences
+    cooldown:
+      default-days: 7
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+  - package-ecosystem: github-actions
+    directory: /
+    cooldown:
+      default-days: 7
+    schedule:
+      interval: weekly
+  - package-ecosystem: pip
+    directory: /scripts
+    cooldown:
+      default-days: 7
+    schedule:
+      interval: weekly
+  - package-ecosystem: gitsubmodule
+    directory: /
+    cooldown:
+      default-days: 7
+    schedule:
+      interval: weekly

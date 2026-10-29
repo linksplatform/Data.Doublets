@@ -1,45 +1,31 @@
-#!/bin/bash
-set -e # Exit with nonzero exit code if anything fails
-
-# Pull requests and commits to other branches shouldn't try to deploy, just build to verify
-
-
-# Settings
-TARGET_BRANCH="binaries"
-
-SHA=$(git rev-parse --verify HEAD)
-COMMIT_USER_NAME="linksplatform"
-COMMIT_USER_EMAIL="linksplatformtechnologies@gmail.com"
-REPOSITORY="github.com/linksplatform/${TRAVIS_REPO_NAME}"
-
-# Clone the existing gh-pages for this repo into out/
-# Create a new empty branch if gh-pages doesn't exist yet (should only happen on first deply)
-git clone https://$REPOSITORY out
-cd out || exit
-git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
-cd ..
-
-# Clean out existing contents
-rm -rf out/${TARGET_PLATFORM}/**/* || exit 0
-
-mkdir -p out/${TARGET_PLATFORM}/native
-
-# Copy compiled binaries
-cp ${LIB_PATH}/${LIB_NAME} out/${TARGET_PLATFORM}/native/${TARGET_LIB_NAME}
-
-cd out
-
-# Now let's go have some fun with the cloned repo
-git config user.name "$COMMIT_USER_NAME"
-git config user.email "$COMMIT_USER_EMAIL"
-git remote rm origin
-git remote add origin "https://linksplatform:$GITHUB_TOKEN@$REPOSITORY.git"
-
-# Commit the "changes", i.e. the new version.
-# The delta will show diffs between new and old versions.
-git add --all
-git commit -m "Deploy to ${TARGET_BRANCH} branch for: ${SHA}" || exit 0
-
-# Now that we're all set up, we can push.
-git push "https://linksplatform:$GITHUB_TOKEN@$REPOSITORY.git" $TARGET_BRANCH || true
-cd ..
+#!/usr/bin/env bash
+# Legacy binary-branch entry point, also usable outside Travis.
+set -euo pipefail
+: "${GH_TOKEN:=${GITHUB_TOKEN:-}}"
+: "${GH_TOKEN:?A token with contents: write is required}"
+: "${GITHUB_REPOSITORY:=${TRAVIS_REPO_SLUG:-}}"
+: "${GITHUB_REPOSITORY:?Set owner/repository}"
+: "${TARGET_PLATFORM:?Set a target platform}"
+: "${LIB_PATH:?Set the binary directory}"
+: "${LIB_NAME:?Set the binary name}"
+: "${TARGET_LIB_NAME:?Set the installed binary name}"
+[[ $TARGET_PLATFORM =~ ^[a-zA-Z0-9_-]+$ && $TARGET_LIB_NAME != */* ]]
+[[ -s $LIB_PATH/$LIB_NAME ]]
+export GH_TOKEN
+gh auth setup-git
+source_sha=$(git rev-parse HEAD)
+publish_dir=$(mktemp -d)
+trap 'rm -rf "$publish_dir"' EXIT
+git clone "https://github.com/$GITHUB_REPOSITORY.git" "$publish_dir"
+if git -C "$publish_dir" show-ref --verify --quiet refs/remotes/origin/binaries; then
+    git -C "$publish_dir" checkout -b binaries origin/binaries
+else
+    git -C "$publish_dir" checkout --orphan binaries
+    git -C "$publish_dir" rm -rf .
+fi
+mkdir -p "$publish_dir/$TARGET_PLATFORM/native"
+cp "$LIB_PATH/$LIB_NAME" "$publish_dir/$TARGET_PLATFORM/native/$TARGET_LIB_NAME"
+git -C "$publish_dir" add -- "$TARGET_PLATFORM"
+if git -C "$publish_dir" diff --cached --quiet; then exit 0; fi
+git -C "$publish_dir" -c user.name=github-actions[bot] -c user.email=41898282+github-actions[bot]@users.noreply.github.com commit -m "Deploy $TARGET_PLATFORM binary for $source_sha"
+git -C "$publish_dir" push origin HEAD:binaries

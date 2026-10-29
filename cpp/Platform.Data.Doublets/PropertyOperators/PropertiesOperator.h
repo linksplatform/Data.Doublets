@@ -1,11 +1,16 @@
-﻿namespace Platform::Data::Doublets::PropertyOperators
+namespace Platform::Data::Doublets::PropertyOperators
 {
-    template <typename ...> class PropertiesOperator;
-    template <std::integral TLinkAddress> class PropertiesOperator<TLinkAddress> : public LinksOperatorBase<TLinkAddress>, IProperties<TLinkAddress, TLinkAddress, TLinkAddress>
+    template <typename...>
+    class PropertiesOperator;
+    template <std::integral TLinkAddress>
+    class PropertiesOperator<TLinkAddress> : public LinksOperatorBase<TLinkAddress>,
+                                             IProperties<TLinkAddress, TLinkAddress, TLinkAddress>
     {
-        public: PropertiesOperator(ILinks<TLinkAddress> &storage) : base(storage) { }
+      public:
+        PropertiesOperator(ILinks<TLinkAddress>& storage) : base(storage) {}
 
-        public: TLinkAddress GetValue(TLinkAddress object, TLinkAddress property)
+      public:
+        TLinkAddress GetValue(TLinkAddress object, TLinkAddress property)
         {
             auto storage = _links;
             auto objectProperty = storage.SearchOrDefault(object, property);
@@ -13,7 +18,7 @@
             {
                 return 0;
             }
-            constexpr auto constants = storage.Constants;
+            constexpr auto constants = std::remove_cvref_t<decltype(storage)>::Constants;
             auto any = constants.Any;
             auto query = Link<TLinkAddress>(any, objectProperty, any);
             auto valueLink = storage.SingleOrDefault(query);
@@ -24,7 +29,8 @@
             return storage.GetTarget(valueLink[constants.IndexPart]);
         }
 
-        public: void SetValue(TLinkAddress object, TLinkAddress property, TLinkAddress value)
+      public:
+        void SetValue(TLinkAddress object, TLinkAddress property, TLinkAddress value)
         {
             auto storage = _links;
             auto objectProperty = storage.GetOrCreate(object, property);
@@ -32,4 +38,4 @@
             storage.GetOrCreate(objectProperty, value);
         }
     };
-}
+} // namespace Platform::Data::Doublets::PropertyOperators

@@ -1,0 +1,29 @@
+repos:
+  - repo: local
+    hooks:
+      - id: repository-checks
+        name: repository checks
+        entry: python3 scripts/check_repository.py
+        language: system
+        pass_filenames: false
+      - id: pipeline-regressions
+        name: pipeline regression tests
+        entry: python3 -m unittest discover -s experiments -p 'test_*.py'
+        language: system
+        pass_filenames: false
+      - id: native-format
+        name: native formatting
+        entry: python3 scripts/check-cpp.py
+        language: system
+        pass_filenames: false
+        files: ^(cpp|c|examples)/.*\.(h|hpp|cpp|c)$
+      - id: csharp-format
+        name: C# formatting
+        entry: dotnet format whitespace csharp/Platform.Data.Doublets.sln --no-restore --verify-no-changes
+        language: system
+        pass_filenames: false
+        files: ^csharp/.*\.cs$
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: 83d9cd684c87d95d656c1458ef04895a7f1cbd8e # v8.30.1
+    hooks:
+      - id: gitleaks

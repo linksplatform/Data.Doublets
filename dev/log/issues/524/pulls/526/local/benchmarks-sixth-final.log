@@ -1,0 +1,6 @@
+BM_CreateMillionPointsUnitedMemory/1000000
+BM_CreateMillionPointsSplitMemory/1000000
+BM_CheckDefaultHandlerAndSumWithoutOptimization/1000000
+BM_JustCallHandlerWithoutOptimization/1000000
+BM_CheckDefaultHandlerAndSum/1000000
+BM_JustCallHandler/1000000

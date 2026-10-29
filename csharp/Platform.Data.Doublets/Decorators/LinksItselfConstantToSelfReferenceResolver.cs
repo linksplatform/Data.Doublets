@@ -19,7 +19,7 @@ public class LinksItselfConstantToSelfReferenceResolver<TLinkAddress> : LinksDec
 
     /// <summary>
     ///     <para>
-    ///         Initializes a new <see cref="LinksItselfConstantToSelfReferenceResolver" /> instance.
+    ///         Initializes a new <see cref="LinksItselfConstantToSelfReferenceResolver{TLinkAddress}" /> instance.
     ///     </para>
     ///     <para></para>
     /// </summary>
@@ -53,7 +53,7 @@ public class LinksItselfConstantToSelfReferenceResolver<TLinkAddress> : LinksDec
     {
         var constants = _constants;
         var itselfConstant = constants.Itself;
-        if (constants.Any !=  itselfConstant && restriction.Contains(item: itselfConstant))
+        if (constants.Any != itselfConstant && restriction != null && restriction.Contains(item: itselfConstant))
         {
             // Itself constant is not supported for Each method right now, skipping execution
             return constants.Continue;
@@ -61,6 +61,7 @@ public class LinksItselfConstantToSelfReferenceResolver<TLinkAddress> : LinksDec
         return _links.Each(restriction: restriction, handler: handler);
     }
 
+    /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
     /// <summary>
     ///     <para>
     ///         Updates the restriction.

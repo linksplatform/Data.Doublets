@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <Description>LinksPlatform's Platform.Data.Doublets Class Library</Description>
@@ -6,17 +6,17 @@
         <AssemblyTitle>Platform.Data.Doublets</AssemblyTitle>
         <VersionPrefix>0.18.3</VersionPrefix>
         <Authors>konard, FreePhoenix888</Authors>
-        <TargetFramework>net8</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <AssemblyName>Platform.Data.Doublets</AssemblyName>
         <PackageId>Platform.Data.Doublets</PackageId>
         <PackageTags>LinksPlatform;Data.Doublets;ILinks;UInt64Links;ResizableDirectMemoryLinks;UInt64ResizableDirectMemoryLinks</PackageTags>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageIconUrl>https://raw.githubusercontent.com/linksplatform/Documentation/18469f4d033ee9a5b7b84caab9c585acab2ac519/doc/Avatar-rainbow-icon-64x64.png</PackageIconUrl>
+        <PackageIcon>icon.png</PackageIcon>
         <PackageProjectUrl>https://linksplatform.github.io/Data.Doublets</PackageProjectUrl>
         <PackageLicenseExpression>Unlicense</PackageLicenseExpression>
         <RepositoryType>git</RepositoryType>
-        <RepositoryUrl>git://github.com/linksplatform/Data.Doublets</RepositoryUrl>
+        <RepositoryUrl>https://github.com/linksplatform/Data.Doublets</RepositoryUrl>
         <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
         <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -25,13 +25,9 @@
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <LangVersion>latest</LangVersion>
-        <PackageReleaseNotes>Treat null Count and Each restrictions as unrestricted queries in united and split memory stores, and use English messages for unsupported restriction sizes.</PackageReleaseNotes>
+        <PackageReleaseNotes>Validate all CI outputs, modernize documentation and packaging, correct nullable link API contracts, and retain unrestricted null queries with English diagnostics.</PackageReleaseNotes>
         <Nullable>enable</Nullable>
     </PropertyGroup>
-
-    <ItemGroup>
-        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
-    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Platform.Data" Version="0.16.1" />
@@ -44,6 +40,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <None Include="../../assets/icon.png" Pack="true" PackagePath="/"/>
         <None Include="..\..\README.md" Pack="true" PackagePath="\"/>
     </ItemGroup>
 

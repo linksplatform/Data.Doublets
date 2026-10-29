@@ -1,0 +1,22 @@
+[ 50%] Built target Platform.Data.Doublets.Tests
+[ 75%] Building CXX object CMakeFiles/Platform.Data.Doublets.Benchmarks.dir/Platform.Data.Doublets.Benchmarks/AllBenchmarks.cpp.o
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/AllBenchmarks.cpp:5:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.cpp: In function ‘Platform::Data::Doublets::Benchmarks::TLinkAddress Platform::Data::Doublets::Benchmarks::CheckDefaultHandlerAndCallHandler(TLinkAddress, TLinkAddress, auto:228&&)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.cpp:14:28: error: ‘source’ was not declared in this scope
+   14 |             return handler(source, target);
+      |                            ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.cpp:14:36: error: ‘target’ was not declared in this scope; did you mean ‘GetTarget’?
+   14 |             return handler(source, target);
+      |                                    ^~~~~~
+      |                                    GetTarget
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.cpp: In function ‘Platform::Data::Doublets::Benchmarks::TLinkAddress Platform::Data::Doublets::Benchmarks::CallHandler(TLinkAddress, TLinkAddress, auto:229&&)’:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.cpp:20:24: error: ‘source’ was not declared in this scope
+   20 |         return handler(source, target);
+      |                        ^~~~~~
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.cpp:20:32: error: ‘target’ was not declared in this scope; did you mean ‘GetTarget’?
+   20 |         return handler(source, target);
+      |                                ^~~~~~
+      |                                GetTarget
+gmake[2]: *** [CMakeFiles/Platform.Data.Doublets.Benchmarks.dir/build.make:76: CMakeFiles/Platform.Data.Doublets.Benchmarks.dir/Platform.Data.Doublets.Benchmarks/AllBenchmarks.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:111: CMakeFiles/Platform.Data.Doublets.Benchmarks.dir/all] Error 2
+gmake: *** [Makefile:101: all] Error 2

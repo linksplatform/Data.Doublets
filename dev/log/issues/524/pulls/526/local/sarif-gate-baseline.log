@@ -1,0 +1,87 @@
+cpp/Platform.Data.Doublets.Benchmarks/CheckDefaultHandlerOrJustCallBenchmarks.cpp:23: cpp/unused-static-variable: Static variable BM_CheckDefaultHandlerAndSumWithoutOptimization is never read.
+cpp/Platform.Data.Doublets.Benchmarks/CreateMillionPointsBenchmarks.cpp:32: cpp/unused-static-variable: Static variable BM_CreateMillionPointsUnitedMemory is never read.
+cpp/Platform.Data.Doublets.Tests/AllTests.cpp:11: cpp/include-non-header: The #include pre-processor directive should only be used to include header files.
+cpp/Platform.Data.Doublets.Tests/AllTests.cpp:10: cpp/include-non-header: The #include pre-processor directive should only be used to include header files.
+cpp/Platform.Data.Doublets.Tests/AllTests.cpp:9: cpp/include-non-header: The #include pre-processor directive should only be used to include header files.
+cpp/Platform.Data.Doublets.Tests/AllTests.cpp:8: cpp/include-non-header: The #include pre-processor directive should only be used to include header files.
+cpp/Platform.Data.Doublets.Tests/AllTests.cpp:7: cpp/include-non-header: The #include pre-processor directive should only be used to include header files.
+cpp/Platform.Data.Doublets.Tests/AllTests.cpp:6: cpp/include-non-header: The #include pre-processor directive should only be used to include header files.
+cpp/Platform.Data.Doublets.Tests/AllTests.cpp:5: cpp/include-non-header: The #include pre-processor directive should only be used to include header files.
+cpp/Platform.Data.Doublets.Tests/AllTests.cpp:4: cpp/include-non-header: The #include pre-processor directive should only be used to include header files.
+cpp/Platform.Data.Doublets.Benchmarks/AllBenchmarks.cpp:5: cpp/include-non-header: The #include pre-processor directive should only be used to include header files.
+cpp/Platform.Data.Doublets.Benchmarks/AllBenchmarks.cpp:4: cpp/include-non-header: The #include pre-processor directive should only be used to include header files.
+cpp/Platform.Data.Doublets.Benchmarks/MemoryBenchmarks.cpp:1: cpp/commented-out-code: This comment appears to contain commented-out code.
+cpp/Platform.Data.Doublets.Tests/ILinksTestExtensions.h:145: cpp/commented-out-code: This comment appears to contain commented-out code.
+cpp/Platform.Data.Doublets.Tests/Dynamic/SplitMemoryGenericLinksTests.cpp:11: cpp/commented-out-code: This comment appears to contain commented-out code.
+cpp/Platform.Data.Doublets/ILinksExtensions.h:785: cpp/commented-out-code: This comment appears to contain commented-out code.
+cpp/Platform.Data.Doublets/ILinksExtensions.h:201: cpp/commented-out-code: This comment appears to contain commented-out code.
+cpp/Platform.Data.Doublets.Benchmarks/CreateMillionPointsBenchmarks.cpp:88: cpp/commented-out-code: This comment appears to contain commented-out code.
+cpp/Platform.Data.Doublets.Benchmarks/CreateMillionPointsBenchmarks.cpp:6: cpp/commented-out-code: This comment appears to contain commented-out code.
+cpp/Platform.Data.Doublets.Benchmarks/AllBenchmarks.cpp:3: cpp/commented-out-code: This comment appears to contain commented-out code.
+csharp/Platform.Data.Doublets/Decorators/UniLinks.cs:285: cs/dereferenced-value-may-be-null: Variable [substitution](1) may be null at this access as suggested by [this](2) null check.
+csharp/Platform.Data.Doublets/Decorators/LinksCascadeUsagesResolver.cs:14: cs/xmldoc/missing-summary: Documentation should have a summary.
+csharp/Platform.Data.Doublets/ILinksExtensions.cs:792: cs/xmldoc/missing-summary: Documentation should have a summary.
+csharp/Platform.Data.Doublets/Decorators/LinksNonExistentDependenciesCreator.cs:17: cs/xmldoc/missing-summary: Documentation should have a summary.
+csharp/Platform.Data.Doublets/ILinksExtensions.Validation.cs:267: cs/xmldoc/missing-summary: Documentation should have a summary.
+csharp/Platform.Data.Doublets/ILinksExtensions.cs:568: cs/xmldoc/missing-summary: Documentation should have a summary.
+csharp/Platform.Data.Doublets/ILinksExtensions.Validation.cs:256: cs/xmldoc/missing-summary: Documentation should have a summary.
+csharp/Platform.Data.Doublets/ILinksExtensions.Validation.cs:245: cs/xmldoc/missing-summary: Documentation should have a summary.
+csharp/Platform.Data.Doublets/Doublet.cs:19: cs/xmldoc/missing-summary: Documentation should have a summary.
+csharp/Platform.Data.Doublets/Doublet.cs:47: cs/xmldoc/missing-summary: Documentation should have a summary.
+csharp/Platform.Data.Doublets/Doublet.cs:81: cs/xmldoc/missing-summary: Documentation should have a summary.
+csharp/Platform.Data.Doublets/Decorators/UniLinks.cs:371: cs/xmldoc/missing-summary: Documentation should have a summary.
+csharp/Platform.Data.Doublets/DoubletComparer.cs:13: cs/xmldoc/missing-summary: Documentation should have a summary.
+csharp/Platform.Data.Doublets/ILinksExtensions.Validation.cs:272: cs/xmldoc/missing-summary: Documentation should have a summary.
+csharp/Platform.Data.Doublets/ILinksExtensions.Validation.cs:278: cs/xmldoc/missing-summary: Documentation should have a summary.
+csharp/Platform.Data.Doublets/ILinksExtensions.cs:165: cs/xmldoc/missing-summary: Documentation should have a summary.
+csharp/Platform.Data.Doublets/ILinksExtensions.cs:507: cs/xmldoc/missing-summary: Documentation should have a summary.
+csharp/Platform.Data.Doublets/ILinksExtensions.cs:527: cs/xmldoc/missing-summary: Documentation should have a summary.
+csharp/Platform.Data.Doublets/ILinksExtensions.cs:534: cs/xmldoc/missing-summary: Documentation should have a summary.
+csharp/Platform.Data.Doublets/ILinksExtensions.cs:597: cs/xmldoc/missing-summary: Documentation should have a summary.
+csharp/Platform.Data.Doublets/ILinksExtensions.cs:283: cs/xmldoc/missing-summary: Documentation should have a summary.
+csharp/Platform.Data.Doublets/ILinksExtensions.cs:317: cs/xmldoc/missing-summary: Documentation should have a summary.
+csharp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.cs:628: cs/xmldoc/missing-summary: Documentation should have a summary.
+csharp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.cs:709: cs/xmldoc/missing-summary: Documentation should have a summary.
+csharp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinksBase.cs:479: cs/xmldoc/missing-summary: Documentation should have a summary.
+csharp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinksBase.cs:515: cs/xmldoc/missing-summary: Documentation should have a summary.
+csharp/Platform.Data.Doublets/SynchronizedLinks.cs:18: cs/xmldoc/missing-summary: Documentation should have a summary.
+csharp/Platform.Data.Doublets/UInt64LinksTransactionsLayer.cs:94: cs/xmldoc/missing-summary: Documentation should have a summary.
+csharp/Platform.Data.Doublets/UInt64LinksTransactionsLayer.cs:300: cs/xmldoc/missing-summary: Documentation should have a summary.
+csharp/Platform.Data.Doublets/Decorators/LinksNonExistentDependenciesCreator.cs:54: cs/useless-assignment-to-local: This assignment to [constants](1) is useless, since its value is never read.
+csharp/Platform.Data.Doublets/Decorators/LinksUniquenessResolver.cs:55: cs/useless-assignment-to-local: This assignment to [constants](1) is useless, since its value is never read.
+csharp/Platform.Data.Doublets/Decorators/LinksUniquenessValidator.cs:55: cs/useless-assignment-to-local: This assignment to [constants](1) is useless, since its value is never read.
+csharp/Platform.Data.Doublets/ILinksExtensions.Validation.cs:280: cs/useless-assignment-to-local: This assignment to [addressToUInt64Converter](1) is useless, since its value is never read.
+csharp/Platform.Data.Doublets/ILinksExtensions.cs:291: cs/useless-assignment-to-local: This assignment to [constants](1) is useless, since its value is never read.
+csharp/Platform.Data.Doublets/ILinksExtensions.cs:536: cs/useless-assignment-to-local: This assignment to [constants](1) is useless, since its value is never read.
+csharp/Platform.Data.Doublets/ILinksExtensions.cs:692: cs/useless-assignment-to-local: This assignment to [constants](1) is useless, since its value is never read.
+csharp/Platform.Data.Doublets/ILinksExtensions.cs:753: cs/useless-assignment-to-local: This assignment to [linkStruct](1) is useless, since its value is never read.
+csharp/Platform.Data.Doublets/ILinksExtensions.cs:1064: cs/useless-assignment-to-local: This assignment to [constants](1) is useless, since its value is never read.
+csharp/Platform.Data.Doublets/Tests/ILinksExtensions.cs:135: cs/useless-assignment-to-local: This assignment to [zero](1) is useless, since its value is never read.
+csharp/Platform.Data.Doublets/Tests/ILinksExtensions.cs:244: cs/useless-assignment-to-local: This assignment to [allLinks](1) is useless, since its value is never read.
+csharp/Platform.Data.Doublets/UInt64LinksTransactionsLayer.cs:620: cs/useless-assignment-to-local: This assignment to [link](1) is useless, since its value is never read.
+csharp/Platform.Data.Doublets/Doublet.cs:100: cs/simplifiable-boolean-expression: The expression 'A ? B : false' can be simplified to 'A && B'.
+csharp/Platform.Data.Doublets/Memory/LinksHeader.cs:100: cs/simplifiable-boolean-expression: The expression 'A ? B : false' can be simplified to 'A && B'.
+csharp/Platform.Data.Doublets/Memory/Split/RawLinkDataPart.cs:60: cs/simplifiable-boolean-expression: The expression 'A ? B : false' can be simplified to 'A && B'.
+csharp/Platform.Data.Doublets/Memory/Split/RawLinkIndexPart.cs:102: cs/simplifiable-boolean-expression: The expression 'A ? B : false' can be simplified to 'A && B'.
+csharp/Platform.Data.Doublets/Memory/United/RawLink.cs:100: cs/simplifiable-boolean-expression: The expression 'A ? B : false' can be simplified to 'A && B'.
+csharp/Platform.Data.Doublets/UInt64LinksTransactionsLayer.cs:232: cs/simplifiable-boolean-expression: The expression 'A ? B : false' can be simplified to 'A && B'.
+csharp/Platform.Data.Doublets/Decorators/UniLinks.cs:397: cs/missed-readonly-modifier: Field 'Before' can be 'readonly'.
+csharp/Platform.Data.Doublets/Decorators/UniLinks.cs:404: cs/missed-readonly-modifier: Field 'After' can be 'readonly'.
+csharp/Platform.Data.Doublets.Benchmarks/CountBenchmarks.cs:21: cs/missed-readonly-modifier: Field '_addressToInt64Converter' can be 'readonly'.
+csharp/Platform.Data.Doublets/Decorators/NoExceptionsDecorator.cs:22: cs/catch-of-all-exceptions: Generic catch clause.
+csharp/Platform.Data.Doublets/Decorators/NoExceptionsDecorator.cs:36: cs/catch-of-all-exceptions: Generic catch clause.
+csharp/Platform.Data.Doublets/Decorators/NoExceptionsDecorator.cs:50: cs/catch-of-all-exceptions: Generic catch clause.
+csharp/Platform.Data.Doublets/Decorators/NoExceptionsDecorator.cs:64: cs/catch-of-all-exceptions: Generic catch clause.
+csharp/Platform.Data.Doublets/Decorators/NoExceptionsDecorator.cs:78: cs/catch-of-all-exceptions: Generic catch clause.
+csharp/Platform.Data.Doublets/UInt64LinksTransactionsLayer.cs:717: cs/catch-of-all-exceptions: Generic catch clause.
+csharp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.cs:353: cs/missed-ternary-operator: Both branches of this 'if' statement write to the same variable - consider using '?' to express intent better.
+csharp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.cs:365: cs/missed-ternary-operator: Both branches of this 'if' statement write to the same variable - consider using '?' to express intent better.
+csharp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.cs:377: cs/missed-ternary-operator: Both branches of this 'if' statement write to the same variable - consider using '?' to express intent better.
+csharp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.cs:553: cs/missed-ternary-operator: Both branches of this 'if' statement write to the same variable - consider using '?' to express intent better.
+csharp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.cs:565: cs/missed-ternary-operator: Both branches of this 'if' statement write to the same variable - consider using '?' to express intent better.
+csharp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.cs:577: cs/missed-ternary-operator: Both branches of this 'if' statement write to the same variable - consider using '?' to express intent better.
+csharp/Platform.Data.Doublets/Decorators/LinksDisposableDecoratorBase.cs:43: cs/virtual-call-in-constructor: Avoid virtual calls in a constructor or destructor.
+csharp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinks.cs:156: cs/virtual-call-in-constructor: Avoid virtual calls in a constructor or destructor.
+csharp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.cs:185: cs/virtual-call-in-constructor: Avoid virtual calls in a constructor or destructor.
+csharp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinks.cs:112: cs/virtual-call-in-constructor: Avoid virtual calls in a constructor or destructor.
+csharp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinksBase.cs:143: cs/virtual-call-in-constructor: Avoid virtual calls in a constructor or destructor.

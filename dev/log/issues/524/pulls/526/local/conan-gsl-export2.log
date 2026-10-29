@@ -1,0 +1,9 @@
+
+======== Exporting recipe to the cache ========
+ms-gsl/4.0.0 export
+Exporting package recipe: /tmp/issue-524-research/conan-center-index/recipes/ms-gsl/all/conanfile.py
+ms-gsl/4.0.0: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/ms-gsff8651ea93050/e
+Exported: ms-gsl/4.0.0#14d2ec35229ee060bb38ba7f18b0bce8 (2026-10-29 07:00:27 UTC)

@@ -1,0 +1,18 @@
+F
+======================================================================
+FAIL: test_security_and_links_cannot_silently_skip (experiments.test_pipeline_policies.GateTests.test_security_and_links_cannot_silently_skip)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/gh-issue-solver-1793248170197/experiments/test_pipeline_policies.py", line 78, in test_security_and_links_cannot_silently_skip
+    with self.assertRaisesRegex(ValueError, name):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (failures=1)
+::notice::credentials skipped: event/change prerequisites did not require this job
+::notice::csharp skipped: event/change prerequisites did not require this job
+::notice::publish skipped: event/change prerequisites did not require this job
+::notice::security skipped: event/change prerequisites did not require this job

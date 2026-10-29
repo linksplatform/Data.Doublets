@@ -1,0 +1,265 @@
+diff --git a/cpp/Platform.Data.Doublets.Tests/ExtensionTests.h b/cpp/Platform.Data.Doublets.Tests/ExtensionTests.h
+index 45c3c5b79..1a8c245b2 100644
+--- a/cpp/Platform.Data.Doublets.Tests/ExtensionTests.h
++++ b/cpp/Platform.Data.Doublets.Tests/ExtensionTests.h
+@@ -43,4 +43,44 @@ namespace Platform::Data::Doublets::Tests
+         EXPECT_TRUE(Exists(storage, second));
+         EXPECT_EQ(1, Count(storage));
+     }
++
++    TEST(ExtensionTests, AllVariadicArgumentsRestrictTheResult)
++    {
++        ExtensionStorage storage{Platform::Memory::HeapResizableDirectMemory{}};
++        auto first = Create(storage);
++        auto second = Create(storage);
++        auto selected = All(storage, second);
++        ASSERT_EQ(1, selected.size());
++        EXPECT_EQ(second, selected.front()[0]);
++        EXPECT_TRUE(Exists(storage, first));
++    }
++
++    template <typename TStorage>
++    void CheckAddressLimit(TStorage& storage)
++    {
++        auto maximum = storage.Constants.InternalReferencesRange.Maximum;
++        for (unsigned int address = 1; address <= maximum; ++address)
++            EXPECT_EQ(address, Create(storage));
++        EXPECT_THROW(Create(storage), std::logic_error);
++        EXPECT_EQ(maximum, Count(storage));
++        Delete(storage, 1);
++        EXPECT_EQ(1, Create(storage));
++        EXPECT_THROW(Create(storage), std::logic_error);
++    }
++
++    TEST(ExtensionTests, UnitedRejectsExhaustedAddressesButReusesFreeLinks)
++    {
++        Memory::United::Generic::UnitedMemoryLinks<LinksOptions<std::uint8_t>,
++                                                   Platform::Memory::HeapResizableDirectMemory>
++            storage{Platform::Memory::HeapResizableDirectMemory{}};
++        CheckAddressLimit(storage);
++    }
++
++    TEST(ExtensionTests, SplitRejectsExhaustedAddressesButReusesFreeLinks)
++    {
++        Memory::Split::Generic::SplitMemoryLinks<LinksOptions<std::uint8_t>,
++                                                 Platform::Memory::HeapResizableDirectMemory>
++            storage{Platform::Memory::HeapResizableDirectMemory{}, Platform::Memory::HeapResizableDirectMemory{}};
++        CheckAddressLimit(storage);
++    }
+ } // namespace Platform::Data::Doublets::Tests
+diff --git a/cpp/Platform.Data.Doublets/ILinksExtensions.h b/cpp/Platform.Data.Doublets/ILinksExtensions.h
+index 436724167..6c496ac0a 100644
+--- a/cpp/Platform.Data.Doublets/ILinksExtensions.h
++++ b/cpp/Platform.Data.Doublets/ILinksExtensions.h
+@@ -252,7 +252,7 @@ namespace Platform::Data::Doublets
+                     std::convertible_to<typename TStorage::LinkAddressType> auto... restrictionPack)
+     {
+         typename TStorage::LinkType restriction{static_cast<typename TStorage::LinkAddressType>(restrictionPack)...};
+-        return All(storage, typename TStorage::LinkType{});
++        return All(storage, restriction);
+     }
+ 
+     template <typename TStorage>
+@@ -780,8 +780,7 @@ namespace Platform::Data::Doublets
+     {
+         auto nullConstant = storage.Constants.Null;
+         auto link = GetLink(storage, linkIndex);
+-        for (typename TStorage::LinkAddressType i = typename TStorage::LinkAddressType{1}; i < std::ranges::size(link);
+-             ++i)
++        for (std::size_t i = 1; i < std::ranges::size(link); ++i)
+         {
+             if (nullConstant != link[i])
+             {
+diff --git a/cpp/Platform.Data.Doublets/Link.h b/cpp/Platform.Data.Doublets/Link.h
+index 00a208ab1..80007a0a6 100644
+--- a/cpp/Platform.Data.Doublets/Link.h
++++ b/cpp/Platform.Data.Doublets/Link.h
+@@ -122,34 +122,38 @@ namespace Platform::Data::Doublets
+         auto&& operator[](std::size_t index) const
+         {
+             using namespace Platform::Ranges; // TODO: EnsureExtensions
+-            switch (index)
++            if (index == _constants.IndexPart)
+             {
+-            case _constants.IndexPart:
+                 return Index;
+-            case _constants.SourcePart:
++            }
++            if (index == _constants.SourcePart)
++            {
+                 return Source;
+-            case _constants.TargetPart:
++            }
++            if (index == _constants.TargetPart)
++            {
+                 return Target;
+-            default:
+-                throw std::out_of_range("Link index out of range");
+             }
++            throw std::out_of_range("Link index out of range");
+         }
+ 
+       public:
+         auto&& operator[](std::size_t index)
+         {
+             using namespace Platform::Ranges; // TODO: EnsureExtensions
+-            switch (index)
++            if (index == _constants.IndexPart)
+             {
+-            case _constants.IndexPart:
+                 return Index;
+-            case _constants.SourcePart:
++            }
++            if (index == _constants.SourcePart)
++            {
+                 return Source;
+-            case _constants.TargetPart:
++            }
++            if (index == _constants.TargetPart)
++            {
+                 return Target;
+-            default:
+-                throw std::out_of_range("Link index out of range");
+             }
++            throw std::out_of_range("Link index out of range");
+         }
+ 
+       public:
+diff --git a/cpp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.h b/cpp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.h
+index c1e7cad31..8f4b1fee0 100644
+--- a/cpp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.h
++++ b/cpp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.h
+@@ -155,6 +155,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
+ 
+         LinkAddressType Count(const LinkType& restriction) const
+         {
++            // Query length selects the constrained parts: total, address, one value, or a pair.
++            // The total excludes reusable records recorded in the free-list header.
+             if (std::ranges::size(restriction) == 0)
+             {
+                 return this->Total();
+@@ -171,6 +173,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
+             }
+             if (std::ranges::size(restriction) == 2)
+             {
++                // A value-only query can use either the internal or external usage indexes.
+                 auto value = restriction[1];
+                 if (index == any)
+                 {
+@@ -218,6 +221,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
+             }
+             if (std::ranges::size(restriction) == 3)
+             {
++                // Source and target wildcards determine which usage tree can answer the query.
++                // Concrete source/target values require an exact pair search.
+                 auto externalReferencesRange = Constants.ExternalReferencesRange;
+                 auto source = GetSource(*this, restriction);
+                 auto target = GetTarget(*this, restriction);
+@@ -571,12 +576,15 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
+ 
+         LinkAddressType Each(const LinkType& restriction, const ReadHandlerType& handler) const
+         {
++            // Enumerate only live records and propagate the callback's request to stop.
++            // Query shape determines whether to scan addresses or traverse a usage index.
+             using namespace Platform::Exceptions;
+             auto constants = Constants;
+             auto $break = constants.Break;
+             auto length = std::ranges::size(restriction);
+             if (length == 0)
+             {
++                // An unrestricted scan skips the zero record and entries on the free list.
+                 for (auto linkAddress = LinkAddressType{1}; (linkAddress <= this->GetHeaderReference().AllocatedLinks);
+                      ++linkAddress)
+                 {
+@@ -604,6 +612,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
+             }
+             if (length == 2)
+             {
++                // The value may be internal or external, which selects the matching index family.
+                 auto value = restriction[1];
+                 if (index == any)
+                 {
+@@ -637,6 +646,8 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
+             }
+             if (length == 3)
+             {
++                // Wildcards choose source/target traversal; concrete values use the pair lookup.
++                // A specified address is checked directly instead of enumerating unrelated links.
+                 auto externalReferencesRange = constants.ExternalReferencesRange;
+                 auto source = GetSource(*this, restriction);
+                 auto target = GetTarget(*this, restriction);
+@@ -856,7 +867,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
+             else
+             {
+                 auto maximumPossibleInnerReference = Constants.InternalReferencesRange.Maximum;
+-                if (this->GetHeaderReference().AllocatedLinks > maximumPossibleInnerReference)
++                if (this->GetHeaderReference().AllocatedLinks >= maximumPossibleInnerReference)
+                 {
+                     throw Platform::Exceptions::LinksLimitReachedException();
+                 }
+diff --git a/cpp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinksBase.h b/cpp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinksBase.h
+index 8c843d384..4417c2227 100644
+--- a/cpp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinksBase.h
++++ b/cpp/Platform.Data.Doublets/Memory/United/Generic/UnitedMemoryLinksBase.h
+@@ -49,12 +49,12 @@ namespace Platform::Data::Doublets::Memory::United::Generic
+ 
+         const RawLink<LinkAddressType>& GetLinkReference(LinkAddressType linkIndex) const
+         {
+-            return *(reinterpret_cast<RawLink<LinkAddressType>*>(_links) + linkIndex);
++            return reinterpret_cast<const RawLink<LinkAddressType>*>(_links)[linkIndex];
+         }
+ 
+         RawLink<LinkAddressType>& GetLinkReference(LinkAddressType linkIndex)
+         {
+-            return *(reinterpret_cast<RawLink<LinkAddressType>*>(_links) + linkIndex);
++            return reinterpret_cast<RawLink<LinkAddressType>*>(_links)[linkIndex];
+         }
+ 
+         LinkAddressType GetTotal() const
+@@ -90,6 +90,8 @@ namespace Platform::Data::Doublets::Memory::United::Generic
+       public:
+         LinkAddressType Count(const LinkType& restriction) const
+         {
++            // Restriction length determines which parts of a stored link are constrained.
++            // An empty restriction counts live records, excluding entries on the free list.
+             if (std::ranges::size(restriction) == 0)
+             {
+                 return GetTotal();
+@@ -106,6 +108,7 @@ namespace Platform::Data::Doublets::Memory::United::Generic
+             }
+             if (std::ranges::size(restriction) == 2)
+             {
++                // A two-part query matches the value in either the source or target index.
+                 auto value = restriction[1];
+                 if (index == any)
+                 {
+@@ -135,6 +138,7 @@ namespace Platform::Data::Doublets::Memory::United::Generic
+             }
+             if (std::ranges::size(restriction) == 3)
+             {
++                // Wildcards select the relevant usage index; two concrete values use a pair lookup.
+                 auto source = restriction[Constants.SourcePart];
+                 auto target = restriction[Constants.TargetPart];
+                 if (index == any)
+@@ -159,6 +163,7 @@ namespace Platform::Data::Doublets::Memory::United::Generic
+                 }
+                 else
+                 {
++                    // A concrete address must exist before its stored values can be compared.
+                     if (!Exists(index))
+                     {
+                         return LinkAddressType{};
+@@ -383,11 +388,9 @@ namespace Platform::Data::Doublets::Memory::United::Generic
+             else
+             {
+                 auto maximumPossibleInnerReference = Constants.InternalReferencesRange.Maximum;
+-                if (header->AllocatedLinks > maximumPossibleInnerReference)
++                if (header->AllocatedLinks >= maximumPossibleInnerReference)
+                 {
+-                    // TODO: !!!!!
+-                    // throw
+-                    // std::make_shared<LinksLimitReachedException<LinkAddressType>>(maximumPossibleInnerReference);
++                    throw Platform::Exceptions::LinksLimitReachedException();
+                 }
+                 if (header->AllocatedLinks >= (header->ReservedLinks - 1))
+                 {

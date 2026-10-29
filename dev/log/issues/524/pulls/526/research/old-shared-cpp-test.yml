@@ -1,0 +1,41 @@
+name: Test cpp
+
+on:
+  workflow_call:
+
+defaults:
+  run:
+    working-directory: cpp
+    
+env:
+  PROFILE: "linksplatform"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          submodules: true
+      - name: Install GCC
+        uses: egor-tensin/setup-gcc@v1
+      - name: Install conan
+        run: pip install conan
+      - name: Setup conan
+        run: |
+          conan profile detect
+          sed -i '5d' ~/.conan2/profiles/default
+      - name: Instll conan packages
+        run: |
+          if [ -f "install-local-conan-dependencies.sh" ]; then
+              echo "install-local-conan-dependencies.sh exists."
+              chmod +x ./install-local-conan-dependencies.sh
+              ./install-local-conan-dependencies.sh
+          fi
+      - name: Test and scan-build
+        run: |
+          CXX=clang++
+          conan install . --build=missing
+          ls
+          cmake . -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release -DLINKS_PLATFORM_TESTS=TRUE
+          cmake --build .

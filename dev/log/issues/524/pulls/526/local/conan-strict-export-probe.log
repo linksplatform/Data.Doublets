@@ -1,0 +1,9 @@
+
+======== Exporting recipe to the cache ========
+platform-memory/0.1.0 export
+Exporting package recipe: /tmp/issue-524-research/conan-center-index/recipes/platform.memory/all/conanfile.py
+platform-memory/0.1.0: exports: File 'conandata.yml' found. Exporting it...
+Copied 1 '.yml' file: conandata.yml
+Copied 1 '.py' file: conanfile.py
+Exported to cache folder: /home/box/.conan2/p/platf232aaabe3d0da/e
+Exported: platform-memory/0.1.0#8dd4e948ae9e107523a3807afeb9f1aa (2026-10-29 06:59:58 UTC)

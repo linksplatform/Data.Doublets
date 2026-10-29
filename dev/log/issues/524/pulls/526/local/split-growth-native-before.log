@@ -1,0 +1,50 @@
+/tmp/gh-issue-solver-1793248170197/experiments/split_growth.cpp:8:62: error: reference to 'LinksOptions' is ambiguous
+    8 |     using Storage = Memory::Split::Generic::SplitMemoryLinks<LinksOptions<std::uint64_t>,
+      |                                                              ^
+/home/box/.conan2/p/b/platf68a8b174540fb/p/include/LinksOptions.h:5:12: note: candidate found by name lookup is 'Platform::Data::LinksOptions'
+    5 |     struct LinksOptions
+      |            ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/LinksOptions.h:9:12: note: candidate found by name lookup is 'Platform::Data::Doublets::LinksOptions'
+    9 |     struct LinksOptions : Platform::Data::LinksOptions<TLinkAddress, VConstants, TLink, TReadHandler, TWriteHandler>
+      |            ^
+In file included from /tmp/gh-issue-solver-1793248170197/experiments/split_growth.cpp:1:
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Platform.Data.Doublets.h:61:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.h:162:26: error: call to function 'GetIndex' that is neither visible in the template definition nor found by argument-dependent lookup
+  162 |             auto index = GetIndex(*this, restriction);
+      |                          ^
+/home/box/.conan2/p/b/platf68a8b174540fb/p/include/ILinksExtensions.h:75:24: note: in instantiation of member function 'Platform::Data::Doublets::Memory::Split::Generic::SplitMemoryLinksBase<Platform::Data::Doublets::Memory::Split::Generic::SplitMemoryLinks<Platform::Data::LinksOptions<>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::Split::Generic::InternalLinksSourcesSizeBalancedTreeMethods<Platform::Data::LinksOptions<>>, Platform::Data::Doublets::Memory::Split::Generic::InternalLinksSourcesLinkedListMethods<Platform::Data::LinksOptions<>>, Platform::Data::Doublets::Memory::Split::Generic::InternalLinksTargetsSizeBalancedTreeMethods<Platform::Data::LinksOptions<>>, Platform::Data::Doublets::Memory::Split::Generic::ExternalLinksSourcesSizeBalancedTreeMethods<Platform::Data::LinksOptions<>>, Platform::Data::Doublets::Memory::Split::Generic::ExternalLinksTargetsSizeBalancedTreeMethods<Platform::Data::LinksOptions<>>, Platform::Data::Doublets::Memory::Split::Generic::UnusedLinksListMethods<Platform::Data::LinksOptions<>>>, Platform::Data::LinksOptions<>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::Split::Generic::InternalLinksSourcesSizeBalancedTreeMethods<Platform::Data::LinksOptions<>>, Platform::Data::Doublets::Memory::Split::Generic::InternalLinksSourcesLinkedListMethods<Platform::Data::LinksOptions<>>, Platform::Data::Doublets::Memory::Split::Generic::InternalLinksTargetsSizeBalancedTreeMethods<Platform::Data::LinksOptions<>>, Platform::Data::Doublets::Memory::Split::Generic::ExternalLinksSourcesSizeBalancedTreeMethods<Platform::Data::LinksOptions<>>, Platform::Data::Doublets::Memory::Split::Generic::ExternalLinksTargetsSizeBalancedTreeMethods<Platform::Data::LinksOptions<>>, Platform::Data::Doublets::Memory::Split::Generic::UnusedLinksListMethods<Platform::Data::LinksOptions<>>>::Count' requested here
+   75 |         return storage.Count(restriction);
+      |                        ^
+/tmp/gh-issue-solver-1793248170197/experiments/split_growth.cpp:20:12: note: in instantiation of function template specialization 'Platform::Data::Count<Platform::Data::Doublets::Memory::Split::Generic::SplitMemoryLinks<Platform::Data::LinksOptions<>, Platform::Memory::HeapResizableDirectMemory, Platform::Data::Doublets::Memory::Split::Generic::InternalLinksSourcesSizeBalancedTreeMethods<Platform::Data::LinksOptions<>>, Platform::Data::Doublets::Memory::Split::Generic::InternalLinksSourcesLinkedListMethods<Platform::Data::LinksOptions<>>, Platform::Data::Doublets::Memory::Split::Generic::InternalLinksTargetsSizeBalancedTreeMethods<Platform::Data::LinksOptions<>>, Platform::Data::Doublets::Memory::Split::Generic::ExternalLinksSourcesSizeBalancedTreeMethods<Platform::Data::LinksOptions<>>, Platform::Data::Doublets::Memory::Split::Generic::ExternalLinksTargetsSizeBalancedTreeMethods<Platform::Data::LinksOptions<>>, Platform::Data::Doublets::Memory::Split::Generic::UnusedLinksListMethods<Platform::Data::LinksOptions<>>>>' requested here
+   20 |     return Count(storage) != 128;
+      |            ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/ILinksExtensions.h:202:17: note: 'GetIndex' should be declared prior to the call site or in an associated namespace of one of its arguments
+  202 |     static auto GetIndex(const TStorage& storage, const typename TStorage::LinkType& link)
+      |                 ^
+In file included from /tmp/gh-issue-solver-1793248170197/experiments/split_growth.cpp:1:
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Platform.Data.Doublets.h:61:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.h:222:31: error: call to function 'GetSource' that is neither visible in the template definition nor found by argument-dependent lookup
+  222 |                 auto source = GetSource(*this, restriction);
+      |                               ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/ILinksExtensions.h:215:47: note: 'GetSource' should be declared prior to the call site or in an associated namespace of one of its arguments
+  215 |     static typename TStorage::LinkAddressType GetSource(const TStorage& storage,
+      |                                               ^
+In file included from /tmp/gh-issue-solver-1793248170197/experiments/split_growth.cpp:1:
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Platform.Data.Doublets.h:61:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/Memory/Split/Generic/SplitMemoryLinksBase.h:223:31: error: call to function 'GetTarget' that is neither visible in the template definition nor found by argument-dependent lookup
+  223 |                 auto target = GetTarget(*this, restriction);
+      |                               ^
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets/ILinksExtensions.h:229:47: note: 'GetTarget' should be declared prior to the call site or in an associated namespace of one of its arguments
+  229 |     static typename TStorage::LinkAddressType GetTarget(const TStorage& storage,
+      |                                               ^
+4 errors generated.
+Traceback (most recent call last):
+  File "/tmp/gh-issue-solver-1793248170197/experiments/run_heap_sanitizer.py", line 30, in <module>
+    subprocess.run(['clang++-18', '-std=c++20', '-O0', '-g0', '-fsanitize=address,undefined', *includes,
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                    str(args.source.resolve()), *libraries, '-o', binary], check=True)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/box/.pyenv/versions/3.15.0/lib/python3.15/subprocess.py", line 692, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['clang++-18', '-std=c++20', '-O0', '-g0', '-fsanitize=address,undefined', '-I/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets', '-isystem', '/home/box/.conan2/p/b/gtest3b348dd479d64/p/include', '-isystem', '/home/box/.conan2/p/b/platf5c92267c270db/p/include', '-isystem', '/home/box/.conan2/p/b/platf7c5b56dc4c25a/p/include', '-isystem', '/home/box/.conan2/p/b/platf6c07640643b28/p/include', '-isystem', '/home/box/.conan2/p/b/platf85ccb58d873eb/p/include', '-isystem', '/home/box/.conan2/p/b/platf0447fee2a0e53/p/include', '-isystem', '/home/box/.conan2/p/b/platf5a3d7215ad2da/p/include', '-isystem', '/home/box/.conan2/p/b/platf3282ce4437d67/p/include', '-isystem', '/home/box/.conan2/p/b/platfc1802a6248f3b/p/include', '-isystem', '/home/box/.conan2/p/b/platf67112e318ae0f/p/include', '-isystem', '/home/box/.conan2/p/b/platf7088a3104c9a3/p/include', '-isystem', '/home/box/.conan2/p/b/cpuinefca19fd10111/p/include', '-isystem', '/home/box/.conan2/p/b/ms-gsdcf995bb34284/p/include', '-isystem', '/home/box/.conan2/p/b/platf0350c3cc94ea3/p/include', '-isystem', '/home/box/.conan2/p/b/platf0ddce44954497/p/include', '-isystem', '/home/box/.conan2/p/mio8a34575d137c8/p/include', '-isystem', '/home/box/.conan2/p/b/platf68a8b174540fb/p/include', '-isystem', '/home/box/.conan2/p/b/platf90bf3152679bf/p/include', '/tmp/gh-issue-solver-1793248170197/experiments/split_growth.cpp', '-lm', '/home/box/.conan2/p/b/cpuinefca19fd10111/p/lib/libcpuinfo.a', '/home/box/.conan2/p/b/cpuinefca19fd10111/p/lib/libclog.a', '-lpthread', '-ldl', '-o', '/tmp/issue-524-split_growth']' returned non-zero exit status 1.

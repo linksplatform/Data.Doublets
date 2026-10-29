@@ -1,0 +1,396 @@
+
+======== Input profiles ========
+Profile host:
+[settings]
+arch=x86_64
+build_type=Release
+compiler=clang
+compiler.cppstd=20
+compiler.libcxx=libstdc++11
+compiler.version=18
+os=Linux
+[conf]
+tools.build:jobs=1
+
+Profile build:
+[settings]
+arch=x86_64
+build_type=Release
+compiler=clang
+compiler.cppstd=20
+compiler.libcxx=libstdc++11
+compiler.version=18
+os=Linux
+[conf]
+
+
+
+======== Computing dependency graph ========
+Graph root
+    conanfile.txt: /tmp/gh-issue-solver-1793248170197/cpp/conanfile.txt
+Requirements
+    benchmark/1.6.0#c7ef1499d3f4d019801919985986b77d - Cache
+    cpuinfo/cci.20220228#afc5a0dba98c55fc65c379dc6f8bab8d - Cache
+    gtest/cci.20210126#e560968072ffd87fbd396e4cabff9127 - Cache
+    mio/cci.20201220#35d8e4791152cb59bb37212cd9c295d2 - Cache
+    ms-gsl/4.0.0#b39ff866e01586bb98ab4d9f46004c31 - Cache
+    platform-collections/0.2.1#8c17106bf6ed80ece6f3d377f4989a60 - Cache
+    platform-collections-methods/0.3.0#7bf9addb258962e4c904ace39794c202 - Cache
+    platform-converters/0.2.0#e5210600d15a224117023e6b4fb0c1be - Cache
+    platform-data/0.1.1#049284bd2691fcdd21308ff118193883 - Cache
+    platform-delegates/0.3.7#fa6d4052c342718034aaa3fefe278fd0 - Cache
+    platform-equality/0.0.1#4c269c237c780cf97734b306fef30799 - Cache
+    platform-exceptions/0.3.2#f85774f1881822f0ffd9f7095bd3085a - Cache
+    platform-hashing/0.5.6#8f26cd9a683ad74a06b02ea3ffb00f29 - Cache
+    platform-interfaces/0.3.41#2749e377587371071b89193878f3ad93 - Cache
+    platform-memory/0.1.0#8dd4e948ae9e107523a3807afeb9f1aa - Cache
+    platform-numbers/0.1.0#8d5c367883c12491634bda6b216fdcd7 - Cache
+    platform-random/0.2.0#596375061030beacc935a1ac82ef6e46 - Cache
+    platform-ranges/0.2.0#f74638320e5bd4f2efd11a9e10091288 - Cache
+    platform-setters/0.1.0#0b7fdbec025f7e225a919bacf70f9c3a - Cache
+
+======== Computing necessary packages ========
+Connecting to remote 'conancenter' anonymously
+benchmark/1.6.0: Main binary package 'a0fb75ef1205fcacf49a75759b4f1b5e7ad13d02' missing
+benchmark/1.6.0: Checking 13 compatible configurations
+benchmark/1.6.0: Compatible configurations not found in cache, checking servers
+benchmark/1.6.0: 'adbf63cabbfc85e8ab6aef9b434b7ca518c0ef7f': compiler.cppstd=98
+benchmark/1.6.0: '10c5e7bc441e985d5ac8c590eca01e05875816bb': compiler.cppstd=gnu98
+benchmark/1.6.0: '176fa48cd3e530b2584b25bb0df9f0b25bef0d8f': compiler.cppstd=11
+benchmark/1.6.0: '22a7204bd42ab3629d0bdbf266dfbb0b716c07be': compiler.cppstd=gnu11
+benchmark/1.6.0: '571a25790018ea0d134bf9eb62041da2e05fe01b': compiler.cppstd=14
+benchmark/1.6.0: '602421980d450540e91ce340379ad3b06b6c6bf3': compiler.cppstd=gnu14
+benchmark/1.6.0: '88666ec5a8bec3fe77671aec531a890c9d655c51': compiler.cppstd=17
+benchmark/1.6.0: '4497dd60a1c6fe7548c3497ec8b25ad3f394fa2b': compiler.cppstd=gnu17
+benchmark/1.6.0: '5b062ef6708cec8fdb989fd2c2a2fa4cb8485e50': compiler.cppstd=gnu20
+benchmark/1.6.0: '4843c04c29b16d555ec465e239a420f85883f279': compiler.cppstd=23
+benchmark/1.6.0: '63182d68ecf35428beaf574dd27f679d955fd890': compiler.cppstd=gnu23
+benchmark/1.6.0: '6ff53034ce63c1093062d11f9451f13b8d18b292': compiler.cppstd=26
+benchmark/1.6.0: '91cabb3b41017935a2f575320f12404998f56379': compiler.cppstd=gnu26
+benchmark/1.6.0: No compatible configuration found
+gtest/cci.20210126: Main binary package '0db212d974001fea6d4cbfc38a924c8507a1ebf1' missing
+gtest/cci.20210126: Checking 9 compatible configurations
+gtest/cci.20210126: Compatible configurations not found in cache, checking servers
+gtest/cci.20210126: '973dea59857112fe53f927b5e7c02fa90e0be813': compiler.cppstd=14
+gtest/cci.20210126: 'a75c99aecd95159e50e92b7dd7f49e71e53e23b4': compiler.cppstd=gnu14
+gtest/cci.20210126: 'b8f1665ba85cc7f44736f786f93f1547820c7f8d': compiler.cppstd=17
+gtest/cci.20210126: 'f98129c41612fea1af6e7e8ed6d6ff5813801223': compiler.cppstd=gnu17
+gtest/cci.20210126: '973bc5cd4ef8c075dff8991d3d6bc9b49f6d0d40': compiler.cppstd=gnu20
+gtest/cci.20210126: '43457eb4c42acc090261e5eab1e961990110eec3': compiler.cppstd=23
+gtest/cci.20210126: '1d5ad8b4824e84fb689a7f2949470c04461f7c55': compiler.cppstd=gnu23
+gtest/cci.20210126: '7a6080c6a794c1a95f9877a266c135b74c04ab3d': compiler.cppstd=26
+gtest/cci.20210126: 'fbf847b78737513f503b9e641492a536dec3d19a': compiler.cppstd=gnu26
+gtest/cci.20210126: No compatible configuration found
+
+A new experimental approach for binary compatibility detection is available.
+    Enable it by setting the core.graph:compatibility_mode=optimized conf
+    and get improved performance when querying multiple compatible binaries in remotes.
+
+Requirements
+    benchmark/1.6.0#c7ef1499d3f4d019801919985986b77d:a0fb75ef1205fcacf49a75759b4f1b5e7ad13d02 - Build
+    cpuinfo/cci.20220228#afc5a0dba98c55fc65c379dc6f8bab8d:63a3cfd01316a2d9e6776545d468239013f85ddd - Build
+    gtest/cci.20210126#e560968072ffd87fbd396e4cabff9127:0db212d974001fea6d4cbfc38a924c8507a1ebf1 - Build
+    mio/cci.20201220#35d8e4791152cb59bb37212cd9c295d2:da39a3ee5e6b4b0d3255bfef95601890afd80709#1db8db72c0b6f33280a30253cc7c2f27 - Cache
+    ms-gsl/4.0.0#b39ff866e01586bb98ab4d9f46004c31:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+    platform-collections-methods/0.3.0#7bf9addb258962e4c904ace39794c202:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+    platform-collections/0.2.1#8c17106bf6ed80ece6f3d377f4989a60:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+    platform-converters/0.2.0#e5210600d15a224117023e6b4fb0c1be:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+    platform-data/0.1.1#049284bd2691fcdd21308ff118193883:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+    platform-delegates/0.3.7#fa6d4052c342718034aaa3fefe278fd0:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+    platform-equality/0.0.1#4c269c237c780cf97734b306fef30799:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+    platform-exceptions/0.3.2#f85774f1881822f0ffd9f7095bd3085a:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+    platform-hashing/0.5.6#8f26cd9a683ad74a06b02ea3ffb00f29:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+    platform-interfaces/0.3.41#2749e377587371071b89193878f3ad93:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+    platform-memory/0.1.0#8dd4e948ae9e107523a3807afeb9f1aa:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+    platform-numbers/0.1.0#8d5c367883c12491634bda6b216fdcd7:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+    platform-random/0.2.0#596375061030beacc935a1ac82ef6e46:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+    platform-ranges/0.2.0#f74638320e5bd4f2efd11a9e10091288:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+    platform-setters/0.1.0#0b7fdbec025f7e225a919bacf70f9c3a:da39a3ee5e6b4b0d3255bfef95601890afd80709 - Build
+
+======== Installing packages ========
+
+-------- Installing package benchmark/1.6.0 (1 of 19) --------
+Building from source benchmark/1.6.0:a0fb75ef1205fcacf49a75759b4f1b5e7ad13d02
+benchmark/1.6.0: settings: os=Linux arch=x86_64 compiler=clang compiler.cppstd=20 compiler.libcxx=libstdc++11 compiler.version=18 build_type=Release
+benchmark/1.6.0: options: enable_exceptions=True enable_libpfm=False enable_lto=False fPIC=True shared=False
+>>> Source step
+Getting sources for benchmark/1.6.0
+Calling source() in /home/box/.conan2/p/bench9c76564e74aaf/s/src
+Sources correctly downloaded from https://github.com/google/benchmark/archive/v1.6.0.tar.gz
+Uncompressing v1.6.0.tar.gz to .
+Copying sources to build folder
+Sources in /home/box/.conan2/p/b/benchbf013b053b8de/b/src
+>>> Generate step for benchmark/1.6.0
+Generators folder: /home/box/.conan2/p/b/benchbf013b053b8de/b/build/Release/generators
+Calling generate() method in recipe
+CMakeToolchain generated: conan_toolchain.cmake
+CMakeToolchain generated: /home/box/.conan2/p/b/benchbf013b053b8de/b/build/Release/generators/CMakePresets.json
+CMakeToolchain generated: /home/box/.conan2/p/b/benchbf013b053b8de/b/src/CMakeUserPresets.json
+Generating aggregated env files
+Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+Building your package in /home/box/.conan2/p/b/benchbf013b053b8de/b
+>>> Build step for benchmark/1.6.0
+benchmark/1.6.0: Calling build()
+benchmark/1.6.0: Running CMake.configure()
+benchmark/1.6.0: RUN: cmake -G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE="generators/conan_toolchain.cmake" -DCMAKE_INSTALL_PREFIX="/home/box/.conan2/p/b/benchbf013b053b8de/p" -DCMAKE_POLICY_DEFAULT_CMP0091="NEW" -DCMAKE_BUILD_TYPE="Release" "/home/box/.conan2/p/b/benchbf013b053b8de/b/src"
+-- Using Conan toolchain: /home/box/.conan2/p/b/benchbf013b053b8de/b/build/Release/generators/conan_toolchain.cmake
+-- Conan toolchain: Setting CMAKE_POSITION_INDEPENDENT_CODE=ON (options.fPIC)
+-- Conan toolchain: Defining architecture flag: -m64
+-- Conan toolchain: Defining libcxx as C++ flags: -stdlib=libstdc++
+-- Conan toolchain: C++ Standard 20 with extensions OFF
+-- Conan toolchain: Setting BUILD_SHARED_LIBS = OFF
+-- The CXX compiler identification is Clang 18.1.3
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/clang++-18 - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Failed to find LLVM FileCheck
+-- Found Git: /usr/bin/git (found version "2.43.0") 
+-- git version: v0.0.0 normalized to 0.0.0
+-- Version: 1.6.0
+-- Performing Test HAVE_CXX_FLAG_STD_CXX11
+-- Performing Test HAVE_CXX_FLAG_STD_CXX11 - Success
+-- Performing Test HAVE_CXX_FLAG_WALL
+-- Performing Test HAVE_CXX_FLAG_WALL - Success
+-- Performing Test HAVE_CXX_FLAG_WEXTRA
+-- Performing Test HAVE_CXX_FLAG_WEXTRA - Success
+-- Performing Test HAVE_CXX_FLAG_WSHADOW
+-- Performing Test HAVE_CXX_FLAG_WSHADOW - Success
+-- Performing Test HAVE_CXX_FLAG_WERROR
+-- Performing Test HAVE_CXX_FLAG_WERROR - Success
+-- Performing Test HAVE_CXX_FLAG_WSUGGEST_OVERRIDE
+-- Performing Test HAVE_CXX_FLAG_WSUGGEST_OVERRIDE - Success
+-- Performing Test HAVE_CXX_FLAG_PEDANTIC
+-- Performing Test HAVE_CXX_FLAG_PEDANTIC - Success
+-- Performing Test HAVE_CXX_FLAG_PEDANTIC_ERRORS
+-- Performing Test HAVE_CXX_FLAG_PEDANTIC_ERRORS - Success
+-- Performing Test HAVE_CXX_FLAG_WSHORTEN_64_TO_32
+-- Performing Test HAVE_CXX_FLAG_WSHORTEN_64_TO_32 - Success
+-- Performing Test HAVE_CXX_FLAG_FSTRICT_ALIASING
+-- Performing Test HAVE_CXX_FLAG_FSTRICT_ALIASING - Success
+-- Performing Test HAVE_CXX_FLAG_WNO_DEPRECATED_DECLARATIONS
+-- Performing Test HAVE_CXX_FLAG_WNO_DEPRECATED_DECLARATIONS - Success
+-- Performing Test HAVE_CXX_FLAG_WNO_DEPRECATED
+-- Performing Test HAVE_CXX_FLAG_WNO_DEPRECATED - Success
+-- Performing Test HAVE_CXX_FLAG_WSTRICT_ALIASING
+-- Performing Test HAVE_CXX_FLAG_WSTRICT_ALIASING - Success
+-- Performing Test HAVE_CXX_FLAG_WD654
+-- Performing Test HAVE_CXX_FLAG_WD654 - Failed
+-- Performing Test HAVE_CXX_FLAG_WTHREAD_SAFETY
+-- Performing Test HAVE_CXX_FLAG_WTHREAD_SAFETY - Success
+-- Performing Test HAVE_THREAD_SAFETY_ATTRIBUTES
+-- Performing Test HAVE_THREAD_SAFETY_ATTRIBUTES
+-- Performing Test HAVE_THREAD_SAFETY_ATTRIBUTES -- failed to compile
+-- Performing Test HAVE_CXX_FLAG_COVERAGE
+-- Performing Test HAVE_CXX_FLAG_COVERAGE - Success
+-- Performing Test HAVE_STD_REGEX
+-- Performing Test HAVE_STD_REGEX
+-- Performing Test HAVE_STD_REGEX -- success
+-- Performing Test HAVE_GNU_POSIX_REGEX
+-- Performing Test HAVE_GNU_POSIX_REGEX
+-- Performing Test HAVE_GNU_POSIX_REGEX -- failed to compile
+-- Performing Test HAVE_POSIX_REGEX
+-- Performing Test HAVE_POSIX_REGEX
+-- Performing Test HAVE_POSIX_REGEX -- success
+-- Performing Test HAVE_STEADY_CLOCK
+-- Performing Test HAVE_STEADY_CLOCK
+-- Performing Test HAVE_STEADY_CLOCK -- success
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Configuring done (20.3s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/box/.conan2/p/b/benchbf013b053b8de/b/build/Release
+
+benchmark/1.6.0: Running CMake.build()
+benchmark/1.6.0: RUN: cmake --build "/home/box/.conan2/p/b/benchbf013b053b8de/b/build/Release" -- -j1
+[  4%] Building CXX object src/CMakeFiles/benchmark.dir/benchmark.cc.o
+[  9%] Building CXX object src/CMakeFiles/benchmark.dir/benchmark_api_internal.cc.o
+[ 13%] Building CXX object src/CMakeFiles/benchmark.dir/benchmark_name.cc.o
+[ 18%] Building CXX object src/CMakeFiles/benchmark.dir/benchmark_register.cc.o
+[ 22%] Building CXX object src/CMakeFiles/benchmark.dir/benchmark_runner.cc.o
+[ 27%] Building CXX object src/CMakeFiles/benchmark.dir/colorprint.cc.o
+[ 31%] Building CXX object src/CMakeFiles/benchmark.dir/commandlineflags.cc.o
+[ 36%] Building CXX object src/CMakeFiles/benchmark.dir/complexity.cc.o
+[ 40%] Building CXX object src/CMakeFiles/benchmark.dir/console_reporter.cc.o
+[ 45%] Building CXX object src/CMakeFiles/benchmark.dir/counter.cc.o
+[ 50%] Building CXX object src/CMakeFiles/benchmark.dir/csv_reporter.cc.o
+[ 54%] Building CXX object src/CMakeFiles/benchmark.dir/json_reporter.cc.o
+[ 59%] Building CXX object src/CMakeFiles/benchmark.dir/perf_counters.cc.o
+[ 63%] Building CXX object src/CMakeFiles/benchmark.dir/reporter.cc.o
+[ 68%] Building CXX object src/CMakeFiles/benchmark.dir/sleep.cc.o
+[ 72%] Building CXX object src/CMakeFiles/benchmark.dir/statistics.cc.o
+[ 77%] Building CXX object src/CMakeFiles/benchmark.dir/string_util.cc.o
+[ 81%] Building CXX object src/CMakeFiles/benchmark.dir/sysinfo.cc.o
+[ 86%] Building CXX object src/CMakeFiles/benchmark.dir/timers.cc.o
+[ 90%] Linking CXX static library libbenchmark.a
+[ 90%] Built target benchmark
+[ 95%] Building CXX object src/CMakeFiles/benchmark_main.dir/benchmark_main.cc.o
+[100%] Linking CXX static library libbenchmark_main.a
+[100%] Built target benchmark_main
+
+benchmark/1.6.0: Package 'a0fb75ef1205fcacf49a75759b4f1b5e7ad13d02' built
+benchmark/1.6.0: Build folder /home/box/.conan2/p/b/benchbf013b053b8de/b/build/Release
+>>> Package step for benchmark/1.6.0:a0fb75ef1205fcacf49a75759b4f1b5e7ad13d02
+Packaging in folder /home/box/.conan2/p/b/benchbf013b053b8de/p
+Calling package()
+Running CMake.install()
+RUN: cmake --install "/home/box/.conan2/p/b/benchbf013b053b8de/b/build/Release" --prefix "/home/box/.conan2/p/b/benchbf013b053b8de/p"
+-- Install configuration: "Release"
+-- Installing: /home/box/.conan2/p/b/benchbf013b053b8de/p/lib/libbenchmark.a
+-- Installing: /home/box/.conan2/p/b/benchbf013b053b8de/p/lib/libbenchmark_main.a
+-- Installing: /home/box/.conan2/p/b/benchbf013b053b8de/p/include/benchmark
+-- Installing: /home/box/.conan2/p/b/benchbf013b053b8de/p/include/benchmark/benchmark.h
+-- Installing: /home/box/.conan2/p/b/benchbf013b053b8de/p/lib/cmake/benchmark/benchmarkConfig.cmake
+-- Installing: /home/box/.conan2/p/b/benchbf013b053b8de/p/lib/cmake/benchmark/benchmarkConfigVersion.cmake
+-- Installing: /home/box/.conan2/p/b/benchbf013b053b8de/p/lib/pkgconfig/benchmark.pc
+-- Installing: /home/box/.conan2/p/b/benchbf013b053b8de/p/lib/cmake/benchmark/benchmarkTargets.cmake
+-- Installing: /home/box/.conan2/p/b/benchbf013b053b8de/p/lib/cmake/benchmark/benchmarkTargets-release.cmake
+-- Installing: /home/box/.conan2/p/b/benchbf013b053b8de/p/share/doc/benchmark
+-- Installing: /home/box/.conan2/p/b/benchbf013b053b8de/p/share/doc/benchmark/tools.md
+-- Installing: /home/box/.conan2/p/b/benchbf013b053b8de/p/share/doc/benchmark/perf_counters.md
+-- Installing: /home/box/.conan2/p/b/benchbf013b053b8de/p/share/doc/benchmark/_config.yml
+-- Installing: /home/box/.conan2/p/b/benchbf013b053b8de/p/share/doc/benchmark/user_guide.md
+-- Installing: /home/box/.conan2/p/b/benchbf013b053b8de/p/share/doc/benchmark/dependencies.md
+-- Installing: /home/box/.conan2/p/b/benchbf013b053b8de/p/share/doc/benchmark/index.md
+-- Installing: /home/box/.conan2/p/b/benchbf013b053b8de/p/share/doc/benchmark/releasing.md
+-- Installing: /home/box/.conan2/p/b/benchbf013b053b8de/p/share/doc/benchmark/random_interleaving.md
+-- Installing: /home/box/.conan2/p/b/benchbf013b053b8de/p/share/doc/benchmark/AssemblyTests.md
+-- Installing: /home/box/.conan2/p/b/benchbf013b053b8de/p/share/doc/benchmark/platform_specific_build_instructions.md
+
+package(): Packaged 2 '.a' files: libbenchmark.a, libbenchmark_main.a
+package(): Packaged 1 file: LICENSE
+package(): Packaged 1 '.h' file: benchmark.h
+Created package revision dbe04899f216c3887b751e65c9283b90
+Package 'a0fb75ef1205fcacf49a75759b4f1b5e7ad13d02' created
+Full package reference: benchmark/1.6.0#c7ef1499d3f4d019801919985986b77d:a0fb75ef1205fcacf49a75759b4f1b5e7ad13d02#dbe04899f216c3887b751e65c9283b90
+Package folder /home/box/.conan2/p/b/benchbf013b053b8de/p
+
+-------- Installing package cpuinfo/cci.20220228 (2 of 19) --------
+Building from source cpuinfo/cci.20220228:63a3cfd01316a2d9e6776545d468239013f85ddd
+cpuinfo/cci.20220228: settings: os=Linux arch=x86_64 compiler=clang compiler.version=18 build_type=Release
+cpuinfo/cci.20220228: options: fPIC=True log_level=default shared=False
+>>> Source step
+Getting sources for cpuinfo/cci.20220228
+Calling source() in /home/box/.conan2/p/cpuinfbb81f122b53b/s/src
+Sources correctly downloaded from https://github.com/pytorch/cpuinfo/archive/6288930068efc8dff4f3c0b95f062fc5ddceba04.tar.gz
+Uncompressing 6288930068efc8dff4f3c0b95f062fc5ddceba04.tar.gz to .
+Copying sources to build folder
+Sources in /home/box/.conan2/p/b/cpuinefca19fd10111/b/src
+>>> Generate step for cpuinfo/cci.20220228
+Generators folder: /home/box/.conan2/p/b/cpuinefca19fd10111/b/build/Release/generators
+Calling generate() method in recipe
+CMakeToolchain generated: conan_toolchain.cmake
+CMakeToolchain generated: /home/box/.conan2/p/b/cpuinefca19fd10111/b/build/Release/generators/CMakePresets.json
+CMakeToolchain generated: /home/box/.conan2/p/b/cpuinefca19fd10111/b/src/CMakeUserPresets.json
+Generating aggregated env files
+Generated aggregated env files: ['conanbuild.sh', 'conanrun.sh']
+Building your package in /home/box/.conan2/p/b/cpuinefca19fd10111/b
+>>> Build step for cpuinfo/cci.20220228
+cpuinfo/cci.20220228: Calling build()
+cpuinfo/cci.20220228: Running CMake.configure()
+cpuinfo/cci.20220228: RUN: cmake -G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE="generators/conan_toolchain.cmake" -DCMAKE_INSTALL_PREFIX="/home/box/.conan2/p/b/cpuinefca19fd10111/p" -DCPUINFO_LIBRARY_TYPE="default" -DCPUINFO_RUNTIME_TYPE="default" -DCPUINFO_LOG_LEVEL="default" -DCLOG_RUNTIME_TYPE="default" -DCMAKE_POLICY_DEFAULT_CMP0091="NEW" -DCMAKE_BUILD_TYPE="Release" "/home/box/.conan2/p/b/cpuinefca19fd10111/b/src"
+-- Using Conan toolchain: /home/box/.conan2/p/b/cpuinefca19fd10111/b/build/Release/generators/conan_toolchain.cmake
+-- Conan toolchain: Setting CMAKE_POSITION_INDEPENDENT_CODE=ON (options.fPIC)
+-- Conan toolchain: Defining architecture flag: -m64
+-- Conan toolchain: Setting BUILD_SHARED_LIBS = OFF
+-- The C compiler identification is Clang 18.1.3
+-- The CXX compiler identification is Clang 18.1.3
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/clang-18 - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/clang++-18 - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Configuring done (2.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/box/.conan2/p/b/cpuinefca19fd10111/b/build/Release
+
+cpuinfo/cci.20220228: Running CMake.build()
+cpuinfo/cci.20220228: RUN: cmake --build "/home/box/.conan2/p/b/cpuinefca19fd10111/b/build/Release" -- -j1
+[  2%] Building C object deps/clog/CMakeFiles/clog.dir/src/clog.c.o
+[  4%] Linking C static library libclog.a
+[  4%] Built target clog
+[  7%] Building C object CMakeFiles/cpuinfo.dir/src/init.c.o
+[  9%] Building C object CMakeFiles/cpuinfo.dir/src/api.c.o
+[ 11%] Building C object CMakeFiles/cpuinfo.dir/src/cache.c.o
+[ 14%] Building C object CMakeFiles/cpuinfo.dir/src/x86/init.c.o
+[ 16%] Building C object CMakeFiles/cpuinfo.dir/src/x86/info.c.o
+[ 19%] Building C object CMakeFiles/cpuinfo.dir/src/x86/vendor.c.o
+[ 21%] Building C object CMakeFiles/cpuinfo.dir/src/x86/uarch.c.o
+[ 23%] Building C object CMakeFiles/cpuinfo.dir/src/x86/name.c.o
+[ 26%] Building C object CMakeFiles/cpuinfo.dir/src/x86/topology.c.o
+[ 28%] Building C object CMakeFiles/cpuinfo.dir/src/x86/isa.c.o
+[ 30%] Building C object CMakeFiles/cpuinfo.dir/src/x86/cache/init.c.o
+[ 33%] Building C object CMakeFiles/cpuinfo.dir/src/x86/cache/descriptor.c.o
+[ 35%] Building C object CMakeFiles/cpuinfo.dir/src/x86/cache/deterministic.c.o
+[ 38%] Building C object CMakeFiles/cpuinfo.dir/src/x86/linux/init.c.o
+[ 40%] Building C object CMakeFiles/cpuinfo.dir/src/x86/linux/cpuinfo.c.o
+[ 42%] Building C object CMakeFiles/cpuinfo.dir/src/linux/smallfile.c.o
+[ 45%] Building C object CMakeFiles/cpuinfo.dir/src/linux/multiline.c.o
+[ 47%] Building C object CMakeFiles/cpuinfo.dir/src/linux/cpulist.c.o
+[ 50%] Building C object CMakeFiles/cpuinfo.dir/src/linux/processors.c.o
+[ 52%] Linking C static library libcpuinfo.a
+[ 52%] Built target cpuinfo
+[ 54%] Building C object CMakeFiles/cpuinfo_internals.dir/src/init.c.o
+[ 57%] Building C object CMakeFiles/cpuinfo_internals.dir/src/api.c.o
+[ 59%] Building C object CMakeFiles/cpuinfo_internals.dir/src/cache.c.o
+[ 61%] Building C object CMakeFiles/cpuinfo_internals.dir/src/x86/init.c.o
+[ 64%] Building C object CMakeFiles/cpuinfo_internals.dir/src/x86/info.c.o
+[ 66%] Building C object CMakeFiles/cpuinfo_internals.dir/src/x86/vendor.c.o
+[ 69%] Building C object CMakeFiles/cpuinfo_internals.dir/src/x86/uarch.c.o
+[ 71%] Building C object CMakeFiles/cpuinfo_internals.dir/src/x86/name.c.o
+[ 73%] Building C object CMakeFiles/cpuinfo_internals.dir/src/x86/topology.c.o
+[ 76%] Building C object CMakeFiles/cpuinfo_internals.dir/src/x86/isa.c.o
+[ 78%] Building C object CMakeFiles/cpuinfo_internals.dir/src/x86/cache/init.c.o
+[ 80%] Building C object CMakeFiles/cpuinfo_internals.dir/src/x86/cache/descriptor.c.o
+[ 83%] Building C object CMakeFiles/cpuinfo_internals.dir/src/x86/cache/deterministic.c.o
+[ 85%] Building C object CMakeFiles/cpuinfo_internals.dir/src/x86/linux/init.c.o
+[ 88%] Building C object CMakeFiles/cpuinfo_internals.dir/src/x86/linux/cpuinfo.c.o
+[ 90%] Building C object CMakeFiles/cpuinfo_internals.dir/src/linux/smallfile.c.o
+[ 92%] Building C object CMakeFiles/cpuinfo_internals.dir/src/linux/multiline.c.o
+[ 95%] Building C object CMakeFiles/cpuinfo_internals.dir/src/linux/cpulist.c.o
+[ 97%] Building C object CMakeFiles/cpuinfo_internals.dir/src/linux/processors.c.o
+[100%] Linking C static library libcpuinfo_internals.a
+[100%] Built target cpuinfo_internals
+
+cpuinfo/cci.20220228: Package '63a3cfd01316a2d9e6776545d468239013f85ddd' built
+cpuinfo/cci.20220228: Build folder /home/box/.conan2/p/b/cpuinefca19fd10111/b/build/Release
+>>> Package step for cpuinfo/cci.20220228:63a3cfd01316a2d9e6776545d468239013f85ddd
+Packaging in folder /home/box/.conan2/p/b/cpuinefca19fd10111/p
+Calling package()
+Running CMake.install()
+RUN: cmake --install "/home/box/.conan2/p/b/cpuinefca19fd10111/b/build/Release" --prefix "/home/box/.conan2/p/b/cpuinefca19fd10111/p"
+-- Install configuration: "Release"
+-- Installing: /home/box/.conan2/p/b/cpuinefca19fd10111/p/lib/libcpuinfo.a
+-- Installing: /home/box/.conan2/p/b/cpuinefca19fd10111/p/include/cpuinfo.h
+-- Installing: /home/box/.conan2/p/b/cpuinefca19fd10111/p/lib/pkgconfig/libcpuinfo.pc
+-- Installing: /home/box/.conan2/p/b/cpuinefca19fd10111/p/lib/libclog.a
+-- Installing: /home/box/.conan2/p/b/cpuinefca19fd10111/p/include/clog.h
+
+package(): Packaged 2 '.a' files: libclog.a, libcpuinfo.a
+package(): Packaged 1 file: LICENSE
+package(): Packaged 2 '.h' files: clog.h, cpuinfo.h
+Created package revision bbf2cf97cbc44b6d413287ab9a640735
+Package '63a3cfd01316a2d9e6776545d468239013f85ddd' created
+Full package reference: cpuinfo/cci.20220228#afc5a0dba98c55fc65c379dc6f8bab8d:63a3cfd01316a2d9e6776545d468239013f85ddd#bbf2cf97cbc44b6d413287ab9a640735
+Package folder /home/box/.conan2/p/b/cpuinefca19fd10111/p
+
+-------- Installing package gtest/cci.20210126 (3 of 19) --------
+Building from source gtest/cci.20210126:0db212d974001fea6d4cbfc38a924c8507a1ebf1
+gtest/cci.20210126: settings: os=Linux arch=x86_64 compiler=clang compiler.cppstd=20 compiler.libcxx=libstdc++11 compiler.version=18 build_type=Release
+gtest/cci.20210126: options: build_gmock=True disable_pthreads=False fPIC=True hide_symbols=False shared=False
+>>> Source step
+Getting sources for gtest/cci.20210126
+Calling source() in /home/box/.conan2/p/gtest047808ad6118b/s/src
+ERROR: gtest/cci.20210126: Error in source() method, line 106
+	get(self, **self.conan_data["sources"][self.version], strip_root=True)
+	KeyError: 'cci.20210126'

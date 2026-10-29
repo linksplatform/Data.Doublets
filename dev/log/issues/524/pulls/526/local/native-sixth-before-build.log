@@ -1,0 +1,58 @@
+[ 25%] Building CXX object CMakeFiles/Platform.Data.Doublets.Tests.dir/Platform.Data.Doublets.Tests/AllTests.cpp.o
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/AllTests.cpp:4:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ExtensionTests.h:64:61: error: no type named 'LinksLimitReachedException' in namespace 'Platform::Exceptions'
+   64 |         EXPECT_THROW(Create(storage), Platform::Exceptions::LinksLimitReachedException);
+      |                                       ~~~~~~~~~~~~~~~~~~~~~~^
+/home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/gtest.h:1771:32: note: expanded from macro 'EXPECT_THROW'
+ 1771 |   GTEST_TEST_THROW_(statement, expected_exception, GTEST_NONFATAL_FAILURE_)
+      |                                ^~~~~~~~~~~~~~~~~~
+/home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/internal/gtest-internal.h:1425:14: note: expanded from macro 'GTEST_TEST_THROW_'
+ 1425 |     } catch (expected_exception const&) {                                   \
+      |              ^~~~~~~~~~~~~~~~~~
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/AllTests.cpp:4:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ExtensionTests.h:64:39: error: template argument for template type parameter must be a type
+   64 |         EXPECT_THROW(Create(storage), Platform::Exceptions::LinksLimitReachedException);
+      |                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/gtest.h:1771:32: note: expanded from macro 'EXPECT_THROW'
+ 1771 |   GTEST_TEST_THROW_(statement, expected_exception, GTEST_NONFATAL_FAILURE_)
+      |                                ^~~~~~~~~~~~~~~~~~
+/home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/internal/gtest-internal.h:1428:54: note: expanded from macro 'GTEST_TEST_THROW_'
+ 1428 |     GTEST_TEST_THROW_CATCH_STD_EXCEPTION_(statement, expected_exception)    \
+      |                                                      ^~~~~~~~~~~~~~~~~~
+/home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/internal/gtest-internal.h:1399:27: note: expanded from macro 'GTEST_TEST_THROW_CATCH_STD_EXCEPTION_'
+ 1399 |                           expected_exception>::type>::type,                    \
+      |                           ^~~~~~~~~~~~~~~~~~
+/usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/type_traits:1614:21: note: template parameter is declared here
+ 1614 |   template<typename _Tp>
+      |                     ^
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/AllTests.cpp:4:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ExtensionTests.h:68:61: error: no type named 'LinksLimitReachedException' in namespace 'Platform::Exceptions'
+   68 |         EXPECT_THROW(Create(storage), Platform::Exceptions::LinksLimitReachedException);
+      |                                       ~~~~~~~~~~~~~~~~~~~~~~^
+/home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/gtest.h:1771:32: note: expanded from macro 'EXPECT_THROW'
+ 1771 |   GTEST_TEST_THROW_(statement, expected_exception, GTEST_NONFATAL_FAILURE_)
+      |                                ^~~~~~~~~~~~~~~~~~
+/home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/internal/gtest-internal.h:1425:14: note: expanded from macro 'GTEST_TEST_THROW_'
+ 1425 |     } catch (expected_exception const&) {                                   \
+      |              ^~~~~~~~~~~~~~~~~~
+In file included from /tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/AllTests.cpp:4:
+/tmp/gh-issue-solver-1793248170197/cpp/Platform.Data.Doublets.Tests/ExtensionTests.h:68:39: error: template argument for template type parameter must be a type
+   68 |         EXPECT_THROW(Create(storage), Platform::Exceptions::LinksLimitReachedException);
+      |                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/gtest.h:1771:32: note: expanded from macro 'EXPECT_THROW'
+ 1771 |   GTEST_TEST_THROW_(statement, expected_exception, GTEST_NONFATAL_FAILURE_)
+      |                                ^~~~~~~~~~~~~~~~~~
+/home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/internal/gtest-internal.h:1428:54: note: expanded from macro 'GTEST_TEST_THROW_'
+ 1428 |     GTEST_TEST_THROW_CATCH_STD_EXCEPTION_(statement, expected_exception)    \
+      |                                                      ^~~~~~~~~~~~~~~~~~
+/home/box/.conan2/p/b/gtest3b348dd479d64/p/include/gtest/internal/gtest-internal.h:1399:27: note: expanded from macro 'GTEST_TEST_THROW_CATCH_STD_EXCEPTION_'
+ 1399 |                           expected_exception>::type>::type,                    \
+      |                           ^~~~~~~~~~~~~~~~~~
+/usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/type_traits:1614:21: note: template parameter is declared here
+ 1614 |   template<typename _Tp>
+      |                     ^
+4 errors generated.
+gmake[2]: *** [CMakeFiles/Platform.Data.Doublets.Tests.dir/build.make:76: CMakeFiles/Platform.Data.Doublets.Tests.dir/Platform.Data.Doublets.Tests/AllTests.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:85: CMakeFiles/Platform.Data.Doublets.Tests.dir/all] Error 2
+gmake: *** [Makefile:101: all] Error 2
+Child peak RSS: 757240 KiB

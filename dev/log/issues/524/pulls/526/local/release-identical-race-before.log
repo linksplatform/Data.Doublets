@@ -1,0 +1,29 @@
+test_identical_remote_release_is_repaired_without_a_second_bump (test_release_race.ReleaseRaceTests.test_identical_remote_release_is_repaired_without_a_second_bump) ... From /tmp/tmp8stybnjt/remote
+ * branch            main       -> FETCH_HEAD
+   5dcf0e0..acd9694  main       -> origin/main
+ERROR
+
+======================================================================
+ERROR: test_identical_remote_release_is_repaired_without_a_second_bump (test_release_race.ReleaseRaceTests.test_identical_remote_release_is_repaired_without_a_second_bump)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/gh-issue-solver-1793248170197/experiments/test_release_race.py", line 39, in test_identical_remote_release_is_repaired_without_a_second_bump
+    versions.commit()
+    ~~~~~~~~~~~~~~~^^
+  File "/tmp/gh-issue-solver-1793248170197/scripts/versions.py", line 130, in commit
+    raise RuntimeError('main advanced after validation; rerun CI on the current merge before publishing')
+RuntimeError: main advanced after validation; rerun CI on the current merge before publishing
+
+----------------------------------------------------------------------
+Ran 1 test in 0.547s
+
+FAILED (errors=1)
+To /tmp/tmp8stybnjt/remote.git
+ ! [rejected]        HEAD -> main (fetch first)
+error: failed to push some refs to '/tmp/tmp8stybnjt/remote.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+

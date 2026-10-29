@@ -18,7 +18,7 @@ public class LinksNullConstantToSelfReferenceResolver<TLinkAddress> : LinksDecor
 {
     /// <summary>
     ///     <para>
-    ///         Initializes a new <see cref="LinksNullConstantToSelfReferenceResolver" /> instance.
+    ///         Initializes a new <see cref="LinksNullConstantToSelfReferenceResolver{TLinkAddress}" /> instance.
     ///     </para>
     ///     <para></para>
     /// </summary>
@@ -29,6 +29,7 @@ public class LinksNullConstantToSelfReferenceResolver<TLinkAddress> : LinksDecor
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     public LinksNullConstantToSelfReferenceResolver(ILinks<TLinkAddress> links) : base(links: links) { }
 
+    /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
     /// <summary>
     ///     <para>
     ///         Creates the substitution.
@@ -49,6 +50,7 @@ public class LinksNullConstantToSelfReferenceResolver<TLinkAddress> : LinksDecor
         return _links.CreatePoint(handler: handler);
     }
 
+    /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
     /// <summary>
     ///     <para>
     ///         Updates the substitution.

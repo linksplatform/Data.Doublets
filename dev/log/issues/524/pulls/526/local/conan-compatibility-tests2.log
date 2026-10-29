@@ -1,0 +1,11 @@
+test_clog_short_writes_and_interruption_preserve_the_whole_message (experiments.test_conan_compatibility.CompatibilityTests.test_clog_short_writes_and_interruption_preserve_the_whole_message) ... ok
+test_cmake_minimum_repair_preserves_newer_requirements (experiments.test_conan_compatibility.CompatibilityTests.test_cmake_minimum_repair_preserves_newer_requirements) ... ok
+test_cmake_version_range_preserves_its_upper_policy_version (experiments.test_conan_compatibility.CompatibilityTests.test_cmake_version_range_preserves_its_upper_policy_version) ... ok
+test_legacy_metadata_without_final_newline_is_removed (experiments.test_conan_compatibility.CompatibilityTests.test_legacy_metadata_without_final_newline_is_removed) ... ok
+test_modern_targets_are_preserved (experiments.test_conan_compatibility.CompatibilityTests.test_modern_targets_are_preserved) ... ok
+test_unexpected_clog_source_fails_closed (experiments.test_conan_compatibility.CompatibilityTests.test_unexpected_clog_source_fails_closed) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.554s
+
+OK

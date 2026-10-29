@@ -25,8 +25,8 @@ namespace Platform.Data.Doublets.Memory.United.Generic
     public abstract class UnitedMemoryLinksBase<TLinkAddress> : DisposableBase, ILinks<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>, IComparisonOperators<TLinkAddress, TLinkAddress, bool>
     {
         private static readonly Comparer<TLinkAddress> _comparer = Comparer<TLinkAddress>.Default;
-        private static readonly TLinkAddress _zero = default;
-        private static readonly TLinkAddress _one = ++_zero;
+        private static readonly TLinkAddress _zero = TLinkAddress.Zero;
+        private static readonly TLinkAddress _one = TLinkAddress.One;
 
         /// <summary>Возвращает размер одной связи в байтах.</summary>
         /// <remarks>
@@ -72,14 +72,16 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// </para>
         /// <para></para>
         /// </summary>
-        protected ILinksTreeMethods<TLinkAddress> TargetsTreeMethods;
+        protected ILinksTreeMethods<TLinkAddress>? TargetsTreeMethods;
+        private ILinksTreeMethods<TLinkAddress> RequiredTargetsTreeMethods => TargetsTreeMethods ?? throw new ObjectDisposedException(GetType().Name);
         /// <summary>
         /// <para>
         /// The sources tree methods.
         /// </para>
         /// <para></para>
         /// </summary>
-        protected ILinksTreeMethods<TLinkAddress> SourcesTreeMethods;
+        protected ILinksTreeMethods<TLinkAddress>? SourcesTreeMethods;
+        private ILinksTreeMethods<TLinkAddress> RequiredSourcesTreeMethods => SourcesTreeMethods ?? throw new ObjectDisposedException(GetType().Name);
         // TODO: Возможно чтобы гарантированно проверять на то, является ли связь удалённой, нужно использовать не список а дерево, так как так можно быстрее проверить на наличие связи внутри
         /// <summary>
         /// <para>
@@ -87,7 +89,8 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// </para>
         /// <para></para>
         /// </summary>
-        protected ILinksListMethods<TLinkAddress> UnusedLinksListMethods;
+        protected ILinksListMethods<TLinkAddress>? UnusedLinksListMethods;
+        private ILinksListMethods<TLinkAddress> RequiredUnusedLinksListMethods => UnusedLinksListMethods ?? throw new ObjectDisposedException(GetType().Name);
 
         /// <summary>
         /// Возвращает общее число связей находящихся в хранилище.
@@ -108,15 +111,14 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// </para>
         /// <para></para>
         /// </summary>
-        public virtual LinksConstants<TLinkAddress> Constants
-        {
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get;
-        }
+        protected readonly LinksConstants<TLinkAddress> _constants;
+
+        /// <summary>Gets the configured constants for the store.</summary>
+        public virtual LinksConstants<TLinkAddress> Constants => _constants;
 
         /// <summary>
         /// <para>
-        /// Initializes a new <see cref="UnitedMemoryLinksBase"/> instance.
+        /// Initializes a new <see cref="UnitedMemoryLinksBase{TLinkAddress}"/> instance.
         /// </para>
         /// <para></para>
         /// </summary>
@@ -137,12 +139,12 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         {
             _memory = memory;
             _memoryReservationStep = memoryReservationStep;
-            Constants = constants;
+            _constants = constants;
         }
 
         /// <summary>
         /// <para>
-        /// Initializes a new <see cref="UnitedMemoryLinksBase"/> instance.
+        /// Initializes a new <see cref="UnitedMemoryLinksBase{TLinkAddress}"/> instance.
         /// </para>
         /// <para></para>
         /// </summary>
@@ -173,13 +175,17 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected virtual void Init(IResizableDirectMemory memory, long memoryReservationStep)
+            => InitializeMemory(memory, memoryReservationStep, () => SetPointers(memory));
+
+        /// <summary>Initializes memory using a concrete pointer initializer during construction.</summary>
+        protected unsafe void InitializeMemory(IResizableDirectMemory memory, long memoryReservationStep, Action setPointers)
         {
             if (memory.ReservedCapacity < memoryReservationStep)
             {
                 memory.ReservedCapacity = memoryReservationStep;
             }
-            SetPointers(memory);
-            ref var header = ref GetHeaderReference();
+            setPointers();
+            ref var header = ref System.Runtime.CompilerServices.Unsafe.AsRef<LinksHeader<TLinkAddress>>((void*)memory.Pointer);
             // Гарантия корректности _memory.UsedCapacity относительно _header->AllocatedLinks
             memory.UsedCapacity = (long.CreateTruncating(header.AllocatedLinks) * LinkSizeInBytes) + LinkHeaderSizeInBytes;
             // Гарантия корректности _header->ReservedLinks относительно _memory.ReservedCapacity
@@ -207,6 +213,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public virtual TLinkAddress Count(IList<TLinkAddress>? restriction)
         {
+            restriction ??= System.Array.Empty<TLinkAddress>();
             // Если нет ограничений, тогда возвращаем общее число связей находящихся в хранилище.
             if (restriction is null || restriction.Count == 0)
             {
@@ -232,7 +239,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                     {
                         return Total; // Any - как отсутствие ограничения
                     }
-                    return Add(SourcesTreeMethods.CountUsages(value), TargetsTreeMethods.CountUsages(value));
+                    return Add(RequiredSourcesTreeMethods.CountUsages(value), RequiredTargetsTreeMethods.CountUsages(value));
                 }
                 else
                 {
@@ -264,16 +271,16 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                     }
                     else if (source == any)
                     {
-                        return TargetsTreeMethods.CountUsages(target);
+                        return RequiredTargetsTreeMethods.CountUsages(target);
                     }
                     else if (target == any)
                     {
-                        return SourcesTreeMethods.CountUsages(source);
+                        return RequiredSourcesTreeMethods.CountUsages(source);
                     }
                     else //if(source != Any && target != Any)
                     {
                         // Эквивалент Exists(source, target) => Count(Any, source, target) > 0
-                        var link = SourcesTreeMethods.Search(source, target);
+                        var link = RequiredSourcesTreeMethods.Search(source, target);
                         return AreEqual(link, constants.Null) ? GetZero() : GetOne();
                     }
                 }
@@ -296,7 +303,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                         }
                         return GetZero();
                     }
-                    var value = default(TLinkAddress);
+                    var value = TLinkAddress.Zero;
                     if (source == any)
                     {
                         value = target;
@@ -340,6 +347,8 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public virtual TLinkAddress Each(IList<TLinkAddress>? restriction, ReadHandler<TLinkAddress>? handler)
         {
+            restriction ??= System.Array.Empty<TLinkAddress>();
+            handler ??= _ => Constants.Continue;
             var constants = Constants;
             var @break = constants.Break;
             if (restriction is null || restriction.Count == 0)
@@ -351,7 +360,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                         return @break;
                     }
                 }
-                return @break;
+                return constants.Continue;
             }
             var @continue = constants.Continue;
             var any = constants.Any;
@@ -414,15 +423,15 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                     }
                     else if (source == any)
                     {
-                        return TargetsTreeMethods.EachUsage(target, handler);
+                        return RequiredTargetsTreeMethods.EachUsage(target, handler);
                     }
                     else if (target == any)
                     {
-                        return SourcesTreeMethods.EachUsage(source, handler);
+                        return RequiredSourcesTreeMethods.EachUsage(source, handler);
                     }
                     else //if(source != Any && target != Any)
                     {
-                        var link = SourcesTreeMethods.Search(source, target);
+                        var link = RequiredSourcesTreeMethods.Search(source, target);
                         return AreEqual(link, constants.Null) ? @continue : handler(GetLinkStruct(link));
                     }
                 }
@@ -446,7 +455,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                         }
                         return @continue;
                     }
-                    var value = default(TLinkAddress);
+                    var value = TLinkAddress.Zero;
                     if (source == any)
                     {
                         value = target;
@@ -466,6 +475,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             throw new NotSupportedException("Other restriction sizes and methods are not supported.");
         }
 
+        /// <summary>Updates the link that matches the restriction.</summary>
         /// <remarks>
         /// TODO: Возможно можно перемещать значения, если указан индекс, но значение существует в другом месте (но не в менеджере памяти, а в логике Links)
         /// </remarks>
@@ -483,25 +493,26 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             // Будет корректно работать только в том случае, если пространство выделенной связи предварительно заполнено нулями
             if (!AreEqual(link.Source, @null))
             {
-                SourcesTreeMethods.Detach(ref firstAsSource, linkIndex);
+                RequiredSourcesTreeMethods.Detach(ref firstAsSource, linkIndex);
             }
             if (!AreEqual(link.Target, @null))
             {
-                TargetsTreeMethods.Detach(ref firstAsTarget, linkIndex);
+                RequiredTargetsTreeMethods.Detach(ref firstAsTarget, linkIndex);
             }
             link.Source = this.GetSource(substitution);
             link.Target = this.GetTarget(substitution);
             if (!AreEqual(link.Source, @null))
             {
-                SourcesTreeMethods.Attach(ref firstAsSource, linkIndex);
+                RequiredSourcesTreeMethods.Attach(ref firstAsSource, linkIndex);
             }
             if (!AreEqual(link.Target, @null))
             {
-                TargetsTreeMethods.Attach(ref firstAsTarget, linkIndex);
+                RequiredTargetsTreeMethods.Attach(ref firstAsTarget, linkIndex);
             }
             return handler != null ? handler(before, GetLinkStruct(linkIndex)) : Constants.Continue;
         }
 
+        /// <summary>Creates a link and invokes the optional callback.</summary>
         /// <remarks>
         /// TODO: Возможно нужно будет заполнение нулями, если внешнее API ими не заполняет пространство
         /// </remarks>
@@ -512,12 +523,12 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             var freeLink = header.FirstFreeLink;
             if (!AreEqual(freeLink, Constants.Null))
             {
-                UnusedLinksListMethods.Detach(freeLink);
+                RequiredUnusedLinksListMethods.Detach(freeLink);
             }
             else
             {
                 var maximumPossibleInnerReference = Constants.InternalReferencesRange.Maximum;
-                if (GreaterThan(header.AllocatedLinks, maximumPossibleInnerReference))
+                if (GreaterOrEqualThan(header.AllocatedLinks, maximumPossibleInnerReference))
                 {
                     throw new LinksLimitReachedException<TLinkAddress>(maximumPossibleInnerReference);
                 }
@@ -534,6 +545,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             return handler != null ? handler(null, new Link<TLinkAddress>(freeLink, Constants.Null, Constants.Null)) : Constants.Continue;
         }
 
+        /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
         /// <summary>
         /// <para>
         /// Deletes the substitution.
@@ -547,12 +559,13 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public virtual TLinkAddress Delete(IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? handler)
         {
+            System.ArgumentNullException.ThrowIfNull(restriction);
             ref var header = ref GetHeaderReference();
             var link = restriction[Constants.IndexPart];
             var before = GetLinkStruct(link);
             if (LessThan(link, header.AllocatedLinks))
             {
-                UnusedLinksListMethods.AttachAsFirst(link);
+                RequiredUnusedLinksListMethods.AttachAsFirst(link);
                 // return handler?.Invoke(before, null);
                 return handler != null ? handler(before, null) : Constants.Continue;
             }
@@ -564,7 +577,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
                 // Позволяет оптимизировать количество выделенных связей (AllocatedLinks)
                 while (GreaterThan(header.AllocatedLinks, GetZero()) && IsUnusedLink(header.AllocatedLinks))
                 {
-                    UnusedLinksListMethods.Detach(header.AllocatedLinks);
+                    RequiredUnusedLinksListMethods.Detach(header.AllocatedLinks);
                     header.AllocatedLinks = header.AllocatedLinks - TLinkAddress.One;
                     _memory.UsedCapacity -= LinkSizeInBytes;
                 }
@@ -588,7 +601,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public IList<TLinkAddress>? GetLinkStruct(TLinkAddress linkIndex)
+        public IList<TLinkAddress> GetLinkStruct(TLinkAddress linkIndex)
         {
             ref var link = ref GetLinkReference(linkIndex);
             return new Link<TLinkAddress>(linkIndex, link.Source, link.Target);
@@ -688,7 +701,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
             if (!AreEqual(GetHeaderReference().FirstFreeLink, linkIndex)) // May be this check is not needed
             {
                 ref var link = ref GetLinkReference(linkIndex);
-                return AreEqual(link.SizeAsSource, default) && !AreEqual(link.Source, default);
+                return AreEqual(link.SizeAsSource, TLinkAddress.Zero) && !AreEqual(link.Source, TLinkAddress.Zero);
             }
             else
             {
@@ -720,7 +733,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual TLinkAddress GetZero() => default;
+        protected virtual TLinkAddress GetZero() => TLinkAddress.Zero;
 
         /// <summary>
         /// <para>
@@ -741,7 +754,7 @@ namespace Platform.Data.Doublets.Memory.United.Generic
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected virtual bool AreEqual(TLinkAddress first, TLinkAddress second) => first ==  second;
+        protected virtual bool AreEqual(TLinkAddress first, TLinkAddress second) => first == second;
 
         /// <summary>
         /// <para>

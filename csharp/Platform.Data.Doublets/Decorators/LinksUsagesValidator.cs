@@ -18,7 +18,7 @@ public class LinksUsagesValidator<TLinkAddress> : LinksDecoratorBase<TLinkAddres
 {
     /// <summary>
     ///     <para>
-    ///         Initializes a new <see cref="LinksUsagesValidator" /> instance.
+    ///         Initializes a new <see cref="LinksUsagesValidator{TLinkAddress}" /> instance.
     ///     </para>
     ///     <para></para>
     /// </summary>
@@ -29,6 +29,7 @@ public class LinksUsagesValidator<TLinkAddress> : LinksDecoratorBase<TLinkAddres
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     public LinksUsagesValidator(ILinks<TLinkAddress> links) : base(links: links) { }
 
+    /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
     /// <summary>
     ///     <para>
     ///         Updates the restriction.
@@ -55,6 +56,7 @@ public class LinksUsagesValidator<TLinkAddress> : LinksDecoratorBase<TLinkAddres
         return links.Update(restriction: restriction, substitution: substitution, handler: handler);
     }
 
+    /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
     /// <summary>
     ///     <para>
     ///         Deletes the restriction.

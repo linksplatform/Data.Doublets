@@ -1,0 +1,6 @@
+# Check defects with actual Conan include paths; compiler warnings are errors.
+# Naming/ownership style checks conflict with the established public template API.
+Checks: '-*,clang-analyzer-*,bugprone-infinite-loop,bugprone-misplaced-widening-cast,bugprone-suspicious-missing-comma,performance-move-const-arg,portability-*'
+WarningsAsErrors: '*'
+HeaderFilterRegex: '.*/(cpp/(Platform\.Data\.Doublets[^/]*|Tools)/|examples/).*'
+FormatStyle: file

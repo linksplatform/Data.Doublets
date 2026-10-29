@@ -1,0 +1,5 @@
+# CI and local validation use the same versions.
+conan==2.33.0
+fpdf2==2.8.7
+PyYAML==6.0.3
+gcovr==8.7

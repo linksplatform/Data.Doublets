@@ -1,0 +1,3 @@
+* text=auto eol=lf
+# Preserve downloaded evidence verbatim, including upstream whitespace.
+dev/log/** -text -whitespace linguist-generated=true

@@ -27,6 +27,7 @@ namespace Platform.Data.Doublets
     /// <seealso cref="LinksDisposableDecoratorBase{TLinkAddress}"/>
     public class UInt64LinksTransactionsLayer : LinksDisposableDecoratorBase<TLinkAddress> //-V3073 
     {
+        /// <summary>Records a transaction transition between two link states.</summary>
         /// <remarks>
         /// Альтернативные варианты хранения трансформации (элемента транзакции):
         /// 
@@ -161,7 +162,7 @@ namespace Platform.Data.Doublets
                 Timestamp = uniqueTimestampFactory.Create();
             }
 
-            public Transition(UniqueTimestampFactory uniqueTimestampFactory, TLinkAddress transactionId, IList<TLinkAddress> before, IList<TLinkAddress> after) : this(uniqueTimestampFactory, transactionId, new Link<TLinkAddress>(before), new Link<TLinkAddress>(after)) { }
+            public Transition(UniqueTimestampFactory uniqueTimestampFactory, TLinkAddress transactionId, IList<TLinkAddress>? before, IList<TLinkAddress>? after) : this(uniqueTimestampFactory, transactionId, new Link<TLinkAddress>(before), new Link<TLinkAddress>(after)) { }
 
             /// <summary>
             /// <para>
@@ -229,7 +230,7 @@ namespace Platform.Data.Doublets
             /// <para></para>
             /// </returns>
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public override bool Equals(object obj) => obj is Transition transition ? Equals(transition) : false;
+            public override bool Equals(object? obj) => obj is Transition transition && Equals(transition);
 
             /// <summary>
             /// <para>
@@ -268,6 +269,7 @@ namespace Platform.Data.Doublets
             public static bool operator !=(Transition left, Transition right) => !(left == right);
         }
 
+        /// <summary>Groups link changes for commit or rollback.</summary>
         /// <remarks>
         /// Другие варианты реализации транзакций (атомарности):
         ///     1. Разделение хранения значения связи ((Source Target) или (Source Linker Target)) и индексов.
@@ -467,11 +469,11 @@ namespace Platform.Data.Doublets
         private readonly FileStream _log;
         private readonly Queue<Transition> _transitions;
         private readonly UniqueTimestampFactory _uniqueTimestampFactory;
-        private Task _transitionsPusher;
+        private Task? _transitionsPusher;
         private Transition _lastCommitedTransition;
         private TLinkAddress _currentTransactionId;
-        private Queue<Transition> _currentTransactionTransitions;
-        private Transaction _currentTransaction;
+        private Queue<Transition>? _currentTransactionTransitions;
+        private Transaction? _currentTransaction;
         private TLinkAddress _lastCommitedTransactionId;
 
         /// <summary>
@@ -546,8 +548,9 @@ namespace Platform.Data.Doublets
         /// <para></para>
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public IList<TLinkAddress> GetLinkValue(TLinkAddress link) => _links.GetLink(link);
+        public IList<TLinkAddress> GetLinkValue(TLinkAddress link) => _links.GetRequiredLink(link);
 
+        /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
         /// <summary>
         /// <para>
         /// Creates the substitution.
@@ -572,6 +575,7 @@ namespace Platform.Data.Doublets
             });
         }
 
+        /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
         /// <summary>
         /// <para>
         /// Updates the substitution.
@@ -601,6 +605,7 @@ namespace Platform.Data.Doublets
             );
         }
 
+        /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
         /// <summary>
         /// <para>
         /// Deletes the substitution.
@@ -614,7 +619,6 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override TLinkAddress Delete(IList<TLinkAddress>? restriction, WriteHandler<TLinkAddress>? handler)
         {
-            var link = this.GetIndex(restriction);
             return _links.Delete(restriction, (before, after) =>
             {
                 CommitTransition(new Transition(_uniqueTimestampFactory, _currentTransactionId, before, after));
@@ -694,24 +698,32 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Transaction BeginTransaction() => new Transaction(this);
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private void DisposeTransitions()
+        private void DisposeTransitions(bool manual)
         {
+            // A constructor may reject a damaged log before opening the stream.
+            if (_log == null) return;
             try
             {
-                var pusher = _transitionsPusher;
-                if (pusher != null)
+                try
                 {
-                    _transitionsPusher = null;
-                    pusher.Wait();
+                    var pusher = _transitionsPusher;
+                    if (pusher != null)
+                    {
+                        _transitionsPusher = null;
+                        pusher.Wait();
+                    }
+                    if (_transitions != null)
+                    {
+                        PushTransitions();
+                    }
                 }
-                if (_transitions != null)
+                finally
                 {
-                    PushTransitions();
+                    _log.DisposeIfPossible();
                 }
-                _log.DisposeIfPossible();
                 FileHelpers.WriteFirst(_logAddress, _lastCommitedTransition);
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!manual)
             {
                 ex.Ignore();
             }
@@ -736,11 +748,17 @@ namespace Platform.Data.Doublets
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override void Dispose(bool manual, bool wasDisposed)
         {
-            if (!wasDisposed)
+            try
             {
-                DisposeTransitions();
+                if (!wasDisposed)
+                {
+                    DisposeTransitions(manual);
+                }
             }
-            base.Dispose(manual, wasDisposed);
+            finally
+            {
+                base.Dispose(manual, wasDisposed);
+            }
         }
 
         #endregion

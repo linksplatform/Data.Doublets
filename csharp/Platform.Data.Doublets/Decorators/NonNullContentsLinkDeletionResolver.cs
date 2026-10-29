@@ -18,7 +18,7 @@ public class NonNullContentsLinkDeletionResolver<TLinkAddress> : LinksDecoratorB
 {
     /// <summary>
     ///     <para>
-    ///         Initializes a new <see cref="NonNullContentsLinkDeletionResolver" /> instance.
+    ///         Initializes a new <see cref="NonNullContentsLinkDeletionResolver{TLinkAddress}" /> instance.
     ///     </para>
     ///     <para></para>
     /// </summary>
@@ -29,6 +29,7 @@ public class NonNullContentsLinkDeletionResolver<TLinkAddress> : LinksDecoratorB
     [MethodImpl(methodImplOptions: MethodImplOptions.AggressiveInlining)]
     public NonNullContentsLinkDeletionResolver(ILinks<TLinkAddress> links) : base(links: links) { }
 
+    /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
     /// <summary>
     ///     <para>
     ///         Deletes the restriction.

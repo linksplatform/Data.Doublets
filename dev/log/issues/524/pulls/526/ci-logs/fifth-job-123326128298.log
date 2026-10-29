@@ -1,0 +1,229 @@
+﻿2026-10-29T07:47:11.2212261Z Current runner version: '2.338.0'
+2026-10-29T07:47:11.2239691Z ##[group]Runner Image Provisioner
+2026-10-29T07:47:11.2240742Z Hosted Compute Agent
+2026-10-29T07:47:11.2241465Z Version: 20261021.618
+2026-10-29T07:47:11.2242124Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+2026-10-29T07:47:11.2242868Z Build Date: 2026-10-21T00:45:21Z
+2026-10-29T07:47:11.2243726Z Worker ID: {b7259ef8-bf9f-402b-bb6b-bd03f3f1eabe}
+2026-10-29T07:47:11.2244464Z Region: westus2
+2026-10-29T07:47:11.2245512Z Cloud: Azure
+2026-10-29T07:47:11.2246181Z ##[endgroup]
+2026-10-29T07:47:11.2247718Z ##[group]Operating System
+2026-10-29T07:47:11.2248566Z Ubuntu
+2026-10-29T07:47:11.2249120Z 24.04.5
+2026-10-29T07:47:11.2249700Z LTS
+2026-10-29T07:47:11.2250258Z ##[endgroup]
+2026-10-29T07:47:11.2250828Z ##[group]Runner Image
+2026-10-29T07:47:11.2251541Z Image: ubuntu-24.04
+2026-10-29T07:47:11.2252144Z Version: 20261025.353.1
+2026-10-29T07:47:11.2253497Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261025.353/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-29T07:47:11.2255320Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261025.353
+2026-10-29T07:47:11.2256447Z ##[endgroup]
+2026-10-29T07:47:11.2257600Z ##[group]GITHUB_TOKEN Permissions
+2026-10-29T07:47:11.2259786Z Contents: read
+2026-10-29T07:47:11.2260427Z Metadata: read
+2026-10-29T07:47:11.2260992Z ##[endgroup]
+2026-10-29T07:47:11.2263355Z Secret source: Actions
+2026-10-29T07:47:11.2264294Z Cache mode: write
+2026-10-29T07:47:11.2265715Z Prepare workflow directory
+2026-10-29T07:47:11.2602259Z Prepare all required actions
+2026-10-29T07:47:11.2672886Z Getting action download info
+2026-10-29T07:47:11.6552492Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+2026-10-29T07:47:11.8632742Z Complete job name: required
+2026-10-29T07:47:11.9523936Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+2026-10-29T07:47:11.9525259Z with:
+2026-10-29T07:47:11.9525767Z   persist-credentials: false
+2026-10-29T07:47:11.9526349Z   repository: linksplatform/Data.Doublets
+2026-10-29T07:47:11.9530219Z   token: ***
+2026-10-29T07:47:11.9530673Z   ssh-strict: true
+2026-10-29T07:47:11.9531139Z   ssh-user: git
+2026-10-29T07:47:11.9531585Z   clean: true
+2026-10-29T07:47:11.9532051Z   sparse-checkout-cone-mode: true
+2026-10-29T07:47:11.9532593Z   fetch-depth: 1
+2026-10-29T07:47:11.9533038Z   fetch-tags: false
+2026-10-29T07:47:11.9533500Z   show-progress: true
+2026-10-29T07:47:11.9533979Z   lfs: false
+2026-10-29T07:47:11.9534419Z   submodules: false
+2026-10-29T07:47:11.9535053Z   set-safe-directory: true
+2026-10-29T07:47:11.9535604Z   allow-unsafe-pr-checkout: false
+2026-10-29T07:47:11.9536417Z ##[endgroup]
+2026-10-29T07:47:12.3137894Z Syncing repository: linksplatform/Data.Doublets
+2026-10-29T07:47:12.3140152Z ##[group]Getting Git version info
+2026-10-29T07:47:12.3141153Z Working directory is '/home/runner/work/Data.Doublets/Data.Doublets'
+2026-10-29T07:47:12.3142267Z [command]/usr/bin/git version
+2026-10-29T07:47:12.3300629Z git version 2.56.0
+2026-10-29T07:47:12.3337118Z ##[endgroup]
+2026-10-29T07:47:12.3353497Z Temporarily overriding HOME='/home/runner/work/_temp/cd7a7440-18e7-4aa2-aff5-6e3021c2023b' before making global git config changes
+2026-10-29T07:47:12.3356420Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-29T07:47:12.3368475Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Data.Doublets/Data.Doublets
+2026-10-29T07:47:12.3443455Z Deleting the contents of '/home/runner/work/Data.Doublets/Data.Doublets'
+2026-10-29T07:47:12.3450018Z ##[group]Determining repository object format
+2026-10-29T07:47:12.3451829Z ##[endgroup]
+2026-10-29T07:47:12.3453248Z ##[group]Initializing the repository
+2026-10-29T07:47:12.3458979Z [command]/usr/bin/git init /home/runner/work/Data.Doublets/Data.Doublets
+2026-10-29T07:47:12.3632484Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-29T07:47:12.3634703Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-29T07:47:12.3636059Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-29T07:47:12.3636818Z hint: call:
+2026-10-29T07:47:12.3637238Z hint:
+2026-10-29T07:47:12.3637792Z hint: 	git config --global init.defaultBranch <name>
+2026-10-29T07:47:12.3638813Z hint:
+2026-10-29T07:47:12.3639435Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-29T07:47:12.3640374Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-29T07:47:12.3641111Z hint:
+2026-10-29T07:47:12.3641922Z hint: 	git branch -m <name>
+2026-10-29T07:47:12.3642467Z hint:
+2026-10-29T07:47:12.3643118Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-29T07:47:12.3648115Z Initialized empty Git repository in /home/runner/work/Data.Doublets/Data.Doublets/.git/
+2026-10-29T07:47:12.3662124Z [command]/usr/bin/git remote add origin https://github.com/linksplatform/Data.Doublets
+2026-10-29T07:47:12.3727530Z ##[endgroup]
+2026-10-29T07:47:12.3728344Z ##[group]Disabling automatic garbage collection
+2026-10-29T07:47:12.3731929Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-29T07:47:12.3770040Z ##[endgroup]
+2026-10-29T07:47:12.3771270Z ##[group]Setting up auth
+2026-10-29T07:47:12.3771908Z Removing SSH command configuration
+2026-10-29T07:47:12.3786465Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-29T07:47:12.3829787Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-29T07:47:12.4304475Z Removing HTTP extra header
+2026-10-29T07:47:12.4311609Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-29T07:47:12.4361409Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-29T07:47:12.4605372Z Removing includeIf entries pointing to credentials config files
+2026-10-29T07:47:12.4610958Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-29T07:47:12.4658116Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-29T07:47:12.4904677Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-aa05e9c4-1b9c-48cd-a90a-1517e17f5abc.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-29T07:47:12.4957363Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path /home/runner/work/_temp/git-credentials-aa05e9c4-1b9c-48cd-a90a-1517e17f5abc.config
+2026-10-29T07:47:12.5000671Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-aa05e9c4-1b9c-48cd-a90a-1517e17f5abc.config
+2026-10-29T07:47:12.5044039Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-aa05e9c4-1b9c-48cd-a90a-1517e17f5abc.config
+2026-10-29T07:47:12.5088179Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-aa05e9c4-1b9c-48cd-a90a-1517e17f5abc.config
+2026-10-29T07:47:12.5129729Z ##[endgroup]
+2026-10-29T07:47:12.5130570Z ##[group]Fetching the repository
+2026-10-29T07:47:12.5137120Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +5ae8bb9c8c616db294b04f45fc090ef0dd9340eb:refs/remotes/pull/526/merge
+2026-10-29T07:47:14.6482104Z From https://github.com/linksplatform/Data.Doublets
+2026-10-29T07:47:14.6484570Z  * [new ref]         5ae8bb9c8c616db294b04f45fc090ef0dd9340eb -> pull/526/merge
+2026-10-29T07:47:14.6490438Z ##[endgroup]
+2026-10-29T07:47:14.6491685Z ##[group]Determining the checkout info
+2026-10-29T07:47:14.6493119Z ##[endgroup]
+2026-10-29T07:47:14.6494773Z [command]/usr/bin/git sparse-checkout disable
+2026-10-29T07:47:14.6564101Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-29T07:47:14.6607388Z ##[group]Checking out the ref
+2026-10-29T07:47:14.6613740Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/526/merge
+2026-10-29T07:47:14.8856426Z Note: switching to 'refs/remotes/pull/526/merge'.
+2026-10-29T07:47:14.8857047Z 
+2026-10-29T07:47:14.8857537Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-29T07:47:14.8858574Z changes and commit them, and you can discard any commits you make in this
+2026-10-29T07:47:14.8859623Z state without impacting any branches by switching back to a branch.
+2026-10-29T07:47:14.8860193Z 
+2026-10-29T07:47:14.8860580Z If you want to create a new branch to retain commits you create, you may
+2026-10-29T07:47:14.8861428Z do so (now or later) by using -c with the switch command. Example:
+2026-10-29T07:47:14.8861899Z 
+2026-10-29T07:47:14.8862126Z   git switch -c <new-branch-name>
+2026-10-29T07:47:14.8862467Z 
+2026-10-29T07:47:14.8862706Z Or undo this operation with:
+2026-10-29T07:47:14.8863056Z 
+2026-10-29T07:47:14.8863245Z   git switch -
+2026-10-29T07:47:14.8863508Z 
+2026-10-29T07:47:14.8863929Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-29T07:47:14.8864517Z 
+2026-10-29T07:47:14.8865488Z HEAD is now at 5ae8bb9 Merge b80b5b3253feeef304e44da04d84e9730489658b into 799502ce9275edc80d9fbc1953ff8892fe0eca19
+2026-10-29T07:47:14.8894206Z ##[endgroup]
+2026-10-29T07:47:14.8955346Z [command]/usr/bin/git log -1 --format=%H
+2026-10-29T07:47:14.8992857Z 5ae8bb9c8c616db294b04f45fc090ef0dd9340eb
+2026-10-29T07:47:14.9002384Z ##[group]Removing auth
+2026-10-29T07:47:14.9002777Z Removing SSH command configuration
+2026-10-29T07:47:14.9006587Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-29T07:47:14.9049709Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-29T07:47:14.9291854Z Removing HTTP extra header
+2026-10-29T07:47:14.9295660Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-29T07:47:14.9341316Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-29T07:47:14.9581358Z Removing includeIf entries pointing to credentials config files
+2026-10-29T07:47:14.9584435Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-29T07:47:14.9625672Z includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path
+2026-10-29T07:47:14.9626963Z includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path
+2026-10-29T07:47:14.9628029Z includeif.gitdir:/github/workspace/.git.path
+2026-10-29T07:47:14.9628889Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-29T07:47:14.9636137Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path
+2026-10-29T07:47:14.9670824Z /home/runner/work/_temp/git-credentials-aa05e9c4-1b9c-48cd-a90a-1517e17f5abc.config
+2026-10-29T07:47:14.9682098Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-aa05e9c4\-1b9c\-48cd\-a90a\-1517e17f5abc\.config
+2026-10-29T07:47:14.9731151Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path
+2026-10-29T07:47:14.9773418Z /home/runner/work/_temp/git-credentials-aa05e9c4-1b9c-48cd-a90a-1517e17f5abc.config
+2026-10-29T07:47:14.9781922Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/Data.Doublets/Data.Doublets/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-aa05e9c4\-1b9c\-48cd\-a90a\-1517e17f5abc\.config
+2026-10-29T07:47:14.9828420Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-10-29T07:47:14.9864666Z /github/runner_temp/git-credentials-aa05e9c4-1b9c-48cd-a90a-1517e17f5abc.config
+2026-10-29T07:47:14.9873206Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-aa05e9c4\-1b9c\-48cd\-a90a\-1517e17f5abc\.config
+2026-10-29T07:47:14.9920781Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-29T07:47:14.9957290Z /github/runner_temp/git-credentials-aa05e9c4-1b9c-48cd-a90a-1517e17f5abc.config
+2026-10-29T07:47:14.9966933Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-aa05e9c4\-1b9c\-48cd\-a90a\-1517e17f5abc\.config
+2026-10-29T07:47:15.0013544Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-29T07:47:15.0256933Z Removing credentials config '/home/runner/work/_temp/git-credentials-aa05e9c4-1b9c-48cd-a90a-1517e17f5abc.config'
+2026-10-29T07:47:15.0266067Z ##[endgroup]
+2026-10-29T07:47:15.0527576Z ##[group]Run python3 scripts/check_required.py
+2026-10-29T07:47:15.0528110Z [36;1mpython3 scripts/check_required.py[0m
+2026-10-29T07:47:15.0551244Z shell: /usr/bin/bash -e {0}
+2026-10-29T07:47:15.0551600Z env:
+2026-10-29T07:47:15.0553383Z   RESULTS: {
+  "changes": {
+    "result": "success",
+    "outputs": {
+      "csharp": "true",
+      "cpp": "true",
+      "docs": "true",
+      "pipeline": "true"
+    }
+  },
+  "credentials": {
+    "result": "skipped",
+    "outputs": {}
+  },
+  "quality": {
+    "result": "success",
+    "outputs": {}
+  },
+  "csharp": {
+    "result": "success",
+    "outputs": {}
+  },
+  "cpp": {
+    "result": "failure",
+    "outputs": {}
+  },
+  "docs": {
+    "result": "success",
+    "outputs": {}
+  },
+  "security": {
+    "result": "failure",
+    "outputs": {}
+  },
+  "links": {
+    "result": "success",
+    "outputs": {}
+  },
+  "publish": {
+    "result": "skipped",
+    "outputs": {}
+  }
+}
+2026-10-29T07:47:15.0555529Z ##[endgroup]
+2026-10-29T07:47:15.1611561Z Traceback (most recent call last):
+2026-10-29T07:47:15.1612737Z   File "/home/runner/work/Data.Doublets/Data.Doublets/scripts/check_required.py", line 32, in <module>
+2026-10-29T07:47:15.1613744Z     validate(json.loads(os.environ['RESULTS']), os.environ.get('GITHUB_REF') == 'refs/heads/main')
+2026-10-29T07:47:15.1614608Z   File "/home/runner/work/Data.Doublets/Data.Doublets/scripts/check_required.py", line 9, in validate
+2026-10-29T07:47:15.1615660Z     raise ValueError('Validation did not pass: ' + ', '.join(failed))
+2026-10-29T07:47:15.1616213Z ValueError: Validation did not pass: cpp, security
+2026-10-29T07:47:15.1766673Z ##[error]Process completed with exit code 1.
+2026-10-29T07:47:15.2002778Z Post job cleanup.
+2026-10-29T07:47:15.2892412Z [command]/usr/bin/git version
+2026-10-29T07:47:15.2940390Z git version 2.56.0
+2026-10-29T07:47:15.3010787Z Temporarily overriding HOME='/home/runner/work/_temp/a8c5a1f5-b0ca-435e-a54e-202a6e53265f' before making global git config changes
+2026-10-29T07:47:15.3012372Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-29T07:47:15.3016122Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Data.Doublets/Data.Doublets
+2026-10-29T07:47:15.3052944Z Removing SSH command configuration
+2026-10-29T07:47:15.3059973Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-29T07:47:15.3104450Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-29T07:47:15.3378602Z Removing HTTP extra header
+2026-10-29T07:47:15.3386993Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-29T07:47:15.3430737Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-29T07:47:15.3697963Z Removing includeIf entries pointing to credentials config files
+2026-10-29T07:47:15.3707268Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-29T07:47:15.3756189Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-29T07:47:15.4155514Z Cleaning up orphan processes

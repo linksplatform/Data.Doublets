@@ -1,29 +1,29 @@
 namespace Platform::Data::Doublets::Ffi
 {
 
-    template<typename Signature>
+    template <typename Signature>
     thread_local std::function<Signature> GLOBAL_FUNCTION = nullptr;
 
-    template<typename TReturn, typename Signature, typename... TArgs>
+    template <typename TReturn, typename Signature, typename... TArgs>
     TReturn call_last_global(TArgs... args)
     {
         decltype(auto) result = GLOBAL_FUNCTION<Signature>(args...);
         return result;
     }
 
-    template<typename Signature>
+    template <typename Signature>
     void set_global(std::function<Signature> function)
     {
         GLOBAL_FUNCTION<Signature> = std::move(function);
     }
 
-    template<typename LinkAddressType>
+    template <typename LinkAddressType>
     using CUDCallback = LinkAddressType (*)(Link<LinkAddressType> before, Link<LinkAddressType> after);
 
-    template<typename LinkAddressType>
+    template <typename LinkAddressType>
     using EachCallback = LinkAddressType (*)(Link<LinkAddressType>);
 
-    template<typename LinkAddressType>
+    template <typename LinkAddressType>
     struct FfiConstants
     {
         LinkAddressType index_part;
@@ -67,45 +67,21 @@ namespace Platform::Data::Doublets::Ffi
 
         FfiConstants<uint64_t> UInt64Links_GetConstants(void* this_);
 
-        uint8_t ByteLinks_Create(void* this_,
-                                 const uint8_t* query,
-                                 uintptr_t len,
-                                 CUDCallback<uint8_t> callback);
+        uint8_t ByteLinks_Create(void* this_, const uint8_t* query, uintptr_t len, CUDCallback<uint8_t> callback);
 
-        uint16_t UInt16Links_Create(void* this_,
-                                    const uint16_t* query,
-                                    uintptr_t len,
-                                    CUDCallback<uint16_t> callback);
+        uint16_t UInt16Links_Create(void* this_, const uint16_t* query, uintptr_t len, CUDCallback<uint16_t> callback);
 
-        uint32_t UInt32Links_Create(void* this_,
-                                    const uint32_t* query,
-                                    uintptr_t len,
-                                    CUDCallback<uint32_t> callback);
+        uint32_t UInt32Links_Create(void* this_, const uint32_t* query, uintptr_t len, CUDCallback<uint32_t> callback);
 
-        uint64_t UInt64Links_Create(void* this_,
-                                    const uint64_t* query,
-                                    uintptr_t len,
-                                    CUDCallback<uint64_t> callback);
+        uint64_t UInt64Links_Create(void* this_, const uint64_t* query, uintptr_t len, CUDCallback<uint64_t> callback);
 
-        uint8_t ByteLinks_Each(void* this_,
-                               const uint8_t* query,
-                               uintptr_t len,
-                               EachCallback<uint8_t> callback);
+        uint8_t ByteLinks_Each(void* this_, const uint8_t* query, uintptr_t len, EachCallback<uint8_t> callback);
 
-        uint16_t UInt16Links_Each(void* this_,
-                                  const uint16_t* query,
-                                  uintptr_t len,
-                                  EachCallback<uint16_t> callback);
+        uint16_t UInt16Links_Each(void* this_, const uint16_t* query, uintptr_t len, EachCallback<uint16_t> callback);
 
-        uint32_t UInt32Links_Each(void* this_,
-                                  const uint32_t* query,
-                                  uintptr_t len,
-                                  EachCallback<uint32_t> callback);
+        uint32_t UInt32Links_Each(void* this_, const uint32_t* query, uintptr_t len, EachCallback<uint32_t> callback);
 
-        uint64_t UInt64Links_Each(void* this_,
-                                  const uint64_t* query,
-                                  uintptr_t len,
-                                  EachCallback<uint64_t> callback);
+        uint64_t UInt64Links_Each(void* this_, const uint64_t* query, uintptr_t len, EachCallback<uint64_t> callback);
 
         uint8_t ByteLinks_Count(void* this_, const uint8_t* query, uintptr_t len);
 
@@ -115,70 +91,42 @@ namespace Platform::Data::Doublets::Ffi
 
         uint64_t UInt64Links_Count(void* this_, const uint64_t* query, uintptr_t len);
 
-        uint8_t ByteLinks_Update(void* this_,
-                                 const uint8_t* restriction,
-                                 uintptr_t len_r,
-                                 const uint8_t* substitution,
-                                 uintptr_t len_s,
-                                 CUDCallback<uint8_t> callback);
+        uint8_t ByteLinks_Update(void* this_, const uint8_t* restriction, uintptr_t len_r, const uint8_t* substitution,
+                                 uintptr_t len_s, CUDCallback<uint8_t> callback);
 
-        uint16_t UInt16Links_Update(void* this_,
-                                    const uint16_t* restriction,
-                                    uintptr_t len_r,
-                                    const uint16_t* substitution,
-                                    uintptr_t len_s,
-                                    CUDCallback<uint16_t> callback);
+        uint16_t UInt16Links_Update(void* this_, const uint16_t* restriction, uintptr_t len_r,
+                                    const uint16_t* substitution, uintptr_t len_s, CUDCallback<uint16_t> callback);
 
-        uint32_t UInt32Links_Update(void* this_,
-                                    const uint32_t* restriction,
-                                    uintptr_t len_r,
-                                    const uint32_t* substitution,
-                                    uintptr_t len_s,
-                                    CUDCallback<uint32_t> callback);
+        uint32_t UInt32Links_Update(void* this_, const uint32_t* restriction, uintptr_t len_r,
+                                    const uint32_t* substitution, uintptr_t len_s, CUDCallback<uint32_t> callback);
 
-        uint64_t UInt64Links_Update(void* this_,
-                                    const uint64_t* restriction,
-                                    uintptr_t len_r,
-                                    const uint64_t* substitution,
-                                    uintptr_t len_s,
-                                    CUDCallback<uint64_t> callback);
+        uint64_t UInt64Links_Update(void* this_, const uint64_t* restriction, uintptr_t len_r,
+                                    const uint64_t* substitution, uintptr_t len_s, CUDCallback<uint64_t> callback);
 
-        uint8_t ByteLinks_Delete(void* this_,
-                                 const uint8_t* query,
-                                 uintptr_t len,
-                                 CUDCallback<uint8_t> callback);
+        uint8_t ByteLinks_Delete(void* this_, const uint8_t* query, uintptr_t len, CUDCallback<uint8_t> callback);
 
-        uint16_t UInt16Links_Delete(void* this_,
-                                    const uint16_t* query,
-                                    uintptr_t len,
-                                    CUDCallback<uint16_t> callback);
+        uint16_t UInt16Links_Delete(void* this_, const uint16_t* query, uintptr_t len, CUDCallback<uint16_t> callback);
 
-        uint32_t UInt32Links_Delete(void* this_,
-                                    const uint32_t* query,
-                                    uintptr_t len,
-                                    CUDCallback<uint32_t> callback);
+        uint32_t UInt32Links_Delete(void* this_, const uint32_t* query, uintptr_t len, CUDCallback<uint32_t> callback);
 
-        uint64_t UInt64Links_Delete(void* this_,
-                                    const uint64_t* query,
-                                    uintptr_t len,
-                                    CUDCallback<uint64_t> callback);
+        uint64_t UInt64Links_Delete(void* this_, const uint64_t* query, uintptr_t len, CUDCallback<uint64_t> callback);
 
         void init_fmt_logger();
     }
 
-    template<typename Stop>
+    template <typename Stop>
     struct stopper
     {
         static constexpr bool value = false;
     };
 
-    template<typename TSelf, typename TLinkOptions, typename... TBase>
+    template <typename TSelf, typename TLinkOptions, typename... TBase>
     class LinksBase : public Interfaces::Polymorph<TSelf, TBase...>
     {
-    private:
+      private:
         void* _ptr;
 
-    public:
+      public:
         using LinksOptionsType = TLinkOptions;
         using LinkAddressType = typename LinksOptionsType::LinkAddressType;
         using LinkType = typename LinksOptionsType::LinkType;
@@ -206,7 +154,9 @@ namespace Platform::Data::Doublets::Ffi
             }
             else
             {
-                static_assert(stopper<LinkAddressType>::value, "LinkAddressType must be one of std::uint8_t, std::uint16_t, std::uint32_t, std::uint64_t");
+                static_assert(
+                    stopper<LinkAddressType>::value,
+                    "LinkAddressType must be one of std::uint8_t, std::uint16_t, std::uint32_t, std::uint64_t");
             }
         }
 
@@ -242,7 +192,9 @@ namespace Platform::Data::Doublets::Ffi
             }
             else
             {
-                static_assert(stopper<LinkAddressType>::value, "LinkAddressType must be one of std::uint8_t, std::uint16_t, std::uint32_t, std::uint64_t");
+                static_assert(
+                    stopper<LinkAddressType>::value,
+                    "LinkAddressType must be one of std::uint8_t, std::uint16_t, std::uint32_t, std::uint64_t");
             }
         }
 
@@ -259,27 +211,34 @@ namespace Platform::Data::Doublets::Ffi
             set_global<Signature>(callback);
             if constexpr (std::same_as<LinkAddressType, std::uint8_t>)
             {
-                return ByteLinks_Create(_ptr, substitutionPtr, substitutionLength, call_last_global<LinkAddressType, Signature, Link<LinkAddressType>>);
+                return ByteLinks_Create(_ptr, substitutionPtr, substitutionLength,
+                                        call_last_global<LinkAddressType, Signature, Link<LinkAddressType>>);
             }
             else if constexpr (std::same_as<LinkAddressType, std::uint16_t>)
             {
-                return UInt16Links_Create(_ptr, substitutionPtr, substitutionLength, call_last_global<LinkAddressType, Signature, Link<LinkAddressType>>);
+                return UInt16Links_Create(_ptr, substitutionPtr, substitutionLength,
+                                          call_last_global<LinkAddressType, Signature, Link<LinkAddressType>>);
             }
             else if constexpr (std::same_as<LinkAddressType, std::uint32_t>)
             {
-                return UInt32Links_Create(_ptr, substitutionPtr, substitutionLength, call_last_global<LinkAddressType, Signature, Link<LinkAddressType>>);
+                return UInt32Links_Create(_ptr, substitutionPtr, substitutionLength,
+                                          call_last_global<LinkAddressType, Signature, Link<LinkAddressType>>);
             }
             else if constexpr (std::same_as<LinkAddressType, std::uint64_t>)
             {
-                return UInt64Links_Create(_ptr, substitutionPtr, substitutionLength, call_last_global<LinkAddressType, Signature, Link<LinkAddressType>>);
+                return UInt64Links_Create(_ptr, substitutionPtr, substitutionLength,
+                                          call_last_global<LinkAddressType, Signature, Link<LinkAddressType>>);
             }
             else
             {
-                static_assert(stopper<LinkAddressType>::value, "LinkAddressType must be one of std::uint8_t, std::uint16_t, std::uint32_t, std::uint64_t");
+                static_assert(
+                    stopper<LinkAddressType>::value,
+                    "LinkAddressType must be one of std::uint8_t, std::uint16_t, std::uint32_t, std::uint64_t");
             }
         };
 
-        LinkAddressType Update(const LinkType& restriction, const LinkType& substitution, const WriteHandlerType& handler)
+        LinkAddressType Update(const LinkType& restriction, const LinkType& substitution,
+                               const WriteHandlerType& handler)
         {
             auto restrictionLength = std::ranges::size(restriction);
             auto restrictionPtr{std::ranges::data(restriction)};
@@ -294,23 +253,29 @@ namespace Platform::Data::Doublets::Ffi
             set_global<Signature>(callback);
             if constexpr (std::same_as<LinkAddressType, std::uint8_t>)
             {
-                return ByteLinks_Update(_ptr, restrictionPtr, restrictionLength, substitutionPtr, substitutionLength, call_last_global<LinkAddressType, Signature, Link<LinkAddressType>>);
+                return ByteLinks_Update(_ptr, restrictionPtr, restrictionLength, substitutionPtr, substitutionLength,
+                                        call_last_global<LinkAddressType, Signature, Link<LinkAddressType>>);
             }
             else if constexpr (std::same_as<LinkAddressType, std::uint16_t>)
             {
-                return UInt16Links_Update(_ptr, restrictionPtr, restrictionLength, substitutionPtr, substitutionLength, call_last_global<LinkAddressType, Signature, Link<LinkAddressType>>);
+                return UInt16Links_Update(_ptr, restrictionPtr, restrictionLength, substitutionPtr, substitutionLength,
+                                          call_last_global<LinkAddressType, Signature, Link<LinkAddressType>>);
             }
             else if constexpr (std::same_as<LinkAddressType, std::uint32_t>)
             {
-                return UInt32Links_Update(_ptr, restrictionPtr, restrictionLength, substitutionPtr, substitutionLength, call_last_global<LinkAddressType, Signature, Link<LinkAddressType>>);
+                return UInt32Links_Update(_ptr, restrictionPtr, restrictionLength, substitutionPtr, substitutionLength,
+                                          call_last_global<LinkAddressType, Signature, Link<LinkAddressType>>);
             }
             else if constexpr (std::same_as<LinkAddressType, std::uint64_t>)
             {
-                return UInt64Links_Update(_ptr, restrictionPtr, restrictionLength, substitutionPtr, substitutionLength, call_last_global<LinkAddressType, Signature, Link<LinkAddressType>>);
+                return UInt64Links_Update(_ptr, restrictionPtr, restrictionLength, substitutionPtr, substitutionLength,
+                                          call_last_global<LinkAddressType, Signature, Link<LinkAddressType>>);
             }
             else
             {
-                static_assert(stopper<LinkAddressType>::value, "LinkAddressType must be one of std::uint8_t, std::uint16_t, std::uint32_t, std::uint64_t");
+                static_assert(
+                    stopper<LinkAddressType>::value,
+                    "LinkAddressType must be one of std::uint8_t, std::uint16_t, std::uint32_t, std::uint64_t");
             }
         }
 
@@ -327,23 +292,29 @@ namespace Platform::Data::Doublets::Ffi
             set_global<Signature>(callback);
             if constexpr (std::same_as<LinkAddressType, std::uint8_t>)
             {
-                return ByteLinks_Delete(_ptr, restrictionPtr, restrictionLength, call_last_global<LinkAddressType, Signature, Link<LinkAddressType>>);
+                return ByteLinks_Delete(_ptr, restrictionPtr, restrictionLength,
+                                        call_last_global<LinkAddressType, Signature, Link<LinkAddressType>>);
             }
             else if constexpr (std::same_as<LinkAddressType, std::uint16_t>)
             {
-                return UInt16Links_Delete(_ptr, restrictionPtr, restrictionLength, call_last_global<LinkAddressType, Signature, Link<LinkAddressType>>);
+                return UInt16Links_Delete(_ptr, restrictionPtr, restrictionLength,
+                                          call_last_global<LinkAddressType, Signature, Link<LinkAddressType>>);
             }
             else if constexpr (std::same_as<LinkAddressType, std::uint32_t>)
             {
-                return UInt32Links_Delete(_ptr, restrictionPtr, restrictionLength, call_last_global<LinkAddressType, Signature, Link<LinkAddressType>>);
+                return UInt32Links_Delete(_ptr, restrictionPtr, restrictionLength,
+                                          call_last_global<LinkAddressType, Signature, Link<LinkAddressType>>);
             }
             else if constexpr (std::same_as<LinkAddressType, std::uint64_t>)
             {
-                return UInt64Links_Delete(_ptr, restrictionPtr, restrictionLength, call_last_global<LinkAddressType, Signature, Link<LinkAddressType>>);
+                return UInt64Links_Delete(_ptr, restrictionPtr, restrictionLength,
+                                          call_last_global<LinkAddressType, Signature, Link<LinkAddressType>>);
             }
             else
             {
-                static_assert(stopper<LinkAddressType>::value, "LinkAddressType must be one of std::uint8_t, std::uint16_t, std::uint32_t, std::uint64_t");
+                static_assert(
+                    stopper<LinkAddressType>::value,
+                    "LinkAddressType must be one of std::uint8_t, std::uint16_t, std::uint32_t, std::uint64_t");
             }
         }
 
@@ -358,23 +329,29 @@ namespace Platform::Data::Doublets::Ffi
             set_global<Signature>(callback);
             if constexpr (std::same_as<LinkAddressType, std::uint8_t>)
             {
-                return ByteLinks_Each(_ptr, restrictionPtr, restrictionLength, call_last_global<LinkAddressType, Signature, Link<LinkAddressType>>);
+                return ByteLinks_Each(_ptr, restrictionPtr, restrictionLength,
+                                      call_last_global<LinkAddressType, Signature, Link<LinkAddressType>>);
             }
             else if constexpr (std::same_as<LinkAddressType, std::uint16_t>)
             {
-                return UInt16Links_Each(_ptr, restrictionPtr, restrictionLength, call_last_global<LinkAddressType, Signature, Link<LinkAddressType>>);
+                return UInt16Links_Each(_ptr, restrictionPtr, restrictionLength,
+                                        call_last_global<LinkAddressType, Signature, Link<LinkAddressType>>);
             }
             else if constexpr (std::same_as<LinkAddressType, std::uint32_t>)
             {
-                return UInt32Links_Each(_ptr, restrictionPtr, restrictionLength, call_last_global<LinkAddressType, Signature, Link<LinkAddressType>>);
+                return UInt32Links_Each(_ptr, restrictionPtr, restrictionLength,
+                                        call_last_global<LinkAddressType, Signature, Link<LinkAddressType>>);
             }
             else if constexpr (std::same_as<LinkAddressType, std::uint64_t>)
             {
-                return UInt64Links_Each(_ptr, restrictionPtr, restrictionLength, call_last_global<LinkAddressType, Signature, Link<LinkAddressType>>);
+                return UInt64Links_Each(_ptr, restrictionPtr, restrictionLength,
+                                        call_last_global<LinkAddressType, Signature, Link<LinkAddressType>>);
             }
             else
             {
-                static_assert(stopper<LinkAddressType>::value, "LinkAddressType must be one of std::uint8_t, std::uint16_t, std::uint32_t, std::uint64_t");
+                static_assert(
+                    stopper<LinkAddressType>::value,
+                    "LinkAddressType must be one of std::uint8_t, std::uint16_t, std::uint32_t, std::uint64_t");
             }
         }
 
@@ -400,10 +377,12 @@ namespace Platform::Data::Doublets::Ffi
             }
             else
             {
-                static_assert(stopper<LinkAddressType>::value, "LinkAddressType must be one of std::uint8_t, std::uint16_t, std::uint32_t, std::uint64_t");
+                static_assert(
+                    stopper<LinkAddressType>::value,
+                    "LinkAddressType must be one of std::uint8_t, std::uint16_t, std::uint32_t, std::uint64_t");
             }
         }
 
         // Extensions
     };
-}// namespace Platform::Data::Doublets::Memory::United::Ffi
+} // namespace Platform::Data::Doublets::Ffi

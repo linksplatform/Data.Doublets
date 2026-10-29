@@ -35,7 +35,7 @@ public abstract class LinksDecoratorBase<TLinkAddress> : LinksOperatorBase<TLink
 
     /// <summary>
     ///     <para>
-    ///         Initializes a new <see cref="LinksDecoratorBase" /> instance.
+    ///         Initializes a new <see cref="LinksDecoratorBase{TLinkAddress}" /> instance.
     ///     </para>
     ///     <para></para>
     /// </summary>
@@ -47,6 +47,7 @@ public abstract class LinksDecoratorBase<TLinkAddress> : LinksOperatorBase<TLink
     protected LinksDecoratorBase(ILinks<TLinkAddress> links) : base(links: links)
     {
         _constants = links.Constants;
+        _facade = this;
         Facade = this;
     }
 
@@ -127,13 +128,14 @@ public abstract class LinksDecoratorBase<TLinkAddress> : LinksOperatorBase<TLink
         return _links.Each(restriction: restriction, handler: handler);
     }
 
+    /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
     /// <summary>
     ///     <para>
     ///         Creates the restriction.
     ///     </para>
     ///     <para></para>
     /// </summary>
-    /// <param name="restriction">
+    /// <param name="substitution">
     ///     <para>The restriction.</para>
     ///     <para></para>
     /// </param>
@@ -147,6 +149,7 @@ public abstract class LinksDecoratorBase<TLinkAddress> : LinksOperatorBase<TLink
         return _links.Create(substitution: substitution, handler: handler);
     }
 
+    /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
     /// <summary>
     ///     <para>
     ///         Updates the restriction.
@@ -171,6 +174,7 @@ public abstract class LinksDecoratorBase<TLinkAddress> : LinksOperatorBase<TLink
         return _links.Update(restriction: restriction, substitution: substitution, handler: handler);
     }
 
+    /// <param name="handler">Optional callback; null continues without invoking a callback.</param>
     /// <summary>
     ///     <para>
     ///         Deletes the restriction.
