@@ -25,7 +25,7 @@ cmake -S "$cpp_root" -B "$build_dir" \
     -DCMAKE_TOOLCHAIN_FILE="$build_dir/conan_toolchain.cmake" \
     -DCMAKE_BUILD_TYPE="$build_type" -DLINKS_PLATFORM_TESTS="$test_flag" \
     -DLINKS_PLATFORM_BENCHMARKS="$benchmark_flag" \
-    -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+    -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DLINKS_PLATFORM_COVERAGE="${CPP_COVERAGE:-OFF}"
 cmake --build "$build_dir" --parallel "${CMAKE_BUILD_PARALLEL_LEVEL:-1}"
 if [[ $mode == test ]]; then
     ctest --test-dir "$build_dir" --output-on-failure --no-tests=error --timeout 180

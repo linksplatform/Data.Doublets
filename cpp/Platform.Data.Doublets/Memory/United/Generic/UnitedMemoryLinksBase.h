@@ -414,7 +414,7 @@
                 _UnusedLinksListMethods->AttachAsFirst(linkAddress);
                 return handler ? handler(before, LinkType{}) : Constants.Continue;
             }
-            else if ((linkAddress == header.AllocatedLinks))
+            else if (linkAddress == header.AllocatedLinks)
             {
                 --header.AllocatedLinks;
                 _memory.UsedCapacity(_memory.UsedCapacity() - LinkSizeInBytes);

@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.13)
 
 set(LINKS_PLATFORM_TESTS OFF CACHE BOOL "Whether to compile tests")
 set(LINKS_PLATFORM_BENCHMARKS OFF CACHE BOOL "Whether to compile benchmarks")
+option(LINKS_PLATFORM_COVERAGE "Instrument native tests for gcov coverage" OFF)
 set(LINKS_PLATFORM_EXTRA_FLAGS "" CACHE STRING "Extra compiler flags")
 
 
@@ -46,6 +47,14 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
     target_compile_options(${PROJECT_NAME}.Library INTERFACE -Wall -Wextra -Werror)
 elseif(MSVC)
     target_compile_options(${PROJECT_NAME}.Library INTERFACE /W4 /WX)
+endif()
+
+if(LINKS_PLATFORM_COVERAGE)
+    if(NOT CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+        message(FATAL_ERROR "Native coverage requires GCC/gcov")
+    endif()
+    target_compile_options(${PROJECT_NAME}.Library INTERFACE --coverage -O0 -g0)
+    target_link_options(${PROJECT_NAME}.Library INTERFACE --coverage)
 endif()
 
 if(LINKS_PLATFORM_TESTS)

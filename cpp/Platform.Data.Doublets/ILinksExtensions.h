@@ -398,51 +398,58 @@ namespace Platform::Data::Doublets
     }
 
     template <typename TStorage>
+    static void EnsureCreated(TStorage& storage, std::function<typename TStorage::LinkAddressType()> creator,
+                              const typename TStorage::LinkType& addresses)
+    {
+        using Address = typename TStorage::LinkAddressType;
+        std::unordered_set<Address> remaining;
+        for (auto address : addresses)
+        {
+            if (address != storage.Constants.Null && address <= storage.Constants.InternalReferencesRange.Maximum &&
+                !Platform::Data::Exists(storage, address))
+            {
+                remaining.insert(address);
+            }
+        }
+        const auto requested = remaining;
+        std::unordered_set<Address> created;
+        // Retain intermediate allocations until every requested address exists:
+        // freeing one early could make the allocator return it repeatedly.
+        while (!remaining.empty())
+        {
+            auto address = creator();
+            if (address == storage.Constants.Null || !created.insert(address).second)
+            {
+                throw std::runtime_error("The creator did not allocate a new link");
+            }
+            remaining.erase(address);
+        }
+        for (auto address : created)
+        {
+            if (!requested.contains(address))
+            {
+                Platform::Data::Delete(storage, address);
+            }
+        }
+    }
+
+    template <typename TStorage>
     static void EnsureCreated(TStorage& storage, const typename TStorage::LinkType& addresses)
     {
-        storage.EnsureCreated(storage.Create, addresses);
+        EnsureCreated(storage, std::function<typename TStorage::LinkAddressType()>{[&storage] {
+                          return Platform::Data::Create(storage);
+                      }},
+                      addresses);
     }
 
     template <typename TStorage>
     static void EnsurePointsCreated(TStorage& storage, const typename TStorage::LinkType& addresses)
     {
-        storage.EnsureCreated(storage.CreatePoint, addresses);
-    }
-
-    template <typename TStorage>
-    static void EnsureCreated(TStorage& storage, std::function<typename TStorage::LinkAddressType()> creator,
-                              const typename TStorage::LinkType& addresses)
-    {
-        std::unordered_set<typename TStorage::LinkAddressType> nonExistentLinkAddresses{};
-        typename TStorage::LinkAddressType maxLinkAddress{};
-        for (auto linkAddress : nonExistentLinkAddresses)
-        {
-            if (!storage.Exists(linkAddress))
-            {
-                nonExistentLinkAddresses.insert(linkAddress);
-                if (linkAddress > maxLinkAddress)
-                {
-                    maxLinkAddress = linkAddress;
-                }
-            }
-        }
-        if (!nonExistentLinkAddresses.empty())
-        {
-            maxLinkAddress = std::min(maxLinkAddress, storage.Constants.InternalReferencesRange.Maximum);
-            std::vector<typename TStorage::LinkType> createdLinks{};
-            typename TStorage::LinkAddressType createdLink = creator();
-            while (maxLinkAddress != createdLink)
-            {
-                createdLinks.Add(createdLink);
-            }
-            for (auto i{0}; i < createdLinks.size(); ++i)
-            {
-                if (!nonExistentLinkAddresses.contains(createdLinks[i]))
-                {
-                    Delete(storage, createdLinks[i]);
-                }
-            }
-        }
+        EnsureCreated(storage, std::function<typename TStorage::LinkAddressType()>{[&storage] {
+                          auto point = Platform::Data::Create(storage);
+                          return Update(storage, point, point, point);
+                      }},
+                      addresses);
     }
 
     template <typename TStorage>
@@ -795,7 +802,7 @@ namespace Platform::Data::Doublets
     template <typename TStorage>
     auto DeleteAll(TStorage& storage)
     {
-        auto handler = [](typename TStorage::LinkType before, typename TStorage::LinkType substitution) {
+        auto handler = [](typename TStorage::LinkType, typename TStorage::LinkType) {
             return typename TStorage::LinkAddressType{};
         };
         auto any = storage.Constants.Any;
@@ -964,8 +971,10 @@ namespace Platform::Data::Doublets
     {
         typename TStorage::LinkType queryResult;
         DIRECT_METHOD_CALL(TStorage, storage, Each, query,
-                           [&](typename TStorage::LinkType vec) ->
-                           typename TStorage::LinkAddressType { return storage.Constants.Continue; });
+                           [&](typename TStorage::LinkType vec) -> typename TStorage::LinkAddressType {
+                               queryResult.push_back(vec[storage.Constants.IndexPart]);
+                               return storage.Constants.Continue;
+                           });
 
         for (auto link : queryResult)
         {

@@ -227,7 +227,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     {
                         return this->Total();
                     }
-                    else if ((source == any))
+                    else if (source == any)
                     {
                         if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(target))
                         {
@@ -238,7 +238,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                             return InternalTargetsTreeMethods->CountUsages(target);
                         }
                     }
-                    else if ((target == any))
+                    else if (target == any)
                     {
                         if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(source))
                         {
@@ -329,11 +329,11 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                         return LinkAddressType{0};
                     }
                     auto value = LinkAddressType{};
-                    if ((source == any))
+                    if (source == any)
                     {
                         value = target;
                     }
-                    if ((target == any))
+                    if (target == any)
                     {
                         value = source;
                     }
@@ -392,9 +392,9 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             if (length == 2)
             {
                 auto value = restriction[1];
-                if ((index == any))
+                if (index == any)
                 {
-                    if ((value == any))
+                    if (value == any)
                     {
                         return Total(); // Any - как отсутствие ограничения
                     }
@@ -424,7 +424,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     {
                         return LinkAddressType{0};
                     }
-                    if ((value == any))
+                    if (value == any)
                     {
                         return LinkAddressType{1};
                     }
@@ -441,13 +441,13 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 auto externalReferencesRange = constants.ExternalReferencesRange;
                 auto source = GetSource(*this, restriction);
                 auto target = GetTarget(*this, restriction);
-                if ((index == any))
+                if (index == any)
                 {
                     if ((source == any) && (target == any))
                     {
                         return Total();
                     }
-                    else if ((source == any))
+                    else if (source == any)
                     {
                         if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(target))
                         {
@@ -458,7 +458,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                             return InternalTargetsTreeMethods->CountUsages(target);
                         }
                     }
-                    else if ((target == any))
+                    else if (target == any)
                     {
                         if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(source))
                         {
@@ -549,11 +549,11 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                         return LinkAddressType{0};
                     }
                     auto value = LinkAddressType{0};
-                    if ((source == any))
+                    if (source == any)
                     {
                         value = target;
                     }
-                    if ((target == any))
+                    if (target == any)
                     {
                         value = source;
                     }
@@ -590,7 +590,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
             auto index = GetIndex(*this, restriction);
             if (length == 1)
             {
-                if ((index == any))
+                if (index == any)
                 {
                     return Each(LinkType{}, handler);
                 }
@@ -621,7 +621,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                     {
                         return $continue;
                     }
-                    if ((value == any))
+                    if (value == any)
                     {
                         return handler(GetLinkStruct(index));
                     }
@@ -638,13 +638,13 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                 auto externalReferencesRange = constants.ExternalReferencesRange;
                 auto source = GetSource(*this, restriction);
                 auto target = GetTarget(*this, restriction);
-                if ((index == any))
+                if (index == any)
                 {
                     if ((source == any) && (target == any))
                     {
                         return Each(LinkType{}, handler);
                     }
-                    else if ((source == any))
+                    else if (source == any)
                     {
                         if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(target))
                         {
@@ -655,7 +655,7 @@ namespace Platform::Data::Doublets::Memory::Split::Generic
                             return InternalTargetsTreeMethods->EachUsage(target, handler);
                         }
                     }
-                    else if ((target == any))
+                    else if (target == any)
                     {
                         if (Constants.IsExternalReferencesRangeEnabled && externalReferencesRange.Contains(source))
                         {

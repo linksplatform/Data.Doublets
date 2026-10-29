@@ -1,12 +1,23 @@
 namespace Platform::Data::Doublets
 {
     template <std::integral TLinkAddress>
+    struct Link;
+
+    namespace Details
+    {
+        template <std::integral TLinkAddress>
+        inline constexpr Link<TLinkAddress> NullLink{};
+    }
+
+    template <std::integral TLinkAddress>
     struct Link
     {
         using value_type = TLinkAddress;
 
       public:
-        static const Link Null;
+        // A reference delays instantiating the self-typed value until Link is
+        // complete, while keeping Null usable in C++20 constant expressions.
+        static constexpr const Link& Null = Details::NullLink<TLinkAddress>;
 
       private:
         static constexpr LinksConstants<TLinkAddress> _constants{};
@@ -200,11 +211,6 @@ namespace Platform::Data::Doublets
                 .append(1, ')');
         }
     };
-
-    // Define after Link is complete; Clang rejects an in-class instance of
-    // the incomplete enclosing type. The definition remains a constant expression.
-    template <std::integral TLinkAddress>
-    inline constexpr Link<TLinkAddress> Link<TLinkAddress>::Null{};
 
     template <typename... Args>
     Link(Args...) -> Link<std::common_type_t<Args...>>;

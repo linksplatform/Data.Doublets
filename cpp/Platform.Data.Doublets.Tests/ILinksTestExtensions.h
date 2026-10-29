@@ -47,7 +47,6 @@ namespace Platform::Data::Doublets::Tests
         static typename TStorage::LinkAddressType TestUpdateLinkToReferenceItself(
             TStorage& storage, typename TStorage::LinkAddressType linkAddress)
         {
-            auto constants{storage.Constants};
             auto updatedLinkAddress{Update(storage, linkAddress, linkAddress, linkAddress)};
             Link link{GetLink(storage, updatedLinkAddress)};
             Expects(link.Index == link.Source);
@@ -217,8 +216,9 @@ namespace Platform::Data::Doublets::Tests
                 }
             }
             std::vector<typename TStorage::LinkType> allLinks{All(storage)};
-            for (auto link : allLinks)
+            for (const auto& link : allLinks)
             {
+                EXPECT_TRUE(Exists(storage, link[0]));
             }
 
             Expects(Count(storage) == created);
@@ -231,11 +231,13 @@ namespace Platform::Data::Doublets::Tests
                     Delete(storage, linkAddress);
                     ++deleted;
                     allLinks = {All(storage)};
-                    for (auto link : allLinks)
+                    for (const auto& link : allLinks)
                     {
+                        EXPECT_TRUE(Exists(storage, link[0]));
                     }
                 }
             }
+            EXPECT_EQ(created, deleted);
             Expects(0 == Count(storage));
         }
     }
