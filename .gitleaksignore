@@ -1,0 +1,4 @@
+# Removed 2019 credential; GitHub returns HTTP 401 on 2026-10-29.
+# Evidence: dev/log/issues/524/pulls/526/security/historical-credential.json
+# Exact historic finding only; current and future credentials still fail scans.
+bf135cd605a52a68226de6a2a8260168ad586df6:publish-docs.sh:generic-api-key:16

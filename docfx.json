@@ -1,0 +1,53 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": [
+            "csharp/Platform.Data.Doublets/Platform.Data.Doublets.csproj"
+          ]
+        }
+      ],
+      "dest": "docs/api",
+      "properties": {
+        "TargetFramework": "net8.0"
+      }
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [
+          "index.md",
+          "toc.yml",
+          "api/**.yml"
+        ],
+        "src": "docs"
+      },
+      {
+        "files": [
+          "README.md",
+          "README.ru.md"
+        ],
+        "dest": "."
+      }
+    ],
+    "dest": "_site/csharp",
+    "template": [
+      "default",
+      "modern"
+    ],
+    "globalMetadata": {
+      "_appTitle": "Platform.Data.Doublets",
+      "_enableSearch": true
+    },
+    "resource": [
+      {
+        "files": [
+          "Platform.Data.Doublets.pdf"
+        ],
+        "src": "_site/csharp"
+      }
+    ]
+  }
+}

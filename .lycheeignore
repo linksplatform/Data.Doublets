@@ -1,0 +1,3 @@
+# Local development examples are not public documentation endpoints.
+^https?://localhost([:/]|$)
+^https?://127\.0\.0\.1([:/]|$)

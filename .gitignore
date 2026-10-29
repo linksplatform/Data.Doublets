@@ -61,6 +61,7 @@ artifacts/
 # Reproducible CI build and tool output
 cpp/build*/
 cpp/conan-center-index/
+cpp/CMakeUserPresets.json
 __pycache__/
 _site/
 docs/api/

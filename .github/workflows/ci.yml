@@ -1,0 +1,334 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  changes:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      csharp: ${{ steps.detect.outputs.csharp }}
+      cpp: ${{ steps.detect.outputs.cpp }}
+      docs: ${{ steps.detect.outputs.docs }}
+      pipeline: ${{ steps.detect.outputs.pipeline }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - id: detect
+        run: python3 scripts/changes.py
+  quality:
+    needs: changes
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    concurrency:
+      group: quality-${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Validate current merge with main
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: bash scripts/fresh-merge.sh
+      - name: Check workflow syntax and shell commands
+        run: |
+          python3 -m pip install -r scripts/requirements-quality.txt
+          mkdir -p /tmp/actionlint-bin
+          docker run --rm --entrypoint cat rhysd/actionlint@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667 /usr/local/bin/actionlint > /tmp/actionlint-bin/actionlint
+          chmod +x /tmp/actionlint-bin/actionlint
+          ACTIONLINT=/tmp/actionlint-bin/actionlint python3 scripts/check-workflows.py
+      - uses: zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482 # v0.6.4
+        with:
+          version: v1.29.0
+          advanced-security: false
+          annotations: true
+          min-confidence: medium
+      - name: Run pipeline regression tests
+        run: python3 -m unittest discover -s experiments -p 'test_*.py' -v
+      - name: Install native formatting tool
+        run: |
+          sudo apt-get update &
+          wait $!
+          sudo apt-get install -y clang-format-18 &
+          wait $!
+      - name: Check native formatting
+        run: python3 scripts/check-cpp.py
+      - name: Validate changesets and prohibit manual version edits
+        if: github.event_name == 'pull_request'
+        run: python3 scripts/versions.py validate
+      - name: Validate repository configuration
+        run: python3 scripts/check_repository.py
+      - name: Explain publishing requirements on pull requests
+        if: github.event_name == 'pull_request'
+        run: python3 scripts/release.py preflight --mode report
+  credentials:
+    if: >-
+      github.ref == 'refs/heads/main' && github.event_name != 'pull_request' &&
+      (needs.changes.outputs.csharp == 'true' || needs.changes.outputs.cpp == 'true' || needs.changes.outputs.pipeline == 'true')
+    needs: [changes, quality]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Check NuGet authentication before building
+        env:
+          NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/release.py preflight --mode release --credentials-only
+  csharp:
+    needs: [changes, quality, credentials]
+    if: >-
+      !cancelled() && needs.quality.result == 'success' &&
+      (needs.credentials.result == 'success' || needs.credentials.result == 'skipped') &&
+      (needs.changes.outputs.csharp == 'true' || needs.changes.outputs.pipeline == 'true')
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-2025]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    concurrency:
+      group: csharp-${{ matrix.os }}-${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Prepare current merge and automatic release versions
+        run: bash scripts/prepare-checkout.sh
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
+        with:
+          global-json-file: global.json
+      - name: Restore, build, test, package and consume
+        shell: bash
+        run: bash scripts/check-csharp.sh
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        if: always()
+        with:
+          name: csharp-${{ matrix.os }}
+          path: |
+            artifacts/packages/*
+            artifacts/test-results/*
+          if-no-files-found: error
+          retention-days: 14
+  cpp:
+    needs: [changes, quality, credentials]
+    if: >-
+      !cancelled() && needs.quality.result == 'success' &&
+      (needs.credentials.result == 'success' || needs.credentials.result == 'skipped') &&
+      (needs.changes.outputs.cpp == 'true' || needs.changes.outputs.pipeline == 'true')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        compiler: [gcc, clang, clang-sanitized]
+    concurrency:
+      group: cpp-${{ matrix.compiler }}-${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Prepare current merge and automatic release versions
+        run: bash scripts/prepare-checkout.sh
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
+        with:
+          global-json-file: global.json
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
+        with:
+          python-version: '3.12'
+      - name: Set compiler
+        env:
+          COMPILER: ${{ matrix.compiler }}
+        run: |
+          if [[ "$COMPILER" == clang* ]]; then
+            {
+              echo 'CC=clang'
+              echo 'CXX=clang++'
+            } >> "$GITHUB_ENV"
+            if [[ "$COMPILER" == clang-sanitized ]]; then
+              {
+                echo 'CXXFLAGS=-march=x86-64-v2 -fsanitize=address,undefined -fno-omit-frame-pointer'
+                echo 'ASAN_OPTIONS=detect_leaks=1:halt_on_error=1'
+                echo 'UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1'
+              } >> "$GITHUB_ENV"
+            fi
+          else
+            {
+              echo 'CC=gcc'
+              echo 'CXX=g++'
+            } >> "$GITHUB_ENV"
+          fi
+      - name: Install pinned dependencies
+        run: bash cpp/setup.sh
+      - name: Build and execute discovered tests
+        env:
+          CMAKE_BUILD_PARALLEL_LEVEL: '1'
+        run: bash cpp/run_tests.sh
+      - name: Compile benchmarks and run a bounded smoke test
+        env:
+          CMAKE_BUILD_PARALLEL_LEVEL: '1'
+        run: bash cpp/run_benchmarks.sh --benchmark_filter=BM_JustCall --benchmark_min_time=0.01
+      - name: Static analysis with the native compilation database
+        if: matrix.compiler == 'clang'
+        run: |
+          sudo apt-get update &
+          wait $!
+          sudo apt-get install -y clang-tidy-18 cppcheck &
+          wait $!
+          python3 scripts/check-cpp.py --build-dir cpp/build
+      - name: Compile C and C++ FFI declarations
+        run: |
+          printf '#include "c/ffi.h"\nint main(void) { return 0; }\n' | cc -x c -std=c11 -Werror -Wall -Wextra -I . -fsyntax-only -
+          printf '#include "c/ffi.h"\nint main() { return 0; }\n' | c++ -x c++ -std=c++20 -Werror -Wall -Wextra -I . -fsyntax-only -
+      - name: Package C++ headers and validate native NuGet consumer
+        run: |
+          python3 scripts/release.py pack-cpp
+          python3 scripts/smoke_packages.py cpp
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        if: always()
+        with:
+          name: cpp-${{ matrix.compiler }}
+          path: |
+            artifacts/packages/*
+            cpp/build/Testing/Temporary/LastTest.log
+          if-no-files-found: error
+          retention-days: 14
+  docs:
+    needs: [changes, quality, credentials]
+    if: >-
+      !cancelled() && needs.quality.result == 'success' &&
+      (needs.credentials.result == 'success' || needs.credentials.result == 'skipped') &&
+      (needs.changes.outputs.csharp == 'true' || needs.changes.outputs.cpp == 'true' || needs.changes.outputs.docs == 'true' || needs.changes.outputs.pipeline == 'true')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    concurrency:
+      group: docs-${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Prepare current merge and automatic release versions
+        run: bash scripts/prepare-checkout.sh
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
+        with:
+          global-json-file: global.json
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
+        with:
+          python-version: '3.12'
+      - name: Build API documentation and Unicode source PDF
+        run: |
+          python3 -m pip install -r scripts/requirements-ci.txt
+          sudo apt-get update &
+          wait $!
+          sudo apt-get install -y doxygen fonts-dejavu-core &
+          wait $!
+          dotnet tool restore
+          python3 scripts/source_pdf.py
+          dotnet docfx docfx.json --warningsAsErrors
+          doxygen cpp/Doxyfile
+          python3 scripts/check_docs.py
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: documentation
+          path: _site
+          if-no-files-found: error
+          retention-days: 14
+  publish:
+    if: >-
+      !cancelled() && github.ref == 'refs/heads/main' &&
+      needs.quality.result == 'success' &&
+      !contains(needs.*.result, 'failure') && !contains(needs.*.result, 'cancelled') &&
+      (needs.csharp.result == 'success' || needs.cpp.result == 'success' || needs.docs.result == 'success')
+    needs: [credentials, quality, csharp, cpp, docs]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    permissions:
+      contents: write
+      packages: write
+    concurrency:
+      group: main-writer-${{ github.repository }}-main
+      cancel-in-progress: false
+      queue: max
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
+        with:
+          global-json-file: global.json
+      - name: Prepare and commit only validated release metadata
+        if: needs.csharp.result == 'success' || needs.cpp.result == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh auth setup-git
+          python3 scripts/versions.py prepare
+          python3 scripts/versions.py commit
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        if: needs.csharp.result == 'success'
+        with:
+          name: csharp-ubuntu-24.04
+          path: artifacts
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        if: needs.cpp.result == 'success'
+        with:
+          name: cpp-gcc
+          path: .
+      - name: Publish validated C# artifacts
+        if: needs.csharp.result == 'success'
+        env:
+          NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 scripts/release.py preflight --mode release --language csharp
+          python3 scripts/release.py publish --language csharp
+      - name: Publish validated C++ artifacts
+        if: ${{ !cancelled() && needs.cpp.result == 'success' }}
+        env:
+          NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 scripts/release.py preflight --mode release --language cpp
+          python3 scripts/release.py publish --language cpp
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        if: ${{ !cancelled() && needs.docs.result == 'success' }}
+        with:
+          name: documentation
+          path: _site
+      - name: Publish documentation and source PDF
+        if: ${{ !cancelled() && needs.docs.result == 'success' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash scripts/publish-docs.sh
+  required:
+    if: always()
+    needs: [changes, credentials, quality, csharp, cpp, docs, publish]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Require every applicable validation
+        env:
+          RESULTS: ${{ toJSON(needs) }}
+        run: python3 scripts/check_required.py

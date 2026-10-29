@@ -1,0 +1,58 @@
+name: Security
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  codeql:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      security-events: write # Upload CodeQL results to code scanning.
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [csharp, c-cpp, actions]
+    concurrency:
+      group: security-codeql-${{ matrix.language }}-${{ github.ref }}
+      cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: github/codeql-action/init@9b3254085494b55a0f7c4c2b3d2d52cc712ce370 # v4
+        with:
+          languages: ${{ matrix.language }}
+          build-mode: none
+          queries: security-extended,security-and-quality
+      - uses: github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370 # v4
+        with:
+          category: /language:${{ matrix.language }}
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    concurrency:
+      group: security-audit-${{ github.ref }}
+      cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
+        with:
+          global-json-file: global.json
+      - name: Audit all NuGet dependencies, including transitive packages
+        run: |
+          dotnet restore csharp/Platform.Data.Doublets.sln --locked-mode -warnaserror -p:NuGetAuditMode=all
+          dotnet list csharp/Platform.Data.Doublets.sln package --vulnerable --include-transitive --format json > nuget-audit.json
+          python3 scripts/check_audit.py nuget-audit.json
+      - name: Scan repository history for credentials
+        run: bash scripts/check-secrets.sh
