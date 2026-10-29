@@ -42,6 +42,13 @@
         "files": [
           "README.md"
         ],
+        "src": "examples/Update",
+        "dest": "examples/Update"
+      },
+      {
+        "files": [
+          "README.md"
+        ],
         "src": "experiments",
         "dest": "experiments"
       }
@@ -71,7 +78,15 @@
       },
       {
         "files": [
+          "Program.cs"
+        ],
+        "src": "examples/Update",
+        "dest": "examples/Update"
+      },
+      {
+        "files": [
           "reproduce_deletion_contract.py",
+          "verify_update_contract_guards.py",
           "deletion_policies.rs",
           "missing_delete.rs"
         ],

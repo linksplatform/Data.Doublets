@@ -629,6 +629,11 @@ namespace Platform.Data.Doublets
         /// <param name="newSource">Индекс связи, которая является началом связи, на которую выполняется обновление.</param>
         /// <param name="newTarget">Индекс связи, которая является концом связи, на которую выполняется обновление.</param>
         /// <returns>Индекс обновлённой связи.</returns>
+        /// <remarks>
+        /// Forwards to the selected stack without checking existence. Raw stores require
+        /// a live internal address and valid endpoints. Choose an outer existence
+        /// validator or check the address before updating when it may be missing.
+        /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TLinkAddress Update<TLinkAddress>(this ILinks<TLinkAddress> links, TLinkAddress link, TLinkAddress newSource, TLinkAddress newTarget) where TLinkAddress : IUnsignedNumber<TLinkAddress> { return links.Update(new LinkAddress<TLinkAddress>(link), new Link<TLinkAddress>(link, newSource, newTarget)); }
 
@@ -1043,6 +1048,11 @@ namespace Platform.Data.Doublets
         /// <para>The links.</para>
         /// <para></para>
         /// </returns>
+        /// <remarks>
+        /// Resolves uniqueness, contents and usages without selecting existence validation.
+        /// Wrap the returned stack in LinksInnerReferenceExistenceValidator when missing
+        /// internal references must be rejected before resolver searches or mutations.
+        /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ILinks<TLinkAddress> DecorateWithAutomaticUniquenessAndUsagesResolution<TLinkAddress>(this ILinks<TLinkAddress> links) where TLinkAddress : IUnsignedNumber<TLinkAddress>
         {

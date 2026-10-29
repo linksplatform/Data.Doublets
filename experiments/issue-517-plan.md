@@ -7,17 +7,17 @@ preserving caller-selected validation and the unchecked raw route.
   reviews, related PR 527's architecture review, and contributing guidance.
 - [x] Check the prepared branch and working tree; fetch main; check sub-issues
   (none listed) and inspect recent merged work and CI timestamps/SHAs.
-- [ ] Trace both raw updates, Platform.Data address adapters, the automatic
+- [x] Trace both raw updates, Platform.Data address adapters, the automatic
   resolver composition, validator, reference classification and callback flow.
-- [ ] Establish a safe baseline with finite checked missing-address cases and
+- [x] Establish a safe baseline with finite checked missing-address cases and
   valid unchecked calls; never pass an invalid address into raw memory update.
-- [ ] Test both backends, plain/automatic stacks, missing/deleted addresses,
+- [x] Test both backends, plain/automatic stacks, missing/deleted addresses,
   extension/primitive overloads, callbacks, unchanged queries and allocation.
-- [ ] Verify validation happens before resolver search/reset/merge; verify
+- [x] Verify validation happens before resolver search/reset/merge; verify
   the raw route omits existence checking using only valid live links.
-- [ ] Decide from evidence whether runtime changes improve configurability;
+- [x] Decide from evidence whether runtime changes improve configurability;
   document the decision, exact contracts, limitations and executable recipes.
-- [ ] Publish update guidance in the documentation navigation and README;
+- [x] Publish update guidance in the documentation navigation and README;
   ensure examples run automatically and add any required release changeset.
 - [ ] Run the full C# suite, examples, formatting, package smoke test,
   repository/pipeline checks, docs/link validation and applicable local CI.

@@ -4,6 +4,10 @@
   href: api/toc.yml
 - name: Design principles
   href: design.md
+- name: C# update
+  href: update-csharp.md
+- name: Update investigation
+  href: update-investigation.md
 - name: C# deletion
   href: deletion-csharp.md
 - name: Rust deletion

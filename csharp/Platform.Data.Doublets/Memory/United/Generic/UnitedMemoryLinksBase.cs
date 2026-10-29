@@ -477,6 +477,10 @@ namespace Platform.Data.Doublets.Memory.United.Generic
 
         /// <summary>Updates the link that matches the restriction.</summary>
         /// <remarks>
+        /// The caller must supply a live internal address and valid endpoint/index state.
+        /// This raw operation does not validate existence. Select an outer
+        /// LinksInnerReferenceExistenceValidator or a per-call EnsureLinkExists check
+        /// before resolver work when missing internal addresses must be rejected.
         /// TODO: Возможно можно перемещать значения, если указан индекс, но значение существует в другом месте (но не в менеджере памяти, а в логике Links)
         /// </remarks>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

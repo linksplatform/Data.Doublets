@@ -14,6 +14,12 @@ namespace Platform.Data.Doublets.Decorators;
 ///     </para>
 ///     <para></para>
 /// </summary>
+/// <remarks>
+/// Validates internal references in reads and both update argument lists, and checks
+/// deleted addresses. Place outside resolver layers to reject missing references
+/// before searches or mutations. Non-internal values are not validated as update
+/// addresses; callers must still supply a concrete internal update address.
+/// </remarks>
 /// <seealso cref="LinksDecoratorBase{TLinkAddress}" />
 public class LinksInnerReferenceExistenceValidator<TLinkAddress> : LinksDecoratorBase<TLinkAddress> where TLinkAddress : IUnsignedNumber<TLinkAddress>
 {
