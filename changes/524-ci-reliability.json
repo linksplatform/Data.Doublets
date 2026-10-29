@@ -1,4 +1,0 @@
-{
-  "releases": {"csharp": "patch", "cpp": "patch"},
-  "summary": "Restore warning-free CI, nullable contracts, executable native tests, reproducible packages, documentation and guarded publishing."
-}

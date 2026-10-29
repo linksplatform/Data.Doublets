@@ -1,1 +1,0 @@
-{"summary":"Publish C# and C++ packages using GitHub OIDC and fresh NuGet trusted publishing credentials, with actionable pre-build policy and package-scope checks.","releases":{"csharp":"patch","cpp":"patch"}}

@@ -4,7 +4,7 @@
         <Description>LinksPlatform's Platform.Data.Doublets Class Library</Description>
         <Copyright>konard, FreePhoenix888</Copyright>
         <AssemblyTitle>Platform.Data.Doublets</AssemblyTitle>
-        <VersionPrefix>0.18.3</VersionPrefix>
+        <VersionPrefix>0.18.4</VersionPrefix>
         <Authors>konard, FreePhoenix888</Authors>
         <TargetFramework>net8.0</TargetFramework>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
