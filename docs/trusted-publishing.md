@@ -101,10 +101,10 @@ succeed; none may ignore failures. HTTP failures preserve bounded sanitized
 diagnostics. The job still requires `contents: write` and `packages: write`.
 C# uses that login; C++ logs in again immediately before publication, even when
 C# fails and C++ can independently repair its publication. Missing configuration
-also permits fallback here. Metadata failure prevents either package push. NuGet temporary
-keys last one hour and the publishing job is bounded to 40 minutes. Never move
-keys into artifacts, persistent secrets or cross-job outputs. Shell tracing around
-credentials remains forbidden.
+also permits fallback here. Metadata failure prevents either package push.
+NuGet temporary keys last one hour and the publishing job is bounded to 40
+minutes. Never move keys into artifacts, persistent secrets or cross-job
+outputs. Shell tracing around credentials remains forbidden.
 
 A real NuGet push rejection with HTTP **401/403** can retry **once** with the
 provided token. First inspect the anonymous exact-version download: an already
