@@ -60,7 +60,8 @@ C# deletion requires a live link, reset endpoints and caller-managed usages.
 * [C# deletion recipes and overload contracts](https://linksplatform.github.io/Data.Doublets/csharp/deletion-csharp.html)
 * [Rust deletion recipes and current implementation limits](https://linksplatform.github.io/Data.Doublets/csharp/deletion-rust.html)
 * [Shared vision and design guidelines](https://linksplatform.github.io/Data.Doublets/csharp/design.html)
-* [Runnable deletion examples](https://linksplatform.github.io/Data.Doublets/csharp/examples/Deletion/README.html) and [architecture audit](https://linksplatform.github.io/Data.Doublets/csharp/deletion-audit.html)
+* [Runnable deletion examples](https://linksplatform.github.io/Data.Doublets/csharp/examples/Deletion/README.html)
+* [Architecture audit](https://linksplatform.github.io/Data.Doublets/csharp/deletion-audit.html)
 
 ## [Documentation](https://linksplatform.github.io/Data.Doublets)
 *   Interface [ILinks\<TLink, TConstants\>](https://github.com/linksplatform/Data/blob/main/csharp/Platform.Data/ILinks.cs).

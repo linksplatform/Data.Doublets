@@ -75,6 +75,8 @@ links.Delete(link);
 ## Контракты удаления и принципы проектирования
 
 Проверки и обработка удаления выбираются вызывающим кодом или декораторами.
-См. [рецепты C#](https://linksplatform.github.io/Data.Doublets/csharp/deletion-csharp.html), [рецепты Rust](https://linksplatform.github.io/Data.Doublets/csharp/deletion-rust.html),
-[общие принципы](https://linksplatform.github.io/Data.Doublets/csharp/design.html) и [исполняемые примеры](https://linksplatform.github.io/Data.Doublets/csharp/examples/Deletion/README.html)
+См. [рецепты C#](https://linksplatform.github.io/Data.Doublets/csharp/deletion-csharp.html),
+[рецепты Rust](https://linksplatform.github.io/Data.Doublets/csharp/deletion-rust.html),
+[общие принципы](https://linksplatform.github.io/Data.Doublets/csharp/design.html)
+и [исполняемые примеры](https://linksplatform.github.io/Data.Doublets/csharp/examples/Deletion/README.html)
 (документация на английском языке).
