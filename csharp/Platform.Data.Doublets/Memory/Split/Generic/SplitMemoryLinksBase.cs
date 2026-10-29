@@ -228,11 +228,11 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
     ///     <para></para>
     /// </summary>
     /// <param name="restriction">
-    ///     <para>The substitution.</para>
+    ///     <para>The query restriction. Null or an empty list means all links.</para>
     ///     <para></para>
     /// </param>
     /// <exception cref="NotSupportedException">
-    ///     <para>Другие размеры и способы ограничений не поддерживаются.</para>
+    ///     <para>Other restriction sizes and methods are not supported.</para>
     ///     <para></para>
     /// </exception>
     /// <returns>
@@ -243,7 +243,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
     public virtual TLinkAddress Count(IList<TLinkAddress>? restriction)
     {
         // Если нет ограничений, тогда возвращаем общее число связей находящихся в хранилище.
-        if (restriction.Count == 0)
+        if (restriction is null || restriction.Count == 0)
         {
             return Total;
         }
@@ -406,7 +406,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
             }
             return GetZero();
         }
-        throw new NotSupportedException(message: "Другие размеры и способы ограничений не поддерживаются.");
+        throw new NotSupportedException(message: "Other restriction sizes and methods are not supported.");
     }
 
     /// <summary>
@@ -420,11 +420,11 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
     ///     <para></para>
     /// </param>
     /// <param name="restriction">
-    ///     <para>The substitution.</para>
+    ///     <para>The query restriction. Null or an empty list means all links.</para>
     ///     <para></para>
     /// </param>
     /// <exception cref="NotSupportedException">
-    ///     <para>Другие размеры и способы ограничений не поддерживаются.</para>
+    ///     <para>Other restriction sizes and methods are not supported.</para>
     ///     <para></para>
     /// </exception>
     /// <returns>
@@ -436,7 +436,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
     {
         var constants = Constants;
         var @break = constants.Break;
-        if (restriction.Count == 0)
+        if (restriction is null || restriction.Count == 0)
         {
             for (var link = GetOne(); (link <= GetHeaderReference().AllocatedLinks); link = link + TLinkAddress.One)
             {
@@ -604,7 +604,7 @@ public abstract class SplitMemoryLinksBase<TLinkAddress> : DisposableBase, ILink
             }
             return @continue;
         }
-        throw new NotSupportedException(message: "Другие размеры и способы ограничений не поддерживаются.");
+        throw new NotSupportedException(message: "Other restriction sizes and methods are not supported.");
     }
 
     /// <remarks>
